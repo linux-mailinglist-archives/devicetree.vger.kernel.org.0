@@ -2,79 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93E4A6619BF
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 22:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D59E6619C9
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 22:13:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236252AbjAHVIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 16:08:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56072 "EHLO
+        id S233580AbjAHVNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 16:13:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236516AbjAHVHn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 16:07:43 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB2811A1A;
-        Sun,  8 Jan 2023 13:06:49 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id u9so15670188ejo.0;
-        Sun, 08 Jan 2023 13:06:49 -0800 (PST)
+        with ESMTP id S231410AbjAHVMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 16:12:51 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1D96561
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 13:12:48 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id s22so7021234ljp.5
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 13:12:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IqsPmxN00edrHGi0cQNfG1ZlbY68R6DFWjN9C23HMdo=;
-        b=VLyhUT2siNF/GSpeQqo7AyhTHW46LJ63JExQJ9DPEjLKXoAnnbjmcx/ecVZO9VXvhX
-         nmQQ82mcK28Fl39xCf6NLwKIEcdwiX75riNMwp08TbxTa1mU4VGxa1xt2+Nhyv5+MCv2
-         Hc+xIurh3N1XZg0G/o47EnAp3vHlsFZDvdD+bXChWkv8KHoj4sWQWEYHft2h0AlnLm0E
-         jlwvhMGiGD6YkXESMqqe0dtAN82zEKXACnXgbB0WC4w/gRLBcZHpKASu3bTlIzSZJkDX
-         B+mwq+pPR345I7H3/1Oyh6lJ5YB6XiicQ5Z9Y+4vXMjVII5wq8qZQQ0Sx2jQ8BS34IVF
-         PP9Q==
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=x53uwOLKbwK81PFlMs31vANCaDhh1Zsvs/a9zuGpPQk=;
+        b=0PDk1gKy7Bf3a6EwyRvCAxmVMnlOtuNpFYpwSfF8y6YltxiIQb7a28VlfLbdiYUi6Z
+         8MUnG9BR3yVVQpLQU8XqLEmftHA2d1Gw5X/S61ZSMcY9nerIvO6sUXlrqj5+Ry8uK6s4
+         9+cxshzjPhDQxmL8A46alekPNVEs72Y5+5WPOa/B1jrup3Id5EloKkFXO0A1+jXx9HcN
+         4DK1RRwIkfvPYHrFAU2H0zcozt4Orl+qAk871SXv+SFwN217D4TvTQj04jycZig2r0f2
+         EQxBzqR9uic9UGoshpdACfObFi9jPenr8z/7THbGN2Te4ymD3Z1yCRA1igE8Ygf8s6Xr
+         +M/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IqsPmxN00edrHGi0cQNfG1ZlbY68R6DFWjN9C23HMdo=;
-        b=tx0AOxtNFhgoN43kaAmGGB/E0iMrklGVPmIgh+g94kge4NbiUV/t5+mmRewEB12SZB
-         rtZM7vINrjVnZKrfLXeU01NkJ5C1ZNG6oxC/h4OsFulP9rW6UGEGurVfy+PIb0j4jckK
-         Gj5SugTmFKeRqGfGEMrNBLFfw/WrVmHN96MwErm1gwfF5w5qQXm96g6EF3+4agagrahG
-         fsLGeKvE/X1XI3Qv++kVQjYmER4yziR3tyHE2W0mA7XFlwe5calfsZmAGs7akHi4Yksw
-         DxbdRG0eYt3/knf0P3kjgpRL1M/10qGLSf9xFWVw6iVqE9p8ggM3Lha+9tgcd3w43yMQ
-         fMaA==
-X-Gm-Message-State: AFqh2kpeXG40cdQNmGJD8gBAPMzYbGQf7/Hn3Hmnp454J5yGCRwzT9Jr
-        Omz7ZzfqZurULjTJSQ+f9V4=
-X-Google-Smtp-Source: AMrXdXuvFsQDJJdexEZkEdb0clbew5BO+rs+TUYwxrWPyE3UnE9MdiC0wJkhwmAFYA0l93S8SSIrrA==
-X-Received: by 2002:a17:906:9d8e:b0:84d:3921:11e2 with SMTP id fq14-20020a1709069d8e00b0084d392111e2mr3481848ejc.58.1673212007713;
-        Sun, 08 Jan 2023 13:06:47 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id d9-20020a1709063ec900b007c0d6b34d54sm2919231ejj.129.2023.01.08.13.06.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 13:06:47 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 0/6] clk: sunxi-ng: Allwinner R528/T113 clock support
-Date:   Sun, 08 Jan 2023 22:06:46 +0100
-Message-ID: <4275771.ejJDZkT8p0@jernej-laptop>
-In-Reply-To: <20221231231429.18357-1-samuel@sholland.org>
-References: <20221231231429.18357-1-samuel@sholland.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x53uwOLKbwK81PFlMs31vANCaDhh1Zsvs/a9zuGpPQk=;
+        b=PmtwG41m/7BITg8swsiBUod4ckMF7o3Y9CLC0Gzt7A0EfSyFW0qfL3vbtlZ5xw4YeY
+         uARUA1iFu16Y7FZkXs4rlkk4XHoC/WB5ku8mKm4v7QgdsSAJy0uydCXT9AL0SRpP6Z+v
+         Vul/RyEvpYHgjETZ9y2qtjGs29dJLZl2DoqV8fjxgmkIo0BkkJMokx8amYmxDuoRWmPe
+         AemHLQdNGcHyPbgHJwWK3BoF0GvADq9bF3DjDVT2GhUf0wpwrpKMKWHkT2JNb6spkJDk
+         qngBtj2mmVHHaAe/9LET1CkljyDvlxMcyvnaUDkjYikrTaZ9TyVl1nSZtF4PcIkB0RO5
+         gdzQ==
+X-Gm-Message-State: AFqh2kqoroGhArp5FjjGMtIvW8BFLUj9JLztipRlcvSFTfFshmDh5O9s
+        rzPEqiTSsm/hlsLopjlboeMnApDYdfco9A8hvqqW6A==
+X-Google-Smtp-Source: AMrXdXssLooCUB3JcSjFGQGlVuCaFAVGO6fwtMCDpc/mUlglB++tww+r2xlSFr4vPtbjYEwsLwWpTCjfAlStv55FVrU=
+X-Received: by 2002:a2e:90d2:0:b0:27f:f22d:afe9 with SMTP id
+ o18-20020a2e90d2000000b0027ff22dafe9mr1990761ljg.404.1673212366368; Sun, 08
+ Jan 2023 13:12:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20230103170058.810597-1-benjamin.gaignard@collabora.com> <20230103170058.810597-14-benjamin.gaignard@collabora.com>
+In-Reply-To: <20230103170058.810597-14-benjamin.gaignard@collabora.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Sun, 8 Jan 2023 18:12:34 -0300
+Message-ID: <CAAEAJfBRtBSZt0B3OyQSCHhsseUn6_H+JSvAR3cOH15WUryuNw@mail.gmail.com>
+Subject: Re: [PATCH v2 13/13] media: verisilicon: Conditionnaly ignore native formats
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,43 +69,150 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne nedelja, 01. januar 2023 ob 00:14:23 CET je Samuel Holland napisal(a):
-> R528 and T113 are SoCs based on the same design as D1/D1s, but with ARM
-> CPUs instead of RISC-V. They use the same CCU implementation, meaning
-> the CCU has gates/resets for all peripherals present on any SoC in this
-> family. I verified the CAN bus bits are also present on D1/D1s.
->=20
-> Patches 1-2 clean up the Kconfig in preparation for patch 3, which
-> allows building the driver. Patches 4-6 add the missing binding header
-> and driver bits.
->=20
-> Changes in v2:
->  - Expand commit message
->  - Move dt-bindings header changes to a separate patch
->=20
-> Andr=C3=A1s Szemz=C5=91 (1):
->   clk: sunxi-ng: d1: Mark cpux clock as critical
->=20
-> Fabien Poussin (1):
->   clk: sunxi-ng: d1: Add CAN bus gates and resets
->=20
-> Samuel Holland (4):
->   clk: sunxi-ng: Remove duplicate ARCH_SUNXI dependencies
->   clk: sunxi-ng: Move SoC driver conditions to dependencies
->   clk: sunxi-ng: d1: Allow building for R528/T113
->   dt-bindings: clock: Add D1 CAN bus gates and resets
->=20
->  drivers/clk/sunxi-ng/Kconfig              | 71 ++++++++++++-----------
->  drivers/clk/sunxi-ng/ccu-sun20i-d1.c      | 13 ++++-
->  drivers/clk/sunxi-ng/ccu-sun20i-d1.h      |  2 +-
->  include/dt-bindings/clock/sun20i-d1-ccu.h |  2 +
->  include/dt-bindings/reset/sun20i-d1-ccu.h |  2 +
->  5 files changed, 53 insertions(+), 37 deletions(-)
+On Tue, Jan 3, 2023 at 2:01 PM Benjamin Gaignard
+<benjamin.gaignard@collabora.com> wrote:
+>
+> AV1 film grain feature requires to use the postprocessor to produce
+> valid frames. In such case the driver shouldn't propose native pixels
+> format but only post-processed pixels format.
+> If a codec set need_postproc field in hantro_ctx structure to true
+> native pixel formats will be ignored.
+>
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+>  drivers/media/platform/verisilicon/hantro.h   |  3 ++
+>  .../media/platform/verisilicon/hantro_drv.c   |  5 ++
+>  .../platform/verisilicon/hantro_postproc.c    |  4 ++
+>  .../media/platform/verisilicon/hantro_v4l2.c  | 46 +++++++++++++------
+>  4 files changed, 45 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
+> index a98cb40a8d3b..7a5357e810fb 100644
+> --- a/drivers/media/platform/verisilicon/hantro.h
+> +++ b/drivers/media/platform/verisilicon/hantro.h
+> @@ -231,6 +231,8 @@ struct hantro_dev {
+>   * @ctrl_handler:      Control handler used to register controls.
+>   * @jpeg_quality:      User-specified JPEG compression quality.
+>   * @bit_depth:         Bit depth of current frame
+> + * @need_postproc:     Set to true if the bitstream features require to
+> + *                     use the post-processor.
+>   *
+>   * @codec_ops:         Set of operations related to codec mode.
+>   * @postproc:          Post-processing context.
+> @@ -258,6 +260,7 @@ struct hantro_ctx {
+>         struct v4l2_ctrl_handler ctrl_handler;
+>         int jpeg_quality;
+>         int bit_depth;
+> +       bool need_postproc;
+>
+>         const struct hantro_codec_ops *codec_ops;
+>         struct hantro_postproc_ctx postproc;
+> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
+> index 4fc6dea16ae6..8d7055c0bf3b 100644
+> --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> @@ -346,6 +346,11 @@ static int hantro_av1_s_ctrl(struct v4l2_ctrl *ctrl)
+>                                 return -EINVAL;
+>
+>                 ctx->bit_depth = bit_depth;
+> +
+> +               if (ctrl->p_new.p_av1_sequence->flags
+> +                   & V4L2_AV1_SEQUENCE_FLAG_FILM_GRAIN_PARAMS_PRESENT)
+> +                       ctx->need_postproc = true;
+> +
+>                 break;
+>         default:
+>                 return -EINVAL;
+> diff --git a/drivers/media/platform/verisilicon/hantro_postproc.c b/drivers/media/platform/verisilicon/hantro_postproc.c
+> index 7dc39519a2ee..293e5612e2ce 100644
+> --- a/drivers/media/platform/verisilicon/hantro_postproc.c
+> +++ b/drivers/media/platform/verisilicon/hantro_postproc.c
+> @@ -57,6 +57,10 @@ bool hantro_needs_postproc(const struct hantro_ctx *ctx,
+>  {
+>         if (ctx->is_encoder)
+>                 return false;
+> +
+> +       if (ctx->need_postproc)
+> +               return true;
+> +
+>         return fmt->postprocessed;
+>  }
+>
+> diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
+> index bbe79dbd2cd9..5c381766cca3 100644
+> --- a/drivers/media/platform/verisilicon/hantro_v4l2.c
+> +++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
+> @@ -38,6 +38,11 @@ hantro_get_formats(const struct hantro_ctx *ctx, unsigned int *num_fmts)
+>  {
+>         const struct hantro_fmt *formats;
+>
+> +       if (ctx->need_postproc) {
+> +               *num_fmts = 0;
+> +               return NULL;
+> +       }
+> +
+>         if (ctx->is_encoder) {
+>                 formats = ctx->dev->variant->enc_fmts;
+>                 *num_fmts = ctx->dev->variant->num_enc_fmts;
+> @@ -132,6 +137,15 @@ hantro_get_default_fmt(const struct hantro_ctx *ctx, bool bitstream)
+>                     hantro_check_depth_match(ctx, &formats[i]))
+>                         return &formats[i];
+>         }
+> +
+> +       formats = hantro_get_postproc_formats(ctx, &num_fmts);
+> +       for (i = 0; i < num_fmts; i++) {
+> +               if (bitstream == (formats[i].codec_mode !=
+> +                                 HANTRO_MODE_NONE) &&
+> +                   hantro_check_depth_match(ctx, &formats[i]))
+> +                       return &formats[i];
+> +       }
+> +
+>         return NULL;
+>  }
+>
+> @@ -261,19 +275,6 @@ static int vidioc_g_fmt_out_mplane(struct file *file, void *priv,
+>         return 0;
+>  }
+>
+> -static int vidioc_g_fmt_cap_mplane(struct file *file, void *priv,
+> -                                  struct v4l2_format *f)
+> -{
+> -       struct v4l2_pix_format_mplane *pix_mp = &f->fmt.pix_mp;
+> -       struct hantro_ctx *ctx = fh_to_ctx(priv);
+> -
+> -       vpu_debug(4, "f->type = %d\n", f->type);
+> -
+> -       *pix_mp = ctx->dst_fmt;
+> -
+> -       return 0;
+> -}
+> -
+>  static int hantro_try_fmt(const struct hantro_ctx *ctx,
+>                           struct v4l2_pix_format_mplane *pix_mp,
+>                           enum v4l2_buf_type type)
+> @@ -353,6 +354,25 @@ static int hantro_try_fmt(const struct hantro_ctx *ctx,
+>         return 0;
+>  }
+>
+> +static int vidioc_g_fmt_cap_mplane(struct file *file, void *priv,
+> +                                  struct v4l2_format *f)
+> +{
+> +       struct v4l2_pix_format_mplane *pix_mp = &f->fmt.pix_mp;
+> +       struct hantro_ctx *ctx = fh_to_ctx(priv);
+> +       int ret;
+> +
+> +       vpu_debug(4, "f->type = %d\n", f->type);
+> +
+> +       ret = hantro_try_fmt(ctx, pix_mp, f->type);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ctx->vpu_dst_fmt = hantro_find_format(ctx, pix_mp->pixelformat);
+> +       ctx->dst_fmt = *pix_mp;
+> +
 
-Applied, thanks!
+This looks like the g_fmt is setting some state in the context,
+this looks incorrect.
 
-Best regards,
-Jernej
-
-
-
+Thanks,
+Ezequiel
