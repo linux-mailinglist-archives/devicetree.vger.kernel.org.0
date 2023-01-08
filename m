@@ -2,68 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 304F8661A04
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 22:32:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58D94661A0F
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 22:34:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236325AbjAHVcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 16:32:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40234 "EHLO
+        id S234193AbjAHVe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 16:34:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236197AbjAHVcD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 16:32:03 -0500
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6153B11155;
-        Sun,  8 Jan 2023 13:31:50 -0800 (PST)
-Received: by mail-qt1-f176.google.com with SMTP id bp44so6655737qtb.0;
-        Sun, 08 Jan 2023 13:31:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HCQ1OtoS4z3jfBA4wAje4rn3v9IX8GGdLLkOWAh306E=;
-        b=MGv4mTovFp4q7cyI4rYRZCXuFIO9DuS/2J+Vl7yaPPMhYs4E7Kum3MUZeh2QVnqx1H
-         janKY7uvk+M35/dClwq6SPrlI8nZBD9tsh04SSJlFQTnpo06Tzixdm6BlvmtaQzedaEY
-         Xg8X7Njvh9TgrUYht0Zxplk6vK31eqn7tLlmMT6DyBD4cHUQPFcCY7GSnG3AI5IpRHLX
-         wFURp94eLjBLhtXKjpWibNXYwzJGWDbg9H3WtCAdhAhb4OI/a5AtDPR5G0fQDluopTrS
-         kpwgQtNFcAhqt3YFtaa3E/nI4lmDDmJ+gOa+JefNQPhVXUwN4Yoo7JOj5PXUPyxQBa+v
-         PVjA==
-X-Gm-Message-State: AFqh2krBaIEjuYUv4qt67xRtJaNd96cmWQduPEEHxGdZ8fMIwfh8mNti
-        Pr0KAKc/zA8xqBjwiTGU9A==
-X-Google-Smtp-Source: AMrXdXu80XQEDWfzEYl7aNf0W1MBvZLerS5pwVX1UnY/YlkH1BLU9E/9E+gzpCk1i1eKxGsNd5Fxwg==
-X-Received: by 2002:a05:622a:4a10:b0:3a7:fc39:6cd with SMTP id fv16-20020a05622a4a1000b003a7fc3906cdmr95343719qtb.10.1673213509486;
-        Sun, 08 Jan 2023 13:31:49 -0800 (PST)
-Received: from robh_at_kernel.org ([2605:ef80:80a5:9b51:39ae:24d1:33f3:811e])
-        by smtp.gmail.com with ESMTPSA id m19-20020ac84453000000b003a6847d6386sm3650333qtn.68.2023.01.08.13.31.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 13:31:49 -0800 (PST)
-Received: (nullmailer pid 306876 invoked by uid 1000);
-        Sun, 08 Jan 2023 21:31:45 -0000
-Date:   Sun, 8 Jan 2023 15:31:45 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH] dt-bindings: rtc: qcom-pm8xxx: allow 'wakeup-source'
- property
-Message-ID: <167321350537.306824.10296594475975416202.robh@kernel.org>
-References: <20230104095612.6756-1-johan+linaro@kernel.org>
+        with ESMTP id S234075AbjAHVe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 16:34:56 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FB01BE2C;
+        Sun,  8 Jan 2023 13:34:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 26FE460DBD;
+        Sun,  8 Jan 2023 21:34:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D71A9C433EF;
+        Sun,  8 Jan 2023 21:34:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673213693;
+        bh=0wHJQPN/hpr3Vl9aQTSQEIJxwRCq7DQjAoDMixc2BhY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jkDJ3Y7GJAmzlskWWhUBfZLdMQnBuJNnw6zC52Zwp5N5lUWJWY/Z892uu6JgFYxFP
+         iWCfoQcUsmf8gXDGEZh+/ddmTDHNMmgUlr63Ba9LiQ/8Ve6W93i3+r4TeXWFAacDiF
+         4jT7xCHOl6W+mfcN/Lt9fSJ8pMULo/WIFNnRR3hp4cUYGEb1Iau9z/oHPwCh41prBE
+         ORaJeDwKl/5QWw7DsZlh0YGKivaW+LtLjPbadmLBGgOxp4J2oifCt2THRmbF0ItlRg
+         Nw2moygITtrPd8jHR8hm3/jl8s/gD4ihclW21bpqZ0WYZYy0GDIwIMuT/RQ2R/XBQf
+         27zVh5jwSpGMg==
+Date:   Sun, 8 Jan 2023 21:34:48 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Andrew Jones <ajones@ventanamicro.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        palmer@dabbelt.com, atishp@rivosinc.com,
+        Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, apatel@ventanamicro.com,
+        will@kernel.org, mark.rutland@arm.com, opensbi@lists.infradead.org,
+        samuel@sholland.org
+Subject: Re: [PATCH v3] dt-bindings: riscv: add SBI PMU event mappings
+Message-ID: <Y7s2+McYXLeEMNck@spud>
+References: <20230102165551.1564960-1-conor@kernel.org>
+ <20230103092816.w6hknvd4caeahdo4@orel>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="XO6L+Ie2KiC/ogDG"
 Content-Disposition: inline
-In-Reply-To: <20230104095612.6756-1-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230103092816.w6hknvd4caeahdo4@orel>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,24 +60,94 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 04 Jan 2023 10:56:12 +0100, Johan Hovold wrote:
-> The RTC can be used as a wakeup source on at least some platforms so
-> allow it to be described as such.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
-> 
-> Since commit 30d70ec8f7fd ("arm64: dts: qcom: sa8295p-adp: Add RTC
-> node") this triggers a warning on DT validation so it would be nice to
-> get this into 6.2:
-> 
->   arch/arm64/boot/dts/qcom/sa8295p-adp.dtb: rtc@6000: 'wakeup-source' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Johan
-> 
-> 
->  Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+--XO6L+Ie2KiC/ogDG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Rob Herring <robh@kernel.org>
+Drew, Atish,
+
+Mainly just a question about the OpenSBI doc at the end. Gonna fix up
+the rest of the wording and resend in a few.
+
+On Tue, Jan 03, 2023 at 10:28:16AM +0100, Andrew Jones wrote:
+> On Mon, Jan 02, 2023 at 04:55:51PM +0000, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > The SBI PMU extension requires a firmware to be aware of the event to
+> > counter/mhpmevent mappings supported by the hardware. OpenSBI may use
+> > DeviceTree to describe the PMU mappings. This binding is currently
+> > described in markdown in OpenSBI (since v1.0 in Dec 2021) & used by QEMU
+> > since v7.2.0.
+> >=20
+> > Import the binding for use while validating dtb dumps from QEMU and
+> > upcoming hardware (eg JH7110 SoC) that will make use of the event
+> > mapping.
+> >=20
+> > Link: https://github.com/riscv-software-src/opensbi/blob/master/docs/pm=
+u_support.md
+> > Link: https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-=
+sbi.adoc # Performance Monitoring Unit Extension
+> > Co-developed-by: Atish Patra <atishp@rivosinc.com>
+> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+
+> > +  riscv,event-to-mhpmevent:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +    description:
+> > +      Represents an ONE-to-ONE mapping between a PMU event and the eve=
+nt
+> > +      selector value that platform expects to be written to the MHPMEV=
+ENTx CSR
+>                             ^ the
+
+I think this one is arguable, it makes sense both ways IMO. I don't care
+since it's not my prose though ;)
+
+> > +      for that event.
+> > +      The mapping is encoded in an matrix format where each element re=
+presents
+> > +      an event.
+> > +      This property shouldn't encode any raw hardware event.
+> > +    items:
+> > +      items:
+> > +        - description: event_idx, a 20-bit wide encoding of the event =
+type and
+> > +            code. Refer to the SBI specification for a complete descri=
+ption of
+> > +            the event types and codes.
+> > +        - description: upper 32 bits of the event selector value for M=
+HPMEVENTx
+> > +        - description: lower 32 bits of the event selector value for M=
+HPMEVENTx
+>=20
+> > +     * codes, U74 uses a bitfield for events encoding, so several U74 =
+events
+> > +     * can be bound to single perf id.
+>                                 ^ a   ID
+>=20
+> > +     * See SBI PMU hardware id's in OpenSBI's include/sbi/sbi_ecall_in=
+terface.h
+>=20
+> IDs
+
+Most of this stuff comes directly from the doc in OpenSBI that I
+copy-pasted. Atish, what do you wanna do once the binding is upstream
+about the original doc?
+
+Thanks,
+Conor.
+
+
+--XO6L+Ie2KiC/ogDG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY7s2+AAKCRB4tDGHoIJi
+0pu6AP9wCOtE0JPf/jDtqIJnKHi2n73OeKq0MkwLM5SU5/sZ5gD/W9s+CxpmmBc+
+5BcwhD+MSLvsGf9pbk7f7Mrs6k3iYwQ=
+=eD0/
+-----END PGP SIGNATURE-----
+
+--XO6L+Ie2KiC/ogDG--
