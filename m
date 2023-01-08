@@ -2,82 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06BAF661836
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 19:41:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 280D066183C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 19:42:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbjAHSlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 13:41:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59184 "EHLO
+        id S233810AbjAHSm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 13:42:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbjAHSlv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 13:41:51 -0500
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39BE2D2CC;
-        Sun,  8 Jan 2023 10:41:50 -0800 (PST)
-Received: by mail-il1-f169.google.com with SMTP id o13so3853510ilc.7;
-        Sun, 08 Jan 2023 10:41:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UJwSsdN78Mw/74fCf2IAdNqU5RKJJMT26secV+Cj7Jo=;
-        b=vqwa3DxC5EmhDa9EhyqKKmRCX/JnWwC/nZVMm6WZBWs9oMJ8Gsvsd5B+kCoMAPhdP5
-         TMcmcUZIfma+6GvIRaRntMbZiisWTAQMeFX8pBwH0UKprCSpTGDxkE3h/VPogWSth29U
-         +nUbaXeytpMKHvVTy63OWdrkwhdQabK/IpXUl5JJj0ijoPgJm3gxbGy+euYPUe7ARVCj
-         /cq1ZGg0eC+b8s5q0Ol1yZtq56z0+DSQNBmASHNne1895DqFtljCQAdD/fB9FyIBKfQw
-         TKTPfA1heTDYVjkolM8VgPe38YcwIOOpyDHtnuMgcnO0Tl6YCY1p6vDQWcUgpRGOKvZE
-         OEDQ==
-X-Gm-Message-State: AFqh2kpER0S+YfnqZvLZ0ouoXJe81BRVA4DxUoavrVraDlXKP49ml1Mw
-        Ji6sZfXC2/T5lrq1kIBe1w==
-X-Google-Smtp-Source: AMrXdXspwZ2mLgkCWVegw1f2MHlYfn3soxwbwdp9FqgJXfuiubLWO3mZt9Z4CWmZySB4ynG/BFClEQ==
-X-Received: by 2002:a92:cec4:0:b0:30b:e957:1e78 with SMTP id z4-20020a92cec4000000b0030be9571e78mr40237996ilq.29.1673203309380;
-        Sun, 08 Jan 2023 10:41:49 -0800 (PST)
-Received: from robh_at_kernel.org ([2605:ef80:8069:516a:f2b0:691e:4315:7c0f])
-        by smtp.gmail.com with ESMTPSA id g93-20020a028566000000b003781331d909sm2130451jai.9.2023.01.08.10.41.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 10:41:48 -0800 (PST)
-Received: (nullmailer pid 188886 invoked by uid 1000);
-        Sun, 08 Jan 2023 18:41:46 -0000
-Date:   Sun, 8 Jan 2023 12:41:46 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 01/16] dt-bindings: clock: qcom,gcc-msm8998: drop
- core_bi_pll_test_se
-Message-ID: <167320330549.188812.3791526731906955387.robh@kernel.org>
-References: <20221228185237.3111988-1-dmitry.baryshkov@linaro.org>
- <20221228185237.3111988-2-dmitry.baryshkov@linaro.org>
+        with ESMTP id S229520AbjAHSm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 13:42:28 -0500
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F3CD2CF;
+        Sun,  8 Jan 2023 10:42:27 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id D6ADE320051E;
+        Sun,  8 Jan 2023 13:42:23 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Sun, 08 Jan 2023 13:42:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm1; t=1673203343; x=
+        1673289743; bh=4HxaoxSmL2YgQvvfelQ6b5kuPAJv1CjzGJUleFxKIpw=; b=Y
+        o9uxpsF0+1PzZqxaq1zv3Sp3KhJL0k70tP1taomF6bh3Hci5zHRp9C31rJooYu6b
+        qPndPSo4tIq/i8CFO8Q4LYadC/LkqBHUVxhPuih2T4BeB3XaAgf7yk5MKy07S8kX
+        p4mSvjGTIwpBvSqACB4eUHqtnnzz0LDS86nnON6nUubsLkgUP/Gh4fDEl+aM6Lt6
+        x010wN/jLbEe79pyFjkcOmfJ4n68FoADEziBRqHYbSH+9vFfS9EZvTWdzrP+kv17
+        lGHtk42qZO2GTmVyn12+pBWj5bAdXonqou8iN53mGarV2/bChbHqszD1bmFgkRLb
+        i/NU0zxw0lD2U5m92dDuw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1673203343; x=
+        1673289743; bh=4HxaoxSmL2YgQvvfelQ6b5kuPAJv1CjzGJUleFxKIpw=; b=Q
+        0bRs+tFJ65qD/ayXF3gBchdZDL5v8ltnehU0+7Ji27PShAOm090RhHeGvKJtI0hB
+        sqRDj7psWKjmBy86jLlnFOuQyatKrqARbKuGg/BjdCpTpx9RzWr6D8dIaKFR2Tr2
+        nOjZ1LaUd38LOuUNRlR+J58Vso7XTFLeKK+KIL2N72xqBlYu59y1f5LOXeNAa8Sr
+        KwTS7PJ6hFwiZgkG9jTvJYyfvJDCI9BRJmhCSzuZmbH26Vu2GoTpqX3Od82bsbd7
+        q/kDP4Y4FsMhPN7ENIoYORbXI7egItIEYayOA1xsOuLaYPa6mSmT+feaARw6g9+M
+        7h5oHrKqnc6hdFPoVPgUg==
+X-ME-Sender: <xms:jg67Y7-N5CD-ZEGT6j6ZDqH0_UgBac0unneKBUSqKyboP-2vGCk4nA>
+    <xme:jg67Y3sQtO6gNjvrNbkaUFjO77GVqD5_6A1gnmLXSGqfUMVfq_IGLGIGVrR1MD9NW
+    l87IOmAwpv_Efq2Fg>
+X-ME-Received: <xmr:jg67Y5DePTyEmcKTC8Rweu5dFblhBqCm2wHwDF-93TmiWzI7v2PHJWXvAoEWI4aMfp0TwTcwrdi4RSAehCC2PZicULHRZIbs1e2fCginm2h52Dh6NLqjZ7oTFw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrkeeggdduudekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfvfevfhfhufgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpeejgfffhfdujeeftdeuudeguedttefgieetffffheejuefguedv
+    heejteeftdfftdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:jg67Y3eP8I1A_p3acOoucyt1y2qqML3199db1xRkDdXAO2SbQWvXmA>
+    <xmx:jg67YwPESUDJzGkkECrouMBx5OAllm8s8vkaqqPZCiYX1uHz6aou7A>
+    <xmx:jg67Y5nDLXMDn-Dn25NXA36oUQIlBQlFRLODkkE8Hru1UuBgnPWYGQ>
+    <xmx:jw67Y3kgA6b40v_-Woj3CmTYPlRaMhdiYeFqIxv_Iz06x9pA27k6zw>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 8 Jan 2023 13:42:21 -0500 (EST)
+Message-ID: <05c1ee07-0750-d40e-8498-55ea07b52ab1@sholland.org>
+Date:   Sun, 8 Jan 2023 12:42:20 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221228185237.3111988-2-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+References: <20221231233851.24923-1-samuel@sholland.org>
+ <20221231233851.24923-8-samuel@sholland.org> <Y7bW32i3EUmGHqSK@aptenodytes>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v4 07/12] riscv: dts: allwinner: Add Sipeed Lichee RV
+ devicetrees
+In-Reply-To: <Y7bW32i3EUmGHqSK@aptenodytes>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Paul,
 
-On Wed, 28 Dec 2022 20:52:22 +0200, Dmitry Baryshkov wrote:
-> The test clock apparently it's not used by anyone upstream. Remove it.
+On 1/5/23 07:55, Paul Kocialkowski wrote:
+> Hi Samuel,
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/clock/qcom,gcc-msm8998.yaml         | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
+> On Sat 31 Dec 22, 17:38, Samuel Holland wrote:
+>> Sipeed manufactures a "Lichee RV" system-on-module, which provides a
+>> minimal working system on its own, as well as a few carrier boards. The
+>> "Dock" board provides audio, USB, and WiFi. The "86 Panel" additionally
+>> provides 100M Ethernet and a built-in display panel.
+>>
+>> The 86 Panel repurposes the USB ID and VBUS detection GPIOs for its RGB
+>> panel interface, since the USB OTG port is inaccessible inside the case.
 > 
+> Looks like the panel-enabled variants would better be described as device-tree
+> overlays as they are not specific devices but are peripheral extensions.
+> 
+> What do you think?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I don't agree. The Lichee RV 86 Panel is sold as a complete unit, with
+the SoM+board and LCD pre-assembled inside a case. It is not possible to
+purchase the board without a panel, so the panel-enabled variants are
+the only variants.
+
+Regards,
+Samuel
+
