@@ -2,103 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F1D661984
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 21:50:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A03D066198D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 21:52:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233071AbjAHUuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 15:50:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50424 "EHLO
+        id S234698AbjAHUw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 15:52:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjAHUuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 15:50:22 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3CAAE4A;
-        Sun,  8 Jan 2023 12:50:21 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id v10so8605104edi.8;
-        Sun, 08 Jan 2023 12:50:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/l7O+u7hpvwx/CEE2kQt2CxxFAlI3yQgMXXhNMZZ5b8=;
-        b=FDlaf6HuGHd/1r8jZ2JcrzSIODO1aqOOU8QPRxTfVdcd28+Sp/p8K1uUm+WJ66t+eP
-         vCE2BDQT9oyeZYP7xXVs6k6R8l1vDzdKzuMRyGEm/UozYAs/UVVw1E0j49Q5VU5mieZS
-         XHhtpYeJ1mj76AbggBVYA76nx5hKOx5Zt42DflN6fMAPaFsLmRFbj140pFyzKpeCRjOe
-         +8L0vej/ie/lW9+H4QRosHp03GMEiiGwi2SQBscrbeTedyAxkbDD+efVBsxLzLRa5IYv
-         btO9dveEcPLEwR/0o6guaAPLnbul8qG8rhcxCYSVmLb14gZaNp7h/nBb3QGUHMTDWMwj
-         JeSg==
+        with ESMTP id S234558AbjAHUwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 15:52:25 -0500
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CAF110B48;
+        Sun,  8 Jan 2023 12:52:24 -0800 (PST)
+Received: by mail-il1-f171.google.com with SMTP id i16so3466699ilq.9;
+        Sun, 08 Jan 2023 12:52:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/l7O+u7hpvwx/CEE2kQt2CxxFAlI3yQgMXXhNMZZ5b8=;
-        b=BPokn7S1qtDQF/M3xNEaIwgHu9Fj7A/XSZkOcxrr5/AYesmGwjMOPUTQ65bLvd33gD
-         v0u2bPNSr4Ss9M1HQviHGTU75tB2I/Nkinb765NBK0coEyMhqkb3GFP0AybVpBZOuAZh
-         k9LIC3PdQ/oykPg5KJMNPZOp/koPKJng6AjNCiBlqRMjc28sspqVFj0Ag4lxdNbMGkv0
-         01cZPtAhcpkTcMMt4MWRdptOgOiXNRVJUtaYb8mXEy+HofXDfWc6QnaFBHJDTAOAjsz5
-         saxcrpR0DhQFIrUpGbRxtOJhi/IiNvwWdC89sSaVsAowAISErO5YhDPe1VE805mlZRaL
-         mSAQ==
-X-Gm-Message-State: AFqh2krmFYEgdMsdzSkQHf0QjamSG0XstqYrsUsIurIik4pIzDgA/e+s
-        Re/BSOLS9Po7uFqMPz7FpmE=
-X-Google-Smtp-Source: AMrXdXuI0+C7w/IwZrPvBfTWv8oEhkKKunKLQUym/99Og1HUIuARlIEDjFhaBeEwA8yQ5dkAp4HHLw==
-X-Received: by 2002:aa7:d653:0:b0:47e:15ec:155e with SMTP id v19-20020aa7d653000000b0047e15ec155emr50820952edr.26.1673211019627;
-        Sun, 08 Jan 2023 12:50:19 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id n18-20020a056402061200b004950ef2a09asm2871821edv.61.2023.01.08.12.50.18
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2BirxzjgvGzirxW73jcrqqffk9nEsL9qkjV1hAIZX5Q=;
+        b=sp3BzwcCfw1Lfr5v8LMDHGimGpA4iWmINkKk89Rk2KMQBgQbFkEQd5/iA1z+s+/gb0
+         XBo2cwqRaOjt/wy1Brtfqsy1c+T945/cIQwRcHW5fEBMm3VNLa/D7mdQcOxh7CJxDv7u
+         V3IIQk9H3HphmZwa5rH5x0eBwMpVplAlSEfPG9/aiRGSMN6g98RtIKpdc+cttNXv55J+
+         YkkfVJySh+E8lDAn5Jkr4WKzsDvkK1zqpN1xtQb7lnt90N2CTAuxeU04U65Iqp1wIhLx
+         aZfMx6dL2rJ+gKWlUpl2PdJdkpDxpsjKzuAj94Zu4nlNq34rtv2WYEU/tJ5FO8GkZREN
+         JOhw==
+X-Gm-Message-State: AFqh2kpvzAYnVxCe4kj6RBKcHNrZFeUPDdNBX1jGRN5bbtyOYTFZYTLe
+        OHnfX/7u2VtPvpioHr9lcg==
+X-Google-Smtp-Source: AMrXdXs7n9bgaFZ6xucDGoNyyLMSFYqhzi39KdrYn1a/78vXGaDWc0b2zp+58Pg+LBPFJrFlZQZ04w==
+X-Received: by 2002:a92:ccc7:0:b0:304:aa32:a4c1 with SMTP id u7-20020a92ccc7000000b00304aa32a4c1mr54001612ilq.6.1673211143610;
+        Sun, 08 Jan 2023 12:52:23 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:8069:516a:f2b0:691e:4315:7c0f])
+        by smtp.gmail.com with ESMTPSA id b19-20020a923413000000b003036d1ee5cbsm1858762ila.41.2023.01.08.12.52.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 12:50:19 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sun, 08 Jan 2023 12:52:23 -0800 (PST)
+Received: (nullmailer pid 259074 invoked by uid 1000);
+        Sun, 08 Jan 2023 20:52:20 -0000
+Date:   Sun, 8 Jan 2023 14:52:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 1/4] nvmem: sunxi_sid: Always use 32-bit MMIO reads
-Date:   Sun, 08 Jan 2023 21:50:18 +0100
-Message-ID: <3511184.iIbC2pHGDl@jernej-laptop>
-In-Reply-To: <20220814173656.11856-2-samuel@sholland.org>
-References: <20220814173656.11856-1-samuel@sholland.org>
- <20220814173656.11856-2-samuel@sholland.org>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 1/6] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Document RZ/G2UL SoC
+Message-ID: <167321113265.258879.13467635620456746587.robh@kernel.org>
+References: <20230102221815.273719-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230102221815.273719-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230102221815.273719-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne nedelja, 14. avgust 2022 ob 19:36:52 CET je Samuel Holland napisal(a):
-> The SID SRAM on at least some SoCs (A64 and D1) returns different values
-> when read with bus cycles narrower than 32 bits. This is not immediately
-> obvious, because memcpy_fromio() uses word-size accesses as long as
-> enough data is being copied.
+
+On Mon, 02 Jan 2023 22:18:10 +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> The vendor driver always uses 32-bit MMIO reads, so do the same here.
-> This is faster than the register-based method, which is currently used
-> as a workaround on A64. And it fixes the values returned on D1, where
-> the SRAM method was being used.
+> Document RZ/G2UL (R9A07G043U) IRQC bindings. The IRQC block on RZ/G2UL SoC
+> is almost identical to one found on the RZ/G2L SoC the only difference
+> being it can support BUS_ERR_INT for which it has additional registers.
+> Hence new generic compatible string "renesas,r9a07g043u-irqc" is added
+> for RZ/G2UL SoC.
 > 
-> The special case for the last word is needed to maintain .word_size == 1
-> for sysfs ABI compatibility, as noted previously in commit de2a3eaea552
-> ("nvmem: sunxi_sid: Optimize register read-out method").
+> Now that we have additional interrupt for RZ/G2UL and RZ/Five SoC
+> interrupt-names property is added so that we can parse them based on
+> names.
 > 
-> Fixes: 07ae4fde9efa ("nvmem: sunxi_sid: Add support for D1 variant")
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> While at it updated the example node to four spaces and added
+> interrupt-names property.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3
+> * Dropped RZ/G2UL specific string
+> 
+> v1- > v2
+> * Dropped RB tags
+> * Added generic compatible string for rzg2ul
+> * Added interrupt-names
+> * Added checks for RZ/G2UL to make sure interrupts are 42 and interrupt-names
+> * Updated example node with interrupt-names
+> * Used 4 spaces for example node
+> ---
+>  .../renesas,rzg2l-irqc.yaml                   | 225 +++++++++++++-----
+>  1 file changed, 170 insertions(+), 55 deletions(-)
+> 
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
-
+Reviewed-by: Rob Herring <robh@kernel.org>
