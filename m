@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CC0A66184F
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 19:48:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B123C661855
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 19:49:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233641AbjAHSsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 13:48:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60710 "EHLO
+        id S233618AbjAHSty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 13:49:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231279AbjAHSsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 13:48:41 -0500
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA286E0FE;
-        Sun,  8 Jan 2023 10:48:40 -0800 (PST)
-Received: by mail-io1-f46.google.com with SMTP id 3so3484050iou.12;
-        Sun, 08 Jan 2023 10:48:40 -0800 (PST)
+        with ESMTP id S235893AbjAHStx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 13:49:53 -0500
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A91BF02B;
+        Sun,  8 Jan 2023 10:49:52 -0800 (PST)
+Received: by mail-il1-f171.google.com with SMTP id a9so3244331ilp.6;
+        Sun, 08 Jan 2023 10:49:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=R7PW/o/diRa7/Am41wioDqKkxsPy6fmQIpL6zIC43hc=;
-        b=vTsJHc7+RmSS+bfy9ggWLgFHBEqyDRgE3rl1Bbmsi0lRDGYARl+33e6ZicRtPyK1x1
-         QBx046IBcVUlEY6YtVV6i7BzsU2yzcO4d0gScilAYmMyvi1vRuOGnYY+PJulHMZqMUIW
-         DYCyF5x00DlJf+yy/p0x8/VyEh0ISwBQJsXUs41Ptrvl8l6NmeIHPNVmeqU87koc+eIL
-         jjZLDmcxN0rN8C0P70vpNyMHlNYoa+n1fMGLgxe3nbYcozrnv3BSdNkNUGftKF3fUltG
-         2+DxvYc3m5SKtW93T8KYvcOeYHEW2GFw/ykYrYK+2aUHefYx4qgKMC4ZM8S8uMgo8j7O
-         AKwA==
-X-Gm-Message-State: AFqh2kpA785GGHDBnfWo/X9a9wRTuZ+XgCqWNQA5rtmS8YyFzJFI2k4e
-        MOiWCBYKUZqtodNR0edmRfmzeq692Q==
-X-Google-Smtp-Source: AMrXdXuhtO+M08JC7/4QfqX/IMjxH1Y4noojp79hTVa1fRuwb/wcR+bpS6KM3MVMHeIkYcbBuHX5Bw==
-X-Received: by 2002:a05:6602:394e:b0:704:44a6:663 with SMTP id bt14-20020a056602394e00b0070444a60663mr1149378iob.15.1673203720080;
-        Sun, 08 Jan 2023 10:48:40 -0800 (PST)
+        bh=QBfc6frQTYTBFojIsbaKyBhhX3b6E0jigcJZMgl0JrQ=;
+        b=Fbpidt+5WWJvsfmWuF9jsmQHlQwSQqsNUM8iTf1hVpLgFpMITB1SA9fpzQSXUQX0zW
+         6z3fUWHMKuu7/kLqNq8yMgkOicri6ZBYOcBlLZNNKwIqkP0EHE92cGxUbRcrrEfAGaAR
+         +8TOs9fge+6oGRNW3y5BrKqMJZUJdLLs5vYBJqsLc0pEjSWCHwGAfl1jRIGrLHjAil63
+         1jszdZUEIxM6qr9TgnJEWnxngbKUEARyM5aJwsYAIQV26ARF+r0yTciBHDTDhl8c4NX1
+         Xj5x1S/LZnxzr20hJ8j/Egc4aLT68RbQxcm/ju1rF6ShLlFoeRe2zMAjLnoL74viYqyb
+         YVgg==
+X-Gm-Message-State: AFqh2kpOpDypJY9dVALoqou6x8eQY7TNYjZKPY3qn2G/73MbnjHy7UAL
+        LKQtjf2719X/1kla/+UELFnfP4E+XA==
+X-Google-Smtp-Source: AMrXdXvo7DMW/eAXa4+8ljdaOX7G+IzIj8Y/rjrLDEP2koe94ISfRyigR9jNMkceX3Z/Wfm9LeXAZQ==
+X-Received: by 2002:a05:6e02:112:b0:30c:3204:5fbd with SMTP id t18-20020a056e02011200b0030c32045fbdmr22652957ilm.31.1673203791274;
+        Sun, 08 Jan 2023 10:49:51 -0800 (PST)
 Received: from robh_at_kernel.org ([2605:ef80:8069:516a:f2b0:691e:4315:7c0f])
-        by smtp.gmail.com with ESMTPSA id a17-20020a92d591000000b0030be6c79645sm2089120iln.68.2023.01.08.10.48.31
+        by smtp.gmail.com with ESMTPSA id e32-20020a026d60000000b0039e583abceasm2160636jaf.68.2023.01.08.10.49.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 10:48:39 -0800 (PST)
-Received: (nullmailer pid 196978 invoked by uid 1000);
-        Sun, 08 Jan 2023 18:48:30 -0000
-Date:   Sun, 8 Jan 2023 12:48:30 -0600
+        Sun, 08 Jan 2023 10:49:50 -0800 (PST)
+Received: (nullmailer pid 198525 invoked by uid 1000);
+        Sun, 08 Jan 2023 18:49:47 -0000
+Date:   Sun, 8 Jan 2023 12:49:47 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        vkoul@kernel.org, robh+dt@kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, kishon@kernel.org,
-        heiko@sntech.de, linux-phy@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v1] dt-bindings: phy: rename phy-rockchip-inno-usb2.yaml
-Message-ID: <167320365145.195794.14991903357914132463.robh@kernel.org>
-References: <99794484-d67e-ee1f-4e76-200de20a879c@gmail.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     robh+dt@kernel.org, quic_mkrishn@quicinc.com, daniel@ffwll.ch,
+        andersson@kernel.org, robdclark@gmail.com, airlied@gmail.com,
+        linux-kernel@vger.kernel.org, dmitry.baryshkov@linaro.org,
+        sean@poorly.run, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org,
+        quic_abhinavk@quicinc.com, swboyd@chromium.org
+Subject: Re: [PATCH v3 1/1] dt-bindings: msm: dsi-phy-28nm: Add missing
+ qcom,dsi-phy-regulator-ldo-mode
+Message-ID: <167320378648.198458.147612299624075109.robh@kernel.org>
+References: <20221229124438.504770-1-bryan.odonoghue@linaro.org>
+ <20221229124438.504770-2-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <99794484-d67e-ee1f-4e76-200de20a879c@gmail.com>
+In-Reply-To: <20221229124438.504770-2-bryan.odonoghue@linaro.org>
 X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,20 +69,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 29 Dec 2022 12:39:17 +0100, Johan Jonker wrote:
-> Rename phy-rockchip-inno-usb2.yaml to a more common format of
-> rockchip,inno-usb2phy.yaml
+On Thu, 29 Dec 2022 12:44:38 +0000, Bryan O'Donoghue wrote:
+> Add in missing qcom,dsi-phy-regulator-ldo-mode to the 28nm DSI PHY.
+> When converting from .txt to .yaml we missed this one.
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
-> 
-> Apply after:
->   dt-bindings: soc: rockchip: grf: add rockchip,rk3288-dp-phy.yaml
-> ---
->  .../{phy-rockchip-inno-usb2.yaml => rockchip,inno-usb2phy.yaml} | 2 +-
->  Documentation/devicetree/bindings/soc/rockchip/grf.yaml         | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->  rename Documentation/devicetree/bindings/phy/{phy-rockchip-inno-usb2.yaml => rockchip,inno-usb2phy.yaml} (98%)
+>  .../devicetree/bindings/display/msm/dsi-phy-28nm.yaml         | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
