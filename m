@@ -2,98 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 254E5661A53
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 23:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A39661A61
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 23:17:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233823AbjAHWHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 17:07:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53342 "EHLO
+        id S231410AbjAHWRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 17:17:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233343AbjAHWHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 17:07:15 -0500
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C036FAD1;
-        Sun,  8 Jan 2023 14:07:14 -0800 (PST)
-Received: by mail-qt1-f175.google.com with SMTP id bp44so6701491qtb.0;
-        Sun, 08 Jan 2023 14:07:14 -0800 (PST)
+        with ESMTP id S229503AbjAHWRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 17:17:36 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9C711143
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 14:17:33 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id y18so3594280ljk.11
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 14:17:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oz4lnXq6zsv6hP/Mmlcfiy6rqGfdQvTRhmdQMJNbZiw=;
+        b=R6MQHjysGHcISIPjYvCKEHfJ3bKwxcifjHORZSvbsljfF2On6qZOCq8z9UnzHwzABJ
+         yjUpx/OoqRUr1MlfA/UURLULjE0mDBgVkQKogTn+0J8dh7Y3GMYOykIRMmT7rtEdV1s3
+         6QM5ozL6w8BfAAjsvX9UOviF8cormULQPTOah2dQFc2ZVuxOAq3vMIsEpfEe2OHXa1/W
+         EvaMPZfDpR+GZzcjydp5h77T91urWrThRX04qmpvwhqnhM9rtin62xcZpOsyRxba3bk7
+         M4rh4qrPYGeJsnu42iNIHiDYP6Cqk73ocPbNGkbtmggGs0SzW3YFEefyW8Y3WIgJIibn
+         hFvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DSyezriUL/lNJCBbCnrFB5rH1MXCIbx1ORje4SC5K9Q=;
-        b=ydqolkvVvu9YoYP7/TWRgRzpaqA+Yks9k/ynlRXN+iH6Lrksvq3gglfMAWOAs1bCZW
-         mEAJDmgpNYW06d/OftAQdnPiwxmJrROrrmyoooHbC9XTZXiD8kLU25KfFUKQBO7ltJCU
-         QO8tEk0U+1OsAPKgmuSqrmC+U6eyQCFfQoHtiKt7m5SL297W0gfv+hbVy6fPxlBOYGDx
-         drY32nUNlHOCGcKXnjDb+OVD7CmLoAT3FvHuTxZWnZrVrgms7J6f5l9v3vHibpNM8nau
-         pi6Si7B9XZhGpfqx4smxRff/C9CT42Q726itZMpoj204buNx4repOrv+fXxstyQDaYXE
-         MBRw==
-X-Gm-Message-State: AFqh2kpuhUi390dC6jRHBne4GkGNPTkqkroA9/Fa0Zg47LQPxh0Fpjng
-        Ghcoyed7F91ZBqlpRLDt3Q==
-X-Google-Smtp-Source: AMrXdXtiEZ+bMuMU+KeikknktjQhAuTk6bddM96Sps6T8MQGto5OfixHJF2B/USv9hnPuMQKfyfn5g==
-X-Received: by 2002:ac8:4e04:0:b0:3ab:5dc7:6bf0 with SMTP id c4-20020ac84e04000000b003ab5dc76bf0mr85234496qtw.36.1673215633610;
-        Sun, 08 Jan 2023 14:07:13 -0800 (PST)
-Received: from robh_at_kernel.org ([2605:ef80:80a5:9b51:39ae:24d1:33f3:811e])
-        by smtp.gmail.com with ESMTPSA id bp32-20020a05620a45a000b00705b4001fbasm1425450qkb.128.2023.01.08.14.07.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 14:07:13 -0800 (PST)
-Received: (nullmailer pid 345158 invoked by uid 1000);
-        Sun, 08 Jan 2023 22:07:07 -0000
-Date:   Sun, 8 Jan 2023 16:07:07 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Markus Schneider-Pargmann <msp@baylibre.com>
-Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, Fabien Parent <parent.f@gmail.com>,
-        linux-kernel@vger.kernel.org, Fabien Parent <fparent@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 1/8] dt-bindings: power: Add MT8365 power domains
-Message-ID: <167321562678.345108.18031842904012970078.robh@kernel.org>
-References: <20230105170735.1637416-1-msp@baylibre.com>
- <20230105170735.1637416-2-msp@baylibre.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oz4lnXq6zsv6hP/Mmlcfiy6rqGfdQvTRhmdQMJNbZiw=;
+        b=1muuQ61MrHksh0j/UP3tPDlXnnasqaXUQ6Aygm+DTy/+IjwuZMQ1Af8XnHH5AO9Ui9
+         GGOrXH3l/gToqD8xtMOvyjh6S70oawZtiUEwdu9mm7ngNrneoTNaCCoOaPJ7dko948aW
+         6qlAlh0YyWOum8wxvwIafalT4hcRrzLUu0NvKcK7UlKdpsyoWpNYXkP/7t3TQKnz1EsU
+         w93lBdid3+LxAzGf9ZmwdH9h5O4yQSOPEtiJ64n/iPfM6dpMgF9wi7YRVuoBNwa/970v
+         02/6z1Ycn7dZgKLJmggKgkxDkKYdm6rfLDbHRsFzMXP8abcmzY6o/P6Vnil48edjaXuk
+         OJ8Q==
+X-Gm-Message-State: AFqh2kqArDYhQeYXkYAaLDzG1UPcLkLfIowntdH8jgT7XV3CtoIjsQ28
+        9y7DGqVNTEmOwTfUqnSwqQYW/w==
+X-Google-Smtp-Source: AMrXdXtGM6I56my/2fgVoHR1BvQfwPTPkgimjsiGQFXvfD9wtD3PMh/xmupc4zqACwPqkJd1UnzQZA==
+X-Received: by 2002:a2e:b5ad:0:b0:27f:b693:59de with SMTP id f13-20020a2eb5ad000000b0027fb69359demr13049192ljn.42.1673216251675;
+        Sun, 08 Jan 2023 14:17:31 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id f19-20020ac25333000000b004cb2e3089a7sm1246240lfh.38.2023.01.08.14.17.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Jan 2023 14:17:31 -0800 (PST)
+Message-ID: <94172b72-4eaf-b7ce-d3fa-f181db779deb@linaro.org>
+Date:   Mon, 9 Jan 2023 00:17:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230105170735.1637416-2-msp@baylibre.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 01/16] dt-bindings: clock: qcom,gcc-msm8998: drop
+ core_bi_pll_test_se
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+References: <20221228185237.3111988-1-dmitry.baryshkov@linaro.org>
+ <20221228185237.3111988-2-dmitry.baryshkov@linaro.org>
+ <167320330549.188812.3791526731906955387.robh@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <167320330549.188812.3791526731906955387.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08/01/2023 20:41, Rob Herring wrote:
+> 
+> On Wed, 28 Dec 2022 20:52:22 +0200, Dmitry Baryshkov wrote:
+>> The test clock apparently it's not used by anyone upstream. Remove it.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../devicetree/bindings/clock/qcom,gcc-msm8998.yaml         | 6 +-----
+>>   1 file changed, 1 insertion(+), 5 deletions(-)
+>>
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-On Thu, 05 Jan 2023 18:07:28 +0100, Markus Schneider-Pargmann wrote:
-> From: Fabien Parent <fparent@baylibre.com>
-> 
-> Add power domains dt-bindings for MT8365.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
-> 
-> Notes:
->     Changes in v4:
->     - Add infracfg_nao as it is used by mt8365
-> 
->     Changes in v3:
->     - Renamed mt8365-power.h to mediatek,mt8365-power.h
-> 
->     Changes in v2:
->     - Made include/dt-bindings/power/mt8365-power.h dual-license.
-> 
->  .../power/mediatek,power-controller.yaml      |  6 ++++++
->  .../dt-bindings/power/mediatek,mt8365-power.h | 19 +++++++++++++++++++
->  2 files changed, 25 insertions(+)
->  create mode 100644 include/dt-bindings/power/mediatek,mt8365-power.h
-> 
+Just at the point when we decided to keep the clock in bindings and just 
+drop it from the driver :-(
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+-- 
+With best wishes
+Dmitry
+
