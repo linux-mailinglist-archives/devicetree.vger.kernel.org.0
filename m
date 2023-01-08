@@ -2,105 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12A39661A61
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 23:17:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6BF8661A64
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 23:17:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231410AbjAHWRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 17:17:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55846 "EHLO
+        id S230441AbjAHWRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 17:17:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbjAHWRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 17:17:36 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9C711143
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 14:17:33 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id y18so3594280ljk.11
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 14:17:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oz4lnXq6zsv6hP/Mmlcfiy6rqGfdQvTRhmdQMJNbZiw=;
-        b=R6MQHjysGHcISIPjYvCKEHfJ3bKwxcifjHORZSvbsljfF2On6qZOCq8z9UnzHwzABJ
-         yjUpx/OoqRUr1MlfA/UURLULjE0mDBgVkQKogTn+0J8dh7Y3GMYOykIRMmT7rtEdV1s3
-         6QM5ozL6w8BfAAjsvX9UOviF8cormULQPTOah2dQFc2ZVuxOAq3vMIsEpfEe2OHXa1/W
-         EvaMPZfDpR+GZzcjydp5h77T91urWrThRX04qmpvwhqnhM9rtin62xcZpOsyRxba3bk7
-         M4rh4qrPYGeJsnu42iNIHiDYP6Cqk73ocPbNGkbtmggGs0SzW3YFEefyW8Y3WIgJIibn
-         hFvw==
+        with ESMTP id S231336AbjAHWRk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 17:17:40 -0500
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA58711145;
+        Sun,  8 Jan 2023 14:17:38 -0800 (PST)
+Received: by mail-qt1-f170.google.com with SMTP id g7so6643224qts.1;
+        Sun, 08 Jan 2023 14:17:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oz4lnXq6zsv6hP/Mmlcfiy6rqGfdQvTRhmdQMJNbZiw=;
-        b=1muuQ61MrHksh0j/UP3tPDlXnnasqaXUQ6Aygm+DTy/+IjwuZMQ1Af8XnHH5AO9Ui9
-         GGOrXH3l/gToqD8xtMOvyjh6S70oawZtiUEwdu9mm7ngNrneoTNaCCoOaPJ7dko948aW
-         6qlAlh0YyWOum8wxvwIafalT4hcRrzLUu0NvKcK7UlKdpsyoWpNYXkP/7t3TQKnz1EsU
-         w93lBdid3+LxAzGf9ZmwdH9h5O4yQSOPEtiJ64n/iPfM6dpMgF9wi7YRVuoBNwa/970v
-         02/6z1Ycn7dZgKLJmggKgkxDkKYdm6rfLDbHRsFzMXP8abcmzY6o/P6Vnil48edjaXuk
-         OJ8Q==
-X-Gm-Message-State: AFqh2kqArDYhQeYXkYAaLDzG1UPcLkLfIowntdH8jgT7XV3CtoIjsQ28
-        9y7DGqVNTEmOwTfUqnSwqQYW/w==
-X-Google-Smtp-Source: AMrXdXtGM6I56my/2fgVoHR1BvQfwPTPkgimjsiGQFXvfD9wtD3PMh/xmupc4zqACwPqkJd1UnzQZA==
-X-Received: by 2002:a2e:b5ad:0:b0:27f:b693:59de with SMTP id f13-20020a2eb5ad000000b0027fb69359demr13049192ljn.42.1673216251675;
-        Sun, 08 Jan 2023 14:17:31 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id f19-20020ac25333000000b004cb2e3089a7sm1246240lfh.38.2023.01.08.14.17.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Jan 2023 14:17:31 -0800 (PST)
-Message-ID: <94172b72-4eaf-b7ce-d3fa-f181db779deb@linaro.org>
-Date:   Mon, 9 Jan 2023 00:17:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 01/16] dt-bindings: clock: qcom,gcc-msm8998: drop
- core_bi_pll_test_se
-Content-Language: en-GB
-To:     Rob Herring <robh@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        bh=YJxqzF+OktwaYrRSfTrgkUqbVaKniIxL4rf0S9hLeYs=;
+        b=aC/fnOj2nLn5thZpMNpoiAdUIsZ44bgw3T60N0hO/i65DXGSzmJoWwfn8OUOiKq2na
+         Tyn61qd7g2lj+n84FaCyfCbP5aIyvh+iydv1sc5xvHb4uhrlfCaszWNpR8R0nsAtlTs/
+         zKsH0XJ/KK9yDeohZd5dUc89NV1768T3Cfc3IPL/+8MBuCe0fTLMVlNmHtkUs8fGbn7A
+         RREuQwv+hv76bQDwtzl9caaKk9i4tibaOxQvA3kNbnclQhY+ntr5N4IWcqsILlydCV2Y
+         zItyx15gvkbvfRHb19IaWQrEyZuCuxDdCE6Nqo1d03ZUSxL8hqUqL1Kqnw5VNmi217jp
+         5TWA==
+X-Gm-Message-State: AFqh2kqkgRLlWbp+btXAgqkEl3P1cBdaPCIaZhNdpfY0Pj55Y6fOVcIr
+        ez83p3NSQQg16HIbe5rw8Q==
+X-Google-Smtp-Source: AMrXdXslZdmGQLfGS4uV0n72J4bR6x5uClR/bWk65ivFL2vpx639o71TwWdpiIJcCa/43mzuNhPwHQ==
+X-Received: by 2002:ac8:73cc:0:b0:3a7:e2d2:5030 with SMTP id v12-20020ac873cc000000b003a7e2d25030mr94100902qtp.2.1673216257943;
+        Sun, 08 Jan 2023 14:17:37 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:80a5:9b51:39ae:24d1:33f3:811e])
+        by smtp.gmail.com with ESMTPSA id x15-20020a05620a448f00b006ea7f9d8644sm4336131qkp.96.2023.01.08.14.17.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Jan 2023 14:17:37 -0800 (PST)
+Received: (nullmailer pid 351826 invoked by uid 1000);
+        Sun, 08 Jan 2023 22:17:34 -0000
+Date:   Sun, 8 Jan 2023 16:17:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-References: <20221228185237.3111988-1-dmitry.baryshkov@linaro.org>
- <20221228185237.3111988-2-dmitry.baryshkov@linaro.org>
- <167320330549.188812.3791526731906955387.robh@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <167320330549.188812.3791526731906955387.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        u-boot@lists.denx.de,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/3] dt-bindings: nvmem: u-boot,env: add MAC's
+ #nvmem-cell-cells
+Message-ID: <20230108221734.GA345366-robh@kernel.org>
+References: <20230105171038.13649-1-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230105171038.13649-1-zajec5@gmail.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/01/2023 20:41, Rob Herring wrote:
+On Thu, Jan 05, 2023 at 06:10:36PM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> On Wed, 28 Dec 2022 20:52:22 +0200, Dmitry Baryshkov wrote:
->> The test clock apparently it's not used by anyone upstream. Remove it.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../devicetree/bindings/clock/qcom,gcc-msm8998.yaml         | 6 +-----
->>   1 file changed, 1 insertion(+), 5 deletions(-)
->>
+> U-Boot's "ethaddr" environment variable is very often used to store
+> *base* MAC address. It's used as a base for calculating addresses for
+> multiple interfaces. It's done by adding proper values. Actual offsets
+> are picked by manufacturers and vary across devices.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  Documentation/devicetree/bindings/nvmem/u-boot,env.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+> index cbc5c69fd405..1c139bd689ea 100644
+> --- a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+> @@ -50,7 +50,11 @@ properties:
+>  
+>    ethaddr:
+>      type: object
+> -    description: Ethernet interface's MAC address
+> +    description:
+> +      Ethernet interfaces base MAC address. The first argument is an offset.
 
-Just at the point when we decided to keep the clock in bindings and just 
-drop it from the driver :-(
+The 2nd sentence belongs in the '#nvmem-cell-cells' description.
 
-
--- 
-With best wishes
-Dmitry
-
+> +    properties:
+> +      "#nvmem-cell-cells":
+> +        const: 1
+>  
+>  additionalProperties: false
+>  
+> @@ -72,6 +76,7 @@ examples:
+>              reg = <0x40000 0x10000>;
+>  
+>              mac: ethaddr {
+> +                #nvmem-cell-cells = <1>;
+>              };
+>          };
+>      };
+> -- 
+> 2.34.1
+> 
+> 
