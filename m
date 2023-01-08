@@ -2,53 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 147D9661534
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 13:51:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D242D66154B
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 14:01:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233070AbjAHMvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 07:51:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33750 "EHLO
+        id S233230AbjAHNBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 08:01:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbjAHMvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 07:51:00 -0500
+        with ESMTP id S229627AbjAHNBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 08:01:41 -0500
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A22B21AB;
-        Sun,  8 Jan 2023 04:50:59 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7038BDF58;
+        Sun,  8 Jan 2023 05:01:40 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A947BB80976;
-        Sun,  8 Jan 2023 12:50:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F41E7C433EF;
-        Sun,  8 Jan 2023 12:50:52 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 05002B80A36;
+        Sun,  8 Jan 2023 13:01:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B74E2C433D2;
+        Sun,  8 Jan 2023 13:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673182256;
-        bh=rDIT6gOl0JO4Pi6BQxe7HUa29MorRTACERDszgVOHnE=;
+        s=k20201202; t=1673182897;
+        bh=axSUVB3lof9WSwRIsKgGRZbHEkRI+Nv4KBBytu4sLFI=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=NvemCsLHeLLV+8PVO2pbhxbb52p3xtb96zE7/xXKTz1izmy3Rw0KxsxjRIFJn/SlS
-         oFXd4nidiwMNH23ZaBiUh6nxpg9P1mI2CYC2aQKuaYnCTnJ+BZocXBRtTUum4LhmK2
-         lCftg30KLGlQzvHx82O3xsXbGp7KvX4O0CKEXJVvex175baGrwtul/lzWabC67km8f
-         JPQU9cheLe38Cen77Wj5tFSIg38d9JIJPNq7Hm8wLfpEdMTgo+y3n2jo6MhuZWXScP
-         MasUqRGgcCAx5v9Wofq/ZbAEwj/GxGoTLz5Msdtto1NCPWB4BaRqz3EAv9zXRM+E0H
-         80I/jiXRfWrGA==
-Date:   Sun, 8 Jan 2023 13:04:22 +0000
+        b=pfuNWB2sb257KSDBUJea2JgTBiIUCe9W1JQ5Y5TDxhwlpbWf7AjskS7jdOuoTRarZ
+         ID5gc1H6tKhTQVFoPsuA5neqr2FviCPsa3iIwRhPbYffON0t5wxBEBqsE+lPFf6YX+
+         e2u8I892KGi+tNEDjZEWQROgNyATIYMlyl150h8uYD6HX4+pOmxi5gxE/dspuJajha
+         HjTtJ8Am/hp4r/N9vWZdXUMPeoMq+sEYxkxj5YO/j2GKdUDW5KDWuXAjP9lHy9T9NB
+         NP++0DlJthv1uvJdpU18T/VWxKeKEbd7+WBalsonkEgakE+RCh+D/ac1kSuyhiARlo
+         Hamv1AnarRWyQ==
+Date:   Sun, 8 Jan 2023 13:15:05 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] iio: adc: qcom-spmi-adc5: define
- ADC5_BAT_ID_100K_PU channel
-Message-ID: <20230108130422.76493bf8@jic23-huawei>
-In-Reply-To: <20230106-pm7250b-bat_id-v1-1-82ca8f2db741@fairphone.com>
-References: <20230106-pm7250b-bat_id-v1-0-82ca8f2db741@fairphone.com>
-        <20230106-pm7250b-bat_id-v1-1-82ca8f2db741@fairphone.com>
+To:     haibo.chen@nxp.com
+Cc:     lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 0/3] add imx93 adc support
+Message-ID: <20230108131505.0a51fe46@jic23-huawei>
+In-Reply-To: <20230103114359.2663262-1-haibo.chen@nxp.com>
+References: <20230103114359.2663262-1-haibo.chen@nxp.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -62,41 +56,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 06 Jan 2023 16:39:41 +0100
-Luca Weiss <luca.weiss@fairphone.com> wrote:
+On Tue,  3 Jan 2023 19:43:55 +0800
+haibo.chen@nxp.com wrote:
 
-> Define the ADC channel used for battery identification purposes so it
-> can be used in drivers.
+> From: Haibo Chen <haibo.chen@nxp.com>
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-Applied to the togreg branch of iio.git and pushed out as testing for
-0-day to take a look at it.
+> V5:
+>   -For ADC driver, use dev_err_probe() to replace dev_err() in dev_err_probe(). 
+>   -Add imx93_adc_power_down() in the probe error path.
+>   -Re-order the function in imx93_adc_remove(), make them inverse in probe().
+>   -Remove the pm_runtime_get_sync(dev) in imx93_adc_remove(), because this driver
+>    enable the pm_runtime autosuspend feature, and config the delay as 50ms. So when
+>    called imx93_adc_remove(), this device still in runtime resume state, no need to
+>    force resume the device back.
+I don't follow this point.  Perhaps talk me through in more detail on why the device
+will be in a runtime resumed state when ever we hit remove?
 
-If anyone else has comments, then there is still time as I won't push
-this out as a non-rebasing branch for a few days at least
-(and I'm aware I picked it up very quickly :)
-
-
-Thanks,
-
-Jonathan
-
-> ---
->  drivers/iio/adc/qcom-spmi-adc5.c | 2 ++
->  1 file changed, 2 insertions(+)
+>   -no changes for binding doc and dts.
 > 
-> diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
-> index 821fee60a765..8c33da9de257 100644
-> --- a/drivers/iio/adc/qcom-spmi-adc5.c
-> +++ b/drivers/iio/adc/qcom-spmi-adc5.c
-> @@ -543,6 +543,8 @@ static const struct adc5_channels adc5_chans_pmic[ADC5_MAX_CHANNEL] = {
->  					SCALE_HW_CALIB_DEFAULT)
->  	[ADC5_XO_THERM_100K_PU]	= ADC5_CHAN_TEMP("xo_therm", 0,
->  					SCALE_HW_CALIB_XOTHERM)
-> +	[ADC5_BAT_ID_100K_PU]	= ADC5_CHAN_TEMP("bat_id", 0,
-> +					SCALE_HW_CALIB_DEFAULT)
->  	[ADC5_AMUX_THM1_100K_PU] = ADC5_CHAN_TEMP("amux_thm1_100k_pu", 0,
->  					SCALE_HW_CALIB_THERM_100K_PULLUP)
->  	[ADC5_AMUX_THM2_100K_PU] = ADC5_CHAN_TEMP("amux_thm2_100k_pu", 0,
+> V4:
+>   For ADC driver, re-define the ADC status show the relation to specific register bit.
+>   Redo the imx93_adc_remove(), change the return error sequence in imx93_adc_read_raw(),
+>   and use a direct string for indio_dev->name.
+>   For dt-bings, change the commit title and add maintainer's reviewed by tag
+>   For dts, no change.
+> 
+> V3:
+>   For dt-bings, add some change according to review comments, and pass dt_binding_check.
+>   For dts, add #io-channel-cells = <1>; to pass dtbs_check
+>   For ADC driver, no change.
+> 
+> V2:
+>   For ADC driver, add change according to matainer's commets.
+> 
+> Haibo Chen (3):
+>   iio: adc: add imx93 adc support
+>   dt-bindings: iio: adc: Add NXP IMX93 ADC
+>   arm64: dts: imx93: add ADC support
+> 
+>  .../bindings/iio/adc/nxp,imx93-adc.yaml       |  81 +++
+>  MAINTAINERS                                   |   4 +-
+>  .../boot/dts/freescale/imx93-11x11-evk.dts    |  12 +
+>  arch/arm64/boot/dts/freescale/imx93.dtsi      |  13 +
+>  drivers/iio/adc/Kconfig                       |  10 +
+>  drivers/iio/adc/Makefile                      |   1 +
+>  drivers/iio/adc/imx93_adc.c                   | 477 ++++++++++++++++++
+>  7 files changed, 597 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>  create mode 100644 drivers/iio/adc/imx93_adc.c
 > 
 
