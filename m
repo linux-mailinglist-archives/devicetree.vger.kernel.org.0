@@ -2,66 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B01E6619EC
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 22:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B449D6619FE
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 22:31:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231292AbjAHVZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 16:25:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37446 "EHLO
+        id S234052AbjAHVbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 16:31:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230211AbjAHVZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 16:25:41 -0500
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF023E039;
-        Sun,  8 Jan 2023 13:25:40 -0800 (PST)
-Received: by mail-qt1-f174.google.com with SMTP id v14so6530814qtq.3;
-        Sun, 08 Jan 2023 13:25:40 -0800 (PST)
+        with ESMTP id S234073AbjAHVbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 16:31:36 -0500
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA7B2652;
+        Sun,  8 Jan 2023 13:31:35 -0800 (PST)
+Received: by mail-qv1-f53.google.com with SMTP id t17so4983771qvw.6;
+        Sun, 08 Jan 2023 13:31:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Ksz7ViHyFyLEVp18UsYpjLBaN8EOjwCMJVlsdXXw1/M=;
-        b=B4vbN/2TfnaIMpmL7flMeHcMIYJ1iqXnyUATi+iYsC2AEURExHFTF1CUDbEq3mupYj
-         tq4+ru0sYkzOAFvgGUQuoa0bSZzxuJsptpL2PPTNYHr6cuGM4wL7MKgKN3oP+tobXQWI
-         oBE/wirBIhvzWBoKQpYRauYcKnaDbknD3wAv4Ri6CZNpc874owP1Zrd+dqsYMuZAiBLk
-         CEuEkeXppJz6lCrsb8juAAhiRG5o7tevVuKUC5aV4dmiLU8qpPQJTZ+i9Ld/Fa3F+wv9
-         BUFtLJk9SLr7QlNFzH0CtOtQuQRaa8XdhgnuePKewYFWnmBzXtl3SwdwcXg6i653ZwBC
-         p8XQ==
-X-Gm-Message-State: AFqh2kqONH1icyJJepmAGrah8dFyU8OW+5KwlHXOIozl1P9FNsyPbapB
-        Yo+iGAxD9xYC0l4sZLALbQ==
-X-Google-Smtp-Source: AMrXdXukOPv2EWWUFUiwl0S670ba8FNlvRZ5ttDhfiIxFVihnoRmeRIzVeyZxWHBC/pAev9a3Lq8oA==
-X-Received: by 2002:ac8:4a93:0:b0:3a7:ec9b:e00b with SMTP id l19-20020ac84a93000000b003a7ec9be00bmr84865891qtq.68.1673213139859;
-        Sun, 08 Jan 2023 13:25:39 -0800 (PST)
+        bh=js0w/jb+lh+/4h7Fj3cofK1pNZXgAj1iZs13t0WEx7U=;
+        b=O3/QB1oY2VD+0rDeVJtDR9ibPffXORKtQ6tvd+OxNbMUu0HxxZekTO8L3bGIBVc9pZ
+         PG0m2HW8BOsDAlQKksNKxVera2SPts8E5ScttGtnEtLg7xKbtzK7FBPb5EaVf7Ilw7L3
+         X/mNS3VOKtBc/a5gqe63WLMiRnIvcZ50yq0fSH/ysKPypODxq/hNIWQDfOI6N0q1j8kX
+         mwJFXhAvNehUbT2NMeld31oSUiWY1ZZR3URejApjLvZokuUwnuBr6k0CpkE7Qz7YK3LY
+         l7bv4CnM9KLrTp0ECE93oR3ZbZ1o5xSDE3cBOGPjFLEfK1w3NzaVEJVr8yxlmUyny1HK
+         4hJg==
+X-Gm-Message-State: AFqh2kr3oz8GZUT3VaTaWB1MdJg2fNqGc68Z74n6KtzeZJxZRuENOosI
+        qhjtt7r5QfBB+eRaDhgwww==
+X-Google-Smtp-Source: AMrXdXuBm+J+Rynuin0d2pDwJb7zmpV8C55xdiobHV2KiVZ4+Tky8PsFOPSUUj6AjwE8vmlqoBWtGw==
+X-Received: by 2002:a0c:80e4:0:b0:531:91cd:59de with SMTP id 91-20020a0c80e4000000b0053191cd59demr59201574qvb.26.1673213494064;
+        Sun, 08 Jan 2023 13:31:34 -0800 (PST)
 Received: from robh_at_kernel.org ([2605:ef80:80a5:9b51:39ae:24d1:33f3:811e])
-        by smtp.gmail.com with ESMTPSA id cm8-20020a05622a250800b003a50ef44a77sm3681603qtb.28.2023.01.08.13.25.34
+        by smtp.gmail.com with ESMTPSA id l23-20020a37f917000000b006fc2b672950sm4256353qkj.37.2023.01.08.13.31.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 13:25:39 -0800 (PST)
-Received: (nullmailer pid 299755 invoked by uid 1000);
-        Sun, 08 Jan 2023 21:25:33 -0000
-Date:   Sun, 8 Jan 2023 15:25:33 -0600
+        Sun, 08 Jan 2023 13:31:33 -0800 (PST)
+Received: (nullmailer pid 306308 invoked by uid 1000);
+        Sun, 08 Jan 2023 21:31:19 -0000
+Date:   Sun, 8 Jan 2023 15:31:19 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Brian Masney <bmasney@redhat.com>
-Cc:     linux-arm-msm@vger.kernel.org, echanude@redhat.co,
-        robh+dt@kernel.org, ahalaney@redhat.com,
-        linux-kernel@vger.kernel.org, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
-        johan+linaro@kernel.org, quic_shazhuss@quicinc.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 01/10] dt-bindings: qcom,*-geni: move
- #{address,size}-cells on i2c/spi nodes
-Message-ID: <167321304950.298101.1811705941067068955.robh@kernel.org>
-References: <20230103182229.37169-1-bmasney@redhat.com>
- <20230103182229.37169-2-bmasney@redhat.com>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-kernel@vger.kernel.org,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        devicetree@vger.kernel.org, Janne Grunau <j@jannau.net>,
+        asahi@lists.linux.dev,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 4/5] spi: dt-bindings: Add hold/inactive CS delay
+ peripheral properties
+Message-ID: <167321346258.305589.13314015291667781400.robh@kernel.org>
+References: <20230104093631.15611-1-marcan@marcan.st>
+ <20230104093631.15611-5-marcan@marcan.st>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230103182229.37169-2-bmasney@redhat.com>
+In-Reply-To: <20230104093631.15611-5-marcan@marcan.st>
 X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -69,20 +70,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 03 Jan 2023 13:22:20 -0500, Brian Masney wrote:
-> Move the #address-cells and #size-cells properties on the existing
-> i2c/spi example nodes below the reg property so that all of the
-> address-related properties are grouped together.
+On Wed, 04 Jan 2023 18:36:30 +0900, Hector Martin wrote:
+> From: Janne Grunau <j@jannau.net>
 > 
-> Signed-off-by: Brian Masney <bmasney@redhat.com>
-> Link: https://lore.kernel.org/lkml/Y6Wnh+tXPhF6aC1b@hovoldconsulting.com/
+> These two properties complete the bindings for the Linux spi_device cs
+> model, which includes cs_setup, cs_hold and cs_inactive delay values.
+> 
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
-> New patch introduced in v4
-> 
->  .../devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml       | 4 ++--
->  .../devicetree/bindings/soc/qcom/qcom,geni-se.yaml        | 4 ++--
->  .../devicetree/bindings/spi/qcom,spi-geni-qcom.yaml       | 8 ++++----
->  3 files changed, 8 insertions(+), 8 deletions(-)
+>  .../devicetree/bindings/spi/spi-peripheral-props.yaml  | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
