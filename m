@@ -2,101 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F2BF661963
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 21:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AADB566197A
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 21:45:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234021AbjAHUhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 15:37:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44830 "EHLO
+        id S231410AbjAHUp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 15:45:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233920AbjAHUho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 15:37:44 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67548FCB
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 12:37:42 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id m6so10015102lfj.11
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 12:37:42 -0800 (PST)
+        with ESMTP id S235924AbjAHUp1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 15:45:27 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B739B7F1;
+        Sun,  8 Jan 2023 12:45:25 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id v10so8593518edi.8;
+        Sun, 08 Jan 2023 12:45:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2wjZyCiu39kHUTVUWrdgmj76POWhIfcwRPWfaQQRFjg=;
-        b=r7U+cjr4XjIRJ9ex/9VUYCK6QbDVM2k6XxYJarY5oqgtych3zMU0OX5lHjddibz04M
-         qNApQuNg3HCaTvcp+5ZeDJ79AT5Quf0tsM7GO9marhR3t0bLDVG1TaSHnqamFSFgpYQd
-         LuV1w7WKR0aGgUdI/IfD3JHLKs9HxwE154N641TQQ5HdzUeoqu+abHuDiq2k0ViFYyrS
-         PFOKnb3Xieu0FeOBgDtn/543Wo0jIhIkEbOrW/NqtJKolWDkeqAUQb4aPQx95C/qLplA
-         EGmcov6zshQTAmhSwGALPOmrlBw+WBEALuQcI+BOs/IIz2RE8IQHkzOzl7pPXEf1c/MB
-         P1AQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n4q6oMwCm/gTCrJ8zmSnOgEED+29tA9nSZ+RX66hDuE=;
+        b=CqWy6eWNskIRB1eU28NVg8geynNqjY6Aoi0d40nKO0fqamMoDMOqYWA1EWLhYEROUN
+         XEpiBFCWMXlK5pux/4inKU9j5i3/MQbN5xd29yNgZTKgHWx0x/lwRdR1E6kgcOh1cNNm
+         am7xl6rQz05zj6EzgwkhwBDsk1IYk5z67cYNe7PDC9o7aJ8vesUMJZt3FeqeGdBx2oRk
+         HGsSA1ztKvWIe800HRszVWa59v9tmh+FIr8ocgaiQ5pqiwsFWgE890/kz01avTeUtH9j
+         7he+qpvsuiOeWdxPIzkt3tGOKo4VfnSVLK5MeqNxgqJh74C2O0GtMxhykXPKnAaFwp46
+         221w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2wjZyCiu39kHUTVUWrdgmj76POWhIfcwRPWfaQQRFjg=;
-        b=i7BFs8UPNf2wmQux28GjpcRwfb0LwDkMbkIZICH+zJryjAUdtyQpWiT/X6cWpNgmgy
-         gHYfDN6ddXlgK4ToFlzY5W4ezI8IQEwARLaGLPCqemt+ckMvqns7157JSlXDAX6QESYm
-         6Eho10O/1S74/AuWtVP31I8pHS15P1z5V3DYnPEMDrz/q+xaUJHX5qWX/YGJdOIX/TqN
-         tnD4i/KQstjlOrtNZSTYXkF+2cigRTfQ379dMMtDezjyshRfikHUYeFhb8hDXA36mMqQ
-         rhMD7eMyhNauCUPExhAojX4WCFXAzvUERMPA8QkmZhbRN72bW75Wa9E+PQ84zprUNenF
-         rswg==
-X-Gm-Message-State: AFqh2kqmDIj+nXQh2g9HjRYyWa2MtAnp1ACdiAX9GCVWsTQ6HiKJIsW3
-        UaS7U0Y/hir6R0tR6iTZoOftGQ==
-X-Google-Smtp-Source: AMrXdXtgtS0VMjYKAzLIJTHfulWhxtMeF0KdIBMpQ/AdWm6YN0w9H1vHgNvF0Y+GlLFsKuiokwi7Ag==
-X-Received: by 2002:a05:6512:1049:b0:4b6:edce:a192 with SMTP id c9-20020a056512104900b004b6edcea192mr19485618lfb.4.1673210261249;
-        Sun, 08 Jan 2023 12:37:41 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05651220d000b004cc8207741fsm295936lfr.93.2023.01.08.12.37.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Jan 2023 12:37:40 -0800 (PST)
-Message-ID: <2f6ea88f-9b84-3a8b-dacf-41af80f8574d@linaro.org>
-Date:   Sun, 8 Jan 2023 22:37:39 +0200
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n4q6oMwCm/gTCrJ8zmSnOgEED+29tA9nSZ+RX66hDuE=;
+        b=oGox1rVMYjqRvpQdYGtTUQCrbx+8jLjCE1vOkts2hcrzsM8YSH0a9X7aHNJKohHaKi
+         gX1MM+2VBpp2YovH79DTqVHd4kSUogb4Uue0oYl/d9MbSCMWqVPPyT9rnH4a6rQKwExc
+         RgSSKJ33zjbA2rx26KU63MCroJrEXm47n0AXA5QFh3SA7+SclvEfUyjPTRB0ghbwSbgU
+         jbTrJ9emImzk5ei/pY2RCeCul3uKvEFzPWbesrHdwfmWG1oFr0rLHzZz8Y9u5tW3cAQP
+         mv/LCyPzmo3U1gCU5L3m+dVf+uhgj9VN6gqnyWlIQv1n1uZqx1wH4QE4spiG+fEQawgt
+         EiPQ==
+X-Gm-Message-State: AFqh2kp1UJpxJQbki6qpXK3XcHl2bgra68zPlh42Y2nxVQzbSCttWm8T
+        p6m9GqmJzhsMyHNerpAkDX4=
+X-Google-Smtp-Source: AMrXdXt7tkRvV/unsvlcOLXlm6E0PeHcJAMS2YvEvKWEeYhUt+Yv9NlwkSHxpJinl7xdfk3BCP0Mzw==
+X-Received: by 2002:a05:6402:3887:b0:496:4d2f:1b4b with SMTP id fd7-20020a056402388700b004964d2f1b4bmr8860882edb.7.1673210724121;
+        Sun, 08 Jan 2023 12:45:24 -0800 (PST)
+Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
+        by smtp.gmail.com with ESMTPSA id p24-20020a056402075800b0049668426aa6sm2946544edy.24.2023.01.08.12.45.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Jan 2023 12:45:23 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ARM: dts: sun8i: h3-beelink-x2: align HDMI CEC node names with
+ dtschema
+Date:   Sun, 08 Jan 2023 21:45:22 +0100
+Message-ID: <21769801.EfDdHjke4D@jernej-laptop>
+In-Reply-To: <20221204183341.139946-1-krzysztof.kozlowski@linaro.org>
+References: <20221204183341.139946-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v4 04/11] drm/msm/dpu: Add support for SM8350
-To:     Robert Foss <robert.foss@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, sean@poorly.run, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        quic_jesszhan@quicinc.com,
-        angelogioacchino.delregno@somainline.org, loic.poulain@linaro.org,
-        vkoul@kernel.org, a39.skl@gmail.com, quic_khsieh@quicinc.com,
-        quic_vpolimer@quicinc.com, swboyd@chromium.org,
-        dianders@chromium.org, liushixin2@huawei.com,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
-        vinod.koul@linaro.org
-References: <20221230153554.105856-1-robert.foss@linaro.org>
- <20221230153554.105856-5-robert.foss@linaro.org>
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221230153554.105856-5-robert.foss@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/12/2022 17:35, Robert Foss wrote:
-> Add compatibles string, "qcom,sm8350-dpu", for the display processing unit
-> used on Qualcomm SM8350 platform.
+Dne nedelja, 04. december 2022 ob 19:33:41 CET je Krzysztof Kozlowski 
+napisal(a):
+> The bindings expect "cec" for HDMI CEC node.
 > 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 1 +
->   1 file changed, 1 insertion(+)
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Applied, thanks!
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Jernej
+
 
