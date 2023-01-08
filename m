@@ -2,67 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 134F3661828
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 19:31:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6323E661832
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 19:34:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234698AbjAHSbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 13:31:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56098 "EHLO
+        id S229503AbjAHSeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 13:34:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236395AbjAHSbO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 13:31:14 -0500
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CEF7BC14;
-        Sun,  8 Jan 2023 10:31:13 -0800 (PST)
-Received: by mail-il1-f182.google.com with SMTP id a9so3229451ilp.6;
-        Sun, 08 Jan 2023 10:31:13 -0800 (PST)
+        with ESMTP id S229673AbjAHSdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 13:33:55 -0500
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60CE41005;
+        Sun,  8 Jan 2023 10:33:54 -0800 (PST)
+Received: by mail-il1-f175.google.com with SMTP id u8so3833295ilq.13;
+        Sun, 08 Jan 2023 10:33:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nXBbO2P+g4sf54JRtHUcYoNVdaz5jhylNXMvr/njs6o=;
-        b=VfiJWhWFWAEMKi5MJbyMiRMA5XAF4YKghKA7g99hqznLtNFiv3HHZ1CkzmZOHy/70w
-         E5GOF8AG/rYtUROzHrfJe687fJBXpn10CCfsfbxEbtloKjmPs5NCftibJUcyEQflb8De
-         iRj25nNZb9L4aZBtINt66FAWcd+lDF/fPTiLA4cZnDxKxePW5w/WgRwEYMImS2l0fazB
-         F8b9DMngr4jlMLHJEuF1o+djjibDmPlvtPJFzO6E2ElmKgivncYCgStsy2bjGnYCvHbo
-         0c1AfBms4mXutSPyqFWoAGCQCx536Q/bpJx7DlWzjBdyt8qKiTgLfYIXjG3vQcygXHYZ
-         R3fg==
-X-Gm-Message-State: AFqh2kpibjrNWDV0dbJAHAcb8eDRFpcJPxHssldgB4FuuT2YKtnDzZ0w
-        qelr1Bkp0RjW5Cy5b2v6tA==
-X-Google-Smtp-Source: AMrXdXugH3E0ejS19Wkv/PJBMkYM23FfNcI74V9Fr5FWS9x0/SUgUUs+79aDicB6uQD5q0iMLDMMbA==
-X-Received: by 2002:a92:ce48:0:b0:30c:6616:6fb with SMTP id a8-20020a92ce48000000b0030c661606fbmr13768343ilr.2.1673202672349;
-        Sun, 08 Jan 2023 10:31:12 -0800 (PST)
+        bh=AnLn590CxObCPHVpqzU2YKM6yS2U3fQhJcXnp9MuaEg=;
+        b=yh0nj16rq21xVLIhyzGh4KV0gPtbKpkAGH7DHxNUGZo7FzxlgpNUsApBYVqqTbu8FF
+         nfZam41n0JqkQCdNexu5+SVKPvtGvIXvtFuinSm1EILeA/zIgbHgEdPDmG/WxTKgX3wg
+         94bHOa8aR6yphsYfWhtjS8u8xQn/frj9W2TMXTrgoP2x8U5Y2ATwj+cmNzgw4Um54Ta1
+         U9huDZ9k1ytH5SIBX3wdnE1ANuBbPco3jt3WIrdfqGHwS8RgavK28Pt3eAs6JqKmquuJ
+         iy99dy//Ucw9VHu5v1RoAgohQ2hvtge4Tn3RRGTEaxsq80IyV5xsW2ZYk19ERJbBjyfj
+         i6ZQ==
+X-Gm-Message-State: AFqh2kqTibbDQWCtndaUjn3yuxvPh1lci6r+q7bRhMYOcUben7e0s8Xb
+        oWQ3GoeCt/9160Bc8salcg==
+X-Google-Smtp-Source: AMrXdXsyQQy9O9q6deLP1/nsKTazK9kzf6iytk5IS8CbSyS/PIHCy5h3pO4pbod2IM6YsQCWfPmI7w==
+X-Received: by 2002:a05:6e02:525:b0:30c:2bb4:a2ea with SMTP id h5-20020a056e02052500b0030c2bb4a2eamr22671802ils.13.1673202833579;
+        Sun, 08 Jan 2023 10:33:53 -0800 (PST)
 Received: from robh_at_kernel.org ([2605:ef80:8069:516a:f2b0:691e:4315:7c0f])
-        by smtp.gmail.com with ESMTPSA id 3-20020a056e020ca300b00304ae88ebebsm2104584ilg.88.2023.01.08.10.31.10
+        by smtp.gmail.com with ESMTPSA id y21-20020a027315000000b00389cb050d1bsm2099433jab.33.2023.01.08.10.33.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 10:31:11 -0800 (PST)
-Received: (nullmailer pid 177585 invoked by uid 1000);
-        Sun, 08 Jan 2023 18:31:09 -0000
-Date:   Sun, 8 Jan 2023 12:31:09 -0600
+        Sun, 08 Jan 2023 10:33:53 -0800 (PST)
+Received: (nullmailer pid 180457 invoked by uid 1000);
+        Sun, 08 Jan 2023 18:33:50 -0000
+Date:   Sun, 8 Jan 2023 12:33:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-kernel@vger.kernel.org, Rohit kumar <rohitkr@codeaurora.org>,
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH 3/3] ASoC: dt-bindings: qcom,lpass-cpu: Correct and
- constrain clocks, interrupts, reg
-Message-ID: <167320266826.177510.14546851275083337747.robh@kernel.org>
-References: <20221227163135.102559-1-krzysztof.kozlowski@linaro.org>
- <20221227163135.102559-3-krzysztof.kozlowski@linaro.org>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: crypto: Let STM32 define Ux500 HASH
+Message-ID: <20230108183350.GA177741-robh@kernel.org>
+References: <20221227-ux500-stm32-hash-v1-0-b637ac4cda01@linaro.org>
+ <20221227-ux500-stm32-hash-v1-1-b637ac4cda01@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221227163135.102559-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221227-ux500-stm32-hash-v1-1-b637ac4cda01@linaro.org>
 X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -73,32 +69,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 27 Dec 2022 17:31:35 +0100, Krzysztof Kozlowski wrote:
-> The binding allowed multiple variations and number of
-> reg/interrupts/clocks properties for SC7180 and SC7280.  Maybe this was
-> done for different use-cases of LPASS CPU audio node, but DTS is
-> supposed to be a complete picture of the hardware.  The upstreamed
-> SC7180 and SC7280 DTSes contain the widest set of these
-> reg/interrupts/clocks, sometimes being even sum of these different
-> variations.
+On Wed, Dec 28, 2022 at 12:03:33AM +0100, Linus Walleij wrote:
+> This adds device tree bindings for the Ux500 HASH block
+> as a compatible in the STM32 HASH bindings.
 > 
-> Correct and narrow the reg, interrupts and clocks to match existing DTS:
+> The Ux500 HASH binding has been used for ages in the kernel
+> device tree for Ux500 but was never documented, so fill in
+> the gap by making it a sibling of the STM32 HASH block,
+> which is what it is.
 > 
->   sc7280-herobrine-evoker-lte.dtb: audio@3987000: clock-names: 'oneOf' conditional failed, one must be fixed:
->     ['aon_cc_audio_hm_h', 'audio_cc_ext_mclk0', 'core_cc_sysnoc_mport_core', 'core_cc_ext_if0_ibit', 'core_cc_ext_if1_ibit',
->      'audio_cc_codec_mem', 'audio_cc_codec_mem0', 'audio_cc_codec_mem1', 'audio_cc_codec_mem2', 'aon_cc_va_mem0'] is too long
->     'core_cc_sysnoc_mport_core' was expected
->     'audio_cc_codec_mem' was expected
->     'audio_cc_codec_mem0' was expected
->     'audio_cc_codec_mem1' was expected
->     'audio_cc_codec_mem2' was expected
->     'aon_cc_va_mem0' was expected
+> The relationship to the existing STM32 HASH block is pretty
+> obvious when looking at the register map, and I have written
+> patches to reuse the STM32 HASH driver on the Ux500.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The main difference from the outside is that the Ux500 HASH
+> lacks the interrupt line, so some special if-clauses are
+> needed to accomodate this in the binding.
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/sound/qcom,lpass-cpu.yaml        | 131 +++++++++---------
->  1 file changed, 62 insertions(+), 69 deletions(-)
+>  .../devicetree/bindings/crypto/st,stm32-hash.yaml  | 30 +++++++++++++++++++++-
+>  1 file changed, 29 insertions(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
+> index 4ccb335e8063..681812e1c941 100644
+> --- a/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
+> @@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: STMicroelectronics STM32 HASH
+>  
+> +description: The STM32 HASH block is built on the HASH block found in
+> +  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
+> +  SoC in 2010.
+> +
+>  maintainers:
+>    - Lionel Debieve <lionel.debieve@foss.st.com>
+>  
+>  properties:
+>    compatible:
+>      enum:
+> +      - st,stn8820-hash
+> +      - stericsson,ux500-hash
+>        - st,stm32f456-hash
+>        - st,stm32f756-hash
+>  
+> @@ -41,11 +47,33 @@ properties:
+>      maximum: 2
+>      default: 0
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - clocks
+> -  - interrupts
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          items:
+> +            const: stericsson,ux500-hash
+> +    then:
+> +      properties:
+> +        interrupts: false
+> +
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            items:
+> +              const: stericsson,ux500-hash
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Why not use 'else' instead?
+
+> +    then:
+> +      required:
+> +        - interrupts
+>  
+>  additionalProperties: false
+>  
+> 
+> -- 
+> 2.38.1
+> 
