@@ -2,200 +2,682 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAFCD662475
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1074E662489
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:47:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236673AbjAILmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 06:42:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57142 "EHLO
+        id S231219AbjAILrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 06:47:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234538AbjAILmF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:42:05 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9F11CB;
-        Mon,  9 Jan 2023 03:42:04 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D04006602D66;
-        Mon,  9 Jan 2023 11:42:00 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673264523;
-        bh=NbTiE9y32f/cs2nHXOmy1PoOgdwoRflnOn15GZ4u/iw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Z0X0qcckEa6SfOYaI3kGzfc3IcKXqxNE5NMoYT135HVUsXZUbg7CzPlnMcAWCz2pP
-         jZSPsmdYn/fEWg5jL4hxLLtZ7FwljfLNPK936Og/rMJurniFrUwoEP/w2i3nznEmXg
-         BpfI6CPwILoq7iT6nSu4NuZq1XScbtmAfAuSIYe9MCgbVJKp4CvCuniBRYVGhADOtd
-         GUmbh6hI8AiCyQ35YX6mOgHi5Kn5Fe0gzJjowdclrGKpbtlRUTozvabnqVTIJ/NcYi
-         NpUN9RhS47uNNrpF7aD+y6UoQCcY+DQVXhgZwRD8C6tjv2B1QytBDdw+8RC3Tu2ZBh
-         1dGp4yMyORxUQ==
-Message-ID: <023519eb-0adb-3b08-71b9-afb92a6cceaf@collabora.com>
-Date:   Mon, 9 Jan 2023 12:41:58 +0100
+        with ESMTP id S233814AbjAILqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:46:44 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA6B3DEFF
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 03:46:42 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id bt23so12480880lfb.5
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 03:46:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nveDtd10Wvb2GtVD8haiZeOqmw/n0Wm8k2LqTy7wwys=;
+        b=PCEJz9PF54gVTfQeUR12IWqVI3PfOzSU8FLIFyJ4RCPiPqMug4nLkJ/jf809e28jWH
+         TqUw3Y6t4qaYurCbkLomYHT/aw3nAWakDlQtypOvCTW+lLjOaMN5w5MZl1tNakwBAFGX
+         dSeouSyOQ73OTUyjTjDO7waRchKKkpLkPnalQf2KVavGuns3eJb0hIuSupx2gbpaOy2s
+         ENz6kZUdjUm+KDp/mYc0/GybfOrPwcn08PkC6vAEB+PMsstRdNltTeAGbeeF1ukSNpN6
+         dJPZcL7wAQwmknleQ8SdKcOiFis6k/TaWAuffUSV0CEBbjrjbCUopnKBQ6usk4qyBX2z
+         5dXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nveDtd10Wvb2GtVD8haiZeOqmw/n0Wm8k2LqTy7wwys=;
+        b=wDYNzZ7yWy9wKF/nv6U5nqnYACt2QGBribCTmPMmaX4FRi68LzLl9pHPrrdD9nF2HU
+         CLxcpUdAelnjHaozgfXuBOFtMcBlPQUwy1L6OLLCm36IG3+2r4BsTpM46OQz286cAV4w
+         3KvqCPBAwE0T85WIjIGGZfaxKZQodB+WUoL5U8fOVnz6TLuhilSBTO5ttGRwJpmOVEl2
+         oFdBu0vFBM+RmRKhzGAKfgBkbzbJTY4NO+aYqZyTBD4xltJ7V7xGBBTUga/qidtZFlEx
+         dbCddb7hyTPeHPjMmoq7D6OV7Ag/w9Oi3VCDWy1V7uDvgKBIb0OtPQH+xsggHs/y8AMy
+         P/Zg==
+X-Gm-Message-State: AFqh2koFLOtO9v4Eq7Wg1lQkTL4+Edbrm6/F5VFWM7bznvvHCWJFtbMJ
+        X+GDhGHaazzmGY5+RnEGA5suv/pi77ipoigM
+X-Google-Smtp-Source: AMrXdXtrqFhAnW5YJj1GRaV3b743IagyoGO7XXyiQXA1GFNatVZGtMEd7Y5b/z/x52tNzpiJxpHSqg==
+X-Received: by 2002:ac2:43b5:0:b0:4cb:40ba:4ae8 with SMTP id t21-20020ac243b5000000b004cb40ba4ae8mr5493409lfl.34.1673264801012;
+        Mon, 09 Jan 2023 03:46:41 -0800 (PST)
+Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id j7-20020ac25507000000b004b5831b69dcsm1585863lfk.140.2023.01.09.03.46.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 03:46:40 -0800 (PST)
+Message-ID: <ab20a6f0-5de6-48c9-cffd-a6bfd9e8ee3e@linaro.org>
+Date:   Mon, 9 Jan 2023 12:46:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v9 3/9] drm/display: Add Type-C switch helpers
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: msm/apq8x16-*: Move status property
+ last
 Content-Language: en-US
-To:     Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Allen Chen <allen.chen@ite.com.tw>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Imre Deak <imre.deak@intel.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Jim Cromie <jim.cromie@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20230109084101.265664-1-treapking@chromium.org>
- <20230109084101.265664-4-treapking@chromium.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230109084101.265664-4-treapking@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20230109110107.3016323-1-nikita@trvn.ru>
+ <20230109110107.3016323-2-nikita@trvn.ru>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230109110107.3016323-2-nikita@trvn.ru>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/01/23 09:40, Pin-yen Lin ha scritto:
-> Add helpers to register and unregister Type-C "switches" for bridges
-> capable of switching their output between two downstream devices.
+
+
+On 9.01.2023 12:01, Nikita Travkin wrote:
+> It's agreed that the status property should always be the last.
+> Move it in all msm8916 dts.
 > 
-> The helper registers USB Type-C mode switches when the "mode-switch"
-> and the "data-lanes" properties are available in Device Tree.
-> 
-> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> 
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
 > ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/apq8016-sbc.dts      | 44 ++++++++++---------
+>  .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 12 ++---
+>  .../arm64/boot/dts/qcom/msm8916-asus-z00l.dts |  9 ++--
+>  .../arm64/boot/dts/qcom/msm8916-huawei-g7.dts | 16 +++----
+>  .../boot/dts/qcom/msm8916-longcheer-l8150.dts | 12 ++---
+>  .../boot/dts/qcom/msm8916-longcheer-l8910.dts | 12 ++---
+>  .../qcom/msm8916-samsung-a2015-common.dtsi    | 12 ++---
+>  .../boot/dts/qcom/msm8916-samsung-j5.dts      | 12 ++---
+>  .../dts/qcom/msm8916-samsung-serranove.dts    | 12 ++---
+>  .../dts/qcom/msm8916-wingtech-wt88047.dts     | 12 ++---
+>  10 files changed, 78 insertions(+), 75 deletions(-)
 > 
-> (no changes since v8)
-> 
-> Changes in v8:
-> - Fixed the build issue when CONFIG_TYPEC=m
-> - Fixed some style issues
-> 
-> Changes in v7:
-> - Extracted the common codes to a helper function
-> - New in v7
-> 
->   drivers/gpu/drm/display/drm_dp_helper.c | 132 ++++++++++++++++++++++++
->   include/drm/display/drm_dp_helper.h     |  16 +++
->   2 files changed, 148 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index 16565a0a5da6..fb9e23744c08 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -30,11 +30,13 @@
->   #include <linux/sched.h>
->   #include <linux/seq_file.h>
->   #include <linux/string_helpers.h>
-> +#include <linux/usb/typec_mux.h>
->   #include <linux/dynamic_debug.h>
->   
->   #include <drm/display/drm_dp_helper.h>
->   #include <drm/display/drm_dp_mst_helper.h>
->   #include <drm/drm_edid.h>
-> +#include <drm/drm_of.h>
->   #include <drm/drm_print.h>
->   #include <drm/drm_vblank.h>
->   #include <drm/drm_panel.h>
-> @@ -3891,3 +3893,133 @@ int drm_panel_dp_aux_backlight(struct drm_panel *panel, struct drm_dp_aux *aux)
->   EXPORT_SYMBOL(drm_panel_dp_aux_backlight);
->   
->   #endif
+> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+> index ef5b39ba1238..3586f373d511 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+> @@ -175,18 +175,16 @@ &blsp_dma {
+>  
+>  &blsp_i2c2 {
+>  	/* On Low speed expansion */
+> -	status = "okay";
+>  	label = "LS-I2C0";
+> +	status = "okay";
+>  };
+>  
+>  &blsp_i2c4 {
+>  	/* On High speed expansion */
+> -	status = "okay";
+>  	label = "HS-I2C2";
+> +	status = "okay";
+>  
+>  	adv_bridge: bridge@39 {
+> -		status = "okay";
+> -
+>  		compatible = "adi,adv7533";
+>  		reg = <0x39>;
+>  
+> @@ -208,6 +206,8 @@ adv_bridge: bridge@39 {
+>  		pinctrl-1 = <&adv7533_int_suspend &adv7533_switch_suspend>;
+>  		#sound-dai-cells = <1>;
+>  
+> +		status = "okay";
 > +
-> +#if IS_REACHABLE(CONFIG_TYPEC)
-> +static int drm_dp_register_mode_switch(struct device *dev, struct device_node *node,
-> +				       struct drm_dp_typec_switch_desc *switch_desc,
-> +				       void *data, void *mux_set)
-> +{
-> +	struct drm_dp_typec_port_data *port_data;
-> +	struct typec_mux_desc mux_desc = {};
-> +	char name[32];
-> +	u32 dp_lanes[2];
-> +	int ret, num_lanes, port_num = -1;
+>  		ports {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+> @@ -231,34 +231,35 @@ adv7533_out: endpoint {
+>  
+>  &blsp_i2c6 {
+>  	/* On Low speed expansion */
+> -	status = "okay";
+>  	label = "LS-I2C1";
+> +	status = "okay";
+>  };
+>  
+>  &blsp_spi3 {
+>  	/* On High speed expansion */
+> -	status = "okay";
+>  	label = "HS-SPI1";
+> +	status = "okay";
+>  };
+>  
+>  &blsp_spi5 {
+>  	/* On Low speed expansion */
+> -	status = "okay";
+>  	label = "LS-SPI0";
+> +	status = "okay";
+>  };
+>  
+>  &blsp1_uart1 {
+> -	status = "okay";
+>  	label = "LS-UART0";
+> +	status = "okay";
+>  };
+>  
+>  &blsp1_uart2 {
+> -	status = "okay";
+>  	label = "LS-UART1";
+> +	status = "okay";
+>  };
+>  
+>  &camss {
+>  	status = "okay";
 > +
-> +	num_lanes = drm_of_get_data_lanes_count(node, 0, 2);
-> +	if (num_lanes <= 0) {
-> +		dev_err(dev, "Error on getting data lanes count: %d\n",
-> +			num_lanes);
-> +		return num_lanes;
-> +	}
+>  	ports {
+>  		port@0 {
+>  			reg = <0>;
+> @@ -319,43 +320,41 @@ &mdss {
+>  };
+>  
+>  &mpss {
+> -	status = "okay";
+> -
+>  	firmware-name = "qcom/apq8016/mba.mbn", "qcom/apq8016/modem.mbn";
 > +
-> +	ret = of_property_read_u32_array(node, "data-lanes", dp_lanes, num_lanes);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to read the data-lanes variable: %d\n",
-> +			ret);
-> +		return ret;
-> +	}
+> +	status = "okay";
+>  };
+>  
+>  &pm8916_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  &pronto {
+> -	status = "okay";
+> -
+>  	firmware-name = "qcom/apq8016/wcnss.mbn";
+> -};
+>  
+> -&sdhc_1 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_1 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> -};
+>  
+> -&sdhc_2 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_2 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+>  
+>  	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
+> -};
+>  
+> -&sound {
+>  	status = "okay";
+> +};
+>  
+> +&sound {
+>  	pinctrl-0 = <&cdc_pdm_lines_act &ext_sec_tlmm_lines_act &ext_mclk_tlmm_lines_act>;
+>  	pinctrl-1 = <&cdc_pdm_lines_sus &ext_sec_tlmm_lines_sus &ext_mclk_tlmm_lines_sus>;
+>  	pinctrl-names = "default", "sleep";
+> @@ -364,6 +363,8 @@ &sound {
+>  		"AMIC2", "MIC BIAS Internal2",
+>  		"AMIC3", "MIC BIAS External1";
+>  
+> +	status = "okay";
 > +
-> +	port_num = dp_lanes[0] / 2;
+>  	quaternary-dai-link {
+>  		link-name = "ADV7533";
+>  		cpu {
+> @@ -396,12 +397,13 @@ codec {
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	extcon = <&usb_id>, <&usb_id>;
+>  
+>  	pinctrl-names = "default", "device";
+>  	pinctrl-0 = <&usb_sw_sel_pm &usb_hub_reset_pm>;
+>  	pinctrl-1 = <&usb_sw_sel_pm_device &usb_hub_reset_pm_device>;
 > +
-> +	port_data = &switch_desc->typec_ports[port_num];
-> +	port_data->data = data;
-> +	mux_desc.fwnode = &node->fwnode;
-> +	mux_desc.drvdata = port_data;
-> +	snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
-> +	mux_desc.name = name;
-> +	mux_desc.set = mux_set;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+> index 701a5585d77e..20301eaa3b95 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+> @@ -152,8 +152,8 @@ led@1 {
+>  };
+>  
+>  &pm8916_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  &pm8916_vib {
+> @@ -165,26 +165,26 @@ &pronto {
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "okay";
+> -
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> -};
+>  
+> -&sdhc_2 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_2 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+>  
+>  	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
 > +
-> +	port_data->typec_mux = typec_mux_register(dev, &mux_desc);
-> +	if (IS_ERR(port_data->typec_mux)) {
-
-I would propose, instead...
-
-> +		ret = PTR_ERR(port_data->typec_mux);
-> +		dev_err(dev, "Mode switch register for port %d failed: %d\n",
-> +			port_num, ret);
-
-		return ret;
-
-> +	}
+> +	status = "okay";
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	extcon = <&usb_id>, <&usb_id>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts b/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
+> index 3618704a5330..a0f868854d53 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
+> @@ -133,26 +133,27 @@ &pronto {
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "okay";
+> -
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
 > +
-> +	return ret;
-
-	return 0;
-
-> +}
+> +	status = "okay";
+>  };
+>  
+>  &sdhc_2 {
+> -	status = "okay";
+>  	vmmc-supply = <&reg_sd_vmmc>;
+>  
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+>  	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
 > +
-
-...but I don't have strong opinions, so regardless of that:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-
+> +	status = "okay";
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	extcon = <&usb_id>, <&usb_id>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
+> index 8c07eca900d3..2d266fd417f8 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
+> @@ -219,8 +219,8 @@ &lpass {
+>  };
+>  
+>  &pm8916_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  &pm8916_vib {
+> @@ -232,16 +232,14 @@ &pronto {
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "okay";
+> -
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> -};
+>  
+> -&sdhc_2 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_2 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdhc2_cd_default>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdhc2_cd_default>;
+> @@ -260,11 +258,11 @@ &sdhc_2 {
+>  	 * SD card slot and forgot to re-route to gpio38.
+>  	 */
+>  	cd-gpios = <&msmgpio 56 GPIO_ACTIVE_LOW>;
+> -};
+>  
+> -&sound {
+>  	status = "okay";
+> +};
+>  
+> +&sound {
+>  	model = "msm8916";
+>  	audio-routing =
+>  		"AMIC1", "MIC BIAS External1",
+> @@ -275,6 +273,8 @@ &sound {
+>  	pinctrl-0 = <&cdc_pdm_lines_act>;
+>  	pinctrl-1 = <&cdc_pdm_lines_sus>;
+>  
+> +	status = "okay";
+> +
+>  	primary-dai-link {
+>  		link-name = "WCD";
+>  		cpu {
+> @@ -297,8 +297,8 @@ codec {
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	extcon = <&usb_id>, <&usb_id>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+> index d1e8cf2f50c0..f63f0fb797b4 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+> @@ -219,8 +219,8 @@ &blsp1_uart2 {
+>  };
+>  
+>  &pm8916_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  &pm8916_usbin {
+> @@ -236,27 +236,27 @@ &pronto {
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "okay";
+> -
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> -};
+>  
+> -&sdhc_2 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_2 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off>;
+>  
+>  	non-removable;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	dr_mode = "peripheral";
+>  	extcon = <&pm8916_usbin>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+> index 3899e11b9843..4d627d06f87b 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+> @@ -91,8 +91,8 @@ &blsp1_uart2 {
+>  };
+>  
+>  &pm8916_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  &pm8916_vib {
+> @@ -104,26 +104,26 @@ &pronto {
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "okay";
+> -
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> -};
+>  
+> -&sdhc_2 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_2 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+>  
+>  	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	extcon = <&usb_id>, <&usb_id>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> index d600916a0e55..13c586079e50 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> @@ -248,8 +248,8 @@ &mdss {
+>  };
+>  
+>  &pm8916_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  &pronto {
+> @@ -257,26 +257,26 @@ &pronto {
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "okay";
+> -
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> -};
+>  
+> -&sdhc_2 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_2 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+>  
+>  	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	extcon = <&muic>, <&muic>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+> index 7ac49a021563..8eb68bb6607c 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+> @@ -53,8 +53,8 @@ &blsp1_uart2 {
+>  };
+>  
+>  &pm8916_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  /* FIXME: Replace with SM5703 MUIC when driver is available */
+> @@ -67,27 +67,27 @@ &pronto {
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "okay";
+> -
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> -};
+>  
+> -&sdhc_2 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_2 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+>  
+>  	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	dr_mode = "peripheral";
+>  	extcon = <&pm8916_usbin>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
+> index d4984b3af802..34bee5211413 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
+> @@ -264,8 +264,8 @@ &blsp1_uart2 {
+>  };
+>  
+>  &pm8916_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  &pm8916_vib {
+> @@ -281,16 +281,14 @@ iris {
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "okay";
+> -
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> -};
+>  
+> -&sdhc_2 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_2 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off>;
+> @@ -309,11 +307,13 @@ &sdhc_2 {
+>  	 * (without tuning), so maybe only tuning is broken?
+>  	 */
+>  	no-1-8-v;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	extcon = <&muic>, <&muic>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
+> index a87be1d95b14..24a5c3486beb 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
+> @@ -145,8 +145,8 @@ &blsp1_uart2 {
+>  };
+>  
+>  &pm8916_resin {
+> -	status = "okay";
+>  	linux,code = <KEY_VOLUMEDOWN>;
+> +	status = "okay";
+>  };
+>  
+>  &pm8916_vib {
+> @@ -158,26 +158,26 @@ &pronto {
+>  };
+>  
+>  &sdhc_1 {
+> -	status = "okay";
+> -
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+>  	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> -};
+>  
+> -&sdhc_2 {
+>  	status = "okay";
+> +};
+>  
+> +&sdhc_2 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on>;
+>  	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off>;
+>  
+>  	non-removable;
+> +
+> +	status = "okay";
+>  };
+>  
+>  &usb {
+> -	status = "okay";
+>  	extcon = <&usb_id>, <&usb_id>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_hs_phy {
