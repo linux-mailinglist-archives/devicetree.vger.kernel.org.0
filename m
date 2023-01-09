@@ -2,476 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B797E661EB0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 07:32:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB7B661EEC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 08:02:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbjAIGct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 01:32:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45458 "EHLO
+        id S233609AbjAIHCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 02:02:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230355AbjAIGcs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 01:32:48 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60EE1180F;
-        Sun,  8 Jan 2023 22:32:45 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 6406324E004;
-        Mon,  9 Jan 2023 14:32:44 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 9 Jan
- 2023 14:32:44 +0800
-Received: from [192.168.125.95] (113.72.147.215) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 9 Jan
- 2023 14:32:43 +0800
-Message-ID: <24316eeb-36e7-eb91-2085-f1e64b59f813@starfivetech.com>
-Date:   Mon, 9 Jan 2023 14:32:44 +0800
+        with ESMTP id S231148AbjAIHCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 02:02:34 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35C556361;
+        Sun,  8 Jan 2023 23:02:33 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3095owJx026432;
+        Mon, 9 Jan 2023 07:02:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=pfJd5qQtkOUbtXiAaRsi/EQgAdGNlunkVWcnafYdPUA=;
+ b=ZVzPgbsJcz7pE8qjT/dwLcCfnpSmAmpkIS1z8RInkXEKYFwWjK4coJ2USbV9kCkUUhW9
+ m97E/JoN4OeBtcAd2OrDhng2r31XJ422a/OrLim5cguEf0Uz3q1DGQ7XnS0JkgGCFUMv
+ HBy2sYvW71tsCC1ALKO8pLOUNI4QDDzYd5AMxPiQBlAp9Y1zXG+en8/EWvLDbiBDE7ld
+ 7X3CfdDmLUga3qBT3TmDmudr4HxBW97hYZvKKSyfxceOQoUiuoB/wijEgNJQPinnuH+F
+ Lj4N9OTHozXshzNuRLEs4HLl07f19aHcEC6lhjdyTPbah7iZ1S+hNtRMPjU/pqrWENts rA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mxyq0akqk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 Jan 2023 07:02:17 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30972GDP001056
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 9 Jan 2023 07:02:16 GMT
+Received: from [10.253.38.13] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Sun, 8 Jan 2023
+ 23:02:10 -0800
+Message-ID: <a75af1ab-b035-d81a-f4e7-e837e9986f68@quicinc.com>
+Date:   Mon, 9 Jan 2023 15:02:07 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [RESEND PATCH v2 2/3] soc: starfive: Add StarFive JH71XX pmu
- driver
-To:     Conor Dooley <conor@kernel.org>
-CC:     <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221208084523.9733-1-walker.chen@starfivetech.com>
- <20221208084523.9733-3-walker.chen@starfivetech.com> <Y6DMQpGuXfBWHr8L@spud>
- <83899ba9-dff0-a678-e319-565101f71157@starfivetech.com>
- <Y6yd6p16JxDz1j20@spud>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v16 0/8] Coresight: Add support for TPDM and TPDA
 Content-Language: en-US
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <Y6yd6p16JxDz1j20@spud>
-Content-Type: text/plain; charset="UTF-8"
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+References: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
+From:   Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.147.215]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: H0xNItxxKbGQPs1FQ4X9xOez7ivejn8M
+X-Proofpoint-ORIG-GUID: H0xNItxxKbGQPs1FQ4X9xOez7ivejn8M
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-09_02,2023-01-06_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ priorityscore=1501 suspectscore=0 mlxlogscore=999 malwarescore=0
+ lowpriorityscore=0 mlxscore=0 spamscore=0 clxscore=1011 phishscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301090049
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/12/29 3:50, Conor Dooley wrote:
-> Hey Walker,
-> Took another bit of a look.
+Hi Suzuki,
 
-Hey Conor, sorry for delay respond as I was busy with other things.
+TPDM_TPDA commit tree: 
+https://git.codelinaro.org/clo/linux-kernel/coresight/-/commits/tpdm-tpda-v16 
 
-> 
-> On Wed, Dec 28, 2022 at 10:08:55AM +0800, Walker Chen wrote:
->> On 2022/12/20 4:40, Conor Dooley wrote:
->> > Hey Walker,
->> > 
->> > Hopefully just some minor bits here. Hopefully either Emil who has a
->> > board, or someone that knows power management stuff better can give this
->> > a proper review.
->> > 
->> > On Thu, Dec 08, 2022 at 04:45:22PM +0800, Walker Chen wrote:
->> >> Add pmu driver for the StarFive JH71XX SoC.
->> >> 
->> >> As the power domains provider, the Power Management Unit (PMU) is
->> >> designed for including multiple PM domains that can be used for power
->> >> gating of selected IP blocks for power saving by reduced leakage
->> >> current. It accepts software encourage command to switch the power mode
->> >> of SoC.
->> >> 
->> >> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
->> >> ---
->> >>  MAINTAINERS                       |  14 ++
->> >>  drivers/soc/Kconfig               |   1 +
->> >>  drivers/soc/Makefile              |   1 +
->> >>  drivers/soc/starfive/Kconfig      |  11 +
->> >>  drivers/soc/starfive/Makefile     |   3 +
->> >>  drivers/soc/starfive/jh71xx_pmu.c | 396 ++++++++++++++++++++++++++++++
->> >>  6 files changed, 426 insertions(+)
->> >>  create mode 100644 drivers/soc/starfive/Kconfig
->> >>  create mode 100644 drivers/soc/starfive/Makefile
->> >>  create mode 100644 drivers/soc/starfive/jh71xx_pmu.c
->> >> 
->> > 
->> >> +config JH71XX_PMU
->> >> +	bool "Support PMU for StarFive JH71XX Soc"
->> >> +	depends on PM && (SOC_STARFIVE || COMPILE_TEST)
->> > 
->> > Why not just do:
->> > 	depends on PM
->> > 	depends on SOC_STARFIVE || COMPILE_TEST
->> > I think that way reads a little better.
->> 
->> No problem, will be changed like this way.
->> 
->> > 
->> >> +	default SOC_STARFIVE
->> >> +	select PM_GENERIC_DOMAINS
->> >> +	help
->> >> +	  Say 'y' here to enable support power domain support.
->> >> +	  In order to meet low power requirements, a Power Management Unit (PMU)
->> >> +	  is designed for controlling power resources in StarFive JH71XX SoCs.
->> >> diff --git a/drivers/soc/starfive/Makefile b/drivers/soc/starfive/Makefile
->> >> new file mode 100644
->> >> index 000000000000..13b589d6b5f3
->> >> --- /dev/null
->> >> +++ b/drivers/soc/starfive/Makefile
->> >> @@ -0,0 +1,3 @@
->> >> +# SPDX-License-Identifier: GPL-2.0
->> >> +
->> >> +obj-$(CONFIG_JH71XX_PMU)	+= jh71xx_pmu.o
->> >> diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/jh71xx_pmu.c
->> >> new file mode 100644
->> >> index 000000000000..7a0145779e07
->> >> --- /dev/null
->> >> +++ b/drivers/soc/starfive/jh71xx_pmu.c
->> >> @@ -0,0 +1,396 @@
->> >> +// SPDX-License-Identifier: GPL-2.0-or-later
->> >> +/*
->> >> + * StarFive JH71XX PMU (Power Management Unit) Controller Driver
->> >> + *
->> >> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
->> >> + */
->> >> +
->> >> +#include <linux/interrupt.h>
->> >> +#include <linux/io.h>
->> >> +#include <linux/iopoll.h>
->> >> +#include <linux/module.h>
->> >> +#include <linux/of.h>
->> >> +#include <linux/of_device.h>
->> >> +#include <linux/platform_device.h>
->> >> +#include <linux/pm_domain.h>
->> >> +#include <dt-bindings/power/starfive,jh7110-pmu.h>
->> >> +
->> >> +/* register offset */
->> >> +#define JH71XX_PMU_HW_EVENT_ON		0x04
->> >> +#define JH71XX_PMU_HW_EVENT_OFF		0x08
-> 
-> Neither of these are used here at the moment - would they be used in the
-> future? Also the docs fail to describe this PMU_HW_EVENT_OFF register,
-> although the HW_ON, and SW_FOO ones are described.
 
-They are not used in the current version, may be used in the future with the improvement of driver.
-If so, how about your suggestion ?  drop them ?
+Here is our TPDM and TPDA commit tree. You can use this link to review 
+patches.
 
-> 
->> >> +#define JH71XX_PMU_SW_TURN_ON_POWER	0x0C
->> >> +#define JH71XX_PMU_SW_TURN_OFF_POWER	0x10
->> >> +#define JH71XX_PMU_SW_ENCOURAGE		0x44
->> >> +#define JH71XX_PMU_INT_MASK		0x48
-> 
-> This one is called the "Timer Interrupt Mask", so we may as well match
-> that naming here, no?
+Thanks
 
-OK, will be changed.
+Jinlong Mao
 
-> 
->> >> +#define JH71XX_PMU_PCH_BYPASS		0x4C
->> >> +#define JH71XX_PMU_PCH_PSTATE		0x50
->> >> +#define JH71XX_PMU_PCH_TIMEOUT		0x54
->> >> +#define JH71XX_PMU_LP_TIMEOUT		0x58
->> >> +#define JH71XX_PMU_HW_TURN_ON		0x5C
-> 
-> Same here, this HW related bit is also not used AFAICT.
-> Do you intend adding a user of the HW encourage at some point in the
-> future?
-
-I haven't thought about this yet. At least SW encourage can work now.
-
-> 
->> >> +#define JH71XX_PMU_CURR_POWER_MODE	0x80
->> >> +#define JH71XX_PMU_EVENT_STATUS		0x88
->> >> +#define JH71XX_PMU_INT_STATUS		0x8C
->> >> +
->> >> +/* sw encourage cfg */
->> >> +#define JH71XX_PMU_SW_ENCOURAGE_EN_LO	0x05
->> >> +#define JH71XX_PMU_SW_ENCOURAGE_EN_HI	0x50
->> >> +#define JH71XX_PMU_SW_ENCOURAGE_DIS_LO	0x0A
->> >> +#define JH71XX_PMU_SW_ENCOURAGE_DIS_HI	0xA0
->> >> +#define JH71XX_PMU_SW_ENCOURAGE_ON	0xFF
-> 
-> This all seems to correspond w/ docs...
-> 
->> >> +
->> >> +/* pmu int status */
->> >> +#define JH71XX_PMU_INT_SEQ_DONE		BIT(0)
->> >> +#define JH71XX_PMU_INT_HW_REQ		BIT(1)
->> >> +#define JH71XX_PMU_INT_SW_FAIL		GENMASK(3, 2)
->> >> +#define JH71XX_PMU_INT_HW_FAIL		GENMASK(5, 4)
->> >> +#define JH71XX_PMU_INT_PCH_FAIL		GENMASK(8, 6)
->> >> +#define JH71XX_PMU_INT_FAIL_MASK	(JH71XX_PMU_INT_SW_FAIL | \
->> >> +					JH71XX_PMU_INT_HW_FAIL | \
->> >> +					JH71XX_PMU_INT_PCH_FAIL)
->> >> +#define JH71XX_PMU_INT_ALL_MASK		(JH71XX_PMU_INT_SEQ_DONE | \
->> >> +					JH71XX_PMU_INT_HW_REQ | \
->> >> +					JH71XX_PMU_INT_FAIL_MASK)
-> 
-> ...as does all of this - although, could the FAIL_MASK be dropped as it
-> appears to only be used here & the ALL_MASK definition be replaced with
-> GENMASK(8, 0)?
-> I don't really mind what you do here, think it just may be slightly
-> easier to read, so if you disagree leave it as is.
-
-Maybe your way is more readable.
-
-> 
->> >> +
->> >> +/*
->> >> + * The time required for switching power status is based on the time
->> >> + * to turn on the largest domain's power, which is at microsecond level
-> 
-> Would you mind mentioning which domain that is?
-> USB seems to be listed in Table 3-9 as 200 us.
-
-Hardware colleague told me this time is based on the time to turn on the largest 
-domain's power, but he didn't tell me which one it was. This time refers to the
- time required for switching the status of power domains, is not the time of power-up for analog PHY.
-USB is not one of power domains in JH7110 SoC.
-
-> 
->> >> + */
->> >> +#define JH71XX_PMU_TIMEOUT_US		100
-> 
-> I'm happy enough with things, apart from my lack of familiarity with the
-> power management APIs. Perhaps when you send the next version, someone
-> else can comment there.
-
-Anyway, I appreciate your detailed reading and comments.
-
-> 
->> >> +struct jh71xx_domain_info {
->> > 
->> > 	const char * const name;
->> > 	unsigned int flags;
->> > 	u8 bit;
->> > 
->> >> +};
->> >> +
->> >> +struct jh71xx_pmu_match_data {
->> > 
->> > 	const struct jh71xx_domain_info *domain_info;
->> > 	int num_domains;
->> > 
->> > Can you switch these two around like so?
->> 
->> Should be no problem.
->> 
->> >> +};
->> >> +
->> >> +struct jh71xx_pmu {
->> >> +	struct device *dev;
->> >> +	const struct jh71xx_pmu_match_data *match_data;
->> >> +	void __iomem *base;
->> >> +	spinlock_t lock;	/* protects pmu reg */
->> >> +	int irq;
->> >> +	struct genpd_onecell_data genpd_data;
->> >> +	struct generic_pm_domain **genpd;
->> >> +};
->> >> +
->> >> +struct jh71xx_pmu_dev {
->> >> +	struct generic_pm_domain genpd;
->> >> +	const struct jh71xx_domain_info *domain_info;
->> >> +	struct jh71xx_pmu *pmu;
->> > 
->> > And these two too please in the same way.
->> 
->> Nice :)
->> 
->> > 
->> >> +};
->> >> +
->> >> +static int jh71xx_pmu_get_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool *is_on)
->> >> +{
->> >> +	struct jh71xx_pmu *pmu = pmd->pmu;
->> >> +
->> >> +	if (!mask) {
->> >> +		*is_on = false;
->> >> +		return -EINVAL;
->> >> +	}
->> >> +
->> >> +	*is_on = readl(pmu->base + JH71XX_PMU_CURR_POWER_MODE) & mask;
->> >> +
->> >> +	return 0;
->> >> +}
->> >> +
->> >> +static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool on)
->> >> +{
->> >> +	struct jh71xx_pmu *pmu = pmd->pmu;
->> >> +	unsigned long flags;
->> >> +	u32 val;
->> >> +	u32 mode;
->> >> +	u32 encourage_lo;
->> >> +	u32 encourage_hi;
->> >> +	bool is_on;
->> >> +	int ret;
->> >> +
->> >> +	ret = jh71xx_pmu_get_state(pmd, mask, &is_on);
->> >> +	if (ret) {
->> >> +		dev_dbg(pmu->dev, "unable to get current state for %s\n",
->> >> +			pmd->genpd.name);
->> >> +		return ret;
->> >> +	}
->> >> +
->> >> +	if (is_on == on) {
->> >> +		dev_dbg(pmu->dev, "pm domain [%s] is already %sable status.\n",
->> >> +			pmd->genpd.name, on ? "en" : "dis");
->> >> +		return 0;
->> >> +	}
->> >> +
->> >> +	spin_lock_irqsave(&pmu->lock, flags);
->> >> +
->> >> +	/*
->> >> +	 * The PMU accepts software encourage to switch power mode in the following 2 steps:
->> >> +	 *
->> >> +	 * 1. Configure the register SW_TURN_ON_POWER (offset 0x0c), write 1 to
->> >> +	 *    the bit which power domain will be turn-on, write 0 to the others.
->> > 
->> > Some grammatical nit picking..
->> > 
->> > "Configure the register blah (offset 0x0c) by writing 1 to the bit
->> > corresponding to the power domain that will be turned on and writing
->> > zero to the others."
->> > 
->> > Is that a correct correct summation of the operation?
->> 
->> Yes, maybe your description is better easy-to-understand.
->> 
->> > 
->> >> +	 *    Likewise, configure the register SW_TURN_OFF_POWER (offset 0x10),
->> >> +	 *    write 1 to the bit which power domain will be turn-off, write 0 to the others.
->> > 
->> > 
->> >> +	 */
->> >> +	if (on) {
->> >> +		mode = JH71XX_PMU_SW_TURN_ON_POWER;
->> >> +		encourage_lo = JH71XX_PMU_SW_ENCOURAGE_EN_LO;
->> >> +		encourage_hi = JH71XX_PMU_SW_ENCOURAGE_EN_HI;
->> >> +	} else {
->> >> +		mode = JH71XX_PMU_SW_TURN_OFF_POWER;
->> >> +		encourage_lo = JH71XX_PMU_SW_ENCOURAGE_DIS_LO;
->> >> +		encourage_hi = JH71XX_PMU_SW_ENCOURAGE_DIS_HI;
->> >> +	}
->> >> +
->> >> +	writel(mask, pmu->base + mode);
->> >> +
->> >> +	/*
->> >> +	 * 2. Write SW encourage command sequence to the Software Encourage Reg (offset 0x44)
->> >> +	 * SW turn-on command sequence: 0xff -> 0x05 -> 0x50
->> >> +	 * SW turn-off command sequence: 0xff -> 0x0a -> 0xa0
->> > 
->> > I think you could replace the hard "coded" numbers here with a better
->> > description idk without looking at the #defines above what these
->> > correspond to. AFAICT, it'd be something like:
->> > First write the ...ENCOURAGE_ON to reset the state machine which parses
->> > the command sequence. It must be written every time.
->> > Then write the lower bits of the command sequence, followed by the upper
->> > bits. The sequence differs between powering on & off a domain.
->> 
->> Thank you for correction for these description. Because English is not my native language,
->> so not very good in some sentences. I'll take your advice.
-> 
-> It may be mine but that does not mean I don't make mistakes either :)
-> In this case, I'd like to re-word my suggestion. How about:
-> First write ...ENCOURAGE_ON to ...SW_ENCOURAGE. This will reset the state
-> machine which parses the command sequence. This register must be written
-> every time software wants to power on/off a domain.
-> Then write the lower bits of the command sequence, followed by the upper
-> bits. The sequence differs between powering on & off a domain.
-> 
-> When I read my previous suggestion back, I had to read it more than once
-> to get what I had meant...
-
-In brief, the key is to clearly describe the software steps and it's easy to understand.
-
-> 
->> >> +	 * Note: writing SW_MODE_ENCOURAGE_ON (0xFF) to the SW_ENCOURAGE register,
->> >> +	 * the purpose is to reset the state machine which is going to parse instruction
->> >> +	 *  sequence. It has to be written every time.
->> >> +	 */
->> >> +	writel(JH71XX_PMU_SW_ENCOURAGE_ON, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
->> >> +	writel(encourage_lo, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
->> >> +	writel(encourage_hi, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
->> >> +
->> >> +	spin_unlock_irqrestore(&pmu->lock, flags);
->> >> +
->> >> +	/* Wait for the power domain bit to be enabled / disabled */
->> >> +	if (on) {
->> >> +		ret = readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MODE,
->> >> +						val, val & mask,
->> >> +						1, JH71XX_PMU_TIMEOUT_US);
->> >> +	} else {
->> >> +		ret = readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MODE,
->> >> +						val, !(val & mask),
->> >> +						1, JH71XX_PMU_TIMEOUT_US);
->> >> +	}
->> >> +
->> >> +	if (ret) {
->> >> +		dev_err(pmu->dev, "%s: failed to power %s\n",
->> >> +			pmd->genpd.name, on ? "on" : "off");
->> >> +		return -ETIMEDOUT;
->> >> +	}
->> >> +
->> >> +	return 0;
->> >> +}
->> > 
->> >> +static int jh71xx_pmu_probe(struct platform_device *pdev)
->> >> +{
->> >> +	struct device *dev = &pdev->dev;
->> >> +	struct device_node *np = dev->of_node;
->> >> +	const struct jh71xx_pmu_match_data *match_data;
->> >> +	struct jh71xx_pmu *pmu;
->> >> +	unsigned int i;
->> >> +	int ret;
->> >> +
->> >> +	pmu = devm_kzalloc(dev, sizeof(*pmu), GFP_KERNEL);
->> >> +	if (!pmu)
->> >> +		return -ENOMEM;
->> >> +
->> >> +	pmu->base = devm_platform_ioremap_resource(pdev, 0);
->> >> +	if (IS_ERR(pmu->base))
->> >> +		return PTR_ERR(pmu->base);
->> >> +
->> >> +	/* initialize pmu interrupt  */
->> > 
->> > nit: this comment is ~pointless.
->> 
->> Will be dropped.
->> 
->> > 
->> >> +	pmu->irq = platform_get_irq(pdev, 0);
->> >> +	if (pmu->irq < 0)
->> >> +		return pmu->irq;
->> >> +
->> >> +	ret = devm_request_irq(dev, pmu->irq, jh71xx_pmu_interrupt,
->> >> +			       0, pdev->name, pmu);
->> >> +	if (ret)
->> >> +		dev_err(dev, "request irq failed.\n");
->> > 
->> > nit: s/request/requesting
->> 
->> Will be fixed.
->> 
->> > 
->> > Unfortunately I cannot really review the rest of this, but hopefully
->> > I'll get a board soon and can try it out - or else send me a link to
->> > your TRM or w/e.
->> 
->> Anyway, I would like to thank you very much for your time.
-> 
-> Oh, while I think of it - I was talking to some people from Imagination
-> at the RISC-V Summit who said they're working on open sourcing their
-> GPU drivers, so hopefully we do end up with an open source driver for
-> the one on JH7110 soon :)
-
-Of course, hopefully the GPU can also be open source eventually.
-
-Best regards,
-Walker Chen
-
+On 1/6/2023 5:21 PM, Mao Jinlong wrote:
+> This series adds support for the trace performance monitoring and
+> diagnostics hardware (TPDM and TPDA). It is composed of two major
+> elements.
+> a) Changes for original coresight framework to support for TPDM and TPDA.
+> b) Add driver code for TPDM and TPDA.
+>
+> Introduction of changes for original coresight framework
+> Support TPDM as new coresight source.
+> Since only STM and ETM are supported as coresight source originally.
+> TPDM is a newly added coresight source. We need to change
+> the original way of saving coresight path to support more types source
+> for coresight driver.
+> The following patch is to add support more coresight sources.
+>      coresight: core: Use IDR for non-cpu bound sources' paths.
+>
+> Introduction of TPDM and TPDA
+> TPDM - The trace performance monitoring and diagnostics monitor or TPDM in
+> short serves as data collection component for various dataset types
+> specified in the QPMDA(Qualcomm performance monitoring and diagnostics
+> architecture) spec. The primary use case of the TPDM is to collect data
+> from different data sources and send it to a TPDA for packetization,
+> timestamping and funneling.
+>       Coresight: Add coresight TPDM source driver
+>       dt-bindings: arm: Adds CoreSight TPDM hardware definitions
+>       coresight-tpdm: Add DSB dataset support
+>       coresight-tpdm: Add integration test support
+>
+> TPDA - The trace performance monitoring and diagnostics aggregator or
+> TPDA in short serves as an arbitration and packetization engine for the
+> performance monitoring and diagnostics network as specified in the QPMDA
+> (Qualcomm performance monitoring and diagnostics architecture)
+> specification. The primary use case of the TPDA is to provide
+> packetization, funneling and timestamping of Monitor data as specified
+> in the QPMDA specification.
+> The following patch is to add driver for TPDA.
+>       Coresight: Add TPDA link driver
+>       dt-bindings: arm: Adds CoreSight TPDA hardware definitions
+>
+> The last patch of this series is a device tree modification, which add
+> the TPDM and TPDA configuration to device tree for validating.
+>      ARM: dts: msm: Add tpdm mm/prng for sm8250
+>
+> Once this series patches are applied properly, the tpdm and tpda nodes
+> should be observed at the coresight path /sys/bus/coresight/devices
+> e.g.
+> /sys/bus/coresight/devices # ls -l | grep tpd
+> tpda0 -> ../../../devices/platform/soc@0/6004000.tpda/tpda0
+> tpdm0 -> ../../../devices/platform/soc@0/6c08000.mm.tpdm/tpdm0
+>
+> We can use the commands are similar to the below to validate TPDMs.
+> Enable coresight sink first.
+>
+> echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
+> echo 1 > /sys/bus/coresight/devices/tpdm0/enable_source
+> echo 1 > /sys/bus/coresight/devices/tpdm0/integration_test
+> echo 2 > /sys/bus/coresight/devices/tpdm0/integration_test
+> The test data will be collected in the coresight sink which is enabled.
+> If rwp register of the sink is keeping updating when do
+> integration_test (by cat tmc_etf0/mgmt/rwp), it means there is data
+> generated from TPDM to sink.
+>
+> There must be a tpda between tpdm and the sink. When there are some
+> other trace event hw components in the same HW block with tpdm, tpdm
+> and these hw components will connect to the coresight funnel. When
+> there is only tpdm trace hw in the HW block, tpdm will connect to
+> tpda directly.
+>    
+>      +---------------+                +-------------+
+>      |  tpdm@6c08000 |                |tpdm@684C000 |
+>      +-------|-------+                +------|------+
+>              |                               |
+>      +-------|-------+                       |
+>      | funnel@6c0b000|                       |
+>      +-------|-------+                       |
+>              |                               |
+>      +-------|-------+                       |
+>      |funnel@6c2d000 |                       |
+>      +-------|-------+                       |
+>              |                               |
+>              |    +---------------+          |
+>              +----- tpda@6004000  -----------+
+>                   +-------|-------+
+>                           |
+>                   +-------|-------+
+>                   |funnel@6005000 |
+>                   +---------------+
+>
+> This patch series depends on patch series:
+> "[v6,00/14] coresight: Add new API to allocate trace source ID values"
+> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20221123195010.6859-1-mike.leach@linaro.org/
+>
+> TPDM_TPDA commit tree:
+> https://git.codelinaro.org/clo/linux-kernel/coresight/-/commits/tpdm-tpda-v16
+>
+> Changes in V16:
+> 1. Update device tree changes to match up with device tree bindings.
+> 3. Update the copyright year to 2023.
+>
+> Changes in V15:
+> 1. coresight-tpda: Add more comments in trace id function.
+> 2. qcom,coresight-tpdm.yaml: Add more comments in description.
+> 3. Push "arm64: dts: qcom: sm8250: Add coresight components" out this series.
+>
+> Changes in V14:
+> rebase to "[v5,00/14] coresight: Add new API to allocate trace source ID values" and latest 6.x kernel
+>
+> Changes in V13:
+> 1. Fix the conflicts when apply patches to the latest base line.
+>
+> Changes in V12:
+> 1. Clear bits for atid before setting them and relese atid when tpda
+> remove. -- Suzuki K Poulose <suzuki.poulose@arm.com>
+>
+> Changes in V11:
+> 1. Change dev_info to dev_dbg in TPDM/TPDA drivers. -- Suzuki K Poulose <suzuki.poulose@arm.com>
+> 2. Merge sysfs API change of integration_test to integration_test driver
+> change. -- Suzuki K Poulose <suzuki.poulose@arm.com>
+>
+> Changes in V10:
+> 1. Fix the error of TPDM yaml file. -- Rob Herring <robh@kernel.org>
+>
+> Changes in V9:
+> 1. Rename yaml file for TPDM/TPDA and fix the error for the yaml files.
+> -- Rob Herring <robh@kernel.org>
+>
+> Changes in V8:
+> 1. Use spinlock to protect drvdata of TPDM/TPDA -- Suzuki K Poulose <suzuki.poulose@arm.com>
+> 2. Use CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS as source type for TPDM -- Suzuki K Poulose <suzuki.poulose@arm.com>
+> 3. Fix the warning for yaml file of TPDM/TPDA -- Rob Herring <robh@kernel.org>
+>
+> Changes in V7:
+> 1. Update the commit title and move the changes to right place which
+> is sorted by address for dtsi changes. -- Konrad Dybcio <konrad.dybcio@somainline.org>
+>
+> Changes in V6:
+> 1. Update maintainers in tpdm/tpda yaml file. -- Mike Leach <mike.leach@linaro.org>
+> 2. Set the .remove function pointer in the amba_driver structure
+>     of tpdm/tpda driver. Add tpda_remove function for tpda driver. -- Mike Leach <mike.leach@linaro.org>
+> 3. Define datasets of tpdm as unsigned long. -- Mike Leach <mike.leach@linaro.org>
+> 4. Move all coresight nodes to sm8250.dtsi.
+>     -- Mike Leach <mike.leach@linaro.org>;Konrad Dybcio <konrad.dybcio@somainline.org>
+> 5. Remove CORESIGHT_TPDM_INTEGRATION_TEST config. -- Mike Leach <mike.leach@linaro.org>
+>
+> Changes in V5:
+> 1. Keep the ETM source paths per-CPU and use IDR for other sources'
+> paths. (Suzuki K Poulose <suzuki.poulose@arm.com>)
+>
+> Changes in V4:
+> 1. Drop trace id for tpdm source as its trace atid is defined by the tpda.
+> Allocate tpda's atid dynamically.  (Mike Leach)
+>
+> Changes in V3:
+> 1. Use bitmap to assign the trace id. (Mathieu Poirier)
+>
+> Changes in V2:
+> 1. Use IDR to store the path of sources. (Mathieu Poirier)
+> 2. Only add integration_test/enable/disable for TPDM. No other configs.
+> (Mathieu Poirier)
+> 3. Move coresight dtsi changes to sm8250.dtsi. (Suzuki K Poulose)
+>
+> Mao Jinlong (8):
+>    coresight: core: Use IDR for non-cpu bound sources' paths.
+>    Coresight: Add coresight TPDM source driver
+>    dt-bindings: arm: Adds CoreSight TPDM hardware
+>    coresight-tpdm: Add DSB dataset support
+>    coresight-tpdm: Add integration test support
+>    Coresight: Add TPDA link driver
+>    dt-bindings: arm: Adds CoreSight TPDA hardware definitions
+>    arm64: dts: qcom: sm8250: Add tpdm mm/prng
+>
+>   .../testing/sysfs-bus-coresight-devices-tpdm  |  13 +
+>   .../bindings/arm/qcom,coresight-tpda.yaml     | 129 +++++++++
+>   .../bindings/arm/qcom,coresight-tpdm.yaml     |  93 +++++++
+>   MAINTAINERS                                   |   1 +
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi          | 164 +++++++++++
+>   drivers/hwtracing/coresight/Kconfig           |  23 ++
+>   drivers/hwtracing/coresight/Makefile          |   2 +
+>   drivers/hwtracing/coresight/coresight-core.c  |  42 ++-
+>   drivers/hwtracing/coresight/coresight-tpda.c  | 211 ++++++++++++++
+>   drivers/hwtracing/coresight/coresight-tpda.h  |  35 +++
+>   drivers/hwtracing/coresight/coresight-tpdm.c  | 259 ++++++++++++++++++
+>   drivers/hwtracing/coresight/coresight-tpdm.h  |  62 +++++
+>   include/linux/coresight.h                     |   1 +
+>   13 files changed, 1023 insertions(+), 12 deletions(-)
+>   create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+>   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+>   create mode 100644 drivers/hwtracing/coresight/coresight-tpda.c
+>   create mode 100644 drivers/hwtracing/coresight/coresight-tpda.h
+>   create mode 100644 drivers/hwtracing/coresight/coresight-tpdm.c
+>   create mode 100644 drivers/hwtracing/coresight/coresight-tpdm.h
+>
