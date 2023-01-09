@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19ED7662E9E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 19:20:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2D5662EA3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 19:21:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbjAISU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 13:20:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40866 "EHLO
+        id S236847AbjAISU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 13:20:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234676AbjAISTk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 13:19:40 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A99853C725
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 10:16:21 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id t5so4681640wrq.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 10:16:21 -0800 (PST)
+        with ESMTP id S237668AbjAISTw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 13:19:52 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E43C47300
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 10:16:45 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id w1so9097572wrt.8
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 10:16:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aZ+UcSvH1/yFH/DmcCw5T1cgnvux9jRR+4vdCZNHnV8=;
-        b=g/2cZ66foHel6/6Em/n7eMR4GqyyKF5VFQLa1Al2lQkhnnsue8mhSixFvd7htRUIRY
-         8ijIBWiPJmOl0Ez71XV2l0wGtXlQaLYBPYYrc5IvrCgr+Vcu5X6rqEDnZxETIWcVNizs
-         mrJisga5WmPvLBH21Du83bWZuFI9TMiXpzf5JcYQY5Vr7Nc+rGO/TDIvwQKFYvBBor+s
-         aaaMXPlteVo/Wzb5FOJIzMX1JewvkMcfGlx0/yjf8y9WVb/0iy55skA6dff2c4DOrjuv
-         oEA4ZQMR0/ozXexHgyDEI4ACcsr8AGA+6Mtt6O8CagW1r+DKMxVaVVPhOQ9GksNnfTe/
-         x4Yw==
+        bh=0suPC5TVLcS8nNGO/uxkyjzB0A8aNEq3nFa8/ScbpjU=;
+        b=lfafRM5yH69X40B9JehSTLUaUEOVvfYvekBP+PRdeEB6cSwFb6XsJLduJckiK4qi3j
+         Hd+Ib6grHgYmcYpmU5WPry8+7bieIofFptuhlFMaEkmaPjnvgfZI0o5Sq7CHYw46Z8OF
+         2B4+PeyzQMSEwl5ADeTVx0vgINlqYo1Z20UQ4v1MhzGuBJ+65U3x47yU8/qBViE5b/Da
+         5q9JZNeZp2C2+7lZUc5KblUxCT4/DFOwyHinGP7BwXQtJbsa5lvdsyFvY2g/WAFvMPdd
+         U4ERaS1CIXyOxjirbodTQhkvu5KOaiJsAuzH9V6Ax42e28WWkAK8ERRMZ6aFuXvt3ur3
+         FL4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aZ+UcSvH1/yFH/DmcCw5T1cgnvux9jRR+4vdCZNHnV8=;
-        b=6cE4uGsSDKzBg/ffwICIpruR/2tuXVcWmHGot1UGlRB6oWPM31MZ+Y/aR3eWOAgNe1
-         Cu9XkZ0zPHOlBwmvxeMsB0OhpYGNQkM0mmjNYdwNza+qA4+OO+ajmpyuby8Mf3FHt01S
-         74enmHc+tMEQVDtKmfuwwK0/KzKhzndvdK+idBkQWufFQjh+vACqsb0hrBLgl0+J/8rG
-         K+dSYatdQfW1EHs00xYf80yAqhjj3PXZEkfbkpT3v9yxdcKPtcnRnVOaD/sbLGSTdGRV
-         RCb30/zl7brnmE18wiO4qXqrG+wmR1wyyx/BFp5PgSHCQybISW5Wl/wGEJCMQm1ywhg7
-         M4yA==
-X-Gm-Message-State: AFqh2krIMk2WoQi8yB5bEdCpLE/zymVNKT2Jxjs2X0+4h+c5033bYEk9
-        1uCiCT/s0a9NxRVS+aTDaPxNYw==
-X-Google-Smtp-Source: AMrXdXvWp+uWmOkR4I+WvA3APw37a5af3OBw2MaJnBDtJFjrrt5W7j+NRUEHGx2JTxqFhl1RnFgtag==
-X-Received: by 2002:adf:f80d:0:b0:2bc:7d3c:5a57 with SMTP id s13-20020adff80d000000b002bc7d3c5a57mr2110866wrp.1.1673288180257;
-        Mon, 09 Jan 2023 10:16:20 -0800 (PST)
+        bh=0suPC5TVLcS8nNGO/uxkyjzB0A8aNEq3nFa8/ScbpjU=;
+        b=RZCA0HYqjhB2Rkun7OiDHzci1+WOdLfxBEH3QvHqMoFW4p29FS7SkYNXYZhkum5mT/
+         f+vizPws6CHNKtui+wsKtY0ADWJ11Yyus+y/R0pioHOv490hbzB9IFLpMaJ249Es5GoA
+         JpFXunfaXx8z7ftseGDDJq53PF3cExWxxvtNP9VRLOB10qfV7fEfXXVOfGr8VZl0nl0i
+         z7huOhRVj6uk769CKvbtKCOs4vdyliLJXk5aT9PNxXUo9nEGlhlV7YzZMErKzSDDXref
+         5qqjKnNmzpxCxkl6DTSa6x9ELtJFR4r/taAQwyLcVdbPSsCExK9z+vX1l9vOozCjIO60
+         Px4g==
+X-Gm-Message-State: AFqh2koQeUMHqFUsl5UFTpSIxFfU0WM2XDLbi5OinugizcXeKsixpsJ3
+        13wdDigbTy4rjxpJmX/aj0I7Mb+Ia5Wzrlyl
+X-Google-Smtp-Source: AMrXdXvw49czkPeS8nF7GItRYhDkccRG8n6dXrFwd8g49mIBf/wNufVk2oW7rchwxmaWTY320P8rlQ==
+X-Received: by 2002:a05:6000:10d2:b0:299:4e2f:fca6 with SMTP id b18-20020a05600010d200b002994e2ffca6mr17221430wrx.58.1673288203699;
+        Mon, 09 Jan 2023 10:16:43 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r10-20020adfda4a000000b0029a06f11022sm9118968wrl.112.2023.01.09.10.16.17
+        by smtp.gmail.com with ESMTPSA id a11-20020a5d508b000000b002779dab8d85sm9077169wrt.8.2023.01.09.10.16.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 10:16:19 -0800 (PST)
-Message-ID: <60dabb25-683e-2649-7045-d7504de7d128@linaro.org>
-Date:   Mon, 9 Jan 2023 19:16:16 +0100
+        Mon, 09 Jan 2023 10:16:43 -0800 (PST)
+Message-ID: <10d1c870-5ddb-163b-11d5-c29d8ee14f62@linaro.org>
+Date:   Mon, 9 Jan 2023 19:16:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 01/18] dt-bindings: clock: sa8775p: add bindings for
- Qualcomm gcc-sa8775p
+Subject: Re: [PATCH 04/18] dt-bindings: clock: qcom-rpmhcc: document the clock
+ for sa8775p
 Content-Language: en-US
 To:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Andy Gross <agross@kernel.org>,
@@ -83,9 +83,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         netdev@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 References: <20230109174511.1740856-1-brgl@bgdev.pl>
- <20230109174511.1740856-2-brgl@bgdev.pl>
+ <20230109174511.1740856-5-brgl@bgdev.pl>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230109174511.1740856-2-brgl@bgdev.pl>
+In-Reply-To: <20230109174511.1740856-5-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -101,14 +101,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 09/01/2023 18:44, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Add DT bindings for the GCC clock on SA8775P platforms. Add relevant
-> DT include definitions as well.
+> Add a new compatible for SA8775P platforms.
 > 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Ah, and same comments as for all other patches:
 
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
