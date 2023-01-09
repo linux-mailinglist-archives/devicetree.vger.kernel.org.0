@@ -2,219 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D116B6621B2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:37:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 560366621BA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:38:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233766AbjAIJhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 04:37:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35926 "EHLO
+        id S236133AbjAIJiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 04:38:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233396AbjAIJhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:37:18 -0500
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2129.outbound.protection.outlook.com [40.107.114.129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE2F0645D;
-        Mon,  9 Jan 2023 01:37:16 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KpWo5qwIkciXMIopITSbSf1zX7JCr1/AjB+vh9ZAudtEjAMJGlrDY0OGQWF5M29hxvAsIAJk+xexXZe4bfb0YOLYK41cuXyC4eT1Je521B9Pc1pxUseS63vrHBYAxV0Tx1+aF5bPjhA1pJtvCX8RWe4EjM1r3FD/zhFzQhfFBVAwPVk8GjrC/84AqFodooV9txkDepWVDk/1niwwgUI0jPmkF84kk1jIN8ILIV5oJydBjzC048kDsEdwh59jCu6rplQrxvcvqrxBV5I3CJ78MlGfA1Z3Uxo9XJ/MHIODDr8ph156o2V5Bz5cwoWMKEEHdSxyEb+aV1TMEAct8lPz0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/igtteuPJQVk1Pc8zPzfxFbBYXtGx4sXxOOL5SuJD0k=;
- b=BuGcxZd/aXw/4gnPoe1NG3GAmjNMJsqXf715mHl+4qXqKofSV+cbaBkLP2cYnFa4rzCsYfJUvHjqOlm/9giXBJTJwwhicj7SH3WRfAUDtHzM0sDTZTQA6lam46vak9J+k+7ku2EcQ2Uiry1f2tOKjhQFJ0P4PiytECCoaAkUIr+w14r6uEnM5ihuhK7KpAJOD/DRvCVrnV6NeT2o9jZhiV50nqoFTlaPODWSi/H1Mhi6OmfmNmgCJWK6eoRHJjGi94+ehSzEeY1eDxfHRuJtLMM0O+x1vpFHgXayojFrzyjWK03/WHTisYhxF8pXiFHKcGc3oS1Fec4KnfB2R0XVjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/igtteuPJQVk1Pc8zPzfxFbBYXtGx4sXxOOL5SuJD0k=;
- b=rKyws127cz4MoN+JP9Cy4esaOIg2mWlvBupTsOV6vUyjqLfo38O3ITq/9OxxCgCj6gGpue5MofHkrwuVyA4zEWFr6rWsiR8Sa5eXnskNqMYH0k6BWGdVGkXRhG5FyC4gKe4wOijydgo423b7juZbLnHQ5JL8uSuWItaM3r2BYtQ=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OS3PR01MB5990.jpnprd01.prod.outlook.com (2603:1096:604:d3::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Mon, 9 Jan
- 2023 09:37:14 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::343d:7339:78e5:a46e]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::343d:7339:78e5:a46e%3]) with mapi id 15.20.5986.018; Mon, 9 Jan 2023
- 09:37:14 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
+        with ESMTP id S234366AbjAIJiF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:38:05 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D296467
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 01:38:02 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id g19-20020a05600c4ed300b003d9eb1dbc0aso3167026wmq.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 01:38:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=di1hXkz1KmpHJ159Gom5Zz32YpNH4ZQbO5+To44SFtA=;
+        b=Zv6gL8o7Xz09SOGlQ2cMM10pEhom7wrvY1prX/Fhgvnj8UYuadk99OzB6GmX1Lnh9L
+         MxWJdXSxnKI/Hib2g2IPnr3zWF9c3vzCtbSSUibJgDEyxFM3UQP70o+vUPZPmNC/Vto6
+         +adkdwTBTKdsG/fVgQ7bgmgPdfWmGloJE8vJEEv8tN2QVs1IraTZXjtKnbETkIrwkQIG
+         dsm6LUn/hX7dQEydUzyeDQaIWhZ4gxErwZlM1daXEkMTVUjvAjFJo+6ZeG0tboFREQI0
+         g4pO1Knla4CVc/vYcjWR6L6pkuYWs24eOoTHNYbF7Vo+kfFodnRdCoKFDOUhOuVCIhDc
+         wIdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=di1hXkz1KmpHJ159Gom5Zz32YpNH4ZQbO5+To44SFtA=;
+        b=Ty8nHCSWDfRMA4KMGnGQzLLZgPJewKvUhZwMWs18TZTvnPrtUbNy1DImzMR5FluL9B
+         XYWkcoFclpnoY4zd0Rwgu9tWhajnyMyey44Z/pbVD2I81K8Fkqgjnjplb4GzhwTSpUTF
+         NfnR0CZdTVkW61wPZm4srdjIbnmW6vGEC8041XwabmGX2KTMHlE1x86kWx44X5nlSlPm
+         IxKxY9P8q/PpYJ86GkC+pOOUvpYWFYT93Iqs5QblZFNU8XBrOOOLCvd5ghKWLxa5zerz
+         XwU2O1jS/zAFim/03NHxYl6fPo4NAAN6u29Rk6DPbP6s/A/07ms8ilmkNAMhqIprrBRc
+         aj6A==
+X-Gm-Message-State: AFqh2kr0mpFnQLlLA9H3kH0QWchLF4gBRmJL2zGhoElP/H/6RrpIKvnd
+        GTsnECLdn14z8VS7XOz9EWHRuQ==
+X-Google-Smtp-Source: AMrXdXt2trV9z1k/owYKEHrMpWs2TltjXt8rWE/jt9UJGijzE5iWj9Z/6o2lh8REmVeeGXCuCCfuuQ==
+X-Received: by 2002:a05:600c:6007:b0:3cf:4ec9:385d with SMTP id az7-20020a05600c600700b003cf4ec9385dmr44923144wmb.19.1673257081411;
+        Mon, 09 Jan 2023 01:38:01 -0800 (PST)
+Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id h15-20020a05600c314f00b003d99469ece1sm16203822wmo.24.2023.01.09.01.38.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 01:38:01 -0800 (PST)
+Message-ID: <b8e05110-e96d-0454-6990-27e2567c0e9a@linaro.org>
+Date:   Mon, 9 Jan 2023 10:38:00 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 6/7] drm/msm/dsi: add support for DSI-PHY on SM8550
+Content-Language: en-US
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     =?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: RE: [PATCH v3 0/4] Add RZ/V2{M, MA} PWM driver support
-Thread-Topic: [PATCH v3 0/4] Add RZ/V2{M, MA} PWM driver support
-Thread-Index: AQHZDyToB3Uyho0w1UCooeXFse0vf66V/UYQ
-Date:   Mon, 9 Jan 2023 09:37:14 +0000
-Message-ID: <OS0PR01MB592242AAB70CFF0DA3EDEC8086FE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20221213185827.2012004-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20221213185827.2012004-1-biju.das.jz@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|OS3PR01MB5990:EE_
-x-ms-office365-filtering-correlation-id: b61f5f9e-cd01-4a51-0239-08daf2251762
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: NazMuGueY7BBUHmM6RunassO0ZxjgLxv8iWYhM6XTdT0IApkjTSmMk9hiydGIAqpzDVrEVidcen8cU0CA7S4zxc/o32ubd3ifmjlkhP5DVSO98zxwLi7Ro2/xBSvIssgHi8GEN75U7immz4n6eUlGXZO+saleFtTqrTsgIpmB8SePKGazYlLLzQwycbiEaVzWYtgbKDglu6vLrb+WSvRL4XHUIieW3I/uA0kw70lFnnL/5b7vIn0gq7Ey/yFnGmBG24s2b29tnA65QXDM3kcLkDIQz4FCEHwexjvm4lHDhxC5RQtvLhKODmk/oc/OAlu5jyEw4MTwVKZDVDHTSlkg7sNpcZcEsqiHgTyzio7ZCc5eqjZyCf0nf7Gfw7Rr34fVeO6KS2wMwBHWcQjJe8mcPnou+R7e9WQQdhbx2PqjEoeF1saNQCqrmCRKMhbpnqNBqgo1FaiEF+oTtEBggLKGpL68VbteK+MzWjyTWVYBGGzr/Lm5wzS2fFQDtaINLzDCOXoI9H7w+xjuf//IlN4wrcMSHAtm5vpG1+dm9EtwZOzw3+QC3P2WcKJo4AROaWK9YUHiU/KGfKgRKK7Kvb77iwlfd7VKPwAtOvhC4fuTtXzSjBN7xkZkse3UGUiS3uFCk4L9PbnyKBjn5PlXrJMBM+ZI/Xd7aMwNUIfDgIO7UWGBpS8qxXU3qGNmMGjkINlfHbgI9ONPDvnUXOrXAxfRSTIs2aJoIB67FWP53+1Yjo=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(396003)(376002)(346002)(39860400002)(451199015)(33656002)(86362001)(2906002)(8936002)(5660300002)(7416002)(41300700001)(52536014)(83380400001)(66574015)(122000001)(110136005)(66946007)(71200400001)(7696005)(54906003)(76116006)(38070700005)(66556008)(53546011)(6506007)(107886003)(55016003)(186003)(38100700002)(966005)(8676002)(26005)(66476007)(4326008)(316002)(64756008)(66446008)(9686003)(478600001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?8NOj5Obepg09PSaXJiq+1g1+bW2dMgi0fGJ1iXSCyJBq4dm+ksgKzZb+eT?=
- =?iso-8859-1?Q?KHRVYg/SREgvlYip5HbRrEXgwIRU+FVvCO4H6deThVrcDq6D9dtusDxdWr?=
- =?iso-8859-1?Q?4pENLRKCSrUMkNmBcjprO04LCgqkfzAqyKyCR2eH/TGqV7N8wEiZbcTZgY?=
- =?iso-8859-1?Q?pqYLhOimiES9wrhCgXSFu80+VZHNKRsB6seltaV7GsjeF8wirl2JlIiQTG?=
- =?iso-8859-1?Q?j8vpv3XBgqHBUqHzpN/Hy/8OZ7HIaEpU+TJnjRrLmpWz2nFT0bPEMQtzQL?=
- =?iso-8859-1?Q?AwzdGorUZVsFrdrrIew5WBYgr597zbYqdws+g6ZsZtAvv/EMs61+cz2upA?=
- =?iso-8859-1?Q?wWY5IgxarbvaekU3sp10VzRD3wXqZYhIjM+xjNRTr9glmPJ13pP3U4oTZc?=
- =?iso-8859-1?Q?L5WnGq6XWGR8V+9VwhyZpsauaT+1Varx3Pf18EKxzDWOywDlRnv1sM48a9?=
- =?iso-8859-1?Q?EgUHAfTAGr8l+7+WptpwLBWYFO3sWjXDfqA5qrdfJdTp07bVIEYLl8iy8u?=
- =?iso-8859-1?Q?ew1nDju6euoE/RheNQv4no1uSMIlkefA0Tbo018y5JayWivLBM/OvZAH64?=
- =?iso-8859-1?Q?xGTzpHtGhykyLkxsG4ZN1vZKLMSTZPVSf4GUdLVVQjqI5hclYy3ZH+IVt0?=
- =?iso-8859-1?Q?1IsS1/VOMkOsrU/lpSRREcWffXBWhxgotDJ3aNvIyhio9D00mPJQGu2NGe?=
- =?iso-8859-1?Q?/RxMRWamaQtjb1z9SepVkEfFubsp5dmJkagWMAj3JYkLWEFtwWDKpxnqQp?=
- =?iso-8859-1?Q?wtR2/7HeV2zKNwHrZR/FiffHWjqdYsxWwgsrt0vpT3Sxa2NpiApZH7Xhgz?=
- =?iso-8859-1?Q?EorGq/O+mX1LMEQaAoRKb2jM32lKKOlTq8GvTVgT6n5x9DzlU4O78E7XyG?=
- =?iso-8859-1?Q?eA94HmjVnZYtaHfqHiMneQlfKOr0xhczq50IvJNFwxQXpVouKQ2jHKTHVX?=
- =?iso-8859-1?Q?8HYSUiq/QE4JSoJBeyKPdVzUNzV5GyNh3iNuD5OXLTEaYkWMqKaQGaJsAG?=
- =?iso-8859-1?Q?aUhZTLa8is16Wx2HyHEzbN/Vj6WVB091PHVv7Kca+69XytbJBezMjHTPPj?=
- =?iso-8859-1?Q?9y8w36XDk2NVKWM4zr6cy+leSijBo0xVa+IVUqhYU6qFLN0tBgQL0Vw/FU?=
- =?iso-8859-1?Q?cZNaUwAoHGrkcnxeBro7khZ4rqbR3dGEY1mbLmQjgs1DjDdCChvGAzrKyt?=
- =?iso-8859-1?Q?8sbCmi998NnMbfjd8CIPOYG1pd4AW/mGRuzUnbftYzEc5bN9uzpvI4y9vH?=
- =?iso-8859-1?Q?wGMYVstWZ2QKNbDwtmKYRHRWps42trAlUDH00DzEXDY2a40AuduG9zRZui?=
- =?iso-8859-1?Q?QDf0+aCkSVr+BX6czKYeCtvuklgI1u7A2ZHvkhTCQ9oltsridry0JYAVtK?=
- =?iso-8859-1?Q?4O5hzRqK9GvHiSfcru9tTi6OQ9rhZ6Zp2wCeSBR0dpMQlJgHSNHaA20HbE?=
- =?iso-8859-1?Q?IlXA6azYeZ00bvt6vAQfxtle/O0NnBSJqMBXdOjJlHPZebfCZ2XPWE27no?=
- =?iso-8859-1?Q?8hRBHO64hlYTNW06iBnTqX2i+uEYNtFizUjyEWyRMh97ONiYbRwVxplGm2?=
- =?iso-8859-1?Q?clQ/P9c0PCBwcX2m/h6PjqhuF07wv1h4exXsEeAuqR7WxioBvtM3/1tAvG?=
- =?iso-8859-1?Q?+7oSyAC5BhpILNC7/K3su2RRe0RcfBimCQ2gpdRAPlMHWJgK8Cy3/yvw?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b61f5f9e-cd01-4a51-0239-08daf2251762
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jan 2023 09:37:14.5732
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Ex9GjlXefkvxiZUVcX/eWNnZvVYWN0e7l++H5YJartBWULF8q3vLPjLVJHu3vj6D4y6UeClY/Y9kVwt4Xa77aM1B/vS4Gbk+E/UuXrDplW4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5990
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jonathan Marek <jonathan@marek.ca>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230103-topic-sm8550-upstream-mdss-dsi-v2-0-87f1c16d7635@linaro.org>
+ <20230103-topic-sm8550-upstream-mdss-dsi-v2-6-87f1c16d7635@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230103-topic-sm8550-upstream-mdss-dsi-v2-6-87f1c16d7635@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Thierry, Uwe, Geert and PWM folks,
+On 09/01/2023 10:26, Neil Armstrong wrote:
+> SM8550 use a 4nm DSI PHYs, which share register definitions
+> with 7nm DSI PHYs. Rather than duplicating the driver, handle
+> 4nm variant inside the common 5+7nm driver.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>   drivers/gpu/drm/msm/Kconfig               |  4 +-
+>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.c     |  2 +
+>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.h     |  1 +
+>   drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c | 88 ++++++++++++++++++++++++++-----
+>   4 files changed, 79 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfig
+> index e7b100d97f88..949b18a29a55 100644
+> --- a/drivers/gpu/drm/msm/Kconfig
+> +++ b/drivers/gpu/drm/msm/Kconfig
+> @@ -140,11 +140,11 @@ config DRM_MSM_DSI_10NM_PHY
+>   	  Choose this option if DSI PHY on SDM845 is used on the platform.
+>   
+>   config DRM_MSM_DSI_7NM_PHY
+> -	bool "Enable DSI 7nm/5nm PHY driver in MSM DRM"
+> +	bool "Enable DSI 7nm/5nm/4nm PHY driver in MSM DRM"
+>   	depends on DRM_MSM_DSI
+>   	default y
+>   	help
+> -	  Choose this option if DSI PHY on SM8150/SM8250/SM8350/SM8450/SC7280
+> +	  Choose this option if DSI PHY on SM8150/SM8250/SM8350/SM8450/SM8550/SC7280
+>   	  is used on the platform.
+>   
+>   config DRM_MSM_HDMI
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> index 04126af74bb5..798cd3c86031 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> @@ -573,6 +573,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
+>   	  .data = &dsi_phy_5nm_8350_cfgs },
+>   	{ .compatible = "qcom,sm8450-dsi-phy-5nm",
+>   	  .data = &dsi_phy_5nm_8450_cfgs },
+> +	{ .compatible = "qcom,dsi-phy-4nm-8550",
 
-Gentle ping for review.=20
+Forgot to change this... I can resend a v3 with this fixed.
 
-Cheers,
-Biju
+Neil
 
-> -----Original Message-----
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> Sent: 13 December 2022 18:58
-> To: Thierry Reding <thierry.reding@gmail.com>; Rob Herring
-> <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Michael Turquette
-> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Philipp Zabel
-> <p.zabel@pengutronix.de>
-> Cc: Biju Das <biju.das.jz@bp.renesas.com>; Uwe Kleine-K=F6nig <u.kleine-
-> koenig@pengutronix.de>; Geert Uytterhoeven <geert+renesas@glider.be>; Mag=
-nus
-> Damm <magnus.damm@gmail.com>; linux-pwm@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-renesas-soc@vger.kernel.org; linux-
-> clk@vger.kernel.org; Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Subject: [PATCH v3 0/4] Add RZ/V2{M, MA} PWM driver support
->=20
-> The RZ/V2{M, MA} PWM Timer (PWM) is composed of 16 channels. Linux is onl=
-y
-> allowed access to channels 8 to 14 on RZ/V2M, while there is no restricti=
-on
-> for RZ/V2MA.
->=20
-> The RZ/V2{M, MA} PWM Timer (PWM) supports the following functions:
->  * The PWM has 24-bit counters which operate at PWM_CLK (48 MHz).
->  * The frequency division ratio for internal counter operation is selecta=
-ble
->     as PWM_CLK divided by 1, 16, 256, or 2048.
->  * The period as well as the duty cycle is adjustable.
->  * The low-level and high-level order of the PWM signals can be inverted.
->  * The duty cycle of the PWM signal is selectable in the range from 0 to
-> 100%.
->  * The minimum resolution is 20.83 ns.
->  * Three interrupt sources: Rising and falling edges of the PWM signal an=
-d
->    clearing of the counter
->  * Counter operation and the bus interface are asynchronous and both can
->    operate independently of the magnitude relationship of the respective
->    clock periods.
->=20
-> v2->v3:
->  * Removed clock patch#1 as it is queued for 6.3 renesas-clk
->  * Added Rb tag from Geert for bindings and dt patches
->  * Added return code for rzv2m_pwm_get_state()
->  * Added comment in rzv2m_pwm_reset_assert_pm_disable()
-> v1->v2:
->  * Updated commit description
->  * Replaced pwm8_15_pclk->cperi_grpf
->  * Added reset entry R9A09G011_PWM_GPF_PRESETN
->  * Added Rb tag from Krzysztof for bindings and the keep the Rb tag as
->    the below changes are trivial
->  * Updated the description for APB clock
->  * Added resets required property
->  * Updated the example with resets property
->  * Replaced devm_reset_control_get_optional_shared-
-> >devm_reset_control_get_shared
->  * Added resets property in pwm nodes.
->=20
-> Note:
->  Hardware manual for this IP can be found here
-> https://www.renesas.com/in/en/document/mah/rzv2m-users-manual-
-> hardware?language=3Den
->=20
-> Biju Das (4):
->   dt-bindings: pwm: Add RZ/V2M PWM binding
->   pwm: Add support for RZ/V2M PWM driver
->   arm64: dts: renesas: r9a09g011: Add pwm nodes
->   arm64: dts: renesas: rzv2m evk: Enable pwm
->=20
->  .../bindings/pwm/renesas,rzv2m-pwm.yaml       |  90 ++++
->  .../boot/dts/renesas/r9a09g011-v2mevk2.dts    |  70 +++
->  arch/arm64/boot/dts/renesas/r9a09g011.dtsi    |  98 +++++
->  drivers/pwm/Kconfig                           |  11 +
->  drivers/pwm/Makefile                          |   1 +
->  drivers/pwm/pwm-rzv2m.c                       | 398 ++++++++++++++++++
->  6 files changed, 668 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzv2m-
-> pwm.yaml
->  create mode 100644 drivers/pwm/pwm-rzv2m.c
->=20
-> --
-> 2.25.1
+> +	  .data = &dsi_phy_4nm_8550_cfgs },
+>   #endif
+>   	{}
+>   };
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> index f7a907ed2b4b..58f9e09f5224 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> @@ -59,6 +59,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_7nm_8150_cfgs;
+>   extern const struct msm_dsi_phy_cfg dsi_phy_7nm_7280_cfgs;
+>   extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8350_cfgs;
+>   extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8450_cfgs;
+> +extern const struct msm_dsi_phy_cfg dsi_phy_4nm_8550_cfgs;
+>   
+>   struct msm_dsi_dphy_timing {
+>   	u32 clk_zero;
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+> index 7b2c16b3a36c..af5c952c6ad0 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+> @@ -47,6 +47,8 @@
+>   #define DSI_PHY_7NM_QUIRK_V4_2		BIT(2)
+>   /* Hardware is V4.3 */
+>   #define DSI_PHY_7NM_QUIRK_V4_3		BIT(3)
+> +/* Hardware is V5.2 */
+> +#define DSI_PHY_7NM_QUIRK_V5_2		BIT(4)
+>   
+>   struct dsi_pll_config {
+>   	bool enable_ssc;
+> @@ -124,14 +126,25 @@ static void dsi_pll_calc_dec_frac(struct dsi_pll_7nm *pll, struct dsi_pll_config
+>   
+>   	if (pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_PRE_V4_1)
+>   		config->pll_clock_inverters = 0x28;
+> -	else if (pll_freq <= 1000000000ULL)
+> -		config->pll_clock_inverters = 0xa0;
+> -	else if (pll_freq <= 2500000000ULL)
+> -		config->pll_clock_inverters = 0x20;
+> -	else if (pll_freq <= 3020000000ULL)
+> -		config->pll_clock_inverters = 0x00;
+> -	else
+> -		config->pll_clock_inverters = 0x40;
+> +	else if ((pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
+> +		if (pll_freq <= 1300000000ULL)
+> +			config->pll_clock_inverters = 0xa0;
+> +		else if (pll_freq <= 2500000000ULL)
+> +			config->pll_clock_inverters = 0x20;
+> +		else if (pll_freq <= 4000000000ULL)
+> +			config->pll_clock_inverters = 0x00;
+> +		else
+> +			config->pll_clock_inverters = 0x40;
+> +	} else {
+> +		if (pll_freq <= 1000000000ULL)
+> +			config->pll_clock_inverters = 0xa0;
+> +		else if (pll_freq <= 2500000000ULL)
+> +			config->pll_clock_inverters = 0x20;
+> +		else if (pll_freq <= 3020000000ULL)
+> +			config->pll_clock_inverters = 0x00;
+> +		else
+> +			config->pll_clock_inverters = 0x40;
+> +	}
+>   
+>   	config->decimal_div_start = dec;
+>   	config->frac_div_start = frac;
+> @@ -222,6 +235,13 @@ static void dsi_pll_config_hzindep_reg(struct dsi_pll_7nm *pll)
+>   			vco_config_1 = 0x01;
+>   	}
+>   
+> +	if ((pll->phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
+> +		if (pll->vco_current_rate < 1557000000ULL)
+> +			vco_config_1 = 0x08;
+> +		else
+> +			vco_config_1 = 0x01;
+> +	}
+> +
+>   	dsi_phy_write(base + REG_DSI_7nm_PHY_PLL_ANALOG_CONTROLS_FIVE_1,
+>   		      analog_controls_five_1);
+>   	dsi_phy_write(base + REG_DSI_7nm_PHY_PLL_VCO_CONFIG_1, vco_config_1);
+> @@ -860,7 +880,8 @@ static int dsi_7nm_phy_enable(struct msm_dsi_phy *phy,
+>   		pr_warn("PLL turned on before configuring PHY\n");
+>   
+>   	/* Request for REFGEN READY */
+> -	if (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V4_3) {
+> +	if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V4_3) ||
+> +	    (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
+>   		dsi_phy_write(phy->base + REG_DSI_7nm_PHY_CMN_GLBL_DIGTOP_SPARE10, 0x1);
+>   		udelay(500);
+>   	}
+> @@ -894,7 +915,19 @@ static int dsi_7nm_phy_enable(struct msm_dsi_phy *phy,
+>   		lane_ctrl0 = 0x1f;
+>   	}
+>   
+> -	if (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V4_3) {
+> +	if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
+> +		if (phy->cphy_mode) {
+> +			vreg_ctrl_0 = 0x45;
+> +			vreg_ctrl_1 = 0x45;
+> +			glbl_rescode_top_ctrl = 0x00;
+> +			glbl_rescode_bot_ctrl = 0x00;
+> +		} else {
+> +			vreg_ctrl_0 = 0x44;
+> +			vreg_ctrl_1 = 0x19;
+> +			glbl_rescode_top_ctrl = less_than_1500_mhz ? 0x3c :  0x03;
+> +			glbl_rescode_bot_ctrl = less_than_1500_mhz ? 0x38 :  0x3c;
+> +		}
+> +	} else if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V4_3)) {
+>   		if (phy->cphy_mode) {
+>   			glbl_rescode_top_ctrl = less_than_1500_mhz ? 0x3d :  0x01;
+>   			glbl_rescode_bot_ctrl = less_than_1500_mhz ? 0x38 :  0x3b;
+> @@ -943,9 +976,8 @@ static int dsi_7nm_phy_enable(struct msm_dsi_phy *phy,
+>   	dsi_phy_write(base + REG_DSI_7nm_PHY_CMN_RBUF_CTRL, 0x00);
+>   
+>   	/* program CMN_CTRL_4 for minor_ver 2 chipsets*/
+> -	data = dsi_phy_read(base + REG_DSI_7nm_PHY_CMN_REVISION_ID0);
+> -	data = data & (0xf0);
+> -	if (data == 0x20)
+> +	if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2) ||
+> +	    (dsi_phy_read(base + REG_DSI_7nm_PHY_CMN_REVISION_ID0) & (0xf0)) == 0x20)
+>   		dsi_phy_write(base + REG_DSI_7nm_PHY_CMN_CTRL_4, 0x04);
+>   
+>   	/* Configure PHY lane swap (TODO: we need to calculate this) */
+> @@ -1058,7 +1090,8 @@ static void dsi_7nm_phy_disable(struct msm_dsi_phy *phy)
+>   	dsi_phy_hw_v4_0_config_lpcdrx(phy, false);
+>   
+>   	/* Turn off REFGEN Vote */
+> -	if (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V4_3) {
+> +	if ((phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V4_3) ||
+> +	    (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V5_2)) {
+>   		dsi_phy_write(base + REG_DSI_7nm_PHY_CMN_GLBL_DIGTOP_SPARE10, 0x0);
+>   		wmb();
+>   		/* Delay to ensure HW removes vote before PHY shut down */
+> @@ -1092,6 +1125,10 @@ static const struct regulator_bulk_data dsi_phy_7nm_97800uA_regulators[] = {
+>   	{ .supply = "vdds", .init_load_uA = 97800 },
+>   };
+>   
+> +static const struct regulator_bulk_data dsi_phy_7nm_98400uA_regulators[] = {
+> +	{ .supply = "vdds", .init_load_uA = 98400 },
+> +};
+> +
+>   const struct msm_dsi_phy_cfg dsi_phy_7nm_cfgs = {
+>   	.has_phy_lane = true,
+>   	.regulator_data = dsi_phy_7nm_36mA_regulators,
+> @@ -1201,3 +1238,26 @@ const struct msm_dsi_phy_cfg dsi_phy_5nm_8450_cfgs = {
+>   	.num_dsi_phy = 2,
+>   	.quirks = DSI_PHY_7NM_QUIRK_V4_3,
+>   };
+> +
+> +const struct msm_dsi_phy_cfg dsi_phy_4nm_8550_cfgs = {
+> +	.has_phy_lane = true,
+> +	.regulator_data = dsi_phy_7nm_98400uA_regulators,
+> +	.num_regulators = ARRAY_SIZE(dsi_phy_7nm_98400uA_regulators),
+> +	.ops = {
+> +		.enable = dsi_7nm_phy_enable,
+> +		.disable = dsi_7nm_phy_disable,
+> +		.pll_init = dsi_pll_7nm_init,
+> +		.save_pll_state = dsi_7nm_pll_save_state,
+> +		.restore_pll_state = dsi_7nm_pll_restore_state,
+> +		.set_continuous_clock = dsi_7nm_set_continuous_clock,
+> +	},
+> +	.min_pll_rate = 600000000UL,
+> +#ifdef CONFIG_64BIT
+> +	.max_pll_rate = 5000000000UL,
+> +#else
+> +	.max_pll_rate = ULONG_MAX,
+> +#endif
+> +	.io_start = { 0xae95000, 0xae97000 },
+> +	.num_dsi_phy = 2,
+> +	.quirks = DSI_PHY_7NM_QUIRK_V5_2,
+> +};
+> 
 
