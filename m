@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A848661FF8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC156662000
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:30:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236572AbjAII11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 03:27:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42582 "EHLO
+        id S233481AbjAIIac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 03:30:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236562AbjAII10 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:27:26 -0500
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDDB865B4
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:27:23 -0800 (PST)
-Received: by mail-qv1-xf2a.google.com with SMTP id d13so5729785qvj.8
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:27:23 -0800 (PST)
+        with ESMTP id S236617AbjAII2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:28:07 -0500
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 153C313F71
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:27:50 -0800 (PST)
+Received: by mail-qt1-x82f.google.com with SMTP id i20so7212086qtw.9
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:27:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=in-reply-to:mime-version:user-agent:date:message-id:from:references
          :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=iPAsobbc84xDahC1st0SctMAPiI0XXBRw+Tqkk91na4=;
-        b=XULBS6+dRzjx+Tv8yUhyskjsq8i/tBHNVBb2DvGVq7mN4jPWzVM8qFQEwmJBszeGQZ
-         ThvD7aQELW5KHyBC0t4zEvUlJN4Fk/Q1vmxO4kgBxzp10/RJiXvW05F4Ov1tl2fPL2sK
-         XD5HncCUu3R5bBypl+bI1Qu05/xqLwePbsOGw=
+        bh=kRZv7wkkZJtII87Fv+e6japdkiMrDDYhZR9fvKn2/KQ=;
+        b=H+Dx8WM6SDXrvvIcpJQvu4EPxdO8oC8IQ1k/Z6G3ePAYR3eFZYxtYl3jPmz68Jn3TE
+         HWthnoGguhikJY0w/DPnzyPQPFyXLrJsZUJo4GY1fT4glMw0Gwj0m/VYdY5vuuiXyL9p
+         d7Ds8BSPajZDw+pbwVhFlL1d/ABTbgYuT6+qE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:mime-version:user-agent:date:message-id:from:references
          :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=iPAsobbc84xDahC1st0SctMAPiI0XXBRw+Tqkk91na4=;
-        b=OApAuDdG35VS9DqIySFf5bM1X+wkcwi7DJVao5l9MS+HpmRod6VG5W9RECkKM3Md9v
-         B1il3v5GE/yMRkXyrqE+6yzHu4l8biwlKdvt08P/uOazVzOt7dauWO4N4DdosziOukDy
-         pgxEfcRtc9OgbJhJXswTx2U/c3+LO9yAywTyoeVzCzYUHLwQO+769Nwi5LHgktoRRXYH
-         kgQussKZleEHiBrvRdx6Dk7dLXU5BUrmvnpMc5/TuPlKgkjnN7jZRO/Qk9Cju8qgJU1K
-         Qi97UPYRw7UiUxkEdMbg+qQBxrRvkBHflJfBQ9M1tDOwQ637C5A4jbZ+U5ztH1V8SoaU
-         FtMA==
-X-Gm-Message-State: AFqh2kpzXiluP23qq92pS1CLtFL0XtBV7uD7jYvMTeFq5wI4Z+kc0tfq
-        1CvSab1s7X8U9OLe9fCI6d2zpw==
-X-Google-Smtp-Source: AMrXdXus2mwqSTeO+K0SoVXgWOaPPT24StGEZ4RxZZr27fLMzG9qY6rgzZQz51XXW74JxZa7ygAezQ==
-X-Received: by 2002:a05:6214:2e85:b0:532:2aea:dd6 with SMTP id oc5-20020a0562142e8500b005322aea0dd6mr8411570qvb.40.1673252842855;
-        Mon, 09 Jan 2023 00:27:22 -0800 (PST)
+        bh=kRZv7wkkZJtII87Fv+e6japdkiMrDDYhZR9fvKn2/KQ=;
+        b=dQhfzt0pCOG2Q9ej2X4jOqrphG4hUP4Z4oQKVOdVtsDvTZtdI8Atsf5KE7BK5ClS01
+         0OgaCLY8iFQ3/rwveqFpnVz8PEkxaUtLrYc0chtu/FehyZtbsxqeuEkSKAbTuVpDMx2z
+         2Ffq/ETmZGN8DcnhsjDO1ZVmjmRVhQeBGRkPaQ+dpt1BsqKP8p2q1y7ppwzxtAWn+MEY
+         CGmUS9elof4fDC1qOS2JucGXuae5yZRRvBtmXcbzbKAadaeiVLaJj+9EmPgrh4yY6nqj
+         r44Gj06f0hgpxNROo4MaRaGdubgiV4caN/u6xXZSsjILJesBgpMKFp9ntbbIdbLvXYWo
+         AFkw==
+X-Gm-Message-State: AFqh2koTop/IYy324uI/Kgi8LJKaHLTBe2aN9S4O2PBeHsZVxfFHqIy1
+        fGYdJjp/INOcRhA0E3HRpddroQ==
+X-Google-Smtp-Source: AMrXdXsM3I/BIlfpWenIt1TsJk2HxNza8uJIRaClAFhEkRbhHy/dBF5XoAXSz/do1LNE379MeYNBxQ==
+X-Received: by 2002:a05:622a:5c10:b0:3ab:7d29:2f96 with SMTP id gd16-20020a05622a5c1000b003ab7d292f96mr80127489qtb.40.1673252869142;
+        Mon, 09 Jan 2023 00:27:49 -0800 (PST)
 Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id k2-20020a05620a414200b006faaf6dc55asm5060539qko.22.2023.01.09.00.27.20
+        by smtp.gmail.com with ESMTPSA id bp43-20020a05622a1bab00b003a68f5d98c1sm4246023qtb.93.2023.01.09.00.27.47
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 09 Jan 2023 00:27:22 -0800 (PST)
-Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
- support
+        Mon, 09 Jan 2023 00:27:48 -0800 (PST)
+Subject: Re: [PATCH 03/16] dt-bindings: spi: Add spi peripheral specific
+ property
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Linux SPI List <linux-spi@vger.kernel.org>,
         Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
@@ -59,17 +59,17 @@ Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230106200809.330769-1-william.zhang@broadcom.com>
- <20230106200809.330769-3-william.zhang@broadcom.com>
- <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
+ <20230106200809.330769-4-william.zhang@broadcom.com>
+ <dc23b376-6f1a-21d9-5d26-2ccde563fb34@linaro.org>
 From:   William Zhang <william.zhang@broadcom.com>
-Message-ID: <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
-Date:   Mon, 9 Jan 2023 00:27:19 -0800
+Message-ID: <ca63fd53-9108-5bb6-2e1f-b6fdb51218bb@broadcom.com>
+Date:   Mon, 9 Jan 2023 00:27:46 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
  Thunderbird/52.4.0
 MIME-Version: 1.0
-In-Reply-To: <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
+In-Reply-To: <dc23b376-6f1a-21d9-5d26-2ccde563fb34@linaro.org>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000582ac905f1d089dc"
+        boundary="000000000000e6c47a05f1d08a22"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
@@ -80,179 +80,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000582ac905f1d089dc
+--000000000000e6c47a05f1d08a22
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
 
-On 01/08/2023 06:51 AM, Krzysztof Kozlowski wrote:
+
+On 01/08/2023 06:52 AM, Krzysztof Kozlowski wrote:
 > On 06/01/2023 21:07, William Zhang wrote:
->> The new Broadcom Broadband BCMBCA SoCs includes a updated HSSPI
->> controller. Add a new compatible string and required fields for the new
->> driver.  Also add myself and Kursad as the maintainers.
->>
->> Signed-off-by: William Zhang <william.zhang@broadcom.com>
->> ---
->>
->>   .../bindings/spi/brcm,bcm63xx-hsspi.yaml      | 84 +++++++++++++++++--
->>   1 file changed, 78 insertions(+), 6 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
->> index 45f1417b1213..56e69d4a1faf 100644
->> --- a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
->> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
->> @@ -4,22 +4,51 @@
->>   $id: http://devicetree.org/schemas/spi/brcm,bcm63xx-hsspi.yaml#
->>   $schema: http://devicetree.org/meta-schemas/core.yaml#
->>   
->> -title: Broadcom BCM6328 High Speed SPI controller
->> +title: Broadcom Broadband SoC High Speed SPI controller
->>   
->>   maintainers:
->> +
+>> brcm,no-clk-gate is a Broadcom Broadband HS SPI controller specific
+>> property for certain SPI device such as Broadcom ISI voice daughtercard
+>> to work properly. It disables the clock gating feature when the chip
+>> select is deasserted for any device that wants to keep the clock
+>> running.
 > 
-> Drop blank line.
-will fix in  v2.
+> 
+>> +additionalProperties: true
+>> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+>> index ead2cccf658f..f85d777c7b67 100644
+>> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+>> @@ -108,5 +108,6 @@ allOf:
+>>     - $ref: cdns,qspi-nor-peripheral-props.yaml#
+>>     - $ref: samsung,spi-peripheral-props.yaml#
+>>     - $ref: nvidia,tegra210-quad-peripheral-props.yaml#
+>> +  - $ref: brcm,bcm63xx-hsspi-peripheral-props.yaml#
+> 
+> Don't break the order.
+> 
+Will fix in v2
 
-> 
->> +  - William Zhang <william.zhang@broadcom.com>
->> +  - Kursad Oney <kursad.oney@broadcom.com>
->>     - Jonas Gorski <jonas.gorski@gmail.com>
-> 
->>   
->> +description: |
->> +  Broadcom Broadband SoC supports High Speed SPI master controller since the
->> +  early MIPS based chips such as BCM6328 and BCM63268.  This controller was
->> +  carried over to recent ARM based chips, such as BCM63138, BCM4908 and BCM6858.
->> +
->> +  It has a limitation that can not keep the chip select line active between
->> +  the SPI transfers within the same SPI message. This can terminate the
->> +  transaction to some SPI devices prematurely. The issue can be worked around by
->> +  either the controller's prepend mode or using the dummy chip select
->> +  workaround. This controller uses the compatible string brcm,bcm6328-hsspi.
->> +
->> +  The newer SoCs such as BCM6756, BCM4912 and BCM6855 include an updated SPI
->> +  controller that add the capability to allow the driver to control chip select
->> +  explicitly. This solves the issue in the old controller. This new controller
->> +  uses the compatible string brcm,bcmbca-hsspi.
->> +
->>   properties:
->>     compatible:
->> -    const: brcm,bcm6328-hsspi
->> +    enum:
->> +      - brcm,bcm6328-hsspi
->> +      - brcm,bcmbca-hsspi
-> 
-> bca seems quite unspecific. Your description above mentions several
-> model numbers and "bca" is not listed as model. Compatibles cannot be
-> generic.
-"bca" is not model number, rather it is a group (broadband carrier 
-access) of chip that share the same spi host controller IP. Agree it is 
-not particularly specific but it differentiate from other broadcom spi 
-controller ip used by other groups.  We just don't have a specific name 
-for this spi host controller but can we treat bcmbca as the ip name? 
-Otherwise we will have to have a compatible string with chip model for 
-each SoC even they share the same IP. We already have more than ten of 
-SoCs and the list will increase.  I don't see this is a good solution too.
-
-> 
->>   
->>     reg:
->> -    maxItems: 1
->> +    items:
->> +      - description: main registers
->> +      - description: miscellaneous control registers
->> +    minItems: 1
->> +
->> +  reg-names:
->> +    items:
->> +      - const: hsspi
->> +      - const: spim-ctrl
-> 
-> This does not match reg
-Do you mean it does not match the description?
-> 
->>   
->>     clocks:
->>       items:
->> -      - description: spi master reference clock
->> -      - description: spi master pll clock
->> +      - description: SPI master reference clock
->> +      - description: SPI master pll clock
-> 
-> Really? You just added it in previous patch, didn't you?
-The previous patch was just word to word conversion of the text file.  I 
-will update that patch to include this change.
-
-> 
->>   
->>     clock-names:
->>       items:
->> @@ -29,12 +58,43 @@ properties:
->>     interrupts:
->>       maxItems: 1
->>   
->> +  brcm,use-cs-workaround:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description: |
->> +      Enable dummy chip select workaround for SPI transfers that can not be
->> +      supported by the default controller's prepend mode, i.e. delay or cs
->> +      change needed between SPI transfers.
-> 
-> You need to describe what is the workaround.
-Will do.
-> 
->> +
->>   required:
->>     - compatible
->>     - reg
->>     - clocks
->>     - clock-names
->> -  - interrupts
->> +
->> +allOf:
->> +  - $ref: "spi-controller.yaml#"
-> 
-> No quotes. How this is related to this patch?
-Will remove quote and put it in patch 1.
-> 
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - brcm,bcm6328-hsspi
->> +    then:
->> +      properties:
->> +        reg:
->> +          minItems: 1
-> 
-> Drop.
-> 
-> reg-names now do not match.
-Don't quite understand your comment. What do I need to drop and what is 
-not matched?
-
-> 
->> +          maxItems: 1
->> +    else:
->> +      properties:
->> +        reg:
->> +          minItems: 2
->> +          maxItems: 2
->> +        reg-names:
->> +          minItems: 2
->> +          maxItems: 2
->> +        brcm,use-cs-workaround: false
->> +      required:
->> +        - reg-names
 > Best regards,
 > Krzysztof
 > 
 
---000000000000582ac905f1d089dc
+--000000000000e6c47a05f1d08a22
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -323,13 +186,13 @@ VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
 urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
 MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
 VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIMHbkpaV2usXQ3ShTyXlOBbWwiA0
-UgoeL+gNcDpfWDVhMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
-MDEwOTA4MjcyM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIMmmxRKQ18ZhD5bnsWLHHsOjBrrH
+XhuCVR/qFhZVhSP4MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MDEwOTA4Mjc0OVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
 CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQBXCvHN0ig/K7M3iVqqb8lpcgxAgf8cljWcCyNhCmXJL3JV
-Wc6iSbTiBPvG4oSLumZYiOITeM1wXL1RvE/1915YRP7mNly+ybnSOuEmPRXZworoDoQ+7Q8QjyQw
-eQnKnwaidu1086e7HxbYo00ig6IjC/OL23wJ1M4YbvIdsvgJUAli0Z1SPj61cgcwAnOYV5gKO0ak
-qvXsvdyYmi+F4FJpnM/jGOgT5ZyNiwqAJOm8K2MbnLlzXXBy/nDvwTQ3K7XO/Bj17KqxD2PySqVw
-cR4eLEOUCP7ufDSMc9R7PDGbJjcuEn/SeiMkZpD5On9owDm8iJGLxf0tkNkDyfyJ+V+i
---000000000000582ac905f1d089dc--
+AwQCATANBgkqhkiG9w0BAQEFAASCAQAmffCSKTY4B/YlqIgH/wmgLDeQNGlRqd0dJv6VNL9h1tbq
+vypcY+Iq228U4e8razXv6xmAVoYGt7PqGn3RLsHcVLBJTHNhddxE9k8unVyzN2vCRr39JBZRD4Ks
+IDaFn1KuXUnCoMuX87bkHiL/9eNSXHMoyH5jn1zBNNYvmkNHYIIs30mHpE6fEIbl3LTURRb3OllP
++dgiyVI+bWZ04DUEko22lgVVKXAbMIjrzfXv2Ug5wbxZcSUmNusEzYx87ZWIYiEp+ODcsGUPabAB
+x7wnk0IN2gQeQiBq8DWbqDiPnKjsMVF2a19wZ69HwnIEXo39cpU4fZDSs05n882qkLHF
+--000000000000e6c47a05f1d08a22--
