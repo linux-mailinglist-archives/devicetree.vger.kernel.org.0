@@ -2,77 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DAC76635C5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:45:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEED06635CC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:45:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237987AbjAIXo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 18:44:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36528 "EHLO
+        id S234992AbjAIXox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 18:44:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234690AbjAIXoP (ORCPT
+        with ESMTP id S237896AbjAIXoP (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:44:15 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089053F121
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C713F47E
         for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 15:44:12 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id j17so15619190lfr.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 15:44:11 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id y25so15612765lfa.9
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 15:44:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TfEuuSwlBNCNhQ0V5aSlOKkpq1jL3HZF0gUtECm9ca4=;
-        b=CabRoexvIHthMAjN9bOtYlrmiWIq4jOS4ECtS7o8jrMEW271dUEDGI7aD/YT+S1FL6
-         GirrB+S8Ep775bg6drn7B5KgTSlZB4MBCIdhLQPkVpfqyzpi7q3J8Ff755AeIUW77o2A
-         BnGA5Jwe3maS4Xo+J7FvcOAyNQgtBBXaIe2oybrNKVTDwgVR0erqPWVop3XmKkhf0PoV
-         EDxqFX+0O1GIY1ZliEFP4Y3XQKm7G+l62ITYgdxyZT1NksiADTO/0nmkb+UCZx/SVBMc
-         lOwbVd5zfa9q2CLpig0vHIwB7xXh9y0ZHMo+L6Rgm7TgohwwPzTB+kdemhJISUGoKVDH
-         zMjg==
+        bh=t/mDgzPnUXxALwSc77P9Iyw1b4SZpp1LqX9N2wGlWLw=;
+        b=CYaufEjN+FQO8Ij0Vpc2EDA67qNJ5J4okXNCkY+RWe41dxiaS7/Vs7dZurAKEbLHPH
+         jiy5IQqVZ6nENLhobd8CsNo+CJQ76i4qyoOGGrTW3ExgwvCFE7/kbnILtY1zWQUteCy9
+         ma+m5CTTawzykxmuDbDIGlpyBBh8YJFwQEFJmNfaz80iGxh48ApazuVni6MzYh+v8ohu
+         vw57vgPKJCTClhjDMfne707H9OB4iQy9vcIV8EZ1e1bQngDw+5hkGoXBxhogpz2o6sOT
+         ICC62oQvWFEJzpXcrNFQRtB4yLV5rR+bspK6zHPw1ST72Bj8Qv99Z0pUiSpv3v+Ml3Dj
+         eJxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TfEuuSwlBNCNhQ0V5aSlOKkpq1jL3HZF0gUtECm9ca4=;
-        b=BWbGF8hY7Ns4A3UVDgZhJGqDcYSobnz5MKzAf3ebqaiP0DsmWcJp7GrfamRaNb2xpN
-         cY56ymDtKGsKN+uzcFfWTY+gk5JGy2I0aSsgAELRV3mv64lB/2gqOKLii4G91+hOYa7H
-         bZOhSDYrpVIoZ+oIwJqNFiTTh5Sau54NvAtkjhMdSUZol9D1gFIk30xi0EhSMCwNLAp/
-         xA4JXIJax6f0KI5aEivBFvxNpcXtQ50E5pLk3PLJBsRcirW5+0L5POqZxTKSMMHD7IYR
-         4d4U/QVFJOgt9nT8E4SZBkO/WZf4yfl5GjK2UOQotTRqYfovkqEJIiGQBNGsNwdwMF2h
-         pVGg==
-X-Gm-Message-State: AFqh2kpGiJ2LfcJJhscBbt5jUTwgFYCGq8N4k3ylbDSjWbC8AGwzB275
-        7lLOH9pNLfxKkiyVq7NiX71bJw==
-X-Google-Smtp-Source: AMrXdXs0iF/miKI7qLAgrJfIAHY3483zTUbToR93HVGlxwSfxKxWogktXNquQxEzEQSx+CYsFnWgfg==
-X-Received: by 2002:ac2:495b:0:b0:4b5:6755:4226 with SMTP id o27-20020ac2495b000000b004b567554226mr17831489lfi.55.1673307850418;
-        Mon, 09 Jan 2023 15:44:10 -0800 (PST)
+        bh=t/mDgzPnUXxALwSc77P9Iyw1b4SZpp1LqX9N2wGlWLw=;
+        b=bUIZ6GajSDvbWOZgPS4qEME4sherKJvmfiYBrAIiER1c3USpYZrRejQXaMyXPWfL+2
+         dQPf+vsWbxKL0w5Xgii92edsLBzIfMMynqTGiwC8+8LJeK0MtyGIcSWanP9/N/RPRiJu
+         6OugBzKoACAA/H9VAUH/bafDmgv2yghvT17VnhTcunw9L93vMSPUjP5mlASKVCBAWd+3
+         FK0rd0UYM8o5rXnoUGPHygsVsHY4basL5b+rJDS7kVV+63UU4r826LCpPu72yXC5dbci
+         oh+fTb+GcGFxy8K6pCVJVhnk1Fn7DFVtOeIG1VbwPIv36W/Jf0uIlxfrUZ5GRsUxCiVy
+         djIA==
+X-Gm-Message-State: AFqh2ko6KF+4mLO9JTW9lgrdr9eOmzmMVDqlb7haH70heBkbMPCbe6FO
+        +6juRd/6apM80pUbeM8GJY4bSA==
+X-Google-Smtp-Source: AMrXdXuFEjJWeYruo91f+vSduDBZf3rVjH8VWxe3VFEYuc3GkvajLlaBvU0owcPnRbMCo6wP6qXaVQ==
+X-Received: by 2002:a05:6512:2591:b0:4b5:5bc1:678c with SMTP id bf17-20020a056512259100b004b55bc1678cmr18912454lfb.21.1673307851241;
+        Mon, 09 Jan 2023 15:44:11 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id s9-20020a056512214900b004b5a4cf69dfsm1835255lfr.261.2023.01.09.15.44.09
+        by smtp.gmail.com with ESMTPSA id s9-20020a056512214900b004b5a4cf69dfsm1835255lfr.261.2023.01.09.15.44.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 09 Jan 2023 15:44:10 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 00/12] drm/msm: Add SC8280XP support
-Date:   Tue, 10 Jan 2023 01:43:55 +0200
-Message-Id: <167330408782.609993.5872563380257036199.b4-ty@linaro.org>
+        Kalyan Thota <quic_kalyant@quicinc.com>
+Cc:     linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com
+Subject: Re: [PATCH v4 0/3] add color management support for the crtc
+Date:   Tue, 10 Jan 2023 01:43:56 +0200
+Message-Id: <167330408778.609993.9217470869804308069.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221207220012.16529-1-quic_bjorande@quicinc.com>
-References: <20221207220012.16529-1-quic_bjorande@quicinc.com>
+In-Reply-To: <1669021695-4397-1-git-send-email-quic_kalyant@quicinc.com>
+References: <1669021695-4397-1-git-send-email-quic_kalyant@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -87,39 +76,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 07 Dec 2022 14:00:00 -0800, Bjorn Andersson wrote:
-> This introduces support for the SC8280XP platform in the MDSS, DPU and
-> DP driver. It reworks the HDP handling in the DP driver to support
-> external HPD sources - such as the dp-connector, or USB Type-C altmode.
+On Mon, 21 Nov 2022 01:08:12 -0800, Kalyan Thota wrote:
+> Add color management support for the crtc provided there are
+> enough dspps that can be allocated from the catalog
 > 
-> It then introduces the display clock controllers, mdss, dpu and
-> displayport controllers and link everything together, for both the MDSS
-> instances on the platform, and lastly enables EDP on the compute
-> reference device and 6 of the MiniDP outputs on the automotive
-> development platform.
+> Kalyan Thota (3):
+>   drm/msm/disp/dpu1: pin 1 crtc to 1 encoder
+>   drm/msm/disp/dpu1: add helper to know if display is builtin
+>   drm/msm/disp/dpu1: add color management support for the crtc
 > 
 > [...]
 
 Applied, thanks!
 
-[01/12] dt-bindings: display/msm: Add binding for SC8280XP MDSS
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/9ae2a57bdf9a
-[02/12] drm/msm/dpu: Introduce SC8280XP
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/f0a1bdf64dd7
-[03/12] drm/msm: Introduce SC8280XP MDSS
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/39bcdb416fb6
-[04/12] dt-bindings: msm/dp: Add SDM845 and SC8280XP compatibles
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/b6f8c4debc00
-[05/12] drm/msm/dp: Stop using DP id as index in desc
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/5d417b401146
-[06/12] drm/msm/dp: Add DP and EDP compatibles for SC8280XP
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/5bd69fd16198
-[07/12] drm/msm/dp: Add SDM845 DisplayPort instance
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/fa33f2aa9674
-[08/12] drm/msm/dp: Rely on hpd_enable/disable callbacks
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/cd198caddea7
-[09/12] drm/msm/dp: Implement hpd_notify()
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/542b37efc20e
+[1/3] drm/msm/disp/dpu1: pin 1 crtc to 1 encoder
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/a4d6f8253645
+[2/3] drm/msm/disp/dpu1: add helper to know if display is builtin
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/4cb6b1eebb92
+[3/3] drm/msm/disp/dpu1: add color management support for the crtc
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/c48c475bd75a
 
 Best regards,
 -- 
