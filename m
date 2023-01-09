@@ -2,71 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B5E662B74
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:43:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB4A6662B92
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:46:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229979AbjAIQnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 11:43:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39012 "EHLO
+        id S229969AbjAIQpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 11:45:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234329AbjAIQnU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:43:20 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903C01AA04;
-        Mon,  9 Jan 2023 08:43:19 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id m6so13870997lfj.11;
-        Mon, 09 Jan 2023 08:43:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yFMr2KsHgMM8LL+ZSBA8Rs+9+c78FfOw9aaVi/TXD0E=;
-        b=UtuUPwsQqEU70yYxUDBMt5uyoyE59X8ptix+7PR9Gc/3iU/3xq/JrCxwJpvOmC7UEH
-         DesVbm9CpgPlS26pdxjbyjOaQZpO6Ef8XGeTpSvFKFPedprL4lX+bSVKcF/R8EdRreIR
-         Aw2NbMb5m40+Q2XM0j/6igzii1m7JrgvkDYTeFszR9xRh+080eqOm7u8VxL8KXEfZpAs
-         qLa9ynhYabXMI9G6u+bCDDq+m5TVOAefulkDnpHNdlp7FeMnJjdIOEUZxEzCcA2Q6DoE
-         IkDmBOswmdbvjbSOrEv0ijgBZDTUjY3gXBBix1M70pEyslGSJnC+jzsIGiLi4jFJ/QqP
-         KZ3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yFMr2KsHgMM8LL+ZSBA8Rs+9+c78FfOw9aaVi/TXD0E=;
-        b=XQFYphLZyJOJDzUweg7W+JHX3vXgz1LOKS01XWpPpMOi5NBd57DcY8UHyLTvfLzeTB
-         5XMD8MBwCgoQF/beim5xAPaC7QLfxZLesleYu5r/eTkXrxraFMg9We2PhuoTZZqA0ccP
-         Q2GHZdk6gGf/UhPF4m4LPs16UtNCPebm3n1fqcsItnispE4tl/6woEkJHSAkenR4dKeg
-         3m0lCiLWEOO2LHjUo5w2wrKrNTKHsaQ/5ZMIqd0jHeFF0Hjl2l+T6YHOO2giyQNrTeHw
-         Y/iLsa7j0PW98u1inQ7sV1FLGutxkk5UKyV05gSILsEh9o/jmaDve/10ctKuBclm5qXS
-         byxw==
-X-Gm-Message-State: AFqh2kqno5zIQWh8zWS3eteLrvHgfaZ6bYDWidFxhvhjI47XJQSd05pN
-        wOCfwdct8CRlEklm/hZ22Ps=
-X-Google-Smtp-Source: AMrXdXtys4yX5LNTFJFfHJ/IXCU4em4xorjae9DoopKXny/OkIbjdRjT2GFIwkj8+uUgVIFdnb1yQQ==
-X-Received: by 2002:ac2:5b41:0:b0:4a4:68b8:9c5b with SMTP id i1-20020ac25b41000000b004a468b89c5bmr17938324lfp.67.1673282597990;
-        Mon, 09 Jan 2023 08:43:17 -0800 (PST)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id bq32-20020a056512152000b004b5766f48d8sm1710765lfb.19.2023.01.09.08.43.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 08:43:17 -0800 (PST)
-Date:   Mon, 9 Jan 2023 19:43:15 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
-        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 01/15] spi: dw: Introduce spi_frf and STD_SPI
-Message-ID: <20230109164315.au3nkqny7bh3bnr7@mobilestation>
-References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
- <20221212180732.79167-2-sudip.mukherjee@sifive.com>
+        with ESMTP id S236514AbjAIQo6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:44:58 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A02DE1DF3B;
+        Mon,  9 Jan 2023 08:44:56 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 309GiKXF077797;
+        Mon, 9 Jan 2023 10:44:20 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673282660;
+        bh=Hdi1Bu8qJAQTYphKYh0CUAY3M2lu9UUVs26+inJWz9A=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=MiiNTw0dLTzcuchtizZJzOh55E9ef+WnQGnSEKJ4R7yFFGTusUHvtX8w5LFPuG51W
+         KVWWAUykspc+A10XBgUzMXDUbZ19f0UC3EcLluPxxkALJrdp6ncv1EUJfDph+7fvmJ
+         EUUAbmJaeU0km0p1G656RRH6Vq72I86KslvgJDuA=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 309GiKER006181
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 9 Jan 2023 10:44:20 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 9
+ Jan 2023 10:44:20 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 9 Jan 2023 10:44:20 -0600
+Received: from [10.250.234.21] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 309GiA1s094256;
+        Mon, 9 Jan 2023 10:44:11 -0600
+Message-ID: <5206c520-1263-a5a4-8960-edd41aaf3175@ti.com>
+Date:   Mon, 9 Jan 2023 22:14:09 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221212180732.79167-2-sudip.mukherjee@sifive.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [RFC PATCH 3/4] dt-bindings: panel: Introduce dual-link LVDS
+ panel
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tomi Valkeinen <tomba@kernel.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Guo Ren <guoren@kernel.org>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux RISC-V List <linux-riscv@lists.infradead.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Linux Mediatek List <linux-mediatek@lists.infradead.org>,
+        Linux C-SKY Arch List <linux-csky@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230103064615.5311-1-a-bhatia1@ti.com>
+ <20230103064615.5311-4-a-bhatia1@ti.com>
+ <Y7ppO8nZFw7ZKdOi@pendragon.ideasonboard.com>
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <Y7ppO8nZFw7ZKdOi@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,138 +96,215 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 06:07:18PM +0000, Sudip Mukherjee wrote:
-> The DW APB SSI controllers of v4.x and newer and DW AHB SSI controllers
-> supports enhanced SPI modes which can be defined from SPI_FRF of
-> DW_SPI_CTRLR0 register. Without enhanced mode, these controllers will
-> work in the standard spi mode.
+Hi Laurent,
+
+Thank you for reviewing the patches!
+
+On 08-Jan-23 12:26, Laurent Pinchart wrote:
+> Hi Aradhya,
 > 
-> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
-> ---
->  drivers/spi/spi-dw-core.c | 13 ++++++++++++-
->  drivers/spi/spi-dw.h      |  6 ++++++
->  2 files changed, 18 insertions(+), 1 deletion(-)
+> Thank you for the patch.
 > 
-> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-> index 99edddf9958b9..77c23772bb3d9 100644
-> --- a/drivers/spi/spi-dw-core.c
-> +++ b/drivers/spi/spi-dw-core.c
-> @@ -333,6 +333,16 @@ void dw_spi_update_config(struct dw_spi *dws, struct spi_device *spi,
->  		/* CTRLR0[11:10] Transfer Mode */
->  		cr0 |= FIELD_PREP(DW_HSSI_CTRLR0_TMOD_MASK, cfg->tmode);
->  
-
-> +	if (dw_spi_ver_is_ge(dws, HSSI, 103A)) {
-
-eSPI has been available most likely since 1.00a (at least 1.01a
-has that feature).
-
-> +		cr0 &= ~DW_HSSI_CTRLR0_SPI_FRF_MASK;
-
-No need in masking that field because the cr0 variable is
-pre-initialized with the device-specific value anyway.
-
-> +		cr0 |= FIELD_PREP(DW_HSSI_CTRLR0_SPI_FRF_MASK,
-
-> +				  cfg->spi_frf);
-
-The HW-manual defines that field as SPI_FRF, but the SPI_ prefix looks
-vague because it doesn't differentiate it from just "frf" field. I'd
-suggest to use the "enh_frf" name instead.
-
-> +	} else if (dw_spi_ver_is_ge(dws, PSSI, 400A)) {
-
-> +		cr0 &= ~DW_PSSI_CTRLR0_SPI_FRF_MASK;
-> +		cr0 |= FIELD_PREP(DW_PSSI_CTRLR0_SPI_FRF_MASK,
-> +				  cfg->spi_frf);
-
-The same comments as above.
-
-> +	}
-> +
->  	dw_writel(dws, DW_SPI_CTRLR0, cr0);
->  
->  	if (cfg->tmode == DW_SPI_CTRLR0_TMOD_EPROMREAD ||
-> @@ -422,6 +432,7 @@ static int dw_spi_transfer_one(struct spi_controller *master,
-                                                 <--------+
->  		.tmode = DW_SPI_CTRLR0_TMOD_TR,           |
->  		.dfs = transfer->bits_per_word,           |
->  		.freq = transfer->speed_hz,               |
-                                                          |
-> +		.spi_frf = DW_SPI_CTRLR0_SPI_FRF_STD_SPI, +
-
-You also forgot to update the spi-dw-bt1.c driver.
-
->  	};
->  	int ret;
->  
-> @@ -664,7 +675,7 @@ static void dw_spi_stop_mem_op(struct dw_spi *dws, struct spi_device *spi)
->  static int dw_spi_exec_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
->  {
->  	struct dw_spi *dws = spi_controller_get_devdata(mem->spi->controller);
-
-> -	struct dw_spi_cfg cfg;
-> +	struct dw_spi_cfg cfg = {0};
-
-Please explicitly initialize the enh_frf field in the method below in
-the same way as it's done for the rest of the fields.
-
->  	unsigned long flags;
->  	int ret;
->  
-> diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
-> index 9e8eb2b52d5c7..414a415deb42a 100644
-> --- a/drivers/spi/spi-dw.h
-> +++ b/drivers/spi/spi-dw.h
-> @@ -17,6 +17,8 @@
->  
->  /* Synopsys DW SSI component versions (FourCC sequence) */
-                                                  <-+
->  #define DW_HSSI_102A			0x3130322a  |
-> +#define DW_HSSI_103A			0x3130332a  |
-                                                    |
-> +#define DW_PSSI_400A			0x3430302a -+
-
-Please define the PSSI-macros above the HSSI ones.
-
->  
->  /* DW SSI IP-core ID and version check helpers */
->  #define dw_spi_ip_is(_dws, _ip) \
-> @@ -94,6 +96,9 @@
->  #define DW_HSSI_CTRLR0_TMOD_MASK		GENMASK(11, 10)
->  #define DW_HSSI_CTRLR0_SRL			BIT(13)
-                                                       <---------+
->  #define DW_HSSI_CTRLR0_MST			BIT(31)          |
-                                                                 |
-> +#define DW_HSSI_CTRLR0_SPI_FRF_MASK		GENMASK(23, 22) -+
-
-This macro should be placed above the DW_HSSI_CTRLR0_MST one. Also
-rename SPI_FRF to ENH_FRF.
-
-> +#define DW_PSSI_CTRLR0_SPI_FRF_MASK		GENMASK(22, 21)
-> +#define DW_SPI_CTRLR0_SPI_FRF_STD_SPI		0x0
-
-1. Move these macros to the DW APB SSI group of the CSR fields macros.
-2. Drop the SPI suffix from the DW_SPI_CTRLR0_SPI_FRF_STD_SPI macro.
-3. Replace SPI_FRF with ENH_FRF name.
-
->  
->  /* Bit fields in CTRLR1 */
->  #define DW_SPI_NDF_MASK				GENMASK(15, 0)
-> @@ -135,6 +140,7 @@ struct dw_spi_cfg {
->  	u8 dfs;
->  	u32 ndf;
->  	u32 freq;
-
-> +	u8 spi_frf;
-
-Please move it to the head of the structure and rename to "enh_frf".
-
--Serge(y)
-
->  };
->  
->  struct dw_spi;
-> -- 
-> 2.30.2
+> On Tue, Jan 03, 2023 at 12:16:14PM +0530, Aradhya Bhatia wrote:
+>> Dual-link LVDS interfaces have 2 links, with even pixels traveling on
+>> one link, and odd pixels on the other. These panels are also generic in
+>> nature, with no documented constraints, much like their single-link
+>> counterparts, "panel-lvds".
+>>
+>> Add a new compatible, "panel-dual-lvds", and a dt-binding document for
+>> these panels.
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>> ---
+>>   .../display/panel/panel-dual-lvds.yaml        | 157 ++++++++++++++++++
+>>   MAINTAINERS                                   |   1 +
+>>   2 files changed, 158 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+>> new file mode 100644
+>> index 000000000000..88a7aa2410be
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+>> @@ -0,0 +1,157 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/panel/panel-dual-lvds.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Generic Dual-Link LVDS Display Panel
+>> +
+>> +maintainers:
+>> +  - Aradhya Bhatia <a-bhatia1@ti.com>
+>> +  - Thierry Reding <thierry.reding@gmail.com>
+>> +
+>> +description: |
+>> +  A dual-LVDS interface is a dual-link connection with the even pixels
+>> +  traveling on one link, and the odd pixels traveling on the other.
+>> +
+>> +allOf:
+>> +  - $ref: panel-common.yaml#
+>> +  - $ref: /schemas/display/lvds.yaml/#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - lincolntech,lcd185-101ct
+>> +              - microtips,13-101hieb0hf0-s
+>> +          - const: panel-dual-lvds
+>> +      - const: panel-dual-lvds
 > 
+> A device-specific compatible string should be required,
+> "panel-dual-lvds" alone shouldn't be allowed. Otherwise it won't be
+> possible to tell different models apart later should this be required.
+> 
+
+Understood! Will make the fix in the next revision.
+
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: The sink for first set of LVDS pixels.
+>> +
+>> +        properties:
+>> +          dual-lvds-odd-pixels:
+>> +            type: boolean
+>> +
+>> +          dual-lvds-even-pixels:
+>> +            type: boolean
+>> +
+>> +        oneOf:
+>> +          - required: [dual-lvds-odd-pixels]
+>> +          - required: [dual-lvds-even-pixels]
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: The sink for second set of LVDS pixels.
+>> +
+>> +        properties:
+>> +          dual-lvds-even-pixels:
+>> +            type: boolean
+>> +
+>> +          dual-lvds-odd-pixels:
+>> +            type: boolean
+>> +
+>> +        oneOf:
+>> +          - required: [dual-lvds-even-pixels]
+>> +          - required: [dual-lvds-odd-pixels]
+>> +
+>> +    allOf:
+>> +      - if:
+>> +          properties:
+>> +            port@0:
+>> +              properties:
+>> +                dual-lvds-odd-pixels: true
+>> +              required:
+>> +                - dual-lvds-odd-pixels
+>> +        then:
+>> +          properties:
+>> +            port@1:
+>> +              properties:
+>> +                dual-lvds-even-pixels: true
+>> +                dual-lvds-odd-pixels: false
+>> +
+>> +      - if:
+>> +          properties:
+>> +            port@0:
+>> +              properties:
+>> +                dual-lvds-even-pixels: true
+>> +              required:
+>> +                - dual-lvds-even-pixels
+>> +        then:
+>> +          properties:
+>> +            port@1:
+>> +              properties:
+>> +                dual-lvds-odd-pixels: true
+>> +                dual-lvds-even-pixels: false
+>> +
+>> +    required:
+>> +      - port@0
+>> +      - port@1
+>> +
+>> +  port: false
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - width-mm
+>> +  - height-mm
+>> +  - data-mapping
+>> +  - panel-timing
+>> +  - ports
+>> +
+>> +examples:
+>> +  - |+
+>> +    panel-dual-lvds {
+>> +      compatible = "microtips,13-101hieb0hf0-s", "panel-dual-lvds";
+>> +
+>> +      width-mm = <217>;
+>> +      height-mm = <136>;
+>> +
+>> +      data-mapping = "vesa-24";
+>> +
+>> +      panel-timing {
+>> +        clock-frequency = <150275000>;
+>> +        hactive = <1920>;
+>> +        vactive = <1200>;
+>> +        hfront-porch = <32>;
+>> +        hsync-len = <52>;
+>> +        hback-porch = <24>;
+>> +        vfront-porch = <24>;
+>> +        vsync-len = <8>;
+>> +        vback-porch = <3>;
+>> +        de-active = <1>;
+>> +      };
+>> +
+>> +      ports {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        port@0 {
+>> +          reg = <0>;
+>> +          dual-lvds-odd-pixels;
+>> +          lcd_in0: endpoint {
+>> +            remote-endpoint = <&oldi_out0>;
+>> +          };
+>> +        };
+>> +
+>> +        port@1 {
+>> +          reg = <1>;
+>> +          dual-lvds-even-pixels;
+>> +          lcd_in1: endpoint {
+>> +            remote-endpoint = <&oldi_out1>;
+>> +          };
+>> +        };
+>> +      };
+>> +    };
+>> +
+>> +...
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 7f86d02cb427..c13f24293ab1 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -6595,6 +6595,7 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
+>>   S:	Maintained
+>>   F:	drivers/gpu/drm/panel/panel-lvds.c
+>>   F:	Documentation/devicetree/bindings/display/lvds.yaml
+>> +F:	Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+>>   F:	Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+>>   
+>>   DRM DRIVER FOR MANTIX MLAF057WE51 PANELS
+> 
+
+Regards
+Aradhya
