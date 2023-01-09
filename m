@@ -2,74 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F0966241C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:22:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B43366242F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:27:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236428AbjAILWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 06:22:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45830 "EHLO
+        id S229685AbjAIL1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 06:27:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234883AbjAILWc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:22:32 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4FC1183AF
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 03:22:31 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so6388293wms.4
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 03:22:31 -0800 (PST)
+        with ESMTP id S233288AbjAIL0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:26:45 -0500
+Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA949B1C1
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 03:26:44 -0800 (PST)
+Received: by mail-vk1-xa29.google.com with SMTP id i32so3735145vkr.12
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 03:26:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FWFroMaGP/rBBuyi1aeBwg2KMoCRdSf/+bqqQ6WNoCs=;
-        b=wIwMz4aEz7zu6ICEJoSATuPYt+Y6KnYkMNIhgFcwEyDPypmi0i4g510B6VV5bHfRDU
-         +VN/xk6qJ4/z6MX+AfQncA3afAawQokugN/Fjg75abe9oZN4Z21fkTvaUqBKe0krEKUR
-         ai2Hnfmlmul81tvKUn7LiFAn/QBSOjzqabffwKKbaIA5UXrO3IXwJ1q1h57TBLh0c2qv
-         HvDEtCGodd56GOh1bcyJoExusqdIb6GG/jngXUZlEB0IPGAxedyyoNmCI9LZ8CFLTQiH
-         6i4VYCXKUIf4wbeUdc60VMbShyq3+WOO4BViuf+//h8KGKQ0Ayj/ti+EhwaqzTbwnQvd
-         zJMg==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bo9l2JVUA1McBtZKQkN0F54d6hhYCb2UnGDrUfplMvw=;
+        b=Y/bFXrLP7WAMZou8niwk7rQsUkfbc3zSSZnzK+H1y9HIj2x6aPpkEkzo1pthHM8CRG
+         86/iqchNl+vKpsCgsRSKwCB84c9t7dymtwzVd7kuEaXXLqiyu+fWxJpSbMQYxzHzQsNs
+         T6Szigx/avepoCNwU5QIXcSKzGNj/yv6jNQ5w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FWFroMaGP/rBBuyi1aeBwg2KMoCRdSf/+bqqQ6WNoCs=;
-        b=tZlHdYxfbDOcWR4lIa0q3/HDGJLFdf+PdHcDp7ApDDRI2F8ptN1VO5Fz18zvojATHp
-         xsUjZPeFlKD4CPfLtt3G7FFu2KIk2w8kbZVylAjMl3gH3JVJKLiuNBkNsJoces4iJ7Tc
-         eHNayzVEX51eB9jLJkUl8qAuTDVq1HtaS+BMLjw8qOPAxFT+DIdc4+BV+rX1LH4eV+IR
-         cB7kHgtn9UfFKAuKGcR3cWn+GGR3LKGhR+4lFelQvnzqD1P0NMS9xv99D3lxRsQlGU4w
-         5q8fxPFckmv64iUYGsjYz54pXOYGaxcimC86L5axfrJFeQYZpxK5wo8NQadaDKqXUuqX
-         L3Wg==
-X-Gm-Message-State: AFqh2krOXvIMTcUp5OY2sgDkClEr9Y1ACoZ6P4C8/O8jEp0s0/nXe4SK
-        1kCHjhsQcV76G57mDbPvYH8dQg==
-X-Google-Smtp-Source: AMrXdXuRNDCmsI3QcjFwVPHm42JW+QKz2uF51ApN1JzaQ4roCnwTpfVnYNvc+fryESftFAC4JkKqEA==
-X-Received: by 2002:a05:600c:4f11:b0:3d9:ee01:ae5b with SMTP id l17-20020a05600c4f1100b003d9ee01ae5bmr2930005wmq.12.1673263350532;
-        Mon, 09 Jan 2023 03:22:30 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n14-20020a05600c3b8e00b003b49bd61b19sm17456986wms.15.2023.01.09.03.22.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 03:22:30 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Bo9l2JVUA1McBtZKQkN0F54d6hhYCb2UnGDrUfplMvw=;
+        b=3DPYi5d/LnUfBtNRU90geoL/1eh0iIbpy1NybMjMY+kfQcaKwb0udsrZR/oCaHF3mC
+         Ad3Seg5VFk1V4Nib7Br4yqYHJJA8ntJirzTNU36lWRGlZjp30Mw3POdkSljzVIRSaM1e
+         tL46ycl/87w2y+Y9xwS1Q871qk7a0HxL/k/dPymRcFGUC2aAsCaKJen+oAcKOOvo3XgP
+         OWuuMkGtoM/8hcZPqyLQvWosMFPta7y7gcvLgXsUr9KorlxQv2aPOc3KzPgncNFOpwb0
+         rKy855jffXjj8yOeA2tdte1LJtLKWVHGE0wJYMJCwk8ogTslIJH5/UsWmJB6E4tSionf
+         1rFw==
+X-Gm-Message-State: AFqh2kqpHearUIClxwKMt00+W/A+nG5XSGXBnqf2A69XU9KdL8bdO07k
+        wGyhHW59H0RUyjw4vL+YiZBDYjUE2YpgT0YxurqGTQ==
+X-Google-Smtp-Source: AMrXdXtRqsnvaHVT65xQiCvm+AgHkuJFCN48Cuhs9Iwq7hEJZjw6WgLwkUsflSUoSemDXcCVgmmcJ2Y4qqOo4cGwVIE=
+X-Received: by 2002:a1f:df84:0:b0:3d5:9e3a:538 with SMTP id
+ w126-20020a1fdf84000000b003d59e3a0538mr4564465vkg.22.1673263603882; Mon, 09
+ Jan 2023 03:26:43 -0800 (PST)
+MIME-Version: 1.0
+References: <20230109084101.265664-1-treapking@chromium.org> <20230109084101.265664-7-treapking@chromium.org>
+In-Reply-To: <20230109084101.265664-7-treapking@chromium.org>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 9 Jan 2023 19:26:32 +0800
+Message-ID: <CAGXv+5E=-=cPGSi1eEDAkTm+RvuJNU4zeZOxunpR7r4+RgzNYA@mail.gmail.com>
+Subject: Re: [PATCH v9 6/9] drm/bridge: anx7625: Register Type C mode switches
+To:     Pin-yen Lin <treapking@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sm8250: drop unused properties from tx-macro
-Date:   Mon,  9 Jan 2023 12:22:21 +0100
-Message-Id: <20230109112221.102473-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230109112221.102473-1-krzysztof.kozlowski@linaro.org>
-References: <20230109112221.102473-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, linux-acpi@vger.kernel.org,
+        Allen Chen <allen.chen@ite.com.tw>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        dri-devel@lists.freedesktop.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        chrome-platform@lists.linux.dev, Xin Ji <xji@analogixsemi.com>,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,37 +94,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neither qcom,sm8250-lpass-tx-macro bindings nor the driver use
-"clock-frequency" and address/size cells properties.
+On Mon, Jan 9, 2023 at 4:41 PM Pin-yen Lin <treapking@chromium.org> wrote:
+>
+> Register USB Type-C mode switches when the "mode-switch" property and
+> relevant port are available in Device Tree. Configure the crosspoint
+           ^ ports
 
-  sm8250-mtp.dtb: txmacro@3220000: Unevaluated properties are not allowed ('clock-frequency', '#address-cells', '#size-cells' were unexpected)
+> switch based on the entered alternate mode for a specific Type-C
+> connector.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+You should also mention that the "one mode switch" scenario is not
+covered in this implementation, due to lack of actual hardware.
 
----
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+>
+> ---
+>
+> (no changes since v7)
+>
+> Changes in v7:
+> - Fixed style issues in anx7625 driver
+> - Removed DT property validation in anx7625 driver.
+> - Extracted common codes to another commit.
+>
+> Changes in v6:
+> - Squashed to a single patch
+>
+>  drivers/gpu/drm/bridge/analogix/Kconfig   |  1 +
+>  drivers/gpu/drm/bridge/analogix/anx7625.c | 88 +++++++++++++++++++++++
+>  drivers/gpu/drm/bridge/analogix/anx7625.h | 13 ++++
+>  3 files changed, 102 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/bridge/analogix/Kconfig b/drivers/gpu/drm/bridge/analogix/Kconfig
+> index 173dada218ec..992b43ed1dd7 100644
+> --- a/drivers/gpu/drm/bridge/analogix/Kconfig
+> +++ b/drivers/gpu/drm/bridge/analogix/Kconfig
+> @@ -34,6 +34,7 @@ config DRM_ANALOGIX_ANX7625
+>         tristate "Analogix Anx7625 MIPI to DP interface support"
+>         depends on DRM
+>         depends on OF
+> +       depends on TYPEC || TYPEC=n
+>         select DRM_DISPLAY_DP_HELPER
+>         select DRM_DISPLAY_HDCP_HELPER
+>         select DRM_DISPLAY_HELPER
+> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> index 1cf242130b91..2bb504a8d789 100644
+> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> @@ -15,6 +15,8 @@
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/slab.h>
+>  #include <linux/types.h>
+> +#include <linux/usb/typec_dp.h>
+> +#include <linux/usb/typec_mux.h>
+>  #include <linux/workqueue.h>
+>
+>  #include <linux/of_gpio.h>
+> @@ -2572,6 +2574,86 @@ static void anx7625_runtime_disable(void *data)
+>         pm_runtime_disable(data);
+>  }
+>
+> +static void anx7625_set_crosspoint_switch(struct anx7625_data *ctx,
+> +                                         enum typec_orientation orientation)
+> +{
+> +       if (orientation == TYPEC_ORIENTATION_NORMAL) {
+> +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
+> +                                 SW_SEL1_SSRX_RX1 | SW_SEL1_DPTX0_RX2);
+> +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
+> +                                 SW_SEL2_SSTX_TX1 | SW_SEL2_DPTX1_TX2);
+> +       } else if (orientation == TYPEC_ORIENTATION_REVERSE) {
+> +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
+> +                                 SW_SEL1_SSRX_RX2 | SW_SEL1_DPTX0_RX1);
+> +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
+> +                                 SW_SEL2_SSTX_TX2 | SW_SEL2_DPTX1_TX1);
+> +       }
+> +}
+> +
+> +static void anx7625_typec_two_ports_update(struct anx7625_data *ctx)
+> +{
+> +       struct drm_dp_typec_switch_desc switch_desc = ctx->switch_desc;
+> +       /* Check if both ports available and do nothing to retain the current one */
+> +       if (switch_desc.typec_ports[0].dp_connected && switch_desc.typec_ports[1].dp_connected)
+> +               return;
+> +
+> +       if (switch_desc.typec_ports[0].dp_connected)
+> +               anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_NORMAL);
+> +       else if (switch_desc.typec_ports[1].dp_connected)
+> +               anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_REVERSE);
+> +}
+> +
+> +static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
+> +                                struct typec_mux_state *state)
+> +{
+> +       struct drm_dp_typec_port_data *port_data = typec_mux_get_drvdata(mux);
+> +       struct anx7625_data *ctx = (struct anx7625_data *) port_data->data;
+> +       struct device *dev = &ctx->client->dev;
+> +       struct drm_dp_typec_switch_desc switch_desc = ctx->switch_desc;
+> +       bool new_dp_connected, old_dp_connected;
+> +
 
-Changes since v1:
-1. Add tags.
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+And place a TODO note here.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index a58f51083715..ddd750591e8c 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2329,10 +2329,7 @@ txmacro: txmacro@3220000 {
- 			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
- 
- 			#clock-cells = <0>;
--			clock-frequency = <9600000>;
- 			clock-output-names = "mclk";
--			#address-cells = <2>;
--			#size-cells = <2>;
- 			#sound-dai-cells = <1>;
- 		};
- 
--- 
-2.34.1
+Otherwise this looks OK.
 
+Also,
+
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+on MT8192 based Hayato (ASUS Chromebook Flip CM3200).
+
+And this also uncovered a deadlock in the unplug & disable path.
+I'll send a fix for that later once I figure out all the details.
