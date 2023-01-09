@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 385F2663504
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:17:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 224DC6634E9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237835AbjAIXQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 18:16:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46520 "EHLO
+        id S234413AbjAIXQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 18:16:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237819AbjAIXQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:16:29 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A12193D0;
-        Mon,  9 Jan 2023 15:16:27 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id j17so15536351lfr.3;
-        Mon, 09 Jan 2023 15:16:27 -0800 (PST)
+        with ESMTP id S237556AbjAIXQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:16:09 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 528A2BC84;
+        Mon,  9 Jan 2023 15:16:07 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id d30so10615503lfv.8;
+        Mon, 09 Jan 2023 15:16:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TfEuuSwlBNCNhQ0V5aSlOKkpq1jL3HZF0gUtECm9ca4=;
-        b=H89n6zgg9/ccQW83NIXtgWreRJ1gThUzpqTRM46UyotjgGl289ZtSeYWxfwcJDA1io
-         2d2eBFAobUY0hgOv/1qLa2p0T0eDMoTT0p0odlKwnpozFdXS3DsZIyq1aAK9F66VnDn1
-         lYnGuIiYLNprPIGCYmAKwEkL3GUtFMIRtzeOxEOewO9fxEn2I+ZDYxhhiXtqYJx7Kw+E
-         I8iMnUaogrCKo1EmgN6md2a5m4oGq0MKl0RLMPajTXSbs2L+0mIVUglLO1YYaepiAztb
-         rif1zqFMFG9YtTgMFr03o+OC6R8mkG7ZQUinGmpfnBx6eg8cgH5wD/wb98AzEOplZSHE
-         KCJQ==
+        bh=TQwDBfqkurhgjNXU0QKC0PjFG76vM9b8TjKB0PaMvXw=;
+        b=SqMxWZDzvqcnd4VsGn02ROGADSumLx9BSN8MB31bs3DrTrebdrbk649dIlJYjdQVYI
+         Jyit7fGBQBIlayPVkbESvPA5uj2HvBlWpIXz/QLbJaBMJHyk/gqUvz8txxloW3/kg/h4
+         8fKFPj/dF5RTTeQUIg3DdaB1Lykoi623x65aXh+oxADVw1V2VLeTyO3F0EsK1OAEpRJ4
+         n//iygvdu0aDZMi6Vwz2oguE6dgJY+85pwWO278pxCRVFL97CcTJQWU9+JL5qi3wyYZN
+         0QKPRAvwdjkjlglmNCrgQBlGzC4DPggg0NdqqAF2aeYDXgPv05Ztfe7nzrLdWkjmD0Im
+         uyNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TfEuuSwlBNCNhQ0V5aSlOKkpq1jL3HZF0gUtECm9ca4=;
-        b=Yay6+QtWPo5Es0mGK0t96BDG98Mr5GB4h3yeIjfChQqCwLR1EjH0u2Klr/3mh6y7Tp
-         oogNeij8BBmsMPvJUwKeAOPhvwfPjNDOvxfoS3UvFhH4oZygQmllgRWCnnputtj2KJmy
-         EDznLPNCbhTsfe7M2rIXVCbeRrdEbgTsmX+xHEWJcTiDJndCLDGN1E3zy8XqIEY1iezt
-         eBGk63aTyS2IOHiw6SL0DNUeWKmbsT2uzSAv5Lv/KCM99vU+mV8NbFVUr6+YxvSxFzMf
-         tDQI6HOZ9OzBghCOV6Dp+1y8TjL7lzafXXGyX3w5IRLJsLFyXkl909B0rN2kvTELRL6x
-         U0Zw==
-X-Gm-Message-State: AFqh2komaHFNDr/RzBw7/ML95SgJuvLGW2NQCQCCtuXBbwbJ+uRqDi9D
-        wWAssnKsaDbk61pBsL8eaWU=
-X-Google-Smtp-Source: AMrXdXvprIeLayo9AFJx7FpojNZLkyqDF96Vsu4eBGirYDKXTe9iE/pZTVa/I66i+H3OiKDocm+NhA==
-X-Received: by 2002:a05:6512:10d6:b0:4b5:834b:9f75 with SMTP id k22-20020a05651210d600b004b5834b9f75mr20414337lfg.33.1673306185460;
-        Mon, 09 Jan 2023 15:16:25 -0800 (PST)
+        bh=TQwDBfqkurhgjNXU0QKC0PjFG76vM9b8TjKB0PaMvXw=;
+        b=qsEwJIGCD3+2DsWzEK/hWGPUp2YxIL0/WDe2a3JcD7aVfbu/xSaDFGE8BI/AA2NOwy
+         Q6V78A5b5hFX0kD8WTvmdLoKBYyrzbGE7C0RQoSLb20VgMbbvJQG2K3wX5+TAXJTYoGR
+         dBOwRfnpp4F/Zphx2Ay3uPHyqKIVfspuWHJOzYxvk9QHSFA0XOyIdT+TE1a/LYSZGnf2
+         m+97WofgDjPD/xHqxgS3fqfJsTQEH6srkNPpYa0ZhlccxCIJzSYPGMfttOwQ2NIp3Z+Z
+         ZhaQ2WXW40lBv1EQqHjETpYYWEFH5dLe2qhLQYhD6V5/jpuB4wiPMZUe4d6XBcGWBMlf
+         Zjqw==
+X-Gm-Message-State: AFqh2koMxfvxAXOE6/0oa1kjKkWGIwSgddDw65CY7Zg45yosNHzEkg41
+        ++qsz157Yhsp2kpdsLnP+0I=
+X-Google-Smtp-Source: AMrXdXsxlo89Tk1v8oWLh9mQW/RBULg2GePp3d7816B4+khN0j3h8rEZ3+fD5AU+CLlRhohD3mhCXQ==
+X-Received: by 2002:a05:6512:c03:b0:4b5:a4ef:fca3 with SMTP id z3-20020a0565120c0300b004b5a4effca3mr21624685lfu.38.1673306166159;
+        Mon, 09 Jan 2023 15:16:06 -0800 (PST)
 Received: from localhost (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id b9-20020a056512218900b004b57162edfasm1833530lft.117.2023.01.09.15.16.23
+        by smtp.gmail.com with ESMTPSA id s6-20020ac25fe6000000b004b50b4f63b7sm1814075lfg.170.2023.01.09.15.16.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 15:16:24 -0800 (PST)
+        Mon, 09 Jan 2023 15:16:05 -0800 (PST)
 From:   Dmitry Baryshkov <dbaryshkov@gmail.com>
 X-Google-Original-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Rob Clark <robdclark@gmail.com>,
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Rob Clark <robdclark@gmail.com>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
         linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-In-Reply-To: <20221207220012.16529-1-quic_bjorande@quicinc.com>
-References: <20221207220012.16529-1-quic_bjorande@quicinc.com>
-Subject: Re: [PATCH v5 00/12] drm/msm: Add SC8280XP support
-Message-Id: <167330408782.609993.5872563380257036199.b4-ty@linaro.org>
+In-Reply-To: <20221231170532.77000-1-a39.skl@gmail.com>
+References: <20221231170532.77000-1-a39.skl@gmail.com>
+Subject: Re: [PATCH] dt-bindings: msm: dsi-phy-28nm: Document fam-b compatible
+Message-Id: <167330408780.609993.10652879591606544377.b4-ty@linaro.org>
 Date:   Tue, 10 Jan 2023 00:41:27 +0200
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -87,39 +82,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 07 Dec 2022 14:00:00 -0800, Bjorn Andersson wrote:
-> This introduces support for the SC8280XP platform in the MDSS, DPU and
-> DP driver. It reworks the HDP handling in the DP driver to support
-> external HPD sources - such as the dp-connector, or USB Type-C altmode.
+On Sat, 31 Dec 2022 18:05:32 +0100, Adam Skladowski wrote:
+> Document omitted 28nm compatible which will be used on MSM8976 SoC.
 > 
-> It then introduces the display clock controllers, mdss, dpu and
-> displayport controllers and link everything together, for both the MDSS
-> instances on the platform, and lastly enables EDP on the compute
-> reference device and 6 of the MiniDP outputs on the automotive
-> development platform.
 > 
-> [...]
 
 Applied, thanks!
 
-[01/12] dt-bindings: display/msm: Add binding for SC8280XP MDSS
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/9ae2a57bdf9a
-[02/12] drm/msm/dpu: Introduce SC8280XP
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/f0a1bdf64dd7
-[03/12] drm/msm: Introduce SC8280XP MDSS
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/39bcdb416fb6
-[04/12] dt-bindings: msm/dp: Add SDM845 and SC8280XP compatibles
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/b6f8c4debc00
-[05/12] drm/msm/dp: Stop using DP id as index in desc
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/5d417b401146
-[06/12] drm/msm/dp: Add DP and EDP compatibles for SC8280XP
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/5bd69fd16198
-[07/12] drm/msm/dp: Add SDM845 DisplayPort instance
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/fa33f2aa9674
-[08/12] drm/msm/dp: Rely on hpd_enable/disable callbacks
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/cd198caddea7
-[09/12] drm/msm/dp: Implement hpd_notify()
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/542b37efc20e
+[1/1] dt-bindings: msm: dsi-phy-28nm: Document fam-b compatible
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/852f489b36aa
 
 Best regards,
 -- 
