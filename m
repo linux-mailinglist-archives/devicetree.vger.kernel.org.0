@@ -2,220 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A28B662450
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:38:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56AF5662456
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:38:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233672AbjAILiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 06:38:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53460 "EHLO
+        id S234288AbjAILiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 06:38:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236961AbjAILiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:38:03 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABE242A3
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 03:38:01 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1pEqTX-0004DM-9N; Mon, 09 Jan 2023 12:37:59 +0100
-Message-ID: <c1d4e91f-0a64-a45c-8831-4e570bef704c@pengutronix.de>
-Date:   Mon, 9 Jan 2023 12:37:58 +0100
+        with ESMTP id S234816AbjAILio (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:38:44 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C7EB36
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 03:38:41 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id g10so6047359wmo.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 03:38:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=uWRQwZU7Q5uXmRpQpJb8/BTaeDI/2pDdqBknaeuYMoc=;
+        b=y1NBPAWB/5QSk15IQF0sayDsBGK9DTwzo64Fwhce+Wv3f7tVbPw++Vm7KjFJ/ePuIH
+         alZSxq4wMtI3JYRZn3zmZrqmW5U+tcE/36mSZS+ao+PBouUNXkLt8uMAN3EDUZoM8y1Z
+         V38rcAlr6k9TL1waTrhaRP8dMZcyQgFxWY3TRRWCtw3tASJlyK9l3O/MWYqVGJgAknVC
+         jyzHq/yTgZ5C7OdYW+njoDU4LjZ+sYY1fS9XGuRSIkUPXzN3ekBZA31uKMfMGcdTnJze
+         j7zyR4Zp7HBcTCJS529n0Jvj5PuGWJpqpZXzP6IkeqqXkPlbC7aVB/jHNAVTFf8RXMND
+         S+Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uWRQwZU7Q5uXmRpQpJb8/BTaeDI/2pDdqBknaeuYMoc=;
+        b=WMWBhjjQmFcXIBuq3nKlOw9iMh2KnyvdnALoJ7vzoG9C+7lO9IWrCtYPb8uB/EoUSe
+         k1WjqcjtlLP/+qPPCl2DubuswAnSeDS4qhQdtVs/KplSwC0ptU6s7zyE8DQg6LlbhflU
+         7m9skWwbE+KmAqwe70t0mxWp+fu14w5knQA7yhsT6ouUyWTq7d2O/nXdKYdK/7QXfn/w
+         tCD4JURd8Z3Oi8Sq+zA8AK4JYA0cnQ6TjfdGSYTreZC7c3t0jiulYh4DO1x6mxDHe3E0
+         hYEaiPNAwU/4A2gCow8UR57LDjkpjimK6hfhXvxmo+MwUMpjWs1TRRwK5q816hhNGUVS
+         S2gA==
+X-Gm-Message-State: AFqh2kocSxZbM0oSvUMdiyES8ANXYn3FjWam41bxocd0bJxZ1jW4JaX8
+        iDfZPqoXVrnZGlZ+6Ci5JXkNzg==
+X-Google-Smtp-Source: AMrXdXsgKZSO61ZWkew6Daa4r2uBx8Xe/DlWi/W5u/PDxgxQsVfDr2oBgtSbr4LJo3JD2nU14fQRlg==
+X-Received: by 2002:a05:600c:1f12:b0:3cf:8155:2adc with SMTP id bd18-20020a05600c1f1200b003cf81552adcmr47185923wmb.33.1673264319841;
+        Mon, 09 Jan 2023 03:38:39 -0800 (PST)
+Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id r126-20020a1c2b84000000b003d35c845cbbsm15439361wmr.21.2023.01.09.03.38.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 03:38:39 -0800 (PST)
+Message-ID: <6c784b12-ea81-2ac9-ff99-e33f5c123483@linaro.org>
+Date:   Mon, 9 Jan 2023 12:38:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 2/2][v3] arm64: dts: imx8mm-evk: add revision-B EVK
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 03/12] dt-bindings: nvmem: convert
+ amlogic-meson-mx-efuse.txt to dt-schema
 Content-Language: en-US
-To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, ob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230104130511.1560237-1-johannes.schneider@leica-geosystems.com>
- <20230104130511.1560237-3-johannes.schneider@leica-geosystems.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20230104130511.1560237-3-johannes.schneider@leica-geosystems.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Eric Dumazet <edumazet@google.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-media@vger.kernel.org, netdev@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v1-3-3f025599b968@linaro.org>
+ <CAFBinCANM=AOw1bbGCheFy20mqQ1ym_maK0C1sYpjceoNH-dNQ@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CAFBinCANM=AOw1bbGCheFy20mqQ1ym_maK0C1sYpjceoNH-dNQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.01.23 14:05, Johannes Schneider wrote:
-> the current EVKB come with LPDDR4, and a different PMIC
+On 26/11/2022 00:04, Martin Blumenstingl wrote:
+> Hi Neil,
 > 
-> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
-> ---
->  .../devicetree/bindings/arm/fsl.yaml          |   1 +
->  arch/arm64/boot/dts/freescale/imx8mm-evkb.dts | 132 ++++++++++++++++++
->  2 files changed, 133 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
+> thanks for your work on this!
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index fbfc4f99c01e..9c3a02c19847 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -818,6 +818,7 @@ properties:
->                - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
->                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
->                - fsl,imx8mm-evk            # i.MX8MM EVK Board
-> +              - fsl,imx8mm-evkb           # i.MX8MM EVK Board, rev-B
->                - gateworks,imx8mm-gw7904
->                - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
->                - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
-> new file mode 100644
-> index 000000000000..5907e739d9f6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
-> @@ -0,0 +1,132 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2019-2020 NXP
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx8mm-evk.dtsi"
-> +
-> +/ {
-> +	model = "FSL i.MX8MM EVK board with LPDDR4";
+> On Fri, Nov 18, 2022 at 3:33 PM Neil Armstrong
+> <neil.armstrong@linaro.org> wrote:
+> [...]
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +
+>> +        sn: sn@14 {
+>> +            reg = <0x14 0x10>;
+>> +        };
+>> +
+>> +        eth_mac: mac@34 {
+>> +            reg = <0x34 0x10>;
+>> +        };
+>> +
+>> +        bid: bid@46 {
+>> +            reg = <0x46 0x30>;
+>> +        };
+> I assume you took these examples from the newer, GX eFuse?
+> Unfortunately on boards with these older SoCs the serial number and
+> MAC address are often not stored in the eFuse.
+> This is just an example, so I won't be sad if we keep them. To avoid
+> confusion I suggest switching to different examples:
+>    ethernet_mac_address: mac@1b4 {
+>      reg = <0x1b4 0x6>;
+>    };
+>    temperature_calib: calib@1f4 {
+>       reg = <0x1f4 0x4>;
+>    };
+> 
+> What do you think?
 
-Please note the 'b' revision in the model string.
 
-> +	compatible = "fsl,imx8mm-evkb", "fsl,imx8mm";
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&buck2_reg>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply = <&buck2_reg>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&buck2_reg>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&buck2_reg>;
-> +};
-> +
-> +&i2c1 {
-> +	pmic: pmic@25 {
-> +		compatible = "nxp,pca9450a";
-> +		reg = <0x25>;
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		pinctrl-names = "default";
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		regulators {
-> +			buck1_reg: BUCK1 {
-> +				regulator-name = "BUCK1";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +				nxp,dvs-run-voltage = <820000>;
-> +				nxp,dvs-standby-voltage = <800000>;
-> +			};
-> +
-> +			buck2_reg: BUCK2 {
-> +				regulator-name = "BUCK2";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
-> +
-> +			buck3_reg: BUCK3 {
-> +				regulator-name = "BUCK3";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck4_reg: BUCK4 {
-> +				regulator-name = "BUCK4";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5_reg: BUCK5 {
-> +				regulator-name = "BUCK5";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck6_reg: BUCK6 {
-> +				regulator-name = "BUCK6";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1_reg: LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2_reg: LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1150000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3_reg: LDO3 {
-> +				regulator-name = "LDO3";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4_reg: LDO4 {
-> +				regulator-name = "LDO4";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo5_reg: LDO5 {
-> +				regulator-name = "LDO5";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +		};
-> +	};
-> +};
+Sure switched to it !
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Neil
+> 
+> 
+> Best regards,
+> Martin
 
