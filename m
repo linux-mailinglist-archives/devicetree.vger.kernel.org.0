@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A074F6622E8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 11:17:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 112AA6622F9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 11:18:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236943AbjAIKQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 05:16:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33004 "EHLO
+        id S233986AbjAIKR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 05:17:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236558AbjAIKQD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 05:16:03 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8B7186B2
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 02:15:28 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id g19-20020a05600c4ed300b003d9eb1dbc0aso3261005wmq.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 02:15:28 -0800 (PST)
+        with ESMTP id S237081AbjAIKQv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 05:16:51 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E50AA8FFF
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 02:16:42 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id b3so12206168lfv.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 02:16:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0s4VZeBOMQpwWZj/4UqywYFSz3/oNjsiCGTdYmq+Ed4=;
-        b=GYyFyKRThdUuyM5II+3FAt3nJ8Gmur5flJvLmSDFeEuHUMV6Rx16E1IASpmdxVmyzi
-         eUy1ylnZvSoAbOdPybwXVyLF5oogC4ex72+7vkNfORUc7T5flOHc6D92OpejMWV2Ojf4
-         UzR9jCrRdJwUfcdIZ5D962ti1CNLfpEoo7QoeD3qK+EochicpUJdUXaZ/w3BpVEZfEHg
-         s8TqpyeMy+cUMZgGGGIIrQrjP5l5YeUJLArSfBjYHM0W6qS2CvOSmAG2s5LHb/bCIGZL
-         yypkgAcMjheq/Cs57uPERG6WLr99Iunek/WIEM0Ozoj0pYaVWkQW/FNNXrwNQUzBh1CM
-         N3TA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z4C+uBeuYJaLIQOjHxSFx74inl8MleJj+0t84zKqd+U=;
+        b=gsKFgkaKO0UiC45NxDJvDWSRgSeF7zZQ/ZtxBmTJYSFZfUMKlWgJzDo/cSm5DTmvbq
+         SG8E/bTSrZlhJyw/Hzz8MMc8b5nyJaQY12hHE2ZPZxMx/ewOhjvUXBNQNN2XMk3S4viG
+         BQAdfq7jhud0o6Gz+xZBx1fnqDKM4FTJLylmaxVW2ZwegnGIQAeEJRXeyYDFrYORZyVN
+         HjPikM5ec2P1pSAQTVCTtNxJ+Jb4Rz8QKH81XrT7odQN7yXtTPpb2HnPrY9syMSFTUH7
+         8aFcccrjafWvAhCZLVgWo687NPoB/x3M/dfhJaPlnpGSZdhLkYhvQqWDLyUFYX9liYkx
+         QKnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0s4VZeBOMQpwWZj/4UqywYFSz3/oNjsiCGTdYmq+Ed4=;
-        b=aekWdpSw/dMUHfgo+PmgfkZ4C4KwvNx+T8f83uQBJzVc2sCu8UtUrMiIYj2zYHWf0D
-         anItdmhzgxSNxGurmxEaceSfw7YRvQJDVn2KRqvET1Z6twjovrSi8f9ED94LwWiHzB7I
-         f+VX5kwD9EFkeB+O9S78jHevw34GMDp/6G1Yqyg6VjkZBW74OO6cleH9VtxojaFzBwEP
-         IzM+9o/YTHXEPf4u5KjFrqDBu2Y4HS2/K9HwIErw1lzpv72WplvnJVWcTf+RC+Zppd/2
-         oLP+GAf2x0Q6QqTx419hYDPgJILWQfgPoSv4w5QcqIK7a2sprr8ukH2QSS03N2N64+50
-         qLog==
-X-Gm-Message-State: AFqh2krd4SxOUc7UkNUjAyObzAIaPG52M0FkZnyK08ObpHcOfCO39WSG
-        cTbtLBtAaTVDOQHvyKyBRJXSrQ==
-X-Google-Smtp-Source: AMrXdXsULA5FZYk37OoBQDVDPxjQ4tDTvg8N0Nbd9sVY6dWWU21YUlejDZ9tl3AEmq6iGU7Xk0IWRA==
-X-Received: by 2002:a7b:c3d2:0:b0:3c6:e62e:2e72 with SMTP id t18-20020a7bc3d2000000b003c6e62e2e72mr46579909wmj.13.1673259327514;
-        Mon, 09 Jan 2023 02:15:27 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id h10-20020a05600c2caa00b003cfd58409desm15815376wmc.13.2023.01.09.02.15.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 02:15:27 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Mon, 09 Jan 2023 11:15:23 +0100
-Subject: [PATCH v3 7/7] drm/msm/dsi: add support for DSI 2.7.0
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z4C+uBeuYJaLIQOjHxSFx74inl8MleJj+0t84zKqd+U=;
+        b=CvA3lKdq38/p5k4kZALNuGX6eJDzqdyWf5KnBmo6YFoItbW2EHHMOTZKI5qMVqU/Qw
+         XJKmUtqKQEMh/IS3lNO6jt5+lwYk2v7Uq7GzDw3S2qS0BjYFRkQdVR7jzbsWqSPJW+9N
+         8zPSRsKSfubYYSffZsd12v+iUrm3hkB3fFa3h8D4BOYNfkh1ft7glhQeReFqDUCzaXXo
+         2OMFih1fTQT0ukBS8YODY3rfahoUBAi+P22m+tsJ5a4g9/tJoM21cg2fPwkIXYQ5Qz13
+         kHnrc4qtU0tWGO5tImfp46B+5xoDZqAdg8+e4JgaNbe/RdmJUGHM79gGCRysFof1eU2R
+         6jHg==
+X-Gm-Message-State: AFqh2krrWXOlqRZZe5V4qKb2yQMaCFOZYHNtww9ZhPH5C0ZPRzOj7c76
+        vPZSyB/JLbVER53QDdP1VfQTiA==
+X-Google-Smtp-Source: AMrXdXvjSeDYGDcKZPl8murhw+Uf5jtlCt6Syj74+J9xEW4u+aYleQcMPLSgokkqZLriQ30WgtgZ/Q==
+X-Received: by 2002:a05:6512:340d:b0:4b5:69f1:61b1 with SMTP id i13-20020a056512340d00b004b569f161b1mr18204040lfr.42.1673259401186;
+        Mon, 09 Jan 2023 02:16:41 -0800 (PST)
+Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id b15-20020a05651c032f00b0027fd02c99d4sm848109ljp.75.2023.01.09.02.16.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 02:16:40 -0800 (PST)
+Message-ID: <1ec4b446-b195-0277-90ba-4a8398fcd729@linaro.org>
+Date:   Mon, 9 Jan 2023 11:16:39 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230103-topic-sm8550-upstream-mdss-dsi-v3-7-660c3bcb127f@linaro.org>
-References: <20230103-topic-sm8550-upstream-mdss-dsi-v3-0-660c3bcb127f@linaro.org>
-In-Reply-To: <20230103-topic-sm8550-upstream-mdss-dsi-v3-0-660c3bcb127f@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 3/3] dt-bindings: firmware: qcom: scm: Separate VMIDs
+ from header to bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.11.1
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Loic Poulain <loic.poulain@linaro.org>
+References: <20230109093947.83394-1-konrad.dybcio@linaro.org>
+ <20230109093947.83394-3-konrad.dybcio@linaro.org>
+ <e64d22eb-4c42-b279-b493-972e4a1af1cd@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <e64d22eb-4c42-b279-b493-972e4a1af1cd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,61 +84,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for DSI 2.7.0 (block used on sm8550).
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/gpu/drm/msm/dsi/dsi_cfg.c | 16 ++++++++++++++++
- drivers/gpu/drm/msm/dsi/dsi_cfg.h |  1 +
- 2 files changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-index 59a4cc95a251..33884ebd2f86 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-+++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-@@ -181,6 +181,20 @@ static const struct msm_dsi_config sdm845_dsi_cfg = {
- 	.num_dsi = 2,
- };
- 
-+static const struct regulator_bulk_data sm8550_dsi_regulators[] = {
-+	{ .supply = "vdda", .init_load_uA = 16800 },	/* 1.2 V */
-+};
-+
-+static const struct msm_dsi_config sm8550_dsi_cfg = {
-+	.io_offset = DSI_6G_REG_SHIFT,
-+	.regulator_data = sm8550_dsi_regulators,
-+	.num_regulators = ARRAY_SIZE(sm8550_dsi_regulators),
-+	.bus_clk_names = dsi_sdm845_bus_clk_names,
-+	.num_bus_clks = ARRAY_SIZE(dsi_sdm845_bus_clk_names),
-+	.io_start = { 0xae94000, 0xae96000 },
-+	.num_dsi = 2,
-+};
-+
- static const struct regulator_bulk_data sc7180_dsi_regulators[] = {
- 	{ .supply = "vdda", .init_load_uA = 21800 },	/* 1.2 V */
- };
-@@ -302,6 +316,8 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
- 		&sc7280_dsi_cfg, &msm_dsi_6g_v2_host_ops},
- 	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_6_0,
- 		&sdm845_dsi_cfg, &msm_dsi_6g_v2_host_ops},
-+	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_7_0,
-+		&sm8550_dsi_cfg, &msm_dsi_6g_v2_host_ops},
- };
- 
- const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-index 95957fab499d..44be4a88aa83 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-+++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-@@ -26,6 +26,7 @@
- #define MSM_DSI_6G_VER_MINOR_V2_4_1	0x20040001
- #define MSM_DSI_6G_VER_MINOR_V2_5_0	0x20050000
- #define MSM_DSI_6G_VER_MINOR_V2_6_0	0x20060000
-+#define MSM_DSI_6G_VER_MINOR_V2_7_0	0x20070000
- 
- #define MSM_DSI_V2_VER_MINOR_8064	0x0
- 
+On 9.01.2023 10:54, Krzysztof Kozlowski wrote:
+> On 09/01/2023 10:39, Konrad Dybcio wrote:
+>> With changes to the rmtfs binding, secure VMIDs will become useful to
+>> have in device trees. Separate them out and add to include/dt-bindings.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>> v2 -> v3:
+>> New patch
+>>
+>>  include/dt-bindings/firmware/qcom/scm.h | 16 ++++++++++++++++
+>>  include/linux/qcom_scm.h                |  7 ++-----
+>>  2 files changed, 18 insertions(+), 5 deletions(-)
+>>  create mode 100644 include/dt-bindings/firmware/qcom/scm.h
+>>
+>> diff --git a/include/dt-bindings/firmware/qcom/scm.h b/include/dt-bindings/firmware/qcom/scm.h
+>> new file mode 100644
+>> index 000000000000..d66818cd57a8
+>> --- /dev/null
+>> +++ b/include/dt-bindings/firmware/qcom/scm.h
+>> @@ -0,0 +1,16 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+> 
+> Only Codeaurora folks contributed these numbers, thus we can relicense
+> it to dual-license, I believe.
+> 
+> The other topic is what do these numbers represent: hardware interface?
+> registers? offsets? firmware?
+Arguments for a SCM call, so firmware interface.
 
--- 
-2.34.1
+IOW, why bindings is the place for them?
+> (usefulness for DTS is not the reason)
+These defines correspond to mappings in a hardcoded, irreplaceable
+and un-omittable firmware which is (unless you steal engineering
+samples from the factory) always shipped with these SoCs and they
+help clarify some otherwise totally magic numbers.
+
+Konrad
+
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
