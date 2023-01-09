@@ -2,136 +2,334 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D9B661FDB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:20:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A848661FF8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:27:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231219AbjAIIUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 03:20:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38834 "EHLO
+        id S236572AbjAII11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 03:27:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236309AbjAIIUU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:20:20 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D25BEE3E
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:20:19 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id az7so7318250wrb.5
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:20:18 -0800 (PST)
+        with ESMTP id S236562AbjAII10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:27:26 -0500
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDDB865B4
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:27:23 -0800 (PST)
+Received: by mail-qv1-xf2a.google.com with SMTP id d13so5729785qvj.8
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:27:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CYyp5XDyMRmrPqmynKHIyJjVDqDm5Chh7Zml32+BipY=;
-        b=zTOCGwY56/f5Z1Eki0rfCFmDAHRfvpvEOGhKsUuiVnhIHF8TTAukLvemA8Rh1gH6iH
-         no9OCSVIsHO9GAp1dMmhukvQmYTsCwB+TtQIQkV73NFeuCNn0WR3g9N4gADoPNIT/Hlj
-         5yInInLZM+Iw7CSkSkRg3XoIOMbxRN2BR5PQpzTKDrMiHgOUTTwahxrKoo3RJ1CgJ8tG
-         DiVYxZUJDFr2orRWYQ0USmsHdvtJ1SmQWqwQq+mk53POs+rUSZVmtKEk0FrLtNpc0gG4
-         2hGN5/l4ivWEd5JZgCHwtCO0r0Ete2u0g7YeCoJQfwV2MgsAsqibVzY84Uiu7AdcrGVm
-         8fRg==
+        d=broadcom.com; s=google;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=iPAsobbc84xDahC1st0SctMAPiI0XXBRw+Tqkk91na4=;
+        b=XULBS6+dRzjx+Tv8yUhyskjsq8i/tBHNVBb2DvGVq7mN4jPWzVM8qFQEwmJBszeGQZ
+         ThvD7aQELW5KHyBC0t4zEvUlJN4Fk/Q1vmxO4kgBxzp10/RJiXvW05F4Ov1tl2fPL2sK
+         XD5HncCUu3R5bBypl+bI1Qu05/xqLwePbsOGw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CYyp5XDyMRmrPqmynKHIyJjVDqDm5Chh7Zml32+BipY=;
-        b=l5SSFp6oPHZ4vu6e/oARcn0x5OYs4s64ttw7nRil5kZn0RUeT9UMJ6JuyOFrWgvMX1
-         TignnVt11jGzWH+nd9y6yjVxK4K5Vkef2fSjnhcZ7c37zC6N67xyCBuVVgdFQrZR5qtM
-         7RoZQA6+eGZZ25QfbgTopWFvBC4m7EugupwPY/jubTxsNf2qt3YQr3DSN9aBoy0MsGTr
-         BRVev/u2QoGz3JscMW28xwtr83N9yhlhNT2pGkmY3BAfz8X6UdhGe66TSUB/mfcWod9d
-         aKothlVh3wjWNjpdbo7yG7dxQYnrxEuRSlulz87YymXfXl+/XhWUqUySrVJI1IAYFzdb
-         ojmg==
-X-Gm-Message-State: AFqh2kqyjbW/jC1sXPCra/64RGvdU2GV57nk/wZ5B0PhBDRvr0c/yq28
-        euKIXVNHruK1jCJex3ISM/tarw==
-X-Google-Smtp-Source: AMrXdXuS4SsXEvDjtamC9p7y7+wI0Z3KLE2gqiRlvwPweAiNeB7fCc1XlwUcmftBZTJTntulUNozMg==
-X-Received: by 2002:adf:ea91:0:b0:2a3:44e9:4ebb with SMTP id s17-20020adfea91000000b002a344e94ebbmr11799768wrm.15.1673252417545;
-        Mon, 09 Jan 2023 00:20:17 -0800 (PST)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id p16-20020a5d4590000000b0026fc5694a60sm7896542wrq.26.2023.01.09.00.20.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 00:20:17 -0800 (PST)
-Message-ID: <129fa2ba-2399-067a-bc04-49e08eee2f55@linaro.org>
-Date:   Mon, 9 Jan 2023 09:20:17 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/6] dt-bindings: display/msm: document the SM8550 DSI PHY
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=iPAsobbc84xDahC1st0SctMAPiI0XXBRw+Tqkk91na4=;
+        b=OApAuDdG35VS9DqIySFf5bM1X+wkcwi7DJVao5l9MS+HpmRod6VG5W9RECkKM3Md9v
+         B1il3v5GE/yMRkXyrqE+6yzHu4l8biwlKdvt08P/uOazVzOt7dauWO4N4DdosziOukDy
+         pgxEfcRtc9OgbJhJXswTx2U/c3+LO9yAywTyoeVzCzYUHLwQO+769Nwi5LHgktoRRXYH
+         kgQussKZleEHiBrvRdx6Dk7dLXU5BUrmvnpMc5/TuPlKgkjnN7jZRO/Qk9Cju8qgJU1K
+         Qi97UPYRw7UiUxkEdMbg+qQBxrRvkBHflJfBQ9M1tDOwQ637C5A4jbZ+U5ztH1V8SoaU
+         FtMA==
+X-Gm-Message-State: AFqh2kpzXiluP23qq92pS1CLtFL0XtBV7uD7jYvMTeFq5wI4Z+kc0tfq
+        1CvSab1s7X8U9OLe9fCI6d2zpw==
+X-Google-Smtp-Source: AMrXdXus2mwqSTeO+K0SoVXgWOaPPT24StGEZ4RxZZr27fLMzG9qY6rgzZQz51XXW74JxZa7ygAezQ==
+X-Received: by 2002:a05:6214:2e85:b0:532:2aea:dd6 with SMTP id oc5-20020a0562142e8500b005322aea0dd6mr8411570qvb.40.1673252842855;
+        Mon, 09 Jan 2023 00:27:22 -0800 (PST)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id k2-20020a05620a414200b006faaf6dc55asm5060539qko.22.2023.01.09.00.27.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 09 Jan 2023 00:27:22 -0800 (PST)
+Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
+ support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        kursad.oney@broadcom.com, dregan@mail.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230103-topic-sm8550-upstream-mdss-dsi-v1-0-9ccd7e652fcd@linaro.org>
- <20230103-topic-sm8550-upstream-mdss-dsi-v1-1-9ccd7e652fcd@linaro.org>
- <f8c8076e-2ac3-f67b-7641-d0c324784cb5@linaro.org>
- <5f1a846b-d536-f013-f311-2773945317bb@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <5f1a846b-d536-f013-f311-2773945317bb@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-3-william.zhang@broadcom.com>
+ <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
+Date:   Mon, 9 Jan 2023 00:27:19 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
+MIME-Version: 1.0
+In-Reply-To: <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="000000000000582ac905f1d089dc"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 00:09, Dmitry Baryshkov wrote:
-> On 06/01/2023 17:41, Krzysztof Kozlowski wrote:
->> On 04/01/2023 10:08, Neil Armstrong wrote:
->>> Document the SM8550 DSI PHY which is very close from the 7nm
->>> and 5nm DSI PHYs found in earlier platforms.
->>>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> ---
->>>   Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
->>> index bffd161fedfd..f72727f81076 100644
->>> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
->>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
->>> @@ -15,6 +15,7 @@ allOf:
->>>   properties:
->>>     compatible:
->>>       enum:
->>> +      - qcom,dsi-phy-4nm-8550
->>>         - qcom,dsi-phy-5nm-8350
->>>         - qcom,dsi-phy-5nm-8450
->>
->> Poor patterns once allowed like to keep growing... I commented here:
->> https://lore.kernel.org/all/ccbb47e4-d780-0b1d-814e-27e86b6c369c@linaro.org/
->>
->> so let's wait for response about other compatibles.
-> 
-> I have fixed 8350 & 8450 while applying. Please rebase on top of msm-next-lumag-next with fixed compatibles.
+--000000000000582ac905f1d089dc
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Ack
+Hi Krzysztof,
 
-Thanks,
-Neil
+On 01/08/2023 06:51 AM, Krzysztof Kozlowski wrote:
+> On 06/01/2023 21:07, William Zhang wrote:
+>> The new Broadcom Broadband BCMBCA SoCs includes a updated HSSPI
+>> controller. Add a new compatible string and required fields for the new
+>> driver.  Also add myself and Kursad as the maintainers.
+>>
+>> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+>> ---
+>>
+>>   .../bindings/spi/brcm,bcm63xx-hsspi.yaml      | 84 +++++++++++++++++--
+>>   1 file changed, 78 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>> index 45f1417b1213..56e69d4a1faf 100644
+>> --- a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>> @@ -4,22 +4,51 @@
+>>   $id: http://devicetree.org/schemas/spi/brcm,bcm63xx-hsspi.yaml#
+>>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>   
+>> -title: Broadcom BCM6328 High Speed SPI controller
+>> +title: Broadcom Broadband SoC High Speed SPI controller
+>>   
+>>   maintainers:
+>> +
+> 
+> Drop blank line.
+will fix in  v2.
 
 > 
-> Note: the DPU changes are not yet part of the msm-lumag-next.
+>> +  - William Zhang <william.zhang@broadcom.com>
+>> +  - Kursad Oney <kursad.oney@broadcom.com>
+>>     - Jonas Gorski <jonas.gorski@gmail.com>
 > 
->>
->>>         - qcom,dsi-phy-7nm
->>>
->>
->> Best regards,
->> Krzysztof
->>
+>>   
+>> +description: |
+>> +  Broadcom Broadband SoC supports High Speed SPI master controller since the
+>> +  early MIPS based chips such as BCM6328 and BCM63268.  This controller was
+>> +  carried over to recent ARM based chips, such as BCM63138, BCM4908 and BCM6858.
+>> +
+>> +  It has a limitation that can not keep the chip select line active between
+>> +  the SPI transfers within the same SPI message. This can terminate the
+>> +  transaction to some SPI devices prematurely. The issue can be worked around by
+>> +  either the controller's prepend mode or using the dummy chip select
+>> +  workaround. This controller uses the compatible string brcm,bcm6328-hsspi.
+>> +
+>> +  The newer SoCs such as BCM6756, BCM4912 and BCM6855 include an updated SPI
+>> +  controller that add the capability to allow the driver to control chip select
+>> +  explicitly. This solves the issue in the old controller. This new controller
+>> +  uses the compatible string brcm,bcmbca-hsspi.
+>> +
+>>   properties:
+>>     compatible:
+>> -    const: brcm,bcm6328-hsspi
+>> +    enum:
+>> +      - brcm,bcm6328-hsspi
+>> +      - brcm,bcmbca-hsspi
+> 
+> bca seems quite unspecific. Your description above mentions several
+> model numbers and "bca" is not listed as model. Compatibles cannot be
+> generic.
+"bca" is not model number, rather it is a group (broadband carrier 
+access) of chip that share the same spi host controller IP. Agree it is 
+not particularly specific but it differentiate from other broadcom spi 
+controller ip used by other groups.  We just don't have a specific name 
+for this spi host controller but can we treat bcmbca as the ip name? 
+Otherwise we will have to have a compatible string with chip model for 
+each SoC even they share the same IP. We already have more than ten of 
+SoCs and the list will increase.  I don't see this is a good solution too.
+
+> 
+>>   
+>>     reg:
+>> -    maxItems: 1
+>> +    items:
+>> +      - description: main registers
+>> +      - description: miscellaneous control registers
+>> +    minItems: 1
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: hsspi
+>> +      - const: spim-ctrl
+> 
+> This does not match reg
+Do you mean it does not match the description?
+> 
+>>   
+>>     clocks:
+>>       items:
+>> -      - description: spi master reference clock
+>> -      - description: spi master pll clock
+>> +      - description: SPI master reference clock
+>> +      - description: SPI master pll clock
+> 
+> Really? You just added it in previous patch, didn't you?
+The previous patch was just word to word conversion of the text file.  I 
+will update that patch to include this change.
+
+> 
+>>   
+>>     clock-names:
+>>       items:
+>> @@ -29,12 +58,43 @@ properties:
+>>     interrupts:
+>>       maxItems: 1
+>>   
+>> +  brcm,use-cs-workaround:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description: |
+>> +      Enable dummy chip select workaround for SPI transfers that can not be
+>> +      supported by the default controller's prepend mode, i.e. delay or cs
+>> +      change needed between SPI transfers.
+> 
+> You need to describe what is the workaround.
+Will do.
+> 
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>>     - clocks
+>>     - clock-names
+>> -  - interrupts
+>> +
+>> +allOf:
+>> +  - $ref: "spi-controller.yaml#"
+> 
+> No quotes. How this is related to this patch?
+Will remove quote and put it in patch 1.
+> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - brcm,bcm6328-hsspi
+>> +    then:
+>> +      properties:
+>> +        reg:
+>> +          minItems: 1
+> 
+> Drop.
+> 
+> reg-names now do not match.
+Don't quite understand your comment. What do I need to drop and what is 
+not matched?
+
+> 
+>> +          maxItems: 1
+>> +    else:
+>> +      properties:
+>> +        reg:
+>> +          minItems: 2
+>> +          maxItems: 2
+>> +        reg-names:
+>> +          minItems: 2
+>> +          maxItems: 2
+>> +        brcm,use-cs-workaround: false
+>> +      required:
+>> +        - reg-names
+> Best regards,
+> Krzysztof
 > 
 
+--000000000000582ac905f1d089dc
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIMHbkpaV2usXQ3ShTyXlOBbWwiA0
+UgoeL+gNcDpfWDVhMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MDEwOTA4MjcyM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQBXCvHN0ig/K7M3iVqqb8lpcgxAgf8cljWcCyNhCmXJL3JV
+Wc6iSbTiBPvG4oSLumZYiOITeM1wXL1RvE/1915YRP7mNly+ybnSOuEmPRXZworoDoQ+7Q8QjyQw
+eQnKnwaidu1086e7HxbYo00ig6IjC/OL23wJ1M4YbvIdsvgJUAli0Z1SPj61cgcwAnOYV5gKO0ak
+qvXsvdyYmi+F4FJpnM/jGOgT5ZyNiwqAJOm8K2MbnLlzXXBy/nDvwTQ3K7XO/Bj17KqxD2PySqVw
+cR4eLEOUCP7ufDSMc9R7PDGbJjcuEn/SeiMkZpD5On9owDm8iJGLxf0tkNkDyfyJ+V+i
+--000000000000582ac905f1d089dc--
