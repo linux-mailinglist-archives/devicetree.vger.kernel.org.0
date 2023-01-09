@@ -2,144 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D904F662AA2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 16:58:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E674F662AB5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:01:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230493AbjAIP6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 10:58:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38624 "EHLO
+        id S235126AbjAIQAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 11:00:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234980AbjAIP6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 10:58:10 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE273633B;
-        Mon,  9 Jan 2023 07:58:09 -0800 (PST)
-Received: from jupiter.universe (dyndsl-037-138-188-006.ewe-ip-backbone.de [37.138.188.6])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 565E46602D75;
-        Mon,  9 Jan 2023 15:58:08 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673279888;
-        bh=Aod75PABF88FguFuDgtJL/UxZx5iDuWoEMSl5YvgmK8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Xqr2GHPBK2xv6ccpILHlhMXqPRvaGMstVc7xFeTiLabw5G0mPYxwIfkH5UjtMxmXN
-         dNcdB4n2/ZV8Sbfi5jmw2Dyr/sulLNZ4lNs/SUvgD2CSGZ3OxUMHCMarEhrJBXYNl/
-         rFuvI9aUKr9rmTqDJRinsJT94ntQasy1r4wo2rN/aI78FQOPuo6opDgJ0DuT5Aj7s0
-         8l1pnl7A5d/4tdnSwEdLWd9ve5ut9vupOa9kxiUdaCuNDLthUgXvBBzOOxUdu5D2b3
-         uDsnLR2l0f9wkjRovbubV3IH0CENO1kj2EQbMku92+4tGfUpVIlKdNzu+wFc3fsBKT
-         aWO3loxF7+P8A==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id 8F4E648011F; Mon,  9 Jan 2023 16:58:03 +0100 (CET)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236518AbjAIQAI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:00:08 -0500
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82983752E;
+        Mon,  9 Jan 2023 08:00:07 -0800 (PST)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-14fb7fdb977so9032222fac.12;
+        Mon, 09 Jan 2023 08:00:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NmIlgEFtXavdJf8Lq/cH9FoF1zSgoXLLeAA66q8BH/Q=;
+        b=QhF9+MF97Qin3wRXeeATzE45LAiiX8LDMR5ZTzkWWL6legA/PbiU0D9D0q7yP4GcHz
+         DcPsPOnJTJTStyPnN8CIquZjUjgxtaQulMW1WOezA/b9f82d2V2UEzPemHoTGILmaO2E
+         PNfugrphmkPA7jfnCR4NDcHomd0e81vkjyuelcxmGUlWnlwg8SQNOA9zjHjrgTd9WrQ1
+         BLnUSBmuT7xD5UHVDEKK2pIsWnjn1wttkRJa+NjQyf15FV0WXQ689rQFcP/yqd5JX3ob
+         q1TQ+hwkesEO7dAVbWo5SQafioMzCwxiqS6tBwViiHx6WxPRzro0ONXqlfAZbc0d+CuV
+         6nQQ==
+X-Gm-Message-State: AFqh2kopHx2ogiZMTpsTtip54FRvh23rjgwZCNtMMmhi/f1TMkaAzevY
+        ZM3aIIJ0tL/hmoPq0xcBZg==
+X-Google-Smtp-Source: AMrXdXuXJvBT3dt96q3KMmD15McdlaQh3O3qs1191wR2cMHTCinqo+Y5JobLAeehoewg+Ou02LotoQ==
+X-Received: by 2002:a05:6871:891:b0:148:6804:e60c with SMTP id r17-20020a056871089100b001486804e60cmr37077630oaq.35.1673280006846;
+        Mon, 09 Jan 2023 08:00:06 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h24-20020a056870171800b0014f9cc82421sm4366524oae.33.2023.01.09.08.00.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 08:00:06 -0800 (PST)
+Received: (nullmailer pid 722135 invoked by uid 1000);
+        Mon, 09 Jan 2023 16:00:05 -0000
+Date:   Mon, 9 Jan 2023 10:00:05 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCHv8 7/7] arm64: dts: rockchip: Add rock-5b board
-Date:   Mon,  9 Jan 2023 16:58:01 +0100
-Message-Id: <20230109155801.51642-8-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230109155801.51642-1-sebastian.reichel@collabora.com>
-References: <20230109155801.51642-1-sebastian.reichel@collabora.com>
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH 1/6] dt-bindings: display/msm: rename mdss nodes to
+ display-sybsystem
+Message-ID: <20230109160005.GA721066-robh@kernel.org>
+References: <20230109051402.317577-1-dmitry.baryshkov@linaro.org>
+ <20230109051402.317577-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230109051402.317577-2-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christopher Obbard <chris.obbard@collabora.com>
+On Mon, Jan 09, 2023 at 07:13:57AM +0200, Dmitry Baryshkov wrote:
+> Follow the 'generic names' rule and rename mdss nodes to
+> display-subsystem.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/display/msm/mdss-common.yaml      | 8 ++++++++
+>  .../devicetree/bindings/display/msm/qcom,mdss.yaml        | 5 ++++-
+>  2 files changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+> index 59f17ac898aa..ccd7d6417523 100644
+> --- a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+> @@ -15,7 +15,15 @@ description:
+>    Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
+>    sub-blocks like DPU display controller, DSI and DP interfaces etc.
+>  
+> +# Do not select this by default, otherwise it is also selected for qcom,mdss
+> +# devices.
 
-Add board file for the RK3588 Rock 5B board. This is a basic
-implementation which just brings up the eMMC and UART which is
-enough to successfully boot Linux.
+for NON qcom,mdss devices?
 
-The ethernet controller is connected via PCIe so support will
-come in a follow-up patch.
+> +select:
+> +  false
 
-Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
-Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 44 +++++++++++++++++++
- 2 files changed, 45 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+select: false
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 87a853435142..c5bdd0176ce0 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -83,4 +83,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-odroid-m1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-new file mode 100644
-index 000000000000..d2f1e963ce06
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3588.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK 5 Model B";
-+	compatible = "radxa,rock-5b", "rockchip,rk3588";
-+
-+	aliases {
-+		mmc1 = &sdhci;
-+		serial2 = &uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	vcc5v0_sys: vcc5v0-sys-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	no-sdio;
-+	no-sd;
-+	non-removable;
-+	max-frequency = <200000000>;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-0 = <&uart2m0_xfer>;
-+	status = "okay";
-+};
--- 
-2.39.0
-
+> +
+>  properties:
+> +  $nodename:
+> +    pattern: "^display-subsystem@[0-9a-f]+$"
+> +
+>    reg:
+>      maxItems: 1
+>  
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+> index c218c9172608..47fde9b6779f 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+> @@ -15,6 +15,9 @@ description:
+>    encapsulates sub-blocks like MDP5, DSI, HDMI, eDP, etc.
+>  
+>  properties:
+> +  $nodename:
+> +    pattern: "^display-subsystem@[0-9a-f]+$"
+> +
+>    compatible:
+>      enum:
+>        - qcom,mdss
+> @@ -153,7 +156,7 @@ examples:
+>    - |
+>      #include <dt-bindings/clock/qcom,gcc-msm8916.h>
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> -    mdss@1a00000 {
+> +    display-subsystem@1a00000 {
+>          compatible = "qcom,mdss";
+>          reg = <0x1a00000 0x1000>,
+>                <0x1ac8000 0x3000>;
+> -- 
+> 2.39.0
+> 
+> 
