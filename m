@@ -2,103 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9953D66356D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:36:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB3A166357E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:41:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237739AbjAIXge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 18:36:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58670 "EHLO
+        id S237614AbjAIXlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 18:41:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237856AbjAIXgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:36:09 -0500
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 798AB13D03
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 15:36:03 -0800 (PST)
-Received: by mail-qt1-x832.google.com with SMTP id v14so9561617qtq.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 15:36:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=criticallink.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tHdylmQcW9wYYsCa9wwYr0VU2Cu3mjkXydVxqDNSd7s=;
-        b=IgpF0zOJNGRyYHPgr14oe84dRF4bZ4IkqF/xVJTwejgGZZo5CdElnmDII9psWkdYdV
-         VQgAkixF2ZeGL6DjydEyuZtNHfBmLn5rpdRFaqqVL6z6PTXvZGBtF2fg3LEBWOnKmrnD
-         GRdkAhof4yATzA6aIyB0m9QnqDPh8pJZnSPX5VoFJfhoAK6iXoQFA/3N8coGLwXEfWIt
-         H1fpOo3VaGy9D6L276k0b/V0maEo+T8b3eyXLn7gmkjhPLokinE0gtFt89rvOcRu/IiB
-         JOulRj1Gu0ycfFA24YeJLNK2FoAMGqHZlXEZ5ywgdniFUq3JKfUlvxPa/A1U2rYYCjDJ
-         SIMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tHdylmQcW9wYYsCa9wwYr0VU2Cu3mjkXydVxqDNSd7s=;
-        b=0noqk5uzlyNOjwNzzbXsgyp9IOZ+HJWMJTTDbANaAhiglffLx6LW3Jje/i1ncrmd+Q
-         lhM4fZ8ap3sndjcPbzW6VvCLk7uCaQSRxJr53LMr8GbNoeM/PxNiHmomt7FEKwMDcefX
-         4ptqObq87nq5j3UmYuUqrG6Z8+4j2I8L5Lt5NLEDntcG0JJpfICWpKWtTPt+PyGciUq3
-         WIexLkB6qQNuoPawqVTX8JGbRQ58VBQuQNoMAkZqLmYAcFR7RaKa1SGsaCXlixs4GDiT
-         jXwSjL2WJK6HK3ORu8HBxjfCD0mXLMBSsAVFXzl2X/+PGu90Lr+aNlpC3bbS7kAmikMp
-         zAbA==
-X-Gm-Message-State: AFqh2kog1iy+3a9/F3o4hYN3yKJ+cyNLUGiEzrFiNx5QNL4I/nptBAtq
-        9VtuHvoN1VPhHceQRu5tdcIRHQ==
-X-Google-Smtp-Source: AMrXdXulseYYzs7cQNeCTGbJ59lnFcneJ7Iqd1kaKyqxoO1OhcE8XyTsdvklFinEON7uDw2wkbYhkQ==
-X-Received: by 2002:a05:622a:1646:b0:3a7:f6cf:a597 with SMTP id y6-20020a05622a164600b003a7f6cfa597mr120230588qtj.33.1673307362569;
-        Mon, 09 Jan 2023 15:36:02 -0800 (PST)
-Received: from jcormier-MS-7A93.syr.criticallink.com (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
-        by smtp.gmail.com with ESMTPSA id t5-20020a05620a450500b006fa8299b4d5sm6294846qkp.100.2023.01.09.15.36.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 15:36:02 -0800 (PST)
-From:   Jonathan Cormier <jcormier@criticallink.com>
-To:     linux-hwmon@vger.kernel.org
-Cc:     Jonathan Cormier <jcormier@criticallink.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S236528AbjAIXlp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:41:45 -0500
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68DC8120AA;
+        Mon,  9 Jan 2023 15:41:44 -0800 (PST)
+Received: from localhost.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 5C5C33EF3C;
+        Tue, 10 Jan 2023 00:41:42 +0100 (CET)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bob Duke <bduke@criticallink.com>,
-        John Pruitt <jpruitt@criticallink.com>
-Subject: [PATCH v3 5/5] hwmon: ltc2945: Convert division to DIV_ROUND_CLOSEST_ULL
-Date:   Mon,  9 Jan 2023 18:35:34 -0500
-Message-Id: <20230109233534.1932370-6-jcormier@criticallink.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230109233534.1932370-1-jcormier@criticallink.com>
-References: <20221214220727.1350784-3-jcormier@criticallink.com>
- <20230109233534.1932370-1-jcormier@criticallink.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: sdm845-tama: Add volume up and camera GPIO keys
+Date:   Tue, 10 Jan 2023 00:41:32 +0100
+Message-Id: <20230109234133.365644-1-marijn.suijten@somainline.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert division to DIV_ROUND_CLOSEST_ULL to match code
-in same function
+Tama has four GPIO-wired keys: two for camera focus and shutter /
+snapshot, and two more for volume up and down.  As per the comment these
+used to not work because the necessary pin bias was missing, which is
+now set via pinctrl on pm8998_gpios.
 
-Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+The missing bias has also been added to the existing volume down button,
+which receives a node name and label cleanup at the same time to be more
+consistent with other DTS and the newly added buttons.  Its deprecated
+gpio-key,wakeup property has also been replaced with wakeup-source.
+
+Note that volume up is also available through the usual PON RESIN node,
+but unlike other platforms only triggers when the power button is held
+down at the same time making it unsuitable to serve as KEY_VOLUMEUP.
+
+Fixes: 30a7f99befc6 ("arm64: dts: qcom: Add support for SONY Xperia XZ2 / XZ2C / XZ3 (Tama platform)")
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 ---
- drivers/hwmon/ltc2945.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/hwmon/ltc2945.c b/drivers/hwmon/ltc2945.c
-index 0d743d75459c..5456c1b60b8b 100644
---- a/drivers/hwmon/ltc2945.c
-+++ b/drivers/hwmon/ltc2945.c
-@@ -203,7 +203,7 @@ static int ltc2945_val_to_reg(struct device *dev, u8 reg,
- 	case LTC2945_MAX_VIN_THRES_H:
- 	case LTC2945_MIN_VIN_THRES_H:
- 		/* 25 mV resolution. */
--		val /= 25;
-+		val = DIV_ROUND_CLOSEST_ULL(val, 25);
- 		break;
- 	case LTC2945_ADIN_H:
- 	case LTC2945_MAX_ADIN_H:
+Changes since v1:
+- Rebased on next-20230109 and replace pm8998_gpio with plural
+  pm8998_gpios phandle label.
+
+v1: https://lore.kernel.org/linux-arm-msm/20221222190656.31664-1-marijn.suijten@somainline.org/
+
+ .../dts/qcom/sdm845-sony-xperia-tama.dtsi     | 72 +++++++++++++++++--
+ 1 file changed, 68 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+index df92e8d7bf30..c611eab56724 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sdm845.dtsi"
+ #include "pm8005.dtsi"
+@@ -17,14 +18,43 @@ / {
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 
+-		/* Neither Camera Focus, nor Camera Shutter seem to work... */
++		pinctrl-0 = <&focus_n &snapshot_n &vol_down_n &vol_up_n>;
++		pinctrl-names = "default";
+ 
+-		key-vol-down {
+-			label = "volume_down";
++		key-camera-focus {
++			label = "Camera Focus";
++			gpios = <&pm8998_gpios 2 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_CAMERA_FOCUS>;
++			debounce-interval = <15>;
++			linux,can-disable;
++			wakeup-source;
++		};
++
++		key-camera-snapshot {
++			label = "Camera Snapshot";
++			gpios = <&pm8998_gpios 7 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_CAMERA>;
++			debounce-interval = <15>;
++			linux,can-disable;
++			wakeup-source;
++		};
++
++		key-volume-down {
++			label = "Volume Down";
+ 			gpios = <&pm8998_gpios 5 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_VOLUMEDOWN>;
+ 			debounce-interval = <15>;
+-			gpio-key,wakeup;
++			linux,can-disable;
++			wakeup-source;
++		};
++
++		key-volume-up {
++			label = "Volume Up";
++			gpios = <&pm8998_gpios 6 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_VOLUMEUP>;
++			debounce-interval = <15>;
++			linux,can-disable;
++			wakeup-source;
+ 		};
+ 	};
+ 
+@@ -358,6 +388,40 @@ &i2c14 {
+ 	/* AMS TCS3490 RGB+IR color sensor @ 72 */
+ };
+ 
++&pm8998_gpios {
++	focus_n: focus-n-state {
++		pins = "gpio2";
++		function = PMIC_GPIO_FUNC_NORMAL;
++		power-source = <0>;
++		bias-pull-up;
++		input-enable;
++	};
++
++	vol_down_n: vol-down-n-state {
++		pins = "gpio5";
++		function = PMIC_GPIO_FUNC_NORMAL;
++		power-source = <0>;
++		bias-pull-up;
++		input-enable;
++	};
++
++	vol_up_n: vol-up-n-state {
++		pins = "gpio6";
++		function = PMIC_GPIO_FUNC_NORMAL;
++		power-source = <0>;
++		bias-pull-up;
++		input-enable;
++	};
++
++	snapshot_n: snapshot-n-state {
++		pins = "gpio7";
++		function = PMIC_GPIO_FUNC_NORMAL;
++		power-source = <0>;
++		bias-pull-up;
++		input-enable;
++	};
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
 -- 
-2.25.1
+2.39.0
 
