@@ -2,95 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58539662B0E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:22:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F2C662B1D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:25:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231586AbjAIQWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 11:22:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53892 "EHLO
+        id S233336AbjAIQZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 11:25:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234781AbjAIQVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:21:49 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97359F5A;
-        Mon,  9 Jan 2023 08:21:48 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 309GLBjO115220;
-        Mon, 9 Jan 2023 10:21:11 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673281271;
-        bh=Pn0x0PUzOG1Nvv4uHwUprL4noTeFPolAuH0p0G35kzw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=ujuLBGa8GIXkzhgLCqx5SZOW1tq6Nmo/FJklVTGE/9EpwZTkBdXF4OQuFvmuz2sxj
-         rjrZ5CraNnwmBJIMjPBZW4Z6DULfypCY2Po/yhenjCjHJkZrFSZ6RL7Gg6LzLxOXWy
-         gAilse7dcHQ9KpHfIFSx+Y/WIAFBcuw/uTWkeZvw=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 309GLBQ0004753
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 9 Jan 2023 10:21:11 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 9
- Jan 2023 10:21:11 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 9 Jan 2023 10:21:11 -0600
-Received: from [10.250.234.21] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 309GL0ut002438;
-        Mon, 9 Jan 2023 10:21:01 -0600
-Message-ID: <431ddd82-055b-2526-3d5e-f6563e48d264@ti.com>
-Date:   Mon, 9 Jan 2023 21:51:00 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [RFC PATCH 3/4] dt-bindings: panel: Introduce dual-link LVDS
- panel
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233239AbjAIQZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:25:12 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2CD1C53;
+        Mon,  9 Jan 2023 08:25:10 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id bt23so13765376lfb.5;
+        Mon, 09 Jan 2023 08:25:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tPVe9k6xiQxoUlbt14zYIPRh4g1+8ixsVErgsbtB9oo=;
+        b=kPvbUvB7GfEtAQBQs2fBAi2zssHgmpoRuC4zqehMAmQnHecMND2AgbC+KTZtTRGKYu
+         Zo7c5tWB/VmrfKgWnXzynbK/axSnfllm5DxBJDG84+7re0oanLPPHsTg5QKDXtAw+u3o
+         ic0MjKEPk7qQS61baTD3+ZRstAV988iby0DyNM2RxRDLtA9g+JCm4RUraiSUKF+qpv47
+         UqCAyrx5rbZ3kYSet/xv7VZQ8wt2Y8AqtrzwjNbHLk+yrN5fwQju/bVPbOhTDRe+SPEs
+         zzGpZxLz8DqLBRdaT2NV2ZZ8Ty0Emh/jcUV5viASOEkom5HAvjS2NiSthO6MDuQ2I0Hu
+         pJ5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tPVe9k6xiQxoUlbt14zYIPRh4g1+8ixsVErgsbtB9oo=;
+        b=DeHXYgrIhqfM0dwLLALsKNqNAc8syjktINYJTXZELyWaunIGXTRLo6T7wFsuD1DJaT
+         U6qrcg2o7iNmsg0HFmbQAhMXmnv3UdGM4YYp9dJYTu3yGJ8Z7DdTz813B2gQWfdbQX4I
+         m8TIp/qmTgb8lX7rCkTtMn+oxdHKg3sWOrLL9RnVWXKPlfKh1hbEf6dWYf9YTHgXZSWM
+         yn6jY41zgQkwlTUnkQWLnovKbh+9VCuf32uetc8UuiPf4CAxqGxFDilQ9Gmj/z7of2c/
+         TicZnHjvc7F1QQugzRiL8jTVOdP1mLQOzO5s+B+wLsYol+gvcGDgdaK9eizTwebWYb+M
+         5C7Q==
+X-Gm-Message-State: AFqh2koWH63W7Auz4sWzf35U7Kc5PQO5Cmlg+wyVPsTs93lQhcWgRf62
+        e8Hhcx5CRkEH6hORpUl+sY0=
+X-Google-Smtp-Source: AMrXdXvdKy0bpU/Os2olN3rAMOHfWKUr7NqexHp3Y8yZL6kPzPbznIyLUVRUHaw+gQ4uoN3WWbTLvw==
+X-Received: by 2002:a05:6512:31d6:b0:4b5:7817:419d with SMTP id j22-20020a05651231d600b004b57817419dmr21481910lfe.41.1673281508802;
+        Mon, 09 Jan 2023 08:25:08 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id t13-20020a19ad0d000000b004cc82b7080bsm701765lfc.200.2023.01.09.08.25.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 08:25:08 -0800 (PST)
+Date:   Mon, 9 Jan 2023 19:25:05 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tomi Valkeinen <tomba@kernel.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Guo Ren <guoren@kernel.org>
-CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux RISC-V List <linux-riscv@lists.infradead.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Linux Mediatek List <linux-mediatek@lists.infradead.org>,
-        Linux C-SKY Arch List <linux-csky@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230103064615.5311-1-a-bhatia1@ti.com>
- <20230103064615.5311-4-a-bhatia1@ti.com>
- <09f1ca83-c7d5-a186-6fa6-09cdd7a0b9cc@collabora.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <09f1ca83-c7d5-a186-6fa6-09cdd7a0b9cc@collabora.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
+        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/15] Add support for enhanced SPI for Designware SPI
+ controllers
+Message-ID: <20230109162505.o3clvmwu3eremlyd@mobilestation>
+References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
+ <20221218174523.cke7ubh6nycd247c@mobilestation>
+ <20230104222036.h4ke6maxkdvuqtqc@mobilestation>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230104222036.h4ke6maxkdvuqtqc@mobilestation>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -98,129 +76,218 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
+Hello Sudip
 
-Thanks for taking a look at the patches!
+On Thu, Jan 05, 2023 at 01:20:39AM +0300, Serge Semin wrote:
+> Hi Sudip
+> 
+> On Sun, Dec 18, 2022 at 08:45:26PM +0300, Serge Semin wrote:
+> > Hi Sudip
+> > 
+> > On Mon, Dec 12, 2022 at 06:07:17PM +0000, Sudip Mukherjee wrote:
+> > > The is v2 of the patch series adding enhanced SPI support. Some Synopsys SSI
+> > > controllers support enhanced SPI which includes Dual mode, Quad mode and
+> > > Octal mode. DWC_ssi includes clock stretching feature in enhanced SPI modes
+> > > which can be used to prevent FIFO underflow and overflow conditions while
+> > > transmitting or receiving the data respectively.
+> > > 
+> > > This is almost a complete rework based on the review from Serge.
+> > 
+> > Thank you very much for the series. I'll have a look at it on the next
+> > week.
+> 
+> Just so you know. I haven't forgot about the series. There are some
+> problematic parts which I need to give more thinking than I originally
+> expected. I'll submit my comments very soon. Sorry for the delay.
+> 
+> Good news is that I've got the HW-manual for the DW SSI v1.01a
+> IP-core. So I'll no longer need to ask of you about that device
+> implementation specifics.
 
-On 03-Jan-23 17:21, AngeloGioacchino Del Regno wrote:
-> Il 03/01/23 07:46, Aradhya Bhatia ha scritto:
->> Dual-link LVDS interfaces have 2 links, with even pixels traveling on
->> one link, and odd pixels on the other. These panels are also generic in
->> nature, with no documented constraints, much like their single-link
->> counterparts, "panel-lvds".
->>
->> Add a new compatible, "panel-dual-lvds", and a dt-binding document for
->> these panels.
->>
->> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->> ---
->>   .../display/panel/panel-dual-lvds.yaml        | 157 ++++++++++++++++++
->>   MAINTAINERS                                   |   1 +
->>   2 files changed, 158 insertions(+)
->>   create mode 100644 
->> Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
->>
->> diff --git 
->> a/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml 
->> b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
->> new file mode 100644
->> index 000000000000..88a7aa2410be
->> --- /dev/null
->> +++ 
->> b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
->> @@ -0,0 +1,157 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/panel/panel-dual-lvds.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Generic Dual-Link LVDS Display Panel
->> +
->> +maintainers:
->> +  - Aradhya Bhatia <a-bhatia1@ti.com>
->> +  - Thierry Reding <thierry.reding@gmail.com>
->> +
->> +description: |
->> +  A dual-LVDS interface is a dual-link connection with the even pixels
->> +  traveling on one link, and the odd pixels traveling on the other.
->> +
->> +allOf:
->> +  - $ref: panel-common.yaml#
->> +  - $ref: /schemas/display/lvds.yaml/#
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - lincolntech,lcd185-101ct
->> +              - microtips,13-101hieb0hf0-s
->> +          - const: panel-dual-lvds
->> +      - const: panel-dual-lvds
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        unevaluatedProperties: false
->> +        description: The sink for first set of LVDS pixels.
->> +
->> +        properties:
->> +          dual-lvds-odd-pixels:
->> +            type: boolean
->> +
->> +          dual-lvds-even-pixels:
->> +            type: boolean
->> +
->> +        oneOf:
->> +          - required: [dual-lvds-odd-pixels]
-> 
-> One question: why do we need a "panel-dual-lvds" compatible?
-> A Dual-LVDS panel is a LVDS panel using two ports, hence still a panel-lvds.
-> 
-> If you're doing this to clearly distinguish, for human readability purposes,
-> single-link vs dual-link panels, I think that this would still be clear even
-> if we use panel-lvds alone because dual-link panels, as you wrote in this
-> binding, does *require* two ports, with "dual-lvds-{odd,even}-pixels" properties.
+Finally I managed to consolidate my thoughts regarding your patchset.
+Here is the summary. Some specific comments will be sent in-reply to
+the corresponding patches.
 
-Yes, while they are both LVDS based panels the extra LVDS sink in these
-panels, and the capability to decode and display the 2 sets of signals
-are enough hardware differences that warrant for an addition of a new
-compatible.
+First of all there is a crucial difference between eSPI capability
+available on DW APB SSI and DW AHB SSI controllers:
+DW APB SSI 4.x:
++ Tx until FIFO is empty
++ No clock stretching at all
+DW AHB SSI 1.x:
++ Tx until CTRLR1.NDF if clock stretching is available
++ If no clock stretching then Tx until FIFO is empty.
+See the DW APB SSI IP-cores don't have the clock stretching feature.
+That should be kept in mind while implementing the portable eSPI
+support in the DW SSI driver. Your version of the eSPI support is only
+applicable for the devices with the eSPI clock-stretching capability
+which significantly narrows down its applicability. Anyway you should
+convert your code to working only if the clock-stretching feature is
+detected.
+
+Moreover your implementation will only work on the platforms with the
+native chip-selects. If the GPIO-based CS setup is detected the standard
+SPI-messages/transfers-based kernel API will be utilized (see the
+spi_mem_exec_op() method implementation) which currently imply the
+single-laned SPI bus only. For the same reason the DMA capability won't
+work in your eSPI implementation.
+
+If you want that to be fixed then you'll need to update the standard
+transfer (+DMA) procedure so one would take the
+spi_transfer.{tx_nbits,rx_nbits} fields into account activating the
+eSPI modes accordingly. The dw_spi_transfer_handler() method and its
+DMA counterpart shall be altered too since the eSPI implies the
+Tx-only or Rx-only modes.
+
+Here are several notes applicable to all your patches:
+1. Please use the dw_spi_enh* prefix for all eSPI-related methods. That
+shall unify the eSPI-code a bit in the same way as it was done in the
+DMA-modules (see it has the method defined with the dw_spi_dma_* prefix).
+
+2. Please define the enhanced versions of the MEM-op methods below their
+non-enhanced counterparts. Thus we'll have a clearer driver code.
+
+3. It isn't normally welcome to add some code in one patch and fix it in
+some following up patch.
+
+4. I am pretty much sure you shouldn't touch the spi_controller data
+internals if it isn't platform-specific settings on the controller
+probe procedure. Mark won't bless such change. The
+spi_controller.xfer_complete field is the internal completion handler
+and should be used by the SPI core only.
+
+Regarding the patchset in general. It's ok to provide the eSPI mode
+support for the native chip-selects only. But since there are going to be
+not a few requests to you to fix I'd suggest to refactor the series in the
+next manner:
+
+[PATCH 1] spi: dw: Add Enhanced capabilities flags
+Just define the new capability flags
++ DW_SPI_CAP_ENH
++ DW_SPI_CAP_ENH_CLK_STR
+Note the capabilities auto-detection will be added later in this patchset.
+Yeah, I remember asking you to add the DW_SPI_CAP_EMODE macro, but adding
+the _ENH suffix instead seems more readable and would refer to the
+eSPI-related methods.
+
+[PATCH 2] spi: dw: Update enhanced frame forward config
+In this patch please fix the dw_spi_update_config() method so one would
+perform both standard and enhanced config setups:
++ Add new field dw_spi_cfg.enh_frf.
++ Declare new structure struct dw_spi_enh_cfg with the wait_c, addr_l,
+inst_l and trans_t fields.
++ Convert the dw_spi_update_config() method to accepting the optional
+struct dw_spi_enh_cfg *ecfg pointer.
++ Update the CTRLR1.NDF field for Tx-only transfers if
+DW_SPI_CAP_ENH_CLK_STR capability is available.
+
+[PATCH 3] spi: dw: Reduce mem-ops init method indentations
++ This is a prerequisite patch before adding the eSPI-related
+MEM-op methods to make the following up patches simpler and more
+coherent. It implies updating the dw_spi_init_mem_ops()
+function so one would return straight away if the platform-specific CS-methods
+or MEM-ops methods are specified. Thus further function updates would be
+performed in the more coherent patches with simpler changelog. (See my
+comments to your patch "[PATCH v2 04/15] spi: dw: add check for support of enhanced spi".)
+
+[PATCH 4] spi: dw: Add enhanced mem-op verification method
++ Almost the same as your patch "[PATCH v2 04/15] spi: dw: add check for support of enhanced spi"
+except the code will have one less indentation due to the patch #3.
+Some other issues shall be fixed too. See my comments to your patch for
+details. (init if DW_SPI_CAP_ENH_CLK_STR, op->dummy.nbytes / op->dummy.buswidth >= 4)
+
+[PATCH 5] spi: dw: Add enhanced mem-op size adjustment method
++ The same as your patch "[PATCH v2 11/15] spi: dw: adjust size of mem_op"
+
+[PATCH 6] spi: dw: Mask out IRQs if no xfer data available
++ Instead of checking the master->cur_msg pointer to be non-NULL I guess
+it would be ok to disable the IRQs if !dws->rx_len && !dws->tx_len in the
+dw_spi_irq() method. Although I have doubts that after the commit
+a1d5aa6f7f97 ("spi: dw: Disable all IRQs when controller is unused") there
+is need in that conditional statement especially seeing the dw_reader()
+and dw_writer() methods won't do anything if no data available to
+transfer.
+
+[PATCH 7] spi: dw: Move wait-function to the driver core
++ Instead of re-implementing the xfer completion wait function one more
+time (as you've done in "[PATCH v2 09/15] spi: dw: use irq handler for
+enhanced spi") just move the dw_spi_dma_wait() method from spi-dw-dma.c to
+spi-dw-core.c, accordingly fix the prototype and implementation, rename
+the dw_spi.dma_completion field to something like xfer_completion and use
+the new method in the DW SSI core and DMA modules.
+
+[PATCH 8] spi: dw: spi: dw: Add enhanced mem-op execution method
++ Just add the methods particularly implementing the mem-op execution
+process like:
+dw_spi_enh_irq_setup(): instead of updating the dw_spi_irq_setup() method
+just create a new one which would initialize the IRQ-handler and unmask
+IRQs accordingly (depending on the rx_len/rx_len values?).
+dw_spi_enh_transfer_handler(): similar to your implementation of the
+IRQ-handler except it will use the internal wait-for-completion infrastructure.
+dw_spi_enh_write_then_read(): shall write the cmd+addr and activate the
+CS line. After that the transfer shall begin.
+dw_spi_enh_exec_mem_op(): similar to the dw_spi_exec_mem_op() method. It
+shall update the controller config taking the enhanced part into account,
+activate the IRQs using the dw_spi_enh_irq_setup() method, call the
+dw_spi_enh_write_then_read() function and then wait until the IRQ-based
+transfer is completed.
+
+[PATCH 9] spi: dw: Add enhanced mem-op capability auto-detection
++ Just check whether the CTRLR0.SPI_FRF field is writable and values it
+accepts. Based on that set the DW_SPI_CAP_ENH capability flag and update
+spi_controller.mode_bits field. Similarly check whether the
+SPI_CTRLR0.CLK_STRETCH_EN bit is writable and set the
+DW_SPI_CAP_ENH_CLK_STR capability flag.
++ Note first you need to try detecting the eSPI capability and only
+then the eSPI clock stretching capability.
++ Note the best place for that is the dw_spi_hw_init() method where all
+the HW-init and auto-detection is done.
+
+[PATCH 10] spi: dt-bindings: dw-apb-ssi: Add DW AHB SSI compatible string
++ The same as your "[PATCH v2 14/15] spi: dt-bindings: snps,dw-ahb-ssi: Add generic dw-ahb-ssi version"
+
+[PATCH 11] spi: dw: Add DW AHB SSI compatible string
++ The same as your "[PATCH v2 15/15] spi: dw: initialize dwc-ssi controller"
+
+Some implementation-specific comments I'll submit in-reply to the
+corresponding patches.
+
+-Serge(y)
 
 > 
-> So... the devicetree node would look like this:
+> -Serge(y)
 > 
-> panel {
->      compatible = "vendor,panel", "panel-lvds";
->      ....
->      ports {
->          port@0 {
->              .....
->              -> dual-lvds-odd-pixels <-
->          }
-> 
->          port@1 {
->              .....
->              -> dual-lvds-even-pixels <-
->          };
->      };
-> };
-> 
->> +          - required: [dual-lvds-even-pixels]
-> 
-> ...Though, if you expect dual-lvds panels to get other quirks in the future,
-> that's a whole different story and you may actually need the panel-dual-lvds
-> compatible.
-
-Yes, exactly. Even while being non-smart, there are going to be more
-quirks in future. And it would be better if they have their own
-compatible/binding, and are not getting appended in an ever-growing
-if-else ladder. :)
-
-
-Regards
-Aradhya
+> > 
+> > -Serge(y)
+> > 
+> > > 
+> > > 
+> > > -- 
+> > > Regards
+> > > Sudip
+> > > 
+> > > Sudip Mukherjee (15):
+> > >   spi: dw: Introduce spi_frf and STD_SPI
+> > >   spi: dw: update NDF while using enhanced spi mode
+> > >   spi: dw: update SPI_CTRLR0 register
+> > >   spi: dw: add check for support of enhanced spi
+> > >   spi: dw: Introduce enhanced mem_op
+> > >   spi: dw: Introduce dual/quad/octal spi
+> > >   spi: dw: send cmd and addr to start the spi transfer
+> > >   spi: dw: update irq setup to use multiple handler
+> > >   spi: dw: use irq handler for enhanced spi
+> > >   spi: dw: Calculate Receive FIFO Threshold Level
+> > >   spi: dw: adjust size of mem_op
+> > >   spi: dw: Add retry for enhanced spi mode
+> > >   spi: dw: detect enhanced spi mode
+> > >   spi: dt-bindings: snps,dw-ahb-ssi: Add generic dw-ahb-ssi version
+> > >   spi: dw: initialize dwc-ssi controller
+> > > 
+> > >  .../bindings/spi/snps,dw-apb-ssi.yaml         |   1 +
+> > >  drivers/spi/spi-dw-core.c                     | 347 +++++++++++++++++-
+> > >  drivers/spi/spi-dw-mmio.c                     |   1 +
+> > >  drivers/spi/spi-dw.h                          |  27 ++
+> > >  4 files changed, 364 insertions(+), 12 deletions(-)
+> > > 
+> > > -- 
+> > > 2.30.2
+> > > 
