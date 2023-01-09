@@ -2,261 +2,335 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DEC7662117
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:12:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DC54662127
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:14:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236943AbjAIJMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 04:12:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45780 "EHLO
+        id S233331AbjAIJN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 04:13:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236945AbjAIJLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:11:46 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB416178BA
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 01:08:03 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so6063999wms.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 01:08:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BeamC+5HCrCEB+x0OBOSbvY/5eyBn0AnwZPYF9JEd3U=;
-        b=EZDB9m7KfPX6hQI067hHiDmD14mANKUfROLBf4JAbzvFo/R5gP9heZZXHaP3G3IDqT
-         ZZ97cGEM5qB4R4Lrhre5ZmvTBBT5dNHfsu3b2EUEdl/f9uRqoE7jmKFDL36gDFX7f+gj
-         y3nZSPpBimWZgy4+y8l/dZGGqA25RR80FQgzr91+bt14Dic9CnmSB9s1FrmSdVHtErSL
-         EeMIaZsMktewJ9j6JrjaqR0lPPMbpo8b1Gk3SLKPrsUeYMFTaSf2JI0wEa2QZiZSGS79
-         KsiVHYOYR6bknah+a3kkxCkQchaMsc5GcUUlDmEpOXE9hicCiBt5XrOleKh5CzJCvZYC
-         mgUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BeamC+5HCrCEB+x0OBOSbvY/5eyBn0AnwZPYF9JEd3U=;
-        b=LLxTlLyYgO7gbcysCYJgmMrEum5gX3BWFYr8mw7NOlcTbNW5XyPy7s+kZEWXZRZn+P
-         eIZmFeR1xx3MO0KJNFi+VMAocBlxl67VIRQHPaTCfMZeH/pGs847vfwyNcr7f7lKvDpN
-         Keh0/KZGBONbCmD6R2x0Gm+kjcDM3ZWV7mk8tB4Ml6F/CBZC9+Zx4RvERYq96JlI+NDt
-         OcEXp/InVP6jIm1LDWXDQvg8WcBLSPENcRXbwUW0HHsrhl6cle/v8jB5BYF3bXfANHsv
-         fsofxQLEfza9bcPmlfPwCBhdaHUcBjcqFKtCKh0S3gIrxcs+DC/4yNixN9H7DFDa5Qy9
-         aAJQ==
-X-Gm-Message-State: AFqh2krLK298ZzLWlP3KAYdWEme6uI0kFH6UOZC5ktoyFbVdkJ42pBht
-        SdOSKXH1yNnUX7mQAMNrYkK7Ow==
-X-Google-Smtp-Source: AMrXdXtr26ao+GD/mNTKp+tCDB3XicbZ8EYtBKq8RVrXkuHmtnPQi3ZeTIqsyC3vqEs/MF6Dje8IKg==
-X-Received: by 2002:a05:600c:4f48:b0:3d6:8570:1239 with SMTP id m8-20020a05600c4f4800b003d685701239mr56297915wmq.16.1673255282438;
-        Mon, 09 Jan 2023 01:08:02 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u13-20020a05600c19cd00b003c6f1732f65sm16469505wmq.38.2023.01.09.01.08.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 01:08:01 -0800 (PST)
-Message-ID: <c0586501-53cf-b8f6-3c5b-9d153c7e0e21@linaro.org>
-Date:   Mon, 9 Jan 2023 10:08:00 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: add schema for NXP S32 SoCs
-Content-Language: en-US
-To:     Chester Lin <clin@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S231264AbjAIJNG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:13:06 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4713713F7B;
+        Mon,  9 Jan 2023 01:09:41 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF8266CF;
+        Mon,  9 Jan 2023 10:09:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673255379;
+        bh=kBHbbWIFlK/b+c+0jxoh4qEo8lk9ttGUtdE2RimROEU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O+M+6T+6Y9nD5jhcpEd0kWy2msZbHxhNWqzHCdktIp1FfkxvZzXm2MAAqOxajWS1u
+         p1Kh0Xdi52jqV8Hx0npaakXGzj5OjbLvMxghs+FM9tg4s4t1QqSAm0M29wjM0AQ+yI
+         y3989dLyrR/WEwS5+BFDGPVVSUEgS1ezIOEAw8j0=
+Date:   Mon, 9 Jan 2023 11:09:34 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>, s32@nxp.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Larisa Grigore <larisa.grigore@nxp.com>,
-        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
-        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
-        Matthias Brugger <mbrugger@suse.com>
-References: <20221221073232.21888-1-clin@suse.com>
- <20221221073232.21888-2-clin@suse.com>
- <17dc933d-e46c-ddfa-b185-5c24fa7dddb6@linaro.org>
- <Y7u8cWR7p3/MfKgB@linux-8mug>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y7u8cWR7p3/MfKgB@linux-8mug>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 5/8] dt-bindings: media: add TI DS90UB960 FPD-Link III
+ Deserializer
+Message-ID: <Y7vZzg6YyC2IaUso@pendragon.ideasonboard.com>
+References: <20230105140307.272052-1-tomi.valkeinen@ideasonboard.com>
+ <20230105140307.272052-6-tomi.valkeinen@ideasonboard.com>
+ <Y7o3QEq9utV8nswA@pendragon.ideasonboard.com>
+ <a3857c78-c221-176f-b862-a0435b301c67@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <a3857c78-c221-176f-b862-a0435b301c67@ideasonboard.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 08:04, Chester Lin wrote:
-> Hi Krzysztof,
+On Mon, Jan 09, 2023 at 10:30:13AM +0200, Tomi Valkeinen wrote:
+> On 08/01/2023 05:23, Laurent Pinchart wrote:
+> > Hi Tomi,
+> > 
+> > Thank you for the patch.
+> > 
+> > On Thu, Jan 05, 2023 at 04:03:04PM +0200, Tomi Valkeinen wrote:
+> >> Add DT bindings for TI DS90UB960 FPD-Link III Deserializer.
+> >>
+> >> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >> ---
+> >>   .../bindings/media/i2c/ti,ds90ub960.yaml      | 402 ++++++++++++++++++
+> >>   1 file changed, 402 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> >> new file mode 100644
+> >> index 000000000000..664799ae55be
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> >> @@ -0,0 +1,402 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/media/i2c/ti,ds90ub960.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Texas Instruments DS90UB9XX Family FPD-Link Deserializer Hubs
+> >> +
+> >> +maintainers:
+> >> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> >> +
+> >> +description:
+> >> +  The TI DS90UB9XX devices are FPD-Link video deserializers with I2C and GPIO
+> >> +  forwarding.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - ti,ds90ub960-q1
+> >> +      - ti,ds90ub9702-q1
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  clocks:
+> >> +    maxItems: 1
+> >> +    description:
+> >> +      Reference clock connected to the REFCLK pin.
+> >> +
+> >> +  clock-names:
+> >> +    items:
+> >> +      - const: refclk
+> >> +
+> >> +  powerdown-gpios:
+> >> +    maxItems: 1
+> >> +    description:
+> >> +      Specifier for the GPIO connected to the PDB pin.
+> >> +
+> >> +  i2c-alias-pool:
+> >> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+> >> +    description:
+> >> +      I2C alias pool is a pool of I2C addresses on the main I2C bus that can be
+> >> +      used to access the remote peripherals on the serializer's I2C bus. The
+> >> +      addresses must be available, not used by any other peripheral. Each
+> >> +      remote peripheral is assigned an alias from the pool, and transactions to
+> >> +      that address will be forwarded to the remote peripheral, with the address
+> >> +      translated to the remote peripheral's real address. This property is not
+> >> +      needed if there are no I2C addressable remote peripherals.
+> >> +
+> >> +  links:
+> >> +    type: object
+> >> +    additionalProperties: false
+> >> +
+> >> +    properties:
+> >> +      '#address-cells':
+> >> +        const: 1
+> >> +
+> >> +      '#size-cells':
+> >> +        const: 0
+> >> +
+> >> +      ti,manual-strobe:
+> >> +        type: boolean
+> >> +        description:
+> >> +          Enable manual strobe position and EQ level
+> >> +
+> >> +    patternProperties:
+> >> +      '^link@[0-3]$':
+> >> +        type: object
+> >> +        additionalProperties: false
+> >> +        properties:
+> >> +          reg:
+> >> +            description: The link number
+> >> +            maxItems: 1
+> >> +
+> >> +          i2c-alias:
+> >> +            description:
+> >> +              The I2C address used for the serializer. Transactions to this
+> >> +              address on the I2C bus where the deserializer resides are
+> >> +              forwarded to the serializer.
+> >> +
+> >> +          ti,rx-mode:
+> >> +            $ref: /schemas/types.yaml#/definitions/uint32
+> >> +            enum:
+> >> +              - 0 # RAW10
+> >> +              - 1 # RAW12 HF
+> >> +              - 2 # RAW12 LF
+> >> +              - 3 # CSI2 SYNC
+> >> +              - 4 # CSI2 NON-SYNC
+> >> +            description:
+> >> +              FPD-Link Input Mode. This should reflect the hardware and the
+> >> +              default mode of the connected camera module.
+> > 
+> > As the remote device may not be a camera, I'd write "of the connected
+> > device" or "of the connected serializer".
 > 
-> On Thu, Dec 22, 2022 at 12:28:31PM +0100, Krzysztof Kozlowski wrote:
->> On 21/12/2022 08:32, Chester Lin wrote:
->>> Add DT schema for the pinctrl driver of NXP S32 SoC family.
->>>
->>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
->>> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
->>> Signed-off-by: Chester Lin <clin@suse.com>
->>> ---
->>>
->>> Changes in v3:
->>> - Remove the minItems from reg because there's no optional item for s32g2.
->>> - List supported properties of pinmux-node and pincfg-node and add more
->>>   descriptions.
->>> - Adjust the location of "required:".
->>> - Fix descriptions and wordings.
->>> - Rename the yaml file to nxp,s32g2-siul2-pinctrl.yaml.
->>>
->>> Changes in v2:
->>> - Remove the "nxp,pins" property since it has been moved into the driver.
->>> - Add descriptions for reg entries.
->>> - Refine the compatible name from "nxp,s32g-..." to "nxp,s32g2-...".
->>> - Fix schema issues and revise the example.
->>> - Fix the copyright format suggested by NXP.
->>>
->>>  .../pinctrl/nxp,s32g2-siul2-pinctrl.yaml      | 129 ++++++++++++++++++
->>>  1 file changed, 129 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
->>> new file mode 100644
->>> index 000000000000..1554ce14214a
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
->>> @@ -0,0 +1,129 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +# Copyright 2022 NXP
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/pinctrl/nxp,s32g2-siul2-pinctrl.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: NXP S32G2 pin controller
->>> +
->>> +maintainers:
->>> +  - Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
->>> +  - Chester Lin <clin@suse.com>
->>> +
->>> +description: |
->>> +  S32G2 pinmux is implemented in SIUL2 (System Integration Unit Lite2),
->>> +  whose memory map is split into two regions:
->>> +    SIUL2_0 @ 0x4009c000
->>> +    SIUL2_1 @ 0x44010000
->>> +
->>> +  Every SIUL2 region has multiple register types, and here only MSCR and
->>> +  IMCR registers need to be revealed for kernel to configure pinmux.
->>> +
->>> +  Please note that some register indexes are reserved in S32G2, such as
->>> +  MSCR102-MSCR111, MSCR123-MSCR143, IMCR84-IMCR118 and IMCR398-IMCR429.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - nxp,s32g2-siul2-pinctrl
->>> +
->>> +  reg:
->>> +    description: |
->>> +      A list of MSCR/IMCR register regions to be reserved.
->>> +      - MSCR (Multiplexed Signal Configuration Register)
->>> +        An MSCR register can configure the associated pin as either a GPIO pin
->>> +        or a function output pin depends on the selected signal source.
->>> +      - IMCR (Input Multiplexed Signal Configuration Register)
->>> +        An IMCR register can configure the associated pin as function input
->>> +        pin depends on the selected signal source.
->>> +    items:
->>> +      - description: MSCR registers group 0 in SIUL2_0
->>> +      - description: MSCR registers group 1 in SIUL2_1
->>> +      - description: MSCR registers group 2 in SIUL2_1
->>> +      - description: IMCR registers group 0 in SIUL2_0
->>> +      - description: IMCR registers group 1 in SIUL2_1
->>> +      - description: IMCR registers group 2 in SIUL2_1
->>> +
->>> +patternProperties:
->>> +  '-pins$':
->>> +    type: object
->>> +    additionalProperties: false
->>> +
->>> +    patternProperties:
->>> +      '-grp[0-9]$':
->>> +        type: object
->>> +        allOf:
->>> +          - $ref: pinmux-node.yaml#
->>> +          - $ref: pincfg-node.yaml#
->>> +        description: |
->>> +          Pinctrl node's client devices specify pin muxes using subnodes,
->>> +          which in turn use the standard properties below.
->>> +
->>> +        properties:
->>> +          bias-disable: true
->>> +          bias-high-impedance: true
->>> +          bias-pull-up: true
->>> +          bias-pull-down: true
->>> +          drive-open-drain: true
->>> +          input-enable: true
->>> +          output-enable: true
->>> +
->>> +          pinmux:
->>> +            description: |
->>> +               An integer array for representing pinmux configurations of
->>> +               a device. Each integer consists of a PIN_ID and a 4-bit
->>> +               selected signal source(SSS) as IOMUX setting, which is
->>> +               calculated as: pinmux = (PIN_ID << 4 | SSS)
->>> +
->>> +          slew-rate:
->>> +            description: |
->>> +              0: 208MHz
->>> +              1-3: Reserved
->>> +              4: 166MHz
->>> +              5: 150MHz
->>> +              6: 133MHz
->>> +              7: 83MHz
->>> +            enum: [0, 4, 5, 6, 7]
->>
->> You have known values, then use them. This is much more readable in DTS.
+> I was trying to include the sensor also in the "camera module", as the 
+> sensor's "normal" pixel cloud would affect RAW modes (HF/LF). Perhaps 
+> "connected device" covers this.
 > 
-> The main reason of mapping with register values [0-7] is to simplify the
-> driver implementation while handling register r/w. 
-
-Define bindings for the DTS, not for the drivers.
-
-> To improve readability
-> as you suggested, I am thinking of having a DT header "s32g2-pinfunc.h" with
-> a few binding macros/helper as below, the only difference compared to v3 is
-> using S32G2_PINMUX and S32G2_SLEW_XXXMHZ macros rather than pure integers
-> to represent pinmux and slew-rate property values.
-
-Binding headers is not a place for register values. By definition -
-these are bindings, not hardware description. Hardware description is
-DTS. Feel free to store them in DTS headers, but anyway this does not
-solve the issue here.
-
-The issue is: you store register values in DTS, which is limited, not
-extendable description. Each of your devices would need entirely
-different binding for this because register values can change between
-every SoC version. Several other pinctrl bindings use similar approach,
-but they have not got a clear mapping to values (e.g. they have fast and
-slow). For the case with real values, use the same solution as
-drive-strength - real values.
-
+> >> +
+> >> +          ti,cdr-mode:
+> >> +            $ref: /schemas/types.yaml#/definitions/uint32
+> >> +            enum:
+> >> +              - 0 # FPD-Link III
+> >> +              - 1 # FPD-Link IV
+> >> +            description:
+> >> +              FPD-Link CDR Mode. This should reflect the hardware and the
+> >> +              default mode of the connected camera module.
+> >> +
+> >> +          ti,strobe-pos:
+> >> +            $ref: /schemas/types.yaml#/definitions/int32
+> >> +            minimum: -13
+> >> +            maximum: 13
+> >> +            description: Manual strobe position
+> >> +
+> >> +          ti,eq-level:
+> >> +            $ref: /schemas/types.yaml#/definitions/uint32
+> >> +            maximum: 14
+> >> +            description: Manual EQ level
+> >> +
+> >> +          serializer:
+> >> +            type: object
+> >> +            description: FPD-Link Serializer node
+> >> +
+> >> +        required:
+> >> +          - reg
+> >> +          - i2c-alias
+> >> +          - ti,rx-mode
+> >> +          - serializer
+> >> +
+> >> +  ports:
+> >> +    $ref: /schemas/graph.yaml#/properties/ports
+> >> +
+> >> +    properties:
+> >> +      port@0:
+> >> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> >> +        unevaluatedProperties: false
+> >> +        description: FPD-Link input 0
+> >> +
+> >> +        properties:
+> >> +          endpoint:
+> >> +            $ref: /schemas/media/video-interfaces.yaml#
+> >> +            unevaluatedProperties: false
+> >> +            description:
+> >> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
+> >> +              hsync-active and vsync-active must be defined.
+> >> +
+> >> +      port@1:
+> >> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> >> +        unevaluatedProperties: false
+> >> +        description: FPD-Link input 1
+> >> +
+> >> +        properties:
+> >> +          endpoint:
+> >> +            $ref: /schemas/media/video-interfaces.yaml#
+> >> +            unevaluatedProperties: false
+> >> +            description:
+> >> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
+> >> +              hsync-active and vsync-active must be defined.
+> >> +
+> >> +      port@2:
+> >> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> >> +        unevaluatedProperties: false
+> >> +        description: FPD-Link input 2
+> >> +
+> >> +        properties:
+> >> +          endpoint:
+> >> +            $ref: /schemas/media/video-interfaces.yaml#
+> >> +            unevaluatedProperties: false
+> >> +            description:
+> >> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
+> >> +              hsync-active and vsync-active must be defined.
+> >> +
+> >> +      port@3:
+> >> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> >> +        unevaluatedProperties: false
+> >> +        description: FPD-Link input 3
+> >> +
+> >> +        properties:
+> >> +          endpoint:
+> >> +            $ref: /schemas/media/video-interfaces.yaml#
+> >> +            unevaluatedProperties: false
+> >> +            description:
+> >> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
+> >> +              hsync-active and vsync-active must be defined.
+> >> +
+> >> +      port@4:
+> >> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> >> +        unevaluatedProperties: false
+> >> +        description: CSI-2 Output 0
+> >> +
+> >> +        properties:
+> >> +          endpoint:
+> >> +            $ref: /schemas/media/video-interfaces.yaml#
+> >> +            unevaluatedProperties: false
+> >> +
+> >> +            properties:
+> >> +              data-lanes:
+> >> +                minItems: 1
+> >> +                maxItems: 4
+> >> +
+> >> +            required:
+> >> +              - data-lanes
+> >> +
+> >> +      port@5:
+> >> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> >> +        unevaluatedProperties: false
+> >> +        description: CSI-2 Output 1
+> >> +
+> >> +        properties:
+> >> +          endpoint:
+> >> +            $ref: /schemas/media/video-interfaces.yaml#
+> >> +            unevaluatedProperties: false
+> >> +
+> >> +            properties:
+> >> +              data-lanes:
+> >> +                minItems: 1
+> >> +                maxItems: 4
+> >> +
+> >> +            required:
+> >> +              - data-lanes
+> > 
+> > I think you need
+> > 
+> >      required:
+> >        - port@0
+> >        - port@1
+> >        - port@2
+> >        - port@3
+> >        - port@4
+> >        - port@5
 > 
-> Regards,
-> Chester
-> 
-> 
-> From 3a29d905ae104e694230ffc02dc9f9de4191c5d1 Mon Sep 17 00:00:00 2001
-> From: Chester Lin <clin@suse.com>
-> Date: Fri, 28 Oct 2022 16:44:29 +0800
-> Subject: [PATCH] dt-bindings: pinctrl: add support for NXP S32 SoCs
-> 
-> Add DT schema and hedaer file for the pinctrl driver of NXP S32 SoC family.
-> 
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
-> Signed-off-by: Chester Lin <clin@suse.com>
-> ---
->  .../pinctrl/nxp,s32g2-siul2-pinctrl.yaml      | 136 ++++++++++++++++++
->  include/dt-bindings/pinctrl/s32g2-pinfunc.h   |  17 +++
+> Is that needed? I think often some of the ports are unused (e.g. the 
+> example in this yaml file). Is it customary to still require empty port 
+> nodes in the DT?
 
-NAK for bindings.
+Ports are an intrinsic property of a device, they don't depend on the
+device integration in the system. In this case, the UB960 has four
+FPD-Link inputs and two CSI-2 outputs, that's a property of the chip.
+They don't have to be connected to anything on the board, so endpooints
+are optional.
 
+-- 
+Regards,
 
-Best regards,
-Krzysztof
-
+Laurent Pinchart
