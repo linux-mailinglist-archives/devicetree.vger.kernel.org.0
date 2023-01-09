@@ -2,125 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8736B662C85
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 18:19:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E02AB662CAB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 18:28:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbjAIRTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 12:19:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44310 "EHLO
+        id S237211AbjAIR16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 12:27:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234922AbjAIRTl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 12:19:41 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E32C60CC;
-        Mon,  9 Jan 2023 09:19:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S237289AbjAIR1b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 12:27:31 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A010765E;
+        Mon,  9 Jan 2023 09:27:28 -0800 (PST)
+Received: from jupiter.universe (dyndsl-037-138-188-006.ewe-ip-backbone.de [37.138.188.6])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id D6B68CE10B2;
-        Mon,  9 Jan 2023 17:19:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38656C433F0;
-        Mon,  9 Jan 2023 17:19:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673284777;
-        bh=k98eTFMnCh2bl+CHsBnGrUnv2E5uAoeU3YRVbWMwWaA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oj3KFgt+El/gXk/L3K/Q4dyuhC1AhwOyyrzH1+p+Id0Lnzwr0vPSL02+pdhzGX2WI
-         l5Lt6HTLBhLiMTJVRKdUxz7/yRkEgXinUOX/KQEv7ITnpaBSx95V3ymKpPFiVhW7cs
-         JlkP3doH5GOWov0gbR8id7VKH9xDbN96qpQ3IogXcE/xJHdv7mugvKvMKjjrcsEV8v
-         36T3lJE57ts8OTJRzxhpOEtMflhw6QvOdYTEED6PzR0mWGn2yePCBX5o5dj3u1Mssz
-         8OwKqBunSIfAYByoiiKdRoBdRqMLsxmhF9aSLgb7wOv5FuyYJeswRj5wUlhn4lgsVe
-         F4Qvfg9fdDwRQ==
-Date:   Mon, 9 Jan 2023 17:19:30 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     lee.jones@linaro.org, pavel@ucw.cz, robh+dt@kernel.org,
-        sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, andy.shevchenko@gmail.com,
-        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/6] Add a multicolor LED driver for groups of
- monochromatic LEDs
-Message-ID: <Y7xMogUbXCFktH65@google.com>
-References: <20230102081021.138648-1-jjhiblot@traphandler.com>
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 97D7B6602D06;
+        Mon,  9 Jan 2023 17:27:26 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1673285246;
+        bh=nQsLEx8imfg6q30F8cNFRfohA+pDu3urKtovZZARPaM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=DUW1xw4yxf/DBpw2qT1HlSqe3i/J7OgLTAdKIc6amt5qpLLLhqnk0wHgX9ivvQrYS
+         rX47ux1kG46gEmJWMLU+fL9aXD0Lw9MptUoEcOhmgIZPVcCtiHplJ8Vyr108PJ1Q+H
+         Wvq/a6Cg0pgrIbQy1QJxcopx/q3vjXY+h+E6dBfjB87fvdBePsdMGOg24s7bJQWsj8
+         u1Lg82TziQll3zb+QQx7v9GlQrajdxxnPrqbCraRqR+sMlkdt6F4zLNAQ2y2TsteLB
+         I3abOBDwTxLMg5LhROMiprLq0zrWkyXffuGBa7Mljo1+QcO2PE45zepb6nITJF9QR5
+         8sDLWUK3gg23Q==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 52943480116; Mon,  9 Jan 2023 18:27:24 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCHv5 00/10] Introduce RK806 Support
+Date:   Mon,  9 Jan 2023 18:27:13 +0100
+Message-Id: <20230109172723.60304-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230102081021.138648-1-jjhiblot@traphandler.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Jan 2023, Jean-Jacques Hiblot wrote:
-> Some HW design implement multicolor LEDs with several monochromatic LEDs.
-> Grouping the monochromatic LEDs allows to configure them in sync and use
-> the triggers.
-> The PWM multicolor LED driver implements such grouping but only for
-> PWM-based LEDs. As this feature is also desirable for the other types of
-> LEDs, this series implements it for any kind of LED device.
+Hi,
 
-Another for Pavel.
- 
-> changes v6->v7:
->  - in led_mcg_probe() increment the counter at the end of the loop for
->    clarity.
-> 
-> changes v5->v6:
->  - restore sysfs access to the leds when the device is removed
-> 
-> changes v4->v5:
->  - Use "depends on COMPILE_TEST || OF" in Kconfig to indicate that OF
->    is a functional requirement, not just a requirement for the
->    compilation.
->  - in led_mcg_probe() check if devm_of_led_get_optional() returns an
->    error before testing for the end of the list.
->  - use sysfs_emit() instead of sprintf() in color_show().
->  - some grammar fixes in the comments and the commit logs.
-> 
-> changes v2->v3, only minor changes:
->  - rephrased the Kconfig descritpion
->  - make the sysfs interface of underlying LEDs read-only only if the probe
->    is successful.
->  - sanitize the header files
->  - removed the useless call to dev_set_drvdata()
->  - use dev_fwnode() to get the fwnode to the device.
-> 
-> changes v1->v2:
->  - Followed Rob Herrings's suggestion to make the dt binding much simpler.
->  - Added a patch to store the color property of a LED in its class
->    structure (struct led_classdev).
-> 
-> 
-> Jean-Jacques Hiblot (6):
->   devres: provide devm_krealloc_array()
->   leds: class: simplify the implementation of devm_of_led_get()
->   leds: provide devm_of_led_get_optional()
->   leds: class: store the color index in struct led_classdev
->   dt-bindings: leds: Add binding for a multicolor group of LEDs
->   leds: Add a multicolor LED driver to group monochromatic LEDs
-> 
->  Documentation/ABI/testing/sysfs-class-led     |   9 +
->  .../bindings/leds/leds-group-multicolor.yaml  |  64 +++++++
->  drivers/leds/led-class.c                      |  65 +++++--
->  drivers/leds/rgb/Kconfig                      |  10 ++
->  drivers/leds/rgb/Makefile                     |   1 +
->  drivers/leds/rgb/leds-group-multicolor.c      | 166 ++++++++++++++++++
->  include/linux/device.h                        |  13 ++
->  include/linux/leds.h                          |   3 +
->  8 files changed, 317 insertions(+), 14 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
->  create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
-> 
-> -- 
-> 2.25.1
-> 
+The Rockchip RK3588 Evaluation Boards use SPI connected RK806
+PMICs. Downstream this is handled by a new driver, but apart
+from being SPI connected this chip is quite similar to the
+ther Rockchip PMICs (also RK806 is promoted to also support
+I2C). Thus this series instead updates the RK808 driver(s).
+
+Changelog since PATCHv4:
+ * https://lore.kernel.org/all/20221020204251.108565-1-sebastian.reichel@collabora.com/
+ * rebase to v6.2-rc1
+   - dropped 'regulator: rk808: reduce 'struct rk808' usage' (queued to 6.2-rc1)
+   - dropped 'regulator: rk808: Use dev_err_probe' (queued to 6.2-rc1)
+   - dropped 'rtc: rk808: reduce 'struct rk808' usage' (queued to 6.2-rc1)
+ * use 'MFD_RK8XX' for the MFD driver supporting all the MFD8XX chips
+ * added author tags to drivers/mfd/rk8xx-core.c. They were missing because
+   I moved the original header over to the i2c specific file and wrote the
+   new header from scratch. I suppose it's better to have the author tags
+   in both files.
+ * fix Rob's comments for the rk806 YAML binding
+ * add defines for rk806 command indexes
+ * modify rk806 code, so that it is capable of mult-write
+
+Changelog since PATCHv3:
+ * https://lore.kernel.org/all/20220909175522.179175-1-sebastian.reichel@collabora.com/
+ * Dropped removing REGMAP_I2C dependency from RK817 ASoC driver (applied)
+ * Rename MFD_RK808 to MFD_RK8XX to be consistent. It makes sense to do this now,
+   since the patchset touches all the child drivers anyways.
+ * rebase to v6.1-rc1
+ * collected a couple of Acks
+ * update rk806 DT binding according to DT maintainer feedback
+ * add missing pinmux config to the rk806 DT binding
+ * update rk806_spi_bus_write and rk806_spi_bus_read
+ * replaced some constants with sizeof or defines
+ * used capitalized comments
+ * rename regmap_find_closest_bigger to regulator_find_closest_bigger, not sure
+   why I prefixed it with regmap_ in the first place
+ * use rk8xx_is_enabled_wmsk_regmap instead of regulator_is_enabled_regmap for
+   the switching regulators to correctly report the state
+ * reordered the first few patches grouping the MFD patches together
+
+Changelog since PATCHv2:
+ * https://lore.kernel.org/all/20220908003107.220143-1-sebastian.reichel@collabora.com/
+ * Change DT binding to not allow nldo-reg6
+ * Fix DT binding to check for [np]ldo-reg instead of [np]ldo_reg
+ * remove rk806_get_voltage_sel_regmap in favour of regulator_get_voltage_sel_regmap
+ * drop rk806_set_voltage in favour of regulator_set_voltage_sel_regmap
+ * use regulator_set_ramp_delay_regmap
+ * drop possibly incorrect printing of chip id register address in case of errors
+
+Changelog since PATCHv1:
+ * https://lore.kernel.org/all/20220831215437.117880-1-sebastian.reichel@collabora.com/
+ * Collect Acked-by
+ * Avoid if/else checks for regulator id in rk806 regulator driver
+ * Fix indentation in DTS example section of the rk806 binding
+ * Use absolute path for regulator.yaml referencing in the rk806 binding
+ * Reduce pattern for DCDC regulators to only allow 1-10
+ * replace uppercase name with lowercase ones in regulator names
+ * replace _ with - in regulator names
+
+-- Sebastian
+
+Sebastian Reichel (10):
+  clk: RK808: reduce 'struct rk808' usage
+  mfd: rk808: convert to device managed resources
+  mfd: rk808: use dev_err_probe
+  mfd: rk808: replace 'struct i2c_client' with 'struct device'
+  mfd: rk808: split into core and i2c
+  dt-bindings: mfd: add rk806 binding
+  mfd: rk8xx: add rk806 support
+  pinctrl: rk805: add rk806 pinctrl support
+  regulator: expose regulator_find_closest_bigger
+  regulator: rk808: add rk806 support
+
+ .../bindings/mfd/rockchip,rk806.yaml          | 406 +++++++++++++++++
+ drivers/clk/Kconfig                           |   2 +-
+ drivers/clk/clk-rk808.c                       |  34 +-
+ drivers/input/misc/Kconfig                    |   2 +-
+ drivers/mfd/Kconfig                           |  21 +-
+ drivers/mfd/Makefile                          |   4 +-
+ drivers/mfd/{rk808.c => rk8xx-core.c}         | 350 +++++----------
+ drivers/mfd/rk8xx-i2c.c                       | 209 +++++++++
+ drivers/mfd/rk8xx-spi.c                       | 122 +++++
+ drivers/pinctrl/Kconfig                       |   2 +-
+ drivers/pinctrl/pinctrl-rk805.c               | 189 +++++++-
+ drivers/power/supply/Kconfig                  |   2 +-
+ drivers/regulator/Kconfig                     |   2 +-
+ drivers/regulator/helpers.c                   |  22 +-
+ drivers/regulator/rk808-regulator.c           | 383 ++++++++++++++++
+ drivers/rtc/Kconfig                           |   2 +-
+ include/linux/mfd/rk808.h                     | 417 +++++++++++++++++-
+ include/linux/regulator/driver.h              |   2 +
+ sound/soc/codecs/Kconfig                      |   2 +-
+ 19 files changed, 1889 insertions(+), 284 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+ rename drivers/mfd/{rk808.c => rk8xx-core.c} (71%)
+ create mode 100644 drivers/mfd/rk8xx-i2c.c
+ create mode 100644 drivers/mfd/rk8xx-spi.c
 
 -- 
-Lee Jones [李琼斯]
+2.39.0
+
