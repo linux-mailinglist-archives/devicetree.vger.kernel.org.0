@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12EE56627CE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:57:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7156B6627DA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:58:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236610AbjAIN5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 08:57:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37050 "EHLO
+        id S233499AbjAIN5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 08:57:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237072AbjAIN4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:56:55 -0500
+        with ESMTP id S237089AbjAIN47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:56:59 -0500
 Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F44726EF
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 05:56:53 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id d30so8155122lfv.8
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 05:56:53 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2A1FD6
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 05:56:57 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id bf43so13084900lfb.6
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 05:56:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OtRHADvv4anssYS+846iuuGfMjeI+w9hq/ijC5zrofw=;
-        b=WqL6AtiLfyUJGsXEppqg/3kDZ4w4mbT0rOXsF17gBI/mhAh+xw8hrpjkVggQPhDsCV
-         T9Mlycd5fJ1mybRDaK2theN0czfSAvKSxUgx9gWQp5zYFiMYqOgsC+yFnvXPORcanvH/
-         MlNe+2OoAWnBnHZJUQRk2bjWs5aYvTBl3FqYSvBeneecFNNP5OsjwI0F6bY4ckIi4f/B
-         Wsa1fX06aLSKkZ4kbM0sxVH9Z2CJz06uY1cH7t1xUSSTGh9gV4OhEhKto/8m/2QhyBEc
-         qe2EtZyUQC/p57Xyrdealzvjzw5zONdk586yNihvzRi6Lu53mRsLf4lTZbVCIU4vxyyu
-         zpIg==
+        bh=5/etb6Li+SD1qbbc9rQxZclFqISGWC/9BhlatPB62o4=;
+        b=vCtezC3cFYTmqwEK9IuuO5ETNM7p4cil2D5Jjn/TK/UBDfPHkHG50nj6u7OZlW4WM5
+         O0V+M3m2vQg1QMNYcm4Pz/tYh6SktKQDys2lMEa/gLu+si5SU5OFkT+baA68uA9HwvHr
+         2CKndpT/k+gZGtMgRSIPJniu6L6skl8cOC16jSA70mOlLYIOX8+Oz7cDLOugfzeXgXOH
+         aYk9kwll1E6Qhzdftqcw2wVyOirQ2qeZcoQ1A4QSet5bTta/bPUj1z22TPbDVID1h9o/
+         MTwYJ6FUKytHuXZQh0Wz50wi9HKupKDZhGZlNUzEe33LdFQ+PSzg/gzjvFQ87bkxyd3i
+         jKmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OtRHADvv4anssYS+846iuuGfMjeI+w9hq/ijC5zrofw=;
-        b=oFPx/NS3iDBsZFYXPHofBhoQheCeG7jmTRaKG6W2WrYFXRrmkhryo51ivg5AbvFR47
-         Cf9pxRwvQv0KrNg9F8X0RoV0cGrlh5ymNnfXU3zGLYP88lLsTlN+00ARMDV6Y51i0TS3
-         AzMnZyqRAqimdnVnpof/QEUmx20wGLfoFQL5zqSMto1TJXGVicHFHFFqHM7Y51uVw4SI
-         FgiiN4IP4hC/D73FGEe245wNIgshch0R/3HkRTie6HBgRB+9W6lhKqI0ZpCJ2KhRDB+o
-         g6kU6/K94jKShhgj6YxLMDdIJBTuoveJLYyQxwGvNKVxlfrxfVNf65GJQO6fbDXoi2B/
-         jggw==
-X-Gm-Message-State: AFqh2kpQNpF079g62HDOXeMNCU5EYjRYAi+Vf8sIHQBl5xA223IkgUZJ
-        oXdIOWskKxusjgpmKNxg/ylkQA==
-X-Google-Smtp-Source: AMrXdXttJHE0iG9e7/ObKTMZrDXIQploREc8fiolCCeZWtCVHUy25KAKs4KPKbvkrRIfYRj5wXhcTA==
-X-Received: by 2002:ac2:5503:0:b0:4b5:9845:c8a9 with SMTP id j3-20020ac25503000000b004b59845c8a9mr17428962lfk.47.1673272611912;
-        Mon, 09 Jan 2023 05:56:51 -0800 (PST)
+        bh=5/etb6Li+SD1qbbc9rQxZclFqISGWC/9BhlatPB62o4=;
+        b=q0M7RHGnqcdN7WRXy2VjnMhx573+aPkncB2yuZKc8Uz+YTalIcWnBsBYVVQRYozdm5
+         uBRSjtvE4XLT3yOdpVh6ZOi8qUeb6isiAPFLPALtVd5OGAZf6iQD3VTVuES0/BmggsnO
+         vFM0NMmkkbu3SDXpoo2TLliIE/8Ij9ddraWGFiONQ7extcv88Fx05kuquy/njhntzUy0
+         qkfpvoHxyDn8kZ5PeQNjjgSWYo3KotttvQUcLCWMFBEgfx5wejFjwVRlENa23CuoMY7K
+         rXb/0DQK4mFNukzwagHC7+oGkLhaxu6ohcbG19LE8wEJqJ2frJrLKttIvT2JvMpjtEcY
+         qzog==
+X-Gm-Message-State: AFqh2kq1z4ybKmvdqpqcWNWQhrQZz0Aca/5BQdZJaXX5a5fdMVDrZ7Ph
+        ygJrnnXKcNCrm824ioQS2MrHog==
+X-Google-Smtp-Source: AMrXdXsxRujt/w9vMYb/h5KmybJyJUpBxB/ztrdQ4vSNn3xnQU7xA3eWTJ0KMpbpfj95ij4iJMgGCA==
+X-Received: by 2002:a05:6512:22d3:b0:4b4:fbdc:a359 with SMTP id g19-20020a05651222d300b004b4fbdca359mr19491673lfu.54.1673272615522;
+        Mon, 09 Jan 2023 05:56:55 -0800 (PST)
 Received: from localhost.localdomain (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id x16-20020a056512079000b004c89b9fb1fdsm1638226lfr.68.2023.01.09.05.56.50
+        by smtp.gmail.com with ESMTPSA id x16-20020a056512079000b004c89b9fb1fdsm1638226lfr.68.2023.01.09.05.56.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 05:56:51 -0800 (PST)
+        Mon, 09 Jan 2023 05:56:55 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
 Cc:     marijn.suijten@somainline.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/4] dt-bindings: remoteproc: qcom,sm6375-pas: Document remoteprocs
-Date:   Mon,  9 Jan 2023 14:56:44 +0100
-Message-Id: <20230109135647.339224-2-konrad.dybcio@linaro.org>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 4/4] arm64: dts: qcom: sm6375: Add missing power-domain-named to CDSP
+Date:   Mon,  9 Jan 2023 14:56:47 +0100
+Message-Id: <20230109135647.339224-5-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230109135647.339224-1-konrad.dybcio@linaro.org>
 References: <20230109135647.339224-1-konrad.dybcio@linaro.org>
@@ -78,161 +75,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM6375 hosts an ADSP, CDSP and modem as remote processors. Create
-related bindings.
+This was omitted when first introducing the node. Fix it.
 
+Fixes: fe6fd26aeddf ("arm64: dts: qcom: sm6375: Add ADSP&CDSP")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
 v2 -> v3:
-- Separate out 6375 bindings
+New patch
 
- .../bindings/remoteproc/qcom,sm6375-pas.yaml  | 137 ++++++++++++++++++
- 1 file changed, 137 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
+ arch/arm64/boot/dts/qcom/sm6375.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
-new file mode 100644
-index 000000000000..60ee3fc7ab5b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
-@@ -0,0 +1,137 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/remoteproc/qcom,sm6375-pas.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SM6375 Peripheral Authentication Service
-+
-+maintainers:
-+  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+
-+description:
-+  Qualcomm SM6375 SoC Peripheral Authentication Service loads and boots
-+  firmware on the Qualcomm DSP Hexagon cores.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,sm6375-adsp-pas
-+      - qcom,sm6375-cdsp-pas
-+      - qcom,sm6375-mpss-pas
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: XO clock
-+
-+  clock-names:
-+    items:
-+      - const: xo
-+
-+  smd-edge: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/remoteproc/qcom,pas-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,sm6375-adsp-pas
-+            - qcom,sm6375-cdsp-pas
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 5
-+        interrupt-names:
-+          maxItems: 5
-+    else:
-+      properties:
-+        interrupts:
-+          minItems: 6
-+        interrupt-names:
-+          minItems: 6
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,sm6375-adsp-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: LCX power domain
-+            - description: LMX power domain
-+        power-domain-names:
-+          items:
-+            - const: lcx
-+            - const: lmx
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,sm6375-cdsp-pas
-+            - qcom,sm6375-mpss-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: CX power domain
-+        power-domain-names:
-+          items:
-+            - const: cx
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmcc.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/mailbox/qcom-ipcc.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    remoteproc_adsp: remoteproc@a400000 {
-+        compatible = "qcom,sm6375-adsp-pas";
-+        reg = <0x0a400000 0x100>;
-+
-+        interrupts-extended = <&intc GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-+                              <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
-+                              <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
-+                              <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
-+                              <&smp2p_adsp_in 3 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "wdog", "fatal", "ready",
-+                          "handover", "stop-ack";
-+
-+        clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
-+        clock-names = "xo";
-+
-+        power-domains = <&rpmpd SM6375_VDD_LPI_CX>,
-+                        <&rpmpd SM6375_VDD_LPI_MX>;
-+        power-domain-names = "lcx", "lmx";
-+
-+        memory-region = <&pil_adsp_mem>;
-+
-+        qcom,smem-states = <&smp2p_adsp_out 0>;
-+        qcom,smem-state-names = "stop";
-+
-+        glink-edge {
-+            interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
-+                                         IPCC_MPROC_SIGNAL_GLINK_QMP
-+                                         IRQ_TYPE_EDGE_RISING>;
-+            mboxes = <&ipcc IPCC_CLIENT_LPASS
-+                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
-+
-+            label = "lpass";
-+            qcom,remote-pid = <2>;
-+
-+            /* ... */
-+        };
-+    };
+diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+index 4f00307b30e8..bf5114468ba5 100644
+--- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+@@ -1873,6 +1873,7 @@ remoteproc_cdsp: remoteproc@b000000 {
+ 			clock-names = "xo";
+ 
+ 			power-domains = <&rpmpd SM6375_VDDCX>;
++			power-domain-names = "cx";
+ 
+ 			memory-region = <&pil_cdsp_mem>;
+ 
 -- 
 2.39.0
 
