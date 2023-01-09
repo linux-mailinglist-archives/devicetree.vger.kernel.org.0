@@ -2,103 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97EF3662704
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0120E66270C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:30:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229708AbjAIN27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 08:28:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43416 "EHLO
+        id S236687AbjAINaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 08:30:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234832AbjAIN2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:28:35 -0500
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 191A78FE2;
-        Mon,  9 Jan 2023 05:28:35 -0800 (PST)
-Received: by mail-qt1-f182.google.com with SMTP id v14so7780683qtq.3;
-        Mon, 09 Jan 2023 05:28:35 -0800 (PST)
+        with ESMTP id S236991AbjAIN3z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:29:55 -0500
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 641B71A396
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 05:29:54 -0800 (PST)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-482363a1232so112629447b3.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 05:29:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZOu+YPGL4HyTcJPErwyvfcCw8AgjES/LkJyDaqUA8xo=;
+        b=MmIVeiwGGg+w70IfORtKA6uSn4jgusMZs9qTk/5aGLvuqebaBKnrGkH6v+NUOPGYiS
+         pUYVE1LkpaG8IeDssdw2Kfc9H49sXT70cp3n3BiXevLPVrBq7cgURKvFKVns547Nes3i
+         Ffs6cWYDiTYFeFWs78lXv0zXPqy1UBATpUC3gNQoXF8tdDK+YQirEmupV8NWBBLDXvDU
+         86FFej0tZSemF/dgnmgaSd0iU72hGQ6GiUfaFynsSaoILuKh9jsUTGmB5iTbtPElwCiu
+         gcQV3iLt4GSV5Zy17yf9NP9SURfc80q1QdEgQaGRrbNXGOK6uNppyuBTOrCwE9XP1GgH
+         kIdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tNPWeAzlRFUhQDC+UGHF6x7r2OGa8Y3G0j9qoaAmJCY=;
-        b=afygxGte1bioWpjX3Evh5e4JDINoRU50j6Bx5w4OLErxiNG0OrVMjwO1khEu2hu/zs
-         HcWTywyTS3q1cBQV97NyHms7yVxw3WzGVhkOsTP8AIOtik/8Xf4uAvh09sGoJaOGhlBk
-         1uaCitcT99GbvpZMg9/bI22AgWFljNE/hSs224jdqmwMhGatT67IlZt/gH59eLXnSuTa
-         lqrkJJ4McisSzFONCwdFJ4ARrM0MC4HUjVCQiqGg3+SJ37uGR5XXu1ARpgLD8sLt1sux
-         PNE+LinxYKKtyjI1I8Nja9kiS5IuDMpegQ5cvdvdnFRcCPXkExuwkX8exRDbLkuKLtkk
-         rbrA==
-X-Gm-Message-State: AFqh2krmox0ot9vYHFlZ8OjNT6t7poPwOXFyMEqJb+lz/T5t78tatxtu
-        WnqG2UDZYluBJrZHt6arCczW7Y/oSv7lzQ==
-X-Google-Smtp-Source: AMrXdXupbhzpiPXjIRIkJisaOIKFg0QEny/Ej9INUT9AZZz6Rt3JAIbOKwePJr97choTy+qW6g/cew==
-X-Received: by 2002:a05:622a:6108:b0:3ab:97cc:6ed6 with SMTP id hg8-20020a05622a610800b003ab97cc6ed6mr61126333qtb.48.1673270914047;
-        Mon, 09 Jan 2023 05:28:34 -0800 (PST)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id m5-20020ac86885000000b0039cba52974fsm4565788qtq.94.2023.01.09.05.28.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 05:28:33 -0800 (PST)
-Received: by mail-yb1-f176.google.com with SMTP id c124so8451154ybb.13;
-        Mon, 09 Jan 2023 05:28:33 -0800 (PST)
-X-Received: by 2002:a25:3143:0:b0:77a:b5f3:d0ac with SMTP id
- x64-20020a253143000000b0077ab5f3d0acmr4418010ybx.202.1673270913184; Mon, 09
- Jan 2023 05:28:33 -0800 (PST)
+        bh=ZOu+YPGL4HyTcJPErwyvfcCw8AgjES/LkJyDaqUA8xo=;
+        b=VR8iZ8Jrg9wXrCxnMQM832Ih3+WtdOi/Jj4xQlUG6JjCmgSrrqieRmjk/PdwhuMbEf
+         MVH1Y8OdYzxzGVBXoNEhgs9tDst5t9cFmGEzmr2ya34vXc66TctESl9ivZFLC+Y44idz
+         UCs23NFx9iltfCf3TxrBov+9ugC48Iv5ttS+D+S9ffM4e02Y3K5ZOagNvh7IrcWe6UsK
+         RDN9JHpW4Y3Hx1+tnUquslOVDxKn+6OWzCWMr0r7hFYHgnAskIiq/Dg0p23nR6rCaVtB
+         Df2AiP2MfMV7rRzdxNHKNeeHBfFzf+Zxgz148IyZVVHxIirvKAFDnjDzGzMS7c0HwfP4
+         YWNg==
+X-Gm-Message-State: AFqh2koLWf6cz8zWGnfnVdXmt83e0U+fMNwesgOyg+gnytTFDMXlSw93
+        ZsRGrTUYOJR5zYHX0R4hhmkDR6QEgexR6/LGOa7tng==
+X-Google-Smtp-Source: AMrXdXvAcvxObj5g9/LlFQeX9n4DRfwF9usxC+I5SxlLdi4AuXTDLQvYlKlVCo1NrmFyB7wxdhf3+Xniq1G6cR/iSew=
+X-Received: by 2002:a81:441c:0:b0:463:e60:e538 with SMTP id
+ r28-20020a81441c000000b004630e60e538mr1091802ywa.130.1673270993625; Mon, 09
+ Jan 2023 05:29:53 -0800 (PST)
 MIME-Version: 1.0
-References: <20221213230129.549968-1-fabrizio.castro.jz@renesas.com> <20221213230129.549968-5-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20221213230129.549968-5-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 9 Jan 2023 14:28:21 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUrAF7CRGSirfZE+aKB9dmWe9mjZoUJW3yRNu1dSuhFig@mail.gmail.com>
-Message-ID: <CAMuHMdUrAF7CRGSirfZE+aKB9dmWe9mjZoUJW3yRNu1dSuhFig@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: renesas: r9a09g011: Add eMMC and SDHI support
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
+References: <20221221073232.21888-1-clin@suse.com> <20221221073232.21888-3-clin@suse.com>
+In-Reply-To: <20221221073232.21888-3-clin@suse.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 9 Jan 2023 14:29:42 +0100
+Message-ID: <CACRpkdbwgngAmqB4uU9TxeqcURtvH9S8Y5U38nmX4e7fWM07Fg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] pinctrl: add NXP S32 SoC family support
+To:     Chester Lin <clin@suse.com>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, s32@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Matthew Nunez <matthew.nunez@nxp.com>,
+        Phu Luu An <phu.luuan@nxp.com>,
+        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+Hi Chester,
 
-On Wed, Dec 14, 2022 at 12:02 AM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> The RZ/V2M comes with 2 SDHI interfaces and 1 eMMC interface.
-> Add the relevant nodes to the SoC specific device tree.
+thanks for your patch!
+
+On Wed, Dec 21, 2022 at 8:33 AM Chester Lin <clin@suse.com> wrote:
+
+> Add the pinctrl driver for NXP S32 SoC family. This driver is mainly based
+> on NXP's downstream implementation on CodeAurora[1].
 >
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> [1] https://source.codeaurora.org/external/autobsps32/linux/tree/drivers/pinctrl/freescale?h=bsp34.0-5.10.120-rt
+>
+> Signed-off-by: Matthew Nunez <matthew.nunez@nxp.com>
+> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
+> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@nxp.com>
+> Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
+> Signed-off-by: Chester Lin <clin@suse.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.3.
+(...)
+>  drivers/pinctrl/freescale/Kconfig         |  14 +
+>  drivers/pinctrl/freescale/Makefile        |   2 +
+>  drivers/pinctrl/freescale/pinctrl-s32.h   |  76 ++
+>  drivers/pinctrl/freescale/pinctrl-s32cc.c | 983 ++++++++++++++++++++++
+>  drivers/pinctrl/freescale/pinctrl-s32g2.c | 773 +++++++++++++++++
 
-Note that this causes "make dtbs_check" failures, due to a bug in
-the bindings. I have sent a fix.
-https://lore.kernel.org/054c9f4dbb0bb1525f780d1e85c724436465c20c.1673270716.git.geert+renesas@glider.be
+Should this driver really be grouped together with the legacy branded
+"freescale" stuff? Does it share any hardware or structure or code
+with the Freescale drivers?
 
-Gr{oetje,eeting}s,
+Maybe you should bite the bullet and created drivers/pinctrl/nxp?
 
-                        Geert
+Also create a new MAINTAINERS entry so we do not get the
+Freescale legacy maintainer list.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Overall the driver looks good, I am a bit sceptic about the things
+that Kryzstof is talking about as well so that needs to be resolved.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yours,
+Linus Walleij
