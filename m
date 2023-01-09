@@ -2,91 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 352A166201F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:36:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65083662021
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:37:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233151AbjAIIgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 03:36:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47296 "EHLO
+        id S233215AbjAIIhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 03:37:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236688AbjAIIgN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:36:13 -0500
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FD36AE50
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:36:12 -0800 (PST)
-Received: by mail-io1-xd33.google.com with SMTP id r72so4216179iod.5
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:36:12 -0800 (PST)
+        with ESMTP id S236664AbjAIIhL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:37:11 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B5A013F20
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:37:09 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so5978505wms.4
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:37:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mHG6QBVWalNbc6K28lbxbgnje/+7/XEu+lQ22LFlbhA=;
-        b=RKb0bQ46rB+LGlcgXPPcXSNSsBvnsTEP2Ke81j6fsN0R18E5e0VfOaEeNTYQFYp3x1
-         rQFXcYT9aKh2BFfqA/O8uH3QqudY/Yc8uhKMip+5WT6Rn1tw59rzHMo9cNqN3/zAz14j
-         91oDYYt33C+AYk5ZdCGXa5TaDVBFg7RndXr/M=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VeKLpPbr+0opZSsyaNdS4GmUMbw67mVC1MhWp/RMXc8=;
+        b=j2DjT+bRzJvVjlkLjqfEEWT4jY+ZoP+BoB4sAMBIO8cn6gtDboHm/Ows1bCAQ9adgi
+         jZopYzGek5pMHwrtI3kPPh/XubnGujItQpxANrzd1vsKSEqrB/3f2KCYbslJgqxU4F04
+         jcTQsAvnTmoroqicVgZCnnagXid9Cl4M+cGU9Wc7zRCB1C8muo8V83NCv3EI+0Mq5BID
+         vEFfTJglWJiF8hrXUzAPoKnEVbfkpw8wMMSSW9luI2MwCqs0ZcuMxltYcRJ04xpzXGNk
+         WxXnHbviX9Q19lbTysK/QbFKI/7P4l3/Afm+xh9OatEhNf6LKhlplQtNkkUazIEE4td7
+         /DuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mHG6QBVWalNbc6K28lbxbgnje/+7/XEu+lQ22LFlbhA=;
-        b=vfHrC0TWfo1nPLBdILeVro6ValUkX0WW7Gejm2bHaNsU58VDKsp225tG8rjDSH34c4
-         2qz5DOla5Xw8tdYL6mtoHc5vdxkm8VSW83BkLyheMU20KqbjGgsc5d3X17Y6KyXENe/6
-         e2gVskh6w+MQ4jo+rSiUabXtdlAUiD1VyVA1IBLOGznZACKw02ohzTnnw1DKhjKOTmf+
-         fCPfduNkfpvRqyYjBFZKUlIXEfjWSSpuvl+uKxJ7+KXMkjtQv2G3UTSuLcd5VETS4SKQ
-         3nCQ3mM7UEl1V8dI8g2jUXwhFnjT3cXLhafpR6P112fs/K0o+mlbqbMOFGT4luvPML2V
-         TQbg==
-X-Gm-Message-State: AFqh2krow0yjN65+YIy13UzSJexSw6/t/xDl86X4mKdMmBsWut+Ej9rQ
-        Aeet81x8mkzbymVwNq/+epQMQ/wFuALyQm3f5b1H0Q==
-X-Google-Smtp-Source: AMrXdXuhMXzijzQbdmdDY+GL4BvF6UUNKOAXtws2POVhvMJvpc7JldHYHGfsgcPDVIsfECU7qR+WcgzqvnWgYoZMK4Y=
-X-Received: by 2002:a5e:c00f:0:b0:6e3:38c6:e35f with SMTP id
- u15-20020a5ec00f000000b006e338c6e35fmr5425568iol.153.1673253371768; Mon, 09
- Jan 2023 00:36:11 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VeKLpPbr+0opZSsyaNdS4GmUMbw67mVC1MhWp/RMXc8=;
+        b=yCp9tMIQ7HH9IM72MkcKOES4FpKA3nCHaoCsqtOSuyVcH7f/XvLf/1Z9gJOkLKALtn
+         SNO/1+D3j1m0ezNPpiXxDnpUcaKd8UpV+XwxqXiA5/YtD3hmrob+VCng7SRZoSGrvtu1
+         okw37IUjfPv5lKlYZ0rPvnsv9gKvkOq8EO3e1+cRXd3wgYmoIR0bXl7ryTnWEbX1AF7I
+         MwEqRMATAC2p9dGprKbWSIJ8SbFN7sF9unfCi2fwe1lSVJ21tC+Q6C/rtc0wyv7MIOgq
+         8Jt/NKf59wKRlFzFNpSndn/yjYp9oGQRBeiH6GwSLXKTiBpVD1Sc85g9/hL8IHhMkC0a
+         WzBg==
+X-Gm-Message-State: AFqh2kqi7KsP4k1kmCVus6a+9L3j04+9pA7n2S1R/6xsi15wZutTUPTz
+        0g6lYJlQu7wR5Zj08sfOpOzhZg==
+X-Google-Smtp-Source: AMrXdXvGZLtPPaGN5nHVCLSVwjBxlwNzC4/VdLmgdwDyBjlcW7SIj67hiUhm6HTg1UV9Bvxw3EagYw==
+X-Received: by 2002:a05:600c:4f96:b0:3d9:ed3b:5b3e with SMTP id n22-20020a05600c4f9600b003d9ed3b5b3emr2846989wmq.19.1673253428081;
+        Mon, 09 Jan 2023 00:37:08 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id e35-20020a5d5963000000b00276d8c2332fsm8834593wri.108.2023.01.09.00.37.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 00:37:07 -0800 (PST)
+Message-ID: <c3c35b5e-ec85-1226-c7a7-53bf4bd83713@linaro.org>
+Date:   Mon, 9 Jan 2023 09:37:05 +0100
 MIME-Version: 1.0
-References: <20230107102231.23682-1-treapking@chromium.org>
- <20230107102231.23682-8-treapking@chromium.org> <7f672ee7-7b78-dad9-ca58-2eb4c2c2dd39@linaro.org>
-In-Reply-To: <7f672ee7-7b78-dad9-ca58-2eb4c2c2dd39@linaro.org>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Mon, 9 Jan 2023 16:36:00 +0800
-Message-ID: <CAEXTbpd+yfCeg+SyVy0gbhh4g3MHNhQXZFi7M5svDfkjfDrWpw@mail.gmail.com>
-Subject: Re: [PATCH v8 7/9] dt/bindings: display: bridge: it6505: Add
- mode-switch support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        dri-devel@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org, Xin Ji <xji@analogixsemi.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Allen Chen <allen.chen@ite.com.tw>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        chrome-platform@lists.linux.dev,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, linux-acpi@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 1/4] dt-bindings: soc: samsung: exynos-sysreg: add
+ dedicated SYSREG compatibles to Exynos850
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>,
+        Sriranjani P <sriranjani.p@samsung.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
+        ravi.patel@samsung.com, sathya@samsung.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <CGME20221214044423epcas5p2920e87930665345169745002ec6993c3@epcas5p2.samsung.com>
+ <20221214044342.49766-1-sriranjani.p@samsung.com>
+ <20221214044342.49766-2-sriranjani.p@samsung.com>
+ <CAL_JsqLAqSoVdExrHXZ4xVaY4Ut5R54izoumOY8zsXWN2e8++w@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAL_JsqLAqSoVdExrHXZ4xVaY4Ut5R54izoumOY8zsXWN2e8++w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,64 +81,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 09/01/2023 02:15, Rob Herring wrote:
+> On Tue, Dec 13, 2022 at 10:47 PM Sriranjani P <sriranjani.p@samsung.com> wrote:
+>>
+>> Exynos850 has two different SYSREGs, hence add dedicated compatibles for
+>> them and deprecate usage of generic Exynos850 compatible alone.
+>>
+>> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+>> ---
+>>  .../soc/samsung/samsung,exynos-sysreg.yaml        | 15 ++++++++++++---
+>>  1 file changed, 12 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+>> index 4954790eda6c..427df05224e5 100644
+>> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+>> @@ -17,7 +17,6 @@ properties:
+>>                - samsung,exynos3-sysreg
+>>                - samsung,exynos4-sysreg
+>>                - samsung,exynos5-sysreg
+>> -              - samsung,exynos850-sysreg
+>>                - samsung,exynosautov9-sysreg
+>>                - tesla,fsd-cam-sysreg
+>>                - tesla,fsd-fsys0-sysreg
+>> @@ -33,9 +32,17 @@ properties:
+>>            - const: samsung,exynos5433-sysreg
+>>            - const: syscon
+>>        - items:
+>> -          - const: samsung,exynos5433-sysreg
+>> +          - enum:
+>> +              - samsung,exynos5433-sysreg
+>> +              - samsung,exynos850-sysreg
+>> +          - const: syscon
+>> +            deprecated: true
+> 
+> This is throwing an error in linux-next now.
+> 
+> How can 1 item in a list be deprecated? What's the not deprecated
+> value for the entry? Probably this needs to move up to 'items' as the
+> whole entry is deprecated.
 
-Thanks for your review.
-
-On Sun, Jan 8, 2023 at 10:59 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 07/01/2023 11:22, Pin-yen Lin wrote:
-> > ITE IT6505 can be used in systems to switch the DP traffic between
-> > two downstreams, which can be USB Type-C DisplayPort alternate mode
-> > lane or regular DisplayPort output ports.
-> >
-> > Update the binding to accommodate this usage by introducing a
-> > data-lanes and a mode-switch property on endpoints.
-> >
-> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> >
-> > ---
-> >
-> > Changes in v8:
-> > - Updated bindings for data-lanes property
-> > - Fixed subject prefix
->
-> How? It is still wrong. You have slash there.
-
-Sorry, I didn't even notice that. I'll fix this in v9.
->
-> >
->
-> (...)
->
-> >                  port@1 {
-> > +                    #address-cells = <1>;
-> > +                    #size-cells = <0>;
-> >                      reg = <1>;
-> > -                    it6505_out: endpoint {
-> > +                    it6505_out: endpoint@0 {
-> > +                        reg = <0>;
-> >                          remote-endpoint = <&dp_in>;
-> >                          data-lanes = <0 1>;
-> >                      };
-> > @@ -148,3 +173,49 @@ examples:
-> >              };
-> >          };
-> >      };
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    i2c3 {
->
-> Just i2c
-
-I missed this when preparing v8. I'll fix this in v9.
->
->
-> Best regards,
-> Krzysztof
->
+I missed this. I'll fix it. I'll updated my dtschema and see the error now.
 
 Best regards,
-Pin-yen
+Krzysztof
+
