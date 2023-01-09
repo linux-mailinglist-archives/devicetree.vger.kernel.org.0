@@ -2,158 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48387662CD6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 18:34:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA359662CDC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 18:35:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234288AbjAIRdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 12:33:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54628 "EHLO
+        id S237335AbjAIRfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 12:35:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234593AbjAIRdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 12:33:13 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C21C8B89;
-        Mon,  9 Jan 2023 09:33:10 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 691EFB80EB5;
-        Mon,  9 Jan 2023 17:33:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 845B3C433EF;
-        Mon,  9 Jan 2023 17:33:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673285588;
-        bh=c9HaNWf+qRzsAPgswmDVpuIDjXWxSu2Z5YT0YjFnKeI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ikRrQot6KCXH1qhQA0JrxmN7jM5I/mAVmtc0TYELFhQ9HBD/V1LzuwrMOUoHfTOUn
-         ODo7OufFVhG9B7pXAtvJG3MmhGyRcKjDWCk/uigVPKWWDRHFTLQTEv/H387R8eVo2W
-         k5Sf0+ACu194kvxA4le1GTfY+kXAbfjyuRuQ/79qNAqUIL/cc0BaRV4VdoJMUpVcGv
-         iwvVhrLBSw9ucWSQ+5CvIUQk0QB7JowrOnbCgZCvCTY7WW69M+S3wEQ9m0aXRxmwQK
-         Nvk5JhXNlc/YOHsLqRYKOdQUdIRm+YoSIy208IYMs5tuCZLWNkAgmPdP95Utt7tA/B
-         vrPBAxMt50kpg==
-Date:   Mon, 9 Jan 2023 17:33:03 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>
-Subject: Re: [PATCH v11 2/2] mfd: max597x: Add support for MAX5970 and MAX5978
-Message-ID: <Y7xPzz4Dtse9+Czd@google.com>
-References: <20221116205822.1128275-1-Naresh.Solanki@9elements.com>
- <20221116205822.1128275-3-Naresh.Solanki@9elements.com>
- <Y3YJ2EkYNW+gA+/R@google.com>
- <5d9e41b8-7b2a-d60b-3e92-641cea5a9f4a@9elements.com>
- <Y5HXWk4d5J9VgFBV@google.com>
- <921915e5-6b36-9d2d-ebd7-632403e3086a@9elements.com>
- <Y5mbyICg22UVFASw@google.com>
- <50212c7a-6525-4a91-f9a3-c60024b5e91d@9elements.com>
- <Y6WgtNZfeLMwPhCh@google.com>
- <01d39bc6-338d-fd1f-1718-15e0594af0f1@9elements.com>
+        with ESMTP id S237255AbjAIRfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 12:35:08 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F4CA1BC81;
+        Mon,  9 Jan 2023 09:34:25 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id bf43so14136665lfb.6;
+        Mon, 09 Jan 2023 09:34:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=j/a6jdGAfZ7pIbpWGVVuD5gf5IZMu1/POVTFRtaxPG4=;
+        b=Oy6QPTM/AN37YaK3JtPCP+jDRO6F3KE1MNe0/loFI9GTyhHyTOURvDzFK84eQO9FfO
+         mrPkSb2aulFnStIU6P0kwOlHSrbOEPsoOsGnJxxTopwjJ4SYIBLTGz2dQ2A74HGC7T4K
+         0oUphA7mZLoEk/apZofHVmQJfj+RQFgAXbYL/TphA2D90x8FjuB8WQVQ4ORsb8PhDrkc
+         +dZ03A79ZQZjXbaSLpv7BF1+lFt2M/nPzjNncG2rAMfsvxNDmrBQLjx8ZInqQJ8sccFI
+         kvMZsa5Mb/lYyfo3jv0wbegpqbbdwD5pS5yLTz5psIkWbW0AxUqrlleblFY+UD4fGE24
+         eA6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j/a6jdGAfZ7pIbpWGVVuD5gf5IZMu1/POVTFRtaxPG4=;
+        b=S/gTjjmo00EQahd1FWTKuQjQuxznl8TIhg3txhpODIN79OqjVjZ7I24ttUEorekNzz
+         l/3rR9ma0Hs+iAcJD0a+35tG2NNB4Lg5mWnQL8zCaR9vwiLOyiYTz/n5kF4Ry6iODsIX
+         lsfXC+crO+NkmuLvrYGdLc3z7PkR6++rz0HBWvTbuKKlYhPd4sw/1auAf+RrkOkljwi5
+         FeBVeN89QJXC0h2m1sFkUxj1qdIjkmpkpdjrXig5GwFVy0Vy5UyNIYkgJr/A0493wYFo
+         iirNGMw2hWW4SJejKgB2Y4iekg4c9cfqNJ2CAtm6T7ug9eRCX+kYZQ3VKpZ8pqYcMHPE
+         cmow==
+X-Gm-Message-State: AFqh2korgEz/ZAfQqtKucLNSqVMO2z+2P4x+aOkPxvZaXYx+84x5yFGa
+        2eabj3jWLniHtO9Yu5XHcaE=
+X-Google-Smtp-Source: AMrXdXtzdUVLC+bmCVsj5cHC/kijG5r3W/HBMl7bo413BmHfubxeOR9AHmOCBKV91spZxJG6XrCHlw==
+X-Received: by 2002:a05:6512:2526:b0:4a4:68b9:66e1 with SMTP id be38-20020a056512252600b004a468b966e1mr16101198lfb.44.1673285659808;
+        Mon, 09 Jan 2023 09:34:19 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id s11-20020a056512314b00b004b592043413sm1719984lfi.12.2023.01.09.09.34.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 09:34:18 -0800 (PST)
+Date:   Mon, 9 Jan 2023 20:34:16 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
+        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 04/15] spi: dw: add check for support of enhanced spi
+Message-ID: <20230109173416.zzphzen7vnzsttsu@mobilestation>
+References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
+ <20221212180732.79167-5-sudip.mukherjee@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <01d39bc6-338d-fd1f-1718-15e0594af0f1@9elements.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221212180732.79167-5-sudip.mukherjee@sifive.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Jan 2023, Naresh Solanki wrote:
-
-> Hi Lee,
+On Mon, Dec 12, 2022 at 06:07:21PM +0000, Sudip Mukherjee wrote:
+> Before doing the mem op, spi controller will be queried about the
+> buswidths it supports. Add the dual/quad/octal if the controller
+> has the DW_SPI_CAP_EMODE capability.
+> The DW_SPI_CAP_EMODE capability will be enabled in a later patch.
 > 
-> On 23-12-2022 06:06 pm, Lee Jones wrote:
-> > On Wed, 14 Dec 2022, Naresh Solanki wrote:
-> > 
-> > > Hi Lee,
-> > > 
-> > > On 14-12-2022 03:17 pm, Lee Jones wrote:
-> > > > On Wed, 14 Dec 2022, Naresh Solanki wrote:
-> > > > 
-> > > > > Hi Lee
-> > > > > 
-> > > > > On 08-12-2022 05:53 pm, Lee Jones wrote:
-> > > > > > On Fri, 18 Nov 2022, Naresh Solanki wrote:
-> > > > > > 
-> > > > > > > 
-> > > > > > > 
-> > > > > > > On 17-11-2022 03:45 pm, Lee Jones wrote:
-> > > > > > > > On Wed, 16 Nov 2022, Naresh Solanki wrote:
-> > > > > > > > 
-> > > > > > > > > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > > > > > > > > 
-> > > > > > > > > Implement a regulator driver with IRQ support for fault management.
-> > > > > > > > > Written against documentation [1] and [2] and tested on real hardware.
-> > > > > > > > > 
-> > > > > > > > > Every channel has its own regulator supplies nammed 'vss1-supply' and
-> > > > > > > > > 'vss2-supply'. The regulator supply is used to determine the output
-> > > > > > > > > voltage, as the smart switch provides no output regulation.
-> > > > > > > > > The driver requires the 'shunt-resistor-micro-ohms' property to be
-> > > > > > > > > present in Device Tree to properly calculate current related
-> > > > > > > > > values.
-> > > > > > > > > 
-> > > > > > > > > Datasheet links:
-> > > > > > > > > 1: https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
-> > > > > > > > > 2: https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
-> > > > > > > > > 
-> > > > > > > > > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > > > > > > > > Co-developed-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> > > > > > > > > Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> > > > > > > > > Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> > > > > > > > > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> > > > > > > > > ---
-> > > > > > > > >      drivers/mfd/Kconfig         |  12 +++++
-> > > > > > > > >      drivers/mfd/Makefile        |   1 +
-> > > > > > > > >      drivers/mfd/max597x.c       |  93 +++++++++++++++++++++++++++++++++
-> > > > > > > > >      include/linux/mfd/max597x.h | 101 ++++++++++++++++++++++++++++++++++++
-> > > > > > > > >      4 files changed, 207 insertions(+)
-> > > > > > > > >      create mode 100644 drivers/mfd/max597x.c
-> > > > > > > > >      create mode 100644 include/linux/mfd/max597x.h
-> > > > > > > > 
-> > > > > > > > Ignoring my comments won't make them go away. :)
-> > > > > > > > 
-> > > > > > > > Please tell me why you need a whole new driver, instead of adding
-> > > > > > > > support to simple-mfd-i2c?
-> > > > > > > > 
-> > > > > > > I felt current implementation to be simpler, clearer & straight forward.
-> > > > > > 
-> > > > > > If you can make it work with simple-mfd-i2c, please do so.
-> > > > > simple-mfd-i2c doesn't has mechanism to pass device type(max5978 vs
-> > > > > max5970).
-> > > > 
-> > > > `git grep silergy,sy7636a -- drivers/mfd`
-> > > I did check the driver but there is no mechanism to distinguish between chip
-> > > variant i.e., 597x-regulator driver should be able to distinguish between
-> > > max5978 vs max5970 chip type.
-> > 
-> > How is it doing that presently?
-> Using i2c_device_id. driver_data hold chip variant info based on compatible
-> match.
-> > 
-> > Why can't the Regulator driver read the DT or match on the parent's
-> > compatible for itself?
-> There are three drivers i.e., max597x regulator, led & iio driver.
-> I'm not sure if checking compatible in each driver is ok.
-> Recommendation ?
+> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+> ---
+>  drivers/spi/spi-dw-core.c | 25 ++++++++++++++++++++++++-
+>  drivers/spi/spi-dw.h      |  1 +
+>  2 files changed, 25 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+> index d59401f16c47a..49fad58ceb94a 100644
+> --- a/drivers/spi/spi-dw-core.c
+> +++ b/drivers/spi/spi-dw-core.c
+> @@ -510,6 +510,26 @@ static int dw_spi_adjust_mem_op_size(struct spi_mem *mem, struct spi_mem_op *op)
+>  	return 0;
+>  }
+>  
+> +static bool dw_spi_supports_enh_mem_op(struct spi_mem *mem,
+> +				       const struct spi_mem_op *op)
+> +{
+> +	if (op->addr.nbytes != 0 && op->addr.buswidth != 1 &&
+> +	    op->addr.buswidth != op->data.buswidth)
+> +		return false;
+> +
+> +	if (op->cmd.buswidth != 1 && op->cmd.buswidth != op->addr.buswidth &&
+> +	    op->cmd.buswidth != op->data.buswidth)
+> +		return false;
+> +
+> +	if (op->dummy.nbytes != 0 && op->data.dir == SPI_MEM_DATA_OUT)
+> +		return false;
+> +
+> +	if (op->dummy.nbytes != 0 && op->dummy.nbytes / op->dummy.buswidth > 4)
+> +		return false;
+> +
+> +	return spi_mem_default_supports_op(mem, op);
+> +}
+> +
+>  static bool dw_spi_supports_mem_op(struct spi_mem *mem,
+>  				   const struct spi_mem_op *op)
+>  {
+> @@ -792,7 +812,10 @@ static void dw_spi_init_mem_ops(struct dw_spi *dws)
 
-Sure it is.  The leaf devices can know that they are children and can
-read their parent's device tree node without issue.
+>  	if (!dws->mem_ops.exec_op && !(dws->caps & DW_SPI_CAP_CS_OVERRIDE) &&
+>  	    !dws->set_cs) {
+>  		dws->mem_ops.adjust_op_size = dw_spi_adjust_mem_op_size;
+> -		dws->mem_ops.supports_op = dw_spi_supports_mem_op;
 
-> > Providing a 100 line driver just to figure out a single value that is
-> > only going to be used in a single driver is a no-go.  Please find a
-> > better way to solve this.Yes but simple-mfd-i2c doesn't help in
-> > distinguishing chip variant & in
-> situation like absence of device id register, mfd cell driver cant determine
-> chip type to initialise accordingly.
-> Can you please recommend me an approach that can also handle this kind of
-> scenario.
+Please see my comment to the cover letter. In order to have a more
+readable method I'd suggest to convert it to something like this:
 
-Place the hardware IDs in DT.
+< dw_spi_init_mem_ops() {
+< 	if (dws->mem_ops.exec_op || dws->caps & DW_SPI_CAP_CS_OVERRIDE ||
+< 	    dws->set_cs)
+<		return;
+<
+< 	if (dws->caps & DW_SPI_CAP_ENH_CLK_STR) {
+< 		dws->mem_ops.adjust_op_size = dw_spi_enh_adjust_mem_op;
+< 		dws->mem_ops.supports_op = dw_spi_enh_supports_mem_op;
+< 		dws->mem_ops.exec_op = dw_spi_enh_exec_mem_op;
+< 
+<		return;
+< 	}
+<
+<  	dws->mem_ops.adjust_op_size = dw_spi_adjust_mem_op_size;
+< 	dws->mem_ops.supports_op = dw_spi_supports_mem_op;
+< 	dws->mem_ops.exec_op = dw_spi_exec_mem_op;
+<
+<	return;
+< }
 
--- 
-Lee Jones [李琼斯]
+> +		if (dws->caps & DW_SPI_CAP_EMODE)
+
+Your implementation is working only if the clock-stretching feature is
+available.
+
+> +			dws->mem_ops.supports_op = dw_spi_supports_enh_mem_op;
+> +		else
+> +			dws->mem_ops.supports_op = dw_spi_supports_mem_op;
+>  		dws->mem_ops.exec_op = dw_spi_exec_mem_op;
+>  		if (!dws->max_mem_freq)
+>  			dws->max_mem_freq = dws->max_freq;
+> diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
+> index f29d89d05f34b..327d037bdb10e 100644
+> --- a/drivers/spi/spi-dw.h
+> +++ b/drivers/spi/spi-dw.h
+> @@ -34,6 +34,7 @@
+>  /* DW SPI controller capabilities */
+>  #define DW_SPI_CAP_CS_OVERRIDE		BIT(0)
+>  #define DW_SPI_CAP_DFS32		BIT(1)
+
+> +#define DW_SPI_CAP_EMODE		BIT(2)
+
+As I suggested in the cover letter let's make it DW_SPI_CAP_ENH (any
+better suggestion?). Then the clock-stretching capability flag will be
+DW_SPI_CAP_ENH_CLK_STR.
+
+-Serge(y)
+
+>  
+>  /* Register offsets (Generic for both DWC APB SSI and DWC SSI IP-cores) */
+>  #define DW_SPI_CTRLR0			0x00
+> -- 
+> 2.30.2
+> 
