@@ -2,143 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC96661DC5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 05:30:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9727661DDC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 05:32:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236390AbjAIEaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 23:30:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40256 "EHLO
+        id S236810AbjAIEcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 23:32:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236420AbjAIE3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 23:29:22 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E004118E22;
-        Sun,  8 Jan 2023 20:10:32 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3094ARbq089581;
-        Sun, 8 Jan 2023 22:10:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673237427;
-        bh=ntNmoF6Uthq1wSzEwsTtwspB+WR4ruYKEmdBGegmSW4=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=UiLVxMpFOCjglGYLpZLf8V12FVcbW/cDcI4Nu9VHxin2bCGPFs2gDr3X238MxYuDg
-         AROK6yfSJzKNkfBWdoUzI3jE8SkbTHAtyCckbCn1yTUwvydhK9yAdJvys7NgUvxCth
-         a/iZqiipKFzB1r/Qen38XMrA/8wdZYVENaH4P3jU=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3094ARHG023944
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 8 Jan 2023 22:10:27 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 8
- Jan 2023 22:10:27 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Sun, 8 Jan 2023 22:10:27 -0600
-Received: from [172.24.145.182] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3094ANG6008094;
-        Sun, 8 Jan 2023 22:10:24 -0600
-Message-ID: <5fcc14ee-2118-ec9c-f89f-25612a2d9a0a@ti.com>
-Date:   Mon, 9 Jan 2023 09:40:23 +0530
+        with ESMTP id S236119AbjAIEcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 23:32:19 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 280A1E0BD
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 20:17:31 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id j17so11170868lfr.3
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 20:17:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6pepYcOlbjq1Fb0Er9Jysoq0IZv827b0yywGLQA/9UU=;
+        b=Nb5Y935HdAir7vdoB+Zhez9YLUbhuwLxA+/NPY8CiCerWrEitZxANN9MolET7WN/b3
+         du4YLGbIG62nSVtlqIetJanmoXAMHmJbfxNVoy14ZIytALyK/V9+omPbG5GrA/f3Q8pl
+         UkcVCdAa7niotLFn/GzRcUXLxEWBgf0AvoE1tgVhlCO/86qefUj8sef46vaKy/CWGDK2
+         EQjTlSjB8hD/X++mjEvEo/IPK4iteLgUQXKNcYAqlo8vdZ5FzFVY31K7RelXQ1lk1Zvf
+         MZGkYCvSO136s4a0BdUewyWYtSGywzNP/+noym+Pu09nwYqz4oiH2EDR6GZUsnBzrYR6
+         eTdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6pepYcOlbjq1Fb0Er9Jysoq0IZv827b0yywGLQA/9UU=;
+        b=D/DeYNNhi/PBSDTe0k2EwjLBunrST94FqT6gz0P6pp0M3UyUwM+F1hp4FWgHttvaY5
+         fqr7pbXi56/HEmLHuV/k9fzlKWkMdBHcMpbUu5DkfzANW0YA9C72fYDbJR0QrwSwjUor
+         rNVqKYu9tpapvSO9jXP7vJe7v+CH4lk+v+x8MHJplL1Sv6RdvyhEUrl5FtSkdXIVDMEs
+         BEIjlx2ao/eX17xvHqYfON6/TjgStjLqIvOSIJe4FHpWlxb7hKuyrFBxCO6zUuZvLZ2y
+         wrP9fgLSfOZuHfLAffwZMxK7LtZKwsM2Wrn5Hwe+36DpZ9zg9aQtJq14LUAh6znNBK0S
+         rm4A==
+X-Gm-Message-State: AFqh2ko5VdauWWUSC+4hjxYr/6d6OSMvTzYK7C2hcF6kK056fGR4nJPo
+        BeO9fRRki6H0a2EygXs3DbtqvQ==
+X-Google-Smtp-Source: AMrXdXvV02e4CGBP6DMQqSoNtB+DJhGxb5MWOcQnXZoEAN6yuYWCPusM8UnsPUoewZxK7psbONNpYQ==
+X-Received: by 2002:a05:6512:3e10:b0:4a4:68b8:f4f0 with SMTP id i16-20020a0565123e1000b004a468b8f4f0mr20390606lfv.54.1673237849397;
+        Sun, 08 Jan 2023 20:17:29 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id a15-20020ac25e6f000000b0049482adb3basm1397940lfr.63.2023.01.08.20.17.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Jan 2023 20:17:28 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sdm845: make DP node follow the schema
+Date:   Mon,  9 Jan 2023 06:17:28 +0200
+Message-Id: <20230109041728.308725-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v7 3/8] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support
- of OSPI
-Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <afd@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>,
-        <r-gunasekaran@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221122101616.770050-1-mranostay@ti.com>
- <20221122101616.770050-4-mranostay@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20221122101616.770050-4-mranostay@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Drop the #clock-cells (leftover probably from the times before the DP
+PHY split) and rename dp-opp-table to just opp-table.
 
+Fixes: eaac4e55a6f4 ("arm64: dts: qcom: sdm845: add displayport node")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-On 22/11/22 15:46, Matt Ranostay wrote:
-> From: Aswath Govindraju <a-govindraju@ti.com>
-> 
-> Add support for two instance of OSPI in J721S2 SoC.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> index 0af242aa9816..a588ab8d867b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> @@ -306,4 +306,44 @@ cpts@3d000 {
->  			ti,cpts-periodic-outputs = <2>;
->  		};
->  	};
-> +
-> +	fss: syscon@47000000 {
-
-Node needs to be renamed as bus@<> as the compatible is "simple-bus"
-
-+/workdir/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: syscon@47000000: $nodename:0: 'syscon@47000000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
-
-
-> +		compatible = "simple-bus";
-> +		reg = <0x00 0x47000000 0x00 0x100>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		ospi0: spi@47040000 {
-> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-> +			reg = <0x00 0x47040000 0x00 0x100>,
-> +			      <0x5 0x0000000 0x1 0x0000000>;
-> +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
-> +			clocks = <&k3_clks 109 5>;
-> +			assigned-clocks = <&k3_clks 109 5>;
-> +			assigned-clock-parents = <&k3_clks 109 7>;
-> +			assigned-clock-rates = <166666666>;
-> +			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		ospi1: spi@47050000 {
-> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-> +			reg = <0x00 0x47050000 0x00 0x100>,
-> +			      <0x7 0x0000000 0x1 0x0000000>;
-> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
-> +			clocks = <&k3_clks 110 5>;
-> +			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +	};
->  };
-
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 9e881e19b984..fa62479206ce 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4593,7 +4593,6 @@ mdss_dp: displayport-controller@ae90000 {
+ 					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
+ 				clock-names = "core_iface", "core_aux", "ctrl_link",
+ 					      "ctrl_link_iface", "stream_pixel";
+-				#clock-cells = <1>;
+ 				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+ 						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+ 				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
+@@ -4619,7 +4618,7 @@ port@1 {
+ 					};
+ 				};
+ 
+-				dp_opp_table: dp-opp-table {
++				dp_opp_table: opp-table {
+ 					compatible = "operating-points-v2";
+ 
+ 					opp-162000000 {
 -- 
-Regards
-Vignesh
+2.39.0
+
