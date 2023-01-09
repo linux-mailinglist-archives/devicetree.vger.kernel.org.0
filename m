@@ -2,203 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3C236629F3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 16:32:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECF12662A78
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 16:48:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237301AbjAIPb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 10:31:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45004 "EHLO
+        id S229464AbjAIPsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 10:48:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237308AbjAIPbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 10:31:37 -0500
-Received: from fx304.security-mail.net (smtpout30.security-mail.net [85.31.212.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5986065A6
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 07:30:54 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by fx304.security-mail.net (Postfix) with ESMTP id 80C409D0B2
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 16:30:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kalray.eu;
-        s=sec-sig-email; t=1673278252;
-        bh=2Ol4WvfIDv/pCXWodkK/JAf2l0CqXaG0EOhqPlCz5xY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=kz8ddZYg0nJtow93ucAH7WnT8Vqwhr3lvi4IHN8OoSZGNmOScb2xcOeU4ahhPcX9+
-         p9CNBdA/jH2f4K049TrCPM610wwO1NQ4J9xx87Kmzbu7GXz0K8YSAee6gE4pfS7J3i
-         nAosaoMAGS6mHOvc8xjvjf4lK/Nd1xrz4y1l10bc=
-Received: from fx304 (localhost [127.0.0.1]) by fx304.security-mail.net
- (Postfix) with ESMTP id 520CF9D07F; Mon,  9 Jan 2023 16:30:52 +0100 (CET)
-Received: from zimbra2.kalray.eu (unknown [217.181.231.53]) by
- fx304.security-mail.net (Postfix) with ESMTPS id 9D11C9D072; Mon,  9 Jan
- 2023 16:30:51 +0100 (CET)
-Received: from zimbra2.kalray.eu (localhost [127.0.0.1]) by
- zimbra2.kalray.eu (Postfix) with ESMTPS id 68AED27E0402; Mon,  9 Jan 2023
- 16:30:51 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1]) by zimbra2.kalray.eu
- (Postfix) with ESMTP id 38EF527E03FF; Mon,  9 Jan 2023 16:30:51 +0100 (CET)
-Received: from zimbra2.kalray.eu ([127.0.0.1]) by localhost
- (zimbra2.kalray.eu [127.0.0.1]) (amavisd-new, port 10026) with ESMTP id
- Ax--sd_V2azt; Mon,  9 Jan 2023 16:30:51 +0100 (CET)
-Received: from [192.168.37.161] (unknown [192.168.37.161]) by
- zimbra2.kalray.eu (Postfix) with ESMTPSA id 8E4D827E03FE; Mon,  9 Jan 2023
- 16:30:50 +0100 (CET)
-X-Virus-Scanned: E-securemail
-Secumail-id: <b2fe.63bc332b.9bc13.0>
-DKIM-Filter: OpenDKIM Filter v2.10.3 zimbra2.kalray.eu 38EF527E03FF
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kalray.eu;
- s=32AE1B44-9502-11E5-BA35-3734643DEF29; t=1673278251;
- bh=AQRkX8OfPpkm9ao22SwrZcjsHp5YTFXu85Lp04m+1A0=;
- h=Message-ID:Date:MIME-Version:To:From;
- b=Nw9h4dkzOwPn5vuhGKIyNNJs3P3x4pfdYEE7ckz9lL13tSkmK4nwamwpUjampl3D6
- LDhJg2t6qBuoBWDfEIexbrFwLh9D9VyJiOWUlwmQC+1j7iIHZ+vEfgfvPWRc9vt9zD
- PN1+BJeuI0U91Om91ZCvoSBebX3S3D5TsBEjM/tE=
-Message-ID: <bccad498-3af2-08f1-8264-cf7b438732d3@kalray.eu>
-Date:   Mon, 9 Jan 2023 16:30:50 +0100
+        with ESMTP id S237218AbjAIPr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 10:47:29 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81742167DF
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 07:47:25 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id m26-20020a05600c3b1a00b003d9811fcaafso7214192wms.5
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 07:47:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kxRux3nm0gOqVR3jIQ7t+bypbcUlPNns6Z9B8M0EfvU=;
+        b=qBJxtbB/xnrjVFosn9TLZ4jfg2D5UKYoJo4S8PkHltDQA7Euvyx47BxSzo5hyMww2I
+         rSWvno+86C775FgPP+82a8/GRL48aWiu79c/KgYMsMylwho/yyr18lqs3ftrJr+XJOE9
+         n42swZSQxbxb28CYCk98t+Jrghbjxrs3d4w2ep/+TlzY/ev5wt61p0n9qnvj7RgIoqmm
+         h9n/eQhOwdIj2UE30y5rl3F5I4eSYTNj22Ybm1wM1sJY1ejJnsE1Hnfa7lhNgQE9ki/F
+         P4q7NGxGwDQnKvUWgtYkZ6NrLDGWEORo7nOh9P1BlLy2xc1ER4eLkpcyYSPXUS+go6cA
+         fWAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kxRux3nm0gOqVR3jIQ7t+bypbcUlPNns6Z9B8M0EfvU=;
+        b=SiAmr81Rbbk8pXR5bRpU2HWYDicgatoFs+elE5ugfbDIkKpjsAxepIl+dFcf0ANMwS
+         GaWj0ywE1WOulGguihOL+xOatVaNgWrWZOabMnqDsW8pDBbJ0k6WnJeQyzJ+4axL410e
+         1xls0L++zQ+uNtEgGc+3W56LgFeH8Sspsnkd7gdcF66NmFnllBNNmUi09XR6wrNwuYCN
+         8DjdN2d3Zow/mrd4PyoXUyvrGLPVP31Ysgc42VQpDoYTYyq/dLtAbx7s+jY5dojz4oJR
+         gU/opUfCu7MgQfHj2Imvcw40CCs8UAOt7F5BHK1F4FZHUJSXfj/YSm+P4pg5/PVTJxYr
+         8Ldw==
+X-Gm-Message-State: AFqh2kqaPgDo6wuK8skBg/6Mgx6z2NDJOUKKcVHJf4QdisESa+7woJJc
+        v5QsCQpLGXaof78fXLn0LUYmpA==
+X-Google-Smtp-Source: AMrXdXtPfE7/PbM9wPt9OMTTD17lc4ylpNd6XvEXVk7CJQ8CSaGBx+J76qZNa0mPPuJIic0SBlYtyQ==
+X-Received: by 2002:a05:600c:4e07:b0:3d3:5319:b6d3 with SMTP id b7-20020a05600c4e0700b003d35319b6d3mr46958252wmq.38.1673279244032;
+        Mon, 09 Jan 2023 07:47:24 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id q1-20020a1ce901000000b003b3307fb98fsm11479928wmc.24.2023.01.09.07.47.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 07:47:23 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/3] clk: qcom: Add DISPCC driver for SM8550
+Date:   Mon, 09 Jan 2023 16:47:21 +0100
+Message-Id: <20230103-topic-sm8550-upstream-dispcc-v3-0-8a03d348c572@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [RFC PATCH 00/25] Upstream kvx Linux port
-Content-Language: en-us
-To:     Jeff Xie <xiehuan09@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Albert Ou <aou@eecs.berkeley.edu>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        Boqun Feng <boqun.feng@gmail.com>, bpf@vger.kernel.org,
-        Christian Brauner <brauner@kernel.org>,
-        devicetree@vger.kernel.org, Eric Biederman <ebiederm@xmission.com>,
-        Eric Paris <eparis@redhat.com>, Ingo Molnar <mingo@redhat.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Jason Baron <jbaron@akamai.com>, Jiri Olsa <jolsa@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Josh Poimboeuf <jpoimboe@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Kieran Bingham <kbingham@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-audit@redhat.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-        linux-perf-users@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Marc Zyngier <maz@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Namhyung Kim <namhyung@kernel.org>,
-        Nick Piggin <npiggin@gmail.com>,
-        Oleg Nesterov <oleg@redhat.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Peter Zijlstra <peterz@infradead.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAk3vGMC/5XOTQ7CIBAF4Ks0rB0D9I+48h7GBQxoJ2mBQG00p
+ neXdudON5O8t/jevFl2iVxmp+rNklsoU/Al1IeK4aD93QHZkpnksuaC1zCHSAh5Um3L4RHznJye
+ wFKOiNAIYeoGy+E9K4TR2YFJ2uNQEP8Yx1LG5G703Dcv15IHynNIr/2FRWztj2uLAA5KmBui7Iy
+ 0eB7J6xSOId3ZJi/yH00WrVedtVb1qtXyS1vX9QPu+sSrLAEAAA==
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Waiman Long <longman@redhat.com>,
-        Will Deacon <will@kernel.org>, Alex Michon <amichon@kalray.eu>,
-        Ashley Lesdalons <alesdalons@kalray.eu>,
-        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Guillaume Missonnier <gmissonnier@kalray.eu>,
-        Guillaume Thouvenin <gthouvenin@kalray.eu>,
-        Jean-Christophe Pince <jcpince@gmail.com>,
-        Jonathan Borne <jborne@kalray.eu>,
-        Jules Maselbas <jmaselbas@kalray.eu>,
-        Julian Vetter <jvetter@kalray.eu>,
-        Julien Hascoet <jhascoet@kalray.eu>,
-        Julien Villette <jvillette@kalray.eu>,
-        Louis Morhet <lmorhet@kalray.eu>,
-        Luc Michel <lmichel@kalray.eu>,
-        Marc =?utf-8?b?UG91bGhpw6hz?= <dkm@kataplop.net>,
-        Marius Gligor <mgligor@kalray.eu>,
-        Samuel Jones <sjones@kalray.eu>,
-        Thomas Costis <tcostis@kalray.eu>,
-        Vincent Chardon <vincent.chardon@elsys-design.com>
-References: <20230103164359.24347-1-ysionneau@kalray.eu>
- <CAEr6+ECRh_9App18zmcS6FUR81YYhR=n4kGdeZAtQBsdMB55_A@mail.gmail.com>
- <6570d22d-ee19-f8b1-6fb4-bf8865ec4142@kalray.eu>
- <CAEr6+ECPFeokSULpWzYEYLROYHXNA0PtvdUchT37d4_qVA-PKQ@mail.gmail.com>
-From:   Yann Sionneau <ysionneau@kalray.eu>
-In-Reply-To: <CAEr6+ECPFeokSULpWzYEYLROYHXNA0PtvdUchT37d4_qVA-PKQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ALTERMIMEV2_out: done
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.11.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeff,
+Add the Display Clock Controller controller based on
+downstream and upstream SM8450 driver.
 
-On 1/9/23 16:11, Jeff Xie wrote:
-> On Mon, Jan 9, 2023 at 9:21 PM Yann Sionneau <ysionneau@kalray.eu> wrote:
->> Hi Jeff,
->>
->> On 1/7/23 07:25, Jeff Xie wrote:
->>> Hi,
->>>
->>> On Wed, Jan 4, 2023 at 1:01 AM Yann Sionneau <ysionneau@kalray.eu> wrote:
->>>> [snip]
->>>>
->>>> A kvx toolchain can be built using:
->>>> # install dependencies: texinfo bison flex libgmp-dev libmpc-dev libmpfr-dev
->>>> $ git clone https://github.com/kalray/build-scripts
->>>> $ cd build-scripts
->>>> $ source last.refs
->>>> $ ./build-kvx-xgcc.sh output
->>> I would like to build the kvx-xgcc to compile and test the linux
->>> kernel, but it reported a compile error.
->>> I wonder what version of gcc you are using.
->>>
->>> My build environment:
->>> VERSION="20.04.2 LTS (Focal Fossa)"
->>> gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)
->>>
->>>
->>> Compile error:
->>> $ ./build-kvx-xgcc.sh output
->>>
->>> ../../binutils/libiberty/fibheap.c: In function ‘fibheap_replace_key_data’:
->>> ../../binutils/libiberty/fibheap.c:38:24: error: ‘LONG_MIN’ undeclared
->>> (first use in this function)
->>>      38 | #define FIBHEAPKEY_MIN LONG_MIN
->>>         |                        ^~~~~~~~
->>> [snip]
->> What SHA1 of https://github.com/kalray/build-scripts are you using?
-> I have executed the "source last.refs"
+To: Bjorn Andersson <andersson@kernel.org>
+To: Andy Gross <agross@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Michael Turquette <mturquette@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-I was referring to the SHA1 of the repo itself (build-scripts).
+---
+Changes in v3:
+- Fixed copyright year (dropped 2022)
+- Link to v2: https://lore.kernel.org/r/20230103-topic-sm8550-upstream-dispcc-v2-0-786ddd8785a2@linaro.org
 
-`last.refs` is a symbolic link which can point to several releases, 
-depending on "when" you did the clone.
+Changes in v2:
+- Removed clocks minItems
+- Added Konrad's Reviewed-by on patch 2 & 3
+- Switched to parent_hws & devm_pm_runtime_enable()
+- Link to v1: https://lore.kernel.org/r/20230103-topic-sm8550-upstream-dispcc-v1-0-81bfcc26b2dc@linaro.org
 
-I am asking this because we recently published new toolchains.
+---
+Neil Armstrong (3):
+      dt-bindings: clock: document SM8550 DISPCC clock controller
+      clk: qcom: clk-alpha-pll: define alias of LUCID OLE reset ops to EVO reset ops
+      clk: qcom: add SM8550 DISPCC driver
 
-I want to make sure which one you are trying to build.
+ .../bindings/clock/qcom,sm8550-dispcc.yaml         |  105 ++
+ drivers/clk/qcom/Kconfig                           |    9 +
+ drivers/clk/qcom/Makefile                          |    1 +
+ drivers/clk/qcom/clk-alpha-pll.h                   |    1 +
+ drivers/clk/qcom/dispcc-sm8550.c                   | 1807 ++++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8550-dispcc.h     |  101 ++
+ 6 files changed, 2024 insertions(+)
+---
+base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+change-id: 20230103-topic-sm8550-upstream-dispcc-411b34c1b307
 
->> We are building our toolchain on Ubuntu 18.04 / 20.04 and 22.04 without
->> issues, I don't understand why it does not work for you, although indeed
->> the error log you are having pops out on my search engine and seems to
->> be some well known issue.
-> Yes, there are many answers on the web, but none of them solve this problem.
->
->> If the build-script does not work for you, you can still use the
->> pre-built toolchains generated by the GitHub automated actions:
->> https://github.com/kalray/build-scripts/releases/tag/v4.11.1 ("latest"
->> means 22.04)
-> Thanks, this is the final solution ;-)
-Good to see it helped :)
-
-Regards,
-
+Best regards,
 -- 
-
-Yann
-
-
-
-
-
+Neil Armstrong <neil.armstrong@linaro.org>
