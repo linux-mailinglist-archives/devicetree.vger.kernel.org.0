@@ -2,65 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADF046620D8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:02:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E8356620E1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:03:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236891AbjAIJC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 04:02:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40218 "EHLO
+        id S233367AbjAIJDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 04:03:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236995AbjAIJB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:01:28 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E70D2DF0;
-        Mon,  9 Jan 2023 00:54:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4A67BB80C93;
-        Mon,  9 Jan 2023 08:54:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1109C433EF;
-        Mon,  9 Jan 2023 08:54:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673254478;
-        bh=deTyYnPUnHVIPeYpi/7VoxYIKHkZH1Xp/uL8xINTh1Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JOL2evPFHikyCG2MO1sq/wJfcDKa3bVR47+ezAq/WC58gQ6Oj1HL4jwaJk978L9e1
-         x+yOZK+rbFyMqEwGYBo73NaL3M8lNI1WUMUVpErPOd12r47CuagoqSqzmOpwNx7wPJ
-         3cBuSnmtx8GpAh8wcR5LDqvGk7GgBQHnHLwnIZVGjLVyOnX75P6Gi9X9b5AZg7NscS
-         Rp87hPJS6lmBRAdM3zKTWDZnB8XKXCw0ePaqyxnBROjAyJN31To4Tj3UMHMLp0boRR
-         D5mNc00yK/dR4q3Mqgt7mMHuLRLqOx8hbPytcT0nq+RatOi6kUOxVgFEXrOH6P4qw2
-         Sh85sp/IuqyOg==
-Date:   Mon, 9 Jan 2023 16:54:33 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH] arm64: defconfig: select i.MX ICC and DEVFREQ
-Message-ID: <20230109085432.GJ18301@T480>
-References: <20230104105754.1219877-1-peng.fan@oss.nxp.com>
+        with ESMTP id S237043AbjAIJD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:03:29 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D023115824
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:56:38 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id ja17so5720841wmb.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:56:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WkS6ryyVO3m71hcn6THyhTm7nRya1cKN2SD9TksIJ68=;
+        b=b0I08kGC325puhFWUTfCzD/tGSB0juYwlttLEJO1fXogVoXNpAN2VPbC1mUW0CJ3Vj
+         7eTo5OR6+QcAVvfDF0/7oZo3j7pfvQqh/LcsAUBUF8ABGNIaaaVSjkVqoW27Hm6X3e2d
+         hmJsL9tUtIoxDl8SksSVIjkKtS7fMFG7iJcRGx6gfoYK3BXOq2a5H8gYG2PB+j8QAFyA
+         Qqwf2iXchSB9saLrXcde8KxSaPcJpDSyjxH3jM9WHSplKcv3r2nypKfUSKw1b1t9t1MX
+         ZnAfxJr5cm0NiuUKPs+z+VgmVNs0ofZ0ySF/FDIm6ROVLc8xTcpWEEt+2Hxb66wROMcS
+         RShQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WkS6ryyVO3m71hcn6THyhTm7nRya1cKN2SD9TksIJ68=;
+        b=YMaGIzCe6rYtorIhb24n2SAtXJH2+uAaO9yZXd/BLbOTb+/GTyjjMmrgq74l7WAtj5
+         jjQxv2ftG0pYh2+lQW+YsgnAJN+baQq3K8sGZ6c1mHeN56N8/AhkrFN44LtfepguMghY
+         RO/uHjGxL4i4bZkzRVjJLPov03nwTC6lrYZMdMqrv+k1SgEpWGumwNEGnnAzfNBCv8Aq
+         pkhKRF++Q3P2crfPMn0oblz+JkC74Wz/IdzGsxmE352XUB9aAXivCOqT4nxlfibvYulC
+         smlmStAPx05vVYa9n0TKTHeHwa0JTPGMjwv05Ielfx5sZOtonOHfT7gMtKc4hGG17AKN
+         rrHQ==
+X-Gm-Message-State: AFqh2kpY6He0oXExxH5IxP/8UxTHO4Pdt/ufws915E8J0Dh/GLY4cjEs
+        9DusdIpXU7oDcMw5KD/R+6SL3A==
+X-Google-Smtp-Source: AMrXdXv/LTfIUE+pq+r5uK163nL8BHMy1oBryyJ2UHDcDdfs95k58i+bGQQu6IoDYqKITcsK4/QE3Q==
+X-Received: by 2002:a05:600c:3584:b0:3d9:719a:8f7d with SMTP id p4-20020a05600c358400b003d9719a8f7dmr38331902wmq.35.1673254597292;
+        Mon, 09 Jan 2023 00:56:37 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n14-20020a05600c3b8e00b003b49bd61b19sm16872994wms.15.2023.01.09.00.56.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 00:56:36 -0800 (PST)
+Message-ID: <99b01e96-3b96-6692-c5e1-87db49295e6d@linaro.org>
+Date:   Mon, 9 Jan 2023 09:56:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230104105754.1219877-1-peng.fan@oss.nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
+ support
+Content-Language: en-US
+To:     William Zhang <william.zhang@broadcom.com>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        kursad.oney@broadcom.com, dregan@mail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-3-william.zhang@broadcom.com>
+ <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
+ <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 04, 2023 at 06:57:54PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 09/01/2023 09:27, William Zhang wrote:
+> Hi Krzysztof,
 > 
-> i.MX ICC and DEVFREQ driver is required for i.MX8MP normal boot,
-> because the BLK CTRL power domain driver requires QoS configuraton.
+> On 01/08/2023 06:51 AM, Krzysztof Kozlowski wrote:
+>> On 06/01/2023 21:07, William Zhang wrote:
+>>> The new Broadcom Broadband BCMBCA SoCs includes a updated HSSPI
+>>> controller. Add a new compatible string and required fields for the new
+>>> driver.  Also add myself and Kursad as the maintainers.
+>>>
+>>> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+>>> ---
+>>>
+>>>   .../bindings/spi/brcm,bcm63xx-hsspi.yaml      | 84 +++++++++++++++++--
+>>>   1 file changed, 78 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>>> index 45f1417b1213..56e69d4a1faf 100644
+>>> --- a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>>> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>>> @@ -4,22 +4,51 @@
+>>>   $id: http://devicetree.org/schemas/spi/brcm,bcm63xx-hsspi.yaml#
+>>>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>   
+>>> -title: Broadcom BCM6328 High Speed SPI controller
+>>> +title: Broadcom Broadband SoC High Speed SPI controller
+>>>   
+>>>   maintainers:
+>>> +
+>>
+>> Drop blank line.
+> will fix in  v2.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>>
+>>> +  - William Zhang <william.zhang@broadcom.com>
+>>> +  - Kursad Oney <kursad.oney@broadcom.com>
+>>>     - Jonas Gorski <jonas.gorski@gmail.com>
+>>
+>>>   
+>>> +description: |
+>>> +  Broadcom Broadband SoC supports High Speed SPI master controller since the
+>>> +  early MIPS based chips such as BCM6328 and BCM63268.  This controller was
+>>> +  carried over to recent ARM based chips, such as BCM63138, BCM4908 and BCM6858.
+>>> +
+>>> +  It has a limitation that can not keep the chip select line active between
+>>> +  the SPI transfers within the same SPI message. This can terminate the
+>>> +  transaction to some SPI devices prematurely. The issue can be worked around by
+>>> +  either the controller's prepend mode or using the dummy chip select
+>>> +  workaround. This controller uses the compatible string brcm,bcm6328-hsspi.
+>>> +
+>>> +  The newer SoCs such as BCM6756, BCM4912 and BCM6855 include an updated SPI
+>>> +  controller that add the capability to allow the driver to control chip select
+>>> +  explicitly. This solves the issue in the old controller. This new controller
+>>> +  uses the compatible string brcm,bcmbca-hsspi.
+>>> +
+>>>   properties:
+>>>     compatible:
+>>> -    const: brcm,bcm6328-hsspi
+>>> +    enum:
+>>> +      - brcm,bcm6328-hsspi
+>>> +      - brcm,bcmbca-hsspi
+>>
+>> bca seems quite unspecific. Your description above mentions several
+>> model numbers and "bca" is not listed as model. Compatibles cannot be
+>> generic.
+> "bca" is not model number, rather it is a group (broadband carrier 
+> access) of chip that share the same spi host controller IP. Agree it is 
+> not particularly specific but it differentiate from other broadcom spi 
+> controller ip used by other groups.  We just don't have a specific name 
+> for this spi host controller but can we treat bcmbca as the ip name? 
 
-Applied, thanks!
+No, it is discouraged in such forms. Family or IP block compatibles
+should be prepended with a specific compatible. There were many issues
+when people insisted on generic or family compatibles...
+
+> Otherwise we will have to have a compatible string with chip model for 
+> each SoC even they share the same IP. We already have more than ten of 
+> SoCs and the list will increase.  I don't see this is a good solution too.
+
+You will have to do it anyway even with generic fallback, so I don't get
+what is here to gain... I also don't get why Broadcom should be here
+special, different than others. Why it is not a good solution for
+Broadcom SoCs but it is for others?
+
+
+
+> 
+>>
+>>>   
+>>>     reg:
+>>> -    maxItems: 1
+>>> +    items:
+>>> +      - description: main registers
+>>> +      - description: miscellaneous control registers
+>>> +    minItems: 1
+>>> +
+>>> +  reg-names:
+>>> +    items:
+>>> +      - const: hsspi
+>>> +      - const: spim-ctrl
+>>
+>> This does not match reg
+> Do you mean it does not match the description?
+
+No. reg can be 1 item but you state reg-names cannot. These are always
+the same. If one is 1 item, second is as well.
+
+>>
+>>>   
+>>>     clocks:
+>>>       items:
+>>> -      - description: spi master reference clock
+>>> -      - description: spi master pll clock
+>>> +      - description: SPI master reference clock
+>>> +      - description: SPI master pll clock
+>>
+>> Really? You just added it in previous patch, didn't you?
+> The previous patch was just word to word conversion of the text file.  I 
+> will update that patch to include this change.
+> 
+>>
+>>>   
+>>>     clock-names:
+>>>       items:
+>>> @@ -29,12 +58,43 @@ properties:
+>>>     interrupts:
+>>>       maxItems: 1
+>>>   
+>>> +  brcm,use-cs-workaround:
+>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>> +    description: |
+>>> +      Enable dummy chip select workaround for SPI transfers that can not be
+>>> +      supported by the default controller's prepend mode, i.e. delay or cs
+>>> +      change needed between SPI transfers.
+>>
+>> You need to describe what is the workaround.
+> Will do.
+>>
+>>> +
+>>>   required:
+>>>     - compatible
+>>>     - reg
+>>>     - clocks
+>>>     - clock-names
+>>> -  - interrupts
+>>> +
+>>> +allOf:
+>>> +  - $ref: "spi-controller.yaml#"
+>>
+>> No quotes. How this is related to this patch?
+> Will remove quote and put it in patch 1.
+>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - brcm,bcm6328-hsspi
+>>> +    then:
+>>> +      properties:
+>>> +        reg:
+>>> +          minItems: 1
+>>
+>> Drop.
+>>
+>> reg-names now do not match.
+> Don't quite understand your comment. What do I need to drop and what is 
+> not matched?
+
+You need to add constraints for reg-names, same way as for reg.
+Disallowing the reg-names also could work, but there won't be benefit in
+it. Better to have uniform DTS.
+
+> 
+Best regards,
+Krzysztof
+
