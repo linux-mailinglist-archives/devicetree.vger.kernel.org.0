@@ -2,170 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F20C662B30
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48B5E662B74
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:43:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233656AbjAIQ3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 11:29:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58274 "EHLO
+        id S229979AbjAIQnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 11:43:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234186AbjAIQ3K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:29:10 -0500
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B4311C31
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 08:29:07 -0800 (PST)
-Received: by mail-io1-xd30.google.com with SMTP id q190so4735817iod.10
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 08:29:07 -0800 (PST)
+        with ESMTP id S234329AbjAIQnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:43:20 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903C01AA04;
+        Mon,  9 Jan 2023 08:43:19 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id m6so13870997lfj.11;
+        Mon, 09 Jan 2023 08:43:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JL+xfPFDnGNKkrm/hubQpHGy0imJ1B9l3Ypqp6ZRadw=;
-        b=IzBN2Aa5JriGDuRbHEouaLt6DAEoETbGfA0b26eDZIMGVAO7Q8ZA0Y42bRuk626b6k
-         3P30J5kbreBZUXD6pyaRq5CLFosWwww7N1ba5hw9jWS3ntfm5c9pFKWxc2l6KJXsvKzL
-         FZ5USJVCVyy6gHw4XeC1kpMV1jLSGhvR/yF60=
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yFMr2KsHgMM8LL+ZSBA8Rs+9+c78FfOw9aaVi/TXD0E=;
+        b=UtuUPwsQqEU70yYxUDBMt5uyoyE59X8ptix+7PR9Gc/3iU/3xq/JrCxwJpvOmC7UEH
+         DesVbm9CpgPlS26pdxjbyjOaQZpO6Ef8XGeTpSvFKFPedprL4lX+bSVKcF/R8EdRreIR
+         Aw2NbMb5m40+Q2XM0j/6igzii1m7JrgvkDYTeFszR9xRh+080eqOm7u8VxL8KXEfZpAs
+         qLa9ynhYabXMI9G6u+bCDDq+m5TVOAefulkDnpHNdlp7FeMnJjdIOEUZxEzCcA2Q6DoE
+         IkDmBOswmdbvjbSOrEv0ijgBZDTUjY3gXBBix1M70pEyslGSJnC+jzsIGiLi4jFJ/QqP
+         KZ3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JL+xfPFDnGNKkrm/hubQpHGy0imJ1B9l3Ypqp6ZRadw=;
-        b=0preQUW6pqy3HCpveIHv2e3vOENROdK6c4TREEyq8xyrJBVQiE8VfxBT7XFUgdu+sa
-         dS3RkFK8kKDpI/hQsRbcJjdoTwg0a/cuKu4oOM1ceSFS/SYT1H1rF1YYCjH2AWmVCLkT
-         aOxD/6K+StDu8EXVH4Q4V4m7DSugw7of2dBzdGcPxmvBA/uXL7Xog3US0Gq1V0IKx28/
-         TusKcmoqmjyFkGl2pKyxayJH9GpkUMk1zIkEIoKUXHk7kJKF7Ipo+KPvDcpAesC9QNBg
-         zWcOXxam9tgVeXri2LqTKgg1DSSp1ELD7L2QwcKJMW2LMJ+fKwgFdXwCtsMaEgUL1r6z
-         z46A==
-X-Gm-Message-State: AFqh2kpD4YF5N2hQem7IE1FEXBcnkcUR7VcBJcLMZSeQFxsR+1tKjz08
-        7w+xaJQoMidor4Bgiqe4ODgf7sm014zG2KEE
-X-Google-Smtp-Source: AMrXdXt9PFZ9mMVfWJFGUaGpTPudCsDmQkZEa9P+xgmWWs3bsEeuNXrk/uJ9pMkjdqHWeVx7twwD2w==
-X-Received: by 2002:a05:6602:2e91:b0:6df:df5b:f86 with SMTP id m17-20020a0566022e9100b006dfdf5b0f86mr65662694iow.8.1673281747269;
-        Mon, 09 Jan 2023 08:29:07 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id r8-20020a92ac08000000b0030c68d38255sm2748135ilh.38.2023.01.09.08.29.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 08:29:06 -0800 (PST)
-Date:   Mon, 9 Jan 2023 16:29:06 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yFMr2KsHgMM8LL+ZSBA8Rs+9+c78FfOw9aaVi/TXD0E=;
+        b=XQFYphLZyJOJDzUweg7W+JHX3vXgz1LOKS01XWpPpMOi5NBd57DcY8UHyLTvfLzeTB
+         5XMD8MBwCgoQF/beim5xAPaC7QLfxZLesleYu5r/eTkXrxraFMg9We2PhuoTZZqA0ccP
+         Q2GHZdk6gGf/UhPF4m4LPs16UtNCPebm3n1fqcsItnispE4tl/6woEkJHSAkenR4dKeg
+         3m0lCiLWEOO2LHjUo5w2wrKrNTKHsaQ/5ZMIqd0jHeFF0Hjl2l+T6YHOO2giyQNrTeHw
+         Y/iLsa7j0PW98u1inQ7sV1FLGutxkk5UKyV05gSILsEh9o/jmaDve/10ctKuBclm5qXS
+         byxw==
+X-Gm-Message-State: AFqh2kqno5zIQWh8zWS3eteLrvHgfaZ6bYDWidFxhvhjI47XJQSd05pN
+        wOCfwdct8CRlEklm/hZ22Ps=
+X-Google-Smtp-Source: AMrXdXtys4yX5LNTFJFfHJ/IXCU4em4xorjae9DoopKXny/OkIbjdRjT2GFIwkj8+uUgVIFdnb1yQQ==
+X-Received: by 2002:ac2:5b41:0:b0:4a4:68b8:9c5b with SMTP id i1-20020ac25b41000000b004a468b89c5bmr17938324lfp.67.1673282597990;
+        Mon, 09 Jan 2023 08:43:17 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id bq32-20020a056512152000b004b5766f48d8sm1710765lfb.19.2023.01.09.08.43.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 08:43:17 -0800 (PST)
+Date:   Mon, 9 Jan 2023 19:43:15 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
+        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 01/11] dt-bindings: usb: Add device id for Genesys
- Logic hub controller
-Message-ID: <Y7xA0nO53cBRetz4@google.com>
-References: <20221228100321.15949-1-linux.amoon@gmail.com>
- <20221228100321.15949-2-linux.amoon@gmail.com>
- <ef20a7dfa027f1a5a24a515e347af10c06a4da85.camel@icenowy.me>
- <CANAwSgSJ1SQXUovgM6FHUozr46C_CogLaAD4gf4ANNHXoav6ag@mail.gmail.com>
- <Y7YDwJX6aqa8vbQK@google.com>
- <CANAwSgTVnQXGoOfuxmwT7zCMJMY0Hw+uyQx126kNPL2WKGR8Hg@mail.gmail.com>
+Subject: Re: [PATCH v2 01/15] spi: dw: Introduce spi_frf and STD_SPI
+Message-ID: <20230109164315.au3nkqny7bh3bnr7@mobilestation>
+References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
+ <20221212180732.79167-2-sudip.mukherjee@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANAwSgTVnQXGoOfuxmwT7zCMJMY0Hw+uyQx126kNPL2WKGR8Hg@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221212180732.79167-2-sudip.mukherjee@sifive.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 07, 2023 at 08:31:23PM +0530, Anand Moon wrote:
-> Hi Matthias,
+On Mon, Dec 12, 2022 at 06:07:18PM +0000, Sudip Mukherjee wrote:
+> The DW APB SSI controllers of v4.x and newer and DW AHB SSI controllers
+> supports enhanced SPI modes which can be defined from SPI_FRF of
+> DW_SPI_CTRLR0 register. Without enhanced mode, these controllers will
+> work in the standard spi mode.
 > 
-> Thanks for the review comments
+> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+> ---
+>  drivers/spi/spi-dw-core.c | 13 ++++++++++++-
+>  drivers/spi/spi-dw.h      |  6 ++++++
+>  2 files changed, 18 insertions(+), 1 deletion(-)
 > 
-> On Thu, 5 Jan 2023 at 04:25, Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > On Wed, Dec 28, 2022 at 03:59:17PM +0530, Anand Moon wrote:
-> > > Hi Icenowy,
-> > >
-> > > Thanks for the review comments
-> > >
-> > > On Wed, 28 Dec 2022 at 15:38, Icenowy Zheng <uwu@icenowy.me> wrote:
-> > > >
-> > > > 在 2022-12-28星期三的 10:03 +0000，Anand Moon写道：
-> > > > > Add usb hub device id for Genesys Logic, Inc. GL852G-OHG Hub USB 2.0
-> > > > > root hub and Genesys Logic, Inc. GL3523-QFN76 USB 3.1 root hub.
-> >
-> > nit: QFN 76 is one of the package options of the GL3523, I expect this
-> > binding to be applicable as well for other GL3523 variants, so I'd suggest
-> > to drop the suffix. Not sure what 'OHG' stands for, the Genesys website
-> > only lists a GL852G hub with different package types (none of them 'OHG'),
-> > so I'd say drop the suffix unless it is known that 'OHG' variant uses
-> > a different product id than other GL852G variants
-> >
-> 
-> Yes, I will be sure to do this reference, I just picked these from the
-> board schematics.
-> 
-> > > > >
-> > > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/usb/genesys,gl850g.yaml | 2 ++
-> > > > >  1 file changed, 2 insertions(+)
-> > > > >
-> > > > > diff --git
-> > > > > a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > > > b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > > > index a9f831448cca..db009f3ef438 100644
-> > > > > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > > > @@ -16,6 +16,8 @@ properties:
-> > > > >    compatible:
-> > > > >      enum:
-> > > > >        - usb5e3,608
-> > > > > +      - genesys,usb5e3,610
-> > > > > +      - genesys,usb5e3,620
-> > > >
-> > > > I don't think genesys, is needed here because usb5e3 means USB VID
-> > > > 0x05e3, which is already linked to Genesys Logic.
-> > > >
-> > >
-> > > Ok, I added this as genesys, is it part of the manufacturer or vendor name
-> > > which is most commonly used for adding vendor-specific compatible strings.
-> >
-> > That doesn't follow the generic USB binding, please drop 'genesys,'.
-> >
-> 
-> Yes, I will drop this in the next version.
-> 
-> > > > In addition, the control logic of these two hubs are needed to be
-> > > > verified.
-> > >
-> > > We were using gpio-hog to reset the USB hub, so now switch to USB onboard hub
-> > >
-> > > >
-> > > > And what's the status of the companion hub of the USB3 hub? Is it
-> > > > really a USB3-only hub, or is its USB2 part just equal to another USB3
-> > > > hub?
-> > > >
-> > > usb5e3,610 is USB 2.0 port hub present on Odroid C1 and Odroid C2 board
-> > >
-> > > usb5e3,620 is USB 3.1 port hub present on Odroid N2.
-> >
-> > Like Icenowy I would expect the GL3523 to provide also a 2.0 hub.
-> >
-> > What is the output of 'lsusb' on the Odroid N2?
-> 
-> alarm@odroid-n2:~$ lsusb -tv
-> /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 5000M
->     ID 1d6b:0003 Linux Foundation 3.0 root hub
->     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 5000M
->         ID 05e3:0620 Genesys Logic, Inc. GL3523 Hub
-> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/2p, 480M
->     ID 1d6b:0002 Linux Foundation 2.0 root hub
->     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
->         ID 05e3:0610 Genesys Logic, Inc. Hub
+> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+> index 99edddf9958b9..77c23772bb3d9 100644
+> --- a/drivers/spi/spi-dw-core.c
+> +++ b/drivers/spi/spi-dw-core.c
+> @@ -333,6 +333,16 @@ void dw_spi_update_config(struct dw_spi *dws, struct spi_device *spi,
+>  		/* CTRLR0[11:10] Transfer Mode */
+>  		cr0 |= FIELD_PREP(DW_HSSI_CTRLR0_TMOD_MASK, cfg->tmode);
+>  
 
-Thanks. So it looks like 0x0610 is the product id of the USB 2.0 portion
-of the GL3523. From this patch it seems the GL852G uses the same product
-id?
+> +	if (dw_spi_ver_is_ge(dws, HSSI, 103A)) {
+
+eSPI has been available most likely since 1.00a (at least 1.01a
+has that feature).
+
+> +		cr0 &= ~DW_HSSI_CTRLR0_SPI_FRF_MASK;
+
+No need in masking that field because the cr0 variable is
+pre-initialized with the device-specific value anyway.
+
+> +		cr0 |= FIELD_PREP(DW_HSSI_CTRLR0_SPI_FRF_MASK,
+
+> +				  cfg->spi_frf);
+
+The HW-manual defines that field as SPI_FRF, but the SPI_ prefix looks
+vague because it doesn't differentiate it from just "frf" field. I'd
+suggest to use the "enh_frf" name instead.
+
+> +	} else if (dw_spi_ver_is_ge(dws, PSSI, 400A)) {
+
+> +		cr0 &= ~DW_PSSI_CTRLR0_SPI_FRF_MASK;
+> +		cr0 |= FIELD_PREP(DW_PSSI_CTRLR0_SPI_FRF_MASK,
+> +				  cfg->spi_frf);
+
+The same comments as above.
+
+> +	}
+> +
+>  	dw_writel(dws, DW_SPI_CTRLR0, cr0);
+>  
+>  	if (cfg->tmode == DW_SPI_CTRLR0_TMOD_EPROMREAD ||
+> @@ -422,6 +432,7 @@ static int dw_spi_transfer_one(struct spi_controller *master,
+                                                 <--------+
+>  		.tmode = DW_SPI_CTRLR0_TMOD_TR,           |
+>  		.dfs = transfer->bits_per_word,           |
+>  		.freq = transfer->speed_hz,               |
+                                                          |
+> +		.spi_frf = DW_SPI_CTRLR0_SPI_FRF_STD_SPI, +
+
+You also forgot to update the spi-dw-bt1.c driver.
+
+>  	};
+>  	int ret;
+>  
+> @@ -664,7 +675,7 @@ static void dw_spi_stop_mem_op(struct dw_spi *dws, struct spi_device *spi)
+>  static int dw_spi_exec_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
+>  {
+>  	struct dw_spi *dws = spi_controller_get_devdata(mem->spi->controller);
+
+> -	struct dw_spi_cfg cfg;
+> +	struct dw_spi_cfg cfg = {0};
+
+Please explicitly initialize the enh_frf field in the method below in
+the same way as it's done for the rest of the fields.
+
+>  	unsigned long flags;
+>  	int ret;
+>  
+> diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
+> index 9e8eb2b52d5c7..414a415deb42a 100644
+> --- a/drivers/spi/spi-dw.h
+> +++ b/drivers/spi/spi-dw.h
+> @@ -17,6 +17,8 @@
+>  
+>  /* Synopsys DW SSI component versions (FourCC sequence) */
+                                                  <-+
+>  #define DW_HSSI_102A			0x3130322a  |
+> +#define DW_HSSI_103A			0x3130332a  |
+                                                    |
+> +#define DW_PSSI_400A			0x3430302a -+
+
+Please define the PSSI-macros above the HSSI ones.
+
+>  
+>  /* DW SSI IP-core ID and version check helpers */
+>  #define dw_spi_ip_is(_dws, _ip) \
+> @@ -94,6 +96,9 @@
+>  #define DW_HSSI_CTRLR0_TMOD_MASK		GENMASK(11, 10)
+>  #define DW_HSSI_CTRLR0_SRL			BIT(13)
+                                                       <---------+
+>  #define DW_HSSI_CTRLR0_MST			BIT(31)          |
+                                                                 |
+> +#define DW_HSSI_CTRLR0_SPI_FRF_MASK		GENMASK(23, 22) -+
+
+This macro should be placed above the DW_HSSI_CTRLR0_MST one. Also
+rename SPI_FRF to ENH_FRF.
+
+> +#define DW_PSSI_CTRLR0_SPI_FRF_MASK		GENMASK(22, 21)
+> +#define DW_SPI_CTRLR0_SPI_FRF_STD_SPI		0x0
+
+1. Move these macros to the DW APB SSI group of the CSR fields macros.
+2. Drop the SPI suffix from the DW_SPI_CTRLR0_SPI_FRF_STD_SPI macro.
+3. Replace SPI_FRF with ENH_FRF name.
+
+>  
+>  /* Bit fields in CTRLR1 */
+>  #define DW_SPI_NDF_MASK				GENMASK(15, 0)
+> @@ -135,6 +140,7 @@ struct dw_spi_cfg {
+>  	u8 dfs;
+>  	u32 ndf;
+>  	u32 freq;
+
+> +	u8 spi_frf;
+
+Please move it to the head of the structure and rename to "enh_frf".
+
+-Serge(y)
+
+>  };
+>  
+>  struct dw_spi;
+> -- 
+> 2.30.2
+> 
