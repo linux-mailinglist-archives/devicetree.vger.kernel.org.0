@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C335B662167
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:26:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 999FD66216B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:26:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233436AbjAIJ0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 04:26:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57550 "EHLO
+        id S234050AbjAIJ0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 04:26:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbjAIJ0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:26:43 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DF429B
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 01:26:42 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id p3-20020a05600c1d8300b003d9ee5f125bso2011943wms.4
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 01:26:42 -0800 (PST)
+        with ESMTP id S233766AbjAIJ0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:26:45 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10CE4C60
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 01:26:43 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id m3so5800368wmq.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 01:26:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MWvSqhjRDjdOGajMwI2MbXsT3YyWqCAWU/iLLKmUGh0=;
-        b=aZUhZeumnG/a5YiUl5oh2vro6tywv9/wTzDqxGjC7ZWgZxBX9ACQOoPQ4T7l9dFDd3
-         Zy8HEjc1ykRWUs8KEGyGrgoDZJd28FotIx7IQUWEEF5pmym3SgFRozT6v22LStJKiPLz
-         u3zMoh9iBX59UdYDGE8NPJNdpP32+b1pSjm4mFgndQFAKGNueDiXS4isFot8GNn+pBhO
-         yKOKvRlXmWz/BlAU2N8MQkk3GpKU20Jvph6PAlgpEZfvc8rlwaIxORwlGBOHefeh7QfX
-         PVPb1KeWKfv5iAHVLdgZOro2ilk/b0FMTJBhivpqo1KbpGo9VzBK2FJ8ND8BIaheE39S
-         awDg==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E+gc0w5hWfVZt2wiZtuzeDBan9gl3xA+7WK6wQRAV74=;
+        b=vKR0QOYI/rOQ+WlWBIrflT2ln+b39zy8uB716rTZAbLdI9vQG8ISOyBwI3KahNcoBa
+         AX+wlowVJ/Ruw/tZMKaG8CejZQCkg+5v6vG0+mTuGS/VXS3dvmF0I/hrufdlHW7dDSvo
+         OYl+9UN/tHO+tsaZJIzeLLnpH0Ak1haslInzwXEZgZNp1jYiXB7V955R2zuCAodHBKcX
+         YhDNfTjocbNglLQFeTPqTHosBBtJqEl/XpR3td4ezNBY2TWa/KfYEXVb8SzyCLU5x3BB
+         DQ+AltUqx9uXGM8CweD32P8kv1KaSpszHowRRbFr9JsobpZx1i96gb/YeHAWOM8kBoAG
+         zOuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MWvSqhjRDjdOGajMwI2MbXsT3YyWqCAWU/iLLKmUGh0=;
-        b=JaZ/2K+Y/+dHKf5uvySae2+2yqFCZC+sZRRb6KFJY5vQVyOqUVI8SZRtUSDvKFPj1c
-         OQLJIFeThJZm4VDlY/nZ/rpj4okynokz0TCGvr8jAKorvLs7CbQT+oTpf3rFazVn6pqL
-         D5HjuSd5L+jelqOHVIO5aLd/7WASpAJuIRMJdLjOrALDQbmWNpAVNMbnfN0hNFnl+g01
-         iiO5zXsaoPd2LKENQomEZBxAnxhOqfUFnZlLk+4DhsEFwKvcOYGky++LTSZCeuh+3dPs
-         4sxJvCFS2dWVmRCFfUpnb7GjLSwgpwz0aOgxwOH8S2u7vBbUSjY0PTgb2S4SQlOWHsJw
-         41ig==
-X-Gm-Message-State: AFqh2krvSDAm0vmuiODEBtYnKIMsF8KYtj1e48HTL3Y85y0lIqlbu6Fg
-        +XR0pvQqu3h35PLFNNeBxk/Ehg==
-X-Google-Smtp-Source: AMrXdXs5NwhzuhuWP/h8r1XwoVrRdCWWlr7HPQR961uxYFaxPB6TQ1jo0ypS88EVkdsmREpg8/21Mg==
-X-Received: by 2002:a05:600c:1d0e:b0:3cf:7c8b:a7c7 with SMTP id l14-20020a05600c1d0e00b003cf7c8ba7c7mr45328512wms.39.1673256400815;
-        Mon, 09 Jan 2023 01:26:40 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E+gc0w5hWfVZt2wiZtuzeDBan9gl3xA+7WK6wQRAV74=;
+        b=lrQlf1gO0RW8w10jqAQ/u4CxPAEM1iizxUZh/XegbkuTDnA2W3itaHi7Nc1/7IyVnZ
+         54eeSfm0nEIcP7LXVx1bsQBOeu6u1DV9OBvvmuNLL11ToqN15YkAGUv4PI1Jxp5Uq84R
+         jONpEMh64UdyZ6BRc2PC/AOIJX0lIb3rwqFf+gTo397t9koZcGxPyheG6MV3/3U0Ikz4
+         nlI9/BlWrRsj3XownYy+KxRaXBUSYatdXrFgTvwk2+iCmYeivTyx0RhhaZC52oJA/vdJ
+         5eGQc8jaiB8d/munbhw9tOaq8qZmcQTFJqidaatHw4FsfUpEc4w+7JS7KNJGAMVr4PtB
+         x6Vw==
+X-Gm-Message-State: AFqh2kq0Wq5/zl/dSLEx4e1Hs4Mo2ClLxZ5mECDK9Ii5HeExBR50WH6z
+        eZVI0S4UNJoztti9wxnWy9cuyg==
+X-Google-Smtp-Source: AMrXdXuAO8AszQ04C4sIU8mdVvqVfTBv/kxLC3UPIki9fIDrZJL5BKOVJdSE4Kk3MNwKx2CiRByeiA==
+X-Received: by 2002:a05:600c:1e09:b0:3cf:b73f:bf8f with SMTP id ay9-20020a05600c1e0900b003cfb73fbf8fmr45111226wmb.7.1673256402579;
+        Mon, 09 Jan 2023 01:26:42 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id s23-20020a1cf217000000b003d1e3b1624dsm15195758wmc.2.2023.01.09.01.26.39
+        by smtp.gmail.com with ESMTPSA id s23-20020a1cf217000000b003d1e3b1624dsm15195758wmc.2.2023.01.09.01.26.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 01:26:40 -0800 (PST)
+        Mon, 09 Jan 2023 01:26:42 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v2 0/7] drm/msm: add support for SM8550
-Date:   Mon, 09 Jan 2023 10:26:33 +0100
-Message-Id: <20230103-topic-sm8550-upstream-mdss-dsi-v2-0-87f1c16d7635@linaro.org>
+Date:   Mon, 09 Jan 2023 10:26:34 +0100
+Subject: [PATCH v2 2/7] dt-bindings: display/msm: document DPU on SM8550
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAMndu2MC/42OQQ6CMBBFr0K6dkwpqYIr72FclOkAk0BLOkg0h
- LtbOYHL9xb//U0JJSZRt2JTiVYWjiGDORUKBxd6AvaZldGm0qWuYIkzI8hUW6vhNcuSyE0weRHw
- wlBZdLVDctY0Ko+0Tgja5AIOeSa8xjHLOVHH76P6eGYeWJaYPseJtfzZv3trCRoaRH+lizUd+vv
- IwaV4jqlXz33fvxzCjoriAAAA
+Message-Id: <20230103-topic-sm8550-upstream-mdss-dsi-v2-2-87f1c16d7635@linaro.org>
+References: <20230103-topic-sm8550-upstream-mdss-dsi-v2-0-87f1c16d7635@linaro.org>
+In-Reply-To: <20230103-topic-sm8550-upstream-mdss-dsi-v2-0-87f1c16d7635@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -74,85 +73,160 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
 X-Mailer: b4 0.11.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for the MDSS/DPU/DSI on the Qualcomm SM8550 platform.
+Document the DPU hardware found on the Qualcomm SM8550 platform.
 
-This patchset is based on the SM8450 display support serie at [1].
-
-In order to work, the following patchsets are required:
-- PM8550 LDO fix at [2]
-- DISPCC driver at [3]
-
-+ the DT changes.
-
-[1] https://lore.kernel.org/all/20221207012231.112059-1-dmitry.baryshkov@linaro.org/
-[2] https://lore.kernel.org/all/20230102-topic-sm8550-upstream-fixes-reg-l11b-nldo-v1-1-d97def246338@linaro.org/
-[3] https://lore.kernel.org/all/20230103-topic-sm8550-upstream-dispcc-v1-0-81bfcc26b2dc@linaro.org/
-
-To: Rob Clark <robdclark@gmail.com>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sean Paul <sean@poorly.run>
-To: David Airlie <airlied@gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-To: Jonathan Marek <jonathan@marek.ca>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: freedreno@lists.freedesktop.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-
 ---
-Changes in v2:
-- Rebased on msm-next-lumag & msm-next-lumag-dpu
-- Fixed cover letter title to SM8550
-- Patch 1: renamed compatible to qcom,sm8550-dsi-phy-4nm 
-- Patch 2: split in 2 patches, switch to renamed qcom,sm8550-dsi-phy-4nm
-- Patch 3: switch CTL to use CTL_SC7280_MASK, Added Reviewed-by
-- Patch 4: Added Reviewed-by
-- Patch 5: fixed V5.2 quirk order
-- Patch 6: Added Reviewed-by
-- Link to v1: https://lore.kernel.org/r/20230103-topic-sm8550-upstream-mdss-dsi-v1-0-9ccd7e652fcd@linaro.org
+ .../bindings/display/msm/qcom,sm8550-dpu.yaml      | 134 +++++++++++++++++++++
+ 1 file changed, 134 insertions(+)
 
----
-Neil Armstrong (7):
-      dt-bindings: display/msm: document the SM8550 DSI PHY
-      dt-bindings: display/msm: document DPU on SM8550
-      dt-bindings: display/msm: document MDSS on SM8550
-      drm/msm/dpu: add support for SM8550
-      drm/msm: mdss: add support for SM8550
-      drm/msm/dsi: add support for DSI-PHY on SM8550
-      drm/msm/dsi: add support for DSI 2.7.0
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
+new file mode 100644
+index 000000000000..c3d5a98fe3c0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
+@@ -0,0 +1,134 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/msm/qcom,sm8550-dpu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SM8550 Display DPU
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++$ref: /schemas/display/msm/dpu-common.yaml#
++
++properties:
++  compatible:
++    const: qcom,sm8550-dpu
++
++  reg:
++    items:
++      - description: Address offset and size for mdp register set
++      - description: Address offset and size for vbif register set
++
++  reg-names:
++    items:
++      - const: mdp
++      - const: vbif
++
++  clocks:
++    items:
++      - description: Display AHB
++      - description: Display hf axi
++      - description: Display MDSS ahb
++      - description: Display lut
++      - description: Display core
++      - description: Display vsync
++
++  clock-names:
++    items:
++      - const: bus
++      - const: nrt_bus
++      - const: iface
++      - const: lut
++      - const: core
++      - const: vsync
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,sm8550-dispcc.h>
++    #include <dt-bindings/clock/qcom,sm8550-gcc.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interconnect/qcom,sm8550.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
++
++    display-controller@ae01000 {
++        compatible = "qcom,sm8550-dpu";
++        reg = <0x0ae01000 0x8f000>,
++              <0x0aeb0000 0x2008>;
++        reg-names = "mdp", "vbif";
++
++        clocks = <&gcc GCC_DISP_AHB_CLK>,
++                <&gcc GCC_DISP_HF_AXI_CLK>,
++                <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
++                <&dispcc DISP_CC_MDSS_MDP_CLK>,
++                <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++        clock-names = "bus",
++                      "nrt_bus",
++                      "iface",
++                      "lut",
++                      "core",
++                      "vsync";
++
++        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++        assigned-clock-rates = <19200000>;
++
++        operating-points-v2 = <&mdp_opp_table>;
++        power-domains = <&rpmhpd SM8550_MMCX>;
++
++        interrupt-parent = <&mdss>;
++        interrupts = <0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                dpu_intf1_out: endpoint {
++                    remote-endpoint = <&dsi0_in>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                dpu_intf2_out: endpoint {
++                    remote-endpoint = <&dsi1_in>;
++                };
++            };
++        };
++
++        mdp_opp_table: opp-table {
++            compatible = "operating-points-v2";
++
++            opp-200000000 {
++                opp-hz = /bits/ 64 <200000000>;
++                required-opps = <&rpmhpd_opp_low_svs>;
++            };
++
++            opp-325000000 {
++                opp-hz = /bits/ 64 <325000000>;
++                required-opps = <&rpmhpd_opp_svs>;
++            };
++
++            opp-375000000 {
++                opp-hz = /bits/ 64 <375000000>;
++                required-opps = <&rpmhpd_opp_svs_l1>;
++            };
++
++            opp-514000000 {
++                opp-hz = /bits/ 64 <514000000>;
++                required-opps = <&rpmhpd_opp_nom>;
++            };
++        };
++    };
++...
 
- .../bindings/display/msm/dsi-phy-7nm.yaml          |   1 +
- .../bindings/display/msm/qcom,sm8550-dpu.yaml      | 134 +++++++++
- .../bindings/display/msm/qcom,sm8550-mdss.yaml     | 331 +++++++++++++++++++++
- drivers/gpu/drm/msm/Kconfig                        |   4 +-
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     | 197 ++++++++++++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h        |   2 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
- drivers/gpu/drm/msm/dsi/dsi_cfg.c                  |  16 +
- drivers/gpu/drm/msm/dsi/dsi_cfg.h                  |   1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |   2 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |   1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c          |  88 +++++-
- drivers/gpu/drm/msm/msm_mdss.c                     |   2 +
- 14 files changed, 765 insertions(+), 16 deletions(-)
----
-base-commit: 58372c69004c06773cbe74a05f2c1a4a8b23db9c
-change-id: 20230103-topic-sm8550-upstream-mdss-dsi-35ca8acea529
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
