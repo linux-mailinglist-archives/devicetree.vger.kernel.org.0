@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE30663313
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 22:35:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E45A663319
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 22:36:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237999AbjAIVfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 16:35:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45148 "EHLO
+        id S237817AbjAIVgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 16:36:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238071AbjAIVet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 16:34:49 -0500
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE95515FEC
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 13:34:19 -0800 (PST)
-Received: by mail-io1-xd2e.google.com with SMTP id i83so5184547ioa.11
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 13:34:19 -0800 (PST)
+        with ESMTP id S238099AbjAIVey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 16:34:54 -0500
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1911D0F5
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 13:34:24 -0800 (PST)
+Received: by mail-il1-x133.google.com with SMTP id bp26so5550691ilb.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 13:34:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=jgKqcAZtTPAWpAPXzq52W1m4zeeDN2d547UDbCE4Yak=;
-        b=DQM04VXj/zxsii0d9hiGcYkmhj9XQ7VtFP6+QXxo1IQPEAxcWItpbBs0CvzcHfTclX
-         m38CLCKrOaHwOjQY6FZ3YURiIDrhJV1XH77ohCzCdxDq7PMRmpvJVCbcrIxxDucJitnt
-         8kJsamnk563ShbWaYmN4siIcnCZ/Tvmv5G3mkKN8kp/YVBK7+3eMn69104kv7CVFhs+M
-         kvyNbknS2Y6H03P8urjDRDdp/wdQz99knCaSOj3TTIML5OmVVmfUyghZXwXzLDaCOaBI
-         zFAeVzbx/oaPJcUjdfFE2Nz9xjUVLhtPR0WfKkUj+G+bQlU07Nbhw5/AtCDTtTUADi6D
-         X5rA==
+        bh=Iiohs4OX9XBKS+GKVydSssXpcN8+3z5dH6Af2xFixnI=;
+        b=F2JUTas3O84KCd9N1b8rW6yhXOOcRlUIS4pLSWHuNpgDqG67+dxFz3PT/9Ro3uMjsh
+         Ku6VfEHkLueFZ4ZqFMJxN6oeh9fJtkPDltSlRIPrXXxmQwYprfq8RqYb8SDE+sZHw6v0
+         sWGcWwv+GIcwcMVfCN/QIctvIVy7CC5AKVhiuAuv7CLSLDF5sgBjeG4+CQhMFalZtqzf
+         lBsgbo3zFbkJSaWfcMq1oPzDPKJQS7hpCLW2F2/VAwxOy+vJ8xcTvqAkvEDVvsAz+8kM
+         8yQ3o3j2giPqAuT0Xm1TNdHVQMNL6peijLxJ6u1cXRsC4PAZKmsSUIqYQgPm2R5H9zBf
+         NLOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jgKqcAZtTPAWpAPXzq52W1m4zeeDN2d547UDbCE4Yak=;
-        b=os5znZOBX0NYNA0kHhu/5SaVhIcX3VnqczgN3Mx9utJrcXQYEYWURUP2/Awp0ucSft
-         PMhl3I0rsUQ6pABxWS9ZJVjADuGzQiYKbeJUZ5C0jtFsQxWeTzp6brjHcBA2ywMqi8yp
-         WJtZo2o9VKuu1TDTkzfR2EcP73/chKkV3jEdKHGgAYFEkBvg3GqaliwYmn9/QXDUT23o
-         p/sTJyRu5WCOtleCnoIml4hRn35wbwwBcu3mzQ+5mKtnRkVn8svC9FA4uw51wLr5APpg
-         bdK9LdhJ9z4s1LvC5SUfrO+z0+VRWGgOy617JWqCDw/UyEl6cuYm7fuTsm6tadEKrL3C
-         eIgw==
-X-Gm-Message-State: AFqh2krq5IrbVZUJMHNJtsnZJcDvb25l6PD6ddY5tSoSGmVBy/VGhzho
-        sWvgON3K49hAR0IbgxRclgojZQ==
-X-Google-Smtp-Source: AMrXdXtYGtRAxGls2gGKrjWvkzPPJp94p4qpoNrderYEp6UAEo+HikmjAK7gxeFOEpO7lh19ufhrOw==
-X-Received: by 2002:a5e:c809:0:b0:6e0:10d4:6ac7 with SMTP id y9-20020a5ec809000000b006e010d46ac7mr57436217iol.7.1673300059572;
-        Mon, 09 Jan 2023 13:34:19 -0800 (PST)
+        bh=Iiohs4OX9XBKS+GKVydSssXpcN8+3z5dH6Af2xFixnI=;
+        b=eXCvUUihK9QacF02kNHYqUVHBT2pxfSOTFtg+OVBy1YHN6GI6HCpj/As5YquVwpKe4
+         of0rs6p+0sWUhAoZk2MRKq8GunUy2GJ2Afg5HlmZW5BEQ8ODC/phB8Kv65ZnUKAdkah0
+         YqdHXZ/bCUxWPG1qAnntYoZSqVjOMB7ewRdNBWUE6b4iYHYFfczEeOjbHdPGYgYz7r4D
+         G/rn/8nEMWoTGZ5zhDLb2bHFc7oQYgoWrYaAIalpYqayec1rApfs3XC+RCxC24HPtZPy
+         R83MjqJkw3IUDObKu3Cvs7PHwz2TzvwNYY6wXq7gUVBRuQBnUDuTqvJ8wuStUWT0seCY
+         SpaQ==
+X-Gm-Message-State: AFqh2ko947MkVMZ/TFowWyzDz2HGqyxN6YUQFTqn+goCFpeacazDtDqJ
+        /3tZze1H7qouUXxg13SdbvkobQ==
+X-Google-Smtp-Source: AMrXdXtKrvQeuV+vRfi5+eIyZeEbd5Fdn8g+g5p661EdI40Q/KmLoIeZI8enRyg6WqGfCWqFP8IYUQ==
+X-Received: by 2002:a92:d111:0:b0:30c:d9f:fe00 with SMTP id a17-20020a92d111000000b0030c0d9ffe00mr42357769ilb.23.1673300063797;
+        Mon, 09 Jan 2023 13:34:23 -0800 (PST)
 Received: from [172.22.22.4] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id y4-20020a056638228400b0038a416931edsm3111165jas.91.2023.01.09.13.34.18
+        by smtp.googlemail.com with ESMTPSA id w8-20020a056e0213e800b0030c2667fe17sm3045972ilj.80.2023.01.09.13.34.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 13:34:19 -0800 (PST)
-Message-ID: <14eba2db-6f35-8b29-2b5e-6f1937b4e318@linaro.org>
-Date:   Mon, 9 Jan 2023 15:34:17 -0600
+        Mon, 09 Jan 2023 13:34:23 -0800 (PST)
+Message-ID: <f6bf5577-9a3a-e949-62b8-53f5fcdd3fa4@linaro.org>
+Date:   Mon, 9 Jan 2023 15:34:21 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
 From:   Alex Elder <elder@linaro.org>
-Subject: Re: [PATCH v8 03/28] gunyah: Common types and error codes for Gunyah
- hypercalls
+Subject: Re: [PATCH v8 04/28] arm64: smccc: Include alternative-macros.h
 To:     Elliot Berman <quic_eberman@quicinc.com>,
         Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>
-Cc:     Trilok Soni <quic_tsoni@quicinc.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
         Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
         Carl van Schaik <quic_cvanscha@quicinc.com>,
         Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
@@ -73,22 +75,20 @@ Cc:     Trilok Soni <quic_tsoni@quicinc.com>,
         Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will@kernel.org>,
         Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org
 References: <20221219225850.2397345-1-quic_eberman@quicinc.com>
- <20221219225850.2397345-4-quic_eberman@quicinc.com>
+ <20221219225850.2397345-5-quic_eberman@quicinc.com>
 Content-Language: en-US
-In-Reply-To: <20221219225850.2397345-4-quic_eberman@quicinc.com>
+In-Reply-To: <20221219225850.2397345-5-quic_eberman@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,120 +96,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 12/19/22 4:58 PM, Elliot Berman wrote:
-> Add architecture-independent standard error codes, types, and macros for
-> Gunyah hypercalls.
+> Fix build error when CONFIG_ARM64_SVE is selected and
+> asm/alternative-macros.h wasn't implicitly included by another header.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> In file included from arch/arm64/gunyah/gunyah_hypercall.c:6:
+> arch/arm64/gunyah/gunyah_hypercall.c: In function `gh_hypercall_msgq_send':
+> ./include/linux/arm-smccc.h:387:25: error: expected string literal before `ALTERNATIVE'
+>    387 | #define SMCCC_SVE_CHECK ALTERNATIVE("nop \n",  "bl __arm_smccc_sve_check \n", \
+> 
 > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->   MAINTAINERS            |  1 +
->   include/linux/gunyah.h | 74 ++++++++++++++++++++++++++++++++++++++++++
->   2 files changed, 75 insertions(+)
->   create mode 100644 include/linux/gunyah.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f32320a9efa4..74e76e0ab14d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8941,6 +8941,7 @@ L:	linux-arm-msm@vger.kernel.org
->   S:	Supported
->   F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->   F:	Documentation/virt/gunyah/
-> +F:	include/linux/gunyah.h
->   
->   HABANALABS PCI DRIVER
->   M:	Oded Gabbay <ogabbay@kernel.org>
-> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
-> new file mode 100644
-> index 000000000000..824e20a11d27
-> --- /dev/null
-> +++ b/include/linux/gunyah.h
-> @@ -0,0 +1,74 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef _GUNYAH_H
 
-Maybe use _LINUX_GUNYAH_H?
-
-> +#define _GUNYAH_H
-> +
-> +#include <linux/types.h>
-
-Why is types.h included?
-
-U64_MAX is defined in <linux/limits.h> (in case that's why).
-
-Otherwise this just defines a fixed API exposed by Gunyah
-so there's not much more for me to comment on.
+If this is correct (and I presume it is), I think this patch should
+be posted separate from (and before) the rest of the series.
 
 					-Alex
 
-> +#include <linux/errno.h>
-> +
-> +/* Common Gunyah macros */
-> +#define GH_CAPID_INVAL	U64_MAX
-> +#define GH_VMID_ROOT_VM	0xff
-> +
-> +#define GH_ERROR_OK			0
-> +
-> +#define GH_ERROR_UNIMPLEMENTED		-1
-> +#define GH_ERROR_RETRY			-2
-> +
-> +#define GH_ERROR_ARG_INVAL		1
-> +#define GH_ERROR_ARG_SIZE		2
-> +#define GH_ERROR_ARG_ALIGN		3
-> +
-> +#define GH_ERROR_NOMEM			10
-> +
-> +#define GH_ERROR_ADDR_OVFL		20
-> +#define GH_ERROR_ADDR_UNFL		21
-> +#define GH_ERROR_ADDR_INVAL		22
-> +
-> +#define GH_ERROR_DENIED			30
-> +#define GH_ERROR_BUSY			31
-> +#define GH_ERROR_IDLE			32
-> +
-> +#define GH_ERROR_IRQ_BOUND		40
-> +#define GH_ERROR_IRQ_UNBOUND		41
-> +
-> +#define GH_ERROR_CSPACE_CAP_NULL	50
-> +#define GH_ERROR_CSPACE_CAP_REVOKED	51
-> +#define GH_ERROR_CSPACE_WRONG_OBJ_TYPE	52
-> +#define GH_ERROR_CSPACE_INSUF_RIGHTS	53
-> +#define GH_ERROR_CSPACE_FULL		54
-> +
-> +#define GH_ERROR_MSGQUEUE_EMPTY		60
-> +#define GH_ERROR_MSGQUEUE_FULL		61
-> +
-> +static inline int gh_remap_error(int gh_error)
-> +{
-> +	switch (gh_error) {
-> +	case GH_ERROR_OK:
-> +		return 0;
-> +	case GH_ERROR_NOMEM:
-> +		return -ENOMEM;
-> +	case GH_ERROR_DENIED:
-> +	case GH_ERROR_CSPACE_CAP_NULL:
-> +	case GH_ERROR_CSPACE_CAP_REVOKED:
-> +	case GH_ERROR_CSPACE_WRONG_OBJ_TYPE:
-> +	case GH_ERROR_CSPACE_INSUF_RIGHTS:
-> +	case GH_ERROR_CSPACE_FULL:
-> +		return -EACCES;
-> +	case GH_ERROR_BUSY:
-> +	case GH_ERROR_IDLE:
-> +		return -EBUSY;
-> +	case GH_ERROR_IRQ_BOUND:
-> +	case GH_ERROR_IRQ_UNBOUND:
-> +	case GH_ERROR_MSGQUEUE_FULL:
-> +	case GH_ERROR_MSGQUEUE_EMPTY:
-> +		return -EPERM;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +#endif
+> ---
+>   include/linux/arm-smccc.h | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/include/linux/arm-smccc.h b/include/linux/arm-smccc.h
+> index 220c8c60e021..6a627cdbbdec 100644
+> --- a/include/linux/arm-smccc.h
+> +++ b/include/linux/arm-smccc.h
+> @@ -383,6 +383,7 @@ asmlinkage void __arm_smccc_hvc(unsigned long a0, unsigned long a1,
+>   
+>   /* nVHE hypervisor doesn't have a current thread so needs separate checks */
+>   #if defined(CONFIG_ARM64_SVE) && !defined(__KVM_NVHE_HYPERVISOR__)
+> +#include <asm/alternative-macros.h>
+>   
+>   #define SMCCC_SVE_CHECK ALTERNATIVE("nop \n",  "bl __arm_smccc_sve_check \n", \
+>   				    ARM64_SVE)
 
