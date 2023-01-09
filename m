@@ -2,116 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA347662346
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 11:39:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA66366234A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 11:40:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233302AbjAIKjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 05:39:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51198 "EHLO
+        id S234714AbjAIKkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 05:40:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233339AbjAIKjK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 05:39:10 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5907518B25
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 02:39:02 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id l26so5919715wme.5
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 02:39:02 -0800 (PST)
+        with ESMTP id S234364AbjAIKke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 05:40:34 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236C718B26
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 02:40:32 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so8660005wmb.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 02:40:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ci3zY6Yv3EZIXzBWjrkV2Fk9lPgwnZ7+X4TdQnkpQoc=;
-        b=JDN1dR2xb6KGWi9FUAmZl8gcSxis+XX/Hr5Aej49kKgVMnDQGoFHhxzS+QNGDpxu1W
-         DP4YVpOZFWnoV/pQLEePS1OJYfMqB8Rv8amFlZ26V2yMQ3K5MvoG1KY7tDuRi7E8DAmY
-         0f/xEa8D1zenJ22oWa7jzBXfTIa7V8FTBpeVH+ChUHVrtSdBvN/dMBAYZKTH4eJQQXvC
-         hGdpvAk6Bqh8MBIEuKi2wegXWXW9hYRj8IHL/OApeq8AUKblldsZKfL0Sb6VE4lFPzgc
-         gexGhDG9OMxaWPp0NnxUMuCKVjDb4bWAaO0yIS7UPNV7PWHt1sFbl0KT1LjIm4j4bg/X
-         w9cw==
+        d=ventanamicro.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4s8gyEzGa9/+YTwIpz0gyA7IbtzObVaZ/2VL3lFmQvk=;
+        b=NtCgVGxhd1xgSS3YJnIlYU0+MKNzVXLXNpjv8RNiEuGDFiWInSeoJLHit34IPv88kB
+         FDf52/pLYN6HK46HQq5DjH0eT7Xl2+HlwljDAAGC8eH1qQgnQ1er2nl5w64eUvL7xfLk
+         /S5rp+HuMkUfHPtFk0R0pAjh5xwdpgjk9mhMnE1BjDhvfI6QkBOJ1nwbe8WMVDB0B91W
+         /EwREiQPmGcBdNU8yZqGjQQfUP8BVMuCTP4C/gFKQlkOfQLPrKyH+znm18FkTYXTCe86
+         /XX9sAGrjFZH2lPgkgZRLWS1MtWH7WKAuYQtOQTk5P+wW08sDG0DThMYlxuU1+75K88f
+         G7Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ci3zY6Yv3EZIXzBWjrkV2Fk9lPgwnZ7+X4TdQnkpQoc=;
-        b=7RJaPRr3QlifBuW6V+DARrU2mSSt0AbxDABoD6Jn1I5W1Ac3oonYzgtw/n9iO1ZsAA
-         o7DqSdMynGWxpk+SHgY2F4ZlJJsup+gedIzP8h8wZtOXbtQjHmqwIUEoVeIthoduAbie
-         oc4mwcnengId6T1Zw2Hx9u3frUN/H5q0b8CpISJIte5VC4jSED8ufqkmSECeYPQV8K4z
-         JbKyCi1X02QVUurw1VO1HVciht2v2tX0G0EDorCiZbyUGs8HNY08W5UY9+9aBx+9CDKB
-         EEX3yogoyYx8xMRIv5vgr8Nx2Br4tcbQXktearVlMcSE14e7wFbB4uBQPPwnsH5lELn9
-         wgEA==
-X-Gm-Message-State: AFqh2kpyog5ddSkxXYuJ4Sw2ZWjbymvYs3cEn3bs+p8cgjxHKkGFJa5F
-        RpFwJOmhI7xLBOqgHLWaif1KxQ==
-X-Google-Smtp-Source: AMrXdXsqbO+/iPXS6nWWXbJDiSzKzM9/wW0rYmLmkuC/N4ykRN/K+1QC1GFK05vglTCQdXh1iUEJEw==
-X-Received: by 2002:a05:600c:4e4f:b0:3cf:9d32:db67 with SMTP id e15-20020a05600c4e4f00b003cf9d32db67mr45411457wmq.3.1673260740898;
-        Mon, 09 Jan 2023 02:39:00 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v8-20020a05600c444800b003c21ba7d7d6sm11502586wmn.44.2023.01.09.02.38.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 02:39:00 -0800 (PST)
-Message-ID: <5caddeb2-bcea-43fc-ee00-7813f1d8a75f@linaro.org>
-Date:   Mon, 9 Jan 2023 11:38:58 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4s8gyEzGa9/+YTwIpz0gyA7IbtzObVaZ/2VL3lFmQvk=;
+        b=l+qtfHe2LUTSqk9oTENa/hombDPYHyWlPhdMgyb5q4WBNO99Y7wr/lgcQ2GhyEU3J8
+         u5Y0SIrlXGgBvZTKkyu3uC4rrqsMx6jJfcGqCqsc2j5QnuiLl96qQZb4ykePGLQqCJhN
+         e6n5XISr4frZJ9Z4JoW2zQyGFuVaC/NrqC2b385wbXylznAguQRv9rm9xt6vQojO4BzL
+         T/Xchk6/vtVhOH7SkjgLXxLEZH+vcg+xVYlFeCC+xN9YgxbypuAl6cH4oik7SzAxLvRT
+         I3w2nWSwfTsyohtiv/1q8irpiRQ+EJkzI88INj+IKrDf3s/TFVjt4XBVG89iyidDsKjZ
+         ZqTg==
+X-Gm-Message-State: AFqh2kpS/uV7m72+7auiolMYIHdJ+UvoBsAXDnH6IwZ37ZlbyE+w32E6
+        qWa+6CxVl2OrDf1yP3zMi/aTyQ==
+X-Google-Smtp-Source: AMrXdXse61lmDq4roPhoyaYQAiAAXVFtRcexCG4n018s3Pt/lzdOFaILzt7m+hq/2bhn1ayr/SCgBQ==
+X-Received: by 2002:a05:600c:1d0e:b0:3cf:8957:a441 with SMTP id l14-20020a05600c1d0e00b003cf8957a441mr12170318wms.12.1673260830651;
+        Mon, 09 Jan 2023 02:40:30 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id h10-20020a05600c2caa00b003cfd58409desm15901325wmc.13.2023.01.09.02.40.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 02:40:30 -0800 (PST)
+Date:   Mon, 9 Jan 2023 11:40:29 +0100
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        atishp@rivosinc.com, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        apatel@ventanamicro.com, will@kernel.org, mark.rutland@arm.com,
+        opensbi@lists.infradead.org, samuel@sholland.org
+Subject: Re: [PATCH v4] dt-bindings: riscv: add SBI PMU event mappings
+Message-ID: <20230109104029.3cwbngqiydlpl7z2@orel>
+References: <20230108215047.3165032-1-conor@kernel.org>
+ <20230109092715.bwomqoeosif43lr2@orel>
+ <Y7vpxW1AeEOhcxUf@wendy>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845: make DP node follow the schema
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230109041728.308725-1-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230109041728.308725-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y7vpxW1AeEOhcxUf@wendy>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 05:17, Dmitry Baryshkov wrote:
-> Drop the #clock-cells (leftover probably from the times before the DP
-> PHY split) and rename dp-opp-table to just opp-table.
+On Mon, Jan 09, 2023 at 10:17:41AM +0000, Conor Dooley wrote:
+> On Mon, Jan 09, 2023 at 10:27:15AM +0100, Andrew Jones wrote:
+> > On Sun, Jan 08, 2023 at 09:50:48PM +0000, Conor Dooley wrote:
+> > > From: Conor Dooley <conor.dooley@microchip.com>
+> > > 
+> > > The SBI PMU extension requires a firmware to be aware of the event to
+> > > counter/mhpmevent mappings supported by the hardware. OpenSBI may use
+> > > DeviceTree to describe the PMU mappings. This binding is currently
+> > > described in markdown in OpenSBI (since v1.0 in Dec 2021) & used by QEMU
+> > > since v7.2.0.
+> > > 
+> > > Import the binding for use while validating dtb dumps from QEMU and
+> > > upcoming hardware (eg JH7110 SoC) that will make use of the event
+> > > mapping.
+> > > 
+> > > Link: https://github.com/riscv-software-src/opensbi/blob/master/docs/pmu_support.md
+> > > Link: https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sbi.adoc # Performance Monitoring Unit Extension
+> > > Co-developed-by: Atish Patra <atishp@rivosinc.com>
+> > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > > ---
+> > > Changes in v4:
+> > > - A bunch of minor description/comment changes suggested by Drew
+> > > 
+> > > Changes in v3:
+> > > - align descriptions to SBI spec (and fix a misinterpretation of mine)
+> > > - switch to a nested items description, since the descriptions are for
+> > >   the elements of each entry, not the entries themselves
+> > > 
+> > > Changes in v2:
+> > > - use the schema mechanism for dependancies between properties
+> > > - +CC perf maintainers...
+> > > - move the matrix element descriptions into regular item descriptions
+> > >   rather than doing so freeform in the property description
+> > > - drop some description text that no longer applies since changes were
+> > >   made to the SBI spec
+> > > - drop mention of the "generic platform" which is OpenSBI specific
+> > > - drop the min/max items from the matrices, they don't appear to be
+> > >   needed?
+> > > 
+> > > Note:
+> > > OpenSBI is BSD-2-Clause licensed so I am unsure as to whether I can
+> > > submit it with a dual license.
+> > > ---
+> > >  .../devicetree/bindings/perf/riscv,pmu.yaml   | 160 ++++++++++++++++++
+> > >  1 file changed, 160 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> > > new file mode 100644
+> > > index 000000000000..5e7a54e3d91b
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> > > @@ -0,0 +1,160 @@
+> > > +# SPDX-License-Identifier: BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/perf/riscv,pmu.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: RISC-V SBI PMU events
+> > > +
+> > > +maintainers:
+> > > +  - Atish Patra <atishp@rivosinc.com>
+> > > +
+> > > +description: |
+> > > +  The SBI PMU extension allows supervisor software to configure, start and
+> > > +  stop any performance counter at anytime. Thus, a user can leverage all
+> > > +  capabilities of performance analysis tools, such as perf, if the SBI PMU
+> > > +  extension is enabled. The following constraints apply:
+> > > +
+> > > +    The platform must provide information about PMU event to counter mappings
+> > > +    via device tree or platform specific hooks. Otherwise, the SBI PMU
+> > > +    extension will not be enabled.
+> > > +
+> > > +    Platforms should provide information about the PMU event selector values
+> > > +    that should be encoded in the expected value of MHPMEVENTx while configuring
+> > > +    MHPMCOUNTERx for that specific event. This can be done via a device tree or
+> > > +    platform specific hooks. The exact value to be written to MHPMEVENTx is
+> > > +    completely dependent on the platform.
+> > 
+> > The previous two paragraphs reference 'platform specific hooks'. I don't
+> > think this DT-specific description, as opposed to the more general OpenSBI
+> > description it's derived from, should reference the hooks, as "hooks"
+> > aren't defined in this context.
 > 
-> Fixes: eaac4e55a6f4 ("arm64: dts: qcom: sdm845: add displayport node")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
+> Do you have any suggestion about how it should be worded? It is
+> apparently valid to have only a compatible string in the dt-binding and
+> rely on using platform hooks to communicate the mapping. In that case,
+> the dt-binding only communicates the presence of SBI PMU support.
+> IMO, if we don't mention that that is a valid way, the fact that we only
+> require a compatible for a DT to be valid looks like a mistake in the
+> binding.
+
+Maybe just replace 'platform specific hooks' with 'in a platform specific
+way'? I'm mostly just hung up on "hooks" (pun definitely intended), as
+this document lives in the Linux repo and there aren't any hooks.
+
+Thanks,
+drew
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 9e881e19b984..fa62479206ce 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -4593,7 +4593,6 @@ mdss_dp: displayport-controller@ae90000 {
->  					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
->  				clock-names = "core_iface", "core_aux", "ctrl_link",
->  					      "ctrl_link_iface", "stream_pixel";
-> -				#clock-cells = <1>;
->  				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
->  						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
->  				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
-> @@ -4619,7 +4618,7 @@ port@1 {
->  					};
->  				};
->  
-> -				dp_opp_table: dp-opp-table {
-> +				dp_opp_table: opp-table {
+> Thanks,
+> Conor.
+> 
+> > > +    For information on the SBI specification see the section "Performance
+> > > +    Monitoring Unit Extension" of:
+> > > +      https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sbi.adoc
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: riscv,pmu
+> > > +
+> > > +  riscv,event-to-mhpmevent:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +    description:
+> > > +      Represents an ONE-to-ONE mapping between a PMU event and the event
+> > > +      selector value that the platform expects to be written to the MHPMEVENTx
+> > > +      CSR for that event.
+> > > +      The mapping is encoded in an matrix format where each element represents
+> > > +      an event.
+> > > +      This property shouldn't encode any raw hardware event.
+> > > +    items:
+> > > +      items:
+> > > +        - description: event_idx, a 20-bit wide encoding of the event type and
+> > > +            code. Refer to the SBI specification for a complete description of
+> > > +            the event types and codes.
+> > > +        - description: upper 32 bits of the event selector value for MHPMEVENTx
+> > > +        - description: lower 32 bits of the event selector value for MHPMEVENTx
+> > > +
+> > > +  riscv,event-to-mhpmcounters:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +    description:
+> > > +      Represents a MANY-to-MANY mapping between a range of events and all the
+> > > +      MHPMCOUNTERx in a bitmap format that can be used to monitor these range
+> > > +      of events. The information is encoded in an matrix format where each
+> > > +      element represents a certain range of events and corresponding counters.
+> > > +      This property shouldn't encode any raw event.
+> > > +    items:
+> > > +      items:
+> > > +        - description: first event_idx of the range of events
+> > > +        - description: last event_idx of the range of events
+> > > +        - description: bitmap of MHPMCOUNTERx for this event
+> > > +
+> > > +  riscv,raw-event-to-mhpmcounters:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +    description:
+> > > +      Represents an ONE-to-MANY or MANY-to-MANY mapping between the rawevent(s)
+> > > +      and all the MHPMCOUNTERx in a bitmap format that can be used to monitor
+> > > +      that raw event.
+> > > +      The encoding of the raw events are platform specific. The information is
+> > > +      encoded in a matrix format where each element represents the specific raw
+> > > +      event(s).
+> > > +      If a platform directly encodes each raw PMU event as a unique ID, the
+> > > +      value of variant must be 0xffffffff_ffffffff.
+> > > +    items:
+> > > +      items:
+> > > +        - description:
+> > > +            upper 32 invariant bits for the range of events
+> > > +        - description:
+> > > +            lower 32 invariant bits for the range of events
+> > > +        - description:
+> > > +            upper 32 bits of the variant bit mask for the range of events
+> > > +        - description:
+> > > +            lower 32 bits of the variant bit mask for the range of events
+> > > +        - description:
+> > > +            bitmap of all MHPMCOUNTERx that can monitor the range of events
+> > > +
+> > > +dependencies:
+> > > +  "riscv,event-to-mhpmevent": [ "riscv,event-to-mhpmcounters" ]
+> > > +  "riscv,event-to-mhpmcounters": [ "riscv,event-to-mhpmevent" ]
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    pmu {
+> > > +        compatible = "riscv,pmu";
+> > > +        riscv,event-to-mhpmevent = <0x0000B 0x0000 0x0001>;
+> > > +        riscv,event-to-mhpmcounters = <0x00001 0x00001 0x00000001>,
+> > > +                                      <0x00002 0x00002 0x00000004>,
+> > > +                                      <0x00003 0x0000A 0x00000ff8>,
+> > > +                                      <0x10000 0x10033 0x000ff000>;
+> > > +        riscv,raw-event-to-mhpmcounters =
+> > > +            /* For event ID 0x0002 */
+> > > +            <0x0000 0x0002 0xffffffff 0xffffffff 0x00000f8>,
+> > > +            /* For event ID 0-4 */
+> > > +            <0x0 0x0 0xffffffff 0xfffffff0 0x00000ff0>,
+> > > +            /* For event ID 0xffffffff0000000f - 0xffffffff000000ff */
+> > > +            <0xffffffff 0x0 0xffffffff 0xffffff0f 0x00000ff0>;
+> > > +    };
+> > > +
+> > > +  - |
+> > > +    /*
+> > > +     * For HiFive Unmatched board the encodings can be found here
+> > > +     * https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
+> > > +     *
+> > > +     * This example also binds standard SBI PMU hardware IDs to U74 PMU event
+> > > +     * codes, U74 uses a bitfield for events encoding, so several U74 events
+> > > +     * can be bound to a single perf ID.
+> > > +     * See SBI PMU hardware IDs in arch/riscv/include/asm/sbi.h
+> > > +     */
+> > > +    pmu {
+> > > +          compatible = "riscv,pmu";
+> > > +          riscv,event-to-mhpmevent =
+> > > +              /* SBI_PMU_HW_CACHE_REFERENCES -> Instruction or Data cache/ITIM busy */
+> > > +              <0x00003 0x00000000 0x1801>,
+> > > +              /* SBI_PMU_HW_CACHE_MISSES -> Instruction or Data cache miss or MMIO access */
+> > > +              <0x00004 0x00000000 0x0302>,
+> > > +              /* SBI_PMU_HW_BRANCH_INSTRUCTIONS -> Conditional branch retired */
+> > > +              <0x00005 0x00000000 0x4000>,
+> > > +              /* SBI_PMU_HW_BRANCH_MISSES -> Branch or jump misprediction */
+> > > +              <0x00006 0x00000000 0x6001>,
+> > > +              /* L1D_READ_MISS -> Data cache miss or MMIO access */
+> > > +              <0x10001 0x00000000 0x0202>,
+> > > +              /* L1D_WRITE_ACCESS -> Data cache write-back */
+> > > +              <0x10002 0x00000000 0x0402>,
+> > > +              /* L1I_READ_ACCESS -> Instruction cache miss */
+> > > +              <0x10009 0x00000000 0x0102>,
+> > > +              /* LL_READ_MISS -> UTLB miss */
+> > > +              <0x10011 0x00000000 0x2002>,
+> > > +              /* DTLB_READ_MISS -> Data TLB miss */
+> > > +              <0x10019 0x00000000 0x1002>,
+> > > +              /* ITLB_READ_MISS-> Instruction TLB miss */
+> > > +              <0x10021 0x00000000 0x0802>;
+> > > +          riscv,event-to-mhpmcounters = <0x00003 0x00006 0x18>,
+> > > +                                        <0x10001 0x10002 0x18>,
+> > > +                                        <0x10009 0x10009 0x18>,
+> > > +                                        <0x10011 0x10011 0x18>,
+> > > +                                        <0x10019 0x10019 0x18>,
+> > > +                                        <0x10021 0x10021 0x18>;
+> > > +          riscv,raw-event-to-mhpmcounters = <0x0 0x0 0xffffffff 0xfc0000ff 0x18>,
+> > > +                                            <0x0 0x1 0xffffffff 0xfff800ff 0x18>,
+> > > +                                            <0x0 0x2 0xffffffff 0xffffe0ff 0x18>;
+> > > +    };
+> > > -- 
+> > > 2.39.0
+> > >
+> > 
+> > Besides the comment above,
+> > 
+> > Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> > 
+> > Thanks,
+> > drew
+> > 
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-Already done:
-https://patchwork.kernel.org/project/linux-arm-msm/patch/20221225115844.55126-2-krzysztof.kozlowski@linaro.org/
-
-Please rebase on top of my changes or just drop this part.
-
-Best regards,
-Krzysztof
 
