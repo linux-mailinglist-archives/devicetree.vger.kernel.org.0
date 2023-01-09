@@ -2,121 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FEB4661D07
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 04:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD9AD661D1A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 04:57:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236456AbjAIDwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 22:52:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47524 "EHLO
+        id S233886AbjAID4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 22:56:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236538AbjAIDvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 22:51:54 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0715712083;
-        Sun,  8 Jan 2023 19:51:10 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3093aXV6024772;
-        Mon, 9 Jan 2023 03:50:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=irCZQ655pP3PtOVYmrfy/sVDGrj/3j/A/fVeyRtcm5Q=;
- b=JNwQmtqP5Qhi+sDixe2Ii3QoEKmBYeDhC1+2OsgDxcancOen+G5xiggBVhDt48lhlBpC
- Ssg4m8ZxqWUgr2IpeKgfyaiq/kjwtXKAHQd5s5cfKg/r8TWvv68LtoQILTWYAnRZ9wrr
- Tnd/tj657F4JpGWFLfHBB4jjRHDsXTKk94oK8a9dglNJK+E8j8TKawQFP0XlqzKCtBTE
- ooKki2xEHwB1dA823MS/yfhYfx29vGIzkS1N0wqtVAXe1XTOlEgvMEeXeUtVZCiUp5Rm
- Yz91S0QJnxDypiowJWE3vSRTxe0frTlMrIyIv96ssX80vxf9LCe/+nizRAGzkAhOmbsx 5w== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mxx3w2dk4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 09 Jan 2023 03:50:59 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3093ovZW004771
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 9 Jan 2023 03:50:57 GMT
-Received: from blr-ubuntu-87.ap.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Sun, 8 Jan 2023 19:50:53 -0800
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-To:     <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>, <manivannan.sadhasivam@linaro.org>,
-        <robin.murphy@arm.com>
-CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <konrad.dybcio@somainline.org>, <amit.pundir@linaro.org>,
-        <regressions@leemhuis.info>, <sumit.semwal@linaro.org>,
-        <will@kernel.org>, <catalin.marinas@arm.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-Subject: [PATCH V2 11/11] arm64: dts: qcom: sc7280: Add a carveout for modem metadata
-Date:   Mon, 9 Jan 2023 09:18:43 +0530
-Message-ID: <20230109034843.23759-12-quic_sibis@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230109034843.23759-1-quic_sibis@quicinc.com>
-References: <20230109034843.23759-1-quic_sibis@quicinc.com>
+        with ESMTP id S236710AbjAIDzn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 22:55:43 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73CA81209E
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 19:54:56 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 254A0B80CAC
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 03:54:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B52D0C433D2;
+        Mon,  9 Jan 2023 03:54:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673236493;
+        bh=p/XxkV1EJLS7tRjTyqnzIqnXBjpV4nsiH/JLkdkvOXU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GfjCDY3kRIrJp//aIqpUXP1+UAdEhxydeP+qDyOY7GqiHhfMIaWrYSKQLyThskRdd
+         SzS5+bPSUC/dHqzgOGi1EU8/pMDL+Wzx34qiUK9oON4wqMDGPYZzuEXOKnRcsd5Nvn
+         6w/7b3x8LRa3ghSKMWVNCJhTjhR+bhOd6MyqpbrcsvEmOraLmfSxfvq8tJOdmC+3Vg
+         hSi/JQWJesazYLhGpf89Lrh/OptTpjbuzBXCw8Zl1RI/Z9qiMLRSV23FdJZNBN4nXJ
+         zXmvswZB6z9M9DtLOfJ2t8H++dsDVosfHNN4088yWuYhFGxtenGMQtvFugsTbRK66T
+         xaPCI80pyk3aw==
+Date:   Mon, 9 Jan 2023 11:54:45 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Fabio Estevam <festevam@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add support for Data Modul
+ i.MX8M Plus eDM SBC
+Message-ID: <20230109035444.GA18301@T480>
+References: <20221218051800.495932-1-marex@denx.de>
+ <20221218051800.495932-2-marex@denx.de>
+ <20230101040036.GU6112@T480>
+ <cf51865b-4a3e-09fa-b342-cc4db491f17b@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: _QvwmrwaSetmo942ySwUJVyC4VSXZNCh
-X-Proofpoint-GUID: _QvwmrwaSetmo942ySwUJVyC4VSXZNCh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-08_19,2023-01-06_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 adultscore=0 priorityscore=1501 malwarescore=0
- clxscore=1015 bulkscore=0 suspectscore=0 mlxscore=0 phishscore=0
- impostorscore=0 mlxlogscore=991 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2301090025
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cf51865b-4a3e-09fa-b342-cc4db491f17b@denx.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new carveout for modem metadata on SC7280 SoCs.
+On Thu, Jan 05, 2023 at 10:30:17PM +0100, Marek Vasut wrote:
+> On 1/1/23 05:00, Shawn Guo wrote:
+> 
+> [...]
+> 
+> > > +	panel: panel {
+> > 
+> > No compatible?
+> 
+> The compatible string is filled in by expansion module DT overlay, so no
+> default compatible string in the panel node here. The panel interface is the
+> same for all panels that can be atteched to this board, so the panel node is
+> common for all DTOs and can be in the base DT.
+> 
+> > > +		backlight = <&backlight>;
+> > > +		power-supply = <&reg_panel_vcc>;
+> > > +		/* Disabled by default, unless display board plugged in. */
+> > > +		status = "disabled";
+> > > +	};
+> > > +
+> > > +	reg_panel_vcc: regulator-panel-vcc {
+> > > +		compatible = "regulator-fixed";
+> > > +		pinctrl-names = "default";
+> > > +		pinctrl-0 = <&pinctrl_panel_vcc_reg>;
+> > > +		regulator-name = "PANEL_VCC";
+> > > +		regulator-min-microvolt = <5000000>;
+> > > +		regulator-max-microvolt = <5000000>;
+> > > +		gpio = <&gpio3 6 0>;
+> > 
+> > GPIO_ACTIVE_HIGH?
+> 
+> No, the 0 is correct and you're not the first one to wonder about this
+> oddity.
 
-Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
----
+I understand that the polarity is ignored by Linux Kernel.  But it
+shouldn't prevent us from describing the polarity cell with defines
+for better readability.
 
-v2:
- * Split dt/bindings per SoC  [Krzysztof] 
+I'm always looking for the pattern below when reviewing the device tree.
 
- arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+	regulator-xxx {
+		compatible = "regulator-fixed";
+		...
+		gpio = <&gpio3 6 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+	}
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
-index efd513164501..3a4074d6e5b7 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
-@@ -17,6 +17,11 @@
- 			reg = <0x0 0x9c700000 0x0 0x200000>;
- 			no-map;
- 		};
-+
-+		mdata_mem: memory@9d100000 {
-+			reg = <0x0 0x9d100000 0x0 0x4000>;
-+			no-map;
-+		};
- 	};
- };
- 
-@@ -37,7 +42,7 @@
- 
- 	iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
- 	interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
--	memory-region = <&mba_mem>, <&mpss_mem>;
-+	memory-region = <&mba_mem>, <&mpss_mem>, <&mdata_mem>;
- 	firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
- 			"qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
- 
--- 
-2.17.1
+Or for low polarity:
 
+	regulator-xxx {
+		compatible = "regulator-fixed";
+		...
+		gpio = <&gpio3 6 GPIO_ACTIVE_LOW>;
+	}
+
+The polarity define is helpful for me to validate whether
+`enable-active-high` property should present.
+
+Shawn
+
+> See drivers/gpio/gpiolib-of.c :
+> 
+>  203 /*
+>  204  * The regulator GPIO handles are specified such that the
+>  205  * presence or absence of "enable-active-high" solely controls
+>  206  * the polarity of the GPIO line. Any phandle flags must
+>  207  * be actively ignored.
+>  208  */
+>  209 #if IS_ENABLED(CONFIG_REGULATOR_FIXED_VOLTAGE)
+>  210     { "regulator-fixed",   "gpios",    "enable-active-high" },
+>  211     { "regulator-fixed",   "gpio",     "enable-active-high" },
+> 
+> [...]
