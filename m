@@ -2,458 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2E386621AA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:33:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D116B6621B2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 10:37:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234756AbjAIJds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 04:33:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33876 "EHLO
+        id S233766AbjAIJhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 04:37:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233393AbjAIJdr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:33:47 -0500
-X-Greylist: delayed 91 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 09 Jan 2023 01:33:43 PST
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 42E83EF;
-        Mon,  9 Jan 2023 01:33:42 -0800 (PST)
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 192.168.8.21
-        by mg.richtek.com with MailGates ESMTP Server V3.0(2734:0:AUTH_RELAY)
-        (envelope-from <prvs=1372AFEF34=gene_chen@richtek.com>); Mon, 09 Jan 2023 17:33:39 +0800 (CST)
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 192.168.10.46
-        by mg.richtek.com with MailGates ESMTP Server V5.0(16500:0:AUTH_RELAY)
-        (envelope-from <gene_chen@richtek.com>); Mon, 09 Jan 2023 17:31:40 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
+        with ESMTP id S233396AbjAIJhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 04:37:18 -0500
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2129.outbound.protection.outlook.com [40.107.114.129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE2F0645D;
+        Mon,  9 Jan 2023 01:37:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KpWo5qwIkciXMIopITSbSf1zX7JCr1/AjB+vh9ZAudtEjAMJGlrDY0OGQWF5M29hxvAsIAJk+xexXZe4bfb0YOLYK41cuXyC4eT1Je521B9Pc1pxUseS63vrHBYAxV0Tx1+aF5bPjhA1pJtvCX8RWe4EjM1r3FD/zhFzQhfFBVAwPVk8GjrC/84AqFodooV9txkDepWVDk/1niwwgUI0jPmkF84kk1jIN8ILIV5oJydBjzC048kDsEdwh59jCu6rplQrxvcvqrxBV5I3CJ78MlGfA1Z3Uxo9XJ/MHIODDr8ph156o2V5Bz5cwoWMKEEHdSxyEb+aV1TMEAct8lPz0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/igtteuPJQVk1Pc8zPzfxFbBYXtGx4sXxOOL5SuJD0k=;
+ b=BuGcxZd/aXw/4gnPoe1NG3GAmjNMJsqXf715mHl+4qXqKofSV+cbaBkLP2cYnFa4rzCsYfJUvHjqOlm/9giXBJTJwwhicj7SH3WRfAUDtHzM0sDTZTQA6lam46vak9J+k+7ku2EcQ2Uiry1f2tOKjhQFJ0P4PiytECCoaAkUIr+w14r6uEnM5ihuhK7KpAJOD/DRvCVrnV6NeT2o9jZhiV50nqoFTlaPODWSi/H1Mhi6OmfmNmgCJWK6eoRHJjGi94+ehSzEeY1eDxfHRuJtLMM0O+x1vpFHgXayojFrzyjWK03/WHTisYhxF8pXiFHKcGc3oS1Fec4KnfB2R0XVjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/igtteuPJQVk1Pc8zPzfxFbBYXtGx4sXxOOL5SuJD0k=;
+ b=rKyws127cz4MoN+JP9Cy4esaOIg2mWlvBupTsOV6vUyjqLfo38O3ITq/9OxxCgCj6gGpue5MofHkrwuVyA4zEWFr6rWsiR8Sa5eXnskNqMYH0k6BWGdVGkXRhG5FyC4gKe4wOijydgo423b7juZbLnHQ5JL8uSuWItaM3r2BYtQ=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OS3PR01MB5990.jpnprd01.prod.outlook.com (2603:1096:604:d3::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.20; Mon, 9 Jan
- 2023 17:31:39 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.20 via Frontend
- Transport; Mon, 9 Jan 2023 17:31:39 +0800
-From:   <gene_chen@richtek.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux@roeck-us.net>, <heikki.krogerus@linux.intel.com>
-CC:     <gregkh@linuxfoundation.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>
-Subject: [PATCH 2/2] usb: typec: tcpci_rt1718s: Add Richtek RT1718S tcpci driver
-Date:   Mon, 9 Jan 2023 17:31:14 +0800
-Message-ID: <1673256674-25165-2-git-send-email-gene_chen@richtek.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1673256674-25165-1-git-send-email-gene_chen@richtek.com>
-References: <1673256674-25165-1-git-send-email-gene_chen@richtek.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Mon, 9 Jan
+ 2023 09:37:14 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::343d:7339:78e5:a46e]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::343d:7339:78e5:a46e%3]) with mapi id 15.20.5986.018; Mon, 9 Jan 2023
+ 09:37:14 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     =?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: RE: [PATCH v3 0/4] Add RZ/V2{M, MA} PWM driver support
+Thread-Topic: [PATCH v3 0/4] Add RZ/V2{M, MA} PWM driver support
+Thread-Index: AQHZDyToB3Uyho0w1UCooeXFse0vf66V/UYQ
+Date:   Mon, 9 Jan 2023 09:37:14 +0000
+Message-ID: <OS0PR01MB592242AAB70CFF0DA3EDEC8086FE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20221213185827.2012004-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20221213185827.2012004-1-biju.das.jz@bp.renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|OS3PR01MB5990:EE_
+x-ms-office365-filtering-correlation-id: b61f5f9e-cd01-4a51-0239-08daf2251762
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: NazMuGueY7BBUHmM6RunassO0ZxjgLxv8iWYhM6XTdT0IApkjTSmMk9hiydGIAqpzDVrEVidcen8cU0CA7S4zxc/o32ubd3ifmjlkhP5DVSO98zxwLi7Ro2/xBSvIssgHi8GEN75U7immz4n6eUlGXZO+saleFtTqrTsgIpmB8SePKGazYlLLzQwycbiEaVzWYtgbKDglu6vLrb+WSvRL4XHUIieW3I/uA0kw70lFnnL/5b7vIn0gq7Ey/yFnGmBG24s2b29tnA65QXDM3kcLkDIQz4FCEHwexjvm4lHDhxC5RQtvLhKODmk/oc/OAlu5jyEw4MTwVKZDVDHTSlkg7sNpcZcEsqiHgTyzio7ZCc5eqjZyCf0nf7Gfw7Rr34fVeO6KS2wMwBHWcQjJe8mcPnou+R7e9WQQdhbx2PqjEoeF1saNQCqrmCRKMhbpnqNBqgo1FaiEF+oTtEBggLKGpL68VbteK+MzWjyTWVYBGGzr/Lm5wzS2fFQDtaINLzDCOXoI9H7w+xjuf//IlN4wrcMSHAtm5vpG1+dm9EtwZOzw3+QC3P2WcKJo4AROaWK9YUHiU/KGfKgRKK7Kvb77iwlfd7VKPwAtOvhC4fuTtXzSjBN7xkZkse3UGUiS3uFCk4L9PbnyKBjn5PlXrJMBM+ZI/Xd7aMwNUIfDgIO7UWGBpS8qxXU3qGNmMGjkINlfHbgI9ONPDvnUXOrXAxfRSTIs2aJoIB67FWP53+1Yjo=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(396003)(376002)(346002)(39860400002)(451199015)(33656002)(86362001)(2906002)(8936002)(5660300002)(7416002)(41300700001)(52536014)(83380400001)(66574015)(122000001)(110136005)(66946007)(71200400001)(7696005)(54906003)(76116006)(38070700005)(66556008)(53546011)(6506007)(107886003)(55016003)(186003)(38100700002)(966005)(8676002)(26005)(66476007)(4326008)(316002)(64756008)(66446008)(9686003)(478600001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?8NOj5Obepg09PSaXJiq+1g1+bW2dMgi0fGJ1iXSCyJBq4dm+ksgKzZb+eT?=
+ =?iso-8859-1?Q?KHRVYg/SREgvlYip5HbRrEXgwIRU+FVvCO4H6deThVrcDq6D9dtusDxdWr?=
+ =?iso-8859-1?Q?4pENLRKCSrUMkNmBcjprO04LCgqkfzAqyKyCR2eH/TGqV7N8wEiZbcTZgY?=
+ =?iso-8859-1?Q?pqYLhOimiES9wrhCgXSFu80+VZHNKRsB6seltaV7GsjeF8wirl2JlIiQTG?=
+ =?iso-8859-1?Q?j8vpv3XBgqHBUqHzpN/Hy/8OZ7HIaEpU+TJnjRrLmpWz2nFT0bPEMQtzQL?=
+ =?iso-8859-1?Q?AwzdGorUZVsFrdrrIew5WBYgr597zbYqdws+g6ZsZtAvv/EMs61+cz2upA?=
+ =?iso-8859-1?Q?wWY5IgxarbvaekU3sp10VzRD3wXqZYhIjM+xjNRTr9glmPJ13pP3U4oTZc?=
+ =?iso-8859-1?Q?L5WnGq6XWGR8V+9VwhyZpsauaT+1Varx3Pf18EKxzDWOywDlRnv1sM48a9?=
+ =?iso-8859-1?Q?EgUHAfTAGr8l+7+WptpwLBWYFO3sWjXDfqA5qrdfJdTp07bVIEYLl8iy8u?=
+ =?iso-8859-1?Q?ew1nDju6euoE/RheNQv4no1uSMIlkefA0Tbo018y5JayWivLBM/OvZAH64?=
+ =?iso-8859-1?Q?xGTzpHtGhykyLkxsG4ZN1vZKLMSTZPVSf4GUdLVVQjqI5hclYy3ZH+IVt0?=
+ =?iso-8859-1?Q?1IsS1/VOMkOsrU/lpSRREcWffXBWhxgotDJ3aNvIyhio9D00mPJQGu2NGe?=
+ =?iso-8859-1?Q?/RxMRWamaQtjb1z9SepVkEfFubsp5dmJkagWMAj3JYkLWEFtwWDKpxnqQp?=
+ =?iso-8859-1?Q?wtR2/7HeV2zKNwHrZR/FiffHWjqdYsxWwgsrt0vpT3Sxa2NpiApZH7Xhgz?=
+ =?iso-8859-1?Q?EorGq/O+mX1LMEQaAoRKb2jM32lKKOlTq8GvTVgT6n5x9DzlU4O78E7XyG?=
+ =?iso-8859-1?Q?eA94HmjVnZYtaHfqHiMneQlfKOr0xhczq50IvJNFwxQXpVouKQ2jHKTHVX?=
+ =?iso-8859-1?Q?8HYSUiq/QE4JSoJBeyKPdVzUNzV5GyNh3iNuD5OXLTEaYkWMqKaQGaJsAG?=
+ =?iso-8859-1?Q?aUhZTLa8is16Wx2HyHEzbN/Vj6WVB091PHVv7Kca+69XytbJBezMjHTPPj?=
+ =?iso-8859-1?Q?9y8w36XDk2NVKWM4zr6cy+leSijBo0xVa+IVUqhYU6qFLN0tBgQL0Vw/FU?=
+ =?iso-8859-1?Q?cZNaUwAoHGrkcnxeBro7khZ4rqbR3dGEY1mbLmQjgs1DjDdCChvGAzrKyt?=
+ =?iso-8859-1?Q?8sbCmi998NnMbfjd8CIPOYG1pd4AW/mGRuzUnbftYzEc5bN9uzpvI4y9vH?=
+ =?iso-8859-1?Q?wGMYVstWZ2QKNbDwtmKYRHRWps42trAlUDH00DzEXDY2a40AuduG9zRZui?=
+ =?iso-8859-1?Q?QDf0+aCkSVr+BX6czKYeCtvuklgI1u7A2ZHvkhTCQ9oltsridry0JYAVtK?=
+ =?iso-8859-1?Q?4O5hzRqK9GvHiSfcru9tTi6OQ9rhZ6Zp2wCeSBR0dpMQlJgHSNHaA20HbE?=
+ =?iso-8859-1?Q?IlXA6azYeZ00bvt6vAQfxtle/O0NnBSJqMBXdOjJlHPZebfCZ2XPWE27no?=
+ =?iso-8859-1?Q?8hRBHO64hlYTNW06iBnTqX2i+uEYNtFizUjyEWyRMh97ONiYbRwVxplGm2?=
+ =?iso-8859-1?Q?clQ/P9c0PCBwcX2m/h6PjqhuF07wv1h4exXsEeAuqR7WxioBvtM3/1tAvG?=
+ =?iso-8859-1?Q?+7oSyAC5BhpILNC7/K3su2RRe0RcfBimCQ2gpdRAPlMHWJgK8Cy3/yvw?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b61f5f9e-cd01-4a51-0239-08daf2251762
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jan 2023 09:37:14.5732
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Ex9GjlXefkvxiZUVcX/eWNnZvVYWN0e7l++H5YJartBWULF8q3vLPjLVJHu3vj6D4y6UeClY/Y9kVwt4Xa77aM1B/vS4Gbk+E/UuXrDplW4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5990
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gene Chen <gene_chen@richtek.com>
+Hi Thierry, Uwe, Geert and PWM folks,
 
-Richtek RT1718S is highly integrated TCPC and Power Delivery (PD)
-controller with IEC-ESD Protection on SBU/CC/DP/DM, USB2.0 Switch,
-Charging Port Controller and Power-Path Control.
+Gentle ping for review.=20
 
-Signed-off-by: Gene Chen <gene_chen@richtek.com>
----
- drivers/usb/typec/tcpm/Kconfig         |   9 +
- drivers/usb/typec/tcpm/Makefile        |   1 +
- drivers/usb/typec/tcpm/tcpci_rt1718s.c | 349 +++++++++++++++++++++++++++++++++
- 3 files changed, 359 insertions(+)
- create mode 100644 drivers/usb/typec/tcpm/tcpci_rt1718s.c
+Cheers,
+Biju
 
-diff --git a/drivers/usb/typec/tcpm/Kconfig b/drivers/usb/typec/tcpm/Kconfig
-index e6b88ca..f0efb34 100644
---- a/drivers/usb/typec/tcpm/Kconfig
-+++ b/drivers/usb/typec/tcpm/Kconfig
-@@ -27,6 +27,15 @@ config TYPEC_RT1711H
- 	  Type-C Port Controller Manager to provide USB PD and USB
- 	  Type-C functionalities.
- 
-+config TYPEC_RT1718S
-+	tristate "Richtek RT1718S Type-C chip driver"
-+	depends on I2C
-+	help
-+	  Richtek RT1718S Type-C chip driver that works with
-+	  Type-C Port Controller Manager to provide USB PD and USB
-+	  Type-C functionalities.
-+	  Additionally, it supports BC1.2 and power-path control.
-+
- config TYPEC_MT6360
- 	tristate "Mediatek MT6360 Type-C driver"
- 	depends on MFD_MT6360
-diff --git a/drivers/usb/typec/tcpm/Makefile b/drivers/usb/typec/tcpm/Makefile
-index 906d9dc..db33ffc 100644
---- a/drivers/usb/typec/tcpm/Makefile
-+++ b/drivers/usb/typec/tcpm/Makefile
-@@ -5,6 +5,7 @@ obj-$(CONFIG_TYPEC_WCOVE)		+= typec_wcove.o
- typec_wcove-y				:= wcove.o
- obj-$(CONFIG_TYPEC_TCPCI)		+= tcpci.o
- obj-$(CONFIG_TYPEC_RT1711H)		+= tcpci_rt1711h.o
-+obj-$(CONFIG_TYPEC_RT1718S)		+= tcpci_rt1718s.o
- obj-$(CONFIG_TYPEC_MT6360)		+= tcpci_mt6360.o
- obj-$(CONFIG_TYPEC_TCPCI_MT6370)	+= tcpci_mt6370.o
- obj-$(CONFIG_TYPEC_TCPCI_MAXIM)		+= tcpci_maxim.o
-diff --git a/drivers/usb/typec/tcpm/tcpci_rt1718s.c b/drivers/usb/typec/tcpm/tcpci_rt1718s.c
-new file mode 100644
-index 00000000..305b39c
---- /dev/null
-+++ b/drivers/usb/typec/tcpm/tcpci_rt1718s.c
-@@ -0,0 +1,349 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 richtek Inc.
-+ *
-+ * Author: ChiYuan Huang <cy_huang@richtek.com>
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/usb/tcpci.h>
-+#include <linux/usb/tcpm.h>
-+#include <linux/usb/pd_vdo.h>
-+
-+#define RT1718S_VID	0x29CF
-+#define RT1718S_PID	0x1718
-+
-+#define RT1718S_P1PREFIX	0x00
-+#define RT1718S_P1START		(RT1718S_P1PREFIX << 8)
-+#define RT1718S_P1END		((RT1718S_P1PREFIX << 8) + 0xFF)
-+#define RT1718S_P2PREFIX	0xF2
-+#define RT1718S_P2START		(RT1718S_P2PREFIX << 8)
-+#define RT1718S_P2END		((RT1718S_P2PREFIX << 8) + 0xFF)
-+
-+#define RT1718S_SYS_CTRL3	0xB0
-+#define RT1718S_SWRESET_MASK	BIT(0)
-+
-+struct rt1718s_chip {
-+	struct tcpci_data tdata;
-+	struct tcpci *tcpci;
-+	struct device *dev;
-+	struct regulator *vbus;
-+	bool src_en;
-+};
-+
-+static bool rt1718s_is_readwrite_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case RT1718S_P1START ... RT1718S_P1END:
-+	fallthrough;
-+	case RT1718S_P2START ... RT1718S_P2END:
-+		return true;
-+	}
-+
-+	return false;
-+}
-+
-+static const struct regmap_config rt1718s_regmap_config = {
-+	.reg_bits		= 16,
-+	.val_bits		= 8,
-+
-+	.reg_format_endian	= REGMAP_ENDIAN_BIG,
-+
-+	/* page 1(TCPC) : 0x00 ~ 0xff, page 2 : 0xf200 ~0xf2ff */
-+	.max_register		= RT1718S_P2END,
-+	.writeable_reg		= rt1718s_is_readwrite_reg,
-+	.readable_reg		= rt1718s_is_readwrite_reg,
-+};
-+
-+static int rt1718s_regmap_read(void *context, const void *reg, size_t reg_size,
-+			      void *val, size_t val_size)
-+{
-+	struct device *dev = context;
-+	struct i2c_client *i2c = to_i2c_client(dev);
-+	struct i2c_msg xfer[2];
-+	int ret;
-+
-+	xfer[0].addr = i2c->addr;
-+	xfer[0].flags = 0;
-+	xfer[0].len = reg_size;
-+	xfer[0].buf = (u8 *)reg;
-+
-+	if (*(u8 *)reg == RT1718S_P1PREFIX) {
-+		xfer[0].len = 1,
-+		xfer[0].buf = (u8 *)(reg + 1);
-+	}
-+
-+	xfer[1].addr = i2c->addr;
-+	xfer[1].flags = I2C_M_RD;
-+	xfer[1].len = val_size;
-+	xfer[1].buf = (u8 *)val;
-+
-+	ret = i2c_transfer(i2c->adapter, xfer, 2);
-+	//pr_info("wtf i2c_read [0x%04x]:0x%02x\n", *(u16 *)(reg), *(u8 *)val);
-+	if (ret < 0)
-+		return ret;
-+	else if (ret != 2)
-+		return -EIO;
-+
-+	return 0;
-+}
-+
-+static int rt1718s_regmap_write(void *context, const void *val, size_t val_size)
-+{
-+	struct device *dev = context;
-+	struct i2c_client *i2c = to_i2c_client(dev);
-+	struct i2c_msg xfer;
-+	int ret;
-+
-+	xfer.addr = i2c->addr;
-+	xfer.flags = 0;
-+	xfer.len = val_size;
-+	xfer.buf = (u8 *)val;
-+
-+	if (*(u8 *)val == RT1718S_P1PREFIX) {
-+		xfer.len = val_size - 1;
-+		xfer.buf = (u8 *)(val + 1);
-+	}
-+
-+	ret = i2c_transfer(i2c->adapter, &xfer, 1);
-+	//pr_info("wtf i2c_write [0x%04x]:0x%02x\n", *(u16 *)(val), *(u8 *)(val+2));
-+	if (ret < 0)
-+		return ret;
-+	if (ret != 1)
-+		return -EIO;
-+
-+	return 0;
-+}
-+
-+static const struct regmap_bus rt1718s_regmap_bus = {
-+	.read	= rt1718s_regmap_read,
-+	.write	= rt1718s_regmap_write,
-+};
-+
-+static const struct reg_sequence rt1718s_init_settings[] = {
-+	/* config I2C timeout reset enable , and timeout to 200ms */
-+	{ 0xBF, 0x8F, 0 },
-+	/* config CC Detect Debounce : 250us (25*val us) */
-+	{ 0xB1, 0x0A, 0 },
-+	/* DRP Toggle Cycle : 76.8ms (51.2 + 6.4*val ms) */
-+	{ 0xB2, 0x04, 0 },
-+	/* DRP Duyt Ctrl : dcSRC: 331/1024 ((val+1)/1024) */
-+	{ 0xB3, 0x4A, 0 },
-+	{ 0xB4, 0x01, 0 },
-+	/* Enable VCONN Current Limit function */
-+	{ 0x8C, 0x41, 0 },
-+	/* Enable cc open 40ms when pmic send vsysuv signal */
-+	{ 0xCA, 0xB3, 0 },
-+	/* Set GPIO2 push-pull, output-low */
-+	{ 0xEE, 0x0C, 0},
-+	/* bg en, low power en, vbus valid detect off, vbus present on, osc off */
-+	{ 0xB8, 0x1A, 0},
-+	/* Link GPIO2 source default vbus to TCPC command */
-+	{ 0xEB, 0x08, 0},
-+	/* Set GPIO2 vbus path */
-+	{ 0xEC, 0x8E, 0 },
-+	/* auto low power timer 2.5s, auto low power en, auto low power mode */
-+	{ 0xF210, 0x35, 0 },
-+	/* Set shipping mode off, AUTOIDLE on with timeout 96ms */
-+	{ 0x8F, 0x7F, 0 },
-+};
-+
-+static int rt1718s_init(struct tcpci *tcpci, struct tcpci_data *tdata)
-+{
-+	int ret;
-+
-+	ret = regmap_register_patch(tdata->regmap, rt1718s_init_settings,
-+				    ARRAY_SIZE(rt1718s_init_settings));
-+	pr_info("%s: [TCPC-] ret=%d\n", __func__, ret);
-+	return ret;
-+}
-+
-+static int rt1718s_set_vbus(struct tcpci *tcpci, struct tcpci_data *tdata,
-+			    bool src, bool snk)
-+{
-+	struct rt1718s_chip *chip = container_of(tdata, struct rt1718s_chip, tdata);
-+	int ret;
-+
-+	if (chip->src_en == src)
-+		return 0;
-+
-+	if (src)
-+		ret = regulator_enable(chip->vbus);
-+	else
-+		ret = regulator_disable(chip->vbus);
-+
-+	if (!ret)
-+		chip->src_en = src;
-+	return ret;
-+}
-+
-+static irqreturn_t rt1718s_irq(int irq, void *dev_id)
-+{
-+	struct rt1718s_chip *chip = dev_id;
-+
-+	return tcpci_irq(chip->tcpci);
-+}
-+
-+static int rt1718s_sw_reset(struct rt1718s_chip *chip)
-+{
-+	int ret;
-+
-+	ret = regmap_update_bits(chip->tdata.regmap, RT1718S_SYS_CTRL3,
-+				 RT1718S_SWRESET_MASK, RT1718S_SWRESET_MASK);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Wait for IC to reset done*/
-+	usleep_range(1000, 2000);
-+
-+	return 0;
-+}
-+
-+static int rt1718s_check_chip_exist(struct i2c_client *i2c)
-+{
-+	int ret;
-+
-+	ret = i2c_smbus_read_word_data(i2c, TCPC_VENDOR_ID);
-+	if (ret < 0)
-+		return ret;
-+	if (ret != RT1718S_VID) {
-+		dev_err(&i2c->dev, "vid is not correct, 0x%04x\n", ret);
-+		return -ENODEV;
-+	}
-+	ret = i2c_smbus_read_word_data(i2c, TCPC_PRODUCT_ID);
-+	if (ret < 0)
-+		return ret;
-+	if (ret != RT1718S_PID) {
-+		dev_err(&i2c->dev, "pid is not correct, 0x%04x\n", ret);
-+		return -ENODEV;
-+	}
-+	return 0;
-+}
-+
-+static int rt1718s_probe(struct i2c_client *i2c)
-+{
-+	struct rt1718s_chip *chip;
-+	struct gpio_desc *gpiod;
-+	int ret;
-+	u16 clr_events = 0;
-+
-+	ret = rt1718s_check_chip_exist(i2c);
-+	if (ret < 0) {
-+		dev_err(&i2c->dev, "check vid/pid fail(%d)\n", ret);
-+		return ret;
-+	}
-+
-+	chip = devm_kzalloc(&i2c->dev, sizeof(*chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->dev = &i2c->dev;
-+
-+	chip->tdata.regmap = devm_regmap_init(&i2c->dev,
-+					      &rt1718s_regmap_bus, &i2c->dev,
-+					      &rt1718s_regmap_config);
-+	if (IS_ERR(chip->tdata.regmap))
-+		return dev_err_probe(&i2c->dev, PTR_ERR(chip->tdata.regmap),
-+				     "Failed to init regmap\n");
-+
-+	chip->vbus = devm_regulator_get(&i2c->dev, "vbus");
-+	if (IS_ERR(chip->vbus))
-+		return dev_err_probe(&i2c->dev, PTR_ERR(chip->vbus),
-+				     "Failed to get vbus regulator\n");
-+
-+	ret = rt1718s_sw_reset(chip);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = regmap_raw_write(chip->tdata.regmap, TCPC_ALERT_MASK, &clr_events,
-+			       sizeof(clr_events));
-+
-+	chip->tdata.init = rt1718s_init;
-+	chip->tdata.set_vbus = rt1718s_set_vbus;
-+	chip->tcpci = tcpci_register_port(&i2c->dev, &chip->tdata);
-+	if (IS_ERR(chip->tcpci))
-+		return dev_err_probe(&i2c->dev, PTR_ERR(chip->tcpci),
-+				     "Failed to register tcpci port\n");
-+
-+	/* for platform set gpio default inpull_high */
-+	gpiod = devm_gpiod_get(&i2c->dev, NULL, GPIOD_IN);
-+	if (IS_ERR(gpiod))
-+		return dev_err_probe(&i2c->dev, PTR_ERR(gpiod),
-+				     "Failed to get gpio\n");
-+
-+	ret = devm_request_threaded_irq(&i2c->dev, i2c->irq, NULL,
-+					rt1718s_irq, IRQF_ONESHOT,
-+					dev_name(&i2c->dev), chip);
-+	if (ret) {
-+		dev_err(chip->dev, "Failed to register irq\n");
-+		tcpci_unregister_port(chip->tcpci);
-+		return ret;
-+	}
-+
-+	device_init_wakeup(&i2c->dev, true);
-+	i2c_set_clientdata(i2c, chip);
-+
-+	dev_info(&i2c->dev, "%s:successfully\n", __func__);
-+	return 0;
-+}
-+
-+static void rt1718s_remove(struct i2c_client *i2c)
-+{
-+	struct rt1718s_chip *chip = i2c_get_clientdata(i2c);
-+
-+	tcpci_unregister_port(chip->tcpci);
-+}
-+
-+static int __maybe_unused rt1718s_suspend(struct device *dev)
-+{
-+	struct i2c_client *i2c = to_i2c_client(dev);
-+
-+	if (device_may_wakeup(dev))
-+		enable_irq_wake(i2c->irq);
-+	disable_irq(i2c->irq);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused rt1718s_resume(struct device *dev)
-+{
-+	struct i2c_client *i2c = to_i2c_client(dev);
-+
-+	if (device_may_wakeup(dev))
-+		disable_irq_wake(i2c->irq);
-+	enable_irq(i2c->irq);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(rt1718s_pm_ops, rt1718s_suspend, rt1718s_resume);
-+
-+static const struct of_device_id __maybe_unused rt1718s_of_id[] = {
-+	{ .compatible = "richtek,rt1718s", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, rt1718s_of_id);
-+
-+static struct i2c_driver rt1718s_i2c_driver = {
-+	.driver = {
-+		.name = "rt1718s",
-+		.pm = &rt1718s_pm_ops,
-+		.of_match_table = rt1718s_of_id,
-+	},
-+	.probe_new = rt1718s_probe,
-+	.remove = rt1718s_remove,
-+};
-+module_i2c_driver(rt1718s_i2c_driver);
-+
-+MODULE_AUTHOR("Gene Chen <gene_chen@richtek.com>");
-+MODULE_DESCRIPTION("RT1718S USB Type-C Port Controller Interface Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.7.4
+> -----Original Message-----
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+> Sent: 13 December 2022 18:58
+> To: Thierry Reding <thierry.reding@gmail.com>; Rob Herring
+> <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Michael Turquette
+> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Philipp Zabel
+> <p.zabel@pengutronix.de>
+> Cc: Biju Das <biju.das.jz@bp.renesas.com>; Uwe Kleine-K=F6nig <u.kleine-
+> koenig@pengutronix.de>; Geert Uytterhoeven <geert+renesas@glider.be>; Mag=
+nus
+> Damm <magnus.damm@gmail.com>; linux-pwm@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-renesas-soc@vger.kernel.org; linux-
+> clk@vger.kernel.org; Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Subject: [PATCH v3 0/4] Add RZ/V2{M, MA} PWM driver support
+>=20
+> The RZ/V2{M, MA} PWM Timer (PWM) is composed of 16 channels. Linux is onl=
+y
+> allowed access to channels 8 to 14 on RZ/V2M, while there is no restricti=
+on
+> for RZ/V2MA.
+>=20
+> The RZ/V2{M, MA} PWM Timer (PWM) supports the following functions:
+>  * The PWM has 24-bit counters which operate at PWM_CLK (48 MHz).
+>  * The frequency division ratio for internal counter operation is selecta=
+ble
+>     as PWM_CLK divided by 1, 16, 256, or 2048.
+>  * The period as well as the duty cycle is adjustable.
+>  * The low-level and high-level order of the PWM signals can be inverted.
+>  * The duty cycle of the PWM signal is selectable in the range from 0 to
+> 100%.
+>  * The minimum resolution is 20.83 ns.
+>  * Three interrupt sources: Rising and falling edges of the PWM signal an=
+d
+>    clearing of the counter
+>  * Counter operation and the bus interface are asynchronous and both can
+>    operate independently of the magnitude relationship of the respective
+>    clock periods.
+>=20
+> v2->v3:
+>  * Removed clock patch#1 as it is queued for 6.3 renesas-clk
+>  * Added Rb tag from Geert for bindings and dt patches
+>  * Added return code for rzv2m_pwm_get_state()
+>  * Added comment in rzv2m_pwm_reset_assert_pm_disable()
+> v1->v2:
+>  * Updated commit description
+>  * Replaced pwm8_15_pclk->cperi_grpf
+>  * Added reset entry R9A09G011_PWM_GPF_PRESETN
+>  * Added Rb tag from Krzysztof for bindings and the keep the Rb tag as
+>    the below changes are trivial
+>  * Updated the description for APB clock
+>  * Added resets required property
+>  * Updated the example with resets property
+>  * Replaced devm_reset_control_get_optional_shared-
+> >devm_reset_control_get_shared
+>  * Added resets property in pwm nodes.
+>=20
+> Note:
+>  Hardware manual for this IP can be found here
+> https://www.renesas.com/in/en/document/mah/rzv2m-users-manual-
+> hardware?language=3Den
+>=20
+> Biju Das (4):
+>   dt-bindings: pwm: Add RZ/V2M PWM binding
+>   pwm: Add support for RZ/V2M PWM driver
+>   arm64: dts: renesas: r9a09g011: Add pwm nodes
+>   arm64: dts: renesas: rzv2m evk: Enable pwm
+>=20
+>  .../bindings/pwm/renesas,rzv2m-pwm.yaml       |  90 ++++
+>  .../boot/dts/renesas/r9a09g011-v2mevk2.dts    |  70 +++
+>  arch/arm64/boot/dts/renesas/r9a09g011.dtsi    |  98 +++++
+>  drivers/pwm/Kconfig                           |  11 +
+>  drivers/pwm/Makefile                          |   1 +
+>  drivers/pwm/pwm-rzv2m.c                       | 398 ++++++++++++++++++
+>  6 files changed, 668 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzv2m-
+> pwm.yaml
+>  create mode 100644 drivers/pwm/pwm-rzv2m.c
+>=20
+> --
+> 2.25.1
 
