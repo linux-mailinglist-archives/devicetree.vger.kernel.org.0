@@ -2,98 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B5D466259A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 13:31:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7181A662615
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 13:54:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237204AbjAIMaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 07:30:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57812 "EHLO
+        id S236989AbjAIMyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 07:54:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237279AbjAIMa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 07:30:27 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 702F11BE9C;
-        Mon,  9 Jan 2023 04:30:24 -0800 (PST)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 8C27216AB;
-        Mon,  9 Jan 2023 13:30:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1673267422;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=08E5qi8vxqr6+TC+1BFlozXvA3KflPEceb13Px12www=;
-        b=dOKdBQ8uqyyE6MBH9TUYo+iQ0CRxnYEg0ja4lXvoXxM77ndF1zyiCeiRMzeWAzt1/8LkiP
-        iClmXZfFVWzDP+xAIQ/H2g9OMYPEQKzVng1NF/F1jWIBnlfgtUiDkXAC4fLVEBQbC2bwLZ
-        SqV4qdP6XbcJ6ZBPYfAYIUuc9N7582EIW3di8KxxpvzJqlMq9NQMKZO/YA1aB+ucjdunu0
-        lA6SL1hn2Ljz3YXTTSfMrW954MjrpDAky4QjBGEH6ZuIQDeujX3mw7g9TQUlkrc6zgtpTJ
-        UITrnQSr366XXiF7uhXE9LtQzTsp1W5NjMvkAM/loHXBWJzyGNVtZwPdHTJHSA==
-From:   Michael Walle <michael@walle.cc>
-To:     "David S . Miller" <davem@davemloft.net>,
+        with ESMTP id S234298AbjAIMxf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 07:53:35 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6463615FD4
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 04:53:33 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id g19-20020a05600c4ed300b003d9eb1dbc0aso3662104wmq.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 04:53:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2oUr8w/fBVkJnE59k2x6LjFTgvfWlu1602Zu3esq0gQ=;
+        b=yw7651Zfiaa/ETLY1KrF3sA59Qt0nq2p9DYlfctPDk3lmFGFgxggxE1j9xeV4bWlz6
+         EJHzBbK5iAv2IEEosCynJKk6OzKB0omA/4odpZkIoCPLMKsu09p2zyYkXourRrSw2VL5
+         1GQsPjAHf3eyuc7yKnvLrLCl+mX7SXR7+KO1yANTVXg5DR0PloCvslrjAt/jq3umiql4
+         OeWyumIvb5oNn+k2blGF+uHuGRPrNWvdjSXXeWQlwFHNpan8JJYwMYBBmMpfGcDb2vOX
+         2L27BJCG4Obp0QFgf9f16SycA4f63/y5LQ0Yvay6aZRKLGheyCsfyBM7hX9y+IOzEB4z
+         BHng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2oUr8w/fBVkJnE59k2x6LjFTgvfWlu1602Zu3esq0gQ=;
+        b=itnl92PD8fqzfvpRRsy3SLVxuuoS9gNh9dlbClFOZ14AnE2simzxubVhEEsXsY0nUQ
+         eD0+4PVF/ed8xmAclpZXNJBvH7+wIcG7zswSNeE8z2Gf03o/mnQEvs+alnDjK2aKl96i
+         88jmsvvXb+ndNuYNCjb6tSHG6NbnI6fQKZ64VeP3jdC/2tobr7rNJc7Y27Ka0ljWrvWQ
+         0IMtCh79m1rBrlPIrRJtPx4oTr/stHGCuHZLyx12/XH7iItWp4uIiBpiCnFnp9ENzkJX
+         pl6Nx6qVhbSryPiGFSYlJrHLHB4boGgFbsUR2n67myHwGvm512a3b+BLAG2TtIqQFV7N
+         72Qg==
+X-Gm-Message-State: AFqh2kqJz77vsFJSu0KtdZgAHGuxAEylbQ0X7OJJC9XsAukug2h9yWo7
+        4zovgAW9aEIUlSNzbjetlbZbJw==
+X-Google-Smtp-Source: AMrXdXvGChqLrkdOYMIrvP3oiZBLJmzLXN7wzV4hvUgkqWIZvi4SN9pHUanVnXVyf/b8Nfwm+x5bRQ==
+X-Received: by 2002:a05:600c:8507:b0:3d9:6c7d:c9ee with SMTP id gw7-20020a05600c850700b003d96c7dc9eemr41487743wmb.25.1673268811818;
+        Mon, 09 Jan 2023 04:53:31 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm12805667wmj.14.2023.01.09.04.53.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 04:53:31 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Mon, 09 Jan 2023 13:53:25 +0100
+Subject: [PATCH v2 01/11] dt-bindings: firmware: convert meson_sm.txt to dt-schema
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20221117-b4-amlogic-bindings-convert-v2-1-36ad050bb625@linaro.org>
+References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Xu Liang <lxu@maxlinear.com>, Andrew Lunn <andrew@lunn.ch>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
         Heiner Kallweit <hkallweit1@gmail.com>,
         Russell King <linux@armlinux.org.uk>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
-Subject: [PATCH net-next v3 4/4] net: phy: mxl-gpy: disable interrupts on GPY215 by default
-Date:   Mon,  9 Jan 2023 13:30:13 +0100
-Message-Id: <20230109123013.3094144-5-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230109123013.3094144-1-michael@walle.cc>
-References: <20230109123013.3094144-1-michael@walle.cc>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
+        netdev@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.11.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The interrupts on the GPY215B and GPY215C are broken and the only viable
-fix is to disable them altogether. There is still the possibilty to
-opt-in via the device tree.
+Convert the Amlogic Secure Monitor bindings to dt-schema.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
+Take in account usage the used variant with amlogic,meson-gx-sm.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/net/phy/mxl-gpy.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../bindings/firmware/amlogic,meson-gxbb-sm.yaml   | 39 ++++++++++++++++++++++
+ .../bindings/firmware/meson/meson_sm.txt           | 15 ---------
+ 2 files changed, 39 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/net/phy/mxl-gpy.c b/drivers/net/phy/mxl-gpy.c
-index 147d7a5a9b35..e5972b4ef6e8 100644
---- a/drivers/net/phy/mxl-gpy.c
-+++ b/drivers/net/phy/mxl-gpy.c
-@@ -12,6 +12,7 @@
- #include <linux/mutex.h>
- #include <linux/phy.h>
- #include <linux/polynomial.h>
-+#include <linux/property.h>
- #include <linux/netdevice.h>
- 
- /* PHY ID */
-@@ -292,6 +293,10 @@ static int gpy_probe(struct phy_device *phydev)
- 	phydev->priv = priv;
- 	mutex_init(&priv->mbox_lock);
- 
-+	if (gpy_has_broken_mdint(phydev) &&
-+	    !device_property_present(dev, "maxlinear,use-broken-interrupts"))
-+		phydev->dev_flags |= PHY_F_NO_IRQ;
+diff --git a/Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml b/Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml
+new file mode 100644
+index 000000000000..8f50e698760e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/firmware/amlogic,meson-gxbb-sm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	fw_version = phy_read(phydev, PHY_FWV);
- 	if (fw_version < 0)
- 		return fw_version;
--- 
-2.30.2
++title: Amlogic Secure Monitor (SM)
++
++description:
++  In the Amlogic SoCs the Secure Monitor code is used to provide access to the
++  NVMEM, enable JTAG, set USB boot, etc...
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++properties:
++  compatible:
++    oneOf:
++      - const: amlogic,meson-gxbb-sm
++      - items:
++          - const: amlogic,meson-gx-sm
++          - const: amlogic,meson-gxbb-sm
++
++  power-controller:
++    type: object
++    $ref: /schemas/power/amlogic,meson-sec-pwrc.yaml#
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    firmware {
++        secure-monitor {
++            compatible = "amlogic,meson-gxbb-sm";
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/firmware/meson/meson_sm.txt b/Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+deleted file mode 100644
+index c248cd44f727..000000000000
+--- a/Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-* Amlogic Secure Monitor
+-
+-In the Amlogic SoCs the Secure Monitor code is used to provide access to the
+-NVMEM, enable JTAG, set USB boot, etc...
+-
+-Required properties for the secure monitor node:
+-- compatible: Should be "amlogic,meson-gxbb-sm"
+-
+-Example:
+-
+-	firmware {
+-		sm: secure-monitor {
+-			compatible = "amlogic,meson-gxbb-sm";
+-		};
+-	};
 
+-- 
+2.34.1
