@@ -2,51 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23697662BA3
+	by mail.lfdr.de (Postfix) with ESMTP id D553E662BA5
 	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:50:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbjAIQuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 11:50:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42386 "EHLO
+        id S229789AbjAIQup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 11:50:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237069AbjAIQuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:50:16 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EBC63C0ED
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 08:49:10 -0800 (PST)
+        with ESMTP id S237134AbjAIQuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:50:17 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B53E3C701;
+        Mon,  9 Jan 2023 08:49:13 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E7155B80DED
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 16:49:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E93AC433D2;
-        Mon,  9 Jan 2023 16:49:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 183CA611E2;
+        Mon,  9 Jan 2023 16:49:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B1B8C433F0;
+        Mon,  9 Jan 2023 16:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673282947;
-        bh=nomMKMBq5vqYlYBkVcfPgR908mTaHI9M2brVdnM5JRU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=qFFxaR/Zchf5+vt6x+1Rl3oSOSbcFlWH62nhYxmHqSsTrEAdbI9QIeHZND3nVt8RJ
-         nRzrurq6JV8Fq0qrSvvgudwzOVSq/Qflwi4Y/3tTA3+/fFtXXxWjdkwEXCjoU//muO
-         XtATpsnPXVYzABiPPput65fRKOEDn+uZFOds06zMVa3t4jSwikqZVGb8VsEGvwIaud
-         pJVj2/f3J3o6+PMQ1wIrQ2wH4PJM7UFA01vxE9MilxAKPUfeTuUsdU/we9dLb/RSJo
-         Io1YqBCYE3MvKG9//G7+XoncCFz3YY+yFZpZRgwwmxpiXER20VFcL9ayevk6hScAHE
-         cALvfCncA2cgg==
+        s=k20201202; t=1673282952;
+        bh=DXzx4CNv2chUEU2incZa90cyOE5Pn9XEg8JMTsYyue8=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=ttnkkIco2rzsDwWwQXYUHdG+C57D1AHwmz2k0DtimzBcY/47pQiMlhSB9BORq5Bgl
+         NyiqSXw+Le4yi9UhN/gVP3p0j2Fo0xskUxu+zcbBTCR3IudGZHEILw8ioI4bwsojhU
+         ywpvrymd4x4oQu8BMePUA23Fxt0PtKF42ZxsKLqMngdui/N4YXCQOe7C5ByxfJj/hH
+         c4++K3I4fV4FHrNg61UZsdmd9cYvqXIK6sc+UxstP1KQdqZxen8ha8qnykb8qmEXhx
+         raQHeaYqITGoEOcOrrTICOKCH7Lpo+3nAtntAeJwP0EHSaD5m1IE3ntjeaCa8B/cct
+         3nw/XDPltrS7Q==
 From:   Mark Brown <broonie@kernel.org>
-To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Francesco Dolcini <francesco@dolcini.it>
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Benjamin Marty <info@benjaminmarty.ch>, kchsu0@nuvoton.com,
-        wtli@nuvoton.com
-In-Reply-To: <20230104140412.35575-1-francesco@dolcini.it>
-References: <20230104140412.35575-1-francesco@dolcini.it>
-Subject: Re: [PATCH v2 0/3] ASoC: nau8822: add speaker Bridge Tied Output
-Message-Id: <167328294504.323147.3197941344180988086.b4-ty@kernel.org>
-Date:   Mon, 09 Jan 2023 16:49:05 +0000
+To:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shengjiu.wang@gmail.com,
+        Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
+        perex@perex.cz, tiwai@suse.com, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Chancel Liu <chancel.liu@nxp.com>
+In-Reply-To: <20230104023953.2973362-1-chancel.liu@nxp.com>
+References: <20230104023953.2973362-1-chancel.liu@nxp.com>
+Subject: Re: [RESEND v2 0/3] Add support for XCVR on i.MX93 platform
+Message-Id: <167328294977.323147.11170247431537947432.b4-ty@kernel.org>
+Date:   Mon, 09 Jan 2023 16:49:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -60,14 +56,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Jan 2023 15:04:09 +0100, Francesco Dolcini wrote:
-> Add support for BTL (Bridge Tied Load) configuration to NAU8822 audio codec,
-> since this requires adding a new property to the binding convert it from
-> txt to yaml first.
+On Wed, 04 Jan 2023 10:39:50 +0800, Chancel Liu wrote:
+> This patchset supports XCVR on i.MX93 platform.
 > 
-> v2:
->  - added Krzysztof reviewed-by and acked-by
->  - removed non-relevant information about SPI not being supported from binding document
+> changes in v2:
+> - remove unnecessary code which causes kernel test robot reporting error
+> 
+> Chancel Liu (3):
+>   ASoC: dt-bindings: fsl,xcvr: Add compatible string for i.MX93 platform
+>   ASoC: fsl_xcvr: Add support for i.MX93 platform
+>   ASoC: fsl_xcvr: Add constraints of period size while using eDMA
 > 
 > [...]
 
@@ -77,10 +75,12 @@ Applied to
 
 Thanks!
 
-[1/3] ASoC: dt-bindings: nau8822: convert to the dtschema
-      commit: 76fa6279eff931b43482f0bef5d65cdcf325de87
-[3/3] ASoC: nau8822: add speaker Bridge Tied Output configuration
-      commit: 968b42069fe5dab362b623c6b8a1565709a12f5b
+[1/3] ASoC: dt-bindings: fsl,xcvr: Add compatible string for i.MX93 platform
+      commit: 0a22003c637b71a1dbd8bb521c09736b52349256
+[2/3] ASoC: fsl_xcvr: Add support for i.MX93 platform
+      commit: e240b9329a300af7b7c1eba2ce0abbf19e6c540b
+[3/3] ASoC: fsl_xcvr: Add constraints of period size while using eDMA
+      commit: 1760df5b7ee6a0bfc8ad47f4db490c36c5546be8
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
