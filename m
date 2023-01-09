@@ -2,132 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC5AA662383
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 11:53:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70AB66623AB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:02:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233672AbjAIKwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 05:52:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60008 "EHLO
+        id S234902AbjAILCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 06:02:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236309AbjAIKwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 05:52:22 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DECAB856
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 02:52:21 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id jo4so19016320ejb.7
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 02:52:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/LJ5qX1H/OsHCtXTS+GhxMpXNyq3lMbowOelfPrgxUQ=;
-        b=kmapB8u4A6JvgZJJT8k0ygQTWdxJDz5H8+aPTeyaUrbd5/js+eY/vn+wa9XkOqfLhB
-         BhWrZS3Gxu1V0al/tfEzGW+lc3v2fmJ1kpyV+GtjvWgzEWNn3C+BglF4HFwaX3U9nkdz
-         rHaf+p07+E8WImv4+wldD32TKVS5tavGrAkPAiuzp4iSkAjP3ZN54fGIuUW9kq5QTZK6
-         aP+a48UExf0EJ+zvDJEYuBu7RwMiMUzcJQaM2Waa7J1Lqzff3o63L3fPkcXAFGNovKto
-         yYcxGKgYnz6QYpfrplC859RPUcFau3N9uBbFrvGAY+0QMJjSU8YL/euVGtT7IYjd3C7D
-         sJ3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/LJ5qX1H/OsHCtXTS+GhxMpXNyq3lMbowOelfPrgxUQ=;
-        b=R6caYTgwYNEFnk423h7dW3wnwR+ILMBNO/oWjZcUC3pA2HUIzc70vKsQDt6njmTcHf
-         WQ8PRtkw013tIkdsbr+2E56lq3LMBcX+r6yRJURWuRWlZz7plTlV0xWzlpmhARbLjcX2
-         l5k3B+xGKxxtiNBCBEiVFl9/jwVLiKKSqTSDbzMLtnC/AofTtCXrwKc0XHLlwaM2kH05
-         OCyKzzs5pi5DXai4NboEd8tAB5ifbqTfJq23tP5bPEfWQJxt/Q02NrlHTe6UFY+3GwiS
-         eOmyGFf9iUeWLaRM20xwLbj+v4NtBlsSosKmKPRBi/xPwLFDcJZPxx3jKC25JKLKEx9P
-         pBNw==
-X-Gm-Message-State: AFqh2koaSrrj10Xq72A26nbZW3fpGphxv4F+9Q49eBEqTYzFHVz/2jdR
-        DZo5i4eevPPHQhJwq4tDeGXLvg==
-X-Google-Smtp-Source: AMrXdXvuD1E1y0CbxxatR4UenaHvSzJIn3aL1usjTAb96Q8/IV+uiX9xzNJnJ8FmKTWu/xBonchvJQ==
-X-Received: by 2002:a17:907:8746:b0:7c1:413d:5b0 with SMTP id qo6-20020a170907874600b007c1413d05b0mr61562637ejc.47.1673261539704;
-        Mon, 09 Jan 2023 02:52:19 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id og5-20020a1709071dc500b0084d420503a3sm1757332ejc.178.2023.01.09.02.52.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 02:52:19 -0800 (PST)
-Date:   Mon, 9 Jan 2023 12:52:17 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Jun Li <jun.li@nxp.com>, abelvesa@kernel.org,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v4 2/3] clk: imx: imx8mp: add shared clk gate for usb
- suspend clk
-Message-ID: <Y7vx4TuxzLwVKy0K@linaro.org>
-References: <1664549663-20364-1-git-send-email-jun.li@nxp.com>
- <1664549663-20364-2-git-send-email-jun.li@nxp.com>
- <PA4PR04MB964042A30D09FAF4A5C40227892B9@PA4PR04MB9640.eurprd04.prod.outlook.com>
- <20221027173919.12E23C433C1@smtp.kernel.org>
+        with ESMTP id S236918AbjAILBw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:01:52 -0500
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 730F5120B1;
+        Mon,  9 Jan 2023 03:01:49 -0800 (PST)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id CA79A4052B;
+        Mon,  9 Jan 2023 16:01:36 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1673262097; bh=mScNUQd0v2jqUcRKMdJbv1EtzSDlYC1hm+AClCBVN3o=;
+        h=From:To:Cc:Subject:Date:From;
+        b=nwdhIvt/Q/kySrDtigVv18MdrD0P5DWBJJ3fY3LFyVj45dwonRHAFuIu0ZQp1Jm6c
+         GOVafK/u7PgHFj+wansP8t5ICFtSMONOzr727GBOBVGyj7dxcxuCXn+13he0QS0i2o
+         H7uvT0YXMdzxTDnMNJM4y8yv31c3Sabpa+3DcSeJqVz0CxFy7YVD26vqsh/IMh4VeN
+         +bpNrFIqMKu+LuGZ6jJxjiwpNMn8FaIqXST5RgvM3eB73aVoa61LQf4ZDnuKPLWwiN
+         +QQdBOxN4scuY5gYX73aXn6f2xwZtOuHTb1/X6JPCWKx//JTlEJ6GHZwP06sP0aBuw
+         neta/fpkMZzwQ==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH 0/4] Minor cleanup in msm8916 dts files
+Date:   Mon,  9 Jan 2023 16:01:03 +0500
+Message-Id: <20230109110107.3016323-1-nikita@trvn.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221027173919.12E23C433C1@smtp.kernel.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-27 10:39:16, Stephen Boyd wrote:
-> Quoting Jun Li (2022-10-19 02:26:00)
-> > Hi Stephen,
-> > 
-> > > -----Original Message-----
-> > > From: Jun Li <jun.li@nxp.com>
-> > > Sent: Friday, September 30, 2022 10:54 PM
-> > > To: sboyd@kernel.org; abelvesa@kernel.org
-> > > Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > > shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
-> > > festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>;
-> > > mturquette@baylibre.com; l.stach@pengutronix.de; Peng Fan
-> > > <peng.fan@nxp.com>; alexander.stein@ew.tq-group.com;
-> > > gregkh@linuxfoundation.org; devicetree@vger.kernel.org;
-> > > linux-arm-kernel@lists.infradead.org; linux-clk@vger.kernel.org
-> > > Subject: [PATCH v4 2/3] clk: imx: imx8mp: add shared clk gate for usb suspend
-> > > clk
-> > > 
-> > > 32K usb suspend clock gate is shared with usb_root_clk, this shared clock
-> > > gate was initially defined only for usb suspend clock, usb suspend clk is
-> > > kept on while system is active or system sleep with usb wakeup enabled, so
-> > > usb root clock is fine with this situation; with the commit cf7f3f4fa9e5
-> > > ("clk: imx8mp: fix usb_root_clk parent"), this clock gate is changed to be
-> > > for usb root clock, but usb root clock will be off while usb is suspended,
-> > > so usb suspend clock will be gated too, this cause some usb functionalities
-> > > will not work, so define this clock to be a shared clock gate to conform
-> > > with the real HW status.
-> > > 
-> > > Fixes: 9c140d9926761 ("clk: imx: Add support for i.MX8MP clock driver")
-> > > Cc: stable@vger.kernel.org # v5.19+
-> > > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > Signed-off-by: Li Jun <jun.li@nxp.com>
-> > 
-> > Is this version okay for you? 
-> > 
-> 
-> I thought that Abel was going to pick these up.
+This series performs some minor cleanup on msm8916/apq8016 files to
+bring them in line with the current standard and be closer to the new
+submissions.
 
-Oh, sorry, I thought the fixes will be picked up by you.
+The series is separated into commits by each specific change made across
+all files and these commits should not cause any functional difference.
 
-I'll apply it to my tree then.
+Nikita Travkin (4):
+  arm64: dts: qcom: msm/apq8x16-*: Move status property last
+  arm64: dts: qcom: msm/apq8x16-*: Reorder the pinctrl properties.
+  arm64: dts: qcom: msm/apq8x16-*: Drop empty lines in pinctrl states
+  arm64: dts: qcom: msm/apq8x16-*: Reorder some regulator properties
+
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dts      | 78 +++++++--------
+ .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 15 ++-
+ .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 46 ++++-----
+ .../arm64/boot/dts/qcom/msm8916-asus-z00l.dts | 34 +++----
+ .../arm64/boot/dts/qcom/msm8916-huawei-g7.dts | 52 ++++------
+ .../boot/dts/qcom/msm8916-longcheer-l8150.dts | 42 ++++----
+ .../boot/dts/qcom/msm8916-longcheer-l8910.dts | 30 +++---
+ arch/arm64/boot/dts/qcom/msm8916-pins.dtsi    | 96 +++++--------------
+ .../qcom/msm8916-samsung-a2015-common.dtsi    | 64 +++++--------
+ .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts | 11 +--
+ .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts |  5 +-
+ .../qcom/msm8916-samsung-e2015-common.dtsi    |  5 +-
+ .../dts/qcom/msm8916-samsung-grandmax.dts     |  3 +-
+ .../boot/dts/qcom/msm8916-samsung-j5.dts      | 21 ++--
+ .../dts/qcom/msm8916-samsung-serranove.dts    | 62 +++++-------
+ .../dts/qcom/msm8916-wingtech-wt88047.dts     | 35 +++----
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         | 32 +++----
+ 17 files changed, 245 insertions(+), 386 deletions(-)
+
+-- 
+2.38.1
+
