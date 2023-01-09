@@ -2,93 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCF6C662942
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 16:03:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABBFD662964
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 16:09:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231414AbjAIPDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 10:03:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49170 "EHLO
+        id S233970AbjAIPJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 10:09:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234288AbjAIPDY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 10:03:24 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17FF43057F;
-        Mon,  9 Jan 2023 07:03:16 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C32B2B80DFD;
-        Mon,  9 Jan 2023 15:03:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8A19C433F1;
-        Mon,  9 Jan 2023 15:03:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673276593;
-        bh=vIvYs1lDqLsZilPM81Z8ZsgYtnlNdn8Mw/+MwH9YkiQ=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=jli7YSJtw8OBlrxcYaws/3jwBshfdiB/37fnQxL2b5g+lfVNZ3AmtYVkP1iWr8pOB
-         oC9Oa5oAtJqjj8OYcd/FYFOXvdfg50kywD4dyamJqoianQbPzy2wvABA32NYKU5fz9
-         NR0bOGF5VDITzpkqwCAxNaCYFJavwKzTIeAuijsBz8os6ECWsF+TZ9Wdrv553ccGa9
-         h8O7Q2C/LFc8cMCfppDlC0WkxEJRtb1HxUdSE3cOWrUTqGH+ZPcU+r4YTFZJsiPk1Y
-         WhztcKYWjxrE+jssbFrd5iYTMtyfhIeUYJz+UAXFdybICF+no3GRP/apFFdmrp64M7
-         GuM12pQNWhvYw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20230109004656.451231-1-robh@kernel.org>
-References: <20230109004656.451231-1-robh@kernel.org>
-Subject: Re: [PATCH v2] regulator: dt-bindings: Convert Fairchild FAN53555 to
- DT schema
-Message-Id: <167327659132.217427.17369473114141624221.b4-ty@kernel.org>
-Date:   Mon, 09 Jan 2023 15:03:11 +0000
+        with ESMTP id S237054AbjAIPIq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 10:08:46 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20AC05F6C;
+        Mon,  9 Jan 2023 07:08:44 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3C0BE492;
+        Mon,  9 Jan 2023 16:08:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673276921;
+        bh=iOyxNvAb3VTxzY3eb/T4+G7PIFe/mbxptL+v1M3Hf9U=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZAOb2W1gUzOWPr5usaYlXAbCSwm7jWSwMSmwlYI16ogJw+6YGqlz+HArwCdQo7dtB
+         0w6s0SxmhNDPaRgn8+FX+cVFhH0eW3hIPBf1xo2/v1g6ItgJq7A9+8EA40ptIDJboH
+         R0VLlAxDExSIQhdQSWbI1ee5cwPMhq5PiEW5YCLQ=
+Message-ID: <10d25fee-999e-2930-f0fe-b1680d12cbd1@ideasonboard.com>
+Date:   Mon, 9 Jan 2023 17:08:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v6 7/8] media: i2c: add DS90UB913 driver
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>
+References: <20230105140307.272052-1-tomi.valkeinen@ideasonboard.com>
+ <20230105140307.272052-8-tomi.valkeinen@ideasonboard.com>
+ <Y7pBSq49dL8Fzxsc@pendragon.ideasonboard.com>
+ <Y7v1Wrma/Ev8KEzy@smile.fi.intel.com>
+ <5173a16a-83c5-5cfe-f6ce-03e1c90e8790@ideasonboard.com>
+ <Y7wc2lX8eGPITx30@smile.fi.intel.com> <Y7wdePnmFx1XDGvB@smile.fi.intel.com>
+ <10d369c1-4aaf-f59d-dbdc-48f04424a030@ideasonboard.com>
+ <Y7wgoXhWN7Ro3d/0@smile.fi.intel.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <Y7wgoXhWN7Ro3d/0@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12-dev-8b3d1
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 08 Jan 2023 18:46:56 -0600, Rob Herring wrote:
-> Convert the Fairchild FAN53555 and compatible variants binding to DT
-> schema format.
+On 09/01/2023 16:11, Andy Shevchenko wrote:
+> On Mon, Jan 09, 2023 at 04:01:43PM +0200, Tomi Valkeinen wrote:
+>> On 09/01/2023 15:58, Andy Shevchenko wrote:
+>>> On Mon, Jan 09, 2023 at 03:55:39PM +0200, Andy Shevchenko wrote:
+>>>> On Mon, Jan 09, 2023 at 02:59:01PM +0200, Tomi Valkeinen wrote:
+>>>>> On 09/01/2023 13:07, Andy Shevchenko wrote:
+>>>>>> On Sun, Jan 08, 2023 at 06:06:34AM +0200, Laurent Pinchart wrote:
+>>>>>>> On Thu, Jan 05, 2023 at 04:03:06PM +0200, Tomi Valkeinen wrote:
 > 
-> Add the undocumented 'vsel-gpios' property used to control the VSEL pin.
+> ...
 > 
-> The example was missing 'reg', so add it.
+>>>>>>>> +	gc->of_node = priv->client->dev.of_node;
+>>>>>>
+>>>>>> We don't have of_node anymore in gc. And if the parent device is set, you can
+>>>>>> drop this line (it will work with older and newer kernels. Otherwise, use
+>>>>>> fwnode.
+>>>>>
+>>>>> What do you mean "we don't have of_node anymore"?
+>>>
+>>> Just to add that you missed "gc" in the quote which is crucial to get
+>>> what I meant.
+>>
+>> Well, the original text was just above...
 > 
-> [...]
+> Yes, but my point is that that part is crucial and since you left it out makes
+> me think that you are talking about general of_node, which is of course won't
+> gone any time soon :-)
+> 
+>>>> There is no of_node member of struct gpio_chip anymore. This will fail
+>>>> to compile.
+>>
+>> It's in Linus' tree, but yes, now that I fetched linux-next I see it's gone.
+> 
+> Right. I expressed to Bart to include that change into one of the rcX, but he
+> decided to go for next. Dunno how many cases like yours we may experience in
+> this cycle.
 
-Applied to
+Alright. Well, good that you caught this already. In the worst case we 
+would have had a compilation break in the next merge window.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+  Tomi
 
-Thanks!
-
-[1/1] regulator: dt-bindings: Convert Fairchild FAN53555 to DT schema
-      commit: 6cea468b680e1254c7e8f95b70f4c3798985f05a
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
