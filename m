@@ -2,90 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D764A66274B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:39:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0B4966275C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:41:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234210AbjAINiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 08:38:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47184 "EHLO
+        id S229715AbjAINlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 08:41:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237264AbjAINiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:38:08 -0500
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 708256304
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 05:35:54 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id 188so8478851ybi.9
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 05:35:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Qnppp6O9rdKqbwFnY5I7NEyC+PLI49fpb8XjPx9K9kY=;
-        b=X5KBMlY+l3uEKb3KlAV/VkLeIZQlibfQI7xC0OEIMJWiX1pzgdPRkFkUDfldoqejWP
-         qx3CpUdKYQJE9qqkyYEgYRUJMr/qXageQlaPEuyS9VYuQgL5KWNdWEa7NpUsSY38jb35
-         kpsJLNys+M8NNRoeLVFcOhtSKnkC7yA3/qIkNNyINYnszPTRYMZmtjeu4fHqk98mBdlp
-         j2kbOVve4XGndCbLypd4+p3QK1xG0dxBrG3FmZkq/hPKjzULYboVBM6l9imslaIyZmNW
-         J5w/fiIT35b/v3j64NyNZeo4qNF2MkgGdZNyFoOF/2rfcv3v0ScaukX2Uz4/pBnxuzVQ
-         d8/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Qnppp6O9rdKqbwFnY5I7NEyC+PLI49fpb8XjPx9K9kY=;
-        b=cxYG/tYkgHzEWvTvk3AJqT06olW5i3KS1ZMaTZ9aEUD8TMnmUZ0oCcy5+5JW+armmz
-         GNWvzOyJC/aFmfuMVQuXLQ3VMh0REhJ1hi9wMV9vJQDO/+9/qQC6JEvXOv8GtrUzWWEo
-         P8qPnIhri51Pq/c1WB7CL9mvrNu5eARl+suuLVy0V/K4UZluVhXLTLjOzEKlwO/aHcjm
-         p1qtA0ENJ1BgkOMIuXSLphok7Rv8gT+NxqYdwuUdr3tD2SCtRGyBy0K3zhV9HZ4KISAq
-         TXRtPPZTJqDls0NziPP1njsIYG9yJ5rVDj84PU7gbkkN6Esp/CXvnH2Z6hxtYYFDMAYh
-         JIOQ==
-X-Gm-Message-State: AFqh2kqC2eutwLTWfGduCjTx0x7SpspqY/1C8W49VrgqIrqcpLJglEa2
-        8vW4LaWMZqNpIkpoYQAtpAWEQ9sTt+/hLYNdN7SnTw==
-X-Google-Smtp-Source: AMrXdXt+flubROOHapYHT2FaRO7FxPa9Na5CMrvvqi4lErIiX3EJ1CN07iHonh9qeMFuiACLFZuGrIn3WqgqO1jsWJs=
-X-Received: by 2002:a25:911:0:b0:7bf:fd02:6dbb with SMTP id
- 17-20020a250911000000b007bffd026dbbmr55958ybj.341.1673271342147; Mon, 09 Jan
- 2023 05:35:42 -0800 (PST)
+        with ESMTP id S237007AbjAINk3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:40:29 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36A415F18;
+        Mon,  9 Jan 2023 05:39:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=xF9hrGoU55eyFaij9No2tkH7fVWWNifwfNMjji+BpAU=; b=fz17Q0Y8dEsMfW3WZKegfEmQtF
+        H09Pq87cGB1rcaoMrW9cNC/IOCu4f30AIVhGGmObPrEyISMdF3Icy8vuMf5+t895Q1psbQg9icxpN
+        D/jnvcRnKaUcv0MYy4MT/3RRMOvEdpWqHOXAcT2Rv+8QQ59giBYUkGwV+OTK6G5xMlFQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pEsMz-001ZSi-2O; Mon, 09 Jan 2023 14:39:21 +0100
+Date:   Mon, 9 Jan 2023 14:39:21 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Michael Walle <michael@walle.cc>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Xu Liang <lxu@maxlinear.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 2/4] dt-bindings: net: phy: add MaxLinear
+ GPY2xx bindings
+Message-ID: <Y7wZCfOursl208bv@lunn.ch>
+References: <20230109123013.3094144-1-michael@walle.cc>
+ <20230109123013.3094144-3-michael@walle.cc>
 MIME-Version: 1.0
-References: <20230101220149.3035048-1-bero@baylibre.com> <20230101220149.3035048-5-bero@baylibre.com>
-In-Reply-To: <20230101220149.3035048-5-bero@baylibre.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 9 Jan 2023 14:35:30 +0100
-Message-ID: <CACRpkdY-VqM_mzgJ=n9fEtFJD64EBie1EQF+8Bk5iLE68mCnSA@mail.gmail.com>
-Subject: Re: [PATCH v7 4/7] dt-bindings: pinctrl: add bindings for Mediatek
- MT8365 SoC
-To:     =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tglx@linutronix.de, maz@kernel.org, lee@kernel.org,
-        matthias.bgg@gmail.com, chunfeng.yun@mediatek.com,
-        gregkh@linuxfoundation.org,
-        angelogioacchino.delregno@collabora.com,
-        allen-kh.cheng@mediatek.com, nfraprado@collabora.com,
-        sean.wang@mediatek.com, zhiyong.tao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230109123013.3094144-3-michael@walle.cc>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 1, 2023 at 11:01 PM Bernhard Rosenkr=C3=A4nzer <bero@baylibre.c=
-om> wrote:
+On Mon, Jan 09, 2023 at 01:30:11PM +0100, Michael Walle wrote:
+> Add the device tree bindings for the MaxLinear GPY2xx PHYs, which
+> essentially adds just one flag: maxlinear,use-broken-interrupts.
+> 
+> One might argue, that if interrupts are broken, just don't use
+> the interrupt property in the first place. But it needs to be more
+> nuanced. First, this interrupt line is also used to wake up systems by
+> WoL, which has nothing to do with the (broken) PHY interrupt handling.
+> 
+> Second and more importantly, there are devicetrees which have this
+> property set. Thus, within the driver we have to switch off interrupt
+> handling by default as a workaround. But OTOH, a systems designer who
+> knows the hardware and knows there are no shared interrupts for example,
+> can use this new property as a hint to the driver that it can enable the
+> interrupt nonetheless.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
-> Add devicetree bindings for Mediatek MT8365 pinctrl driver.
->
-> Signed-off-by: Bernhard Rosenkr=C3=A4nzer <bero@baylibre.com>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Looks good to me, do you want me to just apply this one patch to the
-pin control tree?
-
-Yours,
-Linus Walleij
+    Andrew
