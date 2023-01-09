@@ -2,367 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A55661F6D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 08:49:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 827C7661F78
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 08:52:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233305AbjAIHt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 02:49:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52282 "EHLO
+        id S233635AbjAIHwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 02:52:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230458AbjAIHtz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 02:49:55 -0500
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DCE413D2F
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 23:49:53 -0800 (PST)
-Received: from SoMainline.org (unknown [89.205.227.209])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 435653EE24;
-        Mon,  9 Jan 2023 08:49:49 +0100 (CET)
-Date:   Mon, 9 Jan 2023 08:49:47 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233238AbjAIHwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 02:52:31 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCFB812AF0
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 23:52:30 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id i65so2029231pfc.0
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 23:52:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=fSheVHpwUHqHvfcwIBrGe/E4NRfk5f1WzeBHYxCmxhY=;
+        b=TPgEmgr2Be/jo4r7sz/PZ6EV4wJ8mjH6f5y2b8eLq/UGQts8MN6tzj6FlU+KMgYY3S
+         d9hbJ9ZcXop3K/OPfeC+uBWORWHlShLgV1T3BmzEP8r2+JolER7IP5AQJHEPDGWHPJIH
+         ZZfBb25Tx+5KzMnLfx6m348oTVbHbebLfkiQk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fSheVHpwUHqHvfcwIBrGe/E4NRfk5f1WzeBHYxCmxhY=;
+        b=Ve0KYHV5dOpCiIPYoQ4tA446epc/tJlN0q2B8fV3sAPQAW9BIj4m9auFFRi/ouapuK
+         vK+Tq1K3/xtnN7YcI3ns4i7sld1zvT1A4yBLpgFjFAAML2HiZWk+XdhG5iM1i/AaBULh
+         lUfu1Se4fj+50JGjk6bPTyL9W920ppE0717Bs6v9d5QgeYQeGBHoxwF6a8IHr8pJC9dC
+         R0DEqz399s2qSAMemNitRI9LqxTDsmUFe7nHnEfrq4Ktasczghx80wOY04fO0bwypjQ2
+         t4TzphxD9JkJh4zf7Lx7NtO0hdj1QBAgLsUO64x0lsqPpwxWFZtDaNwhCRUFZ5NmySXv
+         P4kA==
+X-Gm-Message-State: AFqh2kpfkn+UdvQJFWO4SdE6qtA3rw3+j28ZUT4s3qcwYsM3HdWkF9+J
+        FWFMgIWNAj6aAICRKSA5j2zprQ==
+X-Google-Smtp-Source: AMrXdXs+8TvU0Tlzl6ScXUaVvcYgTmGtqao53cartaneTaDbKKvRRhPtX+LYtaVd5eJui/9+FHQN5Q==
+X-Received: by 2002:a05:6a00:35c5:b0:586:e399:9cd4 with SMTP id dc5-20020a056a0035c500b00586e3999cd4mr6687846pfb.25.1673250750308;
+        Sun, 08 Jan 2023 23:52:30 -0800 (PST)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id b193-20020a621bca000000b005810c4286d6sm5437106pfb.0.2023.01.08.23.52.28
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 08 Jan 2023 23:52:29 -0800 (PST)
+Subject: Re: [PATCH 01/16] dt-bindings: spi: Convert bcm63xx-hsspi bindings to
+ json-schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        kursad.oney@broadcom.com, dregan@mail.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: display/msm: convert MDP5 schema to
- YAML format
-Message-ID: <20230109074947.5vnfrn6shzpm6iqi@SoMainline.org>
-References: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
- <20230109050152.316606-2-dmitry.baryshkov@linaro.org>
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-2-william.zhang@broadcom.com>
+ <0581eeed-f7d1-caf2-0dba-be14a01d7c05@linaro.org>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <7828c353-e3f3-31d2-638d-3b11dc085a34@broadcom.com>
+Date:   Sun, 8 Jan 2023 23:52:27 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230109050152.316606-2-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <0581eeed-f7d1-caf2-0dba-be14a01d7c05@linaro.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000009d2ad805f1d00c5b"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-01-09 07:01:49, Dmitry Baryshkov wrote:
-> Convert the mdp5.txt into the yaml format. Changes to the existing (txt) schema:
->  - MSM8996 has additional "iommu" clock, define it separately
->  - Add new properties used on some of platforms:
->    - interconnects, interconnect-names
->    - iommus
->    - power-domains
->    - operating-points-v2, opp-table
+--0000000000009d2ad805f1d00c5b
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+
+
+
+On 01/07/2023 07:32 AM, Krzysztof Kozlowski wrote:
+> On 06/01/2023 21:07, William Zhang wrote:
+>> This is the preparation for updates on the bcm63xx hsspi driver. Convert
+>> the text based bindings to json-schema per new dts requirement.
+>>
+>> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+>> ---
+>>
+>>   .../bindings/spi/brcm,bcm63xx-hsspi.yaml      | 52 +++++++++++++++++++
+>>   .../bindings/spi/spi-bcm63xx-hsspi.txt        | 33 ------------
+>>   2 files changed, 52 insertions(+), 33 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>>   delete mode 100644 Documentation/devicetree/bindings/spi/spi-bcm63xx-hsspi.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>> new file mode 100644
+>> index 000000000000..45f1417b1213
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>> @@ -0,0 +1,52 @@
+>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/spi/brcm,bcm63xx-hsspi.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Broadcom BCM6328 High Speed SPI controller
+>> +
+>> +maintainers:
+>> +  - Jonas Gorski <jonas.gorski@gmail.com>
+>> +
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/display/msm/mdp5.txt  | 132 -----------------
->  .../bindings/display/msm/qcom,mdp5.yaml       | 138 ++++++++++++++++++
->  2 files changed, 138 insertions(+), 132 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/msm/mdp5.txt
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
+> Missing reference to spi-controller.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/mdp5.txt b/Documentation/devicetree/bindings/display/msm/mdp5.txt
-> deleted file mode 100644
-> index 65d03c58dee6..000000000000
-> --- a/Documentation/devicetree/bindings/display/msm/mdp5.txt
-> +++ /dev/null
-> @@ -1,132 +0,0 @@
-> -Qualcomm adreno/snapdragon MDP5 display controller
-> -
-> -Description:
-> -
-> -This is the bindings documentation for the MDP5 display
-> -controller found in SoCs like MSM8974, APQ8084, MSM8916, MSM8994 and MSM8996.
-> -
-> -MDP5:
-> -Required properties:
-> -- compatible:
-> -  * "qcom,mdp5" - MDP5
-> -- reg: Physical base address and length of the controller's registers.
-> -- reg-names: The names of register regions. The following regions are required:
-> -  * "mdp_phys"
-> -- interrupts: Interrupt line from MDP5 to MDSS interrupt controller.
-> -- clocks: device clocks. See ../clocks/clock-bindings.txt for details.
-> -- clock-names: the following clocks are required.
-> --   * "bus"
-> --   * "iface"
-> --   * "core"
-> --   * "vsync"
-> -- ports: contains the list of output ports from MDP. These connect to interfaces
-> -  that are external to the MDP hardware, such as HDMI, DSI, EDP etc (LVDS is a
-> -  special case since it is a part of the MDP block itself).
-> -
-> -  Each output port contains an endpoint that describes how it is connected to an
-> -  external interface. These are described by the standard properties documented
-> -  here:
-> -	Documentation/devicetree/bindings/graph.txt
-> -	Documentation/devicetree/bindings/media/video-interfaces.txt
-> -
-> -  The availability of output ports can vary across SoC revisions:
-> -
-> -  For MSM8974 and APQ8084:
-> -	 Port 0 -> MDP_INTF0 (eDP)
-> -	 Port 1 -> MDP_INTF1 (DSI1)
-> -	 Port 2 -> MDP_INTF2 (DSI2)
-> -	 Port 3 -> MDP_INTF3 (HDMI)
-> -
-> -  For MSM8916:
-> -	 Port 0 -> MDP_INTF1 (DSI1)
-> -
-> -  For MSM8994 and MSM8996:
-> -	 Port 0 -> MDP_INTF1 (DSI1)
-> -	 Port 1 -> MDP_INTF2 (DSI2)
-> -	 Port 2 -> MDP_INTF3 (HDMI)
-> -
-> -Optional properties:
-> -- clock-names: the following clocks are optional:
-> -  * "lut"
-> -  * "tbu"
-> -  * "tbu_rt"
-> -
-> -Example:
-> -
-> -/ {
-> -	...
-> -
-> -	mdss: mdss@1a00000 {
-> -		compatible = "qcom,mdss";
-> -		reg = <0x1a00000 0x1000>,
-> -		      <0x1ac8000 0x3000>;
-> -		reg-names = "mdss_phys", "vbif_phys";
-> -
-> -		power-domains = <&gcc MDSS_GDSC>;
-> -
-> -		clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> -			 <&gcc GCC_MDSS_AXI_CLK>,
-> -			 <&gcc GCC_MDSS_VSYNC_CLK>;
-> -		clock-names = "iface",
-> -			      "bus",
-> -			      "vsync"
-> -
-> -		interrupts = <0 72 0>;
-> -
-> -		interrupt-controller;
-> -		#interrupt-cells = <1>;
-> -
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -		ranges;
-> -
-> -		mdp: mdp@1a01000 {
-> -			compatible = "qcom,mdp5";
-> -			reg = <0x1a01000 0x90000>;
-> -			reg-names = "mdp_phys";
-> -
-> -			interrupt-parent = <&mdss>;
-> -			interrupts = <0 0>;
-> -
-> -			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> -				 <&gcc GCC_MDSS_AXI_CLK>,
-> -				 <&gcc GCC_MDSS_MDP_CLK>,
-> -				 <&gcc GCC_MDSS_VSYNC_CLK>;
-> -			clock-names = "iface",
-> -				      "bus",
-> -				      "core",
-> -				      "vsync";
-> -
-> -			ports {
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
-> -
-> -				port@0 {
-> -					reg = <0>;
-> -					mdp5_intf1_out: endpoint {
-> -						remote-endpoint = <&dsi0_in>;
-> -					};
-> -				};
-> -			};
-> -		};
-> -
-> -		dsi0: dsi@1a98000 {
-> -			...
-> -			ports {
-> -				...
-> -				port@0 {
-> -					reg = <0>;
-> -					dsi0_in: endpoint {
-> -						remote-endpoint = <&mdp5_intf1_out>;
-> -					};
-> -				};
-> -				...
-> -			};
-> -			...
-> -		};
-> -
-> -		dsi_phy0: dsi-phy@1a98300 {
-> -			...
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
-> new file mode 100644
-> index 000000000000..cbcbe8b47e9b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
-> @@ -0,0 +1,138 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/qcom,mdp5.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Adreno/Snapdragon Mobile Display controller (MDP5)
-> +
-> +description: >
-> +  MDP5 display controller found in SoCs like MSM8974, APQ8084, MSM8916, MSM8994
-> +  and MSM8996.
-> +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> +  - Rob Clark <robdclark@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,mdp5
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-names:
-> +    items:
-> +      - const: mdp_phys
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 4
-> +    maxItems: 7
-> +
-> +  clock-names:
-> +    oneOf:
-> +      - minItems: 4
-> +        items:
-> +          - const: iface
-> +          - const: bus
-> +          - const: core
-> +          - const: vsync
-> +          - const: lut
-> +          - const: tbu
-> +          - const: tbu_rt
-> +        #MSM8996 has additional iommu clock
-> +      - items:
-> +          - const: iface
-> +          - const: bus
-> +          - const: core
-> +          - const: iommu
-> +          - const: vsync
-> +
-> +  interconnects:
-> +    minItems: 1
-> +    items:
-> +      - description: Interconnect path from mdp0 (or a single mdp) port to the data bus
-> +      - description: Interconnect path from mdp1 port to the data bus
-> +      - description: Interconnect path from rotator port to the data bus
-> +
-> +  interconnect-names:
-> +    minItems: 1
-> +    items:
-> +      - const: mdp0-mem
-> +      - const: mdp1-mem
-> +      - const: rotator-mem
-> +
-> +  iommus:
-> +    items:
-> +      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port0
+This was word to word conversion from the text file. But I will update 
+with this required reference.
 
-As Krzysztof has said many times, these documents describe the hardware,
-not the DT format.  Drop the "phandle" part.
-
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  operating-points-v2: true
-> +  opp-table:
-> +    type: object
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    description: |
-
-Should multiline descriptions be treated as a oneline string with `>`?
-
-> +      Contains the list of output ports from DPU device. These ports
-> +      connect to interfaces that are external to the DPU hardware,
-> +      such as DSI, DP etc. MDP5 devices support up to 4 ports::
-
-How do these double colons render?  Is this intentional?
-
-- Marijn
-
-> +      one or two DSI ports, HDMI and eDP.
-> +
-> +    patternProperties:
-> +      "^port@[0-3]+$":
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +    # at least one port is required
-> +    required:
-> +      - port@0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-msm8916.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    display-controller@1a01000 {
-> +        compatible = "qcom,mdp5";
-> +        reg = <0x1a01000 0x90000>;
-> +        reg-names = "mdp_phys";
-> +
-> +        interrupt-parent = <&mdss>;
-> +        interrupts = <0>;
-> +
-> +        clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> +                 <&gcc GCC_MDSS_AXI_CLK>,
-> +                 <&gcc GCC_MDSS_MDP_CLK>,
-> +                 <&gcc GCC_MDSS_VSYNC_CLK>;
-> +        clock-names = "iface",
-> +                      "bus",
-> +                      "core",
-> +                      "vsync";
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                endpoint {
-> +                    remote-endpoint = <&dsi0_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.39.0
+>> +properties:
+>> +  compatible:
+>> +    const: brcm,bcm6328-hsspi
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: spi master reference clock
+>> +      - description: spi master pll clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: hsspi
+>> +      - const: pll
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - interrupts
+>> +
+>> +unevaluatedProperties: false
 > 
+> This is for cases when you have reference to other schema.
+> 
+Will drop here. But will add back in patch 1 which produces the final 
+version of this file and need this property.
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+--0000000000009d2ad805f1d00c5b
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIKYphwkPcE0r5NdBQNj1GxOn8RAn
+jdkyEp0JMHZEeKr3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MDEwOTA3NTIzMFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQDDTNLpcFGXLUU4N94d562LOM38QzMmcCl81eD71UhOjjeB
+5EFo3Hg2I+XpIKtOMDgiDvq+pHSZFQFX3FQlrgjsGUeju+vVv98L6hZzF5XORZIR1EmSilK6k1/L
+SHLe9qNndsAK2Lth9B3dEg88PuCwkcI9wfWCwLUCvKe1wLjb33MNw7SJpFZSNwJ4yrrfNX+ZtP6c
+ABI6rJCdBZcMf4skxz/560HC5u/0mMSzda+JoyScftaTH5lDK8nR3nlw+nISk289EbEDTZmHl3qf
+msS6qWrfQ1YrPa20BHcXQVZgnbHNYnLQZ3COooH7xgl0JvoDQ3shXzoYWOWWR4CqFJ3F
+--0000000000009d2ad805f1d00c5b--
