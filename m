@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB379661B62
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 01:29:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E21EF661B65
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 01:29:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233365AbjAIA3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 19:29:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57480 "EHLO
+        id S234878AbjAIA3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 19:29:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233544AbjAIA3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 19:29:41 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7410C745
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 16:29:39 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id b3so10637866lfv.2
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 16:29:39 -0800 (PST)
+        with ESMTP id S229693AbjAIA3m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 19:29:42 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88429DF31
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 16:29:40 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id o7so7004631ljj.8
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 16:29:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PkMG+K9H+pGjfaEipJupWJDRprpXoKUTvkDrtSa1M8g=;
-        b=wqduT1R5LrCWxZz2kAjG67pviB7V6Dm1m6enAewPqhUpa/IfItDXMMKIr8wPXYoGPW
-         wmkzitgbO7/549EE73NlHdPG/Oew6KGx1RbbjfkujDyjBPnihhcTGy/do6g5pvOCeSYu
-         z4F9jkgsmH+lcwQGBZ02FidrkyrbOmZAy66LDUlMI5ThV2yhQ4DALuRa1fh8TsJmR1Mk
-         8ENA03LRF8tgV8mdo1mKjiEmygDMcBRqmK35fla2drTR1Rv2zeH2Y5/M8Z9NVAxuH8aK
-         G7sV/ujiMcnVOs4/2cSHY2dowkoU5mXtUtAc9fYibVdU+RSBivTD4Elgm3UbdZszO9Jd
-         8yVA==
+        bh=ZxC3nS7QizZnlIOV4bLBN1CHzdnFWYIRIQhLbjYXt6I=;
+        b=gRRo9zGaqITJDuJjllWblPN+TsJAgVKjwYcqixSfrWxH/fFrt4Am1hchcE02hkIOZX
+         tZ8NP5vJ7COPscB2sF71j7Wn3Nic1mVrTe2n3aBdBpg4I4ORthfSkxPMX+LF0ie0DzEk
+         pbpSqymxJz74NBa7ZdYxPzy2KxZoXh0i4mShCQouyKA8QIHI2Qa/g3+XWDIMQ1t7vNQD
+         HbRHaxH3l2VHXxsJJtjbbI2sUQN/5gBavGktE+FylkSA13yNx8rpWfvisVP4YHzcTXQd
+         BAbI+j1q5vhI7mVchhAA2jWl/cwxF8CnltZX+LEqh+//kSq1LKk2dxvdWUKen4VIcFhU
+         cA4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PkMG+K9H+pGjfaEipJupWJDRprpXoKUTvkDrtSa1M8g=;
-        b=7iZPda4dKd/MEr7ORtb3jxtOn0q8ISsTD+U55Cq5SsefdDH8NzieijlhPKgxWYvEfR
-         Fsud5GZ5tC8s6Zkmm1Hq1BFZp7v8NZx02/xm2rDfrT389lqipP2nJixnZpleigNPTjQY
-         sF1d8VVBo+d7H2B4UPasx4FVTqf91LDznXei0bJi9148ZdZaGxEB5QVZnMd9rGnyrBFl
-         en16Mq/SslNC2HfaUsBI5jt90GwljZPkJsBUHLwtypIV1T1p4XV4sKpzbDjjwtbdD+bc
-         QqktQ+WrS5XacAtO6oqnGvOtWZbSTeEL5+e3/40XIvNkiunTNU6FFHDmyYDWv34DZWGZ
-         gXmA==
-X-Gm-Message-State: AFqh2krARg83oGtqj12TC5C4ZzKTToiL7peINiOHHX0TpM61MolUw/Ul
-        dJJVWXhlLCahUed3XaHRKh+IEg==
-X-Google-Smtp-Source: AMrXdXvzXzAp+pfOkAYXNni8+9k5QlRcujYQxSmxgYhrouPTLdtV5w0IhXVIJrtxD8EGgs8bgRoxkQ==
-X-Received: by 2002:a05:6512:261a:b0:4ca:f432:3e45 with SMTP id bt26-20020a056512261a00b004caf4323e45mr18035490lfb.33.1673224177976;
-        Sun, 08 Jan 2023 16:29:37 -0800 (PST)
+        bh=ZxC3nS7QizZnlIOV4bLBN1CHzdnFWYIRIQhLbjYXt6I=;
+        b=NOvrelB2jda8+UL0mda9h0MMyCVOYusBRkNnEGo0OxXxC4XQKAdCRXFdtkExUA7f27
+         tZw15DVFwwiLcA5UC94b2ESyGkZRaljRCIGiw6qcAvQIonJb0Ig2UNeOFzDQZNh0aiRd
+         H6KWYfqHNh0bHET+Uwadn2JWpkiCVE/GAEsmWwAVZGT822Ro0TgAIyUbHOc7zegblwD2
+         gWgkAegrcWYdwPd6P1YzBvyjDRhX5SXqseLhQ90DYhytzieA138+lGO/qQlKHZElIAIZ
+         U2CCWJY5HFntcvEDPjxHYKl27o+t6itmorlT/SriSUdZMlGVQNDL43wH2Ys25Eouv7xe
+         BWaw==
+X-Gm-Message-State: AFqh2kqqbPpJcCl+Pj7IIcqQF91OSn9lZ6+uCrxYCr1jnkmVtw4+vy6Q
+        M4gOFphPVvpl+TEa+OxX8fggrg==
+X-Google-Smtp-Source: AMrXdXsnkfKZuht0AuuR+x5cPBI8cVqRzT+dU1UCs8maGGWXP/JqnrsSpsSlEhPDDBAHJ1r4S66wAA==
+X-Received: by 2002:a05:651c:2103:b0:27a:1535:6277 with SMTP id a3-20020a05651c210300b0027a15356277mr20676314ljq.50.1673224178752;
+        Sun, 08 Jan 2023 16:29:38 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id a22-20020a2e9816000000b0027fc54f8bf0sm706626ljj.35.2023.01.08.16.29.37
+        by smtp.gmail.com with ESMTPSA id a22-20020a2e9816000000b0027fc54f8bf0sm706626ljj.35.2023.01.08.16.29.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 16:29:37 -0800 (PST)
+        Sun, 08 Jan 2023 16:29:38 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,10 +61,10 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Georgi Djakov <djakov@kernel.org>, Alex Elder <elder@linaro.org>,
         Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
         linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 02/12] interconnect: qcom: sc7180: drop IP0 remnants
-Date:   Mon,  9 Jan 2023 02:29:25 +0200
-Message-Id: <20230109002935.244320-3-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org, kernel test robot <lkp@intel.com>
+Subject: [PATCH v3 03/12] interconnect: move ignore_list out of of_count_icc_providers()
+Date:   Mon,  9 Jan 2023 02:29:26 +0200
+Message-Id: <20230109002935.244320-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230109002935.244320-1-dmitry.baryshkov@linaro.org>
 References: <20230109002935.244320-1-dmitry.baryshkov@linaro.org>
@@ -80,38 +80,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop two defines leftover from the commit 2f3724930eb4 ("interconnect:
-qcom: sc7180: Drop IP0 interconnects"), which dropped handling of the
-IP0 resource in favour of handling it in the clk-rpmh driver.
+Move the const ignore_list definition out of the
+of_count_icc_providers() function. This prevents the following stack
+frame size warnings if the list is expanded:
 
-Fixes: 2f3724930eb4 ("interconnect: qcom: sc7180: Drop IP0 interconnects")
+drivers/interconnect/core.c:1082:12: warning: stack frame size (1216) exceeds limit (1024) in 'of_count_icc_providers' [-Wframe-larger-than]
+
+Reported-by: kernel test robot <lkp@intel.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/interconnect/qcom/sc7180.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/interconnect/core.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/interconnect/qcom/sc7180.h b/drivers/interconnect/qcom/sc7180.h
-index c6212a10c2f6..7a2b3eb00923 100644
---- a/drivers/interconnect/qcom/sc7180.h
-+++ b/drivers/interconnect/qcom/sc7180.h
-@@ -11,7 +11,7 @@
- #define SC7180_MASTER_APPSS_PROC			0
- #define SC7180_MASTER_SYS_TCU				1
- #define SC7180_MASTER_NPU_SYS				2
--#define SC7180_MASTER_IPA_CORE				3
-+/* 3 was used by MASTER_IPA_CORE, now represented as RPMh clock */
- #define SC7180_MASTER_LLCC				4
- #define SC7180_MASTER_A1NOC_CFG				5
- #define SC7180_MASTER_A2NOC_CFG				6
-@@ -58,7 +58,7 @@
- #define SC7180_MASTER_USB3				47
- #define SC7180_MASTER_EMMC				48
- #define SC7180_SLAVE_EBI1				49
--#define SC7180_SLAVE_IPA_CORE				50
-+/* 50 was used by SLAVE_IPA_CORE, now represented as RPMh clock */
- #define SC7180_SLAVE_A1NOC_CFG				51
- #define SC7180_SLAVE_A2NOC_CFG				52
- #define SC7180_SLAVE_AHB2PHY_SOUTH			53
+diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
+index 25debded65a8..df77d2f6215d 100644
+--- a/drivers/interconnect/core.c
++++ b/drivers/interconnect/core.c
+@@ -1079,15 +1079,16 @@ void icc_provider_del(struct icc_provider *provider)
+ }
+ EXPORT_SYMBOL_GPL(icc_provider_del);
+ 
++static const struct of_device_id __maybe_unused ignore_list[] = {
++	{ .compatible = "qcom,sc7180-ipa-virt" },
++	{ .compatible = "qcom,sdx55-ipa-virt" },
++	{}
++};
++
+ static int of_count_icc_providers(struct device_node *np)
+ {
+ 	struct device_node *child;
+ 	int count = 0;
+-	const struct of_device_id __maybe_unused ignore_list[] = {
+-		{ .compatible = "qcom,sc7180-ipa-virt" },
+-		{ .compatible = "qcom,sdx55-ipa-virt" },
+-		{}
+-	};
+ 
+ 	for_each_available_child_of_node(np, child) {
+ 		if (of_property_read_bool(child, "#interconnect-cells") &&
 -- 
 2.39.0
 
