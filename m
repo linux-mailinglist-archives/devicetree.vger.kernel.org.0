@@ -2,180 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32A60662C18
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 18:04:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 761D1662C16
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 18:04:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237181AbjAIRDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 12:03:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55114 "EHLO
+        id S229537AbjAIRDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 12:03:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237209AbjAIRCd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 12:02:33 -0500
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2069.outbound.protection.outlook.com [40.107.220.69])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0490E40C27;
-        Mon,  9 Jan 2023 09:02:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PFE4o9rZ2uHCLfz2bBfonoTt5bvqobqYYWbbPPUhANkcY0pguL82rVhD2bqXK6OaGiW/YOtbwRjeG2pqQhbTso3UN87O4Rw+FaBChw4KnPAPrGkmEthI1/YWj0wzMHaZ4QF9WSSbH6HwNclQrvt3JcQ1qUP5x9C3TsapVFtdis6OmZKozVcUicN2C6USA06ZxsbyTFnWkIBgv/fIwBHefILXV7SHF4QTRke/6EXeBsKDFS1Gwne7kJ21NZFsS1g0D+2ikcS+xNyECtPbxZFwycM+nvSpnELilUOZGyaQuPV6nLpa23yMBaR+Rss8Uygx73fjPxcp38Cc95wP9SCqsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SlW8r/IUYmAbC2piSBlBxlvN7SX3+Tqcjlw0PULjrJY=;
- b=kJHIf6tf++EGoVojw52C+LzfqWnKTP1pvR4jYVtMUEs6II0LLSjTa/iG+wnjY5JeuzXbEJrNNRHnpaCPayE5k0+U05/kvviWgrK2uUwBLV02POsNWFMDEwVJ+m7pzc5DfTCbY7XMcjBiXbe1Kzq34IXTFx+lwX0kv41i/CVGVIg2iwUIqZmDvv5DQRhS69SJBl8Rrqg8QCnsIY/VgTt6gCLlQBIbLyOgw54Qv2fgW7sRem9orJYp3jLZzYA3aeALdppQ/6/LF5C13VgQWnjS1zBi7gvJMR2AvqgaAPY9FJ4IxRU5HMW/tnjs9xiG35B73k1JkEntNOsczhOXkvdE3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SlW8r/IUYmAbC2piSBlBxlvN7SX3+Tqcjlw0PULjrJY=;
- b=TMYEoW9r9lpx52GFcmpr8dRkTlWac6ch1+tp8Y2ePu1BGRcjXC7Tz/TJg4zy0pLXQonN/KpwThCOz5szZ2Rw6j+m+2QK2Oj7JTNvemOiU58luYPxW6/+ZEzvvdhgxh8jx+MziBa9jrh6rHMjTB2WZay5Uem6CVfE8q8Pl3C137cvwNRmCYMb3dQHnzpyAmELnSnBsfege69DPug1uR5p5ZXmsdjx3yFsdzt2H5MMETIgpXMtP4mYmTdSA5vBhzH1X7OS3/fRyCoF1mse5i7ccR3aQVQCSMwb/V/vGDmyQPqdCSdWjWMSE6cOo9qhAfo/OvUWV2XisZpst49hersPEw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- DM4PR12MB5747.namprd12.prod.outlook.com (2603:10b6:8:5e::16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5986.18; Mon, 9 Jan 2023 17:02:21 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f%7]) with mapi id 15.20.5986.018; Mon, 9 Jan 2023
- 17:02:21 +0000
-Message-ID: <73bfb6ca-663e-b73c-b9a1-4727ae7217d1@nvidia.com>
-Date:   Mon, 9 Jan 2023 17:00:01 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V5 1/6] dt-bindings: usb: Add NVIDIA Tegra234 XUSB host
- controller binding
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-phy@lists.infradead.org,
-        waynec@nvidia.com, Thierry Reding <treding@nvidia.com>
-References: <20230106152858.49574-1-jonathanh@nvidia.com>
- <20230106152858.49574-2-jonathanh@nvidia.com>
- <b1485d8a-71ea-7b75-74ab-77eef595ae10@linaro.org>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <b1485d8a-71ea-7b75-74ab-77eef595ae10@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO6P123CA0007.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:338::9) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+        with ESMTP id S237464AbjAIRCz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 12:02:55 -0500
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1290140C12
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 09:02:41 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id g16so10154026plq.12
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 09:02:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nr//lLmsu+5fOQNN1eNl3Pyv0bUQYnhf+WLJs/mJAHU=;
+        b=kzBScnJ/PyPuu5Eq8Etlv8BjFlbNi0zTYLdPEipVJArsA9Pmdb2rekLFtesElFTdCq
+         nPAX11Ya8Ep4jBWvZEHnzwVpPY8CtPyLjW+xBiIUE2sQkln68RFlGs9ca0KFgoobJL3y
+         1F2BhONV/VqSaMUbhjnZoXiwCai//lzxVRE3jc3AllHfAzvwFeU/o9SCfkVYqcDpGiA0
+         4fjhgmrmKyrY7DfDjdiLcQXlwbD9EX3pjxxRO+Q/mMt2Fq0Hbm5gDnM5DrZoOiFvHW6K
+         fE/cnL/SCiyR5XcMserOkQPh4tv8Z3qilQk9OS2sa1bR5EJmK+7QgikBt9UXZ9j9VBDV
+         P++g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Nr//lLmsu+5fOQNN1eNl3Pyv0bUQYnhf+WLJs/mJAHU=;
+        b=pIjX8BjhtqaKajOvVK4S0PzLE8NJL0nuqkXlO0SQmbbeI7uLkDUiA6S0T8RJbq05ZH
+         Zi6D4jHv2pWkbfWP7MD9jmSYedgfg4i6QQ//XC34ksh1nuqiP+Mlq6iQO54Os7aOd6m/
+         a1FAVB3yp2FEnWbbfPmjFPT0YhQYmBEYCmv6iAv2QHa+uLene9YyeHlts+M33wk9L2kU
+         R3I5I7+3bhXHsLVQBL3a9aTomAogq7FnqhqEQmv5HwtOsztJK2/DnXk5iMxAL+jrNYic
+         H70h9KHOXgnvRDVBX1ewonkfZe3NwqwHhAoeHm/MES12VRwai5ezbWwKiaL2yEfuyrE8
+         1/Wg==
+X-Gm-Message-State: AFqh2kpiKJmLUyoLehmBDV6ML5pkK7/nwhsu+l440Zekc/GfkKNq7oKa
+        FYSwvcc9lr+asweKREK9L71811iV0R9AX/pPWUTq0Q==
+X-Google-Smtp-Source: AMrXdXtTfBIW85jiU1ZUsAeZoqqJKpTV6XQoUlKGw98Ak/vLMOXDXUyNzStoXh3SbqciAfp3lpfsaVp9OD7S8DpXJ1E=
+X-Received: by 2002:a17:902:ab45:b0:193:8c1:50d2 with SMTP id
+ ij5-20020a170902ab4500b0019308c150d2mr1487012plb.41.1673283760417; Mon, 09
+ Jan 2023 09:02:40 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|DM4PR12MB5747:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4252db13-11ea-49e1-eb1f-08daf263459f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AmWmv9SiZ1No6RpsxiV9Vf97Cb3VY6e8gbxwZE/vKHEtouDsukiMeC+j8bQk7RKfkhcs9CQVPo4aGXf72r1jrItKWKYncE/XiRWrwnurKS6TV/0r5weHcl36ErFtA5NRrZD1eB/vCoQ2+Bx8h1XU4ArkpbgP/HRT0UyrlAeGAi2cshoNjPVrF4WMcPFub+W+J1HbzHEw31WqPpMY8uuXNOa7FIgNLQWGpIYBOhSdnbvICXRQahOoS/0i6W6bFr+fQ9XaCFQrv8N9sCjz1vtXM6YRnYvebEcDWNbeQ2MwI6/JrLQ5jglVtfKf0n//t7eRz1vpEfGGbJAFmK4Xnkgziir7GsnsFK2ILokoO/r426avx50thnpAODtWgLBmWz6rYC0AVSft+0dfttpNa4gOzcx7VanRQUq4OktdShge44s8E5J1MrX4GVXdJzM6XRoKPqGNfNyTyVESMfJeJr4t7ZYUYM95KpUhnxRemrMl60ev4PgH5fRQcBnDy155yzwjYWWmlNAqmAf0CHXr1otRpe2j3XVJCw5sLgSaddNVxU9WwOSiJPZdeDFoZAjzhTpu6kCGkRQQ7TkCO30MZ1jru+c1Xn/SV8HFnKAVhRaC206SdcfWv1y321TKU/OB9kNL7+rolaRe0VKXX0KagVCu4EN7yvdXgjl/FO5EUe/iP9h663ZH/eRGzXptwlnMyobelLGXBk4GOmT/I6w2zA+Mk8QmwwJVHZRp3txP2Kd8O4o=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(346002)(39860400002)(136003)(366004)(376002)(451199015)(6506007)(38100700002)(55236004)(31686004)(53546011)(107886003)(6666004)(2906002)(478600001)(6486002)(2616005)(26005)(6512007)(186003)(5660300002)(316002)(7416002)(83380400001)(8936002)(36756003)(86362001)(41300700001)(31696002)(8676002)(110136005)(66476007)(66556008)(66946007)(4326008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WUZ6TWN4WmtoZkhUU1ljWjNVRVRGUlpIY1Z1bmJpU3p1MGZOdTJjd29ESSty?=
- =?utf-8?B?VnI5OTY1dkF5NFlJeGljckRsaVBYU3NyeCtDOHNpQVF6TEtDa3ExMWFKQ3d0?=
- =?utf-8?B?MWZLZGZIYVVuMmVmWTBJTHNDUXZscXFOSGF4VTJnVDZ2UEcvL3g0WXdVQmdY?=
- =?utf-8?B?VVhvU2NBVlhjSDRlMEJ3NmR6WlR2dGVZN0VodEZVdzFhY2RGWWQ4NGdiWExx?=
- =?utf-8?B?emUveGJmZldoVVAyaldqdDVaSnlGV3ZJSkpnQ0I5SzkyY2RDNDg0THVmaWpo?=
- =?utf-8?B?d3NZSU9QRWZRemREWXZkMFo4cnBhZEVhalU3a0pUSHAvbU0rOFFUS3EvZU56?=
- =?utf-8?B?UElzeS9JMnlONjJUaTdWK3BlbHNWdFNWaDJENytIQ1VLN0M1QmFFNDlScWR2?=
- =?utf-8?B?Y2VwTnllMlFIdFdveGQvVVZzMjJkUlVWOHRWYy9NZm4yY0dKSlQyZm8wUFNo?=
- =?utf-8?B?cExKNDlIdzRHUTlBWW0zVXZZOWNLVS9KV3RpbDdtaFVIZ2ovSzEzLzZVdnJ5?=
- =?utf-8?B?U0dxTnVVbDdpU0NXam5qOXhHMlg2a2twK2pOdG5pYTdsY1QzbmtscUFrVzdk?=
- =?utf-8?B?MGE4SE14NHBGdTVVMXFEM05GVm8vZnAzR1U5Wnk2dFFudjQzOVhLTS9VVnox?=
- =?utf-8?B?YVJHWkkrYWlKSHRGNHpzTzRGN1hEMXdFcTNnckorVjZwa1Q1TVZCbmxxQkIw?=
- =?utf-8?B?WC9FSy9PNHQ4T3hrWDEvSkUzUVBzblR2T1hxSHMwYnBUWWljdkxCQkdRVExT?=
- =?utf-8?B?ZkxyaGIwZ1lHQkQ2UHF5YW9XWmJSQXdtMm9vdlZ4MlZwdjRpeGQzeTIvb0NS?=
- =?utf-8?B?Sks5L1UzeXUxTVhCTmJWMzlmcXdsM0dxNnNuNzZycEQ2SnlOQnlGcm1SM0Y1?=
- =?utf-8?B?c1ZCN0hZa2ZQdU8zWVIvR1hxVVZ4eCtKaW9sSnFQOERINmIzNDdyd2VzRXRp?=
- =?utf-8?B?U3J5UWg4WTZuR0hzeGZzNGNpUTY4a1l1RldyVVVEYXFDN2hKYUZyWFhWcDRK?=
- =?utf-8?B?M3NENzZYdHRWOFpQSjJnV21kK25naEkrZCtjT0JPZnZsM1g0ZUN4ZjdtaW9n?=
- =?utf-8?B?OXdCbWVTWitaaWlhZHFaMUVyUThoK0lUZmg0aVd5YVprMGR6RmplSFdiQXQr?=
- =?utf-8?B?end1Vm9Kc2VzRXBCeDNzNDR5MnV5bW5tNjFRQkFrR3lQZzRxRFY5SDhoTlBR?=
- =?utf-8?B?a1VwTWFoUzBwZ0l2RHJldUNYWWdZUGNvVWt6NWxFeENoWDNhRWFNM3U1RjNa?=
- =?utf-8?B?TXR1aGFOejMrZmU4R3NlVGhna2ZEbW5PWHJIWlFYZjJnZUhVR0JjK2JkdXBp?=
- =?utf-8?B?WFc0c0xZSDBqMlBHaWp6VXBwVjVHYnVudkFOYzF0K1dURmNGL3FzUzJDc3Na?=
- =?utf-8?B?M3RyRCtRWERqRVBvM3ZjdXFhTHNqbmZEMnVDNGhiWnBOQzdzcUoxYnJBTnZi?=
- =?utf-8?B?a0dwTEVuYjlIOXdCNE9WaEdTckFkMzVtUVpnN2ZreEVFeG5TYk9WYkJrTWxx?=
- =?utf-8?B?T0IySzF1TUNqOTlZbis5MVgwSFVLSFdpT1ZQTDdoRnZhUjFsVE5GaHFkMXZP?=
- =?utf-8?B?dWJjU1FBdmpuTTNGeHdLVW4vYUw2Z2NFTVNZcTR0R2pxNmI1Wjl6cjFvZ2M2?=
- =?utf-8?B?V3Frd05idGx2OU4xRzJKQ2xGamFQVGI4RDA0dnNseEwxdDIzSDJhWFkzV083?=
- =?utf-8?B?VW9RczlNVkRsTjRyNEF0cHF5WUE2Wkxsd3FJY2p6bjNYS1BLSG5CaGd5aU96?=
- =?utf-8?B?bXFjZEtrWmtiMVhDTC9zRUJYS05qWk5QaFVPdGx0VWhPY2FSbmo2YlNHQ1hh?=
- =?utf-8?B?dGRNZDhMbnZwVFp4Qk1ORjdIeE51d3AwZXp6UzBzZ29vKzQwN0p6VU5oakVh?=
- =?utf-8?B?T1lVc29DdjNxSXUrUnJqSUNmNTYxNEVLQ2FMZEhqb0RJN3JxQ1VjSmZTVW5F?=
- =?utf-8?B?KzNzbzhlRHMrTHFCZXNMa3MvR1pwanR3dlpLekpnVHVBc01VL0VpOGN5Z3l4?=
- =?utf-8?B?aUhrNloyQXpJMHZxNVg2TEJMbXBJWFg3amhxblV4bUVTQXV4dWZVS21oWHB4?=
- =?utf-8?B?b2xveFM4dmNiM0NDTGpxdWdLRlgxUTFUaWJxSlhFRVRtOXVpUkt0c29hNXh0?=
- =?utf-8?B?TitOTTdLVFhPZE84Z0xjZkRCdHNzb3grRXZ6NzJUa1plNDkrZGs3RjliWWlW?=
- =?utf-8?B?S3c9PQ==?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4252db13-11ea-49e1-eb1f-08daf263459f
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2023 17:02:21.3107
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dY5Cao/RkS8eZa0zFDTcr4WB18zB5nvekFXDvkVvNFwxWnNX5YcOtWSntpYHcT3+tehy0l4MhAaAohEa76msnA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5747
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+References: <20230106164618.1845281-1-vincent.guittot@linaro.org> <20230106182849.kr47mdgokd4qa6zw@builder.lan>
+In-Reply-To: <20230106182849.kr47mdgokd4qa6zw@builder.lan>
+From:   Vincent Guittot <vincent.guittot@linaro.org>
+Date:   Mon, 9 Jan 2023 18:02:29 +0100
+Message-ID: <CAKfTPtBJHWfhXCGojZSvS_DM4+bJnQ9j1GwtE5_YYJFHq9cpRA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845: correct dynamic power coefficients
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     dmitry.baryshkov@linaro.org, agross@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, danny@kdrag0n.dev
+Content-Type: multipart/mixed; boundary="000000000000263da105f1d7bc09"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--000000000000263da105f1d7bc09
+Content-Type: text/plain; charset="UTF-8"
 
-On 08/01/2023 15:21, Krzysztof Kozlowski wrote:
+On Fri, 6 Jan 2023 at 19:28, Bjorn Andersson <andersson@kernel.org> wrote:
+>
+> On Fri, Jan 06, 2023 at 05:46:18PM +0100, Vincent Guittot wrote:
+>
+> Seems like using get_maintainer.pl would have saved you some trouble ;)
 
-...
+The worst is that I used it but only checked names and not emails
+when I reused the list of the original patch :-(
 
-> On 06/01/2023 16:28, Jon Hunter wrote:
->> +  phys:
->> +    minItems: 1
->> +    maxItems: 8
->> +
->> +  phy-names:
->> +    minItems: 1
->> +    maxItems: 8
->> +    items:
->> +      enum:
->> +        - usb2-0
->> +        - usb2-1
->> +        - usb2-2
->> +        - usb2-3
->> +        - usb3-0
->> +        - usb3-1
->> +        - usb3-2
->> +        - usb3-3
-> 
-> Why do you have so many optional phys? In what case you would put there
-> usb2-0 and usb3-3 together? Or even 8 phys at the same time? IOW, what
-> are the differences between them and why one controller would be
-> connected once to usb3-2 and once to usb3-3 phy? And once to both?
+>
+> > While stressing EAS on my dragonboard RB3, I have noticed that LITTLE cores
+> > where never selected as the most energy efficient CPU whatever the
+> > utilization level of waking task.
+> >
+> > energy model framework uses its cost field to estimate the energy with
+> > the formula:
+> >
+> >   nrg = cost of the selected OPP * utilization / CPU's max capacity
+> >
+> > which ends up selecting the CPU with lowest cost / max capacity ration
+> > as long as the utilization fits in the OPP's capacity.
+> >
+> > If we compare the cost of a little OPP with similar capacity of a big OPP
+> > like :
+> >        OPP(kHz)   OPP capacity    cost     max capacity   cost/max capacity
+> > LITTLE 1766400    407             351114   407            863
+> > big    1056000    408             520267   1024           508
+> >
+> > This can be interpreted as the LITTLE core consumes 70% more than big core
+> > for the same compute capacity.
+> >
+> > According to [1], LITTLE consumes 10% less than big core for Coremark
+> > benchmark at those OPPs. If we consider that everything else stays
+> > unchanged, the dynamic-power-coefficient of LITTLE core should be
+> > only 53% of the current value: 290 * 53% = 154
+> >
+> > Set the dynamic-power-coefficient of CPU0-3 to 154 to fix the energy model.
+> >
+>
+> This is sounds reasonable.
+>
+> But if the math was wrong for SDM845, I would assume that sm8150 and
+> sm8250 are wrong as well, as that's what 0e0a8e35d725 is based on. And
+> should I assume that patches for other platforms are off by 53% as well?
 
+I don't think that we can assume that there is an error and in
+particular the same 53% error for others.
 
-Here is the description from the device documentation ...
+>
+> Can you help me understand how to arrive at this number? (Without
+> considering everything else stays unchanged, if needed).
 
-"The NVIDIA Orin series System-on-Chip (SoC) has one xHCI host 
-controller and one USB 3.2 Gen1 x1 device controller. The two 
-controllers control a total of up to eight exposed ports. There are up 
-to four USB 2.0 ports and up to four USB 3.2 Gen1 x1 ports."
+In order to do the full computation, we need the voltage of each OPP
+which I don't have as they are provided by the LUT at boot IIUC.
+Instead I have used the debugfs output of the energy model and
+compared the value of (perf_state->cost/cpu_max_capacity) with the
+energy and duration figures available in [1].
 
-So there are eight phys and we could have 4 USB2 and 4 USB3. Depending 
-on which pins you want to use, you could have various combinations. I 
-can add these details to the binding doc if that helps.	
+In the case of SDM845, it was pretty easy to compare the OPPs of big
+and LITTLE because the duration and the perf result were the same for
+2 OPPS so we should have :
 
-Thanks
-Jon
+(little OPP(1766400)->cost / little max capacity (407)) / (big
+OPP(1056000)->cost / big max capacity(1024)) = little OPP(1766400)
+energy / big OPP(1056000) energy
 
--- 
-nvpublic
+(little OPP(1766400)->cost / little max capacity (407)) / (big
+OPP(1056000)->cost / big max capacity(1024)) = 0.90
+
+but current output gives:
+
+(little OPP(1766400)->cost / little max capacity (407)) / (big
+OPP(1056000)->cost / big max capacity(1024)) = 1.70
+
+As we consider everything else constant, it can be simplified by:
+
+correct_little_dynamic-power-coefficient *  const_A  = 0.90
+
+Whereas we currently have
+
+current_little_dynamic-power-coefficient * const_A = 1.70
+
+and we ends up with
+
+correct_little_dynamic-power-coefficient  = 0.90 / 1.70 *
+current_little_dynamic-power-coefficient = 154
+
+That being said, it can be simpler as the energy model provide the power figures
+
+little OPP(1766400)->power = 351114 uW
+big OPP(1056000)->power = 195991 uW
+ration = 1.79
+
+[1] results gives
+little OPP(1766400)->power = 193.281 mW
+big OPP(1056000)->power = 216.405 mW
+ratio = 0.89
+
+The ratios are a bit different and give a
+correct_little_dynamic-power-coefficient  = 144 which is different
+than when using ->cost. This probably comes from rounding and which
+figures have been used to compute the model.
+
+If you have Voltage of OPP, the formula used in energy model is power
+(uW) = dynamic-power-coefficient * uV^2 * Freq (Mhz) so you can
+compute dynamic-power-coefficient for each OPPs. They should be close
+and then you will have to decide which one is the "best"
+
+I don't have access to sdm8150 or sdm8250 boards but you can use the
+same process to check that the energy model is aligned with the
+figures in [1]
+
+[1] https://github.com/kdrag0n/freqbench/tree/master/results
+
+Regards,
+Vincent
+>
+> Regards,
+> Bjorn
+>
+> > [1] https://github.com/kdrag0n/freqbench/tree/master/results/sdm845/main
+> >
+> > Fixes: 0e0a8e35d725 ("arm64: dts: qcom: sdm845: correct dynamic power coefficients")
+> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++----
+> >  1 file changed, 4 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > index 65032b94b46d..869bdb9bce6e 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > @@ -198,7 +198,7 @@ CPU0: cpu@0 {
+> >                       reg = <0x0 0x0>;
+> >                       enable-method = "psci";
+> >                       capacity-dmips-mhz = <611>;
+> > -                     dynamic-power-coefficient = <290>;
+> > +                     dynamic-power-coefficient = <154>;
+> >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> >                       operating-points-v2 = <&cpu0_opp_table>;
+> >                       interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> > @@ -222,7 +222,7 @@ CPU1: cpu@100 {
+> >                       reg = <0x0 0x100>;
+> >                       enable-method = "psci";
+> >                       capacity-dmips-mhz = <611>;
+> > -                     dynamic-power-coefficient = <290>;
+> > +                     dynamic-power-coefficient = <154>;
+> >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> >                       operating-points-v2 = <&cpu0_opp_table>;
+> >                       interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> > @@ -243,7 +243,7 @@ CPU2: cpu@200 {
+> >                       reg = <0x0 0x200>;
+> >                       enable-method = "psci";
+> >                       capacity-dmips-mhz = <611>;
+> > -                     dynamic-power-coefficient = <290>;
+> > +                     dynamic-power-coefficient = <154>;
+> >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> >                       operating-points-v2 = <&cpu0_opp_table>;
+> >                       interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> > @@ -264,7 +264,7 @@ CPU3: cpu@300 {
+> >                       reg = <0x0 0x300>;
+> >                       enable-method = "psci";
+> >                       capacity-dmips-mhz = <611>;
+> > -                     dynamic-power-coefficient = <290>;
+> > +                     dynamic-power-coefficient = <154>;
+> >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> >                       operating-points-v2 = <&cpu0_opp_table>;
+> >                       interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> > --
+> > 2.34.1
+> >
+
+--000000000000263da105f1d7bc09
+Content-Type: image/png; name="image.png"
+Content-Disposition: attachment; filename="image.png"
+Content-Transfer-Encoding: base64
+Content-ID: <f_lcp16sd00>
+X-Attachment-Id: f_lcp16sd00
+
+iVBORw0KGgoAAAANSUhEUgAAAFUAAAARCAYAAACsPOAgAAACmklEQVR4nO2WTUhUURTHf+NoYwv7
+EhfTF2MafZAUQUWLiCzICKOij01gZYU1lZQ0RAZthFxEuQimLHBTEFgIlYugoFWbKImQSiiKoi+t
+NgM16TT9p/cGh8r3bpD4RubPe3Pnzrn/w7n/Ofecm58UwEcO/wtJ8kc6hNGInKjDAE+J2nMZGqLw
+8BG80/xaH2wIDNoHXkNTPVy8A5/yYME6aGmBJRMt++29sPoc/MjwuUz2u+LkGfDd7G7xpeEpUQuK
+ofoARHo1HvvNOACnNkHbdOh8CXMTEN0J63drk+0QtNvClDroPiNfNs1fYAnqyk+4+3eMLwOeErW0
+CvZojN+0hchA4gV0PIbt52G+nTn7GuFsJbS/goMh6zefdlRYOCiqKT/83d2/U3yZ8JSojkj+ev64
+qPj6oatbX0LWvFdZNacD+sfBomo4cRwqigz45Wb+TZA1ovpnwNpZOp4nYUsrzFbhvNAMz3WsK2LW
+mvLNcGWbRJ0MsWeqh0dg5VN4IJGnufBN/Jsia0RNneejV+HrIagq1RFUJq5SzVuhplI8yVoSqsxI
+KK1pHStx1qhGfoC6oAvfwL8pskdUIVAGzdf12vPYLTUUibFj4d/X58nm15hImPH/1f9Q8JaoOnJx
+NYy46liqwPV/Az2MCViN4X0XvBkPM0vg431o3K9ufxg2qiunuvuNSzB1uZJU9lgPnG6AvqXKvKDl
+3pFvYHeLLw1Pidrbptq3S0Hb860T9KGAo+rcdaqTffegpkl17jMUhXRH1J0yGla3Ty3WJp+oSdVH
+4O0X6/qzWI2qUzWyzG/5c+Qb2N3iS8NTopbU6p+vHdo+TxvsDg9h1DGNdOp18O/IN7C7xZeGp0Qd
+LciJOgzIiToMsEVNjmwUoww/AVS2H0CPoSu9AAAAAElFTkSuQmCC
+--000000000000263da105f1d7bc09--
