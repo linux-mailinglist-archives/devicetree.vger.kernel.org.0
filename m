@@ -2,102 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56349661B03
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 00:12:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43DA3661B59
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 01:29:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233145AbjAHXMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 18:12:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42000 "EHLO
+        id S233850AbjAIA3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 19:29:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233670AbjAHXMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 18:12:48 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 926DFBC1F
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 15:12:46 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id f34so10418036lfv.10
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 15:12:46 -0800 (PST)
+        with ESMTP id S229693AbjAIA3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 19:29:39 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00A55BF6C
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 16:29:38 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id f21so2941406ljc.7
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 16:29:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uyFGGVLs/X6oL8cfpRetF9oZ4VlqVuFMXwGIYKkQRkI=;
-        b=aG6LThJZqWRVweoJO0jwQRjFwKWagT5dK6iw1vNYa/3/jb36t7n28l4RiVNMMLp+TL
-         V4vYPcOBkysP+/81wr9FLgC46uEDwyG+H9ov0vjKzenY25TODIePHBa47NTg57a/NeDb
-         LYTs48iYMrtkGH4nrlZVI7opycnG8sFve32x+GwWkf0vas7KlbIA+4y6E7P6ymWt3e/t
-         iphUJilhxSgyDbYf5z4om8VYBZ2+5TzgYJHV9d4zr+fkLRWbZhj5kyDhqCYp4E65EslW
-         /v9SzJEENG7HYFRK/tG/Q3XsBUbvpP3AfaXQ40BPaNJtBoBFqlWGXIj1tJH6MLwymTWF
-         JZQw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FyO60+1ahxnZMeLVY7otQN3Vyc7r0+eEdWjJHYyzXHM=;
+        b=QaTLOCozXErPo9kask6wWLzoyG0h+4q1CKRhG6R43i2OugYNGLOk3PxKM/0N5aVT/2
+         nCrU/yhfvlVm88fV1xQ9jRCGZytzbEsCZPs+RkKrM4y5w15ksQ+RQUqk6U3z2bz4T0hE
+         OcJ8rSUGWgU8spsiPRbXiqwApQ12s3yKI8FPEmTo6suVV2zwEeB4UFqjAfoIUGU1QvIK
+         XKLzTUQXdQqCu8tfUDOPmJfIPrQsTir3DJKoBYvl1jTgdgQ9Hhh0aoMe6UQQW0vrv46y
+         MVBPKTZFq773J9Ozzie5WviOmV1Q8UyMzXMou8mVuxEKWp8gd+GrJPoWXzBiFgna2ZI/
+         6ybw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uyFGGVLs/X6oL8cfpRetF9oZ4VlqVuFMXwGIYKkQRkI=;
-        b=f7LyGmDXZRFqOi2zAy8YuzunAmvxw9huWe9m4qVZLAqYlXGQJHm8/e5D7khtzyNDej
-         Dwx74Vr0RyVcgnb/r94iHFvpKXjTNdxTbHY17NceRPS/PjwsCk5EGJSht7xOzmeT05GT
-         X/8D5YN28qiy5Bp9z6TpGvi18g3TAd3xkxr28/mELbhiBnDEfspKXP1Blbit1ZowYK2l
-         p/MX8jaeNqcmjwTPW9GXLKagA6IKNFqnEbLTT8IF55YFz09AvY6dJ/4ZPn3HNRQmbXYc
-         +jgwPlBnJmio3ZNIZXYmpqHlRKoIcLOWNd6oiaOgCMcNuqVTSK35TItSIJZbBrCvxGJo
-         ZU6A==
-X-Gm-Message-State: AFqh2kqa19XcSGiAgy+6Ab23olmVxJUSGIFhTcH/G8bPMCeWCMewwfrK
-        HBY0EDKL1e6pjc07Exs7cOhwQg==
-X-Google-Smtp-Source: AMrXdXtBO07Ci/cm6XtwIo7+eG+FyzqM0WTNU0N/lz4hEY76r1feVjhiX6KA8dHnX1QRCX23G/Qjcw==
-X-Received: by 2002:a19:f517:0:b0:4c3:35b3:9a0e with SMTP id j23-20020a19f517000000b004c335b39a0emr15285692lfb.56.1673219565005;
-        Sun, 08 Jan 2023 15:12:45 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id du3-20020a056512298300b00494978b0caesm1266728lfb.276.2023.01.08.15.12.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Jan 2023 15:12:44 -0800 (PST)
-Message-ID: <dfb08b6b-af9a-e96c-fae7-386f70815455@linaro.org>
-Date:   Mon, 9 Jan 2023 01:12:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 3/6] drm/msm/dpu: add support for SM8550
-Content-Language: en-GB
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FyO60+1ahxnZMeLVY7otQN3Vyc7r0+eEdWjJHYyzXHM=;
+        b=xv6jcdbgEf2r2sooiM387ESUV7UpjzXGv8oP2Nt9E8VzFmiaSYHavSLfOR/aK0joZQ
+         tfIkF2Bk18Qa6pCf7wCcOo3diXldaovFeoh/zE7MQwD+uBXj5CxD5UttGhVk9dhvAbOY
+         nRTyBYDrfYR8ZLWAeJgAMm4w25EN1x0C9rGFtpVYZDSRqKtFaSNkc7djDJrVci8yQ/Mj
+         Js7rsvV8glCD5sso+wic+5dkQDykGbpOb3MT83K4kbuQtMB034ymZFClVBWTOQiidtLW
+         xA61deLPLQD+7ZUk+bggmo3K6YIBYBcOwMSZhbxbVFBsMwIuZ4CdxRZwdVe6okzW39UO
+         s27g==
+X-Gm-Message-State: AFqh2kp6r5lMbA3SeafuJn2BlGwIVdX4xhSx+LQaQKOH4l/qtch3GY3J
+        Zo9v2DY/Z4i+HjE00NwBatffjQ==
+X-Google-Smtp-Source: AMrXdXs/wyYesCXijvkDtUnD3XBx/Fcih0q5zjrj9do8jkcsWkXXxqnbBBl+MxPO4JkemxIiWjleoQ==
+X-Received: by 2002:a2e:8344:0:b0:281:f44c:5dcb with SMTP id l4-20020a2e8344000000b00281f44c5dcbmr2563785ljh.32.1673224176375;
+        Sun, 08 Jan 2023 16:29:36 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id a22-20020a2e9816000000b0027fc54f8bf0sm706626ljj.35.2023.01.08.16.29.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Jan 2023 16:29:35 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230103-topic-sm8550-upstream-mdss-dsi-v1-0-9ccd7e652fcd@linaro.org>
- <20230103-topic-sm8550-upstream-mdss-dsi-v1-3-9ccd7e652fcd@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230103-topic-sm8550-upstream-mdss-dsi-v1-3-9ccd7e652fcd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     Georgi Djakov <djakov@kernel.org>, Alex Elder <elder@linaro.org>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 00/12] clk/interconnect: qcom: finish migration of IP0 to clocks
+Date:   Mon,  9 Jan 2023 02:29:23 +0200
+Message-Id: <20230109002935.244320-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/01/2023 11:08, Neil Armstrong wrote:
-> Add definitions for the display hardware used on Qualcomm SM8550
-> platform.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 197 +++++++++++++++++++++++++
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |   1 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h    |   2 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        |   1 +
->   4 files changed, 201 insertions(+)
+Commits 2f3724930eb4 ("interconnect: qcom: sc7180: Drop IP0
+interconnects") and 2fb251c26560 ("interconnect: qcom: sdx55: Drop IP0
+interconnects") removed IP0 interconnects (and ipa-virt devices support)
+in favour of the RPMH clocks. Follow this example for other platforms
+defining IP0 RPMH resource. While we are at it, remove several leftover
+from the mentioned patches.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Changes since v2:
+- Fixed the stack frame size warning by moving the ignore_list out of
+  the function to the rodata section.
+
+Changes since v1:
+- Reorder patches to put clock patch after the interconnect patches
+  (Alex)
+- Add comments in place of removed defines (Alex)
+- Drop ipa-virt nodes from device trees
+- Add removed ipa-virt nodes to the blacklist in of_count_icc_providers
+  to let icc_sync_state work even with non-updated device trees.
+
+Dmitry Baryshkov (12):
+  interconnect: qcom: sdx55: drop IP0 remnants
+  interconnect: qcom: sc7180: drop IP0 remnants
+  interconnect: move ignore_list out of of_count_icc_providers()
+  interconnect: qcom: sm8150: Drop IP0 interconnects
+  interconnect: qcom: sm8250: Drop IP0 interconnects
+  interconnect: qcom: sc8180x: Drop IP0 interconnects
+  interconnect: qcom: sc8280xp: Drop IP0 interconnects
+  dt-bindings: interconnect: qcom: Remove ipa-virt compatibles
+  dt-bindings: interconnect: qcom: drop IPA_CORE related defines
+  clk: qcom: rpmh: define IPA clocks where required
+  arm64: dts: qcom: sm8150: drop the virtual ipa-virt device
+  arm64: dts: qcom: sm8250: drop the virtual ipa-virt device
+
+ .../bindings/interconnect/qcom,rpmh.yaml      |  3 --
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  7 ----
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  7 ----
+ drivers/clk/qcom/clk-rpmh.c                   |  4 ++
+ drivers/interconnect/core.c                   | 14 ++++---
+ drivers/interconnect/qcom/sc7180.h            |  4 +-
+ drivers/interconnect/qcom/sc8180x.c           | 38 -------------------
+ drivers/interconnect/qcom/sc8180x.h           |  4 +-
+ drivers/interconnect/qcom/sc8280xp.c          | 25 ------------
+ drivers/interconnect/qcom/sc8280xp.h          |  4 +-
+ drivers/interconnect/qcom/sdx55.h             |  4 +-
+ drivers/interconnect/qcom/sm8150.c            | 21 ----------
+ drivers/interconnect/qcom/sm8150.h            |  4 +-
+ drivers/interconnect/qcom/sm8250.c            | 21 ----------
+ drivers/interconnect/qcom/sm8250.h            |  4 +-
+ .../dt-bindings/interconnect/qcom,sc7180.h    |  3 --
+ .../dt-bindings/interconnect/qcom,sc8180x.h   |  3 --
+ .../dt-bindings/interconnect/qcom,sc8280xp.h  |  4 +-
+ include/dt-bindings/interconnect/qcom,sdx55.h |  2 -
+ .../dt-bindings/interconnect/qcom,sm8150.h    |  3 --
+ .../dt-bindings/interconnect/qcom,sm8250.h    |  3 --
+ 21 files changed, 27 insertions(+), 155 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.39.0
 
