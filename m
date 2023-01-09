@@ -2,131 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00C2E662F72
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 19:46:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9305D662F84
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 19:51:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235359AbjAISqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 13:46:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
+        id S233106AbjAISvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 13:51:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230341AbjAISqk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 13:46:40 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 318D81A055
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 10:46:39 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id k26-20020a05600c1c9a00b003d972646a7dso9842878wms.5
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 10:46:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ryYeof+OnTJkbTULSprBr4AoCSxqK4qFss+JGLsx80U=;
-        b=wSfxtYUUzxGBncWxkFa/2vTAsXeNJj0rj+FowRo7KAOkSud9BpogV0/U3pBs1nCi06
-         1wUb3i+I0z+5YPxiBI+vQOyGQenuy11Twz17GhwhXG3By+5SQiRSopTnW4zmNYLjA0nl
-         R4FuE12VZazAurC+ZalkVGh5Ejm+Xw7cHEirIR8IGC9hScWtymG/rnnQG18ye4bJKDpV
-         n9UJ82nWb4EkgKRiYbj5/UNcQrxac7VQs+J+37cm/q0tYWgIhLhIDnpVhigTs94tcwCj
-         BKXJvgQK5g2vZmckC0yaaJcCOn4Akbd1JeldGqymuoigYz0zl0J+5RlKsMdz7g78TCzp
-         r0SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ryYeof+OnTJkbTULSprBr4AoCSxqK4qFss+JGLsx80U=;
-        b=xC3Bqnmo7gZclEzUNLYay8LYIuJ1xEdQVkVNbYLcEXv+S+3ehbgjdgqhKhJuLtEeVF
-         dA8ZMahVMnVZcN3VIEU0vubFBmCjpoocONZVobfZ+2xQxIILOCyr/A1TAxxCLZXyhiMw
-         g5N/zpi4dlsYo1SCw5tmio4OoA0+MDA+8uo2aTEXLUZc3pDNqUVKr7VWX2+EJnV1z7/E
-         ldGecETvOvHktsvywhJJKJ7n2OnVjLHVoXFqCe48M9QwsI8izC7dEFE+ypMwyhrrgHu4
-         DqdInIbxmenNxmUh2cceAmUvryyq8m5Ml6n2OFNQ5u89f30++w+CGCHotqtg4lVKTLib
-         s2oA==
-X-Gm-Message-State: AFqh2koeyfhnlE1fIludteWn7WI0ukACVy/yUBX6/zLzI/Jb4DpGoM3P
-        /VKQvc8i/uKUsLRCAcIFFboysg==
-X-Google-Smtp-Source: AMrXdXvO/d7RLU5wZZgySN5QAdoZ6t6S+IeacfwC7pCnKdTpjpVTQk3Drj8MCGo0KedoGjneH3ObsQ==
-X-Received: by 2002:a05:600c:1c11:b0:3d1:e583:51a0 with SMTP id j17-20020a05600c1c1100b003d1e58351a0mr48945787wms.25.1673289997815;
-        Mon, 09 Jan 2023 10:46:37 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r7-20020a05600c458700b003c6b7f5567csm26127542wmo.0.2023.01.09.10.46.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 10:46:37 -0800 (PST)
-Message-ID: <101fbe16-69f0-d0c1-168a-1e267e22289d@linaro.org>
-Date:   Mon, 9 Jan 2023 19:46:35 +0100
+        with ESMTP id S234055AbjAISvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 13:51:41 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B877A1B0;
+        Mon,  9 Jan 2023 10:51:40 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 309DthXp024652;
+        Mon, 9 Jan 2023 18:51:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ndqB61nAt6ZcnmufjO7EHToLNrxx+EvxMZ0X9ORWO2Y=;
+ b=OFOwtZZbAx4Mr6lVSGNioF/FNkgNaHzKd0yXwRzjYAZDEJx+XTFhJE4169In7OoevRbJ
+ pkHzld7AkiyvwwoZ8TaGvtzgfUHUrlblFc0Z6r656vEcIM+41glDyrOQdvs29UeIlsBt
+ /m4eNATImhwin/4X5hmqIyIyoaQis9JUNf1ywtzEGQa13fxZNskqV2a3mkziAKf5IR0y
+ DgBZgKFFSjKIfP7L3cXH7+3iPNNtBJyh5AChGmSKw4Mk6mu7005cMx5tPo6pxK5uCRNZ
+ Aol8NwlXDptlt3WKY42yPUKIb10T+o7msNRBlJMnKf8+fwQuHXGNfNF0W3+zIDJXU+Dz Jg== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3my0u13tms-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 Jan 2023 18:51:22 +0000
+Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 309IpKxj001695
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 9 Jan 2023 18:51:20 GMT
+Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 9 Jan 2023
+ 10:51:19 -0800
+Message-ID: <f30261bc-7d4c-b074-4531-2b244afe0e59@quicinc.com>
+Date:   Mon, 9 Jan 2023 10:51:19 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH V5 1/6] dt-bindings: usb: Add NVIDIA Tegra234 XUSB host
- controller binding
-Content-Language: en-US
-To:     Jon Hunter <jonathanh@nvidia.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v8 11/28] gunyah: rsc_mgr: Add VM lifecycle RPC
+To:     Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Carl van Schaik" <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-phy@lists.infradead.org,
-        waynec@nvidia.com, Thierry Reding <treding@nvidia.com>
-References: <20230106152858.49574-1-jonathanh@nvidia.com>
- <20230106152858.49574-2-jonathanh@nvidia.com>
- <b1485d8a-71ea-7b75-74ab-77eef595ae10@linaro.org>
- <73bfb6ca-663e-b73c-b9a1-4727ae7217d1@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <73bfb6ca-663e-b73c-b9a1-4727ae7217d1@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-acpi@vger.kernel.org>
+References: <20221219225850.2397345-1-quic_eberman@quicinc.com>
+ <20221219225850.2397345-12-quic_eberman@quicinc.com>
+ <20230109071309.GA3480070@quicinc.com>
+Content-Language: en-US
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <20230109071309.GA3480070@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: uD31rIDTTBS-TOarOMzEqnYpHZD-IZI-
+X-Proofpoint-ORIG-GUID: uD31rIDTTBS-TOarOMzEqnYpHZD-IZI-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-09_12,2023-01-09_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1011
+ adultscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0
+ priorityscore=1501 phishscore=0 mlxscore=0 spamscore=0 mlxlogscore=869
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301090133
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 18:00, Jon Hunter wrote:
-> 
-> On 08/01/2023 15:21, Krzysztof Kozlowski wrote:
-> 
-> ...
-> 
->> On 06/01/2023 16:28, Jon Hunter wrote:
->>> +  phys:
->>> +    minItems: 1
->>> +    maxItems: 8
->>> +
->>> +  phy-names:
->>> +    minItems: 1
->>> +    maxItems: 8
->>> +    items:
->>> +      enum:
->>> +        - usb2-0
->>> +        - usb2-1
->>> +        - usb2-2
->>> +        - usb2-3
->>> +        - usb3-0
->>> +        - usb3-1
->>> +        - usb3-2
->>> +        - usb3-3
->>
->> Why do you have so many optional phys? In what case you would put there
->> usb2-0 and usb3-3 together? Or even 8 phys at the same time? IOW, what
->> are the differences between them and why one controller would be
->> connected once to usb3-2 and once to usb3-3 phy? And once to both?
-> 
-> 
-> Here is the description from the device documentation ...
-> 
-> "The NVIDIA Orin series System-on-Chip (SoC) has one xHCI host 
-> controller and one USB 3.2 Gen1 x1 device controller. The two 
-> controllers control a total of up to eight exposed ports. There are up 
-> to four USB 2.0 ports and up to four USB 3.2 Gen1 x1 ports."
-> 
-> So there are eight phys and we could have 4 USB2 and 4 USB3. Depending 
-> on which pins you want to use, you could have various combinations. I 
-> can add these details to the binding doc if that helps.	
 
-Yeah, could solve some questions.
 
-Best regards,
-Krzysztof
+On 1/8/2023 11:13 PM, Srivatsa Vaddagiri wrote:
+> * Elliot Berman <quic_eberman@quicinc.com> [2022-12-19 14:58:32]:
+> 
+>> +/* Call: CONSOLE_OPEN, CONSOLE_CLOSE, CONSOLE_FLUSH */
+> 
+> I think this struct is used by other calls as well?
+> Also CONSOLE_** functions are not yet introduced in this patch
+> 
+>> +struct gh_vm_common_vmid_req {
+>> +	__le16 vmid;
+>> +	__le16 reserved0;
+>> +} __packed;
+> 
+> [snip]
+> 
+>> +int gh_rm_alloc_vmid(struct gh_rm_rpc *rm, u16 vmid)
+>> +{
+>> +	void *resp;
+>> +	struct gh_vm_common_vmid_req req_payload = {
+>> +		.vmid = cpu_to_le16(vmid),
+>> +	};
+>> +	struct gh_vm_common_vmid_req *resp_payload;
+>> +	size_t resp_size;
+>> +	int ret;
+>> +
+>> +	if (vmid == GH_VMID_INVAL)
+>> +		vmid = 0;
+>> +
+>> +	ret = gh_rm_call(rm, GH_RM_RPC_VM_ALLOC_VMID, &req_payload, sizeof(req_payload), &resp,
+>> +			&resp_size);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (!vmid) {
+>> +		if (resp_size != sizeof(*resp_payload)) {
+>> +			ret = -EINVAL;
+>> +		} else {
+>> +			resp_payload = resp;
+>> +			ret = resp_payload->vmid;
+> 
+> Do we need a le_to_cpu() wrapper on the response here?
+> 
+>> +int gh_rm_vm_stop(struct gh_rm_rpc *rm, u16 vmid)
+>> +{
+>> +	struct gh_vm_stop_req req_payload = {
+>> +		.vmid = cpu_to_le16(vmid),
+>> +	};
+>> +	void *resp;
+>> +	size_t resp_size;
+>> +	int ret;
+>> +
+>> +	ret = gh_rm_call(rm, GH_RM_RPC_VM_STOP, &req_payload, sizeof(req_payload),
+>> +			&resp, &resp_size);
+>> +	if (ret)
+>> +		return ret;
+>> +	kfree(resp);
+> 
+> Why not use gh_rm_common_vmid_call() here as well?
+> 
+> 	return gh_rm_common_vmid_call(rm, GH_RM_RPC_VM_STOP, vmid);
+> 
+>> +
+>> +	return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_vm_stop);
+>> +
+> 
+> [snip]
+> 
+>> +ssize_t gh_rm_get_hyp_resources(struct gh_rm_rpc *rm, u16 vmid,
+>> +				struct gh_rm_hyp_resource **resources)
+>> +{
+>> +	struct gh_vm_get_hyp_resources_resp *resp;
+>> +	size_t resp_size;
+>> +	int ret;
+>> +	struct gh_vm_common_vmid_req req_payload = {
+>> +		.vmid = cpu_to_le16(vmid),
+>> +	};
+>> +
+>> +	ret = gh_rm_call(rm, GH_RM_RPC_VM_GET_HYP_RESOURCES,
+>> +			 &req_payload, sizeof(req_payload),
+>> +			 (void **)&resp, &resp_size);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (resp_size < sizeof(*resp) ||
+>> +		(sizeof(*resp->entries) && (resp->n_entries > U32_MAX / sizeof(*resp->entries))) ||
+>> +		(resp_size != sizeof(*resp) + (resp->n_entries * sizeof(*resp->entries)))) {
+>> +		ret = -EIO;
+>> +		goto out;
+>> +	}
+>> +
+>> +	*resources = kmemdup(resp->entries, (resp->n_entries * sizeof(*resp->entries)), GFP_KERNEL);
+> 
+> Consider NULL return value from kmemdup
+> 
+>> +	ret = resp->n_entries;
+>> +
+>> +out:
+>> +	kfree(resp);
+>> +	return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_get_hyp_resources);
+>> +
+>> +/**
+>> + * gh_rm_get_vmid() - Retrieve VMID of this virtual machine
+>> + * @vmid: Filled with the VMID of this VM
+>> + */
+>> +int gh_rm_get_vmid(struct gh_rm_rpc *rm, u16 *vmid)
+>> +{
+>> +	static u16 cached_vmid = GH_VMID_INVAL;
+>> +	void *resp;
+>> +	size_t resp_size;
+>> +	int ret;
+>> +	int payload = 0;
+>> +
+>> +	if (cached_vmid != GH_VMID_INVAL) {
+>> +		*vmid = cached_vmid;
+>> +		return 0;
+>> +	}
+>> +
+>> +	ret = gh_rm_call(rm, GH_RM_RPC_VM_GET_VMID, &payload, sizeof(payload), &resp, &resp_size);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (resp_size != sizeof(*vmid))
+> 
+> kfree(resp) in this case?
+> 
+>> +		return -EIO;
+>> +	*vmid = *(u16 *)resp;
+> 
+> Do we need a le_to_cpu() wrapper on the response?
+> Also update cached_vmid in success case.
+> 
+>> +	kfree(resp);
+>> +
+>> +	return ret;
+>> +}
 
+Applied all these.
+
+Thanks,
+Elliot
