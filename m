@@ -2,100 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9012B6634FF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:17:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ADD26634FB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:17:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237795AbjAIXQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 18:16:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46520 "EHLO
+        id S237780AbjAIXQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 18:16:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237825AbjAIXQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:16:30 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73CFF186B7;
-        Mon,  9 Jan 2023 15:16:28 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id cf42so15552719lfb.1;
-        Mon, 09 Jan 2023 15:16:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t/mDgzPnUXxALwSc77P9Iyw1b4SZpp1LqX9N2wGlWLw=;
-        b=B9m4CHmihRuEgTAs5tZdrZAp2YkSVYMp9hhXtVqPSGsJZsNcLaeAboG9f4nTdukK9p
-         Y1ZjFYzcPThHQHD8b1mtOqNz8k5ByfxT+HHPYTAStlbClZOKfq+bzW6jutvTNMXef70u
-         VBuA9bshNVdHboSaacxRpJjkCNMxooU9ncuKkRMAR9zaOq5iAAWRhZBgZaI3UjxfQUfT
-         T/JwXSJrFJXGGuYmeTCQObWPapGgN3ChggBX1xVvb0CpEFK0AQ0AT+wWL8EDpYKu5M4v
-         0QwuOwPg9Ioc0TEgjCxbhG1PSPv9DrFneXReAYGzJaqG1pZlP6w2ZpOFKwHh6Q5fUgjK
-         9vCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t/mDgzPnUXxALwSc77P9Iyw1b4SZpp1LqX9N2wGlWLw=;
-        b=6BcGv8Zvk+3nW4sNZYZICvGvmDUXUmioZKoIiyqOqlWqxEbHqdGXBtYz5bLwFX+R12
-         XLoFFJV6CXhk//W9fSmXNprHFHr1VdMRW/fjuD+6kmLc4yNXgBkCN4AZvoijYiE8CVan
-         eONtaeurgfldSi2m/NvCbMdXBGYFhi44KRUSZxiWDUv3VdHABWk+XOEFc66DTbA+9/R9
-         08LeRG3p3j622y8gnhbu6cX/BAfK3anNEoNzr4YHXbRDM37WoStrse4fM+/2Xpck+lMH
-         dljwGfDHEZB9TTJ5IqAKL5Ylsr5Rdj0DrvERqUj98JoRpLlc5bGdVHQ7lUc4HCzkeSEt
-         Wi7w==
-X-Gm-Message-State: AFqh2korFBSQ1+s0IOXv+BjLIGynlUAjptI7SXNOsdfnCjSo8YAY2qCS
-        LG04moSUsqIFx/MBPH38ibs=
-X-Google-Smtp-Source: AMrXdXtPzJ3f1pblhBDPvSsW8oOxmBG4ZNuXw1pydRuDZV67dLZ7d4g4JIcTmwwjCI8J3zIceTrK1g==
-X-Received: by 2002:a05:6512:c14:b0:4b5:abe3:c63d with SMTP id z20-20020a0565120c1400b004b5abe3c63dmr22375060lfu.42.1673306186813;
-        Mon, 09 Jan 2023 15:16:26 -0800 (PST)
-Received: from localhost (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id w20-20020a05651234d400b004cb8de497ffsm1836363lfr.154.2023.01.09.15.16.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 15:16:25 -0800 (PST)
-From:   Dmitry Baryshkov <dbaryshkov@gmail.com>
-X-Google-Original-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Kalyan Thota <quic_kalyant@quicinc.com>
-Cc:     linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com
-In-Reply-To: <1669021695-4397-1-git-send-email-quic_kalyant@quicinc.com>
-References: <1669021695-4397-1-git-send-email-quic_kalyant@quicinc.com>
-Subject: Re: [PATCH v4 0/3] add color management support for the crtc
-Message-Id: <167330408778.609993.9217470869804308069.b4-ty@linaro.org>
-Date:   Tue, 10 Jan 2023 00:41:27 +0200
+        with ESMTP id S237743AbjAIXQR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:16:17 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 222792DFE;
+        Mon,  9 Jan 2023 15:16:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=VZOuenxf0fran8WbzZ3dqItE5pbiY4GG647n81NLsis=; b=Ei763lhn0X+krVNSqLA/I9N+31
+        wqxYC6nO3n9ZCZ4yR+JUCqpgZkqyV3KpzQgnBxn2aOxfP5pcrIkE1MmovutWQU5w8ke0k4m10k70y
+        P81NU532ttThN5vd12qxh6zXOdRNYqa5fFE1yp/Gh6oEjEZzEKvFIiEWyd/przV5psOZ6smk1MpUe
+        payClQlsdQNtOuBh7AGtCAybWrnbAvI27C82K2144GYLbX8MkrHv48pnc3AjNjplnwQtEt5Yzg776
+        IRIllf/+A6bqI82clUzOG76+t43bYP/kheGyUIfBjJHMbAOuErHDnwn8SyMym0Irfx5OE7exBhXwW
+        8xyw1MaQ==;
+Received: from p200300ccff06a2001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff06:a200:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pF1N0-0003Zo-9l; Tue, 10 Jan 2023 00:15:58 +0100
+Date:   Tue, 10 Jan 2023 00:15:57 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        ulf.hansson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
+ combinations
+Message-ID: <20230110001557.204dd5da@aktux>
+In-Reply-To: <20230108224633.GA353691-robh@kernel.org>
+References: <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
+        <20230106203358.14878660@aktux>
+        <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
+        <20230107144336.2ecff4f9@aktux>
+        <123d1a56-8134-dc75-8b2a-b3836e727d4a@linaro.org>
+        <20230107150740.0ba34aa1@aktux>
+        <0ab84fb8-6173-54e0-abad-a0e0e4ba82e7@linaro.org>
+        <20230107160105.66df4136@aktux>
+        <e1b1450b-9421-3732-2d74-50c47b5afb0e@linaro.org>
+        <20230107165457.30f4dddf@aktux>
+        <20230108224633.GA353691-robh@kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-On Mon, 21 Nov 2022 01:08:12 -0800, Kalyan Thota wrote:
-> Add color management support for the crtc provided there are
-> enough dspps that can be allocated from the catalog
+On Sun, 8 Jan 2023 16:46:33 -0600
+Rob Herring <robh@kernel.org> wrote:
+
+> A is either compatible with B or it isn't.
+
+I think English and many natural languages allow to use the adjective
+in a non-black and white way to express things. So there can be things
+more compatible than others with certain levels of "gray" in between.
+But "compatible" in an artifical language like the devicetree can of course
+be more restrictive, so there needs to be a certian level of gray where the
+limit needs to be defined.The definition you give below.
+Thanks for that.
+
+> You can look at that from 
+> the h/w perspective and client/OS perspective. From the h/w side, is the 
+> h/w interface the same or only has additions which can be ignored? On 
+> the client side, the question is whether a client that only understands 
+> B could use A's h/w without change. Looking at the match data is a 
+> good indicator of that for Linux.
+
+It seems that from a Linux client perspective that is a no in different
+cases, so B is not compatible.
+
+> It's also possible the answer is 
+> different for different clients, but we only need 1 client that could 
+> benefit from compatibility.
 > 
-> Kalyan Thota (3):
->   drm/msm/disp/dpu1: pin 1 crtc to 1 encoder
->   drm/msm/disp/dpu1: add helper to know if display is builtin
->   drm/msm/disp/dpu1: add color management support for the crtc
-> 
-> [...]
+On U-Boot side things seem to look different, since high speed modes
+are not enabled at all and pm is not done that much, so no quirks needed
+for that.
+Looking at recent mainline u-boot.
+       { .compatible = "fsl,imx51-esdhc", },
+        { .compatible = "fsl,imx53-esdhc", },
+        { .compatible = "fsl,imx6ul-usdhc", },
+        { .compatible = "fsl,imx6sx-usdhc", },
+        { .compatible = "fsl,imx6sl-usdhc", },
+        { .compatible = "fsl,imx6q-usdhc", },
 
-Applied, thanks!
+So U-Boot will benefit from that additional compatible for fsl,imx6[su]ll-usdhc.
 
-[1/3] drm/msm/disp/dpu1: pin 1 crtc to 1 encoder
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/a4d6f8253645
-[2/3] drm/msm/disp/dpu1: add helper to know if display is builtin
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/4cb6b1eebb92
-[3/3] drm/msm/disp/dpu1: add color management support for the crtc
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/c48c475bd75a
+The first list of compatibles in U-Boot commit (96f0407b00f) was:
+       { .compatible = "fsl,imx6ul-usdhc", },
+       { .compatible = "fsl,imx6sx-usdhc", },
+       { .compatible = "fsl,imx6sl-usdhc", },
+       { .compatible = "fsl,imx6q-usdhc", },
+       { .compatible = "fsl,imx7d-usdhc", },
 
-Best regards,
--- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+So replacing imx5X fallback compatibles with imx6something might be
+helpful for that old U-Boot. But I cannot fully jugde that,
+so I will not touch. 
+
+Well, I could also delete entries of this list and push a bunch of U-Boot forks
+somewhere, so creating a large number of different clients, which would then
+justify a long list of compatibles ;-)
+
+But what initially worried me would be that there could be a client out there
+knowing only "B" and using all features but missing the in that case needed
+quirks for "A". Then adding "B" would cause harm. But apparently that is nothing
+to worry about.
+
+I will send a reduced patch with just the things which are 100% clear to me.
+
+Regards,
+Andreas
