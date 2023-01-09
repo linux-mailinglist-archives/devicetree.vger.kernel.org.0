@@ -2,126 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C8D7661F1A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 08:21:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6612661F31
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 08:25:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234347AbjAIHV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 02:21:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37190 "EHLO
+        id S234227AbjAIHZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 02:25:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233151AbjAIHVz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 02:21:55 -0500
-Received: from SHSQR01.spreadtrum.com (mx1.unisoc.com [222.66.158.135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB128FF1;
-        Sun,  8 Jan 2023 23:21:50 -0800 (PST)
-Received: from SHSend.spreadtrum.com (bjmbx02.spreadtrum.com [10.0.64.8])
-        by SHSQR01.spreadtrum.com with ESMTP id 3097LI0e092948;
-        Mon, 9 Jan 2023 15:21:18 +0800 (+08)
-        (envelope-from Chunyan.Zhang@unisoc.com)
-Received: from ubt.spreadtrum.com (10.0.74.87) by BJMBX02.spreadtrum.com
- (10.0.64.8) with Microsoft SMTP Server (TLS) id 15.0.1497.23; Mon, 9 Jan 2023
- 15:21:15 +0800
-From:   Chunyan Zhang <chunyan.zhang@unisoc.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: [RESEND PATCH V3 3/3] dt-bindings: gpio: Add compatible string for Unisoc UMS512
-Date:   Mon, 9 Jan 2023 15:21:06 +0800
-Message-ID: <20230109072106.2176048-4-chunyan.zhang@unisoc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230109072106.2176048-1-chunyan.zhang@unisoc.com>
-References: <20230109072106.2176048-1-chunyan.zhang@unisoc.com>
+        with ESMTP id S233751AbjAIHZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 02:25:35 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 547C11277E
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 23:25:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0EFC4B80D1A
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 07:25:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53F4CC433EF;
+        Mon,  9 Jan 2023 07:25:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673249129;
+        bh=XuUJ4/XcVShdi52T76uGF7sF1Bd0QKeO6UjCBQ76ZO0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qDOxQR4bVRBa/N785eNEiO8k5yeph5mSVEjjCQC4aA+WNvNc6kjP+lOcL+8Ro6zeL
+         s/cZnV7r8cvYqC91PucddnMZlDHlLzmehINf3sbvZzElb4CYC5t2hgHNmbgbixS3oV
+         +EfXggG4g9UFsAVnnm4QMkpPFCuAnFt9GNp1oz/wez7cmIbPIr0U6cBro9wn/c7mqc
+         i7e9y447rx+Vmy/jMKFr22SXy9PocEkztdzt58jAMGlSF3musETZlpcZQPSDrhqAbG
+         MD04S3cQJbN1e+w+5zdPX3tTuLo3yTaBC1RVXqpG2ntZG2Kbfegg36YktmmzRskDtH
+         WitTqNMAHd3sw==
+Date:   Mon, 9 Jan 2023 15:25:23 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Fabio Estevam <festevam@denx.de>
+Cc:     tharvey@gateworks.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8m-venice: Remove incorrect
+ 'uart-has-rtscts'
+Message-ID: <20230109072522.GD18301@T480>
+References: <20230102140402.582698-1-festevam@denx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.0.74.87]
-X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
- BJMBX02.spreadtrum.com (10.0.64.8)
-X-MAIL: SHSQR01.spreadtrum.com 3097LI0e092948
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230102140402.582698-1-festevam@denx.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UMS512 use the same GPIO and EIC controller with SC9860.
+On Mon, Jan 02, 2023 at 11:04:02AM -0300, Fabio Estevam wrote:
+> The following build warnings are seen when running:
+> 
+> make dtbs_check DT_SCHEMA_FILES=fsl-imx-uart.yaml
+> 
+> arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb: serial@30860000: cts-gpios: False schema does not allow [[33, 3, 1]]
+> 	From schema: Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+> arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb: serial@30860000: rts-gpios: False schema does not allow [[33, 5, 1]]
+> 	From schema: Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+> ...
+> 
+> The imx8m Venice Gateworks boards do not expose the UART RTS and CTS
+> as native UART pins, so 'uart-has-rtscts' should not be used.
+> 
+> Using 'uart-has-rtscts' with 'rts-gpios' is an invalid combination
+> detected by serial.yaml.
+> 
+> Fix the problem by removing the incorrect 'uart-has-rtscts' property.
+> 
+> Fixes: 27c8f4ccc1b9 ("arm64: dts: imx8mm-venice-gw72xx-0x: add dt overlays for serial modes")
+> Fixes: d9a9a7cf32c9 ("arm64: dts: imx8m{m,n}-venice-*: add missing uart-has-rtscts property to UARTs")
+> Fixes: 870f645b396b ("arm64: dts: imx8mp-venice-gw74xx: add WiFi/BT module support")
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/gpio/sprd,gpio-eic.yaml          | 33 +++++++++++++++----
- .../devicetree/bindings/gpio/sprd,gpio.yaml   |  7 +++-
- 2 files changed, 33 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-index a21350bd0f2c..99fcf970773a 100644
---- a/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-+++ b/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-@@ -42,12 +42,33 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - sprd,sc9860-eic-debounce
--      - sprd,sc9860-eic-latch
--      - sprd,sc9860-eic-async
--      - sprd,sc9860-eic-sync
--      - sprd,sc2731-eic
-+    oneOf:
-+      - enum:
-+          - sprd,sc9860-eic-debounce
-+          - sprd,sc9860-eic-latch
-+          - sprd,sc9860-eic-async
-+          - sprd,sc9860-eic-sync
-+          - sprd,sc2731-eic
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-debounce
-+          - const: sprd,sc9860-eic-debounce
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-latch
-+          - const: sprd,sc9860-eic-latch
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-async
-+          - const: sprd,sc9860-eic-async
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-sync
-+          - const: sprd,sc9860-eic-sync
-+      - items:
-+          - enum:
-+              - sprd,sc2730-eic
-+          - const: sprd,sc2731-eic
- 
-   reg:
-     minItems: 1
-diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-index 40924123d184..483168838128 100644
---- a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-@@ -19,7 +19,12 @@ description: |
- 
- properties:
-   compatible:
--    const: sprd,sc9860-gpio
-+    oneOf:
-+      - const: sprd,sc9860-gpio
-+      - items:
-+          - enum:
-+              - sprd,ums512-gpio
-+          - const: sprd,sc9860-gpio
- 
-   reg:
-     maxItems: 1
--- 
-2.25.1
-
+Applied, thanks!
