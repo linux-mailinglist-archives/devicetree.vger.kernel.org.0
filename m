@@ -2,146 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A987661E1B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 06:02:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EFC4661E2B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 06:09:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234366AbjAIFCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 00:02:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50180 "EHLO
+        id S234227AbjAIFJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 00:09:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234297AbjAIFB7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 00:01:59 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AB4BA1B5
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 21:01:58 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id bf43so11253659lfb.6
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 21:01:58 -0800 (PST)
+        with ESMTP id S233865AbjAIFJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 00:09:24 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9637B4B8
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 21:09:21 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id lc27so7998111ejc.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 21:09:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Mrb15vphKcBSHFcYnw0cLYDDRYFrhAD7+lVEbzPfwQ8=;
-        b=GzZgsr7ysm6Vahqhzw8OED4F8Mk1Iyje5Zw3eP0+IyXYt9Kx08093QrS5E/BrXg/gf
-         TgavSsHAjk//2Ijw9oY3op0NRX8Y9f/pnQ9AmO7auuTbGNbUb/2luSuNzICBM7ItFKxT
-         yOCxFWRYDU6IuMLOVyJjmpJOODHNjgdGIBvut4wIKKVpSGa2meTKFVJcRPqjRH/MtlNQ
-         e4OqwaaQWFkt03/3SlV72YaYBjsIKZCRnOSHFgv8ywjjvUW/N3oWaEJXTMLKJbH/joPR
-         Ysc9STYaTxhNMtztOIpVtib8n0fz+qNJmLJMIV5Lhn0G9a4zQhu99FqJpv6qQLscweUy
-         Lq3g==
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gQH0IE3u0wkmAklVZoiydI5Mo0drKV3a8FmyHE+njlo=;
+        b=PD4Cr6RmtBmVMqQ+6894VSyIbUZbeFHLeFo9RwkN1TMCAJG24tQV5DCcZgfGbqzo5i
+         nORiS6uAg/fxkPBTPz6C3iw1AThEjVSzkcmKxAZcdHGEvO/ekWN+H0w7w6KnYbiK0Wax
+         KdpReo4M+zKY8/v575NE68sHQT8u4rMK2ev8eJcfkIKoUcf7ghnHu2Krok7sv45fpNo8
+         d3gBK72Vrmj7ozt7KiXXcpz9SHeprPtkHpJDc4qMdgYWZsKXSHp+Ak9he/nmLSUUi9wJ
+         yVF/ro9+aJ/+81zYpM73RHvR6O1Ddgnn3xM6uejyK0DYhgeD5Z1SFHYv7K+vTfdEMHxp
+         hOSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Mrb15vphKcBSHFcYnw0cLYDDRYFrhAD7+lVEbzPfwQ8=;
-        b=f4pyiO4W4stOhp4dOQbohHSm0N/pUccUG4xuFoj1GbOvnp4RHNXsnCBA5nJaorvXbJ
-         aDyF1fAzW0MvRWCLm5Ibr735kZczwOL9I70y4BhIrHKzPAdvtpMQGrRHdvYllV/a9Q1J
-         XXmbOlApizfTEcd+lXm8vK1LoK+CH9f6nuV2PoAGXWrcDSLlpwOWguKuvNFnrSXyUd6f
-         wC7hgBWU/ZX/vadifbnQPBQck7IsX/dy/nxq21wkNHSTOk0YPuB0/zP+HZoeOzs5Vfqx
-         J6yll1XHqT//+CE480Ds6i9zVuFDwtYznyNwXOAXHc5+j5Pxx0wtsHvG/tYhWpzoLT6o
-         /G6Q==
-X-Gm-Message-State: AFqh2kpqQ9EwYYPH52sEpCdelZrWdkDPxZmXu7FaDGI79twZNb5BS1ym
-        c5k5xjaes0fY4tPrj8RaqRGwTg==
-X-Google-Smtp-Source: AMrXdXtITLmpH6LgbBKxG+zPB+ftxYgfZLCr61fILYsSSkjME9qg74R5e0xyjYPafiiQJLiZPVG+Gg==
-X-Received: by 2002:ac2:4bd3:0:b0:4b4:a460:c995 with SMTP id o19-20020ac24bd3000000b004b4a460c995mr24853877lfq.5.1673240516885;
-        Sun, 08 Jan 2023 21:01:56 -0800 (PST)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id j12-20020a19f50c000000b004b59067142bsm1008257lfb.8.2023.01.08.21.01.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 21:01:56 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: [PATCH v5 4/4] arm64: dts: qcom: add SoC specific compat strings to mdp5 nodes
-Date:   Mon,  9 Jan 2023 07:01:52 +0200
-Message-Id: <20230109050152.316606-5-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
-References: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gQH0IE3u0wkmAklVZoiydI5Mo0drKV3a8FmyHE+njlo=;
+        b=ZlnonuePSMCwM7Q1yHBRmon3TXmXG4aEX//iGk+/GQDmz23dLedvfdZwS+mFuyHEIc
+         ghVHqyDGcOw4QpKBPtb3iDxo1ogxCN5TOswrek6DPePmsH0Sh/oliCLMRklD8J9AnVpK
+         zTDaUt+SobzKPCZjD7VTvwgUUAlTy687/Vr8uOSWn4gbSKuoOs5eaCFGr07/2OMOj6sO
+         Mvyo+AW7rVS6AIalO+nryjfwIMUwyVERWeq+fZmZtrKtcK8Os4Gd73im/Qw7d0uvDawN
+         FC3FpzRNGCF2NC0Jh48rrGlmvAjzqFy9R/JKeKqu1jdyArMaBmL2CKmoVaU7TpdfFs/2
+         qFYg==
+X-Gm-Message-State: AFqh2kp6TYr2LeAUoSr3ohzXIDDUDmjEJ5X9/ADGqN9jbv9F/hfzle0i
+        9/0EIBHOpNayC2MVAVkQG9SJW8EclcM6xBgnXf5N6Y7c0sjufRb5
+X-Google-Smtp-Source: AMrXdXsIzihfLVNWVPuUxl3yoyz/+ffKETiVEHV/Bli8Z7zApZlruzh0VgzvBFCjhfBLend9SoSdgJNERtSySPdLfD0=
+X-Received: by 2002:a17:906:1481:b0:84d:1760:3981 with SMTP id
+ x1-20020a170906148100b0084d17603981mr1189905ejc.705.1673240960233; Sun, 08
+ Jan 2023 21:09:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230103141409.772298-1-apatel@ventanamicro.com>
+ <20230103141409.772298-2-apatel@ventanamicro.com> <Y7YGp/7ufyRPhkwg@spud>
+In-Reply-To: <Y7YGp/7ufyRPhkwg@spud>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Mon, 9 Jan 2023 10:39:08 +0530
+Message-ID: <CAAhSdy2YKJfuxhBmsx9v-OMyxKQjys+J-z_ZqoPJF7q=YrE4Zw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/9] RISC-V: Add AIA related CSR defines
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SoC-specific compat string to the MDP5 device nodes to ease
-distinguishing between various platforms.
+On Thu, Jan 5, 2023 at 4:37 AM Conor Dooley <conor@kernel.org> wrote:
+>
+> Hey Anup!
+>
+> On Tue, Jan 03, 2023 at 07:44:01PM +0530, Anup Patel wrote:
+> > The RISC-V AIA specification improves handling per-HART local interrupts
+> > in a backward compatible manner. This patch adds defines for new RISC-V
+> > AIA CSRs.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  arch/riscv/include/asm/csr.h | 92 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 92 insertions(+)
+> >
+> > diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+> > index 0e571f6483d9..4e1356bad7b2 100644
+> > --- a/arch/riscv/include/asm/csr.h
+> > +++ b/arch/riscv/include/asm/csr.h
+> > @@ -73,7 +73,10 @@
+> >  #define IRQ_S_EXT            9
+> >  #define IRQ_VS_EXT           10
+> >  #define IRQ_M_EXT            11
+> > +#define IRQ_S_GEXT           12
+> >  #define IRQ_PMU_OVF          13
+> > +#define IRQ_LOCAL_MAX                (IRQ_PMU_OVF + 1)
+> > +#define IRQ_LOCAL_MASK               ((_AC(1, UL) << IRQ_LOCAL_MAX) - 1)
+> >
+> >  /* Exception causes */
+> >  #define EXC_INST_MISALIGNED  0
+> > @@ -156,6 +159,26 @@
+> >                                (_AC(1, UL) << IRQ_S_TIMER) | \
+> >                                (_AC(1, UL) << IRQ_S_EXT))
+> >
+> > +/* AIA CSR bits */
+> > +#define TOPI_IID_SHIFT               16
+> > +#define TOPI_IID_MASK                0xfff
+> > +#define TOPI_IPRIO_MASK              0xff
+> > +#define TOPI_IPRIO_BITS              8
+> > +
+> > +#define TOPEI_ID_SHIFT               16
+> > +#define TOPEI_ID_MASK                0x7ff
+> > +#define TOPEI_PRIO_MASK              0x7ff
+> > +
+> > +#define ISELECT_IPRIO0               0x30
+> > +#define ISELECT_IPRIO15              0x3f
+> > +#define ISELECT_MASK         0x1ff
+> > +
+> > +#define HVICTL_VTI           0x40000000
+> > +#define HVICTL_IID           0x0fff0000
+> > +#define HVICTL_IID_SHIFT     16
+> > +#define HVICTL_IPRIOM                0x00000100
+> > +#define HVICTL_IPRIO         0x000000ff
+>
+> Why not name these as masks, like you did for the other masks?
+> Also, the mask/shift defines appear inconsistent. TOPI_IID_MASK is
+> intended to be used post-shift AFAICT, but HVICTL_IID_SHIFT is intended
+> to be used *pre*-shift.
+> Some consistency in naming and function would be great.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sdm630.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sdm660.dtsi  | 2 ++
- 4 files changed, 5 insertions(+), 3 deletions(-)
+The following convention is being followed in asm/csr.h for defining
+MASK of any XYZ field in ABC CSR:
+1. ABC_XYZ : This name is used for MASK which is intended
+   to be used before SHIFT
+2. ABC_XYZ_MASK: This name is used for MASK which is
+   intended to be used after SHIFT
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 2ca8e977fc2a..0a23fb6efae8 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -989,7 +989,7 @@ mdss: mdss@1a00000 {
- 			ranges;
- 
- 			mdp: mdp@1a01000 {
--				compatible = "qcom,mdp5";
-+				compatible = "qcom,msm8916-mdp5", "qcom,mdp5";
- 				reg = <0x01a01000 0x89000>;
- 				reg-names = "mdp_phys";
- 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index d31464204f69..b5cd1bcad5eb 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -931,7 +931,7 @@ mdss: mdss@900000 {
- 			status = "disabled";
- 
- 			mdp: mdp@901000 {
--				compatible = "qcom,mdp5";
-+				compatible = "qcom,msm8996-mdp5", "qcom,mdp5";
- 				reg = <0x00901000 0x90000>;
- 				reg-names = "mdp_phys";
- 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 13e6a4fbba27..65addd4c672e 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1498,7 +1498,7 @@ mdss: mdss@c900000 {
- 			status = "disabled";
- 
- 			mdp: mdp@c901000 {
--				compatible = "qcom,mdp5";
-+				compatible = "qcom,sdm630-mdp5", "qcom,mdp5";
- 				reg = <0x0c901000 0x89000>;
- 				reg-names = "mdp_phys";
- 
-diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-index d52123cb5cd3..cdaa0d7a66f3 100644
---- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-@@ -142,6 +142,8 @@ &gpucc {
- };
- 
- &mdp {
-+	compatible = "qcom,sdm660-mdp5", "qcom,mdp5";
-+
- 	ports {
- 		port@1 {
- 			reg = <1>;
--- 
-2.39.0
+The existing defines for [M|S]STATUS, HSTATUS, SATP, and xENVCFG
+follows the above convention. The only outlier is HGATPx_VMID_MASK
+define which I will fix in my next KVM RISC-V series.
 
+I don't see how any of the AIA CSR defines are violating the above
+convention.
+
+The choice of ABC_XYZ versus ABC_XYZ_MASK name is upto
+the developer as long as the above convention is not violated.
+
+>
+>
+> > +/* Machine-Level High-Half CSRs (AIA) */
+> > +#define CSR_MIDELEGH         0x313
+>
+> I feel like I could find Midelegh in an Irish dictionary lol
+> Anyways, I went through the CSRs and they do all seem correct.
+>
+> Thanks,
+> Conor.
+>
+>
+
+Regards,
+Anup
