@@ -2,167 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EFC4661E2B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 06:09:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B427661E37
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 06:14:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234227AbjAIFJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 00:09:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51900 "EHLO
+        id S234305AbjAIFOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 00:14:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233865AbjAIFJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 00:09:24 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9637B4B8
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 21:09:21 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id lc27so7998111ejc.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 21:09:21 -0800 (PST)
+        with ESMTP id S231446AbjAIFOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 00:14:05 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CBDDBC15
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 21:14:04 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id s22so7758946ljp.5
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 21:14:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gQH0IE3u0wkmAklVZoiydI5Mo0drKV3a8FmyHE+njlo=;
-        b=PD4Cr6RmtBmVMqQ+6894VSyIbUZbeFHLeFo9RwkN1TMCAJG24tQV5DCcZgfGbqzo5i
-         nORiS6uAg/fxkPBTPz6C3iw1AThEjVSzkcmKxAZcdHGEvO/ekWN+H0w7w6KnYbiK0Wax
-         KdpReo4M+zKY8/v575NE68sHQT8u4rMK2ev8eJcfkIKoUcf7ghnHu2Krok7sv45fpNo8
-         d3gBK72Vrmj7ozt7KiXXcpz9SHeprPtkHpJDc4qMdgYWZsKXSHp+Ak9he/nmLSUUi9wJ
-         yVF/ro9+aJ/+81zYpM73RHvR6O1Ddgnn3xM6uejyK0DYhgeD5Z1SFHYv7K+vTfdEMHxp
-         hOSQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PvdkWVVFT++i2HrXBK25wLmmBQIyNJvJJ78RUMtwfHQ=;
+        b=cMmJD80AQE5+uGOgBtAn20gwsELKhIR5IRx28DwD9gcV/j376g1au5p3+zmmlWRRoJ
+         ik5BtT0BPcSiCHxmJCPV3zFErCP/brX6c6gIGzCZbMnyGk7KD5hclqpxrZmee4mSO2za
+         YzNsWNh3pENDCfe3KqxSjl22TY/kKSe0E+BN0ZSgBVfbzcaW+EIgX6BQgBGmdXn6HbtX
+         KTm5AMr8S4HsVlNK0nPmZD8diV2d9jvlhnUMeTOCS59Zs12CTRBZpqxgtO7jGS1WlJcz
+         7XPoBH1YRvijCI8OxnoPKxWAoePIb1JpcoH/qzrnhqJvd+jsKcul6+PQDTJ3LOGyGYz2
+         ac6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gQH0IE3u0wkmAklVZoiydI5Mo0drKV3a8FmyHE+njlo=;
-        b=ZlnonuePSMCwM7Q1yHBRmon3TXmXG4aEX//iGk+/GQDmz23dLedvfdZwS+mFuyHEIc
-         ghVHqyDGcOw4QpKBPtb3iDxo1ogxCN5TOswrek6DPePmsH0Sh/oliCLMRklD8J9AnVpK
-         zTDaUt+SobzKPCZjD7VTvwgUUAlTy687/Vr8uOSWn4gbSKuoOs5eaCFGr07/2OMOj6sO
-         Mvyo+AW7rVS6AIalO+nryjfwIMUwyVERWeq+fZmZtrKtcK8Os4Gd73im/Qw7d0uvDawN
-         FC3FpzRNGCF2NC0Jh48rrGlmvAjzqFy9R/JKeKqu1jdyArMaBmL2CKmoVaU7TpdfFs/2
-         qFYg==
-X-Gm-Message-State: AFqh2kp6TYr2LeAUoSr3ohzXIDDUDmjEJ5X9/ADGqN9jbv9F/hfzle0i
-        9/0EIBHOpNayC2MVAVkQG9SJW8EclcM6xBgnXf5N6Y7c0sjufRb5
-X-Google-Smtp-Source: AMrXdXsIzihfLVNWVPuUxl3yoyz/+ffKETiVEHV/Bli8Z7zApZlruzh0VgzvBFCjhfBLend9SoSdgJNERtSySPdLfD0=
-X-Received: by 2002:a17:906:1481:b0:84d:1760:3981 with SMTP id
- x1-20020a170906148100b0084d17603981mr1189905ejc.705.1673240960233; Sun, 08
- Jan 2023 21:09:20 -0800 (PST)
-MIME-Version: 1.0
-References: <20230103141409.772298-1-apatel@ventanamicro.com>
- <20230103141409.772298-2-apatel@ventanamicro.com> <Y7YGp/7ufyRPhkwg@spud>
-In-Reply-To: <Y7YGp/7ufyRPhkwg@spud>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 9 Jan 2023 10:39:08 +0530
-Message-ID: <CAAhSdy2YKJfuxhBmsx9v-OMyxKQjys+J-z_ZqoPJF7q=YrE4Zw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/9] RISC-V: Add AIA related CSR defines
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        bh=PvdkWVVFT++i2HrXBK25wLmmBQIyNJvJJ78RUMtwfHQ=;
+        b=OjY1eokdyjtqQo4sAyQMKYOL1ba0/MCUkjmFXfg8tI931b1C60pnW8ncHyaAZdCRBn
+         mEAcOaYqsNGtMX7d0t4I1TEa+C7RqHXV/XFIOkff3QV0asNN7nt4vdoGQAFqqdXtlozn
+         i/Uw6tq/NNL3mfe1fMCXaPRgviIn2aZHAkpdxE1PwpiJN0qWP6U4EhcuwTv/92hdzy+v
+         s438IGTU21B8pbvFmlvr213Hz0G3/FM6t3nq1csXPSMIysyBrWnW+ByjE7XGmN9IzhHJ
+         PBWihuePqUg90xE6p/1C0talNLCKjLK71TKahxQJvjXfeDSmGTjI8b1jydjk+89zECNR
+         1bKw==
+X-Gm-Message-State: AFqh2kpXrW+WnRC/vUWqojTx6y8k8BFwdas6rj3t/BVTdZDHKwgIcvC+
+        Xf+fafsxhEr4EpsnC8+yOfeaCA==
+X-Google-Smtp-Source: AMrXdXtdwSRQ4dPucdNAQqPmdkBsTj0C9tXRHKfE+ngpkDjMyh9Kw6hDCs2C7izQqkMAG/GiGql+5Q==
+X-Received: by 2002:a2e:92cf:0:b0:27f:a604:22b8 with SMTP id k15-20020a2e92cf000000b0027fa60422b8mr15051285ljh.40.1673241242904;
+        Sun, 08 Jan 2023 21:14:02 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id w4-20020a19c504000000b004b5812207dbsm1426880lfe.201.2023.01.08.21.14.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Jan 2023 21:14:02 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: [PATCH 0/6] dt-bindings: display/msm: rename mdss and mdp nodes
+Date:   Mon,  9 Jan 2023 07:13:56 +0200
+Message-Id: <20230109051402.317577-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 5, 2023 at 4:37 AM Conor Dooley <conor@kernel.org> wrote:
->
-> Hey Anup!
->
-> On Tue, Jan 03, 2023 at 07:44:01PM +0530, Anup Patel wrote:
-> > The RISC-V AIA specification improves handling per-HART local interrupts
-> > in a backward compatible manner. This patch adds defines for new RISC-V
-> > AIA CSRs.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  arch/riscv/include/asm/csr.h | 92 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 92 insertions(+)
-> >
-> > diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-> > index 0e571f6483d9..4e1356bad7b2 100644
-> > --- a/arch/riscv/include/asm/csr.h
-> > +++ b/arch/riscv/include/asm/csr.h
-> > @@ -73,7 +73,10 @@
-> >  #define IRQ_S_EXT            9
-> >  #define IRQ_VS_EXT           10
-> >  #define IRQ_M_EXT            11
-> > +#define IRQ_S_GEXT           12
-> >  #define IRQ_PMU_OVF          13
-> > +#define IRQ_LOCAL_MAX                (IRQ_PMU_OVF + 1)
-> > +#define IRQ_LOCAL_MASK               ((_AC(1, UL) << IRQ_LOCAL_MAX) - 1)
-> >
-> >  /* Exception causes */
-> >  #define EXC_INST_MISALIGNED  0
-> > @@ -156,6 +159,26 @@
-> >                                (_AC(1, UL) << IRQ_S_TIMER) | \
-> >                                (_AC(1, UL) << IRQ_S_EXT))
-> >
-> > +/* AIA CSR bits */
-> > +#define TOPI_IID_SHIFT               16
-> > +#define TOPI_IID_MASK                0xfff
-> > +#define TOPI_IPRIO_MASK              0xff
-> > +#define TOPI_IPRIO_BITS              8
-> > +
-> > +#define TOPEI_ID_SHIFT               16
-> > +#define TOPEI_ID_MASK                0x7ff
-> > +#define TOPEI_PRIO_MASK              0x7ff
-> > +
-> > +#define ISELECT_IPRIO0               0x30
-> > +#define ISELECT_IPRIO15              0x3f
-> > +#define ISELECT_MASK         0x1ff
-> > +
-> > +#define HVICTL_VTI           0x40000000
-> > +#define HVICTL_IID           0x0fff0000
-> > +#define HVICTL_IID_SHIFT     16
-> > +#define HVICTL_IPRIOM                0x00000100
-> > +#define HVICTL_IPRIO         0x000000ff
->
-> Why not name these as masks, like you did for the other masks?
-> Also, the mask/shift defines appear inconsistent. TOPI_IID_MASK is
-> intended to be used post-shift AFAICT, but HVICTL_IID_SHIFT is intended
-> to be used *pre*-shift.
-> Some consistency in naming and function would be great.
+Finish the process of renaming display-related nodes on Qualcomm
+systems. Fix it in the schema that MDSS (Mobile Display SubSystem)
+devices are named `display-subsystem' and both MDP (Mobile Display
+Processor) and DPU (Display Processor Unit) nodes are named
+`display-controller'.
 
-The following convention is being followed in asm/csr.h for defining
-MASK of any XYZ field in ABC CSR:
-1. ABC_XYZ : This name is used for MASK which is intended
-   to be used before SHIFT
-2. ABC_XYZ_MASK: This name is used for MASK which is
-   intended to be used after SHIFT
+Dmitry Baryshkov (6):
+  dt-bindings: display/msm: rename mdss nodes to display-sybsystem
+  dt-bindings: display/msm: rename mdp nodes to display-controller
+  arm64: dts: qcom: rename mdss nodes to display-subsystem
+  ARM: dts: qcom-msm8974: rename mdss node to display-subsystem
+  arm64: dts: qcom: rename mdp nodes to display-controller
+  ARM: dts: qcom: rename mdp nodes to display-controller
 
-The existing defines for [M|S]STATUS, HSTATUS, SATP, and xENVCFG
-follows the above convention. The only outlier is HGATPx_VMID_MASK
-define which I will fix in my next KVM RISC-V series.
+ .../devicetree/bindings/display/msm/dpu-common.yaml   |  8 ++++++++
+ .../devicetree/bindings/display/msm/mdss-common.yaml  |  8 ++++++++
+ .../devicetree/bindings/display/msm/qcom,mdp5.yaml    |  3 +++
+ .../devicetree/bindings/display/msm/qcom,mdss.yaml    | 11 +++++++----
+ arch/arm/boot/dts/qcom-apq8064.dtsi                   |  2 +-
+ arch/arm/boot/dts/qcom-msm8974.dtsi                   |  4 ++--
+ arch/arm64/boot/dts/qcom/msm8916.dtsi                 |  4 ++--
+ arch/arm64/boot/dts/qcom/msm8953.dtsi                 |  4 ++--
+ arch/arm64/boot/dts/qcom/msm8996.dtsi                 |  4 ++--
+ arch/arm64/boot/dts/qcom/sc7180.dtsi                  |  2 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi                  |  4 ++--
+ arch/arm64/boot/dts/qcom/sdm845.dtsi                  |  2 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi                  |  2 +-
+ 13 files changed, 40 insertions(+), 18 deletions(-)
 
-I don't see how any of the AIA CSR defines are violating the above
-convention.
+-- 
+2.39.0
 
-The choice of ABC_XYZ versus ABC_XYZ_MASK name is upto
-the developer as long as the above convention is not violated.
-
->
->
-> > +/* Machine-Level High-Half CSRs (AIA) */
-> > +#define CSR_MIDELEGH         0x313
->
-> I feel like I could find Midelegh in an Irish dictionary lol
-> Anyways, I went through the CSRs and they do all seem correct.
->
-> Thanks,
-> Conor.
->
->
-
-Regards,
-Anup
