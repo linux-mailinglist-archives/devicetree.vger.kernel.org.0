@@ -2,185 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D1666237F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 11:52:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC5AA662383
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 11:53:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233424AbjAIKv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 05:51:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59666 "EHLO
+        id S233672AbjAIKwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 05:52:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237044AbjAIKvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 05:51:16 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AABE66557
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 02:51:15 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id f34so12279987lfv.10
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 02:51:15 -0800 (PST)
+        with ESMTP id S236309AbjAIKwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 05:52:22 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DECAB856
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 02:52:21 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id jo4so19016320ejb.7
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 02:52:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JsN84k15cdPMCz3ZH4kBmEUN31+4Ir3WQAaxa6Z7nLc=;
-        b=g1ZHrjlo39rJcrZJp9CuGlAXd/oFYOjR3UgdFUknYfDi4oDlj60YlStINtQAZbnk41
-         eQpI6Lf6PI6swybRHz9UUMlE+DdfmS2NmpXbFm9hfVR3QU+0jKB3WvqNSkProht5xSAc
-         OkwLBizkeIC2JVs3cMuMMOOlEm0804Nq4aMuTuVtqDDql1ofQH6WCtgTWZYWx8HAI2Ul
-         e4iYINSuS9J1V7/sRogZKmqhPDXROOzmK9+a6rhc0k6QyIskM8jlPEiIEY9PdtJ7IQvi
-         LU5NI5pnYt6qvAMLqwh5wAZyMYV2g8L4UzyCVR3/EHe3YCD0vg+TqmMFdwzww+7kFBbV
-         Jscw==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/LJ5qX1H/OsHCtXTS+GhxMpXNyq3lMbowOelfPrgxUQ=;
+        b=kmapB8u4A6JvgZJJT8k0ygQTWdxJDz5H8+aPTeyaUrbd5/js+eY/vn+wa9XkOqfLhB
+         BhWrZS3Gxu1V0al/tfEzGW+lc3v2fmJ1kpyV+GtjvWgzEWNn3C+BglF4HFwaX3U9nkdz
+         rHaf+p07+E8WImv4+wldD32TKVS5tavGrAkPAiuzp4iSkAjP3ZN54fGIuUW9kq5QTZK6
+         aP+a48UExf0EJ+zvDJEYuBu7RwMiMUzcJQaM2Waa7J1Lqzff3o63L3fPkcXAFGNovKto
+         yYcxGKgYnz6QYpfrplC859RPUcFau3N9uBbFrvGAY+0QMJjSU8YL/euVGtT7IYjd3C7D
+         sJ3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JsN84k15cdPMCz3ZH4kBmEUN31+4Ir3WQAaxa6Z7nLc=;
-        b=mgw6jQIupDqhPs2mqRsbwumtDDXlFJ1BDQzhX3XdsXvM2f7vi9Kac7DRn8v3Se1p0L
-         Acwgjx3qx1iAvxDEiPJZbGdPNnxHHQwO0QvXeixbXYG0Eyq7PX65o1RCZLXDBPt4vXBl
-         UeHf9Q+haCkxX+Ogdky54m7uAYIXFqQpt3GZMdJHYMeEXujbAMQpPbrNM8kYjklg98O2
-         LIfhoWp9Lwld0ySujD2ogTFkevzdUiNQoBriHXY3lZ3Qb2YY1CJK4pAp0UB7v0LXU8Cj
-         zqf94VV+tFCFqeiU+5V0m5KVT+bTR7v/9XJ5EaUBsPHac7V+mGk1ksbc/HP6ZvIsYUhU
-         G0Og==
-X-Gm-Message-State: AFqh2kojxKyzYL/Nl2aj5Cn3hPRtKuSTSLLu0s8nOydKltq9EtUMMLr0
-        YuuSbPb9zdseATJtX690ChwilQ==
-X-Google-Smtp-Source: AMrXdXvmChGvCpuGZwA6ctO/x9l6DNGCK7ykdPtIirR/uRRH6Niih5JBU7Gpn1I52db012aJ7gZUnw==
-X-Received: by 2002:a05:6512:2828:b0:4b9:f5e5:8fbc with SMTP id cf40-20020a056512282800b004b9f5e58fbcmr23740622lfb.30.1673261473945;
-        Mon, 09 Jan 2023 02:51:13 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id m5-20020a056512114500b004b6f00832cesm1555838lfg.166.2023.01.09.02.51.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 02:51:13 -0800 (PST)
-Message-ID: <5a58eabc-08ba-57da-290d-b432f3f99268@linaro.org>
-Date:   Mon, 9 Jan 2023 12:51:13 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/LJ5qX1H/OsHCtXTS+GhxMpXNyq3lMbowOelfPrgxUQ=;
+        b=R6caYTgwYNEFnk423h7dW3wnwR+ILMBNO/oWjZcUC3pA2HUIzc70vKsQDt6njmTcHf
+         WQ8PRtkw013tIkdsbr+2E56lq3LMBcX+r6yRJURWuRWlZz7plTlV0xWzlpmhARbLjcX2
+         l5k3B+xGKxxtiNBCBEiVFl9/jwVLiKKSqTSDbzMLtnC/AofTtCXrwKc0XHLlwaM2kH05
+         OCyKzzs5pi5DXai4NboEd8tAB5ifbqTfJq23tP5bPEfWQJxt/Q02NrlHTe6UFY+3GwiS
+         eOmyGFf9iUeWLaRM20xwLbj+v4NtBlsSosKmKPRBi/xPwLFDcJZPxx3jKC25JKLKEx9P
+         pBNw==
+X-Gm-Message-State: AFqh2koaSrrj10Xq72A26nbZW3fpGphxv4F+9Q49eBEqTYzFHVz/2jdR
+        DZo5i4eevPPHQhJwq4tDeGXLvg==
+X-Google-Smtp-Source: AMrXdXvuD1E1y0CbxxatR4UenaHvSzJIn3aL1usjTAb96Q8/IV+uiX9xzNJnJ8FmKTWu/xBonchvJQ==
+X-Received: by 2002:a17:907:8746:b0:7c1:413d:5b0 with SMTP id qo6-20020a170907874600b007c1413d05b0mr61562637ejc.47.1673261539704;
+        Mon, 09 Jan 2023 02:52:19 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id og5-20020a1709071dc500b0084d420503a3sm1757332ejc.178.2023.01.09.02.52.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 02:52:19 -0800 (PST)
+Date:   Mon, 9 Jan 2023 12:52:17 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Jun Li <jun.li@nxp.com>, abelvesa@kernel.org,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] clk: imx: imx8mp: add shared clk gate for usb
+ suspend clk
+Message-ID: <Y7vx4TuxzLwVKy0K@linaro.org>
+References: <1664549663-20364-1-git-send-email-jun.li@nxp.com>
+ <1664549663-20364-2-git-send-email-jun.li@nxp.com>
+ <PA4PR04MB964042A30D09FAF4A5C40227892B9@PA4PR04MB9640.eurprd04.prod.outlook.com>
+ <20221027173919.12E23C433C1@smtp.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: display/msm: add core clock to the
- mdss bindings
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230109005209.247356-1-dmitry.baryshkov@linaro.org>
- <20230109005209.247356-2-dmitry.baryshkov@linaro.org>
- <3414e686-9f8d-a29d-6cc1-f073b70a9f1c@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <3414e686-9f8d-a29d-6cc1-f073b70a9f1c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221027173919.12E23C433C1@smtp.kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 12:35, Krzysztof Kozlowski wrote:
-> On 09/01/2023 01:52, Dmitry Baryshkov wrote:
->> Add (optional) core clock to the mdss bindings to let the MDSS driver
->> access harware registers before MDP driver probes.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../bindings/display/msm/qcom,mdss.yaml       | 34 ++++++++++++++-----
->>   1 file changed, 26 insertions(+), 8 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
->> index ba0460268731..0647fc5a7d94 100644
->> --- a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
->> @@ -45,17 +45,11 @@ properties:
->>   
->>     clocks:
->>       minItems: 1
->> -    items:
->> -      - description: Display abh clock
->> -      - description: Display axi clock
+On 22-10-27 10:39:16, Stephen Boyd wrote:
+> Quoting Jun Li (2022-10-19 02:26:00)
+> > Hi Stephen,
+> > 
+> > > -----Original Message-----
+> > > From: Jun Li <jun.li@nxp.com>
+> > > Sent: Friday, September 30, 2022 10:54 PM
+> > > To: sboyd@kernel.org; abelvesa@kernel.org
+> > > Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > > shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
+> > > festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>;
+> > > mturquette@baylibre.com; l.stach@pengutronix.de; Peng Fan
+> > > <peng.fan@nxp.com>; alexander.stein@ew.tq-group.com;
+> > > gregkh@linuxfoundation.org; devicetree@vger.kernel.org;
+> > > linux-arm-kernel@lists.infradead.org; linux-clk@vger.kernel.org
+> > > Subject: [PATCH v4 2/3] clk: imx: imx8mp: add shared clk gate for usb suspend
+> > > clk
+> > > 
+> > > 32K usb suspend clock gate is shared with usb_root_clk, this shared clock
+> > > gate was initially defined only for usb suspend clock, usb suspend clk is
+> > > kept on while system is active or system sleep with usb wakeup enabled, so
+> > > usb root clock is fine with this situation; with the commit cf7f3f4fa9e5
+> > > ("clk: imx8mp: fix usb_root_clk parent"), this clock gate is changed to be
+> > > for usb root clock, but usb root clock will be off while usb is suspended,
+> > > so usb suspend clock will be gated too, this cause some usb functionalities
+> > > will not work, so define this clock to be a shared clock gate to conform
+> > > with the real HW status.
+> > > 
+> > > Fixes: 9c140d9926761 ("clk: imx: Add support for i.MX8MP clock driver")
+> > > Cc: stable@vger.kernel.org # v5.19+
+> > > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > Signed-off-by: Li Jun <jun.li@nxp.com>
+> > 
+> > Is this version okay for you? 
+> > 
 > 
-> Not related to this patch, but it is a bit surprising to see AXI clock
-> optional.
+> I thought that Abel was going to pick these up.
 
-Hmm, There is one defined downstream. Probably we should fix that (but 
-yes, it's a separate issue).
+Oh, sorry, I thought the fixes will be picked up by you.
 
->> -      - description: Display vsync clock
->> +    maxItems: 4
->>   
->>     clock-names:
->>       minItems: 1
->> -    items:
->> -      - const: iface
->> -      - const: bus
->> -      - const: vsync
->> +    maxItems: 4
->>   
->>     "#address-cells":
->>       const: 1
->> @@ -69,6 +63,30 @@ properties:
->>       items:
->>         - description: MDSS_CORE reset
->>   
->> +oneOf:
->> +  - properties:
->> +      clocks:
->> +        minItems: 3
->> +        maxItems: 4
->> +
->> +      clock-names:
->> +        minItems: 3
->> +        items:
->> +          - const: iface
->> +          - const: bus
-> 
-> BTW, sc7180-mdss uses here ahb name and calls it "AHB clock from dispcc".
-> 
-> SM8250 won't match here either. Maybe this should be reworked to specify
-> limits here but not the names and actual clocks? IOW, drop entire oneOf?
-
-SC7180 and SM8250 use platform-specific bindings (qcom,sc7180-mdss.yaml 
-and qcom,sm8250-mdss.yaml). This file is used only for older platforms 
-(msm8916, msm8996, etc).
-
-> 
-> There were a lot, a lot of changes to MDSS/DPU bindings recently, so I
-> am really loosing track what is done where and when.
-> 
-> There are also few separate patchsets from you on the lists. Could they
-> be combined into one cleanup?
-
-Ack, I'll merge them into a single patchset.
-
-> I understand that sometimes new cleanup is needed after old cleanup
-> finished (I had the same with pinctrl), so it is not a complain.
-> 
-> Another problem (and this time I complain) is that several of your
-> patchsets were sent, discussed and then without any notice applied. No
-> message that a patchset was applied to some tree. Look:
-> 
-> https://lore.kernel.org/all/20221124001708.25720-2-a39.skl@gmail.com/
-> https://lore.kernel.org/all/09ed16e1-4af2-8fce-dab4-f6c0f09e688c@linaro.org/
-> 
-> Nothing. Silent application. If you are the maintainer which picks up
-> the patch, please always, always send message that they are applied.
-> Patchwork does it automatically, b4 can do it easily as well. If you use
-> other tools - use other tools for sending it. Otherwise things are
-> discussed on mailing lists, receive several comments and there is never
-> a resubmit but instead they show in the tree.
-
-Unfortunately freedreno uses patchwork-fdo, which doesn't send 
-notifications. And the fdo fork is not supported by b4. I checked what 
-would be necessary to enable support in b4. Unfortunately several API 
-changes would be necessary. So this is a long process. But we are open 
-to any suggestions on how to improve the process. Currently all three 
-maintainers (Rob, Abhinav and me) keep the patch status in the 
-patchwork, but that's all.
-
--- 
-With best wishes
-Dmitry
-
+I'll apply it to my tree then.
