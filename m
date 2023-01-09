@@ -2,110 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B21D86622B1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 11:13:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 350D56622ED
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 11:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236916AbjAIKNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 05:13:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59310 "EHLO
+        id S236309AbjAIKQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 05:16:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236768AbjAIKM5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 05:12:57 -0500
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFAF911C07
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 02:11:45 -0800 (PST)
-Received: by mail-vs1-xe35.google.com with SMTP id i188so8032048vsi.8
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 02:11:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nl5gtLkelHYob0yvxLrGJZ0WToOte9ATFrvdQKICgVE=;
-        b=QNMyZmEv6uPuj/qm5nlVIOi9oLDwVoh7ki5s2SwsVlxB8Qa7tRd3oTaIfeHbBD+Dd0
-         a0R6oWjAg772gZCDdeUZDLbwtzO1YittETMC244DFqNxDyLX+C4+Xktl9Qt7T64NE5Xi
-         grJsVq7rhsC/EGWaUlY5lp6ayREbcqt4h6wMs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nl5gtLkelHYob0yvxLrGJZ0WToOte9ATFrvdQKICgVE=;
-        b=LpjRX2y5qYNTN+oM3Abl/2jwunFQyeXmB1klusbhZCjfF3OQyXcv3wvTU4OpmkKRAW
-         jvW96CT+tsxhEnA5kGrm3Ao71OPQdleGbsk7vafJtImw2tgy9f1SZfg73/PyUNTxv3le
-         owuIoE/OR1lxKcXYj1YbO5yKeSRttPYJcyAqtQHhm20GFM7RywIywWY4ijiJXA1eYHOf
-         6iJ2x740S1gzHSlUShsBFG2ozDtVG/XrE7lSnvpZ25B16vCBvjS5RE3inmC9KlRcuTnI
-         G17IF6BaPB7nuCR0axbAivC0OK/bm1h03+hRmQ7v9s4l3IyfA63rsl+iU/a/ICYncH4+
-         xWcg==
-X-Gm-Message-State: AFqh2ko4C+X7OmQjVAazkjyy07beTA0dAzkD5b5/xv59vFe3bSAXWajr
-        yntMxd4MNJw00WIsi6ICTUW8WfdM90RK2qeegEYTwg==
-X-Google-Smtp-Source: AMrXdXtcNn1bVy1ULhiaYChXgRMGkSnSLx4444KzFv+N7rK2lYGkipv1i04e7jLkrmz585HPK6nXmJX0twUwXvIgfVY=
-X-Received: by 2002:a05:6102:374d:b0:3d0:af13:3b6 with SMTP id
- u13-20020a056102374d00b003d0af1303b6mr141886vst.65.1673259105126; Mon, 09 Jan
- 2023 02:11:45 -0800 (PST)
-MIME-Version: 1.0
-References: <20230109084101.265664-1-treapking@chromium.org> <20230109084101.265664-6-treapking@chromium.org>
-In-Reply-To: <20230109084101.265664-6-treapking@chromium.org>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 9 Jan 2023 18:11:34 +0800
-Message-ID: <CAGXv+5GnLhUfdDzDQ2Y1Hb7gb+rjZzMhLU+38MYR+VHRdUCtkQ@mail.gmail.com>
-Subject: Re: [PATCH v9 5/9] drm/bridge: anx7625: Check for Type-C during panel registration
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236972AbjAIKQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 05:16:07 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B858B1089;
+        Mon,  9 Jan 2023 02:15:30 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3097kvdG020423;
+        Mon, 9 Jan 2023 10:15:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=gMSsfsc6W5Z7AWbXOxhhnPrA/eSOnqm85HvHrPE2o8s=;
+ b=UNlriiL/wHgLgiBceVXVA0qrb/rkeYDAX0viBOxfb6QYV9yFI2+j+K8ty6jB6UJAWT+H
+ +akEfI/5IlEweCvv9Nm0VMN8l0/11n+e0qouxyUmzBoc0ST9FOAyYKjGfjcCvTqvPrBx
+ W7hv7XbFDJo73xnNmxe94OJtPH0jt/cW5Gx36LMze0iSIMuz73p4Hi66U6tU0cu5J/we
+ i+zzQig+9VV4C32lDB4gkFxsBdY2GDz8mqUIto6PXuXe99uGu6y+osGMxb8aSs0ZC+3K
+ fUgd43tWkxEO+O/cwo9rkY5FSk/euu8xe5xqP2Njkv+e5De9LNYuVw/UjE7E4767BPwL Qw== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3my0b92t9y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 Jan 2023 10:15:16 +0000
+Received: from nasanex01a.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 309AFFU2030936
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 9 Jan 2023 10:15:15 GMT
+Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 9 Jan 2023 02:15:10 -0800
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, linux-acpi@vger.kernel.org,
-        Allen Chen <allen.chen@ite.com.tw>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        dri-devel@lists.freedesktop.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        chrome-platform@lists.linux.dev, Xin Ji <xji@analogixsemi.com>,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Sai Prakash Ranjan" <quic_saipraka@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>, <vkoul@kernel.org>,
+        "Souradeep Chowdhury" <quic_schowdhu@quicinc.com>
+Subject: [PATCH V0 0/1] Add QAD, Cti-trigger and Bootconfig support for Data Capture and Compare(DCC)
+Date:   Mon, 9 Jan 2023 15:43:43 +0530
+Message-ID: <cover.1673247689.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: flXfUITHtK1rNZUz5b5e7R28OPd1-JPk
+X-Proofpoint-ORIG-GUID: flXfUITHtK1rNZUz5b5e7R28OPd1-JPk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-09_03,2023-01-06_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ clxscore=1015 adultscore=0 impostorscore=0 phishscore=0 bulkscore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=999 priorityscore=1501
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301090071
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 9, 2023 at 4:41 PM Pin-yen Lin <treapking@chromium.org> wrote:
->
-> The output port endpoints can be connected to USB-C connectors.
-> Running drm_of_find_panel_or_bridge() with such endpoints leads to
-> a continuous return value of -EPROBE_DEFER, even though there is
-> no panel present.
->
-> To avoid this, check for the existence of a "mode-switch" property in
-> the port endpoint, and skip panel registration completely if so.
->
-> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+This patch adds the Bootconfig, QAD and CTI-Trigger support for DCC.
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+1.Bootconfig
 
-on MT8192 based Hayato (ASUS Chromebook Flip CM3200).
+Bootconfig parser has been added to DCC driver so that the register addresses
+can be configured during boot-time. This is used to debug crashes that can happen
+during boot-time. The expected format of a bootconfig is as follows:-
+
+dcc_config {
+	link_list_0 {
+		qcom-curr-link-list = <The list number to configure>
+		qcom-link-list =  <Address as same format as dcc separated by '_'>,
+	}
+}
+
+Example:
+
+dcc_config {
+	link_list_0 {
+		qcom-curr-link-list = 6
+		qcom-link-list = R_0x1781005c_1_apb,
+				 R_0x1782005c_1_apb
+	}
+	link_list_1 {
+		qcom-curr-link-list = 5
+		qcom-link-list = R_0x1784005c_1_apb
+	}
+}
+
+2.QAD
+
+QAD can be enabled as a part of debugfs file under each individual list folder.
+QAD is used to specify the access control for DCC configurations, on enabling
+it the access control to dcc configuration space is restricted.
+
+3.CTI-trigger
+
+CTI trigger is used to enable the Cross trigger interface for DCC. On enabling
+CTI trigger the dcc software trigger can be done by writing to CTI trig-out.
+Also the hwtrigger debugfs file is created which needs to be disabled for enabling
+CTI-trigger.
+
+Souradeep Chowdhury (1):
+  soc: qcom: dcc: Add QAD, Ctitrigger and Bootconfig support for DCC
+
+ Documentation/ABI/testing/debugfs-driver-dcc |  24 +++
+ drivers/soc/qcom/dcc.c                       | 281 ++++++++++++++++++++++++++-
+ 2 files changed, 301 insertions(+), 4 deletions(-)
+
+--
+2.7.4
+
