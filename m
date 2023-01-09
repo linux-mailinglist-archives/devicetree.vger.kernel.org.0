@@ -2,86 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D686661F94
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46976661F96
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbjAIICT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 03:02:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58156 "EHLO
+        id S233297AbjAIIC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 03:02:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232944AbjAIICR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:02:17 -0500
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81EFDFCDA
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:02:16 -0800 (PST)
-Received: from [167.98.27.226] (helo=[10.35.5.156])
-        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1pEn6i-002B9T-9B; Mon, 09 Jan 2023 08:02:13 +0000
-Message-ID: <2b544772-8ff6-1b8b-05b8-7864f0e9bde9@codethink.co.uk>
-Date:   Mon, 9 Jan 2023 08:02:12 +0000
+        with ESMTP id S232944AbjAIIC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:02:28 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C244A11463
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:02:27 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id m7-20020a17090a730700b00225ebb9cd01so11945246pjk.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:02:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gzWfkg4ZC7kc3QEtk+OYVwq1uaceASK3hTBpAc94uQ0=;
+        b=dTXSsdMcCi67LNWErLwMapGj/WTi4uejeFaA7SJH2fnn1vCcR8dZdoMFteHa0nR/F8
+         kh+oCK+ztYw5Rf4gKv4TV5Gdah2TQm8k+XL62wM3ueN5p/GVMw+ZxiAACMfUSzIVYbOS
+         Xs/nMno96/ZqDQeh4Ni75wvFBhmTroKQxcbhm4q51cwo2RV7y5bjDGNUrbcVui5pdBIO
+         maly1bWQ5ih++hsQEb8M2G7xGXr3oBPVCCk3T43pqAWK62Nn+VOQIWNnXhpyxUBBHkNU
+         nfmOSpXVUGQYU4xxVcOQgeMSNx1UD0P+L7qHDevVACiS1B0xvaGy9HU6baIVxrjTdUnG
+         7qqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gzWfkg4ZC7kc3QEtk+OYVwq1uaceASK3hTBpAc94uQ0=;
+        b=VHeX9dvlmUvLY5c9Tf7CxYS++0cqdTUUWJgTn+TllFf6jBg6yBiziO98mQSFGnIwZJ
+         P0xjGZq8E4OriCuqr7Y3dkHWS49SHVbW8f6MmdB+IzzWGU/YbLbDz9d1nD/+ZfopVPwz
+         2zFnFswP9OV5nlaESBNKg370MX7jruZYf5BuLC2zS7IGAo+y1fPd5cYgRr35DzngoSgI
+         AZZbrg7T3D5UVkCTNcUUDC3AVCMiusXbHwPBUypIfGNVUFkYb75oFt7/dB4yxDtDn9S/
+         Jw5sAcgzIdaepOpnJXvFG4QnyIIzcJHu0hBkSVeFz6zMFxKEWNKqhYzJ6K4vNFNFMbds
+         VQRw==
+X-Gm-Message-State: AFqh2koJMLxWbacAcRBPw29yVe3yg7khbFmETFa8zSPCKa84w7Ws9D43
+        SHdWkz4OeA9oTbp/INFtegCbJTz22ouSNDlOSi3ALw==
+X-Google-Smtp-Source: AMrXdXuftWpX5mTStYap+1P6OPLCG3xf/3GpmVYY9n9/X2wdAH3VchswgQCSQ8KEuwHPflydKDj31E8wKJDgPlqWB90=
+X-Received: by 2002:a17:90a:db53:b0:227:208f:65f with SMTP id
+ u19-20020a17090adb5300b00227208f065fmr119951pjx.32.1673251347239; Mon, 09 Jan
+ 2023 00:02:27 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH] riscv: dts: fu740: fix size of pcie 32bit memory
-To:     Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Cc:     Conor Dooley <conor.dooley@microchip.com>, robh+dt@kernel.org,
-        palmer@dabbelt.com, krzysztof.kozlowski+dt@linaro.org,
-        zong.li@sifive.com, linux-kernel@lists.codethink.co.uk,
-        sudip.mukherjee@codethink.co.uk,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Greentime Hu <greentime.hu@sifive.com>
-References: <20230106134456.265891-1-ben.dooks@codethink.co.uk>
- <167311996687.855922.17515622188982373442.b4-ty@microchip.com>
-Content-Language: en-GB
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <167311996687.855922.17515622188982373442.b4-ty@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230102165551.1564960-1-conor@kernel.org> <20230103092816.w6hknvd4caeahdo4@orel>
+ <Y7s2+McYXLeEMNck@spud>
+In-Reply-To: <Y7s2+McYXLeEMNck@spud>
+From:   Atish Kumar Patra <atishp@rivosinc.com>
+Date:   Mon, 9 Jan 2023 00:02:16 -0800
+Message-ID: <CAHBxVyHUPPakb3djAuJMkRjXOew9+PC6nARv+RT-GrMWPdCRGw@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: riscv: add SBI PMU event mappings
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Andrew Jones <ajones@ventanamicro.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, apatel@ventanamicro.com,
+        will@kernel.org, mark.rutland@arm.com, opensbi@lists.infradead.org,
+        samuel@sholland.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2023 19:37, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> On Fri, 06 Jan 2023 13:44:56 +0000, Ben Dooks wrote:
->> The 32-bit memory resource is needed for non-prefetchable memory
->> allocations on the PCIe bus, however with some cards (such as the
->> SM768) the system fails to allocate memory from this.
->>
->> Checking the allocation against the datasheet, it looks like there
->> has been a mis-calcualation of the resource for the first memory
->> region (0x0060090000..0x0070ffffff) which in the data-sheet for
->> the fu740 (v1p2) is from 0x0060000000..0x007fffffff. Changing
->> this to allocate from 0x0060090000..0x007fffffff fixes the probing
->> issues.
->>
->> [...]
-> 
-> Applied to riscv-dt-fixes, thanks!
-> 
-> [1/1] riscv: dts: fu740: fix size of pcie 32bit memory
-> 	https://git.kernel.org/conor/c/43d5f5d63699724d47f0d9e0eae516a260d232b4
-> 
-> I checked the numbers and they look correct per the v1p2 doc.
-> I added a T-b from IRC for Ron, added the cc: stable and fixed the
-> fixes tag while I was at it.
-> 
+On Sun, Jan 8, 2023 at 1:34 PM Conor Dooley <conor@kernel.org> wrote:
+>
+> Drew, Atish,
+>
+> Mainly just a question about the OpenSBI doc at the end. Gonna fix up
+> the rest of the wording and resend in a few.
+>
+> On Tue, Jan 03, 2023 at 10:28:16AM +0100, Andrew Jones wrote:
+> > On Mon, Jan 02, 2023 at 04:55:51PM +0000, Conor Dooley wrote:
+> > > From: Conor Dooley <conor.dooley@microchip.com>
+> > >
+> > > The SBI PMU extension requires a firmware to be aware of the event to
+> > > counter/mhpmevent mappings supported by the hardware. OpenSBI may use
+> > > DeviceTree to describe the PMU mappings. This binding is currently
+> > > described in markdown in OpenSBI (since v1.0 in Dec 2021) & used by QEMU
+> > > since v7.2.0.
+> > >
+> > > Import the binding for use while validating dtb dumps from QEMU and
+> > > upcoming hardware (eg JH7110 SoC) that will make use of the event
+> > > mapping.
+> > >
+> > > Link: https://github.com/riscv-software-src/opensbi/blob/master/docs/pmu_support.md
+> > > Link: https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sbi.adoc # Performance Monitoring Unit Extension
+> > > Co-developed-by: Atish Patra <atishp@rivosinc.com>
+> > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> > > +  riscv,event-to-mhpmevent:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +    description:
+> > > +      Represents an ONE-to-ONE mapping between a PMU event and the event
+> > > +      selector value that platform expects to be written to the MHPMEVENTx CSR
+> >                             ^ the
+>
+> I think this one is arguable, it makes sense both ways IMO. I don't care
+> since it's not my prose though ;)
+>
+> > > +      for that event.
+> > > +      The mapping is encoded in an matrix format where each element represents
+> > > +      an event.
+> > > +      This property shouldn't encode any raw hardware event.
+> > > +    items:
+> > > +      items:
+> > > +        - description: event_idx, a 20-bit wide encoding of the event type and
+> > > +            code. Refer to the SBI specification for a complete description of
+> > > +            the event types and codes.
+> > > +        - description: upper 32 bits of the event selector value for MHPMEVENTx
+> > > +        - description: lower 32 bits of the event selector value for MHPMEVENTx
+> >
+> > > +     * codes, U74 uses a bitfield for events encoding, so several U74 events
+> > > +     * can be bound to single perf id.
+> >                                 ^ a   ID
+> >
+> > > +     * See SBI PMU hardware id's in OpenSBI's include/sbi/sbi_ecall_interface.h
+> >
+> > IDs
+>
+> Most of this stuff comes directly from the doc in OpenSBI that I
+> copy-pasted. Atish, what do you wanna do once the binding is upstream
+> about the original doc?
+>
+
+I will fixup the doc based on the final version of the binding once it
+is upstream.
+
 > Thanks,
 > Conor.
-
-Ok, great. I'll ping the fu-sdk people as well as this is probably
-useful for the next release.
-
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
-
+>
