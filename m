@@ -2,183 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 221B0663363
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 22:44:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C67CA6634F2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:16:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235145AbjAIVoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 16:44:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50264 "EHLO
+        id S237721AbjAIXQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 18:16:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238074AbjAIVnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 16:43:21 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6CE3DF1D
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 13:43:13 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id ud5so23676659ejc.4
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 13:43:13 -0800 (PST)
+        with ESMTP id S237778AbjAIXQV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:16:21 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C609BE7A;
+        Mon,  9 Jan 2023 15:16:19 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id f21so6201842ljc.7;
+        Mon, 09 Jan 2023 15:16:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YjLtLtXLOnSnL793Sq/I8VFYvndSrKg7SG1Bksti8BE=;
-        b=GjBZA38WlbpKU4L56iqHJzclJQFTgfmVQK330/hyArEhGnLfP9/JGYhQtadS3f+f1Z
-         GP1oE7x+qIsfZckFtdQQlkYn/L3H4mPxaBODAdQR5WcpwQ26+Y8ZOZBFy4WOkoVLftjf
-         EmbiwXjqUdY3zgOKRcLV4j7/H+r3OkSiAv2uQ=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pymBsysiRj4PWzpdrYvrGh6WCe9aRMDyVw4Cchu5q1Q=;
+        b=oBjSl446gX8Wvv8tqNz7s0ruSNsj4f1Kl4m2hgWyKIb4Kzh/wCyAVc68HCWWCFs/vP
+         Sv3jFQr6bhzohzSt0O2RA3c5Xo+H9itHusV1dz6c33pXSfRsMxNX/eQMUhCUo3q/lWXN
+         YhMqG/LQ3ybq69MEwAOut3zb+vNOGvH0/qY8B1EbK4K3e7B+TtBYpbU+OMfDIqZimirM
+         dBtCWIjGzVTeUFb/CTMRCHeIEjwsvpl4pKbsY/jfvWxtSJEAq8BT6PDMFDoaVPx9OXrD
+         jyQlkTJMIcC/511AAENai/8lg4O9RdY1YMpF5VDiEmTFZBuzQCJAkxpqvboT8eZBqgl2
+         UuYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YjLtLtXLOnSnL793Sq/I8VFYvndSrKg7SG1Bksti8BE=;
-        b=GNnEkmG4Zfp0AjNI0KsIi8q7uji9wZr4UIQmoB/yN+oZUGQg059BI3CEftBucLk0zm
-         8Oetq05nX8BX847+WJLnUp6j/72zczf/popdqrrsK5CY699DDalm0WKfFf4NKKOodmKV
-         MvDB/DHhf9PopaITms1Gcv+mBvZrRMgFKdA3hxNFa6bPJfYopNTX+yP/MM2wiFuiusJN
-         Fd8ADXHHbIckvPsCX33Mpx0emLA6EOldE+ikOIlyEQGioT6Xem2iqCo5HVBiAGLgFvXw
-         Z/jk7qqi+mr1aEhNvhs+ZOcFjmlswF0kZoSGW9QfaE2pF8qUKSrojLi/PuOlNvBW5c7P
-         CW1w==
-X-Gm-Message-State: AFqh2koVdNeAtykZqQJO00EEb4sUFVkeTpaFlE+YizxtnJB8eblDtlsO
-        mVqtrZW35AwCyVJkDJTsnEEc0b8ShgqHpToH
-X-Google-Smtp-Source: AMrXdXuuSveUjA1v/GCFbtx15EfSiHlyF7IGsDaJKjuS0zp66d98LfYEhRFL8zPAGErShakH9xKn1w==
-X-Received: by 2002:a17:906:f282:b0:84d:16d0:717 with SMTP id gu2-20020a170906f28200b0084d16d00717mr12332478ejb.65.1673300591941;
-        Mon, 09 Jan 2023 13:43:11 -0800 (PST)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com. [209.85.128.47])
-        by smtp.gmail.com with ESMTPSA id lb6-20020a170907784600b007ad69e9d34dsm4207897ejc.54.2023.01.09.13.43.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 13:43:11 -0800 (PST)
-Received: by mail-wm1-f47.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so10271805wmb.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 13:43:10 -0800 (PST)
-X-Received: by 2002:a05:600c:2141:b0:3d3:494f:a4ad with SMTP id
- v1-20020a05600c214100b003d3494fa4admr5841087wml.151.1673300590704; Mon, 09
- Jan 2023 13:43:10 -0800 (PST)
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pymBsysiRj4PWzpdrYvrGh6WCe9aRMDyVw4Cchu5q1Q=;
+        b=Jh6JlcwnrKBxrOLXAgRzKZ8uMBoHzKpv4wHDZDwBKaDQnzGZxbkAsBsdxqzWlDcNZn
+         zVDpW+F9a9FZHGSA/klJgcwPY1kpkQqR2Jcdjd3Vz6AtGDZG9AwtJ40wNEHmLB6FEf1H
+         dWRfsPutzmYkLLeqL4Eh11pMCvitrlVby3znZRwEAyrmT6Sqi5efhWWeoD5duafQaBUf
+         wOztDZPrlCW6PFqV6LpHnTxlBNmVrMUbEvO3Xd3zL3oE6ck0/TGBNS0ZcXv1jX7P6vig
+         70DGe0Tm1hZOO2OdE1ZRDEzCaH82CySviQwlWHelRDhIQoAjgbpODYTEZu5Xy4b1TsX/
+         UPYw==
+X-Gm-Message-State: AFqh2kptJ9EhncJFBuF0DceC2hgZqRKcMZvIWQDsTp7adui5QFBUJasY
+        efjWJCzdXydj3W0b8JorUNM=
+X-Google-Smtp-Source: AMrXdXvi9TwYn3DHh44maaSHdojbkWYXp5Sbtq2hKe0+o0eVBCV/tiwi3CGkaKZOwy25UDOuwJzAmw==
+X-Received: by 2002:a05:651c:198b:b0:27f:cd6a:db02 with SMTP id bx11-20020a05651c198b00b0027fcd6adb02mr19801959ljb.20.1673306177939;
+        Mon, 09 Jan 2023 15:16:17 -0800 (PST)
+Received: from localhost (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id q16-20020a2eb4b0000000b002862cc92061sm315979ljm.76.2023.01.09.15.16.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 15:16:17 -0800 (PST)
+From:   Dmitry Baryshkov <dbaryshkov@gmail.com>
+X-Google-Original-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Del Regno <angelogioacchino.delregno@somainline.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221225115925.55337-1-krzysztof.kozlowski@linaro.org>
+References: <20221225115925.55337-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: display: msm: drop redundant part of title
+Message-Id: <167330408778.609993.10640569681810813503.b4-ty@linaro.org>
+Date:   Tue, 10 Jan 2023 00:41:27 +0200
 MIME-Version: 1.0
-References: <20221216112918.1243-1-quic_rjendra@quicinc.com>
- <Y5x+WEwTtpoV0gaR@google.com> <fd23e295-fea0-1b0a-752c-3cce26b57346@quicinc.com>
- <Y6HHCrl0q5BhrHOY@google.com> <e269300d-539e-9eb8-8b3c-d309f3abca1b@quicinc.com>
- <bbc3c257-0a49-4c80-4586-c179c8997b50@linaro.org> <CAD=FV=X3DyMrEWESV2cWvqg_TQYnj+VGFBQodAp+gfbhBz6X3Q@mail.gmail.com>
- <9f6bd192-2a42-0a23-0032-df8b01921bdc@linaro.org>
-In-Reply-To: <9f6bd192-2a42-0a23-0032-df8b01921bdc@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 9 Jan 2023 13:42:57 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=U6KhJR+9q49=T3-aYppukRNmLrgvhaxP_ZtLP=VgSaDA@mail.gmail.com>
-Message-ID: <CAD=FV=U6KhJR+9q49=T3-aYppukRNmLrgvhaxP_ZtLP=VgSaDA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: Document the sc7280 CRD
- Pro boards
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     andersson@kernel.org, Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Matthias Kaehlcke <mka@chromium.org>, agross@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Mon, Jan 9, 2023 at 1:36 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On 09/01/2023 23:00, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Tue, Dec 20, 2022 at 9:12 AM Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> >>
-> >> On 20/12/2022 18:20, Rajendra Nayak wrote:
-> >>>
-> >>>
-> >>> On 12/20/2022 8:00 PM, Matthias Kaehlcke wrote:
-> >>>> On Tue, Dec 20, 2022 at 10:30:32AM +0530, Rajendra Nayak wrote:
-> >>>>>
-> >>>>> On 12/16/2022 7:49 PM, Matthias Kaehlcke wrote:
-> >>>>>> On Fri, Dec 16, 2022 at 04:59:17PM +0530, Rajendra Nayak wrote:
-> >>>>>>> Add compatibles for the Pro SKU of the sc7280 CRD boards
-> >>>>>>> which come with a Pro variant of the qcard.
-> >>>>>>> The Pro qcard variant has smps9 from pm8350c ganged up with
-> >>>>>>> smps7 and smps8.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> >>>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>>>>>> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> >>>>>>> ---
-> >>>>>>> v4 changes:
-> >>>>>>> Added the zoglin-sku1536 compatible along with hoglin-sku1536.
-> >>>>>>> Zoglin is same as the Hoglin variant, with the SPI Flash reduced
-> >>>>>>> from 64MB to 8MB
-> >>>>>>>
-> >>>>>>>     Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
-> >>>>>>>     1 file changed, 6 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml
-> >>>>>>> b/Documentation/devicetree/bindings/arm/qcom.yaml
-> >>>>>>> index 1b5ac6b02bc5..07771d4c91bd 100644
-> >>>>>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> >>>>>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> >>>>>>> @@ -558,6 +558,12 @@ properties:
-> >>>>>>>               - const: google,hoglin
-> >>>>>>>               - const: qcom,sc7280
-> >>>>>>> +      - description: Qualcomm Technologies, Inc. sc7280 CRD Pro
-> >>>>>>> platform (newest rev)
-> >>>>>>> +        items:
-> >>>>>>> +          - const: google,zoglin-sku1536
-> >>>>>>> +          - const: google,hoglin-sku1536
-> >>>>>>
-> >>>>>> Is there actually such a thing as a 'hoglin-sku1536', i.e. the Pro
-> >>>>>> qcard
-> >>>>>> with 64MB of SPI flash, or do they all have 8MB of flash?
-> >>>>>
-> >>>>> The SPI flash is on the CRD mother-board and not on the qcards, so if
-> >>>>> you replace
-> >>>>> the qcards on the CRDs with 64MB flash you would need the
-> >>>>> hoglin-sku1536 to
-> >>>>> boot on those.
-> >>>>
-> >>>> With such a configuration how does the bootloader know it should pass
-> >>>> the kernel
-> >>>> the device tree for 'hoglin-sku1536' (pro) and not the non-pro
-> >>>> variant? IIUC the
-> >>>> device tree is selected based on pin strappings on the mother-board,
-> >>>> not the
-> >>>> qcard.
-> >>>
-> >>> The device tree is selected based on the pin strappings _and_ additional
-> >>> logic
-> >>> to dynamically identify modem/non-modem(wifi) as well as pro/non-pro
-> >>> SKUs which
-> >>> was added in the bootloaders.
-> >>
-> >> Just to clarify things, when you mention pro SKU, is it a separate SoC
-> >> revision (like sc7280-pro vs bare sc7280), or is it a CRD revision (CRD
-> >> Pro vs bare CRD)?
-> >
-> > I guess Rajendra never responded, but since I know the answer: it's a
-> > different SoC revision. ...but the SoC in this case is on a daughter
-> > card, so you could remove the daughter card containing the SoC and put
-> > a new daughtercard on. That would have the effect of making an old CRD
-> > revision have the new Pro SKU SoC.
->
-> So, this is a new SoC. Is it 100% compatible with the sc7280? In other
-> words: does it require any additional customizations (in OPP tables, in
-> frequences, speed bins, etc)?
+On Sun, 25 Dec 2022 12:59:24 +0100, Krzysztof Kozlowski wrote:
+> The Devicetree bindings document does not have to say in the title that
+> contains "DT properties", but instead just describe the hardware.
+> 
+> 
 
-If I understand correctly, the OPP customizations have been accounted
-for since the beginning. I believe that the GPU operating table
-already has some fairly high operating points. Maybe commit
-3bfef00d7671 ("arm64: dts: qcom: sc7280: Support gpu speedbin") was
-for pro? Similarly, the CPU operating table also has some fairly high
-operating points (probably for PRO?) and I think the higher points are
-dynamically disabled for CPUs that don't support them. That's how it
-was on sc7180, in any case.
+Applied, thanks!
 
-...I will say it's not 100% compatible, though. Patch #2 in this
-series deletes "vreg_s9c_0p676" on pro SKUs. As far as I know, that's
-the only needed change, though.
+[1/2] dt-bindings: display: msm: drop redundant part of title
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/e90c380ea283
+[2/2] dt-bindings: display: msm: drop unneeded list for single compatible
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/7ad6586652fa
 
--Doug
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
