@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65083662021
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59F72662028
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:40:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233215AbjAIIhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 03:37:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47746 "EHLO
+        id S233182AbjAIIkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 03:40:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236664AbjAIIhL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:37:11 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B5A013F20
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:37:09 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so5978505wms.4
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:37:09 -0800 (PST)
+        with ESMTP id S234036AbjAIIj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:39:57 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D820F13F18
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:39:55 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id t5so2946429wrq.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:39:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VeKLpPbr+0opZSsyaNdS4GmUMbw67mVC1MhWp/RMXc8=;
-        b=j2DjT+bRzJvVjlkLjqfEEWT4jY+ZoP+BoB4sAMBIO8cn6gtDboHm/Ows1bCAQ9adgi
-         jZopYzGek5pMHwrtI3kPPh/XubnGujItQpxANrzd1vsKSEqrB/3f2KCYbslJgqxU4F04
-         jcTQsAvnTmoroqicVgZCnnagXid9Cl4M+cGU9Wc7zRCB1C8muo8V83NCv3EI+0Mq5BID
-         vEFfTJglWJiF8hrXUzAPoKnEVbfkpw8wMMSSW9luI2MwCqs0ZcuMxltYcRJ04xpzXGNk
-         WxXnHbviX9Q19lbTysK/QbFKI/7P4l3/Afm+xh9OatEhNf6LKhlplQtNkkUazIEE4td7
-         /DuA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xQ3K/io4iY2GwjynBlbKdP/dQNns/heqzgxTc+VLTbk=;
+        b=uoybz+I0rrdzryvAFoZXzdYjqss4CEShTQt9kaZMolZJ3XeINCEyRSF62QWRd/h98X
+         /VtYvv+HxunluEMQHCxODay1/luLVAZXtoaNNMphItwULOeLDSLcYbhGxeTEAdQAFoNI
+         3x6qByYrV7IJroPxWL9f4rs9wl6kn0QnUPOm8OylgUGXq+r6b+hYvbXVgQI9BB5m6983
+         OQ7U7RmB6bIwywvnzFlZfK6fqKT4kAQojqtwRUKbJlka82Zc1tAWeUVAyk8Ka6k26iWO
+         W7vpbs5RwCb5064N0vUgGA0ngC5FReDqquwyXOt9/6NphtEN3W4mtg1Eiu/n+OAke6uB
+         5eKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VeKLpPbr+0opZSsyaNdS4GmUMbw67mVC1MhWp/RMXc8=;
-        b=yCp9tMIQ7HH9IM72MkcKOES4FpKA3nCHaoCsqtOSuyVcH7f/XvLf/1Z9gJOkLKALtn
-         SNO/1+D3j1m0ezNPpiXxDnpUcaKd8UpV+XwxqXiA5/YtD3hmrob+VCng7SRZoSGrvtu1
-         okw37IUjfPv5lKlYZ0rPvnsv9gKvkOq8EO3e1+cRXd3wgYmoIR0bXl7ryTnWEbX1AF7I
-         MwEqRMATAC2p9dGprKbWSIJ8SbFN7sF9unfCi2fwe1lSVJ21tC+Q6C/rtc0wyv7MIOgq
-         8Jt/NKf59wKRlFzFNpSndn/yjYp9oGQRBeiH6GwSLXKTiBpVD1Sc85g9/hL8IHhMkC0a
-         WzBg==
-X-Gm-Message-State: AFqh2kqi7KsP4k1kmCVus6a+9L3j04+9pA7n2S1R/6xsi15wZutTUPTz
-        0g6lYJlQu7wR5Zj08sfOpOzhZg==
-X-Google-Smtp-Source: AMrXdXvGZLtPPaGN5nHVCLSVwjBxlwNzC4/VdLmgdwDyBjlcW7SIj67hiUhm6HTg1UV9Bvxw3EagYw==
-X-Received: by 2002:a05:600c:4f96:b0:3d9:ed3b:5b3e with SMTP id n22-20020a05600c4f9600b003d9ed3b5b3emr2846989wmq.19.1673253428081;
-        Mon, 09 Jan 2023 00:37:08 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e35-20020a5d5963000000b00276d8c2332fsm8834593wri.108.2023.01.09.00.37.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 00:37:07 -0800 (PST)
-Message-ID: <c3c35b5e-ec85-1226-c7a7-53bf4bd83713@linaro.org>
-Date:   Mon, 9 Jan 2023 09:37:05 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 1/4] dt-bindings: soc: samsung: exynos-sysreg: add
- dedicated SYSREG compatibles to Exynos850
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        Sriranjani P <sriranjani.p@samsung.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
-        ravi.patel@samsung.com, sathya@samsung.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <CGME20221214044423epcas5p2920e87930665345169745002ec6993c3@epcas5p2.samsung.com>
- <20221214044342.49766-1-sriranjani.p@samsung.com>
- <20221214044342.49766-2-sriranjani.p@samsung.com>
- <CAL_JsqLAqSoVdExrHXZ4xVaY4Ut5R54izoumOY8zsXWN2e8++w@mail.gmail.com>
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xQ3K/io4iY2GwjynBlbKdP/dQNns/heqzgxTc+VLTbk=;
+        b=Sw1m1WDNfCGVz4ucETcrSLmbmdX2mS7ExWHgKiXnyof/yVnFWsGNoAukdBCUdrBSA7
+         k8ermSwEyk8mV9s7NdgARypdm9/e++haMQWP6Q++5VFNkhk6ekgHLZPnTtWOZrT+Uqqc
+         eGuSPxcwwEhCwyuvMO+s5If6QPbJCcfvKf8zQszyBzsFinx3fQ420UmDgZnF3kWNEhqf
+         XtqIpKUEBM5uwLO5qoJW2tFrTyYniQED71lW202wshNiW+ICMxPNLWVOv7VD2z59KVvk
+         HfKf6asTi/26o4G4zvSzefJMCyfzeZmDlond+N/SGfTNhIVURizPpanGPGVhpj2+Pr14
+         dEcA==
+X-Gm-Message-State: AFqh2kp0vD/1yaiCuhq74/uEClTJTBiJnvTfC9YtflZC6nW6QerP40my
+        8gSTbHQGUYkyCgw6gzhIt8qKyQ==
+X-Google-Smtp-Source: AMrXdXtmW+X3Ei5S+EFkiH61YWcu+ID/9ZhO6toJ7+59ffejgvukY81lSbLVhJyf6Aij7xkA9Qsa0Q==
+X-Received: by 2002:adf:eb4f:0:b0:242:659c:dc7 with SMTP id u15-20020adfeb4f000000b00242659c0dc7mr38364812wrn.61.1673253594453;
+        Mon, 09 Jan 2023 00:39:54 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id b1-20020adf9b01000000b0028e55b44a99sm7853335wrc.17.2023.01.09.00.39.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 00:39:54 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAL_JsqLAqSoVdExrHXZ4xVaY4Ut5R54izoumOY8zsXWN2e8++w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Sriranjani P <sriranjani.p@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH] dt-bindings: soc: samsung: exynos-sysreg: correct indentation for deprecated
+Date:   Mon,  9 Jan 2023 09:39:48 +0100
+Message-Id: <20230109083948.77462-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,48 +73,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 02:15, Rob Herring wrote:
-> On Tue, Dec 13, 2022 at 10:47 PM Sriranjani P <sriranjani.p@samsung.com> wrote:
->>
->> Exynos850 has two different SYSREGs, hence add dedicated compatibles for
->> them and deprecate usage of generic Exynos850 compatible alone.
->>
->> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
->> ---
->>  .../soc/samsung/samsung,exynos-sysreg.yaml        | 15 ++++++++++++---
->>  1 file changed, 12 insertions(+), 3 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
->> index 4954790eda6c..427df05224e5 100644
->> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
->> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
->> @@ -17,7 +17,6 @@ properties:
->>                - samsung,exynos3-sysreg
->>                - samsung,exynos4-sysreg
->>                - samsung,exynos5-sysreg
->> -              - samsung,exynos850-sysreg
->>                - samsung,exynosautov9-sysreg
->>                - tesla,fsd-cam-sysreg
->>                - tesla,fsd-fsys0-sysreg
->> @@ -33,9 +32,17 @@ properties:
->>            - const: samsung,exynos5433-sysreg
->>            - const: syscon
->>        - items:
->> -          - const: samsung,exynos5433-sysreg
->> +          - enum:
->> +              - samsung,exynos5433-sysreg
->> +              - samsung,exynos850-sysreg
->> +          - const: syscon
->> +            deprecated: true
-> 
-> This is throwing an error in linux-next now.
-> 
-> How can 1 item in a list be deprecated? What's the not deprecated
-> value for the entry? Probably this needs to move up to 'items' as the
-> whole entry is deprecated.
+"deprecated" keyword was indentend wrong - entire list of compatibles
+starting with generic Exynos SoC compatible is deprecated.
 
-I missed this. I'll fix it. I'll updated my dtschema and see the error now.
+Reported-by: Rob Herring <robh@kernel.org>
+Fixes: 0a2af7bdeeb4 ("dt-bindings: soc: samsung: exynos-sysreg: add dedicated SYSREG compatibles to Exynos850")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+index 60958dac0345..163e912e9cad 100644
+--- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
++++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+@@ -36,7 +36,7 @@ properties:
+               - samsung,exynos850-sysreg
+               - samsung,exynosautov9-sysreg
+           - const: syscon
+-            deprecated: true
++        deprecated: true
+       - items:
+           - enum:
+               - samsung,exynos850-cmgp-sysreg
+-- 
+2.34.1
 
