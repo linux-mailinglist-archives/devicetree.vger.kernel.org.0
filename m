@@ -2,123 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 753AC661DD9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 05:32:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23264661DBF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 05:22:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234347AbjAIEcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 23:32:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
+        id S236650AbjAIEWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 23:22:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236407AbjAIEcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 23:32:15 -0500
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2773E020
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 20:17:01 -0800 (PST)
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230109041700epoutp0478173c1f9726d580f1c5460a0360b30e~4iO61phJA1018310183epoutp04r
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 04:17:00 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230109041700epoutp0478173c1f9726d580f1c5460a0360b30e~4iO61phJA1018310183epoutp04r
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1673237820;
-        bh=lVjBdfqJDEubnHvztlohX+42xCVlx5x3lwMnZuFO/vE=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=ehLGPIeWHyiTkQCDJZ2uy9xnx4JMH9ahQnDEnj4ctEyPMaux4F9Qt/I5iRFiJe+Tl
-         iV7puL1iusByJM0+FMNSq3Kha1c/56mU6gTmKFDDB7X6p4TL0wozBUMB1nnXeq408T
-         S/SJIiINQXERqlz5Hdv377A5CDiYLJISISHMNE4U=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20230109041659epcas5p227ce53c450aac69ab1390b7f65330a39~4iO6UYi642289722897epcas5p29;
-        Mon,  9 Jan 2023 04:16:59 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.174]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4Nr0yL0x5cz4x9Q3; Mon,  9 Jan
-        2023 04:16:58 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        1F.3C.03362.9359BB36; Mon,  9 Jan 2023 13:16:57 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20230109040601epcas5p208cf4a6f79173a5b0c7b193ceb39691d~4iFVM9pVn2100421004epcas5p2k;
-        Mon,  9 Jan 2023 04:06:01 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20230109040601epsmtrp1cb2479356f57330f7da101cff4c05ffb~4iFVMIZa71945819458epsmtrp1N;
-        Mon,  9 Jan 2023 04:06:01 +0000 (GMT)
-X-AuditID: b6c32a4b-287ff70000010d22-e8-63bb9539527c
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        05.A9.02211.9A29BB36; Mon,  9 Jan 2023 13:06:01 +0900 (KST)
-Received: from FDSFTE070 (unknown [107.116.189.86]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20230109040559epsmtip1805a9824fb73cb1017524e3d3f327c2a~4iFTJo6vr0548405484epsmtip1c;
-        Mon,  9 Jan 2023 04:05:59 +0000 (GMT)
-From:   "Padmanabhan Rajanbabu" <p.rajanbabu@samsung.com>
-To:     "'Mark Brown'" <broonie@kernel.org>
-Cc:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <s.nawrocki@samsung.com>,
-        <perex@perex.cz>, <tiwai@suse.com>, <pankaj.dubey@samsung.com>,
-        <alim.akhtar@samsung.com>, <rcsekar@samsung.com>,
-        <aswani.reddy@samsung.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-samsung-soc@vger.kernel.org>
-In-Reply-To: <Y7RvUlIuXQLUHEna@sirena.org.uk>
-Subject: RE: [PATCH v2 2/5] ASoC: samsung: i2s: add support for FSD I2S
-Date:   Mon, 9 Jan 2023 09:35:58 +0530
-Message-ID: <051e01d923df$af7156a0$0e5403e0$@samsung.com>
+        with ESMTP id S236672AbjAIEWL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 23:22:11 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A5213F67;
+        Sun,  8 Jan 2023 20:08:22 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30947Jvn044125;
+        Sun, 8 Jan 2023 22:07:19 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673237239;
+        bh=glU22+kV2C2hEd7YU+VdLxMJhJVm1YatbhfBo3xh9zc=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=wEvSEJZimlD8tQutAdTITPzMVWvUz0DRex1yTXSV52oxHGLmdMlGXz3OPm2Hwid2q
+         1jOfLBO+Z9mlUsWWxYYR6zOttf+GM455hCXwVkq09FeggxjOcW+QCR7yy3ZMS0NYWx
+         V6pgM3peU+1qlx7YTOrCkEdCkmw88e8KruXFvu1Y=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30947Ji4108702
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 8 Jan 2023 22:07:19 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 8
+ Jan 2023 22:07:18 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Sun, 8 Jan 2023 22:07:18 -0600
+Received: from [172.24.145.182] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30947FBj037285;
+        Sun, 8 Jan 2023 22:07:15 -0600
+Message-ID: <52f276fb-93b3-da8f-c428-05ded94d90cb@ti.com>
+Date:   Mon, 9 Jan 2023 09:37:14 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v7 1/8] arm64: dts: ti: k3-j721s2-main: Add support for
+ USB
+Content-Language: en-US
+To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <afd@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>,
+        <r-gunasekaran@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221122101616.770050-1-mranostay@ti.com>
+ <20221122101616.770050-2-mranostay@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20221122101616.770050-2-mranostay@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQH5OglsonJNs2LrkABkwml8apZdSgJ8yZQdARjupoEBbRtbk64tMMdg
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrMJsWRmVeSWpSXmKPExsWy7bCmlq7l1N3JBic6bCwezNvGZnHl4iEm
-        i0Obt7JbTH34hM1i/pFzrBZ9Lx4yW3y70sFkcXnXHDaLGef3MVks2vqF3aJzVz+rxawLO1gt
-        WvceYbc4/Kad1WLD97WMDvweGz43sXnsnHWX3WPTqk42jzvX9rB57Hu7jM2jb8sqRo/1W66y
-        eHzeJBfAEZVtk5GamJJapJCal5yfkpmXbqvkHRzvHG9qZmCoa2hpYa6kkJeYm2qr5OIToOuW
-        mQN0vZJCWWJOKVAoILG4WEnfzqYov7QkVSEjv7jEVim1ICWnwKRArzgxt7g0L10vL7XEytDA
-        wMgUqDAhO2P3oROsBV8EKl4dm8jSwPiPt4uRk0NCwERiX+sD5i5GLg4hgd2MEvNXHWGEcD4x
-        Smy995AFpEpI4BujRFufE0zHyQOdLBBFexklXs84BNX+glFi3def7CBVbALmEov2LmUEsUUE
-        1CWObtrIClLELNDFLLHhyDuwsZwCuhJTPvUzg9jCAu4S/6ZfAYuzCKhItN26CzaIV8BSYsfD
-        HUwQtqDEyZlPwGqYBeQltr+dwwxxkoLEz6fLWCGWuUnsXnqAGaJGXOLozx6w6yQE3nBIHN84
-        G6rBRaLnwns2CFtY4tXxLewQtpTEy/42KDtfYtrHZqiaCom2jxuYIGx7iQNX5gAdwQG0QFNi
-        /S59iLCsxNRT65gg9vJJ9P5+AlXOK7FjHoytKrF++SZGCFtaYt/1vYwTGJVmIXltFpLXZiF5
-        YRbCtgWMLKsYJVMLinPTU4tNC4zzUsvhMZ6cn7uJEZy6tbx3MD568EHvECMTB+MhRgkOZiUR
-        3tJNu5KFeFMSK6tSi/Lji0pzUosPMZoCw3sis5Rocj4we+SVxBuaWBqYmJmZmVgamxkqifOm
-        bp2fLCSQnliSmp2aWpBaBNPHxMEp1cBUuTzuLAfnX4M9LWKmn34t2Kj4+d+SyrzN6T+bVyvW
-        RMxTa7x85MT0o+Ebp9248XSd9fYbvdGaz4LOnXKLl/54rPlnn2N3/q7qj6JRV70mCf83b+Ha
-        Gak53Wn/QZf5mmpuyyadF2pvS3XeuIe34JdwjPb3xFN39c20w9te7umMjb8XH8wcb9D8S66p
-        yD/OIEexj6HCcdGkkkdBpgVa2QnS8gdvWihsfcfIv0bwf8PzwC/2Tx4Wlf6zf/vbVDFf0i36
-        T/G7JSdFrz4o+LD5fKdTtL+N+v4nk1vfZjc0P7FawN60SfbhvfC2kwZ95lmzz6zYuGjxh/fL
-        D20qPDCBe5v+9dypJ+TZ+Nwnbw2dzjRNiaU4I9FQi7moOBEAQyfYd2YEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBIsWRmVeSWpSXmKPExsWy7bCSnO7KSbuTDVYckrB4MG8bm8WVi4eY
-        LA5t3spuMfXhEzaL+UfOsVr0vXjIbPHtSgeTxeVdc9gsZpzfx2SxaOsXdovOXf2sFrMu7GC1
-        aN17hN3i8Jt2VosN39cyOvB7bPjcxOaxc9Zddo9NqzrZPO5c28Pmse/tMjaPvi2rGD3Wb7nK
-        4vF5k1wARxSXTUpqTmZZapG+XQJXxu5DJ1gLvghUvDo2kaWB8R9vFyMnh4SAicTJA50sILaQ
-        wG5Gie8zlCHi0hLT+/ewQdjCEiv/PWfvYuQCqnnGKPGn5QQrSIJNwFxi0d6ljCC2iIC6xNFN
-        G1lBipgFZjBLHLp1iRVi6iNGidvXxEBsTgFdiSmf+plBbGEBd4l/06+AbWYRUJFou3WXHcTm
-        FbCU2PFwBxOELShxcuYToBoOoKF6Em0bwXYxC8hLbH87hxniOAWJn0+XsULc4Caxe+kBZoga
-        cYmjP3uYJzAKz0IyaRbCpFlIJs1C0rGAkWUVo2RqQXFuem6xYYFhXmq5XnFibnFpXrpecn7u
-        JkZw5Gpp7mDcvuqD3iFGJg7GQ4wSHMxKIrylm3YlC/GmJFZWpRblxxeV5qQWH2KU5mBREue9
-        0HUyXkggPbEkNTs1tSC1CCbLxMEp1cA0S8c7dFm3QP5V1Uxe/k18vxW9A8snW+RNX/xqj3Vk
-        SY87xym9p/7NfxaZMjZw9M1YfWfG+ccvpGr2HUybcIxrjwH/tu25ZReevTHdv+7jn6LA3KWz
-        t2+pEHJhDVhSkfgz2TS7MEMzekWpEO9SuxceCT8blJtzXOzU1afPfcxw0bfs9MQd6qGfZ59f
-        K70j/zzbnZeTXeep7pCrfOI2z8fStitzxbW57nu8/A8uZeh9+NLvzmp25fnB17g/RznIr3m3
-        +qLDhTcTT4bkNU7PfLX/sfdv+Wa1azKGYVx/nqat1r1UXLRQNbnx3+KyGc4/S0zFjEVyXzy+
-        l/I0uPHK2cXb86do3fnepVN/5MIFq6ylSizFGYmGWsxFxYkA8peNEksDAAA=
-X-CMS-MailID: 20230109040601epcas5p208cf4a6f79173a5b0c7b193ceb39691d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230103045655epcas5p1af06a83208190c471e8cd891ef4760f3
-References: <20230103045613.100309-1-p.rajanbabu@samsung.com>
-        <CGME20230103045655epcas5p1af06a83208190c471e8cd891ef4760f3@epcas5p1.samsung.com>
-        <20230103045613.100309-3-p.rajanbabu@samsung.com>
-        <Y7RvUlIuXQLUHEna@sirena.org.uk>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -127,57 +72,51 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-> -----Original Message-----
-> From: Mark Brown [mailto:broonie@kernel.org]
-> Sent: 03 January 2023 11:39 PM
-> To: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
-> Cc: lgirdwood@gmail.com; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; s.nawrocki@samsung.com;
-> perex@perex.cz; tiwai@suse.com; pankaj.dubey@samsung.com;
-> alim.akhtar@samsung.com; rcsekar@samsung.com;
-> aswani.reddy@samsung.com; alsa-devel@alsa-project.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-samsung-
-> soc@vger.kernel.org
-> Subject: Re: [PATCH v2 2/5] ASoC: samsung: i2s: add support for FSD I2S
+On 22/11/22 15:46, Matt Ranostay wrote:
+> From: Aswath Govindraju <a-govindraju@ti.com>
 > 
-> On Tue, Jan 03, 2023 at 10:26:10AM +0530, Padmanabhan Rajanbabu wrote:
+> Add support for single instance of USB 3.0 controller in J721S2 SoC.
 > 
-> > +void fsd_i2s_fixup_early(struct snd_pcm_substream *substream,
-> > +		struct snd_soc_dai *dai)
-> > +{
-> > +	struct snd_soc_pcm_runtime *rtd =
-> asoc_substream_to_rtd(substream);
-> > +	struct i2s_dai *i2s = to_info(asoc_rtd_to_cpu(rtd, 0));
-> > +	struct i2s_dai *other = get_other_dai(i2s);
-> > +
-> > +	if (!is_opened(other)) {
-> > +		i2s_set_sysclk(dai, SAMSUNG_I2S_CDCLK, 192,
-> SND_SOC_CLOCK_OUT);
-> > +		i2s_set_sysclk(dai, SAMSUNG_I2S_OPCLK, 0,
-> MOD_OPCLK_PCLK);
-> > +	}
-> > +}
+> Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 42 ++++++++++++++++++++++
+>  1 file changed, 42 insertions(+)
 > 
-> This looks like we're just hard coding to 192kHz?
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index 8915132efcc1..b4869bff4f22 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -26,6 +26,20 @@ l3cache-sram@200000 {
+>  		};
+>  	};
+>  
+> +	scm_conf: syscon@104000 {
+> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
+> +		reg = <0x00 0x00104000 0x00 0x18000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x00 0x00 0x00104000 0x18000>;
+> +
+> +		usb_serdes_mux: mux-controller-0 {
 
-Not actually. The value 192 being passed is for the RFS divider
-based on which the Root clock source is divided to generate bit-clock
-and frame-clock in master mode.
+This needs binding update :(
 
-But, FSD SoC is utilizing the Exynos7-I2S controller in slave
-mode, where bit-clock and frame-clock is sourced by the codec.
-Therefore the sampling of data happens with codec clock source and
-not based on the clock source from RCLK. However, we still need RFS and
-BFS configured to default value for the proper operation of the controller.
++/workdir/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: syscon@104000: 'mux-controller-0' does not match any of the regexes: '^clock-controller@[0-9a-f]+$', '^mux-controller@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
 
-The current operation being performed above is to change the Codec
-clock direction to "out", so that codec will use this clock source to
-generate bit clock and frame clock from its own PLL.
+make dtbs_check will warn here.
 
-I'll make the changes in the next patch set to pass 0 instead of 192 here,
-so that RFS and BFS will be configured to default value in config_setup
-function.
 
-Thanks,
-Padmanabhan R.
+> +			compatible = "mmio-mux";
+> +			#mux-control-cells = <1>;
+> +			mux-reg-masks = <0x0 0x8000000>; /* USB0 to SERDES0 lane 1/3 mux */
+> +		};
+> +	};
+> +
 
+[...]
+
+-- 
+Regards
+Vignesh
