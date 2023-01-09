@@ -2,127 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07689661BD3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 02:16:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A458661BDE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 02:22:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233746AbjAIBQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 20:16:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38324 "EHLO
+        id S234003AbjAIBWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 20:22:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233703AbjAIBQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 20:16:12 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDEA4DFF;
-        Sun,  8 Jan 2023 17:16:10 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E78760EA5;
-        Mon,  9 Jan 2023 01:16:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB27BC433F1;
-        Mon,  9 Jan 2023 01:16:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673226969;
-        bh=I7uRhzzKfn+fJFzre0fr0A96dZ17V23thWuW3j3BOQg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pP+iQ+VXytwoQx8X5jton7J/vMtVUiABkGC0oVWf/hdfIfZWT1Bd0IS/BodfXs+gY
-         Ih0w5IwQrz5V2gLfkriGJlNcOrVcbFpLZK2HzCdqUQpR3Y20/p34wTK+TX3nkYZX0C
-         lZFfT2YjhZ6pc5yCfaN5fZRttiGfZXvHrziusCIcpC/xtVIHGgBnkpim26dRN5nbl3
-         HUhX09BfNcZnXDPoMgi38OtizqXF/dl76Dktf3zgXJgX2HmNItXgMD+brCeI9HTKE/
-         SKEwMpQcJvbeDN1HrOqeT+ewWlXJTJOmxiI1SNvcnkCBDJEpKNiDukceDmxlLzDu1k
-         t1WkQgYg2iaGA==
-Received: by mail-ua1-f48.google.com with SMTP id z23so1657446uae.7;
-        Sun, 08 Jan 2023 17:16:09 -0800 (PST)
-X-Gm-Message-State: AFqh2kp9Xd98qLKmQEXpZ93lGwnKpWRhcc59WfPTnMf++vzFTy40bDFX
-        rZv9Is4UAb1urAid68jjqNY3keO74tZJbH/9Lg==
-X-Google-Smtp-Source: AMrXdXtu1ZODwK9qx/LS3GDF1PgE1EtAbnaQtR39OMzYo0BRd36pFYWpqo21w8COL0zisKQVqz74Q2sk6UuNIqd7Ir0=
-X-Received: by 2002:a05:6130:2ac:b0:573:d2a:e6cf with SMTP id
- q44-20020a05613002ac00b005730d2ae6cfmr3485209uac.36.1673226968780; Sun, 08
- Jan 2023 17:16:08 -0800 (PST)
+        with ESMTP id S231238AbjAIBWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 20:22:31 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B5F2D45
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 17:22:30 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A6F991042;
+        Sun,  8 Jan 2023 17:23:11 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 181833F67D;
+        Sun,  8 Jan 2023 17:22:27 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Icenowy Zheng <uwu@icenowy.me>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: [PATCH v5 0/3] phy: sun4i-usb: add support for the USB PHY on F1C100s SoC
+Date:   Mon,  9 Jan 2023 01:22:20 +0000
+Message-Id: <20230109012223.4079299-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <CGME20221214044423epcas5p2920e87930665345169745002ec6993c3@epcas5p2.samsung.com>
- <20221214044342.49766-1-sriranjani.p@samsung.com> <20221214044342.49766-2-sriranjani.p@samsung.com>
-In-Reply-To: <20221214044342.49766-2-sriranjani.p@samsung.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Sun, 8 Jan 2023 19:15:57 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLAqSoVdExrHXZ4xVaY4Ut5R54izoumOY8zsXWN2e8++w@mail.gmail.com>
-Message-ID: <CAL_JsqLAqSoVdExrHXZ4xVaY4Ut5R54izoumOY8zsXWN2e8++w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: soc: samsung: exynos-sysreg: add
- dedicated SYSREG compatibles to Exynos850
-To:     Sriranjani P <sriranjani.p@samsung.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
-        ravi.patel@samsung.com, sathya@samsung.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 13, 2022 at 10:47 PM Sriranjani P <sriranjani.p@samsung.com> wrote:
->
-> Exynos850 has two different SYSREGs, hence add dedicated compatibles for
-> them and deprecate usage of generic Exynos850 compatible alone.
->
-> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
-> ---
->  .../soc/samsung/samsung,exynos-sysreg.yaml        | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> index 4954790eda6c..427df05224e5 100644
-> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> @@ -17,7 +17,6 @@ properties:
->                - samsung,exynos3-sysreg
->                - samsung,exynos4-sysreg
->                - samsung,exynos5-sysreg
-> -              - samsung,exynos850-sysreg
->                - samsung,exynosautov9-sysreg
->                - tesla,fsd-cam-sysreg
->                - tesla,fsd-fsys0-sysreg
-> @@ -33,9 +32,17 @@ properties:
->            - const: samsung,exynos5433-sysreg
->            - const: syscon
->        - items:
-> -          - const: samsung,exynos5433-sysreg
-> +          - enum:
-> +              - samsung,exynos5433-sysreg
-> +              - samsung,exynos850-sysreg
-> +          - const: syscon
-> +            deprecated: true
+Hi,
 
-This is throwing an error in linux-next now.
+this is a rebased version of v4[1], with no actual changes. I haven't
+received any feedback on the last version, but technically this looks
+mostly approved to me anyway, we just need to get around to merge it
+now, I guess?
 
-How can 1 item in a list be deprecated? What's the not deprecated
-value for the entry? Probably this needs to move up to 'items' as the
-whole entry is deprecated.
+This is a spin-off of v3 of the suniv F1C100s USB support series[2], just
+carrying the USB PHY bits. It's now based on top of v6.2-rc2.
+The actual binding and driver changes in the first two patches are
+straightforward. Since it came up in reviews, I reworked the quirk
+handling in the phy-sun4i-usb.c driver, to become more maintainable and
+readable, in patch 3/3. For a changelog, see below.
 
-> +      - items:
-> +          - enum:
-> +              - samsung,exynos850-cmgp-sysreg
-> +              - samsung,exynos850-peri-sysreg
-> +          - const: samsung,exynos850-sysreg
->            - const: syscon
-> -        deprecated: true
->
->    reg:
->      maxItems: 1
-> @@ -53,6 +60,8 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - samsung,exynos850-cmgp-sysreg
-> +              - samsung,exynos850-peri-sysreg
->                - samsung,exynos850-sysreg
->      then:
->        required:
-> --
-> 2.17.1
->
+Cheers,
+Andre
+
+[1] https://lore.kernel.org/linux-arm-kernel/20221116151603.819533-1-andre.przywara@arm.com/
+[2] https://lore.kernel.org/linux-arm-kernel/20221106154826.6687-1-andre.przywara@arm.com/
+
+Changelog v4 ... v5:
+- rebase on top of v6.2-rc2
+
+Changelog v3 ... v4:
+- split off from rest of suniv F1C100s USB series
+- rebase on top of H616 USB PHY patches
+- drop phy2_is_hsic in favour of reusing existing hsic_index member
+- add tags
+
+Changelog v2 ... v3:
+- remove redundant "Device Tree Bindings" suffix in DT binding doc title
+- add BSD license to binding doc file (as per checkpatch)
+- use existing PHY sun4i_a10_phy type instead of inventing new one
+- add patch to clean up sunxi USB PHY driver
+
+Changelog v1 ... v2:
+- USB PHY binding: clarify the relation with other phy-sun4i-usb bindings
+
+
+
+Andre Przywara (1):
+  phy: sun4i-usb: Replace types with explicit quirk flags
+
+Icenowy Zheng (2):
+  dt-bindings: phy: add binding document for Allwinner F1C100s USB PHY
+  phy: sun4i-usb: add support for the USB PHY on F1C100s SoC
+
+ .../phy/allwinner,suniv-f1c100s-usb-phy.yaml  | 83 +++++++++++++++++++
+ drivers/phy/allwinner/phy-sun4i-usb.c         | 59 ++++++-------
+ 2 files changed, 107 insertions(+), 35 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/allwinner,suniv-f1c100s-usb-phy.yaml
+
+-- 
+2.25.1
+
