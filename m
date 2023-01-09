@@ -2,178 +2,328 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89BDF661FFB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:29:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 837BF662004
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:31:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236505AbjAII3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 03:29:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43492 "EHLO
+        id S234036AbjAIIb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 03:31:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236732AbjAII2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:28:12 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F20213EB4
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:28:06 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id g19-20020a05600c4ed300b003d9eb1dbc0aso3000486wmq.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:28:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7ZCewxmSxLwjuTUJjEP99Um0ViA3Vm33HjXmtOQ3d/o=;
-        b=jitoHFJbmjiTIgBjF94+6C4mHCdkBTWpEBDFRG+XnntFVfdzHO6T7D1eTrh+7TM2/y
-         Vvugxax3ToI1qdUcBuGahhS7fbScrkCCKAWEnVBugBrjN4tw31/zXEF43PJNNg3mJE8v
-         dI9OImeuaVWxgYsIlZbiELfYd1buuZZogSKQjUORsfkQJefdNbtw0lAhiICXOza2CK1H
-         0XfShVdC/8tI7JsCjhcFyn7k/7KHtIrIt0hoApyDqtOcER7HwkZVN6/bNtX/8oTVDtwg
-         qelTOd47vaFwIs07eN6K95FnTG8P1jZidrczdEME93VoX5Poftl+5kmelWRxEdvYutuf
-         CUcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7ZCewxmSxLwjuTUJjEP99Um0ViA3Vm33HjXmtOQ3d/o=;
-        b=GVXLUzWnEYg4Aikx+cEot070rZcYUsl7PBHEmVgju6iuxh4xQKyXRj0ZCV2bIGw2hb
-         TzQ7ofBKHz5OYHK4EjODcLOmrOzzb+ZOfaXkuK/urNZNZTx4oxtcbRte+CkcGxYLqCuD
-         +J1tVoB9R3xpCy1lDNBx7lAzWTbAbcacuac1DUXHpCukz4iA/pmzC9La2QjGzvUv0hR2
-         mNxSyeohySLu9OD3JS0pv012R1mTkguug3LncU9WbIFJ+NSapqpSuDuPkpO8L3MbsjAO
-         z7FonL2sE8uJgkhWUemq++yBT17+JxLoTfkYyeGmGqd7g3nNkGOu52czz/gPKlA8Ierd
-         AEkg==
-X-Gm-Message-State: AFqh2krBWoaRS6sSdUUT4K+TiUuoF1wCJodliPL+UEis1IgU69D7LnX2
-        BM0/aqoh0sRMUMID6pK81nugYw==
-X-Google-Smtp-Source: AMrXdXsW4Y6VQtOfBMg1ixd+skEs/6VaeQjIOiffrpDts1lV+k5r/dn+S5QZUFVgYhyTLtDMaIsXqA==
-X-Received: by 2002:a05:600c:4fc6:b0:3d3:4a47:52e9 with SMTP id o6-20020a05600c4fc600b003d34a4752e9mr45041342wmq.15.1673252885142;
-        Mon, 09 Jan 2023 00:28:05 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f11-20020a05600c4e8b00b003d04e4ed873sm16855748wmq.22.2023.01.09.00.28.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 00:28:04 -0800 (PST)
-Message-ID: <a0c06803-450c-eb44-8789-8a48c577389d@linaro.org>
-Date:   Mon, 9 Jan 2023 09:28:02 +0100
+        with ESMTP id S236623AbjAIIaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:30:35 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5317F8FF0;
+        Mon,  9 Jan 2023 00:30:21 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F3BAD6CF;
+        Mon,  9 Jan 2023 09:30:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673253018;
+        bh=sdVspnhyF91px8Uo85ASpiXoNUN4uleKcRqMugs9VBo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ce6Um9vr8SCNk9BuEKWX5nBF6JWZh4gWOm7K8DZumxOzwKEHxTEWVISnbLE+cP5z4
+         m4IB/NXyJ3gjVFBIyuoLFeeHLvNf0CBX2M+6jAz9kEgaXRZnUFpDxYHmGa7+E4zkE4
+         IYj1PpvTyiKU5uEHSkWgoYpHdB6sBfyoVaguEGMc=
+Message-ID: <a3857c78-c221-176f-b862-a0435b301c67@ideasonboard.com>
+Date:   Mon, 9 Jan 2023 10:30:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 5/5] arm64: dts: fsd: Add sound card node for Tesla FSD
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v6 5/8] dt-bindings: media: add TI DS90UB960 FPD-Link III
+ Deserializer
 Content-Language: en-US
-To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
-        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
-        alim.akhtar@samsung.com, rcsekar@samsung.com,
-        aswani.reddy@samsung.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-References: <20230103045613.100309-1-p.rajanbabu@samsung.com>
- <CGME20230103045706epcas5p14f2f951d162899234c7f5f7a0998ab6b@epcas5p1.samsung.com>
- <20230103045613.100309-6-p.rajanbabu@samsung.com>
- <2c6950c9-3489-c2d4-2ca8-cb723195f75b@linaro.org>
- <051601d923df$a0e7b840$e2b728c0$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <051601d923df$a0e7b840$e2b728c0$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh@kernel.org>
+References: <20230105140307.272052-1-tomi.valkeinen@ideasonboard.com>
+ <20230105140307.272052-6-tomi.valkeinen@ideasonboard.com>
+ <Y7o3QEq9utV8nswA@pendragon.ideasonboard.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <Y7o3QEq9utV8nswA@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 05:05, Padmanabhan Rajanbabu wrote:
+On 08/01/2023 05:23, Laurent Pinchart wrote:
+> Hi Tomi,
 > 
+> Thank you for the patch.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
->> Sent: 03 January 2023 04:43 PM
->> To: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>;
->> lgirdwood@gmail.com; broonie@kernel.org; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; s.nawrocki@samsung.com;
->> perex@perex.cz; tiwai@suse.com; pankaj.dubey@samsung.com;
->> alim.akhtar@samsung.com; rcsekar@samsung.com;
->> aswani.reddy@samsung.com
->> Cc: alsa-devel@alsa-project.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-samsung-soc@vger.kernel.org
->> Subject: Re: [PATCH v2 5/5] arm64: dts: fsd: Add sound card node for Tesla
->> FSD
+> On Thu, Jan 05, 2023 at 04:03:04PM +0200, Tomi Valkeinen wrote:
+>> Add DT bindings for TI DS90UB960 FPD-Link III Deserializer.
 >>
->> On 03/01/2023 05:56, Padmanabhan Rajanbabu wrote:
->>> Add device tree node support for sound card on Tesla FSD board
->>>
->>> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
->>> ---
->>>  arch/arm64/boot/dts/tesla/fsd-evb.dts | 37
->>> +++++++++++++++++++++++++++
->>>  1 file changed, 37 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts
->>> b/arch/arm64/boot/dts/tesla/fsd-evb.dts
->>> index e2fd49774f15..ce726bddfb50 100644
->>> --- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
->>> +++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
->>> @@ -29,6 +29,43 @@
->>>  		device_type = "memory";
->>>  		reg = <0x0 0x80000000 0x2 0x00000000>;
->>>  	};
->>> +
->>> +	sound {
->>> +		compatible = "simple-audio-card";
->>> +
->>> +		#address-cells = <1>;
->>> +		#size-cells = <0>;
->>> +
->>> +		simple-audio-card,name = "FSD Audio Card";
->>> +		simple-audio-card,widgets =
->>> +			"Line", "Line Out",
+>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   .../bindings/media/i2c/ti,ds90ub960.yaml      | 402 ++++++++++++++++++
+>>   1 file changed, 402 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
 >>
->> I don't think you need to break the line after '='.
+>> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+>> new file mode 100644
+>> index 000000000000..664799ae55be
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+>> @@ -0,0 +1,402 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/i2c/ti,ds90ub960.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Texas Instruments DS90UB9XX Family FPD-Link Deserializer Hubs
+>> +
+>> +maintainers:
+>> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> +
+>> +description:
+>> +  The TI DS90UB9XX devices are FPD-Link video deserializers with I2C and GPIO
+>> +  forwarding.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ti,ds90ub960-q1
+>> +      - ti,ds90ub9702-q1
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description:
+>> +      Reference clock connected to the REFCLK pin.
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: refclk
+>> +
+>> +  powerdown-gpios:
+>> +    maxItems: 1
+>> +    description:
+>> +      Specifier for the GPIO connected to the PDB pin.
+>> +
+>> +  i2c-alias-pool:
+>> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+>> +    description:
+>> +      I2C alias pool is a pool of I2C addresses on the main I2C bus that can be
+>> +      used to access the remote peripherals on the serializer's I2C bus. The
+>> +      addresses must be available, not used by any other peripheral. Each
+>> +      remote peripheral is assigned an alias from the pool, and transactions to
+>> +      that address will be forwarded to the remote peripheral, with the address
+>> +      translated to the remote peripheral's real address. This property is not
+>> +      needed if there are no I2C addressable remote peripherals.
+>> +
+>> +  links:
+>> +    type: object
+>> +    additionalProperties: false
+>> +
+>> +    properties:
+>> +      '#address-cells':
+>> +        const: 1
+>> +
+>> +      '#size-cells':
+>> +        const: 0
+>> +
+>> +      ti,manual-strobe:
+>> +        type: boolean
+>> +        description:
+>> +          Enable manual strobe position and EQ level
+>> +
+>> +    patternProperties:
+>> +      '^link@[0-3]$':
+>> +        type: object
+>> +        additionalProperties: false
+>> +        properties:
+>> +          reg:
+>> +            description: The link number
+>> +            maxItems: 1
+>> +
+>> +          i2c-alias:
+>> +            description:
+>> +              The I2C address used for the serializer. Transactions to this
+>> +              address on the I2C bus where the deserializer resides are
+>> +              forwarded to the serializer.
+>> +
+>> +          ti,rx-mode:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            enum:
+>> +              - 0 # RAW10
+>> +              - 1 # RAW12 HF
+>> +              - 2 # RAW12 LF
+>> +              - 3 # CSI2 SYNC
+>> +              - 4 # CSI2 NON-SYNC
+>> +            description:
+>> +              FPD-Link Input Mode. This should reflect the hardware and the
+>> +              default mode of the connected camera module.
 > 
-> Okay, will change the same in the next patch set.
-> 
->>
->>> +			"Line", "Line In";
->>> +		simple-audio-card,routing =
->>> +			"Line Out", "LLOUT",
->>> +			"Line Out", "RLOUT",
->>> +			"MIC2L", "Line In",
->>> +			"MIC2R", "Line In";
->>> +
->>> +		status = "okay";
->>
->> Why?
-> 
-> Okay, I understood that if there is no status entry, it is
-> treated as "okay". I'll update the same in the next
-> patch set.
-> 
->>
->>> +
->>> +		simple-audio-card,dai-link@0 {
->>> +			reg = <0>;
->>> +			format = "i2s";
->>> +			bitclock-master = <&tlv320aic3x>;
->>> +			frame-master = <&tlv320aic3x>;
->>> +
->>> +			cpu0 {
->>
->> Does not look like you tested the DTS against bindings. Please run `make
->> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
->> for instructions).
-> 
-> I did not encounter any error while running dtbs_check for fsd-evb.dts
-> 
-> This is the command I executed
-> make dtbs_check > output.txt 2>&1
-> 
-> dt-mk-schema --version: 2022.11
-> 
-> Please let me know if I'm missing anything here.
+> As the remote device may not be a camera, I'd write "of the connected
+> device" or "of the connected serializer".
 
-You are right. I misread the pattern in simple-card.yaml. I'll fix the
-file, so let's make these nodes: cpu-0 and cpu-1.
+I was trying to include the sensor also in the "camera module", as the 
+sensor's "normal" pixel cloud would affect RAW modes (HF/LF). Perhaps 
+"connected device" covers this.
 
-Best regards,
-Krzysztof
+>> +
+>> +          ti,cdr-mode:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            enum:
+>> +              - 0 # FPD-Link III
+>> +              - 1 # FPD-Link IV
+>> +            description:
+>> +              FPD-Link CDR Mode. This should reflect the hardware and the
+>> +              default mode of the connected camera module.
+>> +
+>> +          ti,strobe-pos:
+>> +            $ref: /schemas/types.yaml#/definitions/int32
+>> +            minimum: -13
+>> +            maximum: 13
+>> +            description: Manual strobe position
+>> +
+>> +          ti,eq-level:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            maximum: 14
+>> +            description: Manual EQ level
+>> +
+>> +          serializer:
+>> +            type: object
+>> +            description: FPD-Link Serializer node
+>> +
+>> +        required:
+>> +          - reg
+>> +          - i2c-alias
+>> +          - ti,rx-mode
+>> +          - serializer
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: FPD-Link input 0
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +            description:
+>> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
+>> +              hsync-active and vsync-active must be defined.
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: FPD-Link input 1
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +            description:
+>> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
+>> +              hsync-active and vsync-active must be defined.
+>> +
+>> +      port@2:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: FPD-Link input 2
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +            description:
+>> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
+>> +              hsync-active and vsync-active must be defined.
+>> +
+>> +      port@3:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: FPD-Link input 3
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +            description:
+>> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
+>> +              hsync-active and vsync-active must be defined.
+>> +
+>> +      port@4:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: CSI-2 Output 0
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +
+>> +            properties:
+>> +              data-lanes:
+>> +                minItems: 1
+>> +                maxItems: 4
+>> +
+>> +            required:
+>> +              - data-lanes
+>> +
+>> +      port@5:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: CSI-2 Output 1
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +
+>> +            properties:
+>> +              data-lanes:
+>> +                minItems: 1
+>> +                maxItems: 4
+>> +
+>> +            required:
+>> +              - data-lanes
+> 
+> I think you need
+> 
+>      required:
+>        - port@0
+>        - port@1
+>        - port@2
+>        - port@3
+>        - port@4
+>        - port@5
+
+Is that needed? I think often some of the ports are unused (e.g. the 
+example in this yaml file). Is it customary to still require empty port 
+nodes in the DT?
+
+  Tomi
 
