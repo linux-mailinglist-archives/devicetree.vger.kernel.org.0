@@ -2,127 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D10C6626D1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:22:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 099B76626E2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:23:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233629AbjAINVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 08:21:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37224 "EHLO
+        id S237196AbjAINXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 08:23:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237218AbjAINVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:21:22 -0500
-Received: from fx405.security-mail.net (smtpout140.security-mail.net [85.31.212.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D43D9A19A
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 05:21:20 -0800 (PST)
-Received: from localhost (fx405.security-mail.net [127.0.0.1])
-        by fx405.security-mail.net (Postfix) with ESMTP id D5D7E335F15
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 14:21:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kalray.eu;
-        s=sec-sig-email; t=1673270478;
-        bh=VTyAgBvawac4uHB7eMyMDicCX2xLvVfQ11WRs4OqUgg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=YZ+jS6/1Ma7JCmcJ3+OEDQF6/jdcWUhHaMCMCUIMiS/QRA3hvieFeCchl43TWG6g4
-         8uzP1OQwFTqJST5NGfflnAynHPXH43mmkQhylk6XZiFnOpe64YOUPMjH/EHaBa+r6X
-         XNQwFD9kMcy8gj0OVjfaZ+Y+swU0mq962ckt9ZPA=
-Received: from fx405 (fx405.security-mail.net [127.0.0.1]) by
- fx405.security-mail.net (Postfix) with ESMTP id 382DC335EA5; Mon,  9 Jan
- 2023 14:21:18 +0100 (CET)
-Received: from zimbra2.kalray.eu (unknown [217.181.231.53]) by
- fx405.security-mail.net (Postfix) with ESMTPS id 1E46D335E6D; Mon,  9 Jan
- 2023 14:21:17 +0100 (CET)
-Received: from zimbra2.kalray.eu (localhost [127.0.0.1]) by
- zimbra2.kalray.eu (Postfix) with ESMTPS id D765927E03FF; Mon,  9 Jan 2023
- 14:21:16 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1]) by zimbra2.kalray.eu
- (Postfix) with ESMTP id B3B4327E03FA; Mon,  9 Jan 2023 14:21:16 +0100 (CET)
-Received: from zimbra2.kalray.eu ([127.0.0.1]) by localhost
- (zimbra2.kalray.eu [127.0.0.1]) (amavisd-new, port 10026) with ESMTP id
- RFDkxXP_U9mz; Mon,  9 Jan 2023 14:21:16 +0100 (CET)
-Received: from [192.168.37.161] (unknown [192.168.37.161]) by
- zimbra2.kalray.eu (Postfix) with ESMTPSA id 46FC927E03F5; Mon,  9 Jan 2023
- 14:21:16 +0100 (CET)
-X-Virus-Scanned: E-securemail
-Secumail-id: <18db.63bc14cd.171d3.0>
-DKIM-Filter: OpenDKIM Filter v2.10.3 zimbra2.kalray.eu B3B4327E03FA
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kalray.eu;
- s=32AE1B44-9502-11E5-BA35-3734643DEF29; t=1673270476;
- bh=pFwL+Y0S0qo0MF7wO/awAfpxvBk+/1wXJh5pVmIIW2g=;
- h=Message-ID:Date:MIME-Version:To:From;
- b=XjT0yLLBY18QxivMgV9uczq9z+HpKf5TnyecD/FGL3y5WOfaxlypJyAxpZ8saNN2c
- xkoB4C8EPYxurJyqIoGRHgJxE+LjZeyAAIvw8YYk1DjcyoP679xtmnwZh9BbBCh3Ku
- YVP4+a/ZNoUFvoUsbRjrSO4n7fz2l6dahOcJsTh0=
-Message-ID: <6570d22d-ee19-f8b1-6fb4-bf8865ec4142@kalray.eu>
-Date:   Mon, 9 Jan 2023 14:21:15 +0100
+        with ESMTP id S237270AbjAINWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:22:30 -0500
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A0801EED1
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 05:21:59 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-4b6255ce5baso111736747b3.11
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 05:21:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=rz+s0oOK9CGszhUZRgwbVwGCcwnWbJEMw7HwfNcRehg=;
+        b=Uhaqe6JtG8smjHRfW6q0YXgFSuMHrQ7FEXbnllZyEQHWvSos4x0efXml1JbfC9AhiG
+         zCvcYOJt3ev49tfYsZOoZPaLfhV2lS+f3kcy8uxoM6xKoII7cCfPuRSjpd2BhM6qzs6S
+         helwI452iS0FzUQ4lBg3Ao20uZHrBzBF9Xo8sULwwyTyrEUdJbfcnlENqMsIpyg82nRy
+         +w8hTC61leJJQsTg9DsSCqhXb5wO+LTvhBY4w7QzkuIPnVSjoO5/wwVy+chy1SJFBG2g
+         O5CRfDbUAbKed7SQKJit/g3CMRRuAUYZ8y1gl7ciorubW4JJOPwJTcp25NyBjFvqyoLH
+         jpRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rz+s0oOK9CGszhUZRgwbVwGCcwnWbJEMw7HwfNcRehg=;
+        b=vJ1Gy65O3T58cN90KVM6WXlfGytzXvE2VPfl+VV1D0WmkP8Sh8Rci7IzhWAL8u7+fH
+         WTYUXiHqFiCcG7HVpnF9gXqtjSQbJUTaOz23xGu4SFCX0DzMG5a2wIudO1r8c1/FZQnH
+         AMc1g0gWpH6KwB1pANS0255vxOmmmzEb7DswdfVZYXSW5Vxxg+lin41SmFtiP1UNAaPa
+         1I/uhyhNevpmePqaKuALJAmUnFi0z37S1bD4kDiM429oVlbhaMxByDf6Q5yXa96ZEXUc
+         15lcZTAJIdbnWbtFcDkQDhX6dprEaoqbLkW8J24s0bw4UXbaHT8LIo+aGOJVqP9M9jRW
+         /xKA==
+X-Gm-Message-State: AFqh2koUCm7DLzBbTAD064E6Wn7GNAXk7uiVQ9a1pZ+Ng8ZqhzTmiRNL
+        990KV8kCQCHetun0U3zaNMEZMJFtOoe36l/5fWrnCjA9hJx3WA==
+X-Google-Smtp-Source: AMrXdXu1lkDXxVcao7eCMarSE+B3B5cecYgPmEwE1aiQrJEPXeDNzyVa2f9Y6Mleh0SHKD7uD6qnqmE6kOF9fRHTwrg=
+X-Received: by 2002:a81:9c52:0:b0:368:e8a:3b1d with SMTP id
+ n18-20020a819c52000000b003680e8a3b1dmr865977ywa.469.1673270518295; Mon, 09
+ Jan 2023 05:21:58 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [RFC PATCH 00/25] Upstream kvx Linux port
-Content-Language: en-us
-To:     Jeff Xie <xiehuan09@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Albert Ou <aou@eecs.berkeley.edu>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        Boqun Feng <boqun.feng@gmail.com>, bpf@vger.kernel.org,
-        Christian Brauner <brauner@kernel.org>,
-        devicetree@vger.kernel.org, Eric Biederman <ebiederm@xmission.com>,
-        Eric Paris <eparis@redhat.com>, Ingo Molnar <mingo@redhat.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Jason Baron <jbaron@akamai.com>, Jiri Olsa <jolsa@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Josh Poimboeuf <jpoimboe@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Kieran Bingham <kbingham@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-audit@redhat.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-        linux-perf-users@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Marc Zyngier <maz@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Namhyung Kim <namhyung@kernel.org>,
-        Nick Piggin <npiggin@gmail.com>,
-        Oleg Nesterov <oleg@redhat.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Peter Zijlstra <peterz@infradead.org>,
+References: <20221230203637.2539900-1-abel.vesa@linaro.org> <20221230203637.2539900-3-abel.vesa@linaro.org>
+In-Reply-To: <20221230203637.2539900-3-abel.vesa@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 9 Jan 2023 14:21:47 +0100
+Message-ID: <CACRpkdbzh6oXhS_qLYHeKvk5cXE7RGS=5XtAzSLcxJ-5D9gJEw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] pinctrl: qcom: Add SM8550 pinctrl driver
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Waiman Long <longman@redhat.com>,
-        Will Deacon <will@kernel.org>, Alex Michon <amichon@kalray.eu>,
-        Ashley Lesdalons <alesdalons@kalray.eu>,
-        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Guillaume Missonnier <gmissonnier@kalray.eu>,
-        Guillaume Thouvenin <gthouvenin@kalray.eu>,
-        Jean-Christophe Pince <jcpince@gmail.com>,
-        Jonathan Borne <jborne@kalray.eu>,
-        Jules Maselbas <jmaselbas@kalray.eu>,
-        Julian Vetter <jvetter@kalray.eu>,
-        Julien Hascoet <jhascoet@kalray.eu>,
-        Julien Villette <jvillette@kalray.eu>,
-        Louis Morhet <lmorhet@kalray.eu>,
-        Luc Michel <lmichel@kalray.eu>,
-        Marc =?utf-8?b?UG91bGhpw6hz?= <dkm@kataplop.net>,
-        Marius Gligor <mgligor@kalray.eu>,
-        Samuel Jones <sjones@kalray.eu>,
-        Thomas Costis <tcostis@kalray.eu>,
-        Vincent Chardon <vincent.chardon@elsys-design.com>
-References: <20230103164359.24347-1-ysionneau@kalray.eu>
- <CAEr6+ECRh_9App18zmcS6FUR81YYhR=n4kGdeZAtQBsdMB55_A@mail.gmail.com>
-From:   Yann Sionneau <ysionneau@kalray.eu>
-In-Reply-To: <CAEr6+ECRh_9App18zmcS6FUR81YYhR=n4kGdeZAtQBsdMB55_A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ALTERMIMEV2_out: done
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -131,60 +73,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeff,
+On Fri, Dec 30, 2022 at 9:36 PM Abel Vesa <abel.vesa@linaro.org> wrote:
 
-On 1/7/23 07:25, Jeff Xie wrote:
-> Hi,
+> Add pinctrl driver for TLMM block found in SM8550 SoC.
 >
-> On Wed, Jan 4, 2023 at 1:01 AM Yann Sionneau <ysionneau@kalray.eu> wrote:
->> [snip]
->>
->> A kvx toolchain can be built using:
->> # install dependencies: texinfo bison flex libgmp-dev libmpc-dev libmpfr-dev
->> $ git clone https://github.com/kalray/build-scripts
->> $ cd build-scripts
->> $ source last.refs
->> $ ./build-kvx-xgcc.sh output
-> I would like to build the kvx-xgcc to compile and test the linux
-> kernel, but it reported a compile error.
-> I wonder what version of gcc you are using.
->
-> My build environment:
-> VERSION="20.04.2 LTS (Focal Fossa)"
-> gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)
->
->
-> Compile error:
-> $ ./build-kvx-xgcc.sh output
->
-> ../../binutils/libiberty/fibheap.c: In function ‘fibheap_replace_key_data’:
-> ../../binutils/libiberty/fibheap.c:38:24: error: ‘LONG_MIN’ undeclared
-> (first use in this function)
->     38 | #define FIBHEAPKEY_MIN LONG_MIN
->        |                        ^~~~~~~~
-> [snip]
+> Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-What SHA1 of https://github.com/kalray/build-scripts are you using?
+Patch applied!
+Also carried over Bjorns late arrived review-by from v3.
 
-We are building our toolchain on Ubuntu 18.04 / 20.04 and 22.04 without 
-issues, I don't understand why it does not work for you, although indeed 
-the error log you are having pops out on my search engine and seems to 
-be some well known issue.
-
-If the build-script does not work for you, you can still use the 
-pre-built toolchains generated by the GitHub automated actions: 
-https://github.com/kalray/build-scripts/releases/tag/v4.11.1 ("latest" 
-means 22.04)
-
-I hope it will work for you.
-
-Regards,
-
--- 
-
-Yann
-
-
-
-
-
+Yours,
+Linus Walleij
