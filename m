@@ -2,231 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84806662660
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:02:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C2A2662666
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 14:02:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236851AbjAINCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 08:02:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49530 "EHLO
+        id S231591AbjAINCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 08:02:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233331AbjAINCM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:02:12 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4A991758A;
-        Mon,  9 Jan 2023 04:59:21 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 601AE6CF;
-        Mon,  9 Jan 2023 13:59:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673269145;
-        bh=b5YGXWGHoxTUNR2lz6oATrp9StnnDmiege+b+Kt/YnM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=KrH5T+bybl6PE8El4Qq1rEpTueK/bkk15n6q/dYt+2CCW0oOYqStD7LHyJcRbxi6G
-         37+ZbEVMVSqdYp6qu+ZipXAK+VAB6FQ1ZIg+OKLPORNMFGVf2ZAJA/cD8WQF6/+7NP
-         eAcl919tiZ4bUQDh7hlGbfP4FMT9mgdx8LhGVyPU=
-Message-ID: <5173a16a-83c5-5cfe-f6ce-03e1c90e8790@ideasonboard.com>
-Date:   Mon, 9 Jan 2023 14:59:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 7/8] media: i2c: add DS90UB913 driver
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-References: <20230105140307.272052-1-tomi.valkeinen@ideasonboard.com>
- <20230105140307.272052-8-tomi.valkeinen@ideasonboard.com>
- <Y7pBSq49dL8Fzxsc@pendragon.ideasonboard.com>
- <Y7v1Wrma/Ev8KEzy@smile.fi.intel.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Y7v1Wrma/Ev8KEzy@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S236744AbjAINCW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 08:02:22 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6BF932E97;
+        Mon,  9 Jan 2023 04:59:43 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 732823200900;
+        Mon,  9 Jan 2023 07:59:39 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Mon, 09 Jan 2023 07:59:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1673269179; x=1673355579; bh=QHyVDTSeBQ
+        Usc679p5SSBNeodDyOr47mIwbZVEkPd4g=; b=o4U8vEUBt5mELqQoEclx4o57G8
+        c6NtloZo+fIDDvqhu76woxJwlxAA5hK+qXOq9HCqyEGUIbdMZdSkCEl2MQH9qlYR
+        Q10f2+t5J+TfFPEsqHSPHhQpX7D5jE8Ui0HGGKhEi5EoLDR84BFetU/4Gw4jD6An
+        gGzf4n6fsVzbn5RVE+zHAzXGcfX0kG5Rtb42tBcug4k4I+hZ7fQ4QaJmpV7bsa20
+        ON0flyNcXfJxXiBp1QSxNrANS5jl+ewa0j5mWjjyA5UuhOvNRc0cMcZc1PWXyCTJ
+        xF+8k2rxHksQ/o3Dk9uA4dM8V6fkeKkVKYNMibpl1hFKw4lwYow6904NA1vw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1673269179; x=1673355579; bh=QHyVDTSeBQUsc679p5SSBNeodDyO
+        r47mIwbZVEkPd4g=; b=msd59zkgkATHCZWq0Fg/AW17cXKjoj+KNdUYRUcomfAu
+        qOT48jV+a8Cx1m+WoVDVCKLjlDghAkYjRqX7cy12kwmhFhpLf7wt1Q0uVzfeTS0I
+        Am7Htw6JHQnsbTI4epRZn9Wz2qp3jSoJ4+nA3T6n6BZV+lvS5Ni/PvoWBWrQtzD/
+        DP7KrchYaq8yyebf1vsG9fdoO6MLfDCB7nOax5wVp7fu6u+Vnup4q64IcFEYi726
+        EGhNwZc1rAsc/uCxMT+/euXvhHFIl/2vbkzbD5bRamxLj7tS2VTAcYvhw4zVqSGw
+        D5I+HaJRqK/0rqdc7rQMp8l0brW6JBEJtCDnbo9FfQ==
+X-ME-Sender: <xms:uA-8Y6lLnlIc14O2ih-LfqHwT8g5bydabYMrUxruSvB4ET4evCQpSg>
+    <xme:uA-8Yx0pIvsaFYFjgpRZ38exYx1rPDq_by9S3FquiiPRxVoBaEX3a5rizjo1xRhbJ
+    s9PU1rwmPhblYu1pnY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrkeeigdegvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeevhfffledtgeehfeffhfdtgedvheejtdfgkeeuvefgudffteettdekkeeufeeh
+    udenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:uA-8Y4rnl6JJOpyKNg3SM4ka7TBNmJBnokvtaJW79uaemQ6-G0wecw>
+    <xmx:uA-8Y-n9zhjmUG4Py202QCNMwapdpuwFJW_-hHuScNuugahoyZFmqQ>
+    <xmx:uA-8Y402UeUcdP8DrfTqtJeIoFqCL1XiPxYB0keY-gm6zRrZV-uKBQ>
+    <xmx:uw-8YyWWJX4csRKHR1p9dWMu88JOAfiwZx3JGY9OizVxtkEGRmTydg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id BCAFBB60086; Mon,  9 Jan 2023 07:59:36 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
+Mime-Version: 1.0
+Message-Id: <45d6eb0c-cbe3-4a83-aa12-3483638473ae@app.fastmail.com>
+In-Reply-To: <CA+V-a8u6jvR=EDeE3mAbDr6-06NoBJ7mwmi_Y9qVyHT+aC-9rg@mail.gmail.com>
+References: <20230106185526.260163-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230106185526.260163-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <6f7d06ef-d74d-4dfc-9b77-6ae83e0d7816@app.fastmail.com>
+ <CA+V-a8uF1s+dwKC_+apL+CBiHN8w_J0n_G2dqsgiAUZVEibfqg@mail.gmail.com>
+ <9017adf0-acd4-4c43-8aea-3579b214b477@app.fastmail.com>
+ <CA+V-a8u6jvR=EDeE3mAbDr6-06NoBJ7mwmi_Y9qVyHT+aC-9rg@mail.gmail.com>
+Date:   Mon, 09 Jan 2023 13:59:12 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     "Conor.Dooley" <conor.dooley@microchip.com>,
+        "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        guoren <guoren@kernel.org>,
+        "Andrew Jones" <ajones@ventanamicro.com>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        "Albert Ou" <aou@eecs.berkeley.edu>,
+        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+        "open list" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Philipp Tomsich" <philipp.tomsich@vrull.eu>,
+        "Nathan Chancellor" <nathan@kernel.org>,
+        "Atish Patra" <atishp@rivosinc.com>,
+        "Anup Patel" <apatel@ventanamicro.com>,
+        "Tsukasa OI" <research_trasio@irq.a4lg.com>,
+        "Jisheng Zhang" <jszhang@kernel.org>,
+        "Mayuresh Chitale" <mchitale@ventanamicro.com>,
+        "Christoph Hellwig" <hch@lst.de>, "Will Deacon" <will@kernel.org>
+Subject: Re: [RFC PATCH v6 1/6] riscv: mm: dma-noncoherent: Switch using function
+ pointers for cache management
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 13:07, Andy Shevchenko wrote:
-> On Sun, Jan 08, 2023 at 06:06:34AM +0200, Laurent Pinchart wrote:
->> On Thu, Jan 05, 2023 at 04:03:06PM +0200, Tomi Valkeinen wrote:
-> 
-> ...
-> 
->>> +	scnprintf(priv->gpio_chip_name, sizeof(priv->gpio_chip_name), "%s",
->>> +		  dev_name(dev));
+On Mon, Jan 9, 2023, at 13:03, Lad, Prabhakar wrote:
+> On Sun, Jan 8, 2023 at 12:08 AM Arnd Bergmann <arnd@arndb.de> wrote:
+>> >> > +struct riscv_cache_ops {
+>> >> > +     void (*clean_range)(unsigned long addr, unsigned long size);
+>> >> > +     void (*inv_range)(unsigned long addr, unsigned long size);
+>> >> > +     void (*flush_range)(unsigned long addr, unsigned long size);
+>> >> > +     void (*riscv_dma_noncoherent_cmo_ops)(void *vaddr, size_t size,
+>> >> > +                                           enum dma_data_direction dir,
+>> >> > +                                           enum dma_noncoherent_ops ops);
+>> >> > +};
+>> >>
+>> >> I don't quite see how the fourth operation is used here.
+>> >> Are there cache controllers that need something beyond
+>> >> clean/inv/flush?
+>> >>
+>> > This is for platforms that dont follow standard cache operations (like
+>> > done in patch 5/6) and there drivers decide on the operations
+>> > depending on the ops and dir.
 >>
->> I think you can use strscpy().
-> 
-> Actually I'm not sure we even need that variable. What is the lifetime of
-> the dev and gc? I believe they are the same or gc's one is shorter, hence
-> dev_name() can be used directly, no?
-
-I think this is a valid point, no need for the extra variable afaics.
-
-> ...
-> 
->>> +	gc->of_node = priv->client->dev.of_node;
-> 
-> We don't have of_node anymore in gc. And if the parent device is set, you can
-> drop this line (it will work with older and newer kernels. Otherwise, use
-> fwnode.
-
-What do you mean "we don't have of_node anymore"?
-
-> ...
-> 
->>> +	ret = gpiochip_add_data(gc, priv);
->>> +	if (ret) {
->>> +		dev_err(dev, "Failed to add GPIOs: %d\n", ret);
-> 
->>> +		return ret;
->>> +	}
->>> +
->>> +	return 0;
-> 
-> return ret;
-
-I'm not a fan of that style. I like my error handling ifs to return the 
-error inside the if block, and a successful function ends in a "return 0".
-
-> ...
-> 
->>> +	ep_node = of_graph_get_endpoint_by_regs(dev->of_node, 0, 0);
-> 
-> Why this can't be fwnode_handle from day 1?
-
-I guess it can. It's an old driver and there has been no need to convert 
-to fwnode, so we're still using OF.
-
->>> +	if (!ep_node) {
->>> +		dev_err(dev, "No graph endpoint\n");
->>> +		return -ENODEV;
->>> +	}
-> 
-> ...
-> 
->>> +	ep_np = of_graph_get_endpoint_by_regs(np, 0, 0);
->>> +	if (!ep_np) {
->>> +		dev_err(dev, "OF: no endpoint\n");
->>> +		return -ENOENT;
->>> +	}
-> 
-> Ditto.
-> 
->>> +	ret = of_property_read_u32(ep_np, "pclk-sample", &priv->pclk_polarity);
->>> +
->>> +	of_node_put(ep_np);
-> 
-> Ditto.
-> 
-> ...
-> 
->>> +		return ret;
->>> +	}
->>> +
->>> +	return 0;
-> 
-> return ret;
-> 
-> ...
-> 
->>> +	priv->plat_data = dev_get_platdata(&client->dev);
->>> +	if (!priv->plat_data) {
->>> +		dev_err(dev, "Platform data missing\n");
->>> +		return -ENODEV;
-> 
-> 	return dev_err_probe(...); ?
-
-Isn't the idea with dev_err_probe to use it where -EPROBE_DEFER might be 
-the error? That's not the case here.
-
-Buuut reading the relevant docs a bit more shows that it's actually 
-recommended to be used in this kind of cases too, so you're right.
-
->>> +	}
-> 
-> ...
-> 
->>> +	priv->regmap = devm_regmap_init_i2c(client, &ub913_regmap_config);
->>> +	if (IS_ERR(priv->regmap)) {
->>> +		dev_err(dev, "Failed to init regmap\n");
->>> +		return PTR_ERR(priv->regmap);
-> 
-> Ditto?
->
->>> +	}
-> 
-> ...
-> 
->>> +#ifdef CONFIG_OF
+>> My feeling is that the set of operations that get called should
+>> not depend on the cache controller but at best the CPU. I tried to
+>> enumerate how zicbom and ax45 differ here, and how that compares
+>> to other architectures:
 >>
->> The driver depends on CONFIG_OF so I would drop this, as well as the
->> of_match_ptr().
-> 
-> Even if there is no OF dependency, these ugly ifdeffery with of_match_ptr()
-> are error prone (compilation wise).
-> 
-> ...
-> 
->>> +static const struct of_device_id ub913_dt_ids[] = {
->>> +	{ .compatible = "ti,ds90ub913a-q1", },
-> 
-> Inner comma is not needed.
+>>                   zicbom      ax45,mips,arc      arm           arm64
+>> fromdevice      clean/flush   inval/inval   inval/inval   clean/inval
+>> todevice        clean/-       clean/-       clean/-       clean/-
+>> bidi            flush/flush   flush/inval   clean/inval   clean/inval
+>>
+>> So everyone does the same operation for DMA_TO_DEVICE, but
+>> they differ in the DMA_FROM_DEVICE handling, for reasons I
+>> don't quite see:
+>>
+>> Your ax45 code does the same as arc and mips. arm and
+>> arm64 skip invalidating the cache before bidi mappings,
+>> but arm has a FIXME comment about that. arm64 does a
+>> 'clean' instead of 'inval' when mapping a fromdevice
+>> page, which seems valid but slower than necessary.
+>>
+>> Could the zicbom operations be changed to do the same
+>> things as the ax45/mips/arc ones, or are there specific
+>> details in the zicbom spec that require this?
+>>
+> I'll let the RISC-V experts respond here.
 
-Ok.
+Adding Christoph Hellwig and Will Deacon to Cc as well.
 
-> 
->>> +	{}
->>> +};
-> 
-> ...
-> 
->>> +static struct i2c_driver ds90ub913_driver = {
->>> +	.probe_new	= ub913_probe,
->>> +	.remove		= ub913_remove,
->>> +	.id_table	= ub913_id,
->>> +	.driver = {
->>> +		.name	= "ds90ub913a",
-> 
->>> +		.owner = THIS_MODULE,
-> 
-> This is something like for 5+ years is not needed, as the below macro sets it
-> for you.
+I had another look at the arm64 side, which (like the zicbom
+variant) uses 'clean' on dma_sync_single_for_device(DMA_FROM_DEVICE),
+as that has changed not that long ago, see
 
-Ok.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c50f11c6196f45c92ca48b16a5071615d4ae0572
 
->>> +		.of_match_table = of_match_ptr(ub913_dt_ids),
->>> +	},
->>> +};
-> 
->>> +
-> 
-> Redundant blank line.
-> 
->>> +module_i2c_driver(ds90ub913_driver);
-> 
+I'm still not sure what the correct set of operations has
+to be, but nothing in that patch description sounds ISA
+or even microarchitecture specific.
 
-  Tomi
-
+    Arnd
