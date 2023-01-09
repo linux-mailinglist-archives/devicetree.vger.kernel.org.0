@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC2D662BA2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:50:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23697662BA3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:50:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233336AbjAIQun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 11:50:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42568 "EHLO
+        id S229658AbjAIQuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 11:50:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbjAIQuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:50:15 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DC886468
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 08:49:08 -0800 (PST)
+        with ESMTP id S237069AbjAIQuQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:50:16 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EBC63C0ED
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 08:49:10 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id B2D5ECE10BC
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 16:49:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F45CC433F0;
-        Mon,  9 Jan 2023 16:49:02 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E7155B80DED
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 16:49:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E93AC433D2;
+        Mon,  9 Jan 2023 16:49:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673282944;
-        bh=H0htiAO+IFq+g1kJgzGvOm1YmHXS0hxKh6DEXB3GTTM=;
+        s=k20201202; t=1673282947;
+        bh=nomMKMBq5vqYlYBkVcfPgR908mTaHI9M2brVdnM5JRU=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=QogZDQbPqxlOguyCkSnP7GkZ/qDjqfQl9F/Qu1MXxIzq8xLBZtZNU5mmqbDdepXmg
-         uTp/HNQyIBt9mgZldLHjB8Wvh4ISAUlZQmWK79j3iJkkx+5FSpmue9Mm9PTtamZ+a+
-         xxAQsOHS2am14ScPKHs+LjGa9jaQr/IhJ4Gr0qMzjwElnyd3Hj5r1jBaVgA1/0QeNy
-         YBn0ERVEDm99j5XBkMDonmNN48Pb98f7qIhN4/55VusFCizoOXBJcDWlA/TW8qsAbC
-         PEJSRt3VlXsLxAfOk5ArlBDnxgQlDto5yZxeKEuFPfBIf12HRK1Sj6FEe1gTKDzqpp
-         jamtcwpDku1yw==
+        b=qFFxaR/Zchf5+vt6x+1Rl3oSOSbcFlWH62nhYxmHqSsTrEAdbI9QIeHZND3nVt8RJ
+         nRzrurq6JV8Fq0qrSvvgudwzOVSq/Qflwi4Y/3tTA3+/fFtXXxWjdkwEXCjoU//muO
+         XtATpsnPXVYzABiPPput65fRKOEDn+uZFOds06zMVa3t4jSwikqZVGb8VsEGvwIaud
+         pJVj2/f3J3o6+PMQ1wIrQ2wH4PJM7UFA01vxE9MilxAKPUfeTuUsdU/we9dLb/RSJo
+         Io1YqBCYE3MvKG9//G7+XoncCFz3YY+yFZpZRgwwmxpiXER20VFcL9ayevk6hScAHE
+         cALvfCncA2cgg==
 From:   Mark Brown <broonie@kernel.org>
 To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         Francesco Dolcini <francesco@dolcini.it>
@@ -42,11 +42,11 @@ Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
         Takashi Iwai <tiwai@suse.com>,
         Benjamin Marty <info@benjaminmarty.ch>, kchsu0@nuvoton.com,
         wtli@nuvoton.com
-In-Reply-To: <20221223170404.210603-1-francesco@dolcini.it>
-References: <20221223170404.210603-1-francesco@dolcini.it>
-Subject: Re: [PATCH v1 0/3] ASoC: nau8822: add speaker Bridge Tied Output
-Message-Id: <167328294221.323147.12666098870170781252.b4-ty@kernel.org>
-Date:   Mon, 09 Jan 2023 16:49:02 +0000
+In-Reply-To: <20230104140412.35575-1-francesco@dolcini.it>
+References: <20230104140412.35575-1-francesco@dolcini.it>
+Subject: Re: [PATCH v2 0/3] ASoC: nau8822: add speaker Bridge Tied Output
+Message-Id: <167328294504.323147.3197941344180988086.b4-ty@kernel.org>
+Date:   Mon, 09 Jan 2023 16:49:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -60,15 +60,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Dec 2022 18:04:01 +0100, Francesco Dolcini wrote:
+On Wed, 04 Jan 2023 15:04:09 +0100, Francesco Dolcini wrote:
 > Add support for BTL (Bridge Tied Load) configuration to NAU8822 audio codec,
 > since this requires adding a new property to the binding convert it from
 > txt to yaml first.
 > 
-> Emanuele Ghidoli (3):
->   ASoC: dt-bindings: nau8822: convert to the dtschema
->   ASoC: dt-bindings: nau8822: add nuvoton,spk-btl property to dtschema
->   ASoC: nau8822: add speaker Bridge Tied Output configuration
+> v2:
+>  - added Krzysztof reviewed-by and acked-by
+>  - removed non-relevant information about SPI not being supported from binding document
 > 
 > [...]
 
@@ -80,8 +79,6 @@ Thanks!
 
 [1/3] ASoC: dt-bindings: nau8822: convert to the dtschema
       commit: 76fa6279eff931b43482f0bef5d65cdcf325de87
-[2/3] ASoC: dt-bindings: nau8822: add nuvoton,spk-btl property to dtschema
-      (no commit info)
 [3/3] ASoC: nau8822: add speaker Bridge Tied Output configuration
       commit: 968b42069fe5dab362b623c6b8a1565709a12f5b
 
