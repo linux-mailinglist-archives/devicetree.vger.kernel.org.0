@@ -2,137 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E674F662AB5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:01:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39369662AB9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 17:02:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235126AbjAIQAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 11:00:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40090 "EHLO
+        id S234883AbjAIQCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 11:02:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236518AbjAIQAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:00:08 -0500
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82983752E;
-        Mon,  9 Jan 2023 08:00:07 -0800 (PST)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-14fb7fdb977so9032222fac.12;
-        Mon, 09 Jan 2023 08:00:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NmIlgEFtXavdJf8Lq/cH9FoF1zSgoXLLeAA66q8BH/Q=;
-        b=QhF9+MF97Qin3wRXeeATzE45LAiiX8LDMR5ZTzkWWL6legA/PbiU0D9D0q7yP4GcHz
-         DcPsPOnJTJTStyPnN8CIquZjUjgxtaQulMW1WOezA/b9f82d2V2UEzPemHoTGILmaO2E
-         PNfugrphmkPA7jfnCR4NDcHomd0e81vkjyuelcxmGUlWnlwg8SQNOA9zjHjrgTd9WrQ1
-         BLnUSBmuT7xD5UHVDEKK2pIsWnjn1wttkRJa+NjQyf15FV0WXQ689rQFcP/yqd5JX3ob
-         q1TQ+hwkesEO7dAVbWo5SQafioMzCwxiqS6tBwViiHx6WxPRzro0ONXqlfAZbc0d+CuV
-         6nQQ==
-X-Gm-Message-State: AFqh2kopHx2ogiZMTpsTtip54FRvh23rjgwZCNtMMmhi/f1TMkaAzevY
-        ZM3aIIJ0tL/hmoPq0xcBZg==
-X-Google-Smtp-Source: AMrXdXuXJvBT3dt96q3KMmD15McdlaQh3O3qs1191wR2cMHTCinqo+Y5JobLAeehoewg+Ou02LotoQ==
-X-Received: by 2002:a05:6871:891:b0:148:6804:e60c with SMTP id r17-20020a056871089100b001486804e60cmr37077630oaq.35.1673280006846;
-        Mon, 09 Jan 2023 08:00:06 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h24-20020a056870171800b0014f9cc82421sm4366524oae.33.2023.01.09.08.00.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 08:00:06 -0800 (PST)
-Received: (nullmailer pid 722135 invoked by uid 1000);
-        Mon, 09 Jan 2023 16:00:05 -0000
-Date:   Mon, 9 Jan 2023 10:00:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH 1/6] dt-bindings: display/msm: rename mdss nodes to
- display-sybsystem
-Message-ID: <20230109160005.GA721066-robh@kernel.org>
-References: <20230109051402.317577-1-dmitry.baryshkov@linaro.org>
- <20230109051402.317577-2-dmitry.baryshkov@linaro.org>
+        with ESMTP id S234955AbjAIQC3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 11:02:29 -0500
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37C8C1C133;
+        Mon,  9 Jan 2023 08:02:28 -0800 (PST)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 309BUSOH003298;
+        Mon, 9 Jan 2023 17:02:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=Jt+8u7dc7kaoHRVclJ4gTOkOj2blFmusjgWq7LjVRrc=;
+ b=6eZORvo4lw///FcMSYj4Ln6zwTf4V0NdkPNkTC2Mxs2sfnMU50VmLapBkp2bv+V8Qjr3
+ N3TpQVRCcgx5z0ntc0G4MZcBVqEkOhUkf6W1XUx75gs0y0oFkJOqF1eBXbRA9/Mp6eR1
+ d2m7VgFpN5UgLR6XwdfTItj6hvNG7P3UaFfjwcxMSHQlDPseCZILJxFKwfOVA3ei7ThL
+ r5R8zn/DTP6uU3XSFcbWRm55RmCvmieUrGls33uC1GL1qL5cElfjsUzOOZ3wdbzbbM/W
+ IcKfgG8UUjDOHiC+uhOXz4dL4USqmIxdykSdgzMu5qYrtJge5c1V9+ls512OAiHeniTW zA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3my0gnvbhq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 Jan 2023 17:02:16 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EE11610002A;
+        Mon,  9 Jan 2023 17:02:14 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E7A812243E9;
+        Mon,  9 Jan 2023 17:02:14 +0100 (CET)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 9 Jan
+ 2023 17:02:14 +0100
+Message-ID: <dd823016-f419-f801-6da5-3fdfc9bd758b@foss.st.com>
+Date:   Mon, 9 Jan 2023 17:02:13 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230109051402.317577-2-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 0/2] ASoC: stm32: update sound card on stm32mp15xx-dkx
+Content-Language: en-US
+To:     Olivier Moysan <olivier.moysan@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     Alexandre Torgue <alexandre.torgue@st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221205121602.17187-1-olivier.moysan@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20221205121602.17187-1-olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-09_09,2023-01-09_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 09, 2023 at 07:13:57AM +0200, Dmitry Baryshkov wrote:
-> Follow the 'generic names' rule and rename mdss nodes to
-> display-subsystem.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/display/msm/mdss-common.yaml      | 8 ++++++++
->  .../devicetree/bindings/display/msm/qcom,mdss.yaml        | 5 ++++-
->  2 files changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-> index 59f17ac898aa..ccd7d6417523 100644
-> --- a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-> @@ -15,7 +15,15 @@ description:
->    Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
->    sub-blocks like DPU display controller, DSI and DP interfaces etc.
->  
-> +# Do not select this by default, otherwise it is also selected for qcom,mdss
-> +# devices.
+Hi Olivier
 
-for NON qcom,mdss devices?
-
-> +select:
-> +  false
-
-select: false
-
-> +
->  properties:
-> +  $nodename:
-> +    pattern: "^display-subsystem@[0-9a-f]+$"
-> +
->    reg:
->      maxItems: 1
->  
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-> index c218c9172608..47fde9b6779f 100644
-> --- a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-> @@ -15,6 +15,9 @@ description:
->    encapsulates sub-blocks like MDP5, DSI, HDMI, eDP, etc.
->  
->  properties:
-> +  $nodename:
-> +    pattern: "^display-subsystem@[0-9a-f]+$"
-> +
->    compatible:
->      enum:
->        - qcom,mdss
-> @@ -153,7 +156,7 @@ examples:
->    - |
->      #include <dt-bindings/clock/qcom,gcc-msm8916.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> -    mdss@1a00000 {
-> +    display-subsystem@1a00000 {
->          compatible = "qcom,mdss";
->          reg = <0x1a00000 0x1000>,
->                <0x1ac8000 0x3000>;
-> -- 
-> 2.39.0
+On 12/5/22 13:16, Olivier Moysan wrote:
+> This patchset introduces the following changes on STMP32MP15 DK boards
+> sound card:
+> - Rename the sound card to ease SOC diversity management
+> - Cleanup of useless clock property in SAI2A node
 > 
+> Olivier Moysan (2):
+>    ARM: dts: stm32: remove sai kernel clock on stm32mp15xx-dkx
+>    ARM: dts: rename sound card on stm32mp15xx-dkx
 > 
+>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 4 +---
+>   1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+
+Applied on stm32-fixes.
+
+Regards
+Alex
