@@ -2,130 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86497662822
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 15:12:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC059662839
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 15:15:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233669AbjAIOMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 09:12:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47140 "EHLO
+        id S229491AbjAIOPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 09:15:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233436AbjAIOMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 09:12:31 -0500
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5279AC759;
-        Mon,  9 Jan 2023 06:12:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673273550; x=1704809550;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WF/p3vB0hiEJUpyYkHmfUFHXkAD91rnyRTjUtgjf87k=;
-  b=gRYZNAlQ9xFG5urumvB4ZYYQVoKlYy/2mUd9dDQzoDhBdZf/i+WULsIi
-   RVhLed7qHYar+9+lbI9xtGLjn2osTSwBcv/kihHkBAsVDfKZBxxZxG1bf
-   qBFZFzR9w8vu3KuFyOcKaxzwhJ4tyJT6GpmQC0gGW2mat8zIbt4ppo0iA
-   U7FolQ9oSo1Ofallh4pkU+bIoUz31+vt37F/LXOSbHpPMuscUYCRgd90k
-   P6RYMbLS1KcXm9GQ+7xyJ9qYPU8BAAeV00hDVXHCeBuwyz0AKiSBizkXi
-   kZKyaZBJw7ogTE2UZHI2zl6E2/3pqedcfjLkmj4UoZoE4MHk7VnlMcB4A
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="385182573"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; 
-   d="scan'208";a="385182573"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2023 06:11:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10585"; a="780693032"
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; 
-   d="scan'208";a="780693032"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga004.jf.intel.com with ESMTP; 09 Jan 2023 06:11:48 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1pEssL-006Vn7-26;
-        Mon, 09 Jan 2023 16:11:45 +0200
-Date:   Mon, 9 Jan 2023 16:11:45 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        with ESMTP id S231224AbjAIOPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 09:15:46 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB33F02F
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 06:15:43 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id u9so20508699ejo.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 06:15:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FZxwx51i+BIGNJvdhbm1l+QcJIg3vJ0V5Z9lmCSorLQ=;
+        b=PACsPm6173A44/eLx1fCIdhLmjCVlMLjb4PmWzCa3135l74Oe+dfw/nl/f77Zr+8TC
+         oyxRQEaX9KReiNI874+l+tHPg9HyfFMfPnB5/PxuvKQ+IkJY1ejQ9anO+epfQHGAsXdU
+         gTSzJYtbLvCZ7m3cikOTSk9mYLi3p101/TXPRVLeCMCkaZwbdV03EAhGooljj2ImF9nN
+         YDjHn1NlIa/NzwiN1CwRs5/5b+rVDJntyl5i2ub2MHIrVvjTN7Wn2grpFdlAnhrtAmd4
+         M0mqIkjRecl7UPnMPoCHxVt0SF+txSTCkT7SLYUXxos9PtSSt32jwGeaX0yNvojQo24q
+         bgDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FZxwx51i+BIGNJvdhbm1l+QcJIg3vJ0V5Z9lmCSorLQ=;
+        b=QlEgBflPR8q8gZ9vnmWG0i1pOx+zQgkHH91lRBISHGY7mxvzjhIBi+yXhyqQU250bG
+         ROY69j6isbvEwu1XsUjhpKteGUwtIyuJ6ST34/KmpOe7R4NCwkMR3MU7ai46UPKleLf7
+         UaPsPHmUO2e2dkHtVwlgB/PwUvAJEGq9LfQnN9WqsTMHXF8TfkXE00FyfeVjwNZvXdIc
+         w6qPr91QlaxGf/SJQmDb3FJDVUdEBzpur66LPnMy1eSNfvPe41DAaj8UN6QG7RuonfK4
+         9N79cBcTCy49DoTwmdnWcnjON8sJUc9mBpd/VSPJ6QtmKCYJgWXPe2/5Ap1LHQ774BSm
+         dyKQ==
+X-Gm-Message-State: AFqh2krWl/nzQrqbJ1lQgQfl/IQiJOTmmsyz+LUy8GDXwcNVpwqGQWvq
+        lLq6b6hLMnr1q7C+09z1my2rmw==
+X-Google-Smtp-Source: AMrXdXu8UkPnXWV7l6spq5CM1lBizx6r8JGq7e3bgVCc66E7Ti1PS7V3wXbdrROFFTaAtBmdrKLjNg==
+X-Received: by 2002:a17:906:54d1:b0:84d:3819:79b9 with SMTP id c17-20020a17090654d100b0084d381979b9mr6777117ejp.71.1673273742344;
+        Mon, 09 Jan 2023 06:15:42 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id p17-20020a17090653d100b0084d4d81f938sm775384ejo.198.2023.01.09.06.15.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 06:15:41 -0800 (PST)
+Date:   Mon, 9 Jan 2023 16:15:40 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v6 7/8] media: i2c: add DS90UB913 driver
-Message-ID: <Y7wgoXhWN7Ro3d/0@smile.fi.intel.com>
-References: <20230105140307.272052-1-tomi.valkeinen@ideasonboard.com>
- <20230105140307.272052-8-tomi.valkeinen@ideasonboard.com>
- <Y7pBSq49dL8Fzxsc@pendragon.ideasonboard.com>
- <Y7v1Wrma/Ev8KEzy@smile.fi.intel.com>
- <5173a16a-83c5-5cfe-f6ce-03e1c90e8790@ideasonboard.com>
- <Y7wc2lX8eGPITx30@smile.fi.intel.com>
- <Y7wdePnmFx1XDGvB@smile.fi.intel.com>
- <10d369c1-4aaf-f59d-dbdc-48f04424a030@ideasonboard.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: dwc3: Add SM8550 compatible
+Message-ID: <Y7whjCc+j0DLGUFz@linaro.org>
+References: <20221116150600.3011160-1-abel.vesa@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <10d369c1-4aaf-f59d-dbdc-48f04424a030@ideasonboard.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221116150600.3011160-1-abel.vesa@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 09, 2023 at 04:01:43PM +0200, Tomi Valkeinen wrote:
-> On 09/01/2023 15:58, Andy Shevchenko wrote:
-> > On Mon, Jan 09, 2023 at 03:55:39PM +0200, Andy Shevchenko wrote:
-> > > On Mon, Jan 09, 2023 at 02:59:01PM +0200, Tomi Valkeinen wrote:
-> > > > On 09/01/2023 13:07, Andy Shevchenko wrote:
-> > > > > On Sun, Jan 08, 2023 at 06:06:34AM +0200, Laurent Pinchart wrote:
-> > > > > > On Thu, Jan 05, 2023 at 04:03:06PM +0200, Tomi Valkeinen wrote:
-
-...
-
-> > > > > > > +	gc->of_node = priv->client->dev.of_node;
-> > > > > 
-> > > > > We don't have of_node anymore in gc. And if the parent device is set, you can
-> > > > > drop this line (it will work with older and newer kernels. Otherwise, use
-> > > > > fwnode.
-> > > > 
-> > > > What do you mean "we don't have of_node anymore"?
-> > 
-> > Just to add that you missed "gc" in the quote which is crucial to get
-> > what I meant.
+On 22-11-16 17:06:00, Abel Vesa wrote:
+> Document the SM8550 dwc3 compatible.
 > 
-> Well, the original text was just above...
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-Yes, but my point is that that part is crucial and since you left it out makes
-me think that you are talking about general of_node, which is of course won't
-gone any time soon :-)
+Gentle ping.
 
-> > > There is no of_node member of struct gpio_chip anymore. This will fail
-> > > to compile.
+> ---
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> It's in Linus' tree, but yes, now that I fetched linux-next I see it's gone.
-
-Right. I expressed to Bart to include that change into one of the rcX, but he
-decided to go for next. Dunno how many cases like yours we may experience in
-this cycle.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> index a6e6abb4dfa9..a3f8a3f49852 100644
+> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> @@ -39,6 +39,7 @@ properties:
+>            - qcom,sm8250-dwc3
+>            - qcom,sm8350-dwc3
+>            - qcom,sm8450-dwc3
+> +          - qcom,sm8550-dwc3
+>        - const: qcom,dwc3
+>  
+>    reg:
+> @@ -301,6 +302,7 @@ allOf:
+>                - qcom,sm8150-dwc3
+>                - qcom,sm8250-dwc3
+>                - qcom,sm8450-dwc3
+> +              - qcom,sm8550-dwc3
+>      then:
+>        properties:
+>          clocks:
+> @@ -358,6 +360,7 @@ allOf:
+>                - qcom,sm8250-dwc3
+>                - qcom,sm8350-dwc3
+>                - qcom,sm8450-dwc3
+> +              - qcom,sm8550-dwc3
+>      then:
+>        properties:
+>          interrupts:
+> -- 
+> 2.34.1
+> 
