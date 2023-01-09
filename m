@@ -2,136 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ADD26634FB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:17:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1111966355C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:35:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237780AbjAIXQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 18:16:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46230 "EHLO
+        id S237505AbjAIXfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 18:35:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237743AbjAIXQR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:16:17 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 222792DFE;
-        Mon,  9 Jan 2023 15:16:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=VZOuenxf0fran8WbzZ3dqItE5pbiY4GG647n81NLsis=; b=Ei763lhn0X+krVNSqLA/I9N+31
-        wqxYC6nO3n9ZCZ4yR+JUCqpgZkqyV3KpzQgnBxn2aOxfP5pcrIkE1MmovutWQU5w8ke0k4m10k70y
-        P81NU532ttThN5vd12qxh6zXOdRNYqa5fFE1yp/Gh6oEjEZzEKvFIiEWyd/przV5psOZ6smk1MpUe
-        payClQlsdQNtOuBh7AGtCAybWrnbAvI27C82K2144GYLbX8MkrHv48pnc3AjNjplnwQtEt5Yzg776
-        IRIllf/+A6bqI82clUzOG76+t43bYP/kheGyUIfBjJHMbAOuErHDnwn8SyMym0Irfx5OE7exBhXwW
-        8xyw1MaQ==;
-Received: from p200300ccff06a2001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff06:a200:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pF1N0-0003Zo-9l; Tue, 10 Jan 2023 00:15:58 +0100
-Date:   Tue, 10 Jan 2023 00:15:57 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        ulf.hansson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
- combinations
-Message-ID: <20230110001557.204dd5da@aktux>
-In-Reply-To: <20230108224633.GA353691-robh@kernel.org>
-References: <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
-        <20230106203358.14878660@aktux>
-        <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
-        <20230107144336.2ecff4f9@aktux>
-        <123d1a56-8134-dc75-8b2a-b3836e727d4a@linaro.org>
-        <20230107150740.0ba34aa1@aktux>
-        <0ab84fb8-6173-54e0-abad-a0e0e4ba82e7@linaro.org>
-        <20230107160105.66df4136@aktux>
-        <e1b1450b-9421-3732-2d74-50c47b5afb0e@linaro.org>
-        <20230107165457.30f4dddf@aktux>
-        <20230108224633.GA353691-robh@kernel.org>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S237647AbjAIXfs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:35:48 -0500
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7955215FC3
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 15:35:46 -0800 (PST)
+Received: by mail-qt1-x82d.google.com with SMTP id c7so9492850qtw.8
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 15:35:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KAQ5x8sXqId87oFdYjO4uZPHDrI2i2uwd2opX19vmOw=;
+        b=PtRgl7ZnzX2PfS91nIuCf9T6u+h0mc6qpjvsYi06PuTmH3Tra4kD8UgkumH68gQIpN
+         DCJ3lhvFqHqXtCBDohnawC6UnMgr7OJLM5Xqnd4EGPo8VXgwhSba2yv35Bt2ZibipIkc
+         gqcxXnkWtXa6iwGB4Ino3aVS4/woNAkhnfWZWnd1OEYnLwdueScmV5GSGlh3/DoId5qZ
+         JDxEab0uFowb1mXWSA2KxsAN6ULKoFCUXyiMhmWV1J/g1HwAfxSFsye3UdY0sClbbjdf
+         Jy3Fn4/nUroZO0N4jpsYb4BH5EKsorGbcV1crq0CwKw9vfECzF6UXTMFs26VpW1sJ6dA
+         5xxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KAQ5x8sXqId87oFdYjO4uZPHDrI2i2uwd2opX19vmOw=;
+        b=0Bzm8coNUpbFZv/zwmocfakzOjTdLfz2d2K9IwJ9vmfHCu9AYVtQE6mXnQgJzzfwL/
+         qLH913e4w/zeta2n9xtV6CP/gPR3YsUYlTiCKdfdSQPtoF9FlI4LF5UBBWWvY60+Xg15
+         wEp1I+OtjPaqayUKElq8yTidrwyU4UyzBYZp7GRE7GKCyTjb4wg+d8CDp6aEig4/Em0K
+         /a3y58/Bk2YCSJPq8B4yh3uTQPSWRbNbqNIAnH0ThAo07xZLGccaQX/37EcLTyvNrrMG
+         6j3qRmA7njV2pHtdTklotFhb3cEIW1+zOvo46va13oXJgKKRf3RaU/eRXKb4oorCE3SA
+         mKSQ==
+X-Gm-Message-State: AFqh2koMm9iFIc1uuDJPcBRiEauiMj1s9YMX/K0no9mIAbbPjZZsk2wr
+        ao51z598AE60YQQE83GJMWOGPA==
+X-Google-Smtp-Source: AMrXdXt8ysJVcxnoPwxrF94z9qSoCyw8/3o3aYVCG8qH1P4piLXsQUbG6bYRrvTdrTdQdYhL+G/M1w==
+X-Received: by 2002:ac8:45c8:0:b0:3a8:5d1:aaca with SMTP id e8-20020ac845c8000000b003a805d1aacamr1389882qto.11.1673307345514;
+        Mon, 09 Jan 2023 15:35:45 -0800 (PST)
+Received: from jcormier-MS-7A93.syr.criticallink.com (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
+        by smtp.gmail.com with ESMTPSA id t5-20020a05620a450500b006fa8299b4d5sm6294846qkp.100.2023.01.09.15.35.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 15:35:45 -0800 (PST)
+From:   Jonathan Cormier <jcormier@criticallink.com>
+To:     linux-hwmon@vger.kernel.org
+Cc:     Jonathan Cormier <jcormier@criticallink.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bob Duke <bduke@criticallink.com>,
+        John Pruitt <jpruitt@criticallink.com>
+Subject: [PATCH v3 0/2] hwmon: ltc2945: Add binding and shunt resistor support
+Date:   Mon,  9 Jan 2023 18:35:29 -0500
+Message-Id: <20230109233534.1932370-1-jcormier@criticallink.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221214220727.1350784-3-jcormier@criticallink.com>
+References: <20221214220727.1350784-3-jcormier@criticallink.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Added the ability to specify the value of the shunt resistor in the
+device tree instead of assuming it is 1 milliOhm.
 
-On Sun, 8 Jan 2023 16:46:33 -0600
-Rob Herring <robh@kernel.org> wrote:
+Would be good to backport as well
 
-> A is either compatible with B or it isn't.
+Changes since v2:
+- Remove newline
+- Combined overflow fix with "Allow setting shunt resistor" commit
+- Add description to "Add devicetree match table"
+- Add fix for unhandled error case in ltc2945_value_store
+- Use imperative in descriptions
+- Remove unneeded overflow check from ltc2945_reg_to_val
+- Fix up DIV_ROUND_CLOSEST_ULL calls, per docs divisor should be 32-bit
+- Split one DIV_ROUND_CLOSEST_ULL change into separate commit per
+ Guenter Roeck's comment
+Changes since v1:
+- Add devicetree match table
+- Add kerneldoc for the ltc2945_data struct
+- Cleanup excesive comments about the shunt resistor
+- Switch to device_property_read_u32()
 
-I think English and many natural languages allow to use the adjective
-in a non-black and white way to express things. So there can be things
-more compatible than others with certain levels of "gray" in between.
-But "compatible" in an artifical language like the devicetree can of course
-be more restrictive, so there needs to be a certian level of gray where the
-limit needs to be defined.The definition you give below.
-Thanks for that.
+Cormier, Jonathan (1):
+  dt-bindings: hwmon: adi,ltc2945: Add binding
 
-> You can look at that from 
-> the h/w perspective and client/OS perspective. From the h/w side, is the 
-> h/w interface the same or only has additions which can be ignored? On 
-> the client side, the question is whether a client that only understands 
-> B could use A's h/w without change. Looking at the match data is a 
-> good indicator of that for Linux.
+John Pruitt (1):
+  hwmon: ltc2945: Allow setting shunt resistor
 
-It seems that from a Linux client perspective that is a no in different
-cases, so B is not compatible.
+ .../bindings/hwmon/adi,ltc2945.yaml           | 50 +++++++++++
+ drivers/hwmon/ltc2945.c                       | 86 ++++++++++++++-----
+ 2 files changed, 115 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
 
-> It's also possible the answer is 
-> different for different clients, but we only need 1 client that could 
-> benefit from compatibility.
-> 
-On U-Boot side things seem to look different, since high speed modes
-are not enabled at all and pm is not done that much, so no quirks needed
-for that.
-Looking at recent mainline u-boot.
-       { .compatible = "fsl,imx51-esdhc", },
-        { .compatible = "fsl,imx53-esdhc", },
-        { .compatible = "fsl,imx6ul-usdhc", },
-        { .compatible = "fsl,imx6sx-usdhc", },
-        { .compatible = "fsl,imx6sl-usdhc", },
-        { .compatible = "fsl,imx6q-usdhc", },
-
-So U-Boot will benefit from that additional compatible for fsl,imx6[su]ll-usdhc.
-
-The first list of compatibles in U-Boot commit (96f0407b00f) was:
-       { .compatible = "fsl,imx6ul-usdhc", },
-       { .compatible = "fsl,imx6sx-usdhc", },
-       { .compatible = "fsl,imx6sl-usdhc", },
-       { .compatible = "fsl,imx6q-usdhc", },
-       { .compatible = "fsl,imx7d-usdhc", },
-
-So replacing imx5X fallback compatibles with imx6something might be
-helpful for that old U-Boot. But I cannot fully jugde that,
-so I will not touch. 
-
-Well, I could also delete entries of this list and push a bunch of U-Boot forks
-somewhere, so creating a large number of different clients, which would then
-justify a long list of compatibles ;-)
-
-But what initially worried me would be that there could be a client out there
-knowing only "B" and using all features but missing the in that case needed
-quirks for "A". Then adding "B" would cause harm. But apparently that is nothing
-to worry about.
-
-I will send a reduced patch with just the things which are 100% clear to me.
-
-Regards,
-Andreas
+--
+2.25.1
