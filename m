@@ -2,316 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 685EA662069
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:43:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FD1F6620AF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:55:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233151AbjAIIm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 03:42:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50978 "EHLO
+        id S236938AbjAIIyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 03:54:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236617AbjAIImI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:42:08 -0500
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B09E512D2D
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:42:03 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id w4-20020a17090ac98400b002186f5d7a4cso12101055pjt.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 00:42:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9iAqigrmRtbOwkIjEJ3yqHcs8IpEn5bVcl0Fnp8oBxA=;
-        b=UsXasHbilcmH352bWImADdEHGkeKLDKY8/6LTgkfSwTDOlG3fZbpIS6jGqe5W2B/9D
-         HwQNfa5wSvNFIbxNsyPR7nKuty0ce3XFiUo/sEkI5eyHTPdIPaH0Wq8a3Uuiw44EB3Zs
-         +7SVGSXED0FlrhRmhE2qJO5Z6uIp0t8QNaGF8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9iAqigrmRtbOwkIjEJ3yqHcs8IpEn5bVcl0Fnp8oBxA=;
-        b=Y0z7SVbZbBM0ZSM8caiYImk6dP/gsshmGZr4t0372LUZIjhaApMglqvp5o8553g+cv
-         YSooduGlE+icbE1uxRPL/PA4xPzPqBj+LFXHoq2nqtUIveruLlMi6ANd/uDNG/1Ocab8
-         nO2OhYycJHxK7dfrzJNFzXn9kM/pv8kkZt9pJpY5J+iiLzuwxTZfXL/jMCq5H0KX35SU
-         jd52lOOxV3WsGYg5XmPANWP/odvP2aa7VX7P25TV8nECQHw8MCpX7WWS9JA4+aV/PUtA
-         9sSePF43B+oSODXNQDRkfPrA8/OoWenWFbmJVUDusLIB8/DNse1kZ5DFyQGV19fMGEE+
-         6ccw==
-X-Gm-Message-State: AFqh2kraj63QELzl8Z6A9Ti0Qz/02QuzYtW7TcaIMloYEz6EwdXCWzh0
-        iYdtzeaKF96OPgbZftFZWRCysg==
-X-Google-Smtp-Source: AMrXdXtbGhDZ0qIOz9gU/szDo57zt2q6abDLPDEdxc3raJT8EzkxPtZxtGeBR8yQCh4KG8AqYVqtqQ==
-X-Received: by 2002:a17:902:6ac6:b0:192:cd8a:f358 with SMTP id i6-20020a1709026ac600b00192cd8af358mr24722274plt.69.1673253723421;
-        Mon, 09 Jan 2023 00:42:03 -0800 (PST)
-Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:801:a736:715:9a15])
-        by smtp.gmail.com with ESMTPSA id c14-20020a170902d48e00b00186acb14c4asm5568119plg.67.2023.01.09.00.41.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 00:42:03 -0800 (PST)
-From:   Pin-yen Lin <treapking@chromium.org>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237061AbjAIIyO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:54:14 -0500
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E6D465F4;
+        Mon,  9 Jan 2023 00:46:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1673253793;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=dIhap9211BtIOAVDnSIqsGZy+LaCC1VK75bgdFbfgbs=;
+    b=cXNVhOmKbSpT1XAUhDgLAw08Zn25IrmCprqqhq5JyA5bn8oqEZ6HCUMMeFvI5+zoyF
+    OskNjkMRBf3Z4QAc6HEzizdyKoZeUvzVvvPcaC8OcsNk02mA40sDFbqRxiXmCbRp63VM
+    kcxyOmNO+srRuI/BVzTq87GiS2XRCMic6HNDuT0tXQM5pefF+zGthPj2nI0syUo7x/81
+    T3z+FFZW9vKk7L6JsU6Vni8ffI8Mce2FaYmiTD3M9h+BGWxT+22DFdmo0EXmvwFrNJdf
+    c00yU9skT0n6oKXOi5ajAp0RpbAr0mMJ9vw+/QYs/eaMFu4KKLzclVccUkJo0RrsBLJt
+    8xtg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJAhdlWwvShtQ=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 48.2.1 DYNA|AUTH)
+    with ESMTPSA id Yce349z098hDwh4
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 9 Jan 2023 09:43:13 +0100 (CET)
+Date:   Mon, 9 Jan 2023 09:43:07 +0100
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Pin-yen Lin <treapking@chromium.org>,
-        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
-        Stephen Boyd <swboyd@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Xin Ji <xji@analogixsemi.com>, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Allen Chen <allen.chen@ite.com.tw>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, linux-kernel@vger.kernel.org
-Subject: [PATCH v9 9/9] drm/bridge: it6505: Register Type C mode switches
-Date:   Mon,  9 Jan 2023 16:41:01 +0800
-Message-Id: <20230109084101.265664-10-treapking@chromium.org>
-X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
-In-Reply-To: <20230109084101.265664-1-treapking@chromium.org>
-References: <20230109084101.265664-1-treapking@chromium.org>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 3/4] dt-bindings: arm: qcom,ids: Add a bunch of older SoCs
+Message-ID: <Y7vTm70qeZR6w8xq@gerhold.net>
+References: <20230104115348.25046-1-stephan@gerhold.net>
+ <20230104115348.25046-4-stephan@gerhold.net>
+ <20230108214052.GA313089-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230108214052.GA313089-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register USB Type-C mode switches when the "mode-switch" property and
-relevant port are available in Device Tree. Configure the "lane_swap"
-state based on the entered alternate mode for a specific Type-C
-connector, which ends up updating the lane swap registers of the it6505
-chip.
+On Sun, Jan 08, 2023 at 03:40:52PM -0600, Rob Herring wrote:
+> On Wed, Jan 04, 2023 at 12:53:47PM +0100, Stephan Gerhold wrote:
+> > Sync the SoC IDs in qcom,ids.h with relevant entries from Qualcomm's LK
+> > bootloader [1] that is used for almost all older Qualcomm SoCs.
+> > 
+> > Several of these are already supported, e.g.:
+> >   - MSM8960 -> APQ8060, MSM8260, ...
+> >   - MSM8976 -> APQ8076
+> >   - MSM8956 -> APQ8056
+> > Others are currently being worked on, e.g.:
+> >   - MSM8909(W) -> APQ8009(W), MSM8905, MSM8209, ...
+> >   - MSM8939 -> MSM8239, ...
+> > 
+> > And even all remaining ones added are close enough to what is already
+> > supported so that future support is realistic (if someone steps up to
+> > do the work).
+> > 
+> > Add all of them at once to avoid having to add them one by one in the
+> > future. This will also benefit other projects making use of the same
+> > dt-bindings, e.g. bootloaders where adding support for all these SoCs
+> > is a bit easier than on Linux.
+> 
+> The promise was in accepting the properties upstream is we'd only be 
+> adding these for bootloaders with dtbs that we can't otherwise update or 
+> change.
 
-Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+qcom,ids.h contains all the SoC IDs, even ones not meant to be used in
+the deprecated "qcom,msm-id" property. This is because it is also used
+in the socinfo driver for example (that I'm also editing in this
+series).
 
----
+The actual allowlist for the "qcom,msm-id"/"qcom,board-id" is in
+Documentation/devicetree/bindings/arm/qcom.yaml and is unchanged by this
+patch series.
 
-(no changes since v7)
+Still:
 
-Changes in v7:
-- Fixed style issues in it6505 driver
-- Removed the redundant sleep in it6505 driver
-- Removed DT property validation in it6505 driver
-- Rebased to drm-misc-next
-- Extracted common codes to another commit
+>
+> Do all of those meet this criteria? Seems unlikely.
+> 
 
-Changes in v6:
-- Changed it6505_typec_mux_set callback function to accommodate with
-  the latest drm-misc patches
-- Changed the driver implementation to accommodate with the new binding
-- Squashed to a single patch
+All platforms added in this patch are older ones that do indeed require
+the "qcom,msm-id"/"qcom,board-id" properties - except for the really
+ancient ones that are still using ATAGS for booting.
 
- drivers/gpu/drm/bridge/Kconfig      |   1 +
- drivers/gpu/drm/bridge/ite-it6505.c | 119 +++++++++++++++++++++++++++-
- 2 files changed, 116 insertions(+), 4 deletions(-)
+However, there is no need to extend the allowlist to all these
+platforms. We're circumventing the limitations of the Qualcomm
+bootloader by "chainloading" another bootloader without those quirks
+(right now mainly a modified version of Qualcomm's original bootloader,
+but U-Boot also works on some of these platforms). That is why the
+deprecated properties do not need to be present in the Linux DT.
 
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index 737578dd57ed..33803f581562 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -87,6 +87,7 @@ config DRM_FSL_LDB
- config DRM_ITE_IT6505
- 	tristate "ITE IT6505 DisplayPort bridge"
- 	depends on OF
-+	depends on TYPEC || TYPEC=n
- 	select DRM_DISPLAY_DP_HELPER
- 	select DRM_DISPLAY_HDCP_HELPER
- 	select DRM_DISPLAY_HELPER
-diff --git a/drivers/gpu/drm/bridge/ite-it6505.c b/drivers/gpu/drm/bridge/ite-it6505.c
-index 9cda2df21b88..d9be09e889e2 100644
---- a/drivers/gpu/drm/bridge/ite-it6505.c
-+++ b/drivers/gpu/drm/bridge/ite-it6505.c
-@@ -17,6 +17,8 @@
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/types.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
- #include <linux/wait.h>
- 
- #include <crypto/hash.h>
-@@ -28,6 +30,7 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_edid.h>
-+#include <drm/drm_of.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
-@@ -455,6 +458,7 @@ struct it6505 {
- 	struct delayed_work delayed_audio;
- 	struct it6505_audio_data audio;
- 	struct dentry *debugfs;
-+	struct drm_dp_typec_switch_desc switch_desc;
- 
- 	/* it6505 driver hold option */
- 	bool enable_drv_hold;
-@@ -3346,12 +3350,105 @@ static void it6505_shutdown(struct i2c_client *client)
- 		it6505_lane_off(it6505);
- }
- 
-+static void it6505_typec_ports_update(struct it6505 *it6505)
-+{
-+	struct drm_dp_typec_switch_desc switch_desc = it6505->switch_desc;
-+
-+	/* Check if both ports available and do nothing to retain the current one */
-+	if (switch_desc.typec_ports[0].dp_connected && switch_desc.typec_ports[1].dp_connected)
-+		return;
-+
-+	if (switch_desc.typec_ports[0].dp_connected)
-+		it6505->lane_swap = false;
-+	else if (switch_desc.typec_ports[1].dp_connected)
-+		it6505->lane_swap = true;
-+}
-+
-+static int it6505_typec_mux_set(struct typec_mux_dev *mux,
-+				struct typec_mux_state *state)
-+{
-+	struct drm_dp_typec_port_data *port_data = typec_mux_get_drvdata(mux);
-+	struct it6505 *it6505 = (struct it6505 *) port_data->data;
-+	struct device *dev = &it6505->client->dev;
-+	struct drm_dp_typec_switch_desc switch_desc = it6505->switch_desc;
-+	bool old_dp_connected, new_dp_connected;
-+
-+	if (switch_desc.num_typec_switches == 1)
-+		return 0;
-+
-+	mutex_lock(&it6505->extcon_lock);
-+
-+	old_dp_connected = switch_desc.typec_ports[0].dp_connected ||
-+			   switch_desc.typec_ports[1].dp_connected;
-+
-+	port_data->dp_connected = state->alt &&
-+				  state->alt->svid == USB_TYPEC_DP_SID &&
-+				  state->alt->mode == USB_TYPEC_DP_MODE;
-+
-+	dev_dbg(dev, "mux_set dp_connected: c0=%d, c1=%d\n",
-+		switch_desc.typec_ports[0].dp_connected, switch_desc.typec_ports[1].dp_connected);
-+
-+	new_dp_connected = switch_desc.typec_ports[0].dp_connected ||
-+			   switch_desc.typec_ports[1].dp_connected;
-+
-+	if (it6505->enable_drv_hold) {
-+		dev_dbg(dev, "enable driver hold\n");
-+		goto unlock;
-+	}
-+
-+	it6505_typec_ports_update(it6505);
-+
-+	if (!old_dp_connected && new_dp_connected) {
-+		int ret = pm_runtime_get_sync(dev);
-+
-+		/*
-+		 * pm_runtime_force_suspend() disables runtime PM when the
-+		 * system enters suspend state. But on system resume, mux_set
-+		 * can be triggered before pm_runtime_force_resume() re-enables
-+		 * runtime PM. This makes the bridge stay powered off if the
-+		 * downstream display is connected when the system is suspended.
-+		 * Handling the error here to make sure the bridge is powered
-+		 * on, and leave the PM runtime usage count incremented so
-+		 * the future runtime PM calls is balanced.
-+		 */
-+		if (ret < 0)
-+			it6505_poweron(it6505);
-+
-+		complete_all(&it6505->extcon_completion);
-+	}
-+
-+	if (old_dp_connected && !new_dp_connected) {
-+		reinit_completion(&it6505->extcon_completion);
-+		pm_runtime_put_sync(dev);
-+		if (it6505->bridge.dev)
-+			drm_helper_hpd_irq_event(it6505->bridge.dev);
-+		memset(it6505->dpcd, 0, sizeof(it6505->dpcd));
-+	}
-+
-+unlock:
-+	mutex_unlock(&it6505->extcon_lock);
-+	return 0;
-+}
-+
-+static void it6505_unregister_typec_switches(struct it6505 *it6505)
-+{
-+	drm_dp_unregister_typec_switches(&it6505->switch_desc);
-+}
-+
-+static int it6505_register_typec_switches(struct device *dev, struct it6505 *it6505)
-+{
-+	struct device_node *port = of_graph_get_port_by_id(dev->of_node, 1);
-+
-+	return drm_dp_register_typec_switches(dev, port, &it6505->switch_desc,
-+					      it6505, it6505_typec_mux_set);
-+}
-+
- static int it6505_i2c_probe(struct i2c_client *client)
- {
- 	struct it6505 *it6505;
- 	struct device *dev = &client->dev;
- 	struct extcon_dev *extcon;
--	int err, intp_irq;
-+	int err, intp_irq, ret;
- 
- 	it6505 = devm_kzalloc(&client->dev, sizeof(*it6505), GFP_KERNEL);
- 	if (!it6505)
-@@ -3371,11 +3468,24 @@ static int it6505_i2c_probe(struct i2c_client *client)
- 	if (PTR_ERR(extcon) == -EPROBE_DEFER)
- 		return -EPROBE_DEFER;
- 	if (IS_ERR(extcon)) {
--		dev_err(dev, "can not get extcon device!");
--		return PTR_ERR(extcon);
-+		if (PTR_ERR(extcon) != -ENODEV)
-+			dev_warn(dev, "Cannot get extcon device: %ld\n",
-+				 PTR_ERR(extcon));
-+		it6505->extcon = NULL;
-+	} else {
-+		it6505->extcon = extcon;
- 	}
- 
--	it6505->extcon = extcon;
-+	ret = it6505_register_typec_switches(dev, it6505);
-+	if (ret) {
-+		if (ret != -ENODEV)
-+			dev_warn(dev, "Didn't register Type-C switches, err: %d\n",
-+				 ret);
-+		if (!it6505->extcon) {
-+			dev_err(dev, "Both extcon and typec-switch are not registered.\n");
-+			return -EINVAL;
-+		}
-+	}
- 
- 	it6505->regmap = devm_regmap_init_i2c(client, &it6505_regmap_config);
- 	if (IS_ERR(it6505->regmap)) {
-@@ -3447,6 +3557,7 @@ static void it6505_i2c_remove(struct i2c_client *client)
- 	it6505_debugfs_remove(it6505);
- 	it6505_poweroff(it6505);
- 	it6505_remove_edid(it6505);
-+	it6505_unregister_typec_switches(it6505);
- }
- 
- static const struct i2c_device_id it6505_id[] = {
--- 
-2.39.0.314.g84b9a713c41-goog
-
+Thanks,
+Stephan
