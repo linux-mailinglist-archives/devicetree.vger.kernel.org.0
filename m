@@ -2,79 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D551661F93
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D686661F94
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 09:02:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233436AbjAIIB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 03:01:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
+        id S229785AbjAIICT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 03:02:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233297AbjAIIB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:01:58 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC353FAC0
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:01:57 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 874E360EEE
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 08:01:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E891EC433D2;
-        Mon,  9 Jan 2023 08:01:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673251316;
-        bh=K2FNureFX7jCe81b4LQYycdB2eHxI6Z+zpQ6uvkRY90=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VXQj7eUvAlSqRWsr3AOpnSvnjl7pnnwN3guMzCzmlqJgbYXOPDpDrfrkWfBEsx3K2
-         gN1OWh9Vx/2EMWNX7QiFTryDUmOUX3d+U3fPqT6aqgIls0iUwlyu9wPgVQmdnkfjQe
-         wpNmW16hpASOuVltnIVAU2Fp5esO1Ng3tXgWnWeNo3/4zQoCIhS8hRz7Nj/ymkSTRm
-         9JBY5FtdkGOBpJXFQKTdBHbVVWGwqbwHsL2z4F+Aoy2c5tkCbF6f2uHcFw79MFwbpO
-         qIa51e34/PvMsRO5LCwxt4jV0viXADpYnlXaVLgGEzjgDyO28jSCZ7X8mJp56cq8mK
-         oCV2lDvV4YGdQ==
-Date:   Mon, 9 Jan 2023 16:01:49 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/3] ARM: dts: imx: Add support for SK-iMX53 board
-Message-ID: <20230109080148.GE18301@T480>
-References: <20230102004425.887092-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S232944AbjAIICR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 03:02:17 -0500
+Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81EFDFCDA
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 00:02:16 -0800 (PST)
+Received: from [167.98.27.226] (helo=[10.35.5.156])
+        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1pEn6i-002B9T-9B; Mon, 09 Jan 2023 08:02:13 +0000
+Message-ID: <2b544772-8ff6-1b8b-05b8-7864f0e9bde9@codethink.co.uk>
+Date:   Mon, 9 Jan 2023 08:02:12 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230102004425.887092-1-dmitry.baryshkov@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH] riscv: dts: fu740: fix size of pcie 32bit memory
+To:     Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Cc:     Conor Dooley <conor.dooley@microchip.com>, robh+dt@kernel.org,
+        palmer@dabbelt.com, krzysztof.kozlowski+dt@linaro.org,
+        zong.li@sifive.com, linux-kernel@lists.codethink.co.uk,
+        sudip.mukherjee@codethink.co.uk,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>
+References: <20230106134456.265891-1-ben.dooks@codethink.co.uk>
+ <167311996687.855922.17515622188982373442.b4-ty@microchip.com>
+Content-Language: en-GB
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+In-Reply-To: <167311996687.855922.17515622188982373442.b4-ty@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 02, 2023 at 02:44:22AM +0200, Dmitry Baryshkov wrote:
-> Add support for the StartKit sk-imx53 board, a simple development board
-> with the i.MX536A SoC.
+On 07/01/2023 19:37, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Changes since v2:
-> - Dropped vpu redundant node
-> - Dropped device_type from Ethernet PHY DT node
-> - Fixed an error in vendor-prefix patch
+> On Fri, 06 Jan 2023 13:44:56 +0000, Ben Dooks wrote:
+>> The 32-bit memory resource is needed for non-prefetchable memory
+>> allocations on the PCIe bus, however with some cards (such as the
+>> SM768) the system fails to allocate memory from this.
+>>
+>> Checking the allocation against the datasheet, it looks like there
+>> has been a mis-calcualation of the resource for the first memory
+>> region (0x0060090000..0x0070ffffff) which in the data-sheet for
+>> the fu740 (v1p2) is from 0x0060000000..0x007fffffff. Changing
+>> this to allocate from 0x0060090000..0x007fffffff fixes the probing
+>> issues.
+>>
+>> [...]
 > 
-> Changes since v1:
-> - Added bindings changes
-> - Moved phy-reset-gpios to the mdio->phy node
-> - Replaced default pinconf with specific values 
+> Applied to riscv-dt-fixes, thanks!
 > 
-> Dmitry Baryshkov (3):
->   dt-bindings: vendor-prefixes: add Startkit
->   dt-bindings: arm: fsl: Add the Starterkit SK-iMX53 board
->   ARM: dts: imx: Add support for SK-iMX53 board
+> [1/1] riscv: dts: fu740: fix size of pcie 32bit memory
+> 	https://git.kernel.org/conor/c/43d5f5d63699724d47f0d9e0eae516a260d232b4
+> 
+> I checked the numbers and they look correct per the v1p2 doc.
+> I added a T-b from IRC for Ron, added the cc: stable and fixed the
+> fixes tag while I was at it.
+> 
+> Thanks,
+> Conor.
 
-Applied all, thanks!
+Ok, great. I'll ping the fu-sdk people as well as this is probably
+useful for the next release.
+
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
+
+https://www.codethink.co.uk/privacy.html
+
