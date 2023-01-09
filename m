@@ -2,125 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA8E662F62
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 19:41:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00C2E662F72
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 19:46:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235188AbjAISlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 13:41:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33244 "EHLO
+        id S235359AbjAISqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 13:46:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237337AbjAISlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 13:41:22 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA6558FD2
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 10:41:18 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id t5so4750714wrq.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 10:41:18 -0800 (PST)
+        with ESMTP id S230341AbjAISqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 13:46:40 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 318D81A055
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 10:46:39 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id k26-20020a05600c1c9a00b003d972646a7dso9842878wms.5
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 10:46:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Lcc+8lVbMYPsY9hr9mnuWPkOBuZt4DN6m8H6MCFQl9I=;
-        b=YjDc9PqXhIZZk0bX7b8BB4evTX85CYzcPiWqlK81Bu/4k4LECqwb0hYWdsJkfkDdzF
-         XBYREDtE8j8novHKhJ9sFt+z55dqSlk4SBcnglKQVImykO6BBJ7hsN4GRyYu5IF2WIE+
-         cD5Mwb2Fb03e8OlC798Omfc82h33Tg4S200+QgHaJXlqTKSlv52ctBcZpWGYVvvCOaOs
-         YVmpcuMlYvJw26IN75e8+XTuySv5EuV4I0dnkFw43XNpM7wHIa9g42CAt9e+KU1l0tQ1
-         EzEyv/KoEveL+e0rWTHLGLARaMYJ7XJh2ENmpvMaWD78CADmt4AGnswZgC+2iLaJDXm5
-         f0Ig==
+        bh=ryYeof+OnTJkbTULSprBr4AoCSxqK4qFss+JGLsx80U=;
+        b=wSfxtYUUzxGBncWxkFa/2vTAsXeNJj0rj+FowRo7KAOkSud9BpogV0/U3pBs1nCi06
+         1wUb3i+I0z+5YPxiBI+vQOyGQenuy11Twz17GhwhXG3By+5SQiRSopTnW4zmNYLjA0nl
+         R4FuE12VZazAurC+ZalkVGh5Ejm+Xw7cHEirIR8IGC9hScWtymG/rnnQG18ye4bJKDpV
+         n9UJ82nWb4EkgKRiYbj5/UNcQrxac7VQs+J+37cm/q0tYWgIhLhIDnpVhigTs94tcwCj
+         BKXJvgQK5g2vZmckC0yaaJcCOn4Akbd1JeldGqymuoigYz0zl0J+5RlKsMdz7g78TCzp
+         r0SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lcc+8lVbMYPsY9hr9mnuWPkOBuZt4DN6m8H6MCFQl9I=;
-        b=lN1D7/yresgEfUcinXOjlhadb54/tbAb5Wj/2N1FFelmlM6VJadrHATtNTZVWafck3
-         1EvsuNc9RAXp4bjy3M09XzE7s+mg9I9ZMF7tf+fQNQQxKZcQ9XxtjDxLQ+5hDshrnpzr
-         VNyms3aLoQ3J2BzhFSDQOiRacXhiPs8t3zBtoMKE4t/FmyxpbXrC3c44zIevN5IuVv0d
-         jB5+lUBUvRBuVokzQcA5tm/UqPN7ir8LX09UWLgH9RLiMprKaB9VVx84Z/p6Wffej+al
-         OoL2M0+deC1ot/OlVPJn3PfBqervWJ+pNdm476MKgnE9utgqYb0Mnpefy7vKkCGP3iZ/
-         sdBw==
-X-Gm-Message-State: AFqh2kqKxrJe6wMz04PpVd4+gZZmD+RyUa1bjrnCZAlmhk4QPuHshDZv
-        P5S9nIhPMaDsqcKryWVqnkds4g==
-X-Google-Smtp-Source: AMrXdXumJbNcUy9i1KX7PhYzq0uyUfiILub8pKYoeZhwSOhszfVhOxH+Aq3IU8EKBd2IxhZh2c/Tng==
-X-Received: by 2002:a5d:5a15:0:b0:29b:9e07:24f with SMTP id bq21-20020a5d5a15000000b0029b9e07024fmr18983669wrb.0.1673289677303;
-        Mon, 09 Jan 2023 10:41:17 -0800 (PST)
+        bh=ryYeof+OnTJkbTULSprBr4AoCSxqK4qFss+JGLsx80U=;
+        b=xC3Bqnmo7gZclEzUNLYay8LYIuJ1xEdQVkVNbYLcEXv+S+3ehbgjdgqhKhJuLtEeVF
+         dA8ZMahVMnVZcN3VIEU0vubFBmCjpoocONZVobfZ+2xQxIILOCyr/A1TAxxCLZXyhiMw
+         g5N/zpi4dlsYo1SCw5tmio4OoA0+MDA+8uo2aTEXLUZc3pDNqUVKr7VWX2+EJnV1z7/E
+         ldGecETvOvHktsvywhJJKJ7n2OnVjLHVoXFqCe48M9QwsI8izC7dEFE+ypMwyhrrgHu4
+         DqdInIbxmenNxmUh2cceAmUvryyq8m5Ml6n2OFNQ5u89f30++w+CGCHotqtg4lVKTLib
+         s2oA==
+X-Gm-Message-State: AFqh2koeyfhnlE1fIludteWn7WI0ukACVy/yUBX6/zLzI/Jb4DpGoM3P
+        /VKQvc8i/uKUsLRCAcIFFboysg==
+X-Google-Smtp-Source: AMrXdXvO/d7RLU5wZZgySN5QAdoZ6t6S+IeacfwC7pCnKdTpjpVTQk3Drj8MCGo0KedoGjneH3ObsQ==
+X-Received: by 2002:a05:600c:1c11:b0:3d1:e583:51a0 with SMTP id j17-20020a05600c1c1100b003d1e58351a0mr48945787wms.25.1673289997815;
+        Mon, 09 Jan 2023 10:46:37 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d20-20020adfa354000000b002bc50ba3d06sm3503192wrb.9.2023.01.09.10.41.14
+        by smtp.gmail.com with ESMTPSA id r7-20020a05600c458700b003c6b7f5567csm26127542wmo.0.2023.01.09.10.46.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 10:41:16 -0800 (PST)
-Message-ID: <8ac52d50-168c-5c84-29fc-10219d97ff39@linaro.org>
-Date:   Mon, 9 Jan 2023 19:41:13 +0100
+        Mon, 09 Jan 2023 10:46:37 -0800 (PST)
+Message-ID: <101fbe16-69f0-d0c1-168a-1e267e22289d@linaro.org>
+Date:   Mon, 9 Jan 2023 19:46:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 16/18] iommu: arm-smmu: qcom: add support for sa8775p
+Subject: Re: [PATCH V5 1/6] dt-bindings: usb: Add NVIDIA Tegra234 XUSB host
+ controller binding
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, linux-gpio@vger.kernel.org,
-        netdev@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230109174511.1740856-1-brgl@bgdev.pl>
- <20230109174511.1740856-17-brgl@bgdev.pl>
- <863ca113-cf78-1844-d0be-e21915ef662f@linaro.org>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-phy@lists.infradead.org,
+        waynec@nvidia.com, Thierry Reding <treding@nvidia.com>
+References: <20230106152858.49574-1-jonathanh@nvidia.com>
+ <20230106152858.49574-2-jonathanh@nvidia.com>
+ <b1485d8a-71ea-7b75-74ab-77eef595ae10@linaro.org>
+ <73bfb6ca-663e-b73c-b9a1-4727ae7217d1@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <863ca113-cf78-1844-d0be-e21915ef662f@linaro.org>
+In-Reply-To: <73bfb6ca-663e-b73c-b9a1-4727ae7217d1@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 19:10, Konrad Dybcio wrote:
+On 09/01/2023 18:00, Jon Hunter wrote:
+> 
+> On 08/01/2023 15:21, Krzysztof Kozlowski wrote:
+> 
+> ...
+> 
+>> On 06/01/2023 16:28, Jon Hunter wrote:
+>>> +  phys:
+>>> +    minItems: 1
+>>> +    maxItems: 8
+>>> +
+>>> +  phy-names:
+>>> +    minItems: 1
+>>> +    maxItems: 8
+>>> +    items:
+>>> +      enum:
+>>> +        - usb2-0
+>>> +        - usb2-1
+>>> +        - usb2-2
+>>> +        - usb2-3
+>>> +        - usb3-0
+>>> +        - usb3-1
+>>> +        - usb3-2
+>>> +        - usb3-3
+>>
+>> Why do you have so many optional phys? In what case you would put there
+>> usb2-0 and usb3-3 together? Or even 8 phys at the same time? IOW, what
+>> are the differences between them and why one controller would be
+>> connected once to usb3-2 and once to usb3-3 phy? And once to both?
 > 
 > 
-> On 9.01.2023 18:45, Bartosz Golaszewski wrote:
->> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>
->> Extend the driver to support the sa8775p platform.
->>
->> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> ---
->>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
->> index 91d404deb115..5e12742fcfd9 100644
->> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
->> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> /*
->  * Do not add any more qcom,SOC-smmu-500 entries to this list, unless they need
->  * special handling and can not be covered by the qcom,smmu-500 entry.
->  */
+> Here is the description from the device documentation ...
+> 
+> "The NVIDIA Orin series System-on-Chip (SoC) has one xHCI host 
+> controller and one USB 3.2 Gen1 x1 device controller. The two 
+> controllers control a total of up to eight exposed ports. There are up 
+> to four USB 2.0 ports and up to four USB 3.2 Gen1 x1 ports."
+> 
+> So there are eight phys and we could have 4 USB2 and 4 USB3. Depending 
+> on which pins you want to use, you could have various combinations. I 
+> can add these details to the binding doc if that helps.	
 
-We should change the default -U argument for git format-patch :)
+Yeah, could solve some questions.
 
 Best regards,
 Krzysztof
