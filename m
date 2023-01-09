@@ -2,67 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E7C16624E5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:58:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A3126624EF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 13:01:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230287AbjAIL64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 06:58:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42206 "EHLO
+        id S233777AbjAIMB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 07:01:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237068AbjAIL6g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:58:36 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2478E1A051;
-        Mon,  9 Jan 2023 03:58:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1673265512; x=1704801512;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CVmhaM3jEhg8fncm+fzD91Uf6V70xL+ZewS2UOQLFbM=;
-  b=OnzMdzrfBIVSsyo3f02NjYE9rfhXwfyGAvJH/NJF4LSGNhWEpVMTZ0cE
-   lg3eVK4gEwqXCcXegEkOu6vFwPNmCDIUsfn4jGfQpiLBoI9a1LK4I5Khs
-   iKWnnHOJMerS7FMk9J/k+fiUy1JqMc21RumNr3aLhQq65ndpAWUPpG+vw
-   K6CtWGukLpfmEYr8PQa37cokXIfYmprZqNBE/n+70x1do87aP9xbm84fW
-   bYuHJqczz07d4CuGgRKxsaPpd1uov/PMFvMe/aosbTWGLhtvxEnK84QwW
-   KoOV1JYlyagLrWbEyg7q/sMo9h+mygE2pargC/3yiRQg0NXZmX3dVcmQL
-   A==;
-X-IronPort-AV: E=Sophos;i="5.96,311,1665471600"; 
-   d="asc'?scan'208";a="131447965"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Jan 2023 04:58:30 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Mon, 9 Jan 2023 04:58:29 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
- Transport; Mon, 9 Jan 2023 04:58:27 -0700
-Date:   Mon, 9 Jan 2023 11:58:05 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Andrew Jones <ajones@ventanamicro.com>
-CC:     Conor Dooley <conor@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
-        <atishp@rivosinc.com>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <apatel@ventanamicro.com>, <will@kernel.org>,
-        <mark.rutland@arm.com>, <opensbi@lists.infradead.org>,
-        <samuel@sholland.org>
-Subject: Re: [PATCH v4] dt-bindings: riscv: add SBI PMU event mappings
-Message-ID: <Y7wBTQM7BY8P4Oc4@wendy>
-References: <20230108215047.3165032-1-conor@kernel.org>
- <20230109092715.bwomqoeosif43lr2@orel>
- <Y7vpxW1AeEOhcxUf@wendy>
- <20230109104029.3cwbngqiydlpl7z2@orel>
+        with ESMTP id S236907AbjAIMBw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 07:01:52 -0500
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E7F1A381;
+        Mon,  9 Jan 2023 04:01:50 -0800 (PST)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3F2952000A;
+        Mon,  9 Jan 2023 12:01:46 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Nicholas Roth <nicholas@rothemail.net>,
+        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: media: Add OmniVision OV8858
+Date:   Mon,  9 Jan 2023 13:01:28 +0100
+Message-Id: <20230109120129.24519-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20230109120129.24519-1-jacopo@jmondi.org>
+References: <20230109120129.24519-1-jacopo@jmondi.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="8XoNT0OmVvQCfAv6"
-Content-Disposition: inline
-In-Reply-To: <20230109104029.3cwbngqiydlpl7z2@orel>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_NONE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,30 +44,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---8XoNT0OmVvQCfAv6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
-On Mon, Jan 09, 2023 at 11:40:29AM +0100, Andrew Jones wrote:
+Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
 
-> Maybe just replace 'platform specific hooks' with 'in a platform specific
-> way'? I'm mostly just hung up on "hooks" (pun definitely intended), as
-> this document lives in the Linux repo and there aren't any hooks.
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Yes Captain,
-Peter.
+---
+v2 -> v3:
+- Re-introduce maxItems for reset-gpios
+---
+ .../bindings/media/i2c/ovti,ov8858.yaml       | 106 ++++++++++++++++++
+ 1 file changed, 106 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
 
-;)
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+new file mode 100644
+index 000000000000..a65f921ec0fd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+@@ -0,0 +1,106 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov8858.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV8858 Image Sensor
++
++maintainers:
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++  - Nicholas Roth <nicholas@rothemail.net>
++
++description: |
++  The OmniVision OV8858 is a color CMOS 8 Megapixels (3264x2448) image sensor
++  controlled through an I2C-compatible SCCB bus. The sensor transmits images
++  on a MIPI CSI-2 output interface with up to 4 data lanes.
++
++properties:
++  compatible:
++    const: ovti,ov8858
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++    description: XVCLK external clock
++
++  clock-names:
++    const: xvclk
++
++  dvdd-supply:
++    description: Digital Domain Power Supply
++
++  avdd-supply:
++    description: Analog Domain Power Supply
++
++  dovdd-supply:
++    description: I/O Domain Power Supply
++
++  powerdown-gpios:
++    description: PWDNB powerdown GPIO (active low)
++
++  reset-gpios:
++    maxItems: 1
++    description: XSHUTDN reset GPIO (active low)
++
++  port:
++    description: MIPI CSI-2 transmitter port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            minItems: 1
++            maxItems: 4
++
++        required:
++          - data-lanes
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/pinctrl/rockchip.h>
++    #include <dt-bindings/clock/rk3399-cru.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov8858: camera@36 {
++            compatible = "ovti,ov8858";
++            reg = <0x36>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            clock-names = "xvclk";
++            assigned-clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clock-rates = <24000000>;
++
++            dovdd-supply = <&vcc1v8_dvp>;
++
++            reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
++            powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2 3 4>;
++                };
++            };
++        };
++    };
++...
+--
+2.38.1
 
---8XoNT0OmVvQCfAv6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY7wBTQAKCRB4tDGHoIJi
-0i22AQCCB18ZFTC5gZ6XV+3/PdQCzJYQyvuE7kzMeGmJc/c2QQD/c7OWy8G4QbAx
-AkwR/Nzg4U0fhRCkp3VKOyyD4bOI3Q0=
-=vhFw
------END PGP SIGNATURE-----
-
---8XoNT0OmVvQCfAv6--
