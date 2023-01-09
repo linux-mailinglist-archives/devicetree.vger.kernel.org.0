@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB7986634EF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:16:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C41E06634EB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 00:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237753AbjAIXQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 18:16:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46282 "EHLO
+        id S237550AbjAIXQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 18:16:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237700AbjAIXQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:16:15 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 223DABC84;
-        Mon,  9 Jan 2023 15:16:12 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id bf43so15543179lfb.6;
-        Mon, 09 Jan 2023 15:16:12 -0800 (PST)
+        with ESMTP id S237040AbjAIXQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 18:16:10 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D70D26E5;
+        Mon,  9 Jan 2023 15:16:09 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id bu8so15526623lfb.4;
+        Mon, 09 Jan 2023 15:16:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TcrRX6H8xp5Sk/eiYa/8jSn58hXIIDs/40rFnvHatxM=;
-        b=Tuo/Gox1iTyeafNpXOZg0Z42lZIj8MiuNPQMOl7xakbXH1hJTRTDdDYfkhL1jo9rd1
-         /tIr30oMAT+jy6zH8LvzdLHhtArGDY1k1MWGfDQXnNgzlfloUGnEdVe/AuLF5hMWoWQS
-         Gq+6i/mwXjfFDZb8WRY7FUnq54Zr/S0t8aOdibGNFEXb4f0Rl7UhuvZ1tkPPkOk/wmkg
-         Hu7psyHnHOFDXVHsFE00hIZDogkZoYqF0xEvxTJ26iFXmoTF5lzV7IJjgKITD4GGszRP
-         HFQPhvHuWHS/dSZPAh2uEbMWMQ7JmoOGYaK2OWhpeOMt7fKzDeNQu9HpWqfvl5AdEJXl
-         z85g==
+        bh=qvBs6bEDKtP8wO7hsql6N2nN0eBA0Rd5yITdA/W0fD0=;
+        b=G1y9r7t4uOCT+XdxQUuK+QFse1xo3Fgg68VHXsdMy7a3yMPp2VvWQi3dyyzq1lsMJE
+         ycjOspEcV+5KAwycp/9gt/B0b/q9MsAR+6GHUdfrCIPsqo2y94XTY3b86kcKouCWILVy
+         ig1Ec1VD/mqbY+PrPi4XaDUIDj0fG6ygmh+gROdhiVMMv0hYNO0NnoYLQo4kOpipTRn/
+         knjLYn8tv5mBwf5l/EeNDAt45GAXJq+TK+G/r2bJB2H/Vq9AQwwt60GNjYdOBultHthj
+         cjYKp/yGxh+4WoMCFoC7Gv8JWc19d997yq4cFjO+PbdHWzjWnbVIziX4apnyfLka3K7T
+         g8jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TcrRX6H8xp5Sk/eiYa/8jSn58hXIIDs/40rFnvHatxM=;
-        b=6GYTY8gDSmCJ1/ZuvUNCWPzRtR4vCHg3mJv6RiGGrhFZkISNNTgOnrXF6FbmrtliKP
-         GkUqi26idgvxYaPjPKZDtur46lCXbySZF+08TFVbPM0u30ZFZF98I3kYQf7YChgKNH0p
-         fJVWIsDzwcZx/dniH/eQHWOnamTP+Ls4frt+WWHKO1RCK7CFoQ54L85QOziHjMnpjCnV
-         s4E/9TS/O1E2U+A4miyxU1ArxCPDyEUUGxryT2zuBtuIwKit/DjEUKeOKGCveu5fN4E0
-         +QUD+FCTsxAYAX3SzXjBTNMdJljWDYqsTT71LYDNvH+46GGIvAm+yXqv6tl84xRy6EkX
-         2h0g==
-X-Gm-Message-State: AFqh2kpdTPYHgbSmn8ztIH5Wd9z6vPz2qhTI7BjdGyY5rz3WB97vV8xd
-        tC0S7rhRWYNb0lgqzCtKGQA=
-X-Google-Smtp-Source: AMrXdXtQXEAnbQr/1v8NIUErWlyHAG56vSs4OyGVxT4mCFzLf8rCPDNeB+4HMUQoZzZxDe1tVJmqew==
-X-Received: by 2002:ac2:53ab:0:b0:4cb:145d:c407 with SMTP id j11-20020ac253ab000000b004cb145dc407mr12469600lfh.7.1673306170521;
-        Mon, 09 Jan 2023 15:16:10 -0800 (PST)
+        bh=qvBs6bEDKtP8wO7hsql6N2nN0eBA0Rd5yITdA/W0fD0=;
+        b=zUumkCR0As9F4GzacMl+BdWrPM6ZJVNMyOT9BwmUUIpxCDMjNfp56rZCCQY+5GltwE
+         Qh4gSvfISGxOKPNmrZjhtc+egIwB2GOkpHDbM7XXCp5QHNop0vXLdbx/697hvcXspQif
+         SV2D7MgXBX0t6uOB9sZeRDdspkdmNaxwWGO9nGL8Vr07w37dYs6F7kIuecMzHVi/rGuq
+         wNxQnKRP8XIulHerLI99PZgJzDRSwoo59aXRT+mtgB9rDEtLWso2+K1hCwfF1HQ7Ys9i
+         Ouxfb/LYeTd8X5Yy53yHy4X7SmVSG4MZrhvQCtU1sznwe/y1SRbmKyHK6Qo5qNWb5LmT
+         rW6A==
+X-Gm-Message-State: AFqh2kpyrRYnk/cMZ34x/VphEX6Hu/n9HoVEhbYrow/57tjsXcpkTylJ
+        XmyHha+/X4ivFIe1DZIbSPw=
+X-Google-Smtp-Source: AMrXdXvOHAyy+z2Kd3L2Xj5tL7nzBB++EQoQPSpNA3MZ4zv9ECLiz2BDQH1aR1LezSkl6ePebDCh8g==
+X-Received: by 2002:a05:6512:2a96:b0:4aa:8811:4c59 with SMTP id dt22-20020a0565122a9600b004aa88114c59mr18254342lfb.28.1673306167695;
+        Mon, 09 Jan 2023 15:16:07 -0800 (PST)
 Received: from localhost (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id c14-20020a05651221ae00b004cb003c3b2dsm1834230lft.175.2023.01.09.15.16.09
+        by smtp.gmail.com with ESMTPSA id r12-20020ac252ac000000b004aab0ca795csm1835413lfm.211.2023.01.09.15.16.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 15:16:09 -0800 (PST)
+        Mon, 09 Jan 2023 15:16:06 -0800 (PST)
 From:   Dmitry Baryshkov <dbaryshkov@gmail.com>
 X-Google-Original-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -64,10 +64,10 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-In-Reply-To: <20221207012231.112059-1-dmitry.baryshkov@linaro.org>
-References: <20221207012231.112059-1-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v6 00/11] drm/msm: add support for SM8450
-Message-Id: <167330408780.609993.1433336946810204585.b4-ty@linaro.org>
+In-Reply-To: <20230109054407.330839-1-dmitry.baryshkov@linaro.org>
+References: <20230109054407.330839-1-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH] dt-bindings: display/msm: gpu: add rbcpr clock
+Message-Id: <167330408776.609993.2562174494126788375.b4-ty@linaro.org>
 Date:   Tue, 10 Jan 2023 00:41:27 +0200
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -83,46 +83,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 07 Dec 2022 03:22:20 +0200, Dmitry Baryshkov wrote:
-> This adds support for the MDSS/DPU/DSI on the Qualcomm SM8450 platform.
+On Mon, 09 Jan 2023 07:44:07 +0200, Dmitry Baryshkov wrote:
+> Describe the RBCPR clock used on msm8996 (A530), MSM8998 (A540) and
+> SDM630/660 (A508/A512).
 > 
-> Change since v5:
-> - Added defines to be used for the MDP_PERIPH_TOP0 blackhole
 > 
-> Change since v4:
-> - Fixed commit messages for the first two patches (Krzysztof)
-> - Dropped clock-names requirement patch
-> - Removed clock-names from qcom,sm8450-mdss.yaml schema
-> - Fixed the schema changes lost between v3 and v4 (thanks Krzysztof)
-> - Added kernel doc for DPU_MDP_PERIPH_0_REMOVED (Abhinav)
-> - Fixed build issue in dpu_kms_mdp_snapshot() (Niel)
-> 
-> [...]
 
 Applied, thanks!
 
-[01/11] dt-bindings: display/msm: *dpu.yaml: split required properties clauses
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/0f87fc933e0c
-[02/11] dt-bindings: display/msm: *mdss.yaml: split required properties clauses
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/e96150a6dc14
-[03/11] dt-bindings: display/msm: add sm8350 and sm8450 DSI PHYs
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/44a9f577a087
-[04/11] dt-bindings: display/msm: add support for the display on SM8450
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/f7463946c281
-[05/11] drm/msm/dsi/phy: rework register setting for 7nm PHY
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/1a1bd3f45000
-[06/11] drm/msm/dsi: add support for DSI-PHY on SM8350 and SM8450
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/e50c901f93e0
-[07/11] drm/msm/dsi: add support for DSI 2.6.0
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/1b55304af89c
-[08/11] drm/msm/dpu: merge all MDP TOP registers to dpu_hwio.h
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/3bb86d2c6cba
-[09/11] drm/msm/dpu: add support for MDP_TOP blackhole
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/ae7459d07d8a
-[10/11] drm/msm/dpu: add support for SM8450
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/8cbbc3396065
-[11/11] drm/msm: mdss add support for SM8450
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/4d285825f1b7
+[1/1] dt-bindings: display/msm: gpu: add rbcpr clock
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/9bf1e33f9ca8
 
 Best regards,
 -- 
