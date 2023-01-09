@@ -2,118 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC059662839
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 15:15:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23E23662843
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 15:19:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbjAIOPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 09:15:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49240 "EHLO
+        id S229604AbjAIOSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 09:18:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231224AbjAIOPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 09:15:46 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB33F02F
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 06:15:43 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id u9so20508699ejo.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 06:15:43 -0800 (PST)
+        with ESMTP id S229528AbjAIOSs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 09:18:48 -0500
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DD69164AA
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 06:18:46 -0800 (PST)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-4a2f8ad29d5so114269387b3.8
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 06:18:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FZxwx51i+BIGNJvdhbm1l+QcJIg3vJ0V5Z9lmCSorLQ=;
-        b=PACsPm6173A44/eLx1fCIdhLmjCVlMLjb4PmWzCa3135l74Oe+dfw/nl/f77Zr+8TC
-         oyxRQEaX9KReiNI874+l+tHPg9HyfFMfPnB5/PxuvKQ+IkJY1ejQ9anO+epfQHGAsXdU
-         gTSzJYtbLvCZ7m3cikOTSk9mYLi3p101/TXPRVLeCMCkaZwbdV03EAhGooljj2ImF9nN
-         YDjHn1NlIa/NzwiN1CwRs5/5b+rVDJntyl5i2ub2MHIrVvjTN7Wn2grpFdlAnhrtAmd4
-         M0mqIkjRecl7UPnMPoCHxVt0SF+txSTCkT7SLYUXxos9PtSSt32jwGeaX0yNvojQo24q
-         bgDA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cq/zsLtOxvUpilNzkZm53DLhGTnecoKgp9xef0ifk6A=;
+        b=f9g2fxJH+nlBKifMDoOpaEo7JhFa/zmFsblORNMzG4fLvnfWT3f7UxnpMetzjcZyLC
+         BgcA0Ls+UbYBs22fjAlMfiRFO1uPXD2A9mKDT0LJSCFZUschkEcSMBgLS/HwHLWUaJ3b
+         pWqHIFreVg1K/e4HKk7/uIdHLyyCTiLBhf4ppbqD99jOKMyIvhJsqBGixFVsRWQS5kbn
+         6apuvNj2k3gFa8VZnoMY68HHJ8gfBnToJ9uvGmbNv2yLEMJWUmlijOAC4jJ8U6qV621t
+         TWoJMWFec6Q4C0ewIVHu5hVlnT1xq9Y4YCpOV3HOIKKvccRCyxX/hyTXct2vIhlFQCD/
+         Ol7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FZxwx51i+BIGNJvdhbm1l+QcJIg3vJ0V5Z9lmCSorLQ=;
-        b=QlEgBflPR8q8gZ9vnmWG0i1pOx+zQgkHH91lRBISHGY7mxvzjhIBi+yXhyqQU250bG
-         ROY69j6isbvEwu1XsUjhpKteGUwtIyuJ6ST34/KmpOe7R4NCwkMR3MU7ai46UPKleLf7
-         UaPsPHmUO2e2dkHtVwlgB/PwUvAJEGq9LfQnN9WqsTMHXF8TfkXE00FyfeVjwNZvXdIc
-         w6qPr91QlaxGf/SJQmDb3FJDVUdEBzpur66LPnMy1eSNfvPe41DAaj8UN6QG7RuonfK4
-         9N79cBcTCy49DoTwmdnWcnjON8sJUc9mBpd/VSPJ6QtmKCYJgWXPe2/5Ap1LHQ774BSm
-         dyKQ==
-X-Gm-Message-State: AFqh2krWl/nzQrqbJ1lQgQfl/IQiJOTmmsyz+LUy8GDXwcNVpwqGQWvq
-        lLq6b6hLMnr1q7C+09z1my2rmw==
-X-Google-Smtp-Source: AMrXdXu8UkPnXWV7l6spq5CM1lBizx6r8JGq7e3bgVCc66E7Ti1PS7V3wXbdrROFFTaAtBmdrKLjNg==
-X-Received: by 2002:a17:906:54d1:b0:84d:3819:79b9 with SMTP id c17-20020a17090654d100b0084d381979b9mr6777117ejp.71.1673273742344;
-        Mon, 09 Jan 2023 06:15:42 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id p17-20020a17090653d100b0084d4d81f938sm775384ejo.198.2023.01.09.06.15.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 06:15:41 -0800 (PST)
-Date:   Mon, 9 Jan 2023 16:15:40 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: dwc3: Add SM8550 compatible
-Message-ID: <Y7whjCc+j0DLGUFz@linaro.org>
-References: <20221116150600.3011160-1-abel.vesa@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Cq/zsLtOxvUpilNzkZm53DLhGTnecoKgp9xef0ifk6A=;
+        b=c7aAbw4TZaR4X/JHY56PGVfVTJ2uL4VleFH3kypg0kNZYSlFabbXi8o0suTnunkCQk
+         iyyn/twY1pNdiXZxPIH/Zb9h5UNZv0Ep9MS7VY3f4Erij1xAlbVyvnvPgrAdwphJPGWR
+         apPZstXTeAKJLq+1XKW677Vu3lK3jsYLDulxwL75t63chRy6aGf88jdu9fDN9FPiKlFk
+         J6LNyK8iK1sxPuXqkz2YB+iQuzVmmGYmkFgdHIMRPjQn5zWkXvJ82HDl/nofeO0CqLFK
+         ML9xxDFac20G9ov29N6Acp7dBg5DTqUb+Vb1RQ/FIENQ7cjdOFFog5hOST/MIautm0/y
+         zj+w==
+X-Gm-Message-State: AFqh2krWG0A4K94Geg/Iyydz7CsT/kxGk2frifAMQ/WD1m3YolGKMB74
+        d64H3ltImSabdJKscpY0135MSiQC02uM9cj3DHiSrg==
+X-Google-Smtp-Source: AMrXdXvZALTukqFMVUU9iMepmp1dDXQlhGDNQL65hRRRgn4hLCn5jfD+jwcXYqtGNKvKuKxbo6DIiBsmemMNl/Ctxx4=
+X-Received: by 2002:a81:484c:0:b0:36a:de9d:825e with SMTP id
+ v73-20020a81484c000000b0036ade9d825emr1509416ywa.477.1673273925453; Mon, 09
+ Jan 2023 06:18:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221116150600.3011160-1-abel.vesa@linaro.org>
+References: <20221114-narmstrong-sm8550-upstream-spmi-v2-0-b839bf2d558a@linaro.org>
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-spmi-v2-0-b839bf2d558a@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 9 Jan 2023 15:18:34 +0100
+Message-ID: <CACRpkdby3KTakQXnmkSYsu3HreSYx9zhP0nWKQU3KOtmunA3Ew@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] qcom: add support for SPMI PMICs found on SM8550 platforms
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-11-16 17:06:00, Abel Vesa wrote:
-> Document the SM8550 dwc3 compatible.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+On Fri, Nov 18, 2022 at 9:24 AM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
 
-Gentle ping.
+>       dt-bindings: pinctrl: qcom,pmic-gpio: document pm8550, pm8550b, pm8550ve, pm8550vs, pmk8550 & pmr735d
+>       pinctrl: qcom: spmi-gpio: add support for pm8550 & pmr735d gpio control
 
-> ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index a6e6abb4dfa9..a3f8a3f49852 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -39,6 +39,7 @@ properties:
->            - qcom,sm8250-dwc3
->            - qcom,sm8350-dwc3
->            - qcom,sm8450-dwc3
-> +          - qcom,sm8550-dwc3
->        - const: qcom,dwc3
->  
->    reg:
-> @@ -301,6 +302,7 @@ allOf:
->                - qcom,sm8150-dwc3
->                - qcom,sm8250-dwc3
->                - qcom,sm8450-dwc3
-> +              - qcom,sm8550-dwc3
->      then:
->        properties:
->          clocks:
-> @@ -358,6 +360,7 @@ allOf:
->                - qcom,sm8250-dwc3
->                - qcom,sm8350-dwc3
->                - qcom,sm8450-dwc3
-> +              - qcom,sm8550-dwc3
->      then:
->        properties:
->          interrupts:
-> -- 
-> 2.34.1
-> 
+These two patches applied to the pinctrl tree!
+
+Yours,
+Linus Walleij
