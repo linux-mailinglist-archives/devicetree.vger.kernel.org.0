@@ -2,169 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 877FA6624FB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 13:04:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B934662501
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 13:06:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237083AbjAIMEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 07:04:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44382 "EHLO
+        id S237079AbjAIMGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 07:06:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237080AbjAIMET (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 07:04:19 -0500
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FCAE1AA0B;
-        Mon,  9 Jan 2023 04:04:12 -0800 (PST)
-Received: by mail-qk1-x72f.google.com with SMTP id g8so4014202qkl.2;
-        Mon, 09 Jan 2023 04:04:12 -0800 (PST)
+        with ESMTP id S236710AbjAIMGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 07:06:41 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97B0E64FF
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 04:06:39 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id b3so12620234lfv.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 04:06:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lVNn+YWwJiRPXNtsBieyEVWKNIb/zkrUFPfCeEPxMWw=;
-        b=lVpGq0jRiH44fjieSWWDZP5itmNjimKwXoQjLA1EN74wGirOQjNnMTLfiYkb6HM4nU
-         nzOiEF75i37tGplMLvwTJs6FiJtQ5Z4nActSx6jbLudKWge3rJFSdxC6PJtEWRAo953m
-         GU9mVKdUaN03GRIkjLdeXSbrgtVzPHIhHFQBITbKJtH8EqrVohn1wN1Iqn5TRtw7vFCX
-         Nn5Tp2CDucUfAeu0h25UZuZPUWt7a5qCppBRRILLJoOmPocn1Utvhhcz8Vi4HT3M3aAy
-         6LY8RXVzInyCeWRvc2Rp+v3eFHGDequzembAnK+UmHGh/bpemH33EHzxJoBVaTaZYAsF
-         xzOA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=joP/xe0vBLETwzOfevjnNpLhtrO+p4Lr0/GxR/2WnIA=;
+        b=XkM5f1ykYr0v3urWCm5lYhpRdOGphKNr1rly+eLH/2nLEJuYH2n9A3Ls8544BvXfcj
+         HD5dLIJYwam8xP/IB0nqLKxix8IJQOTJ8oh4dzMKFwVBqclsYJd/eI05ILGcMoaGMON/
+         6+67ed139DRScELgGsXk+6tVEk8PCeibFqScGraJNpPNRXq7WmDEKYl38lq4tScVfNgX
+         ui0va4aWNBiEmr0wtHVqfcsuy3OJCuPKGF35pLFyA+1FAFOURk2/EMksa6gACGW5SOBe
+         sPnUdh+SGRDGon7vloYrCAY761MDW7V250E7u5ZNPq+LQTTY2J0J1sHtLvfJufPSaFfc
+         t95w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lVNn+YWwJiRPXNtsBieyEVWKNIb/zkrUFPfCeEPxMWw=;
-        b=7d/+nL5gxgkYEpOvviqUfJWAa7UX/V0wUK9o9nx5o/TrpGli9nWZcOqvn4Sb0Yftou
-         X20ICh36EEM9PVvrNlJmq6bAx2Wzj0IR/52FDq10j67jCI2YlqlyutYx9zhcQsGlV8cV
-         XnkVAHJ2vZ6vnIwqKXPjyaeTwm8aQDwFFXkjjqeW6HJk2ZSw6eezy/OZiBhFalAPv+5X
-         ET3tu99xXOyUS92BnB/AjnFcWjGt1hbLk/5jQE7lj13diu/3EYzXSZKlJEbcUIeaqzhh
-         GcKkN7d6kmLus/TT7WmhIgxfxsJWM4u9j5HE7yGY3WD88PKngH7b2r2pvcKmQl32PwN1
-         W12g==
-X-Gm-Message-State: AFqh2kpRjmnEThDfGXQOVM5ucw3v35ACbfmX6wFtyA6zmp6ZXcOhxp82
-        nHsbg32/T02O0nwLGJEyHZg+B6ftmFKqdcUaIkY=
-X-Google-Smtp-Source: AMrXdXtab23RPB/2ZXMcLY+PmC+jyscFXBJ8G2+xrfC95CqdAo2Wg45jeC1lnEQ0GwjR0BdWjHn+PJpw//FCdU9RsGI=
-X-Received: by 2002:a05:620a:1001:b0:6ff:7b95:633e with SMTP id
- z1-20020a05620a100100b006ff7b95633emr2573684qkj.689.1673265851185; Mon, 09
- Jan 2023 04:04:11 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=joP/xe0vBLETwzOfevjnNpLhtrO+p4Lr0/GxR/2WnIA=;
+        b=WCtoV/QHaKVMbCv6BsHAYvP0Uz0HckfZc2Wst3XNnxQzCaWfMDRelu7QYuXi9vpK2w
+         v8zxEYPjRKhRlhD3a005+fQl2f1qoUn9qtRgHptlcRvmLq+wcQt7sQC9h7NldSMvl59w
+         4uVcAMVkAcABKMhLhWR9OlAzd0FpH2HWOxgk+rMv1ExOCAxV8ksDqC7Nr1gglUW5aYAi
+         F4M/w3nm3WBsulPjRAjxAWPN7FQmF6r0AqFs/SbMp8lCyICdgYe9fDtysS0TJLPoaW3U
+         nPceE4isjTtNzRBYXtpp3jik7QDVMvTC1v4wvGdwprr82QJYO0l1b918pFdR7105YL3f
+         K6YA==
+X-Gm-Message-State: AFqh2kqPpLvxMiOHroTi56l28RD3jP66iFxq4M9nT8xCvQd47582ykdJ
+        pXq5JHL+vitUWWd0VIrHvYzPvA==
+X-Google-Smtp-Source: AMrXdXtnFmJ4+luNKLROf+VCWUG7lrP8/p1JWvEsR948akalVLAopUpQKtw5rLGynf7gAKm1sQt/JA==
+X-Received: by 2002:a05:6512:b25:b0:4b4:b8fc:4ac5 with SMTP id w37-20020a0565120b2500b004b4b8fc4ac5mr19850723lfu.3.1673265997851;
+        Mon, 09 Jan 2023 04:06:37 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id g12-20020a0565123b8c00b004aa543f3748sm1576310lfv.130.2023.01.09.04.06.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 04:06:37 -0800 (PST)
+Message-ID: <8c3d50bb-68a7-ebde-8d9d-4a416bfe3636@linaro.org>
+Date:   Mon, 9 Jan 2023 14:06:36 +0200
 MIME-Version: 1.0
-References: <20230106185526.260163-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230106185526.260163-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <6f7d06ef-d74d-4dfc-9b77-6ae83e0d7816@app.fastmail.com> <CA+V-a8uF1s+dwKC_+apL+CBiHN8w_J0n_G2dqsgiAUZVEibfqg@mail.gmail.com>
- <9017adf0-acd4-4c43-8aea-3579b214b477@app.fastmail.com>
-In-Reply-To: <9017adf0-acd4-4c43-8aea-3579b214b477@app.fastmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 9 Jan 2023 12:03:44 +0000
-Message-ID: <CA+V-a8u6jvR=EDeE3mAbDr6-06NoBJ7mwmi_Y9qVyHT+aC-9rg@mail.gmail.com>
-Subject: Re: [RFC PATCH v6 1/6] riscv: mm: dma-noncoherent: Switch using
- function pointers for cache management
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     "Conor.Dooley" <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        guoren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Tsukasa OI <research_trasio@irq.a4lg.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Mayuresh Chitale <mchitale@ventanamicro.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: display/msm: add core clock to the
+ mdss bindings
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230109005209.247356-1-dmitry.baryshkov@linaro.org>
+ <20230109005209.247356-2-dmitry.baryshkov@linaro.org>
+ <3414e686-9f8d-a29d-6cc1-f073b70a9f1c@linaro.org>
+ <5a58eabc-08ba-57da-290d-b432f3f99268@linaro.org>
+ <0b630735-c3fd-d71f-ce90-f20046c38879@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <0b630735-c3fd-d71f-ce90-f20046c38879@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 8, 2023 at 12:08 AM Arnd Bergmann <arnd@arndb.de> wrote:
->
-> On Sat, Jan 7, 2023, at 23:10, Lad, Prabhakar wrote:
->
-> >> > +
-> >> > +     memset(&thead_cmo_ops, 0x0, sizeof(thead_cmo_ops));
-> >> > +     if (IS_ENABLED(CONFIG_ERRATA_THEAD_CMO)) {
-> >> > +             thead_cmo_ops.clean_range = &thead_cmo_clean_range;
-> >> > +             thead_cmo_ops.inv_range = &thead_cmo_inval_range;
-> >> > +             thead_cmo_ops.flush_range = &thead_cmo_flush_range;
-> >> > +             riscv_noncoherent_register_cache_ops(&thead_cmo_ops);
-> >> > +     }
-> >>
-> >> The implementation here looks reasonable, just wonder whether
-> >> the classification as an 'errata' makes sense. I would probably
-> >> consider this a 'driver' at this point, but that's just
-> >> a question of personal preference.
-> >>
-> > zicbom is a CPU feature that doesn't have any DT node and hence no
-> > driver and similarly for T-HEAD SoC.
->
-> A driver does not have to be a 'struct platform_driver' that
-> matches to a device node, my point was more about what to
-> name it, regardless of how the code is entered.
->
-> > Also the arch_setup_dma_ops()
-> > happens quite early before driver probing due to which we get WARN()
-> > messages during bootup hence I have implemented it as errata; as
-> > errata patching happens quite early.
->
-> But there is no more patching here, just setting the
-> function pointers, right?
->
-Yes that's right.
+On 09/01/2023 13:20, Krzysztof Kozlowski wrote:
+> On 09/01/2023 11:51, Dmitry Baryshkov wrote:
+>> On 09/01/2023 12:35, Krzysztof Kozlowski wrote:
+>>> On 09/01/2023 01:52, Dmitry Baryshkov wrote:
+>>>> Add (optional) core clock to the mdss bindings to let the MDSS driver
+>>>> access harware registers before MDP driver probes.
+>>>>
+>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> ---
+>>>>    .../bindings/display/msm/qcom,mdss.yaml       | 34 ++++++++++++++-----
+>>>>    1 file changed, 26 insertions(+), 8 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+>>>> index ba0460268731..0647fc5a7d94 100644
+>>>> --- a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+>>>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+>>>> @@ -45,17 +45,11 @@ properties:
+>>>>    
+>>>>      clocks:
+>>>>        minItems: 1
+>>>> -    items:
+>>>> -      - description: Display abh clock
+>>>> -      - description: Display axi clock
+>>>
+>>> Not related to this patch, but it is a bit surprising to see AXI clock
+>>> optional.
+>>
+>> Hmm, There is one defined downstream. Probably we should fix that (but
+>> yes, it's a separate issue).
+>>
+>>>> -      - description: Display vsync clock
+>>>> +    maxItems: 4
+>>>>    
+>>>>      clock-names:
+>>>>        minItems: 1
+>>>> -    items:
+>>>> -      - const: iface
+>>>> -      - const: bus
+>>>> -      - const: vsync
+>>>> +    maxItems: 4
+>>>>    
+>>>>      "#address-cells":
+>>>>        const: 1
+>>>> @@ -69,6 +63,30 @@ properties:
+>>>>        items:
+>>>>          - description: MDSS_CORE reset
+>>>>    
+>>>> +oneOf:
+>>>> +  - properties:
+>>>> +      clocks:
+>>>> +        minItems: 3
+>>>> +        maxItems: 4
+>>>> +
+>>>> +      clock-names:
+>>>> +        minItems: 3
+>>>> +        items:
+>>>> +          - const: iface
+>>>> +          - const: bus
+>>>
+>>> BTW, sc7180-mdss uses here ahb name and calls it "AHB clock from dispcc".
+>>>
+>>> SM8250 won't match here either. Maybe this should be reworked to specify
+>>> limits here but not the names and actual clocks? IOW, drop entire oneOf?
+>>
+>> SC7180 and SM8250 use platform-specific bindings (qcom,sc7180-mdss.yaml
+>> and qcom,sm8250-mdss.yaml). This file is used only for older platforms
+>> (msm8916, msm8996, etc).
+> 
+> Ah, right. It's a bit confusing to have bindings split into files:
+> 1. mdss-common
+> 2. mdss
+> 3. device specific
+> 
+> but I guess fixing this would be another chunk of work.
 
-> >> > +struct riscv_cache_ops {
-> >> > +     void (*clean_range)(unsigned long addr, unsigned long size);
-> >> > +     void (*inv_range)(unsigned long addr, unsigned long size);
-> >> > +     void (*flush_range)(unsigned long addr, unsigned long size);
-> >> > +     void (*riscv_dma_noncoherent_cmo_ops)(void *vaddr, size_t size,
-> >> > +                                           enum dma_data_direction dir,
-> >> > +                                           enum dma_noncoherent_ops ops);
-> >> > +};
-> >>
-> >> I don't quite see how the fourth operation is used here.
-> >> Are there cache controllers that need something beyond
-> >> clean/inv/flush?
-> >>
-> > This is for platforms that dont follow standard cache operations (like
-> > done in patch 5/6) and there drivers decide on the operations
-> > depending on the ops and dir.
->
-> My feeling is that the set of operations that get called should
-> not depend on the cache controller but at best the CPU. I tried to
-> enumerate how zicbom and ax45 differ here, and how that compares
-> to other architectures:
->
->                   zicbom      ax45,mips,arc      arm           arm64
-> fromdevice      clean/flush   inval/inval   inval/inval   clean/inval
-> todevice        clean/-       clean/-       clean/-       clean/-
-> bidi            flush/flush   flush/inval   clean/inval   clean/inval
->
-> So everyone does the same operation for DMA_TO_DEVICE, but
-> they differ in the DMA_FROM_DEVICE handling, for reasons I
-> don't quite see:
->
-> Your ax45 code does the same as arc and mips. arm and
-> arm64 skip invalidating the cache before bidi mappings,
-> but arm has a FIXME comment about that. arm64 does a
-> 'clean' instead of 'inval' when mapping a fromdevice
-> page, which seems valid but slower than necessary.
->
-> Could the zicbom operations be changed to do the same
-> things as the ax45/mips/arc ones, or are there specific
-> details in the zicbom spec that require this?
->
-I'll let the RISC-V experts respond here.
+It comes from the history of display devices on Qualcomm platforms. 
+Older platforms used single compatible entry: qcom,mdss (and qcom,mdp5 
+for the corresponding MDP/DPU device). Then at the sdm845 point there 
+was a change: per-SoC compatibles for both MDSS and DPU. But older 
+devices still have the qcom,mdss compat string.  Moreover this change 
+also introduced a shift in the DT (some properties were moved from MDP 
+to the MDSS device, e.g. interconnects and iommus). So the mdss-common 
+lists common properties of new-style bindings, but it is not applicable 
+to old platforms.
 
-Cheers,
-Prabhakar
+Thus we ended up in a situation where we have:
+
+- qcom,mdss for old devices. Maybe it better be renamed to qcom,mdss-other?
+- qcom,SoC-mdss + mdss-common
+
+The same situation applies to the MDP/DPU:
+- qcom,mdp5
+- qcom,SoC-dpu + dpu-common
+
+> 
+>>
+>>>
+>>> There were a lot, a lot of changes to MDSS/DPU bindings recently, so I
+>>> am really loosing track what is done where and when.
+>>>
+>>> There are also few separate patchsets from you on the lists. Could they
+>>> be combined into one cleanup?
+>>
+>> Ack, I'll merge them into a single patchset.
+>>
+>>> I understand that sometimes new cleanup is needed after old cleanup
+>>> finished (I had the same with pinctrl), so it is not a complain.
+>>>
+>>> Another problem (and this time I complain) is that several of your
+>>> patchsets were sent, discussed and then without any notice applied. No
+>>> message that a patchset was applied to some tree. Look:
+>>>
+>>> https://lore.kernel.org/all/20221124001708.25720-2-a39.skl@gmail.com/
+>>> https://lore.kernel.org/all/09ed16e1-4af2-8fce-dab4-f6c0f09e688c@linaro.org/
+>>>
+>>> Nothing. Silent application. If you are the maintainer which picks up
+>>> the patch, please always, always send message that they are applied.
+>>> Patchwork does it automatically, b4 can do it easily as well. If you use
+>>> other tools - use other tools for sending it. Otherwise things are
+>>> discussed on mailing lists, receive several comments and there is never
+>>> a resubmit but instead they show in the tree.
+>>
+>> Unfortunately freedreno uses patchwork-fdo, which doesn't send
+>> notifications. And the fdo fork is not supported by b4. I checked what
+>> would be necessary to enable support in b4. Unfortunately several API
+>> changes would be necessary. So this is a long process. But we are open
+>> to any suggestions on how to improve the process. Currently all three
+>> maintainers (Rob, Abhinav and me) keep the patch status in the
+>> patchwork, but that's all.
+> 
+> And how other freedesktop.org patchwork users notify? Manually or is
+> there some hook? I notice only Exynos DRM where maintainer sends manual
+> "Applied" messages.
+
+I fear there are no other good options. I picked up maintenance 
+practices from Rob, who doesn't send `applied' message. Maybe it's 
+something to change.
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+With best wishes
+Dmitry
+
