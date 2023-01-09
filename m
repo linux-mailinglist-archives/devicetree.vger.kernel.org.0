@@ -2,99 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 675D2661CC6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 04:41:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E60A661CED
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 04:50:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233690AbjAIDl2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 8 Jan 2023 22:41:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40894 "EHLO
+        id S236187AbjAIDuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 22:50:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjAIDl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 22:41:27 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8133965B8;
-        Sun,  8 Jan 2023 19:41:24 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 0559324E1B2;
-        Mon,  9 Jan 2023 11:41:15 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 9 Jan
- 2023 11:41:14 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Mon, 9 Jan 2023 11:41:14 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-CC:     Olivia Mackall <olivia@selenic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH v2 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
-Thread-Topic: [PATCH v2 2/3] hwrng: starfive - Add TRNG driver for StarFive
- SoC
-Thread-Index: AQHZGoveBWEVWeSp5UqGtlmGFQKs8K6QmY4AgATZceD//3/RgIAAj3Zg
-Date:   Mon, 9 Jan 2023 03:41:14 +0000
-Message-ID: <e0c9944151b24e848af55221a4388301@EXMBX168.cuchost.com>
-References: <20221228071103.91797-1-jiajie.ho@starfivetech.com>
- <20221228071103.91797-3-jiajie.ho@starfivetech.com>
- <Y7fePDme5E3yhPhQ@gondor.apana.org.au>
- <7c2cc6e9cdf241318fc73162a5ec221d@EXMBX168.cuchost.com>
- <Y7uEGxl8xJ1xxkKZ@gondor.apana.org.au>
-In-Reply-To: <Y7uEGxl8xJ1xxkKZ@gondor.apana.org.au>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [202.190.108.220]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        with ESMTP id S236288AbjAIDua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 22:50:30 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7CEB1F3;
+        Sun,  8 Jan 2023 19:50:28 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3093Cf3A004859;
+        Mon, 9 Jan 2023 03:50:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=5Y+xlhwayWmZ5koqedxSuXf7/vlQbYv6y4WCErg8OG4=;
+ b=RV3g6WPvZc5cu5dXaH7vDi9wl00s1Gbsmix48npJ+z2x2Vx1vxiB7twldoCEJz0s8ln/
+ j8x13lDTBqhn8Ubx4Odl1+cc+Yu+wL3TpGrqm7KQ3/dtomRBLOPM3t6Hi3bMQQqqQFzV
+ X5I5anUQPodEq1oiCsS9EfsiuOU7b4yNF1MWQDx9RvYtmYfODRcGERrM95bKS4XfOY8L
+ hz5H63JlUOV0FfvANIcIxg/vM4W7Mbl8DlZWWvZFxj9DP/CZjeT81JI/DWQ81WTUkeQN
+ LSqv0eOHP/Gov8NiOtWgD4MRcFuUU4FdJuSHfEmgRdi3moYa3XChKlUrvhwO9i6PG4++ 5Q== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3my21ft65j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 Jan 2023 03:50:07 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3093o6p4030780
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 9 Jan 2023 03:50:06 GMT
+Received: from blr-ubuntu-87.ap.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Sun, 8 Jan 2023 19:50:01 -0800
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+To:     <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <manivannan.sadhasivam@linaro.org>,
+        <robin.murphy@arm.com>
+CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <konrad.dybcio@somainline.org>, <amit.pundir@linaro.org>,
+        <regressions@leemhuis.info>, <sumit.semwal@linaro.org>,
+        <will@kernel.org>, <catalin.marinas@arm.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>
+Subject: [PATCH V2 00/11] Fix XPU violation during modem metadata authentication
+Date:   Mon, 9 Jan 2023 09:18:32 +0530
+Message-ID: <20230109034843.23759-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 2Ppn45XVWOL_h-2HFQmVh1Qu--vMLaDK
+X-Proofpoint-GUID: 2Ppn45XVWOL_h-2HFQmVh1Qu--vMLaDK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-08_19,2023-01-06_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ impostorscore=0 bulkscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
+ clxscore=1011 adultscore=0 priorityscore=1501 mlxlogscore=999 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301090025
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The memory region allocated using dma_alloc_attr with no kernel mapping
+attribute set would still be a part of the linear kernel map. Any access
+to this region by the application processor after assigning it to the
+remote Q6 will result in a XPU violation. Fix this by replacing the
+dynamically allocated memory region with a no-map carveout and unmap the
+modem metadata memory region before passing control to the remote Q6.
+The addition of the carveout and memunmap is required only on SoCs that
+mandate memory protection before transferring control to Q6, hence the
+driver falls back to dynamic memory allocation in the absence of the
+modem metadata carveout.
 
+V2:
+ * Convert legacy bindings to yaml
+ * Revert no_kernel_mapping [Mani/Robin]
+ * Pad commit message to explain bindings break [Krzysztof]
+ * Split dt/bindings per SoC  [Krzysztof] 
 
-> -----Original Message-----
-> From: Herbert Xu <herbert@gondor.apana.org.au>
-> Sent: 9 January, 2023 11:04 AM
-> To: JiaJie Ho <jiajie.ho@starfivetech.com>
-> Cc: Olivia Mackall <olivia@selenic.com>; Rob Herring <robh+dt@kernel.org>;
-> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Emil Renner
-> Berthing <kernel@esmil.dk>; Conor Dooley <conor.dooley@microchip.com>;
-> linux-crypto@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-riscv@lists.infradead.org
-> Subject: Re: [PATCH v2 2/3] hwrng: starfive - Add TRNG driver for StarFive
-> SoC
-> 
-> On Mon, Jan 09, 2023 at 02:58:14AM +0000, JiaJie Ho wrote:
-> >
-> > My trng device requires sending a generate new number cmd before each
-> read.
-> > It then only populates the data registers with new random number and
-> raise an interrupt when ready.
-> > If user choose to not wait, they will always get stale bits.
-> > Is it okay to always return error if wait=false ?
-> 
-> What is the length of the wait time? Is there an upper bound?
-> What is the average wait time?
-> 
+Sibi Sankar (11):
+  dt-bindings: remoteproc: qcom,q6v5: Move MSM8996 to schema
+  dt-bindings: remoteproc: qcom,msm8996-mss-pil: Update memory region
+  dt-bindings: remoteproc: qcom,sc7180-mss-pil: Update memory-region
+  dt-bindings: remoteproc: qcom,sc7280-mss-pil: Update memory-region
+  remoteproc: qcom_q6v5_mss: revert "map/unmap metadata region
+    before/after use"
+  remoteproc: qcom_q6v5_mss: Use a carveout to authenticate modem
+    headers
+  arm64: dts: qcom: msm8996: Add a carveout for modem metadata
+  arm64: dts: qcom: msm8998: Add a carveout for modem metadata
+  arm64: dts: qcom: sdm845: Add a carveout for modem metadata
+  arm64: dts: qcom: sc7180: Add a carveout for modem metadata
+  arm64: dts: qcom: sc7280: Add a carveout for modem metadata
 
-The average wait time is around 20 microseconds.
-I measured from writel cmd to wait_for_completion done.
+ .../remoteproc/qcom,msm8996-mss-pil.yaml      | 382 ++++++++++++++++++
+ .../bindings/remoteproc/qcom,q6v5.txt         | 137 +------
+ .../remoteproc/qcom,sc7180-mss-pil.yaml       |   3 +-
+ .../remoteproc/qcom,sc7280-mss-pil.yaml       |   3 +-
+ .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  |   6 +
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |   9 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         |   9 +
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts       |   7 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |   7 +-
+ .../dts/qcom/sc7280-herobrine-lte-sku.dtsi    |   7 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   9 +
+ drivers/remoteproc/qcom_q6v5_mss.c            |  78 ++--
+ 12 files changed, 486 insertions(+), 171 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
 
-Thanks
-Jia Jie
+-- 
+2.17.1
+
