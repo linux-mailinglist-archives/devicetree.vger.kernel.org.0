@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9727661DDC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 05:32:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FC7E661DE1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 05:33:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236810AbjAIEcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 23:32:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40440 "EHLO
+        id S234227AbjAIEdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 23:33:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236119AbjAIEcT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 23:32:19 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 280A1E0BD
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 20:17:31 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id j17so11170868lfr.3
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 20:17:31 -0800 (PST)
+        with ESMTP id S236782AbjAIEcm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 23:32:42 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C64B9BAB
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 20:20:49 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id g13so11163002lfv.7
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 20:20:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6pepYcOlbjq1Fb0Er9Jysoq0IZv827b0yywGLQA/9UU=;
-        b=Nb5Y935HdAir7vdoB+Zhez9YLUbhuwLxA+/NPY8CiCerWrEitZxANN9MolET7WN/b3
-         du4YLGbIG62nSVtlqIetJanmoXAMHmJbfxNVoy14ZIytALyK/V9+omPbG5GrA/f3Q8pl
-         UkcVCdAa7niotLFn/GzRcUXLxEWBgf0AvoE1tgVhlCO/86qefUj8sef46vaKy/CWGDK2
-         EQjTlSjB8hD/X++mjEvEo/IPK4iteLgUQXKNcYAqlo8vdZ5FzFVY31K7RelXQ1lk1Zvf
-         MZGkYCvSO136s4a0BdUewyWYtSGywzNP/+noym+Pu09nwYqz4oiH2EDR6GZUsnBzrYR6
-         eTdg==
+        bh=voUxNI9zYlvcKPOUFsnogN+cXc4BBqk6mGhnSwGNM4g=;
+        b=Nzyiak3c+ggCgrOKSxh/EIF8OeDkFmjIbiqu3BQ3GwX8Uaiq1hGsh8fhzWn3RZi911
+         CPP9oxX2F920mnS2kCAHIaKJUfdV6x3fYUKJTgCGkLpiRf7zMadOWN0HMreNyD2WqMDw
+         vgLoW2qQxOUe9goJoB9WqPiVpDYtgOXSQS9+/4IjVmThSOoqRF0c01GZvPUUeRggxphB
+         00YkWDlFhhdOovv+ygkYeRlnTV5MgvhiE++ruLhDc9g3ISYW8HFbE9PfKszQvBhrBaka
+         iECN+Dh2qS/CcYH2mnTpbizuf+ehSWFVjmItH2DnBNoOlZKUGdwfqpyt841vT6axiUgx
+         ZlgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6pepYcOlbjq1Fb0Er9Jysoq0IZv827b0yywGLQA/9UU=;
-        b=D/DeYNNhi/PBSDTe0k2EwjLBunrST94FqT6gz0P6pp0M3UyUwM+F1hp4FWgHttvaY5
-         fqr7pbXi56/HEmLHuV/k9fzlKWkMdBHcMpbUu5DkfzANW0YA9C72fYDbJR0QrwSwjUor
-         rNVqKYu9tpapvSO9jXP7vJe7v+CH4lk+v+x8MHJplL1Sv6RdvyhEUrl5FtSkdXIVDMEs
-         BEIjlx2ao/eX17xvHqYfON6/TjgStjLqIvOSIJe4FHpWlxb7hKuyrFBxCO6zUuZvLZ2y
-         wrP9fgLSfOZuHfLAffwZMxK7LtZKwsM2Wrn5Hwe+36DpZ9zg9aQtJq14LUAh6znNBK0S
-         rm4A==
-X-Gm-Message-State: AFqh2ko5VdauWWUSC+4hjxYr/6d6OSMvTzYK7C2hcF6kK056fGR4nJPo
-        BeO9fRRki6H0a2EygXs3DbtqvQ==
-X-Google-Smtp-Source: AMrXdXvV02e4CGBP6DMQqSoNtB+DJhGxb5MWOcQnXZoEAN6yuYWCPusM8UnsPUoewZxK7psbONNpYQ==
-X-Received: by 2002:a05:6512:3e10:b0:4a4:68b8:f4f0 with SMTP id i16-20020a0565123e1000b004a468b8f4f0mr20390606lfv.54.1673237849397;
-        Sun, 08 Jan 2023 20:17:29 -0800 (PST)
+        bh=voUxNI9zYlvcKPOUFsnogN+cXc4BBqk6mGhnSwGNM4g=;
+        b=O7DN/OZkIACq8F8nwFF2alZ6SGYD7ut8ilzG45q0B0D34TTShKON/8O13lnPB0SbKR
+         9PajcSLqSMaAkm8CzSaGwtX7jOHrrj9UG9/4r8cP8+QkqyKhRO1h0gxmyQKAEBkzu7wT
+         u0L+SlwQ6HYwrfx+wN5jhmgo364cKdybhfZoFAzvJaKilTSlSHCR3wWovYp795tz5T1x
+         H6HYz39CxJenZV1N5QvaMuVIemWaRyVEc1VNFdxrayG46/fCGWTrmEynlvX9fmfjdgGU
+         9Ior+1GywimZSfpsHqSQL5QmJjqNIOrV7jFi9c89rHRgAFH4YLLBey38Qnk5JdvTjp9J
+         oQVA==
+X-Gm-Message-State: AFqh2kpbhOnKdCXprMxWmrH2LFPDVD52855dv8skeeOuQ5UcFbIypdG9
+        WwNCJOuezZBrqEOmnXfqV8bUMA==
+X-Google-Smtp-Source: AMrXdXuoDB7G1QMIGNdNpogmbcM/wY1UAVys4ETOQfkWB7upt4SG+A9X5Z7irKrbuEW1rDYgeUNMEQ==
+X-Received: by 2002:a05:6512:158d:b0:4b5:90c5:281c with SMTP id bp13-20020a056512158d00b004b590c5281cmr20149092lfb.19.1673238048201;
+        Sun, 08 Jan 2023 20:20:48 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id a15-20020ac25e6f000000b0049482adb3basm1397940lfr.63.2023.01.08.20.17.28
+        by smtp.gmail.com with ESMTPSA id v8-20020a056512348800b004b4bae1a05asm1388029lfr.293.2023.01.08.20.20.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 20:17:28 -0800 (PST)
+        Sun, 08 Jan 2023 20:20:47 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -55,9 +55,9 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sdm845: make DP node follow the schema
-Date:   Mon,  9 Jan 2023 06:17:28 +0200
-Message-Id: <20230109041728.308725-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH] ARM: dts: qcom: apq8064: drop the label from the DSI node
+Date:   Mon,  9 Jan 2023 06:20:47 +0200
+Message-Id: <20230109042047.309845-1-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -70,36 +70,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop the #clock-cells (leftover probably from the times before the DP
-PHY split) and rename dp-opp-table to just opp-table.
+The upstream kernel doesn't use labels on the DSI nodes, drop one.
 
-Fixes: eaac4e55a6f4 ("arm64: dts: qcom: sdm845: add displayport node")
+Fixes: f078eac68e8d ("arm: dts: qcom: apq8064: Add dsi, gpu and iommu nodes")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ arch/arm/boot/dts/qcom-apq8064.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 9e881e19b984..fa62479206ce 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -4593,7 +4593,6 @@ mdss_dp: displayport-controller@ae90000 {
- 					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
- 				clock-names = "core_iface", "core_aux", "ctrl_link",
- 					      "ctrl_link_iface", "stream_pixel";
--				#clock-cells = <1>;
- 				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
- 						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
- 				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
-@@ -4619,7 +4618,7 @@ port@1 {
- 					};
- 				};
+diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+index 9134bc512cc8..5fdd78477666 100644
+--- a/arch/arm/boot/dts/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+@@ -1278,7 +1278,6 @@ mmss_sfpb: syscon@5700000 {
  
--				dp_opp_table: dp-opp-table {
-+				dp_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-162000000 {
+ 		dsi0: dsi@4700000 {
+ 			compatible = "qcom,mdss-dsi-ctrl";
+-			label = "MDSS DSI CTRL->0";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.39.0
 
