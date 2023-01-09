@@ -2,247 +2,495 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8846666243D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:33:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F7B866244E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 12:37:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234085AbjAILdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 06:33:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51232 "EHLO
+        id S236937AbjAILhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 06:37:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234066AbjAILdj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:33:39 -0500
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09AF7186D2
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 03:33:35 -0800 (PST)
-Received: by mail-vs1-xe31.google.com with SMTP id i185so8243609vsc.6
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 03:33:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZSDXftrDLJQK7xmJBG2ELgbyinIOI/n7lmtYUtA57Fs=;
-        b=bJJlCRQwZSRuqt1LoaMGKivf6A9fZ9rncAVmVob2q/Y2tEtiIA0bNy6vg8QZlbay+P
-         FaJc1wxuWpfDSwrzS8kdrpnt9CQr66M9legLAKRVqhxAUd0IrAS/Zzc7snKW2DWOEMlN
-         ybx/0SzQhIM6t1ARC1R98cssk90pNC/RqJO98=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZSDXftrDLJQK7xmJBG2ELgbyinIOI/n7lmtYUtA57Fs=;
-        b=GfuHz6Y0YIxrOwN1N+FCVSpohzMOUO7ovoQerS0CEci4dy7MjfQ2UojfnD/PN0U8qA
-         qBQO94R8D+90sTjxlWjfvhdqLpVwQLIR9eBTtbfSeIDoSqKXWD3x3psyTJZ4P72+noqB
-         NUr/WjwC8wC4aONVltPQrswgeOrBnuem5LaQy0agxQfrvLDd9P+xl+F/On7u7TrAPaqJ
-         b6iiFoBgZuiyksVNv7JSg+Qe7q2d1TX2cG1SO6DUCC/I49vgYo7HG1lU05KugbbgP8fL
-         45JuPfNOR2PmuZUn0gfawtJv/deKwSjDPnP2Jf1GoIXAU9ht0h+4qiVuK+9qm+XtLbFR
-         o5yg==
-X-Gm-Message-State: AFqh2kr/pX7o5SIZlSEBlUcI72zT78V7xcl+rL86nRn2IgjFYtgtTLNM
-        LUH5YdIxcOp3PCA0qlIG3pyQgcewOxM3oCoYt3Sciw==
-X-Google-Smtp-Source: AMrXdXuKLBlCyhGQkkUkLWKlzTLcYAo/jHsHe7IlF4q1WX5pDRdIAXdOYMK/bZk42xpiZYdtx3FQv038aJ+bvpjmxTA=
-X-Received: by 2002:a67:447:0:b0:3ce:d0ae:f6f6 with SMTP id
- 68-20020a670447000000b003ced0aef6f6mr3016990vse.26.1673264014106; Mon, 09 Jan
- 2023 03:33:34 -0800 (PST)
+        with ESMTP id S236945AbjAILhO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 06:37:14 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDBCBA8
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 03:36:40 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1pEqSD-00042T-D4; Mon, 09 Jan 2023 12:36:37 +0100
+Message-ID: <a6298f1d-7056-573a-6a3b-27cce7d19ddf@pengutronix.de>
+Date:   Mon, 9 Jan 2023 12:36:36 +0100
 MIME-Version: 1.0
-References: <20230109084101.265664-1-treapking@chromium.org>
- <20230109084101.265664-4-treapking@chromium.org> <CAGXv+5G2bUNrA5zfmzZeXJjOgvKc0tFq_qd3UR11qeyNb=xNHQ@mail.gmail.com>
-In-Reply-To: <CAGXv+5G2bUNrA5zfmzZeXJjOgvKc0tFq_qd3UR11qeyNb=xNHQ@mail.gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 9 Jan 2023 19:33:22 +0800
-Message-ID: <CAGXv+5GS5Bj1hzbUEP340FU4yYmEVf4wyNd2B_HEUAMz3OKw6A@mail.gmail.com>
-Subject: Re: [PATCH v9 3/9] drm/display: Add Type-C switch helpers
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, chrome-platform@lists.linux.dev,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        Kees Cook <keescook@chromium.org>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Jani Nikula <jani.nikula@intel.com>,
-        Allen Chen <allen.chen@ite.com.tw>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 1/2][v3] arm64: dts: imx8mm-evk: move PMIC setup of A53
+Content-Language: en-US
+To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, ob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230104130511.1560237-1-johannes.schneider@leica-geosystems.com>
+ <20230104130511.1560237-2-johannes.schneider@leica-geosystems.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20230104130511.1560237-2-johannes.schneider@leica-geosystems.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 9, 2023 at 6:10 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
->
-> On Mon, Jan 9, 2023 at 4:41 PM Pin-yen Lin <treapking@chromium.org> wrote:
-> >
-> > Add helpers to register and unregister Type-C "switches" for bridges
-> > capable of switching their output between two downstream devices.
-> >
-> > The helper registers USB Type-C mode switches when the "mode-switch"
-> > and the "data-lanes" properties are available in Device Tree.
-> >
-> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
->
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
->
-> on MT8192 based Hayato (ASUS Chromebook Flip CM3200).
->
-> > ---
-> >
-> > (no changes since v8)
-> >
-> > Changes in v8:
-> > - Fixed the build issue when CONFIG_TYPEC=m
-> > - Fixed some style issues
-> >
-> > Changes in v7:
-> > - Extracted the common codes to a helper function
-> > - New in v7
-> >
-> >  drivers/gpu/drm/display/drm_dp_helper.c | 132 ++++++++++++++++++++++++
-> >  include/drm/display/drm_dp_helper.h     |  16 +++
-> >  2 files changed, 148 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> > index 16565a0a5da6..fb9e23744c08 100644
-> > --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> > +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> > @@ -30,11 +30,13 @@
-> >  #include <linux/sched.h>
-> >  #include <linux/seq_file.h>
-> >  #include <linux/string_helpers.h>
-> > +#include <linux/usb/typec_mux.h>
-> >  #include <linux/dynamic_debug.h>
-> >
-> >  #include <drm/display/drm_dp_helper.h>
-> >  #include <drm/display/drm_dp_mst_helper.h>
-> >  #include <drm/drm_edid.h>
-> > +#include <drm/drm_of.h>
-> >  #include <drm/drm_print.h>
-> >  #include <drm/drm_vblank.h>
-> >  #include <drm/drm_panel.h>
-> > @@ -3891,3 +3893,133 @@ int drm_panel_dp_aux_backlight(struct drm_panel *panel, struct drm_dp_aux *aux)
-> >  EXPORT_SYMBOL(drm_panel_dp_aux_backlight);
-> >
-> >  #endif
-> > +
-> > +#if IS_REACHABLE(CONFIG_TYPEC)
-> > +static int drm_dp_register_mode_switch(struct device *dev, struct device_node *node,
-> > +                                      struct drm_dp_typec_switch_desc *switch_desc,
-> > +                                      void *data, void *mux_set)
+i.MX maintainers and LAKML are still missing.
 
-Using "typec_mux_set_fn_t" instead of "void *" for mux_set would be
-more explicit. Same for all the other instances where this parameter
-gets declared.
+On 04.01.23 14:05, Johannes Schneider wrote:
+> from the dtsi to the two dts's
 
-ChenYu
+I think a imx8mm-evk-rohm-pmic.dtsi (or some other name)
+is worthwhile to avoid the duplication.
 
+> 
+> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+> ---
+>  .../boot/dts/freescale/imx8mm-ddr4-evk.dts    | 130 ++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dts  | 130 ++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 128 -----------------
+>  3 files changed, 260 insertions(+), 128 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts
+> index 6c079c0a3a48..8274ddee49ac 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts
+> @@ -55,3 +55,133 @@ MX8MM_IOMUXC_NAND_CE3_B_GPIO3_IO4	0x19
+>  		>;
+>  	};
+>  };
+> +
+> +&A53_0 {
+> +	cpu-supply = <&buck2_reg>;
+> +};
+> +
+> +&A53_1 {
+> +	cpu-supply = <&buck2_reg>;
+> +};
+> +
+> +&A53_2 {
+> +	cpu-supply = <&buck2_reg>;
+> +};
+> +
+> +&A53_3 {
+> +	cpu-supply = <&buck2_reg>;
+> +};
+> +
+> +&i2c1 {
+> +	pmic@4b {
+> +		compatible = "rohm,bd71847";
+> +		reg = <0x4b>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +		rohm,reset-snvs-powered;
+> +
+> +		#clock-cells = <0>;
+> +		clocks = <&osc_32k 0>;
+> +		clock-output-names = "clk-32k-out";
+> +
+> +		regulators {
+> +			buck1_reg: BUCK1 {
+> +				regulator-name = "buck1";
+> +				regulator-min-microvolt = <700000>;
+> +				regulator-max-microvolt = <1300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <1250>;
+> +			};
+> +
+> +			buck2_reg: BUCK2 {
+> +				regulator-name = "buck2";
+> +				regulator-min-microvolt = <700000>;
+> +				regulator-max-microvolt = <1300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <1250>;
+> +				rohm,dvs-run-voltage = <1000000>;
+> +				rohm,dvs-idle-voltage = <900000>;
+> +			};
+> +
+> +			buck3_reg: BUCK3 {
+> +				// BUCK5 in datasheet
+> +				regulator-name = "buck3";
+> +				regulator-min-microvolt = <700000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck4_reg: BUCK4 {
+> +				// BUCK6 in datasheet
+> +				regulator-name = "buck4";
+> +				regulator-min-microvolt = <3000000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5_reg: BUCK5 {
+> +				// BUCK7 in datasheet
+> +				regulator-name = "buck5";
+> +				regulator-min-microvolt = <1605000>;
+> +				regulator-max-microvolt = <1995000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6_reg: BUCK6 {
+> +				// BUCK8 in datasheet
+> +				regulator-name = "buck6";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1_reg: LDO1 {
+> +				regulator-name = "ldo1";
+> +				regulator-min-microvolt = <1600000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo2_reg: LDO2 {
+> +				regulator-name = "ldo2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3_reg: LDO3 {
+> +				regulator-name = "ldo3";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4_reg: LDO4 {
+> +				regulator-name = "ldo4";
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo6_reg: LDO6 {
+> +				regulator-name = "ldo6";
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> index a2b24d4d4e3e..2b5b9c923dc6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> @@ -126,3 +126,133 @@ MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE           0x196
+>  		>;
+>  	};
+>  };
+> +
+> +&A53_0 {
+> +	cpu-supply = <&buck2_reg>;
+> +};
+> +
+> +&A53_1 {
+> +	cpu-supply = <&buck2_reg>;
+> +};
+> +
+> +&A53_2 {
+> +	cpu-supply = <&buck2_reg>;
+> +};
+> +
+> +&A53_3 {
+> +	cpu-supply = <&buck2_reg>;
+> +};
+> +
+> +&i2c1 {
+> +	pmic@4b {
+> +		compatible = "rohm,bd71847";
+> +		reg = <0x4b>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +		rohm,reset-snvs-powered;
+> +
+> +		#clock-cells = <0>;
+> +		clocks = <&osc_32k 0>;
+> +		clock-output-names = "clk-32k-out";
+> +
+> +		regulators {
+> +			buck1_reg: BUCK1 {
+> +				regulator-name = "buck1";
+> +				regulator-min-microvolt = <700000>;
+> +				regulator-max-microvolt = <1300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <1250>;
+> +			};
+> +
+> +			buck2_reg: BUCK2 {
+> +				regulator-name = "buck2";
+> +				regulator-min-microvolt = <700000>;
+> +				regulator-max-microvolt = <1300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <1250>;
+> +				rohm,dvs-run-voltage = <1000000>;
+> +				rohm,dvs-idle-voltage = <900000>;
+> +			};
+> +
+> +			buck3_reg: BUCK3 {
+> +				// BUCK5 in datasheet
+> +				regulator-name = "buck3";
+> +				regulator-min-microvolt = <700000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck4_reg: BUCK4 {
+> +				// BUCK6 in datasheet
+> +				regulator-name = "buck4";
+> +				regulator-min-microvolt = <3000000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5_reg: BUCK5 {
+> +				// BUCK7 in datasheet
+> +				regulator-name = "buck5";
+> +				regulator-min-microvolt = <1605000>;
+> +				regulator-max-microvolt = <1995000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6_reg: BUCK6 {
+> +				// BUCK8 in datasheet
+> +				regulator-name = "buck6";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1_reg: LDO1 {
+> +				regulator-name = "ldo1";
+> +				regulator-min-microvolt = <1600000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo2_reg: LDO2 {
+> +				regulator-name = "ldo2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3_reg: LDO3 {
+> +				regulator-name = "ldo3";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4_reg: LDO4 {
+> +				regulator-name = "ldo4";
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo6_reg: LDO6 {
+> +				regulator-name = "ldo6";
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index 7d6317d95b13..b26460586f68 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -133,22 +133,6 @@ simple-audio-card,codec {
+>  	};
+>  };
+>  
+> -&A53_0 {
+> -	cpu-supply = <&buck2_reg>;
+> -};
+> -
+> -&A53_1 {
+> -	cpu-supply = <&buck2_reg>;
+> -};
+> -
+> -&A53_2 {
+> -	cpu-supply = <&buck2_reg>;
+> -};
+> -
+> -&A53_3 {
+> -	cpu-supply = <&buck2_reg>;
+> -};
+> -
+>  &fec1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_fec1>;
+> @@ -182,118 +166,6 @@ &i2c1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_i2c1>;
+>  	status = "okay";
+> -
+> -	pmic@4b {
+> -		compatible = "rohm,bd71847";
+> -		reg = <0x4b>;
+> -		pinctrl-names = "default";
+> -		pinctrl-0 = <&pinctrl_pmic>;
+> -		interrupt-parent = <&gpio1>;
+> -		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> -		rohm,reset-snvs-powered;
+> -
+> -		#clock-cells = <0>;
+> -		clocks = <&osc_32k 0>;
+> -		clock-output-names = "clk-32k-out";
+> -
+> -		regulators {
+> -			buck1_reg: BUCK1 {
+> -				regulator-name = "buck1";
+> -				regulator-min-microvolt = <700000>;
+> -				regulator-max-microvolt = <1300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -				regulator-ramp-delay = <1250>;
+> -			};
+> -
+> -			buck2_reg: BUCK2 {
+> -				regulator-name = "buck2";
+> -				regulator-min-microvolt = <700000>;
+> -				regulator-max-microvolt = <1300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -				regulator-ramp-delay = <1250>;
+> -				rohm,dvs-run-voltage = <1000000>;
+> -				rohm,dvs-idle-voltage = <900000>;
+> -			};
+> -
+> -			buck3_reg: BUCK3 {
+> -				// BUCK5 in datasheet
+> -				regulator-name = "buck3";
+> -				regulator-min-microvolt = <700000>;
+> -				regulator-max-microvolt = <1350000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			buck4_reg: BUCK4 {
+> -				// BUCK6 in datasheet
+> -				regulator-name = "buck4";
+> -				regulator-min-microvolt = <3000000>;
+> -				regulator-max-microvolt = <3300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			buck5_reg: BUCK5 {
+> -				// BUCK7 in datasheet
+> -				regulator-name = "buck5";
+> -				regulator-min-microvolt = <1605000>;
+> -				regulator-max-microvolt = <1995000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			buck6_reg: BUCK6 {
+> -				// BUCK8 in datasheet
+> -				regulator-name = "buck6";
+> -				regulator-min-microvolt = <800000>;
+> -				regulator-max-microvolt = <1400000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo1_reg: LDO1 {
+> -				regulator-name = "ldo1";
+> -				regulator-min-microvolt = <1600000>;
+> -				regulator-max-microvolt = <3300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo2_reg: LDO2 {
+> -				regulator-name = "ldo2";
+> -				regulator-min-microvolt = <800000>;
+> -				regulator-max-microvolt = <900000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo3_reg: LDO3 {
+> -				regulator-name = "ldo3";
+> -				regulator-min-microvolt = <1800000>;
+> -				regulator-max-microvolt = <3300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo4_reg: LDO4 {
+> -				regulator-name = "ldo4";
+> -				regulator-min-microvolt = <900000>;
+> -				regulator-max-microvolt = <1800000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo6_reg: LDO6 {
+> -				regulator-name = "ldo6";
+> -				regulator-min-microvolt = <900000>;
+> -				regulator-max-microvolt = <1800000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -		};
+> -	};
+>  };
+>  
+>  &i2c2 {
 
-> > +{
-> > +       struct drm_dp_typec_port_data *port_data;
-> > +       struct typec_mux_desc mux_desc = {};
-> > +       char name[32];
-> > +       u32 dp_lanes[2];
-> > +       int ret, num_lanes, port_num = -1;
-> > +
-> > +       num_lanes = drm_of_get_data_lanes_count(node, 0, 2);
-> > +       if (num_lanes <= 0) {
-> > +               dev_err(dev, "Error on getting data lanes count: %d\n",
-> > +                       num_lanes);
->
-> Also printing out the full node name (endpoint@N) would be more helpful.
->
-> > +               return num_lanes;
-> > +       }
-> > +
-> > +       ret = of_property_read_u32_array(node, "data-lanes", dp_lanes, num_lanes);
-> > +       if (ret) {
-> > +               dev_err(dev, "Failed to read the data-lanes variable: %d\n",
-> > +                       ret);
->
-> Same here.
->
-> > +               return ret;
-> > +       }
-> > +
-> > +       port_num = dp_lanes[0] / 2;
-> > +
-> > +       port_data = &switch_desc->typec_ports[port_num];
-> > +       port_data->data = data;
-> > +       mux_desc.fwnode = &node->fwnode;
-> > +       mux_desc.drvdata = port_data;
-> > +       snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
-> > +       mux_desc.name = name;
-> > +       mux_desc.set = mux_set;
-> > +
-> > +       port_data->typec_mux = typec_mux_register(dev, &mux_desc);
-> > +       if (IS_ERR(port_data->typec_mux)) {
-> > +               ret = PTR_ERR(port_data->typec_mux);
-> > +               dev_err(dev, "Mode switch register for port %d failed: %d\n",
-> > +                       port_num, ret);
-> > +       }
-> > +
-> > +       return ret;
-> > +}
-> > +
-> > +/**
-> > + * drm_dp_register_typec_switches() - register Type-C switches
-> > + * @dev: Device that registers Type-C switches
-> > + * @port: Device node for the switch
-> > + * @switch_desc: A Type-C switch descriptor
-> > + * @data: Private data for the switches
-> > + * @mux_set: Callback function for typec_mux_set
-> > + *
-> > + * This function registers USB Type-C switches for DP bridges that can switch
-> > + * the output signal between their output pins.
-> > + *
-> > + * Currently only mode switches are implemented, and the function assumes the
-> > + * given @port device node has endpoints with "mode-switch" property.
-> > + * Register the endpoint as port 0 if the "data-lanes" property falls in 0/1,
-> > + * and register it as port 1 if "data-lanes" falls in 2/3.
-> > + */
-> > +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
-> > +                                  struct drm_dp_typec_switch_desc *switch_desc,
-> > +                                  void *data, void *mux_set)
-> > +{
-> > +       struct device_node *sw;
-> > +       int ret;
-> > +
-> > +       for_each_child_of_node(port, sw) {
-> > +               if (of_property_read_bool(sw, "mode-switch"))
-> > +                       switch_desc->num_typec_switches++;
-> > +       }
-> > +
-> > +       if (!switch_desc->num_typec_switches) {
-> > +               dev_warn(dev, "No Type-C switches node found\n");
->
-> Maybe change this to dev_info or even dev_debug? A warning would be too
-> noisy if the bridge drivers are calling this helper unconditionally.
->
-> Otherwise,
->
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
