@@ -2,264 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 761D1662C16
-	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 18:04:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A084F662C49
+	for <lists+devicetree@lfdr.de>; Mon,  9 Jan 2023 18:09:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbjAIRDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 12:03:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55782 "EHLO
+        id S237054AbjAIRH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 12:07:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237464AbjAIRCz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 12:02:55 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1290140C12
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 09:02:41 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id g16so10154026plq.12
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 09:02:41 -0800 (PST)
+        with ESMTP id S236528AbjAIRHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 12:07:10 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C3A01CB14;
+        Mon,  9 Jan 2023 09:06:15 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id e13so9580648ljn.0;
+        Mon, 09 Jan 2023 09:06:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nr//lLmsu+5fOQNN1eNl3Pyv0bUQYnhf+WLJs/mJAHU=;
-        b=kzBScnJ/PyPuu5Eq8Etlv8BjFlbNi0zTYLdPEipVJArsA9Pmdb2rekLFtesElFTdCq
-         nPAX11Ya8Ep4jBWvZEHnzwVpPY8CtPyLjW+xBiIUE2sQkln68RFlGs9ca0KFgoobJL3y
-         1F2BhONV/VqSaMUbhjnZoXiwCai//lzxVRE3jc3AllHfAzvwFeU/o9SCfkVYqcDpGiA0
-         4fjhgmrmKyrY7DfDjdiLcQXlwbD9EX3pjxxRO+Q/mMt2Fq0Hbm5gDnM5DrZoOiFvHW6K
-         fE/cnL/SCiyR5XcMserOkQPh4tv8Z3qilQk9OS2sa1bR5EJmK+7QgikBt9UXZ9j9VBDV
-         P++g==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kptWDTw8vN/ZCKQXmhnZQhxDWISF/pzOgR+cERcTBEo=;
+        b=aU0yQBpi7eMjjiaYpWLTLlDxxal3Oc/k2SSM/iFVGM2hKtTwjxhExc5fXoZOYOmi33
+         ajovBpB1A8+Rjc3BTmkkckFkFoP31QkV1HNkzevXtXviap1Epr5rFrfbhDdR5rWK+bUQ
+         mHud4aARqE62eFyrxCZ2ObO0bqMA3p3Lxk6xHqXu+cvdP3VoJZ1EISXohooOTYm9fmi+
+         0kObSP55MGrD1PXZZ/9Uym1E7RuA2YKWNWq3+vfrYRpvO48UkXLusSUY4fX/i8PMwgqh
+         yMfD5uGwSp/TNWcVWZ/6FcVcPA22ZdJ/83x3cLs3MrtJGj5jsXtnHjxJeMRpr2lADrQz
+         6ROQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nr//lLmsu+5fOQNN1eNl3Pyv0bUQYnhf+WLJs/mJAHU=;
-        b=pIjX8BjhtqaKajOvVK4S0PzLE8NJL0nuqkXlO0SQmbbeI7uLkDUiA6S0T8RJbq05ZH
-         Zi6D4jHv2pWkbfWP7MD9jmSYedgfg4i6QQ//XC34ksh1nuqiP+Mlq6iQO54Os7aOd6m/
-         a1FAVB3yp2FEnWbbfPmjFPT0YhQYmBEYCmv6iAv2QHa+uLene9YyeHlts+M33wk9L2kU
-         R3I5I7+3bhXHsLVQBL3a9aTomAogq7FnqhqEQmv5HwtOsztJK2/DnXk5iMxAL+jrNYic
-         H70h9KHOXgnvRDVBX1ewonkfZe3NwqwHhAoeHm/MES12VRwai5ezbWwKiaL2yEfuyrE8
-         1/Wg==
-X-Gm-Message-State: AFqh2kpiKJmLUyoLehmBDV6ML5pkK7/nwhsu+l440Zekc/GfkKNq7oKa
-        FYSwvcc9lr+asweKREK9L71811iV0R9AX/pPWUTq0Q==
-X-Google-Smtp-Source: AMrXdXtTfBIW85jiU1ZUsAeZoqqJKpTV6XQoUlKGw98Ak/vLMOXDXUyNzStoXh3SbqciAfp3lpfsaVp9OD7S8DpXJ1E=
-X-Received: by 2002:a17:902:ab45:b0:193:8c1:50d2 with SMTP id
- ij5-20020a170902ab4500b0019308c150d2mr1487012plb.41.1673283760417; Mon, 09
- Jan 2023 09:02:40 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kptWDTw8vN/ZCKQXmhnZQhxDWISF/pzOgR+cERcTBEo=;
+        b=0pwO6OMvfuLxvdCsEk71698qZDTElorZXDK+OgiFfQMK1mDvpgDR5INupcYbr+lquD
+         FdE6BALTJqCAySJldWnGMVLqaOjJUhu7phbd1dFJueQVjYJNdofHLt9IprRv77HzkKJ7
+         TFXf8XXMc/p6fxTBZ87b3AckdzvQ4JjqrEzbGz2yyTApYZbgZ6ltIykKipV0Pu+lruXC
+         LaYrKwiGA1XeoM7OBSizQaNF1Wp7UMjym0/xx8WOp15hGIJ1Rk6LU31QxKRl8XO7iySb
+         myrfVJjLmMG4N47dFg01jKXgRd4NoENaSghW8uIm5qE+6iq4U3EjtckjDwm2PrCwFSa5
+         vVWw==
+X-Gm-Message-State: AFqh2kp1oVXhOg5oeR5ChF6KZwFEF9QwqkcMJtmGBdjEBNuuIy6+l5hV
+        cNI0SQJr7Pg8TXnT16LWgIqnHX+CPBo=
+X-Google-Smtp-Source: AMrXdXsa9xskNF3bkLfKqhIFn0DxYnwV7EPVRdGhWywbwDSFG0QX8MSoRL+XZR31KsbUbOItUrCTzA==
+X-Received: by 2002:a2e:be29:0:b0:281:175d:fa46 with SMTP id z41-20020a2ebe29000000b00281175dfa46mr5788572ljq.23.1673283973728;
+        Mon, 09 Jan 2023 09:06:13 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id d25-20020a2eb059000000b0027fcbcc3bedsm986619ljl.51.2023.01.09.09.06.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 09:06:12 -0800 (PST)
+Date:   Mon, 9 Jan 2023 20:06:10 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
+        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 03/15] spi: dw: update SPI_CTRLR0 register
+Message-ID: <20230109170610.6ndmqi57leb5scm7@mobilestation>
+References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
+ <20221212180732.79167-4-sudip.mukherjee@sifive.com>
 MIME-Version: 1.0
-References: <20230106164618.1845281-1-vincent.guittot@linaro.org> <20230106182849.kr47mdgokd4qa6zw@builder.lan>
-In-Reply-To: <20230106182849.kr47mdgokd4qa6zw@builder.lan>
-From:   Vincent Guittot <vincent.guittot@linaro.org>
-Date:   Mon, 9 Jan 2023 18:02:29 +0100
-Message-ID: <CAKfTPtBJHWfhXCGojZSvS_DM4+bJnQ9j1GwtE5_YYJFHq9cpRA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845: correct dynamic power coefficients
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     dmitry.baryshkov@linaro.org, agross@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, danny@kdrag0n.dev
-Content-Type: multipart/mixed; boundary="000000000000263da105f1d7bc09"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221212180732.79167-4-sudip.mukherjee@sifive.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000263da105f1d7bc09
-Content-Type: text/plain; charset="UTF-8"
+On Mon, Dec 12, 2022 at 06:07:20PM +0000, Sudip Mukherjee wrote:
+> If the SPI transfer is being done in enhanced mode then SPI_CTRLR0
+> register needs to be updated to mention the instruction length, address
+> length, address and instruction transfer format, wait cycles. And, we
+> also need to enable clock stretching.
+> 
+> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+> ---
+>  drivers/spi/spi-dw-core.c | 14 +++++++++++++-
+>  drivers/spi/spi-dw.h      | 11 +++++++++++
+>  2 files changed, 24 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+> index 8c47a4d14b666..d59401f16c47a 100644
+> --- a/drivers/spi/spi-dw-core.c
+> +++ b/drivers/spi/spi-dw-core.c
 
-On Fri, 6 Jan 2023 at 19:28, Bjorn Andersson <andersson@kernel.org> wrote:
->
-> On Fri, Jan 06, 2023 at 05:46:18PM +0100, Vincent Guittot wrote:
->
-> Seems like using get_maintainer.pl would have saved you some trouble ;)
+> @@ -320,7 +320,7 @@ void dw_spi_update_config(struct dw_spi *dws, struct spi_device *spi,
+>  {
+>  	struct dw_spi_chip_data *chip = spi_get_ctldata(spi);
+>  	u32 cr0 = chip->cr0;
 
-The worst is that I used it but only checked names and not emails
-when I reused the list of the original patch :-(
+I suggest to update the dw_spi_update_config() semantic to accepting
+optional eSPI configs by means of passing an additional argument
+struct dw_spi_enh_cfg *ecfg. If it's null, then no need in updating
+the SPI_CTRLR0 register.
 
->
-> > While stressing EAS on my dragonboard RB3, I have noticed that LITTLE cores
-> > where never selected as the most energy efficient CPU whatever the
-> > utilization level of waking task.
-> >
-> > energy model framework uses its cost field to estimate the energy with
-> > the formula:
-> >
-> >   nrg = cost of the selected OPP * utilization / CPU's max capacity
-> >
-> > which ends up selecting the CPU with lowest cost / max capacity ration
-> > as long as the utilization fits in the OPP's capacity.
-> >
-> > If we compare the cost of a little OPP with similar capacity of a big OPP
-> > like :
-> >        OPP(kHz)   OPP capacity    cost     max capacity   cost/max capacity
-> > LITTLE 1766400    407             351114   407            863
-> > big    1056000    408             520267   1024           508
-> >
-> > This can be interpreted as the LITTLE core consumes 70% more than big core
-> > for the same compute capacity.
-> >
-> > According to [1], LITTLE consumes 10% less than big core for Coremark
-> > benchmark at those OPPs. If we consider that everything else stays
-> > unchanged, the dynamic-power-coefficient of LITTLE core should be
-> > only 53% of the current value: 290 * 53% = 154
-> >
-> > Set the dynamic-power-coefficient of CPU0-3 to 154 to fix the energy model.
-> >
->
-> This is sounds reasonable.
->
-> But if the math was wrong for SDM845, I would assume that sm8150 and
-> sm8250 are wrong as well, as that's what 0e0a8e35d725 is based on. And
-> should I assume that patches for other platforms are off by 53% as well?
+> -	u32 speed_hz;
+> +	u32 speed_hz, spi_ctrlr0;
 
-I don't think that we can assume that there is an error and in
-particular the same 53% error for others.
+Just reuse the cr0 variable.
 
->
-> Can you help me understand how to arrive at this number? (Without
-> considering everything else stays unchanged, if needed).
+>  	u16 clk_div;
+>  
+>  	/* CTRLR0[ 4/3: 0] or CTRLR0[ 20: 16] Data Frame Size */
+> @@ -365,6 +365,18 @@ void dw_spi_update_config(struct dw_spi *dws, struct spi_device *spi,
+>  		dw_writel(dws, DW_SPI_RX_SAMPLE_DLY, chip->rx_sample_dly);
+>  		dws->cur_rx_sample_dly = chip->rx_sample_dly;
+>  	}
+> +
+> +	if (cfg->spi_frf != DW_SPI_CTRLR0_SPI_FRF_STD_SPI) {
+> +		spi_ctrlr0 = DW_SPI_SPI_CTRLR0_CLK_STRETCH_EN;
+> +		spi_ctrlr0 |= FIELD_PREP(DW_SPI_SPI_CTRLR0_WAIT_CYCLE_MASK,
+> +					 cfg->wait_c);
+> +		spi_ctrlr0 |= FIELD_PREP(DW_SPI_SPI_CTRLR0_INST_L_MASK,
+> +					 cfg->inst_l);
+> +		spi_ctrlr0 |= FIELD_PREP(DW_SPI_SPI_CTRLR0_ADDR_L_MASK,
+> +					 cfg->addr_l);
 
-In order to do the full computation, we need the voltage of each OPP
-which I don't have as they are provided by the LUT at boot IIUC.
-Instead I have used the debugfs output of the energy model and
-compared the value of (perf_state->cost/cpu_max_capacity) with the
-energy and duration figures available in [1].
+> +		spi_ctrlr0 |= cfg->trans_t;
 
-In the case of SDM845, it was pretty easy to compare the OPPs of big
-and LITTLE because the duration and the perf result were the same for
-2 OPPS so we should have :
+Should be also handled by the FIELD_PREP() macro.
 
-(little OPP(1766400)->cost / little max capacity (407)) / (big
-OPP(1056000)->cost / big max capacity(1024)) = little OPP(1766400)
-energy / big OPP(1056000) energy
+> +		dw_writel(dws, DW_SPI_SPI_CTRLR0, spi_ctrlr0);
+> +	}
+>  }
+>  EXPORT_SYMBOL_NS_GPL(dw_spi_update_config, SPI_DW_CORE);
+>  
+> diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
+> index 414a415deb42a..f29d89d05f34b 100644
+> --- a/drivers/spi/spi-dw.h
+> +++ b/drivers/spi/spi-dw.h
+> @@ -63,6 +63,7 @@
+>  #define DW_SPI_DR			0x60
+>  #define DW_SPI_RX_SAMPLE_DLY		0xf0
+                                            <-+
+>  #define DW_SPI_CS_OVERRIDE		0xf4  |
+                                              |
+> +#define DW_SPI_SPI_CTRLR0		0xf4 -+
 
-(little OPP(1766400)->cost / little max capacity (407)) / (big
-OPP(1056000)->cost / big max capacity(1024)) = 0.90
+Please replace SPI_CTRLR0 with ENH_CTRLR0 and move the macro
+definition to where the arrow points to.
 
-but current output gives:
+>  
+>  /* Bit fields in CTRLR0 (DWC APB SSI) */
+>  #define DW_PSSI_CTRLR0_DFS_MASK			GENMASK(3, 0)
+> @@ -126,6 +127,12 @@
+>  #define DW_SPI_DMACR_RDMAE			BIT(0)
+>  #define DW_SPI_DMACR_TDMAE			BIT(1)
+>  
 
-(little OPP(1766400)->cost / little max capacity (407)) / (big
-OPP(1056000)->cost / big max capacity(1024)) = 1.70
+> +/* Bit fields in SPI_CTRLR0 */
+> +#define DW_SPI_SPI_CTRLR0_CLK_STRETCH_EN	BIT(30)
+> +#define DW_SPI_SPI_CTRLR0_WAIT_CYCLE_MASK	GENMASK(15, 11)
+> +#define DW_SPI_SPI_CTRLR0_INST_L_MASK		GENMASK(9, 8)
+> +#define DW_SPI_SPI_CTRLR0_ADDR_L_MASK		GENMASK(5, 2)
 
-As we consider everything else constant, it can be simplified by:
+First add DW_SPI_ENH_CTRLR0_TRANS_T_MASK macro too. Second please
+replace SPI_CTRLR0 with ENH_CTRLR0.
 
-correct_little_dynamic-power-coefficient *  const_A  = 0.90
+> +
+>  /* Mem/DMA operations helpers */
+>  #define DW_SPI_WAIT_RETRIES			5
+>  #define DW_SPI_BUF_SIZE \
+> @@ -141,6 +148,10 @@ struct dw_spi_cfg {
+>  	u32 ndf;
+>  	u32 freq;
+>  	u8 spi_frf;
 
-Whereas we currently have
+> +	u8 trans_t;
+> +	u8 inst_l;
+> +	u8 addr_l;
+> +	u8 wait_c;
 
-current_little_dynamic-power-coefficient * const_A = 1.70
+Please move these to a separate structure:
+struct dw_spi_enh_cfg {
+	u8 wait_l;
+	u8 inst_l;
+	u8 addr_l;
+	u8 trans_t;
+};
+Thus we'll be able to add an optional argument to the
+dw_spi_update_config() method.
 
-and we ends up with
+-Serge(y)
 
-correct_little_dynamic-power-coefficient  = 0.90 / 1.70 *
-current_little_dynamic-power-coefficient = 154
-
-That being said, it can be simpler as the energy model provide the power figures
-
-little OPP(1766400)->power = 351114 uW
-big OPP(1056000)->power = 195991 uW
-ration = 1.79
-
-[1] results gives
-little OPP(1766400)->power = 193.281 mW
-big OPP(1056000)->power = 216.405 mW
-ratio = 0.89
-
-The ratios are a bit different and give a
-correct_little_dynamic-power-coefficient  = 144 which is different
-than when using ->cost. This probably comes from rounding and which
-figures have been used to compute the model.
-
-If you have Voltage of OPP, the formula used in energy model is power
-(uW) = dynamic-power-coefficient * uV^2 * Freq (Mhz) so you can
-compute dynamic-power-coefficient for each OPPs. They should be close
-and then you will have to decide which one is the "best"
-
-I don't have access to sdm8150 or sdm8250 boards but you can use the
-same process to check that the energy model is aligned with the
-figures in [1]
-
-[1] https://github.com/kdrag0n/freqbench/tree/master/results
-
-Regards,
-Vincent
->
-> Regards,
-> Bjorn
->
-> > [1] https://github.com/kdrag0n/freqbench/tree/master/results/sdm845/main
-> >
-> > Fixes: 0e0a8e35d725 ("arm64: dts: qcom: sdm845: correct dynamic power coefficients")
-> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > index 65032b94b46d..869bdb9bce6e 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > @@ -198,7 +198,7 @@ CPU0: cpu@0 {
-> >                       reg = <0x0 0x0>;
-> >                       enable-method = "psci";
-> >                       capacity-dmips-mhz = <611>;
-> > -                     dynamic-power-coefficient = <290>;
-> > +                     dynamic-power-coefficient = <154>;
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       operating-points-v2 = <&cpu0_opp_table>;
-> >                       interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-> > @@ -222,7 +222,7 @@ CPU1: cpu@100 {
-> >                       reg = <0x0 0x100>;
-> >                       enable-method = "psci";
-> >                       capacity-dmips-mhz = <611>;
-> > -                     dynamic-power-coefficient = <290>;
-> > +                     dynamic-power-coefficient = <154>;
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       operating-points-v2 = <&cpu0_opp_table>;
-> >                       interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-> > @@ -243,7 +243,7 @@ CPU2: cpu@200 {
-> >                       reg = <0x0 0x200>;
-> >                       enable-method = "psci";
-> >                       capacity-dmips-mhz = <611>;
-> > -                     dynamic-power-coefficient = <290>;
-> > +                     dynamic-power-coefficient = <154>;
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       operating-points-v2 = <&cpu0_opp_table>;
-> >                       interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-> > @@ -264,7 +264,7 @@ CPU3: cpu@300 {
-> >                       reg = <0x0 0x300>;
-> >                       enable-method = "psci";
-> >                       capacity-dmips-mhz = <611>;
-> > -                     dynamic-power-coefficient = <290>;
-> > +                     dynamic-power-coefficient = <154>;
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> >                       operating-points-v2 = <&cpu0_opp_table>;
-> >                       interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-> > --
-> > 2.34.1
-> >
-
---000000000000263da105f1d7bc09
-Content-Type: image/png; name="image.png"
-Content-Disposition: attachment; filename="image.png"
-Content-Transfer-Encoding: base64
-Content-ID: <f_lcp16sd00>
-X-Attachment-Id: f_lcp16sd00
-
-iVBORw0KGgoAAAANSUhEUgAAAFUAAAARCAYAAACsPOAgAAACmklEQVR4nO2WTUhUURTHf+NoYwv7
-EhfTF2MafZAUQUWLiCzICKOij01gZYU1lZQ0RAZthFxEuQimLHBTEFgIlYugoFWbKImQSiiKoi+t
-NgM16TT9p/cGh8r3bpD4RubPe3Pnzrn/w7n/Ofecm58UwEcO/wtJ8kc6hNGInKjDAE+J2nMZGqLw
-8BG80/xaH2wIDNoHXkNTPVy8A5/yYME6aGmBJRMt++29sPoc/MjwuUz2u+LkGfDd7G7xpeEpUQuK
-ofoARHo1HvvNOACnNkHbdOh8CXMTEN0J63drk+0QtNvClDroPiNfNs1fYAnqyk+4+3eMLwOeErW0
-CvZojN+0hchA4gV0PIbt52G+nTn7GuFsJbS/goMh6zefdlRYOCiqKT/83d2/U3yZ8JSojkj+ev64
-qPj6oatbX0LWvFdZNacD+sfBomo4cRwqigz45Wb+TZA1ovpnwNpZOp4nYUsrzFbhvNAMz3WsK2LW
-mvLNcGWbRJ0MsWeqh0dg5VN4IJGnufBN/Jsia0RNneejV+HrIagq1RFUJq5SzVuhplI8yVoSqsxI
-KK1pHStx1qhGfoC6oAvfwL8pskdUIVAGzdf12vPYLTUUibFj4d/X58nm15hImPH/1f9Q8JaoOnJx
-NYy46liqwPV/Az2MCViN4X0XvBkPM0vg431o3K9ufxg2qiunuvuNSzB1uZJU9lgPnG6AvqXKvKDl
-3pFvYHeLLw1Pidrbptq3S0Hb860T9KGAo+rcdaqTffegpkl17jMUhXRH1J0yGla3Ty3WJp+oSdVH
-4O0X6/qzWI2qUzWyzG/5c+Qb2N3iS8NTopbU6p+vHdo+TxvsDg9h1DGNdOp18O/IN7C7xZeGp0Qd
-LciJOgzIiToMsEVNjmwUoww/AVS2H0CPoSu9AAAAAElFTkSuQmCC
---000000000000263da105f1d7bc09--
+>  };
+>  
+>  struct dw_spi;
+> -- 
+> 2.30.2
+> 
