@@ -2,151 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8C8664C80
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 20:31:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3102664CA2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 20:38:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230252AbjAJTbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 14:31:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38446 "EHLO
+        id S231265AbjAJTin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 14:38:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbjAJTbV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 14:31:21 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47C01EEFC;
-        Tue, 10 Jan 2023 11:31:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 71E65618CF;
-        Tue, 10 Jan 2023 19:31:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0CF5C433EF;
-        Tue, 10 Jan 2023 19:31:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673379079;
-        bh=YHM7OnD1xkzNBw2hgChz55Fq/+ac89HX2y+1zDcTRUc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=DXZtYRszJm5fXAKV5wizqXg3VnyyOKnHtfK+0m6E5ajzHb8PHnRmGMGofYljLAHih
-         +mzLtx8PkIq7cDr1RAlmLnsrc5iwT841E1pJ4OlgUSPCaVz1iLLkLaVpsmQPHKk63q
-         /OuIdOTAT+bhyHh3nZw9+gAPMYdBzh3QZ1aPtD1Dh6dZXHXs+E7wBIgRvYRNHpQbdk
-         E5W11a6wugzI9NN+kZLIU7tk2BflJ/gnlGn6TE2MPPdXEroaFIST3JIGTBSPQQ4UKe
-         v9GV3lk6jgvRVPqgKIBTQrfA/hZBl9b7sXItq3BwNLjdMChJ0sTSW51WPJJTlMVZv0
-         8G6AbCSNhwRGQ==
-Message-ID: <b0245b64-a3eb-a242-8824-9effe0c63f0e@kernel.org>
-Date:   Tue, 10 Jan 2023 20:31:13 +0100
+        with ESMTP id S232999AbjAJTiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 14:38:19 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 699B05A88B
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:38:09 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id z8-20020a05600c220800b003d33b0bda11so1508763wml.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:38:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y+6ojRSTKPFeCe6Qwmp9K84vaHxDFNyRTeBBcQ3RV5M=;
+        b=xsH+Op9cD+IQLfl4OEz2QpMEIRTas5J7avpoUB1pCD+UzHbyqzE9QSnaMbvka6BGXE
+         LEGdVoUjCheOj9NSEA57Q0z0LK9+8ouhM2CcYLoxpq6HyH2qOFMaWOJ7PbHMRRFK2RNm
+         v5R7sDTYeZYXKKjitJprDhfP6oH0pqygv+I+SFipI6KHoWPjC2CEHJJ+XAYM1uUsJ4ph
+         omLEc9R01uy9xsGF8EwwdOa9lWqGly1ajy/erZZnMbdaE7/JG7Q3ETbE16lTyT1AOVYl
+         loxxADvQyO5BZoolaBT7Qmt0+VqMGny2lvfhAyZMSJXdOBdwMi1agFGeAyWq7U2VOZUd
+         oVTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y+6ojRSTKPFeCe6Qwmp9K84vaHxDFNyRTeBBcQ3RV5M=;
+        b=V9+gYuL1jy8QerpVQPuYZDwhMx9H3E8mJ9SC9y/xijpieHRoKFFiSucA16F4nbYwhs
+         YSO3CzNvdd5F/vXbsyu31NEava3MuJ0qbC7okSJBT4kLe89FkLDgWJXZckudce6oZUTA
+         M2Zc3PVWA3ABL/lA2/poC1f0CQp9D2Ik2zKF8IRzGK09TY0MQwpmtUpS/hqZenuhBDSb
+         LSXRUdIFgjrZHL14GcFlNSuQccN+0cW8gR6ysDFxgcMDO5b0hmUQxRx3zy1sO4xRdoqP
+         w8Bt98HCqUWwggZgpyd6SyN/DOVSrebSn3ZrvFuFjD4r5R12s2pS046L1KkDba1erSfQ
+         uy2w==
+X-Gm-Message-State: AFqh2ko/tNTNrjA5VRp+XGtMnM4xTOLwgnPorVHhWhg65wi8UcLnRwcy
+        Rzs22sfgOSfMtEHeeUWnrbQB15alXQ4chCvs
+X-Google-Smtp-Source: AMrXdXvxzJ/8+am6/NrozsHmhrMVkKG8mJ/6egL59X2oPK88ZlWj/W/lo3nGHnVbtgkiBctpTVii3A==
+X-Received: by 2002:a05:600c:3b26:b0:3d7:fa4a:681b with SMTP id m38-20020a05600c3b2600b003d7fa4a681bmr52517306wms.0.1673379488053;
+        Tue, 10 Jan 2023 11:38:08 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id q6-20020a05600c46c600b003cfd4e6400csm17253043wmo.19.2023.01.10.11.38.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jan 2023 11:38:07 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: exynos: drop unsupported I2C properties in Espresso
+Date:   Tue, 10 Jan 2023 20:37:58 +0100
+Message-Id: <167337945584.1430972.13331082393080125830.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221204190543.143986-1-krzysztof.kozlowski@linaro.org>
+References: <20221204190543.143986-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 1/6] dt-bindings: media: platform: visconti: Add
- Toshiba Visconti Video Input Interface bindings
-Content-Language: en-US
-To:     Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230110014143.18684-1-yuji2.ishikawa@toshiba.co.jp>
- <20230110014143.18684-2-yuji2.ishikawa@toshiba.co.jp>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230110014143.18684-2-yuji2.ishikawa@toshiba.co.jp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 02:41, Yuji Ishikawa wrote:
-> Adds the Device Tree binding documentation that allows to describe
-> the Video Input Interface found in Toshiba Visconti SoCs.
+On Sun, 4 Dec 2022 20:05:42 +0100, Krzysztof Kozlowski wrote:
+> The Samsung HSI2C (High Speed I2C) bindings do not allow
+> samsung,i2c-sda-delay (present in older S3C24xx I2C bindings):
 > 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
-
-You missed few of them, so clearly this was not sent correctly.
-
-
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
-
-> ---
-> Changelog v2:
-> - no change
+>   exynos7-espresso.dtb: i2c@13660000: Unevaluated properties are not allowed ('samsung,i2c-sda-delay', 'samsung,i2c-max-bus-freq' were unexpected)
 > 
-> Changelog v3:
-> - no change
 > 
-> Changelog v4:
-> - fix style problems at the v3 patch
-> - remove "index" member
-> - update example
-> ---
->  .../bindings/media/toshiba,visconti-viif.yaml | 98 +++++++++++++++++++
->  1 file changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml b/Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
-> new file mode 100644
-> index 00000000000..71442724d1a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/toshiba,visconti-viif.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba Visconti5 SoC Video Input Interface Device Tree Bindings
 
-Drop "Device Tree Bindings"
+Applied, thanks!
 
-> +
-> +maintainers:
-> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> +
-> +description:
-> +  Toshiba Visconti5 SoC Video Input Interface (VIIF)
-> +  receives MIPI CSI2 video stream,
-> +  processes the stream with embedded image signal processor (L1ISP, L2ISP),
-> +  then stores pictures to main memory.
-
-Fix wrapping.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: toshiba,visconti-viif
-
-Compatible must be specific. You called your SoC visconti5, didn't you?
-
-> +
-> +  reg:
-> +    items:
-> +      - description: registers for capture control
-> +      - description: registers for CSI2 receiver control
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Sync Interrupt
-> +      - description: Status (Error) Interrupt
-> +      - description: CSI2 Receiver Interrupt
-> +      - description: L1ISP Interrupt
-> +
-
-
+[1/2] arm64: dts: exynos: drop unsupported I2C properties in Espresso
+      https://git.kernel.org/krzk/linux/c/91d89306579b7a2963e39e4711b893634ace23d6
+[2/2] ARM: dts: exynos: drop unused pinctrl-names from Galaxy Tab
+      https://git.kernel.org/krzk/linux/c/5d1ab51463d6c609e65861625512f912eb1d7cb2
 
 Best regards,
-Krzysztof
-
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
