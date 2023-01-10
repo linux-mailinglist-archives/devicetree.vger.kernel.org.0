@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2489663ED7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 12:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 134E9663ED8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 12:02:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232988AbjAJLCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 06:02:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42848 "EHLO
+        id S232718AbjAJLCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 06:02:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238583AbjAJLAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 06:00:25 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D3D15FD8
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:57:49 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id bn26so11323167wrb.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:57:49 -0800 (PST)
+        with ESMTP id S238639AbjAJLAk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 06:00:40 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91082039
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 03:00:27 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id z5so10245133wrt.6
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 03:00:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QwMmWNLX2y8MpAjf6ry+EobxgkOwiWRfEsk7ygSmgzY=;
-        b=DrClkZsArypwr8k+9/kbVOVWQnm9NskkyHpvznfe6qIJW/JR9vZo4Uhb09vtjUx6u5
-         qwH4j2NiUpX5MIr08KzR7kV1oq/1cANv7j/qPY5bL5UdwJwNC25VCOhA0nDxusvrIZZY
-         kOI7GpeBjK7EDsHqRTv3XI/E+R6AeJLWAoFrovOSmolvy4BPVFk8iCtl/HMJ5xFW/DRo
-         jwUtNpB4i4sgx7FOHtGy5J92rFOOFZJPYyGEbz4v+8uT2iiOXoUqAr5bIymsp8VqyrbP
-         EyQVIDQiIYB6c3Nw39bjS0sMy5GkkauSs8GXZZu2crx2Y00W8ED+Yx7G+OSVvETXIlaM
-         XREg==
+        bh=/sqiSzZl7tdMGMHM9Gz+tcnXK/Rd5YLz0PHqdYF7LCk=;
+        b=ZQXKT4wkWx65R4H1mNwPG5BEVzRem0IDMqI+AVwmlowlMKW5cNVfe0PCv8FvPI+hqm
+         xESithyiznoZHNePFVUSFjYkRtcx0p6vPtxfBoWfgc/TRCDCQJFc9TZExuX3iFT9gnG2
+         J1MV4C8FUc+RC3TjxKLBi40x27e2bKyZHlXOUETWSotP+owHeCjisXY4PIU9xOfmtzqd
+         o2K9E63XyKMfKNWbXdODcXCDHscM9itobyiIwzaZKGpbwhI7Rbnrcz9h418QR+0EGLSY
+         i3hfAYcPKkm2dNLISuf13jPzs3b0aM84S1Hf+c/GHiURJ8KnXQHTSp0gCCUSxRPZGxNw
+         fXrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QwMmWNLX2y8MpAjf6ry+EobxgkOwiWRfEsk7ygSmgzY=;
-        b=HHUBeoB2OpfV0JctKpJTHfpZRc1aK/p1W7d20kOO/Y4s2+w+0MlYeCl9xVjJRmJsFV
-         N6UwdR4tuUs2kJ+pClICCrx6+Ei6+ndBvGWjWSBWZsyogsyYlWY+w2z6hzHFLg1upO5e
-         8q4k16p4Tilafde6e2A/POcp1Vwrd0FMWRw9KZYiWYnzYsz8kzM64UNJC0+S/vm3yJ34
-         vyaPe8+s0x13y2Od1U+PsMp/iGbXY3pwGEBg6rJnrFJpJpBq58B6gaD1RBiYrm2ju2mP
-         hIV3dkWX2ZUI3NdBvny232ioxOK8O4fJKp7tfGhhCD8Q60cpfOOHZ1FLQ3wUcf5dMNZx
-         pB0Q==
-X-Gm-Message-State: AFqh2kqqvx7uMqCFlosnQIKPnVRLJCN/4dE3EIBHSkW2IGM/zBCrwF/D
-        609HNj5RsVbeNyfMiHUaK1gqsw==
-X-Google-Smtp-Source: AMrXdXuvw8YyDv5tdJvBdsr8CbjN1X9oLelluTyUiZn8VGMORPTVVSk4ZPd+K/igi3SS+XivVJM9ZQ==
-X-Received: by 2002:a5d:4942:0:b0:2bc:8073:760c with SMTP id r2-20020a5d4942000000b002bc8073760cmr3034801wrs.17.1673348268438;
-        Tue, 10 Jan 2023 02:57:48 -0800 (PST)
+        bh=/sqiSzZl7tdMGMHM9Gz+tcnXK/Rd5YLz0PHqdYF7LCk=;
+        b=cHKW9+A49436imsXcnXC/TbY/lSwwYmaWR/lQ64hAz9RXilV3oJbsKTjZ1kTU6CIc/
+         1QeEsjhqC6OsPlZLb68s5KcrEAZWi21xCgYydO0SUw9NyeE7XneBZW9J0RcdGrrGQ1UD
+         2r4XvNi8bT3v1xhs0tRp5740vqeujO9P4SdSypFYVTJhEU72O0wS39nwe1Ta7ealNPHd
+         9HdmhQ1QiNUkENSUxfRVQViMXM8bgWCyQCeeeovitGA5YUA/nmQE3uOwlB/nK4AaM5hl
+         +zmR2FJSrUq3lQOMni6fumdOVR+AJ4c0nl0yz0Y/loDN2qPs20rQFuEgbFe5FrAezFPM
+         7QXA==
+X-Gm-Message-State: AFqh2kpBgUHKon6dNFV1SbxTpCmFvFQfkFPTLKqCF17YOi2STE8Uaj8m
+        KTQMNvUWQvHe/3+lPY4/nanBbw==
+X-Google-Smtp-Source: AMrXdXsOjHmSfpTkgnzh7bn9JY2hWvnUyty612zsqrepGkZwnB14MBwUC1NHz0RvAPFuLyPtpC2hqg==
+X-Received: by 2002:adf:e24d:0:b0:2a7:c412:ed22 with SMTP id bl13-20020adfe24d000000b002a7c412ed22mr14332009wrb.58.1673348426433;
+        Tue, 10 Jan 2023 03:00:26 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a10-20020adfdd0a000000b002bb6b45ab57sm8962615wrm.85.2023.01.10.02.57.46
+        by smtp.gmail.com with ESMTPSA id g1-20020a056000118100b002755e301eeasm10664865wrx.100.2023.01.10.03.00.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 02:57:47 -0800 (PST)
-Message-ID: <6a0b4fff-e012-92df-c2fb-82184eba8aef@linaro.org>
-Date:   Tue, 10 Jan 2023 11:57:46 +0100
+        Tue, 10 Jan 2023 03:00:25 -0800 (PST)
+Message-ID: <a6e0fce9-3a59-1014-9ae8-f07b50d122a2@linaro.org>
+Date:   Tue, 10 Jan 2023 12:00:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/8] arm64: dts: qcom: sc7280: Extract audio nodes from
- common idp dtsi file
+Subject: Re: [PATCH v2 2/8] arm64: dts: qcom: sc7280: audioreach: Add sound
+ node
 Content-Language: en-US
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
@@ -65,15 +65,14 @@ To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
         konrad.dybcio@linaro.org, mka@chromium.org
 References: <1672925875-2107-1-git-send-email-quic_srivasam@quicinc.com>
- <1672925875-2107-2-git-send-email-quic_srivasam@quicinc.com>
+ <1672925875-2107-3-git-send-email-quic_srivasam@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1672925875-2107-2-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1672925875-2107-3-git-send-email-quic_srivasam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,50 +80,130 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05/01/2023 14:37, Srinivasa Rao Mandadapu wrote:
-> Split common idp dtsi file into audio specific dtsi and common
-> idp dtsi file.
+> Add sound node for sc7280 based audioreach platforms.
 > 
-> It is required to isolate idp and crd-rev3 platform device tree nodes
-> and convert crd-rev3 platform device tree nodes into audioreach specific
-> device tree nodes.
+> Include audioreach dtsi into crd-rev3 platform specific dts file.
+> Also remove phandle to sound node, as audio routing is same as
+> audioreach specific dtsi file.
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> ---
 
-Please include a changelog - either per patch or in cover letter.
+Thank you for your patch. There is something to discuss/improve.
 
->  arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi | 135 +++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts     |   1 +
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 126 -----------------------
->  3 files changed, 136 insertions(+), 126 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
-> new file mode 100644
-> index 0000000..d1aea28
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
-> @@ -0,0 +1,135 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * sc7280 Audio IDP board device tree source (common between SKU1 and SKU2)
-> + *
-> + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> + */
+> +#include <dt-bindings/sound/qcom,q6afe.h>
 > +
 > +/{
-> +   /* BOARD-SPECIFIC TOP LEVEL NODES */
-
-Still wrong indentation.
-
+> +	/* BOARD-SPECIFIC TOP LEVEL NODES */
 > +	sound: sound {
 > +		compatible = "google,sc7280-herobrine";
-> +		model = "sc7280-wcd938x-max98360a-1mic";
+> +		model = "SC7280-AUDIOREACH";
+> +		adsp-mode;
+
+There is no such property. Test DTS against your schema, so make
+dtbs_check DT_SCHEMA_FILES=google,sc7280-herobrine
+
+> +		audio-routing =
+> +			"IN1_HPHL", "HPHL_OUT",
+> +			"IN2_HPHR", "HPHR_OUT",
+> +			"AMIC1", "MIC BIAS1",
+> +			"AMIC2", "MIC BIAS2",
+> +			"VA DMIC0", "MIC BIAS1",
+> +			"VA DMIC1", "MIC BIAS1",
+> +			"VA DMIC2", "MIC BIAS3",
+> +			"VA DMIC3", "MIC BIAS3",
+> +			"TX SWR_ADC0", "ADC1_OUTPUT",
+> +			"TX SWR_ADC1", "ADC2_OUTPUT",
+> +			"TX SWR_ADC2", "ADC3_OUTPUT",
+> +			"TX SWR_DMIC0", "DMIC1_OUTPUT",
+> +			"TX SWR_DMIC1", "DMIC2_OUTPUT",
+> +			"TX SWR_DMIC2", "DMIC3_OUTPUT",
+> +			"TX SWR_DMIC3", "DMIC4_OUTPUT",
+> +			"TX SWR_DMIC4", "DMIC5_OUTPUT",
+> +			"TX SWR_DMIC5", "DMIC6_OUTPUT",
+> +			"TX SWR_DMIC6", "DMIC7_OUTPUT",
+> +			"TX SWR_DMIC7", "DMIC8_OUTPUT";
+> +
+> +		qcom,msm-mbhc-hphl-swh = <1>;
+> +		qcom,msm-mbhc-gnd-swh = <1>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		#sound-dai-cells = <0>;
+> +
+> +		dai-link@0 {
+> +			link-name = "WCD9385 Playback";
+> +			reg = <0>;
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
+> +			};
+> +			codec {
+> +				sound-dai = <&wcd9385 0>, <&swr0 0>, <&lpass_rx_macro 0>;
+> +			};
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +
+> +		dai-link@1 {
+> +			link-name = "WCD9385 Capture";
+> +			reg = <1>;
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai TX_CODEC_DMA_TX_3>;
+> +			};
+> +			codec {
+> +				sound-dai = <&wcd9385 1>, <&swr1 0>, <&lpass_tx_macro 0>;
+> +			};
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +
+> +		dai-link@2 {
+> +			link-name = "Amplifier Playback";
+> +			reg = <3>;
+
+Missing dtbs W=1 build.
+
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai SECONDARY_MI2S_RX>;
+> +			};
 > +
 
+Use consistent style. Either blank line or not between the
+cpu/codec/platform nodes.
 
+> +			codec {
+> +				sound-dai = <&max98360a>;
+> +			};
+> +
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +
+> +		dai-link@3 {
+> +			link-name = "DMIC";
+> +			reg = <4>;
 
+Same problem, wrong reg.
+
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai VA_CODEC_DMA_TX_0>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai = <&lpass_va_macro 0>;
+> +			};
+> +
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +	};
+> +};
 
 Best regards,
 Krzysztof
