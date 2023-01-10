@@ -2,145 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 998766641CD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:29:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 173266641D9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:31:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238287AbjAJN3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 08:29:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54784 "EHLO
+        id S230432AbjAJNbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 08:31:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233351AbjAJN3d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:29:33 -0500
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423E910B3;
-        Tue, 10 Jan 2023 05:29:32 -0800 (PST)
-Received: by mail-ot1-f48.google.com with SMTP id r2-20020a9d7cc2000000b006718a7f7fbaso6958890otn.2;
-        Tue, 10 Jan 2023 05:29:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zKAe0OFUWm2XvE8TtB0lP81U5fBp4FRhR/a1eftM+Ek=;
-        b=VigkJQ0EWzxGefJCeXaPUHMOiF3cw51+Cb+X5iE55xu099UYvTfpA0yDQRII5pYi/r
-         RzMVrb6Il9j4y4QVuLFSz711nPVSfhiN01TVaNcASuBU4bOtUHU46zTcw2t8f5vMlNLI
-         5PavAFoiaGSQtBDYaq0xVmoY6nDV82iqPFloJEgbSY3nAeHz7DsbgKbh1NMEdENHee0k
-         +XUZh+mKl+7g58e7/W6yAmdJ5N7JS5nRYiQtpioWbjh26vUtDRd8mWeq6LvMzHbk6fGp
-         zo3noD+4QlCLRW9ZcuF3jLYmkDWfhOLOqlxtGjMd3d18MVJWfZxUqi/hL+N0MIBx17h4
-         w9fQ==
-X-Gm-Message-State: AFqh2kr7v21c1b1Gm816OwsTj4e5bklaDrxg5X+6qV8xTGv30YkdbFgT
-        8f5FT6zjJ4/R+wmhx1MnLuUH9sQUqA==
-X-Google-Smtp-Source: AMrXdXsD1u2a+0P2EAP8UF4IZ31u4JKrWLup4jFFntlInWFYKtWuEjk3NnGkodmas2ONEijs/l13jg==
-X-Received: by 2002:a05:6830:20c4:b0:66c:4f82:b83c with SMTP id z4-20020a05683020c400b0066c4f82b83cmr38750946otq.7.1673357371404;
-        Tue, 10 Jan 2023 05:29:31 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y18-20020a0568302a1200b0066f7e1188f0sm6053005otu.68.2023.01.10.05.29.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 05:29:31 -0800 (PST)
-Received: (nullmailer pid 1984996 invoked by uid 1000);
-        Tue, 10 Jan 2023 13:29:30 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S229696AbjAJNbU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:31:20 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71D42197;
+        Tue, 10 Jan 2023 05:31:17 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pFEic-0004av-BD; Tue, 10 Jan 2023 14:31:10 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianqun Xu <jay.xu@rock-chips.com>,
+        kernel@collabora.com, Shengfei Xu <xsf@rock-chips.com>,
+        Damon Ding <damon.ding@rock-chips.com>,
+        Steven Liu <steven.liu@rock-chips.com>,
+        Jon Lin <jon.lin@rock-chips.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: [PATCHv8 2/7] arm64: dts: rockchip: Add rk3588 pinctrl data
+Date:   Tue, 10 Jan 2023 14:31:08 +0100
+Message-ID: <3079565.88bMQJbFj6@diego>
+In-Reply-To: <20230109155801.51642-3-sebastian.reichel@collabora.com>
+References: <20230109155801.51642-1-sebastian.reichel@collabora.com> <20230109155801.51642-3-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Jim Liu <jim.t90615@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, JJLIU0@nuvoton.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, KWLIU@nuvoton.com,
-        openbmc@lists.ozlabs.org, brgl@bgdev.pl,
-        linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20230110083238.19230-4-jim.t90615@gmail.com>
-References: <20230110083238.19230-1-jim.t90615@gmail.com>
- <20230110083238.19230-4-jim.t90615@gmail.com>
-Message-Id: <167335661623.1967925.9927691364268671668.robh@kernel.org>
-Subject: Re: [PATCH v4 3/3] dt-bindings: gpio: add NPCM sgpio driver bindings
-Date:   Tue, 10 Jan 2023 07:29:30 -0600
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sebastian,
 
-On Tue, 10 Jan 2023 16:32:38 +0800, Jim Liu wrote:
-> Add dt-bindings document for the Nuvoton NPCM7xx and NPCM8xx sgpio driver
+Am Montag, 9. Januar 2023, 16:57:56 CET schrieb Sebastian Reichel:
+> From: Jianqun Xu <jay.xu@rock-chips.com>
 > 
-> Signed-off-by: Jim Liu <jim.t90615@gmail.com>
-> ---
-> Changes for v4:
->    - modify in/out property
->    - modify bus-frequency property
-> Changes for v3:
->    - modify description
->    - modify in/out property name
-> Changes for v2:
->    - modify description
-> ---
->  .../bindings/gpio/nuvoton,sgpio.yaml          | 92 +++++++++++++++++++
->  1 file changed, 92 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+> This adds the pin controller data for rk3588 and rk3588s.
 > 
+> Signed-off-by: Shengfei Xu <xsf@rock-chips.com>
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> Signed-off-by: Steven Liu <steven.liu@rock-chips.com>
+> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+> [port from vendor tree merging all fixes]
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+From: Jianqun Xu <jay.xu@rock-chips.com>
+...
+Co-Developed-by: Shengfei Xu <xsf@rock-chips.com>
+Signed-off-by: Shengfei Xu <xsf@rock-chips.com>
+Co-Developed-by: Damon Ding <damon.ding@rock-chips.com>
+Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+Co-Developed-by: Steven Liu <steven.liu@rock-chips.com>
+Signed-off-by: Steven Liu <steven.liu@rock-chips.com>
+Co-Developed-by: Jon Lin <jon.lin@rock-chips.com>
+Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+Co-Developed-by: Finley Xiao <finley.xiao@rock-chips.com>
+Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+[port from vendor tree merging all fixes]
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-yamllint warnings/errors:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,input-ngpios: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('maximum', 'minimum' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,input-ngpios: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,input-ngpios: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,output-ngpios: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('maximum', 'minimum' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,output-ngpios: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,output-ngpios: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+is how it looks now, please shout if you think otherwise :-)
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230110083238.19230-4-jim.t90615@gmail.com
+Thanks
+Heiko
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
