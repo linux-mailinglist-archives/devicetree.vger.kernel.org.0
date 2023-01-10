@@ -2,105 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06CB9663CDE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75098663CF4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:33:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238114AbjAJJaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 04:30:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42508 "EHLO
+        id S232137AbjAJJdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 04:33:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231773AbjAJJ3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:29:39 -0500
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C6237529;
-        Tue, 10 Jan 2023 01:29:33 -0800 (PST)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 37C384000D;
-        Tue, 10 Jan 2023 09:29:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673342971;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=bZlu8pV5CO55ywphSG0mLXOuP4/SmXFAX++WZuBPMdg=;
-        b=Yn4R/Sq9jYlzr2l9oS8TdTG74De5lsSyaiB32eV3LnCAVTw7MxfC/Bk86/K9rwORJFSACV
-        IEWxxvY/sB0a8HAoGGNLDSYV2O26BWFeeVgC/UUEj0Q9dpZ+ooJTEtTgBcHgCndbXgJdcJ
-        dlcObVkBlKZz7vrZbAQdag5ofwWrGjI+ysZmKvs1Vl1535YNdC24HHgsylayFPRbCmbo25
-        gWgDQs4cetMZ43iybqUX26UpM9phwmrtLBkdrEWGPUpkha9ZH+rGY/SkEF3Ojd6HuUvpr6
-        ApMQZeNlFneZ+aT5pD/EV0NZkO9rRWT7KGjsBQrruk62YseE+QmbZ8lE2iCveQ==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
-        "vadym.kochan@plvision.eu" <vadym.kochan@plvision.eu>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: marvell: AC5/AC5X: Fix address for UART1
-In-Reply-To: <70fb6048-848e-e558-a1b9-3d74aca8ec01@alliedtelesis.co.nz>
-References: <20221215025402.1733132-1-chris.packham@alliedtelesis.co.nz>
- <70fb6048-848e-e558-a1b9-3d74aca8ec01@alliedtelesis.co.nz>
-Date:   Tue, 10 Jan 2023 10:29:30 +0100
-Message-ID: <87y1qahh51.fsf@BL-laptop>
+        with ESMTP id S238206AbjAJJd0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:33:26 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B581832272
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:33:23 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id k26-20020a05600c1c9a00b003d972646a7dso11300938wms.5
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:33:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2jfj9Vw3D8ZX4MdEbwgBQxtSlmIa3nYu0UGzCjpPfxE=;
+        b=oYX4A1yjy32A+H/doqG67qiVsZlLEdPONvs+SBSRCVWx5cSUjtFK/8rgmiuyjae6sk
+         nJuhXagDzHtelrZ9iB3JBVg6iTD0m+9b+ll+jCBacuXBr/BBmXGUshCa0kagL6bmpGbF
+         /vIWgucZBBok+dDcQNcb7acBY7S85Lp9BTgocflK/vSYRP/BT2iPqwHQiRYj6ozE41f3
+         99sOlBngfXghj9WfccyNzOl10FqhQbDYTDpxeCXIEWFL6yAdlQx2xUK+QfHzz+kGwi45
+         0ty3TCrXAToPvkEz7V+dOdDROJ0luLB8HFwP6Ob81Mvz3ePR63nCaYlIwdc2bwhFDh0G
+         2Wkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2jfj9Vw3D8ZX4MdEbwgBQxtSlmIa3nYu0UGzCjpPfxE=;
+        b=NXueQkMw9CFtTezJ0pnKh8Kf/LZRZo3ERGx1DzYHHuHvN3nIOHYOzXroZXaTaFxKHA
+         acY35DVhxk5yo2fZFnTmZzlSyYfhy3JLFePvLPWKq9pJDxCqJ0qBBJXn/5K08SqH4ike
+         D+EXOa9TIX0uphV8tWru5BiIGIHNnUY5CY4MujaSJVBEhCc5od7RssUWIfGXmgQvKRkd
+         KckJsfFfjW9xVe/buLMytBtnnT2MQUySpzCWwJlVzlRhc2BzQ+OLDN4OW7yYsUId1nQS
+         /jL80CxfjRba+/AFYQKrQniPj0bNhSDILO7N8sIvbRjg1I8Y6aLBZ6CY414P8WsPvywY
+         z4Bw==
+X-Gm-Message-State: AFqh2kqhpwJd2eBsb+vnOyCPx/WfOCgBoLOK9QNvthwq25/R0tSzcwLC
+        8nssVTd/2ESBsUAVLD4cu0+Tjv15sojtSs6g
+X-Google-Smtp-Source: AMrXdXsrih7nnKIOBXnnr50hxUBa1SIexlUteXct6oa/s4ma2nSLWJeKhPczJLVjIZL0WjLZRjh+yw==
+X-Received: by 2002:a05:600c:3b1c:b0:3d9:f0da:542c with SMTP id m28-20020a05600c3b1c00b003d9f0da542cmr4660166wms.28.1673343201715;
+        Tue, 10 Jan 2023 01:33:21 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id j30-20020a05600c1c1e00b003cfa80443a0sm16052527wms.35.2023.01.10.01.33.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jan 2023 01:33:21 -0800 (PST)
+Message-ID: <a6dc4cd9-7008-7de3-f27d-7b82e5f51fbb@linaro.org>
+Date:   Tue, 10 Jan 2023 10:33:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V2 01/11] dt-bindings: remoteproc: qcom,q6v5: Move MSM8996
+ to schema
+Content-Language: en-US
+To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        manivannan.sadhasivam@linaro.org, robin.murphy@arm.com
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
+        regressions@leemhuis.info, sumit.semwal@linaro.org,
+        will@kernel.org, catalin.marinas@arm.com
+References: <20230109034843.23759-1-quic_sibis@quicinc.com>
+ <20230109034843.23759-2-quic_sibis@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230109034843.23759-2-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Chris Packham <Chris.Packham@alliedtelesis.co.nz> writes:
+On 09/01/2023 04:48, Sibi Sankar wrote:
+> Convert MSM8996 and similar (MSM8998/SDM845) MSS PIL bindings to schema.
+> 
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  .../remoteproc/qcom,msm8996-mss-pil.yaml      | 370 ++++++++++++++++++
+>  .../bindings/remoteproc/qcom,q6v5.txt         | 137 +------
+>  2 files changed, 375 insertions(+), 132 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+> new file mode 100644
+> index 000000000000..d3d3fb2fe91d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+> @@ -0,0 +1,370 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/qcom,msm8996-mss-pil.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm MSM8996 MSS Peripheral Image Loader (and similar)
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +  - Sibi Sankar <quic_sibis@quicinc.com>
+> +
+> +description:
+> +  This document describes the hardware for a component that loads and boots firmware
+> +  on the Qualcomm Technology Inc. MSM8996 Modem Hexagon Core (and similar).
 
-> Hi All,
->
-> On 15/12/22 15:54, Chris Packham wrote:
->> The correct address offset is 0x12100.
->>
->> Fixes: 31be791e26cf ("arm64: dts: marvell: Add UART1-3 for AC5/AC5X")
->> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->> ---
->> Not sure how this happened. I only noticed when I had a conflict in some
->> local patches I was rebasing against upstream. So I obviously had it
->> right at one point but then managed to break it in the process of
->> cleaning things up for submission.
->
-> I know people have probably been away with various holidays but I think 
-> it's been long enough so....
->
-> ping?
+MSS Peripheral Image Loader loads and boots firmware
+on the Qualcomm Technology Inc. MSM8996 Modem Hexagon Core (and similar).
+
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+
+It's not oneOf. Just enum.
 
 
-Applied on mvebu/fixes
+> +      - enum:
+> +          - qcom,msm8996-mss-pil
+> +          - qcom,msm8998-mss-pil
+> +          - qcom,sdm845-mss-pil
+> +
 
-Thanks,
+With both above:
 
-Gregory
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->
->>
->>   arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
->> index 7308f7b6b22c..8bce64069138 100644
->> --- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
->> +++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
->> @@ -98,7 +98,7 @@ uart0: serial@12000 {
->>   
->>   			uart1: serial@12100 {
->>   				compatible = "snps,dw-apb-uart";
->> -				reg = <0x11000 0x100>;
->> +				reg = <0x12100 0x100>;
->>   				reg-shift = <2>;
->>   				interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
->>   				reg-io-width = <1>;
 
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Best regards,
+Krzysztof
+
