@@ -2,96 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92F63663FBE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 13:04:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1149663FF7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 13:11:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238269AbjAJMDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 07:03:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49232 "EHLO
+        id S231230AbjAJMLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 07:11:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238285AbjAJMD1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 07:03:27 -0500
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2506659308;
-        Tue, 10 Jan 2023 04:03:23 -0800 (PST)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id D44123F272;
-        Tue, 10 Jan 2023 13:03:16 +0100 (CET)
-Date:   Tue, 10 Jan 2023 13:03:15 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Lux Aliaga <they@mint.lgbt>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, alim.akhtar@samsung.com,
-        avri.altman@wdc.com, bvanassche@acm.org, keescook@chromium.org,
-        tony.luck@intel.com, gpiccoli@igalia.com,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
-        phone-devel@vger.kernel.org, martin.botka@somainline.org
-Subject: Re: [PATCH v6 0/6] arm64: dts: qcom: sm6125: UFS and
- xiaomi-laurel-sprout support
-Message-ID: <20230110120315.53edpr334vlpaxc4@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Lux Aliaga <they@mint.lgbt>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
-        bvanassche@acm.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
-        phone-devel@vger.kernel.org, martin.botka@somainline.org
-References: <20230108195336.388349-1-they@mint.lgbt>
+        with ESMTP id S238218AbjAJMLP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 07:11:15 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B3C2009;
+        Tue, 10 Jan 2023 04:08:30 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id bq39so18114965lfb.0;
+        Tue, 10 Jan 2023 04:08:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6CJci5KqQGpU6nxS4CAw5MZMI44xkNZEkWm4NgJAkZM=;
+        b=OujkATZMDiNykq2g44d+ZXJ0qJTsXLlUCcO+xAkiS3W0TXEtlpMP5oYwd/B4mBosYs
+         5T1csjrYF39pK7yvg0YeC3fEKowOHNLmablV8igvguhxYVMwb7IFszVXoZxmUMkGd28e
+         /OebKXT8/AbJjYvocZS5tu4n2nu4Iy+KbUM6Z3HRDmam36zMc0hT3eSLIs7V4sFi/HUQ
+         gHzaxPjaCYGF9WELV38TE18GCs4a6y73fxcg33AabqI3karT3uSZlYVrRdacnTUJwIMJ
+         Z9zWc9A5DVGsV/OodfoV3J0wb6+K48NSXLuTvLKkpZ68gI3IQS81KGqhBFSCkKJwNdb2
+         1PwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6CJci5KqQGpU6nxS4CAw5MZMI44xkNZEkWm4NgJAkZM=;
+        b=gxA7dHxqN4dIzDUpNLueE2iePDk0YXXgu/YdcnE8Jb19/WI7UwvHvZNgs9o7HuFFsH
+         2vIjUSQ3tcuR16WJvFJhUX2cyT1NGBA2qsig3Pz1JPCATS7pyyNU+HZbBRMe3SCy6nh9
+         VXMjWeaPjuJ9fbjNVfXjyZlfMvFKAlku9QJlIOp2nLUKOmj8l/e8617KDCIVKL+aBn37
+         zlJUcF9CRqRJG5c9deOEmfdVMk1gdr19PP1GNmBGak+MBmYB+6H6r8vwe4A5go8pWVSb
+         K62EpS/axGWIOKKiXZixXa6fkeIKYoPZExpDgcxu0IxogOK/R1qbUGK86qIjr8WwPzDK
+         hH6Q==
+X-Gm-Message-State: AFqh2kqadB+51fpVIKPt7BAulVddqUQtUG9YsP/7LEOISHLihjsscGrl
+        k/52jKIScuD3bP2tEMJNYVQ=
+X-Google-Smtp-Source: AMrXdXsxhbAW5/WtZo2fkxUBe/3oaWhFvuggaypnX68IKzIThWxicfL9ubiUJJMw2ocsSx3d+XpzoA==
+X-Received: by 2002:a05:6512:3c88:b0:4b4:e4a1:2fc6 with SMTP id h8-20020a0565123c8800b004b4e4a12fc6mr24307012lfv.68.1673352508510;
+        Tue, 10 Jan 2023 04:08:28 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id u15-20020a19790f000000b004cb344a8c77sm2146398lfc.54.2023.01.10.04.08.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jan 2023 04:08:27 -0800 (PST)
+Date:   Tue, 10 Jan 2023 15:08:25 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
+        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 09/15] spi: dw: use irq handler for enhanced spi
+Message-ID: <20230110120825.pykbn7ym3ml2rv7s@mobilestation>
+References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
+ <20221212180732.79167-10-sudip.mukherjee@sifive.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230108195336.388349-1-they@mint.lgbt>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20221212180732.79167-10-sudip.mukherjee@sifive.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-01-08 16:53:30, Lux Aliaga wrote:
-> Introduce Universal Flash Storage support on SM6125 and add support for the Xiaomi Mi A3 based on the former platform. Uses the name xiaomi-laurel-sprout instead of the official codename (laurel_sprout)
-
-Don't forget to wrap these lines properly, same for the changelog below.
-
-> due to naming limitations in the kernel.
-
-I doubt it's a limitation, more like a convention.
-
-> Changes since v5:
-> - Drop "non-removable" property from ufs_mem_hc for sm6125 platform
-> - Drop "status" and "autorepeat" properties from gpio-keys node for xiaomi-laurel-sprout
-> - Rename "key-vol-up" node to "key-volume-up" for xiaomi-laurel-sprout
-> - Drop "gpio-key,wakeup" property from key-volume-up node for xiaomi-laurel-sprout
-
-No, you /replaced/ this deprecated property with wakeup-source, which
-has the same meaning.
-
-> - Set "linux,input-type" and "wakeup-source" properties on key-volume-up node for xiaomi-laurel-sprout
-
-No, you /removed/ linux,input-type because its value 1 for EV_KEY is
-already the default.
-
-> - Change "key_vol_up" node name to "vol-up-n-state" and its label to "vol_up_n" in PM6125 GPIO node for xiaomi-laurel-sprout
-> - Use labels instead of node names for PM6125 ADC channels in xiaomi laurel-sprout
-> - Set "regulator-allow-set-load" properties on l4, l5, l10, l11, l18 and l24 regulators on xiaomi-laurel-sprout
+On Mon, Dec 12, 2022 at 06:07:26PM +0000, Sudip Mukherjee wrote:
+> Introduce the interrupt handler for enhanced spi to read or write based
+> on the generated irq. Also, use the xfer_completion from spi_controller
+> to wait for a timeout or completion from irq handler.
 > 
-> v5: https://lore.kernel.org/linux-devicetree/20221231222420.75233-2-they@mint.lgbt/
+> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+> ---
+>  drivers/spi/spi-dw-core.c | 62 ++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 61 insertions(+), 1 deletion(-)
 > 
-> 
-> 
+> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+> index f540165245a89..10d453228368f 100644
+> --- a/drivers/spi/spi-dw-core.c
+> +++ b/drivers/spi/spi-dw-core.c
+> @@ -251,6 +251,34 @@ static irqreturn_t dw_spi_transfer_handler(struct dw_spi *dws)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static irqreturn_t dw_spi_enh_handler(struct dw_spi *dws)
+> +{
+> +	u16 irq_status = dw_readl(dws, DW_SPI_ISR);
+> +
+> +	if (dw_spi_check_status(dws, false)) {
 
-No need for excessive newlines here.
+> +		spi_finalize_current_transfer(dws->master);
 
-- Marijn
+As I suggested in the cover-letter please use the dw_spi_dma_wait()
+function for that.
+
+> +		return IRQ_HANDLED;
+> +	}
+> +
+> +	if (irq_status & DW_SPI_INT_RXFI) {
+> +		dw_reader(dws);
+> +		if (dws->rx_len <= dw_readl(dws, DW_SPI_RXFTLR))
+> +			dw_writel(dws, DW_SPI_RXFTLR, dws->rx_len - 1);
+> +	}
+> +
+> +	if (irq_status & DW_SPI_INT_TXEI)
+> +		dw_writer(dws);
+> +
+
+> +	if (!dws->tx_len && dws->rx_len) {
+> +		dw_spi_mask_intr(dws, DW_SPI_INT_TXEI);
+> +	} else if (!dws->rx_len && !dws->tx_len) {
+> +		dw_spi_mask_intr(dws, 0xff);
+> +		spi_finalize_current_transfer(dws->master);
+
+Why so complicated? You have two types of the transfers: Tx-only and
+Rx-only. Thus you can unmask only one type of the IRQs and terminate
+the process upon both lengths are zero.
+
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+>  static irqreturn_t dw_spi_irq(int irq, void *dev_id)
+>  {
+>  	struct spi_controller *master = dev_id;
+> @@ -265,6 +293,12 @@ static irqreturn_t dw_spi_irq(int irq, void *dev_id)
+>  		dw_spi_mask_intr(dws, 0xff);
+>  		return IRQ_HANDLED;
+>  	}
+
+> +	if ((dws->transfer_handler == dw_spi_enh_handler &&
+> +	     !dws->rx_len && !dws->tx_len)) {
+> +		dw_spi_mask_intr(dws, 0xff);
+> +		spi_finalize_current_transfer(master);
+> +		return IRQ_HANDLED;
+
+Why? You already have this statement in the handler above.
+
+> +	}
+>  
+>  	return dws->transfer_handler(dws);
+>  }
+> @@ -862,6 +896,8 @@ static int dw_spi_exec_enh_mem_op(struct spi_mem *mem, const struct spi_mem_op *
+>  	struct spi_controller *ctlr = mem->spi->controller;
+>  	struct dw_spi *dws = spi_controller_get_devdata(ctlr);
+>  	struct dw_spi_cfg cfg;
+> +	int ret = 0;
+> +	unsigned long long ms;
+>  
+>  	switch (op->data.buswidth) {
+>  	case 2:
+> @@ -909,11 +945,35 @@ static int dw_spi_exec_enh_mem_op(struct spi_mem *mem, const struct spi_mem_op *
+>  
+>  	dw_spi_update_config(dws, mem->spi, &cfg);
+>  
+> +	dw_spi_mask_intr(dws, 0xff);
+> +	reinit_completion(&ctlr->xfer_completion);
+>  	dw_spi_enable_chip(dws, 1);
+>  
+>  	dw_spi_enh_write_cmd_addr(dws, op);
+> +	dw_spi_set_cs(mem->spi, false);
+> +	dw_spi_irq_setup(dws, dw_spi_enh_handler);
+>  
+> -	return 0;
+
+> +	/* Use timeout calculation from spi_transfer_wait() */
+> +	ms = 8LL * MSEC_PER_SEC * (dws->rx_len ? dws->rx_len : dws->tx_len);
+> +	do_div(ms, dws->current_freq);
+> +
+> +	/*
+> +	 * Increase it twice and add 200 ms tolerance, use
+> +	 * predefined maximum in case of overflow.
+> +	 */
+> +	ms += ms + 200;
+> +	if (ms > UINT_MAX)
+> +		ms = UINT_MAX;
+> +
+> +	ms = wait_for_completion_timeout(&ctlr->xfer_completion,
+> +					 msecs_to_jiffies(ms));
+
+All of that is already implemented in the dw_spi_dma_wait() method.
+Moreover addr+cmd write procedure, IRQ setup and wait-for-completion
+can be consolidate in the dw_spi_enh_write_then_read() function thus
+having the dw_spi_enh_exec_mem_op method looking similar to the
+standard dw_spi_exec_mem_op().
+
+-Serge(y)
+
+> +
+> +	dw_spi_stop_mem_op(dws, mem->spi);
+> +
+> +	if (ms == 0)
+> +		ret = -EIO;
+> +
+> +	return ret;
+>  }
+>  
+>  /*
+> -- 
+> 2.30.2
+> 
