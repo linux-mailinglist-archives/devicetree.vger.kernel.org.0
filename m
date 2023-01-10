@@ -2,75 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A82C8663D9F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 11:12:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A2D2663DAC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 11:14:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238045AbjAJKMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 05:12:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39046 "EHLO
+        id S237906AbjAJKOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 05:14:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231614AbjAJKL7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 05:11:59 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A5A6544F7
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:11:52 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id h16so11150311wrz.12
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:11:52 -0800 (PST)
+        with ESMTP id S232378AbjAJKOJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 05:14:09 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 146F4517C9
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:14:07 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id bs20so11178446wrb.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:14:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jwoFAzmVct79bqJZEwpYCPbEy1KK9a8Xos32k6CB9ok=;
-        b=rll1yyrS+IMjOPKuwpE7YSGZemxZTB6eFOYDpBF+hnLf8pmgI92TRe2Uyf6umZaBH2
-         dTewi4vtWoQvnsco1Y0GwBjco3YRBwE9eNJfS+spQmmdTIpaRZA8SQNDa8+Um6qcEI9n
-         JzXiXLmKMuFZSvfxX+EUUFKYorZhohkXFIDMQGNmdgFsWGpqD+CbAqN6ibV0fM4yRPWo
-         MdgnfslqwGcrq7rEOA9stDMeBRwZqR6nPqorJVQ3DGSsOiILzftPzHsGjPwAFPxBpBs0
-         zMdQwV8oK5cftcPpzfopRSmC+l/dsUZvzR523Ia7oFaRmtCUdOuEc9Udn9skxNgqDANr
-         bvzg==
+        bh=jojCCGfavVKv5imMe2sO0IZFTAm6Qt+UkX8aAOYmM8Q=;
+        b=bbhb/M2Tbo7P6JQFLKz1c0s92pip1LUY/qoQtVnezlvmXlve3kgyeNba8+WtmX4t2D
+         Dqs5HvWz9j8ad8G7zjQAKt2OUhJ5oPpmAugq792ubXvNuvlNgx12r2eNxoiWtfJtAgkc
+         ln8dRvw1xf/0keWdYbSaNriNWp27rABFZucUCHjhkgOSv2oYBu+gDWHpRQmu7nuZYux/
+         Ch1A4NbCcbmL1JAXJRKL58l8adrR3ecbI+lYW+4ObQNnSVJc2XVqhStvYLd1MguXeStw
+         ks3SHXuek07nXLDarhxwAioHsl5xyI708nCoT8Z6Vdq/Uf2JhdoccDoTWgGesRpg8BQ0
+         zb0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jwoFAzmVct79bqJZEwpYCPbEy1KK9a8Xos32k6CB9ok=;
-        b=uVvS4l09sS7OidEhEjBqb/roZRs/Qc6ZUmNpUxyxJZvuCFma+s8lOROGn7mz2WS4uV
-         oUw+9/xhsrI7ihP3geVg/bf26cUvp7TkAVgk/vZ2Md0MKg9uCN742JydX9F/ixlFosQU
-         ncCBpxDTaasSZDz1BdYjVtldj+ZpFMdZ98AD2VsK8A5WengFjvz0ADftS1NolTlyxGqf
-         g/0ynkqYLnav+AK6k54mKBqjXJYHwjHZ8jb5pcuIQco2LRtwkAjydUAkWrHQoOfoaAeB
-         Tw9OrfV6AggfonxgB0f6z3S/2bmDiqckh2txFjGgiNG5I1i1FwAKWVOvkNt6Z/ryfO+z
-         yjZA==
-X-Gm-Message-State: AFqh2koDJZ2gOtlBoCyJ+GK1Mvqu085513NAWQts7PVHbyKfMJErQ/1w
-        K0t6cpthHD+oGZheLOwhGOrPYeDu7nS0mdx1
-X-Google-Smtp-Source: AMrXdXsZPpkq9cPmTR37ia51zvuv0bKJrlVZp8tgAuoG6eS7DKgEpCtJM1QJDTWTu2GwMRdxUu4i1A==
-X-Received: by 2002:adf:a3c9:0:b0:2b9:d6ba:21ef with SMTP id m9-20020adfa3c9000000b002b9d6ba21efmr13649879wrb.65.1673345511049;
-        Tue, 10 Jan 2023 02:11:51 -0800 (PST)
+        bh=jojCCGfavVKv5imMe2sO0IZFTAm6Qt+UkX8aAOYmM8Q=;
+        b=pJQ8WxnyI+ubJ3ZsF6kVNP7SZVhJwW+5JbqYS6A7gK3SgdhuxJLyAZdGMSvxbaRb80
+         9nZLYLDBp5EV74lXzqeWdNbZeazdC1Enn2u2kYsyIAY0qB37g9fwxwJ+iByEiu+URPgF
+         soY+rkIBwO3QRiAM7/JTu+cB8ztFAqLWuRCcKcMVVJvaTjs/Nux/cdlklkCWxTF/j+8h
+         S7CtJbdlluMqP1ILM8bfJwUsNMT79Ogc/76XW2llMGdqyG/6N5lFn8hJNb1y+qdMwjWS
+         pmBcJNhMx2JAgYZh3zTIuUxPO1+PB53b1MKKv1WH9xXSoL+0o2NM6TwbF/Mc+LkOscSt
+         5ibw==
+X-Gm-Message-State: AFqh2komw3oq9H0jBKDICtab6lIT4wIApbuBssT19NQL0rvVaOq3ukYO
+        yh1mLqa8hlvilTpyqclDNotRCg==
+X-Google-Smtp-Source: AMrXdXsns+wODkeVA+eyVg6DWDP7h4ZsUK2KoND8WPXo2OLQMg/ZUcoSsqQ0z3Y2wBq+9Yj/x0NG4A==
+X-Received: by 2002:a05:6000:16cb:b0:242:1b0d:9c58 with SMTP id h11-20020a05600016cb00b002421b0d9c58mr50376842wrf.69.1673345645653;
+        Tue, 10 Jan 2023 02:14:05 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u24-20020adfa198000000b002bc84c55758sm2521030wru.63.2023.01.10.02.11.49
+        by smtp.gmail.com with ESMTPSA id a10-20020adfdd0a000000b002bb6b45ab57sm8867372wrm.85.2023.01.10.02.14.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 02:11:50 -0800 (PST)
-Message-ID: <a81b8f5c-9d41-e612-8d77-abf280898c48@linaro.org>
-Date:   Tue, 10 Jan 2023 11:11:48 +0100
+        Tue, 10 Jan 2023 02:14:04 -0800 (PST)
+Message-ID: <6044f85b-93f2-fe2e-68b5-9912836f4a38@linaro.org>
+Date:   Tue, 10 Jan 2023 11:14:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v4 3/3] dt-bindings: firmware: qcom: scm: Separate VMIDs
- from header to bindings
+Subject: Re: [PATCH v2 01/11] dt-bindings: firmware: convert meson_sm.txt to
+ dt-schema
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230109130523.298971-1-konrad.dybcio@linaro.org>
- <20230109130523.298971-3-konrad.dybcio@linaro.org>
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v2-1-36ad050bb625@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230109130523.298971-3-konrad.dybcio@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-1-36ad050bb625@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,21 +103,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 14:05, Konrad Dybcio wrote:
-> The SCM VMIDs represent predefined mappings that come from the
-> irreplaceable and non-omittable firmware that comes with every
-> Qualcomm SoC (unless you steal engineering samples from the factory)
-> and help clarify otherwise totally magic numbers which we are
-> required to pass to the secure world for some parts of the SoC to
-> work at all (with modem being the prime example).
+On 09/01/2023 13:53, Neil Armstrong wrote:
+> Convert the Amlogic Secure Monitor bindings to dt-schema.
 > 
-> On top of that, with changes to the rmtfs binding, secure VMIDs will
-> become useful to have in device trees for readability. Separate them
-> out and add to include/dt-bindings.
+> Take in account usage the used variant with amlogic,meson-gx-sm.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> v3 -> v4:
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
