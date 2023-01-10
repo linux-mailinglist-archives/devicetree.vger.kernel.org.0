@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 535A866410A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0FD0664114
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:02:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232644AbjAJNAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 08:00:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34610 "EHLO
+        id S233543AbjAJNCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 08:02:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233057AbjAJNAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:00:49 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADD95517C2
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:00:48 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id co23so11655128wrb.4
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:00:48 -0800 (PST)
+        with ESMTP id S233412AbjAJNCH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:02:07 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD01C4318C
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:02:06 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id r2so11650962wrv.7
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:02:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pwDkY4TTQV9yXEkC4qa1tfmkACVhv1FVIV/PmkgtIlM=;
-        b=xLZn+NYQ/Sa84nJl0+Lo83AVWqCAUVUSEgnce+Dx11Ye9sY4dPoeW3o8TM7BV72xZg
-         dCY6Ag0+J+y4OF2MR2nMKikC9i+i1bv9MQMXD1N15AKrabApOLsv2537vaXEAyYEb3Z1
-         tFY9bsf1HdnzL7oGos+3NiBVzvvDrupfRDq6VF5R3zMQkeLoVOQOgTpiCDwy/apOyEtd
-         p+ej5WhKiB5tIE/mlgfrBVy4XHYFXFKkW8eLil34uAPjqbBSOMJxPwnxnfmEpErQUhXF
-         Y0xcIRl1DiT6znwjcmgljVtWItT5EzaDslCuARgbnrcjT3T28phmQGyHmbmrR2V48ZNc
-         wb8Q==
+        bh=bXYjCeQ9QtsFL8nXtTdmpHyzQI1y6u5sI6jbDwGL5SM=;
+        b=R1uVAm7JLu/x7Lcqhyz1YRS0ajuGV+VRK6KwnsG6kAlPe769mSDTbTeD2u9Ej0Gwz/
+         y0GdsZqdcqu/D/o38hLxTZjmvQ2WA5PeK3M0gqoEN4RhHU6IPVphbDXuroDxP768adbI
+         wfN8JY7SgaBJAqEwF7k7qNw2LARDOPORXIts9AYzGsj28IhsQ8uoKMYo6/KSCQk0lYMr
+         kTguF3dXyIqd14IU8qg5iaUV6+AipPgVUPDqyluJtIWeNbsDcg7vIVNKHPkPzH8IuaKy
+         I6uoAnibychZmN+VHdCYei2UQzkJdAOuv+DltFdeXXxLk16OaMfnyNy4p+gkvR4V8tYd
+         rFDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pwDkY4TTQV9yXEkC4qa1tfmkACVhv1FVIV/PmkgtIlM=;
-        b=pSG8hc5jFXuQuGVislCRGHiVx8clt7utJxngzN+DO1jnnXKva6V7ONwhMX1YmI5jU4
-         24SlNjt2lXIoPbFgKGzScRYUMek/Sz3AsQFSVEFSBJctxzQ3eAaHEGke7RH6qkytdKXB
-         /WbfkTYj1wNw5sNsN/U2bmSdfWIF5xeWet+dqGbx7zJ8lBzTyJElqhyIiwkG4bBL1l+O
-         QyfVYJ8WZiEdvZjeTWZbV0raor3etQPf7bFQMiouOOBNwe/Ukq6IlbkBXs3witQJSnbc
-         7QLdK/InqhJCeH3CzgHgWmIPj8QeJ7i6MYR0vl3J4Ee5NNMYVHDZbDj4dsr2q6eSJ/vC
-         33RA==
-X-Gm-Message-State: AFqh2kq71IlY3gsT8S194QibkoDC0Uud7fD4KH0tM9A+mzdCE2tcNmFu
-        WYISHABaDdAwy+tkXy8u8F1Aig==
-X-Google-Smtp-Source: AMrXdXvcFOVIdvDXNiP2slCvL0s7sHnSKHeDNB05bCvqIFzghvOXF+3YvPmSL2X3va852dxpD0Xn2A==
-X-Received: by 2002:a5d:480f:0:b0:2bd:bc57:3c5b with SMTP id l15-20020a5d480f000000b002bdbc573c5bmr1137450wrq.33.1673355647229;
-        Tue, 10 Jan 2023 05:00:47 -0800 (PST)
+        bh=bXYjCeQ9QtsFL8nXtTdmpHyzQI1y6u5sI6jbDwGL5SM=;
+        b=MGlPp8k4nvbiS/iXhWMUaIr8K4FPJhff0dWUGwNPagL2RocXqWXNKXp+5aLJW7IuCY
+         ZgMXFsuTS+YVtiRVoS7+wHTflOSeWG6ZsjmQxWdpXVWZ7dMLafZJxkl4pR8Bbz26o22E
+         uOZ+DTmMCkn8uF8jeEPOdtdT1sccXwfvF3qHnkAat7qm4JKY1/kP0giAnx18owWyHSEm
+         0FDXb6CU/7SMfoCGEDVQOzUMJ8L3RkQ1MyU5SIzbUaJwb+DZTdf4xN3bONQrZyhG8x9T
+         PxIRmxxnUqg23Q9cz4u3YQRWy+VxGGUQw9DuS5j89DOHyMz4LeOLRRIzULcospGlD4T+
+         qnIg==
+X-Gm-Message-State: AFqh2kqrGvIKI8C8BGXOGquonmA/YRXRTqtIhfvSqY/cyrchZlTRQ5Sr
+        xFPcdPHreWnPORqmlqFagUqzc/60VNAODUnz
+X-Google-Smtp-Source: AMrXdXtl75e7E+BZquNgpJ2OWcid0C63zHWVvYENd5qmfR3H73H+RWSvhij+LCTdGK5AYuCUMxeFyg==
+X-Received: by 2002:a05:6000:888:b0:2aa:438a:2165 with SMTP id ca8-20020a056000088800b002aa438a2165mr16521627wrb.24.1673355725298;
+        Tue, 10 Jan 2023 05:02:05 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z2-20020a5d6402000000b00297dcfdc90fsm11119120wru.24.2023.01.10.05.00.45
+        by smtp.gmail.com with ESMTPSA id t17-20020a05600001d100b00241d21d4652sm11078676wrx.21.2023.01.10.05.02.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 05:00:46 -0800 (PST)
-Message-ID: <f4e1a940-10a5-e308-0bd1-8b5de469e1bb@linaro.org>
-Date:   Tue, 10 Jan 2023 14:00:45 +0100
+        Tue, 10 Jan 2023 05:02:04 -0800 (PST)
+Message-ID: <b0189f64-59f1-6ba2-489c-383bd953cf2a@linaro.org>
+Date:   Tue, 10 Jan 2023 14:02:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v6 3/3] dt-bindings: arm: fsl: Add i.MX8MM-EVK rev-b
+Subject: Re: [PATCH v2 2/3] dt-bindings: m41t80: add xtal load capacitance
 Content-Language: en-US
-To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Dennis Lambe Jr <dennis@sparkcharge.io>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230110114027.634719-1-johannes.schneider@leica-geosystems.com>
- <20230110114027.634719-4-johannes.schneider@leica-geosystems.com>
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Atsushi Nemoto <anemo@mba.ocn.ne.jp>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org
+References: <20230104052506.575619-1-dennis@sparkcharge.io>
+ <20230104052506.575619-3-dennis@sparkcharge.io>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230110114027.634719-4-johannes.schneider@leica-geosystems.com>
+In-Reply-To: <20230104052506.575619-3-dennis@sparkcharge.io>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,25 +78,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 12:40, Johannes Schneider wrote:
-> Add DT compatible strings for a rev-b imx8mm-EVK which come with a
-> different PMIC than rev-a.
+On 04/01/2023 06:25, Dennis Lambe Jr wrote:
+> The ST m41t82 and m41t83 support programmable load capacitance from 3.5
+> pF to 17.4 pF. The hardware defaults to 12.5 pF.
 > 
-> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+> The accuracy of the xtal can be calibrated precisely by adjusting the
+> load capacitance.
+> 
+> Add default, minimum, and maximum for the standard rtc property
+> quartz-load-femtofarads on compatible devices.
+> 
+> Signed-off-by: Dennis Lambe Jr <dennis@sparkcharge.io>
+> ---
+> 
 
-This is a friendly reminder during the review process.
 
-It looks like you received a tag and forgot to add it.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.
-
+Best regards,
 Krzysztof
 
