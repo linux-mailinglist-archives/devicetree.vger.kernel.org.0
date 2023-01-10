@@ -2,172 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F01BC663F10
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 12:12:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FAA4663F19
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 12:14:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238136AbjAJLMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 06:12:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50638 "EHLO
+        id S232203AbjAJLO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 06:14:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238183AbjAJLLl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 06:11:41 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D988B5F90;
-        Tue, 10 Jan 2023 03:10:59 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id bf43so17851951lfb.6;
-        Tue, 10 Jan 2023 03:10:59 -0800 (PST)
+        with ESMTP id S238376AbjAJLNv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 06:13:51 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8CA9140BF
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 03:12:44 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id ay12-20020a05600c1e0c00b003d9ea12bafcso6139437wmb.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 03:12:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YGvqCEOPakewBuBmeyCn0TskhEMhIc1i+rfL7LvnWYM=;
-        b=EbAAGRIxN2UDmfiyarRd3jUP9k9c9bZuu8JdbhYRmtyrQgMn694hhcmrEvn7VtUw9D
-         IyogNRMQoEDbNYB5cab/+WCqcURYsWvPAFCqcxf2qVvXocJjvOaF0oXML/87Kz/YudrQ
-         kwFe5fRVNiDSmOrmOHL1t/rcesRAgF+tgqMjddRBKe/FzLwYoQBr5oPUyW8Hlo9hgjOi
-         4LgvSlClxm0+7rdIGBOcZnvCzqawxg4XoAEKJ/x91YtJqyl5O9VhTjnBu+f92mp2QGoF
-         EWH79wvQxCjQZe7P37scjczRyYvVmsSN8m3+OULyXAR3lFSolExGavMeijfZqOQg2hYI
-         43dw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3hWpYN6LpdI1bCNJeRuTYWRUAN/AJkpmmZGPLEqRg/A=;
+        b=ggzET2pFF0LAlCsnjkRPjrVBQh4GA9P7gvS4q2pAnysqwkV/BZL0XaHZSuXSjWIttf
+         ouYFXLLs7FaR9MuoVscbACK5FIPwDzInS5JO1lVyaa6q00IMm5Ih1Sr73a20S93yeaFi
+         QVCeR1RyJH/eyVF6MgACzYUXHP/S5RRxwj14lTK/A6+DNB3fK3fKaWFbBYU0sWGtsIKK
+         U0vwZDx6nI+pkpUwAJS5lBYdvHUCp6GyRyrjtlxH8stGwvDvDvKPUId8RWYJqnNge8uI
+         b3UO0qEjkXN2Bcs/bxPcG2oJ64A9Rrrk2vcwK1vWkZkFX1WSKMNUDsoYyYXNl4ggSvLx
+         8UaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YGvqCEOPakewBuBmeyCn0TskhEMhIc1i+rfL7LvnWYM=;
-        b=Vyc7rU1z79LBzSYsQ2FW3eQpaKWyuHTkQhqpRQp7nHcdN0wHrj6GhekzsD299/R2NV
-         SaMs5p4m/X8egYQGZdZyu8kFEbs4pWwnVpexwhCeiQ4yHUXMMgoD+E55AKmJxB0i83by
-         ca9nyD34b/1m+Crm7r09GIEm7uA/vQKgVpoMd/X9b47NwrH4TeG1ma3WFmM5ThAmP1Mk
-         PYFqYSneyZiX0N7QYDU3NqnUufxp77BzwaKXwoAUgEkdz49imObSJQfwdjG07f6mkMYC
-         qa3uYoX43a1HHyFgLu7dhqeewjmN5HvskzdqNIkqxqYOwBf6aBkMuWk5nZNu1XfF8xcs
-         G65A==
-X-Gm-Message-State: AFqh2kpmKYXqxvk7bbVgy0JXyigjBoExhry8AYtmjYbRxFhtGzokf0k2
-        Xk8rnqPoFXRvbzdqh8LijLI=
-X-Google-Smtp-Source: AMrXdXuvW7VxKBzsyKsEACjOyrkXZyS0x3ay+QspKFGJyhC/ZycIFvMCpYCUAIvBHVTEpsmjCpkLxQ==
-X-Received: by 2002:ac2:4bd3:0:b0:4b4:a460:c995 with SMTP id o19-20020ac24bd3000000b004b4a460c995mr26422455lfq.5.1673349058083;
-        Tue, 10 Jan 2023 03:10:58 -0800 (PST)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id bq32-20020a056512152000b004b5766f48d8sm2139438lfb.19.2023.01.10.03.10.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 03:10:57 -0800 (PST)
-Date:   Tue, 10 Jan 2023 14:10:55 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
-        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 05/15] spi: dw: Introduce enhanced mem_op
-Message-ID: <20230110111055.ncleldwyqgcrnurq@mobilestation>
-References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
- <20221212180732.79167-6-sudip.mukherjee@sifive.com>
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3hWpYN6LpdI1bCNJeRuTYWRUAN/AJkpmmZGPLEqRg/A=;
+        b=d/FvOiLvnTE5fHUwHFHFfVo042oKMl5RRhfzAsWM1NidsZSatd1iKcqutkCBPv94JG
+         qtAIlT8lo+TZ9HyYBYY0N903lf3mtm3eTH7+XvFG8LwVbLi9VQabcramCOAay9oDgqnR
+         oGcmZUjyYaFjDwxpTSYA840pgQP6W16JBrj4bJfI7hG2YCow7xkP4EarC2Yl19Q2Qs8q
+         1rfIXdjxJffoHk5CbrwnMIAD4DlPIEWHDP9sbr9S7O/BM4eR6rlUFTm/bLbtLHDk1k3R
+         siuvmZD6MeYeQer70t8I6wEqP6bKGgyqUUJC8//FiIBoQtCamUIalvL9CWFKlGRHdraW
+         HVZw==
+X-Gm-Message-State: AFqh2kqh4VPIYsE+N151fVAQXhhsiRYR/aFsVr6oIPrCQVNPCUen7y2P
+        bbnq4B9bRN+KuJmG6LgPC16T6w==
+X-Google-Smtp-Source: AMrXdXu6Vhwt0UN5RdB31tzzwSXtsoLlL+SluQw2JS6tb6gr/rteWJ0GTc9JEC4wg6KwQw/9Eb/jtw==
+X-Received: by 2002:a05:600c:1d03:b0:3d3:4aa6:4fe6 with SMTP id l3-20020a05600c1d0300b003d34aa64fe6mr48092613wms.3.1673349163374;
+        Tue, 10 Jan 2023 03:12:43 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id az28-20020a05600c601c00b003cf57329221sm18894302wmb.14.2023.01.10.03.12.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jan 2023 03:12:42 -0800 (PST)
+Message-ID: <19e61226-c0b9-657d-c36f-38067c6b01a7@linaro.org>
+Date:   Tue, 10 Jan 2023 12:12:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221212180732.79167-6-sudip.mukherjee@sifive.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 4/8] arm64: dts: qcom: sc7280: audioreach: Update
+ VA/RX/TX macro clock nodes
+Content-Language: en-US
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        konrad.dybcio@linaro.org, mka@chromium.org
+References: <1672925875-2107-1-git-send-email-quic_srivasam@quicinc.com>
+ <1672925875-2107-5-git-send-email-quic_srivasam@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1672925875-2107-5-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 06:07:22PM +0000, Sudip Mukherjee wrote:
-> If the DW_SPI_CAP_EMODE capability is enabled then dw_spi_exec_enh_mem_op()
-> will be used as the new enhanced mem_op. Lets initialize the buffer and
-> get the pointers to receive and transmit data buffers.
-> The DW_SPI_CAP_EMODE capability will be enabled in a later patch.
+On 05/01/2023 14:37, Srinivasa Rao Mandadapu wrote:
+> Update VA, RX and TX macro and lpass_tlmm clock properties and
+> enable them.
 > 
-> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
 > ---
->  drivers/spi/spi-dw-core.c | 53 ++++++++++++++++++++++++++++++++++++---
->  1 file changed, 50 insertions(+), 3 deletions(-)
+>  .../qcom/sc7280-herobrine-audioreach-wcd9385.dtsi  | 62 ++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
 > 
-> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-> index 49fad58ceb94a..89438ae2df17d 100644
-> --- a/drivers/spi/spi-dw-core.c
-> +++ b/drivers/spi/spi-dw-core.c
-> @@ -798,6 +798,51 @@ static int dw_spi_exec_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
->  	return ret;
->  }
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> index e1fe56c..8c55753 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> @@ -8,6 +8,10 @@
 >  
-> +static void dw_spi_init_enh_mem_buf(struct dw_spi *dws, const struct spi_mem_op *op)
-> +{
-> +	unsigned int i, j;
-> +	u8 *out;
+>  #include <dt-bindings/sound/qcom,q6afe.h>
+>  
+> +/delete-node/ &lpass_rx_macro;
+> +/delete-node/ &lpass_tx_macro;
+> +/delete-node/ &lpass_va_macro;
+> +
+>  /{
+>  	/* BOARD-SPECIFIC TOP LEVEL NODES */
+>  	sound: sound {
+> @@ -107,3 +111,61 @@
+>  		};
+>  	};
+>  };
+> +
+> +&soc {
+> +	lpass_rx_macro: codec@3200000 {
+
+These should be properties of DTSI. The SoC either has them or not. It's
+not conditional or dual-setup...
+
+> +		compatible = "qcom,sc7280-lpass-rx-macro";
+> +		reg = <0 0x03200000 0 0x1000>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&lpass_rx_swr_clk>, <&lpass_rx_swr_data>;
+> +
+> +		clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&lpass_va_macro>;
+> +
+> +		clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+> +
+> +		#clock-cells = <0>;
+> +		#sound-dai-cells = <1>;
+> +	};
+
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb:
+codec@3370000: clock-names: 'oneOf' conditional failed, one must be fixed:
+	['mclk', 'macro', 'dcodec'] is too long
+	'core' was expected
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb:
+codec@3370000: Unevaluated properties are not allowed ('clock-names' was
+unexpected)
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb:
+audio@3987000: clocks: [[218, 4], [221, 12], [221, 11], [221, 6], [221,
+8], [223, 8], [223, 5], [223, 6], [223, 7], [218, 10]] is too long
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb:
+audio@3987000: clock-names: 'oneOf' conditional failed, one must be fixed:
+	['aon_cc_audio_hm_h', 'audio_cc_ext_mclk0',
+'core_cc_sysnoc_mport_core', 'core_cc_ext_if0_ibit',
+'core_cc_ext_if1_ibit', 'audio_cc_codec_mem', 'audio_cc_codec_mem0',
+'audio_cc_codec_mem1', 'audio_cc_codec_mem2', 'aon_cc_va_mem0'] is too long
+	'core_cc_sysnoc_mport_core' was expected
+	'audio_cc_codec_mem' was expected
+	'audio_cc_codec_mem0' was expected
+	'audio_cc_codec_mem1' was expected
+	'audio_cc_codec_mem2' was expected
+	'aon_cc_va_mem0' was expected
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+
+I posted recently several fixes, so some of the warnings might be
+skipped. But I think you did not test this at all...
+
+> +
+> +	lpass_tx_macro: codec@3220000 {
+> +		compatible = "qcom,sc7280-lpass-tx-macro";
+> +		reg = <0 0x03220000 0 0x1000>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&lpass_tx_swr_clk>, <&lpass_tx_swr_data>;
+> +
+> +		clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&lpass_va_macro>;
+> +
+> +		clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+> +
+> +		#clock-cells = <0>;
+> +		#sound-dai-cells = <1>;
 > +
 
-> +	out = dws->buf;
-> +	for (i = 0; i < DW_SPI_BUF_SIZE; ++i)
-> +		out[i] = 0;
-> +
-> +	for (i = 0, j = op->cmd.nbytes; i < op->cmd.nbytes; ++i, --j)
-> +		out[i] = DW_SPI_GET_BYTE(op->cmd.opcode, op->cmd.nbytes - j);
-> +
-> +	for (j = op->addr.nbytes, i = dws->reg_io_width; j > 0; ++i, --j)
-> +		out[i] = DW_SPI_GET_BYTE(op->addr.val, op->addr.nbytes - j);
+Drop blank line
 
-In case of the non-eSPI implementation the outbound data consolidation
-was required to get the most optimal loop of data transfer. In this
-case I don't see it was required since the clock stretching feature is
-available and the IRQ-based xfer procedure is implemented. Do I miss
-something?
+> +	};
+> +
+> +	lpass_va_macro: codec@3370000 {
+> +		compatible = "qcom,sc7280-lpass-va-macro";
+> +		reg = <0 0x03370000 0 0x1000>;
+> +
+> +		pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>;
+> +		pinctrl-names = "default";
+> +
+> +		clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +
+> +		clock-names = "mclk", "macro", "dcodec";
+> +
+> +		#clock-cells = <0>;
+> +		#sound-dai-cells = <1>;
+> +	};
+> +};
 
--Serge(y)
+Best regards,
+Krzysztof
 
-> +
-> +	dws->n_bytes = 1;
-> +	if (op->data.dir == SPI_MEM_DATA_IN) {
-> +		dws->rx = op->data.buf.in;
-> +		dws->rx_len = op->data.nbytes;
-> +		dws->tx = NULL;
-> +		dws->tx_len = 0;
-> +	} else if (op->data.dir == SPI_MEM_DATA_OUT) {
-> +		dws->tx_len = op->data.nbytes;
-> +		dws->tx = (void *)op->data.buf.out;
-> +		dws->rx = NULL;
-> +		dws->rx_len = 0;
-> +	} else {
-> +		dws->rx = NULL;
-> +		dws->rx_len = 0;
-> +		dws->tx = NULL;
-> +		dws->tx_len = 0;
-> +	}
-> +}
-> +
-> +static int dw_spi_exec_enh_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
-> +{
-> +	struct spi_controller *ctlr = mem->spi->controller;
-> +	struct dw_spi *dws = spi_controller_get_devdata(ctlr);
-> +
-> +	/* Collect cmd and addr into a single buffer */
-> +	dw_spi_init_enh_mem_buf(dws, op);
-> +
-> +	return 0;
-> +}
-> +
->  /*
->   * Initialize the default memory operations if a glue layer hasn't specified
->   * custom ones. Direct mapping operations will be preserved anyway since DW SPI
-> @@ -812,11 +857,13 @@ static void dw_spi_init_mem_ops(struct dw_spi *dws)
->  	if (!dws->mem_ops.exec_op && !(dws->caps & DW_SPI_CAP_CS_OVERRIDE) &&
->  	    !dws->set_cs) {
->  		dws->mem_ops.adjust_op_size = dw_spi_adjust_mem_op_size;
-> -		if (dws->caps & DW_SPI_CAP_EMODE)
-> +		if (dws->caps & DW_SPI_CAP_EMODE) {
-> +			dws->mem_ops.exec_op = dw_spi_exec_enh_mem_op;
->  			dws->mem_ops.supports_op = dw_spi_supports_enh_mem_op;
-> -		else
-> +		} else {
-> +			dws->mem_ops.exec_op = dw_spi_exec_mem_op;
->  			dws->mem_ops.supports_op = dw_spi_supports_mem_op;
-> -		dws->mem_ops.exec_op = dw_spi_exec_mem_op;
-> +		}
->  		if (!dws->max_mem_freq)
->  			dws->max_mem_freq = dws->max_freq;
->  	}
-> -- 
-> 2.30.2
-> 
