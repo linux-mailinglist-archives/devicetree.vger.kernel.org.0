@@ -2,122 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB4F66394B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 07:24:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48B1A663957
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 07:28:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231149AbjAJGY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 01:24:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47314 "EHLO
+        id S229749AbjAJG2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 01:28:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231401AbjAJGYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 01:24:14 -0500
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF99148CF2;
-        Mon,  9 Jan 2023 22:23:54 -0800 (PST)
-Received: by mail-qv1-xf2a.google.com with SMTP id j9so8013968qvt.0;
-        Mon, 09 Jan 2023 22:23:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DOHmc5BykUazHoHlreQeulyX97j1UysbgSi5gj3vkIg=;
-        b=qiALoAo04rGufanVuIq1+4mX3Vh3H686aE9nIPn7bgI293FeIxIjBRVm1O+Bl7rDjy
-         EGg2JH31lRx15cPt61S2uXCIuswTWu2aekx0VrUguW/94c5KmX1/LwlaerlObo95mX2q
-         EHVnDWQ8iBgB7YqGTd1J+key290tdu3C8paivWNihfOyY9eVyED4rZfJhvlWtJpdKhZ3
-         JUv+6WlodE08SdN26/OpQY4XqmXTmJ9rkrCvJdHTLSDasPTTk8xX3R3gi2tcvdlrA8f4
-         a5V96Mr6Q1uNkRJWQauzoJmrouN1CbTDOuwjcfDVpHD5tMffUo/0QGAOfybzkekZhg2Z
-         tcuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DOHmc5BykUazHoHlreQeulyX97j1UysbgSi5gj3vkIg=;
-        b=uKlPusBaGmu+wy07CjAS9+Xf2qrVyg3ehvGqC1+ZpWuxmiCH/eiL5HMGgNEVGclNSb
-         qUwTCioLuxNRIDO0Occgy1MP2chvBMZw6uMji2RMCBma1XeJczG9882vk4XUSTrz+d3l
-         ltjNzyZzzxbjE0XFdEsQ8jr9skRJVBK8/k2pzhGv0v1sotdo+Q4mamjJW07UDpmY2udX
-         uuYRraC77b8fWKYfH0GqwhbLeiJPc7FMl/P+RgMXQSdwvY+unAqr5F29MwD7DqMiaz2V
-         8y376T4g64ySfZZ2MnASF4Ohkgdtvk9ItrNGQNB/TDZ8c1lPG3P3UuiHMWVDIM90QVCU
-         z5Lw==
-X-Gm-Message-State: AFqh2krMxUCs0xokQ3WCmHs/9P4ahmGW/pXpQx1OG382jFVTu4AfKvbZ
-        V7X8qIMbQysAI31dOdcCEro=
-X-Google-Smtp-Source: AMrXdXvOoSwGkkQ+ub1eZIfrX0Gop55V7Y+cDK8qQnzCsKuQXdQdm7qeBfBuZbhcJ/AgKWzOTa3VNQ==
-X-Received: by 2002:a0c:f10b:0:b0:532:2b59:95c with SMTP id i11-20020a0cf10b000000b005322b59095cmr14192765qvl.32.1673331833819;
-        Mon, 09 Jan 2023 22:23:53 -0800 (PST)
-Received: from ?IPV6:2600:1700:2442:6db0:cc93:35ee:990:f219? ([2600:1700:2442:6db0:cc93:35ee:990:f219])
-        by smtp.gmail.com with ESMTPSA id bq35-20020a05620a46a300b00704c9015e68sm6667599qkb.116.2023.01.09.22.23.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 22:23:53 -0800 (PST)
-Message-ID: <2ec3f5dc-b974-e799-2b96-d7b09dee4df1@gmail.com>
-Date:   Tue, 10 Jan 2023 00:23:52 -0600
+        with ESMTP id S234576AbjAJG2G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 01:28:06 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA7CC395D1;
+        Mon,  9 Jan 2023 22:28:04 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30A44UGd023823;
+        Tue, 10 Jan 2023 06:27:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=p7LDM4ETC4g9nquHCDAtm666lp1vxWqVcTJq9/Y0Jgc=;
+ b=RjN3bopGd2Hjh8O9TruUew0mpVSIhRQCPHxtjyy6eInPvz2LIrjAHO7wjzPHccTNqYfY
+ 4GJJQoL463uTjFxR3GS+2H0/d0j4rdnlypyU9I8gQ/pO+DkKammQqvBGZBQhWlM618Jq
+ uocNgSIXZ7wEgQ1g/W2EZFPLxSHfy4N2oZPP/WJIgvp+WHIs8JCQ8woUZvqn4F+hB9Ey
+ TnhV/dV+LcBeXehXNgL4ICO8ExCv1kMiZ4M5HHibgn6gjmHuA77zx5x8EGSEVvvva4fR
+ 7Axb6q9h80pRbRZuGCq+ptud5anKNRKAt0wYQlIhM5zIQLG6KF0GuxvwCuU1yw4A7IvV Hw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n0x0jgh3u-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 10 Jan 2023 06:27:20 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30A6RKfT017257
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 10 Jan 2023 06:27:20 GMT
+Received: from [10.216.32.170] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 9 Jan 2023
+ 22:27:13 -0800
+Message-ID: <1c6ce9e4-b9a4-9252-566a-f48c8e675d6b@quicinc.com>
+Date:   Tue, 10 Jan 2023 11:57:10 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] of: overlay: fix warning being reported as error in
- add_changeset_property
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2] dt-bindings: remoteproc: qcom: sc7280-adsp-pil: Add
+ reg-names and power-domain-names
 Content-Language: en-US
-From:   Frank Rowand <frowand.list@gmail.com>
-To:     "Ankit 16. Kumar (Nokia)" <ankit.16.kumar@nokia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <1671195782-23078-1-git-send-email-ankit.16.kumar@nokia.com>
- <VI1PR0701MB68298749C8133A7D69CFDBBFC9F09@VI1PR0701MB6829.eurprd07.prod.outlook.com>
- <a7e15b62-8929-b76e-77d7-42d78aaa02e1@gmail.com>
-In-Reply-To: <a7e15b62-8929-b76e-77d7-42d78aaa02e1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
+        <mathieu.poirier@linaro.org>, <corbet@lwn.net>
+References: <1672991425-898-1-git-send-email-quic_srivasam@quicinc.com>
+ <c6ea3f37-fe5a-9a61-3a02-99bc036fd23e@linaro.org>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <c6ea3f37-fe5a-9a61-3a02-99bc036fd23e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -LDfi5XHiq2SAKxP_9qL3TafB4WSO33R
+X-Proofpoint-ORIG-GUID: -LDfi5XHiq2SAKxP_9qL3TafB4WSO33R
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-10_01,2023-01-09_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 clxscore=1015 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 mlxscore=0 adultscore=0 mlxlogscore=999
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301100041
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/2/23 08:35, Frank Rowand wrote:
-> On 12/30/22 02:40, Ankit 16. Kumar (Nokia) wrote:
->>
->> The print causes false reporting of the issue which actually is a warning
-> 
-> How did you select the commit in this Fixes tag?
-> 
->> Fixes: 2fe0e8769df9 ("of: overlay: check prevents multiple fragments touching same property")
->>
->> Signed-off-by: Ankit Kumar <ankit.16.kumar@nokia.com>
+
+On 1/8/2023 9:06 PM, Krzysztof Kozlowski wrote:
+Thanks for Your Time Krzyszto!!!
+> On 06/01/2023 08:50, Srinivasa Rao Mandadapu wrote:
+>> Add reg-names and power-domain-names for remoteproc ADSP pheripheral
+>> loader. This is to make compatible with remoteproc ADSP PIL driver.
+> I don't understand the reasoning. Before binding was "incompatible"?
+
+Yes. Previous bindings needs fixes. Will add fixes tag for the same. So 
+far corresponding device tree not
+
+mainlined and no user till now, hence these missing errors not found.
+
+>
+>> Also change power domain from LCX to CX.
+> Why? Hardware changed?
+
+No, basically it's a fix. The power domain name wrongly mentioned in 
+previous bindings.
+
+The fixes tag mentioned above will be applicable here also.
+
+>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 >> ---
->>  drivers/of/overlay.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> Changes Since v1:
+>>      -- Modify subject line to SoC specific.
 >>
->> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c index ed4e6c144a68..0da39b8461e7 100644
->> --- a/drivers/of/overlay.c
->> +++ b/drivers/of/overlay.c
->> @@ -358,7 +358,7 @@ static int add_changeset_property(struct overlay_changeset *ovcs,
->>  	}
->>  
->>  	if (!of_node_check_flag(target->np, OF_OVERLAY))
->> -		pr_err("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
->> +		pr_warn("WARNING: memory leak will occur if overlay removed, 
->> +property: %pOF/%s\n",
->>  		       target->np, new_prop->name);
->>  
->>  	if (ret) {
->> --
->> 2.30.1
+>>   .../devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml  | 11 ++++++++++-
+>>   1 file changed, 10 insertions(+), 1 deletion(-)
 >>
-> 
-> NACK.  This patch is incorrect.  The reported memory leak is a bug, not a warning.
-> 
-> I'll write up some information about why the memory leak occurs, then reply to this
-> email with the additional info.
-
-The additional information is now available at:
-
-   https://elinux.org/Device_Tree_Linux#Object_Lifetime
-
-> 
-> -Frank
-
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
+>> index 94ca7a0..b5bee2c 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
+>> @@ -23,6 +23,11 @@ properties:
+>>         - description: qdsp6ss register
+>>         - description: efuse q6ss register
+>>   
+>> +  reg-names:
+>> +    items:
+>> +      - const: qdsp6ss_base
+>> +      - const: lpass_efuse
+>> +
+>>     iommus:
+>>       items:
+>>         - description: Phandle to apps_smmu node with sid mask
+>> @@ -57,7 +62,11 @@ properties:
+>>   
+>>     power-domains:
+>>       items:
+>> -      - description: LCX power domain
+>> +      - description: CX power domain
+>> +
+>> +  power-domain-names:
+>> +    items:
+>> +      - const: cx
+>>   
+>>     resets:
+>>       items:
+> Best regards,
+> Krzysztof
+>
