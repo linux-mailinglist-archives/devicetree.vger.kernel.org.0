@@ -2,97 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 770DC664AA4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 19:34:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF2A1664B19
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 19:39:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234191AbjAJSeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 13:34:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47294 "EHLO
+        id S239546AbjAJSix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 13:38:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239384AbjAJSdL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 13:33:11 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1CB4D49D
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 10:29:29 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id ay12-20020a05600c1e0c00b003d9ea12bafcso7218527wmb.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 10:29:29 -0800 (PST)
+        with ESMTP id S239532AbjAJShx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 13:37:53 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6394C983FC;
+        Tue, 10 Jan 2023 10:33:08 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id i17-20020a05600c355100b003d99434b1cfso10826643wmq.1;
+        Tue, 10 Jan 2023 10:33:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RA6ekNgxx7SSbas5DiR46PtYuVSS5EoWQj2eL3S79SM=;
-        b=s+BUzm1BmJTq1urhSIRTqaW/HrBWnrdjUZRyjbd8XCdtwdD4bs2wmOH7DcXZIkpj2m
-         HwBBm1nPp7qv63GG+ggt4J20Z+cWTx/fQeq4HwV0V3ejgBXGGgS+EsJDOdMB0mUu9CZY
-         4XtY/CLBSmp3iT8AmguSzVSu5KrMTVn/cZ1ENQjfjk1ly7/U9BXgFDFu8KAqM5Fjv/jW
-         7dUl1AtaSbljVGyaB5/n7F8iHGE/XT40FPKlgg5KtMeC16XYKOHRZtxvqqgi1Uyzvb+3
-         ykFUyLm98OT0HhLcNGi0GiX0QNjhpqlM8vX2amXHrnDCwi4/o9Nv/y07TUvRit5dF71h
-         /44Q==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tl8lBWv7buHCR9gMhXnIz+zvhX/T9gnX9dlIEfcocLw=;
+        b=Q/skHsxHvgm7rQBUYu43CLugTzLuL2JZiUMS8bMUgbf923x73PqUYoUrp/NHYPlIsi
+         HnItvWvSWaT/XxaSu2tvlfu3oWv+IQ3kXKsN7yCTYBfZjYC0VBc8AYy8HNv066Dg27f+
+         rElNAh8n4wbS7vPFXSLOOJ0R7M9PUWG+j7U1shlXkfAoGJ7VQJxpB94V8Bt8VUwOGutk
+         iE81B4UzjgFBDt8Jq+PUs35UxRvEA9nCxFV4bIG//Gv8rhrhEMVXqgjzU1iU6oH82V5T
+         RTzutAAkjyvT+nud1DzpCK7ho1vcw92FABtrUCcZJZZkU3Cmp06UJXaXn2T8/s2ZsbvW
+         A9gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RA6ekNgxx7SSbas5DiR46PtYuVSS5EoWQj2eL3S79SM=;
-        b=mse8uVs6w9XyXMJVpw+njjmIeDaO3/1CeY/jIOB8ehtA1hDRE5g4YUPpXTWgZ/C5y+
-         8YAarXr3oCBFxwP6evmuWWt9L1YvdZTzZpqEFj6MGrMywskXkf9OX00VfaCMWZyojQCo
-         4g7uQE6F5kItB6lNB1dYPiiVVT+ko+pzZg4xr3BEWw7Bm9y92Niy12s7GKN9t3mF9rPI
-         RI+pEK++jctvZ0/EBg1u8kY3s5jfkpncBfFd4H+774NoCw6AGTQmxwGNx8pLAfPg6DpM
-         faa1MRjygqfCUtPOB6kNHEW+ICaiy9cjnJJ4VcbsAi1QUy9VWlmeJaqrE9ftgAU93//U
-         CLjA==
-X-Gm-Message-State: AFqh2krw0Qcjde7fnfQHIubfZIy93yHhOG6KsPeD7dgwCuQodXsCrA/O
-        0R+HO258LYd1lWyeoUGyRAgd5dWv4aoP+aJk
-X-Google-Smtp-Source: AMrXdXs7ciB+o7x92JNqbgbmOg3ruP9jwcZJaZPGOdqCunhD82y4PBXQVw7FwyAl3xR0cqRr6ndrCg==
-X-Received: by 2002:a05:600c:348b:b0:3d1:f16b:30e6 with SMTP id a11-20020a05600c348b00b003d1f16b30e6mr50397222wmq.28.1673375368064;
-        Tue, 10 Jan 2023 10:29:28 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u21-20020a7bc055000000b003d9aa76dc6asm23980098wmc.0.2023.01.10.10.29.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 10:29:26 -0800 (PST)
-Message-ID: <f909c1b0-97db-cc33-fa27-c5e901f11956@linaro.org>
-Date:   Tue, 10 Jan 2023 19:29:25 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tl8lBWv7buHCR9gMhXnIz+zvhX/T9gnX9dlIEfcocLw=;
+        b=r4nGDtvTeCIArQ9IxM785s8sPDd8WI2EgAVLTRaObUIzJSAML1xNyMw/mGrtUuBQdt
+         vFM3f9ko+nGipLvgA5BhdxDq+ycPv2rEdTQh85JEwHHRGR2XaGbXnN8Sq7C2Dye4sSrF
+         HAPQJq3/djzs9R8i83JSUfFAQD4+ggefODm2uxreYPHkmRczW6IxIsGaHHpm3HDVFSZ+
+         D3Xv+te5DPVmMHrvXneEk6cT7WIssp4iygj8s68hOJuSiMu/QsXUXHH1JP7QAPDV4hXU
+         nKlDFmvMhck+wThrqDB53KaHx7oB/mSfcJHuHJOc/7+X9LlpVQg8IA+jLuDQ+LdbrK2S
+         BHDA==
+X-Gm-Message-State: AFqh2koYS0QOiSO3/sPnVIZhJrhwMd6upabi2zQzdzxy/aWk/RST9zrB
+        6rnaqEFIKnBFufOWVNEPNFs=
+X-Google-Smtp-Source: AMrXdXsvLt9GmGGCOdUU1CprDUR8igLSAF5NW8gfxnfeVYmBc5QMjCvtZSfPmkdrDzu/cSiBrLrQlQ==
+X-Received: by 2002:a05:600c:3d12:b0:3d2:392b:3165 with SMTP id bh18-20020a05600c3d1200b003d2392b3165mr49651677wmb.12.1673375586760;
+        Tue, 10 Jan 2023 10:33:06 -0800 (PST)
+Received: from localhost.localdomain (93-34-92-88.ip49.fastwebnet.it. [93.34.92.88])
+        by smtp.googlemail.com with ESMTPSA id r126-20020a1c2b84000000b003d35c845cbbsm19927757wmr.21.2023.01.10.10.33.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jan 2023 10:33:06 -0800 (PST)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: [PATCH v6 0/6] Krait Documentation conversion
+Date:   Tue, 10 Jan 2023 19:32:53 +0100
+Message-Id: <20230110183259.19142-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8916-zhihe: Add initial device
- tree for zhihe Wifi/LTE dongle UFI-001C and uf896
-Content-Language: en-US
-To:     forbidden405@foxmail.com, 'Andy Gross' <agross@kernel.org>,
-        'Bjorn Andersson' <andersson@kernel.org>,
-        'Konrad Dybcio' <konrad.dybcio@linaro.org>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230110155014.31664-1-forbidden405@foxmail.com>
- <tencent_A7FA00B086BB0EFFDC1C64744FF85DAD2B06@qq.com>
- <8530aeef-8fdb-ede7-700e-856e5cbc6a5b@linaro.org>
- <tencent_98E029F744FE85B9FD68B570A45A01743F07@qq.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <tencent_98E029F744FE85B9FD68B570A45A01743F07@qq.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 19:17, forbidden405@foxmail.com wrote:
-> Thanks for your review, but I don't know how to deal with such a 
-> device with unknown vendor. Do you have any idea and show me
-> some possible solutions? If "zhihe" is dropped, what can be a substitute?
+This series convert the krait-cc and the kpps-acc/gcc Documentation to
+yaml.
 
-Please do not remove the context you are replying to.
+This series comes form a split of a bigger series that got too big and
+now hard to review.
 
-You install this kernel with DTB on some device so clearly you have such
-device in hand, right? It has then some manufacturer, some company. If
-it is USB stick as you said, then it has even vendor ID, which might be
-or might not be real.
+While they are still more or less wrong and doesn't really reflect real
+driver implementation, they are converted to prepare for a fixup later
+when dts and driver are finally fixed.
 
-Best regards,
-Krzysztof
+Minor changes are done to the kpss-gcc driver and minor fixes are done to
+the various affected dts to fix dtbs_check warning with the new introduced
+schema.
+
+Also fix kpss-acc dtbs_check warning.
+
+v6:
+- Split kpss-acc to separate v1 and v2 schema (thing changed from
+  simple clock controller to a power domain in later SoCs)
+- Fix whitespace error (extra new line at the end of the file)
+- rebase on top of linux-next/master
+v5:
+- rebase on top of linux-next/master
+v4:
+- Fix error from kpss-acc schema
+- Fix dtbs_check warning from kpss-acc
+- Improve kpss-gcc for apq8064
+v3:
+- Update all Sob
+- Rework kpss-gcc Documentation with the new finding
+- Fix dtbs_check warning
+v2:
+- Fix bot error by adding missing #clock-cells
+
+Changelog for previous series "Modernize rest of the krait drivers"
+that was split to smaller series (only Documentation changes):
+v7:
+- Rework kpss-gcc Documentation (split patch for pure conversion and
+  tweaks)
+v6:
+- Address comments from Rob
+- Fix warning from make dtbs_check
+v5:
+- Address comments from Krzysztof
+v4:
+- Fix more dt-bindings bug errors
+v3:
+- Split Documentation files for kpss and krait-cc
+v2:
+- fix missing new line on patch 16 (krait-cc patch)
+
+Christian Marangi (6):
+  dt-bindings: clock: Convert qcom,krait-cc to yaml
+  dt-bindings: arm: msm: Convert and split kpss-acc driver Documentation
+    to yaml
+  dt-bindings: arm: msm: Rework kpss-gcc driver Documentation to yaml
+  ARM: dts: qcom: fix various wrong definition for kpss-gcc node
+  ARM: dts: qcom: fix various wrong definition for kpss-acc-v1
+  ARM: dts: qcom: fix various wrong definition for kpss-acc-v2
+
+ .../bindings/arm/msm/qcom,kpss-acc.txt        | 49 -----------
+ .../bindings/arm/msm/qcom,kpss-gcc.txt        | 44 ----------
+ .../bindings/clock/qcom,kpss-acc-v1.yaml      | 72 +++++++++++++++
+ .../bindings/clock/qcom,kpss-gcc.yaml         | 88 +++++++++++++++++++
+ .../bindings/clock/qcom,krait-cc.txt          | 34 -------
+ .../bindings/clock/qcom,krait-cc.yaml         | 59 +++++++++++++
+ .../bindings/power/qcom,kpss-acc-v2.yaml      | 47 ++++++++++
+ arch/arm/boot/dts/qcom-apq8064.dtsi           | 21 ++++-
+ arch/arm/boot/dts/qcom-apq8084.dtsi           | 12 ++-
+ arch/arm/boot/dts/qcom-ipq4019.dtsi           | 12 ++-
+ arch/arm/boot/dts/qcom-ipq8064.dtsi           | 12 ++-
+ arch/arm/boot/dts/qcom-mdm9615.dtsi           |  2 +-
+ arch/arm/boot/dts/qcom-msm8660.dtsi           |  2 +-
+ arch/arm/boot/dts/qcom-msm8960.dtsi           | 13 ++-
+ arch/arm/boot/dts/qcom-msm8974.dtsi           | 12 ++-
+ 15 files changed, 334 insertions(+), 145 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,kpss-acc-v1.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml
+
+-- 
+2.37.2
 
