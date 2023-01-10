@@ -2,139 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75098663CF4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:33:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B827663CE4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:31:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232137AbjAJJdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 04:33:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45346 "EHLO
+        id S231807AbjAJJbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 04:31:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238206AbjAJJd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:33:26 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B581832272
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:33:23 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id k26-20020a05600c1c9a00b003d972646a7dso11300938wms.5
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:33:23 -0800 (PST)
+        with ESMTP id S232263AbjAJJa4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:30:56 -0500
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690B6B45
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:30:52 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id jn22so12540643plb.13
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:30:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2jfj9Vw3D8ZX4MdEbwgBQxtSlmIa3nYu0UGzCjpPfxE=;
-        b=oYX4A1yjy32A+H/doqG67qiVsZlLEdPONvs+SBSRCVWx5cSUjtFK/8rgmiuyjae6sk
-         nJuhXagDzHtelrZ9iB3JBVg6iTD0m+9b+ll+jCBacuXBr/BBmXGUshCa0kagL6bmpGbF
-         /vIWgucZBBok+dDcQNcb7acBY7S85Lp9BTgocflK/vSYRP/BT2iPqwHQiRYj6ozE41f3
-         99sOlBngfXghj9WfccyNzOl10FqhQbDYTDpxeCXIEWFL6yAdlQx2xUK+QfHzz+kGwi45
-         0ty3TCrXAToPvkEz7V+dOdDROJ0luLB8HFwP6Ob81Mvz3ePR63nCaYlIwdc2bwhFDh0G
-         2Wkw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MPK8Pcd1KnxbIqf6AZnIbTulBe6CihDk4OzBMX0CQsA=;
+        b=rSXAadCpOXwSRQXKprH1Oae0tV4q9g6xL1Yfv6tAov/VkM/cUU2Px8vZo69Gfxwae+
+         hT5rWatOGwsd80nmtgleJxTssxGu0OUIDYA9N3Kc17b2eeiWrjkmQX+TSzhP5qqlmUsh
+         t/sVOMWsSWi5CfDFsoKuTLUyj1m6MSuPkgHEfc5aauUkjd78mZNOH6D+nZbbiXM7unKN
+         BZQOMCEs/m0Ij9X0ZyQ0O5hwYOr2i6IGrhRvYV9YhEJ28UV+J7fHtE0BgZehuCQE9b0D
+         9tdYhInjbkjqQ/4CwGDQIlV5uDOGOLS+yDnhz0x9MNiE1g0W+7j5/of/bQkIQRmQexaa
+         Y1vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2jfj9Vw3D8ZX4MdEbwgBQxtSlmIa3nYu0UGzCjpPfxE=;
-        b=NXueQkMw9CFtTezJ0pnKh8Kf/LZRZo3ERGx1DzYHHuHvN3nIOHYOzXroZXaTaFxKHA
-         acY35DVhxk5yo2fZFnTmZzlSyYfhy3JLFePvLPWKq9pJDxCqJ0qBBJXn/5K08SqH4ike
-         D+EXOa9TIX0uphV8tWru5BiIGIHNnUY5CY4MujaSJVBEhCc5od7RssUWIfGXmgQvKRkd
-         KckJsfFfjW9xVe/buLMytBtnnT2MQUySpzCWwJlVzlRhc2BzQ+OLDN4OW7yYsUId1nQS
-         /jL80CxfjRba+/AFYQKrQniPj0bNhSDILO7N8sIvbRjg1I8Y6aLBZ6CY414P8WsPvywY
-         z4Bw==
-X-Gm-Message-State: AFqh2kqhpwJd2eBsb+vnOyCPx/WfOCgBoLOK9QNvthwq25/R0tSzcwLC
-        8nssVTd/2ESBsUAVLD4cu0+Tjv15sojtSs6g
-X-Google-Smtp-Source: AMrXdXsrih7nnKIOBXnnr50hxUBa1SIexlUteXct6oa/s4ma2nSLWJeKhPczJLVjIZL0WjLZRjh+yw==
-X-Received: by 2002:a05:600c:3b1c:b0:3d9:f0da:542c with SMTP id m28-20020a05600c3b1c00b003d9f0da542cmr4660166wms.28.1673343201715;
-        Tue, 10 Jan 2023 01:33:21 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j30-20020a05600c1c1e00b003cfa80443a0sm16052527wms.35.2023.01.10.01.33.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 01:33:21 -0800 (PST)
-Message-ID: <a6dc4cd9-7008-7de3-f27d-7b82e5f51fbb@linaro.org>
-Date:   Tue, 10 Jan 2023 10:33:18 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MPK8Pcd1KnxbIqf6AZnIbTulBe6CihDk4OzBMX0CQsA=;
+        b=O2utlkmYy5Gfhj0C73Wlmbb7uDqIZDPKv3oOhRozDxBcSA5n13NsMcaraeb6eCa1WX
+         0Dxwf5DOL06+jfhjd0K/wVV0t43zpGGHccj/tYfAdTmei29JttiZ2ob3hz5sPEkw+Kgm
+         QIMIXEJahMxaaQkeOe7z+wAo08aHbiYvNTeHvPAeQBJSgaOP3hHqbTV05ilxYryWPvWB
+         RskXTAtHAUrZtNZvxUV31cfEtvbbQPoxbxWRH00A5iwlC8LgtqqqnjIdF82UiHFsn6Yy
+         sczL88XVBtTjROkCxM4LsrId9lCW2xpYgLF1Bd8VH5ekBug3XFQoqiYzousnjPCYqfsP
+         VyHw==
+X-Gm-Message-State: AFqh2kpAXSo6KJzoLUm/SPb8RAp+mM1R8ZWzfnTvThA2IbTKRTj/2iIm
+        bcvuBbK6MQwnX3BzjdOpTxaCcw==
+X-Google-Smtp-Source: AMrXdXuZSa+rV/0+yMaG6ICmG8FWoorYjfeL96GGckbKJke1oTTmQAFftVGi/4o7yksx/xoxLoOO+A==
+X-Received: by 2002:a17:902:b713:b0:191:2a9c:52a1 with SMTP id d19-20020a170902b71300b001912a9c52a1mr69151667pls.19.1673343051900;
+        Tue, 10 Jan 2023 01:30:51 -0800 (PST)
+Received: from x1 ([2601:1c2:1002:ab0:18c0:a4d5:b5ff:3aeb])
+        by smtp.gmail.com with ESMTPSA id ik22-20020a170902ab1600b001925d6fdfebsm7505744plb.299.2023.01.10.01.30.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jan 2023 01:30:51 -0800 (PST)
+Date:   Tue, 10 Jan 2023 01:33:21 -0800
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v5 0/9] Add RZ/G2L POEG support
+Message-ID: <Y70w4ePvt8ycgn4j@x1>
+References: <20221215213206.56666-1-biju.das.jz@bp.renesas.com>
+ <CACRpkdZCEvpLAWvH7pCLH7KwbDMzz0EN+4HbxVGfFPi_C1b8+g@mail.gmail.com>
+ <CAMuHMdU1J46KSzqqCQc-1ZrgvfWh8J2aa6NzRTK_A_ZJs+zRVQ@mail.gmail.com>
+ <CACRpkdaL2J7F2sVjVcTtFTfK1exZ3Rmjhc_dYxuo2DfhYq_8gw@mail.gmail.com>
+ <CAMuHMdUeazkEXWh+R9iy3TLc16b=OX9rOzAoB1=X=K4wOo9pRA@mail.gmail.com>
+ <CACRpkdZC34xdgsxrMzNy++fBtf36M5ppg-FO0uKpy5q=UGS2Ng@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH V2 01/11] dt-bindings: remoteproc: qcom,q6v5: Move MSM8996
- to schema
-Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        manivannan.sadhasivam@linaro.org, robin.murphy@arm.com
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
-        regressions@leemhuis.info, sumit.semwal@linaro.org,
-        will@kernel.org, catalin.marinas@arm.com
-References: <20230109034843.23759-1-quic_sibis@quicinc.com>
- <20230109034843.23759-2-quic_sibis@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230109034843.23759-2-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdZC34xdgsxrMzNy++fBtf36M5ppg-FO0uKpy5q=UGS2Ng@mail.gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 04:48, Sibi Sankar wrote:
-> Convert MSM8996 and similar (MSM8998/SDM845) MSS PIL bindings to schema.
+On Tue, Jan 10, 2023 at 09:09:21AM +0100, Linus Walleij wrote:
+> On Mon, Jan 9, 2023 at 2:41 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Mon, Jan 9, 2023 at 2:16 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > On Tue, Jan 3, 2023 at 10:01 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > If this should go into sysfs we should probably create something
+> > > > > generic, such as a list of stuff to be exported as sysfs switches.
+> > > > >
+> > > > > It generally also looks really dangerous, which is another reason
+> > > > > for keeping it in debugfs. It's the big hammer to hurt yourself with,
+> > > > > more or less.
+> > > >
+> > > > Yes, generic would be nice.  Anyone familiar with other hardware
+> > > > that could make use of this?
+> > >
+> > > Drew was using this for Beagle Bone IIRC, Drew?
+> >
+> > Yes, that's what I remember, too.  And I tested it on Koelsch.
+> >
+> > But again, that's for debugging purposes.  For non-debugging
+> > operation, we need something different.
 > 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
->  .../remoteproc/qcom,msm8996-mss-pil.yaml      | 370 ++++++++++++++++++
->  .../bindings/remoteproc/qcom,q6v5.txt         | 137 +------
->  2 files changed, 375 insertions(+), 132 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+> Actually Drew's usecase wasn't for debugging. It was kind-of production,
+> but it was for "one-offs" such as factory lines and other very specific-purpose
+> embedded.
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-> new file mode 100644
-> index 000000000000..d3d3fb2fe91d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-> @@ -0,0 +1,370 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/qcom,msm8996-mss-pil.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm MSM8996 MSS Peripheral Image Loader (and similar)
-> +
-> +maintainers:
-> +  - Bjorn Andersson <andersson@kernel.org>
-> +  - Sibi Sankar <quic_sibis@quicinc.com>
-> +
-> +description:
-> +  This document describes the hardware for a component that loads and boots firmware
-> +  on the Qualcomm Technology Inc. MSM8996 Modem Hexagon Core (and similar).
+> The placement in debugfs was mostly because it is fragile and dangerous.
+> 
+> Yours,
+> Linus Walleij
 
-MSS Peripheral Image Loader loads and boots firmware
-on the Qualcomm Technology Inc. MSM8996 Modem Hexagon Core (and similar).
+For the BeagleBone, the use case for selecting pin fuctions from
+userspace with pinmux-select in debugfs is to allow for rapid
+prototyping situations such as breadboarding. Our Debian install on the
+boards has an utility named config-pin that allows the user to select
+between defined pinctrl states for each pin on the expansion header.
 
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
+Some users like this as it means they do not need to constantly be
+editing device tree files and rebooting while protoyping. I agree that
+this is not a fool-proof scheme but Beaglebones have been shipping with
+this functionality for many years without any significant problems that
+I'm aware of.
 
-It's not oneOf. Just enum.
+I do admit that it is possible for someone to potentially damage
+circuits with this flexibility, so having a warning in the kernel log
+like Andy suggested elsewhere in this thread might be a good idea.
 
-
-> +      - enum:
-> +          - qcom,msm8996-mss-pil
-> +          - qcom,msm8998-mss-pil
-> +          - qcom,sdm845-mss-pil
-> +
-
-With both above:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
-
+Thanks,
+Drew
