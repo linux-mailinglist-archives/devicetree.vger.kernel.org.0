@@ -2,257 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5944C663EEE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 12:07:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0FC5663F06
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 12:11:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230083AbjAJLGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 06:06:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46254 "EHLO
+        id S230038AbjAJLKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 06:10:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237709AbjAJLFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 06:05:45 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 246DDEA8;
-        Tue, 10 Jan 2023 03:05:28 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6EFD36602D76;
-        Tue, 10 Jan 2023 11:05:25 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673348727;
-        bh=npkTfw5AkuKfVozPXHhlB8Rn+FzOl8AfixjbglEYM5E=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=g8mf7PG7JBP8XJNBtWZ8xgKI0tOPJZokIWTbOEYuVJkOn5DbhJxaSJNBUO2Q1bfmK
-         y1cMK33sW6/WquNq39qtJ+odJJSftGycmg4aztwS874/mPrMof0lYm+fsOrT5Nwq3m
-         XnH22BPZ3qXZeaD8iU9PxqrEuIq9uU/28KPoxfuz6lIefi1XhBECgx/F1zSWa3QYd6
-         O8SATtKZfIVM6gP8Dbp4oVWKgnhmhGHx8mh24o8yFg0qe82SJMc0J2wNSJlPzhtsBA
-         8YRHsF805A+5id8/DCqbidHCpsqprOFHMyUNHvuTAtsYxRnwpJUAkqoFwxh6d1Bs8L
-         GKudUCJsH8MLQ==
-Message-ID: <4dbaf8a4-21df-8a7e-89ef-9ad2580ff341@collabora.com>
-Date:   Tue, 10 Jan 2023 12:05:22 +0100
+        with ESMTP id S238362AbjAJLIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 06:08:53 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B07F4564B
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 03:08:09 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id m3so8515464wmq.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 03:08:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FNeXgKnEbLZaArQRftAzM3xIXiNgl2iUGd6733GbOj0=;
+        b=MmLkHE2yVceezpoQ1aaNKn7d8ZTKwLVGinX9/nfAVSh5uvfSd+Pef+a0i1YSdpKjHI
+         KG4Ub6G9AbsK+8oU7yp8TX1iZvJCzzIoQqxI3EbtJTW/z9S3z8bttdyZrHHteiIOMq+Q
+         5AmfchTISh2ieCR6Ht5CqUlAYoK55y4NorO4ih+EvBqeNMLJnjbXemiUBbIHPIyN+VmO
+         ptjB0OHZ4nHKwEzn+th+f0YMa/9Opwx0y/jHHbagoFOyKolCFqj00MpD/DmDKY+uytGN
+         5IWsr9E9qclJumbAfv6Msa03c4ghUFMfcsaBoRGZIAasEYZAodgx5BNAMeq5zWF4weBu
+         j9Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FNeXgKnEbLZaArQRftAzM3xIXiNgl2iUGd6733GbOj0=;
+        b=XTLeyhH63dLMKpzpQXiwGIT0iRt7M7aZea87bSPaQrZN9FpaA2/DBmccJ9MbwkNBnw
+         SJwxdKHhUJpFa2fv3z41PeOg158o+0TjQxTqxeM5vfAMl+Ep/whJkmXzb53W+kurzoBY
+         u9+smarSAdQBT34FMVWL8VeBncmzKcEE2Gg7M6SRo1AmYBjnft3cz736CwniC5JtQNjw
+         Lc8yoHI3OVEsrgrqCBZZeDAF3m1RsRYdXDcc8wDJYKtimmbu473Q1ufT/Q3SWz51bCmW
+         34vlWNKX7JOR8RF+vLeQ5foHwlv4ykjooqVeuxkdshRp1hz5na+1C4YOSYLFtygXT9yx
+         gvNA==
+X-Gm-Message-State: AFqh2kpisgmI7Cn8cFN3s6NLHMTYZ/anJFC7p51F4Vm96o8mJYZ0PQYC
+        HbQ6SaTxNdwUT1Rswvl0Y8zDtQ==
+X-Google-Smtp-Source: AMrXdXt+uWAPTwOuu8nqh+Vyyvqd94lH9EYTp/akqONNCrL0L7vqsSAPKLeUuvXGzgvBtO45LZGkZA==
+X-Received: by 2002:a7b:c851:0:b0:3d9:f067:1c32 with SMTP id c17-20020a7bc851000000b003d9f0671c32mr4690647wml.29.1673348888039;
+        Tue, 10 Jan 2023 03:08:08 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id o21-20020a1c7515000000b003d995a704fdsm14432787wmc.33.2023.01.10.03.08.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jan 2023 03:08:07 -0800 (PST)
+Message-ID: <bc44d4fe-9ffc-0270-1c74-e6190ea063f2@linaro.org>
+Date:   Tue, 10 Jan 2023 12:08:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 03/23] clk: mediatek: clk-gate: Propagate struct device
- with mtk_clk_register_gates()
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 3/8] arm64: dts: qcom: sc7280: audioreach: Add lpass
+ pil node
 Content-Language: en-US
-To:     Markus Schneider-Pargmann <msp@baylibre.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wenst@chromium.org, johnson.wang@mediatek.com,
-        miles.chen@mediatek.com, fparent@baylibre.com,
-        chun-jie.chen@mediatek.com, sam.shih@mediatek.com,
-        y.oudjana@protonmail.com, nfraprado@collabora.com,
-        rex-bc.chen@mediatek.com, ryder.lee@kernel.org,
-        daniel@makrotopia.org, jose.exposito89@gmail.com,
-        yangyingliang@huawei.com, pablo.sun@mediatek.com,
-        weiyi.lu@mediatek.com, ikjn@chromium.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com>
- <20221223094259.87373-4-angelogioacchino.delregno@collabora.com>
- <20230104112144.n2mx33xqavigxwa2@blmsp>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230104112144.n2mx33xqavigxwa2@blmsp>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        konrad.dybcio@linaro.org, mka@chromium.org
+References: <1672925875-2107-1-git-send-email-quic_srivasam@quicinc.com>
+ <1672925875-2107-4-git-send-email-quic_srivasam@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1672925875-2107-4-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/01/23 12:21, Markus Schneider-Pargmann ha scritto:
-> Hi Angelo,
-> 
-> On Fri, Dec 23, 2022 at 10:42:39AM +0100, AngeloGioacchino Del Regno wrote:
->> Commit e4c23e19aa2a ("clk: mediatek: Register clock gate with device")
->> introduces a helper function for the sole purpose of propagating a
->> struct device pointer to the clk API when registering the mtk-gate
->> clocks to take advantage of Runtime PM when/where needed and where
->> a power domain is defined in devicetree.
->>
->> Function mtk_clk_register_gates() then becomes a wrapper around the
->> new mtk_clk_register_gates_with_dev() function that will simply pass
->> NULL as struct device: this is essential when registering drivers
->> with CLK_OF_DECLARE instead of as a platform device, as there will
->> be no struct device to pass... but we can as well simply have only
->> one function that always takes such pointer as a param and pass NULL
->> when unavoidable.
->>
->> This commit removes the mtk_clk_register_gates() wrapper and renames
->> mtk_clk_register_gates_with_dev() to the former and all of the calls
->> to either of the two functions were fixed in all drivers in order to
->> reflect this change.
->>
->> Since a lot of MediaTek clock drivers are actually registering as a
->> platform device, but were still registering the mtk-gate clocks
->> without passing any struct device to the clock framework, they've
->> been changed to pass a valid one now, as to make all those platforms
->> able to use runtime power management where available.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> A few nitpicks, otherwise it looks good,
-> 
-> Reviewed-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
->> ---
->>   drivers/clk/mediatek/clk-gate.c              | 16 ++++------------
->>   drivers/clk/mediatek/clk-gate.h              |  8 ++------
->>   drivers/clk/mediatek/clk-mt2701-aud.c        |  2 +-
->>   drivers/clk/mediatek/clk-mt2701-eth.c        |  2 +-
->>   drivers/clk/mediatek/clk-mt2701-g3d.c        |  2 +-
->>   drivers/clk/mediatek/clk-mt2701-hif.c        |  2 +-
->>   drivers/clk/mediatek/clk-mt2701-mm.c         |  2 +-
->>   drivers/clk/mediatek/clk-mt2701.c            |  6 +++---
->>   drivers/clk/mediatek/clk-mt2712-mm.c         |  2 +-
->>   drivers/clk/mediatek/clk-mt2712.c            |  6 +++---
->>   drivers/clk/mediatek/clk-mt6765.c            |  6 +++---
->>   drivers/clk/mediatek/clk-mt6779-mm.c         |  2 +-
->>   drivers/clk/mediatek/clk-mt6779.c            |  4 ++--
->>   drivers/clk/mediatek/clk-mt6795-infracfg.c   |  3 ++-
->>   drivers/clk/mediatek/clk-mt6795-mm.c         |  3 ++-
->>   drivers/clk/mediatek/clk-mt6795-pericfg.c    |  3 ++-
->>   drivers/clk/mediatek/clk-mt6797-mm.c         |  2 +-
->>   drivers/clk/mediatek/clk-mt6797.c            |  2 +-
->>   drivers/clk/mediatek/clk-mt7622-aud.c        |  2 +-
->>   drivers/clk/mediatek/clk-mt7622-eth.c        |  4 ++--
->>   drivers/clk/mediatek/clk-mt7622-hif.c        |  4 ++--
->>   drivers/clk/mediatek/clk-mt7622.c            |  9 +++++----
->>   drivers/clk/mediatek/clk-mt7629-eth.c        |  5 +++--
->>   drivers/clk/mediatek/clk-mt7629-hif.c        |  4 ++--
->>   drivers/clk/mediatek/clk-mt7629.c            |  6 +++---
->>   drivers/clk/mediatek/clk-mt7986-eth.c        |  6 +++---
->>   drivers/clk/mediatek/clk-mt7986-infracfg.c   |  2 +-
->>   drivers/clk/mediatek/clk-mt8135.c            |  4 ++--
->>   drivers/clk/mediatek/clk-mt8167-aud.c        |  2 +-
->>   drivers/clk/mediatek/clk-mt8167-img.c        |  2 +-
->>   drivers/clk/mediatek/clk-mt8167-mfgcfg.c     |  2 +-
->>   drivers/clk/mediatek/clk-mt8167-mm.c         |  2 +-
->>   drivers/clk/mediatek/clk-mt8167-vdec.c       |  3 ++-
->>   drivers/clk/mediatek/clk-mt8167.c            |  2 +-
->>   drivers/clk/mediatek/clk-mt8173-mm.c         |  2 +-
->>   drivers/clk/mediatek/clk-mt8173.c            | 12 ++++++------
->>   drivers/clk/mediatek/clk-mt8183-audio.c      |  2 +-
->>   drivers/clk/mediatek/clk-mt8183-mm.c         |  2 +-
->>   drivers/clk/mediatek/clk-mt8183.c            |  8 ++++----
->>   drivers/clk/mediatek/clk-mt8186-mm.c         |  3 ++-
->>   drivers/clk/mediatek/clk-mt8192-aud.c        |  3 ++-
->>   drivers/clk/mediatek/clk-mt8192-mm.c         |  3 ++-
->>   drivers/clk/mediatek/clk-mt8192.c            | 12 ++++++------
->>   drivers/clk/mediatek/clk-mt8195-apmixedsys.c |  3 ++-
->>   drivers/clk/mediatek/clk-mt8195-topckgen.c   |  3 ++-
->>   drivers/clk/mediatek/clk-mt8195-vdo0.c       |  3 ++-
->>   drivers/clk/mediatek/clk-mt8195-vdo1.c       |  3 ++-
->>   drivers/clk/mediatek/clk-mt8365-mm.c         |  5 ++---
->>   drivers/clk/mediatek/clk-mt8365.c            |  2 +-
->>   drivers/clk/mediatek/clk-mt8516-aud.c        |  2 +-
->>   drivers/clk/mediatek/clk-mt8516.c            |  2 +-
->>   drivers/clk/mediatek/clk-mtk.c               |  4 ++--
->>   52 files changed, 103 insertions(+), 103 deletions(-)
->>
-> 
-> [...]
-> 
->> diff --git a/drivers/clk/mediatek/clk-mt7986-eth.c b/drivers/clk/mediatek/clk-mt7986-eth.c
->> index 7868c0728e96..765df117afa6 100644
->> --- a/drivers/clk/mediatek/clk-mt7986-eth.c
->> +++ b/drivers/clk/mediatek/clk-mt7986-eth.c
->> @@ -85,7 +85,7 @@ static void __init mtk_sgmiisys_0_init(struct device_node *node)
->>   	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(sgmii0_clks));
->>   
->>   	mtk_clk_register_gates(node, sgmii0_clks, ARRAY_SIZE(sgmii0_clks),
->> -			       clk_data);
->> +			       clk_data, NULL);
->>   
->>   	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
->>   	if (r)
->> @@ -103,7 +103,7 @@ static void __init mtk_sgmiisys_1_init(struct device_node *node)
->>   	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(sgmii1_clks));
->>   
->>   	mtk_clk_register_gates(node, sgmii1_clks, ARRAY_SIZE(sgmii1_clks),
->> -			       clk_data);
->> +			       clk_data, NULL);
->>   
->>   	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
->>   
->> @@ -121,7 +121,7 @@ static void __init mtk_ethsys_init(struct device_node *node)
->>   
->>   	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(eth_clks));
->>   
->> -	mtk_clk_register_gates(node, eth_clks, ARRAY_SIZE(eth_clks), clk_data);
->> +	mtk_clk_register_gates(node, eth_clks, ARRAY_SIZE(eth_clks), clk_data, NULL);
-> 
-> You kept within 80c nearly everywhere, but there are a few calls where
-> you added 'NULL' that go over the 80c now. Not sure if that was
-> intended?!
+On 05/01/2023 14:37, Srinivasa Rao Mandadapu wrote:
+> Add lpass pil node for sc7280 based audioreach platforms.
+
+LPASS PIL - these are acronyms.
 > 
 
-Yeah that's intended. It's 86 columns, and one more line just for a NULL doesn't
-really look good to my eyes.
-Besides, we're using 80c terminals from the 1980's anymore in 2023, so that's
-fine :-)
+Subject: drop "audioreach" from every patch. Not a directory.
 
->>   
->>   	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
->>   
+Both comments apply to all your patches.
+
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+
+Your patchset (with dependency) does not apply. Please rebase.
+
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 90 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+
+There are several dtbs_check warnings:
+
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dtb:
+sound: '#sound-dai-cells', 'qcom,msm-mbhc-gnd-swh',
+'qcom,msm-mbhc-hphl-swh' do not match any of the regexes:
+'^dai-link@[0-9a-f]$', 'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb:
+sound: dai-link@0: 'platform' does not match any of the regexes:
+'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb:
+sound: dai-link@1: 'platform' does not match any of the regexes:
+'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb:
+sound: dai-link@2: 'platform' does not match any of the regexes:
+'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb:
+sound: dai-link@3: 'platform' does not match any of the regexes:
+'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb:
+sound: '#sound-dai-cells', 'adsp-mode', 'qcom,msm-mbhc-gnd-swh',
+'qcom,msm-mbhc-hphl-swh' do not match any of the regexes:
+'^dai-link@[0-9a-f]$', 'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dtb:
+sound: '#sound-dai-cells', 'qcom,msm-mbhc-gnd-swh',
+'qcom,msm-mbhc-hphl-swh' do not match any of the regexes:
+'^dai-link@[0-9a-f]$', 'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dtb:
+sound: '#sound-dai-cells', 'qcom,msm-mbhc-gnd-swh',
+'qcom,msm-mbhc-hphl-swh' do not match any of the regexes:
+'^dai-link@[0-9a-f]$', 'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+make[1]: Leaving directory '/home/krzk/dev/linux/linux/out'
+
+
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-idp.dtb:
+remoteproc@3000000: qcom,halt-regs:0: [228] is too short
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-idp.dtb:
+remoteproc@3000000: glink-edge:gpr: 'q6apm', 'q6prm' do not match any of
+the regexes: '^service@[1-9a-d]$', 'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-idp.dtb:
+remoteproc@3000000: 'power-domain-names', 'reg-names', 'required-opps'
+do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
+
+
 > 
-> [...]
-> 
->> diff --git a/drivers/clk/mediatek/clk-mt8183-mm.c b/drivers/clk/mediatek/clk-mt8183-mm.c
->> index 11ecc6fb0065..f93043da26c0 100644
->> --- a/drivers/clk/mediatek/clk-mt8183-mm.c
->> +++ b/drivers/clk/mediatek/clk-mt8183-mm.c
->> @@ -91,7 +91,7 @@ static int clk_mt8183_mm_probe(struct platform_device *pdev)
->>   	clk_data = mtk_alloc_clk_data(CLK_MM_NR_CLK);
->>   
->>   	mtk_clk_register_gates(node, mm_clks, ARRAY_SIZE(mm_clks),
->> -			clk_data);
->> +			clk_data, &pdev->dev);
-> 
-> This is not aligned with the opening bracket here and a few below. Maybe
-> you can fix it with your patch as well.
-> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 0adf133..f10a663 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -8,6 +8,7 @@
+>  #include <dt-bindings/clock/qcom,dispcc-sc7280.h>
+>  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+>  #include <dt-bindings/clock/qcom,gpucc-sc7280.h>
+> +#include <dt-bindings/clock/qcom,lpass-sc7280.h>
+>  #include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
+>  #include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+> @@ -21,6 +22,7 @@
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+>  #include <dt-bindings/reset/qcom,sdm845-aoss.h>
+>  #include <dt-bindings/reset/qcom,sdm845-pdc.h>
+> +#include <dt-bindings/soc/qcom,gpr.h>
+>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>  #include <dt-bindings/sound/qcom,lpass.h>
+>  #include <dt-bindings/thermal/thermal.h>
+> @@ -3436,6 +3438,94 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		remoteproc_adsp: remoteproc@3000000 {
+> +			compatible = "qcom,sc7280-adsp-pil";
+> +			reg = <0 0x03000000 0 0x5000>, <0 0x0355b000 0 0x10>;
+> +			reg-names = "qdsp6ss_base", "lpass_efuse";
+> +
+> +			interrupts-extended = <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&adsp_smp2p_in 0 IRQ_TYPE_NONE>,
+> +					      <&adsp_smp2p_in 1 IRQ_TYPE_NONE>,
+> +					      <&adsp_smp2p_in 2 IRQ_TYPE_NONE>,
+> +					      <&adsp_smp2p_in 3 IRQ_TYPE_NONE>,
+> +					      <&adsp_smp2p_in 7 IRQ_TYPE_NONE>;
+> +
+> +			interrupt-names = "wdog", "fatal", "ready",
+> +				"handover", "stop-ack",  "shutdown-ack";
+> +
+> +			qcom,qmp = <&aoss_qmp>;
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GCC_CFG_NOC_LPASS_CLK>;
+> +
+> +			clock-names = "xo", "gcc_cfg_noc_lpass";
+> +
+> +			iommus = <&apps_smmu 0x1800 0x0>;
+> +
+> +			power-domains =	<&rpmhpd SC7280_CX>;
+> +			power-domain-names = "cx";
+> +
+> +			required-opps = <&rpmhpd_opp_nom>;
+> +
+> +			resets = <&pdc_reset PDC_AUDIO_SYNC_RESET>,
+> +				 <&aoss_reset AOSS_CC_LPASS_RESTART>;
+> +
+> +			reset-names =  "pdc_sync", "cc_lpass";
+> +			qcom,halt-regs = <&tcsr_1 0x3000 0x5000 0x8000 0x13000>;
+> +
+> +			memory-region = <&adsp_mem>;
+> +
+> +			qcom,smem-states = <&adsp_smp2p_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			glink-edge {
+> +				interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
+> +						       IPCC_MPROC_SIGNAL_GLINK_QMP
+> +						       IRQ_TYPE_EDGE_RISING>;
+> +
+> +				mboxes = <&ipcc IPCC_CLIENT_LPASS
+> +					 IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +				label = "lpass";
+> +				qcom,remote-pid = <2>;
+> +
+> +				gpr {
+> +					compatible = "qcom,gpr";
+> +					qcom,glink-channels = "adsp_apps";
+> +					qcom,domain = <GPR_DOMAIN_ID_ADSP>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					qcom,intents = <512 20>;
+> +
+> +					q6apm: q6apm {
 
-Keeping in mind the size of the series, I wanted to reduce the changes to the bone
-and to avoid touching indentation as well, but I guess the TAB key on my keyboard
-can handle one more keypress :-P
+This is for sure wrong. Please send your code based on newest
+submissions. Do not start work on some old DTS full of issues, but the
+new one with corrected.
 
->>   
->>   	return of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
->>   }
-> [...]
->> diff --git a/drivers/clk/mediatek/clk-mt8192.c b/drivers/clk/mediatek/clk-mt8192.c
->> index 991d78a71644..e1b625b86911 100644
->> --- a/drivers/clk/mediatek/clk-mt8192.c
->> +++ b/drivers/clk/mediatek/clk-mt8192.c
->> @@ -1127,7 +1127,7 @@ static int clk_mt8192_top_probe(struct platform_device *pdev)
->>   	if (r)
->>   		goto unregister_top_composites;
->>   
->> -	r = mtk_clk_register_gates_with_dev(node, top_clks, ARRAY_SIZE(top_clks),
->> +	r = mtk_clk_register_gates(node, top_clks, ARRAY_SIZE(top_clks),
->>   					    top_clk_data, &pdev->dev);
-> 
-> Here and below, the function call got shorter, please fix the
-> indentation in the following lines.
-> 
+You also did not run automated tools which would point all this out -
+wrong name, missing unit address (you have address-cells above, right?)
 
-More keypresses to do!
+> +						reg = <GPR_APM_MODULE_IID>;
+> +						compatible = "qcom,q6apm";
+> +						#sound-dai-cells = <0>;
 
-Thanks for the review, will fix for v3 :-)
+Blank line
 
-Regards,
-Angelo
+> +						q6apmdai: dais {
+> +							compatible = "qcom,q6apm-dais";
+> +							#sound-dai-cells = <1>;
+> +							iommus = <&apps_smmu 0x1801 0x0>;
+> +						};
+> +
+> +						q6apmbedai: bedais {
+> +							compatible = "qcom,q6apm-lpass-dais";
+> +							#sound-dai-cells = <1>;
+> +						};
+> +					};
+> +
+> +					q6prm: q6prm {
+> +						reg = <GPR_PRM_MODULE_IID>;
+> +						compatible = "qcom,q6prm";
+> +						#clock-cells = <2>;
+> +						q6prmcc: cc {
+> +							compatible = "qcom,q6prm-lpass-clocks";
+> +							#clock-cells = <2>;
+> +						};
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+>  		remoteproc_wpss: remoteproc@8a00000 {
+>  			compatible = "qcom,sc7280-wpss-pil";
+>  			reg = <0 0x08a00000 0 0x10000>;
 
+Best regards,
+Krzysztof
 
