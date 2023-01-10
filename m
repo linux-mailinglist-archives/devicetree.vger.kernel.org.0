@@ -2,50 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB60664F3D
+	by mail.lfdr.de (Postfix) with ESMTP id 07449664F3B
 	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 23:59:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233103AbjAJW6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 17:58:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32904 "EHLO
+        id S231596AbjAJW6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 17:58:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234473AbjAJW5b (ORCPT
+        with ESMTP id S234489AbjAJW5b (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 17:57:31 -0500
-X-Greylist: delayed 99 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 10 Jan 2023 14:57:29 PST
-Received: from xtrwkvxq.outbound-mail.sendgrid.net (xtrwkvxq.outbound-mail.sendgrid.net [167.89.24.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 762E7FD1
+X-Greylist: delayed 66 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 10 Jan 2023 14:57:29 PST
+Received: from xtrwkkxd.outbound-mail.sendgrid.net (xtrwkkxd.outbound-mail.sendgrid.net [167.89.17.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1D9E89
         for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 14:57:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
-        h=from:subject:in-reply-to:references:mime-version:to:cc:
-        content-transfer-encoding:content-type:cc:content-type:from:subject:to;
-        s=s1; bh=nL5XyQsYGoRBUTGQZVcx0re09e/L9yxuOq9liZaew+4=;
-        b=hZ9HMTVO2DRCW1EkWFn1bp5LOWCWqrmygRtKr0bIlgFCkSSDp0ivD7h1LiBHpzL0mhyI
-        xq1OprKFj+f6WKnhRbJ2eDNwRWOTKJ8FJMnpeSQQuRuC1bT2FYoQalBxhSPTbV5HoH6/7e
-        m4YCEiG84FDCXlSzdTn8t1/HmQtC0BQG0P10QWwegsvEqe1pVoJ5Rq6v4YlT3cKpzyFIBc
-        1++PanXXyyAe3+7Rc8P84A1rvnFkXygOBfmB0/5bmMl7GTicOQsrBB/47hvXVYsEPDO02c
-        1qZ8IZ/kybr7hFWGns5GiIjmUw36XGrV6NCI+zxZDd1D9rdAPExaDjRJGEsjf0XQ==
-Received: by filterdrecv-69c5db5cf4-rhmnr with SMTP id filterdrecv-69c5db5cf4-rhmnr-1-63BDECF6-10
-        2023-01-10 22:55:50.420439465 +0000 UTC m=+908337.208210986
+        h=from:subject:mime-version:to:cc:content-transfer-encoding:
+        content-type:cc:content-type:from:subject:to;
+        s=s1; bh=6ZWg242ARAu9nPb5WSm5B9LJkeQqaU7EN/Do4yz6zdU=;
+        b=mHjjgy3YZf2HP5s3xrvYm6ikGxTnX1ypIF2fdOFiBl3wbMdxVKKwVZIpOhF6zEEqN6NV
+        eaUEB6uga2PZybfE8sQbv7Ch2Gp50VJxz2z1hAEveu3UviUgaKccUp19OHuGogUWMPH8mP
+        nwsiXy3xih01n+OwqW5yyKrcxeM40cR6akPF1mypb2ZLn0eR4R87cpOrBZXtQ+YcML4VdE
+        skxaw6OEOok6S1rcSmZLOJx/wN9/WqU1uB7D2zHV0hzpaEjEAm4if4MhHmxyhDupAbcVIx
+        cwCgzb8t2tqu9T02FjUIr/nx+B8aoJmaX29C/c5vF//zik3O/Mnwv8tEkEf5pMzQ==
+Received: by filterdrecv-69c5db5cf4-rhmnr with SMTP id filterdrecv-69c5db5cf4-rhmnr-1-63BDECF6-2
+        2023-01-10 22:55:50.123018673 +0000 UTC m=+908336.910790272
 Received: from bionic.localdomain (unknown)
         by geopod-ismtpd-6-0 (SG)
         with ESMTP
-        id 1VaIgpvDSGSndX56pXOKVg
-        Tue, 10 Jan 2023 22:55:50.229 +0000 (UTC)
+        id CuugowVBRhuwrdY-kQgdWw
+        Tue, 10 Jan 2023 22:55:49.755 +0000 (UTC)
 From:   Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH 1/2] arm64: dts: rockchip: assign rate to clk_rtc_32k on
- rk356x
+Subject: [PATCH 0/2] Fix HDMI CEC on Radxa ROCK 3 Model A
 Date:   Tue, 10 Jan 2023 22:55:50 +0000 (UTC)
-Message-Id: <20230110225547.1563119-2-jonas@kwiboo.se>
+Message-Id: <20230110225547.1563119-1-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230110225547.1563119-1-jonas@kwiboo.se>
-References: <20230110225547.1563119-1-jonas@kwiboo.se>
 MIME-Version: 1.0
 X-SG-EID: =?us-ascii?Q?TdbjyGynYnRZWhH+7lKUQJL+ZxmxpowvO2O9SQF5CwCVrYgcwUXgU5DKUU3QxA?=
- =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0h7VQTI+bPssuBeGGi?=
- =?us-ascii?Q?uNeJ01fKv0v28c8muMmlezyo+tQ8xf=2FS2DIK4=2Fm?=
- =?us-ascii?Q?Wzj2PEofWLDopIfah=2FAj9kGt2VqzGgGWQKHIXqx?=
- =?us-ascii?Q?EZwyz4bAsVPVOn7o4cbcidosIc8F1PkW4wd0cN2?=
- =?us-ascii?Q?fbQqXWDi+5FgKA1s4QzCBoyRjOkOzHR6P3NKAq?=
+ =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0h2Ka1=2F2lP9RML5+0X?=
+ =?us-ascii?Q?Av4b9yN0QJBSP4lP4aJcxkv1=2FMe91b5nCQhEq4F?=
+ =?us-ascii?Q?DcvZsEclEt+WZEUXAhk5v4efo78N80YTp3lOfNr?=
+ =?us-ascii?Q?dHqKgkJ3iTMfHUEGKSfGBtL+J0umW1LYX1AKUO5?=
+ =?us-ascii?Q?vZOuEPnXEbPyEWZ=2FH6MNlOAWKjnH6tLtmNpXCx?=
 To:     Heiko Stuebner <heiko@sntech.de>,
         linux-rockchip@lists.infradead.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -66,33 +63,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-clk_rtc_32k and its child clock clk_hdmi_cec detauls to a rate of 24 MHz
-and not to 32 kHz on RK356x.
+The HDMI CEC is not working correctly on Radxa ROCK 3 Model A.
 
-Fix this by assigning clk_rtc_32k a rate of 32768, also assign the parent
-to clk_rtc32k_frac.
+This series assigns a clock rate of 32768 to hdmi cec clock and a pinctrl
+to use HDMITX_CEC_M1 function of GPIO0_C7.
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Please note that this series also requires a fix in the pinctrl driver to
+correctly select HDMITX IO mux M1 for a fully working HDMI CEC, see [1].
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 5706c3e24f0a..e319699f5e39 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -422,8 +422,9 @@ cru: clock-controller@fdd20000 {
- 		clock-names = "xin24m";
- 		#clock-cells = <1>;
- 		#reset-cells = <1>;
--		assigned-clocks = <&cru PLL_GPLL>, <&pmucru PLL_PPLL>;
--		assigned-clock-rates = <1200000000>, <200000000>;
-+		assigned-clocks = <&pmucru CLK_RTC_32K>, <&cru PLL_GPLL>, <&pmucru PLL_PPLL>;
-+		assigned-clock-rates = <32768>, <1200000000>, <200000000>;
-+		assigned-clock-parents = <&pmucru CLK_RTC32K_FRAC>;
- 		rockchip,grf = <&grf>;
- 	};
- 
+[1] https://lore.kernel.org/all/20230110084636.1141740-1-jonas@kwiboo.se/
+
+Jonas Karlman (2):
+  arm64: dts: rockchip: assign rate to clk_rtc_32k on rk356x
+  arm64: dts: rockchip: fix hdmi cec on rock-3a
+
+ arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 1 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi        | 5 +++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
 -- 
 2.39.0
 
