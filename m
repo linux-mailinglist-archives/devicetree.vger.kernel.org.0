@@ -2,137 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F36D6643A6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:50:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB7EA6643D0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:58:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238525AbjAJOud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 09:50:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
+        id S237663AbjAJO6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 09:58:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238697AbjAJOuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 09:50:22 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928B44FCF2;
-        Tue, 10 Jan 2023 06:50:21 -0800 (PST)
-Received: from [IPv6:2a00:23c7:6883:e501:329c:8425:8e97:eae9] (unknown [IPv6:2a00:23c7:6883:e501:329c:8425:8e97:eae9])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: obbardc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 333C76602D2B;
-        Tue, 10 Jan 2023 14:50:20 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673362220;
-        bh=PuiPwo9HwFOEDukFjeBEsAsNhLoAsOISooyAzQZgE/w=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=UivahFaqCKHK7Q4kYjRZ0yMLGxV6O43ZLqbqa963ojOEkNEB00rZgasESwe0l2Yly
-         agYPc543Wp1sa0jIwBe4BxXlXGHhhD4xouGAZkfnF0uoy83jcy+UJ6QQrYPljyA8A9
-         GDt73mfiVhgocAEv/1rD30/SaT3QWBl43/pSQMXLmEOSXLsurpEw9X3tmC0kxGNMut
-         KhQ1woUZVdY9zEDahM92UaQ076g8q6MnGLwLgt16OKCyWbBuxR+hnhD1dnbbm9H8y3
-         IOjnSmv0h+2rLVVXJoSLArvVme9SsqJGkFc4cZ7SIug/VkbEkT+e6q7r6orOwlJu8X
-         Sl2MxGQHm8uEw==
-Message-ID: <996e39448350d4f6318f7ff59c6a2ca249fb30a7.camel@collabora.com>
-Subject: Re: [PATCHv8 7/7] arm64: dts: rockchip: Add rock-5b board
-From:   Christopher Obbard <chris.obbard@collabora.com>
-To:     Jagan Teki <jagan@edgeble.ai>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Date:   Tue, 10 Jan 2023 14:50:17 +0000
-In-Reply-To: <CA+VMnFxb1P4tP5sef5ME3jCcCq2Y3rD-0bpv1B0TsUZ3RXXuqg@mail.gmail.com>
-References: <20230109155801.51642-1-sebastian.reichel@collabora.com>
-         <20230109155801.51642-8-sebastian.reichel@collabora.com>
-         <CA+VMnFxb1P4tP5sef5ME3jCcCq2Y3rD-0bpv1B0TsUZ3RXXuqg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.2-1 
+        with ESMTP id S233353AbjAJO6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 09:58:09 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F9510E0;
+        Tue, 10 Jan 2023 06:58:08 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30AEoPxF010079;
+        Tue, 10 Jan 2023 14:57:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=mQ1BF6MGmenQGVNbWazNwERgAK45xTxzqhm78gV7yNA=;
+ b=PoyDwTbHGRwjMrdUCazOTBn7uqgi/+dSEuO1a9mYh7yQKoPa9NPISjEbCKHeKyT814G1
+ OmWreKV0aSCOXyUjwmmpRp0dsGSSEEtOI7KISzIhwLhjHH0gP0AP1fuM8vZGNGbc5gHC
+ 6TS5R1pcc73wYyt/Ss4vwHD7PQR/POI2vuq3qX86fn68Ezs8L3jnr03y5Sor5fPZw+u7
+ eqPxyU+lQHK/ZDFkFrwRp3ZISqLw58AqtIirhv6InS0r4FofvGZvzgH4FHI8P2IkAsbP
+ i3XPQLhypxbk5VlLLkW1EsVYtYd+v2cKv5amvlHwFOkvijfE4KLNFQ9BysEmhDFrSTZQ 0g== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n12vprx79-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 10 Jan 2023 14:57:58 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30AEvviB007666
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 10 Jan 2023 14:57:57 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 10 Jan 2023 06:57:56 -0800
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Johan Hovold <johan@kernel.org>
+CC:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v6 0/4] arm64: dts: qcom: sc8280xp: Enable display
+Date:   Tue, 10 Jan 2023 06:57:47 -0800
+Message-ID: <20230110145751.2654795-1-quic_bjorande@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7Vk5jGj3RS3H5JdpqBzyLRSLEyPUxGnb
+X-Proofpoint-ORIG-GUID: 7Vk5jGj3RS3H5JdpqBzyLRSLEyPUxGnb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-10_06,2023-01-10_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 spamscore=0 priorityscore=1501 impostorscore=0 adultscore=0
+ clxscore=1015 mlxscore=0 suspectscore=0 malwarescore=0 bulkscore=0
+ mlxlogscore=674 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301100093
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2023-01-10 at 19:30 +0530, Jagan Teki wrote:
-> On Mon, 9 Jan 2023 at 21:28, Sebastian Reichel
-> <sebastian.reichel@collabora.com> wrote:
-> >=20
-> > From: Christopher Obbard <chris.obbard@collabora.com>
-> >=20
-> > Add board file for the RK3588 Rock 5B board. This is a basic
-> > implementation which just brings up the eMMC and UART which is
-> > enough to successfully boot Linux.
-> >=20
-> > The ethernet controller is connected via PCIe so support will
-> > come in a follow-up patch.
-> >=20
-> > Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
-> > Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> > =C2=A0arch/arm64/boot/dts/rockchip/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
-> > =C2=A0.../boot/dts/rockchip/rk3588-rock-5b.dts=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 44
-> > +++++++++++++++++++
-> > =C2=A02 files changed, 45 insertions(+)
-> > =C2=A0create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dt=
-s
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile
-> > b/arch/arm64/boot/dts/rockchip/Makefile
-> > index 87a853435142..c5bdd0176ce0 100644
-> > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > @@ -83,4 +83,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-evb1-
-> > v10.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-odroid-m1.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-rock-3a.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-evb1-v10.dtb
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-rock-5b.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-rock-5a.dtb
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > new file mode 100644
-> > index 000000000000..d2f1e963ce06
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > @@ -0,0 +1,44 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "rk3588.dtsi"
-> > +
-> > +/ {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 model =3D "Radxa ROCK 5 Model B";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "radxa,rock-5b", "=
-rockchip,rk3588";
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 aliases {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 mmc1 =3D &sdhci;
->=20
-> I think sdhci - emmc has to be mmc0 due to boot priority.
+The display subsystem and display port drivers for SC8280XP has been merged, so
+they are dropped from this series.
 
-Hi Jagan,
+The necessary defconfig update is also added to the series.
 
-We kept eMMC as mmc1 for both ROCK 5 Model A and B to keep
-compatibility with vendor kernel:
-https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/dts/=
-rockchip/rk3588-rock-5b.dts#L31
+Bjorn Andersson (4):
+  arm64: dts: qcom: sc8280xp: Define some of the display blocks
+  arm64: dts: qcom: sc8280xp-crd: Enable EDP
+  arm64: dts: qcom: sa8295-adp: Enable DP instances
+  arm64: defconfig: Enable SC8280XP Display Clock Controller
 
-But I am happy to change the alias to mmc0, @Sebastian what do you
-think?
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts  | 243 ++++++-
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts |  73 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi    | 836 ++++++++++++++++++++++
+ arch/arm64/configs/defconfig              |   1 +
+ 4 files changed, 1150 insertions(+), 3 deletions(-)
 
-Thanks
-Chris
+-- 
+2.37.3
+
