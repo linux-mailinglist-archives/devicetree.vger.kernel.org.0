@@ -2,108 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2074E663A99
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:10:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52520663A9E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:11:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbjAJIKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 03:10:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44046 "EHLO
+        id S237820AbjAJILX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 03:11:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230157AbjAJIKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:10:24 -0500
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5BC1479DB
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:09:33 -0800 (PST)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-4b718cab0e4so144649577b3.9
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:09:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tq8ocMuirduWJZqIgZEnM5IOavs3CaIqud02LDlW6K0=;
-        b=LsppTRULCPtgrdu92sd2DvxhFH5CjO+Pb9oI3rJi2U2Vk6P2qo5FIWBFWN5Yd4Xm5B
-         45a0vFI5SiCxTbbZxHYHgir8L5ME4ifLyw6OrHbXTmIX+ynERp/tm2pUpqzQYCR03e0d
-         Nntk4u5gmccPLWboOLyOYsB+PeDJuweGa+7crX2pZTC7v4er5ioTMgseeY8YPcbj4x/S
-         eGSpXmk11beSs0XSNNsFvCrIAQEszyAwKEXUqFEFYYDds3kpjbsoGn7pUVel16QJdaSK
-         AYNXVinvhWMslI/KcPS5XGnYtraE4dBTsZEV6sAhSoN9LuSC6z9sjm0gDzr6THVA02VC
-         1zRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tq8ocMuirduWJZqIgZEnM5IOavs3CaIqud02LDlW6K0=;
-        b=gKpA+MuVNQDiHobI/6dTBJWJP2gZaeOcs5JKdyH54h/jKpP1l7PD1TkXqjNquSbjUN
-         XI1gDrc2HZ0CGj1zARthOj5VM/VhcRBActGykU/vzT9qwHmDQADUhyfWmRvFE4W1JN2V
-         DjO2RZjtCLi8PPgYNa3zmzH7cXQ7SPKgXCBGTr5qDSvMZwhteXpzay5nVP8SWH0Knjbi
-         z2brVOU7KKnnukNyUBcr60tUwOkVtGZCyKKTZiGmgrHXISEtICiXASh9J4zD5PinvbU+
-         hWhG2TO7cDghM3IPoc+OI7SYlCQ6sRez7P8JecicgJko9KkJZWOuzUtk2o5LtjgUQfxC
-         T0RQ==
-X-Gm-Message-State: AFqh2krQK66kcvSEQ0s8/T1kLjhIWm7ODRkcJagUBmUwb3WIdPHjxGbi
-        KmlDSupDJnccYMCstF3wcBxDotr6nZ5bzM1PAUIWnw==
-X-Google-Smtp-Source: AMrXdXsR8JXSoiTv7T0NjBKpFyvsp3SR4ElGO0TYvtJbEI39ppUyftmvesxRs5Bx1pnG9jyO0CZTOvKZ19L6aQaKdYo=
-X-Received: by 2002:a0d:fd46:0:b0:463:e60:e538 with SMTP id
- n67-20020a0dfd46000000b004630e60e538mr224921ywf.130.1673338172985; Tue, 10
- Jan 2023 00:09:32 -0800 (PST)
+        with ESMTP id S237967AbjAJIKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:10:42 -0500
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB973F135;
+        Tue, 10 Jan 2023 00:09:57 -0800 (PST)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 9A62CC0002;
+        Tue, 10 Jan 2023 08:09:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1673338196;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=i3gYptI0tyNpiqveNtOoc6rcCiwIbGrdIH4mBhShW0U=;
+        b=XFun/nlCBVkFYZC2Ly21yq2Rn3TQGCfHFlmGdMJiGsgMzubO8c83fhf7DaZlrqlCZ4aH3U
+        0neACYV379LvFX4uBn28km0ZwFg78NX24WMl4tOu4J6LtTbTzm2NbHWKxz48A1M1sFZrj+
+        SIHYrtMFk54xoSBgJ2UhzdxCZKVPDCsFzqrp/gV1rAZiwUYhYEKdMAIoFGA0RPK+6nc2/Q
+        nkOaqR9J31FIYWHL6r5V/EtLK1Bozg2tj9xBukJh4UO2JOtfhalXSZosDWMZcuM7CIuLAy
+        lt5RXvmFOMRnhYDxBzWveakgaC+9QfMsS83L7vnW0DkvCrxee/sXbdusIuFfAA==
+Date:   Tue, 10 Jan 2023 09:12:06 +0100
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/2] of: create of_root if no dtb provided
+Message-ID: <20230110091206.72c3df24@fixe.home>
+In-Reply-To: <907b6b75-55bc-b38c-442b-4ccb036a3690@gmail.com>
+References: <20220624034327.2542112-1-frowand.list@gmail.com>
+        <20220624034327.2542112-2-frowand.list@gmail.com>
+        <20220624141320.3c473605@fixe.home>
+        <6d40876c-2751-01bb-94ab-7c9ab90e636f@gmail.com>
+        <20221011092654.6c7d7ec3@fixe.home>
+        <20230109094009.3878c30e@fixe.home>
+        <907b6b75-55bc-b38c-442b-4ccb036a3690@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20221215213206.56666-1-biju.das.jz@bp.renesas.com>
- <CACRpkdZCEvpLAWvH7pCLH7KwbDMzz0EN+4HbxVGfFPi_C1b8+g@mail.gmail.com>
- <CAMuHMdU1J46KSzqqCQc-1ZrgvfWh8J2aa6NzRTK_A_ZJs+zRVQ@mail.gmail.com>
- <CACRpkdaL2J7F2sVjVcTtFTfK1exZ3Rmjhc_dYxuo2DfhYq_8gw@mail.gmail.com> <CAMuHMdUeazkEXWh+R9iy3TLc16b=OX9rOzAoB1=X=K4wOo9pRA@mail.gmail.com>
-In-Reply-To: <CAMuHMdUeazkEXWh+R9iy3TLc16b=OX9rOzAoB1=X=K4wOo9pRA@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 10 Jan 2023 09:09:21 +0100
-Message-ID: <CACRpkdZC34xdgsxrMzNy++fBtf36M5ppg-FO0uKpy5q=UGS2Ng@mail.gmail.com>
-Subject: Re: [PATCH v5 0/9] Add RZ/G2L POEG support
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Drew Fustini <dfustini@baylibre.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 9, 2023 at 2:41 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Mon, Jan 9, 2023 at 2:16 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > On Tue, Jan 3, 2023 at 10:01 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > If this should go into sysfs we should probably create something
-> > > > generic, such as a list of stuff to be exported as sysfs switches.
-> > > >
-> > > > It generally also looks really dangerous, which is another reason
-> > > > for keeping it in debugfs. It's the big hammer to hurt yourself with,
-> > > > more or less.
-> > >
-> > > Yes, generic would be nice.  Anyone familiar with other hardware
-> > > that could make use of this?
-> >
-> > Drew was using this for Beagle Bone IIRC, Drew?
->
-> Yes, that's what I remember, too.  And I tested it on Koelsch.
->
-> But again, that's for debugging purposes.  For non-debugging
-> operation, we need something different.
+Le Tue, 10 Jan 2023 00:27:16 -0600,
+Frank Rowand <frowand.list@gmail.com> a =C3=A9crit :
 
-Actually Drew's usecase wasn't for debugging. It was kind-of production,
-but it was for "one-offs" such as factory lines and other very specific-purpose
-embedded.
+> On 1/9/23 02:40, Cl=C3=A9ment L=C3=A9ger wrote:
+> > Le Tue, 11 Oct 2022 09:26:54 +0200,
+> > Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com> a =C3=A9crit :
+> >  =20
+> >> Le Fri, 24 Jun 2022 11:44:07 -0500,
+> >> Frank Rowand <frowand.list@gmail.com> a =C3=A9crit :
+> >> =20
+> >>> On 6/24/22 08:13, Cl=C3=A9ment L=C3=A9ger wrote:   =20
+> >>>> Le Thu, 23 Jun 2022 22:43:26 -0500,
+> >>>> frowand.list@gmail.com a =C3=A9crit :
+> >>>>      =20
+> >>>>> =20
+> >>>>> +/*
+> >>>>> + * __dtb_empty_root_begin[] magically created by cmd_dt_S_dtb in
+> >>>>> + * scripts/Makefile.lib
+> >>>>> + */
+> >>>>> +extern void *__dtb_empty_root_begin;
+> >>>>> +
+> >>>>>  /*
+> >>>>>   * of_fdt_limit_memory - limit the number of regions in the /memor=
+y node
+> >>>>>   * @limit: maximum entries
+> >>>>> @@ -1332,8 +1338,13 @@ bool __init early_init_dt_scan(void *params)
+> >>>>>   */
+> >>>>>  void __init unflatten_device_tree(void)
+> >>>>>  {     =20
+> >>>>    =20
+> >>
+> >>
+> >> Any news on this series ?
+> >> =20
+> >=20
+> > Hi Frank,
+> >=20
+> > Do you plan on resubmitting this series ? If not, could I resubmit it
+> > after fixing problems that were raised in the review ? =20
+> >> Thanks, =20
+> >  =20
+>=20
+> Thanks for the prod.  I'll re-spin it.
 
-The placement in debugfs was mostly because it is fragile and dangerous.
+Ok great, thanks Frank.
 
-Yours,
-Linus Walleij
+>=20
+> If I properly captured all the comments, I'll have to implement
+> Rob's suggestion:
+>=20
+>   "either CONFIG_OF_FLATTREE or CONFIG_OF_EARLY_FLATTREE will need=20
+>   to become user selectable."
+
+>=20
+> -Frank
+
+
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
