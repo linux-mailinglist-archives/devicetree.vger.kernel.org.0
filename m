@@ -2,485 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFA2E663EEC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 12:07:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5944C663EEE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 12:07:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232250AbjAJLGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 06:06:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
+        id S230083AbjAJLGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 06:06:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231329AbjAJLFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 06:05:35 -0500
-Received: from egress-ip4a.ess.de.barracuda.com (egress-ip4a.ess.de.barracuda.com [18.184.203.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEB953BEAD
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 03:04:42 -0800 (PST)
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71]) by mx-outbound12-249.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Tue, 10 Jan 2023 11:04:39 +0000
-Received: by mail-pj1-f71.google.com with SMTP id s22-20020a17090aad9600b002271d094c82so2931104pjq.7
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 03:04:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W20LJk7DjKQJ82JYDA/D8ehSkUTjPCwu+iHL1/bwaL8=;
-        b=M5Iy6fq6AQ6PVSpsaMyPogHM1BvGCeUMfsrGVQFaDtnoIYOsz6lOB1uGx2I4lCGrpq
-         SuBcfjg1TlEfjpel82D6DMnBuEqJc2s9nROumrzGyqQbXW1v+BE2mfClYjWAu9BK1Tsp
-         yEP9jplL3sjxPrjhg3oTDPBDYiJqLmpDICkRU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W20LJk7DjKQJ82JYDA/D8ehSkUTjPCwu+iHL1/bwaL8=;
-        b=4ovIXv+nCRiYyrxQ5MMepJLzg9p53Fv+9AKfGnWOqMkmifCT7TfOkHwEGo0ca8+oDp
-         vv4AhxbTk/jQu5yYdB01hQ0KVbs+HL2HeK0/CB4dfWl2qkV8ZCt4a5F+IKra+elM1KCR
-         LiEvPZZQ60bZQ24GvmhdvWSvrgipLsI+GG5HQGhHtKZoW3Q64NlhyYaOn+chenqg2/Gq
-         EATzssL2p9RuNJiS1CM2CDrMxHFr0nGvfOIKcgekyh7jGVS9aL3hWD8jnCJON1Kh0LEK
-         6cUewTYZ7zW8Grl11G7hj5VVnD0wACK3u5rLzi3OACvIGgdR50fnJqPnG46lV+5hfpYp
-         CFpA==
-X-Gm-Message-State: AFqh2kp2xyr7m5d5imZjUZt+0LvF1DEKNIVaOvQU0WDbGoXfqc7mreal
-        aHqNr+3mcJgyhwJBfLZC9ucetRTzCgzPo63ORRMdntxJm6WIQXu/+9ZkUhSa+7U3WAOktxEo6DS
-        ZocEMXPid0+AJC7eVsrqOhoKzYpeAOF7r8ceeimF0NRQGNgVuaRbi0u/ARQ==
-X-Received: by 2002:a05:6a20:2d9c:b0:b6:1425:55df with SMTP id bf28-20020a056a202d9c00b000b6142555dfmr1685221pzb.59.1673348678285;
-        Tue, 10 Jan 2023 03:04:38 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXtQYGA6I4ehqRbgyHyvAvkU+e3YChLRIHluTi+wH4/5hOoY2k4DNuo8wu5iNFgXkZiAV4925g==
-X-Received: by 2002:a05:6a20:2d9c:b0:b6:1425:55df with SMTP id bf28-20020a056a202d9c00b000b6142555dfmr1685191pzb.59.1673348677860;
-        Tue, 10 Jan 2023 03:04:37 -0800 (PST)
-Received: from LAP568U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id i7-20020a17090332c700b001897a8b537asm7840206plr.221.2023.01.10.03.04.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 03:04:37 -0800 (PST)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [RESEND PATCH V3 3/3] arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board
-Date:   Tue, 10 Jan 2023 16:30:52 +0530
-Message-Id: <20230110110052.14851-4-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230110110052.14851-1-sinthu.raja@ti.com>
-References: <20230110110052.14851-1-sinthu.raja@ti.com>
+        with ESMTP id S237709AbjAJLFp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 06:05:45 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 246DDEA8;
+        Tue, 10 Jan 2023 03:05:28 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6EFD36602D76;
+        Tue, 10 Jan 2023 11:05:25 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1673348727;
+        bh=npkTfw5AkuKfVozPXHhlB8Rn+FzOl8AfixjbglEYM5E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=g8mf7PG7JBP8XJNBtWZ8xgKI0tOPJZokIWTbOEYuVJkOn5DbhJxaSJNBUO2Q1bfmK
+         y1cMK33sW6/WquNq39qtJ+odJJSftGycmg4aztwS874/mPrMof0lYm+fsOrT5Nwq3m
+         XnH22BPZ3qXZeaD8iU9PxqrEuIq9uU/28KPoxfuz6lIefi1XhBECgx/F1zSWa3QYd6
+         O8SATtKZfIVM6gP8Dbp4oVWKgnhmhGHx8mh24o8yFg0qe82SJMc0J2wNSJlPzhtsBA
+         8YRHsF805A+5id8/DCqbidHCpsqprOFHMyUNHvuTAtsYxRnwpJUAkqoFwxh6d1Bs8L
+         GKudUCJsH8MLQ==
+Message-ID: <4dbaf8a4-21df-8a7e-89ef-9ad2580ff341@collabora.com>
+Date:   Tue, 10 Jan 2023 12:05:22 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1673348679-303321-5633-3395-1
-X-BESS-VER: 2019.1_20221214.2106
-X-BESS-Apparent-Source-IP: 209.85.216.71
-X-BESS-Outbound-Spam-Score: 0.90
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245372 [from 
-        cloudscan20-207.eu-central-1b.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
-        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.90 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_SC0_SA085b, BSF_RULE7568M, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 03/23] clk: mediatek: clk-gate: Propagate struct device
+ with mtk_clk_register_gates()
+Content-Language: en-US
+To:     Markus Schneider-Pargmann <msp@baylibre.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wenst@chromium.org, johnson.wang@mediatek.com,
+        miles.chen@mediatek.com, fparent@baylibre.com,
+        chun-jie.chen@mediatek.com, sam.shih@mediatek.com,
+        y.oudjana@protonmail.com, nfraprado@collabora.com,
+        rex-bc.chen@mediatek.com, ryder.lee@kernel.org,
+        daniel@makrotopia.org, jose.exposito89@gmail.com,
+        yangyingliang@huawei.com, pablo.sun@mediatek.com,
+        weiyi.lu@mediatek.com, ikjn@chromium.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com>
+ <20221223094259.87373-4-angelogioacchino.delregno@collabora.com>
+ <20230104112144.n2mx33xqavigxwa2@blmsp>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230104112144.n2mx33xqavigxwa2@blmsp>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+Il 04/01/23 12:21, Markus Schneider-Pargmann ha scritto:
+> Hi Angelo,
+> 
+> On Fri, Dec 23, 2022 at 10:42:39AM +0100, AngeloGioacchino Del Regno wrote:
+>> Commit e4c23e19aa2a ("clk: mediatek: Register clock gate with device")
+>> introduces a helper function for the sole purpose of propagating a
+>> struct device pointer to the clk API when registering the mtk-gate
+>> clocks to take advantage of Runtime PM when/where needed and where
+>> a power domain is defined in devicetree.
+>>
+>> Function mtk_clk_register_gates() then becomes a wrapper around the
+>> new mtk_clk_register_gates_with_dev() function that will simply pass
+>> NULL as struct device: this is essential when registering drivers
+>> with CLK_OF_DECLARE instead of as a platform device, as there will
+>> be no struct device to pass... but we can as well simply have only
+>> one function that always takes such pointer as a param and pass NULL
+>> when unavoidable.
+>>
+>> This commit removes the mtk_clk_register_gates() wrapper and renames
+>> mtk_clk_register_gates_with_dev() to the former and all of the calls
+>> to either of the two functions were fixed in all drivers in order to
+>> reflect this change.
+>>
+>> Since a lot of MediaTek clock drivers are actually registering as a
+>> platform device, but were still registering the mtk-gate clocks
+>> without passing any struct device to the clock framework, they've
+>> been changed to pass a valid one now, as to make all those platforms
+>> able to use runtime power management where available.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> A few nitpicks, otherwise it looks good,
+> 
+> Reviewed-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+>> ---
+>>   drivers/clk/mediatek/clk-gate.c              | 16 ++++------------
+>>   drivers/clk/mediatek/clk-gate.h              |  8 ++------
+>>   drivers/clk/mediatek/clk-mt2701-aud.c        |  2 +-
+>>   drivers/clk/mediatek/clk-mt2701-eth.c        |  2 +-
+>>   drivers/clk/mediatek/clk-mt2701-g3d.c        |  2 +-
+>>   drivers/clk/mediatek/clk-mt2701-hif.c        |  2 +-
+>>   drivers/clk/mediatek/clk-mt2701-mm.c         |  2 +-
+>>   drivers/clk/mediatek/clk-mt2701.c            |  6 +++---
+>>   drivers/clk/mediatek/clk-mt2712-mm.c         |  2 +-
+>>   drivers/clk/mediatek/clk-mt2712.c            |  6 +++---
+>>   drivers/clk/mediatek/clk-mt6765.c            |  6 +++---
+>>   drivers/clk/mediatek/clk-mt6779-mm.c         |  2 +-
+>>   drivers/clk/mediatek/clk-mt6779.c            |  4 ++--
+>>   drivers/clk/mediatek/clk-mt6795-infracfg.c   |  3 ++-
+>>   drivers/clk/mediatek/clk-mt6795-mm.c         |  3 ++-
+>>   drivers/clk/mediatek/clk-mt6795-pericfg.c    |  3 ++-
+>>   drivers/clk/mediatek/clk-mt6797-mm.c         |  2 +-
+>>   drivers/clk/mediatek/clk-mt6797.c            |  2 +-
+>>   drivers/clk/mediatek/clk-mt7622-aud.c        |  2 +-
+>>   drivers/clk/mediatek/clk-mt7622-eth.c        |  4 ++--
+>>   drivers/clk/mediatek/clk-mt7622-hif.c        |  4 ++--
+>>   drivers/clk/mediatek/clk-mt7622.c            |  9 +++++----
+>>   drivers/clk/mediatek/clk-mt7629-eth.c        |  5 +++--
+>>   drivers/clk/mediatek/clk-mt7629-hif.c        |  4 ++--
+>>   drivers/clk/mediatek/clk-mt7629.c            |  6 +++---
+>>   drivers/clk/mediatek/clk-mt7986-eth.c        |  6 +++---
+>>   drivers/clk/mediatek/clk-mt7986-infracfg.c   |  2 +-
+>>   drivers/clk/mediatek/clk-mt8135.c            |  4 ++--
+>>   drivers/clk/mediatek/clk-mt8167-aud.c        |  2 +-
+>>   drivers/clk/mediatek/clk-mt8167-img.c        |  2 +-
+>>   drivers/clk/mediatek/clk-mt8167-mfgcfg.c     |  2 +-
+>>   drivers/clk/mediatek/clk-mt8167-mm.c         |  2 +-
+>>   drivers/clk/mediatek/clk-mt8167-vdec.c       |  3 ++-
+>>   drivers/clk/mediatek/clk-mt8167.c            |  2 +-
+>>   drivers/clk/mediatek/clk-mt8173-mm.c         |  2 +-
+>>   drivers/clk/mediatek/clk-mt8173.c            | 12 ++++++------
+>>   drivers/clk/mediatek/clk-mt8183-audio.c      |  2 +-
+>>   drivers/clk/mediatek/clk-mt8183-mm.c         |  2 +-
+>>   drivers/clk/mediatek/clk-mt8183.c            |  8 ++++----
+>>   drivers/clk/mediatek/clk-mt8186-mm.c         |  3 ++-
+>>   drivers/clk/mediatek/clk-mt8192-aud.c        |  3 ++-
+>>   drivers/clk/mediatek/clk-mt8192-mm.c         |  3 ++-
+>>   drivers/clk/mediatek/clk-mt8192.c            | 12 ++++++------
+>>   drivers/clk/mediatek/clk-mt8195-apmixedsys.c |  3 ++-
+>>   drivers/clk/mediatek/clk-mt8195-topckgen.c   |  3 ++-
+>>   drivers/clk/mediatek/clk-mt8195-vdo0.c       |  3 ++-
+>>   drivers/clk/mediatek/clk-mt8195-vdo1.c       |  3 ++-
+>>   drivers/clk/mediatek/clk-mt8365-mm.c         |  5 ++---
+>>   drivers/clk/mediatek/clk-mt8365.c            |  2 +-
+>>   drivers/clk/mediatek/clk-mt8516-aud.c        |  2 +-
+>>   drivers/clk/mediatek/clk-mt8516.c            |  2 +-
+>>   drivers/clk/mediatek/clk-mtk.c               |  4 ++--
+>>   52 files changed, 103 insertions(+), 103 deletions(-)
+>>
+> 
+> [...]
+> 
+>> diff --git a/drivers/clk/mediatek/clk-mt7986-eth.c b/drivers/clk/mediatek/clk-mt7986-eth.c
+>> index 7868c0728e96..765df117afa6 100644
+>> --- a/drivers/clk/mediatek/clk-mt7986-eth.c
+>> +++ b/drivers/clk/mediatek/clk-mt7986-eth.c
+>> @@ -85,7 +85,7 @@ static void __init mtk_sgmiisys_0_init(struct device_node *node)
+>>   	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(sgmii0_clks));
+>>   
+>>   	mtk_clk_register_gates(node, sgmii0_clks, ARRAY_SIZE(sgmii0_clks),
+>> -			       clk_data);
+>> +			       clk_data, NULL);
+>>   
+>>   	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
+>>   	if (r)
+>> @@ -103,7 +103,7 @@ static void __init mtk_sgmiisys_1_init(struct device_node *node)
+>>   	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(sgmii1_clks));
+>>   
+>>   	mtk_clk_register_gates(node, sgmii1_clks, ARRAY_SIZE(sgmii1_clks),
+>> -			       clk_data);
+>> +			       clk_data, NULL);
+>>   
+>>   	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
+>>   
+>> @@ -121,7 +121,7 @@ static void __init mtk_ethsys_init(struct device_node *node)
+>>   
+>>   	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(eth_clks));
+>>   
+>> -	mtk_clk_register_gates(node, eth_clks, ARRAY_SIZE(eth_clks), clk_data);
+>> +	mtk_clk_register_gates(node, eth_clks, ARRAY_SIZE(eth_clks), clk_data, NULL);
+> 
+> You kept within 80c nearly everywhere, but there are a few calls where
+> you added 'NULL' that go over the 80c now. Not sure if that was
+> intended?!
+> 
 
-The SK architecture comprises of baseboard and a SOM board. The
-AM68 Starter Kit's baseboard contains most of the actual connectors,
-power supply etc. The System on Module (SoM) is plugged on to the base
-board. Therefore, add support for peripherals brought out in the base
-board.
+Yeah that's intended. It's 86 columns, and one more line just for a NULL doesn't
+really look good to my eyes.
+Besides, we're using 80c terminals from the 1980's anymore in 2023, so that's
+fine :-)
 
-Schematics: https://www.ti.com/lit/zip/SPRR463
+>>   
+>>   	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
+>>   
+> 
+> [...]
+> 
+>> diff --git a/drivers/clk/mediatek/clk-mt8183-mm.c b/drivers/clk/mediatek/clk-mt8183-mm.c
+>> index 11ecc6fb0065..f93043da26c0 100644
+>> --- a/drivers/clk/mediatek/clk-mt8183-mm.c
+>> +++ b/drivers/clk/mediatek/clk-mt8183-mm.c
+>> @@ -91,7 +91,7 @@ static int clk_mt8183_mm_probe(struct platform_device *pdev)
+>>   	clk_data = mtk_alloc_clk_data(CLK_MM_NR_CLK);
+>>   
+>>   	mtk_clk_register_gates(node, mm_clks, ARRAY_SIZE(mm_clks),
+>> -			clk_data);
+>> +			clk_data, &pdev->dev);
+> 
+> This is not aligned with the opening bracket here and a few below. Maybe
+> you can fix it with your patch as well.
+> 
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
+Keeping in mind the size of the series, I wanted to reduce the changes to the bone
+and to avoid touching indentation as well, but I guess the TAB key on my keyboard
+can handle one more keypress :-P
 
-Changes in V3:
-=============
-*Address review comments:
- - Remove the unused nodes that are disabled by default.
- - Update the gpio regulator node: gpio-regulator-tlv to "regulator-tlv".
+>>   
+>>   	return of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
+>>   }
+> [...]
+>> diff --git a/drivers/clk/mediatek/clk-mt8192.c b/drivers/clk/mediatek/clk-mt8192.c
+>> index 991d78a71644..e1b625b86911 100644
+>> --- a/drivers/clk/mediatek/clk-mt8192.c
+>> +++ b/drivers/clk/mediatek/clk-mt8192.c
+>> @@ -1127,7 +1127,7 @@ static int clk_mt8192_top_probe(struct platform_device *pdev)
+>>   	if (r)
+>>   		goto unregister_top_composites;
+>>   
+>> -	r = mtk_clk_register_gates_with_dev(node, top_clks, ARRAY_SIZE(top_clks),
+>> +	r = mtk_clk_register_gates(node, top_clks, ARRAY_SIZE(top_clks),
+>>   					    top_clk_data, &pdev->dev);
+> 
+> Here and below, the function call got shorter, please fix the
+> indentation in the following lines.
+> 
 
-Changes in V2:
-=============
-*Address the review comments:
- - Update the commit description.
- - Update the regulator nodes: fixedregulator to "regulator-"
- - Update the commit $subject to align with rest of the commits.
- - Drop the blank lines
- - Change the node names that are added with underscore("_") with "-"
+More keypresses to do!
 
-V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-4-sinthu.raja@ti.com/
-V2: https://lore.kernel.org/lkml/20221107123852.8063-4-sinthu.raja@ti.com/
+Thanks for the review, will fix for v3 :-)
 
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- .../boot/dts/ti/k3-am68-sk-base-board.dts     | 335 ++++++++++++++++++
- 2 files changed, 337 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+Regards,
+Angelo
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index cf7c509538a4..1b4e8b573de5 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -12,6 +12,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
- 
-+dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
-+
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-new file mode 100644
-index 000000000000..2091cd2431fb
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -0,0 +1,335 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ *
-+ * Base Board: https://www.ti.com/lit/zip/SPRR463
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am68-sk-som.dtsi"
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/phy/phy-cadence.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/mux/ti-serdes.h>
-+
-+/ {
-+	compatible = "ti,am68-sk", "ti,j721s2";
-+	model = "Texas Instruments AM68 SK";
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	aliases {
-+		serial2 = &main_uart8;
-+		mmc1 = &main_sdhci1;
-+		can0 = &mcu_mcan0;
-+		can1 = &mcu_mcan1;
-+		can2 = &main_mcan6;
-+		can3 = &main_mcan7;
-+	};
-+
-+	vusb_main: regulator-vusb-main5v0 {
-+		/* USB MAIN INPUT 5V DC */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vusb-main5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_3v3: regulator-vsys3v3 {
-+		/* Output of LM5141 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vusb_main>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: regulator-sd {
-+		/* Output of TPS22918 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vdd_sd_dv: regulator-tlv71033 {
-+		/* Output of TLV71033 */
-+		compatible = "regulator-gpio";
-+		regulator-name = "tlv71033";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_3v3>;
-+		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+	};
-+
-+	vsys_io_1v8: regulator-vsys-io-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_io_1v2: regulator-vsys-io-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	transceiver1: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
-+
-+	transceiver2: can-phy1 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
-+
-+	transceiver3: can-phy2 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
-+
-+	transceiver4: can-phy3 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_uart8_pins_default: main-uart8-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0d0, PIN_INPUT, 11) /* (AF26) SPI0_CS1.UART8_RXD */
-+			J721S2_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AH27) SPI0_CLK.UART8_TXD */
-+		>;
-+	};
-+
-+	main_i2c0_pins_default: main-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0e0, PIN_INPUT, 0) /* (AH25) I2C0_SCL */
-+			J721S2_IOPAD(0x0e4, PIN_INPUT, 0) /* (AE24) I2C0_SDA */
-+		>;
-+	};
-+
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
-+			J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
-+			J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
-+			J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
-+			J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
-+			J721S2_IOPAD(0x0f0, PIN_INPUT, 0) /* (R22) MMC1_DAT3 */
-+			J721S2_IOPAD(0x0e8, PIN_INPUT, 8) /* (AE25) TIMER_IO0.MMC1_SDCD */
-+		>;
-+	};
-+
-+	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0c4, PIN_INPUT, 7) /* (AB26) ECAP0_IN_APWM_OUT.GPIO0_49 */
-+		>;
-+	};
-+
-+	main_usbss0_pins_default: main-usbss0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AG25) TIMER_IO1.USB0_DRVVBUS */
-+		>;
-+	};
-+
-+	main_mcan6_pins_default: main-mcan6-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x098, PIN_INPUT, 0) /* (V25) MCASP0_AXR10.MCAN6_RX */
-+			J721S2_IOPAD(0x094, PIN_INPUT, 0) /* (AA25) MCASP0_AXR9.MCAN6_TX */
-+		>;
-+	};
-+
-+	main_mcan7_pins_default: main-mcan7-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
-+			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
-+		>;
-+	};
-+};
-+
-+&wkup_pmx0 {
-+	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (B22) MCU_RGMII1_RD0 */
-+			J721S2_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B21) MCU_RGMII1_RD1 */
-+			J721S2_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C22) MCU_RGMII1_RD2 */
-+			J721S2_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D23) MCU_RGMII1_RD3 */
-+			J721S2_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (D22) MCU_RGMII1_RXC */
-+			J721S2_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (E23) MCU_RGMII1_RX_CTL */
-+			J721S2_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (F23) MCU_RGMII1_TD0 */
-+			J721S2_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (G22) MCU_RGMII1_TD1 */
-+			J721S2_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E21) MCU_RGMII1_TD2 */
-+			J721S2_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E22) MCU_RGMII1_TD3 */
-+			J721S2_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (F21) MCU_RGMII1_TXC */
-+			J721S2_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (F22) MCU_RGMII1_TX_CTL */
-+		>;
-+	};
-+
-+	mcu_mdio_pins_default: mcu-mdio-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A21) MCU_MDIO0_MDC */
-+			J721S2_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (A22) MCU_MDIO0_MDIO */
-+		>;
-+	};
-+
-+	mcu_mcan0_pins_default: mcu-mcan0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x0bc, PIN_INPUT, 0) /* (E28) MCU_MCAN0_RX */
-+			J721S2_WKUP_IOPAD(0x0b8, PIN_OUTPUT, 0) /* (E27) MCU_MCAN0_TX */
-+		>;
-+	};
-+
-+	mcu_mcan1_pins_default: mcu-mcan1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x0d4, PIN_INPUT, 0) /* (F26) WKUP_GPIO0_5.MCU_MCAN1_RX */
-+			J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
-+		>;
-+	};
-+
-+	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
-+			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
-+		>;
-+	};
-+};
-+
-+&main_gpio2 {
-+	status = "disabled";
-+};
-+
-+&main_gpio4 {
-+	status = "disabled";
-+};
-+
-+&main_gpio6 {
-+	status = "disabled";
-+};
-+
-+&wkup_gpio0 {
-+	status = "disabled";
-+};
-+
-+&wkup_gpio1 {
-+	status = "disabled";
-+};
-+
-+&wkup_uart0 {
-+	status = "reserved";
-+};
-+
-+&main_uart8 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart8_pins_default>;
-+	/* Shared with TFA on this platform */
-+	power-domains = <&k3_pds 357 TI_SCI_PD_SHARED>;
-+};
-+
-+&main_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp1: gpio@21 {
-+		compatible = "ti,tca6416";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "CSI_VIO_SEL", "CSI_SEL_FPC_EXPn", "HDMI_PDn",
-+					"HDMI_LS_OE", "DP0_3V3 _EN", "BOARDID_EEPROM_WP",
-+					"CAN_STB", " ", "GPIO_uSD_PWR_EN", "eDP_ENABLE",
-+					"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_MCU_RGMII_RSTz",
-+					"IO_EXP_CSI2_EXP_RSTz", " ", "CSI0_B_GPIO1",
-+					"CSI1_B_GPIO1";
-+	};
-+};
-+
-+&main_sdhci0 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_sdhci1 {
-+	/* SD card */
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	pinctrl-names = "default";
-+	disable-wp;
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv>;
-+};
-+
-+&mcu_cpsw {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
-+};
-+
-+&davinci_mdio {
-+	phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&cpsw_port1 {
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&phy0>;
-+};
-+
-+&mcu_mcan0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan0_pins_default>;
-+	phys = <&transceiver1>;
-+};
-+
-+&mcu_mcan1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan1_pins_default>;
-+	phys = <&transceiver2>;
-+};
-+
-+&main_mcan6 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan6_pins_default>;
-+	phys = <&transceiver3>;
-+};
-+
-+&main_mcan7 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan7_pins_default>;
-+	phys = <&transceiver4>;
-+};
--- 
-2.36.1
 
