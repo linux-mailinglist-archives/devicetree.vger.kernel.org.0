@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A2D2663DAC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 11:14:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF94B663DBB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 11:16:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237906AbjAJKOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 05:14:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40652 "EHLO
+        id S238155AbjAJKQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 05:16:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232378AbjAJKOJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 05:14:09 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 146F4517C9
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:14:07 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id bs20so11178446wrb.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:14:07 -0800 (PST)
+        with ESMTP id S238361AbjAJKPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 05:15:38 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACABB551C2
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:15:11 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id g19-20020a05600c4ed300b003d9eb1dbc0aso6483646wmq.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:15:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jojCCGfavVKv5imMe2sO0IZFTAm6Qt+UkX8aAOYmM8Q=;
-        b=bbhb/M2Tbo7P6JQFLKz1c0s92pip1LUY/qoQtVnezlvmXlve3kgyeNba8+WtmX4t2D
-         Dqs5HvWz9j8ad8G7zjQAKt2OUhJ5oPpmAugq792ubXvNuvlNgx12r2eNxoiWtfJtAgkc
-         ln8dRvw1xf/0keWdYbSaNriNWp27rABFZucUCHjhkgOSv2oYBu+gDWHpRQmu7nuZYux/
-         Ch1A4NbCcbmL1JAXJRKL58l8adrR3ecbI+lYW+4ObQNnSVJc2XVqhStvYLd1MguXeStw
-         ks3SHXuek07nXLDarhxwAioHsl5xyI708nCoT8Z6Vdq/Uf2JhdoccDoTWgGesRpg8BQ0
-         zb0Q==
+        bh=AOaM9klxyd9oBpbyKATfQLn+xwTyF3728aG0uRNv66U=;
+        b=yoUk4O+00nkGYkYXyiqjTxWK4c7uEc66lLsyapNN3lN4GWq40l5XLLk6lO9MKtmxLQ
+         0mF0Rhs+YcdM7Am20PD9umvFqLKrgIs2WmrZqIoUhClE+yw2sEunnBBIg5tONlN8P8cg
+         T/1xm7p/HoG0u7bVzXhlUjL5p8+Fvq6t2cK3PJCGiI7caXb7zzfRZcI4qprHbjxN3Gal
+         hVatrgn4tWSnEMLt3nvou6IN6lw7QGsWFvZT88CEO87sTEeS8NAtT4PaEbRYqoFH/rKp
+         gsFXYOEShYrosm9/rWZnYkZv6fcSTdHmPOYz9UXe0E+RXWhxZ3TWNIKjLHIFrlUHmJ/e
+         RjHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jojCCGfavVKv5imMe2sO0IZFTAm6Qt+UkX8aAOYmM8Q=;
-        b=pJQ8WxnyI+ubJ3ZsF6kVNP7SZVhJwW+5JbqYS6A7gK3SgdhuxJLyAZdGMSvxbaRb80
-         9nZLYLDBp5EV74lXzqeWdNbZeazdC1Enn2u2kYsyIAY0qB37g9fwxwJ+iByEiu+URPgF
-         soY+rkIBwO3QRiAM7/JTu+cB8ztFAqLWuRCcKcMVVJvaTjs/Nux/cdlklkCWxTF/j+8h
-         S7CtJbdlluMqP1ILM8bfJwUsNMT79Ogc/76XW2llMGdqyG/6N5lFn8hJNb1y+qdMwjWS
-         pmBcJNhMx2JAgYZh3zTIuUxPO1+PB53b1MKKv1WH9xXSoL+0o2NM6TwbF/Mc+LkOscSt
-         5ibw==
-X-Gm-Message-State: AFqh2komw3oq9H0jBKDICtab6lIT4wIApbuBssT19NQL0rvVaOq3ukYO
-        yh1mLqa8hlvilTpyqclDNotRCg==
-X-Google-Smtp-Source: AMrXdXsns+wODkeVA+eyVg6DWDP7h4ZsUK2KoND8WPXo2OLQMg/ZUcoSsqQ0z3Y2wBq+9Yj/x0NG4A==
-X-Received: by 2002:a05:6000:16cb:b0:242:1b0d:9c58 with SMTP id h11-20020a05600016cb00b002421b0d9c58mr50376842wrf.69.1673345645653;
-        Tue, 10 Jan 2023 02:14:05 -0800 (PST)
+        bh=AOaM9klxyd9oBpbyKATfQLn+xwTyF3728aG0uRNv66U=;
+        b=1Bh6dwtOkWjSYByuTVHoTfseuYJACCAalDb8BWIV0lT8A00E8EOXCSsIyJeht6BdJY
+         sZgnueae2abCeqKKInQEEcyjWam8yHGsH55fT6/R26AsVcgIBhpNrGcG/CSfPlYrpEHO
+         qklT93WLvO3JihZph+KUkzbXbsIMRnhZSttT2ZYs7G3LE5ayNtCmhUk8SEeNHLyhHMyy
+         F8CcqEC2NCLS7B50M41Zw8TPdPRFRHlqM+PuKitYbxB50URRtuUWgBo3brq72YwJBJzG
+         iLh/IRvSNg+ELTChrdOkoODjrAmyJQ8dm0iVK4onAh7o359lpbQbz6dxTCOOMXUkWeiI
+         EQAw==
+X-Gm-Message-State: AFqh2krAh/0b3BU9+w01tMtoCt7cpcJpNRIgpx1qQh7vmTDYResGqh65
+        V0rzb2he9CO63ug/w/7qnaCrHg==
+X-Google-Smtp-Source: AMrXdXstKuMbnF6GLlV2QioeyL83rfUZ/PCM9H9gtVt4kpI2kfbu1FzMUYifSv02GGXMFgTeLR3h+Q==
+X-Received: by 2002:a05:600c:3b02:b0:3c7:18:b339 with SMTP id m2-20020a05600c3b0200b003c70018b339mr58648300wms.37.1673345710203;
+        Tue, 10 Jan 2023 02:15:10 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a10-20020adfdd0a000000b002bb6b45ab57sm8867372wrm.85.2023.01.10.02.14.02
+        by smtp.gmail.com with ESMTPSA id f19-20020a1c6a13000000b003d9fb04f658sm754592wmc.4.2023.01.10.02.15.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 02:14:04 -0800 (PST)
-Message-ID: <6044f85b-93f2-fe2e-68b5-9912836f4a38@linaro.org>
-Date:   Tue, 10 Jan 2023 11:14:01 +0100
+        Tue, 10 Jan 2023 02:15:09 -0800 (PST)
+Message-ID: <2a0408ab-085b-c104-7e84-ce2fe1e6bea7@linaro.org>
+Date:   Tue, 10 Jan 2023 11:15:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 01/11] dt-bindings: firmware: convert meson_sm.txt to
+Subject: Re: [PATCH v2 02/11] dt-bindings: nvmem: convert amlogic-efuse.txt to
  dt-schema
 Content-Language: en-US
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
@@ -88,15 +88,14 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
         netdev@vger.kernel.org
 References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v2-1-36ad050bb625@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v2-2-36ad050bb625@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-1-36ad050bb625@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-2-36ad050bb625@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -104,11 +103,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 09/01/2023 13:53, Neil Armstrong wrote:
-> Convert the Amlogic Secure Monitor bindings to dt-schema.
+> Convert the  Amlogic Meson GX eFuse bindings to dt-schema.
 > 
-> Take in account usage the used variant with amlogic,meson-gx-sm.
+> Take in account the used variant with amlogic,meson-gx-efuse.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
