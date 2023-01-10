@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 956656638D8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 06:54:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42CA86638DA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 06:54:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229916AbjAJFyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 00:54:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
+        id S229707AbjAJFyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 00:54:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229825AbjAJFyi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 00:54:38 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE542AC5
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 21:54:37 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id bq39so16706370lfb.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 21:54:37 -0800 (PST)
+        with ESMTP id S229774AbjAJFyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 00:54:39 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2789695AE
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 21:54:38 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id f34so16618622lfv.10
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 21:54:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Od8NVQ7rke1dy63OziSV7bOj514f4mT68wZay8pjM14=;
-        b=m9+Jas64suajSpQIRMpvHPgkRtW3P40QRWR282M9A9M4wfKPwWPJ8ps3lPb2JoQGS6
-         URMcpxEUG2Kqi4AuWvyOabzm5Ul5bLxH1gIzoAkhZFi2KTEmlX4ZKnf5qVCYyEIvyCqe
-         N5zxAv/9J/WXJg24kYZ5EsNJAbhrszKuNaHhiuuP5x92bgcPQWfY5Did38KOPuw9Wf/s
-         odLQAzv0x+6FmJCujeYKr025VwYN+fhiA1c2ZIQfVvr3kglplY9kHv53wvUuJ2fKJ0/3
-         5xsppfp0PQ8PFn3Z/9KtWb6ElP+GuGDV9f4ThF1yG95owl8nx0YalAeCH2+MFTpgIVlU
-         ospQ==
+        bh=J9V7IctxQhFjqqHOvM2m2n5NBsQdf9FVh6jp3d8ejZw=;
+        b=FKBjCgTMxGWGC2SnMZtgtilG9ExKqtnmPah5aZiRq038jV2T+JM8/bOsQG+15l3l/6
+         gIuk3NrAgotZYn0yHDXAHl7MxHnWk04Ca3ITsvkHfr8nH7slvwlDlcuDSzcFfmwQlDRd
+         R7ZZXdapDthIKaCyaas8O4j3X5D5NzdlNnpNmmkMs34IPSV0HFQr9csyl/yT6O2GlVzl
+         4M18QY10TKUH9uEjJGl61WPmOc6SPV2UyDX85JEif+jtWYVq06lWcXzyZhbSlrWOFO08
+         /vqqwWcR4dzBDZzWSYWoPQotQgnI6SlsJblOKpJMjRTYmarIux+ex0rbCCvQWnRbOPjX
+         7avA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Od8NVQ7rke1dy63OziSV7bOj514f4mT68wZay8pjM14=;
-        b=3lQVva/PMd2tpadmVXmZ/hEq7b3cXf57kpQQUluI2gwFBJHBRpNvGFvrFagEYiQ2ZQ
-         41uFPeWIpzaZ406im6ybRLAC+4dQy7tUJHrYn4mwjZvEjlXsr15V0nDQEwD2huh8xofr
-         t/kIy+VdSh7w0GwOxfm4qOQikaktZUWu2ChHm0zQ3L2oie6LXkrww4PrmsFFyoyh9dN2
-         6VGi9W//eHC41aKq0LAeaj44pltdjD9Kq6MPQiKl6TBhm2CSVDh+uRazjl2jqZp2AFXp
-         WdzgcGoSeYJB5wsNTBF/vx+rCF1HSLJLp0biDCxnjMU2cWpAghMw8iaJ2L0xuzkVnlM7
-         Ok9g==
-X-Gm-Message-State: AFqh2kq4dzM3bQQvD4W3TjGjP4nsPs10kMkfnxUmUFAFxNubsY3X34Jq
-        t7HzKWYSdDnO2XV/Ks2GNmenAg==
-X-Google-Smtp-Source: AMrXdXtx4QrfwKdfzPS+27ZFVMOsjqDyn1MfQ+bdDV1TXDnoK7sgDn2jLTxkjowQdtjCufmdFwngNQ==
-X-Received: by 2002:a05:6512:3b07:b0:4ab:f3f1:8299 with SMTP id f7-20020a0565123b0700b004abf3f18299mr20609955lfv.6.1673330075781;
-        Mon, 09 Jan 2023 21:54:35 -0800 (PST)
+        bh=J9V7IctxQhFjqqHOvM2m2n5NBsQdf9FVh6jp3d8ejZw=;
+        b=UsutOO15MBlTWMAcLgprqGLmP9JDBoRmPzaK0xz9KhRIkaQxlNOZRB8HNctlgoAduU
+         vj8i0hnAwNloqDg06iEppwjfjYqSNioFwf8VxN4CXJHPVkToJS4r/Lx9Hm3yoQH/bMzb
+         z9Kr2C6wa0YylvoNwnSvJaTCMZa1cvUOkRKT5nI2RE5mJb4HOEGuWbuRJ1GSNk6fIPUr
+         DXjgo5VDxprL1wUHIy7VwAq32DJGLZHhLYOc8+hjwkHju6MV2dsm6TTOJdEkiVgh4Jku
+         ToCP1icZJfMFUFYgAMfYSWNGG9v6rNQOjNRXQ56+4lHdy2xxokBVKw4pNc2tyctGmg1b
+         qxJA==
+X-Gm-Message-State: AFqh2koUbEFoFAiYVV9eoPbyzYHXlu3iKRptWexCQJ66CoDGXwtAoYJ+
+        rIPXDrBgYqgNICuffnMDsXjT7w==
+X-Google-Smtp-Source: AMrXdXuBRJ6AoE5cMdln4pKXDM+GdLkXNO5wAWcrdtKsooiDYDw7hTF53AbF9itFsxzRM9IlZw/iLQ==
+X-Received: by 2002:ac2:5088:0:b0:4a4:7be4:9baf with SMTP id f8-20020ac25088000000b004a47be49bafmr18724211lfm.59.1673330076556;
+        Mon, 09 Jan 2023 21:54:36 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
         by smtp.gmail.com with ESMTPSA id h37-20020a0565123ca500b004b52aea5ff8sm1987227lfv.30.2023.01.09.21.54.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Jan 2023 21:54:35 -0800 (PST)
+        Mon, 09 Jan 2023 21:54:36 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -63,9 +63,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org,
         "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Subject: [PATCH 2/3] arm64: dts: qcom: sm8150: Add compat qcom,sm8150-dsi-ctrl
-Date:   Tue, 10 Jan 2023 07:54:32 +0200
-Message-Id: <20230110055433.734188-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 3/3] arm64: dts: qcom: sm8450: Add compat qcom,sm8450-dsi-ctrl
+Date:   Tue, 10 Jan 2023 07:54:33 +0200
+Message-Id: <20230110055433.734188-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230110055433.734188-1-dmitry.baryshkov@linaro.org>
 References: <20230110055433.734188-1-dmitry.baryshkov@linaro.org>
@@ -80,34 +80,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add silicon specific compatible qcom,sm8150-dsi-ctrl to the
+Add silicon specific compatible qcom,sm8450-dsi-ctrl to the
 mdss-dsi-ctrl block. This allows us to differentiate the specific bindings
-for sm8150 against the yaml documentation.
+for sm8450 against the yaml documentation.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 99750987c9d6..2c59ebe3320d 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -3690,7 +3690,7 @@ opp-460000000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 0c13e9b428ce..52aa6f1f08f5 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -2770,7 +2770,7 @@ opp-500000000 {
  			};
  
  			mdss_dsi0: dsi@ae94000 {
 -				compatible = "qcom,mdss-dsi-ctrl";
-+				compatible = "qcom,sm8150-dsi-ctrl", "qcom,mdss-dsi-ctrl";
++				compatible = "qcom,sm8450-dsi-ctrl", "qcom,mdss-dsi-ctrl";
  				reg = <0 0x0ae94000 0 0x400>;
  				reg-names = "dsi_ctrl";
  
-@@ -3783,7 +3783,7 @@ mdss_dsi0_phy: phy@ae94400 {
+@@ -2862,7 +2862,7 @@ mdss_dsi0_phy: phy@ae94400 {
  			};
  
  			mdss_dsi1: dsi@ae96000 {
 -				compatible = "qcom,mdss-dsi-ctrl";
-+				compatible = "qcom,sm8150-dsi-ctrl", "qcom,mdss-dsi-ctrl";
++				compatible = "qcom,sm8450-dsi-ctrl", "qcom,mdss-dsi-ctrl";
  				reg = <0 0x0ae96000 0 0x400>;
  				reg-names = "dsi_ctrl";
  
