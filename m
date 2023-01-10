@@ -2,127 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4E6C66448F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 16:24:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A9D46644B5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 16:27:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238651AbjAJPYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 10:24:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59394 "EHLO
+        id S238968AbjAJP1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 10:27:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239036AbjAJPXg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 10:23:36 -0500
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2117.outbound.protection.outlook.com [40.107.6.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3EE78E85
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 07:23:35 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k1GNgneLZVji2/m8vfPc++rmPBUTwKlYa3CEw9TsqQjSTMedWbZk4RgfrXjsF+BLdZYA1BPt0T+ub+E0AzIQ5bwi4vADl7fJaX8Ko447gC85CtErHMtLiGU93Er/qLsXgZGo4MdgBqwFhQQfqJpohktNmmMsSIXrJY8oEErO6AVcHQaFPzzegvhu5ocdETkfyUYzGQveZagB8VFkdIIVpG+DYYVvN6wAflSwdj5ged2Kdy0m6jaF162OdMHkLBhIWTf3S9PTwjqaqS8a95SgUlQxSq7ndqI2WVdIWd6TGDKTLNdAjOJm2ht6PJUVy8/3K+qfaLfO10G65swl4sSruQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PPnU/lD0Cd0kXZFKgOjvvC2XJjBnQYbbIOBB7cRy5BM=;
- b=j1rCopHQlr5Z9HA48eFCObGKJ5QUu8wrhYHSovuFCn6YoLriaCCrFKQe0FV8Ka8ERUxJsX7cuxgUSloaI8zg5TJlZCzxvyuiSdU/0SpBLGYm+rMJdm7at3Z9tEKfaxDUqbc7YCJf5DWY4iVGS1g+jt40swlWoa4AJc3WA+EQtjfuMZWggjVPdSW7wLe2bgXOasUfxcWtloS8QHaJ+XrdzX2AwyL2+7HZPlad7nT0oXnQ00qYfjVREGE+Xglc81T1Mj/jmq3oygKa5VmRtwiKlotlwdZiDv0mZAxA4JCWHdZr/nX6WM2cR6FIyk9WVy+b7qx1qyeER8sjMsSnUy2Ukg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 193.8.40.94) smtp.rcpttodomain=kernel.org smtp.mailfrom=leica-geosystems.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=leica-geosystems.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PPnU/lD0Cd0kXZFKgOjvvC2XJjBnQYbbIOBB7cRy5BM=;
- b=NDERwuL9CN/HVjBtPCJVkEi99h6YHLUrGiynatB0eY5zWU2brRsW0iT/5kvqPuKX3Xl+10gYPqQ4wo6S42/L2rWBkDmycpV6jEkOHKLtsMdQ54c/gH+PUPPTJzOJHrrJO5/XIQkxEdum/5VHNpMRN6HTeV3s8IySEp8ZipFHbBA=
-Received: from AM6P191CA0023.EURP191.PROD.OUTLOOK.COM (2603:10a6:209:8b::36)
- by AS8PR06MB8332.eurprd06.prod.outlook.com (2603:10a6:20b:443::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Tue, 10 Jan
- 2023 15:23:25 +0000
-Received: from VI1EUR02FT065.eop-EUR02.prod.protection.outlook.com
- (2603:10a6:209:8b:cafe::11) by AM6P191CA0023.outlook.office365.com
- (2603:10a6:209:8b::36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18 via Frontend
- Transport; Tue, 10 Jan 2023 15:23:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
- smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
-Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
- designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
- client-ip=193.8.40.94; helo=aherlnxbspsrv01.lgs-net.com; pr=C
-Received: from aherlnxbspsrv01.lgs-net.com (193.8.40.94) by
- VI1EUR02FT065.mail.protection.outlook.com (10.13.60.105) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5986.18 via Frontend Transport; Tue, 10 Jan 2023 15:23:24 +0000
-From:   Johannes Schneider <johannes.schneider@leica-geosystems.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238861AbjAJP1A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 10:27:00 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A92687B5;
+        Tue, 10 Jan 2023 07:26:37 -0800 (PST)
+Received: from mercury (dyndsl-091-096-058-120.ewe-ip-backbone.de [91.96.58.120])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 82EAA6602D7A;
+        Tue, 10 Jan 2023 15:26:36 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1673364396;
+        bh=XxxllFQyKLcPicYwexS4RG382EsoS8CobRkzPF1Pkqk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jjvL4Wy19CMkfS5XRsnAPlPMN2e+AeWRzMVAmwO/cvKXGRZ9n80p1/kVUmCPUb4Hx
+         QvATCVrDlfg6r1HQ9K8uG/vGw8sa77sz2EtuWbDmIantIOmjP2gamdzxSO8V+bnVeg
+         AVBrV56Ioqdss0wLnyEWY1zmDj+grKSziS4l5DxErev6QMoIgVrUojpvXfdwJvRoc2
+         owlsxoXFYFw3O8yu/F6/Q9WwzMxL/qV33i2E6QHO78lsCdzjveI9ilfwPp63ilHI5G
+         1yJZoduQIe1LC2Z6WiAyJpgJ+QCr9sYtkckuIr7YGq0usfU8aa4wobVN1R1P7AcZBr
+         /KqRFf9/o065A==
+Received: by mercury (Postfix, from userid 1000)
+        id E7D3B1060774; Tue, 10 Jan 2023 16:26:31 +0100 (CET)
+Date:   Tue, 10 Jan 2023 16:26:31 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Jagan Teki <jagan@edgeble.ai>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Johannes Schneider <johannes.schneider@leica-geosystems.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 3/3] dt-bindings: arm: fsl: Add i.MX8MM-EVK rev-b
-Date:   Tue, 10 Jan 2023 16:23:16 +0100
-Message-Id: <20230110152316.1149940-4-johannes.schneider@leica-geosystems.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230110152316.1149940-1-johannes.schneider@leica-geosystems.com>
-References: <20230110152316.1149940-1-johannes.schneider@leica-geosystems.com>
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCHv8 7/7] arm64: dts: rockchip: Add rock-5b board
+Message-ID: <20230110152631.etavxhpofd2qmi3t@mercury.elektranox.org>
+References: <20230109155801.51642-1-sebastian.reichel@collabora.com>
+ <CA+VMnFxb1P4tP5sef5ME3jCcCq2Y3rD-0bpv1B0TsUZ3RXXuqg@mail.gmail.com>
+ <996e39448350d4f6318f7ff59c6a2ca249fb30a7.camel@collabora.com>
+ <37476486.XM6RcZxFsP@diego>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1EUR02FT065:EE_|AS8PR06MB8332:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 230db8f8-ffdc-46b5-f727-08daf31e9dfd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Y0hcX0i2DERa56ScZAMB8n0jA7jO2PVFRn0Wyb2aFoCiC9S2mmwXuPSstJuYPp+AYr/RT8VQNmS75E38znsOwDpeXNzrpuYFs8ZksGSNNVe77FQEIFpKel055pe28kTqgN66A1CJZBv+7TO9CQA++1mYFyGd2/UGYYHZRKe/n010l+zbaGVHvR0EQ5EOLJld29xVd/zpKnWmeQhR7FtKzRv/ih6wi4FFk5tDvT5lXPWQPYgMA99axSqc9Gc6xJoQnS8U8Zq14kpeQ1jT3m0udNUtEWIVVQAo2g+75C25MXdPCjyI+x3gMcNbcmxoCw25zfV68dbJB8GPf23QV10EtVsP/c7SRDWeHvIL+QE7PIzDYSh6b76MlNS0u4vHEipoZmIaElgY8WskhZ3Hh4Pw7/cMv3FbpqnBOYkDuTgeJpmPrz0jKZl0G0+ZWlxj3pq1lOk74kEHLgEwGULR84PfAiHRCqzw/4P/voEW6874KOMsj15nWLIGVBFz63FHEBTyUCQR/O1wi22AUT0X7NIgQg/7uzSLGnHg/aQn0a1IOTiPW80rCUThOEh7i5/HNDVhwcEf2lB3WV1wfVexM14igb4Rg9uGoR0S3FKPHIAnjJF/u5PBPfaKO73E3teRyQPDr4WCaDgLIcW3BZPOUts341zFnN9gOlUSTkozIClKyAJuZgzOIbhtTbDFc/tAkVvgKZM+R23jUb79X/5pVKSyrw==
-X-Forefront-Antispam-Report: CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:aherlnxbspsrv01.lgs-net.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230022)(4636009)(376002)(136003)(39860400002)(346002)(396003)(451199015)(40470700004)(36840700001)(46966006)(8676002)(70586007)(36736006)(316002)(70206006)(4326008)(110136005)(54906003)(356005)(44832011)(4744005)(2906002)(5660300002)(40460700003)(47076005)(8936002)(81166007)(7416002)(41300700001)(36756003)(36860700001)(6666004)(478600001)(6486002)(6506007)(40480700001)(2616005)(1076003)(336012)(6512007)(82740400003)(26005)(186003)(86362001)(956004)(82310400005)(118246002)(9316004);DIR:OUT;SFP:1102;
-X-OriginatorOrg: leica-geosystems.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2023 15:23:24.8769
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 230db8f8-ffdc-46b5-f727-08daf31e9dfd
-X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[aherlnxbspsrv01.lgs-net.com]
-X-MS-Exchange-CrossTenant-AuthSource: VI1EUR02FT065.eop-EUR02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR06MB8332
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="l4ezfuydhkzkiruc"
+Content-Disposition: inline
+In-Reply-To: <37476486.XM6RcZxFsP@diego>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT compatible strings for a rev-b imx8mm-EVK which come with a
-different PMIC than rev-a.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+--l4ezfuydhkzkiruc
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index fbfc4f99c01e..9c3a02c19847 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -818,6 +818,7 @@ properties:
-               - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
-               - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
-               - fsl,imx8mm-evk            # i.MX8MM EVK Board
-+              - fsl,imx8mm-evkb           # i.MX8MM EVK Board, rev-B
-               - gateworks,imx8mm-gw7904
-               - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
-               - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
--- 
-2.25.1
+Hi,
 
+On Tue, Jan 10, 2023 at 04:07:46PM +0100, Heiko St=FCbner wrote:
+> Am Dienstag, 10. Januar 2023, 15:50:17 CET schrieb Christopher Obbard:
+> > On Tue, 2023-01-10 at 19:30 +0530, Jagan Teki wrote:
+> > > On Mon, 9 Jan 2023 at 21:28, Sebastian Reichel
+> > > <sebastian.reichel@collabora.com> wrote:
+> > > >=20
+> > > > From: Christopher Obbard <chris.obbard@collabora.com>
+> > > >=20
+> > > > Add board file for the RK3588 Rock 5B board. This is a basic
+> > > > implementation which just brings up the eMMC and UART which is
+> > > > enough to successfully boot Linux.
+> > > >=20
+> > > > The ethernet controller is connected via PCIe so support will
+> > > > come in a follow-up patch.
+> > > >=20
+> > > > Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
+> > > > Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
+> > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
+> > > >  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 44
+> > > > +++++++++++++++++++
+> > > >  2 files changed, 45 insertions(+)
+> > > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > > >=20
+> > > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile
+> > > > b/arch/arm64/boot/dts/rockchip/Makefile
+> > > > index 87a853435142..c5bdd0176ce0 100644
+> > > > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > > > @@ -83,4 +83,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-evb1-
+> > > > v10.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-odroid-m1.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-rock-3a.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-evb1-v10.dtb
+> > > > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-rock-5b.dtb
+> > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-rock-5a.dtb
+> > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > > > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > > > new file mode 100644
+> > > > index 000000000000..d2f1e963ce06
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > > > @@ -0,0 +1,44 @@
+> > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > +
+> > > > +/dts-v1/;
+> > > > +
+> > > > +#include "rk3588.dtsi"
+> > > > +
+> > > > +/ {
+> > > > +       model =3D "Radxa ROCK 5 Model B";
+> > > > +       compatible =3D "radxa,rock-5b", "rockchip,rk3588";
+> > > > +
+> > > > +       aliases {
+> > > > +               mmc1 =3D &sdhci;
+> > >=20
+> > > I think sdhci - emmc has to be mmc0 due to boot priority.
+> >=20
+> > Hi Jagan,
+> >=20
+> > We kept eMMC as mmc1 for both ROCK 5 Model A and B to keep
+> > compatibility with vendor kernel:
+> > https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/=
+dts/rockchip/rk3588-rock-5b.dts#L31
+> >=20
+> > But I am happy to change the alias to mmc0, @Sebastian what do you
+> > think?
+>=20
+> In any case, if you decide to swap things around, please just send a foll=
+ow
+> up patch, as I just applied this series :-)
+
+No strong opinion regarding the device enumeration from my side.
+I'm fine either way.
+
+@Heiko: Thanks for merging the series.
+
+-- Sebastian
+
+--l4ezfuydhkzkiruc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmO9g6AACgkQ2O7X88g7
++pr44RAAkXwmE424okAqcVR+nWqsE8cKoZCl0Rpyt1jc2ks9V570cxvC4b0FP5ON
+bMub1n1T/h1+xGkWcSGUiE7gO7F99bobD6UYfRIzOSTSDFovlN4R8UhZtMgJ0OUn
+7+yxlCoybbjNoiJq2MCH0igkGxeRGE2Jyi9CoRfYZIyk5jzZlTPM8cEPX3I48Nod
+/dBrxbgktSC6/qlOld2fRGfjUo0JYRtQOUKB7wkKfEeUDfeOpz23XYQAFmI1knTT
+fSMdTqU+BC4hanSXqDd5OBwo4vjyynxChfgRssWbnLl2k485QPMcz5epyrB/VMOi
+GNZsWU545kXa4RFmF3Uv2RAEzctEyKDyCHtL9WEyEtGsAri9CciCRqxK3UOjObww
+xs2cSEYn5AIjEXk1sOmFPCyBIhf/DTLFD+2deS9MX9vybg+3cvtjVnGx02+ycLt8
+PUM2XrQ0hiD6OuZgWu8OMOT8BTnIs/TTf1B7tHiOqEJSalMTmh7HE05qUskx64Li
+kPBdnDvjlnqmjzHoFwFUJ2k90KE5nGOPFY7uFFZIhHjCsHaTcVQ01zNfJfrHS94k
+rsM9+K/1QvqtZv0RTlStzkUIXmOGj+hu93QMKukC0ZGKFIH2VHOgmotRaPma9x7q
+5oSmhjw6KmD41Ut7lOBXPrdkbr3c79muPZzE05aGd2rokaEQjJA=
+=XnXS
+-----END PGP SIGNATURE-----
+
+--l4ezfuydhkzkiruc--
