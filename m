@@ -2,61 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 454FA664730
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 18:18:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A57BE6647C2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 18:55:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234490AbjAJRRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 12:17:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48530 "EHLO
+        id S234068AbjAJRzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 12:55:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235139AbjAJRRa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 12:17:30 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CE081CB3B;
-        Tue, 10 Jan 2023 09:17:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AB02C61827;
-        Tue, 10 Jan 2023 17:17:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39245C433F0;
-        Tue, 10 Jan 2023 17:17:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673371048;
-        bh=+miFXvh4SnQnHEBkU9GY4B1xU7pBks44PiSq7mNwM88=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=stVnQ1xn6jbJeCNAHI9X8Ait4EzyypqGiGhFm8ycTchPMCGI3MOrdFEuj7RmaXdad
-         Ng8lXtliYIInwxiWglNRZ5cms1Rg86tDE3t7yB7T3q3Z8mo/QQHb+g71dZ9E3zUhS6
-         rTepwI1QCmkyJMiWooFkR7/tlvq9DtQPS43p7kZa8lWn4pVJX3mR5UtnJC9fnyzT83
-         Wm+aWD8WijBtWQvoOHhmTOt2jWljdOParQ6h5ArnHrCy30mB2CsWnQOwnTYOTRCo12
-         p3FNi98DAcMs7TcTlOh8WRft4JNu+Hedz3Z9UAlycEBv+VQZ8M0yZcs+ngkmEqzL80
-         aKhXdceXi+tFg==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     robh+dt@kernel.org, sboyd@kernel.org, djakov@kernel.org,
-        mturquette@baylibre.com, richardcochran@gmail.com,
-        agross@kernel.org, linus.walleij@linaro.org,
-        jassisinghbrar@gmail.com, will@kernel.org, elder@kernel.org,
-        brgl@bgdev.pl, srinivas.kandagatla@linaro.org,
-        robin.murphy@arm.com, krzysztof.kozlowski+dt@linaro.org,
-        catalin.marinas@arm.com, joro@8bytes.org, vkoul@kernel.org,
-        mani@kernel.org, konrad.dybcio@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bartosz.golaszewski@linaro.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Subject: Re: (subset) [PATCH 00/18] arm64: qcom: add support for sa8775p-ride
-Date:   Tue, 10 Jan 2023 11:17:23 -0600
-Message-Id: <167337103771.2139708.6906663825110688484.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230109174511.1740856-1-brgl@bgdev.pl>
-References: <20230109174511.1740856-1-brgl@bgdev.pl>
+        with ESMTP id S234218AbjAJRyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 12:54:43 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3937E59D20;
+        Tue, 10 Jan 2023 09:54:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1673373257; x=1704909257;
+  h=message-id:date:mime-version:from:subject:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=7AXhqOp1gtecOre6oRBlKXRLRxGw3ArZm7GFJzcZVEk=;
+  b=Fcx6xxCDO20S62posT7jSSj7cRKBl1Ks/+o6aHk99eQXzyi+/vkgz3Dr
+   KZvszjHAlgXVPA+9/KxT4qYjKpG+ZufXqa2QL3wXLpsN40nCYa3tiuKji
+   KMxmATm7lAleoGf1pMrtYiQA7gyzX4YRi1E+u7VXfPdSrGEJflV740nFv
+   Y=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 10 Jan 2023 09:54:15 -0800
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2023 09:54:15 -0800
+Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 10 Jan
+ 2023 09:54:14 -0800
+Message-ID: <26c0895b-9d69-d355-5b55-19e6ea69bae3@quicinc.com>
+Date:   Tue, 10 Jan 2023 09:54:14 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Elliot Berman <quic_eberman@quicinc.com>
+Subject: Re: [PATCH v8 00/28] Drivers for gunyah hypervisor
+To:     Alex Elder <elder@linaro.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-acpi@vger.kernel.org>
+References: <20221219225850.2397345-1-quic_eberman@quicinc.com>
+ <83b6dbc2-01da-04b6-64ec-9a69fd5c4c89@linaro.org>
+Content-Language: en-US
+In-Reply-To: <83b6dbc2-01da-04b6-64ec-9a69fd5c4c89@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,25 +82,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 9 Jan 2023 18:44:53 +0100, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+
+On 1/9/2023 1:34 PM, Alex Elder wrote:
+> On 12/19/22 4:58 PM, Elliot Berman wrote:
+>> Gunyah is a Type-1 hypervisor independent of any
+>> high-level OS kernel, and runs in a higher CPU privilege level. It does
+>> not depend on any lower-privileged OS kernel/code for its core
+>> functionality. This increases its security and can support a much smaller
+>> trusted computing base than a Type-2 hypervisor.
+>>
+>> Gunyah is an open source hypervisor. The source repo is available at
+>> https://github.com/quic/gunyah-hypervisor.
 > 
-> This adds basic support for the Qualcomm sa8775p platform and its reference
-> board: sa8775p-ride. The dtsi contains basic SoC description required for
-> a simple boot-to-shell. The dts enables boot-to-shell with UART on the
-> sa8775p-ride board. There are three new drivers required to boot the board:
-> pinctrl, interconnect and GCC clock. Other patches contain various tweaks
-> to existing code. More support is coming up.
+> Can you provide any history about the hypervisor code itself?
+> Was it publicly reviewed?  Has it been reviewed by anyone in
+> the Linux kernel community, who might have some useful input
+> on it?
 > 
-> [...]
 
-Applied, thanks!
+This is Gunyah's first interaction with wider public community. Gunyah 
+has been deployed in devices for past few generation of Qualcomm 
+Technolgoies, Inc. (mobile) chipsets.
 
-[13/18] dt-bindings: power: qcom,rpmpd: document sa8775p
-        commit: b4f0370d3ce276397f5c48af99d0b77548825eb1
-[14/18] soc: qcom: rmphpd: add power domains for sa8775p
-        commit: 91e910adc59a6954e475dd2d6a4534ac56dd8eed
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Thanks,
+Elliot
