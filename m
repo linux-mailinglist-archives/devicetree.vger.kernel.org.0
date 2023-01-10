@@ -2,43 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68CC5664423
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 16:10:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F3AD66442C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 16:10:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232198AbjAJPJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 10:09:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47784 "EHLO
+        id S238604AbjAJPKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 10:10:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239082AbjAJPIt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 10:08:49 -0500
+        with ESMTP id S238936AbjAJPJ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 10:09:27 -0500
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9BED69B27;
-        Tue, 10 Jan 2023 07:07:54 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 276E15E666;
+        Tue, 10 Jan 2023 07:09:08 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1pFGE8-0005Pf-AS; Tue, 10 Jan 2023 16:07:48 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Jagan Teki <jagan@edgeble.ai>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Christopher Obbard <chris.obbard@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id 1pFGFL-0005Qm-A1; Tue, 10 Jan 2023 16:09:03 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCHv8 7/7] arm64: dts: rockchip: Add rock-5b board
-Date:   Tue, 10 Jan 2023 16:07:46 +0100
-Message-ID: <37476486.XM6RcZxFsP@diego>
-In-Reply-To: <996e39448350d4f6318f7ff59c6a2ca249fb30a7.camel@collabora.com>
-References: <20230109155801.51642-1-sebastian.reichel@collabora.com> <CA+VMnFxb1P4tP5sef5ME3jCcCq2Y3rD-0bpv1B0TsUZ3RXXuqg@mail.gmail.com> <996e39448350d4f6318f7ff59c6a2ca249fb30a7.camel@collabora.com>
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: rk3328: drop unused LED mode property
+Date:   Tue, 10 Jan 2023 16:09:00 +0100
+Message-Id: <167336332946.2556072.4653164410896506127.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221125144135.477144-1-krzysztof.kozlowski@linaro.org>
+References: <20221125144135.477144-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
         T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -47,77 +43,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 10. Januar 2023, 15:50:17 CET schrieb Christopher Obbard:
-> On Tue, 2023-01-10 at 19:30 +0530, Jagan Teki wrote:
-> > On Mon, 9 Jan 2023 at 21:28, Sebastian Reichel
-> > <sebastian.reichel@collabora.com> wrote:
-> > > 
-> > > From: Christopher Obbard <chris.obbard@collabora.com>
-> > > 
-> > > Add board file for the RK3588 Rock 5B board. This is a basic
-> > > implementation which just brings up the eMMC and UART which is
-> > > enough to successfully boot Linux.
-> > > 
-> > > The ethernet controller is connected via PCIe so support will
-> > > come in a follow-up patch.
-> > > 
-> > > Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
-> > > Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > ---
-> > >  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
-> > >  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 44
-> > > +++++++++++++++++++
-> > >  2 files changed, 45 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile
-> > > b/arch/arm64/boot/dts/rockchip/Makefile
-> > > index 87a853435142..c5bdd0176ce0 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > > @@ -83,4 +83,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-
-> > > v10.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-odroid-m1.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
-> > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > > new file mode 100644
-> > > index 000000000000..d2f1e963ce06
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > > @@ -0,0 +1,44 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > +
-> > > +/dts-v1/;
-> > > +
-> > > +#include "rk3588.dtsi"
-> > > +
-> > > +/ {
-> > > +       model = "Radxa ROCK 5 Model B";
-> > > +       compatible = "radxa,rock-5b", "rockchip,rk3588";
-> > > +
-> > > +       aliases {
-> > > +               mmc1 = &sdhci;
-> > 
-> > I think sdhci - emmc has to be mmc0 due to boot priority.
+On Fri, 25 Nov 2022 15:41:34 +0100, Krzysztof Kozlowski wrote:
+> GPIO LEDs do not have a 'mode' property:
 > 
-> Hi Jagan,
+>   rockchip/rk3328-roc-pc.dtb: leds: led-0: Unevaluated properties are not allowed ('mode' was unexpected)
 > 
-> We kept eMMC as mmc1 for both ROCK 5 Model A and B to keep
-> compatibility with vendor kernel:
-> https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts#L31
 > 
-> But I am happy to change the alias to mmc0, @Sebastian what do you
-> think?
 
-In any case, if you decide to swap things around, please just send a follow
-up patch, as I just applied this series :-)
+Applied, thanks!
 
+[1/1] arm64: dts: rockchip: rk3328: drop unused LED mode property
+      commit: 1692bffec674551163a7a4be32f59fdde04ecd27
 
-Heiko
-
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
