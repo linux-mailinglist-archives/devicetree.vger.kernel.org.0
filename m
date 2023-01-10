@@ -2,117 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AF94664268
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:51:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DB52664281
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:56:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232447AbjAJNvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 08:51:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44476 "EHLO
+        id S238400AbjAJNz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 08:55:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238613AbjAJNvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:51:37 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABB67CBCC;
-        Tue, 10 Jan 2023 05:51:28 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 81E0282131;
-        Tue, 10 Jan 2023 14:51:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1673358686;
-        bh=MZyci7iDloBlmWMi0pKgA4nJCRC2UFKYpgBdOZ4XGkg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=qIr392BdZJA/Z1P75f0u7dDCIq7ZzNkYYHD3MMlbMKQE8btFGcbSiuX+KbdXhNZKv
-         bhgkzsWEYeY2gJsT8CV++KkF8gR9w9kEfdqTLzuYTq49BlZ3cUUYMCys93NZuglxhz
-         i2c8JkkVlSrqX3qB0Pk0oSrGXvmaEXsA3pmjevb1TWcPeFLd25dw5UVebhpaUIFgot
-         NW/I0AScbgDxKnX8uDp4rEB1ltzAYvA6l+SiT7hs38ls6ImdIwozQTLi3nzNDtNQMT
-         Us8QSu3c2Ckxz9xk4oyJXcYMKeK+mX2pe3cbPErXo9qTR/mnBByzH0tVQOW/RYXHlg
-         Ek3h3YkThFWgg==
-Message-ID: <e8c7e0de-0e6e-e523-d15b-32c1ba3d9142@denx.de>
-Date:   Tue, 10 Jan 2023 14:51:24 +0100
+        with ESMTP id S238654AbjAJNzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:55:16 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36EE91525
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:53:23 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id c82so4564704ybf.6
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:53:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=rVCMSgatdIf3t9Qq9Q8tQnF21QDdXZk3rUx62zf2uI8=;
+        b=hn9FBSlUWNgiKhcp+XGG6IP3x7ac3jxe3Q+cCwYFo6h+OfPXirEiREXUFjyi2FCoiT
+         EHntTsn+pJ3rYh5MNy2CoDWTEbucfkEIdpm+HHU0GnOpThR0jLHKXBrncMvmBYIkBzIy
+         3zKlr07MOTtQLl6sKhWWpZcIX4ZFZYveBL41ibfHkA+GcoUkpWTtoHQdyGx73QTyLUd0
+         ItXmN/H9vQQYT2b4IjVsvy6Wbd2u85kBXKBzwYKpKaUxF5wMwiqqb0TTavELWHviTupB
+         sKUk5vhOO0HoxTTSipHDF/xE6eNl1/gHQPxYE1uNfkRGUkEETWEU3iY0OLDjrrOh3Seu
+         bHpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rVCMSgatdIf3t9Qq9Q8tQnF21QDdXZk3rUx62zf2uI8=;
+        b=tmsaXQ7vE/h4o2iEAfp3/gUfBp2sCTqote2lOj2/Yb6RFM+Q/mvGt5YjPVUbz4Lsww
+         5Oh+oOQK1WYWFJJLSdbR4lpl/lUgyfEdf9nNxZfmuOhLpWmtxjjzIjO8H3bys/vkTfDw
+         F0X69gwwrcDi0J6QMjerfD0ceHQ8HtN68Iv1DsrjrIHkb24fHxqD8S0h2GLbesAunN9k
+         jCqE1FnlC2Km9BwJdDP7EKAgylH0QmGCt75m8IHLVskUUzN491cX4tWWKbEqkn47CVbg
+         wfvpE753STSBd02pHb0Ewwnzy9+9USV01duY5aILfDEj8BI4HJg4uhEITSuPs83Cuzba
+         4tHg==
+X-Gm-Message-State: AFqh2krXfVvBhxqSzpUe5Ls/4X8zNjvGSjoKrDivRND9MpuFlFJFW+f0
+        9aci25Pm+gso4H/GkQv4OakE+HYXDSj5s/m57hQCBg==
+X-Google-Smtp-Source: AMrXdXugIKCVBl9k9fZr5k8yNXAqd8M3xUejgOHtloMcYf4xIp128JO5fcHVa46s2bGC9eoKT2SVnUE9HoyhwRFH69s=
+X-Received: by 2002:a25:cf02:0:b0:7b4:fa63:5519 with SMTP id
+ f2-20020a25cf02000000b007b4fa635519mr2132063ybg.270.1673358797706; Tue, 10
+ Jan 2023 05:53:17 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 3/4] clk: rs9: Support device specific dif bit
- calculation
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230110100003.370917-1-alexander.stein@ew.tq-group.com>
- <3216146.44csPzL39Z@steina-w> <a2fd6077-a5ae-a694-3637-e83ca044da69@denx.de>
- <2211925.iZASKD2KPV@steina-w>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <2211925.iZASKD2KPV@steina-w>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230109155801.51642-1-sebastian.reichel@collabora.com> <20230109155801.51642-3-sebastian.reichel@collabora.com>
+In-Reply-To: <20230109155801.51642-3-sebastian.reichel@collabora.com>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Tue, 10 Jan 2023 19:23:06 +0530
+Message-ID: <CA+VMnFxxx18=u7oFJZ9x9g0HA8PV+yNPUk7OdhffR7vdhz712g@mail.gmail.com>
+Subject: Re: [PATCHv8 2/7] arm64: dts: rockchip: Add rk3588 pinctrl data
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianqun Xu <jay.xu@rock-chips.com>,
+        kernel@collabora.com, Shengfei Xu <xsf@rock-chips.com>,
+        Damon Ding <damon.ding@rock-chips.com>,
+        Steven Liu <steven.liu@rock-chips.com>,
+        Jon Lin <jon.lin@rock-chips.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/10/23 14:47, Alexander Stein wrote:
-> Hello Marek,
-> 
-> Am Dienstag, 10. Januar 2023, 14:37:19 CET schrieb Marek Vasut:
->> On 1/10/23 14:22, Alexander Stein wrote:
->>> Hi Marek,
->>
->> Hi,
->>
->>> thanks for your feedback.
->>>
->>> Am Dienstag, 10. Januar 2023, 11:31:49 CET schrieb Marek Vasut:
->>>> On 1/10/23 11:00, Alexander Stein wrote:
->>>>
->>>> [...]
->>>>
->>>>>     static int rs9_get_output_config(struct rs9_driver_data *rs9, int
->>>>>     idx)
->>>>>     {
->>>>>     
->>>>>     	struct i2c_client *client = rs9->client;
->>>>>
->>>>> +	u8 dif = rs9_calc_dif(rs9, idx);
->>>>>
->>>>>     	unsigned char name[5] = "DIF0";
->>>>>     	struct device_node *np;
->>>>>     	int ret;
->>>>>     	u32 sr;
->>>>>     	
->>>>>     	/* Set defaults */
->>>>>
->>>>> -	rs9->clk_dif_sr &= ~RS9_REG_SR_DIF_MASK(idx);
->>>>
->>>> Are you sure this line ^ should be dropped ?
->>>> Shouldn't the bitfield be cleared first and modified second?
->>>
->>> Well, I had in my mind that this function is called upon probe with
->>> clk_dif_sr being cleared anyway, so this does essentially nothing. And
->>> the DIF bit is set unconditionally, so what is the point of masking it
->>> before?
->>
->> Good point, but then, what's the point of ORRing either ? Just do a
->> plain assignment.
-> 
-> OR-ring is necessary as this function is called for each DIF output (see idx
-> parameter), so plain assignment will clear the previously set bits.
+On Mon, 9 Jan 2023 at 21:28, Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> From: Jianqun Xu <jay.xu@rock-chips.com>
+>
+> This adds the pin controller data for rk3588 and rk3588s.
+>
+> Signed-off-by: Shengfei Xu <xsf@rock-chips.com>
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> Signed-off-by: Steven Liu <steven.liu@rock-chips.com>
+> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+> [port from vendor tree merging all fixes]
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
 
-Ah, got it.
-
-Reviewed-by: Marek Vasut <marex@denx.de>
-
-Thanks !
+Acked-by: Jagan Teki <jagan@edgeble.ai>
+Tested-by: Jagan Teki <jagan@edgeble.ai> # edgeble-neu6a
