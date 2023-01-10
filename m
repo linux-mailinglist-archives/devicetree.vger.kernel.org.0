@@ -2,129 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECBB5664393
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:48:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F36D6643A6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:50:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230266AbjAJOsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 09:48:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57914 "EHLO
+        id S238525AbjAJOud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 09:50:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238651AbjAJOro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 09:47:44 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668D55016B
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 06:47:42 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id bu8so18792258lfb.4
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 06:47:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oC6Slw+iKJOpkqUIFmGD5udzCvyiuBOqJH++fmsGseM=;
-        b=TDXSVSlGYEu9wx86DSCFMRENfgxdhYqL6Q00fIBGgwLukHTFJ/vBpzYK4dYfJoNOG1
-         BNVNqc6N12XZGIgMe6UOUFzyYG4DbvUzFxGtoFRRpERfU/ByIrJlunqtxsNRHWkvzeQq
-         2MG6RzdObxrfRTYX878my/nttqLdp7k39GfJRow7KX9nmMptHOjIvpwHkbWgGNr6CnoJ
-         ELQCyxcFsgtLKAa3ZiTRkJSb+sxOCNapemzYW+j6jV92fCHiZZQkjChuWm0oHPIYyx7l
-         VVBCE977YwZkM0CMWZOV15e3MniOPGAzx+ofWuAuUoYuiTdrFBSpNyhOjlMVYb6qX6mx
-         bSzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oC6Slw+iKJOpkqUIFmGD5udzCvyiuBOqJH++fmsGseM=;
-        b=Y3lR2isBGhb0In9H7Kgo7T9rl9hHOGfxXdzzGgVEvw2ppSGfI7hqCrUV/x25oSdc+Y
-         nu2gV9ZKVI31uTCpO8SpCteYAMU4U4MPeFIl6cAaudmkpmPTHqe3Zvz/71lUCh4RQRyT
-         PwqwuDUV/qtrAmK9Qmk+n0j8xwhteTQhNVANksx7QIy+yv0GnEItLi5WBdxV08YTdXaY
-         azqupzcAzjwCROT7qs1nUYO9iRKSCI8msUQ85wFNR05n71w7zjDKFW4Xmof7Wabsa4vk
-         mLhcPW+FlBsTgP7yFNGwbSiloXwfAajPjIuRiWznEuJg+/Pd4HTDLLUbeayirkDJxW7O
-         rk5g==
-X-Gm-Message-State: AFqh2krr+a1v21GeLMYT+KEqCdN81d86M8K0/InpyTGGf6iYIaBcEigh
-        SR5FjEvpmI/XY6HupSzXQZYt7A==
-X-Google-Smtp-Source: AMrXdXuCUR9iaAID5nIgInaSTTilyC8KWakB4zt3ieCjtcqZn7uaPk4S7saQ2QwKzkZpUY0h+6qxtg==
-X-Received: by 2002:a05:6512:2828:b0:4b5:98ca:548 with SMTP id cf40-20020a056512282800b004b598ca0548mr23451134lfb.39.1673362060699;
-        Tue, 10 Jan 2023 06:47:40 -0800 (PST)
-Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id p7-20020ac24ec7000000b004b587e37265sm2206967lfr.58.2023.01.10.06.47.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 06:47:40 -0800 (PST)
-Message-ID: <5eabb9a1-d748-a9ef-e966-80eee55a74a2@linaro.org>
-Date:   Tue, 10 Jan 2023 15:47:38 +0100
+        with ESMTP id S238697AbjAJOuW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 09:50:22 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928B44FCF2;
+        Tue, 10 Jan 2023 06:50:21 -0800 (PST)
+Received: from [IPv6:2a00:23c7:6883:e501:329c:8425:8e97:eae9] (unknown [IPv6:2a00:23c7:6883:e501:329c:8425:8e97:eae9])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: obbardc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 333C76602D2B;
+        Tue, 10 Jan 2023 14:50:20 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1673362220;
+        bh=PuiPwo9HwFOEDukFjeBEsAsNhLoAsOISooyAzQZgE/w=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=UivahFaqCKHK7Q4kYjRZ0yMLGxV6O43ZLqbqa963ojOEkNEB00rZgasESwe0l2Yly
+         agYPc543Wp1sa0jIwBe4BxXlXGHhhD4xouGAZkfnF0uoy83jcy+UJ6QQrYPljyA8A9
+         GDt73mfiVhgocAEv/1rD30/SaT3QWBl43/pSQMXLmEOSXLsurpEw9X3tmC0kxGNMut
+         KhQ1woUZVdY9zEDahM92UaQ076g8q6MnGLwLgt16OKCyWbBuxR+hnhD1dnbbm9H8y3
+         IOjnSmv0h+2rLVVXJoSLArvVme9SsqJGkFc4cZ7SIug/VkbEkT+e6q7r6orOwlJu8X
+         Sl2MxGQHm8uEw==
+Message-ID: <996e39448350d4f6318f7ff59c6a2ca249fb30a7.camel@collabora.com>
+Subject: Re: [PATCHv8 7/7] arm64: dts: rockchip: Add rock-5b board
+From:   Christopher Obbard <chris.obbard@collabora.com>
+To:     Jagan Teki <jagan@edgeble.ai>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Date:   Tue, 10 Jan 2023 14:50:17 +0000
+In-Reply-To: <CA+VMnFxb1P4tP5sef5ME3jCcCq2Y3rD-0bpv1B0TsUZ3RXXuqg@mail.gmail.com>
+References: <20230109155801.51642-1-sebastian.reichel@collabora.com>
+         <20230109155801.51642-8-sebastian.reichel@collabora.com>
+         <CA+VMnFxb1P4tP5sef5ME3jCcCq2Y3rD-0bpv1B0TsUZ3RXXuqg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.2-1 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 4/7] arm64: dts: qcom: Add msm8939 SoC
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org, djakov@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
-        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
-        Jun Nie <jun.nie@linaro.org>,
-        James Willcox <jwillcox@squareup.com>,
-        Joseph Gates <jgates@squareup.com>,
-        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230103010904.3201835-1-bryan.odonoghue@linaro.org>
- <20230103010904.3201835-5-bryan.odonoghue@linaro.org>
- <6e594438-843a-d03e-5276-d6316a9dc2c0@linaro.org>
- <88d66834-ca80-888b-e56e-7694e84b6eae@linaro.org>
- <411a1a02-568e-3695-0a24-0681fbe9f265@linaro.org>
- <bde66389-619b-771d-1956-43059f8e4d5a@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <bde66389-619b-771d-1956-43059f8e4d5a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 2023-01-10 at 19:30 +0530, Jagan Teki wrote:
+> On Mon, 9 Jan 2023 at 21:28, Sebastian Reichel
+> <sebastian.reichel@collabora.com> wrote:
+> >=20
+> > From: Christopher Obbard <chris.obbard@collabora.com>
+> >=20
+> > Add board file for the RK3588 Rock 5B board. This is a basic
+> > implementation which just brings up the eMMC and UART which is
+> > enough to successfully boot Linux.
+> >=20
+> > The ethernet controller is connected via PCIe so support will
+> > come in a follow-up patch.
+> >=20
+> > Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
+> > Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> > =C2=A0arch/arm64/boot/dts/rockchip/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
+> > =C2=A0.../boot/dts/rockchip/rk3588-rock-5b.dts=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 44
+> > +++++++++++++++++++
+> > =C2=A02 files changed, 45 insertions(+)
+> > =C2=A0create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dt=
+s
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile
+> > b/arch/arm64/boot/dts/rockchip/Makefile
+> > index 87a853435142..c5bdd0176ce0 100644
+> > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > @@ -83,4 +83,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-evb1-
+> > v10.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-odroid-m1.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-rock-3a.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-evb1-v10.dtb
+> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-rock-5b.dtb
+> > =C2=A0dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-rock-5a.dtb
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > new file mode 100644
+> > index 000000000000..d2f1e963ce06
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > @@ -0,0 +1,44 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "rk3588.dtsi"
+> > +
+> > +/ {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 model =3D "Radxa ROCK 5 Model B";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "radxa,rock-5b", "=
+rockchip,rk3588";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 aliases {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 mmc1 =3D &sdhci;
+>=20
+> I think sdhci - emmc has to be mmc0 due to boot priority.
 
+Hi Jagan,
 
-On 10.01.2023 14:42, Bryan O'Donoghue wrote:
-> On 10/01/2023 13:24, Krzysztof Kozlowski wrote:
->> On 10/01/2023 14:14, Bryan O'Donoghue wrote:
->>> On 03/01/2023 09:14, Krzysztof Kozlowski wrote:
->>>> ../arch/arm64/boot/dts/qcom/msm8939.dtsi:1825.23-1842.5: Warning
->>>> (simple_bus_reg): /soc@0/mmc@7824000: simple-bus unit address format
->>>> error, expected "7824900
->>>
->>> For the record the driver consuming this dt entry requires the host regs
->>> to come first followed by the core
->>>
->>> sdhc_1: mmc@7824000 {
->>>           compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
->>>           reg = <0x07824900 0x11c>, <0x07824000 0x800>;
->>>           reg-names = "hc", "core";
->>> }
->>>
->>> If I change this and the msm8916 to
->>
->> That's not the solution. The warning is saying that unit address does
->> not match your reg. You need to correct unit address.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Is it not the case that the unit-address should match the first reg
-Yes
+We kept eMMC as mmc1 for both ROCK 5 Model A and B to keep
+compatibility with vendor kernel:
+https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/dts/=
+rockchip/rk3588-rock-5b.dts#L31
 
- and that the first reg should also be the lowest address ?
-Depends on what the first reg is, bindings usually dictate the order.
+But I am happy to change the alias to mmc0, @Sebastian what do you
+think?
 
-Konrad
-> 
-> ---
-> bod
+Thanks
+Chris
