@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75D466638C4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 06:49:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5BDF6638CB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 06:50:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbjAJFt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 00:49:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52928 "EHLO
+        id S231222AbjAJFtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 00:49:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231149AbjAJFsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 00:48:39 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328B4431AB
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 21:47:32 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id f34so16597599lfv.10
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 21:47:32 -0800 (PST)
+        with ESMTP id S229826AbjAJFtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 00:49:01 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF6426F7
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 21:49:00 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id bp15so16615129lfb.13
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 21:49:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sjlcbVEgS5pgrAjtiDRiz81od9MScN0SBmwZV8y/lIs=;
-        b=SrXc9fMrzGJBPKtaDr9H/2PtiGIoWp7vzGiZa3QXIVOzdnPNHj+Gg3cJhcKmPhWPGk
-         zFF5piQbTPqBRWYVrybTXvmOygaq6XMEUqck6aapxH45bbqyIEoN15UpW4iyFXs1fJe9
-         juKrr+tPimFaqDGwJmbMHXl/vMM6U8WwtkI/iO+tsqtoYPuFKE7dvrfIZyGL6Ds9cr1T
-         WLCdsk1LfMuAZQNXx7QO315gx6CHEvWsILN9xy7iy3f4eH78fjmIjx2jVvZSQar7BF9l
-         deIcihzYmhuV+Q8My/N/kxKeCBKV84kSTuLWUIykCl8DR42FimSk8U/R/z28AhyJt5MP
-         MZQw==
+        bh=wEZQCF7r/hKH3+PuKuaEzx+VX+jWeUSGLdP7kMpvbXk=;
+        b=mnMXExPNaUGbHc03oJdZNZQ6xvbloLJpihN+Im7a+alsvj7Gu1N7RgMAcEeq5kRHLz
+         XySlHGCIKONS5ikU+ebg6EAbhztICZwdEeJOYarE/aIqE9ixPEU5quxCsVmt3LimRmp+
+         nn0U1fcXeUowMEjgBRuRckP8aV6k0+mDQe4VAQ6lshQXPvrGdOKyJFqpHr19f9VvTAgi
+         2TFgxrBhYYX4oWbJfMstPdibYHJKFgydedX2dOWG39f/Nvg+k3VBfdYkvwHyqG4BPe6G
+         5COmChwVzUjBWDUR5/LiTaBjeY9vPpnEGIzquuB/2D+BB7BIPBCF2fkhWf2396IPHpkX
+         P4Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sjlcbVEgS5pgrAjtiDRiz81od9MScN0SBmwZV8y/lIs=;
-        b=ON4DJNrlvsKj26qWpU8J9CLFNji1Z15DPg6Y9A28la52xnxosG3i07qsSczZKVnxzb
-         02r9pfqkOxumAh6YofwcZ9UoWOHv3/QdWNO4pzAnblFCBOtPdbxLKLWXRkyJKTLISf4F
-         EaTRiYbu7LDgQFUHvXPcfCrYanZZOhBDbRmlY6xPa7NVKrRlAWxwk/qdeDtl3UBAQKK9
-         BBJ3+8ZP+qdtQCrgw9LDMipiznZT3V7IHtH/FpAMZCbIztafP5f5pa1kVsgizMwtR1xp
-         8F+2UfejnRw3BtrwILs7rQwtsMq0UWRY5K8TBbarInhziYyFE6Q7dvV0FsleQi6BAUsu
-         jPMw==
-X-Gm-Message-State: AFqh2koQ9UobzVSHb/gWnSIBY7K1iUafPAxzkm4CGQM1izAyquJf2o/4
-        oseQ4mxVnyYbfjjFVQbMW254Hw==
-X-Google-Smtp-Source: AMrXdXuwuTdxaEcEUK1aqTKbAxOoMfEtFDgOViKB9zqN6QGZvAv1BcY7LatZ/ouCEGtzFXpln7UQBw==
-X-Received: by 2002:a05:6512:6d6:b0:4a4:68b9:609b with SMTP id u22-20020a05651206d600b004a468b9609bmr22353836lff.38.1673329650416;
-        Mon, 09 Jan 2023 21:47:30 -0800 (PST)
+        bh=wEZQCF7r/hKH3+PuKuaEzx+VX+jWeUSGLdP7kMpvbXk=;
+        b=EI7Bs5/p6csSA3Ukw7Uc6z4dTs8gT9d8MjAP3OK/uzaxO1Ul9HsWjenvcSSaUoCr2s
+         PlLRHhK6QvIGFS8cdGdEZY+qiiDT4eDwaDJSVpkdEWrb14L4S8HSw4/KKQz7U1sTMJ6e
+         OdTrBP4QDCfqeetRtlo8t15QDyUcmnK1UnqOujclVMHlEvgsf5R4m32Y/UZc5uUWsDg6
+         VZ/E5QURmIzf3IUuXI7K7HLC98nEuBjKUCE3x8+1phA1u+/eBWQLr+yUwJaPGTykYIZV
+         vkCWsiSpw1zkDOY3sPIMGj+bdAGBCgIBmqyQtSPWiW9YGhpDD7m6+HtEAHPz+xoJdyvf
+         qnIg==
+X-Gm-Message-State: AFqh2krX+e+pfYmGmaad0Vo7S/5d/Q3of90AMvB0DmJxTwysMmYbLe2C
+        zq3m7cMbCRcD3VU8XZ7cNJd1gflJ65uxhZAy
+X-Google-Smtp-Source: AMrXdXtObN18+uFW0MQGD2/uG7h9Qi5wnyK0DtAuzC9YHGEtGEZhRUnE5aoLscqQo1UoyDffAU2GHA==
+X-Received: by 2002:a05:6512:64:b0:4cc:71d2:eff3 with SMTP id i4-20020a056512006400b004cc71d2eff3mr3044316lfo.21.1673329738963;
+        Mon, 09 Jan 2023 21:48:58 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id cf33-20020a056512282100b004a05767bc07sm2006201lfb.28.2023.01.09.21.47.29
+        by smtp.gmail.com with ESMTPSA id b9-20020a056512218900b004b57162edfasm1998300lft.117.2023.01.09.21.48.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 21:47:29 -0800 (PST)
-Message-ID: <fc525e85-c271-3912-f19b-25a9e90dc2a9@linaro.org>
-Date:   Tue, 10 Jan 2023 07:47:29 +0200
+        Mon, 09 Jan 2023 21:48:58 -0800 (PST)
+Message-ID: <913f2772-2673-4270-030c-c036984d36c6@linaro.org>
+Date:   Tue, 10 Jan 2023 07:48:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v6 05/18] dt-bindings: msm: dsi-controller-main: Document
- clocks on a per compatible basis
+Subject: Re: [PATCH v6 04/18] dt-bindings: msm: dsi-controller-main: Add
+ compatible strings for every current SoC
 Content-Language: en-GB
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
@@ -66,12 +66,12 @@ Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
         krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
         konrad.dybcio@somainline.org, agross@kernel.org,
         andersson@kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 References: <20221223021025.1646636-1-bryan.odonoghue@linaro.org>
- <20221223021025.1646636-6-bryan.odonoghue@linaro.org>
+ <20221223021025.1646636-5-bryan.odonoghue@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221223021025.1646636-6-bryan.odonoghue@linaro.org>
+In-Reply-To: <20221223021025.1646636-5-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,276 +84,83 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 23/12/2022 04:10, Bryan O'Donoghue wrote:
-> Each compatible has a different set of clocks which are associated with it.
-> Add in the list of clocks for each compatible.
+> Currently we do not differentiate between the various users of the
+> qcom,mdss-dsi-ctrl. The driver is flexible enough to operate from one
+> compatible string but, the hardware does have some significant differences
+> in the number of clocks.
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> To facilitate documenting the clocks add the following compatible strings
+> 
+> - qcom,apq8064-dsi-ctrl
+> - qcom,msm8916-dsi-ctrl
+> - qcom,msm8953-dsi-ctrl
+> - qcom,msm8974-dsi-ctrl
+> - qcom,msm8996-dsi-ctrl
+> - qcom,msm8998-dsi-ctrl
+> - qcom,sc7180-dsi-ctrl
+> - qcom,sc7280-dsi-ctrl
+> - qcom,sdm660-dsi-ctrl
+> - qcom,sdm845-dsi-ctrl
+> - qcom,sm8250-dsi-ctrl
+> - qcom,qcm2290-dsi-ctrl
+> 
+> Deprecate qcom,dsi-ctrl-6g-qcm2290 in favour of the desired format while we
+> do so.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->   .../display/msm/dsi-controller-main.yaml      | 209 ++++++++++++++++--
->   1 file changed, 192 insertions(+), 17 deletions(-)
+>   .../display/msm/dsi-controller-main.yaml      | 26 ++++++++++++++++---
+>   1 file changed, 22 insertions(+), 4 deletions(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 98d54a7ee28d4..4b79b31123515 100644
+> index 6e2fd6e9fa7f0..98d54a7ee28d4 100644
 > --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 > +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -9,9 +9,6 @@ title: Qualcomm Display DSI controller
->   maintainers:
->     - Krishna Manikandan <quic_mkrishn@quicinc.com>
+> @@ -14,9 +14,27 @@ allOf:
 >   
-> -allOf:
-> -  - $ref: "../dsi-controller.yaml#"
-> -
 >   properties:
 >     compatible:
->       oneOf:
-> @@ -46,22 +43,23 @@ properties:
->       maxItems: 1
->   
->     clocks:
-> -    items:
-> -      - description: Display byte clock
-> -      - description: Display byte interface clock
-> -      - description: Display pixel clock
-> -      - description: Display core clock
-> -      - description: Display AHB clock
-> -      - description: Display AXI clock
-> +    description: |
-> +      Several clocks are used, depending on the variant. Typical ones are::
-> +       - bus:: Display AHB clock.
-> +       - byte:: Display byte clock.
-> +       - byte_intf:: Display byte interface clock.
-> +       - core:: Display core clock.
-> +       - core_mss:: Core MultiMedia SubSystem clock.
-> +       - iface:: Display AXI clock.
-> +       - mdp_core:: MDP Core clock.
-> +       - mnoc:: MNOC clock
-> +       - pixel:: Display pixel clock.
-> +    minItems: 3
-> +    maxItems: 9
->   
->     clock-names:
-> -    items:
-> -      - const: byte
-> -      - const: byte_intf
-> -      - const: pixel
-> -      - const: core
-> -      - const: iface
-> -      - const: bus
-> +    minItems: 3
-> +    maxItems: 9
->   
->     phys:
->       maxItems: 1
-> @@ -157,6 +155,183 @@ required:
->     - assigned-clock-parents
->     - ports
->   
-> +allOf:
-> +  - $ref: ../dsi-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
+> -    enum:
+> -      - qcom,mdss-dsi-ctrl
+> -      - qcom,dsi-ctrl-6g-qcm2290
+> +    oneOf:
+> +      - items:
+> +          - enum:
 > +              - qcom,apq8064-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 7
-> +        clock-names:
-> +          items:
-> +            - const: iface
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: src
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
 > +              - qcom,msm8916-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: iface
-> +            - const: bus
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
 > +              - qcom,msm8953-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: iface
-> +            - const: bus
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
 > +              - qcom,msm8974-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: iface
-> +            - const: bus
-> +            - const: vsync
-
-8974 has broader clocks list:
-
-@@ -244,12 +248,16 @@ allOf:
-      then:
-        properties:
-          clocks:
--          maxItems: 3
-+          maxItems: 7
-          clock-names:
-            items:
-+            - const: mdp_core
-              - const: iface
-              - const: bus
--            - const: vsync
-+            - const: byte
-+            - const: pixel
-+            - const: core
-+            - const: core_mmss
-
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
 > +              - qcom,msm8996-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 7
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: byte
-> +            - const: iface
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
 > +              - qcom,msm8998-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
+> +              - qcom,qcm2290-dsi-ctrl
 > +              - qcom,sc7180-dsi-ctrl
 > +              - qcom,sc7280-dsi-ctrl
+> +              - qcom,sdm660-dsi-ctrl
+> +              - qcom,sdm845-dsi-ctrl
 > +              - qcom,sm8250-dsi-ctrl
 
-Could you please also add sm8150 and sm8[345]50?
+If you would for any reason send v7, could you please also add sm8150 
+and sm8[345]50?
 
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sdm660-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 9
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: mnoc
-> +            - const: iface
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sdm845-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-> +
->   additionalProperties: false
+> +          - const: qcom,mdss-dsi-ctrl
+> +      - items:
+> +          - enum:
+> +              - dsi-ctrl-6g-qcm2290
+> +          - const: qcom,mdss-dsi-ctrl
+> +        deprecated: true
 >   
->   examples:
+>     reg:
+>       maxItems: 1
+> @@ -149,7 +167,7 @@ examples:
+>        #include <dt-bindings/power/qcom-rpmpd.h>
+>   
+>        dsi@ae94000 {
+> -           compatible = "qcom,mdss-dsi-ctrl";
+> +           compatible = "qcom,sc7180-dsi-ctrl", "qcom,mdss-dsi-ctrl";
+>              reg = <0x0ae94000 0x400>;
+>              reg-names = "dsi_ctrl";
+>   
 
 -- 
 With best wishes
