@@ -2,156 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33D77663DE8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 11:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A23A5663DF0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 11:21:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238137AbjAJKT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 05:19:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41838 "EHLO
+        id S231373AbjAJKU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 05:20:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231182AbjAJKTe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 05:19:34 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A667621A
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:18:04 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id l26so8391377wme.5
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:18:04 -0800 (PST)
+        with ESMTP id S231149AbjAJKUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 05:20:25 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DEDF5597
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:18:49 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id bk16so11164838wrb.11
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:18:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PM3i+83BPLCvCkjcHeSsVRsAE5H2Nw7gtRNrJCRY2Ks=;
-        b=dCctDUIS0wC58/aHLK5o+YpcliPRN6sleu5Xkbclt/zqSjkzezo8juF4OGzlLsvyGf
-         tUK3Rkiu727qQvxILep6HVoaAKnbkXRJxXvgarWY5BU8gAhVnxynCpG6cAqFAtwFfQan
-         3pwJ3RN0AT5mFJYR+byVFD9HC1x7kN8/SimGHmYJMdTQmmPWlFJml+nBX3qwrwOyQ0L2
-         UvUktrvtRBUHh2RAj9it+AGiFB2eOiNTbZqual4iMCHAWr+CVeoF7M3ea+Zyeosp0P2O
-         Fta/A301YwGUtq0CiX/gKZAwpIxyloMcGasDLKovqyrb3C28XcQSXdlOKbYVcLBa90Gh
-         bQdg==
+        bh=4lF+I3IZGlW6iQ6ahmwbsDzM8+tWLOBVyd6OiKcSFJc=;
+        b=p3PParYA8KGG+kEGndNuuk53p2OotMq6umpPRQ7c/GtpxUk/GHFDH/K0b1+6876nn6
+         eKL9dT/UJs5wg/EyX2ohFP2i/5le1ThOIQcsgdXMsXPWoH1lprlMSvvSEF9GJp0acL/r
+         MJKihYYpwR6J1Ggl+5ukNiRDdCCB6+ReDIxfSBUAHC9FRjo4iKYYzYY1lunnj10Qo30I
+         mDJWcUMVz3uy8EYeWID7sH5I5dK2T3FCc1U2bkqm4c9EThOTQ5b+U8Nwze/pkSYu13QK
+         hoCfg1r4O6KagyZVMqPbtD4KQA7nfGQKjFlMPT1tLuipCauAgPeuy1u3Bc/QURpec8W+
+         koFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PM3i+83BPLCvCkjcHeSsVRsAE5H2Nw7gtRNrJCRY2Ks=;
-        b=6z8Hpm1GljI+ZvIfjNe0Ycxd33NsYihYehtw+DS1qTgREioLy9NmkD80xJzwKNRRlw
-         Liznkl11VMhrcmAgG/DlbH3+rmxRaR4QjodsSnTJD+TVE9M6QoRVK5FHdRlXR9XYCyJS
-         nTsxDDm9eB9roURY75uQpMoA+Mgszmde8OouvAAMD0tvGk9BxnTyiF7lh41aY1jAX5xY
-         Pf1POYpilsHLFHewr+HaJZWOoeZBnusj3bxgIstuUnMDMi0Yg5uCOdPIw0Yjl2Zcp7j/
-         b0rf8YTVb1MhvIM+whSFuouEm3r1ud4hI05sn8AHNdU1a1+aQ0XUAkS3ADA0XvDy9Zic
-         IrOw==
-X-Gm-Message-State: AFqh2krq6tqkDOrlHA+2i4t2ZyDL7dGanNy//oX3SyfiE9fzOvmrh/fu
-        9TkNx76S6hGdCc4RAMSTQHJzhA==
-X-Google-Smtp-Source: AMrXdXvxClrR4BtCis3ALpFrfvnnBH5INQXfgVxgssgGc8gS8VU+28Qjf2O0/5xOZ+1CSwryJpUEpQ==
-X-Received: by 2002:a05:600c:48a1:b0:3d1:f270:a81e with SMTP id j33-20020a05600c48a100b003d1f270a81emr48836013wmp.17.1673345883348;
-        Tue, 10 Jan 2023 02:18:03 -0800 (PST)
+        bh=4lF+I3IZGlW6iQ6ahmwbsDzM8+tWLOBVyd6OiKcSFJc=;
+        b=yxkisShx8N+XQvwP1WzGyZwoC7Xkhwk1Dx/U5znjkc3WyNLiYnfEpXkEMJ1cxN0MNI
+         QEzt8XOFmLg1l1voWVF76dCv8DVzrbyZxOFS8M3z/y/PQh9R1u31qc92m/oUppMQytZm
+         9ISBLEjoFH7VLY0ZwkcKPM9FHNAvRAAFggipnaTe1V8dp9jeI8leeMa+2/3ic6OMmY7p
+         eo/vUBf/63fphbD6G84MX5op+lkBILwsZpY1XpbUkKJf52ORjUbznjVZnbYnMqrlKAOF
+         tDDN+aBRuur/zBddVlcj67QeBewnSq06aUFgXJIxvgYs33WWm/G5jHqp8D3qVKVMmffh
+         Rj6Q==
+X-Gm-Message-State: AFqh2kr7NyqSanJ2t0SXfIkfQWwc6+viN+N3UV7srzew+8byLToW+1aE
+        uMuB3OB/AnFd1b9o06PiOnFfVw==
+X-Google-Smtp-Source: AMrXdXsePNb6CJiFfvKx91mPGpm+s7CJpvoR6yOe0br86Uvjf8qBg99U0O0bjD8zr9GupHHCfFI1Kg==
+X-Received: by 2002:adf:f746:0:b0:2b8:bcd8:1818 with SMTP id z6-20020adff746000000b002b8bcd81818mr9852381wrp.1.1673345928024;
+        Tue, 10 Jan 2023 02:18:48 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z9-20020a7bc7c9000000b003d9ef37ec1bsm8484251wmk.5.2023.01.10.02.17.53
+        by smtp.gmail.com with ESMTPSA id k2-20020a5d5182000000b00236545edc91sm10905950wrv.76.2023.01.10.02.18.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 02:18:02 -0800 (PST)
-Message-ID: <e3d32fe1-9f2b-09fb-d7e0-2c8f42e5365c@linaro.org>
-Date:   Tue, 10 Jan 2023 11:17:52 +0100
+        Tue, 10 Jan 2023 02:18:47 -0800 (PST)
+Message-ID: <6967cb78-b6b4-6801-cd7f-3d5abe503cbf@linaro.org>
+Date:   Tue, 10 Jan 2023 11:18:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 09/11] dt-bindings: mmc: convert amlogic,meson-gx.txt
- to dt-schema
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: Add OmniVision OV8858
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v2-9-36ad050bb625@linaro.org>
+To:     Jacopo Mondi <jacopo@jmondi.org>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        devicetree@vger.kernel.org
+References: <20230109120129.24519-1-jacopo@jmondi.org>
+ <20230109120129.24519-2-jacopo@jmondi.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-9-36ad050bb625@linaro.org>
+In-Reply-To: <20230109120129.24519-2-jacopo@jmondi.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 13:53, Neil Armstrong wrote:
-> Convert the Amlogic SD / eMMC controller for S905/GXBB family SoCs
-> to dt-schema.
+On 09/01/2023 13:01, Jacopo Mondi wrote:
+> From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 > 
-> Take in account the used variant with amlogic,meson-gx-mmc.
+> Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../bindings/mmc/amlogic,meson-gx-mmc.yaml         | 75 ++++++++++++++++++++++
->  .../devicetree/bindings/mmc/amlogic,meson-gx.txt   | 39 -----------
->  2 files changed, 75 insertions(+), 39 deletions(-)
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> new file mode 100644
-> index 000000000000..30228964fd9c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/amlogic,meson-gx-mmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic SD / eMMC controller for S905/GXBB family SoCs
-> +
-> +description:
-> +  The MMC 5.1 compliant host controller on Amlogic provides the
-> +  interface for SD, eMMC and SDIO devices
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - amlogic,meson-gx-mmc
-> +          - amlogic,meson-axg-mmc
-> +      - items:
-> +          - const: amlogic,meson-gx-mmc
 
-This does not look correct. Either gx is alone (not compatible with
-gxbb) or it is compatible with gxbb. Cannot be both.
-
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
