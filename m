@@ -2,95 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE6C66412C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:04:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3120664153
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:10:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231738AbjAJNEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 08:04:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37092 "EHLO
+        id S238616AbjAJNKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 08:10:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238503AbjAJNEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:04:08 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DCF9353706;
-        Tue, 10 Jan 2023 05:04:06 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.112.33])
-        by gateway (Coremail) with SMTP id _____8AxGupEYr1jmb4AAA--.2223S3;
-        Tue, 10 Jan 2023 21:04:04 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.112.33])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxUuVCYr1jFm8XAA--.7157S2;
-        Tue, 10 Jan 2023 21:04:03 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Andy Shevchenko <andy@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org
-Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Peibao Liu <liupeibao@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH V10 4/4] LoongArch: Enable LS2X I2C in loongson3_defconfig
-Date:   Tue, 10 Jan 2023 21:04:21 +0800
-Message-Id: <32e154ef6d141b7d4d434078303094d23537513c.1673340642.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1673340642.git.zhoubinbin@loongson.cn>
-References: <cover.1673340642.git.zhoubinbin@loongson.cn>
+        with ESMTP id S238569AbjAJNKU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:10:20 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2634861339;
+        Tue, 10 Jan 2023 05:10:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C0635B8165B;
+        Tue, 10 Jan 2023 13:10:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 02CDCC433F0;
+        Tue, 10 Jan 2023 13:10:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673356217;
+        bh=AfYxGeKxmGTnRJ9VdzNFjXfxJwHYO6+E6nqMF8fjxxU=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=gJVnos5a/oJEvijdI0jN+J9SsCyp5eiWrwGhtIY+fLXJxGvFchDHwlSwxxo65gi6i
+         W+VMMfm+zKndYlXtOjew8V9bDIcYDomkdmIbYIfUNBCWg+Jz0A3A2TvmgP92lp/1Gl
+         NQjgQoz6ziVsWkNVpdrct0NC3VHUfsbl3XJN86+irgNnyC3J3z4ag5+XQeLXwEW0Mk
+         NgJaPezVCxt1wEChyJsjTt9FOg7l9LNhJ7TJhcDdkq/odf7GbuBaiJApt5kgqh0Ri4
+         h8NIYj3o+LhBzBXCetpM+FUNwn1DilGOz7v0Tni9gpMT+GFlfu7VVnLVFZR0SR1KqH
+         /SfirgNHnt2oA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id DD692E21EE9;
+        Tue, 10 Jan 2023 13:10:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxUuVCYr1jFm8XAA--.7157S2
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7Jry5XrWkuF48uF15Ww1fXrb_yoWxKFX_JF
-        y7Kw1kWr48JFZ7W3WIqw4rGw4DA3W7X3WFkr17Zw1xX3Waqr13JrWDAw17C3Z0ga4DWr43
-        ZaykJF9F9r18tjkaLaAFLSUrUUUUnb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
-        t7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
-        AFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
-        6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
-        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
-        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26rWY6Fy7McIj6I8E
-        87Iv67AKxVWxJVW8Jr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I
-        0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCI
-        bckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_Jr
-        I_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v2
-        6ryj6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7
-        xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_
-        Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j2XdUUUUUU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH net-next v3 0/4] net: phy: mxl-gpy: broken interrupt fixes
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <167335621689.15666.4497972475901169056.git-patchwork-notify@kernel.org>
+Date:   Tue, 10 Jan 2023 13:10:16 +0000
+References: <20230109123013.3094144-1-michael@walle.cc>
+In-Reply-To: <20230109123013.3094144-1-michael@walle.cc>
+To:     Michael Walle <michael@walle.cc>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lxu@maxlinear.com,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is now supported, enable for Loongson-3 systems.
-Other systems are unaffected.
+Hello:
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- arch/loongarch/configs/loongson3_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+This series was applied to netdev/net-next.git (master)
+by Paolo Abeni <pabeni@redhat.com>:
 
-diff --git a/arch/loongarch/configs/loongson3_defconfig b/arch/loongarch/configs/loongson3_defconfig
-index cb52774c80e8..5677c4f8576e 100644
---- a/arch/loongarch/configs/loongson3_defconfig
-+++ b/arch/loongarch/configs/loongson3_defconfig
-@@ -602,6 +602,7 @@ CONFIG_HW_RANDOM_VIRTIO=m
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_PIIX4=y
- CONFIG_I2C_GPIO=y
-+CONFIG_I2C_LS2X=y
- CONFIG_SPI=y
- CONFIG_GPIO_SYSFS=y
- CONFIG_GPIO_LOONGSON=y
+On Mon,  9 Jan 2023 13:30:09 +0100 you wrote:
+> The GPY215 has a broken interrupt pin. This patch series tries to
+> workaround that and because in general that is not possible, disables the
+> interrupts by default and falls back to polling mode. There is an opt-in
+> via the devicetree.
+> 
+> v3:
+>  - move phy_device::dev_flags after the struct phy_device definition.
+>    also add a comment. Thanks Russell.
+>  - add a rationale for the new devicetree property in the commit
+>    message
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,v3,1/4] dt-bindings: vendor-prefixes: add MaxLinear
+    https://git.kernel.org/netdev/net-next/c/dd1a98a375a6
+  - [net-next,v3,2/4] dt-bindings: net: phy: add MaxLinear GPY2xx bindings
+    https://git.kernel.org/netdev/net-next/c/90c47eb169ac
+  - [net-next,v3,3/4] net: phy: allow a phy to opt-out of interrupt handling
+    https://git.kernel.org/netdev/net-next/c/7d885863e716
+  - [net-next,v3,4/4] net: phy: mxl-gpy: disable interrupts on GPY215 by default
+    https://git.kernel.org/netdev/net-next/c/97a89ed101bb
+
+You are awesome, thank you!
 -- 
-2.31.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
