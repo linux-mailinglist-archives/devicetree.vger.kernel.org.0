@@ -2,131 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FB45664001
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 13:12:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38047664016
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 13:17:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237833AbjAJMMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 07:12:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55536 "EHLO
+        id S230235AbjAJMRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 07:17:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjAJMMS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 07:12:18 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B7403F114;
-        Tue, 10 Jan 2023 04:10:20 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id bp15so18050709lfb.13;
-        Tue, 10 Jan 2023 04:10:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2WaSXC/7/FBuPmv1FQzNBeYruyUkb12FiGFU5VIm2z8=;
-        b=agrV2mnxYLZzJNW6DkkkULffC6Cz18gmtiaM/p8dwu2UN3yj6+wOE5XWZOlWHdrLtq
-         fvZHm/EHfhQQlCtO9/1wQx1treC00ax7IbuX8OuiqD7vl2ZBENXBxxEFXgHRS08+NkoT
-         gxJPCTSkND/Js+GpQW2Jk0ROxGzua8soEp5ER2nOem9uSe557Y0QRbrQPOMvzFL8mcUB
-         8yDG2VO7sLTXnuhJ0G9dInT9IlQ4Z6YEi6byoEaaNCkbdS8EnE7BzZLkW6PREsJJzMDE
-         KKHFXJhAH6lWI+VF/lKYU4OTokmqfvaUHfAhSr9WldlOFIuLXuuE/wuTn15trOkI0GgE
-         s5Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2WaSXC/7/FBuPmv1FQzNBeYruyUkb12FiGFU5VIm2z8=;
-        b=dLZV1gCQA8VlnbgSxfoXhO85fS9y5vWB01rutCZ95jNVUgCy9Xp+ZMaW0PyFnpBvvG
-         9P/Cpha6Edfs0+N9n9fMYUPWOKVa3rLxzthKoJdQ4aLrU5A+KsneQhfCrp1UEG6Sbqjd
-         KjOo1DxKQmS2+DlhAXjwb+n6Fx/SsE/itb8YQ5TbeigGNWVOEOD7qNMsjdG3bnP6IvQA
-         IsNVQp4cwADrlXovnPHSyHRia1C5iCliQM1TZD7b9KuuyNeklK/PpDxcOrdwkBsN/Zuo
-         4i4xzfJ+x9eIVvPQV9bDnjBdAxlqwr7r8y33WckbomtZGt8jeOHevKXpmkRzgV4C3VV2
-         iRpw==
-X-Gm-Message-State: AFqh2koOuIl7TIb2VMML36xxT09ccjYOw42I2E3bTxRwKLk2+nncYSYR
-        E9oaAEs6nc+cZGzVUl3pAHc=
-X-Google-Smtp-Source: AMrXdXv+dtnEvvWJBFwendVrqh2Yhdxxr+OlgC5zeS9lPm7yd8g8AGK/fDnALYu3PbHL6s+vDKe2NA==
-X-Received: by 2002:a05:6512:2586:b0:4b5:9e70:ca6e with SMTP id bf6-20020a056512258600b004b59e70ca6emr1134630lfb.17.1673352618547;
-        Tue, 10 Jan 2023 04:10:18 -0800 (PST)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id d18-20020a056512369200b004b4a0482a53sm2150468lfs.231.2023.01.10.04.10.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 04:10:18 -0800 (PST)
-Date:   Tue, 10 Jan 2023 15:10:16 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
-        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 12/15] spi: dw: Add retry for enhanced spi mode
-Message-ID: <20230110121016.apwgvjhhkkxrmvrq@mobilestation>
-References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
- <20221212180732.79167-13-sudip.mukherjee@sifive.com>
+        with ESMTP id S231558AbjAJMQh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 07:16:37 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D5C6E439;
+        Tue, 10 Jan 2023 04:14:45 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30A9w4Xu031071;
+        Tue, 10 Jan 2023 12:13:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=z20tJobFKqp8P2GDt2CeXWklO9iiXXON3HY9jIYDOhM=;
+ b=GQO4ks4OQ2qCnj00bfGjLfL9Z3snXB1l0m7sqjFnXSmuemfKysoUmmbHDg8gB9DgeVUa
+ SQQyOg/+icNJquutYTVz0gAGTNfAHtRDIAxc2FlG9m4YhNmSlstSZbAkzcapuZApMCQ+
+ Cg1NVUAAze9h6GQlwlf6s/O2rEs9r68FPB4MSzWqyApYNB5qoSUTXmraxXJL1+9x4Atk
+ matWgTWBexoqZX9ehTfOqmDCLXOOIrowLHnCNdeh9mSmZ46V98HgiGwKC78GNe0hORdV
+ 6ETZ5jKBLz+478vQXKoMutBKFppC0uK8voAuBapHGH2qiyJAFCHQzcXpO0S9IIpJdQp6 CQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n156x0d4u-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 10 Jan 2023 12:13:53 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30ACDoGZ024123
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 10 Jan 2023 12:13:50 GMT
+Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 10 Jan 2023 04:13:41 -0800
+From:   devi priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <tdas@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+Subject: [PATCH 0/7] Add minimal boot support for IPQ9574
+Date:   Tue, 10 Jan 2023 17:43:09 +0530
+Message-ID: <20230110121316.24892-1-quic_devipriy@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221212180732.79167-13-sudip.mukherjee@sifive.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: WQopVxlCkpvPHm4FZ6WKv3KoR-nMUF6n
+X-Proofpoint-GUID: WQopVxlCkpvPHm4FZ6WKv3KoR-nMUF6n
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-10_03,2023-01-10_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ mlxlogscore=683 spamscore=0 impostorscore=0 phishscore=0 clxscore=1011
+ mlxscore=0 priorityscore=1501 suspectscore=0 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301100074
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 06:07:29PM +0000, Sudip Mukherjee wrote:
-> If the connection to the spi device is not stable then the transfer can
-> fail. Add retry for DW_SPI_WAIT_RETRIES times and print error if it still
-> fails.
-> 
-> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
-> ---
->  drivers/spi/spi-dw-core.c | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-> index dff7b419af304..cef56acd8d8fd 100644
-> --- a/drivers/spi/spi-dw-core.c
-> +++ b/drivers/spi/spi-dw-core.c
-> @@ -906,7 +906,7 @@ static void dw_spi_enh_write_cmd_addr(struct dw_spi *dws, const struct spi_mem_o
->  	}
->  }
->  
-> -static int dw_spi_exec_enh_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
-> +static int dw_spi_try_enh_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
->  {
->  	struct spi_controller *ctlr = mem->spi->controller;
->  	struct dw_spi *dws = spi_controller_get_devdata(ctlr);
-> @@ -991,6 +991,21 @@ static int dw_spi_exec_enh_mem_op(struct spi_mem *mem, const struct spi_mem_op *
->  	return ret;
->  }
->  
+The IPQ9574 is Qualcomm's 802.11ax SoC for Routers,
+Gateways and Access Points.
 
-> +static int dw_spi_exec_enh_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
-> +{
-> +	struct spi_controller *ctlr = mem->spi->controller;
-> +	struct dw_spi *dws = spi_controller_get_devdata(ctlr);
-> +	int retry, ret = -EIO;
-> +
-> +	for (retry = 0; retry < DW_SPI_WAIT_RETRIES && ret != 0; retry++)
-> +		ret = dw_spi_try_enh_mem_op(mem, op);
-> +
-> +	if (retry == DW_SPI_WAIT_RETRIES)
-> +		dev_err(&dws->master->dev, "Retry of enh_mem_op failed\n");
-> +
-> +	return ret;
+This series adds minimal board boot support for ipq9574-al02-c7 board
 
-No. If something goes wrong during the transfer you should return an
-error and let the upper layer to decide whether to retry or pass the
-failure further.
+POOVENDHAN SELVARAJ (1):
+  arm64: dts: Add ipq9574 SoC and AL02 board support
 
--Serge(y)
+devi priya (6):
+  dt-bindings: arm64: ipq9574: Add binding descriptions for clock and
+    reset
+  clk: qcom: Add Global Clock Controller driver for IPQ9574
+  dt-bindings: pinctrl: qcom: Add ipq9574 pinctrl bindings
+  pinctrl: qcom: Add IPQ9574 pinctrl driver
+  dt-bindings: qcom: Add ipq9574 bindings
+  arm64: defconfig: Enable IPQ9574 SoC base configs
 
-> +}
-> +
->  /*
->   * Initialize the default memory operations if a glue layer hasn't specified
->   * custom ones. Direct mapping operations will be preserved anyway since DW SPI
-> -- 
-> 2.30.2
-> 
+ .../devicetree/bindings/arm/qcom.yaml         |    7 +
+ .../bindings/clock/qcom,gcc-other.yaml        |    4 +
+ .../devicetree/bindings/clock/qcom,gcc.yaml   |    9 +-
+ .../bindings/pinctrl/qcom,ipq9574-tlmm.yaml   |  129 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts  |   69 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  318 ++
+ arch/arm64/configs/defconfig                  |    2 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-ipq9574.c                | 4706 +++++++++++++++++
+ drivers/pinctrl/qcom/Kconfig                  |   10 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-ipq9574.c        | 1003 ++++
+ include/dt-bindings/clock/qcom,gcc-ipq9574.h  |  226 +
+ include/dt-bindings/reset/qcom,gcc-ipq9574.h  |  164 +
+ 16 files changed, 6657 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq9574-tlmm.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
+ create mode 100644 drivers/clk/qcom/gcc-ipq9574.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq9574.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-ipq9574.h
+ create mode 100644 include/dt-bindings/reset/qcom,gcc-ipq9574.h
+
+
+base-commit: 1fe4fd6f5cad346e598593af36caeadc4f5d4fa9
+-- 
+2.17.1
+
