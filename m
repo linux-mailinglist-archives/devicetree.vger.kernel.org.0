@@ -2,122 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1386F664E44
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 22:48:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A75D4664E6A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 23:01:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232382AbjAJVsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 16:48:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50930 "EHLO
+        id S234273AbjAJWB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 17:01:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231808AbjAJVsp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 16:48:45 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB375BA1E;
-        Tue, 10 Jan 2023 13:48:44 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id tz12so32191236ejc.9;
-        Tue, 10 Jan 2023 13:48:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=M3b2Vz7EFrY4ZoAZ7zhZDOrT9y3BFK6sS3AzbYrmCT4=;
-        b=SbL0sV3pbNJK6Bfyz2VD6czCXh94iQNaxKjXTjpArf+vHkqL2nrS4tK4IMhXZLfjob
-         c09q+NtJP7jTDEHqrpo4z+vxiPked3kTWBAamhe6hgWly3pGWP1K2kIFb6xFE1EMHHuA
-         W7zBN02N/9NXq5XxJ/cNLh3c3H5r4KcNP2TGEaQlZGQMQVMYxos6BKl4aN9W3LHnQDlo
-         uGtcnMyr0/OMndxB8218GOxLOCJBH6euzCMpEExz1HDoJNY47/pGCsIUK7g0mauCBUMm
-         nVxzqMQVGuqTMbJEYrlXPc7O60AVGYgvu35Ga9sqHDSFK9Pb5q0iDpNSZZ8SpIE1m8RL
-         PTXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=M3b2Vz7EFrY4ZoAZ7zhZDOrT9y3BFK6sS3AzbYrmCT4=;
-        b=fUMh71S66H28vZIRLr3XOsfl1hUdLK7jQExEefa90/maNxxcnsg2umxkOUy/n5GtD3
-         M3dRv879gscuiH4j6nhIYW++efFY1fCE4Gj3Uf2emGU4STYvRHtKsWFslsvIKkP64XfM
-         r1gTin2au4hefq7I4f5s6f8VvKF4jWcKuONuJhEbAaileqdfkHEMdN21nAKKTXbAya9P
-         qjoXWdRC5lcdJG2m68XBUcOSOqRqabBtDftf6+oTAaHa7HQHy1ioAOKXAhv0adtgcHd5
-         aiDGTPdzmaYmSDRH2Iwn+eUfOUGjbCgySiG2AuYbTktJS2fei65EZg45jFlybi2SDDye
-         /znA==
-X-Gm-Message-State: AFqh2kp/8mKR5J4tw7pIM86QkCUZqYig3J+qakrqBK7wPpYieKmBRHpL
-        2NUTJx63O+mZ8AUXka7KKgeTrHFUhVJKIsonF+w=
-X-Google-Smtp-Source: AMrXdXvZWTCfsyyAyIXqF03H40iDiOq0blSYlASCBEmUrGVmKB7QN5KAlN7UDroP7DZCIIDm9TmpeUqouJfNZE/s2tk=
-X-Received: by 2002:a17:906:e4f:b0:7c0:ae1c:3eb7 with SMTP id
- q15-20020a1709060e4f00b007c0ae1c3eb7mr4388606eji.510.1673387322980; Tue, 10
- Jan 2023 13:48:42 -0800 (PST)
-MIME-Version: 1.0
-References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v2-4-36ad050bb625@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v2-4-36ad050bb625@linaro.org>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 10 Jan 2023 22:48:32 +0100
-Message-ID: <CAFBinCDd1MJEmSHR1XPsfBoRasBq+cV1F+66sCBXALtCCmoyUA@mail.gmail.com>
-Subject: Re: [PATCH v2 04/11] dt-bindings: watchdog: convert meson-wdt.txt to dt-schema
-To:     Neil Armstrong <neil.armstrong@linaro.org>
+        with ESMTP id S231808AbjAJWBV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 17:01:21 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB547183A4;
+        Tue, 10 Jan 2023 14:01:19 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8E9C9B819B6;
+        Tue, 10 Jan 2023 22:01:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3819AC433D2;
+        Tue, 10 Jan 2023 22:01:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673388077;
+        bh=M5rts+D30gn+VWBW52xohLqDKxs2pcijUxIUeXZGA1U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PliotbDymRLYIkcaTmlGbbwKLVSGDgWxgLy8o/JeEYOU1sCncW4M1p+Y5krZKt75o
+         p5+QLMiwo9Fbp1GugcLkut7w5jhPRVNMJQkkv4TyG/krRkAPHj7StmYpT7CSDPIVxA
+         uc2FTsrW4qZCGgiw/zuJsQegcumY+oxYq5uAUiDLDcs7+1xYpPXsdwTmxL8bYDgosd
+         IsP//3x0a3THLQssrE1BqJPSw4KcyYTXoLtoORduuniDF6+YbAEq3pNRXO3MgSfmr5
+         d2Aym4psoCiVAtwFHIFldXrTkje+YZa5E6Rke65dMX58VdSm1wOayfb0NmfuYM/x9U
+         tpIOpon3+yrJA==
+Date:   Tue, 10 Jan 2023 22:01:10 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     William Zhang <william.zhang@broadcom.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        kursad.oney@broadcom.com, dregan@mail.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
-        netdev@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/16] dt-bindings: spi: Add spi peripheral specific
+ property
+Message-ID: <Y73gJhlzHz6waIvf@sirena.org.uk>
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-4-william.zhang@broadcom.com>
+ <Y7iPS48viBg0QRok@sirena.org.uk>
+ <3ff9a7fa-25dd-701c-078e-03e47bd3c08b@broadcom.com>
+ <CAL_JsqJ7kr-6xs53NYJufem=wXnXVRnj3-1t1rG+W6g09kJ3ew@mail.gmail.com>
+ <6720e3a4-dbbb-f490-98db-511a52b9a2ab@broadcom.com>
+ <Y7xosoZMJEwRi1ok@sirena.org.uk>
+ <f55ab390-a784-d598-8d0e-b78040fdbb73@broadcom.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8k6YxWNEbCoXLS2/"
+Content-Disposition: inline
+In-Reply-To: <f55ab390-a784-d598-8d0e-b78040fdbb73@broadcom.com>
+X-Cookie: Live free or die.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
 
-On Mon, Jan 9, 2023 at 1:53 PM Neil Armstrong <neil.armstrong@linaro.org> wrote:
-[...]
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - amlogic,meson6-wdt
-> +          - amlogic,meson8-wdt
-Technically this is not an identical representation of what we had
-before which was:
--       "amlogic,meson8-wdt" and "amlogic,meson6-wdt" on Meson8 SoCs
+--8k6YxWNEbCoXLS2/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-We're not using the "amlogic,meson8-wdt" compatible anywhere at the moment.
-In the meson_wdt driver it's defined with the same per-SoC data as
-"amlogic,meson6-wdt".
+On Mon, Jan 09, 2023 at 12:18:09PM -0800, William Zhang wrote:
 
-Long story short: In my opinion there's no need to change what you
-have right now.
-If you have to re-spin this then maybe you can add a note to the patch
-description.
-Please add my:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> This setting is set per spi message for particular chip select of the device
+> when starting the message through bcm63xx_hsspi_set_clk function and restore
+> to default(clock gating) when message is done through
+> bcm63xx_hsspi_restore_clk_gate.
+
+In that case I am extremely confused about what the feature is supposed
+to do.  The description says:
+
++  brcm,no-clk-gate:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Some SPI device such as Broadcom ISI based voice daughtercard requires
++SPI
++      clock running even when chip select is deasserted. By default the
++      controller turns off or gate the clock when cs is not active to save
++      power. This flag tells the controller driver to keep the clock running
++      when chip select is not active.
 
 
-Best regards,
-Martin
+which to me sounds like the clock should never be turned off and instead
+left running at all times.  Switching back to clock gating after sending
+the message doesn't seem to correspond to the above at all, the message
+being done would normally also be the point at which chip select is
+deasserted.
+
+--8k6YxWNEbCoXLS2/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO94CUACgkQJNaLcl1U
+h9CdJAf/QI6A4fWPY4QxulQZlgN08+3prwWv5cDXiANd7ma60ajOD9YwY0ajx9gb
+iM6BzxPjLHgbRvvR0WtDxt47NWLBJr2rf9B4hBTjr5EZdX2fWurcx3aJTnD+eNG2
+x7zASz234aU7ZEPr3jNsm/JAs2nJYJDiAVBSNPuplyX4fDmPUZQmrDBP3uaAhdO9
+7WzWvaPY8ZomdB4V1Onv0oz9x8xXX/c0Ngx36V4XR1zsOqbnbzValVoHDJ6y3geu
+d6ejtbA1wtuowzV3csuYVq/tkw3Az9h9idivu3UW7qaTmvjIUL374AHeSUUG+b1C
+Dr4pP7nqnpJkzBu179zn+QlTBB/j0A==
+=qE5i
+-----END PGP SIGNATURE-----
+
+--8k6YxWNEbCoXLS2/--
