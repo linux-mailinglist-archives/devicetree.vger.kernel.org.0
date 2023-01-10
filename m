@@ -2,90 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B34AF663E0C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 11:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24632663E14
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 11:25:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbjAJKYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 05:24:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
+        id S231852AbjAJKZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 05:25:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238317AbjAJKXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 05:23:19 -0500
+        with ESMTP id S238055AbjAJKYV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 05:24:21 -0500
 Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9DF5A1BC
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:22:39 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id e3so1981466wru.13
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:22:39 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38BCD1DF03
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:24:09 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id co23so11209975wrb.4
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 02:24:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ctK7ZyN2QqifD5vli3AqrEm055mrM6gMAEL00lxhJZg=;
-        b=razDtEVjbFgLq+LYEZKHsaTisUEBpVP1ZTmNc7dDUG5W6V4rEK8fppIk2sM2W+8QO/
-         4kewjuRoiUyeOriGg3RTKmg+20zwsXd6pN6Sp3rmLtBroBmDrSjonzD0ew+zsbxERlYY
-         taRLSJy5lRq3Zc1xlDfXmQChti3NoWDNnLF9LEVL4nNg6BrdTDdG1/0t5okuwyUbRgKK
-         Es1u1J5DD6higs3IaU0nvOMoMOzaWvzOuTOtDudfGgLFRmA3SYSC3JYntXhOLgeDSZxD
-         kd6O74uJ18EqgEMA7nixiNN/DQm9JkGYIFZTWmlByu6YygJl68Q9JJjT0HvmJaPG9q6U
-         Ad7A==
+        bh=XLuOyy3s/0baMT8hoAYpR+YXI8ZPhEsWih1Yp+EEAhQ=;
+        b=pi3Oh+ribc/7TS0Nv6nUkkgM7Wph4SIDHFUakaFGzg16lXtD9WH1xxl+4Z8UM4T6VA
+         qvq8DLCJ6lm8xfuHxayBC7XK7+XyYFC4pI3j6LO9IRTnB8qY6+gFuPC29ZaSCuZkBi/U
+         FxrzoZjc3Vv6C7n2ISLjtxFJWTNZfXDJ4T2rj82oxNBqVZjQ8Do5IUkMIywZ0knD2932
+         ON3/G8M857odxTh9bNnAYg14gc/eDKWMYbjtI35YTbmeSTwRPr/InWQHabpToX1Dd/Co
+         3OgmsBW+vYsa9c9IFc0nErqRVHJD/4bTU4GLlvLm3FW01vWzX1xTQb5SaMX6KVZa0YWU
+         HDgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ctK7ZyN2QqifD5vli3AqrEm055mrM6gMAEL00lxhJZg=;
-        b=UPxsR9l+8jNxF2EP55CCLpoYiGWaGK9m5D98gF+Pm7XVAvCUDXkLtPJQXWF6bNDXLV
-         uCOMre8tYHhNPVfMuT+FplpKgFLCzR8oca+4Qp1VHUcW8ul1r1ci09yOc701F68fiCu9
-         9fkHnejPg4Y8eK1vHhVmiR0JcHoYjU9rBfy1pXJOiHxJ2PaQZs+Nb9XoSo7UVdupj4Ak
-         FiayXZZHTk4//jgC38lDDQlMjNkE4ov0ZiqavBvRzPjkUhAAtXEI8w8Bg2eovjk9tqJd
-         JiB8THj7YwMI0TuOh0p1w5dwacw1BbZknlowkchFt8M/SFfmqsbduN4/kC64AB7a8biB
-         3GZw==
-X-Gm-Message-State: AFqh2koP8oK9GIDwgLPJVI7U2paAoofFyVgRlyUIvvvFOmbnV0H9/jgc
-        qhM4fdUWpKwoq82QpAvd7g7oDQ==
-X-Google-Smtp-Source: AMrXdXsr5rGo+5MTh8YMx455vuw7O1viFs0yOXa+irSqZILtSqfJ5xTgwGtTGjwiFsT3Fi92hckBVw==
-X-Received: by 2002:a05:6000:705:b0:267:e918:d1e6 with SMTP id bs5-20020a056000070500b00267e918d1e6mr42811873wrb.51.1673346158340;
-        Tue, 10 Jan 2023 02:22:38 -0800 (PST)
+        bh=XLuOyy3s/0baMT8hoAYpR+YXI8ZPhEsWih1Yp+EEAhQ=;
+        b=5xVw3v/GxBsgl/dFCgHjbY6XzlIWX+9n9zVN3FuxBUMTbIgYy+HiCY5QLLH39wppBR
+         Lv1f7vAp7C8roeWlHeFe94F9VJPRB72KlIsFYs6mXplgqysJ1xK1px3tARLOvW6zcLwA
+         yVBimv2cOLU9HchUsiVsgUBbnFeFzRSqVQsutHGJBXX2EitolOd4DXDzWSc1+zJIyDR7
+         4jNgFsweQFa4AJf8YIXswKCIXx2LUBPE4KxZMFZd29GEnjGE4k0y+RMBkGsTzP0n3tqq
+         btCgYg9RliUAYZ3w2zTy/dsP6kechpEL86awqqi7o5xeT1IwTCXmTQ19LCunD8oYZGMS
+         Gsag==
+X-Gm-Message-State: AFqh2krX1DUNDKy2CVuD0+iatRQUePw2YJobS05QWQsf5xkVu34go9SH
+        Z2fIxK97wFH/qfk+QkPFljGRnQ==
+X-Google-Smtp-Source: AMrXdXuhBtSofMAb4pe/KhOs/hoE2XHHPja+Es5fHCB2f8hxEWzT6s1BovuMVbKotq8AOJTVPf4gIA==
+X-Received: by 2002:a5d:4dd0:0:b0:2bc:8057:acc with SMTP id f16-20020a5d4dd0000000b002bc80570accmr3077205wru.7.1673346247753;
+        Tue, 10 Jan 2023 02:24:07 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a14-20020adff7ce000000b002549b649b62sm10689139wrq.50.2023.01.10.02.22.36
+        by smtp.gmail.com with ESMTPSA id t17-20020adff611000000b00236488f62d6sm10633857wrp.79.2023.01.10.02.24.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 02:22:37 -0800 (PST)
-Message-ID: <c45a7d39-eb09-a33c-5b91-8cb1d8effaac@linaro.org>
-Date:   Tue, 10 Jan 2023 11:22:35 +0100
+        Tue, 10 Jan 2023 02:24:07 -0800 (PST)
+Message-ID: <f27f5487-785b-5366-8de4-6df991fab8b4@linaro.org>
+Date:   Tue, 10 Jan 2023 11:24:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 0/2] Input: cap11xx add support for cap1203, cap1293
- and cap1298
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
 Content-Language: en-US
-To:     Jiri Valek - 2N <jiriv@axis.com>
-Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        u.kleine-koenig@pengutronix.de
-References: <20230103134105.736346-3-jiriv@axis.com>
- <20230104135951.930783-1-jiriv@axis.com>
+To:     Maarten Zanders <maarten.zanders@mind.be>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230110092342.24132-1-maarten.zanders@mind.be>
+ <20230110092342.24132-2-maarten.zanders@mind.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230104135951.930783-1-jiriv@axis.com>
+In-Reply-To: <20230110092342.24132-2-maarten.zanders@mind.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/01/2023 14:59, Jiri Valek - 2N wrote:
-> PATCH 1 - add compatible string for new models
-> PATCH 2 - add support for new models into driver
+On 10/01/2023 10:23, Maarten Zanders wrote:
+> Add a binding to configure the internal charge pump for lp55xx.
 > 
+> Signed-off-by: Maarten Zanders <maarten.zanders@mind.be>
+> ---
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
