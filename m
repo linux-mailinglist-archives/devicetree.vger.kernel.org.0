@@ -2,82 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E88CD664959
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 19:20:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD2CC664994
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 19:23:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239206AbjAJSUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 13:20:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59324 "EHLO
+        id S234882AbjAJSXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 13:23:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239287AbjAJSUJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 13:20:09 -0500
-X-Greylist: delayed 8620 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 10 Jan 2023 10:17:58 PST
-Received: from out203-205-221-233.mail.qq.com (out203-205-221-233.mail.qq.com [203.205.221.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5114BBE22
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 10:17:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
-        s=s201512; t=1673374675;
-        bh=TO5uIw7LawmTRUVg1uOWAoT8iMzgTp3NUNuLS9n+qFw=;
-        h=From:To:References:In-Reply-To:Subject:Date;
-        b=rpHqwePUdnF4j5fyJuu6+iPZawZ0FJ3CAusIWVCljBtjz6AaGeS4h7s7imCagYr98
-         qvXzecrrS7UCcdFsSZROLGLtFJm9ByAa9Y1TFB/qbQ4BqlsTqEPHlWakMUo2Is4gkt
-         tfzqyze/ox7IO2YjBO8jJuvr3HGdiC1e/jwB+1ZY=
-Received: from DESKTOPZMX ([2409:8a4c:808f:5b0:d92f:83a8:9ac7:4de5])
-        by newxmesmtplogicsvrszc1-0.qq.com (NewEsmtp) with SMTP
-        id 474A6EB3; Wed, 11 Jan 2023 02:17:52 +0800
-X-QQ-mid: xmsmtpt1673374672tjhvya1qy
-Message-ID: <tencent_98E029F744FE85B9FD68B570A45A01743F07@qq.com>
-X-QQ-XMAILINFO: NJRsSVeNb6U+epZkfnlGQVAFskOSIaqZ6s4RfLzRaOB8PUX6bvtmSKJes7jgZh
-         rrdYabgWm5MneQOrWKYq4czEB27cTdk7t21B80s///zWH4m1jFjHLuEFdjQKiE4QXxa+hNv7sFC+
-         0a6B1HwdHiRLh5iTBPwsSU5SVVxzXagmawtAmZgLh3gQS0t8vuNh8FkY6fbkqRG5VID65J/1UN+s
-         6i4CStYOfG2WVC9EbSZxahxGJo4hjxf63wzOHAI/LxGrtDNM9yGobnzwm2BcGhyRQQZqRZSejDnL
-         6y1wEz/vXCPMsI9LFm7uM6tmtOU+c/sTE7dGwPYUk8amci/Ns7b0Q9bVecXYzvM0ifddEVh1EJnv
-         ZlXlL+jg4Pt0s2eLwBMO7Voick5cjR81oPGJYXsKR+CzmA0ePTeSqjnYmGJr1YzajQGP+VCt11Kr
-         p+wrelDQgdYS48WRmyPlyD2QXH1qrKtk56N9l025XswifLovLA8KlMZw9l9kn84k4b8m0Cwt4YQO
-         jnsRi+jf0Rj+whfTEr1BtvA3QB2q+8Tog3NRf1fRblMVH1o3giXciEO2vpNDdxX8+NK1rFSVAnxb
-         0KKRnpMBwWSjHR06tM1+gQBIkw36NeK2F5aG+RESR561y8VvBhDJggsjYAo6J6QUGHagdkuRToo1
-         eO+CgPqpyzlbmfPc6JP3MOirlF4vLSBOwsAGnbbQXPFN7e3RPYKYSydMbe++baJ8pkeOaf/GyH1A
-         EaZt1F3Rvwwn0nYjuf6UmpLJWOCgNtlw9Lh3sCO8Zj7+a4LveSxrn1wLGQBgxOk6fLVw9GKdxdYk
-         NphvFhb+HA1f1bE8OcabWmSpB8gfMpwY5I/Q8dvJbXC60TxXOgViAYNgL9O+NdL/neFqkvmC4rDc
-         W5nvjCu91m1FOd1zSsA9gJoYcxhbI4C5pxbrsVh/DoiGFI7jdTSmn1L4vkoWqjeHfIRk/BVr+W2c
-         NvOUaxFWI=
-From:   <forbidden405@foxmail.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Andy Gross'" <agross@kernel.org>,
-        "'Bjorn Andersson'" <andersson@kernel.org>,
-        "'Konrad Dybcio'" <konrad.dybcio@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230110155014.31664-1-forbidden405@foxmail.com> <tencent_A7FA00B086BB0EFFDC1C64744FF85DAD2B06@qq.com> <8530aeef-8fdb-ede7-700e-856e5cbc6a5b@linaro.org>
-In-Reply-To: <8530aeef-8fdb-ede7-700e-856e5cbc6a5b@linaro.org>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8916-zhihe: Add initial device tree for zhihe Wifi/LTE dongle UFI-001C and uf896
-Date:   Wed, 11 Jan 2023 02:17:49 +0800
-X-OQ-MSGID: <04fd01d9251f$da0e89a0$8e2b9ce0$@foxmail.com>
+        with ESMTP id S239274AbjAJSWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 13:22:24 -0500
+Received: from mail-vs1-xe30.google.com (mail-vs1-xe30.google.com [IPv6:2607:f8b0:4864:20::e30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1864A91539
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 10:19:53 -0800 (PST)
+Received: by mail-vs1-xe30.google.com with SMTP id k6so4258335vsk.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 10:19:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hA0Pw3KP+amQXRAeZCCzrAJsBb0v6nDzxipAZweN7dA=;
+        b=IQtVa/QIFYBn0bIIOeZ2U3e/ftqxJwNpa/ROjRb5wM22UhC4tZXBGJiCSMo0KZz8bZ
+         17PecANxrH71L2d3XdhIQ9I2L8CjZ//POgIcw5leeAh/IzVOysnIy/mAIUjByOV45rGN
+         76gYC9vaQYF2DNmYbqDxlSpuEtv4Sv3oKIaskx2eN/cHn0TgXkI8v0ySfr2jaHjlSkOF
+         3k8tL3xCMEquyMccnVLpSdg9QEKMnYroEZZoNS7tQLddg06hl2Rl9uMhvjh4SIybiB89
+         v9XPxHtIwaA8QocM77mz5rWmj3EDEmTuh6AHO+iMBA/v7I9Dot6bE7GrYPCltfJnDpcV
+         fLyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hA0Pw3KP+amQXRAeZCCzrAJsBb0v6nDzxipAZweN7dA=;
+        b=jh1ief+Pq21GqBG123uzBxnQbSFrH0tP86sIRL7N54HQGF5/A38AgbM29MQeIABdeq
+         WtKMSplva85wp2GEHzNDb8WGT06kzvlvnrKv1aOqUX72Ng8UzzzRAmnSL6ZHTEc4X2L3
+         Dx5g/8HT6VqKYiz0AQgIWwaMrthkzeN3X5K3HfQeb5U21RNvVSD9nZNdt0WTwIYcN2/h
+         wvYhIdxnbRNkItUVD9sc99E4tlogplsD8p76+l+lJprn2YDKAeRhKRk5BBCliXKgUK7H
+         D5gR8g2zuOKzBRWJdfVbYYwS2pYPcdMzNh3kn8Xz6pXFjZBY/zRLQxC3MTu0QII5ts5Q
+         oOtw==
+X-Gm-Message-State: AFqh2krOV+YFNGPm/J9B0M86kOln991NUGaQCSW25UNqBBWno6kWUBvD
+        VsuYQ3LHu3lJZzrbxtFHmBbryQV8wWe9q0L3tZoZvHDK/ZbmiA==
+X-Google-Smtp-Source: AMrXdXuSHk0CQbnTHp8EHTvtqvWmfCgn2vRDewj39io/zHa/GYs1ehgR6E9maDM+O5R89cutEHSBHI6ZbXt/VLLNZcc=
+X-Received: by 2002:a67:f44a:0:b0:3ce:c752:6432 with SMTP id
+ r10-20020a67f44a000000b003cec7526432mr3483536vsn.23.1673374792060; Tue, 10
+ Jan 2023 10:19:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: zh-cn
-Thread-Index: AQEO7BERPzOKD8mdDN9nK2Zc/pFyZgG3SCqUAZiImfcCrwVvdA==
-X-Spam-Status: No, score=3.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,HELO_DYNAMIC_IPADDR,RCVD_IN_DNSWL_NONE,RDNS_DYNAMIC,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ***
+References: <20221214220727.1350784-3-jcormier@criticallink.com>
+ <20230109233534.1932370-1-jcormier@criticallink.com> <20230109233534.1932370-4-jcormier@criticallink.com>
+ <d49d4b4c-e7ee-e0a1-56e6-7f193e0d1340@roeck-us.net>
+In-Reply-To: <d49d4b4c-e7ee-e0a1-56e6-7f193e0d1340@roeck-us.net>
+From:   Jon Cormier <jcormier@criticallink.com>
+Date:   Tue, 10 Jan 2023 13:19:40 -0500
+Message-ID: <CADL8D3YEkZaOjUY3mRLGT0M+b7MwN5zQZrbsw5W8Mn=PJ7PtcA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] hwmon: ltc2945: Handle error case in ltc2945_value_store
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bob Duke <bduke@criticallink.com>,
+        John Pruitt <jpruitt@criticallink.com>,
+        Dan Vincelette <dvincelette@criticallink.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for your review, but I don't know how to deal with such a 
-device with unknown vendor. Do you have any idea and show me
-some possible solutions? If "zhihe" is dropped, what can be a substitute?
+On Mon, Jan 9, 2023 at 7:04 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 1/9/23 15:35, Jonathan Cormier wrote:
+> > ltc2945_val_to_reg errors were not being handled
+> > which would have resulted in register being set to
+> > 0 (clamped) instead of being left alone.
+> >
+> > Change reg_to_val and val_to_reg to return values
+> > via parameters to make it more obvious when an
+> > error case isn't handled. Also to allow
+> > the regval type to be the correct sign in prep for
+> > next commits.
+> >
+>
+> Sorry, I don't see that as reason or argument for such invasive changes.
+> As far as I can see, a two-liner to check the return value of val_to_reg()
+> should have been sufficient. Most of the rest, such as splitting
+> the return value into two elements, is POV and just adds additional code
+> and complexity for zero gain.
+I can do that. However, you had also mentioned changing the return
+type to match what the calling function was expecting, an unsigned
+long. But I can't do that since error codes are negative so it would
+be a signed long which would lose precision and seemingly defeat the
+point of matching the variable type the caller wants.  I could make it
+a signed long long but that still doesn't match.  So it seemed saner
+to just return the error and the value separately, that way the
+function declaration was explicit about the types it wanted/returned,
+and less room for error.  Would love to know your preferred solution.
 
-Best regards,
-Yang
+>
+> Guenter
+>
+> > Fixes: 6700ce035f83 ("hwmon: Driver for Linear Technologies LTC2945")
+> >
+> > Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+> > ---
+> >   drivers/hwmon/ltc2945.c | 30 ++++++++++++++++++------------
+> >   1 file changed, 18 insertions(+), 12 deletions(-)
+> >
+> > diff --git a/drivers/hwmon/ltc2945.c b/drivers/hwmon/ltc2945.c
+> > index 9af3e3821152..c66acf8d2124 100644
+> > --- a/drivers/hwmon/ltc2945.c
+> > +++ b/drivers/hwmon/ltc2945.c
+> > @@ -70,12 +70,12 @@ static inline bool is_power_reg(u8 reg)
+> >   }
+> >
+> >   /* Return the value from the given register in uW, mV, or mA */
+> > -static long long ltc2945_reg_to_val(struct device *dev, u8 reg)
+> > +static int ltc2945_reg_to_val(struct device *dev, u8 reg, u64 *regval)
+> >   {
+> >       struct regmap *regmap = dev_get_drvdata(dev);
+> >       unsigned int control;
+> >       u8 buf[3];
+> > -     long long val;
+> > +     u64 val;
+> >       int ret;
+> >
+> >       ret = regmap_bulk_read(regmap, reg, buf,
+> > @@ -148,11 +148,12 @@ static long long ltc2945_reg_to_val(struct device *dev, u8 reg)
+> >       default:
+> >               return -EINVAL;
+> >       }
+> > -     return val;
+> > +     *regval = val;
+> > +     return 0;
+> >   }
+> >
+> >   static int ltc2945_val_to_reg(struct device *dev, u8 reg,
+> > -                           unsigned long val)
+> > +                           unsigned long val, unsigned long *regval)
+> >   {
+> >       struct regmap *regmap = dev_get_drvdata(dev);
+> >       unsigned int control;
+> > @@ -220,19 +221,21 @@ static int ltc2945_val_to_reg(struct device *dev, u8 reg,
+> >       default:
+> >               return -EINVAL;
+> >       }
+> > -     return val;
+> > +     *regval = val;
+> > +     return 0;
+> >   }
+> >
+> >   static ssize_t ltc2945_value_show(struct device *dev,
+> >                                 struct device_attribute *da, char *buf)
+> >   {
+> >       struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
+> > -     long long value;
+> > +     int ret;
+> > +     u64 value;
+> >
+> > -     value = ltc2945_reg_to_val(dev, attr->index);
+> > -     if (value < 0)
+> > -             return value;
+> > -     return sysfs_emit(buf, "%lld\n", value);
+> > +     ret = ltc2945_reg_to_val(dev, attr->index, &value);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +     return sysfs_emit(buf, "%llu\n", value);
+> >   }
+> >
+> >   static ssize_t ltc2945_value_store(struct device *dev,
+> > @@ -245,7 +248,7 @@ static ssize_t ltc2945_value_store(struct device *dev,
+> >       unsigned long val;
+> >       u8 regbuf[3];
+> >       int num_regs;
+> > -     int regval;
+> > +     unsigned long regval;
+> >       int ret;
+> >
+> >       ret = kstrtoul(buf, 10, &val);
+> > @@ -253,7 +256,10 @@ static ssize_t ltc2945_value_store(struct device *dev,
+> >               return ret;
+> >
+> >       /* convert to register value, then clamp and write result */
+> > -     regval = ltc2945_val_to_reg(dev, reg, val);
+> > +     ret = ltc2945_val_to_reg(dev, reg, val, &regval);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> >       if (is_power_reg(reg)) {
+> >               regval = clamp_val(regval, 0, 0xffffff);
+> >               regbuf[0] = regval >> 16;
+>
 
 
+--
+Jonathan Cormier
+Software Engineer
+
+Voice:  315.425.4045 x222
+
+
+
+http://www.CriticalLink.com
+6712 Brooklawn Parkway, Syracuse, NY 13211
