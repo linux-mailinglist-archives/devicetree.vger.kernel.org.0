@@ -2,97 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C06666370E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 03:05:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32BFB6636E6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 02:50:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229947AbjAJCF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 21:05:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41676 "EHLO
+        id S235154AbjAJBuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 20:50:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbjAJCF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 21:05:27 -0500
-Received: from mo-csw-fb.securemx.jp (mo-csw-fb1116.securemx.jp [210.130.202.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF6AE19282;
-        Mon,  9 Jan 2023 18:05:26 -0800 (PST)
-Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1116) id 30A1lc5m012349; Tue, 10 Jan 2023 10:47:38 +0900
-Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 30A1l79l024492; Tue, 10 Jan 2023 10:47:07 +0900
-X-Iguazu-Qid: 2wGr5g72QFywIxOWl1
-X-Iguazu-QSIG: v=2; s=0; t=1673315226; q=2wGr5g72QFywIxOWl1; m=XRaq7Z66F2+9OgIBWwjmpCJqGHKS1gM3LBz9yal2G8k=
-Received: from imx12-a.toshiba.co.jp ([38.106.60.135])
-        by relay.securemx.jp (mx-mr1112) id 30A1l576017317
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 10 Jan 2023 10:47:05 +0900
-X-SA-MID: 48793552
-From:   Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        yuji2.ishikawa@toshiba.co.jp
-Subject: [PATCH v4 6/6] MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
-Date:   Tue, 10 Jan 2023 10:41:43 +0900
-X-TSB-HOP2: ON
-Message-Id: <20230110014143.18684-7-yuji2.ishikawa@toshiba.co.jp>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230110014143.18684-1-yuji2.ishikawa@toshiba.co.jp>
-References: <20230110014143.18684-1-yuji2.ishikawa@toshiba.co.jp>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230039AbjAJBuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 20:50:18 -0500
+Received: from SHSQR01.spreadtrum.com (mx1.unisoc.com [222.66.158.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A2CEF02C
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 17:50:15 -0800 (PST)
+Received: from SHSend.spreadtrum.com (bjmbx02.spreadtrum.com [10.0.64.8])
+        by SHSQR01.spreadtrum.com with ESMTP id 30A1noT8015334;
+        Tue, 10 Jan 2023 09:49:50 +0800 (+08)
+        (envelope-from Chunyan.Zhang@unisoc.com)
+Received: from ubt.spreadtrum.com (10.0.74.87) by BJMBX02.spreadtrum.com
+ (10.0.64.8) with Microsoft SMTP Server (TLS) id 15.0.1497.23; Tue, 10 Jan
+ 2023 09:49:48 +0800
+From:   Chunyan Zhang <chunyan.zhang@unisoc.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        "Chunyan Zhang" <zhang.lyra@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: [PATCH V4 0/3] Convert Unisoc GPIO bindings to yaml and add support for UMS512
+Date:   Tue, 10 Jan 2023 09:49:40 +0800
+Message-ID: <20230110014943.2196046-1-chunyan.zhang@unisoc.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.0.74.87]
+X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
+ BJMBX02.spreadtrum.com (10.0.64.8)
+X-MAIL: SHSQR01.spreadtrum.com 30A1noT8015334
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added entries for visconti Video Input Interface driver, including;
-* device tree bindings
-* source files
-* documentation files
+V4:
+- Rebased on v6.2-rc1;
 
-Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
----
-Changelog v2:
-- no change
+V3-resend:
+- Added Reviewed-by from Rob Herring.
 
-Changelog v3:
-- added entry for driver API documentation
+V3:
+- Removed a example from sprd,gpio-eic.yaml;
+- Added '|' at the beginning of description blocks;
+- Added Reviewed-by tags from Krzysztof Kozlowski and Linus Walleij.
 
-Changelog v4:
-- added entry for header file 
----
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes on V2:
+* Addressed review comments:
+- Fixed typo;
+- Added description for 'reg' property and modified its maxItems;
+- Removed redundant examples;
+- Rephrased commit message.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 886d3f69ee6..e83ec3af09e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3014,18 +3014,22 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/iwamatsu/linux-visconti.git
- F:	Documentation/devicetree/bindings/arm/toshiba.yaml
- F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
- F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
-+F:	Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
- F:	Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
- F:	Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
- F:	Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
- F:	Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
- F:	Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
-+F:	Documentation/driver-api/media/drivers/visconti-viif.rst
- F:	arch/arm64/boot/dts/toshiba/
- F:	drivers/clk/visconti/
-+F:	drivers/media/platform/visconti/
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-visconti.c
- F:	drivers/gpio/gpio-visconti.c
- F:	drivers/pci/controller/dwc/pcie-visconti.c
- F:	drivers/pinctrl/visconti/
- F:	drivers/watchdog/visconti_wdt.c
-+F:	include/uapi/linux/visconti_viif.h
- N:	visconti
- 
- ARM/UNIPHIER ARCHITECTURE
+Chunyan Zhang (3):
+  dt-bindings: gpio: Convert Unisoc GPIO controller binding to yaml
+  dt-bindings: gpio: Convert Unisoc EIC controller binding to yaml
+  dt-bindings: gpio: Add compatible string for Unisoc UMS512
+
+ .../bindings/gpio/gpio-eic-sprd.txt           |  97 --------------
+ .../devicetree/bindings/gpio/gpio-sprd.txt    |  28 ----
+ .../bindings/gpio/sprd,gpio-eic.yaml          | 124 ++++++++++++++++++
+ .../devicetree/bindings/gpio/sprd,gpio.yaml   |  75 +++++++++++
+ 4 files changed, 199 insertions(+), 125 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-eic-sprd.txt
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-sprd.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
+ create mode 100644 Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
+
 -- 
 2.25.1
-
 
