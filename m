@@ -2,131 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AEE666456F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 16:58:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBBF066457F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 17:01:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238834AbjAJP6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 10:58:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56696 "EHLO
+        id S229755AbjAJQBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 11:01:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232558AbjAJP6O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 10:58:14 -0500
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E73FC4A;
-        Tue, 10 Jan 2023 07:58:12 -0800 (PST)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9DCC2100007;
-        Tue, 10 Jan 2023 15:58:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673366291;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ls2ZHhB4etdhWoWPPLqYUa/37vhJl28tR8qb5hvwZ/s=;
-        b=Fm2cxqae7qTWtMWT0LqewzuhPawG7GgGOlqOXEaY6yzG5ygk09t/nSmIMN3jfeCOUA+Ubt
-        /zddmJrMmKoYhcjsi4azTVvtDH1YviODyTOc0szzDibgkXbgp8b2NOgVIuhh1tUg1Zz0D4
-        8cP3FU3Fi/UoxXvfB/oYdiQKYfnBlEUPVuPbLJNby5H+/l+AhxTdmz+ajjLoEuWMaFXExY
-        xTuV4jurbPXEe8o1k0nt0mS/QKPugy73i2WjyPGA31V0yla1yWL+oh3Z4JXk3fok3rlIJM
-        tMG8GMkr1VIoD2/JcH7XIBKkw8dMqnVCMnt5/IUjISFXg448Se0uPrHen3OnoA==
-Date:   Tue, 10 Jan 2023 16:58:06 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v4 07/12] riscv: dts: allwinner: Add Sipeed Lichee RV
- devicetrees
-Message-ID: <Y72LDlIOYo/I8dii@aptenodytes>
-References: <20221231233851.24923-1-samuel@sholland.org>
- <20221231233851.24923-8-samuel@sholland.org>
- <Y7bW32i3EUmGHqSK@aptenodytes>
- <05c1ee07-0750-d40e-8498-55ea07b52ab1@sholland.org>
+        with ESMTP id S232701AbjAJQBn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 11:01:43 -0500
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F2530573;
+        Tue, 10 Jan 2023 08:01:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=miFsq10evK2AUsR0ohqfQseYfNauPyzSoumO+BvoMYU=; b=F
+        X8J+peFwvKS3vlVoXjARlbrVFsqvE/tfKJcHv/QlPGisWjZ3u87JcuLU5ydkOQqPkNzUSlPxE83Qs
+        ZbVNYXcnqbIWlNMiRlUM+vFbUOpmVwwbblgpF0RM4CEL/dotGu+GLceUuozy3aKoQiLW4ST26MDtL
+        eSMypOEg1jGZ+DVg=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:41140 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1pFH48-0007oY-UB; Tue, 10 Jan 2023 11:01:33 -0500
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     hvilleneuve@dimonoff.com, jic23@kernel.org, lars@metafoo.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hugo@hugovil.com
+Date:   Tue, 10 Jan 2023 11:01:22 -0500
+Message-Id: <20230110160124.3853593-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ARnt4yApiZMkzLk7"
-Content-Disposition: inline
-In-Reply-To: <05c1ee07-0750-d40e-8498-55ea07b52ab1@sholland.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH v2 0/2] iio: adc: ti-ads7924: add Texas Instruments ADS7924 driver
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
---ARnt4yApiZMkzLk7
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello,
+this patch series adds the driver for the Texas Instruments ADS7924.
 
-Hi Samuel,
+The Texas Instruments ADS7924 is a 4 channels, 12-bit analog to
+digital converter (ADC) with an I2C interface.
 
-On Sun 08 Jan 23, 12:42, Samuel Holland wrote:
-> Hi Paul,
->=20
-> On 1/5/23 07:55, Paul Kocialkowski wrote:
-> > Hi Samuel,
-> >=20
-> > On Sat 31 Dec 22, 17:38, Samuel Holland wrote:
-> >> Sipeed manufactures a "Lichee RV" system-on-module, which provides a
-> >> minimal working system on its own, as well as a few carrier boards. The
-> >> "Dock" board provides audio, USB, and WiFi. The "86 Panel" additionally
-> >> provides 100M Ethernet and a built-in display panel.
-> >>
-> >> The 86 Panel repurposes the USB ID and VBUS detection GPIOs for its RGB
-> >> panel interface, since the USB OTG port is inaccessible inside the cas=
-e.
-> >=20
-> > Looks like the panel-enabled variants would better be described as devi=
-ce-tree
-> > overlays as they are not specific devices but are peripheral extensions.
-> >=20
-> > What do you think?
->=20
-> I don't agree. The Lichee RV 86 Panel is sold as a complete unit, with
-> the SoM+board and LCD pre-assembled inside a case. It is not possible to
-> purchase the board without a panel, so the panel-enabled variants are
-> the only variants.
+Patch 1 contains the driver for the ADS7924.
 
-Oh my bad, I didn't go as far as actually checking what it looks like.
-So yeah if it's an individual device on its own I agree it deserves its
-own dedicated device-tree.
+Patch 2 add the dt-bindings for the ADS7924.
 
-Cheers,
+I have tested the driver using the Texas Instruments ADS7924EVM board connected
+to a Variscite Symphony EVK with a IMX8MN NANO SOM:
+  - Tested reset pin Ok
+  - Tested regulator setup Ok
+  - Tested reading sysfs in_voltage_scale Ok
+  - Tested reading sysfs in_voltageX_raw (x=0 to 3) Ok
 
-Paul
+Thank you.
+
+Link: [v1] https://lore.kernel.org/linux-iio/20221222203610.2571287-1-hugo@hugovil.com/#t
+
+Changes for V2:
+- Dropped patch "iio: adc: Kconfig: add SPI interface mention to AD7924
+  description"
+- Fixed comments style
+- Removed unused defines/variables/etc related to buffered support (no buffered
+  support for the moment).
+- Convert of-specific code to use the generic firmware property accessors in
+  include/linux/property.h.
+- Use FIELD_GET / FIELD_PREP for bit operations/defines
+- Simplified conversion result registers definitions/usage.
+- Now using mutex lock/unlock only for INFO_RAW switch branch
+- Use dev_err_probe() in all return paths of ads7924_probe()
+- Removed ads7924_remove() after adding callbacks with
+  devm_add_action_or_reset().
+- Change iio_device_register() to devm_iio_device_register().
+- Add the legacy i2c_device_id table
+- DT bindings: reorder entries, fix indentation,improve comments, add interrupt
+  line
+
+Hugo Villeneuve (2):
+  iio: adc: ti-ads7924: add Texas Instruments ADS7924 driver
+  dt-bindings: iio: adc: add Texas Instruments ADS7924
+
+ .../bindings/iio/adc/ti,ads7924.yaml          | 104 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ti-ads7924.c                  | 492 ++++++++++++++++++
+ 5 files changed, 615 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
+ create mode 100644 drivers/iio/adc/ti-ads7924.c
 
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+base-commit: bfcae956d9b50ea0e221cefc171604c569017d7e
+-- 
+2.30.2
 
---ARnt4yApiZMkzLk7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmO9iw0ACgkQ3cLmz3+f
-v9Gixwf/bUuAN5mWXtPd6SPwUdDiuGj3HtcGDNKL8Buq00SJTlZQyMbyz3F3TYcm
-bQ0/KlisJFv5fPbJW8aRI2TqOpFDnGtAGSkQ5JgyeJhiQbYjKBtHjvesPiDMsBxV
-ri99hwxNmZuFw+AswqPtGC4mbau4lnRJFC34lvZL02vlzxHYTapOsbPR1CtWb+Ww
-xL6bPOYB1pRzRHpR5i8fxDcxbW0/l36BwJf1UivHjFtxvYZcjI79Lr/1E33ZAbGg
-VJekuVkb7+v78TVIiN7YBYuZdYEydq62ARy8WP/VnExZLpWXvv6vNMSgfCSIPu9u
-Psc6c5fjpitNLgprsqst0bobNwUoWQ==
-=/4VV
------END PGP SIGNATURE-----
-
---ARnt4yApiZMkzLk7--
