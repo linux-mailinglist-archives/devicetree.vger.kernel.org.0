@@ -2,101 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA9406641F1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:33:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B609E66420C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:37:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232941AbjAJNdB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 10 Jan 2023 08:33:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57624 "EHLO
+        id S232769AbjAJNhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 08:37:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238440AbjAJNci (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:32:38 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C7E48CD3;
-        Tue, 10 Jan 2023 05:32:36 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1pFEju-0004bs-9X; Tue, 10 Jan 2023 14:32:30 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCHv8 3/7] arm64: dts: rockchip: Add base DT for rk3588 SoC
-Date:   Tue, 10 Jan 2023 14:32:29 +0100
-Message-ID: <2076503.8hzESeGDPO@diego>
-In-Reply-To: <20230110121754.2olqdzbe7wst3u4n@mercury.elektranox.org>
-References: <20230109155801.51642-1-sebastian.reichel@collabora.com> <2865022.7s5MMGUR32@diego> <20230110121754.2olqdzbe7wst3u4n@mercury.elektranox.org>
+        with ESMTP id S238678AbjAJNhg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:37:36 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A77078EBE;
+        Tue, 10 Jan 2023 05:37:23 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 6DC3A82131;
+        Tue, 10 Jan 2023 14:37:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1673357841;
+        bh=rUVOc1Q4f6dBa/+fbkNkdb4Z9kVHm2qXq/WuCCffHes=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=dxIZ1slJfL9uSyO8lIMLEWHNcKsCsJgMsisW+98tqzSLJQnKamtTmVt+r9iihkQ7Q
+         h2CBXiy8zSWx0f+G+nvyNJQlr9m7iEocRzTsE85P0tDsVraBNfqmJALWKg1zvFfvJw
+         rvXO3czNH8J67xcPm8Li1Ax9yag8KLWk+VJBpnwe3IIjy24bKLR9PLvhp9NnaVJILx
+         /3QEq/nGS8uK/SUbAZqfwin/4jRLNYDv29nCS5ys9tQ/WMtQfumHVQXoK7Hy4a5Cop
+         7xlSRPGZgoyfZ6Vrpsspk6Rqq6N5lnxAvDJCGC65BKG2A/dHxkFnGE0BRogJVLdZUZ
+         thFImh/RPanoA==
+Message-ID: <a2fd6077-a5ae-a694-3637-e83ca044da69@denx.de>
+Date:   Tue, 10 Jan 2023 14:37:19 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 3/4] clk: rs9: Support device specific dif bit
+ calculation
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230110100003.370917-1-alexander.stein@ew.tq-group.com>
+ <20230110100003.370917-3-alexander.stein@ew.tq-group.com>
+ <54e39604-088d-da4e-2779-4a635995db17@denx.de> <3216146.44csPzL39Z@steina-w>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <3216146.44csPzL39Z@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 10. Januar 2023, 13:17:54 CET schrieb Sebastian Reichel:
-> Hi,
+On 1/10/23 14:22, Alexander Stein wrote:
+> Hi Marek,
+
+Hi,
+
+> thanks for your feedback.
 > 
-> On Tue, Jan 10, 2023 at 12:47:23PM +0100, Heiko Stübner wrote:
-> > Hi Sebastian,
-> > 
-> > Am Montag, 9. Januar 2023, 16:57:57 CET schrieb Sebastian Reichel:
-> > > From: Kever Yang <kever.yang@rock-chips.com>
-> > > 
-> > > This initial version supports CPU, dma, interrupts, timers, UART and
-> > > SDHCI (everything necessary to boot Linux on this system on chip) as
-> > > well as Ethernet, I2C, PWM and SPI.
-> > > 
-> > > The DT is split into rk3588 and rk3588s, which is a reduced version
-> > > (i.e. with less peripherals) of the former.
-> > > 
-> > > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> > > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > > Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> > > Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> > > [rebase, squash and reword commit message]
-> > 
-> > I guess that means the list of Rockchip Signed-off-by lines above come
-> > from the squashed patches?
-> > 
-> > If so, I guess I should add Co-Developed-by lines for them, as right now
-> > the list is incorrect (author should be first, then everyone through
-> > whose hands a patch went)
-> > 
-> > Meaning I can add those Co-Developed-by lines, so no need to resend,
-> > I'm just verifying what I assume about the lines :-)
+> Am Dienstag, 10. Januar 2023, 11:31:49 CET schrieb Marek Vasut:
+>> On 1/10/23 11:00, Alexander Stein wrote:
+>>
+>> [...]
+>>
+>>>    static int rs9_get_output_config(struct rs9_driver_data *rs9, int idx)
+>>>    {
+>>>    
+>>>    	struct i2c_client *client = rs9->client;
+>>>
+>>> +	u8 dif = rs9_calc_dif(rs9, idx);
+>>>
+>>>    	unsigned char name[5] = "DIF0";
+>>>    	struct device_node *np;
+>>>    	int ret;
+>>>    	u32 sr;
+>>>    	
+>>>    	/* Set defaults */
+>>>
+>>> -	rs9->clk_dif_sr &= ~RS9_REG_SR_DIF_MASK(idx);
+>>
+>> Are you sure this line ^ should be dropped ?
+>> Shouldn't the bitfield be cleared first and modified second?
 > 
-> Yes, those are SoB lines from squashed downstream commits.
+> Well, I had in my mind that this function is called upon probe with clk_dif_sr
+> being cleared anyway, so this does essentially nothing. And the DIF bit is set
+> unconditionally, so what is the point of masking it before?
 
-so I've made the block into 
-Co-Developed-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Co-Developed-by: Elaine Zhang <zhangqing@rock-chips.com>
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-Co-Developed-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-[rebase, squash and reword commit message]
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-and will apply that if you don't shout in the next hour or so :-)
-
-Thanks
-Heiko
-
-
+Good point, but then, what's the point of ORRing either ? Just do a 
+plain assignment.
