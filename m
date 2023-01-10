@@ -2,123 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8BAC66415E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:14:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60C4F66419F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:23:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232392AbjAJNO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 08:14:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44486 "EHLO
+        id S238252AbjAJNXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 08:23:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbjAJNO0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:14:26 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EAB83FA1A
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:14:25 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id bn26so11722131wrb.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:14:25 -0800 (PST)
+        with ESMTP id S232265AbjAJNWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:22:44 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF711B1F9;
+        Tue, 10 Jan 2023 05:22:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RnE4fpLbcTktxDgKOw5o5AykRDw1ELTBr8AeZCuOMxk=;
-        b=RYF+dwJScInqtksjXi7CaKi6U0QmKWIc1MT/7tNys0Mdjiz7BVq58Zac4iiBwdWnAH
-         ZQRMVsQQkYsqH3fiNe+xKk90MtFLKybMVy1YMoEx9/myhqNsztTMmn/lLTkCZa0JOn/y
-         8UGgzUH34CxT4ZFc4xlcxoFTFf75Yh7qjjBcgw18NzIOM3nwKfQ4UID7jZC+0+jCmkFf
-         t1zy+B1we1oOq98ybkJGRSDg6XlzQDyEgNZiJG1fLR/fWY0+6cKYuERbnAbVYJiBzIbo
-         KS7USHehvufu0YKmfxmkMqDO7r4GZw3HlkrVmeAIYOld93vNVB15Rcla38USWTCvMf0D
-         pWjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RnE4fpLbcTktxDgKOw5o5AykRDw1ELTBr8AeZCuOMxk=;
-        b=KuwerOXYNOsAN/XBnUN9K1zNUlZ4gxdOTXwNBDLVy/BJIkKQLlYITKv41vX7gxbe9f
-         ForDV5F+fiJpu1fIvRn4lGRgNWjilwdO6DWP0nLMgBfhnuRjWuiYLoYuHoBonuwbOdZ8
-         4V/7tZtAxmMWUVi092gZVv+EKn8g2Fc3kXAKBODXgUSpymBsG9GHWyHlCnr5XKEGslDK
-         s4oguWgZSkSDooLFB4lgYckAsiFPqqkrcWmNcs2gqKzinkx8XmIe0zHti0EyOhNy6bpc
-         NalzDqEfb7t2nT75pXPOA4C1tp5eBhSGl/xRuhdMymt7xnASMP5wdZVe9pbDqkAE6uad
-         drwg==
-X-Gm-Message-State: AFqh2kpBrsJuBtEy5r76Q97CxgOZWbTg7OZpa08ppggnNH+JFC91fSwb
-        g8cr7BPweW4ACMww5UD0MqUPsw==
-X-Google-Smtp-Source: AMrXdXs1T/XUz7ymawsRiuhyR7G7qFEF1Qq8385DQZCBDY5NH/B6jOZoZ2m4dktR4rh+wJKR0xos5w==
-X-Received: by 2002:a05:6000:12c2:b0:2bc:5e1:6ff1 with SMTP id l2-20020a05600012c200b002bc05e16ff1mr4842047wrx.10.1673356463750;
-        Tue, 10 Jan 2023 05:14:23 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id f3-20020adfdb43000000b00236883f2f5csm11400187wrj.94.2023.01.10.05.14.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 05:14:23 -0800 (PST)
-Message-ID: <88d66834-ca80-888b-e56e-7694e84b6eae@linaro.org>
-Date:   Tue, 10 Jan 2023 13:14:22 +0000
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1673356963; x=1704892963;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=3Y2ZgCFQqeWR9sr/Iv4ArzvWvcJPlpRahRJtTdwClPI=;
+  b=SDmLHFhwl9Kcvv/zz+NqQIGqPAygA+UL2JNzKOmYO6m1dmDyK6wNiXrM
+   brlTYeja8SVIw95TBj8+K26NfUDCfZby4uqOOxjXwQCCuFfe0CyBueChw
+   Y7BVYq6/njMz2XJA5cXru+3xXIgkFjEEbfWIIi5BviCSXyAF3CcXxkx4Z
+   Eou2nJUiWElYmi6O/H245T75w8ieI7idtoueWvBjWrkSYotnlX/u3NwNs
+   AocwaMOnJ3yobrSuar7iV8bmmRjiWbUmFdiNWlLFW33DJpeoEG67yOy/g
+   ZDyJdOcTVDUKwKNZ4UQJX9RFTPqMf69nYdTIpxhFIeGPeyrG5a+LfhG/o
+   g==;
+X-IronPort-AV: E=Sophos;i="5.96,315,1665439200"; 
+   d="scan'208";a="28330713"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 10 Jan 2023 14:22:40 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 10 Jan 2023 14:22:41 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 10 Jan 2023 14:22:41 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1673356960; x=1704892960;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=3Y2ZgCFQqeWR9sr/Iv4ArzvWvcJPlpRahRJtTdwClPI=;
+  b=pki3KCRABL8/BIH3Z1Qtv7Xpg6gnsflFydVI9yjR4RI/nNUp/HPewiDn
+   n5tMGMASX/mztt3JwrA2rzoC+wP6wJ4VZVFJf8+GNvvDk6QC1qB955J56
+   /95COUJkGyMjLsF+R4CkPAhpWstfiwmvLS+jOzIkuT5U4mHZzWU8Tds3Z
+   GvwL11IxeJX4WEHBLlNb+EkGa1OFOf/mfQdDhEdOACs++sAOzQw2CR9XV
+   TwpzH79sdq7ARo5ltcY1lWDWAcUOoch8OstrxPthJU6ymAwRH/iSZP3w+
+   X0gxkTUBR/zVGeYeHXBank4WGPwy6NnKC5tOKpGb2Yso0ONaeCBiXbTV8
+   g==;
+X-IronPort-AV: E=Sophos;i="5.96,315,1665439200"; 
+   d="scan'208";a="28330712"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 10 Jan 2023 14:22:40 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A712C280056;
+        Tue, 10 Jan 2023 14:22:40 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Vasut <marex@denx.de>
+Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] clk: rs9: Support device specific dif bit calculation
+Date:   Tue, 10 Jan 2023 14:22:40 +0100
+Message-ID: <3216146.44csPzL39Z@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <54e39604-088d-da4e-2779-4a635995db17@denx.de>
+References: <20230110100003.370917-1-alexander.stein@ew.tq-group.com> <20230110100003.370917-3-alexander.stein@ew.tq-group.com> <54e39604-088d-da4e-2779-4a635995db17@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 4/7] arm64: dts: qcom: Add msm8939 SoC
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        djakov@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
-        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
-        Jun Nie <jun.nie@linaro.org>,
-        James Willcox <jwillcox@squareup.com>,
-        Joseph Gates <jgates@squareup.com>,
-        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230103010904.3201835-1-bryan.odonoghue@linaro.org>
- <20230103010904.3201835-5-bryan.odonoghue@linaro.org>
- <6e594438-843a-d03e-5276-d6316a9dc2c0@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <6e594438-843a-d03e-5276-d6316a9dc2c0@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/01/2023 09:14, Krzysztof Kozlowski wrote:
-> ../arch/arm64/boot/dts/qcom/msm8939.dtsi:1825.23-1842.5: Warning
-> (simple_bus_reg): /soc@0/mmc@7824000: simple-bus unit address format
-> error, expected "7824900
+Hi Marek,
 
-For the record the driver consuming this dt entry requires the host regs 
-to come first followed by the core
+thanks for your feedback.
 
-sdhc_1: mmc@7824000 {
-         compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
-         reg = <0x07824900 0x11c>, <0x07824000 0x800>;
-         reg-names = "hc", "core";
-}
+Am Dienstag, 10. Januar 2023, 11:31:49 CET schrieb Marek Vasut:
+> On 1/10/23 11:00, Alexander Stein wrote:
+> 
+> [...]
+> 
+> >   static int rs9_get_output_config(struct rs9_driver_data *rs9, int idx)
+> >   {
+> >   
+> >   	struct i2c_client *client = rs9->client;
+> > 
+> > +	u8 dif = rs9_calc_dif(rs9, idx);
+> > 
+> >   	unsigned char name[5] = "DIF0";
+> >   	struct device_node *np;
+> >   	int ret;
+> >   	u32 sr;
+> >   	
+> >   	/* Set defaults */
+> > 
+> > -	rs9->clk_dif_sr &= ~RS9_REG_SR_DIF_MASK(idx);
+> 
+> Are you sure this line ^ should be dropped ?
+> Shouldn't the bitfield be cleared first and modified second?
 
-If I change this and the msm8916 to
+Well, I had in my mind that this function is called upon probe with clk_dif_sr 
+being cleared anyway, so this does essentially nothing. And the DIF bit is set 
+unconditionally, so what is the point of masking it before?
 
-sdhc_1: mmc@7824000 {
-         compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
-         reg = <0x07824000 0x800>, <0x07824900 0x11c>;
-         reg-names = "core", "hc";
-}
+Best regards,
+Alexander
 
-the warning goes away but then this code won't work as intended anymore.
+> > -	rs9->clk_dif_sr |= RS9_REG_SR_3V0_DIF(idx);
+> > +	rs9->clk_dif_sr |= dif;
+> > 
+> >   	snprintf(name, 5, "DIF%d", idx);
+> >   	np = of_get_child_by_name(client->dev.of_node, name);
+> 
+> [...]
 
-drivers/mmc/host/sdhci-msm.c:		msm_host->core_mem = 
-devm_platform_ioremap_resource(pdev, 1);
 
-Weirdly when I change the ordering of the registers in the dts the SD 
-seems to work just fine, which is at variance to my reading of the code.
 
-Converting the sdhci driver to use the register name, instead of a 
-static ordering of the regs feels like something to be done in a 
-separate series.
 
----
-bod
