@@ -2,63 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BE13663CBA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:25:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A49B2663CBB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:25:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232005AbjAJJZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 04:25:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38780 "EHLO
+        id S238012AbjAJJZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 04:25:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237888AbjAJJYw (ORCPT
+        with ESMTP id S238086AbjAJJYw (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:24:52 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB5E544DA
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:24:49 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id i17-20020a05600c355100b003d99434b1cfso9326332wmq.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:24:48 -0800 (PST)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F8CB551DD
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:24:50 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so11303502wmb.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:24:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=mind.be; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=G0xm6pZSYV0zy2S2dPvMPd0PXu+EXkyVu00ABlXhNhM=;
-        b=GhFAGk8Qhy6npRJLnhhVVchYynDfMMeynYBikUtnElIrZ7fzo6UmMkEimVxhfaZ4VS
-         PYPbmgmvK7AsKMoGo5a4XQVuiTH76g6pkC0oi2wStHtmSMFojHJDNVPZRS4UAuYZArMl
-         8p1VOgBMpUptJuc7g7BHwI8EaKt6Nety8rfbVg74gzYqpoNIgNwgABiBgpkllz0ej7/H
-         LrM2naxA7W5AqqrHbO8xBCD30Fy33PXY3NVp3TjVopp5ma8NDWYdpcX9O9py4uKs5Hlq
-         GbFQINXuHXXetZxmhb+DedqAEmGmKxg8+N7LVhJ1TgPHTbCVOoSziQuARaPYkLhQngZ1
-         57Xg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wiGeG2pWJxpESvGj47RLxzq7ucQ3N2fre9bCitRo4xg=;
+        b=GLG7O8EM8nh8j0ke8ExuUCxC0tBSLVi8oe5BXgEJkqUpxYNWgeq9j9QybkhiOZ9Hd4
+         ANOouiGawElwsyFQRZ+Z47x+6fsn4/BFzae6cM8kOxvzB50Js3ed3BFLt62coqATpPSw
+         uiW2fjnGmKA99io43ajJuWVJihyA4/E3CqHZN+vm8kJGa2gzIisdPklY84KAINRgJIVI
+         ABPyEg0Cx899cH8YA+2lMcK+ffv1og+2IvvCgljBLhDzS8XpU2fboEZDXmglrISvzTON
+         muDUlwNdiXanTUQ4ueuI18fhuVK7QYc91Ysvsho/Fzz5eQ46Kqhi0T9kWQ0E1iyESxaa
+         MqDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G0xm6pZSYV0zy2S2dPvMPd0PXu+EXkyVu00ABlXhNhM=;
-        b=wsp/LCae2+OzTYOmFMQEi5iHRvSRCxQMnOhzjl/doRtCuQTN6gO366zQnVIArUbXXZ
-         zwi8ECRycF0TanJ1ao4TuMo336iS22W6udwqlrCB+RT4BC4YK1WghWl0xUJ2oI4e56Um
-         7kvAj18vxsxVn0O15pwXKVCyhNZzwjTi8GiTIMXFrH5soVw7WJPMxhFm10NTD5bJWC3T
-         Y/KgXNMFYC52OhakICZI4rksUFOL4oi8CjfxgjmQRWf9M4hLRKcyZRg/HidKtVdLvge4
-         oc0hQjKQy9HARMJkfTq6A/wDbDwB4l3BlNa5/BC60rFZspsOjupzOrQLfHK3700qNWxb
-         t1/Q==
-X-Gm-Message-State: AFqh2kpWswju31cfZaRTRvxmijRPooEgQ+icRHiCrvP0h9lIinRs05J9
-        ugcCK6aXk7RfBgAgB7vaUoSYzQ==
-X-Google-Smtp-Source: AMrXdXvL2t9HNG1GcpNq4bX2Pj7GSFT7llm2xR0X1hP/KpAAPgfICHOtFhAEd1pv8L4Lts7vKP4Gqg==
-X-Received: by 2002:a05:600c:4f54:b0:3d9:f04c:f58f with SMTP id m20-20020a05600c4f5400b003d9f04cf58fmr4872024wmq.40.1673342687626;
-        Tue, 10 Jan 2023 01:24:47 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wiGeG2pWJxpESvGj47RLxzq7ucQ3N2fre9bCitRo4xg=;
+        b=4ALHIlUpG+PBSq2nUE00sOOFHEUCVX7gguhTb59uRHVVp02amgGuZt5pOrfTAVE+JI
+         tthlWPkSbSAk28T8xML/exSIRr/04mLL9EKYrOhsit+ZommdNhjo29XQG+TDlTrJ+sKC
+         vakudo/7VpEAlweO1ofOXR8ZXhVtX7N66hsqSUs1cXUDdUrlr/PlPihF9J0jt4j5aYt3
+         9E00cYj7BeVUZExN4Ppa5JyYls35jWvgcRKierJ233u/mejwPS1Yd6z2j7Vm79PA82g3
+         dhY2x+15/ZQBBGJJclc4/5JVCEic/L2FL8x34qv1uKIZjhqm6o5XOGnBhphZ72EE+KvO
+         2vfg==
+X-Gm-Message-State: AFqh2kqAXbrinHMxlD+VDaIYAAo+Ps5kT2aMmp5sJ0p9i+rUQsfhf74a
+        2YfmcdZBRYP6I3iz/UfeYHOwqg==
+X-Google-Smtp-Source: AMrXdXt6GbjstUwEoi/mwh+Fh/TpXinpoQBoFZl+WauCSKoGuP1C6E4Ub9s4ArgWo8jaKj1Dz3ZILA==
+X-Received: by 2002:a05:600c:47d1:b0:3d3:496b:de9d with SMTP id l17-20020a05600c47d100b003d3496bde9dmr48696449wmo.34.1673342689012;
+        Tue, 10 Jan 2023 01:24:49 -0800 (PST)
 Received: from dtpc.zanders.be (78-22-137-109.access.telenet.be. [78.22.137.109])
-        by smtp.gmail.com with ESMTPSA id q22-20020a05600c331600b003d9dd62deedsm13149433wmp.30.2023.01.10.01.24.46
+        by smtp.gmail.com with ESMTPSA id q22-20020a05600c331600b003d9dd62deedsm13149433wmp.30.2023.01.10.01.24.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 01:24:47 -0800 (PST)
+        Tue, 10 Jan 2023 01:24:48 -0800 (PST)
 From:   Maarten Zanders <maarten.zanders@mind.be>
+To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
 Cc:     krzysztof.kozlowski@linaro.org,
         Maarten Zanders <maarten.zanders@mind.be>,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        Pavel Machek <pavel@ucw.cz>
-Subject: [PATCH v2 0/2] leds: lp55xx: configure internal charge pump
-Date:   Tue, 10 Jan 2023 10:23:38 +0100
-Message-Id: <20230110092342.24132-1-maarten.zanders@mind.be>
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: leds-lp55xx: add ti,charge-pump-mode
+Date:   Tue, 10 Jan 2023 10:23:39 +0100
+Message-Id: <20230110092342.24132-2-maarten.zanders@mind.be>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20230110092342.24132-1-maarten.zanders@mind.be>
+References: <20230110092342.24132-1-maarten.zanders@mind.be>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -67,31 +72,43 @@ X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A new option in the devicetree "ti,charge-pump-mode" allows the user to
-configure the charge pump in a certain mode. Previously it was defaulting
-to automatic mode.
+Add a binding to configure the internal charge pump for lp55xx.
 
-v1 of the patch implemented a bool to disable the charge pump and had some
-issues in the yaml binding. To avoid future modifications, implement all
-possible configurations of the charge pump.
+Signed-off-by: Maarten Zanders <maarten.zanders@mind.be>
+---
+ Documentation/devicetree/bindings/leds/leds-lp55xx.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Maarten Zanders (2):
-  dt-bindings: leds-lp55xx: add ti,charge-pump-mode
-  leds: lp55xx: configure internal charge pump
-
- .../devicetree/bindings/leds/leds-lp55xx.yaml |  8 +++++++
- drivers/leds/leds-lp5521.c                    | 12 +++++-----
- drivers/leds/leds-lp5523.c                    | 18 ++++++++++-----
- drivers/leds/leds-lp55xx-common.c             | 22 +++++++++++++++++++
- drivers/leds/leds-lp8501.c                    |  8 +++++--
- include/linux/platform_data/leds-lp55xx.h     |  9 ++++++++
- 6 files changed, 64 insertions(+), 13 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+index ae607911f1db..40ab3cf597a4 100644
+--- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+@@ -66,6 +66,13 @@ properties:
+   '#size-cells':
+     const: 0
+ 
++  ti,charge-pump-mode:
++    description:
++      Set the operating mode of the internal charge pump.
++    $ref: /schemas/types.yaml#/definitions/string
++    enum: [off, auto, bypass, boost]
++    default: auto
++
+ patternProperties:
+   '^multi-led@[0-8]$':
+     type: object
+@@ -164,6 +171,7 @@ examples:
+             reg = <0x32>;
+             clock-mode = /bits/ 8 <2>;
+             pwr-sel = /bits/ 8 <3>;	/* D1~9 connected to VOUT */
++            ti,charge-pump-mode = "bypass";
+ 
+             led@0 {
+                 reg = <0>;
 -- 
 2.37.3
 
