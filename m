@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF10664627
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 17:33:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ECB766463C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 17:36:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233242AbjAJQcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 11:32:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49352 "EHLO
+        id S233763AbjAJQgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 11:36:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238928AbjAJQci (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 11:32:38 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A9985C8C
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 08:32:35 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id e3so3175155wru.13
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 08:32:35 -0800 (PST)
+        with ESMTP id S239161AbjAJQfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 11:35:21 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B96F88DDD
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 08:35:15 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id z5so11342614wrt.6
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 08:35:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QuzbVCChpPx+rGaPIq8dHHS4EuNxVBGmVWr4Va3xo74=;
-        b=s7U+y5Oz7tIRvD972353bs+//bJkzJOJy8dEyT3V0seHT8faP05kCBKRkOOfLC/3Q2
-         khsrE/uvDOaL1cxhP4Nb2OEMNygi9QroDRkVeDbsKSn2hnXlvbMGwHOXBAzsVy38sJAO
-         QsAGB3T1fS8mjPzdfooRgf27bCITsXgW76dgMzTfZFOtq51YQjQfDdtbDd6XPBkNF2Dw
-         jGdXYRHZZmLVEM8FDcb+JhA2YzqNwfKbpGDpn8AYXltNZ/VtadTafumdA3uJX4vaxsiy
-         rrsTTMwfuQ/KFMX+32Za1yeKAJzX58yzI1ntgUO0uGrW1oDuN3PABfoGVoxSef+fdZBQ
-         nGRw==
+        bh=z2NxH3tSGz9WvFhZCl9Fb7nEkJ5kzb/MmPRaT/+ZbG0=;
+        b=cFjYWHmWHQL1/h62npQEdLV/ngA8ytUpeQnwiHlSeAYx7qaWtaicnfIi2n5sRIxcth
+         euG5JZbE6ktu4XnJJ3fUIQj7dGn328aBV5hKnQ0Tqq6XMj39jNKaQLIDPuZE6JMzNuB5
+         IlJJBSaCKUcDNnO4s6PQqcjPd0iSAa2LSleP2fc852ixhCEqkfJ9BLRNLLG3rF54IEaP
+         GS4ZPKSbWKXdnHTcMaPQ7JaSljUDdKnrKZxhb8IgRclft0UUccmgCzM8ezrzKttfzEtR
+         eiC4Rl6hknTSkDx9W7QeFn54Ue8Oju3wWPHs3ezufSsIoNIilC0rZUBDkskgdcUCJjTT
+         3H/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QuzbVCChpPx+rGaPIq8dHHS4EuNxVBGmVWr4Va3xo74=;
-        b=Xkd73Bm8b5tpWQfl1Slos24vcBcKDU8tUzmbBI9rC3slXTcwbNWXrXz/0k6zl5aFSW
-         GNMN4FC7w/HA7OiIKa5mPzxRD19Soi72NgRFmIcdfPko/7iu0h9qrUk/PbLnqE3ManyZ
-         x4uAhssgcNvF+gKTLMzJXIyWQ8s5b9rbNoXv+YfshR4D+yuluB9M1ZTP4kqQ5BSYxTY4
-         uUBjvy9kHlPBkgAyeQ3dRZGDpm4zXW+KZLmUgWkn32kP6oKkNtPzTtTLSlGK0msMplFH
-         aBopM5sP7QUQ+PgeQwFJF2xYlOqpdtYLhbfZyie0RVyNnBBNieu6LuLyEmJiix61jjSr
-         zASQ==
-X-Gm-Message-State: AFqh2krt4xurqVj7SU8h5b5F1c/oO9LYX5nxjouyXMVhLJhtzfi540pF
-        MgIDqbBDmLbMWCmwXX3vHjH2BQ==
-X-Google-Smtp-Source: AMrXdXtSCGNwFYMKfMVzHWvbvChN4XjFuVYEwrUFK0U4mbHjX4GIFKntuwa8PQWIutEaY8g9EcHY3Q==
-X-Received: by 2002:a05:6000:910:b0:242:733b:af28 with SMTP id bz16-20020a056000091000b00242733baf28mr58796163wrb.5.1673368354494;
-        Tue, 10 Jan 2023 08:32:34 -0800 (PST)
+        bh=z2NxH3tSGz9WvFhZCl9Fb7nEkJ5kzb/MmPRaT/+ZbG0=;
+        b=0gumYPY6eMSloj/CzXAw2fEf1Jfw/wZ3D6V23La2dT+hTObJv77KF1aGAQCGEycWbz
+         Tpoc3cDg4RVlbSGAu8P1Usln5Km4tTq6cgYCNot/p0y470QKxiTu2yTwYs/vf/GEDH9f
+         spmiqo2uEQ1HaJ2COgVup8oO9FC9bdQF8NY0uTMIymW1wPIqLDp4xjcTuvi4Qrh/ayn7
+         SsfKUuUS0rtDvNpjrXKeOcf5SqZuQ8eKTkv/ZL5dSk6Fm1DZbvIHECQQpjH5VNOvqReZ
+         jjJS0AEuus0QoQQrgMuAezq0ZfDZ2rzM/FD/BgKwDgRbNfn7pNOnWqH0RpB8NSNDd9El
+         +1Cg==
+X-Gm-Message-State: AFqh2koP+6ytYGpFREnVlwrA0L11TER3+AeqdCOF2TizD4UhOFw6SHcW
+        +UCscTiO8qwu+fLRpJucJEvwFg==
+X-Google-Smtp-Source: AMrXdXsv3NpHNRaDEDLBjfUpufgq/yn85beQYYnajrkfAYzc+rvqxoi0MR1o3zZKXzKOANIzLhnhWA==
+X-Received: by 2002:adf:fb08:0:b0:29a:375d:4c41 with SMTP id c8-20020adffb08000000b0029a375d4c41mr19992583wrr.14.1673368514084;
+        Tue, 10 Jan 2023 08:35:14 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l6-20020a5d6686000000b002bb3229a03csm10562820wru.34.2023.01.10.08.32.33
+        by smtp.gmail.com with ESMTPSA id i5-20020a5d55c5000000b002a6f329203esm11717830wrw.61.2023.01.10.08.35.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 08:32:33 -0800 (PST)
-Message-ID: <9849e94a-abd6-37f2-8c49-e923bb554dee@linaro.org>
-Date:   Tue, 10 Jan 2023 17:32:32 +0100
+        Tue, 10 Jan 2023 08:35:13 -0800 (PST)
+Message-ID: <8530aeef-8fdb-ede7-700e-856e5cbc6a5b@linaro.org>
+Date:   Tue, 10 Jan 2023 17:35:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add zhihe
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8916-zhihe: Add initial device
+ tree for zhihe Wifi/LTE dongle UFI-001C and uf896
 Content-Language: en-US
 To:     Yang Xiwen <forbidden405@foxmail.com>,
         Andy Gross <agross@kernel.org>,
@@ -68,15 +69,14 @@ Cc:     Jaime Breva <jbreva@nayarsystems.com>,
         Nikita Travkin <nikita@trvn.ru>,
         ~postmarketos/upstreaming@lists.sr.ht
 References: <20230110155014.31664-1-forbidden405@foxmail.com>
- <tencent_89603CF732FEF0B9A2E88CF0E45A62F42D07@qq.com>
+ <tencent_A7FA00B086BB0EFFDC1C64744FF85DAD2B06@qq.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <tencent_89603CF732FEF0B9A2E88CF0E45A62F42D07@qq.com>
+In-Reply-To: <tencent_A7FA00B086BB0EFFDC1C64744FF85DAD2B06@qq.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,12 +84,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/01/2023 16:50, Yang Xiwen wrote:
-> zhihe is a placeholder for various 4G USB dongles made by unknown
-> manufactures with similar design. It is widely used in China to refer to
-> these dongles.
 
-No, it's not descriptive enough. If you bring support for specific
-device, this device is already known to you.
+Subject: too long. drop redundant information. "initial device tree for"
+is kind of obvious.
+
+Drop "zhihe" everywhere. You just said it is non-real company, so how
+can you start using it in context of a company name?
+
+> This commit adds support for the ufi-001C and uf896 WiFi/LTE dongle made by
+> unknown manufactures based on MSM8916.
+> uf896 is another variant for the zhihe usb stick. The board design
+> difers by using different gpios for the keys and leds.
+
+Run spellcheck. "differs"
+
 
 Best regards,
 Krzysztof
