@@ -2,196 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1650E663601
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 01:04:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C135566362A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 01:22:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234850AbjAJAEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 19:04:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51072 "EHLO
+        id S235377AbjAJAWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 19:22:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237777AbjAJAEt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 19:04:49 -0500
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7430FDFCC;
-        Mon,  9 Jan 2023 16:04:48 -0800 (PST)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-15085b8a2f7so10569509fac.2;
-        Mon, 09 Jan 2023 16:04:48 -0800 (PST)
+        with ESMTP id S229515AbjAJAWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 19:22:30 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05DF13AA8B
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 16:22:29 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id j17so15732075lfr.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 16:22:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=tU7xqlxoqQYzxNUd2tV9T0j18fTCGh8gQdqsrjiDR18=;
-        b=VCvgFgIO+G4qIlz2s3+FUcKmJ9xolwbkKBDVQd7C8z/HK6P7+HYIW/LRENO5wZ8JZT
-         K1CKRg8n5VeQK9EHzkksIIWSGUsVBG0i2tbsQwwVcBNlUDYW8ZIA+Q9aetlKBtxFRJVZ
-         eWZdh8MXnaYEl4CMDUOj00bjgg7WIGRnvrWjIa6udbhxGJfVXl8JMPF6ZbBEpjp9cWmf
-         91DjHvMfWCVFl5PFBU+6dU/fKi1IYlKEnnJi491aXEBDQEWOXYt0bf20IPpUidzzg+EQ
-         JGPegHDTVzpfuxhPYkzDqn6h9+bUgO3lTkXx2/xR2t7Q7glKfchpW8kg/mIPduwxZhKU
-         40mQ==
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3J9XKLlpP5X6CvDBX/lWRDKKuy8Kaqsk+6ZWrT2IkL8=;
+        b=n4hvHMSGn2WfGgJh4rRLEBOydN/+sVZM3Pydyit8JakkdzKCfnzvOtZ3IBmxnJKqgi
+         /rkYLJWADxt6NxW5sexSZ1jsXaAc0e38GsfIvxUXy0sUQbOVvJxal0rxxrfOT9RC1kLo
+         /ZWGtQT4HR5vjMZepAEQhlkCCjgZBe9hFwsgCE7CpQU08lwN35FXul4KJmIqbW8WP6Js
+         GqpBncUdW4spd/Depy8HbN/MCoeSNmI3RCssxgxa2HPfHWlEU/PKv6VnssmyYhsiUqd7
+         zX3E9W/6yghIu72crNK5RIjt1if6mLkkDAKLkftANHN7bt6UasgziE0v5A9BWnXtzDgE
+         b1FA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tU7xqlxoqQYzxNUd2tV9T0j18fTCGh8gQdqsrjiDR18=;
-        b=F90B24k45x6L4NZiWj1N4OrdRaIn+VOySKBDCamgiWzDopWBc3djLk4E3+pnG1MJOf
-         hmLzA7P7kbsw1GkmotD4y/UBWBWzPAH0djetMjQjMacMHV0y2DRfOiLoCP/gFfFT1tvz
-         q6/g6R0eVPn1vCAh32ZJpvtrcRBAcGpoMfMyjyLOv+SCkDj2ebZBCvZKG5hVV9sovUV3
-         QeNXcTZi2DBN2mVWoNKoXJ2w/CYKj+6AvvVY1fmcM50g2aCY4zeX3Nfoh4CqhRRV97h5
-         j31EngvnIQ/wvbIQ7pRwWztbaMQsO5vmaJbz3zmYLGnx1esS6Hkm8Uk+ws/DWvd2P8oq
-         6HCw==
-X-Gm-Message-State: AFqh2kpIdHxWr3h6ks952bFwJm/U6va3H933KrfaRXp7wvP98WchsT4B
-        kPQWS4TWGnoheC5tgZeSmmc7Mwigji4=
-X-Google-Smtp-Source: AMrXdXsb8On+uzw3FWK3vK1VkZcaAObj4m6y3i+HKyTpeKJI6+GyvLelZK+5q8EBpined4AKIx9aVA==
-X-Received: by 2002:a05:6870:c1c2:b0:14f:9e41:7dbe with SMTP id i2-20020a056870c1c200b0014f9e417dbemr38258957oad.10.1673309087755;
-        Mon, 09 Jan 2023 16:04:47 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id p22-20020a056870831600b0014813cc4a51sm4985686oae.29.2023.01.09.16.04.46
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3J9XKLlpP5X6CvDBX/lWRDKKuy8Kaqsk+6ZWrT2IkL8=;
+        b=IvJlwUqH75vMiIk4GN1S1npcKfYVlwV1+B9+yNpfg2xwug1K1FpMXuu/5T4bui2MC5
+         o5ItFYFHSnPNMGTKkaySKRGrb/ROyXQflPeQljIK9Mvsnr4XBb6Vyf490gUbsb60RgMJ
+         KWcBPqyXvNaoISyTOw4x1rs376Bg8dnAJ/p1lAbgGS8ZzjUDrmKQBCloY5VE5jlWi/WH
+         zqW9rm+rJCGD9LwehBqpEZzPl6R80sXGLZgU2c9UY1dTAb/ITENDlYWnv0Rm/5gB3kVI
+         QBc0GI1FmWRQL7zgxAsNkxxLkQWQDU7rnvpJDny9wgnWoxrAfQGU0zSsf9iFIcw3gcNV
+         MKGQ==
+X-Gm-Message-State: AFqh2koheLT6J2s1HiKvp9+pUfEP4/MIQZMRy62OlVyl0R3yghoJrMVd
+        CMXKS8LGLo27VBIBtokQiHv8FA==
+X-Google-Smtp-Source: AMrXdXtXj53XSAEDy43S/dF+TH9B4KyRf+Qy1PibWEaXMJ+81JeOqRnE5ih/iFdtK8mqkDEeOuwx4g==
+X-Received: by 2002:a05:6512:e89:b0:4b5:b7be:136b with SMTP id bi9-20020a0565120e8900b004b5b7be136bmr19919799lfb.69.1673310147359;
+        Mon, 09 Jan 2023 16:22:27 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id x3-20020a0565123f8300b004949a8df775sm1854041lfa.33.2023.01.09.16.22.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 16:04:47 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <d49d4b4c-e7ee-e0a1-56e6-7f193e0d1340@roeck-us.net>
-Date:   Mon, 9 Jan 2023 16:04:45 -0800
+        Mon, 09 Jan 2023 16:22:26 -0800 (PST)
+Message-ID: <eeafb291-9da7-da21-8425-c651066f7379@linaro.org>
+Date:   Tue, 10 Jan 2023 02:22:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 3/5] hwmon: ltc2945: Handle error case in
- ltc2945_value_store
-Content-Language: en-US
-To:     Jonathan Cormier <jcormier@criticallink.com>,
-        linux-hwmon@vger.kernel.org
-Cc:     Jean Delvare <jdelvare@suse.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bob Duke <bduke@criticallink.com>,
-        John Pruitt <jpruitt@criticallink.com>
-References: <20221214220727.1350784-3-jcormier@criticallink.com>
- <20230109233534.1932370-1-jcormier@criticallink.com>
- <20230109233534.1932370-4-jcormier@criticallink.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20230109233534.1932370-4-jcormier@criticallink.com>
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v4 1/3] drm/msm/disp/dpu1: pin 1 crtc to 1 encoder
+Content-Language: en-GB
+To:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com
+References: <1669021695-4397-1-git-send-email-quic_kalyant@quicinc.com>
+ <1669021695-4397-2-git-send-email-quic_kalyant@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1669021695-4397-2-git-send-email-quic_kalyant@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/9/23 15:35, Jonathan Cormier wrote:
-> ltc2945_val_to_reg errors were not being handled
-> which would have resulted in register being set to
-> 0 (clamped) instead of being left alone.
+On 21/11/2022 11:08, Kalyan Thota wrote:
+> Pin each crtc with one encoder. This arrangement will
+> disallow crtc switching between encoders and also will
+> facilitate to advertise certain features on crtc based
+> on encoder type.
 > 
-> Change reg_to_val and val_to_reg to return values
-> via parameters to make it more obvious when an
-> error case isn't handled. Also to allow
-> the regval type to be the correct sign in prep for
-> next commits.
+> Changes in v1:
+> - use drm_for_each_encoder macro while iterating through
+>    encoder list (Dmitry)
 > 
-
-Sorry, I don't see that as reason or argument for such invasive changes.
-As far as I can see, a two-liner to check the return value of val_to_reg()
-should have been sufficient. Most of the rest, such as splitting
-the return value into two elements, is POV and just adds additional code
-and complexity for zero gain.
-
-Guenter
-
-> Fixes: 6700ce035f83 ("hwmon: Driver for Linear Technologies LTC2945")
+> Changes in v2:
+> - make sure no encoder miss to have a crtc (Dmitry)
+> - revisit various factors in deciding the crtc count
+>    such as num_mixers, num_sspp (Dmitry)
 > 
-> Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+> Changes in v3:
+> - none
+> 
+> Changes in v4:
+> - use max_crtc_count instead of num_encoders in WARN (Dmitry)
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
 > ---
->   drivers/hwmon/ltc2945.c | 30 ++++++++++++++++++------------
->   1 file changed, 18 insertions(+), 12 deletions(-)
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 18 +++++++++++-------
+>   1 file changed, 11 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/hwmon/ltc2945.c b/drivers/hwmon/ltc2945.c
-> index 9af3e3821152..c66acf8d2124 100644
-> --- a/drivers/hwmon/ltc2945.c
-> +++ b/drivers/hwmon/ltc2945.c
-> @@ -70,12 +70,12 @@ static inline bool is_power_reg(u8 reg)
->   }
->   
->   /* Return the value from the given register in uW, mV, or mA */
-> -static long long ltc2945_reg_to_val(struct device *dev, u8 reg)
-> +static int ltc2945_reg_to_val(struct device *dev, u8 reg, u64 *regval)
->   {
->   	struct regmap *regmap = dev_get_drvdata(dev);
->   	unsigned int control;
->   	u8 buf[3];
-> -	long long val;
-> +	u64 val;
->   	int ret;
->   
->   	ret = regmap_bulk_read(regmap, reg, buf,
-> @@ -148,11 +148,12 @@ static long long ltc2945_reg_to_val(struct device *dev, u8 reg)
->   	default:
->   		return -EINVAL;
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> index 7a5fabc..d967eef 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> @@ -795,22 +796,25 @@ static int _dpu_kms_drm_obj_init(struct dpu_kms *dpu_kms)
+>   			primary_planes[primary_planes_idx++] = plane;
 >   	}
-> -	return val;
-> +	*regval = val;
-> +	return 0;
->   }
 >   
->   static int ltc2945_val_to_reg(struct device *dev, u8 reg,
-> -			      unsigned long val)
-> +			      unsigned long val, unsigned long *regval)
->   {
->   	struct regmap *regmap = dev_get_drvdata(dev);
->   	unsigned int control;
-> @@ -220,19 +221,21 @@ static int ltc2945_val_to_reg(struct device *dev, u8 reg,
->   	default:
->   		return -EINVAL;
+> -	max_crtc_count = min(max_crtc_count, primary_planes_idx);
+> +	/*
+> +	 * All the platforms should have at least 1 primary plane for a
+> +	 * crtc. The below warn should help in setting up the catalog
+> +	 */
+> +	WARN_ON(max_crtc_count > primary_planes_idx);
+
+This change broke sc7180 support, see 
+https://gitlab.freedesktop.org/drm/msm/-/jobs/34395875
+
+I suggest a quick fix of either disabling WB2 or switching one of cursor 
+SSPPs to a generic one.
+
+>   
+>   	/* Create one CRTC per encoder */
+> -	for (i = 0; i < max_crtc_count; i++) {
+> +	i = 0;
+> +	drm_for_each_encoder(encoder, dev) {
+>   		crtc = dpu_crtc_init(dev, primary_planes[i], cursor_planes[i]);
+>   		if (IS_ERR(crtc)) {
+>   			ret = PTR_ERR(crtc);
+>   			return ret;
+>   		}
+>   		priv->crtcs[priv->num_crtcs++] = crtc;
+> +		encoder->possible_crtcs = 1 << drm_crtc_index(crtc);
+> +		i++;
 >   	}
-> -	return val;
-> +	*regval = val;
-> +	return 0;
+>   
+> -	/* All CRTCs are compatible with all encoders */
+> -	drm_for_each_encoder(encoder, dev)
+> -		encoder->possible_crtcs = (1 << priv->num_crtcs) - 1;
+> -
+>   	return 0;
 >   }
 >   
->   static ssize_t ltc2945_value_show(struct device *dev,
->   				  struct device_attribute *da, char *buf)
->   {
->   	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
-> -	long long value;
-> +	int ret;
-> +	u64 value;
->   
-> -	value = ltc2945_reg_to_val(dev, attr->index);
-> -	if (value < 0)
-> -		return value;
-> -	return sysfs_emit(buf, "%lld\n", value);
-> +	ret = ltc2945_reg_to_val(dev, attr->index, &value);
-> +	if (ret < 0)
-> +		return ret;
-> +	return sysfs_emit(buf, "%llu\n", value);
->   }
->   
->   static ssize_t ltc2945_value_store(struct device *dev,
-> @@ -245,7 +248,7 @@ static ssize_t ltc2945_value_store(struct device *dev,
->   	unsigned long val;
->   	u8 regbuf[3];
->   	int num_regs;
-> -	int regval;
-> +	unsigned long regval;
->   	int ret;
->   
->   	ret = kstrtoul(buf, 10, &val);
-> @@ -253,7 +256,10 @@ static ssize_t ltc2945_value_store(struct device *dev,
->   		return ret;
->   
->   	/* convert to register value, then clamp and write result */
-> -	regval = ltc2945_val_to_reg(dev, reg, val);
-> +	ret = ltc2945_val_to_reg(dev, reg, val, &regval);
-> +	if (ret < 0)
-> +		return ret;
-> +
->   	if (is_power_reg(reg)) {
->   		regval = clamp_val(regval, 0, 0xffffff);
->   		regbuf[0] = regval >> 16;
+
+-- 
+With best wishes
+Dmitry
 
