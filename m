@@ -2,212 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB33866372E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 03:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C872C6637DA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 04:34:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234513AbjAJCSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 21:18:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50126 "EHLO
+        id S234576AbjAJDeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 22:34:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbjAJCSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 21:18:23 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16BC9D5E;
-        Mon,  9 Jan 2023 18:18:20 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id CA36324E161;
-        Tue, 10 Jan 2023 10:18:18 +0800 (CST)
-Received: from EXMBX161.cuchost.com (172.16.6.71) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 10 Jan
- 2023 10:18:18 +0800
-Received: from [192.168.125.128] (113.72.147.215) by EXMBX161.cuchost.com
- (172.16.6.71) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 10 Jan
- 2023 10:18:17 +0800
-Message-ID: <4febeef1-a42a-7d6f-d1af-d8fe19582822@starfivetech.com>
-Date:   Tue, 10 Jan 2023 10:14:21 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v1 1/3] dt-bindings: timer: Add timer for StarFive JH7110
- SoC
+        with ESMTP id S229493AbjAJDet (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 22:34:49 -0500
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2494E1DF11
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 19:34:48 -0800 (PST)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 36B4D2C04E4;
+        Tue, 10 Jan 2023 16:34:43 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1673321683;
+        bh=JXK9XcuU5BtTAG6zrZjes9Fz+CEerOh/HuxsN544Y3g=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=qKd8w3gLakPOod4mevoFnSmDLtoVk/yC5opyZE/Kh2iNpVccHfNVUeg7o0Rqx/Z2m
+         lPkBFRDO2DOUgMme3kaRoPpCeJ4iVMV4zhojBjF05134M/dH7QbLw0zlVOl4ImV65S
+         BwCvWklC4A0DUfXKwqVcb2Y1ur7Wzks+LHhGHCPoU3euI+1X6w/ANymF7eUO1KFIA1
+         pv7lkJH7vEktoFzgn2w9EQZLkMW5290pLEhZs5+nHOKqEkZoNznrScC92TIhrAf8W8
+         LJ0XChQSKVPcboa45K8SBDodAaLkeYkw528GBhu4heae23nNHeruRTtCfDR26bG6NQ
+         a1THDI7I++kJw==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B63bcdcd30001>; Tue, 10 Jan 2023 16:34:43 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 10 Jan 2023 16:34:42 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.044; Tue, 10 Jan 2023 16:34:42 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
+        "vadym.kochan@plvision.eu" <vadym.kochan@plvision.eu>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: marvell: AC5/AC5X: Fix address for UART1
+Thread-Topic: [PATCH] arm64: dts: marvell: AC5/AC5X: Fix address for UART1
+Thread-Index: AQHZEDB9qsL6lsHyh06bePZmPJfPRK6WTqQA
+Date:   Tue, 10 Jan 2023 03:34:42 +0000
+Message-ID: <70fb6048-848e-e558-a1b9-3d74aca8ec01@alliedtelesis.co.nz>
+References: <20221215025402.1733132-1-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20221215025402.1733132-1-chris.packham@alliedtelesis.co.nz>
+Accept-Language: en-NZ, en-US
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221223094801.181315-1-xingyu.wu@starfivetech.com>
- <20221223094801.181315-2-xingyu.wu@starfivetech.com>
- <179e66a8-c6c0-6d3e-4f4a-6b884f532572@linaro.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <179e66a8-c6c0-6d3e-4f4a-6b884f532572@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.147.215]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX161.cuchost.com
- (172.16.6.71)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C83D4EE8769D514F99C9FE9176FDAE15@atlnz.lc>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=X/cs11be c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=RvmDmJFTN0MA:10 a=D_AEATpMilPvRHeLKy4A:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/12/23 18:25, Krzysztof Kozlowski wrote:
-> On 23/12/2022 10:47, Xingyu Wu wrote:
->> Add bindings for the timer on the JH7110
->> RISC-V SoC by StarFive Technology Ltd.
-> 
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
-> 
-> 
->> 
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
->>  .../timer/starfive,jh7110-timers.yaml         | 105 ++++++++++++++++++
->>  1 file changed, 105 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml b/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
->> new file mode 100644
->> index 000000000000..fe58dc056313
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
->> @@ -0,0 +1,105 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/timer/starfive,jh7110-timers.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive Timers
-> 
-> 
-> Not enough, really not enough. Describe the hardware.
-
-Will add. Thanks.
-
-> 
->> +
->> +maintainers:
->> +  - Samin Guo <samin.guo@starfivetech.com>
->> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: starfive,jh7110-timers
-> 
-> Why plural "timers", not "timer"? The module is usually called timer -
-> see other hardware that type.
-> 
-
-Will fix. Thanks.
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    items:
->> +      - description: timer channel 0 interrupt
->> +      - description: timer channel 1 interrupt
->> +      - description: timer channel 2 interrupt
->> +      - description: timer channel 3 interrupt
->> +
->> +  interrupt-names:
->> +    items:
->> +      - const: timer0
->> +      - const: timer1
->> +      - const: timer2
->> +      - const: timer3
-> 
-> I would just drop the names, not really useful. Unless you plan to add
-> here some generic interrupt (like you did for clock-names)?
-
-Will drop. Thanks.
-
-> 
->> +
->> +  clocks:
->> +    items:
->> +      - description: timer channel 0 clock
->> +      - description: timer channel 1 clock
->> +      - description: timer channel 2 clock
->> +      - description: timer channel 3 clock
->> +      - description: APB clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: timer0
->> +      - const: timer1
->> +      - const: timer2
->> +      - const: timer3
->> +      - const: apb
->> +
->> +  resets:
->> +    items:
->> +      - description: timer channel 0 reset
->> +      - description: timer channel 1 reset
->> +      - description: timer channel 2 reset
->> +      - description: timer channel 3 reset
->> +      - description: APB reset
->> +
->> +  reset-names:
->> +    items:
->> +      - const: timer0
->> +      - const: timer1
->> +      - const: timer2
->> +      - const: timer3
->> +      - const: apb
->> +
->> +  clock-frequency:
->> +    description: The frequency of the clock that drives the counter, in Hz.
-> 
-> Why do you need it? Use common clk framework to get that frequency.
-
-Because normally this timer driver is loaded earlier than the clock tree driver, it won't get
-that frequency by clk framework and this 'clock-frequency' node is used instead.
-
-> 
-> Also, sort the nodes somehow, e.g.
-> compatible/reg/clocks/clock-frequency/interrupts/resets.
-
-Will reorder. Thanks.
-
-> 
-> 
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - interrupt-names
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - clock-frequency
->> +
->> +unevaluatedProperties: false
-> 
-> Did you test the binding?
-
-Yes, I had tested by 'dt_binding_check'. Do you mean the 'unevaluatedProperties' is wrong
-and use 'additionalProperties'?
-
-Best regards,
-Xingyu Wu
-
+SGkgQWxsLA0KDQpPbiAxNS8xMi8yMiAxNTo1NCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4gVGhl
+IGNvcnJlY3QgYWRkcmVzcyBvZmZzZXQgaXMgMHgxMjEwMC4NCj4NCj4gRml4ZXM6IDMxYmU3OTFl
+MjZjZiAoImFybTY0OiBkdHM6IG1hcnZlbGw6IEFkZCBVQVJUMS0zIGZvciBBQzUvQUM1WCIpDQo+
+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNp
+cy5jby5uej4NCj4gLS0tDQo+IE5vdCBzdXJlIGhvdyB0aGlzIGhhcHBlbmVkLiBJIG9ubHkgbm90
+aWNlZCB3aGVuIEkgaGFkIGEgY29uZmxpY3QgaW4gc29tZQ0KPiBsb2NhbCBwYXRjaGVzIEkgd2Fz
+IHJlYmFzaW5nIGFnYWluc3QgdXBzdHJlYW0uIFNvIEkgb2J2aW91c2x5IGhhZCBpdA0KPiByaWdo
+dCBhdCBvbmUgcG9pbnQgYnV0IHRoZW4gbWFuYWdlZCB0byBicmVhayBpdCBpbiB0aGUgcHJvY2Vz
+cyBvZg0KPiBjbGVhbmluZyB0aGluZ3MgdXAgZm9yIHN1Ym1pc3Npb24uDQoNCkkga25vdyBwZW9w
+bGUgaGF2ZSBwcm9iYWJseSBiZWVuIGF3YXkgd2l0aCB2YXJpb3VzIGhvbGlkYXlzIGJ1dCBJIHRo
+aW5rIA0KaXQncyBiZWVuIGxvbmcgZW5vdWdoIHNvLi4uLg0KDQpwaW5nPw0KDQo+DQo+ICAgYXJj
+aC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2FjNS05OGR4MjV4eC5kdHNpIHwgMiArLQ0KPiAgIDEg
+ZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0KPg0KPiBkaWZmIC0t
+Z2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2FjNS05OGR4MjV4eC5kdHNpIGIvYXJj
+aC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2FjNS05OGR4MjV4eC5kdHNpDQo+IGluZGV4IDczMDhm
+N2I2YjIyYy4uOGJjZTY0MDY5MTM4IDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRz
+L21hcnZlbGwvYWM1LTk4ZHgyNXh4LmR0c2kNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9t
+YXJ2ZWxsL2FjNS05OGR4MjV4eC5kdHNpDQo+IEBAIC05OCw3ICs5OCw3IEBAIHVhcnQwOiBzZXJp
+YWxAMTIwMDAgew0KPiAgIA0KPiAgIAkJCXVhcnQxOiBzZXJpYWxAMTIxMDAgew0KPiAgIAkJCQlj
+b21wYXRpYmxlID0gInNucHMsZHctYXBiLXVhcnQiOw0KPiAtCQkJCXJlZyA9IDwweDExMDAwIDB4
+MTAwPjsNCj4gKwkJCQlyZWcgPSA8MHgxMjEwMCAweDEwMD47DQo+ICAgCQkJCXJlZy1zaGlmdCA9
+IDwyPjsNCj4gICAJCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDg0IElSUV9UWVBFX0xFVkVMX0hJ
+R0g+Ow0KPiAgIAkJCQlyZWctaW8td2lkdGggPSA8MT47
