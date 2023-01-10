@@ -2,80 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCC3766380D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 05:18:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C74F9663819
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 05:21:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbjAJESO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 23:18:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33286 "EHLO
+        id S229700AbjAJEVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 23:21:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbjAJESM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 23:18:12 -0500
+        with ESMTP id S229657AbjAJEVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 23:21:30 -0500
 Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 953E738AC5
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 20:18:10 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id cf42so16410467lfb.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 20:18:10 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829CC40C11
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 20:21:29 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id bt23so16360882lfb.5
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 20:21:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BAbrvIDX21sORhEpMRKBFBGE1ijyHzGfQa4j/vy210g=;
-        b=wVcLbz6qKAkEDzLBDbrj0XoNmBd3D66kdBI5sin4HTu/Q65cWDdf5OCsrbv/Li4IOa
-         QObJZ6e4KFlS1s1X9cUiYRj9xcSWnXCOqbXzoV8bllvVNnB837Gqs2zgyFd6MnyEaaQ1
-         ovKJW8NUZZ2r/23tlF1yuvUBJpMoetpJzHrdsoKtvoEl7lw9k0fkJmq/plYMp5TjZ6Jt
-         15NHN6kLVgt1aHPiosoYWouMabAQw5dcmLFgCKOqVfYI/JRu8Ch2m++wjbIb9rkaBZHF
-         rL+g1xgixhUZ+AHUpQfxu7K3iu7kQGeyqqsQnOkQX+0tptqoNocsm6pLS6PpUybla9Sx
-         VYYQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kLclwd9d+1jNPhnPiOUxrWwaeB2zLFgxQRjSahEcvdU=;
+        b=i02xmS18BLCirCOfRf89JjN+5ysqXC0emBObh+Iidvt5jjZoWZFTDc436KCzOe1I3I
+         y7ujK5GVY8pizW1fWDhKlQZL+P8zHq+FK6mufItURFwfkjdMwpuU64qWmtxvmbwv3TqB
+         usExuCuiFWoOXru746+WxGKyV+KdPiezgp76Gk+E6DxTMLWmnQFhdfXWcWVCgCy4rz38
+         01cnuYNOQ+eU3sTRnzceDQv2IgWadU2fWJlpWq8aSFLbS6TW24rtEfP7Od+2uCgxEunn
+         aQVtO34R2hRnlWndzKvK/uDVucXrylPCXGEc76X4XafschKZBgzTveuMOzXNVQctJWwR
+         AvvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BAbrvIDX21sORhEpMRKBFBGE1ijyHzGfQa4j/vy210g=;
-        b=OtFWIt52pNH7OobJnjhcahVTSRlvO3qrh1IqIvB59fILh/RC6gxABZmxDKEhkhIAx+
-         jYCFgnTSt4AJuqnDJruhBeRu6J7NyuPATqWX+FMIxVJTF+d3cRYr9p0wANNPLe80H0Sl
-         ARnbqDLpSbw/zi6dWh8ragFMQ/RiQbiqAcsy6MsIDN4hBvaHVOgn0z+7P0MKeQ32pnYL
-         +U1DUAQXCgDj4ihrP2RK9okVVAe7Jdcxmi2K/qvZtxWd7Io73vf6xDRkfyqMGGQyH9zu
-         uqvJLpzUxDKitUxMwxJ7if0ssbsekBvXzpiAbi7SU6IaTY3XJbKsCjQ7Osp9FL7/fzSp
-         RIEw==
-X-Gm-Message-State: AFqh2kpCs210wRG5BcA6nY7asado0cW+NEksCRof4LzhycXPiVa6QcRp
-        5SRotD8Dv37HIMmdKNvlgKF28Q==
-X-Google-Smtp-Source: AMrXdXtGqxB5FWKeH4Hz54MIYp9cdc9vjkF+6IIeAl9xo/p4w1nnxoIC8iPDN9GOhuEaFdyvoT1vjw==
-X-Received: by 2002:a05:6512:65:b0:4cb:4438:30a3 with SMTP id i5-20020a056512006500b004cb443830a3mr674653lfo.53.1673324288764;
-        Mon, 09 Jan 2023 20:18:08 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id a13-20020a056512200d00b004c57abccb8bsm1956949lfb.102.2023.01.09.20.18.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 20:18:08 -0800 (PST)
-Message-ID: <e8f80539-f253-a6f7-3c5e-e6c94dac31c2@linaro.org>
-Date:   Tue, 10 Jan 2023 06:18:07 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v3 0/7] drm/msm: add support for SM8550
-Content-Language: en-GB
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kLclwd9d+1jNPhnPiOUxrWwaeB2zLFgxQRjSahEcvdU=;
+        b=On+9SX8ZoSWE3E7eauCXr9r4a02X3zpRKgqouV5IHWTr6vzVY/zHghFjBVZ0uCEl+r
+         hPv3BOvMkfWVg5HVNtcCU2CZIlQI3eqnNIiRfLIbyQbIhp66y7g66TY02xih6ByQai/p
+         swnAwhyMyZowVCajsDIG5l5r+ohXl42anlKvq3wWnkdNO0VTz9QDZIRbyPQz5dMXrSVY
+         VrhjyD3feB4YYlSpOoknwxbNzLTzhF40MgkzscgOYfGphLvznZfhTrPMlv2NiH/HADlH
+         qjanMKnQpKuovixPEmWOXZ+YFzn+9VMGwj3s++wYh6ju4CwJZ8hav7Lr1H9n7hI5quRs
+         qA1Q==
+X-Gm-Message-State: AFqh2koBT1FZtNGh5qIne+2cF1B135YZkuqX6x/s+szQeDaYL84J0Kqp
+        dVRJxiWayExKo9nDkF1CQBgtKQ==
+X-Google-Smtp-Source: AMrXdXv8GHwwGF7z7dzRWBdzqVY1gRzdPQELpZUm8JxS3TpQ7bP+6wnr+V2C8sPN0VgRBvBTIuetZw==
+X-Received: by 2002:ac2:43a4:0:b0:4cb:3a60:65cb with SMTP id t4-20020ac243a4000000b004cb3a6065cbmr7019378lfl.6.1673324487689;
+        Mon, 09 Jan 2023 20:21:27 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id d5-20020ac241c5000000b004b581ab4c77sm1946932lfi.78.2023.01.09.20.21.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 20:21:27 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230103-topic-sm8550-upstream-mdss-dsi-v3-0-660c3bcb127f@linaro.org>
- <167330408777.609993.13359003796525315964.b4-ty@linaro.org>
-In-Reply-To: <167330408777.609993.13359003796525315964.b4-ty@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: sdm845: make DP node follow the schema
+Date:   Tue, 10 Jan 2023 06:21:26 +0200
+Message-Id: <20230110042126.702147-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,43 +71,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 01:43, Dmitry Baryshkov wrote:
-> 
-> On Mon, 09 Jan 2023 11:15:17 +0100, Neil Armstrong wrote:
->> This adds support for the MDSS/DPU/DSI on the Qualcomm SM8550 platform.
->>
->> This patchset is based on the SM8450 display support serie at [1].
->>
->> In order to work, the following patchsets are required:
->> - PM8550 LDO fix at [2]
->> - DISPCC driver at [3]
->>
->> [...]
-> 
-> Applied, thanks!
-> 
-> [1/7] dt-bindings: display/msm: document the SM8550 DSI PHY
->        https://gitlab.freedesktop.org/lumag/msm/-/commit/71917f654bae
-> [2/7] dt-bindings: display/msm: document DPU on SM8550
->        https://gitlab.freedesktop.org/lumag/msm/-/commit/602082368233
+Drop the #clock-cells (probably a leftover from the times before the DP
+PHY split)
 
-These two patches were removed for now, until we have dispcc and 
-interconnect bindings in place.
+Fixes: eaac4e55a6f4 ("arm64: dts: qcom: sdm845: add displayport node")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
 
-> [3/7] dt-bindings: display/msm: document MDSS on SM8550
->        https://gitlab.freedesktop.org/lumag/msm/-/commit/9cb8eacfb528
-> [4/7] drm/msm/dpu: add support for SM8550
->        https://gitlab.freedesktop.org/lumag/msm/-/commit/c3cc4e88efb0
-> [5/7] drm/msm: mdss: add support for SM8550
->        https://gitlab.freedesktop.org/lumag/msm/-/commit/f96cca5ed719
-> [6/7] drm/msm/dsi: add support for DSI-PHY on SM8550
->        https://gitlab.freedesktop.org/lumag/msm/-/commit/0fd17f93661d
-> [7/7] drm/msm/dsi: add support for DSI 2.7.0
->        https://gitlab.freedesktop.org/lumag/msm/-/commit/d797ca161b87
-> 
-> Best regards,
+Changes since v1: dropped the opp-table rename, handled by a patch by
+Krzysztof.
 
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 8b403eea8e67..f4a552ab383e 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4603,7 +4603,6 @@ mdss_dp: displayport-controller@ae90000 {
+ 					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
+ 				clock-names = "core_iface", "core_aux", "ctrl_link",
+ 					      "ctrl_link_iface", "stream_pixel";
+-				#clock-cells = <1>;
+ 				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+ 						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+ 				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
 -- 
-With best wishes
-Dmitry
+2.39.0
 
