@@ -2,179 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFC0D664583
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 17:02:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1A916645CE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 17:17:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234745AbjAJQCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 11:02:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59260 "EHLO
+        id S234540AbjAJQRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 11:17:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233423AbjAJQBq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 11:01:46 -0500
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B034532EAA;
-        Tue, 10 Jan 2023 08:01:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=oTVB50/ici0YMYyKRDs/Lka/kYpfalQ+g+Tk/bkfMeo=; b=e2hdwprMphZ5yovZO8ivKPBSb0
-        irIkiV4DRkzH55hV0D5wp8rPfsbKdEPQjs9dUWSYe1whDrFDmnOzfLBcQigmnIG6AklQ2iZ3OB8cB
-        JQq6507u6F0+St7VUerbcGzN+JoLVSXsa/4ESfgto5mIGmWb/+2kqcgyP+rz20gFNbKA=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:41140 helo=pettiford.lan)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1pFH4C-0007oY-Gw; Tue, 10 Jan 2023 11:01:37 -0500
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     hvilleneuve@dimonoff.com, jic23@kernel.org, lars@metafoo.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hugo@hugovil.com
-Date:   Tue, 10 Jan 2023 11:01:24 -0500
-Message-Id: <20230110160124.3853593-3-hugo@hugovil.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230110160124.3853593-1-hugo@hugovil.com>
-References: <20230110160124.3853593-1-hugo@hugovil.com>
+        with ESMTP id S234087AbjAJQRb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 11:17:31 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDE65AC54;
+        Tue, 10 Jan 2023 08:17:30 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 72199CE1836;
+        Tue, 10 Jan 2023 16:17:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8792C433F0;
+        Tue, 10 Jan 2023 16:17:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673367446;
+        bh=X2eZHxy1glwfvxgETslx2Dzi6I9eiiWTnXfLfBOt8MU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=UAmtt7X0kTtRA9rQK1+kG/sOl7avBaWii9X9Ot/EejjxrQ6LfpzOr6LXfwbScyUvG
+         liem6+CfPhW6Oq3pioIqJG83/Ycf4QcQAVNqHOd3plv++D3hNPDidir5w5UEeT+DRF
+         H81mLef/abNXpcprrV1F/8vUMTjtwyaTOzr0mqXlDilcd0P2NRkyEovopk5qE7Glo/
+         t9+EFeRb+Pww1RU70AVHY5w4n7NL0VpMzA3LuRDIBoR8dmdPrfHwj/JIk6cq9t6ldP
+         kR3mPAXmxehf5h25/YiKzxOzDjeFWBY5oGFkTqWqtcENA64DCy0NCsqi28RtIqyOgT
+         TyrKn/iOEHxqQ==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     linux-arm-msm@vger.kernel.org, dominikkobinski314@gmail.com
+Cc:     petr.vorel@gmail.com, devicetree@vger.kernel.org, pevik@seznam.cz,
+        bribbers@disroot.org, agross@kernel.org, quic_bjorande@quicinc.com,
+        konrad.dybcio@linaro.org, alexeymin@postmarketos.org
+Subject: Re: [PATCH] arm64: dts: msm8994-angler: fix the memory map
+Date:   Tue, 10 Jan 2023 10:17:19 -0600
+Message-Id: <167336743968.2134489.4564277359753611866.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20221230194845.57780-1-dominikkobinski314@gmail.com>
+References: <20221230194845.57780-1-dominikkobinski314@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
-Subject: [PATCH v2 2/2] dt-bindings: iio: adc: add Texas Instruments ADS7924
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Fri, 30 Dec 2022 20:48:45 +0100, Dominik Kobinski wrote:
+> Add reserved regions for memory hole and tz app mem to prevent
+> rebooting. Also enable cont_splash_mem, it is the same as the
+> generic 8994 one.
+> 
+> 
 
-Add device tree bindings document for the Texas Instruments ADS7924
-ADC.
+Applied, thanks!
 
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- .../bindings/iio/adc/ti,ads7924.yaml          | 104 ++++++++++++++++++
- 1 file changed, 104 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
+[1/1] arm64: dts: msm8994-angler: fix the memory map
+      commit: 380cd3a34b7f9825a60ccb045611af9cb4533b70
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
-new file mode 100644
-index 000000000000..a9d3e8778d11
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
-@@ -0,0 +1,104 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,ads7924.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI ADS7924 4 channels 12 bits I2C analog to digital converter
-+
-+maintainers:
-+  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
-+
-+description: |
-+  Texas Instruments ADS7924 4 channels 12 bits I2C analog to digital converter
-+
-+  Specifications:
-+    https://www.ti.com/lit/gpn/ads7924
-+
-+properties:
-+  compatible:
-+    const: ti,ads7924
-+
-+  reg:
-+    maxItems: 1
-+
-+  vref-supply:
-+    description:
-+      The regulator supply for the ADC reference voltage (AVDD)
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  "#io-channel-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - vref-supply
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+patternProperties:
-+  "^channel@[0-3]+$":
-+    $ref: "adc.yaml"
-+    type: object
-+    description: |
-+      Represents the external channels which are connected to the ADC.
-+
-+    properties:
-+      reg:
-+        description: |
-+          The channel number. It can have up to 4 channels numbered from 0 to 3.
-+        items:
-+          - minimum: 0
-+            maximum: 3
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@48 {
-+            compatible = "ti,ads7924";
-+            reg = <0x48>;
-+            vref-supply = <&ads7924_reg>;
-+            reset-gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
-+            interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-+            interrupt-parent = <&gpio>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            channel@0 {
-+                reg = <0>;
-+                label = "CH0";
-+            };
-+            channel@1 {
-+                reg = <1>;
-+                label = "CH1";
-+            };
-+            channel@2 {
-+                reg = <2>;
-+                label = "CH2";
-+            };
-+            channel@3 {
-+                reg = <3>;
-+                label = "CH3";
-+            };
-+        };
-+    };
-+...
+Best regards,
 -- 
-2.30.2
-
+Bjorn Andersson <andersson@kernel.org>
