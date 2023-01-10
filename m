@@ -2,35 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C486642B2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:04:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D413A6642B8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:04:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233720AbjAJOEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 09:04:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57398 "EHLO
+        id S230266AbjAJOEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 09:04:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233194AbjAJOEq (ORCPT
+        with ESMTP id S233528AbjAJOEq (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 09:04:46 -0500
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 646E3551C4
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 06:04:44 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54D050F58;
+        Tue, 10 Jan 2023 06:04:44 -0800 (PST)
 Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1pFFF4-0004vx-Pt; Tue, 10 Jan 2023 15:04:42 +0100
+        id 1pFFF5-0004vx-4K; Tue, 10 Jan 2023 15:04:43 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Chris Morgan <macroalpha82@gmail.com>,
-        linux-rockchip@lists.infradead.org
+To:     Yuteng Zhong <zonyitoo@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        maccraft123mc@gmail.com, Chris Morgan <macromorgan@hotmail.com>,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH 0/4] Miscellaneous fixes for Odroid Go Advance
-Date:   Tue, 10 Jan 2023 15:04:38 +0100
-Message-Id: <167335938207.2550251.3848668276552079564.b4-ty@sntech.de>
+        linux-kernel@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wenhao Cui <lasstp5011@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v9 1/3] arm64: dts: rockchip: Add EmbedFire LubanCat 1
+Date:   Tue, 10 Jan 2023 15:04:39 +0100
+Message-Id: <167335938203.2550251.11515354599498861656.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221201203655.1245-1-macroalpha82@gmail.com>
-References: <20221201203655.1245-1-macroalpha82@gmail.com>
+In-Reply-To: <Y6UdjhBD/Xa7ALya@VM-66-53-centos>
+References: <Y6UdjhBD/Xa7ALya@VM-66-53-centos>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -42,31 +45,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 1 Dec 2022 14:36:51 -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Fri, 23 Dec 2022 11:16:30 +0800, Yuteng Zhong wrote:
+> From: Wenhao Cui <lasstp5011@gmail.com>
 > 
-> This series is for a bunch of trivial changes to the Odroid Go
-> Advance to clean up some errors in the dmesg log and make it
-> easier to support with alsa ucm.
+> The LubanCat 1 is a RK3566 based SBC, developed by Dongguan EmbedFire
+> Electronic Technology Co., Ltd.
 > 
-> Chris Morgan (4):
->   arm64: dts: rockchip: Change audio card name for Odroid Go
->   arm64: dts: rockchip: don't set cpll rate for Odroid Go
->   arm64: dts: rockchip: update px30 thermal zones for GPU
->   arm64: dts: rockchip: Update leds for Odroid Go Advance
+> It has the following characteristics:
+> - MicroSD card slot, onboard eMMC flash memory
+> - 1GbE Realtek RTL8211F Ethernet Transceiver
+> - 1 USB Type-C port (power and USB2.0 OTG)
+> - 1 USB 3.0 Host port
+> - 3 USB 2.0 Host ports
+> - 1 HDMI
+> - 1 infrared receiver
+> - 1 MIPI DSI
+> - 1 MIPI CSI
+> - 1 x 4-section headphone jack
+> - Mini PCIe socket (USB or PCIe)
+> - 1 SIM Card slot
+> - 1 SYS LED and 1 PWR LED
+> - 40-pin GPIO expansion header
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] arm64: dts: rockchip: Change audio card name for Odroid Go
-      commit: 658a87efb47a85cf8205ed9280d611e9870d3e43
-[2/4] arm64: dts: rockchip: don't set cpll rate for Odroid Go
-      commit: 9b1eb739307d9769ff3eb04fa5938c03b16af09e
-[3/4] arm64: dts: rockchip: update px30 thermal zones for GPU
-      commit: 8ad9b52eea99b80e84e3a077e962ab5cf8d736a2
-[4/4] arm64: dts: rockchip: Update leds for Odroid Go Advance
-      commit: 882f6abdd411f941db822918ef76f4b03f2052fd
+[1/3] arm64: dts: rockchip: Add EmbedFire LubanCat 1
+      commit: 8d94da58de534634c835f22a43070f56caa2fcb6
+[2/3] dt-bindings: arm: rockchip: Add EmbedFire LubanCat 1
+      commit: 1e83f6bfaf84d9e0bcb221304bb47e74c0e80924
+[3/3] dt-bindings: vendor-prefixes: Document EmbedFire
+      commit: 43ba22818788f5a8fff5b1feaa329fa4991a3225
 
 Best regards,
 -- 
