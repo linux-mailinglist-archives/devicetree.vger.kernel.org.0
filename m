@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33C32664C44
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 20:20:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE8F3664C3F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 20:19:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239754AbjAJTTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 14:19:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58342 "EHLO
+        id S239638AbjAJTTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 14:19:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239787AbjAJTTi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 14:19:38 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3DE4532A8
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:19:37 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id bq39so20073391lfb.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:19:37 -0800 (PST)
+        with ESMTP id S239794AbjAJTTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 14:19:39 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA69553280
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:19:38 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id bp15so19997773lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:19:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SCPDekvQnYc0U1/C4X/WLhbgW1GiOmXO0Y/OcmXjz4g=;
-        b=NSZZg6ljcsHxy6iaetUWCUDZodgGFOXzmB2NnPy61OSJYetit7Z9I8LaZ4CwJkLft8
-         xIKfNYaRL+yTamvlPx5opIis+tDTIcHllt5Nw80vtfJZKnOOxpzdj5SiEwySzXZRhBB0
-         dmr40mHf99sJyh/VpoprShIUHYK8CDZ1i1+yH0/D9x8q4rsDlhtu6jH2zCIPKnXSuYdT
-         zexhuUbAXWBr8uXQ2VF/fEARnBMRMFuWQ4Tjhbfzgtbqn6Uh2Jd1cCMkoomVAouxIinX
-         YHTnoiunhyuIgkNRsa1j3xT6Ts4rdqMVLj68WG/yv6/Uu/0yR0lLenip8lE9jZZ8PM+Y
-         USRw==
+        bh=4+OWBA1+r8w2OcO6/gRNLV+SbjGPnm7JmC4LYSiKYI4=;
+        b=jBFgbqrTKPsUjyBlPD+b8nNXygbS1LXXv1GHK2bC7muFTSW1JsHYAScaB8fixOeuHc
+         HvdeYk4vouKp/0mqM1dv3H+/J0x+HLagbcbmhz9ou//WaSxXfK+I30+MjgBO0T3zy0EN
+         /t3dZd4wWhH6gycy4T1Ww6XiqvsSimqt0d0oPdHgbRU3qC+pocTqfp5ImtSim2tKwYUr
+         NmWSyyHcZ4wTUFiJ+68vNutRqUZLfkBjERafNHs51FDjAfEuM95RjSRMPU1mqf1VJd6e
+         giSSnRMUqcR06qzjnGtRab2jUroxcZD1GRC4zFUNIBB5fkCvQQ5JrIUIHR61QGxG3mXj
+         FKAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SCPDekvQnYc0U1/C4X/WLhbgW1GiOmXO0Y/OcmXjz4g=;
-        b=XntW/mpAlAYdenUIAeHv/jWUgTl+rUBqqhFwFyK/XXEcmjFw1DfqZX5M0iRAXVUW/2
-         aMiBbvvnq9BfiD8pb4TndfIfZM5zhemC73yDETFdAXYS6BxxURzOLYknu3cMOku0Iiiq
-         PLjM5Acrj+B2+eBWoOGRms3PB3CmPkAqpop8ao2pfMfOAVPCLRi6+qKoRoss2XjtRb/T
-         WKFr+JeHXy4s3LHUf/IV8U1PH4DvTuC6fEmE0hcyxHD1Lme/nlVO4BOS4cIdGzAbUh7s
-         w6M/gzuYwWLeUcRFHL6XFi3hxvmdMK0+99wm375yogdXAXJmLNrRExGwH136F3hQOEmO
-         bSDw==
-X-Gm-Message-State: AFqh2koDtp7PW0AQA8dT7065x+JtcEuvasE6aDKNswhFQXP1aD2+QDde
-        4q5a0PnG2ZfD1ImqRSgK5XVGg0jf+M1j84ob
-X-Google-Smtp-Source: AMrXdXvDjquxxa8PiOfFXuBQYP6yfkkdy3dZOWGEdXqtXrF1ljgiWwju5LbgngDIZZH3szBERdHNFQ==
-X-Received: by 2002:a05:6512:1390:b0:4cb:4307:eda5 with SMTP id p16-20020a056512139000b004cb4307eda5mr1903598lfa.25.1673378375936;
-        Tue, 10 Jan 2023 11:19:35 -0800 (PST)
+        bh=4+OWBA1+r8w2OcO6/gRNLV+SbjGPnm7JmC4LYSiKYI4=;
+        b=lioYS7ozyM6Z3qN9CgB43/lwZGjTlGngeweimeDJ3lVxoYK8nLMpmLXggtBpMKtoAy
+         xp5RmJSXWiYbo8P2adqAENcv2xD4vZuidYkgSE4m/zToIJlV786yDPzqojkJDtg0sbaK
+         3iW8elN7j8+f6YxY7CRH3NetZXkR2KV6IwKtBPUSDnzymbj1Aet0Ra3feoemkokbiZAt
+         ej6EdlQnTUxdOnBwHJ8zvMtwCT4UfbUKliW/fSl1F+/BNZ+ZtvrQcBOlSYspGY5E1H5/
+         kF0UN4GgZRABn/iV6Y/ROFw3PAe9HtgEoTB34Ixu0WLfcB9IK1lZtKA0tXRfN1AV+XRI
+         vmiQ==
+X-Gm-Message-State: AFqh2ko7XVi4UbeO5V4JZSQjjw/nTcfK6+WydNiFq3QYgQxSOMtbFuZz
+        ocw2+uP0afFyCUQBuQ3pvV13RJhleIEH3xtz
+X-Google-Smtp-Source: AMrXdXstDHWetjgC0Qv+so7RKr2iJFZe5YESIH6+9Zd+P8RgQ4tj3oBgosTOd+i05swE2dlUluhJgA==
+X-Received: by 2002:a05:6512:3f26:b0:4a4:68b7:d625 with SMTP id y38-20020a0565123f2600b004a468b7d625mr24170805lfa.12.1673378376953;
+        Tue, 10 Jan 2023 11:19:36 -0800 (PST)
 Received: from Fecusia.local (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id x28-20020a056512131c00b004b549ad99adsm2297725lfu.304.2023.01.10.11.19.34
+        by smtp.gmail.com with ESMTPSA id x28-20020a056512131c00b004b549ad99adsm2297725lfu.304.2023.01.10.11.19.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 11:19:35 -0800 (PST)
+        Tue, 10 Jan 2023 11:19:36 -0800 (PST)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 10 Jan 2023 20:19:13 +0100
-Subject: [PATCH v2 2/6] crypto: stm32/hash: Simplify code
+Date:   Tue, 10 Jan 2023 20:19:14 +0100
+Subject: [PATCH v2 3/6] crypto: stm32/hash: Use existing busy poll function
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20221227-ux500-stm32-hash-v2-2-bc443bc44ca4@linaro.org>
+Message-Id: <20221227-ux500-stm32-hash-v2-3-bc443bc44ca4@linaro.org>
 References: <20221227-ux500-stm32-hash-v2-0-bc443bc44ca4@linaro.org>
 In-Reply-To: <20221227-ux500-stm32-hash-v2-0-bc443bc44ca4@linaro.org>
 To:     Herbert Xu <herbert@gondor.apana.org.au>,
@@ -80,10 +80,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We are passing (rctx->flags & HASH_FLAGS_FINUP) as indicator
-for the final request but we already know this to be true since
-we are in the (final) arm of an if-statement set from the same
-flag. Just open-code it as true.
+When exporting state we are waiting indefinitely in the same
+was as the ordinary stm32_hash_wait_busy() poll-for-completion
+function but without a timeout, which means we could hang in
+an eternal loop. Fix this by waiting for completion like the
+rest of the code.
 
 Acked-by: Lionel Debieve <lionel.debieve@foss.st.com>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
@@ -91,23 +92,29 @@ Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ChangeLog v1->v2:
 - Pick up Lionel's ACK
 ---
- drivers/crypto/stm32/stm32-hash.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/crypto/stm32/stm32-hash.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/crypto/stm32/stm32-hash.c b/drivers/crypto/stm32/stm32-hash.c
-index d33006d43f76..0473ced7b4ea 100644
+index 0473ced7b4ea..cc0a4e413a82 100644
 --- a/drivers/crypto/stm32/stm32-hash.c
 +++ b/drivers/crypto/stm32/stm32-hash.c
-@@ -399,8 +399,7 @@ static int stm32_hash_update_cpu(struct stm32_hash_dev *hdev)
- 	if (final) {
- 		bufcnt = rctx->bufcnt;
- 		rctx->bufcnt = 0;
--		err = stm32_hash_xmit_cpu(hdev, rctx->buffer, bufcnt,
--					  (rctx->flags & HASH_FLAGS_FINUP));
-+		err = stm32_hash_xmit_cpu(hdev, rctx->buffer, bufcnt, 1);
- 	}
+@@ -960,11 +960,13 @@ static int stm32_hash_export(struct ahash_request *req, void *out)
+ 	struct stm32_hash_dev *hdev = stm32_hash_find_dev(ctx);
+ 	u32 *preg;
+ 	unsigned int i;
++	int ret;
  
- 	return err;
+ 	pm_runtime_get_sync(hdev->dev);
+ 
+-	while ((stm32_hash_read(hdev, HASH_SR) & HASH_SR_BUSY))
+-		cpu_relax();
++	ret = stm32_hash_wait_busy(hdev);
++	if (ret)
++		return ret;
+ 
+ 	rctx->hw_context = kmalloc_array(3 + HASH_CSR_REGISTER_NUMBER,
+ 					 sizeof(u32),
 
 -- 
 2.39.0
