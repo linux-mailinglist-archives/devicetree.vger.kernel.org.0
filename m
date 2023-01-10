@@ -2,96 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BD13663CC3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:25:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B64D5663CC8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238193AbjAJJZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 04:25:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39276 "EHLO
+        id S238197AbjAJJ00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 04:26:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237976AbjAJJZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:25:16 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BE0554D92
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:25:15 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id j7so6025547wrn.9
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:25:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cAers7RJkSbAqWZ/DY7+7hCFdFQyY7dh3A3KAt7bg78=;
-        b=VtvA+tzWqE8zMypNL2S+9CXEyJQCvIqlgLsR/ksThTScdxWGBQEDep0YDbI4/X/C7n
-         nDEbb4pkkLaB7HPPgiZvMyZMojFpg/vMYrw/hbyXoeyBJ8HHKlSI046R5gV28zsVB4hV
-         862O/H10egIBkpoHw+dxErtUAb/HrstuuCK/ZN+TXb8jLYkB55B8zYr3lcbYI8d4kbkx
-         RnAOwgUDjnOzKxNuFbJGTon7FGyNV0QYBbM1GgdxaEPi4finMugql75J/r2L+pQ19Xz9
-         l/h5dQ5k0qMdvDkBWbyQ9EN7fhLeV9ZG+bEWvp5b/fZ0XyZDVoQbStsjqvoMQbJhaQjK
-         e3IQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cAers7RJkSbAqWZ/DY7+7hCFdFQyY7dh3A3KAt7bg78=;
-        b=O+HKCM6ZZCxWDoLesgoie4AiOJZZBQLWXteE/PDQPX5PRmXpyVkTKjOmoSczQQP2T1
-         Z1qQl4SXgf8Deam6TBREn4j7G+IIsniMIF9qcDbEKlMflivYzjG5PReGwsyh9rWWsvri
-         HimxroJxJ64p0wqxp0AqLKADcJZg23YVEUhTUPMwQnrkI4wHRPClo0Ntp1uCflBGCDxM
-         bOYDvP9yDxq3Oblw9fPjIlL6cdx4TC1v6TU3DUHbf6rQsai5RO1k+T4k054QdVfKJodT
-         RAXcxuiHiCLt1yJonLiTSuTIy6zLTiVXrdEcc5kpJ86NyXYBdpz+eO8C9szgq9oqVEYR
-         mHWQ==
-X-Gm-Message-State: AFqh2kp4FyoZ8ChXqlHsbl+GWknIC4KPlzN0YkJYsD8zacYbM7/5VTNU
-        RZGFPF5/xV0vI8288muKOqgZlg==
-X-Google-Smtp-Source: AMrXdXurdokXYHTX4nNY+VTIpNAOasrzVAkQZTCeQjZdpnZ0x4w2KMAxce6L5BYg2eiNlLTpQ5J4vw==
-X-Received: by 2002:a05:6000:1b0e:b0:28c:44b4:d8ec with SMTP id f14-20020a0560001b0e00b0028c44b4d8ecmr25395500wrz.7.1673342713686;
-        Tue, 10 Jan 2023 01:25:13 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m10-20020a056000008a00b002683695bf97sm10561160wrx.58.2023.01.10.01.25.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 01:25:13 -0800 (PST)
-Message-ID: <c71d5d68-e81b-048c-c97c-23b235ae377b@linaro.org>
-Date:   Tue, 10 Jan 2023 10:25:11 +0100
+        with ESMTP id S238200AbjAJJZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:25:43 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31D3F4FD71;
+        Tue, 10 Jan 2023 01:25:42 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id ACF636602D72;
+        Tue, 10 Jan 2023 09:25:39 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1673342740;
+        bh=UO/47Pe7uv3EMf4vDnz2gYTwAoNr+ErQMvPz7A28Qro=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=VMh/LVWlQDpZIehojvWLiTiuVARsqOLpghrySs8Xusy9wQ9h/aDe1042fpaEuCbGx
+         BPKM2r7wR+BKb5Ada4Pbz8msKEgDQeKWCXMdQN5UWvJbgq/ccE5zqnQfqR5pl6S5wJ
+         Y0ZLm0vcXcTdh2nOYe8qrJx+kBqkQPHgAkcfxUAQFp/WrhGCMdlz2D+07bWB6I5Qac
+         s1Yw6/MO1LkC3jRwkURMuWirpVNbjEx5xYQWxFYYr5fB/BIJcjel8o+OMZ63wfxnMP
+         aEWnvm0hEEzl0M2Un2/k0Xn3ybdhdQns3o/E4oDF/lk9nH1CBnYqehnGilEM5zJZTo
+         91UckWqMKkZqg==
+Message-ID: <e71a66ca-553b-3d8c-cbc1-3c2a8f4a22c2@collabora.com>
+Date:   Tue, 10 Jan 2023 10:25:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 1/3] dt-bindings: clock: document SM8550 DISPCC clock
- controller
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 2/3] ASoC: SOF: mediatek: Support mt8188 platform
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230103-topic-sm8550-upstream-dispcc-v3-0-8a03d348c572@linaro.org>
- <20230103-topic-sm8550-upstream-dispcc-v3-1-8a03d348c572@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230103-topic-sm8550-upstream-dispcc-v3-1-8a03d348c572@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Chunxu Li <chunxu.li@mediatek.com>,
+        Dan Carpenter <error27@gmail.com>,
+        YC Hung <yc.hung@mediatek.com>,
+        Wan Jiabing <wanjiabing@vivo.com>,
+        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        sound-open-firmware@alsa-project.org, alsa-devel@alsa-project.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230110084312.12953-1-tinghan.shen@mediatek.com>
+ <20230110084312.12953-3-tinghan.shen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230110084312.12953-3-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 16:47, Neil Armstrong wrote:
-> Document device tree bindings for display clock controller for
-> Qualcomm SM8550 SoC.
+Il 10/01/23 09:43, Tinghan Shen ha scritto:
+> Add support of SOF on MediaTek MT8188 SoC.
+> MT8188 ADSP integrates with a single core Cadence HiFi-5 DSP.
+> The IPC communication between AP and DSP is based on shared DRAM and
+> mailbox interrupt.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+> The change in the mt8186.h is compatible on both mt8186 and
+> mt8188. The register controls booting the DSP core with the
+> default address or the user specified address. Both mt8186
+> and mt8188 should boot with the user specified boot in the driver.
+> The usage of the register is the same on both SoC, but the
+> control bit is different on mt8186 and mt8188, which is bit 1 on mt8186
+> and bit 0 on mt8188. Configure the redundant bit has noside effect
+> on both SoCs.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Reviewed-by: Péter Ujfalusi <peter.ujfalusi@linux.intel.com>
+> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+> Reviewed-by: Ranjani Sridharan <ranjani.sridharan@linux.intel.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Best regards,
-Krzysztof
 
