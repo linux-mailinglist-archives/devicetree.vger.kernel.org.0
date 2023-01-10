@@ -2,93 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D55664F3C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 23:59:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C597664F93
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 00:07:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233452AbjAJW6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 17:58:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32934 "EHLO
+        id S231682AbjAJXHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 18:07:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234505AbjAJW5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 17:57:33 -0500
-Received: from xtrwkkxd.outbound-mail.sendgrid.net (xtrwkkxd.outbound-mail.sendgrid.net [167.89.17.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F5507653
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 14:57:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
-        h=from:subject:in-reply-to:references:mime-version:to:cc:
-        content-transfer-encoding:content-type:cc:content-type:from:subject:to;
-        s=s1; bh=iu9XeEHXs85wlWI08zrM0heL4rRQNr148D7eobXqpVM=;
-        b=JeTLAGCio3p04KCfTFic9sY6ZRzSgfXUaXVuRqvp0yjrWGWiw335WBWqdZUfCDxpAqRS
-        bdADo1gQ73+wl00ukc4phuI76MuLwKTWaPL9/I2sVLCSK7fLFsIWKMmvzhfPuPSsgRAqOK
-        uOZdgQcCKQ/H+ENK0y/acbZiRUi+faqK7z/gN8Y152Bv/j/KDH+9nTaCkEnXqjinEQlWaO
-        Km/9ZivgpCa0tjqVxi1uy2HggPvh5yqmM4CRxkENpOk0D2oTvqKTo6wVSyod8IF/wvRj9C
-        mWSD8juLBI8YbfU5euy2jpLHY0qaQKmmpHpZGJ10bcclmhQ2xSoUIuRiveFs8Xzw==
-Received: by filterdrecv-69c5db5cf4-xtwpv with SMTP id filterdrecv-69c5db5cf4-xtwpv-1-63BDECFE-2D
-        2023-01-10 22:55:58.84405825 +0000 UTC m=+3665522.168729091
-Received: from bionic.localdomain (unknown)
-        by geopod-ismtpd-6-0 (SG)
-        with ESMTP
-        id Mr120nyQRqec91sAAXlt_g
-        Tue, 10 Jan 2023 22:55:50.525 +0000 (UTC)
-From:   Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH 2/2] arm64: dts: rockchip: fix hdmi cec on rock-3a
-Date:   Tue, 10 Jan 2023 22:55:59 +0000 (UTC)
-Message-Id: <20230110225547.1563119-3-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230110225547.1563119-1-jonas@kwiboo.se>
-References: <20230110225547.1563119-1-jonas@kwiboo.se>
+        with ESMTP id S235174AbjAJXHR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 18:07:17 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC2254ECA3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 15:06:44 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pFNhL-0002oM-5n; Wed, 11 Jan 2023 00:06:27 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pFNhG-005Ai6-Sd; Wed, 11 Jan 2023 00:06:22 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pFNhF-00BpK3-Vd; Wed, 11 Jan 2023 00:06:22 +0100
+Date:   Wed, 11 Jan 2023 00:06:18 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcan@marcan.st,
+        sven@svenpeter.dev, alyssa@rosenzweig.io, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/5] pwm: Add Apple PWM controller
+Message-ID: <20230110230618.pfz267jj5ne34ava@pengutronix.de>
+References: <20230106135839.18676-1-fnkl.kernel@gmail.com>
+ <20230106135839.18676-3-fnkl.kernel@gmail.com>
 MIME-Version: 1.0
-X-SG-EID: =?us-ascii?Q?TdbjyGynYnRZWhH+7lKUQJL+ZxmxpowvO2O9SQF5CwCVrYgcwUXgU5DKUU3QxA?=
- =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0h+QgBffmXDJfQEHAq?=
- =?us-ascii?Q?s25=2Fe17FJ3dKFHD6gTSEYSLMW01yEpPM+m=2FOyv5?=
- =?us-ascii?Q?C1+Y3KIlUfqNYvjwqYjVLxEzgDfHKDpSL2CnCes?=
- =?us-ascii?Q?WAylhCHwfRm0YBA6v728w8vKQGEZKfaFtnFsnWr?=
- =?us-ascii?Q?go2kV23dRdIv3UmYOgx1ube3ILpt3sj8SYPB24?=
-To:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Jonas Karlman <jonas@kwiboo.se>
-X-Entity-ID: P7KYpSJvGCELWjBME/J5tg==
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=us-ascii
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="nhj3lt2xyxvt3eo2"
+Content-Disposition: inline
+In-Reply-To: <20230106135839.18676-3-fnkl.kernel@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HDMI CEC is configured to select HDMITX_CEC_M0 function of GPIO0_C7 by
-default in rk356x.dtsi. On Radxa ROCK 3 Model A it is routed to
-HDMITX_CEC_M1 according to board schematic [1].
 
-Fix HDMI CEC by overriding pinctrl in hdmi node to select HDMITX_CEC_M1.
+--nhj3lt2xyxvt3eo2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1] https://dl.radxa.com/rock3/docs/hw/3a/ROCK-3A-V1.3-SCH.pdf
+Hello Sasha,
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 1 +
- 1 file changed, 1 insertion(+)
+On Fri, Jan 06, 2023 at 04:58:39PM +0300, Sasha Finkelstein wrote:
+> Adds the Apple PWM controller driver.
+>=20
+> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> Acked-by: Sven Peter <sven@svenpeter.dev>
+> ---
+>  drivers/pwm/Kconfig     |  12 ++++
+>  drivers/pwm/Makefile    |   1 +
+>  drivers/pwm/pwm-apple.c | 156 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 169 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-apple.c
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index dae023d783a2..8df861b1f4a3 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -51,6 +51,18 @@ config PWM_AB8500
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-ab8500.
+> =20
+> +config PWM_APPLE
+> +	tristate "Apple SoC PWM support"
+> +	depends on ARCH_APPLE || COMPILE_TEST
+> +	help
+> +	  Generic PWM framework driver for PWM controller present on
+> +	  Apple SoCs
+> +
+> +	  Say Y here if you have an ARM Apple laptop, otherwise say N
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-apple.
+> +
+>  config PWM_ATMEL
+>  	tristate "Atmel PWM support"
+>  	depends on ARCH_AT91 || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 7bf1a29f02b8..19899b912e00 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -2,6 +2,7 @@
+>  obj-$(CONFIG_PWM)		+=3D core.o
+>  obj-$(CONFIG_PWM_SYSFS)		+=3D sysfs.o
+>  obj-$(CONFIG_PWM_AB8500)	+=3D pwm-ab8500.o
+> +obj-$(CONFIG_PWM_APPLE)		+=3D pwm-apple.o
+>  obj-$(CONFIG_PWM_ATMEL)		+=3D pwm-atmel.o
+>  obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+=3D pwm-atmel-hlcdc.o
+>  obj-$(CONFIG_PWM_ATMEL_TCB)	+=3D pwm-atmel-tcb.o
+> diff --git a/drivers/pwm/pwm-apple.c b/drivers/pwm/pwm-apple.c
+> new file mode 100644
+> index 000000000000..5360583a5fa6
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-apple.c
+> @@ -0,0 +1,156 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Driver for the Apple SoC PWM controller
+> + *
+> + * Copyright The Asahi Linux Contributors
+> + *
+> + * Limitations:
+> + * - The writes to cycle registers are shadowed until a write to
+> + *   the control register.
+> + * - If both OFF_CYCLES and ON_CYCLES are set to 0, the output
+> + *   is a constant off signal.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-index a1c5fdf7d68f..c9cded3d2f1b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-@@ -279,6 +279,7 @@ &gpu {
- &hdmi {
- 	avdd-0v9-supply = <&vdda0v9_image>;
- 	avdd-1v8-supply = <&vcca1v8_image>;
-+	pinctrl-0 = <&hdmitx_scl &hdmitx_sda &hdmitxm1_cec>;
- 	status = "okay";
- };
- 
--- 
-2.39.0
+How does the PWM behave with *APPLE_PWM_CTRLAPPLE_PWM_CTRL =3D 0?
+(typically: drives constant low)
 
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/io.h>
+> +#include <linux/clk.h>
+> +#include <linux/math64.h>
+> +
+> +#define APPLE_PWM_CTRL        0x00
+> +#define APPLE_PWM_ON_CYCLES   0x1c
+> +#define APPLE_PWM_OFF_CYCLES  0x18
+> +
+> +#define APPLE_CTRL_ENABLE        BIT(0)
+> +#define APPLE_CTRL_MODE          BIT(2)
+> +#define APPLE_CTRL_UPDATE        BIT(5)
+> +#define APPLE_CTRL_TRIGGER       BIT(9)
+> +#define APPLE_CTRL_INVERT        BIT(10)
+> +#define APPLE_CTRL_OUTPUT_ENABLE BIT(14)
+
+In reply to v4 I wrote:
+
+| Would be nice if the register prefix would match the register name. That
+| is please either rename APPLE_PWM_CONTROL to APPLE_PWM_CTRL or use
+| APPLE_PWM_CONTROL as prefix for the bit fields in that register.
+
+well, one of the two options was bogus because it doesn't result in the
+intended effect. You picked that broken option :-\
+Can you please rename such that the (maybe new) name for APPLE_PWM_CTRL
+is a prefix for the (maybe new) APPLE_CTRL_ENABLE and the other register
+bit definitions?
+
+> [...]
+> +static int apple_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct apple_pwm *fpwm;
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	fpwm =3D devm_kzalloc(&pdev->dev, sizeof(*fpwm), GFP_KERNEL);
+> +	if (!fpwm)
+> +		return -ENOMEM;
+> +
+> +	fpwm->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(fpwm->base))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(fpwm->base), "unable to map m=
+mio");
+
+devm_platform_ioremap_resource() already emits an error message if there
+is a problem. So please don't add another message here.
+
+> +	clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(clk), "unable to get the cloc=
+k");
+> +
+> +	/*
+> +	 * uses the 24MHz system clock on all existing devices, can only
+> +	 * happen if the device tree is broken
+> +	 */
+> +	fpwm->clkrate =3D clk_get_rate(clk);
+> +	if (fpwm->clkrate > NSEC_PER_SEC)
+> +		return dev_err_probe(&pdev->dev, -EINVAL, "pwm clock out of range");
+
+This check is done to prevent an overflow in .apply, right? Please point
+that out in a comment.
+
+> +	fpwm->chip.dev =3D &pdev->dev;
+> +	fpwm->chip.npwm =3D 1;
+> +	fpwm->chip.ops =3D &apple_pwm_ops;
+> +
+> +	ret =3D devm_pwmchip_add(&pdev->dev, &fpwm->chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(&pdev->dev, ret, "unable to add pwm chip");
+> +
+> +	return 0;
+> +}
+> +
+> [...]
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--nhj3lt2xyxvt3eo2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmO972cACgkQwfwUeK3K
+7AlyMQf/fr+3quRS974KGObjeliI2qcMCqP2Tq0qjhRCKGwEsHMEFKPg7ixkOJko
+oRly+N3zqIs6S+b0eo2MObRMB9ABl3+42m7V5jLiGDiIEJzoBESE1/9XqwgQKISO
+p8CgaHZktwFIZoMOTakjuTJA7UNmGnB/JsQaSWnh2pi1qYfE2Ft4U18pTZNcSijv
+Eq4oY/3UNZV9+MCtB/EC6g9d3Mvi7fEkLdgp5OVZ4Z0NJqDFUz+klIDIfBiS7n+U
+u/heswafcPYiKo88tKKZcC449+1se/kX6+kwDUWIvdp2fKLhaWaX+jlgtCcMs9R7
+AUaPg6vD6bqhRtIWGP7r0ZfDO/eH/w==
+=Nwbo
+-----END PGP SIGNATURE-----
+
+--nhj3lt2xyxvt3eo2--
