@@ -2,139 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8162663A20
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 08:45:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F0D8663A3A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 08:54:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230266AbjAJHpZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 10 Jan 2023 02:45:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56390 "EHLO
+        id S230094AbjAJHyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 02:54:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbjAJHpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 02:45:24 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0FFE17595;
-        Mon,  9 Jan 2023 23:45:22 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 8E3BE24E2EE;
-        Tue, 10 Jan 2023 15:45:21 +0800 (CST)
-Received: from EXMBX067.cuchost.com (172.16.6.67) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 10 Jan
- 2023 15:45:18 +0800
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX067.cuchost.com
- (172.16.6.67) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 10 Jan
- 2023 15:45:18 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Tue, 10 Jan 2023 15:45:18 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-CC:     Olivia Mackall <olivia@selenic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH v3 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
-Thread-Topic: [PATCH v3 2/3] hwrng: starfive - Add TRNG driver for StarFive
- SoC
-Thread-Index: AQHZJEs120dGRuhRZEeUeBz460sZNq6WvwSAgACGdNA=
-Date:   Tue, 10 Jan 2023 07:45:17 +0000
-Message-ID: <3f7e4e82d42d4c1791afa346f8b62870@EXMBX168.cuchost.com>
-References: <20230109165249.110279-1-jiajie.ho@starfivetech.com>
- <20230109165249.110279-3-jiajie.ho@starfivetech.com>
- <Y70WgbySlio6cjew@gondor.apana.org.au>
-In-Reply-To: <Y70WgbySlio6cjew@gondor.apana.org.au>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [202.190.108.220]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        with ESMTP id S237832AbjAJHya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 02:54:30 -0500
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C531EAC6
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 23:54:24 -0800 (PST)
+Received: by mail-yb1-xb2b.google.com with SMTP id o75so11014464yba.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 23:54:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=M1HA+cUB8IN88uId3+2+zul+0QRsM4IYV5HaTxUg2o8=;
+        b=ilvUVPx25OH3XNmE6VPoLRn6bqaJSPeWJn8Ir8cd9MgUZOAHsJycQV4sOLqd1+6DY4
+         XAKhTVYNnLhSfK7NHNKM5MN7E7yEqTCioo6nbACSo3q80Si3AbmkAudS7SW6ZgswnsWk
+         iW2E92oUtIv39FYjN79fSzAH+m58CCOmkR4i1kFWe7+1cdRaAfcBhlKw8zMCDGYPcIrh
+         V6YlLvcehJNFbQpDjOJ0tjTWaTRL1GfbgFy+z2fwOLjQpeyyiPPpcwurTK6Dicw8mIyx
+         ed3YFANM9iSdkO0SYBYEd+Oi6xmhfnendwnhLo886z3aeNWJfnQPqIOcrijwjLK+1vVM
+         jCsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M1HA+cUB8IN88uId3+2+zul+0QRsM4IYV5HaTxUg2o8=;
+        b=VVJViaqrn0o0T60/CaPormqz9sDaKWjcuLd3YxCrfD0ysiAXHrn9nm8Xb9jZl3LeY7
+         3PS/c75qj6PpNuO2kOQEm0Pum+H/WjkeW4wrYbMIy3T5sDEVa8TtMH/L6qYpuo2NQ58S
+         /usN9FKHK7AtCL4xbTH0xUmrrMfSKo3sdnpXj4f8kjSarLNqu4pWi67B4n5EI8eD5Hk9
+         RnjsJNLmKAbWNbSHmG7T3OSLyJvEbJmYpzj91DL1C1acvtTyP2fLVWFrO6LHOv/WOlzi
+         MWKh9mSc8k6eB4ajE3yJQmJ29QuWrT6djXCG7v8/gyiZ1HgfVeJa6Tl06quhGPND+zmj
+         W34w==
+X-Gm-Message-State: AFqh2kqSvw7AGBzLxGKtbgygw+HZCQ9B63IowsurvnfpV+p6UxjvA23q
+        QFnVwZV5OTk2a3rCT6ANJ1/uuGk0CwAMfUYdEdHT9A==
+X-Google-Smtp-Source: AMrXdXuxq1hU1ANfE7x69zRH+at5knWFVgWEGqMr5dBQpesWF7B6/CJi/6pfxL4Ad9TNAlTVy08sM+TyJ/s2Y3KsRPI=
+X-Received: by 2002:a05:6902:1817:b0:723:be61:1a2c with SMTP id
+ cf23-20020a056902181700b00723be611a2cmr7642350ybb.130.1673337264115; Mon, 09
+ Jan 2023 23:54:24 -0800 (PST)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230104021430.3503497-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20230104021430.3503497-1-peng.fan@oss.nxp.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 10 Jan 2023 08:54:12 +0100
+Message-ID: <CACRpkdaBAc78_Z0-rVBdqNF0ejt4Gnk+i2SG04LL0YYM9Kb5TQ@mail.gmail.com>
+Subject: Re: [PATCH V2] dt-bindings: pinctrl: imx8m: Integrate duplicated i.MX
+ 8M schemas
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     aisheng.dong@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, ping.bai@nxp.com,
+        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 4, 2023 at 3:13 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
 
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> The i.MX8MM/N/P/Q IOMUXC schemas are basically the same, it does not to
+> have four schemas for almost the same binding.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-> -----Original Message-----
-> From: Herbert Xu <herbert@gondor.apana.org.au>
-> Sent: 10 January, 2023 3:41 PM
-> To: JiaJie Ho <jiajie.ho@starfivetech.com>
-> Cc: Olivia Mackall <olivia@selenic.com>; Rob Herring <robh+dt@kernel.org>;
-> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Emil Renner
-> Berthing <kernel@esmil.dk>; Conor Dooley <conor.dooley@microchip.com>;
-> linux-crypto@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-riscv@lists.infradead.org
-> Subject: Re: [PATCH v3 2/3] hwrng: starfive - Add TRNG driver for StarFive
-> SoC
-> 
-> On Tue, Jan 10, 2023 at 12:52:48AM +0800, Jia Jie Ho wrote:
-> >
-> > +static irqreturn_t starfive_trng_irq(int irq, void *priv) {
-> > +	u32 status;
-> > +	struct starfive_trng *trng = (struct starfive_trng *)priv;
-> > +
-> > +	status = readl(trng->base + STARFIVE_ISTAT);
-> > +	if (status & STARFIVE_ISTAT_RAND_RDY) {
-> > +		writel(STARFIVE_ISTAT_RAND_RDY, trng->base +
-> STARFIVE_ISTAT);
-> > +		complete(&trng->random_done);
-> > +	}
-> > +
-> > +	if (status & STARFIVE_ISTAT_SEED_DONE) {
-> > +		writel(STARFIVE_ISTAT_SEED_DONE, trng->base +
-> STARFIVE_ISTAT);
-> > +		complete(&trng->reseed_done);
-> > +	}
-> > +
-> > +	if (status & STARFIVE_ISTAT_LFSR_LOCKUP) {
-> > +		writel(STARFIVE_ISTAT_LFSR_LOCKUP, trng->base +
-> STARFIVE_ISTAT);
-> > +		/* SEU occurred, reseeding required*/
-> > +		writel(STARFIVE_CTRL_EXEC_RANDRESEED, trng->base +
-> STARFIVE_CTRL);
-> 
-> This could occur at the same time as a GENE_RANDNUM write so perhaps
-> you should add some locking?
-> 
+Patch applied!
 
-I'll add those in the next version.
-
-> > +	ret = devm_request_irq(&pdev->dev, irq, starfive_trng_irq, 0, pdev-
-> >name,
-> > +			       (void *)trng);
-> > +	if (ret)
-> > +		return dev_err_probe(&pdev->dev, irq,
-> > +				     "Failed to register interrupt handler\n");
-> 
-> ...
-> 
-> > +	init_completion(&trng->random_done);
-> > +	init_completion(&trng->reseed_done);
-> 
-> These completion initialisations should be moved above the IRQ registration
-> because you should always be prepared to get spurious interrupts.
-> 
-
-Will update these too.
-
-> Otherwise the patch looks good.
-> 
-
-Thanks again for reviewing the patch and providing the useful feedbacks.
-
-Best regards,
-Jia Jie
+Yours,
+Linus Walleij
