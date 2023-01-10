@@ -2,62 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A040A66367F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 02:00:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DDFD663766
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 03:36:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229845AbjAJBAG convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 9 Jan 2023 20:00:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44156 "EHLO
+        id S229505AbjAJCgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 21:36:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229747AbjAJBAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 20:00:05 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7102B3D1D1;
-        Mon,  9 Jan 2023 17:00:01 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 98EBA24E10F;
-        Tue, 10 Jan 2023 08:59:58 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 10 Jan
- 2023 08:59:58 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Tue, 10 Jan 2023 08:59:58 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Conor Dooley <conor@kernel.org>
-CC:     Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH v3 3/3] riscv: dts: starfive: Add TRNG node for VisionFive
- 2
-Thread-Topic: [PATCH v3 3/3] riscv: dts: starfive: Add TRNG node for
- VisionFive 2
-Thread-Index: AQHZJEs2/69byV6q60qz9odnDfnRWq6V2l8AgAD5KdA=
-Date:   Tue, 10 Jan 2023 00:59:58 +0000
-Message-ID: <31f6c05b2836450d86560c3efda4abf2@EXMBX168.cuchost.com>
-References: <20230109165249.110279-1-jiajie.ho@starfivetech.com>
- <20230109165249.110279-4-jiajie.ho@starfivetech.com> <Y7xWtFZO/Y7GaYRQ@spud>
-In-Reply-To: <Y7xWtFZO/Y7GaYRQ@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [202.190.108.220]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
-MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        with ESMTP id S229457AbjAJCgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 21:36:37 -0500
+Received: from mo-csw-fb.securemx.jp (mo-csw-fb1514.securemx.jp [210.130.202.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669BFB7F0;
+        Mon,  9 Jan 2023 18:36:36 -0800 (PST)
+Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1514) id 30A1laFX006185; Tue, 10 Jan 2023 10:47:36 +0900
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 30A1l23S020662; Tue, 10 Jan 2023 10:47:02 +0900
+X-Iguazu-Qid: 34tMQ0sdliXH7P6xOJ
+X-Iguazu-QSIG: v=2; s=0; t=1673315221; q=34tMQ0sdliXH7P6xOJ; m=Ip4TVbWssxt9xhY/2q7Euf5QdK6wkLNwu6yXzAHO5bc=
+Received: from imx12-a.toshiba.co.jp ([38.106.60.135])
+        by relay.securemx.jp (mx-mr1512) id 30A1l0EA000945
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 10 Jan 2023 10:47:00 +0900
+X-SA-MID: 48793541
+From:   Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        yuji2.ishikawa@toshiba.co.jp
+Subject: [PATCH v4 0/6] Add Toshiba Visconti Video Input Interface driver
+Date:   Tue, 10 Jan 2023 10:41:37 +0900
+X-TSB-HOP2: ON
+Message-Id: <20230110014143.18684-1-yuji2.ishikawa@toshiba.co.jp>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,67 +44,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series is the Video Input Interface driver
+for Toshiba's ARM SoC, Visconti[0].
+This provides DT binding documentation,
+device driver, documentation and MAINTAINER files.
+
+A visconti VIIF driver instance exposes
+1 media control device file and 3 video device files
+for a VIIF hardware. 
+Detailed HW/SW are described in documentation directory.
+The VIIF hardware has CSI2 receiver,
+image signal processor and DMAC inside.
+The subdevice for image signal processor provides
+vendor specific V4L2 controls.
+
+The device driver depends on two other drivers under development;
+clock framework driver and IOMMU driver.
+Corresponding features will be added later.
+
+Best regards,
+Yuji
+
+Changelog v2:
+- Resend v1 because a patch exceeds size limit.
+
+Changelog v3:
+- Add documentation to describe SW and HW
+- Adapted to media control framework
+- Introduced ISP subdevice, capture device
+- Remove private IOCTLs and add vendor specific V4L2 controls
+- Change function name avoiding camelcase and uppercase letters
+
+Changelog v4:
+- Split patches because a patch exceeds size limit
+- fix dt-bindings document
+- stop specifying ID numbers for driver instance explicitly at device tree
+- use pm_runtime to trigger initialization of HW
+  along with open/close of device files.
+- add a entry for a header file at MAINTAINERS file
 
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: 10 January, 2023 2:02 AM
-> To: JiaJie Ho <jiajie.ho@starfivetech.com>
-> Cc: Olivia Mackall <olivia@selenic.com>; Herbert Xu
-> <herbert@gondor.apana.org.au>; Rob Herring <robh+dt@kernel.org>;
-> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Emil Renner
-> Berthing <kernel@esmil.dk>; Conor Dooley <conor.dooley@microchip.com>;
-> linux-crypto@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-riscv@lists.infradead.org
-> Subject: Re: [PATCH v3 3/3] riscv: dts: starfive: Add TRNG node for VisionFive
-> 2
-> 
-> Hey folks,
-> 
-> On Tue, Jan 10, 2023 at 12:52:49AM +0800, Jia Jie Ho wrote:
-> > Adding StarFive TRNG controller node to VisionFive 2 SoC.
-> >
-> > Co-developed-by: Jenny Zhang <jenny.zhang@starfivetech.com>
-> > Signed-off-by: Jenny Zhang <jenny.zhang@starfivetech.com>
-> > Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
-> > ---
-> >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > index 4ac159d79d66..3c29e0bc6246 100644
-> > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > @@ -455,5 +455,15 @@ uart5: serial@12020000 {
-> >  			reg-shift = <2>;
-> >  			status = "disabled";
-> >  		};
-> > +
-> > +		rng: rng@1600c000 {
-> > +			compatible = "starfive,jh7110-trng";
-> > +			reg = <0x0 0x1600C000 0x0 0x4000>;
-> > +			clocks = <&stgcrg JH7110_STGCLK_SEC_HCLK>,
-> > +				 <&stgcrg JH7110_STGCLK_SEC_MISCAHB>;
-> 
-> Which clock source is this? I see syscrg and aoncrg in the v3
-> devicetree:
-> https://lore.kernel.org/linux-riscv/20221220011247.35560-7-
-> hal.feng@starfivetech.com/
-> 
-> Have a missed a patchset which adds support for this particular clock
-> controller? At the very least, I don't think one has reached the linux-riscv
-> mailing list.
-> The clock driver patchset only has aoncrg & syscrg:
-> https://lore.kernel.org/linux-riscv/20221220005054.34518-1-
-> hal.feng@starfivetech.com/
-> 
+[0]: https://toshiba.semicon-storage.com/ap-en/semiconductor/product/image-recognition-processors-visconti.html
 
-Hi Conor,
+Yuji Ishikawa (6):
+  dt-bindings: media: platform: visconti: Add Toshiba Visconti Video
+    Input Interface bindings
+  media: platform: visconti: Add Toshiba Visconti Video Input Interface
+    driver
+  media: platform: visconti: Add Toshiba Visconti Video Input Interface
+    driver user interace
+  media: platform: visconti: Add Toshiba Visconti Video Input Interface
+    driver v4l2 controls handler
+  documentation: media: add documentation for Toshiba Visconti Video
+    Input Interface driver
+  MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
 
-Thanks for reviewing the patches.
-Yes, the patch for stg domain hasn't been submitted yet.
-In this case should I drop this patch from the series until the related patches reach the mailing list?
+ .../bindings/media/toshiba,visconti-viif.yaml |   98 +
+ .../driver-api/media/drivers/index.rst        |    1 +
+ .../media/drivers/visconti-viif.rst           |  455 +++
+ MAINTAINERS                                   |    4 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/visconti/Kconfig       |    9 +
+ drivers/media/platform/visconti/Makefile      |    9 +
+ drivers/media/platform/visconti/hwd_viif.c    | 1690 ++++++++++
+ drivers/media/platform/visconti/hwd_viif.h    |  710 +++++
+ .../media/platform/visconti/hwd_viif_csi2rx.c |  610 ++++
+ .../platform/visconti/hwd_viif_internal.h     |  340 ++
+ .../media/platform/visconti/hwd_viif_l1isp.c  | 2674 ++++++++++++++++
+ .../media/platform/visconti/hwd_viif_reg.h    | 2802 +++++++++++++++++
+ drivers/media/platform/visconti/viif.c        |  544 ++++
+ drivers/media/platform/visconti/viif.h        |  203 ++
+ .../media/platform/visconti/viif_capture.c    | 1201 +++++++
+ .../media/platform/visconti/viif_controls.c   | 1153 +++++++
+ drivers/media/platform/visconti/viif_isp.c    |  848 +++++
+ include/uapi/linux/visconti_viif.h            | 1724 ++++++++++
+ 20 files changed, 15077 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
+ create mode 100644 Documentation/driver-api/media/drivers/visconti-viif.rst
+ create mode 100644 drivers/media/platform/visconti/Kconfig
+ create mode 100644 drivers/media/platform/visconti/Makefile
+ create mode 100644 drivers/media/platform/visconti/hwd_viif.c
+ create mode 100644 drivers/media/platform/visconti/hwd_viif.h
+ create mode 100644 drivers/media/platform/visconti/hwd_viif_csi2rx.c
+ create mode 100644 drivers/media/platform/visconti/hwd_viif_internal.h
+ create mode 100644 drivers/media/platform/visconti/hwd_viif_l1isp.c
+ create mode 100644 drivers/media/platform/visconti/hwd_viif_reg.h
+ create mode 100644 drivers/media/platform/visconti/viif.c
+ create mode 100644 drivers/media/platform/visconti/viif.h
+ create mode 100644 drivers/media/platform/visconti/viif_capture.c
+ create mode 100644 drivers/media/platform/visconti/viif_controls.c
+ create mode 100644 drivers/media/platform/visconti/viif_isp.c
+ create mode 100644 include/uapi/linux/visconti_viif.h
 
-Thanks
-,Jia Jie
+-- 
+2.25.1
+
+
