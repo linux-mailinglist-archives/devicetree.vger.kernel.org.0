@@ -2,87 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F0D8663A3A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 08:54:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0FBE663A44
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 08:58:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbjAJHyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 02:54:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59678 "EHLO
+        id S237936AbjAJH6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 02:58:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237832AbjAJHya (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 02:54:30 -0500
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C531EAC6
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 23:54:24 -0800 (PST)
-Received: by mail-yb1-xb2b.google.com with SMTP id o75so11014464yba.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 23:54:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=M1HA+cUB8IN88uId3+2+zul+0QRsM4IYV5HaTxUg2o8=;
-        b=ilvUVPx25OH3XNmE6VPoLRn6bqaJSPeWJn8Ir8cd9MgUZOAHsJycQV4sOLqd1+6DY4
-         XAKhTVYNnLhSfK7NHNKM5MN7E7yEqTCioo6nbACSo3q80Si3AbmkAudS7SW6ZgswnsWk
-         iW2E92oUtIv39FYjN79fSzAH+m58CCOmkR4i1kFWe7+1cdRaAfcBhlKw8zMCDGYPcIrh
-         V6YlLvcehJNFbQpDjOJ0tjTWaTRL1GfbgFy+z2fwOLjQpeyyiPPpcwurTK6Dicw8mIyx
-         ed3YFANM9iSdkO0SYBYEd+Oi6xmhfnendwnhLo886z3aeNWJfnQPqIOcrijwjLK+1vVM
-         jCsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=M1HA+cUB8IN88uId3+2+zul+0QRsM4IYV5HaTxUg2o8=;
-        b=VVJViaqrn0o0T60/CaPormqz9sDaKWjcuLd3YxCrfD0ysiAXHrn9nm8Xb9jZl3LeY7
-         3PS/c75qj6PpNuO2kOQEm0Pum+H/WjkeW4wrYbMIy3T5sDEVa8TtMH/L6qYpuo2NQ58S
-         /usN9FKHK7AtCL4xbTH0xUmrrMfSKo3sdnpXj4f8kjSarLNqu4pWi67B4n5EI8eD5Hk9
-         RnjsJNLmKAbWNbSHmG7T3OSLyJvEbJmYpzj91DL1C1acvtTyP2fLVWFrO6LHOv/WOlzi
-         MWKh9mSc8k6eB4ajE3yJQmJ29QuWrT6djXCG7v8/gyiZ1HgfVeJa6Tl06quhGPND+zmj
-         W34w==
-X-Gm-Message-State: AFqh2kqSvw7AGBzLxGKtbgygw+HZCQ9B63IowsurvnfpV+p6UxjvA23q
-        QFnVwZV5OTk2a3rCT6ANJ1/uuGk0CwAMfUYdEdHT9A==
-X-Google-Smtp-Source: AMrXdXuxq1hU1ANfE7x69zRH+at5knWFVgWEGqMr5dBQpesWF7B6/CJi/6pfxL4Ad9TNAlTVy08sM+TyJ/s2Y3KsRPI=
-X-Received: by 2002:a05:6902:1817:b0:723:be61:1a2c with SMTP id
- cf23-20020a056902181700b00723be611a2cmr7642350ybb.130.1673337264115; Mon, 09
- Jan 2023 23:54:24 -0800 (PST)
+        with ESMTP id S237888AbjAJH4r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 02:56:47 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF9991CFE1;
+        Mon,  9 Jan 2023 23:56:38 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30A6nY2X021704;
+        Tue, 10 Jan 2023 07:56:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=KeGsFur1Dd6zeJiAxPmVJInDqu0ovWNUzCzJ/sk0H5M=;
+ b=OqzzNRM+gcSL5Uz9z0Lw8ODcyBzzGjV4m5SE51M6CRTgplgxK8G1IIsJxUAJixHQ0y3c
+ 3e9/LfdMuVgjOOWgKdvIoJAZ8j4fofMIFfX2+4RqzHBnnVY980g/810ZfqfOKYMO0qeu
+ kQEXB73wejc24R9hm5fT32dVy6UvmIWTum/IE0ccsspxCjHVyyWD/hGLBESN7AyP+WX5
+ /JdzQPdyELhDfcNMI4chu6xNO6d5EgXUUXRKBPe22caqXXh9s2PWr3vcbZdRlKqfSjHR
+ 3/YWN/5B9igjWenuR8O54MUZkAgJaaOZzM0zEQTaInWZI0b99jRswEqiWk8Ov5dF5nxy 5A== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n0x0jgp4n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 10 Jan 2023 07:56:30 +0000
+Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30A7uTQW009686
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 10 Jan 2023 07:56:29 GMT
+Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 9 Jan 2023
+ 23:56:29 -0800
+Date:   Mon, 9 Jan 2023 23:56:28 -0800
+From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
+To:     Bjorn Andersson <andersson@kernel.org>
+CC:     Sibi Sankar <quic_sibis@quicinc.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <konrad.dybcio@somainline.org>, <robimarko@gmail.com>,
+        <quic_rjendra@quicinc.com>
+Subject: Re: [PATCH V6 2/2] firmware: qcom: scm: Add wait-queue handling logic
+Message-ID: <20230110075628.GA2082@quicinc.com>
+References: <20221208064031.2875-1-quic_sibis@quicinc.com>
+ <20221208064031.2875-3-quic_sibis@quicinc.com>
+ <20221208221125.bflo7unhcrgfsgbr@builder.lan>
 MIME-Version: 1.0
-References: <20230104021430.3503497-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20230104021430.3503497-1-peng.fan@oss.nxp.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 10 Jan 2023 08:54:12 +0100
-Message-ID: <CACRpkdaBAc78_Z0-rVBdqNF0ejt4Gnk+i2SG04LL0YYM9Kb5TQ@mail.gmail.com>
-Subject: Re: [PATCH V2] dt-bindings: pinctrl: imx8m: Integrate duplicated i.MX
- 8M schemas
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     aisheng.dong@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, ping.bai@nxp.com,
-        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221208221125.bflo7unhcrgfsgbr@builder.lan>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: eWIaGJKChQ1RWHWPigh8_XAx0bprF3Kw
+X-Proofpoint-ORIG-GUID: eWIaGJKChQ1RWHWPigh8_XAx0bprF3Kw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-10_02,2023-01-09_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 clxscore=1011 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 mlxscore=0 adultscore=0 mlxlogscore=999
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301100049
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 4, 2023 at 3:13 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+On Dec 08 2022 16:11, Bjorn Andersson wrote:
+> On Thu, Dec 08, 2022 at 12:10:31PM +0530, Sibi Sankar wrote:
 
-> From: Peng Fan <peng.fan@nxp.com>
->
-> The i.MX8MM/N/P/Q IOMUXC schemas are basically the same, it does not to
-> have four schemas for almost the same binding.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+...
 
-Patch applied!
+> > +
+> > +	err = idr_alloc_u32(&scm->waitq.idr, wq, &wq_ctx_idr,
+> > +			    U32_MAX, GFP_ATOMIC);
+> 
+> PS. Thinking about it further, imagine the firmware people deciding to
+> be funny and allocating the wq_ctx in a cyclic fashion. The idr will
+> consume all your ram after a while...
 
-Yours,
-Linus Walleij
+Even if wq_ctx is allocated cyclically, say, from 1 to N, only N idrs would
+ever be allocated as subsequently there would only be lookups. Could you
+elaborate on how we would run out of RAM?
+
+Thank you.
+
+Guru Das.
