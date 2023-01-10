@@ -2,119 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DED5664C6D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 20:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA5B0664C85
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 20:32:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232670AbjAJT0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 14:26:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35982 "EHLO
+        id S230483AbjAJTc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 14:32:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239112AbjAJT0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 14:26:00 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60DD42DE7
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:25:59 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so7896248wma.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:25:59 -0800 (PST)
+        with ESMTP id S234128AbjAJT3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 14:29:04 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ABAF395E1
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:29:02 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id bt23so20016999lfb.5
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:29:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KG+ZRdx/AOYiB34HBS6JIzEWXifHlhhKkRS2/AG8Kls=;
-        b=aO6OOYOFAYcz+jNA7/5iAEQ/Fd7Sf7hD41vVsxVDhVJe9nut3NRqVio2PG0Qjqbwfq
-         OYzfsPoxsN/hNOJC9/zr+cXBQ7WiwZbPNCzbZpDbGHDhWpMYhhOa6q7rWixxhLchwlNg
-         pFJd28RWY1Dzh7lYHh7phTkcFJxNvLhNssZUSW9H2PH1AdRZQvJ6f2RfFuh8h5mPdM5T
-         6OaWlwfd/VCVdTcqkaSIW/dWdfamTbKXV4nYJYZib8cFZl+8FSLQoazMWWpIGCvxEDZz
-         1JFmjDr/wPUZRkz9ezlrF+5q/NR1pvZY6gI/ub+ByXmYNaAlgIWsi+GwcAOF8jZO0/8D
-         OigA==
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dvobj1X+xc4GVt39MIncU9qtTohL/6IewqIL/mqFFrs=;
+        b=Mpp1KcH5J0Nxi7XqAbnBXAkVlLLyOmTJz5SFMLKi2bA3rGcVcwV1unlabs9okurghG
+         X5s93wx5eojIsOXSj0Yw/2dY5clgbMKPGaBpc/NA9n+/SpHOgGvpMXpuOk48Gy4wH8db
+         jixdxwBiVIlIBhfxL5xmBtHAfsAy4SGXOT/ub6llc2ciy1EZOSw5U/Czs7yrOOf0Q5+U
+         eSRjkHN8RbwFk5Rd365SqyeeWfPhh8P2Zg8mSMMcNzNS2RTixqgbPDgmk1upVwL1cAgf
+         DxaedNxYgQpRRC0aIb/mPH3rMfFWNtudRzC6SlBT9dqYi0ug5f8MFB8VT1lXx6wIAcWX
+         dr9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KG+ZRdx/AOYiB34HBS6JIzEWXifHlhhKkRS2/AG8Kls=;
-        b=mJThaIewK6UPFmUhag58J2Qn9e1g8JL03jGeDCoZ1b9lG1OmOWmuQNNiwdfkZTbeaA
-         S3mnIeqzX/N93seVOxurErcL/KFu0vSdpKt3axUlTb0YfZOeeavUjaguAuzoslQc/QzO
-         jJEWCZdknPTyumnCDcpt5QxF8aaAaTd1q7p+tHcSJoZa3PD7qbOWzIQjekTiwtPhQfcb
-         fmyhO1mh/KQvyxs/rT2Ywp6phq3IFTnVWyacYuIKmo/MxjmeNEdES7E46IY9R2C7aq1e
-         fBTJ7SoNn/TI+w88hSNQ9BdJe/mQyxadwE0aJmxbt07h6pZexJYjVFKHW9S1nzxvoTJy
-         eQnw==
-X-Gm-Message-State: AFqh2krxcYtrkbFfSiIY7R3uj1XkhJzueN4x+3CVbJtCxdCdljs/E93k
-        d28zgKh4nTMM4N2fihyD8o3Z0g==
-X-Google-Smtp-Source: AMrXdXuVIXPcscWYpIaTc+DxxOGWLCOMIhe4CqqanKd+UEQ5kvLOcQRNLCXuaCGlYEpO9t7/ux5wAw==
-X-Received: by 2002:a05:600c:1911:b0:3d9:8635:a916 with SMTP id j17-20020a05600c191100b003d98635a916mr47086737wmq.9.1673378757980;
-        Tue, 10 Jan 2023 11:25:57 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i8-20020a05600c354800b003cf894dbc4fsm17175575wmq.25.2023.01.10.11.25.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 11:25:56 -0800 (PST)
-Message-ID: <0453b098-91db-1918-38ae-a7db0408460c@linaro.org>
-Date:   Tue, 10 Jan 2023 20:25:54 +0100
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dvobj1X+xc4GVt39MIncU9qtTohL/6IewqIL/mqFFrs=;
+        b=wo2JvMSRCAmubGXKJsEWaOa7jHNpk0OxI2HFzwb6hsm2+W4K9n+OVm46tu+dbJZGg2
+         m00oGMOL41+ux/WPfdjlsGuTrhce3md3OAgGN8jg5Je9+neOY3UKrgY9o0Qr1UL3Ruer
+         yTNOLBvIBDcy3XXzRtkqOs3AvcAdQxBCCwtkuJvtQ0NXOk4jUlggzzU7zLHz48y9CfQP
+         eM3Cmb3I6xLUsKdbkQRI3sEQ/2Fr/Nj/wlS2+edKbnto67+nPvLRoao6iObNOmcqAwnl
+         pGIBt+vVHI4MmYuh87r0M18exrFKQYD4yEC6AiR36uYofvDzrdD/W55E12/KFhxtedry
+         YgbA==
+X-Gm-Message-State: AFqh2kqALz94+NN7Svt2hPjgOk/+LtD2v7Qd35BEu/g901z4PWqgs8xu
+        i1TLxM9Kq68+Dr4jRSZe2ZzFlM70EqcHJ3MB7OToBLqeardQEEfz
+X-Google-Smtp-Source: AMrXdXsSKeFeC0BCPqtujs7lk4hQBPbwtEg2u9EOGL4sawIpm45u9+Y9dXGLbvOP6ylptimmsYrU4P/UqdWHXSh5hSo=
+X-Received: by 2002:a05:6512:708:b0:4ca:fab6:91db with SMTP id
+ b8-20020a056512070800b004cafab691dbmr2840792lfs.202.1673378940985; Tue, 10
+ Jan 2023 11:29:00 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8916-zhihe: Add initial device
- tree for zhihe Wifi/LTE dongle UFI-001C and uf896
-Content-Language: en-US
-To:     forbidden405@foxmail.com, 'Andy Gross' <agross@kernel.org>,
-        'Bjorn Andersson' <andersson@kernel.org>,
-        'Konrad Dybcio' <konrad.dybcio@linaro.org>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     'Jaime Breva' <jbreva@nayarsystems.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        'Nikita Travkin' <nikita@trvn.ru>
-References: <20230110155014.31664-1-forbidden405@foxmail.com>
- <tencent_A7FA00B086BB0EFFDC1C64744FF85DAD2B06@qq.com>
- <8530aeef-8fdb-ede7-700e-856e5cbc6a5b@linaro.org>
- <tencent_98E029F744FE85B9FD68B570A45A01743F07@qq.com>
- <f909c1b0-97db-cc33-fa27-c5e901f11956@linaro.org>
- <tencent_235CAC16001D1C38CE7D86BF7B0E365A2105@qq.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <tencent_235CAC16001D1C38CE7D86BF7B0E365A2105@qq.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230103170058.810597-1-benjamin.gaignard@collabora.com>
+ <20230103170058.810597-14-benjamin.gaignard@collabora.com>
+ <CAAEAJfBRtBSZt0B3OyQSCHhsseUn6_H+JSvAR3cOH15WUryuNw@mail.gmail.com> <852e5269-cb3d-bd56-c7fd-0a1f461623de@collabora.com>
+In-Reply-To: <852e5269-cb3d-bd56-c7fd-0a1f461623de@collabora.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Tue, 10 Jan 2023 16:28:49 -0300
+Message-ID: <CAAEAJfDgL+zvFBd2556==W2aKBrzwCMCUR7vhBszArvnQrgQTQ@mail.gmail.com>
+Subject: Re: [PATCH v2 13/13] media: verisilicon: Conditionnaly ignore native formats
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 19:58, forbidden405@foxmail.com wrote:
-> I removed Cc temporary because I had sent them the same email once. No need
-> to send the email to them again.
-> 
->> On 10/01/2023 19:30 krzysztof.kozlowski@linaro.org wrote:
-> 
->> You install this kernel with DTB on some device so clearly you have such
->> device
->> in hand, right? It has then some manufacturer, some company. If it is USB
->> stick
->> as you said, then it has even vendor ID, which might be or might not be
->> real.
-> 
-> The vendor extracted from `/system/build.prop` and USB vendor ID is fake,
-> even IMEI is stolen from some other mobile phones. Seems like the vendor
-> deliberately tries to be anonymous. Some people had tried to extract info
-> from stock firmware and on the Internet. But until now, we have no clear
-> evidence to know the manufacturer.
+Hi Benjamin,
 
-Then I am not sure if we want to support such devices mainline. It is
-not only anonymity but simply not following standards and practices.
-What's more there is no guarantee what this device is. If there is no
-known manufacturer, anytime another device from anyone can claim it is
-also uf896. IOW, what guarantees you have that other person who has
-something looking like "uf896" actually has something the same as you
-and can use your DTB?
+On Mon, Jan 9, 2023 at 6:05 AM Benjamin Gaignard
+<benjamin.gaignard@collabora.com> wrote:
+>
+>
+> Le 08/01/2023 =C3=A0 22:12, Ezequiel Garcia a =C3=A9crit :
+> > On Tue, Jan 3, 2023 at 2:01 PM Benjamin Gaignard
+> > <benjamin.gaignard@collabora.com> wrote:
+> >> AV1 film grain feature requires to use the postprocessor to produce
+> >> valid frames. In such case the driver shouldn't propose native pixels
+> >> format but only post-processed pixels format.
+> >> If a codec set need_postproc field in hantro_ctx structure to true
+> >> native pixel formats will be ignored.
+> >>
+> >> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> >> ---
+> >>   drivers/media/platform/verisilicon/hantro.h   |  3 ++
+> >>   .../media/platform/verisilicon/hantro_drv.c   |  5 ++
+> >>   .../platform/verisilicon/hantro_postproc.c    |  4 ++
+> >>   .../media/platform/verisilicon/hantro_v4l2.c  | 46 +++++++++++++----=
+--
+> >>   4 files changed, 45 insertions(+), 13 deletions(-)
+> >>
+> >> diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/med=
+ia/platform/verisilicon/hantro.h
+> >> index a98cb40a8d3b..7a5357e810fb 100644
+> >> --- a/drivers/media/platform/verisilicon/hantro.h
+> >> +++ b/drivers/media/platform/verisilicon/hantro.h
+> >> @@ -231,6 +231,8 @@ struct hantro_dev {
+> >>    * @ctrl_handler:      Control handler used to register controls.
+> >>    * @jpeg_quality:      User-specified JPEG compression quality.
+> >>    * @bit_depth:         Bit depth of current frame
+> >> + * @need_postproc:     Set to true if the bitstream features require =
+to
+> >> + *                     use the post-processor.
+> >>    *
+> >>    * @codec_ops:         Set of operations related to codec mode.
+> >>    * @postproc:          Post-processing context.
+> >> @@ -258,6 +260,7 @@ struct hantro_ctx {
+> >>          struct v4l2_ctrl_handler ctrl_handler;
+> >>          int jpeg_quality;
+> >>          int bit_depth;
+> >> +       bool need_postproc;
+> >>
+> >>          const struct hantro_codec_ops *codec_ops;
+> >>          struct hantro_postproc_ctx postproc;
+> >> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers=
+/media/platform/verisilicon/hantro_drv.c
+> >> index 4fc6dea16ae6..8d7055c0bf3b 100644
+> >> --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> >> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> >> @@ -346,6 +346,11 @@ static int hantro_av1_s_ctrl(struct v4l2_ctrl *ct=
+rl)
+> >>                                  return -EINVAL;
+> >>
+> >>                  ctx->bit_depth =3D bit_depth;
+> >> +
+> >> +               if (ctrl->p_new.p_av1_sequence->flags
+> >> +                   & V4L2_AV1_SEQUENCE_FLAG_FILM_GRAIN_PARAMS_PRESENT=
+)
+> >> +                       ctx->need_postproc =3D true;
+> >> +
 
-I don't know how to reasonably support entirely unknown devices.
+As discussed with Nicolas in IRC, I believe this should be handled differen=
+tly.
+This case is similar to
+https://lore.kernel.org/all/f26407dbf3efc6cc046daaabdbe75c516743a187.camel@=
+collabora.com/
+and also similar to
+https://elixir.bootlin.com/linux/latest/source/drivers/media/platform/sunxi=
+/sun8i-rotate/sun8i_rotate.c#L582.
 
-Best regards,
-Krzysztof
+Setting the SPS control changes the possible pixel formats, so the S_CTRL i=
+octl
+should reset the format.
 
+This means try_fmt should probably either check the (newly) SPS value
+or some context fields (ctx->bit_depth, ctx->av1_film_grain, etc.).
+
+Thanks,
+Ezeqiuel
+
+> >>                  break;
+> >>          default:
+> >>                  return -EINVAL;
+> >> diff --git a/drivers/media/platform/verisilicon/hantro_postproc.c b/dr=
+ivers/media/platform/verisilicon/hantro_postproc.c
+> >> index 7dc39519a2ee..293e5612e2ce 100644
+> >> --- a/drivers/media/platform/verisilicon/hantro_postproc.c
+> >> +++ b/drivers/media/platform/verisilicon/hantro_postproc.c
+> >> @@ -57,6 +57,10 @@ bool hantro_needs_postproc(const struct hantro_ctx =
+*ctx,
+> >>   {
+> >>          if (ctx->is_encoder)
+> >>                  return false;
+> >> +
+> >> +       if (ctx->need_postproc)
+> >> +               return true;
+> >> +
+> >>          return fmt->postprocessed;
+> >>   }
+> >>
+> >> diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/driver=
+s/media/platform/verisilicon/hantro_v4l2.c
+> >> index bbe79dbd2cd9..5c381766cca3 100644
+> >> --- a/drivers/media/platform/verisilicon/hantro_v4l2.c
+> >> +++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
+> >> @@ -38,6 +38,11 @@ hantro_get_formats(const struct hantro_ctx *ctx, un=
+signed int *num_fmts)
+> >>   {
+> >>          const struct hantro_fmt *formats;
+> >>
+> >> +       if (ctx->need_postproc) {
+> >> +               *num_fmts =3D 0;
+> >> +               return NULL;
+> >> +       }
+> >> +
+> >>          if (ctx->is_encoder) {
+> >>                  formats =3D ctx->dev->variant->enc_fmts;
+> >>                  *num_fmts =3D ctx->dev->variant->num_enc_fmts;
+> >> @@ -132,6 +137,15 @@ hantro_get_default_fmt(const struct hantro_ctx *c=
+tx, bool bitstream)
+> >>                      hantro_check_depth_match(ctx, &formats[i]))
+> >>                          return &formats[i];
+> >>          }
+> >> +
+> >> +       formats =3D hantro_get_postproc_formats(ctx, &num_fmts);
+> >> +       for (i =3D 0; i < num_fmts; i++) {
+> >> +               if (bitstream =3D=3D (formats[i].codec_mode !=3D
+> >> +                                 HANTRO_MODE_NONE) &&
+> >> +                   hantro_check_depth_match(ctx, &formats[i]))
+> >> +                       return &formats[i];
+> >> +       }
+> >> +
+> >>          return NULL;
+> >>   }
+> >>
+> >> @@ -261,19 +275,6 @@ static int vidioc_g_fmt_out_mplane(struct file *f=
+ile, void *priv,
+> >>          return 0;
+> >>   }
+> >>
+> >> -static int vidioc_g_fmt_cap_mplane(struct file *file, void *priv,
+> >> -                                  struct v4l2_format *f)
+> >> -{
+> >> -       struct v4l2_pix_format_mplane *pix_mp =3D &f->fmt.pix_mp;
+> >> -       struct hantro_ctx *ctx =3D fh_to_ctx(priv);
+> >> -
+> >> -       vpu_debug(4, "f->type =3D %d\n", f->type);
+> >> -
+> >> -       *pix_mp =3D ctx->dst_fmt;
+> >> -
+> >> -       return 0;
+> >> -}
+> >> -
+> >>   static int hantro_try_fmt(const struct hantro_ctx *ctx,
+> >>                            struct v4l2_pix_format_mplane *pix_mp,
+> >>                            enum v4l2_buf_type type)
+> >> @@ -353,6 +354,25 @@ static int hantro_try_fmt(const struct hantro_ctx=
+ *ctx,
+> >>          return 0;
+> >>   }
+> >>
+> >> +static int vidioc_g_fmt_cap_mplane(struct file *file, void *priv,
+> >> +                                  struct v4l2_format *f)
+> >> +{
+> >> +       struct v4l2_pix_format_mplane *pix_mp =3D &f->fmt.pix_mp;
+> >> +       struct hantro_ctx *ctx =3D fh_to_ctx(priv);
+> >> +       int ret;
+> >> +
+> >> +       vpu_debug(4, "f->type =3D %d\n", f->type);
+> >> +
+> >> +       ret =3D hantro_try_fmt(ctx, pix_mp, f->type);
+> >> +       if (ret)
+> >> +               return ret;
+> >> +
+> >> +       ctx->vpu_dst_fmt =3D hantro_find_format(ctx, pix_mp->pixelform=
+at);
+> >> +       ctx->dst_fmt =3D *pix_mp;
+> >> +
+> > This looks like the g_fmt is setting some state in the context,
+> > this looks incorrect.
+>
+> Indeed only a call to hantro_try_fmt() is needed here.
+> I will fix that in v3.
+>
+> Benjamin
+>
+> >
+> > Thanks,
+> > Ezequiel
