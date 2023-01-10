@@ -2,55 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4153663D5D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C2AC663D66
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 11:00:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237715AbjAJJ5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 04:57:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59518 "EHLO
+        id S231949AbjAJKAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 05:00:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231207AbjAJJ5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:57:21 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3336C3D1D4;
-        Tue, 10 Jan 2023 01:57:20 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E795E4B3;
-        Tue, 10 Jan 2023 01:58:01 -0800 (PST)
-Received: from [10.57.89.71] (unknown [10.57.89.71])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EAC893F587;
-        Tue, 10 Jan 2023 01:57:16 -0800 (PST)
-Message-ID: <6ead4016-a8a2-4572-8f75-682726d04479@arm.com>
-Date:   Tue, 10 Jan 2023 09:57:13 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.6.1
-Subject: Re: [PATCH v16 0/8] Coresight: Add support for TPDM and TPDA
-To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S231476AbjAJKAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 05:00:13 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F2ED3F47D;
+        Tue, 10 Jan 2023 02:00:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1673344812; x=1704880812;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=K2Y2CQau0fezRUiaIxz1WEdSg4CaZHgjuGH9HuT0agk=;
+  b=gPGEDI/oeFlZgs9F3bxpVS23fDTJEzTTpxYINU5+gYHR0PSutxRpz5q8
+   R6LH3QazkQlz0gwjBd2d8ERFkyGT/jDapi+s8aXEtLQsTele4i0baRmJz
+   aSvJH4PuWrxcoH0iOdtJqtts4LuABSAl9VjGbMZYOgFZ2nzFATbJtBAil
+   Uami30niTehnYUcSK5zeV8nv7BEWE+tG/f65di8W5l6IkXmBuC4+x8/WH
+   oxAiWBxK3pygXZlEZLRDLjB+y0OdlB7LlPwQ4rr0pALAhfXtGm1z3vgil
+   7mRnKMEUjLiCnyZRA0EO7IwzPdg6jEuPOkVn5+XWowEI9EX21GCn3JvLu
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,314,1665439200"; 
+   d="scan'208";a="28324365"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 10 Jan 2023 11:00:09 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 10 Jan 2023 11:00:09 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 10 Jan 2023 11:00:09 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1673344809; x=1704880809;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=K2Y2CQau0fezRUiaIxz1WEdSg4CaZHgjuGH9HuT0agk=;
+  b=ElXJ6iZaXjEqn21W0zgGNliJfjj/IpCxt/DpQtLW7599gST2wBePV9gL
+   Y0nrNMuzgnMEyAqiW1cxkoDgic2vSlbA9OxV7XnNM5zCFEf3HLSpwj36b
+   /GaAEHychUuHaHP/rLkIr6Xuf7fkFhMQUe4zFEVNj3iuvBRb3gqW342EV
+   z+XofSGo7N5DzgJcQ9+4WCtbqinDLs7vundL2OSP4a6zjEH6ODZp1KgDE
+   9kN1ZaIkYX0C3mUoAatDJwxRw88rtzPHfOl4SRZiOaa6dQ7krFWaPiEM5
+   x7HlfYhalVpyMdjEkJohAE7u2+9+z3h28YM7YLDE2sOiZnztHGkRAHjjq
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,314,1665439200"; 
+   d="scan'208";a="28324364"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 10 Jan 2023 11:00:09 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 1C96A280056;
+        Tue, 10 Jan 2023 11:00:09 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-References: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Vasut <marex@denx.de>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 1/4] clk: rs9: Check for vendor/device ID
+Date:   Tue, 10 Jan 2023 11:00:00 +0100
+Message-Id: <20230110100003.370917-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,108 +83,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 09:21, Mao Jinlong wrote:
-> This series adds support for the trace performance monitoring and
-> diagnostics hardware (TPDM and TPDA). It is composed of two major
-> elements.
-> a) Changes for original coresight framework to support for TPDM and TPDA.
-> b) Add driver code for TPDM and TPDA.
-> 
-> Introduction of changes for original coresight framework
-> Support TPDM as new coresight source.
-> Since only STM and ETM are supported as coresight source originally.
-> TPDM is a newly added coresight source. We need to change
-> the original way of saving coresight path to support more types source
-> for coresight driver.
-> The following patch is to add support more coresight sources.
->      coresight: core: Use IDR for non-cpu bound sources' paths.
-> 
-> Introduction of TPDM and TPDA
-> TPDM - The trace performance monitoring and diagnostics monitor or TPDM in
-> short serves as data collection component for various dataset types
-> specified in the QPMDA(Qualcomm performance monitoring and diagnostics
-> architecture) spec. The primary use case of the TPDM is to collect data
-> from different data sources and send it to a TPDA for packetization,
-> timestamping and funneling.
->       Coresight: Add coresight TPDM source driver
->       dt-bindings: arm: Adds CoreSight TPDM hardware definitions
->       coresight-tpdm: Add DSB dataset support
->       coresight-tpdm: Add integration test support
-> 
-> TPDA - The trace performance monitoring and diagnostics aggregator or
-> TPDA in short serves as an arbitration and packetization engine for the
-> performance monitoring and diagnostics network as specified in the QPMDA
-> (Qualcomm performance monitoring and diagnostics architecture)
-> specification. The primary use case of the TPDA is to provide
-> packetization, funneling and timestamping of Monitor data as specified
-> in the QPMDA specification.
-> The following patch is to add driver for TPDA.
->       Coresight: Add TPDA link driver
->       dt-bindings: arm: Adds CoreSight TPDA hardware definitions
-> 
-> The last patch of this series is a device tree modification, which add
-> the TPDM and TPDA configuration to device tree for validating.
->      ARM: dts: msm: Add tpdm mm/prng for sm8250
-> 
-> Once this series patches are applied properly, the tpdm and tpda nodes
-> should be observed at the coresight path /sys/bus/coresight/devices
-> e.g.
-> /sys/bus/coresight/devices # ls -l | grep tpd
-> tpda0 -> ../../../devices/platform/soc@0/6004000.tpda/tpda0
-> tpdm0 -> ../../../devices/platform/soc@0/6c08000.mm.tpdm/tpdm0
-> 
-> We can use the commands are similar to the below to validate TPDMs.
-> Enable coresight sink first.
-> 
-> echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
-> echo 1 > /sys/bus/coresight/devices/tpdm0/enable_source
-> echo 1 > /sys/bus/coresight/devices/tpdm0/integration_test
-> echo 2 > /sys/bus/coresight/devices/tpdm0/integration_test
-> The test data will be collected in the coresight sink which is enabled.
-> If rwp register of the sink is keeping updating when do
-> integration_test (by cat tmc_etf0/mgmt/rwp), it means there is data
-> generated from TPDM to sink.
-> 
-> There must be a tpda between tpdm and the sink. When there are some
-> other trace event hw components in the same HW block with tpdm, tpdm
-> and these hw components will connect to the coresight funnel. When
-> there is only tpdm trace hw in the HW block, tpdm will connect to
-> tpda directly.
->    
->      +---------------+                +-------------+
->      |  tpdm@6c08000 |                |tpdm@684C000 |
->      +-------|-------+                +------|------+
->              |                               |
->      +-------|-------+                       |
->      | funnel@6c0b000|                       |
->      +-------|-------+                       |
->              |                               |
->      +-------|-------+                       |
->      |funnel@6c2d000 |                       |
->      +-------|-------+                       |
->              |                               |
->              |    +---------------+          |
->              +----- tpda@6004000  -----------+
->                   +-------|-------+
->                           |
->                   +-------|-------+
->                   |funnel@6005000 |
->                   +---------------+
-> 
-> This patch series depends on patch series:
-> "[v6,00/14] coresight: Add new API to allocate trace source ID values"
-> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20221123195010.6859-1-mike.leach@linaro.org/
-> 
-> TPDM_TPDA commit tree:
-> https://git.codelinaro.org/clo/linux-kernel/coresight/-/commits/tpdm-tpda-v16
-> 
+This is in preparation to support additional devices which have different
+IDs as well as a slightly different register layout.
 
-Please could you add a documentation for TPDA and TPDM under
-Documentation/tracing/coresight/ ?
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Changes in v2:
+* Use dev_err_probe to include return statement in one line
 
-It need not be part of this series if you don't have to resend it.
+ drivers/clk/clk-renesas-pcie.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-
-Kind regards
-Suzuki
+diff --git a/drivers/clk/clk-renesas-pcie.c b/drivers/clk/clk-renesas-pcie.c
+index e6247141d0c05..bba09a88c2ccc 100644
+--- a/drivers/clk/clk-renesas-pcie.c
++++ b/drivers/clk/clk-renesas-pcie.c
+@@ -45,6 +45,13 @@
+ #define RS9_REG_DID				0x6
+ #define RS9_REG_BCP				0x7
+ 
++#define RS9_REG_VID_IDT				0x01
++
++#define RS9_REG_DID_TYPE_FGV			(0x0 << RS9_REG_DID_TYPE_SHIFT)
++#define RS9_REG_DID_TYPE_DBV			(0x1 << RS9_REG_DID_TYPE_SHIFT)
++#define RS9_REG_DID_TYPE_DMV			(0x2 << RS9_REG_DID_TYPE_SHIFT)
++#define RS9_REG_DID_TYPE_SHIFT			0x6
++
+ /* Supported Renesas 9-series models. */
+ enum rs9_model {
+ 	RENESAS_9FGV0241,
+@@ -54,6 +61,7 @@ enum rs9_model {
+ struct rs9_chip_info {
+ 	const enum rs9_model	model;
+ 	unsigned int		num_clks;
++	u8			did;
+ };
+ 
+ struct rs9_driver_data {
+@@ -270,6 +278,7 @@ static int rs9_probe(struct i2c_client *client)
+ {
+ 	unsigned char name[5] = "DIF0";
+ 	struct rs9_driver_data *rs9;
++	unsigned int vid, did;
+ 	struct clk_hw *hw;
+ 	int i, ret;
+ 
+@@ -306,6 +315,20 @@ static int rs9_probe(struct i2c_client *client)
+ 	if (ret < 0)
+ 		return ret;
+ 
++	ret = regmap_read(rs9->regmap, RS9_REG_VID, &vid);
++	if (ret < 0)
++		return ret;
++
++	ret = regmap_read(rs9->regmap, RS9_REG_DID, &did);
++	if (ret < 0)
++		return ret;
++
++	if (vid != RS9_REG_VID_IDT || did != rs9->chip_info->did)
++		return dev_err_probe(&client->dev, -ENODEV,
++				     "Incorrect VID/DID: %#02x, %#02x. Expected %#02x, %#02x\n",
++				     vid, did, RS9_REG_VID_IDT,
++				     rs9->chip_info->did);
++
+ 	/* Register clock */
+ 	for (i = 0; i < rs9->chip_info->num_clks; i++) {
+ 		snprintf(name, 5, "DIF%d", i);
+@@ -349,6 +372,7 @@ static int __maybe_unused rs9_resume(struct device *dev)
+ static const struct rs9_chip_info renesas_9fgv0241_info = {
+ 	.model		= RENESAS_9FGV0241,
+ 	.num_clks	= 2,
++	.did		= RS9_REG_DID_TYPE_FGV | 0x02,
+ };
+ 
+ static const struct i2c_device_id rs9_id[] = {
+-- 
+2.34.1
 
