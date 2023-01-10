@@ -2,97 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BEE0664CDF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 20:57:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80E69664CEC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 21:03:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232179AbjAJT5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 14:57:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54032 "EHLO
+        id S232123AbjAJUDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 15:03:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232097AbjAJT5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 14:57:33 -0500
-Received: from out203-205-221-153.mail.qq.com (out203-205-221-153.mail.qq.com [203.205.221.153])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 661B1D56
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:57:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
-        s=s201512; t=1673380649;
-        bh=dJPGXGPq9KBTulCLSUFI/aPlBFSMKa1WhssKqzEZC2Y=;
-        h=From:To:Cc:References:In-Reply-To:Subject:Date;
-        b=tvuW4/v0sNR27V7BfIteC658Xxhz+KtNhPKiDrJvrwEzrqP3YnMGcAfVXWtC2zesv
-         6CUj3DvEGKXbNsT+Z09zH0HII0zabUBcCFvoCCh7dYKBF6etS3FXndEagWq/rVGOMI
-         QGSC1Azqa0AXylojoh4eKoULAqQqd6icJqucfJtA=
-Received: from DESKTOPZMX ([2409:8a4c:808f:5b0:d92f:83a8:9ac7:4de5])
-        by newxmesmtplogicsvrszc2-0.qq.com (NewEsmtp) with SMTP
-        id E1732C31; Wed, 11 Jan 2023 03:56:23 +0800
-X-QQ-mid: xmsmtpt1673380583tnsq6la7s
-Message-ID: <tencent_2068AC70F1DA5AF46F600C7718FEB1B98307@qq.com>
-X-QQ-XMAILINFO: MyIXMys/8kCt2HZBdB6iDcLNo7CbPXDbza3p17qBezTWrUQVdW2Q3oewXlL3EV
-         qF9NvGfZROeL8z0kjtTlanFxyq9wOmhX2Hjq5zNa14eI2w2Nmgr67WoFxzTNvN/zxSCxwSp3mZrO
-         6DppnI4pXqVCeNt+kkJ9nYZnn+myKjTg1+JwSCxzVHpqenX1fsgb6CRM5Hb1rP5tYeGw8RMj94WG
-         iAyP8wn4sZ1xlA8S5HpCMDkaHJFiuNPKZ6l8VMcqRdA+oAvMO//8lMXmrNsumzWzxiPaLh/CiiUv
-         p4kAF6DP5qwRlkiQurQbNuS1Fa0xO4V7vTsFVjqVCXajzEW3NeIZrSBomFTUr959VMYZeCiB3pu2
-         cQl0E9zvbFn6qnh0b/U2m3Ma90IeMxPnwfvTOCw6iVH5FK0kz7RFt39rJfbjZzgRB/p9+GQ4v+q/
-         HKPZo4XgUSF48+p9wPAILGmuhy0I3k2JTH5dwJ+BPf4g+kvCbI6rdhlKjz1jrZ41A1VbXdMt9VCn
-         VUWJiJemz3COU0CNiJ0p7QpXXCsosuIN3imMpTPXyZJd/4fGo40QAxmrl5887Q3XLEvP/vGMj49n
-         ME87hWjUVuKWzT46eqnSw+bffJuEJ7VFga9sOnXO2l3CMweUZegDffl8s9TSVS5z88RWozv3Bds2
-         gFoa+r81IUAfEOWeJe6LiD4bYKj9II+JuNAT6VsC/ZKhuS5cA2lDLS9slCDCHjP+wPFMLmfIef/W
-         Ata/4vtutveO7KNnrFLwXwcKSzfdXh407Kt462NpIier2sj85NLIyI+TYhI/SaBDun5H8UxjHBda
-         q4TK9smcaW6OMUPqwS7tChi3M7gDCkRFJTs32z3/ZqOkQcHLSZF4ltGmqjAtgtD28IAxnR1OTYQw
-         ulSWkR4GMZtO6U3AP6BR+zwx5anOaKnqOZTIVUIs/vYrsAcGT477Aa+NsYPEAZSI09vXwTRnhcj5
-         AMxmwuBiEh8bBeT3yJmJ901g9NX3Q8a9xuDLjq6sTlqHAw2tLoR5j52OjfHm0h2Z9BOwB0fvvWfA
-         q7nnOqow==
-From:   <forbidden405@foxmail.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Andy Gross'" <agross@kernel.org>,
-        "'Bjorn Andersson'" <andersson@kernel.org>,
-        "'Konrad Dybcio'" <konrad.dybcio@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Cc:     "'Jaime Breva'" <jbreva@nayarsystems.com>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        "'Nikita Travkin'" <nikita@trvn.ru>
-References: <20230110155014.31664-1-forbidden405@foxmail.com> <tencent_A7FA00B086BB0EFFDC1C64744FF85DAD2B06@qq.com> <8530aeef-8fdb-ede7-700e-856e5cbc6a5b@linaro.org> <tencent_98E029F744FE85B9FD68B570A45A01743F07@qq.com> <f909c1b0-97db-cc33-fa27-c5e901f11956@linaro.org> <tencent_235CAC16001D1C38CE7D86BF7B0E365A2105@qq.com> <0453b098-91db-1918-38ae-a7db0408460c@linaro.org>
-In-Reply-To: <0453b098-91db-1918-38ae-a7db0408460c@linaro.org>
-Subject: RE: [PATCH 3/3] arm64: dts: qcom: msm8916-zhihe: Add initial device tree for zhihe Wifi/LTE dongle UFI-001C and uf896
-Date:   Wed, 11 Jan 2023 03:56:23 +0800
-X-OQ-MSGID: <000301d9252d$9f377c70$dda67550$@foxmail.com>
+        with ESMTP id S231185AbjAJUDH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 15:03:07 -0500
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB88639D
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 12:03:04 -0800 (PST)
+Received: by mail-oo1-xc33.google.com with SMTP id m23-20020a4abc97000000b004bfe105c580so3505900oop.4
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 12:03:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZIZAQ7FO4CZGj3dZTTG5OAyA7lcqHMiys9+DWMrDW2Q=;
+        b=UKGzI8uY3xEF0vdZ/Ohb91g38rPExonbRBdEMO0WnryE1zNyFMv46RacCm2/W2ru+H
+         xQQhHYI1ToVVivDsr8dH0CD5gL5gbUrj6LaVF7lvR4wByv1lIgPrXm9Em/cWoTvTuybj
+         kw8SJvQFtLDRnEnY09Y7x3iHahvPoAQJMBRwIQCIDwXYTcfwQQ82CZT8997SabnPNpqr
+         IvMlBL/nYFF8utdu/8SXUNaY7WoJTMjNM2zVn3RDM244GtovWIvgS59RGZFZUMGI9VmR
+         jE5IVSqZGoCtUj9R3yZ6datsiscM8g1VRFObAsEySMB8QsuxcMsh490xOeSHVLmHF2mm
+         XXAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZIZAQ7FO4CZGj3dZTTG5OAyA7lcqHMiys9+DWMrDW2Q=;
+        b=nTWlpzZtwygi/v5zTeeH0cJH5Det+/E+rZaOXrGzOdzZsMgV8bibQ+HeALC99X3dSU
+         2tIoZ7t/HwVEEwTw017PL49aT/gAYluJ3GcBT8b1ias0plGoV8NJSpf+MlDwMcL6aC9+
+         EAlLgqeD/85FV+9rBMoS7lvBprXx4co7WhG7Mx3pL9yKpGO/seBX50SqtYgpTNE6pENF
+         q0owp5q8MUwkUnpSj8QNqsjH/tGyX/t/AbIxGap6fw9v6hy613yy9eVVsJM6azkR///1
+         oAttE6jJ27N4eNrHHik3hiUDuFGb90dLDkyvBvKmbZZ2TA9kK6gVPoNwjUG3XeZrOEr4
+         T4NA==
+X-Gm-Message-State: AFqh2kqY4AHFa3az870IMG81z7gMHFYiRPy7AX+TSyhOBG7Mqa61OS0Q
+        LmmHlcYaduCLsZpdKS7Mb4s=
+X-Google-Smtp-Source: AMrXdXv0XfdXOiVrysJFccTGAHXaxSR0nxtxpNTrXlKSzD0F0bIQWmuOVoNIFlzqlye/txlYPGRvWg==
+X-Received: by 2002:a4a:ba94:0:b0:4f2:9e:3e90 with SMTP id d20-20020a4aba94000000b004f2009e3e90mr3433752oop.6.1673380984099;
+        Tue, 10 Jan 2023 12:03:04 -0800 (PST)
+Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id r4-20020a4aad04000000b004a394578e14sm6089779oon.32.2023.01.10.12.03.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jan 2023 12:03:03 -0800 (PST)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        maccraft123mc@gmail.com, tzimmermann@suse.de, mripard@kernel.org,
+        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
+        thierry.reding@gmail.com, linus.walleij@linaro.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v8 0/4] drm/panel: Add Magnachip D53E6EA8966 Panel Controller
+Date:   Tue, 10 Jan 2023 14:02:51 -0600
+Message-Id: <20230110200255.1218738-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: zh-cn
-Thread-Index: AQEO7BERPzOKD8mdDN9nK2Zc/pFyZgG3SCqUAZiImfcCstHu6AF93epXAffz5noBRJuEca/Wk39w
-X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,HELO_DYNAMIC_IPADDR,RCVD_IN_DNSWL_NONE,RDNS_DYNAMIC,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 20:32, krzysztof.kozlowski@linaro.org wrote:
-> 
-> Then I am not sure if we want to support such devices mainline. It is not
-only
-> anonymity but simply not following standards and practices.
-> What's more there is no guarantee what this device is. If there is no
-known
-> manufacturer, anytime another device from anyone can claim it is also
-uf896.
-> IOW, what guarantees you have that other person who has something looking
-> like "uf896" actually has something the same as you and can use your DTB?
+From: Chris Morgan <macromorgan@hotmail.com>
 
-There is a label printed (i.e. ufi001c or uf896 or something else but not
-getting mainlined now) on the board, different models have different
-labels(and different board design). And currently I know all ufi001c(even
-some other models) shares the same device tree, as a downstream device tree
-has been tested by thousands of people. I'm not familiar with uf896 as it is
-owned by Nikita Travkin and tested by him. The device sells very well and
-many people will benefit from mainlining.
+Add the Magnachip D53E6EA8966 panel IC controller for display panels
+such as the Samsung AMS495QA01 panel as found on the Anbernic RG503.
+This panel uses DSI to receive video signals, but 3-wire SPI to receive
+command signals using DBI.
+
+Changes since V7:
+ - Removed Linus Walleij review note due to substantial changes.
+ - Corrected documentation of drm_of_get_dsi_bus function.
+ - Updated the drm_of_get_dsi_bus function to return pointer to
+   mipi_dsi_host and use ERR_PTR macros.
+ - Refactored drm_panel_funcs so that the prepare function calls
+   panel specific function for init sequence and uses generic
+   functions otherwise.
+ - Renamed non-panel specific functions.
+ - Changed backlight value to int instead of u32.
+ - Corrected brightness function to use backlight_get_brightness().
+ - Fix an error reported when CONFIG_OF is selected but
+   CONFIG_DRM_MIPI_DSI is not. Add an if function to drm_of_get_dsi_bus
+   function to return -EINVAL in this instance.
+   Reported-by: kernel test robot <lkp@intel.com>
+
+Changes since V6:
+ - Fixed a trivial error with definition of drm_of_get_dsi_bus().
+   Reported-by: kernel test robot <lkp@intel.com>
+
+Changes since V5:
+ - Reverted dt binding documentation name back to
+   samsung,ams495qa01.yaml.
+ - Removed no longer needed of_graph.h header file.
+ - Added backlight as a dependency.
+
+Changes since V4:
+ - Renamed driver from the panel model to the panel IC controller per
+   DRM team.
+ - Added a drm_of helper function of drm_of_get_dsi_bus() to handle
+   finding and populating the DSI node when the DSI node is not the
+   parent of the DSI controlled display.
+ - Converted the documented commands to constants to make it more
+   readable.
+ - Reset GPIO is now required and documented as GPIO_ACTIVE_LOW.
+ - Removed "prepared" logic from panel.
+
+Changes since V3:
+ - Updated documentation to add spi-peripheral-props.yaml per updates
+   made for similar devices. Note that I removed a "Reviewed-by" tag
+   from Rob Herring since this change probably needs to be confirmed.
+ - Added binding for RG503, since this device is now accepted with this
+   request: https://lore.kernel.org/linux-rockchip/166274831283.21181.6861718157177507544.b4-ty@sntech.de/
+
+Changes since V2:
+ - Added 50hz mode at request of userspace devs.
+ - Renamed "dupa" to panel name. Good catch Maya.
+ - Added Maya's Signed-off-by.
+ - Removed check for max backlight, since it is already done by
+   backlight_device_set_brightness.
+ - Fixed minor formatting issues on devicetree binding documentation
+   and added port to provided example.
+
+Changes since V1:
+ - Removed errant reference to backlight in documentation. This is an
+   OLED panel.
+ - Made elvss regulator optional. In my case its hard wired and not
+   controllable.
+ - Added "prepared" enum to track panel status to prevent unbalanced
+   regulator enable/disable.
+
+Chris Morgan (4):
+  drm: of: Add drm_of_get_dsi_bus helper function
+  dt-bindings: display: panel: Add Samsung AMS495QA01
+  drm/panel: Add Magnachip D53E6EA8966 Panel Driver
+  arm64: dts: rockchip: add display to RG503
+
+ .../display/panel/samsung,ams495qa01.yaml     |  57 ++
+ .../dts/rockchip/rk3566-anbernic-rg503.dts    |  55 ++
+ drivers/gpu/drm/drm_of.c                      |  70 +++
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../drm/panel/panel-magnachip-d53e6ea8966.c   | 522 ++++++++++++++++++
+ include/drm/drm_of.h                          |   9 +
+ 7 files changed, 725 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-magnachip-d53e6ea8966.c
+
+-- 
+2.34.1
 
