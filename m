@@ -2,90 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF1C0663D4D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:52:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4153663D5D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:57:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238222AbjAJJwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 04:52:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57078 "EHLO
+        id S237715AbjAJJ5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 04:57:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238332AbjAJJwD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:52:03 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F6D50056
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:52:00 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id j16-20020a05600c1c1000b003d9ef8c274bso5019636wms.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:52:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/mL52V0hiw5s6j6RURYRdd0rmxiZQUXrI8X6eC4ie48=;
-        b=LrbCjKFnuKo7ttwtUPe/asf9UwwYtRprFGZoK+iZhqpwGmGkG30XJY9dHAMYsJ11xx
-         qejyK+59PToQMIvBa7xXtwubyIjBkvX3qRCGMeBGsT2Eqjqo1bxOYE/fdSKx2c5HLZBU
-         UGoF/J9O5MlTCxGwzOytiGfPj0M3wznDqYJ5UC+Q6N56abtOyinWJQRG7GWKEJalhm0y
-         mTeki1m3UihKztFZt6lsj3Y8x776bpM46JsLiH6tbmTapg0WS0Lxpvk0ggpbepx4lfix
-         a2lrYiR70ZO+GPjByFHg+I7uxd1jzH+DoGUVHUfy52ABId5a8Be14IHU+FS1c3mOSy3Z
-         dRMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/mL52V0hiw5s6j6RURYRdd0rmxiZQUXrI8X6eC4ie48=;
-        b=HqTIwQxlWFGPukSmFUvoM2/mfOBGrN2eLyXFkKhT4AMjpQTqMZKmd/Tk36II+tZqCX
-         3Qx83psF+KeUlKKwFYHDdKNNvR/BE4XMuMma0gO4G8GnxBJRDX94XdgxHSVIPFSs6TQb
-         2yzRD1V7tAO1qEpEzYLH8DmjS3dCBp8H7i0+pipD6E0ddcTq8lE9GSiBDmSLQEWKF6t5
-         rWCSDCf5gN6570n6rIHbMkpErq7+CrLBOzo/nKKUNg+KDlz2JPyAwZTvbR14jpfcar1j
-         GGaVFqPs5uagMvrG6VNCVOjARFw/zapBuGYLGyih+phXPs+5lsQCJ7RYty2xS5ugiRnx
-         rs0Q==
-X-Gm-Message-State: AFqh2krE+QoZ5SbgQ1WkuWv8U/0M9SE+tCv57KL4Te0tJRBjoYevwZmf
-        lunVpzOKSZmztM/TRyZO9L87Cg==
-X-Google-Smtp-Source: AMrXdXu3no3DhuE6ENuZRZq3ejegxmFk49fvykU744b3FH9Ql5EQKUYEFWmXG3shvtWLjIfuMsF3LQ==
-X-Received: by 2002:a05:600c:248:b0:3d3:5d47:271c with SMTP id 8-20020a05600c024800b003d35d47271cmr47807041wmj.12.1673344318932;
-        Tue, 10 Jan 2023 01:51:58 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m7-20020a05600c3b0700b003cfd4cf0761sm21094739wms.1.2023.01.10.01.51.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 01:51:58 -0800 (PST)
-Message-ID: <6d8bd401-db46-f0b6-4944-a7ede13d64e3@linaro.org>
-Date:   Tue, 10 Jan 2023 10:51:56 +0100
+        with ESMTP id S231207AbjAJJ5V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:57:21 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3336C3D1D4;
+        Tue, 10 Jan 2023 01:57:20 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E795E4B3;
+        Tue, 10 Jan 2023 01:58:01 -0800 (PST)
+Received: from [10.57.89.71] (unknown [10.57.89.71])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EAC893F587;
+        Tue, 10 Jan 2023 01:57:16 -0800 (PST)
+Message-ID: <6ead4016-a8a2-4572-8f75-682726d04479@arm.com>
+Date:   Tue, 10 Jan 2023 09:57:13 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 0/2] leds: lp55xx: configure internal charge pump
-Content-Language: en-US
-To:     Maarten Zanders <maarten.zanders@mind.be>
-Cc:     devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        Pavel Machek <pavel@ucw.cz>
-References: <20230110092342.24132-1-maarten.zanders@mind.be>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230110092342.24132-1-maarten.zanders@mind.be>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.6.1
+Subject: Re: [PATCH v16 0/8] Coresight: Add support for TPDM and TPDA
+To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+References: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 10:23, Maarten Zanders wrote:
-> A new option in the devicetree "ti,charge-pump-mode" allows the user to
-> configure the charge pump in a certain mode. Previously it was defaulting
-> to automatic mode.
+On 06/01/2023 09:21, Mao Jinlong wrote:
+> This series adds support for the trace performance monitoring and
+> diagnostics hardware (TPDM and TPDA). It is composed of two major
+> elements.
+> a) Changes for original coresight framework to support for TPDM and TPDA.
+> b) Add driver code for TPDM and TPDA.
+> 
+> Introduction of changes for original coresight framework
+> Support TPDM as new coresight source.
+> Since only STM and ETM are supported as coresight source originally.
+> TPDM is a newly added coresight source. We need to change
+> the original way of saving coresight path to support more types source
+> for coresight driver.
+> The following patch is to add support more coresight sources.
+>      coresight: core: Use IDR for non-cpu bound sources' paths.
+> 
+> Introduction of TPDM and TPDA
+> TPDM - The trace performance monitoring and diagnostics monitor or TPDM in
+> short serves as data collection component for various dataset types
+> specified in the QPMDA(Qualcomm performance monitoring and diagnostics
+> architecture) spec. The primary use case of the TPDM is to collect data
+> from different data sources and send it to a TPDA for packetization,
+> timestamping and funneling.
+>       Coresight: Add coresight TPDM source driver
+>       dt-bindings: arm: Adds CoreSight TPDM hardware definitions
+>       coresight-tpdm: Add DSB dataset support
+>       coresight-tpdm: Add integration test support
+> 
+> TPDA - The trace performance monitoring and diagnostics aggregator or
+> TPDA in short serves as an arbitration and packetization engine for the
+> performance monitoring and diagnostics network as specified in the QPMDA
+> (Qualcomm performance monitoring and diagnostics architecture)
+> specification. The primary use case of the TPDA is to provide
+> packetization, funneling and timestamping of Monitor data as specified
+> in the QPMDA specification.
+> The following patch is to add driver for TPDA.
+>       Coresight: Add TPDA link driver
+>       dt-bindings: arm: Adds CoreSight TPDA hardware definitions
+> 
+> The last patch of this series is a device tree modification, which add
+> the TPDM and TPDA configuration to device tree for validating.
+>      ARM: dts: msm: Add tpdm mm/prng for sm8250
+> 
+> Once this series patches are applied properly, the tpdm and tpda nodes
+> should be observed at the coresight path /sys/bus/coresight/devices
+> e.g.
+> /sys/bus/coresight/devices # ls -l | grep tpd
+> tpda0 -> ../../../devices/platform/soc@0/6004000.tpda/tpda0
+> tpdm0 -> ../../../devices/platform/soc@0/6c08000.mm.tpdm/tpdm0
+> 
+> We can use the commands are similar to the below to validate TPDMs.
+> Enable coresight sink first.
+> 
+> echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
+> echo 1 > /sys/bus/coresight/devices/tpdm0/enable_source
+> echo 1 > /sys/bus/coresight/devices/tpdm0/integration_test
+> echo 2 > /sys/bus/coresight/devices/tpdm0/integration_test
+> The test data will be collected in the coresight sink which is enabled.
+> If rwp register of the sink is keeping updating when do
+> integration_test (by cat tmc_etf0/mgmt/rwp), it means there is data
+> generated from TPDM to sink.
+> 
+> There must be a tpda between tpdm and the sink. When there are some
+> other trace event hw components in the same HW block with tpdm, tpdm
+> and these hw components will connect to the coresight funnel. When
+> there is only tpdm trace hw in the HW block, tpdm will connect to
+> tpda directly.
+>    
+>      +---------------+                +-------------+
+>      |  tpdm@6c08000 |                |tpdm@684C000 |
+>      +-------|-------+                +------|------+
+>              |                               |
+>      +-------|-------+                       |
+>      | funnel@6c0b000|                       |
+>      +-------|-------+                       |
+>              |                               |
+>      +-------|-------+                       |
+>      |funnel@6c2d000 |                       |
+>      +-------|-------+                       |
+>              |                               |
+>              |    +---------------+          |
+>              +----- tpda@6004000  -----------+
+>                   +-------|-------+
+>                           |
+>                   +-------|-------+
+>                   |funnel@6005000 |
+>                   +---------------+
+> 
+> This patch series depends on patch series:
+> "[v6,00/14] coresight: Add new API to allocate trace source ID values"
+> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20221123195010.6859-1-mike.leach@linaro.org/
+> 
+> TPDM_TPDA commit tree:
+> https://git.codelinaro.org/clo/linux-kernel/coresight/-/commits/tpdm-tpda-v16
+> 
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+Please could you add a documentation for TPDA and TPDM under
+Documentation/tracing/coresight/ ?
 
-Best regards,
-Krzysztof
+It need not be part of this series if you don't have to resend it.
+
+
+Kind regards
+Suzuki
 
