@@ -2,71 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EE34664060
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 13:23:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C2BC664064
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 13:25:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231512AbjAJMXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 07:23:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38036 "EHLO
+        id S238374AbjAJMY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 07:24:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235172AbjAJMXX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 07:23:23 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C10195BE;
-        Tue, 10 Jan 2023 04:20:57 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id bu8so18111285lfb.4;
-        Tue, 10 Jan 2023 04:20:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VSwSP02DsncYfTHjeowyTlULcu2EadZct6T7+26J7KA=;
-        b=TQ4l32d0a7OZO3VatnkrsEzt1PogUEHk7PMLOGQWEL54RgJsERym7RyzGAaRb1e/G0
-         TkeidMtZQPqDF6BZa/rLccuNBUPVEIYWW4Uh6ukstSbkBz2gE5EC4icfNqOEgPQG2sFe
-         gkU4CM7gpLTqcVBAt3uTNXLaeXselVZOuG3XBTcM2oJqEjCELheiwT8g9zoSQIduqSx7
-         inx1N408sx7LWWWyYMAqmj8vyo98gProAjEArWfDc7W0kQbeBBtZPQWRu4Er1Dmj2Ykb
-         Kd3QkLVMphpBKcibhA+sD0fNxUbbQIboWnWON9lIfGdi6fQ0VTO6AeX66MfD1+BDnwnY
-         pNbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VSwSP02DsncYfTHjeowyTlULcu2EadZct6T7+26J7KA=;
-        b=AqJv+dJPnm3VBvuMj2C+jmZlv3tGg3RqqWOZVm8HYZJkYWYn0Fx+p6Z05NL2G08fzz
-         3yXrMQul1bnGfhAxXGWS05YJ/WBQL0ArMyw22zMfU76hWismsJTGbnie5uj4oBmSc4MN
-         77LT5pD5bXKXij2Y6Za6FAY/DSvSon0IK97ngPHQpcqKpzBhvYP04t1wC6A2o8oG5AhV
-         YW2BmeW/L3QYxI0YRDQJBSFIZ19zH+YRE8sj0+X8aeX7IJQ6MVjwDlV9o//9CE+YqVr/
-         PYTLQlJ4dVxHA9JY7qWn2QX84Ye/r8pbnGflEDdh6PY2AojrDvxPuwFQboLdPpDb+nO9
-         i0Ag==
-X-Gm-Message-State: AFqh2kpJnYnclQG9giaA5hhHHJdZ4lZEVmFH1kQeHfuKOWfTS214NWa8
-        I2vatw4rTg2Og3ysKXSOS8I=
-X-Google-Smtp-Source: AMrXdXssxMYBOYzjchYz4a3IjpXoI490Q76A60dsnVeGegwgKAI4mgwnE3cBiEsMT2p6z4Zpak9e4w==
-X-Received: by 2002:a05:6512:3d2a:b0:4b4:b8fc:4aba with SMTP id d42-20020a0565123d2a00b004b4b8fc4abamr23046544lfv.25.1673353255481;
-        Tue, 10 Jan 2023 04:20:55 -0800 (PST)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id 12-20020ac25f0c000000b004cb3aced3f9sm2164501lfq.226.2023.01.10.04.20.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 04:20:55 -0800 (PST)
-Date:   Tue, 10 Jan 2023 15:20:53 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
-        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 13/15] spi: dw: detect enhanced spi mode
-Message-ID: <20230110122053.a4x2oyb5fbjoenia@mobilestation>
-References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
- <20221212180732.79167-14-sudip.mukherjee@sifive.com>
+        with ESMTP id S238403AbjAJMYU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 07:24:20 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 368F15FA6
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 04:22:19 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1pFDdq-0001hM-Lg; Tue, 10 Jan 2023 13:22:10 +0100
+Message-ID: <aeef5bf0-e7ad-784e-2a8e-ff3b93ea2563@pengutronix.de>
+Date:   Tue, 10 Jan 2023 13:22:09 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221212180732.79167-14-sudip.mukherjee@sifive.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v6 2/3] arm64: dts: imx8mm-evk: add revision-B EVK
+Content-Language: en-US
+To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20230110114027.634719-1-johannes.schneider@leica-geosystems.com>
+ <20230110114027.634719-3-johannes.schneider@leica-geosystems.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20230110114027.634719-3-johannes.schneider@leica-geosystems.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,127 +56,150 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 06:07:30PM +0000, Sudip Mukherjee wrote:
-> All the SSI controllers supporting enhanced spi modes might not support
-> all the three dual or quad or octal modes. Detect the modes that are
-> supported and finally enable the DW_SPI_CAP_EMODE capability which will
-> start using all the enhanced spi functions that has been added.
+On 10.01.23 12:40, Johannes Schneider wrote:
+> Add devicetree for the EVKB, which comes with LPDDR4 and a different
+> PMIC.
 > 
-> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+
+As mentioned by Krzysztof, Makefile change is missing.
+Also, please give reviewers some extra time to react to new
+revisions before resending.
+
+Cheers,
+Ahmad
+
 > ---
->  drivers/spi/spi-dw-core.c | 68 +++++++++++++++++++++++++++++++++++++--
->  1 file changed, 66 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/freescale/imx8mm-evkb.dts | 116 ++++++++++++++++++
+>  1 file changed, 116 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
 > 
-> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-> index cef56acd8d8fd..9e806d5878beb 100644
-> --- a/drivers/spi/spi-dw-core.c
-> +++ b/drivers/spi/spi-dw-core.c
-> @@ -1143,6 +1143,69 @@ static void dw_spi_hw_init(struct device *dev, struct dw_spi *dws)
->  		dw_writel(dws, DW_SPI_CS_OVERRIDE, 0xF);
->  }
->  
-> +static u16 detect_enh_mode(struct dw_spi *dws)
-> +{
-
-> +	u16 mode = 0;
-> +	u32 tmp_spi_ctrlr0, tmp_ctrlr0, tmpdual, tmpquad, tmpoct;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
+> new file mode 100644
+> index 000000000000..b2d724ad43b2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
+> @@ -0,0 +1,116 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2019-2020 NXP
+> + */
 > +
-> +	if (dw_spi_ver_is_ge(dws, HSSI, 103A)) {
-> +		tmpdual = FIELD_PREP(DW_HSSI_CTRLR0_SPI_FRF_MASK,
-> +				     DW_SPI_CTRLR0_SPI_FRF_DUAL_SPI);
-> +		tmpquad = FIELD_PREP(DW_HSSI_CTRLR0_SPI_FRF_MASK,
-> +				     DW_SPI_CTRLR0_SPI_FRF_QUAD_SPI);
-> +		tmpoct = FIELD_PREP(DW_HSSI_CTRLR0_SPI_FRF_MASK,
-> +				    DW_SPI_CTRLR0_SPI_FRF_OCT_SPI);
-> +	} else if (dw_spi_ver_is_ge(dws, PSSI, 400A)) {
-> +		tmpdual = FIELD_PREP(DW_PSSI_CTRLR0_SPI_FRF_MASK,
-> +				     DW_SPI_CTRLR0_SPI_FRF_DUAL_SPI);
-> +		tmpquad = FIELD_PREP(DW_PSSI_CTRLR0_SPI_FRF_MASK,
-> +				     DW_SPI_CTRLR0_SPI_FRF_QUAD_SPI);
-> +		tmpoct = FIELD_PREP(DW_PSSI_CTRLR0_SPI_FRF_MASK,
-> +				    DW_SPI_CTRLR0_SPI_FRF_OCT_SPI);
-
-Seems too complicated. What about calculating the IP-core specific
-offset and mask here and use them afterwards to create the test CTRLR0
-CSR data?
-
-> +	} else {
-> +		return DW_SPI_CTRLR0_SPI_FRF_STD_SPI;
-> +	}
+> +/dts-v1/;
 > +
-> +	tmp_ctrlr0 = dw_readl(dws, DW_SPI_CTRLR0);
-> +	tmp_spi_ctrlr0 = dw_readl(dws, DW_SPI_SPI_CTRLR0);
-> +	dw_spi_enable_chip(dws, 0);
+> +#include "imx8mm-evk.dtsi"
 > +
+> +/ {
+> +	model = "FSL i.MX8MM EVKB"; // with LPDDR4 and PCA9450 PMIC
+> +	compatible = "fsl,imx8mm-evkb", "fsl,imx8mm";
+> +};
+> +
+> +&i2c1 {
+> +	pmic: pmic@25 {
+> +		compatible = "nxp,pca9450a";
+> +		reg = <0x25>;
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		pinctrl-names = "default";
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		regulators {
+> +			buck1_reg: BUCK1 {
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +				nxp,dvs-run-voltage = <820000>;
+> +				nxp,dvs-standby-voltage = <800000>;
+> +			};
+> +
+> +			buck2_reg: BUCK2 {
+> +				regulator-name = "BUCK2";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck3_reg: BUCK3 {
+> +				regulator-name = "BUCK3";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck4_reg: BUCK4 {
+> +				regulator-name = "BUCK4";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5_reg: BUCK5 {
+> +				regulator-name = "BUCK5";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6_reg: BUCK6 {
+> +				regulator-name = "BUCK6";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1_reg: LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <1600000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo2_reg: LDO2 {
+> +				regulator-name = "LDO2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1150000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3_reg: LDO3 {
+> +				regulator-name = "LDO3";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4_reg: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo5_reg: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +			};
+> +		};
+> +	};
+> +};
 
-> +	/* test clock stretching */
-> +	dw_writel(dws, DW_SPI_SPI_CTRLR0, DW_SPI_SPI_CTRLR0_CLK_STRETCH_EN);
-> +	if ((DW_SPI_SPI_CTRLR0_CLK_STRETCH_EN & dw_readl(dws, DW_SPI_SPI_CTRLR0)) !=
-> +	    DW_SPI_SPI_CTRLR0_CLK_STRETCH_EN)
-> +		/*
-> +		 * If clock stretching is not enabled then do not use
-> +		 * enhanced mode.
-> +		 */
-> +		goto disable_enh;
-> +
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
-Clock stretching is eSPI-specific feature. So it should be checked
-after making sure that the eSPI is available.
-
-> +	/* test dual mode */
-> +	dw_writel(dws, DW_SPI_CTRLR0, tmpdual);
-> +	if ((tmpdual & dw_readl(dws, DW_SPI_CTRLR0)) == tmpdual)
-> +		mode |= SPI_TX_DUAL | SPI_RX_DUAL;
-> +
-> +	/* test quad mode */
-> +	dw_writel(dws, DW_SPI_CTRLR0, tmpquad);
-> +	if ((tmpquad & dw_readl(dws, DW_SPI_CTRLR0)) == tmpquad)
-> +		mode |= SPI_TX_QUAD | SPI_RX_QUAD;
-> +
-> +	/* test octal mode */
-> +	dw_writel(dws, DW_SPI_CTRLR0, tmpoct);
-> +	if ((tmpoct & dw_readl(dws, DW_SPI_CTRLR0)) == tmpoct)
-> +		mode |= SPI_TX_OCTAL | SPI_RX_OCTAL;
-
-Are you sure that writing a non-supported mode causes having the
-CTRLR0.SPI_FRF field unupdated? What eSPI-modes do your hardware
-support?
-
-> +
-> +	if (mode)
-> +		dws->caps |= DW_SPI_CAP_EMODE;
-> +
-> +disable_enh:
-> +	dw_writel(dws, DW_SPI_CTRLR0, tmp_ctrlr0);
-> +	dw_writel(dws, DW_SPI_SPI_CTRLR0, tmp_spi_ctrlr0);
-> +	dw_spi_enable_chip(dws, 1);
-> +
-> +	return mode;
-
-Move all the above to the dw_spi_hw_init() method where all the
-auto-detections is implemented.
-
--Serge(y)
-
-> +}
-> +
->  int dw_spi_add_host(struct device *dev, struct dw_spi *dws)
->  {
->  	struct spi_controller *master;
-> @@ -1172,10 +1235,11 @@ int dw_spi_add_host(struct device *dev, struct dw_spi *dws)
->  		goto err_free_master;
->  	}
->  
-> -	dw_spi_init_mem_ops(dws);
-> -
->  	master->use_gpio_descriptors = true;
->  	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_LOOP;
-> +	master->mode_bits |= detect_enh_mode(dws);
-> +	dw_spi_init_mem_ops(dws);
-> +
->  	if (dws->caps & DW_SPI_CAP_DFS32)
->  		master->bits_per_word_mask = SPI_BPW_RANGE_MASK(4, 32);
->  	else
-> -- 
-> 2.30.2
-> 
