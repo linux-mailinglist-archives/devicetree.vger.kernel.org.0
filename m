@@ -2,103 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8AB1663D46
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF1C0663D4D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:52:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231807AbjAJJvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 04:51:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56602 "EHLO
+        id S238222AbjAJJwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 04:52:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238301AbjAJJvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:51:06 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2738AA188
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:51:04 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id m8-20020a05600c3b0800b003d96f801c48so11343526wms.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:51:04 -0800 (PST)
+        with ESMTP id S238332AbjAJJwD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:52:03 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F6D50056
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:52:00 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id j16-20020a05600c1c1000b003d9ef8c274bso5019636wms.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:52:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WrQzOa9EiO3FMfIzNKHzQ3EJooWDcByw4FpVYo3LxlU=;
-        b=Pp4SFUbS129IGAbhEsVjQoc5E5ovtTjU+hsh6jYN+BKENx/6Xoeqzx3afnbfz451fL
-         6L6ab9gLkQb2muLgNIxbPrpeOjIbKXQJaIJOlef9FFG8PE3ObK7GkrBbo+h2dOZnRr+J
-         KkDeWrnnCFgWb30BB6JBLG1TFRG36JfGVocEMQ16qDgC94jRBHRZ2sexLDVZSMOMOsMw
-         28bygG4Kv2CWUu9mvlnjPN4Tz8CMxPQ0q81BH39BYb6ifOjSjHqW2UCugtHF4tO17wEw
-         hTCtVBHthIJ2OYitMOgt8xSSlSPbg5gkDNl34C8TnF6z7OyRShUccMeJhhA2SQtv/MYJ
-         SCiw==
+        bh=/mL52V0hiw5s6j6RURYRdd0rmxiZQUXrI8X6eC4ie48=;
+        b=LrbCjKFnuKo7ttwtUPe/asf9UwwYtRprFGZoK+iZhqpwGmGkG30XJY9dHAMYsJ11xx
+         qejyK+59PToQMIvBa7xXtwubyIjBkvX3qRCGMeBGsT2Eqjqo1bxOYE/fdSKx2c5HLZBU
+         UGoF/J9O5MlTCxGwzOytiGfPj0M3wznDqYJ5UC+Q6N56abtOyinWJQRG7GWKEJalhm0y
+         mTeki1m3UihKztFZt6lsj3Y8x776bpM46JsLiH6tbmTapg0WS0Lxpvk0ggpbepx4lfix
+         a2lrYiR70ZO+GPjByFHg+I7uxd1jzH+DoGUVHUfy52ABId5a8Be14IHU+FS1c3mOSy3Z
+         dRMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WrQzOa9EiO3FMfIzNKHzQ3EJooWDcByw4FpVYo3LxlU=;
-        b=OeNlho/ifIvpNnySGG7Zba3qA2jIWTeYtI5yprj3EuFLeGQQC64IWF1H0+bn+xdh0h
-         Ij8ePOyPAskj+aJj07/5gBoV79+60w4bDvTS9Z4/NXzqCaX75HP3Ic4jd00CWLWucP9r
-         ZNL2z3y0jWbU9P3eUPgz5jUQtKEwnkpGCfiC70xvg+mxnB5tuh1i4kFG4vlxiarH4jaP
-         gzCaSdnOuZDl87P3q2runOeuxuBjdaMjCMVKben03YduQF6YvnhCVdidcFuwWYLma4G/
-         yM2NjFq3y0oz1yDO5v/QD7T5iOCKwCgtaw2yJVLf60t3RzD4pN/p+iCTVahsPJAgBDiE
-         EFEA==
-X-Gm-Message-State: AFqh2kqzEKC9KbRsi7w0uBlnmI+9CFSV543LACKig5hx/wMnYPNO3LTd
-        dflW1U8RMWk6A8QaHS4mwzsy0w==
-X-Google-Smtp-Source: AMrXdXtMklGbOTYDwKJIdQhxGy8wSTO8g3hNPyeO13I2MacEos0LoZRtrvbAlFBRnPJOdOR79a3eHA==
-X-Received: by 2002:a05:600c:1c21:b0:3cf:9844:7b11 with SMTP id j33-20020a05600c1c2100b003cf98447b11mr58927717wms.23.1673344262653;
-        Tue, 10 Jan 2023 01:51:02 -0800 (PST)
+        bh=/mL52V0hiw5s6j6RURYRdd0rmxiZQUXrI8X6eC4ie48=;
+        b=HqTIwQxlWFGPukSmFUvoM2/mfOBGrN2eLyXFkKhT4AMjpQTqMZKmd/Tk36II+tZqCX
+         3Qx83psF+KeUlKKwFYHDdKNNvR/BE4XMuMma0gO4G8GnxBJRDX94XdgxHSVIPFSs6TQb
+         2yzRD1V7tAO1qEpEzYLH8DmjS3dCBp8H7i0+pipD6E0ddcTq8lE9GSiBDmSLQEWKF6t5
+         rWCSDCf5gN6570n6rIHbMkpErq7+CrLBOzo/nKKUNg+KDlz2JPyAwZTvbR14jpfcar1j
+         GGaVFqPs5uagMvrG6VNCVOjARFw/zapBuGYLGyih+phXPs+5lsQCJ7RYty2xS5ugiRnx
+         rs0Q==
+X-Gm-Message-State: AFqh2krE+QoZ5SbgQ1WkuWv8U/0M9SE+tCv57KL4Te0tJRBjoYevwZmf
+        lunVpzOKSZmztM/TRyZO9L87Cg==
+X-Google-Smtp-Source: AMrXdXu3no3DhuE6ENuZRZq3ejegxmFk49fvykU744b3FH9Ql5EQKUYEFWmXG3shvtWLjIfuMsF3LQ==
+X-Received: by 2002:a05:600c:248:b0:3d3:5d47:271c with SMTP id 8-20020a05600c024800b003d35d47271cmr47807041wmj.12.1673344318932;
+        Tue, 10 Jan 2023 01:51:58 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j30-20020a05600c1c1e00b003cfa80443a0sm16128859wms.35.2023.01.10.01.51.01
+        by smtp.gmail.com with ESMTPSA id m7-20020a05600c3b0700b003cfd4cf0761sm21094739wms.1.2023.01.10.01.51.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 01:51:02 -0800 (PST)
-Message-ID: <83e7b2b0-1840-bc8b-e657-ab94975b955d@linaro.org>
-Date:   Tue, 10 Jan 2023 10:51:00 +0100
+        Tue, 10 Jan 2023 01:51:58 -0800 (PST)
+Message-ID: <6d8bd401-db46-f0b6-4944-a7ede13d64e3@linaro.org>
+Date:   Tue, 10 Jan 2023 10:51:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 5/5] MAINTAINERS: Add maintainer of GXP SROM support
+Subject: Re: [PATCH v2 0/2] leds: lp55xx: configure internal charge pump
 Content-Language: en-US
-To:     clayc@hpe.com, linux-kernel@vger.kernel.org, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        verdun@hpe.com, nick.hawkins@hpe.com, arnd@arndb.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux@armlinux.org.uk, olof@lixom.net
-References: <20230110042533.12894-1-clayc@hpe.com>
- <20230110042533.12894-6-clayc@hpe.com>
+To:     Maarten Zanders <maarten.zanders@mind.be>
+Cc:     devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>
+References: <20230110092342.24132-1-maarten.zanders@mind.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230110042533.12894-6-clayc@hpe.com>
+In-Reply-To: <20230110092342.24132-1-maarten.zanders@mind.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 05:25, clayc@hpe.com wrote:
-> From: Clay Chang <clayc@hpe.com>
-> 
-> Add Clay Chang as the maintainer of GXP SROM support.
+On 10/01/2023 10:23, Maarten Zanders wrote:
+> A new option in the devicetree "ti,charge-pump-mode" allows the user to
+> configure the charge pump in a certain mode. Previously it was defaulting
+> to automatic mode.
 
-Your commit is not doing it. Nope. Either make proper entry matching
-this commit msg or make commit msg reflecting truth.
-> 
-> Signed-off-by: Clay Chang <clayc@hpe.com>
-> ---
->  MAINTAINERS | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ea941dc469fa..164571ac1cc5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2279,14 +2279,22 @@ F:	arch/arm/mach-sa1100/jornada720.c
->  ARM/HPE GXP ARCHITECTURE
->  M:	Jean-Marie Verdun <verdun@hpe.com>
->  M:	Nick Hawkins <nick.hawkins@hpe.com>
-> +M:	Clay Chang <clayc@hpe.com>
-
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
 
 Best regards,
 Krzysztof
