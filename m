@@ -2,143 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 867ED6644CE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 16:30:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95FBC6644EF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 16:34:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234109AbjAJPaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 10:30:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38048 "EHLO
+        id S238473AbjAJPdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 10:33:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238989AbjAJP34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 10:29:56 -0500
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 157EA2726;
-        Tue, 10 Jan 2023 07:29:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1673364568;
-  x=1704900568;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Y9TFaBNCB2DZlBpUhclkx95oVenxfjVvcEEeJ14NYjM=;
-  b=eevBbJR34FKLdiGa3nhhjG4He3cHT8IHcOwNE8GCLSrZauViP/ynvhCQ
-   Wk7dEULvk3B7bY8ZYx4i+sAwtLV61bJ/yUXd27BFwx3ZXg+sNgzBSsX8B
-   MqidddrfbAPL6rkwRrTlVTK3MpjlQTLR6bhCZU8y9g0DYsaSLxLXfVZ1W
-   rN3x6Y++IN7QPr5+igQ0m1oNDOpdX1H363DbUDA+uJVD/apOfW5P3lA67
-   DPU7SMiWFlxtdU510KKH9qJIwDpLWvuV1ny/a1kL/sqtb3lC+PC0EGIRT
-   +8jK5UJp4KNJArIzxi4icVV3I5ormvfIN3LwnIwOMa+320NSJHZp1CBCm
-   w==;
-From:   Jiri Valek - 2N <jiriv@axis.com>
-To:     <linux-input@vger.kernel.org>
-CC:     <devicetree@vger.kernel.org>, <dmitry.torokhov@gmail.com>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <u.kleine-koenig@pengutronix.de>, <jiriv@axis.com>
-Subject: [PATCH v3 2/2] Input: cap11xx - add support for cap1203, cap1293 and cap1298
-Date:   Tue, 10 Jan 2023 16:28:59 +0100
-Message-ID: <20230110152859.295881-3-jiriv@axis.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230110152859.295881-1-jiriv@axis.com>
-References: <20230110152859.295881-1-jiriv@axis.com>
+        with ESMTP id S239114AbjAJPdK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 10:33:10 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9DC3187;
+        Tue, 10 Jan 2023 07:33:09 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pFGcX-0005bB-I3; Tue, 10 Jan 2023 16:33:01 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Chukun Pan <amadeus@jmu.edu.cn>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: remove unsupported property from sdmmc2 for rock-3a
+Date:   Tue, 10 Jan 2023 16:32:58 +0100
+Message-Id: <167336477675.2640328.2287361282584419337.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221219101052.7899-1-amadeus@jmu.edu.cn>
+References: <20221219101052.7899-1-amadeus@jmu.edu.cn>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.0.5.60]
-X-ClientProxiedBy: se-mail07w.axis.com (10.20.40.13) To se-mail01w.axis.com
- (10.20.40.7)
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for more CAP1xxx sensors.
-All models from CAP1xxx family are register-compatible.
-Some advanced features are not used and disabled by default.
+On Mon, 19 Dec 2022 18:10:52 +0800, Chukun Pan wrote:
+> 'supports-sdio' is not part of the DT binding
+> and not supported by the Linux driver.
+> 
+> 
 
-Reported-by: kernel test robot <lkp@xxxxxxxxx>
-Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
----
-Changes in v2:
-  - Fixed if statement.
-  
-Changes in v3:
-  - Model names sorted alphabetically.
-  
- drivers/input/keyboard/cap11xx.c | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+Applied, thanks!
 
-diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/cap11xx.c
-index 79afd0386e3f..ce27168302a8 100644
---- a/drivers/input/keyboard/cap11xx.c
-+++ b/drivers/input/keyboard/cap11xx.c
-@@ -98,14 +98,20 @@ enum {
- 	CAP1106,
- 	CAP1126,
- 	CAP1188,
-+	CAP1203,
- 	CAP1206,
-+	CAP1293,
-+	CAP1298
- };
- 
- static const struct cap11xx_hw_model cap11xx_devices[] = {
- 	[CAP1106] = { .product_id = 0x55, .num_channels = 6, .num_leds = 0, .no_gain = false },
- 	[CAP1126] = { .product_id = 0x53, .num_channels = 6, .num_leds = 2, .no_gain = false },
- 	[CAP1188] = { .product_id = 0x50, .num_channels = 8, .num_leds = 8, .no_gain = false },
-+	[CAP1203] = { .product_id = 0x6d, .num_channels = 3, .num_leds = 0, .no_gain = true },
- 	[CAP1206] = { .product_id = 0x67, .num_channels = 6, .num_leds = 0, .no_gain = true },
-+	[CAP1293] = { .product_id = 0x6f, .num_channels = 3, .num_leds = 0, .no_gain = false },
-+	[CAP1298] = { .product_id = 0x71, .num_channels = 8, .num_leds = 0, .no_gain = false },
- };
- 
- static const struct reg_default cap11xx_reg_defaults[] = {
-@@ -377,7 +383,8 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 	if (error < 0)
- 		return error;
- 
--	dev_info(dev, "CAP11XX detected, revision 0x%02x\n", rev);
-+	dev_info(dev, "CAP11XX detected, model %s, revision 0x%02x\n",
-+			id->name, rev);
- 	node = dev->of_node;
- 
- 	if (!of_property_read_u32(node, "microchip,sensor-gain", &gain32)) {
-@@ -390,7 +397,9 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 			dev_err(dev, "Invalid sensor-gain value %d\n", gain32);
- 	}
- 
--	if (id->driver_data != CAP1206) {
-+	if ((id->driver_data == CAP1106) ||
-+		(id->driver_data == CAP1126) ||
-+		(id->driver_data == CAP1188)) {
- 		if (of_property_read_bool(node, "microchip,irq-active-high")) {
- 			error = regmap_update_bits(priv->regmap,
- 						   CAP11XX_REG_CONFIG2,
-@@ -483,7 +492,10 @@ static const struct of_device_id cap11xx_dt_ids[] = {
- 	{ .compatible = "microchip,cap1106", },
- 	{ .compatible = "microchip,cap1126", },
- 	{ .compatible = "microchip,cap1188", },
-+	{ .compatible = "microchip,cap1203", },
- 	{ .compatible = "microchip,cap1206", },
-+	{ .compatible = "microchip,cap1293", },
-+	{ .compatible = "microchip,cap1298", },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, cap11xx_dt_ids);
-@@ -492,7 +504,10 @@ static const struct i2c_device_id cap11xx_i2c_ids[] = {
- 	{ "cap1106", CAP1106 },
- 	{ "cap1126", CAP1126 },
- 	{ "cap1188", CAP1188 },
-+	{ "cap1203", CAP1203 },
- 	{ "cap1206", CAP1206 },
-+	{ "cap1293", CAP1293 },
-+	{ "cap1298", CAP1298 },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, cap11xx_i2c_ids);
+[1/1] arm64: dts: rockchip: remove unsupported property from sdmmc2 for rock-3a
+      commit: 0b693c8f8b88d50114caaa4d2337932d4d172631
+
+Best regards,
 -- 
-2.25.1
-
+Heiko Stuebner <heiko@sntech.de>
