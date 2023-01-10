@@ -2,201 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51C8F663AEA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:24:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 881A2663AF5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:25:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235154AbjAJIYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 03:24:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51688 "EHLO
+        id S229848AbjAJIZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 03:25:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231254AbjAJIYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:24:00 -0500
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2079.outbound.protection.outlook.com [40.107.21.79])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E91843A1C;
-        Tue, 10 Jan 2023 00:23:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jWH1FwEl6B920TMBQVgKQxhNnJNAGX8bD6JlYAmbVIo=;
- b=1D0SzwHwbVWyt+rVkdRNHeTVhufk8TlYz1CuSMV/MDyZnyqpwe9f44scFxubdP1KAmoPC5MKIiyuxgbHlgqWCtqwm7rXBVcmfONoqDIaQW0tIkCEgA4hTyMxKuN5UpfJAelm9RO6klOsWY8f6EvyxM+XXaIgVjAOBAYHWohMQtA=
-Received: from FR0P281CA0150.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:96::8) by
- VE1PR08MB5805.eurprd08.prod.outlook.com (2603:10a6:800:1aa::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Tue, 10 Jan
- 2023 08:23:55 +0000
-Received: from VI1EUR03FT063.eop-EUR03.prod.protection.outlook.com
- (2603:10a6:d10:96:cafe::ef) by FR0P281CA0150.outlook.office365.com
- (2603:10a6:d10:96::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.12 via Frontend
- Transport; Tue, 10 Jan 2023 08:23:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
- pr=C
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- VI1EUR03FT063.mail.protection.outlook.com (100.127.144.155) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5986.18 via Frontend Transport; Tue, 10 Jan 2023 08:23:55 +0000
-Received: ("Tessian outbound 333ca28169fa:v132"); Tue, 10 Jan 2023 08:23:55 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: 8754c4674e03bb30
-X-CR-MTA-TID: 64aa7808
-Received: from eff62df32ded.2
-        by 64aa7808-outbound-1.mta.getcheckrecipient.com id F36BA62D-EBA5-41D8-A6F5-216F1239B093.1;
-        Tue, 10 Jan 2023 08:23:43 +0000
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id eff62df32ded.2
-    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
-    Tue, 10 Jan 2023 08:23:43 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dXWzLSw4wYjQPpTWmJkUzxeo9Uhu95BedpTydXbCJcefx6O9fBqHCH6/IhlT+bEk+IsinehYEO3GSEHra722+0QU5x4d4WbOKIjw1CgR5T+JjDY/W76ofqQpL2FpN2fMQJSc0sjh+rxwpl64Ke/QtDlMOnclwtWCas1qE388f6aevKXilOY6vR7Xc9FhfmWrTyxgYsOWBW9Sd4VLyeUgCVLZEhSi3a+lHXBIqiw4yAxa3WzcJkARpvmr/+WiA4Bu51aaPtbqg3wgeT+5v8EAbjYG24AJkE5yMgHzisEZwULtyVSAtKW9ND7gOEfpKjAVK/ZLj1SntC63vxM17PMAfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jWH1FwEl6B920TMBQVgKQxhNnJNAGX8bD6JlYAmbVIo=;
- b=jPqd89MUFdz3+pgowE6cd7bSTy7qqSR3m/qH3JS6/nzYnRMZWNv1ouXxy1h/wotklt/7g6s/g5qy50tJCIi5ME14qlPsBYUjjWTKR4S6CpqPf2kTvppaRcEHQC6S3gA2fwJKpgdLeDjC6w7U+YThuRjEikW+zSg5y7V3F7dg6D7iaj6ZZpTX/kFag7kmms+x5co4hcxV95MU/Mm2qAfYiYszqfaTI+pELRQbVrR6ixjv6ByjgyAIOZ7Y2BBx1LOG8lJGIwOspsJYADhNd5dESkgL/42Cmcn42NiQ9FHD37yosK8TyPe+6QVxXoNCF5Wq6EVTZ1sTCHjweNkIf2lv5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jWH1FwEl6B920TMBQVgKQxhNnJNAGX8bD6JlYAmbVIo=;
- b=1D0SzwHwbVWyt+rVkdRNHeTVhufk8TlYz1CuSMV/MDyZnyqpwe9f44scFxubdP1KAmoPC5MKIiyuxgbHlgqWCtqwm7rXBVcmfONoqDIaQW0tIkCEgA4hTyMxKuN5UpfJAelm9RO6klOsWY8f6EvyxM+XXaIgVjAOBAYHWohMQtA=
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-Received: from DU0PR08MB8954.eurprd08.prod.outlook.com (2603:10a6:10:465::21)
- by DB4PR08MB7933.eurprd08.prod.outlook.com (2603:10a6:10:37b::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Tue, 10 Jan
- 2023 08:23:40 +0000
-Received: from DU0PR08MB8954.eurprd08.prod.outlook.com
- ([fe80::f778:5177:a2d3:ace1]) by DU0PR08MB8954.eurprd08.prod.outlook.com
- ([fe80::f778:5177:a2d3:ace1%3]) with mapi id 15.20.5986.018; Tue, 10 Jan 2023
- 08:23:38 +0000
-Message-ID: <f0ad7a4e-a8af-77d4-09e4-3717041677e7@arm.com>
-Date:   Tue, 10 Jan 2023 13:53:29 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-From:   Mohammad Faiz Abbas Rizvi <faiz.abbas@arm.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: simple-card: Document
- simple-audio-card,plat
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, broonie@kernel.org,
-        lgirdwood@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, Anurag.Koul@arm.com,
-        Deepak.Pandey@arm.com
-References: <20230105160346.29018-1-faiz.abbas@arm.com>
- <20230108163741.GA30997-robh@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20230108163741.GA30997-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: PN3PR01CA0149.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:c8::22) To DU0PR08MB8954.eurprd08.prod.outlook.com
- (2603:10a6:10:465::21)
+        with ESMTP id S237981AbjAJIZE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:25:04 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6083644360
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:25:02 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id j16-20020a05600c1c1000b003d9ef8c274bso4827245wms.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:25:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KMoqZy8lL6lKnv3mK+SHjAH6f5V4KXyJJY9vMCQj/VM=;
+        b=TV/zP38nT/DV77mwIwJKMtCilXcLYKNqFaSt4ttTXejVQPETGHaTze/gAgtQUETvZh
+         x8MuR/5XO92gVTfPK4sbIgmeJ1giXD0x8jCqPRETWfHCEpPfi2VxeU+Jkw37+IgzYzNJ
+         aDaD8rJzgn0485gyM4LgU0Ityeo5tL8MVyZ7lj1FZkCTZ4rH6Xf1lPaR3u6rKtqQfgGs
+         EDGjisRz/4hvrQDBOkWvyIQMnAw+KRLExidd/YoMBJhrX8LTX8Yx5WFWLnE8QcW4UqS3
+         P1XQq9wx/lbuw+k9lbrnrWglair+kGIjSphEoBBUrsPUIQdtXyWN09igCGzqQz7OcHoR
+         w46Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KMoqZy8lL6lKnv3mK+SHjAH6f5V4KXyJJY9vMCQj/VM=;
+        b=6usVjYLJMH0UYWePQh1v6rN33tWaLWbPTxmZUpHPBjbaLhCzSsYfzdvx9TMrWfS1GO
+         tfy0PTvkNPhve1FpcSFRaKiG8jlvOnDUbC/tFH03/UOzhPko2kLWNiMaeTnUT4OBwGII
+         GuWlyDXdnV6u0qJykuotNPe9sVldIsW0TiNzt8hCCqARRf6fHYNaoYHnej2oL6IX18fq
+         5ZeuROmy2wRYde6+pmiln7CxNo8cz75AB+wjVKWn8UGbfLqhTK1nL5Yl7fR8xMJ8NLGs
+         sAs3/4V+EeNTPG7ZWJe6cYD/MsXwqV2c1oYQElKyyAQyjgqZWXcW/ghlQJw6l71somRj
+         YeYQ==
+X-Gm-Message-State: AFqh2kqiiZpsj74hIXtm9hgJuZJxTH/up3UJ4lobMZmAznaOa37Oa0nI
+        icnEzM2ZKFDtjJBK7HCvCX6Tsw==
+X-Google-Smtp-Source: AMrXdXs5LDxIeadvFOYauvtpjU/gcobZo9BXdvfHf5RlHyauK1UfZsK3bydJnx2PQECskqIfaSL1Ig==
+X-Received: by 2002:a05:600c:1f18:b0:3cf:5583:8b3f with SMTP id bd24-20020a05600c1f1800b003cf55838b3fmr47116237wmb.20.1673339100837;
+        Tue, 10 Jan 2023 00:25:00 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id m18-20020a05600c4f5200b003c6b70a4d69sm15783317wmq.42.2023.01.10.00.24.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jan 2023 00:25:00 -0800 (PST)
+Message-ID: <6f1c38fc-9586-8ed5-8403-947ed6863b03@linaro.org>
+Date:   Tue, 10 Jan 2023 09:24:58 +0100
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: DU0PR08MB8954:EE_|DB4PR08MB7933:EE_|VI1EUR03FT063:EE_|VE1PR08MB5805:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b694d7a-71cb-4a41-0b0f-08daf2e40396
-x-checkrecipientrouted: true
-NoDisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: D7HhoVfmg2EDc8lEMMwZrT+mwlrYVXcp6dYp/H+Y9y8DlJj61+K9gjnHYfQUFYk24KHeCgDXOSckxiBt7QLAaBReYSBHu/+vswa2jy4aru+Gy2HR4jT5eLsv28ioKiBiuMyyUfbAz2TKmkUa9SysMM1LeDEZlzp0kCanP0DkSyvIO51zsI8bMBy+ybrWC1WpIXLtHL4FDf5Jw+s0UvOt1nuE2I6BcwhIaKEXnIGVBVzHBNmWwRUWhoXSYFBHALkXq4S4Omozo0+4XKch7JfjE8CXgWMWWphikOd8RYG2d8aNJWbSNpEWcipu1OeZnhTMV2ivkRsul92fUQej6O5URXT81MWULiX5E/YnxBTeeLUUGKgC1AqHsGd/bd7cPvo2d2wycQ3NCki/+CHytCwsFGu/OpTc1R7fGFB8nd6bqbLOspz/9xv9eI2hX2gFZSYsAilimVNTXjuzs+VDDHcaB2FsDw44Gd9mgUvNl2KnrBxhnPYZwRPDWFl18UVq5SUfe5Kgt5j2rPrT6oFX2qxjKH8Z/gTqf6xe6VOQlMi4LYbeIE2+Ivgan37d9Xcgb5tJLPxYaNNfrZONV/mo0xWcM15hduk0j0wggo17IRijkjoFUlakrwPnIoTC6PGbPPxZQFHJHH2Kk7KDk53aVdfG2DAsX8PV+hj4sQ4AC7zngOv8vKxvQr2pBDEgoeXGVdvWHJAyDitTF1Rd9ZOWvgRw85QzHo52NQEWygHfJIEKAvc=
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB8954.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(39860400002)(346002)(366004)(376002)(451199015)(31686004)(36756003)(2906002)(31696002)(38100700002)(5660300002)(8936002)(41300700001)(83380400001)(86362001)(6916009)(6486002)(55236004)(6506007)(53546011)(2616005)(8676002)(186003)(26005)(66946007)(478600001)(66556008)(66476007)(316002)(4326008)(6512007)(6666004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB4PR08MB7933
-Original-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: VI1EUR03FT063.eop-EUR03.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 5f53d1f0-341a-407b-425b-08daf2e3f8d6
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: momcpREo4ytZtVF8VPqyMChhek/D1IO/XwrMLei9H/O9IRepmldLOFcdJL273+AxLgdNm78PGe5CArWeEn2h2CS7yn86Rhzi5Hg+OfkFCdJZZTPaSxSbfu2TTlQekBq/SZ1Opwil/lrgKbM3OLHfI0S9e2aVC89U4Zi4NpYr6Nt5goQGb21xzs2Noovp51zPOQcHkfFLn1j8izz6hv79HlrY7UEnT1AmSMQ0Fdo9ESULlMjTrDjm3QTf2nvNdGKdIBH55hIcKjmAT18HQ5fMkKYbo5hg4cwsGVGLtOm0jwIEQ6A6NiI9KPfStvNOFXK5cbKlLT9VmDa2i8HRtVbur4X3ACBU6Iifya6h2/dSffoHi1HE2yfx67Ze6VRrwK4fxvE4jL5S0oECR0A7k7oJDRDslGUVM/QtWnMFeHoyRUMbM5BitVodZmcb4Mz+VSarwbwep4zqvA2tn3xSj4g/WzjLLeVmj5uCQB+Z0UY9UFgjmb9FtkXyHrl9PkhM1IMBUL5ihiEDHj1g/fI9qydURRSfoawcIjz3p4PbPsF0s8Kh2VCUSlRK6Jlw29QUiv0liIyYWIaNFsQ0ye95mGIPMGD6Q7YuekbBsbKLHoxupvYbU5+t0wy37bDFpqEdsmal49k67w1R15ysvkUyrKPuvU0oBUruRHdjbPi1yWWsD3OgpAlRI57qw/FreRXMBw993dAtDIUIxlwUCmPg0FhsmmU78PGBTltJqLhSzGvShXY=
-X-Forefront-Antispam-Report: CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(396003)(346002)(376002)(451199015)(40470700004)(36840700001)(46966006)(6862004)(8676002)(8936002)(4326008)(41300700001)(450100002)(82310400005)(70206006)(70586007)(5660300002)(31686004)(86362001)(40480700001)(31696002)(6666004)(53546011)(316002)(82740400003)(2906002)(36756003)(36860700001)(81166007)(356005)(6486002)(40460700003)(478600001)(6506007)(83380400001)(47076005)(6512007)(26005)(2616005)(186003)(336012)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2023 08:23:55.1414
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b694d7a-71cb-4a41-0b0f-08daf2e40396
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: VI1EUR03FT063.eop-EUR03.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR08MB5805
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FORGED_SPF_HELO,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 1/3] dt-bindings: timer: Add timer for StarFive JH7110
+ SoC
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        linux-kernel@vger.kernel.org
+References: <20221223094801.181315-1-xingyu.wu@starfivetech.com>
+ <20221223094801.181315-2-xingyu.wu@starfivetech.com>
+ <179e66a8-c6c0-6d3e-4f4a-6b884f532572@linaro.org>
+ <4febeef1-a42a-7d6f-d1af-d8fe19582822@starfivetech.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4febeef1-a42a-7d6f-d1af-d8fe19582822@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 1/8/2023 10:07 PM, Rob Herring wrote:
-> On Thu, Jan 05, 2023 at 09:33:46PM +0530, Faiz Abbas wrote:
->> The simple card driver has support for adding cpu, codec and platform
->> nodes with the simple-audio-card prefix. Add documentation for the plat
->> binding.
-> Another node, is it still 'simple card'?
-
-This behavior already exists in the driver. I am just documenting what alre=
-ady exists.
-
->> Signed-off-by: Faiz Abbas <faiz.abbas@arm.com>
->> ---
->>  .../bindings/sound/simple-card.yaml           | 23 +++++++++++++++++++
->>  1 file changed, 23 insertions(+)
+On 10/01/2023 03:14, Xingyu Wu wrote:
+> On 2022/12/23 18:25, Krzysztof Kozlowski wrote:
+>> On 23/12/2022 10:47, Xingyu Wu wrote:
+>>> Add bindings for the timer on the JH7110
+>>> RISC-V SoC by StarFive Technology Ltd.
 >>
->> diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/=
-Documentation/devicetree/bindings/sound/simple-card.yaml
->> index ed19899bc94b..fa67c76d4dbb 100644
->> --- a/Documentation/devicetree/bindings/sound/simple-card.yaml
->> +++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
->> @@ -205,6 +205,8 @@ patternProperties:
->>      $ref: "#/definitions/dai"
->>    "^simple-audio-card,codec(@[0-9a-f]+)?$":
->>      $ref: "#/definitions/dai"
->> +  "^simple-audio-card,plat(@[0-9a-f]+)?$":
-> What does 'plat' mean?
-
-plat means platform. I'll make that clear in the patch description in v2.
-
-
-> Don't continue the 'simple-audio-card,' prefix.
-
-The implementation already exists. Its just not documented here.
-
-
->> +    $ref: "#/definitions/dai"
+>> Please wrap commit message according to Linux coding style / submission
+>> process (neither too early nor over the limit):
+>> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 >>
->>    "^simple-audio-card,dai-link(@[0-9a-f]+)?$":
->>      description: |
->> @@ -285,6 +287,27 @@ examples:
->>          };
->>      };
 >>
->> +#-------------------------------
->> +# single DAI link with platform
->> +#-------------------------------
-> Really need another example for 1 simple node?
+>>>
+>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>>> ---
+>>>  .../timer/starfive,jh7110-timers.yaml         | 105 ++++++++++++++++++
+>>>  1 file changed, 105 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml b/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
+>>> new file mode 100644
+>>> index 000000000000..fe58dc056313
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
+>>> @@ -0,0 +1,105 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/timer/starfive,jh7110-timers.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: StarFive Timers
+>>
+>>
+>> Not enough, really not enough. Describe the hardware.
+> 
+> Will add. Thanks.
+> 
+>>
+>>> +
+>>> +maintainers:
+>>> +  - Samin Guo <samin.guo@starfivetech.com>
+>>> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: starfive,jh7110-timers
+>>
+>> Why plural "timers", not "timer"? The module is usually called timer -
+>> see other hardware that type.
+>>
+> 
+> Will fix. Thanks.
+> 
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    items:
+>>> +      - description: timer channel 0 interrupt
+>>> +      - description: timer channel 1 interrupt
+>>> +      - description: timer channel 2 interrupt
+>>> +      - description: timer channel 3 interrupt
+>>> +
+>>> +  interrupt-names:
+>>> +    items:
+>>> +      - const: timer0
+>>> +      - const: timer1
+>>> +      - const: timer2
+>>> +      - const: timer3
+>>
+>> I would just drop the names, not really useful. Unless you plan to add
+>> here some generic interrupt (like you did for clock-names)?
+> 
+> Will drop. Thanks.
+> 
+>>
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: timer channel 0 clock
+>>> +      - description: timer channel 1 clock
+>>> +      - description: timer channel 2 clock
+>>> +      - description: timer channel 3 clock
+>>> +      - description: APB clock
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: timer0
+>>> +      - const: timer1
+>>> +      - const: timer2
+>>> +      - const: timer3
+>>> +      - const: apb
+>>> +
+>>> +  resets:
+>>> +    items:
+>>> +      - description: timer channel 0 reset
+>>> +      - description: timer channel 1 reset
+>>> +      - description: timer channel 2 reset
+>>> +      - description: timer channel 3 reset
+>>> +      - description: APB reset
+>>> +
+>>> +  reset-names:
+>>> +    items:
+>>> +      - const: timer0
+>>> +      - const: timer1
+>>> +      - const: timer2
+>>> +      - const: timer3
+>>> +      - const: apb
+>>> +
+>>> +  clock-frequency:
+>>> +    description: The frequency of the clock that drives the counter, in Hz.
+>>
+>> Why do you need it? Use common clk framework to get that frequency.
+> 
+> Because normally this timer driver is loaded earlier than the clock tree driver, it won't get
+> that frequency by clk framework and this 'clock-frequency' node is used instead.
 
-I'll remove the example if that makes it easier.
+I don't think that clk framework or fixed clocks are not available at
+this time... of_clk_init is before timer.
 
-Thanks,
+> 
+>>
+>> Also, sort the nodes somehow, e.g.
+>> compatible/reg/clocks/clock-frequency/interrupts/resets.
+> 
+> Will reorder. Thanks.
+> 
+>>
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - interrupt-names
+>>> +  - clocks
+>>> +  - clock-names
+>>> +  - resets
+>>> +  - reset-names
+>>> +  - clock-frequency
+>>> +
+>>> +unevaluatedProperties: false
+>>
+>> Did you test the binding?
+> 
+> Yes, I had tested by 'dt_binding_check'. Do you mean the 'unevaluatedProperties' is wrong
+> and use 'additionalProperties'?
 
-Faiz
+Yes, previously it was generating a warning but I do not see Rob's bot
+answer so maybe something changed.
 
-IMPORTANT NOTICE: The contents of this email and any attachments are confid=
-ential and may also be privileged. If you are not the intended recipient, p=
-lease notify the sender immediately and do not disclose the contents to any=
- other person, use it for any purpose, or store or copy the information in =
-any medium. Thank you.
+Best regards,
+Krzysztof
+
