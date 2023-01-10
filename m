@@ -2,134 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B827663CE4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:31:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6E9F663CFD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:35:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231807AbjAJJbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 04:31:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43188 "EHLO
+        id S231939AbjAJJfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 04:35:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232263AbjAJJa4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:30:56 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690B6B45
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:30:52 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id jn22so12540643plb.13
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:30:52 -0800 (PST)
+        with ESMTP id S231807AbjAJJf0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:35:26 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D42831741D
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:35:24 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id ja17so8308439wmb.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 01:35:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MPK8Pcd1KnxbIqf6AZnIbTulBe6CihDk4OzBMX0CQsA=;
-        b=rSXAadCpOXwSRQXKprH1Oae0tV4q9g6xL1Yfv6tAov/VkM/cUU2Px8vZo69Gfxwae+
-         hT5rWatOGwsd80nmtgleJxTssxGu0OUIDYA9N3Kc17b2eeiWrjkmQX+TSzhP5qqlmUsh
-         t/sVOMWsSWi5CfDFsoKuTLUyj1m6MSuPkgHEfc5aauUkjd78mZNOH6D+nZbbiXM7unKN
-         BZQOMCEs/m0Ij9X0ZyQ0O5hwYOr2i6IGrhRvYV9YhEJ28UV+J7fHtE0BgZehuCQE9b0D
-         9tdYhInjbkjqQ/4CwGDQIlV5uDOGOLS+yDnhz0x9MNiE1g0W+7j5/of/bQkIQRmQexaa
-         Y1vw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mrQ+JitbOECIDmgf2/u1/1zEEDmDsSRqp9Cq/AzQXQ0=;
+        b=loQjDkRBkBqAGesdAJKVwXdr1EWle0ogRikYAZFq5P406xMPLYesNPr4Up06ii/Bnt
+         OLKbWAgoQkT/oCGNlKfRLsCyC8TdDClFDct/3+MraZeDWIQl+UD2j0/n9SUHjJ4OwH9A
+         X2G9Q4+xkhzmauIh7+bb9GtdS6iLYGI92uIKTFLPP8Ie94Z+wyyVONQe7bfO9xueJnOF
+         QZGDxsyIMnT6eM/H3WSn9k27afZYsUUFFMye9EFNPjSe0FFo+Pl+GOry5AnXtwNgy4+Q
+         nxAJwP3GIJHpdADZlBglkjcJ4vs0EWrN4pFAxkFSZ+OY9SlmzrVhUcO09I+68bZYbZii
+         oVwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MPK8Pcd1KnxbIqf6AZnIbTulBe6CihDk4OzBMX0CQsA=;
-        b=O2utlkmYy5Gfhj0C73Wlmbb7uDqIZDPKv3oOhRozDxBcSA5n13NsMcaraeb6eCa1WX
-         0Dxwf5DOL06+jfhjd0K/wVV0t43zpGGHccj/tYfAdTmei29JttiZ2ob3hz5sPEkw+Kgm
-         QIMIXEJahMxaaQkeOe7z+wAo08aHbiYvNTeHvPAeQBJSgaOP3hHqbTV05ilxYryWPvWB
-         RskXTAtHAUrZtNZvxUV31cfEtvbbQPoxbxWRH00A5iwlC8LgtqqqnjIdF82UiHFsn6Yy
-         sczL88XVBtTjROkCxM4LsrId9lCW2xpYgLF1Bd8VH5ekBug3XFQoqiYzousnjPCYqfsP
-         VyHw==
-X-Gm-Message-State: AFqh2kpAXSo6KJzoLUm/SPb8RAp+mM1R8ZWzfnTvThA2IbTKRTj/2iIm
-        bcvuBbK6MQwnX3BzjdOpTxaCcw==
-X-Google-Smtp-Source: AMrXdXuZSa+rV/0+yMaG6ICmG8FWoorYjfeL96GGckbKJke1oTTmQAFftVGi/4o7yksx/xoxLoOO+A==
-X-Received: by 2002:a17:902:b713:b0:191:2a9c:52a1 with SMTP id d19-20020a170902b71300b001912a9c52a1mr69151667pls.19.1673343051900;
-        Tue, 10 Jan 2023 01:30:51 -0800 (PST)
-Received: from x1 ([2601:1c2:1002:ab0:18c0:a4d5:b5ff:3aeb])
-        by smtp.gmail.com with ESMTPSA id ik22-20020a170902ab1600b001925d6fdfebsm7505744plb.299.2023.01.10.01.30.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 01:30:51 -0800 (PST)
-Date:   Tue, 10 Jan 2023 01:33:21 -0800
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 0/9] Add RZ/G2L POEG support
-Message-ID: <Y70w4ePvt8ycgn4j@x1>
-References: <20221215213206.56666-1-biju.das.jz@bp.renesas.com>
- <CACRpkdZCEvpLAWvH7pCLH7KwbDMzz0EN+4HbxVGfFPi_C1b8+g@mail.gmail.com>
- <CAMuHMdU1J46KSzqqCQc-1ZrgvfWh8J2aa6NzRTK_A_ZJs+zRVQ@mail.gmail.com>
- <CACRpkdaL2J7F2sVjVcTtFTfK1exZ3Rmjhc_dYxuo2DfhYq_8gw@mail.gmail.com>
- <CAMuHMdUeazkEXWh+R9iy3TLc16b=OX9rOzAoB1=X=K4wOo9pRA@mail.gmail.com>
- <CACRpkdZC34xdgsxrMzNy++fBtf36M5ppg-FO0uKpy5q=UGS2Ng@mail.gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mrQ+JitbOECIDmgf2/u1/1zEEDmDsSRqp9Cq/AzQXQ0=;
+        b=2j44N20iCSlYxCb72EwXXRWzC/BDsMqAngfntPpEbhNMFXK0KsxNmJdZrXsXmFuAPe
+         Mtek65F+RauTgrnS1MEBm5YWm1rPS0ZBiXbA3DyTvwjDR2vYwjesU1NPV6Q+jvo59cnG
+         02WqQ4WFS+ixeWC0lnUMUCijMd7/PyrF3hFYHzW/QAhX5QsLeE2E1nVvdtTNcWX+YHPf
+         XUsyHAeQtzdIhbd452O4yty1WQVgVsuxHl8xGKCqj264Qj5UkBMPwlEhnioclmTT8BFH
+         chGPBpvYyZvhYedBHxTkCmjG28wHOHNZIvyf/dGYHoRkTZ35kfDMf+zmm+7bT/NMcH6E
+         OfGw==
+X-Gm-Message-State: AFqh2kpEjTCGnQi/nXPoTZS5X7EedzoKX2CHrqeRutQEyxNgJS9HNOy0
+        inD47taBYoDDBkDCa705YOzPXA==
+X-Google-Smtp-Source: AMrXdXvQ1wW/QgFW9/7W/HyD92nstJjTjaJu9SxRjN7GNXvC97zoJ1MgYEz/Ik0g8pkZvz8vJPEB5g==
+X-Received: by 2002:a05:600c:3490:b0:3d9:ed39:8999 with SMTP id a16-20020a05600c349000b003d9ed398999mr6191599wmq.35.1673343323420;
+        Tue, 10 Jan 2023 01:35:23 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id y15-20020adffa4f000000b002bbec19c8acsm5383940wrr.64.2023.01.10.01.35.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jan 2023 01:35:22 -0800 (PST)
+Message-ID: <92955e76-807f-3a8f-8cbd-3fafdd8f2054@linaro.org>
+Date:   Tue, 10 Jan 2023 10:35:13 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZC34xdgsxrMzNy++fBtf36M5ppg-FO0uKpy5q=UGS2Ng@mail.gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V2 02/11] dt-bindings: remoteproc: qcom,msm8996-mss-pil:
+ Update memory region
+Content-Language: en-US
+To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        manivannan.sadhasivam@linaro.org, robin.murphy@arm.com
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
+        regressions@leemhuis.info, sumit.semwal@linaro.org,
+        will@kernel.org, catalin.marinas@arm.com
+References: <20230109034843.23759-1-quic_sibis@quicinc.com>
+ <20230109034843.23759-3-quic_sibis@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230109034843.23759-3-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 10, 2023 at 09:09:21AM +0100, Linus Walleij wrote:
-> On Mon, Jan 9, 2023 at 2:41 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Mon, Jan 9, 2023 at 2:16 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > > On Tue, Jan 3, 2023 at 10:01 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > > If this should go into sysfs we should probably create something
-> > > > > generic, such as a list of stuff to be exported as sysfs switches.
-> > > > >
-> > > > > It generally also looks really dangerous, which is another reason
-> > > > > for keeping it in debugfs. It's the big hammer to hurt yourself with,
-> > > > > more or less.
-> > > >
-> > > > Yes, generic would be nice.  Anyone familiar with other hardware
-> > > > that could make use of this?
-> > >
-> > > Drew was using this for Beagle Bone IIRC, Drew?
-> >
-> > Yes, that's what I remember, too.  And I tested it on Koelsch.
-> >
-> > But again, that's for debugging purposes.  For non-debugging
-> > operation, we need something different.
+On 09/01/2023 04:48, Sibi Sankar wrote:
+> The dynamic memory region used for metadata authentication would still
+> be a part of the kernel mapping and any access to this region  by the
+
+Just one space before "by"
+
+> application processor after assigning it to the remote Q6 will result
+> in a XPU violation. This is fixed by using a no-map carveout instead.
+> Update the bindings to reflect the addition of the new modem metadata
+> carveout on MSM8996 (and similar) SoCs.
 > 
-> Actually Drew's usecase wasn't for debugging. It was kind-of production,
-> but it was for "one-offs" such as factory lines and other very specific-purpose
-> embedded.
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  .../bindings/remoteproc/qcom,msm8996-mss-pil.yaml  | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
 > 
-> The placement in debugfs was mostly because it is fragile and dangerous.
-> 
-> Yours,
-> Linus Walleij
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+> index d3d3fb2fe91d..ad1a51c23949 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+> @@ -123,6 +123,7 @@ properties:
+>      items:
+>        - description: MBA reserved region
+>        - description: Modem reserved region
+> +      - description: Metadata reserved region
+>  
+>    firmware-name:
+>      $ref: /schemas/types.yaml#/definitions/string-array
+> @@ -165,6 +166,16 @@ properties:
+>        - memory-region
+>      deprecated: true
+>  
+> +  metadata:
+> +    type: object
 
-For the BeagleBone, the use case for selecting pin fuctions from
-userspace with pinmux-select in debugfs is to allow for rapid
-prototyping situations such as breadboarding. Our Debian install on the
-boards has an utility named config-pin that allows the user to select
-between defined pinctrl states for each pin on the expansion header.
+addutionalProperties: false
 
-Some users like this as it means they do not need to constantly be
-editing device tree files and rebooting while protoyping. I agree that
-this is not a fool-proof scheme but Beaglebones have been shipping with
-this functionality for many years without any significant problems that
-I'm aware of.
+> +    description:
+> +      Metadata reserved region
 
-I do admit that it is possible for someone to potentially damage
-circuits with this flexibility, so having a warning in the kernel log
-like Andy suggested elsewhere in this thread might be a good idea.
+Blank line
 
-Thanks,
-Drew
+> +    properties:
+> +      memory-region: true
+
+Blank line
+
+> +    required:
+> +      - memory-region
+> +    deprecated: true
+
+
+Best regards,
+Krzysztof
+
