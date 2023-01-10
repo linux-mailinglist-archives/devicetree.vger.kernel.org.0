@@ -2,177 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B21B5664656
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 17:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D613F664699
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 17:54:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234189AbjAJQlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 11:41:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55158 "EHLO
+        id S238807AbjAJQxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 11:53:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234097AbjAJQlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 11:41:09 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9A0B51320
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 08:41:04 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so10542871wms.4
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 08:41:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Th4XS3ExnJps+ejGgAt+lEc+wt5pkhQaMhYYIYNJy0U=;
-        b=a2RI/NAz23mB851gzvwuv+p7hExudFo71Jz2+0oDw0T1EhzC7jwPZqmqwBS3mZ7Pk5
-         XN+mp23UWm76WcYPMr+2b0ss91RHKvx5Q3bTO6u/8pXjO8pCxW5ph1dwoq/P9vV/hU8P
-         uotbWX0UA1lJXNzp/yuQyd+Lybnq+sTqqt4Wu8jG1aiinRxynfX9xOUkrXVM8KlULoUd
-         8fO+I6pUurdwv+JnjMTH1bjinN+feq4bT35Uf3/Uy+IpzcgzqQ7JahwDt2J12PTMjSky
-         UqYsIc6fT9oEA/mGd0GtJKQnrOVgfM4z/YU/ABm/7341rcFsAxWKw8PKuZUveZxmvBsH
-         2hHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Th4XS3ExnJps+ejGgAt+lEc+wt5pkhQaMhYYIYNJy0U=;
-        b=1waKaq+aQ047JSCv24fD2BUciCP0xe7tmqotZ7g/JivBlrSCDcZjkOZ2O2FJRqIX9a
-         qfkDvU3x0YUInCP/yIVcjSdPcMgzxgMDjD+eOlKem6Y4cQhXR2t8umfGSVUJId2WzCMt
-         9Hugm6G3x745w6JtZZRy6xC5tJNe5C3/aTRZ7dr/p1MwD0Oav9Ey/hnYHL+wT4vzbO5A
-         FPa0KmYD677ladidnbzClaWKTLkKB/KgXRY6v2RYa2SRLeDeHVx3FsUfxX+frvZXBmE3
-         zSjVOUqZUj3QaG2BepA65LaLmL8+ls+QjAs3aHAY+2sk9JC+6k2C1ubCMsNOgAK3uCVD
-         kt6w==
-X-Gm-Message-State: AFqh2koSkdkhagA+Jyxfm7ofA5gaLAO3KHKY0V0TO2+EhdUfj1CfdSwv
-        UsuHnTSllTHmyBVGkmbCUD5C/Q==
-X-Google-Smtp-Source: AMrXdXskmZw3ugW9Pk8CVGZsMZh1RbFbAqdASFjBu3L9/SbBgfi3fYgfSX8zXMjI3EW8xExE+p+a9Q==
-X-Received: by 2002:a05:600c:46c7:b0:3d9:ee3d:2f54 with SMTP id q7-20020a05600c46c700b003d9ee3d2f54mr6883493wmo.13.1673368863486;
-        Tue, 10 Jan 2023 08:41:03 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id he12-20020a05600c540c00b003d9ddc82450sm15086035wmb.45.2023.01.10.08.41.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 08:41:03 -0800 (PST)
-Message-ID: <9640d2a0-7245-285e-0e7a-d75bfe3f88ac@linaro.org>
-Date:   Tue, 10 Jan 2023 17:40:59 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 09/11] dt-bindings: mmc: convert amlogic,meson-gx.txt
- to dt-schema
-Content-Language: en-US
-To:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238747AbjAJQxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 11:53:51 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A47DF18E18;
+        Tue, 10 Jan 2023 08:53:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 41C2461795;
+        Tue, 10 Jan 2023 16:53:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0B11C433F1;
+        Tue, 10 Jan 2023 16:53:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673369629;
+        bh=SollqPHgY5I7lTwviKqNUa8+yrbzo1QLNEo3j1yUsrE=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Pcx4YAWaJufTQxXy4GmIV8Y1noj4cbwA15h92+yCwAy6+iAD1g4NCRKi+Pc/MhOrA
+         9fZmAqK66hDCjjocSouT92wlgPUXT2FnN45SDl130vtR53DfSKC1oQEkT0Lx7E1SL1
+         ltLqOXveg2pUrYZePevnJZCfBbzXF9kpl0BYd47uoGh72YpWX86DYd0ZURIMAlMzGC
+         V8yVDpk/rzieN+Y7QR7ojyEB6u6BY/t2e41t2iEnUI/PFt4CbIk+sm+jdpd1KO99+1
+         TA1i1vL7vlBrlVJ3Bpm+HFBdpWcpCrAlBH+y7CN7NvNMBTM8gXCBdNIY7wXWVZeel0
+         OazQiUHiDX+Dw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Chunxu Li <chunxu.li@mediatek.com>,
+        Dan Carpenter <error27@gmail.com>,
+        YC Hung <yc.hung@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v2-9-36ad050bb625@linaro.org>
- <e3d32fe1-9f2b-09fb-d7e0-2c8f42e5365c@linaro.org>
- <2037156d-5113-4b96-8f86-c8ef1c1fdf96@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2037156d-5113-4b96-8f86-c8ef1c1fdf96@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        sound-open-firmware@alsa-project.org, alsa-devel@alsa-project.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+In-Reply-To: <20221222072150.10627-1-tinghan.shen@mediatek.com>
+References: <20221222072150.10627-1-tinghan.shen@mediatek.com>
+Subject: Re: [PATCH v1 0/3] Add support of MediaTek mt8188 to SOF
+Message-Id: <167336962456.1940041.13852570954333682480.b4-ty@kernel.org>
+Date:   Tue, 10 Jan 2023 16:53:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Mailer: b4 0.12-dev-8b3d1
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 15:17, Neil Armstrong wrote:
-> On 10/01/2023 11:17, Krzysztof Kozlowski wrote:
->> On 09/01/2023 13:53, Neil Armstrong wrote:
->>> Convert the Amlogic SD / eMMC controller for S905/GXBB family SoCs
->>> to dt-schema.
->>>
->>> Take in account the used variant with amlogic,meson-gx-mmc.
->>>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> ---
->>>   .../bindings/mmc/amlogic,meson-gx-mmc.yaml         | 75 ++++++++++++++++++++++
->>>   .../devicetree/bindings/mmc/amlogic,meson-gx.txt   | 39 -----------
->>>   2 files changed, 75 insertions(+), 39 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
->>> new file mode 100644
->>> index 000000000000..30228964fd9c
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
->>> @@ -0,0 +1,75 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/mmc/amlogic,meson-gx-mmc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Amlogic SD / eMMC controller for S905/GXBB family SoCs
->>> +
->>> +description:
->>> +  The MMC 5.1 compliant host controller on Amlogic provides the
->>> +  interface for SD, eMMC and SDIO devices
->>> +
->>> +maintainers:
->>> +  - Neil Armstrong <neil.armstrong@linaro.org>
->>> +
->>> +allOf:
->>> +  - $ref: mmc-controller.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - enum:
->>> +          - amlogic,meson-gx-mmc
->>> +          - amlogic,meson-axg-mmc
->>> +      - items:
->>> +          - const: amlogic,meson-gx-mmc
->>
->> This does not look correct. Either gx is alone (not compatible with
->> gxbb) or it is compatible with gxbb. Cannot be both.
+On Thu, 22 Dec 2022 15:21:47 +0800, Tinghan Shen wrote:
+> Add support of MediaTek mt8188 SoC DSP to SOF.
+> The sof driver patches in this series are taken from
+> thesofproject/linux/tree/topic/sof-dev-rebase.
 > 
-> This ishow it's used in DT:
+> Tinghan Shen (3):
+>   dt-bindings: dsp: mediatek: Add mt8188 dsp compatible
+>   ASoC: SOF: mediatek: Support mt8188 platform
+>   ASoC: SOF: mediatek: Provide debugfs_add_region_item ops for core
 > 
-> arch/arm64/boot/dts/amlogic/meson-gx.dtsi:                              compatible = "amlogic,meson-gx-mmc", "amlogic,meson-gxbb-mmc";
-> arch/arm64/boot/dts/amlogic/meson-axg.dtsi:                             compatible = "amlogic,meson-axg-mmc";
-> arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi:                      compatible = "amlogic,meson-axg-mmc";
-> 
-> So I'll drop the amlogic,meson-gx-mmc in the first enum to have :
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: amlogic,meson-axg-mmc
-> +      - items:
-> +          - const: amlogic,meson-gx-mmc
-> +          - const: amlogic,meson-gxbb-mmc
-> 
-> It's right ?
+> [...]
 
-Yes.
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/3] dt-bindings: dsp: mediatek: Add mt8188 dsp compatible
+      commit: e15ec6892832d586069ce575c222366b94ad6a5e
+[2/3] ASoC: SOF: mediatek: Support mt8188 platform
+      commit: 6b43538f0698695fba9aa0c0b29a80c555cf1b63
+[3/3] ASoC: SOF: mediatek: Provide debugfs_add_region_item ops for core
+      commit: 6fa8c0732bff8e0ab794736837b25dc7ac38cd54
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
