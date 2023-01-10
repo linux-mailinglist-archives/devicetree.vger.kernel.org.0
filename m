@@ -2,359 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 910136635FD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 01:02:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1650E663601
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 01:04:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237234AbjAJACo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 19:02:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49486 "EHLO
+        id S234850AbjAJAEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 19:04:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235023AbjAJACn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 19:02:43 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 67E128FC0;
-        Mon,  9 Jan 2023 16:02:41 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 009DBAD7;
-        Mon,  9 Jan 2023 16:03:23 -0800 (PST)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 27D593F587;
-        Mon,  9 Jan 2023 16:02:38 -0800 (PST)
-Date:   Tue, 10 Jan 2023 00:00:25 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     martin.botka1@gmail.com,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] mfd: ax20x: Add suppport for AXP1530 PMIC
-Message-ID: <20230110000025.221430b6@slackpad.lan>
-In-Reply-To: <1C9140E8-1476-4EA0-B685-A733990C5E0F@somainline.org>
-References: <20221214190305.3354669-1-martin.botka@somainline.org>
-        <20221214190305.3354669-3-martin.botka@somainline.org>
-        <20221216181752.1d839233@donnerap.cambridge.arm.com>
-        <1C9140E8-1476-4EA0-B685-A733990C5E0F@somainline.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S237777AbjAJAEt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 19:04:49 -0500
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7430FDFCC;
+        Mon,  9 Jan 2023 16:04:48 -0800 (PST)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-15085b8a2f7so10569509fac.2;
+        Mon, 09 Jan 2023 16:04:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=tU7xqlxoqQYzxNUd2tV9T0j18fTCGh8gQdqsrjiDR18=;
+        b=VCvgFgIO+G4qIlz2s3+FUcKmJ9xolwbkKBDVQd7C8z/HK6P7+HYIW/LRENO5wZ8JZT
+         K1CKRg8n5VeQK9EHzkksIIWSGUsVBG0i2tbsQwwVcBNlUDYW8ZIA+Q9aetlKBtxFRJVZ
+         eWZdh8MXnaYEl4CMDUOj00bjgg7WIGRnvrWjIa6udbhxGJfVXl8JMPF6ZbBEpjp9cWmf
+         91DjHvMfWCVFl5PFBU+6dU/fKi1IYlKEnnJi491aXEBDQEWOXYt0bf20IPpUidzzg+EQ
+         JGPegHDTVzpfuxhPYkzDqn6h9+bUgO3lTkXx2/xR2t7Q7glKfchpW8kg/mIPduwxZhKU
+         40mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tU7xqlxoqQYzxNUd2tV9T0j18fTCGh8gQdqsrjiDR18=;
+        b=F90B24k45x6L4NZiWj1N4OrdRaIn+VOySKBDCamgiWzDopWBc3djLk4E3+pnG1MJOf
+         hmLzA7P7kbsw1GkmotD4y/UBWBWzPAH0djetMjQjMacMHV0y2DRfOiLoCP/gFfFT1tvz
+         q6/g6R0eVPn1vCAh32ZJpvtrcRBAcGpoMfMyjyLOv+SCkDj2ebZBCvZKG5hVV9sovUV3
+         QeNXcTZi2DBN2mVWoNKoXJ2w/CYKj+6AvvVY1fmcM50g2aCY4zeX3Nfoh4CqhRRV97h5
+         j31EngvnIQ/wvbIQ7pRwWztbaMQsO5vmaJbz3zmYLGnx1esS6Hkm8Uk+ws/DWvd2P8oq
+         6HCw==
+X-Gm-Message-State: AFqh2kpIdHxWr3h6ks952bFwJm/U6va3H933KrfaRXp7wvP98WchsT4B
+        kPQWS4TWGnoheC5tgZeSmmc7Mwigji4=
+X-Google-Smtp-Source: AMrXdXsb8On+uzw3FWK3vK1VkZcaAObj4m6y3i+HKyTpeKJI6+GyvLelZK+5q8EBpined4AKIx9aVA==
+X-Received: by 2002:a05:6870:c1c2:b0:14f:9e41:7dbe with SMTP id i2-20020a056870c1c200b0014f9e417dbemr38258957oad.10.1673309087755;
+        Mon, 09 Jan 2023 16:04:47 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id p22-20020a056870831600b0014813cc4a51sm4985686oae.29.2023.01.09.16.04.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 16:04:47 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d49d4b4c-e7ee-e0a1-56e6-7f193e0d1340@roeck-us.net>
+Date:   Mon, 9 Jan 2023 16:04:45 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 3/5] hwmon: ltc2945: Handle error case in
+ ltc2945_value_store
+Content-Language: en-US
+To:     Jonathan Cormier <jcormier@criticallink.com>,
+        linux-hwmon@vger.kernel.org
+Cc:     Jean Delvare <jdelvare@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bob Duke <bduke@criticallink.com>,
+        John Pruitt <jpruitt@criticallink.com>
+References: <20221214220727.1350784-3-jcormier@criticallink.com>
+ <20230109233534.1932370-1-jcormier@criticallink.com>
+ <20230109233534.1932370-4-jcormier@criticallink.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20230109233534.1932370-4-jcormier@criticallink.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 17 Dec 2022 01:13:01 +0100
-Martin Botka <martin.botka@somainline.org> wrote:
-
-Hi Martin,
-
-hope you had a good break! Did you have any chance to come back to this
-again? Now would be a good time to send a new version, otherwise it's
-getting pretty tight for v6.3 already.
-
-On Friday, "junari" in the #linux-sunxi IRC channel, made some
-interesting discovery: he is playing around with an AXP313a on some
-H616 device and figured that DCDC3 is not behaving like the datasheet: 
-https://oftc.irclog.whitequark.org/linux-sunxi/2023-01-06#31784528;
-He later confirmed the voltage:
-https://oftc.irclog.whitequark.org/linux-sunxi/2023-01-08#31788373;
-
-Basically it looks like the DCDC3 parameters you harvested from the BSP
-code seem to be correct after all. Do you have any chance to measure
-the voltage?
-If not, can we try to deduce what the right settings are? The voltage
-difference seems to be significant (860mV vs 1200mV), I wonder if any
-device connected there (DRAM?) would work with the wrong setting?
-
-Cheers,
-Andre
-
-> On December 16, 2022 7:17:52 PM GMT+01:00, Andre Przywara <andre.przywara@arm.com> wrote:
-> >On Wed, 14 Dec 2022 20:03:04 +0100
-> >Martin Botka <martin.botka@somainline.org> wrote:
-> >
-> >Hi Martin,
-> >  
-> >> AXP1530 is a PMIC chip produced by X-Powers and an be connected via
-> >> I2C bus.
-> >> Where AXP313A seems to be closely related so the same driver can be used and
-> >> seen it only paired with H616 SoC.  
-> >
-> >So as mentioned, I am pretending this is for the AXP313A now, looking at
-> >its datasheet.
-> >Of course the elephant in the room is s/AXP1530/AXP313A/, but other than
-> >that:
-> >   
-> >> 
-> >> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> >> ---
-> >>  drivers/mfd/axp20x-i2c.c   |  2 ++
-> >>  drivers/mfd/axp20x.c       | 62 ++++++++++++++++++++++++++++++++++++++
-> >>  include/linux/mfd/axp20x.h | 32 ++++++++++++++++++++
-> >>  3 files changed, 96 insertions(+)
-> >> 
-> >> diff --git a/drivers/mfd/axp20x-i2c.c b/drivers/mfd/axp20x-i2c.c
-> >> index 8fd6727dc30a..6bfb931a580e 100644
-> >> --- a/drivers/mfd/axp20x-i2c.c
-> >> +++ b/drivers/mfd/axp20x-i2c.c
-> >> @@ -60,6 +60,7 @@ static void axp20x_i2c_remove(struct i2c_client *i2c)
-> >>  #ifdef CONFIG_OF
-> >>  static const struct of_device_id axp20x_i2c_of_match[] = {
-> >>  	{ .compatible = "x-powers,axp152", .data = (void *)AXP152_ID },
-> >> +	{ .compatible = "x-powers,axp1530", .data = (void *)AXP1530_ID},
-> >>  	{ .compatible = "x-powers,axp202", .data = (void *)AXP202_ID },
-> >>  	{ .compatible = "x-powers,axp209", .data = (void *)AXP209_ID },
-> >>  	{ .compatible = "x-powers,axp221", .data = (void *)AXP221_ID },
-> >> @@ -73,6 +74,7 @@ MODULE_DEVICE_TABLE(of, axp20x_i2c_of_match);
-> >>  
-> >>  static const struct i2c_device_id axp20x_i2c_id[] = {
-> >>  	{ "axp152", 0 },
-> >> +	{ "axp1530", 0 },
-> >>  	{ "axp202", 0 },
-> >>  	{ "axp209", 0 },
-> >>  	{ "axp221", 0 },
-> >> diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
-> >> index 880c41fa7021..6caa7e87ad80 100644
-> >> --- a/drivers/mfd/axp20x.c
-> >> +++ b/drivers/mfd/axp20x.c
-> >> @@ -34,6 +34,7 @@
-> >>  
-> >>  static const char * const axp20x_model_names[] = {
-> >>  	"AXP152",
-> >> +	"AXP1530",
-> >>  	"AXP202",
-> >>  	"AXP209",
-> >>  	"AXP221",
-> >> @@ -66,6 +67,24 @@ static const struct regmap_access_table axp152_volatile_table = {
-> >>  	.n_yes_ranges	= ARRAY_SIZE(axp152_volatile_ranges),
-> >>  };
-> >>  
-> >> +static const struct regmap_range axp1530_writeable_ranges[] = {
-> >> +	regmap_reg_range(AXP1530_ON_INDICATE, AXP1530_FREQUENCY),  
-> >
-> >Where does this FREQUENCY register come from? BSP source? Is that the
-> >lost register to set the PWM frequency?
-> >The 313 datasheet doesn't mention it, and since we deny programming the
-> >frequency, I would just leave it out.
-> >If people find it existing (and useful!) later on, we should be able to
-> >add it without breaking anything.  
+On 1/9/23 15:35, Jonathan Cormier wrote:
+> ltc2945_val_to_reg errors were not being handled
+> which would have resulted in register being set to
+> 0 (clamped) instead of being left alone.
 > 
-> BSP. Ack.
-> >  
-> >> +};
-> >> +
-> >> +static const struct regmap_range axp1530_volatile_ranges[] = {
-> >> +	regmap_reg_range(AXP1530_ON_INDICATE, AXP1530_FREQUENCY),
-> >> +};
-> >> +
-> >> +static const struct regmap_access_table axp1530_writeable_table = {
-> >> +	.yes_ranges = axp1530_writeable_ranges,
-> >> +	.n_yes_ranges = ARRAY_SIZE(axp1530_writeable_ranges),
-> >> +};
-> >> +
-> >> +static const struct regmap_access_table axp1530_volatile_table = {
-> >> +	.yes_ranges = axp1530_volatile_ranges,
-> >> +	.n_yes_ranges = ARRAY_SIZE(axp1530_volatile_ranges),
-> >> +};
-> >> +
-> >>  static const struct regmap_range axp20x_writeable_ranges[] = {
-> >>  	regmap_reg_range(AXP20X_DATACACHE(0), AXP20X_IRQ5_STATE),
-> >>  	regmap_reg_range(AXP20X_CHRG_CTRL1, AXP20X_CHRG_CTRL2),
-> >> @@ -245,6 +264,15 @@ static const struct regmap_config axp152_regmap_config = {
-> >>  	.cache_type	= REGCACHE_RBTREE,
-> >>  };
-> >>  
-> >> +static const struct regmap_config axp1530_regmap_config = {
-> >> +	.reg_bits = 8,
-> >> +	.val_bits = 8,
-> >> +	.wr_table = &axp1530_writeable_table,
-> >> +	.volatile_table = &axp1530_volatile_table,
-> >> +	.max_register = AXP1530_FREQUENCY,
-> >> +	.cache_type = REGCACHE_RBTREE,
-> >> +};
-> >> +
-> >>  static const struct regmap_config axp20x_regmap_config = {
-> >>  	.reg_bits	= 8,
-> >>  	.val_bits	= 8,
-> >> @@ -304,6 +332,16 @@ static const struct regmap_irq axp152_regmap_irqs[] = {
-> >>  	INIT_REGMAP_IRQ(AXP152, GPIO0_INPUT,		2, 0),
-> >>  };
-> >>  
-> >> +static const struct regmap_irq axp1530_regmap_irqs[] = {
-> >> +	INIT_REGMAP_IRQ(AXP1530, KEY_L2H_EN, 0, 7),
-> >> +	INIT_REGMAP_IRQ(AXP1530, KEY_H2L_EN, 0, 6),
-> >> +	INIT_REGMAP_IRQ(AXP1530, POKSIRQ_EN, 0, 5),
-> >> +	INIT_REGMAP_IRQ(AXP1530, POKLIRQ_EN, 0, 4),  
-> >
-> >Are those identifiers from the BSP source? The (translated) manual gives
-> >some explanation, namely:
-> >	PWRON key rising edge
-> >	PWRON key falling edge
-> >	Short press the PWRON button
-> >	Long press the PWRON button
-> >
-> >So I'd suggest we follow the existing naming:
-> >	PEK_RIS_EDGE, PEK_FAL_EDGE, PEK_SHORT, PEK_LONG (respectively)
-> >
-> >Or come up with names that people could actually decipher ;-)
-> >
-> >  
-> Ack.
-> >> +	INIT_REGMAP_IRQ(AXP1530, DCDC3_UNDER, 0, 3),
-> >> +	INIT_REGMAP_IRQ(AXP1530, DCDC2_UNDER, 0, 2),
-> >> +	INIT_REGMAP_IRQ(AXP1530, TEMP_OVER, 0, 0),
-> >> +};
-> >> +
-> >>  static const struct regmap_irq axp20x_regmap_irqs[] = {
-> >>  	INIT_REGMAP_IRQ(AXP20X, ACIN_OVER_V,		0, 7),
-> >>  	INIT_REGMAP_IRQ(AXP20X, ACIN_PLUGIN,		0, 6),
-> >> @@ -514,6 +552,18 @@ static const struct regmap_irq_chip axp152_regmap_irq_chip = {
-> >>  	.num_regs		= 3,
-> >>  };
-> >>  
-> >> +static const struct regmap_irq_chip axp1530_regmap_irq_chip = {
-> >> +	.name = "axp1530_irq_chip",
-> >> +	.status_base = AXP1530_IRQ_STATUS1,
-> >> +	.ack_base = AXP1530_IRQ_STATUS1,
-> >> +	.mask_base = AXP1530_IRQ_ENABLE1,
-> >> +	.mask_invert = true,
-> >> +	.init_ack_masked = true,
-> >> +	.irqs = axp1530_regmap_irqs,
-> >> +	.num_irqs = ARRAY_SIZE(axp1530_regmap_irqs),
-> >> +	.num_regs = 1,
-> >> +};
-> >> +
-> >>  static const struct regmap_irq_chip axp20x_regmap_irq_chip = {
-> >>  	.name			= "axp20x_irq_chip",
-> >>  	.status_base		= AXP20X_IRQ1_STATE,
-> >> @@ -683,6 +733,12 @@ static const struct mfd_cell axp152_cells[] = {
-> >>  	},
-> >>  };
-> >>  
-> >> +static struct mfd_cell axp1530_cells[] = {
-> >> +	{
-> >> +		.name = "axp20x-regulator",
-> >> +	},
-> >> +};
-> >> +
-> >>  static const struct resource axp288_adc_resources[] = {
-> >>  	DEFINE_RES_IRQ_NAMED(AXP288_IRQ_GPADC, "GPADC"),
-> >>  };
-> >> @@ -874,6 +930,12 @@ int axp20x_match_device(struct axp20x_dev *axp20x)
-> >>  		axp20x->regmap_cfg = &axp152_regmap_config;
-> >>  		axp20x->regmap_irq_chip = &axp152_regmap_irq_chip;
-> >>  		break;
-> >> +	case AXP1530_ID:
-> >> +		axp20x->nr_cells = ARRAY_SIZE(axp1530_cells);
-> >> +		axp20x->cells = axp1530_cells;
-> >> +		axp20x->regmap_cfg = &axp1530_regmap_config;
-> >> +		axp20x->regmap_irq_chip = &axp1530_regmap_irq_chip;
-> >> +		break;
-> >>  	case AXP202_ID:
-> >>  	case AXP209_ID:
-> >>  		axp20x->nr_cells = ARRAY_SIZE(axp20x_cells);
-> >> diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
-> >> index 9ab0e2fca7ea..cad25754500f 100644
-> >> --- a/include/linux/mfd/axp20x.h
-> >> +++ b/include/linux/mfd/axp20x.h
-> >> @@ -12,6 +12,7 @@
-> >>  
-> >>  enum axp20x_variants {
-> >>  	AXP152_ID = 0,
-> >> +	AXP1530_ID,
-> >>  	AXP202_ID,
-> >>  	AXP209_ID,
-> >>  	AXP221_ID,
-> >> @@ -45,6 +46,18 @@ enum axp20x_variants {
-> >>  #define AXP152_DCDC_FREQ		0x37
-> >>  #define AXP152_DCDC_MODE		0x80
-> >>  
-> >> +#define AXP1530_ON_INDICATE		0x00
-> >> +#define AXP1530_OUTPUT_CONTROL	0x10
-> >> +#define AXP1530_DCDC1_CONRTOL	0x13
-> >> +#define AXP1530_DCDC2_CONRTOL	0x14
-> >> +#define AXP1530_DCDC3_CONRTOL	0x15
-> >> +#define AXP1530_ALDO1_CONRTOL	0x16
-> >> +#define AXP1530_DLDO1_CONRTOL	0x17
-> >> +#define AXP1530_OUTOUT_MONITOR	0x1D  
-> >
-> >Shall this read AXP1530_OUTPUT_MONITOR?
-> >  
-> >> +#define AXP1530_IRQ_ENABLE1		0x20
-> >> +#define AXP1530_IRQ_STATUS1		0x21  
-> >
-> >There is only one interrupt register, so can we drop the trailing number?
-> >  
-> Yep.
-> >> +#define AXP1530_FREQUENCY		0x87  
-> >
-> >As mentioned, the manual does not mention it, and we don't use it anyway.
-> >  
-> Ack.
-> >> +
-> >>  #define AXP20X_PWR_INPUT_STATUS		0x00
-> >>  #define AXP20X_PWR_OP_MODE		0x01
-> >>  #define AXP20X_USB_OTG_STATUS		0x02
-> >> @@ -287,6 +300,15 @@ enum axp20x_variants {
-> >>  #define AXP288_FG_TUNE5             0xed
-> >>  
-> >>  /* Regulators IDs */
-> >> +enum {
-> >> +	AXP1530_DCDC1 = 0,
-> >> +	AXP1530_DCDC2,
-> >> +	AXP1530_DCDC3,
-> >> +	AXP1530_LDO1,
-> >> +	AXP1530_LDO2,  
-> >
-> >I guess we should add the RTC LDO as LDO3 here.
-> >
-> >The rest of the numbers match with the datasheet.
-> >  
-> Ack.
+> Change reg_to_val and val_to_reg to return values
+> via parameters to make it more obvious when an
+> error case isn't handled. Also to allow
+> the regval type to be the correct sign in prep for
+> next commits.
 > 
-> I will take some time off due to Uni so v6 will be delayed peobably last holidays.
+
+Sorry, I don't see that as reason or argument for such invasive changes.
+As far as I can see, a two-liner to check the return value of val_to_reg()
+should have been sufficient. Most of the rest, such as splitting
+the return value into two elements, is POV and just adds additional code
+and complexity for zero gain.
+
+Guenter
+
+> Fixes: 6700ce035f83 ("hwmon: Driver for Linear Technologies LTC2945")
 > 
-> Best regards and happy holidays,
-> Martin
-> >Cheers,
-> >Andre
-> >  
-> >> +	AXP1530_REG_ID_MAX,
-> >> +};
-> >> +
-> >>  enum {
-> >>  	AXP20X_LDO1 = 0,
-> >>  	AXP20X_LDO2,
-> >> @@ -440,6 +462,16 @@ enum {
-> >>  	AXP152_IRQ_GPIO0_INPUT,
-> >>  };
-> >>  
-> >> +enum axp1530_irqs {
-> >> +	AXP1530_IRQ_TEMP_OVER,
-> >> +	AXP1530_IRQ_DCDC2_UNDER = 2,
-> >> +	AXP1530_IRQ_DCDC3_UNDER,
-> >> +	AXP1530_IRQ_POKLIRQ_EN,
-> >> +	AXP1530_IRQ_POKSIRQ_EN,
-> >> +	AXP1530_IRQ_KEY_L2H_EN,
-> >> +	AXP1530_IRQ_KEY_H2L_EN,
-> >> +};
-> >> +
-> >>  enum {
-> >>  	AXP20X_IRQ_ACIN_OVER_V = 1,
-> >>  	AXP20X_IRQ_ACIN_PLUGIN,  
-> >  
+> Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+> ---
+>   drivers/hwmon/ltc2945.c | 30 ++++++++++++++++++------------
+>   1 file changed, 18 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/hwmon/ltc2945.c b/drivers/hwmon/ltc2945.c
+> index 9af3e3821152..c66acf8d2124 100644
+> --- a/drivers/hwmon/ltc2945.c
+> +++ b/drivers/hwmon/ltc2945.c
+> @@ -70,12 +70,12 @@ static inline bool is_power_reg(u8 reg)
+>   }
+>   
+>   /* Return the value from the given register in uW, mV, or mA */
+> -static long long ltc2945_reg_to_val(struct device *dev, u8 reg)
+> +static int ltc2945_reg_to_val(struct device *dev, u8 reg, u64 *regval)
+>   {
+>   	struct regmap *regmap = dev_get_drvdata(dev);
+>   	unsigned int control;
+>   	u8 buf[3];
+> -	long long val;
+> +	u64 val;
+>   	int ret;
+>   
+>   	ret = regmap_bulk_read(regmap, reg, buf,
+> @@ -148,11 +148,12 @@ static long long ltc2945_reg_to_val(struct device *dev, u8 reg)
+>   	default:
+>   		return -EINVAL;
+>   	}
+> -	return val;
+> +	*regval = val;
+> +	return 0;
+>   }
+>   
+>   static int ltc2945_val_to_reg(struct device *dev, u8 reg,
+> -			      unsigned long val)
+> +			      unsigned long val, unsigned long *regval)
+>   {
+>   	struct regmap *regmap = dev_get_drvdata(dev);
+>   	unsigned int control;
+> @@ -220,19 +221,21 @@ static int ltc2945_val_to_reg(struct device *dev, u8 reg,
+>   	default:
+>   		return -EINVAL;
+>   	}
+> -	return val;
+> +	*regval = val;
+> +	return 0;
+>   }
+>   
+>   static ssize_t ltc2945_value_show(struct device *dev,
+>   				  struct device_attribute *da, char *buf)
+>   {
+>   	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
+> -	long long value;
+> +	int ret;
+> +	u64 value;
+>   
+> -	value = ltc2945_reg_to_val(dev, attr->index);
+> -	if (value < 0)
+> -		return value;
+> -	return sysfs_emit(buf, "%lld\n", value);
+> +	ret = ltc2945_reg_to_val(dev, attr->index, &value);
+> +	if (ret < 0)
+> +		return ret;
+> +	return sysfs_emit(buf, "%llu\n", value);
+>   }
+>   
+>   static ssize_t ltc2945_value_store(struct device *dev,
+> @@ -245,7 +248,7 @@ static ssize_t ltc2945_value_store(struct device *dev,
+>   	unsigned long val;
+>   	u8 regbuf[3];
+>   	int num_regs;
+> -	int regval;
+> +	unsigned long regval;
+>   	int ret;
+>   
+>   	ret = kstrtoul(buf, 10, &val);
+> @@ -253,7 +256,10 @@ static ssize_t ltc2945_value_store(struct device *dev,
+>   		return ret;
+>   
+>   	/* convert to register value, then clamp and write result */
+> -	regval = ltc2945_val_to_reg(dev, reg, val);
+> +	ret = ltc2945_val_to_reg(dev, reg, val, &regval);
+> +	if (ret < 0)
+> +		return ret;
+> +
+>   	if (is_power_reg(reg)) {
+>   		regval = clamp_val(regval, 0, 0xffffff);
+>   		regbuf[0] = regval >> 16;
 
