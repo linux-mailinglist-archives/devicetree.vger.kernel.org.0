@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98ADA664C3E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 20:19:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0810D664C3C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 20:19:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239465AbjAJTTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233871AbjAJTTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 10 Jan 2023 14:19:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58334 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239774AbjAJTTi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 14:19:38 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60A0532A4
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:19:36 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id cf42so20051288lfb.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:19:36 -0800 (PST)
+        with ESMTP id S239769AbjAJTTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 14:19:37 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A45D05329C
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:19:35 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id m6so20005292lfj.11
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 11:19:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ts8pg88W1SqtrgDHeZ4rSJsGAKw1h4BEAKukVwN8v3k=;
-        b=SYtpocZKmQuNT/cicSsVXpir68fDa2z7z+EAUU6wwuQugpXbj7qS/eV7elXgrOdXzG
-         y2VDDM9KRO4d3cg9VSYhTGYCBTmkB0SIUuTkQ85SjoBCBP08s9xPRvg4+KEHhPMlPAWi
-         09WVmjPlfr4Q7yQ+yQYW1C0IoLAdSVC7XaxnLf17RM4UBOtBVS5ZR+ne5KYMWMVrEo1o
-         oM8pQ4aZQS5lSKzCixfby8C6vO2POe8cGqKOExqjnJfV8IxeOD7t0R7WC+Hw6PKtyHhi
-         LPT4U0q3q+F5Hd7xt8yfC/Ox7MIQvd4PX3BWBqId7XMaOl1aTjQPuBiDo1+kZQ1MgALY
-         WjgQ==
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/o0PiJuOvWG4Quan3s3nxBl5R0QTcNbdsB/Kd9BP1AQ=;
+        b=QvzRMTn4hye8yVLEuaUkyDFux8Hpv0eajm0LJm8GMTintGJx+1ujiclNrF/I6qEjJU
+         dOs8yppVqBnHrv1mx2QAR6aePZxGxJxGTx1kMx2/NuONqaB3kaoyEgb1/R1O0cbmlqq2
+         MtLTJ3vRqkxhzKkZS8c4etDgliJhzAXncvhubP6lkn11eNlyzHzV9gmIXnGoraF0dHuE
+         omYXoRbzy0s3gLJEsdyKhI5BjryhaKblv09V7MQ+nrfi2jDCG0iIUbVEDetBsJBm5W8i
+         txmuARCMDcCayPSmkKW00ELukdHIX40msCknwZCd3F92GI1fHpYKdcagynhNhw837Tvo
+         MXFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ts8pg88W1SqtrgDHeZ4rSJsGAKw1h4BEAKukVwN8v3k=;
-        b=25o4xwzooc4xOYCRR45o4zsAh4StNaTA8BLq/Xm91yyyLInw5dNB6twnoeyMmMoE1G
-         KYQT53E4Y0WpLyYFzpp4cp22r9l90q1PcZBAEgUl51M9RhubO21ykrNlb8tCU0XEVnVM
-         zJZMOsXot549lfYkureiPanA1Gn0EcImS+i7oJXA8Ds2KoO62Ze0lnO7TP6qaodtlzo+
-         ZCAqSeL4utZdUYB/Vo+SdLZWMmWZaAjot7YsZ9kM9nn80VLugW0BTS9wPPmuZNEi9h+N
-         QWv6yXTWpYP4PH/ZHdvkTvPiw1VeRoh0GdPkvqiA8Yq8oMnGCwgivt/vul0Fw8HGdIJY
-         2dng==
-X-Gm-Message-State: AFqh2krCXb1BE+RU6KyaiJSiSPXm+niYKxoL7nYnX9RUP28MEj9HEKi+
-        VqAJxsZ6J669PXfd+StzjebpoUKtME8tncrp
-X-Google-Smtp-Source: AMrXdXsu5gKMcq/XNjBnXZSELLg6daB3YeKbqTWkcPPos88PhXSEz+HeSC+wiccc3koNOZ1lhkQngw==
-X-Received: by 2002:a05:6512:e9f:b0:4cb:3b24:8390 with SMTP id bi31-20020a0565120e9f00b004cb3b248390mr10706584lfb.59.1673378374793;
-        Tue, 10 Jan 2023 11:19:34 -0800 (PST)
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/o0PiJuOvWG4Quan3s3nxBl5R0QTcNbdsB/Kd9BP1AQ=;
+        b=kEVkT16/DYKRhWZ6Nyhx4dd60TFVOvvC+9oc85JC4JBfs0T+ZKXjHfljZew9lpw3su
+         LL/9UkObkUzm+W+Oo3q47M92SPLTsMjCf30EdhePcGarwZZRDZH8ekIH5FT3Q5dQ3sKJ
+         yxSqOspd442JQff/vj72hBnXgP4FluHXroY4Py+IjTHzKartdrCBvxKFq1w/9qx+a8Zk
+         ehjBEqbMusozJ5vHrWlMZtLkGPv4Qp1Ju7UFbCXMMw4BfD8A8cEp6DYko5BEjhqscjuC
+         2L0jt943y6YEjYNg0gLbWns3uMOgWEO0YkjiM3MqXg6s24EkDfgiqZPzI/U+BnPgpC29
+         8hFQ==
+X-Gm-Message-State: AFqh2kqTBq9LAI/4KXKysIvx23lsK3MKxUVs4MhcaenPbV348gy9G0Ji
+        NQaXEoaT35YLImJrRu7rIiN4L2iqa0knpJp7
+X-Google-Smtp-Source: AMrXdXs6/SKNTCtGaClH++pUygPpcPqjxV2jEl7EmmiQq3LniMkvdIeZ5Ilrb8zDWZHWjgRBe05fTw==
+X-Received: by 2002:a05:6512:693:b0:4cc:96fc:7b5d with SMTP id t19-20020a056512069300b004cc96fc7b5dmr78374lfe.52.1673378373701;
+        Tue, 10 Jan 2023 11:19:33 -0800 (PST)
 Received: from Fecusia.local (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id x28-20020a056512131c00b004b549ad99adsm2297725lfu.304.2023.01.10.11.19.33
+        by smtp.gmail.com with ESMTPSA id x28-20020a056512131c00b004b549ad99adsm2297725lfu.304.2023.01.10.11.19.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 11:19:34 -0800 (PST)
+        Tue, 10 Jan 2023 11:19:33 -0800 (PST)
 From:   Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v2 0/6] crypto: stm32 hash - reuse for Ux500
 Date:   Tue, 10 Jan 2023 20:19:12 +0100
-Subject: [PATCH v2 1/6] dt-bindings: crypto: Let STM32 define Ux500 HASH
+Message-Id: <20221227-ux500-stm32-hash-v2-0-bc443bc44ca4@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20221227-ux500-stm32-hash-v2-1-bc443bc44ca4@linaro.org>
-References: <20221227-ux500-stm32-hash-v2-0-bc443bc44ca4@linaro.org>
-In-Reply-To: <20221227-ux500-stm32-hash-v2-0-bc443bc44ca4@linaro.org>
+X-B4-Tracking: v=1; b=H4sIADC6vWMC/32OQQ6CMBREr0K6tqb9IIgr72FYlPKhTbQl/ZVAC
+ He3oGuXbzIvMysjDBaJ3bKVBZwsWe8SwClj2ig3ILddYgYCQAJU/D1fhOAUXzlwo8jwGhHKa15A
+ DT1LWqsIeRuU02YXv/2IFH+SDsu498aAvZ2P6UeT2FiKPizHk0nu6Z/RSXLB2zKvlC50p4S8P61
+ TwZ99GFizbdsHIyAPqtkAAAA=
 To:     Herbert Xu <herbert@gondor.apana.org.au>,
         "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
@@ -80,81 +81,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Ux500 HASH block
-as a compatible in the STM32 HASH bindings.
+By taking some small portions of the Ux500 HASH driver and
+adding to the STM32 driver, it turns out we can support both
+platforms with the more modern STM32 driver.
 
-The Ux500 HASH binding has been used for ages in the kernel
-device tree for Ux500 but was never documented, so fill in
-the gap by making it a sibling of the STM32 HASH block,
-which is what it is.
+The STM32 driver is more modern and compact thanks to using
+things like the crypto engine.
 
-The relationship to the existing STM32 HASH block is pretty
-obvious when looking at the register map, and I have written
-patches to reuse the STM32 HASH driver on the Ux500.
+We add a polled mode since the Ux500 does not have any
+interrupt. Incidentally, this could perhaps be re-used to
+implement synchronous mode, if this is desireable.
 
-The main difference from the outside is that the Ux500 HASH
-lacks the interrupt line, so some special if-clauses are
-needed to accomodate this in the binding.
-
+To: Herbert Xu <herbert@gondor.apana.org.au>
+To: "David S. Miller" <davem@davemloft.net>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+To: Alexandre Torgue <alexandre.torgue@foss.st.com>
+To: Lionel Debieve <lionel.debieve@foss.st.com>
+Cc: linux-crypto@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- Use an else construction instead of if/if not.
----
- .../devicetree/bindings/crypto/st,stm32-hash.yaml  | 23 +++++++++++++++++++++-
- 1 file changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
-index 4ccb335e8063..b767ec72a999 100644
---- a/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
-+++ b/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
-@@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: STMicroelectronics STM32 HASH
- 
-+description: The STM32 HASH block is built on the HASH block found in
-+  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
-+  SoC in 2010.
-+
- maintainers:
-   - Lionel Debieve <lionel.debieve@foss.st.com>
- 
- properties:
-   compatible:
-     enum:
-+      - st,stn8820-hash
-+      - stericsson,ux500-hash
-       - st,stm32f456-hash
-       - st,stm32f756-hash
- 
-@@ -41,11 +47,26 @@ properties:
-     maximum: 2
-     default: 0
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-   - clocks
--  - interrupts
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          items:
-+            const: stericsson,ux500-hash
-+    then:
-+      properties:
-+        interrupts: false
-+    else:
-+      required:
-+        - interrupts
- 
- additionalProperties: false
- 
+---
+Changes in v2:
+- Use an else-clause in the DT bindings.
+- Fix up issues pointed out by Lionel in the driver extension.
+- Dropped the patch converting dma_mode to a bool after
+  Lionel explained how this works.
+- Link to v1: https://lore.kernel.org/r/20221227-ux500-stm32-hash-v1-0-b637ac4cda01@linaro.org
 
+---
+Linus Walleij (6):
+      dt-bindings: crypto: Let STM32 define Ux500 HASH
+      crypto: stm32/hash: Simplify code
+      crypto: stm32/hash: Use existing busy poll function
+      crypto: stm32/hash: Wait for idle before final CPU xmit
+      crypto: stm32/hash: Support Ux500 hash
+      crypto: ux500/hash - delete driver
+
+ .../devicetree/bindings/crypto/st,stm32-hash.yaml  |   23 +-
+ drivers/crypto/Kconfig                             |   10 -
+ drivers/crypto/Makefile                            |    1 -
+ drivers/crypto/stm32/stm32-hash.c                  |  243 ++-
+ drivers/crypto/ux500/Kconfig                       |   22 -
+ drivers/crypto/ux500/Makefile                      |    7 -
+ drivers/crypto/ux500/hash/Makefile                 |   11 -
+ drivers/crypto/ux500/hash/hash_alg.h               |  398 ----
+ drivers/crypto/ux500/hash/hash_core.c              | 1966 --------------------
+ 9 files changed, 227 insertions(+), 2454 deletions(-)
+---
+base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+change-id: 20221227-ux500-stm32-hash-9ee26834292f
+
+Best regards,
 -- 
-2.39.0
+Linus Walleij <linus.walleij@linaro.org>
