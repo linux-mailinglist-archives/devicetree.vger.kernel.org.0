@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 881A2663AF5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:25:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07985663B12
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:31:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbjAJIZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 03:25:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52558 "EHLO
+        id S229884AbjAJIbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 03:31:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237981AbjAJIZE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:25:04 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6083644360
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:25:02 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id j16-20020a05600c1c1000b003d9ef8c274bso4827245wms.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:25:02 -0800 (PST)
+        with ESMTP id S231489AbjAJIa7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:30:59 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA755F010
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:30:57 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id h16so10875130wrz.12
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:30:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KMoqZy8lL6lKnv3mK+SHjAH6f5V4KXyJJY9vMCQj/VM=;
-        b=TV/zP38nT/DV77mwIwJKMtCilXcLYKNqFaSt4ttTXejVQPETGHaTze/gAgtQUETvZh
-         x8MuR/5XO92gVTfPK4sbIgmeJ1giXD0x8jCqPRETWfHCEpPfi2VxeU+Jkw37+IgzYzNJ
-         aDaD8rJzgn0485gyM4LgU0Ityeo5tL8MVyZ7lj1FZkCTZ4rH6Xf1lPaR3u6rKtqQfgGs
-         EDGjisRz/4hvrQDBOkWvyIQMnAw+KRLExidd/YoMBJhrX8LTX8Yx5WFWLnE8QcW4UqS3
-         P1XQq9wx/lbuw+k9lbrnrWglair+kGIjSphEoBBUrsPUIQdtXyWN09igCGzqQz7OcHoR
-         w46Q==
+        bh=GkB0focVoU0BhTktXEmIGinKbDdPanj0G9Gm/OHs6Wg=;
+        b=dMh/7lEhPYevU/LR5Z/3QZoSihvfYtElLbNq1Fo4FGAQIkXb/XnG7Zhm6/JeuZWT+h
+         Zm1Fi49ZYAY1FPoY/KFvS2h8Ba5ENBbl7D+u9BsmBQXzJct1+zaW3xbLNwpYDun49SmW
+         IEnLMcUi+RP+wk9rr6lNAGKYTKZdxrZbr7Fl3wyhD03zNzw9WLdP8IcLI5GoSgQDwHbW
+         /T5Uowzmqt4KKL9zjmxB4QLKoAjVc+5H9XJAjsXYyVTSr0mNEF6hn6+3ghj9+kPXJtTy
+         8RuxbXGwchdgPFJAbe7nJ4CpSGJKMTlkaOV3Ckwo3WY4ltdhbUe/g3QKJwXsA8oyh/fN
+         qqng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KMoqZy8lL6lKnv3mK+SHjAH6f5V4KXyJJY9vMCQj/VM=;
-        b=6usVjYLJMH0UYWePQh1v6rN33tWaLWbPTxmZUpHPBjbaLhCzSsYfzdvx9TMrWfS1GO
-         tfy0PTvkNPhve1FpcSFRaKiG8jlvOnDUbC/tFH03/UOzhPko2kLWNiMaeTnUT4OBwGII
-         GuWlyDXdnV6u0qJykuotNPe9sVldIsW0TiNzt8hCCqARRf6fHYNaoYHnej2oL6IX18fq
-         5ZeuROmy2wRYde6+pmiln7CxNo8cz75AB+wjVKWn8UGbfLqhTK1nL5Yl7fR8xMJ8NLGs
-         sAs3/4V+EeNTPG7ZWJe6cYD/MsXwqV2c1oYQElKyyAQyjgqZWXcW/ghlQJw6l71somRj
-         YeYQ==
-X-Gm-Message-State: AFqh2kqiiZpsj74hIXtm9hgJuZJxTH/up3UJ4lobMZmAznaOa37Oa0nI
-        icnEzM2ZKFDtjJBK7HCvCX6Tsw==
-X-Google-Smtp-Source: AMrXdXs5LDxIeadvFOYauvtpjU/gcobZo9BXdvfHf5RlHyauK1UfZsK3bydJnx2PQECskqIfaSL1Ig==
-X-Received: by 2002:a05:600c:1f18:b0:3cf:5583:8b3f with SMTP id bd24-20020a05600c1f1800b003cf55838b3fmr47116237wmb.20.1673339100837;
-        Tue, 10 Jan 2023 00:25:00 -0800 (PST)
+        bh=GkB0focVoU0BhTktXEmIGinKbDdPanj0G9Gm/OHs6Wg=;
+        b=EignHvbCrnjm0IjLBq1EvrIskLQ12IExb5X/10pyhBP6lOexm3Mftwg2eiyYE2wGNg
+         ph9tyjSBwejTiaXDN2ziAqCv6UjwD8khOjWKERGLCqkYEoZq2K+kYiNGBBY+fSILwMOa
+         BM66LH1PRe9MVYNoPfSy0CgqzeoamYxtvN84KiY7whdHvGHZ9cSNbJPKec+LiaYCy243
+         4bvEt/LAfqe2n9PqPMlHFQGDyYeklq8jgu5MW4440naCdffddnEnLWP3ypGsjKM480Yz
+         AvgN0Mnb0b8cV3Fu++j4nF0BA5fKN4QTEponP4GrfbUAm3LisjmSD4ufRCLu7mZ4iCIX
+         TzbA==
+X-Gm-Message-State: AFqh2kq0dsi1cXA1ua77SkcrXlBh3nIUIwK3LDYAxgdVIKkfnc+d+HvF
+        zD7LpMVjc+ivImfICo3ZQJ8/7w==
+X-Google-Smtp-Source: AMrXdXvLIy9HXN5YhV2Cez2g26l2zux8WreLFIc3W8iCiM6nwjy9EpCsfCEk1x7CsfFabjhY1tyQBw==
+X-Received: by 2002:adf:e2d2:0:b0:242:4cf5:f385 with SMTP id d18-20020adfe2d2000000b002424cf5f385mr42382901wrj.34.1673339456389;
+        Tue, 10 Jan 2023 00:30:56 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m18-20020a05600c4f5200b003c6b70a4d69sm15783317wmq.42.2023.01.10.00.24.59
+        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002bc7f64efa3sm3402102wrw.29.2023.01.10.00.30.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 00:25:00 -0800 (PST)
-Message-ID: <6f1c38fc-9586-8ed5-8403-947ed6863b03@linaro.org>
-Date:   Tue, 10 Jan 2023 09:24:58 +0100
+        Tue, 10 Jan 2023 00:30:55 -0800 (PST)
+Message-ID: <3f8ae997-b35f-8fa9-73a4-6106d125161e@linaro.org>
+Date:   Tue, 10 Jan 2023 09:30:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v1 1/3] dt-bindings: timer: Add timer for StarFive JH7110
- SoC
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org
-References: <20221223094801.181315-1-xingyu.wu@starfivetech.com>
- <20221223094801.181315-2-xingyu.wu@starfivetech.com>
- <179e66a8-c6c0-6d3e-4f4a-6b884f532572@linaro.org>
- <4febeef1-a42a-7d6f-d1af-d8fe19582822@starfivetech.com>
+Subject: Re: [PATCH V4 1/3] dt-bindings: arm: ti: Add binding for AM68 SK
 Content-Language: en-US
+To:     Sinthu Raja M <sinthu.raja@mistralsolutions.com>,
+        Nishanth Menon <nm@ti.com>
+Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+References: <20230105151740.29436-1-sinthu.raja@ti.com>
+ <20230105151740.29436-2-sinthu.raja@ti.com>
+ <977b5cce-2501-4d7a-fe24-437df88aee8f@linaro.org>
+ <CAEd-yTR=zdg_pt=MzkzceGTY2SkV=16dyhXCtd4EU-KGzP_mAQ@mail.gmail.com>
+ <ebb0a452-9ae6-780a-a6ca-d34d0ebbc520@linaro.org>
+ <CAEd-yTRzxUGNM6u0SMnVNjM=xrsX9g1JUEYvaUhqa--KcgYfeQ@mail.gmail.com>
+ <20230106134102.twg6qzyeh5ivhe46@recopy>
+ <CAEd-yTTSC6oFMAA+kH-GwMejPY0S0q8=L43_Sw62nyLrQiAT8Q@mail.gmail.com>
+ <CAEd-yTQEM42mJ80Vab8MQkFPiNwesyqTw5YktGCRuEeh_RqSyA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4febeef1-a42a-7d6f-d1af-d8fe19582822@starfivetech.com>
+In-Reply-To: <CAEd-yTQEM42mJ80Vab8MQkFPiNwesyqTw5YktGCRuEeh_RqSyA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,157 +85,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 03:14, Xingyu Wu wrote:
-> On 2022/12/23 18:25, Krzysztof Kozlowski wrote:
->> On 23/12/2022 10:47, Xingyu Wu wrote:
->>> Add bindings for the timer on the JH7110
->>> RISC-V SoC by StarFive Technology Ltd.
+On 10/01/2023 08:58, Sinthu Raja M wrote:
+> On Fri, Jan 6, 2023 at 7:33 PM Sinthu Raja M
+> <sinthu.raja@mistralsolutions.com> wrote:
 >>
->> Please wrap commit message according to Linux coding style / submission
->> process (neither too early nor over the limit):
->> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
->>
->>
+>> On Fri, Jan 6, 2023 at 7:11 PM Nishanth Menon <nm@ti.com> wrote:
 >>>
->>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->>> ---
->>>  .../timer/starfive,jh7110-timers.yaml         | 105 ++++++++++++++++++
->>>  1 file changed, 105 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
+>>> On 18:47-20230106, Sinthu Raja M wrote:
+>>>> On Fri, Jan 6, 2023 at 6:28 PM Krzysztof Kozlowski
+>>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>>
+>>>>> On 06/01/2023 13:53, Sinthu Raja M wrote:
+>>>>>> On Fri, Jan 6, 2023 at 6:19 PM Krzysztof Kozlowski
+>>>>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>>>>
+>>>>>>> On 05/01/2023 16:17, Sinthu Raja wrote:
+>>>>>>>> From: Sinthu Raja <sinthu.raja@ti.com>
+>>>>>>>>
+>>>>>>>> AM68 Starter Kit is a low cost, small form factor board designed for
+>>>>>>>> TI's AM68 SoC which is optimized to provide best in class performance
+>>>>>>>> for industrial applications and add binding for the same.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+>>>>>>>
+>>>>>>> What happened here?,
+>>>>>> Krzysztof
+>>>>>> Missed the merge window, so rebased to 6.2rc1 and reposted again.
+>>>>>
+>>>>> And what was here in v3?
+>>>> Krzysztof,
+>>>> Are you asking about this tag?
+>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >>>
->>> diff --git a/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml b/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
->>> new file mode 100644
->>> index 000000000000..fe58dc056313
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
->>> @@ -0,0 +1,105 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/timer/starfive,jh7110-timers.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: StarFive Timers
+>>> When you are re-posting OR updating the series, it is the patch sender's
+>>> responsibility to pick up the acks. If you are explicitly not picking up
+>>> reviews and acks, you should state in the diffstat why.
+>>>
+>>> Also see the b4 tricks[1]
+>>>
+>>> [1] https://www.youtube.com/watch?v=-Vld9aoFPwU
+>> Nishanth,
+>> Thanks for the information.
 >>
->>
->> Not enough, really not enough. Describe the hardware.
-> 
-> Will add. Thanks.
-> 
->>
->>> +
->>> +maintainers:
->>> +  - Samin Guo <samin.guo@starfivetech.com>
->>> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: starfive,jh7110-timers
->>
->> Why plural "timers", not "timer"? The module is usually called timer -
->> see other hardware that type.
->>
-> 
-> Will fix. Thanks.
-> 
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    items:
->>> +      - description: timer channel 0 interrupt
->>> +      - description: timer channel 1 interrupt
->>> +      - description: timer channel 2 interrupt
->>> +      - description: timer channel 3 interrupt
->>> +
->>> +  interrupt-names:
->>> +    items:
->>> +      - const: timer0
->>> +      - const: timer1
->>> +      - const: timer2
->>> +      - const: timer3
->>
->> I would just drop the names, not really useful. Unless you plan to add
->> here some generic interrupt (like you did for clock-names)?
-> 
-> Will drop. Thanks.
-> 
->>
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: timer channel 0 clock
->>> +      - description: timer channel 1 clock
->>> +      - description: timer channel 2 clock
->>> +      - description: timer channel 3 clock
->>> +      - description: APB clock
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: timer0
->>> +      - const: timer1
->>> +      - const: timer2
->>> +      - const: timer3
->>> +      - const: apb
->>> +
->>> +  resets:
->>> +    items:
->>> +      - description: timer channel 0 reset
->>> +      - description: timer channel 1 reset
->>> +      - description: timer channel 2 reset
->>> +      - description: timer channel 3 reset
->>> +      - description: APB reset
->>> +
->>> +  reset-names:
->>> +    items:
->>> +      - const: timer0
->>> +      - const: timer1
->>> +      - const: timer2
->>> +      - const: timer3
->>> +      - const: apb
->>> +
->>> +  clock-frequency:
->>> +    description: The frequency of the clock that drives the counter, in Hz.
->>
->> Why do you need it? Use common clk framework to get that frequency.
-> 
-> Because normally this timer driver is loaded earlier than the clock tree driver, it won't get
-> that frequency by clk framework and this 'clock-frequency' node is used instead.
+>> Krzysztof,
+>> Sorry for the errors caused by my oversight. Kindly excuse me. Would
+>> you want me to resend the V3 series with the correct subject?
+>>>
+> Hi Krzysztof,
+> Could you please let me know if further action is required from my end?
 
-I don't think that clk framework or fixed clocks are not available at
-this time... of_clk_init is before timer.
-
-> 
->>
->> Also, sort the nodes somehow, e.g.
->> compatible/reg/clocks/clock-frequency/interrupts/resets.
-> 
-> Will reorder. Thanks.
-> 
->>
->>
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - interrupt-names
->>> +  - clocks
->>> +  - clock-names
->>> +  - resets
->>> +  - reset-names
->>> +  - clock-frequency
->>> +
->>> +unevaluatedProperties: false
->>
->> Did you test the binding?
-> 
-> Yes, I had tested by 'dt_binding_check'. Do you mean the 'unevaluatedProperties' is wrong
-> and use 'additionalProperties'?
-
-Yes, previously it was generating a warning but I do not see Rob's bot
-answer so maybe something changed.
+Please repost with all tags from all people and properly rebased. This
+is weird that once you have in patch a tag, in next version it's gone.
+it suggest you sent wrong patch, not previous but one older.
 
 Best regards,
 Krzysztof
