@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5BDF6638CB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 06:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0F8D6638D9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 06:54:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231222AbjAJFtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 00:49:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53040 "EHLO
+        id S229783AbjAJFym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 00:54:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229826AbjAJFtB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 00:49:01 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF6426F7
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 21:49:00 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id bp15so16615129lfb.13
-        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 21:49:00 -0800 (PST)
+        with ESMTP id S229848AbjAJFyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 00:54:38 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1F0C228
+        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 21:54:36 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id y25so16655288lfa.9
+        for <devicetree@vger.kernel.org>; Mon, 09 Jan 2023 21:54:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wEZQCF7r/hKH3+PuKuaEzx+VX+jWeUSGLdP7kMpvbXk=;
-        b=mnMXExPNaUGbHc03oJdZNZQ6xvbloLJpihN+Im7a+alsvj7Gu1N7RgMAcEeq5kRHLz
-         XySlHGCIKONS5ikU+ebg6EAbhztICZwdEeJOYarE/aIqE9ixPEU5quxCsVmt3LimRmp+
-         nn0U1fcXeUowMEjgBRuRckP8aV6k0+mDQe4VAQ6lshQXPvrGdOKyJFqpHr19f9VvTAgi
-         2TFgxrBhYYX4oWbJfMstPdibYHJKFgydedX2dOWG39f/Nvg+k3VBfdYkvwHyqG4BPe6G
-         5COmChwVzUjBWDUR5/LiTaBjeY9vPpnEGIzquuB/2D+BB7BIPBCF2fkhWf2396IPHpkX
-         P4Pw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jabBOsJuAOXz5E6THeGhybq8PYs1uczTB0v4S2evLMk=;
+        b=h4RQqHNEfkj41nymtOI+D7jgMNy01AWBjtC1b8wD2De98Pof3DcabgU4VlfKWSLYVC
+         5Pok6PncltK1wMh63eJ0OdcZWrMZ3VlMaGf8m/YmRLdNFdUA38MoXV/9sdtLb4ugg5cf
+         g4IYKzHkmSQ+fma2gQaDR+nYIaYiLKZ94owYJdkk+9ZRg5DLU6kNkfqM3dt4cXbjjSW2
+         aHd4j/gwKs6NeTAwX/OyODxIAKTDpH9qUySV1iGj4/qtA88RSPXZfFQQqrHYaaNPDEXy
+         4UJvkxL8r4u2x8f9MgIVfTm7j796eDO+hxJIfe7oTKurU6sc1nSUGviYoDLbwENjsnEp
+         O5eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wEZQCF7r/hKH3+PuKuaEzx+VX+jWeUSGLdP7kMpvbXk=;
-        b=EI7Bs5/p6csSA3Ukw7Uc6z4dTs8gT9d8MjAP3OK/uzaxO1Ul9HsWjenvcSSaUoCr2s
-         PlLRHhK6QvIGFS8cdGdEZY+qiiDT4eDwaDJSVpkdEWrb14L4S8HSw4/KKQz7U1sTMJ6e
-         OdTrBP4QDCfqeetRtlo8t15QDyUcmnK1UnqOujclVMHlEvgsf5R4m32Y/UZc5uUWsDg6
-         VZ/E5QURmIzf3IUuXI7K7HLC98nEuBjKUCE3x8+1phA1u+/eBWQLr+yUwJaPGTykYIZV
-         vkCWsiSpw1zkDOY3sPIMGj+bdAGBCgIBmqyQtSPWiW9YGhpDD7m6+HtEAHPz+xoJdyvf
-         qnIg==
-X-Gm-Message-State: AFqh2krX+e+pfYmGmaad0Vo7S/5d/Q3of90AMvB0DmJxTwysMmYbLe2C
-        zq3m7cMbCRcD3VU8XZ7cNJd1gflJ65uxhZAy
-X-Google-Smtp-Source: AMrXdXtObN18+uFW0MQGD2/uG7h9Qi5wnyK0DtAuzC9YHGEtGEZhRUnE5aoLscqQo1UoyDffAU2GHA==
-X-Received: by 2002:a05:6512:64:b0:4cc:71d2:eff3 with SMTP id i4-20020a056512006400b004cc71d2eff3mr3044316lfo.21.1673329738963;
-        Mon, 09 Jan 2023 21:48:58 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id b9-20020a056512218900b004b57162edfasm1998300lft.117.2023.01.09.21.48.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 21:48:58 -0800 (PST)
-Message-ID: <913f2772-2673-4270-030c-c036984d36c6@linaro.org>
-Date:   Tue, 10 Jan 2023 07:48:57 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v6 04/18] dt-bindings: msm: dsi-controller-main: Add
- compatible strings for every current SoC
-Content-Language: en-GB
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
-        airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        dianders@chromium.org, david@ixit.cz,
-        krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
-        konrad.dybcio@somainline.org, agross@kernel.org,
-        andersson@kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20221223021025.1646636-1-bryan.odonoghue@linaro.org>
- <20221223021025.1646636-5-bryan.odonoghue@linaro.org>
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jabBOsJuAOXz5E6THeGhybq8PYs1uczTB0v4S2evLMk=;
+        b=pGG4iPVWcnD1/sInh1NZGFA5uSCoDzWXTaFBUSQ5eBGrezx0hPZtNdyQ6FYXIpO/93
+         +OqDHQ/ACW5zbykTm+LLdOmlzQpaeNMKOMPhU0Px2CMLnEZMKzUWbmS/iNU4gfk1KOB3
+         6m5VUhu/qpmCTUFngBL2yOcd/XMtnSUduYvWYjnJ0R279+WPHNbOnoS1pjqjb08JOBQd
+         0761R6qUxskmsNVNgpVcwIM3A+vE6+kxXWi8gBWa8CD8ouB/CpcIQqa7MWYdu5WHqEh5
+         7XNrBdPZO0ur8wi27W3dJ8MQSvwLbAiy3HKtugJRCFZrAZN4oW9uuNBhDHvbxij3Q77W
+         ISYA==
+X-Gm-Message-State: AFqh2kq38a6OlSSRy514cE/rNxTZznJ0mftCSkAmYsUD6xajilmxn/G3
+        5JTkNr0e4bjHn8uzpgYWprziZQ==
+X-Google-Smtp-Source: AMrXdXv/efda3LfIKeTP9mZZ+E5CKIcJvbRv192lmiNh2BuVQ9hoOhuA7Gf/Cwp16+bWmKg2rCXl0Q==
+X-Received: by 2002:a05:6512:ba8:b0:4ca:98ec:7d9a with SMTP id b40-20020a0565120ba800b004ca98ec7d9amr22111640lfv.15.1673330074947;
+        Mon, 09 Jan 2023 21:54:34 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id h37-20020a0565123ca500b004b52aea5ff8sm1987227lfv.30.2023.01.09.21.54.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Jan 2023 21:54:34 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221223021025.1646636-5-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Subject: [PATCH 1/3] ARM: dts: qcom: msm8974: Add compat qcom,msm8974-dsi-ctrl to dsi1
+Date:   Tue, 10 Jan 2023 07:54:31 +0200
+Message-Id: <20230110055433.734188-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,86 +77,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/12/2022 04:10, Bryan O'Donoghue wrote:
-> Currently we do not differentiate between the various users of the
-> qcom,mdss-dsi-ctrl. The driver is flexible enough to operate from one
-> compatible string but, the hardware does have some significant differences
-> in the number of clocks.
-> 
-> To facilitate documenting the clocks add the following compatible strings
-> 
-> - qcom,apq8064-dsi-ctrl
-> - qcom,msm8916-dsi-ctrl
-> - qcom,msm8953-dsi-ctrl
-> - qcom,msm8974-dsi-ctrl
-> - qcom,msm8996-dsi-ctrl
-> - qcom,msm8998-dsi-ctrl
-> - qcom,sc7180-dsi-ctrl
-> - qcom,sc7280-dsi-ctrl
-> - qcom,sdm660-dsi-ctrl
-> - qcom,sdm845-dsi-ctrl
-> - qcom,sm8250-dsi-ctrl
-> - qcom,qcm2290-dsi-ctrl
-> 
-> Deprecate qcom,dsi-ctrl-6g-qcm2290 in favour of the desired format while we
-> do so.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->   .../display/msm/dsi-controller-main.yaml      | 26 ++++++++++++++++---
->   1 file changed, 22 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 6e2fd6e9fa7f0..98d54a7ee28d4 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -14,9 +14,27 @@ allOf:
->   
->   properties:
->     compatible:
-> -    enum:
-> -      - qcom,mdss-dsi-ctrl
-> -      - qcom,dsi-ctrl-6g-qcm2290
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - qcom,apq8064-dsi-ctrl
-> +              - qcom,msm8916-dsi-ctrl
-> +              - qcom,msm8953-dsi-ctrl
-> +              - qcom,msm8974-dsi-ctrl
-> +              - qcom,msm8996-dsi-ctrl
-> +              - qcom,msm8998-dsi-ctrl
-> +              - qcom,qcm2290-dsi-ctrl
-> +              - qcom,sc7180-dsi-ctrl
-> +              - qcom,sc7280-dsi-ctrl
-> +              - qcom,sdm660-dsi-ctrl
-> +              - qcom,sdm845-dsi-ctrl
-> +              - qcom,sm8250-dsi-ctrl
+Extend the secon DSI interface with the SoC-specific compat entry,
+following the change for the first DSI interface.
 
-If you would for any reason send v7, could you please also add sm8150 
-and sm8[345]50?
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> +          - const: qcom,mdss-dsi-ctrl
-> +      - items:
-> +          - enum:
-> +              - dsi-ctrl-6g-qcm2290
-> +          - const: qcom,mdss-dsi-ctrl
-> +        deprecated: true
->   
->     reg:
->       maxItems: 1
-> @@ -149,7 +167,7 @@ examples:
->        #include <dt-bindings/power/qcom-rpmpd.h>
->   
->        dsi@ae94000 {
-> -           compatible = "qcom,mdss-dsi-ctrl";
-> +           compatible = "qcom,sc7180-dsi-ctrl", "qcom,mdss-dsi-ctrl";
->              reg = <0x0ae94000 0x400>;
->              reg-names = "dsi_ctrl";
->   
-
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 14737a3300d1..3c725ada52c0 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -1686,7 +1686,8 @@ dsi0_phy: phy@fd922a00 {
+ 			};
+ 
+ 			dsi1: dsi@fd922e00 {
+-				compatible = "qcom,mdss-dsi-ctrl";
++				compatible = "qcom,msm8974-dsi-ctrl",
++					     "qcom,mdss-dsi-ctrl";
+ 				reg = <0xfd922e00 0x1f8>;
+ 				reg-names = "dsi_ctrl";
+ 
 -- 
-With best wishes
-Dmitry
+2.39.0
 
