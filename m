@@ -2,120 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41D0F663AAA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:14:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFAE4663AAF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:15:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230342AbjAJIOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 03:14:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46524 "EHLO
+        id S237748AbjAJIP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 03:15:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237523AbjAJIOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:14:16 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9501664CC;
-        Tue, 10 Jan 2023 00:14:14 -0800 (PST)
+        with ESMTP id S237825AbjAJIPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:15:23 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A8864CC
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:15:23 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id 194so8768047ybf.8
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:15:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1673338454; x=1704874454;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BvmrsO2wFPW4UkzHnUm2F4oYnGhEQj0M0Tj+WlrTJ2s=;
-  b=h/rucVaSrBb/5fcqa3i1Yp4Yf+3NSxhqtaD8Rl4+3aGSlHDc+/Sv45Id
-   QqucjQH19u43sws7AA/d0mC0GpbXpTZf8UXhz0Q6/T4uRHArlP7DcsM80
-   IS2F7JdIy7PaK4bs4WHAZCs7qtU41un35ZhZog7tlbDeS81J9RHkRBwpS
-   M=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 10 Jan 2023 00:14:14 -0800
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2023 00:14:13 -0800
-Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 10 Jan
- 2023 00:14:12 -0800
-Date:   Tue, 10 Jan 2023 00:14:11 -0800
-From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-CC:     <andersson@kernel.org>, <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <konrad.dybcio@somainline.org>, <robimarko@gmail.com>
-Subject: Re: [PATCH V7 2/2] firmware: qcom: scm: Add wait-queue handling logic
-Message-ID: <20230110081410.GB2082@quicinc.com>
-References: <20230110063745.16739-1-quic_sibis@quicinc.com>
- <20230110063745.16739-3-quic_sibis@quicinc.com>
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9pgLTdpvWw2skhjb4T56kILYZt+xH34j9kjUZ75HWSc=;
+        b=VSOCSfl0vMa7Mgocmkd7GP5+VwBzlOHM8BHouJaEMVZy3NMpSZsrM66VuN2U5DNwfi
+         OB00YI1nkp3DXd7dQqDwYZEM7eRCYImt9K8fbrCGDrCykZDarqlo3flzn+WEhxrJcfxU
+         7Ia1K4ut7ELQX6fW34m0gCNp7+1LbCpab9YAflvGZVXBZ9f2JLL1VPwEhj8rkkYZBkZT
+         hGW9UDkYPWKX8ZAsI4HUbZZXkW/hQmUMyThJt+ixQ3xBv5BmkO0DRs3sZtY40jlqnLr4
+         eBhaKwtO3f1ZLDyr2stdrm6lcIlz3asTEVh6bI1LXn0+75sR38AHE/nOOW8+ExMBJOeS
+         Q0uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9pgLTdpvWw2skhjb4T56kILYZt+xH34j9kjUZ75HWSc=;
+        b=uGYsmDjOWw6bTmGXqHpbCafKtTFMwfyuxYaap1QeBw3pYDtJ4G44+NaSLi09eqBOA7
+         JjtW29eigvjuhcLeIavfZkdAo/1140m94W6Ki0Cjx4v5pBY+NCybuAeRZXj3a/4UvnjW
+         nfThzXLO5W651CLzxcHVwVjfs/LyxhwFNKyrq04IqzHEZE+Gazv73qW4f27vASwL6EcG
+         mckXjCUy88IZ/yr7QXwKr9EAaXOhyU/eJq8xUyedTUlvnMAUq63bVaaHX8XGH5RoCzMn
+         DnFWdy5vJk9H6suu2DjQcUGNwyeszpcSAgf0myxuueB0ra63pPVVP+K/rs4nubqVnCpV
+         F4hw==
+X-Gm-Message-State: AFqh2kqxO7a5rX9Qdp6NKWUWv5r/sASecgwx6XexaCC0ojgTletD7kI1
+        OG4xRLr9k0CZJa7XgqHqTPKuyBEnLwVqWX0Q2Ifu8Q==
+X-Google-Smtp-Source: AMrXdXu72/6OnGsmGp9R8TxFpMf1pphZYj6NyaqD4j9V8BNchawfB676VHxYCeEsZkuxmSi+HAVFn+QGRomSFSGqO5A=
+X-Received: by 2002:a25:8e8e:0:b0:6fa:a54e:9276 with SMTP id
+ q14-20020a258e8e000000b006faa54e9276mr5388853ybl.460.1673338522267; Tue, 10
+ Jan 2023 00:15:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230110063745.16739-3-quic_sibis@quicinc.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221215213206.56666-1-biju.das.jz@bp.renesas.com>
+ <CACRpkdZCEvpLAWvH7pCLH7KwbDMzz0EN+4HbxVGfFPi_C1b8+g@mail.gmail.com> <OS0PR01MB5922FBA488F80DFB08FE16E686FE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922FBA488F80DFB08FE16E686FE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 10 Jan 2023 09:15:11 +0100
+Message-ID: <CACRpkda1JDaaMnCx81oZ2Wmm1_rfYgsaRdBGT0jCyczNSHc4og@mail.gmail.com>
+Subject: Re: [PATCH v5 0/9] Add RZ/G2L POEG support
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Drew Fustini <dfustini@baylibre.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Jan 10 2023 12:07, Sibi Sankar wrote:
+On Mon, Jan 9, 2023 at 4:10 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
 
-...
+> > What's wrong with using the debugfs approach Drew implemented in commit
+> > 6199f6becc869d30ca9394ca0f7a484bf9d598eb
+> > "pinctrl: pinmux: Add pinmux-select debugfs file"
+> > ?
+>
+> I am not sure, we supposed to use debugfs for production environment??
 
-> +static int __scm_smc_do_quirk_handle_waitq(struct device *dev, struct arm_smccc_args *waitq,
-> +					   struct arm_smccc_res *res)
-> +{
-> +	int ret;
-> +	struct arm_smccc_args resume;
-> +	u32 wq_ctx, smc_call_ctx, flags;
-> +	struct arm_smccc_args *smc = waitq;
-> +
-> +	do {
-> +		__scm_smc_do_quirk(smc, res);
-> +
-> +		if (res->a0 == QCOM_SCM_WAITQ_SLEEP) {
-> +			wq_ctx = res->a1;
-> +			smc_call_ctx = res->a2;
-> +			flags = res->a3;
-> +
-> +			if (!dev)
-> +				return -EPROBE_DEFER;
-> +
-> +			ret = qcom_scm_lookup_completion(wq_ctx);
+It depends what is meant by "production environment".
 
-I see that this function has been created in response to Bjorn's comment [1]
-about avoiding the dev_get_drvdata() call, but I would prefer to not use this
-function as it hides the fact that the wait_for_completion() is occurring here.
+If you mean a controlled environment "one-off" such as a factory line,
+a specific installation for a specific purpose such as a water purifier,
+that is very custom and hacked together for that one usecase. It will
+have other hacks too, so then Beagle is using debugfs in "production"
+if that is what you mean by "production", i.e. used to produce something.
 
-Knowing where the waiting is happening is useful not just for understanding
-code flow but also for debugging issues in the future.
+This is the same "production" use cases as used by i.e. the GPIO
+character device.
 
-...
+If you mean that you are producing 6 million laptops where userspace is
+going to hammer this constantly, then no. In that case a real sysfs
+knob and ABI contract is needed.
 
-> +static struct completion *qcom_scm_lookup_wq(struct qcom_scm *scm, u32 wq_ctx)
-> +{
+Usually vendors know which usecase their hardware is intended for,
+there is in my experience no unknown target audience, so which one is it in
+your case?
 
-This function is called qcom_scm_lookup_wq() but there is no looking up
-occurring here. Could this comment be added for context?
+> > such as a list of stuff to be exported as sysfs switches.
+>
+> Can you please elaborate? Or Point me to an example for this?
 
-/* FW currently only supports a single wq_ctx (zero).
- * TODO: Update this logic to include dynamic allocation and lookup of
- * completion structs when FW supports more wq_ctx values.
- */
+Not sure what to say about that, you will have to invent something I'm
+afraid, good examples are in Documentation/ABI.
 
-> +	/* assert wq_ctx is zero */
-> +	if (wq_ctx != 0) {
-> +		dev_err(scm->dev, "No waitqueue found for wq_ctx %d\n", wq_ctx);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	return &scm->waitq_comp;
-> +}
-> +
-...
-
-[1] https://lore.kernel.org/lkml/20221208221125.bflo7unhcrgfsgbr@builder.lan/
+Yours,
+Linus Walleij
