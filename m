@@ -2,66 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71360664376
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:41:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECBB5664393
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:48:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232176AbjAJOln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 09:41:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54482 "EHLO
+        id S230266AbjAJOsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 09:48:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbjAJOll (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 09:41:41 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EE3B1707C;
-        Tue, 10 Jan 2023 06:41:40 -0800 (PST)
-Received: from mercury (dyndsl-091-096-058-120.ewe-ip-backbone.de [91.96.58.120])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A8E176602D2B;
-        Tue, 10 Jan 2023 14:41:38 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673361698;
-        bh=noDPjMVeI9vYdt2QvseE4f0h7KVZlOjXF8BvL2KT+n4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dAiLMZMANdiUvLl8Y3CDcGpi1lOsUHy13F/gyXp7+1skrtfMLKf7/f7ZKEA+osIr7
-         9RWuzBdeARpDcAuiWyi+9/JOaBqIcgLpbBZAR6qYgTAO1WqltSyT8Kc0tjC5QcUCbe
-         XCLnvKhaG3AV321s7FZ3bmT9pVodUfz9kuTeRliVrjwcpLAMU9JaI+xvGFrBo4c7Og
-         mTAOhiK2ey23l0RwBupz4RW4SFh0cfyaJgSN0seZKR/jpL3pE9eyC+oi5AHW1Flzkv
-         fML9Etyhdb+bc+c2qZiKATh2luHfOEnvVX/QpVVSZfs7mZFcfIN61USxOk5UAw+rmc
-         NSsN4yC5kYx6g==
-Received: by mercury (Postfix, from userid 1000)
-        id 644311060774; Tue, 10 Jan 2023 15:41:36 +0100 (CET)
-Date:   Tue, 10 Jan 2023 15:41:36 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCHv8 3/7] arm64: dts: rockchip: Add base DT for rk3588 SoC
-Message-ID: <20230110144136.oixsqxo7iv4aotwb@mercury.elektranox.org>
-References: <20230109155801.51642-1-sebastian.reichel@collabora.com>
- <2865022.7s5MMGUR32@diego>
- <20230110121754.2olqdzbe7wst3u4n@mercury.elektranox.org>
- <2076503.8hzESeGDPO@diego>
+        with ESMTP id S238651AbjAJOro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 09:47:44 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668D55016B
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 06:47:42 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id bu8so18792258lfb.4
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 06:47:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oC6Slw+iKJOpkqUIFmGD5udzCvyiuBOqJH++fmsGseM=;
+        b=TDXSVSlGYEu9wx86DSCFMRENfgxdhYqL6Q00fIBGgwLukHTFJ/vBpzYK4dYfJoNOG1
+         BNVNqc6N12XZGIgMe6UOUFzyYG4DbvUzFxGtoFRRpERfU/ByIrJlunqtxsNRHWkvzeQq
+         2MG6RzdObxrfRTYX878my/nttqLdp7k39GfJRow7KX9nmMptHOjIvpwHkbWgGNr6CnoJ
+         ELQCyxcFsgtLKAa3ZiTRkJSb+sxOCNapemzYW+j6jV92fCHiZZQkjChuWm0oHPIYyx7l
+         VVBCE977YwZkM0CMWZOV15e3MniOPGAzx+ofWuAuUoYuiTdrFBSpNyhOjlMVYb6qX6mx
+         bSzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oC6Slw+iKJOpkqUIFmGD5udzCvyiuBOqJH++fmsGseM=;
+        b=Y3lR2isBGhb0In9H7Kgo7T9rl9hHOGfxXdzzGgVEvw2ppSGfI7hqCrUV/x25oSdc+Y
+         nu2gV9ZKVI31uTCpO8SpCteYAMU4U4MPeFIl6cAaudmkpmPTHqe3Zvz/71lUCh4RQRyT
+         PwqwuDUV/qtrAmK9Qmk+n0j8xwhteTQhNVANksx7QIy+yv0GnEItLi5WBdxV08YTdXaY
+         azqupzcAzjwCROT7qs1nUYO9iRKSCI8msUQ85wFNR05n71w7zjDKFW4Xmof7Wabsa4vk
+         mLhcPW+FlBsTgP7yFNGwbSiloXwfAajPjIuRiWznEuJg+/Pd4HTDLLUbeayirkDJxW7O
+         rk5g==
+X-Gm-Message-State: AFqh2krr+a1v21GeLMYT+KEqCdN81d86M8K0/InpyTGGf6iYIaBcEigh
+        SR5FjEvpmI/XY6HupSzXQZYt7A==
+X-Google-Smtp-Source: AMrXdXuCUR9iaAID5nIgInaSTTilyC8KWakB4zt3ieCjtcqZn7uaPk4S7saQ2QwKzkZpUY0h+6qxtg==
+X-Received: by 2002:a05:6512:2828:b0:4b5:98ca:548 with SMTP id cf40-20020a056512282800b004b598ca0548mr23451134lfb.39.1673362060699;
+        Tue, 10 Jan 2023 06:47:40 -0800 (PST)
+Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id p7-20020ac24ec7000000b004b587e37265sm2206967lfr.58.2023.01.10.06.47.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Jan 2023 06:47:40 -0800 (PST)
+Message-ID: <5eabb9a1-d748-a9ef-e966-80eee55a74a2@linaro.org>
+Date:   Tue, 10 Jan 2023 15:47:38 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zi2fwssvq5bzmsvx"
-Content-Disposition: inline
-In-Reply-To: <2076503.8hzESeGDPO@diego>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 4/7] arm64: dts: qcom: Add msm8939 SoC
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        agross@kernel.org, andersson@kernel.org, djakov@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
+        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
+        Jun Nie <jun.nie@linaro.org>,
+        James Willcox <jwillcox@squareup.com>,
+        Joseph Gates <jgates@squareup.com>,
+        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+References: <20230103010904.3201835-1-bryan.odonoghue@linaro.org>
+ <20230103010904.3201835-5-bryan.odonoghue@linaro.org>
+ <6e594438-843a-d03e-5276-d6316a9dc2c0@linaro.org>
+ <88d66834-ca80-888b-e56e-7694e84b6eae@linaro.org>
+ <411a1a02-568e-3695-0a24-0681fbe9f265@linaro.org>
+ <bde66389-619b-771d-1956-43059f8e4d5a@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <bde66389-619b-771d-1956-43059f8e4d5a@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -69,84 +91,40 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---zi2fwssvq5bzmsvx
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On 10.01.2023 14:42, Bryan O'Donoghue wrote:
+> On 10/01/2023 13:24, Krzysztof Kozlowski wrote:
+>> On 10/01/2023 14:14, Bryan O'Donoghue wrote:
+>>> On 03/01/2023 09:14, Krzysztof Kozlowski wrote:
+>>>> ../arch/arm64/boot/dts/qcom/msm8939.dtsi:1825.23-1842.5: Warning
+>>>> (simple_bus_reg): /soc@0/mmc@7824000: simple-bus unit address format
+>>>> error, expected "7824900
+>>>
+>>> For the record the driver consuming this dt entry requires the host regs
+>>> to come first followed by the core
+>>>
+>>> sdhc_1: mmc@7824000 {
+>>>           compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
+>>>           reg = <0x07824900 0x11c>, <0x07824000 0x800>;
+>>>           reg-names = "hc", "core";
+>>> }
+>>>
+>>> If I change this and the msm8916 to
+>>
+>> That's not the solution. The warning is saying that unit address does
+>> not match your reg. You need to correct unit address.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> Is it not the case that the unit-address should match the first reg
+Yes
 
-On Tue, Jan 10, 2023 at 02:32:29PM +0100, Heiko St=FCbner wrote:
-> Am Dienstag, 10. Januar 2023, 13:17:54 CET schrieb Sebastian Reichel:
-> > Hi,
-> >=20
-> > On Tue, Jan 10, 2023 at 12:47:23PM +0100, Heiko St=FCbner wrote:
-> > > Hi Sebastian,
-> > >=20
-> > > Am Montag, 9. Januar 2023, 16:57:57 CET schrieb Sebastian Reichel:
-> > > > From: Kever Yang <kever.yang@rock-chips.com>
-> > > >=20
-> > > > This initial version supports CPU, dma, interrupts, timers, UART and
-> > > > SDHCI (everything necessary to boot Linux on this system on chip) as
-> > > > well as Ethernet, I2C, PWM and SPI.
-> > > >=20
-> > > > The DT is split into rk3588 and rk3588s, which is a reduced version
-> > > > (i.e. with less peripherals) of the former.
-> > > >=20
-> > > > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> > > > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > > > Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> > > > Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> > > > [rebase, squash and reword commit message]
-> > >=20
-> > > I guess that means the list of Rockchip Signed-off-by lines above come
-> > > from the squashed patches?
-> > >=20
-> > > If so, I guess I should add Co-Developed-by lines for them, as right =
-now
-> > > the list is incorrect (author should be first, then everyone through
-> > > whose hands a patch went)
-> > >=20
-> > > Meaning I can add those Co-Developed-by lines, so no need to resend,
-> > > I'm just verifying what I assume about the lines :-)
-> >=20
-> > Yes, those are SoB lines from squashed downstream commits.
->=20
-> so I've made the block into=20
-> Co-Developed-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> Co-Developed-by: Elaine Zhang <zhangqing@rock-chips.com>
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> Co-Developed-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> [rebase, squash and reword commit message]
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->=20
-> and will apply that if you don't shout in the next hour or so :-)
+ and that the first reg should also be the lowest address ?
+Depends on what the first reg is, bindings usually dictate the order.
 
-LGTM.
-
--- Sebastian
-
---zi2fwssvq5bzmsvx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmO9eSAACgkQ2O7X88g7
-+pr8Uw//czVLTawBJxJH0DifrXdNuMncQWYITl8xVok0CQ6cWmDH6l1JJhmYp10o
-KT1rJDR1woV1hUj3myGwLH0B3Z6n49Ji/rkf6teWFmmepH3bniMUkAjNGtQd7qtt
-C7rCp2JSqRIvXGqhK3lwGMe2fXrDsQynO30b+juoehdQbRdSToOfy1t96xSprQWJ
-qGYUDyfPazG1shL5Z7Sf5M1NdlGS4JYCkCwtXto+TK9BmfEV07ytq5Sr0LfQ6SL4
-dicaOLN0xqo7Hlzf7k0jmcUbwlkvmCQ67BpZ6jU4+A9WF9EFaxU08enH420YNpQD
-5oux8rcRaoSxDKj2/KuuOMIsK6/ZMxS0Nv5B8yI0IV7/5MIDuHK99AFQr5O+b5KV
-jcN+AqmRB0G0U/iubWIpym4JKS0VXLI8n+cTPDqM07vB7agamFDUFjJm1/ai0XSQ
-QZvHZm4nmZA3jHpvh7EmxcfoxZXsnCqT+ihRDnO7I9tExRtE8czALr1M1hsLEVMb
-5E863qT8SmVHwQHxX/f6TgxcTMapCKGFj4ADECWJnXY6/hnlLe5qutclqLoQH3GB
-AKb3dX8PgLHyBlvSiQWJkgxEiAqHV8JGU+ZKlv32zeurjsdUv7Cd/zM14JenDD33
-OkXop5a8i1Q2nLNqE2Mrw2SmsMh5biFkQeYdr3/bPQTramj85Qc=
-=qJeq
------END PGP SIGNATURE-----
-
---zi2fwssvq5bzmsvx--
+Konrad
+> 
+> ---
+> bod
