@@ -2,243 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C292663A78
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:07:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF19663A86
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:08:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbjAJIHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 03:07:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41326 "EHLO
+        id S230389AbjAJIIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 03:08:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235654AbjAJIG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:06:58 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE6843E56;
-        Tue, 10 Jan 2023 00:06:57 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 3D5F824000B;
-        Tue, 10 Jan 2023 08:06:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673338015;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=7tanCnt41dmd3a1gqbCEA0TYYO9/oTjI6yAv4OQDOAo=;
-        b=O1Opaji665s44TE1LAeK3X1D4fYZJDuZSpYGeI1q8gABik0Z1kaEh03swno0937SJj0yue
-        74GZCclMht4rcz4psoZvlBrAchwISnRoslZZufPnjF5IrvTUhHz2LldITerMDLfGFUgTms
-        vHXaY1Ki1l23UicholMhpxt39CFMdnggwaNe0ljcsOiKVXKdvXP2KpthwiBLx9AG+xADXI
-        wI6theO2IKhw2keeah0YYzKanAJEVpCPQbhCl2DFoZDmnrFIHdKhbfqupQ7yd24kqen1xf
-        RUnZhIVGv4EnLnguFl4GNBxmLEakSSnAOCuv1ahzmgXZYkitFZFF9fqzE/f3GA==
-Date:   Tue, 10 Jan 2023 09:06:50 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 05/10] dt-bindings: soc: fsl: cpm_qe: Add QMC
- controller
-Message-ID: <20230110090650.2138edf0@bootlin.com>
-In-Reply-To: <76077f5f-fbda-800b-b8d8-6a3f6600f4d1@linaro.org>
-References: <20230106163746.439717-1-herve.codina@bootlin.com>
- <20230106163746.439717-6-herve.codina@bootlin.com>
- <76077f5f-fbda-800b-b8d8-6a3f6600f4d1@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        with ESMTP id S237819AbjAJIHZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:07:25 -0500
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2BF1C109
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:07:24 -0800 (PST)
+Received: by mail-yb1-xb31.google.com with SMTP id e76so10990127ybh.11
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:07:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Lgm6ODdOTwOgRGqASG5+FLZjAIQNUGHiBENFY4rx6AE=;
+        b=V0xpg82iQUd9dT5xPOTG3/m8tBPVpHuTPXAtiwHxPFV+JXUF874AArehAQxX0VVPJI
+         dMsU8IjB0nJYsiznJSb/PYFizQV45MoTWnzwnH/99oNTWswLxlP0RptldeKhf91G3Xh0
+         y4EZSyKCHhoJKUmrACDCXIzLAedkAKm+p/bHduQZdhRLMdT3iyQNLNLogmzStWhKqEbg
+         diLboFRTfph13beMnuL5K55ThIEliUl469Z3Ow24e6WQ0cEtV49RtY0pSapgBibJwe0x
+         GuNlJGTiNECUynDKRzkvrcCBZggsrOjoBuzCNTaEecTv2LEwsPZxSOhTEu/E0Sv4nA6a
+         rX4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lgm6ODdOTwOgRGqASG5+FLZjAIQNUGHiBENFY4rx6AE=;
+        b=GkMOmt7MFkgIQ4Pka0wbsKuRSsjas+KtCI7ItVRsQljRg9lBMAh1lsDCQ6h7N1HPjf
+         ffzj9Uej+R5HBasSVQJ3CIWbgqzNm0KAo7uZkA5IkGZfosdLCiJHDTP6urc0A5RFP8HU
+         gtNokVscHVbXd6FTZiK8pB19myj/s1SoGUfHLb36KpHlNXjQ+ejNnoBN/zxuPd8rw/IV
+         QA4p9rTSGaMzMsdnEpKbyixGeEU7rEoXcXklK0pzKFEM5JQ7GYdaHj6VBoh1hBejHQY8
+         Y/hkpx+cbXbWZ7Ppa7Txl9byzNnySw305VdhQ5BT7JHGr5Tjf2o0WOmh5aGj/pxric/V
+         rdlw==
+X-Gm-Message-State: AFqh2kq2c7Mv82h04XG99p7xqwzoK7911bQRizHh3jO6GTQxdOSlB2Gk
+        2IEfGcTaEtGjpep0UnpS5LPlB32s3uqygWrnq/PuSA==
+X-Google-Smtp-Source: AMrXdXsSNEutsWI33WWfecxyGagsThBzSAOklrH71wj/xUCISGHJEa9zcolX34/qr68ealayxmCXwNNMIQCmsNAkmYg=
+X-Received: by 2002:a5b:a90:0:b0:70b:87d5:4a73 with SMTP id
+ h16-20020a5b0a90000000b0070b87d54a73mr5220169ybq.584.1673338043778; Tue, 10
+ Jan 2023 00:07:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221222161420.172824-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221222161420.172824-1-krzysztof.kozlowski@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 10 Jan 2023 09:07:12 +0100
+Message-ID: <CACRpkdbvBLEf-_J+RiBnXVzxm_e4Ga-w1URpv3BjVARhZ9HqUA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: pinctrl: qcom,sm8450-lpass-lpi: add
+ input-enable and bias-bus-hold
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, Dec 22, 2022 at 5:14 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-On Sun, 8 Jan 2023 16:14:47 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> Allow bias-bus-hold and input-enable properties (already used in SM8450):
+>
+>   sm8450-qrd.dtb: pinctrl@3440000: dmic02-default-state: 'oneOf' conditional failed, one must be fixed:
+>     'pins' is a required property
+>     'function' is a required property
+>     'clk-pins', 'data-pins' do not match any of the regexes: 'pinctrl-[0-9]+'
+>     'input-enable' does not match any of the regexes: 'pinctrl-[0-9]+'
+>
+> Compact the properties which are just set to true for readability.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[...]
-> > +
-> > +  interrupts:
-> > +    description: SCC interrupt line in the CPM interrupt controller =20
->=20
-> Missing constraints.
+Patch applied!
 
-'maxItems: 1' will be added in v3
-
->=20
-> > +
-> > +  fsl,cpm-command:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Cf. soc/fsl/cpm_qe/cpm.txt =20
->=20
-> Missing description.
-
-'fsl,cpm-command' will be removed in v3.
-The value needed is determined based on other information.
-This is not needed in the DT.
-
->=20
-> > +
-> > +  tsa:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle to the TSA =20
->=20
-> Missing vendor prefix. Does not look like a generic property.
-
-Will be be changed to 'fsl,tsa'
-and also 'tsa-cell-id' will be changed to 'fsl,tsa-cell-id'
-
->=20
-[...]
-> > +
-> > +patternProperties:
-> > +  "^channel@([0-9]|[1-5][0-9]|6[0-3])$":
-> > +    description:
-> > +      A channel managed by this controller
-> > +    type: object
-> > +
-> > +    properties:
-> > +      reg:
-> > +        minimum: 0
-> > +        maximum: 63
-> > +        description:
-> > +          The channel number
-> > +
-> > +      fsl,mode:
-> > +        $ref: /schemas/types.yaml#/definitions/string
-> > +        enum: [transparent, hdlc]
-> > +        default: transparent
-> > +        description: Operational mode =20
->=20
-> And what do they mean?
-
-I will change with
-  description: |
-    The channel operational mode
-     - hdlc: The channel handles HDLC frames
-     - transparent: The channel handles raw data without any processing
-
->=20
-> > +
-> > +      fsl,reverse-data:
-> > +        $ref: /schemas/types.yaml#/definitions/flag
-> > +        description:
-> > +          The bit order as seen on the channels is reversed,
-> > +          transmitting/receiving the MSB of each octet first.
-> > +          This flag is used only in 'transparent' mode.
-> > +
-> > +      tx-ts-mask: =20
->=20
-> Missing vendor prefix.
-
-Will be added, also on rx-ts-mask.
-
->=20
-> > +        $ref: /schemas/types.yaml#/definitions/uint64
-> > +        description:
-> > +          Channel assigned Tx time-slots within the Tx time-slots rout=
-ed
-> > +          by the TSA to this cell.
-> > +
-> > +      rx-ts-mask:
-> > +        $ref: /schemas/types.yaml#/definitions/uint64
-> > +        description:
-> > +          Channel assigned Rx time-slots within the Rx time-slots rout=
-ed
-> > +          by the TSA to this cell.
-> > +
-> > +    required:
-> > +      - reg
-> > +      - tx-ts-mask
-> > +      - rx-ts-mask
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupts
-> > +  - tsa
-> > +  - tsa-cell-id
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +  - '#chan-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/soc/fsl-tsa.h>
-> > +
-> > +    scc_qmc@a60 { =20
->=20
-> No underscores in node names.
->=20
-> Node names should be generic.
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
-tree-basics.html#generic-names-recommendation
-
-Will be changed to qmc@a60
-
->=20
-> > +        compatible =3D "fsl,mpc885-scc-qmc", "fsl,cpm1-scc-qmc";
-> > +        reg =3D <0xa60 0x20>,
-> > +              <0x3f00 0xc0>,
-> > +              <0x2000 0x1000>;
-> > +        reg-names =3D "scc_regs", "scc_pram", "dpram";
-> > +        interrupts =3D <27>;
-> > +        interrupt-parent =3D <&CPM_PIC>;
-> > +        fsl,cpm-command =3D <0xc0>;
-> > +
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +        #chan-cells =3D <1>;
-> > +
-> > +        tsa =3D <&tsa>;
-> > +        tsa-cell-id =3D <FSL_CPM_TSA_SCC4>;
-> > +
-> > +        channel@16 {
-> > +            /* Ch16 : First 4 even TS from all routed from TSA */
-> > +            reg =3D <16>;
-> > +            fsl,mode =3D "transparent";
-> > +            fsl,reverse-data;
-> > +            tx-ts-mask =3D <0x00000000 0x000000AA>;
-> > +            rx-ts-mask =3D <0x00000000 0x000000AA>; =20
->=20
-> Keep case consistent. lower-case hex.
-
-Will be fixed
-
->=20
-> Best regards,
-> Krzysztof
->=20
-
-Thanks for the review,
-
-Best regards,
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Yours,
+Linus Walleij
