@@ -2,113 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60B1466442B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 16:10:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C74F66443C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 16:12:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238641AbjAJPKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 10:10:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48278 "EHLO
+        id S238876AbjAJPMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 10:12:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238604AbjAJPKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 10:10:04 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD3A92F78F
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 07:10:02 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id j17so18927334lfr.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 07:10:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0X/qGBlTEqnnkveNfUUr9qvQdFUPQALLwREspVo+V2c=;
-        b=f1xl/LKmlgvLnv1KqWL+K8VuCFV8fQiNCebdo8xTXfDuAkkMQDP1i040NqLnNi7aa2
-         GZ7Bo2nRrdL1mOOdgmM8P2tnujWiX4W6R1gBsUZ+qMh4q8v8Mhdcx2/es/FG5wYGXWYK
-         ceDwpF5jrl4bxvIfCV7ZOWzgtKhTycjk63pp17/SyhEWggBpj9IN5hWF8nwwGdwv9VLa
-         WZtWFCtvUP3rfqdmPMnYa2BhdQmWQZGlGok+XQR2AKcd+EQ5A+qtju3dAGRk+WC1CARL
-         vZ2td41WGLTYXGPW/RXnUpzz6BIq5SimXN5LAOo09R08pSkyGm/Cs85utN9dBoXIltsP
-         S4tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0X/qGBlTEqnnkveNfUUr9qvQdFUPQALLwREspVo+V2c=;
-        b=AihizWGwi4QMYu62V9rJfEB7dxbOTYP1zlBG1Aba9mvEffoFYw3Y954LVGD67xwtwG
-         N9nqARTh0ysmkjiKxqtJNTd5UTSGOTU0B8lUtOkmBOBVkN9Z/glErzOaxt5hhZysJp1L
-         I2wbwCGtBVyqd6jomFFB5yMgP4vWqxgAeI11CgPO76w57LLZ8uWrErk9PKJqv1Et8JEL
-         Ln5C8LEfowyPbW7gV4uXWj1PZBAhS+exMYUyVtP0Hn8JZ/RN3Hd6cRkDYpJL6u0XiZit
-         Bqq8sSNru3QAleRFt1HjME1XT9iOKgoOT8HJ3AtBv90mYiBS63T3kYVh7hKBdyvMDk6h
-         FmhQ==
-X-Gm-Message-State: AFqh2krT63RX2e4uCs9YIDvWLJ0n/liuhFLRd5BErXxypoo4CE3ZkOtf
-        KvsWLnrJaCaMsgDc1dX2EucxIQ==
-X-Google-Smtp-Source: AMrXdXv+Np6Um2C1ZG2P1bBtJQD6UaxbyuPfXgtpzw5wJA3anFp1zKj226g2b7CyYLr7LbwL5POcZg==
-X-Received: by 2002:a05:6512:2344:b0:4cb:90d:41b1 with SMTP id p4-20020a056512234400b004cb090d41b1mr17272812lfu.56.1673363401232;
-        Tue, 10 Jan 2023 07:10:01 -0800 (PST)
-Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id l8-20020ac25548000000b004caf42eb04csm2214722lfk.138.2023.01.10.07.09.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 07:10:00 -0800 (PST)
-Message-ID: <658f8f39-ab3e-45bc-bc12-357bec254e42@linaro.org>
-Date:   Tue, 10 Jan 2023 16:09:59 +0100
+        with ESMTP id S238897AbjAJPLw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 10:11:52 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB5F49154;
+        Tue, 10 Jan 2023 07:11:29 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A2AC461779;
+        Tue, 10 Jan 2023 15:11:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 383B7C433EF;
+        Tue, 10 Jan 2023 15:11:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673363488;
+        bh=uKrtRn6CDrdTBnWrc0AschRz5jiayfkSvYCIjkppPHQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pdF0lCsEFYZpu4mxGFlTO0ahbX8LHqTV7NEYRJEBBh+C2qhCkIwgCoR/x4C9avokB
+         3ss3e/Q1hq3fAN7hq4OS2m91Sm+jMc78d2yAv4KL73z8Ml/7zVqwg8H8K9WW0afZsE
+         3HvXIxNn9QVb2rAhneAxn8MTA9hnAf6KGlmvCAis/JuQ5/1OBfs7ioJecEKspWjF+n
+         87x8wx8RgGnqA+nJA+k5JFPxlcuuRaTm5AX+4XO3IKqkvcxC37NRn/lIOxnxn5/dsj
+         oO/Z7sGXLoaO7w2rss9wtYhrUyVikTEslbYoeamv8Hwkb2+ZUwMXRY67UtYNU8TWOd
+         zrMWLsyc2vMWQ==
+Date:   Tue, 10 Jan 2023 15:11:20 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+        guoren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Tsukasa OI <research_trasio@irq.a4lg.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Mayuresh Chitale <mchitale@ventanamicro.com>
+Subject: Re: [RFC PATCH v6 1/6] riscv: mm: dma-noncoherent: Switch using
+ function pointers for cache management
+Message-ID: <20230110151119.GA9436@willie-the-truck>
+References: <20230106185526.260163-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230106185526.260163-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <6f7d06ef-d74d-4dfc-9b77-6ae83e0d7816@app.fastmail.com>
+ <CA+V-a8uF1s+dwKC_+apL+CBiHN8w_J0n_G2dqsgiAUZVEibfqg@mail.gmail.com>
+ <9017adf0-acd4-4c43-8aea-3579b214b477@app.fastmail.com>
+ <CA+V-a8u6jvR=EDeE3mAbDr6-06NoBJ7mwmi_Y9qVyHT+aC-9rg@mail.gmail.com>
+ <45d6eb0c-cbe3-4a83-aa12-3483638473ae@app.fastmail.com>
+ <20230110070144.GG10289@lst.de>
+ <02988e70-b099-46fd-b260-2d537c50543a@app.fastmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v6 4/4] arm64: defconfig: Enable SC8280XP Display Clock
- Controller
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Johan Hovold <johan@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230110145751.2654795-1-quic_bjorande@quicinc.com>
- <20230110145751.2654795-5-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230110145751.2654795-5-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <02988e70-b099-46fd-b260-2d537c50543a@app.fastmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 10, 2023 at 04:03:06PM +0100, Arnd Bergmann wrote:
+> On Tue, Jan 10, 2023, at 08:01, Christoph Hellwig wrote:
+> > On Mon, Jan 09, 2023 at 01:59:12PM +0100, Arnd Bergmann wrote:
+> >> I had another look at the arm64 side, which (like the zicbom
+> >> variant) uses 'clean' on dma_sync_single_for_device(DMA_FROM_DEVICE),
+> >> as that has changed not that long ago, see
+> >> 
+> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c50f11c6196f45c92ca48b16a5071615d4ae0572
+> >
+> > which IIRC has been reverted recently.
+> 
+> To clarify: I was looking at arch_sync_dma_for_device(), which
+> changed from 'invalidate' to 'clean' last June in commit
+> c50f11c6196f ("arm64: mm: Don't invalidate FROM_DEVICE buffers
+> at start of DMA transfer"). I don't see  a revert for that.
+> 
+> The one that was reverted recently is arch_dma_prep_coherent, which
+> was changed and reverted in
+> 
+> c44094eee32 Aug 23 2022 flush->clean
+> b7d9aae4048 Dec 6  2022 clean->flush
+> 
+> I'm primarily interested in the streaming mappings (arch_sync_*)
+> at the moment.
 
+Just as an FYI, but we plan to revert the revert (i.e. go back to 'clean')
+here once Qualcomm's modem firmware loader has been updated:
 
-On 10.01.2023 15:57, Bjorn Andersson wrote:
-> The Display Clock Controller provides clocks and power-domains for
-> the display subsystem, enable this to enable display on the SC8280XP.
-> 
-> Now that power-domains can probe defer past late_initcall() this should
-> be possible to leave as module.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+https://lore.kernel.org/r/20230109034843.23759-1-quic_sibis@quicinc.com
 
-Konrad
-> 
-> Changes since v5:
-> - New patch
-> 
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 340199714874..43df50a044ce 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1100,6 +1100,7 @@ CONFIG_MSM_GCC_8994=y
->  CONFIG_MSM_MMCC_8996=y
->  CONFIG_MSM_GCC_8998=y
->  CONFIG_QCS_GCC_404=y
-> +CONFIG_SC_DISPCC_8280XP=m
->  CONFIG_SC_GCC_7180=y
->  CONFIG_SC_GCC_7280=y
->  CONFIG_SC_GCC_8180X=y
+Will
