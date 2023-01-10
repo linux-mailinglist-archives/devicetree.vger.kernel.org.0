@@ -2,97 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3136647FF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 19:02:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A26C6647F7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 19:00:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232356AbjAJSCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 13:02:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41706 "EHLO
+        id S238757AbjAJSA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 13:00:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238689AbjAJR6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 12:58:11 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91684E45;
-        Tue, 10 Jan 2023 09:57:52 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30AFZiON027412;
-        Tue, 10 Jan 2023 17:57:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : from : subject : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=VSAB5O5zW1UEm3r5V4pm/Pjdzw+2Z5dVjrGb0q+FBDk=;
- b=D7N1UAdyF9dOyccRGi/0TivY+QuGO0sx7sMhPJfh9QE4TDzkgPYl+OpKPTmjSJuoHr8a
- kLnXuUI1Enh/qN/an8+8P65cf9+nUwYuIMfVOanbRCAbpyKmtqlklNbMh+IOSM3//VTO
- 8TO/uHE0CLc+pkztyMFB6CdqPxrCpIO2+AcOxWepcliSGUB8fs8Qn+9xAGrBeMqc/mO9
- m2R3usIbvaN0uq3eplndoNwy0/cW85W8SehEs/nD3w9znnWL/F+hykAo8zqLf1EFrFwy
- mONbzri+nHH2g4i3Zq0i5edm2yOvvGUMI2VR1w6UIWdVc16sEvCVGz6PO7aSPbqz6s9M Rw== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n0q28jq5b-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 10 Jan 2023 17:57:41 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30AHvfS3008504
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 10 Jan 2023 17:57:41 GMT
-Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 10 Jan
- 2023 09:57:40 -0800
-Message-ID: <8f47229a-2785-5f54-f7d1-a42299de64fe@quicinc.com>
-Date:   Tue, 10 Jan 2023 09:57:40 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   Elliot Berman <quic_eberman@quicinc.com>
-Subject: Re: [PATCH v8 07/28] mailbox: Allow direct registration to a channel
-To:     Alex Elder <elder@linaro.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        "Sudeep Holla" <sudeep.holla@arm.com>
-CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S235102AbjAJR7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 12:59:41 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6EAD13D58;
+        Tue, 10 Jan 2023 09:59:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 43903B818FE;
+        Tue, 10 Jan 2023 17:59:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42F4DC433EF;
+        Tue, 10 Jan 2023 17:59:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673373555;
+        bh=fV4tgwEHUZrqCe8pSCxTpwxja8PdnJ49yErnHxLMzZU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ux0gIXcb32eZQ+VJkQV5YzTdErZ+iLCv6Ztzdv6boC99j5YoS/U7ue1guyDP/o77m
+         6/aspDHnxPBtHxFXAx3V+Se1yvRFnheRvYP8mCOpSlEbc6vDTLk6kampkQX0MiN9tc
+         7PTGr/C3EM4r3SV6PbeCTchppQ0oU9nhxn09WwWP+KgADS5Pvbo8O6QdtxtYSPxfKV
+         n//4QriXlHuBVyzcmFALTvMjiZoGz/5IUW1bOORbe8zLyUCG4+CEwR90xM53wXRIbO
+         t7PyqOCkujfmzDWWO9avNYQeP5Rv2P7ijpHcN1qylVteFwouLLYwMk2S6KTQUOb2ev
+         k24XLRuH8Vzlg==
+Date:   Tue, 10 Jan 2023 17:59:09 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-acpi@vger.kernel.org>
-References: <20221219225850.2397345-1-quic_eberman@quicinc.com>
- <20221219225850.2397345-8-quic_eberman@quicinc.com>
- <942f20cc-87d3-d014-1527-8d3d3e1ae44b@linaro.org>
-Content-Language: en-US
-In-Reply-To: <942f20cc-87d3-d014-1527-8d3d3e1ae44b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: q_MOPBZQ5d9shU7caoByWgMe7_Y2jAZx
-X-Proofpoint-GUID: q_MOPBZQ5d9shU7caoByWgMe7_Y2jAZx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-10_07,2023-01-10_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- lowpriorityscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0
- adultscore=0 spamscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301100115
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 7/7] riscv: dts: starfive: Add StarFive JH7110
+ VisionFive 2 board device tree
+Message-ID: <Y72nbfJxYdO2AojI@spud>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-8-hal.feng@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Lvt1uqxBssUo8Paq"
+Content-Disposition: inline
+In-Reply-To: <20221220011247.35560-8-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -101,57 +69,44 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--Lvt1uqxBssUo8Paq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 1/9/2023 1:34 PM, Alex Elder wrote:
-> On 12/19/22 4:58 PM, Elliot Berman wrote:
->> Support virtual mailbox controllers and clients which are not platform
->> devices or come from the devicetree by allowing them to match client to
->> channel via some other mechanism.
-> 
-> The new function behaves very much like mbox_request_channel()
-> did before.
-> 
-> The new function differs from omap_mbox_request_channel() in that
-> it can change the if chan->txdone_method is TXDONE_BY_POLL, it
-> is changed to TXDONE_BY_ACK if the client's knows_txdone field is
-> set.  Is this OK?  Why?
+On Tue, Dec 20, 2022 at 09:12:47AM +0800, Hal Feng wrote:
 
-Both of the current drivers that use mbox_bind_client use TXDONE_BY_IRQ, 
-so this doesn't cause issue for checking whether the client has 
-txdone_method.
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
 
-> 
-> It also assumes chan->mbox->ops->startup us non-null (though that
-> isn't really a problem).
-> 
->>
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->> ---
->>   drivers/mailbox/mailbox.c      | 96 ++++++++++++++++++++++++----------
->>   drivers/mailbox/omap-mailbox.c | 18 ++-----
->>   drivers/mailbox/pcc.c          | 18 ++-----
->>   include/linux/mailbox_client.h |  1 +
->>   4 files changed, 76 insertions(+), 57 deletions(-)
->>
->> diff --git a/drivers/mailbox/mailbox.c b/drivers/mailbox/mailbox.c
->> index 4229b9b5da98..adf36c05fa43 100644
->> --- a/drivers/mailbox/mailbox.c
->> +++ b/drivers/mailbox/mailbox.c
->> @@ -317,6 +317,71 @@ int mbox_flush(struct mbox_chan *chan, unsigned 
->> long timeout)
->>   }
->>   EXPORT_SYMBOL_GPL(mbox_flush);
->> +static int __mbox_bind_client(struct mbox_chan *chan, struct 
->> mbox_client *cl)
-> 
-> There should be an unbind_client() call.  At a minimum, you are
-> calling try_module_get(), and the matching module_put() call
-> would belong there.  And even though one might just call
-> module_put() elsewhere for this, it would be cleaner to have
-> a function that similarly encapsulates the shutdown call
-> as well.
+So I think this is wrong, and the stdout-path should be uart3 instead.
+Per the QSG [0], GPIO5/6 are the suggested UART Tx/Rx to use.
+This appears to map to uart3 rather than uart0.
+FWIW, uart3 is also the stdout-path for the v1, see:
+arch/riscv/boot/dts/starfive/jh7100-common.dtsi
 
-The function for this is "mbox_free_channel".
+At least, that change is what I needed to do in order to use the
+JH7110_VisionFive2_upstream branch, AFAICT matches what you've got in
+this series.
 
 Thanks,
-Elliot
+Conor.
+
+0 - https://doc-en.rvspace.org/VisionFive2/PDF/VisionFive2_QSG.pdf
+
+--Lvt1uqxBssUo8Paq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY72nbQAKCRB4tDGHoIJi
+0qOpAP0XaPuoCjnjBd2DOhVJt9puz02Zx9VxaQSIpQ27IoXGygEAmbwyT809PgL7
+chpp1xSSsvRQMEhF7XLXxr6OXPz3LwQ=
+=ILQb
+-----END PGP SIGNATURE-----
+
+--Lvt1uqxBssUo8Paq--
