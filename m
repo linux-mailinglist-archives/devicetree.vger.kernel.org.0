@@ -2,40 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF8F6642BA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8C486642B2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 15:04:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234267AbjAJOEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 09:04:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
+        id S233720AbjAJOEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 09:04:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233613AbjAJOEq (ORCPT
+        with ESMTP id S233194AbjAJOEq (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 09:04:46 -0500
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E52D350E43;
-        Tue, 10 Jan 2023 06:04:44 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 646E3551C4
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 06:04:44 -0800 (PST)
 Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1pFFF4-0004vx-Fp; Tue, 10 Jan 2023 15:04:42 +0100
+        id 1pFFF4-0004vx-Pt; Tue, 10 Jan 2023 15:04:42 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-rockchip@lists.infradead.org,
-        Frank Wunderlich <linux@fw-web.de>
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        linux-rockchip@lists.infradead.org
 Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alex Riabchenko <d3adme4t@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>
-Subject: Re: [PATCH] arm64: dts: rockchip: Add IR receiver to BPI-R2Pro
-Date:   Tue, 10 Jan 2023 15:04:37 +0100
-Message-Id: <167335938205.2550251.6143947309802400390.b4-ty@sntech.de>
+        maccraft123mc@gmail.com, Chris Morgan <macromorgan@hotmail.com>,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH 0/4] Miscellaneous fixes for Odroid Go Advance
+Date:   Tue, 10 Jan 2023 15:04:38 +0100
+Message-Id: <167335938207.2550251.3848668276552079564.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221214155433.112257-1-linux@fw-web.de>
-References: <20221214155433.112257-1-linux@fw-web.de>
+In-Reply-To: <20221201203655.1245-1-macroalpha82@gmail.com>
+References: <20221201203655.1245-1-macroalpha82@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -47,20 +42,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Dec 2022 16:54:33 +0100, Frank Wunderlich wrote:
-> From: Alex Riabchenko <d3adme4t@gmail.com>
+On Thu, 1 Dec 2022 14:36:51 -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Add the infrared receiver and its associated pinctrl entry.
+> This series is for a bunch of trivial changes to the Odroid Go
+> Advance to clean up some errors in the dmesg log and make it
+> easier to support with alsa ucm.
 > 
-> Based on Aurelien Jarno's patchset:
-> https://lore.kernel.org/lkml/20220930051246.391614-14-aurelien@aurel32.net/
+> Chris Morgan (4):
+>   arm64: dts: rockchip: Change audio card name for Odroid Go
+>   arm64: dts: rockchip: don't set cpll rate for Odroid Go
+>   arm64: dts: rockchip: update px30 thermal zones for GPU
+>   arm64: dts: rockchip: Update leds for Odroid Go Advance
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Add IR receiver to BPI-R2Pro
-      commit: 91ab5a0dcf3f6718099b894312dee2f1a235348d
+[1/4] arm64: dts: rockchip: Change audio card name for Odroid Go
+      commit: 658a87efb47a85cf8205ed9280d611e9870d3e43
+[2/4] arm64: dts: rockchip: don't set cpll rate for Odroid Go
+      commit: 9b1eb739307d9769ff3eb04fa5938c03b16af09e
+[3/4] arm64: dts: rockchip: update px30 thermal zones for GPU
+      commit: 8ad9b52eea99b80e84e3a077e962ab5cf8d736a2
+[4/4] arm64: dts: rockchip: Update leds for Odroid Go Advance
+      commit: 882f6abdd411f941db822918ef76f4b03f2052fd
 
 Best regards,
 -- 
