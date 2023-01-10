@@ -2,101 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33F3A663B8E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:45:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78266663BBD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 09:52:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237848AbjAJIpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 03:45:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37408 "EHLO
+        id S230444AbjAJIvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 03:51:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237992AbjAJIpI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:45:08 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7411C41D7B
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:45:05 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id bn26so10958148wrb.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:45:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3nhalakForWLq/BpHz4s5xQNDs64Epq6wJvSqVishPM=;
-        b=uALzNialZgr8wwwci5b4iFEDY3qvdfFZaiMcOqwbtJlbsZAbvKl73tT0WSmmrnpCYw
-         2VmlXimyUZMpg5LSlN5CadKHjNCSrYUvuipdJS/M6QQHEsYHDFAVwBFwDIwNMTnekv2O
-         L8FHDJBtHzOSk2o96VGTpYroLdFENaYwZ94M9KHisZkLlZU7iowpbF9Ex4crJFtt+7KB
-         CN9niLyTHQhXgObh0khQdnnb+QUOwdyvA0EUBjb/091q8T9qcc6EbR8hKpMTpdTZNqq2
-         ra1+musbKmt2DQxT3iRP7gVyW3tUPdfxlFuu11eLXkDGHyAxh3W76CIkZ+CNsf49thy7
-         TOrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3nhalakForWLq/BpHz4s5xQNDs64Epq6wJvSqVishPM=;
-        b=Ggz+NE9vNUeMMqIBEhhqJbE5EI+wAZoo2Dnxzv0MPbccDbXBwAuBmbJgFIJdGhbi/T
-         jeDAjAX+AxrAdxjipA3lg9N+UseFDkrfocbg5/DK2VobZnhRvBUu+bxc2qE8XNQafuNj
-         GngXE8UF70x+purpkV38V4TsZWmzDl8KBg7RakXl4G5+xeWEFKQA9/ZCfJuhuIoEW5Q2
-         WNPio570seLK6G3wxAKTVdzmWY+mxl5FHyohKtIRqXd8pF1nQbCj/2QGaeVAkrj/Pqkf
-         CVK+rqOC9xzscHvh6yIf9kSDknQyU5Z38J3vNlC9nDLcAXkmb2bpPUK4/HQZ0Z3h/dZ6
-         Wj5g==
-X-Gm-Message-State: AFqh2krxsI+/4FIM6/9fSQP//p8ryo+P5G3Dwgb49cTkrY7PH490bJnv
-        lST6F/G5QCn8iRtj6N93gC17FG8vzspXw38j
-X-Google-Smtp-Source: AMrXdXulnkGqYk+DJ+tLAOVP3aPTbM+3YrOEXeaSdxC8EXrMCyDK3H0xlqDMHPCf0sA7EDuEPNGceg==
-X-Received: by 2002:a5d:56c1:0:b0:288:d139:3690 with SMTP id m1-20020a5d56c1000000b00288d1393690mr28887704wrw.67.1673340304041;
-        Tue, 10 Jan 2023 00:45:04 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id q14-20020adff94e000000b002b065272da2sm10478381wrr.13.2023.01.10.00.45.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 00:45:03 -0800 (PST)
-Message-ID: <cf65926c-d2c1-f1bc-6e27-f07611a5cce8@linaro.org>
-Date:   Tue, 10 Jan 2023 09:45:01 +0100
+        with ESMTP id S229755AbjAJIvB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:51:01 -0500
+Received: from mail.groupteam.pl (mail.groupteam.pl [51.75.73.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752CEF69
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:50:52 -0800 (PST)
+Received: by mail.groupteam.pl (Postfix, from userid 1002)
+        id CD4DCA5101; Tue, 10 Jan 2023 08:50:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groupteam.pl; s=mail;
+        t=1673340649; bh=9KGuIG62LgzC9aYmjKxzocuYLRCVghXg6v9Q1q2LHec=;
+        h=Date:From:To:Subject:From;
+        b=NAb7/O1b1VZAmEMRkdCGDOdRzmKQNHqiL4O7gCh68PHLBxh5WPOOaHRIfZM4z8lQM
+         OH1Wy5VWUdV8AR+iTtCPg3lnNE4lUI8Woaz8bslobJSzyZ8FztQuQgyQViw6tc7FkT
+         SOmhm77Dm9znSp4XM8B/hQi1zwLOmGBeEwZE19xjm3EenEQMkzm/K9Wyg9iQJx5uz8
+         XV9JjT23I0yfPPmTnC2+LOCQZbZKsqMn/ow+/tVeIGbmBcywJw8r8zNgb4IX7useqF
+         KHLbzoQQ1Lw3gAYV4tNzy5LSdbyqbUE1UK8O4PLgcrGr6ESq+0ySCEPstCJvaph0u4
+         0l2lKq3Fn+JVw==
+Received: by mail.groupteam.pl for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 08:50:41 GMT
+Message-ID: <20230110074500-0.1.7p.2zw3m.0.l13n7smj78@groupteam.pl>
+Date:   Tue, 10 Jan 2023 08:50:41 GMT
+From:   "Krzysztof Maj" <krzysztof.maj@groupteam.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Biznesowy angielski
+X-Mailer: mail.groupteam.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] ASoC: dt-bindings: simple-card: Document
- simple-audio-card,plat
-Content-Language: en-US
-To:     Mohammad Faiz Abbas Rizvi <faiz.abbas@arm.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, broonie@kernel.org,
-        lgirdwood@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, Anurag.Koul@arm.com,
-        Deepak.Pandey@arm.com
-References: <20230105160346.29018-1-faiz.abbas@arm.com>
- <20230108163741.GA30997-robh@kernel.org>
- <f0ad7a4e-a8af-77d4-09e4-3717041677e7@arm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f0ad7a4e-a8af-77d4-09e4-3717041677e7@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,SPF_HELO_NONE,
+        SPF_PASS,URIBL_ABUSE_SURBL,URIBL_CSS_A,URIBL_DBL_SPAM autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+        *      [score: 0.0000]
+        *  2.5 URIBL_DBL_SPAM Contains a spam URL listed in the Spamhaus DBL
+        *      blocklist
+        *      [URIs: groupteam.pl]
+        *  3.3 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
+        *      [51.75.73.133 listed in zen.spamhaus.org]
+        *  0.1 URIBL_CSS_A Contains URL's A record listed in the Spamhaus CSS
+        *      blocklist
+        *      [URIs: groupteam.pl]
+        *  1.2 URIBL_ABUSE_SURBL Contains an URL listed in the ABUSE SURBL
+        *      blocklist
+        *      [URIs: groupteam.pl]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 09:23, Mohammad Faiz Abbas Rizvi wrote:
-> Hi Rob,
+Dzie=C5=84 dobry,=20
 
-(...)
+czy rozwa=C5=BCali Pa=C5=84stwo rozw=C3=B3j kwalifikacji j=C4=99zykowych =
+swoich pracownik=C3=B3w?
 
-> 
-> Thanks,
-> 
-> Faiz
-> 
-> IMPORTANT NOTICE: The contents of this email and any attachments are confidential and may also be privileged. If you are not the intended recipient, please notify the sender immediately and do not disclose the contents to any other person, use it for any purpose, or store or copy the information in any medium. Thank you.
+Opracowali=C5=9Bmy kursy j=C4=99zykowe dla r=C3=B3=C5=BCnych bran=C5=BC, =
+w kt=C3=B3rych koncentrujemy si=C4=99 na podniesieniu poziomu s=C5=82owni=
+ctwa i jako=C5=9Bci komunikacji wykorzystuj=C4=85c autorsk=C4=85 metod=C4=
+=99, stworzon=C4=85 specjalnie dla wymagaj=C4=85cego biznesu.=20
 
-Please fix your mail setup. We cannot work in upstream/LKML with
-confidential emails. Since I was not a intended recipient (I don't know
-who is), then I should start removing your emails?
+Niestandardowy kurs on-line, dopasowany do profilu firmy i obszar=C3=B3w =
+=C5=9Bwiadczonych us=C5=82ug, w szybkim czasie przyniesie efekty, kt=C3=B3=
+re zwi=C4=99ksz=C4=85 komfort i jako=C5=9B=C4=87 pracy, rozwijaj=C4=85c m=
+o=C5=BCliwo=C5=9Bci biznesowe.=20
 
-Best regards,
-Krzysztof
+Zdalne szkolenie j=C4=99zykowe to m.in. zaj=C4=99cia z native speakerami,=
+ kt=C3=B3re w szybkim czasie naucz=C4=85 pracownik=C3=B3w rozmawia=C4=87 =
+za pomoc=C4=85 jasnego i zwi=C4=99z=C5=82ego j=C4=99zyka Business English=
+=2E
 
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 wi=C4=99cej szczeg=C3=B3=C5=82=C3=B3=
+w i opowiedzie=C4=87 jak dzia=C5=82amy?=20
+
+
+Pozdrawiam
+Krzysztof Maj
