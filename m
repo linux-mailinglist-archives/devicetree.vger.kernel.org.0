@@ -2,82 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAFC6664234
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:47:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8DA2664242
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 14:49:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233802AbjAJNrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 08:47:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41904 "EHLO
+        id S232868AbjAJNtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 08:49:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234040AbjAJNru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:47:50 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6102C3D9EC;
-        Tue, 10 Jan 2023 05:47:49 -0800 (PST)
+        with ESMTP id S231758AbjAJNtX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 08:49:23 -0500
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3759395C7
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:49:20 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-4b718cab0e4so154223917b3.9
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 05:49:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1673358469; x=1704894469;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IANc8BcR8bv1o/X9X8afiNRzt7YZdqQIj355WEJOuWg=;
-  b=pWk4UVaInQ84dbdgL3bLEs0PWJ3Yaj+O/GKBvTvvFbUwK9upts/OVebO
-   J/lZIXwIgQvAma3s6M0KObnRfvwzAAzQFRRTSmfqRoPfh8h1azOeUPK8J
-   nZn9nTo1hHXdTgOlrH6mrKOVPKvgZF3G3abJrUeR4rwzuaemfS0M4tiNS
-   UEuAfdBSk5OiwB6HzHxIRcoKdABQNn0Ht51U9TZB6Mk+45aBOAsNL2eB3
-   ZB91E0yWgncpEHzhE3mChNej30qXqmHfihEVHi8BcKfES+A9WrrjiDeVz
-   MJR0YCMbpgsO7m5ARB3dvVXDjMGozVxjdGGg4c1R69FWwKWstJSDbd5bJ
-   A==;
-X-IronPort-AV: E=Sophos;i="5.96,315,1665439200"; 
-   d="scan'208";a="28331496"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 10 Jan 2023 14:47:47 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 10 Jan 2023 14:47:47 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 10 Jan 2023 14:47:47 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1673358467; x=1704894467;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IANc8BcR8bv1o/X9X8afiNRzt7YZdqQIj355WEJOuWg=;
-  b=azXDTwvIikIAFMlbMp1OMF8qWsR9OVEFmi7fowc8z5QQqgAt7758tn0F
-   b2b2ieEV6uiC0pWEmhdKHaCNsJLbk2cTMIxkIg5hZ8GKXTaMF9BVefxuu
-   FcNU7d9d4kZvfe3P/DZqhfDoC5PvC8PzZHYVvO9ayNFQtHGix0HMwawvn
-   swuU+7Y7k+vcD0/8Vomh4U3VViu/iaESBEUe649SA6GUqXZKMppahU2iB
-   pvA8vxy5bdljOjBLh3RaPUw/QQPPO/N0Mp30JXydtDwW4P5mg3gpFmFt3
-   yljCwXf17Aazp/7Xce1uCBk1thX/rMozkAvimLqsebVvS49D+WWiUd5XV
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,315,1665439200"; 
-   d="scan'208";a="28331495"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 10 Jan 2023 14:47:47 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8C114280056;
-        Tue, 10 Jan 2023 14:47:47 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marex@denx.de>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] clk: rs9: Support device specific dif bit calculation
-Date:   Tue, 10 Jan 2023 14:47:47 +0100
-Message-ID: <2211925.iZASKD2KPV@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <a2fd6077-a5ae-a694-3637-e83ca044da69@denx.de>
-References: <20230110100003.370917-1-alexander.stein@ew.tq-group.com> <3216146.44csPzL39Z@steina-w> <a2fd6077-a5ae-a694-3637-e83ca044da69@denx.de>
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=44n3krIm8uSmD55/HyB5R1oD+31KNdGLUS6d9tW+5uQ=;
+        b=vhotJ3I8QZ6o0V8YONaYaXj/HV/kecxNEMwtCEgE5GBsKWV9/ahydBnTXRAnAFB5vK
+         8Bv6j4jmTFkIkqGKBBPhPgRL7BRLqCJOvxbslhuuqChHh8JOOx5pLG0chTHBkMvJPeKB
+         qdOm+x5ISFro/dysaAH25bEr/7ioGKbFHDMGgXrqnyFn6KzeVadcw6Il64YiGxvXQFtN
+         /aSz/JIfdGzF8RrcGELvdreEvNm0n2meScgUq5Qq+Tpw6xHF7XZMDlmFyKjWcdJua/0r
+         2anEDx9JqN4Ia0rws2CoA8QRWKKpuHjh8Hi+8LKk54CBTcS0I0N50ZHMuD+mfOT77Gwg
+         aFpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=44n3krIm8uSmD55/HyB5R1oD+31KNdGLUS6d9tW+5uQ=;
+        b=i9hRFD+fF6NO2G2pPNkdfhH0EiMkYK/6Vl8RGBL9JCtPvE5pYLyq9v0heRCkWL0Wik
+         ICp92O0tf4KhPyULqEiMvhPaWXWNdKzL3hi3t8zLbLP5L/mbL2GON0Ch5bF9diAOr93j
+         +gMQdXmy5GgDN5j6lWckJS5WxLc80RSJr3/AbTFpTLZkscIS9+R2X4DbmG7nA04PJYFx
+         nTwtyHBXae3YlOZe1kAR8Iz0Jmr/VcVrv51vcPDbbW1xewH5UTqhPD6o++GtvGOIUQks
+         6O99OU0+cMB2l8lz+Agqbx5iGzbDZcFgsOHr1htlcLkd5e6qY+h3Kp7hSITk4heLrOmN
+         C5BQ==
+X-Gm-Message-State: AFqh2kqgJVA7Yyg7ukXxPVQ+xmFzlLb0+Mht60Jmi+p8WlhmhIhlaEs9
+        2xhdMyLVi3fxVQvDwrl+C770iw5zCoBnwOLexxLc9Vj8BKgGZAZSHXyp3g==
+X-Google-Smtp-Source: AMrXdXuYkD+ZZc5pD3tPvLUfmyEi/NTU0zo9Lq4D2HDlk7f1MnD0p57cz4H1Pn//2A9HF6YPoEBmOrcORSltK9HAqs4=
+X-Received: by 2002:a05:690c:442:b0:3e9:59f3:200c with SMTP id
+ bj2-20020a05690c044200b003e959f3200cmr1105726ywb.171.1673358560103; Tue, 10
+ Jan 2023 05:49:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20230109155801.51642-1-sebastian.reichel@collabora.com> <20230109155801.51642-2-sebastian.reichel@collabora.com>
+In-Reply-To: <20230109155801.51642-2-sebastian.reichel@collabora.com>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Tue, 10 Jan 2023 19:19:09 +0530
+Message-ID: <CA+VMnFzJwrvdY4CguWyhKZwjBqdq6bfkZdjJjsh8SLu6BcN5XQ@mail.gmail.com>
+Subject: Re: [PATCHv8 1/7] dt-bindings: soc: rockchip: add initial rk3588
+ syscon compatibles
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,54 +73,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marek,
+On Mon, 9 Jan 2023 at 21:28, Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Add IOC and PHP GRF syscon compatibles for RK3588.
+>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
 
-Am Dienstag, 10. Januar 2023, 14:37:19 CET schrieb Marek Vasut:
-> On 1/10/23 14:22, Alexander Stein wrote:
-> > Hi Marek,
-> 
-> Hi,
-> 
-> > thanks for your feedback.
-> > 
-> > Am Dienstag, 10. Januar 2023, 11:31:49 CET schrieb Marek Vasut:
-> >> On 1/10/23 11:00, Alexander Stein wrote:
-> >> 
-> >> [...]
-> >> 
-> >>>    static int rs9_get_output_config(struct rs9_driver_data *rs9, int
-> >>>    idx)
-> >>>    {
-> >>>    
-> >>>    	struct i2c_client *client = rs9->client;
-> >>> 
-> >>> +	u8 dif = rs9_calc_dif(rs9, idx);
-> >>> 
-> >>>    	unsigned char name[5] = "DIF0";
-> >>>    	struct device_node *np;
-> >>>    	int ret;
-> >>>    	u32 sr;
-> >>>    	
-> >>>    	/* Set defaults */
-> >>> 
-> >>> -	rs9->clk_dif_sr &= ~RS9_REG_SR_DIF_MASK(idx);
-> >> 
-> >> Are you sure this line ^ should be dropped ?
-> >> Shouldn't the bitfield be cleared first and modified second?
-> > 
-> > Well, I had in my mind that this function is called upon probe with
-> > clk_dif_sr being cleared anyway, so this does essentially nothing. And
-> > the DIF bit is set unconditionally, so what is the point of masking it
-> > before?
-> 
-> Good point, but then, what's the point of ORRing either ? Just do a
-> plain assignment.
-
-OR-ring is necessary as this function is called for each DIF output (see idx 
-parameter), so plain assignment will clear the previously set bits.
-
-Best regards,
-Alexander
-
-
-
+Reviewed-by: Jagan Teki <jagan@edgeble.ai>
