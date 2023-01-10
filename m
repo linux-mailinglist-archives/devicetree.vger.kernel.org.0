@@ -2,125 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8AC663C02
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40ABD663C2D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 10:05:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238074AbjAJJAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 04:00:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48094 "EHLO
+        id S231612AbjAJJF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 04:05:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238429AbjAJI7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 03:59:25 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39FEE4ECB6
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:57:13 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id m8-20020a05600c3b0800b003d96f801c48so11228087wms.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 00:57:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dafl/deJCzx5RjMZoUwgp56VnVLPGPUPjXDySFGEBG8=;
-        b=kEadu5X2iHXzkwAmuA6H8ILjVus6M3QYMUlEKG9vfQH3MVNze3gGTBw8P080zVLq5E
-         WOYnLWBLSUz09V/z8F/B1qzjicwGjKCw39YPzMSafFtYVLxgGWjZzf9aVSr5g46uxgNm
-         GaB+8aZSAw07LnXTVqK8JjmKVFou2RgZT1l7s7/Y1dhXganU6CaUbiRtSHoojqkgg869
-         DCi++C2y3luP02P9ThfSry/2SG3C7u7guqlk3xQYwAubW8ma/IzyfR48AEhh0WEQ6HrV
-         pX62ZwggCVEO/FonMtf2RGu0dCgn48weJ5qci742jfbOQ2OjTChwkQNOF1vma3aGRFN0
-         Qdcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dafl/deJCzx5RjMZoUwgp56VnVLPGPUPjXDySFGEBG8=;
-        b=HoDXvvX4bLx890cyDN2Y8bpMkPaxPAWx1TNIzVyX5ii0oJojL7bjrr8ZYWHAWHUl++
-         rs3/R/AGl0/IqXlPWEifiRWbvIppjyGc125e2S4ilYLSeVWPLR9jg9ETkbzRJu+U/Psc
-         nVx01kcWJoU6pBBDIp0wz7n0ooHwi3hXUOfa0MaUH3BhJZxr4BGsd2Sy+WYebWUowWXE
-         k65Hm4meFc4TIhNldqf0mplRhZqTk3wtGJjtXrglxCq06LNlejePVM1I1Ylip5oU7UE/
-         ekNbwq5p2VBa7jf/+83L2qa/Mr0vCMTBx35qKnl0R368Obkn1YGN5S7xZbJO5ApSursj
-         C+8Q==
-X-Gm-Message-State: AFqh2kp6HLnC8J4Wre5E/goNaKbXsyffChrl3me/yewQv59/BCInYm+J
-        qlCKx/A0IdxqaeRg6GetFuCzouQDp4q8VIbp
-X-Google-Smtp-Source: AMrXdXsAAylUfwec0PEMp9vQb5e5UUMOvw7vnIL3u9KMeUMtVdapqfVn8QYVBdc+Dz0e7jwE+vlz9w==
-X-Received: by 2002:a05:600c:22ca:b0:3d1:ebdf:d586 with SMTP id 10-20020a05600c22ca00b003d1ebdfd586mr48484793wmg.29.1673341031787;
-        Tue, 10 Jan 2023 00:57:11 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id hg9-20020a05600c538900b003cfa622a18asm18356064wmb.3.2023.01.10.00.57.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jan 2023 00:57:11 -0800 (PST)
-Message-ID: <7481916b-8985-c2f1-2b83-1fe3e4b9da88@linaro.org>
-Date:   Tue, 10 Jan 2023 09:57:09 +0100
+        with ESMTP id S237687AbjAJJEc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 04:04:32 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D552D192A5;
+        Tue, 10 Jan 2023 01:03:03 -0800 (PST)
+Received: from loongson.cn (unknown [112.20.112.33])
+        by gateway (Coremail) with SMTP id _____8BxrOrFKb1jKrMAAA--.2152S3;
+        Tue, 10 Jan 2023 17:03:01 +0800 (CST)
+Received: from [192.168.100.127] (unknown [112.20.112.33])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxX+TCKb1jhE4XAA--.5820S3;
+        Tue, 10 Jan 2023 17:03:00 +0800 (CST)
+Message-ID: <5813531d-6b58-9b2d-cff1-b6f296021746@loongson.cn>
+Date:   Tue, 10 Jan 2023 17:02:58 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 2/2][v4] arm64: dts: imx8mm-evk: add revision-B EVK
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: move cpu-capacity to a shared
+ loation
 Content-Language: en-US
-To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+To:     Conor Dooley <conor@kernel.org>, palmer@dabbelt.com
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20230110043257.3637516-2-johannes.schneider@leica-geosystems.com>
- <20230110043257.3637516-3-johannes.schneider@leica-geosystems.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230110043257.3637516-3-johannes.schneider@leica-geosystems.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-doc@vger.kernel.org
+References: <20230104180513.1379453-1-conor@kernel.org>
+ <20230104180513.1379453-2-conor@kernel.org>
+From:   Yanteng Si <siyanteng@loongson.cn>
+In-Reply-To: <20230104180513.1379453-2-conor@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8AxX+TCKb1jhE4XAA--.5820S3
+X-CM-SenderInfo: pvl1t0pwhqwqxorr0wxvrqhubq/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxXr4xArW3Ar17JFyDuw15Jwb_yoWruF1xp3
+        9rCFWxJ3WftFy7Jas7XF17Jr40gry7Aa1UGF1kKw1kGwn8ArWrt3WSvws8ZF4UCry0yFW7
+        tF10g340gr10yr7anT9S1TB71UUUUjJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bqkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
+        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+        wVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
+        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
+        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r126r1DMcIj6I8E
+        87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0V
+        AS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCF
+        s4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI
+        8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41l
+        IxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIx
+        AIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2
+        jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07joc_-UUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 05:32, Johannes Schneider wrote:
-> the current EVKB come with LPDDR4, and a different PMIC
 
-Same comments. Also drop coma before "and". come->comes. I actually have
-trouble understanding this "Current EVKB". Can there be outdated or
-future EVKB?
+在 1/5/23 02:05, Conor Dooley 写道:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> RISC-V uses the same generic topology code as arm64 & while there
+> currently exists no binding for cpu-capacity on RISC-V, the code paths
+> can be hit if the property is present.
+>
+> Move the documentation of cpu-capacity to a shared location, ahead of
+> defining a binding for capacity-dmips-mhz on RISC-V. Update some
+> references to this document in the process.
+>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-> 
-> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+Reviewed-by: Yanteng Si <siyanteng@loongson.cn>
+
 > ---
->  .../devicetree/bindings/arm/fsl.yaml          |   1 +
->  arch/arm64/boot/dts/freescale/imx8mm-evkb.dts | 132 ++++++++++++++++++
-
-And how do you build it? Missing makefile, missing testing.
-
-
->  2 files changed, 133 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index fbfc4f99c01e..9c3a02c19847 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-
-Bindings are separate patches.
-
-> @@ -818,6 +818,7 @@ properties:
->                - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
->                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
->                - fsl,imx8mm-evk            # i.MX8MM EVK Board
-> +              - fsl,imx8mm-evkb           # i.MX8MM EVK Board, rev-B
->                - gateworks,imx8mm-gw7904
->                - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
->                - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
-> new file mode 100644
-
-
-Best regards,
-Krzysztof
+> I wasn't sure what to do with reference [1], but since the property will
+> be the same on RISC-V, I left it as is.
+> ---
+>   Documentation/devicetree/bindings/arm/cpus.yaml               | 2 +-
+>   .../devicetree/bindings/{arm => cpu}/cpu-capacity.txt         | 4 ++--
+>   Documentation/scheduler/sched-capacity.rst                    | 2 +-
+>   Documentation/translations/zh_CN/scheduler/sched-capacity.rst | 2 +-
+>   4 files changed, 5 insertions(+), 5 deletions(-)
+>   rename Documentation/devicetree/bindings/{arm => cpu}/cpu-capacity.txt (98%)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+> index 01b5a9c689a2..a7586295a6f5 100644
+> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+> @@ -257,7 +257,7 @@ properties:
+>   
+>     capacity-dmips-mhz:
+>       description:
+> -      u32 value representing CPU capacity (see ./cpu-capacity.txt) in
+> +      u32 value representing CPU capacity (see ../cpu/cpu-capacity.txt) in
+>         DMIPS/MHz, relative to highest capacity-dmips-mhz
+>         in the system.
+>   
+> diff --git a/Documentation/devicetree/bindings/arm/cpu-capacity.txt b/Documentation/devicetree/bindings/cpu/cpu-capacity.txt
+> similarity index 98%
+> rename from Documentation/devicetree/bindings/arm/cpu-capacity.txt
+> rename to Documentation/devicetree/bindings/cpu/cpu-capacity.txt
+> index cc5e190390b7..f28e1adad428 100644
+> --- a/Documentation/devicetree/bindings/arm/cpu-capacity.txt
+> +++ b/Documentation/devicetree/bindings/cpu/cpu-capacity.txt
+> @@ -1,12 +1,12 @@
+>   ==========================================
+> -ARM CPUs capacity bindings
+> +CPU capacity bindings
+>   ==========================================
+>   
+>   ==========================================
+>   1 - Introduction
+>   ==========================================
+>   
+> -ARM systems may be configured to have cpus with different power/performance
+> +Some systems may be configured to have cpus with different power/performance
+>   characteristics within the same chip. In this case, additional information has
+>   to be made available to the kernel for it to be aware of such differences and
+>   take decisions accordingly.
+> diff --git a/Documentation/scheduler/sched-capacity.rst b/Documentation/scheduler/sched-capacity.rst
+> index 805f85f330b5..8e2b8538bc2b 100644
+> --- a/Documentation/scheduler/sched-capacity.rst
+> +++ b/Documentation/scheduler/sched-capacity.rst
+> @@ -260,7 +260,7 @@ for that purpose.
+>   
+>   The arm and arm64 architectures directly map this to the arch_topology driver
+>   CPU scaling data, which is derived from the capacity-dmips-mhz CPU binding; see
+> -Documentation/devicetree/bindings/arm/cpu-capacity.txt.
+> +Documentation/devicetree/bindings/cpu/cpu-capacity.txt.
+>   
+>   3.2 Frequency invariance
+>   ------------------------
+> diff --git a/Documentation/translations/zh_CN/scheduler/sched-capacity.rst b/Documentation/translations/zh_CN/scheduler/sched-capacity.rst
+> index 3a52053c29dc..e07ffdd391d3 100644
+> --- a/Documentation/translations/zh_CN/scheduler/sched-capacity.rst
+> +++ b/Documentation/translations/zh_CN/scheduler/sched-capacity.rst
+> @@ -233,7 +233,7 @@ CFS调度类基于实体负载跟踪机制（Per-Entity Load Tracking, PELT）
+>   
+>   arm和arm64架构直接把这个信息映射到arch_topology驱动的CPU scaling数据中（译注：参考
+>   arch_topology.h的percpu变量cpu_scale），它是从capacity-dmips-mhz CPU binding中衍生计算
+> -出来的。参见Documentation/devicetree/bindings/arm/cpu-capacity.txt。
+> +出来的。参见Documentation/devicetree/bindings/cpu/cpu-capacity.txt。
+>   
+>   3.2 频率不变性
+>   --------------
 
