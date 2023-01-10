@@ -2,129 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60CE16636E9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 02:50:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB33866372E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 03:18:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234800AbjAJBu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Jan 2023 20:50:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34670 "EHLO
+        id S234513AbjAJCSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Jan 2023 21:18:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235118AbjAJBuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 20:50:19 -0500
-Received: from SHSQR01.spreadtrum.com (mx1.unisoc.com [222.66.158.135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E61D6F03F
-        for <devicetree@vger.kernel.org>; Mon,  9 Jan 2023 17:50:17 -0800 (PST)
-Received: from SHSend.spreadtrum.com (bjmbx02.spreadtrum.com [10.0.64.8])
-        by SHSQR01.spreadtrum.com with ESMTP id 30A1ntxn015779;
-        Tue, 10 Jan 2023 09:49:55 +0800 (+08)
-        (envelope-from Chunyan.Zhang@unisoc.com)
-Received: from ubt.spreadtrum.com (10.0.74.87) by BJMBX02.spreadtrum.com
- (10.0.64.8) with Microsoft SMTP Server (TLS) id 15.0.1497.23; Tue, 10 Jan
- 2023 09:49:51 +0800
-From:   Chunyan Zhang <chunyan.zhang@unisoc.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        "Chunyan Zhang" <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: [PATCH V4 3/3] dt-bindings: gpio: Add compatible string for Unisoc UMS512
-Date:   Tue, 10 Jan 2023 09:49:43 +0800
-Message-ID: <20230110014943.2196046-4-chunyan.zhang@unisoc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230110014943.2196046-1-chunyan.zhang@unisoc.com>
-References: <20230110014943.2196046-1-chunyan.zhang@unisoc.com>
+        with ESMTP id S230199AbjAJCSX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Jan 2023 21:18:23 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16BC9D5E;
+        Mon,  9 Jan 2023 18:18:20 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id CA36324E161;
+        Tue, 10 Jan 2023 10:18:18 +0800 (CST)
+Received: from EXMBX161.cuchost.com (172.16.6.71) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 10 Jan
+ 2023 10:18:18 +0800
+Received: from [192.168.125.128] (113.72.147.215) by EXMBX161.cuchost.com
+ (172.16.6.71) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 10 Jan
+ 2023 10:18:17 +0800
+Message-ID: <4febeef1-a42a-7d6f-d1af-d8fe19582822@starfivetech.com>
+Date:   Tue, 10 Jan 2023 10:14:21 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.0.74.87]
-X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
- BJMBX02.spreadtrum.com (10.0.64.8)
-X-MAIL: SHSQR01.spreadtrum.com 30A1ntxn015779
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 1/3] dt-bindings: timer: Add timer for StarFive JH7110
+ SoC
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221223094801.181315-1-xingyu.wu@starfivetech.com>
+ <20221223094801.181315-2-xingyu.wu@starfivetech.com>
+ <179e66a8-c6c0-6d3e-4f4a-6b884f532572@linaro.org>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <179e66a8-c6c0-6d3e-4f4a-6b884f532572@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.147.215]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX161.cuchost.com
+ (172.16.6.71)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UMS512 use the same GPIO and EIC controller with SC9860.
+On 2022/12/23 18:25, Krzysztof Kozlowski wrote:
+> On 23/12/2022 10:47, Xingyu Wu wrote:
+>> Add bindings for the timer on the JH7110
+>> RISC-V SoC by StarFive Technology Ltd.
+> 
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
+> 
+> 
+>> 
+>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> ---
+>>  .../timer/starfive,jh7110-timers.yaml         | 105 ++++++++++++++++++
+>>  1 file changed, 105 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml b/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
+>> new file mode 100644
+>> index 000000000000..fe58dc056313
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/timer/starfive,jh7110-timers.yaml
+>> @@ -0,0 +1,105 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/timer/starfive,jh7110-timers.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive Timers
+> 
+> 
+> Not enough, really not enough. Describe the hardware.
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/gpio/sprd,gpio-eic.yaml          | 33 +++++++++++++++----
- .../devicetree/bindings/gpio/sprd,gpio.yaml   |  7 +++-
- 2 files changed, 33 insertions(+), 7 deletions(-)
+Will add. Thanks.
 
-diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-index a21350bd0f2c..99fcf970773a 100644
---- a/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-+++ b/Documentation/devicetree/bindings/gpio/sprd,gpio-eic.yaml
-@@ -42,12 +42,33 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - sprd,sc9860-eic-debounce
--      - sprd,sc9860-eic-latch
--      - sprd,sc9860-eic-async
--      - sprd,sc9860-eic-sync
--      - sprd,sc2731-eic
-+    oneOf:
-+      - enum:
-+          - sprd,sc9860-eic-debounce
-+          - sprd,sc9860-eic-latch
-+          - sprd,sc9860-eic-async
-+          - sprd,sc9860-eic-sync
-+          - sprd,sc2731-eic
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-debounce
-+          - const: sprd,sc9860-eic-debounce
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-latch
-+          - const: sprd,sc9860-eic-latch
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-async
-+          - const: sprd,sc9860-eic-async
-+      - items:
-+          - enum:
-+              - sprd,ums512-eic-sync
-+          - const: sprd,sc9860-eic-sync
-+      - items:
-+          - enum:
-+              - sprd,sc2730-eic
-+          - const: sprd,sc2731-eic
- 
-   reg:
-     minItems: 1
-diff --git a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-index 40924123d184..483168838128 100644
---- a/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/sprd,gpio.yaml
-@@ -19,7 +19,12 @@ description: |
- 
- properties:
-   compatible:
--    const: sprd,sc9860-gpio
-+    oneOf:
-+      - const: sprd,sc9860-gpio
-+      - items:
-+          - enum:
-+              - sprd,ums512-gpio
-+          - const: sprd,sc9860-gpio
- 
-   reg:
-     maxItems: 1
--- 
-2.25.1
+> 
+>> +
+>> +maintainers:
+>> +  - Samin Guo <samin.guo@starfivetech.com>
+>> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh7110-timers
+> 
+> Why plural "timers", not "timer"? The module is usually called timer -
+> see other hardware that type.
+> 
+
+Will fix. Thanks.
+
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    items:
+>> +      - description: timer channel 0 interrupt
+>> +      - description: timer channel 1 interrupt
+>> +      - description: timer channel 2 interrupt
+>> +      - description: timer channel 3 interrupt
+>> +
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: timer0
+>> +      - const: timer1
+>> +      - const: timer2
+>> +      - const: timer3
+> 
+> I would just drop the names, not really useful. Unless you plan to add
+> here some generic interrupt (like you did for clock-names)?
+
+Will drop. Thanks.
+
+> 
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: timer channel 0 clock
+>> +      - description: timer channel 1 clock
+>> +      - description: timer channel 2 clock
+>> +      - description: timer channel 3 clock
+>> +      - description: APB clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: timer0
+>> +      - const: timer1
+>> +      - const: timer2
+>> +      - const: timer3
+>> +      - const: apb
+>> +
+>> +  resets:
+>> +    items:
+>> +      - description: timer channel 0 reset
+>> +      - description: timer channel 1 reset
+>> +      - description: timer channel 2 reset
+>> +      - description: timer channel 3 reset
+>> +      - description: APB reset
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: timer0
+>> +      - const: timer1
+>> +      - const: timer2
+>> +      - const: timer3
+>> +      - const: apb
+>> +
+>> +  clock-frequency:
+>> +    description: The frequency of the clock that drives the counter, in Hz.
+> 
+> Why do you need it? Use common clk framework to get that frequency.
+
+Because normally this timer driver is loaded earlier than the clock tree driver, it won't get
+that frequency by clk framework and this 'clock-frequency' node is used instead.
+
+> 
+> Also, sort the nodes somehow, e.g.
+> compatible/reg/clocks/clock-frequency/interrupts/resets.
+
+Will reorder. Thanks.
+
+> 
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - interrupt-names
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - reset-names
+>> +  - clock-frequency
+>> +
+>> +unevaluatedProperties: false
+> 
+> Did you test the binding?
+
+Yes, I had tested by 'dt_binding_check'. Do you mean the 'unevaluatedProperties' is wrong
+and use 'additionalProperties'?
+
+Best regards,
+Xingyu Wu
 
