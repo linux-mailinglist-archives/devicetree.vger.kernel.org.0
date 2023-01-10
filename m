@@ -2,80 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B702C6639A8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 08:01:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22C73663A0D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Jan 2023 08:37:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbjAJHBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 02:01:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37000 "EHLO
+        id S229727AbjAJHhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 02:37:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229927AbjAJHBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 02:01:52 -0500
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C82421B6;
-        Mon,  9 Jan 2023 23:01:51 -0800 (PST)
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id 32C1768BFE; Tue, 10 Jan 2023 08:01:45 +0100 (CET)
-Date:   Tue, 10 Jan 2023 08:01:44 +0100
-From:   Christoph Hellwig <hch@lst.de>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
-        "Conor.Dooley" <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        guoren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Tsukasa OI <research_trasio@irq.a4lg.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Mayuresh Chitale <mchitale@ventanamicro.com>,
-        Christoph Hellwig <hch@lst.de>, Will Deacon <will@kernel.org>
-Subject: Re: [RFC PATCH v6 1/6] riscv: mm: dma-noncoherent: Switch using
- function pointers for cache management
-Message-ID: <20230110070144.GG10289@lst.de>
-References: <20230106185526.260163-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230106185526.260163-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <6f7d06ef-d74d-4dfc-9b77-6ae83e0d7816@app.fastmail.com> <CA+V-a8uF1s+dwKC_+apL+CBiHN8w_J0n_G2dqsgiAUZVEibfqg@mail.gmail.com> <9017adf0-acd4-4c43-8aea-3579b214b477@app.fastmail.com> <CA+V-a8u6jvR=EDeE3mAbDr6-06NoBJ7mwmi_Y9qVyHT+aC-9rg@mail.gmail.com> <45d6eb0c-cbe3-4a83-aa12-3483638473ae@app.fastmail.com>
+        with ESMTP id S229588AbjAJHhj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 02:37:39 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A438BB7FA;
+        Mon,  9 Jan 2023 23:37:37 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5E67CB810D2;
+        Tue, 10 Jan 2023 07:37:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F676C433EF;
+        Tue, 10 Jan 2023 07:37:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673336254;
+        bh=yyBOKFhrCvYd11DKsv7H9EdXoPHAesnTP8S2RO2fISM=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+        b=V63Eu2pOQj2CNEJEp7UxZxAmbxUNKrHlTIeriGOqqdUZbZPdzgD5kz078zJkTycPs
+         VMc8vDYmBzyjQVGnzZj4W0Lkzd14+vcOVAMCwIewgcrXG1MDaeF1YZH2wEZGp7RTlB
+         wuYYTo/+oSKYpFJM1Jww1QxPboFpc85nU6IjecaT4ifVGWWe/lYyB7wIsXBH1KHjLr
+         4I8/5suum23hAIwuZJX83JJd0cvWocvrn1t9rdft9Bo12OudKlcLPG2ldOe7N/NuzV
+         qut4qEpX6n46Vxn627A4sy/Y9zA8kxcSiPGFdo7rrBZzWfkHT5ThF1nnvn44Uc019r
+         oj68fsnDJ1j/A==
+Date:   Tue, 10 Jan 2023 07:37:29 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     JiaJie Ho <jiajie.ho@starfivetech.com>
+CC:     Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: =?US-ASCII?Q?RE=3A_=5BPATCH_v3_3/3=5D_riscv=3A_dts=3A_star?= =?US-ASCII?Q?five=3A_Add_TRNG_node_for_VisionFive_2?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <31f6c05b2836450d86560c3efda4abf2@EXMBX168.cuchost.com>
+References: <20230109165249.110279-1-jiajie.ho@starfivetech.com> <20230109165249.110279-4-jiajie.ho@starfivetech.com> <Y7xWtFZO/Y7GaYRQ@spud> <31f6c05b2836450d86560c3efda4abf2@EXMBX168.cuchost.com>
+Message-ID: <50178BB5-4698-4A52-AD89-7235C3802411@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <45d6eb0c-cbe3-4a83-aa12-3483638473ae@app.fastmail.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 09, 2023 at 01:59:12PM +0100, Arnd Bergmann wrote:
-> I had another look at the arm64 side, which (like the zicbom
-> variant) uses 'clean' on dma_sync_single_for_device(DMA_FROM_DEVICE),
-> as that has changed not that long ago, see
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c50f11c6196f45c92ca48b16a5071615d4ae0572
 
-which IIRC has been reverted recently.
 
-> I'm still not sure what the correct set of operations has
-> to be, but nothing in that patch description sounds ISA
-> or even microarchitecture specific.
+On 10 January 2023 00:59:58 GMT, JiaJie Ho <jiajie=2Eho@starfivetech=2Ecom=
+> wrote:
+>
+>
+>> -----Original Message-----
+>> From: Conor Dooley <conor@kernel=2Eorg>
+>> Sent: 10 January, 2023 2:02 AM
+>> To: JiaJie Ho <jiajie=2Eho@starfivetech=2Ecom>
+>> Cc: Olivia Mackall <olivia@selenic=2Ecom>; Herbert Xu
+>> <herbert@gondor=2Eapana=2Eorg=2Eau>; Rob Herring <robh+dt@kernel=2Eorg>=
+;
+>> Krzysztof Kozlowski <krzysztof=2Ekozlowski+dt@linaro=2Eorg>; Emil Renne=
+r
+>> Berthing <kernel@esmil=2Edk>; Conor Dooley <conor=2Edooley@microchip=2E=
+com>;
+>> linux-crypto@vger=2Ekernel=2Eorg; devicetree@vger=2Ekernel=2Eorg; linux=
+-
+>> kernel@vger=2Ekernel=2Eorg; linux-riscv@lists=2Einfradead=2Eorg
+>> Subject: Re: [PATCH v3 3/3] riscv: dts: starfive: Add TRNG node for Vis=
+ionFive
+>> 2
+>>=20
+>> Hey folks,
+>>=20
+>> On Tue, Jan 10, 2023 at 12:52:49AM +0800, Jia Jie Ho wrote:
+>> > Adding StarFive TRNG controller node to VisionFive 2 SoC=2E
+>> >
+>> > Co-developed-by: Jenny Zhang <jenny=2Ezhang@starfivetech=2Ecom>
+>> > Signed-off-by: Jenny Zhang <jenny=2Ezhang@starfivetech=2Ecom>
+>> > Signed-off-by: Jia Jie Ho <jiajie=2Eho@starfivetech=2Ecom>
+>> > ---
+>> >  arch/riscv/boot/dts/starfive/jh7110=2Edtsi | 10 ++++++++++
+>> >  1 file changed, 10 insertions(+)
+>> >
+>> > diff --git a/arch/riscv/boot/dts/starfive/jh7110=2Edtsi
+>> > b/arch/riscv/boot/dts/starfive/jh7110=2Edtsi
+>> > index 4ac159d79d66=2E=2E3c29e0bc6246 100644
+>> > --- a/arch/riscv/boot/dts/starfive/jh7110=2Edtsi
+>> > +++ b/arch/riscv/boot/dts/starfive/jh7110=2Edtsi
+>> > @@ -455,5 +455,15 @@ uart5: serial@12020000 {
+>> >  			reg-shift =3D <2>;
+>> >  			status =3D "disabled";
+>> >  		};
+>> > +
+>> > +		rng: rng@1600c000 {
+>> > +			compatible =3D "starfive,jh7110-trng";
+>> > +			reg =3D <0x0 0x1600C000 0x0 0x4000>;
+>> > +			clocks =3D <&stgcrg JH7110_STGCLK_SEC_HCLK>,
+>> > +				 <&stgcrg JH7110_STGCLK_SEC_MISCAHB>;
+>>=20
+>> Which clock source is this? I see syscrg and aoncrg in the v3
+>> devicetree:
+>> https://lore=2Ekernel=2Eorg/linux-riscv/20221220011247=2E35560-7-
+>> hal=2Efeng@starfivetech=2Ecom/
+>>=20
+>> Have a missed a patchset which adds support for this particular clock
+>> controller? At the very least, I don't think one has reached the linux-=
+riscv
+>> mailing list=2E
+>> The clock driver patchset only has aoncrg & syscrg:
+>> https://lore=2Ekernel=2Eorg/linux-riscv/20221220005054=2E34518-1-
+>> hal=2Efeng@starfivetech=2Ecom/
+>>=20
+>
+>Hi Conor,
+>
+>Thanks for reviewing the patches=2E
+>Yes, the patch for stg domain hasn't been submitted yet=2E
+>In this case should I drop this patch from the series until the related p=
+atches reach the mailing list?
 
-Nothing is ISA specific, and the only micro architecture related thing
-is if the specific core can speculate memory accesses.  See the table
-in arch/arc/mm/dma.c for details.
+Since it doesn't apply anyway, no harm keeping it IMO=2E
+Having the dts can make it easier, although not in this case, to look at t=
+he binding and driver=2E
+Just mention it in the cover letter if/when you send another version=2E
 
-And as commented on the arm64 patch I really hate architectures getting
-creative here, as I'd much prefer to move the choice of primitives to
-the core DMA code and just provide helpers to invalidate/writeback/
-writeback+invalidate from the architectures eventually.
+Thanks,
+Conor=2E
+
