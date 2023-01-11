@@ -2,137 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 139086662A1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 19:18:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EF856662A3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 19:19:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232926AbjAKSSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 13:18:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59044 "EHLO
+        id S235618AbjAKSTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 13:19:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232042AbjAKSSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 13:18:42 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF6664CC;
-        Wed, 11 Jan 2023 10:18:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 681CF61CAD;
-        Wed, 11 Jan 2023 18:18:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 268DDC433EF;
-        Wed, 11 Jan 2023 18:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673461120;
-        bh=Ft6ts49/fdxZzt/+lIGE0K5qPyLC/HSErr1aisZrG78=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jmPyapBajBJmsUZ/i0FdFZcz5bzc13Um8acMKnukZjL0n+l9flQk20HAYozaMvC0q
-         eCj2+Da18yD40Hx4KC9AVLra2V9syHAQ9l4LrDDB8DmgnajtZq04bOY9SxrHIpvU2y
-         EIBFvTnWCyP2tImK+8/Sdh5UuJBtElqyCF8iXPRd8EQp6HOuppJ7KjwnEOT0TaJ25H
-         h34ZGNCu1+NvvMJWz/ZSW5rWI+vVh3frDv3xgSWV9+PKhV7sdbE0qzxQfvN/BWfkIX
-         zok8Z18lxUNdkgV1PACztsRVX1fBl4rQwWKdeFeuyo1TbxVDBJi6mlpIUrkW438w2F
-         hFnV/Iz2Ttb2w==
-Date:   Wed, 11 Jan 2023 18:18:35 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     daire.mcnamara@microchip.com
-Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
-        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v3 02/11] PCI: microchip: Remove cast warning for
- devm_add_action_or_reset() arg
-Message-ID: <Y779e4gfZW5P5gDP@spud>
-References: <20230111125323.1911373-1-daire.mcnamara@microchip.com>
- <20230111125323.1911373-3-daire.mcnamara@microchip.com>
+        with ESMTP id S231511AbjAKSTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 13:19:17 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475E11EEC2;
+        Wed, 11 Jan 2023 10:19:15 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30BIJ2ri114692;
+        Wed, 11 Jan 2023 12:19:02 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673461142;
+        bh=Zs3Ynwf5Vr90rNQZhzl2CyOc9tGJkvAICxtJFLF7zdk=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=xjuWjHbtaoj2jtSb2MHQ3QbqkzgJwYb9tD36ZHKx3HOR0oPQKKsS3TOszG9QfNLRN
+         Fe83RckGfXHgnc5u7hB2YnMw6/J5ZwtWtuQevvHsfSk5II3VjNMvM66TTy1gcVJoxC
+         6KzMv961p2y4xslv3jB80GRHeBXI+LnilEt3iN0I=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30BIJ2As005581
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 11 Jan 2023 12:19:02 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 11
+ Jan 2023 12:19:02 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 11 Jan 2023 12:19:02 -0600
+Received: from [10.250.233.151] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30BIIvdW058943;
+        Wed, 11 Jan 2023 12:18:58 -0600
+Message-ID: <9d6841f3-e3d5-a875-8057-1727f7ccaf1e@ti.com>
+Date:   Wed, 11 Jan 2023 23:48:57 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3ul3IBHmWNX2j1kt"
-Content-Disposition: inline
-In-Reply-To: <20230111125323.1911373-3-daire.mcnamara@microchip.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 3/3] arm64: dts: ti: k3-am625-sk: Add support for USB
+Content-Language: en-US
+To:     Sjoerd Simons <sjoerd@collabora.com>, Nishanth Menon <nm@ti.com>
+CC:     <kernel@collabora.com>, Nitin Yadav <n-yadav@ti.com>,
+        <martyn.welch@collabora.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230111132348.553061-1-sjoerd@collabora.com>
+ <20230111132348.553061-4-sjoerd@collabora.com>
+From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
+In-Reply-To: <20230111132348.553061-4-sjoerd@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sjoerd,
 
---3ul3IBHmWNX2j1kt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Couple of comments which I failed to notice on v2, sorry
 
-Hey Daire,
+On 1/11/2023 6:53 PM, Sjoerd Simons wrote:
+> From: Aswath Govindraju <a-govindraju@ti.com>
+> 
+> AM62 SoC has two instances of USB and they are brought on to the board
+> in the following way,
+> 
+> -> USB0 instance
+>  - This is brought out to a USB TypeC connector on board through TPS6598 PD
+>    controller. The PD controller should decide the role based on CC pin in
+>    the connector. Unfortunately the irq line for the TPS isn't hooked up
+>    which is a mode not yet support by the driver (some patches were
+>    submitted earlier this year[0]). So for now the PD controller is left
+>    out and periphal mode chosen.
 
-On Wed, Jan 11, 2023 at 12:53:14PM +0000, daire.mcnamara@microchip.com wrot=
-e:
-> From: Daire McNamara <daire.mcnamara@microchip.com>
->=20
-> The kernel test robot reported that the ugly cast from
-> void(*)(struct clk *) to void (*)(void *) converts to incompatible
-> function type.  This commit adopts the common convention of creating a
-> trivial stub function that takes a void * and passes it to the
-> underlying function that expects the more specific type.
->=20
-> Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip PolarFire PCIe contro=
-ller driver")
+s/periphal/peripheral
 
-Reported-by: kernel test robot <lkp@intel.com>
-
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> 
+> -> USB1 instance
+>  - This is brought out to a USB TypeA connector on board.
+> 
+> Therefore, add the required device tree support for the above in the board
+> dts file.
+> 
+> 0: https://lore.kernel.org/lkml/f714ee55-ef47-317d-81b9-57020dda064b@ti.com/T/
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> [merge from vendor bsp, drop TPS6598 support, reword commit message]
+> Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+> Tested-by: Martyn Welch <martyn.welch@collabora.com>
+> 
 > ---
->  drivers/pci/controller/pcie-microchip-host.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/c=
-ontroller/pcie-microchip-host.c
-> index 5c89caaab8c9..5efd480e42fa 100644
-> --- a/drivers/pci/controller/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/pcie-microchip-host.c
-> @@ -848,6 +848,13 @@ static const struct irq_domain_ops event_domain_ops =
-=3D {
->  	.map =3D mc_pcie_event_map,
->  };
-> =20
-> +static inline void mc_pcie_chip_off_action(void *data)
-> +{
-> +	struct clk *clk =3D data;
+> 
+> Changes in v3:
+> - Rebased against current ti-next aka 6.2-rc1
+> - Add Martyn's tested-by
+> 
+> Changes in v2:
+> - Rebase against linux-next 20221220
+> 
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 50 ++++++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
+
+[...]
+
 > +
-> +	clk_disable_unprepare(clk);
-> +}
+> +&ecap0 {
+> +	status = "disabled";
+> +};
 > +
->  static inline struct clk *mc_pcie_init_clk(struct device *dev, const cha=
-r *id)
->  {
->  	struct clk *clk;
-> @@ -863,8 +870,7 @@ static inline struct clk *mc_pcie_init_clk(struct dev=
-ice *dev, const char *id)
->  	if (ret)
->  		return ERR_PTR(ret);
-> =20
-> -	devm_add_action_or_reset(dev, (void (*) (void *))clk_disable_unprepare,
-> -				 clk);
-> +	devm_add_action_or_reset(dev, mc_pcie_chip_off_action, clk);
+> +&ecap1 {
+> +	status = "disabled";
+> +};
+> +
+> +&ecap2 {
+> +	status = "disabled";
+> +};
+> +
+> +&main_mcan0 {
+> +	status = "disabled";
+> +};
+> +
+> +&epwm0 {
+> +	status = "disabled";
+> +};
+> +
+> +&epwm1 {
+> +	status = "disabled";
+> +};
+> +
+> +&epwm2 {
+> +	status = "disabled";
+> +};
+> +
 
-Certainly looks a lot nicer this way, so 2 for the price of 1 I think.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Unlike downstream vendor kernel, these nodes are "disabled" by default
+in k3-am62-main.dtsi. So, these can be dropped.
 
-> =20
->  	return clk;
->  }
+> +&usbss0 {
+> +	ti,vbus-divider;
+> +};
+> +
+> +&usb0 {
+> +	dr_mode = "peripheral";
+> +};
+> +
+> +&usb1 {
+> +	dr_mode = "host";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_usb1_pins_default>;
+> +};
 
-
---3ul3IBHmWNX2j1kt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY779ewAKCRB4tDGHoIJi
-0g87AQCzYmsXqLFuq7CSIqE4rNjc0xNU0VmLAlH+Se9kAa/SeAEAgxgokT1hVUtr
-DSyU7fifErOQxZrXgkYnSguhZVGMvQQ=
-=GEx/
------END PGP SIGNATURE-----
-
---3ul3IBHmWNX2j1kt--
+Regards
+Vignesh
