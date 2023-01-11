@@ -2,79 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99885665531
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 08:31:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C92566553B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 08:39:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235967AbjAKHbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 02:31:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44310 "EHLO
+        id S231499AbjAKHjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 02:39:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235907AbjAKHb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 02:31:27 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 107F7C76A;
-        Tue, 10 Jan 2023 23:31:26 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id j16so21067663edw.11;
-        Tue, 10 Jan 2023 23:31:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9ZG5/dJfEvlfksUEy4dZqlxkQUvfDpGnkVNpt/A8DFM=;
-        b=L7tzBu0DFenwt3+uzh4aGNJXZrLz9+JI73DKhb1jKJJPerJQP4FXl+Nka8fNjQzWPy
-         3aywNKLauxX1cB4gN8yKBq69FHT8fNTE+J2/++uYpGvCf3dSzEetjSXixny8rXJgE5Xq
-         oo9PI6kahvQTLhucbBFTGwTqwTFnuxVyS6OFcIumGzsj1Ybv4jRx08kxWWOzygLKpiAk
-         7nlKGTNB+GRBqzg6r+K6bltbOAQ0tHJnctOvJmjpu/+pEdPtwtkAqxpG072S4zoPP66v
-         nx+c/09bgi9sLhCWoZof+AAQtzbyT3CJiZhye8S6jtuvlE07aG2P3e9FxFUFiSW8ukS6
-         PWSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9ZG5/dJfEvlfksUEy4dZqlxkQUvfDpGnkVNpt/A8DFM=;
-        b=8ILzlPluDnq+4TKJ7QPAtdLNLtphxVY6qX9DH8E9iM4fn08ho0jzVZDlo7xOgL51dr
-         nfqNay7PpiOp58Lg3vr+RewaA7gAMfjpVN78WbzbGWvA91j8tCmKkWPLrGUwnYp/XNFG
-         YwvOpSWj6cLMsYS3F/TEDhtV+g2WU+BnLxmT3h3Yg3n27A+mOvMhlQ9DJB2MjOtbpfR+
-         mz27I2InWTNlDtqTS2Z+IYuG8/EWKJFj+O087CeY3Kfoy6r6DmDHSya0xocu5fU/p3uV
-         aHz8oazM3FvtukKVIXDMkM4e9NH3filVUiJi1siw1Ib84ftSMzmTnXQpM07iV4u+cjuP
-         l9Tw==
-X-Gm-Message-State: AFqh2krQsdRjS2NCqHEpV8NTLgSKuvVZhE84mXRx7u4AGS9QvpOtV651
-        QL5uCSY6u74FleIV6r5Q6CE=
-X-Google-Smtp-Source: AMrXdXviRWemoxJeyz2j5A2MJA1bIBH5p+F2cAyWLSNk5iJigeCylpmCPfufczACWXrlMLnmM2wjbA==
-X-Received: by 2002:a50:eac6:0:b0:461:d042:80db with SMTP id u6-20020a50eac6000000b00461d04280dbmr61859126edp.0.1673422284520;
-        Tue, 10 Jan 2023 23:31:24 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id ed6-20020a056402294600b00499e5659988sm593193edb.68.2023.01.10.23.31.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 23:31:24 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        u-boot@lists.denx.de,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 6/6] nvmem: u-boot-env: post process "ethaddr" env variable
-Date:   Wed, 11 Jan 2023 08:31:02 +0100
-Message-Id: <20230111073102.8147-6-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230111073102.8147-1-zajec5@gmail.com>
-References: <20230111073102.8147-1-zajec5@gmail.com>
+        with ESMTP id S231975AbjAKHjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 02:39:13 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2054F10B44
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 23:39:12 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1pFVhK-0004Cd-SK; Wed, 11 Jan 2023 08:38:58 +0100
+Message-ID: <7b77825d-cbdb-0150-c30b-aa97fa39fe27@pengutronix.de>
+Date:   Wed, 11 Jan 2023 08:38:55 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add support for Data Modul i.MX8M
+ Plus eDM SBC
+To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc:     Denys Drozdov <denys.drozdov@toradex.com>,
+        Fabio Estevam <festevam@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20221218051800.495932-1-marex@denx.de>
+ <20221218051800.495932-2-marex@denx.de>
+Content-Language: en-US
+In-Reply-To: <20221218051800.495932-2-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,81 +59,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hello Marek,
 
-U-Boot environment variables are stored in ASCII format so "ethaddr"
-requires parsing into binary to make it work with Ethernet interfaces.
+On 18.12.22 06:18, Marek Vasut wrote:
+> Add support for Data Modul i.MX8M Plus eDM SBC board. This is an
+> evaluation board for various custom display units. Currently
+> supported are serial console, ethernet, eMMC, SD, SPI NOR,
+> USB host and USB OTG.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Denys Drozdov <denys.drozdov@toradex.com>
+> Cc: Fabio Estevam <festevam@denx.de>
+> Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Li Yang <leoyang.li@nxp.com>
+> Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Matthias Schiffer <matthias.schiffer@tq-group.com>
+> Cc: Max Krummenacher <max.krummenacher@toradex.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Tim Harvey <tharvey@gateworks.com>
+> Cc: devicetree@vger.kernel.org
+> To: linux-arm-kernel@lists.infradead.org
 
-This includes support for indexes to support #nvmem-cell-cells = <1>.
+Could you share your get_maintainers.pl invocation? I'd like to
+adjust the reviewer entry in MAINTAINERS, so such patches get
+into our kernel@pengutronix.de inbox as well.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/layouts/Kconfig      |  1 +
- drivers/nvmem/layouts/u-boot-env.c | 25 +++++++++++++++++++++++++
- 2 files changed, 26 insertions(+)
+Some more comments below.
 
-diff --git a/drivers/nvmem/layouts/Kconfig b/drivers/nvmem/layouts/Kconfig
-index 8a38c514943a..566b4f25630d 100644
---- a/drivers/nvmem/layouts/Kconfig
-+++ b/drivers/nvmem/layouts/Kconfig
-@@ -23,6 +23,7 @@ config NVMEM_LAYOUT_ONIE_TLV
- config NVMEM_LAYOUT_U_BOOT_ENV
- 	bool "U-Boot environment variables support"
- 	select CRC32
-+	select GENERIC_NET_UTILS
- 	help
- 	  U-Boot stores its setup as environment variables. This driver adds
- 	  support for verifying & exporting such data. It also exposes variables
-diff --git a/drivers/nvmem/layouts/u-boot-env.c b/drivers/nvmem/layouts/u-boot-env.c
-index 95c314553952..e99b853a44c4 100644
---- a/drivers/nvmem/layouts/u-boot-env.c
-+++ b/drivers/nvmem/layouts/u-boot-env.c
-@@ -4,6 +4,8 @@
-  */
- 
- #include <linux/crc32.h>
-+#include <linux/etherdevice.h>
-+#include <linux/if_ether.h>
- #include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/nvmem-consumer.h>
-@@ -36,6 +38,27 @@ struct u_boot_env_image_broadcom {
- 	uint8_t data[];
- } __packed;
- 
-+static int u_boot_env_read_post_process_ethaddr(void *context, const char *id, int index,
-+						unsigned int offset, void **data, size_t *bytes)
-+{
-+	u8 mac[ETH_ALEN];
-+
-+	if (*bytes != 3 * ETH_ALEN - 1)
-+		return -EINVAL;
-+
-+	if (!mac_pton(*data, mac))
-+		return -EINVAL;
-+
-+	if (index)
-+		eth_addr_add(mac, index);
-+
-+	/* We need *smaller* buffer so don't bother to krealloc() */
-+	ether_addr_copy(*data, mac);
-+	*bytes = ETH_ALEN;
-+
-+	return 0;
-+}
-+
- static int u_boot_env_parse_data(struct device *dev, struct nvmem_device *nvmem, uint8_t *buf,
- 				 size_t data_offset, size_t data_len)
- {
-@@ -67,6 +90,8 @@ static int u_boot_env_parse_data(struct device *dev, struct nvmem_device *nvmem,
- 		info.offset = data_offset + value - data;
- 		info.bytes = strlen(value);
- 		info.np = of_get_child_by_name(np, info.name);
-+		if (!strcmp(var, "ethaddr"))
-+			info.read_post_process = u_boot_env_read_post_process_ethaddr;
- 
- 		err = nvmem_add_one_cell(nvmem, &info);
- 		if (err) {
+> +	pmic: pmic@25 {
+> +		compatible = "nxp,pca9450c";
+> +		reg = <0x25>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +		sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+
+Here you assume GPIO1_IO04 is muxed as GPIO.
+
+> +	pinctrl_usdhc2: usdhc2-grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc1
+
+Here you mux it for USDHC2_VSELECT though. Is this intended?
+
+> +/* eMMC */
+> +&usdhc3 {
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> +	vmmc-supply = <&buck4>;
+> +	vqmmc-supply = <&buck5>;
+> +	bus-width = <8>;
+> +	non-removable;
+
+You can add
+
+  no-sd;
+  no-sdio;
+
+to skip that init dance if the eMMC is indeed non-removable.
+
+Cheers,
+Ahmad
+
 -- 
-2.34.1
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
