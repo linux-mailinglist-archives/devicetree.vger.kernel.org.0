@@ -2,135 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51ABD6656DC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:05:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98E7D6656F1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:09:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231683AbjAKJFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 04:05:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37080 "EHLO
+        id S237715AbjAKJJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 04:09:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232814AbjAKJEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:04:30 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9FD815735
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:02:54 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id ja17so10602906wmb.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:02:54 -0800 (PST)
+        with ESMTP id S238425AbjAKJIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:08:02 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF84B12ADA;
+        Wed, 11 Jan 2023 01:05:31 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id u19so35088054ejm.8;
+        Wed, 11 Jan 2023 01:05:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jayg4ZreJdJdft84zMpQKgU5NC7skf1NU+gqLmjc7vs=;
-        b=kKZYLptAWmtXDFshJo4N2fcCUdZ/owDOuJBXW1RYEKuO6De/8wUEJx6qZ4HS6Vj3lp
-         GdWt+9lCKjqvuh9uSWx1A79yXiy/yutRGhwsiJ/5xKW6Q+XHs8KFDSmXXNu6jewavxmk
-         1tXc+9Ek7w4/qDwJ/58/mAKdQjk0bZe5Lk3YFKdQiOQ7PfeHCa9v5F8sRBDVCPz/o4QW
-         7piLErCOoqjKu104gaUjBXlcdKKrDBJNtdUAFWMQW+DHYIFeNuLLvy6a/vS1lqIsY/Kg
-         wVBomDwxbsq8S/gnwsKSWbUVXQf1SKOrQubj00HTg6xeAOJXnycs6VSvQJ9vVHGSj+tt
-         1dhA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=DJzxulyVKtTUohRS+QIHTGQPfrIKfOEeA/pyMeT2Lbs=;
+        b=DY/rryyNK39lZK5j+YItCP3oSVCtzQjhwSqF3HO0q/oe6FH82woyqoU25NGEq8X/rq
+         XfunZPk8zVRnmlZb1rmsjnBDg5s08a0KGuWotaJ5f6vET6cde5mvKMMV9h8NQajDgp9z
+         q+BJKjsekiTpL6IdgDG3eRrjqad0G7vpdsKF1YG7tKoLjK5l4gWWTtnidGD2kbmEOi/B
+         g41asBoarHpRy2wH6XGAwVVkOjhDsWE7+w0RsKUHtBA16Jnvcres+lUfXY916J9dSMY3
+         VcHTXHb7MVJj79D1WOdqUy7MRbvGoMmym1q3KXcuaou0YlvumemC5qdqNztOhoC8Nq2T
+         j2hA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jayg4ZreJdJdft84zMpQKgU5NC7skf1NU+gqLmjc7vs=;
-        b=InGCtTeXentSh9jVVbUhQlPRf1Ja9jS4SJjQu0kPc4Jx4nmqkBi6473Gr6w6O3K5kS
-         oIRDrUqs8XD85NvAE7EL9MqsiChtpMGuwGpb8IRLfo9zqbUC5XBG8jqebLOnzjqSKbt+
-         dOa9f92k2Fq44K3AK4Lt/AaXWvGBrNGvGc3pZzaijErS7+VNjuxE3Ci1GKgEPGrWMIiU
-         fU+1h7wl/grceqkVympEhVPBbPHWd1yzmzG8qMWBoepcuELkkaAa2PkPQVmgEvvQtssQ
-         fbxKX/fEMFvPVDv2uu1a7WVlOkT8qmnhaNGzBjR9GNQMr8WhV9BehXEUKLLC9JJRZmx7
-         f2aQ==
-X-Gm-Message-State: AFqh2kpWmrPabjXVQlukSrbGEteMB974/v2zPawcLf1XfMn9DPc5+dhn
-        q95Ndw4JhqZHVgBHsUmrr7ab/w==
-X-Google-Smtp-Source: AMrXdXuMLV5O/x02mc56Rcm657IsU6f4NJfYHOW4ZfdpJ0pELh2LuBYStHhDWcxIBUE03xHkzcj3EA==
-X-Received: by 2002:a1c:4b04:0:b0:3c6:f0b8:74e6 with SMTP id y4-20020a1c4b04000000b003c6f0b874e6mr52794503wma.4.1673427773355;
-        Wed, 11 Jan 2023 01:02:53 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id x14-20020a1c7c0e000000b003d9f15efcd5sm8772274wmc.6.2023.01.11.01.02.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 01:02:52 -0800 (PST)
-Message-ID: <71c2e796-f0fb-90cd-4599-13c9718f41d5@linaro.org>
-Date:   Wed, 11 Jan 2023 10:02:50 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DJzxulyVKtTUohRS+QIHTGQPfrIKfOEeA/pyMeT2Lbs=;
+        b=tvnqqMw6YyeZuXx9uTYk2wUDGPh1eSPVreL9H7PmyJvhZ0Gfo2XOTojh+IegGO4079
+         NdA69ZySXcKXpK83AnKkN0iiNiQVT21idrldL9OjmMngGTVyL3dGnYdepe46spvCFKca
+         Q46kH9kg1frtfjjU6hZSM08+v0fXRXVv8knjHtA6yFrsasm3vfiAnKVMM4GQCeuy8wLh
+         0m/zeDXhEcUYt3tnUomWVH1anfdrsPJKhzzKUUodNiyIdihGhFkaPdZhDgD07sxW/6wp
+         /x4hjk4rdQOqFb+9H9QFkZxBmxsevU4/7rfwI3taRagC33cLf45NP+SOSY5abDQCC0P6
+         xBEg==
+X-Gm-Message-State: AFqh2koNMSYHEGYrXkcpEK388f+LNMMQwogbatL7/1haoTxXr/sYU8iq
+        wXHdkDYhsSuX+b3gTY5ZdeDWUPlvRQxqm1A/jRY=
+X-Google-Smtp-Source: AMrXdXtXfmpdqGWNq6eUwbTgzMofXSFIKvUyk2JZof2j6k3abTmT7jfFV2CTFTewagAaJZluSZCQpXSdSy9YWMKWn8g=
+X-Received: by 2002:a17:906:855:b0:7c1:5874:1d13 with SMTP id
+ f21-20020a170906085500b007c158741d13mr4536440ejd.152.1673427929801; Wed, 11
+ Jan 2023 01:05:29 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
- support
-Content-Language: en-US
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        William Zhang <william.zhang@broadcom.com>,
-        Linux SPI List <linux-spi@vger.kernel.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
-        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
-        jonas.gorski@gmail.com, kursad.oney@broadcom.com, dregan@mail.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230106200809.330769-1-william.zhang@broadcom.com>
- <20230106200809.330769-3-william.zhang@broadcom.com>
- <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
- <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
- <99b01e96-3b96-6692-c5e1-87db49295e6d@linaro.org>
- <49925933-aacc-4f0d-a1ca-e1bd45b05eee@broadcom.com>
- <b246a81f-e465-5e52-f0ce-65e0a82fc3e1@linaro.org>
- <32a464f8-6a4b-6777-9775-f17e990e0c6a@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <32a464f8-6a4b-6777-9775-f17e990e0c6a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <MA0PR01MB7145CB5A2D487FB713CD7C01FFFC9@MA0PR01MB7145.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <MA0PR01MB7145CB5A2D487FB713CD7C01FFFC9@MA0PR01MB7145.INDPRD01.PROD.OUTLOOK.COM>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Wed, 11 Jan 2023 11:05:17 +0200
+Message-ID: <CAEnQRZC2X5v6hh=-PRiaUgp3SZQYg1vot+4JKwEE6x5bzTKvwA@mail.gmail.com>
+Subject: Re: [PATCH] Support for MAX98090/91 codec in iMX8MM evk
+To:     Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "peng.fan@nxp.com" <peng.fan@nxp.com>,
+        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
+        "shengjiu.wang@nxp.com" <shengjiu.wang@nxp.com>,
+        "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
+        "hongxing.zhu@nxp.com" <hongxing.zhu@nxp.com>,
+        "tommaso.merciai@amarulasolutions.com" 
+        <tommaso.merciai@amarulasolutions.com>,
+        "jun.li@nxp.com" <jun.li@nxp.com>,
+        "ckeepax@opensource.cirrus.com" <ckeepax@opensource.cirrus.com>,
+        "rf@opensource.cirrus.com" <rf@opensource.cirrus.com>,
+        "povik+lin@cutebit.org" <povik+lin@cutebit.org>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>,
+        "james.schulman@cirrus.com" <james.schulman@cirrus.com>,
+        "flatmax@flatmax.com" <flatmax@flatmax.com>,
+        "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
+        "ryan.lee.analog@gmail.com" <ryan.lee.analog@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2023 23:18, Florian Fainelli wrote:
-> On 1/10/23 00:40, Krzysztof Kozlowski wrote:
->>>> No, it is discouraged in such forms. Family or IP block compatibles
->>>> should be prepended with a specific compatible. There were many issues
->>>> when people insisted on generic or family compatibles...
->>>>
->>>>> Otherwise we will have to have a compatible string with chip model for
->>>>> each SoC even they share the same IP. We already have more than ten of
->>>>> SoCs and the list will increase.  I don't see this is a good solution too.
->>>>
->>>> You will have to do it anyway even with generic fallback, so I don't get
->>>> what is here to gain... I also don't get why Broadcom should be here
->>>> special, different than others. Why it is not a good solution for
->>>> Broadcom SoCs but it is for others?
->>>>
->>> I saw a few other vendors like these qcom ones:
->>>    qcom,spi-qup.yaml
->>>        - qcom,spi-qup-v1.1.1 # for 8660, 8960 and 8064
->>>        - qcom,spi-qup-v2.1.1 # for 8974 and later
->>>        - qcom,spi-qup-v2.2.1 # for 8974 v2 and later
->>>    qcom,spi-qup.yaml
->>>        const: qcom,geni-spi
->>
->> IP block version numbers are allowed when there is clear mapping between
->> version and SoCs using it. This is the case for Qualcomm because there
->> is such clear mapping documented and available for Qualcomm engineers
->> and also some of us (although not public).
->>
->>> I guess when individual who only has one particular board/chip and is
->>> not aware of the IP family,  it is understandable to use the chip
->>> specific compatible string.
->>
->> Family of devices is not a versioned IP block.
-> 
-> Would it be acceptable to define for instance:
-> 
-> - compatible = "brcm,bcm6868-hsspi", "brcm,bcmbca-hsspi";
+Hi Hardevsinh,
 
-Yes, this is perfectly valid. Although it does not solve William
-concerns because it requires defining specific compatibles for all of
-the SoCs.
+Does your imx8mm-evk have a max98090 codec? That's very strange
+because I thought that EVK has wm8524?
 
-Best regards,
-Krzysztof
 
+On Wed, Jan 11, 2023 at 9:31 AM Hardevsinh Palaniya
+<hardevsinh.palaniya@siliconsignals.io> wrote:
+>
+> From: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+> Date: Sat, 7 Jan 2023 17:08:28 +0530
+> Subject: [PATCH] Support for MAX98090/91 codec in iMX8MM evk
+>
+> - Adding node for MAX98090/91 in dts imx8mm-evk.dtsi
+> - Adding tristate option in <sound/soc/codecs/Kconfig>
+
+This should come as a separate patch.
