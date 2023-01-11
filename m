@@ -2,90 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 837F36658F4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 11:24:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2151966590C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 11:32:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232673AbjAKKX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 05:23:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49774 "EHLO
+        id S232762AbjAKKcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 05:32:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236837AbjAKKXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 05:23:49 -0500
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A8B4E25;
-        Wed, 11 Jan 2023 02:23:48 -0800 (PST)
-Received: by mail-qt1-f173.google.com with SMTP id h16so1951878qtu.2;
-        Wed, 11 Jan 2023 02:23:48 -0800 (PST)
+        with ESMTP id S231760AbjAKKbv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 05:31:51 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845D42019
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 02:31:50 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id d9so16308160pll.9
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 02:31:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pbCjuNspk1al6KyeSMCpiDYLocT3y4oyShnLOrnIobk=;
+        b=SA/AnQngW28uW8cyiy4bkf6Q9VLPOl9WDrVT6zxefMD7erV8WWM+RVtbMGT8dghZ5E
+         rrqcUYDtIq08v47pSJ81Rb8XUgBm5mDRhZf6bUNxdKD59d8FarS2JpXBfkxBuZb/RrFq
+         /CXmrOoGmK4CfGR0mkKamPrwfLsohcRx4kuqRVtiRg8+k7MhGkZxkMLoNRscY4ICPnl+
+         RM4H4SBnbVbRC9/CJOAE5t4PkIxR5JzF3uI0hTkpMnteyQJb37kop+CnPjm3WUmkvoxc
+         23ijpbxAAvBWinQBzMDr0G6tjD3rPnNWelCrz6Kzc/ov4sDyCB79oFuFM/b+qyZysEgN
+         cDjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NnEyGiFrA5TEhSXqzoV6q+VF6z7IkxH8MfiZy3VIAOs=;
-        b=07fc63Pe8IQFdjg3XhWMproV8vzmb0Hovfyekqwy2joBZ7P2agb7j+EZY16yTqGK/8
-         3/8VfMgIs/9cRhv/ku8DD7IYIpzXq6g0lpWOwPH1ZWzBdfGYcYPG9qWTYXF1JwVaFe2C
-         ix8p6O3ZdzLfa82AX4QrZALq7ePb7rkaNuW2D5fe/hbziWl8jdKEupr+ySOm73+6MLrN
-         xTw09gInWfvlLBjaHVegnv1ygt+swzDe5ioCMpAC8bdIL+DTrxWN+hv9UHo6AyBas1LR
-         KFsUzlYt7/1uUSffA9yfmAMp2IFUyXs9oaRuzHWGNUB7nXH28Ki7KpbumSwKPJdiH7p8
-         TBlg==
-X-Gm-Message-State: AFqh2krCB9IzYy+mGDLvKTdHekEWrZs10i14x1LBP558x0HsnaiCpTvU
-        syQDgeOYpVTGTpqErrCLPQdODo7VANY1vw==
-X-Google-Smtp-Source: AMrXdXvLvvJ82RSj0j7zlueRYMhTLLtOOEpr3ZRC1iPi+i9YqeOmT4uaAwM1asNZgXRPhDIn4r4EyA==
-X-Received: by 2002:a05:622a:1f14:b0:3af:4d45:b5b with SMTP id ca20-20020a05622a1f1400b003af4d450b5bmr7363298qtb.28.1673432627026;
-        Wed, 11 Jan 2023 02:23:47 -0800 (PST)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id h6-20020ac81386000000b003a7fef41526sm7282420qtj.77.2023.01.11.02.23.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 02:23:46 -0800 (PST)
-Received: by mail-yb1-f171.google.com with SMTP id g4so14527703ybg.7;
-        Wed, 11 Jan 2023 02:23:46 -0800 (PST)
-X-Received: by 2002:a25:5189:0:b0:7bf:d201:60cb with SMTP id
- f131-20020a255189000000b007bfd20160cbmr641562ybb.365.1673432626440; Wed, 11
- Jan 2023 02:23:46 -0800 (PST)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pbCjuNspk1al6KyeSMCpiDYLocT3y4oyShnLOrnIobk=;
+        b=DZm7JdSidOb/LtFhNAqhwTqL5sd2XeDH2xLNGoRV+3MOFkB1OM+r9JrVt3STJQ3WDx
+         jj06Yiuye0nB1+3pEgY4tv8nBPgEpiruFzDpAn+CuCdrZMEqI5rE5LOWMKNgEbntAIOB
+         7QGcxakZH7m2l9gv9Be/I96D89IBv+8VnjI+QdUmF9613T7PfbicqKpLnlB+Wu/wgzfC
+         c3LhOvWhPIfQZ2nMOxW7FG9Ao2ZZQOBMuC2wbzpfnkggOA1uguYoj4A9MzN/pzhaTGX3
+         TENFiFrG77vIad+UUfBhX5BNexSIToawtm3NBD+2h/cFwNSyuZItWfiQ8aesrzUB/Kkb
+         VEzw==
+X-Gm-Message-State: AFqh2kozUK8BwqD0/e5lP4BHlaWkFfnd4odfp/ejZABpoVmcFinisbl2
+        IoUrpy8MiErMOrYHDSqtIUdIxdQHGjAhk8FyBi7Hag==
+X-Google-Smtp-Source: AMrXdXtFk5l0il1vA3D+6OgvWOK+kBZNBUEtPjjmJsNLGg++mQ6QqV+817kYVWm+pB94z3yk9jPRVWYAdUEqKa58Kkc=
+X-Received: by 2002:a17:903:22c2:b0:189:b4ed:56a1 with SMTP id
+ y2-20020a17090322c200b00189b4ed56a1mr4345123plg.62.1673433110105; Wed, 11 Jan
+ 2023 02:31:50 -0800 (PST)
 MIME-Version: 1.0
-References: <20221122193415.1873179-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20221122193415.1873179-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 11 Jan 2023 11:23:34 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXAwMY9yaTtqdKpNuxHN2fo86ATJcmg-KnTCerGJ-Cb=Q@mail.gmail.com>
-Message-ID: <CAMuHMdXAwMY9yaTtqdKpNuxHN2fo86ATJcmg-KnTCerGJ-Cb=Q@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] media: dt-bindings: media: renesas,vsp1: Document
- RZ/V2L VSPD bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230111064842.5322-1-anand@edgeble.ai> <20230111064842.5322-3-anand@edgeble.ai>
+ <7148963.18pcnM708K@diego>
+In-Reply-To: <7148963.18pcnM708K@diego>
+From:   Anand Moon <anand@edgeble.ai>
+Date:   Wed, 11 Jan 2023 16:01:40 +0530
+Message-ID: <CACF1qnd=o+QWuofgAb+YXOs1R_dOuCPxWrb-+YEhuN4z8OnTrA@mail.gmail.com>
+Subject: Re: [PATCHv4 linux-next 3/4] Rockchip RV1126 has GMAC 10/100/1000M
+ ethernet controller
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+        Richard Cochran <richardcochran@gmail.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022 at 8:34 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document VSPD found in RZ/V2L SoC. The VSPD block is identical to RZ/G2L
-> SoC and therefore use RZ/G2L fallback to avoid any driver changes.
+Hi Heiko,
+
+Thanks for your review comments.
+
+On Wed, 11 Jan 2023 at 15:41, Heiko St=C3=BCbner <heiko@sntech.de> wrote:
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Hi,
+>
+> Am Mittwoch, 11. Januar 2023, 07:48:38 CET schrieb Anand Moon:
+> > Add Ethernet GMAC node for RV1126 SoC.
+> >
+> > Signed-off-by: Anand Moon <anand@edgeble.ai>
+> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+>
+> patches 2-4 have this Signed-off-by from Jagan again where he is not
+> not the author but also not the sender.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+We both work to fix this patch hence Jagan's SoB was added.
+>
+> Also this patch here, needs a fixed subject with the correct prefixes.
+>
+Ok, will fix this in the next version.
+>
+> Heiko
+>
+> > ---
+> > v4: sort the node as reg adds. update the commit message.
+> > v3: drop the gmac_clkin_m0 & gmac_clkin_m1 fix clock node which are not
+> >     used, Add SoB of Jagan Teki.
+> > v2: drop SoB of Jagan Teki.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks
+-Anand
