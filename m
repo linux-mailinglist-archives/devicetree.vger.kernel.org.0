@@ -2,112 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 350526650E2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 02:08:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F066C6650E3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 02:08:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231265AbjAKBIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 20:08:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33006 "EHLO
+        id S234783AbjAKBIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 20:08:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234901AbjAKBI1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 20:08:27 -0500
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2102.outbound.protection.outlook.com [40.107.113.102])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 572DE4858B
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 17:08:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i9cW70k9YK8QamEFudMxmhleGPiOCebLTR0WVR2WwLg3w3miqyLNZ316SV7kNhLoi2J/1P+rSlkfmqM9ZE/SYSkk/LOWuE45VYbY6G52QYdhxR3nW88pb6OsVK7JUTFpjRf2HysWYygiIAlUjYTZNiAW/CRsChYZdIGF31iGw7WVrbPs/wsd7ne99VmmITKrh3J8MTkqaFJneERBx48WZBWXvi20Kiv6hNNVFxFnRWnRRGVaHEwjbZvfNfq0Fsi5fUzZ3wGyw7XtVfCJ3C8hVUNgLqCaGOGK/7QK/c4yfj8eE3KhHPqxLnDkVMPVHB0DlZJAOnnRbBZ1cel62YNphw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QpzF8+fS8UpMehVlspcEvom6qEwYTt0TDSZVUZyrf1w=;
- b=m/3Rqm+S+tA60FIVRWhknvJoRJB3DwR8uJ+LrLD1Xla5FH7FEFMgDwIKeeI01Uvk4W5X9co5zPL7wVuW8CbgwL9vMwVl1HJJSZKJGNOWvoNNU+C9oZYwtDcqKTXcFUc9/rGo2CYh4CTNKoNJvAuqMT4zrsmfESnB51ivqBw5vuhmYULchKcGKO6ri/79C04YcGSNnZfI0tRcFDV+fHX+usiryeNrneGjWF0NeQqbXxXjh/JwySU6MgiAYzVHX7NaMduQuob+Mehy68vY7QjQ32axq6GaD+/JSE3GA7SDRNJvq2ZQ/t/cqmxw8g4OmRpahk6iLxEed4NelVqyvlAJIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QpzF8+fS8UpMehVlspcEvom6qEwYTt0TDSZVUZyrf1w=;
- b=FCHT3MkRb87LcGI9AEY7ZLcPTHvoWeGaSv1PbqURRWgUc/zG5TnRe8HI8YXs3ab8vYx0mk2BRJwaMEP15VCsYKFXefcvtV0e/4xhfAYHT0BzyFm6n3oY7bDtHLh4Qd3lymG8L4/uSJA93qu7sXKRCuxrkxxbzYz69ssSvI/gRDc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
- by OS0PR01MB5970.jpnprd01.prod.outlook.com (2603:1096:604:c9::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.12; Wed, 11 Jan
- 2023 01:08:24 +0000
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::3cd7:a7b5:ea86:9ae]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::3cd7:a7b5:ea86:9ae%4]) with mapi id 15.20.6002.012; Wed, 11 Jan 2023
- 01:08:24 +0000
-Message-ID: <871qo1j2t4.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH v2 01/10] ASoC: dt-bindings: audio-graph-port: use definitions for port/endpoint
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-In-Reply-To: <87358hj2ub.wl-kuninori.morimoto.gx@renesas.com>
-References: <87358hj2ub.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=US-ASCII
-Date:   Wed, 11 Jan 2023 01:08:24 +0000
-X-ClientProxiedBy: TY2PR02CA0065.apcprd02.prod.outlook.com
- (2603:1096:404:e2::29) To OS3PR01MB8426.jpnprd01.prod.outlook.com
- (2603:1096:604:194::10)
+        with ESMTP id S235236AbjAKBIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 20:08:51 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B684B4858B
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 17:08:50 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id y5so10248575pfe.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 17:08:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=tOL8/bgTMaN4/tdDiVhfZFCiC9WMbKWXFjwv/F8U3iE=;
+        b=FUHhFSgAV0zVmN3yWxUZ6j2W++tXZHcIABgBLGW62WZmY3fhWCXX/X87g+fmUB+fQr
+         3pdG1Wge2pTII7IZj/tDggREHQJ8tvn0a1KA2kpimOkfJoybwPvGw8orlyQXxfRjJmPi
+         lSqlRq4ln77cIyRRkuobfZRzTV7C18RIMZu0Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tOL8/bgTMaN4/tdDiVhfZFCiC9WMbKWXFjwv/F8U3iE=;
+        b=ozTDctvcKLuHHIJfB/jmexZXe/rHvN4mnGwE0sF/SjvDOlh8PvP4SCsbxj74EZ7ZDc
+         PBqYV9llQG5Va9LQvBxKlVCqU4cuGGjbP0mSPdOJBAjdR+cQZWrB9NruEoy5tEmxNikI
+         15oxl+8m4BeTD6dziV8y0wnlFvESNZDtHun1IakPcZigcUS77R7iYMmfbueKM581Yhbw
+         K1cIPf3Jy33Hk8HaW8dYO6z247XFfAHnUvaT6jSx1RafcYNsq7LKTh2cJD7ulhq7IxYx
+         9sTqpkfOoOzjV2I2ma6MW181zSK8aMjyZogueN6D6d4kl1+KocXdQ1aAj674Ynfc1s+B
+         sEqw==
+X-Gm-Message-State: AFqh2kp2oejVBMTRDtEZ4IX/1f4qIwTmlB4o/mx1k545lgqr2hjfuLrY
+        jHiDgaDkHC4OOHaytTflQ+93/w==
+X-Google-Smtp-Source: AMrXdXsm9YvRMZUOQs4J2mhny9C01cPeX3Q3ZV+c6IE/olsoSKiv2NAwl3AtcRsToE1RnCeM5oVYhg==
+X-Received: by 2002:a05:6a00:80e:b0:581:f9d3:c9fc with SMTP id m14-20020a056a00080e00b00581f9d3c9fcmr51033296pfk.19.1673399330032;
+        Tue, 10 Jan 2023 17:08:50 -0800 (PST)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id y186-20020a6232c3000000b00571cdbd0771sm8697294pfy.102.2023.01.10.17.08.48
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 10 Jan 2023 17:08:49 -0800 (PST)
+Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
+ support
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        jonas.gorski@gmail.com, kursad.oney@broadcom.com, dregan@mail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-3-william.zhang@broadcom.com>
+ <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
+ <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
+ <99b01e96-3b96-6692-c5e1-87db49295e6d@linaro.org>
+ <49925933-aacc-4f0d-a1ca-e1bd45b05eee@broadcom.com>
+ <b246a81f-e465-5e52-f0ce-65e0a82fc3e1@linaro.org>
+ <32a464f8-6a4b-6777-9775-f17e990e0c6a@gmail.com>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <adbf1347-b81b-ee5b-f016-109d25b09f81@broadcom.com>
+Date:   Tue, 10 Jan 2023 17:08:47 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|OS0PR01MB5970:EE_
-X-MS-Office365-Filtering-Correlation-Id: d14cf40e-5593-4a0c-dee3-08daf37056a9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZmNOfkV5vaE2tESwkHtcWnNXd2MfRgIBoWjOz9JGotxT0/Xfs4P8BEKUM5PTcN1KHawq5F7abv0406as3QRLUTJaBu7OoklOw6Dmya4lfvqmg4O9ujFPijyTflETK3jNIhYZbP0cpMd3AWOS/XirIXYTHAb1SAbkcNc55fnDA2xy0bsV70NF7wGVbTW9EIxwsjbLgkvBhaPjdRp0j9Hr4arfDHpzeEEpIADwA8gyEhUbe5oyHXlxZizBooQw1H0ivPGSR61159QBCiHwP88TxgAuwSuuPP/+ViSwMPxjv2HcwauvOUdwDTXbj5dypz5J/g0LOUzfy+78GYtzAkNy4HW5EpWIvzcvRU88DIXAiZgVd5Xiu15CL+dRbPqt1DSm40YLxHkY+gGYITWStt2vOGT5L9XVMG5ITQyF6t2sAwbO4xjHvESHg4DrzlcBwuZOV60AVWU2wFjagWDOZP9jouPWAXsCr5Sah+XjfoXGqaiFyeoLJD3XlDcol8VK/9r3wE+ToIr1mWC7S7yp0SAEwwVAaPgqXzTEMeQUG47RETLKngzTsxr7konieQ48mV3wqZFgP6Cpt5KTctCBq/5lbXfnXtMccKkyciLuwygqzTXeUFr968q0cGF+zQIkOSvEF4O1nOqZIvIv31kncBmuXbsRARu9WCp/3NNKAASVerottCCsvK3UY+VLFQM7lZJvcdRB28r8C91sM5BHayFbTA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(346002)(39860400002)(376002)(396003)(451199015)(52116002)(2906002)(41300700001)(54906003)(6506007)(316002)(26005)(186003)(6512007)(2616005)(83380400001)(66556008)(86362001)(8936002)(66946007)(8676002)(4326008)(66476007)(5660300002)(110136005)(6486002)(478600001)(38100700002)(38350700002)(36756003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1kfHWXBC4r0pmPJ66Jf9Nse1blRljqUrx/gQ8NnS7EFfJUCtyK6mWsce6AEL?=
- =?us-ascii?Q?Hu3My/MF2xiWhsqHVlPKHo/epxH5RXQgA+MZo74iTPPbgI8GIFzcGOHAwcW4?=
- =?us-ascii?Q?1eGYD1pAECHc8MPOKPZcWznPsW3n7JIg8Kh5jtsEfJMc9xjgLbPI4MxJqTHG?=
- =?us-ascii?Q?+f7Z8pKeANcJVlquv/fdOGDlTfdOu/UIbFVYZdMWzfP2Zjb6rq5/U/CiCR/u?=
- =?us-ascii?Q?pyxEnZoewKPACPOYBCZVe3eaa0nP0k9n3PXSM3dhlzUBrZcB3srDdnshjnll?=
- =?us-ascii?Q?rRo5DVmjvUtz98NCKz+jaVI6tM4L7/36fwECh5gGGqm3B2JJyV/tILpQQeqw?=
- =?us-ascii?Q?diBZFy3nNX0PD4g1X8a0t25kJGGDKByDNf1TC0cbUK5vQ3KKrKj67+iAkYOf?=
- =?us-ascii?Q?Cm1Gqwypd654SXpVrAw/Ved++AlioRFzmq7biFHQ25ZtjiNMc3g9qrrvWPC7?=
- =?us-ascii?Q?IHB395FUytXZOnhoxnvrW+QeLpP+bGlA2na3mK9polrlx43jve6pS2xH27jZ?=
- =?us-ascii?Q?Jdg2cZvkd2ghcmV8cLm2vItPFItGPzHeX5k92pIyeWRVYW1+avLZxk0VwZKF?=
- =?us-ascii?Q?dUrS1f1n+B9P/6mxyGzwOLmEG7X5WY6ro0hEXDkCaDenFcX0jeOltJRrnKJ7?=
- =?us-ascii?Q?pYJSEHUtXiHi8i7kukX/GZ6WMrHousTzjq5709D4hJiK+UU/TbupjeXVsX6v?=
- =?us-ascii?Q?od00FC/C0KBuVVQVuHkao5qie6UL0fVizswQDpEqzY1Jxspps4RSSMGACxsv?=
- =?us-ascii?Q?G+9PQ4a0CXGYhbvGGjnm7i63uyJsEkRKKl9OCpsm3zqNSLF5PEKfBW96QR3s?=
- =?us-ascii?Q?EYVO8NVA23WM9ptdmMr52JaqeY/zrJ5TgUqy/gjx4IWabs0aDEXcVQy30FS5?=
- =?us-ascii?Q?Su0F78Yx3XM0RCvqF6PHRMS15Z3C6+L9eoSF9mnozf4pHwqIXxCsBztngiwC?=
- =?us-ascii?Q?6n/qXwH/8BwBXCZzmuU6u2UYxwDFVyTAdQ0OXIiVotu+0kOHalkqN+rxPgks?=
- =?us-ascii?Q?0/aOyQBhTi5ntZ9E3zaZT96ENtD0TiD2U4GetYPCAemiiBRle73IFmzBW5a8?=
- =?us-ascii?Q?SYYK733VCI8F2ihiRHwfZhj+nSkFFq9lVmMxel8HWfzSpH2m0RXjJbjVUiLI?=
- =?us-ascii?Q?DYBcwPE3clMlY/7ISneLzHCRDAoJo4HK7d/DmrIqtogoSaRVx1H22NKNcI2t?=
- =?us-ascii?Q?+9oDGpzEI+3Wno7Hzfz5wDrcf84bJoPqeGNo0eaXg6UFtPpDXBp1chvVy3Rx?=
- =?us-ascii?Q?NEbB2euukHcjaLZcyu0jnCZwSGDRIW+36k12RHbsbXAPGbYO3tfaBxdehkFh?=
- =?us-ascii?Q?Q8BLRFZ+bnewsL3Q2P05yil5QmErxOwW6Pv9joTkmYgo2qJM9nmresRSLQC/?=
- =?us-ascii?Q?2ftUlRsK7aDS4Xsp1IBjdySZPEsRsFbAkD8zx61AAVCevx845vUF1ta3pwSj?=
- =?us-ascii?Q?HZv10Y0tz3c5glH8yDTyjTVt/1DjgmZJoYyHAujLUWzTXiiJSIgodpsybXax?=
- =?us-ascii?Q?tJjEm15aNM8xdZVj4+bEazkBLe7p9rqBgzR1Y7ocEsFomZ5L8G6quG6aDdVr?=
- =?us-ascii?Q?/Gz9gI9aGxKXx+qYysx8mm3COorbqI42uJkqir/GPrUGE4Vb83Zxmr4xKq5x?=
- =?us-ascii?Q?IfkJn2FAWZpsI70CDUbEeGA=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d14cf40e-5593-4a0c-dee3-08daf37056a9
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2023 01:08:24.3300
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ca5f4E3YYS/zE8cf4qXPOXkZdmOqo2oMQJzzQWN42XqAN4jNs7XE+MBOlRioJExZUoTy9Xco1d8h6ZigPL73M+vtdXQoE7u4IX0nzFz2gZv5vFqmuOXr4iHBYuW5Ntmr
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5970
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+In-Reply-To: <32a464f8-6a4b-6777-9775-f17e990e0c6a@gmail.com>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="000000000000a9272405f1f2a402"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -115,74 +85,164 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+--000000000000a9272405f1f2a402
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Audio Graph base driver might need to add its own properties.
-In such case, having definitions for port/endpoint is easy to handle it.
-This patch adds definitions for port/endpoint.
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
- .../bindings/sound/audio-graph-port.yaml      | 39 +++++++++++--------
- 1 file changed, 22 insertions(+), 17 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-index f5b8b6d13077c..fa66b73abcaf2 100644
---- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-+++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-@@ -11,25 +11,22 @@ maintainers:
- 
- select: false
- 
--allOf:
--  - $ref: /schemas/graph.yaml#/$defs/port-base
--
--properties:
--  prefix:
--    description: "device name prefix"
--    $ref: /schemas/types.yaml#/definitions/string
--  convert-rate:
--    $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-sample-rate"
--  convert-channels:
--    $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-channels"
--  convert-sample-format:
--    $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-sample-format"
-+definitions:
-+  port-base:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    properties:
-+      prefix:
-+        description: "device name prefix"
-+        $ref: /schemas/types.yaml#/definitions/string
-+      convert-rate:
-+        $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-sample-rate"
-+      convert-channels:
-+        $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-channels"
-+      convert-sample-format:
-+        $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-sample-format"
- 
--patternProperties:
--  "^endpoint(@[0-9a-f]+)?":
-+  endpoint-base:
-     $ref: /schemas/graph.yaml#/$defs/endpoint-base
--    unevaluatedProperties: false
--
-     properties:
-       mclk-fs:
-         description: |
-@@ -100,4 +97,12 @@ patternProperties:
-               minimum: 1
-               maximum: 64
- 
-+allOf:
-+  - $ref: "#/definitions/port-base"
-+
-+patternProperties:
-+  "^endpoint(@[0-9a-f]+)?":
-+    $ref: "#/definitions/endpoint-base"
-+    unevaluatedProperties: false
-+
- additionalProperties: true
--- 
-2.25.1
+On 01/10/2023 02:18 PM, Florian Fainelli wrote:
+> On 1/10/23 00:40, Krzysztof Kozlowski wrote:
+>>>> No, it is discouraged in such forms. Family or IP block compatibles
+>>>> should be prepended with a specific compatible. There were many issues
+>>>> when people insisted on generic or family compatibles...
+>>>>
+>>>>> Otherwise we will have to have a compatible string with chip model for
+>>>>> each SoC even they share the same IP. We already have more than ten of
+>>>>> SoCs and the list will increase.  I don't see this is a good 
+>>>>> solution too.
+>>>>
+>>>> You will have to do it anyway even with generic fallback, so I don't 
+>>>> get
+>>>> what is here to gain... I also don't get why Broadcom should be here
+>>>> special, different than others. Why it is not a good solution for
+>>>> Broadcom SoCs but it is for others?
+>>>>
+>>> I saw a few other vendors like these qcom ones:
+>>>    qcom,spi-qup.yaml
+>>>        - qcom,spi-qup-v1.1.1 # for 8660, 8960 and 8064
+>>>        - qcom,spi-qup-v2.1.1 # for 8974 and later
+>>>        - qcom,spi-qup-v2.2.1 # for 8974 v2 and later
+>>>    qcom,spi-qup.yaml
+>>>        const: qcom,geni-spi
+>>
+>> IP block version numbers are allowed when there is clear mapping between
+>> version and SoCs using it. This is the case for Qualcomm because there
+>> is such clear mapping documented and available for Qualcomm engineers
+>> and also some of us (although not public).
+>>
+>>> I guess when individual who only has one particular board/chip and is
+>>> not aware of the IP family,  it is understandable to use the chip
+>>> specific compatible string.
+>>
+>> Family of devices is not a versioned IP block.
+> 
+> Would it be acceptable to define for instance:
+> 
+> - compatible = "brcm,bcm6868-hsspi", "brcm,bcmbca-hsspi";
+> 
+> in which case, having a fallback compatible on the SoC family that sees 
+> this IP being deployed is very useful for client programs of the DT 
+> (u-boot or kernel). As long as the fallback works, we use it, the day it 
+> stops and a quirk needs to be applied because SoC XYZ has a bug, match 
+> the SoC XYZ compatible string.
+> 
+> FWIW, and feel free to rant at me, we have adopted this convention a 
+> while ago for STB chips whereby we want bindings to be defined with:
+> 
+> <chip specific compatible>, <version of the IP>, <fallback>
+> 
+> and the fallback may, or may not be matched, but defining in does not 
+> hurt at all, in fact it dramatically helps with the boot loader looking 
+> for specific nodes because it can search for the fallback.
+> 
+> If the version specific compatible is not available, it does not get used.
 
+Thanks Florian for jumping in! I was thinking to propose something with 
+version info:
+    brcm,bcmbca-hsspi-v1.0
+    brcm,bcmbca-hsspi-v1.1
+
+To meet STB chip convention, then it would be:
+compatible = "brcm,bcm63138-hsspi", "brcm,bcmbca-hsspi-v1.0", 
+"brcm,bcmbca-hsspi";
+compatible = "brcm,bcm6756-hsspi", "brcm,bcmbca-hsspi-v1.1", 
+"brcm,bcmbca-hsspi";
+
+Although I am not a fan of having a chip specific compatible while we 
+already have IP version,  I am okay to have it to be consistent with 
+Broadcom convention. We will need to remember to update this yaml file 
+whenever we have a new chip.
+
+--000000000000a9272405f1f2a402
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIDcMNtWvbKeEnDkyvH/A1V0v4Pe9
+8AcV8Ywxlemjv8ynMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MDExMTAxMDg1MFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQBeruondMKn4kXANNCeZMMlDvyOztb/FIaHb1BRX3VOYg+A
+qyLXqm7e5DiwvZKnGH0DVp8kD4zwXTZz9mnBRmPoiA7gr/diQui3Skpi2OX0vy8fn6Y2cHkqdXY6
+Vm6AC+W1cHEFpX9hr5ai6JxQgaPd1OZ4foR/u+K5zlcvNASqCfmerQi1Z29+DEq0ukvdFBqbLabI
+WtIUJkL81/dG3HcJYY5rNWfpbGHsfXs5eJ8ciRD6vSLOcY0m4av3vtNeX/Q1YippBJoKqhOhHnrB
+2kHw37wMOoEMm91knJc1ItZy2O3w5yR5ZijjyRP12F2nMzkn2O+N38tK/Qzsok5/08pf
+--000000000000a9272405f1f2a402--
