@@ -2,100 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 551D4665B40
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 13:22:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F19665B3E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 13:22:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233150AbjAKMWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 07:22:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53936 "EHLO
+        id S232663AbjAKMWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 07:22:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238792AbjAKL6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 06:58:11 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB9DBF78;
-        Wed, 11 Jan 2023 03:52:32 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id y25so23119530lfa.9;
-        Wed, 11 Jan 2023 03:52:32 -0800 (PST)
+        with ESMTP id S238713AbjAKL6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 06:58:38 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89C16E0B9
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 03:54:14 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id p25so9568777ljn.12
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 03:54:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=akX8Spsmb8eHc45qxyT07eMq4v6BQfaJuDvgRydNQ0U=;
-        b=oZkMOTv8VzItNdeoOagEla1tgEF0wFLmF31sfOgof2//fXwwUxxnP0BYRXJ2pYwZNK
-         YMvvL9Uez4P5ApEM2BkEvxg/3eZamx/ft+/VFJ0eVZ8atnAT5vdsV9tglCZJ5t8WcO5f
-         mKK4/fQoduWWAPVE1EUHJV2b1WL/23dH+U/7DfLPqdehABg8h4TSC6IVsmf89BndNdmt
-         0SCpOhjlrw8VvYSXTkGgGIBx+7y4VEaO/UxMk+UkjRTapOxfmVGDViDjY4kfo4a1BHW0
-         HDnjsubkMOB95AszsJFszQmW0mw6TIqJ9ES4VPJHWA6805Vpz2Mo1jr4eOkL8aRbQ9HB
-         DwjQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=87amYxxjuw2O3A5AUaxxYDc2vtYs2lif6mU7sZ39bg0=;
+        b=ZBXYSTrciQf8pT0kv7SCuxtJTnSOLrZ61DKbNQV+VumC0PIwmvY5G5LwU6PJOWiXhg
+         PAa2JbHrQ/VD7isf2LOZpAIh8k1Bb25MObE3qgDtw7NoZQGh/aqL+GV2Jr3FraldTufG
+         ZBrmHvfAaVAWVWOaK1sR+IZfieciD9Lgr/7fgH8hu/ysTk9SI04vjvhTFfTbP3+Fl/cW
+         0bklrPrswxf28r2MroubKCXON7dtwtZt7f+UE2qN9+cTsEVn9T84Lw+C9I1E2Tc7I5Y5
+         lJydHpX6EddBk9FjGZrt9V4Xa26ylwTo2zWwT/2PRmHFrLagy0CxdSWVgtPqtOV2yYb0
+         Ezcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=akX8Spsmb8eHc45qxyT07eMq4v6BQfaJuDvgRydNQ0U=;
-        b=djQ+IIsGS6HggsVLrALO/KCI7o5lX9lO+ojssUv1yrowF414Xp4W3eXgNsUlTry7Ki
-         6cM6142n4irQZZpDuREvTgh0GjKV3tK/O6gwtTobFJrZH4NKj9xpL9PjOzOzRkMIx8IG
-         i3BmCor70+3D49D03JMdMJOOYPPbk2EOVqJ5VJGDPSdARUR1l5X/o8UyeDW7LFyWh49p
-         qWNte0+QrNhoCp5DjPRy1VpHurAjwJ3yQ5cclD3d95fHNv6BdwmSjt8eFtWQn5K4I77i
-         NzD7FWzzcEEv4G8wKMzooLAkuWLDTLC7LXZb2yjdts6/xK7SGwRyfKb0CmK8JNfspzY6
-         Lsxw==
-X-Gm-Message-State: AFqh2krJQSE5l1CHd+/zi5OP9hs3CmcxPUf98jT3MMf5/UheNY4jTTk+
-        dJKCmXlZ1jct5DRMvGA3Ssc=
-X-Google-Smtp-Source: AMrXdXsZ2CI7/xZBxfernCt7RhQ7XRGyHhWU/FBiLhf5qGEAexunzC4zJICg6uyMk70PL9RBXuITPg==
-X-Received: by 2002:a05:6512:202f:b0:4cb:ca5:b5ba with SMTP id s15-20020a056512202f00b004cb0ca5b5bamr13375670lfs.29.1673437951291;
-        Wed, 11 Jan 2023 03:52:31 -0800 (PST)
-Received: from PC10319.67 ([82.97.198.254])
-        by smtp.googlemail.com with ESMTPSA id x11-20020a056512078b00b004b5821219fbsm2711185lfr.60.2023.01.11.03.52.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 03:52:30 -0800 (PST)
-From:   Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     Konstantin Aladyshev <aladyshev22@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: ethanolx: Enable CTS/RTS pins on UART1
-Date:   Wed, 11 Jan 2023 14:52:27 +0300
-Message-Id: <20230111115227.1357-1-aladyshev22@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=87amYxxjuw2O3A5AUaxxYDc2vtYs2lif6mU7sZ39bg0=;
+        b=YFiTDwq5DFl3zH1TXs7g9wDpM02QK7Mf5B3EpT+I3QE1k/CFQkpLbSf8I5Y5ItLeYH
+         FNLYtIqio1mZRAoeaicYLR5f8sao4PJE+sSB1y6fkCxikWjlNVnzWHr/JOAhpY71BCiA
+         7QXgguIHh+no2L4q0JFr9FyiA3G38MNUdFpwo4zxxX8A5KLcupZ4TlRahFYQYhLyQAei
+         H8kIvb2fmt7Q82NWQR+KeHCJeqpzIEbONcOWGw/oHae7NqFpzYxAwYKzsh+KpHESzk/B
+         NbnduHRtWQF+e2MQ24lsTwPtGZEWoUSFGbqM7QiXqxeETNWRBNI18Z2Sw8lLMfBZd8+b
+         eAOg==
+X-Gm-Message-State: AFqh2kpb0NL6hl4XXvDLAXzMoJDT8m6rBWVxP7l6f1a13z64x9sirnMU
+        07bXaEsLhtE6AxqwGohWHr2Q4Q==
+X-Google-Smtp-Source: AMrXdXu9cjTTlZKrBOV+brVcyFOQTawCq5l05CxPSgUhMLwjlEGzn8V8Dt/S7SnzqZIrBxXAMzzIGQ==
+X-Received: by 2002:a05:651c:301:b0:27f:d652:f397 with SMTP id a1-20020a05651c030100b0027fd652f397mr10855210ljp.34.1673438052926;
+        Wed, 11 Jan 2023 03:54:12 -0800 (PST)
+Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id 13-20020a05651c128d00b00285ac292d58sm1039067ljc.80.2023.01.11.03.54.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Jan 2023 03:54:11 -0800 (PST)
+Message-ID: <33218f23-93b7-2500-271b-0e57962637c4@linaro.org>
+Date:   Wed, 11 Jan 2023 12:54:09 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8450p-pmics: rename pmic labels
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Eric Chanudet <echanude@redhat.com>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        Brian Masney <bmasney@redhat.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230111082331.20641-1-johan+linaro@kernel.org>
+ <20230111082331.20641-3-johan+linaro@kernel.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230111082331.20641-3-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BMC UART1 is connected to the P0 CPU UART1. As the connection has
-CTS and RTS signals, enable these functions on the BMC side.
 
-Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
----
- arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-index 5f9093c58e8c..d8e8fca44c78 100644
---- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-@@ -90,7 +90,9 @@ &uart1 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_txd1_default
--		     &pinctrl_rxd1_default>;
-+		     &pinctrl_rxd1_default
-+		     &pinctrl_nrts1_default
-+		     &pinctrl_ncts1_default>;
- };
- 
- &uart5 {
--- 
-2.25.1
+On 11.01.2023 09:23, Johan Hovold wrote:
+> The SA8540P PMICs are named PMM8540. Rename the devicetree source labels
+> to reflect this.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
+Konrad
+>  arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi | 24 ++++++++++-----------
+>  1 file changed, 12 insertions(+), 12 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi
+> index 8c393f0bd6a8..1221be89b3de 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi
+> @@ -8,7 +8,7 @@
+>  #include <dt-bindings/spmi/spmi.h>
+>  
+>  &spmi_bus {
+> -	pm8450a: pmic@0 {
+> +	pmm8540a: pmic@0 {
+>  		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+>  		reg = <0x0 SPMI_USID>;
+>  		#address-cells = <1>;
+> @@ -22,62 +22,62 @@ rtc@6000 {
+>  			wakeup-source;
+>  		};
+>  
+> -		pm8450a_gpios: gpio@c000 {
+> +		pmm8540a_gpios: gpio@c000 {
+>  			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+>  			reg = <0xc000>;
+>  			gpio-controller;
+> -			gpio-ranges = <&pm8450a_gpios 0 0 10>;
+> +			gpio-ranges = <&pmm8540a_gpios 0 0 10>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+>  		};
+>  	};
+>  
+> -	pm8450c: pmic@4 {
+> +	pmm8540c: pmic@4 {
+>  		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+>  		reg = <0x4 SPMI_USID>;
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  
+> -		pm8450c_gpios: gpio@c000 {
+> +		pmm8540c_gpios: gpio@c000 {
+>  			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+>  			reg = <0xc000>;
+>  			gpio-controller;
+> -			gpio-ranges = <&pm8450c_gpios 0 0 10>;
+> +			gpio-ranges = <&pmm8540c_gpios 0 0 10>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+>  		};
+>  	};
+>  
+> -	pm8450e: pmic@8 {
+> +	pmm8540e: pmic@8 {
+>  		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+>  		reg = <0x8 SPMI_USID>;
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  
+> -		pm8450e_gpios: gpio@c000 {
+> +		pmm8540e_gpios: gpio@c000 {
+>  			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+>  			reg = <0xc000>;
+>  			gpio-controller;
+> -			gpio-ranges = <&pm8450e_gpios 0 0 10>;
+> +			gpio-ranges = <&pmm8540e_gpios 0 0 10>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+>  		};
+>  	};
+>  
+> -	pm8450g: pmic@c {
+> +	pmm8540g: pmic@c {
+>  		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+>  		reg = <0xc SPMI_USID>;
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  
+> -		pm8450g_gpios: gpio@c000 {
+> +		pmm8540g_gpios: gpio@c000 {
+>  			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+>  			reg = <0xc000>;
+>  			gpio-controller;
+> -			gpio-ranges = <&pm8450g_gpios 0 0 10>;
+> +			gpio-ranges = <&pmm8540g_gpios 0 0 10>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
