@@ -2,123 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6605D665EBF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 16:07:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08CA7665F4C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 16:40:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238416AbjAKPHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 10:07:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40406 "EHLO
+        id S233325AbjAKPkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 10:40:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239411AbjAKPG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 10:06:59 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5763BC64;
-        Wed, 11 Jan 2023 07:06:58 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7925C1C000B;
-        Wed, 11 Jan 2023 15:06:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673449616;
+        with ESMTP id S233270AbjAKPNb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 10:13:31 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BCE860CF
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 07:12:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1673449964;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=96p48KGQVOszGpiIUB1uMQHTSrU1mw+PEt8uGhIXaOc=;
-        b=J2zebCAM0gphMWejuOqgoceHr5MqD34OCvw5uIQ+F8xbwSyORqkjh5JN2WScz1Txu5rTA2
-        oWG0oqjsC4TfW2W6iI9azZabaMlxD4UwGsCtIMgaxUsBAVf+S4BhZxNsfF++6qyd88P51j
-        jTN0lxAM9hMeQ2T1yXZ3dCMevMQX/c69W2vPSEc81hUm2hBKXfojWt/aKd1iw4OGl0mv14
-        6jyJY34VcHSqHG5PWqLJhCiaVS7KwdXzjRRNsRc7oZvowk1q7ZqmkvjRCtumbZwDyt60IY
-        gVVVVQjYQyaYgKeiyyyZhzYFLYpjrQTPE5pNH2V3X3c+rY/pgSOvtO7fye2REA==
-Date:   Wed, 11 Jan 2023 16:06:51 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        bh=TIKVKM4pIPCidy3CH3fpZ9rlRwAY/u57PoiVvzmqTZw=;
+        b=CBP1fawxSoSBf7jOoiYln4wYSDqyAJ+G0r1Cne7cq3Bf9dgOmroQ5e+uJatUzNhxPbPCnA
+        irkuQ6t1zEojgfaEQLGd66cJiHWcyv6Le3Spf42DvvAqdqAC6DmOpro5V8ZVTAa7VLpkx2
+        DEbWybI0S7PqmywIUmwBVLnETq/G+pk=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-554-PzZEjzzaPAW43hz6uXISbA-1; Wed, 11 Jan 2023 10:12:43 -0500
+X-MC-Unique: PzZEjzzaPAW43hz6uXISbA-1
+Received: by mail-qk1-f199.google.com with SMTP id bj37-20020a05620a192500b00704dc44b050so11216167qkb.14
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 07:12:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TIKVKM4pIPCidy3CH3fpZ9rlRwAY/u57PoiVvzmqTZw=;
+        b=P4b9u1FNc3vwZZMgNog43AtPdXP5RTmxTuQT4ZYCgklQUT/V8AJ+GB5mwdSPZ9Ngf6
+         nX+8Klh6SYBrx/0D32x9qrz2EkqFoNyIzso3rPbLqX0PxB4o7dv7dCnLpXW4KI3GwnBC
+         ZdC62ch0wyI5Q8fpOixpizefW+1avEOnXhXDl1bAsoOrIvRlovN5eoEwF5q0QGu1UXpV
+         mbBMhG8MCoKLQD/cWbvpd39tQL7af/AHy2ugtbJ8c4miClZfrpS0+GP1rmPjK4+mTuL1
+         +YRCtMvtcdACpJzN9k3ep8/LFkMGAF12RyrcxM6raqrzCo8/f4UyeAEtfODUayhFzaNh
+         0DzA==
+X-Gm-Message-State: AFqh2kociYjT/KEba1ScgcKV07zDszsyRkw1PiFAtb4yClmGHcj5KKQo
+        65IopJ+6JyHVLjmVqu+zN591erPe1o1L7UPuodoBqkncnlRDGRMDIw8iwQ+SuBQKTAJVOPxHXDM
+        S83lnF5a1R3kh3qLwG9gKkg==
+X-Received: by 2002:ac8:43d2:0:b0:3a8:137e:2963 with SMTP id w18-20020ac843d2000000b003a8137e2963mr9834178qtn.20.1673449962978;
+        Wed, 11 Jan 2023 07:12:42 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXuwuEld4JOQo3C/4cSnLqKobKbsU8yRCRzgaWn9prK9qPOI0q9TYANO88JMgh9AzvK3NYXGvg==
+X-Received: by 2002:ac8:43d2:0:b0:3a8:137e:2963 with SMTP id w18-20020ac843d2000000b003a8137e2963mr9834153qtn.20.1673449962780;
+        Wed, 11 Jan 2023 07:12:42 -0800 (PST)
+Received: from localhost (pool-71-184-142-128.bstnma.fios.verizon.net. [71.184.142.128])
+        by smtp.gmail.com with ESMTPSA id b20-20020ac85414000000b003ac83b7f5d4sm5562621qtq.29.2023.01.11.07.12.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jan 2023 07:12:42 -0800 (PST)
+Date:   Wed, 11 Jan 2023 10:12:41 -0500
+From:   Eric Chanudet <echanude@redhat.com>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 02/10] soc: fsl: qe: Add support for TSA
-Message-ID: <20230111160651.24538b35@bootlin.com>
-In-Reply-To: <7a36f02b-1ba1-b509-4aa0-c5c37a3cb3ef@csgroup.eu>
-References: <20230106163746.439717-1-herve.codina@bootlin.com>
-        <20230106163746.439717-3-herve.codina@bootlin.com>
-        <7a36f02b-1ba1-b509-4aa0-c5c37a3cb3ef@csgroup.eu>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        Andrew Halaney <ahalaney@redhat.com>,
+        Brian Masney <bmasney@redhat.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8450p-pmics: rename pmic labels
+Message-ID: <20230111151241.inli6ywo3hrk5f6c@echanude>
+References: <20230111082331.20641-1-johan+linaro@kernel.org>
+ <20230111082331.20641-3-johan+linaro@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230111082331.20641-3-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christophe,
+On Wed, Jan 11, 2023 at 09:23:31AM +0100, Johan Hovold wrote:
+> The SA8540P PMICs are named PMM8540. Rename the devicetree source labels
+> to reflect this.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-On Wed, 11 Jan 2023 13:47:23 +0000
-Christophe Leroy <christophe.leroy@csgroup.eu> wrote:
+Reviewed-by: Eric Chanudet <echanude@redhat.com>
 
-> Le 06/01/2023 =C3=A0 17:37, Herve Codina a =C3=A9crit=C2=A0:
-> > The TSA (Time Slot Assigner) is available in some
-> > PowerQUICC SoC such as the MPC885 or MPC866.
-> >=20
-> > Its purpose is to route some TDM time-slots to other
-> > internal serial controllers. =20
->=20
-> Is the subject correct ? As far as I understand this patch adds support=20
-> for the TSA on the CPM (exactly on CPM1), not on the QE.
+-- 
+Eric Chanudet
 
-Yes exactly, it is a CPM1 support (kind of previous version of QE).
-
-Do you think that fixing the subject is enough or do I need also
-to create a new directory drivers/soc/fsl/cpm/ and move these drivers
-(TSA and QMC) in this new directory.
-
-The alternative could be to leave this driver in drivers/soc/qe/ and
-rename it to cpm-tsa.c.
-
-For information, we have some plan to have this driver working
-with QE (not done yet).
-
->=20
-> By the way, there are already some embryo for handling TSA on QE in=20
-> drivers/soc/fsl/qe/qe-tdm.c
-
-Yes but this can be seen as an extension only used by=20
-drivers/net/wan/fsl_ucc_hdlc.c and it supports QE only.
-
-Not sure that qe-tdm.c will fit well if several other
-drivers instances use it.
-
->=20
-> >=20
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com> =20
->=20
-> Christophe
-
-Thanks for the review,
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
