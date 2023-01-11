@@ -2,88 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C27D6660D0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 17:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F330F6660D1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 17:42:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235452AbjAKQlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 11:41:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45656 "EHLO
+        id S239211AbjAKQmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 11:42:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbjAKQlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 11:41:18 -0500
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D674140F9
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 08:39:33 -0800 (PST)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id B7958320093B;
-        Wed, 11 Jan 2023 11:39:30 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Wed, 11 Jan 2023 11:39:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1673455170; x=
-        1673541570; bh=9mqaxzOXYaICyiwGPPEV14FUD/Q48iBQQ4un3VSJvDk=; b=h
-        t1LpWN/kSDuwXH+linOSRFR/khwR12nX73rU3oD+14h3OjZ8RrK+ZTAVDYHgH8dl
-        pMbN+uyVixl6gRtss/M8NmGuNi2fBOscXJnyvEE24Bh4igbXHXKFI9uW5+uzLpkJ
-        auv8RKiOZzq+RtGnZkt7wPPvFdvWMQSJctlIFe3peg/fPTm+YGfAlFuvt+r3oxtX
-        uM0+sQVxX7+ZMjNFDRETC0fJDYKnDcWuKqzo4b/lHP0Q0KateGg7SVmx/SW8DLAh
-        4oUXWLacZK9FDL23ty9vykquQw8LvUtpW3tqhSLYIYhjGPcHMK4SmPs94AbNtIk8
-        CjLE1p8NGeWPxWNhPRA0g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1673455170; x=
-        1673541570; bh=9mqaxzOXYaICyiwGPPEV14FUD/Q48iBQQ4un3VSJvDk=; b=A
-        s6kdqj68/tCyxkKvVQLyds7f1C81eVf2IYx3f8OO/UisEJ1VjY686rZ4cH6sJY/7
-        HeMBeaRlIvwbWCqK3cEwMEX4b1o4kiweLjKoMRMxObCWRU7+S8XdJkWKxsYOa+Ds
-        /GQn4lyHykaMBShpOabrF0MveNYjVuCxqrDaItiLDadh+olUmUyjhGjjbhPFAdqg
-        bS+TtxmeaLZQ230e6i0qH9VCiAn/qtGD9v0bU1xwnH2qde6KpTwD6OO+QaSAg2Lm
-        1xXzTMhkN6xZTkeKIwafnKFgcySIUFl1jKEcvOWrx9H3LH7hcVpUuyKj8VlR3FVc
-        9muIl2MJ0V2ziuVxI62Bg==
-X-ME-Sender: <xms:Qea-Y4ZZ1yoeze5Q7okMmJQ1vXTpZxkpndGQtL7aIN48t-ekp3h49Q>
-    <xme:Qea-YzaenbtY8Et5auUFnZq2hJKkqaoLNXhu0XE_HWvC2ADVWgMf7RtDKLJDAmafa
-    cFqZU391UJxBWBMzpg>
-X-ME-Received: <xmr:Qea-Yy85aSP0SPHv4-wPhxp0OW1Obm7WCzcce_YPS3rLzVGNFvG0mk94AQ6BVnrJAOuENCZxAnEt0croCxFqD9RWd__jaM7VgecwBi4BLi39jw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrleeggdeltdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvvefukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeetgfelgefggeekkefggfeludeiudffjeffgeevveekjedukedtudeuteef
-    teefgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:Qea-Yyr_ZFtsfhf7sYWkygT6bxiSt0i4fMgqkcuOacbWIg-kFANsjQ>
-    <xmx:Qea-YzolPIp-Ft3Jw_WnDwGQcxu6RuuqDL8xHMrvwUr3IZDZeQIn2g>
-    <xmx:Qea-YwSSbAMEMjfdlRiG7bVWuqRFd8yyQ0bndCeJLqSLBsR1JZQX9Q>
-    <xmx:Qua-Y618eBm1bfJ4AhjcpPMPoJA5bPfQ8sgi_tBErV-yhye0zNKn1w>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 11 Jan 2023 11:39:29 -0500 (EST)
-Date:   Wed, 11 Jan 2023 17:39:26 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        maccraft123mc@gmail.com, tzimmermann@suse.de,
-        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-        thierry.reding@gmail.com, linus.walleij@linaro.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v9 1/4] drm: of: Add drm_of_get_dsi_bus helper function
-Message-ID: <20230111163926.k3v32pdvq7o7wxwl@houat>
-References: <20230111163012.310945-1-macroalpha82@gmail.com>
- <20230111163012.310945-2-macroalpha82@gmail.com>
+        with ESMTP id S233974AbjAKQlg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 11:41:36 -0500
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529A41C93C;
+        Wed, 11 Jan 2023 08:40:26 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 42BD2C000D;
+        Wed, 11 Jan 2023 16:40:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1673455225;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=oGdtiEMVVLmjdlMhzVMr6gYLdJzA+jzOtls9FW8855g=;
+        b=bmCljGHAKJnjYOgao3zIAnf1JX2bGWcKm8KDBBfKhvUuexUL+GP4D1cLbWCfWqKv7wnoJY
+        5APlF6VCuTJUCGVpR7tGH+2eGPGyq4eu9mJ9o5PTDo0YWGA7JajFJ1VOFU+ihFzcX6emdM
+        grTDbC3NW45Hoymvdigaao6b2rgM03skXrgY97dmZRics5n+NnJFlQmiux0UTDIVLoOiZC
+        aMvQVWGI280RbKkqUXTq2n2G8toi3MOMZKpGFloB5PtqtC+Y4kOVYbHubyedANb0F7Acc1
+        xfiucowxIj7OEwgj67voWbr2h+TKolLLxpHYdnl/M6eibt7nLpHOPH05Y3oaeg==
+Date:   Wed, 11 Jan 2023 17:40:22 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Renesas IDT821034
+ codec
+Message-ID: <20230111174022.077f6a8c@bootlin.com>
+In-Reply-To: <Y77DKSdZf27qE+xl@sirena.org.uk>
+References: <20230111134905.248305-1-herve.codina@bootlin.com>
+        <20230111134905.248305-3-herve.codina@bootlin.com>
+        <Y77DKSdZf27qE+xl@sirena.org.uk>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230111163012.310945-2-macroalpha82@gmail.com>
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,115 +64,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Mark,
 
-On Wed, Jan 11, 2023 at 10:30:09AM -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, 11 Jan 2023 14:09:45 +0000
+Mark Brown <broonie@kernel.org> wrote:
+
+> On Wed, Jan 11, 2023 at 02:49:04PM +0100, Herve Codina wrote:
 >=20
-> Add helper function to find DSI host for devices where DSI panel is not
-> a minor of a DSI bus (such as the Samsung AMS495QA01 panel or the
-> official Raspberry Pi touchscreen display).
+> > +++ b/sound/soc/codecs/idt821034.c
+> > @@ -0,0 +1,1234 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * IDT821034 ALSA SoC driver =20
 >=20
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> ---
->  drivers/gpu/drm/drm_of.c | 70 ++++++++++++++++++++++++++++++++++++++++
->  include/drm/drm_of.h     | 10 ++++++
->  2 files changed, 80 insertions(+)
+> Please make the entire comment a C++ one so things look more
+> intentional.
+
+Ok, I will change in v2.
+
 >=20
-> diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
-> index 7bbcb999bb75..4ebb5bc4b595 100644
-> --- a/drivers/gpu/drm/drm_of.c
-> +++ b/drivers/gpu/drm/drm_of.c
-> @@ -10,6 +10,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_encoder.h>
-> +#include <drm/drm_mipi_dsi.h>
->  #include <drm/drm_of.h>
->  #include <drm/drm_panel.h>
-> =20
-> @@ -493,3 +494,72 @@ int drm_of_get_data_lanes_count_ep(const struct devi=
-ce_node *port,
->  	return ret;
->  }
->  EXPORT_SYMBOL_GPL(drm_of_get_data_lanes_count_ep);
-> +
-> +/**
-> + * drm_of_get_dsi_bus - find the DSI bus for a given device
-> + * @dev: parent device of display (SPI, I2C)
-> + * @info: DSI device info to be updated with correct DSI node
-> + *
-> + * Gets parent DSI bus for a DSI device controlled through a bus other
-> + * than MIPI-DCS (SPI, I2C, etc.) using the Device Tree.
-> + *
-> + * Returns pointer to mipi_dsi_host if successful, -EINVAL if the
-> + * request is unsupported, -EPROBE_DEFER if the DSI host is found but
-> + * not available, or -ENODEV otherwise.
-> + */
-> +struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
-> +					 struct mipi_dsi_device_info *info)
-> +{
-> +	struct mipi_dsi_host *dsi_host;
-> +	struct device_node *endpoint, *dsi_host_node;
-> +
-> +	/*
-> +	 * Exit immediately if we attempt to call this function when
-> +	 * DRM_MIPI_DSI is not enabled, in the event CONFIG_OF is
-> +	 * enabled.
-> +	 */
-> +	if (!IS_ENABLED(CONFIG_DRM_MIPI_DSI))
-> +		return ERR_PTR(-EINVAL);
+> > +static int idt821034_8bit_write(struct idt821034 *idt821034, u8 val)
+> > +{
+> > +	struct spi_transfer xfer[] =3D {
+> > +		{
+> > +			.tx_buf =3D &idt821034->spi_tx_buf,
+> > +			.len =3D 1,
+> > +		}, {
+> > +			.cs_off =3D 1,
+> > +			.tx_buf =3D &idt821034->spi_tx_buf,
+> > +			.len =3D 1,
+> > +		}
+> > +	};
+> > +	int ret;
+> > +
+> > +	idt821034->spi_tx_buf =3D val;
+> > +
+> > +	dev_vdbg(&idt821034->spi->dev, "spi xfer wr 0x%x\n", val);
+> > +
+> > +	ret =3D spi_sync_transfer(idt821034->spi, xfer, 2); =20
+>=20
+> Why is this open coding register I/O rather than using regmap?
+>=20
+> > +	conf =3D 0x80 | idt821034->cache.codec_conf | IDT821034_CONF_CHANNEL(=
+ch); =20
+>=20
+> regmap provides cache support too.
+>=20
+> > +static int idt821034_reg_write_gain(struct idt821034 *idt821034,
+> > +				    unsigned int reg, unsigned int val)
+> > +{
+> > +	u16 gain_val;
+> > +	u8 gain_type;
+> > +	u8 ch;
+> > +
+> > +	ch =3D IDT821034_REGMAP_ADDR_GET_CH(reg);
+> > +	gain_type =3D IDT821034_REGMAP_ADDR_IS_DIR_OUT(reg) ?
+> > +			IDT821034_GAIN_RX : IDT821034_GAIN_TX;
+> > +	gain_val =3D (val & 0x01) ? 0 : val >> 1;
+> > +
+> > +	return idt821034_set_gain_channel(idt821034, ch, gain_type, gain_val);
+> > +} =20
+>=20
+> So if the low bit of the gain is zero we just discard the value?  This
+> really needs some comments...
+>=20
+> > +static int idt821034_reg_write(void *context, unsigned int reg, unsign=
+ed int val)
+> > +{
+> > +	struct idt821034 *idt821034 =3D context;
+> > +
+> > +	dev_dbg(&idt821034->spi->dev, "reg_write(0x%x, 0x%x)\n", reg, val);
+> > +
+> > +	switch (IDT821034_REGMAP_ADDR_GET_TYPE(reg)) {
+> > +	case IDT821034_REGMAP_ADDR_TYPE_GBLCONF:
+> > +		return idt821034_reg_write_gblconf(idt821034, reg, val);
+> > + =20
+>=20
+> Oh, so there is some regmap stuff but it's not actually a regmap and is
+> instead some virtual thing which rewrites all the values with no
+> comments or anything explaining what's going on....  this all feels very
+> confused.  I would expect the regmap usage to be such that the regmap
+> represents the physical device, any rewriting of the values or anything
+> like that should be done on top of the regmap rather than underneath it.
+>=20
+> Without knowing why things are written in this way or what it's trying
+> to accomplish it's hard to comment in detail on what specifically should
+> be done.
 
-The commit log isn't super clear on why this is needed, but it would be
-more consistent to add an ifdef and only compile the entire function if
-DRM_MIPI_DSI is there, just like you did for OF already.
+Yes, I use regmap to ease the integration of controls and use the
+already defined controls macros but the device registers do not fit
+well with regmap.
 
-> +	/*
-> +	 * Get first endpoint child from device.
-> +	 */
-> +	endpoint =3D of_graph_get_next_endpoint(dev->of_node, NULL);
-> +	if (!endpoint)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	/*
-> +	 * Follow the first endpoint to get the DSI host node.
-> +	 */
-> +	dsi_host_node =3D of_graph_get_remote_port_parent(endpoint);
+The device registers are not defined as simple as address/value pairs.
+Accesses contains one or more bytes and the signification of the
+data (and bytes) depends on the first bits.
+- 0b10xxxxxx means 'Control register' with some data as xxxxxx
+  and one extra byte
+- 0b1101yyyy means 'Configuration register, slic mode' with
+  some other data as yyyy and one extra byte
+- 0b1100zzzz means 'Configuration register, gain mode' with
+  some other data as zzzz and two extra bytes
 
-There's no need to hold the reference to endpoint after that call. call
-of_node_put(endpoint) here, and it will simplify the error path.
+The datasheet is available at
+  https://www.renesas.com/us/en/document/dst/821034-data-sheet
 
-> +	if (!dsi_host_node)
-> +		goto error;
-> +
-> +	/*
-> +	 * Get the DSI host from the DSI host node. If we get an error
-> +	 * or the return is null assume we're not ready to probe just
-> +	 * yet. Release the DSI host node since we're done with it.
-> +	 */
-> +	dsi_host =3D of_find_mipi_dsi_host_by_node(dsi_host_node);
-> +	of_node_put(dsi_host_node);
-> +	if (IS_ERR_OR_NULL(dsi_host)) {
-> +		of_node_put(endpoint);
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +	}
-> +
-> +	/*
-> +	 * Set the node of the mipi_dsi_device_info to the correct node
-> +	 * and then release the endpoint node since we're done with it.
-> +	 */
-> +	info->node =3D of_graph_get_remote_port(endpoint);
+This does not fit well for a regmap usage.
 
-Ah, you're using it there.
+So I wrote some low-level access functions to handle this
+protocol and use some kind of "virtual registers" to map
+this protocol to regmap and use them in controls.
 
-I think I'd rework the function to:
+The "virtual registers" were defined to match what I need.
 
-- retrieve the endpoint
-- retrieve the remote port, give up the endpoint
-- retrieve the remote port parent
+For instance, idt821034_reg_write_gain() is the regmap
+write access for one of the gain "virtual register".
+The mapping of this virtual register is:
+   |15          1|0|
+   | Gain value  |M|
+With M for Mute flag.
 
-Also, I'm not entirely sure what you had in mind, but info might not be
-there at all and it would be fine imho.
+The gain value is not discarded as it is available in the
+regmap cache.
+For the low-level access, I write the 'Gain Value' or 0 if
+the mute flag was set.
 
-Maxime
+In some low level accesses, I need save some data (cache) in
+order to be able to use them later for an other access.
+For instance when a channel is powered-on, a timeslot
+need to be present in the bytes sent.
+
+Of course, I can describe all of these in details.
+Where do you want to have this information ? All at the top
+of the file ? Each part (low-level, virtual regs, ...) at
+the beginning of each part in the code ?
+
+Best regards,
+Herv=C3=A9
+
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
