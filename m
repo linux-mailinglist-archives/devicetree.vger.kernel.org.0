@@ -2,114 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3DB0665B65
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 13:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E89E5665B6A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 13:33:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232154AbjAKMam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 07:30:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44292 "EHLO
+        id S232249AbjAKMdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 07:33:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232824AbjAKMa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 07:30:28 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA0A42012
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 04:30:26 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id 20so5873450pfu.13
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 04:30:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jUBhq6gDwIZT95NIs8306ERf1NfWP566N/5jgccgjik=;
-        b=gpkiR1z4I+KOuHdaHilhRu5VCtC51kivd5GKp//dSEGu5DwZiH4SAFcM7NzqrIh1JF
-         Z/ArtivzRkvhOVxaXS1VSZ8HBpMjHz/KQF0EWbFUCwYhAGaxy1jgByeZUWH7TfwFXAyd
-         FOMJ+ImDvD5Vv+a4mrvm1jvtv+gjptCASHJpOZ5G1oQmb945slLCChIZBc4v/pPmBvIe
-         uG6yC/nKHZ0C6N0/HecAf+fxgjk2UejEH1lqcTGXJVvEsTE8Mura07pRZVJdvMl7wX6E
-         yJEUp8pA6o5KXZ0fSE7nB1e12AaH+AjpC6XUHpZ1bOc4qIZ8Pa5xy4VKNlosnV3n6uxJ
-         jjww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jUBhq6gDwIZT95NIs8306ERf1NfWP566N/5jgccgjik=;
-        b=T5uq+ggZ7QstObXimjxBgY1woT2tUeDr9Mw3059XZGHlF8iE49H/MR51mn6WrZ3B5P
-         YGfLo4vUMK9+w9XR0RrpmFx/lJtjpXuCUajrGqoyOM2v5e+FBMnIdczaW8Ng8BgTjppe
-         UjTFhqoI2cDAlZzEHAcMzX4pl0Xc5frb9UVijkfnw61pp3J21jVSYihcsclIo2WS5QLI
-         A8rUTqOob8AdLHPZYE+3ph4+Y4fVATsofrW2qmtpd5xOj6DVJIdfIxYeeYv0UWDBYk+G
-         4sObTWz4x04grVXr+5nQJW5i2Si/YcGbzgN24jcGMPH+qVWSNb2PiVzOFnGKE9jPKpMB
-         xmXg==
-X-Gm-Message-State: AFqh2krAuT/y8kdiKNIvd6qPcldzSB7WV9CcKcm/BDotXKFt6jcrEZOI
-        mR3ufo9GsETiSXU4pV8Xo9Ee
-X-Google-Smtp-Source: AMrXdXuk2tFmgf8IGHH8e6xsf8DemGt04XaOt1fpa8Kz8SzpJugkztdcodDwZgpBv6K3oXTrSW0GZg==
-X-Received: by 2002:a62:6001:0:b0:582:33b4:4c57 with SMTP id u1-20020a626001000000b0058233b44c57mr2062856pfb.33.1673440226258;
-        Wed, 11 Jan 2023 04:30:26 -0800 (PST)
-Received: from localhost.localdomain ([117.217.177.1])
-        by smtp.gmail.com with ESMTPSA id c15-20020aa7952f000000b005747b59fc54sm8719594pfp.172.2023.01.11.04.30.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 04:30:25 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     bhelgaas@google.com, konrad.dybcio@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lpieralisi@kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8450: Allow both GIC-ITS and internal MSI controller
-Date:   Wed, 11 Jan 2023 18:00:04 +0530
-Message-Id: <20230111123004.21048-2-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230111123004.21048-1-manivannan.sadhasivam@linaro.org>
-References: <20230111123004.21048-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S231766AbjAKMdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 07:33:09 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E78F1E029;
+        Wed, 11 Jan 2023 04:33:07 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 75F4561CAB;
+        Wed, 11 Jan 2023 12:33:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4F8EC433D2;
+        Wed, 11 Jan 2023 12:33:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673440386;
+        bh=6W/sprcBudgz8eSbOqZAoynmDsVr5n+AmKEg6gnvo7E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=iNT+x5ovfUERKQKn0QCi2Hr6v1mc7OiOcp6FQWt55TXInjq9T7CaIw11ND7C5K6ZT
+         qrEZ7E3sqmJKzPFVmXFT/Dwd+jckngmq17h0qOdHtAhtAOa6FseN9c0fgoPKqXiP4a
+         yjqB+ITh1XrU3EA61z774v29nYdIAo76DcGTTgrHXRmxgCU9BwkfWP9Y8MsqvrLHO/
+         XWB4TpvaGXUcGljISgvuKfCUcmis1KaMB+7QA1ul4ZpeKCnZjKlzNmHw1Z7AptcCiu
+         M26Li5Hk/rrhHH8ew/GEO62iVArAjy0ZIA5pSknU6M7DIehshw8AlKfbin3S/yEJFi
+         L/v4Ma3Fu4+YQ==
+Message-ID: <f169d05a-7a07-aedf-bad2-30cb4a88fc16@kernel.org>
+Date:   Wed, 11 Jan 2023 13:32:57 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [RFC PATCH 3/7] dt-bindings: bus: add STM32MP15 ETZPC firewall
+ bus bindings
+Content-Language: en-US
+To:     Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+        alexandre.torgue@foss.st.com, robh+dt@kernel.org,
+        Oleksii_Moisieiev@epam.com, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org
+Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        loic.pallardy@st.com, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, arnd@arndb.de
+References: <20221221173055.11719-1-gatien.chevallier@foss.st.com>
+ <20221221173055.11719-4-gatien.chevallier@foss.st.com>
+ <879325d2-4b2d-bc1d-310c-ece4c449ad8f@kernel.org>
+ <8357d887-c8ab-39bc-4ef0-62e9225fb2a6@foss.st.com>
+ <118e7f0c-bf5d-4bda-ee70-92eb2b71649c@kernel.org>
+ <8f022dc8-d728-ba91-35ed-8a4006855f0d@foss.st.com>
+ <dfe328fc-349b-3357-a8ac-6fc363f403fc@kernel.org>
+ <19157c67-fa83-e598-d7ee-c313f3d4b198@foss.st.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <19157c67-fa83-e598-d7ee-c313f3d4b198@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The devicetree should specify both MSI implementations and the OS/driver
-should choose the one based on the platform requirements. Currently, Linux
-DWC driver will choose GIC-ITS over the internal MSI controller.
+On 09/01/2023 12:54, Gatien CHEVALLIER wrote:
+>>>> Then why do you define them in bindings? Use raw numbers. Do you see
+>>>> anywhere in arm/arm64 bindings for GIC_SPI interrupt numbers?
+>>>>
+>>>
+>>> What would you think of simply removing the comments that state that IDs
+>>> are reserved, mimicking the way it is for qcom bindings? Fundamentally,
+>>> they are indeed only IDs and could be raw numbers.
+>>
+>> If these are IDs then there are no reserved numbers and they are
+>> continuous from 0 to X. Without gaps.
+>>
+>>> IMO, this makes reading the device tree harder. Because you'd have to
+>>> look what the raw number corresponds to.
+>>
+>> Sure, but that's not the reason to put numbers to the bindings... You
+>> mix defines with bindings.
+>>
+>>> To take an example, it has already been done for SCMI clocks and I find
+>>> it eases comprehension.
+>>
+>> You need to be a bit more specific...
+> 
+> Please see include/dt-bindings/clock/stm32mp1-clks.h, where there are 
+> various clock IDs defined, some of them not contiguous.
 
-Fixes: a11bbf6adef4 ("arm64: dts: qcom: sm8450: Use GIC-ITS for PCIe0 and PCIe1")
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+These are pretty often added to accommodate space for exposing these
+clocks in the future. IOW, these might be IDs just not all are shared
+via header. There are such platforms and it is OK.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index c4dd5838fac6..442b7be10858 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -1740,6 +1740,9 @@ pcie0: pci@1c00000 {
- 			msi-map = <0x0 &gic_its 0x5981 0x1>,
- 				  <0x100 &gic_its 0x5980 0x1>;
- 			msi-map-mask = <0xff00>;
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi";
-+			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
- 					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
-@@ -1853,6 +1856,9 @@ pcie1: pci@1c08000 {
- 			msi-map = <0x0 &gic_its 0x5a01 0x1>,
- 				  <0x100 &gic_its 0x5a00 0x1>;
- 			msi-map-mask = <0xff00>;
-+			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi";
-+			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
- 					<0 0 0 2 &intc 0 0 0 435 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
--- 
-2.25.1
+> 
+> Errata: for SCMI clocks they are indeed contiguous but not clock IDs.
+> 
+>>
+>> Anyway, IDs should be placed in bindings. Some mapping of
+>> internal/hardware ports, registers, offsets, values - usually not.
+>>
+>> I don't know where exactly your case fits, but when some IDs are
+>> reserved it is a clear sign that these are not IDs (again - IDs start
+>> from 0 and go incrementally by one, without gaps).
+>>
+> 
+> I do agree with your statement that IDs should not be reserved.
+> 
+> I think I've missed something to better highlight my point of view: It 
+> would be perfectly fine using numbers that are not described in this 
+> bindings file. It would just not correspond to an ID of a peripheral 
+> described in the SoC reference manual, thus making no sense to use them. 
+> Stating that they are reserved was incorrect, it's just that peripherals 
+> get a firewall ID, depending on the platform.
+
+Why peripheral ID should be put into the bindings? Why bindings is a
+place for it? Interrupt numbers, GPIO indices/numbers, register offsets,
+IOMMU ports - none of these are suitable for bindings.
+
+> 
+> I think it should be okay not describing IDs that are not relevant, what 
+> do you think? I found that in include/dt-bindings/arm/qcom,ids.h, IDs 
+> are not continuous. Not mentioning an ID could be used for deprecation.
+
+These are not IDs of clocks. These are unique identifiers assigned by
+vendor and used by different pieces: firmware/bootloaders, DTS and Linux
+driver. We have no control of them but they exist. They also do not
+represent any hardware number.
+
+You bring some examples as an argument, but these examples are not
+always related to your case. To be clear - we talk here about bindings,
+so they bind different interfaces of software components (e.g. Linux
+kernel with DTS). Now, what is the different interface here in your
+case? If you say your peripheral hardware ID, then answer is no - this
+is not software interface.
+
+Best regards,
+Krzysztof
 
