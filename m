@@ -2,137 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C92566553B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 08:39:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6703866554A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 08:45:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231499AbjAKHjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 02:39:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48178 "EHLO
+        id S231695AbjAKHpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 02:45:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231975AbjAKHjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 02:39:13 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2054F10B44
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 23:39:12 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1pFVhK-0004Cd-SK; Wed, 11 Jan 2023 08:38:58 +0100
-Message-ID: <7b77825d-cbdb-0150-c30b-aa97fa39fe27@pengutronix.de>
-Date:   Wed, 11 Jan 2023 08:38:55 +0100
+        with ESMTP id S231261AbjAKHpn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 02:45:43 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9E19B7F3;
+        Tue, 10 Jan 2023 23:45:37 -0800 (PST)
+X-UUID: ec69c5da918311ed945fc101203acc17-20230111
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1IcXxUlcMjL6OjiByHs+3U0DRKLrz/x/GXv70XJcADo=;
+        b=q+KxuErKEDdXT0h122zyBa873ChK/ioOiaJy68Pm8xlAecLa/5zBZxQcIdXhz9+UeVHZhZfgu66t3BUYfmO8L8yiX/ftebFNKjn71FtXb1ZeTkSypbovCLXgErMAkA+GUwThdOXlZc9quVDJh4EQnU6u4tRVEOPVgBftmaBmAck=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.17,REQID:93a2a6e6-025c-4af0-81a6-d80df9c31ce7,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:543e81c,CLOUDID:7e99ee8b-8530-4eff-9f77-222cf6e2895b,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
+X-CID-BVR: 0,NGT
+X-UUID: ec69c5da918311ed945fc101203acc17-20230111
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 2024602603; Wed, 11 Jan 2023 15:45:31 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 11 Jan 2023 15:45:29 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 11 Jan 2023 15:45:29 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>
+CC:     Fan Chen <fan.chen@mediatek.com>, Roger Lu <roger.lu@mediatek.com>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v4 0/14] Enahance SVS's robustness
+Date:   Wed, 11 Jan 2023 15:45:14 +0800
+Message-ID: <20230111074528.29354-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add support for Data Modul i.MX8M
- Plus eDM SBC
-To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc:     Denys Drozdov <denys.drozdov@toradex.com>,
-        Fabio Estevam <festevam@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Matthias Schiffer <matthias.schiffer@tq-group.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20221218051800.495932-1-marex@denx.de>
- <20221218051800.495932-2-marex@denx.de>
-Content-Language: en-US
-In-Reply-To: <20221218051800.495932-2-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marek,
+SVS driver got accepted upstream but still has room to be improved.
+Therefore, we add these patches to fix issues and coding style.
 
-On 18.12.22 06:18, Marek Vasut wrote:
-> Add support for Data Modul i.MX8M Plus eDM SBC board. This is an
-> evaluation board for various custom display units. Currently
-> supported are serial console, ethernet, eMMC, SD, SPI NOR,
-> USB host and USB OTG.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Denys Drozdov <denys.drozdov@toradex.com>
-> Cc: Fabio Estevam <festevam@denx.de>
-> Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Li Yang <leoyang.li@nxp.com>
-> Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Matthias Schiffer <matthias.schiffer@tq-group.com>
-> Cc: Max Krummenacher <max.krummenacher@toradex.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Tim Harvey <tharvey@gateworks.com>
-> Cc: devicetree@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
+Change since v3:
+- Remove cleanup codes in patch [01/14] for letting it backport easily
+- Enclose svs debug cmd codes with "CONFIG_DEBUG_FS" where needed
+- Reorder patch sequenece to put fix up patch first
 
-Could you share your get_maintainers.pl invocation? I'd like to
-adjust the reviewer entry in MAINTAINERS, so such patches get
-into our kernel@pengutronix.de inbox as well.
+Tested on:
+MT8183 Platform (kernel v5.10)
+MT8192 Platform (kernel v5.4)
 
-Some more comments below.
+Matthias Brugger (4):
+  soc: mediatek: mtk-svs: clean up platform probing
+  soc: mediatek: mtk-svs: improve readability of platform_probe
+  soc: mediatek: mtk-svs: move svs_platform_probe into probe
+  soc: mediatek: mtk-svs: delete superfluous platform data entries
 
-> +	pmic: pmic@25 {
-> +		compatible = "nxp,pca9450c";
-> +		reg = <0x25>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> +		sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+Ricardo Ribalda (1):
+  soc: mediatek: mtk-svs: enable the IRQ later
 
-Here you assume GPIO1_IO04 is muxed as GPIO.
+Roger Lu (8):
+  soc: mediatek: mtk-svs: restore default voltages when svs_init02()
+    fail
+  soc: mediatek: mtk-svs: reset svs when svs_resume() fail
+  soc: mediatek: mtk-svs: use svs clk control APIs
+  soc: mediatek: mtk-svs: add thermal voltage compensation if needed
+  soc: mediatek: mtk-svs: keep svs alive if CONFIG_DEBUG_FS not
+    supported
+  soc: mediatek: mtk-svs: use svs get efuse common function
+  soc: mediatek: mtk-svs: use common function to disable restore
+    voltages
+  soc: mtk-svs: mt8183: refactor o_slope calculation
 
-> +	pinctrl_usdhc2: usdhc2-grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc1
+Shang XiaoJing (1):
+  soc: mediatek: mtk-svs: Use pm_runtime_resume_and_get() in
+    svs_init01()
 
-Here you mux it for USDHC2_VSELECT though. Is this intended?
+ drivers/soc/mediatek/mtk-svs.c | 339 +++++++++++++++++----------------
+ 1 file changed, 173 insertions(+), 166 deletions(-)
 
-> +/* eMMC */
-> +&usdhc3 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	vmmc-supply = <&buck4>;
-> +	vqmmc-supply = <&buck5>;
-> +	bus-width = <8>;
-> +	non-removable;
-
-You can add
-
-  no-sd;
-  no-sdio;
-
-to skip that init dance if the eMMC is indeed non-removable.
-
-Cheers,
-Ahmad
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
