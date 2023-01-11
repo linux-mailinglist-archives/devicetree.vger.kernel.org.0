@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3628C666354
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 20:15:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70307666358
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 20:15:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233869AbjAKTPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 14:15:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59062 "EHLO
+        id S231972AbjAKTPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 14:15:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234416AbjAKTO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 14:14:58 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1578E3DBDD
+        with ESMTP id S235279AbjAKTO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 14:14:59 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 012ED3DBE3
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 11:14:58 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id e13so17093424ljn.0
         for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 11:14:57 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id n5so16511525ljc.9
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 11:14:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tvetCGKgjl4TOcgsE3HW1CpjBzYScqI9QN0WXqkeGn4=;
-        b=UqhKEmCNju2kbHfZHKTxtm3c5czCKHVZOHbWKFfA+y3BQABbnOEAaQAEtZu8Hw6ODL
-         g9Ela4PeWz2KlODeCwSpZJBLxWlZIPCzzQEbanxbIN4Z4IG4eQmhLIxp+g7YecT2ic6H
-         +7RNb+lfTiQKcHE7PWJTmBaDXxPcrBDkfy0l58IsOlKnH76wTZFBDZuC6DlozB0dIr94
-         T1IuhM40k4s0FtYwrzxXSwJtz2y/SenTuLSY+yT6vBmELKmgZQ8qKYJxQriZbm9h4+x2
-         uEEqrNDKI2ujs8QPx4GkmXo8zb5Dinv8G9XgN/xBYxDLuovutltK4GiGZIz7dZYL693w
-         g5/A==
+        bh=qnO47DUEwN//XThycfEdpAbdWEvh77T3LIosKiAxmXQ=;
+        b=rIShkYakHyEndgpFPEx8c/mV1M7z06AugUVKSo7J4Pya1+TGDnRWXk4vX66XQAWLtE
+         lx6DIi+y8VGUZIVjL522QS2T/Lw28zY0rS5qZ8DheJvCMUNMhHFEN61nGjAWRCkMWjBk
+         kbvpj2lBiu/jPIbHxT+6y+9jwG8laWIrRwPGFFi4E78+O9VQ8B4ywgzgtfDwfzRqbzAa
+         R/Q3ZElOtA3cB3NCMtN98FuB4PpDIPu6HDvBozNlCnE8RtLY9kKv9UIy/VicQv1leLAL
+         /2IEs6GHjxj1uzVrXUeolvnpC/N3pLxpzeN4QImDiXzMR1dHlB5ekDYrNIyA6n0jhJTn
+         PBEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tvetCGKgjl4TOcgsE3HW1CpjBzYScqI9QN0WXqkeGn4=;
-        b=e8teIka7q+sNeYDD/4/lKMfoY68aFh7W7DyF8ULH5jordf7nnqvrOuxm6N2SopXvt+
-         9xhiiBVJmLsjh0yoj0dw4tQ4GPvQaniiS34LYZhwcnb4vB5oR98OqfdEoPQ7olPZycjV
-         YYyZigj5tlGzXYfTFeOyw8lKeWgU0z+0Cz5HOfyNvzCNKSwTAFzmBtL9h+kf47in6f5c
-         oCoth5U7h5qxxAxyA+jJhqDxGauj1457kCLN1q60F7ef992D29V6Li3rCmZ0Gh3xmAB0
-         2Q9OaDfmIZPYyujG0oTckkbAtYZelzC6rKwwzYdje1NGbrU9996F678aAzDGFlsH+WaY
-         4wQQ==
-X-Gm-Message-State: AFqh2krZv3u+YPAF2ucfJZNbnBqm/Tw6M3oHfwSCnre0w+/0kAiZcsv6
-        pae4OvksvfyQnwo1lhLxLLNj2w==
-X-Google-Smtp-Source: AMrXdXtRgrWhdT6cEv/zJaSMKYCkCBZoQwGdm6GxhA/zjl8LuIh8iSWnzd6HzUuMcQR0F2lo0Jyjig==
-X-Received: by 2002:a2e:8e67:0:b0:281:17f6:eeb9 with SMTP id t7-20020a2e8e67000000b0028117f6eeb9mr5621561ljk.8.1673464495502;
-        Wed, 11 Jan 2023 11:14:55 -0800 (PST)
+        bh=qnO47DUEwN//XThycfEdpAbdWEvh77T3LIosKiAxmXQ=;
+        b=GI56DRyB9RxmXUAO2xVJsLzAonUC4F1s7ZoE17Cn63ThX5LV6pMpzpJmcyC2lV6Xo1
+         MCI/U9HWWrXJKdJ5zSEiUfn5E42JlsgX7hQK459g6ZpvKCUNk+HwHWWS/L9pLgjhPn2e
+         Qq7lbOMvLpEfeCeYXtNW7lp84BAzBNsrGPeh8pCqBv0BQlnfxH6dxchKoeuAmKpaNQ4i
+         NIEVesTXiFa6fBIw2crnSS2G4eIEMfCBwEh7c5UthzplpuA0bwGO4+dHTbAyJjh2wzve
+         06sSowptEiRsNAwMsCMEjj1lrIZuim4FOxX5A41kKk0iA73FESesn/OsCVVSfs/ETmYu
+         d0IA==
+X-Gm-Message-State: AFqh2ko9WVNlpKfq9iqjqQlwCnw9Ml8nn5ERi9HelnUUGtz2PaXJyNdd
+        C84swZ5zhcyXS90kBRO0f0PlzA==
+X-Google-Smtp-Source: AMrXdXvx0DRu2+CA6xRA5IFr/WBd1wZwaDOy+Wzlq5t+NYgswAsi1LDZw6/CIT0a55v8qx0dbbcnbQ==
+X-Received: by 2002:a05:651c:220b:b0:279:f1df:97a6 with SMTP id y11-20020a05651c220b00b00279f1df97a6mr24826788ljq.7.1673464496242;
+        Wed, 11 Jan 2023 11:14:56 -0800 (PST)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id r7-20020a2e8e27000000b00289873cce0bsm76343ljk.14.2023.01.11.11.14.54
+        by smtp.gmail.com with ESMTPSA id r7-20020a2e8e27000000b00289873cce0bsm76343ljk.14.2023.01.11.11.14.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 11 Jan 2023 11:14:55 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
         Jassi Brar <jassisinghbrar@gmail.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/4] dt-bindings: mailbox: qcom: correct the list of platforms using clocks
-Date:   Wed, 11 Jan 2023 22:14:50 +0300
-Message-Id: <20230111191453.2509468-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 2/4] dt-bindings: mailbox: qcom: add #clock-cells to msm8996 example
+Date:   Wed, 11 Jan 2023 22:14:51 +0300
+Message-Id: <20230111191453.2509468-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230111191453.2509468-1-dmitry.baryshkov@linaro.org>
 References: <20230111191453.2509468-1-dmitry.baryshkov@linaro.org>
@@ -79,36 +79,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Only three platforms require `pll' and `aux' clocks: msm8916, msm8939
-and qcs404. Correct the list of platforms in the corresponding clause.
+Add the #clock-cells property to the MSM8996 example, as the APCS block
+is going to provide the `sys_apcs_aux' clock to the consumers.
 
-Fixes: 0d17014e9189 ("dt-bindings: mailbox: Add binding for SDX55 APCS")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../bindings/mailbox/qcom,apcs-kpss-global.yaml          | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-index 943f9472ae10..b8a44ef0540f 100644
+index b8a44ef0540f..5e7c83345774 100644
 --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
 +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-@@ -71,15 +71,8 @@ allOf:
-         compatible:
-           enum:
-             - qcom,msm8916-apcs-kpss-global
--            - qcom,msm8994-apcs-kpss-global
--            - qcom,msm8996-apcs-hmss-global
--            - qcom,msm8998-apcs-hmss-global
-+            - qcom,msm8939-apcs-kpss-global
-             - qcom,qcs404-apcs-apps-global
--            - qcom,sc7180-apss-shared
--            - qcom,sdm660-apcs-hmss-global
--            - qcom,sdm845-apss-shared
--            - qcom,sm6125-apcs-hmss-global
--            - qcom,sm8150-apss-shared
-     then:
-       properties:
-         clocks:
+@@ -141,6 +141,7 @@ examples:
+         reg = <0x9820000 0x1000>;
+ 
+         #mbox-cells = <1>;
++        #clock-cells = <0>;
+     };
+ 
+     rpm-glink {
 -- 
 2.30.2
 
