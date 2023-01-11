@@ -2,77 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 765A2665915
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 11:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D9666591F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 11:36:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233530AbjAKKdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 05:33:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53444 "EHLO
+        id S229636AbjAKKgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 05:36:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234175AbjAKKdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 05:33:08 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0C446321;
-        Wed, 11 Jan 2023 02:33:07 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30B8wwxd006816;
-        Wed, 11 Jan 2023 10:33:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=1oF420EDxAicWGUXE/uXSiSuvzCuEmIK+W0MR2J+zgY=;
- b=jIJ0tJQ0PF1PJ9qmhGGKUSakG1ihGRz7ii85luuFSf63p06XejrXXN2Kb98KRFqLY0uT
- 6Vkpr9nz445QwIU+KGGiQmnbpj8ZJb3NroQguokKcfu+fK1Pv/b2v8jhV0vqDjBkMdLm
- v+dDaP21YxJxqBtW9BVSv10sjZP016MC/Bx6SqinrIpINO3RyO3hfyzgzaX3VA1v9U2f
- TXSdzhpRvMAPsojRKLgSXUbea+ZCNX86/EZZi/EpQcEE83fPeeUVM33UBHGnJF0VK36s
- RJnPp4ZyOtfAkFph4uXJHQBApMDWohEsqJeEua5q681dFTdnkCoDCjMeuPUTtB75JAhS SQ== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n1k6a0yeb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 11 Jan 2023 10:33:04 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30BAX3aX008255
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 11 Jan 2023 10:33:03 GMT
-Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 11 Jan
- 2023 02:33:00 -0800
-Message-ID: <d7f9a6be-ced8-b3b1-7940-580e71c6cb06@quicinc.com>
-Date:   Wed, 11 Jan 2023 16:02:51 +0530
+        with ESMTP id S231979AbjAKKgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 05:36:44 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F255FAE;
+        Wed, 11 Jan 2023 02:36:43 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C29C56602CEE;
+        Wed, 11 Jan 2023 10:36:40 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1673433402;
+        bh=H6zzHJpHQe1KvLuxZKBTil2t46+1H+8k2jz3su1ylJM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Rx59Oac2V1EYhsjboFmG7hLyyIMkP+MOnbiyspABilPj681rqxLlV1XHg9GLsSgWs
+         jsnxNcGF5hx2JB4OssIvba/es9sEMyyD9U1hPITXMBc5qXdk+Pfuw5NEpfeL1v9M5I
+         lO3hH7ezSBT0nQ482mAIL8HT59w2s9Ipki4bD5REZcOwrhxXpbsMzvpEYzQDDmSVNF
+         cHZSZ3EmBOZ2peeEEUwQs1ieAHRKWZl1lb2d2ojvVq0QfKl0GF/9jD8DZ63cpOW8AF
+         BKuJ3QUxMBhrBUMa8BhzTudZgdOB0/Q5coLVnULtXZh6hbWAEi3GqaRM4qvWPpKZ4V
+         0kylkWTLvW+KA==
+Message-ID: <e263490c-8ff3-d19d-bcb8-8a81ab7f6245@collabora.com>
+Date:   Wed, 11 Jan 2023 11:36:37 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: Add TCSR halt register space
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 11/23] clk: mediatek: Switch to mtk_clk_simple_probe()
+To:     Miles Chen <miles.chen@mediatek.com>, wenst@chromium.org
+Cc:     chun-jie.chen@mediatek.com, daniel@makrotopia.org,
+        devicetree@vger.kernel.org, fparent@baylibre.com,
+        ikjn@chromium.org, johnson.wang@mediatek.com,
+        jose.exposito89@gmail.com, kernel@collabora.com,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        matthias.bgg@gmail.com, msp@baylibre.com, mturquette@baylibre.com,
+        nfraprado@collabora.com, pablo.sun@mediatek.com,
+        rex-bc.chen@mediatek.com, robh+dt@kernel.org, ryder.lee@kernel.org,
+        sam.shih@mediatek.com, sboyd@kernel.org, weiyi.lu@mediatek.com,
+        y.oudjana@protonmail.com, yangyingliang@huawei.com,
+        mingming.su@mediatek.com
+References: <Y74jNZbjpopT2rNY@google.com>
+ <20230111085645.30683-1-miles.chen@mediatek.com>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1673428818-26112-1-git-send-email-quic_mojha@quicinc.com>
- <ab6a99da-e91b-20de-3126-3f1f94ce277b@linaro.org>
- <c5dc8042-717b-22eb-79f6-d18ab10d6685@linaro.org>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <c5dc8042-717b-22eb-79f6-d18ab10d6685@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230111085645.30683-1-miles.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: rB1f-Es52DChQWHHcSfLcnNu_tjCx04-
-X-Proofpoint-GUID: rB1f-Es52DChQWHHcSfLcnNu_tjCx04-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-11_04,2023-01-11_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- lowpriorityscore=0 impostorscore=0 phishscore=0 clxscore=1015
- malwarescore=0 mlxscore=0 priorityscore=1501 spamscore=0 bulkscore=0
- mlxlogscore=901 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301110080
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -82,59 +68,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 1/11/2023 3:30 PM, Krzysztof Kozlowski wrote:
-> On 11/01/2023 10:59, Krzysztof Kozlowski wrote:
->> On 11/01/2023 10:20, Mukesh Ojha wrote:
->>> Add TCSR register space and refer it from scm node, so that
->>> it can be used by SCM driver.
+Il 11/01/23 09:56, Miles Chen ha scritto:
+> cc Mingming
+> 
+>>>> Would this get cleaned up even more? I.e. have just one driver left and
+>>>> we could have the nice *_platform_driver() macros.
+>>>>
 >>>
->>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 6 ++++++
->>>   1 file changed, 6 insertions(+)
+>>> In the future, yes - granted that I find someone that can help with the testing,
+>>> as I don't have any MT2712 hardware here.
 >>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> index 5704750..e0fa733 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> @@ -270,6 +270,7 @@
->>>   	firmware {
->>>   		scm: scm {
->>>   			compatible = "qcom,scm-sm8450", "qcom,scm";
->>> +			qcom,dload-mode = <&tcsr 0x13000>;
->>>   			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
->>>   			#reset-cells = <1>;
->>>   		};
->>> @@ -1986,6 +1987,11 @@
->>>   			#hwlock-cells = <1>;
->>>   		};
->>>   
->>> +		tcsr: syscon@1fc0000 {
->>> +			compatible = "syscon";
+>>> Not in this series though (please!).
 >>
->> This is not allowed by itself.
-> 
-> Eh, that was not proper English... I wanted to say: This is not allowed
-> on its own. You need specific compatible. ALWAYS.
-
-Sorry, it was my first DT patch, I did not run dtbs_check.
-Thanks for correcting.
-
-I think, i have missed adding qcom,tcsr-sm8450 in
-Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-also need to add qcom,tcsr-sm8450 in above compatible.
-
--Mukesh
-> 
->> You should have warnings when running
->> dtbs_check.
+>> Got it.
 >>
->> Best regards,
->> Krzysztof
+>> Maybe Miles has access to some EVBs, or knows someone who does.
 >>
+>> ChenYu
 > 
-> Best regards,
-> Krzysztof
+> I do not have any MT2712 board.
+> Thanks for Mingming's help, Mingming will test v2 series on the MT2712 platform.
 > 
+> thanks,
+> Miles
+> 
+
+I'll remember to add Mingming to the Cc's for the other series that I will send
+after this one gets picked.
+Many thanks for offering testing!
+
+Cheers,
+Angelo
