@@ -2,105 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B1616663A1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 20:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 409396663B8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 20:27:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232785AbjAKTUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 14:20:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34474 "EHLO
+        id S234279AbjAKT0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 14:26:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235562AbjAKTUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 14:20:18 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8C10164AB
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 11:20:17 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id y18so13517402ljk.11
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 11:20:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/6oxkO9QAPLP0YswH75g78WKyT87UeTs24N1///f/iE=;
-        b=GUzn5UYzDux1UDq5x9iKZ0hwiCHxBTdC4+4a/gOGfTQatCqYzPXg1u9laL4niqclbK
-         CpJy1E5vVVNKuF13JZRXJJUh+4wgxl8CiPMIneLGducXPFaV4DUEwVpbSyT6LYRotbg1
-         qs5K32HRykTy7s0U3UnTXba4a5hPbct7nStNaqX/LAhglEVQFTDftauauce7v54CqYAQ
-         Bg+SEBcs2EkKekeZTZYqySjuxGFAq91/qdF89m37d4l+1owcPqKaxntAEWFfigy3biut
-         4/L4oA25BMO7XTIWfOpOn+IcMgITki9K24X/Lw7q2Lbelxisgs6NEBH2eKd+cOGhAJ/Q
-         afbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/6oxkO9QAPLP0YswH75g78WKyT87UeTs24N1///f/iE=;
-        b=vVtHMLrvFlQrPG0QN/5dW+czByWgHgIRkJoX1TI4r8vi3Fod0DV6G5KOsQljA+MNHL
-         WG0fvdEuesvX8U8lyx8Rqx8amU8tGuEzdrhcSQGgniY7LZCnPgkmNbNosEjOE+4UsoGG
-         JIT4ukSxFJgqVwo0n1k6bTtsEaG/mWtaFvisU3JXTKEpLA5TeieURQs2xTOaWyLX1BII
-         GeqJd+ZHn8xpXA/DvQ8H2xI8+LyWNBuH5UdUEGd2at6be8M04wg0pXtnpFLUv5tGWe5j
-         ENfxfFH8d8XcZVjdmVjiArj8ASh09b/5wFZ/rfUOS2kYvy+bBu4NnRwteWc99USyhZgN
-         R7RA==
-X-Gm-Message-State: AFqh2koVPwcoz7K3XgSvHyLy8pnDJGh/tAKLxZdCROztINxGInAIW5KP
-        Y/rFM8cMhJa+9+rPnhd5y/QNJJH2j5kk3nWE
-X-Google-Smtp-Source: AMrXdXvl0IM1Ir+K7DmFG3Jey9+jyD+I9e8lHBh+JSb7ZROysP5ogmll+FHtNFsKiyGgc5RwSX+hWA==
-X-Received: by 2002:a2e:b5c4:0:b0:285:820a:3167 with SMTP id g4-20020a2eb5c4000000b00285820a3167mr2686929ljn.36.1673464816401;
-        Wed, 11 Jan 2023 11:20:16 -0800 (PST)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id bj36-20020a2eaaa4000000b0027ff2fabcb5sm1807787ljb.104.2023.01.11.11.20.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 11:20:16 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
+        with ESMTP id S229869AbjAKT0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 14:26:41 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15F0E03F;
+        Wed, 11 Jan 2023 11:26:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A4E31B81BB1;
+        Wed, 11 Jan 2023 19:26:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 497F8C433D2;
+        Wed, 11 Jan 2023 19:26:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673465198;
+        bh=NleARjxyAqOU4E6Gc4WXlvYzEESeAOLR01W4bjxV+cc=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=FFizbUFjr0opSJqhFyCNSRcRyDH0Nt5qYeQZ9YVixe2JFLQYnl+vnZE0t3ILTF13N
+         o/h+Sbe9P/l2tM+0G4WbE40GgnH5O79Xvxgru5YnHx+ks+B5RA9HoxHqRbAFU92B93
+         hjP966MNpL/3APC6MaBrLCm1BQAQdfmE2l9GihclZmCWt5qHBE3/u4/+qxajjA8NHt
+         0OTBOnEb9C/S2vHZeQ2avlpR+R6uQdZ+npqf/aB+qQLfMLvUBf5heY068jekx7x9dg
+         Vl9w0Aw4n51I3pzfdmQgSzdY8l6gd5P3m0B1x/fcCHCk+yD1PX41/7oI4w+fE/kXcZ
+         C75nPSknhDygg==
+Message-ID: <2ff36d115e8d29af631e60d1861ae2a7.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230111192004.2509750-5-dmitry.baryshkov@linaro.org>
+References: <20230111192004.2509750-1-dmitry.baryshkov@linaro.org> <20230111192004.2509750-5-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH 04/13] clk: qcom: cpu-8996: support using GPLL0 as SMUX input
+From:   Stephen Boyd <sboyd@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 13/13] arm64: dts: qcom: msm8996: support using GPLL0 as kryocc input
-Date:   Wed, 11 Jan 2023 22:20:04 +0300
-Message-Id: <20230111192004.2509750-14-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230111192004.2509750-1-dmitry.baryshkov@linaro.org>
-References: <20230111192004.2509750-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Date:   Wed, 11 Jan 2023 11:26:36 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In some cases the driver might need using GPLL0 to drive CPU clocks.
-Bring it in through the sys_apcs_aux clock.
+Quoting Dmitry Baryshkov (2023-01-11 11:19:55)
+> In some cases the driver might need using GPLL0 to drive CPU clocks.
+> Bring it in through the sys_apcs_aux clock.
+>=20
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/clk/qcom/clk-cpu-8996.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8=
+996.c
+> index d51965fda56d..0e0c00d44c6f 100644
+> --- a/drivers/clk/qcom/clk-cpu-8996.c
+> +++ b/drivers/clk/qcom/clk-cpu-8996.c
+> @@ -12,6 +12,8 @@
+>   *                              +-------+
+>   *               XO             |       |
+>   *           +------------------>0      |
+> + *               SYS_APCS_AUX   |       |
+> + *           +------------------>3      |
+>   *                              |       |
+>   *                    PLL/2     | SMUX  +----+
+>   *                      +------->1      |    |
+> @@ -310,20 +312,29 @@ static const struct clk_ops clk_cpu_8996_pmux_ops =
+=3D {
+>         .determine_rate =3D clk_cpu_8996_pmux_determine_rate,
+>  };
+> =20
+> +static const struct parent_map smux_parent_map[] =3D {
+> +       { .cfg =3D 0, }, /* xo */
+> +       { .cfg =3D 1, }, /* pll */
+> +       { .cfg =3D 3, }, /* sys_apcs_aux */
+> +};
+> +
+>  static const struct clk_parent_data pwrcl_smux_parents[] =3D {
+>         { .fw_name =3D "xo" },
+>         { .hw =3D &pwrcl_pll_postdiv.hw },
+> +       { .fw_name =3D "sys_apcs_aux" },
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index d52023c19682..4e3068bedf4c 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -2940,8 +2940,8 @@ kryocc: clock-controller@6400000 {
- 			compatible = "qcom,msm8996-apcc";
- 			reg = <0x06400000 0x90000>;
- 
--			clock-names = "xo";
--			clocks = <&rpmcc RPM_SMD_BB_CLK1>;
-+			clock-names = "xo", "sys_apcs_aux";
-+			clocks = <&rpmcc RPM_SMD_BB_CLK1>, <&apcs_glb>;
- 
- 			#clock-cells = <1>;
- 		};
--- 
-2.30.2
-
+Is there a binding update?
