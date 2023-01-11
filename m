@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04378665807
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:49:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8BDC665803
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:49:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232664AbjAKJsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232168AbjAKJsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 11 Jan 2023 04:48:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46848 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230507AbjAKJrg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:47:36 -0500
+        with ESMTP id S235993AbjAKJrm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:47:42 -0500
 Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C89CAE68
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:46:07 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so12170714wms.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:46:07 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 344DCC77D
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:46:42 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id j16-20020a05600c1c1000b003d9ef8c274bso7810501wms.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:46:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=T8qJr9kxb2tGVbF6bozT+Foz2HcY6He6TrHRTcyBEDM=;
-        b=rsjaoGyhFkfmSubHNTKsjmnS6j/NmQ2fI7phFAvhMi1KiNzoVpbU32S/6rCEQav80Q
-         k8wcwGy3RWZ7sAS5zTiIob3nVWXuDCVwKQJBl5dg0fbA/BO2dARaE+gLiJu74Hykirhy
-         nTrYygWQ6HxEpJf18QaCMVhwgthjG0/ZcU73PjN1mvRVqgMD+4Hy5ssT1PUJSHTWGpEe
-         hZDBKFXVTpmqweD8YSHKy/16VP/8WYUvrHZJxFB9ZY5xzgFp+DZD+xF998O60Dlr4ph2
-         63enZTgXLDiIS81V7cev0/G770QAuiHVx1BD/q7KMVDK0OqjzW4YrDq8K2g7/dJPQPW8
-         cTow==
+        bh=DqMKfZ4HdDIBNj9OjnuIifVi3RC3QORFKptzKvWxKcE=;
+        b=mA7rds7/glwxiTj8qYO8Fzpzilrrybarn91meiO2MalEclrv+PDm/8c5se7Tk96C+U
+         7xINCprb15wVTxmr/W9NOBqCTyZLMGPtRXWyCKhc+BPh/n16fd2x0lSxpGDt6wiRgT2Z
+         eQE9J2rlcp9gNNocDrE1clvTfdzr2nRHyOTWN7uOzTx9Y14JwMs3gvi48Gkk4ZyIe1r2
+         DhaJKH9Va3crOuPykyxoMb7DSWwgowtLIErRIyz0RHbTm59kZ5ZV5Gc4ZKkFbjcgY3yu
+         BUZ+lBFW9sYKwYMLKzGX8+WrIPcPhG4akMrj0A3UZrTWthFuMkHu3FVxPMn4yDaTjh7W
+         Ghww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T8qJr9kxb2tGVbF6bozT+Foz2HcY6He6TrHRTcyBEDM=;
-        b=EQ126Ld88EPUr6pkYSPHXJaMS8Y9cm1dNAKDCr+ol8Sg70QvpqO/5/XAmJf2klsAoS
-         AZju21sjLGE907yK9+8QAqEFaBpVZJVAHmf3popetzs4AYxtEnShwvIw/JjzJxvw94er
-         vAuVxQv1Lx8xUVh8iNnJE87TzAAIQuDI46RcCVdSdaRaRN3fX5keWt+Kc/MqOPk9PxSf
-         R/YxB05B5ATid2atCQEK2mEi+sWCOPRMs6Cgv0MG9l4YG3HOUlaZDSPqXXVP2o1sCDH8
-         5vouZhG4O3G9DZHQKQB+EDNtVJa+sruyC+mVEiNC7YpchqQM4IE/+bqxy3msiLTbowP3
-         nQaA==
-X-Gm-Message-State: AFqh2kq+5rbStaSXM8PfP/emxvKj5G267kQwIxpTnCn0woA+6B+daDNu
-        jm0WOU+ZKMJihRni1eQ3u5aOYA==
-X-Google-Smtp-Source: AMrXdXvOSu6TmuYVPNW8+fAGh0hq7brP7g4tp3JJcm7IGvJ4njHTnFBbiRTuZMJLH4ukwt7yYhNCQQ==
-X-Received: by 2002:a05:600c:22d4:b0:3cf:82b9:2fe6 with SMTP id 20-20020a05600c22d400b003cf82b92fe6mr61741450wmg.8.1673430365782;
-        Wed, 11 Jan 2023 01:46:05 -0800 (PST)
+        bh=DqMKfZ4HdDIBNj9OjnuIifVi3RC3QORFKptzKvWxKcE=;
+        b=1PkiJMMBQ7AuKgLNLqN3WQk/xuU+b4Jc5ouTOZNxWilnuye9wsTeMll1citZOGdDod
+         4dnmlBTO5WbgQawEodE9oKq7BXiUXaTtt4IjDK0cjcAGts2ADAx5dkYg4GFwYZcBiR9n
+         qyX6EM+w/9t7JveiUR6WDvaez++f2SVdteqQePznUe9Dosxq259ETVT5e0ZZDiZr5Tr0
+         fpOX8+8BYb4Vvvk2FQ2v7i9kvQx/Z3z9cunc7y87NAkv9QN0vro6QVJseceMFVUz7hQr
+         gjOXXqAollxZ0bxSwyowM5Uvp9mBATV0SThTgwEWF5TAn029yvQWFgznuXdmn6be7sWg
+         FLKw==
+X-Gm-Message-State: AFqh2kq/kSVEbeSI7Sm0A2LlEYYpgr052YypzVZFTBvNde0MpCdSB3t4
+        cCZUypJTKFIDXLCaiGAE/caDvw==
+X-Google-Smtp-Source: AMrXdXvGv7gNzilmGdxnCRA232nJngNZyR71k77CNlklw82CTtFZmiGA3tUrl9b++lc9NMdNw7xqvg==
+X-Received: by 2002:a05:600c:34cd:b0:3d5:1175:92c3 with SMTP id d13-20020a05600c34cd00b003d5117592c3mr51173404wmq.23.1673430400740;
+        Wed, 11 Jan 2023 01:46:40 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t8-20020a1c7708000000b003d9f00c8f07sm9678192wmi.21.2023.01.11.01.46.02
+        by smtp.gmail.com with ESMTPSA id q18-20020adfdfd2000000b002bdc129c8f6sm1703241wrn.43.2023.01.11.01.46.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 01:46:05 -0800 (PST)
-Message-ID: <4d3003e7-f671-9971-dd3e-08b8654473db@linaro.org>
-Date:   Wed, 11 Jan 2023 10:46:02 +0100
+        Wed, 11 Jan 2023 01:46:40 -0800 (PST)
+Message-ID: <788ddb2a-7c29-cc10-fce2-ca348cd81b65@linaro.org>
+Date:   Wed, 11 Jan 2023 10:46:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/7] dt-bindings: arm64: ipq9574: Add binding descriptions
- for clock and reset
+Subject: Re: [PATCH 4/7] pinctrl: qcom: Add IPQ9574 pinctrl driver
 Content-Language: en-US
 To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -73,9 +72,9 @@ Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
         quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
         quic_poovendh@quicinc.com
 References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
- <20230110121316.24892-2-quic_devipriy@quicinc.com>
+ <20230110121316.24892-5-quic_devipriy@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230110121316.24892-2-quic_devipriy@quicinc.com>
+In-Reply-To: <20230110121316.24892-5-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,17 +88,31 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/01/2023 13:13, devi priya wrote:
-> Adding support for the global clock controller found on
-> IPQ9574 based devices
+> Add pinctrl definitions for the TLMM of IPQ9574
 > 
 > Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
 > Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
 > Signed-off-by: devi priya <quic_devipriy@quicinc.com>
 > ---
+>  drivers/pinctrl/qcom/Kconfig           |   10 +
+>  drivers/pinctrl/qcom/Makefile          |    1 +
+>  drivers/pinctrl/qcom/pinctrl-ipq9574.c | 1003 ++++++++++++++++++++++++
+>  3 files changed, 1014 insertions(+)
+>  create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq9574.c
+> 
+> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
+> index 1378ddca084f..a9b4b07e3de0 100644
+> --- a/drivers/pinctrl/qcom/Kconfig
+> +++ b/drivers/pinctrl/qcom/Kconfig
+> @@ -70,6 +70,16 @@ config PINCTRL_IPQ6018
+>  	  Qualcomm Technologies Inc. IPQ6018 platform. Select this for
+>  	  IPQ6018.
+>  
+> +config PINCTRL_IPQ9574
+> +	tristate "Qualcomm Technologies, Inc. IPQ9574 pin controller driver"
+> +	depends on GPIOLIB && OF
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+Look at other entries and use similar style.
 
 Best regards,
 Krzysztof
