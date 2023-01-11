@@ -2,100 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90F2E66664B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 23:36:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72D8F666663
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 23:48:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232580AbjAKWgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 17:36:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42382 "EHLO
+        id S234230AbjAKWsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 17:48:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231848AbjAKWgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 17:36:01 -0500
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [5.144.164.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD95C64EE
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 14:35:57 -0800 (PST)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 216673F319;
-        Wed, 11 Jan 2023 23:35:55 +0100 (CET)
-Date:   Wed, 11 Jan 2023 23:35:53 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232662AbjAKWsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 17:48:16 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCF85F5F;
+        Wed, 11 Jan 2023 14:48:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=YOedTnXL6ljnrOqWRbkroyShXD3I/zAhcql2fABRit0=; b=qQ6hZzJHaOAbhqofs216Z6uKDd
+        UL9sqOkqY0yHjRnd34Dyqly+7mpKxJlI9X13hwjlbIteSnYoUUt2Z3q6x1q9aCEmAGbkwHDe00AA9
+        0cCQM8zF9pamulhb1fBrF9j511ZdaKPtAK+xhbeqbZ3c4FkaNa5q0tE/31sOF2Nvtm/4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pFjt3-001odJ-GO; Wed, 11 Jan 2023 23:48:01 +0100
+Date:   Wed, 11 Jan 2023 23:48:01 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Rob Herring <robh@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: display/msm: convert MDP5 schema to
- YAML format
-Message-ID: <20230111223553.e3xrxmdys5zxxleh@SoMainline.org>
-References: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
- <20230109050152.316606-2-dmitry.baryshkov@linaro.org>
- <20230109074947.5vnfrn6shzpm6iqi@SoMainline.org>
- <997dbd09-03d6-d60d-1dce-db0bc6415582@linaro.org>
- <20230111222903.otbur6yi4iv4mpgz@SoMainline.org>
- <1d371e40-0639-16f8-abef-afcd05e72e22@linaro.org>
+        Xu Liang <lxu@maxlinear.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 2/4] dt-bindings: net: phy: add MaxLinear
+ GPY2xx bindings
+Message-ID: <Y788oSXbsqmAMVxw@lunn.ch>
+References: <20230109123013.3094144-1-michael@walle.cc>
+ <20230109123013.3094144-3-michael@walle.cc>
+ <20230111202639.GA1236027-robh@kernel.org>
+ <73f8aad30e0d5c3badbd62030e545ef6@walle.cc>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1d371e40-0639-16f8-abef-afcd05e72e22@linaro.org>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <73f8aad30e0d5c3badbd62030e545ef6@walle.cc>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-01-12 00:31:33, Dmitry Baryshkov wrote:
-> On 12/01/2023 00:29, Marijn Suijten wrote:
-> > On 2023-01-10 06:40:27, Dmitry Baryshkov wrote:
-> >> On 09/01/2023 09:49, Marijn Suijten wrote:
-> >>> On 2023-01-09 07:01:49, Dmitry Baryshkov wrote:
-> > <snip>
-> >>>> +    description: |
-> >>>
-> >>> Should multiline descriptions be treated as a oneline string with `>`?
-> >>
-> >> Ack, I'm fine with either of them, let's use the >
-> >>
-> >>>
-> >>>> +      Contains the list of output ports from DPU device. These ports
-> >>>> +      connect to interfaces that are external to the DPU hardware,
-> >>>> +      such as DSI, DP etc. MDP5 devices support up to 4 ports::
-> >>>
-> >>> How do these double colons render?  Is this intentional?
-> >>
-> >> double colons is an escape for a single colon if I remember correcly.
-> > 
-> > I thought no escaping was necessary here, especially since this is
-> > already a value - it is a multiline string.
+> I know, I noticed this the first time I tested the schema. But then
+> I've looked at all the other PHY binding and not one has a compatible.
 > 
-> I was mostly following examples, grep :: through the dt-bindings.
+> I presume if there is a compatible, the devicetrees also need a
+> compatible. So basically, "required: compatible" in the schema, right?
+> But that is where the PHY maintainers don't agree.
 
-Saw that, maybe these "freeform" description strings are intended to be
-RST to support more elaborate rendering if/when that happens?
+It should not be required. The compatible is optional. The kernel is
+happy without it. You can add a compatible to make the DT linter
+happy, but you are only adding it to make the linter work. Hence it
+needs to be optional. All real DT blobs are unlikely to have a
+compatible, given that this PHY is known not to be broken in terms of
+enumeration via its ID registers.
 
-> >> BTW: how to render the DT schema?
-> > 
-> > I'm not sure if there's currently any rendering tool to view these docs
-> > in a "friendly" manner, e.g. an html page, or whether they're only used
-> > as specifications for DT validation.
-> 
-> Probably there will be one at some point. It might make good addition to 
-> devicetree.org.
+    Andrew
 
-Would be super cool to have some "interactive" / properly
-rendered/colored docs up there for DT :)
-
-- Marijn
