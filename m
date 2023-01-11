@@ -2,164 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 401E7666292
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 19:13:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D45A666295
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 19:14:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232042AbjAKSNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 13:13:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56376 "EHLO
+        id S235844AbjAKSN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 13:13:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233386AbjAKSNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 13:13:13 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 530DA37273
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 10:12:56 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id p3-20020a05600c1d8300b003d9ee5f125bso8510418wms.4
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 10:12:56 -0800 (PST)
+        with ESMTP id S235322AbjAKSNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 13:13:50 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5726D373A9
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 10:13:47 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id bi26-20020a05600c3d9a00b003d3404a89faso2823399wmb.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 10:13:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jgU48L7QcU60FOWGaPRhnxY2hkRU0gQ83LzvkNzDZlI=;
-        b=eBtCnRqiaCviFjQSXzigKCV18OEyaN7SPUaZMyo5ABDVDcNsrE8xUe7ybl+GZQAw58
-         ed+61NQMRxLfTjXL+c0znGQ39zzj7XQrKrFq6nQeTo/ofcCaJz8cmW3HcDpr055WXve7
-         qD9VCQgEo1t/HwN6YiNQX6s0XtJNyiZcU7I4PVsxHl+A/BT3Qllelc7dyFWxAxrFlFlD
-         /kKh11L/HTmg8XMx+57J455J3UPQEvvst9pQTUNpl+bfOwXC+nnRa0zY3pEIMct/ladV
-         mLFigmxIDArqZxcRd3CPtkYnasnyHMV4OVSd+bshyNQBzPzbhaxtyFnl10nkfcEdFvBp
-         Axhg==
+        bh=DsPaEL6Hnqj1or7cig22FuyqbMsNudq9op/I2hyZVKs=;
+        b=hltZ4ouVVsv2DWiM+E2w1jUCh60FKLYJjKpayoRtl9/Za4FvllorhkEI0wxQvEGFxw
+         8PHLLlBCGWuE4vz+khGQHXHpXV8XuQDGNNM6iNt1et/EU0aR7XAa8+IGrT3p+1mjQQYa
+         JG8uNEtJLxEj+Ku66+yOJm4/VtbR7IysiQh4dS3Fljx78TqxU4zCczaeihQHR14W1vTj
+         YLMmIYduOgeg2Z+78n50h3dtG4pAqIZ6KFDzoiC3/Cxm/uPiNdH9NZ5QwLjAJ6rsywN3
+         UWVBMoK5JaRm1rHe/BH5rLSz86BNGrs2pP3H946zVnlBNVBJN/OY5SgfMZoBHxStHCv7
+         LEzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jgU48L7QcU60FOWGaPRhnxY2hkRU0gQ83LzvkNzDZlI=;
-        b=rNbuehJQoRH51hsR31+bA5qBhLCo1rs56o+FhGm0atJ8fmi+tITabfSrSglCxLtI6c
-         Z3RoS5DNXoEegKWVw3G8lnFki+t4m5nK2IjLCeGR9eKlq/2ieZYGPo9z8z45u7TFkl2G
-         tqfj38AJIKOqDoC3HHtIJ7+0jVE0oxi4fhnFqjQ4uAs1wXer//1BSPbNGOcu95LbPMSn
-         vkOtPX1aNU5AY5THoosZl6A4YfnBfAKlKfj3pwWCQOJKjAFTK5OShsCYsdUiCQElQet5
-         mSlSsu3bza8Ts1CzTG7ixR7/MqxXDB9KqYlqsB57hLdd7FN0I5BQmz7haf/0crWF9oFm
-         EWcQ==
-X-Gm-Message-State: AFqh2koalHQ30W2dwnK+ds9mpMXBl2Ssli/b+T02TwkieWdUwbA0mQkX
-        p350/NAroy6heisaHE1nW11jjw==
-X-Google-Smtp-Source: AMrXdXtTXdWfx04S0c5JPQS/5PFz740EqgtORn2SjwdLrrYbvVgQ7bkTBST0TFGnxuCnaI1+TDbTlw==
-X-Received: by 2002:a05:600c:5121:b0:3d9:d1bc:310 with SMTP id o33-20020a05600c512100b003d9d1bc0310mr21356168wms.25.1673460774921;
-        Wed, 11 Jan 2023 10:12:54 -0800 (PST)
+        bh=DsPaEL6Hnqj1or7cig22FuyqbMsNudq9op/I2hyZVKs=;
+        b=MY4iLlVWotAFYeHnZYYfizAcQHDQTabTfKjLNpDibKUBla3iDLyHt1+rCGY5Yj2oqD
+         8AA9hYts6PSz9fWuSZkYQWaYNC6P1JsD34a57OlE1w9O38Vk0ulikaVnMvaFg5VFxtv/
+         S5vSC8SDNAEzUEpp42kysWaUyIq7Oev+T44IshAtQepPfJhk4SB/h1wqXisopPMTeXcC
+         LHNeccBU4PcWw3mRyTx8yM//XtSTSIs9Gb325u+l++j51Va0uA9oKexZN5qyvqXSwp4e
+         l4a2Vrw31ZdAzALM/1KLQnBYVjl9z802CKLT7YOu1oMaaM2+cPFFKBYK011JJbzzdztm
+         4PQA==
+X-Gm-Message-State: AFqh2koBB0fy3CHP7BLMkl15GHV4ecYzKXIull/Mykj2UmbaCHUw013I
+        mxcIntbCz8hVOU5t3I0JKcxX0Q==
+X-Google-Smtp-Source: AMrXdXsnV0YMKJKweo3qmctnTs4kNEA0eBRZfegwBqzFpHzTeCxGDLocjERCdaF3JUs748AWc+vAZQ==
+X-Received: by 2002:a05:600c:44d4:b0:3cf:7925:7a3 with SMTP id f20-20020a05600c44d400b003cf792507a3mr52208003wmo.24.1673460825703;
+        Wed, 11 Jan 2023 10:13:45 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p21-20020a7bcc95000000b003c65c9a36dfsm18607821wma.48.2023.01.11.10.12.52
+        by smtp.gmail.com with ESMTPSA id c7-20020a05600c0a4700b003c6bbe910fdsm28162870wmq.9.2023.01.11.10.13.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 10:12:54 -0800 (PST)
-Message-ID: <f0a50234-bc8c-09c4-e2c1-22cbeaba5c15@linaro.org>
-Date:   Wed, 11 Jan 2023 19:12:52 +0100
+        Wed, 11 Jan 2023 10:13:45 -0800 (PST)
+Message-ID: <ac906790-f9ff-4ca4-401f-3651097b3ccf@linaro.org>
+Date:   Wed, 11 Jan 2023 19:13:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
- support
+Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: add thwc
 Content-Language: en-US
-To:     William Zhang <william.zhang@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Linux SPI List <linux-spi@vger.kernel.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
-        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
-        jonas.gorski@gmail.com, kursad.oney@broadcom.com, dregan@mail.com,
+To:     Yang Xiwen <forbidden405@foxmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230106200809.330769-1-william.zhang@broadcom.com>
- <20230106200809.330769-3-william.zhang@broadcom.com>
- <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
- <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
- <99b01e96-3b96-6692-c5e1-87db49295e6d@linaro.org>
- <49925933-aacc-4f0d-a1ca-e1bd45b05eee@broadcom.com>
- <b246a81f-e465-5e52-f0ce-65e0a82fc3e1@linaro.org>
- <32a464f8-6a4b-6777-9775-f17e990e0c6a@gmail.com>
- <71c2e796-f0fb-90cd-4599-13c9718f41d5@linaro.org>
- <31644849-dc69-ddfc-a6b6-6ffd37d64d2b@broadcom.com>
+Cc:     Jaime Breva <jbreva@nayarsystems.com>,
+        Nikita Travkin <nikita@trvn.ru>,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230111180322.21874-1-forbidden405@foxmail.com>
+ <tencent_FF77D11FE1B5B5D6E83CC03FEED8FCD87308@qq.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <31644849-dc69-ddfc-a6b6-6ffd37d64d2b@broadcom.com>
+In-Reply-To: <tencent_FF77D11FE1B5B5D6E83CC03FEED8FCD87308@qq.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/01/2023 19:04, William Zhang wrote:
+On 11/01/2023 19:03, Yang Xiwen wrote:
+> Shenzhen Tong Heng Wei Chuang Technology Co., Ltd. (hereinafter referred
+> to as "Tong Heng Wei Chuang") is a focus on wireless communications
+> equipment brand manufacturers.
 > 
-> 
-> On 01/11/2023 01:02 AM, Krzysztof Kozlowski wrote:
->> On 10/01/2023 23:18, Florian Fainelli wrote:
->>> On 1/10/23 00:40, Krzysztof Kozlowski wrote:
->>>>>> No, it is discouraged in such forms. Family or IP block compatibles
->>>>>> should be prepended with a specific compatible. There were many issues
->>>>>> when people insisted on generic or family compatibles...
->>>>>>
->>>>>>> Otherwise we will have to have a compatible string with chip model for
->>>>>>> each SoC even they share the same IP. We already have more than ten of
->>>>>>> SoCs and the list will increase.  I don't see this is a good solution too.
->>>>>>
->>>>>> You will have to do it anyway even with generic fallback, so I don't get
->>>>>> what is here to gain... I also don't get why Broadcom should be here
->>>>>> special, different than others. Why it is not a good solution for
->>>>>> Broadcom SoCs but it is for others?
->>>>>>
->>>>> I saw a few other vendors like these qcom ones:
->>>>>     qcom,spi-qup.yaml
->>>>>         - qcom,spi-qup-v1.1.1 # for 8660, 8960 and 8064
->>>>>         - qcom,spi-qup-v2.1.1 # for 8974 and later
->>>>>         - qcom,spi-qup-v2.2.1 # for 8974 v2 and later
->>>>>     qcom,spi-qup.yaml
->>>>>         const: qcom,geni-spi
->>>>
->>>> IP block version numbers are allowed when there is clear mapping between
->>>> version and SoCs using it. This is the case for Qualcomm because there
->>>> is such clear mapping documented and available for Qualcomm engineers
->>>> and also some of us (although not public).
->>>>
->>>>> I guess when individual who only has one particular board/chip and is
->>>>> not aware of the IP family,  it is understandable to use the chip
->>>>> specific compatible string.
->>>>
->>>> Family of devices is not a versioned IP block.
->>>
->>> Would it be acceptable to define for instance:
->>>
->>> - compatible = "brcm,bcm6868-hsspi", "brcm,bcmbca-hsspi";
->>
->> Yes, this is perfectly valid. Although it does not solve William
->> concerns because it requires defining specific compatibles for all of
->> the SoCs.
->>
->> Best regards,
->> Krzysztof
->>
-> As I mentioned in another email,  I would be okay to use these 
-> compatibles to differentiate by ip rev and to conforms to brcm convention:
-> "brcm,bcmXYZ-hsspi", "brcm,bcmbca-hsspi-v1.0", "brcm,bcmbca-hsspi";
-> "brcm,bcmXYZ-hsspi", "brcm,bcmbca-hsspi-v1.1", "brcm,bcmbca-hsspi";
+> Link: http://www.szthwc.com/en/about.html
+> Signed-off-by: Yang Xiwen <forbidden405@foxmail.com>
+> ---
 
 
-Drop the version in such case, no benefits. I assume XYZ is the SoC
-model, so for example 6868.
-
-> 
-> In the two drivers I included in this series, it will be bound to 
-> brcm,bcmbca-hsspi-v1.0 (in additional to brcm,bcm6328-hsspi) and 
-> brcm,bcmbca-hsspi-v1.1 respectively.  This way we don't need to update 
-> the driver with a new soc specific compatible whenever a new chips comes 
-> out.
-
-I don't understand why do you bring it now as an argument. You defined
-before that your driver will bind to the generic bcmbca compatible, so
-now it is not enough?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
