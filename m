@@ -2,143 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ABF2665691
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 09:54:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEFE7665698
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 09:57:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232199AbjAKIyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 03:54:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32860 "EHLO
+        id S229931AbjAKI5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 03:57:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236466AbjAKIyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 03:54:05 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAFB510B48
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 00:53:52 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id bk16so14282762wrb.11
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 00:53:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q7ZKXxds+m1ToRjFrL/N+aqre1KgGndrtfTN0CIit8s=;
-        b=XHHHDrQhKlGvPWmc4XNnEMGxL98utCEbip/4LCI7ljniEym7IpDxUK8BxJ+7p5NdCr
-         4BOpTEMGIVYn7IkwE8mgzFcGqFg1zSecStlMS+PktmW8m33h4gAm+RZUtrefkE6Vx2xf
-         Jcg+NiTYrourEiRHiJArQCdj6W7BWafOq7hXvEMM5/qUS35Jm3Rqlkq3rdPlbYEFFNBz
-         lZlf/JqEhvL18r7/2/CuShLPEjQJg5sDuCo/MKJJbg6fdJZu7mDdufy4gGcZkkD1RQY4
-         bJnQA3fHLd9aA6qiurp3X5RAdNMmaJXv/ipWIDgC/PPbGbPoAgdL9z90gOMEuVCnlr5L
-         A9gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q7ZKXxds+m1ToRjFrL/N+aqre1KgGndrtfTN0CIit8s=;
-        b=aFsjIP2cm8D/kZraP0hVgLNqIyxxrYwAlrlP121TiCWfk666tku4z4UIfWkX8R6n5l
-         VAAk203+80IsflbP4E41WiHz96DVfgAR6eCN7icWpAdpDDSaherHrNZxdecFlYTICOXD
-         77q0FL4V+7hM1tcXuZkkrh+jcNVNc6aYlc8IeKcxh9nHrC6YxvJ3OHABw1lyiG8ZPyrQ
-         cwz86idDQSXpqUDDlj7SVilX35VnuzRhRP9FTzgbOFYYX4Q/AkJfvRph3cU1mNTPRaRr
-         xGuC0/yuVl5FPmAgLHhT3vYfaxoNm2TZKsoC5kqVmRZ7FQ0Ns888rEItQMTTIsYWI7T1
-         12NA==
-X-Gm-Message-State: AFqh2krLO1gfNMe+6jkQtknJuNWgpvMw+kEbHsQ8h6EsCVb9yKspHvIk
-        xun0H2eD8Dv0BSbqOViJiHqkjg==
-X-Google-Smtp-Source: AMrXdXtSvUw/ROl85qcQG2OnoAkmXrr7Fjq3EFgsOO+Fd8GkN3u1UpW6ueKal3JQWBwXt4G8jDGyrA==
-X-Received: by 2002:a5d:6e8c:0:b0:26b:e7e1:ad03 with SMTP id k12-20020a5d6e8c000000b0026be7e1ad03mr44564208wrz.55.1673427231254;
-        Wed, 11 Jan 2023 00:53:51 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f3-20020adfdb43000000b00236883f2f5csm13442872wrj.94.2023.01.11.00.53.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 00:53:50 -0800 (PST)
-Message-ID: <1301a59a-9085-c7f5-bc1c-ce09766806a1@linaro.org>
-Date:   Wed, 11 Jan 2023 09:53:47 +0100
+        with ESMTP id S232053AbjAKI5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 03:57:03 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB4610B53;
+        Wed, 11 Jan 2023 00:56:53 -0800 (PST)
+X-UUID: e0fcac1c918d11ed945fc101203acc17-20230111
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=iqNH2YUWSkJRgdVGPCUzJ5c0vvuMRJVGt9fwd5XJbJ0=;
+        b=aRMsTWQEMn5usojbHq7ihj/Yd5aVNbjDe6QHkJz+qn5bd7XDwTjVG3ESYRc/7Aua+f6VbU+c5Uuoa1TlmQlMvu1vEE7CaRRsrOyE69+aiAFdOcptBIUDlyym2kNFU8MpfJ3eSYhQawH5GEiHk9qio0vxf9q4E+eaoi9vI0xndZ4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.17,REQID:da5bd908-956e-4154-b277-e5025f9f9712,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:45
+X-CID-INFO: VERSION:1.1.17,REQID:da5bd908-956e-4154-b277-e5025f9f9712,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:45
+X-CID-META: VersionHash:543e81c,CLOUDID:8cd37ff5-ff42-4fb0-b929-626456a83c14,B
+        ulkID:230111165649FHL7UB0I,BulkQuantity:0,Recheck:0,SF:28|17|19|48|102,TC:
+        nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,O
+        SI:0,OSA:0
+X-CID-APTURL: Status:success,Category:nil,Trust:0,Unknown:0,Malicious:0
+X-CID-BVR: 1,FCT|NGT
+X-UUID: e0fcac1c918d11ed945fc101203acc17-20230111
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <miles.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1891818550; Wed, 11 Jan 2023 16:56:46 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 11 Jan 2023 16:56:45 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 11 Jan 2023 16:56:45 +0800
+From:   Miles Chen <miles.chen@mediatek.com>
+To:     <wenst@chromium.org>
+CC:     <angelogioacchino.delregno@collabora.com>,
+        <chun-jie.chen@mediatek.com>, <daniel@makrotopia.org>,
+        <devicetree@vger.kernel.org>, <fparent@baylibre.com>,
+        <ikjn@chromium.org>, <johnson.wang@mediatek.com>,
+        <jose.exposito89@gmail.com>, <kernel@collabora.com>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <miles.chen@mediatek.com>, <msp@baylibre.com>,
+        <mturquette@baylibre.com>, <nfraprado@collabora.com>,
+        <pablo.sun@mediatek.com>, <rex-bc.chen@mediatek.com>,
+        <robh+dt@kernel.org>, <ryder.lee@kernel.org>,
+        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
+        <weiyi.lu@mediatek.com>, <y.oudjana@protonmail.com>,
+        <yangyingliang@huawei.com>, <mingming.su@mediatek.com>
+Subject: Re: [PATCH v2 11/23] clk: mediatek: Switch to mtk_clk_simple_probe()
+Date:   Wed, 11 Jan 2023 16:56:45 +0800
+Message-ID: <20230111085645.30683-1-miles.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <Y74jNZbjpopT2rNY@google.com>
+References: <Y74jNZbjpopT2rNY@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH V9 4/5] ASoC: codecs: Aw883xx chip register file, data
- type file and Kconfig Makefile
-To:     wangweidong.a@awinic.com, lkp@intel.com
-Cc:     13691752556@139.com, alsa-devel@alsa-project.org,
-        broonie@kernel.org, cezary.rojewski@intel.com,
-        ckeepax@opensource.cirrus.com, daniel.beer@igorinstitute.com,
-        devicetree@vger.kernel.org, flatmax@flatmax.com,
-        james.schulman@cirrus.com, jonathan.albrieux@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, liweilei@awinic.com,
-        llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        perex@perex.cz, pierre-louis.bossart@linux.intel.com,
-        povik+lin@cutebit.org, rf@opensource.cirrus.com,
-        robh+dt@kernel.org, srinivas.kandagatla@linaro.org, steve@sk2.org,
-        tiwai@suse.com, yangxiaohua@everest-semi.com,
-        yijiangtao@awinic.com, zhaolei@awinic.com
-References: <202301100233.QuEJ8pyu-lkp@intel.com>
- <20230111020233.4306-1-wangweidong.a@awinic.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230111020233.4306-1-wangweidong.a@awinic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/01/2023 03:02, wangweidong.a@awinic.com wrote:
-> On 09/01/2023 03:00, kernel test robot wrote:
->> Hi,
-> 
->> Thank you for the patch! Yet something to improve:
-> 
->> [auto build test ERROR on 1f5abbd77e2c1787e74b7c2caffac97def78ba52]
-> 
->> url:    https://github.com/intel-lab-lkp/linux/commits/wangweidong-a-awinic-com/ASoC-codecs-Add-i2c-and-codec-registration-for-aw883xx-and-their-associated-operation-functions/20230106-113130
->> base:   1f5abbd77e2c1787e74b7c2caffac97def78ba52
->> patch link:    https://lore.kernel.org/r/20230106032835.141918-5-wangweidong.a%40awinic.com
->> patch subject: [PATCH V9 4/5] ASoC: codecs: Aw883xx chip register file, data type file and Kconfig Makefile
->> config: arm64-randconfig-r034-20230109
->> compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project 8d9828ef5aa9688500657d36cd2aefbe12bbd162)
->> reproduce (this is a W=1 build):
->>        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->>        chmod +x ~/bin/make.cross
->>        # install arm64 cross compiling tool for clang build
->>        # apt-get install binutils-aarch64-linux-gnu
->>        # https://github.com/intel-lab-lkp/linux/commit/63bed80c0eacb29f78eb53987b34863bafd48cee
->>        git remote add linux-review https://github.com/intel-lab-lkp/linux
->>        git fetch --no-tags linux-review wangweidong-a-awinic-com/ASoC-codecs-Add-i2c-and-codec-registration-for-aw883xx-and-their-associated-operation-functions/20230106-113130
->>        git checkout 63bed80c0eacb29f78eb53987b34863bafd48cee
->>        # save the config file
->>        mkdir build_dir && cp config build_dir/.config
->>        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
->>        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
-> 
->> If you fix the issue, kindly add following tag where applicable
->> | Reported-by: kernel test robot <lkp@intel.com>
-> 
->> All errors (new ones prefixed by >>):
-> 
->>>> ld.lld: error: undefined symbol: crc8_populate_lsb
->>   >>> referenced by aw883xx_bin_parse.c:1049 (sound/soc/codecs/aw883xx/aw883xx_bin_parse.c:1049)
->>   >>>               vmlinux.o:(aw883xx_dev_load_acf_check)
->> --
->>>> ld.lld: error: undefined symbol: crc8
->>   >>> referenced by aw883xx_bin_parse.c:963 (sound/soc/codecs/aw883xx/aw883xx_bin_parse.c:963)
->>   >>>               vmlinux.o:(aw883xx_dev_load_acf_check)
->>   >>> referenced by aw883xx_bin_parse.c:1022 (sound/soc/codecs/aw883xx/aw883xx_bin_parse.c:1022)
->>   >>>               vmlinux.o:(aw883xx_dev_load_acf_check)
->>   >>> did you mean: crc4
->>   >>> defined in: vmlinux.o
-> 
-> This looks like a false positive. crc8_populate_lsb is defined in the lib/crc8.c file.
-> I also could not reproduce it with GCC.
+cc Mingming
 
-kernel test robot almost does not report false positives, at least not
-in such obvious cases. Chances you get here false positive are so small
-(although possible), that it is much, much more likely your code needs
-fixing.
+>> > Would this get cleaned up even more? I.e. have just one driver left and
+>> > we could have the nice *_platform_driver() macros.
+>> > 
+>> 
+>> In the future, yes - granted that I find someone that can help with the testing,
+>> as I don't have any MT2712 hardware here.
+>> 
+>> Not in this series though (please!).
+>
+>Got it.
+>
+>Maybe Miles has access to some EVBs, or knows someone who does.
+>
+>ChenYu
 
-Best regards,
-Krzysztof
+I do not have any MT2712 board.
+Thanks for Mingming's help, Mingming will test v2 series on the MT2712 platform.
 
+thanks,
+Miles
