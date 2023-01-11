@@ -2,62 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4132566663E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 23:31:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F2E66664B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 23:36:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232849AbjAKWby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 17:31:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40762 "EHLO
+        id S232580AbjAKWgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 17:36:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236314AbjAKWbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 17:31:37 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B69060EC
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 14:31:36 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id f34so25686098lfv.10
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 14:31:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rp25D3bpkGkPu4rqAIvIiJqw9TCkFV237Xcq6MSn6jI=;
-        b=nZpODa42Zjq+siNDxStA+Is8kupwkixG+uXrwgRWHIUE+AzLuKoMPB5nJ/sFjAWQqQ
-         VdqrEgA1dxZsSNSIXGz4Q+ExhQDYRDnDxX8a1/fQj1UPQOy/stiBE1iWrVLyNiDOIld6
-         ZFcnfxeqcs00WfdlgetgUVLbLNOV4UUItolTDVKScgYiL4RAni83TOaBwy53CbXQpYiu
-         UvjUU7q6css5wo91vkpD8naP+3MNUtcx9O7On02lSjKQMCKQyDBSF5HzN+SBZgFOdp4g
-         mdSSVhTQF9t7XEaB5pY+Ma1RYy8O/2eGnUUgXTeOmRWF+DvvZIfq4QgE8+pF064+F7gS
-         qCBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rp25D3bpkGkPu4rqAIvIiJqw9TCkFV237Xcq6MSn6jI=;
-        b=2RFfFYeIPXRZit3CRBIuynI2pM507RYulr2fwuWDvBxxpCOWMCm6qcMyNc71QeqBFk
-         h/4+ACYJt+wPX8rVqbfoXAHyX+n4lKbeJ1tMHdsMOEoDNFWw16TX0GNI/2IFxaxQ6mdw
-         0FO+S+5Wqoyv1mzcRBYAQcRzL9pplBCoXXucJxjPz1aK4K+Qlh22BGznn+Hpx2zoHRgo
-         e6O+iS/bq/xqlWvpkcqMz68kMGlNr53sm07oZpfBEkigWGqOLKu9Eir1JopaejXTaCGZ
-         YbqLx47+7Jbe4Rgei/aUvnNivgfT/jO5xZGmqTsbCqMdmkgSRSdGlSnTLuC7l0wHgGXS
-         NIug==
-X-Gm-Message-State: AFqh2kqONLDnzYdSngpcovcc9IGlV88LZ5mtfd6YhgcB07BJqHogWpTa
-        NNm5tVFtTxD2UIVy//OTf/oIqA==
-X-Google-Smtp-Source: AMrXdXuxyWEMX6IypiOJufOVsEp8WAmQoSdkUxEDG8qfqBbzmpGWiUKheQU67c6WPsTqA3daYULgqA==
-X-Received: by 2002:a05:6512:151e:b0:4ca:f3c2:2675 with SMTP id bq30-20020a056512151e00b004caf3c22675mr19737511lfb.31.1673476294647;
-        Wed, 11 Jan 2023 14:31:34 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id x4-20020a056512078400b004cc548b35fbsm2926896lfr.71.2023.01.11.14.31.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 14:31:34 -0800 (PST)
-Message-ID: <1d371e40-0639-16f8-abef-afcd05e72e22@linaro.org>
-Date:   Thu, 12 Jan 2023 00:31:33 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v5 1/4] dt-bindings: display/msm: convert MDP5 schema to
- YAML format
-Content-Language: en-GB
-To:     Marijn Suijten <marijn.suijten@somainline.org>
+        with ESMTP id S231848AbjAKWgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 17:36:01 -0500
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [5.144.164.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD95C64EE
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 14:35:57 -0800 (PST)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 216673F319;
+        Wed, 11 Jan 2023 23:35:55 +0100 (CET)
+Date:   Wed, 11 Jan 2023 23:35:53 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -70,63 +35,67 @@ Cc:     Andy Gross <agross@kernel.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: display/msm: convert MDP5 schema to
+ YAML format
+Message-ID: <20230111223553.e3xrxmdys5zxxleh@SoMainline.org>
 References: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
  <20230109050152.316606-2-dmitry.baryshkov@linaro.org>
  <20230109074947.5vnfrn6shzpm6iqi@SoMainline.org>
  <997dbd09-03d6-d60d-1dce-db0bc6415582@linaro.org>
  <20230111222903.otbur6yi4iv4mpgz@SoMainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230111222903.otbur6yi4iv4mpgz@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+ <1d371e40-0639-16f8-abef-afcd05e72e22@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1d371e40-0639-16f8-abef-afcd05e72e22@linaro.org>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/01/2023 00:29, Marijn Suijten wrote:
-> On 2023-01-10 06:40:27, Dmitry Baryshkov wrote:
->> On 09/01/2023 09:49, Marijn Suijten wrote:
->>> On 2023-01-09 07:01:49, Dmitry Baryshkov wrote:
-> <snip>
->>>> +    description: |
->>>
->>> Should multiline descriptions be treated as a oneline string with `>`?
->>
->> Ack, I'm fine with either of them, let's use the >
->>
->>>
->>>> +      Contains the list of output ports from DPU device. These ports
->>>> +      connect to interfaces that are external to the DPU hardware,
->>>> +      such as DSI, DP etc. MDP5 devices support up to 4 ports::
->>>
->>> How do these double colons render?  Is this intentional?
->>
->> double colons is an escape for a single colon if I remember correcly.
+On 2023-01-12 00:31:33, Dmitry Baryshkov wrote:
+> On 12/01/2023 00:29, Marijn Suijten wrote:
+> > On 2023-01-10 06:40:27, Dmitry Baryshkov wrote:
+> >> On 09/01/2023 09:49, Marijn Suijten wrote:
+> >>> On 2023-01-09 07:01:49, Dmitry Baryshkov wrote:
+> > <snip>
+> >>>> +    description: |
+> >>>
+> >>> Should multiline descriptions be treated as a oneline string with `>`?
+> >>
+> >> Ack, I'm fine with either of them, let's use the >
+> >>
+> >>>
+> >>>> +      Contains the list of output ports from DPU device. These ports
+> >>>> +      connect to interfaces that are external to the DPU hardware,
+> >>>> +      such as DSI, DP etc. MDP5 devices support up to 4 ports::
+> >>>
+> >>> How do these double colons render?  Is this intentional?
+> >>
+> >> double colons is an escape for a single colon if I remember correcly.
+> > 
+> > I thought no escaping was necessary here, especially since this is
+> > already a value - it is a multiline string.
 > 
-> I thought no escaping was necessary here, especially since this is
-> already a value - it is a multiline string.
+> I was mostly following examples, grep :: through the dt-bindings.
 
-I was mostly following examples, grep :: through the dt-bindings.
+Saw that, maybe these "freeform" description strings are intended to be
+RST to support more elaborate rendering if/when that happens?
 
+> >> BTW: how to render the DT schema?
+> > 
+> > I'm not sure if there's currently any rendering tool to view these docs
+> > in a "friendly" manner, e.g. an html page, or whether they're only used
+> > as specifications for DT validation.
 > 
->> BTW: how to render the DT schema?
-> 
-> I'm not sure if there's currently any rendering tool to view these docs
-> in a "friendly" manner, e.g. an html page, or whether they're only used
-> as specifications for DT validation.
+> Probably there will be one at some point. It might make good addition to 
+> devicetree.org.
 
-Probably there will be one at some point. It might make good addition to 
-devicetree.org.
+Would be super cool to have some "interactive" / properly
+rendered/colored docs up there for DT :)
 
-> 
-> - Marijn
-
--- 
-With best wishes
-Dmitry
-
+- Marijn
