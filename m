@@ -2,116 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98E7D6656F1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 893DC6656F4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:09:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237715AbjAKJJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 04:09:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44666 "EHLO
+        id S231847AbjAKJJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 04:09:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238425AbjAKJIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:08:02 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF84B12ADA;
-        Wed, 11 Jan 2023 01:05:31 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id u19so35088054ejm.8;
-        Wed, 11 Jan 2023 01:05:31 -0800 (PST)
+        with ESMTP id S238723AbjAKJIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:08:35 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90A86387
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:06:07 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id co23so14345185wrb.4
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:06:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DJzxulyVKtTUohRS+QIHTGQPfrIKfOEeA/pyMeT2Lbs=;
-        b=DY/rryyNK39lZK5j+YItCP3oSVCtzQjhwSqF3HO0q/oe6FH82woyqoU25NGEq8X/rq
-         XfunZPk8zVRnmlZb1rmsjnBDg5s08a0KGuWotaJ5f6vET6cde5mvKMMV9h8NQajDgp9z
-         q+BJKjsekiTpL6IdgDG3eRrjqad0G7vpdsKF1YG7tKoLjK5l4gWWTtnidGD2kbmEOi/B
-         g41asBoarHpRy2wH6XGAwVVkOjhDsWE7+w0RsKUHtBA16Jnvcres+lUfXY916J9dSMY3
-         VcHTXHb7MVJj79D1WOdqUy7MRbvGoMmym1q3KXcuaou0YlvumemC5qdqNztOhoC8Nq2T
-         j2hA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CIsUPUecMvi/dh9D3wfPOIIQmlpkhA0BZRMglhGub8w=;
+        b=aHKpFFVo0bVSeDzB7XhB2heGwb+6uMxkGNvh1Cqpp/uMqhEaP+rifSCdxDPNJO/1KW
+         CbLCCUfRk3W0FvHPC9ED7++lUrqrNbBJh/E0D7MzbfP9d6CjwraMdK0gIe1O2sGpXKqT
+         1FxvHPWkXe4+15NRm7fcsRmFMJ54kwoVkWepuRtTZFyaKeLIMqS9Cqw2NlQuRNExiugv
+         RSi876XYEU4LI1LdYgxhEJgyZvnwLNqAEIBpPRP0nnV0YA6DxYRSxv0PhPqJI5nw1A3h
+         jYQo4tLxDQPZg20PWqAAi/d70NoVv1KzT7A7O25GhLQlFBYnjGXUg+0kZOEtqppKJeny
+         NPYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DJzxulyVKtTUohRS+QIHTGQPfrIKfOEeA/pyMeT2Lbs=;
-        b=tvnqqMw6YyeZuXx9uTYk2wUDGPh1eSPVreL9H7PmyJvhZ0Gfo2XOTojh+IegGO4079
-         NdA69ZySXcKXpK83AnKkN0iiNiQVT21idrldL9OjmMngGTVyL3dGnYdepe46spvCFKca
-         Q46kH9kg1frtfjjU6hZSM08+v0fXRXVv8knjHtA6yFrsasm3vfiAnKVMM4GQCeuy8wLh
-         0m/zeDXhEcUYt3tnUomWVH1anfdrsPJKhzzKUUodNiyIdihGhFkaPdZhDgD07sxW/6wp
-         /x4hjk4rdQOqFb+9H9QFkZxBmxsevU4/7rfwI3taRagC33cLf45NP+SOSY5abDQCC0P6
-         xBEg==
-X-Gm-Message-State: AFqh2koNMSYHEGYrXkcpEK388f+LNMMQwogbatL7/1haoTxXr/sYU8iq
-        wXHdkDYhsSuX+b3gTY5ZdeDWUPlvRQxqm1A/jRY=
-X-Google-Smtp-Source: AMrXdXtXfmpdqGWNq6eUwbTgzMofXSFIKvUyk2JZof2j6k3abTmT7jfFV2CTFTewagAaJZluSZCQpXSdSy9YWMKWn8g=
-X-Received: by 2002:a17:906:855:b0:7c1:5874:1d13 with SMTP id
- f21-20020a170906085500b007c158741d13mr4536440ejd.152.1673427929801; Wed, 11
- Jan 2023 01:05:29 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CIsUPUecMvi/dh9D3wfPOIIQmlpkhA0BZRMglhGub8w=;
+        b=2l6yWc/CdnqL1erPsVLweVchhIUhc+knVhGbkF/ekMbS30hk5pQP/gT6Vo3DaIUJFN
+         sP9j3neNiKdgWmBM2zAYWsg78NBaRQcGOAbMUs9ogCH0RG6DE2Jzw0zQGrAVWxYSfW52
+         mPD1Lz1r2DYaCG7L5BP+6nKMK8nXZFdE6Ym2XzjnTUDjGAk+DXpdBAHmQDwvjq8P+ssW
+         3kVe2Z1ZiJnYyYBT6tePWb6yk3I30eWjAieT7777/Zfzgl3TXVhTvhGAp+MHY9Rq1tYK
+         RDh1qmWAlA45mvdcRYAfGTFAIAjMQhg7Kjneq2fkLANzeMDYI26D5Gq6Z/bVRQ+06LHI
+         Td3w==
+X-Gm-Message-State: AFqh2kq7Ynfo108ryIZGrIsth5+tqGr5ou7cHkPgw3oj7+FnNazChK7y
+        vOkWHbRoaREWagfmx/QY8qKmPQ==
+X-Google-Smtp-Source: AMrXdXvCF3wf262+zjQxBUEQMKzqK5s9WaAPtI73QRq+5GaGU6IX/GmdBavm7emM1FzWdMp8ZRilmw==
+X-Received: by 2002:a5d:4911:0:b0:242:4bbe:2d20 with SMTP id x17-20020a5d4911000000b002424bbe2d20mr44433193wrq.42.1673427965879;
+        Wed, 11 Jan 2023 01:06:05 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id e7-20020a5d5007000000b0023662d97130sm13120903wrt.20.2023.01.11.01.06.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Jan 2023 01:06:05 -0800 (PST)
+Message-ID: <3fb51f6a-84b7-c35b-d4b0-332671988594@linaro.org>
+Date:   Wed, 11 Jan 2023 10:06:03 +0100
 MIME-Version: 1.0
-References: <MA0PR01MB7145CB5A2D487FB713CD7C01FFFC9@MA0PR01MB7145.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <MA0PR01MB7145CB5A2D487FB713CD7C01FFFC9@MA0PR01MB7145.INDPRD01.PROD.OUTLOOK.COM>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Wed, 11 Jan 2023 11:05:17 +0200
-Message-ID: <CAEnQRZC2X5v6hh=-PRiaUgp3SZQYg1vot+4JKwEE6x5bzTKvwA@mail.gmail.com>
-Subject: Re: [PATCH] Support for MAX98090/91 codec in iMX8MM evk
-To:     Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "peng.fan@nxp.com" <peng.fan@nxp.com>,
-        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
-        "shengjiu.wang@nxp.com" <shengjiu.wang@nxp.com>,
-        "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
-        "hongxing.zhu@nxp.com" <hongxing.zhu@nxp.com>,
-        "tommaso.merciai@amarulasolutions.com" 
-        <tommaso.merciai@amarulasolutions.com>,
-        "jun.li@nxp.com" <jun.li@nxp.com>,
-        "ckeepax@opensource.cirrus.com" <ckeepax@opensource.cirrus.com>,
-        "rf@opensource.cirrus.com" <rf@opensource.cirrus.com>,
-        "povik+lin@cutebit.org" <povik+lin@cutebit.org>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>,
-        "james.schulman@cirrus.com" <james.schulman@cirrus.com>,
-        "flatmax@flatmax.com" <flatmax@flatmax.com>,
-        "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
-        "ryan.lee.analog@gmail.com" <ryan.lee.analog@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8916-zhihe: Add initial device
+ tree for zhihe Wifi/LTE dongle UFI-001C and uf896
+Content-Language: en-US
+To:     forbidden405@foxmail.com, 'Andy Gross' <agross@kernel.org>,
+        'Bjorn Andersson' <andersson@kernel.org>,
+        'Konrad Dybcio' <konrad.dybcio@linaro.org>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     'Jaime Breva' <jbreva@nayarsystems.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        'Nikita Travkin' <nikita@trvn.ru>
+References: <20230110155014.31664-1-forbidden405@foxmail.com>
+ <tencent_A7FA00B086BB0EFFDC1C64744FF85DAD2B06@qq.com>
+ <8530aeef-8fdb-ede7-700e-856e5cbc6a5b@linaro.org>
+ <tencent_98E029F744FE85B9FD68B570A45A01743F07@qq.com>
+ <f909c1b0-97db-cc33-fa27-c5e901f11956@linaro.org>
+ <tencent_235CAC16001D1C38CE7D86BF7B0E365A2105@qq.com>
+ <0453b098-91db-1918-38ae-a7db0408460c@linaro.org>
+ <tencent_2068AC70F1DA5AF46F600C7718FEB1B98307@qq.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <tencent_2068AC70F1DA5AF46F600C7718FEB1B98307@qq.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hardevsinh,
+On 10/01/2023 20:56, forbidden405@foxmail.com wrote:
+> On 10/01/2023 20:32, krzysztof.kozlowski@linaro.org wrote:
+>>
+>> Then I am not sure if we want to support such devices mainline. It is not
+> only
+>> anonymity but simply not following standards and practices.
+>> What's more there is no guarantee what this device is. If there is no
+> known
+>> manufacturer, anytime another device from anyone can claim it is also
+> uf896.
+>> IOW, what guarantees you have that other person who has something looking
+>> like "uf896" actually has something the same as you and can use your DTB?
+> 
+> There is a label printed (i.e. ufi001c or uf896 or something else but not
+> getting mainlined now) on the board, different models have different
+> labels(and different board design). And currently I know all ufi001c(even
+> some other models) shares the same device tree, as a downstream device tree
+> has been tested by thousands of people. I'm not familiar with uf896 as it is
+> owned by Nikita Travkin and tested by him. The device sells very well and
+> many people will benefit from mainlining.
 
-Does your imx8mm-evk have a max98090 codec? That's very strange
-because I thought that EVK has wm8524?
+This does not solve my concerns. If you cannot point specific
+manufacturer and model (if there is no manufacturer, there can be no
+official model, right?), how anyone can be sure that their device is
+compatible with yours?
 
+Best regards,
+Krzysztof
 
-On Wed, Jan 11, 2023 at 9:31 AM Hardevsinh Palaniya
-<hardevsinh.palaniya@siliconsignals.io> wrote:
->
-> From: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-> Date: Sat, 7 Jan 2023 17:08:28 +0530
-> Subject: [PATCH] Support for MAX98090/91 codec in iMX8MM evk
->
-> - Adding node for MAX98090/91 in dts imx8mm-evk.dtsi
-> - Adding tristate option in <sound/soc/codecs/Kconfig>
-
-This should come as a separate patch.
