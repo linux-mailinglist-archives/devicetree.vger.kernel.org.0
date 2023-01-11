@@ -2,245 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD5A96656A0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 09:59:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B643D6656B1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:01:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231495AbjAKI71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 03:59:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35244 "EHLO
+        id S236136AbjAKJBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 04:01:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231968AbjAKI64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 03:58:56 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 911701055A
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 00:58:55 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so12067627wms.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 00:58:55 -0800 (PST)
+        with ESMTP id S232199AbjAKJA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:00:56 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677DF3B9
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:00:54 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so12064811wms.4
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:00:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s/sspEowRBiGS0ArXJ7/c/2cS1WAi5rAtkWFaWRAZog=;
-        b=ue5q28mRxJvPOFdJkThMgJyBpswNplS3EK7P9jq5LjmZDiNQVVcEOvy3qXZfCBDRlo
-         MGTT4J0EJXomqICbuG9M9bp0phs6ckwuNkwDYphsuNlX7Bn7lL4VXHqKY+xbWd1PbNeZ
-         tgMfGFXEpbkq45ZPt83xEYQRRAwCMk1BjA/7oZPbo0/LVCXuiJlQTWopHA0nMMzDT6ij
-         wwruQ4JgMuZgtj4tx2Mc/kKahqoMy/zCuvjPTz6rqBL+SLpY0U9BeejoRmKp+BmBxXq9
-         oSHI5ssVp+E10C6MN84MjBhLzgc04SI+HLMNwDYvITXZ71AkVqqzkEdMEG5r4+EKOhxt
-         Tauw==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=UIgNk4h0ykNf4W9R10f+g8s9MtlXPDlZWGID0CLp804=;
+        b=ACz2pUEAplUyKMwahar14IEYYnawh0ar2G+KL0+AdO+fXKDb6L1+7Aq1cR/JhRxMxF
+         mptt0m7OE+hHLEPyv2GGxmbq78+4PKJIg2OU+Et0ss+4vM4s35EB+0jdnp7VOr0n3o4Y
+         sVNrXDS1NCtl4llNRycijVOG7GqCqJE9sTXrkMnrFCkCNHARqK/VingD2ZFf2CaIyh5R
+         BkUyz70LPfPlxaoLoSrL9Eyv1OPob/snhvTSgSee+4oBHoO28UzKBMYs7qZmo3PKc7Oj
+         TZY7YEEZvny5IzPNF2MZFoR+8B8dExdbws1pT2JocEc7BXwbvR4fsYcDcyxTp6JjTglr
+         yNAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s/sspEowRBiGS0ArXJ7/c/2cS1WAi5rAtkWFaWRAZog=;
-        b=LLr1aJwWbIAT6wEQrz/ueV9Z2JzDB1p5es/5vEG/7RXEa2MdGtXCyKd998th7+fJoG
-         QhpLNlLwABCuXgUyn5L57P4JmNY5G0nPDiWajLeusEk1K5l94mxSYpxxcnzaPuW0PpcT
-         1+aYbN69uWCGLYtXGuJLNxGjkbRagJL/rdbCsDzM7plzUWZxoc7oPugR0609a42CcjU4
-         pr9sHsiaGr2vs3LxI8ihPZ8x6Cx5Bkx9SxmZx7APFDL/4Kc/Z2ULkzLxhIvCeo/0Wdyr
-         qrIpW88md9MhvKZI8Hu6logNFCL66yrD+F/pSh6bnIH4dPgdKyF2jmGedzMJTBJkrZgS
-         5mYQ==
-X-Gm-Message-State: AFqh2kqVLXnE1Vax/T/IInTdS/rxcj4KMBoPfFMNIBDZRgN7IWM1oHcE
-        W6cFdGv3bCuAfsT2gnpj/a+MLA==
-X-Google-Smtp-Source: AMrXdXug5Q8xfDyLZnEDph25fDyQUZ+mMjW44Qv3yxsf9jFvwXgYvGXgGloQj+PD/kkVdeoBX9abOQ==
-X-Received: by 2002:a05:600c:4f84:b0:3d9:f758:e280 with SMTP id n4-20020a05600c4f8400b003d9f758e280mr5377391wmq.24.1673427534064;
-        Wed, 11 Jan 2023 00:58:54 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h19-20020a05600c351300b003d9a86a13bfsm19167604wmq.28.2023.01.11.00.58.51
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UIgNk4h0ykNf4W9R10f+g8s9MtlXPDlZWGID0CLp804=;
+        b=p1a5Fyrr9UV/zxmHVOtvclpYGyg6m5AIPyzdMxeCLh4mEZn2Nqn8lARqLwri/arnhS
+         570tRFEyrwVKEFOhxh5+j4JYk8eMlDTB2yz5M2Y3iYC6B7UvQyo8+qLY99DYgQn5jUJN
+         qxGsXfuSY5SJz3VjkeCJwcrFq8bf3knAKv52yvdV9MszkjBViyn18IwjhlEWhbXHhMgU
+         i5lp3ICU5r++gOZOx+sm5WA1hPBEzP4ZrRUeU3B14/XX9Jzrut0xdvmGORi+mZrSPTW/
+         4QPWRS5ttWCauJY1nRHnObBg8FjFe6cG27490f7KF4FTxfqAhRIKjyOOlSACZTMZu4bW
+         tVdA==
+X-Gm-Message-State: AFqh2kpD/H2d0LoqjrAGNon0hRkNWrwHLPo/GseH+4HoVvsjdee2O7Gm
+        3Z6w7ZLrKhBZ254meNpO7o7sXA==
+X-Google-Smtp-Source: AMrXdXu50nuURvF/uZXf+xmLuSwesdnOY8E4IcaZoYRp8Au4jWUve2YDc0RJ8X2U2aelNYBfkHhv2g==
+X-Received: by 2002:a05:600c:34d0:b0:3d6:b691:b80d with SMTP id d16-20020a05600c34d000b003d6b691b80dmr50949988wmq.21.1673427652953;
+        Wed, 11 Jan 2023 01:00:52 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:d95d:43b7:d6a9:39a5? ([2a01:e0a:982:cbb0:d95d:43b7:d6a9:39a5])
+        by smtp.gmail.com with ESMTPSA id o21-20020a1c7515000000b003d995a704fdsm17507540wmc.33.2023.01.11.01.00.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 00:58:53 -0800 (PST)
-Message-ID: <44232168-815a-eb68-9287-d83de910bd25@linaro.org>
-Date:   Wed, 11 Jan 2023 09:58:50 +0100
+        Wed, 11 Jan 2023 01:00:52 -0800 (PST)
+Message-ID: <08698c06-49b0-1cf7-efd3-1038104972cf@linaro.org>
+Date:   Wed, 11 Jan 2023 10:00:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] Support for MAX98090/91 codec in iMX8MM evk
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 00/11] dt-bindings: first batch of dt-schema
+ conversions for Amlogic Meson bindings
 Content-Language: en-US
-To:     Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "peng.fan@nxp.com" <peng.fan@nxp.com>,
-        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
-        "shengjiu.wang@nxp.com" <shengjiu.wang@nxp.com>,
-        "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
-        "hongxing.zhu@nxp.com" <hongxing.zhu@nxp.com>,
-        "tommaso.merciai@amarulasolutions.com" 
-        <tommaso.merciai@amarulasolutions.com>,
-        "jun.li@nxp.com" <jun.li@nxp.com>,
-        "ckeepax@opensource.cirrus.com" <ckeepax@opensource.cirrus.com>,
-        "rf@opensource.cirrus.com" <rf@opensource.cirrus.com>,
-        "povik+lin@cutebit.org" <povik+lin@cutebit.org>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>,
-        "james.schulman@cirrus.com" <james.schulman@cirrus.com>,
-        "flatmax@flatmax.com" <flatmax@flatmax.com>,
-        "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
-        "ryan.lee.analog@gmail.com" <ryan.lee.analog@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>
-References: <MA0PR01MB7145CB5A2D487FB713CD7C01FFFC9@MA0PR01MB7145.INDPRD01.PROD.OUTLOOK.COM>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <MA0PR01MB7145CB5A2D487FB713CD7C01FFFC9@MA0PR01MB7145.INDPRD01.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
+        netdev@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20221117-b4-amlogic-bindings-convert-v2-0-36ad050bb625@linaro.org>
+ <20230110152324.1e19974d@kernel.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230110152324.1e19974d@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/01/2023 08:16, Hardevsinh Palaniya wrote:
-> From: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-> Date: Sat, 7 Jan 2023 17:08:28 +0530
-> Subject: [PATCH] Support for MAX98090/91 codec in iMX8MM evk
+Hi,
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
-
+On 11/01/2023 00:23, Jakub Kicinski wrote:
+> On Mon, 09 Jan 2023 13:53:25 +0100 Neil Armstrong wrote:
+>> - patch 12: added reviewed-by
+>> - Link to v1: https://lore.kernel.org/r/20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org
 > 
-> - Adding node for MAX98090/91 in dts imx8mm-evk.dtsi
-> - Adding tristate option in <sound/soc/codecs/Kconfig>
-> 
-> Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+> I'm guessing patch 12 is patch 11 in this posting.
+> Should we take it via net-next? Looks acked & ready.
 
-Your CC list insane. Use get_maintainers.pl.
+Exact it's ready to be taken
 
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> index e0b604ac0da4..58ff63cbc930 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> @@ -132,6 +132,32 @@ simple-audio-card,codec {
->                   clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
->             };
->       };
-> +
-> +     sound-max98090 {
-> +           compatible = "simple-audio-card";
-> +           simple-audio-card,name = "max98090-audio";
-> +           simple-audio-card,format = "i2s";
-> +           simple-audio-card,frame-master = <&cpudai>;
-> +           simple-audio-card,bitclock-master = <&cpudai>;
-> +           simple-audio-card,widgets = "Speakers", "Speakers";
-> +           simple-audio-card,routing =
-> +                       "Speakers", "SPKR",
-> +                       "Speakers", "SPKL",
-> +                       "IN1", "MICBIAS",
-> +                       "MIC1","IN1",
-> +                       "MIC2","IN1";
-> +
-> +           cpudai: simple-audio-card,cpu {
-> +                 sound-dai = <&sai5>;
-> +                 dai-tdm-slot-num = <2>;
-> +                 dai-tdm-slot-width = <32>;
-> +           };
-> +
-> +           simple-audio-card,codec {
-> +                 sound-dai = <&max98090>;
-> +                 clocks = <&clk IMX8MM_CLK_SAI5_ROOT>;
-> +           };
-> +     };
->  };
->  
->  &A53_0 {
-> @@ -339,6 +365,14 @@ &i2c3 {
->       pinctrl-0 = <&pinctrl_i2c3>;
->       status = "okay";
->  
-> +     max98090: max98090@10 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +           #sound-dai-cells = <0>;
-> +           compatible = "maxim,max98090";
-
-compatible is first, then reg.
-
-> +           reg = <0x10>;
-> +           clocks = <&clk IMX8MM_CLK_SAI5_ROOT>;
-> +           clock-names = "mclk";
-> +     };
-> +
->       pca6416: gpio@20 {
->             compatible = "ti,tca6416";
->             reg = <0x20>;
-> @@ -391,6 +425,20 @@ &sai3 {
->       status = "okay";
->  };
->  
-> +&sai5 {
-> +     pinctrl-names = "default";
-> +     pinctrl-0 = <&pinctrl_sai5>;
-> +     assigned-clocks = <&clk IMX8MM_CLK_SAI5>;
-> +     assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-> +     assigned-clock-rates = <24576000>;
-> +     clocks = <&clk IMX8MM_CLK_SAI5_IPG>, <&clk IMX8MM_CLK_DUMMY>,
-> +           <&clk IMX8MM_CLK_SAI5_ROOT>, <&clk IMX8MM_CLK_DUMMY>,
-> +           <&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_AUDIO_PLL1_OUT>,
-> +           <&clk IMX8MM_AUDIO_PLL2_OUT>;
-> +     clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k", "pll11k";
-> +     status = "okay";
-> +};
-> +
->  &snvs_pwrkey {
->       status = "okay";
->  };
-> @@ -552,6 +600,16 @@ MX8MM_IOMUXC_SAI3_TXD_SAI3_TX_DATA0     0xd6
->             >;
->       };
->  
-> +     pinctrl_sai5: sai5grp {
-> +           fsl,pins = <
-> +                 MX8MM_IOMUXC_SAI5_MCLK_SAI5_MCLK        0xd6
-> +                 MX8MM_IOMUXC_SAI5_RXD2_SAI5_TX_BCLK     0xd6
-> +                 MX8MM_IOMUXC_SAI5_RXD1_SAI5_TX_SYNC     0xd6
-> +                 MX8MM_IOMUXC_SAI5_RXD0_SAI5_RX_DATA0    0xd6
-> +                 MX8MM_IOMUXC_SAI5_RXD3_SAI5_TX_DATA0    0xd6
-> +           >;
-> +     }
-> +
->       pinctrl_typec1: typec1grp {
->             fsl,pins = <
->                   MX8MM_IOMUXC_SD1_STROBE_GPIO2_IO11  0x159
-> diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-> index 0f9d71490075..efef2df362a4 100644
-> --- a/sound/soc/codecs/Kconfig
-> +++ b/sound/soc/codecs/Kconfig
-> @@ -1009,7 +1009,7 @@ config SND_SOC_MAX98088
->       depends on I2C
->  
->  config SND_SOC_MAX98090
-> -     tristate
-> +     tristate "Maxim MAX98090/1, Stereo Audio Codec"
-
-No, code cannot be mixed with DTS. This is unrelated and not explained
-in commit msg.
-
->       depends on I2C
->  
->  config SND_SOC_MAX98095
-> --
-> 2.25.1
-
-Best regards,
-Krzysztof
+Thanks,
+Neil
 
