@@ -2,129 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39CB9665F22
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 16:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88DEA665F4D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 16:40:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231453AbjAKPbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 10:31:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55788 "EHLO
+        id S231453AbjAKPkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 10:40:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239110AbjAKPa5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 10:30:57 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C3526FF
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 07:30:56 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id f34so24052032lfv.10
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 07:30:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qbu6KqoFVUP3hpnWPUahg6+pfccNp1XMgcyJhxL3sHQ=;
-        b=piJ6AR/7mwIv5ssf0bPeGI/y1HfticwRpnHpKDxpJJOmyFI9+Fcte6qtWkH0I2fOxf
-         xTYmiVIlFySN2KbqHCXqxzBIxc6/2nlxu2+ixkY3fDhe2OFDyngzekiuLGrNcgW/Xsu1
-         xqJdTvSzEIrHX7Hx9YvafGHvvBa4vY2qsZ3b1McEzW5tmaA8Nw9+yNGHiBd8I4QF/H0L
-         PLkaIsFKD8tt7+XUYZ4Z0Jp/RHCbQ3m0OkeG8mkPs1ENMKkoMw8SGGYL4Yuyp+dMY28h
-         Jcy4hVLz8OdUGwq9wRNwLttaNd4at+MPk+3V1lPBjbBePveIBaxuDRkGijEMOSgYcWva
-         gHzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qbu6KqoFVUP3hpnWPUahg6+pfccNp1XMgcyJhxL3sHQ=;
-        b=keXP9J/6K7xXifcAOz3u/RBccGtoC+ja2D3k9DzC/AXgShacRDjwmLELT96tzEP+DD
-         MUW8SLN7h5e4QlzqNkqszvV8bVsfh+XoUoKx/Niynj94WS7NBM6h2KOfdLDuxTLp23dd
-         NMGC+42iMGPnpPoENAfEsoXllDo6aTdPln9XA9Ie1ZSFRB/ge2LdD8ce5UKNoMVLmqXJ
-         rKkwuDMSetEZUmsiFdrsOWD7VXLPAoiqDg89MQLGxfxomiFsNYvarYccb5G3HpD9OmKI
-         mwXf2DIhbug+xukNKFOAzJFtqJvdU+sKO98gZoKIkhyeX7WVhSFbqrfZ5SDg3ixjHRom
-         TrZg==
-X-Gm-Message-State: AFqh2kqQiJF7j1ifB8Ly3CO6aJNThrWDSbrksV+tQFpdWv989bTzxb+a
-        4BjJcip+yfH7dLyj2UnEVKmOfg==
-X-Google-Smtp-Source: AMrXdXsJsrNv/JojgqdyGM2htDPuCMqWkk3bmrHNobr84SP2C7Wa10a79dDgSHhARO48zeWm2i9u1A==
-X-Received: by 2002:ac2:495b:0:b0:4b5:6755:4226 with SMTP id o27-20020ac2495b000000b004b567554226mr19619019lfi.55.1673451054761;
-        Wed, 11 Jan 2023 07:30:54 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id v23-20020ac258f7000000b004cb00bf6724sm2779947lfo.143.2023.01.11.07.30.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 07:30:54 -0800 (PST)
-Message-ID: <88faa612-e7a0-24b8-aba8-4a42919402ec@linaro.org>
-Date:   Wed, 11 Jan 2023 17:30:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 01/16] of: device: make of_device_uevent_modalias()
- take a const device *
-Content-Language: en-GB
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
+        with ESMTP id S235618AbjAKPk1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 10:40:27 -0500
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 614CF19C3F;
+        Wed, 11 Jan 2023 07:40:25 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id B16AFE0004;
+        Wed, 11 Jan 2023 15:40:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1673451624;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=TJ80tI+n7E12DAvDikBDbLVrg9IXgTxZ252Cq+neEbQ=;
+        b=Q+o9216wXpyzH4Fmo4XE+A/19Rhli449oB8gxh74cMuVSBe7TmgTWv0NVMgETjHj7ICimI
+        2lEldE8luCvEuRzv4wncGEOGkp8+YWnj/gHNVwVIcANGc/i9KFCarw2xI7Zy7ii4mw01BP
+        3yh4Y2Qf6FLQR/pCfsBovsMC1nhClDVRgsfz9BsqGrMm8sPNTEXSy366YeN1nX8+aedw2l
+        5dU2xzoQw9jeYIRqNq8AjlA436V/DgDKdEL+uikobI8yvJhFeEtymQvw2NPhOwbDD2+MwT
+        mU28pFltJe6k53uG/R2oCKCPp6dR2f20BtbgaXKCRweyOUiSP64AKbrgZhfqEA==
+Date:   Wed, 11 Jan 2023 16:40:18 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Michael Ellerman <mpe@ellerman.id.au>,
         Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Liang He <windhl@126.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Douglas Anderson <dianders@chromium.org>,
-        Lyude Paul <lyude@redhat.com>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Zou Wei <zou_wei@huawei.com>, linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20230111113018.459199-1-gregkh@linuxfoundation.org>
- <20230111113018.459199-2-gregkh@linuxfoundation.org>
- <CAL_JsqJ4QsLym-bQGGjUpzT14MYuTE1n8BQkGn6Ey9NiFF7u7w@mail.gmail.com>
- <Y77VDGvHGu8gDIga@kroah.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Y77VDGvHGu8gDIga@kroah.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 06/10] soc: fsl: qe: Add support for QMC
+Message-ID: <20230111164018.676a8ca1@bootlin.com>
+In-Reply-To: <f46eb64d-ad4c-7531-60b0-68961f171ed8@csgroup.eu>
+References: <20230106163746.439717-1-herve.codina@bootlin.com>
+        <20230106163746.439717-7-herve.codina@bootlin.com>
+        <f46eb64d-ad4c-7531-60b0-68961f171ed8@csgroup.eu>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/01/2023 17:26, Greg Kroah-Hartman wrote:
-> On Wed, Jan 11, 2023 at 08:54:04AM -0600, Rob Herring wrote:
->> On Wed, Jan 11, 2023 at 5:30 AM Greg Kroah-Hartman
->> <gregkh@linuxfoundation.org> wrote:
->>>
->>> of_device_uevent_modalias() does not modify the device pointer passed to
->>> it, so mark it constant.  In order to properly do this, a number of
->>> busses need to have a modalias function added as they were attempting to
->>> just point to of_device_uevent_modalias instead of their bus-specific
->>> modalias function.  This is fine except if the prototype for a bus and
->>> device type modalias function diverges and then problems could happen.  To
->>> prevent all of that, just wrap the call to of_device_uevent_modalias()
->>> directly for each bus and device type individually.
->>
->> Why not just put the wrapper function in the DT code instead of making
->> 4 copies of it?
-> 
-> I could, if you think that it would be better there instead of in each
-> individual bus (like all of the other bus callbacks).  This way each bus
-> "owns" their implementation :)
+Hi Christophe,
+On Wed, 11 Jan 2023 13:58:03 +0000
+Christophe Leroy <christophe.leroy@csgroup.eu> wrote:
 
+> Le 06/01/2023 =C3=A0 17:37, Herve Codina a =C3=A9crit=C2=A0:
+> > The QMC (QUICC Multichannel Controller) is available on some
+> > PowerQUICC SoC such as the MPC885 or MPC866. =20
+>=20
+> Same, that's QMC for CPM for the time being, should that be made clear=20
+> in the subject ?
 
+Also same answer:
+Will changing the subject be enough or do I need to move it to new
+created drivers/soc/fsl/cpm/ directory ?
 
-I'd vote for the generic wrapper instead of 4 similar wrapper. In the 
-end, if of_device_uevent_modalias (or the bus callback) interface 
-changes again for whatever reasons, there will be just a single place to 
-fix rather than fixing 4 (or more) bus drivers.
--- 
-With best wishes
-Dmitry
+>=20
+> QE also has QMC and this driver might be used for QE QMC as well with=20
+> some enhancement, maybe that could be explained here ?
 
+Yes and we plan to have it working on QE too.
+
+What do you think if I add the following:
+  The QMC is also available on some Quicc Engine SoC.
+  This current version support CPM1 SoC only. Some
+  enhancement are needed to support Quicc Engine SoC.
+
+>=20
+> I see you are using in_be16(), out_be16() etc ....
+> That's specific to powerpc arch, maybe it is better to use ioread16be,=20
+> iowrite16be() etc ....
+> See commit 3f39f38ea91d ("soc: fsl: qe: replace qe_io{read,write}*=20
+> wrappers by generic io{read,write}*") and commit 6ac9b61786cc ("soc:=20
+> fsl: qe: introduce qe_io{read,write}* wrappers") for information.
+
+You're right.
+I will switch to io{read,write}{16,32}be.
+
+I prefer avoid the use of qe_* wrappers as the driver is not
+(yet) compatible with QE.
+
+>=20
+> >=20
+> > It emulates up to 64 channels within one serial controller
+> > using the same TDM physical interface routed from the TSA.
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com> =20
+>=20
+> In some places, you comments use the network style, not the generic style.
+
+I will fix them.
+
+>=20
+> Christophe
+
+Thanks for the review,
+Herv=C3=A9
+
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
