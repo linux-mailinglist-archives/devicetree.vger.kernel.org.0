@@ -2,81 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A58EB6650D4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 02:00:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41B116650E0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 02:07:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235849AbjAKBAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 20:00:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56668 "EHLO
+        id S233836AbjAKBHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 20:07:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235649AbjAKBAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 20:00:09 -0500
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C0B54D9C
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 17:00:01 -0800 (PST)
-Received: by mail-qt1-x832.google.com with SMTP id h16so1183771qtu.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 17:00:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=XaRsTNXsMHJQtjiFQySdHdO/H6TekfDlpzwKgNHxcv0=;
-        b=MdS8kmvpnXoB0KM+Gh8UM6sYxIzoRQU8J1ij747jHQDQWrjy3ePd35ZXTOMnHGY8ak
-         jesS+rDiwZzKnUM/5vtbCkh+qE1LXWN3mS0WorgL8SLxcUCdvEyGDvT36QCdOIuPXipY
-         aKgagWR8z5DPCodQGY6bcj8AgZpfVWI+Rrr+8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XaRsTNXsMHJQtjiFQySdHdO/H6TekfDlpzwKgNHxcv0=;
-        b=Z1fp8OrbdfdLX0EbIl73HZgbdMD3aZdiLtAyRxAhc1hVADTH4uubSyY/LDPjVUQ5KE
-         uOwMt4Rl1/H56aPa/3BYXEzB33BlSYShpUNimlI3ovu1zdiyuG3U5EsrWxdclhze3AmD
-         DWpXrCDFr0j26BL5KYpEs7sGzIenYzkTX7uXYcC8cU+93mrOOtQt1oZUuJb/oMZJ9m0c
-         lLezxxG/sQLzHEXDrsiP716GzuxxlFUM7pK7FtGlMqgvgXwUVk9d16S137D8zQeaKJsW
-         4EKCfsGHJOUWij/tE4DRPDKdxjFnpN8507W1Vn1vGz4aEcqfBATfqaZO7efVJ4IBPhqu
-         cqAQ==
-X-Gm-Message-State: AFqh2kpo98NlJtjmchMd//xiKUCJCTMSnWCDxl7hKhkCsZQ0pMiKWAb8
-        cgQKXeqU9cwak4uiLYccBgvJ4A==
-X-Google-Smtp-Source: AMrXdXuU9oDRTVMziIXRsWYqadNF/pNc08qPsiXnW3HfxbivwyaOgHuzXqv/6urihO4ETZMLHlKFjQ==
-X-Received: by 2002:ac8:1e19:0:b0:3a7:242:501 with SMTP id n25-20020ac81e19000000b003a702420501mr106432240qtl.46.1673398800892;
-        Tue, 10 Jan 2023 17:00:00 -0800 (PST)
-Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id t7-20020a05620a034700b007054a238bf2sm8036038qkm.126.2023.01.10.16.59.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 10 Jan 2023 17:00:00 -0800 (PST)
-Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
- support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux SPI List <linux-spi@vger.kernel.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
-        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
-        f.fainelli@gmail.com, jonas.gorski@gmail.com,
-        kursad.oney@broadcom.com, dregan@mail.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230106200809.330769-1-william.zhang@broadcom.com>
- <20230106200809.330769-3-william.zhang@broadcom.com>
- <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
- <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
- <99b01e96-3b96-6692-c5e1-87db49295e6d@linaro.org>
- <49925933-aacc-4f0d-a1ca-e1bd45b05eee@broadcom.com>
- <b246a81f-e465-5e52-f0ce-65e0a82fc3e1@linaro.org>
-From:   William Zhang <william.zhang@broadcom.com>
-Message-ID: <0194391a-6aef-3a7d-0037-1f87e12a6b6e@broadcom.com>
-Date:   Tue, 10 Jan 2023 16:59:57 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.4.0
+        with ESMTP id S233118AbjAKBHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 20:07:45 -0500
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2100.outbound.protection.outlook.com [40.107.113.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8678B41679
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 17:07:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JWfaWAHR+yEIMrAYF0cLDlgSZXaFECFeYzeN/wH0JeBYjWoscECr9ixv+mUQHLIG0DztE9rXr5qCvuu+/JZe4wkl8cFr1BUhExvFuhpsYaZ1yh98ENzqU7usIJKBgrL1qrtNFKONIL6siGMn1YJKK7Bl2yy6rwE+Cm6hry8C18YiZPUW4YiiYfuMa+Fr5tx1JhdW0tXq+9PnUrbvrD+ylZUDNie0QcMHz05ZyrEGPNvjlzjcyi4DMdRYhvPQ7u5b4rF1QlngdxvJEO5KRH1oVNhgK2mflCTZ9h5jyyNPSoDG0FldjFesrJfJFdOBXOsTY+VsYBbefObZLjKDSUeYeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qnFbZvMOciBiynGoUTm4v6E+lfpdM57zR2+C6zc9lns=;
+ b=blzaaAzDb5PbhoFFyw2C+x+mC/fs+sY6f+0ykWonhz/GlEvrTuIyC+lciIFNMfxrDLcXF/7dMpnerz5RHbHSZs6BhYZ2Cpt9zbkXtAULmmzyPavFrU0E3sRX70k+nC06bZ/4M3gIpB0Mtp/ero7bPGkqp7xTc3UFw/yseyDfJMd+ZdqgnWi0MRPA+sPqR6KTdxGRzA8pbC2lN0ml+syVXXrIFgmHcwSS+VHsPqo7JTRgfjvWrRmmbN+01t8TR08rF97BraZchym2m3l+czR0gBTgE6SQiEg3/F9ef+nqUap+q98Wnts9hy0NgiwrtQdV3svCJjNXUsqped9m3eaqug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qnFbZvMOciBiynGoUTm4v6E+lfpdM57zR2+C6zc9lns=;
+ b=N++cVh4AY75gr0D6gOjWIT3BOBD4FwLMoVclGd5smPs4+3MgTiFdHZd7Tv6olsa9VXgrMeaPRN2IyuuO/Zt4jMCBb8IzMBKc24gyUBpzK79vMftCjgX7H2tfJ2crbG8w66KnXcYCvY218auhFjC0LJy3ul3NLdway1h+SRF0viw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by OS0PR01MB5970.jpnprd01.prod.outlook.com (2603:1096:604:c9::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.12; Wed, 11 Jan
+ 2023 01:07:41 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::3cd7:a7b5:ea86:9ae]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::3cd7:a7b5:ea86:9ae%4]) with mapi id 15.20.6002.012; Wed, 11 Jan 2023
+ 01:07:41 +0000
+Message-ID: <87358hj2ub.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v2 00/10] ASoC: dt-bindings: audio-graph-port related update
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset=US-ASCII
+Date:   Wed, 11 Jan 2023 01:07:41 +0000
+X-ClientProxiedBy: TY2PR06CA0048.apcprd06.prod.outlook.com
+ (2603:1096:404:2e::36) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 MIME-Version: 1.0
-In-Reply-To: <b246a81f-e465-5e52-f0ce-65e0a82fc3e1@linaro.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000001e5cdf05f1f28571"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|OS0PR01MB5970:EE_
+X-MS-Office365-Filtering-Correlation-Id: d63288ce-73a6-4569-a7b6-08daf3703d20
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: a7kM9G9K3zBNn2jRICXkSXVCF8GdKU7MJNP1atRnqM+r6scfGUvi3LUS4Rj7NS78Krchd63TBYjb9mo/FZCBRCxwVqa8uHDkzyI3zth9mHFqyNbVRbvoqq+yY3u6oe/ULu0A4p1pe5pIi4LgsSURtoEZgoDDXYPjHpiWC/9ypLp5fUsTztKfNc+MGTY51kWmvcTC1dkHnkR+/6iI65JrwvAT4Se0RUEC+Zb6U7jZR3NnupsDo+FbJRA2dDOD7DmsfWRB+ewf1ONv5a+ImV7FAuDMoFnd4335EDYng7IW/PymFgFja5b3XW3lqo0HVofrlyKSbio1ScNUgnDKuHdZ/Iw2z3rSBEzE1ICQRfkaKJReIpSojkk4wyfDLW+6LSFEzOoEI2fIDg+LKoQdoj/yP3TCTqJgOvZDkujzQ6HWmVPtXHiRp+x+nQN9wq8AnFRv/1m6CtqoBp9EczKZxIzJWflWWzSVX51Wk8SCoGiFvUebujPIIujIEJjf1D1YIZ8Nyhd9tKz+dP53uBdHwyH7pTz10uFd+1brrandRXLzwM28PXGteJnlwzOf8VyFBTf2F6YBTaB0Dnioi37e41SH+gZt9bDZZtMMMbB2Iglofcy5niC7QRp0uhkbSn5gSvO5l3zrqCtjJHhmMmUh7FIyEZZtOtRcznnUAEb4V5kB+SljA+W0Bk3XM7K30IUtZViEuC7sMN0tZ3IDE5VpRmDYmFYWZBC49gCW6XUDIHUautg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(346002)(39860400002)(376002)(396003)(451199015)(52116002)(2906002)(41300700001)(54906003)(6506007)(316002)(26005)(186003)(6512007)(2616005)(83380400001)(66556008)(86362001)(8936002)(66946007)(8676002)(4326008)(66476007)(5660300002)(966005)(110136005)(6486002)(478600001)(38100700002)(38350700002)(36756003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?frB86eH46zCd34Us+DMULIZw6Xjq18YgAC7h769PcDPVCI+PcDseygTDJtHr?=
+ =?us-ascii?Q?15fC3SEUPKT0s26tfy7QwoClQ9PRQh56A+Kkhhjo/6OIu0HxqblixVjmVH3v?=
+ =?us-ascii?Q?wrXklYx6dW4/wnM4OyDRHyiGRxjAIw/1FCoECA+PDkIS1bWcLlXQPoU9dm18?=
+ =?us-ascii?Q?6w4Ed2T1sR74ODArrVwzq+yWHpaDz/hGkgI4PkdDG58JcTiu0jGnNeSNqoq9?=
+ =?us-ascii?Q?IBY89Asx0cXe4AD4yfRksKzGTCwLhwWSR679U1BDDZcoYT7Dk11a/Uy3msZ3?=
+ =?us-ascii?Q?6faxFZvHlY4I8RcIHK9JaRcwN1Z6YY9dpmlOXpaNmzWJEgxfLWHkzRoD1oRh?=
+ =?us-ascii?Q?ihdUFhj1eAUcJwS4H/jtZxa23Ijj/1PzE/N8+cEuX3pFlZmyeH7gB2ZjcByS?=
+ =?us-ascii?Q?59XoYRNsSUDBYAlX74IPueYoVgjN7aH/QSjLgxppWoQ3FtlNulxP77SGpuJ6?=
+ =?us-ascii?Q?oHp6z8QoNV8CR+NeVk0+cZ4ld/hrNXZdcciW6B3GjEd8m5wjZHJaPJjfSxiE?=
+ =?us-ascii?Q?mbrwY5/EGF48K3+RU5+GrTyqjXvOnCSGOLV2oDSRWXqHg9urOKTTnVC3QbLw?=
+ =?us-ascii?Q?JDfcnuLwEGf3y8gvj1BwLA2YWlcMtwFNg3kBLrmFA1Gv32gKACYOxyJjLTlb?=
+ =?us-ascii?Q?S0jVx89T/wQKGuhOduO1nw65Kep5+O/mEhwF1ZQ7GGiDXDf1s2MI/n7lUlDI?=
+ =?us-ascii?Q?jAawHsOQBN9pZnSdIKB1B02X+QszQ5wmP1nhTIwxXJeSNow/oxUcSeL4s/wd?=
+ =?us-ascii?Q?WILJGAoImnu1LkUmyI44XNBK5Jfd4oWQSC8Eourw4y4FRZLsb6Kcr2pg/wk7?=
+ =?us-ascii?Q?ENupJmCWjeueHFNoE89Z+rQrW4AaHda8wpAATlH/gdELGIFTxHsy6VkiFIaf?=
+ =?us-ascii?Q?SdPUsqEXPtvKglAQ/2C/NR3ZrkY5kDQV+jhCvgM1Rsf0n1i7ejiH0ejhUEeQ?=
+ =?us-ascii?Q?9Zu/+J6qg0XEBBwkqd+0yIJ/MZ4IGSz0LJ+YPga2Eey17VEuPWW+ByXlbHy7?=
+ =?us-ascii?Q?GGqks7n9ma8nLMw3jKw2S6TUFm4a51SAe/Kdk6Pc3+bTg3DvryfahxShLkLA?=
+ =?us-ascii?Q?eqBP6OlSBioKGBDUTc68duX5p4tya+4KyAbpqbDyMBUVXM3vE0+RtovilETA?=
+ =?us-ascii?Q?2Lpb7twp7tXP9W6XOMmCHjTxbkB88Mix6qlHtMncp/DXKGTzHnzkwmmcmFr2?=
+ =?us-ascii?Q?tHcCMmv8zHIJckaY1HhIYRlnd8zrS+UZt9+YDxrk+CoQvCTZI2rp4+cF09qM?=
+ =?us-ascii?Q?uDDl0aV6nB58XC7LZudG51/cYnkkycasPlTqwzOJGb9gvg4b3g/w5Dy5hdWJ?=
+ =?us-ascii?Q?1rw7d5xLiyhx3sbz3jY5FJsYSOzH86iRAjhcZ2oggR2JH3d5zigeC+jz2WGx?=
+ =?us-ascii?Q?tfmkAX9FXw0W8JcyYSJe5D8+SKprKRPs19IPHuaIvfr/dzzG2nmAaWXks4AK?=
+ =?us-ascii?Q?sIuJazYwxgPq+iHWUKfLdUiFYIb2sAxdOla35TqW8b5z681fm78fu6uzYwS8?=
+ =?us-ascii?Q?ejobB0xIHGzY/ZJd7cJN4qyqwTsy4kUVIzw9MQzsP1I2Z9t/kLoln4Keux5u?=
+ =?us-ascii?Q?+dQE8nEPbYLghgxMZ61gEixGe0sqqjMHzRIxjHf5MUIYip8RHgPrSoBG2cHt?=
+ =?us-ascii?Q?/z2Zq8IqNtwANDgQZ/9PFPA=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d63288ce-73a6-4569-a7b6-08daf3703d20
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2023 01:07:41.5033
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: m0aicwunsDFz6Wq4vaHKyJkYF4fpeKCGY1/tcN5doyxApm75lB014iAWMBzbesZRI2wzb/9/QCA/9sWs9Eumirae6nQIGSurEkLVGmAz5W2+YZj95CUuJl/as9iuiWWM
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5970
+X-Spam-Status: No, score=0.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,338 +113,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000001e5cdf05f1f28571
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 
+Hi ASoC ML, DT ML
+Cc Geert
 
+These v2 patches fixups audio-graph-port, and its related DT schema.
+Audio-Graph-Card and Simple-Audio-Card are similar Card
+and are sharing same utils. Thus we can also sharing same schema.
 
-On 01/10/2023 12:40 AM, Krzysztof Kozlowski wrote:
-> On 09/01/2023 20:13, William Zhang wrote:
->>
->>
->> On 01/09/2023 12:56 AM, Krzysztof Kozlowski wrote:
->>> On 09/01/2023 09:27, William Zhang wrote:
->>>> Hi Krzysztof,
->>>>
->>>> On 01/08/2023 06:51 AM, Krzysztof Kozlowski wrote:
->>>>> On 06/01/2023 21:07, William Zhang wrote:
->>>>>> The new Broadcom Broadband BCMBCA SoCs includes a updated HSSPI
->>>>>> controller. Add a new compatible string and required fields for the new
->>>>>> driver.  Also add myself and Kursad as the maintainers.
->>>>>>
->>>>>> Signed-off-by: William Zhang <william.zhang@broadcom.com>
->>>>>> ---
->>>>>>
->>>>>>     .../bindings/spi/brcm,bcm63xx-hsspi.yaml      | 84 +++++++++++++++++--
->>>>>>     1 file changed, 78 insertions(+), 6 deletions(-)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
->>>>>> index 45f1417b1213..56e69d4a1faf 100644
->>>>>> --- a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
->>>>>> @@ -4,22 +4,51 @@
->>>>>>     $id: http://devicetree.org/schemas/spi/brcm,bcm63xx-hsspi.yaml#
->>>>>>     $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>     
->>>>>> -title: Broadcom BCM6328 High Speed SPI controller
->>>>>> +title: Broadcom Broadband SoC High Speed SPI controller
->>>>>>     
->>>>>>     maintainers:
->>>>>> +
->>>>>
->>>>> Drop blank line.
->>>> will fix in  v2.
->>>>
->>>>>
->>>>>> +  - William Zhang <william.zhang@broadcom.com>
->>>>>> +  - Kursad Oney <kursad.oney@broadcom.com>
->>>>>>       - Jonas Gorski <jonas.gorski@gmail.com>
->>>>>
->>>>>>     
->>>>>> +description: |
->>>>>> +  Broadcom Broadband SoC supports High Speed SPI master controller since the
->>>>>> +  early MIPS based chips such as BCM6328 and BCM63268.  This controller was
->>>>>> +  carried over to recent ARM based chips, such as BCM63138, BCM4908 and BCM6858.
->>>>>> +
->>>>>> +  It has a limitation that can not keep the chip select line active between
->>>>>> +  the SPI transfers within the same SPI message. This can terminate the
->>>>>> +  transaction to some SPI devices prematurely. The issue can be worked around by
->>>>>> +  either the controller's prepend mode or using the dummy chip select
->>>>>> +  workaround. This controller uses the compatible string brcm,bcm6328-hsspi.
->>>>>> +
->>>>>> +  The newer SoCs such as BCM6756, BCM4912 and BCM6855 include an updated SPI
->>>>>> +  controller that add the capability to allow the driver to control chip select
->>>>>> +  explicitly. This solves the issue in the old controller. This new controller
->>>>>> +  uses the compatible string brcm,bcmbca-hsspi.
->>>>>> +
->>>>>>     properties:
->>>>>>       compatible:
->>>>>> -    const: brcm,bcm6328-hsspi
->>>>>> +    enum:
->>>>>> +      - brcm,bcm6328-hsspi
->>>>>> +      - brcm,bcmbca-hsspi
->>>>>
->>>>> bca seems quite unspecific. Your description above mentions several
->>>>> model numbers and "bca" is not listed as model. Compatibles cannot be
->>>>> generic.
->>>> "bca" is not model number, rather it is a group (broadband carrier
->>>> access) of chip that share the same spi host controller IP. Agree it is
->>>> not particularly specific but it differentiate from other broadcom spi
->>>> controller ip used by other groups.  We just don't have a specific name
->>>> for this spi host controller but can we treat bcmbca as the ip name?
->>>
->>> No, it is discouraged in such forms. Family or IP block compatibles
->>> should be prepended with a specific compatible. There were many issues
->>> when people insisted on generic or family compatibles...
->>>
->>>> Otherwise we will have to have a compatible string with chip model for
->>>> each SoC even they share the same IP. We already have more than ten of
->>>> SoCs and the list will increase.  I don't see this is a good solution too.
->>>
->>> You will have to do it anyway even with generic fallback, so I don't get
->>> what is here to gain... I also don't get why Broadcom should be here
->>> special, different than others. Why it is not a good solution for
->>> Broadcom SoCs but it is for others?
->>>
->> I saw a few other vendors like these qcom ones:
->>    qcom,spi-qup.yaml
->>        - qcom,spi-qup-v1.1.1 # for 8660, 8960 and 8064
->>        - qcom,spi-qup-v2.1.1 # for 8974 and later
->>        - qcom,spi-qup-v2.2.1 # for 8974 v2 and later
->>    qcom,spi-qup.yaml
->>        const: qcom,geni-spi
-> 
-> IP block version numbers are allowed when there is clear mapping between
-> version and SoCs using it. This is the case for Qualcomm because there
-> is such clear mapping documented and available for Qualcomm engineers
-> and also some of us (although not public).
-> 
->> I guess when individual who only has one particular board/chip and is
->> not aware of the IP family,  it is understandable to use the chip
->> specific compatible string.
-> 
-> Family of devices is not a versioned IP block.
-> 
->> But when company works on it, we have the
->> visibility and access to all the chips and ip blocks in the family and
->> IMHO it is very reasonable to use the IP family name for the same IP as
->> these examples shows.
-> 
-> No, because family of devices is not a versioned IP block. I wrote
-> before that families and wildcards are not allowed.
-> 
->> Are you saying these are not good example to
->> follow?
-> 
-> It's nothing related to your case.
-> 
->> What are the issues with generic or family compatibles?
->>   Could
->> you please elaborate?
-> 
-> They stop matching and some point and cause ABI breaks. We had several
-> cases where engineer believed "I have here family of devices" and then
-> later it turned out that the family is different.
-> 
-> 
->>
->>>
->>>
->>>>
->>>>>
->>>>>>     
->>>>>>       reg:
->>>>>> -    maxItems: 1
->>>>>> +    items:
->>>>>> +      - description: main registers
->>>>>> +      - description: miscellaneous control registers
->>>>>> +    minItems: 1
->>>>>> +
->>>>>> +  reg-names:
->>>>>> +    items:
->>>>>> +      - const: hsspi
->>>>>> +      - const: spim-ctrl
->>>>>
->>>>> This does not match reg
->>>> Do you mean it does not match the description?
->>>
->>> No. reg can be 1 item but you state reg-names cannot. These are always
->>> the same. If one is 1 item, second is as well.
->>>
->> I'll drop the "minItems: 1" from the reg property then.
-> 
-> Then it won't be correct, because it would mean two items are required
-> always.
-Ah you are right. Add minItems: 1 for reg-name then.
-> 
->>
->>>>>
->>>>>>     
->>>>>>       clocks:
->>>>>>         items:
->>>>>> -      - description: spi master reference clock
->>>>>> -      - description: spi master pll clock
->>>>>> +      - description: SPI master reference clock
->>>>>> +      - description: SPI master pll clock
->>>>>
->>>>> Really? You just added it in previous patch, didn't you?
->>>> The previous patch was just word to word conversion of the text file.  I
->>>> will update that patch to include this change.
->>>>
->>>>>
->>>>>>     
->>>>>>       clock-names:
->>>>>>         items:
->>>>>> @@ -29,12 +58,43 @@ properties:
->>>>>>       interrupts:
->>>>>>         maxItems: 1
->>>>>>     
->>>>>> +  brcm,use-cs-workaround:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
->>>>>> +    description: |
->>>>>> +      Enable dummy chip select workaround for SPI transfers that can not be
->>>>>> +      supported by the default controller's prepend mode, i.e. delay or cs
->>>>>> +      change needed between SPI transfers.
->>>>>
->>>>> You need to describe what is the workaround.
->>>> Will do.
->>>>>
->>>>>> +
->>>>>>     required:
->>>>>>       - compatible
->>>>>>       - reg
->>>>>>       - clocks
->>>>>>       - clock-names
->>>>>> -  - interrupts
->>>>>> +
->>>>>> +allOf:
->>>>>> +  - $ref: "spi-controller.yaml#"
->>>>>
->>>>> No quotes. How this is related to this patch?
->>>> Will remove quote and put it in patch 1.
->>>>>
->>>>>> +  - if:
->>>>>> +      properties:
->>>>>> +        compatible:
->>>>>> +          contains:
->>>>>> +            enum:
->>>>>> +              - brcm,bcm6328-hsspi
->>>>>> +    then:
->>>>>> +      properties:
->>>>>> +        reg:
->>>>>> +          minItems: 1
->>>>>
->>>>> Drop.
->>>>>
->>>>> reg-names now do not match.
->>>> Don't quite understand your comment. What do I need to drop and what is
->>>> not matched?
->>>
->>> You need to add constraints for reg-names, same way as for reg.
->>> Disallowing the reg-names also could work, but there won't be benefit in
->>> it. Better to have uniform DTS.
->>>
->> I agree it is better to have the uniform DTS but the situation here is
->> that the brcm,bcm6328-hsspi does not require reg name since there is
->> only one register needed and it was already used in many chip dts for
->> long time.  If I enforce it to have the corresponding reg name, that
-> 
-> No one told you to enforce to have a reg-names.
-> 
->> could potentially break the compatibility of those old device if the
->> driver change to use reg name, right?
-> 
-> How compatibility is broken by some optional, unrelated property?
-> 
-I think I misunderstand what you said.  You basically want the reg-name 
-minItem/maxItem constraints for brcm,bcm6328-hsspi compatible as well so 
-it is consistent for all the compatibles? I was confused and thought it 
-is not needed as reg-name is not required for brcm,bcm6328-hsspi compatible.
+This patch-set fixup some Renesas's "make dtbs_check".
 
-> Best regards,
-> Krzysztof
-> 
+v1 -> v2
+	- remove patch for Nvidia
+	- tidyup ti,pcm3168a schema
+	  - maintainers
+	  - ports
+	- explain more on git-log
 
---0000000000001e5cdf05f1f28571
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+Link: https://lore.kernel.org/r/87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com
 
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICdaNhqf9nmSgiFe4jrj/BtLLjyi
-Guc9FaGP/z+Vw+PYMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
-MDExMTAxMDAwMVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQAPB5g8j2brUFhmGDMuJq/jWtZjqBmma0EtrMfceJWi3SBA
-iNx6hVKVuakvi0wpXpYS19zuvV3UA1guch22sMBQTj1x29oRWmsKZSfLf3TSprZsh88QgFLJYlpI
-i10nF7DaMY1LO0KL69aGQT7cPUwyO6oICnLXTL1cqUrxi/vOxff+9J61nlpsYKjblW3gh8MBbX+t
-z85PZUcVASyJoGgY+xe7WUVUEEaxZQ8aWRE909+rrXwaDBmEASXwvaDNeMWffNqOi3jKvNnrfUqt
-nFQSErCZm9ypgfnuY2HUzuSkC478pWEvsyp34TFqASFscbHkxsaWVTh507z+8PHxt1Uy
---0000000000001e5cdf05f1f28571--
+Geert Uytterhoeven (1):
+  ASoC: dt-bindings: ti,pcm3168a: Convert to json-schema
+
+Kuninori Morimoto (9):
+  ASoC: dt-bindings: audio-graph-port: use definitions for port/endpoint
+  ASoC: dt-bindings: audio-graph-port: add definitions/ports
+  ASoC: dt-bindings: audio-graph-port: add missing mclk-fs
+  ASoC: dt-bindings: audio-graph-port: add clocks on endpoint
+  ASoC: dt-bindings: audio-graph-port: remove prefix
+  ASoC: dt-bindings: ak4613: enable Of-graph (Audio-Graph-Card) style
+  ASoC: dt-bindings: renesas,rsnd: add missing playback/capture
+  ASoC: dt-bindings: renesas,rsnd: #sound-dai-cells is not mandatory
+  ASoC: dt-bindings: simple-card: add missing #address-cells/#size-cells
+
+ .../devicetree/bindings/sound/ak4613.yaml     |   7 ++
+ .../bindings/sound/audio-graph-port.yaml      |  65 +++++++----
+ .../bindings/sound/renesas,rsnd.yaml          |  27 ++++-
+ .../bindings/sound/simple-card.yaml           |   4 +
+ .../devicetree/bindings/sound/ti,pcm3168a.txt |  56 ---------
+ .../bindings/sound/ti,pcm3168a.yaml           | 107 ++++++++++++++++++
+ 6 files changed, 184 insertions(+), 82 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ti,pcm3168a.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
+
+-- 
+2.25.1
+
