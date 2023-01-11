@@ -2,89 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F8566660D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 23:14:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F418A66662D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 23:29:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235978AbjAKWO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 17:14:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33880 "EHLO
+        id S230318AbjAKW3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 17:29:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236070AbjAKWOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 17:14:24 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE34243E45;
-        Wed, 11 Jan 2023 14:14:23 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233101AbjAKW3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 17:29:12 -0500
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF80DDF3
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 14:29:07 -0800 (PST)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7C748B81CD5;
-        Wed, 11 Jan 2023 22:14:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC377C433EF;
-        Wed, 11 Jan 2023 22:14:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673475261;
-        bh=brVowBD7+XLa5K8t/DrjPINuNXrFSej5bIzDIj+mIFI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=dG3fOAFX0pDPm9wB7aarisELFuK5eWKPQ1eHhaEiS5CXGgVo8fswI+q6JmaGaJzQq
-         4PW7BjrZHQnZIwDnxBabdJCo/XstfAqNrQWO9z7s3YRYf2NkTXayVJHhc9KSnR42+M
-         RlRxsc9oqJFIe3aPzKNaxDrHTJan9pHD70nkp8j3ReR8MgKkDjsJrkoqw9NcilnO5f
-         iO+hkJA2t7+aJOXa6/XUOo58D4nFucoDM3DMRV9pNFlfbRS6gSe/g9F825KmhJuCQo
-         Up33XjlCLgLtu+/RJRoxWjvJj+m4Xu8KlOpx0wekWfREKUGu83AUKlP6ZLi+wVrRJZ
-         koV0YRz1S7q8A==
-Date:   Wed, 11 Jan 2023 16:14:19 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Jian Yang <jian.yang@mediatek.com>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        chuanjia.liu@mediatek.com, jieyy.yang@mediatek.com,
-        qizhong.cheng@mediatek.com, rex-bc.chen@mediatek.com,
-        david-yh.chiu@mediatek.com
-Subject: Re: [PATCH 1/2] PCI: mediatek-gen3: Add power and reset control
- feature for downstream component
-Message-ID: <20230111221419.GA1710905@bhelgaas>
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 011FE3EEBA;
+        Wed, 11 Jan 2023 23:29:04 +0100 (CET)
+Date:   Wed, 11 Jan 2023 23:29:03 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: display/msm: convert MDP5 schema to
+ YAML format
+Message-ID: <20230111222903.otbur6yi4iv4mpgz@SoMainline.org>
+References: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
+ <20230109050152.316606-2-dmitry.baryshkov@linaro.org>
+ <20230109074947.5vnfrn6shzpm6iqi@SoMainline.org>
+ <997dbd09-03d6-d60d-1dce-db0bc6415582@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230111032542.20306-2-jian.yang@mediatek.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <997dbd09-03d6-d60d-1dce-db0bc6415582@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Wed, Jan 11, 2023 at 11:25:41AM +0800, Jian Yang wrote:
-> From: "jian.yang" <jian.yang@mediatek.com>
+On 2023-01-10 06:40:27, Dmitry Baryshkov wrote:
+> On 09/01/2023 09:49, Marijn Suijten wrote:
+> > On 2023-01-09 07:01:49, Dmitry Baryshkov wrote:
+<snip>
+> >> +    description: |
+> > 
+> > Should multiline descriptions be treated as a oneline string with `>`?
 > 
-> Make MediaTek's controller driver capable of controlling power
-> supplies and reset pin of a downstream component in power-on and
-> power-off flow.
+> Ack, I'm fine with either of them, let's use the >
 > 
-> Some downstream components (e.g., a WIFI chip) may need an extra
-> reset other than of PERST# and their power supplies, depending on
-> the requirements of platform, may need to controlled by their
-> parent's driver. To meet the requirements described above, I add this
-> feature to MediaTek's PCIe controller driver as a optional feature.
+> > 
+> >> +      Contains the list of output ports from DPU device. These ports
+> >> +      connect to interfaces that are external to the DPU hardware,
+> >> +      such as DSI, DP etc. MDP5 devices support up to 4 ports::
+> > 
+> > How do these double colons render?  Is this intentional?
+> 
+> double colons is an escape for a single colon if I remember correcly.
 
-Is this delay (dsc-reset-msleep) specific to a device downstream from
-the MediaTek controller, not to the MediaTek controller itself?  If
-so, it sounds like it should be a generic value that could be used by
-other drivers, too.
+I thought no escaping was necessary here, especially since this is
+already a value - it is a multiline string.
 
-How do you determine the value?  If there's some PCIe spec that
-determines this, please include a citation to it.  
+> BTW: how to render the DT schema?
 
-Bjorn
+I'm not sure if there's currently any rendering tool to view these docs
+in a "friendly" manner, e.g. an html page, or whether they're only used
+as specifications for DT validation.
+
+- Marijn
