@@ -2,104 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B3A6658A7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 11:12:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F4966658B5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 11:13:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229793AbjAKKMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 05:12:01 -0500
+        id S230407AbjAKKNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 05:13:06 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230407AbjAKKLC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 05:11:02 -0500
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1C4E11C0B;
-        Wed, 11 Jan 2023 02:07:45 -0800 (PST)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30B8DtMt019024;
-        Wed, 11 Jan 2023 11:07:26 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=jo1cHBaQF7snkoZzn/q0uMWY3xh//s/Aq57kIL+l6J4=;
- b=Y+Q1XuFLJ7NZhxVMAS4w38zvpxyi1zcAcvOpYje6R+HL3MEVO56Zi1deoIPGEd0qY5uB
- pTHbkSuFgVoyL+5TVhaF22k+62OKGi24z0UGRClWsMiDegxxY4wPiNRooWZPhw89ICOT
- CT505wi2K/n069RydInyCeg0swAfUYUXYEeSGq89LmYo9TryO+w5T8M894wGVei7S/Cj
- 8RWa2XEdavuNVpdBzrFY62xNVpOth0uFcMPmXtvd8X49P0xAuxNBgoJRy9DAPKQ/RRpj
- edPz6/28q7p0/vf6HXxPtuqUZkQ+xrp5XnLHkX1VPk29sB3gbophHjHt1OWJxQ/Hr1Mr dw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3n1k5rtvq8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 11 Jan 2023 11:07:26 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4E91310002A;
-        Wed, 11 Jan 2023 11:07:26 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 48521214D2B;
-        Wed, 11 Jan 2023 11:07:26 +0100 (CET)
-Received: from localhost (10.252.6.49) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Wed, 11 Jan
- 2023 11:07:26 +0100
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+        with ESMTP id S238495AbjAKKMY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 05:12:24 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285EC2607;
+        Wed, 11 Jan 2023 02:11:36 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pFY4r-0004GV-N7; Wed, 11 Jan 2023 11:11:25 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabien Dessenne <fabien.dessenne@foss.st.com>
-CC:     Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] ARM: dts: Fix User button on stm32mp135f-dk
-Date:   Wed, 11 Jan 2023 11:07:25 +0100
-Message-ID: <20230111100725.463136-1-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        Richard Cochran <richardcochran@gmail.com>,
+        Anand Moon <anand@edgeble.ai>
+Cc:     Johan Jonker <jbx6244@gmail.com>, Anand Moon <anand@edgeble.ai>,
+        Jagan Teki <jagan@edgeble.ai>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCHv4 linux-next 3/4] Rockchip RV1126 has GMAC 10/100/1000M ethernet controller
+Date:   Wed, 11 Jan 2023 11:11:24 +0100
+Message-ID: <7148963.18pcnM708K@diego>
+In-Reply-To: <20230111064842.5322-3-anand@edgeble.ai>
+References: <20230111064842.5322-1-anand@edgeble.ai> <20230111064842.5322-3-anand@edgeble.ai>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.252.6.49]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-11_04,2023-01-11_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch fixes the following dtbs_check warning on stm32mp135f-dk:
-arch/arm/boot/dts/stm32mp135f-dk.dtb: gpio-keys: 'user-pa13' does not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pinctrl-[0-9]+'
-From schema: Documentation/devicetree/bindings/input/gpio-keys.yaml
+Hi,
 
-It renames user-pa13 node into button-user so that it matches gpio-keys
-bindings.
+Am Mittwoch, 11. Januar 2023, 07:48:38 CET schrieb Anand Moon:
+> Add Ethernet GMAC node for RV1126 SoC.
+> 
+> Signed-off-by: Anand Moon <anand@edgeble.ai>
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 
-Fixes: 57012d79fefd ("ARM: dts: stm32: add UserPA13 button on stm32mp135f-dk")
+patches 2-4 have this Signed-off-by from Jagan again where he is not
+not the author but also not the sender.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- arch/arm/boot/dts/stm32mp135f-dk.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Also this patch here, needs a fixed subject with the correct prefixes.
 
-diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
-index 9ff5a3eaf55b..931877d6ddb9 100644
---- a/arch/arm/boot/dts/stm32mp135f-dk.dts
-+++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
-@@ -40,7 +40,7 @@ optee@dd000000 {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		user-pa13 {
-+		button-user {
- 			label = "User-PA13";
- 			linux,code = <BTN_1>;
- 			gpios = <&gpioa 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
--- 
-2.25.1
+
+Heiko
+
+> ---
+> v4: sort the node as reg adds. update the commit message.
+> v3: drop the gmac_clkin_m0 & gmac_clkin_m1 fix clock node which are not
+>     used, Add SoB of Jagan Teki.
+> v2: drop SoB of Jagan Teki.
+> ---
+>  arch/arm/boot/dts/rv1126.dtsi | 49 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/rv1126.dtsi b/arch/arm/boot/dts/rv1126.dtsi
+> index 1cb43147e90b..1f07d0a4fa73 100644
+> --- a/arch/arm/boot/dts/rv1126.dtsi
+> +++ b/arch/arm/boot/dts/rv1126.dtsi
+> @@ -332,6 +332,55 @@ timer0: timer@ff660000 {
+>  		clock-names = "pclk", "timer";
+>  	};
+>  
+> +	gmac: ethernet@ffc40000 {
+> +		compatible = "rockchip,rv1126-gmac", "snps,dwmac-4.20a";
+> +		reg = <0xffc40000 0x4000>;
+> +		interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "macirq", "eth_wake_irq";
+> +		rockchip,grf = <&grf>;
+> +		clocks = <&cru CLK_GMAC_SRC>, <&cru CLK_GMAC_TX_RX>,
+> +			 <&cru CLK_GMAC_TX_RX>, <&cru CLK_GMAC_REF>,
+> +			 <&cru ACLK_GMAC>, <&cru PCLK_GMAC>,
+> +			 <&cru CLK_GMAC_TX_RX>, <&cru CLK_GMAC_PTPREF>;
+> +		clock-names = "stmmaceth", "mac_clk_rx",
+> +			      "mac_clk_tx", "clk_mac_ref",
+> +			      "aclk_mac", "pclk_mac",
+> +			      "clk_mac_speed", "ptp_ref";
+> +		resets = <&cru SRST_GMAC_A>;
+> +		reset-names = "stmmaceth";
+> +
+> +		snps,mixed-burst;
+> +		snps,tso;
+> +
+> +		snps,axi-config = <&stmmac_axi_setup>;
+> +		snps,mtl-rx-config = <&mtl_rx_setup>;
+> +		snps,mtl-tx-config = <&mtl_tx_setup>;
+> +		status = "disabled";
+> +
+> +		mdio: mdio {
+> +			compatible = "snps,dwmac-mdio";
+> +			#address-cells = <0x1>;
+> +			#size-cells = <0x0>;
+> +		};
+> +
+> +		stmmac_axi_setup: stmmac-axi-config {
+> +			snps,wr_osr_lmt = <4>;
+> +			snps,rd_osr_lmt = <8>;
+> +			snps,blen = <0 0 0 0 16 8 4>;
+> +		};
+> +
+> +		mtl_rx_setup: rx-queues-config {
+> +			snps,rx-queues-to-use = <1>;
+> +			queue0 {};
+> +		};
+> +
+> +		mtl_tx_setup: tx-queues-config {
+> +			snps,tx-queues-to-use = <1>;
+> +			queue0 {};
+> +		};
+> +	};
+> +
+>  	emmc: mmc@ffc50000 {
+>  		compatible = "rockchip,rv1126-dw-mshc", "rockchip,rk3288-dw-mshc";
+>  		reg = <0xffc50000 0x4000>;
+> 
+
+
+
 
