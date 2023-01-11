@@ -2,77 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51A9666622F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 18:42:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7715A66625D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 18:57:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234727AbjAKRmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 12:42:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38990 "EHLO
+        id S229844AbjAKR5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 12:57:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235347AbjAKRlk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 12:41:40 -0500
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3A5B6B
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 09:40:38 -0800 (PST)
-Received: by mail-pl1-x62c.google.com with SMTP id s8so9216823plk.5
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 09:40:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KpkaVTQGXazamk/VxjWqp4ydb0LD0blsaD+1AXj4yEY=;
-        b=MjIMA5Ai8yWDh5T4BrRO6rExGL4rJ7QVwUKkkXRN6G2QrfhUCZP/KCPkE54+hFTu2/
-         xPxq49fXLlszJ2KPOzI29AYUVeQNaomwOe6GjiKd5bevhEB55kHUhLyyo9j1bzvCmMF/
-         vAa73q5kY5CZ7lthIYeYQufj/c4d6QGrFrQrl4EtknbCioz7uwXrbeAjtpkA84A0E+e4
-         ctmS0BzLb2bXekbHNuHo/Q6oPT5rxbtM08mh8BH1Abxf6SrK+brSljPr73p6kPRJwZBu
-         DFbV2LMTjjMJD8tR5iCIEM+smmc3HSWIOQkXB1kBxdKqW01vsOBMJq23xYDOeR4nVEhF
-         1BLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KpkaVTQGXazamk/VxjWqp4ydb0LD0blsaD+1AXj4yEY=;
-        b=JLdWtpyY4ghKX8BQCgmuREGskiX+KzXaqt6VYY2HYNuR6n4u3og8NcSQlQNx6QzM+v
-         I+chHasFB6KOgrpsx7CK33Yr4G0NQBCMvdPlcipgk+SjJGw/Fh7NawKzqf+isuSioCeZ
-         g4Rd62MwvXKrAK627SnzKptfZZRQdNNNnTw6oQIOoRDB2BSuNw1znyuSv35mbR0z2HVj
-         ZRB7UUryC+olzjBUrAY7cVBswQR65qnO0B9vH6l7sbI0SFyh1gfc2S4th62S9bRGADPu
-         /JZPr29DKA+MMyKN9ri06DEpqjq4gBpunQL8JRBUcurMdiQSmb5n2z5FlvvGRTmM/ZgC
-         kqfA==
-X-Gm-Message-State: AFqh2kqgy2vp0QQIdEEfRcVohdemwzwKJyThwJTpzEeXbj40WjpIgX8E
-        ix+LBgnreW0Jpdl1Bj00hI7W
-X-Google-Smtp-Source: AMrXdXs+856ScIt9zQEEdg5PRmzDH9Y23S1wO2tLMxfcc3V2SMzAdwVZ8eM26ECcWBh/scrfTHzCfA==
-X-Received: by 2002:a05:6a21:70cb:b0:ad:ceba:1bdc with SMTP id xd11-20020a056a2170cb00b000adceba1bdcmr78229590pzb.16.1673458838288;
-        Wed, 11 Jan 2023 09:40:38 -0800 (PST)
-Received: from thinkpad ([117.217.177.1])
-        by smtp.gmail.com with ESMTPSA id d21-20020a630e15000000b0047781f8ac17sm8703105pgl.77.2023.01.11.09.40.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 09:40:37 -0800 (PST)
-Date:   Wed, 11 Jan 2023 23:10:29 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        with ESMTP id S232923AbjAKR5L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 12:57:11 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC21D13F6D;
+        Wed, 11 Jan 2023 09:57:10 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7F6B5B81BB2;
+        Wed, 11 Jan 2023 17:57:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8D18C433D2;
+        Wed, 11 Jan 2023 17:57:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673459828;
+        bh=5LEMMpXQx+KS8TLTTFnQlUbDjTjiKY0h3Mr8CfUFdvk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TDESBZtZH7EP7mR0FGphTdgKzxeINhHnh+GR70l9rvjNmzzk1xOQH0zPKMcDOIkLV
+         i+T18lEc3o61C285ufWmcacpNrJi1k7L8SoINvoPH8noTR3xuZ5v7mhU8LpgXGqNpP
+         ebxP3zbRH/YhDXqn8A8PtzvXfLCGFy5eM0qBoc+6Er+Ttqu4/QnSM5RF20m0E6Evmq
+         erLxkoH0l3hU3Jrlmhvr0+0vGPVML+fGuY0mi+iE4tAU4nTmc4j0/JDy9IGzQ6+eMt
+         R4uTy4dve95u484svFyJOfBb+D/+SmnG60M46RInIWhEabWqiDQZ/9sut7lzCQ0IWl
+         LMK+rxvDpW8sQ==
+Date:   Wed, 11 Jan 2023 17:57:01 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, konrad.dybcio@somainline.org,
-        amit.pundir@linaro.org, regressions@leemhuis.info,
-        sumit.semwal@linaro.org, will@kernel.org, catalin.marinas@arm.com,
-        robin.murphy@arm.com
-Subject: Re: [PATCH V3 05/10] remoteproc: qcom_q6v5_mss: Use a carveout to
- authenticate modem headers
-Message-ID: <20230111174029.GE4873@thinkpad>
-References: <20230111114337.24782-1-quic_sibis@quicinc.com>
- <20230111114337.24782-6-quic_sibis@quicinc.com>
- <20230111115422.GD4873@thinkpad>
- <d714a068-ee48-2a86-4d54-173312d9720e@quicinc.com>
+        linux-gpio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Renesas IDT821034
+ codec
+Message-ID: <Y774bY4icD8RuMnX@sirena.org.uk>
+References: <20230111134905.248305-1-herve.codina@bootlin.com>
+ <20230111134905.248305-3-herve.codina@bootlin.com>
+ <Y77DKSdZf27qE+xl@sirena.org.uk>
+ <20230111174022.077f6a8c@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="FW/lrGorzYH/UUN+"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d714a068-ee48-2a86-4d54-173312d9720e@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20230111174022.077f6a8c@bootlin.com>
+X-Cookie: Life is not for everyone.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,134 +67,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 11, 2023 at 05:58:49PM +0530, Sibi Sankar wrote:
-> Hey Mani,
-> 
-> Thanks for taking time to review the series.
-> 
-> On 1/11/23 17:24, Manivannan Sadhasivam wrote:
-> > On Wed, Jan 11, 2023 at 05:13:32PM +0530, Sibi Sankar wrote:
-> > > Any access to the dynamically allocated metadata region by the application
-> > > processor after assigning it to the remote Q6 will result in a XPU
-> > > violation. Fix this by replacing the dynamically allocated memory region
-> > > with a no-map carveout and unmap the modem metadata memory region before
-> > > passing control to the remote Q6.
-> > > 
-> > > Reported-and-tested-by: Amit Pundir <amit.pundir@linaro.org>
-> > > Fixes: 6c5a9dc2481b ("remoteproc: qcom: Make secure world call for mem ownership switch")
-> > > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> > 
-> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > 
-> > > ---
-> > > 
-> > > v3:
-> > >   * Drop revert no_kernel_mapping since it's already on the list [Mani]
-> > 
-> > I thought you are going to include Christoph's patch into your series. That way
-> > all the patches will be in the same series, makig life easier for Bjorn.
-> > 
-> 
-> Since there were multiple patches in Christoph's original series, I
-> decided I'll just drop the revert and have it depends on instead.
-> 
 
-There is only one patch in that series and that was independent of the
-remoteproc change. So, it should be fine to include the revert patch to this
-series.
+--FW/lrGorzYH/UUN+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks,
-Mani
+On Wed, Jan 11, 2023 at 05:40:22PM +0100, Herve Codina wrote:
+> Mark Brown <broonie@kernel.org> wrote:
+> > On Wed, Jan 11, 2023 at 02:49:04PM +0100, Herve Codina wrote:
 
-> 
-> > Thanks,
-> > Mani
-> > 
-> > >   * kfree metadata from the branch for parity
-> > > 
-> > >   drivers/remoteproc/qcom_q6v5_mss.c | 48 ++++++++++++++++++++++++++----
-> > >   1 file changed, 42 insertions(+), 6 deletions(-)
-> > > 
-> > > diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
-> > > index e2f765f87ec9..e25d44e20ae7 100644
-> > > --- a/drivers/remoteproc/qcom_q6v5_mss.c
-> > > +++ b/drivers/remoteproc/qcom_q6v5_mss.c
-> > > @@ -215,6 +215,7 @@ struct q6v5 {
-> > >   	size_t mba_size;
-> > >   	size_t dp_size;
-> > > +	phys_addr_t mdata_phys;
-> > >   	phys_addr_t mpss_phys;
-> > >   	phys_addr_t mpss_reloc;
-> > >   	size_t mpss_size;
-> > > @@ -973,15 +974,29 @@ static int q6v5_mpss_init_image(struct q6v5 *qproc, const struct firmware *fw,
-> > >   	if (IS_ERR(metadata))
-> > >   		return PTR_ERR(metadata);
-> > > -	ptr = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL, dma_attrs);
-> > > -	if (!ptr) {
-> > > -		kfree(metadata);
-> > > -		dev_err(qproc->dev, "failed to allocate mdt buffer\n");
-> > > -		return -ENOMEM;
-> > > +	if (qproc->mdata_phys) {
-> > > +		phys = qproc->mdata_phys;
-> > > +		ptr = memremap(qproc->mdata_phys, size, MEMREMAP_WC);
-> > > +		if (!ptr) {
-> > > +			kfree(metadata);
-> > > +			dev_err(qproc->dev, "unable to map memory region: %pa+%zx\n",
-> > > +				&qproc->mdata_phys, size);
-> > > +			return -EBUSY;
-> > > +		}
-> > > +	} else {
-> > > +		ptr = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL, dma_attrs);
-> > > +		if (!ptr) {
-> > > +			kfree(metadata);
-> > > +			dev_err(qproc->dev, "failed to allocate mdt buffer\n");
-> > > +			return -ENOMEM;
-> > > +		}
-> > >   	}
-> > >   	memcpy(ptr, metadata, size);
-> > > +	if (qproc->mdata_phys)
-> > > +		memunmap(ptr);
-> > > +
-> > >   	/* Hypervisor mapping to access metadata by modem */
-> > >   	mdata_perm = BIT(QCOM_SCM_VMID_HLOS);
-> > >   	ret = q6v5_xfer_mem_ownership(qproc, &mdata_perm, false, true,
-> > > @@ -1010,7 +1025,8 @@ static int q6v5_mpss_init_image(struct q6v5 *qproc, const struct firmware *fw,
-> > >   			 "mdt buffer not reclaimed system may become unstable\n");
-> > >   free_dma_attrs:
-> > > -	dma_free_attrs(qproc->dev, size, ptr, phys, dma_attrs);
-> > > +	if (!qproc->mdata_phys)
-> > > +		dma_free_attrs(qproc->dev, size, ptr, phys, dma_attrs);
-> > >   	kfree(metadata);
-> > >   	return ret < 0 ? ret : 0;
-> > > @@ -1893,6 +1909,26 @@ static int q6v5_alloc_memory_region(struct q6v5 *qproc)
-> > >   	qproc->mpss_phys = qproc->mpss_reloc = r.start;
-> > >   	qproc->mpss_size = resource_size(&r);
-> > > +	if (!child) {
-> > > +		node = of_parse_phandle(qproc->dev->of_node, "memory-region", 2);
-> > > +	} else {
-> > > +		child = of_get_child_by_name(qproc->dev->of_node, "metadata");
-> > > +		node = of_parse_phandle(child, "memory-region", 0);
-> > > +		of_node_put(child);
-> > > +	}
-> > > +
-> > > +	if (!node)
-> > > +		return 0;
-> > > +
-> > > +	ret = of_address_to_resource(node, 0, &r);
-> > > +	of_node_put(node);
-> > > +	if (ret) {
-> > > +		dev_err(qproc->dev, "unable to resolve metadata region\n");
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	qproc->mdata_phys = r.start;
-> > > +
-> > >   	return 0;
-> > >   }
-> > > -- 
-> > > 2.17.1
-> > > 
-> > 
+> > Without knowing why things are written in this way or what it's trying
+> > to accomplish it's hard to comment in detail on what specifically should
+> > be done.
 
--- 
-மணிவண்ணன் சதாசிவம்
+> Yes, I use regmap to ease the integration of controls and use the
+> already defined controls macros but the device registers do not fit
+> well with regmap.
+
+If this doesn't fit into regmap then don't try to shoehorn it into
+regmap, that just makes it incredibly hard to follow what's going on.
+
+> The device registers are not defined as simple as address/value pairs.
+> Accesses contains one or more bytes and the signification of the
+> data (and bytes) depends on the first bits.
+> - 0b10xxxxxx means 'Control register' with some data as xxxxxx
+>   and one extra byte
+> - 0b1101yyyy means 'Configuration register, slic mode' with
+>   some other data as yyyy and one extra byte
+> - 0b1100zzzz means 'Configuration register, gain mode' with
+>   some other data as zzzz and two extra bytes
+
+So really the device only has three registers, each of different sizes
+and windowed fields within those registers?  I love innovation,
+innovation is great and it's good that our hardware design colleagues
+work so hard to keep us in jobs.  It seems hardly worth it to treat them
+as registers TBH.  This is so far off a register/value type thing that I
+just wouldn't even try.
+
+> Of course, I can describe all of these in details.
+> Where do you want to have this information ? All at the top
+> of the file ? Each part (low-level, virtual regs, ...) at
+> the beginning of each part in the code ?
+
+I'm not sure what problem it solves to use regmap or have virtual
+registers in the first place.  I think you would be better off with
+custom _EXT controls, you almost have that anway just hidden in the
+middle of the fake register stuff instead of directly there.  My sense
+is that the result would be much less code.  If you are trying to map
+things onto registers you probably want comments at every level since
+you don't know where people are going to end up jumping into the code.
+
+Perhaps it's possible to write some new SND_SOC_ helpers that work with
+just a value in the device's driver data rather than a regmap and have
+a callback to trigger a write to the device?  I suspect that'd be
+generally useful actually...
+
+--FW/lrGorzYH/UUN+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO++GwACgkQJNaLcl1U
+h9ArFgf+O3HGWDePtn5hoFUxSB5AcANrqXbqzjNhuBkCGYrBvgjW4OpJVDkAYKAq
+64TpDiANcIFWChMfdNoOgJjdEvq0JnooViFhAKp4hAXvhfGzMzN58LgYSy98tL8Q
+N/lFjWN1qAtBMT5WtJahyzZs/AKpTXGFxTre1KwzvqSxQTZxCSSIg6P56WV4GD8X
+WtQnRlaaef2V0O/j52Ah0+4Q/OgUrxXVZDpE5AgNnVCGYf1zoXKt9roOfdN9yVMB
+w1WvYbXJG0bbPo3onWcyqkzDwW6N8FUX5vnBk8ZXiyLRn7dEe6JdTKO3Y9JTv5yP
+9+0CqC/gxRPWoc4cFBBclomIuSP3pg==
+=xtx3
+-----END PGP SIGNATURE-----
+
+--FW/lrGorzYH/UUN+--
