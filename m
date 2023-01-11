@@ -2,237 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF60C665613
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 09:29:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D70F665672
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 09:49:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231663AbjAKI3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 03:29:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46330 "EHLO
+        id S230182AbjAKIsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 03:48:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbjAKI3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 03:29:32 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D0B2017;
-        Wed, 11 Jan 2023 00:29:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673425771; x=1704961771;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=uBFuYOIFelXp3Czc6m1RT/eC6rDQTkmly1w/VKCVTlo=;
-  b=jN8Z0QgAzYTWPrnk21vg8psXEQNBXBM/BIBZnhvoaS3PgOR/P41JsZUe
-   uo1xs/6xOybWLnWRf8aZ7Fz37EREa8LTH8BALh42ShYO93TeHDSoqnDAG
-   Ttg6VnRyU3wOQgP2F9IOvM0XjE2QOyemx/ta6hu0FyFQ6NjxYe0MpL56M
-   89jvHpIwgoL80PFKQDiVRGaR+7+Ds4XL/luJ4slzCsEvZKC/wDlyTfcnV
-   oiWWeAYu4mOb/af8k/o+xlR7fyIe0u8HiflK5gOZ8E6xnQVGa9ooNvnS6
-   Ux19HKELNixobc/Ncvg9mneaajbNONdddcXbmeq+8ScewIchxgB/hw+FL
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="306878077"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; 
-   d="scan'208";a="306878077"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2023 00:29:31 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="986071805"
-X-IronPort-AV: E=Sophos;i="5.96,315,1665471600"; 
-   d="scan'208";a="986071805"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.37.49])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2023 00:29:27 -0800
-Message-ID: <48ac6ea0-7cd0-aae5-ff83-cdd278057708@intel.com>
-Date:   Wed, 11 Jan 2023 10:29:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Subject: Re: [PATCH 5/5] drivers: mmc: sdhci-cadence: Add debug option for
- sdhci-cadence driver.
-Content-Language: en-US
-To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        yamada.masahiro@socionext.com, devicetree@vger.kernel.org
-Cc:     jannadurai@marvell.com, cchavva@marvell.com
-References: <20221219142418.27949-1-pmalgujar@marvell.com>
- <20221219142418.27949-6-pmalgujar@marvell.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20221219142418.27949-6-pmalgujar@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232515AbjAKIsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 03:48:12 -0500
+X-Greylist: delayed 553 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 11 Jan 2023 00:48:09 PST
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2189DF6A;
+        Wed, 11 Jan 2023 00:48:09 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1673426330; bh=tYUkvP1LL/oKjpBzUtCikUMIK2n3hYe7+3rcbguWTLI=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=jB92gv8ARa5tL/VyJEF/uCMfvl1vtEXMwuAMJ+MMC63FMtUet8XBJLP3KY9UXwe7u
+         crj5snAwBqlFuMS+Tg4NgOWDTEwk2mJl81z/lGeAJRQ0/GkSWMi0n5JMVz7EkJb2en
+         3dIorM7Y2WBeYwV6O3Y6GSej5fdPsDMEIbI5b5Gs=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
+Subject: Re: [PATCH V9 4/5] ASoC: codecs: Aw883xx chip register file, data
+ type file and Kconfig Makefile
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+In-Reply-To: <20230111020233.4306-1-wangweidong.a@awinic.com>
+Date:   Wed, 11 Jan 2023 09:38:47 +0100
+Cc:     lkp@intel.com, 13691752556@139.com,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Mark Brown <broonie@kernel.org>, cezary.rojewski@intel.com,
+        ckeepax@opensource.cirrus.com, daniel.beer@igorinstitute.com,
+        devicetree@vger.kernel.org, flatmax@flatmax.com,
+        james.schulman@cirrus.com, jonathan.albrieux@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, liweilei@awinic.com,
+        llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        perex@perex.cz, pierre-louis.bossart@linux.intel.com,
+        rf@opensource.cirrus.com, robh+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, steve@sk2.org, tiwai@suse.com,
+        yangxiaohua@everest-semi.com, yijiangtao@awinic.com,
+        zhaolei@awinic.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <5EA7B038-9B49-4E5D-8209-8689C0D03071@cutebit.org>
+References: <202301100233.QuEJ8pyu-lkp@intel.com>
+ <20230111020233.4306-1-wangweidong.a@awinic.com>
+To:     wangweidong.a@awinic.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/12/22 16:24, Piyush Malgujar wrote:
-> From: Jayanthi Annadurai <jannadurai@marvell.com>
-> 
-> Use Kernel config CONFIG_MMC_DEBUG to support dumping PHY and host
-> controller register configuration for debug.
-> 
-> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
-> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
-> ---
->  drivers/mmc/host/sdhci-cadence.c | 100 +++++++++++++++++++++++++++++++
->  1 file changed, 100 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-cadence.c b/drivers/mmc/host/sdhci-cadence.c
-> index 6bf703f15bc5be7e3be4cb1144b78ec3585ec540..75363aabce9228755c4abed08fe17e57d1a44b23 100644
-> --- a/drivers/mmc/host/sdhci-cadence.c
-> +++ b/drivers/mmc/host/sdhci-cadence.c
-> @@ -15,6 +15,10 @@
->  
->  #include "sdhci-pltfm.h"
->  
-> +#ifdef CONFIG_MMC_DEBUG
-> +#define DEBUG_DRV	pr_info
 
-Not sure what the point of that is
+> On 11. 1. 2023, at 3:02, wangweidong.a@awinic.com wrote:
+>=20
+> On 09/01/2023 03:00, kernel test robot wrote:
 
-> +#endif
-> +
->  #define SDMCLK_MAX_FREQ		200000000
->  
->  #define DEFAULT_CMD_DELAY		16
-> @@ -115,6 +119,10 @@
->  #define	SDHCI_CDNS_SD6_PHY_DLL_SLAVE_CLK_WR_DELAY		GENMASK(15, 8)
->  #define	SDHCI_CDNS_SD6_PHY_DLL_SLAVE_READ_DQS_DELAY		GENMASK(7, 0)
->  
-> +#define SDHCI_CDNS_SD6_PHY_DLL_OBS_REG0				0x201C
-> +#define SDHCI_CDNS_SD6_PHY_DLL_OBS_REG1				0x2020
-> +#define SDHCI_CDNS_SD6_PHY_DLL_OBS_REG2				0x2024
-> +
->  #define SDHCI_CDNS_SD6_PHY_CTRL					0x2080
->  #define	SDHCI_CDNS_SD6_PHY_CTRL_PHONY_DQS_TIMING		GENMASK(9, 4)
->  
-> @@ -969,6 +977,94 @@ static void sdhci_cdns_sd6_calc_phy(struct sdhci_cdns_sd6_phy *phy)
->  	}
->  }
->  
-> +#ifdef CONFIG_MMC_DEBUG
+>> All errors (new ones prefixed by >>):
+>=20
+>>>> ld.lld: error: undefined symbol: crc8_populate_lsb
+>>>>> referenced by aw883xx_bin_parse.c:1049 =
+(sound/soc/codecs/aw883xx/aw883xx_bin_parse.c:1049)
+>>>>>              vmlinux.o:(aw883xx_dev_load_acf_check)
+>> --
+>>>> ld.lld: error: undefined symbol: crc8
+>>>>> referenced by aw883xx_bin_parse.c:963 =
+(sound/soc/codecs/aw883xx/aw883xx_bin_parse.c:963)
+>>>>>              vmlinux.o:(aw883xx_dev_load_acf_check)
+>>>>> referenced by aw883xx_bin_parse.c:1022 =
+(sound/soc/codecs/aw883xx/aw883xx_bin_parse.c:1022)
+>>>>>              vmlinux.o:(aw883xx_dev_load_acf_check)
+>>>>> did you mean: crc4
+>>>>> defined in: vmlinux.o
+>=20
+> This looks like a false positive. crc8_populate_lsb is defined in the =
+lib/crc8.c file.
+> I also could not reproduce it with GCC.
 
-Put the DEBUG_DRV definition here instead of above i.e.
+Hi,
 
-#define DEBUG_DRV	pr_info
+the issue here would be that it=E2=80=99s possible to select your driver =
+for compilation without
+having selected the CRC8 functions, leading to the linkage error.
 
-> +static void sdhci_cdns_sd6_phy_dump(struct sdhci_cdns_sd6_phy *phy)
-> +{
-> +	DEBUG_DRV("PHY Timings\n");
-> +	DEBUG_DRV("mode %d t_sdclk %d\n", phy->mode, phy->t_sdclk);
-> +
-> +	DEBUG_DRV("cp_clk_wr_delay %d\n", phy->settings.cp_clk_wr_delay);
-> +	DEBUG_DRV("cp_clk_wrdqs_delay %d\n", phy->settings.cp_clk_wrdqs_delay);
-> +	DEBUG_DRV("cp_data_select_oe_end %d\n", phy->settings.cp_data_select_oe_end);
-> +	DEBUG_DRV("cp_dll_bypass_mode %d\n", phy->settings.cp_dll_bypass_mode);
-> +	DEBUG_DRV("cp_dll_locked_mode %d\n", phy->settings.cp_dll_locked_mode);
-> +	DEBUG_DRV("cp_dll_start_point %d\n", phy->settings.cp_dll_start_point);
-> +	DEBUG_DRV("cp_io_mask_always_on %d\n", phy->settings.cp_io_mask_always_on);
-> +	DEBUG_DRV("cp_io_mask_end %d\n", phy->settings.cp_io_mask_end);
-> +	DEBUG_DRV("cp_io_mask_start %d\n", phy->settings.cp_io_mask_start);
-> +	DEBUG_DRV("cp_rd_del_sel %d\n", phy->settings.cp_rd_del_sel);
-> +	DEBUG_DRV("cp_read_dqs_cmd_delay %d\n", phy->settings.cp_read_dqs_cmd_delay);
-> +	DEBUG_DRV("cp_read_dqs_delay %d\n", phy->settings.cp_read_dqs_delay);
-> +	DEBUG_DRV("cp_sw_half_cycle_shift %d\n", phy->settings.cp_sw_half_cycle_shift);
-> +	DEBUG_DRV("cp_sync_method %d\n", phy->settings.cp_sync_method);
-> +	DEBUG_DRV("cp_use_ext_lpbk_dqs %d\n", phy->settings.cp_use_ext_lpbk_dqs);
-> +	DEBUG_DRV("cp_use_lpbk_dqs %d\n", phy->settings.cp_use_lpbk_dqs);
-> +	DEBUG_DRV("cp_use_phony_dqs %d\n", phy->settings.cp_use_phony_dqs);
-> +	DEBUG_DRV("cp_use_phony_dqs_cmd %d\n", phy->settings.cp_use_phony_dqs_cmd);
-> +	DEBUG_DRV("sdhc_extended_rd_mode %d\n", phy->settings.sdhc_extended_rd_mode);
-> +	DEBUG_DRV("sdhc_extended_wr_mode %d\n", phy->settings.sdhc_extended_wr_mode);
-> +
-> +	DEBUG_DRV("sdhc_hcsdclkadj %d\n", phy->settings.sdhc_hcsdclkadj);
-> +	DEBUG_DRV("sdhc_idelay_val %d\n", phy->settings.sdhc_idelay_val);
-> +	DEBUG_DRV("sdhc_rdcmd_en %d\n", phy->settings.sdhc_rdcmd_en);
-> +	DEBUG_DRV("sdhc_rddata_en %d\n", phy->settings.sdhc_rddata_en);
-> +	DEBUG_DRV("sdhc_rw_compensate %d\n", phy->settings.sdhc_rw_compensate);
-> +	DEBUG_DRV("sdhc_sdcfsh %d\n", phy->settings.sdhc_sdcfsh);
-> +	DEBUG_DRV("sdhc_sdcfsl %d\n", phy->settings.sdhc_sdcfsl);
-> +	DEBUG_DRV("sdhc_wrcmd0_dly %d %d\n",
-> +		  phy->settings.sdhc_wrcmd0_dly, phy->settings.sdhc_wrcmd0_sdclk_dly);
-> +	DEBUG_DRV("sdhc_wrcmd1_dly %d %d\n",
-> +		  phy->settings.sdhc_wrcmd1_dly, phy->settings.sdhc_wrcmd1_sdclk_dly);
-> +	DEBUG_DRV("sdhc_wrdata0_dly %d %d\n",
-> +		  phy->settings.sdhc_wrdata0_dly, phy->settings.sdhc_wrdata0_sdclk_dly);
-> +
-> +	DEBUG_DRV("sdhc_wrdata1_dly %d %d\n",
-> +		  phy->settings.sdhc_wrdata1_dly, phy->settings.sdhc_wrdata1_sdclk_dly);
-> +	DEBUG_DRV("hs200_tune_val %d\n", phy->settings.hs200_tune_val);
-> +}
-> +
-> +void sdhci_cdns_sd6_dump(struct sdhci_cdns_priv *priv)
+You can fix that by adding =E2=80=99select CRC8=E2=80=99 under the =
+Kconfig section of your driver, similarly
+to how the SND_SOC_SIGMADSP symbol selects CRC32.
 
-static
+Best regards,
+Martin
 
-> +{
-> +	struct sdhci_cdns_sd6_phy *phy = priv->phy;
-> +	int id;
-> +
-> +	sdhci_cdns_sd6_phy_dump(phy);
-> +
-> +	DEBUG_DRV("Host controller Register Dump\n");
-> +	for (id = 0; id < 14; id++)
-> +		DEBUG_DRV("HRS%d 0x%x\n", id, readl(priv->hrs_addr + (id * 4)));
-> +
-> +	id = 29;
-> +	DEBUG_DRV("HRS%d 0x%x\n", id, readl(priv->hrs_addr + (id * 4)));
-> +	id = 30;
-> +	DEBUG_DRV("HRS%d 0x%x\n", id, readl(priv->hrs_addr + (id * 4)));
-> +
-> +	for (id = 0; id < 27; id++)
-> +		DEBUG_DRV("SRS%d 0x%x\n", id, readl(priv->hrs_addr + 0x200 + (id * 4)));
-> +
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DQS_TIMING 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DQS_TIMING));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_GATE_LPBK 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_GATE_LPBK));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_MASTER 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_MASTER));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_SLAVE 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_SLAVE));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_CTRL 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_CTRL));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_GPIO_CTRL0 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_GPIO_CTRL0));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DQ_TIMING 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DQ_TIMING));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_OBS_REG0 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_OBS_REG0));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_OBS_REG1 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_OBS_REG1));
-> +	DEBUG_DRV("SDHCI_CDNS_SD6_PHY_DLL_OBS_REG2 0x%x\n",
-> +		  sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_DLL_OBS_REG2));
-> +}
-
-Make a stub for sdhci_cdns_sd6_dump() i.e.
-
-#else
-
-static inline void sdhci_cdns_sd6_dump(struct sdhci_cdns_priv *priv)
-{
-}
-
-> +#endif
-> +
->  static int sdhci_cdns_sd6_get_delay_params(struct device *dev, struct sdhci_cdns_priv *priv)
->  {
->  	struct sdhci_cdns_sd6_phy *phy = priv->phy;
-> @@ -1373,6 +1469,10 @@ static void sdhci_cdns_sd6_set_clock(struct sdhci_host *host,
->  		pr_debug("%s: phy init failed\n", __func__);
->  
->  	sdhci_set_clock(host, clock);
-> +
-> +#ifdef CONFIG_MMC_DEBUG
-> +	sdhci_cdns_sd6_dump(priv);
-> +#endif
-
-With the stub above, #ifdef CONFIG_MMC_DEBUG / #endif
-is no longer needed here.
-
->  }
->  
->  static int sdhci_cdns_sd4_phy_probe(struct platform_device *pdev,
+>=20
+> Best regards,
+> Weidong Wang
 
