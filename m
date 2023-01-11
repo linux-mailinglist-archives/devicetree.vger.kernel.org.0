@@ -2,139 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7715A66625D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 18:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 247EE666274
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 19:06:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229844AbjAKR5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 12:57:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
+        id S234545AbjAKSF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 13:05:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232923AbjAKR5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 12:57:11 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC21D13F6D;
-        Wed, 11 Jan 2023 09:57:10 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7F6B5B81BB2;
-        Wed, 11 Jan 2023 17:57:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8D18C433D2;
-        Wed, 11 Jan 2023 17:57:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673459828;
-        bh=5LEMMpXQx+KS8TLTTFnQlUbDjTjiKY0h3Mr8CfUFdvk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TDESBZtZH7EP7mR0FGphTdgKzxeINhHnh+GR70l9rvjNmzzk1xOQH0zPKMcDOIkLV
-         i+T18lEc3o61C285ufWmcacpNrJi1k7L8SoINvoPH8noTR3xuZ5v7mhU8LpgXGqNpP
-         ebxP3zbRH/YhDXqn8A8PtzvXfLCGFy5eM0qBoc+6Er+Ttqu4/QnSM5RF20m0E6Evmq
-         erLxkoH0l3hU3Jrlmhvr0+0vGPVML+fGuY0mi+iE4tAU4nTmc4j0/JDy9IGzQ6+eMt
-         R4uTy4dve95u484svFyJOfBb+D/+SmnG60M46RInIWhEabWqiDQZ/9sut7lzCQ0IWl
-         LMK+rxvDpW8sQ==
-Date:   Wed, 11 Jan 2023 17:57:01 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S234623AbjAKSFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 13:05:54 -0500
+Received: from out162-62-58-211.mail.qq.com (out162-62-58-211.mail.qq.com [162.62.58.211])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D4115F27;
+        Wed, 11 Jan 2023 10:05:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+        s=s201512; t=1673460340;
+        bh=AV9Go+xHCdsoX9TINfpzQ7oy2kjUbf39EKCEUBJfj0U=;
+        h=From:To:Cc:Subject:Date;
+        b=ejms4cozp3pmCgI/JjFqB8yuR5tuunsSe24MVSaGYgxChDOGsg8hcwF+aO2p9ThG5
+         Dgj7CKlQvHg2ZND38f0K3PTvUTiTmm2lObCoiKLK8dcyBNwP9BarUFHzOf296Kk603
+         dtvSfnSW+ayyIjlEAdzrZNlz6LYwB1gbFwPLIZLw=
+Received: from localhost.localdomain ([111.60.247.106])
+        by newxmesmtplogicsvrsza10-0.qq.com (NewEsmtp) with SMTP
+        id 14F2600F; Thu, 12 Jan 2023 02:05:15 +0800
+X-QQ-mid: xmsmtpt1673460315tjyf90zqs
+Message-ID: <tencent_0F1C483464F866AD2DFA08F0BB3B0FFFC406@qq.com>
+X-QQ-XMAILINFO: Mu4fz8q1FCY3qQbmfCHUQmOmsTIPVLpe8FtYVnEgJLa9EBzoN4D4KXlmFUkAgb
+         RacKQt2fXT4nL9Bh1i2fuRENxAGqjdXGhWrLkRltnQO/GgV1StiwWgAIuQVayHc2lO3/NDc9vZE1
+         +NtDjhStK04Ox5f2rtNeIe0rVQhi0uaxuwJJ/xzO2i77nQ3kSTnpMwEP77BYSaHel3dd9jQAnk//
+         5rcCPWCdr9jRwAGoS6EUwGDXHK23RDH/kf54iEEmCRAi6tjbiDv4pbbnC8Mj/owjYrqsoSXnzu+V
+         /dYJR2MFM5SgximmqgUgbm/xHMnxnlQmWxdU80N/CPhub+6esRZVf79V+//8fnCsdQSmqUHWgowx
+         7+68vRcrUDLZn5U3jnCm2CEOvk3Cm5FDh+4RC9yssA4ZdsruNHR/srn2DBWxkff+8BZDQ53+jGjv
+         /1pJ3q93evXxT/q+VFRqyTyXJsS3+96QKqdicKSIGoQ5tzzbHvfAWbo0Ce4ybaSzjbEJnpzWb2RE
+         6+HwqUXkilURkRTZEL48IAS/Hr5YCJzdGuEqN0cW9AV7SB6MJf2I51K3kAB4BwCr3kVlJhfNbRb5
+         4jwFEdHG3+QRBrt7tEFhdJkDNBp8zDK1ukCrsllkjP9l6yLLzYrTxZ+SmPUTx6JI9shEaI5f1TRi
+         9VP/SuEq1VwTNuNymB8+Wl7scsTb2XM7JfxTCrcJKukXR2L4UvheTWIh99SJptLTZKBvk1NBXrku
+         gz7d5lP+BKjrsDNggkMBaKNn0dwTjgtygvP/tnRri7nEniInHnueXqpJifv9CdD7o7Dh2gvukHhx
+         jkzoKvnVh8sdU9Xgdz3Pt1J8e6f/3Mpw4Hcp4f/DR/AoX47ZwiR40dwF5pGkhAWG3cMWNYBpV9b9
+         K4Og9aT8R/2ZMAcKeD/1L3wck8Vo6rZYHP/+M+eQ3FxmXmzYwAkN+kqfjZE9BK3p3NZel9BpmZRY
+         AWYilsKpyU8U+zUtsy6xIx+UIQxU1nxkYUNeWmta4/xeq8oc7z8Q==
+From:   Yang Xiwen <forbidden405@foxmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Renesas IDT821034
- codec
-Message-ID: <Y774bY4icD8RuMnX@sirena.org.uk>
-References: <20230111134905.248305-1-herve.codina@bootlin.com>
- <20230111134905.248305-3-herve.codina@bootlin.com>
- <Y77DKSdZf27qE+xl@sirena.org.uk>
- <20230111174022.077f6a8c@bootlin.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Yang Xiwen <forbidden405@foxmail.com>,
+        Jaime Breva <jbreva@nayarsystems.com>,
+        Nikita Travkin <nikita@trvn.ru>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v3 0/3] Support for MSM8916-based UFi ufi001c and uf896
+Date:   Thu, 12 Jan 2023 02:03:19 +0800
+X-OQ-MSGID: <20230111180322.21874-1-forbidden405@foxmail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="FW/lrGorzYH/UUN+"
-Content-Disposition: inline
-In-Reply-To: <20230111174022.077f6a8c@bootlin.com>
-X-Cookie: Life is not for everyone.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,HELO_DYNAMIC_IPADDR,RCVD_IN_DNSWL_NONE,RDNS_DYNAMIC,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These devices are equipped with 512MB RAM, 4/8GB eMMC and MSM8916.
+This series introduces support for them and adds a dtsi for the class of
+MSM8916-based UFIs.
 
---FW/lrGorzYH/UUN+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+v3:
+- Sort vendor-prefixes alphebatically
+v2:
+- Managed to get the real vendor
+- Remove some reduntant descriptions
+- Rename dtsi more formally
 
-On Wed, Jan 11, 2023 at 05:40:22PM +0100, Herve Codina wrote:
-> Mark Brown <broonie@kernel.org> wrote:
-> > On Wed, Jan 11, 2023 at 02:49:04PM +0100, Herve Codina wrote:
+Yang Xiwen (3):
+  dt-bindings: vendor-prefixes: add thwc
+  dt-bindings: qcom: Document msm8916-thwc-uf896 and ufi001c
+  arm64: dts: qcom: msm8916-thwc: Add initial device trees
 
-> > Without knowing why things are written in this way or what it's trying
-> > to accomplish it's hard to comment in detail on what specifically should
-> > be done.
+ .../devicetree/bindings/arm/qcom.yaml         |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +
+ .../boot/dts/qcom/msm8916-thwc-uf896.dts      |  41 +++
+ .../boot/dts/qcom/msm8916-thwc-ufi001c.dts    |  39 +++
+ arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi     | 246 ++++++++++++++++++
+ 6 files changed, 332 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
 
-> Yes, I use regmap to ease the integration of controls and use the
-> already defined controls macros but the device registers do not fit
-> well with regmap.
+-- 
+2.39.0
 
-If this doesn't fit into regmap then don't try to shoehorn it into
-regmap, that just makes it incredibly hard to follow what's going on.
-
-> The device registers are not defined as simple as address/value pairs.
-> Accesses contains one or more bytes and the signification of the
-> data (and bytes) depends on the first bits.
-> - 0b10xxxxxx means 'Control register' with some data as xxxxxx
->   and one extra byte
-> - 0b1101yyyy means 'Configuration register, slic mode' with
->   some other data as yyyy and one extra byte
-> - 0b1100zzzz means 'Configuration register, gain mode' with
->   some other data as zzzz and two extra bytes
-
-So really the device only has three registers, each of different sizes
-and windowed fields within those registers?  I love innovation,
-innovation is great and it's good that our hardware design colleagues
-work so hard to keep us in jobs.  It seems hardly worth it to treat them
-as registers TBH.  This is so far off a register/value type thing that I
-just wouldn't even try.
-
-> Of course, I can describe all of these in details.
-> Where do you want to have this information ? All at the top
-> of the file ? Each part (low-level, virtual regs, ...) at
-> the beginning of each part in the code ?
-
-I'm not sure what problem it solves to use regmap or have virtual
-registers in the first place.  I think you would be better off with
-custom _EXT controls, you almost have that anway just hidden in the
-middle of the fake register stuff instead of directly there.  My sense
-is that the result would be much less code.  If you are trying to map
-things onto registers you probably want comments at every level since
-you don't know where people are going to end up jumping into the code.
-
-Perhaps it's possible to write some new SND_SOC_ helpers that work with
-just a value in the device's driver data rather than a regmap and have
-a callback to trigger a write to the device?  I suspect that'd be
-generally useful actually...
-
---FW/lrGorzYH/UUN+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO++GwACgkQJNaLcl1U
-h9ArFgf+O3HGWDePtn5hoFUxSB5AcANrqXbqzjNhuBkCGYrBvgjW4OpJVDkAYKAq
-64TpDiANcIFWChMfdNoOgJjdEvq0JnooViFhAKp4hAXvhfGzMzN58LgYSy98tL8Q
-N/lFjWN1qAtBMT5WtJahyzZs/AKpTXGFxTre1KwzvqSxQTZxCSSIg6P56WV4GD8X
-WtQnRlaaef2V0O/j52Ah0+4Q/OgUrxXVZDpE5AgNnVCGYf1zoXKt9roOfdN9yVMB
-w1WvYbXJG0bbPo3onWcyqkzDwW6N8FUX5vnBk8ZXiyLRn7dEe6JdTKO3Y9JTv5yP
-9+0CqC/gxRPWoc4cFBBclomIuSP3pg==
-=xtx3
------END PGP SIGNATURE-----
-
---FW/lrGorzYH/UUN+--
