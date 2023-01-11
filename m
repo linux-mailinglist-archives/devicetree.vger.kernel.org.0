@@ -2,206 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F330F6660D1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 17:42:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C52E16660DC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 17:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239211AbjAKQmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 11:42:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45536 "EHLO
+        id S238774AbjAKQmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 11:42:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233974AbjAKQlg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 11:41:36 -0500
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529A41C93C;
-        Wed, 11 Jan 2023 08:40:26 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 42BD2C000D;
-        Wed, 11 Jan 2023 16:40:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673455225;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=oGdtiEMVVLmjdlMhzVMr6gYLdJzA+jzOtls9FW8855g=;
-        b=bmCljGHAKJnjYOgao3zIAnf1JX2bGWcKm8KDBBfKhvUuexUL+GP4D1cLbWCfWqKv7wnoJY
-        5APlF6VCuTJUCGVpR7tGH+2eGPGyq4eu9mJ9o5PTDo0YWGA7JajFJ1VOFU+ihFzcX6emdM
-        grTDbC3NW45Hoymvdigaao6b2rgM03skXrgY97dmZRics5n+NnJFlQmiux0UTDIVLoOiZC
-        aMvQVWGI280RbKkqUXTq2n2G8toi3MOMZKpGFloB5PtqtC+Y4kOVYbHubyedANb0F7Acc1
-        xfiucowxIj7OEwgj67voWbr2h+TKolLLxpHYdnl/M6eibt7nLpHOPH05Y3oaeg==
-Date:   Wed, 11 Jan 2023 17:40:22 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S232608AbjAKQmc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 11:42:32 -0500
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01647CE0B;
+        Wed, 11 Jan 2023 08:41:46 -0800 (PST)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-4d19b2686a9so75069857b3.6;
+        Wed, 11 Jan 2023 08:41:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Zptl82ttrhrV63pMTO0viIa9cKU9Map9hB06vVk8Wqo=;
+        b=2W24tW4ZOys7/S3b5X4RgxaWvzroJkwclGHRT19DrtaeEToFJPhT0kVFOwt2+QYKuh
+         EzvL+0Xc4cpNclWkXLv5Azn7fjw89hHazT5U9p0t0zGgw8FCEc/7FATOWcFUsI5gKOd/
+         lunoahT/CT7UD3BXVP6WOTKIRvtbIKPRnoeibD3bZtDQxlQkB6cMfL//7r17pbAOwnyB
+         ntQukFImLqC+qVBKa/6Sfn/exSvlYEsBlI200pFA8kR9rVYNe0PKHCR1OOFY++c0Ckhi
+         W3cEetqIPgzYAPwHlHoZS1PZKL0tfBn3GNs0rKxOk4H4F6qfFGiGUnbNpHGT5LYwsc8G
+         Uxgw==
+X-Gm-Message-State: AFqh2krcAhpQh+cNFYoLTK7r5nOnZGE6M7iEbvZUlSkGbDo5FbGeIPu5
+        lpSwaNDe4HmSTfiO4TWhSpr6XgQHddzvUA==
+X-Google-Smtp-Source: AMrXdXv51sHXafLWUndB9GkOMJxfIsj8bY4lK6Nov3GUZRCvhiyFFELSXAaJsCB+l5NLjwsMEfTD2g==
+X-Received: by 2002:a81:190a:0:b0:364:1ba6:7e6 with SMTP id 10-20020a81190a000000b003641ba607e6mr19485322ywz.37.1673455304695;
+        Wed, 11 Jan 2023 08:41:44 -0800 (PST)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id 64-20020a370c43000000b006cfc1d827cbsm9115697qkm.9.2023.01.11.08.41.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Jan 2023 08:41:44 -0800 (PST)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-4d0f843c417so88646397b3.7;
+        Wed, 11 Jan 2023 08:41:43 -0800 (PST)
+X-Received: by 2002:a81:1751:0:b0:4bd:caff:589e with SMTP id
+ 78-20020a811751000000b004bdcaff589emr2155587ywx.502.1673455303487; Wed, 11
+ Jan 2023 08:41:43 -0800 (PST)
+MIME-Version: 1.0
+References: <20230102222233.274021-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230102222233.274021-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 11 Jan 2023 17:41:31 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXVPdWb2GGSOoVSLNNE6k-JpKnqMGXwpJH=HaGz94GHQQ@mail.gmail.com>
+Message-ID: <CAMuHMdXVPdWb2GGSOoVSLNNE6k-JpKnqMGXwpJH=HaGz94GHQQ@mail.gmail.com>
+Subject: Re: [PATCH v2] riscv: dts: renesas: rzfive-smarc-som: Enable OSTM nodes
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Renesas IDT821034
- codec
-Message-ID: <20230111174022.077f6a8c@bootlin.com>
-In-Reply-To: <Y77DKSdZf27qE+xl@sirena.org.uk>
-References: <20230111134905.248305-1-herve.codina@bootlin.com>
-        <20230111134905.248305-3-herve.codina@bootlin.com>
-        <Y77DKSdZf27qE+xl@sirena.org.uk>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+On Mon, Jan 2, 2023 at 11:22 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable OSTM{1,2} nodes on RZ/Five SMARC SoM.
+>
+> Note, OSTM{1,2} nodes are enabled in the RZ/G2UL SMARC SoM DTSI [0] hence
+> deleting the disabled nodes from RZ/Five SMARC SoM DTSI enables it here
+> too as we include [0] in RZ/Five SMARC SoM DTSI.
+>
+> [0] arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> * Rebased patch on top of [0]
+>
+> [0] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/log/?h=renesas-riscv-dt-for-v6.3
 
-On Wed, 11 Jan 2023 14:09:45 +0000
-Mark Brown <broonie@kernel.org> wrote:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.3.
 
-> On Wed, Jan 11, 2023 at 02:49:04PM +0100, Herve Codina wrote:
->=20
-> > +++ b/sound/soc/codecs/idt821034.c
-> > @@ -0,0 +1,1234 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * IDT821034 ALSA SoC driver =20
->=20
-> Please make the entire comment a C++ one so things look more
-> intentional.
+Gr{oetje,eeting}s,
 
-Ok, I will change in v2.
+                        Geert
 
->=20
-> > +static int idt821034_8bit_write(struct idt821034 *idt821034, u8 val)
-> > +{
-> > +	struct spi_transfer xfer[] =3D {
-> > +		{
-> > +			.tx_buf =3D &idt821034->spi_tx_buf,
-> > +			.len =3D 1,
-> > +		}, {
-> > +			.cs_off =3D 1,
-> > +			.tx_buf =3D &idt821034->spi_tx_buf,
-> > +			.len =3D 1,
-> > +		}
-> > +	};
-> > +	int ret;
-> > +
-> > +	idt821034->spi_tx_buf =3D val;
-> > +
-> > +	dev_vdbg(&idt821034->spi->dev, "spi xfer wr 0x%x\n", val);
-> > +
-> > +	ret =3D spi_sync_transfer(idt821034->spi, xfer, 2); =20
->=20
-> Why is this open coding register I/O rather than using regmap?
->=20
-> > +	conf =3D 0x80 | idt821034->cache.codec_conf | IDT821034_CONF_CHANNEL(=
-ch); =20
->=20
-> regmap provides cache support too.
->=20
-> > +static int idt821034_reg_write_gain(struct idt821034 *idt821034,
-> > +				    unsigned int reg, unsigned int val)
-> > +{
-> > +	u16 gain_val;
-> > +	u8 gain_type;
-> > +	u8 ch;
-> > +
-> > +	ch =3D IDT821034_REGMAP_ADDR_GET_CH(reg);
-> > +	gain_type =3D IDT821034_REGMAP_ADDR_IS_DIR_OUT(reg) ?
-> > +			IDT821034_GAIN_RX : IDT821034_GAIN_TX;
-> > +	gain_val =3D (val & 0x01) ? 0 : val >> 1;
-> > +
-> > +	return idt821034_set_gain_channel(idt821034, ch, gain_type, gain_val);
-> > +} =20
->=20
-> So if the low bit of the gain is zero we just discard the value?  This
-> really needs some comments...
->=20
-> > +static int idt821034_reg_write(void *context, unsigned int reg, unsign=
-ed int val)
-> > +{
-> > +	struct idt821034 *idt821034 =3D context;
-> > +
-> > +	dev_dbg(&idt821034->spi->dev, "reg_write(0x%x, 0x%x)\n", reg, val);
-> > +
-> > +	switch (IDT821034_REGMAP_ADDR_GET_TYPE(reg)) {
-> > +	case IDT821034_REGMAP_ADDR_TYPE_GBLCONF:
-> > +		return idt821034_reg_write_gblconf(idt821034, reg, val);
-> > + =20
->=20
-> Oh, so there is some regmap stuff but it's not actually a regmap and is
-> instead some virtual thing which rewrites all the values with no
-> comments or anything explaining what's going on....  this all feels very
-> confused.  I would expect the regmap usage to be such that the regmap
-> represents the physical device, any rewriting of the values or anything
-> like that should be done on top of the regmap rather than underneath it.
->=20
-> Without knowing why things are written in this way or what it's trying
-> to accomplish it's hard to comment in detail on what specifically should
-> be done.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Yes, I use regmap to ease the integration of controls and use the
-already defined controls macros but the device registers do not fit
-well with regmap.
-
-The device registers are not defined as simple as address/value pairs.
-Accesses contains one or more bytes and the signification of the
-data (and bytes) depends on the first bits.
-- 0b10xxxxxx means 'Control register' with some data as xxxxxx
-  and one extra byte
-- 0b1101yyyy means 'Configuration register, slic mode' with
-  some other data as yyyy and one extra byte
-- 0b1100zzzz means 'Configuration register, gain mode' with
-  some other data as zzzz and two extra bytes
-
-The datasheet is available at
-  https://www.renesas.com/us/en/document/dst/821034-data-sheet
-
-This does not fit well for a regmap usage.
-
-So I wrote some low-level access functions to handle this
-protocol and use some kind of "virtual registers" to map
-this protocol to regmap and use them in controls.
-
-The "virtual registers" were defined to match what I need.
-
-For instance, idt821034_reg_write_gain() is the regmap
-write access for one of the gain "virtual register".
-The mapping of this virtual register is:
-   |15          1|0|
-   | Gain value  |M|
-With M for Mute flag.
-
-The gain value is not discarded as it is available in the
-regmap cache.
-For the low-level access, I write the 'Gain Value' or 0 if
-the mute flag was set.
-
-In some low level accesses, I need save some data (cache) in
-order to be able to use them later for an other access.
-For instance when a channel is powered-on, a timeslot
-need to be present in the bytes sent.
-
-Of course, I can describe all of these in details.
-Where do you want to have this information ? All at the top
-of the file ? Each part (low-level, virtual regs, ...) at
-the beginning of each part in the code ?
-
-Best regards,
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
