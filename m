@@ -2,197 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0CC0665E3E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 15:46:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2174B665E4E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 15:49:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231420AbjAKOqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 09:46:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52940 "EHLO
+        id S233258AbjAKOtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 09:49:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229869AbjAKOqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 09:46:03 -0500
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA6B6328;
-        Wed, 11 Jan 2023 06:46:02 -0800 (PST)
-Received: by mail-vs1-f48.google.com with SMTP id d66so3488206vsd.9;
-        Wed, 11 Jan 2023 06:46:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m6oGhEpGw0nlmVNW90naWw9DJiWnxock79eatbawP6o=;
-        b=elSo/qCSM9El+LwvAmUFs1M53ImUbkJ3Jpu1rNPVhdqnzHoIve9edFTBzGQahuMoIW
-         B0mnhtaZiooDz0VgUm6t3QO6Ca8qgHrhY92sdWjtKvlAeO1o7gLLzpaw3/X+3Kwnk4Ii
-         myWVDLo4NnwbZ0SEwCiOUjtJq4dRdcPsIfNSnOjjVMErh6UMpkFhfk8TLDcl4qfsD2uZ
-         /QQi8QvFLGvPttXpY+XGElf5mn08NqLwpJqQK8j7RztygEaHBbUj/ty+NVxyOUrjudAl
-         LcqJsl0Hd9S8iGQozvdNh9PG+hUAIAoSJRc9Fyr2vPfRq5uE+ERnFFrxwLxZwIzsPIfE
-         orxg==
-X-Gm-Message-State: AFqh2kq4y3MXNDbIjtg2ePqB7SxDXF0wXT0PWk/C9hqZEI1e2BtJc8eq
-        aZN1OOyM0gt7cHziuRIrmU8kJ2fOSiyoqA==
-X-Google-Smtp-Source: AMrXdXuQ3G+Nui4ViZKQy3cHmbGQTt9xFm4P2UFZvfFr34FcXoYRlp8IHnxaMsE4ellbtCY/tVwtug==
-X-Received: by 2002:a05:6102:3d1f:b0:3c5:8369:1c6f with SMTP id i31-20020a0561023d1f00b003c583691c6fmr37015324vsv.18.1673448361421;
-        Wed, 11 Jan 2023 06:46:01 -0800 (PST)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id h8-20020a05620a284800b006fa7b5ea2d1sm9049582qkp.125.2023.01.11.06.46.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 06:46:01 -0800 (PST)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-4d13cb4bbffso77329347b3.3;
-        Wed, 11 Jan 2023 06:46:00 -0800 (PST)
-X-Received: by 2002:a05:690c:d8c:b0:4a2:63c5:6c59 with SMTP id
- da12-20020a05690c0d8c00b004a263c56c59mr3792744ywb.384.1673448360609; Wed, 11
- Jan 2023 06:46:00 -0800 (PST)
+        with ESMTP id S233689AbjAKOt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 09:49:27 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2629F5B8;
+        Wed, 11 Jan 2023 06:49:26 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30BEmZ56027078;
+        Wed, 11 Jan 2023 14:48:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Uz3f8J9YNsaXsO2z23IyKDJUxb/Y0lz+mQRpOBG6Sf0=;
+ b=gE3F5oo1bipRUsRMqvWNsr69Q1oKU6HF5J/LaiJOaxpuyL/eG4ZlkC/F4rIrBv/Phw97
+ NaSGYocE6iBdQHKzHdnEjrVaMYakQ+SOS+H07ykx6aMssSQXTSQTpsFJLyffMkMVBD+N
+ OqrnD+zEkhkisjI4w85FHSj9LlpxmSsAlG1vI4HVtM+fswKgoBMwIyLp2GN23O8RkfSy
+ yqukhVUgvcnKmFOZAW3dWTPWrWutZEfnZDwSQUTTMCeBmstRtNw9B7wSCllAjEnxfPX5
+ sePtPI95WuB3fUG28j37yIDOvl28SeaT55kb2iqrAxOQYRPQp2dMJSl34hKKCp52fSpa Ag== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n1k9j1gx8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 11 Jan 2023 14:48:34 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30BEmXNV024726
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 11 Jan 2023 14:48:33 GMT
+Received: from [10.50.23.36] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 11 Jan
+ 2023 06:48:20 -0800
+Message-ID: <a9dfc45a-dc7a-9e39-ccc4-a451ea165bdf@quicinc.com>
+Date:   Wed, 11 Jan 2023 20:18:15 +0530
 MIME-Version: 1.0
-References: <87edt2pxhd.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87edt2pxhd.wl-kuninori.morimoto.gx@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 11 Jan 2023 15:45:48 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUH-CSmaKuM2HA-5j5cP_c2pygp9DqyQiOC9XkCUuzCKw@mail.gmail.com>
-Message-ID: <CAMuHMdUH-CSmaKuM2HA-5j5cP_c2pygp9DqyQiOC9XkCUuzCKw@mail.gmail.com>
-Subject: Re: [PATCH 0/8] arm64: dts: renesas: Simple-Card /
- Audio-Graph-Card/Card2 dts for ULCB/KF
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 7/7] arm64: defconfig: Enable IPQ9574 SoC base configs
+To:     devi priya <quic_devipriy@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <p.zabel@pengutronix.de>, <shawnguo@kernel.org>,
+        <arnd@arndb.de>, <marcel.ziswiler@toradex.com>,
+        <dmitry.baryshkov@linaro.org>, <nfraprado@collabora.com>,
+        <broonie@kernel.org>, <tdas@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
+References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
+ <20230110121316.24892-8-quic_devipriy@quicinc.com>
+Content-Language: en-US
+From:   Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <20230110121316.24892-8-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: uZCZL2UYKO4OyakHQC9ROqoy9dMmB43n
+X-Proofpoint-ORIG-GUID: uZCZL2UYKO4OyakHQC9ROqoy9dMmB43n
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-11_07,2023-01-11_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 spamscore=0
+ impostorscore=0 mlxscore=0 malwarescore=0 phishscore=0 priorityscore=1501
+ mlxlogscore=846 lowpriorityscore=0 bulkscore=0 suspectscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301110107
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Morimoto-san,
 
-CC DT/ASoC
-
-On Wed, Dec 14, 2022 at 2:47 AM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> ALSA SoC is now supporting generic Sound Card driver such as
-> Simple-Card / Audio-Graph-Card/Card2, and it supports
-> "normal connection" and "special connections".
-> I'm its maintainer, thus I need/want to test these.
+On 1/10/2023 5:43 PM, devi priya wrote:
+> Enables clk & pinctrl related configs
 >
-> I have been tested these by using my local patches to switching card,
-> but maintenance it locally is not useful for me, and users who want to
-> know the sample DT settings.
+> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+> ---
+>   arch/arm64/configs/defconfig | 2 ++
+>   1 file changed, 2 insertions(+)
 >
-> And I have noticed that some local patch had bug, but no one noticed
-> about it (of course :)
->
-> ULCB/KF is very good board to test these.
-> So, I want to upstream these.
->
-> One note here is that this patch *should not* have effect to
-> existing normal users, but useful for test user.
-> So, this patch-set adds "3 card" x "2 use case" dtsi file,
-> and ulcb/ulcb-kf "include" one of them which doesn't change anything.
-> test user can switch to other card or other use case by changing
-> "include" dtsi.
->
-> [1/8][2/8] are small tidyup patches for all SoC sound.
-
-Thanks for your series!
-
-I really wanted to review this earlier, but I am held back by my lack
-of understanding of the audio subsystem and the audio bindings.
-It is also not clear to me what really is hardware description
-(i.e. to be described in DT), and what is software policy (i.e. not
-to be described in DT)...
-Hence I have lots of questions ("A fool can ask more questions in a
-minute than a wise man can answer in an hour." ;-)
-
-What is the difference between "Simple Audio Card", "Audio Graph Card",
-and "Audio Graph Card2"?  Why do we need to support all three of them?
-
-How come we can have no #sound-dai-cells, #sound-dai-cells = <0>,
-and #sound-dai-cells = <1>, for the same hardware?
-What is the real difference between Single DAI and Multi DAI?
-Why do we need to support both?
-
-> Kuninori Morimoto (8):
->   ARM: dts: renesas: #sound-dai-cells is used when simple-card
->   arm64: dts: renesas: #sound-dai-cells is used when simple-card
->   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card dtsi
->   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card2 dtsi
->   arm64: dts: renesas: add ulcb{-kf} Simple Audio Card dtsi
-
-The above three all describe the same hardware configuration?
-
->   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card2 dtsi MIX + TDM Split dtsi
->   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card dtsi MIX + TDM Split dtsi
->   arm64: dts: renesas: add ulcb{-kf} Simple Audio Card MIX + TDM Split dtsi
-
-Is MIX and TDM Split a different hardware configuration, or software
-policy?
-
-Thanks!
-
->  arch/arm/boot/dts/r8a7742.dtsi                |   2 +-
->  arch/arm/boot/dts/r8a7743.dtsi                |   2 +-
->  arch/arm/boot/dts/r8a7744.dtsi                |   2 +-
->  arch/arm/boot/dts/r8a7745.dtsi                |   2 +-
->  arch/arm/boot/dts/r8a7778.dtsi                |   2 +-
->  arch/arm/boot/dts/r8a7790.dtsi                |   2 +-
->  arch/arm/boot/dts/r8a7791.dtsi                |   2 +-
->  arch/arm/boot/dts/r8a7793.dtsi                |   2 +-
->  arch/arm/boot/dts/r8a7794.dtsi                |   2 +-
->  arch/arm64/boot/dts/renesas/r8a774a1.dtsi     |   2 +-
->  arch/arm64/boot/dts/renesas/r8a774b1.dtsi     |   2 +-
->  arch/arm64/boot/dts/renesas/r8a774c0.dtsi     |   2 +-
->  arch/arm64/boot/dts/renesas/r8a774e1.dtsi     |   2 +-
->  arch/arm64/boot/dts/renesas/r8a77951.dtsi     |   2 +-
->  arch/arm64/boot/dts/renesas/r8a77960.dtsi     |   2 +-
->  arch/arm64/boot/dts/renesas/r8a77961.dtsi     |   2 +-
->  arch/arm64/boot/dts/renesas/r8a77965.dtsi     |   2 +-
->  arch/arm64/boot/dts/renesas/r8a77990.dtsi     |   2 +-
->  arch/arm64/boot/dts/renesas/r8a77995.dtsi     |   2 +-
->  .../boot/dts/renesas/salvator-common.dtsi     |   3 -
->  .../ulcb-audio-graph-card-mix+split.dtsi      |  89 +++++++++
->  .../dts/renesas/ulcb-audio-graph-card.dtsi    |  85 +++++++++
->  .../ulcb-audio-graph-card2-mix+split.dtsi     | 111 +++++++++++
->  .../dts/renesas/ulcb-audio-graph-card2.dtsi   |  26 +++
->  .../ulcb-kf-audio-graph-card-mix+split.dtsi   | 162 ++++++++++++++++
->  .../dts/renesas/ulcb-kf-audio-graph-card.dtsi |  88 +++++++++
->  .../ulcb-kf-audio-graph-card2-mix+split.dtsi  | 177 ++++++++++++++++++
->  .../renesas/ulcb-kf-audio-graph-card2.dtsi    |  30 +++
->  .../ulcb-kf-simple-audio-card-mix+split.dtsi  | 137 ++++++++++++++
->  .../renesas/ulcb-kf-simple-audio-card.dtsi    |  85 +++++++++
->  arch/arm64/boot/dts/renesas/ulcb-kf.dtsi      |  66 ++-----
->  .../ulcb-simple-audio-card-mix+split.dtsi     |  86 +++++++++
->  .../dts/renesas/ulcb-simple-audio-card.dtsi   |  89 +++++++++
->  arch/arm64/boot/dts/renesas/ulcb.dtsi         |  60 ++----
->  34 files changed, 1212 insertions(+), 120 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-audio-graph-card-mix+split.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-audio-graph-card.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-audio-graph-card2-mix+split.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-audio-graph-card2.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-audio-graph-card-mix+split.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-audio-graph-card.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-audio-graph-card2-mix+split.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-audio-graph-card2.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-simple-audio-card-mix+split.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-simple-audio-card.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-simple-audio-card-mix+split.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-simple-audio-card.dtsi
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 851e8f9be06d..e0ae0996d5ad 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -545,6 +545,7 @@ CONFIG_PINCTRL_IMX93=y
+>   CONFIG_PINCTRL_MSM=y
+>   CONFIG_PINCTRL_IPQ8074=y
+>   CONFIG_PINCTRL_IPQ6018=y
+> +CONFIG_PINCTRL_IPQ9574=y
+Please move this after IPQ8074, to keep it in ascending order. We can 
+move the IPQ6018 config before IPQ8074.
+>   CONFIG_PINCTRL_MSM8916=y
+>   CONFIG_PINCTRL_MSM8953=y
+>   CONFIG_PINCTRL_MSM8976=y
+> @@ -1093,6 +1094,7 @@ CONFIG_QCOM_CLK_SMD_RPM=y
+>   CONFIG_QCOM_CLK_RPMH=y
+>   CONFIG_IPQ_GCC_6018=y
+>   CONFIG_IPQ_GCC_8074=y
+> +CONFIG_IPQ_GCC_9574=y
+>   CONFIG_MSM_GCC_8916=y
+>   CONFIG_MSM_GCC_8994=y
+>   CONFIG_MSM_MMCC_8996=y
