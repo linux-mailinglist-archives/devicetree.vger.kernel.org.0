@@ -2,103 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCDF06651D5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 03:30:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC00E6651BB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 03:26:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229970AbjAKCay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 21:30:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42412 "EHLO
+        id S233306AbjAKC0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 21:26:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235743AbjAKCai (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 21:30:38 -0500
-Received: from mo-csw.securemx.jp (mo-csw1116.securemx.jp [210.130.202.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D192C6583;
-        Tue, 10 Jan 2023 18:30:35 -0800 (PST)
-Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 30B2U8S9030693; Wed, 11 Jan 2023 11:30:09 +0900
-X-Iguazu-Qid: 2wGrC6bcpmgSbxQkbP
-X-Iguazu-QSIG: v=2; s=0; t=1673404208; q=2wGrC6bcpmgSbxQkbP; m=yO1krVtmgfhEKSgKntcfRcL0ENdOYioPH7eiHYGyGjg=
-Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
-        by relay.securemx.jp (mx-mr1111) id 30B2U6Z7021024
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 11 Jan 2023 11:30:06 +0900
-X-SA-MID: 52825691
-From:   Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        with ESMTP id S235314AbjAKC0j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 21:26:39 -0500
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 605DD63A1;
+        Tue, 10 Jan 2023 18:26:37 -0800 (PST)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 11 Jan 2023 11:26:36 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 220E82058B4F;
+        Wed, 11 Jan 2023 11:26:36 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 11 Jan 2023 11:26:36 +0900
+Received: from plum.e01.socionext.com (unknown [10.212.243.119])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 91CFC3D58;
+        Wed, 11 Jan 2023 11:26:35 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        yuji2.ishikawa@toshiba.co.jp
-Subject: [PATCH v5 6/6] MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
-Date:   Wed, 11 Jan 2023 11:24:33 +0900
-X-TSB-HOP2: ON
-Message-Id: <20230111022433.25950-7-yuji2.ishikawa@toshiba.co.jp>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230111022433.25950-1-yuji2.ishikawa@toshiba.co.jp>
-References: <20230111022433.25950-1-yuji2.ishikawa@toshiba.co.jp>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marek Vasut <marex@denx.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH net] dt-bindings: net: snps,stmmac: Fix inconsistencies in some properties belonging to stmmac-axi-config
+Date:   Wed, 11 Jan 2023 11:26:22 +0900
+Message-Id: <20230111022622.6779-1-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added entries for visconti Video Input Interface driver, including;
-* device tree bindings
-* source files
-* documentation files
+The description of some properties in stmmac-axi-config don't match the
+behavior of the corresponding driver. Fix the inconsistencies by fixing
+the dt-schema.
 
-Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Fixes: 5361660af6d3 ("dt-bindings: net: snps,dwmac: Document stmmac-axi-config subnode")
+Fixes: afea03656add ("stmmac: rework DMA bus setting and introduce new platform AXI structure")
+Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 ---
-Changelog v2:
-- no change
+ .../devicetree/bindings/net/snps,dwmac.yaml      | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-Changelog v3:
-- added entry for driver API documentation
+In this patch the definition of the corresponding driver is applied.
+If applying the definition of the devicetree, we need to change the driver
+instead of this patch.
 
-Changelog v4:
-- added entry for header file 
-
-Changelog v5:
-- no change
----
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 886d3f69ee6..e83ec3af09e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3014,18 +3014,22 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/iwamatsu/linux-visconti.git
- F:	Documentation/devicetree/bindings/arm/toshiba.yaml
- F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
- F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
-+F:	Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
- F:	Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
- F:	Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
- F:	Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
- F:	Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
- F:	Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
-+F:	Documentation/driver-api/media/drivers/visconti-viif.rst
- F:	arch/arm64/boot/dts/toshiba/
- F:	drivers/clk/visconti/
-+F:	drivers/media/platform/visconti/
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-visconti.c
- F:	drivers/gpio/gpio-visconti.c
- F:	drivers/pci/controller/dwc/pcie-visconti.c
- F:	drivers/pinctrl/visconti/
- F:	drivers/watchdog/visconti_wdt.c
-+F:	include/uapi/linux/visconti_viif.h
- N:	visconti
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index e88a86623fce..2332bf7cfcd4 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -158,11 +158,11 @@ properties:
+         * snps,xit_frm, unlock on WoL
+         * snps,wr_osr_lmt, max write outstanding req. limit
+         * snps,rd_osr_lmt, max read outstanding req. limit
+-        * snps,kbbe, do not cross 1KiB boundary.
++        * snps,axi_kbbe, do not cross 1KiB boundary.
+         * snps,blen, this is a vector of supported burst length.
+-        * snps,fb, fixed-burst
+-        * snps,mb, mixed-burst
+-        * snps,rb, rebuild INCRx Burst
++        * snps,axi_fb, fixed-burst
++        * snps,axi_mb, mixed-burst
++        * snps,axi_rb, rebuild INCRx Burst
  
- ARM/UNIPHIER ARCHITECTURE
+   snps,mtl-rx-config:
+     $ref: /schemas/types.yaml#/definitions/phandle
+@@ -516,7 +516,7 @@ properties:
+         description:
+           max read outstanding req. limit
+ 
+-      snps,kbbe:
++      snps,axi_kbbe:
+         $ref: /schemas/types.yaml#/definitions/uint32
+         description:
+           do not cross 1KiB boundary.
+@@ -528,17 +528,17 @@ properties:
+         minItems: 7
+         maxItems: 7
+ 
+-      snps,fb:
++      snps,axi_fb:
+         $ref: /schemas/types.yaml#/definitions/flag
+         description:
+           fixed-burst
+ 
+-      snps,mb:
++      snps,axi_mb:
+         $ref: /schemas/types.yaml#/definitions/flag
+         description:
+           mixed-burst
+ 
+-      snps,rb:
++      snps,axi_rb:
+         $ref: /schemas/types.yaml#/definitions/flag
+         description:
+           rebuild INCRx Burst
 -- 
 2.25.1
-
 
