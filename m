@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B3676657BA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:39:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43EF86657E0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:43:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236636AbjAKJiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 04:38:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37344 "EHLO
+        id S234722AbjAKJnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 04:43:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236936AbjAKJhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:37:31 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97E7C638A
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:36:17 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so12149532wms.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:36:17 -0800 (PST)
+        with ESMTP id S237980AbjAKJmj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:42:39 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03BCC1A06B
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:39:05 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id ay12-20020a05600c1e0c00b003d9ea12bafcso8497735wmb.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:39:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=agrBGzLEfDLBSaCHOLwWqzPW8aLKgXJ9Qn5pOrzQb5Y=;
-        b=L1ew/2SCwJ61mAaiVWmR/o/h0rvj5/f8oWZHWzHzYRw3DibCnHMEDLdOE6f3JibAv4
-         TIbFr3b6wleD09DJbyz69vNg50+ZP+SzNowSevdxBHlyMEYmtkEs/cfgpI3fBLmNFK7R
-         nj/kwt7wwkxVeqOcx6fTIfreTT7aXZpE185iHv1G3KCJnJjK4GbWVrbx2EC8H+LPLZO4
-         cbbthMcG4ULnar4283XFnePmqly+AR2Whbt32lHWAYJi4KAkQCudsQm8EvBNcH5Pn4bV
-         LGXG9pwErge9lO8e+ELGjblOWgaA8i8KSoo0pcm6JEtRNmzguwM2yBmgb+xfeuMicRhs
-         VcVQ==
+        bh=73HQio63W0EpBnT1hsIGdzOvUrTEv6vdD18QgBbVEx8=;
+        b=ee5ZQ3Qca93OxEnpffZ5ppRQb+HbqrTgeoi7mYumKz4+GzednjSsbQDPYSiAkTuoRQ
+         8IZp7gbLAf858ivd0EvWTlVi1VJS6FDn8foAhfshIUY5AxAKDg4hABVcCbTZl0pw6iPN
+         kcieNluNtsNh6KmiZHgwLbmtez/esntTp7YF6x8zueN1rG9Fk57SEIvWjuvBracm6PcM
+         8pzKEObTv55fb4PgtKyJTPzjUA7lQW/rWcMrN4juHCp+f7u3Srrj/Po7tAVsQeSPrBi1
+         JTunCPNE2Q8/im4AvLt3ztJlCyKIIwib5SKNNup1h0bahDGJWPceqeql0FqDZhZWsGdY
+         Hhlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=agrBGzLEfDLBSaCHOLwWqzPW8aLKgXJ9Qn5pOrzQb5Y=;
-        b=wjpBtyqin0KzxvT/vLx8GpLoAHge2hwnI4nKCxY1xblgaRZmJ1o025E758JHZXyKmS
-         WRNEI4V/SiuwC5vLE6H3E7UNnGf9nSWLqTYo4Y64zEqmOGKgFPxOjW9zVVcSxykaffTP
-         jp000GPTynFql9n/tEeRsir2u07A4/jSxP89D7AoCTomBMqlyr7kE5J34DzG29rp6Eb4
-         FqVoIJ+0jDaUCiUSIQ6UgimaAnpCYE6tCaMORI4mhULMGlJMzPNAwOs6G0ba4kb9MiJe
-         Cqo+wSI11EGxJWYmioJEzIk5nVi4f2+gC0MIRqVNEHvQPMoqUQU9IH1GlL7QDP2F2eNt
-         fdJw==
-X-Gm-Message-State: AFqh2krbXqU9BXWcdOOGbyYZz1ehmtcOTAGBnlQQlj5TX13CLInBXW6S
-        ZDwDTgppxo0iklvL9i3mb90bYg==
-X-Google-Smtp-Source: AMrXdXur2VYSsIb72rrxWp6CTmFDaeh2Stw30IqyKOpakPOnkVDT29DdV1AQ6EJLmwgaYmiy5MRsiw==
-X-Received: by 2002:a05:600c:4d25:b0:3d3:5b7a:1791 with SMTP id u37-20020a05600c4d2500b003d35b7a1791mr62592799wmp.41.1673429776076;
-        Wed, 11 Jan 2023 01:36:16 -0800 (PST)
+        bh=73HQio63W0EpBnT1hsIGdzOvUrTEv6vdD18QgBbVEx8=;
+        b=1yrGncdMxfpuIJf/2rIhGDgU/R0Q2nDjj4cqoM2eUirKmnWi4TL+luc6vCwFpX4XxS
+         /PF70s1oeUzY7qLiN5STmqYXSb8u+t/o/IAQxDmq6VRu54sWXJeSPjs1pciCpqVmic95
+         +mPItaSancBFHCLhwuDkD+RuQx/akeQg+zTXXhlh1I7a7Oe3ed3osEF+mtekt22guzeX
+         L/peqPsIZyieH+a0Ps1xoPlQLtnOXKs1GR4PP3b2pOc68Ql13+Jpnlja3gLDLHHVJwW3
+         mScs5Kc1kqORtk0WUaZfIxLxgUBOLgVHrskO1mBPMcnMuoovqKlMGNdZKLIglMF55Ej7
+         QDng==
+X-Gm-Message-State: AFqh2koeNENi+Cl5+aMsA6UVbfpkslBnr3cPLJ+9XenQE2FVfbKiX+te
+        q0LYzbdlpP4KPgCHDcv00n1CFw==
+X-Google-Smtp-Source: AMrXdXtZTHLGuTgKzjj1x/+ePKVY5RJVD/q5DwAfISn78uCxLxi5rEbX1L1xXLK21urnFX6x21kmoQ==
+X-Received: by 2002:a05:600c:5006:b0:3d2:3eda:dd1 with SMTP id n6-20020a05600c500600b003d23eda0dd1mr52275256wmr.17.1673429944253;
+        Wed, 11 Jan 2023 01:39:04 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id he5-20020a05600c540500b003d9ed40a512sm13601488wmb.45.2023.01.11.01.36.13
+        by smtp.gmail.com with ESMTPSA id h10-20020a05600c2caa00b003cfd58409desm23274210wmc.13.2023.01.11.01.39.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 01:36:15 -0800 (PST)
-Message-ID: <603f9c39-3e36-bb44-2305-1d37fe033dd5@linaro.org>
-Date:   Wed, 11 Jan 2023 10:36:12 +0100
+        Wed, 11 Jan 2023 01:39:03 -0800 (PST)
+Message-ID: <b63600f9-82ef-83dc-1680-1df125b5d971@linaro.org>
+Date:   Wed, 11 Jan 2023 10:39:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/7] dt-bindings: arm64: ipq9574: Add binding descriptions
- for clock and reset
+Subject: Re: [PATCH 3/7] dt-bindings: pinctrl: qcom: Add ipq9574 pinctrl
+ bindings
 Content-Language: en-US
 To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -73,9 +73,9 @@ Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
         quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
         quic_poovendh@quicinc.com
 References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
- <20230110121316.24892-2-quic_devipriy@quicinc.com>
+ <20230110121316.24892-4-quic_devipriy@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230110121316.24892-2-quic_devipriy@quicinc.com>
+In-Reply-To: <20230110121316.24892-4-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,85 +89,172 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/01/2023 13:13, devi priya wrote:
-> Adding support for the global clock controller found on
-> IPQ9574 based devices
-
-Subject: drop second/last, redundant "bindings descriptions for". The
-"dt-bindings" prefix is already stating that these are bindings.
-
+> Add device tree binding documentation details for ipq9574
+> pinctrl driver
 > 
+
+Subject: drop second/last, redundant "bindings". The "dt-bindings"
+prefix is already stating that these are bindings.
+
 > Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
 > Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
 > Signed-off-by: devi priya <quic_devipriy@quicinc.com>
 > ---
->  .../bindings/clock/qcom,gcc-other.yaml        |   4 +
->  .../devicetree/bindings/clock/qcom,gcc.yaml   |   9 +-
->  include/dt-bindings/clock/qcom,gcc-ipq9574.h  | 226 ++++++++++++++++++
->  include/dt-bindings/reset/qcom,gcc-ipq9574.h  | 164 +++++++++++++
->  4 files changed, 402 insertions(+), 1 deletion(-)
->  create mode 100644 include/dt-bindings/clock/qcom,gcc-ipq9574.h
->  create mode 100644 include/dt-bindings/reset/qcom,gcc-ipq9574.h
+>  .../bindings/pinctrl/qcom,ipq9574-tlmm.yaml   | 129 ++++++++++++++++++
+>  1 file changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq9574-tlmm.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> index 2e8acca64af1..cc563d640336 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> @@ -18,6 +18,8 @@ description: |
->      include/dt-bindings/clock/qcom,gcc-ipq4019.h
->      include/dt-bindings/clock/qcom,gcc-ipq6018.h
->      include/dt-bindings/reset/qcom,gcc-ipq6018.h
-> +    include/dt-bindings/clock/qcom,gcc-ipq9574.h
-> +    include/dt-bindings/reset/qcom,gcc-ipq9574.h
->      include/dt-bindings/clock/qcom,gcc-msm8953.h
->      include/dt-bindings/clock/qcom,gcc-mdm9607.h
->      include/dt-bindings/clock/qcom,gcc-mdm9615.h
-> @@ -34,6 +36,8 @@ properties:
->        - qcom,gcc-mdm9607
->        - qcom,gcc-msm8953
->        - qcom,gcc-mdm9615
-> +      - qcom,gcc-ipq9574
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,ipq9574-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,ipq9574-tlmm.yaml
+> new file mode 100644
+> index 000000000000..f9cb457bc18d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,ipq9574-tlmm.yaml
+> @@ -0,0 +1,129 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,ipq9574-tlmm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. IPQ9574 TLMM block
+> +
+> +maintainers:
+> +  - Anusha <quic_anusha@quicinc.com>
+> +
+> +description: |
+> +  This binding describes the Top Level Mode Multiplexer block found in the
+> +  IPQ9574 platform.
 
-Incorrect order but anyway let's switch to new naming style just like
-SM8550 and SA8775p.
+No, please rebase on recent changes. You started your work on some old
+bindings so your binding likely includes all issues we fixed.
 
 > +
-
-Not related change.
-
->  
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> index 7129fbcf2b6c..5a71268538e6 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> @@ -24,6 +24,14 @@ properties:
->    '#power-domain-cells':
->      const: 1
->  
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 8
+> +allOf:
+> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
 > +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 8
-
-This does not look correct, neither related.
+> +properties:
+> +  compatible:
+> +    const: qcom,ipq9574-tlmm
 > +
->    reg:
->      maxItems: 1
->  
-> @@ -35,7 +43,6 @@ required:
->    - reg
->    - '#clock-cells'
->    - '#reset-cells'
-> -  - '#power-domain-cells'
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts: true
+> +  interrupt-controller: true
+> +  "#interrupt-cells": true
+> +  gpio-controller: true
+> +  gpio-reserved-ranges: true
+> +  "#gpio-cells": true
+> +  gpio-ranges: true
+> +  wakeup-parent: true
 
-Eee? Why? What's this?
+Missing gpio-line-names and constraints for ranges. Look at other bindings.
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
+> +  "-state$":
+> +    oneOf:
+> +      - $ref: "#/$defs/qcom-ipq9574-tlmm-state"
+> +      - patternProperties:
+> +          "-pins$":
+> +            $ref: "#/$defs/qcom-ipq9574-tlmm-state"
+> +        additionalProperties: false
+> +
+> +$defs:
+> +  qcom-ipq9574-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-5][0-9]|6[0-4])$"
+> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd,
+> +                      sdc2_data, qdsd_cmd, qdsd_data0, qdsd_data1, qdsd_data2,
+> +                      qdsd_data3 ]
 
+These are ordered by name.
 
+> +        minItems: 1
+> +        maxItems: 8
+> +
+> +      function:
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins.
+> +
+> +        enum: [ atest_char, atest_char0, atest_char1, atest_char2, atest_char3,
+> +                audio_pdm1, audio_pri, audio_sec, blsp0_spi, blsp0_uart,
+> +                blsp1_i2c, blsp1_spi, blsp1_uart, blsp2_i2c, blsp2_spi,
+> +                blsp2_uart, blsp3_i2c, blsp3_spi, blsp3_uart, blsp4_i2c,
+> +                blsp4_spi, blsp4_uart, blsp5_i2c, blsp5_uart, cri_trng0,
+> +                cri_trng1, cri_trng3, cxc0, cxc1, dbg_out, dwc_ddrphy,
+> +                gcc_plltest, gcc_tlmm, mac00, mac01, mac10, mac11, mdc,
+> +                mdio, pcie0_clk, pcie0_wake, pcie1_clk, pcie1_wake, pcie2_clk,
+> +                pcie2_wake, pcie3_clk, pcie3_wake, prng_rosc0, prng_rosc1,
+> +                prng_rosc2, prng_rosc3, pta1_0, pta1_1, pta1_2, pta20, pta21,
+> +                pwm00, pwm01, pwm02, pwm03, pwm04, pwm10, pwm11, pwm12, pwm13,
+> +                pwm14, pwm20, pwm21, pwm22, pwm23, pwm24, pwm30, pwm31, pwm32,
+> +                pwm33, qdss_cti_trig_in_a0, qdss_cti_trig_in_a1, qdss_cti_trig_in_b0,
+> +                qdss_cti_trig_in_b1, qdss_cti_trig_out_a0, qdss_cti_trig_out_a1,
+> +                qdss_cti_trig_out_b0, qdss_cti_trig_out_b1, qdss_traceclk_a,
+> +                qdss_traceclk_b, qdss_tracectl_a, qdss_tracectl_b, qdss_tracedata_a,
+> +                dss_tracedata_b, qdss_tracedata_b, qspi_clk, qspi_cs, qspi_data,
+> +                rx0, rx1, sdc_clk, sdc_cmd, sdc_data, sdc_rclk, tsens_max,
+> +                wci20, wci21, wsa_swrm, audio_pdm0 ]
+
+These too
+
+> +
+> +      bias-disable: true
+> +      bias-pull-down: true
+> +      bias-pull-up: true
+> +      drive-strength: true
+> +      input-enable: true
+> +      output-high: true
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +
+> +    additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    tlmm: pinctrl@1000000 {
+> +        compatible = "qcom,ipq9574-tlmm";
+> +        reg = <0x01000000 0x300000>;
+> +        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        interrupt-controller;
+> +        #interrupt-cells = <2>;
+> +        gpio-ranges = <&tlmm 0 0 65>;
+> +
+> +        uart2-state {
+> +                pins = "gpio34", "gpio35";
+
+Wrong indentation.
+
+> +                function = "blsp2_uart";
+> +                drive-strength = <8>;
+> +                bias-pull-down;
+> +        };
+> +    };
 
 Best regards,
 Krzysztof
