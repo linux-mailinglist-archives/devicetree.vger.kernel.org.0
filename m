@@ -2,161 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BDB16662AC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 19:20:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 511186662BF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 19:28:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230164AbjAKSU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 13:20:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60280 "EHLO
+        id S234534AbjAKS1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 13:27:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235046AbjAKSU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 13:20:56 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 584B82AD6;
-        Wed, 11 Jan 2023 10:20:55 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30BIKmxj115173;
-        Wed, 11 Jan 2023 12:20:48 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673461248;
-        bh=ERjyXXS1TgiAxeAhzAc720ajMH2C1PwrFvFdo+xiD7c=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=JIJ4q1iZxZlUTJXdFwn/gx8O0DHJ6k83a2gfbR5cPlW9Ae8kO6mHeHxHL3gU2TN+G
-         MLWHe3sSPwCQCuGrhX63stdZ6BH1xuOgjkutUbhnp6eLH5WW+kJZzIBmhmEs07FrQE
-         SI7MGUfGYSoNEThZXSdD6/FmdW4B3HSfiGvKMQWE=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30BIKmSg006563
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 11 Jan 2023 12:20:48 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 11
- Jan 2023 12:20:48 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 11 Jan 2023 12:20:47 -0600
-Received: from [10.250.233.151] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30BIKhbe060579;
-        Wed, 11 Jan 2023 12:20:44 -0600
-Message-ID: <078417fd-9e32-18b8-7bf5-d8d0fbe09dcf@ti.com>
-Date:   Wed, 11 Jan 2023 23:50:43 +0530
+        with ESMTP id S235844AbjAKS1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 13:27:23 -0500
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C0A733D46;
+        Wed, 11 Jan 2023 10:27:16 -0800 (PST)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 9BF2420007;
+        Wed, 11 Jan 2023 18:27:12 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Nicholas Roth <nicholas@rothemail.net>,
+        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 1/2] dt-bindings: media: Add OmniVision OV8858
+Date:   Wed, 11 Jan 2023 19:26:56 +0100
+Message-Id: <20230111182657.74160-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230111182657.74160-1-jacopo@jmondi.org>
+References: <20230111182657.74160-1-jacopo@jmondi.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 2/3] arm64: dts: ti: k3-am62-main: Add support for USB
-Content-Language: en-US
-To:     Sjoerd Simons <sjoerd@collabora.com>, Nishanth Menon <nm@ti.com>
-CC:     <kernel@collabora.com>, Nitin Yadav <n-yadav@ti.com>,
-        <martyn.welch@collabora.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230111132348.553061-1-sjoerd@collabora.com>
- <20230111132348.553061-3-sjoerd@collabora.com>
-From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
-In-Reply-To: <20230111132348.553061-3-sjoerd@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
+Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
 
-On 1/11/2023 6:53 PM, Sjoerd Simons wrote:
-> From: Aswath Govindraju <a-govindraju@ti.com>
-> 
-> AM62 SoC has two instances of USB on it. Therefore, add support for the
-> same.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> [cherry-pick from vendor BSP]]
-> Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
-> Tested-by: Martyn Welch <martyn.welch@collabora.com>
-> 
-> ---
-> 
-> Changes in v3:
-> - Rebased against current ti-next aka 6.2-rc1
-> - Add Martyn's tested-by
-> 
-> Changes in v2:
-> - Rebase against linux-next 20221220
-> 
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 44 ++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index 466b94d1cee9..4da15e8c956f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -555,6 +555,50 @@ sdhci2: mmc@fa20000 {
->  		status = "disabled";
->  	};
->  
-> +	usbss0: dwc3-usb@f900000 {
-> +		compatible = "ti,am62-usb";
-> +		reg = <0x00 0x0f900000 0x00 0x800>;
-> +		clocks = <&k3_clks 161 3>;
-> +		clock-names = "ref";
-> +		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4008>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
-> +		ranges;
-> +
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/media/i2c/ovti,ov8858.yaml       | 106 ++++++++++++++++++
+ 1 file changed, 106 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
 
-Following the convention of the file, could you please set status =
-"disabled" here and then set it to okay in board dts file (patch 3/3)
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+new file mode 100644
+index 000000000000..a65f921ec0fd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+@@ -0,0 +1,106 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov8858.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV8858 Image Sensor
++
++maintainers:
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++  - Nicholas Roth <nicholas@rothemail.net>
++
++description: |
++  The OmniVision OV8858 is a color CMOS 8 Megapixels (3264x2448) image sensor
++  controlled through an I2C-compatible SCCB bus. The sensor transmits images
++  on a MIPI CSI-2 output interface with up to 4 data lanes.
++
++properties:
++  compatible:
++    const: ovti,ov8858
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++    description: XVCLK external clock
++
++  clock-names:
++    const: xvclk
++
++  dvdd-supply:
++    description: Digital Domain Power Supply
++
++  avdd-supply:
++    description: Analog Domain Power Supply
++
++  dovdd-supply:
++    description: I/O Domain Power Supply
++
++  powerdown-gpios:
++    description: PWDNB powerdown GPIO (active low)
++
++  reset-gpios:
++    maxItems: 1
++    description: XSHUTDN reset GPIO (active low)
++
++  port:
++    description: MIPI CSI-2 transmitter port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            minItems: 1
++            maxItems: 4
++
++        required:
++          - data-lanes
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/pinctrl/rockchip.h>
++    #include <dt-bindings/clock/rk3399-cru.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov8858: camera@36 {
++            compatible = "ovti,ov8858";
++            reg = <0x36>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            clock-names = "xvclk";
++            assigned-clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clock-rates = <24000000>;
++
++            dovdd-supply = <&vcc1v8_dvp>;
++
++            reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
++            powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2 3 4>;
++                };
++            };
++        };
++    };
++...
+--
+2.38.1
 
-> +		usb0: usb@31000000 {
-> +			compatible = "snps,dwc3";
-> +			reg =<0x00 0x31000000 0x00 0x50000>;
-> +			interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
-> +				     <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
-> +			interrupt-names = "host", "peripheral";
-> +			maximum-speed = "high-speed";
-> +			dr_mode = "otg";
-> +		};
-> +	};
-> +
-> +	usbss1: dwc3-usb@f910000 {
-> +		compatible = "ti,am62-usb";
-> +		reg = <0x00 0x0f910000 0x00 0x800>;
-> +		clocks = <&k3_clks 162 3>;
-> +		clock-names = "ref";
-> +		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4018>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
-> +		ranges;
-> +
-
-Same here...
-
-> +		usb1: usb@31100000 {
-> +			compatible = "snps,dwc3";
-> +			reg =<0x00 0x31100000 0x00 0x50000>;
-> +			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
-> +				     <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
-> +			interrupt-names = "host", "peripheral";
-> +			maximum-speed = "high-speed";
-> +			dr_mode = "otg";
-> +		};
-> +	};
-> +
->  	fss: bus@fc00000 {
->  		compatible = "simple-bus";
->  		reg = <0x00 0x0fc00000 0x00 0x70000>;
