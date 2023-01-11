@@ -2,104 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD4F0666486
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 21:06:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A1196664D4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 21:28:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238611AbjAKUFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 15:05:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35296 "EHLO
+        id S239533AbjAKU2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 15:28:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239636AbjAKUFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 15:05:13 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5E14435A
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 12:01:39 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id f34so25168618lfv.10
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 12:01:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rrcNxK9Y+DcgHqm/UsDl3fgR8jlK0PF2lYfm+cSn93I=;
-        b=Vh8j+egJ7ToeOFqmKvwRDxL2WQrbG7EysITmLHKEw9TO528IxMMhPROAd8yM9XKI4N
-         Md5qk073k6PTrxBdCeWvEz5vmPK7kMLa2j2ZJhRYiKsBZGt4HPhtoGP5kN2XSj6tSr4j
-         a/39OYw7LbezjVTHT0WfavsM2bRU9KBBPfIZ85pOo98A55QO4XiBzmjFUONMGMqxMnC3
-         nxHd0OIP/IdPelG7mOHz60n2lnhQzmbtInGcgYBPHkD9LNJWzYDuCPDdpY2MWim77xzf
-         HbgDFBDeHoMC3NzFava0cLR/fBIg7YWt/G1/P2r7vOsotWsRv1aqIEK/V6d81k368Ulp
-         GCOg==
+        with ESMTP id S239582AbjAKU1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 15:27:49 -0500
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C1923F125;
+        Wed, 11 Jan 2023 12:26:41 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id p17-20020a9d6951000000b00678306ceb94so9475690oto.5;
+        Wed, 11 Jan 2023 12:26:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rrcNxK9Y+DcgHqm/UsDl3fgR8jlK0PF2lYfm+cSn93I=;
-        b=X18hnHasln7mjJbDBWH0RSST2lY4KhUkoss6tX4tsm5vuSnAoCgJgedpc2EvBobdsQ
-         sl4VA/9PSPLSBJsWrXSHc4pKfBoaOIkoznIoVlOCJ4un9ljHQ66FTj8F8PJuh0uQMAYx
-         +9xRrNXHs6NKcYkxbMjanCR6A3PS4pwiJ3BqPn9P/LrMqsIa1WOW6NHa2cAjLDSGRzVv
-         xWffxzQwmRgQhyEO8TmH1OEut9amtGZS0zP7tFLOdL2SfGQ64cLeNRkhw4EqBKNJ5NJ9
-         c/tC5CnwXvH3BdsQRDriAn7S69FLbp4ffc5KzZFT9cbFJT4oboAdQWo6WdNyTwkwZpyF
-         pWcg==
-X-Gm-Message-State: AFqh2kq+leGmcebGUiY8taLcaWmfn6dKU0xtjmFpHIx0K1n/26Ss2ito
-        IVl8PYTFb9EUkBcd0IjN8ASviw==
-X-Google-Smtp-Source: AMrXdXsaDClN0vuBlujdqZnxkRnsmvEbNO55rqMUGIL2WCYe6/6TZ5jBxS7cGLnAgFBYvf2AN7WMKg==
-X-Received: by 2002:a05:6512:c01:b0:4cb:3449:1354 with SMTP id z1-20020a0565120c0100b004cb34491354mr12232812lfu.22.1673467298572;
-        Wed, 11 Jan 2023 12:01:38 -0800 (PST)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id v20-20020a05651203b400b004b4e6dab30esm2881437lfp.222.2023.01.11.12.01.38
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GtUlkPBnTibbizf/H3Nw9CiF2dvWYJd3fBoMYMkkY6o=;
+        b=eJZXtNG9fmL2IgALzepTbFMLTTId2h7zcZC+568o4WnNFQB/oDtx8qM78sBA8vXrbs
+         DZhYBH1Fjs+Z+8cD19DDpZiAhjPdV+WIKlynHnXSMcYhrLS2p4DGt9VbtFgXSHqPaGW/
+         7zylxPZb0sZt2D9qFvkA+IbiC+tczsxS3iAF8oFSELq3hLbI86SYDetDGk0k0bNkDuYQ
+         BwbVvoYPRShaGEqNXBrHB+ITFenniAd0xDe/OlavEJXl8UYCQrmQFcp1FjUJwg3/9kgF
+         /LtUID0TMjVKdJDrw7M4hDMR2m+2dfdDIYViLdGKxNJjRpvjOCBLYnMqnbFI9oSdZogT
+         05OA==
+X-Gm-Message-State: AFqh2kqR13EbrVvKG7ZaPqNpruw5QUVkukuEskS8n0rE615yidCX8HBD
+        xqhA5mZxQo1kbV36Xc8Hlw==
+X-Google-Smtp-Source: AMrXdXvk+/Ain/i5yL9ul+PeQV5I/RK3qfqLYNdxxu4RWqGzhh535t4/xZ1jsbIuH7DIsftuVkCLfA==
+X-Received: by 2002:a9d:7e8a:0:b0:670:9684:404c with SMTP id m10-20020a9d7e8a000000b006709684404cmr42684143otp.28.1673468801076;
+        Wed, 11 Jan 2023 12:26:41 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v26-20020a9d605a000000b0066eab2ec808sm8077274otj.1.2023.01.11.12.26.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 12:01:38 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Wed, 11 Jan 2023 12:26:40 -0800 (PST)
+Received: (nullmailer pid 1362478 invoked by uid 1000);
+        Wed, 11 Jan 2023 20:26:39 -0000
+Date:   Wed, 11 Jan 2023 14:26:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 14/14] arm64: dts: qcom: msm8996: support using GPLL0 as kryocc input
-Date:   Wed, 11 Jan 2023 23:01:28 +0300
-Message-Id: <20230111200128.2593359-15-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230111200128.2593359-1-dmitry.baryshkov@linaro.org>
-References: <20230111200128.2593359-1-dmitry.baryshkov@linaro.org>
+        Xu Liang <lxu@maxlinear.com>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 2/4] dt-bindings: net: phy: add MaxLinear
+ GPY2xx bindings
+Message-ID: <20230111202639.GA1236027-robh@kernel.org>
+References: <20230109123013.3094144-1-michael@walle.cc>
+ <20230109123013.3094144-3-michael@walle.cc>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230109123013.3094144-3-michael@walle.cc>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In some cases the driver might need using GPLL0 to drive CPU clocks.
-Bring it in through the sys_apcs_aux clock.
+On Mon, Jan 09, 2023 at 01:30:11PM +0100, Michael Walle wrote:
+> Add the device tree bindings for the MaxLinear GPY2xx PHYs, which
+> essentially adds just one flag: maxlinear,use-broken-interrupts.
+> 
+> One might argue, that if interrupts are broken, just don't use
+> the interrupt property in the first place. But it needs to be more
+> nuanced. First, this interrupt line is also used to wake up systems by
+> WoL, which has nothing to do with the (broken) PHY interrupt handling.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I don't understand how this is useful. If the interrupt line is asserted 
+after the 1st interrupt, how is it ever deasserted later on to be 
+useful. 
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 8a35a785b4f7..37ebd8a3b2c8 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -2946,8 +2946,8 @@ kryocc: clock-controller@6400000 {
- 			compatible = "qcom,msm8996-apcc";
- 			reg = <0x06400000 0x90000>;
- 
--			clock-names = "xo";
--			clocks = <&rpmcc RPM_SMD_BB_CLK1>;
-+			clock-names = "xo", "sys_apcs_aux";
-+			clocks = <&rpmcc RPM_SMD_BB_CLK1>, <&apcs_glb>;
- 
- 			#clock-cells = <1>;
- 		};
--- 
-2.30.2
+In any case, you could use 'wakeup-source' if that's the functionality 
+you need. Then just ignore the interrupt if 'wakeup-source' is not 
+present.
 
+> Second and more importantly, there are devicetrees which have this
+> property set. Thus, within the driver we have to switch off interrupt
+> handling by default as a workaround. But OTOH, a systems designer who
+> knows the hardware and knows there are no shared interrupts for example,
+> can use this new property as a hint to the driver that it can enable the
+> interrupt nonetheless.
+
+Pretty sure I said this already, but this schema has no effect. Add an 
+extra property to the example and see. No error despite your 
+'unevaluatedProperties: false'. Or drop 'interrupts-extended' and no 
+dependency error... 
+
+You won't get errors as there's no defined way to decide when to apply 
+this because it is based on node name or compatible unless you do a 
+custom select, but I don't see what you would key off of here...
+
+The real answer here is add a compatible. But I'm tired of pointing this 
+out to the networking maintainers every damn time. Ethernet PHYs are not 
+special.
+
+Rob
