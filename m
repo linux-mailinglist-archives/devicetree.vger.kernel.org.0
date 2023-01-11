@@ -2,75 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC09466525D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 04:30:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A88B66526A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 04:32:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230376AbjAKD3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Jan 2023 22:29:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38536 "EHLO
+        id S235671AbjAKDb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Jan 2023 22:31:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235385AbjAKD3B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 22:29:01 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D4E3F00B;
-        Tue, 10 Jan 2023 19:28:50 -0800 (PST)
-X-UUID: 0ce976b2916011eda06fc9ecc4dadd91-20230111
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Q1367LjRdABOqy7A1vYGcZQlo1pAjOhv0VoFEG4f6qM=;
-        b=l4b0lZgM4FrOxeGQtY/4FwyKJjZRG1Gg1vGv2V2dFXfZfn+qm1sZqnux5tnXB0IQf9m4sTzWb1RPYfI2gtHRkXJ2sv8s050/qpvQz8jfbC9t+qr/+MvSCE3X1+Mw+LLL8pOA8FeKJVIcn4AivUql6u1VxcxVxEirSIhokNouS0I=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.17,REQID:5eee728e-3103-4e0d-8cc1-3fcbafde5b85,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:100
-X-CID-INFO: VERSION:1.1.17,REQID:5eee728e-3103-4e0d-8cc1-3fcbafde5b85,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:100
-X-CID-META: VersionHash:543e81c,CLOUDID:0f19e78b-8530-4eff-9f77-222cf6e2895b,B
-        ulkID:230111112845I660I28Z,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
-        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
-        I:0,OSA:0
-X-CID-APTURL: Status:success,Category:nil,Trust:0,Unknown:0,Malicious:0
-X-CID-BVR: 0,NGT
-X-UUID: 0ce976b2916011eda06fc9ecc4dadd91-20230111
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-        (envelope-from <jian.yang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 339982136; Wed, 11 Jan 2023 11:28:43 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 11 Jan 2023 11:28:42 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Wed, 11 Jan 2023 11:28:41 +0800
-From:   Jian Yang <jian.yang@mediatek.com>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
-CC:     <linux-pci@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <jian.yang@mediatek.com>, <chuanjia.liu@mediatek.com>,
-        <jieyy.yang@mediatek.com>, <qizhong.cheng@mediatek.com>,
-        <rex-bc.chen@mediatek.com>, <david-yh.chiu@mediatek.com>
-Subject: [PATCH 2/2] dt-bindings: PCI: mediatek-gen3: Add support for controlling power and reset
-Date:   Wed, 11 Jan 2023 11:28:30 +0800
-Message-ID: <20230111032830.20447-3-jian.yang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230111032830.20447-1-jian.yang@mediatek.com>
-References: <20230111032830.20447-1-jian.yang@mediatek.com>
+        with ESMTP id S235719AbjAKDbj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Jan 2023 22:31:39 -0500
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9275217589
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 19:31:23 -0800 (PST)
+Received: by mail-io1-xd2a.google.com with SMTP id n126so1186859iod.7
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 19:31:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jqmRSD6VKdYWZ+SJv6ehJPDhj3p2v9Nk0+3Tds66tis=;
+        b=hYrLw3Cw5Sm66XPWhcU5vNYulWczhbyiQqdcFNuy+4k/u6bm/NzuBZNNsI/Yenxhvx
+         O6mOhYJcQFwaJmYLCeAs1cL1EB+eYs/h5RlLVFsNM/PCz9QvNfvVQpR/h+32PBrmZTW7
+         iHwR3xCpoeq+pHQ7+PHCBOkydqGoLGFgP2SAs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jqmRSD6VKdYWZ+SJv6ehJPDhj3p2v9Nk0+3Tds66tis=;
+        b=5/C89X0Wh14exOk11I1XiQB73qS1xQAg7OZQ5e/03n2OzUnaYFu6DHPbelgYkf7WAc
+         JserRBBGQyLbQ17njLZrv71ec3Afhbs4f6tmczDrVX2uLrQImJA5ooTfTYq0igxE/RtP
+         ZHHeWkOwQsIhrpDzX+KzMiqD3p9MI/YBDiq1hV585QKn6Ea+B2Yk9M7/K0GsHmOhNlAX
+         YD1SWZz226ybWXzUe72caQ29C8CxJnQY8Wy43yzafOnqe42AdPaxO9pVY9OdMDqKtasi
+         h7zJQvxGo3F47DrM6nJ8s84UzQqTCs5r8se/ee/QmuQcRTL8xB+ppl292xh+5ICUv60z
+         e/Ng==
+X-Gm-Message-State: AFqh2kqWBuEu8MQiGTSba9Gbgt5XemvHA7bhMJ9/Y/xXSjqQv64DRsIs
+        EJlZiSQckA21pZ8+nYTeb4kfOA8A4Kz+pjE+HvLINQ==
+X-Google-Smtp-Source: AMrXdXuI8UJgsTEPz41Qko+pkxgoB7obHnvZeKTKwhlzMuJnouZnhqjW9lCoaxgssepI+1TDZhxrCHjLxmr3bkFdAmg=
+X-Received: by 2002:a5e:c00f:0:b0:6e3:38c6:e35f with SMTP id
+ u15-20020a5ec00f000000b006e338c6e35fmr6266793iol.153.1673407882942; Tue, 10
+ Jan 2023 19:31:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+References: <20230109084101.265664-1-treapking@chromium.org>
+ <20230109084101.265664-7-treapking@chromium.org> <CAGXv+5E=-=cPGSi1eEDAkTm+RvuJNU4zeZOxunpR7r4+RgzNYA@mail.gmail.com>
+In-Reply-To: <CAGXv+5E=-=cPGSi1eEDAkTm+RvuJNU4zeZOxunpR7r4+RgzNYA@mail.gmail.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Wed, 11 Jan 2023 11:31:12 +0800
+Message-ID: <CAEXTbpeQm2+KjHDi6qW8GkF0_MCzqeBNUPz9G+23RBqfgFhWPw@mail.gmail.com>
+Subject: Re: [PATCH v9 6/9] drm/bridge: anx7625: Register Type C mode switches
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, linux-acpi@vger.kernel.org,
+        Allen Chen <allen.chen@ite.com.tw>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        dri-devel@lists.freedesktop.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        chrome-platform@lists.linux.dev, Xin Ji <xji@analogixsemi.com>,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,50 +96,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "jian.yang" <jian.yang@mediatek.com>
+Hi Chen-Yu,
 
-Add new properties to support control power supplies and reset pin of
-a downstream component.
+Thanks for the review.
 
-Signed-off-by: jian.yang <jian.yang@mediatek.com>
----
- .../bindings/pci/mediatek-pcie-gen3.yaml      | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+On Mon, Jan 9, 2023 at 7:26 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
+>
+> On Mon, Jan 9, 2023 at 4:41 PM Pin-yen Lin <treapking@chromium.org> wrote:
+> >
+> > Register USB Type-C mode switches when the "mode-switch" property and
+> > relevant port are available in Device Tree. Configure the crosspoint
+>            ^ ports
+>
+Thanks for catching this. I'll fix in v10.
+> > switch based on the entered alternate mode for a specific Type-C
+> > connector.
+>
+> You should also mention that the "one mode switch" scenario is not
+> covered in this implementation, due to lack of actual hardware.
 
-diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-index 7e8c7a2a5f9b..46149cc63989 100644
---- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-+++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-@@ -84,6 +84,29 @@ properties:
-     items:
-       enum: [ phy, mac ]
- 
-+  pcie1v8-supply:
-+    description:
-+      The regulator phandle that provides 1.8V power to downstream component.
-+
-+  pcie3v3-supply:
-+    description:
-+      The regulator phandle that provides 3.3V power to downstream component.
-+
-+  pcie12v-supply:
-+    description:
-+      The regulator phandle that provides 12V power to downstream component.
-+
-+  dsc-reset-gpios:
-+    description:
-+      The reset GPIO of a downstream component.
-+    maxItems: 1
-+
-+  dsc-reset-msleep:
-+    description:
-+      The delay time between assertion and de-assertion of a downstream
-+      component's reset GPIO.
-+    maxItems: 1
-+
-   clocks:
-     minItems: 4
-     maxItems: 6
--- 
-2.18.0
+If I understand correctly, we should use "orientation-switch"[1]
+instead when the crosspoint switch on anx7625 is used to support
+different orientations of the Type-C connector.
 
+I'll add some explanations around this in the commit message in v10.
+
+[1]: https://docs.kernel.org/driver-api/usb/typec.html#multiplexer-demultiplexer-switches
+>
+> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> >
+> > ---
+> >
+> > (no changes since v7)
+> >
+> > Changes in v7:
+> > - Fixed style issues in anx7625 driver
+> > - Removed DT property validation in anx7625 driver.
+> > - Extracted common codes to another commit.
+> >
+> > Changes in v6:
+> > - Squashed to a single patch
+> >
+> >  drivers/gpu/drm/bridge/analogix/Kconfig   |  1 +
+> >  drivers/gpu/drm/bridge/analogix/anx7625.c | 88 +++++++++++++++++++++++
+> >  drivers/gpu/drm/bridge/analogix/anx7625.h | 13 ++++
+> >  3 files changed, 102 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/bridge/analogix/Kconfig b/drivers/gpu/drm/bridge/analogix/Kconfig
+> > index 173dada218ec..992b43ed1dd7 100644
+> > --- a/drivers/gpu/drm/bridge/analogix/Kconfig
+> > +++ b/drivers/gpu/drm/bridge/analogix/Kconfig
+> > @@ -34,6 +34,7 @@ config DRM_ANALOGIX_ANX7625
+> >         tristate "Analogix Anx7625 MIPI to DP interface support"
+> >         depends on DRM
+> >         depends on OF
+> > +       depends on TYPEC || TYPEC=n
+> >         select DRM_DISPLAY_DP_HELPER
+> >         select DRM_DISPLAY_HDCP_HELPER
+> >         select DRM_DISPLAY_HELPER
+> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > index 1cf242130b91..2bb504a8d789 100644
+> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > @@ -15,6 +15,8 @@
+> >  #include <linux/regulator/consumer.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/types.h>
+> > +#include <linux/usb/typec_dp.h>
+> > +#include <linux/usb/typec_mux.h>
+> >  #include <linux/workqueue.h>
+> >
+> >  #include <linux/of_gpio.h>
+> > @@ -2572,6 +2574,86 @@ static void anx7625_runtime_disable(void *data)
+> >         pm_runtime_disable(data);
+> >  }
+> >
+> > +static void anx7625_set_crosspoint_switch(struct anx7625_data *ctx,
+> > +                                         enum typec_orientation orientation)
+> > +{
+> > +       if (orientation == TYPEC_ORIENTATION_NORMAL) {
+> > +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
+> > +                                 SW_SEL1_SSRX_RX1 | SW_SEL1_DPTX0_RX2);
+> > +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
+> > +                                 SW_SEL2_SSTX_TX1 | SW_SEL2_DPTX1_TX2);
+> > +       } else if (orientation == TYPEC_ORIENTATION_REVERSE) {
+> > +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
+> > +                                 SW_SEL1_SSRX_RX2 | SW_SEL1_DPTX0_RX1);
+> > +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
+> > +                                 SW_SEL2_SSTX_TX2 | SW_SEL2_DPTX1_TX1);
+> > +       }
+> > +}
+> > +
+> > +static void anx7625_typec_two_ports_update(struct anx7625_data *ctx)
+> > +{
+> > +       struct drm_dp_typec_switch_desc switch_desc = ctx->switch_desc;
+> > +       /* Check if both ports available and do nothing to retain the current one */
+> > +       if (switch_desc.typec_ports[0].dp_connected && switch_desc.typec_ports[1].dp_connected)
+> > +               return;
+> > +
+> > +       if (switch_desc.typec_ports[0].dp_connected)
+> > +               anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_NORMAL);
+> > +       else if (switch_desc.typec_ports[1].dp_connected)
+> > +               anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_REVERSE);
+> > +}
+> > +
+> > +static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
+> > +                                struct typec_mux_state *state)
+> > +{
+> > +       struct drm_dp_typec_port_data *port_data = typec_mux_get_drvdata(mux);
+> > +       struct anx7625_data *ctx = (struct anx7625_data *) port_data->data;
+> > +       struct device *dev = &ctx->client->dev;
+> > +       struct drm_dp_typec_switch_desc switch_desc = ctx->switch_desc;
+> > +       bool new_dp_connected, old_dp_connected;
+> > +
+>
+> And place a TODO note here.
+
+I'll add it in v10.
+>
+> Otherwise this looks OK.
+>
+> Also,
+>
+> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> on MT8192 based Hayato (ASUS Chromebook Flip CM3200).
+>
+> And this also uncovered a deadlock in the unplug & disable path.
+> I'll send a fix for that later once I figure out all the details.
+Thank you so much for this!
