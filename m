@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BFF9665D90
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 15:19:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0CC0665E3E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 15:46:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238622AbjAKOTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 09:19:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
+        id S231420AbjAKOqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 09:46:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239340AbjAKOTW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 09:19:22 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B511A220
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 06:19:07 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id g14so16122432ljh.10
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 06:19:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=negcME7L5mzW504DM5wehfUKj/rBMEPX2/Ij5qP2IFA=;
-        b=uWgIbQtjTcvBrKQAsUApNwxI/zw6U+NukxmgEEEdPJv+W/DkbwbxhAw08+XPvMLeJu
-         GqC78oUj4KNKHRDmL1l71ogzipW3eo9vjfbdntiqgTCgERuABh0f6vp2lyNgls5DngCs
-         6LHxm6eSDf5QaZAnrGCBs8qi4wxQdzKq7Rm1YX4aOBc3eQdiTBvjDfZ7+KZSnUPApvCO
-         BUWVFpiF0cFiit4kXwjjlFCO3zKahVBleIojcMYAn12bBSG7JASRvTP3llCSkysUK/BX
-         O+w9Yd2cRQaFX5xbaLhPvycxLvq6vzG1RFEdDENlHK99W6snHv4DZLXA/Q+05Q1e3N5E
-         jDuQ==
+        with ESMTP id S229869AbjAKOqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 09:46:03 -0500
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA6B6328;
+        Wed, 11 Jan 2023 06:46:02 -0800 (PST)
+Received: by mail-vs1-f48.google.com with SMTP id d66so3488206vsd.9;
+        Wed, 11 Jan 2023 06:46:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=negcME7L5mzW504DM5wehfUKj/rBMEPX2/Ij5qP2IFA=;
-        b=H+Lmv37XgUJhgs9BLFcabaiTGW9ADAv8181CGu+BpI30VBlQ/t5nN4nD7iWq8aa61e
-         C+1J3mYqELVQnq39yjxeuNnvyupEGK1ftvKuqS2b9XR6eIqReAFhrv/uwkBBU+XbvCDx
-         MKwHgKFVyEa5YNtVD+3CPhc/AW8NHBPFLhTOZDmMn31oAn2EusYkKAfIV78wSRWLO7dW
-         iY6IZjmDX1X9qyDZtZ+DtsF4nwK+9iLq9erEDwq5tLv4ir3utQJ6hKE5NWVAtRnUJdKl
-         cdPfJ7bsXZITfpEG0MG6X0HdlSvlcKCVWdqHYRNhB3wHPwLprEjoY0HTMRXM8oRLnHlE
-         p+Iw==
-X-Gm-Message-State: AFqh2kp+QqrmBuRIYt8GLonFteSauWq7KmA+Gxh1NFETcRA6hHn2B5VD
-        XZtCRaPqgQ0PuqcvARNcKJfUTg==
-X-Google-Smtp-Source: AMrXdXtgGoIZRzWYSY2YS8X6pnzeWNrP/mW9QLoFdIF6dzhxUBhZr3XkUx8xrTn8iPVc63pstUO7mg==
-X-Received: by 2002:a2e:a54a:0:b0:287:4fb8:8016 with SMTP id e10-20020a2ea54a000000b002874fb88016mr2353477ljn.7.1673446745785;
-        Wed, 11 Jan 2023 06:19:05 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id s9-20020a056512214900b004b5a4cf69dfsm2726216lfr.261.2023.01.11.06.19.03
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m6oGhEpGw0nlmVNW90naWw9DJiWnxock79eatbawP6o=;
+        b=elSo/qCSM9El+LwvAmUFs1M53ImUbkJ3Jpu1rNPVhdqnzHoIve9edFTBzGQahuMoIW
+         B0mnhtaZiooDz0VgUm6t3QO6Ca8qgHrhY92sdWjtKvlAeO1o7gLLzpaw3/X+3Kwnk4Ii
+         myWVDLo4NnwbZ0SEwCiOUjtJq4dRdcPsIfNSnOjjVMErh6UMpkFhfk8TLDcl4qfsD2uZ
+         /QQi8QvFLGvPttXpY+XGElf5mn08NqLwpJqQK8j7RztygEaHBbUj/ty+NVxyOUrjudAl
+         LcqJsl0Hd9S8iGQozvdNh9PG+hUAIAoSJRc9Fyr2vPfRq5uE+ERnFFrxwLxZwIzsPIfE
+         orxg==
+X-Gm-Message-State: AFqh2kq4y3MXNDbIjtg2ePqB7SxDXF0wXT0PWk/C9hqZEI1e2BtJc8eq
+        aZN1OOyM0gt7cHziuRIrmU8kJ2fOSiyoqA==
+X-Google-Smtp-Source: AMrXdXuQ3G+Nui4ViZKQy3cHmbGQTt9xFm4P2UFZvfFr34FcXoYRlp8IHnxaMsE4ellbtCY/tVwtug==
+X-Received: by 2002:a05:6102:3d1f:b0:3c5:8369:1c6f with SMTP id i31-20020a0561023d1f00b003c583691c6fmr37015324vsv.18.1673448361421;
+        Wed, 11 Jan 2023 06:46:01 -0800 (PST)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id h8-20020a05620a284800b006fa7b5ea2d1sm9049582qkp.125.2023.01.11.06.46.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 06:19:04 -0800 (PST)
-Message-ID: <3fa1968a-405c-6838-71c6-697f170b8c0a@linaro.org>
-Date:   Wed, 11 Jan 2023 15:19:01 +0100
+        Wed, 11 Jan 2023 06:46:01 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-4d13cb4bbffso77329347b3.3;
+        Wed, 11 Jan 2023 06:46:00 -0800 (PST)
+X-Received: by 2002:a05:690c:d8c:b0:4a2:63c5:6c59 with SMTP id
+ da12-20020a05690c0d8c00b004a263c56c59mr3792744ywb.384.1673448360609; Wed, 11
+ Jan 2023 06:46:00 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: enable eDP display
-Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+References: <87edt2pxhd.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87edt2pxhd.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 11 Jan 2023 15:45:48 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUH-CSmaKuM2HA-5j5cP_c2pygp9DqyQiOC9XkCUuzCKw@mail.gmail.com>
+Message-ID: <CAMuHMdUH-CSmaKuM2HA-5j5cP_c2pygp9DqyQiOC9XkCUuzCKw@mail.gmail.com>
+Subject: Re: [PATCH 0/8] arm64: dts: renesas: Simple-Card /
+ Audio-Graph-Card/Card2 dts for ULCB/KF
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230111133128.31813-1-johan+linaro@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230111133128.31813-1-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,138 +72,127 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Morimoto-san,
 
+CC DT/ASoC
 
-On 11.01.2023 14:31, Johan Hovold wrote:
-> Enable the eDP display on MDSS0 DP3, including backlight control.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Wed, Dec 14, 2022 at 2:47 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> ALSA SoC is now supporting generic Sound Card driver such as
+> Simple-Card / Audio-Graph-Card/Card2, and it supports
+> "normal connection" and "special connections".
+> I'm its maintainer, thus I need/want to test these.
+>
+> I have been tested these by using my local patches to switching card,
+> but maintenance it locally is not useful for me, and users who want to
+> know the sample DT settings.
+>
+> And I have noticed that some local patch had bug, but no one noticed
+> about it (of course :)
+>
+> ULCB/KF is very good board to test these.
+> So, I want to upstream these.
+>
+> One note here is that this patch *should not* have effect to
+> existing normal users, but useful for test user.
+> So, this patch-set adds "3 card" x "2 use case" dtsi file,
+> and ulcb/ulcb-kf "include" one of them which doesn't change anything.
+> test user can switch to other card or other use case by changing
+> "include" dtsi.
+>
+> [1/8][2/8] are small tidyup patches for all SoC sound.
 
-Konrad
-> 
-> This one depends on the sc8280xp display patches:
-> 
-> 	https://lore.kernel.org/lkml/20230111035906.2975494-1-quic_bjorande@quicinc.com/T/#mbcdfc826df6683a71d80bab5d86645ba81b02d52
-> 
-> Johan
-> 
-> 
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 75 ++++++++++++++++++-
->  1 file changed, 73 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 23c1ca44ec11..ef17ef90d1f0 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -47,7 +47,7 @@ wcd938x: audio-codec {
->  		#sound-dai-cells = <1>;
->  	};
->  
-> -	backlight {
-> +	backlight: backlight {
->  		compatible = "pwm-backlight";
->  		pwms = <&pmc8280c_lpg 3 1000000>;
->  		enable-gpios = <&pmc8280_1_gpios 8 GPIO_ACTIVE_HIGH>;
-> @@ -72,6 +72,22 @@ switch-lid {
->  		};
->  	};
->  
-> +	vreg_edp_3p3: regulator-edp-3p3 {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VCC3LCD";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&tlmm 25 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&edp_reg_en>;
-> +
-> +		regulator-boot-on;
-> +	};
-> +
->  	vreg_edp_bl: regulator-edp-bl {
->  		compatible = "regulator-fixed";
->  
-> @@ -259,7 +275,6 @@ vreg_l6b: ldo6 {
->  			regulator-max-microvolt = <880000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  			regulator-boot-on;
-> -			regulator-always-on;	/* FIXME: VDD_A_EDP_0_0P9 */
->  		};
->  	};
->  
-> @@ -340,6 +355,55 @@ vreg_l9d: ldo9 {
->  	};
->  };
->  
-> +&dispcc0 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss0 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss0_dp3 {
-> +	compatible = "qcom,sc8280xp-edp";
-> +
-> +	data-lanes = <0 1 2 3>;
-> +
-> +	status = "okay";
-> +
-> +	aux-bus {
-> +		panel {
-> +			compatible = "edp-panel";
-> +
-> +			backlight = <&backlight>;
-> +			power-supply = <&vreg_edp_3p3>;
-> +
-> +			ports {
-> +				port {
-> +					edp_panel_in: endpoint {
-> +						remote-endpoint = <&mdss0_dp3_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss0_dp3_out: endpoint {
-> +				remote-endpoint = <&edp_panel_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss0_dp3_phy {
-> +	vdda-phy-supply = <&vreg_l6b>;
-> +	vdda-pll-supply = <&vreg_l3b>;
-> +
-> +	status = "okay";
-> +};
-> +
->  &pcie2a {
->  	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
->  	wake-gpios = <&tlmm 145 GPIO_ACTIVE_LOW>;
-> @@ -902,6 +966,13 @@ hastings_reg_en: hastings-reg-en-state {
->  &tlmm {
->  	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
->  
-> +	edp_reg_en: edp-reg-en-state {
-> +		pins = "gpio25";
-> +		function = "gpio";
-> +		drive-strength = <16>;
-> +		bias-disable;
-> +	};
-> +
->  	hall_int_n_default: hall-int-n-state {
->  		pins = "gpio107";
->  		function = "gpio";
+Thanks for your series!
+
+I really wanted to review this earlier, but I am held back by my lack
+of understanding of the audio subsystem and the audio bindings.
+It is also not clear to me what really is hardware description
+(i.e. to be described in DT), and what is software policy (i.e. not
+to be described in DT)...
+Hence I have lots of questions ("A fool can ask more questions in a
+minute than a wise man can answer in an hour." ;-)
+
+What is the difference between "Simple Audio Card", "Audio Graph Card",
+and "Audio Graph Card2"?  Why do we need to support all three of them?
+
+How come we can have no #sound-dai-cells, #sound-dai-cells = <0>,
+and #sound-dai-cells = <1>, for the same hardware?
+What is the real difference between Single DAI and Multi DAI?
+Why do we need to support both?
+
+> Kuninori Morimoto (8):
+>   ARM: dts: renesas: #sound-dai-cells is used when simple-card
+>   arm64: dts: renesas: #sound-dai-cells is used when simple-card
+>   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card dtsi
+>   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card2 dtsi
+>   arm64: dts: renesas: add ulcb{-kf} Simple Audio Card dtsi
+
+The above three all describe the same hardware configuration?
+
+>   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card2 dtsi MIX + TDM Split dtsi
+>   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card dtsi MIX + TDM Split dtsi
+>   arm64: dts: renesas: add ulcb{-kf} Simple Audio Card MIX + TDM Split dtsi
+
+Is MIX and TDM Split a different hardware configuration, or software
+policy?
+
+Thanks!
+
+>  arch/arm/boot/dts/r8a7742.dtsi                |   2 +-
+>  arch/arm/boot/dts/r8a7743.dtsi                |   2 +-
+>  arch/arm/boot/dts/r8a7744.dtsi                |   2 +-
+>  arch/arm/boot/dts/r8a7745.dtsi                |   2 +-
+>  arch/arm/boot/dts/r8a7778.dtsi                |   2 +-
+>  arch/arm/boot/dts/r8a7790.dtsi                |   2 +-
+>  arch/arm/boot/dts/r8a7791.dtsi                |   2 +-
+>  arch/arm/boot/dts/r8a7793.dtsi                |   2 +-
+>  arch/arm/boot/dts/r8a7794.dtsi                |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a774a1.dtsi     |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a774b1.dtsi     |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a774c0.dtsi     |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a774e1.dtsi     |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a77951.dtsi     |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a77960.dtsi     |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a77961.dtsi     |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a77965.dtsi     |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a77990.dtsi     |   2 +-
+>  arch/arm64/boot/dts/renesas/r8a77995.dtsi     |   2 +-
+>  .../boot/dts/renesas/salvator-common.dtsi     |   3 -
+>  .../ulcb-audio-graph-card-mix+split.dtsi      |  89 +++++++++
+>  .../dts/renesas/ulcb-audio-graph-card.dtsi    |  85 +++++++++
+>  .../ulcb-audio-graph-card2-mix+split.dtsi     | 111 +++++++++++
+>  .../dts/renesas/ulcb-audio-graph-card2.dtsi   |  26 +++
+>  .../ulcb-kf-audio-graph-card-mix+split.dtsi   | 162 ++++++++++++++++
+>  .../dts/renesas/ulcb-kf-audio-graph-card.dtsi |  88 +++++++++
+>  .../ulcb-kf-audio-graph-card2-mix+split.dtsi  | 177 ++++++++++++++++++
+>  .../renesas/ulcb-kf-audio-graph-card2.dtsi    |  30 +++
+>  .../ulcb-kf-simple-audio-card-mix+split.dtsi  | 137 ++++++++++++++
+>  .../renesas/ulcb-kf-simple-audio-card.dtsi    |  85 +++++++++
+>  arch/arm64/boot/dts/renesas/ulcb-kf.dtsi      |  66 ++-----
+>  .../ulcb-simple-audio-card-mix+split.dtsi     |  86 +++++++++
+>  .../dts/renesas/ulcb-simple-audio-card.dtsi   |  89 +++++++++
+>  arch/arm64/boot/dts/renesas/ulcb.dtsi         |  60 ++----
+>  34 files changed, 1212 insertions(+), 120 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-audio-graph-card-mix+split.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-audio-graph-card.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-audio-graph-card2-mix+split.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-audio-graph-card2.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-audio-graph-card-mix+split.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-audio-graph-card.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-audio-graph-card2-mix+split.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-audio-graph-card2.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-simple-audio-card-mix+split.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-kf-simple-audio-card.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-simple-audio-card-mix+split.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/ulcb-simple-audio-card.dtsi
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
