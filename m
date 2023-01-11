@@ -2,53 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 094AD6663E5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 20:45:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C02B6663F5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 20:46:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230429AbjAKTpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 14:45:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46784 "EHLO
+        id S236094AbjAKTq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 14:46:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231191AbjAKToM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 14:44:12 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9B53F450;
-        Wed, 11 Jan 2023 11:42:20 -0800 (PST)
+        with ESMTP id S235273AbjAKTqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 14:46:06 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A38CCD2F2;
+        Wed, 11 Jan 2023 11:45:02 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 46576B81CC7;
-        Wed, 11 Jan 2023 19:42:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A087C433EF;
-        Wed, 11 Jan 2023 19:42:17 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3DDAA61E06;
+        Wed, 11 Jan 2023 19:45:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97BF2C433D2;
+        Wed, 11 Jan 2023 19:45:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673466138;
-        bh=CGtIp75QkZOm9daNCxrZn31MoEyt/e14zeOWzGLBgyk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MlNmGo85z+RCRIYBJGLs5A+r59DG6j12Em/e09tDKP+126V/nbQ9wfQ1JygRd85Sx
-         RNy9dzgRrK32nrriXDmSXFl2BDQlSlpgqwGTdAfnlBsDsYEkAAy4wRIALR61O6e+po
-         epytBSFbLfzVQMhhFQcoCbqKxODcsv1V3sqvwyr2B9ulH5xPn7iK0329yeJwrg6KVq
-         PLQ4RmSW09Ghbkz5e8huiPwemxfrSoiG6Wp2V9GHqELgPXevmwYrBdT8VN6tZhvban
-         1ogEUnWNmcHqnLxdt6JRW24X8RrmDq8453D6ezv3UmrLHBQBKwa4Zb5UfM8AnlHL0w
-         Kkdl+4GITdFpw==
-Date:   Wed, 11 Jan 2023 13:42:15 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: arm: qcom,ids: Add a bunch of older SoCs
-Message-ID: <20230111194215.kpxjlv3pgniyoglr@builder.lan>
-References: <20230104115348.25046-1-stephan@gerhold.net>
- <20230104115348.25046-4-stephan@gerhold.net>
- <20230108214052.GA313089-robh@kernel.org>
+        s=k20201202; t=1673466301;
+        bh=xRr7us8zBW0sk990QLjOp0ucsfIPeo81l4T24fBaPC4=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=sKny68A3/QnJwl4Wk9++6MFNKMrAlPUELmesjETKeCB20k/As5eX4jlVVJy9UB+JG
+         vkfnftDpWJ/G1xD56x9raf2Q0G/oFMdFJJtZfFUeYq9aTVHl6TkR2MB9tY4vDy+yQV
+         S7tslv0IMokoh95dI43PC8ppZEl/h2WQGiilovuORceThkx1RWjp9dZNcK5tW5sf4B
+         CL1lOZBwxuQEahlWvhuGS4jJn8LYOz2K38AZgV2bN6OJ+U94P5Ow+40NCdtH/oH7Mi
+         ZWLOPjgTU92ubxpASPdAYCtAvPY3BjNnTddzXlxecSx3DWTj+7GcfCCicC5TmVvwrx
+         gyEoZ//R/BlBw==
+Message-ID: <8980856c1138571976f00413b94cfeb8.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230108214052.GA313089-robh@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20221226095745.19757-2-a-bhatia1@ti.com>
+References: <20221226095745.19757-1-a-bhatia1@ti.com> <20221226095745.19757-2-a-bhatia1@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: fixed-factor: Add TI AM62 SoC OLDI clock
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Tomi Valkeinen <tomba@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Linux Clock List <linux-clk@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>, Aradhya Bhatia <a-bhatia1@ti.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 11 Jan 2023 11:44:59 -0800
+User-Agent: alot/0.10
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -58,37 +64,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 08, 2023 at 03:40:52PM -0600, Rob Herring wrote:
-> On Wed, Jan 04, 2023 at 12:53:47PM +0100, Stephan Gerhold wrote:
-> > Sync the SoC IDs in qcom,ids.h with relevant entries from Qualcomm's LK
-> > bootloader [1] that is used for almost all older Qualcomm SoCs.
-> > 
-> > Several of these are already supported, e.g.:
-> >   - MSM8960 -> APQ8060, MSM8260, ...
-> >   - MSM8976 -> APQ8076
-> >   - MSM8956 -> APQ8056
-> > Others are currently being worked on, e.g.:
-> >   - MSM8909(W) -> APQ8009(W), MSM8905, MSM8209, ...
-> >   - MSM8939 -> MSM8239, ...
-> > 
-> > And even all remaining ones added are close enough to what is already
-> > supported so that future support is realistic (if someone steps up to
-> > do the work).
-> > 
-> > Add all of them at once to avoid having to add them one by one in the
-> > future. This will also benefit other projects making use of the same
-> > dt-bindings, e.g. bootloaders where adding support for all these SoCs
-> > is a bit easier than on Linux.
-> 
-> The promise was in accepting the properties upstream is we'd only be 
-> adding these for bootloaders with dtbs that we can't otherwise update or 
-> change. Do all of those meet this criteria? Seems unlikely.
-> 
+Quoting Aradhya Bhatia (2022-12-26 01:57:44)
+> Add "ti,k3-am62-oldi-clk-div" to the fixed factor clock compatible enum
+> list.
+>=20
+> "ti,k3-am62-oldi-clk-div" is a fixed-factor clock that helps the TI
+> display subsystem request a pixel clock for itself and a corresponding
+> serial clock for its OLDI Transmitters. The serial clock is 7 times the
+> pixel clock. This clock needs the clock set rate request to be
+> propagated to the parent clock provider.
+>=20
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>  Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/fixed-factor-clock.y=
+aml b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
+> index 8f71ab300470..0696237530f7 100644
+> --- a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
+> @@ -14,6 +14,7 @@ properties:
+>    compatible:
+>      enum:
+>        - fixed-factor-clock
+> +      - ti,k3-am62-oldi-clk-div
 
-Independent of the question about qcom,msm-id and qcom,board-id, I would
-like these constants for the socinfo driver (as shown in patch 4).
+I don't see this compatible anywhere in the kernel tree. Is there a
+patch that adds a node using this? I wonder why the display subsystem
+can't add this fixed factor clk directly in the driver. Does the OLDI
+Transmitter send a clk to the display subsystem?
 
-Would you prefer that we keep a separate list in Linux?
-
-Thanks,
-Bjorn
+I'm asking all these questions because we got rid of vendor compatibles
+here in hopes of simplifying the logic. Maybe the problem can be
+approached differently, but I don't know all the details.
