@@ -2,110 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A1196664D4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 21:28:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58CB36664FB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 21:46:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239533AbjAKU2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 15:28:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44888 "EHLO
+        id S233714AbjAKUqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 15:46:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239582AbjAKU1t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 15:27:49 -0500
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C1923F125;
-        Wed, 11 Jan 2023 12:26:41 -0800 (PST)
-Received: by mail-ot1-f42.google.com with SMTP id p17-20020a9d6951000000b00678306ceb94so9475690oto.5;
-        Wed, 11 Jan 2023 12:26:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GtUlkPBnTibbizf/H3Nw9CiF2dvWYJd3fBoMYMkkY6o=;
-        b=eJZXtNG9fmL2IgALzepTbFMLTTId2h7zcZC+568o4WnNFQB/oDtx8qM78sBA8vXrbs
-         DZhYBH1Fjs+Z+8cD19DDpZiAhjPdV+WIKlynHnXSMcYhrLS2p4DGt9VbtFgXSHqPaGW/
-         7zylxPZb0sZt2D9qFvkA+IbiC+tczsxS3iAF8oFSELq3hLbI86SYDetDGk0k0bNkDuYQ
-         BwbVvoYPRShaGEqNXBrHB+ITFenniAd0xDe/OlavEJXl8UYCQrmQFcp1FjUJwg3/9kgF
-         /LtUID0TMjVKdJDrw7M4hDMR2m+2dfdDIYViLdGKxNJjRpvjOCBLYnMqnbFI9oSdZogT
-         05OA==
-X-Gm-Message-State: AFqh2kqR13EbrVvKG7ZaPqNpruw5QUVkukuEskS8n0rE615yidCX8HBD
-        xqhA5mZxQo1kbV36Xc8Hlw==
-X-Google-Smtp-Source: AMrXdXvk+/Ain/i5yL9ul+PeQV5I/RK3qfqLYNdxxu4RWqGzhh535t4/xZ1jsbIuH7DIsftuVkCLfA==
-X-Received: by 2002:a9d:7e8a:0:b0:670:9684:404c with SMTP id m10-20020a9d7e8a000000b006709684404cmr42684143otp.28.1673468801076;
-        Wed, 11 Jan 2023 12:26:41 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v26-20020a9d605a000000b0066eab2ec808sm8077274otj.1.2023.01.11.12.26.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 12:26:40 -0800 (PST)
-Received: (nullmailer pid 1362478 invoked by uid 1000);
-        Wed, 11 Jan 2023 20:26:39 -0000
-Date:   Wed, 11 Jan 2023 14:26:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Xu Liang <lxu@maxlinear.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 2/4] dt-bindings: net: phy: add MaxLinear
- GPY2xx bindings
-Message-ID: <20230111202639.GA1236027-robh@kernel.org>
-References: <20230109123013.3094144-1-michael@walle.cc>
- <20230109123013.3094144-3-michael@walle.cc>
+        with ESMTP id S233532AbjAKUqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 15:46:51 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ACBA2AD6;
+        Wed, 11 Jan 2023 12:46:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=u6RMNbMb6ucx4uR6ZWuRrXPvgJadEglU+45lT3/wpmY=; b=BFUeKTJ8avi6CphNjqAEIkcjej
+        0X42LeAqolseHK9Vtqzi6D6lI+MdKY9zliERTHArav48PQ1P6fdYT79v1Zhz+9hbnNhD67OieiM8J
+        m/GvwZLoRN+j0/USBQhTwtOldGNNL16SjLWjUfaY1VSkydxRdKOMdiBF2MQveqxW+K+nSjMM3oJ8i
+        v28FHFTSZiUMpKBgkziGfGptEcg24eBCkQdxOzhcWW9Ebys15Nk8c0E1lWVD9mBceK3rm1bT1EMyf
+        /z7x+hntcCeC9hqU/H2EQMkwKAtEPluTrvcWQ9W9jhRLeOq2+q/FnBVwEUUyJ5PCMkYUKib1bmCGN
+        3qvu/QfA==;
+Received: from p200300ccff07a8001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff07:a800:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pFhzX-00009L-Hu; Wed, 11 Jan 2023 21:46:35 +0100
+Received: from andi by aktux with local (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pFhzW-008pXR-Vk; Wed, 11 Jan 2023 21:46:34 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v2] dt-bindings: mmc: fsl-imx-esdhc: Add some compatible fallbacks
+Date:   Wed, 11 Jan 2023 21:46:33 +0100
+Message-Id: <20230111204634.2104690-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230109123013.3094144-3-michael@walle.cc>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 09, 2023 at 01:30:11PM +0100, Michael Walle wrote:
-> Add the device tree bindings for the MaxLinear GPY2xx PHYs, which
-> essentially adds just one flag: maxlinear,use-broken-interrupts.
-> 
-> One might argue, that if interrupts are broken, just don't use
-> the interrupt property in the first place. But it needs to be more
-> nuanced. First, this interrupt line is also used to wake up systems by
-> WoL, which has nothing to do with the (broken) PHY interrupt handling.
+Currently make dtbs_check shows lots of errors because imx*.dtsi does
+not use single compatibles but combinations of them.
 
-I don't understand how this is useful. If the interrupt line is asserted 
-after the 1st interrupt, how is it ever deasserted later on to be 
-useful. 
+Add fallbacks for imx6sll/ull which are useful for U-Boot.
 
-In any case, you could use 'wakeup-source' if that's the functionality 
-you need. Then just ignore the interrupt if 'wakeup-source' is not 
-present.
+This will significantly reduce noise on make dtbs_check.
 
-> Second and more importantly, there are devicetrees which have this
-> property set. Thus, within the driver we have to switch off interrupt
-> handling by default as a workaround. But OTOH, a systems designer who
-> knows the hardware and knows there are no shared interrupts for example,
-> can use this new property as a hint to the driver that it can enable the
-> interrupt nonetheless.
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+Changes in v2:
+- allow only combinations with fallback compatible
+- reduce them to the cases where they are actually useful
 
-Pretty sure I said this already, but this schema has no effect. Add an 
-extra property to the example and see. No error despite your 
-'unevaluatedProperties: false'. Or drop 'interrupts-extended' and no 
-dependency error... 
+ Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-You won't get errors as there's no defined way to decide when to apply 
-this because it is based on node name or compatible unless you do a 
-custom select, but I don't see what you would key off of here...
+diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+index dc6256f04b42..be6caa25c57d 100644
+--- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
++++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+@@ -29,14 +29,18 @@ properties:
+           - fsl,imx53-esdhc
+           - fsl,imx6q-usdhc
+           - fsl,imx6sl-usdhc
+-          - fsl,imx6sll-usdhc
+           - fsl,imx6sx-usdhc
+-          - fsl,imx6ull-usdhc
+           - fsl,imx7d-usdhc
+           - fsl,imx7ulp-usdhc
+           - fsl,imx8mm-usdhc
+           - fsl,imxrt1050-usdhc
+           - nxp,s32g2-usdhc
++      - items:
++          - const: fsl,imx6sll-usdhc
++          - const: fsl,imx6sx-usdhc
++      - items:
++          - const: fsl,imx6ull-usdhc
++          - const: fsl,imx6sx-usdhc
+       - items:
+           - enum:
+               - fsl,imx8mq-usdhc
+-- 
+2.30.2
 
-The real answer here is add a compatible. But I'm tired of pointing this 
-out to the networking maintainers every damn time. Ethernet PHYs are not 
-special.
-
-Rob
