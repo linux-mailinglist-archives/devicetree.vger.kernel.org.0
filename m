@@ -2,62 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18253665951
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 11:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEA6F665961
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 11:51:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbjAKKsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 05:48:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33418 "EHLO
+        id S229636AbjAKKvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 05:51:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238694AbjAKKsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 05:48:38 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FAF013F92
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 02:48:36 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1pFYeo-0004Wz-JG; Wed, 11 Jan 2023 11:48:34 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH V2] arm64: dts: rockchip: add Hynitron cst340 for Anbernic 353 series
-Date:   Wed, 11 Jan 2023 11:48:30 +0100
-Message-Id: <167343400179.2680857.10228201038673251457.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221128231528.23360-1-macroalpha82@gmail.com>
-References: <20221128231528.23360-1-macroalpha82@gmail.com>
+        with ESMTP id S238698AbjAKKvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 05:51:07 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A0D140DF
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 02:49:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1673434198;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=KicQRhRW4GIgvI9D3cmZlt5g4pih7zwKs4FM1PmEwRI=;
+        b=c6qrOyDNn2Ja0CyhYadJF0kBGCDkJxMi1bMu34GwukcUcJrg5rilZLZZrpLVJhiuC0dbn9
+        CpWyqZz3VyZpW5ECA8mSu8KtLxuWGYveuAfobmSPHZgfPPBb0phaqq1QyD6det+fndUzGu
+        fGxcKKv56UntWm4siR5PMrSyjezx178=
+Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
+ [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-612-bs2UujcsNAyy0-2TXOu49g-1; Wed, 11 Jan 2023 05:49:57 -0500
+X-MC-Unique: bs2UujcsNAyy0-2TXOu49g-1
+Received: by mail-io1-f71.google.com with SMTP id b24-20020a056602219800b006e2bf9902cbso8725281iob.4
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 02:49:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KicQRhRW4GIgvI9D3cmZlt5g4pih7zwKs4FM1PmEwRI=;
+        b=ov58yepyqoQLLwFLjRvuM3Gvtj5cb15TD1ePJ1HH0a4yVeOqfjSAAlLQtuz0q2pDxv
+         0CjnNJwQVpUHEkezdW6AzuvUpWK7N+S7iLeApdgppvtHrKEkF28epNL0v2piGlngrBnS
+         rQrOOxVnFflTXlNrUh7cmVUKVsAQCDM2jXpP5YOI1PmGdiSnmYclWxIEY114i7v9qeZp
+         jb8K6YutvuBM8O1bCc5qGpAMOb9aPCJrbJl7LrxYK1Ok07K9wTDum5SZIZOc71Y4vJb4
+         Cg8Wvb2iNpKeY3PsUw60s7sXlSiSHPg/booafaEFzjxr2LMbncZ8+KVLH4DSfXbdER/w
+         n9aQ==
+X-Gm-Message-State: AFqh2kq/6fQCNfOkkvYL3kLalF/ri/5ohFOnwzo+5hpwtcQdJM3XTxDh
+        UgUgEOdhwLeiKR2MEquxGneyBxnp7yKjWsDeHZrW/yOZXjuwucyYJbQTL/C34QDNbLG2/csLLJA
+        QzvmBwTHlsOOoiDJgO+vuXg==
+X-Received: by 2002:a5d:9cc4:0:b0:6e5:d1b2:d925 with SMTP id w4-20020a5d9cc4000000b006e5d1b2d925mr49142217iow.6.1673434196857;
+        Wed, 11 Jan 2023 02:49:56 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXs3Y45SXB/Nt9M0C16VUqO/0EV+05Hlv3juN5iJV2s2eapIOTQnzGAYArJYogQH6E8bee7eFw==
+X-Received: by 2002:a5d:9cc4:0:b0:6e5:d1b2:d925 with SMTP id w4-20020a5d9cc4000000b006e5d1b2d925mr49142208iow.6.1673434196657;
+        Wed, 11 Jan 2023 02:49:56 -0800 (PST)
+Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
+        by smtp.gmail.com with ESMTPSA id v19-20020a02b093000000b0039e8c12414asm2287897jah.164.2023.01.11.02.49.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jan 2023 02:49:55 -0800 (PST)
+Date:   Wed, 11 Jan 2023 05:49:53 -0500
+From:   Brian Masney <bmasney@redhat.com>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Eric Chanudet <echanude@redhat.com>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sa8450p-pmics: add missing
+ interrupt include
+Message-ID: <Y76UUZ7ZbM6csqmV@x1>
+References: <20230111082331.20641-1-johan+linaro@kernel.org>
+ <20230111082331.20641-2-johan+linaro@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230111082331.20641-2-johan+linaro@kernel.org>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Nov 2022 17:15:28 -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, Jan 11, 2023 at 09:23:30AM +0100, Johan Hovold wrote:
+> Add the missing interrupt-controller include which is needed by the RTC
+> node.
 > 
-> Add support for the Hynitron cst340 touchscreen driver to the Anbernic
-> RG353P and RG353V devices. Note the RG353VS device does not have a
-> touchscreen.
-> 
-> https://lore.kernel.org/linux-input/Y1y9e9sgE%2FDck9fB@google.com/
-> 
-> [...]
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-Applied, thanks!
+Reviewed-by: Brian Masney <bmasney@redhat.com>
 
-[1/1] arm64: dts: rockchip: add Hynitron cst340 for Anbernic 353 series
-      commit: 31a47014902d7fe1da9028336b6f189648ec28ac
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
