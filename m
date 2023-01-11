@@ -2,174 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 305E4666088
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 17:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AAAE666093
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 17:33:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239297AbjAKQbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 11:31:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37930 "EHLO
+        id S231666AbjAKQdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 11:33:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230084AbjAKQbE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 11:31:04 -0500
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 786681DF19
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 08:30:25 -0800 (PST)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-150b06cb1aeso16048496fac.11
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 08:30:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xn0RWIp29/DDAGotFO+F2cDyIEYDf7WQu136TlHaqBY=;
-        b=SjSbc+Xs9ZcPjnknCiABDEoiIRumT6I0WptiNwWfobOKYHTaF17ad4nDAHZCrxuGVA
-         exBH6yRi5H9HBvoUq/tfMEJDylXHIoLLNvY6De/tYYJ7t/jncT6zT5PZS8MEe/V/vsmX
-         9TbS1tjdkZD4ssvgqO4d+x6+gbY+aZrS5iid4guRsPqZyWuLBlOSbQfxvmRwxtsgMrHC
-         o4MFNYveH6B3wxXEGw7LiGjY2srxsK4v4rCMAoNfQikOTUzZN1oTjoknj8JQpjdmGlSR
-         r2qyuJ26IJyOmiQqCQKlexuX8hNhvDBRwCUbXJPET8ZmzJWF+g3KVCa80+NCdBDtX0H8
-         dLEg==
+        with ESMTP id S238487AbjAKQd1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 11:33:27 -0500
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D042BC4;
+        Wed, 11 Jan 2023 08:33:26 -0800 (PST)
+Received: by mail-yb1-f176.google.com with SMTP id l139so15538259ybl.12;
+        Wed, 11 Jan 2023 08:33:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xn0RWIp29/DDAGotFO+F2cDyIEYDf7WQu136TlHaqBY=;
-        b=TXZMPELmZYUPKheBxQ1jVdQhF5OZ2gPoYHES+DSlVF3HRWYNrh6MJ9bnqMo9M0ydiY
-         MU2Xsjo+MBpXBtGWPDCrgqX8gw6AKzfqIhmJVjTiQ/idrmVNFwiLTWDpcxv6iT0g9Laa
-         NptQ0idBa2yHx5PYcudFd/wyOwhnRwPVJnis5ck1OA6OEazLBqZTOPvljhWFXRxPZFU/
-         2fS5wksghvI16xZAq/HocJHoVdxjAuoluXKM03o7JIosR406sly/ILBdZWLvJavPWF4s
-         uBl+Sfzsl6hVQOu0YScVLX43ryIhzHQ/kJcemsKUVFg6TZBj3Q84CcS70SvBjnzPxGqF
-         BXyg==
-X-Gm-Message-State: AFqh2koTWkvcGzkBmsjzvM3ad7L3ypz0g+rU9hWKPQYez1wi6wFyM7CZ
-        zyJ3Yn+CKCF2IW5/Gktighk=
-X-Google-Smtp-Source: AMrXdXuvIuYdcAd/gLBHkHi97cgaOZBAg1ouS9I3UigzwXVMu3aQnqPUcC45UAlIW5SLVa5ImBSavA==
-X-Received: by 2002:a05:6870:e298:b0:15b:9fdc:6c2 with SMTP id v24-20020a056870e29800b0015b9fdc06c2mr1094089oad.1.1673454624537;
-        Wed, 11 Jan 2023 08:30:24 -0800 (PST)
-Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id z13-20020a056870738d00b0013ae39d0575sm7629003oam.15.2023.01.11.08.30.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 08:30:24 -0800 (PST)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        maccraft123mc@gmail.com, tzimmermann@suse.de, mripard@kernel.org,
-        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-        thierry.reding@gmail.com, linus.walleij@linaro.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v9 4/4] arm64: dts: rockchip: add display to RG503
-Date:   Wed, 11 Jan 2023 10:30:12 -0600
-Message-Id: <20230111163012.310945-5-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230111163012.310945-1-macroalpha82@gmail.com>
-References: <20230111163012.310945-1-macroalpha82@gmail.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9CXTrtqRp8xq1t4uI/gJlWDHaCDKcZXC3jcPMK78AGM=;
+        b=IsP6VG378zIvOIIc5PfbfEIKrdIRWjw8Xm2GzVn/3myTWgPK5Kt1vXlvXzoWBH5zyW
+         703zygsBxdMGwJu2B49919UgxqiPdxoS0RzvjC6BP82BuEtqK8nX39Wm0QXU8a4bUq26
+         8RR3U4VLFTq5O9OBzEfxWkgYT//tou97Iafy447nekO6+H0LMo570nJZuQLTbmVdeDQ0
+         OwxloSpT0ruwfRORQCKRk8olbGpSmK3H/18KReo0ZYdIksvnOXoLjVPVSfiui+7Qmg3j
+         Mrn1SN34cuJJYSJ/c4iw49SVUeK9Fo2UT020WWUb/un1bL2u/1zV/7M9PaQVnX5wLKsB
+         iFyA==
+X-Gm-Message-State: AFqh2kqqkxK+xBdqzR78W6oiDd5y36JyBvbdyhcJUlTjBZLpTORSTjhB
+        iXbVddVhv3IzpwjZX+AbLYOUqWGJMnydNw==
+X-Google-Smtp-Source: AMrXdXsOikQcjU4JcH5EteqpjGS60PI+TD23Yh9GlSzMdKj0my9bKxPWRyZfaJOe+67kE8d50x4aaQ==
+X-Received: by 2002:a25:8547:0:b0:7b2:991:9b7c with SMTP id f7-20020a258547000000b007b209919b7cmr23651699ybn.1.1673454805218;
+        Wed, 11 Jan 2023 08:33:25 -0800 (PST)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id bq35-20020a05620a46a300b00704c9015e68sm9290157qkb.116.2023.01.11.08.33.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Jan 2023 08:33:24 -0800 (PST)
+Received: by mail-yb1-f181.google.com with SMTP id 194so13314107ybf.8;
+        Wed, 11 Jan 2023 08:33:24 -0800 (PST)
+X-Received: by 2002:a25:d84e:0:b0:7b4:6a33:d89f with SMTP id
+ p75-20020a25d84e000000b007b46a33d89fmr1645500ybg.543.1673454804653; Wed, 11
+ Jan 2023 08:33:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230104141245.8407-1-aford173@gmail.com> <20230104141245.8407-4-aford173@gmail.com>
+In-Reply-To: <20230104141245.8407-4-aford173@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 11 Jan 2023 17:33:12 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW9cL=oGxKK0+2z49b=0is4kqG69mKz9PkDu96e6n2qAQ@mail.gmail.com>
+Message-ID: <CAMuHMdW9cL=oGxKK0+2z49b=0is4kqG69mKz9PkDu96e6n2qAQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: boot: dts: r8a774[a/b/e]1-beacon: Consolidate
+ sound clocks
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-renesas-soc@vger.kernel.org, aford@beaconembedded.com,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, Jan 4, 2023 at 3:18 PM Adam Ford <aford173@gmail.com> wrote:
+> Each kit-level file represents a SOM + baseboard for a specific
+> SoC type and uses specific clocks unique to each SoC.  With the
+> exception of one clock, the rest of the clock info was duplicated.
+>
+> There is a generic clock called CPG_AUDIO_CLK_I defined in each of
+> the SoC DTSI files which points to this unique clock. By using that,
+> the clock information for the rcar_sound can be consolidated into
+> the baseboard file and have it reference this generic clock thus
+> removing the duplication from the three variants.
+>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Add Samsung AMS495QA01 panel to RG503.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.3.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
----
- .../dts/rockchip/rk3566-anbernic-rg503.dts    | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
-index 5dafcc86296b..b4b2df821cba 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
-@@ -47,6 +47,21 @@ gpio_spi: spi {
- 		mosi-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
- 		cs-gpios = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
- 		num-chipselects = <0>;
-+
-+		panel@0 {
-+			compatible = "samsung,ams495qa01";
-+			reg = <0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&lcd_reset>;
-+			reset-gpios = <&gpio4 RK_PA0 GPIO_ACTIVE_LOW>;
-+			vdd-supply = <&vcc_3v3>;
-+
-+			port {
-+				mipi_in_panel: endpoint {
-+					remote-endpoint = <&mipi_out_panel>;
-+				};
-+			};
-+		};
- 	};
- 
- 	/* Channels reversed for both headphones and speakers. */
-@@ -94,6 +109,32 @@ &cru {
- 	assigned-clock-rates = <1200000000>, <200000000>, <500000000>;
- };
- 
-+&dsi_dphy0 {
-+	status = "okay";
-+};
-+
-+&dsi0 {
-+	status = "okay";
-+
-+	ports {
-+		dsi0_in: port@0 {
-+			reg = <0>;
-+
-+			dsi0_in_vp1: endpoint {
-+				remote-endpoint = <&vp1_out_dsi0>;
-+			};
-+		};
-+
-+		dsi0_out: port@1 {
-+			reg = <1>;
-+
-+			mipi_out_panel: endpoint {
-+				remote-endpoint = <&mipi_in_panel>;
-+			};
-+		};
-+	};
-+};
-+
- &gpio_keys_control {
- 	button-a {
- 		gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
-@@ -146,6 +187,13 @@ spk_amp_enable_h: spk-amp-enable-h {
- 		};
- 	};
- 
-+	gpio-lcd {
-+		lcd_reset: lcd-reset {
-+			rockchip,pins =
-+				<4 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	gpio-spi {
- 		spi_pins: spi-pins {
- 			rockchip,pins =
-@@ -164,3 +212,10 @@ rk817_charger: charger {
- 		rockchip,sleep-filter-current-microamp = <100000>;
- 	};
- };
-+
-+&vp1 {
-+	vp1_out_dsi0: endpoint@ROCKCHIP_VOP2_EP_MIPI0 {
-+		reg = <ROCKCHIP_VOP2_EP_MIPI0>;
-+		remote-endpoint = <&dsi0_in_vp1>;
-+	};
-+};
--- 
-2.34.1
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
