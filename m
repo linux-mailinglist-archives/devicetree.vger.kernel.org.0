@@ -2,235 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF61666621B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 18:39:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51A9666622F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 18:42:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbjAKRjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 12:39:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36748 "EHLO
+        id S234727AbjAKRmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 12:42:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231712AbjAKRhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 12:37:52 -0500
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn20800.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eae::800])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E8F032183
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 09:34:56 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hgTmJRzHeJ7OxCVfQzHCwdjkAcgqQlCI29TAZTQw8pjd1JicrkSubXoaK5el6k9FDAI27yagYaKss3Y5QHsNiomX7L8X6QLD5LQISHLyjZWZ4EEr9BvEFZdZQ69nNwid8hyTIPZocfcpEMdtzG4qTaOdaVxhHf9wh0xmNCRb/ZrYr2vBuexMWec4oQDSZ45naTxFQHwduDnYb4AWD9B9DfkDCZagKXXkF4I6mkARHf7+3aE9UMJFwjDCOCfE5NRICQoF9CFJm0yRu0IdMSzLTdnDAnIKT+Ux/UvuglTa8ReURcLyduSXZ6BiJCFQpcMtLQtA8gSdmtTQXCgmfgF7vA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XReERc6bF+gXR/4HrtzeEgYVd5CVf/PR5+YpUZDCH1M=;
- b=hGMaG4TKx+dhJTnbKhvX1lVhM8SJRwCMkla9atALhMYvUwqKt3HBLh9cfWqKmRBAkLgggGRE3v/54IZQ9craAP3MaGskVSTrBfAXclW277zoKtaaFlxC6ZsGEF75WKxo4yg/3P1xtBxAV1xXdKdRXj/FNmbEWMj7x+vKAYXpqEVctuT4KeMl7dXaeZXP+FrZzm6VVTWQQRlFtysvLjk/MNi4ErKbo1XrVXdQfeSKRosmM1m/NUx6zLXr+ZkOnf6TEpPjDV5apverMX0HsGTGl3kZ5aKiBbixZby3kWtjtjyfEIXDvvdQ0uavl8XuwhZ8Kb8uheHrMZMNVNPUDNvRZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XReERc6bF+gXR/4HrtzeEgYVd5CVf/PR5+YpUZDCH1M=;
- b=iTBx+eIdqwTil7AZL/GSOJde5iK1eiZl8j1Ndacv67c0DFCtXFoPgm7qkWlWhmL4y7bHYnJUfz4q3V1CSojnZ2bRanOXO2Ksgu4R6VDXw4DO34AD0krRzuz3LKKCkVJ5M8BpC4paiHwYR9n4MD5hllHruvSzOChU2aZrb572ta31etDiZtGOuAsAjUlsKZCwmaFU1soOPnmHPrH6/LsOUXAF/c5z/B9yPHxo7m66bzd4CpkVVXfKP00mkGvMl8CMn5y2lLSLN1prXCs2sQBwaxCg85l1JmTE+hugbNrfMIc4zzflRFwu5uyjc/bDkzinrY1GUOX2kajjhnfFFmi6AQ==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by SN6PR06MB5245.namprd06.prod.outlook.com (2603:10b6:805:fa::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Wed, 11 Jan
- 2023 17:34:40 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::ff4f:2e64:cf70:cc68]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::ff4f:2e64:cf70:cc68%5]) with mapi id 15.20.5986.018; Wed, 11 Jan 2023
- 17:34:40 +0000
-Date:   Wed, 11 Jan 2023 11:34:36 -0600
-From:   Chris Morgan <macromorgan@hotmail.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        maccraft123mc@gmail.com, tzimmermann@suse.de,
-        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-        thierry.reding@gmail.com, linus.walleij@linaro.org
-Subject: Re: [PATCH v9 1/4] drm: of: Add drm_of_get_dsi_bus helper function
-Message-ID: <SN6PR06MB5342934ECB5D0271D5BC0C1BA5FC9@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20230111163012.310945-1-macroalpha82@gmail.com>
- <20230111163012.310945-2-macroalpha82@gmail.com>
- <20230111163926.k3v32pdvq7o7wxwl@houat>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230111163926.k3v32pdvq7o7wxwl@houat>
-X-TMN:  [jD48r6WPBuLAd2sdsJiyo7LZOmWRtv21]
-X-ClientProxiedBy: SA9PR13CA0169.namprd13.prod.outlook.com
- (2603:10b6:806:28::24) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <Y77zLJcrhr2OlcmZ@wintermute.localhost.fail>
+        with ESMTP id S235347AbjAKRlk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 12:41:40 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3A5B6B
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 09:40:38 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id s8so9216823plk.5
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 09:40:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KpkaVTQGXazamk/VxjWqp4ydb0LD0blsaD+1AXj4yEY=;
+        b=MjIMA5Ai8yWDh5T4BrRO6rExGL4rJ7QVwUKkkXRN6G2QrfhUCZP/KCPkE54+hFTu2/
+         xPxq49fXLlszJ2KPOzI29AYUVeQNaomwOe6GjiKd5bevhEB55kHUhLyyo9j1bzvCmMF/
+         vAa73q5kY5CZ7lthIYeYQufj/c4d6QGrFrQrl4EtknbCioz7uwXrbeAjtpkA84A0E+e4
+         ctmS0BzLb2bXekbHNuHo/Q6oPT5rxbtM08mh8BH1Abxf6SrK+brSljPr73p6kPRJwZBu
+         DFbV2LMTjjMJD8tR5iCIEM+smmc3HSWIOQkXB1kBxdKqW01vsOBMJq23xYDOeR4nVEhF
+         1BLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KpkaVTQGXazamk/VxjWqp4ydb0LD0blsaD+1AXj4yEY=;
+        b=JLdWtpyY4ghKX8BQCgmuREGskiX+KzXaqt6VYY2HYNuR6n4u3og8NcSQlQNx6QzM+v
+         I+chHasFB6KOgrpsx7CK33Yr4G0NQBCMvdPlcipgk+SjJGw/Fh7NawKzqf+isuSioCeZ
+         g4Rd62MwvXKrAK627SnzKptfZZRQdNNNnTw6oQIOoRDB2BSuNw1znyuSv35mbR0z2HVj
+         ZRB7UUryC+olzjBUrAY7cVBswQR65qnO0B9vH6l7sbI0SFyh1gfc2S4th62S9bRGADPu
+         /JZPr29DKA+MMyKN9ri06DEpqjq4gBpunQL8JRBUcurMdiQSmb5n2z5FlvvGRTmM/ZgC
+         kqfA==
+X-Gm-Message-State: AFqh2kqgy2vp0QQIdEEfRcVohdemwzwKJyThwJTpzEeXbj40WjpIgX8E
+        ix+LBgnreW0Jpdl1Bj00hI7W
+X-Google-Smtp-Source: AMrXdXs+856ScIt9zQEEdg5PRmzDH9Y23S1wO2tLMxfcc3V2SMzAdwVZ8eM26ECcWBh/scrfTHzCfA==
+X-Received: by 2002:a05:6a21:70cb:b0:ad:ceba:1bdc with SMTP id xd11-20020a056a2170cb00b000adceba1bdcmr78229590pzb.16.1673458838288;
+        Wed, 11 Jan 2023 09:40:38 -0800 (PST)
+Received: from thinkpad ([117.217.177.1])
+        by smtp.gmail.com with ESMTPSA id d21-20020a630e15000000b0047781f8ac17sm8703105pgl.77.2023.01.11.09.40.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jan 2023 09:40:37 -0800 (PST)
+Date:   Wed, 11 Jan 2023 23:10:29 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, konrad.dybcio@somainline.org,
+        amit.pundir@linaro.org, regressions@leemhuis.info,
+        sumit.semwal@linaro.org, will@kernel.org, catalin.marinas@arm.com,
+        robin.murphy@arm.com
+Subject: Re: [PATCH V3 05/10] remoteproc: qcom_q6v5_mss: Use a carveout to
+ authenticate modem headers
+Message-ID: <20230111174029.GE4873@thinkpad>
+References: <20230111114337.24782-1-quic_sibis@quicinc.com>
+ <20230111114337.24782-6-quic_sibis@quicinc.com>
+ <20230111115422.GD4873@thinkpad>
+ <d714a068-ee48-2a86-4d54-173312d9720e@quicinc.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SN6PR06MB5245:EE_
-X-MS-Office365-Filtering-Correlation-Id: e7482fc0-f156-43e1-ef9d-08daf3fa1e39
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DGN3KdmKSjhlo01mRQcwGcr1Sau66EsgYICpn1jeU2+x90KaV2ztB3FE7TWZB0ahVqBkM8b34iejELknIZp06FA7fKAMOvaY+El/h5eyn2+1celaf+CHX6KsMdYdqt7GR1vGgSui0Nj4d31WEqCMBCOXMpHDGpDioU4rAweW4WONHk23KDHkw0tRJIFf8r92n1QtvJrjTOYJIzseV2HW4Adg06cnn9f/CsWU89Zz022Vau4RkL8fFn23xxQpjrV7u1owb5W8W/VDnDZ9kx6n+2J3ynf+oOy+1mtbHXWIuq6M+lVmKfPYT4bFOIBm5mbUs5AQPOhHXMrlnbIYmf8IXGmcVwLKHFGn77xjjSahzwIdbEHT4yfnkNegWZmS3S51cwjkPlXNRyqGM6f0mtdrAnEctNaa8ITYQgD35TkBe8BANKhsKWVgPNeo1xaMnO2Rt5NAp0/drgvHW5Zlf6xcNayIJJU9+nFDXQ4izttrmveTJtcGvkWg/aDpSZ0B5+XfJU9xCg1LpiiuO3KY6mo3kRT25WOQXiE28gRyYtgugo8yBINxrKRp1jPsvXLbQouBRUZuWTznVAvWyp6wMHpj/nKvRFDTknl5IeWUOiZTJ56S1VFBTvC3ui4ME4hrhCRP2yQOIcQJcJYInLxSHW+3Pg==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CpaFZydukLzncVSc6u0yffeKbvTKk5LGILl4d4KsI4iWMGfJYLqD5Qwx1/Yk?=
- =?us-ascii?Q?23XBuQI+e2EmHWagm9EaA15Z9hiTCGYjmxPCStXfM6eF55CsrzAhsiH+pa9h?=
- =?us-ascii?Q?Nd7IpHUTts+JQwznWkGOUZerCUxiehFloU6xIwT+5Ab1G0P28ouxv1KXqVMO?=
- =?us-ascii?Q?ZldsIme+mcJDJBl9iitB8/L3Oq3QAJpzHY06Hbuj6qQfwvDduLgI/0uhsEVh?=
- =?us-ascii?Q?ihQXB6QFO5yFMLO6mpFsYs9sRr7pbkTsi5bjRvmKhJyngS287m0vh6qIzpta?=
- =?us-ascii?Q?bRjGd0KQkfwG6ezMVvxkGBZ2TafKOMdpZE6EZqMmfJ3TVK8bUQ7VH9LIHeBp?=
- =?us-ascii?Q?kK3tMMXKlL2+NClsQsNdkvUrRpYaeLcUrbNbKQzSkt9QXLTUoOc4ZBW2YYEJ?=
- =?us-ascii?Q?GvVugNQuORg8IUU+yf0AgmdysXt9V+HaqvCfDEVZGPXZjtAQQ9muoBPFHHI0?=
- =?us-ascii?Q?jy4SJEnd8RBIlCdZw+/hvyj30kJzYPonQNp37ibetararzseR+TwCDoWfqX3?=
- =?us-ascii?Q?zN28oSbFx9pu9kT0K7oQKTTbdGLLugxFywVNMgvryE9XyMZYVxkz5CURMYhk?=
- =?us-ascii?Q?28nFDgSWE9POnOO/Hyofx6nYydX9AWMBDFKpwk07oI7nOBfFacQG8CwwQrXc?=
- =?us-ascii?Q?6o6JNcFB6ujpnuDzFR6R4macPJCHeBAG7/zT/YtGGCTR/58JCw9eS3S97+SU?=
- =?us-ascii?Q?47WMsBCfdXGHNvD0mKqJJ/wcO1T9IYM+2HHmik1uEl21evNBWKZrtlQznT6a?=
- =?us-ascii?Q?s79I3ZYCgCgv/ApG2Ke8dQGJNGMd5zRfXiAtcsns24NDPs8nQbc73CXMK64C?=
- =?us-ascii?Q?fewo6bM3j9+uMvExji9QBC6gjLIPpfhP8G2wBNzZ3gL6M3j3gmr/UFTCQg/e?=
- =?us-ascii?Q?jvckAUySvouq5rTGnu7oSWolVFNkRFS2fz/WEPsCeEWjKpt9qgyjfvj2C9ci?=
- =?us-ascii?Q?+WXiw8452NdlhmlwadbPdzONgEJsgP+Inmjx8UtvRsgGcGJ5w9JEJOxa/sAI?=
- =?us-ascii?Q?T24pUs+ZomkSOqTuQOnwg4UOwSrwfMjvKS23eg94PpqgkVRkRgGhc8vmDcTt?=
- =?us-ascii?Q?XtkkqJgo0RuB6aciQffI5J1rXSWFI1uBQSbrYkMKtFXWumzj0wPKlQNm68sD?=
- =?us-ascii?Q?WVpDNr1EZ8nf8EabGhemqj2gLUurtb+jn+fEgFoGbzBJyVv0N6uy5j4rtbu/?=
- =?us-ascii?Q?LzJayBjcNJN2Q1OBFWsc3kgbvCb/lzipV2Ry1kNz/LcLdg3dQiCOsfGL5r3y?=
- =?us-ascii?Q?MFCG9bT+UM+mHXdejwjBHkZO2fUvLARBnmdpalZXsA=3D=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7482fc0-f156-43e1-ef9d-08daf3fa1e39
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2023 17:34:40.7082
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR06MB5245
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d714a068-ee48-2a86-4d54-173312d9720e@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 11, 2023 at 05:39:26PM +0100, Maxime Ripard wrote:
-> Hi,
+On Wed, Jan 11, 2023 at 05:58:49PM +0530, Sibi Sankar wrote:
+> Hey Mani,
 > 
-> On Wed, Jan 11, 2023 at 10:30:09AM -0600, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
+> Thanks for taking time to review the series.
+> 
+> On 1/11/23 17:24, Manivannan Sadhasivam wrote:
+> > On Wed, Jan 11, 2023 at 05:13:32PM +0530, Sibi Sankar wrote:
+> > > Any access to the dynamically allocated metadata region by the application
+> > > processor after assigning it to the remote Q6 will result in a XPU
+> > > violation. Fix this by replacing the dynamically allocated memory region
+> > > with a no-map carveout and unmap the modem metadata memory region before
+> > > passing control to the remote Q6.
+> > > 
+> > > Reported-and-tested-by: Amit Pundir <amit.pundir@linaro.org>
+> > > Fixes: 6c5a9dc2481b ("remoteproc: qcom: Make secure world call for mem ownership switch")
+> > > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 > > 
-> > Add helper function to find DSI host for devices where DSI panel is not
-> > a minor of a DSI bus (such as the Samsung AMS495QA01 panel or the
-> > official Raspberry Pi touchscreen display).
+> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> > ---
-> >  drivers/gpu/drm/drm_of.c | 70 ++++++++++++++++++++++++++++++++++++++++
-> >  include/drm/drm_of.h     | 10 ++++++
-> >  2 files changed, 80 insertions(+)
+> > > ---
+> > > 
+> > > v3:
+> > >   * Drop revert no_kernel_mapping since it's already on the list [Mani]
 > > 
-> > diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
-> > index 7bbcb999bb75..4ebb5bc4b595 100644
-> > --- a/drivers/gpu/drm/drm_of.c
-> > +++ b/drivers/gpu/drm/drm_of.c
-> > @@ -10,6 +10,7 @@
-> >  #include <drm/drm_crtc.h>
-> >  #include <drm/drm_device.h>
-> >  #include <drm/drm_encoder.h>
-> > +#include <drm/drm_mipi_dsi.h>
-> >  #include <drm/drm_of.h>
-> >  #include <drm/drm_panel.h>
-> >  
-> > @@ -493,3 +494,72 @@ int drm_of_get_data_lanes_count_ep(const struct device_node *port,
-> >  	return ret;
-> >  }
-> >  EXPORT_SYMBOL_GPL(drm_of_get_data_lanes_count_ep);
-> > +
-> > +/**
-> > + * drm_of_get_dsi_bus - find the DSI bus for a given device
-> > + * @dev: parent device of display (SPI, I2C)
-> > + * @info: DSI device info to be updated with correct DSI node
-> > + *
-> > + * Gets parent DSI bus for a DSI device controlled through a bus other
-> > + * than MIPI-DCS (SPI, I2C, etc.) using the Device Tree.
-> > + *
-> > + * Returns pointer to mipi_dsi_host if successful, -EINVAL if the
-> > + * request is unsupported, -EPROBE_DEFER if the DSI host is found but
-> > + * not available, or -ENODEV otherwise.
-> > + */
-> > +struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
-> > +					 struct mipi_dsi_device_info *info)
-> > +{
-> > +	struct mipi_dsi_host *dsi_host;
-> > +	struct device_node *endpoint, *dsi_host_node;
-> > +
-> > +	/*
-> > +	 * Exit immediately if we attempt to call this function when
-> > +	 * DRM_MIPI_DSI is not enabled, in the event CONFIG_OF is
-> > +	 * enabled.
-> > +	 */
-> > +	if (!IS_ENABLED(CONFIG_DRM_MIPI_DSI))
-> > +		return ERR_PTR(-EINVAL);
+> > I thought you are going to include Christoph's patch into your series. That way
+> > all the patches will be in the same series, makig life easier for Bjorn.
+> > 
 > 
-> The commit log isn't super clear on why this is needed, but it would be
-> more consistent to add an ifdef and only compile the entire function if
-> DRM_MIPI_DSI is there, just like you did for OF already.
-
-Thank you. I can do that, I just wasn't sure if "#ifdefs" were frowned
-upon or not. That would probably be the easiest way to do this though.
-
-> 
-> > +	/*
-> > +	 * Get first endpoint child from device.
-> > +	 */
-> > +	endpoint = of_graph_get_next_endpoint(dev->of_node, NULL);
-> > +	if (!endpoint)
-> > +		return ERR_PTR(-ENODEV);
-> > +
-> > +	/*
-> > +	 * Follow the first endpoint to get the DSI host node.
-> > +	 */
-> > +	dsi_host_node = of_graph_get_remote_port_parent(endpoint);
-> 
-> There's no need to hold the reference to endpoint after that call. call
-> of_node_put(endpoint) here, and it will simplify the error path.
-> 
-> > +	if (!dsi_host_node)
-> > +		goto error;
-> > +
-> > +	/*
-> > +	 * Get the DSI host from the DSI host node. If we get an error
-> > +	 * or the return is null assume we're not ready to probe just
-> > +	 * yet. Release the DSI host node since we're done with it.
-> > +	 */
-> > +	dsi_host = of_find_mipi_dsi_host_by_node(dsi_host_node);
-> > +	of_node_put(dsi_host_node);
-> > +	if (IS_ERR_OR_NULL(dsi_host)) {
-> > +		of_node_put(endpoint);
-> > +		return ERR_PTR(-EPROBE_DEFER);
-> > +	}
-> > +
-> > +	/*
-> > +	 * Set the node of the mipi_dsi_device_info to the correct node
-> > +	 * and then release the endpoint node since we're done with it.
-> > +	 */
-> > +	info->node = of_graph_get_remote_port(endpoint);
-> 
-> Ah, you're using it there.
-> 
-> I think I'd rework the function to:
-> 
-> - retrieve the endpoint
-> - retrieve the remote port, give up the endpoint
-> - retrieve the remote port parent
-> 
-> Also, I'm not entirely sure what you had in mind, but info might not be
-> there at all and it would be fine imho.
+> Since there were multiple patches in Christoph's original series, I
+> decided I'll just drop the revert and have it depends on instead.
 > 
 
-What if I make it optional and if a NULL is passed skip this step, but
-otherwise populate the info node?
+There is only one patch in that series and that was independent of the
+remoteproc change. So, it should be fine to include the revert patch to this
+series.
 
-> Maxime
+Thanks,
+Mani
 
-Thank you for your input. I'll wait for the bots to see if the previous
-errors are really finally fixed, then I'll make these changes and
-resubmit.
+> 
+> > Thanks,
+> > Mani
+> > 
+> > >   * kfree metadata from the branch for parity
+> > > 
+> > >   drivers/remoteproc/qcom_q6v5_mss.c | 48 ++++++++++++++++++++++++++----
+> > >   1 file changed, 42 insertions(+), 6 deletions(-)
+> > > 
+> > > diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
+> > > index e2f765f87ec9..e25d44e20ae7 100644
+> > > --- a/drivers/remoteproc/qcom_q6v5_mss.c
+> > > +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+> > > @@ -215,6 +215,7 @@ struct q6v5 {
+> > >   	size_t mba_size;
+> > >   	size_t dp_size;
+> > > +	phys_addr_t mdata_phys;
+> > >   	phys_addr_t mpss_phys;
+> > >   	phys_addr_t mpss_reloc;
+> > >   	size_t mpss_size;
+> > > @@ -973,15 +974,29 @@ static int q6v5_mpss_init_image(struct q6v5 *qproc, const struct firmware *fw,
+> > >   	if (IS_ERR(metadata))
+> > >   		return PTR_ERR(metadata);
+> > > -	ptr = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL, dma_attrs);
+> > > -	if (!ptr) {
+> > > -		kfree(metadata);
+> > > -		dev_err(qproc->dev, "failed to allocate mdt buffer\n");
+> > > -		return -ENOMEM;
+> > > +	if (qproc->mdata_phys) {
+> > > +		phys = qproc->mdata_phys;
+> > > +		ptr = memremap(qproc->mdata_phys, size, MEMREMAP_WC);
+> > > +		if (!ptr) {
+> > > +			kfree(metadata);
+> > > +			dev_err(qproc->dev, "unable to map memory region: %pa+%zx\n",
+> > > +				&qproc->mdata_phys, size);
+> > > +			return -EBUSY;
+> > > +		}
+> > > +	} else {
+> > > +		ptr = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL, dma_attrs);
+> > > +		if (!ptr) {
+> > > +			kfree(metadata);
+> > > +			dev_err(qproc->dev, "failed to allocate mdt buffer\n");
+> > > +			return -ENOMEM;
+> > > +		}
+> > >   	}
+> > >   	memcpy(ptr, metadata, size);
+> > > +	if (qproc->mdata_phys)
+> > > +		memunmap(ptr);
+> > > +
+> > >   	/* Hypervisor mapping to access metadata by modem */
+> > >   	mdata_perm = BIT(QCOM_SCM_VMID_HLOS);
+> > >   	ret = q6v5_xfer_mem_ownership(qproc, &mdata_perm, false, true,
+> > > @@ -1010,7 +1025,8 @@ static int q6v5_mpss_init_image(struct q6v5 *qproc, const struct firmware *fw,
+> > >   			 "mdt buffer not reclaimed system may become unstable\n");
+> > >   free_dma_attrs:
+> > > -	dma_free_attrs(qproc->dev, size, ptr, phys, dma_attrs);
+> > > +	if (!qproc->mdata_phys)
+> > > +		dma_free_attrs(qproc->dev, size, ptr, phys, dma_attrs);
+> > >   	kfree(metadata);
+> > >   	return ret < 0 ? ret : 0;
+> > > @@ -1893,6 +1909,26 @@ static int q6v5_alloc_memory_region(struct q6v5 *qproc)
+> > >   	qproc->mpss_phys = qproc->mpss_reloc = r.start;
+> > >   	qproc->mpss_size = resource_size(&r);
+> > > +	if (!child) {
+> > > +		node = of_parse_phandle(qproc->dev->of_node, "memory-region", 2);
+> > > +	} else {
+> > > +		child = of_get_child_by_name(qproc->dev->of_node, "metadata");
+> > > +		node = of_parse_phandle(child, "memory-region", 0);
+> > > +		of_node_put(child);
+> > > +	}
+> > > +
+> > > +	if (!node)
+> > > +		return 0;
+> > > +
+> > > +	ret = of_address_to_resource(node, 0, &r);
+> > > +	of_node_put(node);
+> > > +	if (ret) {
+> > > +		dev_err(qproc->dev, "unable to resolve metadata region\n");
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	qproc->mdata_phys = r.start;
+> > > +
+> > >   	return 0;
+> > >   }
+> > > -- 
+> > > 2.17.1
+> > > 
+> > 
+
+-- 
+மணிவண்ணன் சதாசிவம்
