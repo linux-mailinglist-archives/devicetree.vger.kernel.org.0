@@ -2,82 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42517665FC4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 16:54:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69A41665FCE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 16:56:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232227AbjAKPxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 10:53:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44424 "EHLO
+        id S232575AbjAKP4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 10:56:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232469AbjAKPxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 10:53:24 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD4FBED;
-        Wed, 11 Jan 2023 07:53:23 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B03361D79;
-        Wed, 11 Jan 2023 15:53:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 700B9C433D2;
-        Wed, 11 Jan 2023 15:53:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673452402;
-        bh=rr5zFASVU5f5em14U4Ba7dIwrNEf/QsASthAq60dq/8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Yvyp8KEgEx2hMeaFHEZlur6pkMY/2sOpoDYaLqZZsyojp+PaIhig1NLQJB6tDcUp3
-         rxS2dsaHnEG51rwe1GrKoEXIKM7R1t7aC+4c7mcaI0mBVpqGKlcaTevOp9xKwHVeYY
-         Z8UzVcXHdvhSBhjVORm12alZkbSdqdxHQpEoROk89FgEyKUPJ/x1JZIfMachRZSHgJ
-         snluqhDrWwNBKd1lYRroRwVfMK21LW/daZjudGIoBKHZ+CnXpHTRJ0AEoBdb7wtZhH
-         /vTklZmifqezfYbNdEhpgEGuYQ9qa6VmH4M/1n5SLGvA/o6gDDoxD81BOjlOQ3DVY1
-         bNZcohMZd2nbQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pFdPq-0001bf-Qz; Wed, 11 Jan 2023 16:53:26 +0100
-Date:   Wed, 11 Jan 2023 16:53:26 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Eric Chanudet <echanude@redhat.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230375AbjAKPz3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 10:55:29 -0500
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEBB5E62
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 07:55:25 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:fced:c2a7:4b41:d72d])
+        by andre.telenet-ops.be with bizsmtp
+        id 7TvM290071ktn1N01TvMZa; Wed, 11 Jan 2023 16:55:22 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pFdRf-001aS3-Bs;
+        Wed, 11 Jan 2023 16:55:21 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pFdRh-003sSw-5M;
+        Wed, 11 Jan 2023 16:55:21 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Halaney <ahalaney@redhat.com>,
-        Brian Masney <bmasney@redhat.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sa8450p-pmics: add missing
- interrupt include
-Message-ID: <Y77bdsMNxO1ZvPg9@hovoldconsulting.com>
-References: <20230111082331.20641-1-johan+linaro@kernel.org>
- <20230111082331.20641-2-johan+linaro@kernel.org>
- <20230111150619.2g737hldisyhceri@echanude>
+        Sean Anderson <sean.anderson@seco.com>,
+        Marek Vasut <marek.vasut@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-reneas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: clk: vc5: Make SD/OE pin configuration properties not required
+Date:   Wed, 11 Jan 2023 16:55:17 +0100
+Message-Id: <68037ad181991fe0b792f6d003e3e9e538d5ffd7.1673452118.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230111150619.2g737hldisyhceri@echanude>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 11, 2023 at 10:06:19AM -0500, Eric Chanudet wrote:
-> On Wed, Jan 11, 2023 at 09:23:30AM +0100, Johan Hovold wrote:
-> > Add the missing interrupt-controller include which is needed by the RTC
-> > node.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> 
-> Reviewed-by: Eric Chanudet <echanude@redhat.com>
-> 
-> Nit: sa8450p-pmics -> sa8540p-pmics in the subject. It was mistyped in
-> the commit renaming the file unfortunately.
+"make dtbs_check":
 
-Ah, good catch. I'll resend with that fixed. Thanks.
+    arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,shutdown' is a required property
+	    From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+    arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,output-enable-active' is a required property
+	    From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
 
-Johan
+Versaclock 5 clock generators can have their configuration stored in
+One-Time Programmable (OTP) memory.  Hence there is no need to specify
+DT properties for manual configuration if the OTP has been programmed
+before.  Likewise, the Linux driver does not touch the SD/OE bits if the
+corresponding properties are not specified, cfr. commit d83e561d43bc71e5
+("clk: vc5: Add properties for configuring SD/OE behavior").
+
+Reflect this in the bindings by making the "idt,shutdown" and
+"idt,output-enable-active" properties not required, just like the
+various "idt,*" properties in the per-output child nodes.
+
+Fixes: 275e4e2dc0411508 ("dt-bindings: clk: vc5: Add properties for configuring the SD/OE pin")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ Documentation/devicetree/bindings/clock/idt,versaclock5.yaml | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+index 61b246cf5e72aa47..a5472bbfb8d1fdcc 100644
+--- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
++++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+@@ -125,8 +125,6 @@ required:
+   - compatible
+   - reg
+   - '#clock-cells'
+-  - idt,shutdown
+-  - idt,output-enable-active
+ 
+ allOf:
+   - if:
+-- 
+2.34.1
+
