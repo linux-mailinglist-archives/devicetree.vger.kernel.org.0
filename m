@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB51F66542E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 07:04:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 146D5665431
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 07:04:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235631AbjAKGEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 01:04:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57786 "EHLO
+        id S235569AbjAKGEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 01:04:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231917AbjAKGEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 01:04:07 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEC58FE6
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 22:04:06 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id v25so21892732lfe.12
+        with ESMTP id S229581AbjAKGEL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 01:04:11 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011966540
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 22:04:07 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id v25so21892768lfe.12
         for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 22:04:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8suBYAm3Zd4AZ9SNJ+UeQbMRVa9pu1Uwc0Ft1fj2TgE=;
-        b=xT0Y2QMZpxxS07pCb1bEW1rsItDU20udTNj5XZVDeNHqO3mUgQhk10B9ccKW/7wYYX
-         bgT65NNQ6/i/lTd7BDjyC+ETvi94DGFXQ5czE/jNKYGFr78Hud8NX+1W8dqRX7/wFaUX
-         zrKBWP9evUFbSYHT7YrBxAXGa8bTNZaHpxl8XotNzwwDxEQ7jTipH4PywsyeNdRINeUb
-         ztMGzYg3Rm21BMzLaaopybks7igut67vYThAP6Nko9IftnPbw+euu8m54gPv0Ld8HgRE
-         qsP4XlaniUCwci5krcclmg5xb5xasOVi0aeI2rH0nXvC1y8VUvJr74qhNBjbPtai+sVP
-         uurA==
+        bh=PW4JYNWiYq9bE+2bC5NYpOaosg0SySsEGmX3Ei9VgRo=;
+        b=fPtdC2Ax0gOgYtfH6EfRwxYN03hK/T9yG8IIp1U11Q/y6ecRW/fhmPfcT8rXoiGtCX
+         7enJCwd5cBwIxbjOci/h0P7734aDRlWrSWndl3HVSPtuI+Pr13zWETyTe5/sUmNeL/ZB
+         TCjv52XYQ+oVfu+WhSONmrn21tllDBaXUgJ1c1WUjVnEk3mz0NNY7M9DLqcDRCh7uPCC
+         qOc0tycmuJfdtdXgASxaMDW//YFPG5j5qp+GEH3+/UnHT7CVaCkCAoLZVDLNiqrkEXcu
+         UtFCF74yt0w6wk0d+ouu977Z8//7k5F7NkKg9KlIP9XySA/saDQRI3+MYF4IpVjcDOu7
+         9N6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8suBYAm3Zd4AZ9SNJ+UeQbMRVa9pu1Uwc0Ft1fj2TgE=;
-        b=eWr+OnHvuLr1FTkJfZvFcIGnF8Ory3k2/HMGk1POQM08i6a89Bm/UmGiC3Yhik7v76
-         GH8NWW7DWMUwqm0Ie2w1G0G++JW7jSNH37YgLdc6l8E1ar+0d/shlsbPYDv3bpK9djtZ
-         AJ8ow3sdfOLl2YZvPJbMTf2hZkpN+DtOazFu6Vvktq8mhBydGGweWE7XIlm0ESctF0ig
-         B7+r6MwvIb/QTSP5PrqRnkrkDJaPW5zwPzcb40001qmhrEFM8L6Jl+0jEaBwWKVxT6to
-         Pw1U1Tf7EgENrkePDKSk/JUcCtPxqdPngBNtmRSfSTDH2hQyUl8YUHj+VLYgBtLbyI33
-         swIw==
-X-Gm-Message-State: AFqh2kqXHnyQZlhokHfnBRxTWRGApLXHHyl7Z0CQ3LTX7WEAU1JFHXQE
-        7oB07+m8v53GLmw1sZSfW4BhFQ==
-X-Google-Smtp-Source: AMrXdXvQOe5YGsUULTNDaCBeYjsTjOhjRXjv42oqvh2YZy9JVHuRB7gVafQIt1lS2meYPpzGxyHTdQ==
-X-Received: by 2002:a05:6512:3f1b:b0:4cb:2aa:9e58 with SMTP id y27-20020a0565123f1b00b004cb02aa9e58mr17898668lfa.13.1673417044601;
-        Tue, 10 Jan 2023 22:04:04 -0800 (PST)
+        bh=PW4JYNWiYq9bE+2bC5NYpOaosg0SySsEGmX3Ei9VgRo=;
+        b=u+SF/O/rGEw3Aneb8gce1N/59iAVJ2voeKBUf6DzrCUXb98GI61z7HZ75/8XjtIv5g
+         pnk86v8uJCINChPOFRA8nwIqoDEw8+QwOo08LtEjSKCt1ZAZtQIz3Sfnokj+JYboLRpK
+         rVdEoJM1iUmj+89C5BnzVEI6+3j3nVGDYLlNlqYoq+5cP1K7Yunh7KwabQPaHpD+Kvvc
+         ke1POtniDgqjsY/0y+9HQFJILb4q34EL0IuzuHBPxu17+5Du6zxOglv9aUtXjuYSR70I
+         JcPmkjbfddRED3CbZwXnw5kDrVJzoWYZgjTJhfloV1d+NkFnIo/1ZlJp+ZasVTQHdsC9
+         ZI1Q==
+X-Gm-Message-State: AFqh2kq1BjFePmsMKrEoZ4kSZiaAwaTd+E8+DoQ1arwZoTDHkTq6RTEi
+        OC3XdJBhRxtCM8k4iLc2PWBhkA==
+X-Google-Smtp-Source: AMrXdXut9r3eDheC3RtMM/HTeuxNf2t3gCE2JD5dayDI8MQSTHr7dbY6U9VyymvZrzPXOw7U5dy6eA==
+X-Received: by 2002:a05:6512:2390:b0:4b5:649a:9105 with SMTP id c16-20020a056512239000b004b5649a9105mr25563804lfv.65.1673417045400;
+        Tue, 10 Jan 2023 22:04:05 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id b7-20020a056512070700b004cb143f7391sm2524607lfs.258.2023.01.10.22.04.03
+        by smtp.gmail.com with ESMTPSA id b7-20020a056512070700b004cb143f7391sm2524607lfs.258.2023.01.10.22.04.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 22:04:04 -0800 (PST)
+        Tue, 10 Jan 2023 22:04:05 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 01/12] dt-bindings: clock: qcom,gcc-apq8084: define clocks/clock-names
-Date:   Wed, 11 Jan 2023 08:03:51 +0200
-Message-Id: <20230111060402.1168726-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 02/12] dt-bindings: clock: qcom,gcc-apq8084: add GCC_MMSS_GPLL0_CLK_SRC
+Date:   Wed, 11 Jan 2023 08:03:52 +0200
+Message-Id: <20230111060402.1168726-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230111060402.1168726-1-dmitry.baryshkov@linaro.org>
 References: <20230111060402.1168726-1-dmitry.baryshkov@linaro.org>
@@ -78,85 +78,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define clock/clock-names properties of the GCC device node to be used
-on APQ8084 platform.
-
-Note: the driver uses a single pcie_pipe clock, however most probably
-there are two pipe clocks, one from each of PCIe QMP PHYs.
+Add GCC_MMSS_GPLL0_CLK_SRC, the branch clock gating gpll0 clock for the
+multimedia subsystem.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../bindings/clock/qcom,gcc-apq8084.yaml      | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ include/dt-bindings/clock/qcom,gcc-apq8084.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-index 8ade176c24f4..d84608269080 100644
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-@@ -25,6 +25,30 @@ properties:
-   compatible:
-     const: qcom,gcc-apq8084
+diff --git a/include/dt-bindings/clock/qcom,gcc-apq8084.h b/include/dt-bindings/clock/qcom,gcc-apq8084.h
+index 7f657cf8cc8a..a985248d6332 100644
+--- a/include/dt-bindings/clock/qcom,gcc-apq8084.h
++++ b/include/dt-bindings/clock/qcom,gcc-apq8084.h
+@@ -339,6 +339,7 @@
+ #define GCC_PCIE_1_MSTR_AXI_CLK				330
+ #define GCC_PCIE_1_PIPE_CLK				331
+ #define GCC_PCIE_1_SLV_AXI_CLK				332
++#define GCC_MMSS_GPLL0_CLK_SRC				333
  
-+  clocks:
-+    items:
-+      - description: XO source
-+      - description: Sleep clock source
-+      - description: UFS RX symbol 0 clock
-+      - description: UFS RX symbol 1 clock
-+      - description: UFS TX symbol 0 clock
-+      - description: UFS TX symbol 1 clock
-+      - description: SATA ASIC0 clock
-+      - description: SATA RX clock
-+      - description: PCIe PIPE clock
-+
-+  clock-names:
-+    items:
-+      - const: xo
-+      - const: sleep_clk
-+      - const: ufs_rx_symbol_0_clk_src
-+      - const: ufs_rx_symbol_1_clk_src
-+      - const: ufs_tx_symbol_0_clk_src
-+      - const: ufs_tx_symbol_1_clk_src
-+      - const: sata_asic0_clk
-+      - const: sata_rx_clk
-+      - const: pcie_pipe
-+
- required:
-   - compatible
- 
-@@ -32,11 +56,31 @@ unevaluatedProperties: false
- 
- examples:
-   - |
-+    /* UFS PHY on APQ8084 is not supported (yet), so these bindings just serve an example */
-     clock-controller@fc400000 {
-         compatible = "qcom,gcc-apq8084";
-         reg = <0xfc400000 0x4000>;
-         #clock-cells = <1>;
-         #reset-cells = <1>;
-         #power-domain-cells = <1>;
-+
-+        clocks = <&xo_board>,
-+                 <&sleep_clk>,
-+                 <&ufsphy 0>,
-+                 <&ufsphy 1>,
-+                 <&ufsphy 2>,
-+                 <&ufsphy 3>,
-+                 <&sata 0>,
-+                 <&sata 1>,
-+                 <&pcie_phy>;
-+        clock-names = "xo",
-+                      "sleep_clk",
-+                      "ufs_rx_symbol_0_clk_src",
-+                      "ufs_rx_symbol_1_clk_src",
-+                      "ufs_tx_symbol_0_clk_src",
-+                      "ufs_tx_symbol_1_clk_src",
-+                      "sata_asic0_clk",
-+                      "sata_rx_clk",
-+                      "pcie_pipe";
-     };
- ...
+ /* gdscs */
+ #define USB_HS_HSIC_GDSC				0
 -- 
 2.39.0
 
