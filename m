@@ -2,75 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D0EA6655DF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 09:20:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAE73665600
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 09:26:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbjAKIUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 03:20:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39852 "EHLO
+        id S230495AbjAKIZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 03:25:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231955AbjAKIUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 03:20:07 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89002DFE
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 00:20:02 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:d992:2e67:38c1:3ab7])
-        by michel.telenet-ops.be with bizsmtp
-        id 7LKz2900422nSWd06LKzJW; Wed, 11 Jan 2023 09:19:59 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1pFWKz-001YR3-2k;
-        Wed, 11 Jan 2023 09:19:59 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1pFWL0-003Bk8-S1;
-        Wed, 11 Jan 2023 09:19:58 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236024AbjAKIYz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 03:24:55 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59C5513CD5;
+        Wed, 11 Jan 2023 00:24:45 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2EBCA61AE9;
+        Wed, 11 Jan 2023 08:24:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 860BCC433F1;
+        Wed, 11 Jan 2023 08:24:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673425484;
+        bh=sq87poyyQRDX2ZFDSf+R+MlxukjwQQCHq643o4gNmSY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IiH2XpOh/yZOOqKovVnnASNuANzssueTLYOOSrF0Io5j11Jcvl14pnMMZWzHp1kg8
+         /Q7dyGa1F5GjKG1zJmL6WlrjiU2FCF9zlbMqi0dETmXwDKvRxbK5/Xa2KEDDg6WGaX
+         97Cdvpe5eEmk/+kk7l/9V8HvceDbt0ohM0dgLMBiZaduVUdM5Ch3JCrYEaGWXieJCt
+         7PTpVutQ6/fnyXMe1EeQVD0Q64aBx2JZWt6iKTqSV3pTFhqhNTP5XYKbUWN4crk559
+         RcycQz3WPPwNuS3gUXXx2+uil1cM+H2nPGEj+qSt//ipfBsB4+2DR1MfoTD+ehS/Op
+         /c/ahkV8xitLg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1pFWPc-0005OW-HP; Wed, 11 Jan 2023 09:24:45 +0100
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Vincent Tremblay <vincent@vtremblay.dev>
-Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: trivial-devices: Remove trailing whitespace
-Date:   Wed, 11 Jan 2023 09:19:53 +0100
-Message-Id: <7c1b2700f3727e94600f5f7e10beef16f8dc64ed.1673425053.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+        Eric Chanudet <echanude@redhat.com>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        Brian Masney <bmasney@redhat.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: sa8450p-pmics: rename pmic labels
+Date:   Wed, 11 Jan 2023 09:23:29 +0100
+Message-Id: <20230111082331.20641-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.38.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove trailing whitespace that hurts my eyes.
+These patches add a missing include to the new sa8540p-pmics dtsi and
+rename the PMIC labels so that they reflect the actual name of the
+PMICs.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-FWIW
-Fixes: f7879d677e76d0c4 ("dt-bindings: trivial-devices: Add silabs,si3210")
+Johan
 
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 7da40dadfe2eb4b1..b13f280f36fab608 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -325,7 +325,7 @@ properties:
-           - sgx,vz89x
-             # Silicon Labs EM3581 Zigbee SoC with SPI interface
-           - silabs,em3581
--            # Silicon Labs SI3210 Programmable CMOS SLIC/CODEC with SPI interface 
-+            # Silicon Labs SI3210 Programmable CMOS SLIC/CODEC with SPI interface
-           - silabs,si3210
-             # Relative Humidity and Temperature Sensors
-           - silabs,si7020
+Johan Hovold (2):
+  arm64: dts: qcom: sa8450p-pmics: add missing interrupt include
+  arm64: dts: qcom: sa8450p-pmics: rename pmic labels
+
+ arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi | 25 +++++++++++----------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
+
 -- 
-2.34.1
+2.38.2
 
