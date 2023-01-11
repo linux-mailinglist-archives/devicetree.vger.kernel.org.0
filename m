@@ -2,189 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADBB1666209
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 18:38:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF61666621B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 18:39:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235325AbjAKRiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 12:38:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34052 "EHLO
+        id S229568AbjAKRjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 12:39:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235322AbjAKRhm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 12:37:42 -0500
-Received: from FRA01-PR2-obe.outbound.protection.outlook.com (mail-pr2fra01on2072.outbound.protection.outlook.com [40.107.12.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4FDE3D1CA;
-        Wed, 11 Jan 2023 09:34:35 -0800 (PST)
+        with ESMTP id S231712AbjAKRhw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 12:37:52 -0500
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn20800.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eae::800])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E8F032183
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 09:34:56 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JHRKo7TQL1Esb1j2U0kAfYqph9EVGF1li/fBvjY/oe9vbYp9kauCFljE14seuhddn9fnW2la9yXmy2AgacICDZNx95VWkUG1+Ozd2sE41mhh1ehTX12vXFm9d7IHcA89fxhw4lCAUUnsjqfwrVb6OFfX0io02IUahUQdQAwA6uvyFIyL3UKch9ny9xHLcFYOjDITQCsoXkvSVZN4BtM3v9X9rJufgcoDzwFgg8RumosuKxAZQ7M+As+rfPUJkrhboAqxueyvpjn5BdA9eDeY11JBBAZHhuM/W/qoTJRQaRKOjkf7KDOE4draGg+eA5id0v/vJlaMsWyX07aF5TcfUQ==
+ b=hgTmJRzHeJ7OxCVfQzHCwdjkAcgqQlCI29TAZTQw8pjd1JicrkSubXoaK5el6k9FDAI27yagYaKss3Y5QHsNiomX7L8X6QLD5LQISHLyjZWZ4EEr9BvEFZdZQ69nNwid8hyTIPZocfcpEMdtzG4qTaOdaVxhHf9wh0xmNCRb/ZrYr2vBuexMWec4oQDSZ45naTxFQHwduDnYb4AWD9B9DfkDCZagKXXkF4I6mkARHf7+3aE9UMJFwjDCOCfE5NRICQoF9CFJm0yRu0IdMSzLTdnDAnIKT+Ux/UvuglTa8ReURcLyduSXZ6BiJCFQpcMtLQtA8gSdmtTQXCgmfgF7vA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TLEjeDr9JX0s7zuniTfZsDe4F7aWU3DoQS0NQKYXc8w=;
- b=OMX+cZeu4bt9IfNF1O+rDzc8enJxhEi67wLdSZ3g07fpChPFLkLgrGiFl8+goVWfoe0yInMqgeg/j4zu4zhY5WuqxIdOf7KYHgxEQWtLCsLnzBlwd+ecZsH+6v/lJFd2atAtxi1bmsC0598GtQSf5Yu6VLKlc/Dsf4PC15ZB2L8KHq+gqLJ9vqaF9kWw+wEqFMesCqpuHIyCCWv+F1MyCUwwkEJNeq4y0Cje9WZ2lRmFpUMtPvUwyc1e9/0TVw39+uN4DwwODO4mKD5Kiy2FHmtpB7rbsBuoBzlIPAtbEuSrESMIpxrLE9BesBc0NQsQ3CR3W6CkWmElDXgnJm8yKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=csgroup.eu; dmarc=pass action=none header.from=csgroup.eu;
- dkim=pass header.d=csgroup.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=csgroup.eu;
+ bh=XReERc6bF+gXR/4HrtzeEgYVd5CVf/PR5+YpUZDCH1M=;
+ b=hGMaG4TKx+dhJTnbKhvX1lVhM8SJRwCMkla9atALhMYvUwqKt3HBLh9cfWqKmRBAkLgggGRE3v/54IZQ9craAP3MaGskVSTrBfAXclW277zoKtaaFlxC6ZsGEF75WKxo4yg/3P1xtBxAV1xXdKdRXj/FNmbEWMj7x+vKAYXpqEVctuT4KeMl7dXaeZXP+FrZzm6VVTWQQRlFtysvLjk/MNi4ErKbo1XrVXdQfeSKRosmM1m/NUx6zLXr+ZkOnf6TEpPjDV5apverMX0HsGTGl3kZ5aKiBbixZby3kWtjtjyfEIXDvvdQ0uavl8XuwhZ8Kb8uheHrMZMNVNPUDNvRZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TLEjeDr9JX0s7zuniTfZsDe4F7aWU3DoQS0NQKYXc8w=;
- b=kdc3bVZoYmi8L0v9G1PXqEwJhpc9vM92rI0PLMApzNVaPAOgX8pTqD63skgGEsTpPxItEgWEcpI48pF8C3eUgCUUVGETyrryuON5ZJCzXodI5x+e8BwaPj5TqglN2WEprqYfr/RO+EzWg9eIMv01+Oo0q4fUOqjU1jL3D62p0V6fLfAjXI6l8EYd2P/5MT5lzHluMSEz/ywpBR9ex0fCO3qxiP+yIxadONBDZqqjjNjr0eR5u8kmv91jdLAUWtTdVtWMk3dspVEA23lj7v2F3Al6eG15sAMSIZqK4hzzmLfMQX4s6/ao1mmzyk+r0xvPA0uQS0P4SXs+KTCOYRQdxQ==
-Received: from MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:31::15)
- by PR0P264MB2140.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:166::17) with
+ bh=XReERc6bF+gXR/4HrtzeEgYVd5CVf/PR5+YpUZDCH1M=;
+ b=iTBx+eIdqwTil7AZL/GSOJde5iK1eiZl8j1Ndacv67c0DFCtXFoPgm7qkWlWhmL4y7bHYnJUfz4q3V1CSojnZ2bRanOXO2Ksgu4R6VDXw4DO34AD0krRzuz3LKKCkVJ5M8BpC4paiHwYR9n4MD5hllHruvSzOChU2aZrb572ta31etDiZtGOuAsAjUlsKZCwmaFU1soOPnmHPrH6/LsOUXAF/c5z/B9yPHxo7m66bzd4CpkVVXfKP00mkGvMl8CMn5y2lLSLN1prXCs2sQBwaxCg85l1JmTE+hugbNrfMIc4zzflRFwu5uyjc/bDkzinrY1GUOX2kajjhnfFFmi6AQ==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by SN6PR06MB5245.namprd06.prod.outlook.com (2603:10b6:805:fa::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Wed, 11 Jan
- 2023 17:34:32 +0000
-Received: from MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
- ([fe80::2cfb:d4c:1932:b097]) by MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
- ([fe80::2cfb:d4c:1932:b097%7]) with mapi id 15.20.5986.018; Wed, 11 Jan 2023
- 17:34:32 +0000
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-To:     Herve Codina <herve.codina@bootlin.com>
-CC:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 06/10] soc: fsl: qe: Add support for QMC
-Thread-Topic: [PATCH v2 06/10] soc: fsl: qe: Add support for QMC
-Thread-Index: AQHZIe1KiCJWjZ4L0UmZQZF6SLJUjK6ZRZeAgAAckQCAAB/rAA==
-Date:   Wed, 11 Jan 2023 17:34:32 +0000
-Message-ID: <1073680a-ed56-5b88-b9b8-2b4d468e990e@csgroup.eu>
-References: <20230106163746.439717-1-herve.codina@bootlin.com>
- <20230106163746.439717-7-herve.codina@bootlin.com>
- <f46eb64d-ad4c-7531-60b0-68961f171ed8@csgroup.eu>
- <20230111164018.676a8ca1@bootlin.com>
-In-Reply-To: <20230111164018.676a8ca1@bootlin.com>
-Accept-Language: fr-FR, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=csgroup.eu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MRZP264MB2988:EE_|PR0P264MB2140:EE_
-x-ms-office365-filtering-correlation-id: e0677e9d-a65b-479c-55c9-08daf3fa19e2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KyRoUg/UErc5jUtXOiE3CpFqdvymV+3JmTpmGTabTy+L7cRFY8BwHYDR/igEWO0+oRumxNxvlxDaq23gaPEfD/XcVx0ibLpB32/sIajDkxdrw8yT992IeyJOYP3LgKiJOTX+5O8xNmku/Gp80pLY2ZArp9UG897Rw908EGM1Ac366q25pSfQFR+p1NgW3i0sfU6c/sDBKhxjrRH5+tzhQm/L9dTaio2Jb/5KKvsyU1CNDL0Q3DMXQMfmRLjNkyEkJEgEfi6icMJIW2k0Iv2WUgcjye2mP+C7TsVMJEPkf9qFOH6RFer0Mv7Vljxw8Frwjf29p2rOp9UudZEUvqYOxbFZNw1oPHZj3TSeXrcbAUB2C13IQQw9jAeuPEQx2MKNZLZKq9I7CxNe1XcdfpgsxrOL0k7D+mnP9RwYbYtZgh2Jd601t6+rYphyaHYhyqoNFHH7j6I8WFhSg5GZ4jRH+qAgWihYs1GMYgPHHggVEHk9XTjmR6Jtqrrww3n85Yq9HuyaPpD818bAH1knV3bI4LamuxCHWQDFFjH5SRG3NeQEKLXSdjvDt+j4gVJJSQyJ0rHY87aPVY2S+JGqr4N/kaCoKF1NaqisWlwUgPHlAvxwQhfMebb/U+oSR9Cvq0KtaHmx/HuE1Bs9W2yyVTXxT6/zZmqa5vT79r/AboVTX65hSnVNYutWiMxi840lAy2bNUbl8NkBQW+fQFlRLqtsW2q2ASXli/Pv9EPSUpVKhtOfAQHyvJe6MoZSeiMf+LrRSFUX3Sv0zDEowN6beXn/bA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(39850400004)(396003)(376002)(136003)(366004)(451199015)(6506007)(38100700002)(122000001)(31686004)(2906002)(6486002)(478600001)(2616005)(7416002)(26005)(186003)(6512007)(44832011)(5660300002)(71200400001)(316002)(8936002)(38070700005)(36756003)(86362001)(66574015)(31696002)(41300700001)(64756008)(91956017)(6916009)(8676002)(76116006)(54906003)(66946007)(66556008)(4326008)(66476007)(66446008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MlorMVZrQmFvNTl3eFg5Z09jQVpOZkV3Si9NNk5HU0hWMVNMQ2hoSVlBN0NJ?=
- =?utf-8?B?UDlTa2JwR01FUVdGdmcvVVBKYjNHanJ3UDBOWW9JcVJQYnVobnV0c3IwUzJE?=
- =?utf-8?B?T3hZdlc4MWc5VnZramY1VmpUdVE2d3podUtMdmsxMWRvUXZ0TVVCUlI5SFl6?=
- =?utf-8?B?U0VzelhtU3YxcUNwbTRFY1NYdTJOb2hnNFB6S095Nm1HdmRZWWhXWTc4bHdI?=
- =?utf-8?B?TitzcVN3YkRkdXQ1Z1h4REp0R05OZTRya1VQU0RpL1dUeFQ0MUJZVzJLSHVo?=
- =?utf-8?B?TlI2OXJnazF1anFIWTI5M0x2NVk4d08wT0p5V2xUSDAweE5Ubys4T2FVYUto?=
- =?utf-8?B?RVFaM2hUK1BKTDNWZE5lc0ZaVVRUNEpsakJjM2w1T2M2czMzL0NySDJ6aHAz?=
- =?utf-8?B?L2RuWG04YkxUR3JrUlBrVUowZ2JaWmE4VVhZUG1rNE5yWEVZMEVpdU5PVG5E?=
- =?utf-8?B?YzhlRDZzMEZKZ1N3L3pQQmwrVzVZQkNYSjI0cExsa0lKWm9jYUk2eEtZUDN2?=
- =?utf-8?B?OHZ3MjZCRHRYQXRsTStnUmdYK3JLM1VMR3Y1Q25jaWtlRmIvelZJOVFGTnp5?=
- =?utf-8?B?NXNyMExtM3RZazNrQ09rUWhMRnRqRFA2LzdyVCtjRC9STnY3YlJ4KzR1dUls?=
- =?utf-8?B?OTFJUXFXbnZlR1UwMVcxdjBTdGVHNXc2bEVTZ0FlV1B6akJXbG1SRUZMU2Nk?=
- =?utf-8?B?V0hrbWc4Myt2dUpUMk9oMjRRVi9nR2RhNVZ6ZXlzSzdGazBUM3AyeVY4dDZD?=
- =?utf-8?B?ejcxZUV5VWJqZ3VxWDFrUTBMN1lwUkpWR0ZCQzhKU0tmcE5ka1V1QjdWZFNJ?=
- =?utf-8?B?ZDdPZ1I2VmxBWkJvek9LWHBiQzdNNkkzVDRldjR6MkIyQksyNzVKMkZNRk9n?=
- =?utf-8?B?Yi9MSUQ3WDBlVXRmbW9RdmpFZjBzdEZZTlBoSmRlSk9qdmloTlZYcEVuRUpv?=
- =?utf-8?B?UFpTSUNONTNPYlZtQ2Ztc1lqSFZQQ3I2NFJHZkJUR3NQMGU4V05HMU1USTRF?=
- =?utf-8?B?OGNVTTZ3RWxSMG9mRk9VV09lUkVuR2dFeDZvbDJ0Q0lwdyt1Q2lFTGFIaWpB?=
- =?utf-8?B?YXN0NTFJNURRZVJxOGVxRlJKWk92UDBFcEZsaFhtVUhEZkdYeXhjMVBkRFlL?=
- =?utf-8?B?SWhnTkFRWmIrQ0pxK1JVRTA4OU9PdzRXVEJac0V1REh5VWNJK1N4a3d5US92?=
- =?utf-8?B?WDFVeUNldEk2QzVnZDRaQ2V4SzA4UXlrK29IOWY5N3R2QWJGVkJXWWJBb0lB?=
- =?utf-8?B?YjFjTU53aTNxbTUyVlAyS1BORWRmeEsxSTQvOFhXRzJRNGk4RjBsRElGY2xI?=
- =?utf-8?B?RUw5VUdneklHdVdaZWJyUEc5NlpTb1hjMUc2SnNwMGd6azJaTXRrOTBGME5l?=
- =?utf-8?B?VTRZbjFXU0ljN2U5RUhvODJjb0syTmZRRDFza2hqMjdJQW9mYmV2Qmw1bnBD?=
- =?utf-8?B?STJ3WDFWVCtlWDYyV3NYRDloUUtjekhiSUNqaDF6VVVENzUraTlMTUlLMlc5?=
- =?utf-8?B?eUxUVmNheVhpY3dOcEdRMW5kZzN5a2FNb2RzSWllRFFUYURoblVrK0VLVlNC?=
- =?utf-8?B?ams2TnZzNCt4Z3RXKyt5V3E3UmN1WGt6L2wwcmdwTHI3Njc4WUVhSldyWFpa?=
- =?utf-8?B?R3VrUys1a25UNFZvLzBDeFJQcFh2b3I1MFFrb09CZ2FHQWpQSDVPeVAvOVB6?=
- =?utf-8?B?UVJQckxqMDltVDY5dnhuMEZTL3hsMGxnZVh2UHc0Tm5nZC9ZZkJ3bTE3R1Bh?=
- =?utf-8?B?Q3ArSTlCYmRDRDVwYWdBOWpjdlNDbWxwT3NWUUwzaDRoWHdSWHU1UHM5WXM4?=
- =?utf-8?B?QUhad1cvNk9jNGdnME5jNzBXRGRZVWJkMDJ3ZFBhS0Z3UDQzR3RHam5RTXdG?=
- =?utf-8?B?QXpUckdYbVE0Snh1NnUvK2hQeHdSTmxYZXVBU2dCV2lRaG5ZaTdWM3ErWkZz?=
- =?utf-8?B?dzJCa1FmSmEyNHI1S3IvbGFWQ2c0SWoyVS9ubktVb3RGRm1LcU5Bbyt0VHZN?=
- =?utf-8?B?cTJ5QlVKa3VKUUNCWUZNS0Uzbm95VkFkb212RWlzb0crdExIQ1NXL0dua0Mw?=
- =?utf-8?B?ZlVRUk82amdod3JTSTgydXpyTU5HVlQ1YmhUb09VMWVJM0VHU3J6aU9rS3Z4?=
- =?utf-8?B?M2xDUzlXSWJ0bElCajcvbUlyT3FTbithcmt5SXEyYlQ3MXVBbktTa3dWcFJS?=
- =?utf-8?B?cnc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6070D77E60655142A4EA24A20990473C@FRAP264.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+ 2023 17:34:40 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::ff4f:2e64:cf70:cc68]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::ff4f:2e64:cf70:cc68%5]) with mapi id 15.20.5986.018; Wed, 11 Jan 2023
+ 17:34:40 +0000
+Date:   Wed, 11 Jan 2023 11:34:36 -0600
+From:   Chris Morgan <macromorgan@hotmail.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chris Morgan <macroalpha82@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        maccraft123mc@gmail.com, tzimmermann@suse.de,
+        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
+        thierry.reding@gmail.com, linus.walleij@linaro.org
+Subject: Re: [PATCH v9 1/4] drm: of: Add drm_of_get_dsi_bus helper function
+Message-ID: <SN6PR06MB5342934ECB5D0271D5BC0C1BA5FC9@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20230111163012.310945-1-macroalpha82@gmail.com>
+ <20230111163012.310945-2-macroalpha82@gmail.com>
+ <20230111163926.k3v32pdvq7o7wxwl@houat>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230111163926.k3v32pdvq7o7wxwl@houat>
+X-TMN:  [jD48r6WPBuLAd2sdsJiyo7LZOmWRtv21]
+X-ClientProxiedBy: SA9PR13CA0169.namprd13.prod.outlook.com
+ (2603:10b6:806:28::24) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <Y77zLJcrhr2OlcmZ@wintermute.localhost.fail>
 MIME-Version: 1.0
-X-OriginatorOrg: csgroup.eu
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SN6PR06MB5245:EE_
+X-MS-Office365-Filtering-Correlation-Id: e7482fc0-f156-43e1-ef9d-08daf3fa1e39
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DGN3KdmKSjhlo01mRQcwGcr1Sau66EsgYICpn1jeU2+x90KaV2ztB3FE7TWZB0ahVqBkM8b34iejELknIZp06FA7fKAMOvaY+El/h5eyn2+1celaf+CHX6KsMdYdqt7GR1vGgSui0Nj4d31WEqCMBCOXMpHDGpDioU4rAweW4WONHk23KDHkw0tRJIFf8r92n1QtvJrjTOYJIzseV2HW4Adg06cnn9f/CsWU89Zz022Vau4RkL8fFn23xxQpjrV7u1owb5W8W/VDnDZ9kx6n+2J3ynf+oOy+1mtbHXWIuq6M+lVmKfPYT4bFOIBm5mbUs5AQPOhHXMrlnbIYmf8IXGmcVwLKHFGn77xjjSahzwIdbEHT4yfnkNegWZmS3S51cwjkPlXNRyqGM6f0mtdrAnEctNaa8ITYQgD35TkBe8BANKhsKWVgPNeo1xaMnO2Rt5NAp0/drgvHW5Zlf6xcNayIJJU9+nFDXQ4izttrmveTJtcGvkWg/aDpSZ0B5+XfJU9xCg1LpiiuO3KY6mo3kRT25WOQXiE28gRyYtgugo8yBINxrKRp1jPsvXLbQouBRUZuWTznVAvWyp6wMHpj/nKvRFDTknl5IeWUOiZTJ56S1VFBTvC3ui4ME4hrhCRP2yQOIcQJcJYInLxSHW+3Pg==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CpaFZydukLzncVSc6u0yffeKbvTKk5LGILl4d4KsI4iWMGfJYLqD5Qwx1/Yk?=
+ =?us-ascii?Q?23XBuQI+e2EmHWagm9EaA15Z9hiTCGYjmxPCStXfM6eF55CsrzAhsiH+pa9h?=
+ =?us-ascii?Q?Nd7IpHUTts+JQwznWkGOUZerCUxiehFloU6xIwT+5Ab1G0P28ouxv1KXqVMO?=
+ =?us-ascii?Q?ZldsIme+mcJDJBl9iitB8/L3Oq3QAJpzHY06Hbuj6qQfwvDduLgI/0uhsEVh?=
+ =?us-ascii?Q?ihQXB6QFO5yFMLO6mpFsYs9sRr7pbkTsi5bjRvmKhJyngS287m0vh6qIzpta?=
+ =?us-ascii?Q?bRjGd0KQkfwG6ezMVvxkGBZ2TafKOMdpZE6EZqMmfJ3TVK8bUQ7VH9LIHeBp?=
+ =?us-ascii?Q?kK3tMMXKlL2+NClsQsNdkvUrRpYaeLcUrbNbKQzSkt9QXLTUoOc4ZBW2YYEJ?=
+ =?us-ascii?Q?GvVugNQuORg8IUU+yf0AgmdysXt9V+HaqvCfDEVZGPXZjtAQQ9muoBPFHHI0?=
+ =?us-ascii?Q?jy4SJEnd8RBIlCdZw+/hvyj30kJzYPonQNp37ibetararzseR+TwCDoWfqX3?=
+ =?us-ascii?Q?zN28oSbFx9pu9kT0K7oQKTTbdGLLugxFywVNMgvryE9XyMZYVxkz5CURMYhk?=
+ =?us-ascii?Q?28nFDgSWE9POnOO/Hyofx6nYydX9AWMBDFKpwk07oI7nOBfFacQG8CwwQrXc?=
+ =?us-ascii?Q?6o6JNcFB6ujpnuDzFR6R4macPJCHeBAG7/zT/YtGGCTR/58JCw9eS3S97+SU?=
+ =?us-ascii?Q?47WMsBCfdXGHNvD0mKqJJ/wcO1T9IYM+2HHmik1uEl21evNBWKZrtlQznT6a?=
+ =?us-ascii?Q?s79I3ZYCgCgv/ApG2Ke8dQGJNGMd5zRfXiAtcsns24NDPs8nQbc73CXMK64C?=
+ =?us-ascii?Q?fewo6bM3j9+uMvExji9QBC6gjLIPpfhP8G2wBNzZ3gL6M3j3gmr/UFTCQg/e?=
+ =?us-ascii?Q?jvckAUySvouq5rTGnu7oSWolVFNkRFS2fz/WEPsCeEWjKpt9qgyjfvj2C9ci?=
+ =?us-ascii?Q?+WXiw8452NdlhmlwadbPdzONgEJsgP+Inmjx8UtvRsgGcGJ5w9JEJOxa/sAI?=
+ =?us-ascii?Q?T24pUs+ZomkSOqTuQOnwg4UOwSrwfMjvKS23eg94PpqgkVRkRgGhc8vmDcTt?=
+ =?us-ascii?Q?XtkkqJgo0RuB6aciQffI5J1rXSWFI1uBQSbrYkMKtFXWumzj0wPKlQNm68sD?=
+ =?us-ascii?Q?WVpDNr1EZ8nf8EabGhemqj2gLUurtb+jn+fEgFoGbzBJyVv0N6uy5j4rtbu/?=
+ =?us-ascii?Q?LzJayBjcNJN2Q1OBFWsc3kgbvCb/lzipV2Ry1kNz/LcLdg3dQiCOsfGL5r3y?=
+ =?us-ascii?Q?MFCG9bT+UM+mHXdejwjBHkZO2fUvLARBnmdpalZXsA=3D=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7482fc0-f156-43e1-ef9d-08daf3fa1e39
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MRZP264MB2988.FRAP264.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: e0677e9d-a65b-479c-55c9-08daf3fa19e2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2023 17:34:32.7827
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2023 17:34:40.7082
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9914def7-b676-4fda-8815-5d49fb3b45c8
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7QTs8sPl+iEBN89kyB4tOb0XM9Qhzz2jSpBP0e7b39XRWR8q2vIOIsvVGXLfEFRGUt7tfpZ4VIpqd+94ZHmeKRkOxxM3CZwoMQzXTGnXYNg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR0P264MB2140
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR06MB5245
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCkxlIDExLzAxLzIwMjMgw6AgMTY6NDAsIEhlcnZlIENvZGluYSBhIMOpY3JpdMKgOg0KPiBI
-aSBDaHJpc3RvcGhlLA0KPiBPbiBXZWQsIDExIEphbiAyMDIzIDEzOjU4OjAzICswMDAwDQo+IENo
-cmlzdG9waGUgTGVyb3kgPGNocmlzdG9waGUubGVyb3lAY3Nncm91cC5ldT4gd3JvdGU6DQo+IA0K
-Pj4gTGUgMDYvMDEvMjAyMyDDoCAxNzozNywgSGVydmUgQ29kaW5hIGEgw6ljcml0wqA6DQo+Pj4g
-VGhlIFFNQyAoUVVJQ0MgTXVsdGljaGFubmVsIENvbnRyb2xsZXIpIGlzIGF2YWlsYWJsZSBvbiBz
-b21lDQo+Pj4gUG93ZXJRVUlDQyBTb0Mgc3VjaCBhcyB0aGUgTVBDODg1IG9yIE1QQzg2Ni4NCj4+
-DQo+PiBTYW1lLCB0aGF0J3MgUU1DIGZvciBDUE0gZm9yIHRoZSB0aW1lIGJlaW5nLCBzaG91bGQg
-dGhhdCBiZSBtYWRlIGNsZWFyDQo+PiBpbiB0aGUgc3ViamVjdCA/DQo+IA0KPiBBbHNvIHNhbWUg
-YW5zd2VyOg0KPiBXaWxsIGNoYW5naW5nIHRoZSBzdWJqZWN0IGJlIGVub3VnaCBvciBkbyBJIG5l
-ZWQgdG8gbW92ZSBpdCB0byBuZXcNCj4gY3JlYXRlZCBkcml2ZXJzL3NvYy9mc2wvY3BtLyBkaXJl
-Y3RvcnkgPw0KPiANCj4+DQo+PiBRRSBhbHNvIGhhcyBRTUMgYW5kIHRoaXMgZHJpdmVyIG1pZ2h0
-IGJlIHVzZWQgZm9yIFFFIFFNQyBhcyB3ZWxsIHdpdGgNCj4+IHNvbWUgZW5oYW5jZW1lbnQsIG1h
-eWJlIHRoYXQgY291bGQgYmUgZXhwbGFpbmVkIGhlcmUgPw0KPiANCj4gWWVzIGFuZCB3ZSBwbGFu
-IHRvIGhhdmUgaXQgd29ya2luZyBvbiBRRSB0b28uDQo+IA0KPiBXaGF0IGRvIHlvdSB0aGluayBp
-ZiBJIGFkZCB0aGUgZm9sbG93aW5nOg0KPiAgICBUaGUgUU1DIGlzIGFsc28gYXZhaWxhYmxlIG9u
-IHNvbWUgUXVpY2MgRW5naW5lIFNvQy4NCj4gICAgVGhpcyBjdXJyZW50IHZlcnNpb24gc3VwcG9y
-dCBDUE0xIFNvQyBvbmx5LiBTb21lDQo+ICAgIGVuaGFuY2VtZW50IGFyZSBuZWVkZWQgdG8gc3Vw
-cG9ydCBRdWljYyBFbmdpbmUgU29DLg0KPiANCg0KVGhhdCdzIGxvb2sgZ29vZC4NCg0KPj4NCj4+
-IEkgc2VlIHlvdSBhcmUgdXNpbmcgaW5fYmUxNigpLCBvdXRfYmUxNigpIGV0YyAuLi4uDQo+PiBU
-aGF0J3Mgc3BlY2lmaWMgdG8gcG93ZXJwYyBhcmNoLCBtYXliZSBpdCBpcyBiZXR0ZXIgdG8gdXNl
-IGlvcmVhZDE2YmUsDQo+PiBpb3dyaXRlMTZiZSgpIGV0YyAuLi4uDQo+PiBTZWUgY29tbWl0IDNm
-MzlmMzhlYTkxZCAoInNvYzogZnNsOiBxZTogcmVwbGFjZSBxZV9pb3tyZWFkLHdyaXRlfSoNCj4+
-IHdyYXBwZXJzIGJ5IGdlbmVyaWMgaW97cmVhZCx3cml0ZX0qIikgYW5kIGNvbW1pdCA2YWM5YjYx
-Nzg2Y2MgKCJzb2M6DQo+PiBmc2w6IHFlOiBpbnRyb2R1Y2UgcWVfaW97cmVhZCx3cml0ZX0qIHdy
-YXBwZXJzIikgZm9yIGluZm9ybWF0aW9uLg0KPiANCj4gWW91J3JlIHJpZ2h0Lg0KPiBJIHdpbGwg
-c3dpdGNoIHRvIGlve3JlYWQsd3JpdGV9ezE2LDMyfWJlLg0KPiANCj4gSSBwcmVmZXIgYXZvaWQg
-dGhlIHVzZSBvZiBxZV8qIHdyYXBwZXJzIGFzIHRoZSBkcml2ZXIgaXMgbm90DQo+ICh5ZXQpIGNv
-bXBhdGlibGUgd2l0aCBRRS4NCg0KQnkgdGhlIHdheSB0aGF0IHdhcyB0aGUgcHVycG9zZSBvZiBj
-b21taXQgM2YzOWYzOGVhOTFkICgic29jOiBmc2w6IHFlOiANCnJlcGxhY2UgcWVfaW97cmVhZCx3
-cml0ZX0qIHdyYXBwZXJzIGJ5IGdlbmVyaWMgaW97cmVhZCx3cml0ZX0qIiksIA0KcmVwbGFjZSBx
-ZV8qIHdyYXBwZXJzIGJ5IGRpcmVjdCB1c2Ugb2YgaW97cmVhZCx3cml0ZX17MTYsMzJ9YmUNCg0K
-U28geWVzLCB1c2luZyBpb3tyZWFkLHdyaXRlfXsxNiwzMn1iZSBkaXJlY3RseSBpcyBwcmVmZXJh
-YmxlLg0KDQo+IA0KPj4NCj4+Pg0KPj4+IEl0IGVtdWxhdGVzIHVwIHRvIDY0IGNoYW5uZWxzIHdp
-dGhpbiBvbmUgc2VyaWFsIGNvbnRyb2xsZXINCj4+PiB1c2luZyB0aGUgc2FtZSBURE0gcGh5c2lj
-YWwgaW50ZXJmYWNlIHJvdXRlZCBmcm9tIHRoZSBUU0EuDQo+Pj4NCj4+PiBTaWduZWQtb2ZmLWJ5
-OiBIZXJ2ZSBDb2RpbmEgPGhlcnZlLmNvZGluYUBib290bGluLmNvbT4NCj4+DQo+PiBJbiBzb21l
-IHBsYWNlcywgeW91IGNvbW1lbnRzIHVzZSB0aGUgbmV0d29yayBzdHlsZSwgbm90IHRoZSBnZW5l
-cmljIHN0eWxlLg0KPiANCj4gSSB3aWxsIGZpeCB0aGVtLg0KPiANCj4+DQo+PiBDaHJpc3RvcGhl
-DQo+IA0KPiBUaGFua3MgZm9yIHRoZSByZXZpZXcsDQo+IEhlcnbDqQ0KPiANCg==
+On Wed, Jan 11, 2023 at 05:39:26PM +0100, Maxime Ripard wrote:
+> Hi,
+> 
+> On Wed, Jan 11, 2023 at 10:30:09AM -0600, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Add helper function to find DSI host for devices where DSI panel is not
+> > a minor of a DSI bus (such as the Samsung AMS495QA01 panel or the
+> > official Raspberry Pi touchscreen display).
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> > ---
+> >  drivers/gpu/drm/drm_of.c | 70 ++++++++++++++++++++++++++++++++++++++++
+> >  include/drm/drm_of.h     | 10 ++++++
+> >  2 files changed, 80 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
+> > index 7bbcb999bb75..4ebb5bc4b595 100644
+> > --- a/drivers/gpu/drm/drm_of.c
+> > +++ b/drivers/gpu/drm/drm_of.c
+> > @@ -10,6 +10,7 @@
+> >  #include <drm/drm_crtc.h>
+> >  #include <drm/drm_device.h>
+> >  #include <drm/drm_encoder.h>
+> > +#include <drm/drm_mipi_dsi.h>
+> >  #include <drm/drm_of.h>
+> >  #include <drm/drm_panel.h>
+> >  
+> > @@ -493,3 +494,72 @@ int drm_of_get_data_lanes_count_ep(const struct device_node *port,
+> >  	return ret;
+> >  }
+> >  EXPORT_SYMBOL_GPL(drm_of_get_data_lanes_count_ep);
+> > +
+> > +/**
+> > + * drm_of_get_dsi_bus - find the DSI bus for a given device
+> > + * @dev: parent device of display (SPI, I2C)
+> > + * @info: DSI device info to be updated with correct DSI node
+> > + *
+> > + * Gets parent DSI bus for a DSI device controlled through a bus other
+> > + * than MIPI-DCS (SPI, I2C, etc.) using the Device Tree.
+> > + *
+> > + * Returns pointer to mipi_dsi_host if successful, -EINVAL if the
+> > + * request is unsupported, -EPROBE_DEFER if the DSI host is found but
+> > + * not available, or -ENODEV otherwise.
+> > + */
+> > +struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
+> > +					 struct mipi_dsi_device_info *info)
+> > +{
+> > +	struct mipi_dsi_host *dsi_host;
+> > +	struct device_node *endpoint, *dsi_host_node;
+> > +
+> > +	/*
+> > +	 * Exit immediately if we attempt to call this function when
+> > +	 * DRM_MIPI_DSI is not enabled, in the event CONFIG_OF is
+> > +	 * enabled.
+> > +	 */
+> > +	if (!IS_ENABLED(CONFIG_DRM_MIPI_DSI))
+> > +		return ERR_PTR(-EINVAL);
+> 
+> The commit log isn't super clear on why this is needed, but it would be
+> more consistent to add an ifdef and only compile the entire function if
+> DRM_MIPI_DSI is there, just like you did for OF already.
+
+Thank you. I can do that, I just wasn't sure if "#ifdefs" were frowned
+upon or not. That would probably be the easiest way to do this though.
+
+> 
+> > +	/*
+> > +	 * Get first endpoint child from device.
+> > +	 */
+> > +	endpoint = of_graph_get_next_endpoint(dev->of_node, NULL);
+> > +	if (!endpoint)
+> > +		return ERR_PTR(-ENODEV);
+> > +
+> > +	/*
+> > +	 * Follow the first endpoint to get the DSI host node.
+> > +	 */
+> > +	dsi_host_node = of_graph_get_remote_port_parent(endpoint);
+> 
+> There's no need to hold the reference to endpoint after that call. call
+> of_node_put(endpoint) here, and it will simplify the error path.
+> 
+> > +	if (!dsi_host_node)
+> > +		goto error;
+> > +
+> > +	/*
+> > +	 * Get the DSI host from the DSI host node. If we get an error
+> > +	 * or the return is null assume we're not ready to probe just
+> > +	 * yet. Release the DSI host node since we're done with it.
+> > +	 */
+> > +	dsi_host = of_find_mipi_dsi_host_by_node(dsi_host_node);
+> > +	of_node_put(dsi_host_node);
+> > +	if (IS_ERR_OR_NULL(dsi_host)) {
+> > +		of_node_put(endpoint);
+> > +		return ERR_PTR(-EPROBE_DEFER);
+> > +	}
+> > +
+> > +	/*
+> > +	 * Set the node of the mipi_dsi_device_info to the correct node
+> > +	 * and then release the endpoint node since we're done with it.
+> > +	 */
+> > +	info->node = of_graph_get_remote_port(endpoint);
+> 
+> Ah, you're using it there.
+> 
+> I think I'd rework the function to:
+> 
+> - retrieve the endpoint
+> - retrieve the remote port, give up the endpoint
+> - retrieve the remote port parent
+> 
+> Also, I'm not entirely sure what you had in mind, but info might not be
+> there at all and it would be fine imho.
+> 
+
+What if I make it optional and if a NULL is passed skip this step, but
+otherwise populate the info node?
+
+> Maxime
+
+Thank you for your input. I'll wait for the bots to see if the previous
+errors are really finally fixed, then I'll make these changes and
+resubmit.
