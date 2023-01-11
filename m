@@ -2,73 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95E71665C3D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 14:14:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ABB6665C55
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 14:21:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233043AbjAKNOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 08:14:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41316 "EHLO
+        id S233049AbjAKNVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 08:21:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233008AbjAKNOk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 08:14:40 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6614F1A382
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 05:14:39 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id t5so10570401wrq.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 05:14:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kxczFsSNSjmSDy5ASaWPpETpn1NDyzoZSG+SbIRKv9g=;
-        b=fynurd1+7sZWpgX+ZBdpBjtsKnuUoSuqj3uA3CuKnWLWE+bk1QRL8qUBS8iMIgGsPx
-         sXR1ys2awo5NjCWEVTj/Zt9heSMLqRyMrCxeDG7i2Xun6mPils6JkAa/Oa7mcoCnhLcd
-         uwmzYykP3Sqy0cd7C5SwkzTkXDHfdH4v9pWPNoR9fUegDpO0zDWogYEuDN2XH5VpTEOC
-         FInVHxwwT9G2F2mVGh7tt0mwLGCPrBOHFEvAFDmKtesHhIqZrMT1Apo8eYdOzBlQ/PHH
-         w5U/NtzIFtM2MxKo9n0UsgG1v8XAfikImT5g2yuw7W+svRUvMjjWuDf34Q+ehJbPGwiG
-         s+uA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kxczFsSNSjmSDy5ASaWPpETpn1NDyzoZSG+SbIRKv9g=;
-        b=2Y1umRyZ0pO09+qom6+KAGzeCewPKRexILQnXJMDz71bbVzqmj+3fmlMlBrcE3OEAb
-         gu7MS+UBUdZoLQvRV71U07bXrnkgQOGQ2Taf3m1LK0tp4U1MP2vvxjrZXvTScqcgcWLc
-         jiPSHXTakjyBSteIoa9Vln2Uhp2N+ooSOZt4PiS3QN1YSfVmeERg+UNVCYcmaq7D7u1w
-         cCfo6iiAGVBq5xkCO20Pan6mZrEdtYPX3KaIl2FgqpfRe3oIf87zsKffOSqgXQIVCACC
-         BnBvjM20UlIRX8FWkWhoJsVgPohfKN0akKT7rov5LIY6jfeEPTgqnxoc84dUYw6R/M7f
-         Zxyw==
-X-Gm-Message-State: AFqh2kpZDaBBpl+WcyNlI/W010LYEB/yL3LYhDdEohc3aN3S6aSOLhe/
-        05afr92TRmZpYu3tBD4NzVztPQ==
-X-Google-Smtp-Source: AMrXdXsW3LDZcyrpb098mF2zeNcNAfbkyBw94enf2jW/DYdPwLD3ZbTLnrJ8rmSQ3rlSjxTEzR192Q==
-X-Received: by 2002:adf:e8c9:0:b0:2ba:53cd:7558 with SMTP id k9-20020adfe8c9000000b002ba53cd7558mr11512354wrn.61.1673442877980;
-        Wed, 11 Jan 2023 05:14:37 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r4-20020adff704000000b0022e57e66824sm15616633wrp.99.2023.01.11.05.14.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 05:14:37 -0800 (PST)
-Message-ID: <606af582-e4fa-09ad-a65a-8d15fc86f5ad@linaro.org>
-Date:   Wed, 11 Jan 2023 14:14:35 +0100
+        with ESMTP id S232768AbjAKNVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 08:21:15 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FFE2617;
+        Wed, 11 Jan 2023 05:21:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D9371B81BFC;
+        Wed, 11 Jan 2023 13:21:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FE2DC433F0;
+        Wed, 11 Jan 2023 13:21:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673443270;
+        bh=ISFWJ7IK4NOUI4+Z5Sm60UhFRmtLQIdAfB5VDLBw6M8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QwQLJgZZSL54B+vK7fc14GlCICDEfSzWk6YEfjgEjd6SrTKJSE9SMED1M8AeCC6SU
+         geKx34z6dgxb9MHRHKpIOYWRYSjd1RAGPl72XVdUkcpWKkn0mOGAEbmUYFdulOv2Cs
+         8CzeAy+QvtbL79LyutFWb9GxeWxhFYkR1+MnSeMgmIaB8BJLohMlOIUc0Rip79DiPq
+         t4DungWYrRAnC0K9CNVQFaBo1HYEj6KNWON6/ihzwKtrToRaHe0SxPiIky+petf6F7
+         9l6lkHXHqasrjCysoxzMtvmuEkqpjd+v3ZRNXshcz3fUIht5+1XiA7bPwkF1MqQl1+
+         zeNWdMhUjOoew==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pFb2P-00085n-Ok; Wed, 11 Jan 2023 14:21:06 +0100
+Date:   Wed, 11 Jan 2023 14:21:05 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 1/4] arm64: dts: qcom: sc8280xp: Define some of the
+ display blocks
+Message-ID: <Y763wVbqHAEaBWBd@hovoldconsulting.com>
+References: <20230111035906.2975494-1-quic_bjorande@quicinc.com>
+ <20230111035906.2975494-2-quic_bjorande@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 1/2] dt-bindings: input: microchip,cap11xx: add
- cap1203, cap1293 and cap1298
-To:     Jiri Valek - 2N <jiriv@axis.com>, linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, u.kleine-koenig@pengutronix.de
-References: <20230111131111.475270-1-jiriv@axis.com>
- <20230111131111.475270-2-jiriv@axis.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230111131111.475270-2-jiriv@axis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230111035906.2975494-2-quic_bjorande@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,14 +60,202 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/01/2023 14:11, Jiri Valek - 2N wrote:
-> Add support for cap1203, cap1293 and cap1298.
+On Tue, Jan 10, 2023 at 07:59:03PM -0800, Bjorn Andersson wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
 > 
-> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
+> Define the display clock controllers, the MDSS instances, the DP phys
+> and connect these together.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+> 
+> Changes since v6:
+> - Dropped assigned-clock-rate on MDP_CLK
+> - Rearranged the properties in all nodes
+> 
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 811 +++++++++++++++++++++++++
+>  1 file changed, 811 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 0ea2f19d471b..2ed17baf50d3 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
 
+> +			mdss0_mdp: display-controller@ae01000 {
+> +				compatible = "qcom,sc8280xp-dpu";
+> +				reg = <0 0x0ae01000 0 0x8f000>,
+> +				      <0 0x0aeb0000 0 0x2008>;
+> +				reg-names = "mdp", "vbif";
+> +
+> +				clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+> +					 <&gcc GCC_DISP_SF_AXI_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_MDP_LUT_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_MDP_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_VSYNC_CLK>;
+> +				clock-names = "bus",
+> +					      "nrt_bus",
+> +					      "iface",
+> +					      "lut",
+> +					      "core",
+> +					      "vsync";
+> +				interrupt-parent = <&mdss0>;
+> +				interrupts = <0>;
+> +				power-domains = <&rpmhpd SC8280XP_MMCX>;
+> +
+> +				assigned-clocks = <&dispcc0 DISP_CC_MDSS_VSYNC_CLK>;
+> +				assigned-clock-rates = <19200000>;
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Nit: Shouldn't these come after the clock-names property as they did in
+v5 so that the clock properties are grouped?
 
-Best regards,
-Krzysztof
+> +				operating-points-v2 = <&mdss0_mdp_opp_table>;
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@5 {
+> +						reg = <5>;
+> +						mdss0_intf5_out: endpoint {
+> +							remote-endpoint = <&mdss0_dp3_in>;
+> +						};
+> +					};
+> +
+> +					port@6 {
+> +						reg = <6>;
+> +						mdss0_intf6_out: endpoint {
+> +							remote-endpoint = <&mdss0_dp2_in>;
+> +						};
+> +					};
+> +				};
 
+> +			mdss0_dp2: displayport-controller@ae9a000 {
+> +				compatible = "qcom,sc8280xp-dp";
+> +				reg = <0 0xae9a000 0 0x200>,
+> +				      <0 0xae9a200 0 0x200>,
+> +				      <0 0xae9a400 0 0x600>,
+> +				      <0 0xae9b000 0 0x400>;
+> +
+> +				clocks = <&dispcc0 DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_DPTX2_AUX_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_DPTX2_LINK_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_DPTX2_LINK_INTF_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_DPTX2_PIXEL0_CLK>;
+> +				clock-names = "core_iface", "core_aux",
+> +					      "ctrl_link",
+> +					      "ctrl_link_iface", "stream_pixel";
+> +				interrupt-parent = <&mdss0>;
+> +				interrupts = <14>;
+> +				phys = <&mdss0_dp2_phy>;
+> +				phy-names = "dp";
+> +				power-domains = <&rpmhpd SC8280XP_MMCX>;
+> +
+> +				assigned-clocks = <&dispcc0 DISP_CC_MDSS_DPTX2_LINK_CLK_SRC>,
+> +						  <&dispcc0 DISP_CC_MDSS_DPTX2_PIXEL0_CLK_SRC>;
+> +				assigned-clock-parents = <&mdss0_dp2_phy 0>, <&mdss0_dp2_phy 1>;
+
+Same here.
+
+> +				operating-points-v2 = <&mdss0_dp2_opp_table>;
+> +
+> +				#sound-dai-cells = <0>;
+> +
+> +				status = "disabled";
+
+> +			mdss0_dp3: displayport-controller@aea0000 {
+> +				compatible = "qcom,sc8280xp-dp";
+> +				reg = <0 0xaea0000 0 0x200>,
+> +				      <0 0xaea0200 0 0x200>,
+> +				      <0 0xaea0400 0 0x600>,
+> +				      <0 0xaea1000 0 0x400>;
+> +
+> +				clocks = <&dispcc0 DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_DPTX3_AUX_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_DPTX3_LINK_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_DPTX3_LINK_INTF_CLK>,
+> +					 <&dispcc0 DISP_CC_MDSS_DPTX3_PIXEL0_CLK>;
+> +				clock-names = "core_iface", "core_aux",
+> +					      "ctrl_link",
+> +					      "ctrl_link_iface", "stream_pixel";
+> +				interrupt-parent = <&mdss0>;
+> +				interrupts = <15>;
+> +				phys = <&mdss0_dp3_phy>;
+> +				phy-names = "dp";
+> +				power-domains = <&dispcc0 MDSS_GDSC>;
+> +
+> +				assigned-clocks = <&dispcc0 DISP_CC_MDSS_DPTX3_LINK_CLK_SRC>,
+> +						  <&dispcc0 DISP_CC_MDSS_DPTX3_PIXEL0_CLK_SRC>;
+> +				assigned-clock-parents = <&mdss0_dp3_phy 0>, <&mdss0_dp3_phy 1>;
+
+And here.
+
+> +				operating-points-v2 = <&mdss0_dp3_opp_table>;
+> +
+> +				#sound-dai-cells = <0>;
+> +
+> +				status = "disabled";
+
+> +		mdss1: display-subsystem@22000000 {
+> +			compatible = "qcom,sc8280xp-mdss";
+> +			reg = <0 0x22000000 0 0x1000>;
+> +			reg-names = "mdss";
+> +
+> +			clocks = <&gcc GCC_DISP_AHB_CLK>,
+> +				 <&dispcc1 DISP_CC_MDSS_AHB_CLK>,
+> +				 <&dispcc1 DISP_CC_MDSS_MDP_CLK>;
+> +			clock-names = "iface",
+> +				      "ahb",
+> +				      "core";
+> +			interconnects = <&mmss_noc MASTER_MDP_CORE1_0 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&mmss_noc MASTER_MDP_CORE1_1 0 &mc_virt SLAVE_EBI1 0>;
+> +			interconnect-names = "mdp0-mem", "mdp1-mem";
+> +			interrupts = <GIC_SPI 865 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-controller;
+
+This is a provider property so perhaps it should go before
+'#interrupt-cells' as it did above?
+
+> +
+> +			iommus = <&apps_smmu 0x1800 0x402>;
+> +			power-domains = <&dispcc1 MDSS_GDSC>;
+> +			resets = <&dispcc1 DISP_CC_MDSS_CORE_BCR>;
+> +
+> +			#interrupt-cells = <1>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			status = "disabled";
+> +
+> +			mdss1_mdp: display-controller@22001000 {
+> +				compatible = "qcom,sc8280xp-dpu";
+> +				reg = <0 0x22001000 0 0x8f000>,
+> +				      <0 0x220b0000 0 0x2008>;
+> +				reg-names = "mdp", "vbif";
+> +
+> +				clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+> +					 <&gcc GCC_DISP_SF_AXI_CLK>,
+> +					 <&dispcc1 DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc1 DISP_CC_MDSS_MDP_LUT_CLK>,
+> +					 <&dispcc1 DISP_CC_MDSS_MDP_CLK>,
+> +					 <&dispcc1 DISP_CC_MDSS_VSYNC_CLK>;
+> +				clock-names = "bus",
+> +					      "nrt_bus",
+> +					      "iface",
+> +					      "lut",
+> +					      "core",
+> +					      "vsync";
+> +				interrupt-parent = <&mdss1>;
+> +				interrupts = <0>;
+> +				power-domains = <&rpmhpd SC8280XP_MMCX>;
+> +
+> +				assigned-clocks = <&dispcc1 DISP_CC_MDSS_VSYNC_CLK>;
+> +				assigned-clock-rates = <19200000>;
+
+Move after 'clock-names'?
+
+There are a few more instances like this below.
+
+Johan
