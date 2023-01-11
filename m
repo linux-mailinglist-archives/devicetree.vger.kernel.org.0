@@ -2,196 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B83E66613A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 18:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC6D666165
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 18:09:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238714AbjAKQ7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 11:59:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60824 "EHLO
+        id S238852AbjAKRIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 12:08:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233100AbjAKQ7u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 11:59:50 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41558140F9;
-        Wed, 11 Jan 2023 08:59:47 -0800 (PST)
-Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:1ee3:efce:e4f6:17a3])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BAFCB6602DA4;
-        Wed, 11 Jan 2023 16:59:45 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673456386;
-        bh=sB0B5hMmBlGyvoV5FP5UJ3qSGt/YAjWMOgO6CSVwApk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CaFBvxd7Jdz3MTr/xQ2E2zcTQrHcdQPZgwXFyrMxWXtA5T+wXz82spe/Q/g8vfFnm
-         sh48qyGdbEUn+nDLCX/go4qyfe/SgAJcfzT+aKro2mmbgmEenrrmps+VLicMib+o1D
-         n9uYQlpXF7E83qmFrtG5Y8Y8goQ9mGnt9J3I4S5Vdvlmcb0BkkXlAaejSdhoNjmxt4
-         lrNRbSBC+K0bnGyIOdC4Y926Jz+yybA6TirK2d/E1jjBUaJ9HFsO0UaL5SS6bkASJr
-         +KjMQhO4AKoR/QW4yGmi9OzK0BB3GS9MgHPeQpB6h0ppueskmzSNBMuttpPgH2d87o
-         Io9uYxRvI3+8Q==
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v3 13/13] media: verisilicon: Conditionnaly ignore native formats
-Date:   Wed, 11 Jan 2023 17:59:31 +0100
-Message-Id: <20230111165931.753763-14-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230111165931.753763-1-benjamin.gaignard@collabora.com>
-References: <20230111165931.753763-1-benjamin.gaignard@collabora.com>
+        with ESMTP id S229928AbjAKRHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 12:07:36 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66259B1EF;
+        Wed, 11 Jan 2023 09:06:04 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id r18so10958048pgr.12;
+        Wed, 11 Jan 2023 09:06:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=89cPBXwaJNynsskh4m7BBUzu+Ax6lIerSdHhopU5dxk=;
+        b=K5e90OPR1LfeCr9JYTKvd1ajs9xoUHo10GXimFniYQfciBZNVkj66gf6Ys+7wglXPB
+         fxAvXzznPPz6eRgWbGPQgAVbFcodfNFuF5V45qXBCzlM1SJHTb4dyMF1wC0l6BlZ1zwf
+         qxNjhpCTDfeN95NVKIq8QQZIn+NWyI1+w8GsXmMHAm/uwg4y7CM2/ei2xqfgUmj1dgxL
+         4l20VsfYHST/NBdSMmMoK2oEMYbfu5Fs1LPQnj01h8p/ldcvOkfWL7cy5mKO0Qfasrmd
+         kicc/mIAzZZCKLrhFIh6w9b1ogMICO18TA8b1OVI1GdhS8vcQL7TyVAcG8rK3nfEo+u6
+         wIzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=89cPBXwaJNynsskh4m7BBUzu+Ax6lIerSdHhopU5dxk=;
+        b=UfaWMR3BLN/BHW1GemY8i+liaCgYUFbQGFNrl2qbIrMx5YIslNpppNwTnjtZu8kSDT
+         46fsWw8X/9R0VBVmyZWAxCVLugMkhI6puEEUmw5wWIGVLJARjMsAxWzY9d5PUhi/3kAA
+         CoEp2/r323YztHZ354IKOk3nbqdPW1bsRUQmWiQhbx0BoakDxc58Wr5JT+PqlVgq/ZTn
+         FMK854tt5Y8IBoCqs00Amp9NxhCoib4jVj0hLvlbrz1tmSiMZ3srv0yBV24R7ybJpMnr
+         3Z/JzAhHVPDMcuwrtEtmmU/Cq5yyGU4j4VfsrX05Am90VZvEiswNw4UlPHAymvpY5YiB
+         wuKg==
+X-Gm-Message-State: AFqh2kpvmnSmiyot2n1j1r3v5Mzq9EZvGDkH9HPRdHcqcshD8aUb5f4k
+        k1WnJvJQTlAi8YX4PU1DqsQ4Gms87k49SyeMMjdAoId1
+X-Google-Smtp-Source: AMrXdXv8z9But+pBFKWpmxeQSj4lB0fBgWddes8q1HNbe8wxWPXiNaSvrxPlQbIelQhpzi0gQ87Er4q4e4nQtINeNRA=
+X-Received: by 2002:a05:6a00:1796:b0:58b:9f0a:f87f with SMTP id
+ s22-20020a056a00179600b0058b9f0af87fmr11061pfg.81.1673456763592; Wed, 11 Jan
+ 2023 09:06:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230104141245.8407-1-aford173@gmail.com> <CAMuHMdWuE4L6K4ULdVLZKeLwd3xYfzkyBNrf6s7Qc2kf9b-_Cg@mail.gmail.com>
+In-Reply-To: <CAMuHMdWuE4L6K4ULdVLZKeLwd3xYfzkyBNrf6s7Qc2kf9b-_Cg@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 11 Jan 2023 11:05:52 -0600
+Message-ID: <CAHCN7xKJRE7mrRgpKiEEgpkH1NLR8uGcc3mr5Khp3sWjxEtbdQ@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: beacon-renesom: Fix gpio expander reference
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     linux-renesas-soc@vger.kernel.org, aford@beaconembedded.com,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AV1 film grain feature requires to use the postprocessor to produce
-valid frames. In such case the driver shouldn't propose native pixels
-format but only post-processed pixels format.
-Additionally if when setting a control a value could change capture
-queue pixels formats it is needed to call hantro_reset_raw_fmt().
+On Wed, Jan 11, 2023 at 10:29 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Adam,
+>
+> On Wed, Jan 4, 2023 at 3:12 PM Adam Ford <aford173@gmail.com> wrote:
+> > The board used to originally introduce the Beacon Embedded
+> > RZ/G2[M/N/H] boards had a GPIO expander with address 20, but
+> > this was change when the final board went to production.
+> >
+> > The production boards changed both the part itself and
+> > the address.  With the incorrect address, the LCD cannot
+> > come up.  If the LCD fails, the rcar-du driver fails to come up,
+> > and that also breaks HDMI.
+> >
+> > Pre-release board were not shipped to the general public, so it
+> > should be safe to push this as a fix.  Anyone with a production
+> > board would have video fail due to this GPIO expander change.
+> >
+> > Fixes: a1d8a344f1ca ("arm64: dts: renesas: Introduce r8a774a1-beacon-rzg2m-kit")
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+> > @@ -437,20 +437,6 @@ wm8962_endpoint: endpoint {
+> >                 };
+> >         };
+> >
+> > -       /* 0 - lcd_reset */
+> > -       /* 1 - lcd_pwr */
+> > -       /* 2 - lcd_select */
+> > -       /* 3 - backlight-enable */
+> > -       /* 4 - Touch_shdwn */
+> > -       /* 5 - LCD_H_pol */
+> > -       /* 6 - lcd_V_pol */
+> > -       gpio_exp1: gpio@20 {
+> > -               compatible = "onnn,pca9654";
+> > -               reg = <0x20>;
+> > -               gpio-controller;
+> > -               #gpio-cells = <2>;
+> > -       };
+> > -
+> >         touchscreen@26 {
+> >                 compatible = "ilitek,ili2117";
+> >                 reg = <0x26>;
+> > @@ -482,6 +468,21 @@ hd3ss3220_out_ep: endpoint {
+> >                         };
+> >                 };
+> >         };
+> > +
+> > +       gpio_exp1: gpio@70 {
+> > +               compatible = "onnn,pca9654";
+>
+> According to the patch description, the actual part was changed, too?
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
-v3:
-- Reset raw pixel formats list when bit depth or film grain feature
-  values change.
+humm.. I was under the impression it was after talking with one of the
+hardware developers, but clearly it's using the same compatible name.
+I will investigate this further.  One way or the other, I'll redo the
+commit message.
 
- drivers/media/platform/verisilicon/hantro.h      |  3 +++
- drivers/media/platform/verisilicon/hantro_drv.c  | 11 ++++++++++-
- .../media/platform/verisilicon/hantro_postproc.c |  4 ++++
- drivers/media/platform/verisilicon/hantro_v4l2.c | 16 +++++++++++++++-
- drivers/media/platform/verisilicon/hantro_v4l2.h |  1 +
- 5 files changed, 33 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
-index a98cb40a8d3b..7a5357e810fb 100644
---- a/drivers/media/platform/verisilicon/hantro.h
-+++ b/drivers/media/platform/verisilicon/hantro.h
-@@ -231,6 +231,8 @@ struct hantro_dev {
-  * @ctrl_handler:	Control handler used to register controls.
-  * @jpeg_quality:	User-specified JPEG compression quality.
-  * @bit_depth:		Bit depth of current frame
-+ * @need_postproc:	Set to true if the bitstream features require to
-+ *			use the post-processor.
-  *
-  * @codec_ops:		Set of operations related to codec mode.
-  * @postproc:		Post-processing context.
-@@ -258,6 +260,7 @@ struct hantro_ctx {
- 	struct v4l2_ctrl_handler ctrl_handler;
- 	int jpeg_quality;
- 	int bit_depth;
-+	bool need_postproc;
- 
- 	const struct hantro_codec_ops *codec_ops;
- 	struct hantro_postproc_ctx postproc;
-diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
-index 4fc6dea16ae6..ef99f0f0fc53 100644
---- a/drivers/media/platform/verisilicon/hantro_drv.c
-+++ b/drivers/media/platform/verisilicon/hantro_drv.c
-@@ -340,12 +340,21 @@ static int hantro_av1_s_ctrl(struct v4l2_ctrl *ctrl)
- 	switch (ctrl->id) {
- 	case V4L2_CID_STATELESS_AV1_SEQUENCE:
- 		int bit_depth = ctrl->p_new.p_av1_sequence->bit_depth;
-+		bool need_postproc = false;
- 
- 		if (vb2_is_streaming(v4l2_m2m_get_src_vq(ctx->fh.m2m_ctx)))
- 			if (ctx->bit_depth != bit_depth)
- 				return -EINVAL;
- 
--		ctx->bit_depth = bit_depth;
-+		if (ctrl->p_new.p_av1_sequence->flags
-+		    & V4L2_AV1_SEQUENCE_FLAG_FILM_GRAIN_PARAMS_PRESENT)
-+			need_postproc = true;
-+
-+		if (ctx->bit_depth != bit_depth || ctx->need_postproc != need_postproc) {
-+			ctx->bit_depth = bit_depth;
-+			ctx->need_postproc = need_postproc;
-+			hantro_reset_raw_fmt(ctx);
-+		}
- 		break;
- 	default:
- 		return -EINVAL;
-diff --git a/drivers/media/platform/verisilicon/hantro_postproc.c b/drivers/media/platform/verisilicon/hantro_postproc.c
-index 7dc39519a2ee..293e5612e2ce 100644
---- a/drivers/media/platform/verisilicon/hantro_postproc.c
-+++ b/drivers/media/platform/verisilicon/hantro_postproc.c
-@@ -57,6 +57,10 @@ bool hantro_needs_postproc(const struct hantro_ctx *ctx,
- {
- 	if (ctx->is_encoder)
- 		return false;
-+
-+	if (ctx->need_postproc)
-+		return true;
-+
- 	return fmt->postprocessed;
- }
- 
-diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
-index bbe79dbd2cd9..7566fe86f624 100644
---- a/drivers/media/platform/verisilicon/hantro_v4l2.c
-+++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
-@@ -38,6 +38,11 @@ hantro_get_formats(const struct hantro_ctx *ctx, unsigned int *num_fmts)
- {
- 	const struct hantro_fmt *formats;
- 
-+	if (ctx->need_postproc) {
-+		*num_fmts = 0;
-+		return NULL;
-+	}
-+
- 	if (ctx->is_encoder) {
- 		formats = ctx->dev->variant->enc_fmts;
- 		*num_fmts = ctx->dev->variant->num_enc_fmts;
-@@ -132,6 +137,15 @@ hantro_get_default_fmt(const struct hantro_ctx *ctx, bool bitstream)
- 		    hantro_check_depth_match(ctx, &formats[i]))
- 			return &formats[i];
- 	}
-+
-+	formats = hantro_get_postproc_formats(ctx, &num_fmts);
-+	for (i = 0; i < num_fmts; i++) {
-+		if (bitstream == (formats[i].codec_mode !=
-+				  HANTRO_MODE_NONE) &&
-+		    hantro_check_depth_match(ctx, &formats[i]))
-+			return &formats[i];
-+	}
-+
- 	return NULL;
- }
- 
-@@ -404,7 +418,7 @@ hantro_reset_encoded_fmt(struct hantro_ctx *ctx)
- 		hantro_set_fmt_out(ctx, fmt);
- }
- 
--static void
-+void
- hantro_reset_raw_fmt(struct hantro_ctx *ctx)
- {
- 	const struct hantro_fmt *raw_vpu_fmt;
-diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.h b/drivers/media/platform/verisilicon/hantro_v4l2.h
-index 64f6f57e9d7a..f642560aed93 100644
---- a/drivers/media/platform/verisilicon/hantro_v4l2.h
-+++ b/drivers/media/platform/verisilicon/hantro_v4l2.h
-@@ -21,6 +21,7 @@
- extern const struct v4l2_ioctl_ops hantro_ioctl_ops;
- extern const struct vb2_ops hantro_queue_ops;
- 
-+void hantro_reset_raw_fmt(struct hantro_ctx *ctx);
- void hantro_reset_fmts(struct hantro_ctx *ctx);
- int hantro_get_format_depth(u32 fourcc);
- const struct hantro_fmt *
--- 
-2.34.1
-
+adam
+>
+> > +               reg = <0x70>;
+> > +               gpio-controller;
+> > +               #gpio-cells = <2>;
+> > +               gpio-line-names =
+> > +                       "lcd_reset",
+> > +                       "lcd_pwr",
+> > +                       "lcd_select",
+> > +                       "backlight-enable",
+> > +                       "Touch_shdwn",
+> > +                       "LCD_H_pol",
+> > +                       "lcd_V_pol";
+> > +       };
+> >  };
+>
+> The rest LGTM.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
