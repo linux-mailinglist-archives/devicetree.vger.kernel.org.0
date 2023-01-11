@@ -2,75 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64DDC665AE9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 12:59:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE215665AFC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 13:05:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238495AbjAKL7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 06:59:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53758 "EHLO
+        id S236589AbjAKMFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 07:05:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238951AbjAKL6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 06:58:42 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 632B31209C
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 03:54:35 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id e10so10345680pgc.9
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 03:54:35 -0800 (PST)
+        with ESMTP id S239272AbjAKMEb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 07:04:31 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9652266A
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 04:04:13 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id g13so23178576lfv.7
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 04:04:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tuGrfA5ZoduC+U+/Dzm1vbrMa/DrUpFo/Mb/KBOiJyM=;
-        b=sOllFDqSKsIoThCO+osFfVByaPssK7iEgoU4esNxabUirE3T+YG56eghykRrD2xDa5
-         q1tjRUhN9ty6cOd7Oniuf4yIqhQj91RrpiIey7LXJtyAwufTMdEU/KYoA17FwvqbYPHT
-         tLGcXeUONqUkwEwOk0qbOLJu3c47ogLOIkDaXI3mdc7je6OByPPA3b4VCbmGVxS7WiVS
-         4qLD1WewLDU+YQM4XRy9nk54RNun9OCu8N1/dFroexPbPNBSMoSdKerJB0YNka0I/The
-         y7TNmG/hFsgaTr6ycQh0pa+nlTJpGt8q7OOHSj5g15DYbCbIGV3phMuIRPE8GpRuKOHq
-         zS7Q==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2oib4YU24Hg68PTgy4DxuaT37C/z9vNFEJMvu+koqaY=;
+        b=Yy/wIOuY/mFgyZnqWknq7oufXkKfIJpeAPs84I4+i270V8tAVh5OYNivurb3d88WHK
+         uae4/ORSHaMCUQ3RCcyBZdM04wm6rZsmDtV/ya95RwGk1c5jgtG+x+IHRAGg1b6Wj6pb
+         K2NiOMA/FxKlMAWVqwLyiZWeGJGZS13iBR9GbWx86XYBFXbnAEcRn7Cl+d2QBZ9YWSo+
+         0Aw7qV86J1dEpWMr+gDeDfj+SiQG1irUeiDiTBi36ywjeW+2XPUX+In9OHhmmzJaHpkW
+         iDK0elnAnK5UQ/04iRbCjndgeJGzppkb/zvFmsbfELoNPvM44+gC7y53cSR0bgZi9eAv
+         ZhuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tuGrfA5ZoduC+U+/Dzm1vbrMa/DrUpFo/Mb/KBOiJyM=;
-        b=Gpwtxp8Vc69MU6A+0cQr8KpJiMrBsZHYRNB78P6b5crfwiyPcowoLQf0xFhRSFrw9W
-         AzjiUbZxe2t0BsMaJgDwBxOZ7wVJ4V6KEj4IN4DWt8v0tIgAWFjanuzJbJyO4l5gHcKr
-         qkeLiZkFTGcAsBWUU5c/F9H4DKxeqG757i7PHw/cHO0QEypWzDlnqP8vwEiEGXtr9ydW
-         jc8NEhqdqCMqfGu0ak5I+kmGBPetTE8tDG+WcOLd1wKs4oJKkoHt56o7kmZpw3hYsx3k
-         u68vfHQL10VrH56ge9jsyvnz9xv8E94LGffXPKVdrWORgbumV65FrNplUAFI9EJNnki/
-         h8mA==
-X-Gm-Message-State: AFqh2kpvSZCUFOL6CoEuRUjQ+cEcgNzj+r9y3uRh7TMI8pyFWjBhLZSC
-        gWrpZ9cVdtXkyCgJsXkN3IN9
-X-Google-Smtp-Source: AMrXdXuY9rd2COIMugVCP6lJlrYfIZlsthTobcvWr8ibx9VwPpGiaIJ8pVuZWWivHpqXmFj28CQEKw==
-X-Received: by 2002:a62:6001:0:b0:582:33b4:4c57 with SMTP id u1-20020a626001000000b0058233b44c57mr1981705pfb.33.1673438074810;
-        Wed, 11 Jan 2023 03:54:34 -0800 (PST)
-Received: from thinkpad ([117.217.177.1])
-        by smtp.gmail.com with ESMTPSA id g28-20020aa79ddc000000b00575b6d7c458sm9853146pfq.21.2023.01.11.03.54.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 03:54:33 -0800 (PST)
-Date:   Wed, 11 Jan 2023 17:24:22 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, konrad.dybcio@somainline.org,
-        amit.pundir@linaro.org, regressions@leemhuis.info,
-        sumit.semwal@linaro.org, will@kernel.org, catalin.marinas@arm.com,
-        robin.murphy@arm.com
-Subject: Re: [PATCH V3 05/10] remoteproc: qcom_q6v5_mss: Use a carveout to
- authenticate modem headers
-Message-ID: <20230111115422.GD4873@thinkpad>
-References: <20230111114337.24782-1-quic_sibis@quicinc.com>
- <20230111114337.24782-6-quic_sibis@quicinc.com>
+        bh=2oib4YU24Hg68PTgy4DxuaT37C/z9vNFEJMvu+koqaY=;
+        b=pqLmpmrFdAf2w6G9idt2sHi2cMJMA72saOXgVc/sxvep/TKzsp/iIFprPzy1I9nRcg
+         0N2MNKWm6rKTn9/kv42s5d9ueBzcTo8BAEoDuA23E+ZVD4lLDak70G2VJVX97OkxsvuL
+         35ECHtY9SHMMRv7/Nv7n2LgX5jWUGliDptTe3crpd2+xeC8uXcOxiHkhMWT9YOQR/WXJ
+         w0snhe3FQ7RKHPnzYAP1j9hj8K78OmTLx7Epq38Z+5lm3WULKka4NFu27qch6IDPnHGL
+         9msZMi8XK9yaxZMEljs6MSbx+rjH6rTS4IswPOTBC+H1POZmj+yEX0RGFNgzHoTpQkfG
+         F2iQ==
+X-Gm-Message-State: AFqh2krwMPXgwBVsxe4f7DVlPg5/vvKuEXoHH1Oe1GTZoG7oWp3zZE1p
+        l1JkrGBt7jYrNJQhKdsK3o44fQ==
+X-Google-Smtp-Source: AMrXdXuQdQMK1AzkjuSB62xM9jMBO+9t20jvTxLZnjpxuujgsDdeHG1DQzho+opaRd7jkzomUYB4aQ==
+X-Received: by 2002:a05:6512:3b99:b0:4a4:68b9:608c with SMTP id g25-20020a0565123b9900b004a468b9608cmr24899693lfv.23.1673438652184;
+        Wed, 11 Jan 2023 04:04:12 -0800 (PST)
+Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id d19-20020a196b13000000b004b550c26949sm2688197lfa.290.2023.01.11.04.04.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Jan 2023 04:04:10 -0800 (PST)
+Message-ID: <51a8bb85-8fda-2d79-f753-9461316bae9e@linaro.org>
+Date:   Wed, 11 Jan 2023 13:04:08 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v6 4/6] arm64: dts: qcom: sm6125: Add UFS nodes
+Content-Language: en-US
+To:     Lux Aliaga <they@mint.lgbt>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
+        bvanassche@acm.org, keescook@chromium.org, tony.luck@intel.com,
+        gpiccoli@igalia.com
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
+        phone-devel@vger.kernel.org, martin.botka@somainline.org,
+        marijn.suijten@somainline.org
+References: <20230108195336.388349-1-they@mint.lgbt>
+ <20230108195336.388349-5-they@mint.lgbt>
+ <475d3f2f-114f-d6d2-89db-465ba7acd0d6@linaro.org>
+ <f1f1337a-30cc-df3c-81d5-2daac61e874c@mint.lgbt>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <f1f1337a-30cc-df3c-81d5-2daac61e874c@mint.lgbt>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230111114337.24782-6-quic_sibis@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,122 +86,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 11, 2023 at 05:13:32PM +0530, Sibi Sankar wrote:
-> Any access to the dynamically allocated metadata region by the application
-> processor after assigning it to the remote Q6 will result in a XPU
-> violation. Fix this by replacing the dynamically allocated memory region
-> with a no-map carveout and unmap the modem metadata memory region before
-> passing control to the remote Q6.
+
+
+On 11.01.2023 03:53, Lux Aliaga wrote:
 > 
-> Reported-and-tested-by: Amit Pundir <amit.pundir@linaro.org>
-> Fixes: 6c5a9dc2481b ("remoteproc: qcom: Make secure world call for mem ownership switch")
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> On 09/01/2023 09:18, Konrad Dybcio wrote:
+>>
+>> On 8.01.2023 20:53, Lux Aliaga wrote:
+>>> Adds a UFS host controller node and its corresponding PHY to
+>>> the sm6125 platform.
+>>>
+>>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sm6125.dtsi | 57 ++++++++++++++++++++++++++++
+>>>   1 file changed, 57 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>>> index df5453fcf2b9..cec7071d5279 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>>> @@ -511,6 +511,63 @@ sdhc_2: mmc@4784000 {
+>>>               status = "disabled";
+>>>           };
+>>>   +        ufs_mem_hc: ufs@4804000 {
+>>> +            compatible = "qcom,sm6125-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+>>> +            reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
+>> You need reg-names for ICE to probe, otherwise the second reg sits unused.
+>>
+>>> +            interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+>>> +            phys = <&ufs_mem_phy>;
+>>> +            phy-names = "ufsphy";
+>>> +            lanes-per-direction = <1>;
+>>> +            #reset-cells = <1>;
+>>> +            resets = <&gcc GCC_UFS_PHY_BCR>;
+>>> +            reset-names = "rst";
+>>> +            iommus = <&apps_smmu 0x200 0x0>;
+>>> +
+>>> +            clock-names = "core_clk",
+>>> +                      "bus_aggr_clk",
+>>> +                      "iface_clk",
+>>> +                      "core_clk_unipro",
+>>> +                      "ref_clk",
+>>> +                      "tx_lane0_sync_clk",
+>>> +                      "rx_lane0_sync_clk",
+>>> +                      "ice_core_clk";
+>>> +            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+>>> +                 <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>,
+>>> +                 <&gcc GCC_UFS_PHY_AHB_CLK>,
+>>> +                 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+>>> +                 <&rpmcc RPM_SMD_XO_CLK_SRC>,
+>>> +                 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+>>> +                 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+>>> +            freq-table-hz = <50000000 240000000>,
+>>> +                    <0 0>,
+>>> +                    <0 0>,
+>>> +                    <37500000 150000000>,
+>>> +                    <0 0>,
+>>> +                    <0 0>,
+>>> +                    <0 0>,
+>>> +                    <75000000 300000000>;
+>>> +
+>>> +            status = "disabled";
+>>> +        };
+>>> +
+>>> +        ufs_mem_phy: phy@4807000 {
+>>> +            compatible = "qcom,sm6125-qmp-ufs-phy";
+>>> +            reg = <0x04807000 0x1c4>;
+>> Isn't this too small? Downstream says 0xdb8, but it's probably even bigger..
+> What do you think could help me find the new length of the registers? I tried 0x1000 and it probed just fine, but I'm not really sure until what extent I could push it.
+The "true" values are probably only in documentation, which
+I don't have.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-> ---
+Konrad
 > 
-> v3:
->  * Drop revert no_kernel_mapping since it's already on the list [Mani]
-
-I thought you are going to include Christoph's patch into your series. That way
-all the patches will be in the same series, makig life easier for Bjorn.
-
-Thanks,
-Mani
-
->  * kfree metadata from the branch for parity
-> 
->  drivers/remoteproc/qcom_q6v5_mss.c | 48 ++++++++++++++++++++++++++----
->  1 file changed, 42 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
-> index e2f765f87ec9..e25d44e20ae7 100644
-> --- a/drivers/remoteproc/qcom_q6v5_mss.c
-> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
-> @@ -215,6 +215,7 @@ struct q6v5 {
->  	size_t mba_size;
->  	size_t dp_size;
->  
-> +	phys_addr_t mdata_phys;
->  	phys_addr_t mpss_phys;
->  	phys_addr_t mpss_reloc;
->  	size_t mpss_size;
-> @@ -973,15 +974,29 @@ static int q6v5_mpss_init_image(struct q6v5 *qproc, const struct firmware *fw,
->  	if (IS_ERR(metadata))
->  		return PTR_ERR(metadata);
->  
-> -	ptr = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL, dma_attrs);
-> -	if (!ptr) {
-> -		kfree(metadata);
-> -		dev_err(qproc->dev, "failed to allocate mdt buffer\n");
-> -		return -ENOMEM;
-> +	if (qproc->mdata_phys) {
-> +		phys = qproc->mdata_phys;
-> +		ptr = memremap(qproc->mdata_phys, size, MEMREMAP_WC);
-> +		if (!ptr) {
-> +			kfree(metadata);
-> +			dev_err(qproc->dev, "unable to map memory region: %pa+%zx\n",
-> +				&qproc->mdata_phys, size);
-> +			return -EBUSY;
-> +		}
-> +	} else {
-> +		ptr = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL, dma_attrs);
-> +		if (!ptr) {
-> +			kfree(metadata);
-> +			dev_err(qproc->dev, "failed to allocate mdt buffer\n");
-> +			return -ENOMEM;
-> +		}
->  	}
->  
->  	memcpy(ptr, metadata, size);
->  
-> +	if (qproc->mdata_phys)
-> +		memunmap(ptr);
-> +
->  	/* Hypervisor mapping to access metadata by modem */
->  	mdata_perm = BIT(QCOM_SCM_VMID_HLOS);
->  	ret = q6v5_xfer_mem_ownership(qproc, &mdata_perm, false, true,
-> @@ -1010,7 +1025,8 @@ static int q6v5_mpss_init_image(struct q6v5 *qproc, const struct firmware *fw,
->  			 "mdt buffer not reclaimed system may become unstable\n");
->  
->  free_dma_attrs:
-> -	dma_free_attrs(qproc->dev, size, ptr, phys, dma_attrs);
-> +	if (!qproc->mdata_phys)
-> +		dma_free_attrs(qproc->dev, size, ptr, phys, dma_attrs);
->  	kfree(metadata);
->  
->  	return ret < 0 ? ret : 0;
-> @@ -1893,6 +1909,26 @@ static int q6v5_alloc_memory_region(struct q6v5 *qproc)
->  	qproc->mpss_phys = qproc->mpss_reloc = r.start;
->  	qproc->mpss_size = resource_size(&r);
->  
-> +	if (!child) {
-> +		node = of_parse_phandle(qproc->dev->of_node, "memory-region", 2);
-> +	} else {
-> +		child = of_get_child_by_name(qproc->dev->of_node, "metadata");
-> +		node = of_parse_phandle(child, "memory-region", 0);
-> +		of_node_put(child);
-> +	}
-> +
-> +	if (!node)
-> +		return 0;
-> +
-> +	ret = of_address_to_resource(node, 0, &r);
-> +	of_node_put(node);
-> +	if (ret) {
-> +		dev_err(qproc->dev, "unable to resolve metadata region\n");
-> +		return ret;
-> +	}
-> +
-> +	qproc->mdata_phys = r.start;
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.17.1
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
