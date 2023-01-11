@@ -2,127 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB831665A4F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 12:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12D2C665A7C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 12:41:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232673AbjAKLgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 06:36:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33200 "EHLO
+        id S231294AbjAKLlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 06:41:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238454AbjAKLfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 06:35:48 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47CD21CB0D
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 03:33:14 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id p24so16457166plw.11
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 03:33:14 -0800 (PST)
+        with ESMTP id S233799AbjAKLkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 06:40:18 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F78263DE;
+        Wed, 11 Jan 2023 03:39:38 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id f20so15718935lja.4;
+        Wed, 11 Jan 2023 03:39:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fv2lNIsN5RpdQca9OCm9rk90hHk7bweKV30f5J8WYYQ=;
-        b=VieXLAyvO2y4YPOm+zc7KcDX0PVHDgjfApEMJu0ylXH5BmdgjvdvOKxl8yyGBi95sq
-         4JZ26LQEdFA0H8UjBEBzTSM0rTz9l8vohHxXfGISDOyE5jOHZL7CafWvix7eu7tGkgj6
-         +91SapGiL2oyzKJaH2aW4os0TvMCrDvVLDFCqk9hGtSixJoxZCn8OQvMa+LC06xOTTGT
-         Qx4L6kSjNOFGgJd31oV/lyvobTPCfoY22IVTBtmsfQ+t+YScVuJh7vgwKQuN+E5QCopG
-         ThTzKcmDs0qoBNDZnYx/e+TjsQN41n7++hxI3uxGlZ64tyahB2xHa2gYdBk7VmqtFjbb
-         1z2g==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F278+CdLu00LGOW20/JjUK3+T9UMs52TWsYg/Ly3uH4=;
+        b=UwYrL8UnUhJDw57/zjh8AdHAwxztTwIZhhQLjooHcoNZkxUhBvLFf56JRwrqCC+vMQ
+         bzny4hMhbIJP+264xtvnTahD8GzhsJJoVbDAghK7A82UgICDeo2orAQHEss0LM8Lkfz+
+         eh46J07tqz0l6ZhVejPsr9RU6I2DLbcsw1AMwvbCCKpH77cnAoWVQpb3Yrq8mzlcA0MX
+         DGDf2X5csuoRP7gLyJBPWG3ZIAsg2CJoyVXH8pOfvQ91JRPpI2AjLtv+SV7taHH8O672
+         EMYsbQG6GSaF94UD973lMPCbJnkLAIV++xJh5CiRArYU6WAfjZWSEqNcUK4814cYSmy3
+         FvKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fv2lNIsN5RpdQca9OCm9rk90hHk7bweKV30f5J8WYYQ=;
-        b=jmAZ9Su13BfZVgz2UATs1dsrfpKgyaLscNziDki4785lp8tzRrbuYghfeEEalZknLC
-         mmsmf1zri7r4g2afxm+gOCnMXODP22BG6tabImbAy1Vyu7gQP9uADGIjPvSaUDy8THQk
-         t7hvzHKlMjEGtQBOlOa1yDkuhoPWjuHX2UdwgmNkQThu0z8WXVp2sglwnLZhtlxXVFQX
-         K6EGWEcEglktk/tacSyqu1/fRWpvWEjdza/iNe1ZaOPzl1YFr6TlwMQYXbqoG2qg4/5d
-         TMREkgqkE2JZiP4SpskxO0vHPzz1OLEEPtifDedmKiMd/y4NLTSP/6PWWMRVAex1PrVX
-         hmeA==
-X-Gm-Message-State: AFqh2krCXe2OrXqSulpdaEmHQDT/vDE9j3DR1HOOOfc19GOAA0xkg/Go
-        UrV1clnVcdUfEwzqpc6NStr7
-X-Google-Smtp-Source: AMrXdXvyHPHT1WibJbM3qxTpu5HLeZq89WaLpiM9yod6LlcXn5b+fAQP9wznHzVahmXGRKKL2US16w==
-X-Received: by 2002:a17:902:7c8a:b0:192:835d:c861 with SMTP id y10-20020a1709027c8a00b00192835dc861mr52121497pll.68.1673436789834;
-        Wed, 11 Jan 2023 03:33:09 -0800 (PST)
-Received: from thinkpad ([117.217.177.1])
-        by smtp.gmail.com with ESMTPSA id m18-20020a170902db1200b00192d07b8222sm9985139plx.100.2023.01.11.03.33.05
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F278+CdLu00LGOW20/JjUK3+T9UMs52TWsYg/Ly3uH4=;
+        b=eI1jyn8s/afw7TNjsE4uUgQRawNvQGAr81isHbITf6dkdnww8nAgFqO/TaTU5X3jZf
+         fFbUVIQSo3vncTlEDIa3tRRQLd/wKBoZoHgIuFDlXpsyOozjpRgbNKatUWDLlzux+5Lk
+         je7+hP+a1DspkTdBOf8PN/SfdWPU7s/Ma5ylrmpDwdWfSEIkiLxTack8SrvjnXGoKT8s
+         CrJij9h19wyKRE5ZajjLuDkowoFfg9tIP9grllVNkk1FSm53TrtbDtYAOXtV65VgyIQk
+         SHWDBi5GMYQBipoQ6gxKheDH2UIOJq6ThkuDe1boz/3dfGJATaOPsNhnme0L6tjs25z6
+         0nHQ==
+X-Gm-Message-State: AFqh2kpqlMU89elL3EdcKtMjtTTIxOJdqCTwauAIBwpOnI5PZ+HowJLY
+        kjONNvOhi6h0yvM0Bg3tVNs=
+X-Google-Smtp-Source: AMrXdXuODS09DBJLpA4KXi0N30+8JtV3HKr0e+mreGnisaz4yoJkGzE9Z1jrgPPRju5GLwZ+SYb5yg==
+X-Received: by 2002:a2e:3807:0:b0:27f:ca4c:304 with SMTP id f7-20020a2e3807000000b0027fca4c0304mr13795174lja.11.1673437176442;
+        Wed, 11 Jan 2023 03:39:36 -0800 (PST)
+Received: from PC10319.67 ([82.97.198.254])
+        by smtp.googlemail.com with ESMTPSA id h23-20020a05651c125700b0027fffd54dadsm1708863ljh.73.2023.01.11.03.39.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 03:33:08 -0800 (PST)
-Date:   Wed, 11 Jan 2023 17:03:01 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        bhelgaas@google.com, konrad.dybcio@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lpieralisi@kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: PCI: qcom: Document msi-map and
- msi-map-mask properties
-Message-ID: <20230111113301.GC4873@thinkpad>
-References: <20230102105821.28243-1-manivannan.sadhasivam@linaro.org>
- <20230102105821.28243-3-manivannan.sadhasivam@linaro.org>
- <20230108203340.GA229573-robh@kernel.org>
+        Wed, 11 Jan 2023 03:39:36 -0800 (PST)
+From:   Konstantin Aladyshev <aladyshev22@gmail.com>
+Cc:     Konstantin Aladyshev <aladyshev22@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: ethanolx: Add BIOS flash chip
+Date:   Wed, 11 Jan 2023 14:39:34 +0300
+Message-Id: <20230111113934.1176-1-aladyshev22@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230108203340.GA229573-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 08, 2023 at 02:33:40PM -0600, Rob Herring wrote:
-> On Mon, Jan 02, 2023 at 04:28:20PM +0530, Manivannan Sadhasivam wrote:
-> > The Qcom PCIe controller is capable of using either internal MSI controller
-> > or the external GIC-ITS for signaling MSIs sent by endpoint devices.
-> > Currently, the binding only documents the internal MSI implementation.
-> > 
-> > Let's document the GIC-ITS imeplementation by making use of msi-map and
-> > msi-map-mask properties. Only one of the implementation should be used
-> > at a time.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 12 +++++++++---
-> >  1 file changed, 9 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > index a3639920fcbb..01208450e05c 100644
-> > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > @@ -114,14 +114,20 @@ required:
-> >    - compatible
-> >    - reg
-> >    - reg-names
-> > -  - interrupts
-> > -  - interrupt-names
-> > -  - "#interrupt-cells"
-> >    - interrupt-map-mask
-> >    - interrupt-map
-> >    - clocks
-> >    - clock-names
-> >  
-> > +oneOf:
-> 
-> anyOf
-> 
-> The OS should have the option of both being present and pick which MSI 
-> path it wants to use. 
-> 
+Add a BIOS flash chip to the DTS to open a possibility to reflash the
+main CPU BIOS from the BMC.
 
-Makes sense. Given that the current series merged by Bjorn, I'll send a
-follow-up patch.
+Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
+---
+ arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Thanks,
-Mani
-
-> Rob
-
+diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+index 8d84dcc06221..5f9093c58e8c 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+@@ -63,6 +63,17 @@ flash@0 {
+ 	};
+ };
+ 
++&spi1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1_default>;
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "bios";
++		spi-max-frequency = <100000000>;
++	};
++};
+ 
+ &mac0 {
+ 	status = "okay";
 -- 
-மணிவண்ணன் சதாசிவம்
+2.25.1
+
