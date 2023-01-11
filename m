@@ -2,119 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D3B7665450
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 07:05:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF876654CA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 07:49:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231899AbjAKGFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 01:05:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58222 "EHLO
+        id S232017AbjAKGs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 01:48:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235865AbjAKGEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 01:04:25 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20FF98FE6
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 22:04:14 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id m6so21915695lfj.11
-        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 22:04:14 -0800 (PST)
+        with ESMTP id S231694AbjAKGsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 01:48:54 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBD80F5A7
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 22:48:53 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id p24so15781635plw.11
+        for <devicetree@vger.kernel.org>; Tue, 10 Jan 2023 22:48:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kKkWqN5cimdLBNmps+85gop0wy/2yT2a83j/RNY11uo=;
-        b=Z4mCPH78OV2Aez7pGpL1IyemBBArY6Z57yS5gu7KCmYtN9XC1vm7zlA1ATLldL93YR
-         rZ35ak0RVdkHPqW6cwTS41JuGnLB83tSPK+mXumqcYX4L4LfNMFolcyuvhK7NgxUT03w
-         6q+5aXdmv6rpWxK/fI4P+Ny+cahuwdYOi9cOxkk7XbyT5DzamWRbTpxF8UsDDcQ9No0p
-         SwY4YIk5tsrB2k/Jxtu/0eY19lyzz4k0WBiW1T3hyq7kyEKViZAT/nkqZSSncF7QwGM5
-         CKaqLWlORdgo4FE40CIYfXOUMJ1G1m89Z2aNVvMwhRKVVL6Y9i/zePBQbokoIrXpKl9I
-         zQkg==
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pOW8QelbsetPaHwWo+Ef2/hNHiC4Lmgaa/4OXCs14ak=;
+        b=FYK9Tf0ShQColaigpcJHOo7vFiMPFrdVqQnpDLTxcUh4Xiw5b+yQrfLKNI+aJt8WjO
+         5ARpsUqtaSG1xKKo0UtTbatYGpQA0mjHwYwtKQc22FtK9+z2rQjDDN/3FSHmPgfwvAH3
+         xaDw/EgKu0vB2GriFiDeWrPFRj3baJj/VLuNcsb7VoFFjaohvC2UX8TR5W2V+HesZZBe
+         /AQLQyP3CndA8SZopFkNjQD1ZyHih7NB0ClwyevKstmyQz3mOuRDZWiSwL4tRn1Fw0U/
+         ROh4d/UBy67bWvZZt3E6IM9gIGR0kFyc28NUMF542nowL4zXOXZzcifx2SOcxiF5bva6
+         QcCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kKkWqN5cimdLBNmps+85gop0wy/2yT2a83j/RNY11uo=;
-        b=EI183uLY2ddLBqcpb67mxoBpLeJTXVX7AeFiLjpY1kG0dWx/GgkUhvYevhajeYJKPo
-         rI+1VvnFH8EK2FQrxB0p8q19Drct0tQ2civp0oEmO+hKHTqSFImmfWsYHizYrH9OMYDX
-         vCwEQzd7NEan+eYMaitDqNa1IXtsKFDP8LSLBoVC2/KPNGIy83H0wK0cYinr+grohTKg
-         eVDZJqGr9n0Satw7Aqs9Tty7dZUlyKCnuu/MJlszYKM74sd6WJBCzd2Xq7YJPOgF4zos
-         tj4hwq0rYD9RuAoCfC3u+SDx7y2xm7al3m92ugm8PaPPyDhVzXaXzEoH3k4WkZZ1aKvd
-         yoiw==
-X-Gm-Message-State: AFqh2koxksXMNXfhLQw1s7bOWvra6nBHVGXztBG/tLNzuvgVW9hNZoJv
-        Oau2/DTVIRJpUpn8XghCq3dFxA==
-X-Google-Smtp-Source: AMrXdXtq+gqLBkTkxHKvPowxUKG15WGK99D1veGqbXjZghoptgZicq3H4KykW9ICOzuF38Fc80+ccg==
-X-Received: by 2002:ac2:4f0c:0:b0:4b5:2f1e:7d3b with SMTP id k12-20020ac24f0c000000b004b52f1e7d3bmr18654148lfr.33.1673417052491;
-        Tue, 10 Jan 2023 22:04:12 -0800 (PST)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id b7-20020a056512070700b004cb143f7391sm2524607lfs.258.2023.01.10.22.04.11
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pOW8QelbsetPaHwWo+Ef2/hNHiC4Lmgaa/4OXCs14ak=;
+        b=iQxzwNEYyZh7LMasYw+bv/bEd6vbVqPhyfETbMn2LRFfcvVI3NlPY674Ed5QyQo4pD
+         10Gh4n/EUqDeKxf6SCD8TGT1OoeysDmJTGPzb3ofZip9xUxjHIR9zmXqOA7wWQ822Pgm
+         ClkC4a4F1N/susNWLOQmIeEratF5tOepowf5N8DQCFX7dwTjxQ6Bc9ttXri2ZVDP/Lgt
+         dCFhLqGAV5CJw7TrNgHhwXIOLboLcuIpD3ItQSGU6qYo+n3P1Ujyk/xQs3z0z8Za767T
+         aiRoUMFiqFcLL6VxqDyzwOeHHIRHT5q1PTOYknpoQsjursbj9xrUm8z653OCXbYfVTlR
+         6KJA==
+X-Gm-Message-State: AFqh2kqwYFf7+JpceQu1WujbhvQFPFjLvg3PtcdzilAM+zrwRtRor64x
+        xjE6v84riTr03Dj0951jOOSpiQ==
+X-Google-Smtp-Source: AMrXdXuCGS2rYDB4jzJwTRppDihHyZElNqI24UqbsbR5HEpYSYpKgg00nyJo/KMf86fnvwCjNZiaAQ==
+X-Received: by 2002:a05:6a20:4b28:b0:aa:7d04:109b with SMTP id fp40-20020a056a204b2800b000aa7d04109bmr1480250pzb.40.1673419733390;
+        Tue, 10 Jan 2023 22:48:53 -0800 (PST)
+Received: from archl-hc1b.. ([45.112.3.15])
+        by smtp.gmail.com with ESMTPSA id m2-20020a170902db0200b001930e89f5f6sm9301861plx.98.2023.01.10.22.48.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Jan 2023 22:04:12 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        Tue, 10 Jan 2023 22:48:52 -0800 (PST)
+From:   Anand Moon <anand@edgeble.ai>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 12/12] ARM: dts: qcom: apq8084: add clocks and clock-names to gcc device
-Date:   Wed, 11 Jan 2023 08:04:02 +0200
-Message-Id: <20230111060402.1168726-13-dmitry.baryshkov@linaro.org>
+        Heiko Stuebner <heiko@sntech.de>,
+        David Wu <david.wu@rock-chips.com>,
+        Anand Moon <anand@edgeble.ai>, Jagan Teki <jagan@edgeble.ai>
+Cc:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCHv4 linux-next 1/4] dt-bindings: net: rockchip-dwmac: fix rv1126 compatible warning
+Date:   Wed, 11 Jan 2023 06:48:36 +0000
+Message-Id: <20230111064842.5322-1-anand@edgeble.ai>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230111060402.1168726-1-dmitry.baryshkov@linaro.org>
-References: <20230111060402.1168726-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clocks and clock-names nodes to the gcc device to bind clocks using
-the DT links.
+Fix compatible string for RV1126 gmac, and constrain it to
+be compatible with Synopsys dwmac 4.20a.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+fix below warning
+$ make CHECK_DTBS=y rv1126-edgeble-neu2-io.dtb
+arch/arm/boot/dts/rv1126-edgeble-neu2-io.dtb: ethernet@ffc40000:
+		 compatible: 'oneOf' conditional failed, one must be fixed:
+        ['rockchip,rv1126-gmac', 'snps,dwmac-4.20a'] is too long
+        'rockchip,rv1126-gmac' is not one of ['rockchip,rk3568-gmac', 'rockchip,rk3588-gmac']
+
+Fixes: b36fe2f43662 ("dt-bindings: net: rockchip-dwmac: add rv1126 compatible")
+Reviewed-by: Jagan Teki <jagan@edgeble.ai>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Anand Moon <anand@edgeble.ai>
 ---
- arch/arm/boot/dts/qcom-apq8084.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+v4: none
+v3: added Ack and Rev from Rob and Jagan.
+v2: drop SoB of Jagan Teki
+    added Fix tags and update the commit message of the warning.
+---
+ Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8084.dtsi b/arch/arm/boot/dts/qcom-apq8084.dtsi
-index 4b0d2b4f4b6a..4d01f0f2292e 100644
---- a/arch/arm/boot/dts/qcom-apq8084.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8084.dtsi
-@@ -388,6 +388,24 @@ gcc: clock-controller@fc400000 {
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
- 			reg = <0xfc400000 0x4000>;
-+			clocks = <&xo_board>,
-+				 <&sleep_clk>,
-+				 <0>, /* ufs */
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>, /* sata */
-+				 <0>,
-+				 <0>; /* pcie */
-+			clock-names = "xo",
-+				      "sleep_clk",
-+				      "ufs_rx_symbol_0_clk_src",
-+				      "ufs_rx_symbol_1_clk_src",
-+				      "ufs_tx_symbol_0_clk_src",
-+				      "ufs_tx_symbol_1_clk_src",
-+				      "sata_asic0_clk",
-+				      "sata_rx_clk",
-+				      "pcie_pipe";
- 		};
+diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+index 42fb72b6909d..04936632fcbb 100644
+--- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+@@ -49,11 +49,11 @@ properties:
+               - rockchip,rk3368-gmac
+               - rockchip,rk3399-gmac
+               - rockchip,rv1108-gmac
+-              - rockchip,rv1126-gmac
+       - items:
+           - enum:
+               - rockchip,rk3568-gmac
+               - rockchip,rk3588-gmac
++              - rockchip,rv1126-gmac
+           - const: snps,dwmac-4.20a
  
- 		tcsr_mutex: hwlock@fd484000 {
+   clocks:
 -- 
 2.39.0
 
