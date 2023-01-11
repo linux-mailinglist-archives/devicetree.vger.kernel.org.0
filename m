@@ -2,66 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 862EE665C9D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 14:33:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93482665C97
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 14:33:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231858AbjAKNdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 08:33:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54584 "EHLO
+        id S238454AbjAKNdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 08:33:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239044AbjAKNcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 08:32:24 -0500
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7F581AA35;
-        Wed, 11 Jan 2023 05:29:15 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id r132so2150314oif.10;
-        Wed, 11 Jan 2023 05:29:15 -0800 (PST)
+        with ESMTP id S238996AbjAKNcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 08:32:23 -0500
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412051C40F
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 05:29:13 -0800 (PST)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1433ef3b61fso15472179fac.10
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 05:29:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=h8C+5qel0vaPITy9VRFkGBy56XK9V3m0cKDXnq516Ks=;
-        b=Qu8vCmOqxxn6ziXjixbatRtqTC6XszvqvSBcUDzFOQsJGOvz1Wio057tuQAGYLOUMb
-         C3ITKuM07kuw1oYQbtYPlVCixRDbskBvoyD+UNjaSSll5aysuEnYlXn/njr6hg++7koo
-         HK01sMxHt4lYpVDPGR2zUXrz5xc147iqrUwKrNdAMuZiigQsJGxqOXpuRtt4f1YO90MV
-         sbTS8n8Lm3Y/6fCqLcuRmGJr09RlijVnYM9UrmtDepdI302H3m8xI54QM/GZ3bxryQjl
-         s8XGmJ7WMg3xsZxBgjLk00Qm0PMLq1NQSy0a9wI0lhBzCyF+MpeBZnhO+RsYvlBCsyf6
-         BMsQ==
-X-Gm-Message-State: AFqh2kpdqOHkasut0x0AqUE9gMsQkQFy+h0uW5q2OMRUERuOCysblsTL
-        L2ATEr4cOm3IuarCorgghQ==
-X-Google-Smtp-Source: AMrXdXvfF9QGekktP4rzGDpDsZz2K/EGEQjcV5LgpQkxLWZS9uLrozigktW/puGJ9oLq6EUAOu4FwA==
-X-Received: by 2002:a05:6808:3a85:b0:35e:7e7c:83ed with SMTP id fb5-20020a0568083a8500b0035e7e7c83edmr31374712oib.5.1673443754956;
-        Wed, 11 Jan 2023 05:29:14 -0800 (PST)
+        bh=wfcyeKV+jmJfxwF7NRjV8Nnjqq+j+TtjFkaEsE2MxJg=;
+        b=YE+tcmb2NcOXBWKyEVD3vP/r0RN8Bxt66024zjQ2aUVpsPljrMEQCm3Ls++SW1mZwL
+         Dxs36+F9K1BuPDEgkgySuhbvjWePABUB3H5olY4lzsBBgdLs+/ZdrjmQwYYqnHn70j/Y
+         xGW7ekgOFacUTizkHqV+2tmoBZLm8NavJvKexa5okZmyFCiWVSBDFen9BnZXG0yEaRo6
+         BCrlr6UIQBG7J/mH3DCZVPwXhU2+JJ9DojYZ1u19wNUeZF5gHVJcedMPYQnJb2hAZu0b
+         avGlWsD8n4FKOd6XgTWtLbk2slV41d11ROJ5/FMmMJpse1mwFIW5Mg+zuHvsYpfBNf0q
+         ifww==
+X-Gm-Message-State: AFqh2kpWy7DqwCv85nPwVJJAfHHDzPEpMPAaTmQhYE73G1JhplgyMBXe
+        ExxtNm/ehiDCxdO3ER5Dqh4J69FfjA==
+X-Google-Smtp-Source: AMrXdXurr2Fkt7xIiSGu2+v4jLMmjbG5iQyzQgObyqO+r+3rDohu/0qojG9+9uV23VV7Y4jPZu7Hpw==
+X-Received: by 2002:a05:6870:390e:b0:14b:e944:ac13 with SMTP id b14-20020a056870390e00b0014be944ac13mr34453421oap.15.1673443752372;
+        Wed, 11 Jan 2023 05:29:12 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p15-20020a9d744f000000b0066e820696edsm7485021otk.13.2023.01.11.05.29.14
+        by smtp.gmail.com with ESMTPSA id x19-20020a056870331300b00143cfb377b4sm7306519oae.6.2023.01.11.05.29.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 05:29:14 -0800 (PST)
-Received: (nullmailer pid 408843 invoked by uid 1000);
+        Wed, 11 Jan 2023 05:29:12 -0800 (PST)
+Received: (nullmailer pid 408838 invoked by uid 1000);
         Wed, 11 Jan 2023 13:29:11 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     agross@kernel.org, amit.pundir@linaro.org,
-        devicetree@vger.kernel.org, sumit.semwal@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        robh+dt@kernel.org, konrad.dybcio@somainline.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robin.murphy@arm.com, will@kernel.org, regressions@leemhuis.info,
-        manivannan.sadhasivam@linaro.org, catalin.marinas@arm.com
-In-Reply-To: <20230111114337.24782-5-quic_sibis@quicinc.com>
-References: <20230111114337.24782-1-quic_sibis@quicinc.com>
- <20230111114337.24782-5-quic_sibis@quicinc.com>
-Message-Id: <167344323183.397649.7383594948698294379.robh@kernel.org>
-Subject: Re: [PATCH V3 04/10] dt-bindings: remoteproc: qcom,sc7280-mss-pil:
- Update memory-region
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org
+In-Reply-To: <87r0w1ho26.wl-kuninori.morimoto.gx@renesas.com>
+References: <87358hj2ub.wl-kuninori.morimoto.gx@renesas.com>
+ <87r0w1ho26.wl-kuninori.morimoto.gx@renesas.com>
+Message-Id: <167344317928.394453.14105689826645262807.robh@kernel.org>
+Subject: Re: [PATCH v2 08/10] ASoC: dt-bindings: renesas,rsnd: add missing
+ playback/capture
 Date:   Wed, 11 Jan 2023 07:29:11 -0600
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -69,87 +66,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 11 Jan 2023 17:13:31 +0530, Sibi Sankar wrote:
-> The dynamic memory region used for metadata authentication would still
-> be a part of the kernel mapping and any access to this region by the
-> application processor after assigning it to the remote Q6 will result
-> in a XPU violation. This is fixed by using a no-map carveout instead.
-> Update the bindings to reflect the addition of the new modem metadata
-> carveout on SC7280 SoC.
+On Wed, 11 Jan 2023 01:12:18 +0000, Kuninori Morimoto wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> renesas,rsnd.yaml is possible to use ports/port/endpoint if it is using
+> Audio Graph Card/Card2 for sound. The schema is defined under
+> audio-graph-port.yaml.
+> 
+> rsnd driver needs "playback/capture" property under endpoint, but it is not
+> defined in audio-graph-port.yaml. This patch adds missing "playback/capture"
+> properties under endpoint.
+> 
+> Without this patch, we will get below warning
+> 
+> ${LINUX}/arch/arm64/boot/dts/renesas/r8a77950-salvator-x.dtb: sound@ec500000: ports:port@0:endpoint: Unevaluated properties are not allowed ('playback', 'capture' were unexpected)
+> 	From schema: ${LINUX}/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > ---
-> 
-> v3:
->  * remove double space [Krzysztof]
->  * Pickup R-b
-> 
-> v2:
->  * Pad commit message to explain bindings break [Krzysztof]
->  * Split dt/bindings per SoC  [Krzysztof]
-> 
->  .../devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml    | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  .../bindings/sound/renesas,rsnd.yaml          | 25 ++++++++++++++++---
+>  1 file changed, 22 insertions(+), 3 deletions(-)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230111114337.24782-5-quic_sibis@quicinc.com
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/renesas,rsnd.example.dtb: sound@ec500000: Unevaluated properties are not allowed ('rcar_sound,src' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
 
+doc reference errors (make refcheckdocs):
 
-remoteproc@4080000: memory-region: [[226], [227]] is too short
-	arch/arm64/boot/dts/qcom/sc7280-idp.dtb
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/87r0w1ho26.wl-kuninori.morimoto.gx@renesas.com
 
-remoteproc@4080000: memory-region: [[231], [232]] is too short
-	arch/arm64/boot/dts/qcom/sc7280-idp2.dtb
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-remoteproc@4080000: memory-region: [[234], [235]] is too short
-	arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-remoteproc@4080000: memory-region: [[240], [241]] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dtb
+pip3 install dtschema --upgrade
 
-remoteproc@4080000: memory-region: [[243], [244]] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dtb
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dtb
-
-remoteproc@4080000: memory-region: [[248], [249]] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dtb
-
-remoteproc@4080000: memory-region: [[251], [252]] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb
-
-remoteproc@4080000: memory-region: [[252], [253]] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dtb
-
-remoteproc@4080000: qcom,halt-regs:0: [231] is too short
-	arch/arm64/boot/dts/qcom/sc7280-idp.dtb
-
-remoteproc@4080000: qcom,halt-regs:0: [236] is too short
-	arch/arm64/boot/dts/qcom/sc7280-idp2.dtb
-
-remoteproc@4080000: qcom,halt-regs:0: [239] is too short
-	arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb
-
-remoteproc@4080000: qcom,halt-regs:0: [245] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dtb
-
-remoteproc@4080000: qcom,halt-regs:0: [248] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dtb
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dtb
-
-remoteproc@4080000: qcom,halt-regs:0: [253] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dtb
-
-remoteproc@4080000: qcom,halt-regs:0: [256] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb
-
-remoteproc@4080000: qcom,halt-regs:0: [257] is too short
-	arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dtb
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
