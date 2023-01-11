@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18CF06657F9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04378665807
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 10:49:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238522AbjAKJrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 04:47:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46666 "EHLO
+        id S232664AbjAKJsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 04:48:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238428AbjAKJra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:47:30 -0500
+        with ESMTP id S230507AbjAKJrg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 04:47:36 -0500
 Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07BD6F6C
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:45:35 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id ay12-20020a05600c1e0c00b003d9ea12bafcso8510681wmb.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:45:34 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C89CAE68
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:46:07 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so12170714wms.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 01:46:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6wWIW61CZB/vxYsqF5McKIEUW8wQWfFLBGnoRl2r3g4=;
-        b=QguNZ3AYn9in0xBi5rvw6eS1DCNUvH+vHez+dOi+3DDRE45hk/4PDbuSn45J90c/he
-         j9k7ueMNy/fKnOW3aTx0YQ7yCOLxZrYxw2P6CfoRNM9EbcIobYhVXvmoQuxtmug6pXqo
-         VxKJCD0aS1ADMeueGAEC0rXJA9e+QVd/68mGb43OS6xg2hph7591FLUISbJsWuh7bBPw
-         f6sGF5hw76qmQjoswCmFm4MeKOfRKGwndK9neQJiIg1GATDMpou+XvO4GZJ9iU6zNBUS
-         +zSGI6qnV7CEz7JMMoqP8qDW79VPIRhm63ChyeueuIbzSqxwZJvnkoOB2FtE3D6pXVsY
-         Pcag==
+        bh=T8qJr9kxb2tGVbF6bozT+Foz2HcY6He6TrHRTcyBEDM=;
+        b=rsjaoGyhFkfmSubHNTKsjmnS6j/NmQ2fI7phFAvhMi1KiNzoVpbU32S/6rCEQav80Q
+         k8wcwGy3RWZ7sAS5zTiIob3nVWXuDCVwKQJBl5dg0fbA/BO2dARaE+gLiJu74Hykirhy
+         nTrYygWQ6HxEpJf18QaCMVhwgthjG0/ZcU73PjN1mvRVqgMD+4Hy5ssT1PUJSHTWGpEe
+         hZDBKFXVTpmqweD8YSHKy/16VP/8WYUvrHZJxFB9ZY5xzgFp+DZD+xF998O60Dlr4ph2
+         63enZTgXLDiIS81V7cev0/G770QAuiHVx1BD/q7KMVDK0OqjzW4YrDq8K2g7/dJPQPW8
+         cTow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6wWIW61CZB/vxYsqF5McKIEUW8wQWfFLBGnoRl2r3g4=;
-        b=MRTtfzZymkbaANhMyWyw3DETFGYzg4aGMhnBmqKJDKuVRVqWdmPdoVi1syw3qWfYHs
-         PoCfSMAHnC7WC991KatfHbZIk6G2cOk2EV+07cyVeU61hMSxdPe54yNKpYl0vZPOJa2+
-         z8LRGJHm6IC2qlIVrnSWTYjEvLw+P/s3Od88PYFf24+RL+DFYEkMHqNUpfU6KOPr55H0
-         Pbm1uaXcPMoNNgfsKuDYNLvNKoF85kS7KY3CO4oohKJw+Wr8ItMKlR5qAxj0I0Ylq4lP
-         62+rjvmFEDcchh5km/aPwy3enN9NxOE1873Gi4mOuzUbrcF0nbS7M8kQaEscjpn7jZLc
-         FBkQ==
-X-Gm-Message-State: AFqh2ko2yCb/4ezfkoaRASBq3XUQjaIFUHkKb8rMRfM9omyRQ/zGqbOm
-        tDiBJWuXScaAbeR4rrTY/eJa2Q==
-X-Google-Smtp-Source: AMrXdXs3iRR5hbQRbV2mNc++Pv4HJQCPNW9Qxhph9zZkqzpQCh6C2nt5n8RG3k3wja/pppBlAUQdrQ==
-X-Received: by 2002:a05:600c:3ca8:b0:3d9:e8b3:57fa with SMTP id bg40-20020a05600c3ca800b003d9e8b357famr10283292wmb.30.1673430333549;
-        Wed, 11 Jan 2023 01:45:33 -0800 (PST)
+        bh=T8qJr9kxb2tGVbF6bozT+Foz2HcY6He6TrHRTcyBEDM=;
+        b=EQ126Ld88EPUr6pkYSPHXJaMS8Y9cm1dNAKDCr+ol8Sg70QvpqO/5/XAmJf2klsAoS
+         AZju21sjLGE907yK9+8QAqEFaBpVZJVAHmf3popetzs4AYxtEnShwvIw/JjzJxvw94er
+         vAuVxQv1Lx8xUVh8iNnJE87TzAAIQuDI46RcCVdSdaRaRN3fX5keWt+Kc/MqOPk9PxSf
+         R/YxB05B5ATid2atCQEK2mEi+sWCOPRMs6Cgv0MG9l4YG3HOUlaZDSPqXXVP2o1sCDH8
+         5vouZhG4O3G9DZHQKQB+EDNtVJa+sruyC+mVEiNC7YpchqQM4IE/+bqxy3msiLTbowP3
+         nQaA==
+X-Gm-Message-State: AFqh2kq+5rbStaSXM8PfP/emxvKj5G267kQwIxpTnCn0woA+6B+daDNu
+        jm0WOU+ZKMJihRni1eQ3u5aOYA==
+X-Google-Smtp-Source: AMrXdXvOSu6TmuYVPNW8+fAGh0hq7brP7g4tp3JJcm7IGvJ4njHTnFBbiRTuZMJLH4ukwt7yYhNCQQ==
+X-Received: by 2002:a05:600c:22d4:b0:3cf:82b9:2fe6 with SMTP id 20-20020a05600c22d400b003cf82b92fe6mr61741450wmg.8.1673430365782;
+        Wed, 11 Jan 2023 01:46:05 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j6-20020a05600c42c600b003b492753826sm16653155wme.43.2023.01.11.01.45.30
+        by smtp.gmail.com with ESMTPSA id t8-20020a1c7708000000b003d9f00c8f07sm9678192wmi.21.2023.01.11.01.46.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 01:45:33 -0800 (PST)
-Message-ID: <e5383b73-7026-ede1-387c-5847535438eb@linaro.org>
-Date:   Wed, 11 Jan 2023 10:45:30 +0100
+        Wed, 11 Jan 2023 01:46:05 -0800 (PST)
+Message-ID: <4d3003e7-f671-9971-dd3e-08b8654473db@linaro.org>
+Date:   Wed, 11 Jan 2023 10:46:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 6/7] arm64: dts: Add ipq9574 SoC and AL02 board support
+Subject: Re: [PATCH 1/7] dt-bindings: arm64: ipq9574: Add binding descriptions
+ for clock and reset
 Content-Language: en-US
 To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -72,9 +73,9 @@ Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
         quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
         quic_poovendh@quicinc.com
 References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
- <20230110121316.24892-7-quic_devipriy@quicinc.com>
+ <20230110121316.24892-2-quic_devipriy@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230110121316.24892-7-quic_devipriy@quicinc.com>
+In-Reply-To: <20230110121316.24892-2-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,27 +89,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/01/2023 13:13, devi priya wrote:
-> From: POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
-> 
-> Add initial device tree support for Qualcomm IPQ9574 SoC
-> and AL02 board
+> Adding support for the global clock controller found on
+> IPQ9574 based devices
 > 
 > Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
 > Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Co-developed-by: devi priya <quic_devipriy@quicinc.com>
 > Signed-off-by: devi priya <quic_devipriy@quicinc.com>
-> Signed-off-by: POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
-
-Don't use CAPITAL CASE FOR NAMES BUT Camel Case. Although different
-languages might have different rules, but most cases when transliterated
-to English (or Latin alphabet), the name Start with capital letter. The
-same in your case.
-
 > ---
->  arch/arm64/boot/dts/qcom/Makefile            |   1 +
->  arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts |  69 ++++
-
-One more:
 
 Use subject prefixes matching the subsystem (which you can get for
 example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
