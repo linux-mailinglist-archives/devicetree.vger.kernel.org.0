@@ -2,51 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96C0466537B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 06:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5A7466537D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Jan 2023 06:19:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236136AbjAKFTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 00:19:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56624 "EHLO
+        id S236173AbjAKFTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 00:19:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231705AbjAKFSV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 00:18:21 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2E53EE16;
-        Tue, 10 Jan 2023 21:10:14 -0800 (PST)
+        with ESMTP id S233598AbjAKFSW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 00:18:22 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64AC13F69;
+        Tue, 10 Jan 2023 21:10:15 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id F1A11CE1AB1;
+        by ams.source.kernel.org (Postfix) with ESMTPS id 52E90B81AA0;
+        Wed, 11 Jan 2023 05:10:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A339C433F0;
         Wed, 11 Jan 2023 05:10:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56BF5C433F1;
-        Wed, 11 Jan 2023 05:10:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673413811;
-        bh=BRIn83OXfYE22qZPXnA4wyZ6NN470qFG94q4fiFtAxc=;
+        s=k20201202; t=1673413813;
+        bh=8eNqRedA6q9VpBGdIGpcQR8D7AKpnlHhr1E6FnFe47M=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=K7H38nD11vPL8LU0BPi45odUwfM3CSCA5OhkkkavazChnBh/AOYnjjVnPUYIEDq8g
-         9BS0ZIzXw+j8j7I3l1kCSRg67zCgFCl5kq6468B5R00m9G/Nhc+Lxq5UrUQQSlCNdt
-         PoMeP20Zbw0/+9oMusQV7qrZgu7wSW/b0wuHJMlUlvkvdYzfKz9FpgyANje8DpY2wP
-         ZwN1rUcyV6GK/YHnCczhOANIy0VCKaVu2c9Zz2waspXlrmDFe8s9MOVsoI8quuZArL
-         S0hGdfsP3AkIrFq0CNT9Yu3Tg4EWA1b8GjV0xBPwNwDFwHJxlSWLu83oiOYoiM7/Zq
-         NPPxIGV41tubg==
+        b=mVjx4SwOxeAp2avJvXDHEU7sD58fexRU4pCcGhpg/8DicoXLFfGrFDCgnAs2b3OWv
+         s65e1SwVlMATHAnP3uNEpdL8/NNDdET1XuMg8X3+8rn2DNiN5jX0gXezxN/TwMUvbU
+         zKiUmbrGCct1vgKqaVUb0EWqs5sO0nBbjbUq1/G6DZdfJ9SOMoyChdTCz5G4vY+8Jx
+         ClHSLuwRHXwYSkAKj3LExjZvsAqnQm0BNw0df2xbaf+y/a1L+o4Ef816fHvoceeS0h
+         R3F6fccUeskL5Ed6aCwxOKXVhaJJCK9TxvNkFzMud7OJm+R0DClzrQS8aME6lGhcKZ
+         NFH+xNVjiSbEQ==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     phone-devel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     linux-arm-msm@vger.kernel.org, martin.botka@somainline.org,
-        jami.kettunen@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        angelogioacchino.delregno@somainline.org, konrad.dybcio@linaro.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845-tama: Add volume up and camera GPIO keys
-Date:   Tue, 10 Jan 2023 23:09:36 -0600
-Message-Id: <167341377740.2246479.8223453101016717706.b4-ty@kernel.org>
+To:     quic_gurus@quicinc.com, konrad.dybcio@linaro.org,
+        quic_molvera@quicinc.com, robimarko@gmail.com, agross@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v5] dt-bindings: firmware: scm: Add QDU1000/QRU1000 compatible
+Date:   Tue, 10 Jan 2023 23:09:38 -0600
+Message-Id: <167341377729.2246479.1613184788965831967.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230109234133.365644-1-marijn.suijten@somainline.org>
-References: <20230109234133.365644-1-marijn.suijten@somainline.org>
+In-Reply-To: <20221216231312.22574-1-quic_molvera@quicinc.com>
+References: <20221216231312.22574-1-quic_molvera@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -59,23 +57,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Jan 2023 00:41:32 +0100, Marijn Suijten wrote:
-> Tama has four GPIO-wired keys: two for camera focus and shutter /
-> snapshot, and two more for volume up and down.  As per the comment these
-> used to not work because the necessary pin bias was missing, which is
-> now set via pinctrl on pm8998_gpios.
+On Fri, 16 Dec 2022 15:13:12 -0800, Melody Olvera wrote:
+> Add compatible for scm driver for QDU1000 and QRU1000 platforms. These
+> drivers only require the compatible field, so update the bindings
+> accordingly for these platforms.
 > 
-> The missing bias has also been added to the existing volume down button,
-> which receives a node name and label cleanup at the same time to be more
-> consistent with other DTS and the newly added buttons.  Its deprecated
-> gpio-key,wakeup property has also been replaced with wakeup-source.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sdm845-tama: Add volume up and camera GPIO keys
-      commit: 4ce03bb80faed41e04b7d6f089275d262f4cfc79
+[1/1] dt-bindings: firmware: scm: Add QDU1000/QRU1000 compatible
+      commit: 5b8db5b4f756bcb3a3f9b6577f32fc0d3867496f
 
 Best regards,
 -- 
