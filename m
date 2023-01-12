@@ -2,208 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C12BA667579
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 15:22:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09C64667595
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 15:23:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236634AbjALOWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 09:22:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45636 "EHLO
+        id S236839AbjALOXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 09:23:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232016AbjALOVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 09:21:35 -0500
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E8EC5E668;
-        Thu, 12 Jan 2023 06:12:45 -0800 (PST)
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30C9dqXG021075;
-        Thu, 12 Jan 2023 06:12:33 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=pfpt0220; bh=o99ykTzML7zFN4dw9PwlFyBeheG3xAQZAUBYrVKdw+Q=;
- b=QGtfQloFjJ6FiR9nNL3gNjjZdNToltFUiCNX2UaNIHcvCY905Uy9HNqP3aSFcf1gMVX4
- X6nn77aq8Sqn45rp0tmp6+D1T4/ib+Kkajc3u9TzpnhH6hUjZbK5UDVw+PXMHF0L7I2y
- lftzcQgMn8zXx5GcoAi6cIUxgciXumwP1uyH202nkqcS5+4iOMVkE5bV1Oslen4wccoT
- hSHuYWMQs8+prhWwPlLRVlJUdkWI2Gy2BPbul8yFkUsHVMn7dOG9CCQ08XWCEtALGX/V
- ZfLfiqObRUlH3sr+Ffui3w/bLv2KQ3LayZsLrB6U6lFHru+Ydo047enyjFjxvVGq2ACp /g== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3n1k570dqk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 06:12:33 -0800
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 12 Jan
- 2023 06:12:31 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
- Transport; Thu, 12 Jan 2023 06:12:31 -0800
-Received: from Dell2s-9 (unknown [10.110.150.250])
-        by maili.marvell.com (Postfix) with ESMTP id BCE3C3F7051;
-        Thu, 12 Jan 2023 06:12:30 -0800 (PST)
-Date:   Thu, 12 Jan 2023 06:12:30 -0800
-From:   Piyush Malgujar <pmalgujar@marvell.com>
-To:     Adrian Hunter <adrian.hunter@intel.com>
-CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <ulf.hansson@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <yamada.masahiro@socionext.com>, <devicetree@vger.kernel.org>,
-        <jannadurai@marvell.com>, <cchavva@marvell.com>
-Subject: Re: [PATCH 2/5] drivers: mmc: sdhci-cadence: enable
- MMC_SDHCI_IO_ACCESSORS
-Message-ID: <20230112141230.GB6335@Dell2s-9>
-References: <20221219142418.27949-1-pmalgujar@marvell.com>
- <20221219142418.27949-3-pmalgujar@marvell.com>
- <35ea0a7a-3d63-26b7-4dc3-69f6ca41909a@intel.com>
+        with ESMTP id S236745AbjALOWW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 09:22:22 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B768852C49
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:13:52 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id g13so28615095lfv.7
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:13:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mUZYof/oPESYTLfj3BC8tUb1F+1CIVHRnIelDFoTXRI=;
+        b=xdc/NMOODVOxlfSiX7Hlu19ON4XQa4S8ROfC+P0O3kNVoei4nhWZmWrgvx0s/di6ob
+         Q/DL1HbpFHzjVs+NVNlrlMOl7gQ+A96v5QJIUNu6PQnTVDlG8D7kFCsF3twJlLEshBWd
+         qgVZXVVQY8Y8YZOyIorBq8AO6rof/xFJqyvdz7prJEj+ZsEpnSUv4pT6RSAvIK1W4pI8
+         g2K3P7YbqW5/f+ZeHNMSKGB4w4yjt+kZNfydyGEkeKzJFkDZf1nzJMSdgTPqKaGAgWDz
+         V5nF4eOmiEOH2A3fda79iJhTZu9q+kl/5s7BWiA9VenbtB6EaeJvZSLshHBBMfKPa4LT
+         fVWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mUZYof/oPESYTLfj3BC8tUb1F+1CIVHRnIelDFoTXRI=;
+        b=afH4Dpvk+H9+AGRY7q2YJoMDX5nUf6Ki60yX746aztL/85wdtqXNIQfFXdfun3hZjw
+         Wmn3qz9M8nGzrCkwmVtJG69h2PVim/7dVNwqAwgsHUqu8aqBwft8TonD1M6y9BDa4OSc
+         XuAaU1wORg8+Tsq107IXKkHX7BI0XtLrt1QHVLtFJP9vKzONww/tRait58HMfbvjLxa8
+         4YqI6a2paPy0VaQ3aTIFRE+LZMWuP1gJLuU6L7SRvyofbU7zeVQY/JhEz7eBWyiULS4i
+         aAxfoELiX0iWXE+n2wsNipxznSZaBcz1n8NmmBo0kdQJPnubboDuq6dow3/5Ht4NtQTu
+         6nKQ==
+X-Gm-Message-State: AFqh2kpZxrfUt2nb1DlMAIgTGhQCWxjyHhX+bcsp7bPT41I1ge+PrIEk
+        VeuRyd3T12qLnIhFqdlBQqGRhQ==
+X-Google-Smtp-Source: AMrXdXvTry+9nZA2tce7XqpaDlMl46nu0M11hZQuZjTrEexju1s3szDkkyFNYio6wPlSWiLNNl1RBA==
+X-Received: by 2002:ac2:532e:0:b0:4b5:5ddc:da32 with SMTP id f14-20020ac2532e000000b004b55ddcda32mr17947618lfh.56.1673532831075;
+        Thu, 12 Jan 2023 06:13:51 -0800 (PST)
+Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id w34-20020a0565120b2200b004b5ab5e904esm3269768lfu.306.2023.01.12.06.13.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 06:13:50 -0800 (PST)
+Message-ID: <2fa25d72-5c40-1e1d-bebb-8b00706b3b5c@linaro.org>
+Date:   Thu, 12 Jan 2023 15:13:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <35ea0a7a-3d63-26b7-4dc3-69f6ca41909a@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-ORIG-GUID: mGrgC6KPVjgpf9ISHeeX3wrUQ79TflSH
-X-Proofpoint-GUID: mGrgC6KPVjgpf9ISHeeX3wrUQ79TflSH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-12_08,2023-01-12_01,2022-06-22_01
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 06/13] clk: qcom: cpu-8996: simplify the
+ cpu_clk_notifier_cb
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230111192004.2509750-1-dmitry.baryshkov@linaro.org>
+ <20230111192004.2509750-7-dmitry.baryshkov@linaro.org>
+ <b4721d61-799e-2677-4273-0c92cb555cae@linaro.org>
+ <bbaea2e2-cea4-3528-4e9b-b003d53d0af7@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <bbaea2e2-cea4-3528-4e9b-b003d53d0af7@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrian, 
 
-Thank you for the review comments.
 
-On Wed, Jan 11, 2023 at 10:23:43AM +0200, Adrian Hunter wrote:
-> On 19/12/22 16:24, Piyush Malgujar wrote:
-> > From: Jayanthi Annadurai <jannadurai@marvell.com>
-> > 
-> > Add support for CONFIG_MMC_SDHCI_IO_ACCESSORS for controller
-> > specific register read and write APIs.
-> > 
-> > Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
-> > Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
-> > ---
-> >  drivers/mmc/host/Kconfig         | 12 ++++++
-> >  drivers/mmc/host/sdhci-cadence.c | 63 ++++++++++++++++++++++++++++++++
-> >  2 files changed, 75 insertions(+)
-> > 
-> > diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> > index 5e19a961c34d7b5664ab2fd43cfba82dc90913ac..b5b2ae0bb4625bdb9d17acdbb1887c9caa3a1f32 100644
-> > --- a/drivers/mmc/host/Kconfig
-> > +++ b/drivers/mmc/host/Kconfig
-> > @@ -262,6 +262,18 @@ config MMC_SDHCI_CADENCE
-> >  
-> >  	  If unsure, say N.
-> >  
-> > +config MMC_SDHCI_CN10K
-> > +	tristate "SDHCI Cadence support for Marvell CN10K platforms"
-> > +	select MMC_SDHCI_CADENCE
-> > +	select MMC_SDHCI_IO_ACCESSORS
+On 11.01.2023 23:01, Dmitry Baryshkov wrote:
+> On 11/01/2023 23:03, Konrad Dybcio wrote:
+>>
+>>
+>> On 11.01.2023 20:19, Dmitry Baryshkov wrote:
+>>> - Do not use the Alt PLL completely. Switch to smux when necessary to
+>>>    prevent overvolting
+>> Is this empirical evidence, or did Qualcomm recommendations change since
+>> msm-3.18 was released?
 > 
-> Probably better to just add MMC_SDHCI_IO_ACCESSORS to 
-> config MMC_SDHCI_CADENCE and drop MMC_SDHCI_CN10K
+> I think this is what they are doing, see https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.7.5.r1-05300-8x96.0/drivers/clk/msm/clock-cpu-8996.c#L675
 > 
-
-This reason behind this was to not force SDHCI_IO_ACCESSORS upon cadence users as some may not
-require it owing to how cadence ip is integrated to soc.
-
-> > +	help
-> > +	  This selects the SDHCI cadence driver and IO Accessors
-> > +	  for Marvell CN10K platforms
-> > +
-> > +	  If you have Marvell CN10K platform, say Y or M here.
-> > +
-> > +	  If unsure, say N.
-> > +
-> >  config MMC_SDHCI_CNS3XXX
-> >  	tristate "SDHCI support on the Cavium Networks CNS3xxx SoC"
-> >  	depends on ARCH_CNS3XXX || COMPILE_TEST
-> > diff --git a/drivers/mmc/host/sdhci-cadence.c b/drivers/mmc/host/sdhci-cadence.c
-> > index 5332d19e489be936d6814feba4f0fc046f5e130e..6bf703f15bc5be7e3be4cb1144b78ec3585ec540 100644
-> > --- a/drivers/mmc/host/sdhci-cadence.c
-> > +++ b/drivers/mmc/host/sdhci-cadence.c
-> > @@ -449,6 +449,61 @@ static u32 read_dqs_cmd_delay, clk_wrdqs_delay, clk_wr_delay, read_dqs_delay;
-> >  
-> >  static u32 sdhci_cdns_sd6_get_mode(struct sdhci_host *host, unsigned int timing);
-> >  
-> > +#ifdef CONFIG_MMC_SDHCI_IO_ACCESSORS
-> > +static u32 sdhci_cdns_sd6_readl(struct sdhci_host *host, int reg)
-> > +{
-> > +	return readl(host->ioaddr + reg);
-> > +}
-> > +
-> > +static void sdhci_cdns_sd6_writel(struct sdhci_host *host, u32 val, int reg)
-> > +{
-> > +	writel(val, host->ioaddr + reg);
-> > +}
-> > +
-> > +static u16 sdhci_cdns_sd6_readw(struct sdhci_host *host, int reg)
-> > +{
-> > +	u32 val, regoff;
-> > +
-> > +	regoff = reg & ~3;
-> > +
-> > +	val = readl(host->ioaddr + regoff);
-> > +	if ((reg & 0x3) == 0)
-> > +		return (val & 0xFFFF);
-> > +	else
-> > +		return ((val >> 16) & 0xFFFF);
-> > +}
-> > +
-> > +static void sdhci_cdns_sd6_writew(struct sdhci_host *host, u16 val, int reg)
-> > +{
-> > +	writew(val, host->ioaddr + reg);
-> > +}
-> > +
-> > +static u8 sdhci_cdns_sd6_readb(struct sdhci_host *host, int reg)
-> > +{
-> > +	u32 val, regoff;
-> > +
-> > +	regoff = reg & ~3;
-> > +
-> > +	val = readl(host->ioaddr + regoff);
-> > +	switch (reg & 3) {
-> > +	case 0:
-> > +		return (val & 0xFF);
-> > +	case 1:
-> > +		return ((val >> 8) & 0xFF);
-> > +	case 2:
-> > +		return ((val >> 16) & 0xFF);
-> > +	case 3:
-> > +		return ((val >> 24) & 0xFF);
-> > +	}
-> > +	return 0;
-> > +}
-> > +
-> > +static void sdhci_cdns_sd6_writeb(struct sdhci_host *host, u8 val, int reg)
-> > +{
-> > +	writeb(val, host->ioaddr + reg);
-> > +}
-> > +#endif
-> > +
-> >  static int sdhci_cdns_sd6_phy_lock_dll(struct sdhci_cdns_sd6_phy *phy)
-> >  {
-> >  	u32 delay_element = phy->d.delay_element_org;
-> > @@ -1576,6 +1631,14 @@ static const struct sdhci_ops sdhci_cdns_sd4_ops = {
-> >  };
-> >  
-> >  static const struct sdhci_ops sdhci_cdns_sd6_ops = {
-> > +#ifdef CONFIG_MMC_SDHCI_IO_ACCESSORS
-> > +	.read_l = sdhci_cdns_sd6_readl,
-> > +	.write_l = sdhci_cdns_sd6_writel,
-> > +	.read_w = sdhci_cdns_sd6_readw,
-> > +	.write_w = sdhci_cdns_sd6_writew,
-> > +	.read_b = sdhci_cdns_sd6_readb,
-> > +	.write_b = sdhci_cdns_sd6_writeb,
-> > +#endif
-> >  	.get_max_clock = sdhci_cdns_get_max_clock,
-> >  	.set_clock = sdhci_cdns_sd6_set_clock,
-> >  	.get_timeout_clock = sdhci_cdns_get_timeout_clock,
+> They switch altpll frequency for whatever reasons, then they do the dance of switching the parent rate to half rate if necessary and then they finally switch the parent's rate to the target rate. That's the only way I can interpret the cpu_clk_8996_set_rate().
 > 
+> https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.7.5.r1-05300-8x96.0/drivers/clk/msm/clock-cpu-8996.c#L675
 
-Rest of the comments will be taken care in v2.
+Okay, so on rate switch they:
 
-Thanks,
-Piyush
+PWR:
+  - set (rate > 1190400 kHz ? 556800000 : 307200000) on ALT_PLL
+  - use_alt_pll is 0 because it's an uninitialized global var
+    - do_half_rate is TRUE on PWRCL_CLK
+    - " /* Special handling needed " path is entered if the frequency
+      is being requested to go from above 600 MHz to below 600 MHz
+    - clk_set_rate sets OLD_RATE/2 on pwrcl_hf_mux which
+      has 2 parents:
+        * pwrcl_pll for 600 MHz - 3000 MHz
+        * pwrcl_lf_mux for anything else fed by:
+           * pwrcl_pll_main = pwrcl_pll/2 (300 MHz - 600 MHz???)
+           * sys_apcsaux_clk (SMUX) (<300 MHz??)
+
+PERF:
+  - use_alt_pll is 0 because it's an uninitialized global var
+    - do_half_rate is TRUE on PERFCL_CLK
+    - " /* Special handling needed " path is entered if the frequency
+      is being requested to go from above 600 MHz to below 600 MHz
+    - clk_set_rate sets OLD_RATE/2 (/4 on Pro) on perfcl_hf_mux which
+      has 2 parents:
+        * perfcl_pll for 600 MHz - 3000 MHz
+        * perfcl_lf_mux for anything else fed by:
+           * perfcl_pll_main = perfcl_pll/2 (300 MHz - 600 MHz???)
+           * sys_apcsaux_clk (SMUX) (<300 MHz??)
+
+So I think the alt_plls are NOT used and this is correct..
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+
+> 
+>>
+>>
+>>> - Restore the parent in case the rate change aborts for some reason
+>>> - Do not duplicate resetting the parent in set_parent operation.
+>> These sound good.
+>>
+>> Konrad
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>   drivers/clk/qcom/clk-cpu-8996.c | 31 +++++++++++++++++++------------
+>>>   1 file changed, 19 insertions(+), 12 deletions(-)
+>>>
+>>> diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
+>>> index 7e5246ca7e7f..ee7e18b37832 100644
+>>> --- a/drivers/clk/qcom/clk-cpu-8996.c
+>>> +++ b/drivers/clk/qcom/clk-cpu-8996.c
+>>> @@ -506,27 +506,34 @@ static int cpu_clk_notifier_cb(struct notifier_block *nb, unsigned long event,
+>>>   {
+>>>       struct clk_cpu_8996_pmux *cpuclk = to_clk_cpu_8996_pmux_nb(nb);
+>>>       struct clk_notifier_data *cnd = data;
+>>> -    int ret;
+>>>         switch (event) {
+>>>       case PRE_RATE_CHANGE:
+>>> -        ret = clk_cpu_8996_pmux_set_parent(&cpuclk->clkr.hw, ALT_INDEX);
+>>>           qcom_cpu_clk_msm8996_acd_init(base);
+>>> +
+>>> +        /*
+>>> +         * Avoid overvolting. clk_core_set_rate_nolock() walks from top
+>>> +         * to bottom, so it will change the rate of the PLL before
+>>> +         * chaging the parent of PMUX. This can result in pmux getting
+>>> +         * clocked twice the expected rate.
+>>> +         *
+>>> +         * Manually switch to PLL/2 here.
+>>> +         */
+>>> +        if (cnd->new_rate < DIV_2_THRESHOLD &&
+>>> +            cnd->old_rate > DIV_2_THRESHOLD)
+>>> +            clk_cpu_8996_pmux_set_parent(&cpuclk->clkr.hw, SMUX_INDEX);
+>>> +
+>>>           break;
+>>> -    case POST_RATE_CHANGE:
+>>> -        if (cnd->new_rate < DIV_2_THRESHOLD)
+>>> -            ret = clk_cpu_8996_pmux_set_parent(&cpuclk->clkr.hw,
+>>> -                               SMUX_INDEX);
+>>> -        else
+>>> -            ret = clk_cpu_8996_pmux_set_parent(&cpuclk->clkr.hw,
+>>> -                               ACD_INDEX);
+>>> -        break;
+>>> +    case ABORT_RATE_CHANGE:
+>>> +        /* Revert manual change */
+>>> +        if (cnd->new_rate < DIV_2_THRESHOLD &&
+>>> +            cnd->old_rate > DIV_2_THRESHOLD)
+>>> +            clk_cpu_8996_pmux_set_parent(&cpuclk->clkr.hw, ACD_INDEX);
+>>>       default:
+>>> -        ret = 0;
+>>>           break;
+>>>       }
+>>>   -    return notifier_from_errno(ret);
+>>> +    return NOTIFY_OK;
+>>>   };
+>>>     static int qcom_cpu_clk_msm8996_driver_probe(struct platform_device *pdev)
+> 
