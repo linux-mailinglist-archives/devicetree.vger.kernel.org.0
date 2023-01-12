@@ -2,152 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B95006687BC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 00:07:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCEB46687F7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 00:52:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232007AbjALXH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 18:07:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37336 "EHLO
+        id S232888AbjALXwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 18:52:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbjALXH2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 18:07:28 -0500
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2091.outbound.protection.outlook.com [40.107.113.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9696AD91;
-        Thu, 12 Jan 2023 15:07:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VNtysPpQK7J5nF9teVxsKwC7ld6TITlFUEx9NoCrhwns8HwljG1y0h0Va9iqVsayBmzunWWX6SzRe4QgnR26AEuGTTcuhJ20Rvakx3ZDIpkrOlRYEnD1CyySDkBqhn2Ow2gdomad7K/tzt+H9o9CPlsA4rIIR9eOJZ7tkR4rrbAs4uF8QH1f+0rHK8NKdN4I2mC1TWX8oFJul78Vj84yJvkf6Sn35WwmG2mDIY9JVuVeFhEML0CH2wLsKetGnDa8KIRgQuP3OkgKEwCnzhbMpeuU0fjoSoj/rLFdtb9/LQQ3vC0bikFx8zfLalwiRiu4XDtGIze4ThsEycbb8Dp5eg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=awF32QOCfSkp3dvKY5876KRtte954rMLE6jS2MZOn9A=;
- b=lhLksAYUcAq0NN5+b4QYvuWXEJSqPjDcWpbEaz8hFv94y4LKKTSn2y0itbftsXmgEJviaj9HFQuCbbh0hSO1AeK42Y/z95vSmdBVX3DTZ9JGa0MApvJdNrl31NDiyo1ImDySk0tb1U9ueTI5i/sa63rPq39itGb3m3aT0hftOiw3YDWNsJ2nx2Sy+hZexJequA8Pu7K5apWT5jTOQpUvYV1zCsw1RR2OeUNX1f+jWC4hiD9hFePqNaSNFk1GYi5epoYQ9pOFDcwETqI7k1KNCaE+S8uWpLmiGOGx2VIDbYrNrOolGDm/dvIuHJL4K3JNH3Df7+tcbPTSHh9mNHit3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=awF32QOCfSkp3dvKY5876KRtte954rMLE6jS2MZOn9A=;
- b=ZZqYlYMzfIP2bBT2c8v/gHiZnzRVfe1IzhqYkQSmjA203y0/vdhSnxb2+WYJ7rcglyE9XgzziS9feSwYq2Zpgcu26sKvCUgEJM74l2eCAQlHZn8wNLs2nCr1wzR21M6epehiEvyiCwWpdhSWP1R0fRYF41Wtsrn7+Bcb+yRZ9Mo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
- by TYWPR01MB10050.jpnprd01.prod.outlook.com (2603:1096:400:1e2::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Thu, 12 Jan
- 2023 23:07:24 +0000
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::3cd7:a7b5:ea86:9ae]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::3cd7:a7b5:ea86:9ae%4]) with mapi id 15.20.6002.012; Thu, 12 Jan 2023
- 23:07:24 +0000
-Message-ID: <87a62nbbdg.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232777AbjALXwm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 18:52:42 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2EC3059323;
+        Thu, 12 Jan 2023 15:52:40 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AF891FEC;
+        Thu, 12 Jan 2023 15:53:21 -0800 (PST)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 70A4D3F71A;
+        Thu, 12 Jan 2023 15:52:37 -0800 (PST)
+Date:   Thu, 12 Jan 2023 23:50:49 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH 0/8] arm64: dts: renesas: Simple-Card / Audio-Graph-Card/Card2 dts for ULCB/KF
-In-Reply-To: <CAMuHMdXPS5zToCU-C=gQB3n6=OXzmhMdtVGbCn1Vk1GtKSZGwA@mail.gmail.com>
-References: <87edt2pxhd.wl-kuninori.morimoto.gx@renesas.com>
-        <CAMuHMdUH-CSmaKuM2HA-5j5cP_c2pygp9DqyQiOC9XkCUuzCKw@mail.gmail.com>
-        <87bkn44ne0.wl-kuninori.morimoto.gx@renesas.com>
-        <CAMuHMdXPS5zToCU-C=gQB3n6=OXzmhMdtVGbCn1Vk1GtKSZGwA@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date:   Thu, 12 Jan 2023 23:07:24 +0000
-X-ClientProxiedBy: TYAPR04CA0015.apcprd04.prod.outlook.com
- (2603:1096:404:15::27) To OS3PR01MB8426.jpnprd01.prod.outlook.com
- (2603:1096:604:194::10)
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v5 2/4] regulator: sun20i: Add Allwinner D1 LDOs driver
+Message-ID: <20230112235049.07560a55@slackpad.lan>
+In-Reply-To: <20221208084127.17443-3-samuel@sholland.org>
+References: <20221208084127.17443-1-samuel@sholland.org>
+        <20221208084127.17443-3-samuel@sholland.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TYWPR01MB10050:EE_
-X-MS-Office365-Filtering-Correlation-Id: f33fb480-a536-4f27-663c-08daf4f1c42f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: f4ekqeTW6jC+BdcfSN53cVp5E9MCnSHpTPQNduCyEuDX0qVPXcZZyiSui96si+XdhFN16Wn+WIdth91mAree3bIDd5j2wHgf9kHh4PdiF65TlMGozMQGp2y27PYbiMa4K7DwzX4nVIKnpvUR/qSm6ki2OAUUF1+g+Akx3jKNv2Dw8IMKMAX5T+WcnoQ9hH4yMGuYyAklFMn2YxjlRsWqUO3jrd4TQZQHLid+E4It8QgSb1E4hRuou3hoKwenuHK8y9A6t2YA/wYCBS+GJfJm5w7hHHXBs48G50pYZuG1BqXYU1a+q5w7sVHejm9/cp86kALKmUC6eatkx8qRjojmxwXipytXjL89pWHgC7WOih9y1kLNJhfhnKJ9/wdRUtVRTFObsWeBkYO+2U9H5fawZUIFgeOKcvpYfvxrOzed5FrrpyrCRXtY5RcT3t4bUQRyu221323V6fgeb7DfIWEcA0HmWXFDIZmBCEzKBJkmuQowv55G/9XRxU7jK3Jos8qI+g6qtjp9oqMKyIhPFoUjpG8PtQhZogvp3QcMjZXRgq6sCz0dSzOLDfl7k9FCi6RmuU2to+w+PYzymFphh98RGDIXgW7Qnw7T8SzBixNeDbsJOfvqdhBFOZMMCQGCybmOw2nDCZNwKXiLgD4OJ212NLQHktAkX4ypvulk7nzxTTVOPTibUHgXK3mqW+9ujJqQvr+gG0jwqXvDFGQNqlqCrQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(366004)(346002)(376002)(136003)(39860400002)(451199015)(36756003)(86362001)(66476007)(5660300002)(52116002)(316002)(8936002)(4744005)(8676002)(6506007)(26005)(6486002)(478600001)(2616005)(6512007)(186003)(38100700002)(38350700002)(66946007)(41300700001)(4326008)(6916009)(66556008)(2906002)(54906003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?y9sItGagba1dhxAimOquud+Xx0+6THsTvvvbAWPBt/TuLGZE/rub7Bpm3lgi?=
- =?us-ascii?Q?waY1UhC7ewAbTaZTox+wplQGO/mR+bbgEsCG/nBAH79fKk6mpJ3zdEmzo2tf?=
- =?us-ascii?Q?LBlrLMF4cSFEQlvGMym+jeu0Jv/zfcT8Rh2s0/WGy2OAoG+6Qu8aKND0Ty0L?=
- =?us-ascii?Q?45w5LzpMjfyprqDMhIAlFfZ33KkKYyx66GV6RVSjswFsT8NTa3MjIyuVyRkh?=
- =?us-ascii?Q?18wH0uFjGRZva8JBq9npwu33umOS/a8Y2vc3SQPamRuxZT0m2/pvxFVgvn2V?=
- =?us-ascii?Q?xCO9xEqaECdqkscps5DNCxFUDzy0uta1j3Q10ECUul46vwfSg5Gy1BDsbqEh?=
- =?us-ascii?Q?JtZYPS5bAm/mk0uVUC0Is/oaVJxRkKYmQujxFdpYPPOGMbK5rVDY86SbQkjX?=
- =?us-ascii?Q?moV2bpavEVvlcSwLlyW1PSSyUmT2YkvOV8istQrCSMcYqNZ4rLoBaQUSiGic?=
- =?us-ascii?Q?+uL5NQVzv8WkzSe7wUuLQRFh4Ly/8zBiTVrEcuwDIgqoildQoYg7B1R3ysFd?=
- =?us-ascii?Q?GUcQhLu6X2pazY58fiKG4Th6FMCBloLJS55dPXK9yd9C83arwpDrvpH4Kdtp?=
- =?us-ascii?Q?DhtRVkOSMuQEhCKjKLbTUChVwkPfzNFwESCZojWgWAnENLk3RyDoYyoSLdR/?=
- =?us-ascii?Q?PwEUKV0iH6E8JTlvcDJu204fhH8HF7ZGpDtfzojVkDLa11jGcpNjBlDTPP87?=
- =?us-ascii?Q?ozUDnJCbUSEqOkzs+hEmGEgP60b/yKBy705X6idowdoKvV6eO1v4JhCjrxWd?=
- =?us-ascii?Q?MfAleuajyY0CO34dJ5vXx3DlaO+iIVXry21VhWoIDaI9rr3jCJDsemQLMO8T?=
- =?us-ascii?Q?KDKcWqyvKhh6duybTh8Sk0J+/iWiNfxmd4fdwICV3jLG/eqgHMxBFk8QQQ0e?=
- =?us-ascii?Q?W/YwK42lICt98insIK3ems7KX9/Y+Dl5KDNyQW64s/7oCjIy+/465DnqGrdw?=
- =?us-ascii?Q?+57vw4LnuySACCOoD10yAc/Al4Uhrfu21mHMlacb4xePHr4SnP5d7pEWukjL?=
- =?us-ascii?Q?JaQCAeJQ/4XV40STBy5TW0SKdxX32Xi0nxQLKhRCZAugNeyPj6rZXOd6xwUQ?=
- =?us-ascii?Q?BBIdPvKhu7Vi1HxlKCk8+xU1nIwPiGYak8jS+HImkm7GU78ZfDEFyz5INrtd?=
- =?us-ascii?Q?G7ZUIWgkg0PVyykyNk/t92tJNPIbdhH1Q26ErAQFDyWDH5BnQAEDkxAqPx/B?=
- =?us-ascii?Q?fO6JhsIBj3+Lrwj98wh5pKb4dz9kXXmcDUZ0kqPnIqWCyrm8vDePb3sQCHcz?=
- =?us-ascii?Q?QIh48Nwegd5sIljuZISBCSVX8EMPLRkQWyPw72nNVc+HzWaJU2k+RNrY5rdp?=
- =?us-ascii?Q?AuUXr41Gp5gFF4K5VIy4OKID06bNdeUluFLT6sXPjvSWxdeBwKwJwdbB6PoB?=
- =?us-ascii?Q?UfY1UNXnR4WcAtk34ByOX4xGDu0vPkIa78rzyh7PJTmjl/4yQj0y614AJZ7U?=
- =?us-ascii?Q?8lOGS7Uk10ni/ENFfNNwB4i1tysOJjwVKC+rBauaBWbBA6ooPDhTFYte8+s4?=
- =?us-ascii?Q?OiOUOIkyyqSCQsbuIYr6s7bEcuc11IlYRXGSzL9EK+fiYU2EYLEI3vNY9msu?=
- =?us-ascii?Q?JGPw+pU7mcY6x5uJWdMVPlroKmHgyEP209wiGCHmHtdrxWxDy+KGysG44b3q?=
- =?us-ascii?Q?hZbI9UHVrBwcanTRVYY4VyU=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f33fb480-a536-4f27-663c-08daf4f1c42f
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2023 23:07:24.3020
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /ylt5umJO4lrF8JHItRlSlmPY1bv5vMUy0/5wCsO/gc+kZv2AZxYRmZTskOSwOakJugvsADKzLUU8+95ypZZudw0iaszlQNxWU5MmYit4BJwyE5MzuB5kRt9A9HKo1WC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB10050
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu,  8 Dec 2022 02:41:25 -0600
+Samuel Holland <samuel@sholland.org> wrote:
 
-Hi Geert
-
-> > It is used on "Simple Audio Card".
-> > We  need <0> if the board is using SSI x 1,
-> > and need <1> if the board is using SSI x N.
-> > It is not mandatory if the board is using "Audio Graph Card/Card2".
+> D1 contains two pairs of LDOs, "analog" LDOs and "system" LDOs. They are
+> similar and can share a driver, but only the system LDOs have a DT
+> binding defined so far.
 > 
-> So #sound-dai-cells should be in the board DTS, and never in the
-> SoC .dtsi? Hence it should be moved out of
-> arch/arm/boot/dts/{r8a7740,sh73a0}.dtsi and
-> arch/arm64/boot/dts/renesas/r9a07g0{43,44,54}.dtsi?
+> The system LDOs have a single linear range. The voltage step is not an
+> integer, so a custom .list_voltage is needed to get the rounding right.
+> 
 
-Hmm, it is difficult to explain via text...
+I put sun20i_d1_system_ldo_list_voltage() into a userland program, and
+compared the full generated list with the manual: they fully match now.
+The formula looks mind-boggling, but works: well done!
+I have no real experience with the regulator boilerplate, but it looks
+alright, and the register offset and masks also match: 
 
-On rsnd case, how many DAIs exist is based on the board,
-and its connection (= R-Car SoC).
-But FSI has fixed DAIs (= SH), thus having #sound-dai-cells
-on SoC is not strange (= r8a7740/sh73a0).
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-And I'm not sure how it works on r9a07g0xx,
-it is not my drivers.
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-Thank you for your help !!
+Cheers,
+Andre
 
-Best regards
----
-Kuninori Morimoto
+> ---
+> 
+> Changes in v5:
+>  - Correct the voltage calculation for the non-linearity around 1.6 V.
+> 
+> Changes in v4:
+>  - Drop the analog LDOs until the codec binding is ready
+> 
+> Changes in v3:
+>  - Adjust control flow in sun20i_regulator_get_regmap() for clarity
+> 
+> Changes in v2:
+>  - Use decimal numbers for .n_voltages instead of field widths
+>  - Get the regmap from the parent device instead of a property/phandle
+> 
+>  drivers/regulator/Kconfig            |   8 ++
+>  drivers/regulator/Makefile           |   1 +
+>  drivers/regulator/sun20i-regulator.c | 156 +++++++++++++++++++++++++++
+>  3 files changed, 165 insertions(+)
+>  create mode 100644 drivers/regulator/sun20i-regulator.c
+> 
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index 070e4403c6c2..8480532114c1 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -1280,6 +1280,14 @@ config REGULATOR_STW481X_VMMC
+>  	  This driver supports the internal VMMC regulator in the STw481x
+>  	  PMIC chips.
+>  
+> +config REGULATOR_SUN20I
+> +	tristate "Allwinner D1 internal LDOs"
+> +	depends on ARCH_SUNXI || COMPILE_TEST
+> +	select MFD_SYSCON
+> +	default ARCH_SUNXI
+> +	help
+> +	  This driver supports the internal LDOs in the Allwinner D1 SoC.
+> +
+>  config REGULATOR_SY7636A
+>  	tristate "Silergy SY7636A voltage regulator"
+>  	depends on MFD_SY7636A
+> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+> index 5962307e1130..8e9b5a21123d 100644
+> --- a/drivers/regulator/Makefile
+> +++ b/drivers/regulator/Makefile
+> @@ -150,6 +150,7 @@ obj-$(CONFIG_REGULATOR_STM32_VREFBUF) += stm32-vrefbuf.o
+>  obj-$(CONFIG_REGULATOR_STM32_PWR) += stm32-pwr.o
+>  obj-$(CONFIG_REGULATOR_STPMIC1) += stpmic1_regulator.o
+>  obj-$(CONFIG_REGULATOR_STW481X_VMMC) += stw481x-vmmc.o
+> +obj-$(CONFIG_REGULATOR_SUN20I) += sun20i-regulator.o
+>  obj-$(CONFIG_REGULATOR_SY7636A) += sy7636a-regulator.o
+>  obj-$(CONFIG_REGULATOR_SY8106A) += sy8106a-regulator.o
+>  obj-$(CONFIG_REGULATOR_SY8824X) += sy8824x.o
+> diff --git a/drivers/regulator/sun20i-regulator.c b/drivers/regulator/sun20i-regulator.c
+> new file mode 100644
+> index 000000000000..8af6b8037ee0
+> --- /dev/null
+> +++ b/drivers/regulator/sun20i-regulator.c
+> @@ -0,0 +1,156 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Copyright (c) 2021-2022 Samuel Holland <samuel@sholland.org>
+> +//
+> +
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/driver.h>
+> +
+> +#define SUN20I_SYS_LDO_CTRL_REG		0x150
+> +
+> +struct sun20i_regulator_data {
+> +	const struct regulator_desc	*descs;
+> +	unsigned int			ndescs;
+> +};
+> +
+> +/* regulator_list_voltage_linear() modified for the non-integral uV_step. */
+> +static int sun20i_d1_system_ldo_list_voltage(struct regulator_dev *rdev,
+> +					     unsigned int selector)
+> +{
+> +	const struct regulator_desc *desc = rdev->desc;
+> +	unsigned int fraction, uV;
+> +
+> +	if (selector >= desc->n_voltages)
+> +		return -EINVAL;
+> +
+> +	uV = desc->min_uV + (desc->uV_step * selector);
+> +	fraction = selector + (desc->min_uV % 4);
+> +
+> +	if (uV > 1606667)
+> +		uV += 6667;
+> +	else
+> +		fraction++;
+> +
+> +	/* Produce correctly-rounded absolute voltages. */
+> +	return uV + (fraction / 3);
+> +}
+> +
+> +static const struct regulator_ops sun20i_d1_system_ldo_ops = {
+> +	.list_voltage		= sun20i_d1_system_ldo_list_voltage,
+> +	.map_voltage		= regulator_map_voltage_ascend,
+> +	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
+> +	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
+> +};
+> +
+> +static const struct regulator_desc sun20i_d1_system_ldo_descs[] = {
+> +	{
+> +		.name		= "ldoa",
+> +		.supply_name	= "ldo-in",
+> +		.of_match	= "ldoa",
+> +		.ops		= &sun20i_d1_system_ldo_ops,
+> +		.type		= REGULATOR_VOLTAGE,
+> +		.owner		= THIS_MODULE,
+> +		.n_voltages	= 32,
+> +		.min_uV		= 1593333,
+> +		.uV_step	= 13333, /* repeating */
+> +		.vsel_reg	= SUN20I_SYS_LDO_CTRL_REG,
+> +		.vsel_mask	= GENMASK(7, 0),
+> +	},
+> +	{
+> +		.name		= "ldob",
+> +		.supply_name	= "ldo-in",
+> +		.of_match	= "ldob",
+> +		.ops		= &sun20i_d1_system_ldo_ops,
+> +		.type		= REGULATOR_VOLTAGE,
+> +		.owner		= THIS_MODULE,
+> +		.n_voltages	= 64,
+> +		.min_uV		= 1166666,
+> +		.uV_step	= 13333, /* repeating */
+> +		.vsel_reg	= SUN20I_SYS_LDO_CTRL_REG,
+> +		.vsel_mask	= GENMASK(15, 8),
+> +	},
+> +};
+> +
+> +static const struct sun20i_regulator_data sun20i_d1_system_ldos = {
+> +	.descs	= sun20i_d1_system_ldo_descs,
+> +	.ndescs	= ARRAY_SIZE(sun20i_d1_system_ldo_descs),
+> +};
+> +
+> +static struct regmap *sun20i_regulator_get_regmap(struct device *dev)
+> +{
+> +	struct regmap *regmap;
+> +
+> +	/*
+> +	 * First try the syscon interface. The system control device is not
+> +	 * compatible with "syscon", so fall back to getting the regmap from
+> +	 * its platform device. This is ugly, but required for devicetree
+> +	 * backward compatibility.
+> +	 */
+> +	regmap = syscon_node_to_regmap(dev->parent->of_node);
+> +	if (!IS_ERR(regmap))
+> +		return regmap;
+> +
+> +	regmap = dev_get_regmap(dev->parent, NULL);
+> +	if (regmap)
+> +		return regmap;
+> +
+> +	return ERR_PTR(-EPROBE_DEFER);
+> +}
+> +
+> +static int sun20i_regulator_probe(struct platform_device *pdev)
+> +{
+> +	const struct sun20i_regulator_data *data;
+> +	struct device *dev = &pdev->dev;
+> +	struct regulator_config config;
+> +	struct regmap *regmap;
+> +
+> +	data = of_device_get_match_data(dev);
+> +	if (!data)
+> +		return -EINVAL;
+> +
+> +	regmap = sun20i_regulator_get_regmap(dev);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to get regmap\n");
+> +
+> +	config = (struct regulator_config) {
+> +		.dev	= dev,
+> +		.regmap	= regmap,
+> +	};
+> +
+> +	for (unsigned int i = 0; i < data->ndescs; ++i) {
+> +		const struct regulator_desc *desc = &data->descs[i];
+> +		struct regulator_dev *rdev;
+> +
+> +		rdev = devm_regulator_register(dev, desc, &config);
+> +		if (IS_ERR(rdev))
+> +			return PTR_ERR(rdev);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id sun20i_regulator_of_match[] = {
+> +	{
+> +		.compatible = "allwinner,sun20i-d1-system-ldos",
+> +		.data = &sun20i_d1_system_ldos,
+> +	},
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, sun20i_regulator_of_match);
+> +
+> +static struct platform_driver sun20i_regulator_driver = {
+> +	.probe	= sun20i_regulator_probe,
+> +	.driver	= {
+> +		.name		= "sun20i-regulator",
+> +		.of_match_table	= sun20i_regulator_of_match,
+> +	},
+> +};
+> +module_platform_driver(sun20i_regulator_driver);
+> +
+> +MODULE_AUTHOR("Samuel Holland <samuel@sholland.org>");
+> +MODULE_DESCRIPTION("Allwinner D1 internal LDO driver");
+> +MODULE_LICENSE("GPL");
+
