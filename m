@@ -2,196 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 254D0668698
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 23:12:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91EA36686E7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 23:28:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240464AbjALWLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 17:11:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58164 "EHLO
+        id S240482AbjALW14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 17:27:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240216AbjALWLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 17:11:03 -0500
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F97B4AA;
-        Thu, 12 Jan 2023 14:03:38 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1673561002; cv=none;
+        with ESMTP id S240517AbjALW1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 17:27:23 -0500
+X-Greylist: delayed 623 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 12 Jan 2023 14:24:43 PST
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5CD26256;
+        Thu, 12 Jan 2023 14:24:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1673562270; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=emLjTGbwx0btbz+xhmtt/yg9dHdbNY9EfoXCucecWwSAZbnnZCyQKF9q4GCSMrCNKK
-    1axdrthj/VHoGztPtsHq9YDs1XzRwswOQOl0X+g+mgHiDjCvPgK1+L1doNOYAuB9eGeM
-    lxppx/wETHzbrWSUUwkYgrnMcv4j43WgdAAgrebMnZTD+y3jZkPOZ5xWhegO0x6vg5Um
-    UII4azAKt9blBH4DRFZp2D6Z2rVwYJb4+I5VH/6a+OpWvob8AMlZrIgNpyI/zPiUqhBb
-    a9x0b8SYSlelgqLwlnnPBdE7FDo26pBE3F+Iu2+K5607JsSBJKuBYU9Ivxzf2vEqR5G6
-    xB5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1673561002;
+    b=sP/ffea2VXzs5ctiBhBZtOrqKvTVucMFvkJmgkUrhJk88hDr4sSgS+qrfSqp5ULl0O
+    jX4g64LhxSww7YdAxXSR1SmUf79NS8mKrdddKgcrsOtaHcRYmzxWqXjJ9i5AZaMiAXBy
+    fuI2OQAE8xImpy6ZWK3Mmfd5GXeT+dbRSi/WoMnI2fmoYQ2Y+23zNeAYRrd0SYpqJ769
+    4MG9k1pDeAUO+dL6PcKYqLVaRkwWMz+nqGmQht70v8O27gt7rYdsSpx8VO8yhaFyezvV
+    HIU4UPHWNKts+bp1+aO3fE1qLBEwH86i31hB1xWGpkmwKXFIgJZa9rPwBDZGu8pq3BNe
+    gAzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1673562270;
     s=strato-dkim-0002; d=strato.com;
     h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
     From:Subject:Sender;
-    bh=rjM2Ovo73mTF+d+xK7MGawlB/cNEYrJxwgPYAP8YQ+M=;
-    b=bZeEt8i91uR6WRelULcO8KLIxM/z0j0ZbtBVY7kOJ32x4xj49T5EOgcYjf+02tHq3C
-    5/y/vj82you2g0VMsVyKk5IpvLNrjayllZFgMhlkxImAk0GLiSRNLxltyFVgvCFooGzY
-    G0EKDoj5gTKyHOD6LS171rVtLHen9kxnQMP6O9yWHoyY/7nRKij8/4Fw4N4h5SuC0KV7
-    6dx9Piunl6woPRtHB7+7S5cPVKXEi3A6LJc/xTb53O3rU9s4IZZRjOQDMyvRlZyJUPiM
-    /zMr8/tyn57lo28403itanEb8gKIeot7nt6g1agsPtZDOKKvB54tGDKC5fjPTgnL09Fa
-    hICg==
+    bh=JTbqY/0foCfnZ+vBedvPjIQxwUaNY5Vwj25lmnUspGI=;
+    b=dGkRfq9BfnPmHYD76sp2At7cdX5hZHBSo/WGQfIyN2XAbLwW0GTnBmRfSewCfXWK4A
+    prp8PLJel+KBlINvm17Iq/UQZxDTr95SaxoulbFWKsnzqbYWOVfM4PDQQYNYsTAm57pZ
+    sZlJxgBaUf7N6VCpIp/GGOVlZ7LcgsiWHCkLdt5KerV2pZ0MH3a1ajRufRo2GtIVmNFm
+    f3ZPZCQdTdMfYd2ZSHqLlk9V644Z2h5BdgnDGcRKUYZJ4S1qdPPrjbnr74mnhJV05rj4
+    I7rWcgMZRT50nPfK1a8a4HuoLvbsOKU61MXvTbgOlloPZ5a+3SZWkBFCAJ6+3bOgrbFb
+    I69Q==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1673561002;
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1673562270;
     s=strato-dkim-0002; d=gerhold.net;
     h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
     From:Subject:Sender;
-    bh=rjM2Ovo73mTF+d+xK7MGawlB/cNEYrJxwgPYAP8YQ+M=;
-    b=dGwLPsSgnvsu3uPfLmkShE9fadtjwgszL02BmM5SXoUZKOoXaHSJbnRSKuTPyLW8X5
-    rAtYSQYXvvZFw3OWqo/etALhUAGUVXyJiSiuMM7pzsMBf9Dudj5aD71uOaWy6N9/8Zug
-    VnMyoa0S5BD2lH9CP4GBZN9MZOUKrP16bGESi2MRA1yCzWQ3Df5aT/0fLGME1Yvi/3U6
-    cx9yHbi2xOk0bbI1MZxqaIQnPyUfbs40ndsJ1nFTJzEAryvWLa1WnyUBI6cDybao7JgV
-    cEoL6QDVWE7A+oPJhu43WW2mSSm3jErKVESViagKnuyl6XEyoT8aVMpcSz2c95khn/dr
-    Srtg==
+    bh=JTbqY/0foCfnZ+vBedvPjIQxwUaNY5Vwj25lmnUspGI=;
+    b=JEaMP74h0BCDJkkracrxXH4SCFbBzdjwbNSLdOCYwvIo18Vj4tmuXDtu2N6/Eoimlt
+    K60huBA6F3lUutcOuG+RD9ypAxAQGQiPKQEdEod0RtcuEyUeq+3H72rm1iUsZOl/WRdY
+    AHZbEzwyXdTHlmVCZTKkpAIy0JgUv65l4+QQPbSV1VbYxKXCTaonc+Jx+RjWQIqg4vRw
+    IwIyteVZAXkBg4U49HeVZOArIcQSbP+nkk3i9cL7exbVFGuQC/PKLVHsJhcInz/HuFNN
+    L0GBZWUA8OJEJ7g4FPyDDheyPwr9Ttx1PWdIozQCezrGCcBYLlM1X5ElBWEKBo/fDck4
+    ZiJg==
 X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJAhdlWwfGjtQ=="
 Received: from gerhold.net
     by smtp.strato.de (RZmta 48.6.2 DYNA|AUTH)
-    with ESMTPSA id yacdeez0CM3M4fq
+    with ESMTPSA id yacdeez0CMOU4hN
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
         (Client did not present a certificate);
-    Thu, 12 Jan 2023 23:03:22 +0100 (CET)
-Date:   Thu, 12 Jan 2023 23:03:15 +0100
+    Thu, 12 Jan 2023 23:24:30 +0100 (CET)
+Date:   Thu, 12 Jan 2023 23:24:29 +0100
 From:   Stephan Gerhold <stephan@gerhold.net>
 To:     Matti =?iso-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>
 Cc:     linux-arm-msm@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
+        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/8] dt-bindings: remoteproc: qcom,msm8916-mss-pil: Add
- MSM8226
-Message-ID: <Y8CDo0jI/ygpnNtR@gerhold.net>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/8] ARM: dts: qcom: msm8226: Add modem remoteproc node
+Message-ID: <Y8CInQ8UJdEen33p@gerhold.net>
 References: <20230112202612.791455-1-matti.lehtimaki@gmail.com>
- <20230112202612.791455-2-matti.lehtimaki@gmail.com>
+ <20230112202612.791455-8-matti.lehtimaki@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230112202612.791455-2-matti.lehtimaki@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230112202612.791455-8-matti.lehtimaki@gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matti,
-
-On Thu, Jan 12, 2023 at 10:26:04PM +0200, Matti Lehtimäki wrote:
-> Adds support for platforms with only single power domain.
-
-This sentence is a bit misleading. MSM8226 also has both CX and MX power
-domains. The difference is only the way they are exposed by the firmware
-and the drivers in Linux.
-
-The RPM firmware allows Linux to vote for either
- - Voltages (exposed as regulators in Linux), or
- - Performance states/"voltage corners" (exposed as power domains in Linux)
-
-For the hardware there is no difference: When using power domains the
-performance states are simply translated to corresponding voltages
-within the RPM firmware.
-
-All newer platforms have moved towards using power domains for CX and
-MX, so for consistency it would be preferable to do the same for MSM8226
-and MSM8974. Perhaps the RPM firmware even allows using them with
-voltage corners? In that case you could just add PM8226 L3 to rpmpd and
-use it as power domain like on other platforms.
-
-For some reason I assumed this is the case for MSM8974 2.5 years ago.
-I have to admit I no longer remember why, and verifying this reliably is
-probably hard... :/
-
-But the VDD_MX setup looks identical for MSM8974 and MSM8226 to me, so
-please also apply the same changes for MSM8974. I would also appreciate
-a small comment in the commit message that the MX voltage rail is still
-represented as regulator on these platforms. Also, perhaps this should
-even be a separate patch given that it kind of fixes what I added for
-MSM8974 back then.
-
-> Adds support for external power block headswitch (BHS) registers
+On Thu, Jan 12, 2023 at 10:26:10PM +0200, Matti Lehtimäki wrote:
+> From: Luca Weiss <luca@z3ntu.xyz>
 > 
+> Add a node for the modem remoteproc found on MSM8226.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Co-developed-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
 > Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
 > ---
->  .../remoteproc/qcom,msm8916-mss-pil.yaml      | 41 +++++++++++++++++--
->  1 file changed, 37 insertions(+), 4 deletions(-)
+>  arch/arm/boot/dts/qcom-msm8226.dtsi | 86 +++++++++++++++++++++++++++++
+>  1 file changed, 86 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
-> index 6e6e69ad9cd7..6a921f2711b2 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+> diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
+> index 2639167c8976..34ea9cf46ae0 100644
+> --- a/arch/arm/boot/dts/qcom-msm8226.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
 > [...]
-> @@ -106,6 +108,15 @@ properties:
->      items:
->        - const: stop
+> @@ -620,6 +655,57 @@ rpm_msg_ram: sram@fc428000 {
+>  			reg = <0xfc428000 0x4000>;
+>  		};
 >  
-> +  qcom,ext-bhs-reg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: External power block headswitch (BHS) register
-> +                 (only valid for qcom,msm8226-mss-pil)
-> +    items:
-> +      - items:
-> +          - description: phandle to external BHS syscon region
-> +          - description: offset to the external BHS register
+> +		modem: remoteproc@fc880000 {
+> +			compatible = "qcom,msm8226-mss-pil";
+> +			reg = <0xfc880000 0x100>,
+> +			      <0xfc820000 0x020>;
+> +			reg-names = "qdsp6", "rmb";
 > +
-
-Please disallow this (qcom,ext-bhs-reg: false) for everything except
-qcom,msm8226-mss-pil.
-
->    qcom,halt-regs:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      description:
-> @@ -205,13 +216,35 @@ allOf:
->        required:
->          - power-domains
->          - power-domain-names
-> -    else:
+> +			interrupts-extended = <&intc GIC_SPI 24 IRQ_TYPE_EDGE_RISING>,
+> +					      <&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&modem_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&modem_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&modem_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready", "handover", "stop-ack";
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8909-mss-pil
-> +              - qcom,msm8916-mss-pil
-> +              - qcom,msm8974-mss-pil
-> +    then:
->        properties:
->          power-domains:
->            maxItems: 2
->          power-domain-names:
->            maxItems: 2
->  
+> +			clocks = <&gcc GCC_MSS_Q6_BIMC_AXI_CLK>,
+> +				 <&gcc GCC_MSS_CFG_AHB_CLK>,
+> +				 <&gcc GCC_BOOT_ROM_AHB_CLK>,
+> +				 <&xo_board>;
+> +			clock-names = "iface", "bus", "mem", "xo";
+> +
+> +			resets = <&gcc GCC_MSS_RESTART>;
+> +			reset-names = "mss_restart";
+> +
+> +			power-domains = <&rpmpd MSM8226_VDDCX>;
+> +			power-domain-names = "cx";
+> +
+> +			qcom,ext-bhs-reg = <&tcsr_regs_1 0x194>;
+> +			qcom,halt-regs = <&tcsr_regs_1 0x180 0x200 0x280>;
+> +
+> +			qcom,smem-states = <&modem_smp2p_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			status = "disabled";
+> +
+> +			mba {
+> +				memory-region = <&mba_region>;
+> +			};
+> +
+> +			mpss {
+> +				memory-region = <&mpss_region>;
+> +			};
 
-You also need to add minItems here now.
+Please prefer using memory-region with two items in the node above, as
+suggested in the DT schema:
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: qcom,msm8226-mss-pil
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          maxItems: 1
-> +        power-domain-names:
-> +          maxItems: 1
-> +      required:
-> +        - qcom,ext-bhs-reg
-
-And here you need to add the mx-supply as required, since you don't have
-it as power domain.
+			memory-region = <&mba_region>, <&mpss_region>;
 
 Thanks,
 Stephan
