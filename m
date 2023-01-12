@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F206666A0C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 05:12:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0BC1666A16
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 05:13:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236797AbjALEMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 23:12:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48746 "EHLO
+        id S236614AbjALENr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 23:13:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236529AbjALEMC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 23:12:02 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F074C73F;
-        Wed, 11 Jan 2023 20:11:55 -0800 (PST)
-X-UUID: 3d75cfa4922f11eda06fc9ecc4dadd91-20230112
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=LWVItFchAxjQJyYfmQOrb6XjujvdQkI5SlHsF0+sIgg=;
-        b=ltBoOkmu1NLrzbQAq28P052jhcluYSYKlxwMoYtTAlnVK6jY0UYZgyBr7DqcINP0+z9h+V1x++LGM+2mBB4p0Y4Ai1cciihSEsNkSbrm1i50hEFo+TvqsMLwwtcG8+WuKr3VccowM4rFs9c9xzqSbMQhMn2IeyYUkKux/+V2veI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.17,REQID:9c6f8cf6-8996-48ef-842f-8b5b237d1baf,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:-25
-X-CID-META: VersionHash:543e81c,CLOUDID:1db66b54-dd49-462e-a4be-2143a3ddc739,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-X-CID-BVR: 0,NGT
-X-UUID: 3d75cfa4922f11eda06fc9ecc4dadd91-20230112
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1055710536; Thu, 12 Jan 2023 12:11:51 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 12 Jan 2023 12:11:50 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 12 Jan 2023 12:11:49 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v3,7/7] media: mediatek: vcodec: change lat thread decode error condition
-Date:   Thu, 12 Jan 2023 12:11:40 +0800
-Message-ID: <20230112041140.833-8-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230112041140.833-1-yunfei.dong@mediatek.com>
-References: <20230112041140.833-1-yunfei.dong@mediatek.com>
+        with ESMTP id S236553AbjALEMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 23:12:46 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 226184D480
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 20:12:22 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id d30so21739929lfv.8
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 20:12:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XHLy6O4jqHDTKSztpi7y2ZBtM/9lIWsx/M8aFoCYq2E=;
+        b=H1u9LiNnyHGfmPscslHjxDyCO203/4x90zy+Xk9OatTpYvkbMK87ZRAkBso5UTXN23
+         S+rP+kmGyIvxmK5FJRsAhl6PN+r0RxZmigBNwl0MyizeN0EsxG+axMIbUed/MucEDxoK
+         xlh+DHqjlJXkikm0G94qOGjIBgpZEm3LRTphUoD7jnN5Lg4f3/1pPkPEGNgQH2dQIf2K
+         wuaB463jDTWT9o8dwisigPOFa2aWsKPOd7hbV2zoOaCt/fy/IJomk1XcQjhufZLQQLiM
+         EqIrK0XkVuG6vWfTplmvefb9omY05xi57gDZQEGy1aaY4HexWvkGjlGEdeVQ+hjdt9R6
+         7S3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XHLy6O4jqHDTKSztpi7y2ZBtM/9lIWsx/M8aFoCYq2E=;
+        b=cruvFDrjgmzhe2REq3bbOC3pA+nt55O+DZc4M3/mQ60q69q3sdmpex0uYf7EOgix69
+         14Mg7333DGyIi32OzKEOCAJ6RAUDABmWTgnkZFtkqTbRg9TTJAKh4AHmuPlZJ9nURpVj
+         tdAkXmEO00tytJ+5rau5wAQd+2jwvULu9NrMWfwLeKxzZBDMAdn8GJEUXz5wdMsmGT7v
+         jio3F7L23qKfDQtPiIqrezz3+47Lmx2vqau8G5tlEvVqOpaezOFJfhR7sgd9Y44szghs
+         FaOU/I3bKWeek9q8PAI98QlIqND4XLijedLS7fQwmym2bPCabgpp2sNkKjF92q+tr2b1
+         TcrQ==
+X-Gm-Message-State: AFqh2kqrLD4wB54h8ShYbuRm4RWPAjXxlDrJOa/4vEErtKIHA8WYnMoe
+        P0ikeSX5ZMmTGQFKsKsJ3dYFHA==
+X-Google-Smtp-Source: AMrXdXu0zASLL432Ldc39pvDctyaFF9ImEH0Re4xHuqAMoQnwm+xDAK/0m6p2WCCIOGrimgIrLfUwQ==
+X-Received: by 2002:a05:6512:3190:b0:4cc:a111:2742 with SMTP id i16-20020a056512319000b004cca1112742mr219414lfe.15.1673496740548;
+        Wed, 11 Jan 2023 20:12:20 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id x26-20020ac2489a000000b004cb018ad4dfsm3053566lfc.135.2023.01.11.20.12.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Jan 2023 20:12:20 -0800 (PST)
+Message-ID: <d09516d5-d67e-2314-0ab0-3af04b9d1f61@linaro.org>
+Date:   Thu, 12 Jan 2023 06:12:19 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v6 6/6] ARM: dts: qcom: fix various wrong definition for
+ kpss-acc-v2
+Content-Language: en-GB
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20230110183259.19142-1-ansuelsmth@gmail.com>
+ <20230110183259.19142-7-ansuelsmth@gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230110183259.19142-7-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,60 +83,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If lat thread can't get lat buffer, it should be that current instance
-don't be schedulded, the driver can't free the src buffer directly.
+On 10/01/2023 20:32, Christian Marangi wrote:
+> Fix dtbs_check warning now that we have a correct kpss-acc-v2 yaml
+> schema.
+> Change acc node naming to power-controller and add missing
+> binding #power-domain-cells for each kpss-acc-v2 power-controller
+> to reflect Documentation schema.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-Fixes: 7b182b8d9c85 ("media: mediatek: vcodec: Refactor get and put capture buffer flow")
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c     | 6 ++++--
- .../platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c  | 2 +-
- .../platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c     | 2 +-
- 3 files changed, 6 insertions(+), 4 deletions(-)
+If you pick up my power-manager suggestion, this patch has to be adjusted.
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c
-index ffbcee04dc26..04beb3f08eea 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c
-@@ -258,8 +258,10 @@ static void mtk_vdec_worker(struct work_struct *work)
- 		if (src_buf_req)
- 			v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
- 	} else {
--		v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
--		v4l2_m2m_buf_done(vb2_v4l2_src, state);
-+		if (ret != -EAGAIN) {
-+			v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
-+			v4l2_m2m_buf_done(vb2_v4l2_src, state);
-+		}
- 		v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
- 	}
- }
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-index 8f262e86bb05..07774b6a3dbd 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-@@ -574,7 +574,7 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	lat_buf = vdec_msg_queue_dqbuf(&inst->ctx->msg_queue.lat_ctx);
- 	if (!lat_buf) {
- 		mtk_vcodec_err(inst, "failed to get lat buffer");
--		return -EINVAL;
-+		return -EAGAIN;
- 	}
- 	share_info = lat_buf->private_data;
- 	src_buf_info = container_of(bs, struct mtk_video_dec_buf, bs_buffer);
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-index cbb6728b8a40..cf16cf2807f0 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-@@ -2070,7 +2070,7 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	lat_buf = vdec_msg_queue_dqbuf(&instance->ctx->msg_queue.lat_ctx);
- 	if (!lat_buf) {
- 		mtk_vcodec_err(instance, "Failed to get VP9 lat buf\n");
--		return -EBUSY;
-+		return -EAGAIN;
- 	}
- 	pfc = (struct vdec_vp9_slice_pfc *)lat_buf->private_data;
- 	if (!pfc) {
+> ---
+>   arch/arm/boot/dts/qcom-apq8084.dtsi | 12 ++++++++----
+>   arch/arm/boot/dts/qcom-ipq4019.dtsi | 12 ++++++++----
+>   arch/arm/boot/dts/qcom-msm8974.dtsi | 12 ++++++++----
+>   3 files changed, 24 insertions(+), 12 deletions(-)
 -- 
-2.18.0
+With best wishes
+Dmitry
 
