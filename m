@@ -2,211 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 686CC666A5A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 05:36:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5190666A64
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 05:39:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236426AbjALEfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 23:35:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60754 "EHLO
+        id S236408AbjALEic convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 11 Jan 2023 23:38:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236529AbjALEe5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 23:34:57 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B238DF47
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 20:34:56 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id bu8so26679944lfb.4
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 20:34:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0JjWYRu/kVfVhVMQzk2HzUkqzGw62vTtAvDUcCRIg2Q=;
-        b=xnCH+90vro8HMqVxbQWy0+QpP1RoJllaC7vgNWkMXosA1sjMcQG3WXug2Xm3w1gWDc
-         54BbU2npxmYPjPpuB4OM00Jqjm+OGTqeM4yH6GTJgMDjBtfiZ2anhtAcR8WL+USGjN+w
-         oPt5/OL1Gu24THz9dqppSYQ8wW3dkFnerIrZezOK87RIIyA89U29icART7QawzY+TyZr
-         n6DFmUYUR3I4xTs3LtU+5DS3R4zrE/XEbY4kzSa99C8m7Z/mUBkxtJwOmYs/mB1ssces
-         AyCzScDZf/LHR/rSv3T4+gedsPtapZ1b3DyzjV2bUO8zKXEAjMA2ikUhwkB4+PDLshed
-         W5sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0JjWYRu/kVfVhVMQzk2HzUkqzGw62vTtAvDUcCRIg2Q=;
-        b=crHfbs6uhegp+15Hc2ZgzfJJFDG06r6V220x4WBx5zaIOaZ23aQtkDl3k+Mdx2O39Z
-         SL/68ZtXTFUk1kb31CWHKuv2TBFxxtqep58B9ICFFEI4Um+RzSzQgyh62CnPtMBitAv3
-         I8uT0yisy8aexxv1BACN5Tbtjn+gR3F8Mc/27Ub00TGBl4Txv4hmNxiY5+6z5nOkoX1q
-         FaIwTt+B1PsxIxvXVyg+B1vLSUmqTWJFiuDCByR4RKGrMeNbCAgSovi3Zyx9xxAN7uJA
-         LqdmujYq+EOgeGOJPrP7ncqbMBMc5Adb1iYh/xmR7W2iPdcls+wflBWWkvDnTD/7pR4d
-         ha9A==
-X-Gm-Message-State: AFqh2koylMsuKlvfLXGGRnMDMSMrt2zMac0DVKklGLcXhcZuFFIm/PJd
-        xtc0Rxmik+wrp8G7DLj7PyiR5g==
-X-Google-Smtp-Source: AMrXdXvswYjzkwcjW1IFhBRPRCljQyY1mVGS2bVSnl2yzozkT8fVqnMJ/f+zrekqCZdDq6TGM/o/JA==
-X-Received: by 2002:a05:6512:c03:b0:4b5:a4ef:fca3 with SMTP id z3-20020a0565120c0300b004b5a4effca3mr24625783lfu.38.1673498094415;
-        Wed, 11 Jan 2023 20:34:54 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id x22-20020a0565123f9600b004b52aed44besm3078302lfa.25.2023.01.11.20.34.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 20:34:53 -0800 (PST)
-Message-ID: <61ba2880-6784-1014-a7a2-a1eecc4e810e@linaro.org>
-Date:   Thu, 12 Jan 2023 06:34:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v10 0/9] Register Type-C mode-switch in DP bridge
- endpoints
-Content-Language: en-GB
-To:     Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S236570AbjALEia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 23:38:30 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38B4845650;
+        Wed, 11 Jan 2023 20:38:26 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id A38A424DBC0;
+        Thu, 12 Jan 2023 12:38:19 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 12 Jan
+ 2023 12:38:19 +0800
+Received: from ubuntu.localdomain (202.188.176.82) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 12 Jan
+ 2023 12:38:15 +0800
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+To:     Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
-        Xin Ji <xji@analogixsemi.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
-        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Imre Deak <imre.deak@intel.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
-        shaomin Deng <dengshaomin@cdjrlc.com>
-References: <20230112042104.4107253-1-treapking@chromium.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230112042104.4107253-1-treapking@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>
+CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v4 0/3] hwrng: starfive: Add driver for TRNG module
+Date:   Thu, 12 Jan 2023 12:38:09 +0800
+Message-ID: <20230112043812.150393-1-jiajie.ho@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [202.188.176.82]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/01/2023 06:20, Pin-yen Lin wrote:
-> 
-> This series introduces bindings for anx7625/it6505 to register Type-C
-> mode-switch in their output endpoints, and use data-lanes property to
-> describe the pin connections.
+This patch series adds kernel support for StarFive hardware random
+number generator. First 2 patches add binding docs and device driver for
+this module. Patch 3 adds devicetree entry for VisionFive 2 SoC.
 
-Please cc everybody on all patches. Having received just a single patch 
-made me spend time on having to look them up on lore.
+Patch 3 needs to be applied on top of:
+https://patchwork.kernel.org/project/linux-riscv/patch/20221220011247.35560-7-hal.feng@starfivetech.com/
 
-> 
-> The first two patch modifies fwnode_graph_devcon_matches and
-> cros_typec_init_ports to enable the registration of the switches.
-> 
-> Patch 4~6 introduce the bindings for anx7625 and the corresponding driver
-> modifications.
-> 
-> Patch 7~9 add similar bindings and driver changes for it6505.
-> 
-> v9: https://lore.kernel.org/all/20230109084101.265664-1-treapking@chromium.org/
-> v8: https://lore.kernel.org/all/20230107102231.23682-1-treapking@chromium.org/
-> v7: https://lore.kernel.org/all/20230105132457.4125372-1-treapking@chromium.org/
-> v6: https://lore.kernel.org/all/20221124102056.393220-1-treapking@chromium.org/
-> v5: https://lore.kernel.org/linux-usb/20220622173605.1168416-1-pmalani@chromium.org/
-> 
-> Changes in v10:
-> - Collected Reviewed-by and Tested-by tags
-> - Replaced "void *" with "typec_mux_set_fn_t" for mux_set callbacks
-> - Print out the node name when errors on parsing DT
-> - Use dev_dbg instead of dev_warn when no Type-C switch nodes available
-> - Made the return path of drm_dp_register_mode_switch clearer
-> - Added a TODO for implementing orientation switch for anx7625
-> - Updated the commit message for the absence of orientation switch
-> - Fixed typo in the commit message
-> 
-> Changes in v9:
-> - Collected Reviewed-by tag
-> - Fixed subject prefix again
-> - Changed the naming of the example node for it6505
-> 
-> Changes in v8:
-> - Fixed the build issue when CONFIG_TYPEC=m
-> - Fixed some style issues
-> - Fixed the subject prefixes for the bindings patch
-> - Fixed the bindings for data-lanes properties
-> 
-> Changes in v7:
-> - Fix the long comment lines
-> - Extracted the common codes to a helper function
-> - Fixed style issues in anx7625 driver
-> - Removed DT property validation in anx7625 driver.
-> - Fixed style issues in it6505 driver
-> - Removed the redundant sleep in it6505 driver
-> - Removed DT property validation in it6505 driver
-> - Rebased to drm-misc-next
-> - Fixed indentations in bindings patches
-> - Added a new patch to fix indentations in Kconfig
-> 
-> Changes in v6:
-> - Changed it6505_typec_mux_set callback function to accommodate with
->    the latest drm-misc patches
-> - Changed the driver implementation to accommodate with the new binding
-> - Dropped typec-switch binding and use endpoints and data-lanes properties
->    to describe the pin connections
-> - Added new patches (patch 1,2,4) to fix probing issues
-> - Changed the bindings of it6505/anx7625 and modified the drivers
->    accordingly
-> - Merged it6505/anx7625 driver changes into a single patch
-> 
-> Pin-yen Lin (7):
->    drm/display: Add Type-C switch helpers
->    dt-bindings: display: bridge: anx7625: Add mode-switch support
->    drm/bridge: anx7625: Check for Type-C during panel registration
->    drm/bridge: anx7625: Register Type C mode switches
->    dt-bindings: display: bridge: it6505: Add mode-switch support
->    drm/bridge: it6505: Fix Kconfig indentation
->    drm/bridge: it6505: Register Type C mode switches
-> 
-> Prashant Malani (2):
->    device property: Add remote endpoint to devcon matcher
->    platform/chrome: cros_ec_typec: Purge blocking switch devlinks
-> 
->   .../display/bridge/analogix,anx7625.yaml      |  99 ++++++++++++-
->   .../bindings/display/bridge/ite,it6505.yaml   |  93 ++++++++++--
->   drivers/base/property.c                       |  15 ++
->   drivers/gpu/drm/bridge/Kconfig                |  21 +--
->   drivers/gpu/drm/bridge/analogix/Kconfig       |   1 +
->   drivers/gpu/drm/bridge/analogix/anx7625.c     | 105 +++++++++++++-
->   drivers/gpu/drm/bridge/analogix/anx7625.h     |  13 ++
->   drivers/gpu/drm/bridge/ite-it6505.c           | 119 +++++++++++++++-
->   drivers/gpu/drm/display/drm_dp_helper.c       | 134 ++++++++++++++++++
->   drivers/platform/chrome/cros_ec_typec.c       |  10 ++
->   include/drm/display/drm_dp_helper.h           |  17 +++
->   11 files changed, 598 insertions(+), 29 deletions(-)
-> 
+Patch 3 also depends on additional clock and reset patches for stg domain
+that are yet to be submitted to mailing list.
+
+Changes v3 -> v4:
+- move init completion before IRQ registration to be prepared for
+  spurious interrupts. (Herbert)
+- add locks to guard concurrent write to same register in Patch 2.
+  (Herbert)
+
+Changes v2 -> v3:
+- use constant usecs and convert to jiffies in Patch 2. (Herbert)
+- remove sleep in irq handler in Patch 2. (Herbert)
+- limit wait timer to 40us if wait == 0 for trng read. (Herbert)
+
+Changes v1 -> v2:
+- updated of_match_ptr and added pm_sleep_ptr in Patch 2. (by Krzysztof)
+- drop "status" in dts as module is always on in Patch 3. (by Krzysztof)
+
+Jia Jie Ho (3):
+  dt-bindings: rng: Add StarFive TRNG module
+  hwrng: starfive - Add TRNG driver for StarFive SoC
+  riscv: dts: starfive: Add TRNG node for VisionFive 2
+
+ .../bindings/rng/starfive,jh7110-trng.yaml    |  55 +++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  10 +
+ drivers/char/hw_random/Kconfig                |  11 +
+ drivers/char/hw_random/Makefile               |   1 +
+ drivers/char/hw_random/starfive-trng.c        | 397 ++++++++++++++++++
+ 6 files changed, 480 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
+ create mode 100644 drivers/char/hw_random/starfive-trng.c
 
 -- 
-With best wishes
-Dmitry
+2.25.1
 
