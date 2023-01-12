@@ -2,119 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBD1B667648
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 15:30:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EC836676AB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 15:34:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237630AbjALOaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 09:30:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48792 "EHLO
+        id S238535AbjALOeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 09:34:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237144AbjALO3y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 09:29:54 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5CBE58F8B
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:21:18 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id b3so28650922lfv.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:21:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hYPC0xPkD3qfxeDJVAHVJwygajuCgQeK71VnK//yVgE=;
-        b=qWyBCN/YKgeG4SRRDofLnlF56/pjSEaCFpmiJ00jJ3QFJxtA2qZij/aoAJMmH5FmLu
-         31YwkrKqbOXN6LOCp3Pba8MY0t3/HvWvlY1+FAxdcGw1JYftQm/fiLTYWlhL/7i8ihCM
-         mMSBjrZ/dArekeChC/lUNFnEniGNjc9kDO9W9OaDa6ZmU1XHyCvCbqokFgnF2npotpP9
-         pMhYfIoh3OARFxQ993lIAj09U9tW/IWtPR3TtPylqusO88A5ug8XPE3QIB5b3E354/7R
-         YYftG9F7x6PqLuipBQsPicz3hcfgkgqT1JTgAmGsibXGeGRCKF/P4MJsTSY/tGyz1Uf3
-         TRKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hYPC0xPkD3qfxeDJVAHVJwygajuCgQeK71VnK//yVgE=;
-        b=S47vqf1C3Rn8Yaa15kvQPbaOyH2Gd+6BJ9e1zfOFdVVYw31qRrO72X0bTC//WbsUUH
-         DZkBAqFyNK1ta6dASZSYdXQ9NoM5pwBRhlaPyaISYaUafv7qTOGH1Yl0jGgsZTh2qzPN
-         0/vLG0dKc+OPcG1LKlYNPx2zu2rJmWBBxJIwh3IeSeQDuBoVQWy7ntAFiVp9Q796oSzq
-         TCsuy1g+fUzoF3B7eJR6XMuOEG0vmwf86ynU+VHg+y2EnL8a2jKIf6lYxB7M7nqr76vc
-         4l/XCikjFtLUf+awkOjg2JDRvuCz3yWGmddo1gicGkFq30cXZCUjhqbd4ZYZHfellBC/
-         +1DA==
-X-Gm-Message-State: AFqh2krBO37Xu5EYItwtPiDZzJLeg7cqB8IeQp99hk5RyAutZyMPj+uy
-        t5R0By0F+57aVIBFMkzfT2d+kg==
-X-Google-Smtp-Source: AMrXdXsWq9nggSMuDl9Nfc/yAPwiMedsOXe42zJ3D3TUk4lXk1GFTMWZNFh51MEUEHqYcCSHTOeonA==
-X-Received: by 2002:ac2:4a8a:0:b0:4b5:1545:222b with SMTP id l10-20020ac24a8a000000b004b51545222bmr18813731lfp.47.1673533276802;
-        Thu, 12 Jan 2023 06:21:16 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id bu31-20020a056512169f00b004b54ca56cf9sm3303452lfb.303.2023.01.12.06.21.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 06:21:15 -0800 (PST)
-Message-ID: <a3594770-1d7e-de02-b78c-8446d239b60b@linaro.org>
-Date:   Thu, 12 Jan 2023 15:21:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Vote for CX in USB
- controllers
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-References: <20230112135117.3836655-1-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230112135117.3836655-1-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S239450AbjALOdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 09:33:43 -0500
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF555AC55;
+        Thu, 12 Jan 2023 06:25:15 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id A7CC23200923;
+        Thu, 12 Jan 2023 09:25:12 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 12 Jan 2023 09:25:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1673533512; x=1673619912; bh=zd2a00NEe4
+        +bDxczc+Ry0ob6zOWTcbtiiMyZcdFcU0w=; b=YGNxNqkRDCogME/TIrJwOFu+Aw
+        KREFfDsPOtB+pMQXTRSOjSADpBtRnn7ra9dThQy9nYwC5yaFT1k3aZoi1r0cw8k+
+        tZtQBFckNDlZiYSPEjFu22B1zw3L8alU9JbOhL2cROrmsh2p6L75WEvDRpGOlgd2
+        0Oe0Oh6/0kUY1aVj2noXhURTil8Q8TZiK64DpyY7HOtLraktXAnQF2cQNIub/Fd+
+        TBLb7phal05/bJz7ZEvhP6cNFIDtQbD0Ifa7+IUKdSYBrlIu+O75PMLYYnO341zD
+        VmwdYG9nyS06eac4RqrejbcNIO6da7iyTziQCz+EZuoMtNT3oUn/hPg7TlXw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1673533512; x=1673619912; bh=zd2a00NEe4+bDxczc+Ry0ob6zOWT
+        cbtiiMyZcdFcU0w=; b=lvKLryXdOqdEofsFsgIJQHOGktZeXc6Az43dxqpjOy4o
+        AffAcHAPxJ0T5mqZ46mKeyrq78/6Dc3K0kLAPr9ElHiyu+h78rtMrtkUNr5Kr6dj
+        GAmBZvUfhKZgbcfDoG9khuNbZ6S+OHA7stvHly/frsr3kr+KKfBBpk8twcj8W2UZ
+        S3rWWH/zrYnfFQA9xKiP6r6yWFHUERBHkAJX72Q/9hLou0QzOCcUgeQcqhzU5VoI
+        DyDNOvUqTentQ0QcgBG8kDfJrIelN2jzDdQnpaQFtSS2k9t9AbRdtJBAF8ONQo6P
+        9hSfp0kKE4X+diUWCs14nZNTtR+ib4YGVMUz0T/euA==
+X-ME-Sender: <xms:RxjAY2-gAMTQkme3l1_1vUzceEGq89VRd3miCOPsXW-AfkRe0R5ARw>
+    <xme:RxjAY2slsnRZE7VDPM4gfQgGCfPJH0cLwE7mmlWVRHb-xTJR-2pyWS86LMm3K9wJ7
+    Wp7mggCGcmA-_Y7huo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrleeigdeigecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehrnhgu
+    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
+    hrnhepffegffdutddvhefffeeltefhjeejgedvleffjeeigeeuteelvdettddulefgudfg
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
+    gusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:RxjAY8BofP2iwlr4WsTRUE3GFTIilbevoETcx1AdLHUD0DpcEl2baw>
+    <xmx:RxjAY-eF-AmA_kcO6TRy-o70WLcT3DX1-vMFSqtmLyNUVWXbG0nJIQ>
+    <xmx:RxjAY7NRVoYzjn-7RIfz09uKphRe7p3VSBb53XcRHtHlvy3ElmXcZA>
+    <xmx:SBjAY8G2EH6syEFGmLuK_5FPcRgYYbtaUDEmOfbvtGp86NqBKeGo_Q>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id CFB53B60086; Thu, 12 Jan 2023 09:25:11 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
+Mime-Version: 1.0
+Message-Id: <5ad677f3-2cbc-4ba0-bd48-2f832a72fb28@app.fastmail.com>
+In-Reply-To: <20230103203654.59322-4-nick.hawkins@hpe.com>
+References: <20230103203654.59322-1-nick.hawkins@hpe.com>
+ <20230103203654.59322-4-nick.hawkins@hpe.com>
+Date:   Thu, 12 Jan 2023 15:24:51 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "Jean Delvare" <jdelvare@suse.com>,
+        "Guenter Roeck" <linux@roeck-us.net>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        "Jonathan Corbet" <corbet@lwn.net>,
+        "Russell King" <linux@armlinux.org.uk>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 3/5] ARM: dts: add GXP Support for fans and SPI
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 3, 2023, at 21:36, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+>
+> Reorganize the base address of AHB to accommodate the SPI and fan driver
+> register requirements. Add the hpe,gxp-spifi and hpe,gxp-fan-ctrl
+> compatibles. Add comments to make the register range more clear.
+>
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+>
 
-
-On 12.01.2023 14:51, Bjorn Andersson wrote:
-> Running GCC_USB30_*_MASTER_CLK at 200MHz requires CX at nominal level,
-> not doing so results in occasional lockups. This was previously hidden
-> by the fact that the display stack incorrectly voted for CX (instead of
-> MMCX).
+> diff --git a/arch/arm/boot/dts/hpe-gxp.dtsi 
+> b/arch/arm/boot/dts/hpe-gxp.dtsi
+> index cf735b3c4f35..b73b22a93716 100644
+> --- a/arch/arm/boot/dts/hpe-gxp.dtsi
+> +++ b/arch/arm/boot/dts/hpe-gxp.dtsi
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  /*
+> - * Device Tree file for HPE GXP
+> + * Device Tree for HPE
+>   */
 > 
-> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---https://git.codelinaro.org/clo/la/kernel/msm-5.4/-/blob/LV.AU.1.2.3.r1-03600-gen3meta.0/drivers/clk/qcom/gcc-direwolf.c#L2703-2725
-
-Maybe in the future there could be some power savings for lower freqs..
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+>  /dts-v1/;
+> @@ -52,76 +52,102 @@
+>  			cache-level = <2>;
+>  		};
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index 2ed17baf50d3..4f4353f84cba 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -2265,6 +2265,7 @@ usb_0: usb@a6f8800 {
->  					  "ss_phy_irq";
->  
->  			power-domains = <&gcc USB30_PRIM_GDSC>;
-> +			required-opps = <&rpmhpd_opp_nom>;
->  
->  			resets = <&gcc GCC_USB30_PRIM_BCR>;
->  
-> @@ -2319,6 +2320,7 @@ usb_1: usb@a8f8800 {
->  					  "ss_phy_irq";
->  
->  			power-domains = <&gcc USB30_SEC_GDSC>;
-> +			required-opps = <&rpmhpd_opp_nom>;
->  
->  			resets = <&gcc GCC_USB30_SEC_BCR>;
->  
+> -		ahb@c0000000 {
+> +		ahb@80000000 {
+>  			compatible = "simple-bus";
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> -			ranges = <0x0 0xc0000000 0x30000000>;
+> +			ranges = <0x0 0x80000000 0xf000000>, /* 0x80000000 - 0x8f000000 */
+> +				 <0x40000000 0xc0000000 0x7fffffff>; /* 0xc0000000 - 0xffffffff */
+
+I'm a bit confused by the change in the mappings: are you
+sure this all the same ahb bus and not two separate buses?
+
+The comment for the second range looks wrong to me, as
+you define a 2GB (minus one byte) sized mapping but the
+comment only lists a 1GB (including the last byte) mapping.
+
+I would expect that the original 0x30000000 (including the
+last byte) was correct here.
+
+> -			vic1: interrupt-controller@80f00000 {
+> +			vic1: interrupt-controller@f00000 { /* 0x80f00000 */
+
+This is not the same address as before. I'm also not sure the
+comment is helpful here.
+
+    Arnd
