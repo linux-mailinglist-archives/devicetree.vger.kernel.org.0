@@ -2,95 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 842806678F3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17648667951
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:32:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238794AbjALPUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 10:20:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34964 "EHLO
+        id S232397AbjALPcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 10:32:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238694AbjALPTm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:19:42 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C080D2602
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 07:12:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6779D6205A
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 15:12:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D281DC433EF;
-        Thu, 12 Jan 2023 15:12:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673536333;
-        bh=mmzqSII9T6D59c5Rwcmo14SU+6iZlSmcHeRTkXTcRWM=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=blWMyYT7NqCfzvbtYA6V4krkw93hhaNVMC9tnemHst0C+qnUKn+r4VpAE7JwwNi7w
-         ioRl0DtWoG37Vye44GVSUAYduAYTy4vDt3TUjae0EN0mXyaPKgImGCcTwmUzCQcuM6
-         F7nVYeofr09KYtwkCsOqA66M95w/MI9nMPpbsWaYD38dt/LexMqwtFNHOqxZMhYUrV
-         R+myls/ZNOut3ws5TU/IoXvCTLPpBBcGhYmzl2qI5op5/fa1zMEKhT64a19u7CqmNs
-         X8OWjCIFM0hM9KyHtkO29/TbLNXXchXxBt8YBzfMP6mlPXn9W5xKTm86P2ymupl9xz
-         Mg3AcH04GxuNQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jai Luthra <j-luthra@ti.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-In-Reply-To: <20221230132644.6398-1-j-luthra@ti.com>
-References: <20221230132644.6398-1-j-luthra@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: sound: tlv320aic3x: Add optional clock
- and port properties
-Message-Id: <167353633135.2136827.959588025464826190.b4-ty@kernel.org>
-Date:   Thu, 12 Jan 2023 15:12:11 +0000
+        with ESMTP id S232013AbjALPbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:31:24 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D00F614D0F
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 07:23:37 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id j17so28943624lfr.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 07:23:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wtWGEx2XwnoDW6PQDY/ot+B1VrWS9wU0ZiX/llUoAaA=;
+        b=ue9VmefVO6jfaf70+1DqmhVYQTk8bnzJyMmxnbf+cee2hcxUOR47s3Zw6pW+m3DrDk
+         bkMnoRp75PzD9brcfG5e9I62cblT8YfewaJqUTcCVZ9CwUM8bKBmAc0FJZAJow00lH46
+         UKKS6k5VX8wmWlyTHXE9E6GbY07SJc6ArY6Vv16BLdOFqGKqvDWhMw/SDmHvvF2Wmxwi
+         Q0JypFkF1CZoB8PolMuR94KPJe0izLXTAaZoDuG2NKPyL9z3TjxSaHZJp+iRtf17mjlA
+         S7Cwe9SHghELDsG+uR23ulYil1uIrgkqxMwZQU1HCi015gN79rQeRddDZc34hBYIgiHX
+         lkjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wtWGEx2XwnoDW6PQDY/ot+B1VrWS9wU0ZiX/llUoAaA=;
+        b=eNjBn2gsF6nB6iHdpevPkkAHCZPjWjoAwmBqQcnMgrAobUW4ZtUPGO8ob9egcBhFjf
+         l9IX+9EEh5v1dfCY+nqUQKNVHQ6yAD9Agftd/1hk1xyUJ0H83nMu3sO3gKcyBfntAbPR
+         okq4kr4hlptxyc9pZtyu+T2B0zNg54xJLZ9UkMESuzpIKeFe2KMyRVg1jOqbzaeqW4al
+         QbsJohdlR0yOZUWZ/vgFJFSeOomLFR5ZoZYpcdHOAOI/TvhbjjHsvDYCK5WwW21urw6v
+         /WIgr8gdNTWVxzxCMOyHYM/4/3HqMWeUkxq0LtJS9h0jgonX0SwEPhRR3xXfJhZhouKs
+         05IA==
+X-Gm-Message-State: AFqh2koXCtyFq/F8CkDQTvvPIfd16lquzxeRr05bZcVy6UHYEvTVq+n7
+        KWlBLpypoWMEECmvnJy0bKjurA0pe7C3niU+
+X-Google-Smtp-Source: AMrXdXuop/JByMaI5zq/a2w1JusRq+v/9YHgm9Cyg29ZBByaOJKx6IRRlUdxGdYFAWzOiD6UMqwPMg==
+X-Received: by 2002:a05:6512:1049:b0:4b6:edce:a192 with SMTP id c9-20020a056512104900b004b6edcea192mr24967979lfb.4.1673537016172;
+        Thu, 12 Jan 2023 07:23:36 -0800 (PST)
+Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id u1-20020ac258c1000000b004ce4e945b73sm63548lfo.86.2023.01.12.07.23.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 07:23:34 -0800 (PST)
+Message-ID: <fbec2272-e9b8-207d-e2ce-2f2011640d33@linaro.org>
+Date:   Thu, 12 Jan 2023 16:23:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 4/4] clk: qcom: add the driver for the MSM8996 APCS clocks
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230111191453.2509468-1-dmitry.baryshkov@linaro.org>
+ <20230111191453.2509468-5-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230111191453.2509468-5-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12-dev-8b3d1
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Dec 2022 18:56:44 +0530, Jai Luthra wrote:
-> Describe optional properties for clocks and ports that were missing in
-> the original txt binding, to fix warnings like:
+
+
+On 11.01.2023 20:14, Dmitry Baryshkov wrote:
+> Add a simple driver handling the APCS clocks on MSM8996. For now it
+> supports just a single aux clock, linking GPLL0 to CPU and CBF clocks.
 > 
-> aic33@18: 'assigned-clock-parents', 'assigned-clock-rates',
-> 	'assigned-clocks' do not match any of the regexes:
-> 	'pinctrl-[0-9]+'
-> 	arch/arm/boot/dts/omap2420-n810.dtb
+> Note, there is little sense in registering sys_apcs_aux as a child of
+> gpll0. The PLL is always-on. And listing the gpll0 as a property of the
+> apcs would delay its probing until the GCC has been probed (while we
+> would like for the apcs to be probed as early as possible).
 > 
-> [...]
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/clk/qcom/Makefile       |  2 +-
+>  drivers/clk/qcom/apcs-msm8996.c | 77 +++++++++++++++++++++++++++++++++
+>  2 files changed, 78 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/qcom/apcs-msm8996.c
+> 
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index f18c446a97ea..ca2f586edb3e 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -52,7 +52,7 @@ obj-$(CONFIG_MSM_MMCC_8998) += mmcc-msm8998.o
+>  obj-$(CONFIG_QCOM_A53PLL) += a53-pll.o
+>  obj-$(CONFIG_QCOM_A7PLL) += a7-pll.o
+>  obj-$(CONFIG_QCOM_CLK_APCS_MSM8916) += apcs-msm8916.o
+> -obj-$(CONFIG_QCOM_CLK_APCC_MSM8996) += clk-cpu-8996.o
+> +obj-$(CONFIG_QCOM_CLK_APCC_MSM8996) += apcs-msm8996.o clk-cpu-8996.o
+>  obj-$(CONFIG_QCOM_CLK_APCS_SDX55) += apcs-sdx55.o
+>  obj-$(CONFIG_QCOM_CLK_RPM) += clk-rpm.o
+>  obj-$(CONFIG_QCOM_CLK_RPMH) += clk-rpmh.o
+> diff --git a/drivers/clk/qcom/apcs-msm8996.c b/drivers/clk/qcom/apcs-msm8996.c
+> new file mode 100644
+> index 000000000000..2e9959974ed9
+> --- /dev/null
+> +++ b/drivers/clk/qcom/apcs-msm8996.c
+> @@ -0,0 +1,77 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Qualcomm APCS clock controller driver
+> + *
+> + * Copyright (c) 2022, Linaro Limited
+> + * Author: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> + */
+> +
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/delay.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#define APCS_AUX_OFFSET	0x50
+> +
+> +#define APCS_AUX_DIV_MASK GENMASK(17, 16)
+> +#define APCS_AUX_DIV_2 0x1
+> +
+> +static int qcom_apcs_msm8996_clk_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device *parent = dev->parent;
+> +	struct regmap *regmap;
+> +	struct clk_hw *hw;
+> +	unsigned int val;
+> +	int ret = -ENODEV;
+> +
+> +	regmap = dev_get_regmap(parent, NULL);
+> +	if (!regmap) {
+> +		dev_err(dev, "failed to get regmap: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	regmap_read(regmap, APCS_AUX_OFFSET, &val);
+> +	regmap_update_bits(regmap, APCS_AUX_OFFSET, APCS_AUX_DIV_MASK,
+> +			   FIELD_PREP(APCS_AUX_DIV_MASK, APCS_AUX_DIV_2));
+> +
+> +	/* Hardware mandated delay */
+> +	udelay(5);
+> +
+> +	/*
+> +	 * Register the clock as fixed rate instead of being a child of gpll0
+> +	 * to let the driver register probe as early as possible.
+> +	 */
+Not sure.. you should keep a vote in GPLL0_ao supplied by XO_A
+and perhaps it would be a better idea to move RPMCC (+deps) and
+GCC to very early initcalls since there's a need for that..
 
-Applied to
+Maybe it would even allow us to shave some miliseconds from
+boot times, at less things would defer!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Konrad
+> +	hw = devm_clk_hw_register_fixed_rate(dev, "sys_apcs_aux", NULL, 0, 300000000);
+> +	if (IS_ERR(hw))
+> +		return PTR_ERR(hw);
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, hw);
+> +}
+> +
+> +static struct platform_driver qcom_apcs_msm8996_clk_driver = {
+> +	.probe = qcom_apcs_msm8996_clk_probe,
+> +	.driver = {
+> +		.name = "qcom-apcs-msm8996-clk",
+> +	},
+> +};
+> +
+> +/* Register early enough to fix the clock to be used for other cores */
+> +static int __init qcom_apcs_msm8996_clk_init(void)
+> +{
+> +	return platform_driver_register(&qcom_apcs_msm8996_clk_driver);
+> +}
+> +postcore_initcall(qcom_apcs_msm8996_clk_init);
+> +
+> +static void __exit qcom_apcs_msm8996_clk_exit(void)
+> +{
+> +	platform_driver_unregister(&qcom_apcs_msm8996_clk_driver);
+> +}
+> +module_exit(qcom_apcs_msm8996_clk_exit);
+> +
+> +MODULE_AUTHOR("Dmitry Baryshkov <dmitry.baryshkov@linaro.org>");
+> +MODULE_LICENSE("GPL v2");
+"GPL"
 
-Thanks!
-
-[1/1] dt-bindings: sound: tlv320aic3x: Add optional clock and port properties
-      commit: b6e98cf4ed3baff0c2f7a1c1babf96fde8e129f3
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> +MODULE_DESCRIPTION("Qualcomm MSM8996 APCS clock driver");
