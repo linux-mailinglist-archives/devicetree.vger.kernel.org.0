@@ -2,178 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B2F4666EFD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 11:03:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8DB8666F2C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 11:12:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239756AbjALKDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 05:03:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39546 "EHLO
+        id S239674AbjALKMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 05:12:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236892AbjALKBJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 05:01:09 -0500
-Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E65D7E24
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 02:00:53 -0800 (PST)
-Received: by mail-vk1-xa29.google.com with SMTP id i32so8502097vkr.12
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 02:00:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4i06mppGYiXhN0gX/mC8nb9SL6Y8d9Zg4Osy3GV9SYg=;
-        b=dJJzcYTvtPtZKZ4Oo6YyvU+v7YG1bh5MFh5fAmIWm8cSjzoLbPKfvnvSgb40a1ncK1
-         3SK1jAOygeZJ+JoEVrIXG1GZg0QjdenjPGpBmGmC74dJNfyvpLkyKEktPDiWxxTXo3iW
-         rcuznjSZTCQVEIaAMeNCGIOUz3heRijTYPsXI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4i06mppGYiXhN0gX/mC8nb9SL6Y8d9Zg4Osy3GV9SYg=;
-        b=iQsY+F5hMmGVb3I1Q26StxWp2WfhqJwi1da/o0oH8xM5z2M5/+F6ExAjSqo+SzEmsm
-         jIwMP0Yw4Eid5YMHZBy1O68JoRJuVLCdref/nMipv2Tt/8WtP8gKkSXvh+J2N3VCoI00
-         RYtvSGUrHIwllpMcS3hdJKxWyTdH8yVJB7ZVCSk4SENQkur+nL3PE7qP5UdGjU7jRow1
-         NP9rdqeqUPEfVEJrSkH5jLTYbm4fAn0lJR3KR6QP+g5XK+LeIB/hm9qQ8OKaYRwxjuX1
-         s9WwZddCW25dhzJE1vO24hppTaRSBYsiapW9KrtjtP6lye/+otFpxmW+BBlJNh26Fi+H
-         phOw==
-X-Gm-Message-State: AFqh2koVBnjXqnhoo1XTFLZbOUdhCsA1PEmGenNzQcMgLDeSUD5QXuL4
-        PJc7ARUlSNqRkVIE8euYTCD6BvC82iLneK9DGiCz/w==
-X-Google-Smtp-Source: AMrXdXuwd6kfa03Fjf9jlTXF89gVtVV+1AhRmAg6v5vIaOgGq1AZS2BQHeGXdFJEDzUutm8EX+I3gEp529jY5uCS4Gs=
-X-Received: by 2002:a1f:2795:0:b0:3d8:df4c:cfc4 with SMTP id
- n143-20020a1f2795000000b003d8df4ccfc4mr3797463vkn.18.1673517652955; Thu, 12
- Jan 2023 02:00:52 -0800 (PST)
+        with ESMTP id S230522AbjALKL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 05:11:27 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A2A2E6;
+        Thu, 12 Jan 2023 02:11:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 20D2161FCC;
+        Thu, 12 Jan 2023 10:11:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFF3AC433D2;
+        Thu, 12 Jan 2023 10:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673518259;
+        bh=jHnN5TpjDsuEmpEXoiNJ8vZOnsWHRV/v7Jjf9zxez+c=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=TGVnq9Iqk9wH7rfxSRBa4J2HpxstIG4Z5WKyITO+s65XJkUX/avf0hrFttJytcQON
+         ZHhnQbJFrndso01+aTlXR4YwkIyCq9ld+l/ujWp5YpecmleYso4IHCoZ+r0182gAWZ
+         ZlKPeren892boP6XKvRxWMt+5TpjaW/y4MYJKPk7EVWIXzaPGjg2BDW66qfLKBrwIC
+         5zNO9PJ8laBGAWwAHUvx2uqu+EV0Qc2P4PiIEV+eYh9J9QRqzmD6rnZr0gOVsUOcR2
+         DXZeyGRn11V4+P8Tmz8nS5HuqC6NNqKOqC5FoddN9ZPljiX7QSbKgVGOHlQx/KcFU+
+         +myzC5Gn5/zTw==
+Message-ID: <06144828-d1c4-7423-81e3-9c35df996da7@kernel.org>
+Date:   Thu, 12 Jan 2023 11:10:52 +0100
 MIME-Version: 1.0
-References: <20230111123711.32020-1-allen-kh.cheng@mediatek.com> <20230111123711.32020-10-allen-kh.cheng@mediatek.com>
-In-Reply-To: <20230111123711.32020-10-allen-kh.cheng@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 12 Jan 2023 18:00:41 +0800
-Message-ID: <CAGXv+5HbTzyWqvn=iJDnWdWS-MM+wyc0w7F-vPXJN489eGYotQ@mail.gmail.com>
-Subject: Re: [PATCH 9/9] arm64: dts: mediatek: mt8186: Add display nodes
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Stephen Boyd <sboyd@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-mediatek@lists.infradead.org, hsinyi@chromium.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [LINUX PATCH 2/3] dt-bindings: timer: Update device tree bindings
+ for cadence TTC PWM
+To:     Mubin Sayyed <mubin.sayyed@amd.com>, robh+dt@kernel.org,
+        treding@nvidia.com, u.kleine-koenig@pengutronix.de,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     linux-kernel@vger.kernel.org, git@amd.com, michal.simek@amd.com,
+        siva.durga.prasad.paladugu@amd.com, mubin10@gmail.com
+References: <20230112071526.3035949-1-mubin.sayyed@amd.com>
+ <20230112071526.3035949-3-mubin.sayyed@amd.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20230112071526.3035949-3-mubin.sayyed@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 12/01/2023 08:15, Mubin Sayyed wrote:
+> Cadence TTC can act as PWM device, it is supported through
 
-On Wed, Jan 11, 2023 at 8:37 PM Allen-KH Cheng
-<allen-kh.cheng@mediatek.com> wrote:
->
-> Add display nodes and GCE info for MT8186 SoC. Also, add GCE
-> (Global Command Engine) properties to the display nodes in order to
-> enable the usage of the CMDQ (Command Queue), which is required for
-> operating the display.
->
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: drop second/last, redundant "device tree bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+Anyway subject is poor - every commit is an "update", so basically you
+said there nothing...
+
+> separate PWM framework based driver. Decision to configure
+> specific TTC device as PWM or clocksource/clockevent would
+> be done based on presence of "#pwm-cells" property.
+> 
+> Also, interrupt property is not required for TTC PWM driver.
+> Updated bindings to support TTC PWM configuration.
+
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
+
+> 
+> Signed-off-by: Mubin Sayyed <mubin.sayyed@amd.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8186.dtsi | 128 +++++++++++++++++++++++
->  1 file changed, 128 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index eab30ab01572..8670d37970ef 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -5,6 +5,7 @@
->   */
->  /dts-v1/;
->  #include <dt-bindings/clock/mt8186-clk.h>
-> +#include <dt-bindings/gce/mt8186-gce.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/memory/mt8186-memory-port.h>
-> @@ -632,6 +633,15 @@
->                         clocks = <&clk13m>;
->                 };
->
-> +               gce: mailbox@1022c000 {
-> +                       compatible = "mediatek,mt8186-gce";
-> +                       reg = <0 0X1022c000 0 0x4000>;
-> +                       interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-> +                       #mbox-cells = <2>;
-> +                       clocks = <&infracfg_ao CLK_INFRA_AO_GCE>;
-> +                       clock-names = "gce";
-> +               };
+>  .../devicetree/bindings/timer/cdns,ttc.yaml   | 25 ++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/cdns,ttc.yaml b/Documentation/devicetree/bindings/timer/cdns,ttc.yaml
+> index 7d821fd480f6..2855e92e02e3 100644
+> --- a/Documentation/devicetree/bindings/timer/cdns,ttc.yaml
+> +++ b/Documentation/devicetree/bindings/timer/cdns,ttc.yaml
+> @@ -32,12 +32,26 @@ properties:
+>      description: |
+>        Bit width of the timer, necessary if not 16.
+>  
+> +  "#pwm-cells":
+> +    description: |
+> +      Required to configure TTC as PWM device, supported cells are 0 to 3.
+> +    minimum: 0
+> +    maximum: 3
+
+Better make it const. What's the benefit of flexible cells? You also
+should describe the arguments.
+
 > +
->                 scp: scp@10500000 {
->                         compatible = "mediatek,mt8186-scp";
->                         reg = <0 0x10500000 0 0x40000>,
-> @@ -1197,6 +1207,20 @@
->                         reg = <0 0x14000000 0 0x1000>;
->                         #clock-cells = <1>;
->                         #reset-cells = <1>;
-> +                       mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
-> +                                <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
-> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
-> +               };
+>  required:
+>    - compatible
+>    - reg
+> -  - interrupts
+>    - clocks
+>  
+> +allOf:
+> +  - if:
+> +      not:
+> +        required:
+> +          - "#pwm-cells"
+> +    then:
+> +      required:
+> +        - interrupts
 > +
-> +               mutex: mutex@14001000 {
-> +                       compatible = "mediatek,mt8186-disp-mutex";
-> +                       reg = <0 0x14001000 0 0x1000>;
-> +                       clocks = <&mmsys CLK_MM_DISP_MUTEX0>;
-> +                       interrupts = <GIC_SPI 295 IRQ_TYPE_LEVEL_HIGH 0>;
-> +                       mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
-> +                       mediatek,gce-events = <CMDQ_EVENT_DISP_STREAM_DONE_ENG_EVENT_0>,
-> +                                             <CMDQ_EVENT_DISP_STREAM_DONE_ENG_EVENT_1>;
-> +                       power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
->                 };
->
->                 smi_common: smi@14002000 {
-> @@ -1230,6 +1254,49 @@
->                         power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
->                 };
->
-> +               ovl0: ovl@14005000 {
-
-If there's only one instance, you could drop the trailing zero. Same
-for all the other nodes.
-
-> +                       compatible = "mediatek,mt8186-disp-ovl",
-> +                                    "mediatek,mt8192-disp-ovl";
-> +                       reg = <0 0x14005000 0 0x1000>;
-> +                       clocks = <&mmsys CLK_MM_DISP_OVL0>;
-> +                       interrupts = <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH 0>;
-> +                       iommus = <&iommu_mm IOMMU_PORT_L0_OVL_RDMA0>;
-> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x5000 0x1000>;
-> +                       power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-> +               };
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -50,3 +64,12 @@ examples:
+>          clocks = <&cpu_clk 3>;
+>          timer-width = <32>;
+>      };
 > +
-> +               ovl0_2l: ovl@14006000 {
+> +  - |
+> +    ttc1: ttc1@f8002000 {
 
-I think this should be "ovl_2l0" or "ovl_2l" instead?
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-> +                       compatible = "mediatek,mt8186-disp-ovl-2l",
-> +                                    "mediatek,mt8192-disp-ovl-2l";
-> +                       reg = <0 0x14006000 0 0x1000>;
-> +                       power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-> +                       clocks = <&mmsys CLK_MM_DISP_OVL0_2L>;
-> +                       interrupts = <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH 0>;
-> +                       iommus = <&iommu_mm IOMMU_PORT_L1_OVL_2L_RDMA0>;
-> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x6000 0x1000>;
-> +               };
+> +        compatible = "cdns,ttc";
+> +        reg = <0xF8002000 0x1000>;
 
-Also, this patch is missing the aliases for ovl* and rdma*. Without them
-the display driver doesn't properly detect the second pipeline, and only
-one CRTC is generated.
+lowercase hex
 
-ChenYu
+> +        clocks = <&cpu_clk 3>;
+> +        timer-width = <32>;
+> +        #pwm-cells = <3>;
+> +    };
+
+Best regards,
+Krzysztof
+
