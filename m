@@ -2,71 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81C936684C7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 21:57:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F2CD6684C9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 21:58:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240223AbjALU5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 15:57:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52952 "EHLO
+        id S240618AbjALU6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 15:58:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240634AbjALUxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 15:53:43 -0500
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D058A1EECD;
-        Thu, 12 Jan 2023 12:37:55 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id p133so926379oig.8;
-        Thu, 12 Jan 2023 12:37:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=te3B7QXiN9a5dOliEetl+fEAA7YyitjOHHWZmEchd3w=;
-        b=glIVCEb5+TcQQaQjOut7R+KGoYBvNI791BluYJ/OYHr0bDF+/Z1heVXQSFhYra6Dvz
-         As7awkhwMXMhQseRZqcNdF48EIgGsjupYNgVzNrG111dAZVCre745GdpHpijuVdA6Ni6
-         f90hyGzBj9GLzw93DTRFOZIemp0c4ifEeJ+qNHfmLQX28nXu1EoRTEcws6ZEhKHGKRne
-         +6kP4eHG6VI+B1l+OXpk3gk2GPbAjjaYAQKhj6TBDqCEWa6KaiuxfAkVQZNJfDSADjJw
-         EiaTABQCKLf7K7LahSFHBVZzBz+eAQY2E75ALYQpVnL2RkpNffXNELjnlJumwON4rSTn
-         ABWw==
-X-Gm-Message-State: AFqh2krx0dvK0W74x5XK58C50EzA0KKTxPyk/UAaXEm9k54CLaXAmPLM
-        VnZ6a+hGhNRgmG4I5XjPgA==
-X-Google-Smtp-Source: AMrXdXtC9JDQSCNr2mBpmyaH+oX/tQisTbLPdzKuWPbRgBBSAol/1Q54L3bzvRFV7wQZ4EvPIFzPhA==
-X-Received: by 2002:a05:6808:f8f:b0:364:9fd7:4fc with SMTP id o15-20020a0568080f8f00b003649fd704fcmr1212036oiw.50.1673555874866;
-        Thu, 12 Jan 2023 12:37:54 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x8-20020a9d6288000000b00661a3f4113bsm9393754otk.64.2023.01.12.12.37.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jan 2023 12:37:54 -0800 (PST)
-Received: (nullmailer pid 126537 invoked by uid 1000);
-        Thu, 12 Jan 2023 20:37:53 -0000
-Date:   Thu, 12 Jan 2023 14:37:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Madalin Bucur <madalin.bucur@nxp.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-clk@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-phy@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>
-Subject: Re: [PATCH v9 02/10] dt-bindings: phy: Add Lynx 10G phy binding
-Message-ID: <167355587246.126242.1070313368786035671.robh@kernel.org>
-References: <20221230000139.2846763-1-sean.anderson@seco.com>
- <20221230000139.2846763-3-sean.anderson@seco.com>
+        with ESMTP id S240890AbjALUz5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 15:55:57 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA2E39F81;
+        Thu, 12 Jan 2023 12:41:16 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30CKeFex032281;
+        Thu, 12 Jan 2023 20:41:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=m0Jpw6X01y8WCQSENtUfrEshuGcSgnSenFJ8vlvXkic=;
+ b=H1jqZn8roY0IcZjjF7wvVipYgtkvG5jFhmaDLjyCGL4nNehziZIEJUrvqkKzxn+H+5Zt
+ vmgAGutGMgzcWY7MgBXbLKLd3mg24G6e9lKUBfVsK/oxEQ3datWsfzL+3lo67psnoEl4
+ s9PFDXUIHyjSLZJdlN/j2xmX/G9r5RAi9zGhm8P0+eV/TCFCR+jZt9+NoPb3co6u16/B
+ EVAu9v1JdfQ0vJTtc0javdH2QCqvhsNUcjuz78NS9O9HxMoMftJx3MI5D5YeAa0yNRIK
+ HR62JMotSRdceUp/emvhYWKi+yBZ4eTQfgWpHzreX/SU2IWARk5GLS1SLoj6UyTG3zE+ nQ== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n1kxhn0hk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 12 Jan 2023 20:41:12 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30CKfCQs003185
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 12 Jan 2023 20:41:12 GMT
+Received: from [10.110.92.106] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 12 Jan
+ 2023 12:41:11 -0800
+Message-ID: <cdb3404c-85f4-13b0-901b-7db55f6242af@quicinc.com>
+Date:   Thu, 12 Jan 2023 12:41:11 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221230000139.2846763-3-sean.anderson@seco.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v6] dt-bindings: soc: qcom,rpmh-rsc: Update to allow for
+ generic nodes
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20230112203653.23139-1-quic_molvera@quicinc.com>
+Content-Language: en-US
+From:   Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <20230112203653.23139-1-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: S7yvHVDbdea5i6S7FEPHaOmHunE-FrCe
+X-Proofpoint-ORIG-GUID: S7yvHVDbdea5i6S7FEPHaOmHunE-FrCe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-12_12,2023-01-12_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ phishscore=0 priorityscore=1501 spamscore=0 bulkscore=0 adultscore=0
+ clxscore=1015 suspectscore=0 malwarescore=0 mlxlogscore=899
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301120147
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,65 +85,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 29 Dec 2022 19:01:31 -0500, Sean Anderson wrote:
-> This adds a binding for the SerDes module found on QorIQ processors.
-> Each phy is a subnode of the top-level device, possibly supporting
-> multiple lanes and protocols. This "thick" #phy-cells is used due to
-> allow for better organization of parameters. Note that the particular
-> parameters necessary to select a protocol-controller/lane combination
-> vary across different SoCs, and even within different SerDes on the same
-> SoC.
-> 
-> The driver is designed to be able to completely reconfigure lanes at
-> runtime. Generally, the phy consumer can select the appropriate
-> protocol using set_mode.
-> 
-> There are two PLLs, each of which can be used as the master clock for
-> each lane. Each PLL has its own reference. For the moment they are
-> required, because it simplifies the driver implementation. Absent
-> reference clocks can be modeled by a fixed-clock with a rate of 0.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> 
-> Changes in v9:
-> - Add fsl,unused-lanes-reserved to allow for a gradual transition
->   between firmware and Linux control of the SerDes
-> - Change phy-type back to fsl,type, as I was getting the error
->     '#phy-cells' is a dependency of 'phy-type'
-> 
-> Changes in v7:
-> - Use double quotes everywhere in yaml
-> 
-> Changes in v6:
-> - fsl,type -> phy-type
-> 
-> Changes in v4:
-> - Use subnodes to describe lane configuration, instead of describing
->   PCCRs. This is the same style used by phy-cadence-sierra et al.
-> 
-> Changes in v3:
-> - Manually expand yaml references
-> - Add mode configuration to device tree
-> 
-> Changes in v2:
-> - Rename to fsl,lynx-10g.yaml
-> - Refer to the device in the documentation, rather than the binding
-> - Move compatible first
-> - Document phy cells in the description
-> - Allow a value of 1 for phy-cells. This allows for compatibility with
->   the similar (but according to Ioana Ciornei different enough) lynx-28g
->   binding.
-> - Remove minItems
-> - Use list for clock-names
-> - Fix example binding having too many cells in regs
-> - Add #clock-cells. This will allow using assigned-clocks* to configure
->   the PLLs.
-> - Document the structure of the compatible strings
-> 
->  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 248 ++++++++++++++++++
->  1 file changed, 248 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 1/12/2023 12:36 PM, Melody Olvera wrote:
+> Update the bindings to allow for generic regulator nodes instead of
+> device-specific node names.
+>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+Apologies; forgot the change log.
+
+
+Changes from v5:
+* Fixed buggy regulator pattern to include 0-9
+
+Changes from v4:
+* updated regulator pattern to accommodate more regulators
+
+This patch comes from discussions on [1] and is separated out. It also
+has updated pattern matching to match the comments left from [1].
+
+[1] https://lore.kernel.org/all/20221026200429.162212-2-quic_molvera@quicinc.com/
+
+> ---
+>  Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+> index b246500d3d5d..a4046ba60846 100644
+> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+> @@ -112,8 +112,9 @@ properties:
+>      $ref: /schemas/power/qcom,rpmpd.yaml#
+>  
+>  patternProperties:
+> -  '-regulators$':
+> +  '^regulators(-[0-9])?$':
+>      $ref: /schemas/regulator/qcom,rpmh-regulator.yaml#
+> +    unevaluatedProperties: false
+>  
+>  required:
+>    - compatible
+>
+> base-commit: 0a093b2893c711d82622a9ab27da4f1172821336
+
