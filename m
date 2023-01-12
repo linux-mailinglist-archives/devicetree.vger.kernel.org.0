@@ -2,602 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5EE26670AB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:14:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA7A6670EA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:30:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbjALLNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 06:13:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34268 "EHLO
+        id S230253AbjALLaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 06:30:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbjALLLs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:11:48 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75745551CF;
-        Thu, 12 Jan 2023 03:04:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1673521448; x=1705057448;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YjP0/siWVQMrtZKQx6iTodm5p6OzNcct8u6nlwuE6v0=;
-  b=VLaAMsyhNwNXOcGL8xmaWJzyD53m5tN073tc6yuqy7kr1DUtHDGFEQrM
-   JyAnx+KJ+aLKq/Nl/nJPXNgLb4JeDD/lu0L9VoS5EGqqZGp4NXC3AhOZy
-   n+LzvYugwTM/SzBZ+oORYOs1OxRpB/PknynxIJIRZAZ6W0xNXjEpXLo1p
-   M9M9YCMjLQRiKdjKX+JwhRXsDisWYNWnNCGXJL6d1wwVdYNMpn+XsfKPm
-   ICtio+A3j/Of+0YRouQEiSUp0pofShNIHfyY/NQ+oDt0H2k5swU98h/W8
-   NangX5JChmAdfwKoZKC44G4/LGFjTY0T/r1p/kAsqQ91ggmq1+VFBK6nB
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,319,1665471600"; 
-   d="scan'208";a="195432708"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Jan 2023 04:04:07 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 12 Jan 2023 04:03:59 -0700
-Received: from che-lt-i66125lx.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.16 via Frontend Transport; Thu, 12 Jan 2023 04:03:52 -0700
-From:   Durai Manickam KR <durai.manickamkr@microchip.com>
-To:     <Hari.PrasathGE@microchip.com>,
-        <balamanikandan.gunasundar@microchip.com>,
-        <manikandan.m@microchip.com>, <varshini.rajendran@microchip.com>,
-        <dharma.b@microchip.com>, <nayabbasha.sayed@microchip.com>,
-        <balakrishnan.s@microchip.com>, <claudiu.beznea@microchip.com>,
-        <cristian.birsan@microchip.com>, <nicolas.ferre@microchip.com>,
-        <krzysztof.kozlowski@linaro.org>, <alexandre.belloni@bootlin.com>,
-        <davem@davemloft.net>, <arnd@arndb.de>, <olof@lixom.net>,
-        <soc@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <Kavyasree.Kotagiri@microchip.com>,
-        <Horatiu.Vultur@microchip.com>, <robh+dt@kernel.org>,
-        <andrew@lunn.ch>, <michael@walle.cc>, <jerry.ray@microchip.com>
-CC:     Durai Manickam KR <durai.manickamkr@microchip.com>
-Subject: [PATCH v4 8/8] ARM: dts: at91: sam9x60_curiosity: Add device tree for sam9x60 curiosity board
-Date:   Thu, 12 Jan 2023 16:32:08 +0530
-Message-ID: <20230112110208.97946-9-durai.manickamkr@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230112110208.97946-1-durai.manickamkr@microchip.com>
-References: <20230112110208.97946-1-durai.manickamkr@microchip.com>
+        with ESMTP id S231592AbjALL2A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:28:00 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB90186C8
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 03:20:26 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pFvd4-00081u-RC; Thu, 12 Jan 2023 12:20:18 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pFvd2-005WbQ-BQ; Thu, 12 Jan 2023 12:20:16 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pFvd1-00CFm0-Kj; Thu, 12 Jan 2023 12:20:15 +0100
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Amelie Delaunay <amelie.delaunay@st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
+Subject: [PATCH] ARM: dts: stm32mp15x: adjust USB OTG gadget tx fifo sizes
+Date:   Thu, 12 Jan 2023 12:20:13 +0100
+Message-Id: <20230112112013.1086787-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5321; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=nNLgwvYuoaZ8+6gtSpPIpU3F9+Vhm10XGr3g7FWNFug=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBjv+zpXalQ5lGu4Vr4c0mC7wrY24clRImSIH+epUJv z13Qq0iJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCY7/s6QAKCRDB/BR4rcrsCQkwCA ChROy+vi1tQeckwK7JsY03xeg4R2Y5vZ0gByUQ8jfd1W7zuHbQTCmqWyViO7UGE79XcnebsqZSU2Vm UbhIB2x3inVasHLAzcn4qAE/bTtkeHEJy6wkLeWdA8YXqKNQmKF5qFhgY8RLtfx7ABLlh1wXGISEmF pXctu8jcLIjcL7HBNfxZKFWXKKY019o0uL5PPNruxFTLwBy3VKHEJMIqhQtjTHXJRFbAHkR5nBDE5f R6ki1ljS5bIZps4WL8vZIQs9/4MhaKQtHiaBNmHzOUjjDDn5gi+nFhBgJkSVzdoCctq1X8TB3JQSXl ODaySMi7WbjJXzEDG1uhyqxoeLEJlG
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree file for sam9x60 curiosity board.
+There are in sum 952 dwords available for g-rx-fifo-size,
+g-np-tx-fifo-size and the eight entries of g-tx-fifo-size. For high
+speed endpoints the maximal packet size is 512 (for full speed it's 64)
+bytes. So a tx-fifo-size of more than 128 (dwords) isn't sensible.
 
-Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
+So instead of one (too) big and several small fifos, use two big fifos
+and to better use the remaining available space increase one of the
+small fifos.
+
+This allows to work with CONFIG_USB_CDC_COMPOSITE (i.e. Ethernet and
+ACM) which requires 4 endpoints with fifo sizes 512, 512, 16 and 10
+respectively.
+
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 ---
- arch/arm/boot/dts/Makefile                   |   1 +
- arch/arm/boot/dts/at91-sam9x60_curiosity.dts | 499 +++++++++++++++++++
- 2 files changed, 500 insertions(+)
- create mode 100644 arch/arm/boot/dts/at91-sam9x60_curiosity.dts
+Hello,
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 6aa7dc4db2fc..da20980384c4 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -51,6 +51,7 @@ dtb-$(CONFIG_SOC_AT91SAM9) += \
- 	at91sam9x25ek.dtb \
- 	at91sam9x35ek.dtb
- dtb-$(CONFIG_SOC_SAM9X60) += \
-+	at91-sam9x60_curiosity.dtb \
- 	at91-sam9x60ek.dtb
- dtb-$(CONFIG_SOC_SAM_V7) += \
- 	at91-kizbox2-2.dtb \
-diff --git a/arch/arm/boot/dts/at91-sam9x60_curiosity.dts b/arch/arm/boot/dts/at91-sam9x60_curiosity.dts
-new file mode 100644
-index 000000000000..4be98245326c
---- /dev/null
-+++ b/arch/arm/boot/dts/at91-sam9x60_curiosity.dts
-@@ -0,0 +1,499 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * at91-sam9x60_curiosity.dts - Device Tree file for Microchip SAM9X60 Curiosity board
-+ *
-+ * Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Durai Manickam KR <durai.manickamkr@microchip.com>
-+ */
-+/dts-v1/;
-+#include "sam9x60.dtsi"
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Microchip SAM9X60 Curiosity";
-+	compatible = "microchip,sam9x60-curiosity", "microchip,sam9x60", "atmel,at91sam9";
-+
-+	aliases {
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c6;
-+		serial2 = &uart7;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@20000000 {
-+		reg = <0x20000000 0x8000000>;
-+	};
-+
-+	clocks {
-+		slow_xtal {
-+			clock-frequency = <32768>;
-+		};
-+
-+		main_xtal {
-+			clock-frequency = <24000000>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_key_gpio_default>;
-+
-+		button-user {
-+			label = "PB_USER";
-+			gpios = <&pioA 29 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_PROG1>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_leds>;
-+
-+		led-red {
-+			label = "red";
-+			gpios = <&pioD 17 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-green {
-+			label = "green";
-+			gpios = <&pioD 19 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-blue {
-+			label = "blue";
-+			gpios = <&pioD 21 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+
-+	vdd_1v8: regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-name = "VDD_1V8";
-+	};
-+
-+	vdd_1v15: regulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-max-microvolt = <1150000>;
-+		regulator-min-microvolt = <1150000>;
-+		regulator-name = "VDD_1V15";
-+	};
-+
-+	vdd1_3v3: regulator-2 {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "VDD1_3V3";
-+	};
-+};
-+
-+&adc {
-+	vddana-supply = <&vdd1_3v3>;
-+	vref-supply = <&vdd1_3v3>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc_default &pinctrl_adtrg_default>;
-+	status = "okay";
-+};
-+
-+&can0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can0_rx_tx>;
-+	status = "disabled"; /* Conflict with dbgu. */
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1_rx_tx>;
-+	status = "okay";
-+};
-+
-+&dbgu {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_dbgu>;
-+	status = "okay"; /* Conflict with can0. */
-+};
-+
-+&ebi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ebi_addr_nand &pinctrl_ebi_data_lsb>;
-+	status = "okay";
-+
-+	nand_controller: nand-controller {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_nand_oe_we &pinctrl_nand_cs &pinctrl_nand_rb>;
-+		status = "okay";
-+
-+		nand@3 {
-+			reg = <0x3 0x0 0x800000>;
-+			rb-gpios = <&pioD 5 GPIO_ACTIVE_HIGH>;
-+			cs-gpios = <&pioD 4 GPIO_ACTIVE_HIGH>;
-+			nand-bus-width = <8>;
-+			nand-ecc-mode = "hw";
-+			nand-ecc-strength = <8>;
-+			nand-ecc-step-size = <512>;
-+			nand-on-flash-bbt;
-+			label = "atmel_nand";
-+
-+			partitions {
-+				compatible = "fixed-partitions";
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+
-+				at91bootstrap@0 {
-+					label = "at91bootstrap";
-+					reg = <0x0 0x40000>;
-+				};
-+
-+				uboot@40000 {
-+					label = "u-boot";
-+					reg = <0x40000 0xc0000>;
-+				};
-+
-+				ubootenvred@100000 {
-+					label = "U-Boot Env Redundant";
-+					reg = <0x100000 0x40000>;
-+				};
-+
-+				ubootenv@140000 {
-+					label = "U-Boot Env";
-+					reg = <0x140000 0x40000>;
-+				};
-+
-+				dtb@180000 {
-+					label = "device tree";
-+					reg = <0x180000 0x80000>;
-+				};
-+
-+				kernel@200000 {
-+					label = "kernel";
-+					reg = <0x200000 0x600000>;
-+				};
-+
-+				rootfs@800000 {
-+					label = "rootfs";
-+					reg = <0x800000 0x1f800000>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&flx0 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+
-+	i2c0: i2c@600 {
-+		dmas = <0>, <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flx0_default>;
-+		i2c-analog-filter;
-+		i2c-digital-filter;
-+		i2c-digital-filter-width-ns = <35>;
-+		status = "okay";
-+
-+		eeprom@53 {
-+			compatible = "atmel,24c02";
-+			reg = <0x53>;
-+			pagesize = <16>;
-+		};
-+	};
-+};
-+
-+&flx6 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+
-+	i2c6: i2c@600 {
-+		dmas = <0>, <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flx6_default>;
-+		i2c-analog-filter;
-+		i2c-digital-filter;
-+		i2c-digital-filter-width-ns = <35>;
-+		status = "disabled";
-+	};
-+};
-+
-+&flx7 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
-+	status = "okay";
-+
-+	uart7: serial@200 {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flx7_default>;
-+		status = "okay";
-+	};
-+};
-+
-+&macb0 {
-+	phy-mode = "rmii";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_macb0_rmii>;
-+	status = "okay";
-+
-+	ethernet-phy@0 {
-+		reg = <0x0>;
-+	};
-+};
-+
-+&pinctrl {
-+	adc {
-+		pinctrl_adc_default: adc-default {
-+			atmel,pins = <AT91_PIOB 14 AT91_PERIPH_A AT91_PINCTRL_NONE>;
-+		};
-+
-+		pinctrl_adtrg_default: adtrg-default {
-+			atmel,pins = <AT91_PIOB 18 AT91_PERIPH_B AT91_PINCTRL_PULL_UP>;
-+		};
-+	};
-+
-+	can0 {
-+		pinctrl_can0_rx_tx: can0-rx-tx {
-+			atmel,pins =
-+				<AT91_PIOA 9 AT91_PERIPH_B AT91_PINCTRL_NONE	/* CANRX0 */
-+				 AT91_PIOA 10 AT91_PERIPH_B AT91_PINCTRL_NONE	/* CANTX0 */
-+				 AT91_PIOC 9 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_DOWN>;	/* Enable CAN Transceivers */
-+		};
-+	};
-+
-+	can1 {
-+		pinctrl_can1_rx_tx: can1-rx-tx {
-+			atmel,pins =
-+				<AT91_PIOA 6 AT91_PERIPH_B AT91_PINCTRL_NONE	/* CANRX1 */
-+				 AT91_PIOA 5 AT91_PERIPH_B AT91_PINCTRL_NONE	/* CANTX1 */
-+				 AT91_PIOB 17 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_DOWN>;	/* Enable CAN Transceivers */
-+		};
-+	};
-+
-+	dbgu {
-+		pinctrl_dbgu: dbgu-0 {
-+			atmel,pins = <AT91_PIOA 9 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+				      AT91_PIOA 10 AT91_PERIPH_A AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	ebi {
-+		pinctrl_ebi_data_lsb: ebi-data-lsb {
-+			atmel,pins =
-+				<AT91_PIOD 6 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)
-+				 AT91_PIOD 7 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)
-+				 AT91_PIOD 8 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)
-+				 AT91_PIOD 9 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)
-+				 AT91_PIOD 10 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)
-+				 AT91_PIOD 11 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)
-+				 AT91_PIOD 12 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)
-+				 AT91_PIOD 13 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)>;
-+		};
-+
-+		pinctrl_ebi_addr_nand: ebi-addr-nand {
-+			atmel,pins =
-+				<AT91_PIOD 2 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)
-+				 AT91_PIOD 3 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)>;
-+		};
-+	};
-+
-+	flexcom {
-+		pinctrl_flx0_default: flx0-twi {
-+			atmel,pins =
-+				<AT91_PIOA 0 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+				 AT91_PIOA 1 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
-+		};
-+
-+		pinctrl_flx6_default: flx6-twi {
-+			atmel,pins =
-+				<AT91_PIOA 30 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+				 AT91_PIOA 31 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
-+		};
-+
-+		pinctrl_flx7_default: flx7-usart {
-+			atmel,pins =
-+				<AT91_PIOC 0 AT91_PERIPH_C AT91_PINCTRL_NONE
-+				 AT91_PIOC 1 AT91_PERIPH_C AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		pinctrl_key_gpio_default: pinctrl-key-gpio {
-+			atmel,pins = <AT91_PIOA 29 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	leds {
-+		pinctrl_gpio_leds: gpio-leds {
-+			atmel,pins = <AT91_PIOD 17 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOD 19 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOD 21 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	macb0 {
-+		pinctrl_macb0_rmii: macb0-rmii-0 {
-+			atmel,pins =
-+				<AT91_PIOB 0 AT91_PERIPH_A AT91_PINCTRL_NONE	/* PB0 periph A */
-+				 AT91_PIOB 1 AT91_PERIPH_A AT91_PINCTRL_NONE	/* PB1 periph A */
-+				 AT91_PIOB 2 AT91_PERIPH_A AT91_PINCTRL_NONE	/* PB2 periph A */
-+				 AT91_PIOB 3 AT91_PERIPH_A AT91_PINCTRL_NONE	/* PB3 periph A */
-+				 AT91_PIOB 4 AT91_PERIPH_A AT91_PINCTRL_NONE	/* PB4 periph A */
-+				 AT91_PIOB 5 AT91_PERIPH_A AT91_PINCTRL_NONE	/* PB5 periph A */
-+				 AT91_PIOB 6 AT91_PERIPH_A AT91_PINCTRL_NONE	/* PB6 periph A */
-+				 AT91_PIOB 7 AT91_PERIPH_A AT91_PINCTRL_NONE	/* PB7 periph A */
-+				 AT91_PIOB 9 AT91_PERIPH_A AT91_PINCTRL_NONE	/* PB9 periph A */
-+				 AT91_PIOB 10 AT91_PERIPH_A AT91_PINCTRL_NONE>;	/* PB10 periph A */
-+		};
-+	};
-+
-+	nand {
-+		pinctrl_nand_oe_we: nand-oe-we-0 {
-+			atmel,pins =
-+				<AT91_PIOD 0 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)
-+				 AT91_PIOD 1 AT91_PERIPH_A (AT91_PINCTRL_NONE | AT91_PINCTRL_SLEWRATE_DIS)>;
-+		};
-+
-+		pinctrl_nand_rb: nand-rb-0 {
-+			atmel,pins =
-+				<AT91_PIOD 5 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;
-+		};
-+
-+		pinctrl_nand_cs: nand-cs-0 {
-+			atmel,pins =
-+				<AT91_PIOD 4 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;
-+		};
-+	};
-+
-+	pwm0 {
-+		pinctrl_pwm0_0: pwm0-0 {
-+			atmel,pins = <AT91_PIOB 12 AT91_PERIPH_B AT91_PINCTRL_NONE>;
-+		};
-+
-+		pinctrl_pwm0_1: pwm0-1 {
-+			atmel,pins = <AT91_PIOB 13 AT91_PERIPH_B AT91_PINCTRL_NONE>;
-+		};
-+
-+		pinctrl_pwm0_2: pwm0-2 {
-+			atmel,pins = <AT91_PIOD 16 AT91_PERIPH_B AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	sdmmc0 {
-+		pinctrl_sdmmc0_default: sdmmc0 {
-+			atmel,pins =
-+				<AT91_PIOA 17 AT91_PERIPH_A (AT91_PINCTRL_DRIVE_STRENGTH_HI)				/* PA17 CK  periph A with pullup */
-+				 AT91_PIOA 16 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)	/* PA16 CMD periph A with pullup */
-+				 AT91_PIOA 15 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)	/* PA15 DAT0 periph A */
-+				 AT91_PIOA 18 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)	/* PA18 DAT1 periph A with pullup */
-+				 AT91_PIOA 19 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)	/* PA19 DAT2 periph A with pullup */
-+				 AT91_PIOA 20 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)>;	/* PA20 DAT3 periph A with pullup */
-+		};
-+		pinctrl_sdmmc0_cd: sdmmc0-cd {
-+			atmel,pins =
-+				<AT91_PIOA 25 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	sdmmc1 {
-+		pinctrl_sdmmc1_default: sdmmc1 {
-+			atmel,pins =
-+				<AT91_PIOA 13 AT91_PERIPH_B (AT91_PINCTRL_DRIVE_STRENGTH_HI)				/* PA13 CK periph B */
-+				 AT91_PIOA 12 AT91_PERIPH_B (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)	/* PA12 CMD periph B with pullup */
-+				 AT91_PIOA 11 AT91_PERIPH_B (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)	/* PA11 DAT0 periph B with pullup */
-+				 AT91_PIOA  2 AT91_PERIPH_B (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)	/* PA2 DAT1 periph B with pullup */
-+				 AT91_PIOA  3 AT91_PERIPH_B (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)	/* PA3 DAT2 periph B with pullup */
-+				 AT91_PIOA  4 AT91_PERIPH_B (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI)>;	/* PA4 DAT3 periph B with pullup */
-+		};
-+	};
-+
-+	usb0 {
-+		pinctrl_usba_vbus: usba-vbus {
-+			atmel,pins = <AT91_PIOA 27 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	usb1 {
-+		pinctrl_usb_default: usb-default {
-+			atmel,pins = <AT91_PIOD 18 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOD 15 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+}; /* pinctrl */
-+
-+&pwm0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm0_0 &pinctrl_pwm0_1 &pinctrl_pwm0_2>;
-+	status = "okay";
-+};
-+
-+&sdmmc0 {
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc0_default &pinctrl_sdmmc0_cd>;
-+	cd-gpios = <&pioA 25 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc1_default>;
-+	status = "disabled";
-+};
-+
-+&shutdown_controller {
-+	debounce-delay-us = <976>;
-+	status = "okay";
-+
-+	input@0 {
-+		reg = <0>;
-+	};
-+};
-+
-+&tcb0 {
-+	timer0: timer@0 {
-+		compatible = "atmel,tcb-timer";
-+		reg = <0>;
-+	};
-+
-+	timer1: timer@1 {
-+		compatible = "atmel,tcb-timer";
-+		reg = <1>;
-+	};
-+};
-+
-+&usb0 {
-+	atmel,vbus-gpio = <&pioA 27 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usba_vbus>;
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	num-ports = <3>;
-+	atmel,vbus-gpio = <0
-+			   &pioD 18 GPIO_ACTIVE_HIGH
-+			   &pioD 15 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usb_default>;
-+	status = "okay";
-+};
-+
-+&usb2 {
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
+with CONFIG_USB_CDC_COMPOSITE enabled on the old device tree, the driver
+dies in a rather bad way:
+
+[    2.472914] dwc2 49000000.usb-otg: dwc2_hsotg_ep_enable: No suitable fifo found
+[    2.478767] ------------[ cut here ]------------
+[    2.483369] WARNING: CPU: 0 PID: 0 at kernel/dma/mapping.c:532 dma_free_attrs+0xc8/0xcc
+[    2.491363] Modules linked in:
+[    2.494407] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.15.0-20221026-1 #1
+[    2.501267] Hardware name: STM32 (Device Tree Support)
+[    2.506409] [<c01110e8>] (unwind_backtrace) from [<c010c9c0>] (show_stack+0x18/0x1c)
+[    2.514129] [<c010c9c0>] (show_stack) from [<c0a83648>] (dump_stack_lvl+0x40/0x4c)
+[    2.521689] [<c0a83648>] (dump_stack_lvl) from [<c0136228>] (__warn+0xf4/0x150)
+[    2.528986] [<c0136228>] (__warn) from [<c0a7fe2c>] (warn_slowpath_fmt+0x6c/0xd0)
+[    2.536458] [<c0a7fe2c>] (warn_slowpath_fmt) from [<c01ad534>] (dma_free_attrs+0xc8/0xcc)
+[    2.544623] [<c01ad534>] (dma_free_attrs) from [<c01adbc0>] (dmam_free_coherent+0x40/0x9c)
+[    2.552876] [<c01adbc0>] (dmam_free_coherent) from [<c0754570>] (dwc2_hsotg_ep_enable+0x63c/0x6b0)
+[    2.561827] [<c0754570>] (dwc2_hsotg_ep_enable) from [<c0791a44>] (usb_ep_enable+0x40/0xf0)
+[    2.570167] [<c0791a44>] (usb_ep_enable) from [<c0798364>] (gether_connect+0x2c/0x1c0)
+[    2.578073] [<c0798364>] (gether_connect) from [<c0799f70>] (ecm_set_alt+0xcc/0x1f8)
+[    2.585805] [<c0799f70>] (ecm_set_alt) from [<c078d0ec>] (composite_setup+0x5bc/0x1d40)
+[    2.593799] [<c078d0ec>] (composite_setup) from [<c07568f0>] (dwc2_hsotg_complete_setup+0x16c/0x68c)
+[    2.602921] [<c07568f0>] (dwc2_hsotg_complete_setup) from [<c0755474>] (dwc2_hsotg_complete_request+0x9c/0x210)
+[    2.612999] [<c0755474>] (dwc2_hsotg_complete_request) from [<c0757d68>] (dwc2_hsotg_epint+0xe0c/0x1248)
+[    2.622470] [<c0757d68>] (dwc2_hsotg_epint) from [<c075a1a4>] (dwc2_hsotg_irq+0x9c4/0x10a4)
+[    2.630812] [<c075a1a4>] (dwc2_hsotg_irq) from [<c0194238>] (__handle_irq_event_percpu+0x64/0x234)
+[    2.639762] [<c0194238>] (__handle_irq_event_percpu) from [<c01944f0>] (handle_irq_event+0x64/0xc8)
+[    2.648798] [<c01944f0>] (handle_irq_event) from [<c0199028>] (handle_fasteoi_irq+0xbc/0x214)
+[    2.657312] [<c0199028>] (handle_fasteoi_irq) from [<c0193a9c>] (handle_domain_irq+0x84/0xb8)
+[    2.665827] [<c0193a9c>] (handle_domain_irq) from [<c05628b0>] (gic_handle_irq+0x84/0x98)
+[    2.673995] [<c05628b0>] (gic_handle_irq) from [<c0100afc>] (__irq_svc+0x5c/0x90)
+[    2.681466] Exception stack(0xc1001ef8 to 0xc1001f40)
+[    2.686509] 1ee0:                                                       00000484 c0d6f994
+[    2.694680] 1f00: 00000000 c011afe0 c10f5ae0 00000000 ffffe000 c1004f54 00000000 00000000
+[    2.702848] 1f20: c1000000 c0e11af0 c1000000 c1001f48 c01091ec c01091f0 60000013 ffffffff
+[    2.711008] [<c0100afc>] (__irq_svc) from [<c01091f0>] (arch_cpu_idle+0x40/0x44)
+[    2.718393] [<c01091f0>] (arch_cpu_idle) from [<c0a91f40>] (default_idle_call+0x4c/0x168)
+[    2.726561] [<c0a91f40>] (default_idle_call) from [<c016f054>] (do_idle+0x23c/0x290)
+[    2.734294] [<c016f054>] (do_idle) from [<c016f3fc>] (cpu_startup_entry+0x20/0x24)
+[    2.741852] [<c016f3fc>] (cpu_startup_entry) from [<c0f01040>] (start_kernel+0x5e8/0x634)
+[    2.750020] [<c0f01040>] (start_kernel) from [<00000000>] (0x0)
+[    2.755929] ---[ end trace febb0e7bfc3d83c0 ]---
+
+so there might be another change required to fail in a nicer way.
+(That's the WARN_ON(irqs_disabled()) in dma_free_attrs() that triggers
+here.)
+
+Another thought I had while tuning the tx fifo sizes was: Why is the
+size allocation not (more) done dynamically? At least only setting a
+fixed amount of dwords aside for g-tx-fifo-size and allocate from that
+shouldn't be too hard, should it?
+
+Note I know very little about USB, so it might well be possible that I
+missed a use case, but with this change my USB gadget works as expected.
+
+Best regards
+Uwe
+
+ arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+index 5491b6c4dec2..af70ca1f9b57 100644
+--- a/arch/arm/boot/dts/stm32mp151.dtsi
++++ b/arch/arm/boot/dts/stm32mp151.dtsi
+@@ -1137,7 +1137,7 @@ usbotg_hs: usb-otg@49000000 {
+ 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+ 			g-rx-fifo-size = <512>;
+ 			g-np-tx-fifo-size = <32>;
+-			g-tx-fifo-size = <256 16 16 16 16 16 16 16>;
++			g-tx-fifo-size = <128 128 64 16 16 16 16 16>;
+ 			dr_mode = "otg";
+ 			otg-rev = <0x200>;
+ 			usb33d-supply = <&usb33>;
 -- 
-2.25.1
+2.39.0
 
