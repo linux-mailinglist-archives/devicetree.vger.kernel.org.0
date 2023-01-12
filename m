@@ -2,106 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 991E866784C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 15:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97633667AD4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 17:30:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240232AbjALO5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 09:57:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47222 "EHLO
+        id S230474AbjALQa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 11:30:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239902AbjALO4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 09:56:10 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21083D5E4
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:43:20 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id g13so28746412lfv.7
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:43:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+SachbnsjogB9d6VznmJ7gd3XdXdQ4weNjS4U9PfSA0=;
-        b=lHbyQy+FNSi/meLPTdjOq7NTzEMuxLi4iUUn3c+/PXWcgaHj7llhT0nJmhX86Z+TCo
-         GHuvV9WZZbZ1pRpdUsPw37NBE9xIQJwQWYovvGpaR42pZ+13ZKNrUe38ZtvJNylJwG4B
-         wJBmA+2m7ENe2ZClbpg98qYjd5mcu4OrW2270zoB3PIvBmrIPekzEwRO8vGqdtKYp6Z4
-         kLy8dRkMiNWsj4B0D016+3koH9l4hlJ5vvvxNscIMUIOoj0uN7TbOGNHrYFrZwejFzUg
-         Yq1wrSNxKRYxjzKVAHRdDS+wYUvUNpZZaEixbdR7kSyqEP3XldD1p4vek/ifeUbKZf3Q
-         1i7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+SachbnsjogB9d6VznmJ7gd3XdXdQ4weNjS4U9PfSA0=;
-        b=bN8LKW+ljEN+TuKNThhZc5lQTrIq+CruN+860DiIcxZ9WLW4YHmNKFhaPs010jlJA4
-         wzezSBGutxzJsAD/A7uN55Xryi14vmVmg/Ir64fo5zDMrJefxSHNEKh1rBgMeiG1h30L
-         2b+BpNrbcnDl4OFD2EhfeL3uIYZ39Slf5PU8dyzHYZU/F/Ksc1mrjCtPOkZy4QuqyH5G
-         tAkkJje6orMjbAO3HZVKIXIVT+XfFh+1aoXgpykXVzPOy12AifplElqHJb84pQhQv4i1
-         zsOcyLjAPsIPPNK2axa2atIfUvCWRm+xBRrGQNNqSzgwmBtEpgSbcEjJOLV/HBcEG4FO
-         3A0w==
-X-Gm-Message-State: AFqh2kr8y+Z9W/I6rhnw6+ipTRDqJgctdfS+9MmlzWlDZbE612Ns2+yG
-        prAQzYARarrvzf4qxDicC9v3Yg==
-X-Google-Smtp-Source: AMrXdXteBrqUViDjNqvb+oHsCd44njBcMUd77PqwBIZ1I35b614s1q1vnnGbjk9VCt7bz0X5c6TFnQ==
-X-Received: by 2002:ac2:5082:0:b0:4c8:eceb:60d2 with SMTP id f2-20020ac25082000000b004c8eceb60d2mr19894251lfm.46.1673534599069;
-        Thu, 12 Jan 2023 06:43:19 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id p7-20020ac24ec7000000b004b587e37265sm3299527lfr.58.2023.01.12.06.43.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 06:43:15 -0800 (PST)
-Message-ID: <eb1418f6-43be-6b0e-555c-dd9887577b95@linaro.org>
-Date:   Thu, 12 Jan 2023 15:43:14 +0100
+        with ESMTP id S239173AbjALQ35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 11:29:57 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB96CD9;
+        Thu, 12 Jan 2023 08:28:42 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 7134985405;
+        Thu, 12 Jan 2023 17:28:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1673540920;
+        bh=EN/egfl+RWRqGe9kuXZHtWvRoQNrYeHrMo8CDmwf6F4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=0Q4jfY2yYtG5HdyWahg+92OTb31gYfMv6vcvF64Pd/GI0aBfwgtWZKuKRLeYJJjun
+         fgjMv12XeRP4lG0iIwhaEHmY3AvDDwxhzIYYdHpMG6DvgwLpRY49M+gHZbBCqS9sqb
+         s/GfevAwIngULX4SiKMm8r0Njs1KI9Hke6JWQ2zf3U9KQ+S2l946D/vVIdqLMoS5tS
+         S1JJHanv2zVO5582Sd9ffX35Br0+r7T8JlRqqBde0i9lIRUkYNLnYCeO5EQDwOSKpu
+         9Q3S5zBweUXKbeesZSzvfdJyrPDkYEjvw6jAkjR29OZPOoSdysIBsuq2QvWLVhkqoS
+         5x/szUwajA8bg==
+Message-ID: <bc75d243-b2dc-6192-1b93-0a15d3fe5639@denx.de>
+Date:   Thu, 12 Jan 2023 15:28:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-crd: allow vreg_l3b to be
- disabled
-Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 06/10] ARM: dts: stm32: adopt generic iio bindings for adc
+ channels on avenger96
+To:     Olivier Moysan <olivier.moysan@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230112074503.12185-1-johan+linaro@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230112074503.12185-1-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     kernel@dh-electronics.com, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230112104446.1140551-1-olivier.moysan@foss.st.com>
+ <20230112104446.1140551-7-olivier.moysan@foss.st.com>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230112104446.1140551-7-olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12.01.2023 08:45, Johan Hovold wrote:
-> The vreg_l3b supply is used by the eDP, UFS and USB1 PHYs which are now
-> described by the devicetree so that the regulator no longer needs to be
-> marked always-on.
+On 1/12/23 11:44, Olivier Moysan wrote:
+> Use STM32 ADC generic bindings instead of legacy bindings on
+> Avenger96 board.
 > 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> The STM32 ADC specific binding to declare channels has been deprecated,
+> hence adopt the generic IIO channels bindings, instead.
+> The STM32MP151 device tree now exposes internal channels using the
+> generic binding. This makes the change mandatory here to avoid a mixed
+> use of legacy and generic binding, which is not supported by the driver.
+> 
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 1 -
->  1 file changed, 1 deletion(-)
+>   .../boot/dts/stm32mp15xx-dhcor-avenger96.dtsi | 28 ++++++++++++++++---
+>   1 file changed, 24 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index db12d8678861..e5e75cc2c670 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -150,7 +150,6 @@ vreg_l3b: ldo3 {
->  			regulator-max-microvolt = <1200000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  			regulator-boot-on;
-> -			regulator-always-on;
->  		};
->  
->  		vreg_l4b: ldo4 {
+> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+> index 50af4a27d6be..62efb550ae64 100644
+> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+> @@ -113,15 +113,35 @@ &adc {
+>   	status = "okay";
+>   
+>   	adc1: adc@0 {
+> -		st,adc-channels = <0 1 6>;
+> -		st,min-sample-time-nsecs = <5000>;
+
+U-Boot drivers/adc/stm32-adc.c depends on these properties , so if you 
+drop them here and U-Boot DTs gets synced with Linux, the ADC driver 
+there will start failing. Can you update the U-Boot ADC driver too ?
+
+Maybe the easiest way would be to retain the old properties for now with 
+a comment, and add the new properties ?
