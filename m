@@ -2,171 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27A19667A5E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 17:11:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A30667A77
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 17:15:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236750AbjALQLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 11:11:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50132 "EHLO
+        id S233877AbjALQPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 11:15:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232241AbjALQKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 11:10:36 -0500
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E24C4FD7F;
-        Thu, 12 Jan 2023 08:02:05 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 47D9932005C1;
-        Thu, 12 Jan 2023 11:02:04 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 12 Jan 2023 11:02:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1673539323; x=1673625723; bh=pEfXWj7Hu9
-        k28i5iZXZlWlRGQSSC88B7IqFY+vWRaj4=; b=a7U9YhqWwE+6Qdb0hFY5GwRwlY
-        VDsudE3O3WkylT+2O87N0XbgdHchHtOMk62lC+TB1Nm9Zp3C+1mbJ1vauIZH1/J2
-        mx2oNGb/+0rTIDENI9e/SbOaS6FqyTKQXCRtCfIX71w7O6DLjgPTfpSsOGrQm0eL
-        RI33cPw3cWaTfmEgg9mZU7C1RVfXfSelyT/1/V7cDr2IOEEZwfzCscKEtnet+P/t
-        UHsUDM8EwaibW4+33ZDzGxNkHtK/sOYVWrYQWO8htC8ZjfSjnUXmAO1cNklasx/0
-        NmTCtckV5bGaKvUxBXLEpxe5rHz74fmzo2mSDqOarNwg1C1K8R4aAHbIRphg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1673539323; x=1673625723; bh=pEfXWj7Hu9k28i5iZXZlWlRGQSSC
-        88B7IqFY+vWRaj4=; b=RiNhHbz3B5Z+87FR6SiDXQ0VQF+omSLU2y0oui814ZRQ
-        1MOW6Ryj4EZXXseMjLwEEIvRRzlXZuj4VnMe822LxVODTBU2yUr8JUpDUtFDZEAF
-        +PxtDxgCEfKtWKpuVmeADW6LmWP3VOrzdcA6p8B/aUoNWwXv995yjWr9MotrNmvC
-        tNKOYnE9MpqJqJVBOZ9u+NYTT+icUH2Mc5Jbgssx6VvtkpJmbS0p0+Mi0d4a7HdN
-        3ziekxEuPMtJiNbm6tPNfRpZFgmCSV+rz0I7Z2AcTezMJjTdi4eU1gxWcG049nBj
-        cawUgFc1VWUlT0zO9h3CeKoE5cE+ozce8yR0MoHOHA==
-X-ME-Sender: <xms:-i7AYwjcH0b8JgIuQkkla8dOAS_ZXu3VtOZ8T3JEh4rTDcRxB61nFQ>
-    <xme:-i7AY5D7lYoQhhRJSA2FbZIhtNDjYmkois15jfO4y4L4priJfqPaZPacPPobpAnRi
-    B1Tacb5G-Xk4dXrSAc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrleeigdekfecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:-y7AY4HU_4EGMtzvXZArVkKSku1EJ2_ZHcend_YSubnmrs1J_5_21w>
-    <xmx:-y7AYxTNqDzg7AI6GkN0vKDCiBkGNGmLZCYbjz6KG2MIaeY4pRH58w>
-    <xmx:-y7AY9wN0x54F61K--9UBOWVixlkIduCt5vO7Y19Jj2YOnSrStEJRw>
-    <xmx:-y7AYyrPyNGbG3GqJDvGMk4QXJsPCExmfFhVQLKfdpfpdBgdf5yzpg>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id EC407B60086; Thu, 12 Jan 2023 11:02:02 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
-Mime-Version: 1.0
-Message-Id: <6bae68eb-866f-4b78-b4db-e3154feec28e@app.fastmail.com>
-In-Reply-To: <E2B35D8A-B8A6-40C1-8AC9-46E6C2CAE656@hpe.com>
-References: <20230103203654.59322-1-nick.hawkins@hpe.com>
- <20230103203654.59322-4-nick.hawkins@hpe.com>
- <5ad677f3-2cbc-4ba0-bd48-2f832a72fb28@app.fastmail.com>
- <E2B35D8A-B8A6-40C1-8AC9-46E6C2CAE656@hpe.com>
-Date:   Thu, 12 Jan 2023 17:00:52 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "Jean Delvare" <jdelvare@suse.com>,
-        "Guenter Roeck" <linux@roeck-us.net>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        "Russell King" <linux@armlinux.org.uk>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4 3/5] ARM: dts: add GXP Support for fans and SPI
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S239799AbjALQNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 11:13:43 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A818E656D
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 08:11:03 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id y25so29120589lfa.9
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 08:11:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KDMpZ7nYLjTDXnu6f0kwHu0p4dx4SrxPBhqY8dO1Btk=;
+        b=eEAdIRC00f4yzhweljUJHVoHGuR3+i/vbhyRM/0aZ0QE6G5eVga7g6ZIr7sQtKW7Bg
+         +mRET/egfBvRoTIBpXFFHXX2yOzRXZOFzdCw2Hxtr1cGgr98bqOTs1jnvuqgCu5d6Kkf
+         1DeQQKcEO/VCKfIUZUV0NyVomXNEkfv6PQlAcii3SXPmUF4V1FIvy2nW77/UT+JmTldK
+         RrijzksnKa7MRGHX8ygObybY7pa4XUsyPdMrZxGi5UsC6SPhRmpwUFwu8/yexmAbbybz
+         UvWnnWVqSMSxAcwa92ECXKGYm529Cg/GiXysm5pehCpMjKsJMm9szBztEAX4qBWBxtlG
+         W3jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KDMpZ7nYLjTDXnu6f0kwHu0p4dx4SrxPBhqY8dO1Btk=;
+        b=52Qt8A6o3fTF3WBP88JZVYRH0o24fq3U9ez0JUdKlj8yfqp4FbdlMpExrpWHSG2bUJ
+         pkRm0vvdpXjE6BzAbPwF82KDPeUwBmFO62zGmYRr8r7Y/G36B5M5Yr2+q4SzMtXIIwLc
+         /D6ZWJGB4LVUqjz3lciebvdVEjASgO7mM7BrqSgIuvQtMX7Bj6yGA7kI86PYWTwk0nLA
+         ayyMZlis1EugAbxsZ9m/eYjU9T6tvd8I8lr0DrjdywwI6AkPuDrEea1PDBm+S/cCTlhn
+         QkwSsZfX5kCovzCl9n4xPBkmxaPWnwLnyw9y1ct0Rj0rZxWztS6yoEi+nuIIYtQYnv0R
+         TwDw==
+X-Gm-Message-State: AFqh2kqEhpCN1zi81rHSo9e65djnB5ueIlS1RKW1nuPaIXTaE8jeI3Yn
+        LweSK3qVDCJLtWCx7+XZJs5jKQ==
+X-Google-Smtp-Source: AMrXdXsLtkTSb1t3CS955ys+0xELFp8Ekp2MGMg2C9GHUpcgNyq/tciQP/NURO0rOZpruFZ5LWXKvQ==
+X-Received: by 2002:a05:6512:1507:b0:4ca:f9e4:4d57 with SMTP id bq7-20020a056512150700b004caf9e44d57mr23417049lfb.11.1673539862000;
+        Thu, 12 Jan 2023 08:11:02 -0800 (PST)
+Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id g12-20020a0565123b8c00b004aa543f3748sm3324807lfv.130.2023.01.12.08.10.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 08:10:47 -0800 (PST)
+Message-ID: <b2798d5a-d637-cc94-501e-0739345f0fed@linaro.org>
+Date:   Thu, 12 Jan 2023 17:10:30 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 11/13] clk: qcom: cpu-8996: fix PLL clock ops
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230111192004.2509750-1-dmitry.baryshkov@linaro.org>
+ <20230111192004.2509750-12-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230111192004.2509750-12-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 12, 2023, at 16:40, Hawkins, Nick wrote:
->> > - ahb@c0000000 {
->> > + ahb@80000000 {
->> > compatible = "simple-bus";
->> > #address-cells = <1>;
->> > #size-cells = <1>;
->> > - ranges = <0x0 0xc0000000 0x30000000>;
->> > + ranges = <0x0 0x80000000 0xf000000>, /* 0x80000000 - 0x8f000000 */
->> > + <0x40000000 0xc0000000 0x7fffffff>; /* 0xc0000000 - 0xffffffff */
->
->
->> I'm a bit confused by the change in the mappings: are you
->> sure this all the same ahb bus and not two separate buses?
->
-> Yes this is the same bus, however we are not including all of
-> it as it maps some host registers that we do not want to access
-> at this time. 
 
-If the two ranges are actually translated separately on the
-bus, you could also decide to enumerate the translations with
-a 64-bit local address and make the upper word an enumeration,
-such as
 
-ranges = <0x1 0x0 0x80000000 0xf000000>,
-         <0x2 0x0 0xc0000000 0x30000000>;
+On 11.01.2023 20:20, Dmitry Baryshkov wrote:
+> Switch CPU PLLs to use clk_alpha_pll_hwfsm_ops, it seems to suit
+> better.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+I *think* SUPPORTS_DYNAMIC_UPDATE should also be kicked from
+non-alt PLLs.. Otherwise we might have been kicking ourselves
+in the face all along, changing the frequency of a running
+PLL that doesn't support it if we were using the main PLL
+and not the altPLL/ACD..
 
-then you get small numbers again in the 'reg' properties
-that are easier to read and ideally match the bus-local
-numbers from the hardware manual.
+Downstream sets it only for clk_ops_alpha_pll_hwfsm which is
+used on alt PLLs only
 
->> The comment for the second range looks wrong to me, as
->> you define a 2GB (minus one byte) sized mapping but the
->> comment only lists a 1GB (including the last byte) mapping.
->
->
->> I would expect that the original 0x30000000 (including the
->> last byte) was correct here.
->
-> Yes this was incorrect, I believe it should be:
->
-> ranges = <0x0 0x80000000 0xf000000>, /* 0x80000000 - 0x8f000000 */
->                 <0x40000000 0xc0000000 0x3fffffff>; /* 0xc0000000 - 
-> 0xffffffff */
->
-> I will create a v5 version of this patchset with just this and the
-> defconfig for your review.
+This change seems sound, as Huayra supports dynamic update
+even without setting any flags.
 
-Now it almost matches, except for the final byte, as the
-range actually ends at 0xfffffffe not 0xffffffff if you make
-the size one byte less than 1GB.
-
-Is there a special register in the last byte?
-
->> > - vic1: interrupt-controller@80f00000 {
->> > + vic1: interrupt-controller@f00000 { /* 0x80f00000 */
->
->
->> This is not the same address as before. I'm also not sure the
->> comment is helpful here.
->
-> My understanding was that the physical address would be the
-> 0x80000000 from the first range plus the 0xf00000 to be
-> 0x80f00000?
-
-I suppose the physical address in the old mapping was actually
-outside of the 0xc0000000-0xefffffff range, so it wasn't
-even accessible. If the addresses are interpreted to wrap around
-at the end of the mapping, that would have made the CPU visible
-address 0xe0f00000 (0xc0000000 + (0x80f00000 % 0x30000000)).
-If it just wrapped around as a 32-bit number, it would be
-0x40f00000 ((0xc0000000 + 0x80f00000)% 0x100000000), but I
-don't see you you'd get to 80f00000.
-
-      Arnd
+Konrad
+>  drivers/clk/qcom/clk-cpu-8996.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
+> index 1c00eb629b61..b53cddc4bca3 100644
+> --- a/drivers/clk/qcom/clk-cpu-8996.c
+> +++ b/drivers/clk/qcom/clk-cpu-8996.c
+> @@ -128,7 +128,7 @@ static struct clk_alpha_pll pwrcl_pll = {
+>  		.name = "pwrcl_pll",
+>  		.parent_data = pll_parent,
+>  		.num_parents = ARRAY_SIZE(pll_parent),
+> -		.ops = &clk_alpha_pll_huayra_ops,
+> +		.ops = &clk_alpha_pll_hwfsm_ops,
+>  	},
+>  };
+>  
+> @@ -140,7 +140,7 @@ static struct clk_alpha_pll perfcl_pll = {
+>  		.name = "perfcl_pll",
+>  		.parent_data = pll_parent,
+>  		.num_parents = ARRAY_SIZE(pll_parent),
+> -		.ops = &clk_alpha_pll_huayra_ops,
+> +		.ops = &clk_alpha_pll_hwfsm_ops,
+>  	},
+>  };
+>  
