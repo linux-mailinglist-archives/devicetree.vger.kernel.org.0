@@ -2,158 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83BE5666CD3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 09:46:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26523666D0A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 09:54:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239896AbjALIqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 03:46:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
+        id S235746AbjALIyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 03:54:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230136AbjALIqO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 03:46:14 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25EE72F7BD;
-        Thu, 12 Jan 2023 00:45:16 -0800 (PST)
-X-UUID: 6b47c2fe925511eda06fc9ecc4dadd91-20230112
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Wxi9Qy3WCX4lZPEMGHKiUq/2jxBrcJqTGD7hJUEmIKM=;
-        b=IOgilVKvgl/W0FWZXFD/9ozXr0u8kRejx3mamiakCo1XMf5xGr+VvQIOnDaXPQobewOxvpgbFlg0EAzeLYHxu+prFGvTWn+kyWgebACw9KOuih99koVzny8FGHFRI39F4c+9Kru4dbhqve1ty02GTO5QWzNJJnWr8oM/27ZtG9Q=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.17,REQID:20405a3e-7f59-4a7b-a7ed-4d36ca9bd6ba,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:543e81c,CLOUDID:dc697354-dd49-462e-a4be-2143a3ddc739,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-X-CID-BVR: 0,NGT
-X-UUID: 6b47c2fe925511eda06fc9ecc4dadd91-20230112
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 545303540; Thu, 12 Jan 2023 16:45:08 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+        with ESMTP id S236034AbjALIxH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 03:53:07 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C192D3;
+        Thu, 12 Jan 2023 00:52:05 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30C82YEV032159;
+        Thu, 12 Jan 2023 08:51:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=vaaXR6/xLkXfr+cdrvDTRu6EKhyxTeql7XGBY3p8j5Q=;
+ b=G1F09zrNKvnVjMTT448WSCBa18uF8aCRNBUAlx/czYS9dxCN7CEK8LETI3l5tB568G75
+ mg5C+9r4Ikcc+dM46rjvmtLWMmNrL8SB9Y0E8axesjbpmG+qJAHLqjxQLPW1wKAauI9N
+ qqi3p/flNNyN80koMiFGhIEZVZdYNdyr7NxIQjPwuW2zaoHzuB2K3Xd7mM7EPApsoawh
+ 9/kfkYgccZXe9R0x3UBRIb3/GG9obdtK+lGZm5TD0nOzk60H+jgokrVhwGXMp2HwFQT3
+ 9bK/r3p9xXCbdAaGUYGiQEuLGTndvxVgYmC9zouJrKi30UNdOHZo3NA6l9OzDr5iWB0y ZA== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n1m6p38mc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 12 Jan 2023 08:51:56 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30C8ptkS008059
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 12 Jan 2023 08:51:55 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 12 Jan 2023 16:45:08 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 12 Jan 2023 16:45:06 +0800
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <nicolas.dufresne@collabora.com>, kyrie wu <kyrie.wu@mediatek.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
+ 15.2.986.36; Thu, 12 Jan 2023 00:51:52 -0800
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Tomasz Figa <tfiga@chromium.org>, <xia.jiang@mediatek.com>,
-        <maoguang.meng@mediatek.com>, Irui Wang <irui.wang@mediatek.com>
-Subject: [V1,2/2] arm64: dts: mt8195: add jpeg decode device node
-Date:   Thu, 12 Jan 2023 16:45:03 +0800
-Message-ID: <20230112084503.4277-3-irui.wang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230112084503.4277-1-irui.wang@mediatek.com>
-References: <20230112084503.4277-1-irui.wang@mediatek.com>
+        Mukesh Ojha <quic_mojha@quicinc.com>
+Subject: [PATCH 1/2] arm64: dts: qcom: sm8450: Add TCSR halt register space
+Date:   Thu, 12 Jan 2023 14:21:41 +0530
+Message-ID: <1673513501-29938-1-git-send-email-quic_mojha@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK:  N
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: txpHnp4PFXodNVrk9QuQ9ybv9x0U-bqD
+X-Proofpoint-GUID: txpHnp4PFXodNVrk9QuQ9ybv9x0U-bqD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-12_04,2023-01-11_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ mlxscore=0 bulkscore=0 lowpriorityscore=0 malwarescore=0 mlxlogscore=875
+ clxscore=1015 spamscore=0 phishscore=0 priorityscore=1501 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301120061
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: kyrie wu <kyrie.wu@mediatek.com>
+Add TCSR register space and refer it from scm node, so that
+it can be used by SCM driver.
 
-add mt8195 jpegdec device node
-
-Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
-Signed-off-by: irui wang <irui.wang@mediatek.com>
+Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 60 ++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index af49ec352bfe..d5d0aeac57e4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -2192,6 +2192,66 @@
- 			};
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 5704750..e0fa733 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -270,6 +270,7 @@
+ 	firmware {
+ 		scm: scm {
+ 			compatible = "qcom,scm-sm8450", "qcom,scm";
++			qcom,dload-mode = <&tcsr 0x13000>;
+ 			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
+ 			#reset-cells = <1>;
+ 		};
+@@ -1986,6 +1987,11 @@
+ 			#hwlock-cells = <1>;
  		};
  
-+		jpgdec-master {
-+			compatible = "mediatek,mt8195-jpgdec";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
-+			iommus = <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>,
-+					<&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA0>,
-+					<&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA1>,
-+					<&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA1>,
-+					<&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET1>,
-+					<&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET0>;
-+			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			jpgdec@1a040000 {
-+				compatible = "mediatek,mt8195-jpgdec-hw";
-+				reg = <0 0x1a040000 0 0x10000>;/* JPGDEC_C0 */
-+				iommus = <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA0>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA1>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA1>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET1>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET0>;
-+				interrupts = <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH 0>;
-+				clocks = <&vencsys CLK_VENC_JPGDEC>;
-+				clock-names = "jpgdec";
-+				power-domains = <&spm MT8195_POWER_DOMAIN_VDEC0>;
-+			};
-+
-+			jpgdec@1a050000 {
-+				compatible = "mediatek,mt8195-jpgdec-hw";
-+				reg = <0 0x1a050000 0 0x10000>;/* JPGDEC_C1 */
-+				iommus = <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA0>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA1>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA1>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET1>,
-+						<&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET0>;
-+				interrupts = <GIC_SPI 344 IRQ_TYPE_LEVEL_HIGH 0>;
-+				clocks = <&vencsys CLK_VENC_JPGDEC_C1>;
-+				clock-names = "jpgdec";
-+				power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
-+			};
-+
-+			jpgdec@1b040000 {
-+				compatible = "mediatek,mt8195-jpgdec-hw";
-+				reg = <0 0x1b040000 0 0x10000>;/* JPGDEC_C2 */
-+				iommus = <&iommu_vpp M4U_PORT_L20_JPGDEC_WDMA0>,
-+						<&iommu_vpp M4U_PORT_L20_JPGDEC_BSDMA0>,
-+						<&iommu_vpp M4U_PORT_L20_JPGDEC_WDMA1>,
-+						<&iommu_vpp M4U_PORT_L20_JPGDEC_BSDMA1>,
-+						<&iommu_vpp M4U_PORT_L20_JPGDEC_BUFF_OFFSET1>,
-+						<&iommu_vpp M4U_PORT_L20_JPGDEC_BUFF_OFFSET0>;
-+				interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH 0>;
-+				clocks = <&vencsys_core1 CLK_VENC_CORE1_JPGDEC>;
-+				clock-names = "jpgdec";
-+				power-domains = <&spm MT8195_POWER_DOMAIN_VDEC2>;
-+			};
++		tcsr: syscon@1fc0000 {
++			compatible = "syscon";
++			reg = <0x0 0x1fc0000 0x0 0x30000>;
 +		};
 +
- 		larb20: larb@1b010000 {
- 			compatible = "mediatek,mt8195-smi-larb";
- 			reg = <0 0x1b010000 0 0x1000>;
+ 		usb_1_hsphy: phy@88e3000 {
+ 			compatible = "qcom,sm8450-usb-hs-phy",
+ 				     "qcom,usb-snps-hs-7nm-phy";
 -- 
-2.18.0
+2.7.4
 
