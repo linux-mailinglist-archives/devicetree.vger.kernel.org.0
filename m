@@ -2,96 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0D18667071
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:05:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FDE4667079
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:08:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbjALLFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 06:05:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33306 "EHLO
+        id S229903AbjALLIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 06:08:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbjALLFX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:05:23 -0500
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9180EC77C;
-        Thu, 12 Jan 2023 02:57:19 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id D4EF720004;
-        Thu, 12 Jan 2023 10:57:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673521038;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hwka70mk2roiY/2UM2tl1d3OuzaAYPBlsiw7EdglbC4=;
-        b=jr6MIV2RHubYbV3OPTJaRVlRwbnEVILsNXncrXzYt7wsExBb+7MKRXqGLaFxtLUGrvNmoN
-        0u2GFc1nirY0r0FDB4bwuK0q6szgs0p4Dkpbaxgda1K2SiJhoEdJlCOi/PDfaLCU28DDI4
-        sqdzNG1bguAAGK/Ef0tjp6wkwpIXnMKNs8bLT8HkcV5V6qLEXQioKtESOmieOuVr7723jA
-        eKSVxzJY62oZfiT1my/GxvGY9s0HBoQMfI4+c1pat+tYH5K6rUSICGWBVtR/RdFFbegpR7
-        Z74e35kmcwd1onaJziBzgqvf55vv1j+GzrZxNCb090ry5h8fidVMhK0QhVNspQ==
-Date:   Thu, 12 Jan 2023 11:57:15 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231222AbjALLHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:07:36 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D4583C708
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 02:59:14 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id v23so14952078plo.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 02:59:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=prB1PlrTJGbwJ5z9TGNkKNhBJqEBxxJ5WnlRnkTylzI=;
+        b=YbtrtPf2b9SxJ/gxtMeLIHEJQ4Aj8Uz1IM12aHjLskai6E8zGH5wPw52ZakuL7uCBD
+         sJBf0axhkJnithfk5x9xSMNYTR0+x/vbOLY6wOHGAu6h1+wNLXLLfawHsXKesxFiBbd9
+         JLPHJy6e0u6IYE2V+D1/HEW4rtKK/Stp/lkk8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=prB1PlrTJGbwJ5z9TGNkKNhBJqEBxxJ5WnlRnkTylzI=;
+        b=4QsKLTwWqp39cHpmjQaNp3AxmZLpHT0QvOPEftmT4JwZvZVm+O6/VjpzjBB7Xk1mto
+         ba1N0PlTskqdyv2Xz7Nms7iXeTp5udUlY5THRslR8ge00JzDeEj0hFEo1li94XEL/1Hd
+         3dI06lhiCUABMaJYpiOn3mvtRdRK2damA7dV0YI12L/8yBzxG0L2KpsiSYA7VbBmeU4e
+         PgPTNV3xV6MsUznOvwKh28QH2cv2k/19srDilc0lfg+EsWzc9ih5TC5sCsSSDkxFohT4
+         xmbExIUupbZklFCz0IhqWrM4x/Sg0ZAfI2EUqRgiiVYTprXN+oixrhANfFj5Kr9/eTxk
+         ECVw==
+X-Gm-Message-State: AFqh2kqD8zD4MZCbamrP5K8Iyi+fXZCEfTo/32+XjcwHM3NQPdY2OV/h
+        LNhzJUHVY1QR6ieRhA3tJczGSQ==
+X-Google-Smtp-Source: AMrXdXthQelQ+9UuuIqt91ZlvdJsP8l/6mgFbjtEjVqoWDwzcWRe9jIGHearJAMtRJXO8JdIQ/3pHA==
+X-Received: by 2002:a17:902:6942:b0:194:5519:576d with SMTP id k2-20020a170902694200b001945519576dmr3907752plt.22.1673521153980;
+        Thu, 12 Jan 2023 02:59:13 -0800 (PST)
+Received: from localhost.localdomain ([2401:4900:4cc5:b413:eb81:9f91:b22e:317f])
+        by smtp.gmail.com with ESMTPSA id t5-20020a170902e84500b0017f756563bcsm11986850plg.47.2023.01.12.02.59.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jan 2023 02:59:13 -0800 (PST)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-reneas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clk: vc5: Make SD/OE pin configuration
- properties not required
-Message-ID: <20230112115715.3112fa87@booty>
-In-Reply-To: <68037ad181991fe0b792f6d003e3e9e538d5ffd7.1673452118.git.geert+renesas@glider.be>
-References: <68037ad181991fe0b792f6d003e3e9e538d5ffd7.1673452118.git.geert+renesas@glider.be>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH 1/3] dt-bindings: dt-bindings: arm: rockchip: Add Radxa Compute Module 3
+Date:   Thu, 12 Jan 2023 16:29:00 +0530
+Message-Id: <20230112105902.192852-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Radxa Compute Module 3(CM3) is one of the modules from a series
+System On Module based on the Radxa ROCK 3 series and is compatible
+with Raspberry Pi CM4 in pinout and form factor.
 
-On Wed, 11 Jan 2023 16:55:17 +0100
-Geert Uytterhoeven <geert+renesas@glider.be> wrote:
+Specification:
+- Rockchip RK3566
+- up to 8GB LPDDR4
+- up to 128GB high performance eMMC
+- Optional wireless LAN, 2.4GHz and 5.0GHz IEEE 802.11b/g/n/ac wireless,
+  BT 5.0, BLE with onboard and external antenna.
+- Gigabit Ethernet PHY
 
-> "make dtbs_check":
-> 
->     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,shutdown' is a required property
-> 	    From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
->     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: clock-generator@6a: 'idt,output-enable-active' is a required property
-> 	    From schema: Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> 
-> Versaclock 5 clock generators can have their configuration stored in
-> One-Time Programmable (OTP) memory.  Hence there is no need to specify
-> DT properties for manual configuration if the OTP has been programmed
-> before.  Likewise, the Linux driver does not touch the SD/OE bits if the
-> corresponding properties are not specified, cfr. commit d83e561d43bc71e5
-> ("clk: vc5: Add properties for configuring SD/OE behavior").
-> 
-> Reflect this in the bindings by making the "idt,shutdown" and
-> "idt,output-enable-active" properties not required, just like the
-> various "idt,*" properties in the per-output child nodes.
-> 
-> Fixes: 275e4e2dc0411508 ("dt-bindings: clk: vc5: Add properties for configuring the SD/OE pin")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Add dt-bindings for Radxa CM3.
 
-Thanks good catch!
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index c2b59a03ed1d..f95d370b5b78 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -615,6 +615,13 @@ properties:
+           - const: pine64,soquartz
+           - const: rockchip,rk3566
+ 
++      - description: Radxa Compute Module 3(CM3)
++        items:
++          - enum:
++              - radxa,radxa-cm3-io
++          - const: radxa,radxa-cm3
++          - const: rockchip,rk3566
++
+       - description: Radxa CM3 Industrial
+         items:
+           - enum:
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.25.1
+
