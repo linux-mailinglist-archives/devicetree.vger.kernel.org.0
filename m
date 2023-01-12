@@ -2,1154 +2,687 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBB27667171
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:59:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C648566718E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 13:04:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbjALL7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 06:59:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35202 "EHLO
+        id S235030AbjALMEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 07:04:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233760AbjALL6c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:58:32 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53F845C90E;
-        Thu, 12 Jan 2023 03:51:52 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30C8WLFq004458;
-        Thu, 12 Jan 2023 11:50:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=YACwMkysQ9tPcg0bFiBp2v/QTvZQf7hqY+gOqiZjQkc=;
- b=RfwxYNz9Ko8t0IcVWf2voTDvSGX987dhSla1BMUqnVm755VFmFWRl6s1XwQ2UB+XII6r
- TfZTFOFlJhugQbrxWvbKiQC0FOxrGSU2iMq9A7g+NuGracxdcA2VkHfdppJshvWhkI/Q
- mDs6Ai4lnUl/prDWb+JTbXDPyuUTSxDYVR8mBh/paAziJU2ml4pc5G26Q6CaROXz6Z5m
- nCr0cn4QbUI3THCZJRMdSv83HOndFpnh/OJKlZUJ7L++N/iAKC9DVm3iE8qYGm79xrlo
- uKp6Cd99C7edD5T5MErb70pE8FN2wtJWWbOlcaej6RUL/+R1wsqum+tkNnjYdK4NFc5Z Jg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n1kbqbuqe-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 11:50:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30CBoq5e029109
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 11:50:52 GMT
-Received: from [10.50.19.63] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 12 Jan
- 2023 03:50:33 -0800
-Message-ID: <9be17a54-96f4-1e90-7e38-98d45421e61a@quicinc.com>
-Date:   Thu, 12 Jan 2023 17:20:25 +0530
+        with ESMTP id S229544AbjALMDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 07:03:52 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1271F18E1D;
+        Thu, 12 Jan 2023 03:58:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673524710; x=1705060710;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fdZR2d98/iYrGEqZXV6e7SW+75h27l74f19UtobG2zU=;
+  b=bEuiaLEfpgEYXBfyadxOX7cFWbDDkAQbMb4n65zPUchWbHLWkOKmapxV
+   9H4ZjNQc38Dii66EM95TM0rqLOvFUHZ/VQE/a38qjfgQBQZIL50HXYSW4
+   AVNd6RQQloC9H6Q/+ypwP4zSS4gJQ1jOfUvlHqKWHdvWzeouMmAxFBb0n
+   QL48hKmuKGaqDgytFjP/wlfsHUh4APuX3heKq1sArtrlrfSeSIPOl3u1Z
+   1AteUKfI1dwGWUWXM0PUWPyONg/0xQTUbhIUtbg3ZdL26aLnIm12/GzCX
+   CZ6pPDuag6wOqj0ZPPBeiwR7wxl7KvLNSBJZ77F9r/EGxR4HQYHaGqAUB
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="386000916"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; 
+   d="scan'208";a="386000916"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2023 03:58:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="800177263"
+X-IronPort-AV: E=Sophos;i="5.97,319,1669104000"; 
+   d="scan'208";a="800177263"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 12 Jan 2023 03:58:16 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 12 Jan 2023 13:58:15 +0200
+Date:   Thu, 12 Jan 2023 13:58:15 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linux-kernel@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
+        Len Brown <lenb@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sean Young <sean@mess.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Gross <markgross@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Andreas Noever <andreas.noever@gmail.com>,
+        Michael Jamet <michael.jamet@intel.com>,
+        Yehezkel Bernat <YehezkelShB@gmail.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Chaitanya Kulkarni <kch@nvidia.com>,
+        Ming Lei <ming.lei@redhat.com>,
+        Jilin Yuan <yuanjilin@cdjrlc.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Jason Gunthorpe <jgg@ziepe.ca>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ira Weiny <ira.weiny@intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Won Chung <wonchung@google.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-i3c@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+        platform-driver-x86@vger.kernel.org,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: Re: [PATCH v2 05/16] driver core: make struct device_type.uevent()
+ take a const *
+Message-ID: <Y7/1163Ahkesgqp0@kuha.fi.intel.com>
+References: <20230111113018.459199-1-gregkh@linuxfoundation.org>
+ <20230111113018.459199-6-gregkh@linuxfoundation.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 4/7] pinctrl: qcom: Add IPQ9574 pinctrl driver
-To:     devi priya <quic_devipriy@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>, <shawnguo@kernel.org>,
-        <arnd@arndb.de>, <marcel.ziswiler@toradex.com>,
-        <dmitry.baryshkov@linaro.org>, <nfraprado@collabora.com>,
-        <broonie@kernel.org>, <tdas@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
-References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
- <20230110121316.24892-5-quic_devipriy@quicinc.com>
-Content-Language: en-US
-From:   Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <20230110121316.24892-5-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YEM0uXTqYkKKxoy7rT0mMHSB3TTb6Zho
-X-Proofpoint-ORIG-GUID: YEM0uXTqYkKKxoy7rT0mMHSB3TTb6Zho
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-12_07,2023-01-12_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 mlxlogscore=999 spamscore=0 malwarescore=0 adultscore=0
- mlxscore=0 impostorscore=0 phishscore=0 clxscore=1015 bulkscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301120083
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230111113018.459199-6-gregkh@linuxfoundation.org>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 11, 2023 at 12:30:07PM +0100, Greg Kroah-Hartman wrote:
+> The uevent() callback in struct device_type should not be modifying the
+> device that is passed into it, so mark it as a const * and propagate the
+> function signature changes out into all relevant subsystems that use
+> this callback.
+> 
+> Cc: Jens Axboe <axboe@kernel.dk>
+> Cc: Len Brown <lenb@kernel.org>
+> Cc: Stefan Richter <stefanr@s5r6.in-berlin.de>
+> Cc: Wolfram Sang <wsa@kernel.org>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Sean Young <sean@mess.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Maximilian Luz <luzmaximilian@gmail.com>
+> Cc: Hans de Goede <hdegoede@redhat.com>
+> Cc: Mark Gross <markgross@kernel.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Bard Liao <yung-chuan.liao@linux.intel.com>
+> Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+> Cc: Sanyog Kale <sanyog.r.kale@intel.com>
+> Cc: Andreas Noever <andreas.noever@gmail.com>
+> Cc: Michael Jamet <michael.jamet@intel.com>
+> Cc: Yehezkel Bernat <YehezkelShB@gmail.com>
+> Cc: Jiri Slaby <jirislaby@kernel.org>
+> Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> Cc: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+> Cc: "Martin K. Petersen" <martin.petersen@oracle.com>
+> Cc: Chaitanya Kulkarni <kch@nvidia.com>
+> Cc: Ming Lei <ming.lei@redhat.com>
+> Cc: Jilin Yuan <yuanjilin@cdjrlc.com>
+> Cc: Alan Stern <stern@rowland.harvard.edu>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Ira Weiny <ira.weiny@intel.com>
+> Cc: Dan Williams <dan.j.williams@intel.com>
+> Cc: Won Chung <wonchung@google.com>
+> Cc: alsa-devel@alsa-project.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-acpi@vger.kernel.org
+> Cc: linux-block@vger.kernel.org
+> Cc: linux-i2c@vger.kernel.org
+> Cc: linux-i3c@lists.infradead.org
+> Cc: linux-input@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-serial@vger.kernel.org
+> Cc: linux-usb@vger.kernel.org
+> Cc: linux1394-devel@lists.sourceforge.net
+> Cc: platform-driver-x86@vger.kernel.org
+> Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> Acked-by: Mika Westerberg <mika.westerberg@linux.intel.com> # for Thunderbolt
+> Acked-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
-On 1/10/2023 5:43 PM, devi priya wrote:
-> Add pinctrl definitions for the TLMM of IPQ9574
->
-> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
 > ---
->   drivers/pinctrl/qcom/Kconfig           |   10 +
->   drivers/pinctrl/qcom/Makefile          |    1 +
->   drivers/pinctrl/qcom/pinctrl-ipq9574.c | 1003 ++++++++++++++++++++++++
->   3 files changed, 1014 insertions(+)
->   create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq9574.c
->
-> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
-> index 1378ddca084f..a9b4b07e3de0 100644
-> --- a/drivers/pinctrl/qcom/Kconfig
-> +++ b/drivers/pinctrl/qcom/Kconfig
-> @@ -70,6 +70,16 @@ config PINCTRL_IPQ6018
->   	  Qualcomm Technologies Inc. IPQ6018 platform. Select this for
->   	  IPQ6018.
->   
-> +config PINCTRL_IPQ9574
-> +	tristate "Qualcomm Technologies, Inc. IPQ9574 pin controller driver"
-> +	depends on GPIOLIB && OF
-> +	select PINCTRL_MSM
-> +	help
-> +	  This is the pinctrl, pinmux, pinconf and gpiolib driver for
-> +          the Qualcomm Technologies Inc. TLMM block found on the
-> +          Qualcomm Technologies Inc. IPQ9574 platform. Select this for
-> +          IPQ9574.
-> +
->   config PINCTRL_MSM8226
->   	tristate "Qualcomm 8226 pin controller driver"
->   	depends on OF
-> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-> index a5c40f552e5c..717c8b8000ba 100644
-> --- a/drivers/pinctrl/qcom/Makefile
-> +++ b/drivers/pinctrl/qcom/Makefile
-> @@ -7,6 +7,7 @@ obj-$(CONFIG_PINCTRL_IPQ4019)	+= pinctrl-ipq4019.o
->   obj-$(CONFIG_PINCTRL_IPQ8064)	+= pinctrl-ipq8064.o
->   obj-$(CONFIG_PINCTRL_IPQ8074)	+= pinctrl-ipq8074.o
->   obj-$(CONFIG_PINCTRL_IPQ6018)	+= pinctrl-ipq6018.o
-> +obj-$(CONFIG_PINCTRL_IPQ9574)   += pinctrl-ipq9574.o
->   obj-$(CONFIG_PINCTRL_MSM8226)	+= pinctrl-msm8226.o
->   obj-$(CONFIG_PINCTRL_MSM8660)	+= pinctrl-msm8660.o
->   obj-$(CONFIG_PINCTRL_MSM8960)	+= pinctrl-msm8960.o
-> diff --git a/drivers/pinctrl/qcom/pinctrl-ipq9574.c b/drivers/pinctrl/qcom/pinctrl-ipq9574.c
-> new file mode 100644
-> index 000000000000..48be36279939
-> --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-ipq9574.c
-> @@ -0,0 +1,1003 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright (c) 2022 The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pinctrl/pinctrl.h>
-> +
-> +#include "pinctrl-msm.h"
-> +
-> +#define FUNCTION(fname)			                \
-> +	[msm_mux_##fname] = {		                \
-> +		.name = #fname,				\
-> +		.groups = fname##_groups,               \
-> +		.ngroups = ARRAY_SIZE(fname##_groups),	\
-> +	}
-> +
-> +#define REG_SIZE 0x1000
-> +#define PINGROUP(id, f1, f2, f3, f4, f5, f6, f7, f8, f9)	\
-> +	{					        \
-> +		.name = "gpio" #id,			\
-> +		.pins = gpio##id##_pins,		\
-> +		.npins = (unsigned int)ARRAY_SIZE(gpio##id##_pins),	\
-> +		.funcs = (int[]){			\
-> +			msm_mux_gpio, /* gpio mode */	\
-> +			msm_mux_##f1,			\
-> +			msm_mux_##f2,			\
-> +			msm_mux_##f3,			\
-> +			msm_mux_##f4,			\
-> +			msm_mux_##f5,			\
-> +			msm_mux_##f6,			\
-> +			msm_mux_##f7,			\
-> +			msm_mux_##f8,			\
-> +			msm_mux_##f9			\
-> +		},				        \
-> +		.nfuncs = 10,				\
-> +		.ctl_reg = REG_SIZE * id,			\
-> +		.io_reg = 0x4 + REG_SIZE * id,		\
-> +		.intr_cfg_reg = 0x8 + REG_SIZE * id,		\
-> +		.intr_status_reg = 0xc + REG_SIZE * id,	\
-> +		.intr_target_reg = 0x8 + REG_SIZE * id,	\
-> +		.mux_bit = 2,			\
-> +		.pull_bit = 0,			\
-> +		.drv_bit = 6,			\
-> +		.oe_bit = 9,			\
-> +		.in_bit = 0,			\
-> +		.out_bit = 1,			\
-> +		.intr_enable_bit = 0,		\
-> +		.intr_status_bit = 0,		\
-> +		.intr_target_bit = 5,		\
-> +		.intr_target_kpss_val = 3,	\
-> +		.intr_raw_status_bit = 4,	\
-> +		.intr_polarity_bit = 1,		\
-> +		.intr_detection_bit = 2,	\
-> +		.intr_detection_width = 2,	\
-> +	}
-> +
-> +static const struct pinctrl_pin_desc ipq9574_pins[] = {
-> +	PINCTRL_PIN(0, "GPIO_0"),
-> +	PINCTRL_PIN(1, "GPIO_1"),
-> +	PINCTRL_PIN(2, "GPIO_2"),
-> +	PINCTRL_PIN(3, "GPIO_3"),
-> +	PINCTRL_PIN(4, "GPIO_4"),
-> +	PINCTRL_PIN(5, "GPIO_5"),
-> +	PINCTRL_PIN(6, "GPIO_6"),
-> +	PINCTRL_PIN(7, "GPIO_7"),
-> +	PINCTRL_PIN(8, "GPIO_8"),
-> +	PINCTRL_PIN(9, "GPIO_9"),
-> +	PINCTRL_PIN(10, "GPIO_10"),
-> +	PINCTRL_PIN(11, "GPIO_11"),
-> +	PINCTRL_PIN(12, "GPIO_12"),
-> +	PINCTRL_PIN(13, "GPIO_13"),
-> +	PINCTRL_PIN(14, "GPIO_14"),
-> +	PINCTRL_PIN(15, "GPIO_15"),
-> +	PINCTRL_PIN(16, "GPIO_16"),
-> +	PINCTRL_PIN(17, "GPIO_17"),
-> +	PINCTRL_PIN(18, "GPIO_18"),
-> +	PINCTRL_PIN(19, "GPIO_19"),
-> +	PINCTRL_PIN(20, "GPIO_20"),
-> +	PINCTRL_PIN(21, "GPIO_21"),
-> +	PINCTRL_PIN(22, "GPIO_22"),
-> +	PINCTRL_PIN(23, "GPIO_23"),
-> +	PINCTRL_PIN(24, "GPIO_24"),
-> +	PINCTRL_PIN(25, "GPIO_25"),
-> +	PINCTRL_PIN(26, "GPIO_26"),
-> +	PINCTRL_PIN(27, "GPIO_27"),
-> +	PINCTRL_PIN(28, "GPIO_28"),
-> +	PINCTRL_PIN(29, "GPIO_29"),
-> +	PINCTRL_PIN(30, "GPIO_30"),
-> +	PINCTRL_PIN(31, "GPIO_31"),
-> +	PINCTRL_PIN(32, "GPIO_32"),
-> +	PINCTRL_PIN(33, "GPIO_33"),
-> +	PINCTRL_PIN(34, "GPIO_34"),
-> +	PINCTRL_PIN(35, "GPIO_35"),
-> +	PINCTRL_PIN(36, "GPIO_36"),
-> +	PINCTRL_PIN(37, "GPIO_37"),
-> +	PINCTRL_PIN(38, "GPIO_38"),
-> +	PINCTRL_PIN(39, "GPIO_39"),
-> +	PINCTRL_PIN(40, "GPIO_40"),
-> +	PINCTRL_PIN(41, "GPIO_41"),
-> +	PINCTRL_PIN(42, "GPIO_42"),
-> +	PINCTRL_PIN(43, "GPIO_43"),
-> +	PINCTRL_PIN(44, "GPIO_44"),
-> +	PINCTRL_PIN(45, "GPIO_45"),
-> +	PINCTRL_PIN(46, "GPIO_46"),
-> +	PINCTRL_PIN(47, "GPIO_47"),
-> +	PINCTRL_PIN(48, "GPIO_48"),
-> +	PINCTRL_PIN(49, "GPIO_49"),
-> +	PINCTRL_PIN(50, "GPIO_50"),
-> +	PINCTRL_PIN(51, "GPIO_51"),
-> +	PINCTRL_PIN(52, "GPIO_52"),
-> +	PINCTRL_PIN(53, "GPIO_53"),
-> +	PINCTRL_PIN(54, "GPIO_54"),
-> +	PINCTRL_PIN(55, "GPIO_55"),
-> +	PINCTRL_PIN(56, "GPIO_56"),
-> +	PINCTRL_PIN(57, "GPIO_57"),
-> +	PINCTRL_PIN(58, "GPIO_58"),
-> +	PINCTRL_PIN(59, "GPIO_59"),
-> +	PINCTRL_PIN(60, "GPIO_60"),
-> +	PINCTRL_PIN(61, "GPIO_61"),
-> +	PINCTRL_PIN(62, "GPIO_62"),
-> +	PINCTRL_PIN(63, "GPIO_63"),
-> +	PINCTRL_PIN(64, "GPIO_64"),
-> +};
-> +
-> +#define DECLARE_MSM_GPIO_PINS(pin) \
-> +	static const unsigned int gpio##pin##_pins[] = { pin }
-> +DECLARE_MSM_GPIO_PINS(0);
-> +DECLARE_MSM_GPIO_PINS(1);
-> +DECLARE_MSM_GPIO_PINS(2);
-> +DECLARE_MSM_GPIO_PINS(3);
-> +DECLARE_MSM_GPIO_PINS(4);
-> +DECLARE_MSM_GPIO_PINS(5);
-> +DECLARE_MSM_GPIO_PINS(6);
-> +DECLARE_MSM_GPIO_PINS(7);
-> +DECLARE_MSM_GPIO_PINS(8);
-> +DECLARE_MSM_GPIO_PINS(9);
-> +DECLARE_MSM_GPIO_PINS(10);
-> +DECLARE_MSM_GPIO_PINS(11);
-> +DECLARE_MSM_GPIO_PINS(12);
-> +DECLARE_MSM_GPIO_PINS(13);
-> +DECLARE_MSM_GPIO_PINS(14);
-> +DECLARE_MSM_GPIO_PINS(15);
-> +DECLARE_MSM_GPIO_PINS(16);
-> +DECLARE_MSM_GPIO_PINS(17);
-> +DECLARE_MSM_GPIO_PINS(18);
-> +DECLARE_MSM_GPIO_PINS(19);
-> +DECLARE_MSM_GPIO_PINS(20);
-> +DECLARE_MSM_GPIO_PINS(21);
-> +DECLARE_MSM_GPIO_PINS(22);
-> +DECLARE_MSM_GPIO_PINS(23);
-> +DECLARE_MSM_GPIO_PINS(24);
-> +DECLARE_MSM_GPIO_PINS(25);
-> +DECLARE_MSM_GPIO_PINS(26);
-> +DECLARE_MSM_GPIO_PINS(27);
-> +DECLARE_MSM_GPIO_PINS(28);
-> +DECLARE_MSM_GPIO_PINS(29);
-> +DECLARE_MSM_GPIO_PINS(30);
-> +DECLARE_MSM_GPIO_PINS(31);
-> +DECLARE_MSM_GPIO_PINS(32);
-> +DECLARE_MSM_GPIO_PINS(33);
-> +DECLARE_MSM_GPIO_PINS(34);
-> +DECLARE_MSM_GPIO_PINS(35);
-> +DECLARE_MSM_GPIO_PINS(36);
-> +DECLARE_MSM_GPIO_PINS(37);
-> +DECLARE_MSM_GPIO_PINS(38);
-> +DECLARE_MSM_GPIO_PINS(39);
-> +DECLARE_MSM_GPIO_PINS(40);
-> +DECLARE_MSM_GPIO_PINS(41);
-> +DECLARE_MSM_GPIO_PINS(42);
-> +DECLARE_MSM_GPIO_PINS(43);
-> +DECLARE_MSM_GPIO_PINS(44);
-> +DECLARE_MSM_GPIO_PINS(45);
-> +DECLARE_MSM_GPIO_PINS(46);
-> +DECLARE_MSM_GPIO_PINS(47);
-> +DECLARE_MSM_GPIO_PINS(48);
-> +DECLARE_MSM_GPIO_PINS(49);
-> +DECLARE_MSM_GPIO_PINS(50);
-> +DECLARE_MSM_GPIO_PINS(51);
-> +DECLARE_MSM_GPIO_PINS(52);
-> +DECLARE_MSM_GPIO_PINS(53);
-> +DECLARE_MSM_GPIO_PINS(54);
-> +DECLARE_MSM_GPIO_PINS(55);
-> +DECLARE_MSM_GPIO_PINS(56);
-> +DECLARE_MSM_GPIO_PINS(57);
-> +DECLARE_MSM_GPIO_PINS(58);
-> +DECLARE_MSM_GPIO_PINS(59);
-> +DECLARE_MSM_GPIO_PINS(60);
-> +DECLARE_MSM_GPIO_PINS(61);
-> +DECLARE_MSM_GPIO_PINS(62);
-> +DECLARE_MSM_GPIO_PINS(63);
-> +DECLARE_MSM_GPIO_PINS(64);
-> +
-> +enum ipq9574_functions {
-> +	msm_mux_atest_char,
-> +	msm_mux_atest_char0,
-> +	msm_mux_atest_char1,
-> +	msm_mux_atest_char2,
-> +	msm_mux_atest_char3,
-> +	msm_mux_audio_pdm0,
-> +	msm_mux_audio_pdm1,
-> +	msm_mux_audio_pri,
-> +	msm_mux_audio_sec,
-> +	msm_mux_blsp0_spi,
-> +	msm_mux_blsp0_uart,
-> +	msm_mux_blsp1_i2c,
-> +	msm_mux_blsp1_spi,
-> +	msm_mux_blsp1_uart,
-> +	msm_mux_blsp2_i2c,
-> +	msm_mux_blsp2_spi,
-> +	msm_mux_blsp2_uart,
-> +	msm_mux_blsp3_i2c,
-> +	msm_mux_blsp3_spi,
-> +	msm_mux_blsp3_uart,
-> +	msm_mux_blsp4_i2c,
-> +	msm_mux_blsp4_spi,
-> +	msm_mux_blsp4_uart,
-> +	msm_mux_blsp5_i2c,
-> +	msm_mux_blsp5_uart,
-> +	msm_mux_cri_trng0,
-> +	msm_mux_cri_trng1,
-> +	msm_mux_cri_trng2,
-> +	msm_mux_cri_trng3,
-> +	msm_mux_cxc0,
-> +	msm_mux_cxc1,
-> +	msm_mux_dbg_out,
-> +	msm_mux_dwc_ddrphy,
-> +	msm_mux_gcc_plltest,
-> +	msm_mux_gcc_tlmm,
-> +	msm_mux_gpio,
-> +	msm_mux_mac00,
-> +	msm_mux_mac01,
-> +	msm_mux_mac10,
-> +	msm_mux_mac11,
-> +	msm_mux_mdc,
-> +	msm_mux_mdio,
-> +	msm_mux_pcie0_clk,
-> +	msm_mux_pcie0_wake,
-> +	msm_mux_pcie1_clk,
-> +	msm_mux_pcie1_wake,
-> +	msm_mux_pcie2_clk,
-> +	msm_mux_pcie2_wake,
-> +	msm_mux_pcie3_clk,
-> +	msm_mux_pcie3_wake,
-> +	msm_mux_prng_rosc0,
-> +	msm_mux_prng_rosc1,
-> +	msm_mux_prng_rosc2,
-> +	msm_mux_prng_rosc3,
-> +	msm_mux_pta1_0,
-> +	msm_mux_pta1_1,
-> +	msm_mux_pta1_2,
-> +	msm_mux_pta20,
-> +	msm_mux_pta21,
-> +	msm_mux_pwm00,
-> +	msm_mux_pwm01,
-> +	msm_mux_pwm02,
-> +	msm_mux_pwm03,
-> +	msm_mux_pwm04,
-> +	msm_mux_pwm10,
-> +	msm_mux_pwm11,
-> +	msm_mux_pwm12,
-> +	msm_mux_pwm13,
-> +	msm_mux_pwm14,
-> +	msm_mux_pwm20,
-> +	msm_mux_pwm21,
-> +	msm_mux_pwm22,
-> +	msm_mux_pwm23,
-> +	msm_mux_pwm24,
-> +	msm_mux_pwm30,
-> +	msm_mux_pwm31,
-> +	msm_mux_pwm32,
-> +	msm_mux_pwm33,
-> +	msm_mux_qdss_cti_trig_in_a0,
-> +	msm_mux_qdss_cti_trig_in_a1,
-> +	msm_mux_qdss_cti_trig_in_b0,
-> +	msm_mux_qdss_cti_trig_in_b1,
-> +	msm_mux_qdss_cti_trig_out_a0,
-> +	msm_mux_qdss_cti_trig_out_a1,
-> +	msm_mux_qdss_cti_trig_out_b0,
-> +	msm_mux_qdss_cti_trig_out_b1,
-> +	msm_mux_qdss_traceclk_a,
-> +	msm_mux_qdss_traceclk_b,
-> +	msm_mux_qdss_tracectl_a,
-> +	msm_mux_qdss_tracectl_b,
-> +	msm_mux_qdss_tracedata_a,
-> +	msm_mux_qdss_tracedata_b,
-> +	msm_mux_qspi_data,
-> +	msm_mux_qspi_clk,
-> +	msm_mux_qspi_cs,
-> +	msm_mux_rx0,
-> +	msm_mux_rx1,
-> +	msm_mux_sdc_data,
-> +	msm_mux_sdc_clk,
-> +	msm_mux_sdc_cmd,
-> +	msm_mux_sdc_rclk,
-> +	msm_mux_tsens_max,
-> +	msm_mux_wci20,
-> +	msm_mux_wci21,
-> +	msm_mux_wsa_swrm,
-> +	msm_mux__,
-> +};
-> +
-> +static const char * const gpio_groups[] = {
-> +	"gpio0", "gpio1", "gpio2", "gpio3", "gpio4", "gpio5", "gpio6", "gpio7",
-> +	"gpio8", "gpio9", "gpio10", "gpio11", "gpio12", "gpio13", "gpio14",
-> +	"gpio15", "gpio16", "gpio17", "gpio18", "gpio19", "gpio20", "gpio21",
-> +	"gpio22", "gpio23", "gpio24", "gpio25", "gpio26", "gpio27", "gpio28",
-> +	"gpio29", "gpio30", "gpio31", "gpio32", "gpio33", "gpio34", "gpio35",
-> +	"gpio36", "gpio37", "gpio38", "gpio39", "gpio40", "gpio41", "gpio42",
-> +	"gpio43", "gpio44", "gpio45", "gpio46", "gpio47", "gpio48", "gpio49",
-> +	"gpio50", "gpio51", "gpio52", "gpio53", "gpio54", "gpio55", "gpio56",
-> +	"gpio57", "gpio58", "gpio59", "gpio60", "gpio61", "gpio62", "gpio63",
-> +	"gpio64",
-> +};
-> +
-> +static const char * const sdc_data_groups[] = {
-> +	"gpio0",
-> +	"gpio1",
-> +	"gpio2",
-> +	"gpio3",
-> +	"gpio6",
-> +	"gpio7",
-> +	"gpio8",
-> +	"gpio9",
-> +};
-> +
-> +static const char * const qspi_data_groups[] = {
-> +	"gpio0",
-> +	"gpio1",
-> +	"gpio2",
-> +	"gpio3",
-> +};
-> +
-> +static const char * const qdss_traceclk_b_groups[] = {
-> +	"gpio0",
-> +};
-> +
-> +static const char * const qdss_tracectl_b_groups[] = {
-> +	"gpio1",
-> +};
-> +
-> +static const char * const qdss_tracedata_b_groups[] = {
-> +	"gpio2", "gpio3", "gpio4", "gpio5", "gpio6", "gpio7", "gpio8", "gpio9",
-> +	"gpio10", "gpio11", "gpio12", "gpio13", "gpio14", "gpio15", "gpio16",
-> +	"gpio17",
-> +};
-> +
-> +static const char * const sdc_cmd_groups[] = {
-> +	"gpio4",
-> +};
-> +
-> +static const char * const qspi_cs_groups[] = {
-> +	"gpio4",
-> +};
-> +
-> +static const char * const sdc_clk_groups[] = {
-> +	"gpio5",
-> +};
-> +
-> +static const char * const qspi_clk_groups[] = {
-> +	"gpio5",
-> +};
-> +
-> +static const char * const sdc_rclk_groups[] = {
-> +	"gpio10",
-> +};
-> +
-> +static const char * const blsp0_spi_groups[] = {
-> +	"gpio11", "gpio12", "gpio13", "gpio14",
-> +};
-> +
-> +static const char * const blsp0_uart_groups[] = {
-> +	"gpio11", "gpio12", "gpio13", "gpio14",
-> +};
-> +
-> +static const char * const blsp3_spi_groups[] = {
-> +	"gpio15", "gpio16", "gpio17", "gpio18", "gpio19", "gpio20", "gpio21",
-> +};
-> +
-> +static const char * const blsp3_i2c_groups[] = {
-> +	"gpio15", "gpio16",
-> +};
-> +
-> +static const char * const blsp3_uart_groups[] = {
-> +	"gpio15", "gpio16", "gpio17", "gpio18",
-> +};
-> +
-> +static const char * const dbg_out_groups[] = {
-> +	"gpio17",
-> +};
-> +
-> +static const char * const cri_trng0_groups[] = {
-> +	"gpio20", "gpio38",
-> +};
-> +
-> +static const char * const cri_trng1_groups[] = {
-> +	"gpio21", "gpio34",
-> +};
-> +
-> +static const char * const pcie0_clk_groups[] = {
-> +	"gpio22",
-> +};
-> +
-> +static const char * const pta20_groups[] = {
-> +	"gpio22", "gpio23", "gpio24",
-> +};
-> +
-> +static const char * const wci21_groups[] = {
-> +	"gpio23", "gpio24",
-> +};
-> +
-> +static const char * const cxc0_groups[] = {
-> +	"gpio23", "gpio24",
-> +};
-> +
-> +static const char * const pcie0_wake_groups[] = {
-> +	"gpio24",
-> +};
-> +
-> +static const char * const qdss_cti_trig_out_b0_groups[] = {
-> +	"gpio24",
-> +};
-> +
-> +static const char * const pcie1_clk_groups[] = {
-> +	"gpio25",
-> +};
-> +
-> +static const char * const qdss_cti_trig_in_b0_groups[] = {
-> +	"gpio25",
-> +};
-> +
-> +static const char * const atest_char0_groups[] = {
-> +	"gpio26",
-> +};
-> +
-> +static const char * const qdss_cti_trig_out_b1_groups[] = {
-> +	"gpio26",
-> +};
-> +
-> +static const char * const pcie1_wake_groups[] = {
-> +	"gpio27",
-> +};
-> +
-> +static const char * const atest_char1_groups[] = {
-> +	"gpio27",
-> +};
-> +
-> +static const char * const qdss_cti_trig_in_b1_groups[] = {
-> +	"gpio27",
-> +};
-> +
-> +static const char * const pcie2_clk_groups[] = {
-> +	"gpio28",
-> +};
-> +
-> +static const char * const atest_char2_groups[] = {
-> +	"gpio28",
-> +};
-> +
-> +static const char * const atest_char3_groups[] = {
-> +	"gpio29",
-> +};
-> +
-> +static const char * const pcie2_wake_groups[] = {
-> +	"gpio30",
-> +};
-> +
-> +static const char * const pwm01_groups[] = {
-> +	"gpio30",
-> +};
-> +
-> +static const char * const atest_char_groups[] = {
-> +	"gpio30",
-> +};
-> +
-> +static const char * const pcie3_clk_groups[] = {
-> +	"gpio31",
-> +};
-> +
-> +static const char * const pwm11_groups[] = {
-> +	"gpio31",
-> +};
-> +
-> +static const char * const qdss_cti_trig_in_a1_groups[] = {
-> +	"gpio31",
-> +};
-> +
-> +static const char * const pwm21_groups[] = {
-> +	"gpio32",
-> +};
-> +
-> +static const char * const qdss_cti_trig_out_a1_groups[] = {
-> +	"gpio32",
-> +};
-> +
-> +static const char * const pcie3_wake_groups[] = {
-> +	"gpio33",
-> +};
-> +
-> +static const char * const pwm31_groups[] = {
-> +	"gpio33",
-> +};
-> +
-> +static const char * const qdss_cti_trig_in_a0_groups[] = {
-> +	"gpio33",
-> +};
-> +
-> +static const char * const blsp2_uart_groups[] = {
-> +	"gpio34", "gpio35",
-> +};
-> +
-> +static const char * const blsp2_i2c_groups[] = {
-> +	"gpio34", "gpio35",
-> +};
-> +
-> +static const char * const blsp2_spi_groups[] = {
-> +	"gpio34", "gpio35", "gpio36", "gpio37",
-> +};
-> +
-> +static const char * const blsp1_uart_groups[] = {
-> +	"gpio34", "gpio35", "gpio36", "gpio37",
-> +};
-> +
-> +static const char * const qdss_cti_trig_out_a0_groups[] = {
-> +	"gpio34",
-> +};
-> +
-> +static const char * const cri_trng2_groups[] = {
-> +	"gpio35",
-> +};
-> +
-> +static const char * const blsp1_i2c_groups[] = {
-> +	"gpio36", "gpio37",
-> +};
-> +
-> +static const char * const cri_trng3_groups[] = {
-> +	"gpio36",
-> +};
-> +
-> +static const char * const dwc_ddrphy_groups[] = {
-> +	"gpio37",
-> +};
-> +
-> +static const char * const mdc_groups[] = {
-> +	"gpio38",
-> +};
-> +
-> +static const char * const mdio_groups[] = {
-> +	"gpio39",
-> +};
-> +
-> +static const char * const audio_pri_groups[] = {
-> +	"gpio40", "gpio41", "gpio42", "gpio43", "gpio61", "gpio61",
-> +};
-> +
-> +static const char * const audio_pdm0_groups[] = {
-> +	"gpio40", "gpio41", "gpio42", "gpio43",
-> +};
-> +
-> +static const char * const qdss_traceclk_a_groups[] = {
-> +	"gpio43",
-> +};
-> +
-> +static const char * const pwm00_groups[] = {
-> +	"gpio44",
-> +};
-> +
-> +static const char * const audio_sec_groups[] = {
-> +	"gpio44", "gpio45", "gpio46", "gpio47", "gpio62", "gpio62",
-> +};
-> +
-> +static const char * const wsa_swrm_groups[] = {
-> +	"gpio44", "gpio45",
-> +};
-> +
-> +static const char * const qdss_tracectl_a_groups[] = {
-> +	"gpio44",
-> +};
-> +
-> +static const char * const pwm10_groups[] = {
-> +	"gpio45",
-> +};
-> +
-> +static const char * const qdss_tracedata_a_groups[] = {
-> +	"gpio45", "gpio46", "gpio47", "gpio48", "gpio49", "gpio50", "gpio51",
-> +	"gpio52", "gpio53", "gpio54", "gpio55", "gpio56", "gpio57", "gpio58",
-> +	"gpio59", "gpio60",
-> +};
-> +
-> +static const char * const pwm20_groups[] = {
-> +	"gpio46",
-> +};
-> +
-> +static const char * const rx1_groups[] = {
-> +	"gpio46",
-> +};
-> +
-> +static const char * const mac00_groups[] = {
-> +	"gpio46",
-> +};
-> +
-> +static const char * const pwm30_groups[] = {
-> +	"gpio47",
-> +};
-> +
-> +static const char * const mac01_groups[] = {
-> +	"gpio47",
-> +};
-> +
-> +static const char * const blsp5_i2c_groups[] = {
-> +	"gpio48", "gpio49",
-> +};
-> +
-> +static const char * const blsp5_uart_groups[] = {
-> +	"gpio48", "gpio49",
-> +};
-> +
-> +static const char * const blsp4_uart_groups[] = {
-> +	"gpio50", "gpio51", "gpio52", "gpio53",
-> +};
-> +
-> +static const char * const blsp4_i2c_groups[] = {
-> +	"gpio50", "gpio51",
-> +};
-> +
-> +static const char * const blsp4_spi_groups[] = {
-> +	"gpio50", "gpio51", "gpio52", "gpio53",
-> +};
-> +
-> +static const char * const pwm02_groups[] = {
-> +	"gpio50",
-> +};
-> +
-> +static const char * const pwm12_groups[] = {
-> +	"gpio51",
-> +};
-> +
-> +static const char * const pwm22_groups[] = {
-> +	"gpio52",
-> +};
-> +
-> +static const char * const pwm32_groups[] = {
-> +	"gpio53",
-> +};
-> +
-> +static const char * const pta1_1_groups[] = {
-> +	"gpio54",
-> +};
-> +
-> +static const char * const pwm04_groups[] = {
-> +	"gpio54",
-> +};
-> +
-> +static const char * const pta1_2_groups[] = {
-> +	"gpio55",
-> +};
-> +
-> +static const char * const pwm14_groups[] = {
-> +	"gpio55",
-> +};
-> +
-> +static const char * const pta1_0_groups[] = {
-> +	"gpio56",
-> +};
-> +
-> +static const char * const pwm24_groups[] = {
-> +	"gpio56",
-> +};
-> +
-> +static const char * const wci20_groups[] = {
-> +	"gpio57", "gpio58",
-> +};
-> +
-> +static const char * const cxc1_groups[] = {
-> +	"gpio57", "gpio58",
-> +};
-> +
-> +static const char * const mac10_groups[] = {
-> +	"gpio57",
-> +};
-> +
-> +static const char * const pwm03_groups[] = {
-> +	"gpio57",
-> +};
-> +
-> +static const char * const mac11_groups[] = {
-> +	"gpio58",
-> +};
-> +
-> +static const char * const pwm13_groups[] = {
-> +	"gpio58",
-> +};
-> +
-> +static const char * const rx0_groups[] = {
-> +	"gpio59",
-> +};
-> +
-> +static const char * const pwm23_groups[] = {
-> +	"gpio59",
-> +};
-> +
-> +static const char * const pwm33_groups[] = {
-> +	"gpio60",
-> +};
-> +
-> +static const char * const prng_rosc0_groups[] = {
-> +	"gpio60",
-> +};
-> +
-> +static const char * const gcc_plltest_groups[] = {
-> +	"gpio60", "gpio62",
-> +};
-> +
-> +static const char * const blsp1_spi_groups[] = {
-> +	"gpio61", "gpio62", "gpio63", "gpio64",
-> +};
-> +
-> +static const char * const audio_pdm1_groups[] = {
-> +	"gpio61", "gpio62", "gpio63", "gpio64",
-> +};
-> +
-> +static const char * const pta21_groups[] = {
-> +	"gpio61", "gpio62", "gpio63",
-> +};
-> +
-> +static const char * const prng_rosc1_groups[] = {
-> +	"gpio61",
-> +};
-> +
-> +static const char * const gcc_tlmm_groups[] = {
-> +	"gpio61",
-> +};
-> +
-> +static const char * const prng_rosc2_groups[] = {
-> +	"gpio62",
-> +};
-> +
-> +static const char * const prng_rosc3_groups[] = {
-> +	"gpio63",
-> +};
-> +
-> +static const char * const tsens_max_groups[] = {
-> +	"gpio64",
-> +};
-> +
-> +static const struct msm_function ipq9574_functions[] = {
-> +	FUNCTION(atest_char),
-> +	FUNCTION(atest_char0),
-> +	FUNCTION(atest_char1),
-> +	FUNCTION(atest_char2),
-> +	FUNCTION(atest_char3),
-> +	FUNCTION(audio_pdm0),
-> +	FUNCTION(audio_pdm1),
-> +	FUNCTION(audio_pri),
-> +	FUNCTION(audio_sec),
-> +	FUNCTION(blsp0_spi),
-> +	FUNCTION(blsp0_uart),
-> +	FUNCTION(blsp1_i2c),
-> +	FUNCTION(blsp1_spi),
-> +	FUNCTION(blsp1_uart),
-> +	FUNCTION(blsp2_i2c),
-> +	FUNCTION(blsp2_spi),
-> +	FUNCTION(blsp2_uart),
-> +	FUNCTION(blsp3_i2c),
-> +	FUNCTION(blsp3_spi),
-> +	FUNCTION(blsp3_uart),
-> +	FUNCTION(blsp4_i2c),
-> +	FUNCTION(blsp4_spi),
-> +	FUNCTION(blsp4_uart),
-> +	FUNCTION(blsp5_i2c),
-> +	FUNCTION(blsp5_uart),
-> +	FUNCTION(cri_trng0),
-> +	FUNCTION(cri_trng1),
-> +	FUNCTION(cri_trng2),
-> +	FUNCTION(cri_trng3),
-> +	FUNCTION(cxc0),
-> +	FUNCTION(cxc1),
-> +	FUNCTION(dbg_out),
-> +	FUNCTION(dwc_ddrphy),
-> +	FUNCTION(gcc_plltest),
-> +	FUNCTION(gcc_tlmm),
-> +	FUNCTION(gpio),
-> +	FUNCTION(mac00),
-> +	FUNCTION(mac01),
-> +	FUNCTION(mac10),
-> +	FUNCTION(mac11),
-> +	FUNCTION(mdc),
-> +	FUNCTION(mdio),
-> +	FUNCTION(pcie0_clk),
-> +	FUNCTION(pcie0_wake),
-> +	FUNCTION(pcie1_clk),
-> +	FUNCTION(pcie1_wake),
-> +	FUNCTION(pcie2_clk),
-> +	FUNCTION(pcie2_wake),
-> +	FUNCTION(pcie3_clk),
-> +	FUNCTION(pcie3_wake),
-> +	FUNCTION(prng_rosc0),
-> +	FUNCTION(prng_rosc1),
-> +	FUNCTION(prng_rosc2),
-> +	FUNCTION(prng_rosc3),
-> +	FUNCTION(pta1_0),
-> +	FUNCTION(pta1_1),
-> +	FUNCTION(pta1_2),
-> +	FUNCTION(pta20),
-> +	FUNCTION(pta21),
-> +	FUNCTION(pwm00),
-> +	FUNCTION(pwm01),
-> +	FUNCTION(pwm02),
-> +	FUNCTION(pwm03),
-> +	FUNCTION(pwm04),
-> +	FUNCTION(pwm10),
-> +	FUNCTION(pwm11),
-> +	FUNCTION(pwm12),
-> +	FUNCTION(pwm13),
-> +	FUNCTION(pwm14),
-> +	FUNCTION(pwm20),
-> +	FUNCTION(pwm21),
-> +	FUNCTION(pwm22),
-> +	FUNCTION(pwm23),
-> +	FUNCTION(pwm24),
-> +	FUNCTION(pwm30),
-> +	FUNCTION(pwm31),
-> +	FUNCTION(pwm32),
-> +	FUNCTION(pwm33),
-> +	FUNCTION(qdss_cti_trig_in_a0),
-> +	FUNCTION(qdss_cti_trig_in_a1),
-> +	FUNCTION(qdss_cti_trig_in_b0),
-> +	FUNCTION(qdss_cti_trig_in_b1),
-> +	FUNCTION(qdss_cti_trig_out_a0),
-> +	FUNCTION(qdss_cti_trig_out_a1),
-> +	FUNCTION(qdss_cti_trig_out_b0),
-> +	FUNCTION(qdss_cti_trig_out_b1),
-> +	FUNCTION(qdss_traceclk_a),
-> +	FUNCTION(qdss_traceclk_b),
-> +	FUNCTION(qdss_tracectl_a),
-> +	FUNCTION(qdss_tracectl_b),
-> +	FUNCTION(qdss_tracedata_a),
-> +	FUNCTION(qdss_tracedata_b),
-> +	FUNCTION(qspi_data),
-> +	FUNCTION(qspi_clk),
-> +	FUNCTION(qspi_cs),
-> +	FUNCTION(rx0),
-> +	FUNCTION(rx1),
-> +	FUNCTION(sdc_data),
-> +	FUNCTION(sdc_clk),
-> +	FUNCTION(sdc_cmd),
-> +	FUNCTION(sdc_rclk),
-> +	FUNCTION(tsens_max),
-> +	FUNCTION(wci20),
-> +	FUNCTION(wci21),
-> +	FUNCTION(wsa_swrm),
-> +};
-> +
-> +static const struct msm_pingroup ipq9574_groups[] = {
-> +	PINGROUP(0, sdc_data, qspi_data, qdss_traceclk_b, _, _, _, _, _, _),
-> +	PINGROUP(1, sdc_data, qspi_data, qdss_tracectl_b, _, _, _, _, _, _),
-> +	PINGROUP(2, sdc_data, qspi_data, qdss_tracedata_b, _, _, _, _, _, _),
-> +	PINGROUP(3, sdc_data, qspi_data, qdss_tracedata_b, _, _, _, _, _, _),
-> +	PINGROUP(4, sdc_cmd, qspi_cs, qdss_tracedata_b, _, _, _, _, _, _),
-> +	PINGROUP(5, sdc_clk, qspi_clk, qdss_tracedata_b, _, _, _, _, _,
-> +		 _),
-> +	PINGROUP(6, sdc_data, qdss_tracedata_b, _, _, _, _, _, _, _),
-> +	PINGROUP(7, sdc_data, qdss_tracedata_b, _, _, _, _, _, _, _),
-> +	PINGROUP(8, sdc_data, qdss_tracedata_b, _, _, _, _, _, _, _),
-> +	PINGROUP(9, sdc_data, qdss_tracedata_b, _, _, _, _, _, _, _),
-> +	PINGROUP(10, sdc_rclk, qdss_tracedata_b, _, _, _, _, _, _, _),
-> +	PINGROUP(11, blsp0_spi, blsp0_uart, qdss_tracedata_b, _, _, _, _,
-> +		 _, _),
-> +	PINGROUP(12, blsp0_spi, blsp0_uart, qdss_tracedata_b, _, _, _, _,
-> +		 _, _),
-> +	PINGROUP(13, blsp0_spi, blsp0_uart, qdss_tracedata_b, _, _, _, _,
-> +		 _, _),
-> +	PINGROUP(14, blsp0_spi, blsp0_uart, qdss_tracedata_b, _, _, _, _,
-> +		 _, _),
-> +	PINGROUP(15, blsp3_spi, blsp3_i2c, blsp3_uart, qdss_tracedata_b, _,
-> +		 _, _, _, _),
-> +	PINGROUP(16, blsp3_spi, blsp3_i2c, blsp3_uart, qdss_tracedata_b, _,
-> +		 _, _, _, _),
-> +	PINGROUP(17, blsp3_spi, blsp3_uart, dbg_out, qdss_tracedata_b, _, _,
-> +		 _, _, _),
-> +	PINGROUP(18, blsp3_spi, blsp3_uart, _, _, _, _, _, _, _),
-> +	PINGROUP(19, blsp3_spi, _, _, _, _, _, _, _, _),
-> +	PINGROUP(20, blsp3_spi, _, cri_trng0, _, _, _, _, _, _),
-> +	PINGROUP(21, blsp3_spi, _, cri_trng1, _, _, _, _, _, _),
-> +	PINGROUP(22, pcie0_clk, _, pta20, _, _, _, _, _, _),
-> +	PINGROUP(23, _, pta20, wci21, cxc0, _, _, _, _, _),
-> +	PINGROUP(24, pcie0_wake, _, pta20, wci21, cxc0, _,
-> +		 qdss_cti_trig_out_b0, _, _),
-> +	PINGROUP(25, pcie1_clk, _, _, qdss_cti_trig_in_b0, _, _, _, _,
-> +		 _),
-> +	PINGROUP(26, _, atest_char0, _, qdss_cti_trig_out_b1, _, _, _, _,
-> +		 _),
-> +	PINGROUP(27, pcie1_wake, _, atest_char1, qdss_cti_trig_in_b1, _, _,
-> +		 _, _, _),
-> +	PINGROUP(28, pcie2_clk, atest_char2, _, _, _, _, _, _, _),
-> +	PINGROUP(29, atest_char3, _, _, _, _, _, _, _, _),
-> +	PINGROUP(30, pcie2_wake, pwm01, atest_char, _, _, _, _, _, _),
-> +	PINGROUP(31, pcie3_clk, pwm11, _, qdss_cti_trig_in_a1, _, _, _, _,
-> +		 _),
-> +	PINGROUP(32, pwm21, _, qdss_cti_trig_out_a1, _, _, _, _, _, _),
-> +	PINGROUP(33, pcie3_wake, pwm31, _, qdss_cti_trig_in_a0, _, _, _,
-> +		 _, _),
-> +	PINGROUP(34, blsp2_uart, blsp2_i2c, blsp2_spi, blsp1_uart, _,
-> +		 cri_trng1, qdss_cti_trig_out_a0, _, _),
-> +	PINGROUP(35, blsp2_uart, blsp2_i2c, blsp2_spi, blsp1_uart, _,
-> +		 cri_trng2, _, _, _),
-> +	PINGROUP(36, blsp1_uart, blsp1_i2c, blsp2_spi, _, cri_trng3, _, _,
-> +		 _, _),
-> +	PINGROUP(37, blsp1_uart, blsp1_i2c, blsp2_spi, _, dwc_ddrphy, _, _,
-> +		 _, _),
-> +	PINGROUP(38, mdc, _, cri_trng0, _, _, _, _, _, _),
-> +	PINGROUP(39, mdio, _, _, _, _, _, _, _, _),
-> +	PINGROUP(40, audio_pri, audio_pdm0, _, _, _, _, _, _, _),
-> +	PINGROUP(41, audio_pri, audio_pdm0, _, _, _, _, _, _, _),
-> +	PINGROUP(42, audio_pri, audio_pdm0, _, _, _, _, _, _, _),
-> +	PINGROUP(43, audio_pri, audio_pdm0, _, qdss_traceclk_a, _, _, _,
-> +		 _, _),
-> +	PINGROUP(44, pwm00, audio_sec, wsa_swrm, _, qdss_tracectl_a, _, _,
-> +		 _, _),
-> +	PINGROUP(45, pwm10, audio_sec, wsa_swrm, _, qdss_tracedata_a, _, _,
-> +		 _, _),
-> +	PINGROUP(46, pwm20, audio_sec, rx1, mac00, _, qdss_tracedata_a, _,
-> +		 _, _),
-> +	PINGROUP(47, pwm30, audio_sec, mac01, _, qdss_tracedata_a, _, _, _,
-> +		 _),
-> +	PINGROUP(48, blsp5_i2c, blsp5_uart, _, qdss_tracedata_a, _, _, _,
-> +		 _, _),
-> +	PINGROUP(49, blsp5_i2c, blsp5_uart, _, qdss_tracedata_a, _, _, _,
-> +		 _, _),
-> +	PINGROUP(50, blsp4_uart, blsp4_i2c, blsp4_spi, pwm02, qdss_tracedata_a,
-> +		 _, _, _, _),
-> +	PINGROUP(51, blsp4_uart, blsp4_i2c, blsp4_spi, pwm12, qdss_tracedata_a,
-> +		 _, _, _, _),
-> +	PINGROUP(52, blsp4_uart, blsp4_spi, pwm22, qdss_tracedata_a, _, _,
-> +		 _, _, _),
-> +	PINGROUP(53, blsp4_uart, blsp4_spi, pwm32, qdss_tracedata_a, _, _,
-> +		 _, _, _),
-> +	PINGROUP(54, pta1_1, pwm04, qdss_tracedata_a, _, _, _, _, _, _),
-> +	PINGROUP(55, pta1_2, pwm14, qdss_tracedata_a, _, _, _, _, _, _),
-> +	PINGROUP(56, pta1_0, pwm24, qdss_tracedata_a, _, _, _, _, _, _),
-> +	PINGROUP(57, wci20, cxc1, mac10, pwm03, qdss_tracedata_a, _, _, _,
-> +		 _),
-> +	PINGROUP(58, wci20, cxc1, mac11, pwm13, qdss_tracedata_a, _, _, _,
-> +		 _),
-> +	PINGROUP(59, rx0, pwm23, qdss_tracedata_a, _, _, _, _, _, _),
-> +	PINGROUP(60, pwm33, prng_rosc0, qdss_tracedata_a, _, gcc_plltest, _,
-> +		 _, _, _),
-> +	PINGROUP(61, blsp1_spi, audio_pri, audio_pdm1, audio_pri, pta21,
-> +		 prng_rosc1, gcc_tlmm, _, _),
-> +	PINGROUP(62, blsp1_spi, audio_sec, audio_pdm1, audio_sec, pta21,
-> +		 prng_rosc2, gcc_plltest, _, _),
-> +	PINGROUP(63, blsp1_spi, audio_pdm1, pta21, prng_rosc3, _, _, _, _,
-> +		 _),
-> +	PINGROUP(64, blsp1_spi, audio_pdm1, tsens_max, _, _, _, _, _, _),
-> +};
-> +
-> +static const struct msm_pinctrl_soc_data ipq9574_pinctrl = {
-> +	.pins = ipq9574_pins,
-> +	.npins = ARRAY_SIZE(ipq9574_pins),
-> +	.functions = ipq9574_functions,
-> +	.nfunctions = ARRAY_SIZE(ipq9574_functions),
-> +	.groups = ipq9574_groups,
-> +	.ngroups = ARRAY_SIZE(ipq9574_groups),
-> +	.ngpios = 65,
-> +};
-> +
-> +static int ipq9574_pinctrl_probe(struct platform_device *pdev)
-> +{
-> +	return msm_pinctrl_probe(pdev, &ipq9574_pinctrl);
-> +}
-> +
-> +static const struct of_device_id ipq9574_pinctrl_of_match[] = {
-> +	{ .compatible = "qcom,ipq9574-tlmm", },
-> +	{ },
-> +};
-> +
-> +static struct platform_driver ipq9574_pinctrl_driver = {
-> +	.driver = {
-> +		.name = "ipq9574-tlmm",
-> +		.owner = THIS_MODULE,
+>  block/partitions/core.c                   |  4 ++--
+>  drivers/acpi/device_sysfs.c               |  8 ++++----
+>  drivers/acpi/internal.h                   |  2 +-
+>  drivers/firewire/core-device.c            |  8 ++++----
+>  drivers/gpu/drm/display/drm_dp_aux_bus.c  |  2 +-
+>  drivers/i2c/i2c-core-base.c               |  4 ++--
+>  drivers/i3c/device.c                      |  2 +-
+>  drivers/i3c/master.c                      |  4 ++--
+>  drivers/input/input.c                     | 16 ++++++++--------
+>  drivers/media/rc/rc-main.c                |  2 +-
+>  drivers/platform/surface/aggregator/bus.c |  4 ++--
+>  drivers/soundwire/bus_type.c              |  4 ++--
+>  drivers/thunderbolt/switch.c              |  4 ++--
+>  drivers/thunderbolt/tb.h                  |  2 +-
+>  drivers/thunderbolt/xdomain.c             |  6 +++---
+>  drivers/tty/serdev/core.c                 |  2 +-
+>  drivers/usb/core/message.c                |  8 ++++----
+>  drivers/usb/core/usb.c                    |  4 ++--
+>  drivers/usb/phy/phy.c                     |  6 +++---
+>  drivers/usb/roles/class.c                 |  3 +--
+>  drivers/usb/typec/class.c                 |  2 +-
+>  include/linux/acpi.h                      |  4 ++--
+>  include/linux/device.h                    |  2 +-
+>  include/linux/i3c/device.h                |  2 +-
+>  include/linux/soundwire/sdw_type.h        |  2 +-
+>  25 files changed, 53 insertions(+), 54 deletions(-)
+> 
+> diff --git a/block/partitions/core.c b/block/partitions/core.c
+> index b8112f52d388..7b8ef6296abd 100644
+> --- a/block/partitions/core.c
+> +++ b/block/partitions/core.c
+> @@ -254,9 +254,9 @@ static void part_release(struct device *dev)
+>  	iput(dev_to_bdev(dev)->bd_inode);
+>  }
+>  
+> -static int part_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int part_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct block_device *part = dev_to_bdev(dev);
+> +	const struct block_device *part = dev_to_bdev(dev);
+>  
+>  	add_uevent_var(env, "PARTN=%u", part->bd_partno);
+>  	if (part->bd_meta_info && part->bd_meta_info->volname[0])
+> diff --git a/drivers/acpi/device_sysfs.c b/drivers/acpi/device_sysfs.c
+> index 120873dad2cc..daff2c0c5c52 100644
+> --- a/drivers/acpi/device_sysfs.c
+> +++ b/drivers/acpi/device_sysfs.c
+> @@ -133,7 +133,7 @@ static void acpi_hide_nondev_subnodes(struct acpi_device_data *data)
+>   *         -EINVAL: output error
+>   *         -ENOMEM: output is truncated
+>   */
+> -static int create_pnp_modalias(struct acpi_device *acpi_dev, char *modalias,
+> +static int create_pnp_modalias(const struct acpi_device *acpi_dev, char *modalias,
+>  			       int size)
+>  {
+>  	int len;
+> @@ -191,7 +191,7 @@ static int create_pnp_modalias(struct acpi_device *acpi_dev, char *modalias,
+>   * only be called for devices having ACPI_DT_NAMESPACE_HID in their list of
+>   * ACPI/PNP IDs.
+>   */
+> -static int create_of_modalias(struct acpi_device *acpi_dev, char *modalias,
+> +static int create_of_modalias(const struct acpi_device *acpi_dev, char *modalias,
+>  			      int size)
+>  {
+>  	struct acpi_buffer buf = { ACPI_ALLOCATE_BUFFER };
+> @@ -239,7 +239,7 @@ static int create_of_modalias(struct acpi_device *acpi_dev, char *modalias,
+>  	return len;
+>  }
+>  
+> -int __acpi_device_uevent_modalias(struct acpi_device *adev,
+> +int __acpi_device_uevent_modalias(const struct acpi_device *adev,
+>  				  struct kobj_uevent_env *env)
+>  {
+>  	int len;
+> @@ -277,7 +277,7 @@ int __acpi_device_uevent_modalias(struct acpi_device *adev,
+>   * Because other buses do not support ACPI HIDs & CIDs, e.g. for a device with
+>   * hid:IBM0001 and cid:ACPI0001 you get: "acpi:IBM0001:ACPI0001".
+>   */
+> -int acpi_device_uevent_modalias(struct device *dev, struct kobj_uevent_env *env)
+> +int acpi_device_uevent_modalias(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+>  	return __acpi_device_uevent_modalias(acpi_companion_match(dev), env);
+>  }
+> diff --git a/drivers/acpi/internal.h b/drivers/acpi/internal.h
+> index ec584442fb29..06ad497067ac 100644
+> --- a/drivers/acpi/internal.h
+> +++ b/drivers/acpi/internal.h
+> @@ -120,7 +120,7 @@ int acpi_bus_register_early_device(int type);
+>                       Device Matching and Notification
+>     -------------------------------------------------------------------------- */
+>  struct acpi_device *acpi_companion_match(const struct device *dev);
+> -int __acpi_device_uevent_modalias(struct acpi_device *adev,
+> +int __acpi_device_uevent_modalias(const struct acpi_device *adev,
+>  				  struct kobj_uevent_env *env);
+>  
+>  /* --------------------------------------------------------------------------
+> diff --git a/drivers/firewire/core-device.c b/drivers/firewire/core-device.c
+> index adddd8c45d0c..aa597cda0d88 100644
+> --- a/drivers/firewire/core-device.c
+> +++ b/drivers/firewire/core-device.c
+> @@ -133,7 +133,7 @@ static void get_ids(const u32 *directory, int *id)
+>  	}
+>  }
+>  
+> -static void get_modalias_ids(struct fw_unit *unit, int *id)
+> +static void get_modalias_ids(const struct fw_unit *unit, int *id)
+>  {
+>  	get_ids(&fw_parent_device(unit)->config_rom[5], id);
+>  	get_ids(unit->directory, id);
+> @@ -195,7 +195,7 @@ static void fw_unit_remove(struct device *dev)
+>  	driver->remove(fw_unit(dev));
+>  }
+>  
+> -static int get_modalias(struct fw_unit *unit, char *buffer, size_t buffer_size)
+> +static int get_modalias(const struct fw_unit *unit, char *buffer, size_t buffer_size)
+>  {
+>  	int id[] = {0, 0, 0, 0};
+>  
+> @@ -206,9 +206,9 @@ static int get_modalias(struct fw_unit *unit, char *buffer, size_t buffer_size)
+>  			id[0], id[1], id[2], id[3]);
+>  }
+>  
+> -static int fw_unit_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int fw_unit_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct fw_unit *unit = fw_unit(dev);
+> +	const struct fw_unit *unit = fw_unit(dev);
+>  	char modalias[64];
+>  
+>  	get_modalias(unit, modalias, sizeof(modalias));
+> diff --git a/drivers/gpu/drm/display/drm_dp_aux_bus.c b/drivers/gpu/drm/display/drm_dp_aux_bus.c
+> index e31a0261c53e..8a165be1a821 100644
+> --- a/drivers/gpu/drm/display/drm_dp_aux_bus.c
+> +++ b/drivers/gpu/drm/display/drm_dp_aux_bus.c
+> @@ -161,7 +161,7 @@ static void dp_aux_ep_dev_release(struct device *dev)
+>  	kfree(aux_ep_with_data);
+>  }
+>  
+> -static int dp_aux_ep_dev_modalias(struct device *dev, struct kobj_uevent_env *env)
+> +static int dp_aux_ep_dev_modalias(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+>  	return of_device_uevent_modalias(dev, env);
+>  }
+> diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
+> index 087e480b624c..51b78a52ab7f 100644
+> --- a/drivers/i2c/i2c-core-base.c
+> +++ b/drivers/i2c/i2c-core-base.c
+> @@ -136,9 +136,9 @@ static int i2c_device_match(struct device *dev, struct device_driver *drv)
+>  	return 0;
+>  }
+>  
+> -static int i2c_device_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int i2c_device_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct i2c_client *client = to_i2c_client(dev);
+> +	const struct i2c_client *client = to_i2c_client(dev);
+>  	int rc;
+>  
+>  	rc = of_device_uevent_modalias(dev, env);
+> diff --git a/drivers/i3c/device.c b/drivers/i3c/device.c
+> index d111499061b2..1a6a8703dbc3 100644
+> --- a/drivers/i3c/device.c
+> +++ b/drivers/i3c/device.c
+> @@ -78,7 +78,7 @@ EXPORT_SYMBOL_GPL(i3c_device_do_setdasa);
+>   *
+>   * Retrieve I3C dev info.
+>   */
+> -void i3c_device_get_info(struct i3c_device *dev,
+> +void i3c_device_get_info(const struct i3c_device *dev,
+>  			 struct i3c_device_info *info)
+>  {
+>  	if (!info)
+> diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
+> index d7e6f6c99aea..7a60e1c5e587 100644
+> --- a/drivers/i3c/master.c
+> +++ b/drivers/i3c/master.c
+> @@ -273,9 +273,9 @@ static struct attribute *i3c_device_attrs[] = {
+>  };
+>  ATTRIBUTE_GROUPS(i3c_device);
+>  
+> -static int i3c_device_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int i3c_device_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct i3c_device *i3cdev = dev_to_i3cdev(dev);
+> +	const struct i3c_device *i3cdev = dev_to_i3cdev(dev);
+>  	struct i3c_device_info devinfo;
+>  	u16 manuf, part, ext;
+>  
+> diff --git a/drivers/input/input.c b/drivers/input/input.c
+> index ca2e3dd7188b..0336e799d713 100644
+> --- a/drivers/input/input.c
+> +++ b/drivers/input/input.c
+> @@ -1372,7 +1372,7 @@ INPUT_DEV_STRING_ATTR_SHOW(phys);
+>  INPUT_DEV_STRING_ATTR_SHOW(uniq);
+>  
+>  static int input_print_modalias_bits(char *buf, int size,
+> -				     char name, unsigned long *bm,
+> +				     char name, const unsigned long *bm,
+>  				     unsigned int min_bit, unsigned int max_bit)
+>  {
+>  	int len = 0, i;
+> @@ -1384,7 +1384,7 @@ static int input_print_modalias_bits(char *buf, int size,
+>  	return len;
+>  }
+>  
+> -static int input_print_modalias(char *buf, int size, struct input_dev *id,
+> +static int input_print_modalias(char *buf, int size, const struct input_dev *id,
+>  				int add_cr)
+>  {
+>  	int len;
+> @@ -1432,7 +1432,7 @@ static ssize_t input_dev_show_modalias(struct device *dev,
+>  }
+>  static DEVICE_ATTR(modalias, S_IRUGO, input_dev_show_modalias, NULL);
+>  
+> -static int input_print_bitmap(char *buf, int buf_size, unsigned long *bitmap,
+> +static int input_print_bitmap(char *buf, int buf_size, const unsigned long *bitmap,
+>  			      int max, int add_cr);
+>  
+>  static ssize_t input_dev_show_properties(struct device *dev,
+> @@ -1524,7 +1524,7 @@ static const struct attribute_group input_dev_id_attr_group = {
+>  	.attrs	= input_dev_id_attrs,
+>  };
+>  
+> -static int input_print_bitmap(char *buf, int buf_size, unsigned long *bitmap,
+> +static int input_print_bitmap(char *buf, int buf_size, const unsigned long *bitmap,
+>  			      int max, int add_cr)
+>  {
+>  	int i;
+> @@ -1621,7 +1621,7 @@ static void input_dev_release(struct device *device)
+>   * device bitfields.
+>   */
+>  static int input_add_uevent_bm_var(struct kobj_uevent_env *env,
+> -				   const char *name, unsigned long *bitmap, int max)
+> +				   const char *name, const unsigned long *bitmap, int max)
+>  {
+>  	int len;
+>  
+> @@ -1639,7 +1639,7 @@ static int input_add_uevent_bm_var(struct kobj_uevent_env *env,
+>  }
+>  
+>  static int input_add_uevent_modalias_var(struct kobj_uevent_env *env,
+> -					 struct input_dev *dev)
+> +					 const struct input_dev *dev)
+>  {
+>  	int len;
+>  
+> @@ -1677,9 +1677,9 @@ static int input_add_uevent_modalias_var(struct kobj_uevent_env *env,
+>  			return err;					\
+>  	} while (0)
+>  
+> -static int input_dev_uevent(struct device *device, struct kobj_uevent_env *env)
+> +static int input_dev_uevent(const struct device *device, struct kobj_uevent_env *env)
+>  {
+> -	struct input_dev *dev = to_input_dev(device);
+> +	const struct input_dev *dev = to_input_dev(device);
+>  
+>  	INPUT_ADD_HOTPLUG_VAR("PRODUCT=%x/%x/%x/%x",
+>  				dev->id.bustype, dev->id.vendor,
+> diff --git a/drivers/media/rc/rc-main.c b/drivers/media/rc/rc-main.c
+> index 527d9324742b..6bdad6341844 100644
+> --- a/drivers/media/rc/rc-main.c
+> +++ b/drivers/media/rc/rc-main.c
+> @@ -1614,7 +1614,7 @@ static void rc_dev_release(struct device *device)
+>  	kfree(dev);
+>  }
+>  
+> -static int rc_dev_uevent(struct device *device, struct kobj_uevent_env *env)
+> +static int rc_dev_uevent(const struct device *device, struct kobj_uevent_env *env)
+>  {
+>  	struct rc_dev *dev = to_rc_dev(device);
+>  	int ret = 0;
+> diff --git a/drivers/platform/surface/aggregator/bus.c b/drivers/platform/surface/aggregator/bus.c
+> index de539938896e..407eb55050a6 100644
+> --- a/drivers/platform/surface/aggregator/bus.c
+> +++ b/drivers/platform/surface/aggregator/bus.c
+> @@ -35,9 +35,9 @@ static struct attribute *ssam_device_attrs[] = {
+>  };
+>  ATTRIBUTE_GROUPS(ssam_device);
+>  
+> -static int ssam_device_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int ssam_device_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct ssam_device *sdev = to_ssam_device(dev);
+> +	const struct ssam_device *sdev = to_ssam_device(dev);
+>  
+>  	return add_uevent_var(env, "MODALIAS=ssam:d%02Xc%02Xt%02Xi%02Xf%02X",
+>  			      sdev->uid.domain, sdev->uid.category,
+> diff --git a/drivers/soundwire/bus_type.c b/drivers/soundwire/bus_type.c
+> index 04b3529f8929..26c9a0a85d49 100644
+> --- a/drivers/soundwire/bus_type.c
+> +++ b/drivers/soundwire/bus_type.c
+> @@ -58,9 +58,9 @@ int sdw_slave_modalias(const struct sdw_slave *slave, char *buf, size_t size)
+>  			slave->id.sdw_version, slave->id.class_id);
+>  }
+>  
+> -int sdw_slave_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +int sdw_slave_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct sdw_slave *slave = dev_to_sdw_dev(dev);
+> +	const struct sdw_slave *slave = dev_to_sdw_dev(dev);
+>  	char modalias[32];
+>  
+>  	sdw_slave_modalias(slave, modalias, sizeof(modalias));
+> diff --git a/drivers/thunderbolt/switch.c b/drivers/thunderbolt/switch.c
+> index 363d712aa364..cb6c304c445e 100644
+> --- a/drivers/thunderbolt/switch.c
+> +++ b/drivers/thunderbolt/switch.c
+> @@ -2176,9 +2176,9 @@ static void tb_switch_release(struct device *dev)
+>  	kfree(sw);
+>  }
+>  
+> -static int tb_switch_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int tb_switch_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct tb_switch *sw = tb_to_switch(dev);
+> +	const struct tb_switch *sw = tb_to_switch(dev);
+>  	const char *type;
+>  
+>  	if (sw->config.thunderbolt_version == USB4_VERSION_1_0) {
+> diff --git a/drivers/thunderbolt/tb.h b/drivers/thunderbolt/tb.h
+> index f9786976f5ec..909da0a98134 100644
+> --- a/drivers/thunderbolt/tb.h
+> +++ b/drivers/thunderbolt/tb.h
+> @@ -815,7 +815,7 @@ static inline bool tb_is_switch(const struct device *dev)
+>  	return dev->type == &tb_switch_type;
+>  }
+>  
+> -static inline struct tb_switch *tb_to_switch(struct device *dev)
+> +static inline struct tb_switch *tb_to_switch(const struct device *dev)
+>  {
+>  	if (tb_is_switch(dev))
+>  		return container_of(dev, struct tb_switch, dev);
+> diff --git a/drivers/thunderbolt/xdomain.c b/drivers/thunderbolt/xdomain.c
+> index cfa83486c9da..7bf1e360b04c 100644
+> --- a/drivers/thunderbolt/xdomain.c
+> +++ b/drivers/thunderbolt/xdomain.c
+> @@ -881,7 +881,7 @@ static ssize_t key_show(struct device *dev, struct device_attribute *attr,
+>  }
+>  static DEVICE_ATTR_RO(key);
+>  
+> -static int get_modalias(struct tb_service *svc, char *buf, size_t size)
+> +static int get_modalias(const struct tb_service *svc, char *buf, size_t size)
+>  {
+>  	return snprintf(buf, size, "tbsvc:k%sp%08Xv%08Xr%08X", svc->key,
+>  			svc->prtcid, svc->prtcvers, svc->prtcrevs);
+> @@ -953,9 +953,9 @@ static const struct attribute_group *tb_service_attr_groups[] = {
+>  	NULL,
+>  };
+>  
+> -static int tb_service_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int tb_service_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct tb_service *svc = container_of(dev, struct tb_service, dev);
+> +	const struct tb_service *svc = container_of_const(dev, struct tb_service, dev);
+>  	char modalias[64];
+>  
+>  	get_modalias(svc, modalias, sizeof(modalias));
+> diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
+> index 0180e1e4e75d..aa80de3a8194 100644
+> --- a/drivers/tty/serdev/core.c
+> +++ b/drivers/tty/serdev/core.c
+> @@ -42,7 +42,7 @@ static struct attribute *serdev_device_attrs[] = {
+>  };
+>  ATTRIBUTE_GROUPS(serdev_device);
+>  
+> -static int serdev_device_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int serdev_device_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+>  	int rc;
+>  
+> diff --git a/drivers/usb/core/message.c b/drivers/usb/core/message.c
+> index 127fac1af676..cc404bb7e8f7 100644
+> --- a/drivers/usb/core/message.c
+> +++ b/drivers/usb/core/message.c
+> @@ -1819,11 +1819,11 @@ void usb_authorize_interface(struct usb_interface *intf)
+>  	}
+>  }
+>  
+> -static int usb_if_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int usb_if_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct usb_device *usb_dev;
+> -	struct usb_interface *intf;
+> -	struct usb_host_interface *alt;
+> +	const struct usb_device *usb_dev;
+> +	const struct usb_interface *intf;
+> +	const struct usb_host_interface *alt;
+>  
+>  	intf = to_usb_interface(dev);
+>  	usb_dev = interface_to_usbdev(intf);
+> diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
+> index 11b15d7b357a..8527c06b65e6 100644
+> --- a/drivers/usb/core/usb.c
+> +++ b/drivers/usb/core/usb.c
+> @@ -423,9 +423,9 @@ static void usb_release_dev(struct device *dev)
+>  	kfree(udev);
+>  }
+>  
+> -static int usb_dev_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int usb_dev_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct usb_device *usb_dev;
+> +	const struct usb_device *usb_dev;
+>  
+>  	usb_dev = to_usb_device(dev);
+>  
+> diff --git a/drivers/usb/phy/phy.c b/drivers/usb/phy/phy.c
+> index 1b24492bb4e5..4b468bde19cf 100644
+> --- a/drivers/usb/phy/phy.c
+> +++ b/drivers/usb/phy/phy.c
+> @@ -80,7 +80,7 @@ static struct usb_phy *__of_usb_find_phy(struct device_node *node)
+>  	return ERR_PTR(-EPROBE_DEFER);
+>  }
+>  
+> -static struct usb_phy *__device_to_usb_phy(struct device *dev)
+> +static struct usb_phy *__device_to_usb_phy(const struct device *dev)
+>  {
+>  	struct usb_phy *usb_phy;
+>  
+> @@ -145,9 +145,9 @@ static void usb_phy_notify_charger_work(struct work_struct *work)
+>  	kobject_uevent(&usb_phy->dev->kobj, KOBJ_CHANGE);
+>  }
+>  
+> -static int usb_phy_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int usb_phy_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	struct usb_phy *usb_phy;
+> +	const struct usb_phy *usb_phy;
+>  	char uchger_state[50] = { 0 };
+>  	char uchger_type[50] = { 0 };
+>  	unsigned long flags;
+> diff --git a/drivers/usb/roles/class.c b/drivers/usb/roles/class.c
+> index eacb46ec2ab3..56814ef80c24 100644
+> --- a/drivers/usb/roles/class.c
+> +++ b/drivers/usb/roles/class.c
+> @@ -274,8 +274,7 @@ static const struct attribute_group *usb_role_switch_groups[] = {
+>  	NULL,
+>  };
+>  
+> -static int
+> -usb_role_switch_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int usb_role_switch_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+>  	int ret;
+>  
+> diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
+> index 5897905cb4f0..a89d8fd3f46c 100644
+> --- a/drivers/usb/typec/class.c
+> +++ b/drivers/usb/typec/class.c
+> @@ -1737,7 +1737,7 @@ static const struct attribute_group *typec_groups[] = {
+>  	NULL
+>  };
+>  
+> -static int typec_uevent(struct device *dev, struct kobj_uevent_env *env)
+> +static int typec_uevent(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+>  	int ret;
+>  
+> diff --git a/include/linux/acpi.h b/include/linux/acpi.h
+> index 5e6a876e17ba..564b62f13bd0 100644
+> --- a/include/linux/acpi.h
+> +++ b/include/linux/acpi.h
+> @@ -723,7 +723,7 @@ const struct acpi_device_id *acpi_match_device(const struct acpi_device_id *ids,
+>  const void *acpi_device_get_match_data(const struct device *dev);
+>  extern bool acpi_driver_match_device(struct device *dev,
+>  				     const struct device_driver *drv);
+> -int acpi_device_uevent_modalias(struct device *, struct kobj_uevent_env *);
+> +int acpi_device_uevent_modalias(const struct device *, struct kobj_uevent_env *);
+>  int acpi_device_modalias(struct device *, char *, int);
+>  
+>  struct platform_device *acpi_create_platform_device(struct acpi_device *,
+> @@ -958,7 +958,7 @@ static inline union acpi_object *acpi_evaluate_dsm(acpi_handle handle,
+>  	return NULL;
+>  }
+>  
+> -static inline int acpi_device_uevent_modalias(struct device *dev,
+> +static inline int acpi_device_uevent_modalias(const struct device *dev,
+>  				struct kobj_uevent_env *env)
+>  {
+>  	return -ENODEV;
+> diff --git a/include/linux/device.h b/include/linux/device.h
+> index 44e3acae7b36..dad0614aad96 100644
+> --- a/include/linux/device.h
+> +++ b/include/linux/device.h
+> @@ -88,7 +88,7 @@ int subsys_virtual_register(struct bus_type *subsys,
+>  struct device_type {
+>  	const char *name;
+>  	const struct attribute_group **groups;
+> -	int (*uevent)(struct device *dev, struct kobj_uevent_env *env);
+> +	int (*uevent)(const struct device *dev, struct kobj_uevent_env *env);
+>  	char *(*devnode)(struct device *dev, umode_t *mode,
+>  			 kuid_t *uid, kgid_t *gid);
+>  	void (*release)(struct device *dev);
+> diff --git a/include/linux/i3c/device.h b/include/linux/i3c/device.h
+> index 68b558929aec..ce115ef08fec 100644
+> --- a/include/linux/i3c/device.h
+> +++ b/include/linux/i3c/device.h
+> @@ -303,7 +303,7 @@ int i3c_device_do_priv_xfers(struct i3c_device *dev,
+>  
+>  int i3c_device_do_setdasa(struct i3c_device *dev);
+>  
+> -void i3c_device_get_info(struct i3c_device *dev, struct i3c_device_info *info);
+> +void i3c_device_get_info(const struct i3c_device *dev, struct i3c_device_info *info);
+>  
+>  struct i3c_ibi_payload {
+>  	unsigned int len;
+> diff --git a/include/linux/soundwire/sdw_type.h b/include/linux/soundwire/sdw_type.h
+> index 52eb66cd11bc..d8c27f1e5559 100644
+> --- a/include/linux/soundwire/sdw_type.h
+> +++ b/include/linux/soundwire/sdw_type.h
+> @@ -21,7 +21,7 @@ static inline int is_sdw_slave(const struct device *dev)
+>  int __sdw_register_driver(struct sdw_driver *drv, struct module *owner);
+>  void sdw_unregister_driver(struct sdw_driver *drv);
+>  
+> -int sdw_slave_uevent(struct device *dev, struct kobj_uevent_env *env);
+> +int sdw_slave_uevent(const struct device *dev, struct kobj_uevent_env *env);
+>  
+>  /**
+>   * module_sdw_driver() - Helper macro for registering a Soundwire driver
+> -- 
+> 2.39.0
 
-
-Please drop the .owner field, it is taken care by 
-platform_driver_register().
-
-
-> +		.of_match_table = ipq9574_pinctrl_of_match,
-> +	},
-> +	.probe = ipq9574_pinctrl_probe,
-> +	.remove = msm_pinctrl_remove,
-> +};
-> +
-> +static int __init ipq9574_pinctrl_init(void)
-> +{
-> +	return platform_driver_register(&ipq9574_pinctrl_driver);
-> +}
-> +arch_initcall(ipq9574_pinctrl_init);
-> +
-> +static void __exit ipq9574_pinctrl_exit(void)
-> +{
-> +	platform_driver_unregister(&ipq9574_pinctrl_driver);
-> +}
-> +module_exit(ipq9574_pinctrl_exit);
-> +
-> +MODULE_DESCRIPTION("QTI IPQ9574 TLMM driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_DEVICE_TABLE(of, ipq9574_pinctrl_of_match);
+-- 
+heikki
