@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 116026679F5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:56:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B2F667A1E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:59:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240509AbjALP43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 10:56:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38610 "EHLO
+        id S230519AbjALP7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 10:59:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231793AbjALPzy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:55:54 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2089032EA4;
-        Thu, 12 Jan 2023 07:46:01 -0800 (PST)
+        with ESMTP id S232105AbjALP7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:59:00 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43194261A;
+        Thu, 12 Jan 2023 07:49:29 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D0BBEB81EA3;
-        Thu, 12 Jan 2023 15:45:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66A71C433D2;
-        Thu, 12 Jan 2023 15:45:58 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 201EFCE1E7B;
+        Thu, 12 Jan 2023 15:49:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F747C433A0;
+        Thu, 12 Jan 2023 15:49:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673538358;
-        bh=iVDRSaiL1SV1gIg3rI/gRJbp33B+9oKnazXw2LxQG3I=;
+        s=k20201202; t=1673538566;
+        bh=sF0ezM+HFkfL1CfTp3012TuYafZ/7llu2ivf2JNXegI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SqN/+ilmPSN/TmR0Xp7mxNYQ/NaT5gO61irxzKDo8a5Bnl0vCtAIe8rlXw4JgPiXR
-         7HTSVsX9rp/u88c5rz9pTI1leIEz9HvkPY2Lk0kGAT22m2YsdmbAnpM+pxsDmaezGT
-         ojcdZZfjzAOpgQxeT/UhVdwehMlOiqxDAUF4oUmTi1qJWprZLKU2lQs8kEuul/uLC/
-         2vmWIMK3AJfbbgGCChPemxzwP8nBav+uRffJfdIOjAoOU2DgnjenHIG4K1wFu48vm1
-         4l/ITxKKJI+CWBoz2JEvKraJMNFT1qWiEurzFnQ0jB6vw+grukHGtgtd05mKDxl8FN
-         ZqSfExKogT4tg==
+        b=kiWi/GUIFZo7uni7Zr3NCtMMcqukssB81CDpPXmoVSWLISF9CN1qGu+Upf+jYnhmz
+         aUlS+rduvno03ku/ybeTbypVRl81wbCkCgtCbc1q1v2Ce3B7NQA3IphSEwz1GH4acR
+         IqUXB8yyRCQ1822i1KT6MbGsfm4bdGDLQ0g6PLalwnaYcePcxKZllotWuVE3TvPeA7
+         vL7+sBG4pzmqCevS5hP6bv6rvwyB8u69c9iyxeuyR4ng9ULPm9z+Aidyq33j9aTIDi
+         MrkGPw1ujeB+w8LE8CzyHgNEtO9zWwrhZT8aT/vsrEB14A0O7tGQ6FLjFHvIOToXFh
+         TVG7x8KFBTLrQ==
 Received: from johan by xi.lan with local (Exim 4.94.2)
         (envelope-from <johan@kernel.org>)
-        id 1pFzmH-0002RG-VL; Thu, 12 Jan 2023 16:46:06 +0100
-Date:   Thu, 12 Jan 2023 16:46:05 +0100
+        id 1pFzpd-0002WT-TH; Thu, 12 Jan 2023 16:49:33 +0100
+Date:   Thu, 12 Jan 2023 16:49:33 +0100
 From:   Johan Hovold <johan@kernel.org>
 To:     Bjorn Andersson <quic_bjorande@quicinc.com>
 Cc:     Bjorn Andersson <andersson@kernel.org>,
@@ -43,14 +43,14 @@ Cc:     Bjorn Andersson <andersson@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Use MMCX for all DP
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Vote for CX in USB
  controllers
-Message-ID: <Y8ArPbvjnBYW3UDi@hovoldconsulting.com>
-References: <20230112135055.3836555-1-quic_bjorande@quicinc.com>
+Message-ID: <Y8AsDR7Un4D+k6Be@hovoldconsulting.com>
+References: <20230112135117.3836655-1-quic_bjorande@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230112135055.3836555-1-quic_bjorande@quicinc.com>
+In-Reply-To: <20230112135117.3836655-1-quic_bjorande@quicinc.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,39 +60,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 12, 2023 at 05:50:55AM -0800, Bjorn Andersson wrote:
-> While MDSS_GDSC is a subdomain of MMCX, Linux does not respect this
-> relationship and sometimes invokes sync_state on the rpmhpd (MMCX)
-> before the DisplayPort controller has had a chance to probe.
+On Thu, Jan 12, 2023 at 05:51:17AM -0800, Bjorn Andersson wrote:
+> Running GCC_USB30_*_MASTER_CLK at 200MHz requires CX at nominal level,
+> not doing so results in occasional lockups. This was previously hidden
+> by the fact that the display stack incorrectly voted for CX (instead of
+> MMCX).
 > 
-> The result when this happens is that the power is lost to the multimedia
-> subsystem between the probe of msm_drv and the DisplayPort controller -
-> which results in an irrecoverable state.
-> 
-> While this is an implementation problem, this aligns the power domain
-> setting of the one DP instance with that of all the others.
-> 
-> Fixes: 57d6ef683a15 ("arm64: dts: qcom: sc8280xp: Define some of the display blocks")
+> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
 > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index 4f4353f84cba..4511fd939c91 100644
+> index 2ed17baf50d3..4f4353f84cba 100644
 > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -2533,7 +2533,7 @@ mdss0_dp3: displayport-controller@aea0000 {
->  				interrupts = <15>;
->  				phys = <&mdss0_dp3_phy>;
->  				phy-names = "dp";
-> -				power-domains = <&dispcc0 MDSS_GDSC>;
-> +				power-domains = <&rpmhpd SC8280XP_MMCX>;
+> @@ -2265,6 +2265,7 @@ usb_0: usb@a6f8800 {
+>  					  "ss_phy_irq";
 >  
->  				assigned-clocks = <&dispcc0 DISP_CC_MDSS_DPTX3_LINK_CLK_SRC>,
->  						  <&dispcc0 DISP_CC_MDSS_DPTX3_PIXEL0_CLK_SRC>;
+>  			power-domains = <&gcc USB30_PRIM_GDSC>;
+> +			required-opps = <&rpmhpd_opp_nom>;
+>  
+>  			resets = <&gcc GCC_USB30_PRIM_BCR>;
+>  
+> @@ -2319,6 +2320,7 @@ usb_1: usb@a8f8800 {
+>  					  "ss_phy_irq";
+>  
+>  			power-domains = <&gcc USB30_SEC_GDSC>;
+> +			required-opps = <&rpmhpd_opp_nom>;
+>  
+>  			resets = <&gcc GCC_USB30_SEC_BCR>;
 
-Looks good as a temporary remedy:
+Looks good. Perhaps you can send a binding patch adding 'required-oops'
+as well.
 
 Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
