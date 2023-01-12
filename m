@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D686672D5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 14:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C70B6672DB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 14:06:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231879AbjALNF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 08:05:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49970 "EHLO
+        id S232518AbjALNGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 08:06:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229643AbjALNF4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 08:05:56 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32AC05F46
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 05:05:52 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id cf18so38231711ejb.5
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 05:05:52 -0800 (PST)
+        with ESMTP id S230430AbjALNF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 08:05:58 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C92BE1D
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 05:05:53 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id az20so25518232ejc.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 05:05:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0IszrXcLbv1C0ufOCUrkZd80J905kQzALamm/CPBXfM=;
-        b=xlQfeN7xC3TRUc5W1wnqMmOH5bhEryi+j7MuZXvP4NYK/TnRAPocLfCRZXInvZWFax
-         j2aQVVtgc6pg/uS4umUG9NHrI70MQ9nlwCBSdckRkQFGoxzIWLZASZhHZ7p+othw1yHF
-         eHlDiWlTorZfj3TUaSDPROoYECZ++AJ/hZaW8nCEmLc1mcPKtKwDX2Ic4d86gw+Y1Q0u
-         QZME5eeztGxr31yUGxwJR/Kdbyl5+r0LcE9rSyRBlZuQg6PmuvwL2cTEX0iJIVgRDAmE
-         UevHO6G74oKqN2zZUXYNQOR1PQ+/42Lmj0uBdNsFdg/lbBQkAAqHvZtxEschn1VXQXJd
-         a7gw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Js79G0ew5SBLWV/rp6ARJpWVK36TQx65bfTfHk7gwPY=;
+        b=WdwnFkSJ6TcQXJX0/YPUg2u26LJdKuuvmh6a4VmVSCu93pLHHZCqhBDl7C1Mom7mCc
+         L+Rw5jcBJjG+adaV+vlEyQ9oAFCmmXgMNWC0mFzirsmDljWLksDNmPVFAEJ4nIAcKWxf
+         l/AlaCkYpRXdMvbtZqNPfhJREPhB3M79ZcCqFEQx85zXwPHNOKAxGscs7tJLK8B9Q6WU
+         ZAZBBT3XbLWn6mo70gZaZKx22EgIpGuMbRZEkAqMoS9WC3B6c1OMr8jn6+0ycMil6uqF
+         9wcmyiDXs30gAuDSnmgm9/AJWGCYLUY34uD1HqX8IOFIeZjfgtO2eKUkleO27LGwx8ZF
+         cG1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0IszrXcLbv1C0ufOCUrkZd80J905kQzALamm/CPBXfM=;
-        b=BRoynAHyYf5iPY49FcreXk4EGXO7TEvvaS4LNvUNP+7HailbnIH29ngy8FMj+SaH3V
-         hqVO7UdnI3DvtF+GStM0VXPwVqYUkPHq0L3Qvad2d/WP2mE/mHyme0m9jFhh2WpLLYUx
-         jZQOKJ3lSdlaxbfhhT+bKqT9TFgwtX92V6t1KUF6JMX/y5CQb++DYOfkEccLIj31uhUE
-         8ydtHtZ6QxSVQevp4DXz6UVd7znHX/D9Tcf1K5Gp506fZNyCqYbJ6yS6e3y3kdzljK6B
-         XFX3VMc23ZU3ZiCl7d5AMmyi+ubqxuDpeFGDxjfaUa0cvvA1EBH/f7c5iIgVHGHAgAjj
-         LU2Q==
-X-Gm-Message-State: AFqh2kqtopfUwB93pfW4GYyiRWXmlr8Q8Kyafmkl00Zj1kO/C2PZQ8XD
-        K9aT7BE6hhoscHyupWyfwGUFLQ==
-X-Google-Smtp-Source: AMrXdXsF3pTGMimbHjkVQwICvApD/N1OZJva+QH5LWTUFwBg/7Pk3pS6B1jaWQYBxxtq/ond66wyeA==
-X-Received: by 2002:a17:906:33d0:b0:854:6e3:2388 with SMTP id w16-20020a17090633d000b0085406e32388mr9818022eja.12.1673528750749;
-        Thu, 12 Jan 2023 05:05:50 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Js79G0ew5SBLWV/rp6ARJpWVK36TQx65bfTfHk7gwPY=;
+        b=mF5TCP18jb4zBBtBgqoWXVDophzf2V/xLy4bmbA/RDpOs+zZsRzKjLGG3SG/EGzdL0
+         NIvlP7FGvQaopmiIuyQQPh1/0Jftz1i2nITWPzKfW7Azz0weBUHeBkgGQhCHz2yHj7HV
+         O6c9SD8MLRaA/i2vjrkSbWHogNiZGY9+Zn+hk+akUFzoF8mr/xVAJqJtadqAKQla7LOt
+         vJqA0UiMBUdILqoe2G0aPQztY5qRSblJcppgQorlVSaTMtoS24ySCoQlqFL96/k+aCwe
+         8awTYRFZQLTAk+Yei+3M4dKE3rpdkAAH34Rx1q9+MWzFznNk/ifOeECn+4yeBcS9357l
+         0bwA==
+X-Gm-Message-State: AFqh2kp0rwWQqt0rcMeXfj/pD6wZjKWrUJDrYNa7qPVjJP2mWNQcnEMd
+        y/JXFJQXl9yTz2Ag8CXBW9fmNA==
+X-Google-Smtp-Source: AMrXdXsOc8saCzmD/dXqJ2/l2qrKh7yzarDqaDTYDJKr8FLOUpOP5e9rsoahF5JlLSFJYI/9/P2l4A==
+X-Received: by 2002:a17:907:d004:b0:7c0:f213:4485 with SMTP id va4-20020a170907d00400b007c0f2134485mr66310785ejc.73.1673528752001;
+        Thu, 12 Jan 2023 05:05:52 -0800 (PST)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id 11-20020a170906318b00b0078d3f96d293sm7427668ejy.30.2023.01.12.05.05.49
+        by smtp.gmail.com with ESMTPSA id 11-20020a170906318b00b0078d3f96d293sm7427668ejy.30.2023.01.12.05.05.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jan 2023 05:05:50 -0800 (PST)
+        Thu, 12 Jan 2023 05:05:51 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,53 +60,43 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 0/6] phy: qualcomm: Add UFS support for SM8550
-Date:   Thu, 12 Jan 2023 15:05:36 +0200
-Message-Id: <20230112130542.1399921-1-abel.vesa@linaro.org>
+Subject: [PATCH v2 1/6] dt-bindings: phy: Add QMP UFS PHY comptible for SM8550
+Date:   Thu, 12 Jan 2023 15:05:37 +0200
+Message-Id: <20230112130542.1399921-2-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230112130542.1399921-1-abel.vesa@linaro.org>
+References: <20230112130542.1399921-1-abel.vesa@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset relies on the following two patchsets:
-https://lore.kernel.org/all/20221123104443.3415267-1-dmitry.baryshkov@linaro.org/
-https://lore.kernel.org/all/20221222141001.54849-2-manivannan.sadhasivam@linaro.org/
+Document the QMP UFS PHY compatible for SM8550.
 
-The v1 of this patchset is:
-https://lore.kernel.org/all/20221116120157.2706810-1-abel.vesa@linaro.org/
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ .../devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes since v1:
- * dropped all UFS unrelated patches and also register offsets
- * switched to sc8280xp bindings, like Johan's suggested.
-
-Abel Vesa (6):
-  dt-bindings: phy: Add QMP UFS PHY comptible for SM8550
-  phy: qcom-qmp: qserdes-com: Add v6 register offsets
-  phy: qcom-qmp: qserdes-txrx: Add v6 register offsets
-  phy: qcom-qmp: qserdes-txrx-ufs: Add v6 register offsets
-  phy: qcom-qmp: pcs-ufs: Add v6 register offsets
-  phy: qcom-qmp-ufs: Add SM8550 support
-
- .../phy/qcom,sc8280xp-qmp-ufs-phy.yaml        |   1 +
- .../phy/qualcomm/phy-qcom-qmp-pcs-ufs-v6.h    |  31 ++++++
- .../qualcomm/phy-qcom-qmp-qserdes-com-v6.h    |  82 ++++++++++++++
- .../phy-qcom-qmp-qserdes-txrx-ufs-v6.h        |  30 ++++++
- .../qualcomm/phy-qcom-qmp-qserdes-txrx-v6.h   |  77 ++++++++++++++
- drivers/phy/qualcomm/phy-qcom-qmp-ufs.c       | 100 ++++++++++++++++++
- drivers/phy/qualcomm/phy-qcom-qmp.h           |   6 ++
- 7 files changed, 327 insertions(+)
- create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-ufs-v6.h
- create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h
- create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v6.h
- create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v6.h
-
+diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+index 32ed1886fbae..cd4e877415d6 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+@@ -17,6 +17,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,sc8280xp-qmp-ufs-phy
++      - qcom,sm8550-qmp-ufs-phy
+ 
+   reg:
+     maxItems: 1
 -- 
 2.34.1
 
