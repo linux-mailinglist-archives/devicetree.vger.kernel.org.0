@@ -2,206 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 396D36679E3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:53:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C46196679E8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:53:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240592AbjALPxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 10:53:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38238 "EHLO
+        id S240317AbjALPxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 10:53:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240593AbjALPwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:52:49 -0500
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80FC625F6;
-        Thu, 12 Jan 2023 07:41:04 -0800 (PST)
-Received: from pps.filterd (m0150245.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30CFUTbL001447;
-        Thu, 12 Jan 2023 15:40:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=pps0720;
- bh=6oTw16m7670nyUjoMVZCoR2dXoD6p8jYpFhDCcXFhR4=;
- b=RfplHlxukLBq+OlSEf+26q96A+eqsLmEBVr2YKsJucWzsHV/Ko4vJddHa5xYFa+Kd0YR
- bMFgqVkW8dme0cu/TUYVX1Fxwc4MQxIsDKTEG5DfYHZQYIlYsGX6JUp/nOWcKiTbRfDM
- 8BaASkkuDfrrY4kA/7JT2dBvSBGUnPsFOS9CFbIkjqwzdLodfLCPJgFJ8fhDbGveIlwN
- YBhaL8vk8j9mrCttSbCCPupJiu8z9fBlCiWfY5Z/bMYvzGXIj99DjM9mFVoFzqMYCwCJ
- KhmYtCrW2KoSXEN7UET5uye2RBPaJvGERE53mNnkoQaXYcpI5NoF6fDljekkeMwd6bSj 8g== 
-Received: from p1lg14879.it.hpe.com (p1lg14879.it.hpe.com [16.230.97.200])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3n2jke1e4w-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 15:40:27 +0000
-Received: from p1wg14924.americas.hpqcorp.net (unknown [10.119.18.113])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by p1lg14879.it.hpe.com (Postfix) with ESMTPS id 2E504310D8;
-        Thu, 12 Jan 2023 15:40:26 +0000 (UTC)
-Received: from p1wg14926.americas.hpqcorp.net (10.119.18.115) by
- p1wg14924.americas.hpqcorp.net (10.119.18.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Thu, 12 Jan 2023 03:40:25 -1200
-Received: from p1wg14920.americas.hpqcorp.net (16.230.19.123) by
- p1wg14926.americas.hpqcorp.net (10.119.18.115) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15
- via Frontend Transport; Thu, 12 Jan 2023 03:40:25 -1200
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (192.58.206.38)
- by edge.it.hpe.com (16.230.19.123) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Thu, 12 Jan 2023 03:40:25 -1200
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gs9nfEbzA89ABFdEDye3Wieg6CSORatP2J8upz6nt6uw+utspoRO3DQdZw6S8xhmm/vXqUS7pu80ev+ByPW5DOFQyqkPhT4QeeohUDnUKk/DUiuc5Ty0nz9JFM5buKApEeNAMOaD/hCRUOKracpJ7Z+ByEDsaRqEJnRKV9j0NCuh8aGzxL0XuiMYCyJlA0ME0zJ73da1XkU4FOeFDFwrbtXBnHmAhy0cRweoskVmAykGG0L70qSxcqmaYgdJ8AcPNJTDFRJRMiKzgWxFG7s5jrJ0HcnFixCspVPd34ug6uvRvtW1FBB5sCWOafO1f2OGkewxwHwn+6xQp4wDEyMPOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6oTw16m7670nyUjoMVZCoR2dXoD6p8jYpFhDCcXFhR4=;
- b=PkijTjwOK8LU+HBwGZn61MHZBqKyyjzI4k0uxjBAsHUvu9aqkChLGvCHYH30euk6s1uqkgAb3kbykHt1Vm2/lW0OixHXPvfVX7pLZTO85eijeRMGl2dlvzghYpjwntHpNd+Am7X8z+qz49ARssy5KnspGg4bNk0aH7XfqU3TSmK6s7wT90wWrTI0LSrHnFmPkM+rUjsZmVdylHgV4VdAjb5N83JP1DbRQwTGIvLQwOkJSTZEAbYYW4F2Wx0AglflzGDDIGn+wLSsQ33NC4ixHX8qfARqAmX17FWbFy819EZUo2bFN7y01Xcko+o9ArXjQqFQr3nqhUelgh6CAtu6gw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
- header.d=hpe.com; arc=none
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::10) by
- MW4PR84MB1393.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:303:1a4::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Thu, 12 Jan
- 2023 15:40:23 +0000
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::de12:a5c2:5c71:6b87]) by DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::de12:a5c2:5c71:6b87%6]) with mapi id 15.20.5986.018; Thu, 12 Jan 2023
- 15:40:23 +0000
-From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Russell King <linux@armlinux.org.uk>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4 3/5] ARM: dts: add GXP Support for fans and SPI
-Thread-Topic: [PATCH v4 3/5] ARM: dts: add GXP Support for fans and SPI
-Thread-Index: AQHZH7Ntz67eM5qHOEa31meIwV2aT66a49yA//+whoA=
-Date:   Thu, 12 Jan 2023 15:40:23 +0000
-Message-ID: <E2B35D8A-B8A6-40C1-8AC9-46E6C2CAE656@hpe.com>
-References: <20230103203654.59322-1-nick.hawkins@hpe.com>
- <20230103203654.59322-4-nick.hawkins@hpe.com>
- <5ad677f3-2cbc-4ba0-bd48-2f832a72fb28@app.fastmail.com>
-In-Reply-To: <5ad677f3-2cbc-4ba0-bd48-2f832a72fb28@app.fastmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/16.69.23010700
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR84MB1927:EE_|MW4PR84MB1393:EE_
-x-ms-office365-filtering-correlation-id: c8165237-145c-4daf-5bb7-08daf4b351e5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: O0BBfsusZZ0Qu+lfij8WjWMB8GoGRfCHL1wIInqdXT0vz0CXXvZmjNUpLg/P2Sh+HV7EbLzsdcYg21YU4rmXWcQFzY3QEcl2Pfg/j8D5j96PsMCqRLOXw2+7FcQtnsllJObCXr/+vemgmincSrR1ZpArnvpW/Z7p09rELotcHKDSpsOsBn8Qi7w734p3hfTAtEM6+dliVk/cw9i5WZ0RIHvNaoUNsJHGSrkyBeCNYwTDz5sYk9GJvX49Jz19D7lTzs/goxd9CBCyDWN1Ce+/fYRdt0FRTurm53+aGlFSs8Zny7+dwzN8o0+PHkUFmqDcZR0foJqhPub0vBH1gCDy4Ge9OyVnc6bTsdWFP07K4S9RD0Q5+XNys0Yv4u25/GK20/2iSoUJbPaRLVauerNENapHCaqHlWBamaIg4becPvwvmBNJ+ue6CFNNVjY7kgC9OgmcQIcELCVcRF7kPezYXX6On9ctvc7Y+vEZ94jrhWxGQdNZAh3p+38E3I/MjJ+6T+7xzgJ6l79Pn4LYndeVKzAXJIPMtxjTPoBLEAhqvgcwnhPEtuQHgHRgghBFtcphZOUbNBUoSK2kMvAXc79RBgc8HHdrw2HBzzvw4sMftT761wvBYa39NFhkf7LppngJteSEfJOk3dhiC0CJSYdHZYnsTr8WdSumKe+abI+ViBuYw8gKMbUS1qKbAi/HI7RKXYjnRyb3uBrREG2gOEGxPLwAi9BjLQDXTOA/R2XZoS0=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(346002)(39860400002)(366004)(396003)(136003)(376002)(451199015)(186003)(33656002)(7416002)(2616005)(316002)(6512007)(478600001)(38070700005)(6486002)(5660300002)(71200400001)(36756003)(76116006)(41300700001)(91956017)(8676002)(66476007)(54906003)(66946007)(6916009)(66556008)(66446008)(64756008)(4326008)(83380400001)(86362001)(8936002)(6506007)(122000001)(38100700002)(82960400001)(2906002)(45980500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Si82MHVSak0yQ2N3cWJuc0U2b3RpNGFIblNjdEthYkI1UTZoUGFJSkRiU2xT?=
- =?utf-8?B?d2xKaFo3anVzNnc4cTVqU3JEcFpoQ1FTLy9xV2xObExYS2Z2Zjk2VHBHMWRL?=
- =?utf-8?B?NFVTNmNYOG1wYWJYUGNFWFl5bzJQR05uZ2c0bmFBV0FYZVAva3g3TVNCaW1v?=
- =?utf-8?B?Nk5Ub2lDdDFUcWhYaUd3Sk95S2JpbFRWZXpWeVU1QmtnaXo2K0VlaFZvZldE?=
- =?utf-8?B?YjBsVnZ5cmFVSXp4cHBZS2g1blhsSktIcXB5THA1Mmo0enovTHpJWEh3SUVs?=
- =?utf-8?B?ZDExUDMxZUsyZEdjNEMyVGg4Z3F4ZW9ES2tKNFpsTTNweFNUMnM5ZElua1JE?=
- =?utf-8?B?ejdZZUZiN1ZGN04vRVUraTNwcC84Mlpydk8zL1VYMUxhejJ5dUoyRVEwTW42?=
- =?utf-8?B?bW0yZE01QVdPbW5aVmJScVVsVmNPejlFajVYU09MY2kzTExER0VIN3JWWkdO?=
- =?utf-8?B?SUtQeDZuUUNTVmxyb0M5MHFLdWlsSGg1cjcxczMvN2YxWUVENzdpZVoraThL?=
- =?utf-8?B?azZXdXJsLzI2MWxPL3NubWJ4bFpPblBhelZEeUhOTUdZWXlZalBPazc0UUZW?=
- =?utf-8?B?cnlsS0pvdzVWVTdNai95TklRbjJGZHJnaFQ3RUdiYUpiMSt5Qm9JZUJHMVVO?=
- =?utf-8?B?M2F3a2hIZ3A2ZzlGTmlpNmJYT1gzTy8rZ3diQ1cwVFo2aHRJV1QvajI1WjU0?=
- =?utf-8?B?S3RNTjBrZG90Qjdra0VwY2VTRzhzSjlYeU1TSU9KRnZNVU53Mm1LQlZwS1N5?=
- =?utf-8?B?M3U3OEtMQ3ZrVzN0UndzYktiN1ZpYkZuLzZxeUpDRXJ6TG9zTTlXbDhxa29H?=
- =?utf-8?B?Q3owVHl1Q2d2ZmRqaWZKbktTVktWRnVFYWlxRmpzMUNGd2Ivek5aQjRjeFlh?=
- =?utf-8?B?SC9XZ3pmcU4xWjFiQXdNU0lwb3ZzUkF1V0R3WFFhdnhSOFA0endPaTBST3BY?=
- =?utf-8?B?MklBeWFYU3NhVUlHYlA2cElLS29lMVl6OTdyVWNOWGpYUjloblZsTHFQUFNo?=
- =?utf-8?B?U1YrUDZvSldUSDliOXAwKzBVWXpKSEZ2RGhpZVhYdTFVaWdSdzBhWHhucVRv?=
- =?utf-8?B?Q1B4RDVrRVc4NC9HTWl1aGNCendhOXJNeHdKWDZrcG5PZ1AzZTc2K1l1N2ls?=
- =?utf-8?B?bUxvUi9HZ3BuQ3pRblFYQzZwS3dKb2RxQUlFL1VObjM1VTVCcDVQUVJHQi9W?=
- =?utf-8?B?REpPai83STloTno4eGNhTHJIQ0FhVGYvallpZVBZVUk1VGhLQWdDNkZGSFNI?=
- =?utf-8?B?YWk2d2dveExGRnQ3dEJ4d3FQQnU4OFpBa0U0L1JyczVmMDZLcGVlUTBSWmto?=
- =?utf-8?B?VGVSUnNpOVhicDVyY3hGSEZLK3lBaEwvRHpNYmhiK2hLNHRNOXdDdk00a0pC?=
- =?utf-8?B?cGhRS1NXWUNMSmRMZUFkQ3pXYk1WcExSR2NKL1U0UmIwZmVhR2h5bTg4dE9l?=
- =?utf-8?B?clpFb0hFTkVmNVpDbE0rTENBTmtKZDFReU1uUjh4THNLN2R2dHBldzdua1NB?=
- =?utf-8?B?OWphcjZhTFdXUWRuQXNMWlMzQWZzYWxGVyt1RW13YWh4NWZJRHNNVm9CWVUv?=
- =?utf-8?B?N0lUTWtDQzNOcElUaUdkcnE4V2pMZnErMzhBR1RFZUFVV2MrS2tKcWFGNUhS?=
- =?utf-8?B?QTgyQUR3azhlNGUwT1ZGTVRram5pSUY0bjM5WFYwblFrTzBReUgzaXUxckht?=
- =?utf-8?B?b01vbXdneHdxT3NuN2Fpd25IWnJTRnZTSDYwUlRUc2FkWk1xc05mQVgrY0Za?=
- =?utf-8?B?d0tQZ09FRDFNVU5INTJ2OEhIejNnM0d3cjUrQU0yVjVoYjM1eVhPN1Vldmhi?=
- =?utf-8?B?ZG1zM1hYWngxcGdMa0J2V1VSTDNTOStWbmtwaG9GYW14ZUQwR3I3NmJiUU1r?=
- =?utf-8?B?TStVS01QWGMxT0NjaitOOTVKYk84cmJhTXhHbGFYTlRnNTlSMHB1Y2hyKzFZ?=
- =?utf-8?B?MkViUk1yRHQrNHcwTUpLVUljd1NFa2k4WTBWbTJvTUw5S2l4dC9sUmpXRjls?=
- =?utf-8?B?ZmcwbFF4RjVIcStyaDVjZVB5WDRHWHBlaFI5bVBwWnl1VjBFa3h1TVNPLzRk?=
- =?utf-8?B?em9xY3h2dDNtelY5ZjhSL0FoYitMd01uZTB6MkN1RzZlRUdrK1htMXRyS3ll?=
- =?utf-8?B?Mi9TMzV2a3lCb0lpQnFtN01xcFRtaDUwTGZ5bjFOYU0vV1I5dW1lRVFGTGVL?=
- =?utf-8?B?ZXc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <63D21C31FC5055438E03E5DA4F2C3200@NAMPRD84.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+        with ESMTP id S239546AbjALPxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:53:21 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B03DEB8
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 07:41:56 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id g13so29018301lfv.7
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 07:41:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VvVJkpynNn6IA1P//L3YcO7yOYdHOM5TGw7F2BW1HfI=;
+        b=mZWf1t9tcyeMA4GQXcr8qTcdv/+TqM/BqV5iKqOE4y36tTw81YCsd9DwsTWmqmATMc
+         AsCQwj+j4RhhGoFWCypPO6gwZe7gNrQ+rEJpsUwvo4v1+rQ5etZSLfo5zKUX1NN9adCa
+         K8PI0tEg+HxUEeMK6+eybaJ8n3GKQSkJd2cZ0YvkfW6eElvJmy91/yk96w71yp5AEKfT
+         onTtLLpRppF0eRpuoeD17TIapXgfjIVQs5MjULq63CuI3w0bdGuE9zNjqMVOmAf9ptCN
+         nrlkdfmWRWEZCy98bH9MP3G9uCXJ5AlYZO8s5TiFo7Mh2ppOWitQyNS0XBJ7fCScklwi
+         pqgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VvVJkpynNn6IA1P//L3YcO7yOYdHOM5TGw7F2BW1HfI=;
+        b=YCUpALbcBsUUq5b0rtyx0j+nwSKfWwON75pGarzCD0uhY7m8q1kdBYW9iFFORdl71n
+         EBh4XSJH33G3HSLJrRpKZfLD6qU747JVDMhfyZRiOym/jD/i8mpUn3Sf9/OXfCb9Fbda
+         n6C/phJqhUdNRvrxdBAh2iDcsGpiT0FQUXYaqypyP1EPFMQK9wOoGaV6n5WGrCCENg1p
+         xqrBA2cLCiiNX2u+9F/PN8fXQ4ithop0+tzAK3HTdK6Qz+M7HkGr1IKyuyj7O8nU72w8
+         REG2z7bjJ+k9Qp2pD5fg+2InkFpUITmrcYshaJKsKP222dxI95ADqg1cleFfwRAv/Omj
+         pF7Q==
+X-Gm-Message-State: AFqh2kry4HY7vINbpRM5OaILnP5K+ooXIqOT4C26o3Xf83Fdm5W2JMoX
+        o6PviRERudWxDDDJfZnumzF+pQ==
+X-Google-Smtp-Source: AMrXdXu+pSZjQKg6YWKPpwwT1Cd28e2/W6qw8KqQ+mgP9Ohv6zo0OgYdcKPEM9ehempAL9hiEPw07g==
+X-Received: by 2002:a05:6512:2213:b0:4bb:7028:f6b6 with SMTP id h19-20020a056512221300b004bb7028f6b6mr25214095lfu.49.1673538114309;
+        Thu, 12 Jan 2023 07:41:54 -0800 (PST)
+Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id y3-20020ac24463000000b004ceb053c3ebsm41710lfl.179.2023.01.12.07.41.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 07:41:52 -0800 (PST)
+Message-ID: <7dec47af-0981-7d70-3926-69419f5d1c8e@linaro.org>
+Date:   Thu, 12 Jan 2023 16:41:50 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8165237-145c-4daf-5bb7-08daf4b351e5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jan 2023 15:40:23.6186
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZIUCVw0jQp9CV6yJ4QPNb19AfzUkNX//mxvVU6HLXikbewMBcPXS2cWez1kfE0i5prtOBUrC2EbLSEdaFg/wXw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR84MB1393
-X-OriginatorOrg: hpe.com
-X-Proofpoint-GUID: QzNgV6H_pqT0iH1_vrBS3LKRzmJE3KE8
-X-Proofpoint-ORIG-GUID: QzNgV6H_pqT0iH1_vrBS3LKRzmJE3KE8
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-12_08,2023-01-12_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 lowpriorityscore=0
- impostorscore=0 mlxlogscore=785 adultscore=0 suspectscore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301120113
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/2] cpufreq: qcom-hw: Ensure only freq-domain regs are
+ counted in num_domains
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        krzysztof.kozlowski@linaro.org, marijn.suijten@somainline.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230111205125.1860858-1-konrad.dybcio@linaro.org>
+ <20230111205125.1860858-2-konrad.dybcio@linaro.org>
+ <20230112153704.6d37dygm4yfexdq6@builder.lan>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230112153704.6d37dygm4yfexdq6@builder.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCu+7vyANCj4gPiAtIGFoYkBjMDAwMDAwMCB7DQo+ID4gKyBhaGJAODAwMDAwMDAgew0KPiA+
-IGNvbXBhdGlibGUgPSAic2ltcGxlLWJ1cyI7DQo+ID4gI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+
-ID4gI3NpemUtY2VsbHMgPSA8MT47DQo+ID4gLSByYW5nZXMgPSA8MHgwIDB4YzAwMDAwMDAgMHgz
-MDAwMDAwMD47DQo+ID4gKyByYW5nZXMgPSA8MHgwIDB4ODAwMDAwMDAgMHhmMDAwMDAwPiwgLyog
-MHg4MDAwMDAwMCAtIDB4OGYwMDAwMDAgKi8NCj4gPiArIDwweDQwMDAwMDAwIDB4YzAwMDAwMDAg
-MHg3ZmZmZmZmZj47IC8qIDB4YzAwMDAwMDAgLSAweGZmZmZmZmZmICovDQoNCg0KPiBJJ20gYSBi
-aXQgY29uZnVzZWQgYnkgdGhlIGNoYW5nZSBpbiB0aGUgbWFwcGluZ3M6IGFyZSB5b3UNCj4gc3Vy
-ZSB0aGlzIGFsbCB0aGUgc2FtZSBhaGIgYnVzIGFuZCBub3QgdHdvIHNlcGFyYXRlIGJ1c2VzPw0K
-DQpZZXMgdGhpcyBpcyB0aGUgc2FtZSBidXMsIGhvd2V2ZXIgd2UgYXJlIG5vdCBpbmNsdWRpbmcg
-YWxsIG9mDQppdCBhcyBpdCBtYXBzIHNvbWUgaG9zdCByZWdpc3RlcnMgdGhhdCB3ZSBkbyBub3Qg
-d2FudCB0byBhY2Nlc3MNCmF0IHRoaXMgdGltZS4gDQoNCj4gVGhlIGNvbW1lbnQgZm9yIHRoZSBz
-ZWNvbmQgcmFuZ2UgbG9va3Mgd3JvbmcgdG8gbWUsIGFzDQo+IHlvdSBkZWZpbmUgYSAyR0IgKG1p
-bnVzIG9uZSBieXRlKSBzaXplZCBtYXBwaW5nIGJ1dCB0aGUNCj4gY29tbWVudCBvbmx5IGxpc3Rz
-IGEgMUdCIChpbmNsdWRpbmcgdGhlIGxhc3QgYnl0ZSkgbWFwcGluZy4NCg0KDQo+IEkgd291bGQg
-ZXhwZWN0IHRoYXQgdGhlIG9yaWdpbmFsIDB4MzAwMDAwMDAgKGluY2x1ZGluZyB0aGUNCj4gbGFz
-dCBieXRlKSB3YXMgY29ycmVjdCBoZXJlLg0KDQpZZXMgdGhpcyB3YXMgaW5jb3JyZWN0LCBJIGJl
-bGlldmUgaXQgc2hvdWxkIGJlOg0KDQpyYW5nZXMgPSA8MHgwIDB4ODAwMDAwMDAgMHhmMDAwMDAw
-PiwgLyogMHg4MDAwMDAwMCAtIDB4OGYwMDAwMDAgKi8NCiAgICAgICAgICAgICAgICA8MHg0MDAw
-MDAwMCAweGMwMDAwMDAwIDB4M2ZmZmZmZmY+OyAvKiAweGMwMDAwMDAwIC0gMHhmZmZmZmZmZiAq
-Lw0KDQpJIHdpbGwgY3JlYXRlIGEgdjUgdmVyc2lvbiBvZiB0aGlzIHBhdGNoc2V0IHdpdGgganVz
-dCB0aGlzIGFuZCB0aGUNCmRlZmNvbmZpZyBmb3IgeW91ciByZXZpZXcuDQoNCj4gPiAtIHZpYzE6
-IGludGVycnVwdC1jb250cm9sbGVyQDgwZjAwMDAwIHsNCj4gPiArIHZpYzE6IGludGVycnVwdC1j
-b250cm9sbGVyQGYwMDAwMCB7IC8qIDB4ODBmMDAwMDAgKi8NCg0KDQo+IFRoaXMgaXMgbm90IHRo
-ZSBzYW1lIGFkZHJlc3MgYXMgYmVmb3JlLiBJJ20gYWxzbyBub3Qgc3VyZSB0aGUNCj4gY29tbWVu
-dCBpcyBoZWxwZnVsIGhlcmUuDQoNCk15IHVuZGVyc3RhbmRpbmcgd2FzIHRoYXQgdGhlIHBoeXNp
-Y2FsIGFkZHJlc3Mgd291bGQgYmUgdGhlDQoweDgwMDAwMDAwIGZyb20gdGhlIGZpcnN0IHJhbmdl
-IHBsdXMgdGhlIDB4ZjAwMDAwIHRvIGJlDQoweDgwZjAwMDAwPw0KDQpUaGFuayB5b3UsDQoNCi1O
-aWNrIEhhd2tpbnMNCg0KDQoNCg==
+
+
+On 12.01.2023 16:37, Bjorn Andersson wrote:
+> On Wed, Jan 11, 2023 at 09:51:25PM +0100, Konrad Dybcio wrote:
+>> In preparation for CPRh-aware OSM programming, change the probe
+>> function so that we determine the number of frequency domains by
+>> counting the number of reg-names entries that begin with
+>> "freq-domain", as the aforementioned changes require introduction
+>> of non-freq-domain register spaces.
+>>
+> 
+> Requiring reg-names would break backwards compatibility with at least
+> sc7280 and sm6115.
+Ouch, you're correct..
+
+Does checking for reg-names and applying the code flow proposed in this
+patch if found and the existing one if not sound good?
+
+Konrad
+> 
+> Regards,
+> Bjorn
+> 
+>> Fixes: 1a6a8b0080b0 ("cpufreq: qcom-hw: Fix reading "reg" with address/size-cells != 2")
+>> Fixes: 054a3ef683a1 ("cpufreq: qcom-hw: Allocate qcom_cpufreq_data during probe")
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  drivers/cpufreq/qcom-cpufreq-hw.c | 34 ++++++++++++++++++++++---------
+>>  1 file changed, 24 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+>> index 9505a812d6a1..89d5ed267399 100644
+>> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+>> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+>> @@ -651,8 +651,9 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
+>>  	struct device *dev = &pdev->dev;
+>>  	struct device_node *soc_node;
+>>  	struct device *cpu_dev;
+>> +	const char *reg_name;
+>>  	struct clk *clk;
+>> -	int ret, i, num_domains, reg_sz;
+>> +	int ret, i, num_reg_names, num_domains = 0;
+>>  
+>>  	clk = clk_get(dev, "xo");
+>>  	if (IS_ERR(clk))
+>> @@ -684,19 +685,32 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
+>>  	if (!soc_node)
+>>  		return -EINVAL;
+>>  
+>> -	ret = of_property_read_u32(soc_node, "#address-cells", &reg_sz);
+>> -	if (ret)
+>> +	num_reg_names = of_property_count_strings(dev->of_node, "reg-names");
+>> +	if (num_reg_names <= 0) {
+>> +		ret = num_reg_names ? num_reg_names : -ENODATA;
+>>  		goto of_exit;
+>> +	}
+>>  
+>> -	ret = of_property_read_u32(soc_node, "#size-cells", &i);
+>> -	if (ret)
+>> -		goto of_exit;
+>> +	for (i = 0; i < num_reg_names; i++) {
+>> +		ret = of_property_read_string_index(dev->of_node, "reg-names", i, &reg_name);
+>> +		if (ret < 0)
+>> +			goto of_exit;
+>>  
+>> -	reg_sz += i;
+>> +		/*
+>> +		 * Check if the i-th reg is a freq-domain base, no need to add 1
+>> +		 * more byte for idx, as sizeof counts \0 whereas strlen does not.
+>> +		 */
+>> +		if (strlen(reg_name) == sizeof("freq-domain")) {
+>> +			/* Check if this reg-name begins with "freq-domain" */
+>> +			if (!strncmp(reg_name, "freq-domain", sizeof("freq-domain") - 1))
+>> +				num_domains++;
+>> +		}
+>> +	}
+>>  
+>> -	num_domains = of_property_count_elems_of_size(dev->of_node, "reg", sizeof(u32) * reg_sz);
+>> -	if (num_domains <= 0)
+>> -		return num_domains;
+>> +	if (num_domains <= 0) {
+>> +		ret = -EINVAL;
+>> +		goto of_exit;
+>> +	}
+>>  
+>>  	qcom_cpufreq.data = devm_kzalloc(dev, sizeof(struct qcom_cpufreq_data) * num_domains,
+>>  					 GFP_KERNEL);
+>> -- 
+>> 2.39.0
+>>
