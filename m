@@ -2,119 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8148B6673D3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 15:00:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C12BA667579
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 15:22:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234044AbjALOAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 09:00:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54604 "EHLO
+        id S236634AbjALOWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 09:22:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233625AbjALN7x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 08:59:53 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 681F5532AE
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 05:59:32 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id u19so44902923ejm.8
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 05:59:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q1hCAdnriPTiqUAC3Z9eazAM9x+QqA4Mn0IVX/+2PdE=;
-        b=Xo6ArLBpXO2MnY9QMq85ZB0u2FsdWergMakVIF5Gq9D90R+UDnIW8Ne8k3B6bPlxYj
-         Je2QThRGEozmdemJj5czgOL8DXbjcbkBvep7Zpp5GjwXWAHtc3asLqMFRkzNT6dgQPG8
-         fMO2CbBNmjGKnynq9CuyTbgeqx3mHx0ArCIA1i669imW4dVq5/fLv2M+YKI/mbSEdhsy
-         d/mq8GCfkEHdtyplhjuJ3Gz0sg/1rYnlDMvXU2k7jRfKHkVD1jy96VEEgvc4OAER+JD/
-         6swYn+UminuEy5eiobDuwA+UmaPVM4VUrFFOtkkzW1PGwP/MY3qzcrb1mSt0FfBGEExO
-         QQyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q1hCAdnriPTiqUAC3Z9eazAM9x+QqA4Mn0IVX/+2PdE=;
-        b=vbqIp84GEHl5ebe6W3FK8/J1eQsgipN2XeFQKbzMhV5IY16SVMhYTCPAofbF5SSgwk
-         15pldzAiioYhTRzX5ivVTTM6bexJecULvzzZOlCMU/JYDlcd53MvgcC/litxtkrv3SS8
-         CI6ILuKgVIyYDh8aeUSDErWw0dmNvOWjX+8LsLISht5ao7S1xRFaOKHk7hwNm9YvGh55
-         QkUmufISHtZKkcZZh3xDKyWvNh3aphuuZqzmUi1pqn6tWHhoIv0e9b6tKM1A6xB5F245
-         NcMD6qy5mVDD7mqpeUj+m92gnuI3SpWfTgbPFGjHdr8pVAcdnv457L0MStcmhiVgYfvY
-         ldFQ==
-X-Gm-Message-State: AFqh2koLAudqi8xLzpluft7KBd9735feanO9sO63bt4mGwP87XN/J7vV
-        cNE1X3++hxTh7IrGL6UukrBn9Q==
-X-Google-Smtp-Source: AMrXdXuyiidN9ecZ78S3tPa0KeXhzsT6PQexKin6Yf/aIi/NNDSBkq76yFxWLGtZ1I2mMnpKIlWMzg==
-X-Received: by 2002:a17:907:6e05:b0:7c1:235d:2a2b with SMTP id sd5-20020a1709076e0500b007c1235d2a2bmr84877092ejc.24.1673531970943;
-        Thu, 12 Jan 2023 05:59:30 -0800 (PST)
-Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id 17-20020a170906329100b007c0bb571da5sm7376494ejw.41.2023.01.12.05.59.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jan 2023 05:59:30 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sm8550-mtp: Add UFS host controller and PHY node
-Date:   Thu, 12 Jan 2023 15:59:26 +0200
-Message-Id: <20230112135926.1572191-2-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230112135926.1572191-1-abel.vesa@linaro.org>
-References: <20230112135926.1572191-1-abel.vesa@linaro.org>
+        with ESMTP id S232016AbjALOVf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 09:21:35 -0500
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E8EC5E668;
+        Thu, 12 Jan 2023 06:12:45 -0800 (PST)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30C9dqXG021075;
+        Thu, 12 Jan 2023 06:12:33 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=pfpt0220; bh=o99ykTzML7zFN4dw9PwlFyBeheG3xAQZAUBYrVKdw+Q=;
+ b=QGtfQloFjJ6FiR9nNL3gNjjZdNToltFUiCNX2UaNIHcvCY905Uy9HNqP3aSFcf1gMVX4
+ X6nn77aq8Sqn45rp0tmp6+D1T4/ib+Kkajc3u9TzpnhH6hUjZbK5UDVw+PXMHF0L7I2y
+ lftzcQgMn8zXx5GcoAi6cIUxgciXumwP1uyH202nkqcS5+4iOMVkE5bV1Oslen4wccoT
+ hSHuYWMQs8+prhWwPlLRVlJUdkWI2Gy2BPbul8yFkUsHVMn7dOG9CCQ08XWCEtALGX/V
+ ZfLfiqObRUlH3sr+Ffui3w/bLv2KQ3LayZsLrB6U6lFHru+Ydo047enyjFjxvVGq2ACp /g== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3n1k570dqk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Thu, 12 Jan 2023 06:12:33 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 12 Jan
+ 2023 06:12:31 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
+ Transport; Thu, 12 Jan 2023 06:12:31 -0800
+Received: from Dell2s-9 (unknown [10.110.150.250])
+        by maili.marvell.com (Postfix) with ESMTP id BCE3C3F7051;
+        Thu, 12 Jan 2023 06:12:30 -0800 (PST)
+Date:   Thu, 12 Jan 2023 06:12:30 -0800
+From:   Piyush Malgujar <pmalgujar@marvell.com>
+To:     Adrian Hunter <adrian.hunter@intel.com>
+CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <ulf.hansson@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <yamada.masahiro@socionext.com>, <devicetree@vger.kernel.org>,
+        <jannadurai@marvell.com>, <cchavva@marvell.com>
+Subject: Re: [PATCH 2/5] drivers: mmc: sdhci-cadence: enable
+ MMC_SDHCI_IO_ACCESSORS
+Message-ID: <20230112141230.GB6335@Dell2s-9>
+References: <20221219142418.27949-1-pmalgujar@marvell.com>
+ <20221219142418.27949-3-pmalgujar@marvell.com>
+ <35ea0a7a-3d63-26b7-4dc3-69f6ca41909a@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <35ea0a7a-3d63-26b7-4dc3-69f6ca41909a@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-ORIG-GUID: mGrgC6KPVjgpf9ISHeeX3wrUQ79TflSH
+X-Proofpoint-GUID: mGrgC6KPVjgpf9ISHeeX3wrUQ79TflSH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-12_08,2023-01-12_01,2022-06-22_01
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable UFS host controller and PHY node on SM8550 MTP board.
+Hi Adrian, 
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
+Thank you for the review comments.
 
-Changes since v1:
- * moved status property last, like Konrad suggested
+On Wed, Jan 11, 2023 at 10:23:43AM +0200, Adrian Hunter wrote:
+> On 19/12/22 16:24, Piyush Malgujar wrote:
+> > From: Jayanthi Annadurai <jannadurai@marvell.com>
+> > 
+> > Add support for CONFIG_MMC_SDHCI_IO_ACCESSORS for controller
+> > specific register read and write APIs.
+> > 
+> > Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
+> > Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+> > ---
+> >  drivers/mmc/host/Kconfig         | 12 ++++++
+> >  drivers/mmc/host/sdhci-cadence.c | 63 ++++++++++++++++++++++++++++++++
+> >  2 files changed, 75 insertions(+)
+> > 
+> > diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> > index 5e19a961c34d7b5664ab2fd43cfba82dc90913ac..b5b2ae0bb4625bdb9d17acdbb1887c9caa3a1f32 100644
+> > --- a/drivers/mmc/host/Kconfig
+> > +++ b/drivers/mmc/host/Kconfig
+> > @@ -262,6 +262,18 @@ config MMC_SDHCI_CADENCE
+> >  
+> >  	  If unsure, say N.
+> >  
+> > +config MMC_SDHCI_CN10K
+> > +	tristate "SDHCI Cadence support for Marvell CN10K platforms"
+> > +	select MMC_SDHCI_CADENCE
+> > +	select MMC_SDHCI_IO_ACCESSORS
+> 
+> Probably better to just add MMC_SDHCI_IO_ACCESSORS to 
+> config MMC_SDHCI_CADENCE and drop MMC_SDHCI_CN10K
+> 
 
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+This reason behind this was to not force SDHCI_IO_ACCESSORS upon cadence users as some may not
+require it owing to how cadence ip is integrated to soc.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 8586e16d6079..81fcbdc6bdc4 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -399,6 +399,25 @@ &uart7 {
- 	status = "okay";
- };
- 
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
-+	vcc-supply = <&vreg_l17b_2p5>;
-+	vcc-max-microamp = <1300000>;
-+	vccq-supply = <&vreg_l1g_1p2>;
-+	vccq-max-microamp = <1200000>;
-+	vccq2-supply = <&vreg_l3g_1p2>;
-+	vccq2-max-microamp = <100>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l1d_0p88>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
- &xo_board {
- 	clock-frequency = <76800000>;
- };
--- 
-2.34.1
+> > +	help
+> > +	  This selects the SDHCI cadence driver and IO Accessors
+> > +	  for Marvell CN10K platforms
+> > +
+> > +	  If you have Marvell CN10K platform, say Y or M here.
+> > +
+> > +	  If unsure, say N.
+> > +
+> >  config MMC_SDHCI_CNS3XXX
+> >  	tristate "SDHCI support on the Cavium Networks CNS3xxx SoC"
+> >  	depends on ARCH_CNS3XXX || COMPILE_TEST
+> > diff --git a/drivers/mmc/host/sdhci-cadence.c b/drivers/mmc/host/sdhci-cadence.c
+> > index 5332d19e489be936d6814feba4f0fc046f5e130e..6bf703f15bc5be7e3be4cb1144b78ec3585ec540 100644
+> > --- a/drivers/mmc/host/sdhci-cadence.c
+> > +++ b/drivers/mmc/host/sdhci-cadence.c
+> > @@ -449,6 +449,61 @@ static u32 read_dqs_cmd_delay, clk_wrdqs_delay, clk_wr_delay, read_dqs_delay;
+> >  
+> >  static u32 sdhci_cdns_sd6_get_mode(struct sdhci_host *host, unsigned int timing);
+> >  
+> > +#ifdef CONFIG_MMC_SDHCI_IO_ACCESSORS
+> > +static u32 sdhci_cdns_sd6_readl(struct sdhci_host *host, int reg)
+> > +{
+> > +	return readl(host->ioaddr + reg);
+> > +}
+> > +
+> > +static void sdhci_cdns_sd6_writel(struct sdhci_host *host, u32 val, int reg)
+> > +{
+> > +	writel(val, host->ioaddr + reg);
+> > +}
+> > +
+> > +static u16 sdhci_cdns_sd6_readw(struct sdhci_host *host, int reg)
+> > +{
+> > +	u32 val, regoff;
+> > +
+> > +	regoff = reg & ~3;
+> > +
+> > +	val = readl(host->ioaddr + regoff);
+> > +	if ((reg & 0x3) == 0)
+> > +		return (val & 0xFFFF);
+> > +	else
+> > +		return ((val >> 16) & 0xFFFF);
+> > +}
+> > +
+> > +static void sdhci_cdns_sd6_writew(struct sdhci_host *host, u16 val, int reg)
+> > +{
+> > +	writew(val, host->ioaddr + reg);
+> > +}
+> > +
+> > +static u8 sdhci_cdns_sd6_readb(struct sdhci_host *host, int reg)
+> > +{
+> > +	u32 val, regoff;
+> > +
+> > +	regoff = reg & ~3;
+> > +
+> > +	val = readl(host->ioaddr + regoff);
+> > +	switch (reg & 3) {
+> > +	case 0:
+> > +		return (val & 0xFF);
+> > +	case 1:
+> > +		return ((val >> 8) & 0xFF);
+> > +	case 2:
+> > +		return ((val >> 16) & 0xFF);
+> > +	case 3:
+> > +		return ((val >> 24) & 0xFF);
+> > +	}
+> > +	return 0;
+> > +}
+> > +
+> > +static void sdhci_cdns_sd6_writeb(struct sdhci_host *host, u8 val, int reg)
+> > +{
+> > +	writeb(val, host->ioaddr + reg);
+> > +}
+> > +#endif
+> > +
+> >  static int sdhci_cdns_sd6_phy_lock_dll(struct sdhci_cdns_sd6_phy *phy)
+> >  {
+> >  	u32 delay_element = phy->d.delay_element_org;
+> > @@ -1576,6 +1631,14 @@ static const struct sdhci_ops sdhci_cdns_sd4_ops = {
+> >  };
+> >  
+> >  static const struct sdhci_ops sdhci_cdns_sd6_ops = {
+> > +#ifdef CONFIG_MMC_SDHCI_IO_ACCESSORS
+> > +	.read_l = sdhci_cdns_sd6_readl,
+> > +	.write_l = sdhci_cdns_sd6_writel,
+> > +	.read_w = sdhci_cdns_sd6_readw,
+> > +	.write_w = sdhci_cdns_sd6_writew,
+> > +	.read_b = sdhci_cdns_sd6_readb,
+> > +	.write_b = sdhci_cdns_sd6_writeb,
+> > +#endif
+> >  	.get_max_clock = sdhci_cdns_get_max_clock,
+> >  	.set_clock = sdhci_cdns_sd6_set_clock,
+> >  	.get_timeout_clock = sdhci_cdns_get_timeout_clock,
+> 
 
+Rest of the comments will be taken care in v2.
+
+Thanks,
+Piyush
