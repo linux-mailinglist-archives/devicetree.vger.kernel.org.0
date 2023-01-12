@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B27536668D7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 03:24:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA6AE6668D9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 03:24:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235069AbjALCYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Jan 2023 21:24:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41200 "EHLO
+        id S235881AbjALCYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Jan 2023 21:24:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236343AbjALCYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 21:24:46 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46AC74566A
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 18:24:46 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id q64so17722729pjq.4
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 18:24:46 -0800 (PST)
+        with ESMTP id S232981AbjALCYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Jan 2023 21:24:49 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D5034565B
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 18:24:48 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id b9-20020a17090a7ac900b00226ef160dcaso17544946pjl.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 18:24:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=schmorgal.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+Wi4HXdWl8Al9zdbLRA4NeTDiEhXtpoSSMpcfMYna90=;
-        b=ikzDUXFMihwG7MHGSQ4NlPOl0G1rjTkl3EKqq0+KooZ5UqgdakAYTEFUMtvPAR+EDR
-         z1UVRiC7BrDOdP46F60EYKrL7SIo/MInDVegJ2ASo948KxGYwO9J95SKQlMVpNvgA8mw
-         pb+Kc0D96HJWxUDYDDxBJXRQQ7JO/7HqUA7aw=
+        bh=p1/rux+dB2ue+u77r+Lmx539KLyGVCKrU+T8EBWwu5M=;
+        b=BCgXNyeKTVBT9UE6QAv6NmVnff6UTk9WyIeZsC/z2ZVmo1faxKQ3YA206RrErs6MF3
+         XZA+R7YDuKksSYOCsjmYPJqFeVWi6Mw1IL2gYKnYI3MKtl7hj1m3e9pnWVB8TpEdy0y8
+         zPmtwfGm863DRYUHZpZM6f649LY/TGdJC6Cyg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+Wi4HXdWl8Al9zdbLRA4NeTDiEhXtpoSSMpcfMYna90=;
-        b=ne9JVedXV9lxi+scLgvlzyBUgJTSR1gxoNX8iR0qYyGyg7XBtXd6jLKTJO4RIxJ8Ml
-         lOytb0Mn1vyEHs9b9jPDzxeiqQbQTuqKcb+2dJZanaWzl2K9bcbbTCFM8uA8OI7of3Em
-         JtQkuBvbZuvcgf7hZEbeDxEV09/BZgOUJjpxo1e3eYcsVL2jXBbY0FE0vSI/DFeur2kv
-         oMa0qk2fxqSepsFqdjTO5BoGJyf/C2hhlA4zKhA9A2aM9Fm9Pz+3wOadwYANPRPRpf24
-         WK+YQOX9KzevG2GS2vKb8TPHGSohQa6OreMwpmX79IAXiGlYg9r20bW4wzIm5sMf2u/P
-         DSEg==
-X-Gm-Message-State: AFqh2kq6HnsFsMRc4jPFJ+vVu+bPscWMjepU9biQMP08YriwIkrtW3QP
-        /P3dJzdgbHyLfeHmbzWswoI3Tg==
-X-Google-Smtp-Source: AMrXdXvlvbSm3toQC4Pc1I7x0mQpboEKoRfHKZ8BtC8TXzCvK77+bNtGDrGgyaVx+HtqDr6JI1Re/g==
-X-Received: by 2002:a17:902:ed11:b0:193:38a1:68e4 with SMTP id b17-20020a170902ed1100b0019338a168e4mr9425821pld.0.1673490285692;
-        Wed, 11 Jan 2023 18:24:45 -0800 (PST)
+        bh=p1/rux+dB2ue+u77r+Lmx539KLyGVCKrU+T8EBWwu5M=;
+        b=A/d06w2LoGEXpKlv65RYQbK1FyNvu/YpxKxhYLdGz3xobCa04/LVk0/ZZ2zgyklyFm
+         AWfqugAEM0E+Uxc+vajIqEMkgn6Ocll2B5Vn8pzW8K+OUiMoJ2/gcwActFylMYSjJHbJ
+         FCjQeBJyiwbvLQlpgB0OAquTbW20nmO038m5y3Us2arxunvonNZjOkDUY+B+PrLy9CNR
+         KDdEWqIlGl6yVA79MMUmLxiYLl6JJwWcRpfdtPKzqvJ6+PoiCYQFYcfJXordjeW4+0Lc
+         1hS3EB1+p1Nt3ENAc5VdrMRoR5m+rQejthuul2aAnSqvkbDLCPlE4YfDA3DtdNiY//8E
+         OI4w==
+X-Gm-Message-State: AFqh2koMjQGFQw7WOpn62wJ+JCb0mUZ4sZtjpFRAR3hWWpZHX+/I8zTK
+        d790KFZcoeV62rC/ucSOB+KdWw==
+X-Google-Smtp-Source: AMrXdXvECWA8coKk4wsGAHUYpVCwg7e0sEcYrN8RFbpskoFvlfaqSiO9qS48kVhqHzDEYmq4zRN54w==
+X-Received: by 2002:a17:903:32d1:b0:191:3b7b:3c2c with SMTP id i17-20020a17090332d100b001913b7b3c2cmr6720108plr.22.1673490288056;
+        Wed, 11 Jan 2023 18:24:48 -0800 (PST)
 Received: from doug-ryzen-5700G.. ([192.183.212.197])
-        by smtp.gmail.com with ESMTPSA id a1-20020a1709027e4100b00193020e8a90sm10759135pln.294.2023.01.11.18.24.44
+        by smtp.gmail.com with ESMTPSA id a1-20020a1709027e4100b00193020e8a90sm10759135pln.294.2023.01.11.18.24.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Jan 2023 18:24:45 -0800 (PST)
+        Wed, 11 Jan 2023 18:24:47 -0800 (PST)
 From:   Doug Brown <doug@schmorgal.com>
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Adrian Hunter <adrian.hunter@intel.com>
@@ -53,9 +53,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         Doug Brown <doug@schmorgal.com>
-Subject: [PATCH v4 2/8] mmc: sdhci-pxav2: enable CONFIG_MMC_SDHCI_IO_ACCESSORS
-Date:   Wed, 11 Jan 2023 18:24:10 -0800
-Message-Id: <20230112022416.8474-3-doug@schmorgal.com>
+Subject: [PATCH v4 3/8] mmc: sdhci-pxav2: add register workaround for PXA168 silicon bug
+Date:   Wed, 11 Jan 2023 18:24:11 -0800
+Message-Id: <20230112022416.8474-4-doug@schmorgal.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230112022416.8474-1-doug@schmorgal.com>
 References: <20230112022416.8474-1-doug@schmorgal.com>
@@ -71,27 +71,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CONFIG_MMC_SDHCI_IO_ACCESSORS for the pxav2 driver. The read_w
-callback is needed for a silicon bug workaround in the PXA168.
+The PXA168 has a documented silicon bug that results in a data abort
+exception when accessing the SDHCI_HOST_VERSION register on SDH2 and
+SDH4 through a 16-bit read. Implement the workaround described in the
+errata, which performs a 32-bit read from a lower address instead. This
+is safe to use on all four SDH peripherals.
 
 Signed-off-by: Doug Brown <doug@schmorgal.com>
 Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 ---
- drivers/mmc/host/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/mmc/host/sdhci-pxav2.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index 5e19a961c34d..b9e9185c86a6 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -360,6 +360,7 @@ config MMC_SDHCI_PXAV2
- 	depends on MMC_SDHCI_PLTFM
- 	depends on ARCH_MMP || COMPILE_TEST
- 	default CPU_PXA910
-+	select MMC_SDHCI_IO_ACCESSORS
- 	help
- 	  This selects the Marvell(R) PXAV2 SD Host Controller.
- 	  If you have a PXA9XX platform with SD Host Controller
+diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
+index 5707d597ecae..5e01dab94426 100644
+--- a/drivers/mmc/host/sdhci-pxav2.c
++++ b/drivers/mmc/host/sdhci-pxav2.c
+@@ -80,6 +80,15 @@ static void pxav2_reset(struct sdhci_host *host, u8 mask)
+ 	}
+ }
+ 
++static u16 pxav1_readw(struct sdhci_host *host, int reg)
++{
++	/* Workaround for data abort exception on SDH2 and SDH4 on PXA168 */
++	if (reg == SDHCI_HOST_VERSION)
++		return readl(host->ioaddr + SDHCI_HOST_VERSION - 2) >> 16;
++
++	return readw(host->ioaddr + reg);
++}
++
+ static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
+ {
+ 	u8 ctrl;
+@@ -107,6 +116,7 @@ struct sdhci_pxa_variant {
+ };
+ 
+ static const struct sdhci_ops pxav1_sdhci_ops = {
++	.read_w        = pxav1_readw,
+ 	.set_clock     = sdhci_set_clock,
+ 	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
+ 	.set_bus_width = pxav2_mmc_set_bus_width,
 -- 
 2.34.1
 
