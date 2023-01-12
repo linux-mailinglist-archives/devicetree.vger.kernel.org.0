@@ -2,83 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1A6D6671F6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 13:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A4E4667205
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 13:22:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235790AbjALMUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 07:20:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50416 "EHLO
+        id S229903AbjALMW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 07:22:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233620AbjALMT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 07:19:56 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A83E4C723
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 04:17:58 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id g13so28163289lfv.7
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 04:17:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5Sb7uu+jqjd8cjTaj/ffaYsm4XqEOJ2LoE1vJYEHfEo=;
-        b=UjWCpPmkX+Rgr/d4T1GVVzGIureVA53WtA0521/gGDnZKJfPlK3eEeEpUuhrIWDtPM
-         HuFnWQa3UzbPEWq/uQJVKl2RzQvM4exGvpbwrWcWuXLaOJY4vPwhK3/5q1cON6LRyOMG
-         7brn0fB+WaZFnJGNiDTDZ8Jr7QVFEnq74f3DmqyffoJ/+uHMxMlfGstpaM3XCAvSX/jg
-         u08T89DjPQaXnkXi9fPtHd/muMQOlwdWZYZKQRp2YmwpzcdTbR1Mji9NbVIb+Iy5LrRV
-         jyqQXxNNb//aw3uPLJ3qnxa/Z6aNJumNu8aZsW+eToJrUEv/LwGnxMDddSHwlBX2nXYI
-         glkA==
+        with ESMTP id S229544AbjALMW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 07:22:26 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11DCDC0
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 04:22:25 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id r130so15129519oih.2
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 04:22:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Sb7uu+jqjd8cjTaj/ffaYsm4XqEOJ2LoE1vJYEHfEo=;
-        b=Cp3VV/7yvqFbKhbJD7aLT6LLlvLY2Dhu3F/+Wv/GJwCa8Js5T6iSZsxEmGXQ4P3vPM
-         yNl4QD98oG+ZlRe/ZPuV/gfSVVrehgO7bkVSTeADTI4MSVaFhO61+BxTKoXwLcbxE3V2
-         xKUtSQf42akZuKxu4JiLGPJfa6zQCPpOoauM07bMItPfI0UfjO75njXYCb9/0siWq5rS
-         VRu9G5PzJ7qCXcAkk5nrcHavQnF3Ghnd+JDgdX4d8Hyh/T/vprpqKiT5j44P6LtO6iv5
-         iYiVCTXxl4k7C8naw+ieUB6x3c3lqIq3Kp+SUQmmbrZ6Ir2D1M95AwID/1ayMCXQGQ3K
-         WqDg==
-X-Gm-Message-State: AFqh2kpWBubfV60D/P4g3nqOKlwSA+5qSPGdU9f6qUSK9v8ASvPwFd/h
-        m9RCXtEhQz5y010dA3nfFDIe3Q==
-X-Google-Smtp-Source: AMrXdXvyRJPbsou+g+A9HURQgSe2/ts8e9e8635nHvGS9TVNXZu47PWi5EWLjMmMNeKrTmfpNDXJUg==
-X-Received: by 2002:ac2:5181:0:b0:4b4:f9df:c6aa with SMTP id u1-20020ac25181000000b004b4f9dfc6aamr18255392lfi.34.1673525876790;
-        Thu, 12 Jan 2023 04:17:56 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id bt35-20020a056512262300b0049ae3ed42e8sm3231814lfb.180.2023.01.12.04.17.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 04:17:56 -0800 (PST)
-Message-ID: <034e741d-8a86-05ab-ca94-15be2463275f@linaro.org>
-Date:   Thu, 12 Jan 2023 13:17:54 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 05/13] clk: qcom: cpu-8996: skip ACD init if the setup is
- valid
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230111192004.2509750-1-dmitry.baryshkov@linaro.org>
- <20230111192004.2509750-6-dmitry.baryshkov@linaro.org>
- <e3c3449c-dd20-05fd-fd7d-b863d9f66426@linaro.org>
- <38745a30-0502-3a1d-4376-9d10471cf780@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <38745a30-0502-3a1d-4376-9d10471cf780@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rtINNytsd/zxKdxtXoOSr+cNhhKcWFohemXYweWGB1E=;
+        b=LdUiSw4Y7mbQ36raXIjnmcsI9NTXzXhpyRUbePESlmjNR3AZl6OrQOPvTdLiBHQu+1
+         c+SrSEfBOnamtEZtUISYs1LHcS4KX3S2ilquOP9Wid+lOUgbdsoCdjNzE9r1S5FSo3rI
+         7bJnjH36RTqmuLt/M/zQDcdhnailNfMGzIZdNRU2JnXUKbGzVIEcMaNCmohvsidbfNcn
+         O+bZmotfXthW2d6rQ3AvENDa7IiOv83jr8QIrUgVX769z+9dPLGmVnAxM70nnL/107iw
+         HmyXpYpXEYWiELsPpnTosn5x+ptQsG0f7ijuZ0DNp1cYQir2wGPkSaSl9xYozNmqVfPl
+         zCXA==
+X-Gm-Message-State: AFqh2krOUbbAIE3lCQSpfWu9wR5pcQEDh36UXtBmUejLYzeG7Kjsqo9H
+        2bOrh6yW9PO7qW+INLGLXuLjv7Pf2A==
+X-Google-Smtp-Source: AMrXdXteLOgISZYsRPd/H/T+nOQmYks3iSGq+eTi5zkTvXm+MXN1FfdkAJP6d7iBRIfwnuBL4ngLxA==
+X-Received: by 2002:a05:6808:2226:b0:364:2adb:2680 with SMTP id bd38-20020a056808222600b003642adb2680mr14431577oib.5.1673526143997;
+        Thu, 12 Jan 2023 04:22:23 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n24-20020a9d7118000000b00661ad8741b4sm9030832otj.24.2023.01.12.04.22.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jan 2023 04:22:23 -0800 (PST)
+Received: (nullmailer pid 3055045 invoked by uid 1000);
+        Thu, 12 Jan 2023 12:22:22 -0000
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <878ri84lc6.wl-kuninori.morimoto.gx@renesas.com>
+References: <87358hj2ub.wl-kuninori.morimoto.gx@renesas.com>
+ <878ri84lc6.wl-kuninori.morimoto.gx@renesas.com>
+Message-Id: <167352605035.3051151.10083276065810564823.robh@kernel.org>
+Subject: Re: [PATCH 11/10] ASoC: dt-bindings: renesas,rsnd: tidyup rcar_sound,src
+Date:   Thu, 12 Jan 2023 06:22:22 -0600
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,52 +66,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Thu, 12 Jan 2023 01:01:45 +0000, Kuninori Morimoto wrote:
+> 
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> Some SRC is not implemented on some SoC, thus
+> interrupts/dmas/dma-names are not mandatory.
+> This patch solve it. Without this patch we will get below error
+> when 'make DT_CHECKER_FLAGS=-m dt_binding_check'.
+> 
+> dtschema/dtc warnings/errors:
+> ${LINUX}/Documentation/devicetree/bindings/sound/renesas,rsnd.example.dtb: \
+>  sound@ec500000: Unevaluated properties are not allowed ('rcar_sound,src' was unexpected)
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> 
+> Link: https://lore.kernel.org/r/167344317928.394453.14105689826645262807.robh@kernel.org
+> Reported-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 4 ----
+>  1 file changed, 4 deletions(-)
+> 
 
-On 11.01.2023 22:55, Dmitry Baryshkov wrote:
-> On 11/01/2023 23:00, Konrad Dybcio wrote:
->>
->>
->> On 11.01.2023 20:19, Dmitry Baryshkov wrote:
->>> Check whether L2 registers contain correct values and skip programming
->>> if they are valid. This follows the code present downstream.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->> Once again, my random local msm-3.18 doesn't do this, can you show
->> me the downstream source for this?
-> 
-> https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.7.5.r1-05300-8x96.0/drivers/clk/msm/clock-cpu-8996.c#L856
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Konrad
-> 
->>
->> Konrad
->>>   drivers/clk/qcom/clk-cpu-8996.c | 6 ++++++
->>>   1 file changed, 6 insertions(+)
->>>
->>> diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
->>> index 0e0c00d44c6f..7e5246ca7e7f 100644
->>> --- a/drivers/clk/qcom/clk-cpu-8996.c
->>> +++ b/drivers/clk/qcom/clk-cpu-8996.c
->>> @@ -472,10 +472,15 @@ static void __iomem *base;
->>>   static void qcom_cpu_clk_msm8996_acd_init(void __iomem *base)
->>>   {
->>>       u64 hwid;
->>> +    u32 val;
->>>       unsigned long flags;
->>>         spin_lock_irqsave(&qcom_clk_acd_lock, flags);
->>>   +    val = kryo_l2_get_indirect_reg(L2ACDTD_REG);
->>> +    if (val == 0x00006a11)
->>> +        goto out;
->>> +
->>>       hwid = read_cpuid_mpidr() & CPU_AFINITY_MASK;
->>>         kryo_l2_set_indirect_reg(L2ACDTD_REG, 0x00006a11);
->>> @@ -492,6 +497,7 @@ static void qcom_cpu_clk_msm8996_acd_init(void __iomem *base)
->>>           writel(0xf, base + PERFCL_REG_OFFSET + SSSCTL_OFFSET);
->>>       }
->>>   +out:
->>>       spin_unlock_irqrestore(&qcom_clk_acd_lock, flags);
->>>   }
->>>   
-> 
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/renesas,rsnd.example.dtb: sound@ec500000: Unevaluated properties are not allowed ('port' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/878ri84lc6.wl-kuninori.morimoto.gx@renesas.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
