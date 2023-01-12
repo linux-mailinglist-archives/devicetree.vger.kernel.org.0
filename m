@@ -2,156 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91EA36686E7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 23:28:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1C9D668700
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 23:32:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240482AbjALW14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 17:27:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43426 "EHLO
+        id S231833AbjALWc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 17:32:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240517AbjALW1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 17:27:23 -0500
-X-Greylist: delayed 623 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 12 Jan 2023 14:24:43 PST
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5CD26256;
-        Thu, 12 Jan 2023 14:24:41 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1673562270; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=sP/ffea2VXzs5ctiBhBZtOrqKvTVucMFvkJmgkUrhJk88hDr4sSgS+qrfSqp5ULl0O
-    jX4g64LhxSww7YdAxXSR1SmUf79NS8mKrdddKgcrsOtaHcRYmzxWqXjJ9i5AZaMiAXBy
-    fuI2OQAE8xImpy6ZWK3Mmfd5GXeT+dbRSi/WoMnI2fmoYQ2Y+23zNeAYRrd0SYpqJ769
-    4MG9k1pDeAUO+dL6PcKYqLVaRkwWMz+nqGmQht70v8O27gt7rYdsSpx8VO8yhaFyezvV
-    HIU4UPHWNKts+bp1+aO3fE1qLBEwH86i31hB1xWGpkmwKXFIgJZa9rPwBDZGu8pq3BNe
-    gAzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1673562270;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=JTbqY/0foCfnZ+vBedvPjIQxwUaNY5Vwj25lmnUspGI=;
-    b=dGkRfq9BfnPmHYD76sp2At7cdX5hZHBSo/WGQfIyN2XAbLwW0GTnBmRfSewCfXWK4A
-    prp8PLJel+KBlINvm17Iq/UQZxDTr95SaxoulbFWKsnzqbYWOVfM4PDQQYNYsTAm57pZ
-    sZlJxgBaUf7N6VCpIp/GGOVlZ7LcgsiWHCkLdt5KerV2pZ0MH3a1ajRufRo2GtIVmNFm
-    f3ZPZCQdTdMfYd2ZSHqLlk9V644Z2h5BdgnDGcRKUYZJ4S1qdPPrjbnr74mnhJV05rj4
-    I7rWcgMZRT50nPfK1a8a4HuoLvbsOKU61MXvTbgOlloPZ5a+3SZWkBFCAJ6+3bOgrbFb
-    I69Q==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1673562270;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=JTbqY/0foCfnZ+vBedvPjIQxwUaNY5Vwj25lmnUspGI=;
-    b=JEaMP74h0BCDJkkracrxXH4SCFbBzdjwbNSLdOCYwvIo18Vj4tmuXDtu2N6/Eoimlt
-    K60huBA6F3lUutcOuG+RD9ypAxAQGQiPKQEdEod0RtcuEyUeq+3H72rm1iUsZOl/WRdY
-    AHZbEzwyXdTHlmVCZTKkpAIy0JgUv65l4+QQPbSV1VbYxKXCTaonc+Jx+RjWQIqg4vRw
-    IwIyteVZAXkBg4U49HeVZOArIcQSbP+nkk3i9cL7exbVFGuQC/PKLVHsJhcInz/HuFNN
-    L0GBZWUA8OJEJ7g4FPyDDheyPwr9Ttx1PWdIozQCezrGCcBYLlM1X5ElBWEKBo/fDck4
-    ZiJg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJAhdlWwfGjtQ=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 48.6.2 DYNA|AUTH)
-    with ESMTPSA id yacdeez0CMOU4hN
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 12 Jan 2023 23:24:30 +0100 (CET)
-Date:   Thu, 12 Jan 2023 23:24:29 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Matti =?iso-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S232816AbjALWcD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 17:32:03 -0500
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 524B2B43
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 14:31:58 -0800 (PST)
+Received: by mail-yb1-xb2a.google.com with SMTP id e76so20402084ybh.11
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 14:31:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/C/ZRKjPzNTEZUCk+rnSkeE6htJTMyaRVi+BQ5BKJ+U=;
+        b=JUPY63vtT6QcwqD9Ws2QE/pf7jC1/0su4w2j3d9Xn0NTdACzrFBjxjuFHWgpThUZws
+         imdknTpaWEjV9uHtradW98A1u35lfMGg1dddhCwsBClQF94e0939KX7UTkXNgez4GIry
+         JxaKGHbkQ7QWJVTYQ0VQgYI43iHND9qXIlcZM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/C/ZRKjPzNTEZUCk+rnSkeE6htJTMyaRVi+BQ5BKJ+U=;
+        b=SDGQUdG2BDTFU0HGgktF1MT4YYes86NI2q7BEbwc4mf1dhHn865nNTDHrc3TM2Lw0/
+         /fQtRm3koFvccvMnk0P/WlT6z1bewjr3q8U0ray7qnJLiNtbClo4Be3mkpf3CBTY1S+S
+         W/HDjm5HYRBkRXVgsReGwEtjTT5n3arde9cV7hMecMzWcHJUCZFJlhBPY1hei8nK+wrI
+         29LBRbZkHOq6okIhFbgFbptZra0VJPFCCCbgg1k1XquKnnTdeyV+dOnkuAaQ00+EAfqT
+         hC8Y6fuLjaEEyllbBbt/dB/X3wD56niFH4BfxtRTScmvNdH14j7EN06twIdnJZ2Ydyfu
+         K95w==
+X-Gm-Message-State: AFqh2ko4dVmyS1A+kzuBGIFThMWj2muotqWPL+z/sORSsN7dZDeJD3P1
+        nlrpsj42pao2vWV6KLlv8hi++Lm5hnVT1CtXHZmS/Q==
+X-Google-Smtp-Source: AMrXdXuznEwChU9VQQ72rYVGqmbsFrMqOVBPMbeBVwgDM2AWPc/3hytO7eUeE33HPvr9ax9Vk/LALEeTjlK/OvpNWf8=
+X-Received: by 2002:a25:1083:0:b0:7ae:5e48:383b with SMTP id
+ 125-20020a251083000000b007ae5e48383bmr2843942ybq.223.1673562717561; Thu, 12
+ Jan 2023 14:31:57 -0800 (PST)
+MIME-Version: 1.0
+References: <20230112042104.4107253-1-treapking@chromium.org>
+ <20230112042104.4107253-2-treapking@chromium.org> <Y8AL8nTcNcl6zX7H@paasikivi.fi.intel.com>
+In-Reply-To: <Y8AL8nTcNcl6zX7H@paasikivi.fi.intel.com>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Thu, 12 Jan 2023 14:31:45 -0800
+Message-ID: <CACeCKaeN7KBi30M1fRWhTPgMbxF6=B+KuAS7Ny7+i9qCx+=49Q@mail.gmail.com>
+Subject: Re: [PATCH v10 1/9] device property: Add remote endpoint to devcon matcher
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Pin-yen Lin <treapking@chromium.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/8] ARM: dts: qcom: msm8226: Add modem remoteproc node
-Message-ID: <Y8CInQ8UJdEen33p@gerhold.net>
-References: <20230112202612.791455-1-matti.lehtimaki@gmail.com>
- <20230112202612.791455-8-matti.lehtimaki@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230112202612.791455-8-matti.lehtimaki@gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
+        Xin Ji <xji@analogixsemi.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 12, 2023 at 10:26:10PM +0200, Matti Lehtimäki wrote:
-> From: Luca Weiss <luca@z3ntu.xyz>
-> 
-> Add a node for the modem remoteproc found on MSM8226.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> Co-developed-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
-> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
-> ---
->  arch/arm/boot/dts/qcom-msm8226.dtsi | 86 +++++++++++++++++++++++++++++
->  1 file changed, 86 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
-> index 2639167c8976..34ea9cf46ae0 100644
-> --- a/arch/arm/boot/dts/qcom-msm8226.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
-> [...]
-> @@ -620,6 +655,57 @@ rpm_msg_ram: sram@fc428000 {
->  			reg = <0xfc428000 0x4000>;
->  		};
->  
-> +		modem: remoteproc@fc880000 {
-> +			compatible = "qcom,msm8226-mss-pil";
-> +			reg = <0xfc880000 0x100>,
-> +			      <0xfc820000 0x020>;
-> +			reg-names = "qdsp6", "rmb";
-> +
-> +			interrupts-extended = <&intc GIC_SPI 24 IRQ_TYPE_EDGE_RISING>,
-> +					      <&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> +					      <&modem_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-> +					      <&modem_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-> +					      <&modem_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "wdog", "fatal", "ready", "handover", "stop-ack";
-> +
-> +			clocks = <&gcc GCC_MSS_Q6_BIMC_AXI_CLK>,
-> +				 <&gcc GCC_MSS_CFG_AHB_CLK>,
-> +				 <&gcc GCC_BOOT_ROM_AHB_CLK>,
-> +				 <&xo_board>;
-> +			clock-names = "iface", "bus", "mem", "xo";
-> +
-> +			resets = <&gcc GCC_MSS_RESTART>;
-> +			reset-names = "mss_restart";
-> +
-> +			power-domains = <&rpmpd MSM8226_VDDCX>;
-> +			power-domain-names = "cx";
-> +
-> +			qcom,ext-bhs-reg = <&tcsr_regs_1 0x194>;
-> +			qcom,halt-regs = <&tcsr_regs_1 0x180 0x200 0x280>;
-> +
-> +			qcom,smem-states = <&modem_smp2p_out 0>;
-> +			qcom,smem-state-names = "stop";
-> +
-> +			status = "disabled";
-> +
-> +			mba {
-> +				memory-region = <&mba_region>;
-> +			};
-> +
-> +			mpss {
-> +				memory-region = <&mpss_region>;
-> +			};
+HI Sakari,
 
-Please prefer using memory-region with two items in the node above, as
-suggested in the DT schema:
+On Thu, Jan 12, 2023 at 5:32 AM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Pin-yen,
+>
+> On Thu, Jan 12, 2023 at 12:20:56PM +0800, Pin-yen Lin wrote:
+> > From: Prashant Malani <pmalani@chromium.org>
+> > +             /*
+> > +              * Some drivers may register devices for endpoints. Check
+> > +              * the remote-endpoints for matches in addition to the remote
+> > +              * port parent.
+> > +              */
+> > +             node = fwnode_graph_get_remote_endpoint(ep);
+> > +             if (fwnode_device_is_available(node)) {
+> > +                     ret = match(node, con_id, data);
+> > +                     if (ret) {
+> > +                             if (matches)
+> > +                                     matches[count] = ret;
+> > +                             count++;
+> > +                     }
+> > +             }
+>
+> Aren't you missing fwnode_handle-put(node) here??
 
-			memory-region = <&mba_region>, <&mpss_region>;
+It shouldn't be necessary. We aren't break-ing/continue-ing here,
+and fwnode_handle_put(node) is called latter in the loop [1][2]
 
-Thanks,
-Stephan
+BR,
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/base/property.c#n1256
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/base/property.c#n1261
