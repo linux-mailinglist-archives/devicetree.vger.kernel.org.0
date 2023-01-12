@@ -2,126 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16008667E91
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 20:04:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFDC5667EB5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 20:08:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbjALTD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 14:03:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60656 "EHLO
+        id S240282AbjALTIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 14:08:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbjALTDM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 14:03:12 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9296951B;
-        Thu, 12 Jan 2023 10:42:28 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30CIKLmL013835;
-        Thu, 12 Jan 2023 18:42:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=avfOBY7qvXyRddvkWYry9tNFbdDWtZH/PaLOovOizhA=;
- b=hMgPGkhzHzxX+heRi2x5eNuuvWFrUV78AEgMfNHl0+cHo6FMjX7ns+8agaT4c3hAbcFz
- a4k0OTZUpHKHkfJbF+4Bg6LXCohYlF5PXUETDTXdFT9ioZaIc+pJndYkV2h+YCXlAUbo
- MXgT9hNCEmFRYPASLuJodxfkAdxF7Uw1+PO5BlbCBabG14AmnMXoZYWzFbLADTMyqVk5
- 7hendzGEyOYGhwmLCAzR0AsLDgr9w7E3RPgajqR87/GF35AWzoD1wpWN3WldksdgEaK1
- Ik+6Om4uZbbBYbZkEiEiOq+xHFNA9X2Yrmrx6MzewoZJ9mPTDdYAJdOSm1AQ/ggjPD1J PA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n2k47gr34-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 18:42:20 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30CIgJZT024170
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 18:42:19 GMT
-Received: from [10.79.43.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 12 Jan
- 2023 10:42:16 -0800
-Message-ID: <991d6680-480c-b9be-e09b-3b129dbb40a6@quicinc.com>
-Date:   Fri, 13 Jan 2023 00:12:13 +0530
+        with ESMTP id S240292AbjALTHW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 14:07:22 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF36D13B;
+        Thu, 12 Jan 2023 10:49:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1673549341; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=VVwndzmZa3T9qUUdXmyL13LbeRcCo5aJtQeRb7eBu+6OetmVkzSyFwgModVSbrGppw9715GZvPbcVBY//a3GKP0rFb8M7FXFYw6ZhmG6a0aXrqwtQlAZ6o2fQQad9XwefwqXhkYzcrvDeVobMcewjY0dNVne811j2LoXV9YGDgo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1673549341; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=xj1EqQifssBoeW2Mu0UMZouBhzUVXH9Qqd8rb3GME8I=; 
+        b=HjiaFjlPWYVDLgKpYM4LqTr6gdRXwjI8kdYbj83mbYvEzLluLd8ekB27EXQQXx2rKqz0yWxRttqk6rgO0zL857+7R4HYBxldp82pqPDHc/h0Ddp8EXEeQjIT1SZGEjOWFe9Lavv2WDJfun4fNhKEY5TXVAkYk/RgEtU6OT4A/6k=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1673549341;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=xj1EqQifssBoeW2Mu0UMZouBhzUVXH9Qqd8rb3GME8I=;
+        b=MVVnnKfETDgCzyJ71jmAq0v6KG9MyoQ61/n28O/AOxxL50oAeLv599dp3ckuEkks
+        51maUW8rNrzLygfhxYZqnOXoqtZJuZa0ms6JcL0SJHezSd9qrbC3YObzlQa7AbVKyA1
+        DeQrTFmoYmu7mRK2OMYHgeJbOHyWzTqpDwLC7HF8=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1673549337883457.0526498585821; Thu, 12 Jan 2023 10:48:57 -0800 (PST)
+Message-ID: <c5412e5c-97ff-ba79-fd78-895889c129d2@arinc9.com>
+Date:   Thu, 12 Jan 2023 21:48:52 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH V8 2/2] firmware: qcom: scm: Add wait-queue handling logic
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 3/6] dt-bindings: pinctrl: mt7621: add proper function
+ muxing binding
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, erkin.bozoglu@xeront.com
+References: <20221231160849.40544-1-arinc.unal@arinc9.com>
+ <20221231160849.40544-4-arinc.unal@arinc9.com>
+ <1b5880bb-d0ce-9dde-2fe6-e058f6efb6f1@linaro.org>
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        <andersson@kernel.org>
-CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <konrad.dybcio@somainline.org>, <robimarko@gmail.com>,
-        <quic_gurus@quicinc.com>
-References: <20230111101718.9225-1-quic_sibis@quicinc.com>
- <20230111101718.9225-3-quic_sibis@quicinc.com>
- <00e70137-3cc3-877e-5435-ac15f750f466@linaro.org>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <00e70137-3cc3-877e-5435-ac15f750f466@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <1b5880bb-d0ce-9dde-2fe6-e058f6efb6f1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: eUHkfjsOA3L9p99ZLzrhx0H3T6VgtG0Q
-X-Proofpoint-ORIG-GUID: eUHkfjsOA3L9p99ZLzrhx0H3T6VgtG0Q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-12_10,2023-01-12_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 clxscore=1015 mlxscore=0 bulkscore=0 adultscore=0
- mlxlogscore=884 impostorscore=0 lowpriorityscore=0 spamscore=0
- suspectscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2301120135
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Srini,
-Thanks for taking time to review the series.
+On 12.01.2023 12:01, Krzysztof Kozlowski wrote:
+> On 31/12/2022 17:08, Arınç ÜNAL wrote:
+>> Not every function can be muxed to a group. Add proper binding which
+>> documents which function can be muxed to a group or set of groups.
+>>
+>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> 
+> Didn't I already ack it?
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 1/11/23 21:31, Srinivas Kandagatla wrote:
-> 
-> 
-> On 11/01/2023 10:17, Sibi Sankar wrote:
->> +static int qcom_scm_waitq_wakeup(struct qcom_scm *scm, unsigned int 
->> wq_ctx, bool wake_all)
->> +{
->> +    int ret;
->> +
->> +    ret = qcom_scm_assert_valid_wq_ctx(wq_ctx);
->> +    if (ret)
->> +        return ret;
->> +
->> +    if (wake_all)
->> +        complete_all(&__scm->waitq_comp);
-> 
-> As you explained in v7 that there will be only one caller at any point 
-> in time and that will be synchronous, so complete_all here is a dead 
-> code, isn't it?
-> 
-> Adding complete_all here is missleading and will require reinit 
-> completion in case you want to reuse the same completion.
-> 
-> AFAIU, you should remove support to wake_all in this patchset and add it 
-> when we really can do multiple scm calls simultaneously.
-> 
+I believe you only did for mt7620.
 
-ACK, IIRC v4 of the series had it dropped and was added
-later on for feature parity but like you pointed out it's
-dead code and should be added back later when there is support
-for it. I'll fix this in the next re-spin.
-
-
-> --srini
-> 
-> --srini
->> +    else
->> +        complete(&__scm->waitq_comp);
->> +
+Thanks.
+Arınç
