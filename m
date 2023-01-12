@@ -2,388 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 318B0666C3E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 09:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA4C5666C54
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 09:23:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239209AbjALISD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 03:18:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52590 "EHLO
+        id S236448AbjALIXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 03:23:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239669AbjALIR7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 03:17:59 -0500
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33C4D3FC9C
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 00:17:54 -0800 (PST)
-Received: by mail-il1-x130.google.com with SMTP id a3so3124131ilp.6
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 00:17:54 -0800 (PST)
+        with ESMTP id S236366AbjALIWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 03:22:51 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC1A1E3D4
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 00:21:27 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id gh17so42933294ejb.6
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 00:21:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gapk5GOd/A6JAaUK/nRpY87LbxTrX+/pUnc0mqv2Aj8=;
-        b=Z5IjhGdvvG8VJ7oIKeX889QR2qAqg3TRYZPqvlV/cKGZugdUQS6qWhUn95X6SDUSix
-         p4snwYD7Dl+puAnJNH1goJpUpm801zUOKIN+//cmKMgb3pD8X/oFlsIx20vEohocBY4v
-         e1ztr70IUzYfYcwzzUSITYThGMQA3fZjmT80w=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jmdF79SXsIqABhejON+1FL/wkOkEnV19rbuuYjkz4bU=;
+        b=N10u8PkXKxiV2Z2uf5hccqbyEDza3ArbfRkQBpznQEhYDs9BNOsIdEqOt5UECRqx1i
+         8CRLXffZCgbae5z9t4SMarDOEZAE6IxtegeGaAceiL9jrkpK2JDRHVsdS6A65+gSV4T3
+         APUgFzPGs0S+mrdiXxuP6w9BcnfATbjOKKNlGLRGbIuZPWEK/GorjTUyYNYEi3KxCLIU
+         erRsogQeYpzQqyjWKSyvdSAPTxOALUKe1Q5r5baqjzYp5v7+4jdXajDl6RrpQNpdbNgr
+         WU9GWrp1G3veJdS+hxssNfTOZsvW8Z2O0cSPAv8GfN/SHj2wp4GvDG75iadnD5TbHAH0
+         eMYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gapk5GOd/A6JAaUK/nRpY87LbxTrX+/pUnc0mqv2Aj8=;
-        b=5x75achni6PbRK3u650+yJVCP7BPYnVOs8c+ZcuHia+sciEf1G6avaErN7CnZPNBZn
-         A+l43ZfM6tOq6ma/m4mSN/3zUy8Tki7KJYrgRPg2o8jB7H/2Eih9BB7dg9fwM6ZJhnn+
-         2cxeb1SjH105RocPqUVrt1qOGOSTXK2BOndkn6ZOOeUoJUNG2hnOmWaaHI0esXfzeCMA
-         gBGiPrqhgEIcZq/wkCqltLyaDfqZClGn8ViEo+okwEhC0GxPgxVh/mIKjBNaj/YK1zFj
-         J8vvEgXhYVG6k5/gqYnzLNFXJaI/xG1CsksM4O/Qezpq8t8XaWwqQwh0rdIzBoMYNy9z
-         zwcQ==
-X-Gm-Message-State: AFqh2koxga0NA1zqqUDUMD9JnqBffWJogRQsLdCPC0wj4sb3I/l+E6oJ
-        9d8BUPIh7TXC6tpfV442ZINjYXCOqc3QbLd5I7n54Q==
-X-Google-Smtp-Source: AMrXdXt6jcjZ5c7pzzOIbKU8LkWmSqkSOBw+vxNx+FLEw0wTRUj3PrSvKo82mqzzIrznkBDXtvClLKW7hLBS9XBdcf4=
-X-Received: by 2002:a92:d0f:0:b0:303:96b3:c8a0 with SMTP id
- 15-20020a920d0f000000b0030396b3c8a0mr7605283iln.192.1673511473456; Thu, 12
- Jan 2023 00:17:53 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jmdF79SXsIqABhejON+1FL/wkOkEnV19rbuuYjkz4bU=;
+        b=oXHmKResS8DV9wpqu2OtHZuaiQ01maYYB/KBZ9KrRPpmmF/BWqZX8Fb1UVp37TrAMD
+         +dFI2hq3N9V13xDqcl+redmBZ2PXcmf+RzcZceWEqufbLBXi86nhzPc2fVED+YcohMJR
+         +f2DJBJjF3nCzmODDOJGGriHmN7BD5j/4q3emYuVBtjiaN1Hv7sz+rsv3NpvVqXeYd7f
+         YOaACe41ARhUa0EmccUqln94bCbj3WYl5orMIqzondkacDVxVCz5mf3dcBOJIcvw81IR
+         o2Cy8ADQP8Eu+pJVi5jVr0BIjqk5DSiFmaA7fJ5PF2gXh340yZKaPv0eF5+w4/irsi+q
+         KJug==
+X-Gm-Message-State: AFqh2koWPQlyRC2RlRcdVljp9kr4fR8y2/Wu8xsurau6iDBHSnoxMBdw
+        wDKVgki3foPPgAokuq5tMf88IQ==
+X-Google-Smtp-Source: AMrXdXu8NQkZ2kxq2Zw2KbVv34v3HLtzxtlB1LDG0r0rHEAtE3pMHfTxsA8OmCjGYhNeRsMlnb+nYw==
+X-Received: by 2002:a17:907:c717:b0:7c1:ad6:638a with SMTP id ty23-20020a170907c71700b007c10ad6638amr70406421ejc.17.1673511685975;
+        Thu, 12 Jan 2023 00:21:25 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l6-20020a170906078600b0084d381d0528sm5942204ejc.180.2023.01.12.00.21.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 00:21:25 -0800 (PST)
+Message-ID: <0cc43891-405e-418f-01ee-845d680b3a24@linaro.org>
+Date:   Thu, 12 Jan 2023 09:21:22 +0100
 MIME-Version: 1.0
-References: <20230112042104.4107253-1-treapking@chromium.org>
- <20230112042104.4107253-4-treapking@chromium.org> <ccea730e-c5cb-4225-8d1e-97a0a7cb2e34@linaro.org>
- <CAEXTbpek=5xqo2j0yKkC90+Oy1rXWQLJWu3X6vx6y-SqvxTvnA@mail.gmail.com>
- <e98a42d5-b97a-5482-1bad-478c234444ce@linaro.org> <CAEXTbpfrZCD-53wx2RaboH4rYPF7qm7TrhxyN80k++CZ2UqTKA@mail.gmail.com>
- <ca54d156-b38f-677e-2f48-8146323014b3@linaro.org>
-In-Reply-To: <ca54d156-b38f-677e-2f48-8146323014b3@linaro.org>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Thu, 12 Jan 2023 16:17:42 +0800
-Message-ID: <CAEXTbperPGnDtQSYRo_exq1bASUU5SGFnzSpJ+FUxyha2_gTTA@mail.gmail.com>
-Subject: Re: [PATCH v10 3/9] drm/display: Add Type-C switch helpers
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
+ support
+Content-Language: en-US
+To:     William Zhang <william.zhang@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        jonas.gorski@gmail.com, kursad.oney@broadcom.com, dregan@mail.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
-        Xin Ji <xji@analogixsemi.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
-        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Imre Deak <imre.deak@intel.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Kees Cook <keescook@chromium.org>,
-        =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
-        shaomin Deng <dengshaomin@cdjrlc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-3-william.zhang@broadcom.com>
+ <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
+ <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
+ <99b01e96-3b96-6692-c5e1-87db49295e6d@linaro.org>
+ <49925933-aacc-4f0d-a1ca-e1bd45b05eee@broadcom.com>
+ <b246a81f-e465-5e52-f0ce-65e0a82fc3e1@linaro.org>
+ <32a464f8-6a4b-6777-9775-f17e990e0c6a@gmail.com>
+ <71c2e796-f0fb-90cd-4599-13c9718f41d5@linaro.org>
+ <31644849-dc69-ddfc-a6b6-6ffd37d64d2b@broadcom.com>
+ <f0a50234-bc8c-09c4-e2c1-22cbeaba5c15@linaro.org>
+ <e99a71b2-0b05-1a53-1c29-3778b49a3b86@broadcom.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e99a71b2-0b05-1a53-1c29-3778b49a3b86@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 12, 2023 at 1:50 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On 12/01/2023 07:48, Pin-yen Lin wrote:
-> > On Thu, Jan 12, 2023 at 1:24 PM Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> >>
-> >> On 12/01/2023 07:19, Pin-yen Lin wrote:
-> >>> Hi Dmitry,
-> >>>
-> >>> Thanks for the review.
-> >>>
-> >>> On Thu, Jan 12, 2023 at 12:40 PM Dmitry Baryshkov
-> >>> <dmitry.baryshkov@linaro.org> wrote:
-> >>>>
-> >>>> On 12/01/2023 06:20, Pin-yen Lin wrote:
-> >>>>> Add helpers to register and unregister Type-C "switches" for bridges
-> >>>>> capable of switching their output between two downstream devices.
-> >>>>>
-> >>>>> The helper registers USB Type-C mode switches when the "mode-switch"
-> >>>>> and the "data-lanes" properties are available in Device Tree.
-> >>>>>
-> >>>>> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> >>>>> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-> >>>>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> >>>>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> >>>>>
-> >>>>> ---
-> >>>>>
-> >>>>> Changes in v10:
-> >>>>> - Collected Reviewed-by and Tested-by tags
-> >>>>> - Replaced "void *" with "typec_mux_set_fn_t" for mux_set callbacks
-> >>>>> - Print out the node name when errors on parsing DT
-> >>>>> - Use dev_dbg instead of dev_warn when no Type-C switch nodes available
-> >>>>> - Made the return path of drm_dp_register_mode_switch clearer
-> >>>>>
-> >>>>> Changes in v8:
-> >>>>> - Fixed the build issue when CONFIG_TYPEC=m
-> >>>>> - Fixed some style issues
-> >>>>>
-> >>>>> Changes in v7:
-> >>>>> - Extracted the common codes to a helper function
-> >>>>> - New in v7
-> >>>>>
-> >>>>>     drivers/gpu/drm/display/drm_dp_helper.c | 134 ++++++++++++++++++++++++
-> >>>>>     include/drm/display/drm_dp_helper.h     |  17 +++
-> >>>>>     2 files changed, 151 insertions(+)
-> >>>>>
-> >>>>> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> >>>>> index 16565a0a5da6..a2ec40a621cb 100644
-> >>>>> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> >>>>> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> >>>>> @@ -30,11 +30,13 @@
-> >>>>>     #include <linux/sched.h>
-> >>>>>     #include <linux/seq_file.h>
-> >>>>>     #include <linux/string_helpers.h>
-> >>>>> +#include <linux/usb/typec_mux.h>
-> >>>>>     #include <linux/dynamic_debug.h>
-> >>>>>
-> >>>>>     #include <drm/display/drm_dp_helper.h>
-> >>>>>     #include <drm/display/drm_dp_mst_helper.h>
-> >>>>>     #include <drm/drm_edid.h>
-> >>>>> +#include <drm/drm_of.h>
-> >>>>>     #include <drm/drm_print.h>
-> >>>>>     #include <drm/drm_vblank.h>
-> >>>>>     #include <drm/drm_panel.h>
-> >>>>> @@ -3891,3 +3893,135 @@ int drm_panel_dp_aux_backlight(struct drm_panel *panel, struct drm_dp_aux *aux)
-> >>>>>     EXPORT_SYMBOL(drm_panel_dp_aux_backlight);
-> >>>>>
-> >>>>>     #endif
-> >>>>> +
-> >>>>> +#if IS_REACHABLE(CONFIG_TYPEC)
-> >>>>> +static int drm_dp_register_mode_switch(struct device *dev, struct device_node *node,
-> >>>>> +                                    struct drm_dp_typec_switch_desc *switch_desc,
-> >>>>> +                                    void *data, typec_mux_set_fn_t mux_set)
-> >>>>> +{
-> >>>>> +     struct drm_dp_typec_port_data *port_data;
-> >>>>> +     struct typec_mux_desc mux_desc = {};
-> >>>>> +     char name[32];
-> >>>>> +     u32 dp_lanes[2];
-> >>>>> +     int ret, num_lanes, port_num = -1;
-> >>>>> +
-> >>>>> +     num_lanes = drm_of_get_data_lanes_count(node, 0, 2);
-> >>>>
-> >>>> 2 looks incorrect. IIRC DP altmode can support up to 4 lanes.
-> >>>
-> >>> This function is implemented for 4-lane DP bridges to switch its
-> >>> outputs between 2 downstreams. So, I assume that there will only be at
-> >>> most 2 lanes for each downstream. I don't think a 4-lane downstream
-> >>> makes sense for mode switches unless we want to support bridges with
-> >>> more than 4 lanes.
-> >>
-> >> Yes. However by using 4 here you'd make the helper generic and cover
-> >> both your case and the generic case. We don't need this for the msm case
-> >> (since the mux is handled by the PHY). But if not for the PHY, I'd have
-> >> used such helper (with max_lanes = 4).
-> >>
-> > I wonder if simply using 4 here really makes it more generic here.
-> > This function assumes the mapping between "data-lanes" and the port
-> > number (e.g., 0/1 --> port 0) and hard-coded the way to parse the
-> > property.
-> >
-> > Is it better to use "reg" instead of "data-lanes" to determine the
-> > port number? The drivers can still read the DT node to get the
-> > "data-lanes" property if they want to do some fancy stuffs around
-> > that.
->
-> Yes, I admit, this sounds more logical.
->
-Thanks for the reply. I'll do that in v11.
-> >>>>
-> >>>>> +     if (num_lanes <= 0) {
-> >>>>> +             dev_err(dev, "Error on getting data lanes count from %s: %d\n",
-> >>>>> +                     node->name, num_lanes);
-> >>>>> +             return num_lanes;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     ret = of_property_read_u32_array(node, "data-lanes", dp_lanes, num_lanes);
-> >>>>> +     if (ret) {
-> >>>>> +             dev_err(dev, "Failed to read the data-lanes variable from %s: %d\n",
-> >>>>> +                     node->name, ret);
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     port_num = dp_lanes[0] / 2;
-> >>>>> +
-> >>>>> +     port_data = &switch_desc->typec_ports[port_num];
-> >>>>> +     port_data->data = data;
-> >>>>> +     mux_desc.fwnode = &node->fwnode;
-> >>>>> +     mux_desc.drvdata = port_data;
-> >>>>> +     snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
-> >>>>> +     mux_desc.name = name;
-> >>>>> +     mux_desc.set = mux_set;
-> >>>>> +
-> >>>>> +     port_data->typec_mux = typec_mux_register(dev, &mux_desc);
-> >>>>> +     if (IS_ERR(port_data->typec_mux)) {
-> >>>>> +             ret = PTR_ERR(port_data->typec_mux);
-> >>>>> +             dev_err(dev, "Mode switch register for port %d failed: %d\n",
-> >>>>> +                     port_num, ret);
-> >>>>> +
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +/**
-> >>>>> + * drm_dp_register_typec_switches() - register Type-C switches
-> >>>>> + * @dev: Device that registers Type-C switches
-> >>>>> + * @port: Device node for the switch
-> >>>>> + * @switch_desc: A Type-C switch descriptor
-> >>>>> + * @data: Private data for the switches
-> >>>>> + * @mux_set: Callback function for typec_mux_set
-> >>>>> + *
-> >>>>> + * This function registers USB Type-C switches for DP bridges that can switch
-> >>>>> + * the output signal between their output pins.
-> >>>>> + *
-> >>>>> + * Currently only mode switches are implemented, and the function assumes the
-> >>>>> + * given @port device node has endpoints with "mode-switch" property.
-> >>>>> + * Register the endpoint as port 0 if the "data-lanes" property falls in 0/1,
-> >>>>> + * and register it as port 1 if "data-lanes" falls in 2/3.
-> >>>>> + */
-> >>>>> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
-> >>>>> +                                struct drm_dp_typec_switch_desc *switch_desc,
-> >>>>> +                                void *data, typec_mux_set_fn_t mux_set)
-> >>>>> +{
-> >>>>> +     struct device_node *sw;
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     for_each_child_of_node(port, sw) {
-> >>>>> +             if (of_property_read_bool(sw, "mode-switch"))
-> >>>>> +                     switch_desc->num_typec_switches++;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     if (!switch_desc->num_typec_switches) {
-> >>>>> +             dev_dbg(dev, "No Type-C switches node found\n");
-> >>>>> +             return 0;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     switch_desc->typec_ports = devm_kcalloc(
-> >>>>> +             dev, switch_desc->num_typec_switches,
-> >>>>> +             sizeof(struct drm_dp_typec_port_data), GFP_KERNEL);
-> >>>>> +
-> >>>>> +     if (!switch_desc->typec_ports)
-> >>>>> +             return -ENOMEM;
-> >>>>> +
-> >>>>> +     /* Register switches for each connector. */
-> >>>>> +     for_each_child_of_node(port, sw) {
-> >>>>> +             if (!of_property_read_bool(sw, "mode-switch"))
-> >>>>> +                     continue;
-> >>>>> +             ret = drm_dp_register_mode_switch(dev, sw, switch_desc, data, mux_set);
-> >>>>> +             if (ret)
-> >>>>> +                     goto err_unregister_typec_switches;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +
-> >>>>> +err_unregister_typec_switches:
-> >>>>> +     of_node_put(sw);
-> >>>>> +     drm_dp_unregister_typec_switches(switch_desc);
-> >>>>> +     dev_err(dev, "Failed to register mode switch: %d\n", ret);
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +EXPORT_SYMBOL(drm_dp_register_typec_switches);
-> >>>>> +
-> >>>>> +/**
-> >>>>> + * drm_dp_unregister_typec_switches() - unregister Type-C switches
-> >>>>> + * @switch_desc: A Type-C switch descriptor
-> >>>>> + */
-> >>>>> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc)
-> >>>>> +{
-> >>>>> +     int i;
-> >>>>> +
-> >>>>> +     for (i = 0; i < switch_desc->num_typec_switches; i++)
-> >>>>> +             typec_mux_unregister(switch_desc->typec_ports[i].typec_mux);
-> >>>>> +}
-> >>>>> +EXPORT_SYMBOL(drm_dp_unregister_typec_switches);
-> >>>>> +#else
-> >>>>> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc)
-> >>>>> +{
-> >>>>> +}
-> >>>>> +EXPORT_SYMBOL(drm_dp_register_typec_switches);
-> >>>>> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
-> >>>>> +                                struct drm_dp_typec_switch_desc *switch_desc,
-> >>>>> +                                void *data, typec_mux_set_fn_t mux_set)
-> >>>>> +{
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +EXPORT_SYMBOL(drm_dp_unregister_typec_switches);
-> >>>>> +#endif
-> >>>>> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> >>>>> index ab55453f2d2c..5a3824f13b4e 100644
-> >>>>> --- a/include/drm/display/drm_dp_helper.h
-> >>>>> +++ b/include/drm/display/drm_dp_helper.h
-> >>>>> @@ -25,6 +25,7 @@
-> >>>>>
-> >>>>>     #include <linux/delay.h>
-> >>>>>     #include <linux/i2c.h>
-> >>>>> +#include <linux/usb/typec_mux.h>
-> >>>>>
-> >>>>>     #include <drm/display/drm_dp.h>
-> >>>>>     #include <drm/drm_connector.h>
-> >>>>> @@ -763,4 +764,20 @@ bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8 dpcd[DP_RECEIVER_CAP_SIZ
-> >>>>>                                                const u8 port_cap[4], u8 color_spc);
-> >>>>>     int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8 color_spc);
-> >>>>>
-> >>>>> +struct drm_dp_typec_port_data {
-> >>>>> +     struct typec_mux_dev *typec_mux;
-> >>>>> +     void *data;
-> >>>>> +     bool dp_connected;
-> >>>>> +};
-> >>>>> +
-> >>>>> +struct drm_dp_typec_switch_desc {
-> >>>>> +     int num_typec_switches;
-> >>>>> +     struct drm_dp_typec_port_data *typec_ports;
-> >>>>> +};
-> >>>>> +
-> >>>>> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc);
-> >>>>> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
-> >>>>> +                                struct drm_dp_typec_switch_desc *switch_desc,
-> >>>>> +                                void *data, typec_mux_set_fn_t mux_set);
-> >>>>> +
-> >>>>>     #endif /* _DRM_DP_HELPER_H_ */
-> >>>>
-> >>>> --
-> >>>> With best wishes
-> >>>> Dmitry
-> >>>>
-> >>>
-> >>> Best regards,
-> >>> Pin-yen
-> >>
-> >> --
-> >> With best wishes
-> >> Dmitry
-> >>
-> > Best regards,
-> > Pin-yen
->
-> --
-> With best wishes
-> Dmitry
->
+On 11/01/2023 19:44, William Zhang wrote:
+> 
+> 
+> On 01/11/2023 10:12 AM, Krzysztof Kozlowski wrote:
+>> On 11/01/2023 19:04, William Zhang wrote:
+>>>
+>>>
+>>> On 01/11/2023 01:02 AM, Krzysztof Kozlowski wrote:
+>>>> On 10/01/2023 23:18, Florian Fainelli wrote:
+>>>>> On 1/10/23 00:40, Krzysztof Kozlowski wrote:
+>>>>>>>> No, it is discouraged in such forms. Family or IP block compatibles
+>>>>>>>> should be prepended with a specific compatible. There were many issues
+>>>>>>>> when people insisted on generic or family compatibles...
+>>>>>>>>
+>>>>>>>>> Otherwise we will have to have a compatible string with chip model for
+>>>>>>>>> each SoC even they share the same IP. We already have more than ten of
+>>>>>>>>> SoCs and the list will increase.  I don't see this is a good solution too.
+>>>>>>>>
+>>>>>>>> You will have to do it anyway even with generic fallback, so I don't get
+>>>>>>>> what is here to gain... I also don't get why Broadcom should be here
+>>>>>>>> special, different than others. Why it is not a good solution for
+>>>>>>>> Broadcom SoCs but it is for others?
+>>>>>>>>
+>>>>>>> I saw a few other vendors like these qcom ones:
+>>>>>>>      qcom,spi-qup.yaml
+>>>>>>>          - qcom,spi-qup-v1.1.1 # for 8660, 8960 and 8064
+>>>>>>>          - qcom,spi-qup-v2.1.1 # for 8974 and later
+>>>>>>>          - qcom,spi-qup-v2.2.1 # for 8974 v2 and later
+>>>>>>>      qcom,spi-qup.yaml
+>>>>>>>          const: qcom,geni-spi
+>>>>>>
+>>>>>> IP block version numbers are allowed when there is clear mapping between
+>>>>>> version and SoCs using it. This is the case for Qualcomm because there
+>>>>>> is such clear mapping documented and available for Qualcomm engineers
+>>>>>> and also some of us (although not public).
+>>>>>>
+>>>>>>> I guess when individual who only has one particular board/chip and is
+>>>>>>> not aware of the IP family,  it is understandable to use the chip
+>>>>>>> specific compatible string.
+>>>>>>
+>>>>>> Family of devices is not a versioned IP block.
+>>>>>
+>>>>> Would it be acceptable to define for instance:
+>>>>>
+>>>>> - compatible = "brcm,bcm6868-hsspi", "brcm,bcmbca-hsspi";
+>>>>
+>>>> Yes, this is perfectly valid. Although it does not solve William
+>>>> concerns because it requires defining specific compatibles for all of
+>>>> the SoCs.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>> As I mentioned in another email,  I would be okay to use these
+>>> compatibles to differentiate by ip rev and to conforms to brcm convention:
+>>> "brcm,bcmXYZ-hsspi", "brcm,bcmbca-hsspi-v1.0", "brcm,bcmbca-hsspi";
+>>> "brcm,bcmXYZ-hsspi", "brcm,bcmbca-hsspi-v1.1", "brcm,bcmbca-hsspi";
+>>
+>>
+>> Drop the version in such case, no benefits. I assume XYZ is the SoC
+>> model, so for example 6868.
+>>
+> Yes XYZ is the SoC model
+>>>
+>>> In the two drivers I included in this series, it will be bound to
+>>> brcm,bcmbca-hsspi-v1.0 (in additional to brcm,bcm6328-hsspi) and
+>>> brcm,bcmbca-hsspi-v1.1 respectively.  This way we don't need to update
+>>> the driver with a new soc specific compatible whenever a new chips comes
+>>> out.
+>>
+>> I don't understand why do you bring it now as an argument. You defined
+>> before that your driver will bind to the generic bcmbca compatible, so
+>> now it is not enough?
+>>
+> No as we are adding chip model specific info here.  The existing driver 
+> spi-bcm63xx-hsspi.c only binds to brcm,bcm6328-hsspi. This driver 
+> supports all the chips with rev1.0 controller so I am using this 6328 
+> string for other chips with v1.0 in the dts patch, which is not ideal.
+
+Why? This is perfectly ideal and usual case. Why changing it?
+
+> Now I have to add more compatible to this driver and for each new chip 
+> with 1.0 in the future if any.
+
+Why you cannot use compatibility with older chipset?
+
+
 Best regards,
-Pin-yen
+Krzysztof
+
