@@ -2,307 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9D3366707C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:08:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF894667086
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:08:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231431AbjALLIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 06:08:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33260 "EHLO
+        id S229863AbjALLIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 06:08:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233625AbjALLHm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:07:42 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A3D3F459
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 02:59:25 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id o1-20020a17090a678100b00219cf69e5f0so23196677pjj.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 02:59:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p5P5P+wFzqWhv9To+AotQSv8QNzSKJhsBhW9yfrH4kw=;
-        b=RbAnO2jONJGVH9nHF4+4yfgfygG87HAzkmrRRixcctP1t7Brz9BdYGwqEp5o9qPrmK
-         8YbtJUTj3RsL61HHCzg99HcpbwWrRaFvNPiujA61+n3LRPoqX9fDtvcJBvkcw89JCOa3
-         YKnGmRdnNTM53EL6N93hsZOvzonezTjc0K1r0=
+        with ESMTP id S230247AbjALLH6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:07:58 -0500
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F18565B0;
+        Thu, 12 Jan 2023 02:59:54 -0800 (PST)
+Received: by mail-qt1-f177.google.com with SMTP id v14so16133436qtq.3;
+        Thu, 12 Jan 2023 02:59:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p5P5P+wFzqWhv9To+AotQSv8QNzSKJhsBhW9yfrH4kw=;
-        b=5xHkhurDMXovE08Tz75s8iUA+9F5R8leQXNtGb/wy49HTsEnSEnCW1p2f6q4LOUuba
-         iE77vf2JzgNeEBCoHtekp6EtTstznPfAPcOaSen3aJb77D2wcGvWDZbvEMfWqpYVncpN
-         2OqDVvTvYMqI4rsH8ENrF0tEml1HWfdGl6tqj9yYu1ihoYHeNtzZBzU4bnjdEuRmb6qw
-         Sg1ZytSq8cnpIfEjYxHHkMJHNzwCEhrZ5ckHDJBLL9ZC6N7Cy/TKURM9dkTmBrLyvHaC
-         Z8PiOY+klsvXNpCYtXGTMrAVQr/glyan44RfPTW2GmnlMks37MgPktdziqYuHZyroj4s
-         l67g==
-X-Gm-Message-State: AFqh2koLDJVNhlU61rpbayFNpIucUqRkjhvX/6lqQq/nMA8Tcv05spNV
-        q0M3h4hN94xfTHyAsaP4qDDaIcxvSEgAXlZx
-X-Google-Smtp-Source: AMrXdXtE3KVWl84chrX0TGdkyjSHw2c/baH/MUMy5fD8tL7hjIdIDw2JHu3iwsBO9VUgYXx5oWcz0Q==
-X-Received: by 2002:a17:902:be05:b0:192:a4e5:ac5f with SMTP id r5-20020a170902be0500b00192a4e5ac5fmr48431556pls.61.1673521164894;
-        Thu, 12 Jan 2023 02:59:24 -0800 (PST)
-Received: from localhost.localdomain ([2401:4900:4cc5:b413:eb81:9f91:b22e:317f])
-        by smtp.gmail.com with ESMTPSA id t5-20020a170902e84500b0017f756563bcsm11986850plg.47.2023.01.12.02.59.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jan 2023 02:59:24 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        FUKAUMI Naoki <naoki@radxa.com>,
-        Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-Subject: [PATCH 3/3] arm64: dts: rockchip: rk3566: Add Radxa Compute Module 3 IO
-Date:   Thu, 12 Jan 2023 16:29:02 +0530
-Message-Id: <20230112105902.192852-3-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230112105902.192852-1-jagan@amarulasolutions.com>
-References: <20230112105902.192852-1-jagan@amarulasolutions.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IH7mi4pHsD5CSZenw/RrhIslHHOi1JF8tLoL2JEA6Vc=;
+        b=nL9lPU7yXFr5+uZoKuDs//ml2yzl8+4enqRp15AYrpxwDqpMhKtHUpJeacpCrEtSLK
+         X8YOCDVa3G2ezpkIpcRuLM5hSJtaK5tyy1MhGZ4fChqdQZ/8FjMzo/FYdWCujVXy+/YJ
+         rLprKmi90ExGGC71FDSGd/BlV5JZCAav743kuPO1lrvXpTjxETbWoujJGyecTaanwzYZ
+         anj2Gk01rxtCiEQIN7INOOsRLpPpDbSE+6tkuHhw/lVEJEomiXlEcg3Y+yrYAnMSqE9Z
+         jw2xgbZJ8Wiu4sk8cmDLvgzsyj/rSP+rtOEwUPKcQgvWA3PN+A7TB1M/o6wbMNpdw8cl
+         ggdQ==
+X-Gm-Message-State: AFqh2koSR8I9uBrkIKH89b3ng6kXs+4eFcZ+HdO84mPqEhlsJD6c8POF
+        uy63RUPSZAWZUsn+kkLTMzJcd1MYPXYfkA==
+X-Google-Smtp-Source: AMrXdXu9HdZJ6phmM124FXJdrCr2psr+QOUKuj2rAgknq355bgdVsIIv4WR/Skfhics5TwDk5okqTA==
+X-Received: by 2002:a05:622a:1f06:b0:3a7:ef75:62c3 with SMTP id ca6-20020a05622a1f0600b003a7ef7562c3mr16081517qtb.44.1673521192946;
+        Thu, 12 Jan 2023 02:59:52 -0800 (PST)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id z13-20020ac875cd000000b003aef9d97465sm4100942qtq.43.2023.01.12.02.59.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 02:59:52 -0800 (PST)
+Received: by mail-yb1-f181.google.com with SMTP id l139so18171057ybl.12;
+        Thu, 12 Jan 2023 02:59:52 -0800 (PST)
+X-Received: by 2002:a25:d84e:0:b0:7b4:6a33:d89f with SMTP id
+ p75-20020a25d84e000000b007b46a33d89fmr1877621ybg.543.1673521192231; Thu, 12
+ Jan 2023 02:59:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <87edt2pxhd.wl-kuninori.morimoto.gx@renesas.com>
+ <CAMuHMdUH-CSmaKuM2HA-5j5cP_c2pygp9DqyQiOC9XkCUuzCKw@mail.gmail.com> <87bkn44ne0.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87bkn44ne0.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 12 Jan 2023 11:59:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXPS5zToCU-C=gQB3n6=OXzmhMdtVGbCn1Vk1GtKSZGwA@mail.gmail.com>
+Message-ID: <CAMuHMdXPS5zToCU-C=gQB3n6=OXzmhMdtVGbCn1Vk1GtKSZGwA@mail.gmail.com>
+Subject: Re: [PATCH 0/8] arm64: dts: renesas: Simple-Card /
+ Audio-Graph-Card/Card2 dts for ULCB/KF
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Radxa Compute Module 3(CM3) IO board an application board from Radxa
-and is compatible with Raspberry Pi CM4 IO form factor.
+Hi Morimoto-san,
 
-Specification:
-- 1x HDMI,
-- 2x MIPI DSI
-- 2x MIPI CSI2
-- 1x eDP
-- 1x PCIe card
-- 2x SATA
-- 2x USB 2.0 Host
-- 1x USB 3.0
-- 1x USB 2.0 OTG
-- Phone jack
-- microSD slot
-- 40-pin GPIO expansion header
-- 12V DC
+On Thu, Jan 12, 2023 at 1:17 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> > What is the difference between "Simple Audio Card", "Audio Graph Card",
+> > and "Audio Graph Card2"?  Why do we need to support all three of them?
+>
+> The answer is because of "history" and "compatibility".
+>
+> "Simple Audio Card" was created before DT support, now it is supporting DT too.
+> But it is for very simple sound connection. It is using own DT style.
+>
+> "Audio Graph Card" is almost same as "Simple Audio Card", but it is
+> using "Of Graph" style. It is needed for HDMI support (= Sound with Video).
+> "Audio Graph Card" was created because it is difficult to keep compatibility
+> for both "Of Graph style" and "own style" on "Simple Audio Card".
+>
+> "Audio Graph Card2" is expand version of "Audio Graph Card",
+> but it is supporting more complex connections.
+> Because of this complex connection, it is difficult to keep compatibility
+> with "Audio Graph Card".
 
-Radxa CM3 needs to mount on top of this IO board in order to create
-complete Radxa CM3 IO board platform.
+So they are different ways (generations) of representing the audio
+topology on the board? Like "operating-points" and "operating-points-v2"
+for cpufreq?
 
-Add support for Radxa CM3 IO Board.
+Hence these are orthogonal to (and independent of) the underlying audio
+hardware in the SoC?
 
-Co-developed-by: FUKAUMI Naoki <naoki@radxa.com>
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-Co-developed-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3566-radxa-cm3-io.dts | 179 ++++++++++++++++++
- 2 files changed, 180 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
+> For normal user case, selecting one of them is very enough.
+> But for me, I need to test all of them, thus I want to switch these easily.
+> And ULCB is good board for testing.
+>
+> Basically, people don't need to care about this patch-set.
+> It separates DT file, but nothing change.
+> It is just easy for testing.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index bf17abe9d12d..77211b79958a 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -74,6 +74,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-radxa-cm3-io.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-blade.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-cm4.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
-new file mode 100644
-index 000000000000..3e6578f27ec0
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
-@@ -0,0 +1,179 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2022 Radxa Limited
-+ * Copyright (c) 2022 Amarula Solutions(India)
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/soc/rockchip,vop2.h>
-+#include "rk3566.dtsi"
-+#include "rk3566-radxa-cm3.dtsi"
-+
-+/ {
-+	model = "Radxa Compute Module 3(CM3) IO Board";
-+	compatible = "radxa,radxa-cm3-io", "radxa,radxa-cm3", "rockchip,rk3566";
-+
-+	aliases {
-+		mmc1 = &sdmmc0;
-+	};
-+
-+	chosen: chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	hdmi-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-1 {
-+			gpios = <&gpio4 RK_PA4 GPIO_ACTIVE_LOW>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_ACTIVITY;
-+			linux,default-trigger = "heartbeat";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pi_nled_activity>;
-+		};
-+	};
-+
-+	vcc5v0_usb30: vcc5v0-usb30-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_usb30";
-+		enable-active-high;
-+		gpio = <&gpio3 RK_PC2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_usb30_en_h>;
-+		regulator-always-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_sys>;
-+	};
-+
-+	vcca1v8_image: vcca1v8-image-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcca1v8_image";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_1v8_p>;
-+	};
-+
-+	vdda0v9_image: vdda0v9-image-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcca0v9_image";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <900000>;
-+		vin-supply = <&vdda_0v9>;
-+	};
-+};
-+
-+&combphy1 {
-+	status = "okay";
-+};
-+
-+&hdmi {
-+	avdd-0v9-supply = <&vdda0v9_image>;
-+	avdd-1v8-supply = <&vcca1v8_image>;
-+	status = "okay";
-+};
-+
-+&hdmi_in {
-+	hdmi_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi>;
-+	};
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&hdmi_sound {
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	leds {
-+		pi_nled_activity: pi-nled-activity {
-+			rockchip,pins = <4 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	sdcard {
-+		sdmmc_pwren: sdmmc-pwren {
-+			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb {
-+		vcc5v0_usb30_en_h: vcc5v0-host-en-h {
-+			rockchip,pins = <3 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&sdmmc0 {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	vqmmc-supply = <&vccio_sd>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det &sdmmc0_pwren>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&usb2phy0_host {
-+	phy-supply = <&vcc5v0_usb30>;
-+	status = "okay";
-+};
-+
-+&usb2phy1_host {
-+	status = "okay";
-+};
-+
-+&usb2phy1_otg {
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_xhci {
-+	status = "okay";
-+};
-+
-+&vop {
-+	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
-+	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi_in_vp0>;
-+	};
-+};
--- 
-2.25.1
+OK. And I guess you intend to use them as examples to point people
+to, too?
 
+> > How come we can have no #sound-dai-cells, #sound-dai-cells = <0>,
+> > and #sound-dai-cells = <1>, for the same hardware?
+> > What is the real difference between Single DAI and Multi DAI?
+> > Why do we need to support both?
+>
+> It is used on "Simple Audio Card".
+> We  need <0> if the board is using SSI x 1,
+> and need <1> if the board is using SSI x N.
+> It is not mandatory if the board is using "Audio Graph Card/Card2".
+
+So #sound-dai-cells should be in the board DTS, and never in the
+SoC .dtsi? Hence it should be moved out of
+arch/arm/boot/dts/{r8a7740,sh73a0}.dtsi and
+arch/arm64/boot/dts/renesas/r9a07g0{43,44,54}.dtsi?
+
+> > > Kuninori Morimoto (8):
+> > >   ARM: dts: renesas: #sound-dai-cells is used when simple-card
+> > >   arm64: dts: renesas: #sound-dai-cells is used when simple-card
+> > >   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card dtsi
+> > >   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card2 dtsi
+> > >   arm64: dts: renesas: add ulcb{-kf} Simple Audio Card dtsi
+> >
+> > The above three all describe the same hardware configuration?
+>
+> Yes, same hardware, but is using different connection style (= driver).
+
+OK.
+
+> > >   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card2 dtsi MIX + TDM Split dtsi
+> > >   arm64: dts: renesas: add ulcb{-kf} Audio Graph Card dtsi MIX + TDM Split dtsi
+> > >   arm64: dts: renesas: add ulcb{-kf} Simple Audio Card MIX + TDM Split dtsi
+> >
+> > Is MIX and TDM Split a different hardware configuration, or software
+> > policy?
+>
+> Same hardware, but different connection (= mixing, split).
+>
+> Hmm, it is difficult to explain via text...
+
+IC, this is more complicated...
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
