@@ -2,104 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFE8A66715C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:56:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8BA466715E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:56:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231948AbjALL4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 06:56:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33856 "EHLO
+        id S235885AbjALL4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 06:56:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbjALLzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:55:38 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0362E08F
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 03:46:31 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id v6so26412940edd.6
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 03:46:31 -0800 (PST)
+        with ESMTP id S230451AbjALLzn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:55:43 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D8713CED
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 03:47:02 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id u19so44042925ejm.8
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 03:47:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=v0wMg8B+r7Uh0cXEXrMRR61VwVmslR4aMO0Co5YCjg4=;
-        b=jfW0ER6XAvO3XpL5d0jBIwp9w5hHbxKvWUQpMOrrIVtgvEv2y6Deb3b31gYIbqA7Lc
-         0uvaFYiNtNHcoMpCk81Y6NR+ZGRtP0ugQnW9W7LzWfHBICUZEQFEtlHgMw01QzMcZSR7
-         ni3MPC4z4QmjvaurSdSs1tL0k9st6RJ5zN8YDrSiSsjTKD3xRTvJ9byZPBecQvDe6rj+
-         WNrXXg7NKXTWfDYFwZED1N+usQaDDy/EZL2Mz7I5vovd/8SYbd3OIda9pl6ULDs469C8
-         PVZ1h4SU+ZEbUuy8H+8b13oeRb44gnCtafU0GLU2BDRbjFF9+3rKIY7EBPajzFUAw8cO
-         xOpw==
+        bh=jGzW9qZAMmN/tdzXE4FhYbEHcPw2BPw4NCydtP4EU0w=;
+        b=XaLu2HmBDvDPgdtpjyDbPohywbzh0GFCxW5YovIUzapa+l0Fp0Vfs9alrzQMkzrwRR
+         HWaxpDMUeQsZGkCCKjSNW5KXwZskSF75U28X6UmODYV61tr09qFGC50JCFSVdu19YpZS
+         LQHB1iKZxIwL3gx15FHXrq3oiERlOPMDfTby4tn+vQDZIGhOALCweZMuASjqNTfyg+AV
+         XLbr7jMLBaTyYI0kvsroppJMkLFRHnPLYYnBx/pHlQ6ifSn9hiReYHHj9slSzYuLWGC2
+         bZAGCs5A1B6wAmRpzkhjTGjYYKUzVF1heoaWEjbv2+ybR2ERX05VlwPA2VsRW4Tm6xBX
+         hekA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v0wMg8B+r7Uh0cXEXrMRR61VwVmslR4aMO0Co5YCjg4=;
-        b=R9T8TbMvRN2CwwdG0kh2XPlsFyT/9XAcoqMZdjDL1Ixprrm69XFh9I6XDgVqI/P8Kp
-         hmmJXjexh7ahMAJ5A85Y6H+iKhlLVLEUK106rDqTTgHLRQwgvqID/aeaetjM3qmRWAFk
-         rDnBPPhRW0mj61RNWJHy0+PSMQWlwsT2A9UC+2yI44/H2Nm+NvlOU+yw7aXJSqLqQog3
-         wu0M9ZtRxi6zi8KYs3n+NruZV4+xFRdB+rLNKeg02ewl7tnoiek8zE27VH71dVMcSRb0
-         at7ZoxGMcsbWPhbZ1u2m15Yg5MHWpGkSpv7QjNGj+D6xDOnGdWLFyTpFZzWwHHWl6oZL
-         aY8A==
-X-Gm-Message-State: AFqh2krkWYytrZN/hXAKBWjuZ1pqQPWbRaRb7bXvM8Vcm/2ULo7Bn4bt
-        AxUcW+so+TVrwu9qKvWqhMAPkw==
-X-Google-Smtp-Source: AMrXdXtSbLH+vPTwFa7s5QFzuqgmjnm09Vumds9TuMIKXzbtvRe1pyrQK2tDi1jhB1ftncECuNBnFQ==
-X-Received: by 2002:a50:ef12:0:b0:499:c516:fc41 with SMTP id m18-20020a50ef12000000b00499c516fc41mr8248842eds.36.1673523990236;
-        Thu, 12 Jan 2023 03:46:30 -0800 (PST)
+        bh=jGzW9qZAMmN/tdzXE4FhYbEHcPw2BPw4NCydtP4EU0w=;
+        b=xbymYoariUXnSckSAiLhlFYUFuA9DVtEAXrrvrlDdH8KyWHVCyz+UtvzqkP6Dm87pf
+         ILPEsRrQvwYDqzrKenJIcWeoK2sDFDRu9oZf5gWjjXhVSovT+vk3nFko2HZISh+C7126
+         CSWIQ73zVxmjnDmgmtth0vhA41rX8V5ZZRY8yfBQMhOYYCWGqpiHx+erNsgbOddkOEwY
+         nuoNbKiNSHioGSNZMHIvOIisbU/ZlN5vijPtEI8qta+O/BN7Voin+n6hMcoAgbp7sYPC
+         znLwd6GdRyIm8v/1X8Lv8oUogy2dA/FjQXCcS9qg+zHxz3lVBAhcA+9E1r6Kv5i9YA4w
+         w3cA==
+X-Gm-Message-State: AFqh2kp0Und2W+wechRdcnv9clWF98xGcS1uj0IFpApJJGhczW/KNXz6
+        CYMgmmRR44OWHjsKS1AM5F9KIQ==
+X-Google-Smtp-Source: AMrXdXvqJlbOHNjFyRPqs9jJrJ++oOLs5Q0r93Y05LLCG2Jre98CkWLV5dXmR9PphMfYaxDGQ2AUQg==
+X-Received: by 2002:a17:907:6f13:b0:819:2756:e090 with SMTP id sy19-20020a1709076f1300b008192756e090mr60800322ejc.50.1673524020590;
+        Thu, 12 Jan 2023 03:47:00 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w1-20020aa7dcc1000000b0047a3a407b49sm7107913edu.43.2023.01.12.03.46.28
+        by smtp.gmail.com with ESMTPSA id c6-20020a056402100600b0046b471596e6sm7083713edu.57.2023.01.12.03.46.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 03:46:29 -0800 (PST)
-Message-ID: <3985f697-d363-0f1f-0b4f-bc5e9e2b7b34@linaro.org>
-Date:   Thu, 12 Jan 2023 12:46:28 +0100
+        Thu, 12 Jan 2023 03:47:00 -0800 (PST)
+Message-ID: <10707618-2f82-8ecc-067b-ff839e0dad30@linaro.org>
+Date:   Thu, 12 Jan 2023 12:46:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 02/10] ARM: dts: stm32: add vrefint calibration on
- stm32mp15
+Subject: Re: [PATCH 1/5] dt-bindings: clock: qcom,msm8996-cbf: Describe the
+ MSM8996 CBF clock controller
 Content-Language: en-US
-To:     Olivier Moysan <olivier.moysan@foss.st.com>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230112104446.1140551-1-olivier.moysan@foss.st.com>
- <20230112104446.1140551-3-olivier.moysan@foss.st.com>
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230111195754.2593134-1-dmitry.baryshkov@linaro.org>
+ <20230111195754.2593134-2-dmitry.baryshkov@linaro.org>
+ <a0f77ba9-5d39-7253-dc83-1b5ac0a43adf@linaro.org>
+ <6cccd502-3514-df72-ddea-1396ca6c5c76@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230112104446.1140551-3-olivier.moysan@foss.st.com>
+In-Reply-To: <6cccd502-3514-df72-ddea-1396ca6c5c76@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/01/2023 11:44, Olivier Moysan wrote:
-> Describe vrefint calibration cell to be retrieved through bsec.
+On 12/01/2023 10:47, Dmitry Baryshkov wrote:
+> On 12/01/2023 10:40, Krzysztof Kozlowski wrote:
+>> On 11/01/2023 20:57, Dmitry Baryshkov wrote:
+>>> MSM8996 Core Bus Fabric (CBF) clock controller clocks an interconnect
+>>> between two CPU clusters. The CBF clock should follow the CPU
+>>> frequencies to provide enough bandwidth between clusters. Thus a single
+>>> driver implements both a clock and an interconnect to set the clock
+>>> rate.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>   .../bindings/clock/qcom,msm8996-cbf.yaml      | 53 +++++++++++++++++++
+>>>   1 file changed, 53 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,msm8996-cbf.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/clock/qcom,msm8996-cbf.yaml b/Documentation/devicetree/bindings/clock/qcom,msm8996-cbf.yaml
+>>> new file mode 100644
+>>> index 000000000000..2080e1743b2e
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/clock/qcom,msm8996-cbf.yaml
+>>> @@ -0,0 +1,53 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only
+>>
+>> Dual license, please.
 > 
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> ---
->  arch/arm/boot/dts/stm32mp151.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-> index dea1c53f2b1d..eec5e9992bff 100644
-> --- a/arch/arm/boot/dts/stm32mp151.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
-> @@ -1632,6 +1632,9 @@ bsec: efuse@5c005000 {
->  			reg = <0x5c005000 0x400>;
->  			#address-cells = <1>;
->  			#size-cells = <1>;
-> +			vrefint: vrefin_cal@52 {
+> Ack, I'll fix it for v2. Do you have any other comments for the file itself?
 
-No underscores in node names.
-
+No, rest look good.
 
 Best regards,
 Krzysztof
