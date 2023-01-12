@@ -2,114 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3A1866772A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 15:40:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D694667776
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 15:43:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239801AbjALOk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 09:40:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33038 "EHLO
+        id S238794AbjALOnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 09:43:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238664AbjALOjt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 09:39:49 -0500
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 876B853701;
-        Thu, 12 Jan 2023 06:29:34 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 2C5D0320097C;
-        Thu, 12 Jan 2023 09:29:33 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 12 Jan 2023 09:29:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1673533772; x=1673620172; bh=AhjbbWm8r+
-        Pw4BQBEtEyFPfrXz0EzGlo++1xsl3ewec=; b=S7WnE5qnpG6GUsRr7LUFNqHKbg
-        7HK10LzSf0SlJqdBvA2m6B0MqCERAzJHqFCnnbSryhvnYMsBDoj22WSxVwKfCiTf
-        1l5gKwsF1CPnQ0qlTRRj6IFPkG9rMcUTLrxC+3AkVBnwmGJZShp8/Sdlw0tQtW1v
-        RzBz0XeO8lAmkYIxqlKQ6jWB+lkcBCp1Y/Fp0f1ILQ1DW8LJoUbpz+Ql9qONrriB
-        6fDPmMt2n9It7YkTG8vUiiSkM9DZUvRZny26E3HKGNfHwG4AJE15uu9n3Ts/yDuz
-        1u1qbry2g+MdBM6SwsY1GcsEEgkzMdGERrdNsqo5BDoG3Kyd+drpcTn1P7Ag==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1673533772; x=1673620172; bh=AhjbbWm8r+Pw4BQBEtEyFPfrXz0E
-        zGlo++1xsl3ewec=; b=iC3mvF6Ntfdvnv/henI2GNUtYvh9Mq5M94nC2lBq3Ipt
-        h4W/W4kwovxVS9kcQvE0Ke2dB+G+MxJMBFVH0vvDlBRl4j2bUF0t+E+RTDl8hoEB
-        UpW7xclTDsQk8QB7z7bZCwSOT71aTRg4mEfGCccm4i/ynG1Jggn46BxXJEqwsB8O
-        RbnxMjkAIEtrvppkEavRE/S8q4GrWE5uOFQ6au2Dzuvhrkz3Ap3Lk3JZ6t55k1bD
-        WDCc3Fygam36uLYsL0EyAAiPVIIyVO0isGnmej0oH3iP2dS33ifePdt5aRrzSYHe
-        BB+KLrNbXsQg0XfdQJdwGqDhPnE1Tlp6LRT0Ur8oRw==
-X-ME-Sender: <xms:TBnAYwBvPQBCQzgpWyGVBQ2vM8WM32xxXG5lFzUmeiEsDnd7Dim78A>
-    <xme:TBnAYyhf2OeVwaUAVgnzUM0B_Ob4ZAVSGjJqhYtuOi8Es8YrktOJjwB2Bykcnxw1b
-    IFeS7mpFdpW-N0wuHw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrleeigdeihecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:TBnAYznM3nwi7kT9G9wjzPs7Qoov7IIUvTwYxOaxlJRZpgt6_dBbaA>
-    <xmx:TBnAY2yWx01JLM1NYFAAOmMna6TzpWGj6bZ1MzTNWMEbSCEldMC7aA>
-    <xmx:TBnAY1TY8_7botTyu5J2oLw9k07p4BzV_h7tzdKWHGI7xbOvxua79g>
-    <xmx:TBnAY6InEbqIfwU6muYiODHMeiqlT7mtKzzU4968LebyMY0Mr9SAIg>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 8E865B60086; Thu, 12 Jan 2023 09:29:32 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
-Mime-Version: 1.0
-Message-Id: <8171f4a5-d5ec-43e3-a6df-5a3965c87479@app.fastmail.com>
-In-Reply-To: <20230103213844.GA216540@roeck-us.net>
-References: <20230103203654.59322-1-nick.hawkins@hpe.com>
- <20230103203654.59322-5-nick.hawkins@hpe.com>
- <20230103213844.GA216540@roeck-us.net>
-Date:   Thu, 12 Jan 2023 15:29:10 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Guenter Roeck" <linux@roeck-us.net>,
-        "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "Jean Delvare" <jdelvare@suse.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        "Russell King" <linux@armlinux.org.uk>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 4/5] ARM: multi_v7_defconfig: Add GXP Fan and SPI support
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S239791AbjALOnG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 09:43:06 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E341C544E1
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:32:28 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id v6so2201747ejg.6
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:32:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X6uMjJS/3NnDxO/SMA/w1sCCelcrWohvr5VsLfwhgYU=;
+        b=mA7vp0A3H9QLTwxyxBiSUUJrToUQsdD3hA4dGO+UWGtE2Qz/yTR9suwEI+4Pnf8Bk/
+         BSqv+CJKZj4FSkX1ttLb+Bg8f7fw6qbTJawcj5/af+TbuK5U5Lwcg1xfvEpKw6NoRxjK
+         GWTZbkLsEVGcO7K4hN0jyhU89xsbhAN5LCd2piTvzt497Wf6NC+7/6xab+9iyKsq6ZMz
+         /DorbILM7fePxjSwd23rhthjDEdZfflfpgMO6pNqjx1+51W1dA+X8Z8D24G8kKdIfLw8
+         /eWcW7F6D9yDiRroZanlU5vgywk3XoLM8ifoW5kxZmTTnUfm3DEP9kuHFD/mzeKakBcK
+         rTLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X6uMjJS/3NnDxO/SMA/w1sCCelcrWohvr5VsLfwhgYU=;
+        b=jtnjZpI9fCF//otCpSeTlrgajSKIIFWHAOFP4dhfZE7kv0RZoSXXcBf5wF4ZFh999b
+         5ZsVQ/iRgObYLzDuloO9yV8QM7DrSpDCIBUpB03YxqKxEDAOELpbCshwN49Y+czPHNV/
+         HKhow/La8kNhH5KZj+U3NM+ImMlUng1rgxXXpH5H0eZZjEXX8g6JpHPiRcQSP9DuP7Mc
+         k29SLKNj6YJmtqHT/udG7BA33PI0PvzBPgLXXW1UtUcDiUSRCwyuRQUDXaLEXsceW1S6
+         xp7jz4mhITuRonkNSGVK0M/pHkRLaHHHb+fceYMmEom9+tWyoT9DLGj7eKipm1Et0S9t
+         bUDw==
+X-Gm-Message-State: AFqh2koC2HS59WjyOHQgf8pL9yWGvM0QCFRR6QuSSjrgE6lYJr4Ayc1Y
+        9P9kHMOo8rduYoYZpwKAP/cQsw==
+X-Google-Smtp-Source: AMrXdXsqW8Cd/27xRzj7BYpHe/IRGl8aYcmOsGdFJkLK0wcL6QXh4jaHkK6atMgaLVH69Eft9ugnag==
+X-Received: by 2002:a17:906:e11a:b0:84d:13ac:2fd4 with SMTP id gj26-20020a170906e11a00b0084d13ac2fd4mr22014886ejb.17.1673533947444;
+        Thu, 12 Jan 2023 06:32:27 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id m24-20020a1709066d1800b0084d4b8f5889sm4623834ejr.102.2023.01.12.06.32.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 06:32:26 -0800 (PST)
+Message-ID: <a6823408-a7c0-9e27-45e5-50305aedb8db@linaro.org>
+Date:   Thu, 12 Jan 2023 15:32:25 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 1/6] dt-bindings: phy: Add QMP UFS PHY comptible for
+ SM8550
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20230112130542.1399921-1-abel.vesa@linaro.org>
+ <20230112130542.1399921-2-abel.vesa@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230112130542.1399921-2-abel.vesa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 3, 2023, at 22:38, Guenter Roeck wrote:
-> On Tue, Jan 03, 2023 at 02:36:53PM -0600, nick.hawkins@hpe.com wrote:
->> From: Nick Hawkins <nick.hawkins@hpe.com>
->> 
->> In order for HPE platforms to be supported by linux on GXP it is
->> necessary for there to be fan and spi driver support. There fan driver
->> can support up to 16 fans that are driven by pwm through the CPLD. The
->> SPI driver supports access to the core flash and bios part. The SPI
->> driver spi-gxp was added previously to linux.
->> 
->> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
->
-> Acked-by: Guenter Roeck <linux@roeck-us.net>
->
-> This patch will have to be applied through the arm tree.
->
+On 12/01/2023 14:05, Abel Vesa wrote:
+> Document the QMP UFS PHY compatible for SM8550.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-The patch looks good to me, please send it to soc@kernel.org
-(Cc the interested parties and lists) for inclusion, I'll
-pick it up from there.
 
-     Arnd
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
