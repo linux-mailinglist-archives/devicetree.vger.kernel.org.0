@@ -2,395 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82D2C666AF8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 06:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 086C4666B75
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 08:16:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238603AbjALFur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 00:50:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57968 "EHLO
+        id S231268AbjALHPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 02:15:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236736AbjALFuY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 00:50:24 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3613496DC
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 21:50:13 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id y25so26872857lfa.9
-        for <devicetree@vger.kernel.org>; Wed, 11 Jan 2023 21:50:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lGcnxSvWxRWSn9PS7ZT4pBpd8udr62wROyikBYb2lg8=;
-        b=pgCckdgUYOyzn4nBv4xRCD62BFDENk27wHATkQXP+fubiRlgLBZ3504Ir7XhJdCDEA
-         VoUZJ3QL7KEW2PzVRcHyNK0Wdm/XaK2SreTYuQuAX0x+Ejc61J9glxeAK+sj+X8Bm+pe
-         brWS4ZUnE9XAfufpbnONk6cPmb+FqkzeSHj4N517yv2hdHTCl/8794c4G4y6A9dy9eyZ
-         qGmFoqkUdyA8yjThsg6eSwa0XtOgS7NclSWy5xN0+O/8zfAEJ8FIhdFWEiushQasj6c3
-         si3ZknI6mZc6cwqGGIoGMn+KV/riJPlA+Sn8axTgIn6JKkay+SPLvDGJS/76MIUpWX4R
-         gKJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lGcnxSvWxRWSn9PS7ZT4pBpd8udr62wROyikBYb2lg8=;
-        b=EI3E59z5jj5HGS51+1+dSsw7XEuNG7pelE70hdDM7dqrUZ8z4ZsrrWgwSExemkZQPc
-         ugLnioC0GCqOiRpkotruIEsjg8tEMPH5Icrd/VZWoq7Py9TfMPMyWy3vu95pgFa3geo4
-         m8oiBL6S1Rlw3iE+Wxbotzu7YOLP8JEG/eLYItlOhXQ6P1ZyIVUXaCqahEf/TAyLJRBe
-         TUzKD5ToBtok2NAU2mdnGpuZJ9rR2elAMxjFHMhGtGXz+Gqd1J5sU4gJIY8najLChDTj
-         ZHHQ2LZeYBa8I1E9RH5s2nor4lBlybK6HkbP/tzzxNmuP2frns0E1LTyTKQ3plcCr6CH
-         5JxQ==
-X-Gm-Message-State: AFqh2kpeY4tzZLYLMDqrpCi8sDn7aw3gb2tLp6pGjLNFSXtCA8z3dRpJ
-        2F7FdT/BWkSAVjqna3Y/2GDy8g==
-X-Google-Smtp-Source: AMrXdXs7D+NmoaqyDhYbSynRH192jtp+5AkzETCjN7fr8RvPNHj/9cpzhaK2bKTBHNW1bnene3ek8Q==
-X-Received: by 2002:a05:6512:1281:b0:4cc:8682:ec65 with SMTP id u1-20020a056512128100b004cc8682ec65mr4287026lfs.39.1673502612152;
-        Wed, 11 Jan 2023 21:50:12 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id f14-20020a0565123b0e00b004b7033da2d7sm3105024lfv.128.2023.01.11.21.50.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Jan 2023 21:50:11 -0800 (PST)
-Message-ID: <ca54d156-b38f-677e-2f48-8146323014b3@linaro.org>
-Date:   Thu, 12 Jan 2023 07:50:10 +0200
+        with ESMTP id S236510AbjALHPw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 02:15:52 -0500
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2078.outbound.protection.outlook.com [40.107.93.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCE64E412;
+        Wed, 11 Jan 2023 23:15:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TxC2TCNernmriu2nO/N6e/NrrFLIMEKzSOThM0gXoQA/T3nK2TR7XPuRsCOZsV/+oHvhXDHJrLlO3Rs4MvB3I5coAJUQXP5M/68qgqo4dSLwY+z9X10u8aaJTgZ8oYTEd/hRrDkMI4E8JZmKG28+eRTtDrZLin42AdUjs/ZXtT+uos84lj5fLkFiTYJAw/YLNhbOKVvyRG4aWwCycjPA/0RZVQwtCy3tgu3sjBc/pvzEXKyWuxUFGlGehs5gfMskcnIsfbFcct9I4+4EIQgYeMfk5Fkj2JR7dPJE+r9kiqwIqCsYcld2C5zDFs5k3D0e/QWwR4w3H+nH+8kQGrL8Qw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FE6qfLuUmgdS4MhAHMMaadXN3dTiWP3zF+by2ssRUC8=;
+ b=b62GwJNqmexoSetslnF2CqCHLBPpWCaolPZC6bHVs6ygu+fd2aQaNp4MzT4OUdzWOf9hgcMKGx5OvxZoXxnWiPAlzanCb+zoh02h72Qz1WYkeIjmorPoaLk0UsG1ND0tg5A1fqPkLWFL6BPbAopr30zmetplVVP397FCmmya/rJsnvQleJefXNCAbl9MZe2jBW25F+DQQRQdNoqdPBXTREkjARpghKSjfowF1aRuJljU2/iLQu4iuc6EXhBwcj20Zbypouw3VO81jj3JiHZQPA68REpEzp6ZIjRCz8wrLS6SWewvG+JC+JF3pazZm0JC0O7IWAI70QhcObM5NoKwJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FE6qfLuUmgdS4MhAHMMaadXN3dTiWP3zF+by2ssRUC8=;
+ b=2gttp5o4WAL3m3ZJ1q5pLXWWe/mL2P7iGT73+Roouou8Acv9AtTZ1aQwpyGK8zbs+O/ZeydEzXx6dLz9iiECs+WLBMx1MVqARvlYX0+TMCRw6JI4wO42aDyIfG1bd4uCCf2rdc3OXvjaiOYXC8N3u4mCKbb8lyhnQGov4hZwlXc=
+Received: from BN0PR04CA0033.namprd04.prod.outlook.com (2603:10b6:408:e8::8)
+ by BL3PR12MB6404.namprd12.prod.outlook.com (2603:10b6:208:3b4::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Thu, 12 Jan
+ 2023 07:15:44 +0000
+Received: from BN8NAM11FT083.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e8:cafe::f) by BN0PR04CA0033.outlook.office365.com
+ (2603:10b6:408:e8::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13 via Frontend
+ Transport; Thu, 12 Jan 2023 07:15:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT083.mail.protection.outlook.com (10.13.177.75) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6002.13 via Frontend Transport; Thu, 12 Jan 2023 07:15:44 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 12 Jan
+ 2023 01:15:44 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 11 Jan
+ 2023 23:15:43 -0800
+Received: from xhdmubinusm40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Thu, 12 Jan 2023 01:15:40 -0600
+From:   Mubin Sayyed <mubin.sayyed@amd.com>
+To:     <robh+dt@kernel.org>, <treding@nvidia.com>,
+        <u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <linux-kernel@vger.kernel.org>, <git@amd.com>,
+        <michal.simek@amd.com>, <siva.durga.prasad.paladugu@amd.com>,
+        <mubin10@gmail.com>, Mubin Sayyed <mubin.sayyed@amd.com>
+Subject: [LINUX PATCH 0/3] Add initial support for TTC PWM driver
+Date:   Thu, 12 Jan 2023 12:45:23 +0530
+Message-ID: <20230112071526.3035949-1-mubin.sayyed@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v10 3/9] drm/display: Add Type-C switch helpers
-Content-Language: en-GB
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
-        Xin Ji <xji@analogixsemi.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
-        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Imre Deak <imre.deak@intel.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Kees Cook <keescook@chromium.org>,
-        =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
-        shaomin Deng <dengshaomin@cdjrlc.com>
-References: <20230112042104.4107253-1-treapking@chromium.org>
- <20230112042104.4107253-4-treapking@chromium.org>
- <ccea730e-c5cb-4225-8d1e-97a0a7cb2e34@linaro.org>
- <CAEXTbpek=5xqo2j0yKkC90+Oy1rXWQLJWu3X6vx6y-SqvxTvnA@mail.gmail.com>
- <e98a42d5-b97a-5482-1bad-478c234444ce@linaro.org>
- <CAEXTbpfrZCD-53wx2RaboH4rYPF7qm7TrhxyN80k++CZ2UqTKA@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAEXTbpfrZCD-53wx2RaboH4rYPF7qm7TrhxyN80k++CZ2UqTKA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT083:EE_|BL3PR12MB6404:EE_
+X-MS-Office365-Filtering-Correlation-Id: 052cf7f7-684e-48a3-b44f-08daf46cd24b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: tPFR1yVZknG9ldt/Zg1EmY+HHJQ2gNXs4LBseNk6nWZmrxbzdLYfrlEXUjgfYo2aLRsWyOKxWSDABMFoJxa16cf9RgwRh+ayOKWg9RIuXTBonuYtde2liuGbLgqZDRfxyh4XlCXeum3hrn1V/rqKaxlTJc2dOLDmcTBG/zNYJlKnvjgezMI/9QLLkdgoBN9O6KrcXvQhTt3c0PZBZ0F7wB1yDtdorJFMF8675xl4xFeH8TBOdbzuE+XupZwDNfMy+zpZM7Dmh82zfF4zGF2ZqQmmgpnb3lWpZtGnc7hRqXBJIx8eiJxNrRU5NmalVMr9gt5LEDAekXnWF/TDAMl0550LOt8/Vp5vZpFqKKzTf4jXKzTgK0P5dEYsaqSeohhmmdqZZfIS2qIEM3n+jXVZGj+5E79EAcfkbZmiLh3BmogHHAZ9a9oEYrryqaoBz4L9DKbk4UsI/3LKycSqPBrp4rUWethE86JP+P4DPLhrBAUc7qx50U1OuFKNPiU/xogbryLJ3Jm9USHOeJO4TcjEQC3zdSJbkRcvnNlUun7WVxDL596QxD9u2VNKv+hd3gcBnT5z9yf5+3YmA/nb2vbRl0qcAUvu8VowfcO3w+zbbQ6A2uX7BWK2+XrJraAiddAfn4UtEIO7U5X/P0xeNldcEYcWF1+9aM6TNm5zmXgIvmXZRXGEB4brw6JPk9aOuWcWHi3uxChnal/Dr+HgsBgnBl6gHe64I/2d4dSOoRIdFKw=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(39860400002)(376002)(396003)(451199015)(40470700004)(46966006)(36840700001)(36756003)(40480700001)(54906003)(316002)(86362001)(110136005)(44832011)(2906002)(6666004)(478600001)(8676002)(41300700001)(70586007)(70206006)(4326008)(8936002)(82740400003)(5660300002)(356005)(81166007)(2616005)(4744005)(36860700001)(1076003)(40460700003)(26005)(336012)(186003)(47076005)(83380400001)(426003)(82310400005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2023 07:15:44.7699
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 052cf7f7-684e-48a3-b44f-08daf46cd24b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT083.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6404
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/01/2023 07:48, Pin-yen Lin wrote:
-> On Thu, Jan 12, 2023 at 1:24 PM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
->>
->> On 12/01/2023 07:19, Pin-yen Lin wrote:
->>> Hi Dmitry,
->>>
->>> Thanks for the review.
->>>
->>> On Thu, Jan 12, 2023 at 12:40 PM Dmitry Baryshkov
->>> <dmitry.baryshkov@linaro.org> wrote:
->>>>
->>>> On 12/01/2023 06:20, Pin-yen Lin wrote:
->>>>> Add helpers to register and unregister Type-C "switches" for bridges
->>>>> capable of switching their output between two downstream devices.
->>>>>
->>>>> The helper registers USB Type-C mode switches when the "mode-switch"
->>>>> and the "data-lanes" properties are available in Device Tree.
->>>>>
->>>>> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
->>>>> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
->>>>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
->>>>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>>>
->>>>> ---
->>>>>
->>>>> Changes in v10:
->>>>> - Collected Reviewed-by and Tested-by tags
->>>>> - Replaced "void *" with "typec_mux_set_fn_t" for mux_set callbacks
->>>>> - Print out the node name when errors on parsing DT
->>>>> - Use dev_dbg instead of dev_warn when no Type-C switch nodes available
->>>>> - Made the return path of drm_dp_register_mode_switch clearer
->>>>>
->>>>> Changes in v8:
->>>>> - Fixed the build issue when CONFIG_TYPEC=m
->>>>> - Fixed some style issues
->>>>>
->>>>> Changes in v7:
->>>>> - Extracted the common codes to a helper function
->>>>> - New in v7
->>>>>
->>>>>     drivers/gpu/drm/display/drm_dp_helper.c | 134 ++++++++++++++++++++++++
->>>>>     include/drm/display/drm_dp_helper.h     |  17 +++
->>>>>     2 files changed, 151 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
->>>>> index 16565a0a5da6..a2ec40a621cb 100644
->>>>> --- a/drivers/gpu/drm/display/drm_dp_helper.c
->>>>> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
->>>>> @@ -30,11 +30,13 @@
->>>>>     #include <linux/sched.h>
->>>>>     #include <linux/seq_file.h>
->>>>>     #include <linux/string_helpers.h>
->>>>> +#include <linux/usb/typec_mux.h>
->>>>>     #include <linux/dynamic_debug.h>
->>>>>
->>>>>     #include <drm/display/drm_dp_helper.h>
->>>>>     #include <drm/display/drm_dp_mst_helper.h>
->>>>>     #include <drm/drm_edid.h>
->>>>> +#include <drm/drm_of.h>
->>>>>     #include <drm/drm_print.h>
->>>>>     #include <drm/drm_vblank.h>
->>>>>     #include <drm/drm_panel.h>
->>>>> @@ -3891,3 +3893,135 @@ int drm_panel_dp_aux_backlight(struct drm_panel *panel, struct drm_dp_aux *aux)
->>>>>     EXPORT_SYMBOL(drm_panel_dp_aux_backlight);
->>>>>
->>>>>     #endif
->>>>> +
->>>>> +#if IS_REACHABLE(CONFIG_TYPEC)
->>>>> +static int drm_dp_register_mode_switch(struct device *dev, struct device_node *node,
->>>>> +                                    struct drm_dp_typec_switch_desc *switch_desc,
->>>>> +                                    void *data, typec_mux_set_fn_t mux_set)
->>>>> +{
->>>>> +     struct drm_dp_typec_port_data *port_data;
->>>>> +     struct typec_mux_desc mux_desc = {};
->>>>> +     char name[32];
->>>>> +     u32 dp_lanes[2];
->>>>> +     int ret, num_lanes, port_num = -1;
->>>>> +
->>>>> +     num_lanes = drm_of_get_data_lanes_count(node, 0, 2);
->>>>
->>>> 2 looks incorrect. IIRC DP altmode can support up to 4 lanes.
->>>
->>> This function is implemented for 4-lane DP bridges to switch its
->>> outputs between 2 downstreams. So, I assume that there will only be at
->>> most 2 lanes for each downstream. I don't think a 4-lane downstream
->>> makes sense for mode switches unless we want to support bridges with
->>> more than 4 lanes.
->>
->> Yes. However by using 4 here you'd make the helper generic and cover
->> both your case and the generic case. We don't need this for the msm case
->> (since the mux is handled by the PHY). But if not for the PHY, I'd have
->> used such helper (with max_lanes = 4).
->>
-> I wonder if simply using 4 here really makes it more generic here.
-> This function assumes the mapping between "data-lanes" and the port
-> number (e.g., 0/1 --> port 0) and hard-coded the way to parse the
-> property.
-> 
-> Is it better to use "reg" instead of "data-lanes" to determine the
-> port number? The drivers can still read the DT node to get the
-> "data-lanes" property if they want to do some fancy stuffs around
-> that.
+Adds initial TTC PWM driver. New driver would use same compatible string
+as that of drivers/clocksource/timer-cadence-ttc.c.
 
-Yes, I admit, this sounds more logical.
+Specific TTC device would be identified as clocksource/clockeven or PWM
+device based on the pwm-cells poperty. Clocksource TTC driver checks
+for pwm-cells property, if found, it just returns without acting on it.
 
->>>>
->>>>> +     if (num_lanes <= 0) {
->>>>> +             dev_err(dev, "Error on getting data lanes count from %s: %d\n",
->>>>> +                     node->name, num_lanes);
->>>>> +             return num_lanes;
->>>>> +     }
->>>>> +
->>>>> +     ret = of_property_read_u32_array(node, "data-lanes", dp_lanes, num_lanes);
->>>>> +     if (ret) {
->>>>> +             dev_err(dev, "Failed to read the data-lanes variable from %s: %d\n",
->>>>> +                     node->name, ret);
->>>>> +             return ret;
->>>>> +     }
->>>>> +
->>>>> +     port_num = dp_lanes[0] / 2;
->>>>> +
->>>>> +     port_data = &switch_desc->typec_ports[port_num];
->>>>> +     port_data->data = data;
->>>>> +     mux_desc.fwnode = &node->fwnode;
->>>>> +     mux_desc.drvdata = port_data;
->>>>> +     snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
->>>>> +     mux_desc.name = name;
->>>>> +     mux_desc.set = mux_set;
->>>>> +
->>>>> +     port_data->typec_mux = typec_mux_register(dev, &mux_desc);
->>>>> +     if (IS_ERR(port_data->typec_mux)) {
->>>>> +             ret = PTR_ERR(port_data->typec_mux);
->>>>> +             dev_err(dev, "Mode switch register for port %d failed: %d\n",
->>>>> +                     port_num, ret);
->>>>> +
->>>>> +             return ret;
->>>>> +     }
->>>>> +
->>>>> +     return 0;
->>>>> +}
->>>>> +
->>>>> +/**
->>>>> + * drm_dp_register_typec_switches() - register Type-C switches
->>>>> + * @dev: Device that registers Type-C switches
->>>>> + * @port: Device node for the switch
->>>>> + * @switch_desc: A Type-C switch descriptor
->>>>> + * @data: Private data for the switches
->>>>> + * @mux_set: Callback function for typec_mux_set
->>>>> + *
->>>>> + * This function registers USB Type-C switches for DP bridges that can switch
->>>>> + * the output signal between their output pins.
->>>>> + *
->>>>> + * Currently only mode switches are implemented, and the function assumes the
->>>>> + * given @port device node has endpoints with "mode-switch" property.
->>>>> + * Register the endpoint as port 0 if the "data-lanes" property falls in 0/1,
->>>>> + * and register it as port 1 if "data-lanes" falls in 2/3.
->>>>> + */
->>>>> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
->>>>> +                                struct drm_dp_typec_switch_desc *switch_desc,
->>>>> +                                void *data, typec_mux_set_fn_t mux_set)
->>>>> +{
->>>>> +     struct device_node *sw;
->>>>> +     int ret;
->>>>> +
->>>>> +     for_each_child_of_node(port, sw) {
->>>>> +             if (of_property_read_bool(sw, "mode-switch"))
->>>>> +                     switch_desc->num_typec_switches++;
->>>>> +     }
->>>>> +
->>>>> +     if (!switch_desc->num_typec_switches) {
->>>>> +             dev_dbg(dev, "No Type-C switches node found\n");
->>>>> +             return 0;
->>>>> +     }
->>>>> +
->>>>> +     switch_desc->typec_ports = devm_kcalloc(
->>>>> +             dev, switch_desc->num_typec_switches,
->>>>> +             sizeof(struct drm_dp_typec_port_data), GFP_KERNEL);
->>>>> +
->>>>> +     if (!switch_desc->typec_ports)
->>>>> +             return -ENOMEM;
->>>>> +
->>>>> +     /* Register switches for each connector. */
->>>>> +     for_each_child_of_node(port, sw) {
->>>>> +             if (!of_property_read_bool(sw, "mode-switch"))
->>>>> +                     continue;
->>>>> +             ret = drm_dp_register_mode_switch(dev, sw, switch_desc, data, mux_set);
->>>>> +             if (ret)
->>>>> +                     goto err_unregister_typec_switches;
->>>>> +     }
->>>>> +
->>>>> +     return 0;
->>>>> +
->>>>> +err_unregister_typec_switches:
->>>>> +     of_node_put(sw);
->>>>> +     drm_dp_unregister_typec_switches(switch_desc);
->>>>> +     dev_err(dev, "Failed to register mode switch: %d\n", ret);
->>>>> +     return ret;
->>>>> +}
->>>>> +EXPORT_SYMBOL(drm_dp_register_typec_switches);
->>>>> +
->>>>> +/**
->>>>> + * drm_dp_unregister_typec_switches() - unregister Type-C switches
->>>>> + * @switch_desc: A Type-C switch descriptor
->>>>> + */
->>>>> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc)
->>>>> +{
->>>>> +     int i;
->>>>> +
->>>>> +     for (i = 0; i < switch_desc->num_typec_switches; i++)
->>>>> +             typec_mux_unregister(switch_desc->typec_ports[i].typec_mux);
->>>>> +}
->>>>> +EXPORT_SYMBOL(drm_dp_unregister_typec_switches);
->>>>> +#else
->>>>> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc)
->>>>> +{
->>>>> +}
->>>>> +EXPORT_SYMBOL(drm_dp_register_typec_switches);
->>>>> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
->>>>> +                                struct drm_dp_typec_switch_desc *switch_desc,
->>>>> +                                void *data, typec_mux_set_fn_t mux_set)
->>>>> +{
->>>>> +     return 0;
->>>>> +}
->>>>> +EXPORT_SYMBOL(drm_dp_unregister_typec_switches);
->>>>> +#endif
->>>>> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
->>>>> index ab55453f2d2c..5a3824f13b4e 100644
->>>>> --- a/include/drm/display/drm_dp_helper.h
->>>>> +++ b/include/drm/display/drm_dp_helper.h
->>>>> @@ -25,6 +25,7 @@
->>>>>
->>>>>     #include <linux/delay.h>
->>>>>     #include <linux/i2c.h>
->>>>> +#include <linux/usb/typec_mux.h>
->>>>>
->>>>>     #include <drm/display/drm_dp.h>
->>>>>     #include <drm/drm_connector.h>
->>>>> @@ -763,4 +764,20 @@ bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8 dpcd[DP_RECEIVER_CAP_SIZ
->>>>>                                                const u8 port_cap[4], u8 color_spc);
->>>>>     int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8 color_spc);
->>>>>
->>>>> +struct drm_dp_typec_port_data {
->>>>> +     struct typec_mux_dev *typec_mux;
->>>>> +     void *data;
->>>>> +     bool dp_connected;
->>>>> +};
->>>>> +
->>>>> +struct drm_dp_typec_switch_desc {
->>>>> +     int num_typec_switches;
->>>>> +     struct drm_dp_typec_port_data *typec_ports;
->>>>> +};
->>>>> +
->>>>> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc);
->>>>> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
->>>>> +                                struct drm_dp_typec_switch_desc *switch_desc,
->>>>> +                                void *data, typec_mux_set_fn_t mux_set);
->>>>> +
->>>>>     #endif /* _DRM_DP_HELPER_H_ */
->>>>
->>>> --
->>>> With best wishes
->>>> Dmitry
->>>>
->>>
->>> Best regards,
->>> Pin-yen
->>
->> --
->> With best wishes
->> Dmitry
->>
-> Best regards,
-> Pin-yen
+
+Mubin Sayyed (3):
+  clocksource: timer-cadence-ttc: Do not probe TTC device configured as
+    PWM
+  dt-bindings: timer: Update device tree bindings for cadence TTC PWM
+  pwm: pwm-cadence: Add support for TTC PWM
+
+ .../devicetree/bindings/timer/cdns,ttc.yaml   |  25 +-
+ drivers/clocksource/timer-cadence-ttc.c       |   3 +
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-cadence.c                     | 363 ++++++++++++++++++
+ 5 files changed, 402 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/pwm/pwm-cadence.c
 
 -- 
-With best wishes
-Dmitry
+2.25.1
 
