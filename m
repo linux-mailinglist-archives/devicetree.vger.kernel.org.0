@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECFA9667158
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:55:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE8A66715C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 12:56:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235802AbjALLze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 06:55:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35438 "EHLO
+        id S231948AbjALL4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 06:56:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232680AbjALLzG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:55:06 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2EAF0A
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 03:45:30 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id 18so26443155edw.7
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 03:45:30 -0800 (PST)
+        with ESMTP id S229903AbjALLzi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 06:55:38 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0362E08F
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 03:46:31 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id v6so26412940edd.6
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 03:46:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=x4LA4Q8/HHLhGLaT8XU0nK2e9i+YSbZwOJxVCpmHI0I=;
-        b=bpOqQTYFDGDl7PIgL42MAbC50CiOdPxbgmWL2zFCPINFYf+rlyiMtYAlJ1vbk0D5hy
-         vNzg2J21f1iGfNp2GsropFmdg4gCWsKtLD2nc6D32uG4DuEw5x+oncX7/xi4N2ChTsVN
-         1hemOIk4Du3QqSNoVQRf/nsnbkRotAhS6doE1lBM33FukOEmiZ4/5PHrRC5ta/Wh86m5
-         PIBj+hrdLZteETDPxDeOnLcw7uWE2mJIsJUQDIZkqbWTJVJspjIDcHeadBga2kP2JBCr
-         nkbdt5hTvWgmtHsSwZ+SgOHURX5qKe9hFA/1fBTPmOah4rKrN2W4WdPvr9NpfohQaph1
-         EFNg==
+        bh=v0wMg8B+r7Uh0cXEXrMRR61VwVmslR4aMO0Co5YCjg4=;
+        b=jfW0ER6XAvO3XpL5d0jBIwp9w5hHbxKvWUQpMOrrIVtgvEv2y6Deb3b31gYIbqA7Lc
+         0uvaFYiNtNHcoMpCk81Y6NR+ZGRtP0ugQnW9W7LzWfHBICUZEQFEtlHgMw01QzMcZSR7
+         ni3MPC4z4QmjvaurSdSs1tL0k9st6RJ5zN8YDrSiSsjTKD3xRTvJ9byZPBecQvDe6rj+
+         WNrXXg7NKXTWfDYFwZED1N+usQaDDy/EZL2Mz7I5vovd/8SYbd3OIda9pl6ULDs469C8
+         PVZ1h4SU+ZEbUuy8H+8b13oeRb44gnCtafU0GLU2BDRbjFF9+3rKIY7EBPajzFUAw8cO
+         xOpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x4LA4Q8/HHLhGLaT8XU0nK2e9i+YSbZwOJxVCpmHI0I=;
-        b=Zf7PHUsrhbdzcQm+bQf25eaHkQVnglTr24cgbVErLIBsu4Gu/NOHPrVy9GuPyYTULK
-         idzNEdGnMAOozbtrccWLR0Yi4/ini4CTEG+sKAOyOR8OW8eyY30VL0OtTx9/Fak3rsT1
-         MKpGaGQoyjpF6mRe/fpRQJn06qPh/v4agPpH78vrgILWDb+lhdvchffpM6HnvMb2DtZZ
-         kMLDLSaX4w1hWD9iXu7N5OBX0Y3WO10zsBc6OqBshgff11bWpS6yrRdKMXiX4R2JKjw8
-         S0ochVrEUdsXkZU1R7I1VXo+wP07SWyE0zJbv1P2So6c34/AaNGrEx4DmjZcv5qZjIm4
-         9BWg==
-X-Gm-Message-State: AFqh2kr78ayTvwCOK6y3g2R6TXHNkzl6Xot8iKsT+no3gLT6HBWwJScu
-        gg8YZJGd4O13BG6v6ldnsR9u5Q==
-X-Google-Smtp-Source: AMrXdXsbrvSXd6u5bwYj0uqlv095hGGPI6g9p+Yw13whSg5c4InwHr8YvQRcNxuFFNr1cGvhnKQhAg==
-X-Received: by 2002:aa7:d0c9:0:b0:498:d121:6e00 with SMTP id u9-20020aa7d0c9000000b00498d1216e00mr15824262edo.35.1673523929239;
-        Thu, 12 Jan 2023 03:45:29 -0800 (PST)
+        bh=v0wMg8B+r7Uh0cXEXrMRR61VwVmslR4aMO0Co5YCjg4=;
+        b=R9T8TbMvRN2CwwdG0kh2XPlsFyT/9XAcoqMZdjDL1Ixprrm69XFh9I6XDgVqI/P8Kp
+         hmmJXjexh7ahMAJ5A85Y6H+iKhlLVLEUK106rDqTTgHLRQwgvqID/aeaetjM3qmRWAFk
+         rDnBPPhRW0mj61RNWJHy0+PSMQWlwsT2A9UC+2yI44/H2Nm+NvlOU+yw7aXJSqLqQog3
+         wu0M9ZtRxi6zi8KYs3n+NruZV4+xFRdB+rLNKeg02ewl7tnoiek8zE27VH71dVMcSRb0
+         at7ZoxGMcsbWPhbZ1u2m15Yg5MHWpGkSpv7QjNGj+D6xDOnGdWLFyTpFZzWwHHWl6oZL
+         aY8A==
+X-Gm-Message-State: AFqh2krkWYytrZN/hXAKBWjuZ1pqQPWbRaRb7bXvM8Vcm/2ULo7Bn4bt
+        AxUcW+so+TVrwu9qKvWqhMAPkw==
+X-Google-Smtp-Source: AMrXdXtSbLH+vPTwFa7s5QFzuqgmjnm09Vumds9TuMIKXzbtvRe1pyrQK2tDi1jhB1ftncECuNBnFQ==
+X-Received: by 2002:a50:ef12:0:b0:499:c516:fc41 with SMTP id m18-20020a50ef12000000b00499c516fc41mr8248842eds.36.1673523990236;
+        Thu, 12 Jan 2023 03:46:30 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id c8-20020aa7df08000000b0046c4553010fsm7057603edy.1.2023.01.12.03.45.27
+        by smtp.gmail.com with ESMTPSA id w1-20020aa7dcc1000000b0047a3a407b49sm7107913edu.43.2023.01.12.03.46.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 03:45:28 -0800 (PST)
-Message-ID: <758cf086-541b-5c16-2d98-59c7f064378c@linaro.org>
-Date:   Thu, 12 Jan 2023 12:45:26 +0100
+        Thu, 12 Jan 2023 03:46:29 -0800 (PST)
+Message-ID: <3985f697-d363-0f1f-0b4f-bc5e9e2b7b34@linaro.org>
+Date:   Thu, 12 Jan 2023 12:46:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/3] dt-bindings: dt-bindings: arm: rockchip: Add Radxa
- Compute Module 3
+Subject: Re: [PATCH 02/10] ARM: dts: stm32: add vrefint calibration on
+ stm32mp15
 Content-Language: en-US
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+To:     Olivier Moysan <olivier.moysan@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230112105902.192852-1-jagan@amarulasolutions.com>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230112104446.1140551-1-olivier.moysan@foss.st.com>
+ <20230112104446.1140551-3-olivier.moysan@foss.st.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230112105902.192852-1-jagan@amarulasolutions.com>
+In-Reply-To: <20230112104446.1140551-3-olivier.moysan@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,27 +80,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/01/2023 11:59, Jagan Teki wrote:
-> Radxa Compute Module 3(CM3) is one of the modules from a series
-> System On Module based on the Radxa ROCK 3 series and is compatible
-> with Raspberry Pi CM4 in pinout and form factor.
+On 12/01/2023 11:44, Olivier Moysan wrote:
+> Describe vrefint calibration cell to be retrieved through bsec.
 > 
-> Specification:
-> - Rockchip RK3566
-> - up to 8GB LPDDR4
-> - up to 128GB high performance eMMC
-> - Optional wireless LAN, 2.4GHz and 5.0GHz IEEE 802.11b/g/n/ac wireless,
->   BT 5.0, BLE with onboard and external antenna.
-> - Gigabit Ethernet PHY
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
+>  arch/arm/boot/dts/stm32mp151.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> Add dt-bindings for Radxa CM3.
-> 
+> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+> index dea1c53f2b1d..eec5e9992bff 100644
+> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+> @@ -1632,6 +1632,9 @@ bsec: efuse@5c005000 {
+>  			reg = <0x5c005000 0x400>;
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> +			vrefint: vrefin_cal@52 {
 
-Subject: drop second/last, redundant "dt-bindings" (duplicate).
+No underscores in node names.
 
-With above:
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
