@@ -2,119 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 222DE666D37
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 10:00:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5304666D59
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 10:04:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236436AbjALI74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 03:59:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50106 "EHLO
+        id S229863AbjALJEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 04:04:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239860AbjALI5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 03:57:48 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D87738AC9;
-        Thu, 12 Jan 2023 00:55:26 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30C7sRmO004043;
-        Thu, 12 Jan 2023 08:55:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=/v2CdOrf4Z17VR11u6HItm6Vj0VBzlrchZCCWtJrPCI=;
- b=EmtIVpaWPM2eCOUs1AglbUlhmhMbiwXr2ds3AqWYfaXgIgh2qU+9U6IcOjzFZmi3Nzj1
- tzNjayk94FmhsuP5R/9Ujax1VjpMM0GcyxxwDXiP6ywlIWEXDGcY7U8HcD017nDqh6QM
- EczQyE4dCJzTX4J7fLJ4su3b2fPlNsvI46QZh2DnZHOf8US8J0R2VjnK4S3qL0YtYugp
- SWmcWs/mjdbt6n+KAkhi4Il9FWtwrDb6ray6Gg+9Wo+7XsXfdfoF05RidtQ46Mybr6/J
- aNcS6vLkr/X460xXSKS+bqNPSP2y4wWlBeF0wgyqczyLJItLGOn6g8O0yGq2xq9myp0f ow== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n1km2ka87-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 08:55:22 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30C8tLYC029701
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 08:55:21 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Thu, 12 Jan 2023 00:55:18 -0800
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Mukesh Ojha <quic_mojha@quicinc.com>
-Subject: [PATCH v3 2/2] arm64: dts: qcom: sm8450: Add TCSR halt register space
-Date:   Thu, 12 Jan 2023 14:24:57 +0530
-Message-ID: <1673513697-30173-2-git-send-email-quic_mojha@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1673513697-30173-1-git-send-email-quic_mojha@quicinc.com>
-References: <1673513697-30173-1-git-send-email-quic_mojha@quicinc.com>
+        with ESMTP id S239940AbjALJDY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 04:03:24 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C20541A79
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 00:58:56 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id qk9so43112995ejc.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 00:58:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MigYz6tBw4+yKweKth5khXbfl3nCTQxgPvk6amIZtKM=;
+        b=wG2M0pwvt8H1YSu+YeUBiiVnmM/3S+/9tDJ4c35mj8wrvw2dO+tOlRVYT1YdWZ8QGN
+         nzrrPmL6g1xLs8/JnkwGsixS35r8gxxKLraWAUNbusbqMYCA88wBCM89MDQtdqX+JHMy
+         lyBNv1M+6vSDYlzOA1rbF54b5/moirwdRIfiGye7L8Ib6oAq4/ff5iRBQMnTDlulaeGg
+         vclTmBfU1QOVmu64dQGi3vPd8QAu+TxyOo+hYhitWhd5Pakq+GHBON5HJ7fiPUor7PHX
+         7LZsk/mVL88hec/5ASuQbh+4bn4QTHXaeLAXp+gU5Skb8+2DjDNd1PPS6vnxhD0c4/xw
+         qFlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MigYz6tBw4+yKweKth5khXbfl3nCTQxgPvk6amIZtKM=;
+        b=nu3Tq3Df5dRqnw1nKsFSg1MEKBzfZrDgXz0AOG65rkSkEINCqxd7F9HgF92VoOfFj8
+         5uzqeV7MW6HkD+14oJnspc8zR2P3Q+pKeSXixbglxQDQ66K8CDp96yPJx9CN7ND4Iil9
+         lNpaj7iUYg2pqqFVwoEYRwtmm+oU2mprsFK2e4AL6qVdsIXk1At8IaLbCOFRVHwvf/g5
+         2MS6vcJ3WD2HZ9GQI47XsfaoHvBUwFspVcT/x5RusvOrKkYjP4eDgcZaOZYfk5X2/eIH
+         ctZ9s0LRElwR+oO+NzxW/bVU2lVK9pOZx5yIMszOwlY4Q+ml/inGTJTOmf0k2leWStgK
+         VM8Q==
+X-Gm-Message-State: AFqh2krm4dEsHBPk/T0CV6Ru/ZlvhWdxwQoB4euM9pMjmZ/rJcxXn3n2
+        /8+Oj+vGfGSAPiVSeSd8W0Gfm90mTkh73+EP
+X-Google-Smtp-Source: AMrXdXsPkr4Yq01Za/hKWM4fVZAt3sFP5s/z0/QcuKFr65wRjg5evQCwV8puzlT40wT6o3g4CRKJmw==
+X-Received: by 2002:a17:907:8b09:b0:7c1:bb5:5704 with SMTP id sz9-20020a1709078b0900b007c10bb55704mr68749552ejc.26.1673513934721;
+        Thu, 12 Jan 2023 00:58:54 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t4-20020a1709066bc400b0085481fa14dbsm3303452ejs.1.2023.01.12.00.58.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 00:58:54 -0800 (PST)
+Message-ID: <0c50d8aa-4fb1-5891-c9db-a2145445db07@linaro.org>
+Date:   Thu, 12 Jan 2023 09:58:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9qUDvZZ-1HEfQace3VvbGZ3zJiHKr1Ku
-X-Proofpoint-GUID: 9qUDvZZ-1HEfQace3VvbGZ3zJiHKr1Ku
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-12_04,2023-01-11_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- mlxscore=0 mlxlogscore=846 malwarescore=0 bulkscore=0 lowpriorityscore=0
- phishscore=0 spamscore=0 adultscore=0 suspectscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301120062
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 1/2] dt-bindings: mfd: qcom,tcsr: Add compatible for
+ sm8450
+Content-Language: en-US
+To:     Mukesh Ojha <quic_mojha@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1673513697-30173-1-git-send-email-quic_mojha@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1673513697-30173-1-git-send-email-quic_mojha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add TCSR register space and refer it from scm node, so that
-it can be used by SCM driver.
+On 12/01/2023 09:54, Mukesh Ojha wrote:
+> Document the qcom,sm8450-tcsr compatible.
+> 
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> ---
+> Change in v3:
 
-Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
----
-Change in v3:
-  - Align with new format of compatible for Qcom SoC.
 
-Changes in v2:
-  - Added SoC compatible based on comment made by krzysztof in v1.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 5704750..d9f7a9b 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -270,6 +270,7 @@
- 	firmware {
- 		scm: scm {
- 			compatible = "qcom,scm-sm8450", "qcom,scm";
-+			qcom,dload-mode = <&tcsr 0x13000>;
- 			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
- 			#reset-cells = <1>;
- 		};
-@@ -1986,6 +1987,11 @@
- 			#hwlock-cells = <1>;
- 		};
- 
-+		tcsr: syscon@1fc0000 {
-+			compatible = "qcom,sm8450-tcsr", "syscon";
-+			reg = <0x0 0x1fc0000 0x0 0x30000>;
-+		};
-+
- 		usb_1_hsphy: phy@88e3000 {
- 			compatible = "qcom,sm8450-usb-hs-phy",
- 				     "qcom,usb-snps-hs-7nm-phy";
--- 
-2.7.4
+Best regards,
+Krzysztof
 
