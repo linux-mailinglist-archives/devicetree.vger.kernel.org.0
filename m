@@ -2,95 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 184E3666FAF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 11:31:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E49666FF4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 11:44:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239256AbjALKbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 05:31:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58426 "EHLO
+        id S235699AbjALKnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 05:43:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234419AbjALKa4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 05:30:56 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79B2186BC;
-        Thu, 12 Jan 2023 02:27:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id D7591CE1DC2;
-        Thu, 12 Jan 2023 10:27:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3CBBC433F1;
-        Thu, 12 Jan 2023 10:27:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673519242;
-        bh=cw35b8Z4PEoMl2FJPoCpQOOon+cF3EAG8E0CmxT+TBI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jOAh4SMkdo966tScrgeaB409bzuA5MZ/m/wk0uOLK1FStvlzMQM56ZbbaxtMNH1uA
-         ytPLPWS6FMC4zM6pgvh2JV3GeRxPmBRV9F1Zf82otgF3BEXMNUDknIngdX0GvJAJvr
-         SwOyGGOFPAETUoJgQ5n792YTZ4XBz/Od9lCHPm6bdxadZ8+lAjArmMgx4Q3DBHDlwi
-         9McnnSY8U3L0EeJKDvTz+kEXEUWN63FlXVeTzQmPaTbq7EdX9wgVBjfxldpxo2CYIa
-         wnhzS1tmztVSmFS1U1zTdu2rMpFb7sJqQsiDrACe5kHlDBkjIrasz15UVyZcV1lsC4
-         /Lr6dMzxpY2wA==
-Date:   Thu, 12 Jan 2023 10:27:16 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Mohammad Faiz Abbas Rizvi <faiz.abbas@arm.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        lgirdwood@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, Anurag.Koul@arm.com,
-        Deepak.Pandey@arm.com
-Subject: Re: [PATCH] ASoC: dt-bindings: simple-card: Document
- simple-audio-card,plat
-Message-ID: <Y7/ghAz460VQ/hXt@sirena.org.uk>
-References: <20230105160346.29018-1-faiz.abbas@arm.com>
- <20230108163741.GA30997-robh@kernel.org>
- <f0ad7a4e-a8af-77d4-09e4-3717041677e7@arm.com>
+        with ESMTP id S234973AbjALKmh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 05:42:37 -0500
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 805F458836;
+        Thu, 12 Jan 2023 02:36:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673519817; x=1705055817;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=slo6xLj/PY1pP/5JhL5TcH4kig+nfZoqmJ2N2YXxOIk=;
+  b=bOWexgT5Ku3CDRIiDtBXdCT/iZjZOendYgXiB8qVb8+ksOq/MMdG4u4M
+   oDwN1qmDHEuyDU+ABnqiZZbptv/vgWzS30zYJpAcKXxRTJFDN5zX+nRSh
+   sKFoMZI3Nn6jMdJBEQXFKCi3iqVEMd4JIublBDDmB3TNGHkc+UJJ5Sd1g
+   7n0Xl7B/gWqgR9vcyidVezubifVDP1XsHJd6ehx9+V2/GLFFCn0RVkP95
+   3YjHNikj/R5zvqQpRJJfiyyyZNXEZHEfjdpEdc9O0R/CiMtMK9jM3KL+r
+   xiFbca+zzQeDHNOIYudz63YMD6YoOcQCZFGQFli54GDDDr7Vpd6xPC4Wt
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="325693728"
+X-IronPort-AV: E=Sophos;i="5.96,319,1665471600"; 
+   d="scan'208";a="325693728"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2023 02:36:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10586"; a="651082180"
+X-IronPort-AV: E=Sophos;i="5.96,319,1665471600"; 
+   d="scan'208";a="651082180"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga007.jf.intel.com with ESMTP; 12 Jan 2023 02:36:46 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pFuwo-007zvQ-1N;
+        Thu, 12 Jan 2023 12:36:38 +0200
+Date:   Thu, 12 Jan 2023 12:36:38 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Pin-yen Lin <treapking@chromium.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
+        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
+        Xin Ji <xji@analogixsemi.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Imre Deak <imre.deak@intel.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Ville =?iso-8859-1?Q?Syrj=E4l=E4?= 
+        <ville.syrjala@linux.intel.com>,
+        shaomin Deng <dengshaomin@cdjrlc.com>
+Subject: Re: [PATCH v10 0/9] Register Type-C mode-switch in DP bridge
+ endpoints
+Message-ID: <Y7/itipjqIyulh6b@smile.fi.intel.com>
+References: <20230112042104.4107253-1-treapking@chromium.org>
+ <61ba2880-6784-1014-a7a2-a1eecc4e810e@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mfsYPpGuHog5bgZQ"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f0ad7a4e-a8af-77d4-09e4-3717041677e7@arm.com>
-X-Cookie: A watched clock never boils.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <61ba2880-6784-1014-a7a2-a1eecc4e810e@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jan 12, 2023 at 06:34:52AM +0200, Dmitry Baryshkov wrote:
+> On 12/01/2023 06:20, Pin-yen Lin wrote:
+> > 
+> > This series introduces bindings for anx7625/it6505 to register Type-C
+> > mode-switch in their output endpoints, and use data-lanes property to
+> > describe the pin connections.
+> 
+> Please cc everybody on all patches. Having received just a single patch made
+> me spend time on having to look them up on lore.
 
---mfsYPpGuHog5bgZQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Sorry but this seems a bit outdated requirement nowadays.
+Why? Because we have `b4` in each famous Linux distro and
+nice lore.kernel.org. It's really easy for the experienced
+maintainer to catch up the whole thread.
 
-On Tue, Jan 10, 2023 at 01:53:29PM +0530, Mohammad Faiz Abbas Rizvi wrote:
-> On 1/8/2023 10:07 PM, Rob Herring wrote:
+Putting _all_ people on all patches may be an overkill.
+What people should really get is the cover letter (assuming
+that it explains well the structure of the series). The rest
+depends.
 
-> > Another node, is it still 'simple card'?
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> This behavior already exists in the driver. I am just documenting what already exists.
 
-Right, I think the ship mostly sailed on the naming.  We could add a new
-alias but given that we're trying to retire this binding and might
-already have existing users who eventually get converted to YAML and
-want to validate it seems worth at least documenting what the code has
-being accepting.
-
---mfsYPpGuHog5bgZQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO/4IMACgkQJNaLcl1U
-h9B4twf/R2QUSUszMxhRq2hWo5eHW/t5+JoKg7r66Pw11tIs4FuKEcdurtNeDbc9
-zp1qF23UQzmWLriec53SgttEtEAxO9ylS4WHR7vBCDvFk5KOCgC13aL/JCru1FDK
-y5JiWijjertGmWIGnu5iQe74IcHHnTECYTWFMd9wh4U62H41/ITXSA3TJLcyEpRO
-FBXhrEZJDiYXsZHbUwReM7aFGJBuR5IzwAPtUcixhOfJ8HBigruq/XQwXKs7KVCO
-3/wTCH/uBkY/e4kYCXRBLiTi3zGfrsBNMkhc0x53liQXqP8x6mIOR6fl/QVEXr8J
-P7EiQBBUsMXl1RvJfQ6wFd2Y465uTQ==
-=gNr0
------END PGP SIGNATURE-----
-
---mfsYPpGuHog5bgZQ--
