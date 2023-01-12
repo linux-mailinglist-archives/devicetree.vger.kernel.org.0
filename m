@@ -2,111 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2951C667392
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 14:51:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF7FC6673A7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 14:53:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbjALNve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 08:51:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
+        id S232277AbjALNxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 08:53:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232597AbjALNv2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 08:51:28 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A74D14FD4E;
-        Thu, 12 Jan 2023 05:51:26 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30CDS7Jo025737;
-        Thu, 12 Jan 2023 13:51:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=kcMTzljDeT/7YLmtLRXP5hfDVv6Ofl8ame0LMxCO+sg=;
- b=Nzl4ZOXUCfUnxhDoV6FaQvJdBJW5pMOhzCHXE+aPpgTk8NaOmGuJcG8NGBicnlEgyiAf
- wbtgyC0Rj6eBrHIJNySFH8HhN05Ogns22eDkB8aTsDBYinBozl6T9MSvsYDUZVQumgbD
- 8RcQyx/WP8REqzdcwu4lPkcHWRokb3WM/ytw8Oax/PDkToqg8UiPMwPqldnogIZCn/3E
- V9K06TTQ3sO5yWiGU4NaA3zfAv2T6qFibyhjmGKBgtxIJrZfyl04gJtJYRGf3Op0yAMk
- sVQ5mu+OMftcyhnUw3uQ7+xRSJKD9nG6FJ4oEvwRk/fjIqmPqW03E7x1d3fyefAoVLw0 BA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n2k47g1wf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 13:51:23 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30CDpNod032487
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 12 Jan 2023 13:51:23 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Thu, 12 Jan 2023 05:51:22 -0800
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH] arm64: dts: qcom: sc8280xp: Vote for CX in USB controllers
-Date:   Thu, 12 Jan 2023 05:51:17 -0800
-Message-ID: <20230112135117.3836655-1-quic_bjorande@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S233517AbjALNxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 08:53:30 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 793FE517C3
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 05:53:24 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id tz12so44932077ejc.9
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 05:53:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VEgIlBDAlGQZBmVyuD6cEhuOAp963SNPIrPu8S2m7Vk=;
+        b=rtr/ms2QeM19t/CC5LQNPz+qCEqjtAZFEBCUJBLkWw8nQ2+upZtbD6lP7G+rjXpXeS
+         k4XKYsz6/F9dCNQIGMCryE7fKSbbIR9G3P4AAYV1NbmSM4QoLSd1T+H1lvgmzi3thdtO
+         PmorFRYc1zsnRLB6OpljvjgpXHu1d23Vozqg273RWhXuoxira27SeoFoBQ1+gWG5xWUI
+         QffkiF1LiZG4v363qfZZXDOHezMb9+SmNiiF8BxTcaRVWC7b75SbCvSyhRO6C7TA08Cg
+         SERMlTFT0BSTXkvOhygPmW7RmcZ+Gpj+6ZihUD0Igb91XwayD/wUiL64eP90PA7kSloH
+         XFhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VEgIlBDAlGQZBmVyuD6cEhuOAp963SNPIrPu8S2m7Vk=;
+        b=ytQApvbHm5+/YcOBnwagRIskefritvS/NLJteHsQK3Z8u32TpI4WgFzhxPMEz/VLTQ
+         5YulRyzb9Z7CaYwLj4qzV8VFaPQvtwCDKomoI2D6tcxVHXXvPaVfBFZdpAO87dtTlCfB
+         rRd491m/NCLeJlNdzVtbG21tYps84vsHBD/KJ2oMFLz7MTzsFRg+b67Ie329zeo3k1k3
+         3PgI0xSo4/oOtBxvsCX4AAaq+zMhyYm3h6chHyxlYCIZ7ye9XoSY6XY+m1ba3oPbjIIo
+         Q23RQzFZ/NLjiCYy6Asm6yN/TG8c5VInJcIM8dJUm0aa2+9YfoDIeTS4Wg0pE3uaGHtz
+         OcWA==
+X-Gm-Message-State: AFqh2koK+8dZIBhnCYtbbLp++g7JY4CW22LcLBmxkmSPDTMxWu7LDfoB
+        6hREORH3Mg17TmlWHalpyfeSmQ==
+X-Google-Smtp-Source: AMrXdXuVTphxaYsX3dow/CtVIs2dB9/JyXdySZLqCvXp7Yywmx0bI3apUvs8Y0K/0qYa/fPcz9yLXA==
+X-Received: by 2002:a17:906:99d0:b0:84d:43e4:479b with SMTP id s16-20020a17090699d000b0084d43e4479bmr15622650ejn.36.1673531603070;
+        Thu, 12 Jan 2023 05:53:23 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id 17-20020a170906219100b008536ff0bb44sm3717696eju.109.2023.01.12.05.53.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 05:53:22 -0800 (PST)
+Message-ID: <e2cc612a-7b1f-6c18-7d5b-1403fac77a99@linaro.org>
+Date:   Thu, 12 Jan 2023 14:53:20 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: FmbTFr9fyrophvdogZyMBSxpU07RYgsu
-X-Proofpoint-ORIG-GUID: FmbTFr9fyrophvdogZyMBSxpU07RYgsu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-12_08,2023-01-12_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 clxscore=1011 mlxscore=0 bulkscore=0 adultscore=0
- mlxlogscore=910 impostorscore=0 lowpriorityscore=0 spamscore=0
- suspectscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2301120100
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] dt-bindings: arm-smmu: disallow clocks when not used
+To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Running GCC_USB30_*_MASTER_CLK at 200MHz requires CX at nominal level,
-not doing so results in occasional lockups. This was previously hidden
-by the fact that the display stack incorrectly voted for CX (instead of
-MMCX).
+On 22/12/2022 10:23, Krzysztof Kozlowski wrote:
+> Disallow clocks for variants other than:
+> 1. SMMUs with platform-specific compatibles which list explicit clocks
+>    and clock-names,
+> 2. SMMUs using only generic compatibles, e.g. arm,mmu-500, which have a
+>    variable clocks on different implementations.
+> 
+> This requires such variants with platform-specific compatible, to
+> explicitly list the clocks or omit them, making the binding more
+> constraint.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
 
-Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Will, Robin, Joerg,
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 2ed17baf50d3..4f4353f84cba 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -2265,6 +2265,7 @@ usb_0: usb@a6f8800 {
- 					  "ss_phy_irq";
- 
- 			power-domains = <&gcc USB30_PRIM_GDSC>;
-+			required-opps = <&rpmhpd_opp_nom>;
- 
- 			resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
-@@ -2319,6 +2320,7 @@ usb_1: usb@a8f8800 {
- 					  "ss_phy_irq";
- 
- 			power-domains = <&gcc USB30_SEC_GDSC>;
-+			required-opps = <&rpmhpd_opp_nom>;
- 
- 			resets = <&gcc GCC_USB30_SEC_BCR>;
- 
--- 
-2.37.3
+Anyone willing to pick up this patch?
+
+Best regards,
+Krzysztof
 
