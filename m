@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C46196679E8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C3E16679F2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:56:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240317AbjALPxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 10:53:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38324 "EHLO
+        id S233239AbjALPz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 10:55:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239546AbjALPxV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:53:21 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B03DEB8
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 07:41:56 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id g13so29018301lfv.7
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 07:41:55 -0800 (PST)
+        with ESMTP id S231805AbjALPzS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:55:18 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B9E5AC67
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 07:45:00 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id v25so28976978lfe.12
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 07:45:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VvVJkpynNn6IA1P//L3YcO7yOYdHOM5TGw7F2BW1HfI=;
-        b=mZWf1t9tcyeMA4GQXcr8qTcdv/+TqM/BqV5iKqOE4y36tTw81YCsd9DwsTWmqmATMc
-         AsCQwj+j4RhhGoFWCypPO6gwZe7gNrQ+rEJpsUwvo4v1+rQ5etZSLfo5zKUX1NN9adCa
-         K8PI0tEg+HxUEeMK6+eybaJ8n3GKQSkJd2cZ0YvkfW6eElvJmy91/yk96w71yp5AEKfT
-         onTtLLpRppF0eRpuoeD17TIapXgfjIVQs5MjULq63CuI3w0bdGuE9zNjqMVOmAf9ptCN
-         nrlkdfmWRWEZCy98bH9MP3G9uCXJ5AlYZO8s5TiFo7Mh2ppOWitQyNS0XBJ7fCScklwi
-         pqgg==
+        bh=dO98yJCjhJKHHJFzoPP10XSL6ZvByFzhpcdLh14ZehU=;
+        b=qbMwOpc9CFkIEWKaAfBZ4iBqBlDkEkiCaLEa0TIiVT0KUVr2ybb/EbBiLTdz5YVLUE
+         Xz541blif/x+QxSbtV3PUTbem3MK44eUHNSoCc5Ee9oSRFS+ZxdZnM8YSl0vCLjpdKNM
+         4Q46tXImWOGQBo9e9BBXDUy9CLYZw7xxF5pDW2dqrSUnqr5GZPRYGgphWbGX3Y2zkIFG
+         03zrpJnnS2ajrptfc9VsiKNgoIrN3VFOe0jYnPerRhVoZ2qMwwMPvKSNsoP0ennBlQPG
+         VQtNm0KQ7RcfQ24Dzt7TYGb7C0XVAASglqq3DY4PQqJnZUG0jP5DX8vrh/RTbroA0hZ5
+         659Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VvVJkpynNn6IA1P//L3YcO7yOYdHOM5TGw7F2BW1HfI=;
-        b=YCUpALbcBsUUq5b0rtyx0j+nwSKfWwON75pGarzCD0uhY7m8q1kdBYW9iFFORdl71n
-         EBh4XSJH33G3HSLJrRpKZfLD6qU747JVDMhfyZRiOym/jD/i8mpUn3Sf9/OXfCb9Fbda
-         n6C/phJqhUdNRvrxdBAh2iDcsGpiT0FQUXYaqypyP1EPFMQK9wOoGaV6n5WGrCCENg1p
-         xqrBA2cLCiiNX2u+9F/PN8fXQ4ithop0+tzAK3HTdK6Qz+M7HkGr1IKyuyj7O8nU72w8
-         REG2z7bjJ+k9Qp2pD5fg+2InkFpUITmrcYshaJKsKP222dxI95ADqg1cleFfwRAv/Omj
-         pF7Q==
-X-Gm-Message-State: AFqh2kry4HY7vINbpRM5OaILnP5K+ooXIqOT4C26o3Xf83Fdm5W2JMoX
-        o6PviRERudWxDDDJfZnumzF+pQ==
-X-Google-Smtp-Source: AMrXdXu+pSZjQKg6YWKPpwwT1Cd28e2/W6qw8KqQ+mgP9Ohv6zo0OgYdcKPEM9ehempAL9hiEPw07g==
-X-Received: by 2002:a05:6512:2213:b0:4bb:7028:f6b6 with SMTP id h19-20020a056512221300b004bb7028f6b6mr25214095lfu.49.1673538114309;
-        Thu, 12 Jan 2023 07:41:54 -0800 (PST)
+        bh=dO98yJCjhJKHHJFzoPP10XSL6ZvByFzhpcdLh14ZehU=;
+        b=NDi6pS3r/jS8ZwJ7kA78Yr/Ve+OJg+N4llXAxseN+oaue81fXSQ30e3flyRNiCrC5s
+         8Wft5DgOB1LefjNTLsMyMQwlXO1/b9C9sAxJSHc6txSU0UIQbvuW6NlhoX0MvNeycHWT
+         vJR7fvMBaU9xsv/+VbIoB/hwskiENIpqZyfbxe8ugi5V3YbendRGyPaA7Hb0gJPTXCBY
+         891xRnrnjAlYBUnFItGsQaJ1j0nA+PDM9Ce1YuiLi8wDZLXtEStUQagj5h8bGQyZMf00
+         dKkjNQwCFQl2ZDf8mKQfQe+ity8BkBFhhrjeJNdXdIykJ6FOe7hhAnktyeY2NCsn2giy
+         hAqA==
+X-Gm-Message-State: AFqh2ko/S1tIfSZBwGFiZ24RyZcfGje5Qze6VK8z8M2h4nOuKv6gKm6R
+        brvNxeRW2ngT+s2LE3c3ONrxaQ==
+X-Google-Smtp-Source: AMrXdXsgekTVzlXxmGMDXgy2BKSdn+T0k5Wesxz7i7Sb8Q7bfHmXCG0E3MvTzCKFlwNDSvBiF87whw==
+X-Received: by 2002:a05:6512:1395:b0:4b5:b10b:6830 with SMTP id p21-20020a056512139500b004b5b10b6830mr22604048lfa.54.1673538299168;
+        Thu, 12 Jan 2023 07:44:59 -0800 (PST)
 Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id y3-20020ac24463000000b004ceb053c3ebsm41710lfl.179.2023.01.12.07.41.51
+        by smtp.gmail.com with ESMTPSA id s6-20020ac25fe6000000b004b6efcb7bb5sm3336312lfg.169.2023.01.12.07.44.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 07:41:52 -0800 (PST)
-Message-ID: <7dec47af-0981-7d70-3926-69419f5d1c8e@linaro.org>
-Date:   Thu, 12 Jan 2023 16:41:50 +0100
+        Thu, 12 Jan 2023 07:44:57 -0800 (PST)
+Message-ID: <f271900f-0d39-0221-9b6e-d6de1a44a363@linaro.org>
+Date:   Thu, 12 Jan 2023 16:44:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 2/2] cpufreq: qcom-hw: Ensure only freq-domain regs are
- counted in num_domains
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Use MMCX for all DP
+ controllers
 Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        krzysztof.kozlowski@linaro.org, marijn.suijten@somainline.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230111205125.1860858-1-konrad.dybcio@linaro.org>
- <20230111205125.1860858-2-konrad.dybcio@linaro.org>
- <20230112153704.6d37dygm4yfexdq6@builder.lan>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+References: <20230112135055.3836555-1-quic_bjorande@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230112153704.6d37dygm4yfexdq6@builder.lan>
+In-Reply-To: <20230112135055.3836555-1-quic_bjorande@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,91 +80,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 12.01.2023 16:37, Bjorn Andersson wrote:
-> On Wed, Jan 11, 2023 at 09:51:25PM +0100, Konrad Dybcio wrote:
->> In preparation for CPRh-aware OSM programming, change the probe
->> function so that we determine the number of frequency domains by
->> counting the number of reg-names entries that begin with
->> "freq-domain", as the aforementioned changes require introduction
->> of non-freq-domain register spaces.
->>
+On 12.01.2023 14:50, Bjorn Andersson wrote:
+> While MDSS_GDSC is a subdomain of MMCX, Linux does not respect this
+> relationship and sometimes invokes sync_state on the rpmhpd (MMCX)
+> before the DisplayPort controller has had a chance to probe.
 > 
-> Requiring reg-names would break backwards compatibility with at least
-> sc7280 and sm6115.
-Ouch, you're correct..
+> The result when this happens is that the power is lost to the multimedia
+> subsystem between the probe of msm_drv and the DisplayPort controller -
+> which results in an irrecoverable state.
+> 
+> While this is an implementation problem, this aligns the power domain
+> setting of the one DP instance with that of all the others.
+> 
+> Fixes: 57d6ef683a15 ("arm64: dts: qcom: sc8280xp: Define some of the display blocks")
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+One day we'll hopefully finally overcome this parent-child mess..
 
-Does checking for reg-names and applying the code flow proposed in this
-patch if found and the existing one if not sound good?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Regards,
-> Bjorn
-> 
->> Fixes: 1a6a8b0080b0 ("cpufreq: qcom-hw: Fix reading "reg" with address/size-cells != 2")
->> Fixes: 054a3ef683a1 ("cpufreq: qcom-hw: Allocate qcom_cpufreq_data during probe")
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  drivers/cpufreq/qcom-cpufreq-hw.c | 34 ++++++++++++++++++++++---------
->>  1 file changed, 24 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
->> index 9505a812d6a1..89d5ed267399 100644
->> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
->> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
->> @@ -651,8 +651,9 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
->>  	struct device *dev = &pdev->dev;
->>  	struct device_node *soc_node;
->>  	struct device *cpu_dev;
->> +	const char *reg_name;
->>  	struct clk *clk;
->> -	int ret, i, num_domains, reg_sz;
->> +	int ret, i, num_reg_names, num_domains = 0;
->>  
->>  	clk = clk_get(dev, "xo");
->>  	if (IS_ERR(clk))
->> @@ -684,19 +685,32 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
->>  	if (!soc_node)
->>  		return -EINVAL;
->>  
->> -	ret = of_property_read_u32(soc_node, "#address-cells", &reg_sz);
->> -	if (ret)
->> +	num_reg_names = of_property_count_strings(dev->of_node, "reg-names");
->> +	if (num_reg_names <= 0) {
->> +		ret = num_reg_names ? num_reg_names : -ENODATA;
->>  		goto of_exit;
->> +	}
->>  
->> -	ret = of_property_read_u32(soc_node, "#size-cells", &i);
->> -	if (ret)
->> -		goto of_exit;
->> +	for (i = 0; i < num_reg_names; i++) {
->> +		ret = of_property_read_string_index(dev->of_node, "reg-names", i, &reg_name);
->> +		if (ret < 0)
->> +			goto of_exit;
->>  
->> -	reg_sz += i;
->> +		/*
->> +		 * Check if the i-th reg is a freq-domain base, no need to add 1
->> +		 * more byte for idx, as sizeof counts \0 whereas strlen does not.
->> +		 */
->> +		if (strlen(reg_name) == sizeof("freq-domain")) {
->> +			/* Check if this reg-name begins with "freq-domain" */
->> +			if (!strncmp(reg_name, "freq-domain", sizeof("freq-domain") - 1))
->> +				num_domains++;
->> +		}
->> +	}
->>  
->> -	num_domains = of_property_count_elems_of_size(dev->of_node, "reg", sizeof(u32) * reg_sz);
->> -	if (num_domains <= 0)
->> -		return num_domains;
->> +	if (num_domains <= 0) {
->> +		ret = -EINVAL;
->> +		goto of_exit;
->> +	}
->>  
->>  	qcom_cpufreq.data = devm_kzalloc(dev, sizeof(struct qcom_cpufreq_data) * num_domains,
->>  					 GFP_KERNEL);
->> -- 
->> 2.39.0
->>
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 4f4353f84cba..4511fd939c91 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -2533,7 +2533,7 @@ mdss0_dp3: displayport-controller@aea0000 {
+>  				interrupts = <15>;
+>  				phys = <&mdss0_dp3_phy>;
+>  				phy-names = "dp";
+> -				power-domains = <&dispcc0 MDSS_GDSC>;
+> +				power-domains = <&rpmhpd SC8280XP_MMCX>;
+>  
+>  				assigned-clocks = <&dispcc0 DISP_CC_MDSS_DPTX3_LINK_CLK_SRC>,
+>  						  <&dispcc0 DISP_CC_MDSS_DPTX3_PIXEL0_CLK_SRC>;
