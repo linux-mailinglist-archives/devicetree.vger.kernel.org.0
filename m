@@ -2,214 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E053666E6D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 10:41:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A665666EAA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 10:52:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239908AbjALJlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 04:41:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52898 "EHLO
+        id S235030AbjALJwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 04:52:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239946AbjALJkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 04:40:43 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940041BCBF
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 01:37:19 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id az20so24231733ejc.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 01:37:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lipiQg+uY4xDOD4O2Ee0KGbRPD+b+ApBwEUjybcB87s=;
-        b=kNICJHQaOgIqlkwm6tfaCkuNuC+stQGxM8kMGgixBndptAwdXyywHV1nb1TlQCgjHf
-         cHPK4DylNfGyPl+UVbwSzywCe+0F2o/uyfjT8oTMfqvDJcshQoIwReKr1afzhj2GG0td
-         0OaSsVMn9y7zCr2PN9U78HEuCzIg69Ht6Yvse+k9lPQew4QGFq3AESWltxRWMUJmKy0v
-         UkcdjEqsoM8a0weM+OLKFLu+nW9JWW7aMhy8VKtnWkbJfF0eE+5xjeMtDA1HVb0x52S7
-         7waRD1ewic6M1RFBs1OgbKPeDpD3dkU6pa8u3p1IYL3QZUTS92CYXkDZq0nN6my5FkRK
-         7V+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lipiQg+uY4xDOD4O2Ee0KGbRPD+b+ApBwEUjybcB87s=;
-        b=A+niH+lfu/rBDPdS5oCkCoI47xnRvnpABpChsR96Opu3qUMG+mEytXwAtHMx++IvZ/
-         RAMXS5iWdc90G0RwFLznLmAxnFOq2NHKlyBSBR7H2xGamLYTbTHj5NSELa84FMcT206u
-         kPHQ+cGwuTcUqG4rwksWU1mdhDCIcPDb5XA1yqsRPoCXu2TdneVbOOAWT3fCwjL5wD+T
-         blUV+dgNgK9hjXySEHj4TXa83HZqWGUUReZq3E2zdPQRiqszPbn5JhZknOtDOFSKsOSy
-         p8BXTPjccpqMCcAZo8uIMwsZ4jEbufGJs2o8e/4AMyqpLApWfYox94JQMA7ywfb5P14V
-         /U+g==
-X-Gm-Message-State: AFqh2kqxzKnYOcyfuhNZE/oXD4MjY1u2mPo3eH13/Hoif65m0zBRuP9t
-        9u8+1jBUsKYWJLvPdutt9WtFkA==
-X-Google-Smtp-Source: AMrXdXvKLUtCslDkplodzN/U9ppVUuh8+J2xPIKgWLCVwcuElM3F+sZP9NFmaSDUX/VmXkPxFVK96g==
-X-Received: by 2002:a17:907:d68b:b0:7c1:691a:6d2c with SMTP id wf11-20020a170907d68b00b007c1691a6d2cmr86414643ejc.7.1673516238137;
-        Thu, 12 Jan 2023 01:37:18 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p4-20020a170906614400b008512e1379dbsm3736393ejl.171.2023.01.12.01.37.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 01:37:17 -0800 (PST)
-Message-ID: <7d74a96e-e3a5-118c-04a9-e8ed95fffa54@linaro.org>
-Date:   Thu, 12 Jan 2023 10:37:16 +0100
+        with ESMTP id S239579AbjALJvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 04:51:33 -0500
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2064.outbound.protection.outlook.com [40.107.21.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1334DFD1;
+        Thu, 12 Jan 2023 01:47:27 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dreWj91xOd9qoqIqAIIp3X+rXFGGtf3rfyjoJnwZk8xla0FiCKBM2ykss8v8xyCL6UbzbuUKrMrPdmfIZYsM84HkP6TioKAfF6ymZbenLaUIP7zQP45MONEeJ91ScTMMoXZR8KzN20ORcQVZjICqlPSluyNU+g3u7ruxNe91hQJn35S+IE5gGaqj8CQmXnbjtjCcct5vadXciOkERLGS+29Eko3TbGRG4voluqqJ7rv2ELVCJ7DKfvWjv2lB2q4XDYqjg3Yvvqvz8XImf5X6A8PNtZPERqY+2YHsXSduoroUyDyh/4FMq7BmcqnIeSRpMBNjtPZV/c9XQH7L62avAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8RaL0VK+3IJ65OdJWEwLw8K7jniU9Ua6iV/oDCSzMCs=;
+ b=IblO3T2dGbYRjkO1XXSILuAl9xCiPANHv4DgFn/GT08fxnJvYQmOEcUaWBxy1Qaxswc8QJJaLJ3aYSp1TyhyfIUlMZ3y8FXN1FSBpFWtkBu2DTjK01E7Zo5Q6+TPUxepY7xzNVlfPH46k/OQG0I0TssMEk1MPjl1wEOn+zRMHo3hLnyXzN4IFhOSHtEi1v+swdsnFlM8FVXZLtdbLKtaxtUYFN7qstI5T87UfapKgikiDhvoUNEjEfGj58s3ySj6UId88/mfwahB6dKyTwABn04D2r2ZU1JMvL9/6+YcmzjlAGcflvLqSS/Y2/krdAJclgRh5Wm7LD+jRi01U1ec3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8RaL0VK+3IJ65OdJWEwLw8K7jniU9Ua6iV/oDCSzMCs=;
+ b=VqzDquCYwzHodLcmCgyOX+snhL8a63T8oJUrfqK8NYBr7aONQUts7qWM+ki0sobfgot+CEXoXenV/yiGRbGadL5RpTNBAkj4lB4dJ09ltYxma68ifU9cUZr/sBnilFwwPVKe8iQsrCcD8Al+i7KSNFIskwmjBVWy3MGub8TySnk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by DBBPR04MB7739.eurprd04.prod.outlook.com (2603:10a6:10:1eb::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Thu, 12 Jan
+ 2023 09:47:24 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::3a82:42b3:f1ed:5c3d]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::3a82:42b3:f1ed:5c3d%7]) with mapi id 15.20.6002.013; Thu, 12 Jan 2023
+ 09:47:24 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     mchehab@kernel.org, mirela.rabulea@oss.nxp.com,
+        hverkuil-cisco@xs4all.nl
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] media: imx-jpeg: Apply clk_bulk api instead of operating specific clk
+Date:   Thu, 12 Jan 2023 17:47:02 +0800
+Message-Id: <20230112094702.27604-1-ming.qian@nxp.com>
+X-Mailer: git-send-email 2.38.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG3P274CA0005.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::17)
+ To AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 4/4] arm64: dts: fsd: Add Ethernet support for PERIC
- Block of FSD SoC
-Content-Language: en-US
-To:     Sriranjani P <sriranjani.p@samsung.com>, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alexandre.torgue@foss.st.com, peppe.cavallaro@st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, pankaj.dubey@samsung.com,
-        alim.akhtar@samsung.com, ravi.patel@samsung.com,
-        Jayati Sahu <jayati.sahu@samsung.com>
-References: <20230111075422.107173-1-sriranjani.p@samsung.com>
- <CGME20230111075455epcas5p1951d1981f15d252e09281621ef5fbf15@epcas5p1.samsung.com>
- <20230111075422.107173-5-sriranjani.p@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230111075422.107173-5-sriranjani.p@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6341:EE_|DBBPR04MB7739:EE_
+X-MS-Office365-Filtering-Correlation-Id: c317e963-b801-49ba-447f-08daf48201ef
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BNw2Ysh5dcgVLfkjH5xhA+oJgyW4wtQR2OqFlRFMQchfKTR2wRLYCBB+pts8X8zj2nulfWzjP1uSOn7iWs14601XceYQ0hcqpmXh8fM1o+aqD3BEeDA+XtfqEmcRFrgMn7Rh6QSbBnA2XWoDkQivKm+WN+z+X37KeUAMWJfMBbMnzjEmrWDa+Uk/DyZnHFCrXP0khLGy3Gvm8zN83fRznG2G1bR8O0PKVamTd1T2vF7NSI1NrGZffeGp0q2zVLbee3y9RDVO0WbtUj4/X72imL8fbgECM+TlImU6YCFVqVdm+gZ12sX1LHA4Pv7sEdw/sjby2xsCkEMlFRu12yGNLiaLFchj5ZL9nJb0sReOkmQdHyD5/snPwmy7ftTTrImTmY6LyVlxwk6tZse66u+cpY5/4NpjCwAkQyNYJh8PE8KlLzi5+SVYXTYs3ul0+FXpFNJg5pJWuIdKxSmzWXyPGf9py8TOYLkOCxLLbMA+RqgOtdXaZIBlcqTeELa3+rlJV8gd6iXSz/AKXkAmvAeMhHd9vyuAkQh6ics6n6Gh1Cj4cdoJQiBqE520XOgvDgZvfEVc0kayHa0fSPK3HgCZ6faFmv8dQkykAL6idlmVH55HmOsXRpeF/OmpFIaQ9wTtopykXFXOrJTOMU9COO/adh2aP7F7YWC4Kam+/3af+ToPhwLYpR9wVVFS/Cnmee4SU7mSrWbCcVLLPgJTf7qZkg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(346002)(376002)(396003)(39860400002)(136003)(451199015)(2906002)(83380400001)(44832011)(478600001)(1076003)(52116002)(66476007)(7416002)(66556008)(5660300002)(66946007)(8936002)(26005)(6666004)(36756003)(186003)(6506007)(6512007)(6486002)(2616005)(41300700001)(38350700002)(38100700002)(8676002)(86362001)(316002)(4326008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OCM72dgF4sD7zJletWXrP7ElzXDAWnMTdliI/7tPTFJVeT3mUCimq1CNLOuH?=
+ =?us-ascii?Q?A0zK3nz5KsPlyHjkorA+5PyNm71AD525NE+HDlL4MwPR8VoB+TLdbSjw0omq?=
+ =?us-ascii?Q?+ht6v0La0luWzU5LVKwGn75Pfgw6UstiB4UwNpxPJzD8k5zzVTmuf+VaIvY9?=
+ =?us-ascii?Q?SXC6XE0UwByGlpunkYJM8doaIANdobeNsRoINfKdLSrmwkqn4B6bEDAzAEJL?=
+ =?us-ascii?Q?K6JqtnGBZWQ3j0otWfCDv8mSrvMQQ6AVBm9Kp95uLc3+V2IPQAyzS6iJTdwh?=
+ =?us-ascii?Q?/yDu8cgrQnEHPeYNlOuB7+U8L5xAgKfwy2X4PvEmBwgK7Cz+x3TAPR3FQuDR?=
+ =?us-ascii?Q?OjqcUknWEGNoQsQAtEbmafszEw9iMRYx6uQas2oPmmSKvtNApbGli+1TByVV?=
+ =?us-ascii?Q?pe53CHg09u1am5WIxfhMKS99/pLn0oVhp4Px39/qr7qdj9L1JQoBTQbl+ZDS?=
+ =?us-ascii?Q?Vn3lsXnYqW8wQZ9dxLP51n0FYeOMPIKttWqqzEdLmWIepQ8pgn5jje1mvCkB?=
+ =?us-ascii?Q?4a3lTAMoQ0aeZvVImrpzdThbXLT7asuJ22AfFFzVg3UpjxIkb3mUHM1te+u/?=
+ =?us-ascii?Q?ByT5vKpN22ih+XwZlRayS1aRX+ccyD/mTBI7NK64syUpvC/bUEYvJ6B4OSS2?=
+ =?us-ascii?Q?ocDLLAkWO6R+bzCbNirNocZbHua4vK2h5p2QKaD0QgjsBnzWJMEy6RyXvrbd?=
+ =?us-ascii?Q?BlleSmh9aUV21+kXC4BRf6Uk1ENb10KnZLrw3SeULB0YH8N8pvMgUg59aVah?=
+ =?us-ascii?Q?sTN/KhJaLTvGaJj5Hd8RUcefl87EazyyUBXEyZaVXibV8RrhUl1jFXUu8UuE?=
+ =?us-ascii?Q?Smor743ZnLrbx8NA6e94vlcQGAbbbw4JxyeKKz/Bp5QCq58MgqghcFQ4QCv/?=
+ =?us-ascii?Q?RimwTP3rL0sVyHUZSvQbGN3lheQpw0ZY0z6VF8QcTBXG69ije9x4dCYLrCKb?=
+ =?us-ascii?Q?qr6Qx+GqPTMX8rKvvbITKuhm5cVKbR+6ck4u9LwVT4WzW1FBIknM/d8X2jza?=
+ =?us-ascii?Q?AaDHVH0gMAJVdn3TCBDB9byd2RyfYfXvLiOJNtGtY0zJUD+C883GVFTc01tY?=
+ =?us-ascii?Q?7CM7nQYS2uBQGal10KvZn2LWYu3JhWGS936vCQtLQbXNxQqlxAnblmw64c4Q?=
+ =?us-ascii?Q?619vyAC+wdz02DVqvwYj8/VX9IOiaEaHJocH7nmoLP4clvzCjQ4UhTdVx62s?=
+ =?us-ascii?Q?rz/cELyUo76PdWls5EjnHhGzlxyQk97Tg9fbJ1/GG2zNto/u0HUum7CuCHLu?=
+ =?us-ascii?Q?Ec+Qcxk0/HJzRpf+zWxnVWJ/jqLp5q/GAK+qAIux/e2F1alukAla50A/VX4L?=
+ =?us-ascii?Q?e5eUK+6NotOYstLgMfiAPbptoIFJD9GbhCfaWxYmJCno/UpvieS6/IY5jdWK?=
+ =?us-ascii?Q?PtNjkABJqk9cL8H5YG4tXIQiA7jpyOkEIwUGaw3CIH4tCnmVk8DvwdLgmjam?=
+ =?us-ascii?Q?GmOCLTKt4pk46r5++O+M0DUfp/HsR8yWQ48FzZ9z6LCU9VG1pTh1MJmP3dXK?=
+ =?us-ascii?Q?fJ/pBICPoWO+NKoQ/bGH3BWYBJ5/rSJLCQIBJHc2D9hx6EYWLe1+W6Mlf7Bq?=
+ =?us-ascii?Q?MUZ8NQTWYoB2H2q5HH3o/3qCnOrLNq6avE51ZEfX?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c317e963-b801-49ba-447f-08daf48201ef
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2023 09:47:24.3292
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fGr5+clt+pMvm2OyYRjh2sCh1ikBAhqSq3aGT/sgYHzUUcr1/s7dgTaG2rffde3vEiV5vWXcuf1yLb9oKvAOiw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7739
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/01/2023 08:54, Sriranjani P wrote:
-> The FSD SoC contains two instances of Synopsys DWC QoS Ethernet IP, one in
-> FSYS0 block and other in PERIC block.
-> 
-> Adds device tree node for Ethernet in PERIC Block and enables the same for
-> FSD platform.
-> 
-> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> Signed-off-by: Jayati Sahu <jayati.sahu@samsung.com>
-> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
-> ---
->  arch/arm64/boot/dts/tesla/fsd-evb.dts      |  9 ++++
->  arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 56 ++++++++++++++++++++++
->  arch/arm64/boot/dts/tesla/fsd.dtsi         | 29 +++++++++++
->  3 files changed, 94 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> index ca0c1a28d562..2c0cbe775e04 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> +++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> @@ -39,6 +39,15 @@
->  	};
->  };
->  
-> +&ethernet_1 {
-> +	status = "okay";
-> +
-> +	fixed-link {
-> +		speed = <1000>;
-> +		full-duplex;
-> +	};
-> +};
-> +
->  &fin_pll {
->  	clock-frequency = <24000000>;
->  };
-> diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> index 7ccc0738a149..c955bf159786 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> @@ -395,6 +395,62 @@
->  		samsung,pin-pud = <FSD_PIN_PULL_UP>;
->  		samsung,pin-drv = <FSD_PIN_DRV_LV1>;
->  	};
-> +
-> +	eth1_tx_clk: eth1-tx-clk-pins {
-> +		samsung,pins = "gpf2-0";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_DOWN>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-> +	};
-> +
-> +	eth1_tx_data: eth1-tx-data-pins {
-> +		samsung,pins = "gpf2-1", "gpf2-2", "gpf2-3", "gpf2-4";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-> +	};
-> +
-> +	eth1_tx_ctrl: eth1-tx-ctrl-pins {
-> +		samsung,pins = "gpf2-5";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-> +	};
-> +
-> +	eth1_phy_intr: eth1-phy-intr-pins {
-> +		samsung,pins = "gpf2-6";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-> +	};
-> +
-> +	eth1_rx_clk: eth1-rx-clk-pins {
-> +		samsung,pins = "gpf3-0";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-> +	};
-> +
-> +	eth1_rx_data: eth1-rx-data-pins {
-> +		samsung,pins = "gpf3-1", "gpf3-2", "gpf3-3", "gpf3-4";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-> +	};
-> +
-> +	eth1_rx_ctrl: eth1-rx-ctrl-pins {
-> +		samsung,pins = "gpf3-5";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV6>;
-> +	};
-> +
-> +	eth1_mdio: eth1-mdio-pins {
-> +		samsung,pins = "gpf3-6", "gpf3-7";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-> +	};
->  };
->  
->  &pinctrl_pmu {
-> diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> index ade707cc646b..8807055807dd 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-> +++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> @@ -33,6 +33,7 @@
->  		spi1 = &spi_1;
->  		spi2 = &spi_2;
->  		eth0 = &ethernet_0;
-> +		eth1 = &ethernet_1;
+using the api of clk_bulk can simplify the code.
+and the clock of the jpeg codec may be changed,
+the clk_bulk api can be compatible with the future change.
 
-Nope for the reasons I explained last time.
+Fixes: 4c2e5156d9fa ("media: imx-jpeg: Add pm-runtime support for imx-jpeg")
+Signed-off-by: Ming Qian <ming.qian@nxp.com>
+---
+ .../media/platform/nxp/imx-jpeg/mxc-jpeg.c    | 35 +++++--------------
+ .../media/platform/nxp/imx-jpeg/mxc-jpeg.h    |  4 +--
+ 2 files changed, 10 insertions(+), 29 deletions(-)
 
->  	};
->  
->  	cpus {
-> @@ -882,6 +883,34 @@
->  			phy-mode = "rgmii";
->  			status = "disabled";
->  		};
-> +
-> +		ethernet_1: ethernet@14300000 {
-
-Do not add nodes to the end.
-
-Best regards,
-Krzysztof
+diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
+index f6f87970a6c9..d3d4dba8c280 100644
+--- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
++++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
+@@ -2758,19 +2758,12 @@ static int mxc_jpeg_probe(struct platform_device *pdev)
+ 	jpeg->mode = mode;
+ 
+ 	/* Get clocks */
+-	jpeg->clk_ipg = devm_clk_get(dev, "ipg");
+-	if (IS_ERR(jpeg->clk_ipg)) {
+-		dev_err(dev, "failed to get clock: ipg\n");
+-		ret = PTR_ERR(jpeg->clk_ipg);
+-		goto err_clk;
+-	}
+-
+-	jpeg->clk_per = devm_clk_get(dev, "per");
+-	if (IS_ERR(jpeg->clk_per)) {
+-		dev_err(dev, "failed to get clock: per\n");
+-		ret = PTR_ERR(jpeg->clk_per);
++	ret = devm_clk_bulk_get_all(&pdev->dev, &jpeg->clks);
++	if (ret < 0) {
++		dev_err(dev, "failed to get clock\n");
+ 		goto err_clk;
+ 	}
++	jpeg->num_clks = ret;
+ 
+ 	ret = mxc_jpeg_attach_pm_domains(jpeg);
+ 	if (ret < 0) {
+@@ -2867,32 +2860,20 @@ static int mxc_jpeg_runtime_resume(struct device *dev)
+ 	struct mxc_jpeg_dev *jpeg = dev_get_drvdata(dev);
+ 	int ret;
+ 
+-	ret = clk_prepare_enable(jpeg->clk_ipg);
+-	if (ret < 0) {
+-		dev_err(dev, "failed to enable clock: ipg\n");
+-		goto err_ipg;
+-	}
+-
+-	ret = clk_prepare_enable(jpeg->clk_per);
++	ret = clk_bulk_prepare_enable(jpeg->num_clks, jpeg->clks);
+ 	if (ret < 0) {
+-		dev_err(dev, "failed to enable clock: per\n");
+-		goto err_per;
++		dev_err(dev, "failed to enable clock\n");
++		return ret;
+ 	}
+ 
+ 	return 0;
+-
+-err_per:
+-	clk_disable_unprepare(jpeg->clk_ipg);
+-err_ipg:
+-	return ret;
+ }
+ 
+ static int mxc_jpeg_runtime_suspend(struct device *dev)
+ {
+ 	struct mxc_jpeg_dev *jpeg = dev_get_drvdata(dev);
+ 
+-	clk_disable_unprepare(jpeg->clk_ipg);
+-	clk_disable_unprepare(jpeg->clk_per);
++	clk_bulk_disable_unprepare(jpeg->num_clks, jpeg->clks);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
+index 8fa8c0aec5a2..87157db78082 100644
+--- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
++++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.h
+@@ -120,8 +120,8 @@ struct mxc_jpeg_dev {
+ 	spinlock_t			hw_lock; /* hardware access lock */
+ 	unsigned int			mode;
+ 	struct mutex			lock; /* v4l2 ioctls serialization */
+-	struct clk			*clk_ipg;
+-	struct clk			*clk_per;
++	struct clk_bulk_data		*clks;
++	int				num_clks;
+ 	struct platform_device		*pdev;
+ 	struct device			*dev;
+ 	void __iomem			*base_reg;
+-- 
+2.38.1
 
