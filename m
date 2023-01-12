@@ -2,455 +2,462 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C77EC66789C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:07:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A9016678A7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Jan 2023 16:11:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240101AbjALPHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 10:07:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55236 "EHLO
+        id S240238AbjALPLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 10:11:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240151AbjALPGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:06:50 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19AF8B81
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:55:42 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id bn26so18376146wrb.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:55:42 -0800 (PST)
+        with ESMTP id S240253AbjALPKh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 10:10:37 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9081631BF
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:58:38 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id m6so28787311lfj.11
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 06:58:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KO1qPhV1IetJ3e/aoUepVBj7y30h3+DK1HnH3CspGDY=;
-        b=suru85umNT2w65xqaTjkxlovTI6k6Vpg3VVNHrzRUmHK9A7T3IF/2wVwQbRrysGwf4
-         vDTQVElJqcZPegfvg3tAVFaAkQWAoh4yzVnmZAe0UIwy40Af23JmRg0JvyJtUj6JrBE9
-         Aj5ObFOLbTB5+EieahKN8y4dT+K8Cwl7uWKz8LazDGoIm/VBTBtJJ9pfnKoUWefZKZ+2
-         Raj6AzIqDt7a4LEzz14Rl5MyakM6F8wzsz2UBLS9xfEJ8by1dx7VPbjqNzRpiokyWxst
-         x9wIIqqP9Iv9sZa9D5HD2PFzrySLrhZzDili9E7+ZQIUSQMsfDUEu50mKCb2Tqahgyhh
-         sJoQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Bfdgx236BNZbCuAzoF8/LAeIwZ6heoAIFH1lmaLnqB8=;
+        b=idOuRie0FTUbfld6vL2Rn3IcYoweLofh/RPDdL+VH04vmN2VIzuC/6bVmt3plOxi2o
+         9cgRkUC/UUZJ5XpcCfSsIhdcE6bS4ltn0X83IpMEZXCvt4R2GhqFLBiD008CQZaQPJsI
+         8i9Zv7pSgUAVeZmPrSvH12PITEnaNlapjLrgrD8iRpGeUo66C+BT9PPGi3TBWO4dA2m8
+         yTRebn3PuDNMtfXFzUZfBqHZay6RJLuPbxw7e+wIJbVJUlBbC5eo2ULSPCoaiXZiaSWe
+         AMPzT9ofOStYes5MxD782gKOmo9f94vyIXaxjiRQf4cqwasuEgMMzGH4gPS+4gScie+/
+         4rIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KO1qPhV1IetJ3e/aoUepVBj7y30h3+DK1HnH3CspGDY=;
-        b=ThRNkUwAsXpPbUj5QgfDG0rOzv5NhoYOVYBb3LioOCMs8usgElpJ7l/L+g2zWgL/Ne
-         zvgaDCWBOoOoBqSIHt62zbSSX3FesWIW3Zf+XFHfyu/WE8wzHAtquUcGLMYwERmfaJ8x
-         hdaaK8960XeEt0ejAZMCiZ7YKgqx/A4d/OjJIhpZkz8eL4/7CCKs6Ip0jTt2W7BljkCx
-         Lxq9wIzAWw2jk7T1hfwOTJbBv8/+zKGtBxBKCG0Bdd7MvNbIris3R18h/i8Tv8uHesLx
-         VOMVAjBietbtxhIECmkYNRCs++C0HT0XJd3j0W/m2tKywoudUDupUFZiMJ2Bukq9OK9g
-         TTcw==
-X-Gm-Message-State: AFqh2kpicWFjBy3JFsIXUZac/qRBOX6IZWC2DUc1apAzYRnXN/3BAWQ3
-        KmOReDFsfygFNMLHhzwxjMZjSg==
-X-Google-Smtp-Source: AMrXdXtHVQLXQMBwYj5oNZifThd+AtMQysIXelqiSFcIRkCuHxnVG60YJiQBhtnUCNVcs6CB9lC0Qw==
-X-Received: by 2002:adf:ea12:0:b0:2bd:c097:848b with SMTP id q18-20020adfea12000000b002bdc097848bmr5686018wrm.16.1673535340536;
-        Thu, 12 Jan 2023 06:55:40 -0800 (PST)
-Received: from lmecxl1178.lme.st.com ([80.215.38.209])
-        by smtp.gmail.com with ESMTPSA id v14-20020adff68e000000b002365730eae8sm16599779wrp.55.2023.01.12.06.55.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jan 2023 06:55:40 -0800 (PST)
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Jens Wiklander <jens.wiklander@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Pascal Paillet <p.paillet@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Subject: [PATCH 3/3] optee core: add irq chip using optee async notification
-Date:   Thu, 12 Jan 2023 15:54:24 +0100
-Message-Id: <20230112145424.3791276-4-etienne.carriere@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230112145424.3791276-1-etienne.carriere@linaro.org>
-References: <20230112145424.3791276-1-etienne.carriere@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bfdgx236BNZbCuAzoF8/LAeIwZ6heoAIFH1lmaLnqB8=;
+        b=QycDpmOVhF+SXjg4XbLOR5euc7yAT4AieDAtakresA5+4a7FwxnbUG87k50bT/8t+f
+         ajbu+bbspI2fBrBWaG/iXqGivRHDB+1xBdQZpiB6yzKGgz0bXWCZfOcfAxigVSgRxLvs
+         QGK1owil0uNOl7CO/qd4TqKpAOw8jGrxh2xsT5Q8TZ4k0HriXeNSDV1HJQwxgupsdti0
+         b2AonniRmzDFxSYyJSj39d1hOXpXYWxQVQG9IA5wdSn0uyHyHVVP15ao83oBRcg0hh3b
+         rYaZxsOG/CGnSH2WLFvu9VZS7JN2S2nGo8WWwXXTLbJUKvgB1JITu+K1crfwUBeMSm2C
+         ic9w==
+X-Gm-Message-State: AFqh2kozdmE9KHb/4+gPPcdrshM49X+xQjVxwLeeviOIPdmDGH0yS6t7
+        V2Qx3MnmDgMgzuPRu6QdkLzybA==
+X-Google-Smtp-Source: AMrXdXvQavjHfUgGPYH2voVUKXE0MQhyBK8ZzDExetiLUpIbut/fE16PBISPBLhwqolLztGD6nsYMg==
+X-Received: by 2002:a05:6512:3194:b0:4b0:2a2f:ea6d with SMTP id i20-20020a056512319400b004b02a2fea6dmr26537815lfe.35.1673535517095;
+        Thu, 12 Jan 2023 06:58:37 -0800 (PST)
+Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id t28-20020ac2549c000000b004cc9fa6aba5sm448578lfk.237.2023.01.12.06.58.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 06:58:34 -0800 (PST)
+Message-ID: <1b25e736-1894-5144-2c15-f45fc70d8c74@linaro.org>
+Date:   Thu, 12 Jan 2023 15:58:33 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/5] clk: qcom: add msm8996 Core Bus Framework (CBF)
+ support
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20230111195754.2593134-1-dmitry.baryshkov@linaro.org>
+ <20230111195754.2593134-3-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230111195754.2593134-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds an irq chip in optee driver to generate interrupts from OP-TEE
-notified interrupt events based on optee async notification. Upon such
-notification, optee driver invokes OP-TEE to query a pending interrupt
-event. If an interrupt notification is pending the invocation return
-OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_IT and optee driver can get the pending
-interrupt number with SMC function ID OPTEE_SMC_FUNCID_GET_IT_VALUE.
 
-SMC function ID OPTEE_SMC_FUNCID_SET_IT_MASK allows Linux to mask/unmask
-an interrupt notification services.
 
-The optee irq_chip if flagged IRQCHIP_SKIP_SET_WAKE to skip set_wake
-as optee interrupt notifications doesn't support the set_wake option.
-In case a device is using the optee irq and is marked as wakeup source,
-this result in an "Unbalanced IRQ xx wake disable" backtrace, since:
-- in irq_set_irq_wake(ON), wake_depth gets incremented, then reset due to
-  set_irq_wake_real() returns an error (irq_set_wake() isn't implemented)
-- in irq_set_irq_wake(OFF), wake_depth is always 0, hence the warning
+On 11.01.2023 20:57, Dmitry Baryshkov wrote:
+> Add CBF clock driver as a part of MSM8996 CPU clocks. Significantly
+> based on AngeloGioacchino del Regno's work at [1].
+> 
+> The CBF is an interconnect between two CPU clusters, setting it up
+> properly is required for booting the MSM8996 with all four cores
+> enabled.
+> 
+> [1] https://github.com/sonyxperiadev/kernel/blob/aosp/LE.UM.2.3.2.r1.4/drivers/clk/qcom/clk-cpu-8996.c
+> 
+> Co-developed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/clk/qcom/Makefile       |   2 +-
+>  drivers/clk/qcom/clk-cbf-8996.c | 318 ++++++++++++++++++++++++++++++++
+>  2 files changed, 319 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/qcom/clk-cbf-8996.c
+> 
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index ca2f586edb3e..d6ecd2bf7040 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -52,7 +52,7 @@ obj-$(CONFIG_MSM_MMCC_8998) += mmcc-msm8998.o
+>  obj-$(CONFIG_QCOM_A53PLL) += a53-pll.o
+>  obj-$(CONFIG_QCOM_A7PLL) += a7-pll.o
+>  obj-$(CONFIG_QCOM_CLK_APCS_MSM8916) += apcs-msm8916.o
+> -obj-$(CONFIG_QCOM_CLK_APCC_MSM8996) += apcs-msm8996.o clk-cpu-8996.o
+> +obj-$(CONFIG_QCOM_CLK_APCC_MSM8996) += apcs-msm8996.o clk-cpu-8996.o clk-cbf-8996.o
+>  obj-$(CONFIG_QCOM_CLK_APCS_SDX55) += apcs-sdx55.o
+>  obj-$(CONFIG_QCOM_CLK_RPM) += clk-rpm.o
+>  obj-$(CONFIG_QCOM_CLK_RPMH) += clk-rpmh.o
+> diff --git a/drivers/clk/qcom/clk-cbf-8996.c b/drivers/clk/qcom/clk-cbf-8996.c
+> new file mode 100644
+> index 000000000000..bdd4f8b48a7e
+> --- /dev/null
+> +++ b/drivers/clk/qcom/clk-cbf-8996.c
+> @@ -0,0 +1,318 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2022, Linaro Ltd.
+Happy new year!
 
-Co-developed-by: Pascal Paillet <p.paillet@foss.st.com>
-Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
-Co-developed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
----
- drivers/tee/optee/optee_private.h |   2 +
- drivers/tee/optee/optee_smc.h     |  78 +++++++++++++++-
- drivers/tee/optee/smc_abi.c       | 142 ++++++++++++++++++++++++++++--
- 3 files changed, 216 insertions(+), 6 deletions(-)
+> + */
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/of.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-regmap.h"
+> +
+> +/* Need to match the order of clocks in DT binding */
+> +enum {
+> +	DT_XO,
+No, it should be XO_A, otherwise the platform will never sleep.
 
-diff --git a/drivers/tee/optee/optee_private.h b/drivers/tee/optee/optee_private.h
-index e5bd3548691f..2a146d884d27 100644
---- a/drivers/tee/optee/optee_private.h
-+++ b/drivers/tee/optee/optee_private.h
-@@ -112,6 +112,7 @@ struct optee_pcpu {
-  * @optee_pcpu		per_cpu optee instance for per cpu work or NULL
-  * @notif_pcpu_wq	workqueue for per cpu aynchronous notification or NULL
-  * @notif_pcpu_work	work for per cpu asynchronous notification
-+ * @domain		interrupt domain registered by OP-TEE driver
-  */
- struct optee_smc {
- 	optee_invoke_fn *invoke_fn;
-@@ -121,6 +122,7 @@ struct optee_smc {
- 	struct optee_pcpu __percpu *optee_pcpu;
- 	struct workqueue_struct *notif_pcpu_wq;
- 	struct work_struct notif_pcpu_work;
-+	struct irq_domain *domain;
- };
- 
- /**
-diff --git a/drivers/tee/optee/optee_smc.h b/drivers/tee/optee/optee_smc.h
-index 73b5e7760d10..0cf83d5a2931 100644
---- a/drivers/tee/optee/optee_smc.h
-+++ b/drivers/tee/optee/optee_smc.h
-@@ -226,7 +226,8 @@ struct optee_smc_get_shm_config_result {
-  * a3	Bit[7:0]: Number of parameters needed for RPC to be supplied
-  *		  as the second MSG arg struct for
-  *		  OPTEE_SMC_CALL_WITH_ARG
-- *	Bit[31:8]: Reserved (MBZ)
-+ *	Bit[23:8]: The maximum interrupt event notification number
-+ *	Bit[31:24]: Reserved (MBZ)
-  * a4-7	Preserved
-  *
-  * Error return register usage:
-@@ -254,6 +255,11 @@ struct optee_smc_get_shm_config_result {
- #define OPTEE_SMC_SEC_CAP_ASYNC_NOTIF		BIT(5)
- /* Secure world supports pre-allocating RPC arg struct */
- #define OPTEE_SMC_SEC_CAP_RPC_ARG		BIT(6)
-+/* Secure world supports interrupt events notification to normal world */
-+#define OPTEE_SMC_SEC_CAP_IT_NOTIF		BIT(7)
-+
-+#define OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_MASK	GENMASK(23, 8)
-+#define OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_SHIFT	8
- 
- #define OPTEE_SMC_FUNCID_EXCHANGE_CAPABILITIES	9
- #define OPTEE_SMC_EXCHANGE_CAPABILITIES \
-@@ -416,6 +422,12 @@ struct optee_smc_disable_shm_cache_result {
-  */
- #define OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF	0
- 
-+/*
-+ * Notification that OP-TEE triggers an interrupt event to Linux kernel
-+ * for an interrupt consumer.
-+ */
-+#define OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_IT		1
-+
- #define OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE	17
- #define OPTEE_SMC_GET_ASYNC_NOTIF_VALUE \
- 	OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE)
-@@ -426,6 +438,70 @@ struct optee_smc_disable_shm_cache_result {
- /* See OPTEE_SMC_CALL_WITH_REGD_ARG above */
- #define OPTEE_SMC_FUNCID_CALL_WITH_REGD_ARG	19
- 
-+/*
-+ * Retrieve the interrupt number of the pending interrupt event notified to
-+ * non-secure world since the last call of this function.
-+ *
-+ * OP-TEE keeps a record of all posted interrupt notification events. When the
-+ * async notif interrupt is received by non-secure world, this function should
-+ * be called until all pended interrupt events have been retrieved. When an
-+ * interrupt event is retrieved it is cleared from the record in secure world.
-+ *
-+ * It is expected that this function is called from an interrupt handler
-+ * in normal world.
-+ *
-+ * Call requests usage:
-+ * a0	SMC Function ID, OPTEE_SMC_GET_IT_NOTIF_VALUE
-+ * a1-6	Not used
-+ * a7	Hypervisor Client ID register
-+ *
-+ * Normal return register usage:
-+ * a0	OPTEE_SMC_RETURN_OK
-+ * a1	IT_NOTIF interrupt identifier value
-+ * a2	Bit[0]: OPTEE_SMC_IT_NOTIF_VALID if the value in a1 is
-+ *		valid, else 0 if no interrupt event were pending
-+ * a2	Bit[1]: OPTEE_SMC_IT_NOTIF_PENDING if another interrupt event
-+ *		value is pending, else 0.
-+ *	Bit[31:2]: MBZ
-+ * a3-7	Preserved
-+ *
-+ * Not supported return register usage:
-+ * a0	OPTEE_SMC_RETURN_ENOTAVAIL
-+ * a1-7	Preserved
-+ */
-+#define OPTEE_SMC_IT_NOTIF_VALID		BIT(0)
-+#define OPTEE_SMC_IT_NOTIF_PENDING		BIT(1)
-+
-+#define OPTEE_SMC_FUNCID_GET_IT_NOTIF_VALUE	20
-+#define OPTEE_SMC_GET_IT_NOTIF_VALUE \
-+	OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_IT_NOTIF_VALUE)
-+
-+/*
-+ * Mask or unmask an interrupt notification event.
-+ *
-+ * It is expected that this function is called from an interrupt handler
-+ * in normal world.
-+ *
-+ * Call requests usage:
-+ * a0	SMC Function ID, OPTEE_SMC_SET_IT_NOTIF_MASK
-+ * a1	Interrupt identifier value
-+ * a2	Bit[0]: 1 if interrupt event is to be masked, 0 if it is to be unmasked
-+ * a2   Bit[31:1] MBZ
-+ * a3-6	Not used
-+ * a7	Hypervisor Client ID register
-+ *
-+ * Normal return register usage:
-+ * a0	OPTEE_SMC_RETURN_OK
-+ * a1-7	Preserved
-+ *
-+ * Not supported return register usage:
-+ * a0	OPTEE_SMC_RETURN_ENOTAVAIL
-+ * a1-7	Preserved
-+ */
-+#define OPTEE_SMC_FUNCID_SET_IT_NOTIF_MASK	21
-+#define OPTEE_SMC_SET_IT_NOTIF_MASK \
-+	OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_SET_IT_NOTIF_MASK)
-+
- /*
-  * Resume from RPC (for example after processing a foreign interrupt)
-  *
-diff --git a/drivers/tee/optee/smc_abi.c b/drivers/tee/optee/smc_abi.c
-index 8c2d58d605ac..0360afde119f 100644
---- a/drivers/tee/optee/smc_abi.c
-+++ b/drivers/tee/optee/smc_abi.c
-@@ -977,6 +977,112 @@ static int optee_smc_stop_async_notif(struct tee_context *ctx)
-  * 5. Asynchronous notification
-  */
- 
-+static u32 get_it_value(optee_invoke_fn *invoke_fn, bool *value_valid,
-+			bool *value_pending)
-+{
-+	struct arm_smccc_res res;
-+
-+	invoke_fn(OPTEE_SMC_GET_IT_NOTIF_VALUE, 0, 0, 0, 0, 0, 0, 0, &res);
-+
-+	if (res.a0)
-+		return 0;
-+
-+	*value_valid = res.a2 & OPTEE_SMC_IT_NOTIF_VALID;
-+	*value_pending = res.a2 & OPTEE_SMC_IT_NOTIF_PENDING;
-+	return res.a1;
-+}
-+
-+static u32 set_it_mask(optee_invoke_fn *invoke_fn, u32 it_value, bool mask)
-+{
-+	struct arm_smccc_res res;
-+
-+	invoke_fn(OPTEE_SMC_SET_IT_NOTIF_MASK, it_value, mask, 0, 0, 0, 0, 0, &res);
-+
-+	if (res.a0)
-+		return 0;
-+
-+	return res.a1;
-+}
-+
-+static int handle_optee_it(struct optee *optee)
-+{
-+	bool value_valid;
-+	bool value_pending;
-+	u32 it;
-+
-+	do {
-+		struct irq_desc *desc;
-+
-+		it = get_it_value(optee->smc.invoke_fn, &value_valid, &value_pending);
-+		if (!value_valid)
-+			break;
-+
-+		desc = irq_to_desc(irq_find_mapping(optee->smc.domain, it));
-+		if (!desc) {
-+			pr_err("no desc for optee IT:%d\n", it);
-+			return -EIO;
-+		}
-+
-+		handle_simple_irq(desc);
-+
-+	} while (value_pending);
-+
-+	return 0;
-+}
-+
-+static void optee_it_irq_mask(struct irq_data *d)
-+{
-+	struct optee *optee = d->domain->host_data;
-+
-+	set_it_mask(optee->smc.invoke_fn, d->hwirq, true);
-+}
-+
-+static void optee_it_irq_unmask(struct irq_data *d)
-+{
-+	struct optee *optee = d->domain->host_data;
-+
-+	set_it_mask(optee->smc.invoke_fn, d->hwirq, false);
-+}
-+
-+static struct irq_chip optee_it_irq_chip = {
-+	.name = "optee-it",
-+	.irq_disable = optee_it_irq_mask,
-+	.irq_enable = optee_it_irq_unmask,
-+	.flags = IRQCHIP_SKIP_SET_WAKE,
-+};
-+
-+static int optee_it_alloc(struct irq_domain *d, unsigned int virq,
-+			  unsigned int nr_irqs, void *data)
-+{
-+	struct irq_fwspec *fwspec = data;
-+	irq_hw_number_t hwirq;
-+
-+	hwirq = fwspec->param[0];
-+
-+	irq_domain_set_hwirq_and_chip(d, virq, hwirq, &optee_it_irq_chip, d->host_data);
-+
-+	return 0;
-+}
-+
-+static const struct irq_domain_ops optee_it_irq_domain_ops = {
-+	.alloc = optee_it_alloc,
-+	.free = irq_domain_free_irqs_common,
-+};
-+
-+static int optee_irq_domain_init(struct platform_device *pdev, struct optee *optee, u_int max_it)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+
-+	optee->smc.domain = irq_domain_add_linear(np, max_it, &optee_it_irq_domain_ops, optee);
-+	if (!optee->smc.domain) {
-+		dev_err(dev, "Unable to add irq domain\n");
-+		return -ENOMEM;
-+	}
-+
-+	return 0;
-+}
-+
- static u32 get_async_notif_value(optee_invoke_fn *invoke_fn, bool *value_valid,
- 				 bool *value_pending)
- {
-@@ -1008,13 +1114,15 @@ static irqreturn_t notif_irq_handler(int irq, void *dev_id)
- 	}
- 
- 	do {
--		value = get_async_notif_value(optee->smc.invoke_fn,
--					      &value_valid, &value_pending);
-+		value = get_async_notif_value(optee->smc.invoke_fn, &value_valid, &value_pending);
- 		if (!value_valid)
- 			break;
- 
- 		if (value == OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF)
- 			do_bottom_half = true;
-+		else if (optee->smc.sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF &&
-+			 value == OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_IT)
-+			handle_optee_it(optee);
- 		else
- 			optee_notif_send(optee, value);
- 	} while (value_pending);
-@@ -1042,8 +1150,7 @@ static int init_irq(struct optee *optee, u_int irq)
- {
- 	int rc;
- 
--	rc = request_threaded_irq(irq, notif_irq_handler,
--				  notif_irq_thread_fn,
-+	rc = request_threaded_irq(irq, notif_irq_handler, notif_irq_thread_fn,
- 				  0, "optee_notification", optee);
- 	if (rc)
- 		return rc;
-@@ -1145,6 +1252,9 @@ static void optee_smc_notif_uninit_irq(struct optee *optee)
- 
- 			irq_dispose_mapping(optee->smc.notif_irq);
- 		}
-+
-+		if (optee->smc.sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF)
-+			irq_domain_remove(optee->smc.domain);
- 	}
- }
- 
-@@ -1284,6 +1394,7 @@ static bool optee_msg_api_revision_is_compatible(optee_invoke_fn *invoke_fn)
- 
- static bool optee_msg_exchange_capabilities(optee_invoke_fn *invoke_fn,
- 					    u32 *sec_caps, u32 *max_notif_value,
-+					    u32 *max_notif_it,
- 					    unsigned int *rpc_param_count)
- {
- 	union {
-@@ -1316,6 +1427,12 @@ static bool optee_msg_exchange_capabilities(optee_invoke_fn *invoke_fn,
- 	else
- 		*rpc_param_count = 0;
- 
-+	if (*sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF)
-+		*max_notif_it = (res.result.data & OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_MASK) >>
-+				OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_SHIFT;
-+	else
-+		*max_notif_it = 0;
-+
- 	return true;
- }
- 
-@@ -1461,6 +1578,7 @@ static int optee_probe(struct platform_device *pdev)
- 	struct tee_device *teedev;
- 	struct tee_context *ctx;
- 	u32 max_notif_value;
-+	u32 max_notif_it;
- 	u32 arg_cache_flags;
- 	u32 sec_caps;
- 	int rc;
-@@ -1482,7 +1600,7 @@ static int optee_probe(struct platform_device *pdev)
- 	}
- 
- 	if (!optee_msg_exchange_capabilities(invoke_fn, &sec_caps,
--					     &max_notif_value,
-+					     &max_notif_value, &max_notif_it,
- 					     &rpc_param_count)) {
- 		pr_warn("capabilities mismatch\n");
- 		return -EINVAL;
-@@ -1603,6 +1721,20 @@ static int optee_probe(struct platform_device *pdev)
- 			irq_dispose_mapping(irq);
- 			goto err_notif_uninit;
- 		}
-+
-+		if (sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF) {
-+			rc = optee_irq_domain_init(pdev, optee, max_notif_it);
-+			if (rc) {
-+				if (irq_is_percpu_devid(optee->smc.notif_irq))
-+					uninit_pcpu_irq(optee);
-+				else
-+					free_irq(optee->smc.notif_irq, optee);
-+
-+				irq_dispose_mapping(irq);
-+				goto err_notif_uninit;
-+			}
-+		}
-+
- 		enable_async_notif(optee->smc.invoke_fn);
- 		pr_info("Asynchronous notifications enabled\n");
- 	}
--- 
-2.25.1
++	DT_APCS_AUX,
+> +};
+> +
+> +enum {
+> +	CBF_XO_INDEX,
+> +	CBF_PLL_INDEX,
+> +	CBF_DIV_INDEX,
+> +	CBF_APCS_AUX_INDEX,
+> +};
+> +
+> +#define DIV_THRESHOLD		600000000
+> +
+> +#define CBF_MUX_OFFSET		0x18
+> +#define CBF_MUX_PARENT_MASK		GENMASK(1, 0)
+> +#define CBF_MUX_AUTO_CLK_SEL_ALWAYS_ON_MASK GENMASK(5, 4)
+> +#define CBF_MUX_AUTO_CLK_SEL_ALWAYS_ON_GPLL0_SEL \
+> +	FIELD_PREP(CBF_MUX_AUTO_CLK_SEL_ALWAYS_ON_MASK, 0x03)
+> +#define CBF_MUX_AUTO_CLK_SEL_BIT	BIT(6)
+> +
+> +#define CBF_PLL_OFFSET 0xf000
+> +
+> +static const u8 cbf_pll_regs[PLL_OFF_MAX_REGS] = {
+> +	[PLL_OFF_L_VAL] = 0x08,
+> +	[PLL_OFF_ALPHA_VAL] = 0x10,
+> +	[PLL_OFF_USER_CTL] = 0x18,
+> +	[PLL_OFF_CONFIG_CTL] = 0x20,
+> +	[PLL_OFF_CONFIG_CTL_U] = 0x24,
+> +	[PLL_OFF_TEST_CTL] = 0x30,
+> +	[PLL_OFF_TEST_CTL_U] = 0x34,
+> +	[PLL_OFF_STATUS] = 0x28,
+> +};
+> +
+> +static const struct alpha_pll_config cbfpll_config = {
+> +	.l = 72,
+> +	.config_ctl_val = 0x200d4828,
+> +	.config_ctl_hi_val = 0x006,
+> +	.test_ctl_val = 0x1c000000,
+> +	.test_ctl_hi_val = 0x00004000,
+> +	.pre_div_mask = BIT(12),
+> +	.post_div_mask = 0x3 << 8,
+> +	.post_div_val = 0x1 << 8,
+> +	.main_output_mask = BIT(0),
+> +	.early_output_mask = BIT(3),
+> +};
+> +
+> +static struct clk_alpha_pll cbf_pll = {
+> +	.offset = CBF_PLL_OFFSET,
+> +	.regs = cbf_pll_regs,
+> +	.flags = SUPPORTS_DYNAMIC_UPDATE | SUPPORTS_FSM_MODE,
+> +	.clkr.hw.init = &(struct clk_init_data){
+> +		.name = "cbf_pll",
+> +		.parent_data = (const struct clk_parent_data[]) {
+> +			{ .index = DT_XO, },
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_alpha_pll_hwfsm_ops,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor cbf_pll_postdiv = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cbf_pll_postdiv",
+> +		.parent_data = &(const struct clk_parent_data){
+parent_hws?
 
+> +			.hw = &cbf_pll.clkr.hw
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_fixed_factor_ops,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data cbf_mux_parent_data[] = {
+> +	{ .index = DT_XO },
+> +	{ .hw = &cbf_pll.clkr.hw },
+> +	{ .hw = &cbf_pll_postdiv.hw },
+> +	{ .index = DT_APCS_AUX },
+> +};
+> +
+> +struct clk_cbf_8996_mux {
+> +	u32 reg;
+> +	struct notifier_block nb;
+> +	struct clk_regmap clkr;
+> +};
+> +
+> +static struct clk_cbf_8996_mux *to_clk_cbf_8996_mux(struct clk_regmap *clkr)
+> +{
+> +	return container_of(clkr, struct clk_cbf_8996_mux, clkr);
+> +}
+> +
+> +static int cbf_clk_notifier_cb(struct notifier_block *nb, unsigned long event,
+> +			       void *data);
+Please align the indentation with the opening bracket.
+
+> +
+> +static u8 clk_cbf_8996_mux_get_parent(struct clk_hw *hw)
+> +{
+> +	struct clk_regmap *clkr = to_clk_regmap(hw);
+> +	struct clk_cbf_8996_mux *mux = to_clk_cbf_8996_mux(clkr);
+> +	u32 val;
+> +
+> +	regmap_read(clkr->regmap, mux->reg, &val);
+> +
+> +	return FIELD_GET(CBF_MUX_PARENT_MASK, val);
+> +}
+> +
+> +static int clk_cbf_8996_mux_set_parent(struct clk_hw *hw, u8 index)
+> +{
+> +	struct clk_regmap *clkr = to_clk_regmap(hw);
+> +	struct clk_cbf_8996_mux *mux = to_clk_cbf_8996_mux(clkr);
+> +	u32 val;
+> +
+> +	val = FIELD_PREP(CBF_MUX_PARENT_MASK, index);
+> +
+> +	return regmap_update_bits(clkr->regmap, mux->reg, CBF_MUX_PARENT_MASK, val);
+> +}
+> +
+> +static int clk_cbf_8996_mux_determine_rate(struct clk_hw *hw,
+> +					   struct clk_rate_request *req)
+> +{
+> +	struct clk_hw *parent;
+> +
+> +	if (req->rate < (DIV_THRESHOLD / 2))
+> +		return -EINVAL;
+Shouldn't you parent it to APCS AUX here?
+
+> +
+> +	if (req->rate < DIV_THRESHOLD)
+> +		parent = clk_hw_get_parent_by_index(hw, CBF_DIV_INDEX);
+> +	else
+> +		parent = clk_hw_get_parent_by_index(hw, CBF_PLL_INDEX);
+> +
+> +	if (!parent)
+> +		return -EINVAL;
+> +
+> +	req->best_parent_rate = clk_hw_round_rate(parent, req->rate);
+> +	req->best_parent_hw = parent;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct clk_ops clk_cbf_8996_mux_ops = {
+> +	.set_parent = clk_cbf_8996_mux_set_parent,
+> +	.get_parent = clk_cbf_8996_mux_get_parent,
+> +	.determine_rate = clk_cbf_8996_mux_determine_rate,
+> +};
+> +
+> +static struct clk_cbf_8996_mux cbf_mux = {
+> +	.reg = CBF_MUX_OFFSET,
+> +	.nb.notifier_call = cbf_clk_notifier_cb,
+> +	.clkr.hw.init = &(struct clk_init_data) {
+> +		.name = "cbf_mux",
+> +		.parent_data = cbf_mux_parent_data,
+> +		.num_parents = ARRAY_SIZE(cbf_mux_parent_data),
+> +		.ops = &clk_cbf_8996_mux_ops,
+> +		/* CPU clock is critical and should never be gated */
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> +	},
+> +};
+> +
+> +static int cbf_clk_notifier_cb(struct notifier_block *nb, unsigned long event,
+> +			       void *data)
+> +{
+> +	struct clk_notifier_data *cnd = data;
+> +	int ret;
+> +
+> +	switch (event) {
+> +	case PRE_RATE_CHANGE:
+> +		/*
+> +		 * Avoid overvolting. clk_core_set_rate_nolock() walks from top
+> +		 * to bottom, so it will change the rate of the PLL before
+> +		 * chaging the parent of PMUX. This can result in pmux getting
+> +		 * clocked twice the expected rate.
+> +		 *
+> +		 * Manually switch to PLL/2 here.
+> +		 */
+> +		if (cnd->old_rate > DIV_THRESHOLD &&
+> +		    cnd->new_rate < DIV_THRESHOLD)
+> +			clk_cbf_8996_mux_set_parent(&cbf_mux.clkr.hw, CBF_DIV_INDEX);
+> +		break;
+> +	case ABORT_RATE_CHANGE:
+> +		/* Revert manual change */
+> +		if (cnd->new_rate < DIV_THRESHOLD &&
+> +		    cnd->old_rate > DIV_THRESHOLD)
+> +			clk_cbf_8996_mux_set_parent(&cbf_mux.clkr.hw, CBF_PLL_INDEX);
+> +		break;
+> +	default:
+> +		ret = 0;
+> +		break;
+> +	}
+> +
+> +	return notifier_from_errno(ret);
+> +};
+> +
+> +static struct clk_hw *cbf_msm8996_hw_clks[] = {
+> +	&cbf_pll_postdiv.hw,
+> +};
+> +
+> +static struct clk_regmap *cbf_msm8996_clks[] = {
+> +	&cbf_pll.clkr,
+> +	&cbf_mux.clkr,
+> +};
+> +
+> +static const struct regmap_config cbf_msm8996_regmap_config = {
+> +	.reg_bits		= 32,
+> +	.reg_stride		= 4,
+> +	.val_bits		= 32,
+> +	.max_register		= 0x10000,
+> +	.fast_io		= true,
+> +	.val_format_endian	= REGMAP_ENDIAN_LITTLE,
+> +};
+> +
+> +static int qcom_msm8996_cbf_probe(struct platform_device *pdev)
+> +{
+> +	void __iomem *base;
+> +	struct regmap *regmap;
+> +	struct device *dev = &pdev->dev;
+> +	int i, ret;
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	regmap = devm_regmap_init_mmio(dev, base, &cbf_msm8996_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	/* Select GPLL0 for 300MHz for the CBF clock */
+> +	regmap_write(regmap, CBF_MUX_OFFSET, 0x3);
+> +
+> +	/* Ensure write goes through before PLLs are reconfigured */
+> +	udelay(5);
+> +
+> +	/* Set the auto clock sel always-on source to GPLL0/2 (300MHz) */
+> +	regmap_update_bits(regmap, CBF_MUX_OFFSET,
+> +			   CBF_MUX_AUTO_CLK_SEL_ALWAYS_ON_MASK,
+> +			   CBF_MUX_AUTO_CLK_SEL_ALWAYS_ON_GPLL0_SEL);
+> +
+> +	clk_alpha_pll_configure(&cbf_pll, regmap, &cbfpll_config);
+> +
+> +	/* Wait for PLL(s) to lock */
+> +        udelay(50);
+Weird indentation?
+
+> +
+> +	/* Enable auto clock selection for CBF */
+> +	regmap_update_bits(regmap, CBF_MUX_OFFSET,
+> +			   CBF_MUX_AUTO_CLK_SEL_BIT,
+> +			   CBF_MUX_AUTO_CLK_SEL_BIT);
+> +
+> +	/* Ensure write goes through before muxes are switched */
+> +	udelay(5);
+> +
+> +	/* Switch CBF to use the primary PLL */
+> +	regmap_update_bits(regmap, CBF_MUX_OFFSET,
+> +			   CBF_MUX_PARENT_MASK, 0x1);
+I think you can unwrap this.
+
+> +
+> +	for (i = 0; i < ARRAY_SIZE(cbf_msm8996_hw_clks); i++) {
+> +		ret = devm_clk_hw_register(dev, cbf_msm8996_hw_clks[i]);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(cbf_msm8996_clks); i++) {
+> +		ret = devm_clk_register_regmap(dev, cbf_msm8996_clks[i]);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = devm_clk_notifier_register(dev, cbf_mux.clkr.hw.clk, &cbf_mux.nb);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &cbf_mux.clkr.hw);
+> +}
+> +
+> +static const struct of_device_id qcom_msm8996_cbf_match_table[] = {
+> +	{ .compatible = "qcom,msm8996-cbf" },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, qcom_msm8996_cbf_match_table);
+> +
+> +static struct platform_driver qcom_msm8996_cbf_driver = {
+> +	.probe = qcom_msm8996_cbf_probe,
+> +	.driver = {
+> +		.name = "qcom-msm8996-cbf",
+> +		.of_match_table = qcom_msm8996_cbf_match_table,
+> +	},
+> +};
+> +
+> +/* Register early enough to fix the clock to be used for other cores */
+> +static int __init qcom_msm8996_cbf_init(void)
+> +{
+> +	return platform_driver_register(&qcom_msm8996_cbf_driver);
+> +}
+> +postcore_initcall(qcom_msm8996_cbf_init);
+> +
+> +static void __exit qcom_msm8996_cbf_exit(void)
+> +{
+> +	platform_driver_unregister(&qcom_msm8996_cbf_driver);
+> +}
+> +module_exit(qcom_msm8996_cbf_exit);
+> +
+> +MODULE_DESCRIPTION("QCOM MSM8996 CPU Bus Fabric Clock Driver");
+> +MODULE_LICENSE("GPL v2");
+"GPL"
+
+The rest looks good..
+
+Konrad
