@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 533AF669135
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:37:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38771669133
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:37:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234982AbjAMIhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 03:37:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47030 "EHLO
+        id S240704AbjAMIhj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 03:37:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240624AbjAMIhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:37:34 -0500
+        with ESMTP id S240722AbjAMIhh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:37:37 -0500
 Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93EFE676CA
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:37:33 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id m6so32085197lfj.11
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:37:33 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 360CC67BF0
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:37:35 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id m6so32085267lfj.11
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:37:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZAxGWhkR+sGLWasNMFlzZesjFzaUZpYkAtY7w3ETX04=;
-        b=QHVcxOKdLZ663y8qMHMt8b+YIOuayY5GZX90/S0jOruZSithZMPQinIn+nMP52VNbu
-         dm2UMlEDAFL4J7967dZ9Zlw8HaCJ3Ohn3muP42SQqCWm3RxSLFZoCt+QKfQ7lTjCclKi
-         VBtTfR95BYf2dGXtI2b1Tte6ijmVRYIF5NdruTCEsM+qsIn50YL6fVpfkniRqmcwPABy
-         SrKn5ObEUwZhNb5nJsI8cc6r3IPBra5pWrsv28eoagKaPGfnZYEpsCBfDh581rtgc+LJ
-         GU9LgsKAtaLPrtq2hoNhNHUJHiPVhrUP5uSdBc2OQE2hdjY5rzpoXMJ1bPCrZbIKYp5g
-         uzyQ==
+        bh=RPHiREyaiZ++Q90QN1f0Tj1eoFwLzSQv1YWOQn6JI2E=;
+        b=oz+Elk6sdjtlCVgkguKyFjXTPd0capMKVeTI6iigjeQOPGek7Ta0mbVRjzT6GoAImT
+         TY4upUfV6gv9uBGFLZc0OuINJHUp3CnZJG9I8UU3fRDwxU8X3G+V3370QOX1CssKrarg
+         P8piEFBJbjenVtIKozj7cTlcdaLbSboZogwM6vfZPyXeoSMNVOU29QQsJBq7wqsxnl/c
+         ZyqUkwHVvIpdZGUX6BUjrSF/to6WSSRSzPddbUkGMY+YNf4nm/0DvbeYkJhm60gUpmeh
+         xiPZ2a+qQyDf5NQqSiWfWamCO2eu4G3L3UHHStUOJz+gCgY0/mLWdjhFjV+xNDX/oAu/
+         W0JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZAxGWhkR+sGLWasNMFlzZesjFzaUZpYkAtY7w3ETX04=;
-        b=XKMZdvZXPNpjHAn6fjSNrCjZTd80mPRaLnTchyDzG9pmiy3kwd3wIZEyQIIyhJx2Zl
-         b79WB4CB+7jDyMSXMh4sPuiRCfJXSMRV4oICnRS/NyX4jAvXVyRQ1KA2Lu2LKYdZ/Prj
-         /cRFdac6guVZTbLywDh9sravUhuWysPN1MdQ/yGrNbPtZfwzNn4ynzvxJt53TJlYhQky
-         jrufWFOIn7mcOVddayW0upQF4FZluc65IlDBOW06gIe/Z60q5WChczOB8bdaKDpERMme
-         Qa1+yiKhpqUPLKXuv8WQVuIPmMozUV7FTGMMgZWcbI3hSrPwMrabBQE4HbgEVrPJgvJ/
-         UapQ==
-X-Gm-Message-State: AFqh2koRI+Ba4W3M772iRgf4HOfXSLb35WgmTuN5GA14rq8x+TJ5tN4h
-        WdgI0ibO/eS+Ah+bK2++g6srULbd2V2sho/FcsY=
-X-Google-Smtp-Source: AMrXdXvFFP1XOuKfc2DLTQZwZQC8/8KcNqEVn3VpCMy3Jrqn/JuRW/LXX/8KpyMMcbjdR4KyFu78WQ==
-X-Received: by 2002:a05:6512:10c3:b0:4b6:e64c:aec6 with SMTP id k3-20020a05651210c300b004b6e64caec6mr27180183lfg.63.1673599053166;
-        Fri, 13 Jan 2023 00:37:33 -0800 (PST)
+        bh=RPHiREyaiZ++Q90QN1f0Tj1eoFwLzSQv1YWOQn6JI2E=;
+        b=s7jzukMwuWfb6IIam+fJ4wcX3CUWIEaKZ/cO5usmy+S42k+aJtBRuIa9Ftdx0xvsVm
+         fdz51IE4IfMkfqIJw6LJ36eY2nDkPc5HK0i5XGH9XNY4GIJ5oe3Km2s7ph3vOgKsHNDE
+         hqHOfKbsef2OkQsZfWb291Q7mHEYRnxOd+vNGS6CUUqAx5zL1oHJ4TJC3eLhj3M1TZak
+         xZw2wWfP8daE1bL2/n+22YS/irD68UFJrcv4/TjaBEP1/WijKgwxin+cs9OhGk40y4El
+         yz7oVzYmmHzTHxJj0gjgRAoHBuQ3AuoWJzZZ5UyG8QCv9g9eOyLPib0ShmqK9dtqav/R
+         Kdog==
+X-Gm-Message-State: AFqh2kpquMIU6kL3dQDibxGOFQeEwQbzJNNDMa5BWV8zvenDQ30cigv5
+        qOCh3vtaViTSkD+M4WAbRJRuZQ==
+X-Google-Smtp-Source: AMrXdXsmHFXzfkdvEldBf2wWtYsJ4YkZ+e/XRh8ko/KRhlkqEHV+D+GEtH4kTkTfj75FVSAQxACBdw==
+X-Received: by 2002:a05:6512:2526:b0:4a4:68b9:66e1 with SMTP id be38-20020a056512252600b004a468b966e1mr20255049lfb.44.1673599054770;
+        Fri, 13 Jan 2023 00:37:34 -0800 (PST)
 Received: from eriador.lumag.spb.ru ([194.204.33.9])
-        by smtp.gmail.com with ESMTPSA id o6-20020a05651205c600b004994117b0fdsm3748038lfo.281.2023.01.13.00.37.31
+        by smtp.gmail.com with ESMTPSA id o6-20020a05651205c600b004994117b0fdsm3748038lfo.281.2023.01.13.00.37.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 00:37:32 -0800 (PST)
+        Fri, 13 Jan 2023 00:37:34 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,9 +62,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-Subject: [PATCH v6 07/11] arm64: dts: qcom: add SoC specific compat strings to mdp5 nodes
-Date:   Fri, 13 Jan 2023 10:37:16 +0200
-Message-Id: <20230113083720.39224-8-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v6 08/11] arm64: dts: qcom: rename mdss nodes to display-subsystem
+Date:   Fri, 13 Jan 2023 10:37:17 +0200
+Message-Id: <20230113083720.39224-9-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230113083720.39224-1-dmitry.baryshkov@linaro.org>
 References: <20230113083720.39224-1-dmitry.baryshkov@linaro.org>
@@ -72,77 +72,118 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SoC-specific compat string to the MDP5 device nodes to ease
-distinguishing between various platforms.
+Follow the schema change and rename mdss nodes to generic name
+'display-subsystem'.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
  arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8953.dtsi | 2 +-
  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi  | 2 +-
  arch/arm64/boot/dts/qcom/sdm630.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sdm660.dtsi  | 2 ++
- 4 files changed, 5 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi  | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index cf248e10660b..68cdf255c474 100644
+index 68cdf255c474..b688df272207 100644
 --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
 +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -989,7 +989,7 @@ mdss: mdss@1a00000 {
- 			ranges;
+@@ -963,7 +963,7 @@ tcsr: syscon@1937000 {
+ 			reg = <0x01937000 0x30000>;
+ 		};
  
- 			mdp: mdp@1a01000 {
--				compatible = "qcom,mdp5";
-+				compatible = "qcom,msm8916-mdp5", "qcom,mdp5";
- 				reg = <0x01a01000 0x89000>;
- 				reg-names = "mdp_phys";
+-		mdss: mdss@1a00000 {
++		mdss: display-subsystem@1a00000 {
+ 			status = "disabled";
+ 			compatible = "qcom,mdss";
+ 			reg = <0x01a00000 0x1000>,
+diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+index 068eac8dc97f..9d4b785409b1 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+@@ -670,7 +670,7 @@ tcsr_phy_clk_scheme_sel: syscon@193f044 {
+ 			reg = <0x193f044 0x4>;
+ 		};
  
+-		mdss: mdss@1a00000 {
++		mdss: display-subsystem@1a00000 {
+ 			compatible = "qcom,mdss";
+ 
+ 			reg = <0x1a00000 0x1000>,
 diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index f4da50b2c007..df5871847778 100644
+index df5871847778..1be9a92fc8c1 100644
 --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
 +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -933,7 +933,7 @@ mdss: mdss@900000 {
- 			status = "disabled";
+@@ -906,7 +906,7 @@ mmcc: clock-controller@8c0000 {
+ 					       <825000000>;
+ 		};
  
- 			mdp: mdp@901000 {
--				compatible = "qcom,mdp5";
-+				compatible = "qcom,msm8996-mdp5", "qcom,mdp5";
- 				reg = <0x00901000 0x90000>;
- 				reg-names = "mdp_phys";
+-		mdss: mdss@900000 {
++		mdss: display-subsystem@900000 {
+ 			compatible = "qcom,mdss";
  
+ 			reg = <0x00900000 0x1000>,
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 7846edce6ae9..3b53d911a51f 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -2922,7 +2922,7 @@ camcc: clock-controller@ad00000 {
+ 			#power-domain-cells = <1>;
+ 		};
+ 
+-		mdss: mdss@ae00000 {
++		mdss: display-subsystem@ae00000 {
+ 			compatible = "qcom,sc7180-mdss";
+ 			reg = <0 0x0ae00000 0 0x1000>;
+ 			reg-names = "mdss";
 diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index e08ead06d4d3..d1542335be74 100644
+index d1542335be74..2ca2f75f2aa7 100644
 --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1498,7 +1498,7 @@ mdss: mdss@c900000 {
- 			status = "disabled";
+@@ -1470,7 +1470,7 @@ opp-262500000 {
+ 			};
+ 		};
  
- 			mdp: mdp@c901000 {
--				compatible = "qcom,mdp5";
-+				compatible = "qcom,sdm630-mdp5", "qcom,mdp5";
- 				reg = <0x0c901000 0x89000>;
- 				reg-names = "mdp_phys";
+-		mdss: mdss@c900000 {
++		mdss: display-subsystem@c900000 {
+ 			compatible = "qcom,mdss";
+ 			reg = <0x0c900000 0x1000>,
+ 			      <0x0c9b0000 0x1040>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 0f1cb2c8addd..72c5ec84d3ef 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4414,7 +4414,7 @@ clock_camcc: clock-controller@ad00000 {
+ 			clock-names = "bi_tcxo";
+ 		};
  
-diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-index d6908aa4c6e1..f0f27fc12c18 100644
---- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-@@ -142,6 +142,8 @@ &gpucc {
- };
+-		mdss: mdss@ae00000 {
++		mdss: display-subsystem@ae00000 {
+ 			compatible = "qcom,sdm845-mdss";
+ 			reg = <0 0x0ae00000 0 0x1000>;
+ 			reg-names = "mdss";
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index a4ce9cf14d9c..dabed46f04a7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -3970,7 +3970,7 @@ camcc: clock-controller@ad00000 {
+ 			#power-domain-cells = <1>;
+ 		};
  
- &mdp {
-+	compatible = "qcom,sdm660-mdp5", "qcom,mdp5";
-+
- 	ports {
- 		port@1 {
- 			reg = <1>;
+-		mdss: mdss@ae00000 {
++		mdss: display-subsystem@ae00000 {
+ 			compatible = "qcom,sm8250-mdss";
+ 			reg = <0 0x0ae00000 0 0x1000>;
+ 			reg-names = "mdss";
 -- 
 2.39.0
 
