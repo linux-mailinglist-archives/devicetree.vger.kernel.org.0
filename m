@@ -2,141 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4600668996
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 03:31:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BC6C6689E3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 04:04:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231911AbjAMCbC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 12 Jan 2023 21:31:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55042 "EHLO
+        id S232586AbjAMDEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 22:04:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232586AbjAMCbA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 21:31:00 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB9355133A;
-        Thu, 12 Jan 2023 18:30:58 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 3DEEB24E115;
-        Fri, 13 Jan 2023 10:30:56 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 13 Jan
- 2023 10:30:56 +0800
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 13 Jan
- 2023 10:30:55 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Fri, 13 Jan 2023 10:30:55 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Conor Dooley <conor@kernel.org>
-CC:     Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH v4 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
-Thread-Topic: [PATCH v4 2/3] hwrng: starfive - Add TRNG driver for StarFive
- SoC
-Thread-Index: AQHZJj/IHp8vIBNNJEO5ZoaN+GosV66aoj2AgADzXNA=
-Date:   Fri, 13 Jan 2023 02:30:55 +0000
-Message-ID: <82979ef41b4a4c9f8a77c950e3c65c86@EXMBX168.cuchost.com>
-References: <20230112043812.150393-1-jiajie.ho@starfivetech.com>
- <20230112043812.150393-3-jiajie.ho@starfivetech.com> <Y8Bco7lBBj7CO9C5@spud>
-In-Reply-To: <Y8Bco7lBBj7CO9C5@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [202.190.108.220]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        with ESMTP id S231822AbjAMDEb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 22:04:31 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA6EA102D;
+        Thu, 12 Jan 2023 19:04:30 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 61C14621F9;
+        Fri, 13 Jan 2023 03:04:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3329C433EF;
+        Fri, 13 Jan 2023 03:04:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673579069;
+        bh=2FqrReueY7f1vbj8dUug6omLgxcQFYoVcKvt8e3fbb4=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=hlfdA753RrtMcdO882nT4gQBOQAm753StRI4TJLuMj6FRC/J/6LNZytMu8B0WpmK4
+         /sxPcf6A66BrSU9VnbVfpwbXnaGUWqk/0qvLlAneD8KQN3sKAxXsCXNbq0WtrcOHRC
+         KhQEhjZjR9dhDNog0r0qzReMKopsiP97WBCoVVZKT+P3ElreMNpk3pMDjeKoIRQIYM
+         8zAum4U/Ydw8Fey+C8w03IP2X/zxZ13zpJvnsCm0KkmNsVNcCIlnuGYRQs5ZZz3Xdv
+         h32XnzatjpsehbsvfCKp4hclwWLfDIPJs+RCI0TyJEeoN5CEJmrN8ZvUoP971nvQ6S
+         Aay29zX7xyHug==
+Message-ID: <64fa5fec507f422a7046d267ca17d73f.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230111191453.2509468-5-dmitry.baryshkov@linaro.org>
+References: <20230111191453.2509468-1-dmitry.baryshkov@linaro.org> <20230111191453.2509468-5-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH 4/4] clk: qcom: add the driver for the MSM8996 APCS clocks
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Date:   Thu, 12 Jan 2023 19:04:27 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +STARFIVE TRNG DRIVER
-> > +M:	Jia Jie Ho <jiajie.ho@starfivetech.com>
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/rng/starfive*
-> > +F:	drivers/char/hw_random/starfive-trng.c
-> 
-> minor nit (so don't submit another version just to fix this):
-> This should be Supported, no?
-> 
+Quoting Dmitry Baryshkov (2023-01-11 11:14:53)
+> diff --git a/drivers/clk/qcom/apcs-msm8996.c b/drivers/clk/qcom/apcs-msm8=
+996.c
+> new file mode 100644
+> index 000000000000..2e9959974ed9
+> --- /dev/null
+> +++ b/drivers/clk/qcom/apcs-msm8996.c
+> @@ -0,0 +1,77 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Qualcomm APCS clock controller driver
+> + *
+> + * Copyright (c) 2022, Linaro Limited
+> + * Author: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> + */
+> +
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
 
-Hi Conor, 
-I'll update this in next version together with other comments below. 
+Remove this include please. It indicates that this is a clk consumer,
+when this driver is only a clk provider.
 
-> > diff --git a/drivers/char/hw_random/Makefile
-> > b/drivers/char/hw_random/Makefile index 3e948cf04476..f68ac370847f
-> > 100644
-> > --- a/drivers/char/hw_random/Makefile
-> > +++ b/drivers/char/hw_random/Makefile
-> > @@ -47,3 +47,4 @@ obj-$(CONFIG_HW_RANDOM_XIPHERA) += xiphera-
-> trng.o
-> >  obj-$(CONFIG_HW_RANDOM_ARM_SMCCC_TRNG) += arm_smccc_trng.o
-> >  obj-$(CONFIG_HW_RANDOM_CN10K) += cn10k-rng.o
-> >  obj-$(CONFIG_HW_RANDOM_POLARFIRE_SOC) += mpfs-rng.o
-> > +obj-$(CONFIG_HW_RANDOM_STARFIVE) += starfive-trng.o
-> 
-> Is "STARFIVE" a bit too general of a name here and in the Kconfig entry?
-> I don't have a TRM for the JH7100, but this name (and the Kconfig text)
-> would give me the impression that I can use it there too.
-> Does this driver support both?
-> 
-
-7100 uses a different trng module but this same generator might be used in
-future products, so I left it generic. Would it be better to specify the product?
-
-> > +static int starfive_trng_probe(struct platform_device *pdev)
-[...]
-> > +	ret = devm_hwrng_register(&pdev->dev, &trng->rng);
-> > +	if (ret) {
-> > +		dev_err_probe(&pdev->dev, ret, "Failed to register
-> hwrng\n");
-> > +		goto err_fail_register;
-> > +	}
-> > +
-> > +	pm_runtime_use_autosuspend(&pdev->dev);
-> > +	pm_runtime_set_autosuspend_delay(&pdev->dev, 100);
-> 
-> > +	pm_runtime_enable(&pdev->dev);
-> 
-> > +
-> > +	return 0;
-> > +
-> > +err_fail_register:
-> 
-> > +	pm_runtime_disable(&pdev->dev);
-> 
-> This was only enabled after the only goto for this label, does it serve a
-> purpose?
-> I know little about runtime PM, it just caught my eye.
-> I looked at the other rng drivers that had calls to pm_runtime_enable(), but
-> they all seem to do their pm enablement _before_ calling hwrng_register().
-> Again, I am not familiar with runtime PM, but curious why you are doing
-> things differently, that's all.
-
-It does make more sense to move pm_runtime_enable before registering the
-generator to align with codes in the goto label.
-I'll fix this part.
-
-Thanks again for reviewing the patches.
-
-Best regards,
-Jia Jie
-
-
+> +#include <linux/clk-provider.h>
+> +#include <linux/delay.h>
+> +#include <linux/module.h>
