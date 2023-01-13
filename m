@@ -2,225 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 849E3669BC6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 16:19:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D2E7669BC8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 16:19:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbjAMPT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 10:19:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41674 "EHLO
+        id S229638AbjAMPTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 10:19:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229829AbjAMPSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:18:07 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0F6990E49
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 07:09:45 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1pGLge-000623-6Q; Fri, 13 Jan 2023 16:09:44 +0100
-Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1pGLgd-0000lN-4k; Fri, 13 Jan 2023 16:09:43 +0100
-Date:   Fri, 13 Jan 2023 16:09:43 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 01/16] dt-bindings: media: fsl-pxp: convert to yaml
-Message-ID: <20230113150943.GC20866@pengutronix.de>
-Mail-Followup-To: Michael Tretter <m.tretter@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
- <20230112-imx-pxp-v2-1-e2281da1db55@pengutronix.de>
- <bba093d0-e648-61b3-f4d7-b48d43e35920@linaro.org>
+        with ESMTP id S229679AbjAMPTb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:19:31 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAA9688A08
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 07:12:17 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id g13so33566231lfv.7
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 07:12:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BIY98kPJHyijXd7ZkHV2FnXqne7Lt3cNAo7nyQqbLCQ=;
+        b=y46y+lz3GKAUel7jfTZ1Si4H+C1iKfJ8kEkvGHVZ+5IwWxYhiR+qf6kV8uSSafmoNE
+         bwAE3PLgQ95iVV7nAVjDHuN1ogQt8pc0qD84B/t12k/EUjvHnK90HA+5lGXjzh/gCoC+
+         yCAiOqj4tx1U8hgTPcLImYZS/mJrhpkB5Jd/7cevlG7ui92ngjBbKcjokyWewyl1BxjB
+         svaP+NUcKIuTBr6Ol1EUBSiILFfeSTA3IOBwMNjQkS2k3GRNJgJ9K0CtSwKj60lGT0s0
+         88vdM8Ey6PL08n6CtDm4ewPLl+EvxAJ0Dc3wbSulIjrXTtVs1WKq6H0AO2yo35aEVFsO
+         zUww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BIY98kPJHyijXd7ZkHV2FnXqne7Lt3cNAo7nyQqbLCQ=;
+        b=M+6rBxqqB6owOL4nCLBdrSwbl44TVD1Z1wojSPsLXUvUlXzEwEoyIYI0pShBdFvBvd
+         /FXCHsaFLXORsDLcetZhvus2rT0ihtwQ5rqoAXaaOGRRTB3qYPon4F6nBFovNncr02OC
+         1IcJUPi6iRqvbObgJFrkHU+4KKK0uUW/+9cFaKFe2lfisjk3odzXwyvjmfPOfG3DSDbT
+         36DxO1hbNtsjlUiOA7MnjsYrQlJ91KiJY7yk/DffWDinRudC1dI4BKxRZWCYh1Y9BkZQ
+         vAjdEdoFFO4jSPRkBP3kqv3DSnJg1e13h0zvNn8aGDIppzXAZPdQlDyG/8KVzUcd9m9S
+         NZig==
+X-Gm-Message-State: AFqh2kpLt1rMCpg4/d1vDfUBC79etpuJiuyeJI0kiPgcFT0kjUgaTX1z
+        7H1lStyIF9MCd7kDiA5ZXnB20A==
+X-Google-Smtp-Source: AMrXdXsEfUe+AqYQC1WC5x69hG4UhSrgJ8qZxilHr6zseZ/JQN5sQgNY2iXbwoA3BPEANtllwSEHAA==
+X-Received: by 2002:ac2:5216:0:b0:4cb:13d7:77e2 with SMTP id a22-20020ac25216000000b004cb13d777e2mr37380lfl.26.1673622736207;
+        Fri, 13 Jan 2023 07:12:16 -0800 (PST)
+Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id i4-20020ac25d24000000b004b578e52d81sm3869961lfb.176.2023.01.13.07.12.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jan 2023 07:12:15 -0800 (PST)
+Message-ID: <9157d3c9-cca2-8694-ffcb-6cafa7b43d84@linaro.org>
+Date:   Fri, 13 Jan 2023 16:12:11 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <bba093d0-e648-61b3-f4d7-b48d43e35920@linaro.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/6] clk: qcom: ipq9574: Enable APSS clock driver
+Content-Language: en-US
+To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, jassisinghbrar@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
+        arnd@arndb.de, marcel.ziswiler@toradex.com,
+        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_poovendh@quicinc.com
+References: <20230113143647.14961-1-quic_devipriy@quicinc.com>
+ <20230113143647.14961-3-quic_devipriy@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230113143647.14961-3-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Jan 2023 12:56:12 +0100, Krzysztof Kozlowski wrote:
-> On 13/01/2023 10:54, Michael Tretter wrote:
-> > Convert the bindings of the Freescale Pixel Pipeline to YAML.
-> > 
-> > The conversion drops the previously listed compatibles for several SoCs.
-> > It is unclear, if the PXP on these SoCs is compatible to any of the PXPs
-> > on the existing SoCs and would allow to reuse the already defined
-> > compatibles. The missing compatibles should be brought back when the
-> > support for the PXP on these SoCs is added.
-> > 
-> > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> > ---
-> > Changelog:
-> > 
-> > v2:
-> > 
-> > - add fsl,imx6sll-pxp and fsl,imx6sx-pxp compatibles
-> > - restrict number of interrupts per variant
-> > - cleanup syntax
-> > ---
-> >  .../devicetree/bindings/media/fsl,imx6ull-pxp.yaml | 82 ++++++++++++++++++++++
-> >  .../devicetree/bindings/media/fsl-pxp.txt          | 26 -------
-> >  2 files changed, 82 insertions(+), 26 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml b/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
-> > new file mode 100644
-> > index 000000000000..c1232689a261
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
-> > @@ -0,0 +1,82 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/fsl,imx6ull-pxp.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale Pixel Pipeline
-> > +
-> > +maintainers:
-> > +  - Philipp Zabel <p.zabel@pengutronix.de>
-> > +  - Michael Tretter <m.tretter@pengutronix.de>
-> > +
-> > +description:
-> > +  The Pixel Pipeline (PXP) is a memory-to-memory graphics processing engine
-> > +  that supports scaling, colorspace conversion, alpha blending, rotation, and
-> > +  pixel conversion via lookup table. Different versions are present on various
-> > +  i.MX SoCs from i.MX23 to i.MX7.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: fsl,imx6ul-pxp
-> > +      - const: fsl,imx6ull-pxp
-> > +      - const: fsl,imx7d-pxp
-> 
-> These three are an enum.
 
-These are alternatives to the 'items:' entry below.
 
-Are you suggesting to use the following statement?
+On 13.01.2023 15:36, devi priya wrote:
+> Enable APSS clock driver for IPQ9574 based devices
+Please be more descriptive of what you're doing and why
+you're doing it.
 
-oneOf:
-  - enum:
-      - fsl,imx6ul-pxp
-      - fsl,imx6ull-pxp
-      - fsl,imx7d-pxp
-  - items:
-      - enum:
-          - fsl,imx6sll-pxp
-          - fsl,imx6sx-pxp
+clk: qcom: apss-ipq-pll: Add IPQ9574 support
 
-Why is this better than the one that I used?
+Add IPQ9574-specific APSS PLL configuration values.
+
+
+mailbox: qcom-apcs-ipc: Add IPQ9574 support
+
+Add a compatible for IPQ9574's mailbox. The SoC, similarly
+to other IPQs uses the APSS IPQ PLL driver for CPU scaling.
+
 
 > 
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,imx6sll-pxp
-> > +              - fsl,imx6sx-pxp
-> > +          - const: fsl,imx6ull-pxp
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    const: axi
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - fsl,imx6sx-pxp
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          numItems: 1
+> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+> ---
+>  drivers/clk/qcom/apss-ipq-pll.c         | 13 +++++++++++++
+>  drivers/mailbox/qcom-apcs-ipc-mailbox.c |  5 +++++
+>  2 files changed, 18 insertions(+)
 > 
-> That's not correct syntax... I am surprised that it works. Did you test
-> the bindings?
+> diff --git a/drivers/clk/qcom/apss-ipq-pll.c b/drivers/clk/qcom/apss-ipq-pll.c
+> index a5aea27eb867..dd0c01bf5a98 100644
+> --- a/drivers/clk/qcom/apss-ipq-pll.c
+> +++ b/drivers/clk/qcom/apss-ipq-pll.c
+> @@ -61,6 +61,18 @@ static const struct alpha_pll_config ipq8074_pll_config = {
+>  	.test_ctl_hi_val = 0x4000,
+>  };
+>  
+> +static const struct alpha_pll_config ipq9574_pll_config = {
+> +	.l = 0x3b,
+> +	.config_ctl_val = 0x200D4828,
+Lowercase hex, please.
 
-I copied this syntax from renesas,wdt.yaml and ran
+> +	.config_ctl_hi_val = 0x6,
+> +	.early_output_mask = BIT(3),
+> +	.aux2_output_mask = BIT(2),
+> +	.aux_output_mask = BIT(1),
+> +	.main_output_mask = BIT(0),
+> +	.test_ctl_val = 0x0,
+> +	.test_ctl_hi_val = 0x4000,
+> +};
+> +
+>  static const struct regmap_config ipq_pll_regmap_config = {
+>  	.reg_bits		= 32,
+>  	.reg_stride		= 4,
+> @@ -102,6 +114,7 @@ static int apss_ipq_pll_probe(struct platform_device *pdev)
+>  static const struct of_device_id apss_ipq_pll_match_table[] = {
+>  	{ .compatible = "qcom,ipq6018-a53pll", .data = &ipq6018_pll_config },
+>  	{ .compatible = "qcom,ipq8074-a53pll", .data = &ipq8074_pll_config },
+> +	{ .compatible = "qcom,ipq9574-a73pll", .data = &ipq9574_pll_config },
+>  	{ }
+>  };
+These are very small changes, so maybe they'll pass, but generally
+it's preferred to split changes per-file if possible (and here it is
+possible if you change the APSS PLL driver first and then bind it in
+APCS mbox afterwards).
 
-	make ARCH=arm dtbs_check DT_SCHEMA_FILES=fsl,imx6ull-pxp.yaml
+>  MODULE_DEVICE_TABLE(of, apss_ipq_pll_match_table);
+> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> index 0e9f9cba8668..90e74f9d7cb3 100644
+> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> @@ -33,6 +33,10 @@ static const struct qcom_apcs_ipc_data ipq6018_apcs_data = {
+>  	.offset = 8, .clk_name = "qcom,apss-ipq6018-clk"
+>  };
+>  
+> +static const struct qcom_apcs_ipc_data ipq9574_apcs_data = {
+> +	.offset = 8, .clk_name = "qcom,apss-ipq6018-clk"
+> +};
+Please reuse ipq6018_apcs_data, it's identical.
 
-with SOC_IMX7D=y, SOC_IMX6UL=y, SOC_IMX6SLL=y, and SOC_IMX6SX=y. The latter
-two were not enabled in the v1, which is why it didn't catch the missing
-compatibles.
-
-On a closer look, I just saw that the checker ignored the schema due to the
-incorrect syntax and didn't produce any further errors. With the syntax fixed,
-the checker now produces also a few more errors about power-domains, which I
-will fix in v3.
-
-Is this syntax correct?
-
-allOf:
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - fsl,imx6sx-pxp
-    then:
-      properties:
-        interrupts:
-          minItems: 1
-          maxItems: 1
-    else:
-      properties:
-        interrupts:
-          minItems: 2
-          maxItems: 2
-
-Michael
+Konrad
+> +
+>  static const struct qcom_apcs_ipc_data msm8916_apcs_data = {
+>  	.offset = 8, .clk_name = "qcom-apcs-msm8916-clk"
+>  };
+> @@ -143,6 +147,7 @@ static int qcom_apcs_ipc_remove(struct platform_device *pdev)
+>  static const struct of_device_id qcom_apcs_ipc_of_match[] = {
+>  	{ .compatible = "qcom,ipq6018-apcs-apps-global", .data = &ipq6018_apcs_data },
+>  	{ .compatible = "qcom,ipq8074-apcs-apps-global", .data = &ipq6018_apcs_data },
+> +	{ .compatible = "qcom,ipq9574-apcs-apps-global", .data = &ipq9574_apcs_data },
+>  	{ .compatible = "qcom,msm8916-apcs-kpss-global", .data = &msm8916_apcs_data },
+>  	{ .compatible = "qcom,msm8939-apcs-kpss-global", .data = &msm8916_apcs_data },
+>  	{ .compatible = "qcom,msm8953-apcs-kpss-global", .data = &msm8994_apcs_data },
