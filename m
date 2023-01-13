@@ -2,32 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B12FD66936E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B13AF66936F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:57:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240500AbjAMJ5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 04:57:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45204 "EHLO
+        id S241078AbjAMJ50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 04:57:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241078AbjAMJ5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:57:04 -0500
+        with ESMTP id S237550AbjAMJ5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:57:05 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 968E5676CF
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E51D7676F9
         for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:54:18 -0800 (PST)
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <m.tretter@pengutronix.de>)
-        id 1pGGlG-0003cp-3C; Fri, 13 Jan 2023 10:54:10 +0100
+        id 1pGGlH-0003cp-5b; Fri, 13 Jan 2023 10:54:11 +0100
 From:   Michael Tretter <m.tretter@pengutronix.de>
-Subject: [PATCH v2 00/16] media: imx-pxp: add support for i.MX7D
-Date:   Fri, 13 Jan 2023 10:54:07 +0100
-Message-Id: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
+Date:   Fri, 13 Jan 2023 10:54:08 +0100
+Subject: [PATCH v2 02/16] media: imx-pxp: detect PXP version
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAD8qwWMC/y3NQQqDMBCF4avIrDt0kiCKVyldJHGsszAJSZGAe
- PfG4vLnffAOKJyFC0zdAZl3KRJDC/3owK82fBhlbg2atCGlNMpWMdWENBii0Rk/9gM07WxhdNkG
- v17+G5P4542vPWVepP6fXu/z/AEXfxSkeQAAAA==
+Message-Id: <20230112-imx-pxp-v2-2-e2281da1db55@pengutronix.de>
+References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
+In-Reply-To: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
 To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         Philipp Zabel <p.zabel@pengutronix.de>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>
@@ -53,107 +52,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is v2 of the series to add support for the PXP found on the i.MX7D to the
-imx-pxp driver.
+Different versions of the Pixel Pipeline have different blocks and their
+routing may be different. Read the PXP_HW_VERSION register to determine
+the version of the PXP and print it to the log for debugging purposes.
 
-The PXP on the i.MX7D has a few differences compared to the one on the
-i.MX6ULL. Especially, it has more processing blocks and slightly different
-multiplexers to route the data between the blocks. Therefore, the driver must
-configure a different data path depending on the platform.
-
-While the PXP has a version register, the reported version is the same on the
-i.MX6ULL and the i.MX7D. Therefore, we cannot use the version register to
-change the driver behavior, but have to use the device tree compatible. The
-driver still prints the found version to the log to help bringing up the PXP
-on further platforms.
-
-The patches are inspired by some earlier patches [0] by Laurent to add PXP
-support to the i.MX7d. Compared to the earlier patches, these patches add
-different behavior depending on the platform. Furthermore, the patches disable
-only the LUT block, but keep the rotator block enabled, as it may now be
-configured via the V4L2 rotate control.
-
-In v2, I included Laurent's patch series [1], which was based on this series
-anyway and added regmap support.
-
-Patch 1 converts the dt-binding to yaml.
-
-Patches 2 to 5 cleanup and refactor the driver in preparation of handling
-different PXP versions.
-
-Patches 6 and 7 add the handling of different platforms and the i.MX7d
-specific configuration.
-
-Patch 8 adds the device tree node for the PXP to the i.MX7d device tree.
-
-Patches 9 to 15 are the cleanup and enhancement patches to add media
-controller support, implement enum_framesizes, and add pxp_read/pxp_write
-helpers.
-
-Patch 16 adds regmap support to the driver.
-
-Michael
-
-[0] https://lore.kernel.org/linux-media/20200510223100.11641-1-laurent.pinchart@ideasonboard.com/
-[1] https://lore.kernel.org/linux-media/20230112172507.30579-1-laurent.pinchart@ideasonboard.com
-
+Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 ---
-
-Changelog
+Changelog:
 
 v2:
 
-- fix device tree binding
-- reduce log level of PXP version to debug
-- drop fallback for missing pdata
-- add cleanup and enhancement patches to series
-- convert driver to regmap
-
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-To: linux-media@vger.kernel.org
-To: devicetree@vger.kernel.org
-To: Philipp Zabel <p.zabel@pengutronix.de>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: kernel@pengutronix.de
-Cc: linux-imx@nxp.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: Michael Tretter <m.tretter@pengutronix.de>
-
+- reduce debug level for version to dev_dbg
+- drop hw_version field from struct pxp_dev
 ---
-Laurent Pinchart (7):
-      media: imx-pxp: Sort headers alphabetically
-      media: imx-pxp: Don't set bus_info manually in .querycap()
-      media: imx-pxp: Add media controller support
-      media: imx-pxp: Pass pixel format value to find_format()
-      media: imx-pxp: Implement frame size enumeration
-      media: imx-pxp: Introduce pxp_read() and pxp_write() wrappers
-      media: imx-pxp: Use non-threaded IRQ
+ drivers/media/platform/nxp/imx-pxp.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Michael Tretter (9):
-      dt-bindings: media: fsl-pxp: convert to yaml
-      media: imx-pxp: detect PXP version
-      media: imx-pxp: extract helper function to setup data path
-      media: imx-pxp: explicitly disable unused blocks
-      media: imx-pxp: disable LUT block
-      media: imx-pxp: make data_path_ctrl0 platform dependent
-      media: imx-pxp: add support for i.MX7D
-      ARM: dts: imx7d: add node for PXP
-      media: imx-pxp: convert to regmap
+diff --git a/drivers/media/platform/nxp/imx-pxp.c b/drivers/media/platform/nxp/imx-pxp.c
+index 689ae5e6ac62..5b671c6e5cae 100644
+--- a/drivers/media/platform/nxp/imx-pxp.c
++++ b/drivers/media/platform/nxp/imx-pxp.c
+@@ -10,6 +10,7 @@
+  * Pawel Osciak, <pawel@osciak.com>
+  * Marek Szyprowski, <m.szyprowski@samsung.com>
+  */
++#include <linux/bitfield.h>
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+ #include <linux/dma-mapping.h>
+@@ -52,6 +53,11 @@ MODULE_PARM_DESC(debug, "activates debug info");
+ #define MEM2MEM_HFLIP	(1 << 0)
+ #define MEM2MEM_VFLIP	(1 << 1)
+ 
++#define PXP_VERSION_MAJOR(version) \
++	FIELD_GET(BM_PXP_VERSION_MAJOR, version)
++#define PXP_VERSION_MINOR(version) \
++	FIELD_GET(BM_PXP_VERSION_MINOR, version)
++
+ #define dprintk(dev, fmt, arg...) \
+ 	v4l2_dbg(1, debug, &dev->v4l2_dev, "%s: " fmt, __func__, ## arg)
+ 
+@@ -1665,6 +1671,7 @@ static int pxp_probe(struct platform_device *pdev)
+ 	struct pxp_dev *dev;
+ 	struct video_device *vfd;
+ 	int irq;
++	u32 hw_version;
+ 	int ret;
+ 
+ 	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
+@@ -1705,6 +1712,10 @@ static int pxp_probe(struct platform_device *pdev)
+ 		goto err_clk;
+ 	}
+ 
++	hw_version = readl(dev->mmio + HW_PXP_VERSION);
++	dev_dbg(&pdev->dev, "PXP Version %u.%u\n",
++		PXP_VERSION_MAJOR(hw_version), PXP_VERSION_MINOR(hw_version));
++
+ 	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
+ 	if (ret)
+ 		goto err_clk;
 
- .../devicetree/bindings/media/fsl,imx6ull-pxp.yaml |  82 +++++
- .../devicetree/bindings/media/fsl-pxp.txt          |  26 --
- arch/arm/boot/dts/imx7d.dtsi                       |   9 +
- drivers/media/platform/nxp/imx-pxp.c               | 359 +++++++++++++++------
- 4 files changed, 355 insertions(+), 121 deletions(-)
----
-base-commit: b7bfaa761d760e72a969d116517eaa12e404c262
-change-id: 20230112-imx-pxp-073008b3c857
-
-Best regards,
 -- 
-Michael Tretter <m.tretter@pengutronix.de>
+2.30.2
