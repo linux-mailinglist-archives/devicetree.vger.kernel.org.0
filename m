@@ -2,109 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D275669E4B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:38:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4AED669E50
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:38:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbjAMQiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 11:38:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52662 "EHLO
+        id S229703AbjAMQix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 11:38:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbjAMQhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:37:25 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E62C1EAE2
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:33:49 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id mp20so6940644ejc.7
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:33:49 -0800 (PST)
+        with ESMTP id S230496AbjAMQib (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:38:31 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F4327D258
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:35:40 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id i9so31927357edj.4
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:35:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HqeKGktzoNIGOwrepER0jyD6PE6cOMtmNstGP908eaA=;
-        b=NwQL5kckEfdBHZ4qB73yVGEtOFmZn8vqkFeEd7OebM+Wx5uXQmrBZ33vmdqZWego13
-         go+DgZ/Ez6JszDMCpBjgFJ5Ho1GaSmJN0EewWiLhM/KCSnsdAdOjiJWvyc+DfE495Jxa
-         KKoW+t0HNSUkesZsmyviNpMCVFbirCU9D0gSYhiSpWPhLM+CP5Gs5d9XzXwefn4+QiBh
-         O69pElJneKAKThWwvN9wU0RNpwojVOjaYSJSFvb/3UeHkZ0c8ZNmz2PXb9/86iJqi26J
-         /jwv4SMirYWdRwkiyR3UffnLbo1HYd2OrW6hxsMc4YT5Psa/s0mKZovRPyLbyQFSWf+J
-         iMJA==
+        bh=j+i5YU1JrTXRnDcI+3MtGP5JXCVMjZlHjuJt57lEasY=;
+        b=hTYNHQ3kVgma7efrxWhS0jCG4N/WaAWX360BUOmAkkbuyrAJSmJnKbv9j6eekdpubS
+         awGnoV7CxiLNlgaFk6P8IDtxENoZ/QL6sr6mVcfk8eCAnr8a0vngNAgtUJyEyIQBQCvE
+         QCVH/TfPdKSqM2V/RLZvWjqABe8c9Zgx67JiOIHH0Fci39DEQhb+k+DopL1cuk3ZQNtC
+         kmhS3rpsS3+/3eDvlkTobH8TmZIDYD5p9ChcQOrgWc7i+c5R7Ag1kjI5NN7LM9l5leFq
+         B+WTOwYqyff87WOmemM5VstAEytH1VZS02e9bUI4DiX4YuMtD/NYR1XgxYbb+HzXyMYt
+         8CBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HqeKGktzoNIGOwrepER0jyD6PE6cOMtmNstGP908eaA=;
-        b=Rczn9OuKGkvmP3RYHqnPVN2KKeoSCoY5HMYyi6z2usyojevYXrs/WGcB7gjIrfI2y6
-         1XIfkjWMnEPH3jVTIEG3tAqYjQce19C/xpzVEe22JyU/ZalUb7y6MpTOxICvyDRKG6u1
-         DYNSmT9vKi5sgdBud97OAzCjGVxi4UqQgQrvzRtW6AtuY/yyIjdiyPLG+Y4QqFjX9kcF
-         1duVn2dh4m9f3bi5K+RRkI1fAscstBlxeBc6ZU7vqos3jW7mf8siPF0LaII1eOpxUESA
-         Iokb7wwwHZ22N2o45fJZCVpfoevnfr6m4h/BzP/4WRAXpJ+tfD70pMItJQvrlCYnr4sI
-         FjhQ==
-X-Gm-Message-State: AFqh2kq/j4s6Fn/xjGOYUoBZjuS4RWyFBmhmtIwA8KSZHPlLLI+wmSDe
-        P+Zdf929kdpSNfGULRa++SelSg==
-X-Google-Smtp-Source: AMrXdXst7zQmWy3j4LjOtQie1yz7s7RZdUVCsWUjwiH+M3a9RE87PvJHOtGDHHh5td5PcFRPnyJ0ag==
-X-Received: by 2002:a17:907:d302:b0:84d:34b0:e955 with SMTP id vg2-20020a170907d30200b0084d34b0e955mr20568322ejc.69.1673627627755;
-        Fri, 13 Jan 2023 08:33:47 -0800 (PST)
+        bh=j+i5YU1JrTXRnDcI+3MtGP5JXCVMjZlHjuJt57lEasY=;
+        b=yIHNB5YvuLOt64TIVFEyZR42npMlTjp1IyqsSx4dG4YWK9sE3nAUjkrOEl79FxtvBf
+         ut01H5sanSuL8rECXO3ruF7jrC2MTjFRwhVCAXKM9E9qkE3LfYO2oOSetqRZhmi9erEu
+         ltofDyFCTTYpA1MoyUiyi5JdkGzIkmPxuVZ8CygP5EtVeN1YrTikv4Vv8gA5mnreuq5P
+         0PCN269TC4a9RcYlPZrzAyQVK4QU7o6cbHvttv3a+pVfiNpjnEY24hrrLjFqEqVyTe20
+         NgJmn9XcucbH7tik2BbtY9A67qLbQKLuO/KZKed/c4s86tcwSI2pyUtzO3gKkhCyptNc
+         7zcQ==
+X-Gm-Message-State: AFqh2koDF3x3cTM0wylQdlRrLE6Azr8ubJh9U3RUMZRWmxcz0i0fc9Zy
+        bUm7xM9Rr/17Fox3CbZeviFtjQ==
+X-Google-Smtp-Source: AMrXdXvjyqT9/V9pwWK1lgdBBUpd5OgsR8LKuFm0wtI0SNnmsfAhSWd/dQhOl9f5KkuCEBQaT1KwxA==
+X-Received: by 2002:a05:6402:3818:b0:49c:1fe4:9efc with SMTP id es24-20020a056402381800b0049c1fe49efcmr3137324edb.40.1673627738757;
+        Fri, 13 Jan 2023 08:35:38 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g21-20020a170906869500b0084d36fd208esm7686260ejx.18.2023.01.13.08.33.46
+        by smtp.gmail.com with ESMTPSA id el14-20020a056402360e00b00458b41d9460sm8045410edb.92.2023.01.13.08.35.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 08:33:47 -0800 (PST)
-Message-ID: <e1782f36-5a28-1fe4-47d5-b3bc00317b57@linaro.org>
-Date:   Fri, 13 Jan 2023 17:33:46 +0100
+        Fri, 13 Jan 2023 08:35:38 -0800 (PST)
+Message-ID: <8a305883-7f7f-2f2d-a7a1-8c2a6b5e72fd@linaro.org>
+Date:   Fri, 13 Jan 2023 17:35:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 2/2] Revert "dt-bindings: power: rpmpd: Add SM4250
- support"
+Subject: Re: [PATCH 1/5] dt-bindings: scm: Add compatible for IPQ9574
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-References: <20230113152232.2624545-1-konrad.dybcio@linaro.org>
- <20230113152232.2624545-2-konrad.dybcio@linaro.org>
+To:     Poovendhan Selvaraj <quic_poovendh@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
+        arnd@arndb.de, marcel.ziswiler@toradex.com,
+        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+        broonie@kernel.org, robimarko@gmail.com, quic_gurus@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_devipriy@quicinc.com
+References: <20230113160012.14893-1-quic_poovendh@quicinc.com>
+ <20230113160012.14893-2-quic_poovendh@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230113152232.2624545-2-konrad.dybcio@linaro.org>
+In-Reply-To: <20230113160012.14893-2-quic_poovendh@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 16:22, Konrad Dybcio wrote:
-> SM4250 and SM6115 use a shared device tree and the RPMPDs are
-> identical. There's no need for a separate entry, so remove it.
+On 13/01/2023 17:00, Poovendhan Selvaraj wrote:
+> Add the scm compatible string for IPQ9574 SoC
 > 
-> This reverts commit 45ac44ed10e58cf9b510e6552317ed7d2602346f.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../devicetree/bindings/power/qcom,rpmpd.yaml          |  1 -
->  include/dt-bindings/power/qcom-rpmpd.h                 | 10 ----------
->  2 files changed, 11 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> index 633d49884019..5bb9f59d196f 100644
-> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> @@ -39,7 +39,6 @@ properties:
->        - qcom,sdm845-rpmhpd
->        - qcom,sdx55-rpmhpd
->        - qcom,sdx65-rpmhpd
-> -      - qcom,sm4250-rpmpd
+> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
 
-Yet, dedicated compatibles are usually recommended. Maybe this should be
-used with fallback:
-"qcom,sm4250-rpmpd", "qcom,sm6115-rpmpd"
-?
+Three people were co-developing single compatible line? I have some
+doubts... Please include only real entries.
+
+Anyway you miss changes to allOf (and/or rebasing on
+https://lore.kernel.org/all/20221122092345.44369-2-krzysztof.kozlowski@linaro.org/
+)
+
 
 Best regards,
 Krzysztof
