@@ -2,126 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF78669016
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:07:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 980A4669019
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:08:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240752AbjAMIH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 03:07:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51220 "EHLO
+        id S240492AbjAMIIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 03:08:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239960AbjAMIGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:06:47 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37A9474585
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:03:29 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id bk16so20254025wrb.11
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:03:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K4cg88Kvj07ysr7PkKeBFTLXDv0UkLAcK6N/8dHojlQ=;
-        b=ygfMdWNuN2Z16VHFfsvMzsslRJmncYlx8ey16mv5SfPa6MmkB2lT66Wo4l6EBjARAB
-         azqZFQ4UZzt3dX+0yqhdbmR/D8nvXcclLD9fhvSnIYXDs0aiLyyXXG3aS4yDlnk/miRG
-         46xSCorwmANDOlRFh3/+GArMvqZSc38Ky6+YYWHi4W3iyXgTXYmzhP8FaC42QYZQQs3A
-         WPMYAk/sFUvNQ8exZ0qIUsgbtqEsRX8sEwZgopuGbehKktSSR4jsqnlsrzcCOeJBv1UW
-         GdCcPq8we34LMzE5UJYFVNOJiwejaWEXwq3De+0DxM24nzJkX1WJn9eDTgZNCPdsA10h
-         n6HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K4cg88Kvj07ysr7PkKeBFTLXDv0UkLAcK6N/8dHojlQ=;
-        b=B+O89umsgT7i5x9gofDATf51SxwOniQiYR7NTQmrTu9Y9KG9lczSeRpfiEeV0Bswbh
-         vaWpvnkDopA3N8mHAByBl0yRikn6VY24At/G5Jc3C5igjsGNbLElNAvgBo3qQ3WjwOrS
-         bb2BxxOWEQGkubMdNufSMWbfvppHOAWcKVeqAZXxTp7O8kSc4DKVh6It6dVJh8N6o/Iq
-         oIYkQYrSuBDdiygMONsRJ6PAcjqUgfEOnNv3N2rk96rltqO9hdlzvWQughLheN/E6zwo
-         4lBrkonYLHz+ryYFdJ7OXBnjZWJ+RCjr+qzFIOIz2KvWJPEwkNqn4aUEShwxKTnhGXyM
-         h7gg==
-X-Gm-Message-State: AFqh2koqtx9I640Ccg5nsjLltlMjCo6HWtZpTF5HLD7I1lJ1I0EhoOAp
-        ikb8R116KtBDgE1dlRw5jCASDODH7unQ0OSm
-X-Google-Smtp-Source: AMrXdXuDaI+YoVgx3YLGtons/nw2H6aGdJuLoH2gqOGJh5Z6O6VljoPp9a/p4NafXMumh8+IsRd77A==
-X-Received: by 2002:a5d:460c:0:b0:2bd:e208:1e3e with SMTP id t12-20020a5d460c000000b002bde2081e3emr588705wrq.62.1673597007754;
-        Fri, 13 Jan 2023 00:03:27 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id o7-20020a5d62c7000000b002bbeda3809csm12609674wrv.11.2023.01.13.00.03.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 00:03:27 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     linux-amlogic@lists.infradead.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, jbrunet@baylibre.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20230111211350.1461860-1-martin.blumenstingl@googlemail.com>
-References: <20230111211350.1461860-1-martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v2 0/6] arm64: dts: small .dts fixes
-Message-Id: <167359700681.3617136.9064230631644160118.b4-ty@linaro.org>
-Date:   Fri, 13 Jan 2023 09:03:26 +0100
+        with ESMTP id S232594AbjAMIHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:07:45 -0500
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6137392FD;
+        Fri, 13 Jan 2023 00:04:37 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 12EE51C000B;
+        Fri, 13 Jan 2023 08:04:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1673597076;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=wvxk6DPDlmeOz1Nn9izcenGUkdQHjs7DPmCAW7HiLUE=;
+        b=Bu0gSlWMgpDnKyBJAhbLPzgDZLvaaTCma7cj46th38QxpH/47+drhybCAiePHomM0aTh83
+        +PXDsWuxQ0Gze0oSdhbIo31xIIwfPwHPP5kCc5Eb0QcCvts6IrrEX6pBoZYt6mPF/snPmq
+        b/DFsQClZhA1dHPWiT9Y+EoRd/xRmZ/MnZQOI5RFkcDPWvXhg88+HqTLhPB/+Twbf/b5xe
+        ODYI5UOQVKp0rZnJ69vWJMU1zopXB+Olug2gjyfbsBe3POdUeDo+TzsYBLOc7qApp71wsr
+        tGND6/XXAbxN3j8QDXt522WDLId2uUazy6oVdOyihsb9hfF4lAIOzbgsfCRwVw==
+Date:   Fri, 13 Jan 2023 09:04:31 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Renesas IDT821034
+ codec
+Message-ID: <20230113090431.7f84c93a@bootlin.com>
+In-Reply-To: <Y774bY4icD8RuMnX@sirena.org.uk>
+References: <20230111134905.248305-1-herve.codina@bootlin.com>
+        <20230111134905.248305-3-herve.codina@bootlin.com>
+        <Y77DKSdZf27qE+xl@sirena.org.uk>
+        <20230111174022.077f6a8c@bootlin.com>
+        <Y774bY4icD8RuMnX@sirena.org.uk>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.11.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Mark,
 
-On Wed, 11 Jan 2023 22:13:44 +0100, Martin Blumenstingl wrote:
-> This series contains a few .dts fixes which were found during review of
-> [0] (which is now the first patch in this series).
-> 
-> 
-> 
-> [0] https://lore.kernel.org/linux-amlogic/20230110215926.1296650-1-martin.blumenstingl@googlemail.com/
-> 
-> [...]
+On Wed, 11 Jan 2023 17:57:01 +0000
+Mark Brown <broonie@kernel.org> wrote:
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
+> On Wed, Jan 11, 2023 at 05:40:22PM +0100, Herve Codina wrote:
+> > Mark Brown <broonie@kernel.org> wrote: =20
+> > > On Wed, Jan 11, 2023 at 02:49:04PM +0100, Herve Codina wrote: =20
+>=20
+> > > Without knowing why things are written in this way or what it's trying
+> > > to accomplish it's hard to comment in detail on what specifically sho=
+uld
+> > > be done. =20
+>=20
+> > Yes, I use regmap to ease the integration of controls and use the
+> > already defined controls macros but the device registers do not fit
+> > well with regmap. =20
+>=20
+> If this doesn't fit into regmap then don't try to shoehorn it into
+> regmap, that just makes it incredibly hard to follow what's going on.
+>=20
+> > The device registers are not defined as simple as address/value pairs.
+> > Accesses contains one or more bytes and the signification of the
+> > data (and bytes) depends on the first bits.
+> > - 0b10xxxxxx means 'Control register' with some data as xxxxxx
+> >   and one extra byte
+> > - 0b1101yyyy means 'Configuration register, slic mode' with
+> >   some other data as yyyy and one extra byte
+> > - 0b1100zzzz means 'Configuration register, gain mode' with
+> >   some other data as zzzz and two extra bytes =20
+>=20
+> So really the device only has three registers, each of different sizes
+> and windowed fields within those registers?  I love innovation,
+> innovation is great and it's good that our hardware design colleagues
+> work so hard to keep us in jobs.  It seems hardly worth it to treat them
+> as registers TBH.  This is so far off a register/value type thing that I
+> just wouldn't even try.
+>=20
+> > Of course, I can describe all of these in details.
+> > Where do you want to have this information ? All at the top
+> > of the file ? Each part (low-level, virtual regs, ...) at
+> > the beginning of each part in the code ? =20
+>=20
+> I'm not sure what problem it solves to use regmap or have virtual
+> registers in the first place.  I think you would be better off with
+> custom _EXT controls, you almost have that anway just hidden in the
+> middle of the fake register stuff instead of directly there.  My sense
+> is that the result would be much less code.  If you are trying to map
+> things onto registers you probably want comments at every level since
+> you don't know where people are going to end up jumping into the code.
+>=20
+> Perhaps it's possible to write some new SND_SOC_ helpers that work with
+> just a value in the device's driver data rather than a regmap and have
+> a callback to trigger a write to the device?  I suspect that'd be
+> generally useful actually...
 
-[1/6] arm64: dts: meson-gxl: jethub-j80: Fix WiFi MAC address node
-      https://git.kernel.org/amlogic/c/f95acdb2b4af21caae2c76a48e565158181386ca
-[2/6] arm64: dts: meson-gxl: jethub-j80: Fix Bluetooth MAC node name
-      https://git.kernel.org/amlogic/c/cb199de1d3aecb02556d8a6e26393015effa0a9f
-[3/6] arm64: dts: meson-axg: jethub-j1xx: Fix MAC address node names
-      https://git.kernel.org/amlogic/c/2f66eeb06e3e8b1cac9e9093be3baadbac2709eb
-[4/6] arm64: dts: meson-gx: Fix Ethernet MAC address unit name
-      https://git.kernel.org/amlogic/c/8ed5310356bfa47cc6bb4221ae6b21258c52e3d1
-[5/6] arm64: dts: meson-g12a: Fix internal Ethernet PHY unit name
-      https://git.kernel.org/amlogic/c/e7303651bbc76c848007f1cfac1fbeaa65f600d1
-[6/6] arm64: dts: meson-gx: Fix the SCPI DVFS node name and unit address
-      https://git.kernel.org/amlogic/c/f189c869ad92787ddd753558bcbae89d75825bb6
+Well, I wil try to use my own .put() and .get() for snd_controls.
 
-These changes has been applied on the intermediate git tree [1].
+For DAPM (struct snd_soc_dapm_widget), no kind of .put() and .get()
+are available. I will use some Ids for the 'reg' value and use the
+.write() and .read() hooks available in struct snd_soc_component_driver
+in order to handle these Ids and so perform the accesses.
 
-The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+Do you think this can be the right way (at least for a first try) ?
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+Best regards,
+Herv=C3=A9
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
