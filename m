@@ -2,88 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC0FA668F5E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:42:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2C97668F65
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:43:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237927AbjAMHmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 02:42:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35486 "EHLO
+        id S233026AbjAMHng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 02:43:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234896AbjAMHmA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:42:00 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DDC06085E
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:41:57 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id ud5so50380278ejc.4
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:41:57 -0800 (PST)
+        with ESMTP id S238580AbjAMHnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:43:05 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3FE1A822
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:43:03 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id mp20so3729846ejc.7
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:43:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6jZVPkMKH4dg9LBMPAxa9vHTcN8f+QCAxm1Sdx9qwJU=;
-        b=J3aaWsdWmJTehzMVhoxONIh9ExogjBLIzEuEIE3yW7JL3XtFYWNVDekd1+bBX5A4Og
-         pCo7uFCd10bjUtrzNej37f+xKmypWmiow14s5Gb7NcWfW1dA+zIUw2twoRiQKVMbMhW3
-         eRMBcemDO8IoRsKkRnmccerajwNuBFb4xibsqig8UaEAlBj4G11Pqm1HzJYxxU7tWP4t
-         5Xo5Z3L+/bnpDb2blNP6X2ZIHAuxumGO0XwsO5z1T6uZks4nGG3KeHsq+LBKheCuSIgC
-         GC+fYX+wj4eeP0kHCeDuUlRM7bAyV2lsVtJBNIxdS2jyBEepDmoBgBhu5vANKa5eNG3Z
-         hoBg==
+        bh=9fmIJc68vb/dpe2aUgc9GwKKtWf/YipuVliNTzq4hAE=;
+        b=Jg+ThatndKiwgz9RECLXAFxz1B0/L46pWmp/CErwVAAzUS+FUbCBQWzXqekxS7kT5Y
+         sZV9e4dBjMaFUQakfhSnbXE6PUVZ9gtdVRjSgFuRZ7UVIx/B1kuVIG/mTLlRxW439/X1
+         Fj+pluC9o3bz5iYIZgCPxF2dgw5H0/gbC7m2sdwS2iwF0wwwA2hhBCuE2o0fUk8M9MCN
+         jQDW0OXem87Qzyd3/IrB+JExIxBA+sOx2tkITyUkbJVk41L+fjOFRR5hxsosN4eVUjpJ
+         gKZHDPe7R2+SDUfMDR1nCGFCnXW6k4TNMaqdv/yxCbBR2Dt5YYyE3VMnwTT5jzZ6ICHy
+         HkAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6jZVPkMKH4dg9LBMPAxa9vHTcN8f+QCAxm1Sdx9qwJU=;
-        b=l9qMJ+LE6xLGIFMnfTs0UMRHNbhndVLYAmShtVPig8NHbzHtO5dvtu3jX42WF7Lozf
-         CMwSxrNcMJjZ0mMSNYGElUjH7zufwyFJlci3AHxUmmCC/7d5GpwkJEok3+Wg45tXu4zs
-         lqhLV+NdgoD88Zki+2abn2URMDl/t2brgoDZ4QPPZZ8qwMY+6n6O/mHTFdGSWlCdmypk
-         z9QDnaYpBVMEqOYSZLeQKeqV3m8FniLDuK3WWfxN6Q0djwGoXN2Lr3f7Pd5U/dOddOUs
-         glbwCJ3g8b7GsERuGNFic0FSqRrp5TeCDskRHz/gV/k5WDLgUGnZKAaAuItusgCAgvAM
-         8IXw==
-X-Gm-Message-State: AFqh2kpKa1/ewQwAN6fcIQHMY5aRYHZxaQJ/mLDvQtgbp7chKeLhz7ZC
-        oCXB4zcIYt2f1awOedtEKDV0KQ==
-X-Google-Smtp-Source: AMrXdXuQPiGyD2HBuR8sg3rcbklpELPTDaituTJoWc3bimEkPQJMxFjPT8IVOo9o7LHXkoI573hwSg==
-X-Received: by 2002:a17:906:468d:b0:7c0:a5c8:d14f with SMTP id a13-20020a170906468d00b007c0a5c8d14fmr66826201ejr.77.1673595716005;
-        Thu, 12 Jan 2023 23:41:56 -0800 (PST)
+        bh=9fmIJc68vb/dpe2aUgc9GwKKtWf/YipuVliNTzq4hAE=;
+        b=WHdm0y69ZSNltoG2AfWXnYm12yqhB73qq3lcEDf5sPPcS6hbBCMXyaAax6+NgxByHY
+         Kxznl55XJCtm4YFFClZCwX5zhm86SapYuJVoXmHPbgpybAd4fsAV2rG1yG+xpTZm6/D4
+         11b+j+OiBeAFEaAnZMvStauwuXNLbUYiP9AdyEmBz+zeyALfbrgcRABGdk926jfyk2dQ
+         mkkoYJ+lIRY1vD05lp0p6r1jJwqtj+SOF544/A71mmhM2aq72zsBU+/vxeZ4TaSFtLrs
+         vXylvMW87MW9nSJJk3c3Nm9gWCBQw/7PTvnNnR+UlCxut3GyY6NbA+cpKCadxUJ4d5gf
+         qXcA==
+X-Gm-Message-State: AFqh2kr2Wtk1NQdMH+A2BbEiJzJprgJAe4npWU5n+YLOXXxXQQTjf8gn
+        6AyMZ3/oZMGCK9VUZSTFT0wotg==
+X-Google-Smtp-Source: AMrXdXtsKwRdrzZmYjZPVOJhVqAxfq7Od77kmMoSQ/3P2/S/WxytDSSYO8UY2hBmYbdv2d+ya3bo+w==
+X-Received: by 2002:a17:907:d311:b0:86a:2c18:e422 with SMTP id vg17-20020a170907d31100b0086a2c18e422mr1931559ejc.77.1673595782407;
+        Thu, 12 Jan 2023 23:43:02 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id 18-20020a170906311200b0084b89c66eb5sm8202096ejx.4.2023.01.12.23.41.53
+        by smtp.gmail.com with ESMTPSA id sb25-20020a1709076d9900b007a4e02e32ffsm8290030ejc.60.2023.01.12.23.43.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 23:41:55 -0800 (PST)
-Message-ID: <f4356898-de35-9728-5395-baecb07c843f@linaro.org>
-Date:   Fri, 13 Jan 2023 08:41:52 +0100
+        Thu, 12 Jan 2023 23:43:01 -0800 (PST)
+Message-ID: <8109445e-a21c-3159-1182-5be45fa0ce8e@linaro.org>
+Date:   Fri, 13 Jan 2023 08:43:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
- support
-To:     William Zhang <william.zhang@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Linux SPI List <linux-spi@vger.kernel.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
-        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
-        jonas.gorski@gmail.com, kursad.oney@broadcom.com, dregan@mail.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230106200809.330769-1-william.zhang@broadcom.com>
- <20230106200809.330769-3-william.zhang@broadcom.com>
- <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
- <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
- <99b01e96-3b96-6692-c5e1-87db49295e6d@linaro.org>
- <49925933-aacc-4f0d-a1ca-e1bd45b05eee@broadcom.com>
- <b246a81f-e465-5e52-f0ce-65e0a82fc3e1@linaro.org>
- <32a464f8-6a4b-6777-9775-f17e990e0c6a@gmail.com>
- <71c2e796-f0fb-90cd-4599-13c9718f41d5@linaro.org>
- <31644849-dc69-ddfc-a6b6-6ffd37d64d2b@broadcom.com>
- <f0a50234-bc8c-09c4-e2c1-22cbeaba5c15@linaro.org>
- <e99a71b2-0b05-1a53-1c29-3778b49a3b86@broadcom.com>
- <0cc43891-405e-418f-01ee-845d680b3a24@linaro.org>
- <14a48b44-962e-1839-4fbb-1739ba8dbc35@broadcom.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: add display port audio
 Content-Language: en-US
+To:     Judy Hsiao <judyhsiao@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20221221071734.2887901-1-judyhsiao@chromium.org>
+ <afd7851b-0846-c21f-a769-10fb920c7c80@linaro.org>
+ <CAJXt+b8eez8KTocoAi0WP8qC3YdA9bfOTPbY8ZGfXNb-MNaT-Q@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <14a48b44-962e-1839-4fbb-1739ba8dbc35@broadcom.com>
+In-Reply-To: <CAJXt+b8eez8KTocoAi0WP8qC3YdA9bfOTPbY8ZGfXNb-MNaT-Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -95,44 +82,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/01/2023 20:50, William Zhang wrote:
->>> No as we are adding chip model specific info here.  The existing driver
->>> spi-bcm63xx-hsspi.c only binds to brcm,bcm6328-hsspi. This driver
->>> supports all the chips with rev1.0 controller so I am using this 6328
->>> string for other chips with v1.0 in the dts patch, which is not ideal.
->>
->> Why? This is perfectly ideal and usual case. Why changing it?
->>
->>> Now I have to add more compatible to this driver and for each new chip
->>> with 1.0 in the future if any.
->>
->> Why you cannot use compatibility with older chipset?
->>
-> IMHO it is really confusing that we have all the SoCs but have to bind 
-> to an antique SoC's spi controller compatible and people may think it is 
-> a mistake or typo when they don't know they are actually the same.
+On 13/01/2023 02:24, Judy Hsiao wrote:
+>> Why do you change link@1 from DP to ALC?
+> Because I want make the order to be consistent with the 3 mic version. Thanks!
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
 
-I am sorry, this is ridiculous argument. It's like saying - people
-cannot understand what they are reading, therefore we need to present
-them obfuscated information so they will think something else than their
-minds created...
-
-> I 
-> know there are usage like that but when we have clear knowledge of the 
-> IP block with rev info, I think it is much better to have a precise SoC 
-
-No, it's not particularly better and you were questioning it just before...
-
-> model number and a general revision info in the compatible. As you know 
-> they are many usage of IP rev info in the compatible too. 
-> brcm,bcm6328-hsspi will stay so it does not break any existing dts 
-> reference to that.
-
-Anyway your ship sailed - you already have bindings using SoC  versions...
-
-> 
-> Anyway if you still does not like this idea, I will drop the rev info 
-> and you have it your way.
+You cut entire context. I don't know what is this about.
 
 Best regards,
 Krzysztof
