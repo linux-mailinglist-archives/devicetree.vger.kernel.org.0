@@ -2,85 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DB7D669406
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:24:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6786D66940E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:24:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241168AbjAMKYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:24:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58090 "EHLO
+        id S241284AbjAMKY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:24:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241198AbjAMKXm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:23:42 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78CF2DEA9;
-        Fri, 13 Jan 2023 02:23:41 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sendonly@marcansoft.com)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 0606E42597;
-        Fri, 13 Jan 2023 10:23:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1673605420; bh=fxnUPxMQfOKf9QNHPBDaDANUADvv1JFN7DwbvKgCdNs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=YZrgvujqp8be2tc3lP2yhiK7xnACtPrFKRW8NFtP3GuVfQ+IPnZsmzqk0sqY7arBi
-         4xLm1P09TugAtLEe27leiv7gMugA+o0x7omi1CYVz4k6khlFEwheC+iVn1oms1/V1f
-         69Z0RgW5z+VG40bjNBsNKl9ocrLzjjByhPlDGqipwGs6QqZP8Gqfir29ikEy2wcOFB
-         8WtWpqmf8hWe4GiKOWrlEnjUKB0PSoZmQKXzSeqTfplqg7li1LooPURQVoaOSvu+kO
-         TAXpDL9qllak0WN5i2rdy96JCdXTEB2ZDt7zYJDBWIgegCVubpqhv98Br4ew/7Sluu
-         9sXSwo+3WWSGA==
-From:   Hector Martin <marcan@marcan.st>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        Janne Grunau <j@jannau.net>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>
-Subject: [PATCH v2 3/3] spi: Parse hold/inactive CS delay values from the DT
-Date:   Fri, 13 Jan 2023 19:23:10 +0900
-Message-Id: <20230113102309.18308-4-marcan@marcan.st>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20230113102309.18308-1-marcan@marcan.st>
-References: <20230113102309.18308-1-marcan@marcan.st>
+        with ESMTP id S241242AbjAMKYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:24:07 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2438D76235
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:24:03 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id az7so20610921wrb.5
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:24:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZqtzVGrTtS3gFp/fjZnt8TYVU0rki/TedO/gvVXrUY4=;
+        b=G5hh/TbPPPGivzK06Wtaxl14ltYQwgD5aXXykZJdDfWzyAAd/zBWf8ff23AcE7Zt1R
+         aenC0OhRMdY8PRZ0AoMYXlnKjqk9/b9Q0WCgf4R110gKXkzsCvOP4lJuvimohBuhWXps
+         9CokOm+E97paJOr1PdZT2xX+kc8zEM/BeNZfFZ2i/W3gJUdtYknCeWoXLEkWo9fISM5I
+         df0HYA1041aloE5naRoVk32wT6sbHkXGdVYZ8/1Ch3qLjeBR9TL0e2F6AbRFVkqxMllk
+         SxvRbfsb9YvwH7HF2ZZak9AIL2xGIOaSFZZKRmOEcBaL8f7dfVIM1VMbT9saEmH4PAuI
+         BRtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZqtzVGrTtS3gFp/fjZnt8TYVU0rki/TedO/gvVXrUY4=;
+        b=0I0pzCfhX7nTCWwr3FFNnBJpIL787fGN0cmytezxbnvdAhUOqLgWEqW5DI8JoY9b+L
+         Py5ueVZ7KTSXP77NqjRfAn8aGvRK7xfP62z1OeLncuWYHkeoTXiXNmWzb6iMzQ+rdnlQ
+         DwBoFWC0kIxK2Y89b1YgNDS54nnauDyZ4rVhu+N1ansUBPc0zJYO28Pw9CWxQ4JIeJ4D
+         9WZLMxPDu31/cb1Ed9iw1dh3eOqLOhc2PzqVUeRxpI1IUW5la9CjVoLwki2FaDDqf/rA
+         BeF5f6UwZwffgFBC7S5bvPst+fXiqHNcj/JzQ/plia6lb2RHipNPNnbzNU4uPdBYRhX9
+         gofQ==
+X-Gm-Message-State: AFqh2kr4ZIH1PrPLsXBVuNjXQYnnvpgGYvJwPtPjennvuPG1GCRVOVQS
+        bvxSlYGpWa3qlFfW8FhBqwUYmw==
+X-Google-Smtp-Source: AMrXdXsGzXFr+tg/hsqZNC+jjJ/VyyEaElf0gsWdPvvSkpheloNgqqRHLCKCVYcPwFbmUPPheX/EAA==
+X-Received: by 2002:a05:6000:1e04:b0:273:e385:1a89 with SMTP id bj4-20020a0560001e0400b00273e3851a89mr48740996wrb.67.1673605441963;
+        Fri, 13 Jan 2023 02:24:01 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id n10-20020a5d6b8a000000b002425787c5easm18496811wrx.96.2023.01.13.02.24.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jan 2023 02:24:01 -0800 (PST)
+Message-ID: <7f58c70f-3ccc-429b-ab98-86948743855e@linaro.org>
+Date:   Fri, 13 Jan 2023 11:24:00 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [RESEND PATCH] dt-bindings: thermal: qcom-spmi-adc-tm5: add
+ qcom,adc-tm7
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+References: <20230113090107.18498-1-krzysztof.kozlowski@linaro.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230113090107.18498-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Janne Grunau <j@jannau.net>
+On 13/01/2023 10:01, Krzysztof Kozlowski wrote:
+> The qcom,adc-tm7 compatible is already used in PMK8350 so add it to the
+> Qualcomm PMIC Thermal Monitoring ADC.  Based on downstream sources, the
+> new compatible for TM7 differs from older TM5 by allowing configuring
+> per sensor decimation, time measurement and number of sample averaging -
+> unlike one configuration per entire device.  This was not reflected in
+> the bindings, therefore comment the new compatible as incomplete as it
+> might change and its ABI is no stable.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+> 
+> Resending because it is waiting for half a year.
 
-Now that we support parsing the setup time from the Device Tree, we can
-also easily support the remaining hold and inactive time delay values.
+Applied, thanks
 
-Signed-off-by: Janne Grunau <j@jannau.net>
-Signed-off-by: Hector Martin <marcan@marcan.st>
----
- drivers/spi/spi.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index 3f33934f5429..fc4f6308efd8 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -2327,6 +2327,8 @@ static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
- 
- 	/* Device CS delays */
- 	of_spi_parse_dt_cs_delay(nc, &spi->cs_setup, "spi-cs-setup-delay-ns");
-+	of_spi_parse_dt_cs_delay(nc, &spi->cs_hold, "spi-cs-hold-delay-ns");
-+	of_spi_parse_dt_cs_delay(nc, &spi->cs_inactive, "spi-cs-inactive-delay-ns");
- 
- 	return 0;
- }
 -- 
-2.35.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
