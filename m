@@ -2,72 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81C37669E07
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:28:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31281669E09
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:28:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbjAMQ2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 11:28:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42832 "EHLO
+        id S229782AbjAMQ2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 11:28:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbjAMQ2I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:28:08 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F7807D26C
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:22:23 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id qk9so53498792ejc.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:22:22 -0800 (PST)
+        with ESMTP id S229538AbjAMQ2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:28:16 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A00A7ECBE
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:22:50 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id vm8so53469262ejc.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:22:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bexLBDu2Jcqr900kwtHlEd3vc21Me48gshjDc+jPY5U=;
-        b=iGbfa1kPYcyjjbwACbG3VaTIbW+t0C83bDns2PeqtRAE3fKZyPa/WEmxMc79C7n+k0
-         LSn7GtKnoYNf36+3K5afjV9HtWsYGjR6SztHSRfDbdDn8o7Jtsm88jzTkgzpLLt/mibF
-         XlwJuLig4EvjXMVD6NKEn0QZv/t3QADwTFWKXR5D+iaP5uuiZooEJDe/8aSmLbQQdbg/
-         tvs9JayG5UkN4ibEtzCdON79+XZZJFzTAWvYpJkrx95wlIipqCFl2etYsvPfiOZ5WO/I
-         ZyMfPDeN4OS5JYIyM4BO7L8zP8T6WGZZWy0WiWHLPvKxkkyvycgHI+qvxOHZ/z9EvWH5
-         GIhA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=U/o3cDhl1VDCIhimkK4z4B4fUtw4xpL6u2a+ZhDH/qY=;
+        b=q5bwqIYKcVlpXQx7yfIVzB2kWsP0AsMOz3CSBAyQxwpf63kGPfnklzoPexGpbe7m9t
+         x9dx7vHCHobX2zhyhx22gqU3++27hxNy6YWX+2qyd22/Q7IL1a6Xaa70K3LHYEbdyu4h
+         QGHfjd5vky6vaFzz311KgJErqqKrAH+UUgvo5Mq1CAZenMx5zhPpjFRsZRGtskuTRONo
+         O7LhS6Fy/ywaNxCgCrhCAZHUO/olRMi5nwLHpyfLS7oOchL3MccQ0KOKNz7fzqjsYAE4
+         6ywV3i/mMz4iMhDvokA3CAZWblcWAS4ATYVRFhJvl8Hpg4/Icagy8mlTuWmGSsM9Hwfb
+         H46A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bexLBDu2Jcqr900kwtHlEd3vc21Me48gshjDc+jPY5U=;
-        b=Yb8lQaPgsPZFJmsokV7VkKaEQiYw7tlCvMX6h4+bZWpt8wKl2nAh19uvjgm0PtLmX0
-         QpHuypFl7km9SAJCTo/z8+ERouuZnk7fSVoKLwpU4QM7ulDv0aFgqmDnMhTDR/3B+EGW
-         0Dt4DYAiX54rywDJBpLAPfSklZq0/xNvmOaf2Mwx3mrN2VXH4/qURWQA7M8uIZVVz3Rx
-         neu/W4K8czlo69ZB5J/xSuvsUvv/bxGjJO6LvyWhTEcRErQ1d5hfeiWio4I8wpdw4R+m
-         o7v0o3ZRgph1DTvSdXagbgaYOEndTn4f4UHjBH265Kk37FePnxURjy7CnzA95JsBGtrx
-         2W/g==
-X-Gm-Message-State: AFqh2kq5k6/zQConWNBXeSaO3WqFDKVosDj7F5ip58K2LgM6JWRPpn9U
-        zYWJojpkAg3/9lIMHDujspRseQ==
-X-Google-Smtp-Source: AMrXdXteXj2KfLx4/wMmN2219OBKDVEo2r86wx6/WgM1C2Dv8h723tnkzSLIYUoGCqzY6op/E1Rujg==
-X-Received: by 2002:a17:907:a609:b0:7c1:22a6:818f with SMTP id vt9-20020a170907a60900b007c122a6818fmr4233958ejc.25.1673626942675;
-        Fri, 13 Jan 2023 08:22:22 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U/o3cDhl1VDCIhimkK4z4B4fUtw4xpL6u2a+ZhDH/qY=;
+        b=yfNAmFulZXT36yXzXHj6xQiNq9erHqI4y1ufzH6XssQewCITXKwAV0tYBzg0Uflb04
+         JOTQteQIdPJ8D5D9W3bne7DFEnqgbur2qW+ZYydBo9lWJlyqv2pvsgG5H0hLGuywzqxF
+         /hf//ae8wM+E28SvV+l+WLVom7kCwPpDpKCEX0g8652cMToTcWTt3hfIkeANJOIYNurJ
+         dAWgX57z7prHWpo9TE18cYNZb6fV4ZDhWSmSaiYNGeYq4lgeNy7yocXD7zd+ZYOcONIq
+         Rlx4Gi/FyOFXsqMNlaViDhF+5xqRN7rAIQgKmluJ3EY7aVpqKc7Rgzvcco17u0xYfRse
+         gEDw==
+X-Gm-Message-State: AFqh2krg+DpbW085p4uBrPfgtdLQt6rrUlp8xwnsrlYPJhYUJaqbS+kG
+        lBlM1jR0X5NMirMXQiF1WQDVLg==
+X-Google-Smtp-Source: AMrXdXsEB9DBeXGM8m6kmN4csDLoYQGbHXzkjVvECMuguflfw8lprXbS7Ov+fnTmjSUMOZSUi0obEg==
+X-Received: by 2002:a17:906:b00c:b0:7c4:fa17:7202 with SMTP id v12-20020a170906b00c00b007c4fa177202mr68035056ejy.33.1673626968525;
+        Fri, 13 Jan 2023 08:22:48 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o11-20020a170906768b00b0084d242d07ffsm8376737ejm.8.2023.01.13.08.22.20
+        by smtp.gmail.com with ESMTPSA id q1-20020a17090676c100b007c0d4d3a0c1sm8739479ejn.32.2023.01.13.08.22.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 08:22:22 -0800 (PST)
+        Fri, 13 Jan 2023 08:22:48 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] ASoC: dt-bindings: qcom,wcd934x: Allow usage as IFD device
-Date:   Fri, 13 Jan 2023 17:22:14 +0100
-Message-Id: <20230113162214.117261-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/6] arm64: dts: qcom: sm8250: drop unused clock-frequency from rx-macro
+Date:   Fri, 13 Jan 2023 17:22:40 +0100
+Message-Id: <20230113162245.117324-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230113162214.117261-1-krzysztof.kozlowski@linaro.org>
-References: <20230113162214.117261-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,94 +72,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The WCD9340 audio codec appears on Slimbus twice: as IFD device without
-properties and the actual audio-codec referencing the former via
-wcd9340_ifd.  Allow in the binding both versions to fix several warnings
-like:
+Neither qcom,sm8250-lpass-rx-macro bindings nor the driver use
+"clock-frequency" property.
 
-  sdm850-samsung-w737.dtb: ifd@0,0: 'reset-gpios' is a required property
-  sdm850-samsung-w737.dtb: ifd@0,0: 'slim-ifc-dev' is a required property
-  sdm850-samsung-w737.dtb: ifd@0,0: 'interrupt-controller' is a required property
+  sm8250-mtp.dtb: rxmacro@3200000: Unevaluated properties are not allowed ('clock-frequency' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-oneOf: interrupts-extended|interrupts is needed to avoid dtschema
-limitation.
----
- .../bindings/sound/qcom,wcd934x.yaml          | 58 ++++++++++++++-----
- 1 file changed, 43 insertions(+), 15 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-index 39b27126cfc1..ea09590bfa30 100644
---- a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-@@ -149,21 +149,49 @@ patternProperties:
- required:
-   - compatible
-   - reg
--  - reset-gpios
--  - slim-ifc-dev
--  - interrupts
--  - interrupt-controller
--  - clock-frequency
--  - clock-output-names
--  - qcom,micbias1-microvolt
--  - qcom,micbias2-microvolt
--  - qcom,micbias3-microvolt
--  - qcom,micbias4-microvolt
--  - "#interrupt-cells"
--  - "#clock-cells"
--  - "#sound-dai-cells"
--  - "#address-cells"
--  - "#size-cells"
-+
-+allOf:
-+  - if:
-+      required:
-+        - slim-ifc-dev
-+    then:
-+      required:
-+        - reset-gpios
-+        - slim-ifc-dev
-+        - interrupt-controller
-+        - clock-frequency
-+        - clock-output-names
-+        - qcom,micbias1-microvolt
-+        - qcom,micbias2-microvolt
-+        - qcom,micbias3-microvolt
-+        - qcom,micbias4-microvolt
-+        - "#interrupt-cells"
-+        - "#clock-cells"
-+        - "#sound-dai-cells"
-+        - "#address-cells"
-+        - "#size-cells"
-+      oneOf:
-+        - required:
-+            - interrupts-extended
-+        - required:
-+            - interrupts
-+    else:
-+      properties:
-+        reset-gpios: false
-+        slim-ifc-dev: false
-+        interrupts: false
-+        interrupt-controller: false
-+        clock-frequency: false
-+        clock-output-names: false
-+        qcom,micbias1-microvolt: false
-+        qcom,micbias2-microvolt: false
-+        qcom,micbias3-microvolt: false
-+        qcom,micbias4-microvolt: false
-+        "#interrupt-cells": false
-+        "#clock-cells": false
-+        "#sound-dai-cells": false
-+        "#address-cells": false
-+        "#size-cells": false
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index f614992709d2..b22569101314 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -2301,7 +2301,6 @@ rxmacro: rxmacro@3200000 {
+ 			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
  
- additionalProperties: false
- 
+ 			#clock-cells = <0>;
+-			clock-frequency = <9600000>;
+ 			clock-output-names = "mclk";
+ 			#sound-dai-cells = <1>;
+ 		};
 -- 
 2.34.1
 
