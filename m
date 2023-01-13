@@ -2,414 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39EEF669DA4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:24:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B36CC669D9F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:24:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230174AbjAMQYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 11:24:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41378 "EHLO
+        id S229953AbjAMQYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 11:24:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230438AbjAMQXk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:23:40 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 906258BF2C;
-        Fri, 13 Jan 2023 08:18:05 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.97,214,1669042800"; 
-   d="scan'208";a="146246462"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 14 Jan 2023 01:18:04 +0900
-Received: from localhost.localdomain (unknown [10.226.92.190])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 66E6E401886C;
-        Sat, 14 Jan 2023 01:18:01 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <chris.paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v11 1/6] dt-bindings: timer: Document RZ/G2L MTU3a bindings
-Date:   Fri, 13 Jan 2023 16:17:48 +0000
-Message-Id: <20230113161753.1073706-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230113161753.1073706-1-biju.das.jz@bp.renesas.com>
-References: <20230113161753.1073706-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S230358AbjAMQXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:23:35 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D52D28BA8D;
+        Fri, 13 Jan 2023 08:18:03 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id az20so34371232ejc.1;
+        Fri, 13 Jan 2023 08:18:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KBg+QFTYjTGLhJ0dWRu15lQFUco6OnMwSAINFR2Ufc8=;
+        b=cuK/VFk+DbNtK+OX/wHoutGa2p4Kfe5Q7d3XI9jKvGON2hd2fxHFauh53Nk23UYdy5
+         sDyv0e6TdaqU+uu5e1cqqY0+Ay0KRDzjd8KIKYxdgM5Qj9MxpRyuEVsPQf4bHVxm7Fqq
+         K607+e+ezHlARhTUhPjSQ1F3204Tz+2yNDbm0pOdMiApqrYhPzOseIXq2tjXVdhHoNBI
+         kGNQBaDL8YddNGR81t2OVdWGZgJ/uDwYLWpsiA1pd8Y0iTepefBqzZCawGk0eX9BxNR7
+         abXDexkP6HIe3skYOeKSwWTnZ3muL0d1IZlM0SoTjpH0nQwFwmHfT4ED2IGG9GdUDqdW
+         O5Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KBg+QFTYjTGLhJ0dWRu15lQFUco6OnMwSAINFR2Ufc8=;
+        b=XXbyuixdYvQwYPSXQKWldwpIsqZUN9ynpkUwFednYitvUYSxUyCZPGLG+RkFJ55w/k
+         evPd+ar4c4zUv5JilGt0dgApWQXiLDGUSiWrI8WE6FDJY3C01S9S3VmjxREdd0paeXo2
+         B4Jvh7PZWwpntcnOZhlIkbRSn8uAY4KZi0bisdcD2bZ6Lo9KsDVSfb5SVWlVbiPiGGfq
+         3Cgh5RjGpR7gcUb3JiDMw7Mxp7W41rsJdf2rk+hzObom2O5p0w4SNs/aN5nexq5EcM6K
+         m4cTTtcdV5wmtw7e/f4JUNOiZIfxlQUWzs9aN6dHhh4WdgvtaAzOjjvZ4RGoPbIFYRf7
+         Rbqw==
+X-Gm-Message-State: AFqh2kpUF/hFVFAD5Bxmc4fojI8yoiydSFpi2znUS6KSE9Iq0VLiHXj7
+        EsIEPk3G0PRi3KPWVm5L5uc=
+X-Google-Smtp-Source: AMrXdXvcGT14YEQV+qWf4s+TmjhpCr9Dmu7pQheS9QCpPIxtnSymAa70ZRFEZnWqE1SX+bGON8nJ6Q==
+X-Received: by 2002:a17:906:7046:b0:7ae:8194:7e06 with SMTP id r6-20020a170906704600b007ae81947e06mr72640122ejj.56.1673626682362;
+        Fri, 13 Jan 2023 08:18:02 -0800 (PST)
+Received: from [192.168.3.32] (dh207-97-245.xnet.hr. [88.207.97.245])
+        by smtp.gmail.com with ESMTPSA id 17-20020a170906059100b007933047f923sm8698684ejn.118.2023.01.13.08.18.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jan 2023 08:18:01 -0800 (PST)
+Message-ID: <0e5e2d46-3578-678b-5980-ecf68f9a5f18@gmail.com>
+Date:   Fri, 13 Jan 2023 17:17:59 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 6/6] clk: qcom: Fix APSS PLL and RCG Configuration
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, jassisinghbrar@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
+        arnd@arndb.de, marcel.ziswiler@toradex.com,
+        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_poovendh@quicinc.com
+References: <20230113143647.14961-1-quic_devipriy@quicinc.com>
+ <20230113143647.14961-7-quic_devipriy@quicinc.com>
+ <b87ab80d-0936-5a5a-25da-35c0dbdede33@linaro.org>
+From:   Robert Marko <robimarko@gmail.com>
+In-Reply-To: <b87ab80d-0936-5a5a-25da-35c0dbdede33@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
-the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
-channels and one 32-bit timer channel. It supports the following
-functions
- - Counter
- - Timer
- - PWM
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Ref:
- https://patchwork.kernel.org/project/linux-renesas-soc/patch/20221010145222.1047748-2-biju.das.jz@bp.renesas.com/
-v10->v11:
- * No change
-v9->v10:
- * No change
-v8->v9:
- * No change
-v7->v8:
- * No change
-v6->v7:
- * No change
-v5->v6:
- * Added Rb tag from Rob and Krzysztof.
-v4->v5:
- * Modelled as timer bindings.
- * Fixed the typo.
-v3->v4:
- * Dropped counter and pwm compatibeles as they don't have any resources.
- * Made rz-mtu3 as pwm provider.
- * Updated the example and description.
-v2->v3:
- * Dropped counter bindings and integrated with mfd as it has only one property.
- * Removed "#address-cells" and "#size-cells" as it do not have children with
-   unit addresses.
- * Removed quotes from counter and pwm.
- * Provided full path for pwm bindings.
- * Updated the example.
-v1->v2:
- * Modelled counter and pwm as a single device that handles
-   multiple channels.
- * Moved counter and pwm bindings to respective subsystems
- * Dropped 'bindings' from MFD binding title.
- * Updated the example
- * Changed the compatible names.
----
- .../bindings/timer/renesas,rz-mtu3.yaml       | 302 ++++++++++++++++++
- 1 file changed, 302 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
+On 13. 01. 2023. 16:20, Konrad Dybcio wrote:
+>
+> On 13.01.2023 15:36, devi priya wrote:
+>> Included CLK_IS_CRITICAL flag which helps to properly enable
+>> the APSS PLL during bootup.
+> Please describe the issue and not only the user-visible impact it
+> makes. Does the PLL get shut down by clk_ignore_unused? Maybe you
+> would be interested in the sync_state changes that landed in recent
+> -next that may solve it for you?
+>
+> I don't think it should be always-on, as you have an alternate source
+> for low power modes, adding CLK_IS_CRITICAL will keep the PLL enabled
+> even if you're not using it.
 
-diff --git a/Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml b/Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
-new file mode 100644
-index 000000000000..bffdab0b0185
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
-@@ -0,0 +1,302 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/renesas,rz-mtu3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L Multi-Function Timer Pulse Unit 3 (MTU3a)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  This hardware block consists of eight 16-bit timer channels and one
-+  32- bit timer channel. It supports the following specifications:
-+    - Pulse input/output: 28 lines max.
-+    - Pulse input 3 lines
-+    - Count clock 11 clocks for each channel (14 clocks for MTU0, 12 clocks
-+      for MTU2, and 10 clocks for MTU5, four clocks for MTU1-MTU2 combination
-+      (when LWA = 1))
-+    - Operating frequency Up to 100 MHz
-+    - Available operations [MTU0 to MTU4, MTU6, MTU7, and MTU8]
-+        - Waveform output on compare match
-+        - Input capture function (noise filter setting available)
-+        - Counter-clearing operation
-+        - Simultaneous writing to multiple timer counters (TCNT)
-+          (excluding MTU8).
-+        - Simultaneous clearing on compare match or input capture
-+          (excluding MTU8).
-+        - Simultaneous input and output to registers in synchronization with
-+          counter operations           (excluding MTU8).
-+        - Up to 12-phase PWM output in combination with synchronous operation
-+          (excluding MTU8)
-+    - [MTU0 MTU3, MTU4, MTU6, MTU7, and MTU8]
-+        - Buffer operation specifiable
-+    - [MTU1, MTU2]
-+        - Phase counting mode can be specified independently
-+        - 32-bit phase counting mode can be specified for interlocked operation
-+          of MTU1 and MTU2 (when TMDR3.LWA = 1)
-+        - Cascade connection operation available
-+    - [MTU3, MTU4, MTU6, and MTU7]
-+        - Through interlocked operation of MTU3/4 and MTU6/7, the positive and
-+          negative signals in six phases (12 phases in total) can be output in
-+          complementary PWM and reset-synchronized PWM operation.
-+        - In complementary PWM mode, values can be transferred from buffer
-+          registers to temporary registers at crests and troughs of the timer-
-+          counter values or when the buffer registers (TGRD registers in MTU4
-+          and MTU7) are written to.
-+        - Double-buffering selectable in complementary PWM mode.
-+    - [MTU3 and MTU4]
-+        - Through interlocking with MTU0, a mode for driving AC synchronous
-+          motors (brushless DC motors) by using complementary PWM output and
-+          reset-synchronized PWM output is settable and allows the selection
-+          of two types of waveform output (chopping or level).
-+    - [MTU5]
-+        - Capable of operation as a dead-time compensation counter.
-+    - [MTU0/MTU5, MTU1, MTU2, and MTU8]
-+        - 32-bit phase counting mode specifiable by combining MTU1 and MTU2 and
-+          through interlocked operation with MTU0/MTU5 and MTU8.
-+    - Interrupt-skipping function
-+        - In complementary PWM mode, interrupts on crests and troughs of counter
-+          values and triggers to start conversion by the A/D converter can be
-+          skipped.
-+    - Interrupt sources: 43 sources.
-+    - Buffer operation:
-+        - Automatic transfer of register data (transfer from the buffer
-+          register to the timer register).
-+    - Trigger generation
-+        - A/D converter start triggers can be generated
-+        - A/D converter start request delaying function enables A/D converter
-+          to be started with any desired timing and to be synchronized with
-+          PWM output.
-+    - Low power consumption function
-+        - The MTU3a can be placed in the module-stop state.
-+
-+    There are two phase counting modes. 16-bit phase counting mode in which
-+    MTU1 and MTU2 operate independently, and cascade connection 32-bit phase
-+    counting mode in which MTU1 and MTU2 are cascaded.
-+
-+    In phase counting mode, the phase difference between two external input
-+    clocks is detected and the corresponding TCNT is incremented or
-+    decremented.
-+    The below counters are supported
-+      count0 - MTU1 16-bit phase counting
-+      count1 - MTU2 16-bit phase counting
-+      count2 - MTU1+ MTU2 32-bit phase counting
-+
-+    The module supports PWM mode{1,2}, Reset-synchronized PWM mode and
-+    complementary PWM mode{1,2,3}.
-+
-+    In complementary PWM mode, six positive-phase and six negative-phase PWM
-+    waveforms (12 phases in total) with dead time can be output by
-+    combining MTU{3,4} and MTU{6,7}.
-+
-+    The below pwm channels are supported in pwm mode 1.
-+      pwm0  - MTU0.MTIOC0A PWM mode 1
-+      pwm1  - MTU0.MTIOC0C PWM mode 1
-+      pwm2  - MTU1.MTIOC1A PWM mode 1
-+      pwm3  - MTU2.MTIOC2A PWM mode 1
-+      pwm4  - MTU3.MTIOC3A PWM mode 1
-+      pwm5  - MTU3.MTIOC3C PWM mode 1
-+      pwm6  - MTU4.MTIOC4A PWM mode 1
-+      pwm7  - MTU4.MTIOC4C PWM mode 1
-+      pwm8  - MTU6.MTIOC6A PWM mode 1
-+      pwm9  - MTU6.MTIOC6C PWM mode 1
-+      pwm10 - MTU7.MTIOC7A PWM mode 1
-+      pwm11 - MTU7.MTIOC7C PWM mode 1
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-mtu3  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-mtu3  # RZ/V2L
-+      - const: renesas,rz-mtu3
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: MTU0.TGRA input capture/compare match
-+      - description: MTU0.TGRB input capture/compare match
-+      - description: MTU0.TGRC input capture/compare match
-+      - description: MTU0.TGRD input capture/compare match
-+      - description: MTU0.TCNT overflow
-+      - description: MTU0.TGRE compare match
-+      - description: MTU0.TGRF compare match
-+      - description: MTU1.TGRA input capture/compare match
-+      - description: MTU1.TGRB input capture/compare match
-+      - description: MTU1.TCNT overflow
-+      - description: MTU1.TCNT underflow
-+      - description: MTU2.TGRA input capture/compare match
-+      - description: MTU2.TGRB input capture/compare match
-+      - description: MTU2.TCNT overflow
-+      - description: MTU2.TCNT underflow
-+      - description: MTU3.TGRA input capture/compare match
-+      - description: MTU3.TGRB input capture/compare match
-+      - description: MTU3.TGRC input capture/compare match
-+      - description: MTU3.TGRD input capture/compare match
-+      - description: MTU3.TCNT overflow
-+      - description: MTU4.TGRA input capture/compare match
-+      - description: MTU4.TGRB input capture/compare match
-+      - description: MTU4.TGRC input capture/compare match
-+      - description: MTU4.TGRD input capture/compare match
-+      - description: MTU4.TCNT overflow/underflow
-+      - description: MTU5.TGRU input capture/compare match
-+      - description: MTU5.TGRV input capture/compare match
-+      - description: MTU5.TGRW input capture/compare match
-+      - description: MTU6.TGRA input capture/compare match
-+      - description: MTU6.TGRB input capture/compare match
-+      - description: MTU6.TGRC input capture/compare match
-+      - description: MTU6.TGRD input capture/compare match
-+      - description: MTU6.TCNT overflow
-+      - description: MTU7.TGRA input capture/compare match
-+      - description: MTU7.TGRB input capture/compare match
-+      - description: MTU7.TGRC input capture/compare match
-+      - description: MTU7.TGRD input capture/compare match
-+      - description: MTU7.TCNT overflow/underflow
-+      - description: MTU8.TGRA input capture/compare match
-+      - description: MTU8.TGRB input capture/compare match
-+      - description: MTU8.TGRC input capture/compare match
-+      - description: MTU8.TGRD input capture/compare match
-+      - description: MTU8.TCNT overflow
-+      - description: MTU8.TCNT underflow
-+
-+  interrupt-names:
-+    items:
-+      - const: tgia0
-+      - const: tgib0
-+      - const: tgic0
-+      - const: tgid0
-+      - const: tgiv0
-+      - const: tgie0
-+      - const: tgif0
-+      - const: tgia1
-+      - const: tgib1
-+      - const: tgiv1
-+      - const: tgiu1
-+      - const: tgia2
-+      - const: tgib2
-+      - const: tgiv2
-+      - const: tgiu2
-+      - const: tgia3
-+      - const: tgib3
-+      - const: tgic3
-+      - const: tgid3
-+      - const: tgiv3
-+      - const: tgia4
-+      - const: tgib4
-+      - const: tgic4
-+      - const: tgid4
-+      - const: tgiv4
-+      - const: tgiu5
-+      - const: tgiv5
-+      - const: tgiw5
-+      - const: tgia6
-+      - const: tgib6
-+      - const: tgic6
-+      - const: tgid6
-+      - const: tgiv6
-+      - const: tgia7
-+      - const: tgib7
-+      - const: tgic7
-+      - const: tgid7
-+      - const: tgiv7
-+      - const: tgia8
-+      - const: tgib8
-+      - const: tgic8
-+      - const: tgid8
-+      - const: tgiv8
-+      - const: tgiu8
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    mtu3: timer@10001200 {
-+      compatible = "renesas,r9a07g044-mtu3", "renesas,rz-mtu3";
-+      reg = <0x10001200 0xb00>;
-+      interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 174 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 175 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 176 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 179 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 181 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 182 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 183 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 185 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 186 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 191 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 192 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 194 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 198 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 199 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 200 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 201 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 202 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 204 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 206 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 207 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 211 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 212 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 213 IRQ_TYPE_EDGE_RISING>;
-+      interrupt-names = "tgia0", "tgib0", "tgic0", "tgid0", "tgiv0", "tgie0",
-+                        "tgif0",
-+                        "tgia1", "tgib1", "tgiv1", "tgiu1",
-+                        "tgia2", "tgib2", "tgiv2", "tgiu2",
-+                        "tgia3", "tgib3", "tgic3", "tgid3", "tgiv3",
-+                        "tgia4", "tgib4", "tgic4", "tgid4", "tgiv4",
-+                        "tgiu5", "tgiv5", "tgiw5",
-+                        "tgia6", "tgib6", "tgic6", "tgid6", "tgiv6",
-+                        "tgia7", "tgib7", "tgic7", "tgid7", "tgiv7",
-+                        "tgia8", "tgib8", "tgic8", "tgid8", "tgiv8", "tgiu8";
-+      clocks = <&cpg CPG_MOD R9A07G044_MTU_X_MCK_MTU3>;
-+      power-domains = <&cpg>;
-+      resets = <&cpg R9A07G044_MTU_X_PRESET_MTU3>;
-+      #pwm-cells = <2>;
-+    };
--- 
-2.25.1
+I have the same opinion, as this is working fine on IPQ6018 and IPQ8074
+and I have not experienced any issues with it.
 
+>
+>> clk_rcg2_ops should be used for APSS clock RCG, as other ops
+>> will not configure the RCG register
+> RCG register meaning RCG register*s*, meaning in this case M/N/D
+> which would be required for proper rate setting and not only input
+> switching (which arguably doesn't seem to be of much concern on a
+> single-parent clock)? This all is not obvious..
+Same question from me as well, why do you need clk_rcg2_ops with
+a dummy frequency table since this is just a mux using RCG2 control
+bits?
+
+Regards,
+Robert
+>
+> Konrad
+>> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+>> ---
+>>   drivers/clk/qcom/apss-ipq-pll.c | 1 +
+>>   drivers/clk/qcom/apss-ipq6018.c | 8 +++++++-
+>>   2 files changed, 8 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/qcom/apss-ipq-pll.c b/drivers/clk/qcom/apss-ipq-pll.c
+>> index dd0c01bf5a98..75486a124fcd 100644
+>> --- a/drivers/clk/qcom/apss-ipq-pll.c
+>> +++ b/drivers/clk/qcom/apss-ipq-pll.c
+>> @@ -33,6 +33,7 @@ static struct clk_alpha_pll ipq_pll = {
+>>   			},
+>>   			.num_parents = 1,
+>>   			.ops = &clk_alpha_pll_huayra_ops,
+>> +			.flags = CLK_IS_CRITICAL,
+>>   		},
+>>   	},
+>>   };
+>> diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
+>> index f2f502e2d5a4..0d0e7196a4dc 100644
+>> --- a/drivers/clk/qcom/apss-ipq6018.c
+>> +++ b/drivers/clk/qcom/apss-ipq6018.c
+>> @@ -33,15 +33,21 @@ static const struct parent_map parents_apcs_alias0_clk_src_map[] = {
+>>   	{ P_APSS_PLL_EARLY, 5 },
+>>   };
+>>   
+>> +static const struct freq_tbl ftbl_apcs_alias0_clk_src[] = {
+>> +	{ .src = P_APSS_PLL_EARLY, .pre_div = 1 },
+>> +	{ }
+>> +};
+>> +
+>>   static struct clk_rcg2 apcs_alias0_clk_src = {
+>>   	.cmd_rcgr = 0x0050,
+>> +	.freq_tbl = ftbl_apcs_alias0_clk_src,
+>>   	.hid_width = 5,
+>>   	.parent_map = parents_apcs_alias0_clk_src_map,
+>>   	.clkr.hw.init = &(struct clk_init_data){
+>>   		.name = "apcs_alias0_clk_src",
+>>   		.parent_data = parents_apcs_alias0_clk_src,
+>>   		.num_parents = ARRAY_SIZE(parents_apcs_alias0_clk_src),
+>> -		.ops = &clk_rcg2_mux_closest_ops,
+>> +		.ops = &clk_rcg2_ops,
+>>   		.flags = CLK_SET_RATE_PARENT,
+>>   	},
+>>   };
+>
