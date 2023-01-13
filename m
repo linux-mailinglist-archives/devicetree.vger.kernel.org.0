@@ -2,106 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4A54669D27
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:05:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EB1D669D38
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:08:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbjAMQFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 11:05:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53250 "EHLO
+        id S229512AbjAMQIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 11:08:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbjAMQFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:05:16 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7E3421A8;
-        Fri, 13 Jan 2023 07:57:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 86B7E6216E;
-        Fri, 13 Jan 2023 15:57:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4ADEC433D2;
-        Fri, 13 Jan 2023 15:57:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673625449;
-        bh=RgE8Fj7iLHFPKGSsXzQDcEmsYGxZ0rV3hVEWaEMDJr4=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=SO7NS2P4DPwFr/A1++KqO020SxXyW1XnTE9vxLY8j3xLOBS0Df9wfDocbp3xZRVEz
-         kCphu1x3II9PfiO9B7cmpkegKuxK+ybMlSQyqVLR2zuXMGeAIBGmKvRDRQCjXyFONX
-         wE6PFzd7SzVE7xvGI2loOIMh5c7hv8w78t7XEhPPm7tHUSxfL3Lsme6/dY6jcCt8iK
-         o4q+qC1GsAsB36/Rx6ZGmEpt7ptRSPKGgTIYhefXLmcABSvTVCYenDcev+dr7j9VNi
-         oBXtNqKFTD5HbZmtrioaJP8M9sj5CgIfRmTAfvz/PKISJN5L5JQxJw/b6T9Bow5nMD
-         2tkgJxa/kSQjg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        Janne Grunau <j@jannau.net>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, linux-kernel@vger.kernel.org
-In-Reply-To: <20230113102309.18308-1-marcan@marcan.st>
-References: <20230113102309.18308-1-marcan@marcan.st>
-Subject: Re: [PATCH v2 0/3] SPI core CS delay fixes and additions
-Message-Id: <167362544665.163457.10878671229075890152.b4-ty@kernel.org>
-Date:   Fri, 13 Jan 2023 15:57:26 +0000
+        with ESMTP id S229614AbjAMQIS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:08:18 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A0784BC6;
+        Fri, 13 Jan 2023 08:01:19 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30DEEZ8a024929;
+        Fri, 13 Jan 2023 16:00:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=F4+IP3DNnytpQHs4kRxdjZs3UqOGl7HgPaZQ3BQJlcI=;
+ b=MMmcchF+T7X/pfduZLMCebYo7kcKSzlOET6A0jvdn0TK5248wAHJHq2ywucXYcowMSTF
+ ztmCZ/i/IrSNBGXtIaQ5OZt2GdgpkJMBS6F6Ht5lwwc7yllBA71G1EQmWjZsw379My4d
+ q6W1JtFgslTcoi2lcxNm1v8QRKMaaf7Sk8bkqp3w1Whzmh238/KzxfqY2JK9QmtJzAPB
+ xc0Zn6fc1CD2oULAVYFi/WAKwS5Y8B87p31pDO561qqCXzrqcBZojwszNEinV7PQIKwc
+ LN+d0HVvfcWfHrk4nEkaRlDPh72pVo2a1/XQmL+Ca1o2HtFwGZciOL81Tbd35H2U4SzG Dw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n2wqw1q9b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 13 Jan 2023 16:00:40 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30DG0c1U015203
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 13 Jan 2023 16:00:38 GMT
+Received: from poovendh-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Fri, 13 Jan 2023 08:00:31 -0800
+From:   Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <robimarko@gmail.com>, <quic_gurus@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_devipriy@quicinc.com>
+Subject: [PATCH 0/5] Enable crashdump collection support for IPQ9574
+Date:   Fri, 13 Jan 2023 21:30:07 +0530
+Message-ID: <20230113160012.14893-1-quic_poovendh@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12-dev-8b3d1
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: p0ejEHjNGUKEG-s-GyiK_4O8m_GdxXrG
+X-Proofpoint-ORIG-GUID: p0ejEHjNGUKEG-s-GyiK_4O8m_GdxXrG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-13_07,2023-01-13_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=761 spamscore=0 malwarescore=0 adultscore=0 mlxscore=0
+ suspectscore=0 impostorscore=0 clxscore=1011 phishscore=0 bulkscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301130106
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Jan 2023 19:23:07 +0900, Hector Martin wrote:
-> Commits f6c911f3308c ("spi: dt-bindings: Introduce
-> spi-cs-setup-ns property") and 33a2fde5f77b ("spi: Introduce
-> spi-cs-setup-ns property") introduced a new property to represent the
-> CS setup delay in the device tree, but they have some issues:
-> 
-> - The property is only parsed as a 16-bit integer number of nanoseconds,
->   which limits the maximum value to ~65us. This is not a reasonable
->   upper limit, as some devices might need a lot more.
-> - The property name is inconsistent with other delay properties, which
->   use a "*-delay-ns" naming scheme.
-> - Only the setup delay is introduced, but not the related hold and
->   inactive delay times.
-> 
-> [...]
+Crashdump collection is enabled based on the DLOAD bit in the TCSR register.
+This bit is set during bootup and cleared during shutdown. During crash,
+dload bit is not cleared, due to which uboot starts crashdump collection.
 
-Applied to
+This patch series adds the support for crashdump collection.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+This series depends on the below patch set.
+https://lore.kernel.org/linux-arm-msm/20230113150310.29709-1-quic_devipriy@quicinc.com/
 
-Thanks!
+Poovendhan Selvaraj (5):
+  dt-bindings: scm: Add compatible for IPQ9574
+  arm64: dts: Add support for Crashdump collection on IPQ9574
+  firmware: scm: Modify only the DLOAD bit in TCSR register for download
+    mode
+  arm64: defconfig: Enable scm download mode config for IPQ9574 SoC.
+  dt-bindings: tcsr: Add compatible for IPQ9574
 
-[1/3] spi: Use a 32-bit DT property for spi-cs-setup-delay-ns
-      commit: f276aacf5d2f7fb57e400db44c807ea3b9525fd6
-[2/3] spi: dt-bindings: Add hold/inactive CS delay peripheral properties
-      commit: 34f89f238c545d4fd0166e37c201d96c10443953
-[3/3] spi: Parse hold/inactive CS delay values from the DT
-      commit: 5827b31d858e399e0ba9fbd33da7a39b31769e11
+ .../bindings/firmware/qcom,scm.yaml           |  1 +
+ .../devicetree/bindings/mfd/qcom,tcsr.yaml    |  1 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 25 +++++++++++++++++++
+ arch/arm64/configs/defconfig                  |  1 +
+ drivers/firmware/qcom_scm.c                   | 12 ++++++---
+ 5 files changed, 36 insertions(+), 4 deletions(-)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+base-commit: d9fc1511728c15df49ff18e49a494d00f78b7cd4
+-- 
+2.17.1
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
