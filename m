@@ -2,108 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67035669E75
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:43:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BB0E669E7D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:44:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbjAMQnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 11:43:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56840 "EHLO
+        id S230197AbjAMQo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 11:44:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230111AbjAMQnN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:43:13 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DAD26719A
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:41:39 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id 18so31892327edw.7
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:41:39 -0800 (PST)
+        with ESMTP id S230406AbjAMQnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:43:43 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B2E1209
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:42:39 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id tz12so53614626ejc.9
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:42:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BvUGd9NYJS5uJunAJ7mHRF6tpEc2wFqKY/+I40CerDI=;
-        b=johoF20EkGJi5IP8q3AP/5+tpfsjwynFPFGU06tuy4cjoqnq4TyBrAQF6iwI9OaXcY
-         woYpby+d6JiiOwAukbdUr2P7+zsU3I2bBPGIKbTMd++jK4yao7FIuL37ZzegXpQTTd18
-         /yA6wWJn/QmOVNCuh4g4vWKc9vYK4nH9YlzflvJ6+D6xXNurd6SuJXp9xHQwGBd8CAj+
-         JxJUdjlpJOMEq0wV0Th2Qgw5XwMJuhMvQY1505wXh+u492oDQlBQSCsAWxto3TzxE1pj
-         SgbcUiI+GmkS4yP3wJfylYzWB2vwWTfod+J0MPJPq/k+Kwb0yBmbwX8xmVxSGYgw6z/u
-         FRog==
+        bh=B2qfQi85BFXWzJOoJ/C3jhHUUhELCYlryxRCopmVC4E=;
+        b=FJi8siw+vXtF8D9mi5G5vvDf0lPW3f9pv9Iv2mdn1DnyXqeTqfNk9isOW/Ak7Ety1u
+         yATIlfHuoBfZjkYoz11aWRvr4AJ6raeyyxEWvbwEBApB/rjJebvWvxMEHYo1pQqhCp42
+         RJaFcPnFxTpn/v3NvFymFwNRkM2fgZobdg/BzC5Fo6fZDy87EJZ33KTUkfn+Rc5dRUhB
+         kucSA2aMKxml8CBtFs3jGhf2BICu1rP4b8GYY+y0+pwKIYLvpfmTvJpCcH/EWhflora6
+         EUMSYXzVbGdYt5Oj5aqpeZT1Vu86TCRRbcTHMlrntskE4CK3mNgW/POij7vjsP34Da3O
+         20ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BvUGd9NYJS5uJunAJ7mHRF6tpEc2wFqKY/+I40CerDI=;
-        b=K/gMeqhN2jJ3KlFii5VwvtIr0DJs3n8V0sIUTTFv4xFqueJdLf/SLL6yXcS4Sd1qv7
-         10YgfSR7S8BCSSDE7i7tIASj70SWlawbB521L0AN1DpTxmEXR71vVsqYIxK5sy07PAkw
-         pT/+Vrwov4JxuSO5err4mBIJY5Ni5XDeQu2HOrCM7QxtMHWFMGZEum3ptoJ8E1PDQW5u
-         JecHatDGTx6ZqyxsC7uHVu+fXkPqP4fJ5TBNO810u6fbitzXE+am1A/yQg9wlHCmmJ2n
-         dI0zETjCuoo8gC49VQrr4iPjhOML7kg8ATEwhqHtJfUJLDA/JamEWOAYVpYPRQGQZVGH
-         zhog==
-X-Gm-Message-State: AFqh2koNNP3EqEjy5MsmYsQnKLYbR66WNaA96PR2SNMWwiyEfJ+uLGN4
-        rnLa3f7TOvA+p9qYueqLwqWOUg==
-X-Google-Smtp-Source: AMrXdXu3YHYR0nLLhyHEkcZgP/DdXUgo9XDCY9cSu8QmopZ789q/sDf1rLNjlzcVF7tBV6j7nmCuWQ==
-X-Received: by 2002:a05:6402:5510:b0:495:fa3d:1d72 with SMTP id fi16-20020a056402551000b00495fa3d1d72mr25256227edb.8.1673628098265;
-        Fri, 13 Jan 2023 08:41:38 -0800 (PST)
+        bh=B2qfQi85BFXWzJOoJ/C3jhHUUhELCYlryxRCopmVC4E=;
+        b=TY5UUb0DehROa4sKTUy4vIIYApaJ7qoXujpD6WYC2XVJkphkzVwwYewTcaWSzk3b0Q
+         wBwynfN3PKXsFXPUrKJvFV8ezceEdLVizQoWXdgoow2g3dYqvmuvUf+6hgVXjE4OMOLh
+         lq8x5G4Xek3ASS8ajSozALVnxKgDwqaYVIYp2HaKTzeOfgQIzkxft4iQ0Rz+T4AGtNgY
+         b8X3zWAh4LI8R3nsYphiHF1bUioFoqdgrpMH4rg6d6IrwCpNwfA0NqQJUOZnA1R5iTZ+
+         bTaXliUuBcglHBogIo0udvngj5Wkr8RtS3Sh/5UORD32mIjG2d+KngF7bnyZa8V71o60
+         F9VA==
+X-Gm-Message-State: AFqh2kpfB4YQcxBniEVfx6mp9LT4H0JQG/yGKfYV+5PnP8r84RzixdEk
+        3vYmOFZn1VpND5l4U6jeK/fFhg==
+X-Google-Smtp-Source: AMrXdXu9Z3Wyw2FmaT/keEdSguCI2C4xDyUJleWKV22VndENhfLhB/RhZnxZD/s+XT/m/3NrJ5mjnQ==
+X-Received: by 2002:a17:907:c498:b0:7ff:7876:9c60 with SMTP id tp24-20020a170907c49800b007ff78769c60mr71047961ejc.15.1673628158089;
+        Fri, 13 Jan 2023 08:42:38 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id dk1-20020a0564021d8100b0049be07c9ff5sm1142803edb.4.2023.01.13.08.41.36
+        by smtp.gmail.com with ESMTPSA id c10-20020a17090618aa00b0084c6ec69a9dsm8661401ejf.124.2023.01.13.08.42.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 08:41:37 -0800 (PST)
-Message-ID: <6d084da5-e96b-1b75-169c-4cf85be5e28a@linaro.org>
-Date:   Fri, 13 Jan 2023 17:41:35 +0100
+        Fri, 13 Jan 2023 08:42:37 -0800 (PST)
+Message-ID: <37755ba1-e8d0-cd9e-73a4-6501746022d8@linaro.org>
+Date:   Fri, 13 Jan 2023 17:42:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 4/5] arm64: defconfig: Enable scm download mode config for
- IPQ9574 SoC.
+Subject: Re: [PATCH 1/6] soc: qcom: smd-rpm: Add IPQ9574 compatible
 Content-Language: en-US
-To:     Poovendhan Selvaraj <quic_poovendh@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
-        arnd@arndb.de, marcel.ziswiler@toradex.com,
-        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, robimarko@gmail.com, quic_gurus@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
         quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
         quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_devipriy@quicinc.com
-References: <20230113160012.14893-1-quic_poovendh@quicinc.com>
- <20230113160012.14893-5-quic_poovendh@quicinc.com>
+        quic_poovendh@quicinc.com
+References: <20230113150310.29709-1-quic_devipriy@quicinc.com>
+ <20230113150310.29709-2-quic_devipriy@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230113160012.14893-5-quic_poovendh@quicinc.com>
+In-Reply-To: <20230113150310.29709-2-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 17:00, Poovendhan Selvaraj wrote:
-> Enables scm download mode config.
-
-Why?
-
+On 13/01/2023 16:03, devi priya wrote:
+> Adding compatible string to support RPM communication over SMD for
+> IPQ9574 SoC
 > 
-> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Co-developed-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
 
-Same question... that's just a config enable. How three people can work
-on one piece of defconfig?
+What exactly was developed here but the other author?
 
-> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
 > ---
->  arch/arm64/configs/defconfig | 1 +
+>  drivers/soc/qcom/smd-rpm.c | 1 +
 >  1 file changed, 1 insertion(+)
+> 
+
 Best regards,
 Krzysztof
 
