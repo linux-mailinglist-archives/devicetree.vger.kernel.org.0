@@ -2,129 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D38CB669494
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:46:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2326694AA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:52:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230107AbjAMKqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:46:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47356 "EHLO
+        id S239679AbjAMKwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:52:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241311AbjAMKqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:46:22 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5AF2777C0;
-        Fri, 13 Jan 2023 02:44:34 -0800 (PST)
-Received: from pendragon.ideasonboard.com (85-131-99-81.bb.dnainternet.fi [85.131.99.81])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7505A4D4;
-        Fri, 13 Jan 2023 11:44:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673606672;
-        bh=jQe8bELRpakqILNHk4rOJgvTETgI/bwME5HNZmZ2sRI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FQ0nH4d3KOV3Lf96/S86FUl+4Qt0lB2ZLE6+f/s+EnM4fRP065G/gLJlUtIdlsZqj
-         BK0fWbWd2oXBloA2w0rObnhJ/ml7b/IpI6lIb7tOzbxsQymsAezw+OqQWOwlmYpZca
-         MMtAs+vyr5jBYedcQPweKRiZ7xMNf25+NZJoO1qc=
-Date:   Fri, 13 Jan 2023 12:44:31 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S241077AbjAMKvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:51:40 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C8A5A884
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:50:24 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id hw16so39545105ejc.10
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:50:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EgWST+bwv5L5giN822jBmcvfyL+5kJcquAhQUbMjB7Y=;
+        b=j2toRYjNGcst667IqisPfGaT8IDgXp6RU67lFR6kEKBVJHQ5Lp0jQmbZvHbKEdiqYc
+         sqB+FNGjj5VQ/+djIw6wfRm6DmHayhbUIeAKqpR/9CfUZAHezjB7XRyhU8BSStArKs9t
+         k9LR+T391vRYlcJ8OfDi86eoGVKB+Y5bYThvQ9eau1Pn0yyVeZC3dKuriKDlWCHdSVY1
+         VioMNBbhmUVaAH9oWPsdJIa07nlbaqkJPqj1c+wVe6eWv9iOT7+LEeraa7XiA4HA1Ksh
+         r45oYleOFWLbQ3hS8nOme/Dnw+Wk8lEEsflPrqSxVE+RvYZAbzi6dDWJyY/WxgDI78It
+         GMrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EgWST+bwv5L5giN822jBmcvfyL+5kJcquAhQUbMjB7Y=;
+        b=A6pDKiwlBWN/9Y2sCXexh7wl+4/oyKnWh+TLqZC9Fx8eYw8g/W9ji6YaGPRkeBg9K6
+         WAJKTrc5OV5nkgdeJ96ziLCPA1/Ix4jlTeCcYu/Bac1J9lzNHkTfeESxs2qaK9GMLjA+
+         ELjm/mZqyyYGnaQV+0FKdXJ67SRXfNbfA+s17yBdiozRVlphfHkMgq/nZGqGKDtTViqP
+         jDbmVOrY417dVHaMjVvHDUPNEA84PTIxIkqz7+QDwseQNyKQd57ZNy+cId3aulwW9SKq
+         WTVC5QzPo4eDMn03fEUwlIhSKTJyeOtXjf6LikEe3Q61YCXiQTeL+BPF5bL3f2QscBc3
+         HKkg==
+X-Gm-Message-State: AFqh2krQYuJosAkM68N/IVdmwmjl8jPrCvUlPl60dSGhl73IP52gVgn5
+        QC0B57WiBsj7Ju1PkzCjK7wddg==
+X-Google-Smtp-Source: AMrXdXvcm+ayFgHwwqO680wksafu1nympGj2N8nXWmvj+8APoTQ2w3f+ZZBoJV2z16w75FgnlXFDKQ==
+X-Received: by 2002:a17:907:d389:b0:7c1:5a37:825 with SMTP id vh9-20020a170907d38900b007c15a370825mr85839001ejc.34.1673607022726;
+        Fri, 13 Jan 2023 02:50:22 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id c2-20020a17090618a200b0077a8fa8ba55sm8348581ejf.210.2023.01.13.02.50.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jan 2023 02:50:22 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     linux-gpio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        krishna Lanka <quic_vamslank@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        devicetree@vger.kernel.org, Iskren Chernev <me@iskren.info>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 02/16] media: imx-pxp: detect PXP version
-Message-ID: <Y8E2Dx7ngjiUYVfO@pendragon.ideasonboard.com>
-References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
- <20230112-imx-pxp-v2-2-e2281da1db55@pengutronix.de>
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: (subset) [PATCH 1/9] dt-bindings: pinctrl: qcom,sc8280xp-lpass-lpi: correct pins pattern
+Date:   Fri, 13 Jan 2023 11:50:12 +0100
+Message-Id: <167360698782.32701.3957478926329730241.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221230135645.56401-1-krzysztof.kozlowski@linaro.org>
+References: <20221230135645.56401-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230112-imx-pxp-v2-2-e2281da1db55@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
-
-Thank you for the patch.
-
-On Fri, Jan 13, 2023 at 10:54:08AM +0100, Michael Tretter wrote:
-> Different versions of the Pixel Pipeline have different blocks and their
-> routing may be different. Read the PXP_HW_VERSION register to determine
-> the version of the PXP and print it to the log for debugging purposes.
+On Fri, 30 Dec 2022 14:56:37 +0100, Krzysztof Kozlowski wrote:
+> SC8280XP LPASS LPI pin controller has GPIO 0-18:
 > 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> ---
-> Changelog:
+>   sa8540p-ride.dtb: pinctrl@33c0000: tx-swr-default-state: 'oneOf' conditional failed, one must be fixed:
+>     'pins' is a required property
+>     'function' is a required property
+>     'clk-pins', 'data-pins' do not match any of the regexes: 'pinctrl-[0-9]+'
+>     'bias-bus-hold' does not match any of the regexes: 'pinctrl-[0-9]+'
+>     'gpio2' does not match '^gpio([0-1]|1[0-8])$'
 > 
-> v2:
-> 
-> - reduce debug level for version to dev_dbg
-> - drop hw_version field from struct pxp_dev
-> ---
->  drivers/media/platform/nxp/imx-pxp.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/media/platform/nxp/imx-pxp.c b/drivers/media/platform/nxp/imx-pxp.c
-> index 689ae5e6ac62..5b671c6e5cae 100644
-> --- a/drivers/media/platform/nxp/imx-pxp.c
-> +++ b/drivers/media/platform/nxp/imx-pxp.c
-> @@ -10,6 +10,7 @@
->   * Pawel Osciak, <pawel@osciak.com>
->   * Marek Szyprowski, <m.szyprowski@samsung.com>
->   */
-> +#include <linux/bitfield.h>
->  #include <linux/clk.h>
->  #include <linux/delay.h>
->  #include <linux/dma-mapping.h>
-> @@ -52,6 +53,11 @@ MODULE_PARM_DESC(debug, "activates debug info");
->  #define MEM2MEM_HFLIP	(1 << 0)
->  #define MEM2MEM_VFLIP	(1 << 1)
->  
-> +#define PXP_VERSION_MAJOR(version) \
-> +	FIELD_GET(BM_PXP_VERSION_MAJOR, version)
-> +#define PXP_VERSION_MINOR(version) \
-> +	FIELD_GET(BM_PXP_VERSION_MINOR, version)
-> +
->  #define dprintk(dev, fmt, arg...) \
->  	v4l2_dbg(1, debug, &dev->v4l2_dev, "%s: " fmt, __func__, ## arg)
->  
-> @@ -1665,6 +1671,7 @@ static int pxp_probe(struct platform_device *pdev)
->  	struct pxp_dev *dev;
->  	struct video_device *vfd;
->  	int irq;
-> +	u32 hw_version;
+> [...]
 
-I'd move this one line up. Up to you, with or without that,
+Applied, thanks!
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+[1/9] dt-bindings: pinctrl: qcom,sc8280xp-lpass-lpi: correct pins pattern
+      https://git.kernel.org/krzk/linux-dt/c/3c90b1ba8cc49b3c485e4477b9977e52a16509d3
 
->  	int ret;
->  
->  	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
-> @@ -1705,6 +1712,10 @@ static int pxp_probe(struct platform_device *pdev)
->  		goto err_clk;
->  	}
->  
-> +	hw_version = readl(dev->mmio + HW_PXP_VERSION);
-> +	dev_dbg(&pdev->dev, "PXP Version %u.%u\n",
-> +		PXP_VERSION_MAJOR(hw_version), PXP_VERSION_MINOR(hw_version));
-> +
->  	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
->  	if (ret)
->  		goto err_clk;
-> 
-
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
