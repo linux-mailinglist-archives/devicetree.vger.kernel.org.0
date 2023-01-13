@@ -2,126 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EBBA66A23A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 19:39:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D736966A280
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 20:00:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbjAMSjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 13:39:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47690 "EHLO
+        id S230523AbjAMTAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 14:00:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230028AbjAMSj1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 13:39:27 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7234EF01E
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 10:39:23 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pGOxI-0003Gm-8t; Fri, 13 Jan 2023 19:39:08 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pGOxD-005pLl-Fq; Fri, 13 Jan 2023 19:39:03 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pGOxC-00CamQ-Tu; Fri, 13 Jan 2023 19:39:02 +0100
-Date:   Fri, 13 Jan 2023 19:39:01 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcan@marcan.st,
-        sven@svenpeter.dev, alyssa@rosenzweig.io, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/5] pwm: Add Apple PWM controller
-Message-ID: <20230113183901.gt5vdmidprxbzzer@pengutronix.de>
-References: <20230106135839.18676-1-fnkl.kernel@gmail.com>
- <20230106135839.18676-3-fnkl.kernel@gmail.com>
- <20230110230618.pfz267jj5ne34ava@pengutronix.de>
- <CAMT+MTToR+0_CmVBuGfLemALUv1XuevObAMB=TQXV0Vd7HdW5Q@mail.gmail.com>
+        with ESMTP id S230406AbjAMS7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 13:59:54 -0500
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DCA055659
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 10:59:50 -0800 (PST)
+Received: by mail-oo1-xc30.google.com with SMTP id s10-20020a4aa54a000000b004f240f120b3so1959603oom.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 10:59:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=landley-net.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bTIDomgS8mXkDJCvxm5Zm+LjWmMOagP4MCI8VhlfZ4M=;
+        b=PS9bts8WEYUdHc2dq03MseWIdo5SmkGasWJ1IHK/82VNd2x1nauvFpnIRKJHReewV4
+         qHgmemCtG+n4JzEug1j/TkXXGr7XuvlNF4IBzbNfnN6lagwFrOKhEymKlD3N/LDBaGvv
+         sKYDqBaLKXsSv5VTvSWrpB1Ro6mV2B1zSTvwS3WrXPPhGJgdWKpIwnEsYL1x49CphPxG
+         SL4YOgYdR5jGUY39ZZius3Ig7i4WfTYOC67k8Vh1lto4GbCgV9uKa97KEalM5EmLMGPn
+         3yGQHE93+pmLVFjd1TlIZLJrfjBmFeNgyn5vD6/2wKe8LZIYKJC7joRnrftdzonfyS0K
+         +t4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bTIDomgS8mXkDJCvxm5Zm+LjWmMOagP4MCI8VhlfZ4M=;
+        b=hjkoX83Bsa0miNY57c1uySo4oo2+5yKPt9CKY77IH1svu5IR05jTjryvH6rE3vljZP
+         VfXAREZ+eu4GQEtAbp025hlozm8yPNFh8GtzPJ6L8nXwLjgfiED/d1CluDpw99CHUeyY
+         UbX79sEXu3mmze16t8mNLt7c59pwX6gYTNPCUUPaNXCT0KdnqpoKkDoxlg69PT3X3vJ1
+         3qhW+770tzmkNe8R8AofUatX7HQKHwJz7ENHch+VOpshUKB6M+4OByGZgcCWQKW5415B
+         tCnSBhqN141E78kRtFB2AWohRMlaIBjR21/70zrzSlZ8wNkN4PU+nNBbzy2DJAt+U+Yz
+         8wmQ==
+X-Gm-Message-State: AFqh2krNDcOmiqvgIB69TWr6vK43JuoO0Rdh6YfbgYWZRn6OHa6iQCJo
+        S2CVHzfv93uIL7C3rSBUjkLI2Q==
+X-Google-Smtp-Source: AMrXdXvaOiO0G10Az4EGLc64Vx6N+KrZr3PuLGXv0M+M3iF7lrA3WUc8R2fIq6AYtp8ZC6Mk4E9lCQ==
+X-Received: by 2002:a4a:c594:0:b0:4e7:5d43:a654 with SMTP id x20-20020a4ac594000000b004e75d43a654mr22358114oop.0.1673636389556;
+        Fri, 13 Jan 2023 10:59:49 -0800 (PST)
+Received: from [192.168.86.224] ([136.62.38.22])
+        by smtp.gmail.com with ESMTPSA id bc31-20020a056820169f00b0049f8b4b2095sm10111163oob.44.2023.01.13.10.59.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jan 2023 10:59:48 -0800 (PST)
+Message-ID: <6891afb6-4190-6a52-0319-745b3f138d97@landley.net>
+Date:   Fri, 13 Jan 2023 13:11:56 -0600
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nmof7qq6mclq3tlw"
-Content-Disposition: inline
-In-Reply-To: <CAMT+MTToR+0_CmVBuGfLemALUv1XuevObAMB=TQXV0Vd7HdW5Q@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: remove arch/sh
+Content-Language: en-US
+To:     John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-sh@vger.kernel.org
+References: <20230113062339.1909087-1-hch@lst.de>
+ <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
+ <CAMuHMdUcnP6a9Ch5=_CMPq-io-YWK5pshkOT2nZmP1hvNcwBAg@mail.gmail.com>
+ <142532fb-5997-bdc1-0811-a80ae33f4ba4@physik.fu-berlin.de>
+From:   Rob Landley <rob@landley.net>
+In-Reply-To: <142532fb-5997-bdc1-0811-a80ae33f4ba4@physik.fu-berlin.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 1/13/23 02:52, John Paul Adrian Glaubitz wrote:
+> Hi Geert!
+> 
+> On 1/13/23 09:26, Geert Uytterhoeven wrote:
+>> Indeed.  The main issue is not the lack of people sending patches and
+>> fixes, but those patches never being applied by the maintainers.
+>> Perhaps someone is willing to stand up to take over maintainership?
+> 
+> I actually would be willing to do it but I'm a bit hesitant as I'm not 100%
+> sure my skills are sufficient. Maybe if someone can assist me?
 
---nmof7qq6mclq3tlw
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+My skills aren't sufficient and I dunno how much time I have, but I can
+certainly assist. I test sh4 regularlyish and it's in the list of architectures
+I ship binaries and tiny VM images for, just refreshed tuesday:
 
-On Fri, Jan 13, 2023 at 09:25:08PM +0300, Sasha Finkelstein wrote:
-> On Wed, 11 Jan 2023 at 02:06, Uwe Kleine-K=F6nig
-> <u.kleine-koenig@pengutronix.de> wrote:
-> > > + * Limitations:
-> > > + * - The writes to cycle registers are shadowed until a write to
-> > > + *   the control register.
-> > > + * - If both OFF_CYCLES and ON_CYCLES are set to 0, the output
-> > > + *   is a constant off signal.
-> >
-> > How does the PWM behave with *APPLE_PWM_CTRLAPPLE_PWM_CTRL =3D 0?
-> > (typically: drives constant low)
-> >
-> APPLE_PWM_CTRL =3D 0 implies that the APPLE_CTRL_ENABLE bit is set low, w=
-hich
-> turns off the pwm signal (constant low). I do not think that it is
-> necessary to explicitly
-> specify that case in the comments.
+https://landley.net/toybox/downloads/binaries/0.8.9/
+https://landley.net/toybox/downloads/binaries/mkroot/0.8.9/
 
-This is an information that I want to have available. Ideally easily
-greppable by using the format that other drivers use for that, too.
-(The command I usually use is:
+(The sh2eb isn't a VM, it's a physical board I have here...)
 
-	sed -rn '/Limitations:/,/\*\/?$/p' drivers/pwm/*.c
+There is definitely interest in this architecture. I'm aware Rich hasn't been
+the most responsive maintainer. (I'm told he's on vacation with his family at
+the moment, according to the text I got about this issue from the J-core
+hardware guys in Japan.)
 
-so if you make sure your info is added accordingly that would be good.)
+The main reason we haven't converted everything to device tree is we only have
+access to test hardware for a subset of the boards. Pruning the list of
+supported boards and converting the rest to device tree might make sense. We can
+always add/convert boards back later...
 
-This is useful to answer questions like: Can I reasonably expect that a
-disabled PWM respects the configured polarity.
-
-> > Can you please rename such that the (maybe new) name for APPLE_PWM_CTRL
-> > is a prefix for the (maybe new) APPLE_CTRL_ENABLE and the other register
-> > bit definitions?
-> To make sure, you want the register named APPLE_PWM_CTRL, and the bits na=
-med
-> APPLE_PWM_CTRL_ENABLE, APPLE_PWM_CTRL_MODE and so on?
-
-Yes.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---nmof7qq6mclq3tlw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmPBpUIACgkQwfwUeK3K
-7AnWsggAk/ifPGzsZY/5XaujVz/l2za+R4K7un5xaWTjbba1YwhEvJJcLl0LNJbQ
-vIqOfST9nif+KCixGcdeSZDkMLMC0GPYU/VRnuaWPkSkAMt0yGrdOUkiiFfSgqC4
-UB8F7NfJX5nE2zWVIsspjI7liC5r68tH0mmy7Sjmi93Ux3e32WXCyNUoXR9h5Gt9
-ZcNmSvBhVqmpMOORK7uPL0jC7RRTr+TWd2I1dfmJ7jOuWpxSDzpN40wcCe1ih3U3
-R2O8GstPfM5CeXWRkXzktKUqk+oCOy2G0JWPTIlztyETKBfVqimJ/C+0VQP1hedI
-hqlDcd1ZngxvKk5+scRf+OzQhg8L8g==
-=ocLx
------END PGP SIGNATURE-----
-
---nmof7qq6mclq3tlw--
+Rob
