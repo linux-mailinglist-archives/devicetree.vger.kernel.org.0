@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B6BB6695FC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 12:53:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0FC6695EF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 12:53:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241332AbjAMLwX convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Jan 2023 06:52:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35968 "EHLO
+        id S233098AbjAMLwt convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Jan 2023 06:52:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241448AbjAMLv2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 06:51:28 -0500
+        with ESMTP id S234084AbjAMLwU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 06:52:20 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C59D954DA6
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 03:46:46 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8A4395C1
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 03:49:51 -0800 (PST)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1pGIWD-0008IS-4Z; Fri, 13 Jan 2023 12:46:45 +0100
+        id 1pGIZC-0000Qi-5z; Fri, 13 Jan 2023 12:49:50 +0100
 Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1pGIWC-005ksr-FF; Fri, 13 Jan 2023 12:46:44 +0100
+        id 1pGIZB-005ktM-1r; Fri, 13 Jan 2023 12:49:49 +0100
 Received: from pza by lupine with local (Exim 4.94.2)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1pGIWB-0005xe-SD; Fri, 13 Jan 2023 12:46:43 +0100
-Message-ID: <c775383d43d80a17b1afdc0982598e91637ea94a.camel@pengutronix.de>
-Subject: Re: [PATCH v2 12/16] media: imx-pxp: Pass pixel format value to
- find_format()
+        id 1pGIZA-0006Ao-AG; Fri, 13 Jan 2023 12:49:48 +0100
+Message-ID: <33f2a066dee0a6b35c03ce2535dd949e0b0c63f4.camel@pengutronix.de>
+Subject: Re: [PATCH v2 13/16] media: imx-pxp: Implement frame size
+ enumeration
 From:   Philipp Zabel <p.zabel@pengutronix.de>
 To:     Michael Tretter <m.tretter@pengutronix.de>,
         linux-media@vger.kernel.org, devicetree@vger.kernel.org,
@@ -40,10 +40,10 @@ Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Alexander Stein <alexander.stein@ew.tq-group.com>,
         kernel@pengutronix.de, linux-imx@nxp.com,
         linux-arm-kernel@lists.infradead.org
-Date:   Fri, 13 Jan 2023 12:46:43 +0100
-In-Reply-To: <20230112-imx-pxp-v2-12-e2281da1db55@pengutronix.de>
+Date:   Fri, 13 Jan 2023 12:49:48 +0100
+In-Reply-To: <20230112-imx-pxp-v2-13-e2281da1db55@pengutronix.de>
 References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
-         <20230112-imx-pxp-v2-12-e2281da1db55@pengutronix.de>
+         <20230112-imx-pxp-v2-13-e2281da1db55@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 User-Agent: Evolution 3.38.3-1+deb11u1 
@@ -53,7 +53,8 @@ X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -63,10 +64,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Fr, 2023-01-13 at 10:54 +0100, Michael Tretter wrote:
 > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > 
-> The find_format() function looks up format information for a given pixel
-> format. It takes a v4l2_format pointer, but only uses the contained
-> pixel format value. To prepare it for being used by callers that don't
-> have v4l2_format, modify it to take the pixel format value directly.
+> Implement support for the VIDIOC_ENUM_FRAMESIZES ioctl.
 > 
 > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > Reviewed-by: Michael Tretter <m.tretter@pengutronix.de>
