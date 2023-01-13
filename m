@@ -2,86 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 824B36688DB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 02:04:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B792E66893C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 02:42:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240396AbjAMBCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 20:02:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54558 "EHLO
+        id S231400AbjAMBmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 20:42:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240399AbjAMBCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 20:02:24 -0500
-Received: from out162-62-57-87.mail.qq.com (out162-62-57-87.mail.qq.com [162.62.57.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 524EC58F96
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 17:02:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
-        s=s201512; t=1673571734;
-        bh=5YVu9mqcRPbCqohsQNwc03vAe6oCgMQmSEOp7fMl/DM=;
-        h=From:To:Cc:References:In-Reply-To:Subject:Date;
-        b=lnjaV68MiRx+h/DI5Z0AyghJK9zd1eHBwNp+GAUwexmWgN+OKbNCR//Q8OLJcz0bR
-         g6iLXQmjfdpbbgEPHzJU4KHVgyqUE46j6SdPOLm3W/74KEQjLhOQHvhzdzsRFRaJdZ
-         Vtl7Ne9lbFGGOKmsyt3n6+wo8YZFb51izZeMZbRQ=
-Received: from DESKTOPZMX ([111.60.247.106])
-        by newxmesmtplogicsvrszc5-0.qq.com (NewEsmtp) with SMTP
-        id 462CC10; Fri, 13 Jan 2023 09:01:06 +0800
-X-QQ-mid: xmsmtpt1673571666tgdfgcdep
-Message-ID: <tencent_D4DA0F74026037777CFE86B9EEE8E870F807@qq.com>
-X-QQ-XMAILINFO: MZHbDvTHakKc4qRpdkAgWdtQzh8SftSzsSF49B8tJh2GsdhDIVBgF/KEngk2Im
-         kJsFBXUjyEoA61nx+0YG+bixUddlyXv6BHDXDQE3LYfXbs3uKd96SWXCuFXuLl7bs0G/aReVNeH2
-         1YX5Rgejip6klhwQdyfrsvVF20qBo5GxKfcX9zMCv3d7CJ6ERIE7MuONTEZC9VlXYhjQpTRF4Y2o
-         ODeo2WYE4ebfZ05FIFhmbn6+pHIJGEl96BHexmkXM0PVop9fKYWAE116FhIFiJF9gjymj0olq9B4
-         gmmEA6bFXH6iRksyY+vPKOhppH1svndSemZSRV6bGIe4dSDtnwgdjld0nUFXV8QRhMxvFF6BzCRJ
-         cyg7QU5g4rvL+Gpo2i5JbQ8s2yNu+9I6wl+saMHtLS03Ddxjlejp9RVWEP/7WDwnc+ZTf4YJFSfG
-         G0M1nUto8LhkkG95g4604rhRuGFCHFK5xpm5e2aCniFAEDXAOIqYW3k3xCCjTfS2cTCHw8onGcsM
-         N88lJDomTzzLMm+Bq7P9h5MACEQpszDbluzgeqK2WEjEb9FqgugUbbgqT0MzDbyHkykgVPtD8BrI
-         TjEAwk22USga4cxNvmprms+zvF2CjKF6JBDNby9xocA2mm8fmiTZTpXnHjNlgGWEpz4EGajy6a1i
-         fPshe44VO8EqupBtPY3qWK+nYu7hKxbIQpX3oir5q7lwEQSK39QpeZO7Rxs20P0d99VtRzo5HOJK
-         GT3Y8NNs3w+1TtIpXnxA14cpsgpil3RxLhriQPUCHMO8deB7Tv0UZy7Vk0aMbW2A6g9wbcQ5jIae
-         S75D7wPiHfiFcNK4WIfqgf3AvxOdI4BJ7TLozpeztt7KFqky5SCyaT1sqJFobQaOX8SlKUM7rqnS
-         i9uXoeuY1QZaXBxnCvQT/qq/+qCaFp444qzVWIo4llz6Ht3cg0dZx3mZH8419zCIVk0M/glAcd
-From:   <forbidden405@foxmail.com>
-To:     "'Konrad Dybcio'" <konrad.dybcio@linaro.org>,
-        "'Andy Gross'" <agross@kernel.org>,
-        "'Bjorn Andersson'" <andersson@kernel.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Cc:     "'Jaime Breva'" <jbreva@nayarsystems.com>,
-        "'Nikita Travkin'" <nikita@trvn.ru>,
-        <~postmarketos/upstreaming@lists.sr.ht>
-References: <20230111141311.14682-1-forbidden405@foxmail.com> <tencent_F934F7427EB7B986E8AF70A95A397436E007@qq.com> <86e30740-6f12-1ef9-376f-85ce3fbca7b4@linaro.org>
-In-Reply-To: <86e30740-6f12-1ef9-376f-85ce3fbca7b4@linaro.org>
-Subject: RE: [PATCH v2 3/3] arm64: dts: qcom: msm8916-thwc: Add initial device tree for Tong Heng Wei Chuang Wifi/LTE dongle UFI-001C and uf896
-Date:   Fri, 13 Jan 2023 09:00:44 +0800
-X-OQ-MSGID: <000801d926ea$858c56b0$90a50410$@foxmail.com>
+        with ESMTP id S240043AbjAMBmp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 20:42:45 -0500
+X-Greylist: delayed 1799 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 12 Jan 2023 17:42:42 PST
+Received: from lgeamrelo11.lge.com (lgeamrelo13.lge.com [156.147.23.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D57DA140A4
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 17:42:42 -0800 (PST)
+Received: from unknown (HELO lgeamrelo01.lge.com) (156.147.1.125)
+        by 156.147.23.53 with ESMTP; 13 Jan 2023 10:12:41 +0900
+X-Original-SENDERIP: 156.147.1.125
+X-Original-MAILFROM: chanho.min@lge.com
+Received: from unknown (HELO ?10.178.36.63?) (10.178.36.63)
+        by 156.147.1.125 with ESMTP; 13 Jan 2023 10:12:41 +0900
+X-Original-SENDERIP: 10.178.36.63
+X-Original-MAILFROM: chanho.min@lge.com
+From:   Chanho Min <chanho.min@lge.com>
+Subject: Re: Re: [PATCH v2 10/23] arm64: dts: Update cache properties for lg
+To:     Pierre Gondois <pierre.gondois@arm.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Lee Gunho <gunho.lee@lge.com>
+References: <20221107155825.1644604-1-pierre.gondois@arm.com>
+ <20221107155825.1644604-11-pierre.gondois@arm.com>
+ <0fc92ab1-144a-47dd-e5c4-a165a82d385d@arm.com>
+Message-ID: <1e36270f-237e-7069-ffe7-3086216b9d6b@lge.com>
+Date:   Fri, 13 Jan 2023 10:12:41 +0900
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: zh-cn
-Thread-Index: AQKxbg4WubPzuE7WFcN4pGL8ECeU5QJyz/rKAUsDSSqszQolEA==
-X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,HELO_DYNAMIC_IPADDR,RCVD_IN_DNSWL_NONE,RDNS_DYNAMIC,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+In-Reply-To: <0fc92ab1-144a-47dd-e5c4-a165a82d385d@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.01.2023 16:13, Konrad Dybcio wrote:
-> > +&sim_ctrl_default {
-> > +	pins = "gpio1", "gpio2";
-> Identical between both boards, move to common please.
+23. 1. 12. 오후 5:34에 Pierre Gondois 이(가) 쓴 글:
+> (subset for cc list)
+> Hello,
+> Just a reminder in case the patch was forgotten,
+> Regards,
+> Pierre
+> 
+> On 11/7/22 16:57, Pierre Gondois wrote:
+>> The DeviceTree Specification v0.3 specifies that the cache node
+>> 'compatible' and 'cache-level' properties are 'required'. Cf.
+>> s3.8 Multi-level and Shared Cache Nodes
+>> The 'cache-unified' property should be present if one of the
+>> properties for unified cache is present ('cache-size', ...).
+>>
+>> Update the Device Trees accordingly.
+>>
+>> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
 
-It is just happened to be identical for these two boards, but not true 
-For many other devices that will be supported sooner or later.
-
-Best regards,
-Yang
-
-
+Acked-by: Chanho Min <chanho.min@lge.com>
+>> ---
+>>   arch/arm64/boot/dts/lg/lg1312.dtsi | 1 +
+>>   arch/arm64/boot/dts/lg/lg1313.dtsi | 1 +
+>>   2 files changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/lg/lg1312.dtsi 
+>> b/arch/arm64/boot/dts/lg/lg1312.dtsi
+>> index 78ae73d0cf36..25ed9aeee2dc 100644
+>> --- a/arch/arm64/boot/dts/lg/lg1312.dtsi
+>> +++ b/arch/arm64/boot/dts/lg/lg1312.dtsi
+>> @@ -48,6 +48,7 @@ cpu3: cpu@3 {
+>>           };
+>>           L2_0: l2-cache0 {
+>>               compatible = "cache";
+>> +            cache-level = <2>;
+>>           };
+>>       };
+>> diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi 
+>> b/arch/arm64/boot/dts/lg/lg1313.dtsi
+>> index 2173316573be..db82fd4cc759 100644
+>> --- a/arch/arm64/boot/dts/lg/lg1313.dtsi
+>> +++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
+>> @@ -48,6 +48,7 @@ cpu3: cpu@3 {
+>>           };
+>>           L2_0: l2-cache0 {Re: Re: [PATCH v2 10/23] arm64: dts: Update cache properties for lg
+>>               compatible = "cache";
+>> +            cache-leveRe: Re: [PATCH v2 10/23] arm64: dts: Update cache properties for lgl = <2>;
+>>           };
+>>       };
