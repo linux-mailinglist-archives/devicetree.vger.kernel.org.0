@@ -2,205 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D63A4669EC7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADFC4669EE1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:58:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230210AbjAMQyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 11:54:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
+        id S230055AbjAMQ6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 11:58:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230216AbjAMQyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:54:10 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C10165B2
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:51:48 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id qk9so53680195ejc.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:51:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n5VKVZUHVx22mM/bIIAc7NzbLe37QkHYvE9f9wX8QW8=;
-        b=vNsbnSKz1GdnDcjANX07Eh1TPUTsE3sZz4UgqxgIxPPW1iAvFUpAcCBfG/px0AQ+Nf
-         Bn7Qt61/Rolm0QvEF1QdUwcMezQrgIoX3FVVZDMRpUXUB2x4IAViej4ai7DTtfGYzbT8
-         yqIfFZamQr5RV55GiRchpqmvnS5MlwzEnAJX/01cW51i0ukHdpdXWZ83gX57+O/8E6J9
-         Qc/gWHCbHTk+sCrrnLRPZrA96jKyX5RcZhlxAi7CpSRd25K9r6vWzCiRrz0a3kjaF/ZT
-         iSTQBvsQ40vxKmQ/wE+GgDL8Ht09aPRqv0en/qSBBMmtKfuq9KzW6bfHy8IgqpCnOO/d
-         JiZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n5VKVZUHVx22mM/bIIAc7NzbLe37QkHYvE9f9wX8QW8=;
-        b=CfOsJLSfQivUSkHG0rr3fhFTCAUFqW0PPK3DUczJuDoTObb5Sv5ZL4xLOYbVYV2psd
-         6ZZyyx1QM1pV5Igt325AUaC2Mj3HccJYJPivNZO0GbAWKYuSQKGtkXjMe8t79CG7ZUWl
-         Hq5ovXjMbj8nL7rKJEF+/Mmcpf4qcucHEwDIveIpYmhrYjXAYnAi+Z4TW6tafa7R4CCn
-         zzeiXUIAcCV1wJW3gm5yN1NeFFNaffH1/6BXRjiOUL4Q3dojB+a3JLAVa8JgRZlrum7i
-         3ReDm6rtX8aZBKRWLZelnNMWmsbsTYit0ElueRuqLNn3OJJmhaF/hkw+JPpqKsjdwGFK
-         zJSA==
-X-Gm-Message-State: AFqh2krurqJvPrh2poo/S4xTiXtOEYOoCHSNGzMg5qmLLOMwJyNCCruR
-        l+ds7q3gaR530qcaKRsUpgogaQ==
-X-Google-Smtp-Source: AMrXdXu+6c75vpvRqaVKxqv3ZA98GJYV1k02Wwz15Qn+yFXkdoMJMK6NmJ348MKGwxaHj3pZHARWPg==
-X-Received: by 2002:a17:906:c18d:b0:843:770e:777d with SMTP id g13-20020a170906c18d00b00843770e777dmr68623230ejz.11.1673628706634;
-        Fri, 13 Jan 2023 08:51:46 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id en6-20020a056402528600b00499b3d09bd2sm6192043edb.91.2023.01.13.08.51.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 08:51:46 -0800 (PST)
-Message-ID: <58d9c99d-942a-7d55-64dc-31d936076b90@linaro.org>
-Date:   Fri, 13 Jan 2023 17:51:44 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 01/16] dt-bindings: media: fsl-pxp: convert to yaml
-Content-Language: en-US
-To:     Michael Tretter <m.tretter@pengutronix.de>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S230095AbjAMQ5t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:57:49 -0500
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3279A78A58;
+        Fri, 13 Jan 2023 08:57:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673629065; x=1705165065;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=93weZf/KV1XKc7pLT/H8eSFp0TBy5wZsPNjCGdWOgIg=;
+  b=cy+ixoguk2R1lf3JwpOEuYJeu5nxS5xpvJp8i6Kzu2ivjvxmId03dYqF
+   pfsIWJ8wgNalgbgjEr5vY8drofacBZH7BOkTEgKlZ5/+TZ4Dhb2cDSL7+
+   FHbZRJHHZds1ZjtlFLPhxLZDahZa0B9rFTwV8QrjNNUwO1y7n2nEPFnPe
+   NxbOrdp+NNjU82rfDGBe0KaVEM8F/6zlaGU9MNw4MOmzFYIvQSfhaqmIw
+   QmGXwWoUFGaP0iY08HOMPp8bxlF93+s0mqgTb+BTDNXxhvIQUCvrFhjtC
+   Jg4Kp09c+o+IxHu8SCYpZsoG9ld9qtr61srDmcb4fuFOwXuS2sbyq2z7v
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10589"; a="304418912"
+X-IronPort-AV: E=Sophos;i="5.97,214,1669104000"; 
+   d="scan'208";a="304418912"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2023 08:57:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10589"; a="800643053"
+X-IronPort-AV: E=Sophos;i="5.97,214,1669104000"; 
+   d="scan'208";a="800643053"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001.fm.intel.com with ESMTP; 13 Jan 2023 08:57:22 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pGNMk-008iZv-1X;
+        Fri, 13 Jan 2023 18:57:18 +0200
+Date:   Fri, 13 Jan 2023 18:57:18 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc:     Pin-yen Lin <treapking@chromium.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
- <20230112-imx-pxp-v2-1-e2281da1db55@pengutronix.de>
- <bba093d0-e648-61b3-f4d7-b48d43e35920@linaro.org>
- <20230113150943.GC20866@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230113150943.GC20866@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Daniel Scally <djrscally@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
+        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
+        Xin Ji <xji@analogixsemi.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Imre Deak <imre.deak@intel.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Kees Cook <keescook@chromium.org>,
+        Ville =?iso-8859-1?Q?Syrj=E4l=E4?= 
+        <ville.syrjala@linux.intel.com>,
+        shaomin Deng <dengshaomin@cdjrlc.com>
+Subject: Re: [PATCH v10 3/9] drm/display: Add Type-C switch helpers
+Message-ID: <Y8GNbjTKGRg5WWCe@smile.fi.intel.com>
+References: <20230112042104.4107253-1-treapking@chromium.org>
+ <20230112042104.4107253-4-treapking@chromium.org>
+ <Y8EjIKEHqcj3htqC@kuha.fi.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y8EjIKEHqcj3htqC@kuha.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 16:09, Michael Tretter wrote:
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - const: fsl,imx6ul-pxp
->>> +      - const: fsl,imx6ull-pxp
->>> +      - const: fsl,imx7d-pxp
->>
->> These three are an enum.
-> 
-> These are alternatives to the 'items:' entry below.
-> 
-> Are you suggesting to use the following statement?
-> 
-> oneOf:
->   - enum:
->       - fsl,imx6ul-pxp
->       - fsl,imx6ull-pxp
->       - fsl,imx7d-pxp
->   - items:
->       - enum:
->           - fsl,imx6sll-pxp
->           - fsl,imx6sx-pxp
+On Fri, Jan 13, 2023 at 11:23:44AM +0200, Heikki Krogerus wrote:
+> On Thu, Jan 12, 2023 at 12:20:58PM +0800, Pin-yen Lin wrote:
 
-Yes.
+...
 
+> > +		dev_err(dev, "Failed to read the data-lanes variable from %s: %d\n",
+> > +			node->name, ret);
 > 
-> Why is this better than the one that I used?
+> 			fwnode_get_name(fwnode), ret);
 
-Because that's the convention - use enum for enumeration which nicely
-groups all of them and is the easiest to read.
+Or even %pfwP ?
 
-> 
->>
->>> +      - items:
->>> +          - enum:
->>> +              - fsl,imx6sll-pxp
->>> +              - fsl,imx6sx-pxp
->>> +          - const: fsl,imx6ull-pxp
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    minItems: 1
->>> +    maxItems: 2
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    const: axi
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - clocks
->>> +  - clock-names
->>> +
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - fsl,imx6sx-pxp
->>> +    then:
->>> +      properties:
->>> +        interrupts:
->>> +          numItems: 1
->>
->> That's not correct syntax... I am surprised that it works. Did you test
->> the bindings?
-> 
-> I copied this syntax from renesas,wdt.yaml and ran
-> 
-> 	make ARCH=arm dtbs_check DT_SCHEMA_FILES=fsl,imx6ull-pxp.yaml
-> 
-> with SOC_IMX7D=y, SOC_IMX6UL=y, SOC_IMX6SLL=y, and SOC_IMX6SX=y. The latter
-> two were not enabled in the v1, which is why it didn't catch the missing
-> compatibles.
-> 
-> On a closer look, I just saw that the checker ignored the schema due to the
-> incorrect syntax and didn't produce any further errors. With the syntax fixed,
-> the checker now produces also a few more errors about power-domains, which I
-> will fix in v3.
-> 
-> Is this syntax correct?
-> 
-> allOf:
->   - if:
->       properties:
->         compatible:
->           contains:
->             enum:
->               - fsl,imx6sx-pxp
->     then:
->       properties:
->         interrupts:
->           minItems: 1
+...
 
-Drop this one
-
-
->           maxItems: 1
->     else:
->       properties:
->         interrupts:
->           minItems: 2
->           maxItems: 2
+> > +	snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
 > 
-> Michael
+> 	snprintf(name, sizeof(name), "%s-%u", fwnode_get_name(fwnode), port_num);
 
-Rest is ok
+Ditto.
 
-Best regards,
-Krzysztof
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
