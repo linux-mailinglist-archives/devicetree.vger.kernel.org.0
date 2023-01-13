@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B13AF66936F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5B8669388
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:57:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241078AbjAMJ50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 04:57:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42906 "EHLO
+        id S240917AbjAMJ5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 04:57:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237550AbjAMJ5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:57:05 -0500
+        with ESMTP id S240887AbjAMJ5H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:57:07 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E51D7676F9
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:54:18 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45D9E69B25
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:54:20 -0800 (PST)
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <m.tretter@pengutronix.de>)
-        id 1pGGlH-0003cp-5b; Fri, 13 Jan 2023 10:54:11 +0100
+        id 1pGGlH-0003cp-Mo; Fri, 13 Jan 2023 10:54:11 +0100
 From:   Michael Tretter <m.tretter@pengutronix.de>
-Date:   Fri, 13 Jan 2023 10:54:08 +0100
-Subject: [PATCH v2 02/16] media: imx-pxp: detect PXP version
+Date:   Fri, 13 Jan 2023 10:54:09 +0100
+Subject: [PATCH v2 03/16] media: imx-pxp: extract helper function to setup data path
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230112-imx-pxp-v2-2-e2281da1db55@pengutronix.de>
+Message-Id: <20230112-imx-pxp-v2-3-e2281da1db55@pengutronix.de>
 References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
 In-Reply-To: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
 To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
@@ -52,65 +52,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Different versions of the Pixel Pipeline have different blocks and their
-routing may be different. Read the PXP_HW_VERSION register to determine
-the version of the PXP and print it to the log for debugging purposes.
+The driver must configure the data path through the Pixel Pipeline.
 
+Currently, the driver is using a fixed setup, but once there are
+different pipeline configurations, it is helpful to have a dedicated
+function for determining the register value for the data path.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 ---
 Changelog:
 
-v2:
-
-- reduce debug level for version to dev_dbg
-- drop hw_version field from struct pxp_dev
+v2: none
 ---
- drivers/media/platform/nxp/imx-pxp.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/media/platform/nxp/imx-pxp.c | 62 ++++++++++++++++++++++++------------
+ 1 file changed, 42 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/media/platform/nxp/imx-pxp.c b/drivers/media/platform/nxp/imx-pxp.c
-index 689ae5e6ac62..5b671c6e5cae 100644
+index 5b671c6e5cae..675fd00faaac 100644
 --- a/drivers/media/platform/nxp/imx-pxp.c
 +++ b/drivers/media/platform/nxp/imx-pxp.c
-@@ -10,6 +10,7 @@
-  * Pawel Osciak, <pawel@osciak.com>
-  * Marek Szyprowski, <m.szyprowski@samsung.com>
-  */
-+#include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/dma-mapping.h>
-@@ -52,6 +53,11 @@ MODULE_PARM_DESC(debug, "activates debug info");
- #define MEM2MEM_HFLIP	(1 << 0)
- #define MEM2MEM_VFLIP	(1 << 1)
- 
-+#define PXP_VERSION_MAJOR(version) \
-+	FIELD_GET(BM_PXP_VERSION_MAJOR, version)
-+#define PXP_VERSION_MINOR(version) \
-+	FIELD_GET(BM_PXP_VERSION_MINOR, version)
-+
- #define dprintk(dev, fmt, arg...) \
- 	v4l2_dbg(1, debug, &dev->v4l2_dev, "%s: " fmt, __func__, ## arg)
- 
-@@ -1665,6 +1671,7 @@ static int pxp_probe(struct platform_device *pdev)
- 	struct pxp_dev *dev;
- 	struct video_device *vfd;
- 	int irq;
-+	u32 hw_version;
- 	int ret;
- 
- 	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
-@@ -1705,6 +1712,10 @@ static int pxp_probe(struct platform_device *pdev)
- 		goto err_clk;
+@@ -724,6 +724,47 @@ static void pxp_setup_csc(struct pxp_ctx *ctx)
  	}
+ }
  
-+	hw_version = readl(dev->mmio + HW_PXP_VERSION);
-+	dev_dbg(&pdev->dev, "PXP Version %u.%u\n",
-+		PXP_VERSION_MAJOR(hw_version), PXP_VERSION_MINOR(hw_version));
++static u32 pxp_data_path_ctrl0(struct pxp_ctx *ctx)
++{
++	u32 ctrl0;
 +
- 	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
- 	if (ret)
- 		goto err_clk;
++	ctrl0 = 0;
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX15_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX14_SEL(1);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX13_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX12_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX11_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX10_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX9_SEL(1);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX8_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX7_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX6_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX5_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX4_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX3_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX2_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX1_SEL(0);
++	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX0_SEL(0);
++
++	return ctrl0;
++}
++
++static void pxp_set_data_path(struct pxp_ctx *ctx)
++{
++	struct pxp_dev *dev = ctx->dev;
++	u32 ctrl0;
++	u32 ctrl1;
++
++	ctrl0 = pxp_data_path_ctrl0(ctx);
++
++	ctrl1 = 0;
++	ctrl1 |= BF_PXP_DATA_PATH_CTRL1_MUX17_SEL(1);
++	ctrl1 |= BF_PXP_DATA_PATH_CTRL1_MUX16_SEL(1);
++
++	writel(ctrl0, dev->mmio + HW_PXP_DATA_PATH_CTRL0);
++	writel(ctrl1, dev->mmio + HW_PXP_DATA_PATH_CTRL1);
++}
++
+ static int pxp_start(struct pxp_ctx *ctx, struct vb2_v4l2_buffer *in_vb,
+ 		     struct vb2_v4l2_buffer *out_vb)
+ {
+@@ -910,26 +951,7 @@ static int pxp_start(struct pxp_ctx *ctx, struct vb2_v4l2_buffer *in_vb,
+ 	/* bypass LUT */
+ 	writel(BM_PXP_LUT_CTRL_BYPASS, dev->mmio + HW_PXP_LUT_CTRL);
+ 
+-	writel(BF_PXP_DATA_PATH_CTRL0_MUX15_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX14_SEL(1)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX13_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX12_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX11_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX10_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX9_SEL(1)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX8_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX7_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX6_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX5_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX4_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX3_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX2_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX1_SEL(0)|
+-	       BF_PXP_DATA_PATH_CTRL0_MUX0_SEL(0),
+-	       dev->mmio + HW_PXP_DATA_PATH_CTRL0);
+-	writel(BF_PXP_DATA_PATH_CTRL1_MUX17_SEL(1) |
+-	       BF_PXP_DATA_PATH_CTRL1_MUX16_SEL(1),
+-	       dev->mmio + HW_PXP_DATA_PATH_CTRL1);
++	pxp_set_data_path(ctx);
+ 
+ 	writel(0xffff, dev->mmio + HW_PXP_IRQ_MASK);
+ 
 
 -- 
 2.30.2
