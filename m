@@ -2,147 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E58D669675
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 13:09:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA51E66966D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 13:09:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241251AbjAMMI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 07:08:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47476 "EHLO
+        id S232935AbjAMMIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 07:08:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233010AbjAMMHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:07:35 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C383EC;
-        Fri, 13 Jan 2023 03:59:27 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30DBkUtx001890;
-        Fri, 13 Jan 2023 11:59:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=6hWI26l3Jwyuu7QZ+nzK5rxK2hb0HsoWPdDuFTTN52w=;
- b=nGYCWq1pV3A4/+udMvKPiz6/tQ02q+TQI3NXvQnXeVewpsFHdf8q1mliDvC06CY0xIB6
- 7pPeXcUYoSl5o6aMeQfPbWD69NkCjbZEkq04ZofJvB3Y97HyELhjrQI/n6m3rkihKzRC
- lo6rvyA72c3dqBoIzUnN+QpY3tLwYs+SD4zj2Xm55KgSZrrCW6ImWehxD7QKSXHQnqVM
- du7OC9QFe/zoJpV9Ojlqccg8X2s2C1xdW10adQvoGe2G/FU1gMSZbWRgs6Z+9jOxPCi4
- HpOB5j4BGoLSSPb0BAwCqY18iaNdVsFJrMT6n9xye10cXXhgFyv04G/LIH7IwbJCIgOZ sw== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n2wqw15u5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 13 Jan 2023 11:59:15 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30DBxEb3011711
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 13 Jan 2023 11:59:14 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Fri, 13 Jan 2023 03:59:10 -0800
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-To:     <keescook@chromium.org>, <gpiccoli@igalia.com>, <corbet@lwn.net>,
-        <tony.luck@intel.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-hardening@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Mukesh Ojha <quic_mojha@quicinc.com>
-Subject: [PATCH v3 3/3] pstore/ram: Rework logic for detecting ramoops
-Date:   Fri, 13 Jan 2023 17:28:46 +0530
-Message-ID: <1673611126-13803-3-git-send-email-quic_mojha@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1673611126-13803-1-git-send-email-quic_mojha@quicinc.com>
-References: <1673611126-13803-1-git-send-email-quic_mojha@quicinc.com>
+        with ESMTP id S235451AbjAMMHi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:07:38 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6A3810B2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 03:59:52 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id qk9so51816295ejc.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 03:59:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lM60jB5CeQGfmEnmDWStP3rhRDC4AugryFBW67wjBxI=;
+        b=XaEEC5PZdtcHMQ7EV4jsUpXyAKWlZi1l4EUZI2/t0KdEhJEZf2pRJWdFEIkdkcDAWS
+         hNEV7yYATrN8TE65cpXj9S2cI4rY3lprGDk7RPsbQOJksOYrf1rgDlUaMEFheiLIi4OD
+         gWtrHp+p+t2y56+Yea4IE2kMNDXtC70yZeClRBMZlYzJtYebnmDQ4bQhCF1b4G2wsRz/
+         G380H320AapWZ74/58MqNsqQ+fk8UBx12uOW6598WiU94HbxImN/oMGdjBUgiOBt8ayG
+         uhtGX2OEQrV7eSCTy1NKbMMxVouHv2gLlXeJpaDffQ+hpsNJGXloKDm3l4SNRRp/uCGE
+         IvpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lM60jB5CeQGfmEnmDWStP3rhRDC4AugryFBW67wjBxI=;
+        b=AJi9O99yZczfyzzLZmfChGWWZUi7O/GsMeNi4rly0g2SiT+O8aphWcHbcEw13OHvy2
+         HHLlNGAhyjK100XEe9nDnMPIOYhVj+s8QvWNbPaLEpDBdkf1gPSWCPMoiZ0qdaqHWtl4
+         O6GfkaOFVgMpyBPYP98bSUnflnWSzecsMQYRibiphZIri6Ix9Hn+NQLLYRaYOphN2ZWv
+         I/JyCnCs7lvnv63Iya0FCJ+UuAEPNMe3AGURP+X06cP5yhWH2Rl9VKjDzJPNVGqPUOS1
+         1cjEB1USAuBY9q126Y3rRdS3pg3mRoMUCd+gTKE3QLph9Z1UBjT0KfZ5zw79UV4rhd9Y
+         H92g==
+X-Gm-Message-State: AFqh2koXgmTmSbH8rX5Q77QcCPhUB1F1S7Etau6Lal1bXcaMf3fklTLf
+        f/zX4tz9NYcrtIcECQzMoPgOWA==
+X-Google-Smtp-Source: AMrXdXvHFuBXHMVk0hBzhEM99tOU+VIvQ/ZKfYPQVI98WQOjRvcco+YhoSpAcYKvIxwXWJifbqXL3g==
+X-Received: by 2002:a17:906:99d1:b0:7c1:12ef:bf52 with SMTP id s17-20020a17090699d100b007c112efbf52mr63943919ejn.3.1673611191261;
+        Fri, 13 Jan 2023 03:59:51 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id kr12-20020a1709079a0c00b0084d44553af9sm6417588ejc.215.2023.01.13.03.59.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jan 2023 03:59:50 -0800 (PST)
+Message-ID: <d16ed246-86b3-7837-845d-ba33dd61b482@linaro.org>
+Date:   Fri, 13 Jan 2023 12:59:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jsvihKr3v1r8tSt2qurtiRfeaIawUp5-
-X-Proofpoint-ORIG-GUID: jsvihKr3v1r8tSt2qurtiRfeaIawUp5-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-13_05,2023-01-13_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 spamscore=0 malwarescore=0 adultscore=0 mlxscore=0
- suspectscore=0 impostorscore=0 clxscore=1015 phishscore=0 bulkscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301130080
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v5 02/10] dt-bindings: arm: mediatek: mmsys: Add support
+ for MT8195 VPPSYS
+Content-Language: en-US
+To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230113054304.21841-1-moudy.ho@mediatek.com>
+ <20230113054304.21841-3-moudy.ho@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230113054304.21841-3-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reserved memory region for ramoops is assumed to be at a fixed
-and known location when read from the devicetree. This is not desirable
-in environments where it is preferred the region to be dynamically
-allocated at runtime, as opposed to being fixed at compile time.
+On 13/01/2023 06:42, Moudy Ho wrote:
+> For MT8195, VPPSYS0 and VPPSYS1 are 2 display pipes with
+> hardware differences in power domains, clocks and subsystem counts,
+> which should be determined by compatible names.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> index 84de12709323..27d2631d43d3 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> @@ -34,6 +34,8 @@ properties:
+>                - mediatek,mt8188-vdosys0
+>                - mediatek,mt8192-mmsys
+>                - mediatek,mt8365-mmsys
+> +              - mediatek,mt8195-vppsys0
+> +              - mediatek,mt8195-vppsys1
 
-Also, some of the platforms might be still expecting dedicated
-memory region for ramoops node where the region is known
-beforehand and platform_get_resource() is used in that case.
+That's broken order and I did not ack something like this. What's
+happening with these patches?
 
-So, add logic to detect the start and size of the ramoops memory
-region by looking up reserved memory region with
-of_reserved_mem_lookup() when platform_get_resource() failed.
-
-Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
----
-Changes in v2:
- - Addressed the comments made by kees and Guilherme in v1.
-
- fs/pstore/ram.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
-
-diff --git a/fs/pstore/ram.c b/fs/pstore/ram.c
-index ade66db..17c9f46 100644
---- a/fs/pstore/ram.c
-+++ b/fs/pstore/ram.c
-@@ -20,6 +20,7 @@
- #include <linux/compiler.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
-+#include <linux/of_reserved_mem.h>
- 
- #include "internal.h"
- #include "ram_internal.h"
-@@ -643,6 +644,7 @@ static int ramoops_parse_dt(struct platform_device *pdev,
- {
- 	struct device_node *of_node = pdev->dev.of_node;
- 	struct device_node *parent_node;
-+	struct reserved_mem *rmem;
- 	struct resource *res;
- 	u32 value;
- 	int ret;
-@@ -651,13 +653,19 @@ static int ramoops_parse_dt(struct platform_device *pdev,
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	if (!res) {
--		dev_err(&pdev->dev,
--			"failed to locate DT /reserved-memory resource\n");
--		return -EINVAL;
-+		rmem = of_reserved_mem_lookup(of_node);
-+		if (!rmem) {
-+			dev_err(&pdev->dev,
-+				"failed to locate DT /reserved-memory resource\n");
-+			return -EINVAL;
-+		}
-+		pdata->mem_size = rmem->size;
-+		pdata->mem_address = rmem->base;
-+	} else {
-+		pdata->mem_size = resource_size(res);
-+		pdata->mem_address = res->start;
- 	}
- 
--	pdata->mem_size = resource_size(res);
--	pdata->mem_address = res->start;
- 	/*
- 	 * Setting "unbuffered" is deprecated and will be ignored if
- 	 * "mem_type" is also specified.
--- 
-2.7.4
+Best regards,
+Krzysztof
 
