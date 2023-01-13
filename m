@@ -2,55 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37E72669D12
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:01:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4A54669D27
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:05:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230393AbjAMQA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 11:00:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49580 "EHLO
+        id S229796AbjAMQFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 11:05:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229723AbjAMQA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:00:26 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C469A96764;
-        Fri, 13 Jan 2023 07:51:22 -0800 (PST)
+        with ESMTP id S230110AbjAMQFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:05:16 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7E3421A8;
+        Fri, 13 Jan 2023 07:57:29 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D9A9B6223C;
-        Fri, 13 Jan 2023 15:51:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFED9C433EF;
-        Fri, 13 Jan 2023 15:51:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 86B7E6216E;
+        Fri, 13 Jan 2023 15:57:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4ADEC433D2;
+        Fri, 13 Jan 2023 15:57:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673625081;
-        bh=wOWtrdSlhbszE+tN7qXeYBL750xu36ZW+cH1OVBcLPM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WJvifSfl5C1QvFNKgAkIvS79KuZ0lCos/no9zHPrzgxldsRNFC7iRUOIL/Ck7nlUV
-         SfYlVqFPnXWD91UHyVDPFUnPulYambSP5SLC7FkDrhrPSqx4nnz/8LnAU4thz5I+jT
-         Yx8P1MChqhyTvO1e53BbGrXPCEqT5wR7KDxqozaw4fKcI9ehJ6F78szii6ctwQus0F
-         pJKKPZ0OYOtVF9WXfH1nDInC+95KHprnl6odXS1JAdsjcz/FHmel9hr1wxnYgBz6Hc
-         NVzvxGMnfiQLpVtWIswyyQYqpPKHx0Imeczlai4RQsiPBp2aSUJ1P36M9O/DKA0hM+
-         Eb0cNG4yaclpQ==
-Date:   Fri, 13 Jan 2023 16:51:13 +0100
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] PCI: qcom: Add support for modular builds
-Message-ID: <Y8F98UTZNgQpX6UG@lpieralisi>
-References: <20221017114705.8277-1-johan+linaro@kernel.org>
+        s=k20201202; t=1673625449;
+        bh=RgE8Fj7iLHFPKGSsXzQDcEmsYGxZ0rV3hVEWaEMDJr4=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=SO7NS2P4DPwFr/A1++KqO020SxXyW1XnTE9vxLY8j3xLOBS0Df9wfDocbp3xZRVEz
+         kCphu1x3II9PfiO9B7cmpkegKuxK+ybMlSQyqVLR2zuXMGeAIBGmKvRDRQCjXyFONX
+         wE6PFzd7SzVE7xvGI2loOIMh5c7hv8w78t7XEhPPm7tHUSxfL3Lsme6/dY6jcCt8iK
+         o4q+qC1GsAsB36/Rx6ZGmEpt7ptRSPKGgTIYhefXLmcABSvTVCYenDcev+dr7j9VNi
+         oBXtNqKFTD5HbZmtrioaJP8M9sj5CgIfRmTAfvz/PKISJN5L5JQxJw/b6T9Bow5nMD
+         2tkgJxa/kSQjg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Janne Grunau <j@jannau.net>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, linux-kernel@vger.kernel.org
+In-Reply-To: <20230113102309.18308-1-marcan@marcan.st>
+References: <20230113102309.18308-1-marcan@marcan.st>
+Subject: Re: [PATCH v2 0/3] SPI core CS delay fixes and additions
+Message-Id: <167362544665.163457.10878671229075890152.b4-ty@kernel.org>
+Date:   Fri, 13 Jan 2023 15:57:26 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221017114705.8277-1-johan+linaro@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12-dev-8b3d1
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,44 +58,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 17, 2022 at 01:47:03PM +0200, Johan Hovold wrote:
-> Allow the Qualcomm PCIe controller driver to be built as a module, which
-> is useful for multi-platform kernels as well as during development.
+On Fri, 13 Jan 2023 19:23:07 +0900, Hector Martin wrote:
+> Commits f6c911f3308c ("spi: dt-bindings: Introduce
+> spi-cs-setup-ns property") and 33a2fde5f77b ("spi: Introduce
+> spi-cs-setup-ns property") introduced a new property to represent the
+> CS setup delay in the device tree, but they have some issues:
 > 
-> There's no rush with this, but I figured I'd send an updated version
-> that has been rebased on 6.1-rc1 (where post_deinit() has been removed).
+> - The property is only parsed as a 16-bit integer number of nanoseconds,
+>   which limits the maximum value to ~65us. This is not a reasonable
+>   upper limit, as some devices might need a lot more.
+> - The property name is inconsistent with other delay properties, which
+>   use a "*-delay-ns" naming scheme.
+> - Only the setup delay is introduced, but not the related hold and
+>   inactive delay times.
 > 
-> I also broke out the qcom_pcie_host_deinit() handler in a separate patch
-> as the host_deinit() callback has now been added to dwc core and can be
-> used to fixes some late-probe error handling.
+> [...]
 
-Waiting for the dust to settle on patch 2, does it make sense to
-merge patch 1 on its own ?
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/3] spi: Use a 32-bit DT property for spi-cs-setup-delay-ns
+      commit: f276aacf5d2f7fb57e400db44c807ea3b9525fd6
+[2/3] spi: dt-bindings: Add hold/inactive CS delay peripheral properties
+      commit: 34f89f238c545d4fd0166e37c201d96c10443953
+[3/3] spi: Parse hold/inactive CS delay values from the DT
+      commit: 5827b31d858e399e0ba9fbd33da7a39b31769e11
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Lorenzo
-
-> Johan
-> 
-> 
-> Changes in v3
->  - rebase on 6.1-rc1 where post_deinit() has been removed
->  - split out host-init error handling
->  - add Stan's ack
-> 
-> Changes in v2
->  - rebase on next-20220720 (adjust context)
->  - add Rob and Mani's reviewed-by tags
-> 
-> 
-> Johan Hovold (2):
->   PCI: qcom: Fix host-init error handling
->   PCI: qcom: Add support for modular builds
-> 
->  drivers/pci/controller/dwc/Kconfig     |  2 +-
->  drivers/pci/controller/dwc/pcie-qcom.c | 39 +++++++++++++++++++++++---
->  2 files changed, 36 insertions(+), 5 deletions(-)
-> 
-> -- 
-> 2.37.3
-> 
+Mark
