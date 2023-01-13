@@ -2,187 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 739C96693D8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:16:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BC416693E6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:19:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232712AbjAMKQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:16:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54902 "EHLO
+        id S234010AbjAMKTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:19:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231351AbjAMKQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:16:16 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97793EBC;
-        Fri, 13 Jan 2023 02:16:13 -0800 (PST)
-Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:299b:2170:fef0:26ee])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S231218AbjAMKSs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:18:48 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB5A26878B;
+        Fri, 13 Jan 2023 02:18:44 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BE14A6602CCE;
-        Fri, 13 Jan 2023 10:16:11 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673604972;
-        bh=uvLHq13CAGAoG5W+OuGNtmqdHKgq7qLWvksrMYmsUYk=;
-        h=From:To:Cc:Subject:Date:From;
-        b=CB35nnrxX+A7tXdRtYYNRX5ZsjQQrcwd+zppfC3orQ1+P/Vp1cXmpgYPabLpckzfN
-         Gp24WIMFMn+dL49BB0zCqPxDFH+D2xddU89kQY5etC/N2s8QTpE07jXmQoDystaRkX
-         S5bLGIoY35+q/ueWDSvI3NOhL0tQyqb9yYo38ckgadHecycElJHDpOH3ZuA7EK3C4B
-         feCvHyOoBziQpJg2NxrlwffTxuM7m7zOqE/+AqbZt2RviDlFjz4XhNQ64ViTdnrbjP
-         foxvwEISfhhrvDpoFPcDnG+smRMY4lVkAdclfPHuLQwwiSzDaCpt6I8ysVyvvQGol2
-         QFNJvdLCdMiTA==
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        nicolas.dufresne@collabora.co.uk
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH] media: verisilicon: HEVC: Only propose 10 bits compatible pixels formats
-Date:   Fri, 13 Jan 2023 11:16:04 +0100
-Message-Id: <20230113101604.261429-1-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.34.1
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7D5876117E;
+        Fri, 13 Jan 2023 10:18:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26E31C433EF;
+        Fri, 13 Jan 2023 10:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673605123;
+        bh=sUKOlNUy/idpXauShp//31+R4ncJrtV2+7nCN6c80Bw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=IszNHv9GKOjTegRQgaSb1/E4juCNlcVjleK93m5v3jBwImySUNURMWYM7ax0Y7/6X
+         nmPebdNbodjU3Vy+MpFn63FEKn3mHX+qjIz2edbM9svn8u9w2ZSfFH/2aQtmBJMfqq
+         2voienLWONXMzpfGYHi+1xO6nk5wHACmz028e8dPOBIUykjG0rJT96b/5Cpjl+SrUq
+         TQ3b0yvScMLRzSqTDvRoqhnCfHzKt2hjrom5C8lvlR7/A/zqemG2t2ZDiqnJTPdftI
+         BbbXq1zA9zEjBLx00ZaGJ5rtjDAqg0BhCejdMbEH5LIFmrRbt/gr2MFX8tc8MGC65Z
+         /JFoxQjmjmcAQ==
+Message-ID: <6ae650c9-d68d-d2fc-8319-b7784cd2a749@kernel.org>
+Date:   Fri, 13 Jan 2023 12:18:37 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH net-next 5/5] arm64: dts: ti: k3-am625-sk: Add cpsw3g cpts
+ PPS support
+Content-Language: en-US
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, nm@ti.com, kristo@kernel.org,
+        vigneshr@ti.com, nsekhar@ti.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srk@ti.com
+References: <20230111114429.1297557-1-s-vadapalli@ti.com>
+ <20230111114429.1297557-6-s-vadapalli@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230111114429.1297557-6-s-vadapalli@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When decoding a 10bits bitstreams HEVC driver should only expose
-10bits pixel formats.
-To fulfill this requirement it is needed to call hantro_reset_raw_fmt()
-when bit depth change and to correctly set match_depth in pixel formats
-enumeration.
+Hi,
 
-Fixes: dc39473d0340 ("media: hantro: imx8m: Enable 10bit decoding")
+On 11/01/2023 13:44, Siddharth Vadapalli wrote:
+> The CPTS driver is capable of configuring GENFy (Periodic Signal Generator
+> Function) present in the CPTS module, to generate periodic output signals
+> with a custom time period. In order to generate a PPS signal on the GENFy
+> output, the device-tree property "ti,pps" has to be used. The "ti,pps"
+> property is used to declare the mapping between the CPTS HWx_TS_PUSH
+> (Hardware Timestamp trigger) input and the GENFy output that is configured
+> to generate a PPS signal. The mapping is of the form:
+> <x-1 y>
+> where the value x corresponds to HWx_TS_PUSH input (1-based indexing) and
+> the value y corresponds to GENFy (0-based indexing).
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
- .../media/platform/verisilicon/hantro_drv.c   | 35 +++++++++++++++++--
- .../media/platform/verisilicon/hantro_v4l2.c  |  2 +-
- .../media/platform/verisilicon/hantro_v4l2.h  |  1 +
- .../media/platform/verisilicon/imx8m_vpu_hw.c |  2 ++
- 4 files changed, 36 insertions(+), 4 deletions(-)
+You mean there is no HWx_TX_PUSH0 pin? so user needs to use 0 for HWx_TX_PUSH1 pin?
 
-diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
-index 8cb4a68c9119..78ea05294004 100644
---- a/drivers/media/platform/verisilicon/hantro_drv.c
-+++ b/drivers/media/platform/verisilicon/hantro_drv.c
-@@ -274,8 +274,6 @@ static int hantro_try_ctrl(struct v4l2_ctrl *ctrl)
- 		if (sps->bit_depth_luma_minus8 != 0 && sps->bit_depth_luma_minus8 != 2)
- 			/* Only 8-bit and 10-bit are supported */
- 			return -EINVAL;
--
--		ctx->bit_depth = sps->bit_depth_luma_minus8 + 8;
- 	} else if (ctrl->id == V4L2_CID_STATELESS_VP9_FRAME) {
- 		const struct v4l2_ctrl_vp9_frame *dec_params = ctrl->p_new.p_vp9_frame;
- 
-@@ -286,6 +284,32 @@ static int hantro_try_ctrl(struct v4l2_ctrl *ctrl)
- 	return 0;
- }
- 
-+static int hantro_hevc_s_ctrl(struct v4l2_ctrl *ctrl)
-+{
-+	struct hantro_ctx *ctx;
-+
-+	ctx = container_of(ctrl->handler,
-+			   struct hantro_ctx, ctrl_handler);
-+
-+	vpu_debug(1, "s_ctrl: id = %d, val = %d\n", ctrl->id, ctrl->val);
-+
-+	switch (ctrl->id) {
-+	case V4L2_CID_STATELESS_HEVC_SPS:
-+		const struct v4l2_ctrl_hevc_sps *sps = ctrl->p_new.p_hevc_sps;
-+		int bit_depth = sps->bit_depth_luma_minus8 + 8;
-+
-+		if (ctx->bit_depth != bit_depth) {
-+			ctx->bit_depth = bit_depth;
-+			hantro_reset_raw_fmt(ctx);
-+		}
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int hantro_jpeg_s_ctrl(struct v4l2_ctrl *ctrl)
- {
- 	struct hantro_ctx *ctx;
-@@ -328,6 +352,11 @@ static const struct v4l2_ctrl_ops hantro_ctrl_ops = {
- 	.try_ctrl = hantro_try_ctrl,
- };
- 
-+static const struct v4l2_ctrl_ops hantro_hevc_ctrl_ops = {
-+	.s_ctrl = hantro_hevc_s_ctrl,
-+	.try_ctrl = hantro_try_ctrl,
-+};
-+
- static const struct v4l2_ctrl_ops hantro_jpeg_ctrl_ops = {
- 	.s_ctrl = hantro_jpeg_s_ctrl,
- };
-@@ -470,7 +499,7 @@ static const struct hantro_ctrl controls[] = {
- 		.codec = HANTRO_HEVC_DECODER,
- 		.cfg = {
- 			.id = V4L2_CID_STATELESS_HEVC_SPS,
--			.ops = &hantro_ctrl_ops,
-+			.ops = &hantro_hevc_ctrl_ops,
- 		},
- 	}, {
- 		.codec = HANTRO_HEVC_DECODER,
-diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
-index 2c7a805289e7..0025e049dd26 100644
---- a/drivers/media/platform/verisilicon/hantro_v4l2.c
-+++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
-@@ -398,7 +398,7 @@ hantro_reset_encoded_fmt(struct hantro_ctx *ctx)
- 		hantro_set_fmt_out(ctx, fmt);
- }
- 
--static void
-+void
- hantro_reset_raw_fmt(struct hantro_ctx *ctx)
- {
- 	const struct hantro_fmt *raw_vpu_fmt;
-diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.h b/drivers/media/platform/verisilicon/hantro_v4l2.h
-index 64f6f57e9d7a..f642560aed93 100644
---- a/drivers/media/platform/verisilicon/hantro_v4l2.h
-+++ b/drivers/media/platform/verisilicon/hantro_v4l2.h
-@@ -21,6 +21,7 @@
- extern const struct v4l2_ioctl_ops hantro_ioctl_ops;
- extern const struct vb2_ops hantro_queue_ops;
- 
-+void hantro_reset_raw_fmt(struct hantro_ctx *ctx);
- void hantro_reset_fmts(struct hantro_ctx *ctx);
- int hantro_get_format_depth(u32 fourcc);
- const struct hantro_fmt *
-diff --git a/drivers/media/platform/verisilicon/imx8m_vpu_hw.c b/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
-index b390228fd3b4..f850d8bddef6 100644
---- a/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
-+++ b/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
-@@ -152,6 +152,7 @@ static const struct hantro_fmt imx8m_vpu_g2_postproc_fmts[] = {
- 	{
- 		.fourcc = V4L2_PIX_FMT_NV12,
- 		.codec_mode = HANTRO_MODE_NONE,
-+		.match_depth = true,
- 		.postprocessed = true,
- 		.frmsize = {
- 			.min_width = FMT_MIN_WIDTH,
-@@ -165,6 +166,7 @@ static const struct hantro_fmt imx8m_vpu_g2_postproc_fmts[] = {
- 	{
- 		.fourcc = V4L2_PIX_FMT_P010,
- 		.codec_mode = HANTRO_MODE_NONE,
-+		.match_depth = true,
- 		.postprocessed = true,
- 		.frmsize = {
- 			.min_width = FMT_MIN_WIDTH,
--- 
-2.34.1
+Can you please define macros for HWx_TS_PUSH and GENFy so we avoid
+human error with this different indexing methods?
 
+DT should contain the name exactly in hardware.
+
+So if pin is called HWx_TX_PUSH1 in hardware then DT should contain HWx_TX_PUSH(1).
+
+> 
+> To verify that the signal is a PPS signal, the GENFy output signal is fed
+> into the CPTS HWx_TS_PUSH input, which generates a timestamp event on the
+> rising edge of the GENFy signal. The GENFy output signal can be routed to
+> the HWx_TS_PUSH input by using the Time Sync Router. This is done by
+> mentioning the mapping between the GENFy output and the HWx_TS_PUSH input
+> within the "timesync_router" device-tree node.
+> 
+> The Input Sources to the Time Sync Router are documented at: [1]
+> The Output Destinations of the Time Sync Router are documented at: [2]
+> 
+> The PPS signal can be verified using testptp and ppstest tools as follows:
+>  # ./testptp -d /dev/ptp0 -P 1
+>  pps for system time request okay
+>  # ./ppstest /dev/pps0
+>  trying PPS source "/dev/pps0"
+>  found PPS source "/dev/pps0"
+>  ok, found 1 source(s), now start fetching data...
+>  source 0 - assert 48.000000013, sequence: 8 - clear  0.000000000, sequence: 0
+>  source 0 - assert 49.000000013, sequence: 9 - clear  0.000000000, sequence: 0
+>  source 0 - assert 50.000000013, sequence: 10 - clear  0.000000000, sequence: 0
+> 
+> Add an example in the device-tree, enabling PPS generation on GENF1. The
+> HW3_TS_PUSH Timestamp trigger input is used to verify the PPS signal.
+> 
+> [1]
+> Link: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am62x/interrupt_cfg.html#timesync-event-router0-interrupt-router-input-sources
+> [2]
+> Link: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am62x/interrupt_cfg.html#timesync-event-router0-interrupt-router-output-destinations
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> index 4f179b146cab..962a922cc94b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> @@ -366,6 +366,10 @@ &cpsw3g {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_rgmii1_pins_default
+>  		     &main_rgmii2_pins_default>;
+> +
+> +	cpts@3d000 {
+> +		ti,pps = <2 1>;
+> +	};
+>  };
+>  
+>  &cpsw_port1 {
+> @@ -464,3 +468,19 @@ partition@3fc0000 {
+>  		};
+>  	};
+>  };
+> +
+> +#define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
+
+Should this go in ./include/dt-bindings/pinctrl/k3.h ?
+That way every board DT file doesn't have to define it.
+
+The name should be made more platform specific.
+e.g. K3_TS_OFFSET if it is the same for all K3 platforms.
+If not then please add Platform name instead of K3.
+
+> +
+> +&timesync_router {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&cpsw_cpts>;
+> +
+> +	/* Example of the timesync routing */
+> +	cpsw_cpts: cpsw-cpts {
+> +		pinctrl-single,pins = <
+> +			/* pps [cpsw cpts genf1] in17 -> out12 [cpsw cpts hw3_push] */
+> +			TS_OFFSET(12, 17)
+> +			>;
+> +	};
+> +};
+
+cheers,
+-roger
