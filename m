@@ -2,110 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A74F6693F6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:23:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5C856693FD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:23:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240196AbjAMKXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:23:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
+        id S240793AbjAMKXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:23:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240805AbjAMKWe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:22:34 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9996C5830F;
-        Fri, 13 Jan 2023 02:21:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S241096AbjAMKXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:23:33 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55A560EB;
+        Fri, 13 Jan 2023 02:23:31 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3A6EC61129;
-        Fri, 13 Jan 2023 10:21:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D47A4C433EF;
-        Fri, 13 Jan 2023 10:21:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673605304;
-        bh=QJB4bPL/qxvG2LxsovNGnWYa2fcv/xAVjbx4c/RVED0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=OQ8m4D+3wF4Chb2uthGQTjVojqbZNyoIz2Ni4i2cGVW7CudPublYKRnf+S6MHLwII
-         CQ7XocZJelHMgEP0dTE/0keJs7mqddkdhnaqnU+Hzn3UhbMXGZhVE3mZQC74I/007j
-         JiZOocVsn40T2mctTSNOAsUg/HW93u1cl6/oC9nkaM3nBgFZkDYqZyWYjkRUxtFQwS
-         VwlFQJXdlbuHimPQKmBRUdsSDfXCt5d8G2WSrX2LkvPmmEl2ItoCjaoGLo+0GKeVil
-         fEmuds6/Yj+IX2ejHxxdZh8lqSUUSk7+emTULe2V2muZgQcwCYkfRP+ZLjbO7J8GHL
-         eGFPjQTqhR3HA==
-Message-ID: <14dfa3ac-344f-5185-fd83-06b3c9884b5c@kernel.org>
-Date:   Fri, 13 Jan 2023 12:21:37 +0200
+        (Authenticated sender: sendonly@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id ECE8341A42;
+        Fri, 13 Jan 2023 10:23:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1673605409; bh=Qk0SZhUSDcUli3ukUepHX62c899A3JbfgCFO6jDV0xw=;
+        h=From:To:Cc:Subject:Date;
+        b=l/RI4vKRdxtkr1dgBIidcWG5huYub+Hd8IQ4/8AQ9V+BjXniGnGiU7aIFRlbq/vxE
+         dK8mHJeu6jhqseny7hhgTLMcPfw+YXb154e8BipO9gRGyOO2RcT8qZtqsPak13kkLh
+         IGgXh82uSQGygDRIJQn6rNEdRI8f1YGPhIix1NOMGljo9TSMplT3v3/x1zyAw4UZh4
+         9jJxba6lyvTo2g+bEa5jpYzUAFq7WnLQdwVdRVaQN/hAqns+goLBeSRMCn6sHaEDlP
+         QhugQLLKCicRknkAnVE25f2+/4BS/2Zn8wyKIJOzBFBk5G6F5alMKkPUA6iw8L8dyn
+         gEGvHEbkbAXWA==
+From:   Hector Martin <marcan@marcan.st>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Janne Grunau <j@jannau.net>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>
+Subject: [PATCH v2 0/3] SPI core CS delay fixes and additions
+Date:   Fri, 13 Jan 2023 19:23:07 +0900
+Message-Id: <20230113102309.18308-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH net-next 0/5] Add PPS support to am65-cpts driver
-Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        nm@ti.com, kristo@kernel.org, vigneshr@ti.com, nsekhar@ti.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srk@ti.com
-References: <20230111114429.1297557-1-s-vadapalli@ti.com>
- <2fc741b2-671d-8817-1d6f-511398aea9ff@kernel.org>
- <19566370-3cf1-09fd-119f-c39c0309eb6d@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <19566370-3cf1-09fd-119f-c39c0309eb6d@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Commits f6c911f3308c ("spi: dt-bindings: Introduce
+spi-cs-setup-ns property") and 33a2fde5f77b ("spi: Introduce
+spi-cs-setup-ns property") introduced a new property to represent the
+CS setup delay in the device tree, but they have some issues:
 
+- The property is only parsed as a 16-bit integer number of nanoseconds,
+  which limits the maximum value to ~65us. This is not a reasonable
+  upper limit, as some devices might need a lot more.
+- The property name is inconsistent with other delay properties, which
+  use a "*-delay-ns" naming scheme.
+- Only the setup delay is introduced, but not the related hold and
+  inactive delay times.
 
-On 13/01/2023 11:56, Siddharth Vadapalli wrote:
-> Hello Roger,
-> 
-> On 13/01/23 15:18, Roger Quadros wrote:
->> Siddharth,
->>
->> On 11/01/2023 13:44, Siddharth Vadapalli wrote:
->>> The CPTS hardware doesn't support PPS signal generation. Using the GenFx
->>> (periodic signal generator) function, it is possible to model a PPS signal
->>> followed by routing it via the time sync router to the CPTS_HWy_TS_PUSH
->>> (hardware time stamp) input, in order to generate timestamps at 1 second
->>> intervals.
->>>
->>> This series adds driver support for enabling PPS signal generation.
->>> Additionally, the documentation for the am65-cpts driver is updated with
->>> the bindings for the "ti,pps" property, which is used to inform the
->>> pair [CPTS_HWy_TS_PUSH, GenFx] to the cpts driver. The PPS example is
->>> enabled for AM625-SK board by default, by adding the timesync_router node
->>> to the AM62x SoC, and configuring it for PPS in the AM625-SK board dts.
->>>
->>> Grygorii Strashko (3):
->>>   dt-binding: net: ti: am65x-cpts: add 'ti,pps' property
->>>   net: ethernet: ti: am65-cpts: add pps support
->>>   net: ethernet: ti: am65-cpts: adjust pps following ptp changes
->>>
->>> Siddharth Vadapalli (2):
->>>   arm64: dts: ti: k3-am62-main: Add timesync router node
->>>   arm64: dts: ti: k3-am625-sk: Add cpsw3g cpts PPS support
->>
->> Device tree patches need to be sent separately. You don't need to involve
->> net maintainers for that.
->>
->> If you introduce a new binding then that needs to be in maintainer's
->> tree before you can send a related device tree patch.
-> 
-> Thank you for letting me know. Would I need to resend the series in order for it
-> to be reviewed? I was hoping that if I get feedback for this series, I will
-> implement it and post just the bindings and driver patches as the v2 series,
-> dropping the device tree patches. Please let me know.
+This series fixes the issues and adds support for the two missing
+properties. Please pull in the first 3 patches as fixes for 6.2, to
+avoid introducing a problematic DT API in this release. The last two
+patches can wait until 6.3, though are probably harmless to throw in
+as fixes too, since they're trivial.
 
-You could wait a couple of days for more comments here before spinning off a v2 ;)
+v2: Removed a stray variable declaration that was triggering a warning,
+and dropped the first two patches which have already been applied.
 
-cheers,
--roger
+Janne Grunau (3):
+  spi: Use a 32-bit DT property for spi-cs-setup-delay-ns
+  spi: dt-bindings: Add hold/inactive CS delay peripheral properties
+  spi: Parse hold/inactive CS delay values from the DT
+
+ .../bindings/spi/spi-peripheral-props.yaml    | 10 ++++++++
+ drivers/spi/spi.c                             | 25 +++++++++++++++----
+ 2 files changed, 30 insertions(+), 5 deletions(-)
+
+--
+2.35.1
+
