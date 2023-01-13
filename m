@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF4C2669437
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:34:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AAEC66943D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:34:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240830AbjAMKeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:34:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37058 "EHLO
+        id S240831AbjAMKeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:34:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240868AbjAMKd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:33:56 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25D643DBD0
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:33:56 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id fy8so51179120ejc.13
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:33:56 -0800 (PST)
+        with ESMTP id S240988AbjAMKd7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:33:59 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 159943C0FD
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:33:58 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id az20so32225425ejc.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:33:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lC87lbi3Kix1/WTr6zTXwuAcw9PYl2E9b9lmeuRXx74=;
-        b=iLUQ/VIDzCMYYUpP2NCWz1zh2HYJwz/kLaPZjR0ielr/eEO2FL81rphdmYz1Qc6rU1
-         KP6dWMOcacq6PiX6UyY/yYf3m9AKLefD0KNqcjevL3a9XJKfRNmCUDVaE+Ym5DI1DkW1
-         0mHVxMTpB6PVADFl9CxY0wOdxUIg56VlP4Kr7EmGBSe9qzxhTfltX0qVcCnnZW2JypOC
-         5r8kSbFRaUusKALy4DNcoC1DIz7ORfnlmSdqODYpqLgInNKgPhNJlL7iBwIh1NC0DCNW
-         4syGlTD1GzF+HKpjl0syKTWU4uusJuZ/vdWnDYIf7P7wuJegYXvAhYQgW8RpCznHn39c
-         9Bcg==
+        bh=Pfc3GUmZnP2RdKEy7GTwIqjEf+awPwSAK/Qmsi/Wfvs=;
+        b=egnJS1opNATsMNWsXs7JeuZ67px6IjkvzBCPIKOmikFcQf3MJT18MqBWPWfCXo99wR
+         qpALckRxPTqDrMI/FsFfI5NoeKo2mqk69ctEdOTW4nGxNJSldP/B/P6IvmXJL62WLaVD
+         PEMczugAckb6HqEy2e/Jsf4EFP3+ed5tuYizWejPkXd0uQdQehwk1DlMqeYgdoJLctqv
+         Gob6eL1+N3nGQ650OtSzc9LfxXCHsHTGD8STKeo2TYnnS5JlOJr3mD1EVFtEdBJM7Qeo
+         qlt2OtKcquJSHXNrbyka4U3t3m5SufDxIaCKwkEz7XgF7/KXvErOqoSVKf6sDr5xhqGR
+         8Kew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lC87lbi3Kix1/WTr6zTXwuAcw9PYl2E9b9lmeuRXx74=;
-        b=jqzmhkLPU7GPBJcuFNCVIyDgtufBzjkqPaFjvfwMvWu/IYIDEr0gnPrvj1aIRamJSH
-         5BWha6fOfv3uQjh5zhG9kWpZa9+6UVqlHViBf4xKeVkUppIM/46tE98LM0mIcn2P9ock
-         zz1ZmR2x0b7kwGuoPfAeLUs9iC6DpBX7gpEaTT2KUTyyuTVHfe45oLzRvAnFXnSaRw8t
-         BJHOmHfv90sPlOePjL4OBe0obu2YHWGykuFT7ZqNkANlIxb2MandWY0hF0fQNEt/q23E
-         OgKCmG34Bp0gE4/5B9PPgvz1gyIiews8/uIciNWjpUG96aCaXW2frzodnn7cuoWPB4zt
-         WUHg==
-X-Gm-Message-State: AFqh2ko0QVxACVbch95C3ZyLxHMVD2HrogeUEwGVuUS7bFLZRYt2R4ek
-        Z++lM8PYL9NEvCTqprwjaxyYTw==
-X-Google-Smtp-Source: AMrXdXsbBzg83GbOBY6A3ZILRYqJbcovs5RxB+a4gZsXMO2UEt+aOlqgpY5N7aFPAMjW4eMIGVdkKA==
-X-Received: by 2002:a17:907:d10f:b0:83f:cbfd:31a9 with SMTP id uy15-20020a170907d10f00b0083fcbfd31a9mr62188273ejc.47.1673606035761;
-        Fri, 13 Jan 2023 02:33:55 -0800 (PST)
+        bh=Pfc3GUmZnP2RdKEy7GTwIqjEf+awPwSAK/Qmsi/Wfvs=;
+        b=Etd3dAilFeDiuUQl9Im/4mpOBn4liwbWfrPxMp0ZCtjkV8SARu6q8Tf8sHKs6JOa1e
+         xK6pIJ9EwYjKNlWN9L274pBiItpoN0CEvksfr0xqYBVm9Trs3r735GGP9x1dAtn12fdZ
+         IMPWP3/8VP0StBpJIZN1UMMtDrhWBbxyzcGLb/8hm591tLxxUKEoPWAgkxlgiOjHXdpX
+         tf5/4PzwhIgVJb2nubYTLLkLaKRkREg6taPEZeOimrz/GByG06EdW8xqMlUgGW8sF26A
+         uFJKpVMQXqviwyq1Z8BoKkGEQ196e1DcwGgpu15xyFEXPGlGgzhZszJsVoj8rvORADA6
+         pCpA==
+X-Gm-Message-State: AFqh2krITnmWqa4FZHGn8pxAZFo6ONgwbqlXzjxg0gPFWqb5BhSSolmy
+        POvG6HCjlnerkJAWOrtSo2rqAA==
+X-Google-Smtp-Source: AMrXdXv3CQLjgv09Qjp6wfRt+2U0nEe+BwdFK51i2oADXH6X0O+xfbjp2b3IoRVxKw2+/zghiDcW+Q==
+X-Received: by 2002:a17:907:6748:b0:859:aca8:fe4d with SMTP id qm8-20020a170907674800b00859aca8fe4dmr3236250ejc.46.1673606037704;
+        Fri, 13 Jan 2023 02:33:57 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id qw25-20020a1709066a1900b007ae1e528390sm8296926ejc.163.2023.01.13.02.33.54
+        by smtp.gmail.com with ESMTPSA id qw25-20020a1709066a1900b007ae1e528390sm8296926ejc.163.2023.01.13.02.33.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 02:33:55 -0800 (PST)
+        Fri, 13 Jan 2023 02:33:57 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -64,9 +64,9 @@ To:     Andy Gross <agross@kernel.org>,
         devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 3/7] dt-bindings: watchdog: qcom-wdt: fix list of MSM timer compatibles
-Date:   Fri, 13 Jan 2023 11:33:42 +0100
-Message-Id: <20230113103346.29381-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 4/7] dt-bindings: watchdog: qcom-wdt: add qcom,kpss-wdt-mdm9615
+Date:   Fri, 13 Jan 2023 11:33:43 +0100
+Message-Id: <20230113103346.29381-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230113103346.29381-1-krzysztof.kozlowski@linaro.org>
 References: <20230113103346.29381-1-krzysztof.kozlowski@linaro.org>
@@ -81,10 +81,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MSM timer ("qcom,msm-timer") is a bit different timer and watchdog
-device than KPSS watchdog.  It has its own generic and specific
-compatibles, so fix the list to reflect this.  Adjust the example to
-show the newer KPSS watchdog.
+Document new MDM9615 qcom,kpss-wdt-mdm9615 watchdog/timer compatible.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Acked-by: Rob Herring <robh@kernel.org>
@@ -94,47 +91,21 @@ Acked-by: Rob Herring <robh@kernel.org>
 Changes since v1:
 1. Add tag.
 ---
- .../devicetree/bindings/watchdog/qcom-wdt.yaml    | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-index 3e0b30a817d6..93e4381067dd 100644
+index 93e4381067dd..1828eaf70b3b 100644
 --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
 +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-@@ -33,13 +33,16 @@ properties:
-           - const: qcom,kpss-wdt
-       - const: qcom,kpss-wdt
-         deprecated: true
-+      - items:
-+          - const: qcom,scss-timer
-+          - const: qcom,msm-timer
-       - items:
+@@ -40,6 +40,7 @@ properties:
            - enum:
--              - qcom,kpss-timer
                - qcom,kpss-wdt-apq8064
                - qcom,kpss-wdt-ipq8064
++              - qcom,kpss-wdt-mdm9615
                - qcom,kpss-wdt-msm8960
--              - qcom,scss-timer
-+          - const: qcom,kpss-timer
-+          - const: qcom,msm-timer
- 
-   reg:
-     maxItems: 1
-@@ -56,9 +59,11 @@ unevaluatedProperties: false
- 
- examples:
-   - |
--    watchdog@208a038 {
--      compatible = "qcom,kpss-wdt-ipq8064";
--      reg = <0x0208a038 0x40>;
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    watchdog@17c10000 {
-+      compatible = "qcom,apss-wdt-sm8150", "qcom,kpss-wdt";
-+      reg = <0x17c10000 0x1000>;
-       clocks = <&sleep_clk>;
-       timeout-sec = <10>;
-     };
+           - const: qcom,kpss-timer
+           - const: qcom,msm-timer
 -- 
 2.34.1
 
