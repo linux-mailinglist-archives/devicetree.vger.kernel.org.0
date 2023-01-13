@@ -2,159 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95496669382
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:57:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B969E669391
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:58:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239812AbjAMJ5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 04:57:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43840 "EHLO
+        id S234982AbjAMJ6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 04:58:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232678AbjAMJ5P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:57:15 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26FFC6B1A0
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:54:25 -0800 (PST)
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <m.tretter@pengutronix.de>)
-        id 1pGGlO-0003cp-Ji; Fri, 13 Jan 2023 10:54:18 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-Date:   Fri, 13 Jan 2023 10:54:22 +0100
-Subject: [PATCH v2 16/16] media: imx-pxp: convert to regmap
+        with ESMTP id S241237AbjAMJ6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:58:09 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9D2C57928;
+        Fri, 13 Jan 2023 01:56:33 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30D9uDrA087684;
+        Fri, 13 Jan 2023 03:56:13 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673603774;
+        bh=6AddglEzoh+9QUff07hr9GkAr80Dg+psvuk7ocIif98=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=xlcMPEgD80UD/noXs3i9eEw+yEBQGotNNzXcm/fyYDUrTs4e1+nuOPppZaMwOxCbA
+         ocCbhd00azB6GUjhF1Vkgg+myko5DU6+zqlyt/5NTgFnKEf5W3378Gl12CRx7NnSjh
+         WgBHqLLcz3FxJRXR3rQxD5UKNWxarr4so8WO85bI=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30D9uDF5086837
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 13 Jan 2023 03:56:13 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 13
+ Jan 2023 03:56:13 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 13 Jan 2023 03:56:13 -0600
+Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30D9u8uR004757;
+        Fri, 13 Jan 2023 03:56:09 -0600
+Message-ID: <19566370-3cf1-09fd-119f-c39c0309eb6d@ti.com>
+Date:   Fri, 13 Jan 2023 15:26:08 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nm@ti.com>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nsekhar@ti.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH net-next 0/5] Add PPS support to am65-cpts driver
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>
+References: <20230111114429.1297557-1-s-vadapalli@ti.com>
+ <2fc741b2-671d-8817-1d6f-511398aea9ff@kernel.org>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <2fc741b2-671d-8817-1d6f-511398aea9ff@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230112-imx-pxp-v2-16-e2281da1db55@pengutronix.de>
-References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
-In-Reply-To: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Michael Tretter <m.tretter@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.11.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
-X-SA-Exim-Mail-From: m.tretter@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace the readl and writel with regmap to ease debugging the registers
-from userspace.
+Hello Roger,
 
-Suggested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
----
-Changelog
+On 13/01/23 15:18, Roger Quadros wrote:
+> Siddharth,
+> 
+> On 11/01/2023 13:44, Siddharth Vadapalli wrote:
+>> The CPTS hardware doesn't support PPS signal generation. Using the GenFx
+>> (periodic signal generator) function, it is possible to model a PPS signal
+>> followed by routing it via the time sync router to the CPTS_HWy_TS_PUSH
+>> (hardware time stamp) input, in order to generate timestamps at 1 second
+>> intervals.
+>>
+>> This series adds driver support for enabling PPS signal generation.
+>> Additionally, the documentation for the am65-cpts driver is updated with
+>> the bindings for the "ti,pps" property, which is used to inform the
+>> pair [CPTS_HWy_TS_PUSH, GenFx] to the cpts driver. The PPS example is
+>> enabled for AM625-SK board by default, by adding the timesync_router node
+>> to the AM62x SoC, and configuring it for PPS in the AM625-SK board dts.
+>>
+>> Grygorii Strashko (3):
+>>   dt-binding: net: ti: am65x-cpts: add 'ti,pps' property
+>>   net: ethernet: ti: am65-cpts: add pps support
+>>   net: ethernet: ti: am65-cpts: adjust pps following ptp changes
+>>
+>> Siddharth Vadapalli (2):
+>>   arm64: dts: ti: k3-am62-main: Add timesync router node
+>>   arm64: dts: ti: k3-am625-sk: Add cpsw3g cpts PPS support
+> 
+> Device tree patches need to be sent separately. You don't need to involve
+> net maintainers for that.
+> 
+> If you introduce a new binding then that needs to be in maintainer's
+> tree before you can send a related device tree patch.
 
-v2:
+Thank you for letting me know. Would I need to resend the series in order for it
+to be reviewed? I was hoping that if I get feedback for this series, I will
+implement it and post just the bindings and driver patches as the v2 series,
+dropping the device tree patches. Please let me know.
 
-- new patch
----
- drivers/media/platform/nxp/imx-pxp.c | 31 +++++++++++++++++++++++--------
- 1 file changed, 23 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/media/platform/nxp/imx-pxp.c b/drivers/media/platform/nxp/imx-pxp.c
-index b8a7e49cbc08..f2e9608a7d2d 100644
---- a/drivers/media/platform/nxp/imx-pxp.c
-+++ b/drivers/media/platform/nxp/imx-pxp.c
-@@ -21,6 +21,7 @@
- #include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
-+#include <linux/regmap.h>
- #include <linux/sched.h>
- #include <linux/slab.h>
- 
-@@ -176,6 +177,13 @@ enum {
- 	V4L2_M2M_DST = 1,
- };
- 
-+static const struct regmap_config pxp_regmap_config = {
-+	.reg_bits = 32,
-+	.reg_stride = 4,
-+	.val_bits = 32,
-+	.max_register = HW_PXP_VERSION,
-+};
-+
- static struct pxp_fmt *find_format(unsigned int pixelformat)
- {
- 	struct pxp_fmt *fmt;
-@@ -207,7 +215,7 @@ struct pxp_dev {
- #endif
- 
- 	struct clk		*clk;
--	void __iomem		*mmio;
-+	struct regmap		*regmap;
- 
- 	const struct pxp_pdata	*pdata;
- 
-@@ -255,12 +263,16 @@ static struct pxp_q_data *get_q_data(struct pxp_ctx *ctx,
- 
- static inline u32 pxp_read(struct pxp_dev *dev, u32 reg)
- {
--	return readl(dev->mmio + reg);
-+	u32 value;
-+
-+	regmap_read(dev->regmap, reg, &value);
-+
-+	return value;
- }
- 
- static inline void pxp_write(struct pxp_dev *dev, u32 reg, u32 value)
- {
--	writel(value, dev->mmio + reg);
-+	regmap_write(dev->regmap, reg, value);
- }
- 
- static u32 pxp_v4l2_pix_fmt_to_ps_format(u32 v4l2_pix_fmt)
-@@ -1756,8 +1768,8 @@ static int pxp_soft_reset(struct pxp_dev *dev)
- 
- 	pxp_write(dev, HW_PXP_CTRL_SET, BM_PXP_CTRL_SFTRST);
- 
--	ret = readl_poll_timeout(dev->mmio + HW_PXP_CTRL, val,
--				 val & BM_PXP_CTRL_CLKGATE, 0, 100);
-+	ret = regmap_read_poll_timeout(dev->regmap, HW_PXP_CTRL, val,
-+				       val & BM_PXP_CTRL_CLKGATE, 0, 100);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -1774,6 +1786,7 @@ static int pxp_probe(struct platform_device *pdev)
- 	int irq;
- 	u32 hw_version;
- 	int ret;
-+	void __iomem *mmio;
- 
- 	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
- 	if (!dev)
-@@ -1788,9 +1801,11 @@ static int pxp_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	dev->mmio = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(dev->mmio))
--		return PTR_ERR(dev->mmio);
-+	mmio = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(mmio))
-+		return PTR_ERR(mmio);
-+	dev->regmap = devm_regmap_init_mmio(&pdev->dev, mmio,
-+					    &pxp_regmap_config);
- 
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0)
-
--- 
-2.30.2
+Regards,
+Siddharth.
