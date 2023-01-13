@@ -2,90 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F8866920F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:00:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E380A669214
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:01:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238205AbjAMI76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 03:59:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33440 "EHLO
+        id S233650AbjAMJB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 04:01:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240575AbjAMI7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:59:44 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599C471FDE
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:59:36 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id az20so31678677ejc.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:59:36 -0800 (PST)
+        with ESMTP id S239619AbjAMJBQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:01:16 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACED972D13
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:01:14 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id u9so50820449ejo.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:01:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:cc:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9YM8Shx2IZukw9YcFp8FhnA2qd5i13IeliX120PH17I=;
-        b=UswNafJ8Hcq8szwzEdclRDjcNXXT+kfG7zB9GvtX0hGjvzrZfoStfz9NgA0jc+sJR3
-         Rixfzk4u9VFwLwgURno/IXUlVFigpNu39LT9NDc5Xw8YuyEjr0CWwYATZyCodqdH1c81
-         LpzCJ5kKDL0FzvtYfXLmrJuwXjxK5Tz2XZbNW9Lrn/B/jTpyk8/A4/avobX/texpV4H0
-         unOstmnettk1gSMvYCtzZWZiRcF5otG5OlQau/8UI/hZ82dJiVTh9sTwE37KjRaysgSw
-         uquU+BTFsZXsw+9vVCkEjnOKOrgswmnORNmMR+V1qEAi7/K3ojaXMj/PYkoitAjerQsE
-         B4RA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=14vWSUq8m0YB7K6+daykZcIVaA+luIuXLh3y27wDsWg=;
+        b=bR2S7FuChvapbV2SSHw5GKXtn/l3a/gzcDyOBMAB4i/vnG0xHLw9sukVToJB4Lb+s5
+         oGwlaUBgZl5433qp2rS02Fb8ddVxcxN5PLsDUG2LPUqw/L0cPbOVkGT1I9q74Jl+TzZ3
+         p6Bhr4IGA+1NCUx52jxdBrcvPAH45TNeqcsH8620I7fF919Gw+Sah8QOHYL3hl4pg/9M
+         UzoGRx70jgRYyhUg07tmt4gcmWmUcxXGGP+VqgO9oSYkflBV+tmxT/DUvJBZ/yyepUyH
+         w7c/TETrHJigi+N5bIv3nPr1FocbznUgCUqUG4SZlSzPJ7O3VvC0ZNVW1IOWfT4uOdxh
+         pG3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:cc:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9YM8Shx2IZukw9YcFp8FhnA2qd5i13IeliX120PH17I=;
-        b=kCL6/iQ3YT07X8oYLdCgoBPp3cVsZjwa9PO5pxY3tcF8qRfMQr9Njq7SOKCUvX+NOL
-         vKrN88Ne8e1K4GcZe09m3HeHjPl4ZDMxqVzHFruPvooUkEBjN95EkPrnzHV+ISpp0Pqz
-         sZbGTOLdsyBXqcWIxHy0PzbcfQFG592rJDAU5OtGJ97hww9tF3VIKCOriIuJKP/SI2zV
-         lXsYE6e0+NjltTMKQ7TsRJJ93K/udxm62gJ1C6jQiI3lTQy+tB/pl8xcM2dh9BNfzndn
-         bg81ZxXNpNzrK/W0eX2Y+Pcd56+IiN3gvbOb3WO6kI5h5rSFNcb23S1FVASjs7gGio7v
-         NbcA==
-X-Gm-Message-State: AFqh2krCMGp+wGhkRZRJ2lJ5c3+30zwJlKuCaXrcMnfWUTtqDXoswgx6
-        s56jKVMGbm9OWdXeP0tHIvWHPg==
-X-Google-Smtp-Source: AMrXdXsPxc2oqEqJfGabmBqgzaWDsQkxV3GmdjQPkiDF+d6dv+FHlRbTN+U0t+9cYBoJoZb4U0H6gg==
-X-Received: by 2002:a17:906:1e8a:b0:864:223:40b with SMTP id e10-20020a1709061e8a00b008640223040bmr6721662ejj.33.1673600374808;
-        Fri, 13 Jan 2023 00:59:34 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id en6-20020a056402528600b00499b3d09bd2sm5792349edb.91.2023.01.13.00.59.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 00:59:33 -0800 (PST)
-Message-ID: <cd803c70-faf0-963e-fca3-0edd13fa8a29@linaro.org>
-Date:   Fri, 13 Jan 2023 09:59:30 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 0/9] media: dt-bindings: common CEC properties
-Content-Language: en-US
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-References: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, Joe Tessler <jrt@google.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-tegra@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-media@vger.kernel.org, Jeff Chase <jnchase@google.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-kernel@vger.kernel.org
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=14vWSUq8m0YB7K6+daykZcIVaA+luIuXLh3y27wDsWg=;
+        b=wZbVYWdOmNFxfFdCgUJWGA8eHOUrAAMcSkqBvhY6bb9La5QOC/uuvEb6UHrAVyAN2t
+         mYO8MUoN9rboKgQ9x6Aju67oosRfWB5ri18diOdg+hEHuc3j9WLH/P1h+PDYuSjip6ay
+         998w6juwyS8Ww2YsaAcbH9HSJuBCqBi7AtuMOZf2jpyeFp6YXtGrVi4qciOfnLcYNDL4
+         H6bFMTKtKkgWnhb983wHPuRz2Ay8VIe80BzGM9jWDq5hLuDKIrMbWTKP+tKVO9DNbguY
+         T3fuURDyag7r6UdvuJ0ie9AW/2NDi3olp6g3Ra6DZiflldq4tErywrLert3L9EYcj2WF
+         0pew==
+X-Gm-Message-State: AFqh2koWgnf5oq756Kp7Cot8Oe64fJXjU+7jw2GaIIlI7zHk+OHA8jFe
+        Hq8I5axXBqrzGR407a6XZ8bPtw==
+X-Google-Smtp-Source: AMrXdXuuNz3tvAd/ti33PZCvEok0i2r4nLgU2YcUyg8cns1TjEUS1Udl3Y8gFbByBGqo6fV5bBj07g==
+X-Received: by 2002:a17:907:d48a:b0:7c0:971e:f6c5 with SMTP id vj10-20020a170907d48a00b007c0971ef6c5mr72138862ejc.14.1673600473231;
+        Fri, 13 Jan 2023 01:01:13 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l10-20020a1709060cca00b0082ddfb47d06sm8393331ejh.148.2023.01.13.01.01.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jan 2023 01:01:12 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [RESEND PATCH] dt-bindings: thermal: qcom-spmi-adc-tm5: add qcom,adc-tm7
+Date:   Fri, 13 Jan 2023 10:01:07 +0100
+Message-Id: <20230113090107.18498-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -94,17 +79,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2022 11:31, Krzysztof Kozlowski wrote:
-> Hi,
->
-> Changes since v3
-> ================
-> 1. cec-gpio: Add missing SPDX.
-> 2. nvidia,tegra114-cec: Correct path in maintainers.
->
+The qcom,adc-tm7 compatible is already used in PMK8350 so add it to the
+Qualcomm PMIC Thermal Monitoring ADC.  Based on downstream sources, the
+new compatible for TM7 differs from older TM5 by allowing configuring
+per sensor decimation, time measurement and number of sample averaging -
+unlike one configuration per entire device.  This was not reflected in
+the bindings, therefore comment the new compatible as incomplete as it
+might change and its ABI is no stable.
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+
+Resending because it is waiting for half a year.
 
 
-Mauro (and maybe Hans?), any comments here. Can you apply the patchset?
 
-Best regards,
-Krzysztof
+ Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+index d20569b9b763..52ec18cf1eda 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+@@ -13,6 +13,7 @@ properties:
+     enum:
+       - qcom,spmi-adc-tm5
+       - qcom,spmi-adc-tm5-gen2
++      - qcom,adc-tm7 # Incomplete / subject to change
+ 
+   reg:
+     maxItems: 1
+-- 
+2.34.1
+
