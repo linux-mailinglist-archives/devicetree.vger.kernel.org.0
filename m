@@ -2,88 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA240668E23
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 07:36:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9165B668E34
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 07:45:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234960AbjAMGgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 01:36:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46710 "EHLO
+        id S240331AbjAMGpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 01:45:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241141AbjAMGeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 01:34:13 -0500
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8F746ECA9
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 22:26:20 -0800 (PST)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-4d19b2686a9so144212137b3.6
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 22:26:20 -0800 (PST)
+        with ESMTP id S233122AbjAMGo6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 01:44:58 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F87476214
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 22:30:30 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id p25so15360850ljn.12
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 22:30:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tC0lkP+Jv1BQqV1q/iChdkxbwz+GLXuspS9rktzQ5EY=;
-        b=EET76yrF1iVTCrzkHrsf7cd8t+fkGLobXLevIaUpBvQRKCm912JOWXmsu+e4fgJXdN
-         UyrNvsIJGbTO629zVdW/EHdPL2O8D9ECTAcKi7NcwDsVYu3sMRtkBS5KT6OXSkBjeGTW
-         E9QtuibQS33CiiJKTP7ImWYM6UdAT3vxw++fcjl52NWxYvIPJD2kc94uNsJQKRW+dSHv
-         Ldi01vTbTUBpfFOXw4KoptpNnyVzKxnhUapRPpRL3NcL/hc8EjZPBHfwqOhlYsMcYXld
-         TgPQs3UacEVL5bdRAu+shgptX5jjsKlLhp2yM+dDqxrGs/iRqhs1bjbrnr/e956nKIj1
-         PvWg==
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Oj46fwhldUKw7hGOkuucEHWnwosnLZLmKbpNEe+nkf8=;
+        b=DMlQzIbjrx6noC4zvk1nNOJ0mMmIsO+2TmviK49LvgYJ3NNycvtwgvyH7hp0WlBEnW
+         GoFkvJl52SrhguGGpkKrHH47+DtXSjzmO8mJU338Z92TyKCNfZnTNFqfmJaAsI2Vd1bv
+         gB9Y15ZmpZunVX3hhX3s4A/H87lTYq3AxOkKnmf9A8g/JXYFiTTNbgkSqbsmGQ1P3ZM7
+         VIss+IF8ERjk/+PSOt4+Cq9vNtxSeWAaRTVUMjCP93QCOf9aJMdAEjTYRW+id/4kT1EG
+         JAYhptzgguTMeCOLh1s0gKigCNr3H4XbKVdGXmodaW4ZLd7VJV+4rNJQzHDExTKo+qjX
+         WvhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tC0lkP+Jv1BQqV1q/iChdkxbwz+GLXuspS9rktzQ5EY=;
-        b=X72pW4Ev1W98NR3jNexwlhD9O4mJbNWaQZSTCgkAFDMjvp2PUjeJMqW0NoxO3QG+65
-         dIXYBjMacXj13FmYiUvchdtHdM8Vmhb6cXgjol/ye+6rGdctSAVb1mvQrH3oO0mjflLq
-         eAN/PZCqlB/uR0cIonf82r2C0ZaGFYAMZsV1YOL8drcPAjAK9RUuE+S/NZNPR2+6kRmf
-         fi3ajffaMWMmKSx9mL1CDV6pMpZ/JkUC1XcJXjigEphQCOT9mjGGvD0ujmhpTh3KoDYY
-         3mp9qjB52SogitIA/qVR18wMLlkz5HneQzdjP7qJn2KpWa8OjDvQrDTlIhvXWcInylMi
-         X1Dw==
-X-Gm-Message-State: AFqh2kppGnR7Ljz7/s6EwomuKsF4acmBy+gjtOBHoK9RQedYecKRL4M0
-        rqt0sKCmwifALNZraDT9KBBJs5a6UkOZj1iqaiyxmg==
-X-Google-Smtp-Source: AMrXdXv+r56xaZf+DPzmWtRoeJ10nSBpqmcSoPeyOKiQUFUxaNvHkK2BzSZf4FlhbAELH/HIgBAVVD/LMTEjenz0Z1o=
-X-Received: by 2002:a0d:d692:0:b0:477:b56e:e1d6 with SMTP id
- y140-20020a0dd692000000b00477b56ee1d6mr1899526ywd.188.1673591164592; Thu, 12
- Jan 2023 22:26:04 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Oj46fwhldUKw7hGOkuucEHWnwosnLZLmKbpNEe+nkf8=;
+        b=ip7ItCFyVSjITjnLRyYyI354VSUnIihAMv0t3pTqR1xrLYCSWEcdncBZEIrXgL1+I/
+         xR1lB73Fy4XGhxrdEmJI2mg9LyyUYA1ENtLLP1yLs9wTMQbK5C1zgrNdBkcSE62WKTVv
+         nfNcYyvkgoDNItzDdOuM2YEGOwXuRUeTghrZ0NjpiZDdSXK/Y9odnvn+YtEW1WwFbrBX
+         dy9XtI18T9q6TAsikUeIlm2iDOKPx3spN2ED6VZR1e419miBjau8FC5en2SH3N0wgR25
+         GMeeoIbUxdrcqFcUWbzgyv8nanCRpehR2C+0tINoi13nYMuW9TAs8pQlxF7sR7CLvULU
+         5T2Q==
+X-Gm-Message-State: AFqh2koHDTzDmb2kS3v8dS6EfsCZ9gwaN/ceUTXVMhxax8mxO78H3pgK
+        L0qj/KDmmS+cIqGmAH/edU6elA==
+X-Google-Smtp-Source: AMrXdXuA5g9KSX/L8Um/aMbyDWngUyvbaNrkXDGrZveQ5jVwlZB++vxUVV+D1NpsZ5pvXEz6QtRbxw==
+X-Received: by 2002:a2e:bd07:0:b0:27f:ae14:511e with SMTP id n7-20020a2ebd07000000b0027fae14511emr19304641ljq.46.1673591376875;
+        Thu, 12 Jan 2023 22:29:36 -0800 (PST)
+Received: from [192.168.2.31] ([194.204.33.9])
+        by smtp.gmail.com with ESMTPSA id v7-20020a2ea607000000b0027712379ec8sm2422778ljp.28.2023.01.12.22.29.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 22:29:36 -0800 (PST)
+Message-ID: <cdebb6a9-0bc3-70ef-53ef-4a48ead869da@linaro.org>
+Date:   Fri, 13 Jan 2023 08:29:34 +0200
 MIME-Version: 1.0
-References: <20230113062229.774871-1-judyhsiao@chromium.org>
-In-Reply-To: <20230113062229.774871-1-judyhsiao@chromium.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v6 00/20] thermal/drivers/tsens: specify nvmem cells in DT
+ rather than parsing them manually
+Content-Language: en-GB
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 13 Jan 2023 08:25:53 +0200
-Message-ID: <CAA8EJprpHALTfcPCFFH=-vpfavnyph+UQfF9xb59SPjV8GOvBg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: add display port audio
-To:     Judy Hsiao <judyhsiao@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230101194034.831222-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230101194034.831222-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Jan 2023 at 08:23, Judy Hsiao <judyhsiao@chromium.org> wrote:
->
-> Add DisplayPort sound node and lpass_cpu node
-> in sc7280-herobrine-audio-rt5682.dtsi.
+On 01/01/2023 21:40, Dmitry Baryshkov wrote:
+> Historically the tsens driver fetches the calibration data as a blob and
+> then parses the blob on its own. This results in semi-duplicated code
+> spreading over the platform-specific functions.
+> 
+> This patch series changes tsens calibration code to per-value nvmem
+> cells rather than parsing the blob in the driver. For backwards
+> compatibility the old code is left in place for msm8916, msm8974 and
+> qcs404, the platforms which have in-tree DT files. For all other
+> affected platforms the old parsing code has been dropped as a part of
+> this series.
 
-Any reason for inserting it in front of the ALC rather than putting it
-at the end of  dai-links?
+Amit, Thara. This has been lingering for quite some time whout any 
+attention from your side. Could you please review the patchseries? Thank 
+you!
 
->
-> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-
+> 
+> The code was tested on msm8916 and qcs404 only.
+> 
+> Note: the DTs changes depend on driver changes. Tsens driver will not
+> work if DT patches are merged, but the driver bits are not. As the
+> thermal sense is critical for device safety, I'kindly ask to have an
+> immutable branch with the driver changes that can be merged into the
+> msm-dts tree.
+> 
+> Note2:
+> I still have included patches to drop legacy support for 8939
+> (msm8939.dtsi is on the list, patch to convert it to the proposed
+> bindings is available at [1]) and 8976 (msm8976.dtsi and msm8956.dtsi,
+> which use single-blob bindings, have been accepted for 6.2, dropping old
+> bindings support depends on mutual consensuns of platform and thermal
+> code maintainers). Corresponding patches are the last ones in the
+> thermal part of the series, thus if they are declined, the reset of the
+> series still can be applied without any problems.
+> 
+> [1] https://pastebin.ubuntu.com/p/rfkZgy767K/
+> 
+> Changes since v5:
+> - Reworked bindings to use patterns instead of enum,
+> - Changed the order of items in msm8974/apq8084 bindings. If there will
+>    be any other platform using main & backup calibration values, it would
+>    be easier to reuse msm8974 bindings by using 's[0-9]+_p[12](_backup)?'
+>    patterns, rather than listing all the cases explicitly.
+> 
+> Changes since v4:
+> - Changed DT bindings to use HW sensor ids rather than bare indices.
+>    This follows the usage of hw_ids in thermal-sensors specifications
+>    (and corresponds to the ID visible in debugfs).
+>    Previously there was no correspondence, which resulted e.g. in usage
+>    of s0_p1/s0_p2 for sensor 0, but s4_p1/s4_p2 for the sensor 5 on
+>    the msm8916 platform).
+> - Reworked msm8939 code to ignore the sensor10. It is available only on
+>    latest hw revision, it doesn't seem to be actually used and it also
+>    wasn't covered by the old single-blob bindings because of the parsing
+>    error.
+> - Fixed missing include reported by testing robot.
+> 
+> Changes since v3:
+> - Added a patch to fix the tsens compatible string on msm8956 SoC,
+> - Fixed num-sensors and slope coefficients for the msm8939 SoC,
+> - Rewrote code supporting old bindings into the simple data-driven
+>    parser common to all legacy platforms which made dropping support for
+>    old bindings less demanding.
+> 
+> Changes since v2:
+> - Made init_8956 static, as pointed out by the testing robot and by
+>    AngeloGioacchino Del Regno.
+> 
+> Changes since the RFC:
+> - Sorted out the msm8976/msm8956, custom slopes are used only for msm8956,
+> - Implemented proper support for msm8974/apq8084,
+> - Added tsens_calibrate_common() and ops_v0_1 which can be used in
+>    common cases,
+> - Removed superfluous identity hw_ids
+> - Fixed calibration calculation in tsens_calibrate_nvmem() for
+>    ONE_PT_CALIB case
+> 
+> Dmitry Baryshkov (20):
+>    dt-bindings: thermal: tsens: add msm8956 compat
+>    dt-bindings: thermal: tsens: support per-sensor calibration cells
+>    dt-bindings: thermal: tsens: add per-sensor cells for msm8974
+>    thermal/drivers/tsens: Drop unnecessary hw_ids
+>    thermal/drivers/tsens: Drop msm8976-specific defines
+>    thermal/drivers/tsens: Sort out msm8976 vs msm8956 data
+>    thermal/drivers/tsens: fix slope values for msm8939
+>    thermal/drivers/tsens: limit num_sensors to 9 for msm8939
+>    thermal/drivers/tsens: Support using nvmem cells for calibration data
+>    thermal/drivers/tsens: Support using nvmem cells for msm8974
+>      calibration
+>    thermal/drivers/tsens: Rework legacy calibration data parsers
+>    thermal/drivers/tsens: Drop single-cell code for mdm9607
+>    thermal/drivers/tsens: Drop single-cell code for msm8939
+>    thermal/drivers/tsens: Drop single-cell code for msm8976/msm8956
+>    arm64: dts: qcom: msm8956: use SoC-specific compat for tsens
+>    arm64: dts: qcom: msm8916: specify per-sensor calibration cells
+>    arm64: dts: qcom: msm8976: specify per-sensor calibration cells
+>    arm64: dts: qcom: qcs404: specify per-sensor calibration cells
+>    ARM: dts: qcom-msm8974: specify per-sensor calibration cells
+>    ARM: dts: qcom-apq8084: specify per-sensor calibration cells
+> 
+>   .../bindings/thermal/qcom-tsens.yaml          | 153 +++-
+>   arch/arm/boot/dts/qcom-apq8084.dtsi           | 313 ++++++++-
+>   arch/arm/boot/dts/qcom-msm8974.dtsi           | 313 ++++++++-
+>   arch/arm64/boot/dts/qcom/msm8916.dtsi         |  85 ++-
+>   arch/arm64/boot/dts/qcom/msm8956.dtsi         |   4 +
+>   arch/arm64/boot/dts/qcom/msm8976.dtsi         | 153 +++-
+>   arch/arm64/boot/dts/qcom/qcs404.dtsi          | 145 +++-
+>   drivers/thermal/qcom/tsens-v0_1.c             | 655 +++++-------------
+>   drivers/thermal/qcom/tsens-v1.c               | 340 +++------
+>   drivers/thermal/qcom/tsens.c                  | 168 +++++
+>   drivers/thermal/qcom/tsens.h                  |  46 +-
+>   11 files changed, 1610 insertions(+), 765 deletions(-)
+> 
 
 -- 
 With best wishes
 Dmitry
+
