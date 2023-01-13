@@ -2,115 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF462669EA7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:48:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C34B2669EB1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:49:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230022AbjAMQsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 11:48:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35712 "EHLO
+        id S229469AbjAMQtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 11:49:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjAMQrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:47:19 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B715C7BCC6;
-        Fri, 13 Jan 2023 08:45:03 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id hw16so41768452ejc.10;
-        Fri, 13 Jan 2023 08:45:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZSzg8ro4VicBsd4Z6YxYop5coys1WHe/3Ul2C/JMj58=;
-        b=iL3CqfCmDWIfqj8iaZc9rPyCV2YPsBuDEozU94ki+7XD4R0RT+Kh5o8qmygei5yHdF
-         eLJA4LegAfQsvVHVrTFTSI8DfNaFwJT3nTx6RyBpAl4DuGeFJQN9KEC1s5fYvFu7ubRu
-         QwLwMLNZpNJLghiKsV6J30uZD2lg0pW8rf0MXarJoMm6/gGkzwg0kZDU66cKzMVA1t87
-         15hsoepyRlZSRAKxNezL4LOx4CTzU3BafwZ6ZxtMva8cNjoV3FKrWMNeaaqMuF6HvfCq
-         +iT0ToavwrrgLj8tVZs+MUuPj1GUIY3bLmB+Wm67+coFFGWubGl29mKPG4WM312D8uds
-         Gm6g==
+        with ESMTP id S230521AbjAMQsq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:48:46 -0500
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 610D36ECB8;
+        Fri, 13 Jan 2023 08:46:19 -0800 (PST)
+Received: by mail-oi1-f182.google.com with SMTP id r132so7561149oif.10;
+        Fri, 13 Jan 2023 08:46:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZSzg8ro4VicBsd4Z6YxYop5coys1WHe/3Ul2C/JMj58=;
-        b=pL9sgTbblHvYxfgAdh27xinVODkhnKS2EqnmUgc651e/PwaOHR8g/B7kxYmGDwW/ba
-         KZTwn5soin/zieMuJFCzKbWAW5kgGGgYkw3eveCi/KMxqup3H+HNBazMLwggw1vRX5HE
-         7BsThZ1hVFX5iFkeeoHyDCx4s4T/KhjJrT/oYpfH2nq6ns0Mco5QjalgxMgHe+mDud4q
-         hwMdk7S1Z8Kqo2ghC2ISxrv845USKK3Jn9Emv2mHjxD6Yy3O6gZ+MqVQBiOBEMiNGX3r
-         7LGLpK7TdLIigI8UGiW6mbd9l77GjLiZ3h9lycZm8ij7pTqea+GJyA4noBT0p272aodl
-         O7Cw==
-X-Gm-Message-State: AFqh2kpCfTyUHtaarvvCqfgyWtKb9NmrIzyuED0OXeN4gm7ZB3KI05Wo
-        z74g94qlCjSr7jfMLz8vThmifWeKeCqlCw==
-X-Google-Smtp-Source: AMrXdXsKNJd2j8ldjOFQzjdF0s0MkRvf9VWdq5hj7FDnJ97o4yTcaNfmrBKrsU+GlumFI5iEsecz4w==
-X-Received: by 2002:a17:906:5dad:b0:7c0:dfba:54d3 with SMTP id n13-20020a1709065dad00b007c0dfba54d3mr11846198ejv.20.1673628303265;
-        Fri, 13 Jan 2023 08:45:03 -0800 (PST)
-Received: from fedora.. (dh207-97-147.xnet.hr. [88.207.97.147])
-        by smtp.googlemail.com with ESMTPSA id sb25-20020a1709076d9900b007b2a58e31dasm8777831ejc.145.2023.01.13.08.45.02
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RuYGM5xxgSpVt2SshCQN8JM0QSvRbusS4+7wjpXp+iw=;
+        b=oLcNTCTFXTWPndW626haFCrCFa6y3nkzlIO7I2oNrPAjw2SFgdgj3dKUEEnXpEC3yi
+         PsFgPsU7a1C24IZr2J4681POn6BPlFj+U+aCgEQHoQib4Qw3aCBuVd2b0afNuawoVVku
+         RHaq/dAw4UGdF0byRxxvt6AnjEA65TozC+lJZxW0E9wuDKjwNXmnHwvrvoMy/PFo1mr1
+         eFXmD5FwHjpZ8NMpRIhZ57cXIH2eTU4vhRE4dxkltkPSyE1fHBsB5eOl7TgGTER/53X7
+         hdSYCbe26nQTY/I6y7FqPaMNdc2LZZTXwohdYzPNkdCTMHxGp2UX/4CE66EzKeSHKamJ
+         Wvug==
+X-Gm-Message-State: AFqh2ko3r5va4HOuzKmyhyvdtXa8j9erSEuaykD5bg5pkSoVw8AJQCG4
+        /NqbHu4YNF2cnEW12tFPGA==
+X-Google-Smtp-Source: AMrXdXv5q+MKQguVvhn/MeERISvFu/aJ07yG2Y++7z30CokWEYQNareqHHYHvXp2723AU/ZOiHMEJQ==
+X-Received: by 2002:aca:4406:0:b0:364:6230:ee4c with SMTP id r6-20020aca4406000000b003646230ee4cmr4415875oia.37.1673628378519;
+        Fri, 13 Jan 2023 08:46:18 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r16-20020a0568080ab000b0035bce2a39c7sm9350347oij.21.2023.01.13.08.46.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 08:45:02 -0800 (PST)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        bhelgaas@google.com, lpieralisi@kernel.org, robh@kernel.org,
-        kw@linux.com, krzysztof.kozlowski+dt@linaro.org, mani@kernel.org,
-        svarbanov@mm-sol.com, shawn.guo@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH v2 9/9] arm64: dts: qcom: ipq8074: correct PCIe QMP PHY output clock names
-Date:   Fri, 13 Jan 2023 17:44:49 +0100
-Message-Id: <20230113164449.906002-9-robimarko@gmail.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230113164449.906002-1-robimarko@gmail.com>
-References: <20230113164449.906002-1-robimarko@gmail.com>
+        Fri, 13 Jan 2023 08:46:18 -0800 (PST)
+Received: (nullmailer pid 2377411 invoked by uid 1000);
+        Fri, 13 Jan 2023 16:46:17 -0000
+Date:   Fri, 13 Jan 2023 10:46:17 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Michael Walle <michael@walle.cc>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        ", Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH V2 3/6] dt-bindings: nvmem: convert U-Boot env vars to
+ NVMEM layout
+Message-ID: <167362837658.2377356.15364092039384096184.robh@kernel.org>
+References: <20230111073102.8147-1-zajec5@gmail.com>
+ <20230111073102.8147-3-zajec5@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230111073102.8147-3-zajec5@gmail.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Current PCIe QMP PHY output name were changed in ("arm64: dts: qcom: Fix
-IPQ8074 PCIe PHY nodes") however it did not account for the fact that GCC
-driver is relying on the old names to match them as they are being used as
-the parent for the gcc_pcie0_pipe_clk and gcc_pcie1_pipe_clk.
 
-This broke parenting as GCC could not find the parent clock, so fix it by
-changing to the names that driver is expecting.
+On Wed, 11 Jan 2023 08:30:59 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> U-Boot environment variables can be found of various underlaying storage
+> entities. This binding should be defined as a layout on top on NVMEM
+> device not a NVMEM device itself.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../bindings/nvmem/layouts/nvmem-layout.yaml  |  1 +
+>  .../nvmem/{ => layouts}/u-boot,env.yaml       | 29 ++++++++++---------
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 17 insertions(+), 15 deletions(-)
+>  rename Documentation/devicetree/bindings/nvmem/{ => layouts}/u-boot,env.yaml (77%)
+> 
 
-Fixes: 942bcd33ed45 ("arm64: dts: qcom: Fix IPQ8074 PCIe PHY nodes")
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 74eecca4f9e3..c6cbeb66c0e7 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -257,7 +257,7 @@ pcie_phy0: phy@84200 {
- 				#clock-cells = <0>;
- 				clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
- 				clock-names = "pipe0";
--				clock-output-names = "pcie_0_pipe_clk";
-+				clock-output-names = "pcie20_phy0_pipe_clk";
- 			};
- 		};
- 
-@@ -285,7 +285,7 @@ pcie_phy1: phy@8e200 {
- 				#clock-cells = <0>;
- 				clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
- 				clock-names = "pipe0";
--				clock-output-names = "pcie_1_pipe_clk";
-+				clock-output-names = "pcie20_phy1_pipe_clk";
- 			};
- 		};
- 
--- 
-2.39.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
