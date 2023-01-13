@@ -2,139 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 980A4669019
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:08:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BCCF669028
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:10:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240492AbjAMIIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 03:08:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51190 "EHLO
+        id S240932AbjAMIKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 03:10:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232594AbjAMIHp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:07:45 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6137392FD;
-        Fri, 13 Jan 2023 00:04:37 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 12EE51C000B;
-        Fri, 13 Jan 2023 08:04:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673597076;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wvxk6DPDlmeOz1Nn9izcenGUkdQHjs7DPmCAW7HiLUE=;
-        b=Bu0gSlWMgpDnKyBJAhbLPzgDZLvaaTCma7cj46th38QxpH/47+drhybCAiePHomM0aTh83
-        +PXDsWuxQ0Gze0oSdhbIo31xIIwfPwHPP5kCc5Eb0QcCvts6IrrEX6pBoZYt6mPF/snPmq
-        b/DFsQClZhA1dHPWiT9Y+EoRd/xRmZ/MnZQOI5RFkcDPWvXhg88+HqTLhPB/+Twbf/b5xe
-        ODYI5UOQVKp0rZnJ69vWJMU1zopXB+Olug2gjyfbsBe3POdUeDo+TzsYBLOc7qApp71wsr
-        tGND6/XXAbxN3j8QDXt522WDLId2uUazy6oVdOyihsb9hfF4lAIOzbgsfCRwVw==
-Date:   Fri, 13 Jan 2023 09:04:31 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Renesas IDT821034
- codec
-Message-ID: <20230113090431.7f84c93a@bootlin.com>
-In-Reply-To: <Y774bY4icD8RuMnX@sirena.org.uk>
-References: <20230111134905.248305-1-herve.codina@bootlin.com>
-        <20230111134905.248305-3-herve.codina@bootlin.com>
-        <Y77DKSdZf27qE+xl@sirena.org.uk>
-        <20230111174022.077f6a8c@bootlin.com>
-        <Y774bY4icD8RuMnX@sirena.org.uk>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        with ESMTP id S240835AbjAMIKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:10:09 -0500
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8087812D24
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:09:22 -0800 (PST)
+Received: by mail-io1-xd2e.google.com with SMTP id d22so1384352iof.5
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:09:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=W0+4RXTlK0IqIB9mYO3YSmFVYM13UL+Gup7cLGu7Nzw=;
+        b=Fmn00t90xJPmYNPJkrLBinV7c53WSSG1nRO2CEfpjlJfQU2BIZzTmdL1R0NOTFpb9Q
+         eR4ku2xTE6T2EWT8UoP4xt9FpbjU/g5bDKOeEHDAIe56Fp+yotzNdcp0EKF8GTBsTCkt
+         /hm6KiUd+IhQWCRDMH7pa5M0uSbadJuDDgiOA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W0+4RXTlK0IqIB9mYO3YSmFVYM13UL+Gup7cLGu7Nzw=;
+        b=BeZmivWDHrI8m71cKBnfyWLLUqeHWHAJja7Z7QhHNMwIU9ugWqXGLxEMZhxf/dXduZ
+         dxRSqaPnBCgzTH9ZAY0pbVo3YKzWFKOKcydpb/2MDjtAPXqNX/VM8d9BtDj4mQGXFHnA
+         73AdEAmlr8TjJKbjNijwCLr4f4rc/jtB9BP51irOgcV1VNpqrfiTLF4+2Gzoyaf6Vvxt
+         dDHJsviMgGz6Nun+MyH60TvCYSwAnXOLBe57sfa6A8a5JQg/KXR+z/gGlQfkJIt4gUaY
+         1EZ23vXXuFK9JXlv2cFvAbtBYuQgH567iaaaisTT52aHM6ER2uWnYe3/gbdQ2DdDcepw
+         44vw==
+X-Gm-Message-State: AFqh2kqPjel0upwBe8S97bdhcggvNVASK3FVmMggvy9PlPwUJprqT3tI
+        6Th0DuW3ApM3T2NSC82xni5B5zb5HsUiz1FGgZkdPw==
+X-Google-Smtp-Source: AMrXdXso2wCwKI04DP0Jnwsw8O26tdW8R7cqrPXE3TghshxleDtAvafXMMve9LCUvK+myYIiIF3cGOotr7mepvIezU0=
+X-Received: by 2002:a05:6638:1a7:b0:38a:3770:2fa2 with SMTP id
+ b7-20020a05663801a700b0038a37702fa2mr7649958jaq.208.1673597361628; Fri, 13
+ Jan 2023 00:09:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230112042104.4107253-1-treapking@chromium.org> <CAL_Jsq+KGQH2qTpB6NmmOzid39-oKTzZZJNPF1ybKQu72LbJLw@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+KGQH2qTpB6NmmOzid39-oKTzZZJNPF1ybKQu72LbJLw@mail.gmail.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Fri, 13 Jan 2023 16:09:10 +0800
+Message-ID: <CAEXTbpfvGrBWjGV9VcRiuTHo4eVqrFM9qEpvq5CPXEWk=4z+dQ@mail.gmail.com>
+Subject: Re: [PATCH v10 0/9] Register Type-C mode-switch in DP bridge endpoints
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
+        Xin Ji <xji@analogixsemi.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Imre Deak <imre.deak@intel.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+        shaomin Deng <dengshaomin@cdjrlc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+Hi Rob,
 
-On Wed, 11 Jan 2023 17:57:01 +0000
-Mark Brown <broonie@kernel.org> wrote:
+On Fri, Jan 13, 2023 at 6:44 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Wed, Jan 11, 2023 at 10:21 PM Pin-yen Lin <treapking@chromium.org> wrote:
+> >
+> >
+> > This series introduces bindings for anx7625/it6505 to register Type-C
+> > mode-switch in their output endpoints, and use data-lanes property to
+> > describe the pin connections.
+> >
+> > The first two patch modifies fwnode_graph_devcon_matches and
+> > cros_typec_init_ports to enable the registration of the switches.
+> >
+> > Patch 4~6 introduce the bindings for anx7625 and the corresponding driver
+> > modifications.
+> >
+> > Patch 7~9 add similar bindings and driver changes for it6505.
+> >
+> > v9: https://lore.kernel.org/all/20230109084101.265664-1-treapking@chromium.org/
+> > v8: https://lore.kernel.org/all/20230107102231.23682-1-treapking@chromium.org/
+> > v7: https://lore.kernel.org/all/20230105132457.4125372-1-treapking@chromium.org/
+> > v6: https://lore.kernel.org/all/20221124102056.393220-1-treapking@chromium.org/
+> > v5: https://lore.kernel.org/linux-usb/20220622173605.1168416-1-pmalani@chromium.org/
+> >
+> > Changes in v10:
+> > - Collected Reviewed-by and Tested-by tags
+> > - Replaced "void *" with "typec_mux_set_fn_t" for mux_set callbacks
+> > - Print out the node name when errors on parsing DT
+> > - Use dev_dbg instead of dev_warn when no Type-C switch nodes available
+> > - Made the return path of drm_dp_register_mode_switch clearer
+> > - Added a TODO for implementing orientation switch for anx7625
+> > - Updated the commit message for the absence of orientation switch
+> > - Fixed typo in the commit message
+> >
+> > Changes in v9:
+> > - Collected Reviewed-by tag
+> > - Fixed subject prefix again
+> > - Changed the naming of the example node for it6505
+> >
+> > Changes in v8:
+> > - Fixed the build issue when CONFIG_TYPEC=m
+> > - Fixed some style issues
+> > - Fixed the subject prefixes for the bindings patch
+> > - Fixed the bindings for data-lanes properties
+> >
+> > Changes in v7:
+> > - Fix the long comment lines
+> > - Extracted the common codes to a helper function
+> > - Fixed style issues in anx7625 driver
+> > - Removed DT property validation in anx7625 driver.
+> > - Fixed style issues in it6505 driver
+> > - Removed the redundant sleep in it6505 driver
+> > - Removed DT property validation in it6505 driver
+> > - Rebased to drm-misc-next
+> > - Fixed indentations in bindings patches
+> > - Added a new patch to fix indentations in Kconfig
+>
+> 4 versions in a week! Please slow down your pace. When you send a new
+> version, you move to the end of my review queue.
 
-> On Wed, Jan 11, 2023 at 05:40:22PM +0100, Herve Codina wrote:
-> > Mark Brown <broonie@kernel.org> wrote: =20
-> > > On Wed, Jan 11, 2023 at 02:49:04PM +0100, Herve Codina wrote: =20
->=20
-> > > Without knowing why things are written in this way or what it's trying
-> > > to accomplish it's hard to comment in detail on what specifically sho=
-uld
-> > > be done. =20
->=20
-> > Yes, I use regmap to ease the integration of controls and use the
-> > already defined controls macros but the device registers do not fit
-> > well with regmap. =20
->=20
-> If this doesn't fit into regmap then don't try to shoehorn it into
-> regmap, that just makes it incredibly hard to follow what's going on.
->=20
-> > The device registers are not defined as simple as address/value pairs.
-> > Accesses contains one or more bytes and the signification of the
-> > data (and bytes) depends on the first bits.
-> > - 0b10xxxxxx means 'Control register' with some data as xxxxxx
-> >   and one extra byte
-> > - 0b1101yyyy means 'Configuration register, slic mode' with
-> >   some other data as yyyy and one extra byte
-> > - 0b1100zzzz means 'Configuration register, gain mode' with
-> >   some other data as zzzz and two extra bytes =20
->=20
-> So really the device only has three registers, each of different sizes
-> and windowed fields within those registers?  I love innovation,
-> innovation is great and it's good that our hardware design colleagues
-> work so hard to keep us in jobs.  It seems hardly worth it to treat them
-> as registers TBH.  This is so far off a register/value type thing that I
-> just wouldn't even try.
->=20
-> > Of course, I can describe all of these in details.
-> > Where do you want to have this information ? All at the top
-> > of the file ? Each part (low-level, virtual regs, ...) at
-> > the beginning of each part in the code ? =20
->=20
-> I'm not sure what problem it solves to use regmap or have virtual
-> registers in the first place.  I think you would be better off with
-> custom _EXT controls, you almost have that anway just hidden in the
-> middle of the fake register stuff instead of directly there.  My sense
-> is that the result would be much less code.  If you are trying to map
-> things onto registers you probably want comments at every level since
-> you don't know where people are going to end up jumping into the code.
->=20
-> Perhaps it's possible to write some new SND_SOC_ helpers that work with
-> just a value in the device's driver data rather than a regmap and have
-> a callback to trigger a write to the device?  I suspect that'd be
-> generally useful actually...
+I see. I'll keep this in mind in the future series.
+>
+> IIRC, these 2 chips are a bit different in what the mode switch or
+> muxing looks like. One had a built-in mux and the other doesn't? Do I
+> have to go research this again? No, you need to explain all this in
+> this series.
 
-Well, I wil try to use my own .put() and .get() for snd_controls.
+Yes, anx7625 has a built-in mux while it6505 doesn't, but it's for
+another use case.
 
-For DAPM (struct snd_soc_dapm_widget), no kind of .put() and .get()
-are available. I will use some Ids for the 'reg' value and use the
-.write() and .read() hooks available in struct snd_soc_component_driver
-in order to handle these Ids and so perform the accesses.
+IIUC the built-in mux in anx7625 is designed for automatically
+switching between two orientations of a single Type-C connector, and
+in that case we might need to register an orientation switch. But we
+don't have hardware for this use case.
 
-Do you think this can be the right way (at least for a first try) ?
+The use case this series aimed is having two downstreams for the
+bridges, and registering two mode switches to switch between them. In
+this use case, the built-in mux of anx7625 is not used and the
+behavior of the switches is the same as it6505.
 
-Best regards,
-Herv=C3=A9
+Explanations and TODOs have been added in the anx7625 driver change. I
+can also mention this in the cover letter in the future series and
+please let me know if anything is not clear for you.
 
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>
+> Rob
+
+Thanks and regards,
+Pin-yen
