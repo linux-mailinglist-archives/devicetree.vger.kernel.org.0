@@ -2,132 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33374669BD4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 16:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4552F669BEE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 16:26:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbjAMPUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 10:20:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38144 "EHLO
+        id S230149AbjAMP0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 10:26:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230026AbjAMPTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:19:44 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2891FEAB
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 07:13:35 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id j17so33587599lfr.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 07:13:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zUYGeT36rdUoWdmbRVQkbA4vrtGHPM/cta2o4YS1FyY=;
-        b=uPDu9VmAG8xj/S26qpUk1CnS0UmsreGp/NEqPwXtGnKwecwZ2Ctbm5Yp0ixsx3z6hs
-         jaJlNR/j/ohUPAx9Uxj5sJ6oxTcPVcFt5MLC7tckK6YRicxHWYB9fk1spCyGSNklIkS7
-         nR5/dS1/wCjhHDY/cma/xgxqf6ZIzdGOKDBSr+4YuRmwzjei2vO33aTbIADbVu0OVDdV
-         myAXOkPG0Udo86lU2BZbm0IhL/dw0f3i6SlIxebB8vlNhShjjIeF7G1CPu/SPF4pk+c6
-         /W7dBB497Sjy2JKRBD2JfHtEcYxPYDOB8vi9509zoFvngAONQ9BLdZl4+5U+hL6PBvtV
-         mgzQ==
+        with ESMTP id S230071AbjAMP0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:26:15 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 288F47278D;
+        Fri, 13 Jan 2023 07:18:56 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id n8so17958266oih.0;
+        Fri, 13 Jan 2023 07:18:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zUYGeT36rdUoWdmbRVQkbA4vrtGHPM/cta2o4YS1FyY=;
-        b=cdHRBhU+D41re7m+xdsDfZ3XYPLiHQ2X/sT1RdutOIiqOdDQ0tJ20OZ5rx7oVsIAJZ
-         /q+Nslvslffar6RktBqbSXyyaJc+qKmWK0ykzyZkO4S71RbQJhpp37gEdDPu2I0URY8w
-         lpso8S/KQtba26xyf3vYvEfYGPHtIQqmXZsayhBV7a8u44uxketHNNN1eg1nlr3FE0CV
-         7UsAkGzP5RmITrvcK+aClSHbDqeMZng7CLSll+bYi7p8T8jieC39a+32V49MfuSYplkk
-         4894i2wZoIgWwvMOelDD+baEbjzjXDcI8vhmn8RbfAT7Nd2BXYBdm0mHFSAwDNViqxA1
-         Nk8w==
-X-Gm-Message-State: AFqh2krBl7W2HDLxQzbbK7Xcj6UJDd6tDlWD0vHau8yVZ0rrA97kLXt2
-        kZl070uA3P93lFYczCl1XQOVdw==
-X-Google-Smtp-Source: AMrXdXsNFSB4i5fU5BCEY1bOU1s3DzBggRjE5V04XQ1OXzn1osBJ2odaHVEsTW5dMNL9bNp01Oa7Ng==
-X-Received: by 2002:a05:6512:b23:b0:4cb:d3:3b99 with SMTP id w35-20020a0565120b2300b004cb00d33b99mr22731307lfu.36.1673622813471;
-        Fri, 13 Jan 2023 07:13:33 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id f7-20020ac25327000000b004b4ea0f4e25sm3892681lfh.301.2023.01.13.07.13.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 07:13:33 -0800 (PST)
-Message-ID: <83718846-1c51-d102-d11a-a14860be8454@linaro.org>
-Date:   Fri, 13 Jan 2023 16:13:30 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ieDDnBbNB9JJsaMwpNzXJlERKk1wwpqLtOrBhJRfGpo=;
+        b=IZra8qjrcHr3eLbPGF9QPAUCfQ/039Fts8ql1H2MrriLwt0C+pWfFHzqSsotqYsAkf
+         ZGo295nFFgvvEGxogSV2+JT7dob+NPjhG6hSRVsSZStYXkIyyc7dRVaEMIjGOPDCY9UK
+         O66HdNI62tmqqgNk4dw9CPXy91TGjtJr2fqRjuM7anMwV5/cU60RP24hQt89WtTVNqD6
+         qm59rGQO/Vh2r/WPj3KKafL7EkljDSCZrJJCFgAedT0SCouSgdjtS6bWTso0aNsabsX3
+         OemNwBFGDatZgl2lLsDvvKLMAj/NRVfdqPyDzT0KS1DNd7eaaeYFdj7LiY8ZZyIznUot
+         XpvQ==
+X-Gm-Message-State: AFqh2kpj4Uo7mbYOiA4tQZeNtkdhNKVxyY6iHmSGExsuQsB6IR7DIX8d
+        9wfsKuz4lP2bsRMc5dSsNQ==
+X-Google-Smtp-Source: AMrXdXvKjUuXqtnMP8HRUWF6KklExF2oSAG2rWu9CjnEqT3LUV2kOArvIgWmH2DzIBq+esFLR8R2ag==
+X-Received: by 2002:a05:6808:996:b0:364:c003:e1ba with SMTP id a22-20020a056808099600b00364c003e1bamr517132oic.46.1673623135307;
+        Fri, 13 Jan 2023 07:18:55 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w11-20020a0568080d4b00b0035c422bb303sm9298016oik.19.2023.01.13.07.18.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jan 2023 07:18:54 -0800 (PST)
+Received: (nullmailer pid 2206759 invoked by uid 1000);
+        Fri, 13 Jan 2023 15:18:53 -0000
+Date:   Fri, 13 Jan 2023 09:18:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-sh@vger.kernel.org
+Subject: Re: remove arch/sh
+Message-ID: <20230113151853.GA2184281-robh@kernel.org>
+References: <20230113062339.1909087-1-hch@lst.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 5/6] dt-bindings: mailbox: Add compatible for IPQ9574
-Content-Language: en-US
-To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, jassisinghbrar@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org, shawnguo@kernel.org,
-        arnd@arndb.de, marcel.ziswiler@toradex.com,
-        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-References: <20230113143647.14961-1-quic_devipriy@quicinc.com>
- <20230113143647.14961-6-quic_devipriy@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230113143647.14961-6-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230113062339.1909087-1-hch@lst.de>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 13.01.2023 15:36, devi priya wrote:
-> Add the mailbox compatible string for IPQ9574 SoC
+On Fri, Jan 13, 2023 at 07:23:17AM +0100, Christoph Hellwig wrote:
+> Hi all,
 > 
-> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
-> ---
-Binding changes should come before driver changes, so that
-you're not introducing an "illegal" compatible and only
-"legalize" it later - please reorder the patch.
-
-Konrad
->  .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml     | 3 +++
->  1 file changed, 3 insertions(+)
+> arch/sh has been a long drag because it supports a lot of SOCs, and most
+> of them haven't even been converted to device tree infrastructure.  These
+> SOCs are generally obsolete as well, and all of the support has been barely
+> maintained for almost 10 years, and not at all for more than 1 year.
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> index 943f9472ae10..9e076758a58a 100644
-> --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> @@ -20,6 +20,7 @@ properties:
->            - enum:
->                - qcom,ipq6018-apcs-apps-global
->                - qcom,ipq8074-apcs-apps-global
-> +              - qcom,ipq9574-apcs-apps-global
->                - qcom,msm8976-apcs-kpss-global
->                - qcom,msm8996-apcs-hmss-global
->                - qcom,msm8998-apcs-hmss-global
-> @@ -113,6 +114,7 @@ allOf:
->            enum:
->              - qcom,ipq6018-apcs-apps-global
->              - qcom,ipq8074-apcs-apps-global
-> +            - qcom,ipq9574-apcs-apps-global
->      then:
->        properties:
->          clocks:
-> @@ -129,6 +131,7 @@ allOf:
->            enum:
->              - qcom,ipq6018-apcs-apps-global
->              - qcom,ipq8074-apcs-apps-global
-> +            - qcom,ipq9574-apcs-apps-global
->      then:
->        properties:
->          '#clock-cells':
+> Drop arch/sh and everything that depends on it.
+> 
+> Diffstat:
+>  Documentation/sh/booting.rst                             |   12 
+>  Documentation/sh/features.rst                            |    3 
+>  Documentation/sh/index.rst                               |   56 
+>  Documentation/sh/new-machine.rst                         |  277 -
+>  Documentation/sh/register-banks.rst                      |   40 
+
+Can you please also remove:
+
+Documentation/devicetree/bindings/mtd/flctl-nand.txt
+Documentation/devicetree/bindings/interrupt-controller/jcore,aic.txt
+Documentation/devicetree/bindings/spi/jcore,spi.txt
+Documentation/devicetree/bindings/timer/jcore,pit.txt
+
+Rob
