@@ -2,66 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE3336694CB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:53:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B35246694CE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:54:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239906AbjAMKxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:53:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49422 "EHLO
+        id S241379AbjAMKx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:53:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241227AbjAMKxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:53:15 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13192777F2
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:51:47 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id tz12so51412507ejc.9
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:51:47 -0800 (PST)
+        with ESMTP id S241382AbjAMKxU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:53:20 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 351715B141
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:51:48 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id cf18so45030049ejb.5
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:51:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=n88waqGTR2qgw5bwPqegEMpBejAirJWOqGyFgCgKiAQ=;
-        b=MDcLv5yYReavS5+8xilTGkmE8urRNHqDswLNcnka4QRqpvorWf1ZZxcjUd6kRf4WFz
-         N4jyTpZN8NyIg1T9tcRzBhZ+iQsKwY60l9px9uwOieWZgJG7RJ6jvBqzlx/6GEBkQ94e
-         xSfM3xyXBVZWKvCdE302WwdKNdLHXsFftMZGMC7+UsC+LvGcnMvazBIFmSY6lKgRkp3E
-         R8udS00M4lsPCI8OzK6aHzEkw72QngoJuxKglCjZv0WT7S7O3fp88PEdZp4lIAzCIeIa
-         gT4ucLgJRIJmn9XPakvaLehp2mhGyfB/c3cDqBnv8b0byogkvqWnfwyBsfwFNv04x8ES
-         xQ+Q==
+        bh=EDWhhww2liTPkzlw3Z6v9YOfZ6LPQ8B5DpH9HyGjiFY=;
+        b=lN6UU4qsZdMXBqH7o2Z/duUCv8HzG7vMFayirjBnSsG6ZAdCBoUzHmzAxfU649KefY
+         qRYjWIRWlCmBmmCHTDrCtEVDgG+HG0rMErwuhee/CsQHt0CG1ugerHiXrUmnQSFBnFWZ
+         YHlRo3qBQpJjHm6eJ2A91CUb0Z+HJn4htAx2P4XysmtvYU1/Z4lzWdtHos212+dowtgC
+         +lVj5HYuKFt96vXBaHnMqtGiHocIdC8aRMpaJdUKfTz2id5hdoVeH6ZhmZYJsfmXfah8
+         Zesg5Ooza9s9yM7+dsgTAfigO6BGTUBr0fW07MMipOSGxn3k3v8EVeMjjuADo2r1Ugbb
+         rd+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=n88waqGTR2qgw5bwPqegEMpBejAirJWOqGyFgCgKiAQ=;
-        b=JarzVnnhrkFrgHD4ZKoq8tR3uOt81wkSfShDwbXq9qGoa0IPQYeDkIjmC0Qgiclw8U
-         UkoIs3kwNcAJ8JqUhNmTAs+9rTcBfD75rhQHZbIRQewUXhiiofoqMu9qtdZM1rj9CLBO
-         UCwFULT33+f9NOeNpIADeok9OV4SKig3VMfEYtyRfSEiHpvyVHPPAn9ehJBL+ufYBcO1
-         bV7shaw/o5PvJlp0T5HZzpW83vIYsXjknptQpbBlykJ2vtxKP29Dgv9KiMglYD9jf90v
-         MSKQOoWQ6I2rxc7XYiEECvULbGQsjw+aYEncp3esgxXXYvyz11mYUcr774zjprB734SM
-         8hYQ==
-X-Gm-Message-State: AFqh2kq+AkXnnj4J1/ImX6T91j8PUGs6QNdQOpHMPpEmfoclhLbv5/ld
-        I6nAv3v8l665FuTKUEisTDP+nB44x5PW74QX
-X-Google-Smtp-Source: AMrXdXv2KLHb/vh4U+JhP07lOkD0cQx5+/tmjRAOQ3T3eRyfy+M7/seM93gDm58joz2AVOLnYYp1bA==
-X-Received: by 2002:a17:906:da09:b0:7c0:e5c6:2a6d with SMTP id fi9-20020a170906da0900b007c0e5c62a6dmr2536575ejb.39.1673607105617;
-        Fri, 13 Jan 2023 02:51:45 -0800 (PST)
+        bh=EDWhhww2liTPkzlw3Z6v9YOfZ6LPQ8B5DpH9HyGjiFY=;
+        b=P8qK3AsdB39fdelgfpgtKd2On2bYifguKhW0DagFCd7yUQ9SRXy7I/gmw+PIAIsFP7
+         S8jfiYeV0RVB3NYniRAIrgv9r8l4w+GS6/Gz2OoWu3zoHWFF27WOVlZqdFzrIfNuY2ko
+         NsVaLZJn9x6nHiyu/eksqgEAURkJhWY9HjlhFAEXZi3cvQkbgP/YK3toEC3oewLMZBSJ
+         pL35kNvAkffgSJZNDtlgvJNgSf/2rwb8T9mq+4q4261vo7aIwRLL5xrB1Z1hkQKcJdG/
+         AiLy6AiI4hZlLH9TKkmgss90BsGiXCh3NWp17yv7hypagtsK/SfozwUa6k6SCipP9yfB
+         vndw==
+X-Gm-Message-State: AFqh2kqbH3CjWdkEVQhZFINZjr2MKlbvrYqZFTQ8mWvQ1UJGf3QFDRuw
+        DV0yy0EIydoHnWUaOJduo5cKcw==
+X-Google-Smtp-Source: AMrXdXszFWOLh+vBaaku2Ym5P6lMMzRpRBy1TO6sVOJBW82K268mmvgw6PBX/4MPiIYNpQTVqWr5VA==
+X-Received: by 2002:a17:907:10d0:b0:85e:f910:71b6 with SMTP id rv16-20020a17090710d000b0085ef91071b6mr8802781ejb.51.1673607107050;
+        Fri, 13 Jan 2023 02:51:47 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u1-20020a1709061da100b0086b7ffb3b92sm146352ejh.205.2023.01.13.02.51.44
+        by smtp.gmail.com with ESMTPSA id u1-20020a1709061da100b0086b7ffb3b92sm146352ejh.205.2023.01.13.02.51.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 02:51:45 -0800 (PST)
+        Fri, 13 Jan 2023 02:51:46 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Daniel Machon <daniel.machon@microchip.com>,
+        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: hisilicon: align LED node names with dtschema
-Date:   Fri, 13 Jan 2023 11:51:36 +0100
-Message-Id: <167360709873.32944.9243558336647166949.b4-ty@linaro.org>
+Subject: Re: [PATCH] arm64: dts: microchip: drop 0x from unit address
+Date:   Fri, 13 Jan 2023 11:51:37 +0100
+Message-Id: <167360709872.32944.1802202247794037769.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221125144140.477225-1-krzysztof.kozlowski@linaro.org>
-References: <20221125144140.477225-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221210113343.63864-1-krzysztof.kozlowski@linaro.org>
+References: <20221210113343.63864-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -74,17 +77,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Nov 2022 15:41:39 +0100, Krzysztof Kozlowski wrote:
-> The node names should be generic and DT schema expects certain pattern:
-> 
->   hisilicon/hi3660-hikey960.dtb: leds: wlan_active_led: Unevaluated properties are not allowed ('linux,default-trigger' was unexpected)
+On Sat, 10 Dec 2022 12:33:43 +0100, Krzysztof Kozlowski wrote:
+> By coding style, unit address should not start with 0x.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: hisilicon: align LED node names with dtschema
-      https://git.kernel.org/krzk/linux-dt/c/d0931f1d5e9c1655cfa8128edd14e813b4044801
+[1/1] arm64: dts: microchip: drop 0x from unit address
+      https://git.kernel.org/krzk/linux-dt/c/e76d8a16d12fc3fbcf212dd1a38974b99d751613
 
 Best regards,
 -- 
