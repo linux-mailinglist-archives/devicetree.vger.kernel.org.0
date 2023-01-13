@@ -2,165 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC6E5669490
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:46:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D38CB669494
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:46:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241202AbjAMKq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:46:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47614 "EHLO
+        id S230107AbjAMKqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:46:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241228AbjAMKp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:45:57 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30A242034
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:44:11 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id j17so32566876lfr.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:44:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0cJY2QzJymCV6m/o9AZRrVEg4sA7Mf8RR5di2bPPh1U=;
-        b=uveNyrhYtUe+KMVJmtCuq8ovBhUOw7d4yvfWZUfLG7hdZrFC+FFfK12ZUbXlBY2Sh7
-         1eGGy21dbx4l/CP7uWbdILWR2ZeaoaoYFEkjSjKcMZp1cmkPMmYj3RveMb5DwxgL0Wuo
-         MGBoeRbXFtVDHCgGX+6JiS6NTtqfS0Oy9NxtyLczLiPQcikwDtZVWE6ONAVbTQCVWZpw
-         2v8lGl42aH1rjr18xHAG63lgOfj7JuNUha2OPwWEKENARpsRb4QbnCWE8Fq/hYpydmi5
-         YLF/4PV1Is8QRRzNV5CFt2NrtInXKqxIvXQG/LlDadGfW9zElZe/sJdK4MAFIwfYGp1E
-         9f3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0cJY2QzJymCV6m/o9AZRrVEg4sA7Mf8RR5di2bPPh1U=;
-        b=Lg6Ju+gJ06jKU/Agy2g73xPuDEEosYMbl6f01FISVxXqhySMjNJ5HUegIi1yOubY7w
-         DGfxxD0mTkXVjzOs/mQ8qCePsgUrTdWxTYov2Uj77atgGtSAYLnOG2rTeAid5zO9AJhU
-         /tkCGAcs2HRmVUOL3m0I/MAKC1eVpvI+OlhbPMQHOdeqfYoKvIf2LZb3hAO3G3fhBt3L
-         QKkZouhIUXY5v0kubqS5zCbBHHr4uWTcGzpscUO5HjbWNExsrhTOad5PLIX+to/sUgL1
-         HBrqosCgi5dR4e6RXXeLMnzIYaGonWnvM7PDeiR0r1UO0IqWfYfqNDSugOWzddP27Dm9
-         5XDQ==
-X-Gm-Message-State: AFqh2kr49jeoHuf5AfpHpBauEyT22P4eELkMyvBtgL9iKNRHxcuHveBC
-        JAa/0F0N5zjUYw7FqsvQ0sge7g==
-X-Google-Smtp-Source: AMrXdXs1K3k8dz69gU2BLNHHD/h9uh6YkU5C8bzpVHqrsIMLkLR2+NqBiudu5n0wZCBa8adp/by7FA==
-X-Received: by 2002:a05:6512:15a7:b0:4ae:8476:2df with SMTP id bp39-20020a05651215a700b004ae847602dfmr5485495lfb.10.1673606649524;
-        Fri, 13 Jan 2023 02:44:09 -0800 (PST)
-Received: from [192.168.2.31] ([188.170.82.205])
-        by smtp.gmail.com with ESMTPSA id b8-20020a056512060800b004cb1de3f487sm3786430lfe.104.2023.01.13.02.44.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 02:44:09 -0800 (PST)
-Message-ID: <f2140e89-84a4-99a9-b2d1-7b4e0d0313d3@linaro.org>
-Date:   Fri, 13 Jan 2023 12:44:07 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 10/13] clk: qcom: cpu-8996: fix ACD initialization
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S241311AbjAMKqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:46:22 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5AF2777C0;
+        Fri, 13 Jan 2023 02:44:34 -0800 (PST)
+Received: from pendragon.ideasonboard.com (85-131-99-81.bb.dnainternet.fi [85.131.99.81])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7505A4D4;
+        Fri, 13 Jan 2023 11:44:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673606672;
+        bh=jQe8bELRpakqILNHk4rOJgvTETgI/bwME5HNZmZ2sRI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FQ0nH4d3KOV3Lf96/S86FUl+4Qt0lB2ZLE6+f/s+EnM4fRP065G/gLJlUtIdlsZqj
+         BK0fWbWd2oXBloA2w0rObnhJ/ml7b/IpI6lIb7tOzbxsQymsAezw+OqQWOwlmYpZca
+         MMtAs+vyr5jBYedcQPweKRiZ7xMNf25+NZJoO1qc=
+Date:   Fri, 13 Jan 2023 12:44:31 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230111192004.2509750-1-dmitry.baryshkov@linaro.org>
- <20230111192004.2509750-11-dmitry.baryshkov@linaro.org>
- <1c8d38e0-2f9d-9e89-5e21-e74ac7851727@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1c8d38e0-2f9d-9e89-5e21-e74ac7851727@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Fabio Estevam <festevam@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 02/16] media: imx-pxp: detect PXP version
+Message-ID: <Y8E2Dx7ngjiUYVfO@pendragon.ideasonboard.com>
+References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
+ <20230112-imx-pxp-v2-2-e2281da1db55@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230112-imx-pxp-v2-2-e2281da1db55@pengutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/01/2023 16:35, Konrad Dybcio wrote:
-> 
-> 
-> On 11.01.2023 20:20, Dmitry Baryshkov wrote:
->> The vendor kernel applies different order while programming SSSCTL and
->> L2ACDCR registers on power and performance clusters. However it was
->> demonstrated that doing this upstream results in the board reset. Make
->> both clusters use the same sequence, which fixes the reset.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
-> I think we should look for the source of why this doesn't work,
-> e.g. does downstream program it earlier somewhere? Are we
-> missing something else that may bite later?
+Hi Michael,
 
-I'm not sure what is the reason for downstream doing init in such 
-sequence. Right now I'm sure that doing ACD init with the provided 
-sequence fails the boot in some conditions. There might be the 
-difference in the CPU init order. Or any other ordering issue. Or the 
-lack of the CPR. Or Kryo LDO programming. There is a huge difference 
-between vendor's 3.18 and the current 6.x.
+Thank you for the patch.
 
-I propose to take the patch in, as it fixes the boot and runtime issue 
-and revisit it later if any of the problems occur. I don't fancy such 
-approach usually, but without the documentation I don't see a way to 
-find any particular reason for programming pwr and perf using the 
-different order of operations.
-
+On Fri, Jan 13, 2023 at 10:54:08AM +0100, Michael Tretter wrote:
+> Different versions of the Pixel Pipeline have different blocks and their
+> routing may be different. Read the PXP_HW_VERSION register to determine
+> the version of the PXP and print it to the log for debugging purposes.
 > 
-> Konrad
->>   drivers/clk/qcom/clk-cpu-8996.c | 20 ++++++++------------
->>   1 file changed, 8 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
->> index 47c58bb5f21a..1c00eb629b61 100644
->> --- a/drivers/clk/qcom/clk-cpu-8996.c
->> +++ b/drivers/clk/qcom/clk-cpu-8996.c
->> @@ -475,9 +475,9 @@ static int qcom_cpu_clk_msm8996_register_clks(struct device *dev,
->>   	return ret;
->>   }
->>   
->> -#define CPU_AFINITY_MASK 0xFFF
->> -#define PWRCL_CPU_REG_MASK 0x3
->> -#define PERFCL_CPU_REG_MASK 0x103
->> +#define CPU_CLUSTER_AFFINITY_MASK 0xf00
->> +#define PWRCL_AFFINITY_MASK 0x000
->> +#define PERFCL_AFFINITY_MASK 0x100
->>   
->>   #define L2ACDCR_REG 0x580ULL
->>   #define L2ACDTD_REG 0x581ULL
->> @@ -498,21 +498,17 @@ static void qcom_cpu_clk_msm8996_acd_init(struct regmap *regmap)
->>   	if (val == 0x00006a11)
->>   		goto out;
->>   
->> -	hwid = read_cpuid_mpidr() & CPU_AFINITY_MASK;
->> -
->>   	kryo_l2_set_indirect_reg(L2ACDTD_REG, 0x00006a11);
->>   	kryo_l2_set_indirect_reg(L2ACDDVMRC_REG, 0x000e0f0f);
->>   	kryo_l2_set_indirect_reg(L2ACDSSCR_REG, 0x00000601);
->>   
->> -	if (PWRCL_CPU_REG_MASK == (hwid | PWRCL_CPU_REG_MASK)) {
->> -		regmap_write(regmap, PWRCL_REG_OFFSET + SSSCTL_OFFSET, 0xf);
->> -		kryo_l2_set_indirect_reg(L2ACDCR_REG, 0x002c5ffd);
->> -	}
->> +	kryo_l2_set_indirect_reg(L2ACDCR_REG, 0x002c5ffd);
->>   
->> -	if (PERFCL_CPU_REG_MASK == (hwid | PERFCL_CPU_REG_MASK)) {
->> -		kryo_l2_set_indirect_reg(L2ACDCR_REG, 0x002c5ffd);
->> +	hwid = read_cpuid_mpidr();
->> +	if ((hwid & CPU_CLUSTER_AFFINITY_MASK) == PWRCL_AFFINITY_MASK)
->> +		regmap_write(regmap, PWRCL_REG_OFFSET + SSSCTL_OFFSET, 0xf);
->> +	else
->>   		regmap_write(regmap, PERFCL_REG_OFFSET + SSSCTL_OFFSET, 0xf);
->> -	}
->>   
->>   out:
->>   	spin_unlock_irqrestore(&qcom_clk_acd_lock, flags);
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> ---
+> Changelog:
+> 
+> v2:
+> 
+> - reduce debug level for version to dev_dbg
+> - drop hw_version field from struct pxp_dev
+> ---
+>  drivers/media/platform/nxp/imx-pxp.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/media/platform/nxp/imx-pxp.c b/drivers/media/platform/nxp/imx-pxp.c
+> index 689ae5e6ac62..5b671c6e5cae 100644
+> --- a/drivers/media/platform/nxp/imx-pxp.c
+> +++ b/drivers/media/platform/nxp/imx-pxp.c
+> @@ -10,6 +10,7 @@
+>   * Pawel Osciak, <pawel@osciak.com>
+>   * Marek Szyprowski, <m.szyprowski@samsung.com>
+>   */
+> +#include <linux/bitfield.h>
+>  #include <linux/clk.h>
+>  #include <linux/delay.h>
+>  #include <linux/dma-mapping.h>
+> @@ -52,6 +53,11 @@ MODULE_PARM_DESC(debug, "activates debug info");
+>  #define MEM2MEM_HFLIP	(1 << 0)
+>  #define MEM2MEM_VFLIP	(1 << 1)
+>  
+> +#define PXP_VERSION_MAJOR(version) \
+> +	FIELD_GET(BM_PXP_VERSION_MAJOR, version)
+> +#define PXP_VERSION_MINOR(version) \
+> +	FIELD_GET(BM_PXP_VERSION_MINOR, version)
+> +
+>  #define dprintk(dev, fmt, arg...) \
+>  	v4l2_dbg(1, debug, &dev->v4l2_dev, "%s: " fmt, __func__, ## arg)
+>  
+> @@ -1665,6 +1671,7 @@ static int pxp_probe(struct platform_device *pdev)
+>  	struct pxp_dev *dev;
+>  	struct video_device *vfd;
+>  	int irq;
+> +	u32 hw_version;
+
+I'd move this one line up. Up to you, with or without that,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+>  	int ret;
+>  
+>  	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
+> @@ -1705,6 +1712,10 @@ static int pxp_probe(struct platform_device *pdev)
+>  		goto err_clk;
+>  	}
+>  
+> +	hw_version = readl(dev->mmio + HW_PXP_VERSION);
+> +	dev_dbg(&pdev->dev, "PXP Version %u.%u\n",
+> +		PXP_VERSION_MAJOR(hw_version), PXP_VERSION_MINOR(hw_version));
+> +
+>  	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
+>  	if (ret)
+>  		goto err_clk;
+> 
 
 -- 
-With best wishes
-Dmitry
+Regards,
 
+Laurent Pinchart
