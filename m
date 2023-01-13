@@ -2,79 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AAEF669869
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 14:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72D1D66986F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 14:26:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241768AbjAMNWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 08:22:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55430 "EHLO
+        id S241168AbjAMN03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 08:26:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241428AbjAMNVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 08:21:47 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE2395F93C;
-        Fri, 13 Jan 2023 05:13:37 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id q8so3442653wmo.5;
-        Fri, 13 Jan 2023 05:13:37 -0800 (PST)
+        with ESMTP id S241458AbjAMN0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 08:26:07 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FDBB869E0;
+        Fri, 13 Jan 2023 05:17:13 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id y5so16152812pfe.2;
+        Fri, 13 Jan 2023 05:17:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=w6Sfv3GzCAn5QrrBImbkAkIsyNCdyXbe2wptVAXtxE8=;
-        b=mEjxQu5xNEJXSIjn7Gw/9XTq7+F4SJA697N5ndHL5HEfIF6EvBweh2FGJk4jcSqDBW
-         tQOClYxi6kB9gLtETqfTr+oOURZiVexae//HuMiH1dUYZlQXkifJRHdzZlvKbYqf6FRL
-         JNoCXbTQVF5kolOjAg8r+eZXD+1Y/UB/PRPt5sZxJXJmOSXRiWxIGC2GCdTr76+0hoLq
-         2A0Xv6YSH19JvvfhVlrsXOz/cAzUfwOlpatMI3VNCUc0Vzh7+hFTgzuttV2VCgKQStme
-         RnEYovaCkdclkTT+znCwsBNPuLxrMsmI2QRSGmvpqvPcH5bv3l6cOSFrgRXXJF1ahvUR
-         /mDQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Mo3K/eJ+MOGHbzScK4gvAZcKJcl3HKiS2vGsLSsm5o=;
+        b=RZb/oYVUHQr0QkBGuJCMAUQG/oHKZ83adLHe54LBsNcDcyrI9kxnFmQytvzgOUGJvn
+         iEhnXpokKGKrgKQR2I56zW+qFCVxTw6eNOMyoiNoByah/UyeK7Xho8RoMKtIBa/RvyNw
+         +jjDFl2+lXUs6mSUOq84smmffQQCjSycf8WZFIDn2+qlLig1GBOhe6QVjx9sd/ZsKLWn
+         2jXJ9NMTg1aam5n97s0UZvhelsCztEtgWbEDbpeBl9faLSJW6nZvPegYFsrRSZnhuz6Z
+         DJHNZgb4yT935cQ3EaWzSOikf/gMWOtmaZ61smDDm8WQ2dLT+XK0w1iAgyAlbjnhuJRg
+         F8lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w6Sfv3GzCAn5QrrBImbkAkIsyNCdyXbe2wptVAXtxE8=;
-        b=VC/75K/QPMjVA17dUVAAMyD7D8h//odNFmuSgbRsgH6q6D9U6sBKDyoWsUO4XsD26x
-         x5sk7j4+yElx7cQgrEAk7pcMmxznogEO59KN50SSTta8035UF0QnTKx8ZefxMXPINaEd
-         +glE13FAUvTlbAMg9Bh+IDmoIvsCb+y1kJVPhqU+zHTCHn/VssmZLylarTinbMlGvz1I
-         /qVyXAlCzpkvUbjVhFkZ3iKWsSBUu5UqyUq6OYHAhKn7INze15cnOIsGSrcJ/D/jPbW9
-         1l5YjE/J4TtGCWtXJ1YQVUF7/BtmfGZ/e72ic/TD/ZTPlDccsGMEDQimHQh5KXuL92nt
-         XiRw==
-X-Gm-Message-State: AFqh2krG9t3/vca0GTAQJovq9EHa2tW2ehZjTTi7PAfb7i3kxGMuSZNX
-        SaMy6IB+/cDx9SHdxQUQCZo=
-X-Google-Smtp-Source: AMrXdXvLVIxqSzD18MgX3l3OlYJF5CvyJ3znHiB469r4ldiU7TKcm5zbYT3oyuirc1nRYXo/fO/1Iw==
-X-Received: by 2002:a05:600c:3b82:b0:3cf:900c:de6b with SMTP id n2-20020a05600c3b8200b003cf900cde6bmr58678762wms.15.1673615616233;
-        Fri, 13 Jan 2023 05:13:36 -0800 (PST)
-Received: from [192.168.0.30] ([37.222.254.155])
-        by smtp.gmail.com with ESMTPSA id 2-20020a05600c228200b003d9e00dfccfsm21796387wmf.8.2023.01.13.05.13.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 05:13:35 -0800 (PST)
-Message-ID: <0054c6aa-da0d-ecb3-47a9-ef99caec0da3@gmail.com>
-Date:   Fri, 13 Jan 2023 14:13:34 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3Mo3K/eJ+MOGHbzScK4gvAZcKJcl3HKiS2vGsLSsm5o=;
+        b=cLgOvf8diDwFSTJ2cD0y2tGaCdvRHduZdVGnpzgA36iOWKC2yxLagvNnrjZGoMnzNP
+         R5fbPBF4y5K/8P4HNVTr0k2s3/mV44CtaiLgFzdibbkxHbZQBt5yfdCSLc0Qubaj6vgM
+         CfSToR8O0cH/5ePj6gggQaYFyTbkRExbtFOYdUTb18Z1HIivo+z9WySXVRj7MUCHvBwk
+         rzHRzO5wjXrAY/6f+RkONzE8gzawY96Um8l8+7i/4SBiyOJgQdpdjfcu83f/+tjfgVmT
+         WbuJYXLlZBtmfTXfOMsknWqdIB2nvcVjwNYcOV6yF+iNhlym1ZURAhhD3EJ9RSmPgPip
+         WKUQ==
+X-Gm-Message-State: AFqh2krV9AnG71DreoKsJsX0vFhVn9Zfc1uOPUuAugE6j2oqOCGabLpf
+        9iKWjR8xQS+Ok1FsZ/A7PbFKpEetLXG3KIcnt9xOgSK5800=
+X-Google-Smtp-Source: AMrXdXumwJEytEx1P4rpyQVMzmY8+DFigwS5ZEJvLOHgMvDjPP5aOq+j5mfdHOQmLC4SLGQxConZMxxi8z6gZEV3FXE=
+X-Received: by 2002:a05:6a00:1796:b0:58b:9f0a:f87f with SMTP id
+ s22-20020a056a00179600b0058b9f0af87fmr705608pfg.81.1673615832252; Fri, 13 Jan
+ 2023 05:17:12 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v9 0/5] Add BananaPi R3
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+References: <20230104141245.8407-1-aford173@gmail.com> <CAMuHMdWuE4L6K4ULdVLZKeLwd3xYfzkyBNrf6s7Qc2kf9b-_Cg@mail.gmail.com>
+ <CAHCN7xKJRE7mrRgpKiEEgpkH1NLR8uGcc3mr5Khp3sWjxEtbdQ@mail.gmail.com>
+In-Reply-To: <CAHCN7xKJRE7mrRgpKiEEgpkH1NLR8uGcc3mr5Khp3sWjxEtbdQ@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 13 Jan 2023 07:17:00 -0600
+Message-ID: <CAHCN7xLSgrzxL0W0ue7wi8DBCH-EB574QtS6wsyrVNpHDFiE6Q@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: beacon-renesom: Fix gpio expander reference
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     linux-renesas-soc@vger.kernel.org, aford@beaconembedded.com,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230106152845.88717-1-linux@fw-web.de>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230106152845.88717-1-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,95 +70,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Patches 2-5 applied!
+On Wed, Jan 11, 2023 at 11:05 AM Adam Ford <aford173@gmail.com> wrote:
+>
+> On Wed, Jan 11, 2023 at 10:29 AM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> >
+> > Hi Adam,
+> >
+> > On Wed, Jan 4, 2023 at 3:12 PM Adam Ford <aford173@gmail.com> wrote:
+> > > The board used to originally introduce the Beacon Embedded
+> > > RZ/G2[M/N/H] boards had a GPIO expander with address 20, but
+> > > this was change when the final board went to production.
+> > >
+> > > The production boards changed both the part itself and
+> > > the address.  With the incorrect address, the LCD cannot
+> > > come up.  If the LCD fails, the rcar-du driver fails to come up,
+> > > and that also breaks HDMI.
+> > >
+> > > Pre-release board were not shipped to the general public, so it
+> > > should be safe to push this as a fix.  Anyone with a production
+> > > board would have video fail due to this GPIO expander change.
+> > >
+> > > Fixes: a1d8a344f1ca ("arm64: dts: renesas: Introduce r8a774a1-beacon-rzg2m-kit")
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+> > > @@ -437,20 +437,6 @@ wm8962_endpoint: endpoint {
+> > >                 };
+> > >         };
+> > >
+> > > -       /* 0 - lcd_reset */
+> > > -       /* 1 - lcd_pwr */
+> > > -       /* 2 - lcd_select */
+> > > -       /* 3 - backlight-enable */
+> > > -       /* 4 - Touch_shdwn */
+> > > -       /* 5 - LCD_H_pol */
+> > > -       /* 6 - lcd_V_pol */
+> > > -       gpio_exp1: gpio@20 {
+> > > -               compatible = "onnn,pca9654";
+> > > -               reg = <0x20>;
+> > > -               gpio-controller;
+> > > -               #gpio-cells = <2>;
+> > > -       };
+> > > -
+> > >         touchscreen@26 {
+> > >                 compatible = "ilitek,ili2117";
+> > >                 reg = <0x26>;
+> > > @@ -482,6 +468,21 @@ hd3ss3220_out_ep: endpoint {
+> > >                         };
+> > >                 };
+> > >         };
+> > > +
+> > > +       gpio_exp1: gpio@70 {
+> > > +               compatible = "onnn,pca9654";
+> >
+> > According to the patch description, the actual part was changed, too?
 
-Thanks!
+After a bit of some investigation, the part was changed to
+nxp,pca9538.  It appears to be the same driver and the same ".data"
+structure is used.  This probably explains why I didn't see any issues
+when I was testing this.  Unfortunately, the hardware engineer who
+made this hardware change is not around to ask why the change was
+made.    I'll do a V2 since, I don't see this in renesas-devel.
 
-On 06/01/2023 16:28, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> This Series adds some Nodes to mt7986 devicetree and the BananaPi R3
-> 
-> This version is rebased on linux 6.2-rc1 and i dropped already applied
-> Patches from v7.
-> 
-> i had run full dtbs-check but i end up with some strange warnings in
-> ethernet-node that should not come up as phy-handle and sfp/managed
-> properties are already defined. These errors also came up for mt7986a-rfb.
-> 
-> phy-handle made optional
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/mediatek,net.yaml#n265
-> 
-> property sfp/managed (which is included for mac subnode in yaml above):
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/ethernet-controller.yaml#n137
-> 
-> changes:
-> v9:
-> - drop model string override in sd-dtso
-> 
-> v8:
-> - drop model string override in emmc-dtso
-> - drop cs-gpios from spi-nodes
-> - add interrupt-settings for mt7531 switch
-> 
-> v7:
-> - rebase on next so dropped already applied patches
-> - squashed overlay-patch into the bpi-r3 base support
-> - moved regulators from mmc-dts to common dtsi
-> - changed dtsi to dts (as board base dtb) and mmc-dts to overlays
-> - renamed overlays to dtso
-> - removed angelos RB because of changes in bpi-r3 patch
-> 
-> v6:
-> - dropped regulators from usb-patch as suggested by chunfeng yun
-> - moved 3v3 regulator to mmc-patch as it is needed for emmc to work
->    rfbs were tested by sam shih, r3 by me
-> - dropped RB from AngeloGioacchino from mmc-patch due to this change
-> - fixed links in coverletter which were broken in v5
-> - i hope this series is sent without errors now (my mailprovider limited
->    mails last 2 times while sending part 10)
-> 
-> v5:
-> - changed usb ranges/reg/unit-adress
-> - added reviewd-by's except usb-part due to changes
-> 
-> v4:
-> - dropped RFC prefix
-> - rebase on matthias' mtk dts-next (for 6.2) branch
-> - added author information to overlays
-> - fixed sfp binding error
-> - added fix for moving wed_pcie node
-> - readded missing compatible patches
-> 
-> v3:
-> - changed mmc pull-ups
-> - added patch for board binding (sent separately before)
-> - added pcie node in mt7986 (not yet again in r3)
-> - added dt overlays
-> 
-> Frank Wunderlich (2):
->    dt-bindings: phy: mediatek,tphy: add support for mt7986
->    arm64: dts: mt7986: add Bananapi R3
-> 
-> Sam Shih (3):
->    arm64: dts: mt7986: add usb related device nodes
->    arm64: dts: mt7986: add mmc related device nodes
->    arm64: dts: mt7986: add pcie related device nodes
-> 
->   .../bindings/phy/mediatek,tphy.yaml           |   1 +
->   arch/arm64/boot/dts/mediatek/Makefile         |   5 +
->   .../mt7986a-bananapi-bpi-r3-emmc.dtso         |  29 ++
->   .../mt7986a-bananapi-bpi-r3-nand.dtso         |  55 +++
->   .../mediatek/mt7986a-bananapi-bpi-r3-nor.dtso |  68 +++
->   .../mediatek/mt7986a-bananapi-bpi-r3-sd.dtso  |  23 +
->   .../dts/mediatek/mt7986a-bananapi-bpi-r3.dts  | 450 ++++++++++++++++++
->   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts  | 120 +++++
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi     | 122 +++++
->   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts  |   8 +
->   10 files changed, 881 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-> 
+adam
+>
+> humm.. I was under the impression it was after talking with one of the
+> hardware developers, but clearly it's using the same compatible name.
+> I will investigate this further.  One way or the other, I'll redo the
+> commit message.
+>
+> adam
+> >
+> > > +               reg = <0x70>;
+> > > +               gpio-controller;
+> > > +               #gpio-cells = <2>;
+> > > +               gpio-line-names =
+> > > +                       "lcd_reset",
+> > > +                       "lcd_pwr",
+> > > +                       "lcd_select",
+> > > +                       "backlight-enable",
+> > > +                       "Touch_shdwn",
+> > > +                       "LCD_H_pol",
+> > > +                       "lcd_V_pol";
+> > > +       };
+> > >  };
+> >
+> > The rest LGTM.
+> >
+> > Gr{oetje,eeting}s,
+> >
+> >                         Geert
+> >
+> > --
+> > Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> >
+> > In personal conversations with technical people, I call myself a hacker. But
+> > when I'm talking to journalists I just say "programmer" or something like that.
+> >                                 -- Linus Torvalds
