@@ -2,131 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63287669448
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:34:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96EC066945D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:39:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241255AbjAMKei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:34:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37514 "EHLO
+        id S241087AbjAMKj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:39:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241152AbjAMKe0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:34:26 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 010C6559FE
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:34:05 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id u9so51353124ejo.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:34:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o7WPzmC5Oh9izsU3TrE1uZKgp8/c5G7tROX6eiyHIgY=;
-        b=TeWE7d6JnqZbN8f0RMGiOR8UR8ssrwm7OglihKaBgLd7Zwov8JU2YVGMpBiXL5PlP7
-         brgA2vuVJR81uYIpAQG2BFQhYVaMfkdJmeCsxAiGUWMLIveM6pIGt9tFoegtyJz2ECHS
-         Ss4OuCKOUX03eD0Nk1CBeSjMefLZzEN4vdPy9nzXfof1HyCeDxivxr1nZ561h2wPKTUU
-         uYC7qiyHuolm/Ps5PjqD1vEOEmU1DK2bz2eRyg0Lq1TtCuaXXVpW8tOjhIMTyq16uw0E
-         74WEkWHIWjgQMHpr9/ydQcv3zVT2bbFluz5s0CCHt2ixTYk/3/rZ4e08Bziwnl9TgDo+
-         j4mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o7WPzmC5Oh9izsU3TrE1uZKgp8/c5G7tROX6eiyHIgY=;
-        b=BD3pv7MMnBe1YdMPTCqLRsW/w0c8j0sOYslr3yQ4ReaAxX24DnuWMVpVu2BDvFoO6R
-         O1bbYU0XHolGfiRdkid+i1O+yr/Y0WqUI3pWc6HMbf0XWnkSoEXpIV51ITOUdlKxNPwU
-         eSk7X9+WvAR+I/tEplf9qsHLBoDWYA0ca531sqx4AAJFYUzc5bWKaiD/UFOUkxvtlNWl
-         5whLFsDkE9HoBSoa+AJjcxbaoInxtHR1fn2Nfhajpe8TtkO6zBaSu77WnTy70vamu9VN
-         fe43dawpeQ/zkqArevnnfRQnNr7i6gCajObhzu5n1H4YRvK5FMGr0y7YRSck4xJXXmiu
-         Fwwg==
-X-Gm-Message-State: AFqh2kq3ToeFLUmN9v7PBtNAiU6lXkhvWiDUZ5iKo2lHHqVXj1EbTk8m
-        GKj+OvoPBQPMpYRihwT21CNTjg==
-X-Google-Smtp-Source: AMrXdXtlbTT01BZOGgQNxInpR+kMgGqUmp1c1+Qqf27/VwCuxJGq4TZAVftXeQYimyAj62MLG7egZg==
-X-Received: by 2002:a17:906:281b:b0:7c1:5863:f8c4 with SMTP id r27-20020a170906281b00b007c15863f8c4mr65076391ejc.21.1673606043565;
-        Fri, 13 Jan 2023 02:34:03 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id qw25-20020a1709066a1900b007ae1e528390sm8296926ejc.163.2023.01.13.02.34.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 02:34:03 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S241346AbjAMKia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:38:30 -0500
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83ADC76AF7;
+        Fri, 13 Jan 2023 02:38:07 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id DDFD6FF808;
+        Fri, 13 Jan 2023 10:38:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1673606286;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=QZrDoPTVMtt/nPtGEUH/c16zuug+TjuwVzIICNji49Q=;
+        b=XJXZKssKn38Y38w5k0cQ+2NB8kxVenn82zuQYsDnBMaugApThAvX4ZBttyXqHgKmE97kVM
+        LTJDipEWXjkLpVqy51JIgbI0hhC6PE/xk0RCf1JdBk/1I4L6mO7Z8FiPdiaIhy7yX1s8yJ
+        Eq2HEVuhfhjb99kTJfsuK7ZZfhv91mTBYC1ELi//OM8me7vazndBlNM13ejvYJINg/k7+X
+        lYRZ53VYA7FQ0eAgFn+vQ/TuqHuAABBNWp15KaXV7LdquooG55Xj8CH4uqzQRrPBDhFZLq
+        xNxIEsoXz/RkytUY28IMJQUVz0200qxVGbxgY24tYsxidcTxMlfJ/nZ2xCZimQ==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 7/7] dt-bindings: watchdog: allow "timer" as node name
-Date:   Fri, 13 Jan 2023 11:33:46 +0100
-Message-Id: <20230113103346.29381-8-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230113103346.29381-1-krzysztof.kozlowski@linaro.org>
-References: <20230113103346.29381-1-krzysztof.kozlowski@linaro.org>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v3 00/10] Add the PowerQUICC audio support using the QMC
+Date:   Fri, 13 Jan 2023 11:37:49 +0100
+Message-Id: <20230113103759.327698-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On some SoCs the watchdog device is actually mixed with timer, e.g.
-the qcom,msm-timer on older Qualcomm SoCs where this is actually one
-hardware block responsible for both system timer and watchdog.
+Hi,
 
-Allow calling such device nodes as "timer".
+This series adds support for audio using the QMC controller
+available in some Freescale PowerQUICC SoCs.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
+This series contains three parts in order to show the different
+blocks hierarchy and their usage in this support.
 
----
+The first one is related to TSA (Time Slot Assigner).
+The TSA handles the data present at the pin level (TDM with up
+to 64 time slots) and dispatchs them to one or more serial
+controller (SCC).
 
-Changes since v1:
-1. Add tag.
+The second is related to QMC (QUICC Multichannel Controller).
+The QMC handles the data at the serial controller (SCC) level
+and splits again the data to creates some virtual channels.
 
-See also:
-https://lore.kernel.org/linux-arm-msm/20221212163532.142533-1-krzysztof.kozlowski@linaro.org/T/#t
+The last one is related to the audio component (QMC audio).
+It is the glue between the QMC controller and the ASoC
+component. It handles one or more QMC virtual channels and
+creates one DAI per QMC virtual channels handled.
 
-which causes warnings:
+Compared to the v2 series, this v3 series mainly:
+  - adds modification in the DT bindings,
+  - uses generic io{read,write}be{16,32} for registers
+    accesses instead of the specific PowerPC ones.
+  - updates some commit subjects and logs (CPM1 SoCs supports).
 
-qcom-msm8960-cdp.dtb: timer@200a000: $nodename:0: 'timer@200a000' does not match '^watchdog(@.*|-[0-9a-f])?$'
-  From schema: Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
----
- Documentation/devicetree/bindings/watchdog/watchdog.yaml | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Best regards,
+Herve Codina
 
-diff --git a/Documentation/devicetree/bindings/watchdog/watchdog.yaml b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-index fccae0d00110..519b48889eb1 100644
---- a/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-@@ -14,9 +14,14 @@ description: |
-   This document describes generic bindings which can be used to
-   describe watchdog devices in a device tree.
- 
-+select:
-+  properties:
-+    $nodename:
-+      pattern: "^watchdog(@.*|-[0-9a-f])?$"
-+
- properties:
-   $nodename:
--    pattern: "^watchdog(@.*|-[0-9a-f])?$"
-+    pattern: "^(timer|watchdog)(@.*|-[0-9a-f])?$"
- 
-   timeout-sec:
-     description:
+Changes v2 -> v3
+  - All bindings
+    Rename fsl-tsa.h to fsl,tsa.h
+    Add missing vendor prefix
+    Various fixes (quotes, node names, upper/lower case)
+
+  - patches 1 and 2 (TSA binding specific)
+    Remove 'reserved' values in the routing tables
+    Remove fsl,grant-mode
+    Add a better description for 'fsl,common-rxtx-pins'
+    Fix clocks/clocks-name handling against fsl,common-rxtx-pins
+    Add information related to the delays unit
+    Removed FSL_CPM_TSA_NBCELL
+    Fix license in binding header file fsl,tsa.h
+
+  - patches 5 and 6 (QMC binding specific)
+    Remove fsl,cpm-command property
+    Add interrupt property constraint
+
+  - patches 8 and 9 (QMC audio binding specific)
+    Remove 'items' in compatible property definition
+    Add missing 'dai-common.yaml' reference
+    Fix the qmc_chan phandle definition
+
+  - patch 2 and 6
+    Use io{read,write}be{32,16}
+    Change commit subjects and logs
+
+  - patch 4
+    Add 'Acked-by: Christophe Leroy <christophe.leroy@csgroup.eu>'
+
+Changes v1 -> v2:
+  - patch 2 and 6
+    Fix kernel test robot errors
+
+  - other patches
+    No changes
+
+Herve Codina (10):
+  dt-bindings: soc: fsl: cpm_qe: Add TSA controller
+  soc: fsl: cpm1: Add support for TSA
+  MAINTAINERS: add the Freescale TSA controller entry
+  powerpc/8xx: Use a larger CPM1 command check mask
+  dt-bindings: soc: fsl: cpm_qe: Add QMC controller
+  soc: fsl: cmp1: Add support for QMC
+  MAINTAINERS: add the Freescale QMC controller entry
+  dt-bindings: sound: Add support for QMC audio
+  ASoC: fsl: Add support for QMC audio
+  MAINTAINERS: add the Freescale QMC audio entry
+
+ .../bindings/soc/fsl/cpm_qe/fsl,qmc.yaml      |  164 ++
+ .../bindings/soc/fsl/cpm_qe/fsl,tsa.yaml      |  260 +++
+ .../bindings/sound/fsl,qmc-audio.yaml         |  117 ++
+ MAINTAINERS                                   |   25 +
+ arch/powerpc/platforms/8xx/cpm1.c             |    2 +-
+ drivers/soc/fsl/qe/Kconfig                    |   23 +
+ drivers/soc/fsl/qe/Makefile                   |    2 +
+ drivers/soc/fsl/qe/qmc.c                      | 1531 +++++++++++++++++
+ drivers/soc/fsl/qe/tsa.c                      |  810 +++++++++
+ drivers/soc/fsl/qe/tsa.h                      |   43 +
+ include/dt-bindings/soc/fsl,tsa.h             |   13 +
+ include/soc/fsl/qe/qmc.h                      |   71 +
+ sound/soc/fsl/Kconfig                         |    9 +
+ sound/soc/fsl/Makefile                        |    2 +
+ sound/soc/fsl/fsl_qmc_audio.c                 |  732 ++++++++
+ 15 files changed, 3803 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
+ create mode 100644 drivers/soc/fsl/qe/qmc.c
+ create mode 100644 drivers/soc/fsl/qe/tsa.c
+ create mode 100644 drivers/soc/fsl/qe/tsa.h
+ create mode 100644 include/dt-bindings/soc/fsl,tsa.h
+ create mode 100644 include/soc/fsl/qe/qmc.h
+ create mode 100644 sound/soc/fsl/fsl_qmc_audio.c
+
 -- 
-2.34.1
+2.38.1
 
