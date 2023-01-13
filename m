@@ -2,140 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0E8C668FA7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9EE3668FC6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:59:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231701AbjAMHzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 02:55:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42382 "EHLO
+        id S231745AbjAMH67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 02:58:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236402AbjAMHzJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:55:09 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48ED26878B;
-        Thu, 12 Jan 2023 23:55:08 -0800 (PST)
-Received: from pendragon.ideasonboard.com (85-76-5-15-nat.elisa-mobile.fi [85.76.5.15])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2DBD14D4;
-        Fri, 13 Jan 2023 08:55:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673596505;
-        bh=vRdyiqF+PpWa7HcHfhCtuslDgXVXt8V4AOIdljF1BQo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MplxUnHw8ErIF7LyxmuN/+OcdYTL+KHEXJob0ft2ezOhqAVYE3m8P/x5TGmDxunAX
-         hNGSu2Rfv8w4h3WiaTzkK6SyygY+7vdn0jtGh9flpoxnn8uBnWmrnoDsTJWb5wUuXu
-         ajDTUWUaMexyxBvmwaL7WwO3/s2maPmjOdQvt9qo=
-Date:   Fri, 13 Jan 2023 09:55:04 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-sh@vger.kernel.org
-Subject: Re: [PATCH 01/22] gpu/drm: remove the shmobile drm driver
-Message-ID: <Y8EOWGVmwEElKGE4@pendragon.ideasonboard.com>
-References: <20230113062339.1909087-1-hch@lst.de>
- <20230113062339.1909087-2-hch@lst.de>
- <Y8EMZ0GI5rtor9xr@pendragon.ideasonboard.com>
+        with ESMTP id S240652AbjAMH6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:58:48 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43EE14828D
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:58:47 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id r2so20265812wrv.7
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:58:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=lTgLjRFwV0QhSHdprvNXbaq1wi2uRVNOBcOLztOH9/0=;
+        b=I+gqAzHM6C30XEAOWia99D44uThsNdYvbfowSG6sF3EujrvgynBowmkyfAhu5lvhoT
+         R0xRIYj8E/06u2Avm4MfpAPgC8uoPKNpSPlPD7wTeuYLG8JskFQq0MnY6J/HkYBeMDyA
+         8yTJeKqclR1+6rU+6Xx9gmuoXx0tNtUMVt5mxjCpEaD6rvXBHuArGgmd9+5Gy5I4UN57
+         qEzqmc5CJRTY1LdDl4sSM3EWTm54sO4XHudG6CLYgMxG1A9efPEHrn2dd2CVckF7t4lD
+         GybDSWWXnUgGESaawqbN2AT4X9bGodydoBjwcCfYIRQgETaNb5GAJxoS+nawEFYo9akr
+         XbVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lTgLjRFwV0QhSHdprvNXbaq1wi2uRVNOBcOLztOH9/0=;
+        b=Rw/PuJsLqlGJbXKFY4y77XIhnRcRZWkDHdRjab38vrL749/OV3Mp5HZBfLfhnc/jUy
+         SDy206VsJMean1tRc2ZDkZHo2z3azUsIinFZ+fpLFdy358QUKB1A1mjq+KQUg3OUGJKZ
+         UygjE3R2bJNhpRN9E2FHhbheRIRDU8yMvx4RPdMuBh0KrgND2cvBsDyeapdXIyRU16+n
+         G9mNLkRxOOY5RH3kRkaN648RIsAQunMVzxqIC3Xgh7LaHcKEozgVJ4RhOWnhTAbXTomU
+         UVi/tN6p3GmGmhjlacZpuiqY4I9xfIUrV3Vv+67bblr15AOsXRQSDej+YWshjO2uRF5r
+         VSDA==
+X-Gm-Message-State: AFqh2kplNHQI/BGi5mGgNrKae+4W5YI3LkZa8Ajqb/4OBmZhBLJrg634
+        gc0I5xB6RbtXtTF+UxQEpKwDmQ==
+X-Google-Smtp-Source: AMrXdXsF7us2r024+S7rzyBVhUmJScL/OfBzv9LEBf15jWE6PgDeTctsRrI4RgV/BTJVF6hnJP25LQ==
+X-Received: by 2002:a5d:5405:0:b0:284:8a24:59e6 with SMTP id g5-20020a5d5405000000b002848a2459e6mr37484436wrv.3.1673596725631;
+        Thu, 12 Jan 2023 23:58:45 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8660:aed9:5ce2:6bbb? ([2a01:e0a:982:cbb0:8660:aed9:5ce2:6bbb])
+        by smtp.gmail.com with ESMTPSA id f2-20020adfdb42000000b0024274a5db0asm18445057wrj.2.2023.01.12.23.58.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 23:58:45 -0800 (PST)
+Message-ID: <c8057da5-fa0f-4801-a3b9-12b9215bc29a@linaro.org>
+Date:   Fri, 13 Jan 2023 08:58:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Y8EMZ0GI5rtor9xr@pendragon.ideasonboard.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 1/6] arm64: dts: meson-gxl: jethub-j80: Fix WiFi MAC
+ address node
+Content-Language: en-US
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-amlogic@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, jbrunet@baylibre.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, Vyacheslav Bocharov <adeep@lexina.in>
+References: <20230111211350.1461860-1-martin.blumenstingl@googlemail.com>
+ <20230111211350.1461860-2-martin.blumenstingl@googlemail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20230111211350.1461860-2-martin.blumenstingl@googlemail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 13, 2023 at 09:46:49AM +0200, Laurent Pinchart wrote:
-> Hi Christoph,
+On 11/01/2023 22:13, Martin Blumenstingl wrote:
+> Unit addresses should be written using lower-case hex characters. Use
+> wifi_mac@c to fix a yaml schema validation error once the eFuse
+> dt-bindings have been converted to a yaml schema:
+>    efuse: Unevaluated properties are not allowed ('wifi_mac@C' was
+>    unexpected)
 > 
-> Thank you for the patch.
+> Also node names should use hyphens instead of underscores as the latter
+> can also cause warnings.
 > 
-> On Fri, Jan 13, 2023 at 07:23:18AM +0100, Christoph Hellwig wrote:
-> > This driver depends on ARM && ARCH_SHMOBILE, but ARCH_SHMOBILE can only be
-> > set for each/sh, making the driver dead code except for the COMPILE_TEST
-> > case.
-> > 
-> > Signed-off-by: Christoph Hellwig <hch@lst.de>
+> Fixes: abfaae24ecf3 ("arm64: dts: meson-gxl: add support for JetHub H1")
+> Acked-by: Vyacheslav Bocharov <adeep@lexina.in>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+> changes from v1 -> v2:
+> - Added Vyacheslav's Acked-by (originally given as "Vyachesav", but my
+>    understanding is that this was a typo
+> - Also replace the underscore in the node name with a hyphen
 > 
-> No objection from me.
+>   .../boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dts     | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dts
+> index 6831137c5c10..270483e007bc 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dts
+> @@ -90,7 +90,7 @@ bt_mac: bt_mac@6 {
+>   		reg = <0x6 0x6>;
+>   	};
+>   
+> -	wifi_mac: wifi_mac@C {
+> +	wifi_mac: wifi-mac@c {
+>   		reg = <0xc 0x6>;
+>   	};
+>   };
 
-To expand a little bit on this, ARCH_SHMOBILE used to be set for the
-ARM-based shmobile SoCs too, until
-
-commit 08e735233ea29b17bfec8e4cb302e799d9f920b8
-Author: Geert Uytterhoeven <geert+renesas@glider.be>
-Date:   Tue Aug 28 17:10:10 2018 +0200
-
-    ARM: shmobile: Remove the ARCH_SHMOBILE Kconfig symbol
-
-    All drivers for Renesas ARM SoCs have gained proper ARCH_RENESAS
-    platform dependencies.  Hence finish the conversion from ARCH_SHMOBILE
-    to ARCH_RENESAS for Renesas 32-bit ARM SoCs, as started by commit
-    9b5ba0df4ea4f940 ("ARM: shmobile: Introduce ARCH_RENESAS").
-
-    Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-    Acked-by: Arnd Bergmann <arnd@arndb.de>
-    Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-
-merged in v4.20. The DRM shmobile driver's Kconfig entry wasn't updated,
-making it dead code indeed.
-
-I haven't tested this driver in ages, hence my lack of objection, but
-someone may want to keep it for the pre-R-Car ARM SoCs.
-
-Also, I just noticed that you forgot to update the MAINTAINERS file in
-this patch to drop the drivers/gpu/drm/shmobile/ entry.
-
-> > ---
-> >  drivers/gpu/drm/Kconfig                       |   2 -
-> >  drivers/gpu/drm/Makefile                      |   1 -
-> >  drivers/gpu/drm/shmobile/Kconfig              |  12 -
-> >  drivers/gpu/drm/shmobile/Makefile             |   8 -
-> >  .../gpu/drm/shmobile/shmob_drm_backlight.c    |  82 ---
-> >  .../gpu/drm/shmobile/shmob_drm_backlight.h    |  19 -
-> >  drivers/gpu/drm/shmobile/shmob_drm_crtc.c     | 683 ------------------
-> >  drivers/gpu/drm/shmobile/shmob_drm_crtc.h     |  55 --
-> >  drivers/gpu/drm/shmobile/shmob_drm_drv.c      | 303 --------
-> >  drivers/gpu/drm/shmobile/shmob_drm_drv.h      |  42 --
-> >  drivers/gpu/drm/shmobile/shmob_drm_kms.c      | 150 ----
-> >  drivers/gpu/drm/shmobile/shmob_drm_kms.h      |  29 -
-> >  drivers/gpu/drm/shmobile/shmob_drm_plane.c    | 261 -------
-> >  drivers/gpu/drm/shmobile/shmob_drm_plane.h    |  19 -
-> >  drivers/gpu/drm/shmobile/shmob_drm_regs.h     | 310 --------
-> >  15 files changed, 1976 deletions(-)
-> >  delete mode 100644 drivers/gpu/drm/shmobile/Kconfig
-> >  delete mode 100644 drivers/gpu/drm/shmobile/Makefile
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_backlight.c
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_backlight.h
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_crtc.c
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_crtc.h
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_drv.c
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_drv.h
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_kms.c
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_kms.h
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_plane.c
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_plane.h
-> >  delete mode 100644 drivers/gpu/drm/shmobile/shmob_drm_regs.h
-
--- 
-Regards,
-
-Laurent Pinchart
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
