@@ -2,92 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C96FB669934
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 14:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07AF8669956
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 15:03:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241299AbjAMN5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 08:57:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56780 "EHLO
+        id S241647AbjAMODW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 09:03:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241295AbjAMN4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 08:56:48 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1AE809BF;
-        Fri, 13 Jan 2023 05:53:31 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30DBbaJ3012849;
-        Fri, 13 Jan 2023 13:52:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=SCdwrlofA1mXPeZBUwBOeam+HT4cs8ZgSh/+SESt4tk=;
- b=IMdWAwVg2bP5W8PIwDURNuFNLdYbIyTkQ6wYNEAXas2bDM1sliJPM38+LefI7i/upIb8
- vYVJoBhKdDorGim7nMNfk7T6YCATcRzrYhFDusi8b869cbMyP1iYKc4E0da1gKC7PEtI
- uSPP4qSbVShiG+GDXDeLvR6qU3lyKdXp/8pZb9pZyj7BX12ZMUkPx/4zzgDCenbfGIUz
- kxk16T/MObalwUZa5bB+aRwqBIN6dInhTh3mSed9hFNYgwexHJuZ8+S4fN4nf4jheVSv
- bsXA+5CSpp3dcd3zWtUPvanG7OjujBBQRnVL6w6dmw4IcRx0D2RFhiFJohso1+fBOCdw Kw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n2hum2yex-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 13 Jan 2023 13:52:52 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30DDqpUN030629
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 13 Jan 2023 13:52:51 GMT
-Received: from [10.50.57.3] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 13 Jan
- 2023 05:52:42 -0800
-Message-ID: <de6b509d-fdb7-c9b1-7d4d-551a952f992d@quicinc.com>
-Date:   Fri, 13 Jan 2023 19:22:39 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 6/7] arm64: dts: Add ipq9574 SoC and AL02 board support
-Content-Language: en-US
-To:     Marc Zyngier <maz@kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
-        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
-        <nfraprado@collabora.com>, <broonie@kernel.org>,
-        <tdas@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
- <20230110121316.24892-7-quic_devipriy@quicinc.com>
- <5da7ead743415dfb6d571a6b72a81b08@kernel.org>
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <5da7ead743415dfb6d571a6b72a81b08@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        with ESMTP id S241495AbjAMOCT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 09:02:19 -0500
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A2B66E0FB;
+        Fri, 13 Jan 2023 06:00:00 -0800 (PST)
+Received: by mail-oo1-f48.google.com with SMTP id 187-20020a4a09c4000000b004d8f3cb09f5so5583078ooa.6;
+        Fri, 13 Jan 2023 06:00:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=uZVsiiDFInMIYEyzsy3Bu1x3TAY2YUibFW063HMGFlk=;
+        b=ApbjVo3GetKKCxgzBiAE6f0GeYC6ndXbZJtSRWvfqarusgprhD24Sqd4HmSv9RAix5
+         BWObjfGSY9GofsmFi+9tBcUzf105GEFlUtiMlTAnzvoeB1lg8kIgk5iQaYvvYkfO4U5T
+         9KITYE3LNDYXOORRGbW3KANM8pmuNK9+u6qAQBNR3MDoeg5TU0Gwjym5N8d9gXNuL16Q
+         9svBvpYtBXnfulOW/cLlsfAfnq44PiFhcBX+boRi77kXYwFbP5tg3kUS62gWzjarwBTp
+         sf0W5eA3BGW2Kp0KNLKGPmnNW+fFvCExqAy28iA956dyk5gFGTd7z/UmhGerI3x/fRCp
+         r6Mg==
+X-Gm-Message-State: AFqh2kqL0VkiqG0C9CwSHp65f+8Z3ZTdOLU181qMc74X5kJJF/0C/O7s
+        lipS79NarOQVGEbHlgAa7FmaSUhwFw==
+X-Google-Smtp-Source: AMrXdXtIXR+6N8+6lDovnIqPSzO+JJfIUn0YeR827eClQoLJi48Dd+XNQmJsTqIEyeCPVlyghAGt+Q==
+X-Received: by 2002:a4a:4fc1:0:b0:4af:1fd2:9175 with SMTP id c184-20020a4a4fc1000000b004af1fd29175mr5619984oob.2.1673618399173;
+        Fri, 13 Jan 2023 05:59:59 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x6-20020a4aaa06000000b004f11e1ce173sm9840862oom.5.2023.01.13.05.59.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jan 2023 05:59:58 -0800 (PST)
+Received: (nullmailer pid 1789674 invoked by uid 1000);
+        Fri, 13 Jan 2023 13:59:58 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: h-zzEUYFLrV7xRUZ7VEox8f_EO1xoVW8
-X-Proofpoint-ORIG-GUID: h-zzEUYFLrV7xRUZ7VEox8f_EO1xoVW8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-13_06,2023-01-13_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
- bulkscore=0 suspectscore=0 mlxlogscore=932 spamscore=0 impostorscore=0
- mlxscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301130091
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_SBL_CSS,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Tanmay Shah <tanmay.shah@amd.com>
+Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230113073045.4008853-1-tanmay.shah@amd.com>
+References: <20230113073045.4008853-1-tanmay.shah@amd.com>
+Message-Id: <167361772796.1774342.1206394709563551124.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: sram: Tightly Coupled Memory (TCM) bindings
+Date:   Fri, 13 Jan 2023 07:59:58 -0600
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -95,68 +64,65 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Thu, 12 Jan 2023 23:30:46 -0800, Tanmay Shah wrote:
+> This patch introduces bindings for TCM memory address space on AMD-xilinx
+> platforms. As of now TCM addresses are hardcoded in xilinx remoteproc
+> driver. This bindings will help in defining TCM in device-tree and
+> make it's access platform agnostic and data-driven from the driver.
+> 
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> ---
+>  .../devicetree/bindings/sram/xlnx,tcm.yaml    | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
+> 
 
-On 1/13/2023 7:19 PM, Marc Zyngier wrote:
-> On 2023-01-10 12:13, devi priya wrote:
->> From: POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
->>
->> Add initial device tree support for Qualcomm IPQ9574 SoC
->> and AL02 board
->>
->> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->> Co-developed-by: devi priya <quic_devipriy@quicinc.com>
->> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
->> Signed-off-by: POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/Makefile            |   1 +
->>  arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts |  69 ++++
->>  arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 318 +++++++++++++++++++
->>  3 files changed, 388 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile
->> b/arch/arm64/boot/dts/qcom/Makefile
->> index 3e79496292e7..872c62028a0b 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_QCOM)    += ipq6018-cp01-c1.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)    += ipq8074-hk01.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)    += ipq8074-hk10-c1.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)    += ipq8074-hk10-c2.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)    += ipq9574-al02-c7.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)    += msm8916-alcatel-idol347.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)    += msm8916-asus-z00l.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)    += msm8916-huawei-g7.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> new file mode 100644
->> index 000000000000..ae3c32f3e16a
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
-> 
-> [...]
-> 
->> +    timer {
->> +        compatible = "arm,armv8-timer";
->> +        interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | 
->> IRQ_TYPE_LEVEL_LOW)>,
->> +                 <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | 
->> IRQ_TYPE_LEVEL_LOW)>,
->> +                 <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | 
->> IRQ_TYPE_LEVEL_LOW)>,
->> +                 <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | 
->> IRQ_TYPE_LEVEL_LOW)>;
-> 
-> Interesting choice for the PPIs...
-> 
->> +        clock-frequency = <24000000>;
-> 
-> Please drop this and fix the firmware. No system built within
-> past 10 years should need it.
-Sure, will drop!
-> 
->          M.
-Best Regards,
-Devi Priya
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:28.21-70: Warning (reg_format): /example-0/amba/sram@ffe00000/tcm-lockstep@ffe00000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:43.21-70: Warning (reg_format): /example-0/amba/sram@ffe00000/tcm-core@0:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:56.21-70: Warning (reg_format): /example-0/amba/sram@ffe00000/tcm-core@1:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:30.21-85: Warning (ranges_format): /example-0/amba/sram@ffe00000/tcm-lockstep@ffe00000:ranges: "ranges" property has invalid length (24 bytes) (parent #address-cells == 2, child #address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:45.21-85: Warning (ranges_format): /example-0/amba/sram@ffe00000/tcm-core@0:ranges: "ranges" property has invalid length (24 bytes) (parent #address-cells == 2, child #address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:58.21-85: Warning (ranges_format): /example-0/amba/sram@ffe00000/tcm-core@1:ranges: "ranges" property has invalid length (24 bytes) (parent #address-cells == 2, child #address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:21.27-62.15: Warning (unit_address_vs_reg): /example-0/amba/sram@ffe00000: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:22.39-35.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-lockstep@ffe00000: Relying on default #address-cells value
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:22.39-35.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-lockstep@ffe00000: Relying on default #size-cells value
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:37.28-48.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-core@0: Relying on default #address-cells value
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:37.28-48.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-core@0: Relying on default #size-cells value
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:50.28-61.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-core@1: Relying on default #address-cells value
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:50.28-61.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-core@1: Relying on default #size-cells value
+Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: sram@ffe00000: tcm-lockstep@ffe00000:reg: [[4292870144, 131072], [4293001216, 131072]] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: sram@ffe00000: tcm-core@0:reg: [[4292870144, 65536], [4293001216, 65536]] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: sram@ffe00000: tcm-core@1:reg: [[4293459968, 65536], [4293591040, 65536]] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230113073045.4008853-1-tanmay.shah@amd.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
