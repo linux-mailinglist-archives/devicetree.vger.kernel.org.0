@@ -2,75 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E380A669214
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:01:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB3BD66921B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:02:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233650AbjAMJB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 04:01:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33098 "EHLO
+        id S229887AbjAMJCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 04:02:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239619AbjAMJBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:01:16 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACED972D13
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:01:14 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id u9so50820449ejo.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:01:14 -0800 (PST)
+        with ESMTP id S231890AbjAMJCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:02:34 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B52140AE
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:02:32 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id az20so31696803ejc.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:02:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=14vWSUq8m0YB7K6+daykZcIVaA+luIuXLh3y27wDsWg=;
-        b=bR2S7FuChvapbV2SSHw5GKXtn/l3a/gzcDyOBMAB4i/vnG0xHLw9sukVToJB4Lb+s5
-         oGwlaUBgZl5433qp2rS02Fb8ddVxcxN5PLsDUG2LPUqw/L0cPbOVkGT1I9q74Jl+TzZ3
-         p6Bhr4IGA+1NCUx52jxdBrcvPAH45TNeqcsH8620I7fF919Gw+Sah8QOHYL3hl4pg/9M
-         UzoGRx70jgRYyhUg07tmt4gcmWmUcxXGGP+VqgO9oSYkflBV+tmxT/DUvJBZ/yyepUyH
-         w7c/TETrHJigi+N5bIv3nPr1FocbznUgCUqUG4SZlSzPJ7O3VvC0ZNVW1IOWfT4uOdxh
-         pG3A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PH7OlCwVBqDHHfs+JSk/+04xmU8OFLEPIXeMIr7O+K4=;
+        b=R6PTJjwBiwB9xYnySQbQq+6zMBNbkNQmJG1WPz1JIBywRDz8uFDoGZbAaBD98WpPrQ
+         lTDtPEF4Kplo+VoCP7hPulTqFXD0pQSb/KBxuPoBNE4UppOWs02N0ZsSG5pnrY5Cdb9x
+         V2iI62SRZhXDyyjqjFHQSULfG2qGDzCAw8HVBuEk14IXG4uX6LGKcPmEg3FRWbv08x3X
+         J7F8mymJ1Jm3x8ePzCU42mfyJ5ac4EIS1O7F7K67VE24DRD19Ua+xotOSJ3qLP+T/pGd
+         ErLpTgmZt5ChnLc7x3rhRtdWZ8TBQ1VodfVPfDyg13wtuIhbizLsIuwb7uwxc+LK32H0
+         Sdog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=14vWSUq8m0YB7K6+daykZcIVaA+luIuXLh3y27wDsWg=;
-        b=wZbVYWdOmNFxfFdCgUJWGA8eHOUrAAMcSkqBvhY6bb9La5QOC/uuvEb6UHrAVyAN2t
-         mYO8MUoN9rboKgQ9x6Aju67oosRfWB5ri18diOdg+hEHuc3j9WLH/P1h+PDYuSjip6ay
-         998w6juwyS8Ww2YsaAcbH9HSJuBCqBi7AtuMOZf2jpyeFp6YXtGrVi4qciOfnLcYNDL4
-         H6bFMTKtKkgWnhb983wHPuRz2Ay8VIe80BzGM9jWDq5hLuDKIrMbWTKP+tKVO9DNbguY
-         T3fuURDyag7r6UdvuJ0ie9AW/2NDi3olp6g3Ra6DZiflldq4tErywrLert3L9EYcj2WF
-         0pew==
-X-Gm-Message-State: AFqh2koWgnf5oq756Kp7Cot8Oe64fJXjU+7jw2GaIIlI7zHk+OHA8jFe
-        Hq8I5axXBqrzGR407a6XZ8bPtw==
-X-Google-Smtp-Source: AMrXdXuuNz3tvAd/ti33PZCvEok0i2r4nLgU2YcUyg8cns1TjEUS1Udl3Y8gFbByBGqo6fV5bBj07g==
-X-Received: by 2002:a17:907:d48a:b0:7c0:971e:f6c5 with SMTP id vj10-20020a170907d48a00b007c0971ef6c5mr72138862ejc.14.1673600473231;
-        Fri, 13 Jan 2023 01:01:13 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l10-20020a1709060cca00b0082ddfb47d06sm8393331ejh.148.2023.01.13.01.01.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 01:01:12 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH] dt-bindings: thermal: qcom-spmi-adc-tm5: add qcom,adc-tm7
-Date:   Fri, 13 Jan 2023 10:01:07 +0100
-Message-Id: <20230113090107.18498-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PH7OlCwVBqDHHfs+JSk/+04xmU8OFLEPIXeMIr7O+K4=;
+        b=M8T277waWIL4Nj1AdO5CMp3Lyydcw5vGunLUo978L+UyOO+NssSwQcikZTPUvt1AXE
+         YW4J2IMEVwKpdMdP9UC2qrjXUkUcCxt0EDi3v5iaQCYiANTwkA11Npda0gZpP0Ks9eGx
+         IZpMN79Goie7KozQzLO2oT+ziyZV7p1dZkmpco95BQEyoSgewPcDb78nSwhicIgz3B6B
+         tmEpZzR8m66hG/SEUDseHbbQvndqMGOyHKzZW7vryQv/6/0rqrs5oE6AlsMrTlj6P1lY
+         FQ4t0LF2aAMtuRvQRcmxGo/GdT5QOMCf0KwwNvlK8LBVnyuvM1qJS6GO18ukYOCkrHPC
+         3/jg==
+X-Gm-Message-State: AFqh2kr53LlrQtWqb3kUOQk5P8G5+by/qj9L1jUn0phOHMm7PzXIgMHv
+        wuUR/28nn91dczCnVzYiFQEFAA==
+X-Google-Smtp-Source: AMrXdXsyW969IDKKtuXbksmxNsiYIqySHVhsQ6MPJueutAvxOAcEwTbsLVVG0rhORP4+jJ4rKBACsA==
+X-Received: by 2002:a17:906:7046:b0:7ae:8194:7e06 with SMTP id r6-20020a170906704600b007ae81947e06mr71277358ejj.56.1673600550596;
+        Fri, 13 Jan 2023 01:02:30 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id lj1-20020a170906f9c100b0078d22b0bcf2sm8240254ejb.168.2023.01.13.01.02.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jan 2023 01:02:30 -0800 (PST)
+Message-ID: <7831a607-db55-274c-8fba-d01d5bac3a7a@linaro.org>
+Date:   Fri, 13 Jan 2023 10:02:27 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2] dt-bindings: PCI: qcom,pcie-ep: correct
+ qcom,perst-regs
+Content-Language: en-US
+To:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-pci@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh@kernel.org>
+References: <20221109113202.74406-1-krzysztof.kozlowski@linaro.org>
+ <167240770788.754221.16859969124148517946.b4-ty@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <167240770788.754221.16859969124148517946.b4-ty@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,37 +86,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The qcom,adc-tm7 compatible is already used in PMK8350 so add it to the
-Qualcomm PMIC Thermal Monitoring ADC.  Based on downstream sources, the
-new compatible for TM7 differs from older TM5 by allowing configuring
-per sensor decimation, time measurement and number of sample averaging -
-unlike one configuration per entire device.  This was not reflected in
-the bindings, therefore comment the new compatible as incomplete as it
-might change and its ABI is no stable.
+On 30/12/2022 14:42, Lorenzo Pieralisi wrote:
+> On Wed, 9 Nov 2022 12:32:02 +0100, Krzysztof Kozlowski wrote:
+>> qcom,perst-regs is an phandle array of one item with a phandle and its
+>> arguments.
+>>
+>>
+> 
+> Applied to pci/dt, thanks!
+> 
+> [1/1] dt-bindings: PCI: qcom,pcie-ep: correct qcom,perst-regs
+>       https://git.kernel.org/lpieralisi/pci/c/68909a813609
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Rob Herring <robh@kernel.org>
----
+It's still not in linux-next. Is you tree correctly included in the next?
 
-Resending because it is waiting for half a year.
-
-
-
- Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
-index d20569b9b763..52ec18cf1eda 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
-@@ -13,6 +13,7 @@ properties:
-     enum:
-       - qcom,spmi-adc-tm5
-       - qcom,spmi-adc-tm5-gen2
-+      - qcom,adc-tm7 # Incomplete / subject to change
- 
-   reg:
-     maxItems: 1
--- 
-2.34.1
+Best regards,
+Krzysztof
 
