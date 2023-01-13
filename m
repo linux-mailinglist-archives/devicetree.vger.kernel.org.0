@@ -2,370 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7CF36692F3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:29:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F05DA669341
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:49:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239906AbjAMJ3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 04:29:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54698 "EHLO
+        id S231342AbjAMJtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 04:49:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229887AbjAMJ15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:27:57 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D4892DDF;
-        Fri, 13 Jan 2023 01:23:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673601837; x=1705137837;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/Jt/SJgZBfDi5YiCSTowtw0y3MUjbXVipBqspyh2wUk=;
-  b=E7jb1yL7PN5gf7K6q7c81qjbvm/9U6kLr3whS9bEacM3f8pwnZvBpO5h
-   amuP+0tTMiAcc06SlKd7YqVeSeUD2NX1V6a8mbk5wkCMVMbORtra+PxVY
-   UNF5HsWezyKCmlpSefk/AFI59JTfW2iVhQ1VupbK/VyA/i/CSP4D/YDUu
-   iGKE/wq1ZNohATZ9Mja51aUBsW4Ir8NzjCvw3Q0WsqGIqeVoY9auYuGeN
-   wKHTamg/PmakaGUrHH0zPFTxmHR7W8Ofy8HqkZ+nllUilaMK9is4sjnws
-   gfczJd82TvFdgupCJsN2hajhORSFm2etaPsQ++0Ak4hj6s2x4+GcZ6BAI
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="311807791"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; 
-   d="scan'208";a="311807791"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2023 01:23:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="800544184"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; 
-   d="scan'208";a="800544184"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 13 Jan 2023 01:23:45 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 13 Jan 2023 11:23:44 +0200
-Date:   Fri, 13 Jan 2023 11:23:44 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S240922AbjAMJr5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:47:57 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B968143E42;
+        Fri, 13 Jan 2023 01:39:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 348A460B1B;
+        Fri, 13 Jan 2023 09:39:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88583C433D2;
+        Fri, 13 Jan 2023 09:39:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673602762;
+        bh=VfAdCPcysVT/3jW83ODpVi1gcLL1NcM8uhMQlELECPE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=CwHnAZ/hDQ3CyGL5y9IFOTkJ0YRLPA7CyI3xuAS6yP2KQ+YXy5xW95h/cPvm5nVJP
+         Kcn7l8Ev0CmXTgPaHPaxErwv2V49MIeTaMpPU05imaC4gGKt89C+OgK9lsclxrN6iq
+         KBg5KddP1c479Svp6CFSQHZfnuSeF03zJbl6Q9QbFJhwvZbQkDpXZzC5R1ROvflZ5/
+         8Ko85a8OsG6FYorPRH6uWqa38GQdznlnWTRJgbY45XC5ZIR3mVfOZLMVfsZsfj3HxO
+         hNXPmSwQ7ADu47qtCmImEffoCSmE9ZhQHs4gv9lZJfvbp0kynYJLI0Du+Ize8iinaJ
+         H6KZOlUIMEb5g==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pGGWs-001SiU-9t;
+        Fri, 13 Jan 2023 09:39:18 +0000
+Date:   Fri, 13 Jan 2023 09:39:17 +0000
+Message-ID: <868ri6ojsq.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
-        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
-        Xin Ji <xji@analogixsemi.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
-        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Imre Deak <imre.deak@intel.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Kees Cook <keescook@chromium.org>,
-        Ville =?iso-8859-1?Q?Syrj=E4l=E4?= 
-        <ville.syrjala@linux.intel.com>,
-        shaomin Deng <dengshaomin@cdjrlc.com>
-Subject: Re: [PATCH v10 3/9] drm/display: Add Type-C switch helpers
-Message-ID: <Y8EjIKEHqcj3htqC@kuha.fi.intel.com>
-References: <20230112042104.4107253-1-treapking@chromium.org>
- <20230112042104.4107253-4-treapking@chromium.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230112042104.4107253-4-treapking@chromium.org>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] irqchip/riscv-intc: Add support for RISC-V AIA
+In-Reply-To: <20230103141409.772298-4-apatel@ventanamicro.com>
+References: <20230103141409.772298-1-apatel@ventanamicro.com>
+        <20230103141409.772298-4-apatel@ventanamicro.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: apatel@ventanamicro.com, palmer@dabbelt.com, paul.walmsley@sifive.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, atishp@atishpatra.org, Alistair.Francis@wdc.com, anup@brainfault.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Jan 12, 2023 at 12:20:58PM +0800, Pin-yen Lin wrote:
-> Add helpers to register and unregister Type-C "switches" for bridges
-> capable of switching their output between two downstream devices.
+On Tue, 03 Jan 2023 14:14:03 +0000,
+Anup Patel <apatel@ventanamicro.com> wrote:
 > 
-> The helper registers USB Type-C mode switches when the "mode-switch"
-> and the "data-lanes" properties are available in Device Tree.
-
-Let's not make this kind of helpers DT only, please. See below ...
-
-> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> The RISC-V advanced interrupt architecture (AIA) extends the per-HART
+> local interrupts in following ways:
+> 1. Minimum 64 local interrupts for both RV32 and RV64
+> 2. Ability to process multiple pending local interrupts in same
+>    interrupt handler
+> 3. Priority configuration for each local interrupts
+> 4. Special CSRs to configure/access the per-HART MSI controller
 > 
+> This patch adds support for RISC-V AIA in the RISC-V intc driver.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
+>  drivers/irqchip/irq-riscv-intc.c | 37 ++++++++++++++++++++++++++------
+>  1 file changed, 31 insertions(+), 6 deletions(-)
 > 
-> Changes in v10:
-> - Collected Reviewed-by and Tested-by tags
-> - Replaced "void *" with "typec_mux_set_fn_t" for mux_set callbacks
-> - Print out the node name when errors on parsing DT
-> - Use dev_dbg instead of dev_warn when no Type-C switch nodes available
-> - Made the return path of drm_dp_register_mode_switch clearer
-> 
-> Changes in v8:
-> - Fixed the build issue when CONFIG_TYPEC=m
-> - Fixed some style issues
-> 
-> Changes in v7:
-> - Extracted the common codes to a helper function
-> - New in v7
-> 
->  drivers/gpu/drm/display/drm_dp_helper.c | 134 ++++++++++++++++++++++++
->  include/drm/display/drm_dp_helper.h     |  17 +++
->  2 files changed, 151 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index 16565a0a5da6..a2ec40a621cb 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -30,11 +30,13 @@
->  #include <linux/sched.h>
->  #include <linux/seq_file.h>
->  #include <linux/string_helpers.h>
-> +#include <linux/usb/typec_mux.h>
->  #include <linux/dynamic_debug.h>
+> diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
+> index f229e3e66387..880d1639aadc 100644
+> --- a/drivers/irqchip/irq-riscv-intc.c
+> +++ b/drivers/irqchip/irq-riscv-intc.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/smp.h>
+> +#include <asm/hwcap.h>
 >  
->  #include <drm/display/drm_dp_helper.h>
->  #include <drm/display/drm_dp_mst_helper.h>
->  #include <drm/drm_edid.h>
-> +#include <drm/drm_of.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/drm_panel.h>
-> @@ -3891,3 +3893,135 @@ int drm_panel_dp_aux_backlight(struct drm_panel *panel, struct drm_dp_aux *aux)
->  EXPORT_SYMBOL(drm_panel_dp_aux_backlight);
+>  static struct irq_domain *intc_domain;
 >  
->  #endif
-> +
-> +#if IS_REACHABLE(CONFIG_TYPEC)
+> @@ -29,6 +30,15 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+>  	generic_handle_domain_irq(intc_domain, cause);
+>  }
+>  
+> +static asmlinkage void riscv_intc_aia_irq(struct pt_regs *regs)
 
-I think Jani already pointed out that that is wrong. Just move these
-into a separate file and enable them silently in the Makefile when
-TYPEC is enabled - so no separate Kconfig option.
+What does "static asmlinkage" in a C file even mean? And clearly, this
+isn't the only instance in this file...
 
-> +static int drm_dp_register_mode_switch(struct device *dev, struct device_node *node,
-
-static int drm_dp_register_mode_switch(struct device *dev, struct fwnode_handle *fwnode,
-
-> +				       struct drm_dp_typec_switch_desc *switch_desc,
-> +				       void *data, typec_mux_set_fn_t mux_set)
 > +{
-> +	struct drm_dp_typec_port_data *port_data;
-> +	struct typec_mux_desc mux_desc = {};
-> +	char name[32];
-> +	u32 dp_lanes[2];
-> +	int ret, num_lanes, port_num = -1;
+> +	unsigned long topi;
 > +
-> +	num_lanes = drm_of_get_data_lanes_count(node, 0, 2);
-> +	if (num_lanes <= 0) {
-
-        num_lanes = fwnode_property_read_u32_array(fwnode, "data-lanes", NULL, 0);
-        if (num_lanes <= 0 || num_lanes > 2)
-
-> +		dev_err(dev, "Error on getting data lanes count from %s: %d\n",
-> +			node->name, num_lanes);
-> +		return num_lanes;
-> +	}
-> +
-> +	ret = of_property_read_u32_array(node, "data-lanes", dp_lanes, num_lanes);
-
-        ret = fwnode_property_read_u32_array(fwnode, "data-lanes", dp_lanes, num_lanes);
-
-> +	if (ret) {
-> +		dev_err(dev, "Failed to read the data-lanes variable from %s: %d\n",
-> +			node->name, ret);
-
-			fwnode_get_name(fwnode), ret);
-
-> +		return ret;
-> +	}
-> +
-> +	port_num = dp_lanes[0] / 2;
-> +
-> +	port_data = &switch_desc->typec_ports[port_num];
-> +	port_data->data = data;
-> +	mux_desc.fwnode = &node->fwnode;
-
-        mux_desc.fwnode = fwnode;
-
-> +	mux_desc.drvdata = port_data;
-> +	snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
-
-	snprintf(name, sizeof(name), "%s-%u", fwnode_get_name(fwnode), port_num);
-
-> +	mux_desc.name = name;
-> +	mux_desc.set = mux_set;
-> +
-> +	port_data->typec_mux = typec_mux_register(dev, &mux_desc);
-> +	if (IS_ERR(port_data->typec_mux)) {
-> +		ret = PTR_ERR(port_data->typec_mux);
-> +		dev_err(dev, "Mode switch register for port %d failed: %d\n",
-> +			port_num, ret);
-> +
-> +		return ret;
-> +	}
-> +
-> +	return 0;
+> +	while ((topi = csr_read(CSR_TOPI)))
+> +		generic_handle_domain_irq(intc_domain,
+> +					  topi >> TOPI_IID_SHIFT);
 > +}
 > +
-> +/**
-> + * drm_dp_register_typec_switches() - register Type-C switches
-> + * @dev: Device that registers Type-C switches
-> + * @port: Device node for the switch
-> + * @switch_desc: A Type-C switch descriptor
-> + * @data: Private data for the switches
-> + * @mux_set: Callback function for typec_mux_set
-> + *
-> + * This function registers USB Type-C switches for DP bridges that can switch
-> + * the output signal between their output pins.
-> + *
-> + * Currently only mode switches are implemented, and the function assumes the
-> + * given @port device node has endpoints with "mode-switch" property.
-> + * Register the endpoint as port 0 if the "data-lanes" property falls in 0/1,
-> + * and register it as port 1 if "data-lanes" falls in 2/3.
-> + */
-> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
-
-int drm_dp_register_typec_switches(struct device *dev, struct fwnode_handle *port,
-
-> +				   struct drm_dp_typec_switch_desc *switch_desc,
-> +				   void *data, typec_mux_set_fn_t mux_set)
-> +{
-> +	struct device_node *sw;
-
-        struct fwnode_handle *sw;
-
-> +	int ret;
-> +
-> +	for_each_child_of_node(port, sw) {
-> +		if (of_property_read_bool(sw, "mode-switch"))
-> +			switch_desc->num_typec_switches++;
-> +	}
-
-        fwnode_for_each_child_node(port, sw)
-                if (fwnode_property_present(sw, "mode-switch"))
-			switch_desc->num_typec_switches++;
-
-> +	if (!switch_desc->num_typec_switches) {
-> +		dev_dbg(dev, "No Type-C switches node found\n");
-> +		return 0;
-> +	}
-> +
-> +	switch_desc->typec_ports = devm_kcalloc(
-> +		dev, switch_desc->num_typec_switches,
-> +		sizeof(struct drm_dp_typec_port_data), GFP_KERNEL);
-> +
-> +	if (!switch_desc->typec_ports)
-> +		return -ENOMEM;
-> +
-> +	/* Register switches for each connector. */
-> +	for_each_child_of_node(port, sw) {
-> +		if (!of_property_read_bool(sw, "mode-switch"))
-
-        fwnode_for_each_child_node(port, sw) {
-                if (!fwnode_property_present(sw, "mode-switch"))
-
-> +			continue;
-> +		ret = drm_dp_register_mode_switch(dev, sw, switch_desc, data, mux_set);
-> +		if (ret)
-> +			goto err_unregister_typec_switches;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_unregister_typec_switches:
-> +	of_node_put(sw);
-> +	drm_dp_unregister_typec_switches(switch_desc);
-> +	dev_err(dev, "Failed to register mode switch: %d\n", ret);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL(drm_dp_register_typec_switches);
-> +
-> +/**
-> + * drm_dp_unregister_typec_switches() - unregister Type-C switches
-> + * @switch_desc: A Type-C switch descriptor
-> + */
-> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < switch_desc->num_typec_switches; i++)
-> +		typec_mux_unregister(switch_desc->typec_ports[i].typec_mux);
-> +}
-> +EXPORT_SYMBOL(drm_dp_unregister_typec_switches);
-> +#else
-> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc)
-> +{
-> +}
-> +EXPORT_SYMBOL(drm_dp_register_typec_switches);
-> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
-> +				   struct drm_dp_typec_switch_desc *switch_desc,
-> +				   void *data, typec_mux_set_fn_t mux_set)
-> +{
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_dp_unregister_typec_switches);
-> +#endif
-> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> index ab55453f2d2c..5a3824f13b4e 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -25,6 +25,7 @@
+>  /*
+>   * On RISC-V systems local interrupts are masked or unmasked by writing
+>   * the SIE (Supervisor Interrupt Enable) CSR.  As CSRs can only be written
+> @@ -38,12 +48,18 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
 >  
->  #include <linux/delay.h>
->  #include <linux/i2c.h>
-> +#include <linux/usb/typec_mux.h>
+>  static void riscv_intc_irq_mask(struct irq_data *d)
+>  {
+> -	csr_clear(CSR_IE, BIT(d->hwirq));
+> +	if (d->hwirq < BITS_PER_LONG)
+
+And what if BIT_PER_LONG is 32, as I expect it to be on 32bit, which
+the commit message says is supported?
+
+> +		csr_clear(CSR_IE, BIT(d->hwirq));
+> +	else
+> +		csr_clear(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
+>  }
 >  
->  #include <drm/display/drm_dp.h>
->  #include <drm/drm_connector.h>
-> @@ -763,4 +764,20 @@ bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8 dpcd[DP_RECEIVER_CAP_SIZ
->  					       const u8 port_cap[4], u8 color_spc);
->  int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8 color_spc);
+>  static void riscv_intc_irq_unmask(struct irq_data *d)
+>  {
+> -	csr_set(CSR_IE, BIT(d->hwirq));
+> +	if (d->hwirq < BITS_PER_LONG)
+> +		csr_set(CSR_IE, BIT(d->hwirq));
+> +	else
+> +		csr_set(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
+>  }
 >  
-> +struct drm_dp_typec_port_data {
-> +	struct typec_mux_dev *typec_mux;
-> +	void *data;
-> +	bool dp_connected;
-> +};
-> +
-> +struct drm_dp_typec_switch_desc {
-> +	int num_typec_switches;
-> +	struct drm_dp_typec_port_data *typec_ports;
-> +};
-> +
-> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc);
-> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
-> +				   struct drm_dp_typec_switch_desc *switch_desc,
-> +				   void *data, typec_mux_set_fn_t mux_set);
-> +
->  #endif /* _DRM_DP_HELPER_H_ */
+>  static void riscv_intc_irq_eoi(struct irq_data *d)
+> @@ -115,7 +131,7 @@ static struct fwnode_handle *riscv_intc_hwnode(void)
+>  static int __init riscv_intc_init(struct device_node *node,
+>  				  struct device_node *parent)
+>  {
+> -	int rc;
+> +	int rc, nr_irqs;
+>  	unsigned long hartid;
+>  
+>  	rc = riscv_of_parent_hartid(node, &hartid);
+> @@ -133,14 +149,21 @@ static int __init riscv_intc_init(struct device_node *node,
+>  	if (riscv_hartid_to_cpuid(hartid) != smp_processor_id())
+>  		return 0;
+>  
+> -	intc_domain = irq_domain_add_linear(node, BITS_PER_LONG,
+> +	nr_irqs = BITS_PER_LONG;
+> +	if (riscv_isa_extension_available(NULL, SxAIA) && BITS_PER_LONG == 32)
+> +		nr_irqs = nr_irqs * 2;
 
-The function stubs go here if they are needed.
+Really, please drop this BITS_PER_LONG stuff. Use explicit numbers.
 
-
-thanks,
+	M.
 
 -- 
-heikki
+Without deviation from the norm, progress is not possible.
