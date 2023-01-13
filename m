@@ -2,101 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B792E66893C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 02:42:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77EAA668913
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 02:25:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231400AbjAMBmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 20:42:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41748 "EHLO
+        id S240363AbjAMBZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Jan 2023 20:25:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240043AbjAMBmp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 20:42:45 -0500
-X-Greylist: delayed 1799 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 12 Jan 2023 17:42:42 PST
-Received: from lgeamrelo11.lge.com (lgeamrelo13.lge.com [156.147.23.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D57DA140A4
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 17:42:42 -0800 (PST)
-Received: from unknown (HELO lgeamrelo01.lge.com) (156.147.1.125)
-        by 156.147.23.53 with ESMTP; 13 Jan 2023 10:12:41 +0900
-X-Original-SENDERIP: 156.147.1.125
-X-Original-MAILFROM: chanho.min@lge.com
-Received: from unknown (HELO ?10.178.36.63?) (10.178.36.63)
-        by 156.147.1.125 with ESMTP; 13 Jan 2023 10:12:41 +0900
-X-Original-SENDERIP: 10.178.36.63
-X-Original-MAILFROM: chanho.min@lge.com
-From:   Chanho Min <chanho.min@lge.com>
-Subject: Re: Re: [PATCH v2 10/23] arm64: dts: Update cache properties for lg
-To:     Pierre Gondois <pierre.gondois@arm.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Lee Gunho <gunho.lee@lge.com>
-References: <20221107155825.1644604-1-pierre.gondois@arm.com>
- <20221107155825.1644604-11-pierre.gondois@arm.com>
- <0fc92ab1-144a-47dd-e5c4-a165a82d385d@arm.com>
-Message-ID: <1e36270f-237e-7069-ffe7-3086216b9d6b@lge.com>
-Date:   Fri, 13 Jan 2023 10:12:41 +0900
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S239998AbjAMBZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 20:25:05 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5732A5D6BE
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 17:25:04 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 18so29261915edw.7
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 17:25:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FkSGzKLP31foCEIfqBMrPQ+sr4Ss2mq0m00vv8lVFP8=;
+        b=Uj84m7aLrzQ2vmYs3MiN9Hy6+b8j8fwkMA4nmGCaAzzO2tVviAEJpU47YOkZUearEY
+         U3NUboGAIGBmKOsW9VbuFMVhaPNfdmRS2bhwRiloRxAD+MXxwyjEDgvSOgYzyOTcD+A5
+         e7bWCkCPvx+r81e9Spi4f4DhscTecLVR6+8XA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FkSGzKLP31foCEIfqBMrPQ+sr4Ss2mq0m00vv8lVFP8=;
+        b=Y0Z1dD2TWBF7gZdeMKxgHhZg20m+4yD+hj4Gn47kfsTsCiHIsi+oN2ZCE9LkC6roY8
+         qV3ITbWVF/wMDtZuZe5nLr2doiIKS2p98Hc8+tsRJRGUN5Lf3HXkuETKCbdP9GpNbYsR
+         j7bhwhmBuRDa98nY374MXGO03X5K5tXCK7yaLtHRgO7pkQnd0CoFuWQosaJRu+gE8K7Q
+         +0lCNxBvCa0UwH12SV/rMxTkYEG75t7DbH06LAtJ+PKim2Cq2MwC7KhAVXDf/O3osIXr
+         OkdZ634oRHHV+VGq5RIiDdOkEAWBjHaxDTSXnr4jCrqcf+53+cx8VteacGBmZBx9HVV4
+         M37w==
+X-Gm-Message-State: AFqh2krp43PVI97kEZ8zAJ/JpZDHogvJwg8XH8X/Qz6YVLlxCI5k0hWw
+        taKdNoR9wSj3puOLusSi2c/lfYwMrxDOsK+tR1OYqg==
+X-Google-Smtp-Source: AMrXdXt9YPqmODUWTW0ZOAI7HpYX/Eqsg4YByz9C+W6v+fCAoybeZvOmsBLH3dYxnAshGkwgdlDFznEh4n6rckabBPc=
+X-Received: by 2002:a05:6402:1c99:b0:49b:53a8:4b9d with SMTP id
+ cy25-20020a0564021c9900b0049b53a84b9dmr628021edb.323.1673573102966; Thu, 12
+ Jan 2023 17:25:02 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <0fc92ab1-144a-47dd-e5c4-a165a82d385d@arm.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20221221071734.2887901-1-judyhsiao@chromium.org> <afd7851b-0846-c21f-a769-10fb920c7c80@linaro.org>
+In-Reply-To: <afd7851b-0846-c21f-a769-10fb920c7c80@linaro.org>
+From:   Judy Hsiao <judyhsiao@chromium.org>
+Date:   Fri, 13 Jan 2023 09:24:51 +0800
+Message-ID: <CAJXt+b8eez8KTocoAi0WP8qC3YdA9bfOTPbY8ZGfXNb-MNaT-Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: add display port audio
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-23. 1. 12. 오후 5:34에 Pierre Gondois 이(가) 쓴 글:
-> (subset for cc list)
-> Hello,
-> Just a reminder in case the patch was forgotten,
-> Regards,
-> Pierre
-> 
-> On 11/7/22 16:57, Pierre Gondois wrote:
->> The DeviceTree Specification v0.3 specifies that the cache node
->> 'compatible' and 'cache-level' properties are 'required'. Cf.
->> s3.8 Multi-level and Shared Cache Nodes
->> The 'cache-unified' property should be present if one of the
->> properties for unified cache is present ('cache-size', ...).
->>
->> Update the Device Trees accordingly.
->>
->> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
-
-Acked-by: Chanho Min <chanho.min@lge.com>
->> ---
->>   arch/arm64/boot/dts/lg/lg1312.dtsi | 1 +
->>   arch/arm64/boot/dts/lg/lg1313.dtsi | 1 +
->>   2 files changed, 2 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/lg/lg1312.dtsi 
->> b/arch/arm64/boot/dts/lg/lg1312.dtsi
->> index 78ae73d0cf36..25ed9aeee2dc 100644
->> --- a/arch/arm64/boot/dts/lg/lg1312.dtsi
->> +++ b/arch/arm64/boot/dts/lg/lg1312.dtsi
->> @@ -48,6 +48,7 @@ cpu3: cpu@3 {
->>           };
->>           L2_0: l2-cache0 {
->>               compatible = "cache";
->> +            cache-level = <2>;
->>           };
->>       };
->> diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi 
->> b/arch/arm64/boot/dts/lg/lg1313.dtsi
->> index 2173316573be..db82fd4cc759 100644
->> --- a/arch/arm64/boot/dts/lg/lg1313.dtsi
->> +++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
->> @@ -48,6 +48,7 @@ cpu3: cpu@3 {
->>           };
->>           L2_0: l2-cache0 {Re: Re: [PATCH v2 10/23] arm64: dts: Update cache properties for lg
->>               compatible = "cache";
->> +            cache-leveRe: Re: [PATCH v2 10/23] arm64: dts: Update cache properties for lgl = <2>;
->>           };
->>       };
+> Why do you change link@1 from DP to ALC?
+Because I want make the order to be consistent with the 3 mic version. Thanks!
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
+>
+> Best regards,
+> Krzysztof
+>
