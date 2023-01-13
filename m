@@ -2,61 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07AF8669956
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 15:03:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F54266995F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 15:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241647AbjAMODW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 09:03:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59548 "EHLO
+        id S241136AbjAMOD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 09:03:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241495AbjAMOCT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 09:02:19 -0500
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A2B66E0FB;
-        Fri, 13 Jan 2023 06:00:00 -0800 (PST)
-Received: by mail-oo1-f48.google.com with SMTP id 187-20020a4a09c4000000b004d8f3cb09f5so5583078ooa.6;
-        Fri, 13 Jan 2023 06:00:00 -0800 (PST)
+        with ESMTP id S241254AbjAMOCr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 09:02:47 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 996C610BD
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 06:00:36 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id v25so33210140lfe.12
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 06:00:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BBkjCgH/S4+zja9GzwYgpPsdNEZWlR+52ok1y+g6x/E=;
+        b=oZ/Q9thIkb7M5vKCG2gaS2Zjd3chlHTyxpb4Svy0Yen3DrkgHo7G4si+LrfxrVxsZt
+         qe1r1IDkgCx4LR9MJ3dw4t36fyAvgDnYrTHXnUypoFsRhYEGPhJJrn3+g0bEky/A6Yce
+         bmLtIMJ32+trXS2sOqFbEjpenMzeaGB4x5YhxP3uyNiMuSArpHLojm36qfqEwAXidg1v
+         js722w5yaC3yN46ER1WfMYC3PQ7mOiL7mg4pDDDVN84KcqdZruqjPkwGhlbrvzVzk3FO
+         QlUIWzz/dWei1W23Sc1Cutu64WibED7SWZWyzvyckIXuh49Gv8T4Ik64aBuU9DLkZxWU
+         tQxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uZVsiiDFInMIYEyzsy3Bu1x3TAY2YUibFW063HMGFlk=;
-        b=ApbjVo3GetKKCxgzBiAE6f0GeYC6ndXbZJtSRWvfqarusgprhD24Sqd4HmSv9RAix5
-         BWObjfGSY9GofsmFi+9tBcUzf105GEFlUtiMlTAnzvoeB1lg8kIgk5iQaYvvYkfO4U5T
-         9KITYE3LNDYXOORRGbW3KANM8pmuNK9+u6qAQBNR3MDoeg5TU0Gwjym5N8d9gXNuL16Q
-         9svBvpYtBXnfulOW/cLlsfAfnq44PiFhcBX+boRi77kXYwFbP5tg3kUS62gWzjarwBTp
-         sf0W5eA3BGW2Kp0KNLKGPmnNW+fFvCExqAy28iA956dyk5gFGTd7z/UmhGerI3x/fRCp
-         r6Mg==
-X-Gm-Message-State: AFqh2kqL0VkiqG0C9CwSHp65f+8Z3ZTdOLU181qMc74X5kJJF/0C/O7s
-        lipS79NarOQVGEbHlgAa7FmaSUhwFw==
-X-Google-Smtp-Source: AMrXdXtIXR+6N8+6lDovnIqPSzO+JJfIUn0YeR827eClQoLJi48Dd+XNQmJsTqIEyeCPVlyghAGt+Q==
-X-Received: by 2002:a4a:4fc1:0:b0:4af:1fd2:9175 with SMTP id c184-20020a4a4fc1000000b004af1fd29175mr5619984oob.2.1673618399173;
-        Fri, 13 Jan 2023 05:59:59 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x6-20020a4aaa06000000b004f11e1ce173sm9840862oom.5.2023.01.13.05.59.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 05:59:58 -0800 (PST)
-Received: (nullmailer pid 1789674 invoked by uid 1000);
-        Fri, 13 Jan 2023 13:59:58 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BBkjCgH/S4+zja9GzwYgpPsdNEZWlR+52ok1y+g6x/E=;
+        b=47gmE4v3Nz2lUJAgC8PM22TTmbBzINaRZu9OiySDU0pIGsZPF+/brE/8Zx4wQCCJ2S
+         NyCP95qZE1+jVgG//T1WR4Xt7JQXTn1JQw4IhDExBKlwHEvk9gS/LXkOVGaidylYzxle
+         kMSm/ZmOtV4F/3n/ElFv2ZR89uAMAsQjhp0mwVa3nCBibUEMd0MexEoTOc0TkqrwQQ6z
+         xR//tpO5jEUfR6WYLHnjAmM6apaK0vrdP9weHAEluCEv5OzTTdH4Wm8uNrwkt8mUTsl7
+         eq3l/uBNM5jMfENA19Ai9+7xPetz5d6prmuWsVCCTXLeyV8IgZBLTSl2gHO9csi5bQDo
+         jUZA==
+X-Gm-Message-State: AFqh2kof23qIZPiK+DIAhPfc8npa3QXElkt5avQLBp4m8PmKhZn0aV9q
+        D5rqDXje/s5sdIpSlow834aqvw==
+X-Google-Smtp-Source: AMrXdXuvV49S07ZHejZTWVcmIs/UwlOQ5p3FIP5cG/I1LHaUe2FHtfATf3m3ppAtkCP+BOudCV9e6Q==
+X-Received: by 2002:ac2:491d:0:b0:4ca:faa4:af15 with SMTP id n29-20020ac2491d000000b004cafaa4af15mr20122639lfi.66.1673618434896;
+        Fri, 13 Jan 2023 06:00:34 -0800 (PST)
+Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id q11-20020a056512210b00b004cc9042c9cfsm1897868lfr.158.2023.01.13.06.00.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jan 2023 06:00:33 -0800 (PST)
+Message-ID: <3cb18e7f-27ca-1e3f-94e7-6f767a026b07@linaro.org>
+Date:   Fri, 13 Jan 2023 15:00:31 +0100
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Tanmay Shah <tanmay.shah@amd.com>
-Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230113073045.4008853-1-tanmay.shah@amd.com>
-References: <20230113073045.4008853-1-tanmay.shah@amd.com>
-Message-Id: <167361772796.1774342.1206394709563551124.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: sram: Tightly Coupled Memory (TCM) bindings
-Date:   Fri, 13 Jan 2023 07:59:58 -0600
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 10/13] clk: qcom: cpu-8996: fix ACD initialization
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230111192004.2509750-1-dmitry.baryshkov@linaro.org>
+ <20230111192004.2509750-11-dmitry.baryshkov@linaro.org>
+ <1c8d38e0-2f9d-9e89-5e21-e74ac7851727@linaro.org>
+ <f2140e89-84a4-99a9-b2d1-7b4e0d0313d3@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <f2140e89-84a4-99a9-b2d1-7b4e0d0313d3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,65 +85,79 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 12 Jan 2023 23:30:46 -0800, Tanmay Shah wrote:
-> This patch introduces bindings for TCM memory address space on AMD-xilinx
-> platforms. As of now TCM addresses are hardcoded in xilinx remoteproc
-> driver. This bindings will help in defining TCM in device-tree and
-> make it's access platform agnostic and data-driven from the driver.
+
+On 13.01.2023 11:44, Dmitry Baryshkov wrote:
+> On 12/01/2023 16:35, Konrad Dybcio wrote:
+>>
+>>
+>> On 11.01.2023 20:20, Dmitry Baryshkov wrote:
+>>> The vendor kernel applies different order while programming SSSCTL and
+>>> L2ACDCR registers on power and performance clusters. However it was
+>>> demonstrated that doing this upstream results in the board reset. Make
+>>> both clusters use the same sequence, which fixes the reset.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>> I think we should look for the source of why this doesn't work,
+>> e.g. does downstream program it earlier somewhere? Are we
+>> missing something else that may bite later?
 > 
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> ---
->  .../devicetree/bindings/sram/xlnx,tcm.yaml    | 137 ++++++++++++++++++
->  1 file changed, 137 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
+> I'm not sure what is the reason for downstream doing init in such sequence. Right now I'm sure that doing ACD init with the provided sequence fails the boot in some conditions. There might be the difference in the CPU init order. Or any other ordering issue. Or the lack of the CPR. Or Kryo LDO programming. There is a huge difference between vendor's 3.18 and the current 6.x.
 > 
+> I propose to take the patch in, as it fixes the boot and runtime issue and revisit it later if any of the problems occur. I don't fancy such approach usually, but without the documentation I don't see a way to find any particular reason for programming pwr and perf using the different order of operations.
+Ack, let's do that.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-yamllint warnings/errors:
+One more thing, I noticed that downstream calls ACD init on
+`CPU_STARTING` event instead of `PRE_RATE_CHANGE`, see [1].
+Are we "over-programming" ACD too much, or is it intended/fine?
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:28.21-70: Warning (reg_format): /example-0/amba/sram@ffe00000/tcm-lockstep@ffe00000:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:43.21-70: Warning (reg_format): /example-0/amba/sram@ffe00000/tcm-core@0:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:56.21-70: Warning (reg_format): /example-0/amba/sram@ffe00000/tcm-core@1:reg: property has invalid length (16 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:30.21-85: Warning (ranges_format): /example-0/amba/sram@ffe00000/tcm-lockstep@ffe00000:ranges: "ranges" property has invalid length (24 bytes) (parent #address-cells == 2, child #address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:45.21-85: Warning (ranges_format): /example-0/amba/sram@ffe00000/tcm-core@0:ranges: "ranges" property has invalid length (24 bytes) (parent #address-cells == 2, child #address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:58.21-85: Warning (ranges_format): /example-0/amba/sram@ffe00000/tcm-core@1:ranges: "ranges" property has invalid length (24 bytes) (parent #address-cells == 2, child #address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:21.27-62.15: Warning (unit_address_vs_reg): /example-0/amba/sram@ffe00000: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:22.39-35.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-lockstep@ffe00000: Relying on default #address-cells value
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:22.39-35.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-lockstep@ffe00000: Relying on default #size-cells value
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:37.28-48.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-core@0: Relying on default #address-cells value
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:37.28-48.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-core@0: Relying on default #size-cells value
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:50.28-61.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-core@1: Relying on default #address-cells value
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dts:50.28-61.19: Warning (avoid_default_addr_size): /example-0/amba/sram@ffe00000/tcm-core@1: Relying on default #size-cells value
-Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: sram@ffe00000: tcm-lockstep@ffe00000:reg: [[4292870144, 131072], [4293001216, 131072]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: sram@ffe00000: tcm-core@0:reg: [[4292870144, 65536], [4293001216, 65536]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sram/xlnx,tcm.example.dtb: sram@ffe00000: tcm-core@1:reg: [[4293459968, 65536], [4293591040, 65536]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd.yaml
+Konrad
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230113073045.4008853-1-tanmay.shah@amd.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+[1] https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.7.5.r1-05300-8x96.0/drivers/clk/msm/clock-cpu-8996.c#L1522-1540
+> 
+>>
+>> Konrad
+>>>   drivers/clk/qcom/clk-cpu-8996.c | 20 ++++++++------------
+>>>   1 file changed, 8 insertions(+), 12 deletions(-)
+>>>
+>>> diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
+>>> index 47c58bb5f21a..1c00eb629b61 100644
+>>> --- a/drivers/clk/qcom/clk-cpu-8996.c
+>>> +++ b/drivers/clk/qcom/clk-cpu-8996.c
+>>> @@ -475,9 +475,9 @@ static int qcom_cpu_clk_msm8996_register_clks(struct device *dev,
+>>>       return ret;
+>>>   }
+>>>   -#define CPU_AFINITY_MASK 0xFFF
+>>> -#define PWRCL_CPU_REG_MASK 0x3
+>>> -#define PERFCL_CPU_REG_MASK 0x103
+>>> +#define CPU_CLUSTER_AFFINITY_MASK 0xf00
+>>> +#define PWRCL_AFFINITY_MASK 0x000
+>>> +#define PERFCL_AFFINITY_MASK 0x100
+>>>     #define L2ACDCR_REG 0x580ULL
+>>>   #define L2ACDTD_REG 0x581ULL
+>>> @@ -498,21 +498,17 @@ static void qcom_cpu_clk_msm8996_acd_init(struct regmap *regmap)
+>>>       if (val == 0x00006a11)
+>>>           goto out;
+>>>   -    hwid = read_cpuid_mpidr() & CPU_AFINITY_MASK;
+>>> -
+>>>       kryo_l2_set_indirect_reg(L2ACDTD_REG, 0x00006a11);
+>>>       kryo_l2_set_indirect_reg(L2ACDDVMRC_REG, 0x000e0f0f);
+>>>       kryo_l2_set_indirect_reg(L2ACDSSCR_REG, 0x00000601);
+>>>   -    if (PWRCL_CPU_REG_MASK == (hwid | PWRCL_CPU_REG_MASK)) {
+>>> -        regmap_write(regmap, PWRCL_REG_OFFSET + SSSCTL_OFFSET, 0xf);
+>>> -        kryo_l2_set_indirect_reg(L2ACDCR_REG, 0x002c5ffd);
+>>> -    }
+>>> +    kryo_l2_set_indirect_reg(L2ACDCR_REG, 0x002c5ffd);
+>>>   -    if (PERFCL_CPU_REG_MASK == (hwid | PERFCL_CPU_REG_MASK)) {
+>>> -        kryo_l2_set_indirect_reg(L2ACDCR_REG, 0x002c5ffd);
+>>> +    hwid = read_cpuid_mpidr();
+>>> +    if ((hwid & CPU_CLUSTER_AFFINITY_MASK) == PWRCL_AFFINITY_MASK)
+>>> +        regmap_write(regmap, PWRCL_REG_OFFSET + SSSCTL_OFFSET, 0xf);
+>>> +    else
+>>>           regmap_write(regmap, PERFCL_REG_OFFSET + SSSCTL_OFFSET, 0xf);
+>>> -    }
+>>>     out:
+>>>       spin_unlock_irqrestore(&qcom_clk_acd_lock, flags);
+> 
