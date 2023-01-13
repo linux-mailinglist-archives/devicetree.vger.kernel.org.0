@@ -2,82 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE7C866910B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:34:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5CD4669116
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:36:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240140AbjAMIeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 03:34:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42300 "EHLO
+        id S234092AbjAMIgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 03:36:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241172AbjAMIdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:33:54 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C9ED3FA31
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:33:36 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id u19so50544627ejm.8
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:33:35 -0800 (PST)
+        with ESMTP id S235311AbjAMIgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:36:15 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A14DF24
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:36:14 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id bf43so32112127lfb.6
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 00:36:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=69vPfjdndDvs8QEdWRfbzSSvuuOt62gz3qB9+kdUnVA=;
-        b=G0yy8cPfoiavoMyPQc3/K7FUfmxncwLLWeYLWTYO7Eh5k23/uG7jZmmlXAU3i+2m5u
-         T+4X9VzZxFiLZoEf0+m1uc3vT7FIYF3QS+8pUFkgqjMDrHwpuir72UVHlU7pmG+wzh3d
-         qTTgJ2qHORnGEzxoCQtk/C/gVDmiDZF8yfSukEJPxDQs1+JJuKVHhrzuPsvYWvnOdLaa
-         Tw84jFKE34wPD5VnjHCMf/2swGQlwXzn/k1FP6xV2KWTBcsxzHeV9O9lZV5dd+lOMXzH
-         BEBSkqPa8beFeQwqw/NarHzFP/8Mq19qyWTFQZ2roV9WU5I7QDf82+VcOg+qvEg/jm3Z
-         YhPA==
+        bh=MbcF412+htBpP6c3Z0Q4p3qLBGDCwBxu74wvh/PMgNw=;
+        b=VpSslbPElfSFkioF2esjTVMWOD8pQfbbCeJ6uRoN7SwA/DpDfkNJg5YbMKDjOyQm58
+         Lref6nMkgaioreG3O9Kqk3MKFGbEuLb4YGcEbtI8+FxecrhtP5vogKIiQQd/BeDrIU7P
+         B5yaBqDCZbyuMlczVjJ8CCUwZXTvBC954sVEXQfxdbvLdx7tYmrvCvPJWtb2fMYKEZ4a
+         /Ji8PZljruID8qRbeX8XbMukIH+Q3qfRpdLg6DWzsLjrc9qYlr88xVRYrHpMSORoINoF
+         nDgPE7T9M9KYW8qRICOu5YW/OAo98RpWHb5ILPxNfgXsLbQLw3D+ICsSsfVuFiqSQve3
+         lEPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=69vPfjdndDvs8QEdWRfbzSSvuuOt62gz3qB9+kdUnVA=;
-        b=jJGijieFWZrBn5q+bXjEB/ZxqUHkKFC9W71islNwX6RgsDnjZEfbuJ8t9/KtVPToAT
-         wq/Quk21Gmg8hXAOJYy/GYkZfINeLzd3QUJEH93AMP8oRlumGhOMsznIE7BaUOvzS6Cy
-         Yj7Eg59dhuz63bvUMoM0P/7IEuwst2h19cNkDYUaN9feJdLKll2J87z46DmJBApCzhc+
-         KKCtuEt0U4CD50pw6CQLoUSEMD+lI9XOWFw4WFOsxfTZwfBSbZAoLmBwyRwdsP3kHnt9
-         3AXi6xRefJs948IyHPXBnNiPagB1yalb4EosN8Xn0Op031xsFrCpKQIjsVDdJQcWamgH
-         9t6A==
-X-Gm-Message-State: AFqh2koINBlPTT9nr4ZekXES7hybN+U/AaTa7xYp7p0St0VNma+IGgsQ
-        3MKshkiRv2niNb5IynxlPR6VFw==
-X-Google-Smtp-Source: AMrXdXs2ZJAqttVWYRXGxoX3QUG9Uarxkn9ckYoeRGcdElRtpW1qBalWUSAxDqAu65QxD49NUMt6mQ==
-X-Received: by 2002:a17:907:cbc6:b0:7c0:8371:97aa with SMTP id vk6-20020a170907cbc600b007c0837197aamr71708773ejc.28.1673598814566;
-        Fri, 13 Jan 2023 00:33:34 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id sb25-20020a1709076d9900b007b2a58e31dasm8336587ejc.145.2023.01.13.00.33.33
+        bh=MbcF412+htBpP6c3Z0Q4p3qLBGDCwBxu74wvh/PMgNw=;
+        b=eSQsVKuf5DebvMj7/tDlEWQ0Ud3djr8kTcgZD+JWq2rW242pfOv5JVg7HATFVnZ6j7
+         OB/gLs5Krv0TRz2LGihFI4vjPE7SRGrsdaW3GLMo3RWzRhbtPavI8DqaYa30+dFDf7pm
+         PnW8rWJ9EnoYqdBeaCAru4IGE2t3rxu+eXIp8FKqnYjzmCoBbaRtDk7TN0Vbg8AL6G5D
+         haUW7Joj3X7Y4xLp14nRvqEQVxmJH3hlK1CuQ2h1eCgpLOLb0kD6uSlPgYx3Lq2nA8yE
+         4qonFXBQp1CtA8WpkUX0faa5rbodoiNWz7JT5ZCJwkQEi1ZcF9pncbEBXsj77++t84aK
+         8pOA==
+X-Gm-Message-State: AFqh2kqLBL/IsXaQ85YbzZHIgzHNJb3kScWxhx5H45ZMbf02Tx5dX1bp
+        vHDT75zuoSpFIcKSqc2/qf8b+Q==
+X-Google-Smtp-Source: AMrXdXvWNzx7rgSBewTKrQ2TXk3lTNoL04kHq5ZP4XC25VP4PEcDLfWV9uvN9qcdP5fMa1q3Tiag1w==
+X-Received: by 2002:a05:6512:224f:b0:4cc:586b:1834 with SMTP id i15-20020a056512224f00b004cc586b1834mr9610322lfu.45.1673598972387;
+        Fri, 13 Jan 2023 00:36:12 -0800 (PST)
+Received: from [192.168.2.31] ([194.204.33.9])
+        by smtp.gmail.com with ESMTPSA id v15-20020ac258ef000000b004b57a253deasm3739416lfo.162.2023.01.13.00.36.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 00:33:34 -0800 (PST)
-Message-ID: <20651db4-b0e8-ee3e-a752-c1d4ff14b53f@linaro.org>
-Date:   Fri, 13 Jan 2023 09:33:32 +0100
+        Fri, 13 Jan 2023 00:36:11 -0800 (PST)
+Message-ID: <81cf71ed-1daa-222d-d67a-efded42e70d2@linaro.org>
+Date:   Fri, 13 Jan 2023 10:36:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: sun8i-ce: Add compatible for
- D1
-Content-Language: en-US
-To:     Herbert Xu <herbert@gondor.apana.org.au>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Corentin Labbe <clabbe.montjoie@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v5 1/4] dt-bindings: display/msm: convert MDP5 schema to
+ YAML format
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20221231220146.646-1-samuel@sholland.org>
- <20221231220146.646-2-samuel@sholland.org>
- <Y8DVPvnfShdhlVHh@gondor.apana.org.au>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y8DVPvnfShdhlVHh@gondor.apana.org.au>
-Content-Type: text/plain; charset=UTF-8
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
+ <20230109050152.316606-2-dmitry.baryshkov@linaro.org>
+ <20230109074947.5vnfrn6shzpm6iqi@SoMainline.org>
+ <997dbd09-03d6-d60d-1dce-db0bc6415582@linaro.org>
+ <20230111222903.otbur6yi4iv4mpgz@SoMainline.org>
+ <1d371e40-0639-16f8-abef-afcd05e72e22@linaro.org>
+ <20230111223553.e3xrxmdys5zxxleh@SoMainline.org>
+ <20230112215015.GA259261-robh@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230112215015.GA259261-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -88,35 +91,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 04:51, Herbert Xu wrote:
-> On Sat, Dec 31, 2022 at 04:01:43PM -0600, Samuel Holland wrote:
->> D1 has a crypto engine similar to the one in other Allwinner SoCs.
->> Like H6, it has a separate MBUS clock gate.
->>
->> It also requires the internal RC oscillator to be enabled for the TRNG
->> to return data, presumably because noise from the oscillator is used as
->> an entropy source. This is likely the case for earlier variants as well,
->> but it really only matters for H616 and newer SoCs, as H6 provides no
->> way to disable the internal oscillator.
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->> I noticed that the vendor driver has code to explicitly enable IOSC when
->> using the TRNG on A83T (search SS_TRNG_OSC_ADDR), but that is covered by
->> a different binding/driver in mainline.
->>
->> Changes in v2:
->>  - Add TRNG clock
->>
->>  .../bindings/crypto/allwinner,sun8i-ce.yaml   | 33 ++++++++++++++-----
->>  1 file changed, 25 insertions(+), 8 deletions(-)
+On 12/01/2023 23:50, Rob Herring wrote:
+> On Wed, Jan 11, 2023 at 11:35:53PM +0100, Marijn Suijten wrote:
+>> On 2023-01-12 00:31:33, Dmitry Baryshkov wrote:
+>>> On 12/01/2023 00:29, Marijn Suijten wrote:
+>>>> On 2023-01-10 06:40:27, Dmitry Baryshkov wrote:
+>>>>> On 09/01/2023 09:49, Marijn Suijten wrote:
+>>>>>> On 2023-01-09 07:01:49, Dmitry Baryshkov wrote:
+>>>> <snip>
+>>>>>>> +    description: |
+>>>>>>
+>>>>>> Should multiline descriptions be treated as a oneline string with `>`?
 > 
-> This doesn't have an ack from Rob Herring.  Would you like me
-> to apply just the crypto patch by itself?
+> Depends if you want to keep paragraphs. Generally, we use '|' or
+> nothing. If just a colon (or ???), then I think you want '>'.
 
-But it has my Reviewed-by, which is equivalent. Please take it via
-crypto with the driver change.
+Ack, thanks for the explanation. I'll fix this for v6.
 
-Best regards,
-Krzysztof
+> 
+> I get tired of saying to drop unnecessary '|' in reviews. It would be
+> nice to analyze the text to check what's needed automatically.
+> 
+> -- 
+With best wishes
+Dmitry
 
