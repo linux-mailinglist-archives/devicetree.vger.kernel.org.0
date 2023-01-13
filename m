@@ -2,121 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F673669EC1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:53:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D63A4669EC7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 17:54:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230473AbjAMQxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 11:53:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40858 "EHLO
+        id S230210AbjAMQyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 11:54:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbjAMQws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:52:48 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46A1778270
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:49:47 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id b4so12408184edf.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:49:47 -0800 (PST)
+        with ESMTP id S230216AbjAMQyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 11:54:10 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C10165B2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:51:48 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id qk9so53680195ejc.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 08:51:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=E0Hwf435NI9x+XW4Wj0FsZq4Qu4oztZjGcQONywLmh8=;
-        b=L8lwqLpWBsOLOn8/6W0GxhxaHljuv6GWrzyiwr6PVLBp3jXW+Cx4znhTaYzLaimrx6
-         KtwfOQ8X3Gu31WqI4Xp9+2n8rVkmg7NqWbcmopvl/Z+n+GEs40IYQyd54NBG2kIUCoPA
-         eVTz77cX3BTCM6m3IrEgg1/evqc8cxilBhCM/S9K4VlOnFsVug3CBLOG4witg3Lg9EzW
-         bSwvz9FccElsNA/i3Uhs1cEgNveli9D/I2SJk2RgOg4AVA8PVSfNBJod2kyPllvIMoil
-         mi469QB7XMmhAIXRld78pqVadUrnCIKyBl5+kOHmI/of2PFdfHYEnESU0Z9xx9oFAx7p
-         vqjA==
+        bh=n5VKVZUHVx22mM/bIIAc7NzbLe37QkHYvE9f9wX8QW8=;
+        b=vNsbnSKz1GdnDcjANX07Eh1TPUTsE3sZz4UgqxgIxPPW1iAvFUpAcCBfG/px0AQ+Nf
+         Bn7Qt61/Rolm0QvEF1QdUwcMezQrgIoX3FVVZDMRpUXUB2x4IAViej4ai7DTtfGYzbT8
+         yqIfFZamQr5RV55GiRchpqmvnS5MlwzEnAJX/01cW51i0ukHdpdXWZ83gX57+O/8E6J9
+         Qc/gWHCbHTk+sCrrnLRPZrA96jKyX5RcZhlxAi7CpSRd25K9r6vWzCiRrz0a3kjaF/ZT
+         iSTQBvsQ40vxKmQ/wE+GgDL8Ht09aPRqv0en/qSBBMmtKfuq9KzW6bfHy8IgqpCnOO/d
+         JiZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E0Hwf435NI9x+XW4Wj0FsZq4Qu4oztZjGcQONywLmh8=;
-        b=W0K4DPMQNmBuIdN0tcn+t6rR/yH1nh8Kz7CKZWATGfxoUG39VeQ7Y24QVSbiZD+l4/
-         xdTNswOySImmH4lwWNLlk/orj1OrPpthU+LWfNZHHsAxadmDBzxP2atrAvYeJ2QN8+gk
-         oF38aV3dw/fYpWV8kQEJpPUkDJSIhtgILobBmp2/u1HBOisnYt5TSHIgJiALM3QNlPNO
-         JxOU2OY7pYcvogMfGtddsgC0r5OWIXLmyDxcrroacTPalF/huFL2RSJXQi4VVCXdYOdB
-         MPO8smR5nKgm28bptvkqMTlPYAty/06cd6Qdk/pnjE7pPztD9ijp+E0Gi2AcDPREOraY
-         dJ4Q==
-X-Gm-Message-State: AFqh2koW2cjzuCktVqII0qUTGHFDyn1XYHoUFsisI/fVA/CXMHTSSjNC
-        uagIuROHRwEJFBeDmJminIM+0A==
-X-Google-Smtp-Source: AMrXdXtpIsmBMd0PLUTqbePBHzOiSxh9soqvgLUnTlOwzhQlxgDe0YF+PTLlO5KRRmPFZRyCKGrP1A==
-X-Received: by 2002:aa7:df17:0:b0:499:d297:334e with SMTP id c23-20020aa7df17000000b00499d297334emr10427423edy.20.1673628585847;
-        Fri, 13 Jan 2023 08:49:45 -0800 (PST)
+        bh=n5VKVZUHVx22mM/bIIAc7NzbLe37QkHYvE9f9wX8QW8=;
+        b=CfOsJLSfQivUSkHG0rr3fhFTCAUFqW0PPK3DUczJuDoTObb5Sv5ZL4xLOYbVYV2psd
+         6ZZyyx1QM1pV5Igt325AUaC2Mj3HccJYJPivNZO0GbAWKYuSQKGtkXjMe8t79CG7ZUWl
+         Hq5ovXjMbj8nL7rKJEF+/Mmcpf4qcucHEwDIveIpYmhrYjXAYnAi+Z4TW6tafa7R4CCn
+         zzeiXUIAcCV1wJW3gm5yN1NeFFNaffH1/6BXRjiOUL4Q3dojB+a3JLAVa8JgRZlrum7i
+         3ReDm6rtX8aZBKRWLZelnNMWmsbsTYit0ElueRuqLNn3OJJmhaF/hkw+JPpqKsjdwGFK
+         zJSA==
+X-Gm-Message-State: AFqh2krurqJvPrh2poo/S4xTiXtOEYOoCHSNGzMg5qmLLOMwJyNCCruR
+        l+ds7q3gaR530qcaKRsUpgogaQ==
+X-Google-Smtp-Source: AMrXdXu+6c75vpvRqaVKxqv3ZA98GJYV1k02Wwz15Qn+yFXkdoMJMK6NmJ348MKGwxaHj3pZHARWPg==
+X-Received: by 2002:a17:906:c18d:b0:843:770e:777d with SMTP id g13-20020a170906c18d00b00843770e777dmr68623230ejz.11.1673628706634;
+        Fri, 13 Jan 2023 08:51:46 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h26-20020a0564020e9a00b0045ce419ecffsm8320724eda.58.2023.01.13.08.49.44
+        by smtp.gmail.com with ESMTPSA id en6-20020a056402528600b00499b3d09bd2sm6192043edb.91.2023.01.13.08.51.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 08:49:45 -0800 (PST)
-Message-ID: <5c046bb8-3d74-04c2-f32e-b6fd450f80fc@linaro.org>
-Date:   Fri, 13 Jan 2023 17:49:43 +0100
+        Fri, 13 Jan 2023 08:51:46 -0800 (PST)
+Message-ID: <58d9c99d-942a-7d55-64dc-31d936076b90@linaro.org>
+Date:   Fri, 13 Jan 2023 17:51:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 2/2] Revert "dt-bindings: power: rpmpd: Add SM4250
- support"
+Subject: Re: [PATCH v2 01/16] dt-bindings: media: fsl-pxp: convert to yaml
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, linux-kernel@vger.kernel.org,
+To:     Michael Tretter <m.tretter@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-References: <20230113152232.2624545-1-konrad.dybcio@linaro.org>
- <20230113152232.2624545-2-konrad.dybcio@linaro.org>
- <e1782f36-5a28-1fe4-47d5-b3bc00317b57@linaro.org>
- <92b7955c-bcac-20ad-ccde-3eef17f092b6@linaro.org>
+        Fabio Estevam <festevam@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
+ <20230112-imx-pxp-v2-1-e2281da1db55@pengutronix.de>
+ <bba093d0-e648-61b3-f4d7-b48d43e35920@linaro.org>
+ <20230113150943.GC20866@pengutronix.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <92b7955c-bcac-20ad-ccde-3eef17f092b6@linaro.org>
+In-Reply-To: <20230113150943.GC20866@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 17:36, Konrad Dybcio wrote:
-> 
-> 
-> On 13.01.2023 17:33, Krzysztof Kozlowski wrote:
->> On 13/01/2023 16:22, Konrad Dybcio wrote:
->>> SM4250 and SM6115 use a shared device tree and the RPMPDs are
->>> identical. There's no need for a separate entry, so remove it.
->>>
->>> This reverts commit 45ac44ed10e58cf9b510e6552317ed7d2602346f.
->>>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> ---
->>>  .../devicetree/bindings/power/qcom,rpmpd.yaml          |  1 -
->>>  include/dt-bindings/power/qcom-rpmpd.h                 | 10 ----------
->>>  2 files changed, 11 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
->>> index 633d49884019..5bb9f59d196f 100644
->>> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
->>> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
->>> @@ -39,7 +39,6 @@ properties:
->>>        - qcom,sdm845-rpmhpd
->>>        - qcom,sdx55-rpmhpd
->>>        - qcom,sdx65-rpmhpd
->>> -      - qcom,sm4250-rpmpd
+On 13/01/2023 16:09, Michael Tretter wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - const: fsl,imx6ul-pxp
+>>> +      - const: fsl,imx6ull-pxp
+>>> +      - const: fsl,imx7d-pxp
 >>
->> Yet, dedicated compatibles are usually recommended. Maybe this should be
->> used with fallback:
->> "qcom,sm4250-rpmpd", "qcom,sm6115-rpmpd"
-> The compatible has never been used so far and it's really the
-> same situation as SDM630/660 AFAIK, so I don't think it makes
-> much sense.
+>> These three are an enum.
+> 
+> These are alternatives to the 'items:' entry below.
+> 
+> Are you suggesting to use the following statement?
+> 
+> oneOf:
+>   - enum:
+>       - fsl,imx6ul-pxp
+>       - fsl,imx6ull-pxp
+>       - fsl,imx7d-pxp
+>   - items:
+>       - enum:
+>           - fsl,imx6sll-pxp
+>           - fsl,imx6sx-pxp
 
-OK, assuming these are almost the same SoCs in that aspect:
+Yes.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Why is this better than the one that I used?
+
+Because that's the convention - use enum for enumeration which nicely
+groups all of them and is the easiest to read.
+
+> 
+>>
+>>> +      - items:
+>>> +          - enum:
+>>> +              - fsl,imx6sll-pxp
+>>> +              - fsl,imx6sx-pxp
+>>> +          - const: fsl,imx6ull-pxp
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-names:
+>>> +    const: axi
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - clocks
+>>> +  - clock-names
+>>> +
+>>> +allOf:
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - fsl,imx6sx-pxp
+>>> +    then:
+>>> +      properties:
+>>> +        interrupts:
+>>> +          numItems: 1
+>>
+>> That's not correct syntax... I am surprised that it works. Did you test
+>> the bindings?
+> 
+> I copied this syntax from renesas,wdt.yaml and ran
+> 
+> 	make ARCH=arm dtbs_check DT_SCHEMA_FILES=fsl,imx6ull-pxp.yaml
+> 
+> with SOC_IMX7D=y, SOC_IMX6UL=y, SOC_IMX6SLL=y, and SOC_IMX6SX=y. The latter
+> two were not enabled in the v1, which is why it didn't catch the missing
+> compatibles.
+> 
+> On a closer look, I just saw that the checker ignored the schema due to the
+> incorrect syntax and didn't produce any further errors. With the syntax fixed,
+> the checker now produces also a few more errors about power-domains, which I
+> will fix in v3.
+> 
+> Is this syntax correct?
+> 
+> allOf:
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             enum:
+>               - fsl,imx6sx-pxp
+>     then:
+>       properties:
+>         interrupts:
+>           minItems: 1
+
+Drop this one
+
+
+>           maxItems: 1
+>     else:
+>       properties:
+>         interrupts:
+>           minItems: 2
+>           maxItems: 2
+> 
+> Michael
+
+Rest is ok
 
 Best regards,
 Krzysztof
