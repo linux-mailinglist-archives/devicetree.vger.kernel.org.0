@@ -2,215 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C191668F35
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:26:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A170A668F49
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:34:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241087AbjAMH0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 02:26:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54276 "EHLO
+        id S240683AbjAMHej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 02:34:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237927AbjAMHZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:25:48 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2523B7E3;
-        Thu, 12 Jan 2023 23:20:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673594413; x=1705130413;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Y3dF78OQd21knEiz3Yhh/QY/Dl2oydckoMmUh4NifSQ=;
-  b=lN3g1z0swha2u/3w7jUVIV0eN7JroEzz4rWMEkUnm/vOSdfY/CuFRmnM
-   tL1wmpldvMq3W7520/tEYmhL9ZNowRwYTy1LD2XROEyXZxHB+qSpsz6+L
-   xXh8vLSRfi/xSGHLL1H0/nkkg9VSZjcwPsv6Q/VX/NYZSetqrZxfcGZcd
-   3dvXuctUIOSqxjD34c+G7A7+rgTpPd1jm5rHzKjunmW5xkecJ4ZFIdZO7
-   YG8EjUKoGGDSOBQ5BDUZCSGaxia1COpunPO9vVne2hoIABFADkFVt/7Bc
-   YtLnYKeht50DwUllXzg0X9Tfkdv4+daSw5f7U3vD5c53QdxXE2oeUjszI
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="351170039"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; 
-   d="scan'208";a="351170039"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2023 23:20:13 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="690412760"
-X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; 
-   d="scan'208";a="690412760"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.38.178])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2023 23:20:10 -0800
-Message-ID: <47bdc4e2-a2d6-12b4-f826-63874c9c0cbb@intel.com>
-Date:   Fri, 13 Jan 2023 09:20:05 +0200
+        with ESMTP id S241086AbjAMHdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:33:37 -0500
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4889111165;
+        Thu, 12 Jan 2023 23:31:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=W/IHAf6xpp/J+7+TeyUogtmVDthztbYNzsOjzYmgSeF7jyAueoueWaZx08b6Gp3W8fvmHR4kZFXuBXYNBup+Eq98Rj8O4wMyOQkTg7UTCdnFvkq4j+0Vr6KGw1F4c2ixVv4i+N9Vzq9I1SCP6u+Xh2SMVJUhe+FISzLeCJ9ebY6hDHYFitBuOnloInAlW30l082mEf2MEaB6/PzDBNhvr2Z+QXrOU09yTrDjRODBcKrFPda0xGEgfS7OiifhTuPoZIOwifcKbG0GIxuslWsyit9R8DEy7Sjep8zckhBJnlWwzbRqhpk47t3Y7YFQ9kxlhueiWn5MXSSiElSM2A8emA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XLtly/pVIDJj8inooB/0YSXTqbtqYBaC7zX3HoN5gtw=;
+ b=E8s1UudS6Orz1i4Z4h/66nQwxI881KGOwGWmPz8MdWJmXuE7AB/sHEYhCvfkKroq5guXsBVPI4EutppCmlNko/D7hNYwr9IV2wOpOHB0ajEXkOf83hUMLhzLEliU7IqxM1OG9lXtqqLlZnWgaLvIsy0oW+iH/Bjf6QP7VclePG1ECX3fxc8Tp2Gbfa0v1KB8dxdv+dIGB8TkDvPF0srd7DTL3IGKe/THG6IketpJd3KLd3g0l1noHpl6rTtU0xozR+g34QueD1fvJHen7GRCZN+u9/9fSF0B7HFaosl35Nr+HiyXOvZ9WfNAbTA0XqiGNVFi74fTJIPRO/G4gOwZKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XLtly/pVIDJj8inooB/0YSXTqbtqYBaC7zX3HoN5gtw=;
+ b=IIYNYIgoDhkcpMGXvaOBHFJEiBw8zgumOfXO94I9B3uurwR2A8OvWVn84gA/qqGQbPE8ckQ4P46877p8YdgoIuxR90bouaG0Z9KYA9wFcKnSJjYBTEpBweGPQLwBuMsP4dagADOR2+sIt/MtPcP/GEbpjMlgcH1bz0miW4Lg1ys=
+Received: from DM6PR08CA0055.namprd08.prod.outlook.com (2603:10b6:5:1e0::29)
+ by CH2PR12MB4876.namprd12.prod.outlook.com (2603:10b6:610:67::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Fri, 13 Jan
+ 2023 07:31:44 +0000
+Received: from DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1e0:cafe::b1) by DM6PR08CA0055.outlook.office365.com
+ (2603:10b6:5:1e0::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.16 via Frontend
+ Transport; Fri, 13 Jan 2023 07:31:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT032.mail.protection.outlook.com (10.13.173.93) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6002.13 via Frontend Transport; Fri, 13 Jan 2023 07:31:43 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 13 Jan
+ 2023 01:31:42 -0600
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 12 Jan
+ 2023 23:31:05 -0800
+Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Fri, 13 Jan 2023 01:31:05 -0600
+From:   Tanmay Shah <tanmay.shah@amd.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <tanmay.shah@amd.com>
+Subject: [PATCH] dt-bindings: sram: Tightly Coupled Memory (TCM) bindings
+Date:   Thu, 12 Jan 2023 23:30:46 -0800
+Message-ID: <20230113073045.4008853-1-tanmay.shah@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Subject: Re: [PATCH 2/5] drivers: mmc: sdhci-cadence: enable
- MMC_SDHCI_IO_ACCESSORS
-To:     Piyush Malgujar <pmalgujar@marvell.com>
-Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org, jannadurai@marvell.com,
-        cchavva@marvell.com
-References: <20221219142418.27949-1-pmalgujar@marvell.com>
- <20221219142418.27949-3-pmalgujar@marvell.com>
- <35ea0a7a-3d63-26b7-4dc3-69f6ca41909a@intel.com>
- <20230112141230.GB6335@Dell2s-9>
-Content-Language: en-US
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20230112141230.GB6335@Dell2s-9>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT032:EE_|CH2PR12MB4876:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0eaad9f8-adca-49f0-6323-08daf538386f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WaYAmeddtHAZjQ13qnaIjw2IOVS7IDQEy7h5tf3llE4SoX1I+/RyiVSb+8b2O7EKPPyX3/mOKtVNb9AFwzJU927pXt7Iy4ZwTvwElahlgZQoE/ydb9wRiDNZDWgKrtEdBd4UL6Hur2QTTh4SP2SWNQ4doCaMYSqpMgoqJ3IjX5RKSeak+1OE1DVD0ECrVcCSGMRRV70CV6XsS74gZVB/e8RzRf/ARIkamUDrhgw8Em0A23gURahPpOxGPCHaf3o/OzoeMxo+u6wrtsF0dNxKSP1RBFg4lQq8mm/TUgzeESbfxhy5AAw23YsQl6h0V0KI5/1EH4iR+dL1+1sFaGGOkayQHuH7CcF/OTdhqcHo8qcQT32pGZalGGOGDknzObCEEeMLQ4fhlIrygLJC7MLAQmYWfW92LBqu8ZDnx8HM1NsgpEwkLesNswXZTIlideRVFik3ZIrNn94BQmzuIVXBdzIYkct6foGgtapmMHV4pNo/3VZKdvSxqbI6mibO0/Eif0jEEBDtO51YRw6cd3n2DGaooMbEKYs1DV5ihMjDntOCNTOa/8FyhwB9QIAXLSYfN77NgcEmsjEuv6AaZ41fouvTdXW+qAnPsVL09thS0CpKvLAFAKGfm9vXsOOOtRDaFarxM1K9K9n88ni1CYC1sIXBrF0ScHQ673ERtnRvBl88RblBA8E4S2oQB3TMXT0TH5Jw2ax5sstdJaJ/FjOWFRBLIa7K3OUXsC4CvkyAbYZmDvdCgolrfTgch1HLiKsKmHSm2q4jZO6AgmDCXBjOzieIS7zio+huhpFL35QDwx8=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(396003)(376002)(136003)(346002)(451199015)(46966006)(40470700004)(36840700001)(2906002)(6666004)(186003)(966005)(26005)(478600001)(336012)(2616005)(54906003)(4326008)(1076003)(70586007)(8676002)(40460700003)(41300700001)(426003)(70206006)(47076005)(110136005)(44832011)(40480700001)(82740400003)(8936002)(5660300002)(316002)(83380400001)(36756003)(356005)(82310400005)(36860700001)(86362001)(81166007)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2023 07:31:43.9362
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0eaad9f8-adca-49f0-6323-08daf538386f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4876
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/01/23 16:12, Piyush Malgujar wrote:
-> Hi Adrian, 
-> 
-> Thank you for the review comments.
-> 
-> On Wed, Jan 11, 2023 at 10:23:43AM +0200, Adrian Hunter wrote:
->> On 19/12/22 16:24, Piyush Malgujar wrote:
->>> From: Jayanthi Annadurai <jannadurai@marvell.com>
->>>
->>> Add support for CONFIG_MMC_SDHCI_IO_ACCESSORS for controller
->>> specific register read and write APIs.
->>>
->>> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
->>> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
->>> ---
->>>  drivers/mmc/host/Kconfig         | 12 ++++++
->>>  drivers/mmc/host/sdhci-cadence.c | 63 ++++++++++++++++++++++++++++++++
->>>  2 files changed, 75 insertions(+)
->>>
->>> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
->>> index 5e19a961c34d7b5664ab2fd43cfba82dc90913ac..b5b2ae0bb4625bdb9d17acdbb1887c9caa3a1f32 100644
->>> --- a/drivers/mmc/host/Kconfig
->>> +++ b/drivers/mmc/host/Kconfig
->>> @@ -262,6 +262,18 @@ config MMC_SDHCI_CADENCE
->>>  
->>>  	  If unsure, say N.
->>>  
->>> +config MMC_SDHCI_CN10K
->>> +	tristate "SDHCI Cadence support for Marvell CN10K platforms"
->>> +	select MMC_SDHCI_CADENCE
->>> +	select MMC_SDHCI_IO_ACCESSORS
->>
->> Probably better to just add MMC_SDHCI_IO_ACCESSORS to 
->> config MMC_SDHCI_CADENCE and drop MMC_SDHCI_CN10K
->>
-> 
-> This reason behind this was to not force SDHCI_IO_ACCESSORS upon cadence users as some may not
-> require it owing to how cadence ip is integrated to soc.
+This patch introduces bindings for TCM memory address space on AMD-xilinx
+platforms. As of now TCM addresses are hardcoded in xilinx remoteproc
+driver. This bindings will help in defining TCM in device-tree and
+make it's access platform agnostic and data-driven from the driver.
 
-In practice, it makes no difference to performance and adds a
-negligible amount of code, so it is not worth the extra complexity
-to make it conditional.
+Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+---
+ .../devicetree/bindings/sram/xlnx,tcm.yaml    | 137 ++++++++++++++++++
+ 1 file changed, 137 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
 
-> 
->>> +	help
->>> +	  This selects the SDHCI cadence driver and IO Accessors
->>> +	  for Marvell CN10K platforms
->>> +
->>> +	  If you have Marvell CN10K platform, say Y or M here.
->>> +
->>> +	  If unsure, say N.
->>> +
->>>  config MMC_SDHCI_CNS3XXX
->>>  	tristate "SDHCI support on the Cavium Networks CNS3xxx SoC"
->>>  	depends on ARCH_CNS3XXX || COMPILE_TEST
->>> diff --git a/drivers/mmc/host/sdhci-cadence.c b/drivers/mmc/host/sdhci-cadence.c
->>> index 5332d19e489be936d6814feba4f0fc046f5e130e..6bf703f15bc5be7e3be4cb1144b78ec3585ec540 100644
->>> --- a/drivers/mmc/host/sdhci-cadence.c
->>> +++ b/drivers/mmc/host/sdhci-cadence.c
->>> @@ -449,6 +449,61 @@ static u32 read_dqs_cmd_delay, clk_wrdqs_delay, clk_wr_delay, read_dqs_delay;
->>>  
->>>  static u32 sdhci_cdns_sd6_get_mode(struct sdhci_host *host, unsigned int timing);
->>>  
->>> +#ifdef CONFIG_MMC_SDHCI_IO_ACCESSORS
->>> +static u32 sdhci_cdns_sd6_readl(struct sdhci_host *host, int reg)
->>> +{
->>> +	return readl(host->ioaddr + reg);
->>> +}
->>> +
->>> +static void sdhci_cdns_sd6_writel(struct sdhci_host *host, u32 val, int reg)
->>> +{
->>> +	writel(val, host->ioaddr + reg);
->>> +}
->>> +
->>> +static u16 sdhci_cdns_sd6_readw(struct sdhci_host *host, int reg)
->>> +{
->>> +	u32 val, regoff;
->>> +
->>> +	regoff = reg & ~3;
->>> +
->>> +	val = readl(host->ioaddr + regoff);
->>> +	if ((reg & 0x3) == 0)
->>> +		return (val & 0xFFFF);
->>> +	else
->>> +		return ((val >> 16) & 0xFFFF);
->>> +}
->>> +
->>> +static void sdhci_cdns_sd6_writew(struct sdhci_host *host, u16 val, int reg)
->>> +{
->>> +	writew(val, host->ioaddr + reg);
->>> +}
->>> +
->>> +static u8 sdhci_cdns_sd6_readb(struct sdhci_host *host, int reg)
->>> +{
->>> +	u32 val, regoff;
->>> +
->>> +	regoff = reg & ~3;
->>> +
->>> +	val = readl(host->ioaddr + regoff);
->>> +	switch (reg & 3) {
->>> +	case 0:
->>> +		return (val & 0xFF);
->>> +	case 1:
->>> +		return ((val >> 8) & 0xFF);
->>> +	case 2:
->>> +		return ((val >> 16) & 0xFF);
->>> +	case 3:
->>> +		return ((val >> 24) & 0xFF);
->>> +	}
->>> +	return 0;
->>> +}
->>> +
->>> +static void sdhci_cdns_sd6_writeb(struct sdhci_host *host, u8 val, int reg)
->>> +{
->>> +	writeb(val, host->ioaddr + reg);
->>> +}
->>> +#endif
->>> +
->>>  static int sdhci_cdns_sd6_phy_lock_dll(struct sdhci_cdns_sd6_phy *phy)
->>>  {
->>>  	u32 delay_element = phy->d.delay_element_org;
->>> @@ -1576,6 +1631,14 @@ static const struct sdhci_ops sdhci_cdns_sd4_ops = {
->>>  };
->>>  
->>>  static const struct sdhci_ops sdhci_cdns_sd6_ops = {
->>> +#ifdef CONFIG_MMC_SDHCI_IO_ACCESSORS
->>> +	.read_l = sdhci_cdns_sd6_readl,
->>> +	.write_l = sdhci_cdns_sd6_writel,
->>> +	.read_w = sdhci_cdns_sd6_readw,
->>> +	.write_w = sdhci_cdns_sd6_writew,
->>> +	.read_b = sdhci_cdns_sd6_readb,
->>> +	.write_b = sdhci_cdns_sd6_writeb,
->>> +#endif
->>>  	.get_max_clock = sdhci_cdns_get_max_clock,
->>>  	.set_clock = sdhci_cdns_sd6_set_clock,
->>>  	.get_timeout_clock = sdhci_cdns_get_timeout_clock,
->>
-> 
-> Rest of the comments will be taken care in v2.
-> 
-> Thanks,
-> Piyush
+diff --git a/Documentation/devicetree/bindings/sram/xlnx,tcm.yaml b/Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
+new file mode 100644
+index 000000000000..02d17026fb1f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
+@@ -0,0 +1,137 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sram/xlnx,tcm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Tightly Coupled Memory (TCM)
++
++maintainers:
++  - Tanmay Shah <tanmay.shah@amd.com>
++
++description: |
++  Tightly Coupled Memory(TCM) is available on AMD-Xilinx paltforms for ARM
++  cortex remote processors to use. It is low-latency memory that provide
++  predictable instruction execution and predictable data load/store timing.
++  TCM can be configured in lockstep mode or split mode. In split mode
++  configuration each RPU core has its own set of ATCM and BTCM memories and in
++  lockstep mode redundant processor's TCM become available to lockstep
++  processor. So In lockstep mode ATCM and BTCM size is increased.
++
++properties:
++  $nodename:
++    pattern: "sram-[0-9a-f]+$"
++
++patternProperties:
++  "^tcm-[a-z]+@[0-9a-f]+$":
++    type: object
++    description: |
++      During the split mode, each RPU core has its own set of ATCM and BTCM memory
++
++      During the lock-step operation, the TCMs that are associated with the
++      redundant processor become available to the lock-step processor.
++      For example if each individual processor has 64KB ATCM, then in lockstep mode
++      The size of ATCM become 128KB. Same for BTCM. tcm-lockstep node represents
++      TCM address space in lockstep mode. tcm-core@x node specfies each core's
++      TCM address space in split mode.
++
++    properties:
++      compatible:
++        oneOf:
++          - items:
++              - enum:
++                  - xlnx,tcm-lockstep
++                  - xlnx,tcm-split
++
++      "#address-cells":
++        const: 1
++
++      "#size-cells":
++        const: 1
++
++      reg:
++        items:
++          - description: |
++              ATCM Memory address space. An ATCM typically holds interrupt or
++              exception code that must be accessed at high speed, without any
++              potential delay resulting from a cache miss.
++              RPU on AMD-Xilinx platform can also fetch data from ATCM
++          - description: |
++              BTCM Memory address space. A BTCM typically holds a block of data
++              for intensive processing, such as audio or video processing. RPU on
++              AMD-Xilinx Platforms can also fetch Code (Instructions) from BTCM
++
++      reg-names:
++        items:
++          - const: atcm
++          - const: btcm
++
++      ranges: true
++
++      power-domains:
++        maxItems: 8
++        items:
++          - description: list of ATCM Power domains
++          - description: list of BTCM Power domains
++        additionalItems: true
++
++    required:
++      - compatible
++      - '#address-cells'
++      - '#size-cells'
++      - reg
++      - ranges
++      - power-domains
++    unevaluatedProperties: false
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/power/xlnx-zynqmp-power.h>
++
++    amba {
++        sram@ffe00000 {
++            tcm-lockstep@ffe00000 {
++                compatible = "xlnx,tcm-lockstep";
++
++                #address-cells = <1>;
++                #size-cells = <1>;
++
++                reg = <0xffe00000 0x20000>, <0xffe20000 0x20000>;
++                reg-names = "atcm", "btcm";
++                ranges = <0x0 0xffe00000 0x20000>, <0x20000 0xffe20000 0x20000>;
++                power-domains = <&zynqmp_firmware PD_R5_0_ATCM>,
++                                <&zynqmp_firmware PD_R5_1_ATCM>,
++                                <&zynqmp_firmware PD_R5_0_BTCM>,
++                                <&zynqmp_firmware PD_R5_1_BTCM>;
++            };
++
++            tcm-core@0 {
++                compatible = "xlnx,tcm-split";
++
++                #address-cells = <1>;
++                #size-cells = <1>;
++
++                reg = <0xffe00000 0x10000>, <0xffe20000 0x10000>;
++                reg-names = "atcm", "btcm";
++                ranges = <0x0 0xffe00000 0x10000>, <0x20000 0xffe20000 0x10000>;
++                power-domains = <&zynqmp_firmware PD_R5_0_ATCM>,
++                                <&zynqmp_firmware PD_R5_0_BTCM>;
++            };
++
++            tcm-core@1 {
++                compatible = "xlnx,tcm-split";
++
++                #address-cells = <1>;
++                #size-cells = <1>;
++
++                reg = <0xffe90000 0x10000>, <0xffeb0000 0x10000>;
++                reg-names = "atcm", "btcm";
++                ranges = <0x0 0xffe90000 0x10000>, <0x20000 0xffeb0000 0x10000>;
++                power-domains = <&zynqmp_firmware PD_R5_1_ATCM>,
++                                <&zynqmp_firmware PD_R5_1_BTCM>;
++            };
++        };
++    };
++...
+
+base-commit: 6b31ffe9c8b9947d6d3552d6e10752fd96d0f80f
+-- 
+2.25.1
 
