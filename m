@@ -2,115 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A289D668E9C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 07:59:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCB8A668C79
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 07:23:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232602AbjAMG6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 01:58:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34008 "EHLO
+        id S236698AbjAMGXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 01:23:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231154AbjAMG47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 01:56:59 -0500
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A454F81C26;
-        Thu, 12 Jan 2023 22:42:28 -0800 (PST)
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 192.168.8.21
-        by mg.richtek.com with MailGates ESMTP Server V3.0(2734:0:AUTH_RELAY)
-        (envelope-from <prvs=1372DA5DC2=cy_huang@richtek.com>); Fri, 13 Jan 2023 14:23:39 +0800 (CST)
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 192.168.10.46
-        by mg.richtek.com with MailGates ESMTP Server V5.0(16476:0:AUTH_RELAY)
-        (envelope-from <cy_huang@richtek.com>); Fri, 13 Jan 2023 14:17:48 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.20; Fri, 13 Jan
- 2023 14:17:47 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.20 via Frontend
- Transport; Fri, 13 Jan 2023 14:17:47 +0800
-From:   <cy_huang@richtek.com>
-To:     <sre@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <alina_yu@richtek.com>, <cy_huang@richtek.com>,
-        <u0084500@gmail.com>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH RESEND v8 3/3] Documentation: power: rt9471: Document exported sysfs entries
-Date:   Fri, 13 Jan 2023 14:17:46 +0800
-Message-ID: <1673590666-24618-4-git-send-email-cy_huang@richtek.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1673590666-24618-1-git-send-email-cy_huang@richtek.com>
-References: <1673590666-24618-1-git-send-email-cy_huang@richtek.com>
+        with ESMTP id S232707AbjAMGXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 01:23:03 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D793369B26
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 22:22:38 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id s13-20020a17090a6e4d00b0022900843652so4481573pjm.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 22:22:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rh9+uqGdeUQ/uk0uBV7vpLnb1/bQZNWqul7yXMNfGn8=;
+        b=FE1sUVNzVAS03UySQcPp/VF5cQb9NBEXqgalMqgL4a69J1iUYHsZ3akU0Yqh7h0EGP
+         fZ+StJezbIgj2GP6Zlk2Gv0FNHHQDo6am0fxVGD062OTBzXJ+d0R71Cgkp99mmn6VdNt
+         CUvVvKOsmQCQcTFK7EnTi9cfOfx0xnp8FLk9M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Rh9+uqGdeUQ/uk0uBV7vpLnb1/bQZNWqul7yXMNfGn8=;
+        b=CjkrFS3N3aFmr51i8W+ztQhmfaC55P+Lqfa5TjMSnt2TZmkJmV6Yk7CHauncIwkg8z
+         PWHS7i81VkzUHV0MccvKwZ3YcpGZbfpiVXBji0QOcgx312bSnXmDK9qlwe4S+7HDEkdB
+         BK2N5kVGUJyGKkxn/jED2uMO3s62Um9pevkWmqYgKzxfM8hJLnMJ+SlyfsAyx2zyuSU9
+         UGwgGeXpomRZakouO+Fbs8zFXoGJFyO4//m+TXRKHNLV76ypDZexuJugtcgrkwqy/aPx
+         eXl1mxCAsDaLOdcpIxrMOa8SY8A4RZM+FkVRaPzKyDCFDyw//3nVWb0KBL7koBMuKYWE
+         Q2tg==
+X-Gm-Message-State: AFqh2krc4ulE+DUAU9XUo6HvsmU+rsUcV/JPzBPvH+qeRAI1gM1fbT6+
+        ZZbvhdpseuDAvSq7/2qh7+z6Kfy9mbRAOenT
+X-Google-Smtp-Source: AMrXdXvOi3UGPKTD8KbwEvurdGPas7WtLGOQ/gQ8wYB+JIjfdTfv2yWNIVs+FiJxCZRyyTOXEWFiBQ==
+X-Received: by 2002:a05:6a20:8e02:b0:ad:a09c:5734 with SMTP id y2-20020a056a208e0200b000ada09c5734mr14600534pzj.44.1673590957700;
+        Thu, 12 Jan 2023 22:22:37 -0800 (PST)
+Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
+        by smtp.gmail.com with ESMTPSA id s14-20020a170902ea0e00b001926bff074fsm13180746plg.276.2023.01.12.22.22.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Jan 2023 22:22:36 -0800 (PST)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH v2] arm64: dts: qcom: sc7280: add display port audio
+Date:   Fri, 13 Jan 2023 06:22:29 +0000
+Message-Id: <20230113062229.774871-1-judyhsiao@chromium.org>
+X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Add DisplayPort sound node and lpass_cpu node
+in sc7280-herobrine-audio-rt5682.dtsi.
 
-Document the settings exported by rt9471 charger driver through sysfs entries:
-- sysoff_enable
-- port_detect_enable
-
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-Since v6:
-- Explain more details for sysoff_enable attribute.
-
-Since v5:
-- Recover all the change in sysfs-class-power.
-- New a sysfs-class-power-rt9471 file.
-- Remove 'charge_term_enable' sysfs entry, directly integrate it in
-  'charge_term_current' power supply property control.
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
 
 ---
- Documentation/ABI/testing/sysfs-class-power-rt9471 | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9471
+Changes Since v1:
+    -- Fix the commit message.
 
-diff --git a/Documentation/ABI/testing/sysfs-class-power-rt9471 b/Documentation/ABI/testing/sysfs-class-power-rt9471
-new file mode 100644
-index 00000000..38227a8
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-power-rt9471
-@@ -0,0 +1,32 @@
-+What:		/sys/class/power_supply/rt9471-*/sysoff_enable
-+Date:		Oct 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry allows enabling the sysoff mode of rt9471 charger devices.
-+		If enabled and the input is removed, the internal battery FET is turned
-+		off to reduce the leakage from the BAT pin. See device datasheet for details.
-+		It's commonly used when the product enter shipping stage. After entering
-+		shipping mode, only 'VBUS' or 'Power key" pressed can make it leave this
-+		mode. 'Disable' also can help to leave it, but it's more like to abort
-+		the action before the device really enter shipping mode.
+
+(no changes since v1)
+
+ .../qcom/sc7280-herobrine-audio-rt5682.dtsi   | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+index af685bc35e10..69e7aa7b2f6c 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+@@ -33,9 +33,22 @@ codec {
+ 		};
+ 
+ 		dai-link@1 {
+-			link-name = "ALC5682";
++			link-name = "DisplayPort";
+ 			reg = <1>;
+ 
++			cpu {
++				sound-dai = <&lpass_cpu LPASS_DP_RX>;
++			};
 +
-+		Access: Read, Write
-+		Valid values:
-+		- 1: enabled
-+		- 0: disabled
++			codec {
++				sound-dai = <&mdss_dp>;
++			};
++		};
 +
-+What:		/sys/class/power_supply/rt9471-*/port_detect_enable
-+Date:		Oct 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry allows enabling the USB BC12 port detect function of rt9471 charger
-+		devices. If enabled and VBUS is inserted, device will start to do the BC12
-+		port detect and report the usb port type when port detect is done. See
-+		datasheet for details. Normally controlled when TypeC/USBPD port integrated.
++		dai-link@2 {
++			link-name = "ALC5682";
++			reg = <2>;
 +
-+		Access: Read, Write
-+		Valid values:
-+		- 1: enabled
-+		- 0: disabled
+ 			cpu {
+ 				sound-dai = <&lpass_cpu MI2S_PRIMARY>;
+ 			};
+@@ -92,6 +105,10 @@ dai-link@1 {
+ 		reg = <MI2S_SECONDARY>;
+ 		qcom,playback-sd-lines = <0>;
+ 	};
++
++	dai-link@5 {
++		reg = <LPASS_DP_RX>;
++	};
+ };
+ 
+ /* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
 -- 
-2.7.4
+2.39.0.314.g84b9a713c41-goog
 
