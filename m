@@ -2,94 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31238668EA9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:00:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BC13668ECE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:06:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240846AbjAMHAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 02:00:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33278 "EHLO
+        id S241243AbjAMHF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 02:05:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240813AbjAMG66 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 01:58:58 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CF1772898
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 22:45:10 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id g68so13266200pgc.11
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 22:45:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=friendlyarm-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FC/n51wttnGtNiNe7WH/BCIkLrvufvFzSnIEhGzQM4w=;
-        b=b0jXb0ooQnNdoQ1WJ1MwgGXuYTywiQ6y+Pr92jpfFcquqViGzUGql5QyfKLmpQAOCt
-         sAXVt8LTJf2qY6u5MSi9BQ8MQ+ZIG4E6OOVRCltq5A8wC4vADIcT0KdoeIQZ8iVfJ51E
-         yTiLT3jCXN9OUYohSxwtFWUeDjQ0/esf9aBuIgXA7NYo8w+wct9CAK2IsShJIWWw1X4c
-         4sE2DExfsS0srEhZAEEs4Zgf0jFwO1NQ8SU5IRwSyk7tr/0R87VxAF0GRkB5H1bujoMP
-         8ZsMYzT/Pk+9MRBSKfaDi6tTSnyVytrNcKaUNWSA2+GVlWNgKRoU8L7MuQBmTJ5GhEwc
-         6PUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FC/n51wttnGtNiNe7WH/BCIkLrvufvFzSnIEhGzQM4w=;
-        b=bcTzwbqqEZKmfAaO7ZxZROxICrW82oc83P0+DKHNwgQTt4qhRL42gAhz/OAGJzFSco
-         wdvBc73AOVuCDFE7oHXKw6M5wquJcHBCdsWfYFtpXsVpQrsunszm+RVXhsZRK12eVwk6
-         RKzmWsmYXICXeHSU9z5WxTKYMQfgy96TL1pMQgF/aA4oPFGuQKB2wqmxM4cUc35lGOuu
-         rguy/s438aD947XCF9VrY34gSiOPbCItPxWM09k3k0flqpbDBylwiXwA368tZH444HQ5
-         i7ZnKjBlQ83QMzFMENzlfNwyJuJwbwII45itnI5yOZpgKlk+n9Lo8pULE5PK0/1DlHzb
-         3NeA==
-X-Gm-Message-State: AFqh2kqf2P67x2cI3COpgNpM/1DYCKmSjBslRIe2YM7a90v2/cH3N3j6
-        z0cojasUgOGjAUo4Uk49O5CcbA==
-X-Google-Smtp-Source: AMrXdXvDmf/1LdiTumMJjPEnygIZlv2EFUyFz6qHZThsAio0M/pePfshn1odQvyy9Za0jbgDpDpHIQ==
-X-Received: by 2002:a05:6a00:88a:b0:581:19ed:78b9 with SMTP id q10-20020a056a00088a00b0058119ed78b9mr79911887pfj.2.1673592309502;
-        Thu, 12 Jan 2023 22:45:09 -0800 (PST)
-Received: from jensen.next (li999-236.members.linode.com. [45.33.49.236])
-        by smtp.gmail.com with ESMTPSA id p29-20020aa79e9d000000b00574db8ca00fsm12886122pfq.185.2023.01.12.22.45.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jan 2023 22:45:08 -0800 (PST)
-From:   Jensen Huang <jensenhuang@friendlyarm.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Jensen Huang <jensenhuang@friendlyarm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: add missing #interrupt-cells to rk356x pcie2x1
-Date:   Fri, 13 Jan 2023 14:44:57 +0800
-Message-Id: <20230113064457.7105-1-jensenhuang@friendlyarm.com>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S240573AbjAMHF3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:05:29 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8826E422;
+        Thu, 12 Jan 2023 22:54:12 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30D69rPe021783;
+        Fri, 13 Jan 2023 06:54:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type :
+ content-transfer-encoding; s=qcppdkim1;
+ bh=HZnJnnwEZlMBESYM6rtfOpHK2ZPlEFDOVBIjxMPrNtM=;
+ b=IY6XaaBBTfIc6TRuFVMHQHy034w4ZECr6iod9mUAikFPIIZB/5/0wbV0fuGFkq5REd0O
+ ZxsV41DnuzFMrLQCKDxIte8fWy5+q01z7TvN0uqSWWMGjE9kbmL9grd0t3bq2Fz7MPm8
+ 2NPhCzgshbW7XvgngsSvYGWIkJ2+CVeoQ5ViEN2kVI58ZtT8iu8yOlxz5ViwomVpzH3a
+ XXrhVhXz6rpw4FacP2HRrnhEhvbkMzM7Liqx/AUZxk8r78XCmKZAi56KLCxRHY6LtDUz
+ FyW14QTY3s5l8vkwQvqzZTOdZpHMZ5e1vVm93pMiRomxRY79ZAKwx4pdOciEG3YUQuwi zw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n2wun0g12-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 13 Jan 2023 06:54:03 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30D6s3cd002572
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 13 Jan 2023 06:54:03 GMT
+Received: from blr-ubuntu-87.ap.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Thu, 12 Jan 2023 22:53:58 -0800
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+To:     <andersson@kernel.org>, <srinivas.kandagatla@linaro.org>
+CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <konrad.dybcio@somainline.org>, <robimarko@gmail.com>,
+        <quic_gurus@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>
+Subject: [PATCH V9 0/2] SCM: Add support for wait-queue aware firmware
+Date:   Fri, 13 Jan 2023 12:23:00 +0530
+Message-ID: <20230113065303.17727-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zZaxL6uLv4AbWOj2jauSTfg2N_hyoaa4
+X-Proofpoint-GUID: zZaxL6uLv4AbWOj2jauSTfg2N_hyoaa4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-13_03,2023-01-12_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 phishscore=0 malwarescore=0 spamscore=0 bulkscore=0
+ mlxscore=0 priorityscore=1501 adultscore=0 suspectscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301130047
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This fixes the following issue:
-  pcieport 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
+This patch series enables the QCOM SCM driver to support firmware (FW) versions
+that expect the high-level OS (HLOS) to be tolerant of SCM call requests not
+being processed right away and, instead, being placed on a wait-queue in FW and
+processed accordingly.
 
-Signed-off-by: Jensen Huang <jensenhuang@friendlyarm.com>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+The problem this feature is fixing is as follows. In a scenario where there is
+a VM in addition to HLOS (and an underlying hypervisor):
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 5706c3e24f0a..b3185e4115d9 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -985,6 +985,7 @@ pcie2x1: pcie@fe260000 {
- 		resets = <&cru SRST_PCIE20_POWERUP>;
- 		reset-names = "pipe";
- 		#address-cells = <3>;
-+		#interrupt-cells = <1>;
- 		#size-cells = <2>;
- 		status = "disabled";
+1. HLOS makes an SMC call on core 5
+2. The hypervisor scheduling interrupt interrupts this SMC call.
+3. The hypervisor schedules the VM on core 5.
+4. The VM makes an SMC call on core 5.
+5. The SMC call is non-interruptibly stuck on FW spinlock on core 5.
+6. HLOS cannot reschedule since core 5 is not responding to Reschedule IPIs.
+7. Watchdog timer expires waiting for core 5.
 
---
-2.38.1
+This problem is solved by FW returning a new return code SCM_WAITQ_SLEEP to
+HLOS right away when it is overwhelmed by the VM's SMC call. HLOS then places
+the call on a wait-queue and wakes it up when it receives an interrupt that
+signifies "all-clear".
+
+There are two new SMC calls also being defined in this design that, together
+with one new return code, form the handshake protocol between Linux and FW.
+
+This design is also backwards-compatible with existing firmware versions that
+do not support this feature.
+
+V9:
+- Drop unused complete_all [Srini]
+
+v8:
+- Rename qcom_scm_lookup_wq to qcom_scm_assert_valid_wq_ctx [Bjorn] 
+- Document wq_ctx limitations [Guru]
+- Drop dev check and add include completion header [Srini]
+- Rename qcom_scm_lookup_completion to qcom_scm_wait_for_wq_completion.
+
+v7:
+- Move lookup + wait_for_completion into a single function in qcom_scm [Bjorn]
+- Simplify completion retrieval [Bjorn]
+
+v6:
+- Fix subject of bindings [Krzysztof]
+- Update commit message to include the SoC supporting the feature [Krzysztof]
+- Make the interrupt property valid on SM8450 SoC [Krzysztof]
+- Fix misc. nits in the scm driver [Krzysztof]
+- Rebased on Krzysztof's narrow clocks and interconnect series.
+
+v5:
+- Pick up R-b
+- Handle the wake_one/wake_all flags [Guru]
+- Rename flag handler to qcom_scm_waitq_wakeup [Bjorn]
+- Resume scm call can return ebusy as well handle that scenario by retrying
+  the original smc call and not the resume call
+
+v4:
+- platform_set_drvdata will be used by __scm_smc_do_quirk_handle_waitq to
+  get access to scm struct from device so retain it
+- Use a single completion as it satisfies all of the current usecases [Bjorn]
+- Inline scm_get_wq_ctx [Bjorn]
+- Convert all pr_err to dev_err [Bjorn]
+- Handle idr_destroy in a thread safe manner [Bjorn]
+- Misc. Style fixes [Bjorn]
+- Qualify bindings [Krzysztoff]
+
+v3:
+- Drop allow-multi-call property since HLOS doesn't completely support it
+  yet.
+- Fixup irq handling so as not to affect SoCs without the interrupt.
+- Fix warnings reported by kernel test-bot.
+
+v2:
+- Changes made to patches 4 and 5 are listed therein.
+- Rebased dt-bindings on top of the YAML conversion patch [1].
+
+Guru Das Srinagesh (2):
+  dt-bindings: firmware: qcom,scm: Add optional interrupt
+  firmware: qcom: scm: Add wait-queue handling logic
+
+ .../bindings/firmware/qcom,scm.yaml           | 18 ++++
+ drivers/firmware/qcom_scm-smc.c               | 87 ++++++++++++++++--
+ drivers/firmware/qcom_scm.c                   | 90 ++++++++++++++++++-
+ drivers/firmware/qcom_scm.h                   |  8 ++
+ 4 files changed, 195 insertions(+), 8 deletions(-)
+
+-- 
+2.17.1
 
