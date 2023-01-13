@@ -2,89 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EE256693EE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:21:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A74F6693F6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:23:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241007AbjAMKVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:21:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57966 "EHLO
+        id S240196AbjAMKXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:23:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240770AbjAMKUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:20:41 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65C55745BB;
-        Fri, 13 Jan 2023 02:20:37 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S240805AbjAMKWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:22:34 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9996C5830F;
+        Fri, 13 Jan 2023 02:21:45 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 1135A9EF;
-        Fri, 13 Jan 2023 11:20:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1673605235;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=i/Sj+jw+5qCFtHhkImH+FMapResy0lqx5loXPf8lUMQ=;
-        b=J2ZOwYby4ZZsBzpShYHvIHDWSKsgW+C180Vk2yMXZ9YQlqYsQ2bzJF2YMBWnLU+NWDPUbI
-        Y6c+6W9YQkIsZ8g8o8IvN96lz6S3V+BhJHV6Q+G9VlqojDtXkrQbK6vu9tBT1JFh8aHo2U
-        GEUgq3X0NIMmosjMcFubw6nTlxzDv2vN+9fUU1QCK0hjd3WFK/jsg5X79xEdOvesL3rI7q
-        98iyYLnDtMihjdj6vcbg3JFOzLeqTg5Rbc/ukuXs2vrcGM/LbQ85jDj++Z4C6ilw7+++HV
-        qwEgABscCDHOF+fSI7zzQpnEJud4grUHY5bz0Off4Ei0kCO6VzM2r6exAOSIEw==
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3A6EC61129;
+        Fri, 13 Jan 2023 10:21:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D47A4C433EF;
+        Fri, 13 Jan 2023 10:21:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673605304;
+        bh=QJB4bPL/qxvG2LxsovNGnWYa2fcv/xAVjbx4c/RVED0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OQ8m4D+3wF4Chb2uthGQTjVojqbZNyoIz2Ni4i2cGVW7CudPublYKRnf+S6MHLwII
+         CQ7XocZJelHMgEP0dTE/0keJs7mqddkdhnaqnU+Hzn3UhbMXGZhVE3mZQC74I/007j
+         JiZOocVsn40T2mctTSNOAsUg/HW93u1cl6/oC9nkaM3nBgFZkDYqZyWYjkRUxtFQwS
+         VwlFQJXdlbuHimPQKmBRUdsSDfXCt5d8G2WSrX2LkvPmmEl2ItoCjaoGLo+0GKeVil
+         fEmuds6/Yj+IX2ejHxxdZh8lqSUUSk7+emTULe2V2muZgQcwCYkfRP+ZLjbO7J8GHL
+         eGFPjQTqhR3HA==
+Message-ID: <14dfa3ac-344f-5185-fd83-06b3c9884b5c@kernel.org>
+Date:   Fri, 13 Jan 2023 12:21:37 +0200
 MIME-Version: 1.0
-Date:   Fri, 13 Jan 2023 11:20:34 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Robert Marko <robimarko@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org, Aisheng Dong <aisheng.dong@nxp.com>
-Subject: Re: [PATCH] of: property: fix #nvmem-cell-cells parsing
-In-Reply-To: <CAL_JsqLN0jd0nT7rC7SBMh2zLsAvGCafknnS_oqJJj+=c1m9pg@mail.gmail.com>
-References: <20230110233056.3490942-1-michael@walle.cc>
- <167357352392.592020.6790951746345716129.robh@kernel.org>
- <CAL_JsqLN0jd0nT7rC7SBMh2zLsAvGCafknnS_oqJJj+=c1m9pg@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <729fb97c96216168f73d1a7f01bfd70d@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH net-next 0/5] Add PPS support to am65-cpts driver
+Content-Language: en-US
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        nm@ti.com, kristo@kernel.org, vigneshr@ti.com, nsekhar@ti.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srk@ti.com
+References: <20230111114429.1297557-1-s-vadapalli@ti.com>
+ <2fc741b2-671d-8817-1d6f-511398aea9ff@kernel.org>
+ <19566370-3cf1-09fd-119f-c39c0309eb6d@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <19566370-3cf1-09fd-119f-c39c0309eb6d@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->> > Commit 67b8497f005f ("of: property: make #.*-cells optional for simple
->> > props") claims to make the cells-name property optional for simple
->> > properties, but changed the code for the wrong property, i.e. for
->> > DEFINE_SUFFIX_PROP(). Fix that.
->> >
->> > Fixes: 67b8497f005f ("of: property: make #.*-cells optional for simple props")
->> > Reported-by: Peng Fan <peng.fan@nxp.com>
->> > Signed-off-by: Michael Walle <michael@walle.cc>
->> > Tested-by: Robert Marko <robimarko@gmail.com>
->> > ---
->> >  drivers/of/property.c | 8 ++++----
->> >  1 file changed, 4 insertions(+), 4 deletions(-)
->> >
->> 
->> Applied, thanks!
-> 
-> Or not. 67b8497f005f is not in my tree, so
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
 
-Thanks! Srinivas, can you pick it up to get rid of the errors/warnings
-in linux-next?
 
--michael
+On 13/01/2023 11:56, Siddharth Vadapalli wrote:
+> Hello Roger,
+> 
+> On 13/01/23 15:18, Roger Quadros wrote:
+>> Siddharth,
+>>
+>> On 11/01/2023 13:44, Siddharth Vadapalli wrote:
+>>> The CPTS hardware doesn't support PPS signal generation. Using the GenFx
+>>> (periodic signal generator) function, it is possible to model a PPS signal
+>>> followed by routing it via the time sync router to the CPTS_HWy_TS_PUSH
+>>> (hardware time stamp) input, in order to generate timestamps at 1 second
+>>> intervals.
+>>>
+>>> This series adds driver support for enabling PPS signal generation.
+>>> Additionally, the documentation for the am65-cpts driver is updated with
+>>> the bindings for the "ti,pps" property, which is used to inform the
+>>> pair [CPTS_HWy_TS_PUSH, GenFx] to the cpts driver. The PPS example is
+>>> enabled for AM625-SK board by default, by adding the timesync_router node
+>>> to the AM62x SoC, and configuring it for PPS in the AM625-SK board dts.
+>>>
+>>> Grygorii Strashko (3):
+>>>   dt-binding: net: ti: am65x-cpts: add 'ti,pps' property
+>>>   net: ethernet: ti: am65-cpts: add pps support
+>>>   net: ethernet: ti: am65-cpts: adjust pps following ptp changes
+>>>
+>>> Siddharth Vadapalli (2):
+>>>   arm64: dts: ti: k3-am62-main: Add timesync router node
+>>>   arm64: dts: ti: k3-am625-sk: Add cpsw3g cpts PPS support
+>>
+>> Device tree patches need to be sent separately. You don't need to involve
+>> net maintainers for that.
+>>
+>> If you introduce a new binding then that needs to be in maintainer's
+>> tree before you can send a related device tree patch.
+> 
+> Thank you for letting me know. Would I need to resend the series in order for it
+> to be reviewed? I was hoping that if I get feedback for this series, I will
+> implement it and post just the bindings and driver patches as the v2 series,
+> dropping the device tree patches. Please let me know.
+
+You could wait a couple of days for more comments here before spinning off a v2 ;)
+
+cheers,
+-roger
