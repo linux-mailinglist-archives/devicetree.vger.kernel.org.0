@@ -2,68 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9C0668F99
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:52:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35959668FA1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:54:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233993AbjAMHw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 02:52:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41170 "EHLO
+        id S235451AbjAMHyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 02:54:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbjAMHwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:52:55 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCBD95F75
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:52:53 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id ud5so50431854ejc.4
-        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:52:53 -0800 (PST)
+        with ESMTP id S234982AbjAMHyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:54:51 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4EE86878F
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:54:49 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id o20so16571lfk.5
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:54:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hsW10UAQdG3igNdNi26Jys3iRtenHKlkdEyDQRN/BnQ=;
-        b=ZebeW9H97F9fWhdeRZ9sF/CDFwFkrKI5aiO6Xr8jew7hqZRK2cZbZnkOw4K3ajQkU7
-         XaD22IznntPJOHT8RzYQT/QvTDTPbLSbyfwDx3vD1cqC9NfQO8A/5oh66ndDtMmJRvu0
-         C4H9lkD+B9DnNhmdPCONmsab1plYSVHB4DjVLr18T9mUwNAi8u1arHs/a/RQ+t6zN8gQ
-         vWM5lQsCRsSEyyoO+6uzEYOTbWPYAZJ1ctfrQxZUcItWf41R33hbeBu1MluQmGBFHdjx
-         0ulMHnnTUyoBBJmzOzJg5EXrF6+MjbbK67kqxRGBk7h5TM4YmwhxcfP7FNWxYJnmG8mx
-         IZ2w==
+        bh=N67jHu9VPuTFdj17UUm5v+m/LOkC9ATqB6ZFcng9mBM=;
+        b=Bki18zw1En9C22F6tltWIdlUyTDANgWT8zXiUg1559uid/2tdN/7WqSaAGQfEIUfTY
+         bpCF1BaNvZNMMH2tfv/nANrTrQc0klkN2ntLhDyBG6FQyeXBm2Iifvz6AEOBc6cW1sFf
+         O9ddT7Z/NRiLNoUQfTN82aWWu5qAhhebJPhuvYW38I05YBON2Xd1d6C33y/shn8sdZRM
+         Y/anSY0r6XtnKMUguUar+VYEpbc866d0QwLc2DgaRNZ7fYpEEUdmxlLY88VypAEu1XHF
+         M2bXERmFufs57MYM7BKSKhEW5/ncEzqy1aJsGmBEbxEm1XhilojsS1YxHgRp+9HlFGxv
+         NJyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hsW10UAQdG3igNdNi26Jys3iRtenHKlkdEyDQRN/BnQ=;
-        b=7GhAivhG/6U2WKeuong75uZPBZAPKRl9Nk3MUG602XzeOyKjWXH6zXRBndOHQO+InX
-         OyW5pbKv0vVNE//fiL63sOvSExQC9/Fkk8Cs7wrCr45qRedjnfeREMLamy1N80fKSYqf
-         OiVrRwr/X6CYWCgk7jfSzK6VhMTaPWIF7TdvIEaQvETavMxWTE4QgPmPDP6HHqgOTXax
-         nTSsTXql5IxHomGBssKd6rmin4PwJ1xG7VuH9yLgxzAakcawgNH+80OWZRLxXf2I1Mm3
-         veLhTZ9H16U0WUTzMI1aKsrGzqhr4RXxvoU9t/6OAi/8Nvll/ZdlLsO3SSdjwU3dfUuT
-         CfiQ==
-X-Gm-Message-State: AFqh2kofeMooi/Y10zvFwc+5uLtF+246tGPQITd6ZMcyLfZNsmSoo3k2
-        SFbj74oAv1Qp1kZM+7FmJwJ++w==
-X-Google-Smtp-Source: AMrXdXvFcFySV/UWF5uK5kT1Z9lr0NMGSrouHFEzaEhWrUju16eu55UjsDfLgGZD9zKT+xwn17ZPCQ==
-X-Received: by 2002:a17:906:dfcd:b0:7ff:7876:9c5d with SMTP id jt13-20020a170906dfcd00b007ff78769c5dmr65956916ejc.62.1673596372469;
-        Thu, 12 Jan 2023 23:52:52 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g18-20020a1709061c9200b007c1675d2626sm8373407ejh.96.2023.01.12.23.52.51
+        bh=N67jHu9VPuTFdj17UUm5v+m/LOkC9ATqB6ZFcng9mBM=;
+        b=cm23zSvh9Q9KvCLeB5Ovb4JS9gbn+P2xPztQM8gW9V413ETsfbFk9ap2BXcNp3FVeH
+         A7T9Ctr5YcJCQbmS5ViNYPr7yvEHlYPdUyHw5CqB9er7eUu6PacwqIvXCzb48y9JmUr8
+         NZQRtmfjM6Bpx5kSacMKs/hJbeYSAOO2Df34DNIeOHlxYIKijTGBmXKMehq5RfSwKsaG
+         cRTQvxFHTkRYNbsj6VqDK4oKBFbWGaYAdvu+84YM7XZHvz1heMpdko7hatmY/Xc4r5dn
+         eEFN6N502m1mn8Ymq88aF0tsi1axmzt0csLinPidScwkKVtEKKvgdhQ29/Hr+0dtn0p0
+         VNxA==
+X-Gm-Message-State: AFqh2koEhF5ZZ1D1l4hwx5lq8j/xf1uxoZG7poOHVHlsurMQPV+lITWB
+        ZCdARghlHu5R0YUdBagMDm0Frw==
+X-Google-Smtp-Source: AMrXdXv6pH4riHGD4hlzNNEYTm3aN2sryaYRoXVh/PWP9xQnGwYrK8GnJHedEA8Rrv00tgoxfGLv7g==
+X-Received: by 2002:a05:6512:234a:b0:4cc:a19a:7a1b with SMTP id p10-20020a056512234a00b004cca19a7a1bmr2033934lfu.65.1673596488202;
+        Thu, 12 Jan 2023 23:54:48 -0800 (PST)
+Received: from [192.168.2.31] ([194.204.33.9])
+        by smtp.gmail.com with ESMTPSA id v9-20020a05651203a900b004d01e47b7d9sm285163lfp.223.2023.01.12.23.54.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Jan 2023 23:52:52 -0800 (PST)
-Message-ID: <6f43e320-b533-e5fb-3886-1b6ccc7f9548@linaro.org>
-Date:   Fri, 13 Jan 2023 08:52:50 +0100
+        Thu, 12 Jan 2023 23:54:47 -0800 (PST)
+Message-ID: <edae9929-bec3-789c-8807-2209847e8156@linaro.org>
+Date:   Fri, 13 Jan 2023 09:54:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: sram: Tightly Coupled Memory (TCM) bindings
-Content-Language: en-US
-To:     Tanmay Shah <tanmay.shah@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org
-References: <20230113073045.4008853-1-tanmay.shah@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230113073045.4008853-1-tanmay.shah@amd.com>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v5 2/4] dt-bindings: display/msm: add SoC-specific compats
+ to qcom,mdp5.yaml
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230109050152.316606-1-dmitry.baryshkov@linaro.org>
+ <20230109050152.316606-3-dmitry.baryshkov@linaro.org>
+ <20230112215202.GA281635-robh@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230112215202.GA281635-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -74,18 +85,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 08:30, Tanmay Shah wrote:
-> This patch introduces bindings for TCM memory address space on AMD-xilinx
-> platforms. As of now TCM addresses are hardcoded in xilinx remoteproc
-> driver. This bindings will help in defining TCM in device-tree and
-> make it's access platform agnostic and data-driven from the driver.
+On 12/01/2023 23:52, Rob Herring wrote:
+> On Mon, Jan 09, 2023 at 07:01:50AM +0200, Dmitry Baryshkov wrote:
+>> Add platform-specific compatible entries to the qcom,mdp5.yaml to allow
+>> distinguishing between various platforms. For msm8998 list
+>> qcom,msm8998-dpu rather than -mdp5 to allow this binding to be handled
+>> by either of the drivers.
 > 
+> 8998 is where?
 
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
+Ugh, I dropped it from the patch (because of the existing 
+qcom,msm8998-mdss and qcom,msm8998-dpu). I'll fix the message for the 
+next iteration.
 
-Where is driver or DTS? Are you now adding a dead binding without users?
+> 
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../bindings/display/msm/qcom,mdp5.yaml         | 17 ++++++++++++++++-
+>>   .../bindings/display/msm/qcom,mdss.yaml         |  6 +++++-
+>>   2 files changed, 21 insertions(+), 2 deletions(-)
 
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
