@@ -2,392 +2,370 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 548CC6692DD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:28:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7CF36692F3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:29:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241142AbjAMJ2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 04:28:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54228 "EHLO
+        id S239906AbjAMJ3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 04:29:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232007AbjAMJ1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:27:17 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4560742622;
-        Fri, 13 Jan 2023 01:22:34 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BEDE96111B;
-        Fri, 13 Jan 2023 09:22:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04EE5C433D2;
-        Fri, 13 Jan 2023 09:22:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673601753;
-        bh=5wOHUqZdPBPR+MAuqG1elkco3tdHEJlg27JpPalGysI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tuS/27UqRB6i7SU8m4qaIld44QJkonNnaxmD6AcjmXBtee/d0xFNLXTcQy8SBLQKS
-         ltfmt/ekuyAAFt8/lOVQgYhB22UyjfsnKaSfIZDk7OtV369xk+bQj9uHna3HLPj5JM
-         D4lNvs3E60MSEVkFPYAprvG++dEfKcO0g4GbOSn16kR8EUgPXocs+JLIPoVsodaWcY
-         K08QnA3XAmdKhArYZFa0HMJe2NfLkcZjKf1YEOLOYF632QyAptTNhQ0kojNLSPNHCp
-         lEog2U1QEhYsVZf6VMVQPIp/r4Yq02Joy4DWnOyJ9uvW9q7EV1DR3WqR6YgE3R9sDO
-         xpcnGmqpw6IZA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1pGGGc-001SPO-Gv;
-        Fri, 13 Jan 2023 09:22:30 +0000
-Date:   Fri, 13 Jan 2023 09:22:29 +0000
-Message-ID: <86a62mokkq.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229887AbjAMJ15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:27:57 -0500
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D4892DDF;
+        Fri, 13 Jan 2023 01:23:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673601837; x=1705137837;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/Jt/SJgZBfDi5YiCSTowtw0y3MUjbXVipBqspyh2wUk=;
+  b=E7jb1yL7PN5gf7K6q7c81qjbvm/9U6kLr3whS9bEacM3f8pwnZvBpO5h
+   amuP+0tTMiAcc06SlKd7YqVeSeUD2NX1V6a8mbk5wkCMVMbORtra+PxVY
+   UNF5HsWezyKCmlpSefk/AFI59JTfW2iVhQ1VupbK/VyA/i/CSP4D/YDUu
+   iGKE/wq1ZNohATZ9Mja51aUBsW4Ir8NzjCvw3Q0WsqGIqeVoY9auYuGeN
+   wKHTamg/PmakaGUrHH0zPFTxmHR7W8Ofy8HqkZ+nllUilaMK9is4sjnws
+   gfczJd82TvFdgupCJsN2hajhORSFm2etaPsQ++0Ak4hj6s2x4+GcZ6BAI
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="311807791"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; 
+   d="scan'208";a="311807791"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2023 01:23:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10588"; a="800544184"
+X-IronPort-AV: E=Sophos;i="5.97,213,1669104000"; 
+   d="scan'208";a="800544184"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 13 Jan 2023 01:23:45 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 13 Jan 2023 11:23:44 +0200
+Date:   Fri, 13 Jan 2023 11:23:44 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Pin-yen Lin <treapking@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Pascal Paillet <p.paillet@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Subject: Re: [PATCH 3/3] optee core: add irq chip using optee async notification
-In-Reply-To: <20230112145424.3791276-4-etienne.carriere@linaro.org>
-References: <20230112145424.3791276-1-etienne.carriere@linaro.org>
-        <20230112145424.3791276-4-etienne.carriere@linaro.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: etienne.carriere@linaro.org, linux-kernel@vger.kernel.org, jens.wiklander@linaro.org, sumit.garg@linaro.org, op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, p.paillet@foss.st.com, fabrice.gasnier@foss.st.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
+        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
+        Xin Ji <xji@analogixsemi.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Imre Deak <imre.deak@intel.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Kees Cook <keescook@chromium.org>,
+        Ville =?iso-8859-1?Q?Syrj=E4l=E4?= 
+        <ville.syrjala@linux.intel.com>,
+        shaomin Deng <dengshaomin@cdjrlc.com>
+Subject: Re: [PATCH v10 3/9] drm/display: Add Type-C switch helpers
+Message-ID: <Y8EjIKEHqcj3htqC@kuha.fi.intel.com>
+References: <20230112042104.4107253-1-treapking@chromium.org>
+ <20230112042104.4107253-4-treapking@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230112042104.4107253-4-treapking@chromium.org>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Jan 2023 14:54:24 +0000,
-Etienne Carriere <etienne.carriere@linaro.org> wrote:
-> 
-> Adds an irq chip in optee driver to generate interrupts from OP-TEE
-> notified interrupt events based on optee async notification. Upon such
-> notification, optee driver invokes OP-TEE to query a pending interrupt
-> event. If an interrupt notification is pending the invocation return
-> OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_IT and optee driver can get the pending
-> interrupt number with SMC function ID OPTEE_SMC_FUNCID_GET_IT_VALUE.
-> 
-> SMC function ID OPTEE_SMC_FUNCID_SET_IT_MASK allows Linux to mask/unmask
-> an interrupt notification services.
-> 
-> The optee irq_chip if flagged IRQCHIP_SKIP_SET_WAKE to skip set_wake
-> as optee interrupt notifications doesn't support the set_wake option.
-> In case a device is using the optee irq and is marked as wakeup source,
-> this result in an "Unbalanced IRQ xx wake disable" backtrace, since:
-> - in irq_set_irq_wake(ON), wake_depth gets incremented, then reset due to
->   set_irq_wake_real() returns an error (irq_set_wake() isn't implemented)
-> - in irq_set_irq_wake(OFF), wake_depth is always 0, hence the warning
+Hi,
 
-Is this relevant information?
+On Thu, Jan 12, 2023 at 12:20:58PM +0800, Pin-yen Lin wrote:
+> Add helpers to register and unregister Type-C "switches" for bridges
+> capable of switching their output between two downstream devices.
+> 
+> The helper registers USB Type-C mode switches when the "mode-switch"
+> and the "data-lanes" properties are available in Device Tree.
 
->
-> Co-developed-by: Pascal Paillet <p.paillet@foss.st.com>
-> Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
-> Co-developed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+Let's not make this kind of helpers DT only, please. See below ...
+
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
 > ---
->  drivers/tee/optee/optee_private.h |   2 +
->  drivers/tee/optee/optee_smc.h     |  78 +++++++++++++++-
->  drivers/tee/optee/smc_abi.c       | 142 ++++++++++++++++++++++++++++--
->  3 files changed, 216 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/tee/optee/optee_private.h b/drivers/tee/optee/optee_private.h
-> index e5bd3548691f..2a146d884d27 100644
-> --- a/drivers/tee/optee/optee_private.h
-> +++ b/drivers/tee/optee/optee_private.h
-> @@ -112,6 +112,7 @@ struct optee_pcpu {
->   * @optee_pcpu		per_cpu optee instance for per cpu work or NULL
->   * @notif_pcpu_wq	workqueue for per cpu aynchronous notification or NULL
->   * @notif_pcpu_work	work for per cpu asynchronous notification
-> + * @domain		interrupt domain registered by OP-TEE driver
->   */
->  struct optee_smc {
->  	optee_invoke_fn *invoke_fn;
-> @@ -121,6 +122,7 @@ struct optee_smc {
->  	struct optee_pcpu __percpu *optee_pcpu;
->  	struct workqueue_struct *notif_pcpu_wq;
->  	struct work_struct notif_pcpu_work;
-> +	struct irq_domain *domain;
->  };
+> Changes in v10:
+> - Collected Reviewed-by and Tested-by tags
+> - Replaced "void *" with "typec_mux_set_fn_t" for mux_set callbacks
+> - Print out the node name when errors on parsing DT
+> - Use dev_dbg instead of dev_warn when no Type-C switch nodes available
+> - Made the return path of drm_dp_register_mode_switch clearer
+> 
+> Changes in v8:
+> - Fixed the build issue when CONFIG_TYPEC=m
+> - Fixed some style issues
+> 
+> Changes in v7:
+> - Extracted the common codes to a helper function
+> - New in v7
+> 
+>  drivers/gpu/drm/display/drm_dp_helper.c | 134 ++++++++++++++++++++++++
+>  include/drm/display/drm_dp_helper.h     |  17 +++
+>  2 files changed, 151 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index 16565a0a5da6..a2ec40a621cb 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -30,11 +30,13 @@
+>  #include <linux/sched.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/string_helpers.h>
+> +#include <linux/usb/typec_mux.h>
+>  #include <linux/dynamic_debug.h>
 >  
->  /**
-> diff --git a/drivers/tee/optee/optee_smc.h b/drivers/tee/optee/optee_smc.h
-> index 73b5e7760d10..0cf83d5a2931 100644
-> --- a/drivers/tee/optee/optee_smc.h
-> +++ b/drivers/tee/optee/optee_smc.h
-> @@ -226,7 +226,8 @@ struct optee_smc_get_shm_config_result {
->   * a3	Bit[7:0]: Number of parameters needed for RPC to be supplied
->   *		  as the second MSG arg struct for
->   *		  OPTEE_SMC_CALL_WITH_ARG
-> - *	Bit[31:8]: Reserved (MBZ)
-> + *	Bit[23:8]: The maximum interrupt event notification number
-> + *	Bit[31:24]: Reserved (MBZ)
->   * a4-7	Preserved
->   *
->   * Error return register usage:
-> @@ -254,6 +255,11 @@ struct optee_smc_get_shm_config_result {
->  #define OPTEE_SMC_SEC_CAP_ASYNC_NOTIF		BIT(5)
->  /* Secure world supports pre-allocating RPC arg struct */
->  #define OPTEE_SMC_SEC_CAP_RPC_ARG		BIT(6)
-> +/* Secure world supports interrupt events notification to normal world */
-> +#define OPTEE_SMC_SEC_CAP_IT_NOTIF		BIT(7)
-> +
-> +#define OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_MASK	GENMASK(23, 8)
-> +#define OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_SHIFT	8
+>  #include <drm/display/drm_dp_helper.h>
+>  #include <drm/display/drm_dp_mst_helper.h>
+>  #include <drm/drm_edid.h>
+> +#include <drm/drm_of.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_vblank.h>
+>  #include <drm/drm_panel.h>
+> @@ -3891,3 +3893,135 @@ int drm_panel_dp_aux_backlight(struct drm_panel *panel, struct drm_dp_aux *aux)
+>  EXPORT_SYMBOL(drm_panel_dp_aux_backlight);
 >  
->  #define OPTEE_SMC_FUNCID_EXCHANGE_CAPABILITIES	9
->  #define OPTEE_SMC_EXCHANGE_CAPABILITIES \
-> @@ -416,6 +422,12 @@ struct optee_smc_disable_shm_cache_result {
->   */
->  #define OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF	0
->  
-> +/*
-> + * Notification that OP-TEE triggers an interrupt event to Linux kernel
-> + * for an interrupt consumer.
-> + */
-> +#define OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_IT		1
+>  #endif
 > +
->  #define OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE	17
->  #define OPTEE_SMC_GET_ASYNC_NOTIF_VALUE \
->  	OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE)
-> @@ -426,6 +438,70 @@ struct optee_smc_disable_shm_cache_result {
->  /* See OPTEE_SMC_CALL_WITH_REGD_ARG above */
->  #define OPTEE_SMC_FUNCID_CALL_WITH_REGD_ARG	19
->  
-> +/*
-> + * Retrieve the interrupt number of the pending interrupt event notified to
-> + * non-secure world since the last call of this function.
-> + *
-> + * OP-TEE keeps a record of all posted interrupt notification events. When the
-> + * async notif interrupt is received by non-secure world, this function should
-> + * be called until all pended interrupt events have been retrieved. When an
-> + * interrupt event is retrieved it is cleared from the record in secure world.
-> + *
-> + * It is expected that this function is called from an interrupt handler
-> + * in normal world.
-> + *
-> + * Call requests usage:
-> + * a0	SMC Function ID, OPTEE_SMC_GET_IT_NOTIF_VALUE
-> + * a1-6	Not used
-> + * a7	Hypervisor Client ID register
-> + *
-> + * Normal return register usage:
-> + * a0	OPTEE_SMC_RETURN_OK
-> + * a1	IT_NOTIF interrupt identifier value
-> + * a2	Bit[0]: OPTEE_SMC_IT_NOTIF_VALID if the value in a1 is
-> + *		valid, else 0 if no interrupt event were pending
-> + * a2	Bit[1]: OPTEE_SMC_IT_NOTIF_PENDING if another interrupt event
-> + *		value is pending, else 0.
-> + *	Bit[31:2]: MBZ
-> + * a3-7	Preserved
-> + *
-> + * Not supported return register usage:
-> + * a0	OPTEE_SMC_RETURN_ENOTAVAIL
-> + * a1-7	Preserved
-> + */
-> +#define OPTEE_SMC_IT_NOTIF_VALID		BIT(0)
-> +#define OPTEE_SMC_IT_NOTIF_PENDING		BIT(1)
-> +
-> +#define OPTEE_SMC_FUNCID_GET_IT_NOTIF_VALUE	20
-> +#define OPTEE_SMC_GET_IT_NOTIF_VALUE \
-> +	OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_IT_NOTIF_VALUE)
-> +
-> +/*
-> + * Mask or unmask an interrupt notification event.
-> + *
-> + * It is expected that this function is called from an interrupt handler
-> + * in normal world.
-> + *
-> + * Call requests usage:
-> + * a0	SMC Function ID, OPTEE_SMC_SET_IT_NOTIF_MASK
-> + * a1	Interrupt identifier value
-> + * a2	Bit[0]: 1 if interrupt event is to be masked, 0 if it is to be unmasked
-> + * a2   Bit[31:1] MBZ
-> + * a3-6	Not used
-> + * a7	Hypervisor Client ID register
-> + *
-> + * Normal return register usage:
-> + * a0	OPTEE_SMC_RETURN_OK
-> + * a1-7	Preserved
-> + *
-> + * Not supported return register usage:
-> + * a0	OPTEE_SMC_RETURN_ENOTAVAIL
-> + * a1-7	Preserved
-> + */
-> +#define OPTEE_SMC_FUNCID_SET_IT_NOTIF_MASK	21
-> +#define OPTEE_SMC_SET_IT_NOTIF_MASK \
-> +	OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_SET_IT_NOTIF_MASK)
-> +
->  /*
->   * Resume from RPC (for example after processing a foreign interrupt)
->   *
-> diff --git a/drivers/tee/optee/smc_abi.c b/drivers/tee/optee/smc_abi.c
-> index 8c2d58d605ac..0360afde119f 100644
-> --- a/drivers/tee/optee/smc_abi.c
-> +++ b/drivers/tee/optee/smc_abi.c
-> @@ -977,6 +977,112 @@ static int optee_smc_stop_async_notif(struct tee_context *ctx)
->   * 5. Asynchronous notification
->   */
->  
-> +static u32 get_it_value(optee_invoke_fn *invoke_fn, bool *value_valid,
-> +			bool *value_pending)
+> +#if IS_REACHABLE(CONFIG_TYPEC)
 
-What value? If this is supposed to return a set of pending bits, just
-name the function to reflect that.
+I think Jani already pointed out that that is wrong. Just move these
+into a separate file and enable them silently in the Makefile when
+TYPEC is enabled - so no separate Kconfig option.
 
-Also, at no point do you explain that each PPI is only a mux interrupt
-for a bunch of chained interrupts.
+> +static int drm_dp_register_mode_switch(struct device *dev, struct device_node *node,
 
-> +{
-> +	struct arm_smccc_res res;
-> +
-> +	invoke_fn(OPTEE_SMC_GET_IT_NOTIF_VALUE, 0, 0, 0, 0, 0, 0, 0, &res);
-> +
-> +	if (res.a0)
-> +		return 0;
-> +
-> +	*value_valid = res.a2 & OPTEE_SMC_IT_NOTIF_VALID;
-> +	*value_pending = res.a2 & OPTEE_SMC_IT_NOTIF_PENDING;
-> +	return res.a1;
-> +}
-> +
-> +static u32 set_it_mask(optee_invoke_fn *invoke_fn, u32 it_value, bool mask)
-> +{
-> +	struct arm_smccc_res res;
-> +
-> +	invoke_fn(OPTEE_SMC_SET_IT_NOTIF_MASK, it_value, mask, 0, 0, 0, 0, 0, &res);
-> +
-> +	if (res.a0)
-> +		return 0;
-> +
-> +	return res.a1;
-> +}
-> +
-> +static int handle_optee_it(struct optee *optee)
-> +{
-> +	bool value_valid;
-> +	bool value_pending;
-> +	u32 it;
-> +
-> +	do {
-> +		struct irq_desc *desc;
-> +
-> +		it = get_it_value(optee->smc.invoke_fn, &value_valid, &value_pending);
-> +		if (!value_valid)
-> +			break;
-> +
-> +		desc = irq_to_desc(irq_find_mapping(optee->smc.domain, it));
-> +		if (!desc) {
-> +			pr_err("no desc for optee IT:%d\n", it);
-> +			return -EIO;
-> +		}
-> +
-> +		handle_simple_irq(desc);
-> +
+static int drm_dp_register_mode_switch(struct device *dev, struct fwnode_handle *fwnode,
 
-What is this? Please use generic_handle_domain_irq(), like any other
-driver. Why is the flow handler handle_simple_irq()? You need to
-explain what the signalling is for the secure-provided interrupts.
+> +				       struct drm_dp_typec_switch_desc *switch_desc,
+> +				       void *data, typec_mux_set_fn_t mux_set)
+> +{
+> +	struct drm_dp_typec_port_data *port_data;
+> +	struct typec_mux_desc mux_desc = {};
+> +	char name[32];
+> +	u32 dp_lanes[2];
+> +	int ret, num_lanes, port_num = -1;
+> +
+> +	num_lanes = drm_of_get_data_lanes_count(node, 0, 2);
+> +	if (num_lanes <= 0) {
 
-> +	} while (value_pending);
-> +
-> +	return 0;
-> +}
-> +
-> +static void optee_it_irq_mask(struct irq_data *d)
-> +{
-> +	struct optee *optee = d->domain->host_data;
-> +
-> +	set_it_mask(optee->smc.invoke_fn, d->hwirq, true);
-> +}
-> +
-> +static void optee_it_irq_unmask(struct irq_data *d)
-> +{
-> +	struct optee *optee = d->domain->host_data;
-> +
-> +	set_it_mask(optee->smc.invoke_fn, d->hwirq, false);
-> +}
-> +
-> +static struct irq_chip optee_it_irq_chip = {
-> +	.name = "optee-it",
-> +	.irq_disable = optee_it_irq_mask,
-> +	.irq_enable = optee_it_irq_unmask,
-> +	.flags = IRQCHIP_SKIP_SET_WAKE,
+        num_lanes = fwnode_property_read_u32_array(fwnode, "data-lanes", NULL, 0);
+        if (num_lanes <= 0 || num_lanes > 2)
 
-Is it a mask or a disable? These are different beasts.
+> +		dev_err(dev, "Error on getting data lanes count from %s: %d\n",
+> +			node->name, num_lanes);
+> +		return num_lanes;
+> +	}
+> +
+> +	ret = of_property_read_u32_array(node, "data-lanes", dp_lanes, num_lanes);
 
-> +};
+        ret = fwnode_property_read_u32_array(fwnode, "data-lanes", dp_lanes, num_lanes);
+
+> +	if (ret) {
+> +		dev_err(dev, "Failed to read the data-lanes variable from %s: %d\n",
+> +			node->name, ret);
+
+			fwnode_get_name(fwnode), ret);
+
+> +		return ret;
+> +	}
 > +
-> +static int optee_it_alloc(struct irq_domain *d, unsigned int virq,
-> +			  unsigned int nr_irqs, void *data)
-> +{
-> +	struct irq_fwspec *fwspec = data;
-> +	irq_hw_number_t hwirq;
+> +	port_num = dp_lanes[0] / 2;
 > +
-> +	hwirq = fwspec->param[0];
+> +	port_data = &switch_desc->typec_ports[port_num];
+> +	port_data->data = data;
+> +	mux_desc.fwnode = &node->fwnode;
+
+        mux_desc.fwnode = fwnode;
+
+> +	mux_desc.drvdata = port_data;
+> +	snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
+
+	snprintf(name, sizeof(name), "%s-%u", fwnode_get_name(fwnode), port_num);
+
+> +	mux_desc.name = name;
+> +	mux_desc.set = mux_set;
 > +
-> +	irq_domain_set_hwirq_and_chip(d, virq, hwirq, &optee_it_irq_chip, d->host_data);
+> +	port_data->typec_mux = typec_mux_register(dev, &mux_desc);
+> +	if (IS_ERR(port_data->typec_mux)) {
+> +		ret = PTR_ERR(port_data->typec_mux);
+> +		dev_err(dev, "Mode switch register for port %d failed: %d\n",
+> +			port_num, ret);
 > +
-> +	return 0;
-> +}
-> +
-> +static const struct irq_domain_ops optee_it_irq_domain_ops = {
-> +	.alloc = optee_it_alloc,
-> +	.free = irq_domain_free_irqs_common,
-> +};
-> +
-> +static int optee_irq_domain_init(struct platform_device *pdev, struct optee *optee, u_int max_it)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +
-> +	optee->smc.domain = irq_domain_add_linear(np, max_it, &optee_it_irq_domain_ops, optee);
-> +	if (!optee->smc.domain) {
-> +		dev_err(dev, "Unable to add irq domain\n");
-> +		return -ENOMEM;
+> +		return ret;
 > +	}
 > +
 > +	return 0;
 > +}
 > +
->  static u32 get_async_notif_value(optee_invoke_fn *invoke_fn, bool *value_valid,
->  				 bool *value_pending)
->  {
-> @@ -1008,13 +1114,15 @@ static irqreturn_t notif_irq_handler(int irq, void *dev_id)
->  	}
->  
->  	do {
-> -		value = get_async_notif_value(optee->smc.invoke_fn,
-> -					      &value_valid, &value_pending);
-> +		value = get_async_notif_value(optee->smc.invoke_fn, &value_valid, &value_pending);
->  		if (!value_valid)
->  			break;
->  
->  		if (value == OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF)
->  			do_bottom_half = true;
-> +		else if (optee->smc.sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF &&
-> +			 value == OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_IT)
-> +			handle_optee_it(optee);
+> +/**
+> + * drm_dp_register_typec_switches() - register Type-C switches
+> + * @dev: Device that registers Type-C switches
+> + * @port: Device node for the switch
+> + * @switch_desc: A Type-C switch descriptor
+> + * @data: Private data for the switches
+> + * @mux_set: Callback function for typec_mux_set
+> + *
+> + * This function registers USB Type-C switches for DP bridges that can switch
+> + * the output signal between their output pins.
+> + *
+> + * Currently only mode switches are implemented, and the function assumes the
+> + * given @port device node has endpoints with "mode-switch" property.
+> + * Register the endpoint as port 0 if the "data-lanes" property falls in 0/1,
+> + * and register it as port 1 if "data-lanes" falls in 2/3.
+> + */
+> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
 
-NAK. This isn't how we deal with chained interrupts. Definitely not in
-an interrupt handler.
+int drm_dp_register_typec_switches(struct device *dev, struct fwnode_handle *port,
 
-	M.
+> +				   struct drm_dp_typec_switch_desc *switch_desc,
+> +				   void *data, typec_mux_set_fn_t mux_set)
+> +{
+> +	struct device_node *sw;
+
+        struct fwnode_handle *sw;
+
+> +	int ret;
+> +
+> +	for_each_child_of_node(port, sw) {
+> +		if (of_property_read_bool(sw, "mode-switch"))
+> +			switch_desc->num_typec_switches++;
+> +	}
+
+        fwnode_for_each_child_node(port, sw)
+                if (fwnode_property_present(sw, "mode-switch"))
+			switch_desc->num_typec_switches++;
+
+> +	if (!switch_desc->num_typec_switches) {
+> +		dev_dbg(dev, "No Type-C switches node found\n");
+> +		return 0;
+> +	}
+> +
+> +	switch_desc->typec_ports = devm_kcalloc(
+> +		dev, switch_desc->num_typec_switches,
+> +		sizeof(struct drm_dp_typec_port_data), GFP_KERNEL);
+> +
+> +	if (!switch_desc->typec_ports)
+> +		return -ENOMEM;
+> +
+> +	/* Register switches for each connector. */
+> +	for_each_child_of_node(port, sw) {
+> +		if (!of_property_read_bool(sw, "mode-switch"))
+
+        fwnode_for_each_child_node(port, sw) {
+                if (!fwnode_property_present(sw, "mode-switch"))
+
+> +			continue;
+> +		ret = drm_dp_register_mode_switch(dev, sw, switch_desc, data, mux_set);
+> +		if (ret)
+> +			goto err_unregister_typec_switches;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_unregister_typec_switches:
+> +	of_node_put(sw);
+> +	drm_dp_unregister_typec_switches(switch_desc);
+> +	dev_err(dev, "Failed to register mode switch: %d\n", ret);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_dp_register_typec_switches);
+> +
+> +/**
+> + * drm_dp_unregister_typec_switches() - unregister Type-C switches
+> + * @switch_desc: A Type-C switch descriptor
+> + */
+> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < switch_desc->num_typec_switches; i++)
+> +		typec_mux_unregister(switch_desc->typec_ports[i].typec_mux);
+> +}
+> +EXPORT_SYMBOL(drm_dp_unregister_typec_switches);
+> +#else
+> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc)
+> +{
+> +}
+> +EXPORT_SYMBOL(drm_dp_register_typec_switches);
+> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
+> +				   struct drm_dp_typec_switch_desc *switch_desc,
+> +				   void *data, typec_mux_set_fn_t mux_set)
+> +{
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_dp_unregister_typec_switches);
+> +#endif
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index ab55453f2d2c..5a3824f13b4e 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -25,6 +25,7 @@
+>  
+>  #include <linux/delay.h>
+>  #include <linux/i2c.h>
+> +#include <linux/usb/typec_mux.h>
+>  
+>  #include <drm/display/drm_dp.h>
+>  #include <drm/drm_connector.h>
+> @@ -763,4 +764,20 @@ bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8 dpcd[DP_RECEIVER_CAP_SIZ
+>  					       const u8 port_cap[4], u8 color_spc);
+>  int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8 color_spc);
+>  
+> +struct drm_dp_typec_port_data {
+> +	struct typec_mux_dev *typec_mux;
+> +	void *data;
+> +	bool dp_connected;
+> +};
+> +
+> +struct drm_dp_typec_switch_desc {
+> +	int num_typec_switches;
+> +	struct drm_dp_typec_port_data *typec_ports;
+> +};
+> +
+> +void drm_dp_unregister_typec_switches(struct drm_dp_typec_switch_desc *switch_desc);
+> +int drm_dp_register_typec_switches(struct device *dev, struct device_node *port,
+> +				   struct drm_dp_typec_switch_desc *switch_desc,
+> +				   void *data, typec_mux_set_fn_t mux_set);
+> +
+>  #endif /* _DRM_DP_HELPER_H_ */
+
+The function stubs go here if they are needed.
+
+
+thanks,
 
 -- 
-Without deviation from the norm, progress is not possible.
+heikki
