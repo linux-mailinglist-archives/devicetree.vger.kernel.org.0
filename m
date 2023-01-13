@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA50066A417
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 21:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D45666A438
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 21:42:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbjAMU3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 15:29:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52916 "EHLO
+        id S229844AbjAMUmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 15:42:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231232AbjAMU3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 15:29:00 -0500
+        with ESMTP id S229704AbjAMUmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 15:42:33 -0500
 Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 508B8857E8;
-        Fri, 13 Jan 2023 12:28:55 -0800 (PST)
-Received: by mail-ot1-f46.google.com with SMTP id k44-20020a9d19af000000b00683e176ab01so12824489otk.13;
-        Fri, 13 Jan 2023 12:28:55 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1108587921;
+        Fri, 13 Jan 2023 12:42:33 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id d2-20020a056830044200b00684cc404c8aso2328690otc.0;
+        Fri, 13 Jan 2023 12:42:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=T6uOIBY2QWdwRY5nTsaJOc8EMrdxEkItzpmSPcJ18uE=;
-        b=qBrD+TTeCBpv0zzPssIQd1zA3xhhilch4WYOvNcyctcKzg5HpXmKZm/X8c24QVAf2/
-         o1AqtEBK9ZCw3GH3lnEJxd2e1vwtkRMUNv1tzEOyYyzho6zI0wK6D1t3ZLtHiK97bmbh
-         TY9PiZeiuLCG83HeG8CRctUbSqfy/+3Na0SGePKiF2I3wgLv11jEv5f/XPelVgvKL1gJ
-         TqRxqdlPdrjQ5cX827Ez5rKdUJLqnhiqa7DfYKcXg2O6NMCfvEJmFjgHv47Ys2GZPPTM
-         LP9pheP9oN/+4BcGgjiGUESczz/Kyd6PfxWH84y+nLX4H5vqgyO8yuPjEmXUGMsO3z8b
-         zGlA==
-X-Gm-Message-State: AFqh2kqC4XI8u5DaJe8BGyUhe4j4mJApcBdfpf3w508JmKSThTTWNpRX
-        IuyDnTF04TTGlS1CPVpw7A==
-X-Google-Smtp-Source: AMrXdXuB9QGO3F1RomRyX28k9iRLhRC6dBkm6YnLhP+cEL6fK3sUhFJXD9Y46j08rn9gza6BJU/mRA==
-X-Received: by 2002:a05:6830:6303:b0:684:a1e5:4f with SMTP id cg3-20020a056830630300b00684a1e5004fmr8228493otb.18.1673641734566;
-        Fri, 13 Jan 2023 12:28:54 -0800 (PST)
+        bh=kmvQnuv1fXumUPiHaWF/NrHLmipdDuyfTZdsKOQOgKY=;
+        b=EZMF4T0BTZgM/fUGioAJXR7dpqJVrKRaeHZa0A/ubVy/9/4T6fU0iOX9tUkyTcfRms
+         e7ioVN4WU7wFgNWCcf7tFbU89OqwxW9NyukuAjb6aZjssdzpjBsRvfrlp8tsCJUUbKZ0
+         kc8LBhb2dqnzu5DzDkjpzMmSecN2qmvfQIlfqJhBZB+BYH+NdO/hFvBfXhdhUdi56OmL
+         1IwvuQfrn1YQ20l3gCz1BKrpvPqWl2CDrTUi/d5C3+O11ctOw75hdnQgveqSRVKO04/3
+         wOzYP+tNjr4nf052bjWlbr0mUIVqJRSRJi5pugPRo7E1FbTvtSF+ULcdLRFR38U28223
+         uvFA==
+X-Gm-Message-State: AFqh2kqGXHSCQ22Sukcm0JhlIn+vnyxFHjvl86gXITa764BxNeAB0MK/
+        43XOFi0QuuxLwY9El2GvOivWO5BWFA==
+X-Google-Smtp-Source: AMrXdXtsPMkTlNYDgR0d4inu8VinibhZFbz2bg//MXzm1dZymwYMTp1mb7YwjZHEHaEGE+rh+kb3nQ==
+X-Received: by 2002:a05:6830:368b:b0:670:7a2b:f52f with SMTP id bk11-20020a056830368b00b006707a2bf52fmr42687541otb.8.1673642552296;
+        Fri, 13 Jan 2023 12:42:32 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bt25-20020a05683039d900b0066e80774203sm11182551otb.43.2023.01.13.12.28.53
+        by smtp.gmail.com with ESMTPSA id bt25-20020a05683039d900b0066e80774203sm11196309otb.43.2023.01.13.12.42.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 12:28:54 -0800 (PST)
-Received: (nullmailer pid 2873785 invoked by uid 1000);
-        Fri, 13 Jan 2023 20:28:53 -0000
-Date:   Fri, 13 Jan 2023 14:28:53 -0600
+        Fri, 13 Jan 2023 12:42:31 -0800 (PST)
+Received: (nullmailer pid 2888595 invoked by uid 1000);
+        Fri, 13 Jan 2023 20:42:31 -0000
+Date:   Fri, 13 Jan 2023 14:42:31 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-gpio@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v1 1/1] gpiolib: of: Move enum of_gpio_flags to its only
- user
-Message-ID: <167364172860.2873659.6905782483557660702.robh@kernel.org>
-References: <20230112145140.67573-1-andriy.shevchenko@linux.intel.com>
+To:     Etienne Carriere <etienne.carriere@linaro.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 2/3] dt-bindings: arm: optee: add interrupt controller
+ properties
+Message-ID: <20230113204231.GA2873887-robh@kernel.org>
+References: <20230112145424.3791276-1-etienne.carriere@linaro.org>
+ <20230112145424.3791276-3-etienne.carriere@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230112145140.67573-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20230112145424.3791276-3-etienne.carriere@linaro.org>
 X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -69,16 +68,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jan 12, 2023 at 03:54:23PM +0100, Etienne Carriere wrote:
+> Adds optional interrupt controller properties used when OP-TEE generates
+> interrupt events optee driver shall notified to its registered
+> interrupt consumer. The example shows how OP-TEE can trigger a wakeup
+> interrupt event consumed by a gpio-keys compatible device.
 
-On Thu, 12 Jan 2023 16:51:40 +0200, Andy Shevchenko wrote:
-> GPIO library for OF is the only user for enum of_gpio_flags.
-> Move it there.
+Why do we need this in DT? It's not a GPIO key, but an abuse of the 
+binding. It looks like unnecessary abstraction to me.
+
+
 > 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
 > ---
->  drivers/gpio/gpiolib-of.c | 15 +++++++++++++++
->  include/linux/of_gpio.h   | 15 ---------------
->  2 files changed, 15 insertions(+), 15 deletions(-)
+>  .../arm/firmware/linaro,optee-tz.yaml         | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> index d4dc0749f9fd..42874ca21b7e 100644
+> --- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> +++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> @@ -40,6 +40,11 @@ properties:
+>        HVC #0, register assignments
+>        register assignments are specified in drivers/tee/optee/optee_smc.h
+>  
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +
+>  required:
+>    - compatible
+>    - method
+> @@ -48,12 +53,24 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> +    #include <dt-bindings/input/input.h>
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      firmware  {
+> -        optee  {
+> +        optee: optee {
+>              compatible = "linaro,optee-tz";
+>              method = "smc";
+>              interrupts = <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <1>;
+> +        };
+> +    };
+> +
+> +    wake_up {
+> +        compatible = "gpio-keys";
+> +
+> +        button {
+> +            linux,code = <KEY_WAKEUP>;
+> +            interrupts-extended = <&optee 0>;
 
-Acked-by: Rob Herring <robh@kernel.org>
+In the end, you just need optee IRQ #0 to generate KEY_WAKEUP. Does 
+either the optee interrupt number or the key code need to be 
+configurable? If so, why? Why isn't #0 just wakeup and the driver can 
+send KEY_WAKEUP?
+
+DT is for non-discoverable hardware that we can't fix. Why repeat that 
+for software interfaces to firmware?
+
+Rob
