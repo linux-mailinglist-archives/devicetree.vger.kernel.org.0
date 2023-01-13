@@ -2,266 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1DCB669C9F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 16:41:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78528669CAC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 16:45:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbjAMPlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 10:41:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59006 "EHLO
+        id S230096AbjAMPpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 10:45:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbjAMPlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:41:07 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 725457D25D
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 07:32:49 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id y18so19267012ljk.11
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 07:32:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wvGqtD0vaEdCq6Jrz2aJKXvMSqDV7y3ghbHDsmS6aUg=;
-        b=WShKkgwSKxwnCM5q9NWeicjuMObQBy2sGtAadPAmoSPejSTxWmyHscrB8HuuxP2knT
-         YzYQ8UAAWTq024aVnxQagCtBT11LXpl/LKjQkcDWRDWujkV7dfcxbrsq/o3z1NE6z1Tv
-         agX/mrpXaZtag5WYqk8Ze7mOYg6wmocF9nl+JYnQ4P2kS+CVuUpN8nF8QpvsJNxp3Dt/
-         5V3nmyDn1jCNG2KZEw10O5ZPrOKNlFGDNi6U3hjWbRs/q0bWtLtnp7BMYpICtE8E0tu2
-         u7wX0Zm1zZylg07OBatuowBGLegdzLCZsHn0H5K1jKj0T4xULt3dQTpQ/AiaUW4u8cvj
-         iFbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wvGqtD0vaEdCq6Jrz2aJKXvMSqDV7y3ghbHDsmS6aUg=;
-        b=P2o9MadcGB6iFtVUYvt0cXsLsa7PtseSXTGeMLRhFuE9BDM69r16rr8ccYlgWD3OeG
-         oDSyJ66PxQJTfTySyRnkiLg4jq3GbSuSMyF/4y/eGZf5dC4li5ezyxlcVAbqMswvtI8b
-         VceffzWQe9pFI5VAyFWUgili2AJizp21vl9qjt5jljueOlGBcEHOPf4Y4EQMSAqW8e4D
-         OI34KFWckF8rVT1BRJAVxxAktrSC0QYAvlAnEtOM7R832+XNyL0+/S0DRr7IOJu63Y+W
-         oJx7sZ3uE07jUWR1l/Qm/GEJ/BytVPbLxLvpXwP21ATEy4RlF/3cef9FqElpvQEiONYe
-         dR7w==
-X-Gm-Message-State: AFqh2ko3pjA4Db3ZOguwiKi6H2n1YgJu4xh77s1PKkZC0I4lcU/oeEN6
-        RHaI9eDrQE6w8BTRJSq3EuOgxg==
-X-Google-Smtp-Source: AMrXdXucRYt3swxHwKrnEfP7mbphGpw0NJKZN1uVdF19616i3aXJztERykz/cMkbkGdSi5Zxl070fA==
-X-Received: by 2002:a2e:9310:0:b0:28b:6936:30bc with SMTP id e16-20020a2e9310000000b0028b693630bcmr662578ljh.31.1673623967774;
-        Fri, 13 Jan 2023 07:32:47 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id r17-20020a2eb891000000b00288a8094a76sm1010768ljp.60.2023.01.13.07.32.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 07:32:46 -0800 (PST)
-Message-ID: <4114bf50-67bf-e11c-5304-f2c6dcc0063d@linaro.org>
-Date:   Fri, 13 Jan 2023 16:32:44 +0100
+        with ESMTP id S230133AbjAMPoy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:44:54 -0500
+Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EF814DE90;
+        Fri, 13 Jan 2023 07:35:21 -0800 (PST)
+Received: from 8bytes.org (p549ad69d.dip0.t-ipconnect.de [84.154.214.157])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.8bytes.org (Postfix) with ESMTPSA id E886A261BE3;
+        Fri, 13 Jan 2023 16:35:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+        s=default; t=1673624121;
+        bh=HQll+dtETcToYPK0AFX1WAMkvWIdTPoYlWHDFOoqErY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sIoRgGoPLXf3TmS73/3zYA9xxsm8n6zU03O0tcCLrwrIlW9fsgXJSA59NGVMyjjl9
+         Vt7HlxkXoDiMQOgujailfp2yQE6XmxyZcywA2Ot+jv6zJvvfwLDWBZQ9BGxVg9uKKB
+         Pmh7OeXCRnLW2Q70jzms5n5Z9iLDG6Ys0CQA4CCGi0prMTnB7voo7RGh7hLtQ/CAdJ
+         UYGsKCM05h35y3F8UG9GVpo3qI5B7qYj5l/DeeZ0WlkBH3kguQLeOkO0vuaI96iYin
+         9EMUcVFg6F4vBcbpCk2z12HbKwcj5+ShaSIga0eAwfIGfYA2T+3JDARww6iRBNwZ+i
+         7aFT92K2O/RYw==
+Date:   Fri, 13 Jan 2023 16:35:19 +0100
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, iommu@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v2 6/6] riscv: dts: allwinner: d1: Add the IOMMU node
+Message-ID: <Y8F6NxYpJELbvogC@8bytes.org>
+References: <20230103010903.11181-1-samuel@sholland.org>
+ <20230103010903.11181-7-samuel@sholland.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: ipq9574: Add cpufreq & RPM related
- nodes
-Content-Language: en-US
-To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-References: <20230113150310.29709-1-quic_devipriy@quicinc.com>
- <20230113150310.29709-6-quic_devipriy@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230113150310.29709-6-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230103010903.11181-7-samuel@sholland.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jan 02, 2023 at 07:09:03PM -0600, Samuel Holland wrote:
+>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 10 ++++++++++
 
+This file does not exist in v6.2-rc3, what tree ist this patch-set based
+on?
 
-On 13.01.2023 16:03, devi priya wrote:
-> Add CPU Freq and RPM related nodes in the device tree
-These two are wildly different things, barely related to one
-another and can very well be introduced in separate patches.
-Please do so.
+Regards,
 
-> 
-> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 80 +++++++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 5a2244b437ed..79fa5d91882c 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/qcom,gcc-ipq9574.h>
->  #include <dt-bindings/reset/qcom,gcc-ipq9574.h>
-> +#include <dt-bindings/clock/qcom,apss-ipq.h>
-Please sort the includes alphabetically.
+	Joerg
 
->  
->  / {
->  	interrupt-parent = <&intc>;
-> @@ -75,6 +76,10 @@
->  			reg = <0x0>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-> +			clock-names = "cpu";
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			cpu0-supply = <&ipq9574_s1>;
-Why is this cpu0-supply and the rest are cpu-supply? Neither of them
-seem particularly documented, by the way..
-
-
->  		};
->  
->  		CPU1: cpu@1 {
-> @@ -83,6 +88,10 @@
->  			reg = <0x1>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-> +			clock-names = "cpu";
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			cpu-supply = <&ipq9574_s1>;
->  		};
->  
->  		CPU2: cpu@2 {
-> @@ -91,6 +100,10 @@
->  			reg = <0x2>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-> +			clock-names = "cpu";
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			cpu-supply = <&ipq9574_s1>;
->  		};
->  
->  		CPU3: cpu@3 {
-> @@ -99,6 +112,10 @@
->  			reg = <0x3>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-> +			clock-names = "cpu";
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			cpu-supply = <&ipq9574_s1>;
->  		};
->  
->  		L2_0: l2-cache {
-> @@ -107,6 +124,42 @@
->  		};
->  	};
->  
-> +	cpu_opp_table: opp-table-cpu {
-Alphabetically this goes after memory
-
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp-936000000 {
-> +			opp-hz = /bits/ 64 <936000000>;
-> +			opp-microvolt = <725000>;
-> +			clock-latency-ns = <200000>;
-> +		};
-Please add a newline between each subnode.
-
-> +		opp-1104000000 {
-> +			opp-hz = /bits/ 64 <1104000000>;
-> +			opp-microvolt = <787500>;
-> +			clock-latency-ns = <200000>;
-> +		};
-> +		opp-1416000000 {
-> +			opp-hz = /bits/ 64 <1416000000>;
-> +			opp-microvolt = <862500>;
-> +			clock-latency-ns = <200000>;
-> +		};
-> +		opp-1488000000 {
-> +			opp-hz = /bits/ 64 <1488000000>;
-> +			opp-microvolt = <925000>;
-> +			clock-latency-ns = <200000>;
-> +		};
-> +		opp-1800000000 {
-> +			opp-hz = /bits/ 64 <1800000000>;
-> +			opp-microvolt = <987500>;
-> +			clock-latency-ns = <200000>;
-> +		};
-> +		opp-2208000000 {
-> +			opp-hz = /bits/ 64 <2208000000>;
-> +			opp-microvolt = <1062500>;
-> +			clock-latency-ns = <200000>;
-> +		};
-> +	};
-> +
->  	memory@40000000 {
->  		device_type = "memory";
->  		/* We expect the bootloader to fill in the size */
-> @@ -128,6 +181,11 @@
->  		#size-cells = <2>;
->  		ranges;
->  
-> +		rpm_msg_ram: memory@60000 {
-> +			reg = <0x0 0x00060000 0x0 0x6000>;
-> +			no-map;
-> +		};
-> +
->  		tz_region: memory@4a600000 {
->  			reg = <0x0 0x4a600000 0x0 0x400000>;
->  			no-map;
-> @@ -324,6 +382,28 @@
->  		};
->  	};
->  
-> +	rpm-glink {
-> +		compatible = "qcom,glink-rpm";
-> +		interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
-> +		qcom,rpm-msg-ram = <&rpm_msg_ram>;
-> +		mboxes = <&apcs_glb 0>;
-> +
-> +		rpm_requests: glink-channel {
-> +			compatible = "qcom,rpm-ipq9574";
-> +			qcom,glink-channels = "rpm_requests";
-> +
-> +			regulators {
-> +				compatible = "qcom,rpm-ipq9574-mp5496-regulators";
-The regulators are board-specific and should not be included in the
-SoC DTSI. If this is a very common configuration, you may split that
-into ipq9574-mp5496.dtsi, for example. Or ipq9574-pmics.dtsi if it's
-coupled with more PMICs.
-
-> +
-> +				ipq9574_s1: s1 {
-> +					regulator-min-microvolt = <587500>;
-> +					regulator-max-microvolt = <1075000>;
-> +					regulator-always-on;
-Won't this break CPU retention?
-
-You're holding a vote on it from the CPU devices, so it should be
-always enabled when the CPUs are oneline (as far as Linux is
-concerned).
-
-
-Or maybe Linux will think it's enabled and RPM will quietly park
-it when it decides it's good to do so.. but will it with an active
-request.. not sure, really.. just something to consider..
-
-Konrad
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->  	timer {
->  		compatible = "arm,armv8-timer";
->  		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
