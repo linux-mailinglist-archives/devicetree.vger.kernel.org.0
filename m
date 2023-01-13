@@ -2,66 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0401F66981B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 14:12:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAEDF669829
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 14:14:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241635AbjAMNMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 08:12:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45412 "EHLO
+        id S241830AbjAMNOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 08:14:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240941AbjAMNLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 08:11:36 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F3540C21;
-        Fri, 13 Jan 2023 05:00:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2CF7461961;
-        Fri, 13 Jan 2023 13:00:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ECE6C433D2;
-        Fri, 13 Jan 2023 13:00:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673614806;
-        bh=ZP8XIsS+80qkgSOQWeJfZPFezfHfSRD008tq6Tt5pVM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Q+TA5zAKqGXCmaGrYk99jkVIQKonzPOPIegiyi8+3I1BxmPRQIzsBF6XwqZ995nY1
-         67EHFMpuyIpINrwtBWjLO72bP1/a+LErlP0dks1cZ/62ZeX991mzu6avglNIIT8IJn
-         0QjWBnYyM69eY23rRuLQHJ1QdBNjTUWmagQKDB2y396+kya1S2yYGbFRYhDydcdDGX
-         5cNH0vywKEefPBNhPGY4mnJqa5927Q27NJWbzohinWryB/AjfGSJ+fvX4VPb8mnMiC
-         a14pIf0Xf35qcjB6F93E/vLbrioQ2MD0A+lRPvtIOLQP5cgQ2FpwKR7QScWVjdQTZz
-         +s4zkg6xtizcA==
-Date:   Fri, 13 Jan 2023 12:59:59 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/3] ASoC: codecs: Add support for the Renesas IDT821034
- codec
-Message-ID: <Y8FVz/Mp5xSdI34a@sirena.org.uk>
-References: <20230111134905.248305-1-herve.codina@bootlin.com>
- <20230111134905.248305-3-herve.codina@bootlin.com>
- <Y77DKSdZf27qE+xl@sirena.org.uk>
- <20230111174022.077f6a8c@bootlin.com>
- <Y774bY4icD8RuMnX@sirena.org.uk>
- <20230113090431.7f84c93a@bootlin.com>
+        with ESMTP id S241726AbjAMNNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 08:13:55 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A11D088DCB
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 05:02:06 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id qk9so52179742ejc.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 05:02:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p9bRnSUIIBlwb6MpE5e1oVxsjs4GpyyLcDDS0s/lBTU=;
+        b=yrUlREfxRYqriTbErFoIw3ZcyZWS1N0sRUBW8NzyXsmnVgdYSHKVmiZWkeTWw6ZKr6
+         kAtHYFonsM6XspY0XZqofh5W10rINH7ZAT6LPviyaXdhs5DUyxh9B274G5hd2rHcOWUi
+         GNexS2nmbBtizV+vnR2m4Da7IAkz5dN+EmZs0X2iXTpIZ86dSugXyBKDO9DtnZfDU3CP
+         YuTt/tLYgh2trDIRK7QBwKUeDNKMsmPh8dRIgoEimmlk0Er/irVLvGlCVkC15ezTzXou
+         hVWaF5PxWPuiWCLMhMdkzyueQHjfjbtM2uYJyHMHhx5Z9doIcSy9SsqPb/rV2HKntYOa
+         OF1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p9bRnSUIIBlwb6MpE5e1oVxsjs4GpyyLcDDS0s/lBTU=;
+        b=Sxwpap8BAwGaSZrDcyB7GXeG5uI6agvPWKAITgSdKqbDWITpj4H57Tqxfm4KsuhZr8
+         x7C2dI47QfOyTE9t9Kkmff8EwU281XiEAt7aILrI64ItVt9QH73OWoflzhkdS8iq4g7r
+         7FPFEfLsULIOL1AcTUY1Edamf/DErLy1QOF87w8o+rlhW0hld6VaJ71Badr49TfBdYPq
+         yvIQXA/pW77K2xiANHzjylhLaz0IoOu5GyKooL6eUI5UwDHQH9U0A/ft7JAbhUkFOrve
+         iWMfTo2Ln75geglZ4WQzvcNupigTzZIdO7AFWl3DcaSc1tQNR9cjgQsftHtt1Pnqws0Y
+         EpzA==
+X-Gm-Message-State: AFqh2kpt+o6xm2GDS2ituHkfn1BRHoZoXUegE9TifVoEOJ+wZKm9X3ot
+        lNiY/Z1W4JS4wdr8M/AZMsns/g==
+X-Google-Smtp-Source: AMrXdXtuXfM/WIV+7uDgxFRyI8NotN8EFqhThvDeqAW1tWBFtJHimhEZPJYL/U3eUxW5FQaMwMjVbQ==
+X-Received: by 2002:a17:907:175c:b0:84d:45db:b203 with SMTP id lf28-20020a170907175c00b0084d45dbb203mr15472856ejc.12.1673614925149;
+        Fri, 13 Jan 2023 05:02:05 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id fy5-20020a170906b7c500b0084d3bf4498csm7054343ejb.140.2023.01.13.05.02.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jan 2023 05:02:04 -0800 (PST)
+Message-ID: <405c2e98-ce26-becb-23c1-dccc6a588167@linaro.org>
+Date:   Fri, 13 Jan 2023 14:02:02 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tY5Grajt3iCZ58MK"
-Content-Disposition: inline
-In-Reply-To: <20230113090431.7f84c93a@bootlin.com>
-X-Cookie: I know how to do SPECIAL EFFECTS!!
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 2/2] dt-bindings: mailbox: add Marvell MHU
+Content-Language: en-US
+To:     Wojciech Zmuda <wzmuda@marvell.com>, linux-kernel@vger.kernel.org
+Cc:     jassisinghbrar@gmail.com, robh+dt@kernel.org, sgoutham@marvell.com,
+        devicetree@vger.kernel.org
+References: <20230113125323.3744-1-wzmuda@marvell.com>
+ <20230113125323.3744-3-wzmuda@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230113125323.3744-3-wzmuda@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,34 +74,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13/01/2023 13:53, Wojciech Zmuda wrote:
+> Marvell Message Handling Unit is a mailbox controller present in
+> Marvell OcteonTx and OcteonTX2 SoC family.
+> 
+> Signed-off-by: Wojciech Zmuda <wzmuda@marvell.com>
+> ---
+>  .../bindings/mailbox/marvell,mhu.yml          | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/marvell,mhu.yml
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/marvell,mhu.yml b/Documentation/devicetree/bindings/mailbox/marvell,mhu.yml
+> new file mode 100644
+> index 000000000000..3fe8238eefe7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/marvell,mhu.yml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/marvell,mhu.yml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Message Handling Unit
+> +
+> +maintainers:
+> +  - Sujeet Baranwal <sbaranwal@marvell.com>
+> +  - Sunil Goutham <sgoutham@marvell.com>
+> +  - Wojciech Bartczak <wbartczak@marvell.com>
+> +
+> +description:
+> +  The Control-Processors Cluster (CPC) provides Arm-platform specification
+> +  entities for managing the system. One of the CPC processors is the System
+> +  Control Processor (SCP). The SCP is responsible, among others, for booting
+> +  the chip, clock and power initialization, controlling power consumption
+> +  through DVFS, monitoring temperature sensors and controlling AVS. The SCP,
+> +  as each XCP, contains mailboxes for software-to-software communications.
+> +  Mailbox writes cause an interrupt to the local XCP core or to the AP.
+> +  This driver exposes AP-SCP Message Handling Unit to the system, providing
+> +  the mailbox communication mechanism to the system, with the intention
+> +  of plugging into the SCMI framework. It is designed to work with Marvell
+> +  OcteonTX and OcteonTX2-based platforms.
+> +  Mailbox has no other usage than SCMI communication. In case of
+> +  configurations running without SCMI support it should be disabled.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
 
---tY5Grajt3iCZ58MK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This is not oneOf...
 
-On Fri, Jan 13, 2023 at 09:04:31AM +0100, Herve Codina wrote:
+> +      - items:
 
-> For DAPM (struct snd_soc_dapm_widget), no kind of .put() and .get()
-> are available. I will use some Ids for the 'reg' value and use the
-> .write() and .read() hooks available in struct snd_soc_component_driver
-> in order to handle these Ids and so perform the accesses.
+And you have just one item...
 
-That's what the event hooks are for - there's plenty of widgets using
-SND_SOC_NOPM as the register, look at those for examples.
+> +        - enum:
 
---tY5Grajt3iCZ58MK
-Content-Type: application/pgp-signature; name="signature.asc"
+And wrong indentation below, so this was not tested. Please do not send
+untested code.
 
------BEGIN PGP SIGNATURE-----
+> +          - marvell,octeontx-mhu
+> +          - marvell,octeontx2-mhu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#mbox-cells":
+> +    description: Index of the channel
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#mbox-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    / {
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPBVc8ACgkQJNaLcl1U
-h9AzVQf+IpbKw3nUOCd5FnoIfC7a9hLUt4eHIEqikDmn4Lb0N0OX7frf/8tR948l
-KlKpueTgBz0TLqZUaI43dlzt2AeYsHcshaZ8Rkg+2YtAumavq3sc4rrq+9HxRn5X
-akZKiao7FYUAVxqcVvyfatB3qtShtwes0I80YL/8JClxfd/vOZTUriymgeTemgwb
-3h1esS5zNPKD1rp/h2Fm/AytOFrTE0xA+7HlZ5qmy357cwpc+JKYx9enGt6hwc95
-zhE3+AZ1UIc0bFfp8xhGnW0YzlelN1grOl5oar0kdwTOY9kQTwVgTfMp3+L4BBBD
-1xdRqnZEhFNnTC1IW724rzztEvTfuA==
-=p0Is
------END PGP SIGNATURE-----
+Why this is needed?
 
---tY5Grajt3iCZ58MK--
+> +        mailbox: mailbox {
+
+unit address is still wrong.
+
+
+> +            compatible = "marvell,octeontx2-mhu";
+> +            reg = <0xe000 0 0 0 0>; /* DEVFN = 0xe0 (1c:0) */
+> +            #mbox-cells = <1>;
+> +    };
+> +
+
+And this DTS code should not be sent... it wasn't ever compiled.
+
+Best regards,
+Krzysztof
+
