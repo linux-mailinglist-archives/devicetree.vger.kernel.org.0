@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3BF7669688
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 13:12:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5206766968F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 13:12:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241191AbjAMMMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 07:12:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50068 "EHLO
+        id S241047AbjAMMMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 07:12:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241164AbjAMMLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:11:32 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC0E7A92D
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:05:03 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id mp20so5218335ejc.7
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:05:02 -0800 (PST)
+        with ESMTP id S240928AbjAMMLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:11:43 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A09A37A3BA
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:06:05 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id b3so32837280lfv.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:06:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vXHybJ2mJD6aa8TvSwEacdirC05VvD7/mmGN0WSC+vw=;
-        b=QvjvtNTf6/c/WYoFYhk46x+H2YhZBKQBg620l4RhwiX74ErRSQSNzqunYHdo4GaKj7
-         W18ixbG6yEniU4KsVAiBHHWba/xKipCDS2GL/0FEB7BLhPHMD0FgirXaNwkkkiRwoJ3t
-         kpi+qkgjwZ6o7WcgMdN9fHoLspRM0kaL9VbY5aiTAIOnFNAw+A8R3lXW70zejxUNCFZR
-         L6icKZ2GdzNdmwI9Y2mP9R5sAuD5xw0ZdAnmxJlkH480HWdLCxrkz7lZtdnCEYx14qbe
-         f/6IwD25mR6BcVWDnvXjB49k//bl/vS1wc/qQ6Hwy6xPrVPDbL9fX4WiySKva6mERgf0
-         16cQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=q/4eRHojkDz/W1PqGW3L+6StYgWEoOhMr1+9HnHapgo=;
+        b=qVyn8mm09ffo+2jE/5CN6FKrSmG+GpJBFAqKwOdtdetKXctK6z+CYsRISVQ/jlwLg+
+         ag4+j8kctpd9y4jmpj+r9bP+z2b7C57cpApmp1x++i+fZ1ZB5aZ4LUWOyCOwx3dnF5en
+         4xeCmwTAFj9+MEjCc1AckqNISTLL6zV7GgFBp+aAZYAf0ffK23ZFhtcncABr/ezdtRUZ
+         2BAjSDxEkq2dL5BU+gaEYwPByw9O58Fjna6FNZtb76/tYnMiu9UT7NInMm9OulrZOwx2
+         P+kZ7z9RhWE+WtH+1ntiYUPW2dCQ9O3epNTT7XoSKiRymU5h2+pBx1ALnKDtYgKp+cUr
+         K2Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vXHybJ2mJD6aa8TvSwEacdirC05VvD7/mmGN0WSC+vw=;
-        b=DhdgUDbIG7tesCsWWViwuetna9UTD3ge2eAJY8/wOonma80i8IAhUbET1B3BFSKoX4
-         5flgViSxF1FUhzLVaH3kQPvC7DkO83g1dIbeTh0YMQfDCniOY+13CxxqV2TOElwpirnV
-         69lvgGkPcVo/GwbT43Ei+kSLefQNkTzePS0A2uQ7r9MdbZ8kJPeIO2TFHuDEykMgS9MU
-         zDmF1dFG2//bOETMDVsCza810iwgZ85EO1AvkgGZPj6htV3y5jRKPInLPFXLRdTS20En
-         9mLSouG55+/IcPMpijjP9avzmAhQJ3jld/7zmR69mZWgGPRfI/qnjPPAD0fh8i+Lcuok
-         qKCg==
-X-Gm-Message-State: AFqh2kpEt3pCbUn3IAR1rfiEMgBcaRkRnGfyS7rkbmlXxVfgb9OciDOt
-        q9nhXObdbC/CpOCsHL01oc34iA==
-X-Google-Smtp-Source: AMrXdXt/AzW14h8l94Wqnw6m53vrD1GcILvRAidaUWScS+ZS45P5oisNr9+yWakUYg6jOlAzSZU3OA==
-X-Received: by 2002:a17:906:abc6:b0:7ad:d835:e822 with SMTP id kq6-20020a170906abc600b007add835e822mr71763506ejb.42.1673611501624;
-        Fri, 13 Jan 2023 04:05:01 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id og5-20020a1709071dc500b0084d420503a3sm6715352ejc.178.2023.01.13.04.05.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 04:05:01 -0800 (PST)
-Message-ID: <7cb96551-094c-1a68-cc3f-31e4e2e94518@linaro.org>
-Date:   Fri, 13 Jan 2023 13:04:59 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q/4eRHojkDz/W1PqGW3L+6StYgWEoOhMr1+9HnHapgo=;
+        b=3Sl6c0r0M7pkaoAg9Calln1CW7xJPwIeZF0bPBr2fMUfdJAWiqA1M6whIRBtsRaDLo
+         jeEKO+wqWt3K/dTS4IOlSHU4xgPj9yuD8g9gaVXxnRPONZBRi42hAmbxpt89B0c9NDNF
+         NZSbT7muWJ5sGAc8Q/LB4E4xBfFDyUhhmnHstV8QUMwQDxcXMvoW62Fu5M4ymvRsr4C0
+         bjqUkcJ4g2HhrVCZUwdbGRxVomy3l77UxJ39pp2rZ3AWheBQrrxlbCsuyMr49JeBBRPB
+         293W/uRuvvFTvqi6MSLrjk2lERWlzRsyzJqQ5fK6FkgsstKwm9nbfOVvEYRfdGI7am3/
+         LPzQ==
+X-Gm-Message-State: AFqh2koT2PcTgyHyrRz1S5PvWcjfwyK467yCE9NbHwuwsg7uinKojx2f
+        F9KbLNDKAcf4Uc6uQx66RE5bAg==
+X-Google-Smtp-Source: AMrXdXsRAAoAUVlTVPzqF3mLhm8Mv72VdPudcTGDOJxdPsDpUzz/aUK1ix2uSqe8hocTph2M1gnEEw==
+X-Received: by 2002:a05:6512:3d94:b0:4a4:68b8:f4f4 with SMTP id k20-20020a0565123d9400b004a468b8f4f4mr28520638lfv.58.1673611563931;
+        Fri, 13 Jan 2023 04:06:03 -0800 (PST)
+Received: from eriador.lumag.spb.ru ([188.170.82.205])
+        by smtp.gmail.com with ESMTPSA id i7-20020ac25227000000b004ac6a444b26sm3806290lfl.141.2023.01.13.04.05.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jan 2023 04:06:03 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 00/14] clk: qcom: cpu-8996: stability fixes
+Date:   Fri, 13 Jan 2023 14:05:30 +0200
+Message-Id: <20230113120544.59320-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: reserved-memory: ramoops: Update the
- binding
-Content-Language: en-US
-To:     Mukesh Ojha <quic_mojha@quicinc.com>, keescook@chromium.org,
-        gpiccoli@igalia.com, corbet@lwn.net, tony.luck@intel.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-hardening@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1673611126-13803-1-git-send-email-quic_mojha@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1673611126-13803-1-git-send-email-quic_mojha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,95 +75,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Subject: drop second/last, redundant "binding". The "dt-bindings" prefix
-is already stating that these are bindings.
+This series provides stability fixes for the MSM8996 boot process. It
+changes the order of calls during the CPU PLL setup, makes it use GPLL0
+(through sys_apcs_aux) during PLL init, finetunes the ACD, etc.
 
-Your subject says nothing. Everything is "update".
+Dependency: [1]
 
-On 13/01/2023 12:58, Mukesh Ojha wrote:
-> Update the ramoops region binding document with details
-> like region can also be reserved dynamically apart from
-> reserving it statically.
+[1] https://lore.kernel.org/linux-arm-msm/20230111191453.2509468-1-dmitry.baryshkov@linaro.org/
 
-So what exactly can be here reserved dynamically? And what does it mean
-'dynamically'? By whom? How is this property of hardware (not OS)?
+Changes since v2:
+- Expanded commit message for the PLL frequency setup (Konrad)
+- Removed the extra 'the' from the comment (Korad)
+- Fixed indentation of the udelay in the PLL config sequence patch
+  (Konrad)
 
-> 
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> ---
-> Change in v2:
->   - Added this patch as per changes going to be done in patch 3/3
-> 
->  .../bindings/reserved-memory/ramoops.yaml          | 34 ++++++++++++++++++++--
->  1 file changed, 32 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> index 0391871..54e46e8 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> @@ -10,7 +10,8 @@ description: |
->    ramoops provides persistent RAM storage for oops and panics, so they can be
->    recovered after a reboot. This is a child-node of "/reserved-memory", and
->    is named "ramoops" after the backend, rather than "pstore" which is the
-> -  subsystem.
-> +  subsystem. This region can be reserved both statically or dynamically by
-> +  using appropriate property in device tree.
->  
->    Parts of this storage may be set aside for other persistent log buffers, such
->    as kernel log messages, or for optional ECC error-correction data.  The total
-> @@ -112,7 +113,13 @@ unevaluatedProperties: false
->  
->  required:
->    - compatible
-> -  - reg
-> +
-> +oneOf:
-> +  - required:
-> +      - reg
-> +
-> +  - required:
-> +      - size
+Changes since v1:
+ - Included bindings update (Stephen)
 
-There is no such property. You cannot require it.
+Dmitry Baryshkov (14):
+  dt-bindings: clock: qcom,msm8996-apcc: add sys_apcs_aux clock
+  clk: qcom: clk-alpha-pll: program PLL_TEST/PLL_TEST_U if required
+  clk: qcom: cpu-8996: correct PLL programming
+  clk: qcom: cpu-8996: fix the init clock rate
+  clk: qcom: cpu-8996: support using GPLL0 as SMUX input
+  clk: qcom: cpu-8996: skip ACD init if the setup is valid
+  clk: qcom: cpu-8996: simplify the cpu_clk_notifier_cb
+  clk: qcom: cpu-8996: setup PLLs before registering clocks
+  clk: qcom: cpu-8996: move qcom_cpu_clk_msm8996_acd_init call
+  clk: qcom: cpu-8996: fix PLL configuration sequence
+  clk: qcom: cpu-8996: fix ACD initialization
+  clk: qcom: cpu-8996: fix PLL clock ops
+  clk: qcom: cpu-8996: change setup sequence to follow vendor kernel
+  arm64: dts: qcom: msm8996: support using GPLL0 as kryocc input
 
->  
->  anyOf:
->    - required: [record-size]
-> @@ -142,3 +149,26 @@ examples:
->              };
->          };
->      };
-> +
-> +  - |
-> +    / {
-> +        compatible = "foo";
-> +        model = "foo";
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        reserved-memory {
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            ranges;
-> +
-> +            ramoops: ramoops_region {
+ .../bindings/clock/qcom,msm8996-apcc.yaml     |   6 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |   4 +-
+ drivers/clk/qcom/clk-alpha-pll.c              |   5 +
+ drivers/clk/qcom/clk-cpu-8996.c               | 145 +++++++++++++-----
+ 4 files changed, 115 insertions(+), 45 deletions(-)
 
-Node names should be generic, no underscores in node names.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-Any reason in naming it differently then existing one? You have there
-example.
-
-> +                compatible = "ramoops";
-> +                alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
-> +                size = <0x0 0x10000>;       /* 64kB */
-> +                console-size = <0x8000>;    /* 32kB */
-> +                record-size = <0x400>;      /*  1kB */
-> +                ecc-size = <16>;
-> +            };
-> +        };
-> +    };
-
-Best regards,
-Krzysztof
+-- 
+2.39.0
 
