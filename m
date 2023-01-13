@@ -2,90 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9567C668931
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 02:34:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4600668996
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 03:31:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240329AbjAMBeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Jan 2023 20:34:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38892 "EHLO
+        id S231911AbjAMCbC convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 12 Jan 2023 21:31:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236952AbjAMBeG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 20:34:06 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 790345D6B7;
-        Thu, 12 Jan 2023 17:34:05 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 13F18621F2;
-        Fri, 13 Jan 2023 01:34:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74AFBC43392;
-        Fri, 13 Jan 2023 01:34:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673573644;
-        bh=uAe0TW8jOz9f27C1vokHG0MwHUso/UUcKfiQLqjyUXM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HWB70OkY1dWbiil0vmxVHZRR7qX8lsk0a3afiNBl0kddYNCoUwCSq2O2ODNlFFyBx
-         2/qTVbVJjj5hDRXMQpZZJQY8CX1aUMymRcoZ6dgOwIerCou9QbUBQcf3P8CsSDEfWr
-         /i/s1qeZiiK2eRsqCJmyiYBICi4Ntd5ohHDk9Ftce7jiJQDfUCphRmqA12DNvQW6pv
-         Evr9j5cFpCuQO4Ay9SzZ0I5PNoWgQz0gw0zf2pBOZf8sFedjo6WrID70j15XT3/xce
-         cmTP4LJU1lh9I7rwuMisR6mZ2oC1VtKyCJMNUQiUO7ZPRYrmc01V6C+WpeBpL7GSqB
-         z8tzJNbs7jb/A==
-Received: by mail-vk1-f177.google.com with SMTP id b81so9600498vkf.1;
-        Thu, 12 Jan 2023 17:34:04 -0800 (PST)
-X-Gm-Message-State: AFqh2kqPHBNPd/furJgNlKPuZ2AXwg4WOVnnCPSupjtttX6SCigJ7CYD
-        vDUcbfglVUxiNaRygMPL1+9vby2wqka4tdljwg==
-X-Google-Smtp-Source: AMrXdXtT6sqwXnMgYU60uSmZrZF/kQL4OdT2OmrnO0NSkThwYepDA6SjGOb+qafRFI1qtJ4dOzJYZbAoA29rFN06NlM=
-X-Received: by 2002:a1f:1e50:0:b0:3c1:1c3b:c4d9 with SMTP id
- e77-20020a1f1e50000000b003c11c3bc4d9mr10446237vke.19.1673573643326; Thu, 12
- Jan 2023 17:34:03 -0800 (PST)
+        with ESMTP id S232586AbjAMCbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Jan 2023 21:31:00 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB9355133A;
+        Thu, 12 Jan 2023 18:30:58 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 3DEEB24E115;
+        Fri, 13 Jan 2023 10:30:56 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 13 Jan
+ 2023 10:30:56 +0800
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 13 Jan
+ 2023 10:30:55 +0800
+Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
+ EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
+ 15.00.1497.044; Fri, 13 Jan 2023 10:30:55 +0800
+From:   JiaJie Ho <jiajie.ho@starfivetech.com>
+To:     Conor Dooley <conor@kernel.org>
+CC:     Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH v4 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
+Thread-Topic: [PATCH v4 2/3] hwrng: starfive - Add TRNG driver for StarFive
+ SoC
+Thread-Index: AQHZJj/IHp8vIBNNJEO5ZoaN+GosV66aoj2AgADzXNA=
+Date:   Fri, 13 Jan 2023 02:30:55 +0000
+Message-ID: <82979ef41b4a4c9f8a77c950e3c65c86@EXMBX168.cuchost.com>
+References: <20230112043812.150393-1-jiajie.ho@starfivetech.com>
+ <20230112043812.150393-3-jiajie.ho@starfivetech.com> <Y8Bco7lBBj7CO9C5@spud>
+In-Reply-To: <Y8Bco7lBBj7CO9C5@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [202.190.108.220]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-References: <20230110233056.3490942-1-michael@walle.cc> <167357352392.592020.6790951746345716129.robh@kernel.org>
-In-Reply-To: <167357352392.592020.6790951746345716129.robh@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 12 Jan 2023 19:33:52 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLN0jd0nT7rC7SBMh2zLsAvGCafknnS_oqJJj+=c1m9pg@mail.gmail.com>
-Message-ID: <CAL_JsqLN0jd0nT7rC7SBMh2zLsAvGCafknnS_oqJJj+=c1m9pg@mail.gmail.com>
-Subject: Re: [PATCH] of: property: fix #nvmem-cell-cells parsing
-To:     Michael Walle <michael@walle.cc>
-Cc:     Robert Marko <robimarko@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org, Aisheng Dong <aisheng.dong@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 12, 2023 at 7:32 PM Rob Herring <robh@kernel.org> wrote:
->
->
-> On Wed, 11 Jan 2023 00:30:56 +0100, Michael Walle wrote:
-> > Commit 67b8497f005f ("of: property: make #.*-cells optional for simple
-> > props") claims to make the cells-name property optional for simple
-> > properties, but changed the code for the wrong property, i.e. for
-> > DEFINE_SUFFIX_PROP(). Fix that.
-> >
-> > Fixes: 67b8497f005f ("of: property: make #.*-cells optional for simple props")
-> > Reported-by: Peng Fan <peng.fan@nxp.com>
-> > Signed-off-by: Michael Walle <michael@walle.cc>
-> > Tested-by: Robert Marko <robimarko@gmail.com>
-> > ---
-> >  drivers/of/property.c | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> >
->
-> Applied, thanks!
+> > +STARFIVE TRNG DRIVER
+> > +M:	Jia Jie Ho <jiajie.ho@starfivetech.com>
+> > +S:	Maintained
+> > +F:	Documentation/devicetree/bindings/rng/starfive*
+> > +F:	drivers/char/hw_random/starfive-trng.c
+> 
+> minor nit (so don't submit another version just to fix this):
+> This should be Supported, no?
+> 
 
-Or not. 67b8497f005f is not in my tree, so
+Hi Conor, 
+I'll update this in next version together with other comments below. 
 
-Acked-by: Rob Herring <robh@kernel.org>
+> > diff --git a/drivers/char/hw_random/Makefile
+> > b/drivers/char/hw_random/Makefile index 3e948cf04476..f68ac370847f
+> > 100644
+> > --- a/drivers/char/hw_random/Makefile
+> > +++ b/drivers/char/hw_random/Makefile
+> > @@ -47,3 +47,4 @@ obj-$(CONFIG_HW_RANDOM_XIPHERA) += xiphera-
+> trng.o
+> >  obj-$(CONFIG_HW_RANDOM_ARM_SMCCC_TRNG) += arm_smccc_trng.o
+> >  obj-$(CONFIG_HW_RANDOM_CN10K) += cn10k-rng.o
+> >  obj-$(CONFIG_HW_RANDOM_POLARFIRE_SOC) += mpfs-rng.o
+> > +obj-$(CONFIG_HW_RANDOM_STARFIVE) += starfive-trng.o
+> 
+> Is "STARFIVE" a bit too general of a name here and in the Kconfig entry?
+> I don't have a TRM for the JH7100, but this name (and the Kconfig text)
+> would give me the impression that I can use it there too.
+> Does this driver support both?
+> 
+
+7100 uses a different trng module but this same generator might be used in
+future products, so I left it generic. Would it be better to specify the product?
+
+> > +static int starfive_trng_probe(struct platform_device *pdev)
+[...]
+> > +	ret = devm_hwrng_register(&pdev->dev, &trng->rng);
+> > +	if (ret) {
+> > +		dev_err_probe(&pdev->dev, ret, "Failed to register
+> hwrng\n");
+> > +		goto err_fail_register;
+> > +	}
+> > +
+> > +	pm_runtime_use_autosuspend(&pdev->dev);
+> > +	pm_runtime_set_autosuspend_delay(&pdev->dev, 100);
+> 
+> > +	pm_runtime_enable(&pdev->dev);
+> 
+> > +
+> > +	return 0;
+> > +
+> > +err_fail_register:
+> 
+> > +	pm_runtime_disable(&pdev->dev);
+> 
+> This was only enabled after the only goto for this label, does it serve a
+> purpose?
+> I know little about runtime PM, it just caught my eye.
+> I looked at the other rng drivers that had calls to pm_runtime_enable(), but
+> they all seem to do their pm enablement _before_ calling hwrng_register().
+> Again, I am not familiar with runtime PM, but curious why you are doing
+> things differently, that's all.
+
+It does make more sense to move pm_runtime_enable before registering the
+generator to align with codes in the goto label.
+I'll fix this part.
+
+Thanks again for reviewing the patches.
+
+Best regards,
+Jia Jie
+
+
