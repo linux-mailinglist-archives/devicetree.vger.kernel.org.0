@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B31C6696AB
+	by mail.lfdr.de (Postfix) with ESMTP id 6DFF96696AC
 	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 13:13:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233016AbjAMMNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 07:13:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51824 "EHLO
+        id S238783AbjAMMNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 07:13:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240194AbjAMMM5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:12:57 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F018099A
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:07:21 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id d30so27917214lfv.8
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:07:21 -0800 (PST)
+        with ESMTP id S240879AbjAMMM7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:12:59 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B89809A1
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:07:23 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id bq39so32880132lfb.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:07:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VM3uEU/rjB+QCOtTn5z2Z6qfvJKbznw9HG9r7NidXzw=;
-        b=rsZSZU/oiQFwGrlrVnZ6RZkfpTtKnVsx/no09HT9cZZxRIE5FZuhGEiv1vp4Om8xrp
-         TbXMSxrvsGMYhQuJWWkRiAZicHpVQOI1CVxStllSbhblZ4jpBNrmQs9t0G+umHpHutB+
-         Z2J60sXWZ1cpqIjaVFeMAd9ZlJt37+dcnucTftrTusEzxbW88FGGHjJOeFoZnIh5io5E
-         lJpF88Cj/PTwB603Y6SywDGuO/ZMTRF/0gcMjqiY+UoG631pUKpll368VR9MyKo7/XzE
-         t/MuGBGZp2OTIuIkH4320gEjbp7pdR4NywOrOADVRwX2h8OQgq2VPP+/hE4kNX6ze9N2
-         HtYA==
+        bh=CN2PzcM58W6wCGs0BEmJi5Hn2KBihcYIZ9Wr9XB+HPc=;
+        b=ldvyTHH9Mo/tG/nreLsDP83Fwr4FbLJidBMUNtEp1UIW7zuvQjbhGOQY91b4mlDSCN
+         ROGGpGqIdTh5Nzo6y2fSlACcmXS15m9fPAer5M0EVvCEIGB9A/yh53+fUnbGluh+QvZZ
+         lX7b1WOsRk5m6c0UM4Y6P1ugxgf97ClAyplEh15nTY+50STytIn703Kd2UHkByinaWrB
+         CkonhBLKfrdTDXIXLPb3NVRQmuwn5GIGrb58o3gNIAYS65h92Gg0zAJ4YbCvS2MyIZ/I
+         VSAiSdw3paT/ZmPq7H9qsaJXgXdPSKFgOfcYZZ5PZ2swSG0Oi1M0ydr+Cogp/49EIekD
+         1clA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VM3uEU/rjB+QCOtTn5z2Z6qfvJKbznw9HG9r7NidXzw=;
-        b=LLw1xLRlYL3whet4GPQbz8u4VlEaLm1qjNm8DHnXr2c+UpMPWqlB4iKTSxbxK2aNAl
-         U8iEZZK7k2/ByBnAFCs3vv8D6M8vroBnMvzE4GHvtj/qnkM7rfP9KrIVIcWRldPf2M8t
-         yAnewzYLQVhrYkoXsCcQg7eJx+SeMpwKJZwl830gAS3CO/M4yrzqI0HhLjcPEkvVd2J3
-         qTG/DgCHdNcIMthflQif+iFB79zCHzm88oErFlmLmJXuOpu7yEkit/2QrX1gDLUcwzmm
-         Ns92i4X8MYcwFGDj9skNjGiZvtWWBLmZZIh9wTWV+43IJZg3jU579GL6sAMuf3ule2cX
-         vyAA==
-X-Gm-Message-State: AFqh2kplLnChvjlxV/NxAnIqGZU/7Q+CrtguLCxJBUMhKIjXO1YbyhVJ
-        3vMhF6q0TE8h6LBxBiQl6QcwameQRHLb7yZSaerj0A==
-X-Google-Smtp-Source: AMrXdXvHwxsexvWyXWUJt0+ydKoQoFEG0P9L6Lf/XP66x2BDV7CqV9+usK6O65cmXX8ktDLRz/LpnQ==
-X-Received: by 2002:a05:6512:3ba1:b0:4cb:f3d:c47f with SMTP id g33-20020a0565123ba100b004cb0f3dc47fmr21361040lfv.51.1673611640824;
-        Fri, 13 Jan 2023 04:07:20 -0800 (PST)
+        bh=CN2PzcM58W6wCGs0BEmJi5Hn2KBihcYIZ9Wr9XB+HPc=;
+        b=h3hLHKcbQNXddbOhVL8UPZyf5AnQvBZJ926wsnSvbTXRb7FD1xje5oFrFKAbG9PALF
+         fIdCdNsmpILQ1jer5u+C7NzSjnwmbLDSsPjGgDU87lFxvNHKzbCeK2iBK80HBnCilfOn
+         le0FXjcqK2f0YJicv/jGd6TuwA/iWbAvF1EveFh7sphG7Q0ncvAxl4W/swDJs2tsUPrN
+         qxJpc7nO3RlHrFC/UaGVQ5r5uH8oVUM6Ae4BHCofw2AqtKpFPzXGtXm3L1sFNCpAe1eQ
+         hTIuB6ZZyTOWpi4weMHOqRXOljrXH4pG91ESSgj8rFLWD59QkrrcsE/hz32Hg0ecvKey
+         yhjA==
+X-Gm-Message-State: AFqh2kpmmRguK+v3GIzYES02Yjq7ITaqKHISQF+qL4D+NYPJ1cvUUCCY
+        wNii31oJ0QURnwMYPVT7lyWJvQ==
+X-Google-Smtp-Source: AMrXdXvJq5Lqoxh3IuY5LMBRtdSnfiQl6gneYQISPhacDhBqP0MVIay3QR1t910x+MwIjGnuctTfnQ==
+X-Received: by 2002:a05:6512:1049:b0:4b6:edce:a192 with SMTP id c9-20020a056512104900b004b6edcea192mr26227516lfb.4.1673611643171;
+        Fri, 13 Jan 2023 04:07:23 -0800 (PST)
 Received: from eriador.lumag.spb.ru ([188.170.82.205])
-        by smtp.gmail.com with ESMTPSA id i7-20020ac25227000000b004ac6a444b26sm3806290lfl.141.2023.01.13.04.07.18
+        by smtp.gmail.com with ESMTPSA id i7-20020ac25227000000b004ac6a444b26sm3806290lfl.141.2023.01.13.04.07.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 04:07:20 -0800 (PST)
+        Fri, 13 Jan 2023 04:07:22 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v3 12/14] clk: qcom: cpu-8996: fix PLL clock ops
-Date:   Fri, 13 Jan 2023 14:05:42 +0200
-Message-Id: <20230113120544.59320-13-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 13/14] clk: qcom: cpu-8996: change setup sequence to follow vendor kernel
+Date:   Fri, 13 Jan 2023 14:05:43 +0200
+Message-Id: <20230113120544.59320-14-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230113120544.59320-1-dmitry.baryshkov@linaro.org>
 References: <20230113120544.59320-1-dmitry.baryshkov@linaro.org>
@@ -70,44 +70,85 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch CPU PLLs to use clk_alpha_pll_hwfsm_ops, it seems to suit
-better.
+Add missing register writes to CPU clocks setup procedure. This makes it
+follow the setup procedure used in msm-3.18 kernel.
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/clk-cpu-8996.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/clk/qcom/clk-cpu-8996.c | 31 +++++++++++++++++++++++++++++--
+ 1 file changed, 29 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
-index c471c6836c63..b99a47aca478 100644
+index b99a47aca478..2253e11770b9 100644
 --- a/drivers/clk/qcom/clk-cpu-8996.c
 +++ b/drivers/clk/qcom/clk-cpu-8996.c
-@@ -128,7 +128,7 @@ static struct clk_alpha_pll pwrcl_pll = {
- 		.name = "pwrcl_pll",
- 		.parent_data = pll_parent,
- 		.num_parents = ARRAY_SIZE(pll_parent),
--		.ops = &clk_alpha_pll_huayra_ops,
-+		.ops = &clk_alpha_pll_hwfsm_ops,
- 	},
- };
+@@ -76,10 +76,16 @@ enum _pmux_input {
+ #define PWRCL_REG_OFFSET 0x0
+ #define PERFCL_REG_OFFSET 0x80000
+ #define MUX_OFFSET	0x40
++#define CLK_CTL_OFFSET 0x44
++#define CLK_CTL_AUTO_CLK_SEL BIT(8)
+ #define ALT_PLL_OFFSET	0x100
+ #define SSSCTL_OFFSET 0x160
++#define PSCTL_OFFSET 0x164
  
-@@ -140,7 +140,7 @@ static struct clk_alpha_pll perfcl_pll = {
- 		.name = "perfcl_pll",
- 		.parent_data = pll_parent,
- 		.num_parents = ARRAY_SIZE(pll_parent),
--		.ops = &clk_alpha_pll_huayra_ops,
-+		.ops = &clk_alpha_pll_hwfsm_ops,
- 	},
- };
+ #define PMUX_MASK	0x3
++#define MUX_AUTO_CLK_SEL_ALWAYS_ON_MASK GENMASK(5, 4)
++#define MUX_AUTO_CLK_SEL_ALWAYS_ON_GPLL0_SEL \
++	FIELD_PREP(MUX_AUTO_CLK_SEL_ALWAYS_ON_MASK, 0x03)
  
+ static const u8 prim_pll_regs[PLL_OFF_MAX_REGS] = {
+ 	[PLL_OFF_L_VAL] = 0x04,
+@@ -439,6 +445,14 @@ static int qcom_cpu_clk_msm8996_register_clks(struct device *dev,
+ 	/* Ensure write goes through before PLLs are reconfigured */
+ 	udelay(5);
+ 
++	/* Set the auto clock sel always-on source to GPLL0/2 (300MHz) */
++	regmap_update_bits(regmap, PWRCL_REG_OFFSET + MUX_OFFSET,
++			   MUX_AUTO_CLK_SEL_ALWAYS_ON_MASK,
++			   MUX_AUTO_CLK_SEL_ALWAYS_ON_GPLL0_SEL);
++	regmap_update_bits(regmap, PERFCL_REG_OFFSET + MUX_OFFSET,
++			   MUX_AUTO_CLK_SEL_ALWAYS_ON_MASK,
++			   MUX_AUTO_CLK_SEL_ALWAYS_ON_GPLL0_SEL);
++
+ 	clk_alpha_pll_configure(&pwrcl_pll, regmap, &hfpll_config);
+ 	clk_alpha_pll_configure(&perfcl_pll, regmap, &hfpll_config);
+ 	clk_alpha_pll_configure(&pwrcl_alt_pll, regmap, &altpll_config);
+@@ -447,11 +461,24 @@ static int qcom_cpu_clk_msm8996_register_clks(struct device *dev,
+ 	/* Wait for PLL(s) to lock */
+ 	udelay(50);
+ 
++	/* Enable auto clock selection for both clusters */
++	regmap_update_bits(regmap, PWRCL_REG_OFFSET + CLK_CTL_OFFSET,
++			   CLK_CTL_AUTO_CLK_SEL, CLK_CTL_AUTO_CLK_SEL);
++	regmap_update_bits(regmap, PERFCL_REG_OFFSET + CLK_CTL_OFFSET,
++			   CLK_CTL_AUTO_CLK_SEL, CLK_CTL_AUTO_CLK_SEL);
++
++	/* Ensure write goes through before muxes are switched */
++	udelay(5);
++
+ 	qcom_cpu_clk_msm8996_acd_init(regmap);
+ 
++	/* Pulse swallower and soft-start settings */
++	regmap_write(regmap, PWRCL_REG_OFFSET + PSCTL_OFFSET, 0x00030005);
++	regmap_write(regmap, PERFCL_REG_OFFSET + PSCTL_OFFSET, 0x00030005);
++
+ 	/* Switch clusters to use the ACD leg */
+-	regmap_write(regmap, PWRCL_REG_OFFSET + MUX_OFFSET, 0x2);
+-	regmap_write(regmap, PERFCL_REG_OFFSET + MUX_OFFSET, 0x2);
++	regmap_write(regmap, PWRCL_REG_OFFSET + MUX_OFFSET, 0x32);
++	regmap_write(regmap, PERFCL_REG_OFFSET + MUX_OFFSET, 0x32);
+ 
+ 	for (i = 0; i < ARRAY_SIZE(cpu_msm8996_hw_clks); i++) {
+ 		ret = devm_clk_hw_register(dev, cpu_msm8996_hw_clks[i]);
 -- 
 2.39.0
 
