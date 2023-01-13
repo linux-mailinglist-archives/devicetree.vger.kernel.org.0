@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A1866A0F2
+	by mail.lfdr.de (Postfix) with ESMTP id 53A0966A0F3
 	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 18:45:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229975AbjAMRpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 12:45:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53880 "EHLO
+        id S229844AbjAMRpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 12:45:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbjAMRoo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 12:44:44 -0500
+        with ESMTP id S229714AbjAMRop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 12:44:45 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E6B942607
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EEEF82BB0
         for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 09:32:19 -0800 (PST)
 Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <bst@pengutronix.de>)
-        id 1pGNua-0002gm-DE; Fri, 13 Jan 2023 18:32:16 +0100
+        id 1pGNub-0002gm-DC; Fri, 13 Jan 2023 18:32:17 +0100
 From:   Bastian Krause <bst@pengutronix.de>
-Subject: [PATCH 0/2] Support Child MFD Cells for the i.MX6QDL Reset Controller
-Date:   Fri, 13 Jan 2023 18:32:09 +0100
-Message-Id: <20230113-syscon-child-mfd-v1-0-0dd31b7de373@pengutronix.de>
+Date:   Fri, 13 Jan 2023 18:32:10 +0100
+Subject: [PATCH 2/2] ARM: dts: imx6qdl: support child mfd cells for the reset
+ controller
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJmVwWMC/13NQQoCMQyF4asMWRuctgrqVcRFk6Y2oB1pRJRh7
- m7Hpcsf3sebwaSpGJyGGZq81HSqPdxmAC6xXgU19QY/+jA6F9A+xlNFLnpLeM8J03Gfg9/xgShD
- ZxRNkFqsXFZI9tz+m3X2aJL1/Xs+X5blCwDxAaSJAAAA
+Message-Id: <20230113-syscon-child-mfd-v1-2-0dd31b7de373@pengutronix.de>
+References: <20230113-syscon-child-mfd-v1-0-0dd31b7de373@pengutronix.de>
+In-Reply-To: <20230113-syscon-child-mfd-v1-0-0dd31b7de373@pengutronix.de>
 To:     Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -53,37 +53,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow passing the reboot mode from the OS to the bootloader via the
-syscon-reboot-mode binding. Add a "simple-mfd" to support probing such a
-child node. The actual reboot mode node could then be defined in a board
-device-tree or fixed up by the bootloader.
+The actual syscon-reboot-mode child node can be added by a board
+device-tree or fixed up by the bootloader. For the child node to be
+probed, the compatible needs to include simple-mfd. The binding now
+specifies this, so have the SoC dtsi adhere to it.
 
-To: Philipp Zabel <p.zabel@pengutronix.de>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-To: Shawn Guo <shawnguo@kernel.org>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-To: Pengutronix Kernel Team <kernel@pengutronix.de>
-To: Fabio Estevam <festevam@gmail.com>
-To: NXP Linux Team <linux-imx@nxp.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Suggested-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 Signed-off-by: Bastian Krause <bst@pengutronix.de>
-
 ---
-Bastian Krause (2):
-      dt-bindings: reset: imx-src: add syscon and simple-mfd compatibles
-      ARM: dts: imx6qdl: support child mfd cells for the reset controller
+ arch/arm/boot/dts/imx6qdl.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
- Documentation/devicetree/bindings/reset/fsl,imx-src.yaml | 2 ++
- arch/arm/boot/dts/imx6qdl.dtsi                           | 3 ++-
- 2 files changed, 4 insertions(+), 1 deletion(-)
----
-base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
-change-id: 20230113-syscon-child-mfd-d95f324c8bbf
+diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
+index ff1e0173b39be..b16be39458aa6 100644
+--- a/arch/arm/boot/dts/imx6qdl.dtsi
++++ b/arch/arm/boot/dts/imx6qdl.dtsi
+@@ -865,7 +865,8 @@ epit2: epit@20d4000 { /* EPIT2 */
+ 			};
+ 
+ 			src: reset-controller@20d8000 {
+-				compatible = "fsl,imx6q-src", "fsl,imx51-src";
++				compatible = "fsl,imx6q-src", "fsl,imx51-src",
++					     "syscon", "simple-mfd";
+ 				reg = <0x020d8000 0x4000>;
+ 				interrupts = <0 91 IRQ_TYPE_LEVEL_HIGH>,
+ 					     <0 96 IRQ_TYPE_LEVEL_HIGH>;
 
-Best regards,
 -- 
-Bastian Krause <bst@pengutronix.de>
+2.30.2
