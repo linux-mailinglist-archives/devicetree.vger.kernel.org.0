@@ -2,161 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E61D669680
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 13:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3BF7669688
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 13:12:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239679AbjAMMKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 07:10:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47614 "EHLO
+        id S241191AbjAMMMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 07:12:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241303AbjAMMJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:09:54 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8049277D23;
-        Fri, 13 Jan 2023 04:03:52 -0800 (PST)
-Received: from pendragon.ideasonboard.com (85-131-99-81.bb.dnainternet.fi [85.131.99.81])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9FDAD4D4;
-        Fri, 13 Jan 2023 13:03:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673611429;
-        bh=6YIShQPskU5szBYMQWaunG9175SSYoPUA2nUdwpccOM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qzDn0VhsUYdZjDj997faeUd139LNqsYMRuTxjYeraeHBjNpWXF8aKpanBJNn1Y04P
-         DbYnvUnPAY//IzBPc3OtWLq8+2bd2mKVXAgm4E9hBjDYuTodtJf6YJ3UIpoeTtqrUW
-         sJfO5tEfNurS0Nc9YQufgcwuVDhcKAsHcltcAtro=
-Date:   Fri, 13 Jan 2023 14:03:48 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 06/16] media: imx-pxp: make data_path_ctrl0 platform
- dependent
-Message-ID: <Y8FIpJd3yy9gJ+7a@pendragon.ideasonboard.com>
-References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
- <20230112-imx-pxp-v2-6-e2281da1db55@pengutronix.de>
+        with ESMTP id S241164AbjAMMLc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:11:32 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC0E7A92D
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:05:03 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id mp20so5218335ejc.7
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:05:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vXHybJ2mJD6aa8TvSwEacdirC05VvD7/mmGN0WSC+vw=;
+        b=QvjvtNTf6/c/WYoFYhk46x+H2YhZBKQBg620l4RhwiX74ErRSQSNzqunYHdo4GaKj7
+         W18ixbG6yEniU4KsVAiBHHWba/xKipCDS2GL/0FEB7BLhPHMD0FgirXaNwkkkiRwoJ3t
+         kpi+qkgjwZ6o7WcgMdN9fHoLspRM0kaL9VbY5aiTAIOnFNAw+A8R3lXW70zejxUNCFZR
+         L6icKZ2GdzNdmwI9Y2mP9R5sAuD5xw0ZdAnmxJlkH480HWdLCxrkz7lZtdnCEYx14qbe
+         f/6IwD25mR6BcVWDnvXjB49k//bl/vS1wc/qQ6Hwy6xPrVPDbL9fX4WiySKva6mERgf0
+         16cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vXHybJ2mJD6aa8TvSwEacdirC05VvD7/mmGN0WSC+vw=;
+        b=DhdgUDbIG7tesCsWWViwuetna9UTD3ge2eAJY8/wOonma80i8IAhUbET1B3BFSKoX4
+         5flgViSxF1FUhzLVaH3kQPvC7DkO83g1dIbeTh0YMQfDCniOY+13CxxqV2TOElwpirnV
+         69lvgGkPcVo/GwbT43Ei+kSLefQNkTzePS0A2uQ7r9MdbZ8kJPeIO2TFHuDEykMgS9MU
+         zDmF1dFG2//bOETMDVsCza810iwgZ85EO1AvkgGZPj6htV3y5jRKPInLPFXLRdTS20En
+         9mLSouG55+/IcPMpijjP9avzmAhQJ3jld/7zmR69mZWgGPRfI/qnjPPAD0fh8i+Lcuok
+         qKCg==
+X-Gm-Message-State: AFqh2kpEt3pCbUn3IAR1rfiEMgBcaRkRnGfyS7rkbmlXxVfgb9OciDOt
+        q9nhXObdbC/CpOCsHL01oc34iA==
+X-Google-Smtp-Source: AMrXdXt/AzW14h8l94Wqnw6m53vrD1GcILvRAidaUWScS+ZS45P5oisNr9+yWakUYg6jOlAzSZU3OA==
+X-Received: by 2002:a17:906:abc6:b0:7ad:d835:e822 with SMTP id kq6-20020a170906abc600b007add835e822mr71763506ejb.42.1673611501624;
+        Fri, 13 Jan 2023 04:05:01 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id og5-20020a1709071dc500b0084d420503a3sm6715352ejc.178.2023.01.13.04.05.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Jan 2023 04:05:01 -0800 (PST)
+Message-ID: <7cb96551-094c-1a68-cc3f-31e4e2e94518@linaro.org>
+Date:   Fri, 13 Jan 2023 13:04:59 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230112-imx-pxp-v2-6-e2281da1db55@pengutronix.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 1/3] dt-bindings: reserved-memory: ramoops: Update the
+ binding
+Content-Language: en-US
+To:     Mukesh Ojha <quic_mojha@quicinc.com>, keescook@chromium.org,
+        gpiccoli@igalia.com, corbet@lwn.net, tony.luck@intel.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-hardening@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1673611126-13803-1-git-send-email-quic_mojha@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1673611126-13803-1-git-send-email-quic_mojha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+Subject: drop second/last, redundant "binding". The "dt-bindings" prefix
+is already stating that these are bindings.
 
-Thank you for the patch.
+Your subject says nothing. Everything is "update".
 
-On Fri, Jan 13, 2023 at 10:54:12AM +0100, Michael Tretter wrote:
-> Unfortunately, the PXP_HW_VERSION register reports the PXP on the i.MX7D
-> and on the i.MX6ULL as version 3.0, although the PXP versions on these
-> SoCs have significant differences.
+On 13/01/2023 12:58, Mukesh Ojha wrote:
+> Update the ramoops region binding document with details
+> like region can also be reserved dynamically apart from
+> reserving it statically.
+
+So what exactly can be here reserved dynamically? And what does it mean
+'dynamically'? By whom? How is this property of hardware (not OS)?
+
 > 
-> Use the compatible to configure the ctrl0 register as required dependent
-> on the platform.
-> 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
 > ---
-> Changelog
+> Change in v2:
+>   - Added this patch as per changes going to be done in patch 3/3
 > 
-> v2:
+>  .../bindings/reserved-memory/ramoops.yaml          | 34 ++++++++++++++++++++--
+>  1 file changed, 32 insertions(+), 2 deletions(-)
 > 
-> - drop fallback for missing data_path_ctrl0
-> ---
->  drivers/media/platform/nxp/imx-pxp.c | 21 ++++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/media/platform/nxp/imx-pxp.c b/drivers/media/platform/nxp/imx-pxp.c
-> index bf3be989a552..c7f8a1808516 100644
-> --- a/drivers/media/platform/nxp/imx-pxp.c
-> +++ b/drivers/media/platform/nxp/imx-pxp.c
-> @@ -19,6 +19,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_device.h>
->  #include <linux/sched.h>
->  #include <linux/slab.h>
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> index 0391871..54e46e8 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> +++ b/Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+> @@ -10,7 +10,8 @@ description: |
+>    ramoops provides persistent RAM storage for oops and panics, so they can be
+>    recovered after a reboot. This is a child-node of "/reserved-memory", and
+>    is named "ramoops" after the backend, rather than "pstore" which is the
+> -  subsystem.
+> +  subsystem. This region can be reserved both statically or dynamically by
+> +  using appropriate property in device tree.
 >  
-> @@ -191,6 +192,12 @@ static struct pxp_fmt *find_format(struct v4l2_format *f)
->  	return &formats[k];
->  }
+>    Parts of this storage may be set aside for other persistent log buffers, such
+>    as kernel log messages, or for optional ECC error-correction data.  The total
+> @@ -112,7 +113,13 @@ unevaluatedProperties: false
 >  
-> +struct pxp_ctx;
+>  required:
+>    - compatible
+> -  - reg
 > +
-> +struct pxp_pdata {
-> +	u32 (*data_path_ctrl0)(struct pxp_ctx *ctx);
-> +};
+> +oneOf:
+> +  - required:
+> +      - reg
 > +
->  struct pxp_dev {
->  	struct v4l2_device	v4l2_dev;
->  	struct video_device	vfd;
-> @@ -198,6 +205,8 @@ struct pxp_dev {
->  	struct clk		*clk;
->  	void __iomem		*mmio;
->  
-> +	const struct pxp_pdata	*pdata;
-> +
->  	atomic_t		num_inst;
->  	struct mutex		dev_mutex;
->  	spinlock_t		irqlock;
-> @@ -724,7 +733,7 @@ static void pxp_setup_csc(struct pxp_ctx *ctx)
->  	}
->  }
->  
-> -static u32 pxp_data_path_ctrl0(struct pxp_ctx *ctx)
-> +static u32 pxp_imx6ull_data_path_ctrl0(struct pxp_ctx *ctx)
->  {
->  	u32 ctrl0;
->  
-> @@ -760,7 +769,7 @@ static void pxp_set_data_path(struct pxp_ctx *ctx)
->  	u32 ctrl0;
->  	u32 ctrl1;
->  
-> -	ctrl0 = pxp_data_path_ctrl0(ctx);
-> +	ctrl0 = dev->pdata->data_path_ctrl0(ctx);
->  
->  	ctrl1 = 0;
->  	ctrl1 |= BF_PXP_DATA_PATH_CTRL1_MUX17_SEL(3);
-> @@ -1705,6 +1714,8 @@ static int pxp_probe(struct platform_device *pdev)
->  	if (!dev)
->  		return -ENOMEM;
->  
-> +	dev->pdata = of_device_get_match_data(&pdev->dev);
-> +
->  	dev->clk = devm_clk_get(&pdev->dev, "axi");
->  	if (IS_ERR(dev->clk)) {
->  		ret = PTR_ERR(dev->clk);
-> @@ -1804,8 +1815,12 @@ static int pxp_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static const struct pxp_pdata pxp_imx6ull_pdata = {
-> +	.data_path_ctrl0 = pxp_imx6ull_data_path_ctrl0,
-> +};
-> +
->  static const struct of_device_id pxp_dt_ids[] = {
-> -	{ .compatible = "fsl,imx6ull-pxp", .data = NULL },
-> +	{ .compatible = "fsl,imx6ull-pxp", .data = &pxp_imx6ull_pdata },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, pxp_dt_ids);
+> +  - required:
+> +      - size
 
--- 
-Regards,
+There is no such property. You cannot require it.
 
-Laurent Pinchart
+>  
+>  anyOf:
+>    - required: [record-size]
+> @@ -142,3 +149,26 @@ examples:
+>              };
+>          };
+>      };
+> +
+> +  - |
+> +    / {
+> +        compatible = "foo";
+> +        model = "foo";
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        reserved-memory {
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
+> +            ranges;
+> +
+> +            ramoops: ramoops_region {
+
+Node names should be generic, no underscores in node names.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Any reason in naming it differently then existing one? You have there
+example.
+
+> +                compatible = "ramoops";
+> +                alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+> +                size = <0x0 0x10000>;       /* 64kB */
+> +                console-size = <0x8000>;    /* 32kB */
+> +                record-size = <0x400>;      /*  1kB */
+> +                ecc-size = <16>;
+> +            };
+> +        };
+> +    };
+
+Best regards,
+Krzysztof
+
