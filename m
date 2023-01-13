@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 595F6669C51
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 16:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4496E669C6F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 16:33:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbjAMPbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 10:31:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53208 "EHLO
+        id S229937AbjAMPds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 10:33:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230037AbjAMPbP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:31:15 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 063AF58807
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 07:24:30 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id v25so33564099lfe.12
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 07:24:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X5neXXvR4xShgIQ+mBGlETi+Hmx/OfLeRgPrvDQqsMM=;
-        b=lgYwpaRKm0lkoFxPYt4FB+s3m286q8Altyh+EMp/DStxeiUb4AVUHZputDOFj5ejeR
-         Om03kDdoWEB6MtHZVZjoJJNJbZX8OFhwNNg0i5NbvEX41WIPVj0p3z4oxTxH2EqnqhLD
-         WkBQT96hDUI9UN6I43VG4wo0+NDg9fZx+XV7ZvSC50fSPav4/c7XPM0+AL+wJpujt/8F
-         p2UoCfQ+K+qtC3w8WurMjPaduDbAn0oKREFn8OnnfkcT9OyeXQeuhQtv3BxU+gB+FTzl
-         oRqIMOlQ2/3WVF0J/3ZGwKkpCeiW2WGE2KqDoXtjlRqg07Fz2iCG+0MUpld2slkdbeG8
-         7TfQ==
+        with ESMTP id S230263AbjAMPd0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:33:26 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D61BC974B5;
+        Fri, 13 Jan 2023 07:26:57 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id s124so1139962oif.1;
+        Fri, 13 Jan 2023 07:26:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X5neXXvR4xShgIQ+mBGlETi+Hmx/OfLeRgPrvDQqsMM=;
-        b=3EmIKVALxcabu66HCUWxaqD4gaY7P3KDpYVtGieAA2Z4cvPQJn7P2g4aqgMmrho6Y9
-         99vt8rEhSLtIflnqQRarRKRIRPlNiR+AFSVEBlNsw9K59It7F/fX9JmhFwIsbI8zDHkw
-         iuZJJIumOoRKfvxAFHMkhaML7nfBrPOUo24RYlHf0vq5vEbxRnVmWQyfVsaeeB4CYXbS
-         /PcZPh3gz7Oh1fCBRn+hS3jwOVRyFBN+Pd3yL/jtEt2P8K6z/mqfxgLHQUq3qvcsyiJQ
-         E6pHEl7FeMaj9613GMWqj7XEayvuBKk6VkZq7/zLM9X2HUrVsR1+r8PfwufurjUsoAP5
-         VoOA==
-X-Gm-Message-State: AFqh2kqfkx7EVgha5GMrxbB054C4NcqxiQ6JrXXmd18CwAF+1xz7JDsZ
-        qswdck/dW3blicoZ/6b3rdM5iQ==
-X-Google-Smtp-Source: AMrXdXvAg3JiBLhBzGE5SuTRLQ5LoXvDpRYLITqKt41wh2MJYE/w8yrIo3AaWGcX9fSggjw86D7F2A==
-X-Received: by 2002:ac2:53b0:0:b0:4cc:a108:ca0a with SMTP id j16-20020ac253b0000000b004cca108ca0amr41337lfh.46.1673623468437;
-        Fri, 13 Jan 2023 07:24:28 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id x2-20020a056512130200b004a8f824466bsm3886305lfu.188.2023.01.13.07.24.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 07:24:27 -0800 (PST)
-Message-ID: <552e75a9-179a-7720-3d37-59f1846266b1@linaro.org>
-Date:   Fri, 13 Jan 2023 16:24:25 +0100
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=w3iFRccbSDkEugBccIou+2bALCJO5axdL5vy8psmKe8=;
+        b=22LWLyyzcwh25msT8TSUwytbqOlNmi3k/XKZ7xnB64XLTOj3jplMg0muNk5u/BO5Vo
+         N5uHpMTzL4wsUPeNqAgPOfCATabgcBx27OvDchp/JBB4QVQWMLe9DrgEy91lt7xtcprz
+         uu87Na78s0Ymn+75n0LLDCumi9ZmmeHA6h6rweEWaWZUy66ined7wurUzYccvCDp1HUj
+         xDeXRewR2C0n5vH0cWBmXc+8W2JDpBJCdxZoCt/2tmSwAOABhPgAyAA7X7FgetEpr5Qy
+         gYQuP+KnYn3AEneoXSgN2KhabsYMvnVVs5958+ElT1P7EJ3oWj5SC/0dqQDhJGTquVNq
+         bCFg==
+X-Gm-Message-State: AFqh2kos/QhwSjwO6bcR/9EeLTaMJQDKax8oDETQR7xLR1wMYgoOakqi
+        6iMoZCvQwusaRtoIysfBzA==
+X-Google-Smtp-Source: AMrXdXtU5Q+EcHwM8fGnUFflgtn0JMNu0tQGWDvrXpPdN6wJh85fEDrBO+B8rxDkKl45atQuth7UAg==
+X-Received: by 2002:a05:6808:18a8:b0:364:adbc:609b with SMTP id bi40-20020a05680818a800b00364adbc609bmr1610560oib.19.1673623617083;
+        Fri, 13 Jan 2023 07:26:57 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id be16-20020a056808219000b00359ad661d3csm9234840oib.30.2023.01.13.07.26.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Jan 2023 07:26:56 -0800 (PST)
+Received: (nullmailer pid 2224506 invoked by uid 1000);
+        Fri, 13 Jan 2023 15:26:52 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 3/6] regulator: qcom_smd: Add MP5496 regulators
-Content-Language: en-US
-To:     devi priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-References: <20230113150310.29709-1-quic_devipriy@quicinc.com>
- <20230113150310.29709-4-quic_devipriy@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230113150310.29709-4-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        dri-devel@lists.freedesktop.org, Sean Paul <sean@poorly.run>,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20230113083720.39224-2-dmitry.baryshkov@linaro.org>
+References: <20230113083720.39224-1-dmitry.baryshkov@linaro.org>
+ <20230113083720.39224-2-dmitry.baryshkov@linaro.org>
+Message-Id: <167362343145.2212490.16180994187587985655.robh@kernel.org>
+Subject: Re: [PATCH v6 01/11] dt-bindings: display/msm: convert MDP5 schema to
+ YAML format
+Date:   Fri, 13 Jan 2023 09:26:52 -0600
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,60 +73,37 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 13.01.2023 16:03, devi priya wrote:
-> Adding support for PMIC MP5496 on IPQ9574 SoC
+On Fri, 13 Jan 2023 10:37:10 +0200, Dmitry Baryshkov wrote:
+> Convert the mdp5.txt into the yaml format. Changes to the existing (txt) schema:
+>  - MSM8996 has additional "iommu" clock, define it separately
+>  - Add new properties used on some of platforms:
+>    - interconnects, interconnect-names
+>    - iommus
+>    - power-domains
+>    - operating-points-v2, opp-table
 > 
-> Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-Please simply extend the existing MP5496 support with this
-S1 regulator. If you don't explicitly define and set voltages
-for the other vregs, they will not be probed.
-
-Konrad
->  drivers/regulator/qcom_smd-regulator.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  .../devicetree/bindings/display/msm/mdp5.txt  | 132 -----------------
+>  .../bindings/display/msm/qcom,mdp5.yaml       | 138 ++++++++++++++++++
+>  2 files changed, 138 insertions(+), 132 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/msm/mdp5.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
 > 
-> diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
-> index 9f2b58458841..1eb17d378897 100644
-> --- a/drivers/regulator/qcom_smd-regulator.c
-> +++ b/drivers/regulator/qcom_smd-regulator.c
-> @@ -767,6 +767,15 @@ static const struct regulator_desc mp5496_ldoa2 = {
->  	.ops = &rpm_mp5496_ops,
->  };
->  
-> +static const struct regulator_desc ipq9574_mp5496_smpa1 = {
-> +	.linear_ranges = (struct linear_range[]) {
-> +		REGULATOR_LINEAR_RANGE(600000, 0, 37, 12500),
-> +	},
-> +	.n_linear_ranges = 1,
-> +	.n_voltages = 38,
-> +	.ops = &rpm_mp5496_ops,
-> +};
-> +
->  static const struct regulator_desc pm2250_lvftsmps = {
->  	.linear_ranges = (struct linear_range[]) {
->  		REGULATOR_LINEAR_RANGE(320000, 0, 269, 4000),
-> @@ -799,6 +808,11 @@ static const struct rpm_regulator_data rpm_mp5496_regulators[] = {
->  	{}
->  };
->  
-> +static const struct rpm_regulator_data rpm_ipq9574_mp5496_regulators[] = {
-> +	{ "s1", QCOM_SMD_RPM_SMPA, 1, &ipq9574_mp5496_smpa1, "s1" },
-> +	{}
-> +};
-> +
->  static const struct rpm_regulator_data rpm_pm2250_regulators[] = {
->  	{ "s1", QCOM_SMD_RPM_SMPA, 1, &pm2250_lvftsmps, "vdd_s1" },
->  	{ "s2", QCOM_SMD_RPM_SMPA, 2, &pm2250_lvftsmps, "vdd_s2" },
-> @@ -1320,6 +1334,8 @@ static const struct rpm_regulator_data rpm_pms405_regulators[] = {
->  };
->  
->  static const struct of_device_id rpm_of_match[] = {
-> +	{ .compatible = "qcom,rpm-ipq9574-mp5496-regulators",
-> +		.data = &rpm_ipq9574_mp5496_regulators },
->  	{ .compatible = "qcom,rpm-mp5496-regulators", .data = &rpm_mp5496_regulators },
->  	{ .compatible = "qcom,rpm-pm2250-regulators", .data = &rpm_pm2250_regulators },
->  	{ .compatible = "qcom,rpm-pm6125-regulators", .data = &rpm_pm6125_regulators },
+
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230113083720.39224-2-dmitry.baryshkov@linaro.org
+
+
+mdp@1a01000: compatible:0: 'qcom,mdp5' was expected
+	arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dtb
+
+mdp@1a01000: compatible: ['qcom,msm8953-mdp5', 'qcom,mdp5'] is too long
+	arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dtb
+
