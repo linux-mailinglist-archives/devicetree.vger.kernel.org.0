@@ -2,165 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D8766A38C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 20:42:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD41866A3A9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 20:50:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231222AbjAMTmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 14:42:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57424 "EHLO
+        id S229527AbjAMTua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 14:50:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231235AbjAMTm0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 14:42:26 -0500
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C3889BC0;
-        Fri, 13 Jan 2023 11:41:34 -0800 (PST)
-Received: by mail-oi1-f180.google.com with SMTP id d188so7354280oia.3;
-        Fri, 13 Jan 2023 11:41:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/mBnUYKy58RXajii2MNybXybrXIhWph3hvd6cbN/7aE=;
-        b=JvAo93TLhkMDSiStmpQYM2n3QdRJW76nz5/KXIuMX+xhT8woYd54o1sBE+UkXNC13T
-         WWsquiLF+aUfGgr8O/7yYxPIxPplbvvvN4JJF74NBqpnGeAvk8zyNLmAwDLXVY6zyKt0
-         2+0Qfc9yqhp8zxH1OEhql4VsQkYk4/P/GYPfYx4DKSJy0N9sZggagFR245PwwdP9xv8s
-         7cUha5CXT/aH9FnOm19felIJbfn+9Hr9cXagmEuQ0Vpig/h3oaRM2GQxCOoPHEL2nU7o
-         bDvmqBM8o6DKq5/MI5UvQG7B2pnR/8IDFZBC1j6OO8ncZpikFqFxGFJ1QDHH4iGwno9k
-         +3FA==
-X-Gm-Message-State: AFqh2kqFOoE/Cosw48Q6VWvaXHNpB60o90nm/qySlawOdtTFIYMpbR/y
-        EWuURiX4Jr3is7sazcwIpeOxVfIShQ==
-X-Google-Smtp-Source: AMrXdXvWdX+bakMJiR46G9PhYUmShF9HfgpmIt8PBbBqhcO+m+xgN6Pll57Y821zYtm+MA2FQKd/ew==
-X-Received: by 2002:aca:d0a:0:b0:364:6fd1:92d6 with SMTP id 10-20020aca0d0a000000b003646fd192d6mr6410758oin.25.1673638894083;
-        Fri, 13 Jan 2023 11:41:34 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bg31-20020a056808179f00b00363b5a6bc9esm9693433oib.12.2023.01.13.11.41.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 11:41:33 -0800 (PST)
-Received: (nullmailer pid 2821769 invoked by uid 1000);
-        Fri, 13 Jan 2023 19:41:32 -0000
-Date:   Fri, 13 Jan 2023 13:41:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        krzysztof.kozlowski@linaro.org, marijn.suijten@somainline.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] cpufreq: qcom-hw: Ensure only freq-domain regs are
- counted in num_domains
-Message-ID: <20230113194132.GA2806609-robh@kernel.org>
-References: <20230111205125.1860858-1-konrad.dybcio@linaro.org>
- <20230111205125.1860858-2-konrad.dybcio@linaro.org>
- <20230112153704.6d37dygm4yfexdq6@builder.lan>
- <7dec47af-0981-7d70-3926-69419f5d1c8e@linaro.org>
+        with ESMTP id S229603AbjAMTua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 14:50:30 -0500
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81995EE0F;
+        Fri, 13 Jan 2023 11:50:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=ouJteidaUAbrYfO/BCKeRgLKXGq2IG/QP4acR/7yoik=; b=j
+        TjqSdoipy57P1XV9ZNx37IpC6RCZLoHEqwPVRw9WMUFuTvddCalVRer8Aj8GX+UKfk4dRofdOZyHA
+        JApf1ZAEhemPIB6QYMWO6YskzTWhoZsqoPbHzHgKneZ85ovvR8qUyvBz/IMsfjfqoqbfc4wrv7Q58
+        xkyww/5BwPUbcO+o=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:41188 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1pGQ47-0000pu-HB; Fri, 13 Jan 2023 14:50:16 -0500
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     hvilleneuve@dimonoff.com, jic23@kernel.org, lars@metafoo.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hugo@hugovil.com
+Date:   Fri, 13 Jan 2023 14:49:57 -0500
+Message-Id: <20230113194959.3276433-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7dec47af-0981-7d70-3926-69419f5d1c8e@linaro.org>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH v3 0/2] iio: adc: ti-ads7924: add Texas Instruments ADS7924 driver
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 12, 2023 at 04:41:50PM +0100, Konrad Dybcio wrote:
-> 
-> 
-> On 12.01.2023 16:37, Bjorn Andersson wrote:
-> > On Wed, Jan 11, 2023 at 09:51:25PM +0100, Konrad Dybcio wrote:
-> >> In preparation for CPRh-aware OSM programming, change the probe
-> >> function so that we determine the number of frequency domains by
-> >> counting the number of reg-names entries that begin with
-> >> "freq-domain", as the aforementioned changes require introduction
-> >> of non-freq-domain register spaces.
-> >>
-> > 
-> > Requiring reg-names would break backwards compatibility with at least
-> > sc7280 and sm6115.
-> Ouch, you're correct..
-> 
-> Does checking for reg-names and applying the code flow proposed in this
-> patch if found and the existing one if not sound good?
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Why support 2 ways?
+Hello,
+this patch series adds the driver for the Texas Instruments ADS7924.
+
+The Texas Instruments ADS7924 is a 4 channels, 12-bit analog to
+digital converter (ADC) with an I2C interface.
+
+Patch 1 contains the driver for the ADS7924.
+
+Patch 2 add the dt-bindings for the ADS7924.
+
+I have tested the driver using the Texas Instruments ADS7924EVM board connected
+to a Variscite Symphony EVK with a IMX8MN NANO SOM:
+  - Tested reset pin Ok
+  - Tested regulator setup Ok
+  - Tested reading sysfs in_voltage_scale Ok
+  - Tested reading sysfs in_voltageX_raw (x=0 to 3) Ok
+
+Thank you.
+
+Link: [v1] https://lore.kernel.org/linux-iio/20221222203610.2571287-1-hugo@hugovil.com/
+Link: [v2] https://lore.kernel.org/linux-iio/20230110160124.3853593-1-hugo@hugovil.com/
+
+Changes for V3:
+- Rebase on linux-6.2-rc1
+- Refactor to follow usual coding practices as per review comments.
+- Fix missing include (reported by kernel test robot).
+- Fix DT bindings errors.
+- Removed unused define.
+- Remove breaks after return.
+- Remove debug message in ads7924_get_channels_config().
+- Remove braces around swich case IIO_CHAN_INFO_RAW.
+- Remove comments about regulator_get_voltage() failing for dummy regulator.
+
+Changes for V2:
+- Dropped patch "iio: adc: Kconfig: add SPI interface mention to AD7924
+  description"
+- Fixed comments style
+- Removed unused defines/variables/etc related to buffered support (no buffered
+  support for the moment).
+- Convert of-specific code to use the generic firmware property accessors in
+  include/linux/property.h.
+- Use FIELD_GET / FIELD_PREP for bit operations/defines
+- Simplified conversion result registers definitions/usage.
+- Now using mutex lock/unlock only for INFO_RAW switch branch
+- Use dev_err_probe() in all return paths of ads7924_probe()
+- Removed ads7924_remove() after adding callbacks with
+  devm_add_action_or_reset().
+- Change iio_device_register() to devm_iio_device_register().
+- Add the legacy i2c_device_id table
+- DT bindings: reorder entries, fix indentation,improve comments, add interrupt
+  line
+
+Hugo Villeneuve (2):
+  iio: adc: ti-ads7924: add Texas Instruments ADS7924 driver
+  dt-bindings: iio: adc: add Texas Instruments ADS7924
+
+ .../bindings/iio/adc/ti,ads7924.yaml          | 112 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ti-ads7924.c                  | 474 ++++++++++++++++++
+ 5 files changed, 605 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
+ create mode 100644 drivers/iio/adc/ti-ads7924.c
 
 
-> Konrad
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> >> Fixes: 1a6a8b0080b0 ("cpufreq: qcom-hw: Fix reading "reg" with address/size-cells != 2")
-> >> Fixes: 054a3ef683a1 ("cpufreq: qcom-hw: Allocate qcom_cpufreq_data during probe")
-> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >> ---
-> >>  drivers/cpufreq/qcom-cpufreq-hw.c | 34 ++++++++++++++++++++++---------
-> >>  1 file changed, 24 insertions(+), 10 deletions(-)
-> >>
-> >> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
-> >> index 9505a812d6a1..89d5ed267399 100644
-> >> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
-> >> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-> >> @@ -651,8 +651,9 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
-> >>  	struct device *dev = &pdev->dev;
-> >>  	struct device_node *soc_node;
-> >>  	struct device *cpu_dev;
-> >> +	const char *reg_name;
-> >>  	struct clk *clk;
-> >> -	int ret, i, num_domains, reg_sz;
-> >> +	int ret, i, num_reg_names, num_domains = 0;
-> >>  
-> >>  	clk = clk_get(dev, "xo");
-> >>  	if (IS_ERR(clk))
-> >> @@ -684,19 +685,32 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
-> >>  	if (!soc_node)
-> >>  		return -EINVAL;
-> >>  
-> >> -	ret = of_property_read_u32(soc_node, "#address-cells", &reg_sz);
-> >> -	if (ret)
-> >> +	num_reg_names = of_property_count_strings(dev->of_node, "reg-names");
-> >> +	if (num_reg_names <= 0) {
-> >> +		ret = num_reg_names ? num_reg_names : -ENODATA;
-> >>  		goto of_exit;
-> >> +	}
-> >>  
-> >> -	ret = of_property_read_u32(soc_node, "#size-cells", &i);
-> >> -	if (ret)
-> >> -		goto of_exit;
-> >> +	for (i = 0; i < num_reg_names; i++) {
-> >> +		ret = of_property_read_string_index(dev->of_node, "reg-names", i, &reg_name);
-> >> +		if (ret < 0)
-> >> +			goto of_exit;
-> >>  
-> >> -	reg_sz += i;
-> >> +		/*
-> >> +		 * Check if the i-th reg is a freq-domain base, no need to add 1
-> >> +		 * more byte for idx, as sizeof counts \0 whereas strlen does not.
-> >> +		 */
-> >> +		if (strlen(reg_name) == sizeof("freq-domain")) {
-> >> +			/* Check if this reg-name begins with "freq-domain" */
-> >> +			if (!strncmp(reg_name, "freq-domain", sizeof("freq-domain") - 1))
-> >> +				num_domains++;
-> >> +		}
-> >> +	}
-> >>  
-> >> -	num_domains = of_property_count_elems_of_size(dev->of_node, "reg", sizeof(u32) * reg_sz);
+base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+-- 
+2.30.2
 
-This code was not great to begin with. Any code parsing 'reg' on it's 
-own is suspect IMO. It's a standard property and all parsing of it 
-should be in drivers/of/address.c. (Yes, I know there are other cases.)
-
-The reg entries are already available as platform_device resources? Why 
-don't you use that? There's also of_address_count(), but I prefer if 
-there's a platform device equivalent like we have for interrupts.
-
-Rob
