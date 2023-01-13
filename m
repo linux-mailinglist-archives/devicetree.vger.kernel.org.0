@@ -2,99 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA2A668B16
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 06:10:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA5CE668BA9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 06:44:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231634AbjAMFKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 00:10:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56530 "EHLO
+        id S237642AbjAMFok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 00:44:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231169AbjAMFI6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 00:08:58 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 045815BA14;
-        Thu, 12 Jan 2023 21:08:12 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id ss4so42452917ejb.11;
-        Thu, 12 Jan 2023 21:08:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wtw4WHGu+OATpWcU0u4H+R8E0E8xhz+D1fXiT2aRITI=;
-        b=dMQBkDVowPjcnzuTiFHOBWCdCct36UMtona+WrSRnGFGrA1UjMiZnmb4LXbxIskScC
-         k7ehagq9WRleuolKvqfIrm2N0FLPuUeaqmil0cE3RV01+Si74LUV3OC4Sbx2xUW4E3NI
-         1OWO2m2ZhnH9yz885DRuAZJH+gHW506l1PXNVxwA2sr7QJUz04Viis+tpIphUzqmNFzA
-         zq5MT+Cg1tv97F38aQv+ZSULw576vUtxEbzVq1/lZ/EJP4Mj06Gia+fncyYB6zOkBvHZ
-         xpgUhENRnLaUq6QsN+jNdLKSn55TWkSpjHkfemUs3RLm6vxkfAlDtSwS+Tf30pLF3RT8
-         CXqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wtw4WHGu+OATpWcU0u4H+R8E0E8xhz+D1fXiT2aRITI=;
-        b=ibNmWlmdWLlDuGbPhlmu7AJbSIkjweNTgdMaDqui4l08/LNjLvzhkPuO1vEnf700Xh
-         /UAYIXgbR7Yl6malkBVXf7z0Me99MsBqJU38+5MbyglbBDnqJc0tHcdsno7BbBkryKhD
-         kI1RAENHRwRMYk8/3pK8tRUC37s9Q4/tuG1P7UwndGoQPmWUxDtDeg7XogexmRwLPJ12
-         4LdHeHDKBUWyd6IkO2vC4Z9F/30UOnReEzkTDjn9RltJVBJ/i6YjyJEPX9enCus69dV9
-         dKTfd3uZDAWXsXJqy2R1rbCWwCB+8PvkPJMK3UC1u7Vm0r9GebIW2tW8kVoZpdKD5HC3
-         jL/w==
-X-Gm-Message-State: AFqh2kpT5TFmTZpCbB70QCQANhM1hXqKQaeiDtHcGsEVBDTO3nfP495m
-        lTEtt8YVBxlFnO0fbe/BMys=
-X-Google-Smtp-Source: AMrXdXteEP5DXH8667AQDCEZztPHXS5s+cR8cR1LVXg6WWAFS+f9RCRnqMToHs/+vv/OKYDslxBaEg==
-X-Received: by 2002:a17:907:62a9:b0:85d:dd20:60a2 with SMTP id nd41-20020a17090762a900b0085ddd2060a2mr13187213ejc.7.1673586490507;
-        Thu, 12 Jan 2023 21:08:10 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id b1-20020a1709063ca100b007af0f0d2249sm8146059ejh.52.2023.01.12.21.08.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Jan 2023 21:08:10 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
+        with ESMTP id S237640AbjAMFnQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 00:43:16 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3C9687B0;
+        Thu, 12 Jan 2023 21:43:14 -0800 (PST)
+X-UUID: 27a6938a930511eda06fc9ecc4dadd91-20230113
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=qv+KkInTLw4al9JNASorMveEjnaJV7ozjLhA4jeinMs=;
+        b=hNqr8ttZCzMo0v5kzEUlsUbplwl2+JORVhsxiywWtG8Zf+ZlhjA6O14TmhQX69QC3V0MIIlzyMVNhVeRTvFvsAAGjg23MqemX+cAXjqTeeIzdG0RwqIuzs0Jb+cFciRCS2Jzn6lZi8F/Cnvgi1PpZfksdeoxut89q7EFLbG2srM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.17,REQID:9099235e-9b66-459e-a2bc-f2b0105d3d39,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+        ON:release,TS:70
+X-CID-INFO: VERSION:1.1.17,REQID:9099235e-9b66-459e-a2bc-f2b0105d3d39,IP:0,URL
+        :0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
+        ON:quarantine,TS:70
+X-CID-META: VersionHash:543e81c,CLOUDID:6436b4f5-ff42-4fb0-b929-626456a83c14,B
+        ulkID:230113134309PR28TXVK,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
+        I:0,OSA:0
+X-CID-APTURL: Status:success,Category:nil,Trust:0,Unknown:1,Malicious:0
+X-CID-BVR: 0,NGT
+X-UUID: 27a6938a930511eda06fc9ecc4dadd91-20230113
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1160642785; Fri, 13 Jan 2023 13:43:06 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 13 Jan 2023 13:43:05 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Fri, 13 Jan 2023 13:43:05 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        Samuel Holland <samuel@sholland.org>,
-        Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko@sntech.de>,
-        Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH v5 2/4] regulator: sun20i: Add Allwinner D1 LDOs driver
-Date:   Fri, 13 Jan 2023 06:08:08 +0100
-Message-ID: <5906718.lOV4Wx5bFT@jernej-laptop>
-In-Reply-To: <20221208084127.17443-3-samuel@sholland.org>
-References: <20221208084127.17443-1-samuel@sholland.org>
- <20221208084127.17443-3-samuel@sholland.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Moudy Ho <moudy.ho@mediatek.com>
+Subject: [PATCH v5 00/10] add support for MT8195 VPPSYS on MMSYS and MUTEX
+Date:   Fri, 13 Jan 2023 13:42:54 +0800
+Message-ID: <20230113054304.21841-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne =C4=8Detrtek, 08. december 2022 ob 09:41:25 CET je Samuel Holland napis=
-al(a):
-> D1 contains two pairs of LDOs, "analog" LDOs and "system" LDOs. They are
-> similar and can share a driver, but only the system LDOs have a DT
-> binding defined so far.
->=20
-> The system LDOs have a single linear range. The voltage step is not an
-> integer, so a custom .list_voltage is needed to get the rounding right.
->=20
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+Changes since v4:
+- Rebase on linux-next.
+- Remove MMSYS fallback compatible.
+- Migrate MT8195 VPPSYS0/1 from clock to mtk-mmsys driver.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Changes since v3:
+- Rebase on linux-next.
 
-Best regards,
-Jernej
+Changes since v2:
+- Depend on :
+  [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097
+- Split dts settings into two patches based on belonging to MMSYS or MUTEX.
 
+Changes since v1:
+- Depend on :
+  [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097
+- Add compatible names to VPPSYS0 and VPPSYS1 in MMSYS binding file.
+- Fix VPPSYS's MMSYS and MUTEX dts to pass the dtsb_check.
+- Rename mtk_mmsys_merge_config() and mtk_mmsys_rsz_dcm_config() to
+  mtk_mmsys_vpp_rsz_merge_config() and mtk_mmsys_vpp_rsz_dcm_config().
+- Clean up mtk_mmsys_vpp_rsz_dcm_config().
+- Add a comment to mtk_mutex_write_mod() and clean it up for use in more
+  than 32 mods.
+
+Hi,
+
+This series add support for MT8195's two VPPSYS(Video Processor Pipe Subsystem),
+under which there will be corresponding MMSYS and MUTEX settings that
+need to be configured.
+
+Moudy Ho (4):
+  dt-bindings: arm: mediatek: migrate MT8195 vppsys0/1 to mtk-mmsys
+    driver
+  dt-bindings: arm: mediatek: mmsys: Add support for MT8195 VPPSYS
+  arm64: dts: mediatek: mt8195: add MUTEX configuration for VPPSYS
+  clk: mediatek: remove MT8195 vppsys/0/1 simple_probe
+
+Roy-CW.Yeh (6):
+  dt-bindings: soc: mediatek: Add support for MT8195 VPPSYS
+  arm64: dts: mediatek: mt8195: add MMSYS configuration for VPPSYS
+  soc: mediatek: mmsys: add support for MT8195 VPPSYS
+  soc: mediatek: mmsys: add config api for RSZ switching and DCM
+  soc: mediatek: mutex: Add mtk_mutex_set_mod support to set MOD1
+  soc: mediatek: mutex: support MT8195 VPPSYS
+
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |   2 +
+ .../arm/mediatek/mediatek,mt8195-clock.yaml   |  16 ---
+ .../bindings/soc/mediatek/mediatek,mutex.yaml |   1 +
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  26 +++-
+ drivers/clk/mediatek/clk-mt8195-vpp0.c        |  58 ++++++--
+ drivers/clk/mediatek/clk-mt8195-vpp1.c        |  58 ++++++--
+ drivers/soc/mediatek/mt8195-mmsys.h           |  13 ++
+ drivers/soc/mediatek/mtk-mmsys.c              |  64 +++++++++
+ drivers/soc/mediatek/mtk-mmsys.h              |   1 +
+ drivers/soc/mediatek/mtk-mutex.c              | 135 +++++++++++++++++-
+ include/linux/soc/mediatek/mtk-mmsys.h        |   4 +
+ include/linux/soc/mediatek/mtk-mutex.h        |  35 +++++
+ 12 files changed, 356 insertions(+), 57 deletions(-)
+
+-- 
+2.18.0
 
