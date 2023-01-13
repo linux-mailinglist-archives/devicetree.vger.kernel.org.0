@@ -2,260 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A170A668F49
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:34:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC0FA668F5E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 08:42:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240683AbjAMHej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 02:34:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59052 "EHLO
+        id S237927AbjAMHmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 02:42:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241086AbjAMHdh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:33:37 -0500
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4889111165;
-        Thu, 12 Jan 2023 23:31:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W/IHAf6xpp/J+7+TeyUogtmVDthztbYNzsOjzYmgSeF7jyAueoueWaZx08b6Gp3W8fvmHR4kZFXuBXYNBup+Eq98Rj8O4wMyOQkTg7UTCdnFvkq4j+0Vr6KGw1F4c2ixVv4i+N9Vzq9I1SCP6u+Xh2SMVJUhe+FISzLeCJ9ebY6hDHYFitBuOnloInAlW30l082mEf2MEaB6/PzDBNhvr2Z+QXrOU09yTrDjRODBcKrFPda0xGEgfS7OiifhTuPoZIOwifcKbG0GIxuslWsyit9R8DEy7Sjep8zckhBJnlWwzbRqhpk47t3Y7YFQ9kxlhueiWn5MXSSiElSM2A8emA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XLtly/pVIDJj8inooB/0YSXTqbtqYBaC7zX3HoN5gtw=;
- b=E8s1UudS6Orz1i4Z4h/66nQwxI881KGOwGWmPz8MdWJmXuE7AB/sHEYhCvfkKroq5guXsBVPI4EutppCmlNko/D7hNYwr9IV2wOpOHB0ajEXkOf83hUMLhzLEliU7IqxM1OG9lXtqqLlZnWgaLvIsy0oW+iH/Bjf6QP7VclePG1ECX3fxc8Tp2Gbfa0v1KB8dxdv+dIGB8TkDvPF0srd7DTL3IGKe/THG6IketpJd3KLd3g0l1noHpl6rTtU0xozR+g34QueD1fvJHen7GRCZN+u9/9fSF0B7HFaosl35Nr+HiyXOvZ9WfNAbTA0XqiGNVFi74fTJIPRO/G4gOwZKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XLtly/pVIDJj8inooB/0YSXTqbtqYBaC7zX3HoN5gtw=;
- b=IIYNYIgoDhkcpMGXvaOBHFJEiBw8zgumOfXO94I9B3uurwR2A8OvWVn84gA/qqGQbPE8ckQ4P46877p8YdgoIuxR90bouaG0Z9KYA9wFcKnSJjYBTEpBweGPQLwBuMsP4dagADOR2+sIt/MtPcP/GEbpjMlgcH1bz0miW4Lg1ys=
-Received: from DM6PR08CA0055.namprd08.prod.outlook.com (2603:10b6:5:1e0::29)
- by CH2PR12MB4876.namprd12.prod.outlook.com (2603:10b6:610:67::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Fri, 13 Jan
- 2023 07:31:44 +0000
-Received: from DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1e0:cafe::b1) by DM6PR08CA0055.outlook.office365.com
- (2603:10b6:5:1e0::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.16 via Frontend
- Transport; Fri, 13 Jan 2023 07:31:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT032.mail.protection.outlook.com (10.13.173.93) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6002.13 via Frontend Transport; Fri, 13 Jan 2023 07:31:43 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 13 Jan
- 2023 01:31:42 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 12 Jan
- 2023 23:31:05 -0800
-Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Fri, 13 Jan 2023 01:31:05 -0600
-From:   Tanmay Shah <tanmay.shah@amd.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <tanmay.shah@amd.com>
-Subject: [PATCH] dt-bindings: sram: Tightly Coupled Memory (TCM) bindings
-Date:   Thu, 12 Jan 2023 23:30:46 -0800
-Message-ID: <20230113073045.4008853-1-tanmay.shah@amd.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S234896AbjAMHmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 02:42:00 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DDC06085E
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:41:57 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id ud5so50380278ejc.4
+        for <devicetree@vger.kernel.org>; Thu, 12 Jan 2023 23:41:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6jZVPkMKH4dg9LBMPAxa9vHTcN8f+QCAxm1Sdx9qwJU=;
+        b=J3aaWsdWmJTehzMVhoxONIh9ExogjBLIzEuEIE3yW7JL3XtFYWNVDekd1+bBX5A4Og
+         pCo7uFCd10bjUtrzNej37f+xKmypWmiow14s5Gb7NcWfW1dA+zIUw2twoRiQKVMbMhW3
+         eRMBcemDO8IoRsKkRnmccerajwNuBFb4xibsqig8UaEAlBj4G11Pqm1HzJYxxU7tWP4t
+         5Xo5Z3L+/bnpDb2blNP6X2ZIHAuxumGO0XwsO5z1T6uZks4nGG3KeHsq+LBKheCuSIgC
+         GC+fYX+wj4eeP0kHCeDuUlRM7bAyV2lsVtJBNIxdS2jyBEepDmoBgBhu5vANKa5eNG3Z
+         hoBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6jZVPkMKH4dg9LBMPAxa9vHTcN8f+QCAxm1Sdx9qwJU=;
+        b=l9qMJ+LE6xLGIFMnfTs0UMRHNbhndVLYAmShtVPig8NHbzHtO5dvtu3jX42WF7Lozf
+         CMwSxrNcMJjZ0mMSNYGElUjH7zufwyFJlci3AHxUmmCC/7d5GpwkJEok3+Wg45tXu4zs
+         lqhLV+NdgoD88Zki+2abn2URMDl/t2brgoDZ4QPPZZ8qwMY+6n6O/mHTFdGSWlCdmypk
+         z9QDnaYpBVMEqOYSZLeQKeqV3m8FniLDuK3WWfxN6Q0djwGoXN2Lr3f7Pd5U/dOddOUs
+         glbwCJ3g8b7GsERuGNFic0FSqRrp5TeCDskRHz/gV/k5WDLgUGnZKAaAuItusgCAgvAM
+         8IXw==
+X-Gm-Message-State: AFqh2kpKa1/ewQwAN6fcIQHMY5aRYHZxaQJ/mLDvQtgbp7chKeLhz7ZC
+        oCXB4zcIYt2f1awOedtEKDV0KQ==
+X-Google-Smtp-Source: AMrXdXuQPiGyD2HBuR8sg3rcbklpELPTDaituTJoWc3bimEkPQJMxFjPT8IVOo9o7LHXkoI573hwSg==
+X-Received: by 2002:a17:906:468d:b0:7c0:a5c8:d14f with SMTP id a13-20020a170906468d00b007c0a5c8d14fmr66826201ejr.77.1673595716005;
+        Thu, 12 Jan 2023 23:41:56 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id 18-20020a170906311200b0084b89c66eb5sm8202096ejx.4.2023.01.12.23.41.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Jan 2023 23:41:55 -0800 (PST)
+Message-ID: <f4356898-de35-9728-5395-baecb07c843f@linaro.org>
+Date:   Fri, 13 Jan 2023 08:41:52 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT032:EE_|CH2PR12MB4876:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0eaad9f8-adca-49f0-6323-08daf538386f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WaYAmeddtHAZjQ13qnaIjw2IOVS7IDQEy7h5tf3llE4SoX1I+/RyiVSb+8b2O7EKPPyX3/mOKtVNb9AFwzJU927pXt7Iy4ZwTvwElahlgZQoE/ydb9wRiDNZDWgKrtEdBd4UL6Hur2QTTh4SP2SWNQ4doCaMYSqpMgoqJ3IjX5RKSeak+1OE1DVD0ECrVcCSGMRRV70CV6XsS74gZVB/e8RzRf/ARIkamUDrhgw8Em0A23gURahPpOxGPCHaf3o/OzoeMxo+u6wrtsF0dNxKSP1RBFg4lQq8mm/TUgzeESbfxhy5AAw23YsQl6h0V0KI5/1EH4iR+dL1+1sFaGGOkayQHuH7CcF/OTdhqcHo8qcQT32pGZalGGOGDknzObCEEeMLQ4fhlIrygLJC7MLAQmYWfW92LBqu8ZDnx8HM1NsgpEwkLesNswXZTIlideRVFik3ZIrNn94BQmzuIVXBdzIYkct6foGgtapmMHV4pNo/3VZKdvSxqbI6mibO0/Eif0jEEBDtO51YRw6cd3n2DGaooMbEKYs1DV5ihMjDntOCNTOa/8FyhwB9QIAXLSYfN77NgcEmsjEuv6AaZ41fouvTdXW+qAnPsVL09thS0CpKvLAFAKGfm9vXsOOOtRDaFarxM1K9K9n88ni1CYC1sIXBrF0ScHQ673ERtnRvBl88RblBA8E4S2oQB3TMXT0TH5Jw2ax5sstdJaJ/FjOWFRBLIa7K3OUXsC4CvkyAbYZmDvdCgolrfTgch1HLiKsKmHSm2q4jZO6AgmDCXBjOzieIS7zio+huhpFL35QDwx8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(396003)(376002)(136003)(346002)(451199015)(46966006)(40470700004)(36840700001)(2906002)(6666004)(186003)(966005)(26005)(478600001)(336012)(2616005)(54906003)(4326008)(1076003)(70586007)(8676002)(40460700003)(41300700001)(426003)(70206006)(47076005)(110136005)(44832011)(40480700001)(82740400003)(8936002)(5660300002)(316002)(83380400001)(36756003)(356005)(82310400005)(36860700001)(86362001)(81166007)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2023 07:31:43.9362
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0eaad9f8-adca-49f0-6323-08daf538386f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4876
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
+ support
+To:     William Zhang <william.zhang@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        jonas.gorski@gmail.com, kursad.oney@broadcom.com, dregan@mail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-3-william.zhang@broadcom.com>
+ <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
+ <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
+ <99b01e96-3b96-6692-c5e1-87db49295e6d@linaro.org>
+ <49925933-aacc-4f0d-a1ca-e1bd45b05eee@broadcom.com>
+ <b246a81f-e465-5e52-f0ce-65e0a82fc3e1@linaro.org>
+ <32a464f8-6a4b-6777-9775-f17e990e0c6a@gmail.com>
+ <71c2e796-f0fb-90cd-4599-13c9718f41d5@linaro.org>
+ <31644849-dc69-ddfc-a6b6-6ffd37d64d2b@broadcom.com>
+ <f0a50234-bc8c-09c4-e2c1-22cbeaba5c15@linaro.org>
+ <e99a71b2-0b05-1a53-1c29-3778b49a3b86@broadcom.com>
+ <0cc43891-405e-418f-01ee-845d680b3a24@linaro.org>
+ <14a48b44-962e-1839-4fbb-1739ba8dbc35@broadcom.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <14a48b44-962e-1839-4fbb-1739ba8dbc35@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch introduces bindings for TCM memory address space on AMD-xilinx
-platforms. As of now TCM addresses are hardcoded in xilinx remoteproc
-driver. This bindings will help in defining TCM in device-tree and
-make it's access platform agnostic and data-driven from the driver.
+On 12/01/2023 20:50, William Zhang wrote:
+>>> No as we are adding chip model specific info here.  The existing driver
+>>> spi-bcm63xx-hsspi.c only binds to brcm,bcm6328-hsspi. This driver
+>>> supports all the chips with rev1.0 controller so I am using this 6328
+>>> string for other chips with v1.0 in the dts patch, which is not ideal.
+>>
+>> Why? This is perfectly ideal and usual case. Why changing it?
+>>
+>>> Now I have to add more compatible to this driver and for each new chip
+>>> with 1.0 in the future if any.
+>>
+>> Why you cannot use compatibility with older chipset?
+>>
+> IMHO it is really confusing that we have all the SoCs but have to bind 
+> to an antique SoC's spi controller compatible and people may think it is 
+> a mistake or typo when they don't know they are actually the same.
 
-Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
----
- .../devicetree/bindings/sram/xlnx,tcm.yaml    | 137 ++++++++++++++++++
- 1 file changed, 137 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
+I am sorry, this is ridiculous argument. It's like saying - people
+cannot understand what they are reading, therefore we need to present
+them obfuscated information so they will think something else than their
+minds created...
 
-diff --git a/Documentation/devicetree/bindings/sram/xlnx,tcm.yaml b/Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
-new file mode 100644
-index 000000000000..02d17026fb1f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
-@@ -0,0 +1,137 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sram/xlnx,tcm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Tightly Coupled Memory (TCM)
-+
-+maintainers:
-+  - Tanmay Shah <tanmay.shah@amd.com>
-+
-+description: |
-+  Tightly Coupled Memory(TCM) is available on AMD-Xilinx paltforms for ARM
-+  cortex remote processors to use. It is low-latency memory that provide
-+  predictable instruction execution and predictable data load/store timing.
-+  TCM can be configured in lockstep mode or split mode. In split mode
-+  configuration each RPU core has its own set of ATCM and BTCM memories and in
-+  lockstep mode redundant processor's TCM become available to lockstep
-+  processor. So In lockstep mode ATCM and BTCM size is increased.
-+
-+properties:
-+  $nodename:
-+    pattern: "sram-[0-9a-f]+$"
-+
-+patternProperties:
-+  "^tcm-[a-z]+@[0-9a-f]+$":
-+    type: object
-+    description: |
-+      During the split mode, each RPU core has its own set of ATCM and BTCM memory
-+
-+      During the lock-step operation, the TCMs that are associated with the
-+      redundant processor become available to the lock-step processor.
-+      For example if each individual processor has 64KB ATCM, then in lockstep mode
-+      The size of ATCM become 128KB. Same for BTCM. tcm-lockstep node represents
-+      TCM address space in lockstep mode. tcm-core@x node specfies each core's
-+      TCM address space in split mode.
-+
-+    properties:
-+      compatible:
-+        oneOf:
-+          - items:
-+              - enum:
-+                  - xlnx,tcm-lockstep
-+                  - xlnx,tcm-split
-+
-+      "#address-cells":
-+        const: 1
-+
-+      "#size-cells":
-+        const: 1
-+
-+      reg:
-+        items:
-+          - description: |
-+              ATCM Memory address space. An ATCM typically holds interrupt or
-+              exception code that must be accessed at high speed, without any
-+              potential delay resulting from a cache miss.
-+              RPU on AMD-Xilinx platform can also fetch data from ATCM
-+          - description: |
-+              BTCM Memory address space. A BTCM typically holds a block of data
-+              for intensive processing, such as audio or video processing. RPU on
-+              AMD-Xilinx Platforms can also fetch Code (Instructions) from BTCM
-+
-+      reg-names:
-+        items:
-+          - const: atcm
-+          - const: btcm
-+
-+      ranges: true
-+
-+      power-domains:
-+        maxItems: 8
-+        items:
-+          - description: list of ATCM Power domains
-+          - description: list of BTCM Power domains
-+        additionalItems: true
-+
-+    required:
-+      - compatible
-+      - '#address-cells'
-+      - '#size-cells'
-+      - reg
-+      - ranges
-+      - power-domains
-+    unevaluatedProperties: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/power/xlnx-zynqmp-power.h>
-+
-+    amba {
-+        sram@ffe00000 {
-+            tcm-lockstep@ffe00000 {
-+                compatible = "xlnx,tcm-lockstep";
-+
-+                #address-cells = <1>;
-+                #size-cells = <1>;
-+
-+                reg = <0xffe00000 0x20000>, <0xffe20000 0x20000>;
-+                reg-names = "atcm", "btcm";
-+                ranges = <0x0 0xffe00000 0x20000>, <0x20000 0xffe20000 0x20000>;
-+                power-domains = <&zynqmp_firmware PD_R5_0_ATCM>,
-+                                <&zynqmp_firmware PD_R5_1_ATCM>,
-+                                <&zynqmp_firmware PD_R5_0_BTCM>,
-+                                <&zynqmp_firmware PD_R5_1_BTCM>;
-+            };
-+
-+            tcm-core@0 {
-+                compatible = "xlnx,tcm-split";
-+
-+                #address-cells = <1>;
-+                #size-cells = <1>;
-+
-+                reg = <0xffe00000 0x10000>, <0xffe20000 0x10000>;
-+                reg-names = "atcm", "btcm";
-+                ranges = <0x0 0xffe00000 0x10000>, <0x20000 0xffe20000 0x10000>;
-+                power-domains = <&zynqmp_firmware PD_R5_0_ATCM>,
-+                                <&zynqmp_firmware PD_R5_0_BTCM>;
-+            };
-+
-+            tcm-core@1 {
-+                compatible = "xlnx,tcm-split";
-+
-+                #address-cells = <1>;
-+                #size-cells = <1>;
-+
-+                reg = <0xffe90000 0x10000>, <0xffeb0000 0x10000>;
-+                reg-names = "atcm", "btcm";
-+                ranges = <0x0 0xffe90000 0x10000>, <0x20000 0xffeb0000 0x10000>;
-+                power-domains = <&zynqmp_firmware PD_R5_1_ATCM>,
-+                                <&zynqmp_firmware PD_R5_1_BTCM>;
-+            };
-+        };
-+    };
-+...
+> I 
+> know there are usage like that but when we have clear knowledge of the 
+> IP block with rev info, I think it is much better to have a precise SoC 
 
-base-commit: 6b31ffe9c8b9947d6d3552d6e10752fd96d0f80f
--- 
-2.25.1
+No, it's not particularly better and you were questioning it just before...
+
+> model number and a general revision info in the compatible. As you know 
+> they are many usage of IP rev info in the compatible too. 
+> brcm,bcm6328-hsspi will stay so it does not break any existing dts 
+> reference to that.
+
+Anyway your ship sailed - you already have bindings using SoC  versions...
+
+> 
+> Anyway if you still does not like this idea, I will drop the rev info 
+> and you have it your way.
+
+Best regards,
+Krzysztof
 
