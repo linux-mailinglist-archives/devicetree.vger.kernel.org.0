@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD1D6694AC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C5D56694AF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 11:52:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240696AbjAMKwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 05:52:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49626 "EHLO
+        id S240378AbjAMKw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 05:52:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241313AbjAMKvl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:51:41 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1BED5B166
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:50:27 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id cf18so45022566ejb.5
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:50:27 -0800 (PST)
+        with ESMTP id S241078AbjAMKvp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 05:51:45 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04BCF76830
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:50:32 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id hw16so39545878ejc.10
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 02:50:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GjLnRe8go6oR0FL2SzP4LgVTVMBGmgNdTpzoQwElorA=;
-        b=ciKjMIoXQO+1uQKdZTCF5BhKQafgKlpPZfdmIVd6tR8E6X/J/he2074PsI9TIruXRo
-         /ZJiYgsAxm/Hp6p5NCuMThA4J7dFRoK/AKx0yHu41XANuvCqKQdYE60hsIFrnaC8jUU2
-         xAhLi52cD407/ieaPaGS5IG7t9QIe0iLGOiD3+/hrIMrUldg8dLzzwVrolZRuJdwDGQu
-         r8oHZU1UZ736HzMWKvVlb/sMmo7YnpWETDvf/vjXk6pjC56DDADbZMdwzkmhaFt1U65p
-         yOABf0h4evfkdBlylyoRSJDiQEnjhif1BAZSuAXfNS2v//0Zw9xQVszlIzG0q9UU4YLY
-         xhfQ==
+        bh=a7suYhJlOs+Ou+7SF4CL1t0WqlgFEmO1O4oH5c55KMM=;
+        b=HgHKgHi3bvPMnasBMa4K6x/8CTYGFKs3AksfO+ZG8ngkTY6su5GQ+O1mVxnAqQqZM2
+         vq7xnQ92iYE/PmdvnK2TnEuHii2oMR3Km4US+Xxw4lqlnwOBu4HRNWPb8qllyeJ3RITH
+         LgNnzqah8n3UN9nSnskE2pmQohiO7S5bSqJrBgMDtCF4Zil4u7n2Jv7yBEMq5e5bNQ63
+         7tLyAd5EqzqncEl1k2HNbOHuOLVWe+XEKyGOZdGyMpDQvn6FarO+5paKFiX7qCebKWuD
+         yCo7Bmdo8QwMhjZH9f3VihjhPYp4IezYr/Q2djsYh3LeSkEidVqpwZ1+X+rk+nRssrfL
+         kBeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GjLnRe8go6oR0FL2SzP4LgVTVMBGmgNdTpzoQwElorA=;
-        b=UWtJVdud2SeV1gJlEZAnGMHUq8CfZDPYVoh66sMgbhXoSrlR/6sZTIwhss6CwHWLD4
-         Y/v3a8UH6zMwi1f1YfFLZzCaXl9kMF/7Qx1V3IIABevluEe7fNMQKzxTVJehVObnGCc3
-         XdgADO7zCdvM6eP8Qe8xjM67kgwsItlPQeOZpApjOJH1L6+ACluImOHG49HmclxqlGE9
-         chOv+uXoCbuxV+2fLxhQZAFceTvUbwiOYv91Sqr22M0ee77FJoVsoPky6YwchvUQan96
-         cEEXdGelaIcpnrvt6JjYtIGCehzFX4CU4j3gnvfZCM3ZyrXDQp2qQz2s71c/2lOlEUBk
-         7wKw==
-X-Gm-Message-State: AFqh2koThVxkAM2hV6O+Rcl+hO2pGNxS8+HQOaCxxZ6zsoxCFodnKg9o
-        6KkhVdtQ0y19zSzd0GcaH2rrJA==
-X-Google-Smtp-Source: AMrXdXtab8jck5KPm87sl92cLo8VaLh+ebYr37T2IzQRVeDqPuXJd9KJYjwDUF4GxKWoG5OKdHXZUA==
-X-Received: by 2002:a17:906:8c3:b0:84d:2078:1fd6 with SMTP id o3-20020a17090608c300b0084d20781fd6mr2669839eje.34.1673607026367;
-        Fri, 13 Jan 2023 02:50:26 -0800 (PST)
+        bh=a7suYhJlOs+Ou+7SF4CL1t0WqlgFEmO1O4oH5c55KMM=;
+        b=QPm40VKo7mUqzIA+kcymFQt8d8MZfCgJ3RPvG7J8AuwPmXXR4BEMScKGdufbCdGSHa
+         3RfVqdmtlKQXRP1CU2YYW3NeQU3rutIS7gKD6O8M0PmvRnFK+LQBCVHnikoLKSDr4mfr
+         tCGpshkScyNhLdjzgGH8vEntTatFQop0UtKyS5jjeoGKwtyN1DnzmApIkqm8PcLng75s
+         U8G8o9JIVfMPxVuVaxePqRMYPLsvmwhnrj+B+5dWVolcPO1M6YPiH3OlOVkeNVqqpUFV
+         10zve65GzT1LEQbNQovIO7X9mo5cW7N8PLEJFqsKnrqz10SsSC+QYMSGLqDnlsWLlYwC
+         ih+A==
+X-Gm-Message-State: AFqh2kpIl3g2bsefnp418AQ6Gj9UodwWnmF+3q9o0j+ub332C6vCS3wA
+        Wjo+47FGx0bfwnkoHw09QcwPlA==
+X-Google-Smtp-Source: AMrXdXudHbRmICwdH8+kD4PntCHqlv17xxeMaiWgGYqJu4c5SbZUJPm8Ons+9OV+XCKS/LNp2mPLpA==
+X-Received: by 2002:a17:906:a1c5:b0:7c1:2529:b25e with SMTP id bx5-20020a170906a1c500b007c12529b25emr66724485ejb.43.1673607031185;
+        Fri, 13 Jan 2023 02:50:31 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id c2-20020a17090618a200b0077a8fa8ba55sm8348581ejf.210.2023.01.13.02.50.23
+        by smtp.gmail.com with ESMTPSA id c2-20020a17090618a200b0077a8fa8ba55sm8348581ejf.210.2023.01.13.02.50.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 02:50:26 -0800 (PST)
+        Fri, 13 Jan 2023 02:50:30 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     linux-gpio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -56,8 +56,8 @@ To:     linux-gpio@vger.kernel.org,
         Vinod Koul <vkoul@kernel.org>,
         Shawn Guo <shawn.guo@linaro.org>,
         Richard Acayan <mailingradian@gmail.com>,
-        Andy Gross <agross@kernel.org>,
         krishna Lanka <quic_vamslank@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
@@ -68,12 +68,12 @@ To:     linux-gpio@vger.kernel.org,
         Stephan Gerhold <stephan@gerhold.net>,
         Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
-Subject: Re: (subset) [PATCH 2/9] dt-bindings: pinctrl: qcom,sc8280xp-lpass-lpi: add input-enable and bias-bus-hold
-Date:   Fri, 13 Jan 2023 11:50:13 +0100
-Message-Id: <167360698783.32701.11668469941394473654.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH 3/9] dt-bindings: pinctrl: qcom,sm6350-tlmm: add gpio-line-names
+Date:   Fri, 13 Jan 2023 11:50:14 +0100
+Message-Id: <167360698783.32701.12174171114501759309.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221230135645.56401-2-krzysztof.kozlowski@linaro.org>
-References: <20221230135645.56401-1-krzysztof.kozlowski@linaro.org> <20221230135645.56401-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221230135645.56401-3-krzysztof.kozlowski@linaro.org>
+References: <20221230135645.56401-1-krzysztof.kozlowski@linaro.org> <20221230135645.56401-3-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -87,25 +87,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Dec 2022 14:56:38 +0100, Krzysztof Kozlowski wrote:
-> Allow bias-bus-hold and input-enable properties (already used in
-> SC8280XP LPASS LPI nodes):
+On Fri, 30 Dec 2022 14:56:39 +0100, Krzysztof Kozlowski wrote:
+> Allow gpio-line-names property (quite commonly used) and constrain
+> gpio-reserved-ranges.
 > 
->   sa8540p-ride.dtb: pinctrl@33c0000: tx-swr-default-state: 'oneOf' conditional failed, one must be fixed:
->     'pins' is a required property
->     'function' is a required property
->     'clk-pins', 'data-pins' do not match any of the regexes: 'pinctrl-[0-9]+'
->     'bias-bus-hold' does not match any of the regexes: 'pinctrl-[0-9]+'
->     'gpio2' does not match '^gpio([0-1]|1[0-8])$'
 > 
-> [...]
-
-Corrected error log, as Rob pointed out.
 
 Applied, thanks!
 
-[2/9] dt-bindings: pinctrl: qcom,sc8280xp-lpass-lpi: add input-enable and bias-bus-hold
-      https://git.kernel.org/krzk/linux-dt/c/a880fafbbac7e229752fb59bed56f55944dbe0e9
+[3/9] dt-bindings: pinctrl: qcom,sm6350-tlmm: add gpio-line-names
+      https://git.kernel.org/krzk/linux-dt/c/d3431ec2f7cc0bb77f367d27d68fc79650ece864
 
 Best regards,
 -- 
