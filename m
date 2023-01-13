@@ -2,68 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BD1A669146
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA81766914F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 09:39:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239906AbjAMIhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 03:37:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47030 "EHLO
+        id S240221AbjAMIjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 03:39:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240721AbjAMIhs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:37:48 -0500
-Received: from formenos.hmeau.com (helcar.hmeau.com [216.24.177.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8076A6A0F2;
-        Fri, 13 Jan 2023 00:37:46 -0800 (PST)
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-        id 1pGFYw-00H9zx-C0; Fri, 13 Jan 2023 16:37:23 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 13 Jan 2023 16:37:22 +0800
-Date:   Fri, 13 Jan 2023 16:37:22 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S240140AbjAMIjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 03:39:32 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE576B19B;
+        Fri, 13 Jan 2023 00:39:30 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pGFaj-0005x6-QV; Fri, 13 Jan 2023 09:39:13 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Anand Moon <anand@edgeble.ai>, Jakub Kicinski <kuba@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: sun8i-ce: Add compatible for
- D1
-Message-ID: <Y8EYQmmePtiMC2TC@gondor.apana.org.au>
-References: <20221231220146.646-1-samuel@sholland.org>
- <20221231220146.646-2-samuel@sholland.org>
- <Y8DVPvnfShdhlVHh@gondor.apana.org.au>
- <20651db4-b0e8-ee3e-a752-c1d4ff14b53f@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        David Wu <david.wu@rock-chips.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 linux-next 1/4] dt-bindings: net: rockchip-dwmac: fix rv1126 compatible warning
+Date:   Fri, 13 Jan 2023 09:39:12 +0100
+Message-ID: <4085845.mvXUDI8C0e@diego>
+In-Reply-To: <20230112214712.0a32189d@kernel.org>
+References: <20230111172437.5295-1-anand@edgeble.ai> <20230112214712.0a32189d@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20651db4-b0e8-ee3e-a752-c1d4ff14b53f@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 13, 2023 at 09:33:32AM +0100, Krzysztof Kozlowski wrote:
->
-> But it has my Reviewed-by, which is equivalent. Please take it via
-> crypto with the driver change.
+Hi Jakub,
 
-Thanks for the clarification.  I'll take patches 1+2 then.  Patch
-3 doesn't apply to cryptodev as the file doesn't exist in my tree.
+Am Freitag, 13. Januar 2023, 06:47:12 CET schrieb Jakub Kicinski:
+> On Wed, 11 Jan 2023 17:24:31 +0000 Anand Moon wrote:
+> > Fix compatible string for RV1126 gmac, and constrain it to
+> > be compatible with Synopsys dwmac 4.20a.
+> > 
+> > fix below warning
+> > $ make CHECK_DTBS=y rv1126-edgeble-neu2-io.dtb
+> > arch/arm/boot/dts/rv1126-edgeble-neu2-io.dtb: ethernet@ffc40000:
+> > 		 compatible: 'oneOf' conditional failed, one must be fixed:
+> >         ['rockchip,rv1126-gmac', 'snps,dwmac-4.20a'] is too long
+> >         'rockchip,rv1126-gmac' is not one of ['rockchip,rk3568-gmac', 'rockchip,rk3588-gmac']
+> > 
+> > Fixes: b36fe2f43662 ("dt-bindings: net: rockchip-dwmac: add rv1126 compatible")
+> > Reviewed-by: Jagan Teki <jagan@edgeble.ai>
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Anand Moon <anand@edgeble.ai>
+> 
+> I think this patch should go via net-next?
+> Please let us know when it's ready to be applied, 
+> 'cause we're not CCed on the entire series..
 
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Correct, this patch should go via net-next, while I would pick up the
+dts patches (2-4).
+
+And this patch is ready to be applied.
+
+Thanks
+Heiko
+
+
+
