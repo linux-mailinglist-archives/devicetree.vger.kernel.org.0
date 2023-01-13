@@ -2,104 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB3BD66921B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4641669247
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:06:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229887AbjAMJCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 04:02:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35088 "EHLO
+        id S241025AbjAMJGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 04:06:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231890AbjAMJCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:02:34 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B52140AE
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:02:32 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id az20so31696803ejc.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:02:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PH7OlCwVBqDHHfs+JSk/+04xmU8OFLEPIXeMIr7O+K4=;
-        b=R6PTJjwBiwB9xYnySQbQq+6zMBNbkNQmJG1WPz1JIBywRDz8uFDoGZbAaBD98WpPrQ
-         lTDtPEF4Kplo+VoCP7hPulTqFXD0pQSb/KBxuPoBNE4UppOWs02N0ZsSG5pnrY5Cdb9x
-         V2iI62SRZhXDyyjqjFHQSULfG2qGDzCAw8HVBuEk14IXG4uX6LGKcPmEg3FRWbv08x3X
-         J7F8mymJ1Jm3x8ePzCU42mfyJ5ac4EIS1O7F7K67VE24DRD19Ua+xotOSJ3qLP+T/pGd
-         ErLpTgmZt5ChnLc7x3rhRtdWZ8TBQ1VodfVPfDyg13wtuIhbizLsIuwb7uwxc+LK32H0
-         Sdog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PH7OlCwVBqDHHfs+JSk/+04xmU8OFLEPIXeMIr7O+K4=;
-        b=M8T277waWIL4Nj1AdO5CMp3Lyydcw5vGunLUo978L+UyOO+NssSwQcikZTPUvt1AXE
-         YW4J2IMEVwKpdMdP9UC2qrjXUkUcCxt0EDi3v5iaQCYiANTwkA11Npda0gZpP0Ks9eGx
-         IZpMN79Goie7KozQzLO2oT+ziyZV7p1dZkmpco95BQEyoSgewPcDb78nSwhicIgz3B6B
-         tmEpZzR8m66hG/SEUDseHbbQvndqMGOyHKzZW7vryQv/6/0rqrs5oE6AlsMrTlj6P1lY
-         FQ4t0LF2aAMtuRvQRcmxGo/GdT5QOMCf0KwwNvlK8LBVnyuvM1qJS6GO18ukYOCkrHPC
-         3/jg==
-X-Gm-Message-State: AFqh2kr53LlrQtWqb3kUOQk5P8G5+by/qj9L1jUn0phOHMm7PzXIgMHv
-        wuUR/28nn91dczCnVzYiFQEFAA==
-X-Google-Smtp-Source: AMrXdXsyW969IDKKtuXbksmxNsiYIqySHVhsQ6MPJueutAvxOAcEwTbsLVVG0rhORP4+jJ4rKBACsA==
-X-Received: by 2002:a17:906:7046:b0:7ae:8194:7e06 with SMTP id r6-20020a170906704600b007ae81947e06mr71277358ejj.56.1673600550596;
-        Fri, 13 Jan 2023 01:02:30 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id lj1-20020a170906f9c100b0078d22b0bcf2sm8240254ejb.168.2023.01.13.01.02.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 01:02:30 -0800 (PST)
-Message-ID: <7831a607-db55-274c-8fba-d01d5bac3a7a@linaro.org>
-Date:   Fri, 13 Jan 2023 10:02:27 +0100
+        with ESMTP id S241124AbjAMJF4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:05:56 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CAD7458A;
+        Fri, 13 Jan 2023 01:04:27 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 53A7960FB2;
+        Fri, 13 Jan 2023 09:04:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EB8DC433AC;
+        Fri, 13 Jan 2023 09:04:19 +0000 (UTC)
+Message-ID: <c092c11f-870f-6520-ad89-001468ed59dc@xs4all.nl>
+Date:   Fri, 13 Jan 2023 10:04:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2] dt-bindings: PCI: qcom,pcie-ep: correct
- qcom,perst-regs
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v4 0/9] media: dt-bindings: common CEC properties
 Content-Language: en-US
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-pci@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh@kernel.org>
-References: <20221109113202.74406-1-krzysztof.kozlowski@linaro.org>
- <167240770788.754221.16859969124148517946.b4-ty@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <167240770788.754221.16859969124148517946.b4-ty@kernel.org>
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, Joe Tessler <jrt@google.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-tegra@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-media@vger.kernel.org, Jeff Chase <jnchase@google.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-kernel@vger.kernel.org
+References: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
+ <cd803c70-faf0-963e-fca3-0edd13fa8a29@linaro.org>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <cd803c70-faf0-963e-fca3-0edd13fa8a29@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/12/2022 14:42, Lorenzo Pieralisi wrote:
-> On Wed, 9 Nov 2022 12:32:02 +0100, Krzysztof Kozlowski wrote:
->> qcom,perst-regs is an phandle array of one item with a phandle and its
->> arguments.
+Hi Krzysztof,
+
+On 13/01/2023 09:59, Krzysztof Kozlowski wrote:
+> On 08/12/2022 11:31, Krzysztof Kozlowski wrote:
+>> Hi,
 >>
+>> Changes since v3
+>> ================
+>> 1. cec-gpio: Add missing SPDX.
+>> 2. nvidia,tegra114-cec: Correct path in maintainers.
 >>
 > 
-> Applied to pci/dt, thanks!
 > 
-> [1/1] dt-bindings: PCI: qcom,pcie-ep: correct qcom,perst-regs
->       https://git.kernel.org/lpieralisi/pci/c/68909a813609
+> Mauro (and maybe Hans?), any comments here. Can you apply the patchset?
 
-It's still not in linux-next. Is you tree correctly included in the next?
+No comments yet. I plan to review and likely merge this next week.
 
-Best regards,
-Krzysztof
+Regards,
+
+	Hans
+
+> 
+> Best regards,
+> Krzysztof
 
