@@ -2,136 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61AB3669B8B
+	by mail.lfdr.de (Postfix) with ESMTP id 13B64669B8A
 	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 16:13:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbjAMPNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 10:13:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35268 "EHLO
+        id S229492AbjAMPNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 10:13:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbjAMPNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:13:15 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA04A745BA;
-        Fri, 13 Jan 2023 07:03:07 -0800 (PST)
-Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6FB386602DD6;
-        Fri, 13 Jan 2023 15:03:03 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673622186;
-        bh=fogr+uZTaVcUpklPH0FPHlfhwcndHj9i6ZT507O7UGQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VeGyHLZ/upyjgtilOjqJrXGwTdYKAMuw+7A7dyr+7WeRnHKKKpAPwDtpFEAC55HqS
-         naqUxpBvDoZ9P9ht3i6t3ZEXKk5b9WmLI9n/8tytAi6e8cFgsQfoet7FFZ4p0OqE0J
-         vUChAcB4qNG4RvZ8bnHQLBdHdeYjUyeB6fXdfFODBdughAm9Cd2057qXWs2e1iJGnF
-         xIUZvk6pgWLB+yzlU8kIwuw4w2/oFNWSaoIHjRVBInek65tEXmjA0M7ocnqlaqzQ/W
-         NiI+EqzJ9xwww7PUrDKKLn+MczaEkJQAHb3jFJTcOUCWabf63+uyqaGLibxHwZXdvj
-         G0D0odut2rJbQ==
-Date:   Fri, 13 Jan 2023 10:02:40 -0500
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Yunfei Dong =?utf-8?B?KOiRo+S6kemjnik=?= 
-        <Yunfei.Dong@mediatek.com>
-Cc:     "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "nicolas@ndufresne.ca" <nicolas@ndufresne.ca>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        George Sun =?utf-8?B?KOWtmeaelyk=?= <George.Sun@mediatek.com>,
-        Tiffany Lin =?utf-8?B?KOael+aFp+ePiik=?= 
-        <tiffany.lin@mediatek.com>,
-        "stevecho@chromium.org" <stevecho@chromium.org>,
-        "frkoenig@chromium.org" <frkoenig@chromium.org>,
-        Xiaoyong Lu =?utf-8?B?KOWNouWwj+WLhyk=?= 
-        <Xiaoyong.Lu@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Irui Wang =?utf-8?B?KOeOi+eRnik=?= <Irui.Wang@mediatek.com>,
-        "tfiga@google.com" <tfiga@google.com>,
-        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "hsinyi@chromium.org" <hsinyi@chromium.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Andrew-CT Chen =?utf-8?B?KOmZs+aZuui/qik=?= 
-        <Andrew-CT.Chen@mediatek.com>,
-        "acourbot@chromium.org" <acourbot@chromium.org>
-Subject: Re: [PATCH v7, 5/7] media: mediatek: vcodec: Different codec using
- different capture format
-Message-ID: <20230113150240.6tqi3kc7cdu3xr65@notapiano>
-References: <20220518123004.18286-1-yunfei.dong@mediatek.com>
- <20220518123004.18286-6-yunfei.dong@mediatek.com>
- <20230112205825.wb5qcqhh5kwvyi3y@notapiano>
- <2fe7132f2fcc3fb4724a34c3c4a918b821c845a3.camel@mediatek.com>
+        with ESMTP id S229561AbjAMPNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 10:13:21 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 534C3DF4B;
+        Fri, 13 Jan 2023 07:03:36 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30DD2YD8009953;
+        Fri, 13 Jan 2023 15:03:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=hUDF0wtTXoGC0u8E8pYAlz/i5+80rim9nx2laYrtKA0=;
+ b=YLubSubeTp7NZ3tM8d2FjJ71v9eINUAt1UZqpSpLBtJb1qTI6+V4BkqrqDxRJwas0Mii
+ IpX88hYrj2xYBB9Vdp721iIdaL7TPAFXzZnHc6riltaNanf/uFG+UWoj3/LpLfNoBIRr
+ wBqwNpiS4LZKfdiM7POo48brVu8VI2zGAW1xwDqGaKtYeUiX9irO3MIauBdVgvJSYn2z
+ pdGIBhT/ltGnAKaFXTzG4azbZXGcExq5aCYXHJyNEfXVqb7dW0SDQizJxfqRsvUhscri
+ ntJygEjNj8ymFE4YjqpGVvYIEcMTGFOO6R2wsb6uxyFBf4sEmtNWyDcSYDh+rFsa3Wy1 IA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n32wu98cq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 13 Jan 2023 15:03:32 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30DF3VXC025433
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 13 Jan 2023 15:03:31 GMT
+Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Fri, 13 Jan 2023 07:03:26 -0800
+From:   devi priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+Subject: [PATCH 0/6] Add regulator support for IPQ9574 SoC
+Date:   Fri, 13 Jan 2023 20:33:04 +0530
+Message-ID: <20230113150310.29709-1-quic_devipriy@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2fe7132f2fcc3fb4724a34c3c4a918b821c845a3.camel@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: GKDD1FDfc07vVMo0jJ37Dqpl-J7NS08f
+X-Proofpoint-ORIG-GUID: GKDD1FDfc07vVMo0jJ37Dqpl-J7NS08f
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-13_07,2023-01-13_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxlogscore=684 spamscore=0 clxscore=1011 lowpriorityscore=0
+ suspectscore=0 impostorscore=0 priorityscore=1501 mlxscore=0 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301130099
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 13, 2023 at 03:25:46AM +0000, Yunfei Dong (董云飞) wrote:
-> Hi Nicolas,
-> 
-> Thanks for your information.
-> On Thu, 2023-01-12 at 15:58 -0500, Nícolas F. R. A. Prado wrote:
-> > On Wed, May 18, 2022 at 08:30:02PM +0800, Yunfei Dong wrote:
-> > > Vp8 need to use MM21, but vp9 and h264 need to use HyFbc mode
-> > > for mt8195. Vp8/vp9/h264 use the same MM21 format for mt8192.
-> > 
-> > Hi Yunfei,
-> > 
-> > why do VP9 and H264 need to use HyFbc (is this the same as MT21C?)
-> > mode on
-> > MT8195? The SCP firmware on linux-firmware for MT8195 [1] only has
-> > MM21
-> > available and based on my testing it works just fine. And contrary to
-> > what the
-> > commit message states this logic is also being applied to MT8192,
-> > preventing it
-> > to use MM21 when there are more than one format available.
-> > 
-> The kernel driver not support dynamic switch mt21c and mm21. The driver
-> flow as below:
-> 1: If there are mt21c and mm21: h264/vp9/av1 will use mt21c(vp8 use
-> mm21 always);
-> 2: If there are only mt21c or mm21 will use this format only.
-> 
-> But the scp.img is changed to support mt21c and mm21, the kernel driver
-> will use mt21c. Or force the kernel driver only support mm21(small
-> effort).
-> 
-> But the best solution is changed the driver to dynamic switch mt21c and
-> mm21, need to discuss the enum and set format flow(middle effort).
+IPQ9574 SoC uses the PMIC MP5496 and SMPA1 regulator is used for
+APSS voltage scaling.
+This patch series adds the support for the same.
+Also enables the RPM communication over the RPMSG framework
 
-Agreed. The aim should be to get this dynamic format switching implemented in
-the driver so that the firmware can expose both formats and userspace can
-select any of them to use.
+This series depends on the below patchset
+https://lore.kernel.org/linux-arm-msm/20230113143647.14961-1-quic_devipriy@quicinc.com/
 
-However, as you said that solution will take more effort, so in the meantime,
-given that currently only mm21 is supported by gstreamer, I think forcing the
-kernel driver to always select mm21 makes the most sense right now. That way it
-doesn't matter whether the firmware has mm21 or mm21+mt21c, decoding will keep
-working with gstreamer using mm21.
+devi priya (6):
+  soc: qcom: smd-rpm: Add IPQ9574 compatible
+  dt-bindings: soc: qcom: smd-rpm: Add IPQ9574 compatible string
+  regulator: qcom_smd: Add MP5496 regulators
+  regulator: qcom_smd: Add PMIC compatible for IPQ9574
+  arm64: dts: qcom: ipq9574: Add cpufreq & RPM related nodes
+  regulator: qcom_smd: Add support to define the bootup voltage
 
-Thanks,
-Nícolas
+ .../regulator/qcom,smd-rpm-regulator.yaml     |  3 +-
+ .../bindings/soc/qcom/qcom,smd-rpm.yaml       |  1 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 80 +++++++++++++++++++
+ drivers/regulator/qcom_smd-regulator.c        | 20 +++++
+ drivers/soc/qcom/smd-rpm.c                    |  1 +
+ 5 files changed, 104 insertions(+), 1 deletion(-)
+
+
+base-commit: 1fe4fd6f5cad346e598593af36caeadc4f5d4fa9
+-- 
+2.17.1
+
