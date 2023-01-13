@@ -2,33 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ADDF669602
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 12:53:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 071BF669605
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 12:54:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241061AbjAMLw1 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Jan 2023 06:52:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35964 "EHLO
+        id S239638AbjAMLw0 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Jan 2023 06:52:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241445AbjAMLv2 (ORCPT
+        with ESMTP id S241439AbjAMLv2 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 06:51:28 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D8154D81
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 03:46:40 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E1AE54D88
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 03:46:43 -0800 (PST)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1pGIW6-0008BG-Hq; Fri, 13 Jan 2023 12:46:38 +0100
+        id 1pGIW9-0008Ea-GI; Fri, 13 Jan 2023 12:46:41 +0100
 Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1pGIW5-005ksh-QU; Fri, 13 Jan 2023 12:46:37 +0100
+        id 1pGIW8-005ksm-RT; Fri, 13 Jan 2023 12:46:40 +0100
 Received: from pza by lupine with local (Exim 4.94.2)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1pGIW4-0005x5-WC; Fri, 13 Jan 2023 12:46:37 +0100
-Message-ID: <334071962cdc174f0599ce64e841280ad6e6814f.camel@pengutronix.de>
-Subject: Re: [PATCH v2 10/16] media: imx-pxp: Don't set bus_info manually in
- .querycap()
+        id 1pGIW7-0005xL-Vh; Fri, 13 Jan 2023 12:46:39 +0100
+Message-ID: <6bbff860b0fbeea47191b82fdf3619e547e5c481.camel@pengutronix.de>
+Subject: Re: [PATCH v2 11/16] media: imx-pxp: Add media controller support
 From:   Philipp Zabel <p.zabel@pengutronix.de>
 To:     Michael Tretter <m.tretter@pengutronix.de>,
         linux-media@vger.kernel.org, devicetree@vger.kernel.org,
@@ -40,10 +39,10 @@ Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Alexander Stein <alexander.stein@ew.tq-group.com>,
         kernel@pengutronix.de, linux-imx@nxp.com,
         linux-arm-kernel@lists.infradead.org
-Date:   Fri, 13 Jan 2023 12:46:36 +0100
-In-Reply-To: <20230112-imx-pxp-v2-10-e2281da1db55@pengutronix.de>
+Date:   Fri, 13 Jan 2023 12:46:39 +0100
+In-Reply-To: <20230112-imx-pxp-v2-11-e2281da1db55@pengutronix.de>
 References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
-         <20230112-imx-pxp-v2-10-e2281da1db55@pengutronix.de>
+         <20230112-imx-pxp-v2-11-e2281da1db55@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 User-Agent: Evolution 3.38.3-1+deb11u1 
@@ -53,8 +52,7 @@ X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,10 +62,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Fr, 2023-01-13 at 10:54 +0100, Michael Tretter wrote:
 > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > 
-> The v4l2_capability.bus_info field is set by the V4L2 core when left
-> empty by the .querycap() handler. This is the recommended practice, in
-> order to ensure bus_info coherence between drivers. Don't set it
-> manually.
+> Register a media device for the PXP, using the v4l2-mem2mem MC
+> infrastructure to populate the media graph. No media device operation is
+> implemented, the main use of the MC API is to allow consistent discovery
+> of media devices for userspace.
 > 
 > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > Reviewed-by: Michael Tretter <m.tretter@pengutronix.de>
