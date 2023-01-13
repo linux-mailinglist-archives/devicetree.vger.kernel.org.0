@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D18D669275
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:11:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43E0E669272
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 10:11:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240980AbjAMJK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 04:10:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44186 "EHLO
+        id S241117AbjAMJLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 04:11:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241136AbjAMJKW (ORCPT
+        with ESMTP id S240922AbjAMJKW (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 04:10:22 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5227E73E36
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:07:48 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id f34so32186054lfv.10
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:07:48 -0800 (PST)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A47A73E2C
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:07:50 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id j17so32235014lfr.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 01:07:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QSmE9cynsrYFh6rLY5hIYK83BZ2PiKJQicmF0TXjgHI=;
-        b=O818piWKVwWTAlBLjP7+WiAvM94Ja+tEgOOBWTdIwlXn3o+UStwTdfcqWLzbaNGNrF
-         0zOucrzuLUKSUH2qTKs0CXuvNchvdQgR4gMOA2U7gjjd5V6CAv6AYxtDZQKpqSqPT5gI
-         /K3XPjtZCGr8bSEsV5rbdsGLqUfmVBhvNw7suFDaOol3VuaYvFMo6gcQ4OmnmUIlcnhR
-         s007J+lvXDiOyvlBYzkBsH1JPhT/s+c6VlOhWcvaScZwlY5xDcank6G5CQ5vwnZmLdlf
-         vsq8Ex9JJ40UV3v/cBGf2tH3wrT7hK22YEJ3lq8IDqovp0RoCsogJ671qpLObDE6qOi9
-         o8vw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aw+Ll8gA8CDi1Y7f1Cqn7fscIlNjH9PUmDYuMqv7naQ=;
+        b=NP+jd3HDsMkWOG9vZclmMojbPQ4Vmq6Zpc2ekluLj+tMha9VLxvLwA4c6jhi+by46N
+         6EBuZXui4mIJuF5rAyur+sEYGq6T2ROyiret2vUcHDZrJ8FUw+nE6c9ZX95u6JX5Seo8
+         hDoKvGkoLsBVXK/TS07noOBN5qw6qDNOPqidhhTP103tFiWRRVDKagTGuEfSvEJcUzsi
+         pRjXGSfvW4OMoky7ogaeD7vK/UyxBsEomtMpbPc3wtafqkUYymIs2YNvB8XVeFYC+nV3
+         K+Xomvzx/2mFtekEOhax5tBu3ggkSwjklWpWKHF+E1pMXmNyH9NwRzfqADy9UkMsYfUP
+         3/fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QSmE9cynsrYFh6rLY5hIYK83BZ2PiKJQicmF0TXjgHI=;
-        b=isCXW4lWZrBaMIVDa9ODogrj87WWd3X7W8UlFyUfQsTZe4y6WIQyCEQLkQLIDHhsoB
-         kAhRATunIUYcbYqQ1oTnVVf+iswKnzknqX8KJ+1Q1GK1pu7fCGlIYgtULsMsw3+EGjwT
-         ffaS0Z4OxyCUVv2X23Pd5d2yLqNRX1Qhc+p4HikW0Ck0Oj+Gf2+K/Ud4rk5+ybe4KnDb
-         f6CHmuAXrJ4HKTEgsqs7UbcgC9rHJNL5yAZQ2PuhxJE9e01U5VrbmNCN5WriaCQkOWMw
-         C/mYiOvKwRatf4cZ4qz14uBhu9frXk5iHGti8UEkVlNsb5dpx1szblgy5thgDzKeBE7B
-         TsqQ==
-X-Gm-Message-State: AFqh2kpZNLwjlubb81eJtacVUYu5SQ0ff1xxCcBcfYKDR2NWjq6tFclT
-        xYDdREKq17O+Y8RPELjDvPoiqA==
-X-Google-Smtp-Source: AMrXdXv52XNgEnvFlmIuqurMzUPHvUK49R14rOwiq/ZuyaFirHZMRKKJsHyWuK6gRqbDTtg4ERbbKg==
-X-Received: by 2002:a05:6512:308d:b0:4a4:68b7:d61d with SMTP id z13-20020a056512308d00b004a468b7d61dmr23034123lfd.4.1673600866715;
-        Fri, 13 Jan 2023 01:07:46 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aw+Ll8gA8CDi1Y7f1Cqn7fscIlNjH9PUmDYuMqv7naQ=;
+        b=NeZKBKHYHg/eNXJQMTA+i/LIB58BSpGNilEpS1vW9UkBmZyN1NDQBUcPbTuJge7kG1
+         7mtI3EEfarmYkG+btH56/0qnm7KN77gLqu6/CvXsqdlawhgJPDVRFqcjk/TWvi0TTuLW
+         Gm6K5UxybzqdKu4kCainLDJHYNDF+DHrDYkoVcAn4PuKubJepC3rgtqfqKnNpSAO0CF0
+         11PTW9Is9PEFf3FsV/+G4vVgF2Uf0+bq1UH+NDyG0e9mOgig2BlsQgFDzx1IDja2Ugzv
+         wi51g1dcW8b89wSM8xQEuMgoLNvA2Dwzwu07BNHiqGUP9qMXZIcHWJ9JrOuXcheU084s
+         Ib3w==
+X-Gm-Message-State: AFqh2ko5zUDMfsuqbnILHmYUP2V22ngjhWbxF/tgsRvuSuIUeBcmWDbR
+        0KrQx5geLgGVQNtLzieDSiCIXg==
+X-Google-Smtp-Source: AMrXdXselyV/UW7hbOvgzPFB9DfU664EPmewva7fCJNwkIwvUxBoxx1grYKqbnbK4lqJ9/huF8tK2Q==
+X-Received: by 2002:a05:6512:1087:b0:4d1:331:f6df with SMTP id j7-20020a056512108700b004d10331f6dfmr611512lfg.64.1673600868856;
+        Fri, 13 Jan 2023 01:07:48 -0800 (PST)
 Received: from eriador.lumag.spb.ru ([194.204.33.9])
-        by smtp.gmail.com with ESMTPSA id d4-20020a05651233c400b004947a12232bsm3735296lfg.275.2023.01.13.01.07.44
+        by smtp.gmail.com with ESMTPSA id d4-20020a05651233c400b004947a12232bsm3735296lfg.275.2023.01.13.01.07.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 01:07:46 -0800 (PST)
+        Fri, 13 Jan 2023 01:07:48 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,42 +60,54 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 0/4] clk: qcom: msm8996: add APCS clock driver
-Date:   Fri, 13 Jan 2023 11:07:35 +0200
-Message-Id: <20230113090739.45805-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 1/4] dt-bindings: mailbox: qcom: correct the list of platforms using clocks
+Date:   Fri, 13 Jan 2023 11:07:36 +0200
+Message-Id: <20230113090739.45805-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230113090739.45805-1-dmitry.baryshkov@linaro.org>
+References: <20230113090739.45805-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sys_apcs_aux clock can be used by CPU and CBF clock drivers to drive
-those clocks from GPLL0 while doing initial setup. Add simple driver to
-setup and export this clock.
+Only three platforms require `pll' and `aux' clocks: msm8916, msm8939
+and qcs404. Correct the list of platforms in the corresponding clause.
 
-Changes since v1:
-- Removed the clk.h header inclusion (Stephen)
-- Changed the module license from GPL v2 to bare GPL.
+Fixes: 0d17014e9189 ("dt-bindings: mailbox: Add binding for SDX55 APCS")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../bindings/mailbox/qcom,apcs-kpss-global.yaml          | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
-Dmitry Baryshkov (4):
-  dt-bindings: mailbox: qcom: correct the list of platforms using clocks
-  dt-bindings: mailbox: qcom: add #clock-cells to msm8996 example
-  mailbox: qcom-apcs-ipc: enable APCS clock device for MSM8996
-  clk: qcom: add the driver for the MSM8996 APCS clocks
-
- .../mailbox/qcom,apcs-kpss-global.yaml        | 10 +--
- drivers/clk/qcom/Makefile                     |  2 +-
- drivers/clk/qcom/apcs-msm8996.c               | 76 +++++++++++++++++++
- drivers/mailbox/qcom-apcs-ipc-mailbox.c       |  2 +-
- 4 files changed, 80 insertions(+), 10 deletions(-)
- create mode 100644 drivers/clk/qcom/apcs-msm8996.c
-
+diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+index 943f9472ae10..b8a44ef0540f 100644
+--- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
++++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+@@ -71,15 +71,8 @@ allOf:
+         compatible:
+           enum:
+             - qcom,msm8916-apcs-kpss-global
+-            - qcom,msm8994-apcs-kpss-global
+-            - qcom,msm8996-apcs-hmss-global
+-            - qcom,msm8998-apcs-hmss-global
++            - qcom,msm8939-apcs-kpss-global
+             - qcom,qcs404-apcs-apps-global
+-            - qcom,sc7180-apss-shared
+-            - qcom,sdm660-apcs-hmss-global
+-            - qcom,sdm845-apss-shared
+-            - qcom,sm6125-apcs-hmss-global
+-            - qcom,sm8150-apss-shared
+     then:
+       properties:
+         clocks:
 -- 
 2.39.0
 
