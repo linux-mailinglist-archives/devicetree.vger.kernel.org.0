@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47B8A669692
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 13:12:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C7CB669695
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 13:12:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241253AbjAMMMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 07:12:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47878 "EHLO
+        id S241015AbjAMMMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 07:12:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233015AbjAMMLr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:11:47 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD6FB7DE0C
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:06:12 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id bq39so32875577lfb.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:06:12 -0800 (PST)
+        with ESMTP id S241203AbjAMMLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 07:11:48 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFCB07DE1F
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:06:15 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id bp15so32811812lfb.13
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 04:06:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mmxbEU7yNm32Cz9XwGJP6LlPVKtTRmfgxQ+3IPRboCA=;
-        b=RgOWW5w6/FtVAooz9c1Wm+dFGjj/5RU9DrqMWd63dhcOSGts0cqiahNtYvUS4TU39f
-         1TS5hGPWncrwTzQ/xK5PmrMTIjFrGe0H5MwCJTlAxUtUxRvtrgQGaAVGO8smOrpKUfch
-         y1hI14wgyVr2xJAFOc9Z9TdZJIU4YoUmaKUClu0NC8eiSIZmi/A7D25LUg1pdot0RvZ8
-         kklAV8cBL/rDmXWXE/NrLZXufi4JSiOYav2pZKrtcn8zALdqQxQgDZ+wJjlbNfc1z2iY
-         gi+MwzhvO7SPpR2Om0Pd2R3jA4sUBKNTAvRCKOM2qvkEUIjDkQhoI6sMWryQ2W8i+El4
-         RXbA==
+        bh=9cmnuPgg6nrYuVy6oT9pdU5a4QKL5OlhnalZq+EKhBE=;
+        b=mZxeFbl0loKEWYflwP6nYQLdu5mXdKBvOd+FMJG3rA+vqhmOBTD2uKZOm6c+W15NhH
+         mhCOIHOau6L0Ok3Q09g14YT6pr/oS4UHbb8rAbrVbX8WpVuSNmsWDLHV9IZSKYuYy85T
+         wya6TZ92vl4VUmCOQYLy5ydFClekSHtTL4M9Wr2yJwlYbkuPcPamWXFP1NXFSsWMQWs7
+         wRD/iuCYsrq4GDhrJi8p3odSwyKFVEd4lC4Oa9fafMWytOYGbro7BKRhFfD3zV1fH1aN
+         +ajzXWRtK71akQ6QsG+c8Bc4Ezxq0owM797GfPkSzNuvfPecPeCSv34e3JEjBPpMbNpX
+         S7mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mmxbEU7yNm32Cz9XwGJP6LlPVKtTRmfgxQ+3IPRboCA=;
-        b=lxtPSk/cvcJtWc7PReeL0ry2+06jE9UTcZpDOPqh5oPlvgvLqa7nI+/LGaZi+dApE8
-         XfxvGumqIihn9DgUqD+feuOWWEj6/lgvIfAsZU5I3txGKJDTa7NEOb+QjlJv2Kx6EOdE
-         YpJM15uuH8pyPDoEmpiZ7wIe/eQqI2BLiUe4Kd62KZQ3Sl5zrOPVQhHL12gzUKXpe8RF
-         Mic6nvnXEKGH5KGZ566Yo9fVMZSfnelnE0NarVDi+CyOp1FnnkBXcToGWPfoxrr0gJp3
-         dI+lF2P9NNKVrxP/+Oa92tVUGg+qdS62DeiVCJwY+JeeLk+NNs5hPKHY8PVoPlUhzY3F
-         VtiQ==
-X-Gm-Message-State: AFqh2krR8wUDyG7NfSw72agojmXLQqC44jiqeAMuOZtX9Y6C4UcxScRt
-        D2kkoz3LhSGYSvaVUWq/8mXBcg==
-X-Google-Smtp-Source: AMrXdXtLYd/k7aJYj73HtecfF31AhEXVeOHWBBDIKrBb2k1+Wjp3Vgedt0G4DHRiJN6FCsRSk97fPw==
-X-Received: by 2002:a05:6512:2344:b0:4cb:90d:41b1 with SMTP id p4-20020a056512234400b004cb090d41b1mr21249865lfu.56.1673611571086;
-        Fri, 13 Jan 2023 04:06:11 -0800 (PST)
+        bh=9cmnuPgg6nrYuVy6oT9pdU5a4QKL5OlhnalZq+EKhBE=;
+        b=7xnKPApNwINwQgcpk/OVWa1KbRA2WIhxKCmfAhlZoGBcSM+eeK/SRAyj2I5zFm/h1Y
+         /TTDAmPGEmwJZ/ngfBZtfm+QTNk3PBx7FfnJwJ1x5w4AY/cHgh7CQ/h2uuszFbBMz/9n
+         NIILF5BEv+1Vwy/4LZKWlZ9n6qlsbLbp95fuY9AjWfos3xk7BIXYOPuMgSPJWB2gTL0K
+         ZcQLZXp/c26U+rt0FfUvoP1uCJz6BkZ33yWZZ1MiOqdrW5ED8sTMsxiXMaO9mS7is6R4
+         WuFhBD6rU0qPAi6pbEn1rpHkmP1jw7G2Zlu3N+bEDnatdEG8MhcNs2ZO8uukNOs4i2OH
+         pE1g==
+X-Gm-Message-State: AFqh2koeZ98p5TUusq35ERYCVABtUecB3IkR2b4CJzcfBfDsoyFyUqWY
+        Mco69b2wsuKdNHBYZdSsFuwTATiilQ7mcJz2rzj9Qg==
+X-Google-Smtp-Source: AMrXdXvyNW46RX6TBbQcQg2ZW+l5U4DNtpuHFj072THT8O/3v6PwPrWr+fMiT7nIKvugTwAIJWCkBA==
+X-Received: by 2002:a05:6512:31d6:b0:4b5:7817:419d with SMTP id j22-20020a05651231d600b004b57817419dmr26783383lfe.41.1673611574238;
+        Fri, 13 Jan 2023 04:06:14 -0800 (PST)
 Received: from eriador.lumag.spb.ru ([188.170.82.205])
-        by smtp.gmail.com with ESMTPSA id i7-20020ac25227000000b004ac6a444b26sm3806290lfl.141.2023.01.13.04.06.08
+        by smtp.gmail.com with ESMTPSA id i7-20020ac25227000000b004ac6a444b26sm3806290lfl.141.2023.01.13.04.06.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Jan 2023 04:06:10 -0800 (PST)
+        Fri, 13 Jan 2023 04:06:13 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v3 02/14] clk: qcom: clk-alpha-pll: program PLL_TEST/PLL_TEST_U if required
-Date:   Fri, 13 Jan 2023 14:05:32 +0200
-Message-Id: <20230113120544.59320-3-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 03/14] clk: qcom: cpu-8996: correct PLL programming
+Date:   Fri, 13 Jan 2023 14:05:33 +0200
+Message-Id: <20230113120544.59320-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230113120544.59320-1-dmitry.baryshkov@linaro.org>
 References: <20230113120544.59320-1-dmitry.baryshkov@linaro.org>
@@ -70,37 +70,51 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Program PLL_TEST and PLL_TEST_U registers if required by the pll
-configuration.
+Change PLL programming to follow the downstream setup.
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/clk-alpha-pll.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/clk/qcom/clk-cpu-8996.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-index f9e4cfd7261c..e266379427f2 100644
---- a/drivers/clk/qcom/clk-alpha-pll.c
-+++ b/drivers/clk/qcom/clk-alpha-pll.c
-@@ -358,6 +358,11 @@ void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
+index ee76ef958d31..ed8cb558e1aa 100644
+--- a/drivers/clk/qcom/clk-cpu-8996.c
++++ b/drivers/clk/qcom/clk-cpu-8996.c
+@@ -93,12 +93,9 @@ static const u8 prim_pll_regs[PLL_OFF_MAX_REGS] = {
+ static const u8 alt_pll_regs[PLL_OFF_MAX_REGS] = {
+ 	[PLL_OFF_L_VAL] = 0x04,
+ 	[PLL_OFF_ALPHA_VAL] = 0x08,
+-	[PLL_OFF_ALPHA_VAL_U] = 0x0c,
+ 	[PLL_OFF_USER_CTL] = 0x10,
+-	[PLL_OFF_USER_CTL_U] = 0x14,
+ 	[PLL_OFF_CONFIG_CTL] = 0x18,
+ 	[PLL_OFF_TEST_CTL] = 0x20,
+-	[PLL_OFF_TEST_CTL_U] = 0x24,
+ 	[PLL_OFF_STATUS] = 0x28,
+ };
  
- 	regmap_update_bits(regmap, PLL_USER_CTL(pll), mask, val);
+@@ -106,8 +103,10 @@ static const u8 alt_pll_regs[PLL_OFF_MAX_REGS] = {
  
-+	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll),
-+						config->test_ctl_val);
-+	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll),
-+						config->test_ctl_hi_val);
-+
- 	if (pll->flags & SUPPORTS_FSM_MODE)
- 		qcom_pll_set_fsm_mode(regmap, PLL_MODE(pll), 6, 0);
- }
+ static const struct alpha_pll_config hfpll_config = {
+ 	.l = 60,
+-	.config_ctl_val = 0x200d4aa8,
++	.config_ctl_val = 0x200d4828,
+ 	.config_ctl_hi_val = 0x006,
++	.test_ctl_val = 0x1c000000,
++	.test_ctl_hi_val = 0x00004000,
+ 	.pre_div_mask = BIT(12),
+ 	.post_div_mask = 0x3 << 8,
+ 	.post_div_val = 0x1 << 8,
 -- 
 2.39.0
 
