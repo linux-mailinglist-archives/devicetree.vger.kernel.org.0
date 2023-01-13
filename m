@@ -2,81 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E092A669A1C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 15:30:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9717669A25
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 15:31:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbjAMO34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 09:29:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53454 "EHLO
+        id S229669AbjAMObB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 09:31:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbjAMO33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 09:29:29 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760C46DBB2
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 06:20:30 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id fy8so52545275ejc.13
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 06:20:30 -0800 (PST)
+        with ESMTP id S229808AbjAMOaS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 09:30:18 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB722840A2
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 06:23:22 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id v6so31322698edd.6
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 06:23:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aXm/KVhv1Q+MJT4WARwvCEecY+Pt3DzZrZnoHTVBa9c=;
-        b=nr2atzfb+mPTcqxh+qo03K/MkGPKipx/pu1w6IOQaCy0ubgEMTWuZi8M1DPRQ7Qd6E
-         isy4pAbJYsnTbrPbQ4Nt/grugBLz6qFkTPvLapBXsfA5EEHDBnS0dGSZnuiWL114xQdH
-         qnfI3Ze7DBplXLb3ssiXrPUBlLyYozd3YeRKK8YxZ75Z1mE3fbFBi0RD1FjZtepCKF6X
-         gANHMg2asjUUGdRT/E5ekZNGKOc4JFGqexCFymrDgvvILVHiwHf/7yr9wYpMY2VwbqsT
-         8iv19WITTw12jTtEdvpQ8Kv4N+r6fbOSvID/VaVqT4HznN5MUcuwmXte4aEd4E9rfoEa
-         vuVA==
+        bh=jltJ1PtaljceVmLtUNZy4GkzBy9Rz0omnda+TqjQGk0=;
+        b=VBhMWoJtRRYKon+iIS+tTXfxLPkHkUgxz1XzLA/c/iY8SCPSKqmTEUzGmJ60XXsw0j
+         xdMPM9MJK9sFONsRksBoJKFnb/z7gtfHNC+tlom7DjTkL5IE+hN27SkBSARwm8vsrBxy
+         MsZRm+gUd1BgSjaYJQmZaJCKMlTSAH8EZC1qiXGXid1NUWaPZNoXVno4bDuKozhrZdDz
+         A0YZQ5nlUbw21Hjw6veiqJaXijY8I7atT7FsouwrcBD8DQhjN/EAqGSSWrMGXfbbMIVJ
+         WqLE0fdbt0ITXpfMHdFNnitsqm9JtXrG+9JtKAhWr/ZlHg8yoTBmc0XEGjVZ6yXo10nh
+         27Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aXm/KVhv1Q+MJT4WARwvCEecY+Pt3DzZrZnoHTVBa9c=;
-        b=rXP6sFhVQIjjjvXz+QKtlBiNqcRn/Vn5niNZd5AnLHU0dZ+zL7PiPXRSc9BGy70Tb7
-         4MJelMc3T8lyEfjB3k/mQjPwG4f7XPmcfdy9S8va1NoXtKV2t/nc37Ql1Mg1zvqX2JBV
-         AcgydPA0IuNaztSli3VMVO8ABJNPq9Wd8hzIuZgi61Ew0lbMNwK3St++C6kRcWUqiWjf
-         cHR9LBESxHe6+QnLQtbjW7pChPITvIAfKBthqWn52Gl/SrdoCb3Id251MCvrLHXTdAu1
-         Ja3/5W+MlZotnYdBG6XamGbj3GMF9NfYX9stJi4ssPcKiyupSZe/3NDMLc8sglyDpVhd
-         rHSw==
-X-Gm-Message-State: AFqh2kqnBHMIMoeshSsuVkKSYyD110aC/7M4TNmyMTHo8EqfO2ie0WwT
-        IKDqwAS0DHRkhtxwCZpVlsf5DA==
-X-Google-Smtp-Source: AMrXdXuhoTbM4wM81X8S1RJYwrtdyd2fyIBnofyfbBJZ4gOKdtlpxhGW8rh1SA9w6+Q0K44Yhwoq9g==
-X-Received: by 2002:a17:907:c48d:b0:7c1:4bb:b157 with SMTP id tp13-20020a170907c48d00b007c104bbb157mr3645542ejc.4.1673619629025;
-        Fri, 13 Jan 2023 06:20:29 -0800 (PST)
+        bh=jltJ1PtaljceVmLtUNZy4GkzBy9Rz0omnda+TqjQGk0=;
+        b=0wWwyZMQCT0DkyNZ0P/+mHvfb2TJJjdduJ4czia7O3hrlKhREDKDiwh7PQGA9P0EGu
+         BwgtxecEU6IXGV6OaSQaK9eWDWXev0TPpd0HCSZPRCfNYRF7XSGU+idKs/8qSF2+cBer
+         U7H//2QCqGXuJe3wzGZg58GJc7maIu+Zm8+P2IvvueXWZKUUSiuE6MIF61Ov+I8DAihT
+         cuRep4mg60jUqfijMZ5KXJt8tx2QnUqKDZFymPZMbEos3YghoSf7bT2+APpEFr13qyry
+         DHtasF0ifnfBXsfvZ9v3AeQ099N+eSVS3opjl913g1pWSTVGHrk8Q1WL2UWiNbzJ6C83
+         aywg==
+X-Gm-Message-State: AFqh2kq0GYM08CxmSVVWwknP7GcCjw7U57hJvxp7yUlLG8zH9p3fpp+s
+        UCO5okRFi7oHuHiIJ0hwiXaPFw==
+X-Google-Smtp-Source: AMrXdXuKgO9JGCXCLsX54cOWfaiZHFKYD32Qa/1wbUnbXVzxem7IzAMkCrTUpbAMgPNaFfCwCzrvcw==
+X-Received: by 2002:a05:6402:357:b0:49b:b274:b816 with SMTP id r23-20020a056402035700b0049bb274b816mr4324189edw.37.1673619801564;
+        Fri, 13 Jan 2023 06:23:21 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g3-20020a1709067c4300b007c0a7286ac8sm8606501ejp.69.2023.01.13.06.20.25
+        by smtp.gmail.com with ESMTPSA id w21-20020aa7d295000000b0046c4553010fsm669382edq.1.2023.01.13.06.23.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 06:20:28 -0800 (PST)
-Message-ID: <84aa79c3-b793-0d0e-d6a5-035aff5a17b4@linaro.org>
-Date:   Fri, 13 Jan 2023 15:20:25 +0100
+        Fri, 13 Jan 2023 06:23:21 -0800 (PST)
+Message-ID: <9016ea51-9ca2-551d-d4a1-0b70232b5dc5@linaro.org>
+Date:   Fri, 13 Jan 2023 15:23:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 6/7] arm64: dts: Add ipq9574 SoC and AL02 board support
+Subject: Re: [PATCH v2] dt-bindings: PCI: qcom,pcie-ep: correct
+ qcom,perst-regs
 Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        shawnguo@kernel.org, arnd@arndb.de, marcel.ziswiler@toradex.com,
-        dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
-        broonie@kernel.org, tdas@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-References: <20230110121316.24892-1-quic_devipriy@quicinc.com>
- <20230110121316.24892-7-quic_devipriy@quicinc.com>
- <f6ef1834-b629-b76c-9cde-55af56320665@linaro.org>
- <7f157b73-f856-04d2-1b39-e1f8861d0439@quicinc.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-pci@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh@kernel.org>
+References: <20230113140328.GA1836008@bhelgaas>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7f157b73-f856-04d2-1b39-e1f8861d0439@quicinc.com>
+In-Reply-To: <20230113140328.GA1836008@bhelgaas>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,28 +85,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 14:29, Devi Priya wrote:
->>> +
->>> +	soc: soc@0 {
->>> +		#address-cells = <1>;
->>> +		#size-cells = <1>;
->>> +		ranges = <0 0 0 0xffffffff>;
->>> +		compatible = "simple-bus";
->>> +
->>> +		tlmm: pinctrl@1000000 {
->>> +			compatible = "qcom,ipq9574-tlmm";
->>> +			reg = <0x01000000 0x300000>;
->>> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
->>> +			gpio-controller;
->>> +			#gpio-cells = <2>;
->>> +			gpio-ranges = <&tlmm 0 0 65>;
->>> +			gpio-reserved-ranges = <59 1>;
+On 13/01/2023 15:03, Bjorn Helgaas wrote:
+> On Fri, Jan 13, 2023 at 10:02:27AM +0100, Krzysztof Kozlowski wrote:
+>> On 30/12/2022 14:42, Lorenzo Pieralisi wrote:
+>>> On Wed, 9 Nov 2022 12:32:02 +0100, Krzysztof Kozlowski wrote:
+>>>> qcom,perst-regs is an phandle array of one item with a phandle and its
+>>>> arguments.
+>>>
+>>> Applied to pci/dt, thanks!
+>>>
+>>> [1/1] dt-bindings: PCI: qcom,pcie-ep: correct qcom,perst-regs
+>>>       https://git.kernel.org/lpieralisi/pci/c/68909a813609
 >>
->> Hm, why reserved ranges are in SoC?
-> As the gpio is forbidden on all ipq9574 boards, we have added it in SoC
+>> It's still not in linux-next. Is you tree correctly included in the next?
+> 
+> It's on Lorenzo's branch
+> (https://git.kernel.org/pub/scm/linux/kernel/git/lpieralisi/pci.git/)
+> but I haven't pulled it into my "next" branch yet.  Will try to do
+> that today.
 
-Why it is forbidden on all boards? I guess it depends on the firmware
-and this can differ, can't it?
+If Lorenzo picks up patches which at some point are merged by another
+maintainer, his tree should be in linux-next as well (and in LKP tests).
+Otherwise we loose some build and test coverage.
 
 Best regards,
 Krzysztof
