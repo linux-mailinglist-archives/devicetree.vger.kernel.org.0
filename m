@@ -2,33 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E524266960F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 12:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1411669626
+	for <lists+devicetree@lfdr.de>; Fri, 13 Jan 2023 12:54:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232935AbjAMLwT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Jan 2023 06:52:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37302 "EHLO
+        id S233019AbjAMLwU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Jan 2023 06:52:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233019AbjAMLvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 06:51:24 -0500
+        with ESMTP id S241401AbjAMLvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 06:51:25 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBAE6E0DB
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 03:46:27 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99BD44F13B
+        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 03:46:31 -0800 (PST)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1pGIVu-0007xA-2a; Fri, 13 Jan 2023 12:46:26 +0100
+        id 1pGIVx-000830-TF; Fri, 13 Jan 2023 12:46:29 +0100
 Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1pGIVt-005ksN-D2; Fri, 13 Jan 2023 12:46:25 +0100
+        id 1pGIVx-005ksS-7W; Fri, 13 Jan 2023 12:46:29 +0100
 Received: from pza by lupine with local (Exim 4.94.2)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1pGIVs-0005w4-F1; Fri, 13 Jan 2023 12:46:24 +0100
-Message-ID: <9cdb669e4bc4a93f97eb8f8f843812ef8099f349.camel@pengutronix.de>
-Subject: Re: [PATCH v2 06/16] media: imx-pxp: make data_path_ctrl0 platform
- dependent
+        id 1pGIVv-0005wM-VG; Fri, 13 Jan 2023 12:46:27 +0100
+Message-ID: <2eb1e5cdf0e187d9414c133da41a0152cb06caa5.camel@pengutronix.de>
+Subject: Re: [PATCH v2 07/16] media: imx-pxp: add support for i.MX7D
 From:   Philipp Zabel <p.zabel@pengutronix.de>
 To:     Michael Tretter <m.tretter@pengutronix.de>,
         linux-media@vger.kernel.org, devicetree@vger.kernel.org,
@@ -40,10 +39,10 @@ Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Alexander Stein <alexander.stein@ew.tq-group.com>,
         kernel@pengutronix.de, linux-imx@nxp.com,
         linux-arm-kernel@lists.infradead.org
-Date:   Fri, 13 Jan 2023 12:46:24 +0100
-In-Reply-To: <20230112-imx-pxp-v2-6-e2281da1db55@pengutronix.de>
+Date:   Fri, 13 Jan 2023 12:46:27 +0100
+In-Reply-To: <20230112-imx-pxp-v2-7-e2281da1db55@pengutronix.de>
 References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
-         <20230112-imx-pxp-v2-6-e2281da1db55@pengutronix.de>
+         <20230112-imx-pxp-v2-7-e2281da1db55@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 User-Agent: Evolution 3.38.3-1+deb11u1 
@@ -62,13 +61,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Fr, 2023-01-13 at 10:54 +0100, Michael Tretter wrote:
-> Unfortunately, the PXP_HW_VERSION register reports the PXP on the i.MX7D
-> and on the i.MX6ULL as version 3.0, although the PXP versions on these
-> SoCs have significant differences.
+> The i.MX7D needs a different data path configuration than the i.MX6ULL.
+> Configure the data path as close as possible to the data path on the
+> i.MX6ULL.
 > 
-> Use the compatible to configure the ctrl0 register as required dependent
-> on the platform.
-> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 
 Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
