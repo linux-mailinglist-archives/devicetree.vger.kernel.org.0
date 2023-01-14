@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D5C66ADAF
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 21:33:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96FA766ADB2
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 21:34:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbjANUdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Jan 2023 15:33:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39252 "EHLO
+        id S230244AbjANUeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Jan 2023 15:34:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230404AbjANUdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 15:33:49 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6668CE399
-        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 12:33:46 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id j17so37714168lfr.3
-        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 12:33:46 -0800 (PST)
+        with ESMTP id S230416AbjANUeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 15:34:09 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE1C7E3B4
+        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 12:34:06 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id m6so37674683lfj.11
+        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 12:34:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1c49+52AKjhgHCmMOvtJtYeeDgs+DiWpo3802s5y8mc=;
-        b=hp1yWVNFbZSVMTYzP9a6Hwm4HQF++c0Vg0UmahDAe2LZUbnBRz2bkVuod796jemFxL
-         6G2eeQoyArpnyfJj/k7M2w0uLsKL7DloG3MJ5i6VvvPPKNPnC20C6AS+vbQR5odUSMMD
-         0QC4v1z3t7QcyFz8ebfqlQq3eCGoR2LZgr9zqnwkBjfsnSUIsjoWM+lA5qVgGytTkhB8
-         GBc2jVoErd7sObPBessGbzLJgQnXwsnUWD8Gq0AAkGcrcTTSuVcAqdM9nWRz0KtDq7gm
-         2hF0kEgrmj1FnnbtR2Tg1gbDUwWQAXeaZVAT5QuPvFIC+d4TJjB01xrCq4s6rqcrc9sp
-         m4HA==
+        bh=UB2YYYl5cVRk908WVQczk7Gs+jyqKlTiv51E60YYuEI=;
+        b=cBv4TOVm3LJBa8emq8b1XYLs/5YQvpDAM1c3Im9FJZgo+fig1PrD66Ql1TpctKGA/R
+         KSkpTr/OZ33T4ri0hZxf1VWIyjC5h3FkOrsSZk5Rw9qpWxcVg/ZNing3dpd8BuJbxSfw
+         pupaUcGcnpgsL7TEBhN3ReOk5TMHcP5+Nn2zn54FRMblW4OdHNYgwk9L7RSZd/5rnuma
+         rXvphrqDyKnMC9hDgxKr/Ffsk31MzExUEgzmNJKPmrNxm4BqWvCO8CXe1x3VLxUFSGS6
+         joT+EYIN6dW1o5jpBhuTAhNBZuUq7CP6kLwUvSxLMWgAEs8Qm+mbSwJJD0dx9voz8URG
+         xOww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1c49+52AKjhgHCmMOvtJtYeeDgs+DiWpo3802s5y8mc=;
-        b=gJNyNn9FH23H7nZNkYp0z8V6e5m8rhvpURm00kV56+C/QRdgSHCgd+tOK8UIw469SL
-         hkCfZUuU3tBo/ywWXcPRx4ffczOlOSOPoofpYi6g2UVGqEmxixxYxA5GGvv1bBvD8XVn
-         /FxbkGnZntKMV9NMcpZK/dIUH+kCQFtRjTcweRc0sZ0sseHXmwuOZJgp3oamzPm5iCo8
-         Hb1AaAMtuU0EFytBLepzylIuBiXDQ49u/PLVQqi62QnD9RxOdnxJh611EtXc7nhvhhg7
-         kkJv55BbEvXYAG5gLsBFqqEVUM6t9cdk8HhI3HZXVpWuch8Ay02MkW62r783gXWk+41L
-         3TyQ==
-X-Gm-Message-State: AFqh2koAZDq7RUbuajBkVNC2sWTwOpnlV8X1Eoslj4+UB1SDAdv0j4CN
-        YM+SJj84NccnQR1DAv6uje9DFQ==
-X-Google-Smtp-Source: AMrXdXtH1n81gSO/XHdagk8KtCmu6qlCbMUbZaEjGUc/qip0XeM0SdxI2e00+11TLjp3zQpGPkIvtA==
-X-Received: by 2002:a05:6512:1582:b0:4b6:e494:a98d with SMTP id bp2-20020a056512158200b004b6e494a98dmr26161055lfb.44.1673728425127;
-        Sat, 14 Jan 2023 12:33:45 -0800 (PST)
+        bh=UB2YYYl5cVRk908WVQczk7Gs+jyqKlTiv51E60YYuEI=;
+        b=smrrR+viJa/WJYPL1ibPA03ONM+Vo3vuO7DE0eb0v4fTvBpIpdOj1HP0U86LMes/fr
+         6bYFfqreDCeFQkpd8SLICRxdGj9KcO6i/U3kYf+9hOgWd6VLOpoNBnr8WNbeRDHjfNCv
+         sKr7X/n9IZne678buNQpt73S7hyUlZM/SRa5CaarbGHfXaaTRvwdOweu+MI3iMAONOX6
+         xMJsckhs0VwS6x/Rcr2oeaIGZpP54HmgfPlBJhy9F6TxpuJ6FKLKwb95NGFXDPdQC4sO
+         bsUgPd3j9yCJAfEpcN8PKXHkhIaFcSyJ9bPpxkRXcXo94TI3T1xLQblJuQjdDSYPSdT2
+         CXoQ==
+X-Gm-Message-State: AFqh2kqt0gwKOmgZd8XzkeevThrg/0govoZY7IIVxL58JtadSAMDrTJr
+        Y3m0fFsppJtlst7FSsFpZ+5oHg==
+X-Google-Smtp-Source: AMrXdXu2Uya9fgA8YVpcQmaeswZQlG8/b+6oBfb3OGz/faHAw1vsXZkgdh9B/vCBwyJcWqUGtHqWXQ==
+X-Received: by 2002:a05:6512:3b99:b0:4a4:68b9:608c with SMTP id g25-20020a0565123b9900b004a468b9608cmr30253425lfv.23.1673728445202;
+        Sat, 14 Jan 2023 12:34:05 -0800 (PST)
 Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id j11-20020a056512344b00b004cafd4cc1fdsm4414726lfr.5.2023.01.14.12.33.44
+        by smtp.gmail.com with ESMTPSA id l8-20020ac25548000000b004caf42eb04csm4402226lfk.138.2023.01.14.12.34.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Jan 2023 12:33:44 -0800 (PST)
-Message-ID: <032a1f37-9432-df35-c62d-fd501d8f50e6@linaro.org>
-Date:   Sat, 14 Jan 2023 21:33:43 +0100
+        Sat, 14 Jan 2023 12:34:04 -0800 (PST)
+Message-ID: <9e9ec163-a9f1-99ae-21a1-9baf43cc9455@linaro.org>
+Date:   Sat, 14 Jan 2023 21:34:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 3/6] arm64: dts: qcom: sdm845-audio-wcd9340: commonize
- pinctrl
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: sdm845-audio-wcd9340: commonize
+ clocks
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,9 +65,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230113162245.117324-1-krzysztof.kozlowski@linaro.org>
- <20230113162245.117324-3-krzysztof.kozlowski@linaro.org>
+ <20230113162245.117324-4-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230113162245.117324-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230113162245.117324-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,196 +83,99 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 13.01.2023 17:22, Krzysztof Kozlowski wrote:
-> Pin configuration fow WCD9340 is the same in all users, so move it to
-> common file to reduce the code duplication (which still allows further
-> customizations per board).
+> Clock for WCD9340 is coming from the SoC and is the same in all users,
+> so move it to common file to reduce the code duplication (which still
+> allows further customizations per board).
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-Modulo the file name thing from [2/6]
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  .../arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi | 15 +++++++++++++++
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts        | 11 -----------
->  .../dts/qcom/sdm845-xiaomi-beryllium-common.dtsi  | 11 -----------
->  .../arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 10 ----------
->  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts     | 11 -----------
->  arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts  | 11 -----------
->  6 files changed, 15 insertions(+), 54 deletions(-)
+>  arch/arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi           | 3 +++
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts                   | 2 --
+>  arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 --
+>  arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts           | 2 --
+>  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts         | 2 --
+>  arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts             | 2 --
+>  6 files changed, 3 insertions(+), 10 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi b/arch/arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi
-> index 5bcce7d0d709..33718cb95c83 100644
+> index 33718cb95c83..0d7c37f39176 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi
-> @@ -32,6 +32,10 @@ wcd9340: codec@1,0 {
+> @@ -29,6 +29,9 @@ wcd9340: codec@1,0 {
+>  			interrupt-controller;
+>  			#interrupt-cells = <1>;
+>  
+> +			clock-names = "extclk";
+> +			clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
+> +
 >  			#clock-cells = <0>;
 >  			clock-frequency = <9600000>;
 >  			clock-output-names = "mclk";
-> +
-> +			pinctrl-0 = <&wcd_intr_default>;
-> +			pinctrl-names = "default";
-> +
->  			qcom,micbias1-microvolt = <1800000>;
->  			qcom,micbias2-microvolt = <1800000>;
->  			qcom,micbias3-microvolt = <1800000>;
-> @@ -67,3 +71,14 @@ swm: swm@c85 {
->  		};
->  	};
->  };
-> +
-> +&tlmm {
-> +	wcd_intr_default: wcd-intr-default-state {
-> +		pins = "gpio54";
-> +		function = "gpio";
-> +
-> +		input-enable;
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-> +};
 > diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index 3726465acbde..33ec79afbb62 100644
+> index 33ec79afbb62..9c9a587ea7a9 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
 > +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -971,15 +971,6 @@ sdc2_card_det_n: sd-card-det-n-state {
->  		function = "gpio";
->  		bias-pull-up;
->  	};
-> -
-> -	wcd_intr_default: wcd-intr-default-state {
-> -		pins = "gpio54";
-> -		function = "gpio";
-> -
-> -		input-enable;
-> -		bias-pull-down;
-> -		drive-strength = <2>;
-> -	};
->  };
->  
->  &uart3 {
-> @@ -1085,8 +1076,6 @@ &venus {
+> @@ -1076,8 +1076,6 @@ &venus {
 >  };
 >  
 >  &wcd9340 {
-> -	pinctrl-0 = <&wcd_intr_default>;
-> -	pinctrl-names = "default";
->  	clock-names = "extclk";
->  	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
+> -	clock-names = "extclk";
+> -	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
 >  	reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
+>  	vdd-buck-supply = <&vreg_s4a_1p8>;
+>  	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
 > diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> index e530a676b250..a7a3f7ce2809 100644
+> index a7a3f7ce2809..4f8ffc0da141 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> @@ -466,15 +466,6 @@ sdc2_card_det_n: sd-card-det-n-state {
->  		function = "gpio";
->  		bias-pull-up;
->  	};
-> -
-> -	wcd_intr_default: wcd-intr-default-state {
-> -		pins = "gpio54";
-> -		function = "gpio";
-> -
-> -		input-enable;
-> -		bias-pull-down;
-> -		drive-strength = <2>;
-> -	};
->  };
->  
->  &uart6 {
-> @@ -543,8 +534,6 @@ &venus {
+> @@ -534,8 +534,6 @@ &venus {
 >  };
 >  
 >  &wcd9340 {
-> -	pinctrl-0 = <&wcd_intr_default>;
-> -	pinctrl-names = "default";
->  	clock-names = "extclk";
->  	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
+> -	clock-names = "extclk";
+> -	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
 >  	reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
+>  	vdd-buck-supply = <&vreg_s4a_1p8>;
+>  	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
 > diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> index f81619c8a3ba..1ceeea0885b9 100644
+> index 1ceeea0885b9..d9c4af06ab63 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
 > +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> @@ -616,14 +616,6 @@ sde_dsi_suspend: sde-dsi-suspend-state {
->  		drive-strength = <2>;
->  		bias-pull-down;
->  	};
-> -
-> -	wcd_intr_default: wcd-intr-default-state {
-> -		pins = "gpio54";
-> -		function = "gpio";
-> -		input-enable;
-> -		bias-pull-down;
-> -		drive-strength = <2>;
-> -	};
->  };
->  
->  &uart6 {
-> @@ -700,8 +692,6 @@ &venus {
+> @@ -692,8 +692,6 @@ &venus {
 >  };
 >  
 >  &wcd9340 {
-> -	pinctrl-0 = <&wcd_intr_default>;
-> -	pinctrl-names = "default";
->  	clock-names = "extclk";
->  	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
+> -	clock-names = "extclk";
+> -	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
 >  	reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
+>  	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
+>  	vdd-buck-supply = <&vreg_s4a_1p8>;
 > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index 5586c95aa1ff..f3dd0ff1d5c6 100644
+> index f3dd0ff1d5c6..5094e7e6dc48 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
 > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -628,15 +628,6 @@ i2c11_hid_active: i2c11-hid-active-state {
->  		drive-strength = <2>;
->  	};
->  
-> -	wcd_intr_default: wcd-intr-default-state {
-> -		pins = "gpio54";
-> -		function = "gpio";
-> -
-> -		input-enable;
-> -		bias-pull-down;
-> -		drive-strength = <2>;
-> -	};
-> -
->  	lid_pin_active: lid-pin-state {
->  		pins = "gpio124";
->  		function = "gpio";
-> @@ -747,8 +738,6 @@ &venus {
+> @@ -738,8 +738,6 @@ &venus {
 >  };
 >  
 >  &wcd9340 {
-> -	pinctrl-0 = <&wcd_intr_default>;
-> -	pinctrl-names = "default";
->  	clock-names = "extclk";
->  	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
+> -	clock-names = "extclk";
+> -	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
 >  	reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
+>  	vdd-buck-supply = <&vreg_s4a_1p8>;
+>  	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
 > diff --git a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-> index 40223704a2c7..fc9369eafd23 100644
+> index fc9369eafd23..65de8d595736 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
 > +++ b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-> @@ -552,15 +552,6 @@ pen_rst_l: pen-rst-l-state {
->  		 */
->  		output-high;
->  	};
-> -
-> -	wcd_intr_default: wcd-intr-default-state {
-> -		pins = "gpio54";
-> -		function = "gpio";
-> -
-> -		input-enable;
-> -		bias-pull-down;
-> -		drive-strength = <2>;
-> -	};
->  };
->  
->  &uart6 {
-> @@ -656,8 +647,6 @@ &venus {
+> @@ -647,8 +647,6 @@ &venus {
 >  };
 >  
 >  &wcd9340 {
-> -	pinctrl-0 = <&wcd_intr_default>;
-> -	pinctrl-names = "default";
->  	clock-names = "extclk";
->  	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
+> -	clock-names = "extclk";
+> -	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
 >  	reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
+>  	vdd-buck-supply = <&vreg_s4a_1p8>;
+>  	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
