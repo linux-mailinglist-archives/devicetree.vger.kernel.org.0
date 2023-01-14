@@ -2,134 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3140966A6EA
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 00:20:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C37B66A76F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 01:20:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbjAMXUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 18:20:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34788 "EHLO
+        id S229924AbjANAUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 19:20:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231238AbjAMXUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 18:20:18 -0500
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B778CBF3
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 15:20:12 -0800 (PST)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-1433ef3b61fso23895023fac.10
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 15:20:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=landley-net.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TQ9PrP3iNHpghVpkywhiMHcSFTwXN8kLEUSP7zNfGWk=;
-        b=HEeiDnUeOlaMmzrHg6LtTWNe2KIF6Q5d6PASMOjvpBnFNwlXnpxtBoyLsjdUSiFic5
-         Zy4GrupmECG1CN3m99XRInimzLkAyFlnAC1yFwr9ZV5WqZ8Mxia0axE41+SyDlpGZHOF
-         b9/hPmk9ZzrDZTerjRuPw9aOBuwmuFZgGCgGCyi5DNv5BOgrp6hpzWbx8PiSSS3PCS6S
-         UoJjpLq7r0mXx6nv8CL2PCVxH6W+Fc0fSdqCoguiOJxRwovXLajxMhMVOFQITRvWQd2L
-         +x8hdq/wHJdMhQD25h3cEnBEwX4srdIbxyBywCRXQlXO+4KVbgaam+X20emmeoxJCckb
-         5wPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TQ9PrP3iNHpghVpkywhiMHcSFTwXN8kLEUSP7zNfGWk=;
-        b=fcaeI+5scZdEFHsgwEX765RqRxeA0osSZg9pP4krckTVGaC6q2XJiLgNIPhVOrPsG5
-         XP+ava79zIs6JaYi6XuoZwL1StIG9uRVYU3VCWsRHrb4fpRg2YPRQNjagFOJ+FSIdAG7
-         WYeXJr9myXxoXtLiS63vwryAbDooNBMlaJ9/Yx+2+TkJtYpzj6LzMs4are7FkZVQlYsX
-         1b/FdYHRWOPo3fMA9Qmr4/von3yEymtEeVhF8L2A6xdcaOvPTiu3N7gKdNe5h4MVS39x
-         6cgxmEJeAC60d75+4ggGPlmgN6gtM5xuR4b0BUJO+n0powvUZHPdNhplHWY9AMTL/g/b
-         pmxQ==
-X-Gm-Message-State: AFqh2kqvqy40UugsH52UxHeBaiIX/w18bMYxDr7f6Nb6wVWXGmZBj9kw
-        rMUZmPkBr6kV/lcy7hKvGhNoSA==
-X-Google-Smtp-Source: AMrXdXu9HHEo/oiUtz2RMFCVU9bzsQZjZJ6cJq7QQE+EgrBS53y1RWYqF/4GpGuzhXIiUysKwMTRjQ==
-X-Received: by 2002:a05:6871:4090:b0:155:cb39:7325 with SMTP id kz16-20020a056871409000b00155cb397325mr16579350oab.6.1673652012126;
-        Fri, 13 Jan 2023 15:20:12 -0800 (PST)
-Received: from [192.168.86.224] ([136.62.38.22])
-        by smtp.gmail.com with ESMTPSA id z13-20020a056870738d00b0013ae39d0575sm11411907oam.15.2023.01.13.15.20.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Jan 2023 15:20:11 -0800 (PST)
-Message-ID: <38200b53-c743-4396-6603-7274f4a29c86@landley.net>
-Date:   Fri, 13 Jan 2023 17:32:20 -0600
+        with ESMTP id S229797AbjANAUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 19:20:42 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9DCD26F1;
+        Fri, 13 Jan 2023 16:20:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1402362384;
+        Sat, 14 Jan 2023 00:20:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 616B1C433D2;
+        Sat, 14 Jan 2023 00:20:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673655638;
+        bh=jB/n2oqoPZWrRVR1g4+7Zx4XohoKCQJBT0cq+l8bSDo=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=GUfA6jFoM/MJGbIJ5k+tLoWy/OgmbxwJ2hbtq9B0ykvd+RGR4biMoVJNVswg4T9hz
+         MdXE9Oz6wU4fK6/gKbAHb/kvmTayvq59oMkY61T6VIRQFUp5/xMa84vAUdn6IYpQ+N
+         nE9T6so/xcG2RXUaxwCVNZHk8Ct3SzOoMV21LnZp/k+U9d2vN8aOJf+NkmvAKsGssC
+         w+v20RbY/6myV9yyhVY810+Cr+PsqGMN4dwaSq3y1Dr3NuOnTnuF49qH/lu+PpU+iQ
+         VnoEFizNDLVE6ym7H24C+VAzcX7afIpUXGPQYAYmP95+5CmqiJ02GrCKsi2Yt9Gyeb
+         v+n8lVKn6Vr3A==
+Message-ID: <66131cea80d3a8a33e559f84fb808c6b.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: remove arch/sh
-Content-Language: en-US
-To:     John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Christoph Hellwig <hch@lst.de>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-sh@vger.kernel.org
-References: <20230113062339.1909087-1-hch@lst.de>
- <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
- <CAMuHMdUcnP6a9Ch5=_CMPq-io-YWK5pshkOT2nZmP1hvNcwBAg@mail.gmail.com>
- <142532fb-5997-bdc1-0811-a80ae33f4ba4@physik.fu-berlin.de>
- <6891afb6-4190-6a52-0319-745b3f138d97@landley.net>
- <fe09d811-e290-821d-ec8b-75936b6583c2@physik.fu-berlin.de>
-From:   Rob Landley <rob@landley.net>
-In-Reply-To: <fe09d811-e290-821d-ec8b-75936b6583c2@physik.fu-berlin.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230113142718.3038265-5-o.rempel@pengutronix.de>
+References: <20230113142718.3038265-1-o.rempel@pengutronix.de> <20230113142718.3038265-5-o.rempel@pengutronix.de>
+Subject: Re: [PATCH v1 04/20] ARM: imx6q: use of_clk_get_by_name() instead of_clk_get() to get ptp clock
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lee Jones <lee@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org
+To:     Abel Vesa <abelvesa@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Date:   Fri, 13 Jan 2023 16:15:53 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/13/23 13:05, John Paul Adrian Glaubitz wrote:
-> Hi Rob!
-> 
-> On 1/13/23 20:11, Rob Landley wrote:
->> There is definitely interest in this architecture. I'm aware Rich hasn't been
->> the most responsive maintainer. (I'm told he's on vacation with his family at
->> the moment, according to the text I got about this issue from the J-core
->> hardware guys in Japan.)
-> 
-> Well, maybe we can just give it a try together ...
+Quoting Oleksij Rempel (2023-01-13 06:27:02)
+> It is not clear from the code what clock should be taken. So, make sure it
+> is readable and no other clock will be taken by accident.
+>=20
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  arch/arm/mach-imx/mach-imx6q.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm/mach-imx/mach-imx6q.c b/arch/arm/mach-imx/mach-imx6=
+q.c
+> index 7f6200925752..4885d3dfcf7f 100644
+> --- a/arch/arm/mach-imx/mach-imx6q.c
+> +++ b/arch/arm/mach-imx/mach-imx6q.c
+> @@ -98,7 +98,7 @@ static void __init imx6q_1588_init(void)
+>         if (!IS_ERR(fec_enet_ref))
+>                 goto put_node;
+> =20
+> -       ptp_clk =3D of_clk_get(np, 2);
+> +       ptp_clk =3D of_clk_get_by_name(np, "ptp");
 
-Jeff Dionne said he'd make himself available to answer hardware questions. (He
-said he maintained some Linux ports 20 years ago, but isn't current with Linux
-plumbing. Last month he was digging through the guts of vxworks, and the project
-before that was some sort of BSD I think?)
-
-I _do_ maintain Linux patches, I just generally don't bother to repost them
-endlessly. Here's my "on top of 6.1" stack for example, each of which links to
-at least one time it was posted to linux-kernel:
-
-https://landley.net/toybox/downloads/binaries/mkroot/0.8.9/linux-patches/
-
->> The main reason we haven't converted everything to device tree is we only have
->> access to test hardware for a subset of the boards. Pruning the list of
->> supported boards and converting the rest to device tree might make sense. We can
->> always add/convert boards back later...
-> 
-> There is a patch by Yoshinori Sato which adds device tree support to SH. Maybe we
-> can revive it.
-
-The turtle board is device tree and has been since it was merged. The
-infrastructure is there, the question is converting over boards and testing
-them, or deciding to prune them. Did Sato-san convert many boards? (I'm not
-finding his patch via google...)
-
-> Adrian
-
-Rob
+The 'clocks' property in DTS should not be reordered. Order matters in
+the binding. This patch makes the code do a string comparison (or a
+few?) in the name of readability. Perhaps make a #define for '2' like
+CLOCKS_PTP_INDEX, or just don't change it because it ain't broke.
