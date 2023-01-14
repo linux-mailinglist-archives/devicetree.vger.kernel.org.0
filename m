@@ -2,89 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70D3966A8E5
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 04:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E1BF66A8EB
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 04:19:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230401AbjANDR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 22:17:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59082 "EHLO
+        id S229678AbjANDT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Jan 2023 22:19:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbjANDRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 22:17:24 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9E788DFF
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 19:17:23 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id q64so24202435pjq.4
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 19:17:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=0A3LH/nwMn8r1NCyi7+/nGqXnIFJRaHr97sf/yAmdCE=;
-        b=QqpY+hZyW1DDBWBWg5/oPtv6gGBOcM0PLVa9hPnpFSoK8BTc/dULIIorA43Qhxbcf7
-         W11ipHF2VP64P2PgysD03X516yvooRT9iJHNJUQrATR9zr3GuLHu3s1Eq6973f5KMVhe
-         zR1KMWDCCcs4l+iGP5/YDlZ0rqZ8lSYEd0sLE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0A3LH/nwMn8r1NCyi7+/nGqXnIFJRaHr97sf/yAmdCE=;
-        b=Fmwg6Ew7o2cg3wuvK9VHVE9e7o/5E+CjSwcjd/ye+zZ5I4ec18jKIR6iweZj2P2XXn
-         PRGB6ys9e9RZervesEBsGsPGPQ4s4FnxVBvPUmvBpwX/H0MU5tFA5+gv1Z6rjpL+Rniy
-         CpwpCCzfzYAYRHVixkqv6sj9W7TkpJG+ZCucXvS8HK9ssT17v6+8MpsfUG1Mpg/HR/C3
-         L4u8YK6EaTx2sJRrwvxRrHcj3EipMxhZkOfvUAl8iKjGIjnDzY77DpmXz7LVHB0liGs0
-         YGl0v/Gx6hm9/b4SpYmXYGiwHVjFT7aMWGTZSxMMFSMkjdSRVOOVL1qi0JsM4j1H4y3W
-         Q6ig==
-X-Gm-Message-State: AFqh2kolTVSHRp48TgBynQR5VnF1El3MybnN+OlLl5XTSISUR4scjJRh
-        FJVl0riwnbAcuTNEv+Om3pZbRQ==
-X-Google-Smtp-Source: AMrXdXvhH+i0VF5ClamjDQgAOYCnlDSG0m7J4onNfPA/yLw1/z2qIVAC4GFUS2AvK6wu3Eii2drmaw==
-X-Received: by 2002:a17:90a:9b0f:b0:219:672a:42db with SMTP id f15-20020a17090a9b0f00b00219672a42dbmr13534630pjp.19.1673666242437;
-        Fri, 13 Jan 2023 19:17:22 -0800 (PST)
-Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id o11-20020a17090a678b00b0022698aa22d9sm15035005pjj.31.2023.01.13.19.17.19
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 13 Jan 2023 19:17:20 -0800 (PST)
-Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
- support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Linux SPI List <linux-spi@vger.kernel.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
-        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
-        jonas.gorski@gmail.com, kursad.oney@broadcom.com, dregan@mail.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230106200809.330769-1-william.zhang@broadcom.com>
- <20230106200809.330769-3-william.zhang@broadcom.com>
- <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
- <5dfac2d7-3b4b-9ded-0dde-26b289c604d0@broadcom.com>
- <99b01e96-3b96-6692-c5e1-87db49295e6d@linaro.org>
- <49925933-aacc-4f0d-a1ca-e1bd45b05eee@broadcom.com>
- <b246a81f-e465-5e52-f0ce-65e0a82fc3e1@linaro.org>
- <32a464f8-6a4b-6777-9775-f17e990e0c6a@gmail.com>
- <71c2e796-f0fb-90cd-4599-13c9718f41d5@linaro.org>
- <31644849-dc69-ddfc-a6b6-6ffd37d64d2b@broadcom.com>
- <f0a50234-bc8c-09c4-e2c1-22cbeaba5c15@linaro.org>
- <e99a71b2-0b05-1a53-1c29-3778b49a3b86@broadcom.com>
- <0cc43891-405e-418f-01ee-845d680b3a24@linaro.org>
- <14a48b44-962e-1839-4fbb-1739ba8dbc35@broadcom.com>
- <f4356898-de35-9728-5395-baecb07c843f@linaro.org>
-From:   William Zhang <william.zhang@broadcom.com>
-Message-ID: <3c3955da-6b9f-c994-e345-03bcffa91473@broadcom.com>
-Date:   Fri, 13 Jan 2023 19:17:19 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.4.0
+        with ESMTP id S229536AbjANDTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 22:19:55 -0500
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE0AA892ED;
+        Fri, 13 Jan 2023 19:19:54 -0800 (PST)
+Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
+        by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30E2saBI030971;
+        Sat, 14 Jan 2023 03:19:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type : content-transfer-encoding; s=corp-2022-7-12;
+ bh=AulYsugT7122ZycNxv5XSVLA058ObqNcje95f1DxxLQ=;
+ b=mcZIRjQd9GtKpM81S77kt/0QbARGzNQY4AW2BL1Q3uPqvnt0mMbsZEYSNiaRXV0qybI4
+ cxp7Cawk2shDXyB/yVnZ0OkHUIyVS2dDQjaBg1iGn4VAY5eO+Tsn/LCpPkLC4eb4BDli
+ 1SpEdl5Gd0nVZYihzzGhbxvRHwFswfzj+3nryVemeIKKoNDSQ5TjbO7jhh1JipZUI+2k
+ 4pfPuqZjMzEwl8Kl8yzGqqvDS7YBLgj4q6IW5tfiX5gQTdkdyYdhLi6SA5LNCURlNRjy
+ jIKyyjxBQG+i0V0MSEWPKQUA508nPQ4dfWL0YmO9fJCRSonm6cfzqG/W5avD4MEAm6HL fg== 
+Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta03.appoci.oracle.com [130.35.103.27])
+        by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3n3m0tg0d9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Sat, 14 Jan 2023 03:19:34 +0000
+Received: from pps.filterd (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+        by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.5/8.17.1.5) with ESMTP id 30E2mjqS005810;
+        Sat, 14 Jan 2023 03:19:33 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3n3kxgrjvd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Sat, 14 Jan 2023 03:19:33 +0000
+Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30E3JVov032298;
+        Sat, 14 Jan 2023 03:19:33 GMT
+Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
+        by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 3n3kxgrjun-4;
+        Sat, 14 Jan 2023 03:19:32 +0000
+From:   "Martin K. Petersen" <martin.petersen@oracle.com>
+To:     jejb@linux.ibm.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
+        Zhe Wang <zhe.wang1@unisoc.com>
+Cc:     "Martin K . Petersen" <martin.petersen@oracle.com>,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        orsonzhai@gmail.com, yuelin.tang@unisoc.com,
+        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com,
+        zhewang116@gmail.com
+Subject: Re: [PATCH v4 0/2] Add support for Unisoc UFS host controller
+Date:   Fri, 13 Jan 2023 22:19:28 -0500
+Message-Id: <167366567312.3069740.3869848755641832363.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221209124121.20306-1-zhe.wang1@unisoc.com>
+References: <20221209124121.20306-1-zhe.wang1@unisoc.com>
 MIME-Version: 1.0
-In-Reply-To: <f4356898-de35-9728-5395-baecb07c843f@linaro.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000e1c63705f230c988"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-13_12,2023-01-13_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 phishscore=0
+ bulkscore=0 spamscore=0 malwarescore=0 mlxscore=0 adultscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301140021
+X-Proofpoint-GUID: Owth98HSzpecb2ko9z_lZMXexbihHYwj
+X-Proofpoint-ORIG-GUID: Owth98HSzpecb2ko9z_lZMXexbihHYwj
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,144 +80,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000e1c63705f230c988
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+On Fri, 09 Dec 2022 20:41:19 +0800, Zhe Wang wrote:
 
+> V3 -> V4:
+>  - Added "Reviewed-by" to the dt-bindings patch
+>  - Addressed Alim's comments
+> 
+> V2 -> V3:
+>  - Modify the clock and reset names to more appropriate names
+>  - Use 'assigned-clock-parents' to place parent clock of 'core'
+>  - Do some format order modification
+> 
+> [...]
 
+Applied to 6.3/scsi-queue, thanks!
 
-On 01/12/2023 11:41 PM, Krzysztof Kozlowski wrote:
-> On 12/01/2023 20:50, William Zhang wrote:
->>>> No as we are adding chip model specific info here.  The existing driver
->>>> spi-bcm63xx-hsspi.c only binds to brcm,bcm6328-hsspi. This driver
->>>> supports all the chips with rev1.0 controller so I am using this 6328
->>>> string for other chips with v1.0 in the dts patch, which is not ideal.
->>>
->>> Why? This is perfectly ideal and usual case. Why changing it?
->>>
->>>> Now I have to add more compatible to this driver and for each new chip
->>>> with 1.0 in the future if any.
->>>
->>> Why you cannot use compatibility with older chipset?
->>>
->> IMHO it is really confusing that we have all the SoCs but have to bind
->> to an antique SoC's spi controller compatible and people may think it is
->> a mistake or typo when they don't know they are actually the same.
-> 
-> I am sorry, this is ridiculous argument. It's like saying - people
-> cannot understand what they are reading, therefore we need to present
-> them obfuscated information so they will think something else than their
-> minds created...
-> 
-This is clearly not to obfuscate. Rather it provide more accurate info 
-about the binding.  Is it a problem to have the correct and precise info 
-to make it easier for people to understand?
+[1/2] dt-bindings: ufs: Add document for Unisoc UFS host controller
+      https://git.kernel.org/mkp/scsi/c/aa67971b2736
+[2/2] scsi: ufs-unisoc: Add support for Unisoc UFS host controller
+      https://git.kernel.org/mkp/scsi/c/df7320bac37e
 
->> I
->> know there are usage like that but when we have clear knowledge of the
->> IP block with rev info, I think it is much better to have a precise SoC
-> 
-> No, it's not particularly better and you were questioning it just before...
-> 
-Better than using the very old specific chip model number to bind all 
-other new chips while I have a chance to update the doc now. I guess we 
-have to agree to disagree. Enough discussion and I will send out v2 next 
-week.  Thanks for the review.
-
->> model number and a general revision info in the compatible. As you know
->> they are many usage of IP rev info in the compatible too.
->> brcm,bcm6328-hsspi will stay so it does not break any existing dts
->> reference to that.
-> 
-> Anyway your ship sailed - you already have bindings using SoC  versions...
-> 
->>
->> Anyway if you still does not like this idea, I will drop the rev info
->> and you have it your way.
-> 
-> Best regards,
-> Krzysztof
-> 
-
---000000000000e1c63705f230c988
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIKBKwd2poC1z/mqu7QbA50jBJjvE
-LndJmjSIqYuJ8mixMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
-MDExNDAzMTcyMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQB1Tkm9hojtRn5lQivK7HZHl0ZbTmrnxp1kUHf+qszo1z4M
-Ub8gvDe9g5sYQffADoMRcV1FOmxunaVaeas/rOxzXceaU+xTjV9pSaFU/e56f2Mm9AKOIJpEtMb4
-EnyWwfIs9HxovvG2cm6jTUk0zUxCFF+va4KA5jJMOz8aAnc9GVyAx7rR6rWzln5SQC5uByB/ebru
-UkOqu9F66vqjPhmJoK1WVz4L2keHKpqYvQcje97NQgcLdXyk1iaw4bSaJ+keGQP/QlkusyfsR5Pl
-hCPUPlmNOOI1ZodtOLJxiIxYRX6MtyNZK6oPcd43YMxgVPd3geKq+525a5GH8PdoJ8Zi
---000000000000e1c63705f230c988--
+-- 
+Martin K. Petersen	Oracle Linux Engineering
