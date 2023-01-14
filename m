@@ -2,166 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEDFD66AE30
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 22:29:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92A2466AE57
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 23:49:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229596AbjANV3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Jan 2023 16:29:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53430 "EHLO
+        id S230367AbjANWtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Jan 2023 17:49:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbjANV3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 16:29:37 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91A767ABE;
-        Sat, 14 Jan 2023 13:29:36 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C17FE4D4;
-        Sat, 14 Jan 2023 22:29:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673731774;
-        bh=8YockS1a/nL6zZeUd8QgQofn11d6xLguAesidUhrRqw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SzNC+0QFERQZ9Al7qreW7CaemBjFs9+oJHRu3MSujJgQvSKXZYFpiAjo8N0aIbSR0
-         avxQCSWkV80c7Lce6csMUu8jUqT3elDZTMWnvTBTbKKUCCgYD9qYX02eRZmtEBQAl+
-         z1QyonD7r01gveaNak9sTnC3ytWll9N8iqYeKwiU=
-Date:   Sat, 14 Jan 2023 23:29:34 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 00/16] media: imx-pxp: add support for i.MX7D
-Message-ID: <Y8Mevsi92DreZIBB@pendragon.ideasonboard.com>
-References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
+        with ESMTP id S230118AbjANWtM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 17:49:12 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C25D9EF4
+        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 14:49:10 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id z4-20020a17090a170400b00226d331390cso27782862pjd.5
+        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 14:49:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=schmorgal.com; s=google;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wpdT81oE9Luc22ng6D3n2Fh9oWzC7bAwIxGmDPzpTME=;
+        b=RIhZvGGukKsgLBvlgzDnvRpDDOV9kbUsxK/u4WdFJZyDo8FC1tDHJGipwCvcfwZ0Zo
+         5TUiajCKKpi4bOJVoI0LyOSLJqcaguE4rew59Qj+sG4BUeXwtbgSFedNF2IMwgu2skSE
+         bmpqBrYrsbZViPZsZibALzVaHJ3HB4zeTwMdc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wpdT81oE9Luc22ng6D3n2Fh9oWzC7bAwIxGmDPzpTME=;
+        b=NHWyWI11snHQhOgFJ/DfYeeE28FHAf7E4f0tVtcUTbi/8Kt72lUOw0jEaXkPzcvmwN
+         n2Edn5CVdEEWZQCh5MtDw7kshuCezEgnMztLAddGJab9Pq0oIIZdpe3oXR74I/pR6iUW
+         AwInHwE0HvLS99G3PhtdMY6d6+GhvBSg/yYdnfgV5jm4a7hIXcVvkMRwixsa83ly3XrJ
+         BlAc+uA5VsCYu+Ub9FzZpVbOt7Nerw+fic5lSAlHH8S7usSkVpGGVSsMe5713JbOnbCh
+         fsNRQv4Hhn4nMoISWlZrsWlTy4/L6iQ0lzcBp4aEFQUWVBk1r7nPEPtSq/ni4SyNCRbQ
+         b+HA==
+X-Gm-Message-State: AFqh2koxlYuUQd6sBAGydasR4iBrONoD1NCDRZ4NE7GBhFlde/quNu8F
+        nwgioABBsPg1xO95eEcKKY16PA==
+X-Google-Smtp-Source: AMrXdXvMxeNqKjvwh9hSK83hDR77a2ulMjnaDMTjZR7ZK+wD/xm+yHgwIwnRPcGb3pVaM3jqFQ2VXg==
+X-Received: by 2002:a17:90b:3d8f:b0:229:1640:1879 with SMTP id pq15-20020a17090b3d8f00b0022916401879mr9237141pjb.40.1673736549730;
+        Sat, 14 Jan 2023 14:49:09 -0800 (PST)
+Received: from [192.168.1.33] ([192.183.212.197])
+        by smtp.googlemail.com with ESMTPSA id d63-20020a17090a6f4500b00226dd47fc23sm3092122pjk.14.2023.01.14.14.49.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Jan 2023 14:49:09 -0800 (PST)
+Message-ID: <b5867cb5-aeed-b081-543f-fd611c3c84c9@schmorgal.com>
+Date:   Sat, 14 Jan 2023 14:49:07 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To:     Dan Carpenter <error27@gmail.com>, oe-kbuild@lists.linux.dev,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc:     lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+References: <202301140445.zXxR25qN-lkp@intel.com>
+From:   Doug Brown <doug@schmorgal.com>
+Subject: Re: [PATCH v4 5/8] mmc: sdhci-pxav2: add optional core clock
+In-Reply-To: <202301140445.zXxR25qN-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+Hi Dan,
 
-The whole series has been reviewed, and only the DT bindings need a
-small change. If you post a v2.1 of just that patch (--in-reply-to v2
-and CC me, or I may not notice quickly), I can take the whole series and
-get it merged in v6.3.
+On 1/14/2023 12:01 AM, Dan Carpenter wrote:
+> Hi Doug,
+> 
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Doug-Brown/mmc-sdhci-pxav2-add-initial-support-for-PXA168-V1-controller/20230112-102921
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> patch link:    https://lore.kernel.org/r/20230112022416.8474-6-doug%40schmorgal.com
+> patch subject: [PATCH v4 5/8] mmc: sdhci-pxav2: add optional core clock
+> config: riscv-randconfig-m041-20230113
+> compiler: riscv64-linux-gcc (GCC) 12.1.0
+> 
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Reported-by: Dan Carpenter <error27@gmail.com>
+> 
+> smatch warnings:
+> drivers/mmc/host/sdhci-pxav2.c:220 sdhci_pxav2_probe() warn: missing error code 'ret'
 
-On Fri, Jan 13, 2023 at 10:54:07AM +0100, Michael Tretter wrote:
-> This is v2 of the series to add support for the PXP found on the i.MX7D to the
-> imx-pxp driver.
-> 
-> The PXP on the i.MX7D has a few differences compared to the one on the
-> i.MX6ULL. Especially, it has more processing blocks and slightly different
-> multiplexers to route the data between the blocks. Therefore, the driver must
-> configure a different data path depending on the platform.
-> 
-> While the PXP has a version register, the reported version is the same on the
-> i.MX6ULL and the i.MX7D. Therefore, we cannot use the version register to
-> change the driver behavior, but have to use the device tree compatible. The
-> driver still prints the found version to the log to help bringing up the PXP
-> on further platforms.
-> 
-> The patches are inspired by some earlier patches [0] by Laurent to add PXP
-> support to the i.MX7d. Compared to the earlier patches, these patches add
-> different behavior depending on the platform. Furthermore, the patches disable
-> only the LUT block, but keep the rotator block enabled, as it may now be
-> configured via the V4L2 rotate control.
-> 
-> In v2, I included Laurent's patch series [1], which was based on this series
-> anyway and added regmap support.
-> 
-> Patch 1 converts the dt-binding to yaml.
-> 
-> Patches 2 to 5 cleanup and refactor the driver in preparation of handling
-> different PXP versions.
-> 
-> Patches 6 and 7 add the handling of different platforms and the i.MX7d
-> specific configuration.
-> 
-> Patch 8 adds the device tree node for the PXP to the i.MX7d device tree.
-> 
-> Patches 9 to 15 are the cleanup and enhancement patches to add media
-> controller support, implement enum_framesizes, and add pxp_read/pxp_write
-> helpers.
-> 
-> Patch 16 adds regmap support to the driver.
-> 
-> Michael
-> 
-> [0] https://lore.kernel.org/linux-media/20200510223100.11641-1-laurent.pinchart@ideasonboard.com/
-> [1] https://lore.kernel.org/linux-media/20230112172507.30579-1-laurent.pinchart@ideasonboard.com
-> 
-> ---
-> 
-> Changelog
-> 
-> v2:
-> 
-> - fix device tree binding
-> - reduce log level of PXP version to debug
-> - drop fallback for missing pdata
-> - add cleanup and enhancement patches to series
-> - convert driver to regmap
-> 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> To: linux-media@vger.kernel.org
-> To: devicetree@vger.kernel.org
-> To: Philipp Zabel <p.zabel@pengutronix.de>
-> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: kernel@pengutronix.de
-> Cc: linux-imx@nxp.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: Michael Tretter <m.tretter@pengutronix.de>
-> 
-> ---
-> Laurent Pinchart (7):
->       media: imx-pxp: Sort headers alphabetically
->       media: imx-pxp: Don't set bus_info manually in .querycap()
->       media: imx-pxp: Add media controller support
->       media: imx-pxp: Pass pixel format value to find_format()
->       media: imx-pxp: Implement frame size enumeration
->       media: imx-pxp: Introduce pxp_read() and pxp_write() wrappers
->       media: imx-pxp: Use non-threaded IRQ
-> 
-> Michael Tretter (9):
->       dt-bindings: media: fsl-pxp: convert to yaml
->       media: imx-pxp: detect PXP version
->       media: imx-pxp: extract helper function to setup data path
->       media: imx-pxp: explicitly disable unused blocks
->       media: imx-pxp: disable LUT block
->       media: imx-pxp: make data_path_ctrl0 platform dependent
->       media: imx-pxp: add support for i.MX7D
->       ARM: dts: imx7d: add node for PXP
->       media: imx-pxp: convert to regmap
-> 
->  .../devicetree/bindings/media/fsl,imx6ull-pxp.yaml |  82 +++++
->  .../devicetree/bindings/media/fsl-pxp.txt          |  26 --
->  arch/arm/boot/dts/imx7d.dtsi                       |   9 +
->  drivers/media/platform/nxp/imx-pxp.c               | 359 +++++++++++++++------
->  4 files changed, 355 insertions(+), 121 deletions(-)
-> ---
-> base-commit: b7bfaa761d760e72a969d116517eaa12e404c262
-> change-id: 20230112-imx-pxp-073008b3c857
+Thanks for passing this on. I definitely forgot an assignment to ret.
+Since this is correcting an error in my patch that hasn't been accepted
+yet, is it safe to assume I should omit those Reported-by tags from the
+next version of my patch, since they don't apply to the patch itself?
 
--- 
-Regards,
-
-Laurent Pinchart
+> 
+> vim +/ret +220 drivers/mmc/host/sdhci-pxav2.c
+> 
+> c3be1efd41a97f Bill Pemberton        2012-11-19  185  static int sdhci_pxav2_probe(struct platform_device *pdev)
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  186  {
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  187  	struct sdhci_pltfm_host *pltfm_host;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  188  	struct sdhci_pxa_platdata *pdata = pdev->dev.platform_data;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  189  	struct device *dev = &pdev->dev;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  190  	struct sdhci_host *host = NULL;
+> 568536d7eb1969 Doug Brown            2023-01-11  191  	const struct sdhci_pxa_variant *variant;
+> b650352dd3df36 Chris Ball            2012-04-10  192
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  193  	int ret;
+> d8981da5ec7505 Doug Brown            2023-01-11  194  	struct clk *clk, *clk_core;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  195
+> 0e748234293f5f Christian Daudt       2013-05-29  196  	host = sdhci_pltfm_init(pdev, NULL, 0);
+> 6a686c31324c9e Sebastian Hesselbarth 2014-10-21  197  	if (IS_ERR(host))
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  198  		return PTR_ERR(host);
+> 6a686c31324c9e Sebastian Hesselbarth 2014-10-21  199
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  200  	pltfm_host = sdhci_priv(host);
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  201
+> edf4ccd94bbef1 Doug Brown            2023-01-11  202  	clk = devm_clk_get(dev, "io");
+> edf4ccd94bbef1 Doug Brown            2023-01-11  203  	if (IS_ERR(clk) && PTR_ERR(clk) != -EPROBE_DEFER)
+> edf4ccd94bbef1 Doug Brown            2023-01-11  204  		clk = devm_clk_get(dev, NULL);
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  205  	if (IS_ERR(clk)) {
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  206  		ret = PTR_ERR(clk);
+> edf4ccd94bbef1 Doug Brown            2023-01-11  207  		dev_err_probe(dev, ret, "failed to get io clock\n");
+> 3fd1d86f03cbcc Masahiro Yamada       2017-08-23  208  		goto free;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  209  	}
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  210  	pltfm_host->clk = clk;
+> 21b22284619bbb Alexey Khoroshilov    2017-02-11  211  	ret = clk_prepare_enable(clk);
+> 21b22284619bbb Alexey Khoroshilov    2017-02-11  212  	if (ret) {
+> edf4ccd94bbef1 Doug Brown            2023-01-11  213  		dev_err(dev, "failed to enable io clock\n");
+> 3fd1d86f03cbcc Masahiro Yamada       2017-08-23  214  		goto free;
+> 21b22284619bbb Alexey Khoroshilov    2017-02-11  215  	}
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  216
+> d8981da5ec7505 Doug Brown            2023-01-11  217  	clk_core = devm_clk_get_optional_enabled(dev, "core");
+> d8981da5ec7505 Doug Brown            2023-01-11  218  	if (IS_ERR(clk_core)) {
+> d8981da5ec7505 Doug Brown            2023-01-11  219  		dev_err_probe(dev, PTR_ERR(clk_core), "failed to enable core clock\n");
+> d8981da5ec7505 Doug Brown            2023-01-11 @220  		goto disable_clk;
+> 
+> ret = PTR_ERR(clk_core);
+> 
+> d8981da5ec7505 Doug Brown            2023-01-11  221  	}
+> d8981da5ec7505 Doug Brown            2023-01-11  222
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  223  	host->quirks = SDHCI_QUIRK_BROKEN_ADMA
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  224  		| SDHCI_QUIRK_BROKEN_TIMEOUT_VAL
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  225  		| SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  226
+> 568536d7eb1969 Doug Brown            2023-01-11  227  	variant = of_device_get_match_data(dev);
+> 568536d7eb1969 Doug Brown            2023-01-11  228  	if (variant)
+> b650352dd3df36 Chris Ball            2012-04-10  229  		pdata = pxav2_get_mmc_pdata(dev);
+> 568536d7eb1969 Doug Brown            2023-01-11  230  	else
+> 568536d7eb1969 Doug Brown            2023-01-11  231  		variant = &pxav2_variant;
+> 568536d7eb1969 Doug Brown            2023-01-11  232
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  233  	if (pdata) {
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  234  		if (pdata->flags & PXA_FLAG_CARD_PERMANENT) {
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  235  			/* on-chip device */
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  236  			host->quirks |= SDHCI_QUIRK_BROKEN_CARD_DETECTION;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  237  			host->mmc->caps |= MMC_CAP_NONREMOVABLE;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  238  		}
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  239
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  240  		/* If slot design supports 8 bit data, indicate this to MMC. */
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  241  		if (pdata->flags & PXA_FLAG_SD_8_BIT_CAPABLE_SLOT)
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  242  			host->mmc->caps |= MMC_CAP_8_BIT_DATA;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  243
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  244  		if (pdata->quirks)
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  245  			host->quirks |= pdata->quirks;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  246  		if (pdata->host_caps)
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  247  			host->mmc->caps |= pdata->host_caps;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  248  		if (pdata->pm_caps)
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  249  			host->mmc->pm_caps |= pdata->pm_caps;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  250  	}
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  251
+> 568536d7eb1969 Doug Brown            2023-01-11  252  	host->quirks |= variant->extra_quirks;
+> 568536d7eb1969 Doug Brown            2023-01-11  253  	host->ops = variant->ops;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  254
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  255  	ret = sdhci_add_host(host);
+> fb8617e1ee4d40 Jisheng Zhang         2018-05-25  256  	if (ret)
+> 3fd1d86f03cbcc Masahiro Yamada       2017-08-23  257  		goto disable_clk;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  258
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  259  	return 0;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  260
+> 3fd1d86f03cbcc Masahiro Yamada       2017-08-23  261  disable_clk:
+> 164378efe7612a Chao Xie              2012-07-31  262  	clk_disable_unprepare(clk);
+> 3fd1d86f03cbcc Masahiro Yamada       2017-08-23  263  free:
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  264  	sdhci_pltfm_free(pdev);
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  265  	return ret;
+> 9f5d71e4a78a02 Zhangfei Gao          2011-06-08  266  }
+> 
