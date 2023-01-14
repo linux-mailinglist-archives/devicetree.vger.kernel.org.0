@@ -2,208 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA15C66AC7F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 17:15:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A05A666ACEF
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 18:17:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbjANQPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Jan 2023 11:15:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53134 "EHLO
+        id S229972AbjANRRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Jan 2023 12:17:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230095AbjANQPJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 11:15:09 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C69193E2;
-        Sat, 14 Jan 2023 08:15:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BE021B80927;
-        Sat, 14 Jan 2023 16:15:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C809CC433EF;
-        Sat, 14 Jan 2023 16:15:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673712904;
-        bh=1onBvZ37BqCGFzArmhBQuOyLEAPKwdxBLbeO+5RsKO4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=XK+Dn+j5HQ4ca2WN1zwqnb4Q810WDEvmNLtKecGVTaYhnPehJYYfnuMwoXIh4k477
-         tdQtO7FM4LnDnMKOktFjGpItYWzoogYhJgR9SAo1exOcTL7lYef7XNgFaq7kLtMOnr
-         hDssJ1ezAJtKQxS4DJtZIAkJQbMgL+jPOT2V6e7DGslnfTiUUH/Z3h/2Ml/uUDYvgH
-         bpKEHLHVOswwFfVr5KJgFgOv7R+tfeciEu2f4zEujStDCKZzCA2Ff31VGepZ2pZnze
-         lguh1HcWRfkin3DaRlAOMBVSqhPdGecNhaRMTihiMKoi3Iu+h1PyBL7a7uEfyEvKps
-         mT3z8kbGTgFKw==
-Date:   Sat, 14 Jan 2023 16:28:41 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     hvilleneuve@dimonoff.com, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] iio: adc: ti-ads7924: add Texas Instruments
- ADS7924 driver
-Message-ID: <20230114162841.41358640@jic23-huawei>
-In-Reply-To: <20230113194959.3276433-2-hugo@hugovil.com>
-References: <20230113194959.3276433-1-hugo@hugovil.com>
-        <20230113194959.3276433-2-hugo@hugovil.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+        with ESMTP id S229969AbjANRRN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 12:17:13 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CCCEB745;
+        Sat, 14 Jan 2023 09:17:12 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 295BC32005BC;
+        Sat, 14 Jan 2023 12:17:08 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Sat, 14 Jan 2023 12:17:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm1; t=1673716627; x=
+        1673803027; bh=dmv4ZW2RwPvwVF0AI49ZY16g/43x6QFqBEzDKnk951c=; b=X
+        YFU2mVOdpocGPguQe811pw7iJ+MLOCRxXsLtYdfa5bSnS1TTPIFF2OOdvPUx5tZV
+        s69uPNHu/EFMVCnI1dkjXfGlvgOav6Ke46RQ6f1DYRPktB5SFdnTV4leLJnFWgMI
+        mSXQCHkvuPY/HV2BiG8qJ3dOP2VjydqK5NpIDDfI6NH57iXwrbdhXj6Q2j/u11+f
+        W+n+vJHwJsc6UhdCpkRe1O3nnb4O4bkKiO6/x+/rPPwesX5FTg43b/xkl4EP4yEV
+        LUM6ly86fxp7mIoKb31l9/tR2W0MPqXWApFImW9wtL0M3/jN874d4/WWnYejO39y
+        7gPf5HAQVz4NDtDCwiR2A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1673716627; x=
+        1673803027; bh=dmv4ZW2RwPvwVF0AI49ZY16g/43x6QFqBEzDKnk951c=; b=C
+        Vw+BLjwDPfydH4Vf7Ga++V/AkGeEIWU27X07vuIroUYe4+sE7xSlJyEl5dbLYHkL
+        ENB32gs2VpjVQCTujETQJAKIJjJSlCkbPUFNWCHns7CvRfCxWc0nVmzzSeytRmxd
+        VyyjBgjSKrLITMfstW4EdVuHEePtlzVYKThfUldXHaNwDsHLudJV87M2ZPGzaWiG
+        zfCq/LKQ9VwtQ6AC1vw+8BODsfaflSYJLjZyT3u/HCdW0yXxZBcR6uj5if52u9yM
+        cujq0kCz6Gx1Ln8WKrVXKewk5jzFnEEhc+0dN277dtg6sa0UyHHe2iCbivtjw1JV
+        YRplmSpZfee2ijfUnfK8A==
+X-ME-Sender: <xms:kuPCYwEntTza7b5Hg7ZqzJGaVzvGQ13yujXUDLA2mWg5gOeLFT11EA>
+    <xme:kuPCY5WdDrX-A46fWH8cuTpuhbpSOZwwqDIcJPWqpB5egNK2vIo1XfFsW-iFYqzXf
+    u09dAC4UKUUbgCVeA>
+X-ME-Received: <xmr:kuPCY6JOiav7X-A64h6dJa8zZWi-cRZoidaLH-wU_rVXDAvwc2qUsrgmSO6vmDm7dLE-uGSeu_vLozBqEvvS3UZNQkQyxnRm45nPBLPa_UGMhqadvMipcIAdzQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddttddgleekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfvfevfhfhufgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpeehtedtfeegueduledvffeljeehjeeuleduudeivdekffegteeu
+    vedvledvteefjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrh
+    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhl
+    rghnugdrohhrgh
+X-ME-Proxy: <xmx:kuPCYyFzV6Q9sO7d8ygrs4K51tZIVcIGA9eSpyR-9DTT7BrsJDS76w>
+    <xmx:kuPCY2VvW4eT-sYf0V4PnAdBoAPY8jGla9gWo_12873x73Bi_mJFyg>
+    <xmx:kuPCY1PIBZBm0XOUEaJWeZZxMtUFUQxAQuH6ugY-H60cJ2_AZjDNgA>
+    <xmx:k-PCY9OVOsEUuHvY9xjDc1MgvMMNko7upbISd6klGiyZSScTr0NBNw>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 14 Jan 2023 12:17:06 -0500 (EST)
+Message-ID: <9a36551c-225c-137c-9376-ad7306c7f3d0@sholland.org>
+Date:   Sat, 14 Jan 2023 11:17:06 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To:     Joerg Roedel <joro@8bytes.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, iommu@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>
+References: <20230103010903.11181-1-samuel@sholland.org>
+ <20230103010903.11181-7-samuel@sholland.org> <Y8F6NxYpJELbvogC@8bytes.org>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 6/6] riscv: dts: allwinner: d1: Add the IOMMU node
+In-Reply-To: <Y8F6NxYpJELbvogC@8bytes.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Jan 2023 14:49:58 -0500
-Hugo Villeneuve <hugo@hugovil.com> wrote:
+Hi Joerg,
 
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On 1/13/23 09:35, Joerg Roedel wrote:
+> On Mon, Jan 02, 2023 at 07:09:03PM -0600, Samuel Holland wrote:
+>>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 10 ++++++++++
 > 
-> The Texas Instruments ADS7924 is a 4 channels, 12-bit analog to
-> digital converter (ADC) with an I2C interface.
-> 
-> Datasheet: https://www.ti.com/lit/gpn/ads7924
+> This file does not exist in v6.2-rc3, what tree ist this patch-set based
+> on?
 
-This counts as a normal tag, so there shouldn't be blank line between
-it and the SOB.
+The D1/D1s/T113 devicetree is added by this series[1], which will be
+merged through the sunxi -> soc tree. That patch is included to show how
+the new compatible string is used, and that the driver changes have been
+tested. You can ignore it when merging the binding/driver changes. The
+rest of the series should apply cleanly to v6.2-rc3.
 
-A few other small things inline noticed on this read through.
-I can fix these up whilst applying if nothing else comes up for v3
-and DT binding reviewers are happy.  If you are doing a v4 for
-other reasons, please address these comments in that.
+Regards,
+Samuel
 
-Jonathan
-
-
-
-> 
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-...
-> diff --git a/drivers/iio/adc/ti-ads7924.c b/drivers/iio/adc/ti-ads7924.c
-> new file mode 100644
-> index 000000000000..c24fae4ef8e0
-> --- /dev/null
-> +++ b/drivers/iio/adc/ti-ads7924.c
-> @@ -0,0 +1,474 @@
-
-...
-
-> +static int ads7924_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan, int *val,
-> +			    int *val2, long mask)
-> +{
-> +	int ret, vref_uv;
-> +	struct ads7924_data *data = iio_priv(indio_dev);
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		mutex_lock(&data->lock);
-> +		ret = ads7924_get_adc_result(data, chan, val);
-> +		mutex_unlock(&data->lock);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		vref_uv = regulator_get_voltage(data->vref_reg);
-> +		if (vref_uv < 0)
-> +			return -EINVAL;
-
-Better to return the error value from regulator_get_voltage() rather
-than replace it with -EINVAL.
-
-> +
-> +		*val =  vref_uv / 1000; /* Convert reg voltage to mV */
-> +		*val2 = ADS7924_BITS;
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct iio_info ads7924_info = {
-> +	.read_raw = ads7924_read_raw,
-> +};
-> +
-> +static int ads7924_get_channels_config(struct i2c_client *client,
-> +				       struct iio_dev *indio_dev)
-> +{
-> +	struct ads7924_data *priv = iio_priv(indio_dev);
-> +	struct device *dev = priv->dev;
-> +	struct fwnode_handle *node;
-> +	int num_channels = 0;
-> +
-> +	device_for_each_child_node(dev, node) {
-> +		u32 pval;
-> +		unsigned int channel;
-> +
-> +		if (fwnode_property_read_u32(node, "reg", &pval)) {
-> +			dev_err(dev, "invalid reg on %pfw\n", node);
-> +			continue;
-> +		}
-> +
-> +		channel = pval;
-> +		if (channel >= ADS7924_CHANNELS) {
-> +			dev_err(dev, "invalid channel index %d on %pfw\n",
-> +				channel, node);
-> +			continue;
-> +		}
-> +
-> +		num_channels++;
-> +	}
-> +
-> +	if (num_channels <= 0)
-
-How would it be less than 0?  if (!num_channels) works fine I think.
-
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ads7924_set_conv_mode(struct ads7924_data *data, int mode)
-> +{
-> +	int ret;
-> +	unsigned int mode_field;
-> +	struct device *dev = data->dev;
-> +
-> +	/*
-> +	 * When switching between modes, be sure to first select the Awake mode
-> +	 * and then switch to the desired mode. This procedure ensures the
-> +	 * internal control logic is properly synchronized.
-> +	 */
-> +	if (mode != ADS7924_MODECNTRL_IDLE) {
-> +		mode_field = FIELD_PREP(ADS7924_MODECNTRL_MODE_MASK,
-> +					ADS7924_MODECNTRL_AWAKE);
-> +
-> +		ret = regmap_update_bits(data->regmap, ADS7924_MODECNTRL_REG,
-> +					 ADS7924_MODECNTRL_MODE_MASK,
-> +					 mode_field);
-> +		if (ret) {
-> +			dev_warn(dev, "failed to set awake mode (%pe)\n",
-> +				 ERR_PTR(ret));
-
-As below.
-
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	mode_field = FIELD_PREP(ADS7924_MODECNTRL_MODE_MASK, mode);
-> +
-> +	ret = regmap_update_bits(data->regmap, ADS7924_MODECNTRL_REG,
-> +				 ADS7924_MODECNTRL_MODE_MASK, mode_field);
-> +	if (ret)
-> +		dev_warn(dev, "failed to set mode %d (%pe)\n", mode,
-> +			 ERR_PTR(ret));
-
-Why warning? Seems like a fairly critical error to me.
-dev_err() more appropriate perhaps.
-
-> +
-> +	return ret;
-> +}
-> +
+[1]:
+https://lore.kernel.org/linux-sunxi/20221231233851.24923-1-samuel@sholland.org/
 
