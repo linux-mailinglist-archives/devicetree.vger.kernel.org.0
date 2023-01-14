@@ -2,468 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F16666A9B3
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 07:41:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A9366AA05
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 09:02:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbjANGlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Jan 2023 01:41:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42178 "EHLO
+        id S229455AbjANICM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Jan 2023 03:02:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbjANGkx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 01:40:53 -0500
-Received: from out203-205-221-155.mail.qq.com (out203-205-221-155.mail.qq.com [203.205.221.155])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E154C469B
-        for <devicetree@vger.kernel.org>; Fri, 13 Jan 2023 22:40:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
-        s=s201512; t=1673678450;
-        bh=LoHcNcNBm454Xb58IODkRejrbBSItfWpQRmpyrOreb8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=de8l7fRoBa3PImxeM8quHveyILpdRvw1fzQ50sb1ARrL1FLr0lrSgL1nm13fpFRqn
-         e1xjSRoPa78AqKi7sawJEqEDvEno0UgVBXz/32aBHUIXvEOopVXkwW3FrQrSMO0e00
-         7F7xnwHVXXU7ZhxjpmG53T49zjSurnQSduau6j7Q=
-Received: from localhost.localdomain ([111.60.247.106])
-        by newxmesmtplogicsvrsza12-0.qq.com (NewEsmtp) with SMTP
-        id 9D611E2E; Sat, 14 Jan 2023 14:39:22 +0800
-X-QQ-mid: xmsmtpt1673678377td2ciffeo
-Message-ID: <tencent_AB776DFEB1B993E8B3F0BD5A4BF420600407@qq.com>
-X-QQ-XMAILINFO: NafziRg7Bx69Vf9z4k7XGSrblza44G8FUoObSmRwFY6VtfKlonHOc/GBpk/u6R
-         oj8OXrE0vmtoHDQLGjKU1rxCicqBosCt9DPy3rKCiNKdwidErA2/OJ/YT4A6rnwcNxJ1Dftwb3+y
-         1W3xzlrvNcuSvzGrVoSQqMcXy9F0BKHQ9ydKTi1pKfA/Z51RLho490dB61N11wARRgxXirnpvzX1
-         wL0q/XoVdonVBBG0GCQ3JEn13ckrKFbg5Gs27Rq+EGGfm8cYlHgcUNZP3M7a+g4GLosfXOs1UYA9
-         DOoE3+M1A3RjueCmGlOA1/pRy+L+s7kCWZ/tuC4MHyVFD0HVgqwPU8PTwXadteIHpvkUO4DVKWD6
-         Q3ef60X+/v+EvxwVcNH1C0KjVEDoM+yhReolFOx7h/Dg6IfZlLZ7xZZSqZBNt2daMtHsjugyPyFQ
-         RLcYj1fDZogWMglXqJLmM7BiQ1AFfAf5e+5hC/N7FLaPy2e6Brp+NaWxUNymdlHI5Q09XJj+qOwT
-         YRhkbizmqe8ubFPha43OzWkYlDAh+tdHn91fRBXm8qPDK0ACxQ3qYwp9HXqAToM74owMR4M2mLKg
-         Fr+UYTkwDBtxiSzptT7Mr4MCiV97PAFM+M23J03mc+QCEA4OiwbFbf7vJrgJQ/WnQHb7J88aLh9L
-         wba9ouPAgjdCdoMHiiIqjCQh+77HJhwONz9RLHRdIgGkxHy0L0P6kLNXlvLRqxOoFcZZ4gG3KrFb
-         S9rtPCKDFUBCOn1H1oAnOKhKmwaIWarvrXeVIub8FmPvYcNu3oH1asoN99hluyRFNZvxtnB7X8VO
-         opopan7Nm8IYjfQvzKKlpMm1JFU9ji8Xt7vzj7m5HLL7eiJo4tfeejlLiLn/HPwqLAWCQ5bQLz2W
-         ZB2/OflHAMM/HpqHg/PqQbepJLxHR2yi0u1YfE/aNX6bt9QGYbkqlyPaog1eU/Du2WphdV97t5xn
-         1Vj9N17ybBQgDDdfUQ0RXt18JQ6J3VkvQXr+PNOIfgHT65DXZVDrUzox5IqVu1LqOah08A0MPZWw
-         TJhZjtAGT1IWS2oJ5d
-From:   Yang Xiwen <forbidden405@foxmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229500AbjANICL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 03:02:11 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 404ED2104;
+        Sat, 14 Jan 2023 00:02:10 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id v2so11958404wrw.10;
+        Sat, 14 Jan 2023 00:02:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ySUOi8HQVQgZ3gY5yQW/rIsj+8KY7201qmZ9Y2W7p9o=;
+        b=lCkbXhy0Jc0SB8JMFHmcuvZQ7fDAQUYkaYSyRbloHOXS+nyzPNSZufuatadEPqbnXS
+         baFdUBBpdgFPBTtMag1LqZUE7CBd2fIg+fkwFd0QoM4kBuf7dZSeM1N22ZtcGEP7mmku
+         Nhl3soOXTw0PMZRMd0HKDMt2xdjo4HyqELi1fmXAa3cqzkpXl0+pXyukRvCXIwDzaYDE
+         zUQJermTdwQ44dTf5PEbosl6FXeUMbmukmXojKOLmLol4YbmH2fV8D+fB5v2T3LKaYs1
+         JEa3imrOdSndA1PVLwidYyVlvhwL1e/icxZHHFeg36tkUO/eCQ4AZfx2uX07veNuYAXR
+         44Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ySUOi8HQVQgZ3gY5yQW/rIsj+8KY7201qmZ9Y2W7p9o=;
+        b=oc6Goyr4Kwz8ZMMAcj2SUZTUcIBdTSivI3fGhyrfvcZR8kS6h4MMLpN7VnWvLndDUo
+         IU98bcv8OGkJMuxZTCE6Zyl8CNJsEb+CbjSeYLzu3f1TPLvX27QGYlcGJD6JxUodCt/+
+         6pUapOWUkAHLuK/kqc5YLIv0TrUYyOUidRgkJG7ffV9qGSKzJIDqNVBi216dLd9Fslom
+         KyMM9NXMKM/iN6iYpXRcrKVC/uSPyfWfR7xs29YCRjrYbxLf76Yk/47Mb7sK+AZTshnh
+         2Wc3eBozp1ECVlP4gBfCZPZlDKxbbCqq/R5F+bcgNJiTCUFYPBQpbpxRnr2x+Rd1xEg4
+         TmSg==
+X-Gm-Message-State: AFqh2koLm3HAODexmFqNq4PxnhOtnVIua3cFuG5K766n5vWhL/xTX249
+        P49tBteT8Dqq57/u3zBRt/A=
+X-Google-Smtp-Source: AMrXdXs5XfBthFdwA04j0BNqT9jCJxgCA6SyreY/jbTi3614mIWhdIZWM4ooIC6l/DEaRl7Mk3l3JA==
+X-Received: by 2002:adf:e709:0:b0:2bd:d34e:534d with SMTP id c9-20020adfe709000000b002bdd34e534dmr6150561wrm.27.1673683328588;
+        Sat, 14 Jan 2023 00:02:08 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id o17-20020a5d4091000000b0028965dc7c6bsm20536647wrp.73.2023.01.14.00.02.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Jan 2023 00:02:08 -0800 (PST)
+Date:   Sat, 14 Jan 2023 11:01:54 +0300
+From:   Dan Carpenter <error27@gmail.com>
+To:     oe-kbuild@lists.linux.dev, Doug Brown <doug@schmorgal.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc:     lkp@intel.com, oe-kbuild-all@lists.linux.dev,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Yang Xiwen <forbidden405@foxmail.com>,
-        Jaime Breva <jbreva@nayarsystems.com>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH v4 3/3] arm64: dts: qcom: msm8916-thwc: Add initial device trees
-Date:   Sat, 14 Jan 2023 14:38:46 +0800
-X-OQ-MSGID: <20230114063846.2633-4-forbidden405@foxmail.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230114063846.2633-1-forbidden405@foxmail.com>
-References: <20230114063846.2633-1-forbidden405@foxmail.com>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Doug Brown <doug@schmorgal.com>
+Subject: Re: [PATCH v4 5/8] mmc: sdhci-pxav2: add optional core clock
+Message-ID: <202301140445.zXxR25qN-lkp@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230112022416.8474-6-doug@schmorgal.com>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,HELO_DYNAMIC_IPADDR,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds support for the ufi-001C and uf896 WiFi/LTE dongle made by
-Tong Heng Wei Chuang based on MSM8916.
-uf896 is another variant for the usb stick. The board design
-differs by using different gpios for the keys and leds.
+Hi Doug,
 
-Note: The original firmware does not support 64-bit OS. It is necessary
-to flash 64-bit TZ firmware to boot arm64.
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Currently supported:
-- All CPU cores
-- Buttons
-- LEDs
-- Modem
-- SDHC
-- USB Device Mode
-- UART
+url:    https://github.com/intel-lab-lkp/linux/commits/Doug-Brown/mmc-sdhci-pxav2-add-initial-support-for-PXA168-V1-controller/20230112-102921
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230112022416.8474-6-doug%40schmorgal.com
+patch subject: [PATCH v4 5/8] mmc: sdhci-pxav2: add optional core clock
+config: riscv-randconfig-m041-20230113
+compiler: riscv64-linux-gcc (GCC) 12.1.0
 
-Co-developed-by: Jaime Breva <jbreva@nayarsystems.com>
-Signed-off-by: Jaime Breva <jbreva@nayarsystems.com>
-Co-developed-by: Nikita Travkin <nikita@trvn.ru>
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-Signed-off-by: Yang Xiwen <forbidden405@foxmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   2 +
- .../boot/dts/qcom/msm8916-thwc-uf896.dts      |  39 +++
- .../boot/dts/qcom/msm8916-thwc-ufi001c.dts    |  39 +++
- arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi     | 250 ++++++++++++++++++
- 4 files changed, 330 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index e442a81895d04..d83e02c84d42c 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -22,6 +22,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-e7.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-grandmax.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-uf896.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-ufi001c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts b/arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts
-new file mode 100644
-index 0000000000000..c492db8561904
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-ufi.dtsi"
-+
-+/ {
-+	model = "uf896 4G Modem Stick";
-+	compatible = "thwc,uf896", "qcom,msm8916";
-+};
-+
-+&button_restart {
-+	gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
-+};
-+
-+&led_r {
-+	gpios = <&msmgpio 82 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&led_g {
-+	gpios = <&msmgpio 83 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&led_b {
-+	gpios = <&msmgpio 81 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&button_default {
-+	pins = "gpio35";
-+	bias-pull-up;
-+};
-+
-+&gpio_leds_default {
-+	pins = "gpio81", "gpio82", "gpio83";
-+};
-+
-+&sim_ctrl_default {
-+	pins = "gpio1", "gpio2";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts b/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
-new file mode 100644
-index 0000000000000..700cf81cbf8c0
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-ufi.dtsi"
-+
-+/ {
-+	model = "ufi-001c/ufi-001b 4G Modem Stick";
-+	compatible = "thwc,ufi001c", "qcom,msm8916";
-+};
-+
-+&button_restart {
-+	gpios = <&msmgpio 37 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&led_r {
-+	gpios = <&msmgpio 22 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&led_g {
-+	gpios = <&msmgpio 21 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&led_b {
-+	gpios = <&msmgpio 20 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&button_default {
-+	pins = "gpio37";
-+	bias-pull-down;
-+};
-+
-+&gpio_leds_default {
-+	pins = "gpio20", "gpio21", "gpio22";
-+};
-+
-+&sim_ctrl_default {
-+	pins = "gpio1", "gpio2";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi b/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
-new file mode 100644
-index 0000000000000..790a9696da9de
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
-@@ -0,0 +1,250 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include "msm8916-pm8916.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	chassis-type = "embedded";
-+
-+	aliases {
-+		serial0 = &blsp1_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	reserved-memory {
-+		mpss_mem: mpss@86800000 {
-+			reg = <0x0 0x86800000 0x0 0x5500000>;
-+			no-map;
-+		};
-+
-+		gps_mem: gps@8bd00000 {
-+			reg = <0x0 0x8bd00000 0x0 0x200000>;
-+			no-map;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&button_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Buttons";
-+
-+		/* GPIO is board-specific */
-+		button_restart: button-restart {
-+			label = "Restart";
-+			linux,code = <KEY_RESTART>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		pinctrl-0 = <&gpio_leds_default>;
-+		pinctrl-names = "default";
-+
-+		/*
-+		 * GPIOs are board-specific.
-+		 * Functions and default-states defined here are fallbacks.
-+		 * Feel free to override them if your board is different.
-+		 */
-+		led_r: led-r {
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "on";
-+			function = LED_FUNCTION_POWER;
-+		};
-+
-+		led_g: led-g {
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-state = "off";
-+			function = LED_FUNCTION_WLAN;
-+		};
-+
-+		led_b: led-b {
-+			color = <LED_COLOR_ID_BLUE>;
-+			default-state = "off";
-+			function = LED_FUNCTION_WAN;
-+		};
-+	};
-+};
-+
-+&bam_dmux {
-+	status = "okay";
-+};
-+
-+&bam_dmux_dma {
-+	status = "okay";
-+};
-+
-+&blsp1_uart2 {
-+	status = "okay";
-+};
-+
-+/* Remove &dsi_phy0 from clocks to make sure that gcc probes with display disabled */
-+&gcc {
-+	clocks = <&xo_board>, <&sleep_clk>, <0>, <0>, <0>, <0>, <0>;
-+};
-+
-+&mpss {
-+	pinctrl-0 = <&sim_ctrl_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pm8916_usbin {
-+	status = "okay";
-+};
-+
-+&pronto {
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
-+	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+};
-+
-+&usb {
-+	extcon = <&pm8916_usbin>;
-+	dr_mode = "peripheral";
-+
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&pm8916_usbin>;
-+};
-+
-+&smd_rpm_regulators {
-+	vdd_l1_l2_l3-supply = <&pm8916_s3>;
-+	vdd_l4_l5_l6-supply = <&pm8916_s4>;
-+	vdd_l7-supply = <&pm8916_s4>;
-+
-+	s3 {
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1300000>;
-+	};
-+
-+	s4 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <2100000>;
-+	};
-+
-+	l1 {
-+		regulator-min-microvolt = <1225000>;
-+		regulator-max-microvolt = <1225000>;
-+	};
-+
-+	l2 {
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+	};
-+
-+	l4 {
-+		regulator-min-microvolt = <2050000>;
-+		regulator-max-microvolt = <2050000>;
-+	};
-+
-+	l5 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	l6 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	l7 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	l8 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2900000>;
-+	};
-+
-+	l9 {
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	l10 {
-+		regulator-min-microvolt = <2700000>;
-+		regulator-max-microvolt = <2800000>;
-+	};
-+
-+	l11 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <2950000>;
-+		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
-+	};
-+
-+	l12 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <2950000>;
-+	};
-+
-+	l13 {
-+		regulator-min-microvolt = <3075000>;
-+		regulator-max-microvolt = <3075000>;
-+	};
-+
-+	l14 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	l15 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	l16 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	l17 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+	};
-+
-+	l18 {
-+		regulator-min-microvolt = <2700000>;
-+		regulator-max-microvolt = <2700000>;
-+	};
-+};
-+
-+&msmgpio {
-+	/* pins are board-specific */
-+	button_default: button-default-state {
-+		function = "gpio";
-+		drive-strength = <2>;
-+	};
-+
-+	gpio_leds_default: gpio-leds-default-state {
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	sim_ctrl_default: sim-ctrl-default-state {
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-low;
-+	};
-+};
+smatch warnings:
+drivers/mmc/host/sdhci-pxav2.c:220 sdhci_pxav2_probe() warn: missing error code 'ret'
+
+vim +/ret +220 drivers/mmc/host/sdhci-pxav2.c
+
+c3be1efd41a97f Bill Pemberton        2012-11-19  185  static int sdhci_pxav2_probe(struct platform_device *pdev)
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  186  {
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  187  	struct sdhci_pltfm_host *pltfm_host;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  188  	struct sdhci_pxa_platdata *pdata = pdev->dev.platform_data;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  189  	struct device *dev = &pdev->dev;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  190  	struct sdhci_host *host = NULL;
+568536d7eb1969 Doug Brown            2023-01-11  191  	const struct sdhci_pxa_variant *variant;
+b650352dd3df36 Chris Ball            2012-04-10  192  
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  193  	int ret;
+d8981da5ec7505 Doug Brown            2023-01-11  194  	struct clk *clk, *clk_core;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  195  
+0e748234293f5f Christian Daudt       2013-05-29  196  	host = sdhci_pltfm_init(pdev, NULL, 0);
+6a686c31324c9e Sebastian Hesselbarth 2014-10-21  197  	if (IS_ERR(host))
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  198  		return PTR_ERR(host);
+6a686c31324c9e Sebastian Hesselbarth 2014-10-21  199  
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  200  	pltfm_host = sdhci_priv(host);
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  201  
+edf4ccd94bbef1 Doug Brown            2023-01-11  202  	clk = devm_clk_get(dev, "io");
+edf4ccd94bbef1 Doug Brown            2023-01-11  203  	if (IS_ERR(clk) && PTR_ERR(clk) != -EPROBE_DEFER)
+edf4ccd94bbef1 Doug Brown            2023-01-11  204  		clk = devm_clk_get(dev, NULL);
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  205  	if (IS_ERR(clk)) {
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  206  		ret = PTR_ERR(clk);
+edf4ccd94bbef1 Doug Brown            2023-01-11  207  		dev_err_probe(dev, ret, "failed to get io clock\n");
+3fd1d86f03cbcc Masahiro Yamada       2017-08-23  208  		goto free;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  209  	}
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  210  	pltfm_host->clk = clk;
+21b22284619bbb Alexey Khoroshilov    2017-02-11  211  	ret = clk_prepare_enable(clk);
+21b22284619bbb Alexey Khoroshilov    2017-02-11  212  	if (ret) {
+edf4ccd94bbef1 Doug Brown            2023-01-11  213  		dev_err(dev, "failed to enable io clock\n");
+3fd1d86f03cbcc Masahiro Yamada       2017-08-23  214  		goto free;
+21b22284619bbb Alexey Khoroshilov    2017-02-11  215  	}
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  216  
+d8981da5ec7505 Doug Brown            2023-01-11  217  	clk_core = devm_clk_get_optional_enabled(dev, "core");
+d8981da5ec7505 Doug Brown            2023-01-11  218  	if (IS_ERR(clk_core)) {
+d8981da5ec7505 Doug Brown            2023-01-11  219  		dev_err_probe(dev, PTR_ERR(clk_core), "failed to enable core clock\n");
+d8981da5ec7505 Doug Brown            2023-01-11 @220  		goto disable_clk;
+
+ret = PTR_ERR(clk_core);
+
+d8981da5ec7505 Doug Brown            2023-01-11  221  	}
+d8981da5ec7505 Doug Brown            2023-01-11  222  
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  223  	host->quirks = SDHCI_QUIRK_BROKEN_ADMA
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  224  		| SDHCI_QUIRK_BROKEN_TIMEOUT_VAL
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  225  		| SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  226  
+568536d7eb1969 Doug Brown            2023-01-11  227  	variant = of_device_get_match_data(dev);
+568536d7eb1969 Doug Brown            2023-01-11  228  	if (variant)
+b650352dd3df36 Chris Ball            2012-04-10  229  		pdata = pxav2_get_mmc_pdata(dev);
+568536d7eb1969 Doug Brown            2023-01-11  230  	else
+568536d7eb1969 Doug Brown            2023-01-11  231  		variant = &pxav2_variant;
+568536d7eb1969 Doug Brown            2023-01-11  232  
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  233  	if (pdata) {
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  234  		if (pdata->flags & PXA_FLAG_CARD_PERMANENT) {
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  235  			/* on-chip device */
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  236  			host->quirks |= SDHCI_QUIRK_BROKEN_CARD_DETECTION;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  237  			host->mmc->caps |= MMC_CAP_NONREMOVABLE;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  238  		}
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  239  
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  240  		/* If slot design supports 8 bit data, indicate this to MMC. */
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  241  		if (pdata->flags & PXA_FLAG_SD_8_BIT_CAPABLE_SLOT)
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  242  			host->mmc->caps |= MMC_CAP_8_BIT_DATA;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  243  
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  244  		if (pdata->quirks)
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  245  			host->quirks |= pdata->quirks;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  246  		if (pdata->host_caps)
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  247  			host->mmc->caps |= pdata->host_caps;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  248  		if (pdata->pm_caps)
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  249  			host->mmc->pm_caps |= pdata->pm_caps;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  250  	}
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  251  
+568536d7eb1969 Doug Brown            2023-01-11  252  	host->quirks |= variant->extra_quirks;
+568536d7eb1969 Doug Brown            2023-01-11  253  	host->ops = variant->ops;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  254  
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  255  	ret = sdhci_add_host(host);
+fb8617e1ee4d40 Jisheng Zhang         2018-05-25  256  	if (ret)
+3fd1d86f03cbcc Masahiro Yamada       2017-08-23  257  		goto disable_clk;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  258  
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  259  	return 0;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  260  
+3fd1d86f03cbcc Masahiro Yamada       2017-08-23  261  disable_clk:
+164378efe7612a Chao Xie              2012-07-31  262  	clk_disable_unprepare(clk);
+3fd1d86f03cbcc Masahiro Yamada       2017-08-23  263  free:
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  264  	sdhci_pltfm_free(pdev);
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  265  	return ret;
+9f5d71e4a78a02 Zhangfei Gao          2011-06-08  266  }
+
 -- 
-2.39.0
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
 
