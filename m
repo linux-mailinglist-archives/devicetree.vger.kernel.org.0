@@ -2,93 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACD6266A92D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 05:21:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D93766A9AA
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 07:39:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231374AbjANEVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Jan 2023 23:21:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49052 "EHLO
+        id S229582AbjANGjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Jan 2023 01:39:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231156AbjANEU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Jan 2023 23:20:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75465CF;
-        Fri, 13 Jan 2023 20:20:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3840AB822C3;
-        Sat, 14 Jan 2023 04:20:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E254BC433D2;
-        Sat, 14 Jan 2023 04:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673670018;
-        bh=0dhxVKVYAQCb3I8V/YstF7Gf/H5D9l/vkiCFM10OCHw=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=OMSOfAul4s8g9qt1FUnfo3pZ8uH212gnkdbgTCxGys3iARj92IsifxSXm9SDBoRJ9
-         qylKkPxR0CDJtPiy/P1kSNjInaJDmnC4HJRBXvBVy5AfSc2dKokm7QUM6utqMYlnxJ
-         Dk5ljJ75xqPsebqC7dxtKLDRcTfkcmb47lN3vQrNdm7ovksTmtidljOGOFALLH6+w3
-         ROzNJeZONvNfa0hRRMk7zlCnfURctDnvXzgmd9EqMquu8f92WmLeLdanoVx4+mi8Gx
-         jw7FCi9aXjoSyUfGacei0e5FKM7BNISNFMftGCzygZ4XonH6bsKgLvzdmNir70RtsS
-         jIXb3+71AjUWA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id BE181C395CA;
-        Sat, 14 Jan 2023 04:20:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229565AbjANGjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 01:39:42 -0500
+Received: from out203-205-221-202.mail.qq.com (out203-205-221-202.mail.qq.com [203.205.221.202])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F8B4ED2;
+        Fri, 13 Jan 2023 22:39:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+        s=s201512; t=1673678372;
+        bh=fTWOf2xuRe2mU+NqN+3qMJT9tELkw0/Wp+h3uXQVpdE=;
+        h=From:To:Cc:Subject:Date;
+        b=TcUdZ5TgJY8vek0JAzoH2PHZikva76FHlCvaRPUP/vke8PE4Wz9eBaLXjIxMhiyxf
+         ENI0+P1yWZobNbddWsJDiO9z6bm6cXJ5lcFOBjxXF6yirjeuJVNQbL90vTdNVnfxx4
+         bc+ZbJmIeC5+k+GZpmHw+p7UqCz8BauXkM4QMBCo=
+Received: from localhost.localdomain ([111.60.247.106])
+        by newxmesmtplogicsvrsza12-0.qq.com (NewEsmtp) with SMTP
+        id 9D611E2E; Sat, 14 Jan 2023 14:39:22 +0800
+X-QQ-mid: xmsmtpt1673678362tz613eefd
+Message-ID: <tencent_542D047A15F0BB3B25BFD71C41345E385F06@qq.com>
+X-QQ-XMAILINFO: OOWntbL6xj16PCEPfzvbPmDCgQGdV7XjYLK6HIDrmkB01P4V5K3yNXFk3ZoDad
+         ObjvmrD4dFpR7XniX5eyX5YD80iW6Uv9Blv98aOqk4sKAdkSXRe/Ynt+olCC2exLOYGLFKV+X0YP
+         aUHZzb/7j5NO0+k9dlq+ZCePijSoKjmajAa7C446p2hOztD3UybCE4HohS4t7XzElrWS5hlbTesC
+         APpTYdCZzGRprEaKiJC8ZJTsIkwE1QFLUUXB+n/cTEMlay9zRy75Eo3KtY++jWK0TggPRUsM1Ksd
+         zQ4Cyxdd7e8E84U+hLlRHk4u0mg0ZazRU5yhiEwrKodcNlJxv2GKRZc0zMs7IFxZeGIgGIzGzKbs
+         ezxBW9D96Hiagha71ABF++4k2mPVEpDDcuCPWxF+y9EQn9CjvIWm0/FSEm9vy44srtPLX/6T3t1f
+         ZA4RJ8W9USHkKwBa6nmAA53FL6DnaWCt8wIdm7PYPPrKBiXoh0uto//g6C39bauOfmp3saR1nLjY
+         UEQZMfbHe7TpVkBjHmdq5BuGxFEpECo+4mFYrKugTSILzLcm1iFUm5fPW1W1s9DfpzvUnL99WHXx
+         559GWLVTOUmaqMw/qJH49dqy/nknhFW/vAlzvtUT4UQK6e5VJoPsydsEHrTeQPNN3dJOhLqMuDPY
+         640qVSSPxgwwwpwMZHF7VH0V/iQzWx2neuFMXOsUyYwB1Zx07FITfMXubeVaNbtTwhZ84yEpbM0O
+         8v8O/utMGu21l17fzG1wJrV84cuT5oY2D3XdB8lNlX0vxTCrMS1QIAcHZzk7uDRnOt7VGbkRaEPk
+         mago+KbxSnPwlNGnVRG6BDIz5ti2ngCBBLrlQz0ezqvOAirvPgDPajDoOrmfZqSRMkGVa/4sAtBV
+         BAxkUNbSov37E0a3EKxV4qWfP9vnU9GjOl7m0C+LDVBzfSHEq5ootg9doSAnyqORjFLc5agp7R6U
+         gssIrxEfKU+j0V16NPHL8WAhQbXeSRXxjaoB6m6cuV0T7xUD4rsQ==
+From:   Yang Xiwen <forbidden405@foxmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Yang Xiwen <forbidden405@foxmail.com>,
+        Jaime Breva <jbreva@nayarsystems.com>,
+        Nikita Travkin <nikita@trvn.ru>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v4 0/3] Support for MSM8916-based UFi ufi001c and uf896
+Date:   Sat, 14 Jan 2023 14:38:43 +0800
+X-OQ-MSGID: <20230114063846.2633-1-forbidden405@foxmail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5 linux-next 1/4] dt-bindings: net: rockchip-dwmac: fix
- rv1126 compatible warning
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <167367001777.13418.2773898976513419135.git-patchwork-notify@kernel.org>
-Date:   Sat, 14 Jan 2023 04:20:17 +0000
-References: <20230111172437.5295-1-anand@edgeble.ai>
-In-Reply-To: <20230111172437.5295-1-anand@edgeble.ai>
-To:     Anand Moon <anand@edgeble.ai>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        david.wu@rock-chips.com, jagan@edgeble.ai, jbx6244@gmail.com,
-        robh@kernel.org, krzysztof.kozlowski@linaro.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,HELO_DYNAMIC_IPADDR,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+These devices are equipped with 512MB RAM, 4/8GB eMMC and MSM8916.
+This series introduces support for them and adds a dtsi for the class of
+MSM8916-based UFIs.
 
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
+v4:
+- Fix some minor typing mistakes
+- Modify common definitions for leds
+v3:
+- Sort vendor-prefixes alphabatically
+v2:
+- Managed to get the real vendor
+- Remove some reduntant descriptions
+- Rename dtsi more formally
 
-On Wed, 11 Jan 2023 17:24:31 +0000 you wrote:
-> Fix compatible string for RV1126 gmac, and constrain it to
-> be compatible with Synopsys dwmac 4.20a.
-> 
-> fix below warning
-> $ make CHECK_DTBS=y rv1126-edgeble-neu2-io.dtb
-> arch/arm/boot/dts/rv1126-edgeble-neu2-io.dtb: ethernet@ffc40000:
-> 		 compatible: 'oneOf' conditional failed, one must be fixed:
->         ['rockchip,rv1126-gmac', 'snps,dwmac-4.20a'] is too long
->         'rockchip,rv1126-gmac' is not one of ['rockchip,rk3568-gmac', 'rockchip,rk3588-gmac']
-> 
-> [...]
+Yang Xiwen (3):
+  dt-bindings: vendor-prefixes: add thwc
+  dt-bindings: qcom: Document msm8916-thwc-uf896 and ufi001c
+  arm64: dts: qcom: msm8916-thwc: Add initial device trees
 
-Here is the summary with links:
-  - [v5,linux-next,1/4] dt-bindings: net: rockchip-dwmac: fix rv1126 compatible warning
-    https://git.kernel.org/netdev/net-next/c/e471d83e1fa0
-  - [v5,linux-next,3/4] ARM: dts: Add Ethernet GMAC node for RV1126 SoC
-    (no matching commit)
+ .../devicetree/bindings/arm/qcom.yaml         |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +
+ .../boot/dts/qcom/msm8916-thwc-uf896.dts      |  39 +++
+ .../boot/dts/qcom/msm8916-thwc-ufi001c.dts    |  39 +++
+ arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi     | 250 ++++++++++++++++++
+ 6 files changed, 334 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.39.0
 
