@@ -2,98 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B6366AECD
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 00:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34E5266AED2
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 00:56:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230380AbjANXfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Jan 2023 18:35:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42606 "EHLO
+        id S230353AbjANX4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Jan 2023 18:56:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230390AbjANXfI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 18:35:08 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4080BA248;
-        Sat, 14 Jan 2023 15:35:07 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id x36so1418152ede.13;
-        Sat, 14 Jan 2023 15:35:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GWVrESddhMcKV9qP+Dkj74fkQan5eC2qiWVTWYlr+WE=;
-        b=aSpgkeU/VZC36HH2IOCrApSC6/dnJxHVVhk/EP4hS7lxvlqwG8haUfghF65tQrDYRM
-         bd90WFiY6wgmjeUadxvJRKvRuEKPd4aiNxIT5U/ERvXOpzsNzvMHVfapgUNRI7/rlntv
-         7eXneQ577hZthSj4JsI3XGgQrKAsGZQbuBshsyKJPEEYolvoJ/BjgjC0vvhlkWlF+BXf
-         vWRO7Dw87Vvap0MZCKCheSMarlo+SqyrU9lpsPABprq5aAgQDbBcWEZUsb1I7Afj4NI4
-         X0emxf2gFSLoMKG9/ZLrIiTvqA7OHeRlT35JXqqei8VjHO7sQON83giV9fMVGvVFanQt
-         s5iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GWVrESddhMcKV9qP+Dkj74fkQan5eC2qiWVTWYlr+WE=;
-        b=yaEfFO7/oon/Qq6P6COtr0l3EtjxZ+dBbPqnWQWpVOTPAYnlqC+jML4xD2wOVLfALq
-         6ovpjsffffOHWRQ7F4cau8vWG+HEVZfrQ9TykVdItNtN5dGj92fcUfaw/T2k68FPcK/N
-         8WvlQDDT3cAsZJ21pzsn9t2Qmay++s38F2vunKUidHStih94eAtz1GR48s06CeD5sIe3
-         xd6+P0RAhssZRKTiLR8z4yLlRfK6pc7XTgS9ySqOYAd1ilQTPH8C0Dt3fW/ENpxtpfs/
-         grXDXdFytjwBVItno6wXo36yEnTNrj3YbL0h4dOrlPFtFCkw5Jr8+bX9+aM+ZT5oSkor
-         nhzQ==
-X-Gm-Message-State: AFqh2kr8SQEylwGnjEOiXvbA8UwQUL1KDX1Zw/iuKm0ndWqnl64bjmpB
-        pcCquPjYtKdBpwUaXimz4S0=
-X-Google-Smtp-Source: AMrXdXuSopPP0FVI3dTqxvJnvWR//Ng9ic9FQLSlfUHndfsNGtoMtLC4QGI5TgHARiRWhJ0kzZHNGA==
-X-Received: by 2002:a05:6402:2d9:b0:499:d0e3:7745 with SMTP id b25-20020a05640202d900b00499d0e37745mr14991236edx.14.1673739305751;
-        Sat, 14 Jan 2023 15:35:05 -0800 (PST)
-Received: from localhost.localdomain (dynamic-2a01-0c22-7ae1-c100-0000-0000-0000-0e63.c22.pool.telefonica.de. [2a01:c22:7ae1:c100::e63])
-        by smtp.googlemail.com with ESMTPSA id d7-20020a50fb07000000b0049cbd334b13sm1967620edq.29.2023.01.14.15.35.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Jan 2023 15:35:05 -0800 (PST)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-amlogic@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        neil.armstrong@linaro.org, devicetree@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1 2/2] ARM: dts: meson8b: Add more L2 (PL310) cache properties
-Date:   Sun, 15 Jan 2023 00:34:55 +0100
-Message-Id: <20230114233455.2005047-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230114233455.2005047-1-martin.blumenstingl@googlemail.com>
-References: <20230114233455.2005047-1-martin.blumenstingl@googlemail.com>
+        with ESMTP id S230257AbjANX4i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 18:56:38 -0500
+X-Greylist: delayed 1272 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 14 Jan 2023 15:56:37 PST
+Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091FC5269;
+        Sat, 14 Jan 2023 15:56:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+        s=default2002; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:
+        Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References;
+        bh=c6HaRC/5BFVWpEQLqi7AYsioOEhg+RGVAbybpQsqhhc=; b=lofKh7YBz5AET+NTFDJ2fihj+I
+        Fj6hM/H7F5d/mSwkEbccKkAGR09HmRQInoVvZCzwoEJZG6hmJSyseFw/bVVSNinOqo3VGiC6jYs7d
+        /07c6FHI2/hNzwixSy4SKtSG4zSxU4D1O3QhIrmfeYNANp6CWqO+n8XWo0Oh4N3HKqjHPjvlZf+eU
+        82oqxTBtZdOO4Jz7gbb8LnAY+X1epWW9Y2R1IBLcPwSmhYIvqgkkxMMokW+SsiFlU2XrgS817c4M+
+        JKy6Fvbp3ViHs7sAbkdVTOURd4gs9e8EkIGfVPJVDg/S0dq+Ec5qgpg8UnRPCfV9xQidxab8bxOfW
+        VxX2ZbMg==;
+Received: from sslproxy02.your-server.de ([78.47.166.47])
+        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <lars@metafoo.de>)
+        id 1pGq3V-0001aE-6w; Sun, 15 Jan 2023 00:35:21 +0100
+Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b] (helo=lars-desktop.lan)
+        by sslproxy02.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1pGq3U-0009Au-L0; Sun, 15 Jan 2023 00:35:20 +0100
+From:   Lars-Peter Clausen <lars@metafoo.de>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: [PATCH 1/3] clk: vc5: Use `clamp()` to restrict PLL range
+Date:   Sat, 14 Jan 2023 15:34:58 -0800
+Message-Id: <20230114233500.3294789-1-lars@metafoo.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.7/26781/Sat Jan 14 09:29:51 2023)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add more L2 cache properties which are used by the 3.10 vendor kernel
-but have not made it upstream yet.
+The VCO frequency needs to be within a certain range and the driver
+enforces this.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Make use of the clamp macro to implement this instead of open-coding it.
+This makes the code a bit shorter and also semanticly stronger.
+
+Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/clk/clk-versaclock5.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index cf9c04a61ba3..2d80c009bdfa 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -643,6 +643,9 @@ &L2 {
- 	arm,filter-ranges = <0x100000 0xc0000000>;
- 	prefetch-data = <1>;
- 	prefetch-instr = <1>;
-+	arm,prefetch-offset = <7>;
-+	arm,double-linefill = <1>;
-+	arm,prefetch-drop = <1>;
- 	arm,shared-override;
- };
+diff --git a/drivers/clk/clk-versaclock5.c b/drivers/clk/clk-versaclock5.c
+index e9737969170e..54fee43d6564 100644
+--- a/drivers/clk/clk-versaclock5.c
++++ b/drivers/clk/clk-versaclock5.c
+@@ -449,10 +449,7 @@ static long vc5_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+ 	u32 div_int;
+ 	u64 div_frc;
  
+-	if (rate < VC5_PLL_VCO_MIN)
+-		rate = VC5_PLL_VCO_MIN;
+-	if (rate > VC5_PLL_VCO_MAX)
+-		rate = VC5_PLL_VCO_MAX;
++	rate = clamp(rate, VC5_PLL_VCO_MIN, VC5_PLL_VCO_MAX);
+ 
+ 	/* Determine integer part, which is 12 bit wide */
+ 	div_int = rate / *parent_rate;
 -- 
-2.39.0
+2.30.2
 
