@@ -2,719 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 318F466AE2E
-	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 22:26:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEDFD66AE30
+	for <lists+devicetree@lfdr.de>; Sat, 14 Jan 2023 22:29:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbjANV0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Jan 2023 16:26:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52916 "EHLO
+        id S229596AbjANV3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Jan 2023 16:29:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230409AbjANV0K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 16:26:10 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A177A7EC3
-        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 13:26:06 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id g13so37805220lfv.7
-        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 13:26:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/rkFL4JQ6qmwO5yG7gvrFL3poPk1NvmBJ8ZqbA8Y98k=;
-        b=dk3Qm3Ddkj//E3O3I/e7iSHjy64hiqQMTxIQgctztPXtir7JN0KwZBNlQleLZgb4YD
-         NQIxD3tV7wYW3+7SDRSOS3Whrseer9JvOrnaNDayzTdzORWzFSX6gtHWpBqGmZTppYmX
-         7jZ6J7iNrGjmkzZ4blAKASrykjU3imDlecGHBle9DltBY7/9BWqth9tHJRMWgmTgTrxy
-         NZLkz/Zmc+8fKHvNwfDJl6cCjly/XmyT1GXgpSr8wQ9kGGRo8bppdY6NygtzJN0vd++4
-         kopcdaxJNjgwakDH6c6PN1WD7e1KZUdLV7YiPNaJvtyHY43U8FtkVSJi/CD/e5MNdMlu
-         x5tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/rkFL4JQ6qmwO5yG7gvrFL3poPk1NvmBJ8ZqbA8Y98k=;
-        b=rNHFoLOAVA56Ti5Df5waYN5fHcaxsovLguqaR1mPypoYxuw1fmCb1sTWimMpC6QRHA
-         LjHPfBQcMYewdsazEseD5K/hZysnCXiqY0DjfBTKuJA1iQ1L/G5v/hIprXu3Hv3KsRnM
-         2egROle4ZCnvGq2IHNyr1lt09eYHL+6AC1NpvoTE8qdFr5BEqENEkniujVS+qMwhITZ1
-         qGMupH1BPPIo4iYXt/+F1QGYvMUwuyUXRISQmEM7FDUgwaXktgmfByzjJhRMnNPQ4NSb
-         nmkSeOjal5iHPOz3R2SpMidAW7Iy65FgDM6e85gsB3AOKYfjq9/QBzFBEGsdRdNhjQvM
-         LPvA==
-X-Gm-Message-State: AFqh2krRO+4aFUbzZdT8icdC23FynIuI9n1kinYxjy7gfl+pBWtQXxNx
-        31Y0EtNh4YW40/PUPMISbrpEAw==
-X-Google-Smtp-Source: AMrXdXvSsEr66mKYO8Ho4y+4QlkwbfAhaR3kWi7qLvmTWbKBORi2sQjVQnKykCo8/gqCNNTVeOLZiQ==
-X-Received: by 2002:a19:7008:0:b0:4b5:7d49:4a05 with SMTP id h8-20020a197008000000b004b57d494a05mr21752108lfc.0.1673731564777;
-        Sat, 14 Jan 2023 13:26:04 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id j15-20020a056512344f00b004b56bebdc4esm4456632lfr.14.2023.01.14.13.26.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Jan 2023 13:26:04 -0800 (PST)
-Message-ID: <323b9519-38e4-a7ca-f45d-96cef06fd9bf@linaro.org>
-Date:   Sat, 14 Jan 2023 22:26:01 +0100
+        with ESMTP id S230366AbjANV3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 16:29:37 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91A767ABE;
+        Sat, 14 Jan 2023 13:29:36 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C17FE4D4;
+        Sat, 14 Jan 2023 22:29:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673731774;
+        bh=8YockS1a/nL6zZeUd8QgQofn11d6xLguAesidUhrRqw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SzNC+0QFERQZ9Al7qreW7CaemBjFs9+oJHRu3MSujJgQvSKXZYFpiAjo8N0aIbSR0
+         avxQCSWkV80c7Lce6csMUu8jUqT3elDZTMWnvTBTbKKUCCgYD9qYX02eRZmtEBQAl+
+         z1QyonD7r01gveaNak9sTnC3ytWll9N8iqYeKwiU=
+Date:   Sat, 14 Jan 2023 23:29:34 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 00/16] media: imx-pxp: add support for i.MX7D
+Message-ID: <Y8Mevsi92DreZIBB@pendragon.ideasonboard.com>
+References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Add debug related nodes
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-References: <20230114210754.353912-1-bhupesh.sharma@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230114210754.353912-1-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Michael,
 
+The whole series has been reviewed, and only the DT bindings need a
+small change. If you post a v2.1 of just that patch (--in-reply-to v2
+and CC me, or I may not notice quickly), I can take the whole series and
+get it merged in v6.3.
 
-On 14.01.2023 22:07, Bhupesh Sharma wrote:
-> Add dtsi nodes related to coresight debug units such
-> as cti, etm, etr, funnel(s), replicator(s), etc. for
-> Qualcomm sm6115 SoC.
+On Fri, Jan 13, 2023 at 10:54:07AM +0100, Michael Tretter wrote:
+> This is v2 of the series to add support for the PXP found on the i.MX7D to the
+> imx-pxp driver.
 > 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> The PXP on the i.MX7D has a few differences compared to the one on the
+> i.MX6ULL. Especially, it has more processing blocks and slightly different
+> multiplexers to route the data between the blocks. Therefore, the driver must
+> configure a different data path depending on the platform.
+> 
+> While the PXP has a version register, the reported version is the same on the
+> i.MX6ULL and the i.MX7D. Therefore, we cannot use the version register to
+> change the driver behavior, but have to use the device tree compatible. The
+> driver still prints the found version to the log to help bringing up the PXP
+> on further platforms.
+> 
+> The patches are inspired by some earlier patches [0] by Laurent to add PXP
+> support to the i.MX7d. Compared to the earlier patches, these patches add
+> different behavior depending on the platform. Furthermore, the patches disable
+> only the LUT block, but keep the rotator block enabled, as it may now be
+> configured via the V4L2 rotate control.
+> 
+> In v2, I included Laurent's patch series [1], which was based on this series
+> anyway and added regmap support.
+> 
+> Patch 1 converts the dt-binding to yaml.
+> 
+> Patches 2 to 5 cleanup and refactor the driver in preparation of handling
+> different PXP versions.
+> 
+> Patches 6 and 7 add the handling of different platforms and the i.MX7d
+> specific configuration.
+> 
+> Patch 8 adds the device tree node for the PXP to the i.MX7d device tree.
+> 
+> Patches 9 to 15 are the cleanup and enhancement patches to add media
+> controller support, implement enum_framesizes, and add pxp_read/pxp_write
+> helpers.
+> 
+> Patch 16 adds regmap support to the driver.
+> 
+> Michael
+> 
+> [0] https://lore.kernel.org/linux-media/20200510223100.11641-1-laurent.pinchart@ideasonboard.com/
+> [1] https://lore.kernel.org/linux-media/20230112172507.30579-1-laurent.pinchart@ideasonboard.com
+> 
 > ---
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 612 +++++++++++++++++++++++++++
->  1 file changed, 612 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index 478c5d009272..5067910b18ab 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -1237,6 +1237,618 @@ dispcc: clock-controller@5f00000 {
->  			#power-domain-cells = <1>;
->  		};
->  
-> +		cti0: cti@8010000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08010000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti1: cti@8011000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08011000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti2: cti@8012000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08012000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti3: cti@8013000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08013000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti4: cti@8014000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08014000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti5: cti@8015000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08015000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti6: cti@8016000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08016000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti7: cti@8017000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08017000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti8: cti@8018000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08018000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti9: cti@8019000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x08019000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti10: cti@801a000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x0801a000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti11: cti@801b000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x0801b000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti12: cti@801c000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x0801c000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti13: cti@801d000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x0801d000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti14: cti@801e000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x0801e000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		cti15: cti@801f000 {
-> +			compatible = "arm,coresight-cti", "arm,primecell";
-> +			reg = <0x0801f000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		replicator@8046000 {
-> +			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-> +			reg = <0x08046000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					replicator_out: endpoint {
-> +						remote-endpoint = <&etr_in>;
-> +					};
-> +				};
-> +			};
-> +
-> +			in-ports {
-> +				port {
-> +					replicator_in: endpoint {
-> +						remote-endpoint = <&etf_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etf@8047000 {
-> +			compatible = "arm,coresight-tmc", "arm,primecell";
-> +			reg = <0x08047000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +
-> +			in-ports {
-> +				port {
-> +					etf_in: endpoint {
-> +						remote-endpoint = <&merge_funnel_out>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					etf_out: endpoint {
-> +						remote-endpoint = <&replicator_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etr@8048000 {
-> +			compatible = "arm,coresight-tmc", "arm,primecell";
-> +			reg = <0x08048000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +
-> +			in-ports {
-> +				port {
-> +					etr_in: endpoint {
-> +						remote-endpoint = <&replicator_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		stm@8002000 {
-This one node is out of order
+> Changelog
+> 
+> v2:
+> 
+> - fix device tree binding
+> - reduce log level of PXP version to debug
+> - drop fallback for missing pdata
+> - add cleanup and enhancement patches to series
+> - convert driver to regmap
+> 
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> To: linux-media@vger.kernel.org
+> To: devicetree@vger.kernel.org
+> To: Philipp Zabel <p.zabel@pengutronix.de>
+> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: kernel@pengutronix.de
+> Cc: linux-imx@nxp.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: Michael Tretter <m.tretter@pengutronix.de>
+> 
+> ---
+> Laurent Pinchart (7):
+>       media: imx-pxp: Sort headers alphabetically
+>       media: imx-pxp: Don't set bus_info manually in .querycap()
+>       media: imx-pxp: Add media controller support
+>       media: imx-pxp: Pass pixel format value to find_format()
+>       media: imx-pxp: Implement frame size enumeration
+>       media: imx-pxp: Introduce pxp_read() and pxp_write() wrappers
+>       media: imx-pxp: Use non-threaded IRQ
+> 
+> Michael Tretter (9):
+>       dt-bindings: media: fsl-pxp: convert to yaml
+>       media: imx-pxp: detect PXP version
+>       media: imx-pxp: extract helper function to setup data path
+>       media: imx-pxp: explicitly disable unused blocks
+>       media: imx-pxp: disable LUT block
+>       media: imx-pxp: make data_path_ctrl0 platform dependent
+>       media: imx-pxp: add support for i.MX7D
+>       ARM: dts: imx7d: add node for PXP
+>       media: imx-pxp: convert to regmap
+> 
+>  .../devicetree/bindings/media/fsl,imx6ull-pxp.yaml |  82 +++++
+>  .../devicetree/bindings/media/fsl-pxp.txt          |  26 --
+>  arch/arm/boot/dts/imx7d.dtsi                       |   9 +
+>  drivers/media/platform/nxp/imx-pxp.c               | 359 +++++++++++++++------
+>  4 files changed, 355 insertions(+), 121 deletions(-)
+> ---
+> base-commit: b7bfaa761d760e72a969d116517eaa12e404c262
+> change-id: 20230112-imx-pxp-073008b3c857
 
-I *think* the rest looks good overall... so:
+-- 
+Regards,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
-> +			compatible = "arm,coresight-stm", "arm,primecell";
-> +			reg = <0x08002000 0x1000>,
-> +			      <0x0e280000 0x180000>;
-> +			reg-names = "stm-base", "stm-stimulus-base";
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					stm_out: endpoint {
-> +						remote-endpoint = <&funnel_in0_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@8041000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +			reg = <0x08041000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					funnel_in0_out: endpoint {
-> +						remote-endpoint = <&merge_funnel_in0>;
-> +					};
-> +				};
-> +			};
-> +
-> +			in-ports {
-> +				port {
-> +					funnel_in0_in: endpoint {
-> +						remote-endpoint = <&stm_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@8042000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +			reg = <0x08042000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					funnel_in1_out: endpoint {
-> +						remote-endpoint = <&merge_funnel_in1>;
-> +					};
-> +				};
-> +			};
-> +
-> +			in-ports {
-> +				port {
-> +					funnel_in1_in: endpoint {
-> +						remote-endpoint = <&funnel_apss1_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@8045000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +			reg = <0x08045000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					merge_funnel_out: endpoint {
-> +						remote-endpoint = <&etf_in>;
-> +					};
-> +				};
-> +			};
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					merge_funnel_in0: endpoint {
-> +						remote-endpoint = <&funnel_in0_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					merge_funnel_in1: endpoint {
-> +						remote-endpoint = <&funnel_in1_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etm@9040000 {
-> +			compatible = "arm,coresight-etm4x", "arm,primecell";
-> +			reg = <0x09040000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +			arm,coresight-loses-context-with-cpu;
-> +
-> +			cpu = <&CPU0>;
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					etm0_out: endpoint {
-> +						remote-endpoint = <&funnel_apss0_in0>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etm@9140000 {
-> +			compatible = "arm,coresight-etm4x", "arm,primecell";
-> +			reg = <0x09140000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +			arm,coresight-loses-context-with-cpu;
-> +
-> +			cpu = <&CPU1>;
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					etm1_out: endpoint {
-> +						remote-endpoint = <&funnel_apss0_in1>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etm@9240000 {
-> +			compatible = "arm,coresight-etm4x", "arm,primecell";
-> +			reg = <0x09240000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +			arm,coresight-loses-context-with-cpu;
-> +
-> +			cpu = <&CPU2>;
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					etm2_out: endpoint {
-> +						remote-endpoint = <&funnel_apss0_in2>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etm@9340000 {
-> +			compatible = "arm,coresight-etm4x", "arm,primecell";
-> +			reg = <0x09340000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +			arm,coresight-loses-context-with-cpu;
-> +
-> +			cpu = <&CPU3>;
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					etm3_out: endpoint {
-> +						remote-endpoint = <&funnel_apss0_in3>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etm@9440000 {
-> +			compatible = "arm,coresight-etm4x", "arm,primecell";
-> +			reg = <0x09440000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +			arm,coresight-loses-context-with-cpu;
-> +
-> +			cpu = <&CPU4>;
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					etm4_out: endpoint {
-> +						remote-endpoint = <&funnel_apss0_in4>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etm@9540000 {
-> +			compatible = "arm,coresight-etm4x", "arm,primecell";
-> +			reg = <0x09540000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +			arm,coresight-loses-context-with-cpu;
-> +
-> +			cpu = <&CPU5>;
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					etm5_out: endpoint {
-> +						remote-endpoint = <&funnel_apss0_in5>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etm@9640000 {
-> +			compatible = "arm,coresight-etm4x", "arm,primecell";
-> +			reg = <0x09640000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +			arm,coresight-loses-context-with-cpu;
-> +
-> +			cpu = <&CPU6>;
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					etm6_out: endpoint {
-> +						remote-endpoint = <&funnel_apss0_in6>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		etm@9740000 {
-> +			compatible = "arm,coresight-etm4x", "arm,primecell";
-> +			reg = <0x09740000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +			arm,coresight-loses-context-with-cpu;
-> +
-> +			cpu = <&CPU7>;
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					etm7_out: endpoint {
-> +						remote-endpoint = <&funnel_apss0_in7>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@9800000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +			reg = <0x09800000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					funnel_apss0_out: endpoint {
-> +						remote-endpoint = <&funnel_apss1_in>;
-> +					};
-> +				};
-> +			};
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					funnel_apss0_in0: endpoint {
-> +						remote-endpoint = <&etm0_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					funnel_apss0_in1: endpoint {
-> +						remote-endpoint = <&etm1_out>;
-> +					};
-> +				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +					funnel_apss0_in2: endpoint {
-> +						remote-endpoint = <&etm2_out>;
-> +					};
-> +				};
-> +
-> +				port@3 {
-> +					reg = <3>;
-> +					funnel_apss0_in3: endpoint {
-> +						remote-endpoint = <&etm3_out>;
-> +					};
-> +				};
-> +
-> +				port@4 {
-> +					reg = <4>;
-> +					funnel_apss0_in4: endpoint {
-> +						remote-endpoint = <&etm4_out>;
-> +					};
-> +				};
-> +
-> +				port@5 {
-> +					reg = <5>;
-> +					funnel_apss0_in5: endpoint {
-> +						remote-endpoint = <&etm5_out>;
-> +					};
-> +				};
-> +
-> +				port@6 {
-> +					reg = <6>;
-> +					funnel_apss0_in6: endpoint {
-> +						remote-endpoint = <&etm6_out>;
-> +					};
-> +				};
-> +
-> +				port@7 {
-> +					reg = <7>;
-> +					funnel_apss0_in7: endpoint {
-> +						remote-endpoint = <&etm7_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@9810000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +			reg = <0x09810000 0x1000>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_QDSS_CLK>;
-> +			clock-names = "apb_pclk";
-> +
-> +			status = "disabled";
-> +
-> +			out-ports {
-> +				port {
-> +					funnel_apss1_out: endpoint {
-> +						remote-endpoint = <&funnel_in1_in>;
-> +					};
-> +				};
-> +			};
-> +
-> +			in-ports {
-> +				port {
-> +					funnel_apss1_in: endpoint {
-> +						remote-endpoint = <&funnel_apss0_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->  		apps_smmu: iommu@c600000 {
->  			compatible = "qcom,sm6115-smmu-500", "qcom,smmu-500", "arm,mmu-500";
->  			reg = <0x0c600000 0x80000>;
+Laurent Pinchart
