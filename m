@@ -2,90 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4270F66AF44
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 05:11:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ABB166AF4A
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 05:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230447AbjAOELV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Jan 2023 23:11:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38330 "EHLO
+        id S230344AbjAOEOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Jan 2023 23:14:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230260AbjAOELQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 23:11:16 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69D084680
-        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 20:11:15 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id dw9so24711235pjb.5
-        for <devicetree@vger.kernel.org>; Sat, 14 Jan 2023 20:11:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TUsBOWy5UhAp6xbtUsJklT0rm4uS/PjlVjvwS2k1vhM=;
-        b=Dzk0wkd85xOIYqkdj9F5B3jGt7WyjeYBbeLNDtQxVMited8KnFCsWXXuWfpLk+to4w
-         d9OvAObapEUD/jCOC55y56boBHkRR8diez+KxCk5zjS/cGyEX2/LT/auz5Xy7PAyUUcL
-         x2TxCsUPTKsv/6Ce/tuxIAb/zYFOjab99D5Cb+/F29xlWYcSTc1Dh1o32TVVYw+AWa2e
-         jN1FK1spq5/fnt7IgjkHKaTg+bvBnSP43Dx3kx63HadrBMegyYtTrq/qd/MPqtQbBaDk
-         iUiG7ewyAP2xZrrlDCTbU7LOzS7Bx7PyOx7W+JUDuEAjE3WC9SlUZO2j45IRMav4MBWQ
-         hmaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TUsBOWy5UhAp6xbtUsJklT0rm4uS/PjlVjvwS2k1vhM=;
-        b=gF32GhBsnIoNSWBqVlgeTXKb4DmN1AclrTNT5jdc+ZISwYUjd8XNxgCgwZWuQVxyLR
-         ayX3uYeJmJHABhb2p63Oz4OMcE9XDhCzXrN7G4+SscRI/kpRZcr7tw5pEo5tX5zF6KGw
-         oCYQn0h0Dlh07PhAUjU/Pir+U2gET5kQCWn/niD05/zxv6SIisJ2g95ftLBlUrv9Sz8J
-         XTlVLQ6uMWsZKgr3+wPqG0ACs6Bzl0iCiOiGGM+9YfkqkkFko03hPK7fHAY9hsuY5WA/
-         jzaaw6H32U60IcklX9LU5if7cfAS4DgH0IMmGUZxOg/ffV7I1Q6S160TAiWBYtFGHqMx
-         uZdg==
-X-Gm-Message-State: AFqh2kpP5kg+KaiCXsaJ6UGMqWMm+8IlJFPNmY5K/SvUqe34sSxOD0ay
-        SLrhaqbmZmfgXBoCywrpXpZNWHqFAJVM/Jg=
-X-Google-Smtp-Source: AMrXdXsA3fJe2SPgDEtu9fgDT3kXG4YnvJbnAd/7UZy+gQv4RJpihOeO7IzDYN13SQVotVY5fGaDQA==
-X-Received: by 2002:a17:902:f0d1:b0:192:8c85:54fa with SMTP id v17-20020a170902f0d100b001928c8554famr14363437pla.31.1673755874753;
-        Sat, 14 Jan 2023 20:11:14 -0800 (PST)
-Received: from thinkpad ([220.158.159.143])
-        by smtp.gmail.com with ESMTPSA id u2-20020a170902714200b00178143a728esm16605379plm.275.2023.01.14.20.11.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Jan 2023 20:11:13 -0800 (PST)
-Date:   Sun, 15 Jan 2023 09:41:08 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S229676AbjAOEOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Jan 2023 23:14:51 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF18A4682;
+        Sat, 14 Jan 2023 20:14:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C7A5460C60;
+        Sun, 15 Jan 2023 04:14:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7B87C433D2;
+        Sun, 15 Jan 2023 04:14:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673756089;
+        bh=jshOld5XYZnlYZ5Q1vGZgYzaUHooncGiPJkhdHvwGnE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GlKDgDw4UK6bis7dDczAhcW0tZpvRZF/4PjNy2XepuS+wgvMDr8Sdy/84GRDFo8c1
+         E56yjitEBYf0r4tCYMkG14O5x7ZciKdwmTpq4+EP1Fyp+8BtydX1kT8avdtD3gJW/B
+         jLcZSzwY2O3x00CLCQxkVt7pLvqWYgw+PDHaTZ0UuD+nOfcqAkoyAlNpd4hkKoBcm0
+         PE8RFxjlYbccyMDABZopGKIhVdpJiUxm1eWbGTidWKWeseX+rQoTh7xUfvHsjQUYLu
+         zieAyFZcoY3kMRzaDUp6fTC67Syt12jj6lX5iUXydxidd4Q4VKqaUWLrLxbjmlbHQS
+         tvktp6T1mwoIw==
+Date:   Sun, 15 Jan 2023 09:44:40 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Define CMA region for CRD
- and X13s
-Message-ID: <20230115041108.GC6568@thinkpad>
-References: <20230113041025.4188910-1-quic_bjorande@quicinc.com>
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/5] dt-bindings: mailbox: qcom-ipcc: Add sc8280xp
+ compatible
+Message-ID: <20230115041440.GE6568@thinkpad>
+References: <20221016090035.565350-1-luca@z3ntu.xyz>
+ <20221016090035.565350-3-luca@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230113041025.4188910-1-quic_bjorande@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20221016090035.565350-3-luca@z3ntu.xyz>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 12, 2023 at 08:10:25PM -0800, Bjorn Andersson wrote:
-> Booting the CRD needs roughly 64MB CMA, rather than relying on people
-> adding boot parameters etc define a region for this, to remove the
-> allocation errors from e.g. NVME.
+On Sun, Oct 16, 2022 at 11:00:32AM +0200, Luca Weiss wrote:
+> Document the sc8280xp compatible, and at the same time also make sure
+> the list is sorted alphabetically.
 > 
-> While fixing the CRD define the same region for the X13s.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
@@ -93,52 +75,30 @@ Thanks,
 Mani
 
 > ---
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts                | 9 +++++++++
->  .../boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts      | 9 +++++++++
->  2 files changed, 18 insertions(+)
+>  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index b29c02307839..e30a37c73b90 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -128,6 +128,15 @@ vreg_wwan: regulator-wwan {
+> diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> index baca4786ff94..bc599a864637 100644
+> --- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> @@ -24,12 +24,13 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +          - qcom,sc7280-ipcc
+> +          - qcom,sc8280xp-ipcc
+>            - qcom,sm6350-ipcc
+>            - qcom,sm6375-ipcc
+>            - qcom,sm8250-ipcc
+>            - qcom,sm8350-ipcc
+>            - qcom,sm8450-ipcc
+> -          - qcom,sc7280-ipcc
+>        - const: qcom,ipcc
 >  
->  		regulator-boot-on;
->  	};
-> +
-> +	reserved-memory {
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			size = <0x0 0x8000000>;
-> +			reusable;
-> +			linux,cma-default;
-> +		};
-> +	};
->  };
->  
->  &apps_rsc {
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 78e61a8184c5..5bfd1f0b2a24 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -153,6 +153,15 @@ vreg_wwan: regulator-wwan {
->  		regulator-boot-on;
->  	};
->  
-> +	reserved-memory {
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			size = <0x0 0x8000000>;
-> +			reusable;
-> +			linux,cma-default;
-> +		};
-> +	};
-> +
->  	thermal-zones {
->  		skin-temp-thermal {
->  			polling-delay-passive = <250>;
+>    reg:
 > -- 
-> 2.37.3
+> 2.38.0
 > 
 
 -- 
