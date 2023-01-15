@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8009D66B3AB
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 20:34:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D042866B3AC
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 20:34:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231449AbjAOTeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 14:34:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47594 "EHLO
+        id S231596AbjAOTeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 14:34:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231590AbjAOTd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 14:33:59 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E748D1286B
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:33:58 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id h12-20020a05600c314c00b003da50afcb33so2309210wmo.4
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:33:58 -0800 (PST)
+        with ESMTP id S231590AbjAOTeC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 14:34:02 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E132012865
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:34:00 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id h12-20020a05600c314c00b003da50afcb33so2309244wmo.4
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:34:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=shruggie-ro.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RdGFTu0+gJFSj/8XHnsdu0rCr80zWB94xuGGcTk9DzY=;
-        b=DtCiw1NHdmxQJIKbNUF2jDVAWvfkmHVzLqaptp/gtjyxyu/dzl5DdqtuT3R1yujcTi
-         /mQcyqha7oePumtCuXYD6K5nOfJTt6MF48LnehoK1vwZ93MDTIaiPUp4BKrD+VQ31ylw
-         a0EaD9+IzbL+UaITbsyx0ZwMgAgX9ZFAZ7qotmaLdDhMuiynHt449qaoYlVNST3VNGri
-         7oOW234OO8mzIRU067JlAGHu0HGoNSllC+yw3Yi8nM+JcqY692mi6e++5uWC7MazkrZg
-         LSu4V+WFRnbRuFLetB1GUYYxBztnl5Sw9RRoGhpZVUjaM2u3tZPBuhgi+z8dlojcc9vH
-         X7Bw==
+        bh=aKS96pmJPoYb7b0N1pU8tQ1JoETnhuDxnTgIIKOenYM=;
+        b=ptg+XxdP0iKhBkszM3udc/4H9pCnHeQS36Lsg2Ij0gMHkNcIvlvI1Cju75BpLjmsGX
+         kHc0qsHeG4rGBEVp+kh2tmeQyyLVyDrdtY0z1CmRapu2VdLNtavrsQKmSz5u++fHJ4aV
+         RliGMKFR4cvOcRMAeKpW3D/+zhgiqUyxi66rUm1gNcKYWk/VHZ12gMsoGRD/REB2BWBk
+         RDshmY8uokHGzZjixSDoc67PtAdDhIXgjex3/HRthkje6iEvctdN4QX5AlLkD4i+0/Mp
+         cIgj3pZ3+0D5e4tpKCaQT8v9Bqajzg8yccQ4Cocq5QqPTPsYdgoplDeH+ulyUInAAH2X
+         iqcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RdGFTu0+gJFSj/8XHnsdu0rCr80zWB94xuGGcTk9DzY=;
-        b=32R42oRMFAmeJW2XiU6a0/JftMmi75HpYiHqnrtkN3+dGGijnrhzc90Q1PL89if+vS
-         TkqyR74PvANR352W9cOJJLHXX8iMpdlH3ndJJ4/FvWbBRGoD8wAG3mpW4F9sb6CQTl3s
-         PTP1aBvlYJJOPCIxkR9ETIEDJaqPLsPcc40pIMnWOukLAB+mwTdbgZrf5YI1x5lTY+D6
-         Qz77neBKFbVursvI6NpPwIngZLWms+Kms39IFIWDxNeiMpop502PgMmi2r1OLnxOMdFv
-         /rLN6JCnno8IO6TqZcyOv6a8NNRP68R+e4NmVDyzGVYtA+49AHbcrMNfuUEDHo4YDL82
-         M5NA==
-X-Gm-Message-State: AFqh2ko6LNBgSbXtP/GhrHIWfQFZWg1LV4HbUu47shMfbahPFpCOuybU
-        AKUOnNnU6I3eewmmsUlhp56VdchoEbXG5AUljmWrGtGb
-X-Google-Smtp-Source: AMrXdXsf88QsrQS+bBRWF2ObE/qOTjRiOO+AcdGPX3HSkOUKTGIfncKFoLGDXZgmrn68DeJPlx/PeQ==
-X-Received: by 2002:a05:600c:348b:b0:3d2:2a72:2577 with SMTP id a11-20020a05600c348b00b003d22a722577mr63486573wmq.27.1673811237183;
-        Sun, 15 Jan 2023 11:33:57 -0800 (PST)
+        bh=aKS96pmJPoYb7b0N1pU8tQ1JoETnhuDxnTgIIKOenYM=;
+        b=LxT9g/6VoYkv4maVaPtktvchofJ2unKdnihNNBnyI7gOSzI/dmbHNr+qPI6AMkdoYt
+         nkcrnc7jjarB4fN7aKMyDw297PKIW2q/mlsLy120h/A+ZVnfko4jNm7+M8S+I7GLNCKp
+         DZhvGpnmRGdEN2uOMT6BDGucGGEHzGPuYELHqSmI40+irqmArh8OLEk85QJTj3RUy2P3
+         vPjwBFBWNQIEIhyQwzx5FCBe0Rs7dtNPMVXvWRI9saxe7VzRu3DWnooI43zFrJgbOpWI
+         QtOAnUfd58njDspdFDuHLrVaPWwoBbpcXb10Z/B6nLhJToRPjVc++/S1tWX42rz8Po1B
+         Bsbg==
+X-Gm-Message-State: AFqh2kpvJRv6FxvZmWFC0kskyq27siUkhIPUMm/kpJUGCYw2N+f9pizT
+        24XUBrH/bRnDe8DeJIBYaYAmXVxonF/3Gm9InhXEBw==
+X-Google-Smtp-Source: AMrXdXtiAtWBNInaUn1ciDGHW3hTscUUewtiMApYCrZAJJioAH4xZZgDcR5vCIpdWiBgI2mj0JNJ6A==
+X-Received: by 2002:a7b:c39a:0:b0:3d2:640:c4e5 with SMTP id s26-20020a7bc39a000000b003d20640c4e5mr63160339wmj.8.1673811239112;
+        Sun, 15 Jan 2023 11:33:59 -0800 (PST)
 Received: from neptune.hotspot.internet-for-guests.com (ip-078-094-237-238.um19.pools.vodafone-ip.de. [78.94.237.238])
-        by smtp.gmail.com with ESMTPSA id f15-20020a7bcd0f000000b003d9a71ee54dsm30559281wmj.36.2023.01.15.11.33.55
+        by smtp.gmail.com with ESMTPSA id f15-20020a7bcd0f000000b003d9a71ee54dsm30559281wmj.36.2023.01.15.11.33.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Jan 2023 11:33:56 -0800 (PST)
+        Sun, 15 Jan 2023 11:33:58 -0800 (PST)
 From:   Alexandru Ardelean <alex@shruggie.ro>
 To:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org
 Cc:     broonie@kernel.org, lgirdwood@gmail.com,
         krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
         steffen.aschbacher@stihl.de, Alexandru Ardelean <alex@shruggie.ro>
-Subject: [PATCH 3/4] ASoC: tas5720: set bit 7 in ANALOG_CTRL_REG for TAS5720A-Q1 during probe
-Date:   Sun, 15 Jan 2023 21:33:46 +0200
-Message-Id: <20230115193347.24190-3-alex@shruggie.ro>
+Subject: [PATCH 4/4] ASoC: dt-bindings: add entry for TAS5720A-Q1 driver
+Date:   Sun, 15 Jan 2023 21:33:47 +0200
+Message-Id: <20230115193347.24190-4-alex@shruggie.ro>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230115193347.24190-1-alex@shruggie.ro>
 References: <20230115193347.24190-1-alex@shruggie.ro>
@@ -73,61 +73,32 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Steffen Aschbacher <steffen.aschbacher@stihl.de>
 
-Set the reserved bit 7 in the ANALOG_CTRL_REG for the TAS5720A-Q1 device,
-when probing.
-The datasheet mentions that the bit should be 1 during reset/powerup.
-
-The device did not initialize before setting this value to 1. So, this
-could be a quirk of this device. Or it could be a quirk with the board on
-which it was tested.
-
-That is why this patch is separate from the patch that adds support for the
-TAS5720A-Q1 device.
-It's unclear whether this change is the proper way to do it.
+Add entry for the TAS5720A-Q1 driver in the dt-bindings doc.
 
 Signed-off-by: Steffen Aschbacher <steffen.aschbacher@stihl.de>
 Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
 ---
- sound/soc/codecs/tas5720.c | 13 +++++++++++++
- sound/soc/codecs/tas5720.h |  1 +
- 2 files changed, 14 insertions(+)
+ Documentation/devicetree/bindings/sound/tas5720.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/sound/soc/codecs/tas5720.c b/sound/soc/codecs/tas5720.c
-index d9d08593ff7a..0a7ad35c3b9b 100644
---- a/sound/soc/codecs/tas5720.c
-+++ b/sound/soc/codecs/tas5720.c
-@@ -350,6 +350,19 @@ static int tas5720_codec_probe(struct snd_soc_component *component)
- 	if (ret < 0)
- 		goto error_snd_soc_component_update_bits;
+diff --git a/Documentation/devicetree/bindings/sound/tas5720.txt b/Documentation/devicetree/bindings/sound/tas5720.txt
+index df99ca9451b0..7d851ae2bba2 100644
+--- a/Documentation/devicetree/bindings/sound/tas5720.txt
++++ b/Documentation/devicetree/bindings/sound/tas5720.txt
+@@ -6,11 +6,13 @@ audio playback. For more product information please see the links below:
  
-+	/* Set Bit 7 in TAS5720_ANALOG_CTRL_REG to 1 for TAS5720A_Q1 */
-+	switch (tas5720->devtype) {
-+	case TAS5720A_Q1:
-+		ret = snd_soc_component_update_bits(component, TAS5720_ANALOG_CTRL_REG,
-+						    TAS5720_Q1_RESERVED7_BIT,
-+						    TAS5720_Q1_RESERVED7_BIT);
-+		break;
-+	default:
-+		break;
-+	}
-+	if (ret < 0)
-+		goto error_snd_soc_component_update_bits;
-+
- 	/*
- 	 * Enter shutdown mode - our default when not playing audio - to
- 	 * minimize current consumption. On the TAS5720 there is no real down
-diff --git a/sound/soc/codecs/tas5720.h b/sound/soc/codecs/tas5720.h
-index b38459570241..54b59b05ef0a 100644
---- a/sound/soc/codecs/tas5720.h
-+++ b/sound/soc/codecs/tas5720.h
-@@ -81,6 +81,7 @@
- #define TAS5720_ANALOG_GAIN_SHIFT	(0x2)
+ https://www.ti.com/product/TAS5720L
+ https://www.ti.com/product/TAS5720M
++https://www.ti.com/product/TAS5720A-Q1
+ https://www.ti.com/product/TAS5722L
  
- /* TAS5720_Q1_ANALOG_CTRL_REG */
-+#define TAS5720_Q1_RESERVED7_BIT	BIT(7)
- #define TAS5720_Q1_CHAN_SEL		BIT(1)
+ Required properties:
  
- /* TAS5720_FAULT_REG */
+ - compatible : "ti,tas5720",
++               "ti,tas5720a-q1",
+                "ti,tas5722"
+ - reg : I2C slave address
+ - dvdd-supply : phandle to a 3.3-V supply for the digital circuitry
 -- 
 2.34.1
 
