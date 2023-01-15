@@ -2,95 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B87566B420
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 22:19:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8D2966B42D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 22:33:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231544AbjAOVTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 16:19:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41012 "EHLO
+        id S231600AbjAOVdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 16:33:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231520AbjAOVTD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 16:19:03 -0500
-Received: from xtrwkvxq.outbound-mail.sendgrid.net (xtrwkvxq.outbound-mail.sendgrid.net [167.89.24.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AECDB46B
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 13:19:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
-        h=from:subject:mime-version:to:cc:content-transfer-encoding:
-        content-type:cc:content-type:from:subject:to;
-        s=s1; bh=ERbPVIFarZb+WUgCpZDCdwY8ICFJF1vmgae75o3lQi0=;
-        b=ZGhUX8T0a5jouzeRkasAwgtrU3DaIsFhixgK9eGZ4m6WLJx5HgflWG/ZtikfLTGGhsr/
-        bKgLGjwhvvplmhkCbgRsNLLJc8Wg9iBp/xhwZCoKLtOSrRpvc8MMKKO2lCUjdssE+sYxO7
-        /6snFkXAnpIXx7CvhG/fzWQodZpZMUbCBfjc9ABlK82gSkJqWRd1HYZ2GpukKq5bUj1JK/
-        alIa0QTDV8ZpyM7TbkSfFgsOULsvZ0/ppDgqT8tcJRFDbjXQ2g3GkmL+9B76/Qf+S7/4+Q
-        wjksJS+fK7v0sGNtfJ5JArBhE6VK8yhVojxm0pS5xoR+PtAGSVmWVR5Ryr8LAARg==
-Received: by filterdrecv-8569859b9-97x8c with SMTP id filterdrecv-8569859b9-97x8c-1-63C46D0C-3
-        2023-01-15 21:15:56.260523908 +0000 UTC m=+5090949.637570358
-Received: from bionic.localdomain (unknown)
-        by geopod-ismtpd-4-0 (SG)
-        with ESMTP
-        id DtXdfeHBTOGCyPGNzTz-Cg
-        Sun, 15 Jan 2023 21:15:55.878 +0000 (UTC)
-From:   Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH] arm64: dts: rockchip: fix probe of analog sound card on
- rock-3a
-Date:   Sun, 15 Jan 2023 21:15:56 +0000 (UTC)
-Message-Id: <20230115211553.445007-1-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.39.0
+        with ESMTP id S231605AbjAOVdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 16:33:17 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF9A1632E
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 13:33:15 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id x40so6223540lfu.12
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 13:33:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uc2KB+6JnGN5CN8ZL6/iTxWjXrR49/KupSA1DnyxAcw=;
+        b=dFJ4DuC4tiRUc97fmPGTiiz2pqctG2BFyrK4qKR8YhVmdPGybh1oT2dng+mxsgz8sI
+         /DpslqS9lOwbizluHoDusyDfX9EcqLRICJiBsXvuUuZsyOL5n9yPKR6+gyuMHG96o4lT
+         XqOb988Rr8gUHOJ3BHeFsNYSyXCnkhYnSCjevqSYWal0vBL830UqL4tvW+c/i2IaVDEU
+         pH8FqLPg+ZR9KKefK1yJGK7WFfmFCfpnuHghQwtOtNASBHzB5iHKKqyF5BZwQyq+Fqzr
+         VvpSAjTr3cTEK65ofH2zpHdRGYrR3Vbpz3RoN2Ma4AXZdZIONIGUTjRJCLZiD0TmwBC8
+         wdlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Uc2KB+6JnGN5CN8ZL6/iTxWjXrR49/KupSA1DnyxAcw=;
+        b=VANc4+12K4c+fY+5SE8HAv4ofpcYgMUNSkd+LME88DvfVyaZW2yQDK7yfBcvUjE4K3
+         zjrmm6lBfAp2/rG/J+s6iBBNjVLf1SApBI18+ufkSOl1MnMdNc2r46Q8y6fIsGtTLh/J
+         ELq83NXdZhBgH8w8q+pOcYi70YcSM5UF+JIddhcWFbHy43Yh4U5L2uIwesNqLcSXefWe
+         v74rmDe9BHj7RM8nIKd6roLGgllhP53t0UuJatSSyBlaKb80YZCtDzUzaToDLZPyk/Qj
+         5CSW43J81c40c0Cb1X7nNqDkc8tqZ3CIOHWupBTybjAEivb+Icg1HxVptDdcOm/q7cjo
+         ElHA==
+X-Gm-Message-State: AFqh2kovboAwqf6DnzjYp84UaxcmQIhAtE0s9oGbYkEYw7TZpNiss0Zt
+        XE4ykDUZq0xk/oYt01WvFJW5i47hZDoIYJEvh0OO5A==
+X-Google-Smtp-Source: AMrXdXvEYNNPSdXfMPIBcHLU2o+DgI9dKFo66ir/dhuo0bqe4WYAvtuL7IqrevDujkz1Fw4cPJgl2Smg3X0zbGA5Rr8=
+X-Received: by 2002:a05:6512:128a:b0:4d3:4e4b:c8ce with SMTP id
+ u10-20020a056512128a00b004d34e4bc8cemr679788lfs.376.1673818393850; Sun, 15
+ Jan 2023 13:33:13 -0800 (PST)
 MIME-Version: 1.0
-X-SG-EID: =?us-ascii?Q?TdbjyGynYnRZWhH+7lKUQJL+ZxmxpowvO2O9SQF5CwCVrYgcwUXgU5DKUU3QxA?=
- =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0h4pQVcEPeLI24yyJK?=
- =?us-ascii?Q?2BEi7JO9ReTsY1s0wICYAt6+gAJYw1tv=2F+Qx5ux?=
- =?us-ascii?Q?W6rwiIC4AJy4bFrV2svt0M1o=2F5FyBGDLbeIRiim?=
- =?us-ascii?Q?7hQyzKSuOIq4Rv1xBWoinqPvgVNsZ+Lsgzgx+OT?=
- =?us-ascii?Q?BAiNNWdlimc2vl8XMAAPhrJG1KtWseNYSIL7Xp?=
-To:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Jonas Karlman <jonas@kwiboo.se>
-X-Entity-ID: P7KYpSJvGCELWjBME/J5tg==
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=us-ascii
+References: <20230113201038.267449-1-bhupesh.sharma@linaro.org> <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org>
+In-Reply-To: <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 16 Jan 2023 03:03:02 +0530
+Message-ID: <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: qcom: geni-se: Fix '#address-cells' &
+ '#size-cells' related dt-binding error
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following was observed on my Radxa ROCK 3 Model A board:
+On Sun, 15 Jan 2023 at 20:57, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 13/01/2023 21:10, Bhupesh Sharma wrote:
+> > Fix the following '#address-cells' & '#size-cells' related
+> > dt-binding error:
+> >
+> >    $ make dtbs_check
+> >
+> >    From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+> >         arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dtb: geniqup@4ac0000:
+> >               #address-cells:0:0: 2 was expected
+> >       From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+>
+> Don't we want rather to unify the soc address range?
 
-  rockchip-pinctrl pinctrl: pin gpio1-9 already requested by vcc-cam-regulator; cannot claim for fe410000.i2s
-  ...
-  platform rk809-sound: deferred probe pending
+Well, the assumption in the original dt-bindings was that every reg
+variable is 4 * u32 wide (as most new qcom SoCs set #address- and
+#size-cells to <2>). However, that is not the case for all of the
+SoCs.
 
-Fix this by supplying a board specific pinctrl with the i2s1 pins used
-by pmic codec according to the schematic [1].
+So, ideally we shouldn't set the  "#address-cells" and  "#size-cells":
+as const: 2 in the bindings.
 
-[1] https://dl.radxa.com/rock3/docs/hw/3a/ROCK-3A-V1.3-SCH.pdf
+See as an example:
+https://www.kernel.org/doc/Documentation/devicetree/bindings/usb/usb-device.yaml
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-index 00d873a03cfe..a149c8b83f94 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-@@ -573,6 +573,8 @@ &i2s0_8ch {
- };
- 
- &i2s1_8ch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s1m0_sclktx &i2s1m0_lrcktx &i2s1m0_sdi0 &i2s1m0_sdo0>;
- 	rockchip,trcm-sync-tx-only;
- 	status = "okay";
- };
--- 
-2.39.0
-
+Thanks.
