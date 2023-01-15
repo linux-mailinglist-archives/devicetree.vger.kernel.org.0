@@ -2,270 +2,606 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D51666B33E
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 18:41:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50A7C66B393
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 20:10:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231396AbjAORlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 12:41:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59316 "EHLO
+        id S231269AbjAOTKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 14:10:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231346AbjAORlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 12:41:18 -0500
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CEDAC643;
-        Sun, 15 Jan 2023 09:41:17 -0800 (PST)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30FDngTS005019;
-        Sun, 15 Jan 2023 12:41:07 -0500
-Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2168.outbound.protection.outlook.com [104.47.58.168])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3n3t6bcxg1-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 15 Jan 2023 12:41:07 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K/yQtvfDRYbD1UUrGylCmfoSW88WHzUMGxp2Tobii/v51yZI6e17VH7opOFUizt2AmeocnM/u+M2fyxEMexDwnA6QzWxjer2RT/fj6VRz/nP+w+TPtNiDcq7aIvhVpWW0IAc7Xn1D7FLHYP05S45votT1cAkFjJojjyOFw0r/vdsuPPjEXhg14yGKI5w+erp71PtmI7Erq/TM3nK0ANx2WxY2+ooQmIklGr6hIWYtAPbLYrcmPlh9TAFwY3K0QAqIkaP5Um57s0F+8nj8EUZo9fC/tjY67GZ4lpIvxyzanQRdsCqGVlmsaCQlBleUelQG2mYz/0bl4XmZmFTW12jXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P5pw/3J27HcamFOVPHR22xWVdp8aJPYl4RXcrLztkJc=;
- b=RRly9k3pqG41WNG6VYkPyuo148dLQPUQ9hwTAA5qowGD/oQ/cFgQb6p78sfqAlS88WUzPiQt6mrSQxHAFrUJhr34t4vGlbsF3v71J/HfjdFz5zJv6PtKMNQdS0k/vG/EUtRrejSu1FjO4xhywLxRxH/3Gu0I8bE+9be/O7qXCCNU4VQYqgS/BksszaxHRzvkKQSabj0kycVV+m3q5SLKNpK9DHNg2lud0DKJ3ieQoy7WVtis7DlFeJCSPOIIjP7ddNyI5kwnPsvCFpsYUVaC3+9+texX8glm4c7DUNk2rDkFiDESodM5I0QsGG2JhOULRlgASHgkUXwD1cr1r/dC0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
+        with ESMTP id S231213AbjAOTKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 14:10:30 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F671286A
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:10:27 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id az20so44387537ejc.1
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:10:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P5pw/3J27HcamFOVPHR22xWVdp8aJPYl4RXcrLztkJc=;
- b=tqJl5gFAbHlb+LqE15qnPvn0iPYVADDM7bWzIbkO9t5UKAnDSToNSyr8fz8d+UOaRI96wbqWK6puq2bDuNKwDTVVZy4U4py9A61ih/RoYKkHibcfx6fzrUaNBL1c5bXjtJPRfIOgCYr7zAaMg9JQ3ZZMxXvPZ9OlQrbKfvAy1gI=
-Received: from MN2PR03MB5168.namprd03.prod.outlook.com (2603:10b6:208:1ec::19)
- by SA1PR03MB6532.namprd03.prod.outlook.com (2603:10b6:806:1c7::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.19; Sun, 15 Jan
- 2023 17:41:03 +0000
-Received: from MN2PR03MB5168.namprd03.prod.outlook.com
- ([fe80::2f8c:567f:c6cc:dbd9]) by MN2PR03MB5168.namprd03.prod.outlook.com
- ([fe80::2f8c:567f:c6cc:dbd9%3]) with mapi id 15.20.6002.013; Sun, 15 Jan 2023
- 17:41:03 +0000
-From:   "Sahin, Okan" <Okan.Sahin@analog.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        d=kali.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3lL4aejO0UvKZckyCwZSuB19Y0TmYTGUbBVOU3AupJ4=;
+        b=BBykYwO6+2mTH42sX2N9CVODRJqbCKVvboEGxJY4LB79TysH+GGb0blo97TThWnkKs
+         3KDBsG7/qh5982/ZiZ31ojxZjDE7EcCWwz6xU7HzcY7MWr6cjegrOwTVaisO0kAYejjY
+         RZ+QotC82mntHWAsiXNgtbXEeJbyOzPzFy0dP29S/kQqO4p26MhVqRx9mW41pP0XKIvy
+         jN7ffN4NbBy9t3Q9+dF7NqtRcp6HO7/hNGXT9zT1fuIUevIyGjTZYRCn6Bb8s1NEZHtN
+         rdSSH8XlyxqHsNq0G+u6C/1K3En26m4JfZ5JcH3Jk1t1H113DulP+dCnK6vXDSXRmCv4
+         bjCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3lL4aejO0UvKZckyCwZSuB19Y0TmYTGUbBVOU3AupJ4=;
+        b=SAAop3T766baAjLiM3ym3xzugWzdbjT6rXlngoAoYBj1jx73e3wgjKJhpzquFTBUq6
+         0tj20F54zuz5b6jLikBrR95XhScNmICZdU8Icl08xJsfE8nqhUVxKbeIky8ECALcTCM1
+         iug66vkRkMfx4ZLp5VLEpVHCT+CI7ikgjrQU97YeNMW223rz2isHaEq24FrNqSAxlZ7N
+         mSO+lzmmW5ThDii/g2eo65VkpqrDJv18ffYghJ1kb2KaHK9f1x6qCWTxJmvsJxZEcps2
+         A4H0c4wO3QWDtvoyw+8g6VqCgjtmHCb9mGAqJjYwNXUEoFXQp5oAzROQh5PSyBaYeYTF
+         +Hug==
+X-Gm-Message-State: AFqh2kqtoaleouBLfPNBHf2usIOzZMhZbYf7ll7VUuB/UUM7xVHjtB5/
+        reVYlQzuXOsSnD3jWLadZeEoR1i1bbliA6TbrJYByQ==
+X-Google-Smtp-Source: AMrXdXtXomJwrp4hyKiMvQ8rE9Rajr6wc5EVahlmbfkBRMWHtRLw27AT3ZHge6rQjT016sL6+RBGIGTFy44Lz+4VnGo=
+X-Received: by 2002:a17:906:99c8:b0:870:323c:aa31 with SMTP id
+ s8-20020a17090699c800b00870323caa31mr100278ejn.389.1673809825941; Sun, 15 Jan
+ 2023 11:10:25 -0800 (PST)
+MIME-Version: 1.0
+References: <20230113041132.4189268-1-quic_bjorande@quicinc.com> <20230113041132.4189268-4-quic_bjorande@quicinc.com>
+In-Reply-To: <20230113041132.4189268-4-quic_bjorande@quicinc.com>
+From:   Steev Klimaszewski <steev@kali.org>
+Date:   Sun, 15 Jan 2023 13:10:14 -0600
+Message-ID: <CAKXuJqhAFc=YQOYw7tKW5D0AW9S+QfutwgxD3sK2M9+HNtOqfQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] soc: qcom: pmic_glink: Introduce altmode support
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:VOLTAGE AND CURRENT REGULATOR FRAMEWORK" 
-        <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v2 4/5] dt-bindings: regulator:
- adi,max77541-regulator.yaml Add MAX77541 Regulator bindings
-Thread-Topic: [PATCH v2 4/5] dt-bindings: regulator:
- adi,max77541-regulator.yaml Add MAX77541 Regulator bindings
-Thread-Index: AQHZGXrq9GaVXcoaG0SgDZ9yfIPnAK6BXoEAgB4y4JA=
-Date:   Sun, 15 Jan 2023 17:41:03 +0000
-Message-ID: <MN2PR03MB51688C9858CC8CA7CACCDB22E7C09@MN2PR03MB5168.namprd03.prod.outlook.com>
-References: <20221226223839.103460-1-okan.sahin@analog.com>
- <20221226223839.103460-5-okan.sahin@analog.com>
- <74fd9706-119e-c6c3-4c64-c7ee419ce4bb@linaro.org>
-In-Reply-To: <74fd9706-119e-c6c3-4c64-c7ee419ce4bb@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcb2thbi5zYWhp?=
- =?us-ascii?Q?blxhcHBkYXRhXHJvYW1pbmdcMDlkODQ5YjYtMzJkMy00YTQwLTg1ZWUtNmI4?=
- =?us-ascii?Q?NGJhMjllMzViXG1zZ3NcbXNnLWMzODljMjMwLTk0ZmItMTFlZC1iZTkyLTkw?=
- =?us-ascii?Q?MmUxNjI0NzhjNlxhbWUtdGVzdFxjMzg5YzIzMi05NGZiLTExZWQtYmU5Mi05?=
- =?us-ascii?Q?MDJlMTYyNDc4YzZib2R5LnR4dCIgc3o9IjM2ODgiIHQ9IjEzMzE4Mjc4MDYx?=
- =?us-ascii?Q?NjIxNDgzMiIgaD0iVXlQQ0dma2JlOXhRVG0zRExaWk5La3o5MVpvPSIgaWQ9?=
- =?us-ascii?Q?IiIgYmw9IjAiIGJvPSIxIiBjaT0iY0FBQUFFUkhVMVJTUlVGTkNnVUFBRW9D?=
- =?us-ascii?Q?QUFBd0NkU0lDQ25aQWZ5K1plSGlFdzZBL0w1bDRlSVREb0FEQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUhBQUFBRGFBUUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUVBQVFBQkFBQUFSczFnRlFBQUFBQUFBQUFBQUFBQUFKNEFBQUJoQUdR?=
- =?us-ascii?Q?QWFRQmZBSE1BWlFCakFIVUFjZ0JsQUY4QWNBQnlBRzhBYWdCbEFHTUFkQUJ6?=
- =?us-ascii?Q?QUY4QVpnQmhBR3dBY3dCbEFGOEFaZ0J2QUhNQWFRQjBBR2tBZGdCbEFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBRUFBQUFBQUFBQUFnQUFBQUFBbmdBQUFHRUFaQUJwQUY4QWN3QmxBR01B?=
- =?us-ascii?Q?ZFFCeUFHVUFYd0J3QUhJQWJ3QnFBR1VBWXdCMEFITUFYd0IwQUdrQVpRQnlB?=
- =?us-ascii?Q?REVBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFBQUFBQUFD?=
- =?us-ascii?Q?QUFBQUFBQ2VBQUFBWVFCa0FHa0FYd0J6QUdVQVl3QjFBSElBWlFCZkFIQUFj?=
- =?us-ascii?Q?Z0J2QUdvQVpRQmpBSFFBY3dCZkFIUUFhUUJsQUhJQU1nQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFBSUFBQUFBQUE9PSIvPjwv?=
- =?us-ascii?Q?bWV0YT4=3D?=
-x-dg-rorf: true
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN2PR03MB5168:EE_|SA1PR03MB6532:EE_
-x-ms-office365-filtering-correlation-id: 5745410d-0f0f-45f1-fafa-08daf71fac36
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ojIUjvzJAAPiOwCuKYuGeTop4E5T9Te2yl2cppbf+gXczHTKwhDO9e1hovRs3LYQGRpzlr623LpimJGiR9qJJp/o1NHSQk8blZ3ziP71mSHsBB6xsBvUMj/p+8EzcvRxOxQEKqJgVCZWRXV/M5KSl9oN9lshBUJgrw6Uhhk9Par53QtdoYf23TvAtshf1GVM6QRDIDokvwZsRCuESEQILYdBHSEs52xZ4GCnKsJfG+tLmuFzzYpGyyZKu8IQjd8ETri27TwygameBGdsDdNuxm17+s1UEHOMs3FR23wS3TJNL/ccRCbTzzK1l6FGzHwFKQXc3vJVyI0UGWa1Fp+bUgKG9n/FnScCnxwg2hyj3XtTlwx677M/fDvjf+MLQHYZrm82lGC+TulO7UZiAwWalG8Jca4MTtYNWQ23LtZZQ7cOmdsSc3BGjHr2RS2lh+tv8vo6ONTk5Zst7jb6egpJfp6Ke9uKpYfN+WwrxlSc6oAdis8hJdvcRp05a/43ywNt+wIMATzehciHyv5bmC+MqNq7DOw6/4ot+02diuiEEePTmVanRGEwN1692fSDnaZ5GkwqA/VPsYv8++W3Tjg8FGU3HRQNbOedzq1Ru1tljzRufpxYEHZnujOADpKd37JW6/rLjnDDqVXHZjCz11DfpRr1HP3T03GwKFGophaS2wTIz1k8AN4FnatZOkSyAjh3mA2vVVbWDAWVigqj7nriDIseIdm6LQKrv5llDsx5HjG5hH4OI2lwjBZ/pCG0Zynef2DEJ0hAulHcv0rwRG64zA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR03MB5168.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(346002)(376002)(396003)(136003)(39850400004)(451199015)(38100700002)(122000001)(9686003)(33656002)(86362001)(8936002)(52536014)(5660300002)(41300700001)(19627235002)(66446008)(64756008)(316002)(66946007)(4326008)(66476007)(66556008)(6916009)(76116006)(8676002)(2906002)(55016003)(7696005)(83380400001)(38070700005)(71200400001)(54906003)(53546011)(478600001)(186003)(26005)(6506007)(966005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?/RVywQZkyYqezMwW8Qn06c91kNtHNK1qIFuGjscI2zUWwuQd4o94JklRa7gt?=
- =?us-ascii?Q?QQkZqlGuqP8QGpg9trYhfCH63vUQYL4FFvf5pApkGWFoXDfmuKnXdHSjoZQ4?=
- =?us-ascii?Q?x4Mwxv2b6kUU3H89HaMK8+lcof3IJ7Vg3Pgim14zEqMfdaQ4mO70aQxxzJKA?=
- =?us-ascii?Q?ry7O9W4YV3/+tFJWlTCxjuGIlAvnFpXyiQ1j0N4Y9OG8Axv/cmUO33rSZgzb?=
- =?us-ascii?Q?hM+RsIALPkylcHYw3yqkGMkbxLhs8eYhbZC2+I9hhUSdn6GEF9ZmW+s5YtaM?=
- =?us-ascii?Q?FKYhKkVsLCulQHhT7le6b/3xBuoNSFHNREB19WBxTTg4HTEj2P3nawVWlK+G?=
- =?us-ascii?Q?KOCEAJGa5nk96zRsEb3PzlPVgsCQDn+j8gbBX0BDHYOr04n30d7cBg6kjXlt?=
- =?us-ascii?Q?aQEMxcmY+NyyvtDApIxP8ge+loBh2fjkrjSu8PBMfUiLmCcSyOFHNBbEUdpm?=
- =?us-ascii?Q?dfqx3zQakgEht6HC4252Ilnf+4MQGghTtW4Qq5J9PMSmO9nuX84Yz9n3NAw2?=
- =?us-ascii?Q?ei0X321uTC2/usNNOZG5mNJkxthWom+6vVTlXT94+Qo+0820ORNX6K1I/7Is?=
- =?us-ascii?Q?I4J/X/Ks7KrZQ1IBOK2ZZW/iKeilCIU+eg7eYattp1fOH72MMTsG5kdFrQSD?=
- =?us-ascii?Q?46CPGJYiFtpw9CrkNhRNj46oRKEmht3/qnZf+SPWsnjuY1qiKimB4BkCz2LY?=
- =?us-ascii?Q?8nv6ISdcrigrTk8ReiSLJZIjbbZht8msZkcR/81comsI1zzkF1HRpRRNcTxZ?=
- =?us-ascii?Q?7WcY5UxhJowpZ8OQnHf6OR01xHiJKD3cyhfQHKX3VFanB0tyDEgh0s1VIERw?=
- =?us-ascii?Q?dXvDGHCsweMflRpz0vPKQqNs+K3BVpwfsg6BKfZlSt/oF1szLYxTGO7J1tKc?=
- =?us-ascii?Q?hIIKfmxkgVQNW0dVSIw3MPdbv6nFt4TnywM7imG1lzC6soPKrw4vaJc+GI58?=
- =?us-ascii?Q?Keh5rHqGRV3mKTz3imvWVi9hKNBjSRgJiEZPS9gsy+jBfuJwoIYLIxjCo2/U?=
- =?us-ascii?Q?gUYBcKR1XXihwqkLzdDPOBO7y+fGzjxvpLhI4lErLyvpuy0EhYC2XZe7vcik?=
- =?us-ascii?Q?Y9U7EAUSuGIyVwzimoOMMxrZ1aqVURLG/F0xloGtT5qgv2iVotkA+BoBpz+x?=
- =?us-ascii?Q?vNkQCc0YvohaO58kEMNlh6jw3OnAFa0+iN1vJSAwGC4EULypsD16Phtor3ko?=
- =?us-ascii?Q?RXSGd2GOLrLUPvGxUgAKKpcoOEPRLC7zA19rUOyL7ndXKVNhYqWLFAF0BTJz?=
- =?us-ascii?Q?o37hGxN3DKfHCyO6k2nGGKfdJUvoPZzL3yPjxbyyI7GaB1ZRVICZS2cdj4j7?=
- =?us-ascii?Q?2dwvkTrj/8kZ595c/wfWPJNl38MwyEWuPzRN4gnTq49nyFNX4FyFr+jym9F7?=
- =?us-ascii?Q?T1ik6bNMEpuF4IsS99X4pQqxvcl87t8Hfj/sswChenYcHb8b1lcEHoUFKeN8?=
- =?us-ascii?Q?YMzgUd2QNtSDe3aomvX1TU5g1MO0knpc5h0fKxA1WwONZledhYt0tpfFu8a2?=
- =?us-ascii?Q?Yr3jMEX/8Qgt3/GBkNXCsFDPWc20K/BSc6UoNyjWqi4jdXL9aQifdoCie9Hi?=
- =?us-ascii?Q?TGHu+P2BkgTO8ldD4G5V/VIlSL+kbkrkAQqtCeW4?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR03MB5168.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5745410d-0f0f-45f1-fafa-08daf71fac36
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2023 17:41:03.1520
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Cwqym+61lZuSTNbjYIcuj+QRjIU5JoLfchsg9Ls/s3pVl4VJUUv0FikUkqLBitLpI/nHYBnYlPXDBUzXbAyYDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR03MB6532
-X-Proofpoint-GUID: uR4RRntPYqxtDDZWt4Fg-tp3pVHJeyyk
-X-Proofpoint-ORIG-GUID: uR4RRntPYqxtDDZWt4Fg-tp3pVHJeyyk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-15_13,2023-01-13_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1011
- priorityscore=1501 adultscore=0 bulkscore=0 mlxlogscore=999
- impostorscore=0 mlxscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301150138
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Sebastian Reichel <sre@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
+        Johan Hovold <johan@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, Jan 12, 2023 at 10:13 PM Bjorn Andersson
+<quic_bjorande@quicinc.com> wrote:
+>
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+>
+> With the PMIC GLINK service, the host OS subscribes to USB-C altmode
+> messages, which are sent by the firmware to notify the host OS about
+> state updates and HPD interrupts.
+>
+> The pmic_glink_altmode driver registers for these notifications and
+> propagates the notifications as typec_mux, typec_switch and DRM OOB
+> notifications as necessary to implement DisplayPort altmode support.
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>
+> Changes since v1:
+> - None
+>
+> Johan reported a NULL pointer dereference in
+> drm_kms_helper_hotplug_event() for HPD event being reported while the
+> MSM DRM driver is still being initalized, a separate fix has been sent
+> in hope to remidy this race condition in the MSM driver.
+>
+>  drivers/soc/qcom/Makefile             |   1 +
+>  drivers/soc/qcom/pmic_glink_altmode.c | 477 ++++++++++++++++++++++++++
+>  2 files changed, 478 insertions(+)
+>  create mode 100644 drivers/soc/qcom/pmic_glink_altmode.c
+>
+> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+> index 29cccac472f3..f30552bf4da7 100644
+> --- a/drivers/soc/qcom/Makefile
+> +++ b/drivers/soc/qcom/Makefile
+> @@ -10,6 +10,7 @@ obj-$(CONFIG_QCOM_MDT_LOADER) += mdt_loader.o
+>  obj-$(CONFIG_QCOM_OCMEM)       += ocmem.o
+>  obj-$(CONFIG_QCOM_PDR_HELPERS) += pdr_interface.o
+>  obj-$(CONFIG_QCOM_PMIC_GLINK)  += pmic_glink.o
+> +obj-$(CONFIG_QCOM_PMIC_GLINK)  += pmic_glink_altmode.o
+>  obj-$(CONFIG_QCOM_QMI_HELPERS) += qmi_helpers.o
+>  qmi_helpers-y  += qmi_encdec.o qmi_interface.o
+>  obj-$(CONFIG_QCOM_RAMP_CTRL)   += ramp_controller.o
+> diff --git a/drivers/soc/qcom/pmic_glink_altmode.c b/drivers/soc/qcom/pmic_glink_altmode.c
+> new file mode 100644
+> index 000000000000..8d2d563cb756
+> --- /dev/null
+> +++ b/drivers/soc/qcom/pmic_glink_altmode.c
+> @@ -0,0 +1,477 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022, Linaro Ltd
+> + */
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/mutex.h>
+> +#include <linux/property.h>
+> +#include <linux/soc/qcom/pdr.h>
+> +#include <drm/drm_bridge.h>
+> +
+> +#include <linux/usb/typec_altmode.h>
+> +#include <linux/usb/typec_dp.h>
+> +#include <linux/usb/typec_mux.h>
+> +
+> +#include <linux/soc/qcom/pmic_glink.h>
+> +
+> +#define PMIC_GLINK_MAX_PORTS   2
+> +
+> +#define USBC_SC8180X_NOTIFY_IND        0x13
+> +#define USBC_CMD_WRITE_REQ      0x15
+> +#define USBC_NOTIFY_IND                0x16
+> +
+> +#define ALTMODE_PAN_EN         0x10
+> +#define ALTMODE_PAN_ACK                0x11
+> +
+> +struct usbc_write_req {
+> +       struct pmic_glink_hdr   hdr;
+> +       __le32 cmd;
+> +       __le32 arg;
+> +       __le32 reserved;
+> +};
+> +
+> +#define NOTIFY_PAYLOAD_SIZE 16
+> +struct usbc_notify {
+> +       struct pmic_glink_hdr hdr;
+> +       char payload[NOTIFY_PAYLOAD_SIZE];
+> +       u32 reserved;
+> +};
+> +
+> +struct usbc_sc8180x_notify {
+> +       struct pmic_glink_hdr hdr;
+> +       __le32 notification;
+> +       __le32 reserved[2];
+> +};
+> +
+> +enum pmic_glink_altmode_pin_assignment {
+> +       DPAM_HPD_OUT,
+> +       DPAM_HPD_A,
+> +       DPAM_HPD_B,
+> +       DPAM_HPD_C,
+> +       DPAM_HPD_D,
+> +       DPAM_HPD_E,
+> +       DPAM_HPD_F,
+> +};
+> +
+> +struct pmic_glink_altmode;
+> +
+> +#define work_to_altmode_port(w) container_of((w), struct pmic_glink_altmode_port, work)
+> +
+> +struct pmic_glink_altmode_port {
+> +       struct pmic_glink_altmode *altmode;
+> +       unsigned int index;
+> +
+> +       struct typec_switch *typec_switch;
+> +       struct typec_mux *typec_mux;
+> +       struct typec_mux_state state;
+> +       struct typec_altmode dp_alt;
+> +
+> +       struct work_struct work;
+> +
+> +       struct drm_bridge bridge;
+> +
+> +       enum typec_orientation orientation;
+> +       u16 svid;
+> +       u8 dp_data;
+> +       u8 mode;
+> +       u8 hpd_state;
+> +       u8 hpd_irq;
+> +};
+> +
+> +#define work_to_altmode(w) container_of((w), struct pmic_glink_altmode, enable_work)
+> +
+> +struct pmic_glink_altmode {
+> +       struct device *dev;
+> +
+> +       unsigned int owner_id;
+> +
+> +       /* To synchronize WRITE_REQ acks */
+> +       struct mutex lock;
+> +
+> +       struct completion pan_ack;
+> +       struct pmic_glink_client *client;
+> +
+> +       struct work_struct enable_work;
+> +
+> +       struct pmic_glink_altmode_port ports[PMIC_GLINK_MAX_PORTS];
+> +};
+> +
+> +static int pmic_glink_altmode_request(struct pmic_glink_altmode *altmode, u32 cmd, u32 arg)
+> +{
+> +       struct usbc_write_req req = {};
+> +       unsigned long left;
+> +       int ret;
+> +
+> +       /*
+> +        * The USBC_CMD_WRITE_REQ ack doesn't identify the request, so wait for
+> +        * one ack at a time.
+> +        */
+> +       mutex_lock(&altmode->lock);
+> +
+> +       req.hdr.owner = cpu_to_le32(altmode->owner_id);
+> +       req.hdr.type = cpu_to_le32(PMIC_GLINK_REQ_RESP);
+> +       req.hdr.opcode = cpu_to_le32(USBC_CMD_WRITE_REQ);
+> +       req.cmd = cpu_to_le32(cmd);
+> +       req.arg = cpu_to_le32(arg);
+> +
+> +       ret = pmic_glink_send(altmode->client, &req, sizeof(req));
+> +       if (ret) {
+> +               dev_err(altmode->dev, "failed to send altmode request: %#x (%d)\n", cmd, ret);
+> +               goto out_unlock;
+> +       }
+> +
+> +       left = wait_for_completion_timeout(&altmode->pan_ack, 5 * HZ);
+> +       if (!left) {
+> +               dev_err(altmode->dev, "timeout waiting for altmode request ack for: %#x\n", cmd);
+> +               ret = -ETIMEDOUT;
+> +       }
+> +
+> +out_unlock:
+> +       mutex_unlock(&altmode->lock);
+> +       return ret;
+> +}
+> +
+> +static void pmic_glink_altmode_enable_dp(struct pmic_glink_altmode *altmode,
+> +                                        struct pmic_glink_altmode_port *port,
+> +                                        u8 mode, bool hpd_state,
+> +                                        bool hpd_irq)
+> +{
+> +       struct typec_displayport_data dp_data = {};
+> +       int ret;
+> +
+> +       dp_data.status = DP_STATUS_ENABLED;
+> +       if (hpd_state)
+> +               dp_data.status |= DP_STATUS_HPD_STATE;
+> +       if (hpd_irq)
+> +               dp_data.status |= DP_STATUS_IRQ_HPD;
+> +       dp_data.conf = DP_CONF_SET_PIN_ASSIGN(mode);
+> +
+> +       port->state.alt = &port->dp_alt;
+> +       port->state.data = &dp_data;
+> +       port->state.mode = TYPEC_MODAL_STATE(mode);
+> +
+> +       ret = typec_mux_set(port->typec_mux, &port->state);
+> +       if (ret)
+> +               dev_err(altmode->dev, "failed to switch mux to DP\n");
+> +}
+> +
+> +static void pmic_glink_altmode_enable_usb(struct pmic_glink_altmode *altmode,
+> +                                         struct pmic_glink_altmode_port *port)
+> +{
+> +       int ret;
+> +
+> +       port->state.alt = NULL;
+> +       port->state.data = NULL;
+> +       port->state.mode = TYPEC_STATE_USB;
+> +
+> +       ret = typec_mux_set(port->typec_mux, &port->state);
+> +       if (ret)
+> +               dev_err(altmode->dev, "failed to switch mux to USB\n");
+> +}
+> +
+> +static void pmic_glink_altmode_worker(struct work_struct *work)
+> +{
+> +       struct pmic_glink_altmode_port *alt_port = work_to_altmode_port(work);
+> +       struct pmic_glink_altmode *altmode = alt_port->altmode;
+> +
+> +       typec_switch_set(alt_port->typec_switch, alt_port->orientation);
+> +
+> +       if (alt_port->svid == USB_TYPEC_DP_SID)
+> +               pmic_glink_altmode_enable_dp(altmode, alt_port, alt_port->mode,
+> +                                            alt_port->hpd_state, alt_port->hpd_irq);
+> +       else
+> +               pmic_glink_altmode_enable_usb(altmode, alt_port);
+> +
+> +       if (alt_port->hpd_state)
+> +               drm_bridge_hpd_notify(&alt_port->bridge, connector_status_connected);
+> +       else
+> +               drm_bridge_hpd_notify(&alt_port->bridge, connector_status_disconnected);
+> +
+> +       pmic_glink_altmode_request(altmode, ALTMODE_PAN_ACK, alt_port->index);
+> +};
+> +
+> +static enum typec_orientation pmic_glink_altmode_orientation(unsigned int orientation)
+> +{
+> +       if (orientation == 0)
+> +               return TYPEC_ORIENTATION_NORMAL;
+> +       else if (orientation == 1)
+> +               return TYPEC_ORIENTATION_REVERSE;
+> +       else
+> +               return TYPEC_ORIENTATION_NONE;
+> +}
+> +
+> +#define SC8180X_PORT_MASK              0x000000ff
+> +#define SC8180X_ORIENTATION_MASK       0x0000ff00
+> +#define SC8180X_MUX_MASK               0x00ff0000
+> +#define SC8180X_MODE_MASK              0x3f000000
+> +#define SC8180X_HPD_STATE_MASK         0x40000000
+> +#define SC8180X_HPD_IRQ_MASK           0x80000000
+> +
+> +static void pmic_glink_altmode_sc8180xp_notify(struct pmic_glink_altmode *altmode,
+> +                                              const void *data, size_t len)
+> +{
+> +       struct pmic_glink_altmode_port *alt_port;
+> +       const struct usbc_sc8180x_notify *msg;
+> +       u32 notification;
+> +       u8 orientation;
+> +       u8 hpd_state;
+> +       u8 hpd_irq;
+> +       u16 svid;
+> +       u8 port;
+> +       u8 mode;
+> +       u8 mux;
+> +
+> +       if (len != sizeof(*msg)) {
+> +               dev_warn(altmode->dev, "invalid length of USBC_NOTIFY indication: %zd\n", len);
+> +               return;
+> +       }
+> +
+> +       msg = data;
+> +       notification = le32_to_cpu(msg->notification);
+> +       port = FIELD_GET(SC8180X_PORT_MASK, notification);
+> +       orientation = FIELD_GET(SC8180X_ORIENTATION_MASK, notification);
+> +       mux = FIELD_GET(SC8180X_MUX_MASK, notification);
+> +       mode = FIELD_GET(SC8180X_MODE_MASK, notification);
+> +       hpd_state = FIELD_GET(SC8180X_HPD_STATE_MASK, notification);
+> +       hpd_irq = FIELD_GET(SC8180X_HPD_IRQ_MASK, notification);
+> +
+The kernel test robot keeps complaining about these FIELD_GET because
+there is no #include <linux/bitfield.h>
 
-Thank you for your feedback and efforts. I also have a few question below.
-
-On Tue, 27 Dec 2022 10:57 AM
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 26/12/2022 23:38, Okan Sahin wrote:
-> > The bindings for MAX77541 and MAX77540 regulator drivers.
->=20
-> 1. Again:
-> https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v5.17.1/sour=
-ce/D
-> ocumentation/process/submitting-
-> patches.rst*L95__;Iw!!A3Ni8CS0y2Y!7nAM0w0tZiMzaqSFijTSs6_FiIcbPVz-
-> n0BajxVC1WDh0GfsgL7XoVFoFToHza-Cy2_p8o0UEEc82BOnwgesjPcas_9m$
->=20
-> 2. Please wrap commit message according to Linux coding style / submissio=
-n
-> process (neither too early nor over the limit):
-> https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v5.18-
-> rc4/source/Documentation/process/submitting-
-> patches.rst*L586__;Iw!!A3Ni8CS0y2Y!7nAM0w0tZiMzaqSFijTSs6_FiIcbPVz-
-> n0BajxVC1WDh0GfsgL7XoVFoFToHza-Cy2_p8o0UEEc82BOnwgesjE6sDUk6$
->=20
-> 3. Subject: drop second, redundant "bindings".
->=20
->=20
-I will update like you suggest. Is there any command that you can advise to=
- check format of commit is suitable or not by using check_patch?
-I just added checkpatch into .git/hooks/post-commit file.
-> >
-> > Signed-off-by: Okan Sahin <okan.sahin@analog.com>
-> > ---
-> >  .../regulator/adi,max77541-regulator.yaml     | 44 +++++++++++++++++++
-> >  MAINTAINERS                                   |  1 +
-> >  2 files changed, 45 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/regulator/adi,max77541-regulator.yam
-> > l
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/regulator/adi,max77541-regulator.y
-> > aml
-> > b/Documentation/devicetree/bindings/regulator/adi,max77541-regulator.y
-> > aml
-> > new file mode 100644
-> > index 000000000000..67d48bfcb627
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/regulator/adi,max77541-regulat
-> > +++ or.yaml
-> > @@ -0,0 +1,44 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
-> > +---
-> > +$id:
-> > +https://urldefense.com/v3/__http://devicetree.org/schemas/regulator/a
-> > +di,max77541-
-> regulator.yaml*__;Iw!!A3Ni8CS0y2Y!7nAM0w0tZiMzaqSFijTSs6_
-> > +FiIcbPVz-n0BajxVC1WDh0GfsgL7XoVFoFToHza-
-> Cy2_p8o0UEEc82BOnwgesjKsOQbIb
-> > +$
-> > +$schema:
-> > +https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.y
-> > +aml*__;Iw!!A3Ni8CS0y2Y!7nAM0w0tZiMzaqSFijTSs6_FiIcbPVz-
-> n0BajxVC1WDh0G
-> > +fsgL7XoVFoFToHza-Cy2_p8o0UEEc82BOnwgesjEgbPQFe$
-> > +
-> > +title: Buck Converter for MAX77540/MAX77541
-> > +
-> > +maintainers:
-> > +  - Okan Sahin <okan.sahin@analog.com>
-> > +
-> > +description: |
-> > +  This is a part of device tree bindings for ADI MAX77540/MAX77541
-> > +
-> > +  The buck converter is represented as a sub-node of the PMIC node on =
-the
-> device tree.
-> > +
-> > +  The device has two buck regulators.
-> > +  See also Documentation/devicetree/bindings/mfd/adi,max77541.yaml
-> > + for  additional information and example.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - adi,max77540-regulator
-> > +      - adi,max77541-regulator
-> > +
-> > +patternProperties:
-> > +  "^BUCK[12]$":
->=20
-> Old DT example was correct - lowercase node names.
-Actually, I did not change this part of the patch. I checked other examples=
-, and it looks like using upper case under regulators node seems correct to=
- me. Additionally, there is no warning or error after "make dt_binding_chec=
-k".
->=20
-> Best regards,
-> Krzysztof
-
-Best regards,
-Okan
-
+> +       svid = mux == 2 ? USB_TYPEC_DP_SID : 0;
+> +
+> +       if (!altmode->ports[port].altmode) {
+> +               dev_dbg(altmode->dev, "notification on undefined port %d\n", port);
+> +               return;
+> +       }
+> +
+> +       alt_port = &altmode->ports[port];
+> +       alt_port->orientation = pmic_glink_altmode_orientation(orientation);
+> +       alt_port->svid = mux == 2 ? USB_TYPEC_DP_SID : 0;
+> +       alt_port->mode = mode;
+> +       alt_port->hpd_state = hpd_state;
+> +       alt_port->hpd_irq = hpd_irq;
+> +       schedule_work(&alt_port->work);
+> +}
+> +
+> +#define SC8280XP_DPAM_MASK     0x3f
+> +#define SC8280XP_HPD_STATE_MASK BIT(6)
+> +#define SC8280XP_HPD_IRQ_MASK  BIT(7)
+> +
+> +static void pmic_glink_altmode_sc8280xp_notify(struct pmic_glink_altmode *altmode,
+> +                                              u16 svid, const void *data, size_t len)
+> +{
+> +       struct pmic_glink_altmode_port *alt_port;
+> +       const struct usbc_notify *notify;
+> +       u8 orientation;
+> +       u8 hpd_state;
+> +       u8 hpd_irq;
+> +       u8 mode;
+> +       u8 port;
+> +
+> +       if (len != sizeof(*notify)) {
+> +               dev_warn(altmode->dev, "invalid length USBC_NOTIFY_IND: %zd\n",
+> +                        len);
+> +               return;
+> +       }
+> +
+> +       notify = data;
+> +
+> +       port = notify->payload[0];
+> +       orientation = notify->payload[1];
+> +       mode = FIELD_GET(SC8280XP_DPAM_MASK, notify->payload[8]) - DPAM_HPD_A;
+> +       hpd_state = FIELD_GET(SC8280XP_HPD_STATE_MASK, notify->payload[8]);
+> +       hpd_irq = FIELD_GET(SC8280XP_HPD_IRQ_MASK, notify->payload[8]);
+> +
+> +       if (!altmode->ports[port].altmode) {
+> +               dev_dbg(altmode->dev, "notification on undefined port %d\n", port);
+> +               return;
+> +       }
+> +
+> +       alt_port = &altmode->ports[port];
+> +       alt_port->orientation = pmic_glink_altmode_orientation(orientation);
+> +       alt_port->svid = svid;
+> +       alt_port->mode = mode;
+> +       alt_port->hpd_state = hpd_state;
+> +       alt_port->hpd_irq = hpd_irq;
+> +       schedule_work(&alt_port->work);
+> +}
+> +
+> +static void pmic_glink_altmode_callback(const void *data, size_t len, void *priv)
+> +{
+> +       struct pmic_glink_altmode *altmode = priv;
+> +       const struct pmic_glink_hdr *hdr = data;
+> +       u16 opcode;
+> +       u16 svid;
+> +
+> +       opcode = le32_to_cpu(hdr->opcode) & 0xff;
+> +       svid = le32_to_cpu(hdr->opcode) >> 16;
+> +
+> +       switch (opcode) {
+> +       case USBC_CMD_WRITE_REQ:
+> +               complete(&altmode->pan_ack);
+> +               break;
+> +       case USBC_NOTIFY_IND:
+> +               pmic_glink_altmode_sc8280xp_notify(altmode, svid, data, len);
+> +               break;
+> +       case USBC_SC8180X_NOTIFY_IND:
+> +               pmic_glink_altmode_sc8180xp_notify(altmode, data, len);
+> +               break;
+> +       }
+> +}
+> +
+> +static int pmic_glink_altmode_attach(struct drm_bridge *bridge,
+> +                                    enum drm_bridge_attach_flags flags)
+> +{
+> +       return flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR ? 0 : -EINVAL;
+> +}
+> +
+> +static const struct drm_bridge_funcs pmic_glink_altmode_bridge_funcs = {
+> +       .attach = pmic_glink_altmode_attach,
+> +};
+> +
+> +static void pmic_glink_altmode_put_mux(void *data)
+> +{
+> +       typec_mux_put(data);
+> +}
+> +
+> +static void pmic_glink_altmode_put_switch(void *data)
+> +{
+> +       typec_switch_put(data);
+> +}
+> +
+> +static void pmic_glink_altmode_enable_worker(struct work_struct *work)
+> +{
+> +       struct pmic_glink_altmode *altmode = work_to_altmode(work);
+> +       int ret;
+> +
+> +       ret = pmic_glink_altmode_request(altmode, ALTMODE_PAN_EN, 0);
+> +       if (ret)
+> +               dev_err(altmode->dev, "failed to request altmode notifications\n");
+> +}
+> +
+> +static void pmic_glink_altmode_pdr_notify(void *priv, int state)
+> +{
+> +       struct pmic_glink_altmode *altmode = priv;
+> +
+> +       if (state == SERVREG_SERVICE_STATE_UP)
+> +               schedule_work(&altmode->enable_work);
+> +}
+> +
+> +static const struct of_device_id pmic_glink_altmode_of_quirks[] = {
+> +       { .compatible = "qcom,sc8180x-pmic-glink", .data = (void *)PMIC_GLINK_OWNER_USBC },
+> +       {}
+> +};
+> +
+> +static int pmic_glink_altmode_probe(struct auxiliary_device *adev,
+> +                                   const struct auxiliary_device_id *id)
+> +{
+> +       struct pmic_glink_altmode_port *alt_port;
+> +       struct pmic_glink_altmode *altmode;
+> +       struct typec_altmode_desc mux_desc = {};
+> +       const struct of_device_id *match;
+> +       struct fwnode_handle *fwnode;
+> +       struct device *dev = &adev->dev;
+> +       u32 port;
+> +       int ret;
+> +
+> +       altmode = devm_kzalloc(dev, sizeof(*altmode), GFP_KERNEL);
+> +       if (!altmode)
+> +               return -ENOMEM;
+> +
+> +       altmode->dev = dev;
+> +
+> +       match = of_match_device(pmic_glink_altmode_of_quirks, dev->parent);
+> +       if (match)
+> +               altmode->owner_id = (unsigned long)match->data;
+> +       else
+> +               altmode->owner_id = PMIC_GLINK_OWNER_USBC_PAN;
+> +
+> +       INIT_WORK(&altmode->enable_work, pmic_glink_altmode_enable_worker);
+> +       init_completion(&altmode->pan_ack);
+> +       mutex_init(&altmode->lock);
+> +
+> +       device_for_each_child_node(dev, fwnode) {
+> +               ret = fwnode_property_read_u32(fwnode, "reg", &port);
+> +               if (ret < 0) {
+> +                       dev_err(dev, "missing reg property of %pOFn\n", fwnode);
+> +                       return ret;
+> +               }
+> +
+> +               if (port >= ARRAY_SIZE(altmode->ports)) {
+> +                       dev_warn(dev, "invalid connector number, ignoring\n");
+> +                       continue;
+> +               }
+> +
+> +               if (altmode->ports[port].altmode) {
+> +                       dev_err(dev, "multiple connector definition for port %u\n", port);
+> +                       return -EINVAL;
+> +               }
+> +
+> +               alt_port = &altmode->ports[port];
+> +               alt_port->altmode = altmode;
+> +               alt_port->index = port;
+> +               INIT_WORK(&alt_port->work, pmic_glink_altmode_worker);
+> +
+> +               alt_port->bridge.funcs = &pmic_glink_altmode_bridge_funcs;
+> +               alt_port->bridge.of_node = to_of_node(fwnode);
+> +               alt_port->bridge.ops = DRM_BRIDGE_OP_HPD;
+> +               alt_port->bridge.type = DRM_MODE_CONNECTOR_USB;
+> +
+> +               ret = devm_drm_bridge_add(dev, &alt_port->bridge);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               alt_port->dp_alt.svid = USB_TYPEC_DP_SID;
+> +               alt_port->dp_alt.mode = USB_TYPEC_DP_MODE;
+> +               alt_port->dp_alt.active = 1;
+> +
+> +               mux_desc.svid = USB_TYPEC_DP_SID;
+> +               mux_desc.mode = USB_TYPEC_DP_MODE;
+> +               alt_port->typec_mux = fwnode_typec_mux_get(fwnode, &mux_desc);
+> +               if (IS_ERR(alt_port->typec_mux))
+> +                       return dev_err_probe(dev, PTR_ERR(alt_port->typec_mux),
+> +                                            "failed to acquire mode-switch for port: %d\n",
+> +                                            port);
+> +
+> +               ret = devm_add_action_or_reset(dev, pmic_glink_altmode_put_mux,
+> +                                              alt_port->typec_mux);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               alt_port->typec_switch = fwnode_typec_switch_get(fwnode);
+> +               if (IS_ERR(alt_port->typec_switch))
+> +                       return dev_err_probe(dev, PTR_ERR(alt_port->typec_switch),
+> +                                            "failed to acquire orientation-switch for port: %d\n",
+> +                                            port);
+> +
+> +               ret = devm_add_action_or_reset(dev, pmic_glink_altmode_put_switch,
+> +                                              alt_port->typec_switch);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       altmode->client = devm_pmic_glink_register_client(dev,
+> +                                                         altmode->owner_id,
+> +                                                         pmic_glink_altmode_callback,
+> +                                                         pmic_glink_altmode_pdr_notify,
+> +                                                         altmode);
+> +       return PTR_ERR_OR_ZERO(altmode->client);
+> +}
+> +
+> +static const struct auxiliary_device_id pmic_glink_altmode_id_table[] = {
+> +       { .name = "pmic_glink.altmode", },
+> +       {},
+> +};
+> +MODULE_DEVICE_TABLE(auxiliary, pmic_glink_altmode_id_table);
+> +
+> +static struct auxiliary_driver pmic_glink_altmode_driver = {
+> +       .name = "pmic_glink_altmode",
+> +       .probe = pmic_glink_altmode_probe,
+> +       .id_table = pmic_glink_altmode_id_table,
+> +};
+> +
+> +module_auxiliary_driver(pmic_glink_altmode_driver);
+> +
+> +MODULE_DESCRIPTION("Qualcomm PMIC GLINK Altmode driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.37.3
+>
