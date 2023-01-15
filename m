@@ -2,96 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF63666B3AD
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 20:34:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2F3866B3B6
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 20:52:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231592AbjAOTeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 14:34:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47698 "EHLO
+        id S231356AbjAOTwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 14:52:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231593AbjAOTeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 14:34:07 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E195D12865
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:34:05 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id cf18so57170811ejb.5
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:34:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=45kJ3qNQGZUv9XAiOi5TmsAFHoxPfVEphsFC6odAcqw=;
-        b=O0xSMtzNRl0GNPl7sgxuSD1dj5qrWWnVkL7syRCRRYnYaRcNuBH58pJ3hSdNE47EIk
-         gb5B22qVkE2FWoEtadystLZImyKCSRxyXGzla4L/pxshrd8oP+ONSFRHrLQ9E38LlFO2
-         gP4p1ugQz8PrGfrh5/9ks7TDNv/ZTfLZ1bsiifFPAejDzZ710HFDXNT1lfTKs5g0PkVW
-         WLO/fx//Jv00t7j7Z7W75eksr9PMzha4GDQ0IUBU1wqBjhsBvsTx4a2Vp4zpBJzvmpWE
-         9azLlZ0pRzy31txYd8AJ74rBNMiufN0okmgrIoGs2+7oIN9VNleEmJnLjW4c89d07KQ7
-         F0hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=45kJ3qNQGZUv9XAiOi5TmsAFHoxPfVEphsFC6odAcqw=;
-        b=z7UHoQkaUvQnnL5768rCudFMBRaBdETTELp7G3TgLV2Q2XVSjCwGZdy2ViQdMHgC28
-         xWA8Bb84r66IwB1BYl9al5zTiNkz6ZWCMULsAYVpsEAAQiGfBXCsWij99RJlbZOPmAUp
-         WPeG+56CvSHE2PR82SD1vbR43TCwDEwdY2TMFO6pbuEusp8Rw/ESfiDgq2mSxSDTFNLj
-         yJapMEjzRNDIB+sXDfKGVe005EvZW1sn/NibZ7nJ+PDUnBW9dUYS13xD/k0tQrxLUiAk
-         Htrv/qAq43y7fY7Fa8NJmU0g58dGPWwR/qRjK0suUn+t13nXhcrB9K9PmqRR3r8vBvTB
-         qdcg==
-X-Gm-Message-State: AFqh2kqkfHF2ydkevXgYva9uxjitDa6jw8ZnWwttTScPzMwSDbNAUJ6V
-        fPDn+Q9N2OvbsWJqlArAH01THw==
-X-Google-Smtp-Source: AMrXdXv1RGNoxgJIc6OHNYslM12+qt894RbJesLJsKI/njhqJUWEl/FaN29h7FOcf2o3utWgDIBuSQ==
-X-Received: by 2002:a17:906:1993:b0:870:5ed6:74a0 with SMTP id g19-20020a170906199300b008705ed674a0mr1627852ejd.73.1673811244536;
-        Sun, 15 Jan 2023 11:34:04 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id 10-20020a170906210a00b007c0f2d051f4sm10920091ejt.203.2023.01.15.11.34.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Jan 2023 11:34:04 -0800 (PST)
-Message-ID: <1475e6ef-1dbc-9503-ceb4-f8bb9ca7e6f6@linaro.org>
-Date:   Sun, 15 Jan 2023 20:34:02 +0100
+        with ESMTP id S231315AbjAOTwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 14:52:30 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C11A12854;
+        Sun, 15 Jan 2023 11:52:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=yZfYvCeRQR/OkCJqdsPpVkd0rVFb184AMOYWRElkTgg=; b=roXQKhd93TuC0Nkqt4sAaj0Fis
+        J2PUjIL5dTVZ0+Cu0xIj1j9o1PO1Ib2yyqaVt2wUaTlv+8/EbxMoTXsS/jcZuvCh4Aoavz/t5ux68
+        tF9XZrXWJNSd5hzPhou8iUePgZ6iiD10nIkjdYwJEYLhNsghSTfOBqnu10tBBDl7Pi12jJyiKF/wS
+        kNa41E9mz+QIphFZdobMAkYMhcas2De7ECrgdzkiWbTDWMVAsnEGkcUSTd8UF5A6OOJAiZ6FBiBO2
+        zk7DjM+fM7wxieB+hpBEKIjuaNv6VYzQk57PUf/SNfbEcP7HmmYFl1m1/0GnEJ02kEOBifY51KjDn
+        2TlB0aow==;
+Received: from p200300ccff407d001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff40:7d00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pH938-0001CG-NS; Sun, 15 Jan 2023 20:52:14 +0100
+Received: from andi by aktux with local (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pH938-00AcCe-21; Sun, 15 Jan 2023 20:52:14 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v3] dt-bindings: mmc: fsl-imx-esdhc: Add some compatible fallbacks
+Date:   Sun, 15 Jan 2023 20:52:12 +0100
+Message-Id: <20230115195212.2530087-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: iio: dac: Maxim max5522 DAC
-Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Angelo Dureghello <angelo.dureghello@timesys.com>,
-        devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20230115173958.134201-1-jic23@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230115173958.134201-1-jic23@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/01/2023 18:39, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> Add binding Doc for this SPI DAC.
-> 
-> The driver was perviously posted but was missing the DT binding document.
-> https://lore.kernel.org/all/20221106165928.223318-1-angelo.dureghello@timesys.com/
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Angelo Dureghello <angelo.dureghello@timesys.com>
-> 
-> ---
+Currently make dtbs_check shows lots of errors because imx*.dtsi does
+not use single compatibles but combinations of them.
 
+Add fallbacks for imx6sll/ull which are useful for U-Boot.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This will significantly reduce noise on make dtbs_check.
 
-Best regards,
-Krzysztof
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+Changes in v3:
+- simplify things by using enums
+
+Changes in v2:
+- allow only combinations with fallback compatible
+- reduce them to the cases where they are actually useful
+
+ Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+index dc6256f04b42..3423e1cd8b5d 100644
+--- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
++++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+@@ -29,14 +29,17 @@ properties:
+           - fsl,imx53-esdhc
+           - fsl,imx6q-usdhc
+           - fsl,imx6sl-usdhc
+-          - fsl,imx6sll-usdhc
+           - fsl,imx6sx-usdhc
+-          - fsl,imx6ull-usdhc
+           - fsl,imx7d-usdhc
+           - fsl,imx7ulp-usdhc
+           - fsl,imx8mm-usdhc
+           - fsl,imxrt1050-usdhc
+           - nxp,s32g2-usdhc
++      - items:
++          - enum:
++              - fsl,imx6sll-usdhc
++              - fsl,imx6ull-usdhc
++          - const: fsl,imx6sx-usdhc
+       - items:
+           - enum:
+               - fsl,imx8mq-usdhc
+-- 
+2.30.2
 
