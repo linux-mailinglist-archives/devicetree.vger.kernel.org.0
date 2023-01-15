@@ -2,103 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D042866B3AC
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 20:34:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF63666B3AD
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 20:34:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231596AbjAOTeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 14:34:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47608 "EHLO
+        id S231592AbjAOTeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 14:34:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231590AbjAOTeC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 14:34:02 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E132012865
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:34:00 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id h12-20020a05600c314c00b003da50afcb33so2309244wmo.4
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:34:00 -0800 (PST)
+        with ESMTP id S231593AbjAOTeH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 14:34:07 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E195D12865
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:34:05 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id cf18so57170811ejb.5
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:34:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shruggie-ro.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aKS96pmJPoYb7b0N1pU8tQ1JoETnhuDxnTgIIKOenYM=;
-        b=ptg+XxdP0iKhBkszM3udc/4H9pCnHeQS36Lsg2Ij0gMHkNcIvlvI1Cju75BpLjmsGX
-         kHc0qsHeG4rGBEVp+kh2tmeQyyLVyDrdtY0z1CmRapu2VdLNtavrsQKmSz5u++fHJ4aV
-         RliGMKFR4cvOcRMAeKpW3D/+zhgiqUyxi66rUm1gNcKYWk/VHZ12gMsoGRD/REB2BWBk
-         RDshmY8uokHGzZjixSDoc67PtAdDhIXgjex3/HRthkje6iEvctdN4QX5AlLkD4i+0/Mp
-         cIgj3pZ3+0D5e4tpKCaQT8v9Bqajzg8yccQ4Cocq5QqPTPsYdgoplDeH+ulyUInAAH2X
-         iqcQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=45kJ3qNQGZUv9XAiOi5TmsAFHoxPfVEphsFC6odAcqw=;
+        b=O0xSMtzNRl0GNPl7sgxuSD1dj5qrWWnVkL7syRCRRYnYaRcNuBH58pJ3hSdNE47EIk
+         gb5B22qVkE2FWoEtadystLZImyKCSRxyXGzla4L/pxshrd8oP+ONSFRHrLQ9E38LlFO2
+         gP4p1ugQz8PrGfrh5/9ks7TDNv/ZTfLZ1bsiifFPAejDzZ710HFDXNT1lfTKs5g0PkVW
+         WLO/fx//Jv00t7j7Z7W75eksr9PMzha4GDQ0IUBU1wqBjhsBvsTx4a2Vp4zpBJzvmpWE
+         9azLlZ0pRzy31txYd8AJ74rBNMiufN0okmgrIoGs2+7oIN9VNleEmJnLjW4c89d07KQ7
+         F0hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aKS96pmJPoYb7b0N1pU8tQ1JoETnhuDxnTgIIKOenYM=;
-        b=LxT9g/6VoYkv4maVaPtktvchofJ2unKdnihNNBnyI7gOSzI/dmbHNr+qPI6AMkdoYt
-         nkcrnc7jjarB4fN7aKMyDw297PKIW2q/mlsLy120h/A+ZVnfko4jNm7+M8S+I7GLNCKp
-         DZhvGpnmRGdEN2uOMT6BDGucGGEHzGPuYELHqSmI40+irqmArh8OLEk85QJTj3RUy2P3
-         vPjwBFBWNQIEIhyQwzx5FCBe0Rs7dtNPMVXvWRI9saxe7VzRu3DWnooI43zFrJgbOpWI
-         QtOAnUfd58njDspdFDuHLrVaPWwoBbpcXb10Z/B6nLhJToRPjVc++/S1tWX42rz8Po1B
-         Bsbg==
-X-Gm-Message-State: AFqh2kpvJRv6FxvZmWFC0kskyq27siUkhIPUMm/kpJUGCYw2N+f9pizT
-        24XUBrH/bRnDe8DeJIBYaYAmXVxonF/3Gm9InhXEBw==
-X-Google-Smtp-Source: AMrXdXtiAtWBNInaUn1ciDGHW3hTscUUewtiMApYCrZAJJioAH4xZZgDcR5vCIpdWiBgI2mj0JNJ6A==
-X-Received: by 2002:a7b:c39a:0:b0:3d2:640:c4e5 with SMTP id s26-20020a7bc39a000000b003d20640c4e5mr63160339wmj.8.1673811239112;
-        Sun, 15 Jan 2023 11:33:59 -0800 (PST)
-Received: from neptune.hotspot.internet-for-guests.com (ip-078-094-237-238.um19.pools.vodafone-ip.de. [78.94.237.238])
-        by smtp.gmail.com with ESMTPSA id f15-20020a7bcd0f000000b003d9a71ee54dsm30559281wmj.36.2023.01.15.11.33.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Jan 2023 11:33:58 -0800 (PST)
-From:   Alexandru Ardelean <alex@shruggie.ro>
-To:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-Cc:     broonie@kernel.org, lgirdwood@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
-        steffen.aschbacher@stihl.de, Alexandru Ardelean <alex@shruggie.ro>
-Subject: [PATCH 4/4] ASoC: dt-bindings: add entry for TAS5720A-Q1 driver
-Date:   Sun, 15 Jan 2023 21:33:47 +0200
-Message-Id: <20230115193347.24190-4-alex@shruggie.ro>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230115193347.24190-1-alex@shruggie.ro>
-References: <20230115193347.24190-1-alex@shruggie.ro>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=45kJ3qNQGZUv9XAiOi5TmsAFHoxPfVEphsFC6odAcqw=;
+        b=z7UHoQkaUvQnnL5768rCudFMBRaBdETTELp7G3TgLV2Q2XVSjCwGZdy2ViQdMHgC28
+         xWA8Bb84r66IwB1BYl9al5zTiNkz6ZWCMULsAYVpsEAAQiGfBXCsWij99RJlbZOPmAUp
+         WPeG+56CvSHE2PR82SD1vbR43TCwDEwdY2TMFO6pbuEusp8Rw/ESfiDgq2mSxSDTFNLj
+         yJapMEjzRNDIB+sXDfKGVe005EvZW1sn/NibZ7nJ+PDUnBW9dUYS13xD/k0tQrxLUiAk
+         Htrv/qAq43y7fY7Fa8NJmU0g58dGPWwR/qRjK0suUn+t13nXhcrB9K9PmqRR3r8vBvTB
+         qdcg==
+X-Gm-Message-State: AFqh2kqkfHF2ydkevXgYva9uxjitDa6jw8ZnWwttTScPzMwSDbNAUJ6V
+        fPDn+Q9N2OvbsWJqlArAH01THw==
+X-Google-Smtp-Source: AMrXdXv1RGNoxgJIc6OHNYslM12+qt894RbJesLJsKI/njhqJUWEl/FaN29h7FOcf2o3utWgDIBuSQ==
+X-Received: by 2002:a17:906:1993:b0:870:5ed6:74a0 with SMTP id g19-20020a170906199300b008705ed674a0mr1627852ejd.73.1673811244536;
+        Sun, 15 Jan 2023 11:34:04 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id 10-20020a170906210a00b007c0f2d051f4sm10920091ejt.203.2023.01.15.11.34.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 Jan 2023 11:34:04 -0800 (PST)
+Message-ID: <1475e6ef-1dbc-9503-ceb4-f8bb9ca7e6f6@linaro.org>
+Date:   Sun, 15 Jan 2023 20:34:02 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] dt-bindings: iio: dac: Maxim max5522 DAC
+Content-Language: en-US
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Angelo Dureghello <angelo.dureghello@timesys.com>,
+        devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20230115173958.134201-1-jic23@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230115173958.134201-1-jic23@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Steffen Aschbacher <steffen.aschbacher@stihl.de>
+On 15/01/2023 18:39, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> Add binding Doc for this SPI DAC.
+> 
+> The driver was perviously posted but was missing the DT binding document.
+> https://lore.kernel.org/all/20221106165928.223318-1-angelo.dureghello@timesys.com/
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Angelo Dureghello <angelo.dureghello@timesys.com>
+> 
+> ---
 
-Add entry for the TAS5720A-Q1 driver in the dt-bindings doc.
 
-Signed-off-by: Steffen Aschbacher <steffen.aschbacher@stihl.de>
-Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
----
- Documentation/devicetree/bindings/sound/tas5720.txt | 2 ++
- 1 file changed, 2 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/sound/tas5720.txt b/Documentation/devicetree/bindings/sound/tas5720.txt
-index df99ca9451b0..7d851ae2bba2 100644
---- a/Documentation/devicetree/bindings/sound/tas5720.txt
-+++ b/Documentation/devicetree/bindings/sound/tas5720.txt
-@@ -6,11 +6,13 @@ audio playback. For more product information please see the links below:
- 
- https://www.ti.com/product/TAS5720L
- https://www.ti.com/product/TAS5720M
-+https://www.ti.com/product/TAS5720A-Q1
- https://www.ti.com/product/TAS5722L
- 
- Required properties:
- 
- - compatible : "ti,tas5720",
-+               "ti,tas5720a-q1",
-                "ti,tas5722"
- - reg : I2C slave address
- - dvdd-supply : phandle to a 3.3-V supply for the digital circuitry
--- 
-2.34.1
+Best regards,
+Krzysztof
 
