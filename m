@@ -2,99 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A04D666B092
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 12:21:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8F7766B09D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 12:27:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230354AbjAOLVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 06:21:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
+        id S231161AbjAOL1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 06:27:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230322AbjAOLVX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 06:21:23 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369FC1712
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 03:21:22 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id kt14so3109322ejc.3
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 03:21:22 -0800 (PST)
+        with ESMTP id S231145AbjAOL1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 06:27:48 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B99EEF778
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 03:27:46 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id ss4so54755657ejb.11
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 03:27:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Q6rItGYiDxNk2shTTaac9GPkWnRw/7H7zjsJkHXB0gw=;
-        b=CSC3PyXrxCYny70V6nQemTI3NeqWsMgTEk/B/Znu8UNjDspEl+oJqrSAQSsW+yBUoR
-         yQp2eC5MxfKIiqUT3mq4eebA2OioHzpzgASjcFx+m8cdJuo9In+g/dJFerwR7ysc/kIy
-         vbl6cGarqblvIARf2jvYc5VPJ2S7aWR+O8InLEdbviok36dUNSjH7hEjCfUDT9/O9aFE
-         /3Hqs2fDJM5ElotWukQUx+jrDRBYuQTJOy3U8aIrST56pklXGXYEd0V0y9jToX9thm7m
-         HrVpMzeZKwWOi2l2AqypHdtokqKYr/xTX/D6FgoZGAmiiZrn/9bHOEggrXXhQgOyR1vi
-         zpag==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z7PMxCsJkAb5zQbRqwSXZpv3C+Wn4fU0jkcRwYX713M=;
+        b=rIySFykUfWGYkFwiPEQBuQY1wcbV/spapzk7yC2TgMBXItfkAdcx3xt9QrzCimtYqP
+         ab+UU/N2yr4kLb8AKlIXAnezibB/pmpY7LO5AP5/EIlNy0w2oBHX71BIPRc24YexWXJm
+         hLJ+V1rUuu+OMPtEYGaNqzwfuSCcqg+kUd+hRYME2EB72LN244c63HqKWBfiHXEu2MuR
+         FofzhNTxMc7zsddKuPJMwqPgqSX9nrwcbB/ZFHom9Y2sSlgRhcGo7apoXCuXbMDID3MN
+         pJjPpwxtfFfTVI7TXLBorILiFMMY6Z2O8lut/gXiUSIVTVP7g222E9G2/4hTsj+URcla
+         UCQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q6rItGYiDxNk2shTTaac9GPkWnRw/7H7zjsJkHXB0gw=;
-        b=Z7cnSWUH+oMpDkqqtWp8/W2V4VtLl5GglohnT1qmaVnZmXiLTUWTeC5a2+Ps30n/T4
-         R41pAH37id8Fr1Gm93xGi86NjPMNlInfVw+wHUCDL5vVv6ys6p7MhbvJInJ/QX9ZM/Dd
-         WU/aukX47kC4oE0yF3ndlo09Ya9SPWl0aNhn2FAAedvoJevXPhLV0RlIbDr4Rh4HK5ko
-         Sk21LmF6bFgx2z9v35+6KgJVdF1sWDvl2sQXN4gb3ddw02OKdvg76axWpbIR+PMuSOB8
-         UG8Db3hH9rjs9rMW7yfY+qLGAJb1KAXfC4VJoDbnOPDSsw+tNFkQ7tyH5Cr643W9fZdV
-         LMjA==
-X-Gm-Message-State: AFqh2kr33S+zpod5GHXfOTRA8qTyF7HlCdoan1Ttue5mV8vItU4zz961
-        k0JVFgkuFBPPQxCCb/0rynM84Q==
-X-Google-Smtp-Source: AMrXdXsOTlJmUk3i+GSWxpJCUZy5z8cKOVbXUdVjTYXJ+IYaNU++XjKAP0KMBUAh07cdQw25Jn9Jcg==
-X-Received: by 2002:a17:906:6690:b0:86e:e4ae:791c with SMTP id z16-20020a170906669000b0086ee4ae791cmr2540434ejo.62.1673781680838;
-        Sun, 15 Jan 2023 03:21:20 -0800 (PST)
+        bh=z7PMxCsJkAb5zQbRqwSXZpv3C+Wn4fU0jkcRwYX713M=;
+        b=2OaBa5ixwGfTWUuBXO98hVQmyfWRus3xMw7PyQbQcwbt/81kDyzO4X9bCRAE9/y6oo
+         Z8hDm1bHKuPES+E/937P5GSHhJ8KsG8QbDUSvTH73dd5porvhuP+9eaS/EGX4/lCF8jv
+         e/dEoTHMC3fGQ4vbIUjm54VXycZsSJ87R9OhWfBxbOCpsuPVCo86rGhJEVxO5OKDheHJ
+         9/41LJ262y2WrnZlnwyTFXeqrVj4bXYZhqeuq8aMYIXOV8HUlEDS/+UVlRuAPLUO4lHy
+         YYySunqW1XlB6DoxxVUQ7L6QdxovdUQCy7H2EYxzetEjlRYmD9hC4ywvnwbQh3jE8J2i
+         d70g==
+X-Gm-Message-State: AFqh2kpMryHCBkv4T93Ihr98V1M6wwSlrYiqCyygrMMiFCtkxtguWE/J
+        t7YvG/Yj1fO/lbwg/MOBXbQvIQ==
+X-Google-Smtp-Source: AMrXdXtFQYrU3vox5pa2TLu8mIB/4/EHzl+qM0gUfAC2BhQ6WOmoJrEabT2e49RH4k51j7LrglEA+A==
+X-Received: by 2002:a17:906:7e0c:b0:86c:df3:4bbc with SMTP id e12-20020a1709067e0c00b0086c0df34bbcmr6363079ejr.4.1673782065346;
+        Sun, 15 Jan 2023 03:27:45 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n4-20020a170906164400b007c11e5ac250sm10749192ejd.91.2023.01.15.03.21.19
+        by smtp.gmail.com with ESMTPSA id c23-20020a170906155700b0084c7f96d023sm10713809ejd.147.2023.01.15.03.27.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Jan 2023 03:21:20 -0800 (PST)
-Message-ID: <5e784285-c391-91f4-c9d1-a53443fc4264@linaro.org>
-Date:   Sun, 15 Jan 2023 12:21:18 +0100
+        Sun, 15 Jan 2023 03:27:44 -0800 (PST)
+Message-ID: <48785391-2da5-08b3-6bc4-b485aacdf231@linaro.org>
+Date:   Sun, 15 Jan 2023 12:27:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 2/6] arm64: dts: qcom: sdm845: move WCD9340 codec to
- separate file
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230113162245.117324-1-krzysztof.kozlowski@linaro.org>
- <20230113162245.117324-2-krzysztof.kozlowski@linaro.org>
- <e3c367ba-b752-d116-0b84-fd2437e565b8@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: PCI: qcom,pcie-ep: correct
+ qcom,perst-regs
 Content-Language: en-US
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-pci@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh@kernel.org>
+References: <20230113224749.GA1867364@bhelgaas>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e3c367ba-b752-d116-0b84-fd2437e565b8@linaro.org>
+In-Reply-To: <20230113224749.GA1867364@bhelgaas>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/01/2023 21:33, Konrad Dybcio wrote:
+On 13/01/2023 23:47, Bjorn Helgaas wrote:
+>   dt-bindings: PCI: qcom: add MSM8998 specific compatible
+>   dt-bindings: PCI: qcom: Add sm8350 to bindings
 > 
+> I asked about splitting the first and if you did that, I missed it,
+> and in the meantime I got distracted by my E820/EfiMemoryMappedIO
+> regression.
 > 
-> On 13.01.2023 17:22, Krzysztof Kozlowski wrote:
->> WCD9340 codec node is not a property of the SoC, but board.  Move it to
->> separate file and include it in the specific boards.  On all others,
->> keep the Slimbus node disabled as it is empty.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> Generally this should be SoC-independent, for example some newer
-> MSM8998 devices shipped with the 9340 codec that most 845 devices
-> used, but earlier ones used the WCD9335 found on MSM8996
+> In any event, I updated "next" with this.  Check my conflict
+> resolution because I'm not a DT expert:
+> 
+> https://git.kernel.org/cgit/linux/kernel/git/helgaas/pci.git/tree/Documentation/devicetree/bindings/pci/qcom,pcie.yaml?id=25cfdd48a4bd
 
-OK, but I don't get if you expect me to change anything?
+Look good, thanks!
 
 Best regards,
 Krzysztof
