@@ -2,68 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73D5866B0F4
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 13:27:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3020566B17A
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 15:24:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230285AbjAOM1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 07:27:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48404 "EHLO
+        id S230358AbjAOOYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 09:24:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230327AbjAOM1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 07:27:20 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 077DBEC60;
-        Sun, 15 Jan 2023 04:27:20 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id w4-20020a17090ac98400b002186f5d7a4cso31434180pjt.0;
-        Sun, 15 Jan 2023 04:27:20 -0800 (PST)
+        with ESMTP id S231199AbjAOOYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 09:24:24 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC507113FE
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 06:24:22 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so905422wml.3
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 06:24:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=md31HFYE5YCxXfuRLzSQsGi/ksRGDmls2ZiH7xI3PQ8=;
-        b=fdP+i3nAQhApXR2J1OsPjW3WUeEij207YPPkebCAgGGJeZxyH3NnqoecIFFKJYPMMg
-         eTbyUYbhci7uk6lyo/omyPd2IZm1FJzIoA4Fe93pEOuLN8x1o8cHY+EjMUUkkMpHms9w
-         xy8POcc4PC1f0Pd8hcCFMQfKDpl7spXsFi1PeaL2a8GIvT1EsqqXfH5XbxqNZ9a4TAcs
-         GNrwf8xzxBJv/ORoapjLbis7zCBeTPnuK4UnCxf4KJ97sZkhU5UCHmNRLmQKkihauEhR
-         SluvMGgvoGGV19xqCPHru90+Q234KmGrYyE2OCkyU/kx5tOofcQS0AQ8fvrdwEN3Rand
-         rS6A==
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zPB9krp6eiC7JbYL+IhgTGE/R+STIoi/Z4Ow6TqzdnE=;
+        b=p16Cx1eLPV5Q9j8Bf/WMOcz2U66PM1w/fra68F60TnFnXzJ4vZQJgZYY3RSU/fCM7A
+         CQKRFtbL0/F1WRCL2h035+w8yYHtHLTcFAvYoTLgqyKZykntxaAl/uB/O63id+MOFQ5D
+         W6jQNnMjIAwDyj5b4ntxWIE7FeniUlyW2a6JiRiKSXRg5Y0T9n+H6GbyZ9/SoluX+Mib
+         vSJRGESJt4fpkew78EQnBUb4CQhSFri5JAwj5LBxxNBrz18xCt3oy7h/+iduNoU+4OyO
+         JmFvlCeLe1w3r8auSl/+rV/SjSXUZ9VyiDjZhtjRp0XgK5lbc2Khhfk0+D1C3rB1aa8N
+         ouKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=md31HFYE5YCxXfuRLzSQsGi/ksRGDmls2ZiH7xI3PQ8=;
-        b=efOnla6xIhpYKioD+6TTZ37J/OWZ63UizMQnMBPkLUQN0REo1E6g+8VuAULReJTKQI
-         F33wwwb3k0OflkObnxPQPNgLVZ4f4d83YqX1VrYwR3BiVvE8Se6H6mLNfFK3QwcPeEIA
-         NKvJe4u4K7wuCuV04nLxgKc4xcL1GpcwiFohbWlChVjXk80Ytki8gY8KqCfvYqjwaTRs
-         O/dv+9G5FZwZVUOKTida+Mfu3rMMp5aGpuN0fb2JbaSLVW6xTLym040x1kCeY8wO1VUK
-         mmXftO9u1vp3xYphTXvWIDs+5QkjreuhkwrgDOsw+/Bdtuw6XLPaqWqgowV597EDurf3
-         JYkQ==
-X-Gm-Message-State: AFqh2kpMCpsR0M57sQsrcn6O9UQMA7yGaHi5dlI1gCjOQUSlpYw+K2IL
-        jjgzwBg3lSIKcdmrC94BV0Ngc0l09KOCMshXLDk=
-X-Google-Smtp-Source: AMrXdXu/LKdj4DjkuA3D4kGVNv5jp1l/1Q6lJt+5tTIxAHfEWgB6bSXrumxdMjdqktuti5VGtDyE058FlkVVv5Q7f5o=
-X-Received: by 2002:a17:90a:cb11:b0:229:5037:d9 with SMTP id
- z17-20020a17090acb1100b00229503700d9mr324322pjt.195.1673785639428; Sun, 15
- Jan 2023 04:27:19 -0800 (PST)
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zPB9krp6eiC7JbYL+IhgTGE/R+STIoi/Z4Ow6TqzdnE=;
+        b=TqomJZwXVb4kpWIwS8ucQg0a5iTLRb5nNa9zsgLJg26JdoV3ysAFxunEmGs+zRhRQj
+         75RVJZDcVuhpurMk47jZtQp24rZ1E1n+FzUURQKzAKHVsaes1O10Hp1WQsIrevqRu5lZ
+         nhu5ZI+kHe7sr694g4fg8t6N1XNJeRJifNqLs6Gti9Fg4Rul9JJ1Csn5pwEPqo3hvroK
+         hiRPWD8j7w5gg9rdmk057/n95yzopCTJUyzIuUfM4vPszRZuXMhSsFb196xWzIwjqJkb
+         hSTJVA//SczDzx+VJxUOjwWnt2/vuwL5k6KXimXJDoTnt7po+eFFFbXkuIYilwu+frRX
+         3Sew==
+X-Gm-Message-State: AFqh2kr9lgGTx3BZ0vBY9J9cPDxoUfHzN8y8TKtQ52jcegbo8S+Csxxz
+        G2zukuRZXUihteNJFSlrK/w=
+X-Google-Smtp-Source: AMrXdXsmQNYKO1JhaPJuv6ZlUsDcHrE/7WIDXiMd0eEr5+aDL7G2VdCUVsIMrhS22a+F0WvvkF4wHg==
+X-Received: by 2002:a05:600c:a4f:b0:3d2:196c:270c with SMTP id c15-20020a05600c0a4f00b003d2196c270cmr67053230wmq.31.1673792661012;
+        Sun, 15 Jan 2023 06:24:21 -0800 (PST)
+Received: from ?IPV6:2a01:c22:6e61:8c00:154f:326e:8d45:8ce7? (dynamic-2a01-0c22-6e61-8c00-154f-326e-8d45-8ce7.c22.pool.telefonica.de. [2a01:c22:6e61:8c00:154f:326e:8d45:8ce7])
+        by smtp.googlemail.com with ESMTPSA id o14-20020a5d58ce000000b002879c013b8asm23699826wrf.42.2023.01.15.06.24.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 Jan 2023 06:24:20 -0800 (PST)
+Message-ID: <fae86fd4-40f0-ce6f-f3ab-d5e0cff019c4@gmail.com>
+Date:   Sun, 15 Jan 2023 15:19:31 +0100
 MIME-Version: 1.0
-References: <20230115103217.9232-1-pierluigi.p@variscite.com>
-In-Reply-To: <20230115103217.9232-1-pierluigi.p@variscite.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sun, 15 Jan 2023 09:27:08 -0300
-Message-ID: <CAOMZO5CdG=Tx98DVYo9QZFM7Y65b0KGLNc=XskYDuRqORBiLSg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm: Fix pad control for UART1_DTE_RX
-To:     Pierluigi Passaro <pierluigi.passaro@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        linux-imx@nxp.com, pierluigi.p@variscite.com, marex@denx.de,
-        peng.fan@nxp.com, marcel.ziswiler@toradex.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, eran.m@variscite.com,
-        nate.d@variscite.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH] dt-bindings: phy: g12a-usb2-phy: fix compatible string
+ documentation
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-phy@lists.infradead.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,19 +83,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierluigi,
+The compatible strings in the driver don't have the meson prefix.
+Fix this in the documentation and rename the file accordingly.
 
-Thanks for the patch.
+Fixes: da86d286cce8 ("dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml")
+Cc: stable@vger.kernel.org
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ ...,meson-g12a-usb2-phy.yaml => amlogic,g12a-usb2-phy.yaml} | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+ rename Documentation/devicetree/bindings/phy/{amlogic,meson-g12a-usb2-phy.yaml => amlogic,g12a-usb2-phy.yaml} (91%)
 
-On Sun, Jan 15, 2023 at 7:32 AM Pierluigi Passaro
-<pierluigi.passaro@gmail.com> wrote:
->
-> According section
->     8.2.5.313 Select Input Register (IOMUXC_UART1_RXD_SELECT_INPUT)
-> of
->     i.MX 8M Mini Applications Processor Reference Manual, Rev. 3, 11/2020
-> the required setting for this specific pin configuration is "1"
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml
+similarity index 91%
+rename from Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+rename to Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml
+index f3a5fbabb..19a0ddab0 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml
+@@ -13,8 +13,8 @@ maintainers:
+ properties:
+   compatible:
+     enum:
+-      - amlogic,meson-g12a-usb2-phy
+-      - amlogic,meson-a1-usb2-phy
++      - amlogic,g12a-usb2-phy
++      - amlogic,a1-usb2-phy
+ 
+   reg:
+     maxItems: 1
+@@ -68,7 +68,7 @@ additionalProperties: false
+ examples:
+   - |
+     phy@36000 {
+-          compatible = "amlogic,meson-g12a-usb2-phy";
++          compatible = "amlogic,g12a-usb2-phy";
+           reg = <0x36000 0x2000>;
+           clocks = <&xtal>;
+           clock-names = "xtal";
+-- 
+2.39.0
 
-Fixes: c1c9d41319c3 ("dt-bindings: imx: Add pinctrl binding doc for imx8mm")
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
