@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F001366B39A
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 20:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5419966B39D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 20:17:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231580AbjAOTQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 14:16:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45344 "EHLO
+        id S231574AbjAOTRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 14:17:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231569AbjAOTQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 14:16:28 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E6212846
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:16:25 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id u19so63434939ejm.8
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:16:25 -0800 (PST)
+        with ESMTP id S231528AbjAOTR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 14:17:28 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C34A11284C
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:17:27 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id i9so38182089edj.4
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 11:17:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R1KYEjzsfB0r5L+lets4QzbwQ5qDbW3Ig0EpGysGDyw=;
-        b=LfgGJccGja73lIwSv1samKvRHDsszVjEt5CdeFvJ2sgIVyeMtS48IOD4ve08l4YDmL
-         S4CVxOKQnMWupaHJLiRtIHKfH4c/k2eHt2vRIByDAwAz209ggDeWBWHy1+E+NRy3K8se
-         TMGwSaEmRKFAGyolGf+ANCktSFjXgPmpmooBjYTFRIPgb0SXFqNdK0d140dzXN40/fwK
-         16JqXI8WjBFDVPU5LQyRaqW6YyDJKvR1tq9lQiihyOKH8HZ/pr4W7Wi1HPjmcqUAtbnv
-         XspnltwiNnGkvgy3FbzcU7Yn9TT6hrDcd9CG80UppHH07vQw8rNt+BvYadFJ5B9OAwok
-         Q/Wg==
+        bh=fNy8Ed1dQVkCck3Yrixd5a7dXF6hx057okDs4An96m8=;
+        b=J9u8jotCkPnE07dQeMS/V2VfXKl4wSsLemI/NPc1H9UTsGW1jLShEW9IifSiE1V9bP
+         03MemjO0vISX5316LeQd08YOsDuiSJJn7DhDydQ1eX9VnPh7nsNMJNS0u4Suj4qozLdH
+         5T+ksi59EtayJ3L77eJZGTcNnbiShr/O4FhKNDt/Qc3UnnMZco4aNiPUtE5TCTXZPwzD
+         oAvss0B44SPVPxgZiyDO1DuQ1U7UITaJt39K8eLqjeIwtdC8TDy5YCkFLsM2eetT7nL8
+         6ifnVVFvvaLkNdbb/lC0/9IMw2YS33UmoYr5e3lutS5X+FrZCcc5sr49AzNassyo7E6s
+         hsBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R1KYEjzsfB0r5L+lets4QzbwQ5qDbW3Ig0EpGysGDyw=;
-        b=yAovG7r6zfaaifznsPQuMmofDImDN7U9AU4D2+K1omRD/jqAaNeL9ua2Bz+i/x6K3G
-         9xjlam/WUl/5MZXyQvBnQPyNr0TqVACG9/vBUE0lBSgbXnhkLHYJbdN5nTYUgKF2fRuT
-         c65slntp5ToIQ2f2YXluMOBJcUZ+dQXdZlfFT/vhbTYrcrHeoHY3UAu+Gw8HXrjkrqwG
-         ks9CyPkDtZYQitAKFehK7QQRWYu7LVXB7rUbxWPM3F5vkfqVZZrqkCtM7L+yy5T2ZheA
-         EJ65jKC3swnIDRWRhw7SnMpH66AOXtHG7jsolY6j1S8QZEqyuTnT06g20JwpfR7KFlzX
-         Hjtg==
-X-Gm-Message-State: AFqh2kq9ouoOpmqhIlx3+7uIBAEF0pxC3AjByPm98nNSWQ7DkB6oZoQe
-        TnOg40A8BKVwmAyJn0FQ2te0Mg==
-X-Google-Smtp-Source: AMrXdXssByycNWYnhzUI9FZz5exMX/TXGfSxhC59jDzU9JLIekHgxxy8wWJLQFYxjKmI8wuo6IaLyw==
-X-Received: by 2002:a17:906:49cd:b0:7c0:f684:9092 with SMTP id w13-20020a17090649cd00b007c0f6849092mr71806335ejv.37.1673810184540;
-        Sun, 15 Jan 2023 11:16:24 -0800 (PST)
+        bh=fNy8Ed1dQVkCck3Yrixd5a7dXF6hx057okDs4An96m8=;
+        b=1Jvm4lh/nk5MCv+D5pQMpwcGybUX8MmvWIcth3nhuYVI04wLsnHUovLQPmPczojfBN
+         IRBuOZSjuq04z4vojc1vW3OdHYLYUqpzoh7Os3rFa6oTaSxa3rcS+B6DaoR4QTMeV6zR
+         JgyrHL7dRqcpBBIWHrCqhnca9F7SLE8m6m+D6f2OV/ZjMO+jAml95Nlxgtf7mCG48nrq
+         SPx7QRnKISCmb+G7/i+DJlJkhLIMf/wGwGg92n/9NtDt4HmJRLIf79tztVBVQIETa+kn
+         ajGR07416AWEIqv01KorMM1U8M1vgO4Mct1tNIAQFtNaD3nqYF5x8qyJfMkc0bPuAV7X
+         Mtww==
+X-Gm-Message-State: AFqh2kpUzPrzkcxAe+Eld0cqsfxpV1hbay7IZRK2fqaC/7z9iORM4MXC
+        U0Iu3BBBBaQJKPzjNSjlriYNmQ==
+X-Google-Smtp-Source: AMrXdXuu7deMsLziMX+f5y3yyfP4oYwu1gZcHnWOxhlz1HM7IMfRK3+mV5HRCYinCSuzyRrA9LwpSA==
+X-Received: by 2002:a05:6402:2484:b0:46c:6ed1:83ac with SMTP id q4-20020a056402248400b0046c6ed183acmr84595212eda.9.1673810246439;
+        Sun, 15 Jan 2023 11:17:26 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id et14-20020a056402378e00b00497d8613532sm9874685edb.5.2023.01.15.11.16.22
+        by smtp.gmail.com with ESMTPSA id r14-20020aa7cb8e000000b00499b6b50419sm7636491edt.11.2023.01.15.11.17.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Jan 2023 11:16:23 -0800 (PST)
-Message-ID: <d570c775-158c-26e1-94d8-de3dc4d5370e@linaro.org>
-Date:   Sun, 15 Jan 2023 20:16:22 +0100
+        Sun, 15 Jan 2023 11:17:25 -0800 (PST)
+Message-ID: <e30a869a-5585-901b-6a56-3e327e0cf60a@linaro.org>
+Date:   Sun, 15 Jan 2023 20:17:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/5] dt-bindings: mfd: adi,max77541.yaml Add MAX77541
- bindings
+Subject: Re: [PATCH v3 2/2] dt-bindings: iio: adc: add Texas Instruments
+ ADS7924
 Content-Language: en-US
-To:     "Sahin, Okan" <Okan.Sahin@analog.com>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:MAXIM MAX77541 PMIC MFD DRIVER" 
-        <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20221226223839.103460-1-okan.sahin@analog.com>
- <20221226223839.103460-3-okan.sahin@analog.com>
- <88ba15e1-ee03-bd61-fc7d-d00c8c6ae72e@linaro.org>
- <MN2PR03MB51689EC83FF462C5CE903567E7C09@MN2PR03MB5168.namprd03.prod.outlook.com>
+To:     Hugo Villeneuve <hugo@hugovil.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     hvilleneuve@dimonoff.com, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230113194959.3276433-1-hugo@hugovil.com>
+ <20230113194959.3276433-3-hugo@hugovil.com>
+ <dee8fbdc-5399-d5ce-8d01-2c48e85e2919@linaro.org>
+ <20230115112205.e46ab8d017b99dd987d003e4@hugovil.com>
+ <20230115164326.7f03f6d9@jic23-huawei>
+ <20230115113250.d8a0ec5a2638e24c1208539c@hugovil.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <MN2PR03MB51689EC83FF462C5CE903567E7C09@MN2PR03MB5168.namprd03.prod.outlook.com>
+In-Reply-To: <20230115113250.d8a0ec5a2638e24c1208539c@hugovil.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,36 +82,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/01/2023 18:40, Sahin, Okan wrote:
-> Hi Krzysztof,
+On 15/01/2023 17:32, Hugo Villeneuve wrote:
+>>>>> +    required:
+>>>>> +      - reg
+>>>>> +
+>>>>> +    additionalProperties: false  
+>>>>
+>>>> You are not allowing anything else from adc.yaml. Is it on purpose?  
+>>>
+>>> I am really not an expert with this Yaml stuff, and reading the documentation makes me probably more confused than before reading it :)
+>>>
+>>> But one thing that is for sure is that these other properties in adc.yaml are not used in my driver:
+>>>
+>>>   bipolar
+>>>   diff-channels
+>>>   settling-time-us
+>>>   oversampling-ratio
+>>>
+>>> So is it Ok then to use "additionalProperties: false"? I think so, but what is your recommandation?
+>>
+>> Makes sense to me.  Whilst there are lots of things a channel can support, most
+>> of them are hardware related and not universal.
 > 
-> Thank you for your feedback and efforts. I apologize for some missing points of v2 patch. I tried to do my best. I will be more careful to fix all feedback before sending new patch so I want to ask a few things before sending v3 patch
+> Ok, I think I am finally beginning to see the light here :)
+> 
+> So I will then leave "additionalProperties: false".
+> 
+> I will send a V4 soon with all the latest changes.
+> 
 
-Please wrap lines in your email.
-
-(...)
-
->>> +
->>> +  adc:
->>> +    type: object
->>> +    additionalProperties: false
->>> +    properties:
->>> +      compatible:
->>> +        const: adi,max77541-adc
->>
->> This is a friendly reminder during the review process.
->>
->> It seems my previous comments were not fully addressed. Maybe my feedback
->> got lost between the quotes, maybe you just forgot to apply it.
->> Please go back to the previous discussion and either implement all requested
->> changes or keep discussing them.
->>
->> Thank you.
-> Honestly, I don't quite understand what you're suggesting regarding the adc part. I thought I should add the adc as an object since it is in the mfd device. Do I need to remove this part?
-
-What is unclear in my comment from v1? Yes, you need to remove it
-because it useless. There is no need for a node consisting of only
-compatible. Your driver does not need the DT node at all to do its job.
+Just to clarify - we talk about hardware, not your Linux driver. What
+your driver uses or doesn't, should not matter here that much.
 
 Best regards,
 Krzysztof
