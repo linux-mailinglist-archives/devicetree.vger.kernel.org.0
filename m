@@ -2,489 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 841F666B047
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 11:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF6866B04D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 11:18:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230380AbjAOKOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 05:14:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49364 "EHLO
+        id S230254AbjAOKSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 05:18:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbjAOKOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 05:14:47 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD465CDE1;
-        Sun, 15 Jan 2023 02:14:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 49608B8055F;
-        Sun, 15 Jan 2023 10:14:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3D7AC433EF;
-        Sun, 15 Jan 2023 10:14:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673777683;
-        bh=54ot+Q4UUpKGiz2VrVYJQCr+tpIHvLOfk0VKKBwnPgk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=PuqOkB3rtqoObtmUANycFl6RBVCuW32fR+YJlLZYu/s/W65mb04Uup8kRAlQwehV6
-         J0ZIIi8vyOEfRZ0azf9W1oflODMawgTG2Uw65FjNEXdKotr51BOB192kNeffKAJ6Yy
-         cW0XKo727txChOKSfmsmT2ERzI5eITvMnf2yNmDP1wsccQAPlQtItX+zLxIpg5n0py
-         P9B9FWsogij6NUT7IsdVBaOnyAJmEXvLk7qwVazt3MUGdX+LP1/izGJ8XzKLtqq0Sm
-         lmeDjqTy8cVoJ+a0kZTYAjJmBoKzB/Ub9OAYi3kxdcIM/3SqA/OdTTszhcN7b76dsS
-         F9s/lOoeDAEsw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1pH02C-001t1A-HN;
-        Sun, 15 Jan 2023 10:14:40 +0000
-Date:   Sun, 15 Jan 2023 10:13:35 +0000
-Message-ID: <87fsccds1c.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
+        with ESMTP id S230145AbjAOKSa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 05:18:30 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2794CDE3;
+        Sun, 15 Jan 2023 02:18:29 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id k8so10365544wrc.9;
+        Sun, 15 Jan 2023 02:18:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/D0U6ZSa9ufXqRencjxkQFzJOdEXcs/cpW2jU/kZH/M=;
+        b=K9pasKsSYWaBapGarM+zzgGQVplz5o57CJb32ZxlQ14rAfHqBMOGMYSVFnHsx7qJ9G
+         VXRpCU0JQqDhgNsOWFInXfYDxCrZc+FcBOCUqbQ6WmqmrdTyjNHh/tCx13x89CZR6EAE
+         IGuhsdjtoLjWxubUnetxlEI1071gXYO2zqwhyhofHnHDKXpIiedt9xi5t5jztD+Z/ZU8
+         Q0BBcMrGrEAK9LnEqEKd2B+AAJfNjOQ3s7gvmnUoL2sOVkFvGYLYPCNggVdGrk7TXpLu
+         VOjtLJP03FWAtC1lTm3mlBibXHdS7GDOXvJuS+CqumZWGTFudkRvMmqMPIENZGd6THHV
+         rXQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/D0U6ZSa9ufXqRencjxkQFzJOdEXcs/cpW2jU/kZH/M=;
+        b=NQy97VrQR8yabPuPMQ7cnmdD0Hy4bB2baOUeFFX11BFm4TutbDjSK7XvjH+e+7xOBd
+         Mk9OjhCyGIi5P8PgrTfFOg31j5KbO89GfEgh7EAO20YYdfz/bUzyEzIKWlILCr0VcaPL
+         PdhsLcAjl/pwV1sMfv/IdgSblefN3EohOlDwvgm/kpmEmrN7KQM9+TENZnMlAqZz1JfO
+         MCpld3rbx+2MbX3o9Uu8Q+xha3SPqY7G4kWOjGMH6oXmqHKd+NpW9wAe2CMbfyrP1bZp
+         dP52sXCFo9fIr3C+fI5T9gKd4MwUz65PhIzRCgFjxi9B25BxctSsJyjHq5pYlnL7k8fl
+         rCxQ==
+X-Gm-Message-State: AFqh2kqUeQZ8F/g+4wt3wUEu68wov5InN54Z5GzozVrAn1wQPkXTCR+C
+        yFy4Pb5I6VtZJ325q1w1TUYlKFjt9uk=
+X-Google-Smtp-Source: AMrXdXv48t+zyOW+TLe3yWdXReBPlpJ/rytYi71Z/PeQUGAPaIFkFLeYZzO7pVES7BjHKIz5LCALiw==
+X-Received: by 2002:a5d:4b0f:0:b0:2bd:c4ea:3b59 with SMTP id v15-20020a5d4b0f000000b002bdc4ea3b59mr10674279wrq.0.1673777908265;
+        Sun, 15 Jan 2023 02:18:28 -0800 (PST)
+Received: from ?IPV6:2a01:c22:6e61:8c00:154f:326e:8d45:8ce7? (dynamic-2a01-0c22-6e61-8c00-154f-326e-8d45-8ce7.c22.pool.telefonica.de. [2a01:c22:6e61:8c00:154f:326e:8d45:8ce7])
+        by smtp.googlemail.com with ESMTPSA id l4-20020a05600012c400b002bbb2d43f65sm20419613wrx.14.2023.01.15.02.18.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 Jan 2023 02:18:27 -0800 (PST)
+Message-ID: <b70a9deb-5dc2-fbde-20f1-06b2a80c2697@gmail.com>
+Date:   Sun, 15 Jan 2023 11:15:48 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: [PATCH v3 2/3] i2c: algo: bit: allow getsda to be NULL
+Content-Language: en-US
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pascal Paillet <p.paillet@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Subject: Re: [PATCH 3/3] optee core: add irq chip using optee async notification
-In-Reply-To: <CAN5uoS-Q5ePtNcJ2-8BBV+rxUK6xcbU1ywtcRfYf=sRbWShNpg@mail.gmail.com>
-References: <20230112145424.3791276-1-etienne.carriere@linaro.org>
-        <20230112145424.3791276-4-etienne.carriere@linaro.org>
-        <86a62mokkq.wl-maz@kernel.org>
-        <CAN5uoS-Q5ePtNcJ2-8BBV+rxUK6xcbU1ywtcRfYf=sRbWShNpg@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: etienne.carriere@linaro.org, linux-kernel@vger.kernel.org, jens.wiklander@linaro.org, sumit.garg@linaro.org, op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, p.paillet@foss.st.com, fabrice.gasnier@foss.st.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Wolfram Sang <wsa@kernel.org>
+Cc:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <3a5545f3-f858-2c80-8bd4-2e0d401a1dc0@gmail.com>
+In-Reply-To: <3a5545f3-f858-2c80-8bd4-2e0d401a1dc0@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Jan 2023 15:27:22 +0000,
-Etienne Carriere <etienne.carriere@linaro.org> wrote:
-> 
-> Hello Marc,
-> 
-> Thanks for the review.
-> 
-> 
-> On Fri, 13 Jan 2023 at 10:22, Marc Zyngier <maz@kernel.org> wrote:
-> >
-> > On Thu, 12 Jan 2023 14:54:24 +0000,
-> > Etienne Carriere <etienne.carriere@linaro.org> wrote:
-> > >
-> > > Adds an irq chip in optee driver to generate interrupts from OP-TEE
-> > > notified interrupt events based on optee async notification. Upon such
-> > > notification, optee driver invokes OP-TEE to query a pending interrupt
-> > > event. If an interrupt notification is pending the invocation return
-> > > OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_IT and optee driver can get the pending
-> > > interrupt number with SMC function ID OPTEE_SMC_FUNCID_GET_IT_VALUE.
-> > >
-> > > SMC function ID OPTEE_SMC_FUNCID_SET_IT_MASK allows Linux to mask/unmask
-> > > an interrupt notification services.
-> > >
-> > > The optee irq_chip if flagged IRQCHIP_SKIP_SET_WAKE to skip set_wake
-> > > as optee interrupt notifications doesn't support the set_wake option.
-> > > In case a device is using the optee irq and is marked as wakeup source,
-> > > this result in an "Unbalanced IRQ xx wake disable" backtrace, since:
-> > > - in irq_set_irq_wake(ON), wake_depth gets incremented, then reset due to
-> > >   set_irq_wake_real() returns an error (irq_set_wake() isn't implemented)
-> > > - in irq_set_irq_wake(OFF), wake_depth is always 0, hence the warning
-> >
-> > Is this relevant information?
-> 
-> The description is maybe too specific to the setup used for this feature.
-> I'll rephrase that, unless IRQCHIP_SKIP_SET_WAKE flag is not relevant here.
+This is in preparation of supporting write-only SDA in i2c-gpio.
 
-IRQCHIP_SKIP_SET_FLAG is used when the irqchip doesn't provide any
-wake-up mechanism, but also isn't *denying* its use (there is a
-separate way to wake up from such an interrupt). I don't think you
-need to document that something goes wrong when you're doing something
-wrong.
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+v3:
+- check for adap->getsda in readbytes()
+- align warning message level for info on missing getscl/getsda
+---
+ drivers/i2c/algos/i2c-algo-bit.c | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
-> >
-> > >
-> > > Co-developed-by: Pascal Paillet <p.paillet@foss.st.com>
-> > > Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
-> > > Co-developed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> > > Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> > > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
-> > > ---
-> > >  drivers/tee/optee/optee_private.h |   2 +
-> > >  drivers/tee/optee/optee_smc.h     |  78 +++++++++++++++-
-> > >  drivers/tee/optee/smc_abi.c       | 142 ++++++++++++++++++++++++++++--
-> > >  3 files changed, 216 insertions(+), 6 deletions(-)
-> > >
-> > > diff --git a/drivers/tee/optee/optee_private.h b/drivers/tee/optee/optee_private.h
-> > > index e5bd3548691f..2a146d884d27 100644
-> > > --- a/drivers/tee/optee/optee_private.h
-> > > +++ b/drivers/tee/optee/optee_private.h
-> > > @@ -112,6 +112,7 @@ struct optee_pcpu {
-> > >   * @optee_pcpu               per_cpu optee instance for per cpu work or NULL
-> > >   * @notif_pcpu_wq    workqueue for per cpu aynchronous notification or NULL
-> > >   * @notif_pcpu_work  work for per cpu asynchronous notification
-> > > + * @domain           interrupt domain registered by OP-TEE driver
-> > >   */
-> > >  struct optee_smc {
-> > >       optee_invoke_fn *invoke_fn;
-> > > @@ -121,6 +122,7 @@ struct optee_smc {
-> > >       struct optee_pcpu __percpu *optee_pcpu;
-> > >       struct workqueue_struct *notif_pcpu_wq;
-> > >       struct work_struct notif_pcpu_work;
-> > > +     struct irq_domain *domain;
-> > >  };
-> > >
-> > >  /**
-> > > diff --git a/drivers/tee/optee/optee_smc.h b/drivers/tee/optee/optee_smc.h
-> > > index 73b5e7760d10..0cf83d5a2931 100644
-> > > --- a/drivers/tee/optee/optee_smc.h
-> > > +++ b/drivers/tee/optee/optee_smc.h
-> > > @@ -226,7 +226,8 @@ struct optee_smc_get_shm_config_result {
-> > >   * a3        Bit[7:0]: Number of parameters needed for RPC to be supplied
-> > >   *             as the second MSG arg struct for
-> > >   *             OPTEE_SMC_CALL_WITH_ARG
-> > > - *   Bit[31:8]: Reserved (MBZ)
-> > > + *   Bit[23:8]: The maximum interrupt event notification number
-> > > + *   Bit[31:24]: Reserved (MBZ)
-> > >   * a4-7      Preserved
-> > >   *
-> > >   * Error return register usage:
-> > > @@ -254,6 +255,11 @@ struct optee_smc_get_shm_config_result {
-> > >  #define OPTEE_SMC_SEC_CAP_ASYNC_NOTIF                BIT(5)
-> > >  /* Secure world supports pre-allocating RPC arg struct */
-> > >  #define OPTEE_SMC_SEC_CAP_RPC_ARG            BIT(6)
-> > > +/* Secure world supports interrupt events notification to normal world */
-> > > +#define OPTEE_SMC_SEC_CAP_IT_NOTIF           BIT(7)
-> > > +
-> > > +#define OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_MASK  GENMASK(23, 8)
-> > > +#define OPTEE_SMC_SEC_CAP_MAX_NOTIF_IT_SHIFT 8
-> > >
-> > >  #define OPTEE_SMC_FUNCID_EXCHANGE_CAPABILITIES       9
-> > >  #define OPTEE_SMC_EXCHANGE_CAPABILITIES \
-> > > @@ -416,6 +422,12 @@ struct optee_smc_disable_shm_cache_result {
-> > >   */
-> > >  #define OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF   0
-> > >
-> > > +/*
-> > > + * Notification that OP-TEE triggers an interrupt event to Linux kernel
-> > > + * for an interrupt consumer.
-> > > + */
-> > > +#define OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_IT            1
-> > > +
-> > >  #define OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE       17
-> > >  #define OPTEE_SMC_GET_ASYNC_NOTIF_VALUE \
-> > >       OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE)
-> > > @@ -426,6 +438,70 @@ struct optee_smc_disable_shm_cache_result {
-> > >  /* See OPTEE_SMC_CALL_WITH_REGD_ARG above */
-> > >  #define OPTEE_SMC_FUNCID_CALL_WITH_REGD_ARG  19
-> > >
-> > > +/*
-> > > + * Retrieve the interrupt number of the pending interrupt event notified to
-> > > + * non-secure world since the last call of this function.
-> > > + *
-> > > + * OP-TEE keeps a record of all posted interrupt notification events. When the
-> > > + * async notif interrupt is received by non-secure world, this function should
-> > > + * be called until all pended interrupt events have been retrieved. When an
-> > > + * interrupt event is retrieved it is cleared from the record in secure world.
-> > > + *
-> > > + * It is expected that this function is called from an interrupt handler
-> > > + * in normal world.
-> > > + *
-> > > + * Call requests usage:
-> > > + * a0        SMC Function ID, OPTEE_SMC_GET_IT_NOTIF_VALUE
-> > > + * a1-6      Not used
-> > > + * a7        Hypervisor Client ID register
-> > > + *
-> > > + * Normal return register usage:
-> > > + * a0        OPTEE_SMC_RETURN_OK
-> > > + * a1        IT_NOTIF interrupt identifier value
-> > > + * a2        Bit[0]: OPTEE_SMC_IT_NOTIF_VALID if the value in a1 is
-> > > + *           valid, else 0 if no interrupt event were pending
-> > > + * a2        Bit[1]: OPTEE_SMC_IT_NOTIF_PENDING if another interrupt event
-> > > + *           value is pending, else 0.
-> > > + *   Bit[31:2]: MBZ
-> > > + * a3-7      Preserved
-> > > + *
-> > > + * Not supported return register usage:
-> > > + * a0        OPTEE_SMC_RETURN_ENOTAVAIL
-> > > + * a1-7      Preserved
-> > > + */
-> > > +#define OPTEE_SMC_IT_NOTIF_VALID             BIT(0)
-> > > +#define OPTEE_SMC_IT_NOTIF_PENDING           BIT(1)
-> > > +
-> > > +#define OPTEE_SMC_FUNCID_GET_IT_NOTIF_VALUE  20
-> > > +#define OPTEE_SMC_GET_IT_NOTIF_VALUE \
-> > > +     OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_IT_NOTIF_VALUE)
-> > > +
-> > > +/*
-> > > + * Mask or unmask an interrupt notification event.
-> > > + *
-> > > + * It is expected that this function is called from an interrupt handler
-> > > + * in normal world.
-> > > + *
-> > > + * Call requests usage:
-> > > + * a0        SMC Function ID, OPTEE_SMC_SET_IT_NOTIF_MASK
-> > > + * a1        Interrupt identifier value
-> > > + * a2        Bit[0]: 1 if interrupt event is to be masked, 0 if it is to be unmasked
-> > > + * a2   Bit[31:1] MBZ
-> > > + * a3-6      Not used
-> > > + * a7        Hypervisor Client ID register
-> > > + *
-> > > + * Normal return register usage:
-> > > + * a0        OPTEE_SMC_RETURN_OK
-> > > + * a1-7      Preserved
-> > > + *
-> > > + * Not supdealed ported return register usage:
-> > > + * a0        OPTEE_SMC_RETURN_ENOTAVAIL
-> > > + * a1-7      Preserved
-> > > + */
-> > > +#define OPTEE_SMC_FUNCID_SET_IT_NOTIF_MASK   21
-> > > +#define OPTEE_SMC_SET_IT_NOTIF_MASK \
-> > > +     OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_SET_IT_NOTIF_MASK)
-> > > +
-> > >  /*
-> > >   * Resume from RPC (for example after processing a foreign interrupt)
-> > >   *
-> > > diff --git a/drivers/tee/optee/smc_abi.c b/drivers/tee/optee/smc_abi.c
-> > > index 8c2d58d605ac..0360afde119f 100644
-> > > --- a/drivers/tee/optee/smc_abi.c
-> > > +++ b/drivers/tee/optee/smc_abi.c
-> > > @@ -977,6 +977,112 @@ static int optee_smc_stop_async_notif(struct tee_context *ctx)
-> > >   * 5. Asynchronous notification
-> > >   */
-> > >
-> > > +static u32 get_it_value(optee_invoke_fn *invoke_fn, bool *value_valid,
-> > > +                     bool *value_pending)
-> >
-> > What value? If this is supposed to return a set of pending bits, just
-> > name the function to reflect that.
-> 
-> Communication between Linux kernel and OP-TEE is this case is rather
-> basic here, no shared memory used, only few CPU registers can be used
-> to shared information. So Linux invokes OP-TEE for each pending optee
-> interrupt event: each invocation returns a interrupt event number (an
-> integer value) and a status whether another interrupt event is pending
-> and shall be retrieved invoking OP-TEE again. In case Linux invoke
-> OP-TEE for a pending interrupt and none is pending, a last status is
-> also provided: 'value_valid'.
-> 
-> I could maybe change the prototype to something like:
-> static u32 get_pending_it_number(optee_invoke_fn *invoke_fn, bool
-> *it_number_valid, bool *more_pending_it)
-
-What does 'it' mean? Interrupt? Spell it out. Really, this should read as:
-
-	get_pending_irq()
-
-
-> 
-> >
-> > Also, at no point do you explain that each PPI is only a mux interrupt
-> > for a bunch of chained interrupts.
-> 
-> Sorry, I don't understand your question.
-> The "it notif" feature proposed in this change is not straight related a PPI.
-> Previous patch in this series is indeed related to PPI: it propose
-> optee driver can use a single PPI instead of a signle SPI for the
-> OP-TEE "asyn notification" feature.
-> This change allows to mux interrupts events (from OP-TEE to Linux
-> optee driver) over "OP-TEE async notif" means, which is using a single
-> SPI or PPI.
-> Maybe I should have submitted both changes separately :(
-
-Surely a less cryptic explaination would have helped.
-
-> 
-> >
-> > > +{
-> > > +     struct arm_smccc_res res;
-> > > +
-> > > +     invoke_fn(OPTEE_SMC_GET_IT_NOTIF_VALUE, 0, 0, 0, 0, 0, 0, 0, &res);
-> > > +
-> > > +     if (res.a0)
-> > > +             return 0;
-> > > +
-> > > +     *value_valid = res.a2 & OPTEE_SMC_IT_NOTIF_VALID;
-> > > +     *value_pending = res.a2 & OPTEE_SMC_IT_NOTIF_PENDING;
-> > > +     return res.a1;
-> > > +}
-> > > +
-> > > +static u32 set_it_mask(optee_invoke_fn *invoke_fn, u32 it_value, bool mask)
-> > > +{
-> > > +     struct arm_smccc_res res;
-> > > +
-> > > +     invoke_fn(OPTEE_SMC_SET_IT_NOTIF_MASK, it_value, mask, 0, 0, 0, 0, 0, &res);
-> > > +
-> > > +     if (res.a0)
-> > > +             return 0;
-> > > +
-> > > +     return res.a1;
-> > > +}
-> > > +
-> > > +static int handle_optee_it(struct optee *optee)
-> > > +{
-> > > +     bool value_valid;
-> > > +     bool value_pending;
-> > > +     u32 it;
-> > > +
-> > > +     do {
-> > > +             struct irq_desc *desc;
-> > > +
-> > > +             it = get_it_value(optee->smc.invoke_fn, &value_valid, &value_pending);
-> > > +             if (!value_valid)
-> > > +                     break;
-> > > +
-> > > +             desc = irq_to_desc(irq_find_mapping(optee->smc.domain, it));
-> > > +             if (!desc) {
-> > > +                     pr_err("no desc for optee IT:%d\n", it);
-> > > +                     return -EIO;
-> > > +             }
-> > > +
-> > > +             handle_simple_irq(desc);
-> > > +
-> >
-> > What is this? Please use generic_handle_domain_irq(), like any other
-> > driver. Why is the flow handler handle_simple_irq()? You need to
-> > explain what the signalling is for the secure-provided interrupts.
-> 
-> My fault. I thought handle_simple_irq() would better apply here since
-> its description:
->  * Simple interrupts are either sent from a demultiplexing interrupt
->  * handler or come from hardware, where no interrupt hardware control
->  * is necessary.
-
-Why isn't masking necessary? What is the signalling between OPTEE and
-NS? Does the "get_it_value" function *consume* the pending bits? You
-need to answer and document all of that, and only then pick the flow
-that matches these requirements.
-
-> 
-> OP-TEE secure world has already dealt with the HW interrupt resources
-> (ack/etc...) before it notifies Linux kernel of the event.
-> 
-> >
-> > > +     } while (value_pending);
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static void optee_it_irq_mask(struct irq_data *d)
-> > > +{
-> > > +     struct optee *optee = d->domain->host_data;
-> > > +
-> > > +     set_it_mask(optee->smc.invoke_fn, d->hwirq, true);
-> > > +}
-> > > +
-> > > +static void optee_it_irq_unmask(struct irq_data *d)
-> > > +{
-> > > +     struct optee *optee = d->domain->host_data;
-> > > +
-> > > +     set_it_mask(optee->smc.invoke_fn, d->hwirq, false);
-> > > +}
-> > > +
-> > > +static struct irq_chip optee_it_irq_chip = {
-> > > +     .name = "optee-it",
-> > > +     .irq_disable = optee_it_irq_mask,
-> > > +     .irq_enable = optee_it_irq_unmask,
-> > > +     .flags = IRQCHIP_SKIP_SET_WAKE,
-> >
-> > Is it a mask or a disable? These are different beasts.
-> 
-> Indeed, thanks for catching that. I think we need to 4
-> (enable/disable/mask/unmask).
-> I'll fix.
-
-What does enable do differently from unmask?
-
-> 
-> >
-> > > +};
-> > > +
-> > > +static int optee_it_alloc(struct irq_domain *d, unsigned int virq,
-> > > +                       unsigned int nr_irqs, void *data)
-> > > +{
-> > > +     struct irq_fwspec *fwspec = data;
-> > > +     irq_hw_number_t hwirq;
-> > > +
-> > > +     hwirq = fwspec->param[0];
-> > > +
-> > > +     irq_domain_set_hwirq_and_chip(d, virq, hwirq, &optee_it_irq_chip, d->host_data);
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static const struct irq_domain_ops optee_it_irq_domain_ops = {
-> > > +     .alloc = optee_it_alloc,
-> > > +     .free = irq_domain_free_irqs_common,
-> > > +};
-> > > +
-> > > +static int optee_irq_domain_init(struct platform_device *pdev, struct optee *optee, u_int max_it)
-> > > +{
-> > > +     struct device *dev = &pdev->dev;
-> > > +     struct device_node *np = dev->of_node;
-> > > +
-> > > +     optee->smc.domain = irq_domain_add_linear(np, max_it, &optee_it_irq_domain_ops, optee);
-> > > +     if (!optee->smc.domain) {
-> > > +             dev_err(dev, "Unable to add irq domain\n");
-> > > +             return -ENOMEM;
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > >  static u32 get_async_notif_value(optee_invoke_fn *invoke_fn, bool *value_valid,
-> > >                                bool *value_pending)
-> > >  {
-> > > @@ -1008,13 +1114,15 @@ static irqreturn_t notif_irq_handler(int irq, void *dev_id)
-> > >       }
-> > >
-> > >       do {
-> > > -             value = get_async_notif_value(optee->smc.invoke_fn,
-> > > -                                           &value_valid, &value_pending);
-> > > +             value = get_async_notif_value(optee->smc.invoke_fn, &value_valid, &value_pending);
-> > >               if (!value_valid)
-> > >                       break;
-> > >
-> > >               if (value == OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF)
-> > >                       do_bottom_half = true;
-> > > +             else if (optee->smc.sec_caps & OPTEE_SMC_SEC_CAP_IT_NOTIF &&
-> > > +                      value == OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_IT)
-> > > +                     handle_optee_it(optee);
-> >
-> > NAK. This isn't how we deal with chained interrupts. Definitely not in
-> > an interrupt handler.
-> 
-> My apologies, what is wrong in this sequence. My expectations are:
-> 1- Something happens on OP-TEE secure side that should be reported to
-> Linux as a software interrupt event
-
-Why? There is nothing Linux-specific in OPTEE. Why should OPTEE be
-prescriptive of the way this is handled?
-
-> 2- OP-TEE (secure world) raises an HW interrupt to notify Linux optee
-> driver that event(s) are pending
-> 3- optee driver threade_irq handler is called and asks OP-TEE which
-> are the pending events. This is done event per event until all pending
-> event are consumed.
-
-Why is this done in a thread? I'd expect the *handlers* to be
-threaded, but not the irqchip part of it (which is crucially missing
-here).
-
-	M.
-
+diff --git a/drivers/i2c/algos/i2c-algo-bit.c b/drivers/i2c/algos/i2c-algo-bit.c
+index fc90293af..a1b822723 100644
+--- a/drivers/i2c/algos/i2c-algo-bit.c
++++ b/drivers/i2c/algos/i2c-algo-bit.c
+@@ -184,8 +184,9 @@ static int i2c_outb(struct i2c_adapter *i2c_adap, unsigned char c)
+ 
+ 	/* read ack: SDA should be pulled down by slave, or it may
+ 	 * NAK (usually to report problems with the data we wrote).
++	 * Always report ACK if SDA is write-only.
+ 	 */
+-	ack = !getsda(adap);    /* ack: sda is pulled low -> success */
++	ack = !adap->getsda || !getsda(adap);    /* ack: sda is pulled low -> success */
+ 	bit_dbg(2, &i2c_adap->dev, "i2c_outb: 0x%02x %s\n", (int)c,
+ 		ack ? "A" : "NA");
+ 
+@@ -232,6 +233,10 @@ static int test_bus(struct i2c_adapter *i2c_adap)
+ 	const char *name = i2c_adap->name;
+ 	int scl, sda, ret;
+ 
++	/* Testing not possible if both pins are write-only. */
++	if (adap->getscl == NULL && adap->getsda == NULL)
++		return 0;
++
+ 	if (adap->pre_xfer) {
+ 		ret = adap->pre_xfer(i2c_adap);
+ 		if (ret < 0)
+@@ -420,6 +425,10 @@ static int readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
+ 	unsigned char *temp = msg->buf;
+ 	int count = msg->len;
+ 	const unsigned flags = msg->flags;
++	struct i2c_algo_bit_data *adap = i2c_adap->algo_data;
++
++	if (!adap->getsda)
++		return -EOPNOTSUPP;
+ 
+ 	while (count > 0) {
+ 		inval = i2c_inb(i2c_adap);
+@@ -670,8 +679,11 @@ static int __i2c_bit_add_bus(struct i2c_adapter *adap,
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	/* Complain if SCL can't be read */
++	if (bit_adap->getsda == NULL)
++		dev_warn(&adap->dev, "Not I2C compliant: can't read SDA\n");
++
+ 	if (bit_adap->getscl == NULL) {
++		/* Complain if SCL can't be read */
+ 		dev_warn(&adap->dev, "Not I2C compliant: can't read SCL\n");
+ 		dev_warn(&adap->dev, "Bus may be unreliable\n");
+ 	}
 -- 
-Without deviation from the norm, progress is not possible.
+2.39.0
+
+
