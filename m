@@ -2,123 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0EEC66B3C1
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 21:11:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5599E66B3EF
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 21:48:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231181AbjAOULw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 15:11:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51526 "EHLO
+        id S231269AbjAOUs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 15:48:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231179AbjAOULu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 15:11:50 -0500
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78058C656;
-        Sun, 15 Jan 2023 12:11:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=cvNXeaeCC5O59TGsImznClAMJlVEir/QjNf7tHMV21g=; b=YgDLNPNTweV8YUE1WGXn5/IyeN
-        IMygWskAvoJzgyilaqSQFWoMg4WZR5uv/hmqAKWX3GyXCootyk2TqWk2feqgAUXTBUvmzdLka7gxf
-        WkWrlKIM8ut8Eo3Ls9pnmPZ2Hx47oJIAANPAOrhSLO8Tnk/aIMJIbBXCvOwRDH7D68oI=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:47782 helo=asus64.hugovil.com)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1pH9Lw-0001ge-9v; Sun, 15 Jan 2023 15:11:40 -0500
-Date:   Sun, 15 Jan 2023 15:11:39 -0500
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, hvilleneuve@dimonoff.com,
-        lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <20230115151139.4056356363b5fcff6c42f3ea@hugovil.com>
-In-Reply-To: <e30a869a-5585-901b-6a56-3e327e0cf60a@linaro.org>
-References: <20230113194959.3276433-1-hugo@hugovil.com>
-        <20230113194959.3276433-3-hugo@hugovil.com>
-        <dee8fbdc-5399-d5ce-8d01-2c48e85e2919@linaro.org>
-        <20230115112205.e46ab8d017b99dd987d003e4@hugovil.com>
-        <20230115164326.7f03f6d9@jic23-huawei>
-        <20230115113250.d8a0ec5a2638e24c1208539c@hugovil.com>
-        <e30a869a-5585-901b-6a56-3e327e0cf60a@linaro.org>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S231462AbjAOUsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 15:48:55 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A280413512;
+        Sun, 15 Jan 2023 12:48:53 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id d10so18346277pgm.13;
+        Sun, 15 Jan 2023 12:48:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MIkd2tMIqbl7DAxJsCwkxSiR7cv8R+Xwzf9xXdLwdvw=;
+        b=ehnqfS3nWLQtL0guJ0ycBgulw4xjhbNma55ULp/G8DJuYbtDRgzRaFPf3kqHaOX6Bs
+         WzxOSEULv9A2HRlHksKOJCs7nqOQXk/Xa+fjrWqGGlKsveeBbSriQxj7XuqwkJHgpTsC
+         RnQuCgwSfXyrekYgh9SfT5v+WtnpMySyx/lvLEvnJglb8l+Z8YOjng51pySwnwSHy6ke
+         TuLRTIwGObtWeEu4QraCIjGbv2E3U0u/BM4ZgWlfyLasLEmf9em+6ABe5q+cvvArTm1p
+         HiRIOUReY5n+ODvjmfyK2C9Kp69ysZK2g0Z65oRMR3P9cX94rsXLNZtL5eOEyis1/+nr
+         ExCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MIkd2tMIqbl7DAxJsCwkxSiR7cv8R+Xwzf9xXdLwdvw=;
+        b=OcBwzCCSya+r8AlEuYIEw5AD+vCeHCWtFpDeOHXLG8Zn9evlUU4o4RqEJinDWdEy4e
+         PCcJO1TymJaKEVicw6tSStTZ4M5aKWC9dZToa6DrttBzaJ3vK1cMi+CTGlXAGZljpEqE
+         41G7aM0Qu7BLrGJ8TEeRlavVmSfRFB0AUEl6I9Y/95GYNK/f8sJ/09o8NubXV8nQCaUY
+         zA/xcwNSI/6jXCisihwzrwgANft+Nyev2OSLjq2Zw5b11iBpkrnWd/v412bKCOEVMxHX
+         OzuxoJIDMbRgHvxicnpzr2NIkZm6X8uHkSGY7Ugu7oH8CGfSBE5WR/AECmbCdJ62xsKh
+         z7WA==
+X-Gm-Message-State: AFqh2koX+yy8zkN3gTF4+PG0P3PPEUr7R68RQdDfv4Mim38Zsan8QFsd
+        JDUVs2DleIAOJMEZESWP09y+UnPPm/z5ozNpGdM=
+X-Google-Smtp-Source: AMrXdXvWyvpXV5dLUF+hc/n/3eVOPJVL9z3kWOSuXuFG8siScyfsnWEajTwnwIP8AvxMoFyyyiRYT2lICAflIwow2Ns=
+X-Received: by 2002:aa7:8157:0:b0:583:3c8d:266a with SMTP id
+ d23-20020aa78157000000b005833c8d266amr3155570pfn.72.1673815733109; Sun, 15
+ Jan 2023 12:48:53 -0800 (PST)
+MIME-Version: 1.0
+References: <20230115103217.9232-1-pierluigi.p@variscite.com> <CAOMZO5CdG=Tx98DVYo9QZFM7Y65b0KGLNc=XskYDuRqORBiLSg@mail.gmail.com>
+In-Reply-To: <CAOMZO5CdG=Tx98DVYo9QZFM7Y65b0KGLNc=XskYDuRqORBiLSg@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sun, 15 Jan 2023 17:48:41 -0300
+Message-ID: <CAOMZO5BLoCibdbmBV5Sysfc7seCnYu7Mvu+Yar-YUvDrjJuNCA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm: Fix pad control for UART1_DTE_RX
+To:     Pierluigi Passaro <pierluigi.passaro@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-imx@nxp.com, pierluigi.p@variscite.com, marex@denx.de,
+        peng.fan@nxp.com, marcel.ziswiler@toradex.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, eran.m@variscite.com,
+        nate.d@variscite.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v3 2/2] dt-bindings: iio: adc: add Texas Instruments
- ADS7924
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 15 Jan 2023 20:17:24 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Hi Pierluigi,
 
-> On 15/01/2023 17:32, Hugo Villeneuve wrote:
-> >>>>> +    required:
-> >>>>> +      - reg
-> >>>>> +
-> >>>>> +    additionalProperties: false  
-> >>>>
-> >>>> You are not allowing anything else from adc.yaml. Is it on purpose?  
-> >>>
-> >>> I am really not an expert with this Yaml stuff, and reading the documentation makes me probably more confused than before reading it :)
-> >>>
-> >>> But one thing that is for sure is that these other properties in adc.yaml are not used in my driver:
-> >>>
-> >>>   bipolar
-> >>>   diff-channels
-> >>>   settling-time-us
-> >>>   oversampling-ratio
-> >>>
-> >>> So is it Ok then to use "additionalProperties: false"? I think so, but what is your recommandation?
-> >>
-> >> Makes sense to me.  Whilst there are lots of things a channel can support, most
-> >> of them are hardware related and not universal.
-> > 
-> > Ok, I think I am finally beginning to see the light here :)
-> > 
-> > So I will then leave "additionalProperties: false".
-> > 
-> > I will send a V4 soon with all the latest changes.
-> > 
-> 
-> Just to clarify - we talk about hardware, not your Linux driver. What
-> your driver uses or doesn't, should not matter here that much.
+On Sun, Jan 15, 2023 at 9:27 AM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> Hi Pierluigi,
+>
+> Thanks for the patch.
+>
+> On Sun, Jan 15, 2023 at 7:32 AM Pierluigi Passaro
+> <pierluigi.passaro@gmail.com> wrote:
+> >
+> > According section
+> >     8.2.5.313 Select Input Register (IOMUXC_UART1_RXD_SELECT_INPUT)
+> > of
+> >     i.MX 8M Mini Applications Processor Reference Manual, Rev. 3, 11/2020
+> > the required setting for this specific pin configuration is "1"
+>
+> Fixes: c1c9d41319c3 ("dt-bindings: imx: Add pinctrl binding doc for imx8mm")
+>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
-Hi,
-the following properties are definitely not supported by the hardware:
-    bipolar
-    diff-channels
-    oversampling-ratio
+./scripts/checkpatch.pl shows the following problem with your patch:
 
-does this means that we should add these lines?
-    bipolar: false
-    diff-channels: false
-    oversampling-ratio: false
+WARNING: From:/Signed-off-by: email address mismatch: 'From: Pierluigi
+Passaro <pierluigi.passaro@gmail.com>' != 'Signed-off-by: Pierluigi
+Passaro <pierluigi.p@variscite.com>'
 
-as for settling-time-us, I am not sure of its usage and if its related to this hardware.
+Please adjust this, add the Fixes tag and send a v2.
 
-Hugo.
-
-
-> Best regards,
-> Krzysztof
-> 
-> 
-
-
--- 
-Hugo Villeneuve <hugo@hugovil.com>
+Thanks
