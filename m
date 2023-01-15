@@ -2,73 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6011166B089
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 12:18:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A04D666B092
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 12:21:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230411AbjAOLSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 06:18:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60684 "EHLO
+        id S230354AbjAOLVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 06:21:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230307AbjAOLSf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 06:18:35 -0500
+        with ESMTP id S230322AbjAOLVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 06:21:23 -0500
 Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54256A24A
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 03:18:34 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id ud5so62028250ejc.4
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 03:18:34 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369FC1712
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 03:21:22 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id kt14so3109322ejc.3
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 03:21:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LLBqT3f1ZSkAqUu3phBo/I68uMxIQaNbiYzehYTTQxo=;
-        b=bfvib7p3fn0MZ0xYWEwm2VcowbiKFvxpTVextVEvEeIi9WcI4ecAqof9mYHttjTV/n
-         zAGGTlW5f1KHy4mqOLwHFGzYVDaqk4uheagHl6kKVlmQpsds9wQa8i9WWAZV4lVBIVxu
-         5WuCqWsZNWUEdO0IY5vrLdF6w0U/+lxB4p3kD0Ez4a5OuKkNJ77F5PM8OALCp0brsOvu
-         qUYfEYnWtpGL/bCpc8kVYs+PTKJGmvCQ3XEbyrK1u2U7JkanqmruVuPWlXp1ZsdUx2QN
-         VdNFBV7E8KbaFYwlSMepDps1eIfDXcZt0bign9jsPHOb3WrtY0+SJLowqdOCgONj6LC5
-         gqtw==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Q6rItGYiDxNk2shTTaac9GPkWnRw/7H7zjsJkHXB0gw=;
+        b=CSC3PyXrxCYny70V6nQemTI3NeqWsMgTEk/B/Znu8UNjDspEl+oJqrSAQSsW+yBUoR
+         yQp2eC5MxfKIiqUT3mq4eebA2OioHzpzgASjcFx+m8cdJuo9In+g/dJFerwR7ysc/kIy
+         vbl6cGarqblvIARf2jvYc5VPJ2S7aWR+O8InLEdbviok36dUNSjH7hEjCfUDT9/O9aFE
+         /3Hqs2fDJM5ElotWukQUx+jrDRBYuQTJOy3U8aIrST56pklXGXYEd0V0y9jToX9thm7m
+         HrVpMzeZKwWOi2l2AqypHdtokqKYr/xTX/D6FgoZGAmiiZrn/9bHOEggrXXhQgOyR1vi
+         zpag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LLBqT3f1ZSkAqUu3phBo/I68uMxIQaNbiYzehYTTQxo=;
-        b=Nr1mchdAMi6DouwafdA10erkGzpkB44/7SHKbICG39XmZif7WU+pyncGYnffpTdKk9
-         9YnGaaMHYni7d1/+5B+duWaFj6aGnzd+XNkKqhWkAZyTzcvI/EaPA6Fu32/xkLglmlFE
-         voL6719buE9bXKCsCVV4E5pEJYwNWTnYhQvM/Fm1nFgBp2SymvYT11G1wW/1bT0FD2+h
-         3v++acbf4SEdZdbXUv7MXaUoKOTI+3fLQ1ZxKSaco1sq+t+6eR7K0CL+bD+mkwA8lJxO
-         56JDwt5duCEwfN3e3f3vylXyBCiCe3ZKo9p2PFha6fXetK6ax86H7ng5M1sJQnmWLxgV
-         Zgsw==
-X-Gm-Message-State: AFqh2krVDgFYRMwOaIqpRo85nYCsjraezoUpq735uq2dQlD8YShpfznB
-        VHu0xoEKSlYFhaD9q6LXQ9lUvQ==
-X-Google-Smtp-Source: AMrXdXvb53QEjGo/2CwfjTl0laBdQmNsq0MrxkK+N6HmJOYXsA9+LzsLsIx2Xvcf2Aw1CLFXF0wPjQ==
-X-Received: by 2002:a17:907:8c0c:b0:7c0:ad62:a25f with SMTP id ta12-20020a1709078c0c00b007c0ad62a25fmr78162140ejc.51.1673781512922;
-        Sun, 15 Jan 2023 03:18:32 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id en6-20020a056402528600b00499b3d09bd2sm8056347edb.91.2023.01.15.03.18.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Jan 2023 03:18:32 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Aswani Reddy <aswani.reddy@samsung.com>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
-        Sriranjani P <sriranjani.p@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] MAINTAINERS: arm64: tesla: correct pattern for directory
-Date:   Sun, 15 Jan 2023 12:18:29 +0100
-Message-Id: <167378150437.5643.4332033235102103834.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230113104050.30856-1-krzysztof.kozlowski@linaro.org>
-References: <20230113104050.30856-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q6rItGYiDxNk2shTTaac9GPkWnRw/7H7zjsJkHXB0gw=;
+        b=Z7cnSWUH+oMpDkqqtWp8/W2V4VtLl5GglohnT1qmaVnZmXiLTUWTeC5a2+Ps30n/T4
+         R41pAH37id8Fr1Gm93xGi86NjPMNlInfVw+wHUCDL5vVv6ys6p7MhbvJInJ/QX9ZM/Dd
+         WU/aukX47kC4oE0yF3ndlo09Ya9SPWl0aNhn2FAAedvoJevXPhLV0RlIbDr4Rh4HK5ko
+         Sk21LmF6bFgx2z9v35+6KgJVdF1sWDvl2sQXN4gb3ddw02OKdvg76axWpbIR+PMuSOB8
+         UG8Db3hH9rjs9rMW7yfY+qLGAJb1KAXfC4VJoDbnOPDSsw+tNFkQ7tyH5Cr643W9fZdV
+         LMjA==
+X-Gm-Message-State: AFqh2kr33S+zpod5GHXfOTRA8qTyF7HlCdoan1Ttue5mV8vItU4zz961
+        k0JVFgkuFBPPQxCCb/0rynM84Q==
+X-Google-Smtp-Source: AMrXdXsOTlJmUk3i+GSWxpJCUZy5z8cKOVbXUdVjTYXJ+IYaNU++XjKAP0KMBUAh07cdQw25Jn9Jcg==
+X-Received: by 2002:a17:906:6690:b0:86e:e4ae:791c with SMTP id z16-20020a170906669000b0086ee4ae791cmr2540434ejo.62.1673781680838;
+        Sun, 15 Jan 2023 03:21:20 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n4-20020a170906164400b007c11e5ac250sm10749192ejd.91.2023.01.15.03.21.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 Jan 2023 03:21:20 -0800 (PST)
+Message-ID: <5e784285-c391-91f4-c9d1-a53443fc4264@linaro.org>
+Date:   Sun, 15 Jan 2023 12:21:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/6] arm64: dts: qcom: sdm845: move WCD9340 codec to
+ separate file
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230113162245.117324-1-krzysztof.kozlowski@linaro.org>
+ <20230113162245.117324-2-krzysztof.kozlowski@linaro.org>
+ <e3c367ba-b752-d116-0b84-fd2437e565b8@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e3c367ba-b752-d116-0b84-fd2437e565b8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,17 +80,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Jan 2023 11:40:50 +0100, Krzysztof Kozlowski wrote:
-> The path is actually not a pattern but a directory, so correct it to be
-> effective.
+On 14/01/2023 21:33, Konrad Dybcio wrote:
 > 
 > 
+> On 13.01.2023 17:22, Krzysztof Kozlowski wrote:
+>> WCD9340 codec node is not a property of the SoC, but board.  Move it to
+>> separate file and include it in the specific boards.  On all others,
+>> keep the Slimbus node disabled as it is empty.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+> Generally this should be SoC-independent, for example some newer
+> MSM8998 devices shipped with the 9340 codec that most 845 devices
+> used, but earlier ones used the WCD9335 found on MSM8996
 
-Applied, thanks!
-
-[1/1] MAINTAINERS: arm64: tesla: correct pattern for directory
-      https://git.kernel.org/krzk/linux/c/5e487164afbcd917225fb701e8956f388f43b601
+OK, but I don't get if you expect me to change anything?
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
+
