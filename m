@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FE1066B0EE
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 13:19:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73D5866B0F4
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 13:27:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231204AbjAOMTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 07:19:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46464 "EHLO
+        id S230285AbjAOM1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 07:27:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231331AbjAOMTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 07:19:21 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F29EC6D;
-        Sun, 15 Jan 2023 04:19:19 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30FCIvbc093084;
-        Sun, 15 Jan 2023 06:18:57 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673785137;
-        bh=WwiyspyFAhYKeru234W+8COC3zKMA+SPlcgEVmFVMf0=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=AvzXOi4JIHD1q7TVK83vvlBQVOT0c7eaR2oMoxCZdEzPHfbmB4/vy8UH5Cru6L3YV
-         fT3DcXBSDKujapy7mWvFxqAKZVkJ83l72zJrFn3hsMgMcFMnixQGYwotMrb8aVDTgD
-         74jUE36gr+EuHmV0HD8R2Uytkzh29yYPuLxImA/Q=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30FCIvwS049538
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 15 Jan 2023 06:18:57 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 15
- Jan 2023 06:18:57 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Sun, 15 Jan 2023 06:18:57 -0600
-Received: from [10.250.234.92] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30FCIrn9032045;
-        Sun, 15 Jan 2023 06:18:54 -0600
-Message-ID: <e06a7758-1245-4353-7d62-fd6dc40b3164@ti.com>
-Date:   Sun, 15 Jan 2023 17:48:52 +0530
+        with ESMTP id S230327AbjAOM1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 07:27:20 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 077DBEC60;
+        Sun, 15 Jan 2023 04:27:20 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id w4-20020a17090ac98400b002186f5d7a4cso31434180pjt.0;
+        Sun, 15 Jan 2023 04:27:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=md31HFYE5YCxXfuRLzSQsGi/ksRGDmls2ZiH7xI3PQ8=;
+        b=fdP+i3nAQhApXR2J1OsPjW3WUeEij207YPPkebCAgGGJeZxyH3NnqoecIFFKJYPMMg
+         eTbyUYbhci7uk6lyo/omyPd2IZm1FJzIoA4Fe93pEOuLN8x1o8cHY+EjMUUkkMpHms9w
+         xy8POcc4PC1f0Pd8hcCFMQfKDpl7spXsFi1PeaL2a8GIvT1EsqqXfH5XbxqNZ9a4TAcs
+         GNrwf8xzxBJv/ORoapjLbis7zCBeTPnuK4UnCxf4KJ97sZkhU5UCHmNRLmQKkihauEhR
+         SluvMGgvoGGV19xqCPHru90+Q234KmGrYyE2OCkyU/kx5tOofcQS0AQ8fvrdwEN3Rand
+         rS6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=md31HFYE5YCxXfuRLzSQsGi/ksRGDmls2ZiH7xI3PQ8=;
+        b=efOnla6xIhpYKioD+6TTZ37J/OWZ63UizMQnMBPkLUQN0REo1E6g+8VuAULReJTKQI
+         F33wwwb3k0OflkObnxPQPNgLVZ4f4d83YqX1VrYwR3BiVvE8Se6H6mLNfFK3QwcPeEIA
+         NKvJe4u4K7wuCuV04nLxgKc4xcL1GpcwiFohbWlChVjXk80Ytki8gY8KqCfvYqjwaTRs
+         O/dv+9G5FZwZVUOKTida+Mfu3rMMp5aGpuN0fb2JbaSLVW6xTLym040x1kCeY8wO1VUK
+         mmXftO9u1vp3xYphTXvWIDs+5QkjreuhkwrgDOsw+/Bdtuw6XLPaqWqgowV597EDurf3
+         JYkQ==
+X-Gm-Message-State: AFqh2kpMCpsR0M57sQsrcn6O9UQMA7yGaHi5dlI1gCjOQUSlpYw+K2IL
+        jjgzwBg3lSIKcdmrC94BV0Ngc0l09KOCMshXLDk=
+X-Google-Smtp-Source: AMrXdXu/LKdj4DjkuA3D4kGVNv5jp1l/1Q6lJt+5tTIxAHfEWgB6bSXrumxdMjdqktuti5VGtDyE058FlkVVv5Q7f5o=
+X-Received: by 2002:a17:90a:cb11:b0:229:5037:d9 with SMTP id
+ z17-20020a17090acb1100b00229503700d9mr324322pjt.195.1673785639428; Sun, 15
+ Jan 2023 04:27:19 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [RESEND PATCH V3 2/3] arm64: dts: ti: Add initial support for
- AM68 SK System on Module
-Content-Language: en-US
-To:     Sinthu Raja M <sinthu.raja@mistralsolutions.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sinthu Raja <sinthu.raja@ti.com>
-References: <20230110110052.14851-1-sinthu.raja@ti.com>
- <20230110110052.14851-3-sinthu.raja@ti.com>
- <d109dbf8-ba51-7322-34e7-f688c5a18908@ti.com>
- <CAEd-yTQ9eEz_Q6ncNP3vc9oerqiXfhrGK7DvsAnm21OZzYUe2w@mail.gmail.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <CAEd-yTQ9eEz_Q6ncNP3vc9oerqiXfhrGK7DvsAnm21OZzYUe2w@mail.gmail.com>
+References: <20230115103217.9232-1-pierluigi.p@variscite.com>
+In-Reply-To: <20230115103217.9232-1-pierluigi.p@variscite.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sun, 15 Jan 2023 09:27:08 -0300
+Message-ID: <CAOMZO5CdG=Tx98DVYo9QZFM7Y65b0KGLNc=XskYDuRqORBiLSg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm: Fix pad control for UART1_DTE_RX
+To:     Pierluigi Passaro <pierluigi.passaro@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-imx@nxp.com, pierluigi.p@variscite.com, marex@denx.de,
+        peng.fan@nxp.com, marcel.ziswiler@toradex.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, eran.m@variscite.com,
+        nate.d@variscite.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,35 +71,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sinthu,
+Hi Pierluigi,
 
-On 13/01/23 5:56 pm, Sinthu Raja M wrote:
->>> +     reserved_memory: reserved-memory {
->>> +             #address-cells = <2>;
->>> +             #size-cells = <2>;
->>> +             ranges;
->>> +
->>> +             secure_ddr: optee@9e800000 {
->>> +                     reg = <0x00 0x9e800000 0x00 0x01800000>;
->>> +                     alignment = <0x1000>;
->> Is alignment needed here?
-> This is used to mention the address boundary. Removing this will
-> affect memory allocation. Isn't so?
+Thanks for the patch.
 
-No memory is allocated out of this region. This is reserved region where
-OPTEE runs and thus ought not to be touched by Linux. Please drop the
-property.
+On Sun, Jan 15, 2023 at 7:32 AM Pierluigi Passaro
+<pierluigi.passaro@gmail.com> wrote:
+>
+> According section
+>     8.2.5.313 Select Input Register (IOMUXC_UART1_RXD_SELECT_INPUT)
+> of
+>     i.MX 8M Mini Applications Processor Reference Manual, Rev. 3, 11/2020
+> the required setting for this specific pin configuration is "1"
 
->>
->> Please see https://lore.kernel.org/lkml/cd5dbbb0-2d9f-8d7d-b051-f8d01d710c62@ti.com/
->>
->>> +                     no-map;
->>> +             };
->>> +     };
->>> +};
->> --
->> Regards,
->> Vaishnav
+Fixes: c1c9d41319c3 ("dt-bindings: imx: Add pinctrl binding doc for imx8mm")
 
-Regards
-Vignesh
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
