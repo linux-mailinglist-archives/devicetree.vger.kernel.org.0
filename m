@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D20EC66B3FA
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 21:54:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C838966B405
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 21:59:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231204AbjAOUy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 15:54:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33520 "EHLO
+        id S231356AbjAOU7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 15:59:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231356AbjAOUyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 15:54:55 -0500
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF08A13514;
-        Sun, 15 Jan 2023 12:54:53 -0800 (PST)
-Received: by mail-qv1-xf33.google.com with SMTP id j9so18542749qvt.0;
-        Sun, 15 Jan 2023 12:54:53 -0800 (PST)
+        with ESMTP id S231329AbjAOU7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 15:59:00 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AFC013511;
+        Sun, 15 Jan 2023 12:58:59 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id jl4so28404076plb.8;
+        Sun, 15 Jan 2023 12:58:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GNMkbSbb9ICxrzUUU3C9l/GMwdexOFTK//x14iJdWmM=;
-        b=qp5Z8EFieIq7/J/dh/J43zUugiBfVNeBCe1pq+REJgRFMNbJC1nfxm9yOhTH5ETn8y
-         WHeCS6mEx5uu3EVINPVXhtPebizrzsDWnTjiB63Dfc/xGL/mqNkDN5/cH0e6GdWupLlE
-         4wb9pC+Sk2kJGsE1lruA2Wt8nzj9Bm0GdppxtcpuNklaulu4fKG2PZdMb3EY9gMm6fnE
-         K5GbbM+7PB8+Ke/VJcDWRl4+vJ8I1ZGduhhT1gi8zVRe+EIYLpfyb4Gw6+uvTqJ97e87
-         UKFtW94+X2xJVm/EavQIbKnreZtcrnFL+SRqjMr/+ptzMLJKdxi1BSMYZsKXesx7ZA4j
-         pFTg==
+        bh=hIcU6hD2bPR8TQFXwHfTxxDj4xDaU8U2IsQoMFuFoUQ=;
+        b=Nj2rCwPgW4gEprwaYPjcwVnX7liNhlAKiGJ+x6k8XsMknRtgMd4WBTkEQE1CmXgG36
+         u8wkpGmvmxIOwsIqGso+GsFD51XjTMOc8rDZja68vS61yoYEuplprdLXNHqS7QvdWMLF
+         bEgIf7L8e9Z6Lk2j2jioIFYOfXh4sSbMBSAVQl+olDZbsijjhjZ1cMrHsK+rGVLY9zbC
+         rRqQODW1rdJccV8oRM8ZiBj2efZ7TzpsHwXGMoxBEKfzYVMZIivV0nwoE7Rx9/OoebA6
+         i7TrK/9eBAxlYTaUJoP91Ep+vqMSjy7jtU/Zra+ev0QTLu8snEKpuivUznhgRpQhs2IK
+         r6YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GNMkbSbb9ICxrzUUU3C9l/GMwdexOFTK//x14iJdWmM=;
-        b=PmTU1ANqvw28dmGm8xNDi9ET4Uh2GJl7LAjbazLyR9aWt5BZekbZUofioScMcZRDcl
-         IkiF7OfYRrXoGX09UVCgA5wKDkXLkFpRT1FViWpdtYY5I6xMHcNNeYQojLyp7Rl8azTn
-         8VH0SkM9z4ihh+lDGBDJouWz6pENzvl3YOKgG6BWpRX/Um/RxVfBP6RbX7JMZrv6Stxy
-         kyMs18xkujptu/HRCdn6DAaCrvC3LUryeVhYtYD3qCAYvK0UWFKRWgcYEU5GeABOkESx
-         1vatvz8ODKMPsq1wOoNKEN5QQ4PI4OOSFNE8r0MxCO4h5Eg2JwGxcIheccHceErDo7+x
-         wdPw==
-X-Gm-Message-State: AFqh2ko57joX4qaIfX7HMlxF5J1fPhWkOv1OFtEoNzODIBT685P+e3WL
-        +2KKQ7XCtUjBpRZ8mC3xpNHltPeM/f93d4NIB0sIm71662k=
-X-Google-Smtp-Source: AMrXdXvkGZI0k1pnngxktYC4R61jH0zIyHSlCBGbhGKzn7iNmZwaicp0p6IGPJ679OgH00ExhW7b4N1Zd+Cp2KwB/b4=
-X-Received: by 2002:a05:6214:2c17:b0:4c7:6dbe:807e with SMTP id
- lc23-20020a0562142c1700b004c76dbe807emr6574056qvb.67.1673816093000; Sun, 15
- Jan 2023 12:54:53 -0800 (PST)
+        bh=hIcU6hD2bPR8TQFXwHfTxxDj4xDaU8U2IsQoMFuFoUQ=;
+        b=RubuGn5nW9gvNBXjEPKnx34y3g7i9KDhV5qkInxFwUEPVGxGOj3KHXeeE3TmMb4zT0
+         poOvlPp83SFXLOrIgsn7JWblnRiyesXKuJdmHBLJztIPWX4xUwsV2Ml7wxLCDznN6kWJ
+         R25d1VPGolBsf96sOlQK6VKz40y+GwrY+iK44QWXNdDpHq7nSmWK7SwuORak7MDpW/yC
+         h0hIpqNoqMoIgcd8gnt+KuTVIDybUttgbrjzoTPLA9f3nr1Ae50qZZQFvJhidSrd1nAa
+         HFRiTXz8vdjuPkQDLJsL6/WK5iLMOAzLBesphxTwo7CIPqqfVVvOhip0l5EYV0QcXwF3
+         +wDg==
+X-Gm-Message-State: AFqh2kqEe7cNs/KFoIZTRG2GYca3j6jfXMAJxbduzBRGeevwEbU9JDpB
+        y8SDODb5zvpuoQMBVfrAwzUBx95lmWes0dXt4iO4dWLNvLc=
+X-Google-Smtp-Source: AMrXdXvtenTyA0EVGUaSf/CqTdkRK31Yovm6GBrYGLDUip3ReDbwysumhvlAV7E0BRBLKOXLxzYqNCacxo7ylDU318k=
+X-Received: by 2002:a17:90a:cb11:b0:229:5037:d9 with SMTP id
+ z17-20020a17090acb1100b00229503700d9mr398473pjt.195.1673816338805; Sun, 15
+ Jan 2023 12:58:58 -0800 (PST)
 MIME-Version: 1.0
 References: <20230115103217.9232-1-pierluigi.p@variscite.com>
- <CAOMZO5CdG=Tx98DVYo9QZFM7Y65b0KGLNc=XskYDuRqORBiLSg@mail.gmail.com> <CAOMZO5BLoCibdbmBV5Sysfc7seCnYu7Mvu+Yar-YUvDrjJuNCA@mail.gmail.com>
-In-Reply-To: <CAOMZO5BLoCibdbmBV5Sysfc7seCnYu7Mvu+Yar-YUvDrjJuNCA@mail.gmail.com>
-From:   Pierluigi Passaro <pierluigi.passaro@gmail.com>
-Date:   Sun, 15 Jan 2023 21:54:42 +0100
-Message-ID: <CAJ=UCjVX212EdAoCe62BxA9T6CEs-jXPwfXMN_gjd5=Z-8w3zA@mail.gmail.com>
+ <CAOMZO5CdG=Tx98DVYo9QZFM7Y65b0KGLNc=XskYDuRqORBiLSg@mail.gmail.com>
+ <CAOMZO5BLoCibdbmBV5Sysfc7seCnYu7Mvu+Yar-YUvDrjJuNCA@mail.gmail.com> <CAJ=UCjVX212EdAoCe62BxA9T6CEs-jXPwfXMN_gjd5=Z-8w3zA@mail.gmail.com>
+In-Reply-To: <CAJ=UCjVX212EdAoCe62BxA9T6CEs-jXPwfXMN_gjd5=Z-8w3zA@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sun, 15 Jan 2023 17:58:47 -0300
+Message-ID: <CAOMZO5DGGgPTCVps8XGgUR992VKyKaQxY6cu6L1q-0mX0KqUGg@mail.gmail.com>
 Subject: Re: [PATCH] arm64: dts: imx8mm: Fix pad control for UART1_DTE_RX
-To:     Fabio Estevam <festevam@gmail.com>
+To:     Pierluigi Passaro <pierluigi.passaro@gmail.com>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
         linux-imx@nxp.com, pierluigi.p@variscite.com, marex@denx.de,
@@ -72,39 +73,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 15, 2023 at 9:48 PM Fabio Estevam <festevam@gmail.com> wrote:
->
-> Hi Pierluigi,
->
-> On Sun, Jan 15, 2023 at 9:27 AM Fabio Estevam <festevam@gmail.com> wrote:
-> >
-> > Hi Pierluigi,
-> >
-> > Thanks for the patch.
-> >
-> > On Sun, Jan 15, 2023 at 7:32 AM Pierluigi Passaro
-> > <pierluigi.passaro@gmail.com> wrote:
-> > >
-> > > According section
-> > >     8.2.5.313 Select Input Register (IOMUXC_UART1_RXD_SELECT_INPUT)
-> > > of
-> > >     i.MX 8M Mini Applications Processor Reference Manual, Rev. 3, 11/2020
-> > > the required setting for this specific pin configuration is "1"
-> >
-> > Fixes: c1c9d41319c3 ("dt-bindings: imx: Add pinctrl binding doc for imx8mm")
-> >
-> > Reviewed-by: Fabio Estevam <festevam@gmail.com>
->
-> ./scripts/checkpatch.pl shows the following problem with your patch:
->
-> WARNING: From:/Signed-off-by: email address mismatch: 'From: Pierluigi
-> Passaro <pierluigi.passaro@gmail.com>' != 'Signed-off-by: Pierluigi
-> Passaro <pierluigi.p@variscite.com>'
->
-> Please adjust this, add the Fixes tag and send a v2.
->
-I have a temporary SMTP configuration problem with my company account.
-As soon as it will be fixed, the patch will have no changes, will only change
-the SMTP mail server: is this warning so critical ?
->
-> Thanks
+On Sun, Jan 15, 2023 at 5:54 PM Pierluigi Passaro
+<pierluigi.passaro@gmail.com> wrote:
+
+> I have a temporary SMTP configuration problem with my company account.
+> As soon as it will be fixed, the patch will have no changes, will only change
+> the SMTP mail server: is this warning so critical ?
+
+You can manually edit the From line of your patch and change:
+
+From: Pierluigi Passaro <pierluigi.passaro@gmail.com>
+
+to
+
+From: Pierluigi Passaro <pierluigi.p@variscite.com>
+
+and then send it from your Gmail account.
