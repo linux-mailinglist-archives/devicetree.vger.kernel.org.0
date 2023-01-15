@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16A7D66B19D
+	by mail.lfdr.de (Postfix) with ESMTP id B189C66B19E
 	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 15:47:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230333AbjAOOrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 09:47:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42572 "EHLO
+        id S230285AbjAOOrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 09:47:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbjAOOrJ (ORCPT
+        with ESMTP id S230358AbjAOOrJ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 09:47:09 -0500
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBDC8125A4;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB45125A3;
         Sun, 15 Jan 2023 06:47:04 -0800 (PST)
 Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1pH4He-0007bK-3g; Sun, 15 Jan 2023 15:46:54 +0100
+        id 1pH4He-0007bK-Dk; Sun, 15 Jan 2023 15:46:54 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Jensen Huang <jensenhuang@friendlyarm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
+        Lucas Tanure <lucas.tanure@collabora.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Heiko Stuebner <heiko@sntech.de>,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: add missing #interrupt-cells to rk356x pcie2x1
-Date:   Sun, 15 Jan 2023 15:46:50 +0100
-Message-Id: <167379396101.36245.10680301028456952223.b4-ty@sntech.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix RX delay for ethernet phy
+Date:   Sun, 15 Jan 2023 15:46:51 +0100
+Message-Id: <167379396100.36245.4453692262088268079.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230113064457.7105-1-jensenhuang@friendlyarm.com>
-References: <20230113064457.7105-1-jensenhuang@friendlyarm.com>
+In-Reply-To: <20230113130220.662194-1-lucas.tanure@collabora.com>
+References: <20230113130220.662194-1-lucas.tanure@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -44,19 +44,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Jan 2023 14:44:57 +0800, Jensen Huang wrote:
-> This fixes the following issue:
->   pcieport 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
+On Fri, 13 Jan 2023 13:02:20 +0000, Lucas Tanure wrote:
+> Add network PHY rx delay and change type to rgmii, so
+> that it is applied. This fixes packet loss when more
+> than a few packets are exchanged.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: add missing #interrupt-cells to rk356x pcie2x1
-      commit: a323e6b5737bb6e3d3946369b97099abb7dde695
-
-Moved the new line to a better position inside the node
-(similar to the pcie3 on rk3568)
+[1/1] arm64: dts: rockchip: Fix RX delay for ethernet phy
+      commit: 0b86f9570e7713faaa32f2775eb04021d1213018
 
 Best regards,
 -- 
