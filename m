@@ -2,72 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A986E66B1B2
-	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 15:55:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1FCC66B1BA
+	for <lists+devicetree@lfdr.de>; Sun, 15 Jan 2023 15:57:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231339AbjAOOzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 09:55:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45268 "EHLO
+        id S231230AbjAOO51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 09:57:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231197AbjAOOzF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 09:55:05 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 027CDCDF9
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 06:55:04 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id cf18so56275813ejb.5
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 06:55:03 -0800 (PST)
+        with ESMTP id S230508AbjAOO50 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 09:57:26 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49F210405
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 06:57:24 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id v6so19647841ejg.6
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 06:57:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=C+fjIlM6OmjNxjObIgHcNr6Tk1Q29ApTtFRKcgDtpr0=;
-        b=o6Mp439e1iebx7w8iXm5UdzGAQ9IXl8u1ClBegubGZO/43LRaqFtlySLJNtpNG/kAD
-         st2bkpsWXbruKHFFbSmSbFhoj527wayymTpzWqKL7rMHiQOCa0QZe2lSQD1bYBbOUjcZ
-         lpjllh0qT5kcjjer6hw/HR2v/MAyQTguWMgngjSoFnX+cTJMWffJS1MY/OeFQwA02+5E
-         SCiFKu8uMDiB2rzbWwS+mCA+4JxDWcJWJERsIuDsuwIlD/potOhfdGYaeI9qB5eb7pN9
-         da08yCo0hjpI9wbUMP4E9LRAhmhMX9ZfjcfINf8XwATPX56THh33f2HOagewvjHfS5EA
-         d0lw==
+        bh=u5z9xvpyQwb/p3wmCjJHVAevXOfS6soyNwcx7EqDQqA=;
+        b=oTHoYu/uuq+H4sxlXkVSLcqO31mFInw32z0ZpNSNm+SxwsM2Rj+l8Vureeu3CgmNjR
+         mPtFQb4hlzo4wuI2aX9NqagTuK4gcUaGou5GLB04OtBsokaQ8SSN67Qrk2ofk75lliKz
+         Oy88Qo1z1psk9x/HLFp3Mq8/iB2zU85Q5cQQEY12+qGvtRDqGAPUhWJtJeOxWQprgVh4
+         z12LM82EjlU+S54uvfdba1Q9Lm5x7ZfbdoZN9eOFQqOV1rQvTEcrDwPj4jcME/Gj7h+M
+         7WZNrAgpZ44Cj4oM0rDfJLXcqbKXNq7jklY80fA2qMHzQAiuiIE5JCZDg1RSXlsaBiJJ
+         zc0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C+fjIlM6OmjNxjObIgHcNr6Tk1Q29ApTtFRKcgDtpr0=;
-        b=hvS2mi/K4bJRvKINTduO+U5LIuXRc1xxY1fbAMf36i/PKkN3ybpSUlzk5kqwkv9vVq
-         i39V1jew+04o8FIjc/fsxdMIOR0ShP3Fnf4Me/5//ojiO4wiqOoYMBWybUYcY+JbYei5
-         apQRkOItBLtjWzkKA3ajtlbqA2uPECTs67TKdn9NOK9rmXaaXAUECkFFJbt80zUcugMV
-         3NIkxOiDEJsLTlup9XLpcw6G1ug2uxF/IcsODWi5/jjhH/rfOIZ/VVKcFuCP4+455CTW
-         l3uSMS5u7MH5mq3eQk5gP9y/TM7CudCnxDKKhfIfHDT7Cf5KGQKxoKVXKdYJd35fEbsB
-         3FPw==
-X-Gm-Message-State: AFqh2kpeQppYgEr3Kp1wqLhZYKAlJwdiBJYlDBdHrQj4sYXXJ10zftSd
-        61O9oDXUWn8Fz4S/4x97VrIiYg==
-X-Google-Smtp-Source: AMrXdXvDfmWEAyTCsu4fdxTjVT8kfSfdYJIvNsWiyUM3VrMX62cXFqXprN6G1ZWDno5Gk03q5MHoFw==
-X-Received: by 2002:a17:907:d50a:b0:86e:a013:c269 with SMTP id wb10-20020a170907d50a00b0086ea013c269mr4027806ejc.9.1673794502603;
-        Sun, 15 Jan 2023 06:55:02 -0800 (PST)
+        bh=u5z9xvpyQwb/p3wmCjJHVAevXOfS6soyNwcx7EqDQqA=;
+        b=VqloWNQseUG742ZwynblbG4QNp8ARg15s9RGagaQ7z0x3NOs5OPZ2m4u70m+ZEVHld
+         j2ejkf+2BjIIGfgvG9Gp9IVS4kn6QdohKNikkFP+PtH8XHpGE8+t7sqqUzht09AKEeXU
+         MpkE0SjAFt1X4SrhlF94/7RGzapbVRyLZsmtHW40hRPJfGKq1ZHyiV7E+iJ39bN26oXp
+         1kOpfPG/51xgx4jT2UxbuVxgoCjQOOQw86oUfKqGY1SDd6Ud3CUzJpLAVLFtdIj2GdKG
+         mFyVbs71A5vf59xbOQUY8MDs2dSes5gE9mV5uy7qW5JMLY6bxgc6fHzqKHluWCbMUYHa
+         2Tcg==
+X-Gm-Message-State: AFqh2kqhGaNVP3wzRoH4UdN24UIkEiDp8F5GSEHl7e3HQO+wYTYvl80d
+        46pLtq5E5SReLd6J9e1vJNWuBA==
+X-Google-Smtp-Source: AMrXdXuLjqA27067ErXhBepaZR4Dis+ZqnVxCxeRaM2NcThdEVfQzmcIxYEWVBqdiwu9aFF4IeScGA==
+X-Received: by 2002:a17:906:944a:b0:7c1:23f2:5b51 with SMTP id z10-20020a170906944a00b007c123f25b51mr8487730ejx.60.1673794643394;
+        Sun, 15 Jan 2023 06:57:23 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id uj42-20020a170907c9aa00b0084d4e612a22sm7608059ejc.67.2023.01.15.06.55.01
+        by smtp.gmail.com with ESMTPSA id s5-20020a170906c30500b008552bc8399dsm6853290ejz.172.2023.01.15.06.57.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Jan 2023 06:55:02 -0800 (PST)
-Message-ID: <73e99448-f984-10f0-e8de-6233487fbe37@linaro.org>
-Date:   Sun, 15 Jan 2023 15:55:00 +0100
+        Sun, 15 Jan 2023 06:57:22 -0800 (PST)
+Message-ID: <dee8fbdc-5399-d5ce-8d01-2c48e85e2919@linaro.org>
+Date:   Sun, 15 Jan 2023 15:57:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 3/3] dt-bindings: clock: versaclock5: Document 5P49V60
- compatible string
+Subject: Re: [PATCH v3 2/2] dt-bindings: iio: adc: add Texas Instruments
+ ADS7924
 Content-Language: en-US
-To:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230114233500.3294789-1-lars@metafoo.de>
- <20230114233500.3294789-3-lars@metafoo.de>
+To:     Hugo Villeneuve <hugo@hugovil.com>, hvilleneuve@dimonoff.com,
+        jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230113194959.3276433-1-hugo@hugovil.com>
+ <20230113194959.3276433-3-hugo@hugovil.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230114233500.3294789-3-lars@metafoo.de>
+In-Reply-To: <20230113194959.3276433-3-hugo@hugovil.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,14 +77,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/01/2023 00:35, Lars-Peter Clausen wrote:
-> The 5P49V60 clock generator is part of the same family of devices that is
-> described by the versaclock5 binding documentation.
+On 13/01/2023 20:49, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Add the compatible string of the 5P49V60 to the binding documentation.
+> Add device tree bindings document for the Texas Instruments ADS7924
+> ADC.
 > 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> ---
+>  .../bindings/iio/adc/ti,ads7924.yaml          | 112 ++++++++++++++++++
+>  1 file changed, 112 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
+> new file mode 100644
+> index 000000000000..24bbf95383b4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
+> @@ -0,0 +1,112 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/ti,ads7924.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI ADS7924 4 channels 12 bits I2C analog to digital converter
+> +
+> +maintainers:
+> +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> +
+> +description: |
+> +  Texas Instruments ADS7924 4 channels 12 bits I2C analog to digital converter
+> +
+> +  Specifications:
+> +    https://www.ti.com/lit/gpn/ads7924
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,ads7924
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vref-supply:
+> +    description:
+> +      The regulator supply for the ADC reference voltage (AVDD)
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +patternProperties:
+> +  "^channel@[0-3]+$":
+> +    $ref: adc.yaml
+> +
+> +    description: |
+> +      Represents the external channels which are connected to the ADC.
+> +
+> +    properties:
+> +      reg:
+> +        description: |
+> +          The channel number. It can have up to 4 channels numbered from 0 to 3.
+> +        items:
+> +          - minimum: 0
+> +            maximum: 3
+> +
+> +      label:
+> +        description: |
+> +          Unique name to identify the channel.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop description, it's coming from adc.yaml. Just "label: true"
+
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+
+You are not allowing anything else from adc.yaml. Is it on purpose?
+
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vref-supply
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
 
 Best regards,
 Krzysztof
