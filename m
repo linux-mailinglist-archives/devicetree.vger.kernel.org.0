@@ -2,86 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B59266C2AE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:51:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C837D66C2CC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:54:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbjAPOvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 09:51:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43610 "EHLO
+        id S230329AbjAPOyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 09:54:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbjAPOvX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:51:23 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D061D92C
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 06:36:03 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id x10so38081584edd.10
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 06:36:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rCZPqWPiwmy+Qg3w9Zw0kU442c7Jihjgka7OZcZFvZ4=;
-        b=vK/m3ZhBu0rXmwlaHWgHg/SJV3wZwAcbhd6qMxLW6BfEHoQz0LWh1fbCr8C+lK5HmS
-         bhRZ1X9ylmKvKawQ3N6yph8My2pmJvfm0eafkOElbuheYZVdMhjGMwR8YExcCfbR/kL8
-         7eeGDkBW4uSNo0sICPIofDBbdeMdir6P4y2J0LpZl3rAU4eXG4k6SY8gQa6LsLjo1Hyd
-         UJgJqfqxKJJnyqeIXL8PxL4bMoBZkHOqmADuqiClaUMVQQH1XIk5czTyl31+GkSEqVyO
-         b/3x0jhIpJSBAntgZfJ52P3wbP7zLAnGw9xJE+2x3+hDg8AAW3SluiWijSVism0Kxc2q
-         uc/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rCZPqWPiwmy+Qg3w9Zw0kU442c7Jihjgka7OZcZFvZ4=;
-        b=naivcjMhtDaB+zTtpu9wBtRIDDqar14DB5kKcDcC/nxDtm8wIAC6IlE1FhqUck/4cU
-         J43mZeSFcRJsA75kOttvhVbA2TIBm1L0mKl+i2uNpDzXv66HLnzi2pB4xKbiqvsWW7g3
-         I354/M5ywNXjGtbmZSY7evQPknWNTxbKapbY5P/tsqhHnt17t5y/5mMi7TpozfXBFyjE
-         TvADmAbEROfbFkFNGzvvKFFx/YiZgVkdeTHFXj2xwDLbuSnKjLoW1uxpZJhSdx20on+d
-         iAM1IRZh7OxoAjIiIPL496r5kreeqAsLFIIkxVT69PDAQcwcjNF8pmVmBTLE5eH0PuN5
-         6JYg==
-X-Gm-Message-State: AFqh2kowmBt19+sP1N/fxSWUS2TQ+RkZ7LrlKvuq85PKFQWwhvu6OA27
-        6PvluS/5zDOaXKOqtdOVnaUaQA==
-X-Google-Smtp-Source: AMrXdXtV7SF+3RSBX9E7TN51Zz8RFwX6gb7hQ8yrCuB589NuTrrLEfdLDjrguaEyTdVgTYDRIpbTRw==
-X-Received: by 2002:a05:6402:2a02:b0:470:44eb:9e58 with SMTP id ey2-20020a0564022a0200b0047044eb9e58mr82109589edb.30.1673879762167;
-        Mon, 16 Jan 2023 06:36:02 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id d3-20020aa7d5c3000000b004835bd8dfe5sm11665624eds.35.2023.01.16.06.36.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jan 2023 06:36:01 -0800 (PST)
-Date:   Mon, 16 Jan 2023 16:35:59 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        with ESMTP id S232518AbjAPOx3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:53:29 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9787C5B96;
+        Mon, 16 Jan 2023 06:41:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 611F0B80FCD;
+        Mon, 16 Jan 2023 14:41:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ECFDC433D2;
+        Mon, 16 Jan 2023 14:41:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673880076;
+        bh=DBpFvUPk6aIKzxRtTgvzA2wsR/gccADGxoulyVLE4+M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ir3us1sa/T4GamrJrao7UGS7x1tYciTsv9XWDvOoWpZv8wnh8S5fGsZx59Pm6mRgN
+         ExS+nAmO62zPdnEcz0wWEI9pRLyz2koLMpITe6hvCRDOqLz0oE6skQOGhH4kFHYhoy
+         DmIU/MFv7RRVqARixVOuh8SOdaOZBsEW4h1iknv8bOGwROf9mO3U15YMMRuT4LFJXq
+         R2rvZ2Mx5IyJJPnEHcEgUj7SbCAkSCcqxdHqeX3uyhftiBsWeukAalsKRPXkP0SiMy
+         VKh5qbkhOtuioxGBDcgcqJopwspTANN4VADUabuTyQQ/tQg5h7tiYigDzio/mIZ9sN
+         2rI+LuX2wh8xg==
+Date:   Mon, 16 Jan 2023 14:41:11 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+        Lee Jones <lee@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, angelo@amarulasolutions.com,
-        michael@amarulasolutions.com, tommaso.merciai@amarulasolutions.com,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        linux-amarula@amarulasolutions.com, anthony@amarulasolutions.com,
-        jagan@amarulasolutions.com, Abel Vesa <abelvesa@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-        Marek Vasut <marex@denx.de>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [RFC PATCH v2 11/11] arm64: dts: imx8mn: add clocks description
-Message-ID: <Y8VgzyNxGpqSvJ2b@linaro.org>
-References: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
- <20230101175740.1010258-12-dario.binacchi@amarulasolutions.com>
+        martin.botka1@gmail.com, Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: mfd: x-powers,axp152: Document the
+ AXP313a variant
+Message-ID: <Y8ViBxFk+YRBmCch@sirena.org.uk>
+References: <20230116142501.767142-1-andre.przywara@arm.com>
+ <20230116142501.767142-2-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="R4/rqsV5InU2Lm75"
 Content-Disposition: inline
-In-Reply-To: <20230101175740.1010258-12-dario.binacchi@amarulasolutions.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20230116142501.767142-2-andre.przywara@arm.com>
+X-Cookie: Serving suggestion.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,83 +63,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-01 18:57:40, Dario Binacchi wrote:
-> The patch creates a unique node for each clock in the imx8mn clock
-> control module (CCM).
-> 
-> To ensure backwards compatibility it was not possible to separate the
-> changes to the device tree from those applied to the clocks setup code.
-> In doing so, all clocks are initialized from the device tree and the
-> legacy setup code with hardwired parameters is removed.
-> 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> 
-> ---
-> 
-> (no changes since v1)
-> 
->  .../boot/dts/freescale/imx8mn-clocks.dtsi     | 1885 +++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi     |   54 +-
->  drivers/clk/imx/clk-imx8mn.c                  |  714 ++-----
->  3 files changed, 2086 insertions(+), 567 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
-> new file mode 100644
-> index 000000000000..21e02ea996d0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
-> @@ -0,0 +1,1885 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Device Tree Source for imx8mn clock data
-> + *
-> + * Copyright (c) 2022 Amarula Solutions
-> + *
-> + * Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> + */
-> +
-> +/ {
-> +	osc_32k: clock-osc-32k {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		clock-output-names = "osc_32k";
-> +	};
-> +
 
-[...]
+--R4/rqsV5InU2Lm75
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> +
-> +	clk_audio_pll2_bypass: clock-audio-pll2-bypass@14 {
-> +		compatible = "fsl,imx8mn-mux-clock";
-> +		#clock-cells = <0>;
-> +		clocks = <&clk_audio_pll2>, <&clk_audio_pll2_ref_sel>;
-> +		fsl,anatop = <&anatop 0x14>;
-> +		fsl,bit-shift = <16>;
-> +		fsl,set-rate-parent;
+On Mon, Jan 16, 2023 at 02:24:59PM +0000, Andre Przywara wrote:
 
-NACK. I'm sorry, but this creates a huge effort on maintaining the
-bindings. Plus the vendor specific properties will keep increasing.
+>        - enum:
+>            - x-powers,axp152
+> +          - x-powers,axp313a
+>            - x-powers,axp202
+>            - x-powers,axp209
+>            - x-powers,axp221
 
-I don't think Rob and Krzysztof will be OK with this either.
+Probably better to keep these lists sorted.
 
+--R4/rqsV5InU2Lm75
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +		clock-output-names = "audio_pll2_bypass";
-> +	};
-> +
-> +	clk_audio_pll2_out: clock-audio-pll2-out@14 {
-> +		compatible = "fsl,imx8mn-gate-clock";
-> +		#clock-cells = <0>;
-> +		clocks = <&clk_audio_pll2_bypass>;
-> +		fsl,anatop = <&anatop 0x14>;
-> +		fsl,bit-shift = <13>;
-> +		clock-output-names = "audio_pll2_out";
-> +	};
-> +
+-----BEGIN PGP SIGNATURE-----
 
-[...]
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPFYgcACgkQJNaLcl1U
+h9DEJQf/W4YVdfe7oceJbRfGjUZeyoD1zDIZRw0/5GhFhmLThRiwd54aAEKHncvZ
+mU86HzAE8meVc/bRnCRSOnJ0oKxF3RIvcUiLzGCGC7xa8pv4VRU7XR5TaX20ch2t
+Wk5+0/84PAtTBezwYkl6dhQtG+SBoj+/05pM5hlYshfR6k3hQoyjjSP+iTP948lM
+upu6oKOexUZZcgP6nb/dVpns/n42j74gky8cPc+KAt2XdgMH6vDGp7wHtlffhmfd
+YwZL/svKsSzHckcXURY6pQaZtpovMgEUa1q+kZGuHctsirGeC9dMp6hkOsHljpwY
+zKhX7+iaRLrW5kYsNBRMsMwFz97SiQ==
+=DlAX
+-----END PGP SIGNATURE-----
 
-> -- 
-> 2.32.0
-> 
+--R4/rqsV5InU2Lm75--
