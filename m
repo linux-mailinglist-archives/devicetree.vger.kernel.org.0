@@ -2,86 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7254B66BC97
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:15:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF5A166BCAA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:18:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbjAPLPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 06:15:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44908 "EHLO
+        id S229836AbjAPLSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 06:18:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229712AbjAPLPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:15:22 -0500
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1ACB0B44A;
-        Mon, 16 Jan 2023 03:15:22 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 2E66C8108;
-        Mon, 16 Jan 2023 11:15:21 +0000 (UTC)
-Date:   Mon, 16 Jan 2023 13:15:19 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: Update pinctrl-single to use yaml
-Message-ID: <Y8UxxwdbiHdJ7WF+@atomide.com>
-References: <20230112083152.10277-1-tony@atomide.com>
- <20230113202016.GA2833245-robh@kernel.org>
+        with ESMTP id S229489AbjAPLSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:18:20 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FC151DB8F;
+        Mon, 16 Jan 2023 03:18:18 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30GBI1mj076899;
+        Mon, 16 Jan 2023 05:18:01 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673867881;
+        bh=DAuiYCUADfCRO/9+N0H7cdlBM2EtTekj/zRe4H7QKaU=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=NAZEtGwVp3CG0kOrJNhFO0nQ4VELN14Qa3KmJErImPqQRnt2Pi7O+RdVRCYOBNJCh
+         PpO7tXZPD6CRF4xC/8F3/kkTU8lfoqxvrgXLUk2AjCfqL6Dxkn8IqfBLBxGrueqZQQ
+         JTK42lNv7s9qCnA6xE1DHLtB0311SCh0u+bxNkPY=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30GBI1ix009870
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 16 Jan 2023 05:18:01 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 16
+ Jan 2023 05:18:01 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 16 Jan 2023 05:18:01 -0600
+Received: from [172.24.145.71] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30GBHv7T042725;
+        Mon, 16 Jan 2023 05:17:58 -0600
+Message-ID: <c7e9d9bb-d3d1-f958-b255-9128751be568@ti.com>
+Date:   Mon, 16 Jan 2023 16:47:57 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230113202016.GA2833245-robh@kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V5 0/3] AM68 SK: Add initial support
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>
+References: <20230116071446.28867-1-sinthu.raja@ti.com>
+Content-Language: en-US
+From:   Neha Malcom Francis <n-francis@ti.com>
+In-Reply-To: <20230116071446.28867-1-sinthu.raja@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Sinthu
 
-I ran into error "is not of type 'object'" with two dashes in the property
-name.
-
-* Rob Herring <robh@kernel.org> [230113 20:20]:
-> On Thu, Jan 12, 2023 at 10:31:50AM +0200, Tony Lindgren wrote:
-> > -- #pinctrl-single,gpio-range-cells : the number of parameters after phandle in
-> > -  pinctrl-single,gpio-range property.
-> > -
-> > -	range: gpio-range {
-> > -		#pinctrl-single,gpio-range-cells = <3>;
-> > -	};
+On 16/01/23 12:44, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
 > 
-> You've lost describing this.
+> Hi All,
+> This series of patches add support for AM68 Starter kit(SK). AM68 SK
+> is a low cost, small form factor board designed for TI’s AM68 SoC.
+> 
+> Refer below link to AM68 Technical Reference Manual for further details:
+> http://www.ti.com/lit/pdf/spruj28
+> 
+> Design files can be referrred from https://www.ti.com/lit/zip/SPRR463
+> 
+> Changes in V5:
+> =============
+> Address review comments:
+> - Remove the unessential comment.
+> - Remove alignment property from secure-ddr node, as no memory is allocated out
+>    of this region.
+> 
+> Changes in V4:
+> =============
+> Repost after rebasing to 6.2 rc1
+> 
+> Changes in  V3:
+> ==============
+> Address all the review comments and the changes are captured in separate patches.
+>   - Remove the unused nodes that are disabled by default.
+>   - Update the gpio regulator node: gpio-regulator-tlv to "regulator-tlv".
+> 
+> V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-1-sinthu.raja@ti.com/t/#mbe43b02221733bb6eb06b203359e90ec08406afc
+> V2: https://lore.kernel.org/lkml/20221107123852.8063-1-sinthu.raja@ti.com/
+> V3: https://lore.kernel.org/lkml/20230110110052.14851-1-sinthu.raja@ti.com/
+> V4: https://lore.kernel.org/lkml/20230105151740.29436-1-sinthu.raja@ti.com/
+> 
+> Sinthu Raja (3):
+>    dt-bindings: arm: ti: Add binding for AM68 SK
+>    arm64: dts: ti: Add initial support for AM68 SK System on Module
+>    arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board
+> 
+>   .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+>   arch/arm64/boot/dts/ti/Makefile               |   2 +
+>   .../boot/dts/ti/k3-am68-sk-base-board.dts     | 335 ++++++++++++++++++
+>   arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi    |  29 ++
+>   4 files changed, 367 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+> 
 
-Thanks for noticing. Adding something like below produces errors for the
-pinctrl-single,gpio-range property name:
+For the series:
 
-  pinctrl-single,gpio-range:
-    description: Optional list of pin base, nr pins & gpio function
-    $ref: /schemas/types.yaml#/definitions/phandle-array
-    items:
-      - items:
-          - description: phandle of a gpio-range node
-          - description: pin base
-          - description: number of pins
-          - description: gpio function
+Reviewed-by: Neha Malcom Francis <n-francis@ti.com>
 
-  pinctrl-single,gpio-range = <&range 0 3 0>;
-
-The error is:
-
-pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,gpio-range:
-[[1, 0, 3, 0]] is not of type 'object'
-
-Changing the property name second dash to something else makes it go away.
-
-This is with dtschema 2022.12. Any ideas?
-
-Regards,
-
-Tony
+-- 
+Thanking You
+Neha Malcom Francis
