@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD9966B877
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 08:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B703F66B87E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 08:56:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232075AbjAPHxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 02:53:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58730 "EHLO
+        id S231808AbjAPH4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 02:56:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232139AbjAPHxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 02:53:33 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A26C4113CE
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:53:30 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id tz11so1666077ejc.0
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:53:30 -0800 (PST)
+        with ESMTP id S232062AbjAPH4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 02:56:43 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA9C113E3
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:56:40 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id ss4so58799875ejb.11
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:56:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DmseeIxSoeTPNwAIYNdzjE6VKFzUfpsrISNk1TCIZ+w=;
-        b=bThObufnnsl9N/5BExSiFUJZ0MnNBEK6P7AN5C98Dv/hfLATkDTY+MJF870bfHaQc/
-         q4Qc1cdHSki6H0VGYZ23r9CAJVnzBF7yS3I2+JjGDquoHCZBSLCd2//+2AkObiIDtlEj
-         3qp9vrolhzGPymZfgjsZkqI0XLqdo0HmzHL+FllsceQqw7SA54FgjLn5wC3Xk+3ARqi5
-         yjmFIejdpHeFeKFezwQ1TyE6Ns1FXJ4nxVenEVZRM6upeLI0FUSGB4V4mJ4kUrov9NVp
-         tbiAJUKZqpJrKbNl42mIIK+kFJ30oM41wk72KAJBDyXgD+btdUgBZ3InUlP+PdJYfWuH
-         fKwA==
+        bh=2gvyOgN0Gv+9aZeDPI0iyOYcZNIneKqTYb4ORRQXR7c=;
+        b=rBDrFUNgFpBENLm5kSuqnkbHktKp1W/JSHPkJG8x1mcgNb9zbfQzwykiwP7hn6Exnu
+         wPIROLfu9bB/KOY0BfINggz/qVnWSWBbDK1tipAuCd0IVRXWWjNbiJ6mzK7FsbttFfWW
+         6gidJvWAhVO5F6lPoJeLHIc/OlyWpVQKsJ/unTr91x0vRlZLBpuxcDkq7szT6QPAd8TA
+         wJ7pJ3cIvubXBFEnR3Q937zXPv6gqggvpzWFMhgqmQNfVAONMxl9Dr3LrEnu6UIRAmDo
+         jo1U06Xl6dNjma+Pm/zEtEt88KAt9XE5psNyq4U7PwJEo2Yi/anChwz5mUrVjwnF3+/y
+         zNOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DmseeIxSoeTPNwAIYNdzjE6VKFzUfpsrISNk1TCIZ+w=;
-        b=cIjTNj/lylXeIGbRn+oOOi7S8D2oFzLn8Gl7bKn53Kd0GrWXbfLXLFt6z4fiYOieEv
-         tuZDeoxrh7pJgoAMM2XVFHJQ3/JHUaZvxTPsy/dPRBa18FVVdB/AYSLT9fzv5/dow+Vj
-         38RlQE1lqea0hYA0d2NGJz+KH+5FB9ew/hTNc+TcETVST/9b71lIe9wCO3gB7Dnm7Wf5
-         QoGrhXp/5Fqec9qlbkdwHYW3hg6AB6mroDKpp+Knkd21yRgwWHzn8rAXa9zz/OMJPCxk
-         uqJdwER1lpvusSsCkiOSq67EjqPIIZAVp6YhONLvuZfCGaYz1C/Ls9xkI2gA6f8bkXRJ
-         J5Eg==
-X-Gm-Message-State: AFqh2kok/0Dl73qt8AEWPlS+HEl2Fkxhl4ojKEdDMTVp7CPz/qfNuNst
-        DJAeuxwHvZKPJrIQQ9L8Roc1dA==
-X-Google-Smtp-Source: AMrXdXsS61ABxahoG31xtx/AEi2XlUhGE0qIujWZxAIZoNlNlMbdpp8yAH63Loy0hTuZ425CCwdoMQ==
-X-Received: by 2002:a17:907:6f09:b0:7c1:37:6d5e with SMTP id sy9-20020a1709076f0900b007c100376d5emr58478284ejc.2.1673855609156;
-        Sun, 15 Jan 2023 23:53:29 -0800 (PST)
+        bh=2gvyOgN0Gv+9aZeDPI0iyOYcZNIneKqTYb4ORRQXR7c=;
+        b=hA3H6giMzoGP5NLV5e/vzWf60jXFmYq2vKDk5kzO4J0h/BdInhSDbbP9/LNO7GezDr
+         SKkaXT1lcf3LKVrOrOplPeMpCUmoztOXFOJ3s/5217HyXQnHSP6Hl5XWd0wjdFD5Uzj3
+         w/CL176fUuLjKPBTkJN3X8T/UfdT+avtdeqeV+wNGUNudSoWnJKJWdSnlgdOxCDbSroy
+         o7AnLvXCXNnWs4w3SCukpTNUtt3ceYIwSKhDtgq5qVbBqZ1xw2JtxguI25eUEEBbB7AK
+         VyBTdeL5OUinWR6grVBTnASPVGEnju/UCMM7fZWQ49M8JQm+uK6V8OoW6znLkL5s6Gd5
+         TfpA==
+X-Gm-Message-State: AFqh2koQTXcEAc47adU0S17Hbg/FN65sLo6GTe7qTBG4Ve5oew3wI7Cb
+        obLej4dZjEztweOsuX5Vtg/ljw==
+X-Google-Smtp-Source: AMrXdXvdJcISS/2tkszHVKaJI3ZYI/cMss5wB+0+Mq6EMO0VIT+isGpGqBB2ELI7cd9SLA9/KESnIQ==
+X-Received: by 2002:a17:906:3154:b0:84d:28d9:ce6 with SMTP id e20-20020a170906315400b0084d28d90ce6mr29373303eje.35.1673855798726;
+        Sun, 15 Jan 2023 23:56:38 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v17-20020a170906293100b007be301a1d51sm11430078ejd.211.2023.01.15.23.53.27
+        by smtp.gmail.com with ESMTPSA id kw4-20020a170907770400b0084d397e0938sm10138707ejc.195.2023.01.15.23.56.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Jan 2023 23:53:28 -0800 (PST)
-Message-ID: <b9aa6d30-5fe8-57a9-e478-c99bca70d185@linaro.org>
-Date:   Mon, 16 Jan 2023 08:53:26 +0100
+        Sun, 15 Jan 2023 23:56:38 -0800 (PST)
+Message-ID: <70fd41e4-6d1a-cc73-cc30-1392e125919e@linaro.org>
+Date:   Mon, 16 Jan 2023 08:56:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: qcom: geni-se: Fix '#address-cells' &
- '#size-cells' related dt-binding error
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20230113201038.267449-1-bhupesh.sharma@linaro.org>
- <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org>
- <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] arm64: dts: fsd: Add codec node for Tesla FSD
 Content-Language: en-US
+To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
+        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
+        alim.akhtar@samsung.com, rcsekar@samsung.com,
+        aswani.reddy@samsung.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+References: <20230113121749.4657-1-p.rajanbabu@samsung.com>
+ <CGME20230113121830epcas5p4cc336a48f4597ba84ab1352774242f75@epcas5p4.samsung.com>
+ <20230113121749.4657-5-p.rajanbabu@samsung.com>
+ <a4982e06-a6a4-a8c9-3b24-24f798c61f73@linaro.org>
+ <03a301d92962$3c1a2320$b44e6960$@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
+In-Reply-To: <03a301d92962$3c1a2320$b44e6960$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,38 +82,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/01/2023 22:33, Bhupesh Sharma wrote:
-> On Sun, 15 Jan 2023 at 20:57, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 16/01/2023 05:23, Padmanabhan Rajanbabu wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+>> Sent: 15 January 2023 08:37 PM
+>> To: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>;
+>> lgirdwood@gmail.com; broonie@kernel.org; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; s.nawrocki@samsung.com;
+>> perex@perex.cz; tiwai@suse.com; pankaj.dubey@samsung.com;
+>> alim.akhtar@samsung.com; rcsekar@samsung.com;
+>> aswani.reddy@samsung.com
+>> Cc: alsa-devel@alsa-project.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-samsung-soc@vger.kernel.org
+>> Subject: Re: [PATCH v3 4/5] arm64: dts: fsd: Add codec node for Tesla FSD
 >>
->> On 13/01/2023 21:10, Bhupesh Sharma wrote:
->>> Fix the following '#address-cells' & '#size-cells' related
->>> dt-binding error:
+>> On 13/01/2023 13:17, Padmanabhan Rajanbabu wrote:
+>>> Add device tree node support for codec on Tesla FSD platform.
 >>>
->>>    $ make dtbs_check
+>>> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+>>> ---
+>>>  arch/arm64/boot/dts/tesla/fsd-evb.dts | 12 ++++++++++++
+>>>  1 file changed, 12 insertions(+)
 >>>
->>>    From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
->>>         arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dtb: geniqup@4ac0000:
->>>               #address-cells:0:0: 2 was expected
->>>       From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+>>> diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>>> b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>>> index cf5f2ce4d2a7..2f211a1ad50d 100644
+>>> --- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>>> +++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>>> @@ -10,6 +10,7 @@
+>>>
+>>>  /dts-v1/;
+>>>  #include "fsd.dtsi"
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>>
+>>>  / {
+>>>  	model = "Tesla Full Self-Driving (FSD) Evaluation board"; @@ -34,6
+>>> +35,17 @@
+>>>  	clock-frequency = <24000000>;
+>>>  };
+>>>
+>>> +&hsi2c_5 {
+>>> +	status = "okay";
+>>> +
+>>> +	tlv320aic3x: codec@18 {
+>>> +		compatible = "ti,tlv320aic3104";
+>>> +		reg = <0x18>;
+>>> +		#sound-dai-cells = <0>;
+>>> +		reset-gpios = <&gpg1 6 GPIO_ACTIVE_LOW>;
+>>> +	};
+>>> +};
+>>> +
 >>
->> Don't we want rather to unify the soc address range?
+>> Why there is i2s here? What was the base of this patch?
 > 
-> Well, the assumption in the original dt-bindings was that every reg
-> variable is 4 * u32 wide (as most new qcom SoCs set #address- and
-> #size-cells to <2>). However, that is not the case for all of the
-> SoCs.
+> Sorry, I could not get what you were asking for. Would be really
+> helpful if you can elaborate on this query.
 
-Hm, which device of that SoC cannot be used with address/size cells 2?
-> 
-> So, ideally we shouldn't set the  "#address-cells" and  "#size-cells":
-> as const: 2 in the bindings.
-> 
-> See as an example:
-> https://www.kernel.org/doc/Documentation/devicetree/bindings/usb/usb-device.yaml
+Eh, I missed a "not" in the sentence - why there is no i2s here? You
+added the i2s in previous patch and by ordering this should be just
+after this node, right? i2s should be before serial, so it should be
+visible in the diff. Are your nodes properly ordered?
 
-
-How USB device - so entirely different device, not MMIO! - is related here?
 
 Best regards,
 Krzysztof
