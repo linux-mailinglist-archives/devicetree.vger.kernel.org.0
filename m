@@ -2,153 +2,347 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B4466CF12
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 19:45:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FEBA66CF18
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 19:48:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234749AbjAPSpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 13:45:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49866 "EHLO
+        id S230465AbjAPSsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 13:48:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233524AbjAPSpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 13:45:15 -0500
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8AF14ED2;
-        Mon, 16 Jan 2023 10:43:06 -0800 (PST)
-Received: by mail-yb1-xb35.google.com with SMTP id 188so31245064ybi.9;
-        Mon, 16 Jan 2023 10:43:06 -0800 (PST)
+        with ESMTP id S229774AbjAPSsb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 13:48:31 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2D410FF
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 10:48:29 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id ud5so70154705ejc.4
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 10:48:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:references:in-reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rlIydODY/LfpwItZTwtL4rzfyzEiXyrm/RMUswozIX8=;
-        b=OUGKEjvhy/swyG5hBFXyFKBADXRYGg2Tnv2lo9xqvxIfswyC0uVTH4neehdoFiys6K
-         DJttWBjlEft3Ka2XvzsnS6nE2sjau6TTQzhOt7S+AoDcsbqSHdW83chVFdqzwqxtJ3xp
-         5GWtFffSzf6n6eghxZZ/r6n5Tilh49rb+2TgRijjALlKUXK/HaJS4y8mnWCrizJk7m23
-         7Kn3rVt37SzXRMos70rE99Vnn46PJ/RmQJN3g/P7wShJ0ZWNxqUhWt3FmTP1dIH59ec2
-         D/AkWwTkWNKl6w0z9JuQGVst42aOoLec/kyIH3TTDSd+FAWLOVwbsY6qTLz2cN3BlhhU
-         18vw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EZE+8MYQrjdRkni9CMrPof04JvabBhs1EK300893KfU=;
+        b=fqsIqYbPigzjiGuSVFqs+xq0BA1XZI29jPn1XAei8lRLFQuO/bC9jGNiRFI2xiyhMx
+         fnHcYbU2m9EC5kkQg0gXUnRckKi6a8RgFDBuFpdbPXxej2USKE1nWaNlTxR1w0FwUqGH
+         BqeG7u5L6yhEX3rQA1ERHVb5z3a35wIlgQENZAv0GjQxn/JVnfFrUr1vT8OatnFhG24l
+         euFPObtBTzuf9qaaD/prufJCmgm4sPRLO5Vxz/AxTzEmEUn6hNncVu054ijWmmepkiq+
+         xfJujSqC/zmsbEhWzGTt9LgWZkwrFsQk3fnR90w9EEyGvSzK1BykTAL3N4eGBVnFkbd7
+         Aatg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:references:in-reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rlIydODY/LfpwItZTwtL4rzfyzEiXyrm/RMUswozIX8=;
-        b=ZRywAQ8nkvfGEf71XLnqrAfLq3xm0ujscOCQtdMzZ6Bwuhsf7UC3KSVx4zHZ1/HHQq
-         wyNhMznZgfzyyVeK3lNnOB9qxUFQcFNz4ygu2ljeaJ1SiPU6lJuPl2+pFk5rlRN2CeuM
-         uZJXoRdKFRSGUA62pF9Rj58xhZN+c7SmrR8QvvVeL3K2j2GYqE+U4peWJr16W/+Dym5u
-         xfet7nI/laHDuw25CzWK01YKBWnTRpWkAtd3Q31E7zu2fgYhfZbmCvBfdVdldmZnhZoB
-         Pq/8Mo7UZvgjmYb/dUuqobdypYl9VVRh8g78KyWLJlRJFGQsrxu9EaB/7sGOAKC/yAZW
-         uwdQ==
-X-Gm-Message-State: AFqh2kodMqn+wmHue2vzyFQl+OMbpARvJdsZhgYeOtYj6d3nLB3DGa5+
-        +/8rKI6YpCXchwRlN5H+jNxXgVK0zkPLGwseNl0=
-X-Google-Smtp-Source: AMrXdXv66G8WXqBNuBYzpHAknsAJtQxSzEtqqiHk7smapGoNCVADxDJchudqYt89nC5nxEOavqo3qPuHbu9lbraGcnY=
-X-Received: by 2002:a25:d505:0:b0:7c0:10aa:961e with SMTP id
- r5-20020a25d505000000b007c010aa961emr70364ybe.346.1673894585852; Mon, 16 Jan
- 2023 10:43:05 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EZE+8MYQrjdRkni9CMrPof04JvabBhs1EK300893KfU=;
+        b=yc6PUFJCiJAuyyH3G1FEBW0P9vyTXgiUDPAZiHyC123UIYN6l/lrAgDv3hhX+r5NMm
+         rd6n3qFGH99T7yCfptL0O69qw9ayxJCjnod5XwMcW/+V7HDPUr70CP7+0CGKfnJRkLFw
+         ZyqK4qo0JgETcKoG7iEVLJQXIWuF5hNUmrMi2xv0rVIVylaLlp4HTPPQQjQnOOZcOFot
+         1o9rvFaa4XGo76rA0tjrBz2WFjpyYGrl1A7EsXkn7twujugoh/mChjbpSLkUjfrRQAii
+         5OEBcOFCYivAnZ2WllX4Nzkk9P5FPzqIK1LDsVWgDnoXHe9s6ukqBex/AhKUaHE3yOet
+         tXyQ==
+X-Gm-Message-State: AFqh2kpO2GmVCCNeySQV75yx0KiIrTkXp3bDhkOx3bZHrWnTtOEjENvm
+        9OAnDxVrtrskIVw6MCLNb3N7xxg4iUOyjUS/
+X-Google-Smtp-Source: AMrXdXvpwCBM5sWlVdlSCT+/l/6Eg0FleVnZs7Wc7WrQOI8UkmuhqgOMe3pqMx7xn9t6VvyZWR9Y6w==
+X-Received: by 2002:a17:906:99ce:b0:871:89ac:decb with SMTP id s14-20020a17090699ce00b0087189acdecbmr2609614ejn.76.1673894907834;
+        Mon, 16 Jan 2023 10:48:27 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u10-20020a1709061daa00b0084cc87c03ebsm12053451ejh.110.2023.01.16.10.48.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jan 2023 10:48:27 -0800 (PST)
+Message-ID: <23b4ecbd-f7af-b1fd-6cc0-d23622a4115f@linaro.org>
+Date:   Mon, 16 Jan 2023 19:48:25 +0100
 MIME-Version: 1.0
-Received: by 2002:a05:6918:26c5:b0:10e:d15b:5860 with HTTP; Mon, 16 Jan 2023
- 10:43:05 -0800 (PST)
-In-Reply-To: <20230116101651.jjzz2rcdehs5wvsi@houat>
-References: <20191215165924.28314-5-wens@kernel.org> <20230116100359.4479-1-olecom@gmail.com>
- <20230116101651.jjzz2rcdehs5wvsi@houat>
-From:   Oleg Verych <olecom@gmail.com>
-Date:   Mon, 16 Jan 2023 21:43:05 +0300
-Message-ID: <CAHdV42W58Q_ciCmd5bmoX32KpKCKOh1iuGOE5f-=yc_WOJ=A+g@mail.gmail.com>
-Subject: Re: [PATCH 04/14] media: sun4i-csi: Fix [HV]sync polarity handling
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     wens@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, mark.rutland@arm.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        sakari.ailus@linux.intel.com, wens@csie.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 3/4] Drivers: hv: vmbus: Device Tree support
+Content-Language: en-US
+To:     Saurabh Sengar <ssengar@linux.microsoft.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
+        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+References: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
+ <1673887688-19151-4-git-send-email-ssengar@linux.microsoft.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1673887688-19151-4-git-send-email-ssengar@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+On 16/01/2023 17:48, Saurabh Sengar wrote:
+> Update the driver to use vmbus_root_dev device instead of acpi_device,
+> which can be assigned to either ACPI or OF device, making VMBus agnostic
+> to whether the device is using ACPI or device tree.
+> 
 
-On 1/16/23, Maxime Ripard <maxime@cerno.tech> wrote:
-> Hi,
->
-> On Mon, Jan 16, 2023 at 01:03:59PM +0300, Oleg Verych wrote:
->> > -	hsync_pol = !!(bus->flags & V4L2_MBUS_HSYNC_ACTIVE_HIGH);
->> > -	vsync_pol = !!(bus->flags & V4L2_MBUS_VSYNC_ACTIVE_HIGH);
->> > +	/*
->> > +	 * This hardware uses [HV]REF instead of [HV]SYNC. Based on the
->> > +	 * provided timing diagrams in the manual, positive polarity
->> > +	 * equals active high [HV]REF.
->> > +	 *
->> > +	 * When the back porch is 0, [HV]REF is more or less equivalent
->> > +	 * to [HV]SYNC inverted.
->> > +	 */
->> > +	href_pol = !!(bus->flags & V4L2_MBUS_HSYNC_ACTIVE_LOW);
->> > +	vref_pol = !!(bus->flags & V4L2_MBUS_VSYNC_ACTIVE_LOW);
->>
->> After this change has been made there is a need of explicit explanation
->> of what "Active high" / "Active low" in dts really mean.
->
-> Why?
+(...)
 
-It will be better understood by a person behind an oscilloscope who is
-trying to figure out the logic behind dts, csi driver, csi controller,
-wire voltage levels by just reading device tree definitions. Because
-dts must be changed in order to connect source / sink devices.
+>  
+>  static void vmbus_reserve_fb(void)
+> @@ -2319,8 +2322,9 @@ static void vmbus_reserve_fb(void)
+>  	 * reserving a larger area and make it smaller until it succeeds.
+>  	 */
+>  	for (; !fb_mmio && (size >= 0x100000); size >>= 1)
+> -		fb_mmio = __request_region(hyperv_mmio, start, size, fb_mmio_name, 0);
+> +		fb_mmio = __request_region(hyperv_mmio, start, size, "fb_range", 0);
 
->
-> I'm sorry, it's not clear to me what is confusing in those excerpts?
+Your patch is doing much more than just adding OF. Adding OF is usually
+just few lines, so this means you are refactoring driver and all this
+work should be split to self-contained patches.
 
-I'm sorry too, maybe that is not clear. Confusion is here:
+>  }
+> +#endif /* CONFIG_ACPI */
+>  
+>  /**
+>   * vmbus_allocate_mmio() - Pick a memory-mapped I/O range.
+> @@ -2441,13 +2445,14 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t size)
+>  }
+>  EXPORT_SYMBOL_GPL(vmbus_free_mmio);
+>  
+> +#ifdef CONFIG_ACPI
+>  static int vmbus_acpi_add(struct acpi_device *device)
+>  {
+>  	acpi_status result;
+>  	int ret_val = -ENODEV;
+>  	struct acpi_device *ancestor;
+>  
+> -	hv_acpi_dev = device;
+> +	vmbus_root_dev = &device->dev;
+>  
+>  	/*
+>  	 * Older versions of Hyper-V for ARM64 fail to include the _CCA
+> @@ -2492,6 +2497,72 @@ static int vmbus_acpi_add(struct acpi_device *device)
+>  		vmbus_acpi_remove(device);
+>  	return ret_val;
+>  }
+> +#endif
+> +
+> +#ifdef CONFIG_OF
+> +static int vmbus_of_driver_probe(struct platform_device *dev)
+> +{
+> +	struct resource **cur_res = &hyperv_mmio;
+> +	struct device_node *np;
+> +	const __be32 *ranges;
+> +	u32 nr_addr, nr_size, nr_parent_addr_cells, nr_ranges;
+> +	u32 range_len, range_size;
+> +	int i;
+> +
+> +	vmbus_root_dev = &dev->dev;
+> +	np = vmbus_root_dev->of_node;
+> +
+> +	if (of_property_read_u32(np, "#address-cells", &nr_addr))
+> +		return -ENOENT;
+> +	if (of_property_read_u32(np, "#size-cells", &nr_size))
+> +		return -ENOENT;
+> +	nr_parent_addr_cells = of_n_addr_cells(np);
+> +
+> +	if (nr_parent_addr_cells != 2 || nr_addr != 2 || nr_size != 1) {
+> +		pr_err("Address format is not supported\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ranges = of_get_property(np, "ranges", &range_len);
+> +	if (!ranges)
+> +		return -ENOENT;
+> +
+> +	range_size = nr_parent_addr_cells + nr_addr + nr_size; // in cells
+> +	nr_ranges = range_len / sizeof(__be32) / range_size;
+> +
+> +	for (i = 0; i < nr_ranges; ++i, ranges += range_size) {
+> +		struct resource *res;
+> +		/*
+> +		 * The first u64 in the ranges description isn't used currently.
+> +		 * u64 _ = of_read_number(ranges, nr_parent_addr_cells);
+> +		 */
+> +		u64 start = of_read_number(ranges + nr_parent_addr_cells, nr_addr);
+> +		u32 len = of_read_number(ranges + nr_parent_addr_cells + nr_addr, nr_size);
+> +
+> +		pr_debug("VMBUS DeviceTree MMIO region start %#llx, %#x\n", start, len);
 
->> > +                        hsync-active = <1>; /* Active high */
->>
->> original CSI driver
+You must not print kernel or IO space addresses. You could use some
+printk formats to hide the address, if this is really needed.
 
-i.e. <1> - active high
+> +
+> +		res = kzalloc(sizeof(*res), GFP_ATOMIC);
+> +		if (!res)
+> +			return -ENOMEM;
+> +
+> +		res->name = "hyperv mmio";
+> +		res->flags = IORESOURCE_MEM | IORESOURCE_MEM_64;
+> +		res->start = start;
+> +		res->end = start + len;
+> +
+> +		*cur_res = res;
+> +		cur_res = &res->sibling;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int vmbus_of_driver_remove(struct platform_device *dev)
+> +{
+> +	vmbus_remove_mmio();
+> +	return 0;
+> +}
+> +#endif
+>  
+>  #ifdef CONFIG_PM_SLEEP
+>  static int vmbus_bus_suspend(struct device *dev)
+> @@ -2630,6 +2701,9 @@ static int vmbus_bus_resume(struct device *dev)
+>  #define vmbus_bus_resume NULL
+>  #endif /* CONFIG_PM_SLEEP */
+>  
+> +#define DRV_NAME "vmbus"
+> +
+> +#ifdef CONFIG_ACPI
+>  static const struct acpi_device_id vmbus_acpi_device_ids[] = {
+>  	{"VMBUS", 0},
+>  	{"VMBus", 0},
+> @@ -2659,7 +2733,7 @@ static int vmbus_bus_resume(struct device *dev)
+>  };
+>  
+>  static struct acpi_driver vmbus_acpi_driver = {
+> -	.name = "vmbus",
+> +	.name = DRV_NAME,
 
->> > +			hsync-active = <0>; /* Active high */
->>
->> this change patchset
+How this is related?
 
-i.e. <0> - active high
+>  	.ids = vmbus_acpi_device_ids,
+>  	.ops = {
+>  		.add = vmbus_acpi_add,
+> @@ -2669,6 +2743,7 @@ static int vmbus_bus_resume(struct device *dev)
+>  	.drv.probe_type = PROBE_FORCE_SYNCHRONOUS,
+>  };
+>  
+> +#endif
+>  static void hv_kexec_handler(void)
+>  {
+>  	hv_stimer_global_cleanup();
+> @@ -2737,7 +2812,32 @@ static void hv_synic_resume(void)
+>  	.resume = hv_synic_resume,
+>  };
+>  
+> -static int __init hv_acpi_init(void)
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id vmbus_of_match[] = {
+> +	{
+> +		.name = "msft,vmbus",
 
->> > +				hsync-active = <1>; /* Active high */
->>
->> this patcheset
+Why do you need name?
 
-i.e. <1> - active high
+> +		.compatible = "msft,vmbus",
+> +		.data = NULL
 
+Why do you need data field?
 
->> Currently physical high/low voltage levels are like that:
->> (I'm not sure about vsync-active)
->>
->> * hsync-active = <0>; /* HSYNC active 'low' => wire active is 'high' */
->
-> Yes
->
->>   CSI register setting: href_pol: 1,
->
-> Not really, no. It's what this patch commit log is saying: HREF is
-> !HSYNC, so in order to get a hsync pulse active high, you need to set
-> href_pol to 0.
+> +	},
+> +	{
+> +		/* sentinel */
+> +	},
+> +};
+> +MODULE_DEVICE_TABLE(of, vmbus_of_match);
+> +
+> +static struct platform_driver vmbus_platform_driver = {
+> +	.probe = vmbus_of_driver_probe,
+> +	.remove = vmbus_of_driver_remove,
+> +	.driver = {
+> +		.name = DRV_NAME,
+> +		.of_match_table = of_match_ptr(vmbus_of_match),
+> +		.pm = &vmbus_pm,
+> +		.bus = &hv_bus,
+> +	}
+> +};
+> +#endif
 
-I'm totally confused here. That `hsync-active = <0>` -> `href_pol: 1`
-was found by `printk()`-like debugging.
+Why platform driver is hidden by CONFIG_OF? It should not be the case.
+The interface - ACPI or OF - should not differ for driver
+infrastructure. Even one probe could be used - just drop all of_...
+methods and use generic device_property_
+> +
+> +static int __init vmbus_init(void)
+>  {
+>  	int ret;
+>  
+> @@ -2747,18 +2847,27 @@ static int __init hv_acpi_init(void)
+>  	if (hv_root_partition && !hv_nested)
+>  		return 0;
+>  
+> +#ifdef CONFIG_ACPI
+>  	/*
+> -	 * Get ACPI resources first.
+> +	 * Request ACPI resources and wait for the completion
+>  	 */
+>  	ret = acpi_bus_register_driver(&vmbus_acpi_driver);
+>  
+>  	if (ret)
+>  		return ret;
+>  
+> -	if (!hv_acpi_dev) {
+> -		ret = -ENODEV;
+> +	if (!vmbus_root_dev) {
+> +		ret = -ETIMEDOUT;
+>  		goto cleanup;
+>  	}
+> +#endif
+> +#ifdef CONFIG_OF
+> +	ret = platform_driver_register(&vmbus_platform_driver);
+> +	if (ret) {
+> +		pr_err("Error registering platform resources: %d\n", ret);
+> +		goto cleanup;
+> +	}
+> +#endif
+>  
+>  	/*
+>  	 * If we're on an architecture with a hardcoded hypervisor
+> @@ -2785,8 +2894,14 @@ static int __init hv_acpi_init(void)
+>  	return 0;
+>  
+>  cleanup:
+> +#ifdef CONFIG_ACPI
+>  	acpi_bus_unregister_driver(&vmbus_acpi_driver);
+> -	hv_acpi_dev = NULL;
+> +#endif
+> +#ifdef CONFIG_OF
+> +	platform_driver_unregister(&vmbus_platform_driver);
+> +#endif
+> +	vmbus_root_dev = NULL;
+> +
+>  	return ret;
+>  }
+>  
+> @@ -2839,12 +2954,17 @@ static void __exit vmbus_exit(void)
+>  
+>  	cpuhp_remove_state(hyperv_cpuhp_online);
+>  	hv_synic_free();
+> +#ifdef CONFIG_ACPI
+>  	acpi_bus_unregister_driver(&vmbus_acpi_driver);
+> +#endif
+> +#ifdef CONFIG_OF
+> +	platform_driver_unregister(&vmbus_platform_driver);
+> +#endif
+> +	vmbus_root_dev = NULL;
+>  }
+>  
+> -
 
-(This can be not relevant or incorrect) What was found also is that
-active high horizontal wire (whatever it is called in datasheet, PCB,
-dts or driver) from e.g. FPGA corresponds to `href_pol: 1` to
-correctly read image lines sent.
+This is really a messy patch...
 
-Thanks!
--- 
-sed 'sh && sed && node.js + olecom = happiness and mirth'  <<  ''
--o--=O`C
- #oo'L O
-<___=E M
+>  MODULE_LICENSE("GPL");
+>  MODULE_DESCRIPTION("Microsoft Hyper-V VMBus Driver");
+>  
+> -subsys_initcall(hv_acpi_init);
+> +subsys_initcall(vmbus_init);
+>  module_exit(vmbus_exit);
+
+Best regards,
+Krzysztof
+
