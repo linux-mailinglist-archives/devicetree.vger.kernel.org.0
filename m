@@ -2,95 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D76C966CF73
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:20:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36BCA66CF82
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:26:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232825AbjAPTUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 14:20:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40488 "EHLO
+        id S233226AbjAPT0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 14:26:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232681AbjAPTUN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:20:13 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 260C82BEC1
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:20:12 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id mp20so23688582ejc.7
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:20:12 -0800 (PST)
+        with ESMTP id S232983AbjAPT0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:26:22 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C17192B28A;
+        Mon, 16 Jan 2023 11:26:21 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id z1-20020a17090a66c100b00226f05b9595so16869175pjl.0;
+        Mon, 16 Jan 2023 11:26:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eDJhl2JrEfjVRzKQvqBIMz7y/1765blM/Rj+5k8sN3A=;
-        b=dMuefG64FEW3xgijUTbpxZl/QVCMjI4rPW55P+7ETbewC1Lq0kcKsAZR8IcIKfPkli
-         4HZQtF2DVAtRd6m/3w/i19ZQ49JQ4noTpmGnd7qEcuFXb9sDZEBIWy/r4H/jqTm8/EuO
-         e3/t7Aqkbxsw73YuTRkYMm0kM4AwWH+kV4JxkUakKQ3H/7FiNlzT7jyo/sxL2DtZuxSj
-         VVGchKDFTn+gv3I7hYjvCVP3nlnvf/TbNrPoN1PoxzAd7/HVIk34vNFE19ZS+GsqLw02
-         4tdb3jDAVtNlF7juhkj0CquFde30fTi13j5rRzlgoGTXZEoS3npMQmmREoS+uTpHEPew
-         6V9w==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9WAzcJcZo6zUjcHtz9T7SGfeKr+yTltFnDVPkxlv9nE=;
+        b=Y8qb/UuyVHOR4IUXV/uo6vhei/WJreF6ZkWZHmxkM6olegkwEECe0Xkiq0S5cHiDg+
+         slgfsRV8UUS/5B/wPv7EC+Oz33d6E2Lhsk2caJijr1JvrPtgsQ/xfjyMUa2Ou2TLLO9W
+         /hc9gx3z+Ba/dN2zD3xT4wUBlydsL2m0aDURvnUJ8rxuU1W7utPccMSrdcMIKPEgmbYs
+         puLLo5h313kg0jyKgg0HKTDg/V9p86whd0Tg5dlWc/0xkqLbZCLc9oLvALzemle01/sh
+         KJa6bMAlm4UBzlD4/9F/RFBzem6n9V0FUZWQEbSjnpiHP2RHDujoyUkiiAceDJh5B9LX
+         xRWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eDJhl2JrEfjVRzKQvqBIMz7y/1765blM/Rj+5k8sN3A=;
-        b=A8esq817mbvOrcwIxVAPq1zcSOOT2RFruIUT2ZMM4noKo60B86g4Ct9pT7D53fh6tD
-         xq1E9ZnVF/gkQynN3b9IhQR1Jljv6W+dPnctP6szH44tD0lEm1e2pcqI/Oe15W+eTYVo
-         SiD9GP0Qc7d2pAghEM2CNI3obqfQJjbkN0svOuqZOAp4znMNX5Isu7ZSCCy1EpLdV+zw
-         42onZcORq6CUptdFAWMFaqjnnSY0UZ2kntrEJV1dzLYcqjO3OTmHVLAiHbWUpE0aSQix
-         4zv2ZWC64ys1LHRzaC8Yo2zTcbHVZhMQahUORKEMKRGtlcGFsO7+1+BJc15C737Qhfys
-         pkLA==
-X-Gm-Message-State: AFqh2kp9G1OQVS/iyEUhueAjl7WnllsEfjNG5hBgfrdiQWRofQLyHVNS
-        08s6N7rIHbRYxgbrzUmkuupN/g==
-X-Google-Smtp-Source: AMrXdXvRp1jhXQmTSRUs0FqepxPK0fgrpXAf5m/8kczSCQMkAwnBPCYakTyiXOPRvyGSw0x4I9lc8Q==
-X-Received: by 2002:a17:906:4950:b0:870:5ed6:74af with SMTP id f16-20020a170906495000b008705ed674afmr4624045ejt.77.1673896810745;
-        Mon, 16 Jan 2023 11:20:10 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id s24-20020a170906c31800b0086dee4e5555sm2891358ejz.87.2023.01.16.11.20.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 11:20:10 -0800 (PST)
-Message-ID: <ed199baf-a4e2-cbb5-d399-2387e538c466@linaro.org>
-Date:   Mon, 16 Jan 2023 20:20:07 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9WAzcJcZo6zUjcHtz9T7SGfeKr+yTltFnDVPkxlv9nE=;
+        b=u8C83sGlXTQRTShiObEg12IjAN7xB70vXKYwOC0WWgy0KT7iq+RehAZMa3LuLES2Nj
+         j4GaLwJ+Czs3R4FEGdJCSs482TBpenSzmWLnH6j3uGGG1+4B55EE7/jCClYgWOGqKUeW
+         mIBhHVK8HYwdDtUJf/McRWozCJAXdVmgMFQs92/SqFj9UdTsB1v2kGZa5dxiJxenPZya
+         GX/gUuTDPE9JQLqWZRZdfPfmnm2N2VsxwXUH4/4v7d9dAqMPpzdIqQHIR0PPRavgFoD5
+         XiqepqXxOioMZ+ZYBdbmFpJIEfXVt4VCXGROZS66V+aMH4DITyRnvrhF8FNFIertuQT8
+         iyZA==
+X-Gm-Message-State: AFqh2kqUjlyLJTBLrkwXkkgsc6E6yJa0bMkP+s6voA3s6YteNKsZVnmq
+        8b5U6X+HBARTriGkePBSFqUWYirH61BUloqalR89r7b2SPM=
+X-Google-Smtp-Source: AMrXdXvTEbxhxYtihhDhFk8bBcXFejSr7YDhMow9T/GDUE6c/HlstUARHthncxnKVe+eTbemGyTkZoMzTss7GUOeOzY=
+X-Received: by 2002:a17:903:2c7:b0:194:52ed:7a20 with SMTP id
+ s7-20020a17090302c700b0019452ed7a20mr73703plk.67.1673897181220; Mon, 16 Jan
+ 2023 11:26:21 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 1/2] dt-bindings: display/msm: Add SM6375 DSI PHY
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230116114059.346327-1-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230116114059.346327-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230115213503.26366-1-pierluigi.p@variscite.com>
+In-Reply-To: <20230115213503.26366-1-pierluigi.p@variscite.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 16 Jan 2023 16:26:09 -0300
+Message-ID: <CAOMZO5APGzugbBZf0uAaF3vB61KuWDtAU9OHXVM5p8U8yipuXg@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mm: Fix pad control for UART1_DTE_RX
+To:     Pierluigi Passaro <pierluigi.p@variscite.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-imx@nxp.com, marex@denx.de, peng.fan@nxp.com,
+        marcel.ziswiler@toradex.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        eran.m@variscite.com, nate.d@variscite.com,
+        pierluigi.passaro@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 12:40, Konrad Dybcio wrote:
-> SM6375 has a single 7nm DSI PHY. Document it.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
+On Sun, Jan 15, 2023 at 6:35 PM Pierluigi Passaro
+<pierluigi.p@variscite.com> wrote:
+>
+> According section
+>     8.2.5.313 Select Input Register (IOMUXC_UART1_RXD_SELECT_INPUT)
+> of
+>     i.MX 8M Mini Applications Processor Reference Manual, Rev. 3, 11/2020
+> the required setting for this specific pin configuration is "1"
+>
+> Signed-off-by: Pierluigi Passaro <pierluigi.p@variscite.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Fixes: c1c9d41319c3 ("dt-bindings: imx: Add pinctrl binding doc for imx8mm")
 
-Best regards,
-Krzysztof
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
