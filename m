@@ -2,135 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92D2166D00F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 21:21:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A188E66D044
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 21:35:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232305AbjAPUVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 15:21:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35974 "EHLO
+        id S231146AbjAPUf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 15:35:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230092AbjAPUVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 15:21:31 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF6A1B567
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 12:21:29 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id n7so2502338wrx.5
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 12:21:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WHkIkbVKLCXvEDsaxHuzRlYTaDc9U7AuFKwcOpzQ0R8=;
-        b=ghAAysYYXNEWrVsfssS1FzZcLJVvOTDCTIyFshsJemsW2mMVcVF7W70T1ihTGxvbTA
-         7vzYKk121j04xKHhhn7UlY/WcrfRCUsrJmMGCXGa/3iZ2NOFMOccweI60d2COpOjDwr+
-         jQrPGnnIwZxJtuUn5Wbkwi3qMGWTSf5G1NeNiiKUNr3045iqJpjaFo9DwhfrR+PfLEWI
-         OJVscHPBPMTCL2dp57s7OgYgoM//s0jM6ycSFa535pV+xoQxaFFG3iPbPFrDEPA2E1jN
-         LyrlP8ocY6bkTEt8gcDbFZ5eObuRUy+ZREeOrnOGY8GZgjL05jV+UoklQmlRMXoCC39V
-         hO1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WHkIkbVKLCXvEDsaxHuzRlYTaDc9U7AuFKwcOpzQ0R8=;
-        b=cATXWN5X0332ucvARrb7ZC+BMIQQv35uSUdU0ZEDJtTNZInJ0hW1E5AQeApJa6A+Um
-         Q7d5Zjeembeu51QEmYG5tS3JfGuMywMyQks3E7GT8XrjpvXFkuoTX7ImVx3Vm/PWkvgL
-         c/9sgJ2SOX3Y4KSFlFlhNsQ3/8GGzK6fnUPGd774cktECmk2+9msXXCEJbp/LSOBud5S
-         bd7Tbdrj0Igs54PcWzgiyZcfo/NpW+DbqgtsK9SUun9KxKiaYpkqLobaWO0gzlEJYWzY
-         EPyVdRzmPEiG1n73P1aswe4tX8obheOuId5a2LhA6jmwRjZ+qp8zDW2DGHxKZLQOMGw6
-         N8CQ==
-X-Gm-Message-State: AFqh2krqitThqGbXYqBZJWOfizvvUoVYl6dkbT9zn5Z6fDzIpH8klYk8
-        emHSdyA9i572zkvi4a+cLKI=
-X-Google-Smtp-Source: AMrXdXtcq2IlBvdXggAVobFYX1ii8S0eaeQ+Xgf82n3t8pt0yUGs609GaF/R1EFd4XsHG1d1LLEj1A==
-X-Received: by 2002:a5d:55c1:0:b0:2bd:dabe:b60a with SMTP id i1-20020a5d55c1000000b002bddabeb60amr585620wrw.36.1673900488398;
-        Mon, 16 Jan 2023 12:21:28 -0800 (PST)
-Received: from ?IPV6:2a01:c23:c4bc:ff00:1041:a2b8:3c58:ba6d? (dynamic-2a01-0c23-c4bc-ff00-1041-a2b8-3c58-ba6d.c23.pool.telefonica.de. [2a01:c23:c4bc:ff00:1041:a2b8:3c58:ba6d])
-        by smtp.googlemail.com with ESMTPSA id n13-20020a5d67cd000000b002bdcce37d31sm15412076wrw.99.2023.01.16.12.21.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 12:21:28 -0800 (PST)
-Message-ID: <0a82be92-ce85-da34-9d6f-4b33034473e5@gmail.com>
-Date:   Mon, 16 Jan 2023 21:19:03 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: [PATCH v2] dt-bindings: phy: g12a-usb3-pcie-phy: fix compatible
- string documentation
-To:     Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S232003AbjAPUfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 15:35:55 -0500
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C7C2A17B;
+        Mon, 16 Jan 2023 12:35:53 -0800 (PST)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 0C3B11F5E0;
+        Mon, 16 Jan 2023 21:35:50 +0100 (CET)
+Date:   Mon, 16 Jan 2023 21:35:49 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-phy@lists.infradead.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "phy: qualcomm: usb28nm: Add MDM9607 init
+ sequence"
+Message-ID: <20230116203549.5jzd2olxua662n6w@SoMainline.org>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221214223733.648167-1-marijn.suijten@somainline.org>
+ <Y8GY51Cfkj7o1MJs@matsya>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y8GY51Cfkj7o1MJs@matsya>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The compatible string in the driver doesn't have the meson prefix.
-Fix this in the documentation and rename the file accordingly.
+On 2023-01-13 23:16:15, Vinod Koul wrote:
+> On 14-12-22, 23:37, Marijn Suijten wrote:
+> > This reverts commit 557a28811c7e0286d3816842032db5eb7bb5f156.
+> > 
+> > This commit introduced an init sequence from downstream DT [1] in the
+> > driver.  As mentioned by the comment above the HSPHY_INIT_CFG macro for
+> > this sequence:
+> > 
+> >     /*
+> >      * The macro is used to define an initialization sequence.  Each tuple
+> >      * is meant to program 'value' into phy register at 'offset' with 'delay'
+> >      * in us followed.
+> >      */
+> > 
+> > Instead of corresponding to offsets into the phy register, the sequence
+> > read by the downstream driver [2] is passed into ulpi_write [3] which
+> > crafts the address-value pair into a new value and writes it into the
+> > same register at USB_ULPI_VIEWPORT [4].  In other words, this init
+> > sequence is programmed into the hardware in a totally different way than
+> > downstream and is unlikely to achieve the desired result, if the hsphy
+> > is working at all.
+> > 
+> > An alternative method needs to be found to write these init values at
+> > the desired location.  Fortunately mdm9607 did not land upstream yet [5]
+> > and should have its compatible revised to use the generic one, instead
+> > of a compatible that writes wrong data to the wrong registers.
+> 
+> Applied after adding missing subsystem tag, thanks
 
-Fixes: 87a55485f2fc ("dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml")
-Cc: stable@vger.kernel.org
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- align $id with new file name
----
- ...a-usb3-pcie-phy.yaml => amlogic,g12a-usb3-pcie-phy.yaml} | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- rename Documentation/devicetree/bindings/phy/{amlogic,meson-g12a-usb3-pcie-phy.yaml => amlogic,g12a-usb3-pcie-phy.yaml} (82%)
+Thanks, it wasn't clear to me whether to suffix the title when already
+included in the Revert: "phy: qualcomm: ..." title :)
 
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
-similarity index 82%
-rename from Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
-rename to Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
-index 868b4e6fd..129d26e99 100644
---- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml
-@@ -2,7 +2,7 @@
- # Copyright 2019 BayLibre, SAS
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml#"
-+$id: "http://devicetree.org/schemas/phy/amlogic,g12a-usb3-pcie-phy.yaml#"
- $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- 
- title: Amlogic G12A USB3 + PCIE Combo PHY
-@@ -13,7 +13,7 @@ maintainers:
- properties:
-   compatible:
-     enum:
--      - amlogic,meson-g12a-usb3-pcie-phy
-+      - amlogic,g12a-usb3-pcie-phy
- 
-   reg:
-     maxItems: 1
-@@ -49,7 +49,7 @@ additionalProperties: false
- examples:
-   - |
-     phy@46000 {
--          compatible = "amlogic,meson-g12a-usb3-pcie-phy";
-+          compatible = "amlogic,g12a-usb3-pcie-phy";
-           reg = <0x46000 0x2000>;
-           clocks = <&ref_clk>;
-           clock-names = "ref_clk";
--- 
-2.39.0
-
+- Marijn
