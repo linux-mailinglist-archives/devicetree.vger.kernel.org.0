@@ -2,489 +2,529 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19D2766B81E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 08:22:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5537266B801
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 08:16:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231945AbjAPHWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 02:22:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43804 "EHLO
+        id S231866AbjAPHQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 02:16:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231967AbjAPHWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 02:22:50 -0500
-Received: from egress-ip33b.ess.de.barracuda.com (egress-ip33b.ess.de.barracuda.com [18.185.115.237])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62F9E396
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:22:44 -0800 (PST)
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199]) by mx-outbound21-48.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 16 Jan 2023 07:22:41 +0000
-Received: by mail-pl1-f199.google.com with SMTP id y8-20020a170902b48800b00192a600df83so19592627plr.15
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:22:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cUPtI99MwjncOEF6bRvr7n98rdiXOxsTy+T+CnHKJEI=;
-        b=jCMhYKom71gAxzpSzkw0/mcBpQdk8Ibxon5bVH1H6GaBbQLYvbG/qYRWqRWWO3mSkK
-         X6PKHcDA1DzyknLBsA+LAnD0pOQ2qb7/gOuu6NcDgMKve1uiLj3WeB+s1AI9iZ4zTOVy
-         kB/Q9dT2yzdx/VLUoY/yeeilRSI8crZRBYCLU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cUPtI99MwjncOEF6bRvr7n98rdiXOxsTy+T+CnHKJEI=;
-        b=G7G1krE9NKmeRdh/5ZiJ4XtK4FTmVqir1VxAA+vaQ/I4dTb30AdUkgIrCa/UGQkKdd
-         q4NLRHjiUUX9+11yE2p/jWef4Ih5fHxQeCcbCD80tm9MOH2McR8XVtYGcyct0ChROtze
-         7gK2faSEwJeJnLo9tTTbwCXlvjFiFUU/AoK1XwET28StAESYkcE6AU1n+vMRwbUdOGBq
-         0S/CaCw3ixOAI9FqMi1UIuLncnPaf67ICKgke4DX5hFgaF3O2MtyBR8qjblAeJozsQ5T
-         3NnMu+gbIQV9JPTJjrOWFIuQaDv9Q4CbUe5WX6tU1urSfg79C8v/25THSJohLIuBI16w
-         PJgw==
-X-Gm-Message-State: AFqh2krXbq3QU0b+xyl/+cNdQ0gcYa2jzcHNlEQjHkUinG8AkAON/lrP
-        r90I0QS9dkBOU8P0LlJGaeXgM/c8SYVo0cs90HygGTsxrevzATFRKjsW+z0pEWeb7rvZUvNYKn3
-        7zAKGx1k8cICFT+G3hyR0RzZt9y8epA8Od3dNeM6+d9Vq9+i8c89+zrab8A==
-X-Received: by 2002:a05:6a20:c1a7:b0:b8:4066:8ecb with SMTP id bg39-20020a056a20c1a700b000b840668ecbmr8522629pzb.0.1673853760364;
-        Sun, 15 Jan 2023 23:22:40 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXsT4782mAt3V+9ZiGny6OMpzsJtvh/JvMmfu2eP5GcjbXXW/CPPO7l95B62k/c1nk9L9amidA==
-X-Received: by 2002:a05:6a20:c1a7:b0:b8:4066:8ecb with SMTP id bg39-20020a056a20c1a700b000b840668ecbmr8522604pzb.0.1673853759996;
-        Sun, 15 Jan 2023 23:22:39 -0800 (PST)
-Received: from LAP568U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id d17-20020a170902ced100b001895f7c8a71sm1770346plg.97.2023.01.15.23.22.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Jan 2023 23:22:39 -0800 (PST)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S231808AbjAPHQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 02:16:16 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 005E02681;
+        Sun, 15 Jan 2023 23:16:13 -0800 (PST)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 0BC918108;
+        Mon, 16 Jan 2023 07:16:11 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH V5 3/3] arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board
-Date:   Mon, 16 Jan 2023 12:44:46 +0530
-Message-Id: <20230116071446.28867-4-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230116071446.28867-1-sinthu.raja@ti.com>
-References: <20230116071446.28867-1-sinthu.raja@ti.com>
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: [PATCH v3 1/1] dt-bindings: pinctrl: Update pinctrl-single to use yaml
+Date:   Mon, 16 Jan 2023 09:15:59 +0200
+Message-Id: <20230116071602.63788-1-tony@atomide.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1673853761-305424-5388-510-1
-X-BESS-VER: 2019.1_20221214.2106
-X-BESS-Apparent-Source-IP: 209.85.214.199
-X-BESS-Outbound-Spam-Score: 0.90
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245498 [from 
-        cloudscan11-27.eu-central-1a.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
-        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.90 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_SC0_SA085b, BSF_RULE7568M, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+Update binding for yaml and remove the old related txt bindings. Note that
+we are also adding the undocumented pinctrl-single,slew-rate property. And
+we only use the first example from the old binding.
 
-The SK architecture comprises of baseboard and a SOM board. The
-AM68 Starter Kit's baseboard contains most of the actual connectors,
-power supply etc. The System on Module (SoM) is plugged on to the base
-board. Therefore, add support for peripherals brought out in the base
-board.
-
-Schematics: https://www.ti.com/lit/zip/SPRR463
-
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+Cc: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
 
-No changes in V4 & V5
+Changes since v2:
 
-Changes in V3:
-=============
-*Address review comments:
- - Remove the unused nodes that are disabled by default.
- - Update the gpio regulator node: gpio-regulator-tlv to "regulator-tlv".
+- Drop old ti,omap-pinctrl.txt in addition to old pinctrl-single.txt
 
-Changes in V2:
-=============
-*Address the review comments:
- - Update the commit description.
- - Update the regulator nodes: fixedregulator to "regulator-"
- - Update the commit $subject to align with rest of the commits.
- - Drop the blank lines
- - Change the node names that are added with underscore("_") with "-"
+- Replace reference to pinctrl-single.txt to point to the yaml in ctrl.txt
 
-V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-4-sinthu.raja@ti.com/
-V2: https://lore.kernel.org/lkml/20221107123852.8063-4-sinthu.raja@ti.com/
-V3: https://lore.kernel.org/lkml/20230110110052.14851-4-sinthu.raja@ti.com/
-V4: https://lore.kernel.org/lkml/20230105151740.29436-4-sinthu.raja@ti.com/
+Changes since v1:
 
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- .../boot/dts/ti/k3-am68-sk-base-board.dts     | 335 ++++++++++++++++++
- 2 files changed, 337 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+- The v1 version was a WIP patch posted as an example in thread
+  "dt binding check error with hash and comma"
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index cf7c509538a4..1b4e8b573de5 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -12,6 +12,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+---
+ .../devicetree/bindings/arm/omap/ctrl.txt     |   2 +-
+ .../bindings/pinctrl/pinctrl-single.txt       | 262 ------------------
+ .../bindings/pinctrl/pinctrl-single.yaml      | 155 +++++++++++
+ .../bindings/pinctrl/ti,omap-pinctrl.txt      |  13 -
+ 4 files changed, 156 insertions(+), 276 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt
+
+diff --git a/Documentation/devicetree/bindings/arm/omap/ctrl.txt b/Documentation/devicetree/bindings/arm/omap/ctrl.txt
+--- a/Documentation/devicetree/bindings/arm/omap/ctrl.txt
++++ b/Documentation/devicetree/bindings/arm/omap/ctrl.txt
+@@ -8,7 +8,7 @@ control module driver itself.
  
-+dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
-+
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+ See [2] for documentation about clock/clockdomain nodes.
+ 
+-[1] Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
++[1] Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+ [2] Documentation/devicetree/bindings/clock/ti/*
+ 
+ Required properties:
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+deleted file mode 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
++++ /dev/null
+@@ -1,262 +0,0 @@
+-One-register-per-pin type device tree based pinctrl driver
+-
+-Required properties:
+-- compatible : "pinctrl-single" or "pinconf-single".
+-  "pinctrl-single" means that pinconf isn't supported.
+-  "pinconf-single" means that generic pinconf is supported.
+-
+-- reg : offset and length of the register set for the mux registers
+-
+-- #pinctrl-cells : number of cells in addition to the index, set to 1
+-  or 2 for pinctrl-single,pins and set to 2 for pinctrl-single,bits
+-
+-- pinctrl-single,register-width : pinmux register access width in bits
+-
+-- pinctrl-single,function-mask : mask of allowed pinmux function bits
+-  in the pinmux register
+-
+-Optional properties:
+-- pinctrl-single,function-off : function off mode for disabled state if
+-  available and same for all registers; if not specified, disabling of
+-  pin functions is ignored
+-
+-- pinctrl-single,bit-per-mux : boolean to indicate that one register controls
+-  more than one pin, for which "pinctrl-single,function-mask" property specifies
+- position mask of pin.
+-
+-- pinctrl-single,drive-strength : array of value that are used to configure
+-  drive strength in the pinmux register. They're value of drive strength
+-  current and drive strength mask.
+-
+-		/* drive strength current, mask */
+-		pinctrl-single,power-source = <0x30 0xf0>;
+-
+-- pinctrl-single,bias-pullup : array of value that are used to configure the
+-  input bias pullup in the pinmux register.
+-
+-		/* input, enabled pullup bits, disabled pullup bits, mask */
+-		pinctrl-single,bias-pullup = <0 1 0 1>;
+-
+-- pinctrl-single,bias-pulldown : array of value that are used to configure the
+-  input bias pulldown in the pinmux register.
+-
+-		/* input, enabled pulldown bits, disabled pulldown bits, mask */
+-		pinctrl-single,bias-pulldown = <2 2 0 2>;
+-
+-  * Two bits to control input bias pullup and pulldown: User should use
+-    pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. One bit means
+-    pullup, and the other one bit means pulldown.
+-  * Three bits to control input bias enable, pullup and pulldown. User should
+-    use pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. Input bias
+-    enable bit should be included in pullup or pulldown bits.
+-  * Although driver could set PIN_CONFIG_BIAS_DISABLE, there's no property as
+-    pinctrl-single,bias-disable. Because pinctrl single driver could implement
+-    it by calling pulldown, pullup disabled.
+-
+-- pinctrl-single,input-schmitt : array of value that are used to configure
+-  input schmitt in the pinmux register. In some silicons, there're two input
+-  schmitt value (rising-edge & falling-edge) in the pinmux register.
+-
+-		/* input schmitt value, mask */
+-		pinctrl-single,input-schmitt = <0x30 0x70>;
+-
+-- pinctrl-single,input-schmitt-enable : array of value that are used to
+-  configure input schmitt enable or disable in the pinmux register.
+-
+-		/* input, enable bits, disable bits, mask */
+-		pinctrl-single,input-schmitt-enable = <0x30 0x40 0 0x70>;
+-
+-- pinctrl-single,low-power-mode : array of value that are used to configure
+-  low power mode of this pin. For some silicons, the low power mode will
+-  control the output of the pin when the pad including the pin enter low
+-  power mode.
+-		/* low power mode value, mask */
+-		pinctrl-single,low-power-mode = <0x288 0x388>;
+-
+-- pinctrl-single,gpio-range : list of value that are used to configure a GPIO
+-  range. They're value of subnode phandle, pin base in pinctrl device, pin
+-  number in this range, GPIO function value of this GPIO range.
+-  The number of parameters is depend on #pinctrl-single,gpio-range-cells
+-  property.
+-
+-		/* pin base, nr pins & gpio function */
+-		pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>;
+-
+-- interrupt-controller : standard interrupt controller binding if using
+-  interrupts for wake-up events for example. In this case pinctrl-single
+-  is set up as a chained interrupt controller and the wake-up interrupts
+-  can be requested by the drivers using request_irq().
+-
+-- #interrupt-cells : standard interrupt binding if using interrupts
+-
+-This driver assumes that there is only one register for each pin (unless the
+-pinctrl-single,bit-per-mux is set), and uses the common pinctrl bindings as
+-specified in the pinctrl-bindings.txt document in this directory.
+-
+-The pin configuration nodes for pinctrl-single are specified as pinctrl
+-register offset and values using pinctrl-single,pins. Only the bits specified
+-in pinctrl-single,function-mask are updated.
+-
+-When #pinctrl-cells = 1, then setting a pin for a device could be done with:
+-
+-	pinctrl-single,pins = <0xdc 0x118>;
+-
+-Where 0xdc is the offset from the pinctrl register base address for the device
+-pinctrl register, and 0x118 contains the desired value of the pinctrl register.
+-
+-When #pinctrl-cells = 2, then setting a pin for a device could be done with:
+-
+-	pinctrl-single,pins = <0xdc 0x30 0x07>;
+-
+-Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
+-These two values are OR'd together to produce the value stored at offset 0xdc.
+-See the device example and static board pins example below for more information.
+-
+-In case when one register changes more than one pin's mux the
+-pinctrl-single,bits need to be used which takes three parameters:
+-
+-	pinctrl-single,bits = <0xdc 0x18 0xff>;
+-
+-Where 0xdc is the offset from the pinctrl register base address for the
+-device pinctrl register, 0x18 is the desired value, and 0xff is the sub mask to
+-be used when applying this change to the register.
+-
+-
+-Optional sub-node: In case some pins could be configured as GPIO in the pinmux
+-register, those pins could be defined as a GPIO range. This sub-node is required
+-by pinctrl-single,gpio-range property.
+-
+-Required properties in sub-node:
+-- #pinctrl-single,gpio-range-cells : the number of parameters after phandle in
+-  pinctrl-single,gpio-range property.
+-
+-	range: gpio-range {
+-		#pinctrl-single,gpio-range-cells = <3>;
+-	};
+-
+-
+-Example:
+-
+-/* SoC common file */
+-
+-/* first controller instance for pins in core domain */
+-pmx_core: pinmux@4a100040 {
+-	compatible = "pinctrl-single";
+-	reg = <0x4a100040 0x0196>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	#interrupt-cells = <1>;
+-	interrupt-controller;
+-	pinctrl-single,register-width = <16>;
+-	pinctrl-single,function-mask = <0xffff>;
+-};
+-
+-/* second controller instance for pins in wkup domain */
+-pmx_wkup: pinmux@4a31e040 {
+-	compatible = "pinctrl-single";
+-	reg = <0x4a31e040 0x0038>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	#interrupt-cells = <1>;
+-	interrupt-controller;
+-	pinctrl-single,register-width = <16>;
+-	pinctrl-single,function-mask = <0xffff>;
+-};
+-
+-control_devconf0: pinmux@48002274 {
+-	compatible = "pinctrl-single";
+-	reg = <0x48002274 4>;	/* Single register */
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	pinctrl-single,bit-per-mux;
+-	pinctrl-single,register-width = <32>;
+-	pinctrl-single,function-mask = <0x5F>;
+-};
+-
+-/* third controller instance for pins in gpio domain */
+-pmx_gpio: pinmux@d401e000 {
+-	compatible = "pinconf-single";
+-	reg = <0xd401e000 0x0330>;
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-	ranges;
+-
+-	pinctrl-single,register-width = <32>;
+-	pinctrl-single,function-mask = <7>;
+-
+-	/* sparse GPIO range could be supported */
+-	pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>,
+-				    <&range 12 1 0>, <&range 13 29 1>,
+-				    <&range 43 1 0>, <&range 44 49 1>,
+-				    <&range 94 1 1>, <&range 96 2 1>;
+-
+-	range: gpio-range {
+-		#pinctrl-single,gpio-range-cells = <3>;
+-	};
+-};
+-
+-
+-/* board specific .dts file */
+-
+-&pmx_core {
+-
+-	/*
+-	 * map all board specific static pins enabled by the pinctrl driver
+-	 * itself during the boot (or just set them up in the bootloader)
+-	 */
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&board_pins>;
+-
+-	board_pins: pinmux_board_pins {
+-		pinctrl-single,pins = <
+-			0x6c 0xf
+-			0x6e 0xf
+-			0x70 0xf
+-			0x72 0xf
+-		>;
+-	};
+-
+-	uart0_pins: pinmux_uart0_pins {
+-		pinctrl-single,pins = <
+-			0x208 0		/* UART0_RXD (IOCFG138) */
+-			0x20c 0		/* UART0_TXD (IOCFG139) */
+-		>;
+-		pinctrl-single,bias-pulldown = <0 2 2>;
+-		pinctrl-single,bias-pullup = <0 1 1>;
+-	};
+-
+-	/* map uart2 pins */
+-	uart2_pins: pinmux_uart2_pins {
+-		pinctrl-single,pins = <
+-			0xd8 0x118
+-			0xda 0
+-			0xdc 0x118
+-			0xde 0
+-		>;
+-	};
+-};
+-
+-&control_devconf0 {
+-	mcbsp1_pins: pinmux_mcbsp1_pins {
+-		pinctrl-single,bits = <
+-			0x00 0x18 0x18 /* FSR/CLKR signal from FSX/CLKX pin */
+-		>;
+-	};
+-
+-	mcbsp2_clks_pins: pinmux_mcbsp2_clks_pins {
+-		pinctrl-single,bits = <
+-			0x00 0x40 0x40 /* McBSP2 CLKS from McBSP_CLKS pin */
+-		>;
+-	};
+-
+-};
+-
+-&uart1 {
+-       pinctrl-names = "default";
+-       pinctrl-0 = <&uart0_pins>;
+-};
+-
+-&uart2 {
+-       pinctrl-names = "default";
+-       pinctrl-0 = <&uart2_pins>;
+-};
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
 new file mode 100644
-index 000000000000..2091cd2431fb
 --- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -0,0 +1,335 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ *
-+ * Base Board: https://www.ti.com/lit/zip/SPRR463
-+ */
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+@@ -0,0 +1,155 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
++title: One-register-per-pin type device tree based pinctrl driver
 +
-+#include "k3-am68-sk-som.dtsi"
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/phy/phy-cadence.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/mux/ti-serdes.h>
++maintainers:
++  - Tony Lindgren <tony@atomide.com>
 +
-+/ {
-+	compatible = "ti,am68-sk", "ti,j721s2";
-+	model = "Texas Instruments AM68 SK";
++description: |
++  This binding describes pinctrl devices that use one hardware register to
++  configure each pin.
 +
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - pinctrl-single
++              - pinconf-single
++      - items:
++          - enum:
++              - ti,am437-padconf
++              - ti,dra7-padconf
++              - ti,omap2420-padconf
++              - ti,omap2430-padconf
++              - ti,omap3-padconf
++              - ti,omap4-padconf
++              - ti,omap5-padconf
++          - const: pinctrl-single
 +
-+	aliases {
-+		serial2 = &main_uart8;
-+		mmc1 = &main_sdhci1;
-+		can0 = &mcu_mcan0;
-+		can1 = &mcu_mcan1;
-+		can2 = &main_mcan6;
-+		can3 = &main_mcan7;
-+	};
++  reg:
++    maxItems: 1
 +
-+	vusb_main: regulator-vusb-main5v0 {
-+		/* USB MAIN INPUT 5V DC */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vusb-main5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
++  interrupt-controller: true
 +
-+	vsys_3v3: regulator-vsys3v3 {
-+		/* Output of LM5141 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vusb_main>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
++  '#interrupt-cells':
++    const: 1
 +
-+	vdd_mmc1: regulator-sd {
-+		/* Output of TPS22918 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
-+	};
++  '#address-cells':
++    const: 1
 +
-+	vdd_sd_dv: regulator-tlv71033 {
-+		/* Output of TLV71033 */
-+		compatible = "regulator-gpio";
-+		regulator-name = "tlv71033";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_3v3>;
-+		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+	};
++  '#size-cells':
++    const: 0
 +
-+	vsys_io_1v8: regulator-vsys-io-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
++  '#pinctrl-cells':
++    enum: [ 1, 2 ]
 +
-+	vsys_io_1v2: regulator-vsys-io-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
++  '#gpio-range-cells':
++    const: 3
++    description: No longer needed, may exist in older files for gpio-ranges
++    deprecated: true
 +
-+	transceiver1: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
++  pinctrl-single,bit-per-mux:
++    description: Optional flag to indicate register controls more than one pin
++    type: boolean
 +
-+	transceiver2: can-phy1 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
++  pinctrl-single,function-mask:
++    description: Mask of the allowed register bits
++    $ref: /schemas/types.yaml#/definitions/uint32
 +
-+	transceiver3: can-phy2 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
++  pinctrl-single,function-off:
++    description: Optional function off mode for disabled state
++    $ref: /schemas/types.yaml#/definitions/uint32
 +
-+	transceiver4: can-phy3 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
-+};
++  pinctrl-single,gpio-range:
++    description: Optional list of pin base, nr pins & gpio function
++    $ref: /schemas/types.yaml#/definitions/phandle-array
 +
-+&main_pmx0 {
-+	main_uart8_pins_default: main-uart8-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0d0, PIN_INPUT, 11) /* (AF26) SPI0_CS1.UART8_RXD */
-+			J721S2_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AH27) SPI0_CLK.UART8_TXD */
-+		>;
-+	};
++  '#pinctrl-single,gpio-range-cells':
++    const: 3
++    description: Number of gpio range cells
++    $ref: /schemas/types.yaml#/definitions/uint32
 +
-+	main_i2c0_pins_default: main-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0e0, PIN_INPUT, 0) /* (AH25) I2C0_SCL */
-+			J721S2_IOPAD(0x0e4, PIN_INPUT, 0) /* (AE24) I2C0_SDA */
-+		>;
-+	};
++  pinctrl-single,register-width:
++    description: Width of the pin register in bits
++    $ref: /schemas/types.yaml#/definitions/uint32
 +
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
-+			J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
-+			J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
-+			J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
-+			J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
-+			J721S2_IOPAD(0x0f0, PIN_INPUT, 0) /* (R22) MMC1_DAT3 */
-+			J721S2_IOPAD(0x0e8, PIN_INPUT, 8) /* (AE25) TIMER_IO0.MMC1_SDCD */
-+		>;
-+	};
++patternProperties:
++  '-pins((.*)?)$':
++    type: object
++    $ref: pinmux-node.yaml#
 +
-+	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0c4, PIN_INPUT, 7) /* (AB26) ECAP0_IN_APWM_OUT.GPIO0_49 */
-+		>;
-+	};
++    patternProperties:
++      pinctrl-single,pins:
++        description:
++          Array of pins as described in pinmux-node.yaml for pinctrl-pin-array
++        $ref: /schemas/types.yaml#/definitions/uint32-array
 +
-+	main_usbss0_pins_default: main-usbss0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AG25) TIMER_IO1.USB0_DRVVBUS */
-+		>;
-+	};
++      pinctrl-single,bias-pullup:
++        description: Optional array of input, enabled pullup bits, disabled pullup bits, mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
 +
-+	main_mcan6_pins_default: main-mcan6-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x098, PIN_INPUT, 0) /* (V25) MCASP0_AXR10.MCAN6_RX */
-+			J721S2_IOPAD(0x094, PIN_INPUT, 0) /* (AA25) MCASP0_AXR9.MCAN6_TX */
-+		>;
-+	};
++      pinctrl-single,bias-pulldown:
++        description: Optional array of input, enabled pulldown bits, disabled pulldown bits, mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
 +
-+	main_mcan7_pins_default: main-mcan7-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
-+			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
-+		>;
-+	};
-+};
++      pinctrl-single,drive-strength:
++        description: Optional array of drive strength current and mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
 +
-+&wkup_pmx0 {
-+	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (B22) MCU_RGMII1_RD0 */
-+			J721S2_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B21) MCU_RGMII1_RD1 */
-+			J721S2_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C22) MCU_RGMII1_RD2 */
-+			J721S2_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D23) MCU_RGMII1_RD3 */
-+			J721S2_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (D22) MCU_RGMII1_RXC */
-+			J721S2_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (E23) MCU_RGMII1_RX_CTL */
-+			J721S2_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (F23) MCU_RGMII1_TD0 */
-+			J721S2_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (G22) MCU_RGMII1_TD1 */
-+			J721S2_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E21) MCU_RGMII1_TD2 */
-+			J721S2_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E22) MCU_RGMII1_TD3 */
-+			J721S2_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (F21) MCU_RGMII1_TXC */
-+			J721S2_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (F22) MCU_RGMII1_TX_CTL */
-+		>;
-+	};
++      pinctrl-single,input-schmitt:
++        description: Optional array of input, enable bits, disable bits, mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
 +
-+	mcu_mdio_pins_default: mcu-mdio-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A21) MCU_MDIO0_MDC */
-+			J721S2_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (A22) MCU_MDIO0_MDIO */
-+		>;
-+	};
++      pinctrl-single,low-power-mode:
++        description: Optional array of low power mode value, mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
 +
-+	mcu_mcan0_pins_default: mcu-mcan0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x0bc, PIN_INPUT, 0) /* (E28) MCU_MCAN0_RX */
-+			J721S2_WKUP_IOPAD(0x0b8, PIN_OUTPUT, 0) /* (E27) MCU_MCAN0_TX */
-+		>;
-+	};
++      pinctrl-single,slew-rate:
++        description: Optional array of slew rate and mask values
++        $ref: /schemas/types.yaml#/definitions/uint32-array
 +
-+	mcu_mcan1_pins_default: mcu-mcan1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x0d4, PIN_INPUT, 0) /* (F26) WKUP_GPIO0_5.MCU_MCAN1_RX */
-+			J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
-+		>;
-+	};
++    additionalProperties: false
 +
-+	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
-+			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
-+		>;
-+	};
-+};
++allOf:
++  - $ref: 'pinctrl.yaml#'
 +
-+&main_gpio2 {
-+	status = "disabled";
-+};
++required:
++  - compatible
++  - reg
++  - pinctrl-single,register-width
 +
-+&main_gpio4 {
-+	status = "disabled";
-+};
++additionalProperties: false
 +
-+&main_gpio6 {
-+	status = "disabled";
-+};
++examples:
++  - |
++    #include <dt-bindings/pinctrl/omap.h>
 +
-+&wkup_gpio0 {
-+	status = "disabled";
-+};
++    soc {
++      #address-cells = <1>;
++      #size-cells = <1>;
 +
-+&wkup_gpio1 {
-+	status = "disabled";
-+};
++        pinmux@4a100040 {
++          compatible = "pinctrl-single";
++          reg = <0x4a100040 0x0196>;
++          #address-cells = <1>;
++          #size-cells = <0>;
++          #pinctrl-cells = <2>;
++          #interrupt-cells = <1>;
++          interrupt-controller;
++          pinctrl-single,register-width = <16>;
++          pinctrl-single,function-mask = <0xffff>;
 +
-+&wkup_uart0 {
-+	status = "reserved";
-+};
-+
-+&main_uart8 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart8_pins_default>;
-+	/* Shared with TFA on this platform */
-+	power-domains = <&k3_pds 357 TI_SCI_PD_SHARED>;
-+};
-+
-+&main_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp1: gpio@21 {
-+		compatible = "ti,tca6416";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "CSI_VIO_SEL", "CSI_SEL_FPC_EXPn", "HDMI_PDn",
-+					"HDMI_LS_OE", "DP0_3V3 _EN", "BOARDID_EEPROM_WP",
-+					"CAN_STB", " ", "GPIO_uSD_PWR_EN", "eDP_ENABLE",
-+					"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_MCU_RGMII_RSTz",
-+					"IO_EXP_CSI2_EXP_RSTz", " ", "CSI0_B_GPIO1",
-+					"CSI1_B_GPIO1";
-+	};
-+};
-+
-+&main_sdhci0 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_sdhci1 {
-+	/* SD card */
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	pinctrl-names = "default";
-+	disable-wp;
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv>;
-+};
-+
-+&mcu_cpsw {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
-+};
-+
-+&davinci_mdio {
-+	phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&cpsw_port1 {
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&phy0>;
-+};
-+
-+&mcu_mcan0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan0_pins_default>;
-+	phys = <&transceiver1>;
-+};
-+
-+&mcu_mcan1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan1_pins_default>;
-+	phys = <&transceiver2>;
-+};
-+
-+&main_mcan6 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan6_pins_default>;
-+	phys = <&transceiver3>;
-+};
-+
-+&main_mcan7 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan7_pins_default>;
-+	phys = <&transceiver4>;
-+};
++          uart2-pins {
++            pinctrl-single,pins =
++              <0xd8 0x118>,
++              <0xda 0>,
++              <0xdc 0x118>,
++              <0xde 0>;
++          };
++        };
++      };
+diff --git a/Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt
+deleted file mode 100644
+--- a/Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt
++++ /dev/null
+@@ -1,13 +0,0 @@
+-OMAP Pinctrl definitions
+-
+-Required properties:
+-- compatible : Should be one of:
+-  "ti,omap2420-padconf" - OMAP2420 compatible pinctrl
+-  "ti,omap2430-padconf" - OMAP2430 compatible pinctrl
+-  "ti,omap3-padconf" - OMAP3 compatible pinctrl
+-  "ti,omap4-padconf" - OMAP4 compatible pinctrl
+-  "ti,omap5-padconf" - OMAP5 compatible pinctrl
+-  "ti,dra7-padconf" - DRA7 compatible pinctrl
+-  "ti,am437-padconf" - AM437x compatible pinctrl
+-
+-See Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt for further details.
 -- 
-2.36.1
-
+2.39.0
