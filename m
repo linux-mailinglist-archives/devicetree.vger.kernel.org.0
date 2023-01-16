@@ -2,151 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 846DD66C3E2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C81C66C3B5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:24:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231590AbjAPPbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 10:31:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50982 "EHLO
+        id S231790AbjAPPYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 10:24:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231479AbjAPPar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:30:47 -0500
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2078.outbound.protection.outlook.com [40.107.223.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C768F29E29;
-        Mon, 16 Jan 2023 07:24:59 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fhq9HkDZzyUN1s6gQkjmE/ttM7P2oFr8BZ9SEQ7zh6k2jjPQRxR1wzdBJNXoPUrkEob5Bj/KZnWSDA/cmtX5QNGp2uBBQNkmCL48qLaoDCAoWS8lphY90YnPxsVxOrOKpr8tD+UN6Sz07wtVrF/ucmWyzQ8LP+2G+c9AZV+f5ErojO7RhQS3CJjsJZDinQABQWLwU72vAHm2Y2CIrZxBIy0jeBgG4bx5PAnTBfxORC8c6IX6o5ectFXFQZv3YWk3+HIrqm5yxtsSf2EjZDWZsnWk/UkR5Wk50N4BEPdgPFa69X44z2DoOyRLV+DxQNfIQ5iTtWt9DYY04MSdaRl/hQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3y7qGQwXMBxCj+dzo+WmMtizJ5VYqwGQLmDHAgPQKGI=;
- b=Pk3tcb/tCbozBwtqh6mfUBIEJVVCdA+AYQsIEuoHhy/Gr1Z6zCRB2IUITQ+jXyNy/xibQELrz6KkZ1WsHVvXdCUErj6pe/NuFmWCziW/Q9z/CIOr4AsgFn+BkC3LFhT5PX9Ru6QPCGY30enCbbk61WdmNvOvhbixZ0l0Ns+eBraxMc/cmT9jGvKm49l4EC8P/XnWZdh53fXFsUfvsEUznKMICZ9KTUkjjnpfueHS20d1Brwu7rquRlX82LGh1IfLtG+eJxp6N09eJvtc4cmODMTvkaegBapk/845qutRFS3EerGA3YUqTp1RAW1sUvFM2BpT7PnlVR1QhoTlk+ibVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3y7qGQwXMBxCj+dzo+WmMtizJ5VYqwGQLmDHAgPQKGI=;
- b=QhXnpby6qoJwjFXAS0NlUAkLPdgeM3HnK4jwhciwngMbjycBU8jm8zSyqZKzwUQgDlei+qYc/FPRhNQxdhMpLMn5E2mMIRgophcYVVZYJI1tpofmwtgMCZq286WYxFAaUvABLcEGiOyvBKof6+0sJ2TCcLyvahScCsFwlcxv2f5Xg0awFZ5foHy11D/PEo0Tn5AtSJGsLXCTxmdkpU26CiLje9KxP/EgG7fKSrPhmDx13AC6p76UDv4kMEwej7T6pvmhkViKtEDqee9zynzthpbSUnoF/W5w9pNJmpbUdJ+teok5aY615Xxn/9nn/06Ut9y4FDWtAHQ/w90DiUj/tw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- DM4PR12MB6375.namprd12.prod.outlook.com (2603:10b6:8:a2::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5986.23; Mon, 16 Jan 2023 15:24:58 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f%7]) with mapi id 15.20.6002.013; Mon, 16 Jan 2023
- 15:24:57 +0000
-Message-ID: <eff7b862-dfa6-b97e-607f-7235d250f1e5@nvidia.com>
-Date:   Mon, 16 Jan 2023 15:20:31 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V4 0/5] Tegra USB device support updates
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20230116145452.91442-1-jonathanh@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20230116145452.91442-1-jonathanh@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0337.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:18c::18) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+        with ESMTP id S230218AbjAPPXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:23:43 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B858C234F2
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:21:32 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id z5so26745931wrt.6
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:21:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nv0qa2Y9kKxU6VGIR/RqoCE+47f00hC3eEX/3It1chk=;
+        b=BKqVukHaNZ2DjWhsK2wghZ2mTsJu+9IwS9P/qGTacZ0hXj+iyool3k9BEfn8x6JXQJ
+         hw3JDOmQN3yWNzSVg3VGPy9Cf5/GGU1zFY0l3Nca3VaEqh1+MzTcGR4ZGwDI7cGGdHD+
+         8TbSsVQEieGnEMxsTK9HhLpZaXZ+S/SWQ+oSzinvM9LN7mM5yYZbBIsIzQqCLMBiYOlS
+         KABMxb76aWIK83/ubWTSgBlSwmAq78EZ9yPnMgv4A+pmjowA8zokO7+q0ESsyUFMri9B
+         KI2bEKXrT9Fif28tva4jio2E2+tU//zFGLIe0M7b2SuEdASgsbDp8+dapdW+vkNO7lZc
+         seVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nv0qa2Y9kKxU6VGIR/RqoCE+47f00hC3eEX/3It1chk=;
+        b=T7kCjG50iPjbHl4vtHKB+a8nC5hkKmQtido5D+nChrT0AbneWvzg4P6DDgS4CFoikn
+         /W6oaWSzfYZ9W4AhkSYtIoeqa03BzEbi598164LqSzIElAQNUy5wnA9ZyXe1HtVv+0Gz
+         yYjIUKkGXW/mtUvOdfAZScZWR/Wk6ZWxADf3Bkr1KVwkgBjKAGvwQXGBHr3iFi+hXbYs
+         fS+RDauzvkes/VwI3gc44hVOrYqm22fEv71zAYA+RVl30XbdDxo7WH7Surjq/6a3T40i
+         gEKkFiXZ1MitSKNr3JBN3U42/nAwjceNEcTdY5FGWItxLA++xiRUbzlEYMqhVyi5ZUTd
+         A+Vw==
+X-Gm-Message-State: AFqh2ko30yGdJ+IDoFO17xRfELZzpmGDZP5QVFljvp+VfSDNABWm9PYG
+        AZLptT2nhA37A8QVe6ZbqzxqwgShYHXDSmPv
+X-Google-Smtp-Source: AMrXdXvzupPXPZrH8q5lavvJWVE7k7Wke3TppTjy+Xv6euTu3Vht9rwJhUpDg2Gdg2InPn98dgobaA==
+X-Received: by 2002:a05:6000:1b05:b0:2b5:dc24:e08e with SMTP id f5-20020a0560001b0500b002b5dc24e08emr26936729wrz.69.1673882491286;
+        Mon, 16 Jan 2023 07:21:31 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id u18-20020adff892000000b002bded7da2b8sm6874686wrp.102.2023.01.16.07.21.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 07:21:30 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org, dianders@chromium.org,
+        david@ixit.cz, krzysztof.kozlowski+dt@linaro.org,
+        swboyd@chromium.org, konrad.dybcio@somainline.org,
+        agross@kernel.org, andersson@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        bryan.odonoghue@linaro.org
+Subject: [PATCH v7 0/4] mdss-dsi-ctrl binding and dts fixes
+Date:   Mon, 16 Jan 2023 15:21:24 +0000
+Message-Id: <20230116152128.909646-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|DM4PR12MB6375:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1360776-e8db-4c56-194f-08daf7d5d394
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9z814Klp7ggHIMGo7kD5N+lvecgFlA9IiwlQ0OEJAQja0VxFhn1i04Pz9ipFABX6yyYLRkAYVeDJVwyjbIZARGq2UZL5eqqxqMamhdOviEkDMxB2bBLvrcSkc29iP/XuuYTuCaxkDm0bmX4YaFJw3idcrg6u5oacLOR3Z+x6gPDGRwGJKgDTikjozYLhrAL4HbPmGXPAtXsEDl0f1XLOYfq7qtuPEmEOOTWucY+CFjQUZjpamBsz69xzlJrfKUR0WrubR5UucCuDDjc3xWLJGZSbW2c+rzMny2IehIAUQp6M8BUEFRjR30imhuh7AaUS1+EkVPl/XRvxFMO2KFMyAm1rBJhou+HtZpc28Rl0NDV68Hx8+h3EkXA63GhPb/px7YZujzsfz5fs2oB0QOACwxZ2CsGCPlvPFOpPn13C5yRCoSqgy8tr3BnyTiJ/dQsvXSh42r8MZwmEgZXnguXQjfdCuFb2lG5WpO2shnmCbz37Tw/uzJyVrfVMjeA2nmBCxjS2e33mGT5dMFEJw2UbjncovaBEMHTyI0sEV6ORS/z8STs4Awg1Fdd9nWGckB+VMEzD+Xkpn1xC6KI1ijlTJo6huPQhMCxhzFjevNTB3+noVtDvm593iMJf/tsOVPeyv3fb7yQIhQOhvED5LV7byED47IxqokKd7NkWjD8B2Nqg9/boub4j4nlNvCFn0c/WALuX5wp3DVpUG2j+k+IWx+hXfD3F1xjxKeD2Kv1VTta3Xnedi0kHokLFCM7/kIAkaDyBDUFgJQSotjym9vXAf1mBqy1HUtL5WB3NPC8UUX5h5HdsjzEuwR7a6wnzOooC
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(376002)(396003)(136003)(346002)(366004)(451199015)(2616005)(186003)(26005)(8676002)(4326008)(66476007)(66556008)(6512007)(110136005)(31686004)(66946007)(478600001)(6506007)(41300700001)(8936002)(5660300002)(4744005)(2906002)(6666004)(55236004)(53546011)(316002)(38100700002)(6486002)(31696002)(966005)(86362001)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RHR3MnVIRkRUb2VJNHZBS1NCeFltM1lzL2VteGl6SjdvdHZrRnNDOXBZUjFv?=
- =?utf-8?B?bk5ENDRtRXpOTUFvOHFsRW5FeDZiQlJmajN3aFJ2clBibEZZOGhHRWkrV0FF?=
- =?utf-8?B?MFRSZHh6TWQvMTk4eENRaFIweGlGYTJpanduN0lQODF5dGlCb2QvTk91cFFj?=
- =?utf-8?B?NFk5R0ZqNXN6Rm1oT3M3WVdoK3VtWHBUZ0RtV3c4VlhYbTdhNWZOUisyYlZh?=
- =?utf-8?B?WjF6cWdWZ3ZMWk45MkV5TlVqWTFPZmVUaUJsK1lqUStaUFpuMzdFMlhVUXFh?=
- =?utf-8?B?Rlg4N29DSXhlakpSOGtkWXBWWVZnVWdoc3Z6ajJCQzdNVWdpNHdBdXNrbE9j?=
- =?utf-8?B?UzVDYzF5QUNGRUxFbjA1WnFiVmZFRlBQM1lwTmdBS0NVYXVYU0J3aC9RWmhG?=
- =?utf-8?B?U3lrRHhDN3krb040QWVTVkpXZXlCYXZJRjV5RENCZ3pRdjNTazNvQVNuQXFY?=
- =?utf-8?B?K1ltUWdnUnN3YW5QVkd4Ly8yMjlsdzNGYlUwaEZOalEzTkJNbGsxKzMvY0NC?=
- =?utf-8?B?RjBUa3ovN0twMmhhUG9ZMlhiMXIycXZaNkI0WUF3RDA3THdMSjBPWEJvcHY0?=
- =?utf-8?B?MWxZMkdFNkRNbjVtSHBiWnYzUnhWT0NIYkJWOVIyUVlRMEdXR0toRHIyNXUz?=
- =?utf-8?B?T1NSUmlMQUxqa05GWi81SXF2QlNuVTZ6OGFoUFlvSThNSkp5ZldnQUUvbis0?=
- =?utf-8?B?NS9XVEE2MHBxYmNZUEZGMVBYN2plNkk0dVY0VG5TOGtqaG1OOGFwZ3BJKytH?=
- =?utf-8?B?aTE2UldVaHFjUVJwZitocGFpMDZBUEhJUWpib1lxb2dGa0JkRXZLa1Y0aTVn?=
- =?utf-8?B?NytNSUdhL05oNklZWW5telNTL0tBd2tmQkdmaWF4WEcyUTNUb3daZDBhclFZ?=
- =?utf-8?B?QlFwTGpiWHE2M2c4b3g2eU0zbm40OEIvM01ydXNReXdqRzFrclZtZDkwRCti?=
- =?utf-8?B?dUN0Y1c0bDZGbHBvRlp4K1FjVGJjUUZDTUtyM2RtVEFRSmJ6WXhoRG1ZYUs1?=
- =?utf-8?B?WWhnOHREaGRoMWFMUWVyczBUOEZGeCtqYi9VaDl2MTRJVlIvVUk4NWdSVS84?=
- =?utf-8?B?dlZTKzM4NklaN0IwVXJkREZOMWdmTy8vZGw3MGNEdFRYTGJWR3YyaEcyRVNm?=
- =?utf-8?B?T0dVZDNKVXhQUzhEb3hXZFpWSUQ1SUxwUXNxbm9ob3hHR3pCMUhzamRYaU1W?=
- =?utf-8?B?L24waTZQRHBrNXRYOEJtUzI3OFdrcW5MVXFLTVpZUXJrV3c0c3RFand5U1RR?=
- =?utf-8?B?aVVsMTN2Tk9DNnh1cGM4d3JHYm1ZamMyWTN2RU1nUlhhbjFvbHJ3cGlsZGd5?=
- =?utf-8?B?T0RGVlVnakhzZVIyR1ZKNmhkQ2NJWGY1VW1ybGczU0tWQmo0aXlWWGx1Ymta?=
- =?utf-8?B?QlBXWS9tbVR4a2x6WXZmcEp0ejJMUGpLcTBEZTJ1RS94bHVtelBGRVVTSHFy?=
- =?utf-8?B?eUJRTlgyYlhvVGpEa0VVTEpjeHNBOGo1cTc4VGRTeXFNbm5BRW01ejNncGJo?=
- =?utf-8?B?cjNMZmtMT2hFNFZZd0NKY3JjRkpMTzZFcjdEQ2FOYWk2MWxrZzdBRnhjdG5o?=
- =?utf-8?B?aGwrVzlQZGRkZGRhVEREWmcrR2daVUtFT2tPSEdOc3kwbU1qME1LU21tYkhK?=
- =?utf-8?B?WU5iMUJSRjRVbmN5eE5qWk83YVloalFOSG9yNVJvVVhMRG1yT2IrS2I2S2s0?=
- =?utf-8?B?N09qdUJHazJiZ3dER21USnFFRzdFVnBqa1c4OHpVem1tSWNMOXVTMVJlcEdx?=
- =?utf-8?B?MS9WUWFIN1JRZWwrdnRET2YzaFdTL0w2Vlo4dmZtK1U5VnlyY2w5Ky84alUx?=
- =?utf-8?B?MmxNNWNpVktzODc4QVZHd0xsMW9UcGYvQXJLbFlUSVhzZlpBa3Awb21HY0Yy?=
- =?utf-8?B?THZHeFBVUEtEL2hFVGFERU9RUThCNzkyVkRKVzU2LzUrK0IyZzRhcndZb1Z4?=
- =?utf-8?B?UlN5bjF1WnVuMTBQaS83Z3pyS3pZR0MvNWVrSUFKYW9XeHBIeDdsbndzSFlp?=
- =?utf-8?B?M0RzczNKeGVsQmZDUUx6Mm1sODNRNVhiazZCL3FNQjFsOGVYVGR2MUprdXVL?=
- =?utf-8?B?UHA5OHJDL3FLbzFYUHhEaFhhSDlsblV6cFIycFVIVUZzNmNuWHFCWDBKcTBx?=
- =?utf-8?B?MnZoeHZZcnYvWDZGcEE4ZGl0TXc2bFRON0dYOFkvVTZ3dFNVTE4zNkJNZ1JI?=
- =?utf-8?B?Q1E9PQ==?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1360776-e8db-4c56-194f-08daf7d5d394
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 15:24:57.8638
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RepnBPDEdvxNjwQ3SkCtlePBCUODJ2AAXwAcin0zZoquq2StD6a+0WdzWvaoYaQ3wMC5AXQTB3FtaqCG4JLffw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6375
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+V7:
+- The bulk of the patches for this series have been merged.
+  There are still four patches to be pushed/updated.
+- Adds clocks for msm8974 - Dmitry
+- Adds compat strings for sm8150, sm8350, sm8450, sm8550 - Dmitry
+- Changes last patch in series to state - Rob
+  compatible:
+    contains:
+      const: qcom,mdss-dsi-ctrl
 
-On 16/01/2023 14:54, Jon Hunter wrote:
-> This series adds USB device support for Tegra234. 3/5 patches were
-> originally part of the series to add both USB host and device support
-> for Tegra234 [0]. However, the series was getting quite large and so I
-> have split this into a separate series but calling it 'V4' to indicate
-> that this is not completely new either.
-> 
-> I have added two more patches in this version to fix DMA coherency for
-> Tegra194.
-> 
-> [0] https://lore.kernel.org/linux-tegra/20221114124053.1873316-1-waynec@nvidia.com/
+link: https://lore.kernel.org/linux-arm-msm/20221223021025.1646636-1-bryan.odonoghue@linaro.org/
+
+V6:
+- Squashes a number of patches per Krzysztof's comments on bisectability
+- Adds in Acked-by Rob and Krzysztof 
+
+V5:
+- Adds compat strings to bindings/display/msm/qcom,SoC-mdss.yaml - Dmitry
+- Re-orders simple fixes to the start of the series to allow backports - Dmitry 
+- VDDA and drop of node-names - Krzysztof
+- Deprecates qcom,dsi-ctrl-6g-qcm2290 - Krzysztof, Dmitry
+- Expands set of updated files to include new msm8953 - bod
+- Converts to agreed compat string qcom,SoC-dsi-ctrl hence
+  -              - qcom,mdss-dsi-ctrl-msm8996
+  +              - qcom,msm8996-dsi-ctrl
+- Adds RB where indicated for the compat strings.
+V4:
+- Moves the update of the example from patch #5 to patch #4
+
+V3:
+- Moves declaration of mdss-dsi-ctrl into compat string declaration
+  patch - Krzysztof, Dmitry
+- Renames qcm-2290 compat string to agreed compat "qcom,socname-dsi-ctrl"
+  Dmirty, Krzysztof
+- Adds empty line after if clause in yaml control flow section - Dmirty
+- Adds Rb/Ack - Krzysztof, Dmitry, Doug, David
+- vdd*
+  Looking into this some more, I don't believe vdd, vdda, vddio ought to be
+  required properties. Its up to the PCB manufacturer and the panel in-use
+  how that panel is powered. Powering the panel is not something that
+  even necessarily needs to be done from the dsi-ctrl driver.
+  Originally marking vdd* as required in the .txt was an error, its not a
+  SoC level dtsi requirement.
+- clock-names
+  Rather than replicate the clock-name in each if block I listed them with
+  a specific description from a similar reference in usb/qcom,dwc3.yaml.
+ 
+https://lore.kernel.org/linux-arm-msm/eb80681f-2e0b-605f-0444-ec65562f74b8@linaro.org/
+
+V2:
+https://www.spinics.net/lists/linux-arm-msm/msg116326.html
+
+- Moves the DSI PHY changes to a different later series.
+  There are enough dsi-controller-main changes to justify its own
+  standalone series.
+
+- The original phy-name binding change given discussion with Rob and
+  Krzysztof became its own standalone series that has since been merged.
+  https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg403214.html
+
+- Retains the drop of power-domain from yaml as a required property.
+  I dug into the available dtsi. The apq8064 doesn't appear to have any
+  GDSC which can be attached as a power-domain, which means the
+  power-domain requirement is not universal across the various silicon
+  versions.
+
+- Adds Dmitry's RB to power-domain drop
+
+- For the clock declarations I've
+  * I noticed that the simple change I had worked for msm8939 but
+    subsquently broke other dtsi which drove a bigger change to document
+    the clocks on a per compatible basis.
+  * Added compat strings in yaml.
+  * Moved the allOf down later in the file to acomodate the if/then.
+  * Number of clocks validated on a per compatible basis
+  * The driver code which doesn't care about the number of clocks
+    can still operate on the mdss-dsi-ctrl compat but the dts checks will
+    validate against the compat string and yaml.
+
+- vdd descriptions
+  Took the previous text I missed from the .txt file - Krzysztof, Dmitry
+  Adds vdd, vdda and vddio to the required list. This exposes warnings in
+  existing dtsi but the previous .txt declared these regulators as
+  required. - Krzysztof
+ 
+V1:
+This series fixes up a number of dtbs checks which are being flagged adding
+in the msm8939 dtsi.
 
 
-I am re-sending this because ...
+When converting from .txt to .yaml a number of the parameters for the older
+msm8916 silicon were not transmitted into the yaml.
 
-1. I am missing my sign-off in a couple patches
-2. I forgot to add the version history for some changes.
+Adding in the msm8939 which is a near 1:1 copy of the msm8916 in terms of
+dtsi triggers a rake of dtbs checks as a result.
 
-Jon
+https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg403211.html
+
+Bryan O'Donoghue (4):
+  dt-bindings: msm: dsi-controller-main: Add compatible strings for
+    every current SoC
+  dt-bindings: msm: dsi-controller-main: Document clocks on a per
+    compatible basis
+  dt-bindings: msm: dsi-controller-main: Add vdd* descriptions back in
+  dt-bindings: display/msm: Add list of mdss-dsi-ctrl compats
+
+ .../display/msm/dsi-controller-main.yaml      | 261 ++++++++++++++++--
+ .../bindings/display/msm/qcom,mdss.yaml       |   3 +-
+ .../display/msm/qcom,msm8998-mdss.yaml        |   8 +-
+ .../display/msm/qcom,sc7180-mdss.yaml         |   6 +-
+ .../display/msm/qcom,sc7280-mdss.yaml         |   6 +-
+ .../display/msm/qcom,sdm845-mdss.yaml         |   8 +-
+ .../display/msm/qcom,sm8150-mdss.yaml         |   8 +-
+ .../display/msm/qcom,sm8250-mdss.yaml         |   8 +-
+ .../display/msm/qcom,sm8350-mdss.yaml         |   6 +-
+ .../display/msm/qcom,sm8450-mdss.yaml         |   4 +-
+ 10 files changed, 277 insertions(+), 41 deletions(-)
 
 -- 
-nvpublic
+2.38.1
+
