@@ -2,101 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A5466C223
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:24:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52B4866C0E0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:05:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232541AbjAPOYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 09:24:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57044 "EHLO
+        id S231776AbjAPOFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 09:05:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232828AbjAPOXu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:23:50 -0500
-X-Greylist: delayed 385 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 16 Jan 2023 06:08:28 PST
-Received: from smtp-8fa9.mail.infomaniak.ch (smtp-8fa9.mail.infomaniak.ch [IPv6:2001:1600:3:17::8fa9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DD0274AF
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 06:08:28 -0800 (PST)
-Received: from smtp-3-0000.mail.infomaniak.ch (unknown [10.4.36.107])
-        by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4NwYc90nXCzMqcMb;
-        Mon, 16 Jan 2023 15:02:01 +0100 (CET)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4NwYc81GLdzGsp;
-        Mon, 16 Jan 2023 15:02:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1673877721;
-        bh=A6GZwkHnaoIZ28gxZUhGOXzEzh7g91KUo/Qw0h2sKB4=;
-        h=From:To:Cc:Subject:Date:From;
-        b=TKYlhNeXlGFMKUiXm+/BS6fmCAtv53XpEYN8DQwHLt46AHrZdFVcNecmDMtHtcdiU
-         k2mGbd4GTydvxcQCJdaW7uHqgZEYoUHAU+14U1MDwjsuLMEYjAIUDx9oKLG21b552p
-         Oq8D9JQ4Omcf/3DENcTx+z6puBxwCytsM5LzT4m0=
-From:   Philippe Schenker <dev@pschenker.ch>
-To:     devicetree@vger.kernel.org
-Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mm-verdin: Do not power down eth-phy
-Date:   Mon, 16 Jan 2023 15:01:52 +0100
-Message-Id: <20230116140153.23938-1-dev@pschenker.ch>
-X-Mailer: git-send-email 2.39.0
+        with ESMTP id S231822AbjAPOE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:04:26 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B532522787;
+        Mon, 16 Jan 2023 06:03:06 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30GE2qDv027761;
+        Mon, 16 Jan 2023 08:02:52 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673877772;
+        bh=RvMrcOnoZ7zgQpoByxWk6Ame8Dz6zp6IIoFQ6RO6aKQ=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=S1tN0bU7HnADi66c4at+4QyhtV4MXAEI56IaKbTHwbpgq029ARSJkNOgJoSFCTjav
+         nTfgfGAJI95/+SAj8JaIL1N0+UK4xkwSEpvkSPl4ttMyuJAJFa4eBb28VK/5VCBRKj
+         KgkU8fD4dy7BTXLesIWQ2zD/oeOBOINIBJSeVOyo=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30GE2qtm000586
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 16 Jan 2023 08:02:52 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 16
+ Jan 2023 08:02:52 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 16 Jan 2023 08:02:51 -0600
+Received: from [10.24.69.141] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30GE2m1C001156;
+        Mon, 16 Jan 2023 08:02:49 -0600
+Message-ID: <6740eba8-5473-28ad-94f2-5e433c02c2b1@ti.com>
+Date:   Mon, 16 Jan 2023 19:32:48 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V5 2/3] arm64: dts: ti: Add initial support for AM68 SK
+ System on Module
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>
+References: <20230116071446.28867-1-sinthu.raja@ti.com>
+ <20230116071446.28867-3-sinthu.raja@ti.com>
+Content-Language: en-US
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <20230116071446.28867-3-sinthu.raja@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Infomaniak-Routing: alpha
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Philippe Schenker <philippe.schenker@toradex.com>
+Hi Sinthu,
 
-Currently if suspending using either freeze or memory state, the fec
-driver tries to power down the phy which leads to crash of the kernel
-and non-responsible kernel with the following call trace:
+On 16/01/23 12:44, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> AM68 Starter Kit (SK) is a low cost, small form factor board designed
+> for TI’s AM68 SoC. TI’s AM68 SoC comprises of dual core A72, high
+> performance vision accelerators, hardware accelerators, latest C71x
+> DSP, high bandwidth real-time IPs for capture and display. The SoC is
+> power optimized to provide best in class performance for industrial
+> applications.
+> 
+>     AM68 SK supports the following interfaces:
+>       * 16 GB LPDDR4 RAM
+>       * x1 Gigabit Ethernet interface
+>       * x1 USB 3.1 Type-C port
+>       * x2 USB 3.1 Type-A ports
+>       * x1 PCIe M.2 M Key
+>       * 512 Mbit OSPI flash
+>       * x2 CSI2 Camera interface (RPi and TI Camera connector)
+>       * 40-pin Raspberry Pi GPIO header
+> 
+> SK's System on Module (SoM) contains the SoC and DDR.
+> Therefore, add DT node for the SOC and DDR on the SoM.
+> 
+> Schematics: https://www.ti.com/lit/zip/SPRR463
+> TRM: http://www.ti.com/lit/pdf/spruj28
+> 
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> ---
+> 
+> Changes in V5:
+> =============
+> Address review comments:
+> - Remove the unessential comment.
+> - Remove alignment property from secure-ddr node, as no memory is allocated out
+>   of this region.
+> 
+> No changes in V4.
+> 
+> Changes in V3:
+> =============
+> Addressed review comments
+> - Removed the unused nodes that are disabled by default.
+> OSPI support will be added once the OSPI node is enabled for J721s2/AM68 in main DTSI.
+> 
+> Changes in V2:
+> =============
+> Address review comments
+> - drop the empty lines.
+> 
+> V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-3-sinthu.raja@ti.com/
+> V2: https://lore.kernel.org/lkml/20221107123852.8063-3-sinthu.raja@ti.com/
+> V3: https://lore.kernel.org/lkml/20230110110052.14851-3-sinthu.raja@ti.com/
+> V4: https://lore.kernel.org/lkml/20230105151740.29436-3-sinthu.raja@ti.com/
+> 
+>  arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 29 ++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+> new file mode 100644
+> index 000000000000..e92431250729
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+> @@ -0,0 +1,29 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "k3-j721s2.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		/* 16 GB RAM */
+> +		reg = <0x00 0x80000000 0x00 0x80000000>,
+> +		      <0x08 0x80000000 0x03 0x80000000>;
+> +	};
+> +
+> +	reserved_memory: reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		secure_ddr: optee@9e800000 {
+> +			reg = <0x00 0x9e800000 0x00 0x01800000>;
+> +			no-map;
+> +		};
+> +	};
 
-[   24.839889 ] Call trace:
-[   24.839892 ]  phy_error+0x18/0x60
-[   24.839898 ]  kszphy_handle_interrupt+0x6c/0x80
-[   24.839903 ]  phy_interrupt+0x20/0x2c
-[   24.839909 ]  irq_thread_fn+0x30/0xa0
-[   24.839919 ]  irq_thread+0x178/0x2c0
-[   24.839925 ]  kthread+0x154/0x160
-[   24.839932 ]  ret_from_fork+0x10/0x20
+Thank you for making the updates,
 
-Since there is currently no functionality in the phy subsystem to power
-down phys let's just disable the feature of powering-down the ethernet
-phy.
+Tested-by: Vaishnav Achath <vaishnav.a@ti.com>
 
-Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+Bootlogs during my testing :
+https://gist.github.com/vaishnavachath/64b58be41028c646b06568a73faed2fd
 
----
+> +};
 
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index 7e8b3b0fa306..4df3c9760151 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -102,6 +102,7 @@ reg_ethphy: regulator-ethphy {
- 		off-on-delay = <500000>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_reg_eth>;
-+		regulator-always-on;
- 		regulator-boot-on;
- 		regulator-max-microvolt = <3300000>;
- 		regulator-min-microvolt = <3300000>;
 -- 
-2.39.0
-
+Regards,
+Vaishnav
