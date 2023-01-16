@@ -2,164 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 995B066C71D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 17:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13CA866C775
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 17:31:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232993AbjAPQ2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 11:28:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46490 "EHLO
+        id S233327AbjAPQbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 11:31:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233105AbjAPQ1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 11:27:55 -0500
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2101.outbound.protection.outlook.com [40.107.114.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9FB82CC7B;
-        Mon, 16 Jan 2023 08:16:08 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fvsNtx+SSWnUBGmdeuyKkxRdrSsElF45YdaxHVoPyiGQOcehsc7Z2psYwsX2PEKdOh9lMf873lhj1GO5Lh2z7gt4JqjKpFiHIpp19sPQ7y0KMwId1U8zyb/VKTT4rVvrlBSna6bnd/b98EehjUDAb2r4aI2tPp3ROvKF4yGBho3E4syzsH4F6Y9Gc1H50FbVwwXkITrtdB05K9rbrjNWn/LPwflgHMz2CnCnQH09fD9OcA+Vm/SDNGaZax2SsTcEqwCPiC1XwkzBDb3SOV7gxkl4otRSXiSCPYM3BkKOqsT5p3IIye/GcdZU597DbnTYdqElqp8V7O/PpEn7qae7jQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lxv+dPh+bOQwgoJkkFP8JRBfnL+PFPHZ99qYcR9zRpY=;
- b=FXLJaVeItSQMMJtz5tX3cXKjG7Y4niB2Al8k5zNFSAE2qjhZvo38CMEOhpJDQHnHvKXxZ31TtPp8o2K6IvJcYThGc6t8/M7qkQKeKuLE8W9siah3DfOVQrcurJCT4wn1et2w9aR9ob2Uri4nfUacHC9FHzDVtCWgXwhMFT2ougDI/nZ5v5yBZajWUnpB5/FI02Pkxd9iR3rSRGBWm07u6vEXVRHeircUb6jjPFAwxYdYeDbAd53xTPYpLmY8pUd3f1GzbhvGD9++uKPrNegV6z+F80h8xOx+xK/FrhviRQG7ntgQrRp+0t949d/fPnW4HF3Ikv1LaJKfDTVbnB4nSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lxv+dPh+bOQwgoJkkFP8JRBfnL+PFPHZ99qYcR9zRpY=;
- b=SL1tU+cIm0wFILXHfuQwU/cJGTwhyMOlLnDqZ2F6R5Ugxk6UuNL7/OV/pfJqf/cbQJc5mnBHtY0UXs9c1x5sprnQpFlAs1O0G57osvG4W5+h/3o6mJrG9YVHjbAklRG/sLcz83k1Z8W2yCi87PomXRFIO4Rk2GmfCc/7eMVGWaM=
-Received: from TYWPR01MB8775.jpnprd01.prod.outlook.com (2603:1096:400:169::11)
- by TYCPR01MB10809.jpnprd01.prod.outlook.com (2603:1096:400:296::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.12; Mon, 16 Jan
- 2023 16:16:06 +0000
-Received: from TYWPR01MB8775.jpnprd01.prod.outlook.com
- ([fe80::9459:ffa9:a884:8a8e]) by TYWPR01MB8775.jpnprd01.prod.outlook.com
- ([fe80::9459:ffa9:a884:8a8e%3]) with mapi id 15.20.6002.013; Mon, 16 Jan 2023
- 16:16:06 +0000
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfram Sang <wsa@kernel.org>
-CC:     Magnus Damm <magnus.damm@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: RE: [PATCH v2 1/2] dt-bindings: i2c: renesas,rzv2m: Fix SoC specific
- string
-Thread-Topic: [PATCH v2 1/2] dt-bindings: i2c: renesas,rzv2m: Fix SoC specific
- string
-Thread-Index: AQHY8skVBomaV6jUGEK4jsDHAveVPa4zyxuAgG3aDjA=
-Date:   Mon, 16 Jan 2023 16:16:06 +0000
-Message-ID: <TYWPR01MB8775AA3197A830F8769C01F4C2C19@TYWPR01MB8775.jpnprd01.prod.outlook.com>
-References: <20221107165027.54150-1-fabrizio.castro.jz@renesas.com>
- <20221107165027.54150-2-fabrizio.castro.jz@renesas.com>
- <b5f881b7-1f59-623a-a126-d7827dec85fe@linaro.org>
-In-Reply-To: <b5f881b7-1f59-623a-a126-d7827dec85fe@linaro.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYWPR01MB8775:EE_|TYCPR01MB10809:EE_
-x-ms-office365-filtering-correlation-id: 27404065-2861-4a0b-34c1-08daf7dcf8cf
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KejuE3ZD+CkeKtut8N/Qagop7FD6vshOTyhv06PCtfr9NBQPavi+al8k+8oRFMQj4XYLmaoQiMG/MgfD0J9H0GGAwtF4LAW+ptj6EUGFkpNrLjKFUJFyC9KCh/vRV2Poet8tJ0ZepOKwKNrvNztginp7zWnkpiwDKH+u1jIENyM5e/Tn/urVo3n57ngDY2ak4/NweacZfVGkQ/AjJEqomfrZud6vB31baFjC+hyDfJJWE9dO6xbVVHtpnWR+0jSTI4zrf5wjJDHJgSLn8M+2hyRRdykOZdNu2JOD2RmiUlnXchkXY+waDW+E1/XGfLoIGBp8Bi5NUPHJhbm4WGDkqw3Kwo1UX9VJ3yVXQKRyo6nxXvhqHv6Edn8f+/HnE6Bv0+zvJ6OwRaE6iFrPcaPhctLcgRtj2v5kAhphjTH/rVFabTes8Y0Vh7AQz9sHw9XPSWlqHt2b9lW05yOROIfKknlAbW+8zvgDHjHiHSgLVG5VwKJ1peNGPgCnhrSZ+KhkZIPTlpMdsQA9zJsJqqzBAjaruNvuxjwKl7zSBFEiY8p8kb2/964U2RMlHiaOvxwrDlwX8i6KTOzGeQmtZlBRjfxab+wJs+MJYx3TiA4zYgnmhtBxy4Nkl2ff9p7eFERq30Yj69ZLrLdQ+zNq4aB8qHq+9IguOUzn3ih0jT5OvCOtkhsAUaOwZr3b/vqejxtBhTgVqVUHmrCDnZG/t42M+g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYWPR01MB8775.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(136003)(346002)(376002)(366004)(451199015)(8936002)(76116006)(86362001)(66446008)(66476007)(64756008)(52536014)(66946007)(83380400001)(8676002)(4326008)(38070700005)(55016003)(33656002)(122000001)(38100700002)(5660300002)(110136005)(478600001)(66556008)(7416002)(41300700001)(7696005)(2906002)(54906003)(9686003)(6506007)(53546011)(26005)(186003)(316002)(71200400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SjdxV1RqZ2U5QXhReWpqSzlyWUNVYzhUNSt6UE56akt2OUZmNjdyZHN4V05s?=
- =?utf-8?B?QnJ2RENONC9Yb1ZXclJSZnY1WXdtMFZHSUY5UTJndGR3aGs3YUtrU3JVeElB?=
- =?utf-8?B?d1UvQUpNdkN4cVYxUXJHS1puY1NSSDhTb1FZK3NzalBacWRIWjFQUnNqOHhv?=
- =?utf-8?B?RVZtYnA2dnJPZVJ3aG56dDhhOGMxeFdUM1ZsbDd0RzZWRnRqYnp1clZQbTFQ?=
- =?utf-8?B?aWxDcWUwbHNCSWNZNStjY2dqOW9pMEQwbzN0d29QMmhZZ2hZeWVmd1FGMmNm?=
- =?utf-8?B?NmVSTzYzYnd3clNNd2EveGV0aitEOVZaTGVSZmN2MTNLWjBRSDdLczZEZ2pV?=
- =?utf-8?B?Y1pWY0NzQVozQmFyc3pSaGtGbHlwaW92NU9wZkdwTENTRklIZUdMOGVJZHY2?=
- =?utf-8?B?RGh4SDFpRUZ2RktXVEIySWNRT1FCcUk4N2VvTGZONGNacVljNWZpOXo3dnBO?=
- =?utf-8?B?aGppcjRaMGRSLzF5WFAwT0wwNk82SWZxSTdSNEd4SmNFZFpHYy83S21vTkVH?=
- =?utf-8?B?QUQwMzBFUVpDUG45cm9xb2wxaDJoNmNBVUtEMVpZR3VXN0toSmVaZUdmdnpV?=
- =?utf-8?B?bkpKNU9ER2ZoM1BhMGZuZnBRclpUbU5tSlp4bk1rcThSWVpqL0NOY2hheHk2?=
- =?utf-8?B?eEM3dFNEZ2ZWaG5nZWVPUzVsVmtsajRWNUo0UVg5a0dSVHRsaVkzZE1BS2g5?=
- =?utf-8?B?RjlnQ00xRWlBRDNGTms3ME5DMnNNRmJ4Y3prRkRGYjVYRkxXN2Q0ZGJDNTQ2?=
- =?utf-8?B?UFcyNS9jVnp3U1NvdjFJUkMyanZsVEF0MktuSzcvWVpBdkRzY2hPVG9SRXAw?=
- =?utf-8?B?MU1DNFFRdGZxUnYzdkxBWDJDMjFvUjZyR2kyQnRRTVV3SE5SMWY5MFFCQTll?=
- =?utf-8?B?TUV0YVJpTGF1ck01dEM4U3ZlclZGRWFGY1RUU2ZVR29zbVRnWUNNS3hFSUNz?=
- =?utf-8?B?SWEveVFzUm9uMmw4K1dEK3NjWkp1a1NKbGgwYWRCbTljSjh6YzFCZDBPSnVo?=
- =?utf-8?B?alUyUTl0R1o2b1kvUmdvUk1peG44RHpEYVBsTWlON1pST0JyeExQODlrbmRQ?=
- =?utf-8?B?ZklvdFEwU0xnK291RHFkNkpMbkVlVEZiRXlZMCtWTFJtSmRpZTJpZURaZklp?=
- =?utf-8?B?Q1dsMTd1SExlQ1BPd3crWGhrOGNmV1RnOHpIYUlmZFMrZVZCYWF0Zm1JeE1U?=
- =?utf-8?B?VC9rS0hJa3M4Tkp1VEU2SUxKSmt0cDNCNUVGKzNNRFBLM2JndmZFRDA2eldJ?=
- =?utf-8?B?MnFEbEhMMWw3b3NVc0xiU2pGZzlpVkN3b1RZdG1uNktVQmJBakp3MjZwb1Jv?=
- =?utf-8?B?cThMYWk5Umwwbmc3N2pLQlBNRG5zMjZhUHpPck1FQXRhYmIzZVhMTXJDV05t?=
- =?utf-8?B?bTVGUCtKejRhVGt6VzgzUVpVV1NyOXpucVQ3YXNqQUxCcTA2QUdZK2RMbUpu?=
- =?utf-8?B?NktYaG9sN291S21Ca05FY01kQnpYb2VBcU9pSndma2tudGUvM0VsYTNsdGdB?=
- =?utf-8?B?VWZOUlRXa0s1T2V5cVM5ams2YzZVWkdWQm1EK3RJODZ0b2t0WUhDWElsWFJm?=
- =?utf-8?B?M0o0dDZMMzF4U0VZZXhNUldnckpGTXZSZndCNHhyVndtNGp2KzViWkJhRkFT?=
- =?utf-8?B?MlJGakQ5alBCOVNSTnFqUmtFZHZUN3poV0tPcjdkWUl2NGFSbkdHVHZNSW9I?=
- =?utf-8?B?Tk9LQWhiK0RnNHFUR3c5eTR0cjZ6UjI5MDJKckRTdFFCT1VhTVZ1NGxDcjRT?=
- =?utf-8?B?aEx4SXJEbHl4STAzYzFtb2pzc3JPM01ZUGliVHI1Zm1IcUVPR3BpOWtNMUxu?=
- =?utf-8?B?S3dMRTJWZnl3MFJoUzBIc1NaZERZdjMwbkZWbk01MXRkdzhqdU9STEgya3lH?=
- =?utf-8?B?alI4S0lKVXpqMThad2FWVG8wb1NINVFvQzhEdExyMjQzMlo0NGR5V0k5cEFz?=
- =?utf-8?B?blB5bStsZ3dxanFjdkg0L05MclhMQnd0NXpuOXpFTWZHQmlyY3E4TDlvaG42?=
- =?utf-8?B?TXd6bVdBcDBrOExHVWJ2MG4zSzhTZ0NBNEpMeUJuaytzYnh2ZmQ4QXpFV0sy?=
- =?utf-8?B?TFU2R2ZQTUJRWndqSVUvL2tWOUxyQmI5OWxPQUROaS9sRGcyUGF6WS9wcTF4?=
- =?utf-8?B?UEY0OWd6WDZMazgyUHp1WEh6Z0VJQ0JldEVpZkU4VDFzUVF1ZGlsVitnM2lS?=
- =?utf-8?B?eWc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S233240AbjAPQat (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 11:30:49 -0500
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6473274A7
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 08:19:03 -0800 (PST)
+Received: by mail-pl1-x62e.google.com with SMTP id jl4so30782879plb.8
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 08:19:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:subject:to:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QkZ6p1sWM6e327+u9DFI968nqnYYqypY+VMbq4nZJio=;
+        b=MM9f3TBYs7nt1Q8xbmpAJTyQBecU4RriGQYs/0dBETh7Cgc5eZyZ9KBS+PmrmBcru7
+         vInyI9hzCwkbyTn5E+pyKBiXc0RMkbSfUIYZR6NRcdBeTCwhF9GTfOFgmtBaTrq5nh0y
+         Wx7259mb4fb8vICNaTBBjkkvlg9NkSbmi0O3q1PwpIAqFPtxi1SBSrp87r5PxXyWv0ps
+         skST7AGo0lL+n+eaIz9/Nb4IsE4VRc8BXeTCQSBN+gmcIvrdjK7sQLjCt6OQvNRg6YRE
+         0aINg7ClTouUIDmOt2Lz/pEr+CKy62u4Omev9TMqi2ec8ZtcBtCB1yR0108e16q6D7KQ
+         3dMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:subject:to:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QkZ6p1sWM6e327+u9DFI968nqnYYqypY+VMbq4nZJio=;
+        b=uvb2ti/iJ6VuaUQyKq/gwt3Zr37ZaCf7JCY4MdRPVntGmGy0NnOD/1EoZbk+OGNLkE
+         hWRNuaAALnwxxSHwLiaErPr4D8P3C1bj+JXi6gHaAc62p/KhwGVSdbK8VvZfcdm+RLsi
+         JYhmdKA6Gqey+L4EOnm+taMsfcxVBmdz4H80kVgJc99W0fh49NUV8Yl1tLUA+kYb1VI4
+         OYcZV2gMQ9N/j+qiOvRNIJmNyLysBnV72VgJDKomCW8YmgozDCN29CDICb8CMNPyymXw
+         KPiXF1yLeS0X0dKYjWkCEhA9s5zhtBreG17fk8LFkbsiLY0e4gw513eWeVjIScdpfEqE
+         hlrA==
+X-Gm-Message-State: AFqh2kpSRq2s7i1gMIdP3YcEUeYhvWwld2R7gmJdUNjcasHdP37lYETm
+        kLJVlogaiMqf4JTv+uuoYnfI/Q==
+X-Google-Smtp-Source: AMrXdXv7lZMThAWNboYgauo+mDkEGcyy7Jml1WsBvoJ/U1kb1cvMKZyTC0crrdxBz09gXiqSYr049w==
+X-Received: by 2002:a17:902:c401:b0:193:e20:a5a9 with SMTP id k1-20020a170902c40100b001930e20a5a9mr398065plk.15.1673885943235;
+        Mon, 16 Jan 2023 08:19:03 -0800 (PST)
+Received: from ?IPV6:2401:4900:1c60:63d3:2d69:9f71:187e:f085? ([2401:4900:1c60:63d3:2d69:9f71:187e:f085])
+        by smtp.gmail.com with ESMTPSA id im15-20020a170902bb0f00b001943d58268csm13200862plb.55.2023.01.16.08.18.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jan 2023 08:19:02 -0800 (PST)
+Message-ID: <3e18a79b-fdd8-63f8-c27a-7515bbb6cb9b@linaro.org>
+Date:   Mon, 16 Jan 2023 21:48:58 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYWPR01MB8775.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27404065-2861-4a0b-34c1-08daf7dcf8cf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jan 2023 16:16:06.5374
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zniw9YBBaxOvYjwGWlQvOQVxqIE3vaQgTxKsWZTEoAugtsV3HhyKMBLOibHoH6JkeU0j/R4eHrN9LJMiIehpe965/S42RwsHdMeXYxjA0vE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB10809
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+From:   bhupesh.sharma@linaro.org
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, andersson@kernel.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH] dt-bindings: qcom: geni-se: Fix '#address-cells' &
+ '#size-cells' related dt-binding error
+References: <20230113201038.267449-1-bhupesh.sharma@linaro.org>
+ <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org>
+ <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
+ <b9aa6d30-5fe8-57a9-e478-c99bca70d185@linaro.org>
+ <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
+ <23b4551c-db79-d859-c037-6ed3c8a11883@linaro.org>
+ <6f08d466-9589-ebff-c38d-bf9015a0f6ad@linaro.org>
+ <64e4b3b0-fc71-1876-9de8-e51d503d6183@linaro.org>
+In-Reply-To: <64e4b3b0-fc71-1876-9de8-e51d503d6183@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RGVhciBBbGwsDQoNClRoaXMgcGF0Y2ggaGFzIGJlZW4gcmV2aWV3ZWQgYnkgYm90aCBHZWVydCBV
-eXR0ZXJob2V2ZW4gYW5kIEtyenlzenRvZg0KS296bG93c2tpLiBUaGUgY29ycmVzcG9uZGluZyBk
-ZXZpY2UgdHJlZSBwYXRjaCBoYXMgYWxyZWFkeSBiZWVuDQp0YWtlbiwgSSB3YXMgaG9waW5nIHRo
-aXMgcGF0Y2ggY291bGQgYmUgYXBwbGllZCB0byB2Ni4zPw0KDQpUaGFua3MsDQpGYWINCg0KPiAN
-Cj4gT24gMDcvMTEvMjAyMiAxNzo1MCwgRmFicml6aW8gQ2FzdHJvIHdyb3RlOg0KPiA+IFRoZSBw
-cmVmZXJyZWQgZm9ybSBmb3IgUmVuZXNhcycgY29tcGF0aWJsZSBzdHJpbmdzIGlzOg0KPiA+ICI8
-dmVuZG9yPiw8ZmFtaWx5Pi08bW9kdWxlPiINCj4gPg0KPiA+IFNvbWVob3cgdGhlIGNvbXBhdGli
-bGUgc3RyaW5nIGZvciB0aGUgcjlhMDlnMDExIEkyQyBJUCB3YXMgdXBzdHJlYW1lZA0KPiA+IGFz
-IHJlbmVzYXMsaTJjLXI5YTA5ZzAxMSBpbnN0ZWFkIG9mIHJlbmVzYXMscjlhMDlnMDExLWkyYywg
-d2hpY2gNCj4gPiBpcyByZWFsbHkgY29uZnVzaW5nLCBlc3BlY2lhbGx5IGNvbnNpZGVyaW5nIHRo
-ZSBnZW5lcmljIGZhbGxiYWNrDQo+ID4gaXMgcmVuZXNhcyxyenYybS1pMmMuDQo+ID4NCj4gPiBU
-aGUgZmlyc3QgdXNlciBvZiByZW5lc2FzLGkyYy1yOWEwOWcwMTEgaW4gdGhlIGtlcm5lbCBpcyBu
-b3QgeWV0IGluDQo+ID4gYSBrZXJuZWwgcmVsZWFzZSwgaXQgd2lsbCBiZSBpbiB2Ni4xLCB0aGVy
-ZWZvcmUgaXQgY2FuIHN0aWxsIGJlDQo+ID4gZml4ZWQgaW4gdjYuMS4NCj4gPiBFdmVuIGlmIHdl
-IGRvbid0IGZpeCBpdCBiZWZvcmUgdjYuMiwgSSBkb24ndCB0aGluayB0aGVyZSBpcyBhbnkNCj4g
-PiBoYXJtIGluIG1ha2luZyBzdWNoIGEgY2hhbmdlLg0KPiA+DQo+ID4gcy9yZW5lc2FzLGkyYy1y
-OWEwOWcwMTEvcmVuZXNhcyxyOWEwOWcwMTEtaTJjL2cgZm9yIGNvbnNpc3RlbmN5Lg0KPiA+DQo+
-ID4gRml4ZXM6IGJhN2E0ZDE1ZTJjNCAoImR0LWJpbmRpbmdzOiBpMmM6IERvY3VtZW50IFJaL1Yy
-TSBJMkMgY29udHJvbGxlciIpDQo+ID4gU2lnbmVkLW9mZi1ieTogRmFicml6aW8gQ2FzdHJvIDxm
-YWJyaXppby5jYXN0cm8uanpAcmVuZXNhcy5jb20+DQo+IA0KPiBSZXZpZXdlZC1ieTogS3J6eXN6
-dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiANCj4gQmVz
-dCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0K
+
+On 1/16/23 9:35 PM, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> 
+> 
+> On 16.01.2023 17:02, Bhupesh Sharma wrote:
+> >
+> > On 1/16/23 9:24 PM, Konrad Dybcio wrote:
+> >>
+> >>
+> >> On 16.01.2023 16:43, Bhupesh Sharma wrote:
+> >>> On Mon, 16 Jan 2023 at 13:23, Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> On 15/01/2023 22:33, Bhupesh Sharma wrote:
+> >>>>> On Sun, 15 Jan 2023 at 20:57, Krzysztof Kozlowski
+> >>>>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>>>
+> >>>>>> On 13/01/2023 21:10, Bhupesh Sharma wrote:
+> >>>>>>> Fix the following '#address-cells' & '#size-cells' related
+> >>>>>>> dt-binding error:
+> >>>>>>>
+> >>>>>>>      $ make dtbs_check
+> >>>>>>>
+> >>>>>>>      From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+> >>>>>>>           arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dtb: geniqup@4ac0000:
+> >>>>>>>                 #address-cells:0:0: 2 was expected
+> >>>>>>>         From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+> >>>>>>
+> >>>>>> Don't we want rather to unify the soc address range?
+> >>>>>
+> >>>>> Well, the assumption in the original dt-bindings was that every reg
+> >>>>> variable is 4 * u32 wide (as most new qcom SoCs set #address- and
+> >>>>> #size-cells to <2>). However, that is not the case for all of the
+> >>>>> SoCs.
+> >>>>
+> >>>> Hm, which device of that SoC cannot be used with address/size cells 2?
+> >>>
+> >>> As noted in the git log already the geniqup on sm6115 / sm4250 cannot
+> >>> be used with address/size cells 2 (See:
+> >>> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/sm6115.dtsi#L795)
+> >> SM6115 (and pretty much every other arm64 msm platform newer than 8916)
+> >> should be using addr/size-cells = 2 along with (dma-)ranges of 36 bit, as
+> >> that's what their smmus use and otherwise some addresses may get cut off
+> >> in translation, or so the story went with 845 N years ago.. We can either
+> >> pursue this patch or I can submit the 2-cell-ification if you don't plan on
+> >> adding more nodes shortly
+> >
+> >
+> > Have you tested this combination on SM6115 like SoCs with various IPs? I have tried a few experiments in the past and not all IPs work well with 36-bit DMA ranges (atleast not on the boards I have).
+> Can you list any specific examples? I've been using it for
+> quite some time now and I see nothing wrong..
+
+I remember seeing some issues with SDHC controller booting (uSD card use case) with sm6115, but I cannot find the appropriate dmesg right now.
+
+> >
+> > So, I think it might lead to more breakage (unless we are sure of a well-tested fix). A simpler patch to fix the dt-bindings looks more useful IMO.
+> I'm not saying no, you just have to convince Krzysztof :D
+
+:)
+
+Thanks,
+Bhupesh
