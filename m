@@ -2,529 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5537266B801
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 08:16:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DF8066B806
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 08:18:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231866AbjAPHQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 02:16:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42038 "EHLO
+        id S231786AbjAPHR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 02:17:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231808AbjAPHQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 02:16:16 -0500
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 005E02681;
-        Sun, 15 Jan 2023 23:16:13 -0800 (PST)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 0BC918108;
-        Mon, 16 Jan 2023 07:16:11 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231617AbjAPHR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 02:17:57 -0500
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2137.outbound.protection.outlook.com [40.107.104.137])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9982681;
+        Sun, 15 Jan 2023 23:17:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ya0bEAjGgRdVRIJVMidD/cqIn7wl9GT9F8u9LCHDmCNqcd1Q8XIL0bP1MzwwuZ41T9p0DgLoNQ/J/EB+2W94l7KP9fE45qEOODavR2VJA5qCRKmSR24I07mrpNqrgnIsNNgr6VN8JT1sbVb0HMtiA0WBg0jzgnT8SwiVtEt8r5nneAJKK22Ud0+t3zrZHSdEC7lLPXQPRTiN3/y3VlQT6LysUIGEklkZKUe9SCXIxVn2b0hzsW+/EhxdAtnPeiUkthvSUJx7aNvlfqspYD8+qgGWNhLRJzpb1kZ4nxHE/VLQRO8zyOX1kGc0750LS69w7BAHqN3WH4xrTdLtWtuAyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1ETlz3qwankEPnPMHjaRHiZ6JUZ/ChBWZSO+zkEqnEY=;
+ b=nLMsr0tDjOeQVLwdRjh9FdxX06sxI7xY5UtRleR6KcGjUq2THHAjpwPpEJ6ijeEcr7nZ3ReNieu5tshEiFjFRdlZjgJZI9mR5A4n4pu45+2egzu3kSPrLKLYbK+8Oz4vmo4grjBHXSywEkay6H58umgPvwWvTBYMD5SvOuoRXplQHBr4JIJMdTv3ZHE3GDhsASKuowvu1D4nVr5GR1DhTEKlGPTzet5aS230gb5TV8zCVOauce2Ai7AC+lm8buX/E7yBePk5v0StjojRgQ8FoBnZlRSIxeIUh3DYfV4hqcGtEe0iaqwMy/C1TPwJ73jzK3gN6XsrgoHA9iMoJ96jrQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1ETlz3qwankEPnPMHjaRHiZ6JUZ/ChBWZSO+zkEqnEY=;
+ b=apOUFwEv0pPz7DO7/24NRL1H9C10EST1KItA44f16vUv1qhCp115JN841vXVJ/I98pCqwjhOH/k3VYiRD32eha3Cw2pIxHi6yxzS+A+7W9jAB4uOUcXBvWuDBQsohDs/WBC41FrySkDH7DNx4GCI5dUsZ4RgNpsKFkLoZlippiU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axentia.se;
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
+ by DU0PR02MB9679.eurprd02.prod.outlook.com (2603:10a6:10:42d::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.19; Mon, 16 Jan
+ 2023 07:17:52 +0000
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::a30:dce8:eaa4:7687]) by AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::a30:dce8:eaa4:7687%4]) with mapi id 15.20.6002.012; Mon, 16 Jan 2023
+ 07:17:52 +0000
+Message-ID: <7ebc1687-d962-d087-aaba-33f62fa65f8a@axentia.se>
+Date:   Mon, 16 Jan 2023 08:17:50 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 2/3] i2c: algo: bit: allow getsda to be NULL
+Content-Language: en-US
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: [PATCH v3 1/1] dt-bindings: pinctrl: Update pinctrl-single to use yaml
-Date:   Mon, 16 Jan 2023 09:15:59 +0200
-Message-Id: <20230116071602.63788-1-tony@atomide.com>
-X-Mailer: git-send-email 2.39.0
+        Wolfram Sang <wsa@kernel.org>
+Cc:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <3a5545f3-f858-2c80-8bd4-2e0d401a1dc0@gmail.com>
+ <b70a9deb-5dc2-fbde-20f1-06b2a80c2697@gmail.com>
+From:   Peter Rosin <peda@axentia.se>
+In-Reply-To: <b70a9deb-5dc2-fbde-20f1-06b2a80c2697@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: GVX0EPF000013D4.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:144:1::10) To AM0PR02MB4436.eurprd02.prod.outlook.com
+ (2603:10a6:208:ed::15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR02MB4436:EE_|DU0PR02MB9679:EE_
+X-MS-Office365-Filtering-Correlation-Id: d54a6e38-7f32-45d4-0a22-08daf791c7f6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: K11ldp98tMdk2YIfv+xaJw8Oiqqae3kqhh1o0jVBSk98FChdkzOICq5DSgK9GuJb50Z4R5fHuCPR9t8c0lub0X6RaZ98mjkPPt0M1RV18hRxl4foutl0AxCQQD9XqntP9l++P7eq2/o3bRU0bTc+/i+T8kXZlqcRLjzZyu+WYLfZXqXEZ6YJQKex9pXf6R8O10kwNClnWBlI2u4lfaVesIeAd6+nYcIobPRpTYPeX+whCuemTh3f7XchFNPUEHx4RDku6ImgmgiNIFoDL1ezqCELANzpb5xliHw6KZpXxsF0FGrxgo2nGfsRsiHKI9+HDanatcGJc194qHujX1q6qxIpN+MF+V2svX3BQWg7YKaz/ADGgaPBBb27VqOAZWA+8Nb+jNq3xgwFQ1W9uk4Fq0SUdcV96RKE0TOmdhdXezCMO0/J+F/mjyNsmQF98Cb2hfMmC5gwaAXwXRTjpRpezBFn/11xgSx4EvMJQJp3H7sfYrvGt6bPYqQjvtH+tHoTSs3iAcbzSb9L/2mbVs9xrh/vk+Q9zPZDgCInLIOrPzJw4B9lYGj4XMzUFuj+f4C/tgrJNguDXexXzIky+0JKajSMr7dklkMDFVBzlBR/VzCkGUAG567op46u4hy/XsxEONKVZtqSe9NqlexWDx2XCiz22K7C22HvGNJ+wTlsfQmpLDs5wMtCwAZaCvhJ1emZCKs8WsmMquEXR/+QV3Ak/t4qmJVhilI7QkwRCvBea4o=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR02MB4436.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(396003)(366004)(376002)(136003)(39830400003)(346002)(451199015)(2906002)(316002)(110136005)(54906003)(26005)(36756003)(2616005)(38100700002)(83380400001)(5660300002)(6486002)(31696002)(6506007)(6512007)(86362001)(478600001)(186003)(8676002)(31686004)(66946007)(66476007)(8936002)(66556008)(4326008)(41300700001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SklWOEI0L0t4OURsTlpFeHZhMFlRYThOVzA0TmczRjZOWEs0cjVTZitWL2dh?=
+ =?utf-8?B?eDJqSUVZRWNOZXdrY1diVWwzY2hzcmxNWnZkN3ZJT1Z4Wll6L2dQNUZpd3l5?=
+ =?utf-8?B?V3ZNSjQ4Q1ZvcUJtMXFpM0NYTEd3QVp3U3NqbXpHeFBxbXlYa2NoNC9GOUMy?=
+ =?utf-8?B?dGRud3NGaWFtQ0luOXJyOTdURXRuZG9XeGlWdlU5QUNiVTRtRlY0NFdiaWFt?=
+ =?utf-8?B?VURSUGpEVTZkM1pRQnd0YUhUSm12aWplbTJiV0QwSFpVMjBwWGUwWFZRZnk0?=
+ =?utf-8?B?M3RQNWtOeWNodzNMNFpQVnRzem16Z29RaDdUanNzaGl1Und2RkV2NjVmbURO?=
+ =?utf-8?B?K0FVTnFieGw3RkFiUXBNVmlKaFFBaEp4bmt4VmJTYytja0dOSmg0SjFoaG1r?=
+ =?utf-8?B?R1ZVd1hhcVF2Z3E2dWFIbVlwSTh2OHpqQy9rcDlGOVB2clRmd01ET3V4aTFG?=
+ =?utf-8?B?VmdQNm5jUUR3MlBjaVRhRkZieGtmTGFZMWZsYVlrck10U2tCUWIwd0pxSzJX?=
+ =?utf-8?B?NzVqYTAvWWx0RHNaOENNM0xzNjZ0czIvK3g0UU1mb3JGTzJONjlGYnFhR2JZ?=
+ =?utf-8?B?UjhBMkxFSm5oNFhpLzFkWVBWY3BKV00yVE5KNU0yT3NLWThrZjl1NXp1VVF6?=
+ =?utf-8?B?aWJodXVRajZJdWlEUjM2ZXJBeUREOTlMS1BpTXVGcGZJM29lN3VIM3IvcDZv?=
+ =?utf-8?B?VkRnVXdFTkxvdlIzalNMSVZmazRIQjFMUUJHeitjWjZQeGtVUmN3QURPVThG?=
+ =?utf-8?B?eXRWUFdzeERINWpSRmZjRks1QmJqcEllUGNhdTYxNkd2eHdXdDF2QWFnTHpR?=
+ =?utf-8?B?RWRxKzZKRTRBeW43c004bS90eVV4Z29FaEFTeGY2WUFDYUIvaUVscDRWZW9X?=
+ =?utf-8?B?a2l4bm83bTZDNkUrbm9VY3RGQUNRWVVOQkQzL0xQZTlvS0krRW9NZFFKa3o0?=
+ =?utf-8?B?Qitva3QyM1hnMjl3clZ6NW5sZjV1c0tISzdnbXpxc2VCTGpiY3BYRFZYbUxw?=
+ =?utf-8?B?SlFqSVNKaGZXVHRzQmNwMy80VkFOU3Q1UjNmNDRINFZub0owLzhQRE50WG9N?=
+ =?utf-8?B?VktSa01SVW9EOFplcFFtd3QxTUpiR1RKdUlGOTV1c1VjOXQzWit3KzB4OGVz?=
+ =?utf-8?B?eVMvNlBFa2tsMmdRSFdiNldSY3VPNUQyRzNtQzllT1Mra2hQSVhURFJPRkNi?=
+ =?utf-8?B?TWJJNlBUdDVTUTJZdDRJZnhEVTJ1UDJadkIzMUVVMm1DWDVqOFpDakY3RTNj?=
+ =?utf-8?B?VXhkajJOWkJXekdZSks5aFVlQmQzeUlGWHJ1SVBoWG5uci9SbnZacklmQXhK?=
+ =?utf-8?B?eXUxcURuZE9zTWtUcFdmbGlnSUYrL3dmSWNYcDVVNWpIaHRSQWF2eGlzNUg5?=
+ =?utf-8?B?bFcrc0N1TWZxWG9ONGpIaVhSWmJPM2x0QUM3RmxtQVp4UGFLMk16SHVkeERP?=
+ =?utf-8?B?bXpybllFYURFNGdFK1Roa3dkMVhpZDkwQ3JsQzRYRGkzZk92OGNrVzdPQy9J?=
+ =?utf-8?B?SVRLNU1ac3ZmQUFraUhrSGtYTDMwVTg0bVdVbmlnTnp1d0ZRK2RLeW12NWdP?=
+ =?utf-8?B?Q1JJdjVaOXV0bFVMWEprODNocklZVE1jNGxRS3EwRlprYStRU3VINHZ4NEVm?=
+ =?utf-8?B?QWdWOEZPNE1YdHpyRGI4WlgwNUJieEZHNmlydWtCaC9xVkZZeFJUQlhoU0ZS?=
+ =?utf-8?B?ZTU0ZmMyRmw5ZXhjTVVoQUpVeHJYemFVbWlIdTg3SXRyTURObzFEZWlpK3Vu?=
+ =?utf-8?B?Mkd2cGs0eG54N2NxZFBtK0xON0hhM2Q1REVxWFRUK3Mvc09oT3N0K2IycXc2?=
+ =?utf-8?B?R1JGVXVKdXd4cXpOWEdRbUxJbGNua3pBS2h0RGp0OU8xNVhWTlh4LzNMU25l?=
+ =?utf-8?B?MC9YSTY3YXh2YkMwdTU3UHkrd1BPZEw5NXFKYnl5VEs2dDJTQUplelZMV1FW?=
+ =?utf-8?B?Vis0M2cyZjJnd2dtSmMya0FnK2JkWjZKUjRlZnBMVDF2bjA4bTV5UC9YVlk5?=
+ =?utf-8?B?Si93VTJZN1Z3SXp6RnQwRjBzZDQrNmVsRlBNTWJNd3huc0srMFByYmNCbUNU?=
+ =?utf-8?B?M2pHSlFKa1g0dzlIOEtOZ0l2RGZHaTJkR01pZVNzWXJrSDB5YzZUUXBWdFJ0?=
+ =?utf-8?Q?7QgpJDRD1AOsdMPgR+wgGY0d7?=
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: d54a6e38-7f32-45d4-0a22-08daf791c7f6
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR02MB4436.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 07:17:52.5017
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OjLPNxWhz5GZBfDm2HE+qo1jpkXkwdl+rTLC0pbgiz6Zs8+o0O4I7xN8ctsTjm+U
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR02MB9679
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update binding for yaml and remove the old related txt bindings. Note that
-we are also adding the undocumented pinctrl-single,slew-rate property. And
-we only use the first example from the old binding.
+Hi!
 
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
+2023-01-15 at 11:15, Heiner Kallweit wrote:
+> This is in preparation of supporting write-only SDA in i2c-gpio.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v3:
+> - check for adap->getsda in readbytes()
+> - align warning message level for info on missing getscl/getsda
+> ---
+>  drivers/i2c/algos/i2c-algo-bit.c | 16 ++++++++++++++--
+>  1 file changed, 14 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/i2c/algos/i2c-algo-bit.c b/drivers/i2c/algos/i2c-algo-bit.c
+> index fc90293af..a1b822723 100644
+> --- a/drivers/i2c/algos/i2c-algo-bit.c
+> +++ b/drivers/i2c/algos/i2c-algo-bit.c
+> @@ -184,8 +184,9 @@ static int i2c_outb(struct i2c_adapter *i2c_adap, unsigned char c)
+>  
+>  	/* read ack: SDA should be pulled down by slave, or it may
+>  	 * NAK (usually to report problems with the data we wrote).
+> +	 * Always report ACK if SDA is write-only.
+>  	 */
+> -	ack = !getsda(adap);    /* ack: sda is pulled low -> success */
+> +	ack = !adap->getsda || !getsda(adap);    /* ack: sda is pulled low -> success */
+>  	bit_dbg(2, &i2c_adap->dev, "i2c_outb: 0x%02x %s\n", (int)c,
+>  		ack ? "A" : "NA");
+>  
+> @@ -232,6 +233,10 @@ static int test_bus(struct i2c_adapter *i2c_adap)
+>  	const char *name = i2c_adap->name;
+>  	int scl, sda, ret;
+>  
+> +	/* Testing not possible if both pins are write-only. */
+> +	if (adap->getscl == NULL && adap->getsda == NULL)
+> +		return 0;
 
-Changes since v2:
+Would it not be nice to keep output-only SCL and SDA independent? With
+your proposed check before doing the tests, all tests will crash when
+adap->getsda is NULL, unless adap->getscl also happens to be NULL.
 
-- Drop old ti,omap-pinctrl.txt in addition to old pinctrl-single.txt
+So, I would like to remove the above check and instead see some changes
+along the lines of
 
-- Replace reference to pinctrl-single.txt to point to the yaml in ctrl.txt
+-	sda = getsda(adap);
++	sda = (adap->getsda == NULL) ? 1 : getsda(adap);
 
-Changes since v1:
+(BTW, I dislike this way of writing that, and would have written
+	sda = adap->getsda ? getsda(adap) : 1;
+ had it not been for the preexisting code for the SCL case. Oh well.)
 
-- The v1 version was a WIP patch posted as an example in thread
-  "dt binding check error with hash and comma"
+> +
+>  	if (adap->pre_xfer) {
+>  		ret = adap->pre_xfer(i2c_adap);
+>  		if (ret < 0)
+> @@ -420,6 +425,10 @@ static int readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
+>  	unsigned char *temp = msg->buf;
+>  	int count = msg->len;
+>  	const unsigned flags = msg->flags;
+> +	struct i2c_algo_bit_data *adap = i2c_adap->algo_data;
+> +
+> +	if (!adap->getsda)
+> +		return -EOPNOTSUPP;
+>  
+>  	while (count > 0) {
+>  		inval = i2c_inb(i2c_adap);
+> @@ -670,8 +679,11 @@ static int __i2c_bit_add_bus(struct i2c_adapter *adap,
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	/* Complain if SCL can't be read */
+> +	if (bit_adap->getsda == NULL)
+> +		dev_warn(&adap->dev, "Not I2C compliant: can't read SDA\n");
+> +
+>  	if (bit_adap->getscl == NULL) {
+> +		/* Complain if SCL can't be read */
+>  		dev_warn(&adap->dev, "Not I2C compliant: can't read SCL\n");
+>  		dev_warn(&adap->dev, "Bus may be unreliable\n");
+>  	}
 
----
- .../devicetree/bindings/arm/omap/ctrl.txt     |   2 +-
- .../bindings/pinctrl/pinctrl-single.txt       | 262 ------------------
- .../bindings/pinctrl/pinctrl-single.yaml      | 155 +++++++++++
- .../bindings/pinctrl/ti,omap-pinctrl.txt      |  13 -
- 4 files changed, 156 insertions(+), 276 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
- create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt
+And here you'd need something like this to make them independently select-able:
 
-diff --git a/Documentation/devicetree/bindings/arm/omap/ctrl.txt b/Documentation/devicetree/bindings/arm/omap/ctrl.txt
---- a/Documentation/devicetree/bindings/arm/omap/ctrl.txt
-+++ b/Documentation/devicetree/bindings/arm/omap/ctrl.txt
-@@ -8,7 +8,7 @@ control module driver itself.
- 
- See [2] for documentation about clock/clockdomain nodes.
- 
--[1] Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-+[1] Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
- [2] Documentation/devicetree/bindings/clock/ti/*
- 
- Required properties:
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-deleted file mode 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-+++ /dev/null
-@@ -1,262 +0,0 @@
--One-register-per-pin type device tree based pinctrl driver
--
--Required properties:
--- compatible : "pinctrl-single" or "pinconf-single".
--  "pinctrl-single" means that pinconf isn't supported.
--  "pinconf-single" means that generic pinconf is supported.
--
--- reg : offset and length of the register set for the mux registers
--
--- #pinctrl-cells : number of cells in addition to the index, set to 1
--  or 2 for pinctrl-single,pins and set to 2 for pinctrl-single,bits
--
--- pinctrl-single,register-width : pinmux register access width in bits
--
--- pinctrl-single,function-mask : mask of allowed pinmux function bits
--  in the pinmux register
--
--Optional properties:
--- pinctrl-single,function-off : function off mode for disabled state if
--  available and same for all registers; if not specified, disabling of
--  pin functions is ignored
--
--- pinctrl-single,bit-per-mux : boolean to indicate that one register controls
--  more than one pin, for which "pinctrl-single,function-mask" property specifies
-- position mask of pin.
--
--- pinctrl-single,drive-strength : array of value that are used to configure
--  drive strength in the pinmux register. They're value of drive strength
--  current and drive strength mask.
--
--		/* drive strength current, mask */
--		pinctrl-single,power-source = <0x30 0xf0>;
--
--- pinctrl-single,bias-pullup : array of value that are used to configure the
--  input bias pullup in the pinmux register.
--
--		/* input, enabled pullup bits, disabled pullup bits, mask */
--		pinctrl-single,bias-pullup = <0 1 0 1>;
--
--- pinctrl-single,bias-pulldown : array of value that are used to configure the
--  input bias pulldown in the pinmux register.
--
--		/* input, enabled pulldown bits, disabled pulldown bits, mask */
--		pinctrl-single,bias-pulldown = <2 2 0 2>;
--
--  * Two bits to control input bias pullup and pulldown: User should use
--    pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. One bit means
--    pullup, and the other one bit means pulldown.
--  * Three bits to control input bias enable, pullup and pulldown. User should
--    use pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. Input bias
--    enable bit should be included in pullup or pulldown bits.
--  * Although driver could set PIN_CONFIG_BIAS_DISABLE, there's no property as
--    pinctrl-single,bias-disable. Because pinctrl single driver could implement
--    it by calling pulldown, pullup disabled.
--
--- pinctrl-single,input-schmitt : array of value that are used to configure
--  input schmitt in the pinmux register. In some silicons, there're two input
--  schmitt value (rising-edge & falling-edge) in the pinmux register.
--
--		/* input schmitt value, mask */
--		pinctrl-single,input-schmitt = <0x30 0x70>;
--
--- pinctrl-single,input-schmitt-enable : array of value that are used to
--  configure input schmitt enable or disable in the pinmux register.
--
--		/* input, enable bits, disable bits, mask */
--		pinctrl-single,input-schmitt-enable = <0x30 0x40 0 0x70>;
--
--- pinctrl-single,low-power-mode : array of value that are used to configure
--  low power mode of this pin. For some silicons, the low power mode will
--  control the output of the pin when the pad including the pin enter low
--  power mode.
--		/* low power mode value, mask */
--		pinctrl-single,low-power-mode = <0x288 0x388>;
--
--- pinctrl-single,gpio-range : list of value that are used to configure a GPIO
--  range. They're value of subnode phandle, pin base in pinctrl device, pin
--  number in this range, GPIO function value of this GPIO range.
--  The number of parameters is depend on #pinctrl-single,gpio-range-cells
--  property.
--
--		/* pin base, nr pins & gpio function */
--		pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>;
--
--- interrupt-controller : standard interrupt controller binding if using
--  interrupts for wake-up events for example. In this case pinctrl-single
--  is set up as a chained interrupt controller and the wake-up interrupts
--  can be requested by the drivers using request_irq().
--
--- #interrupt-cells : standard interrupt binding if using interrupts
--
--This driver assumes that there is only one register for each pin (unless the
--pinctrl-single,bit-per-mux is set), and uses the common pinctrl bindings as
--specified in the pinctrl-bindings.txt document in this directory.
--
--The pin configuration nodes for pinctrl-single are specified as pinctrl
--register offset and values using pinctrl-single,pins. Only the bits specified
--in pinctrl-single,function-mask are updated.
--
--When #pinctrl-cells = 1, then setting a pin for a device could be done with:
--
--	pinctrl-single,pins = <0xdc 0x118>;
--
--Where 0xdc is the offset from the pinctrl register base address for the device
--pinctrl register, and 0x118 contains the desired value of the pinctrl register.
--
--When #pinctrl-cells = 2, then setting a pin for a device could be done with:
--
--	pinctrl-single,pins = <0xdc 0x30 0x07>;
--
--Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
--These two values are OR'd together to produce the value stored at offset 0xdc.
--See the device example and static board pins example below for more information.
--
--In case when one register changes more than one pin's mux the
--pinctrl-single,bits need to be used which takes three parameters:
--
--	pinctrl-single,bits = <0xdc 0x18 0xff>;
--
--Where 0xdc is the offset from the pinctrl register base address for the
--device pinctrl register, 0x18 is the desired value, and 0xff is the sub mask to
--be used when applying this change to the register.
--
--
--Optional sub-node: In case some pins could be configured as GPIO in the pinmux
--register, those pins could be defined as a GPIO range. This sub-node is required
--by pinctrl-single,gpio-range property.
--
--Required properties in sub-node:
--- #pinctrl-single,gpio-range-cells : the number of parameters after phandle in
--  pinctrl-single,gpio-range property.
--
--	range: gpio-range {
--		#pinctrl-single,gpio-range-cells = <3>;
--	};
--
--
--Example:
--
--/* SoC common file */
--
--/* first controller instance for pins in core domain */
--pmx_core: pinmux@4a100040 {
--	compatible = "pinctrl-single";
--	reg = <0x4a100040 0x0196>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	#interrupt-cells = <1>;
--	interrupt-controller;
--	pinctrl-single,register-width = <16>;
--	pinctrl-single,function-mask = <0xffff>;
--};
--
--/* second controller instance for pins in wkup domain */
--pmx_wkup: pinmux@4a31e040 {
--	compatible = "pinctrl-single";
--	reg = <0x4a31e040 0x0038>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	#interrupt-cells = <1>;
--	interrupt-controller;
--	pinctrl-single,register-width = <16>;
--	pinctrl-single,function-mask = <0xffff>;
--};
--
--control_devconf0: pinmux@48002274 {
--	compatible = "pinctrl-single";
--	reg = <0x48002274 4>;	/* Single register */
--	#address-cells = <1>;
--	#size-cells = <0>;
--	pinctrl-single,bit-per-mux;
--	pinctrl-single,register-width = <32>;
--	pinctrl-single,function-mask = <0x5F>;
--};
--
--/* third controller instance for pins in gpio domain */
--pmx_gpio: pinmux@d401e000 {
--	compatible = "pinconf-single";
--	reg = <0xd401e000 0x0330>;
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges;
--
--	pinctrl-single,register-width = <32>;
--	pinctrl-single,function-mask = <7>;
--
--	/* sparse GPIO range could be supported */
--	pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>,
--				    <&range 12 1 0>, <&range 13 29 1>,
--				    <&range 43 1 0>, <&range 44 49 1>,
--				    <&range 94 1 1>, <&range 96 2 1>;
--
--	range: gpio-range {
--		#pinctrl-single,gpio-range-cells = <3>;
--	};
--};
--
--
--/* board specific .dts file */
--
--&pmx_core {
--
--	/*
--	 * map all board specific static pins enabled by the pinctrl driver
--	 * itself during the boot (or just set them up in the bootloader)
--	 */
--	pinctrl-names = "default";
--	pinctrl-0 = <&board_pins>;
--
--	board_pins: pinmux_board_pins {
--		pinctrl-single,pins = <
--			0x6c 0xf
--			0x6e 0xf
--			0x70 0xf
--			0x72 0xf
--		>;
--	};
--
--	uart0_pins: pinmux_uart0_pins {
--		pinctrl-single,pins = <
--			0x208 0		/* UART0_RXD (IOCFG138) */
--			0x20c 0		/* UART0_TXD (IOCFG139) */
--		>;
--		pinctrl-single,bias-pulldown = <0 2 2>;
--		pinctrl-single,bias-pullup = <0 1 1>;
--	};
--
--	/* map uart2 pins */
--	uart2_pins: pinmux_uart2_pins {
--		pinctrl-single,pins = <
--			0xd8 0x118
--			0xda 0
--			0xdc 0x118
--			0xde 0
--		>;
--	};
--};
--
--&control_devconf0 {
--	mcbsp1_pins: pinmux_mcbsp1_pins {
--		pinctrl-single,bits = <
--			0x00 0x18 0x18 /* FSR/CLKR signal from FSX/CLKX pin */
--		>;
--	};
--
--	mcbsp2_clks_pins: pinmux_mcbsp2_clks_pins {
--		pinctrl-single,bits = <
--			0x00 0x40 0x40 /* McBSP2 CLKS from McBSP_CLKS pin */
--		>;
--	};
--
--};
--
--&uart1 {
--       pinctrl-names = "default";
--       pinctrl-0 = <&uart0_pins>;
--};
--
--&uart2 {
--       pinctrl-names = "default";
--       pinctrl-0 = <&uart2_pins>;
--};
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-new file mode 100644
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-@@ -0,0 +1,155 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: One-register-per-pin type device tree based pinctrl driver
-+
-+maintainers:
-+  - Tony Lindgren <tony@atomide.com>
-+
-+description: |
-+  This binding describes pinctrl devices that use one hardware register to
-+  configure each pin.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - pinctrl-single
-+              - pinconf-single
-+      - items:
-+          - enum:
-+              - ti,am437-padconf
-+              - ti,dra7-padconf
-+              - ti,omap2420-padconf
-+              - ti,omap2430-padconf
-+              - ti,omap3-padconf
-+              - ti,omap4-padconf
-+              - ti,omap5-padconf
-+          - const: pinctrl-single
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  '#pinctrl-cells':
-+    enum: [ 1, 2 ]
-+
-+  '#gpio-range-cells':
-+    const: 3
-+    description: No longer needed, may exist in older files for gpio-ranges
-+    deprecated: true
-+
-+  pinctrl-single,bit-per-mux:
-+    description: Optional flag to indicate register controls more than one pin
-+    type: boolean
-+
-+  pinctrl-single,function-mask:
-+    description: Mask of the allowed register bits
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  pinctrl-single,function-off:
-+    description: Optional function off mode for disabled state
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  pinctrl-single,gpio-range:
-+    description: Optional list of pin base, nr pins & gpio function
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+
-+  '#pinctrl-single,gpio-range-cells':
-+    const: 3
-+    description: Number of gpio range cells
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  pinctrl-single,register-width:
-+    description: Width of the pin register in bits
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+patternProperties:
-+  '-pins((.*)?)$':
-+    type: object
-+    $ref: pinmux-node.yaml#
-+
-+    patternProperties:
-+      pinctrl-single,pins:
-+        description:
-+          Array of pins as described in pinmux-node.yaml for pinctrl-pin-array
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,bias-pullup:
-+        description: Optional array of input, enabled pullup bits, disabled pullup bits, mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,bias-pulldown:
-+        description: Optional array of input, enabled pulldown bits, disabled pulldown bits, mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,drive-strength:
-+        description: Optional array of drive strength current and mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,input-schmitt:
-+        description: Optional array of input, enable bits, disable bits, mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,low-power-mode:
-+        description: Optional array of low power mode value, mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,slew-rate:
-+        description: Optional array of slew rate and mask values
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+    additionalProperties: false
-+
-+allOf:
-+  - $ref: 'pinctrl.yaml#'
-+
-+required:
-+  - compatible
-+  - reg
-+  - pinctrl-single,register-width
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/pinctrl/omap.h>
-+
-+    soc {
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+
-+        pinmux@4a100040 {
-+          compatible = "pinctrl-single";
-+          reg = <0x4a100040 0x0196>;
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+          #pinctrl-cells = <2>;
-+          #interrupt-cells = <1>;
-+          interrupt-controller;
-+          pinctrl-single,register-width = <16>;
-+          pinctrl-single,function-mask = <0xffff>;
-+
-+          uart2-pins {
-+            pinctrl-single,pins =
-+              <0xd8 0x118>,
-+              <0xda 0>,
-+              <0xdc 0x118>,
-+              <0xde 0>;
-+          };
-+        };
-+      };
-diff --git a/Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt
-deleted file mode 100644
---- a/Documentation/devicetree/bindings/pinctrl/ti,omap-pinctrl.txt
-+++ /dev/null
-@@ -1,13 +0,0 @@
--OMAP Pinctrl definitions
--
--Required properties:
--- compatible : Should be one of:
--  "ti,omap2420-padconf" - OMAP2420 compatible pinctrl
--  "ti,omap2430-padconf" - OMAP2430 compatible pinctrl
--  "ti,omap3-padconf" - OMAP3 compatible pinctrl
--  "ti,omap4-padconf" - OMAP4 compatible pinctrl
--  "ti,omap5-padconf" - OMAP5 compatible pinctrl
--  "ti,dra7-padconf" - DRA7 compatible pinctrl
--  "ti,am437-padconf" - AM437x compatible pinctrl
--
--See Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt for further details.
--- 
-2.39.0
+	if (bit_adap->getsda == NULL)
+		dev_warn(&adap->dev, "Not I2C compliant: can't read SDA\n");
+
+	if (bit_adap->getscl == NULL)
+		dev_warn(&adap->dev, "Not I2C compliant: can't read SCL\n");
+
+	if (bit_adap->getscl == NULL || bit_adap->getsda == NULL)
+		dev_warn(&adap->dev, "Bus may be unreliable\n");
+
+Anyway, as is, this patch is broken if getsda is NULL while getscl is not.
+There is no documentation describing that limitation. It looks easier to
+fix the limitation than to muddy the waters by having ifs and buts.
+
+Cheers,
+Peter
