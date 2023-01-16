@@ -2,299 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C62C266B90F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 09:29:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D5C166B931
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 09:42:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231919AbjAPI3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 03:29:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49018 "EHLO
+        id S232347AbjAPImA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 03:42:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231954AbjAPI3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 03:29:20 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BFA31206C
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 00:29:19 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id qx13so7885755ejb.13
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 00:29:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=suk68sDbaZb4bVcYI2D243OtUKgl7bbyrnOid/OtO7g=;
-        b=d6ePkrGCuxnqgjYDB398PrD2rGklUquvWHdbILHgA69czoke7FbnaFz4phx1aPJxGG
-         QBahJKpVUp8zbdLsNognWBlI4+4hGS4JnRXU6S5ybZroIJzyLTCtDTbCO4ixFw9jtIIa
-         LyXfbOBJtURhcqKpCoplVm6XvtGgFLgg1jvh6D3e+2W4nf5/wMZIq9Z4kNqo9ydZG/xa
-         wc/2vivaP9XQJxhQQmSMAyDFO0wBRtj4xSLbDLtvMqTxcUzI0Vvh3EMuNezc/3q6gjoV
-         kIsLove8weacu4GU3R3o6kbi74dGKLskgu3M84rJG23k+KjMVwDe2BGRgXSjcJp16vQl
-         N2WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=suk68sDbaZb4bVcYI2D243OtUKgl7bbyrnOid/OtO7g=;
-        b=Ec1zp3Wescpo7bTTipALmxRVYSBmLbW4Y+pxFapDYKdkSCvAAus79wK8XcdkTKE/YT
-         KSK/DgLwE/v2PB7LP3/3x/zo4FJZI3ThCF7KjkgyaOwZWat09xzQ05RWtZfND5uZJ9U/
-         ccG02c9nJe+G5+HO94pcfI0tVUvTGNKeC5b0QxVNzBqjub6bO9T8RSNjII1et0PfjjAN
-         pM0hsnyfLwGWImVHWwh2bmvzbCNB6pPaMfWclhA/ADbzWwIdoC2wFf832au1OdFxzXOy
-         10gTin6v4hbNRM2raXr7daFPZjypeDlrohmLcTfSY5ev2M9A5m4TCoKX6UUjLu3bnZ6f
-         IVSQ==
-X-Gm-Message-State: AFqh2kqr6yfDtpELY26iBAARSudle6d1Adw9OS0CbqTzPsBzcsjGJMmQ
-        G89QvCXYsz/PF0E1Ke8AnZG5hg==
-X-Google-Smtp-Source: AMrXdXsEIfj5nNcJS/YRvzjJ3iiJdejLhMQs6tZNdN+3EU6P0ICwVTjDW1JU1oTSqHI3wscQ62o/HQ==
-X-Received: by 2002:a17:906:dfe9:b0:84d:378b:8820 with SMTP id lc9-20020a170906dfe900b0084d378b8820mr12649387ejc.18.1673857757948;
-        Mon, 16 Jan 2023 00:29:17 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id sh39-20020a1709076ea700b0084c62b9eb57sm11684541ejc.144.2023.01.16.00.29.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 00:29:17 -0800 (PST)
-Message-ID: <02b6b3a6-e2ad-8cbc-fa15-fbd2db6ada64@linaro.org>
-Date:   Mon, 16 Jan 2023 09:29:15 +0100
-MIME-Version: 1.0
+        with ESMTP id S232328AbjAPIl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 03:41:56 -0500
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2088.outbound.protection.outlook.com [40.107.20.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7199B12F09
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 00:41:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xlw4i/SLU96aLdR9/uQdtdt/WHAx5EqJZYasZXAdLr3lYbAu0MXpKoT+FRBpNUnHEor0mJl/pdPewwIp3/X+/EGXhhV5RLhJjnwGgOZrCpS1Mm6W0DHNBOOJztZb0Mj4sjat3ocmVFirOLIXAI56sf/akk0RtCNCvq+wACvsMGhezdH3t2N2TICw7T4QjEKWuLyB8/eOz09qowCX2FTg9aK7KWccUPNi/+f9pZP2JA8RUuM00hgtb4BIZg+rZqo7ATmzytFcizIdIwPC0rjWr1cUK/aXjQ7H2qPMPXRmvwNzxZ45VhF59nB4NnfnyGqK6YbTyFIDcWLtFWPWUHJ3hQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xBSZUZEsNbce5U+AdU2fg84edFd1WqiTQ/uQS+EZrGU=;
+ b=b7lNSFL64Oh7QylmtEtifJ0cQJ90V1VNWFGJEDAmkCn8I31MmHYgS5v5+Vdyoki+R0YXEeSwuNy/8w2vWXra5O2OS9Xrj61LzMNyK0RfYIKzrB2DymZKaWPoNNUCd6i+0VrNEH52cgVk1ANk2XzO1vsutkS2scJBp7vg9iMnzgiXNeiU2tGJML0n3i5DBTVCTjg+T/jeNxe0LyGl9EZgw3K3DV5/6OCc8YGRKMoqKWf3d0UE20Oin/139t2ssc8YyvhVN/nxc6KZVX2zg+kJoz1AW/9GSw2Syp2LZg5tSo2ptZ4y6fO3gkmZsI86/VvsK8XkDZ/vVHfGH0DvECkz5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xBSZUZEsNbce5U+AdU2fg84edFd1WqiTQ/uQS+EZrGU=;
+ b=vfr//lkIhsJIE+I3f5OTaV5OlJzFrDKMh4F/dTyVkQCKke6jzoJdFaGczk2B1ItzH2Od1+A8dTi9oEO7yF4Baj7a2yQOlXHocDKi8UKBjrbPT4xVc5ngUEOHmgQbrTiXztQJfcV+tkTi2/G8vriZk227ibE16xNP2Aott5fuY0k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by AS2PR08MB10053.eurprd08.prod.outlook.com (2603:10a6:20b:640::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.12; Mon, 16 Jan
+ 2023 08:41:52 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4718:6092:e763:4219]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4718:6092:e763:4219%2]) with mapi id 15.20.5986.022; Mon, 16 Jan 2023
+ 08:41:52 +0000
+Message-ID: <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
+Date:   Mon, 16 Jan 2023 09:41:50 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH V6 1/3] dt-bindings: clock: document Amlogic S4 SoC PLL &
- peripheral clock controller
+ Thunderbird/102.6.0
+Subject: Re: [PATCH] arm64: dts: rockchip: fix probe of analog sound card on
+ rock-3a
 Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
-        "qi . duan" <qi.duan@amlogic.com>
-References: <20230116074214.2326-1-yu.tu@amlogic.com>
- <20230116074214.2326-2-yu.tu@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230116074214.2326-2-yu.tu@amlogic.com>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        frattaroli.nicolas@gmail.com
+References: <20230115211553.445007-1-jonas@kwiboo.se>
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+In-Reply-To: <20230115211553.445007-1-jonas@kwiboo.se>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-ClientProxiedBy: VI1PR0602CA0018.eurprd06.prod.outlook.com
+ (2603:10a6:800:bc::28) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|AS2PR08MB10053:EE_
+X-MS-Office365-Filtering-Correlation-Id: 47f42426-a782-4acd-64af-08daf79d8405
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZUsFZ1tlxLdmTgfLzzCC3CIPaoGOnWEJg8kli9MGFmmmPa2HreDJJvyvwDRWYRjdElU3EfTpHob+Q1ZUk68LbG/tVxrv2eUCyPhtCvodiMrG97o+/HwNpkypTkO/RYilPODuKD1M5O0wf3w2/CHZN7G93ax2rw4QCtTM4xcRbrZUh7jbCYDCO0e5cGXVE+0mgIJ44OeaiXUYQkqXZW4HxPare33eqrOpuiCdzK/DoLxqIdEU5Fwy6APAw6J0zhBKXePGRvUmuXsUv090FhiKHU/PRvsNi/hgwXw5d93GCWFMyxPHmpdnnqjKC86LH8pFCujStf135uSR13A42tKYbpQ4/36pqj/bhakvSJ2che/Bj+zMMkeEEaUIySYJ9c9qI+yRTIzBhJROVaVqB10sC3fv42l2K2w8BGL4LhBj/6UUO43y+kT+OO9z2Y8cn03zKQ3hJWUq2fehuBuWlRdkT+kgZCOozoJVkfi5aLqCZy3M8ogQKGK58s4phsjHz9+Dd4PeKDZ0HtxOkx/W6Pb0oJuhDyTYkpDjUFE5qYxr+3xBeYyzcskQ5W2qQjQeiJIq5SP5NzJVZmBnN/AMPnRu7yzVIT1LhYXEdL3M3L+La6rxw5mWELsutPdBdXbjIv3nrPoowSaUCaSY35YeWaT9a70TGF17l/9JwGAIXjgTo+rB+eNxm/jaV3oSY0DdG/9ABlLyQApXsSTFlbjA211uw+8cjWAOT3oXhHRJlMUCWXw83HTiGqHWGSYfHOpf5D8nWJ+eB8GEDkjXDGWKnnC9QpCk71QvuUKsW/E6KvGTnjY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(136003)(39840400004)(396003)(366004)(451199015)(31686004)(6506007)(53546011)(38100700002)(38350700002)(2906002)(316002)(8936002)(110136005)(478600001)(54906003)(6486002)(966005)(26005)(4326008)(52116002)(186003)(8676002)(36916002)(44832011)(5660300002)(2616005)(83380400001)(66476007)(66946007)(86362001)(66556008)(31696002)(6512007)(41300700001)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YTRtSFhJcDA1YUtXRzFEbkVwdW5HditXUHVVVW5UelJ4WS93OEg3V0NmeExZ?=
+ =?utf-8?B?SWVaT0J3NmVWOXovbTNjV0FHRzZlSWVTaHhpeHNKZHpWVUxPYmMyakZTZlRO?=
+ =?utf-8?B?WEt6WjJjZ3VsYTVhcmZvdExnS1lrOTFHZGZyS244aWZMQVNRcnUranZQaVJU?=
+ =?utf-8?B?d2EreDlPT2dyWFRPbUpIVEx4ZDJIYUFXYzRValJwZnlCMk90MmhCQzBQTUFj?=
+ =?utf-8?B?ajdJeFFVWElvNmNWT1hjdEZRVjVPMGtTaThlZjA4OTV3UmRoRWNWVmc5OVpx?=
+ =?utf-8?B?ZjYra0ExQnQ0dkVYTm1RN3pNbjFFUnBFbkNUSmlYMEM3QnZwK3AxKzkyb3N4?=
+ =?utf-8?B?T1ZqcHZwRVUyaGV5K2Zpd1gyaDlrUW1JbFN0TGdGa3lDNGdVcGlTUXhKbkJX?=
+ =?utf-8?B?NzZwdFl1a1JrU1JaM29PelQ4TWJ6ZnMrNDJyRSthdHVGV2U5Z1NiajdrR2Fl?=
+ =?utf-8?B?TkJwNnZzUUNQcmVaRzIvdU5nbGdPVDNwYzk2TjB4NE5Qc2Q4NS9lT25waGRw?=
+ =?utf-8?B?by9sdnhXeWh2RXc4VDlWOGk5ekQwdCsxSHJSb09sM2o5dE9Kc2QwYWNWWVpN?=
+ =?utf-8?B?bkpBVWpYY1lMcnczYk50a2svZ25SQkszQXUrcVg2UHRQTi84UVpRUWRzRnlL?=
+ =?utf-8?B?cWpRcTFNd3JKZHpyczJuTjIzbkxNSGRuSXpmbDVBR3pVRTg0VzVNVTVFZlJ1?=
+ =?utf-8?B?RTBmUlF4N1lGUjNVQllGS1dYdStaZGtTMzUyNzRpYzRjaWxUaDVUS0tnYkFn?=
+ =?utf-8?B?bkMrOGZLTTFtdUdVWnI1bjRtU1ZZbDVxTmpKNGx2V1ROTzRWaHlnN2s2R3Fa?=
+ =?utf-8?B?TTY4bkY5bHN6SktJZG00Qzl4QUc4MkNoa1NKTzlCdXJnVUhZdDFGU09lclNz?=
+ =?utf-8?B?eFZWNm9jK0toSzVQSWlzMEdoS3kxRm52elFnVWZNcDBVNWFxcGI0MWtIQ1BE?=
+ =?utf-8?B?KzNUOEhSS0hCOFZuNlUzWGpBQmtsSWV3YTRER1JlY2lycVQ3aVRTc3hKR1pX?=
+ =?utf-8?B?NTVSZkwzUEhTQjhaeEpmM0R0MjZhM09hSXlMaFRHV0ZmbVR3WjVoU2pPVXl1?=
+ =?utf-8?B?UnZQWW54UzZSR0FlYTh2cmtKb3ZScGdBSHdNQ09qQkRnQkYvREpHOFdKSWNo?=
+ =?utf-8?B?SXVlenRka2hOdk1iTVZYTmpSVWJwZWgyZ3pJOW0vYzBYbGlyTkc0aFdHelda?=
+ =?utf-8?B?Sy9KL2JQOUJ2NFVJU3NjNW4rRHdrdmUwUERFeFZKSThraVBHaHNLbTRZbGFa?=
+ =?utf-8?B?SlY3TTNILzRWRnFRVCs1cnRZV0hIZXpBR2RXbHdSaHJzcVgxRmduWFlicmJY?=
+ =?utf-8?B?Y2VLL0Zjb21IWWtXbC9JNndvZVY2VEpjRW1oTFBCeG1iV1R4M0xpbk9mR0wy?=
+ =?utf-8?B?bFQ1aU8rRVUrTU9tNktOY2JwZkxvYnN6UWp5QkNjWXUzVlJPNW5LVDRQcnpL?=
+ =?utf-8?B?T1BQejZ1L3MxVlY0NjNSdDJoN0xOa2xpaVdVZm9idERLWnZtU1JlNVdaUHlt?=
+ =?utf-8?B?d2JJdEdoUEVBWW5MZ0hGajFMaWE2UEduZTdsaTJ2Qk1pK2FyU3k5eXJXSFQw?=
+ =?utf-8?B?cW9USzIrTWsvS1pQZldVOURvczI1Q3RQYnhsUW5SRGd4UWxjOGt4VW5GeHBi?=
+ =?utf-8?B?ZGg4NTNvbk1KMlNiaS91R0dIMFNoNXR4cFZueWJjZWlwS1E0eFVGbDFJNG9x?=
+ =?utf-8?B?cjNLYVdLckVraitCaGpwcisyS01tYlRLYmVDZnpwSWJFZ1ZuS2t5R1hNQStX?=
+ =?utf-8?B?WlZZRFB1c2lDMGNkdmVuOEJDR244cnRyR1IxNW5UM0NzaXlnVFN5SjBqajNy?=
+ =?utf-8?B?YmpJZTluVGRZaUtuOXB5emJIOUVtQnYyOVJSbFlsUmVZajdWWlE3eDRQaERT?=
+ =?utf-8?B?bG5memRuNzdhVHp3SmVpSHBhT2l2a3krcWx4UlpQUEtjMjlNcXdsOXhpMEc3?=
+ =?utf-8?B?RHVjV29teFdEckRUbWkySjhiYnhaZ0psMW01NmpmTEorNk5ZQmpTc2Q0ZFFN?=
+ =?utf-8?B?a1UxYWRBaktKWDdkbktvdk95Z3lVN0d6ZGhOUlpCb2lwbXgrUm1idHhLd3VC?=
+ =?utf-8?B?dk53VmdjcU9rVkZZc0ZaR1BrSkFMeG1LUGdTdC93VXVicXNIa2dBT2F4ZU5o?=
+ =?utf-8?B?bzFhcFVmejB3SkNiQzF3RHMxTWF4elZYSnZTODVLTmtoSWRDUGorTXBtYUkr?=
+ =?utf-8?B?aEE9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 47f42426-a782-4acd-64af-08daf79d8405
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 08:41:52.4625
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iFfeiol9bACkpJVlWFNZmtjf9UAN6NaqZBED3Ht4KgIQeLMgwMWOmVuAr4bUyQfoFSioM/2Vhfc0lFZMHVJHXhw3ZGNyoNE8Dr+tjtfq1YM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB10053
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 08:42, Yu Tu wrote:
-> Add the S4 PLL & peripheral clock controller dt-bindings in the s4 SoC
-> family.
+Hi Jonas,
+
+On 1/15/23 22:15, Jonas Karlman wrote:
+> The following was observed on my Radxa ROCK 3 Model A board:
 > 
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>   rockchip-pinctrl pinctrl: pin gpio1-9 already requested by vcc-cam-regulator; cannot claim for fe410000.i2s
+>   ...
+>   platform rk809-sound: deferred probe pending
+> 
+> Fix this by supplying a board specific pinctrl with the i2s1 pins used
+> by pmic codec according to the schematic [1].
+> 
+> [1] https://dl.radxa.com/rock3/docs/hw/3a/ROCK-3A-V1.3-SCH.pdf
+> 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+
+Makes sense to me, but...
+
 > ---
->  .../clock/amlogic,s4-peripherals-clkc.yaml    | 104 ++++++++++++++
->  .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  50 +++++++
->  MAINTAINERS                                   |   1 +
->  .../clock/amlogic,s4-peripherals-clkc.h       | 131 ++++++++++++++++++
->  .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 ++++
->  5 files changed, 316 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->  create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+>  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
-> new file mode 100644
-> index 000000000000..2deeff497754
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
-> @@ -0,0 +1,104 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,s4-peripherals-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Meson S serials Peripherals Clock Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Yu Tu <yu.tu@amlogic.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,s4-peripherals-clkc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: input fixed pll div2
-> +      - description: input fixed pll div2p5
-> +      - description: input fixed pll div3
-> +      - description: input fixed pll div4
-> +      - description: input fixed pll div5
-> +      - description: input fixed pll div7
-> +      - description: input hifi pll
-> +      - description: input gp0 pll
-> +      - description: input mpll0
-> +      - description: input mpll1
-> +      - description: input mpll2
-> +      - description: input mpll3
-> +      - description: input hdmi pll
-> +      - description: input oscillator (usually at 24MHz)
-> +      - description: input external 32kHz reference (optional)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: fclk_div2
-> +      - const: fclk_div2p5
-> +      - const: fclk_div3
-> +      - const: fclk_div4
-> +      - const: fclk_div5
-> +      - const: fclk_div7
-> +      - const: hifi_pll
-> +      - const: gp0_pll
-> +      - const: mpll0
-> +      - const: mpll1
-> +      - const: mpll2
-> +      - const: mpll3
-> +      - const: hdmi_pll
-> +      - const: xtal
-> +      - const: ext_32k
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
-> +
-> +    /* 32KHz reference crystal */
-> +    ext_32k: ref32k {
-> +        compatible = "fixed-clock";
-> +        #clock-cells = <0>;
-> +        clock-frequency = <32000>;
-> +    };
-
-This wasn't here before. Drop it. It is trivial and it is not needed to
-illustrate your device bindings. All clock bindings use it...
-
-> +
-> +    clkc_periphs: clock-controller@fe000000 {
-> +      compatible = "amlogic,s4-peripherals-clkc";
-> +      reg = <0xfe000000 0x49c>;
-> +      clocks = <&clkc_pll 3>,
-> +              <&clkc_pll 13>,
-> +              <&clkc_pll 5>,
-> +              <&clkc_pll 7>,
-> +              <&clkc_pll 9>,
-> +              <&clkc_pll 11>,
-> +              <&clkc_pll 17>,
-> +              <&clkc_pll 15>,
-> +              <&clkc_pll 25>,
-> +              <&clkc_pll 27>,
-> +              <&clkc_pll 29>,
-> +              <&clkc_pll 31>,
-> +              <&clkc_pll 20>,
-> +              <&xtal>,
-> +              <&ext_32k>;
-> +      clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3", "fclk_div4",
-> +                    "fclk_div5", "fclk_div7", "hifi_pll", "gp0_pll",
-> +                    "mpll0", "mpll1", "mpll2", "mpll3", "hdmi_pll", "xtal",
-> +                    "ext_32k";
-> +      #clock-cells = <1>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
-> new file mode 100644
-> index 000000000000..aeda4861cebe
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Meson S serials PLL Clock Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Yu Tu <yu.tu@amlogic.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,s4-pll-clkc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xtal
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clkc_pll: clock-controller@fe008000 {
-> +      compatible = "amlogic,s4-pll-clkc";
-> +      reg = <0xfe008000 0x1e8>;
-> +      clocks = <&xtal>;
-> +      clock-names = "xtal";
-> +      #clock-cells = <1>;
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f61eb221415b..26c82beeffda 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1897,6 +1897,7 @@ L:	linux-amlogic@lists.infradead.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/clock/amlogic*
->  F:	drivers/clk/meson/
-> +F:	include/dt-bindings/clock/amlogic*
->  F:	include/dt-bindings/clock/gxbb*
->  F:	include/dt-bindings/clock/meson*
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> index 00d873a03cfe..a149c8b83f94 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> @@ -573,6 +573,8 @@ &i2s0_8ch {
+>  };
 >  
-> diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
-> new file mode 100644
-> index 000000000000..bbec5094d5c3
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
-> @@ -0,0 +1,131 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>  &i2s1_8ch {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2s1m0_sclktx &i2s1m0_lrcktx &i2s1m0_sdi0 &i2s1m0_sdo0>;
 
-Unusual license... are you sure to license the bindings under GPLv4 or
-GPLv5? Fine by me.
+... shouldn't this include i2s1m0_mclk as well?
+
+For some reason this has been omitted in the pinctrl defined in
+rk356x.dtsi. But then rk356x.dtsi also claims
+ - both i2s1m0_sdo1 and i2s1m0_sdi3
+ - both i2s1m0_sdo2 and i2s1m0_sdi2
+ - both i2s1m0_sdo3 and i2s1m0_sdi1
+which are mapped to the same respective pins. Therefore it seems that
+there might be something wrong with this pinctrl altogether.
+
+Cc: Nicolas Frattaroli, maybe he can provide some clarification.
 
 Best regards,
-Krzysztof
+Michael
 
+>  	rockchip,trcm-sync-tx-only;
+>  	status = "okay";
+>  };
