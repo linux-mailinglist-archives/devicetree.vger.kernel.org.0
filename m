@@ -2,85 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9EA066BA1E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:19:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A25BC66BA2C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:23:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231872AbjAPJTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 04:19:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48196 "EHLO
+        id S231954AbjAPJXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 04:23:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232714AbjAPJSi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:18:38 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01F7218B33
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:17:46 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id vw16so3407474ejc.12
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:17:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ww7Hxrw6n0J7k//JManeo1d6RMBOH6s8LbvXGDtzj+w=;
-        b=v5qDCDI2V1SvQnjE03DuLKYjo6tGrNOI1fmyfrbtX1bfPSDjMuEb6AkRNNQjQqF4w9
-         xvQA/XAhZyZU2S+cwiw5px7dPh6bGcR+xr6ngwFz5eeZXFQq5i9BbV7hirtq4T8QTrOJ
-         4hPL6DWur+wbtCguPVrmyHlClK3FNqe73Xvc3EDFkvIuCX9VLZhXiC8qbzyFAwlvPi12
-         AZXKsEJlsfb46On51cFyrW8NFIzom4xbLrii2c8cGPecK2Run3frV1V/pyOdDqs/qdwk
-         WZqGxdYN+iUbvIBhL9SH0SnYV4aqeLBt8ThmSoPPW9TCZ4CRAwTB1bBAW2Ur3HV1UbxG
-         tA1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ww7Hxrw6n0J7k//JManeo1d6RMBOH6s8LbvXGDtzj+w=;
-        b=STn+Iia8wXFHhbqZbpzwZd0hFV3mehiXDxeveDOXUbOBohdHlgxBQwTisUcrT4xslG
-         o3FOiXiWkl5pPVpm2mOHOokJLi9xpj33uIsoeZpw15XMsFoxiLkw2Vs7LpXJJg12XMof
-         do+2QCJPVqR7MJQeXqcBQKNfK6HUDZbW9LkCy9fOC/6QvuPz9XazpSkTi9QAnnuEX18N
-         O8Alz0xFL3LT1SfSRZco7jT3ZZNF/15aeJkjbgzwmw683n7wY/viV02nxaRSjHEllDCb
-         atEobGiVRKYtkyjITBwEbHmatPNI7fOOt3y7ZnzX9ImUQCjcZRbI/onb7FgsQlwUU6vW
-         0Qug==
-X-Gm-Message-State: AFqh2kqCLnOrrTVCgD/eky2jJL5moRLcVmTR6dMOeu2zzFbnQwZN9tKj
-        IfzSC7j77AGD0CLkGRMZdx06ag==
-X-Google-Smtp-Source: AMrXdXsKA+xBsKYbyxr+liaowz9b+i0Yta2/1SABcEZ2fAZj9G6NDYjCiRPwvXY9TodJyFWT6Ret/w==
-X-Received: by 2002:a17:906:4acc:b0:870:b53e:86b9 with SMTP id u12-20020a1709064acc00b00870b53e86b9mr2489239ejt.39.1673860665533;
-        Mon, 16 Jan 2023 01:17:45 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g13-20020a170906538d00b0085a958808c6sm6941007ejo.7.2023.01.16.01.17.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 01:17:45 -0800 (PST)
-Message-ID: <ea718cd4-db3c-12a8-aac6-688d7189fbf9@linaro.org>
-Date:   Mon, 16 Jan 2023 10:17:43 +0100
+        with ESMTP id S232069AbjAPJXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:23:18 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A321C4ECA
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:23:17 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pHLhq-0006wh-GD; Mon, 16 Jan 2023 10:23:06 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pHLhq-0000GP-3b; Mon, 16 Jan 2023 10:23:06 +0100
+Date:   Mon, 16 Jan 2023 10:23:06 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v2 2/4] dt-bindings: iio: ti,tmp117: add binding for the
+ TMP116
+Message-ID: <20230116092306.arawj4ku3tpgtzmv@pengutronix.de>
+References: <20221221092801.1977499-1-m.felsch@pengutronix.de>
+ <20221221092801.1977499-3-m.felsch@pengutronix.de>
+ <20221223150803.37e2939d@jic23-huawei>
+ <20221223150338.iqpnp6z3m35eb5hz@pengutronix.de>
+ <20221223153729.3353a315@jic23-huawei>
+ <20221223161051.3c6lvmly7tsjh4eu@pengutronix.de>
+ <20221223171458.7bc18893@jic23-huawei>
+ <20221223171323.qhuhq42tivcdllvq@pengutronix.de>
+ <144609b6-8da2-1a2b-941c-4163d38adab1@linaro.org>
+ <20221230175921.06e0d4c0@jic23-huawei>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [RESEND v3 02/13] arm64: dts: mediatek: mt8195: add MDP3 nodes
-Content-Language: en-US
-To:     =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20230116032147.23607-1-moudy.ho@mediatek.com>
- <20230116032147.23607-3-moudy.ho@mediatek.com>
- <63f3d41a-1aa3-396a-b515-bc805f4a19b4@linaro.org>
- <47f79e0ffda3fe72e574596aad8c4562a3b6e14a.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <47f79e0ffda3fe72e574596aad8c4562a3b6e14a.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221230175921.06e0d4c0@jic23-huawei>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,34 +60,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 10:14, Moudy Ho (何宗原) wrote:
->>> +		mdp3-fg0@14002000 {
->>
->> Node names should be generic.
->>
-> https://urldefense.com/v3/__https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html*generic-names-recommendation__;Iw!!CTRNKA9wMg0ARbw!gmuIIk9pHTEGcVTtOXNeP3a8XUucoiTd5vTmxNK8lCHtytRDc3R8Eh44WOWNEUkJlv_pPCtg_DvPCHsCHNscg6_0cfJe$ 
->>  
->>
->> "0" suffix is definitely nothing generic. Drop such suffixes
->> everywhere.
->> Drop also "mdp3" prefix everywhere.
->>
->>
->> Best regards,
->> Krzysztof
->>
+On 22-12-30, Jonathan Cameron wrote:
+> On Tue, 27 Dec 2022 09:40:13 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> Hi Krzysztof,
+> > On 23/12/2022 18:13, Marco Felsch wrote:
+> > > Hi Jonathan,
+> > > 
+> > > On 22-12-23, Jonathan Cameron wrote:  
+> > >> On Fri, 23 Dec 2022 17:10:51 +0100
+> > >> Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > >>  
+> > >>> On 22-12-23, Jonathan Cameron wrote:  
+> > >>>> On Fri, 23 Dec 2022 16:03:38 +0100
+> > >>>> Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > >>>>     
+> > >>>>> On 22-12-23, Jonathan Cameron wrote:    
+> > >>>>>> On Wed, 21 Dec 2022 10:27:59 +0100
+> > >>>>>> Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > >>>>>>       
+> > >>>>>>> The TMP116 is the predecessor of the TMP117.
+> > >>>>>>>
+> > >>>>>>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>      
+> > >>>>>> I'm not sure this is introducing a valid fallback. The driver changes
+> > >>>>>> imply some things the tmp117 driver supports, that this device
+> > >>>>>> does not. A fallback compatible would mean that a new DT
+> > >>>>>> with an old kernel would load the tmp117 against a tmp116 and
+> > >>>>>> expect it to fully work.      
+> > >>>>>
+> > >>>>> Since driver does all the detection an update of the bindings isn't
+> > >>>>> really necessary. It is just to have a compatible already in place in
+> > >>>>> case there a things we can't detected during runtime. This flow is
+> > >>>>> common for a lot of SoC drivers. The fallback will be used as long as
+> > >>>>> possible and once a specific feature can't be detected only via the
+> > >>>>> binding, the driver adds the new binding to it of_compatible.    
+> > >>>>
+> > >>>> That's true going forwards and for drivers that introduce a shared
+> > >>>> generic compatible alongside the initial binding. It can't be easily
+> > >>>> retrofit.
+> > >>>>
+> > >>>> Fallback compatible is also to allow this to work with old kernels    
+> > 
+> > Yes, if the devices are compatible, e.g. there is no need to change in
+> > the driver to support new device.
+> > 
+> > If the devices need auto-detection and are compatible in an auto-detect
+> > way, then I don't think we have such goal.
+> > 
+> > >>>
+> > >>> What this small series does is adding the support for the chip. So the
+> > >>> support starts with the kernel version which includes these patches. Why
+> > >>> do you assume that one expect to have a proper support with an older
+> > >>> kernel? I fully get the point that driver needs to deal with older
+> > >>> device-tree's but having using a newer device-tree's (fw) on older
+> > >>> kernels and expecting that older kernels does support the chip is a bit
+> > >>> odd to me.  
+> > >>
+> > >> Probably need the DT maintainers to offer the opinion on this as we
+> > >> disagree on how fallback compatibles are supposed to work.
+> > >> I'll accept whatever they say on this point (I've been persuaded
+> > >> into a more relaxed stance in the past on this).  
+> > 
+> > DTS can be used outside of kernel - other projects or new DTS with old
+> > kernel - and the way of working is bound by bindings. Therefore it is
+> > really good if you use new DTS with older kernel and it works.
+> > 
+> > As I said above, for devices that are fully compatible, this should be
+> > the goal. Many SoC components are like this and we describe them that
+> > way. However they do not have mostly auto-detection.
+> > 
+> > Now for devices which are both:
+> >  - compatible according to the binding (so the interface is the same,
+> > stable and handled by Linux),
+> >  - AND actually significantly different, where the difference is
+> > recognized by auto-detection,
+> > the Linux should be reasonable and it might freely choose not to support
+> > unknown devices.
 > 
-> May I uniformly name all MediaTek's media data path ver.3(MDP3) nodes
-> as "mdp3@xxx"?
+> Ok. In this case my gut feeling would be that a new ID and no fallback
+> is the best balance.  Ironically if we'd had a binding for the tmp116 first
+> and fell back to that from the tmp117 we'd probably be fine (just
+> have fewer features).  I guess nothing stops us documenting that binding
+> even though the tmp117 is already used to match in Linux.
 
-No, because it does not describe generic class of a device. Some nodes
-are probably quite specific, thus we do not have generic names for them,
-but then any prefixes are also not neeeded. If node is image-scaler, it
-is just image-scaler, not "mdp3-image-scaler". If node is video-codec it
-is not mdp3-video-codec. etc.
+Hi Jonathan, Krzysztof,
 
-Best regards,
-Krzysztof
+thanks for the detailed explanation. IMHO the fallback mechanism is
+still fine but if you are worried about it I will change this to have a
+separate compatible.
 
+Regards,
+  Marco
+
+> > You can compare it to the world without DT where everything is
+> > auto-detectable. The Linux kernel performs auto-detection and based on
+> > this either works or does not work with the device. But the kernel has
+> > full discretion to decide about it.
+> > 
+> > Users would be happy if kernel would work with unknown, new devices. But
+> > also users would be unhappy if this damages their system because of e.g.
+> > wrong voltage.
+> 
+> Agreed - using old code is a nice to have, but not always the best choice.
+> 
+> Jonathan
+> 
+> > 
+> > Best regards,
+> > Krzysztof
+> > 
+> 
+> 
