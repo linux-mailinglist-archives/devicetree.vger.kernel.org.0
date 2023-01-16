@@ -2,71 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 726F066C96F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 17:49:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5764966C972
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 17:49:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233674AbjAPQtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 11:49:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44416 "EHLO
+        id S233851AbjAPQtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 11:49:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233873AbjAPQta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 11:49:30 -0500
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CD902CFD7
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 08:36:17 -0800 (PST)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-15027746720so29314695fac.13
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 08:36:17 -0800 (PST)
+        with ESMTP id S233898AbjAPQtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 11:49:32 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A60E2B2A7;
+        Mon, 16 Jan 2023 08:36:18 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id d188so12670889oia.3;
+        Mon, 16 Jan 2023 08:36:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=1RrHwWKYfkgAWCmUrBIFJh6tv8lG1nhX54ZLrdcxVA8=;
-        b=VWw5rZ4xdkXkMDlakaReJn1riVU9OQOOJ4GFwzMvIxtQ2/VBBGva2OCBJyfLz/7OQS
-         CzMpGx03JQwxKzxxExycAm3we5U3YcNJlb9vqUpQtwI7QhqDwPv9vcZJcj57b6LRLv42
-         G0dRvFPQSbmZwqY21CM6I47EQtwWLQKx5qngc+XypcvU78dJ49O7DHb+yMk6K9V/0Y5k
-         qy+6RFxSNn4KEapJU7xO0SyoN6Wz+q4IHFPzM5WvzwccOH12xd41y1NH+9jNr+wUuaG3
-         SByYZCUbCkLfiTl7W+SsYXKAUKc+XdLgDe9Kay7ylSxW8+z0WQXRZCxYytSz7ZHQwc/N
-         rG9A==
-X-Gm-Message-State: AFqh2kqxd7EClMhsE6syK4nWMcByCXwY46ovkvA7qbgZvH7WZKhiGpKM
-        h+mr0TeX4TptG97k25srVw==
-X-Google-Smtp-Source: AMrXdXuc2YR5XFDh+BjrSj9yCrSVAIET0KBbsCaLktdP4migZ/Nls+xg84R7aLjh9w7bkzh9R1hoTw==
-X-Received: by 2002:a05:6870:348f:b0:15f:2854:3c69 with SMTP id n15-20020a056870348f00b0015f28543c69mr268945oah.29.1673886976626;
-        Mon, 16 Jan 2023 08:36:16 -0800 (PST)
+        bh=s1mnVLUqXMbam/ql0ZAT00mPh8Q7RxTd9GmFpYmAkm4=;
+        b=XSJqEc63ecqvcqjhv+Bt/0sAK/IU+YpWj5q70To1QqunvOyD6C7hsBt/smAIc7QtwS
+         snrM5vD1ij/W4QeFLFDqmxqpk47CBL8PbXASOnLcMcMA0+uh0p9fUeggR6SJEYR6wsqP
+         A5zb767LWXO5K4L7rIvPoO9LjFRoou6hS3QyhTou7tQp1FX5Y1B7Jd8zUqs8JLUZErHQ
+         eSWejB1zwTNF/SbnApXWKLfCXx0aeVDRM8I9ZiaRuLxVNDU4yi4TZpTX0O1lptvzuoGq
+         52AXoZD4RbkFo6vJ+QZQVo5ghj2t92p6Gpxs5CNRobqdWOEP9eF1tWDnKzJDl8SmdnVv
+         1I0g==
+X-Gm-Message-State: AFqh2koX6/WtvYx4PfUQNhWCuLwqir5efKVl6jl6HjgCBiI4AjG6Flag
+        S5cZyDN5b1JniSPLcJDESCj/RcUWvg==
+X-Google-Smtp-Source: AMrXdXs3Hr51eTOi/MRFOAQNqOWjNSAoz2ZaZH/Mx8uM+O8E+kql8IwC4IZsTNPAH9WZrLwUr6BU8g==
+X-Received: by 2002:a05:6808:124c:b0:364:3de0:f92f with SMTP id o12-20020a056808124c00b003643de0f92fmr17757691oiv.19.1673886977885;
+        Mon, 16 Jan 2023 08:36:17 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r18-20020a05687080d200b0012763819bcasm14590181oab.50.2023.01.16.08.36.15
+        by smtp.gmail.com with ESMTPSA id t11-20020a9d590b000000b00677714a440fsm14931184oth.81.2023.01.16.08.36.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jan 2023 08:36:16 -0800 (PST)
-Received: (nullmailer pid 606182 invoked by uid 1000);
+        Mon, 16 Jan 2023 08:36:17 -0800 (PST)
+Received: (nullmailer pid 606184 invoked by uid 1000);
         Mon, 16 Jan 2023 16:36:12 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-In-Reply-To: <8f1b2db3-f17d-f192-c28e-cb34dfcaf63d@gmail.com>
-References: <8f1b2db3-f17d-f192-c28e-cb34dfcaf63d@gmail.com>
-Message-Id: <167388663742.594124.9073960952096608319.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: phy: g12a-usb3-pcie-phy: fix compatible
- string documentation
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>, andersson@kernel.org,
+        marijn.suijten@somainline.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski@linaro.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        agross@kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20230116093845.72621-3-konrad.dybcio@linaro.org>
+References: <20230116093845.72621-1-konrad.dybcio@linaro.org>
+ <20230116093845.72621-3-konrad.dybcio@linaro.org>
+Message-Id: <167388663828.594146.5142968901472742042.robh@kernel.org>
+Subject: Re: [PATCH v9 2/6] dt-bindings: soc: qcom: cpr3: Add bindings for CPR3 driver
 Date:   Mon, 16 Jan 2023 10:36:12 -0600
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,17 +70,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun, 15 Jan 2023 15:24:12 +0100, Heiner Kallweit wrote:
-> The compatible string in the driver doesn't have the meson prefix.
-> Fix this in the documentation and rename the file accordingly.
+On Mon, 16 Jan 2023 10:38:41 +0100, Konrad Dybcio wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > 
-> Fixes: 87a55485f2fc ("dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Add the bindings for the CPR3 driver to the documentation.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> [Konrad: Make binding check pass; update AGdR's email]
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  ...12a-usb3-pcie-phy.yaml => amlogic,g12a-usb3-pcie-phy.yaml} | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->  rename Documentation/devicetree/bindings/phy/{amlogic,meson-g12a-usb3-pcie-phy.yaml => amlogic,g12a-usb3-pcie-phy.yaml} (90%)
+>  .../bindings/soc/qcom/qcom,cpr3.yaml          | 314 ++++++++++++++++++
+>  1 file changed, 314 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -93,12 +91,18 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/phy/amlogic,g12a-usb3-pcie-phy.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-1: 'qcom,opp-cloop-vadj', 'qcom,opp-oloop-vadj' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-2: 'qcom,opp-cloop-vadj', 'qcom,opp-oloop-vadj' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-3: 'qcom,opp-cloop-vadj', 'qcom,opp-oloop-vadj' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dtb: opp-table-cprh: opp-3:qcom,opp-fuse-level:0: [2, 3] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/8f1b2db3-f17d-f192-c28e-cb34dfcaf63d@gmail.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230116093845.72621-3-konrad.dybcio@linaro.org
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
