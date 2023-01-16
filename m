@@ -2,83 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 647E666C441
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:47:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A8C566C42E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:43:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbjAPPrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 10:47:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34680 "EHLO
+        id S230459AbjAPPna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 10:43:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbjAPPri (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:47:38 -0500
-X-Greylist: delayed 359 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 16 Jan 2023 07:47:37 PST
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B7793FB
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:47:37 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1673882970; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=nZsUYF7ikucQF7DLMPbDxMOc8KZ6VR6W5bqBqEbZHFkQs+T4cbHZxFsTdMA6WtYqf/
-    NdYK7qAc84VFSOKEbPUiHbxMy7ASuQQWule9V1yKBPiT5zziR8CEZ/SK+rgMk022x4g3
-    CU9X2i3tQ9WTczlIH0LQ/QGeltAnaSwg7066eR8SURA+rLzI4XzMeeE3nS2oYnJFAcL/
-    VwwALj5URohYRKx0MMeVGh+3UYl7vb53uOFWX5Uq6QAlpYSne2uMvOyW7WEWEyMD9idB
-    gczSx1eTO2Ot9CwYgz8UPuPDpAmFO7/e+ti1ilWuX7mFJ6jAkrZUHtQwNAyfNe0NG//D
-    rIRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1673882970;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=AbbuHm7TvsAFiVwinj9rMZM8rW8kB0ZA+o+CqVXSWxM=;
-    b=SZMZKlPURtMGL6bF2SoTarIVEatMgvPrYieXLW6siZRvHXPROToNOnSNDW/b6rUAEh
-    zJu+Mbki39WDVfnpg/pwol+i7e5gaBhfaEF7jnWHVbujocQYsoe4/mDf0a8UM7L3tBHY
-    wlmfPEtZ+BEGpSOkax/GAv3S0yfVrXYuWSyr4vtsaIWPW7Z3DrXx9yiKelFUfeLEgEyu
-    EmyOrFdL0YlzIKkrlE5f8Vs2cn6U9C5e+9UCUgntXsejK5UIAA8aDAoHfRGhn2NzoIw+
-    zMoDfoY4gStUfeuMVjCdjKGztr8zQbm0h6bVGuPzcXt8M4RTWHHznGGsqt/S8fTn19ru
-    85mQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1673882970;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=AbbuHm7TvsAFiVwinj9rMZM8rW8kB0ZA+o+CqVXSWxM=;
-    b=tuMfb8OK84jk6v/Vc+Obyemg4XLn1FK/6P2w9+auAZ/uQJlmuwyU+CzGfPSbeYgNZx
-    44OV46vPa1ppgsNz1PzNgqteqqszDzf4T6EJUMGT3tbo1hEX1oGU1ZUOaHFtKN6e2uPg
-    Ixv+bHs+2kBo6rUb3CB4SXCENnh8t5jaAm3xgAm2cdKsCxkJfmWosIhdklUcXsNp7fgx
-    rLK0yaYBlCKm1yv4KRDF4NK+hcp0LTcRg40jf3vlHswkJAcnUiaIilYQrniGAXdoJ9LE
-    f5G4e7lR5zcbDKTMrgclPFBe2Y+Ra0+l9C2DSLUrXwBan3BS4WCzwtNCYWSA/whECWEw
-    bw1Q==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGfpGU="
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 48.6.2 DYNA|AUTH)
-    with ESMTPSA id Q5ca1cz0GFTUL7n
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Mon, 16 Jan 2023 16:29:30 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH] ARM: dts: gta04: fix excess dma channel usage
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <Y8VkjQ2yZQssx/wJ@atomide.com>
-Date:   Mon, 16 Jan 2023 16:29:29 +0100
-Cc:     Adam Ford <aford173@gmail.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: 7bit
-Message-Id: <4EFDE2C4-0BBB-4804-AA46-C40EB0D97AC4@goldelico.com>
-References: <20230113211151.2314874-1-andreas@kemnade.info>
- <CAHCN7xJH+c41Yas+xnWA57KNi9arOOJDxJ=joEDEJr2k6jrRrw@mail.gmail.com>
- <Y8VkjQ2yZQssx/wJ@atomide.com>
-To:     Tony Lindgren <tony@atomide.com>
-X-Mailer: Apple Mail (2.3445.104.21)
+        with ESMTP id S230126AbjAPPn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:43:27 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676AC1A49B
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:43:25 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id bf43so43269491lfb.6
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:43:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+uj8MIU5p9znOD4c85e3scehO09nDj4L+wgjxKo8Ds8=;
+        b=vvqMKvcVSKtLJUjVBd/hLY9NxGcqUL+Mo4m/5HKdDHZVThkh0y1m0iqtY5lRrHop4R
+         dtyW+PFEF2ItNtoUCkmwY2b++QPUkSXoRROonMluxPsY/Cj8q0Dh61Z3HDmlNqERdtMX
+         RfIZUeRIJgBY/1CxbBCGwjJWJHSmIxfsiVTiwnE5a6xxJrYG+0pVSGqhbE7AzhrnVJuL
+         M5c6c3opOIMEojt6wCJ4uQzeFT4jDuUsyBR/IWvgafIDCMeGe6k/omtT7YeXZ1qjZi0j
+         opL8OHLKFRUHtEEDWLVVvo2L3RRWw6R4c05OgIq1Cn9wfFwG2k3LEEwsNegewh7bF/Vy
+         Dl7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+uj8MIU5p9znOD4c85e3scehO09nDj4L+wgjxKo8Ds8=;
+        b=nc5VJWboS2yE84vh0myZiSuyj0e/NTKKz2HPHD46ymxTc0f4/s5PeNWIvF97+UQB+Q
+         BjIWwKudx2+C8O/9IxaR5FkwHdE9lbJTZXktsj/WjIB9KrywY+xJ9qMuI2E30ZeH+5bH
+         +EMAZTqXIsjl/dp9QiZxiQisUtiRS4hNqwbnJLYSBJmr/dMuGYt33YwfKAtEkStsIEbD
+         NiS86T1zuvMNFUG4e50pOTo+enK7lFq8IbYRR1SzfY9si0+gBLvno2l7zq4hdT1PB1BX
+         NLJQITXc+Gyiro78etdB5R7kMCetgClgZyTE5sWqPQyCu+0L+xSm4kTpoUn2yoPvgc49
+         Gh8g==
+X-Gm-Message-State: AFqh2kr5lSXJfxjwnUHeenPMoOZaiC5IUkF0R8ETDhA7ffckOeeuQUKS
+        8KLSRvbEaKCpqKLSFXlCzZs2ilQSqUeM2fwsUSBRIg==
+X-Google-Smtp-Source: AMrXdXuWr6NmavT0mEqBIXGMr9sAWpiYQUDupZu9kL9Mvl0CEjLkBdnzpuZ7eF1bqrXFbNCuTg5c3G/Lrl3OSx9waGk=
+X-Received: by 2002:a05:6512:39c7:b0:4cc:7876:9f35 with SMTP id
+ k7-20020a05651239c700b004cc78769f35mr1753758lfu.125.1673883803649; Mon, 16
+ Jan 2023 07:43:23 -0800 (PST)
+MIME-Version: 1.0
+References: <20230113201038.267449-1-bhupesh.sharma@linaro.org>
+ <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org> <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
+ <b9aa6d30-5fe8-57a9-e478-c99bca70d185@linaro.org>
+In-Reply-To: <b9aa6d30-5fe8-57a9-e478-c99bca70d185@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 16 Jan 2023 21:13:12 +0530
+Message-ID: <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: qcom: geni-se: Fix '#address-cells' &
+ '#size-cells' related dt-binding error
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=unavailable autolearn_force=no
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,34 +71,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 16 Jan 2023 at 13:23, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 15/01/2023 22:33, Bhupesh Sharma wrote:
+> > On Sun, 15 Jan 2023 at 20:57, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 13/01/2023 21:10, Bhupesh Sharma wrote:
+> >>> Fix the following '#address-cells' & '#size-cells' related
+> >>> dt-binding error:
+> >>>
+> >>>    $ make dtbs_check
+> >>>
+> >>>    From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+> >>>         arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dtb: geniqup@4ac0000:
+> >>>               #address-cells:0:0: 2 was expected
+> >>>       From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+> >>
+> >> Don't we want rather to unify the soc address range?
+> >
+> > Well, the assumption in the original dt-bindings was that every reg
+> > variable is 4 * u32 wide (as most new qcom SoCs set #address- and
+> > #size-cells to <2>). However, that is not the case for all of the
+> > SoCs.
+>
+> Hm, which device of that SoC cannot be used with address/size cells 2?
 
-> Am 16.01.2023 um 15:51 schrieb Tony Lindgren <tony@atomide.com>:
-> 
-> Hi,
-> 
-> * Adam Ford <aford173@gmail.com> [230116 14:16]:
->> Would it make sense to make this default in the omap3.dtsi file and
->> enable them in the individual boards that need it?
-> 
-> In general disabling the unused devices by default for omaps will break
-> the power management. The disabled devices are completely ignored by the
-> kernel, and the devices are left to whatever the bootloader state might
-> be.
+As noted in the git log already the geniqup on sm6115 / sm4250 cannot
+be used with address/size cells 2 (See:
+https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/sm6115.dtsi#L795)
 
-Yes, indeed.
-
-> For SoCs using firmware to manage devices it's a bit different story
-> however. The firmware can still idle disabled devices based on a
-> late_initcall for example, even if the kernel knows nothing about the
-> disabled devices.
-
-But how can we then handle all devices being "okay" by default and
-eating up more dma channels than are available?
-
-We can't put all under power management AND dma by default.
-
-Or can dma channel usage be postponed until the device is really used?
-
-BR,
-Nikolaus
+> > So, ideally we shouldn't set the  "#address-cells" and  "#size-cells":
+> > as const: 2 in the bindings.
+> >
+> > See as an example:
+> > https://www.kernel.org/doc/Documentation/devicetree/bindings/usb/usb-device.yaml
+>
+>
+> How USB device - so entirely different device, not MMIO! - is related here?
+>
+> Best regards,
+> Krzysztof
+>
