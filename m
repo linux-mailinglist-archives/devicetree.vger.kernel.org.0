@@ -2,124 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E3EA66B98B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 09:57:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0AFF66B9CE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:06:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232517AbjAPI5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 03:57:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60306 "EHLO
+        id S232525AbjAPJGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 04:06:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232428AbjAPI4g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 03:56:36 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 309FF13D72
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 00:56:35 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id f34so41724922lfv.10
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 00:56:35 -0800 (PST)
+        with ESMTP id S232494AbjAPJFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:05:51 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE25215574;
+        Mon, 16 Jan 2023 01:03:01 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id r9so3970391wrw.4;
+        Mon, 16 Jan 2023 01:03:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eTej3R6a7StJO/X1aD8iGB5KaxJ3bqGGr/MCzLjiQ2g=;
-        b=eg6mJCqGBJHTVkQ7/X62F0bWksNLADA8Np9XG8Xsqq4FeMMrrE3Iseks0sKQtAuPe1
-         gxUgk8e9xnDNoUseGxQikBmrq8L3tkR04h+EiwFxPDIqltJ4XbLTEbyJ3ekb3kSRlWLi
-         czCXRXPwOIiPuZm7CEmngdTw60HQaAF+AHVIfs04Q1eEGMsfi9UQDnvIBHCaIMr5Ev3B
-         aPFE80jynAsqyuidwyaM8BrWdiFpQ6UQwnNmq/aM2nznB7wTi2F7uEvmgjY0yPuygBpj
-         NCBR8qGELtG8QtX7LfFSPnhaiBGYtTRCQGLMJSwbUPMf2q/2dMxBU87KaSiihfkGIVgS
-         Zxxg==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JJkudWJwNygPc1saqVRch4BZHQ+ehuxSBNJGOWOBYEc=;
+        b=b1eH9W1rAzmDTe8ul034A2j9Isfkso8B2RWgb0GkfspkFWMJyjT3Dwdx4TifCn/TBo
+         6tUyzNuYsfZSH1+Ugv7TedGMmJkmdhKe92OYed/GHPJxx4F5fGTJ+W+KIfy9uwIfrKq/
+         1sXhbKdZrvWTovCZItUWJ/uxb4oyX+3wXJmc5ZK443PXBQbUL+u/Il/cwXi6SW47hTWn
+         sgzMugkdlM+jCtSg7BTKsLv3f9S7DszQN4094JDAnVpzc+/bRfwWTqKUglkFL7MwoP49
+         MenIoySpwAS7NUsdYUUcAv/+X4veTQDxTWL6HroFryrYcHuAzwfpKPBBMVsFyj2jcssS
+         5vgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eTej3R6a7StJO/X1aD8iGB5KaxJ3bqGGr/MCzLjiQ2g=;
-        b=tp+W5q3QfrVCeZ/Hcwj+InkPFq4U2ApeLtAeWsRLjyRgcIfrBILgm+/zzX7E538M9w
-         lVqszKZzCpgYyVSKRl1et9TMo+slViLN+GOkEkIWyX4sq0PojsYV4iSdhQVslOqFqkak
-         Gqz+0bK59llFJI2kS9ruZzkGmHZqa40FQ0CMmMO0vDhbqYEjCSF8jonIjzw/4GDdY8u/
-         arpIM+kDAo46h3g9o/Cr1PiUud4n7woB/pCNxhkvBucTiFT+KFJfdDR8+IrlMdFGUbTE
-         cyQyYKU4uGY7otBsHTvd/fYbHe4S42ke0mjJvTmdCHAtBl6Udd8mI6r8+fFOAG6lbqNT
-         k7dA==
-X-Gm-Message-State: AFqh2kr4D2Dda4vfflITMdcsuqP64H/00BEPngbmTl4hHSf4l5xd0NXB
-        fTyooCR7WJsyenCw8N65G/jWyA==
-X-Google-Smtp-Source: AMrXdXsUU0Y2ezVSvYFBupm+y2ISVnUmHhHa2zqr2l/aHQyb3+iXF60VUY2seTRCmf7ffGfwQTBsKA==
-X-Received: by 2002:ac2:4e04:0:b0:4d5:733a:8a84 with SMTP id e4-20020ac24e04000000b004d5733a8a84mr1794578lfr.8.1673859393581;
-        Mon, 16 Jan 2023 00:56:33 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id s14-20020a056512314e00b004cc82404ff9sm4011360lfi.7.2023.01.16.00.56.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 00:56:33 -0800 (PST)
-Message-ID: <3ebaf19a-9d1a-be8d-1f99-f8cb6faa35dd@linaro.org>
-Date:   Mon, 16 Jan 2023 09:56:31 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JJkudWJwNygPc1saqVRch4BZHQ+ehuxSBNJGOWOBYEc=;
+        b=n0OvGJaDjzQFUeuo9BQKXHCMPv0NzQ49iagfV3BE8ybvoAUwgslfIucpMMpITOOwg4
+         Ln63I1dEzwVk0fNH1rYxkKL40kSk8ilnHCmwS563+bzDLo01UksFqsxX7VF1Jmew6b+o
+         Tz2vJbsZQeHzKbK1DHqzies+ZX/Ux9mfcv/pe/ltJ1XLxocCNDDivbXrOVhtq5nxU3Py
+         20vaj/ZHQNA/jlrEEBEquQnXoYaGyCCqxaYxMK3QzszMDab8aICfPCp0j0EoVXD/Ky5r
+         rWobX6nVaLAsskLiDh2V4j+QaErB7eBukijTKBcZLIcMNEPx4GiRR8QVHMQcqAAVfXny
+         p6hw==
+X-Gm-Message-State: AFqh2krb2uaAF8f4C+uUT3uQrd9UVS3jUK93D2NDmDbYsrUv695/xxa9
+        1/YEgQcTeRexNV/aUvYzjTY=
+X-Google-Smtp-Source: AMrXdXubq8KNmFzoWrAIWnJh9Wd+mZEctZzMEnSPrLhLIiYlWwGuyXD7MHR5PoeAChfEU6c9+BXC0g==
+X-Received: by 2002:adf:fbc1:0:b0:242:1415:ab02 with SMTP id d1-20020adffbc1000000b002421415ab02mr51331140wrs.9.1673859779817;
+        Mon, 16 Jan 2023 01:02:59 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id t13-20020adfe10d000000b002b6bcc0b64dsm13323050wrz.4.2023.01.16.01.02.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 01:02:59 -0800 (PST)
+Date:   Mon, 16 Jan 2023 12:02:56 +0300
+From:   Dan Carpenter <error27@gmail.com>
+To:     Doug Brown <doug@schmorgal.com>
+Cc:     oe-kbuild@lists.linux.dev, Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>, lkp@intel.com,
+        oe-kbuild-all@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 5/8] mmc: sdhci-pxav2: add optional core clock
+Message-ID: <Y8USwHNZfuaP1ro8@kadam>
+References: <202301140445.zXxR25qN-lkp@intel.com>
+ <b5867cb5-aeed-b081-543f-fd611c3c84c9@schmorgal.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 2/6] arm64: dts: qcom: sdm845: move WCD9340 codec to
- separate file
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230113162245.117324-1-krzysztof.kozlowski@linaro.org>
- <20230113162245.117324-2-krzysztof.kozlowski@linaro.org>
- <e3c367ba-b752-d116-0b84-fd2437e565b8@linaro.org>
- <5e784285-c391-91f4-c9d1-a53443fc4264@linaro.org>
- <CAA8EJpr+0fnhy+aHwmdKQA_xk2Qkse0L5u8JdCJNDZqqdYwhrg@mail.gmail.com>
- <20385103-2217-a5d0-6355-802bc87ec888@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20385103-2217-a5d0-6355-802bc87ec888@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b5867cb5-aeed-b081-543f-fd611c3c84c9@schmorgal.com>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Jan 14, 2023 at 02:49:07PM -0800, Doug Brown wrote:
+> Hi Dan,
+> 
+> On 1/14/2023 12:01 AM, Dan Carpenter wrote:
+> > Hi Doug,
+> > 
+> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > 
+> > url:    https://github.com/intel-lab-lkp/linux/commits/Doug-Brown/mmc-sdhci-pxav2-add-initial-support-for-PXA168-V1-controller/20230112-102921
+> > base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> > patch link:    https://lore.kernel.org/r/20230112022416.8474-6-doug%40schmorgal.com
+> > patch subject: [PATCH v4 5/8] mmc: sdhci-pxav2: add optional core clock
+> > config: riscv-randconfig-m041-20230113
+> > compiler: riscv64-linux-gcc (GCC) 12.1.0
+> > 
+> > If you fix the issue, kindly add following tag where applicable
+> > | Reported-by: kernel test robot <lkp@intel.com>
+> > | Reported-by: Dan Carpenter <error27@gmail.com>
+> > 
+> > smatch warnings:
+> > drivers/mmc/host/sdhci-pxav2.c:220 sdhci_pxav2_probe() warn: missing error code 'ret'
+> 
+> Thanks for passing this on. I definitely forgot an assignment to ret.
+> Since this is correcting an error in my patch that hasn't been accepted
+> yet, is it safe to assume I should omit those Reported-by tags from the
+> next version of my patch, since they don't apply to the patch itself?
+> 
 
+These emails are from the kbuild team and not from me.  I just look them
+over and hit the forward button.  I'm sure it helps the kbuild team in
+their marketing when people use the tags...  Right now I'm applying to
+jobs outside the Linux community so the tags give me a measurable thing
+to say I've helped fix thousands of bugs or whatever...
 
-On 16.01.2023 08:58, Krzysztof Kozlowski wrote:
-> On 16/01/2023 06:55, Dmitry Baryshkov wrote:
->> On Sun, 15 Jan 2023 at 13:21, Krzysztof Kozlowski
->> <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>> On 14/01/2023 21:33, Konrad Dybcio wrote:
->>>>
->>>>
->>>> On 13.01.2023 17:22, Krzysztof Kozlowski wrote:
->>>>> WCD9340 codec node is not a property of the SoC, but board.  Move it to
->>>>> separate file and include it in the specific boards.  On all others,
->>>>> keep the Slimbus node disabled as it is empty.
->>>>>
->>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> ---
->>>> Generally this should be SoC-independent, for example some newer
->>>> MSM8998 devices shipped with the 9340 codec that most 845 devices
->>>> used, but earlier ones used the WCD9335 found on MSM8996
->>>
->>> OK, but I don't get if you expect me to change anything?
->>
->> Maybe it might make sense to name new include file just 'wcd9340.dtsi'
->> rather than 'sdm845-somthing.dtsi'? Same applies to the wcd9335 codec
->> found in msm8996.dtsi, if you are going to extract it too.
-> 
-> Ah, then I vote against, because it is not only codec, but also it's bus
-> attachment. It cannot be re-used on other devices.
-> 
-> Same approach with sc7280 audios - not re-usable for other SoCs.
-Riight.. and interrupts and so on, let's keep it SoC-bound.
+I've always argued that there should be a different Fixes-from: tag for
+people who find bugs during review (as opposed to just complaining about
+white space which is its own reward and I do that for free).  So far I
+haven't convinced anyone on this though.
 
-Konrad
-> 
-> Best regards,
-> Krzysztof
-> 
+Anyway, there isn't a policy one way or the other.  Some people add
+them and some don't.  Some people add them below the --- cut off line,
+but I don't know if that's deliberate or what the story is there.  That
+seems like it might be a good compromise.
+
+regards,
+dan carpenter
