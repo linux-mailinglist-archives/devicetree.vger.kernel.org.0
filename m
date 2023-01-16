@@ -2,124 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F236566CF58
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:10:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 216AC66CF6F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:19:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232545AbjAPTKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 14:10:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35262 "EHLO
+        id S231962AbjAPTTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 14:19:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232168AbjAPTKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:10:46 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9136B2884D
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:10:44 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id kt14so11334369ejc.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:10:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Co2g9IMkk73uKQEckznsjPdf9rOk98qtlKq/GS31a/w=;
-        b=U714rqVZg173SnKUPuCRnKX3tvwBwaSG8VtImxN4rrf/BDh9nnYe6KzyleixazhPxP
-         A7OTCSaQrm1KfFD2C0ElinXw7VfsQzQkulca9N2XZsBa+yhZ8B7ZhE4C2i6mQvJiOyu/
-         Poam/01xBxy83M/lKNRrgnt0vs03iTu6v2co+WHq8hcqT3ngZ2/wLglaDPoSwNYf5mw0
-         FC4XfqtP0nF6sL8Tuo37qD/UUegdNfYUbRBb4QuCqqkTGujoOSGW4+LfiuezDrRLLKoW
-         ECWTHLo9wwg04wFeOD/bW4tYkWbv30totLZK3C5M+upSXf3Z9ZifyKqCh1XQJwecH4p9
-         BBzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Co2g9IMkk73uKQEckznsjPdf9rOk98qtlKq/GS31a/w=;
-        b=hb15mXKlaDHTdDEuyigzDe0K7fbSlgqTROwydgeiw3l41ZVWCGLHs1zXjWOyOCb5Q3
-         P5stRiZJklB8GjWHaH1ddt4uFXCWOPQwdups2SvIZsC0hCAT52PXSdQhEvtU0WWk0XJT
-         6FHj1TbEMXakKw50IbEzMWTlEzGML8hgAQwiBSlutzhf72TwwQuLNOxaWNhhFKrOARwT
-         YNkZx0GkRhenCSXkNOHzA0VQB9/F4WdkvA7dB3tQSwsdhdisdMn5ZH4NZbMcNbXNMWXg
-         zbn79c0IrwpthCcRYzxhRBiDhL0EjDjHz5v2iQ6EpcQQ4tHGY7IjbV0c+o5AUMV+2ShZ
-         NFgg==
-X-Gm-Message-State: AFqh2koUtkHHml+feIjDfJ7wwTiZqqvY8wwk3BCH2TZDrXGBqbD7kXgx
-        CJ/C+BoKDtckZle2qxYwEoar0w==
-X-Google-Smtp-Source: AMrXdXu7KxNRBkkMmI1eVW/Eoo9jAdHt6qJ1e/DZ7tGTObc7DPCWM2gvqdSko6LhWVAwn+JazerySg==
-X-Received: by 2002:a17:906:b855:b0:864:8c78:e7ff with SMTP id ga21-20020a170906b85500b008648c78e7ffmr12488537ejb.23.1673896243157;
-        Mon, 16 Jan 2023 11:10:43 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id b17-20020a1709063cb100b0079e11b8e891sm12050219ejh.125.2023.01.16.11.10.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 11:10:42 -0800 (PST)
-Message-ID: <18cab846-f62a-93f2-8d47-17b37b638278@linaro.org>
-Date:   Mon, 16 Jan 2023 20:10:40 +0100
+        with ESMTP id S232346AbjAPTTL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:19:11 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7AEB21A36;
+        Mon, 16 Jan 2023 11:19:09 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 704F86111E;
+        Mon, 16 Jan 2023 19:19:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3D62C433D2;
+        Mon, 16 Jan 2023 19:19:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673896748;
+        bh=XPbeY1Tw3NOIW18sn3VUjs5hnmitr2mUboL06yyV1OU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ht26c5+BaGyCrnSatfGGdKlEeaSu6vFP4V4n9oRMBtY9yVXlRSe/2DdYDLyNPXbEP
+         TaZAHDIhfnoHV4gNfbdO6avAqMxerbEq+Kd3rTvXXICod5S6F0czWPGbt71oRbGTE+
+         EBMrn0o2zzrvL2mD9J1cRd8/2XtJArHP6xV4QRFMCQk4lo6x78PJzpsp1l3y2MBBB4
+         4EDSvcALVvzn0mkixQjkJfr6BgbrHZnsRyj1Ngv/OnqFArGwqbklYrnIqipgMUZlOe
+         PDwmQsbmfiN07tMtCLKfgXNSjzN0vbHZlxoLuCBwDslQhLNymZEQ33hQ7qzkrrfszd
+         vfFWghN6ratvQ==
+Date:   Mon, 16 Jan 2023 19:19:04 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Walker Chen <walker.chen@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] JH7110 PMU Support
+Message-ID: <Y8WjKArEZH5zd5jb@spud>
+References: <20230116074259.22874-1-walker.chen@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: qcom: geni-se: Fix '#address-cells' &
- '#size-cells' related dt-binding error
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20230113201038.267449-1-bhupesh.sharma@linaro.org>
- <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org>
- <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
- <b9aa6d30-5fe8-57a9-e478-c99bca70d185@linaro.org>
- <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="9GoKrs0wz7LbOpIW"
+Content-Disposition: inline
+In-Reply-To: <20230116074259.22874-1-walker.chen@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 16:43, Bhupesh Sharma wrote:
-> On Mon, 16 Jan 2023 at 13:23, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 15/01/2023 22:33, Bhupesh Sharma wrote:
->>> On Sun, 15 Jan 2023 at 20:57, Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 13/01/2023 21:10, Bhupesh Sharma wrote:
->>>>> Fix the following '#address-cells' & '#size-cells' related
->>>>> dt-binding error:
->>>>>
->>>>>    $ make dtbs_check
->>>>>
->>>>>    From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
->>>>>         arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dtb: geniqup@4ac0000:
->>>>>               #address-cells:0:0: 2 was expected
->>>>>       From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
->>>>
->>>> Don't we want rather to unify the soc address range?
->>>
->>> Well, the assumption in the original dt-bindings was that every reg
->>> variable is 4 * u32 wide (as most new qcom SoCs set #address- and
->>> #size-cells to <2>). However, that is not the case for all of the
->>> SoCs.
->>
->> Hm, which device of that SoC cannot be used with address/size cells 2?
-> 
-> As noted in the git log already the geniqup on sm6115 / sm4250 cannot
-> be used with address/size cells 2 (See:
-> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/sm6115.dtsi#L795)
 
-That's not relevant and not answering to my question. Address/size cells
-affect children, so not geniqup. address-cells 2 means you have
-everywhere 64 bit addresses, so which devices cannot work with such DTS?
-If you claim that geniqup and its children has some troubles - please
-point what troubles. The DTS and existing address/size cells have
-nothing to do with it.
+--9GoKrs0wz7LbOpIW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+Hey Walker,
 
+On Mon, Jan 16, 2023 at 03:42:56PM +0800, Walker Chen wrote:
+> Hello,
+>=20
+> This patchset adds PMU (Power Management Unit) controller driver for the
+> StarFive JH7110 SoC. In order to meet low power requirements, PMU is
+> designed for including multiple PM domains that can be used for power
+> gating of selected IP blocks for power saving by reduced leakage
+> current. The first patch adds device tree binding for PM domain provider
+> and consumer. The second patch adds pmu driver and support JH7110 SoC.
+> The last patch adds device node about pmu to JH7110 dts.=20
+>=20
+> The series has been tested on the VisionFive 2 boards which equip with
+> JH7110 SoC and works normally.
+
+For the series:
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+I'm hoping that someone with knowledge of the power APIs will take a
+look now that the driver looks to be in a pretty good state (to my naive
+eyes at least).
+
+> Changes in v3:
+> - Rebased on tag v6.1.
+
+FYI, please pick something more recent than that.
+Ideally, the last -rc1, which in this case is v6.2-rc1.
+It's helpful to do this, as when I went to apply your patch, there were
+some conflicts that needed to be sorted out. Because of your prerequisite
+patches, the usual `b4` commands would not usable. E.g.
+
+b4 am -3 20230116074259.22874-1-walker.chen@starfivetech.com
+Analyzing 4 messages in the thread
+Checking attestation on all messages, may take a moment...
+---
+  [PATCH v3 1/3] dt-bindings: power: Add starfive,jh7110-pmu
+  [PATCH v3 2/3] soc: starfive: Add StarFive JH71XX pmu driver
+  [PATCH v3 3/3] riscv: dts: starfive: add pmu controller node
+---
+Total patches: 3
+Preparing fake-am for v3: JH7110 PMU Support
+  ERROR: Could not find matching blob for MAINTAINERS (85e8f83161d7)
+         If you know on which tree this patchset is based,
+         add it as a remote and perform "git remote update"
+         in order to fetch the missing objects.
+
+Fortunately, this is just a driver addition so despite `b4` not
+helping it was easy to resolve but for other patches in the future,
+this may not be the case.
+
+Assuming the dt maintainers are happy with the binding, ping me in 2
+weeks if no-one else has commented and I'll apply patches 1 & 2.
+
+Thanks,
+Conor.
+
+> base-commit: 830b3c68c1fb1e9176028d02ef86f3cf76aa2476
+> prerequisite-patch-id: 54ce870d6ea747466474b5d4105cfbc05e1b01ab
+> prerequisite-patch-id: e8dd8258a4c4062eee2cf07c4607d52baea71f3a
+> prerequisite-patch-id: 057fa35870d8d7d22a57c13362588ffb9e9df316
+> prerequisite-patch-id: 102368a6ff799c4cb639aed513deff09c1839161
+> prerequisite-patch-id: 7c1a50a37919fedbbd336ca5dec295ac63c2a89d
+> prerequisite-patch-id: a5d9e0f7d4f8163f566678894cf693015119f2d9
+> prerequisite-patch-id: 87cb528acd9a7f1ffe7475d7261553f6a4de5753
+> prerequisite-patch-id: 417736eb958e1158c60a5ed74bc2350394321a80
+> prerequisite-patch-id: a137312ca162b5712e28719f77d0da78e9fdd778
+> prerequisite-patch-id: f7c548b4619f491ce27f319242c4e3685c76173b
+> prerequisite-patch-id: 4d90febab2fb7928f50a73104e7454312b9ce6c8
+> prerequisite-patch-id: 645a807d50e0e56593ffdc6c3b50ea54a230827a
+> prerequisite-patch-id: 165f8cd740ae60585d22c95b99a0689084d468e3
+> prerequisite-patch-id: 480d910deccadc2947b3318c3c13dfa0882c8e0d
+> prerequisite-patch-id: 1d1cb90ec12dfc9312e448759c7cab89f2bc6394
+> prerequisite-patch-id: 5f539ac7c96023b36489c6da7c70c31eaf64a25b
+> prerequisite-patch-id: 6bb9a780c62af3bcc2368dfd20303c7b1bc91e23
+> prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+> prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+> prerequisite-patch-id: e3b986b9c60b2b93b7812ec174c9e1b4cfb14c97
+> prerequisite-patch-id: 2e03eeb766aefd5d38f132d091618e9fa19a37b6
+> prerequisite-patch-id: e0ba7af0f8d3d41844da9fbcba14b548cbc18f55
+> prerequisite-patch-id: c1f8603e58c64828d0f36deac9b93c24289d8e05
+
+
+--9GoKrs0wz7LbOpIW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY8WjKAAKCRB4tDGHoIJi
+0oszAQDM9ExcHzz5zwVTaRHH/CUh3N4IkT9RnBltBfBDkeqmmwD/eoWkYLcS1whs
+CsKsgJlSS9Nu15N2/XX5xgyh1Scb+AA=
+=zJa1
+-----END PGP SIGNATURE-----
+
+--9GoKrs0wz7LbOpIW--
