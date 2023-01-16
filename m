@@ -2,152 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B32B66C34B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC20666C378
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:20:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231688AbjAPPIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 10:08:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35162 "EHLO
+        id S230297AbjAPPUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 10:20:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232894AbjAPPHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:07:39 -0500
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2051.outbound.protection.outlook.com [40.107.95.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9341B23C5C;
-        Mon, 16 Jan 2023 06:55:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hjuxmishfDtu0xl3yWY2XuLdX+37Rtj8npKvN/cnUnbyu5WAOLRfWhZKN8pa8w4qjQcgpc2ABsc6xDtfqY08Yq/QLdoNVZTmFfkEBTTwQT4B2s1401Dwx+SFPr91tR1tpzHVWs229xESoUHt1i5TbDe/KTUyyAfDcxVLUFXKJ9ePFkmEpBrgT2wMfaBdABKkvgE5x4b+1wAqNL7KA0c4o7oi7zX6RMZNjWC/uPL2LirNiFO2e199H2sWaeXID9+sxolxyRkVOj0T24TZ6wvmCFV/RXqnvwvRGc9fc3ioj3n8bbhL8x52v+xm8i+HbWTXycy5thVXg2V708KVcRtdXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=30qQTOkiY5sfbvT1foBbsf1CAAlDoR6IFS9RmGmMqUI=;
- b=flwq5KuR2IVweQtYvGxucRY75bh9a0dNhsBRMxg6keFUWC2C+9ky42Sgb1ESFwM231o8UhgiBDAL+LbUVr7HlkW/CS5bXKGceSiL8oemor4KEpWTSEly8n1AUsLDAsFMolc7x6hTFkehwE08Q2WdBWVV0FC9QhNpoj3yEsA7Cj+AJCYSRv8imYDr5QpyE6wp4WeAnnZYYHvGRULX+TpX3r5G2euBteLSzeF6uMg2bqOmZkL4+GvOFeHMh2fMEv8hb7NIIteAr6kbOPzBm7gy9FZAH6OBft60cTHdkSQ4NTWZgde1m88FeEtSa+lbFK5dqfATMgqZspojat21KNtAjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=30qQTOkiY5sfbvT1foBbsf1CAAlDoR6IFS9RmGmMqUI=;
- b=MWaB7oyhTxYTBv8s6G0PLGvMs/sSzy6nvmgZUva0QXPIs9UnEJMVwGkcXrS/VW3165tiAa6i/+tiVA/Ex98qHXTjcQel7BOV6H9tbtGZV5et1gAFWlHORkkjUUteWo91ez4uYLFsO3fycqJt5dQS2E/4V1HpBAB3TDO+IKWrlERCB2ylFRLfUYo8RF+qEDDx45f9UZwQ9fZor04gwh2xSnkIBlg9GiiulhB6iwgasjvlpvZ1GiwIY3CgW7YAiDT+m/Mq6daTIHTPKkSy0OGjsF04P8edyXZP0hegX7VAkRPsJT0D2n5Dx6U1f+7JEL3V4S04D/8OEwiMBbSpvsz9AQ==
-Received: from DM6PR06CA0030.namprd06.prod.outlook.com (2603:10b6:5:120::43)
- by CO6PR12MB5425.namprd12.prod.outlook.com (2603:10b6:303:13e::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Mon, 16 Jan
- 2023 14:55:23 +0000
-Received: from DM6NAM11FT077.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:120:cafe::21) by DM6PR06CA0030.outlook.office365.com
- (2603:10b6:5:120::43) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.19 via Frontend
- Transport; Mon, 16 Jan 2023 14:55:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- DM6NAM11FT077.mail.protection.outlook.com (10.13.173.147) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.13 via Frontend Transport; Mon, 16 Jan 2023 14:55:22 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 16 Jan
- 2023 06:55:16 -0800
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 16 Jan
- 2023 06:55:15 -0800
-Received: from moonraker.nvidia.com (10.127.8.14) by mail.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server id 15.2.986.36 via Frontend
- Transport; Mon, 16 Jan 2023 06:55:13 -0800
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH V4 5/5] arm64: tegra: Populate the XUDC node for Tegra234
-Date:   Mon, 16 Jan 2023 14:54:52 +0000
-Message-ID: <20230116145452.91442-6-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230116145452.91442-1-jonathanh@nvidia.com>
-References: <20230116145452.91442-1-jonathanh@nvidia.com>
+        with ESMTP id S230147AbjAPPUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:20:18 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9F522032
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:14:38 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id j17so1692285wms.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:14:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uZq7KZ5es/oVm07Mu/lqqsKw8XYpJdtTEoce2xEIrxo=;
+        b=dIOeuulv+g0l0G+UNWjumOycCO6uwEpnPCGFt9OIFg2WEPVrIugyGOWgbYjZ1yoW/o
+         DzYFob7z/jZaNY/JyJ0dVeaMjbwDGfEq+bqPEV72fc+Uxge9MaqFbTD8DfVdVIXs3Vrd
+         BsggeADbJgJj4n9p4xwfwk40fsyWqvapc4Vs5EQp9jEYzeqsaxWlflUYXiFdz4LrCNf+
+         vsFIO/5tDtPZbDUZituTFFk0JBeW4H2yYFHGJGcU1IjelcAivPMOcLQVk5Tolw9WGDPJ
+         A33wsMM+ekC6wnIjz9miDjBKuRucGfkJnxNClGDZ4XIDc59vAbzf7YcJRCgzkv5Jk3nm
+         XllA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uZq7KZ5es/oVm07Mu/lqqsKw8XYpJdtTEoce2xEIrxo=;
+        b=du4rJ8ZwHA94Kd87v/m1bhJo2oBH9zAqwaqVxg3jZZhzmkXuV56gj70pc1uahciBbR
+         nbgXlMU7iQyMO+03hR5wjpvOK2NqT8jlMxAuDdLpuGX1UetgXnMMCbc42kceCPLu9as/
+         LsPi4KvXvYPAkga6lKfeZbdglwvo98KbRkqWwxE0FLrMwuULlYofISWKvyiuq0GlbxI2
+         Y0obJ5HTBXZ4h5taa/2ejFrJMCn3rSk8/vcJLYQqOawR8d5asGXG4DtiP67rrTQuSAD9
+         4NheLsRXmttQ31uxOPWcA8QPnh60ATeR6HN6XhmFYNN61xn4gpWbLW+9N2021YqZidQ3
+         yVZg==
+X-Gm-Message-State: AFqh2kpLmfhlsWC0HkRskMwkaoeHRHBY4eJUnzZWRf5ZNHJk+jGa6ggs
+        vsMbrlOtHrZK1lzJ4mW6BB0=
+X-Google-Smtp-Source: AMrXdXtupPOYy5yRRdXlMsUe8LgeR85RjB2tixi2DxqOhg5gOTkUx2jmGFM1uPIUJDNQB68i8wJC4A==
+X-Received: by 2002:a05:600c:35d4:b0:3d2:2d2a:d581 with SMTP id r20-20020a05600c35d400b003d22d2ad581mr66489602wmq.30.1673882077019;
+        Mon, 16 Jan 2023 07:14:37 -0800 (PST)
+Received: from archbox.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id k9-20020a05600c1c8900b003dafbd859a6sm3857272wms.43.2023.01.16.07.14.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 07:14:36 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: fix probe of analog sound card on rock-3a
+Date:   Mon, 16 Jan 2023 16:14:35 +0100
+Message-ID: <4802111.31r3eYUQgx@archbox>
+In-Reply-To: <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
+References: <20230115211553.445007-1-jonas@kwiboo.se>
+ <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT077:EE_|CO6PR12MB5425:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6200b93-c8a5-43d5-a0e7-08daf7d1b1a5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6nLFfEG26jcxxS1DH71NwGM+rnfodZKUNGZQccRGbnCwyiOg56ERawXKa8euxmRBnLrQiaZPCaYY14sVbKqUQnC2IgqZ0ShgX+oqU3HpCApkb95/mDwVqxSLUE0cBQOfUxS+ZHG89jzWsEWCVscgkodUpyde7PH9Sjt+vtvCRIwdciJEP/YlsiM2/bjwMWYr0j3Spd7lF1QcRsizrwe+/kV4RUN3bEtuL0z34jX/yjfjQuM9ZCfn9/51LwtwacPmQGpg2HZKfzYEDUy5n0VbG/2DeeLi61BKazoZSkLmPLisGMkaZsZEH7lJph1ekTUWkU7eJhlH0XclJTTuYIW2h4APefV36t++rXl7wp0aWgPuRRfNXzcS7qcLuPGZUegBD49WcR1ig462t6BfkO5PNYKZypUJpkRXWWpd5uQ+4Eikz6BVdJvpvCiTVQ6EsxN9lHzwdjaimMY3qN139t5Uq6ZJoTVgRoxhb5zSs6UrjnrgAEqxF6NWOCLyHhnlABiSpVBknHS4eXys7wLXvHhxxFKVHhc/tqzV3ZKDfCo1SqUd6ZwrpE4nCaLFzbSj6b/aqx7IJlxZARAvwg0ZBHVNA/nZR7UOvGNCUR2ou4oTpDWNSFYonqpul8g8zNALmXG9np/izyDab1wCgFe9P+k/g1ot+oWlQ/Wwv1GK8vrV7Gldiavas6fjRydgfsg1uVNWlc6XJBYY6QaEYzKe1D7DJg==
-X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(136003)(346002)(39860400002)(451199015)(46966006)(36840700001)(40470700004)(83380400001)(8936002)(5660300002)(41300700001)(426003)(47076005)(7636003)(82310400005)(82740400003)(2906002)(36756003)(356005)(40460700003)(40480700001)(86362001)(186003)(478600001)(7696005)(36860700001)(26005)(1076003)(8676002)(4326008)(336012)(316002)(70586007)(54906003)(2616005)(107886003)(70206006)(6666004)(110136005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 14:55:22.5431
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6200b93-c8a5-43d5-a0e7-08daf7d1b1a5
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT077.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5425
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Populate the Tegra XUSB device controller (XUDC) node for Tegra234.
+On Monday, 16 January 2023 09:41:50 CET Michael Riesch wrote:
+> Hi Jonas,
+> 
+> On 1/15/23 22:15, Jonas Karlman wrote:
+> > The following was observed on my Radxa ROCK 3 Model A board:
+> >   rockchip-pinctrl pinctrl: pin gpio1-9 already requested by
+> >   vcc-cam-regulator; cannot claim for fe410000.i2s ...
+> >   platform rk809-sound: deferred probe pending
+> > 
+> > Fix this by supplying a board specific pinctrl with the i2s1 pins used
+> > by pmic codec according to the schematic [1].
+> > 
+> > [1] https://dl.radxa.com/rock3/docs/hw/3a/ROCK-3A-V1.3-SCH.pdf
+> > 
+> > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> 
+> Makes sense to me, but...
+> 
+> > ---
+> > 
+> >  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> > b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts index
+> > 00d873a03cfe..a149c8b83f94 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> > @@ -573,6 +573,8 @@ &i2s0_8ch {
+> > 
+> >  };
+> >  
+> >  &i2s1_8ch {
+> > 
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&i2s1m0_sclktx &i2s1m0_lrcktx &i2s1m0_sdi0 
+&i2s1m0_sdo0>;
+> 
+> ... shouldn't this include i2s1m0_mclk as well?
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+You can totally use i2s without an mclk, but I don't have a specific
+explanation as to why this is lacking in this particular pinctrl, as
+I cargo-culted it from downstream.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 242bf59711f8..728099116dd0 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -1199,6 +1199,29 @@ usb3-3 {
- 			};
- 		};
- 
-+		usb@3550000 {
-+			compatible = "nvidia,tegra234-xudc";
-+			reg = <0x03550000 0x8000>,
-+			      <0x03558000 0x8000>;
-+			reg-names = "base", "fpci";
-+			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&bpmp TEGRA234_CLK_XUSB_CORE_DEV>,
-+				 <&bpmp TEGRA234_CLK_XUSB_CORE_SS>,
-+				 <&bpmp TEGRA234_CLK_XUSB_SS>,
-+				 <&bpmp TEGRA234_CLK_XUSB_FS>;
-+			clock-names = "dev", "ss", "ss_src", "fs_src";
-+			interconnects = <&mc TEGRA234_MEMORY_CLIENT_XUSB_DEVR &emc>,
-+					<&mc TEGRA234_MEMORY_CLIENT_XUSB_DEVW &emc>;
-+			interconnect-names = "dma-mem", "write";
-+			iommus = <&smmu_niso1 TEGRA234_SID_XUSB_DEV>;
-+			power-domains = <&bpmp TEGRA234_POWER_DOMAIN_XUSBB>,
-+					<&bpmp TEGRA234_POWER_DOMAIN_XUSBA>;
-+			power-domain-names = "dev", "ss";
-+			nvidia,xusb-padctl = <&xusb_padctl>;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
- 		usb@3610000 {
- 			compatible = "nvidia,tegra234-xusb";
- 			reg = <0x03610000 0x40000>,
--- 
-2.25.1
+> For some reason this has been omitted in the pinctrl defined in
+> rk356x.dtsi. But then rk356x.dtsi also claims
+>  - both i2s1m0_sdo1 and i2s1m0_sdi3
+>  - both i2s1m0_sdo2 and i2s1m0_sdi2
+>  - both i2s1m0_sdo3 and i2s1m0_sdi1
+> which are mapped to the same respective pins. Therefore it seems that
+> there might be something wrong with this pinctrl altogether.
+
+This is actually correct, I believe. The driver has a feature called
+"io multiplex" which fiddles with the GRF to dynamically set the pin
+directions depending on the hardware parameters. As it happens, for
+example sdo1 and sdi3 are on the same pin mux, and can be switched
+between like this.
+
+I don't know how well that meshes with upstream's understanding of
+pinctrl but in this case the two functions really can use the same
+pin.
+
+> 
+> Cc: Nicolas Frattaroli, maybe he can provide some clarification.
+> 
+> Best regards,
+> Michael
+> 
+> >  	rockchip,trcm-sync-tx-only;
+> >  	status = "okay";
+> >  
+> >  };
+
+Cheers,
+Nicolas Frattaroli
+
+
+
 
