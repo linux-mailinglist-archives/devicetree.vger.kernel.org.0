@@ -2,425 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 419F066BABC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:44:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2690A66BAC6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:45:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230129AbjAPJn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 04:43:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33518 "EHLO
+        id S229507AbjAPJpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 04:45:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232179AbjAPJne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:43:34 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07BF14E8C
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:43:32 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id o20so9950295lfk.5
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:43:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q54XghDh6LEV5nDRF1yWYyzk+NPiWIoK4IXLMUOslgk=;
-        b=G3V/Th2E7Oqux2H64GI/K6iU/r6ephA2awTM+3I/NBQHnZ0X7j6h6yjCxsfo59zAmo
-         cbkju3OYso+FOD5HoY75lC/ZqvydY/b5ZQG+3AD9yEQEZl5EnZFthyTGzQdz0ElwBFPg
-         07mA+w+LOEgs5KxBURhum5uINoXNlzWdSh//MFDMkN8Hn+617XqJX4yAWKgCK89A9u0W
-         HwlGIXOVQ4tKRIIcsLbZ3hqT46mM3SiuX6gbgU6HiPkvVRRCSkO7r9H+fdV3vde3Vq0E
-         A0MstR2gXCMgNFVdbMdKxkYs2JoOmE3tlEpsxIhxN/Bg/TW+dkQzLuTGkdqewdFkhRzB
-         DQkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q54XghDh6LEV5nDRF1yWYyzk+NPiWIoK4IXLMUOslgk=;
-        b=QIln+JLNRiHNISgHsRV1VbLrR1HFMThV94zmfxLZ22EYGsF8YfiVx9UYOF+U6oPIG4
-         IX238g4f8d6/vDUvPr7iaDPe4Wtu+7i8YRuvpxEM1V5a8i2I3KRZuHMQd80hbcDh7BS2
-         QMfv7RnMBM+ndfOzIUq8N6325DhpqTtlj9OM0M9kNmz05xUG8SPg21TEdepQOEkrWDBQ
-         xETgT5J4uT/RHNlXaLnQNwtwx1/1sQgrBlu7IdnRgp9iQSZ3VDl74TyHjguC5sSNpjBS
-         Cn16woatqyA+MUDnoe+QThHE58ixDichL8nMbnoiBLVJaVECQZsK/wszoTKDNtmPeY1k
-         Ms+A==
-X-Gm-Message-State: AFqh2koZuSpvGP3zl8xKqNw90+vurtnPLqeXYki1EjxTgym6rPyi74Eq
-        LEqd1IfHvyWS//eut9h3pxyQbw==
-X-Google-Smtp-Source: AMrXdXvs8ogM161eKJcroFgKCaaiSWvXX60RURXI54Rt7bSPDvE0rX6+u+OtkGOrs2KXylj6/6Yfuw==
-X-Received: by 2002:ac2:43a4:0:b0:4cb:3a60:65cb with SMTP id t4-20020ac243a4000000b004cb3a6065cbmr12819980lfl.6.1673862209583;
-        Mon, 16 Jan 2023 01:43:29 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id y19-20020a0565123f1300b00498fc3d4cfdsm4953242lfa.189.2023.01.16.01.43.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 01:43:29 -0800 (PST)
-Message-ID: <c6028860-7fab-f3db-98ac-8192d30e3ceb@linaro.org>
-Date:   Mon, 16 Jan 2023 10:43:27 +0100
+        with ESMTP id S229737AbjAPJpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:45:23 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56DCF14E82;
+        Mon, 16 Jan 2023 01:45:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EC6E8B80DC7;
+        Mon, 16 Jan 2023 09:45:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E45F6C433D2;
+        Mon, 16 Jan 2023 09:45:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673862319;
+        bh=IErqy72fWGEyGg5hdpkN3ppofTEo7PnQJT5cOsOKvm4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=KHgKyPKYIgqEMoIVatH9p/4iERtqC93oeW8sprIPuwYQVJnvGkxk5QvDe3MDB2SbM
+         tc7FhG0YzDz+kRpja1HDPyWPTJrGnstMoyp3Mp9WpAJQqlTplptPiuJZQt5FuglG17
+         X1Wi+DxUdHIIZRjjek9cs4wkp29aNvaYgZsNYUKUjLmhTpWW2QVZX7WlvRUowVUcRN
+         jHROf4lsxiAkWEwcp5ph5yWOEny2StO9Eu5dMzSUuQSd6g4Fqb/lrt88dXsyrGh1Yo
+         hI4ufx69zc6BUtA2990xizH0UgWYqB/hv8rhplvr4ZqXfMn4psg16TVe9aG7T3UGg/
+         4rO/YHNEX/3sw==
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     bhelgaas@google.com, kw@linux.com, robh+dt@kernel.org,
+        shawnguo@kernel.org, frank.li@nxp.com,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        l.stach@pengutronix.de, kishon@ti.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-pci@vger.kernel.org, linux-imx@nxp.com
+Subject: Re: (subset) [PATCH v5 0/14] Add i.MX PCIe EP mode support
+Date:   Mon, 16 Jan 2023 10:45:10 +0100
+Message-Id: <167386225326.10305.6865038680474291144.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <1673847684-31893-1-git-send-email-hongxing.zhu@nxp.com>
+References: <1673847684-31893-1-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v9 2/6] dt-bindings: soc: qcom: cpr3: Add bindings for
- CPR3 driver
-Content-Language: en-US
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230116093845.72621-1-konrad.dybcio@linaro.org>
- <20230116093845.72621-3-konrad.dybcio@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230116093845.72621-3-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16.01.2023 10:38, Konrad Dybcio wrote:
-> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+On Mon, 16 Jan 2023 13:41:10 +0800, Richard Zhu wrote:
+> i.MX PCIe controller is one dual mode PCIe controller, and can work either
+> as RC or EP.
 > 
-> Add the bindings for the CPR3 driver to the documentation.
+> This series add the i.MX PCIe EP mode support. And had been verified on
+> i.MX8MQ EVK, i.MX8MM EVK and i.MX8MP EVK boards.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-Eh... forgive me, I said I dropped it in the cover letter,
-but forgot to do actually it in the patch after all..
+> In the verification, one EVK board used as RC, the other one used as EP.
+> Use the cross TX/RX differential cable connect the two PCIe ports of these
+> two EVK boards.
+> 
+> [...]
 
-Konrad
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> [Konrad: Make binding check pass; update AGdR's email]
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../bindings/soc/qcom/qcom,cpr3.yaml          | 314 ++++++++++++++++++
->  1 file changed, 314 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
-> new file mode 100644
-> index 000000000000..eb11af375e54
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
-> @@ -0,0 +1,314 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,cpr3.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm Core Power Reduction v3/v4/Hardened (CPR3, CPR4, CPRh)
-> +
-> +description: |
-> +  CPR (Core Power Reduction) is a technology to reduce core power on a CPU
-> +  or other device. Each OPP of a device corresponds to a "corner" that has
-> +  a range of valid voltages for a particular frequency. While the device is
-> +  running at a particular frequency, CPR monitors dynamic factors such as
-> +  temperature, etc. and suggests or, in the CPR-Hardened case performs,
-> +  adjustments to the voltage to save power and meet silicon characteristic
-> +  requirements.
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description: CPRv3 controller
-> +        items:
-> +          - const: qcom,cpr3
-> +      - description: CPRv4 controller
-> +        items:
-> +          - const: qcom,cpr4
-> +      - description: CPRv4-Hardened controller
-> +        items:
-> +          - enum:
-> +              - qcom,msm8998-cprh
-> +              - qcom,sdm630-cprh
-> +          - const: qcom,cprh
-> +
-> +  reg:
-> +    description: Base address and size of the CPR controller(s)
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: "ref"
-> +
-> +  clocks:
-> +    items:
-> +      - description: CPR reference clock
-> +
-> +  vdd-supply:
-> +    description: Autonomous Phase Control (APC) or other power supply
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  acc-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to syscon for writing ACC settings
-> +
-> +  nvmem-cells:
-> +    description: Cells containing the fuse corners and revision data
-> +    minItems: 10
-> +    maxItems: 32
-> +
-> +  nvmem-cell-names:
-> +    minItems: 10
-> +    maxItems: 32
-> +
-> +  operating-points-v2: true
-> +
-> +  power-domains: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - operating-points-v2
-> +  - "#power-domain-cells"
-> +  - nvmem-cells
-> +  - nvmem-cell-names
-> +
-> +additionalProperties: false
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8998-cprh
-> +    then:
-> +      properties:
-> +        nvmem-cell-names:
-> +          items:
-> +            - const: "cpr_speed_bin"
-> +            - const: "cpr_fuse_revision"
-> +            - const: "cpr0_quotient1"
-> +            - const: "cpr0_quotient2"
-> +            - const: "cpr0_quotient3"
-> +            - const: "cpr0_quotient4"
-> +            - const: "cpr0_quotient_offset2"
-> +            - const: "cpr0_quotient_offset3"
-> +            - const: "cpr0_quotient_offset4"
-> +            - const: "cpr0_init_voltage1"
-> +            - const: "cpr0_init_voltage2"
-> +            - const: "cpr0_init_voltage3"
-> +            - const: "cpr0_init_voltage4"
-> +            - const: "cpr0_ring_osc1"
-> +            - const: "cpr0_ring_osc2"
-> +            - const: "cpr0_ring_osc3"
-> +            - const: "cpr0_ring_osc4"
-> +            - const: "cpr1_quotient1"
-> +            - const: "cpr1_quotient2"
-> +            - const: "cpr1_quotient3"
-> +            - const: "cpr1_quotient4"
-> +            - const: "cpr1_quotient_offset2"
-> +            - const: "cpr1_quotient_offset3"
-> +            - const: "cpr1_quotient_offset4"
-> +            - const: "cpr1_init_voltage1"
-> +            - const: "cpr1_init_voltage2"
-> +            - const: "cpr1_init_voltage3"
-> +            - const: "cpr1_init_voltage4"
-> +            - const: "cpr1_ring_osc1"
-> +            - const: "cpr1_ring_osc2"
-> +            - const: "cpr1_ring_osc3"
-> +            - const: "cpr1_ring_osc4"
-> +    else:
-> +      items:
-> +        - const: "cpr_quotient_offset1"
-> +        - const: "cpr_quotient_offset2"
-> +        - const: "cpr_quotient_offset3"
-> +        - const: "cpr_init_voltage1"
-> +        - const: "cpr_init_voltage2"
-> +        - const: "cpr_init_voltage3"
-> +        - const: "cpr_quotient1"
-> +        - const: "cpr_quotient2"
-> +        - const: "cpr_quotient3"
-> +        - const: "cpr_ring_osc1"
-> +        - const: "cpr_ring_osc2"
-> +        - const: "cpr_ring_osc3"
-> +        - const: "cpr_fuse_revision"
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-msm8998.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    cpus {
-> +        #address-cells = <2>;
-> +        #size-cells = <0>;
-> +
-> +        cpu@0 {
-> +            compatible = "qcom,kryo280";
-> +            device_type = "cpu";
-> +            reg = <0x0 0x0>;
-> +            operating-points-v2 = <&cpu_gold_opp_table>;
-> +            power-domains = <&apc_cprh 0>;
-> +            power-domain-names = "cprh";
-> +        };
-> +
-> +        cpu@100 {
-> +            compatible = "qcom,kryo280";
-> +            device_type = "cpu";
-> +            reg = <0x0 0x100>;
-> +            operating-points-v2 = <&cpu_silver_opp_table>;
-> +            power-domains = <&apc_cprh 1>;
-> +            power-domain-names = "cprh";
-> +        };
-> +    };
-> +
-> +    cpu0_opp_table: opp-table-cpu0 {
-> +        compatible = "operating-points-v2";
-> +        opp-shared;
-> +
-> +        opp-1843200000 {
-> +            opp-hz = /bits/ 64 <1843200000>;
-> +            required-opps = <&cprh_opp3>;
-> +        };
-> +
-> +        opp-1094400000 {
-> +            opp-hz = /bits/ 64 <1094400000>;
-> +            required-opps = <&cprh_opp2>;
-> +        };
-> +
-> +        opp-300000000 {
-> +            opp-hz = /bits/ 64 <300000000>;
-> +            required-opps = <&cprh_opp1>;
-> +        };
-> +    };
-> +
-> +    cpu4_opp_table: opp-table-cpu4 {
-> +        compatible = "operating-points-v2";
-> +        opp-shared;
-> +
-> +        opp-2208000000 {
-> +            opp-hz = /bits/ 64 <2208000000>;
-> +            required-opps = <&cprh_opp3>;
-> +        };
-> +
-> +        opp-1113600000 {
-> +            opp-hz = /bits/ 64 <1113600000>;
-> +            required-opps = <&cprh_opp2>;
-> +        };
-> +
-> +        opp-300000000 {
-> +            opp-hz = /bits/ 64 <300000000>;
-> +            required-opps = <&cprh_opp1>;
-> +        };
-> +    };
-> +
-> +    cprh_opp_table: opp-table-cprh {
-> +        compatible = "operating-points-v2-qcom-level";
-> +
-> +        cprh_opp1: opp-1 {
-> +            opp-level = <1>;
-> +            qcom,opp-fuse-level = <1>;
-> +            qcom,opp-cloop-vadj = <0>;
-> +            qcom,opp-oloop-vadj = <0>;
-> +        };
-> +
-> +        cprh_opp2: opp-2 {
-> +            opp-level = <2>;
-> +            qcom,opp-fuse-level = <2>;
-> +            qcom,opp-cloop-vadj = <0>;
-> +            qcom,opp-oloop-vadj = <0>;
-> +        };
-> +
-> +        cprh_opp3: opp-3 {
-> +            opp-level = <3>;
-> +            qcom,opp-fuse-level = <2 3>;
-> +            qcom,opp-cloop-vadj = <0>;
-> +            qcom,opp-oloop-vadj = <0>;
-> +        };
-> +    };
-> +
-> +    apc_cprh: power-controller@179c8000 {
-> +        compatible = "qcom,msm8998-cprh", "qcom,cprh";
-> +        reg = <0x0179c8000 0x4000>, <0x0179c4000 0x4000>;
-> +        clocks = <&gcc GCC_HMSS_RBCPR_CLK>;
-> +        clock-names = "ref";
-> +
-> +        operating-points-v2 = <&cprh_opp_table>;
-> +        #power-domain-cells = <1>;
-> +
-> +        nvmem-cells = <&cpr_efuse_speedbin>,
-> +                      <&cpr_fuse_revision>,
-> +                      <&cpr_quot0_pwrcl>,
-> +                      <&cpr_quot1_pwrcl>,
-> +                      <&cpr_quot2_pwrcl>,
-> +                      <&cpr_quot3_pwrcl>,
-> +                      <&cpr_quot_offset1_pwrcl>,
-> +                      <&cpr_quot_offset2_pwrcl>,
-> +                      <&cpr_quot_offset3_pwrcl>,
-> +                      <&cpr_init_voltage0_pwrcl>,
-> +                      <&cpr_init_voltage1_pwrcl>,
-> +                      <&cpr_init_voltage2_pwrcl>,
-> +                      <&cpr_init_voltage3_pwrcl>,
-> +                      <&cpr_ro_sel0_pwrcl>,
-> +                      <&cpr_ro_sel1_pwrcl>,
-> +                      <&cpr_ro_sel2_pwrcl>,
-> +                      <&cpr_ro_sel3_pwrcl>,
-> +                      <&cpr_quot0_perfcl>,
-> +                      <&cpr_quot1_perfcl>,
-> +                      <&cpr_quot2_perfcl>,
-> +                      <&cpr_quot3_perfcl>,
-> +                      <&cpr_quot_offset1_perfcl>,
-> +                      <&cpr_quot_offset2_perfcl>,
-> +                      <&cpr_quot_offset3_perfcl>,
-> +                      <&cpr_init_voltage0_perfcl>,
-> +                      <&cpr_init_voltage1_perfcl>,
-> +                      <&cpr_init_voltage2_perfcl>,
-> +                      <&cpr_init_voltage3_perfcl>,
-> +                      <&cpr_ro_sel0_perfcl>,
-> +                      <&cpr_ro_sel1_perfcl>,
-> +                      <&cpr_ro_sel2_perfcl>,
-> +                      <&cpr_ro_sel3_perfcl>;
-> +        nvmem-cell-names = "cpr_speed_bin",
-> +                           "cpr_fuse_revision",
-> +                           "cpr0_quotient1",
-> +                           "cpr0_quotient2",
-> +                           "cpr0_quotient3",
-> +                           "cpr0_quotient4",
-> +                           "cpr0_quotient_offset2",
-> +                           "cpr0_quotient_offset3",
-> +                           "cpr0_quotient_offset4",
-> +                           "cpr0_init_voltage1",
-> +                           "cpr0_init_voltage2",
-> +                           "cpr0_init_voltage3",
-> +                           "cpr0_init_voltage4",
-> +                           "cpr0_ring_osc1",
-> +                           "cpr0_ring_osc2",
-> +                           "cpr0_ring_osc3",
-> +                           "cpr0_ring_osc4",
-> +                           "cpr1_quotient1",
-> +                           "cpr1_quotient2",
-> +                           "cpr1_quotient3",
-> +                           "cpr1_quotient4",
-> +                           "cpr1_quotient_offset2",
-> +                           "cpr1_quotient_offset3",
-> +                           "cpr1_quotient_offset4",
-> +                           "cpr1_init_voltage1",
-> +                           "cpr1_init_voltage2",
-> +                           "cpr1_init_voltage3",
-> +                           "cpr1_init_voltage4",
-> +                           "cpr1_ring_osc1",
-> +                           "cpr1_ring_osc2",
-> +                           "cpr1_ring_osc3",
-> +                           "cpr1_ring_osc4";
-> +    };
-> +...
+dts changes should go via the platform tree.
+
+Applied to pci/imx6, thanks!
+
+[01/14] dt-bindings: imx6q-pcie: Add i.MX8MM PCIe EP mode compatible string
+        https://git.kernel.org/lpieralisi/pci/c/1af5ea1dc2df
+[02/14] dt-bindings: imx6q-pcie: Add i.MX8MQ PCIe EP mode compatible string
+        https://git.kernel.org/lpieralisi/pci/c/dea44b629ae1
+[03/14] dt-bindings: imx6q-pcie: Add i.MX8MP PCIe EP mode compatible string
+        https://git.kernel.org/lpieralisi/pci/c/2dd6dc57d2da
+[10/14] misc: pci_endpoint_test: Add i.MX8 PCIe EP device support
+        https://git.kernel.org/lpieralisi/pci/c/01ea5ede4197
+[11/14] PCI: imx6: Add i.MX PCIe EP mode support
+        https://git.kernel.org/lpieralisi/pci/c/75c2f26da03f
+[12/14] PCI: imx6: Add i.MX8MQ PCIe EP support
+        https://git.kernel.org/lpieralisi/pci/c/530ba41250b6
+[13/14] PCI: imx6: Add i.MX8MM PCIe EP support
+        https://git.kernel.org/lpieralisi/pci/c/fb3217e2cfc6
+[14/14] PCI: imx6: Add i.MX8MP PCIe EP support
+        https://git.kernel.org/lpieralisi/pci/c/c435669a41dd
+
+Thanks,
+Lorenzo
