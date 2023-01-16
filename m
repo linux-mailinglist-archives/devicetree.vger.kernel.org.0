@@ -2,143 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7503766C8CC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 17:43:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12EF666C926
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 17:46:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233764AbjAPQnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 11:43:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34868 "EHLO
+        id S233872AbjAPQq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 11:46:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233750AbjAPQmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 11:42:18 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E806738B62;
-        Mon, 16 Jan 2023 08:30:29 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id ss4so62047143ejb.11;
-        Mon, 16 Jan 2023 08:30:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KVo92w+mMU35HgccNk8F5uG9725xv7bq4W+283/I+5A=;
-        b=F1V4NeV1D7nGM8Ao68MkS8QO+9OEKX18y9BLG9eBcTm68JqtuVTes13gtGycIoLRAw
-         srN9x+oQ+5buVkRa2BwZdBVn3kyWx/Md4mJiCqwYdWg7qpuutIKeUlKkwRtm9zk0iQJy
-         +5VIGwNlh1+Yqesp2qqIWTy/rFP2ZnWflhy7kxO1BQE5yjv50Jo9YjkQCCUgBrsJWhho
-         mHjXgiXIWPXB8OGy0UhqN7YE3R2LO0sQh7NEsFnakRuvHcJZPmpvVGDmUBIinGg07pyf
-         HYlSl6MJBi5ctVB4BQUOjdKWHAkIUWQa1z+LWtDPFSz2w3Tc+PmkmgQHYFEDLtR7sAbY
-         tZIA==
+        with ESMTP id S233763AbjAPQqC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 11:46:02 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F004321953;
+        Mon, 16 Jan 2023 08:34:03 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id r9so13046778oie.13;
+        Mon, 16 Jan 2023 08:34:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KVo92w+mMU35HgccNk8F5uG9725xv7bq4W+283/I+5A=;
-        b=hnwJy7qSKCqduy3csjO0yJZ0GgCCCGGgjKmRIO/TjxPhgZ9Ru74z8BLx+gSaHk7VmU
-         wONqFu7781Yx9SD9rbP+EhWJ6NjWk1clujRDEwUIg4C2TbqZ/KCCbrhcd26scxivSVHA
-         CEXaKyH8FCgGK7YEB/GRSUGoC0XUSOEtJY7fI2JqKfjCUGLBAQfqk8eOMOtl9tbGKNw+
-         odlf9qjvXYR+Nx573h/Onw+tP1cMMJ+5bPqX0sQyoOWZtV3DWcwu2Snng/qtn1OKYPIG
-         UvIbQKBLZcNsXQVXWHT5DNKATSDdYYT5P3uPjIZv5Ser2z6UEXOMpTXdIyIX50rMUPd8
-         3aHQ==
-X-Gm-Message-State: AFqh2kopwUnbP/bic8JNCOmd6B0rJClrh6h1m2yYlCmHC8uO0pd2ff9k
-        bhAKpaC/B7Ec3Y5KkYA9Lsg=
-X-Google-Smtp-Source: AMrXdXvuq2AkcmdJDlN5B8LWYcHY5dyWpQtmhK1kg5hNM+AsoxOfhH9r3YeEkJiVk7A1UbLdpoJDBA==
-X-Received: by 2002:a17:906:39ca:b0:871:e336:cd2a with SMTP id i10-20020a17090639ca00b00871e336cd2amr1478292eje.47.1673886628390;
-        Mon, 16 Jan 2023 08:30:28 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id sb25-20020a1709076d9900b0084c6581c16fsm12005496ejc.64.2023.01.16.08.30.26
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4huBua94elx+S0dnn6JlkXQ/ae6vTMdKSQQftNSDjjg=;
+        b=N1aMt2OFN7Z1vwIzuCvhMANebQkZxqn+SF2aPY8lRC3x3RxOSfPxZminZrU7SAzEOs
+         4SatWiHPEZs0hk37jEMUdnfoZpBAwANEpHDQvqpoRAAHIs54GrDg5GprogvlGj+/zWGe
+         Hk9q+CSavrCz37eqHP/vCHeWClqa6T2Hw80RItkOEsq7tA6BIabgZH7RRvDPPOhMWgzV
+         9LF+dxJFXFHXKNsf8d9O56ZV5sUWWpJVVrNj8EZzSF6gkkJ7boGO8yMPenO7d+05cgOd
+         E7ikUo64WcGOuvHOvrB2/YO3ypRS20+ja1Uc6rvNV0mMmuq2KTpjddPB3waHQBqgRakc
+         NJJg==
+X-Gm-Message-State: AFqh2kqcpWHEXVKBgh9gOap0y/+PpMYtrnnRIzU9itftBYMdVTgjWut/
+        9OR28LSz+3ySZaRq4MnNZg==
+X-Google-Smtp-Source: AMrXdXvijm6IULxGaKfPRggOh9kVhDpjnGY/kyDVbaab+Gai7JUFuW7J/tR5M+GetLrDA+kg+eZ8ew==
+X-Received: by 2002:aca:180a:0:b0:364:5934:1126 with SMTP id h10-20020aca180a000000b0036459341126mr10460258oih.45.1673886843098;
+        Mon, 16 Jan 2023 08:34:03 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bi38-20020a05680818a600b00353fe4fb4casm13107743oib.48.2023.01.16.08.34.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jan 2023 08:30:27 -0800 (PST)
-Date:   Mon, 16 Jan 2023 17:30:24 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sumit Gupta <sumitg@nvidia.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        treding@nvidia.com, dmitry.osipenko@collabora.com,
-        viresh.kumar@linaro.org, rafael@kernel.org, jonathanh@nvidia.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, sanjayc@nvidia.com,
-        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
-Subject: Re: [Patch v1 09/10] memory: tegra: get number of enabled mc channels
-Message-ID: <Y8V7oIzVPffETqtO@orome>
-References: <20221220160240.27494-1-sumitg@nvidia.com>
- <20221220160240.27494-10-sumitg@nvidia.com>
- <db223161-a424-c4cf-09a8-ff2241fda71a@linaro.org>
- <86f94266-d88e-af82-0352-876bc369f6a2@nvidia.com>
+        Mon, 16 Jan 2023 08:34:02 -0800 (PST)
+Received: (nullmailer pid 602566 invoked by uid 1000);
+        Mon, 16 Jan 2023 16:34:01 -0000
+Date:   Mon, 16 Jan 2023 10:34:01 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com
+Subject: Re: [RFC v4 1/5] dt-bindings: usb: Add bindings to support multiport
+ properties
+Message-ID: <20230116163401.GA2371990-robh@kernel.org>
+References: <20230115114146.12628-1-quic_kriskura@quicinc.com>
+ <20230115114146.12628-2-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="g8Q09nNnddE8uScx"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <86f94266-d88e-af82-0352-876bc369f6a2@nvidia.com>
-User-Agent: Mutt/2.2.9 (2022-11-12)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230115114146.12628-2-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Jan 15, 2023 at 05:11:42PM +0530, Krishna Kurapati wrote:
+> Add bindings to indicate properties required to support multiport
+> on Snps Dwc3 controller.
+> 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  .../devicetree/bindings/usb/snps,dwc3.yaml    | 53 ++++++++++++++++---
+>  1 file changed, 47 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 6d78048c4613..3ea051beb2f8 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -81,15 +81,26 @@ properties:
+>  
+>    phys:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 8
+>  
+>    phy-names:
+>      minItems: 1
+> -    maxItems: 2
+> -    items:
+> -      enum:
+> -        - usb2-phy
+> -        - usb3-phy
+> +    maxItems: 8
+> +    oneOf:
+> +    - items:
+> +        enum:
+> +          - usb2-phy
+> +          - usb3-phy
+> +    - items:
+> +        enum:
+> +          - usb2-phy_port0
+> +          - usb2-phy_port1
+> +          - usb2-phy_port2
+> +          - usb2-phy_port3
+> +          - usb3-phy_port0
+> +          - usb3-phy_port1
+> +          - usb3-phy_port2
+> +          - usb3-phy_port3
 
---g8Q09nNnddE8uScx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+usbN-portM
 
-On Fri, Jan 13, 2023 at 08:34:18PM +0530, Sumit Gupta wrote:
->=20
->=20
-> On 22/12/22 17:07, Krzysztof Kozlowski wrote:
-> > External email: Use caution opening links or attachments
-> >=20
-> >=20
-> > On 20/12/2022 17:02, Sumit Gupta wrote:
-> > > Get number of MC channels which are actually enabled
-> > > in current boot configuration.
-> >=20
-> > Why? You don't do anything with it. Commit msg should give the reason of
-> > changes.
-> >=20
-> >=20
-> > Best regards,
-> > Krzysztof
-> >=20
->=20
-> CPU OPP tables have per channel bandwidth info. The "mc->num_channels" is
-> used in [1] (Patch v1 10/10) to make the per MC channel bandwidth request=
-ed
-> by the CPU cluster as a multiple of number of the enabled mc channels.
->=20
-> Will update the commit description with this info.
->=20
-> [1] https://lore.kernel.org/lkml/20221220160240.27494-1-sumitg@nvidia.com=
-/T/#m3ac150a86977e89b97c5d19c60384f29d7a01d21
+>  
+>    resets:
+>      minItems: 1
+> @@ -360,6 +371,22 @@ properties:
+>      description:
+>        Enable USB remote wakeup.
+>  
+> +  num-ports:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      This property indicates the number of ports present on the target that
+> +      are to be serviced by the DWC3 controller.
+> +    minimum: 1
+> +    maximum: 4
+> +
+> +  num-ss-ports:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      This property indicates the number of SS capable ports present on the
+> +      target that are to be serviced by the DWC3 controller.
+> +    minimum: 1
+> +    maximum: 4
 
-Both patch 9 and 10 are reasonably small, so it would be okay to merge
-the two patches and avoid any need for an extra explanation.
+This information is redundant. 'phy-names' tells you how many ports of 
+each.
 
-Thierry
+> +
+>  unevaluatedProperties: false
+>  
+>  required:
+> @@ -388,4 +415,18 @@ examples:
+>        snps,dis_u2_susphy_quirk;
+>        snps,dis_enblslpm_quirk;
+>      };
+> +  - |
+> +    usb@4a000000 {
+> +      compatible = "snps,dwc3";
+> +      reg = <0x4a000000 0xcfff>;
+> +      interrupts = <0 92 4>;
+> +      clocks = <&clk 1>, <&clk 2>, <&clk 3>;
+> +      clock-names = "bus_early", "ref", "suspend";
+> +      num-ports = <2>;
+> +      num-ss-ports = <1>;
+> +      phys = <&usb2_phy0>, <&usb3_phy0>, <&usb2_phy1>;
+> +      phy-names = "usb2-phy_port0", "usb3-phy_port0", "usb2-phy_port1";
+> +      snps,dis_u2_susphy_quirk;
+> +      snps,dis_enblslpm_quirk;
+> +    };
 
---g8Q09nNnddE8uScx
-Content-Type: application/pgp-signature; name="signature.asc"
+Does a different number of phys really need its own example?
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPFe6AACgkQ3SOs138+
-s6E/2BAAiVcPFgJQq47pbkFQvbySJLa/pcKt6BI8lTuPJwZsRJ13RxfCp2Y+KkE0
-xSYrAmtvD+IDy2s67qTGm6UZjT9KqGmV9zMaZ6ooTylKYtOW4N/Ln4///T9jwRGM
-oTG6NN2DEPVKkV96gTtLzYAAM0cNx7lx7pNEHV7uXDUr2ieKHUhEkEeliDK73xBN
-6so7/FzLBCf/O7mitcLOud1qC1pHSXwULHMxDFZyU3VinsqIJBBc4Ua5IB0dkc8U
-Cy8E04CrxU7H49ylIl4cpO/bq0PuazW6PlIemqoheJyWKyr0foyRpjvJI6nsy1CT
-9Mb+ocRAB+Cu2IILTFl4IaW09982TBJOyIYJ5qRi0DvMhFAb64dUWT/rdMPvQ4q9
-P6RLArDLfcksDnYnhFwhFESdEPOa+YccCYwfFyeYcN2/XzE9AMGW9iNYKPw4fnpM
-fDmU33Q/0ze7q4BDcEDfLFwiRmoHpXZv2QYIi/U2fhN6cuux9QEMWEX4Lksxvqst
-uH/9FFgHHlViYPkb/iW1qZjuOsG4Z5A6xNVCMxbKYt89W7800FlI0tWZGQ/LYT2R
-JdorAB6uZnW0MkXm5N70rnCJn75+2xJmrRLnnIfmAivLrRE6uo8WwXOTVYgTZVAN
-8WONvNE9WgSPFSw2nJ8Rr+UE/pektA2R8QfNrVgyF5w9txkkCDA=
-=jOs7
------END PGP SIGNATURE-----
-
---g8Q09nNnddE8uScx--
+Rob
