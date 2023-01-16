@@ -2,44 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC99966BDAD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 13:19:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E723566BD36
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:51:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbjAPMTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 07:19:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49520 "EHLO
+        id S229561AbjAPLvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 06:51:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230040AbjAPMS1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 07:18:27 -0500
-Received: from mail.zeus06.de (www.zeus06.de [194.117.254.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818DB1F5FC
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 04:18:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=kicherer.org; h=from:to
-        :cc:subject:date:message-id:in-reply-to:references:mime-version
-        :content-transfer-encoding; s=k1; bh=ognniQE9ChrjBODibrrVAnhbmGc
-        jV0oPAHmXkBNCQTQ=; b=Gg5Pfzown8A5ukGdmagKctY4tYz9ALSuFaxuKmPtTyi
-        Ud9xoBNPNqTWqsGF+Q0NLbu5E69wfxj+W+kF06EPLmgjusSzT4hGG0mqQgyQqn+C
-        OfnKABh81TG5qOG4aw+MwQxCgjwuGgXp/t0E4vXhEHI8hzSIT19UCmAIPgyyZk50
-        =
-Received: (qmail 669739 invoked from network); 16 Jan 2023 12:51:34 +0100
-Received: by mail.zeus06.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 16 Jan 2023 12:51:34 +0100
-X-UD-Smtp-Session: l3s6476p2@KVj+M2Dy0crCtAHJ
-From:   Mario Kicherer <dev@kicherer.org>
-To:     linux-spi@vger.kernel.org
-Cc:     han.xu@nxp.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        Mario Kicherer <dev@kicherer.org>
-Subject: [PATCH 2/2] spi: spi-fsl-qspi: support setting sampling delay through devicetree
-Date:   Mon, 16 Jan 2023 12:50:50 +0100
-Message-Id: <20230116115050.2983406-3-dev@kicherer.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230116115050.2983406-1-dev@kicherer.org>
-References: <20230116115050.2983406-1-dev@kicherer.org>
+        with ESMTP id S229972AbjAPLvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:51:40 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 401B61ABED
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:51:38 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id a11so2242241lfg.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:51:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dz2HYd6nJfBe0hgrGwYYDvZ2nmTydvAGaGelNZK5V+w=;
+        b=oj/FU/HJqnk/jAgYBwvaJ2+W69VNOMizNLyF/0WaPTch3jGdAdQJxHpz+PLiNNsFE6
+         hcMy2Wn1i62w4NG7coXQ6TeQnQXtN8I7PmK81HVjbKDH4ZakqWGUzdYpQJTcVOx5t8+v
+         0l5IVByuyubRTEicnaoAt9MXVfcy/8XQnCp+r897cCt2mZnHD1WIa0Yoq5OwJlH3cf/c
+         0xfKYVZqHVzNH79YWByHxL+JVuBC3SWCtQw+X01Tr8FY+g3gU1Dfoofk2V4rCiPBnAbX
+         7BSuG6PIm+iucEyr2cR/cvc15NJPr1996rMAKakeZ7pxWcp8r6srcH6YcjvwL0hmoT1p
+         2VoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Dz2HYd6nJfBe0hgrGwYYDvZ2nmTydvAGaGelNZK5V+w=;
+        b=fsVu/MLJAIx0Hv22b0VSy+/+VqetEwwMNPaN5JJmjVbhEu6Vhpl7V5b1LFwpg74xWC
+         6abce/G0x664w+iw81IDwvCzGDaV4MbQtiFC+iHvdH2m5/lLaqxEWGyTWH2XmhFbyVx3
+         PrD6Lh9TR/3Dz4osdO2XlwEDKtxHpXJNICIORB1GZMFmT192iHQ1NVsSB2QKgwDp+zhj
+         0aNzk6ABnaBKJotTjs5s27xqMPtJ/YBrl/I7XZypG3nP+tBiYl0CrUq5gIvmTFzivXfc
+         zl5cfBnQHzEt5muS7CHT6dzDS5GHQfY/0IJFtSlEdsriPvrc72rXymj5sxm7I4xLgkAV
+         if6A==
+X-Gm-Message-State: AFqh2kpCg96mWq1J+wr6ImmzBI+CtX8R+hy4YdFBWaHP4noNiqGO++Zr
+        D1lxVVIO+HVBCAiW2KAEl/QHwg==
+X-Google-Smtp-Source: AMrXdXtfD/BYz/Lr+CotvpV3dJ85ETbEToRFRwov7vQEvMathl0BuERxXo3qGpZjVM3TQU9GgwPizg==
+X-Received: by 2002:a05:6512:31d0:b0:4cb:430b:c6c with SMTP id j16-20020a05651231d000b004cb430b0c6cmr16706339lfe.51.1673869896665;
+        Mon, 16 Jan 2023 03:51:36 -0800 (PST)
+Received: from localhost.localdomain (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id m10-20020a056512358a00b004d57d1c6ee7sm162433lfr.248.2023.01.16.03.51.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 03:51:36 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: msm/dsi: Don't require vdds-supply on 7nm PHY
+Date:   Mon, 16 Jan 2023 12:51:32 +0100
+Message-Id: <20230116115132.348961-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,54 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The internal sampling point of incoming data can be delayed by modifying
-the QuadSPI_SMPR register. This patch enables setting this delay using a
-device tree entry.
+On some SoCs (hello SM6375) vdds-supply is not wired to any smd-rpm
+or rpmh regulator, but instead powered by the VDD_MX/mx.lvl line,
+which is voted for in the DSI ctrl node.
 
-Signed-off-by: Mario Kicherer <dev@kicherer.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/spi/spi-fsl-qspi.c | 21 +++++++++++++++++----
- 1 file changed, 17 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/spi/spi-fsl-qspi.c b/drivers/spi/spi-fsl-qspi.c
-index 85cc71ba624a..10faaf57db28 100644
---- a/drivers/spi/spi-fsl-qspi.c
-+++ b/drivers/spi/spi-fsl-qspi.c
-@@ -722,6 +722,7 @@ static int fsl_qspi_default_setup(struct fsl_qspi *q)
- {
- 	void __iomem *base = q->iobase;
- 	u32 reg, addr_offset = 0;
-+	u8 sampling_delay;
- 	int ret;
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+index 9c9184f94c44..8e9031bbde73 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+@@ -48,7 +48,6 @@ required:
+   - compatible
+   - reg
+   - reg-names
+-  - vdds-supply
  
- 	/* disable and unprepare clock to avoid glitch pass to controller */
-@@ -756,10 +757,22 @@ static int fsl_qspi_default_setup(struct fsl_qspi *q)
- 			    base + QUADSPI_FLSHCR);
+ unevaluatedProperties: false
  
- 	reg = qspi_readl(q, base + QUADSPI_SMPR);
--	qspi_writel(q, reg & ~(QUADSPI_SMPR_FSDLY_MASK
--			| QUADSPI_SMPR_FSPHS_MASK
--			| QUADSPI_SMPR_HSENA_MASK
--			| QUADSPI_SMPR_DDRSMP_MASK), base + QUADSPI_SMPR);
-+	reg = reg & ~(QUADSPI_SMPR_FSDLY_MASK
-+		      | QUADSPI_SMPR_FSPHS_MASK
-+		      | QUADSPI_SMPR_HSENA_MASK
-+		      | QUADSPI_SMPR_DDRSMP_MASK);
-+	ret = of_property_read_u8(q->dev->of_node,
-+				   "fsl,qspi-sampling-delay",
-+				   &sampling_delay);
-+	if (!ret) {
-+		if (sampling_delay <= 3)
-+			reg = reg | (sampling_delay << 5);
-+		else
-+			dev_err(q->dev,
-+				"fsl,qspi-sampling_delay %u greater than 3\n",
-+				sampling_delay);
-+	}
-+	qspi_writel(q, reg, base + QUADSPI_SMPR);
- 
- 	/* We only use the buffer3 for AHB read */
- 	qspi_writel(q, 0, base + QUADSPI_BUF0IND);
 -- 
-2.34.1
+2.39.0
 
