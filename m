@@ -2,214 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5734E66BCFD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:39:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CA8E66BD06
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:41:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbjAPLjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 06:39:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57892 "EHLO
+        id S229870AbjAPLlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 06:41:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjAPLjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:39:01 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E7FE1F4B2
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:39:00 -0800 (PST)
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <m.tretter@pengutronix.de>)
-        id 1pHNpK-000440-AM; Mon, 16 Jan 2023 12:38:58 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229802AbjAPLlH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:41:07 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 509ED44B6
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:41:05 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id p25so23509557ljn.12
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:41:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bAzr3WbepHH/Xzw3XY7+Qyd2EYJHyzok2hFrIPSgsi8=;
+        b=W3zFXG1CifPHncC3axUe9wXlorA4Z55HvPebPUfGeJXpgJbQG8XOEJ2h45A4eVBHip
+         0x3+QEX/JBeZ+DrmbqnDk/x3ml+kmr6FtH3LaOmTW33IWrqGzAiglQPnb+Yie7+nKhoN
+         6fEiQyWktJLR+nOFWggMUDK7agb2Xl71a62ZqaR1iCrgB2bS/3FLRHYFzDTIhwNE7z3z
+         YTcO/GJihhOH8sFe7/4I1opzLrgzykmByosB9J5fGr2Zv4JWr88NVN+OulPziFYGFNMj
+         izYkzknOqcKf2bSeEJx7EH5rewbX6ildpqYws+7JXUsPvCVobu0WGNJo6mAOawsWE4nN
+         ArnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bAzr3WbepHH/Xzw3XY7+Qyd2EYJHyzok2hFrIPSgsi8=;
+        b=XhLjdj0mqo4fYeuy5K42pQjDylM1LvzaChsUIXtSUoYbjYNRrz4Tz3pJQ6dgipFeKn
+         9zKqlLL81rVtzqm9W9jjsMDqgb14r17YNCWzlpB8IxUTk1/wXMCUx/d6w5YZE71PeSjA
+         0tv/O7BsDGiCo52fs7iseG4W2RLBjZ8ZoyTnIYykW8/9imihinkhB3y9JKKClfrLgut4
+         bABxnO/qMz51se/EoivWDwO01HwGkw5VPsmJ4yvsKFQfur3rJeo8B3uirm2gVOd8InNr
+         ieD9WM8DShbS+qJScCUPvz2R80Hph1vNLXxNSFAUMBrJLYiIpsYAldh0IRtZf4wEeAbb
+         ZYDg==
+X-Gm-Message-State: AFqh2krbuVvzWbBxu/TJ6MRLQWahDNUVxVGT31o9FbFdgmsnG/sf+jzd
+        muakVzYkBCVNDyY66+u9NMzB0w==
+X-Google-Smtp-Source: AMrXdXuyo8z+lpPJjrE3F6tFchQ8Fr0hXF7Q1C6orut7naGETw7CiURB4lbO1OBvqDWT2nI+dH35AA==
+X-Received: by 2002:a05:651c:1992:b0:27f:b2cf:85a0 with SMTP id bx18-20020a05651c199200b0027fb2cf85a0mr28139431ljb.43.1673869263688;
+        Mon, 16 Jan 2023 03:41:03 -0800 (PST)
+Received: from localhost.localdomain (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id k10-20020a05651c10aa00b0027fb9e64bd0sm918946ljn.86.2023.01.16.03.41.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 03:41:03 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org,
-        Michael Tretter <m.tretter@pengutronix.de>
-Subject: [PATCH v2.1 02/17] dt-bindings: media: fsl-pxp: convert to yaml
-Date:   Mon, 16 Jan 2023 12:38:56 +0100
-Message-Id: <20230116113856.1445078-1-m.tretter@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230112-imx-pxp-v2-1-e2281da1db55@pengutronix.de>
-References: <20230112-imx-pxp-v2-1-e2281da1db55@pengutronix.de>
+        Jonathan Marek <jonathan@marek.ca>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: display/msm: Add SM6375 DSI PHY
+Date:   Mon, 16 Jan 2023 12:40:58 +0100
+Message-Id: <20230116114059.346327-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
-X-SA-Exim-Mail-From: m.tretter@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the bindings of the Freescale Pixel Pipeline to YAML.
+SM6375 has a single 7nm DSI PHY. Document it.
 
-The conversion drops the previously listed compatibles for several SoCs.
-It is unclear, if the PXP on these SoCs is compatible to any of the PXPs
-on the existing SoCs and would allow to reuse the already defined
-compatibles. The missing compatibles should be brought back when the
-support for the PXP on these SoCs is added.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Changelog:
+ Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-v2:
-
-- add fsl,imx6sll-pxp and fsl,imx6sx-pxp compatibles
-- restrict number of interrupts per variant
-- cleanup syntax
-
-v2.1:
-
-- use enum for compatibles
-- add power-domains property
-- fix syntax for specifying the required number of interrupts
-- fix number of interrupts for fsl,imx6ul-pxp
----
- .../bindings/media/fsl,imx6ull-pxp.yaml       | 88 +++++++++++++++++++
- .../devicetree/bindings/media/fsl-pxp.txt     | 26 ------
- 2 files changed, 88 insertions(+), 26 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/fsl-pxp.txt
-
-diff --git a/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml b/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
-new file mode 100644
-index 000000000000..84a5e894ace4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/fsl,imx6ull-pxp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Pixel Pipeline
-+
-+maintainers:
-+  - Philipp Zabel <p.zabel@pengutronix.de>
-+  - Michael Tretter <m.tretter@pengutronix.de>
-+
-+description:
-+  The Pixel Pipeline (PXP) is a memory-to-memory graphics processing engine
-+  that supports scaling, colorspace conversion, alpha blending, rotation, and
-+  pixel conversion via lookup table. Different versions are present on various
-+  i.MX SoCs from i.MX23 to i.MX7.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - fsl,imx6ul-pxp
-+          - fsl,imx6ull-pxp
-+          - fsl,imx7d-pxp
-+      - items:
-+          - enum:
-+              - fsl,imx6sll-pxp
-+              - fsl,imx6sx-pxp
-+          - const: fsl,imx6ull-pxp
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: axi
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx6sx-pxp
-+              - fsl,imx6ul-pxp
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+    else:
-+      properties:
-+        interrupts:
-+          minItems: 2
-+          maxItems: 2
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/imx6ul-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    pxp: pxp@21cc000 {
-+        compatible = "fsl,imx6ull-pxp";
-+        reg = <0x021cc000 0x4000>;
-+        interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+        clock-names = "axi";
-+        clocks = <&clks IMX6UL_CLK_PXP>;
-+    };
-diff --git a/Documentation/devicetree/bindings/media/fsl-pxp.txt b/Documentation/devicetree/bindings/media/fsl-pxp.txt
-deleted file mode 100644
-index f8090e06530d..000000000000
---- a/Documentation/devicetree/bindings/media/fsl-pxp.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Freescale Pixel Pipeline
--========================
--
--The Pixel Pipeline (PXP) is a memory-to-memory graphics processing engine
--that supports scaling, colorspace conversion, alpha blending, rotation, and
--pixel conversion via lookup table. Different versions are present on various
--i.MX SoCs from i.MX23 to i.MX7.
--
--Required properties:
--- compatible: should be "fsl,<soc>-pxp", where SoC can be one of imx23, imx28,
--  imx6dl, imx6sl, imx6sll, imx6ul, imx6sx, imx6ull, or imx7d.
--- reg: the register base and size for the device registers
--- interrupts: the PXP interrupt, two interrupts for imx6ull and imx7d.
--- clock-names: should be "axi"
--- clocks: the PXP AXI clock
--
--Example:
--
--pxp@21cc000 {
--	compatible = "fsl,imx6ull-pxp";
--	reg = <0x021cc000 0x4000>;
--	interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
--		     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
--	clock-names = "axi";
--	clocks = <&clks IMX6UL_CLK_PXP>;
--};
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+index 78ab8c410ccd..9c9184f94c44 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+@@ -18,6 +18,7 @@ properties:
+       - qcom,dsi-phy-7nm
+       - qcom,dsi-phy-7nm-8150
+       - qcom,sc7280-dsi-phy-7nm
++      - qcom,sm6375-dsi-phy-7nm
+       - qcom,sm8350-dsi-phy-5nm
+       - qcom,sm8450-dsi-phy-5nm
+       - qcom,sm8550-dsi-phy-4nm
 -- 
-2.30.2
+2.39.0
 
