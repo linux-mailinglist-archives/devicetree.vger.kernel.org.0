@@ -2,88 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38D1F66BB73
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 11:15:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF76766BB7C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 11:16:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230129AbjAPKPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 05:15:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56324 "EHLO
+        id S230126AbjAPKQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 05:16:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbjAPKOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 05:14:32 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66AD1C30B;
-        Mon, 16 Jan 2023 02:13:26 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 51ECD24E02F;
-        Mon, 16 Jan 2023 18:13:24 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 16 Jan
- 2023 18:13:24 +0800
-Received: from [192.168.120.55] (171.223.208.138) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 16 Jan
- 2023 18:13:23 +0800
-Message-ID: <899cbd21-1ac9-682e-7d07-f8a3c49d4504@starfivetech.com>
-Date:   Mon, 16 Jan 2023 18:13:20 +0800
+        with ESMTP id S229699AbjAPKQI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 05:16:08 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1ED318B39
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 02:15:13 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id y19so6471556edc.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 02:15:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ub1IltuuPTGiOpoZBxnkRWyKh1N9ylDkHOUiK2hYg9w=;
+        b=ynemqw6wwxgBl+4b2kXkFC+EGlDrNfMPXfAQ4yTtEeQ/2YwdChWmypIfai4He8Dm44
+         Nhe6Qr9YPI9ZLY4IEL5VXvQzl6nwlwSl5cf2FKLPAnVE3Pz8ab1f/lxZWh65/L+Zo1oW
+         f3ucpAp9Me3owhAj0YMYppYFVu22ushl8l2PprkubjmQcVdoCo2I6dZfKO6Bn/KYYhDK
+         gR+WUx4mxudw5D9c2O5FZa6M3rAGv+JjUou7Ee8cZHQDhgiXQUU/qu0CpISTYrZeP3JR
+         s0mjY5J1+inDoDC6a+a9aLncV1471PIJ1Zi5gO5Rps+d8RlwCY90fj0fixb/ndxpZ/1x
+         fPiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ub1IltuuPTGiOpoZBxnkRWyKh1N9ylDkHOUiK2hYg9w=;
+        b=Q8nW2mJBbCYIb795Y8dxsBbiFVsr0FlcEtwMn9/i4TGQVUnNCzNrw1N4N3nY+3bGXO
+         ha4Jd6d5BF1gV2G/G6fV4vGkK3D7xpvefID+tx2FU81YzwRQKnECJcnL0yutU/cHtPkh
+         Y8/MZaCRHEqa36DMDxK7FQCogoQwTlJ/Walo3JbP9AAGeg3F19qI24pzdkbYoy4uLpb1
+         m6IgzetBPHh4vDeRTAwNd1YdW2I8g9Yt7DXaZtSgjlAGE28bISpnlpzAKLfXNLy96J9A
+         p+CY5tq+jmtQXwpu6jYKvXn/tRDPjOr/5GsvNFlSE80aEPU1CNzLUczkMN0PDY1snmVl
+         KOSA==
+X-Gm-Message-State: AFqh2koye431j9tAV42y8NT+m09W55RJd6swHj12Dnwuij2Hox4vFg70
+        C/gNQ6eFGv67knxFlW3Zxy2zaA==
+X-Google-Smtp-Source: AMrXdXu04vVZPp8ia2hR+/ydM5jArZZnEJ0FwctcRIDucgJOQcL0ewW9tLEZASuOZOHRw8DNQE7cbQ==
+X-Received: by 2002:a05:6402:3220:b0:49e:1d59:794f with SMTP id g32-20020a056402322000b0049e1d59794fmr1522549eda.22.1673864112349;
+        Mon, 16 Jan 2023 02:15:12 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id s1-20020aa7d781000000b0048ecd372fc9sm11290663edq.2.2023.01.16.02.15.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jan 2023 02:15:11 -0800 (PST)
+Message-ID: <7cffc639-3b61-1479-115c-34dffdfd8cc9@linaro.org>
+Date:   Mon, 16 Jan 2023 11:15:09 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: Add mmc node
+Subject: Re: [PATCH 2/2] ARM: dts: imx6qdl: support child mfd cells for the
+ reset controller
 Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
- <20221207131731.1291517-4-william.qiu@starfivetech.com>
- <CACRpkdbjaiDhPcVH115w25oxseWrz=Yb-ugkmCOiqhRDmDZj5A@mail.gmail.com>
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <CACRpkdbjaiDhPcVH115w25oxseWrz=Yb-ugkmCOiqhRDmDZj5A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Bastian Krause <bst@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230113-syscon-child-mfd-v1-0-0dd31b7de373@pengutronix.de>
+ <20230113-syscon-child-mfd-v1-2-0dd31b7de373@pengutronix.de>
+ <392f6e9d-b7c2-37df-2067-f7d967a20f10@linaro.org>
+ <12080bf5-2cc4-e215-555e-5438ed1bd851@pengutronix.de>
+ <1b5613ad-6d0d-0979-ddd0-4677ade7beb9@linaro.org>
+ <e492a90c-147c-a50b-80aa-86f47306cff0@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e492a90c-147c-a50b-80aa-86f47306cff0@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/01/2023 10:26, Ahmad Fatoum wrote:
+> On 16.01.23 10:14, Krzysztof Kozlowski wrote:
+>> On 16/01/2023 09:27, Ahmad Fatoum wrote:
+>>> Hello Krzysztof,
+>>>
+>>> On 16.01.23 09:20, Krzysztof Kozlowski wrote:
+>>>> On 13/01/2023 18:32, Bastian Krause wrote:
+>>>>> The actual syscon-reboot-mode child node can be added by a board
+>>>>> device-tree or fixed up by the bootloader. For the child node to be
+>>>>> probed, the compatible needs to include simple-mfd. The binding now
+>>>>> specifies this, so have the SoC dtsi adhere to it.
+>>>>>
+>>>>> Suggested-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+>>>>> Signed-off-by: Bastian Krause <bst@pengutronix.de>
+>>>>> ---
+>>>>>  arch/arm/boot/dts/imx6qdl.dtsi | 3 ++-
+>>>>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
+>>>>> index ff1e0173b39be..b16be39458aa6 100644
+>>>>> --- a/arch/arm/boot/dts/imx6qdl.dtsi
+>>>>> +++ b/arch/arm/boot/dts/imx6qdl.dtsi
+>>>>> @@ -865,7 +865,8 @@ epit2: epit@20d4000 { /* EPIT2 */
+>>>>>  			};
+>>>>>  
+>>>>>  			src: reset-controller@20d8000 {
+>>>>> -				compatible = "fsl,imx6q-src", "fsl,imx51-src";
+>>>>> +				compatible = "fsl,imx6q-src", "fsl,imx51-src",
+>>>>> +					     "syscon", "simple-mfd";
+>>>>
+>>>> You need children here. Otherwise simple-mfd does not make sense. If you
+>>>> expect something else to add children (I don't understand why, usually
+>>>> reboot capability is fixed per SoC and only sometimes extended with some
+>>>> other means), then this "else" will also change compatible.
+>>>
+>>> It's about syscon-reboot-mode, not syscon-reboot. Such modes are board-
+>>> not soc-specific. 
+>>
+>> syscon-reboot-mode is also mostly SoC specific. What exactly would
+>> differ on different boards? Register offsets of SoC component? Register
+>> values used by SoC power management unit?
+> 
+> The modes supported. Let's say you want a bootloader mode that drops
+> the board's bootloader into a fastboot gadget mode. You'd add a
+> syscon-reboot-mode pointing at one of the non-volatile registers and
+> you would define a magic value to indicate fastboot, both in the
+> bootloader and Linux.
+
+Bootloader and other firmware (e.g. ATF) is tightly tied to SoC, not to
+board. There might be differences between firmware used and OS (e.g.
+ChromeOS uses their own bootloader, different than Linux and Android on
+the same SoC), but again this is not board specific.
+
+> 
+> In theory, the reboot mode could also talk to the bootrom[1] to change
+> the bootsource. This is also not board-agnostic, because it may not
+> make sense to have a spinor reboot mode if your board doesn't have one.
+> 
+> We have this scheme for STM32MP1 already and that's why I suggested
+> Bastian to do it likewise for i.MX as he needs this functionality:
+> https://lore.kernel.org/all/20201021102855.18026-1-a.fatoum@pengutronix.de/
+
+I don't understand why you use clearly wrong patches as examples. Bad
+patterns and bugs are not reason to use same approach.
+
+The binding is wrong - you do not allow syscon-reboot-mode and if you
+ever tested your patches, you would see the errors.
+
+> https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/stm32mp151.dtsi#L44
+
+Whether this part is correct, tricky to say. Why these offsets are not
+valid for other board?
 
 
-On 2022/12/9 5:15, Linus Walleij wrote:
-> Hi William,
-> 
-> thanks for your patch!
-> 
-> On Wed, Dec 7, 2022 at 2:17 PM William Qiu <william.qiu@starfivetech.com> wrote:
-> 
->> +                       starfive,sys-syscon = <&sys_syscon 0x14 0x1a 0x7c000000>;
-> (...)
->> +                       starfive,sys-syscon = <&sys_syscon 0x9c 0x1 0x3e>;
-> 
-> These are registster offsets and shifts. Don't define such stuff in your device
-> tree, use #defines in the code and just provide the phandle.
-> 
-Hi Linus,
+Best regards,
+Krzysztof
 
-I'm sorry to bother you, but as for the definition of syscon, after discussing with 
-my colleagues, we think it is easier to distinguish SDIO0 and SDIO1 by defining it in
-the device tree, and the code compatibility is better. I expected to discuss this issue
-with you in V2,, but I am not sure whether you have seen V2, so I can only ask for
-your advice in V1.
-
-Best Regards
-William Qiu
-> Yours,
-> Linus Walleij
