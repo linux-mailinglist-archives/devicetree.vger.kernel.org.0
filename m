@@ -2,55 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 216AC66CF6F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:19:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D76C966CF73
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:20:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231962AbjAPTTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 14:19:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39804 "EHLO
+        id S232825AbjAPTUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 14:20:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232346AbjAPTTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:19:11 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7AEB21A36;
-        Mon, 16 Jan 2023 11:19:09 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 704F86111E;
-        Mon, 16 Jan 2023 19:19:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3D62C433D2;
-        Mon, 16 Jan 2023 19:19:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673896748;
-        bh=XPbeY1Tw3NOIW18sn3VUjs5hnmitr2mUboL06yyV1OU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ht26c5+BaGyCrnSatfGGdKlEeaSu6vFP4V4n9oRMBtY9yVXlRSe/2DdYDLyNPXbEP
-         TaZAHDIhfnoHV4gNfbdO6avAqMxerbEq+Kd3rTvXXICod5S6F0czWPGbt71oRbGTE+
-         EBMrn0o2zzrvL2mD9J1cRd8/2XtJArHP6xV4QRFMCQk4lo6x78PJzpsp1l3y2MBBB4
-         4EDSvcALVvzn0mkixQjkJfr6BgbrHZnsRyj1Ngv/OnqFArGwqbklYrnIqipgMUZlOe
-         PDwmQsbmfiN07tMtCLKfgXNSjzN0vbHZlxoLuCBwDslQhLNymZEQ33hQ7qzkrrfszd
-         vfFWghN6ratvQ==
-Date:   Mon, 16 Jan 2023 19:19:04 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Walker Chen <walker.chen@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] JH7110 PMU Support
-Message-ID: <Y8WjKArEZH5zd5jb@spud>
-References: <20230116074259.22874-1-walker.chen@starfivetech.com>
+        with ESMTP id S232681AbjAPTUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:20:13 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 260C82BEC1
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:20:12 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id mp20so23688582ejc.7
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:20:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eDJhl2JrEfjVRzKQvqBIMz7y/1765blM/Rj+5k8sN3A=;
+        b=dMuefG64FEW3xgijUTbpxZl/QVCMjI4rPW55P+7ETbewC1Lq0kcKsAZR8IcIKfPkli
+         4HZQtF2DVAtRd6m/3w/i19ZQ49JQ4noTpmGnd7qEcuFXb9sDZEBIWy/r4H/jqTm8/EuO
+         e3/t7Aqkbxsw73YuTRkYMm0kM4AwWH+kV4JxkUakKQ3H/7FiNlzT7jyo/sxL2DtZuxSj
+         VVGchKDFTn+gv3I7hYjvCVP3nlnvf/TbNrPoN1PoxzAd7/HVIk34vNFE19ZS+GsqLw02
+         4tdb3jDAVtNlF7juhkj0CquFde30fTi13j5rRzlgoGTXZEoS3npMQmmREoS+uTpHEPew
+         6V9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eDJhl2JrEfjVRzKQvqBIMz7y/1765blM/Rj+5k8sN3A=;
+        b=A8esq817mbvOrcwIxVAPq1zcSOOT2RFruIUT2ZMM4noKo60B86g4Ct9pT7D53fh6tD
+         xq1E9ZnVF/gkQynN3b9IhQR1Jljv6W+dPnctP6szH44tD0lEm1e2pcqI/Oe15W+eTYVo
+         SiD9GP0Qc7d2pAghEM2CNI3obqfQJjbkN0svOuqZOAp4znMNX5Isu7ZSCCy1EpLdV+zw
+         42onZcORq6CUptdFAWMFaqjnnSY0UZ2kntrEJV1dzLYcqjO3OTmHVLAiHbWUpE0aSQix
+         4zv2ZWC64ys1LHRzaC8Yo2zTcbHVZhMQahUORKEMKRGtlcGFsO7+1+BJc15C737Qhfys
+         pkLA==
+X-Gm-Message-State: AFqh2kp9G1OQVS/iyEUhueAjl7WnllsEfjNG5hBgfrdiQWRofQLyHVNS
+        08s6N7rIHbRYxgbrzUmkuupN/g==
+X-Google-Smtp-Source: AMrXdXvRp1jhXQmTSRUs0FqepxPK0fgrpXAf5m/8kczSCQMkAwnBPCYakTyiXOPRvyGSw0x4I9lc8Q==
+X-Received: by 2002:a17:906:4950:b0:870:5ed6:74af with SMTP id f16-20020a170906495000b008705ed674afmr4624045ejt.77.1673896810745;
+        Mon, 16 Jan 2023 11:20:10 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id s24-20020a170906c31800b0086dee4e5555sm2891358ejz.87.2023.01.16.11.20.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jan 2023 11:20:10 -0800 (PST)
+Message-ID: <ed199baf-a4e2-cbb5-d399-2387e538c466@linaro.org>
+Date:   Mon, 16 Jan 2023 20:20:07 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="9GoKrs0wz7LbOpIW"
-Content-Disposition: inline
-In-Reply-To: <20230116074259.22874-1-walker.chen@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm: Add SM6375 DSI PHY
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230116114059.346327-1-konrad.dybcio@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230116114059.346327-1-konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,104 +83,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/01/2023 12:40, Konrad Dybcio wrote:
+> SM6375 has a single 7nm DSI PHY. Document it.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
---9GoKrs0wz7LbOpIW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Hey Walker,
+Best regards,
+Krzysztof
 
-On Mon, Jan 16, 2023 at 03:42:56PM +0800, Walker Chen wrote:
-> Hello,
->=20
-> This patchset adds PMU (Power Management Unit) controller driver for the
-> StarFive JH7110 SoC. In order to meet low power requirements, PMU is
-> designed for including multiple PM domains that can be used for power
-> gating of selected IP blocks for power saving by reduced leakage
-> current. The first patch adds device tree binding for PM domain provider
-> and consumer. The second patch adds pmu driver and support JH7110 SoC.
-> The last patch adds device node about pmu to JH7110 dts.=20
->=20
-> The series has been tested on the VisionFive 2 boards which equip with
-> JH7110 SoC and works normally.
-
-For the series:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-I'm hoping that someone with knowledge of the power APIs will take a
-look now that the driver looks to be in a pretty good state (to my naive
-eyes at least).
-
-> Changes in v3:
-> - Rebased on tag v6.1.
-
-FYI, please pick something more recent than that.
-Ideally, the last -rc1, which in this case is v6.2-rc1.
-It's helpful to do this, as when I went to apply your patch, there were
-some conflicts that needed to be sorted out. Because of your prerequisite
-patches, the usual `b4` commands would not usable. E.g.
-
-b4 am -3 20230116074259.22874-1-walker.chen@starfivetech.com
-Analyzing 4 messages in the thread
-Checking attestation on all messages, may take a moment...
----
-  [PATCH v3 1/3] dt-bindings: power: Add starfive,jh7110-pmu
-  [PATCH v3 2/3] soc: starfive: Add StarFive JH71XX pmu driver
-  [PATCH v3 3/3] riscv: dts: starfive: add pmu controller node
----
-Total patches: 3
-Preparing fake-am for v3: JH7110 PMU Support
-  ERROR: Could not find matching blob for MAINTAINERS (85e8f83161d7)
-         If you know on which tree this patchset is based,
-         add it as a remote and perform "git remote update"
-         in order to fetch the missing objects.
-
-Fortunately, this is just a driver addition so despite `b4` not
-helping it was easy to resolve but for other patches in the future,
-this may not be the case.
-
-Assuming the dt maintainers are happy with the binding, ping me in 2
-weeks if no-one else has commented and I'll apply patches 1 & 2.
-
-Thanks,
-Conor.
-
-> base-commit: 830b3c68c1fb1e9176028d02ef86f3cf76aa2476
-> prerequisite-patch-id: 54ce870d6ea747466474b5d4105cfbc05e1b01ab
-> prerequisite-patch-id: e8dd8258a4c4062eee2cf07c4607d52baea71f3a
-> prerequisite-patch-id: 057fa35870d8d7d22a57c13362588ffb9e9df316
-> prerequisite-patch-id: 102368a6ff799c4cb639aed513deff09c1839161
-> prerequisite-patch-id: 7c1a50a37919fedbbd336ca5dec295ac63c2a89d
-> prerequisite-patch-id: a5d9e0f7d4f8163f566678894cf693015119f2d9
-> prerequisite-patch-id: 87cb528acd9a7f1ffe7475d7261553f6a4de5753
-> prerequisite-patch-id: 417736eb958e1158c60a5ed74bc2350394321a80
-> prerequisite-patch-id: a137312ca162b5712e28719f77d0da78e9fdd778
-> prerequisite-patch-id: f7c548b4619f491ce27f319242c4e3685c76173b
-> prerequisite-patch-id: 4d90febab2fb7928f50a73104e7454312b9ce6c8
-> prerequisite-patch-id: 645a807d50e0e56593ffdc6c3b50ea54a230827a
-> prerequisite-patch-id: 165f8cd740ae60585d22c95b99a0689084d468e3
-> prerequisite-patch-id: 480d910deccadc2947b3318c3c13dfa0882c8e0d
-> prerequisite-patch-id: 1d1cb90ec12dfc9312e448759c7cab89f2bc6394
-> prerequisite-patch-id: 5f539ac7c96023b36489c6da7c70c31eaf64a25b
-> prerequisite-patch-id: 6bb9a780c62af3bcc2368dfd20303c7b1bc91e23
-> prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
-> prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
-> prerequisite-patch-id: e3b986b9c60b2b93b7812ec174c9e1b4cfb14c97
-> prerequisite-patch-id: 2e03eeb766aefd5d38f132d091618e9fa19a37b6
-> prerequisite-patch-id: e0ba7af0f8d3d41844da9fbcba14b548cbc18f55
-> prerequisite-patch-id: c1f8603e58c64828d0f36deac9b93c24289d8e05
-
-
---9GoKrs0wz7LbOpIW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY8WjKAAKCRB4tDGHoIJi
-0oszAQDM9ExcHzz5zwVTaRHH/CUh3N4IkT9RnBltBfBDkeqmmwD/eoWkYLcS1whs
-CsKsgJlSS9Nu15N2/XX5xgyh1Scb+AA=
-=zJa1
------END PGP SIGNATURE-----
-
---9GoKrs0wz7LbOpIW--
