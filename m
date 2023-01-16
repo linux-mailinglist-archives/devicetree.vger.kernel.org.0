@@ -2,96 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C837D66C2CC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:54:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D061866C2E3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:56:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbjAPOyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 09:54:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
+        id S232788AbjAPO4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 09:56:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232518AbjAPOx3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:53:29 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9787C5B96;
-        Mon, 16 Jan 2023 06:41:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 611F0B80FCD;
-        Mon, 16 Jan 2023 14:41:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ECFDC433D2;
-        Mon, 16 Jan 2023 14:41:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673880076;
-        bh=DBpFvUPk6aIKzxRtTgvzA2wsR/gccADGxoulyVLE4+M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ir3us1sa/T4GamrJrao7UGS7x1tYciTsv9XWDvOoWpZv8wnh8S5fGsZx59Pm6mRgN
-         ExS+nAmO62zPdnEcz0wWEI9pRLyz2koLMpITe6hvCRDOqLz0oE6skQOGhH4kFHYhoy
-         DmIU/MFv7RRVqARixVOuh8SOdaOZBsEW4h1iknv8bOGwROf9mO3U15YMMRuT4LFJXq
-         R2rvZ2Mx5IyJJPnEHcEgUj7SbCAkSCcqxdHqeX3uyhftiBsWeukAalsKRPXkP0SiMy
-         VKh5qbkhOtuioxGBDcgcqJopwspTANN4VADUabuTyQQ/tQg5h7tiYigDzio/mIZ9sN
-         2rI+LuX2wh8xg==
-Date:   Mon, 16 Jan 2023 14:41:11 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
-        Lee Jones <lee@kernel.org>,
-        Martin Botka <martin.botka@somainline.org>,
+        with ESMTP id S231689AbjAPOzo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:55:44 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE39265BF;
+        Mon, 16 Jan 2023 06:44:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673880287; x=1705416287;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/FcwCcmYR+YBoDpa/d8YDulm759cNORuNKsoMFxGRKg=;
+  b=fccPD59rjUDhbt40nC1e3u0QbzjcSutuATBvCasaKpHTyODJy2Mitkmk
+   GM7d8Tsgv5qzLtGOg+5BcLkvAa/JPm7KFXKV1hS+DRXb/e2E6VG1HnCuw
+   Kkj+WeH7v2W/6AX8tuEJXNxU8uXH0uJNG4NhyrN3PPV+kZ+efLNaLg3Ja
+   1ysp/hYSF3I0VPOI8yqcCzE7JJS4kY5oe2Swaepyd1zbdofQnBNu6cgYk
+   8qLgPHW0xkmsUA++rCl1TBpvy5hOhaaMhjRmCMygT8skslu67NSFkqtjJ
+   48L22XqGsySQ0u9yuPS8M3U7Im+gbpLn4swuU3Pon5cTc8pTjz6UXipdB
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="410723454"
+X-IronPort-AV: E=Sophos;i="5.97,221,1669104000"; 
+   d="scan'208";a="410723454"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2023 06:44:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="659050112"
+X-IronPort-AV: E=Sophos;i="5.97,221,1669104000"; 
+   d="scan'208";a="659050112"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002.jf.intel.com with ESMTP; 16 Jan 2023 06:44:44 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pHQj4-00A7vu-3A;
+        Mon, 16 Jan 2023 16:44:42 +0200
+Date:   Mon, 16 Jan 2023 16:44:42 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        martin.botka1@gmail.com, Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] dt-bindings: mfd: x-powers,axp152: Document the
- AXP313a variant
-Message-ID: <Y8ViBxFk+YRBmCch@sirena.org.uk>
-References: <20230116142501.767142-1-andre.przywara@arm.com>
- <20230116142501.767142-2-andre.przywara@arm.com>
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v1 1/1] gpiolib: Remove unused of_mm_gpiochip_add()
+Message-ID: <Y8Vi2tHh21Ihepe0@smile.fi.intel.com>
+References: <20230112144526.66794-1-andriy.shevchenko@linux.intel.com>
+ <CACRpkdYD-MfgCBUdTdNU0+kx+Z6parEmWwQC_3smDYxG73=XGw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="R4/rqsV5InU2Lm75"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230116142501.767142-2-andre.przywara@arm.com>
-X-Cookie: Serving suggestion.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CACRpkdYD-MfgCBUdTdNU0+kx+Z6parEmWwQC_3smDYxG73=XGw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jan 16, 2023 at 03:17:29PM +0100, Linus Walleij wrote:
+> On Thu, Jan 12, 2023 at 4:18 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> 
+> > of_mm_gpiochip_add() is unused API, remove it for good.
+> >
+> > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> 
+> A bit late to the party but THANKS for doing this Andy, it's been
+> a pain for years to have this cruft around.
 
---R4/rqsV5InU2Lm75
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+You're welcome! But note, that we still have a few more APIs to remove.
 
-On Mon, Jan 16, 2023 at 02:24:59PM +0000, Andre Przywara wrote:
+> We even have some traction toward eventual <linux/gpio.h> removal
+> now thanks to Dmitry's efforts, this is great.
 
->        - enum:
->            - x-powers,axp152
-> +          - x-powers,axp313a
->            - x-powers,axp202
->            - x-powers,axp209
->            - x-powers,axp221
+I agree, Dmitry did a nice job on this to be happen eventually!
 
-Probably better to keep these lists sorted.
+-- 
+With Best Regards,
+Andy Shevchenko
 
---R4/rqsV5InU2Lm75
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPFYgcACgkQJNaLcl1U
-h9DEJQf/W4YVdfe7oceJbRfGjUZeyoD1zDIZRw0/5GhFhmLThRiwd54aAEKHncvZ
-mU86HzAE8meVc/bRnCRSOnJ0oKxF3RIvcUiLzGCGC7xa8pv4VRU7XR5TaX20ch2t
-Wk5+0/84PAtTBezwYkl6dhQtG+SBoj+/05pM5hlYshfR6k3hQoyjjSP+iTP948lM
-upu6oKOexUZZcgP6nb/dVpns/n42j74gky8cPc+KAt2XdgMH6vDGp7wHtlffhmfd
-YwZL/svKsSzHckcXURY6pQaZtpovMgEUa1q+kZGuHctsirGeC9dMp6hkOsHljpwY
-zKhX7+iaRLrW5kYsNBRMsMwFz97SiQ==
-=DlAX
------END PGP SIGNATURE-----
-
---R4/rqsV5InU2Lm75--
