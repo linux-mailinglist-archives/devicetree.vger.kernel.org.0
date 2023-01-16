@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2379766B817
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 08:22:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F0266B818
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 08:22:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231617AbjAPHWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 02:22:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43542 "EHLO
+        id S231572AbjAPHWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 02:22:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231753AbjAPHWf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 02:22:35 -0500
-Received: from egress-ip33a.ess.de.barracuda.com (egress-ip33a.ess.de.barracuda.com [18.185.115.192])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A15D893D8
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:22:34 -0800 (PST)
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200]) by mx-outbound13-161.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 16 Jan 2023 07:22:31 +0000
-Received: by mail-pl1-f200.google.com with SMTP id i1-20020a170902c94100b0019486e621d8so2984954pla.22
-        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:22:32 -0800 (PST)
+        with ESMTP id S231881AbjAPHWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 02:22:38 -0500
+Received: from egress-ip4b.ess.de.barracuda.com (egress-ip4b.ess.de.barracuda.com [18.185.115.208])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6403893DD
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:22:37 -0800 (PST)
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72]) by mx-outbound46-13.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 16 Jan 2023 07:22:34 +0000
+Received: by mail-pj1-f72.google.com with SMTP id lk5-20020a17090b33c500b00228cb369d7aso11887429pjb.5
+        for <devicetree@vger.kernel.org>; Sun, 15 Jan 2023 23:22:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=mistralsolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=L5jUZVFUgQ1jNK7mGkTIT+2MJMyk/ce05Kzqa9tsw84=;
-        b=c52kjKvmkuWMgxR2AQXf8TZW8GTIPC0PcMa3EpWHtNsVC/k8nk6QZBjczkmemnXoKr
-         d6WeVwQsv+Ql/bI1EzaIussMMusRYeeNXwuz23Y21ug7tWvjCd/0gAadW41W2ai+bAEk
-         rinIEq9LOX9e3eDThd5ESU98zA659+gGN+qBA=
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I6SZCK2C9Gd1gEZl8NQFe5W6URcLd4Ip4mOBTLwJwFY=;
+        b=l0pTEzVQezVrCri07m6JUCLAWd7W8Lu3xuYgVmuZsrFx5HSZGSLCyo9wobqufeGr1D
+         l5zZMXbaFOrYsEaKlU3L5uZ+KAKE5ijI/H9OIxZLtwlfEw626nEDmk3/tdRzbcJx95Xn
+         e4YzOC4/PVzzRtXbpFGoq7G3EmCaA81TXGxxE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L5jUZVFUgQ1jNK7mGkTIT+2MJMyk/ce05Kzqa9tsw84=;
-        b=PxW0fFPjG0A9/dDXhwHMTVIHFBzciQJyDlxGXsm+vgSxugd1Tnoz0X7R0vwY6EoOSF
-         lqwMnqCMV8gopMuwvuzOVpR3iv1ROhCz1fazcsa0TC+w/r3EaC2DUzKZfszx0CtX4Wih
-         7wnbyyhtXZNrYUyKA1H0Lex4ut+LNGe2leFAkATE3Vn2DHVPKOyKmvjfWJkrFRuF0NJY
-         Fg5UgXUCXCmP4TD6r7WYCfHpZYzs1Dw8uhG8NF4nLFMLLmk8eQ/O68UWOkszSNMjG9yd
-         zpCNLKiY3h/BIu0RjQWQcleUZn0sUvmF4fQZHTKlO4Z2LvWB97kZCteyNQMyKzC0CxBx
-         eVbg==
-X-Gm-Message-State: AFqh2kqJGQ09p+WlSSS+U3KO30QUEVyQxkkTVHOevJnfRUuTxXq+bCvl
-        d2cAS3qc/PZUQoYGpyQUVBWEhZ+aYz9hpu/7kffK7FfDki1ZKG9jlqCtNxLVjum56hC6c7RsZKW
-        wsP7Wk+sKxPErzu7HfTmAdK+TdxxsCSecqQxez141Q06TDdqDCmODx3qqgg==
-X-Received: by 2002:a17:902:b7cc:b0:194:6409:b54a with SMTP id v12-20020a170902b7cc00b001946409b54amr15645456plz.49.1673853749487;
-        Sun, 15 Jan 2023 23:22:29 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXu+QHrte+sGRXfz8yXCa1OhmxtYnFl2NP/QEzJomF8WsFNCjRJxm3loeYGGtAweKBpwC2rfIA==
-X-Received: by 2002:a17:902:b7cc:b0:194:6409:b54a with SMTP id v12-20020a170902b7cc00b001946409b54amr15645432plz.49.1673853749144;
-        Sun, 15 Jan 2023 23:22:29 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=I6SZCK2C9Gd1gEZl8NQFe5W6URcLd4Ip4mOBTLwJwFY=;
+        b=Mw+BpoQhlUV0Y+pXp9izOn0ISoe5EE9NWf04Huhu+n9QjsTYEdTCYxkmMn8XiGlZqk
+         znSXWL215airrn1fWHUGpTCv1JcM8PxSr5mDRMDcs0KcACLjHANgc4u36h6LDuVkLJPK
+         G4IuLpUrpOH/QtrC64z9KICC0AT8MDUHD12/IBQWJfOikaVXleWJHUSEVpGPN0qNoC45
+         wWjFXt1Sh4FfTYxelvcc4y8UV4AwKAKQXnpySdRqs5DTwnWUiJlzUjefElZ2V3Ac+Ett
+         CrDjNhlJzxH+zsNDmbbnGCBvFUMA2flkOnNVGZSXCmBZ0G7E9KdtQxcAA8bjwfEOUzIF
+         JeMg==
+X-Gm-Message-State: AFqh2kpDEMiD0dbRQSMBnL4kRSGvDd7hzehtuNiL67VJ33J2gjhYvM0z
+        fToVFBW/vtTErvp1yTTPRfn1s4cn8/xf1KGFsy7Hm3LL3W43zRuOHfgvxsLHA8CuoAgbK5ysg5j
+        l4jU4OPoN+N3cdRUVr0bmjpfQ5n6DClBPNsv6Aczl8K53lWM3u5UQOoX7Lg==
+X-Received: by 2002:a17:902:8d95:b0:192:8d17:78e0 with SMTP id v21-20020a1709028d9500b001928d1778e0mr66157106plo.42.1673853753740;
+        Sun, 15 Jan 2023 23:22:33 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXuGUvTWCiQl6TPUsgRtz0bopvoECC0NymQp0myuWs4te8uRj2OaH1AIGJ5I4q0Ym7LQ9NYyDQ==
+X-Received: by 2002:a17:902:8d95:b0:192:8d17:78e0 with SMTP id v21-20020a1709028d9500b001928d1778e0mr66157089plo.42.1673853753423;
+        Sun, 15 Jan 2023 23:22:33 -0800 (PST)
 Received: from LAP568U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id d17-20020a170902ced100b001895f7c8a71sm1770346plg.97.2023.01.15.23.22.25
+        by smtp.gmail.com with ESMTPSA id d17-20020a170902ced100b001895f7c8a71sm1770346plg.97.2023.01.15.23.22.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Jan 2023 23:22:28 -0800 (PST)
+        Sun, 15 Jan 2023 23:22:32 -0800 (PST)
 From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
 X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
 To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
@@ -56,31 +57,32 @@ To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
 Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH V5 0/3] AM68 SK: Add initial support
-Date:   Mon, 16 Jan 2023 12:44:43 +0530
-Message-Id: <20230116071446.28867-1-sinthu.raja@ti.com>
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH V5 1/3] dt-bindings: arm: ti: Add binding for AM68 SK
+Date:   Mon, 16 Jan 2023 12:44:44 +0530
+Message-Id: <20230116071446.28867-2-sinthu.raja@ti.com>
 X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20230116071446.28867-1-sinthu.raja@ti.com>
+References: <20230116071446.28867-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1673853751-303489-5388-461-1
+X-BESS-ID: 1673853754-311789-5470-458-1
 X-BESS-VER: 2019.1_20221214.2106
-X-BESS-Apparent-Source-IP: 209.85.214.200
-X-BESS-Outbound-Spam-Score: 0.40
+X-BESS-Apparent-Source-IP: 209.85.216.72
+X-BESS-Outbound-Spam-Score: 0.00
 X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245498 [from 
-        cloudscan12-92.eu-central-1a.ess.aws.cudaops.com]
+        cloudscan21-83.eu-central-1b.ess.aws.cudaops.com]
         Rule breakdown below
          pts rule name              description
         ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
         0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_SC0_SA085b, BSF_BESS_OUTBOUND
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
 X-BESS-BRTS-Status: 1
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,50 +92,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Sinthu Raja <sinthu.raja@ti.com>
 
-Hi All,
-This series of patches add support for AM68 Starter kit(SK). AM68 SK
-is a low cost, small form factor board designed for TI’s AM68 SoC.
+AM68 Starter Kit is a low cost, small form factor board designed for
+TI's AM68 SoC which is optimized to provide best in class performance
+for industrial applications and add binding for the same.
 
-Refer below link to AM68 Technical Reference Manual for further details: 
-http://www.ti.com/lit/pdf/spruj28
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
-Design files can be referrred from https://www.ti.com/lit/zip/SPRR463
+No changes in V4 & V5
 
-Changes in V5:
+Changes in V3:
 =============
-Address review comments:
-- Remove the unessential comment.
-- Remove alignment property from secure-ddr node, as no memory is allocated out
-  of this region.
+Add Acked-by tag.
 
-Changes in V4:
+Changes in V2:
 =============
-Repost after rebasing to 6.2 rc1
+*Address review comment
+ - add entry in alphabetical order.
 
-Changes in  V3:
-==============
-Address all the review comments and the changes are captured in separate patches.
- - Remove the unused nodes that are disabled by default.
- - Update the gpio regulator node: gpio-regulator-tlv to "regulator-tlv".
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-1-sinthu.raja@ti.com/t/#mbe43b02221733bb6eb06b203359e90ec08406afc
-V2: https://lore.kernel.org/lkml/20221107123852.8063-1-sinthu.raja@ti.com/
-V3: https://lore.kernel.org/lkml/20230110110052.14851-1-sinthu.raja@ti.com/
-V4: https://lore.kernel.org/lkml/20230105151740.29436-1-sinthu.raja@ti.com/
-
-Sinthu Raja (3):
-  dt-bindings: arm: ti: Add binding for AM68 SK
-  arm64: dts: ti: Add initial support for AM68 SK System on Module
-  arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board
-
- .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- .../boot/dts/ti/k3-am68-sk-base-board.dts     | 335 ++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi    |  29 ++
- 4 files changed, 367 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
- create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 203faab80142..acbc25108533 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -69,6 +69,7 @@ properties:
+       - description: K3 J721s2 SoC
+         items:
+           - enum:
++              - ti,am68-sk
+               - ti,j721s2-evm
+           - const: ti,j721s2
+ 
 -- 
 2.36.1
 
