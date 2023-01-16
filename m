@@ -2,139 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98A8466C3EA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:32:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 647E666C441
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:47:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbjAPPcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 10:32:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50274 "EHLO
+        id S229489AbjAPPrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 10:47:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbjAPPcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:32:00 -0500
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B53F23C47;
-        Mon, 16 Jan 2023 07:27:10 -0800 (PST)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-15ee27bb0a8so8763320fac.7;
-        Mon, 16 Jan 2023 07:27:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=+UDRzzqJZNu06Gc3ga3e9IbYLEa/rLRliciSPrDBYRg=;
-        b=RZ1n0r4AI2GerlleUSjlaFyWkhgl9jIMqXrEzlp1ISH72sFG9wRxtNfxl3PfYoU30v
-         Z80ubSNT6yJGj81XovIyuXolWqXluS6B5cE2P6/fLTlkFPpq2RjcGgCkeTpLVwynlHva
-         2hQo9OZ3BIBz9PU2Fjl579mEVJph58m0+YkHhx7cgqdC118Ru/WxV1vkcu6XhYHmPHZA
-         PeTCYHCFpJXFkWfN2Sxrxuz3zyASDXMfpvaj88JuB2BrJunQWn/dWiNbmIzQGo3uDTyb
-         /ZvCC5gfoLjbgmvLX1n+w+DbI6QC6Ch16CQfCine2/9Pod7zAFqZF3+fpYexfyItzswx
-         Yujg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+UDRzzqJZNu06Gc3ga3e9IbYLEa/rLRliciSPrDBYRg=;
-        b=szUsaW+DM7Tk/Nu1mVWxUN1o0ukk6R08OSoMVQDdqvyT4Vo/ZQ1mem+tappXxS2bko
-         ZH3bsCYMutsxG41JZYLCE951I7/LXbKhmrsZdtO8pbtCTG6X1fgZdIJgeiyiCkMXLUtM
-         8HD9krbrWL5YN0DDJw38iv4Dqad8bvOigkuZRdJwslwqIjAtbN+h1ZXEdwT+84djy3w4
-         84frSl1SiQQ0UArA3/6Yf138fJfTX1g1d4UE3Fd+eqG6mbT2t3yvVQh7ryoagI3uwfZa
-         73BWbtR7LEyAtFihobrBAwvk/8AZwy9wIEvthmfpHf9zSOrWxH9VwBIKX2J6Wfxh2I2j
-         qkrg==
-X-Gm-Message-State: AFqh2koynJ7xDdEZYiIytiJY6iLkl8AiT2CfetiJG7JuBD81bbzENurb
-        KY5U3KwMDL27ePRpHHKQuZdfALRuWZ8=
-X-Google-Smtp-Source: AMrXdXvOczUTz6EPlUdVCboKTU+LLgs9MuRt5dnGPTrU4EEQ8diSJ0rUGv8x4kcKVoA+IAM6neRL/w==
-X-Received: by 2002:a05:6871:110:b0:15b:868d:137f with SMTP id y16-20020a056871011000b0015b868d137fmr116467oab.1.1673882829313;
-        Mon, 16 Jan 2023 07:27:09 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c6-20020a056870c08600b0014be94a12d0sm14722761oad.44.2023.01.16.07.27.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 07:27:08 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <bfcac231-682d-8b2c-6c3a-e3a5a04ca5bf@roeck-us.net>
-Date:   Mon, 16 Jan 2023 07:27:06 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/2] watchdog: mtk_wdt: Add reset_by_toprgu support
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-watchdog@vger.kernel.org
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20230116105305.31818-1-allen-kh.cheng@mediatek.com>
- <20230116105305.31818-3-allen-kh.cheng@mediatek.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20230116105305.31818-3-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        with ESMTP id S229810AbjAPPri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:47:38 -0500
+X-Greylist: delayed 359 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 16 Jan 2023 07:47:37 PST
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B7793FB
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:47:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1673882970; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=nZsUYF7ikucQF7DLMPbDxMOc8KZ6VR6W5bqBqEbZHFkQs+T4cbHZxFsTdMA6WtYqf/
+    NdYK7qAc84VFSOKEbPUiHbxMy7ASuQQWule9V1yKBPiT5zziR8CEZ/SK+rgMk022x4g3
+    CU9X2i3tQ9WTczlIH0LQ/QGeltAnaSwg7066eR8SURA+rLzI4XzMeeE3nS2oYnJFAcL/
+    VwwALj5URohYRKx0MMeVGh+3UYl7vb53uOFWX5Uq6QAlpYSne2uMvOyW7WEWEyMD9idB
+    gczSx1eTO2Ot9CwYgz8UPuPDpAmFO7/e+ti1ilWuX7mFJ6jAkrZUHtQwNAyfNe0NG//D
+    rIRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1673882970;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=AbbuHm7TvsAFiVwinj9rMZM8rW8kB0ZA+o+CqVXSWxM=;
+    b=SZMZKlPURtMGL6bF2SoTarIVEatMgvPrYieXLW6siZRvHXPROToNOnSNDW/b6rUAEh
+    zJu+Mbki39WDVfnpg/pwol+i7e5gaBhfaEF7jnWHVbujocQYsoe4/mDf0a8UM7L3tBHY
+    wlmfPEtZ+BEGpSOkax/GAv3S0yfVrXYuWSyr4vtsaIWPW7Z3DrXx9yiKelFUfeLEgEyu
+    EmyOrFdL0YlzIKkrlE5f8Vs2cn6U9C5e+9UCUgntXsejK5UIAA8aDAoHfRGhn2NzoIw+
+    zMoDfoY4gStUfeuMVjCdjKGztr8zQbm0h6bVGuPzcXt8M4RTWHHznGGsqt/S8fTn19ru
+    85mQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1673882970;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=AbbuHm7TvsAFiVwinj9rMZM8rW8kB0ZA+o+CqVXSWxM=;
+    b=tuMfb8OK84jk6v/Vc+Obyemg4XLn1FK/6P2w9+auAZ/uQJlmuwyU+CzGfPSbeYgNZx
+    44OV46vPa1ppgsNz1PzNgqteqqszDzf4T6EJUMGT3tbo1hEX1oGU1ZUOaHFtKN6e2uPg
+    Ixv+bHs+2kBo6rUb3CB4SXCENnh8t5jaAm3xgAm2cdKsCxkJfmWosIhdklUcXsNp7fgx
+    rLK0yaYBlCKm1yv4KRDF4NK+hcp0LTcRg40jf3vlHswkJAcnUiaIilYQrniGAXdoJ9LE
+    f5G4e7lR5zcbDKTMrgclPFBe2Y+Ra0+l9C2DSLUrXwBan3BS4WCzwtNCYWSA/whECWEw
+    bw1Q==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGfpGU="
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 48.6.2 DYNA|AUTH)
+    with ESMTPSA id Q5ca1cz0GFTUL7n
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Mon, 16 Jan 2023 16:29:30 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH] ARM: dts: gta04: fix excess dma channel usage
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <Y8VkjQ2yZQssx/wJ@atomide.com>
+Date:   Mon, 16 Jan 2023 16:29:29 +0100
+Cc:     Adam Ford <aford173@gmail.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Message-Id: <4EFDE2C4-0BBB-4804-AA46-C40EB0D97AC4@goldelico.com>
+References: <20230113211151.2314874-1-andreas@kemnade.info>
+ <CAHCN7xJH+c41Yas+xnWA57KNi9arOOJDxJ=joEDEJr2k6jrRrw@mail.gmail.com>
+ <Y8VkjQ2yZQssx/wJ@atomide.com>
+To:     Tony Lindgren <tony@atomide.com>
+X-Mailer: Apple Mail (2.3445.104.21)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/16/23 02:53, Allen-KH Cheng wrote:
-> In some cases, the MediaTek watchdog requires the toprgu to reset
-> timer after system resets.
-> 
-> Provide a reset_by_toprgu parameter for configuration.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Hi,
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
-> ---
->   drivers/watchdog/mtk_wdt.c | 7 +++++++
->   1 file changed, 7 insertions(+)
+> Am 16.01.2023 um 15:51 schrieb Tony Lindgren <tony@atomide.com>:
 > 
-> diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-> index 3e6212591e69..a9c437598e7e 100644
-> --- a/drivers/watchdog/mtk_wdt.c
-> +++ b/drivers/watchdog/mtk_wdt.c
-> @@ -50,6 +50,7 @@
->   #define WDT_MODE_IRQ_EN		(1 << 3)
->   #define WDT_MODE_AUTO_START	(1 << 4)
->   #define WDT_MODE_DUAL_EN	(1 << 6)
-> +#define WDT_MODE_CNT_SEL	(1 << 8)
->   #define WDT_MODE_KEY		0x22000000
->   
->   #define WDT_SWRST		0x14
-> @@ -70,6 +71,7 @@ struct mtk_wdt_dev {
->   	spinlock_t lock; /* protects WDT_SWSYSRST reg */
->   	struct reset_controller_dev rcdev;
->   	bool disable_wdt_extrst;
-> +	bool reset_by_toprgu;
->   };
->   
->   struct mtk_wdt_data {
-> @@ -279,6 +281,8 @@ static int mtk_wdt_start(struct watchdog_device *wdt_dev)
->   		reg &= ~(WDT_MODE_IRQ_EN | WDT_MODE_DUAL_EN);
->   	if (mtk_wdt->disable_wdt_extrst)
->   		reg &= ~WDT_MODE_EXRST_EN;
-> +	if (mtk_wdt->reset_by_toprgu)
-> +		reg |= WDT_MODE_CNT_SEL;
->   	reg |= (WDT_MODE_EN | WDT_MODE_KEY);
->   	iowrite32(reg, wdt_base + WDT_MODE);
->   
-> @@ -408,6 +412,9 @@ static int mtk_wdt_probe(struct platform_device *pdev)
->   	mtk_wdt->disable_wdt_extrst =
->   		of_property_read_bool(dev->of_node, "mediatek,disable-extrst");
->   
-> +	mtk_wdt->reset_by_toprgu =
-> +		of_property_read_bool(dev->of_node, "mediatek,reset-by-toprgu");
-> +
->   	return 0;
->   }
->   
+> Hi,
+> 
+> * Adam Ford <aford173@gmail.com> [230116 14:16]:
+>> Would it make sense to make this default in the omap3.dtsi file and
+>> enable them in the individual boards that need it?
+> 
+> In general disabling the unused devices by default for omaps will break
+> the power management. The disabled devices are completely ignored by the
+> kernel, and the devices are left to whatever the bootloader state might
+> be.
 
+Yes, indeed.
+
+> For SoCs using firmware to manage devices it's a bit different story
+> however. The firmware can still idle disabled devices based on a
+> late_initcall for example, even if the kernel knows nothing about the
+> disabled devices.
+
+But how can we then handle all devices being "okay" by default and
+eating up more dma channels than are available?
+
+We can't put all under power management AND dma by default.
+
+Or can dma channel usage be postponed until the device is really used?
+
+BR,
+Nikolaus
