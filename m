@@ -2,114 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8071166C08E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:02:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A5466C223
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:24:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231598AbjAPOCT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 16 Jan 2023 09:02:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44308 "EHLO
+        id S232541AbjAPOYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 09:24:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231522AbjAPOCQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:02:16 -0500
-X-Greylist: delayed 71 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 16 Jan 2023 06:02:08 PST
-Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA6218B3B
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 06:02:07 -0800 (PST)
-Received: from CHE01-GV0-obe.outbound.protection.outlook.com
- (mail-gv0che01lp2042.outbound.protection.outlook.com [104.47.22.42]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-22-OnKk9DPrNr6mclpq02ZMig-1; Mon, 16 Jan 2023 15:00:54 +0100
-X-MC-Unique: OnKk9DPrNr6mclpq02ZMig-1
-Received: from ZRAP278MB0254.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1e::13)
- by ZRAP278MB0753.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:48::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Mon, 16 Jan
- 2023 14:00:52 +0000
-Received: from ZRAP278MB0254.CHEP278.PROD.OUTLOOK.COM
- ([fe80::ab29:ca09:9701:6da9]) by ZRAP278MB0254.CHEP278.PROD.OUTLOOK.COM
- ([fe80::ab29:ca09:9701:6da9%7]) with mapi id 15.20.5986.022; Mon, 16 Jan 2023
- 14:00:52 +0000
-From:   Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Gitlab device tree check
-Thread-Topic: Gitlab device tree check
-Thread-Index: AQHZKbG7oGx7zUcJBkiFEJ+8Kt/Pag==
-Date:   Mon, 16 Jan 2023 14:00:51 +0000
-Message-ID: <ZRAP278MB0254511C101A8D3AFEF9324FE2C19@ZRAP278MB0254.CHEP278.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZRAP278MB0254:EE_|ZRAP278MB0753:EE_
-x-ms-office365-filtering-correlation-id: 3b39ccad-e51a-48eb-f4fc-08daf7ca1435
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0
-x-microsoft-antispam-message-info: wq7juJb/EWsl8njJzpOeBaMzLWg5KPsJEFsWRK5IrljlPkR8X0utUyn0K4R2gln6Zw+DPdABjrbfofde8XkGCWN0A/capSva8bvtPNwM2LYANCocnn3+nRFC9xVDFKiJdNHc+qUE3jq3SmK+ueusl2H7DSz2sKoOWX6JSlB1ky4VG7V1DS4EYOz8b1f01Dg7RWv4tguquDkzJcbWL3VlaT3HYBgxW2NreGukKmu+CzVzDsTNLmkLEfeezqcVIRzYlPDCyyCeER6IEC+kd4zsmKfWRbpPA9cSw3ZJ0pFkodcTCCfTRz9AcBu5iZ1EHvYa5r6hvCX6pNGs4OGh6hjZbGae4r5lyPKDxmNjChIn/96V54BW5DEcxedjyHw5vmsxNW9u0OrZOG5ZYWI8sBg84K/8dyDnYvv+ec3vb+3cHR8lTHiRZlzvTcTrJFgz3Jo+pQjrI7VSUyY2XsYMHhmflCtOLnxIgvOjcK903N5qYoMRt77+ROWro/m/4feoTx7RqReDjTwSjUZdaV6aqY0oy2SW+RMKBvd9ywuJEfo5wk8b+vlpg+U5qZslNZRT9/6s94JAmc3gCECfUThRyeYVI2J2j9CDuqt6+Lt5sJXren1yeBVtbM9OG3XUfQoi4DZUl443RtVak8PSEbExPEcGp0g3z+N7+yBmCtL6Sps3ao46xkV+Dbb9M1Ayhz634B/O
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0254.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39840400004)(396003)(346002)(136003)(366004)(376002)(451199015)(3480700007)(33656002)(122000001)(5660300002)(38100700002)(86362001)(38070700005)(4744005)(2906002)(52536014)(8936002)(55016003)(4326008)(76116006)(66556008)(66946007)(66446008)(66476007)(44832011)(8676002)(64756008)(6916009)(478600001)(9686003)(186003)(6506007)(26005)(316002)(54906003)(7696005)(71200400001)(41300700001);DIR:OUT;SFP:1102
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?tfeXjnCHWLZ9tICCuL6ajoQ1DalnPUHQrvbdOhtd5PaIbP2W6bwlR8tEgN?=
- =?iso-8859-1?Q?tDuSg1/HXrxaTxAptYQNO2rPZ0rovWJt6BkO1pBxEvez5ZRDtcMThF3Qyk?=
- =?iso-8859-1?Q?Oh0nDqjj7erxERzoMen9D6TAavbrG1YlL485FlKFIcnWSWpg6nKVmGZmp6?=
- =?iso-8859-1?Q?gBLtdLIcLx9yCF1hT1H/FE7qib38+Q8FL7oNmWxuOW4IhuT3nHdxrEn0CL?=
- =?iso-8859-1?Q?3WWkXdOZky3haAxQDoPquaur4/+8dRu61I/n6s7x2A6k2adYwRAKboNnWP?=
- =?iso-8859-1?Q?4jrfxBE3KSAkieIi8b8gYULaKCM6Qjxg0Tag6ueuqIQ7pUxvYbnILsMSf6?=
- =?iso-8859-1?Q?55FD2YTFc4dmY1bCebqutK7juQQpdavQh2gTnr6J69pJ7CBdZCnNPhqbkK?=
- =?iso-8859-1?Q?FkCFwM2mcZqbPrtWE9401IFsOYfaMxmTb8Pm3Dew5KWiTisUEMDR06NLIr?=
- =?iso-8859-1?Q?NQNM0tIKZGN9ov67du6WCqvcCIfg8g+9DhDDOH0MSlc0LpwyuYaWPwciNE?=
- =?iso-8859-1?Q?ZHDkNHzEWzCway3KokRn5o9d7EzgOPDu8SPWikZ76sU6Ujen9LHw+mlcZG?=
- =?iso-8859-1?Q?HbGM6uDQGCTWw4qPpfTKSMjvnDD6N1tNTeTD6i8IlAuWZuXqgfDLE3aOzJ?=
- =?iso-8859-1?Q?ww9q1CjPmGEqB8Fh7zNIz82Jdys4YHK+X0pNuH3s7sH/jOSP82o9qZutS7?=
- =?iso-8859-1?Q?vCkDqfjBosvcXg+EcZhpnYTD0ESxlDGmErTMPyXkURHFHy+jnzc+Stsvgz?=
- =?iso-8859-1?Q?GcT0el8K8KXr7VMQnKNow19i+nJH3UMM6VvYWZeEsorIiMA9ZSvzyXSWo9?=
- =?iso-8859-1?Q?Pf5/OxthfB1n/BTSeYL+dTRLfcfWZQZvMBm9UREz+h+6xxgMA6JtgjAqxo?=
- =?iso-8859-1?Q?QjvCKvkoOtrz+ZchdirrVjXAzErzGLKl1PQxE7OetrF19AF5g29gJlOkKK?=
- =?iso-8859-1?Q?6ySHIea2lkGn8EJVki6fkGTZPHquTrnn8nTLoLiJSZtZxdgx2uM+kpmZDk?=
- =?iso-8859-1?Q?kcxon5ndDex8yMxSOhvsiLOAUEDgsJ03lGdYP7NCq9g67YYqj5lyzSwqd8?=
- =?iso-8859-1?Q?C/4t1Yb+wpyHP3NgcsvOK9UDaLnxJTCa83fRxQURv6PCxS6sjjzOYma6Fm?=
- =?iso-8859-1?Q?2HCr6wAUbAF6E8XE0OCrIGxB+D8N61cj29xiD3Fg+Qb8gsotYXV1b+14qy?=
- =?iso-8859-1?Q?5q3X1eE3T1FMOKEixTFz50dupstLa6o80pKRMoZwnZYQA+XG2FjZ7ejFQD?=
- =?iso-8859-1?Q?tI+BAdDDU2Q+APEj3H8tQY1dcLUDIzWQ7Rl78lGFP+IjnEL9bnndDNpJ0J?=
- =?iso-8859-1?Q?RV4Wenhf4/QU+V0jyxR10UipvWHrX31DiQrB9cli7cBoaxtSQoqf+Mb7bL?=
- =?iso-8859-1?Q?TMkTXzqzTbygIRdCuPF0hHVpx0/8NLgVhP3UmHAvX1B2Cos2mQWo62z3a+?=
- =?iso-8859-1?Q?GBubAcDv5Jsvr0FgqAwwFbfnBEJhDPWCwtQFsJpgDL5IDYe5jrMw7m1M6b?=
- =?iso-8859-1?Q?Jvi+vKrKltdeHxb7kCALbe2jpF4vHYi4EtI6l3ig/H/QVBowysPln1sUiR?=
- =?iso-8859-1?Q?G4SqQweExC+EC/4vB1KVIKwmWyDihzv1ez81lwaimvfxr/4HGv1599ZL5D?=
- =?iso-8859-1?Q?O6UQ+MTqtEZm0ZHMInIkvfwSo46snR84jZ6PGlEl+nNotqH0ileAXF4A?=
- =?iso-8859-1?Q?=3D=3D?=
+        with ESMTP id S232828AbjAPOXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:23:50 -0500
+X-Greylist: delayed 385 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 16 Jan 2023 06:08:28 PST
+Received: from smtp-8fa9.mail.infomaniak.ch (smtp-8fa9.mail.infomaniak.ch [IPv6:2001:1600:3:17::8fa9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DD0274AF
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 06:08:28 -0800 (PST)
+Received: from smtp-3-0000.mail.infomaniak.ch (unknown [10.4.36.107])
+        by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4NwYc90nXCzMqcMb;
+        Mon, 16 Jan 2023 15:02:01 +0100 (CET)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4NwYc81GLdzGsp;
+        Mon, 16 Jan 2023 15:02:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
+        s=20220412; t=1673877721;
+        bh=A6GZwkHnaoIZ28gxZUhGOXzEzh7g91KUo/Qw0h2sKB4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TKYlhNeXlGFMKUiXm+/BS6fmCAtv53XpEYN8DQwHLt46AHrZdFVcNecmDMtHtcdiU
+         k2mGbd4GTydvxcQCJdaW7uHqgZEYoUHAU+14U1MDwjsuLMEYjAIUDx9oKLG21b552p
+         Oq8D9JQ4Omcf/3DENcTx+z6puBxwCytsM5LzT4m0=
+From:   Philippe Schenker <dev@pschenker.ch>
+To:     devicetree@vger.kernel.org
+Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm-verdin: Do not power down eth-phy
+Date:   Mon, 16 Jan 2023 15:01:52 +0100
+Message-Id: <20230116140153.23938-1-dev@pschenker.ch>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0254.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b39ccad-e51a-48eb-f4fc-08daf7ca1435
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jan 2023 14:00:52.0725
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: g3JMvdIxVzcee2G1Pq30xwq8l9eHNP9hZ7jQyteVmSScezJKhvMM1/vLiRP3z02xywxCq3u9uB4cUWuKtQswV0EtzdaAWLtuhyyJUD2zD1w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZRAP278MB0753
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
-Content-Language: en-US
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Infomaniak-Routing: alpha
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Right now I'm working on some extra checks for our Gitlab CI, and I'm a bit puzzled about how can I implement a nicely looking script that would execute "make CHECK_DTBS=y" on every touched device tree file. dts files are not a problem, but when it comes to .dtsi, which might be included in other .dtsi, makes the logic more complex than I would like to. I'm sure some of you might have a working solution for this scenario, and would appreciate if you could share your scripts/template. :)
+Currently if suspending using either freeze or memory state, the fec
+driver tries to power down the phy which leads to crash of the kernel
+and non-responsible kernel with the following call trace:
 
-Best regards,
-Andrejs Cainikovs.
+[   24.839889 ] Call trace:
+[   24.839892 ]  phy_error+0x18/0x60
+[   24.839898 ]  kszphy_handle_interrupt+0x6c/0x80
+[   24.839903 ]  phy_interrupt+0x20/0x2c
+[   24.839909 ]  irq_thread_fn+0x30/0xa0
+[   24.839919 ]  irq_thread+0x178/0x2c0
+[   24.839925 ]  kthread+0x154/0x160
+[   24.839932 ]  ret_from_fork+0x10/0x20
+
+Since there is currently no functionality in the phy subsystem to power
+down phys let's just disable the feature of powering-down the ethernet
+phy.
+
+Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
+Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+
+---
+
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+index 7e8b3b0fa306..4df3c9760151 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+@@ -102,6 +102,7 @@ reg_ethphy: regulator-ethphy {
+ 		off-on-delay = <500000>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_reg_eth>;
++		regulator-always-on;
+ 		regulator-boot-on;
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-min-microvolt = <3300000>;
+-- 
+2.39.0
 
