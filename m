@@ -2,107 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A188E66D044
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 21:35:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07F6766D06B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 21:48:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231146AbjAPUf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 15:35:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40860 "EHLO
+        id S230115AbjAPUs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 15:48:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232003AbjAPUfz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 15:35:55 -0500
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C7C2A17B;
-        Mon, 16 Jan 2023 12:35:53 -0800 (PST)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 0C3B11F5E0;
-        Mon, 16 Jan 2023 21:35:50 +0100 (CET)
-Date:   Mon, 16 Jan 2023 21:35:49 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Michael Srba <Michael.Srba@seznam.cz>,
+        with ESMTP id S233038AbjAPUsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 15:48:08 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7A52B2A3;
+        Mon, 16 Jan 2023 12:47:59 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id b5so7452925wrn.0;
+        Mon, 16 Jan 2023 12:47:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WD43VrJyuOOGawH5BIgCKMkAnIQ0M+903UfjUxvZAZE=;
+        b=OPlzPOaEdgT/WJboIf4FH66QtTw+k/Vn0xpl87PxwRxwpF/aIbEwbLkCdDmdAqSTRL
+         eFHWqMgh/Hc6hi47G0ibpItplSCVLrdPGiROamnZNa98ipSUOiWXCNmD/fRi68UHoQpd
+         D5jB9JYQlWTOS0no0fHBbW7tlpkcJVtAsBFdOzg1GwGqTkRqnWrrCt6/3IxSjMxswSHj
+         MGEE4pvqCtEASrvRDDnwtm2bjsM1D3AIf6Qgf8btykP676Nvk/eQGaqLi8vN2bxhckbx
+         9yQTfv3TGiwUPYIb95/p80DQELm5tAF94UvWcsWX5Nz5bv/gDdq/E0GC5/MUhg8ObTBC
+         rxTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WD43VrJyuOOGawH5BIgCKMkAnIQ0M+903UfjUxvZAZE=;
+        b=rlw/3b4ZKgLY7VeP6cgBhBkX6/TssfklcAgao2xqg4XbSzSVylFtjZgecXE3eBPPE2
+         mtvx/wUbJqGwLSy05rbl4NVMEobLTlj8MfH3YQTEVNSWgBo6PKZqoB0/PNWRcXV8Otfg
+         6eekv6adpeH7CrbLspC7Q7ztuqn2LcjWp2Xb96bFKU+C4N8LLtNfeeEFwu+2H8oFhsSY
+         Da+TtGX2DehdkbOJnOC+NXMbA07rVRtfMmm4PBS0cH7BcXg/uJJ/CHTs0XiKIZYFw1jh
+         A5cf+H+5SQrkdRXe09nE5z0HsAkK+xD3//yiqsTGSWOSCOCpfhF01q5LKvLuh98itvy/
+         1MZQ==
+X-Gm-Message-State: AFqh2koIbVwXDQAxmIWUnBoK4G+3lhXCgIMjsJ3Zx0dj9qT9dRVrh6H7
+        nfFA4e8B4b+/yImGJTLkvHk=
+X-Google-Smtp-Source: AMrXdXtl2dm2gShSxprNzc7SgywcC6D01VmVe29e5x3UYg4d9JT4+BJUCDUmvCN0YK4F0Ez2PN26CQ==
+X-Received: by 2002:a5d:6b07:0:b0:236:695b:82d4 with SMTP id v7-20020a5d6b07000000b00236695b82d4mr673570wrw.30.1673902078030;
+        Mon, 16 Jan 2023 12:47:58 -0800 (PST)
+Received: from localhost.localdomain (93-34-92-88.ip49.fastwebnet.it. [93.34.92.88])
+        by smtp.googlemail.com with ESMTPSA id k18-20020adfb352000000b00241fab5a296sm27785372wrd.40.2023.01.16.12.47.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 12:47:57 -0800 (PST)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Revert "phy: qualcomm: usb28nm: Add MDM9607 init
- sequence"
-Message-ID: <20230116203549.5jzd2olxua662n6w@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221214223733.648167-1-marijn.suijten@somainline.org>
- <Y8GY51Cfkj7o1MJs@matsya>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: [PATCH v7 0/7] Krait Documentation conversion
+Date:   Mon, 16 Jan 2023 21:47:44 +0100
+Message-Id: <20230116204751.23045-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y8GY51Cfkj7o1MJs@matsya>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-01-13 23:16:15, Vinod Koul wrote:
-> On 14-12-22, 23:37, Marijn Suijten wrote:
-> > This reverts commit 557a28811c7e0286d3816842032db5eb7bb5f156.
-> > 
-> > This commit introduced an init sequence from downstream DT [1] in the
-> > driver.  As mentioned by the comment above the HSPHY_INIT_CFG macro for
-> > this sequence:
-> > 
-> >     /*
-> >      * The macro is used to define an initialization sequence.  Each tuple
-> >      * is meant to program 'value' into phy register at 'offset' with 'delay'
-> >      * in us followed.
-> >      */
-> > 
-> > Instead of corresponding to offsets into the phy register, the sequence
-> > read by the downstream driver [2] is passed into ulpi_write [3] which
-> > crafts the address-value pair into a new value and writes it into the
-> > same register at USB_ULPI_VIEWPORT [4].  In other words, this init
-> > sequence is programmed into the hardware in a totally different way than
-> > downstream and is unlikely to achieve the desired result, if the hsphy
-> > is working at all.
-> > 
-> > An alternative method needs to be found to write these init values at
-> > the desired location.  Fortunately mdm9607 did not land upstream yet [5]
-> > and should have its compatible revised to use the generic one, instead
-> > of a compatible that writes wrong data to the wrong registers.
-> 
-> Applied after adding missing subsystem tag, thanks
+This series convert the krait-cc and the kpps-acc/gcc Documentation to
+yaml.
 
-Thanks, it wasn't clear to me whether to suffix the title when already
-included in the Revert: "phy: qualcomm: ..." title :)
+This series comes form a split of a bigger series that got too big and
+now hard to review.
 
-- Marijn
+While they are still more or less wrong and doesn't really reflect real
+driver implementation, they are converted to prepare for a fixup later
+when dts and driver are finally fixed.
+
+Minor changes are done to the kpss-gcc driver and minor fixes are done to
+the various affected dts to fix dtbs_check warning with the new introduced
+schema.
+
+Also fix kpss-acc dtbs_check warning.
+
+v7:
+- Split dt patches to compatible and missing clock
+- Add Review tag by Rob
+- Rename from power-controller to power-manager and drop extra binding
+- Add Review tag by Dmitry
+- Rework some patch to better commit title and description
+v6:
+- Split kpss-acc to separate v1 and v2 schema (thing changed from
+  simple clock controller to a power domain in later SoCs)
+- Fix whitespace error (extra new line at the end of the file)
+- rebase on top of linux-next/master
+v5:
+- rebase on top of linux-next/master
+v4:
+- Fix error from kpss-acc schema
+- Fix dtbs_check warning from kpss-acc
+- Improve kpss-gcc for apq8064
+v3:
+- Update all Sob
+- Rework kpss-gcc Documentation with the new finding
+- Fix dtbs_check warning
+v2:
+- Fix bot error by adding missing #clock-cells
+
+Changelog for previous series "Modernize rest of the krait drivers"
+that was split to smaller series (only Documentation changes):
+v7:
+- Rework kpss-gcc Documentation (split patch for pure conversion and
+  tweaks)
+v6:
+- Address comments from Rob
+- Fix warning from make dtbs_check
+v5:
+- Address comments from Krzysztof
+v4:
+- Fix more dt-bindings bug errors
+v3:
+- Split Documentation files for kpss and krait-cc
+v2:
+- fix missing new line on patch 16 (krait-cc patch)
+
+Christian Marangi (7):
+  dt-bindings: clock: Convert qcom,krait-cc to yaml
+  dt-bindings: arm: msm: Convert and split kpss-acc driver Documentation
+    to yaml
+  dt-bindings: arm: msm: Rework kpss-gcc driver Documentation to yaml
+  ARM: dts: qcom: add per SoC compatible for qcom,kpss-gcc nodes
+  ARM: dts: qcom: add and fix clock configuration for kpss-gcc nodes
+  ARM: dts: qcom: add missing clock configuration for kpss-acc-v1
+  ARM: dts: qcom: rename kpss-acc-v2 nodes to power-manager nodes
+
+ .../bindings/arm/msm/qcom,kpss-acc.txt        | 49 -----------
+ .../bindings/arm/msm/qcom,kpss-gcc.txt        | 44 ----------
+ .../bindings/clock/qcom,kpss-acc-v1.yaml      | 72 +++++++++++++++
+ .../bindings/clock/qcom,kpss-gcc.yaml         | 88 +++++++++++++++++++
+ .../bindings/clock/qcom,krait-cc.txt          | 34 -------
+ .../bindings/clock/qcom,krait-cc.yaml         | 59 +++++++++++++
+ .../bindings/power/qcom,kpss-acc-v2.yaml      | 42 +++++++++
+ arch/arm/boot/dts/qcom-apq8064.dtsi           | 21 ++++-
+ arch/arm/boot/dts/qcom-apq8084.dtsi           |  8 +-
+ arch/arm/boot/dts/qcom-ipq4019.dtsi           |  8 +-
+ arch/arm/boot/dts/qcom-ipq8064.dtsi           | 12 ++-
+ arch/arm/boot/dts/qcom-mdm9615.dtsi           |  2 +-
+ arch/arm/boot/dts/qcom-msm8660.dtsi           |  2 +-
+ arch/arm/boot/dts/qcom-msm8960.dtsi           | 13 ++-
+ arch/arm/boot/dts/qcom-msm8974.dtsi           |  8 +-
+ 15 files changed, 317 insertions(+), 145 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,kpss-acc-v1.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml
+
+-- 
+2.37.2
+
