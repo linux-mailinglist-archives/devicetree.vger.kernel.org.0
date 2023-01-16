@@ -2,174 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B97C66BA5B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:30:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A060E66BA5E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:31:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232041AbjAPJah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 04:30:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54532 "EHLO
+        id S231966AbjAPJbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 04:31:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232095AbjAPJaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:30:08 -0500
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02olkn2040.outbound.protection.outlook.com [40.92.50.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE97A18B10
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:30:00 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OLRCqgjfQhMkM8FKuMyokfLYj6BrqZt8LjEREl3El09UhdOsWSBXglhPfeIo5j9rk8wKTSSzTKNJvT8eh3lu6/dGjR5+iXtnNPGtJADoOl3AabTAViHIq38waiFYyvk/1C8KTeiQpQPMkcoLB97yfXrF+mVbIUDEg10bZdQxSQo3+9DPJD1p1uscZsvbybOwSnEyCT2q3lhqRM87NuEhs9LSogcD97bvUHwMmZQmZ9AWudIbZxrjFFXe9IQIbGfWysVGQ37lEDXdO3sM2jAaxno1lo96UKKn3nvSDa2XYiYCsFs8RA6Puqa0AK8ZoGEpZOXdW0qTOzMz1/bW9D0B4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/eifhGVqGoHCLxjeZL2lhpNLTApKoiMbXCKVFzYi46Q=;
- b=ZFmEaF8RXb+l65X7Lb20YwVm9c+DR9UtsgANIgOIEwzHaVvwPAeKQC92QcFQS0aAr3JgYLBOjd+DYpMxdXeilpn7q4e+PV+6Bjg19L5DCAaUzk5DxZtHRUGPw/HHTaygHZEM2uSl4CFBAod+6mr7f+4X8A0b3PVLnz1iR5nhXcFf5d/mq+XvIwsZPMVj5ZsugRxJn7r9DtWp0u92aiUVzx/zcM2hDfroolpTM6g3OqamU46VIlk/4u0Z/H90CVOxYXotpIHadScqVFYPKyRZifBOc8VOBLKoKV4DWxmSJTfm6H6X0V17HOIysxjkTcMxgoOtHZJgqzgPmAiE83WU9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from DB9P190MB1594.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:247::8) by
- GVXP190MB2013.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:4::21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5986.21; Mon, 16 Jan 2023 09:29:58 +0000
-Received: from DB9P190MB1594.EURP190.PROD.OUTLOOK.COM
- ([fe80::2567:af26:29a2:850]) by DB9P190MB1594.EURP190.PROD.OUTLOOK.COM
- ([fe80::2567:af26:29a2:850%8]) with mapi id 15.20.5986.023; Mon, 16 Jan 2023
- 09:29:58 +0000
-Message-ID: <DB9P190MB1594D084408339B34C69B060ACC19@DB9P190MB1594.EURP190.PROD.OUTLOOK.COM>
-Date:   Mon, 16 Jan 2023 10:29:55 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] arm64: dts: rockchip: fix probe of analog sound card on
- rock-3a
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org
+        with ESMTP id S232229AbjAPJao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:30:44 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F89616AD5;
+        Mon, 16 Jan 2023 01:30:42 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D163D802;
+        Mon, 16 Jan 2023 10:30:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673861440;
+        bh=9YWn45J/ZNgJKTD6UEkGgR2mEmqJ7NYekCQW2ePfKgc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N+zSHiOP3BPeIWVxgMUMZkbWSMpAwC7eyS7KRf00o33vAIM8HgnNlYZlsGe4NvEx+
+         ggan64ipd8TDap0zM7nKhc17S/7JZhs8uDIM+s21vxICnSvXcvLCGEqibqZ7MKdHAQ
+         GpwQEr5QqXpkio0Z6yTPKSTEHMw4GfSB6ctnf2Pk=
+Date:   Mon, 16 Jan 2023 11:30:40 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        frattaroli.nicolas@gmail.com
-References: <20230115211553.445007-1-jonas@kwiboo.se>
- <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
-Content-Language: en-US
-From:   Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN:  [vbNKo9wQa5AjzOTTdgVFFkAG19dpSE6+]
-X-ClientProxiedBy: AM0P190CA0002.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:208:190::12) To DB9P190MB1594.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:10:247::8)
-X-Microsoft-Original-Message-ID: <8d41b5f8-bbd0-2a06-6506-88b290ac6cf8@kwiboo.se>
+        Tomi Valkeinen <tomba@kernel.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Guo Ren <guoren@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Linux Mediatek List <linux-mediatek@lists.infradead.org>,
+        Linux C-SKY Arch List <linux-csky@vger.kernel.org>,
+        Linux RISC-V List <linux-riscv@lists.infradead.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Rahul T R <r-ravikumar@ti.com>
+Subject: Re: [RFC PATCH 0/4] dt-bindings: Introduce dual-link panels &
+ panel-vendors
+Message-ID: <Y8UZQHvVT2VQcQ33@pendragon.ideasonboard.com>
+References: <20230103064615.5311-1-a-bhatia1@ti.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9P190MB1594:EE_|GVXP190MB2013:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff40dfeb-82bd-412a-909a-08daf7a43b9e
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1aYQdkxRS+XDX9PVPkTxhba0erqWQfHaXM8VHvnr+IEqFlBDJlcbBK7TRuWSLBX1N9n2eVd1y4gMkvKBwFxpsrQV1/V+q86INmMSt2p+6nKktj44ZR3/04NAKDHjX+Za3yU7W+lK4F6gacUO/bv8fgIIEKrThNV9gb6bhcVkNgxkjF1z7g8uMmLQJDDUzoPCEXobDgVkbrBmCqcvTj7RqNr4L765F85w9PdhRBU0cCk5Oldpn9LTcLAbeTfVJ39A/Ea6XiRQaIEmfQ8Bkq/Ydlaan23AZGf4d7QW303sAAyZYUnbqjaOJLXIf6TEyCzEJ1A504L9e3bdXPdA5GlOJEYlrPAegef5alxnAyd10xcbiy7jnLQkdYx3v6mMPjUUiSmUbDztkqaxgmLFcfu614veGpapb2GNyRazy0RdG1uFDy+RPCfuTlSRvWVvIf/BWedr3QMahw6Di9gphA7boj4Rp4Yq6OeBssxFKFl99mGisJA/8dDU/0VbpB3n1U3gLvLTN7SGV/Bfg3Sv1qUT5N3p/8wwQeJOB6e7MsalDPZZiMuuW5qvHM/58aHqMz/KyvM6HHWxtt11lWLAaIbkyKqHV87m54cRjAg9M0Hl3C/xkHmHnxJKlFUjY3m9IpcASQIL5/+JVpaExb+hUegaQw==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UDJlckFmQlhMMWYzMUh3aUI3djhnd0VLOHBsd1dQRG00bVFtS3pIV1I1cnAz?=
- =?utf-8?B?L0lPK0JtTmx3SHZ5ZGVYTzVyWUZFTTRteExxckJwL2FrY1FkUm9UdWFiQnNl?=
- =?utf-8?B?TzQwdGxacVZVNWF0Zkp0ZkVKaFgrWnQ4TTZIak5MTzlQR0ViQkhuWnVyMFNZ?=
- =?utf-8?B?Sy96Vk01bWNVZXllck9XZ0xBV0FrUk5lZndiWHFML2lHWTJReHgvUWhYR2Rr?=
- =?utf-8?B?MmgzOXB1cWpyZUFOTkdnSjZNNlp2djRwV25UYnRPU1ZHdmJDMkJqRnJGLy9N?=
- =?utf-8?B?SXhDNE5aaG5DQ24wN2FtVW5lbnlaVW9MekRZeXVZbGtIbnBYcHFzcXhJVE1v?=
- =?utf-8?B?TStzOWV0UC8zczIyVjNCTjkvQmszMS8wSURIL2l2UGkzejJBUnJDc3NlaXdL?=
- =?utf-8?B?Y3hVVHZJM28xU0U1N1BHZW1iM3VENzlaaGVGcDlLRVA1bDVXMHBvVXdWUk9R?=
- =?utf-8?B?bnIxZmhmT09pVWV4WllBYlIzcmh1RWlpZWpQSXhuemhvT1FoYUl5Z05naXRI?=
- =?utf-8?B?N2FiWmlsWXZGRE5zM21sa1hRVjIrOWpNNWtlZ0ZaMFA1V1pHS0wzUTQ5WHBH?=
- =?utf-8?B?VE5IdmtzQ1k2MzQzdGtIUkV1NUxiNlg4bTlySUM5Q0N6bWVCM3lac2VYa25x?=
- =?utf-8?B?K3VlTTdQd1JCRXdoa0RlYTAxRnpWc0lxUGc3dlUrRVl5S0JiTkpaZExWYTZG?=
- =?utf-8?B?bmdwZWdjS3lSSGhhVC91SWlURS8wdjZQYXJJMHNHTDVaMDJ1SktqeGV4bGI5?=
- =?utf-8?B?aWZzWjhsZzdKU0pyRmlkVnFMMWl4VFlrTzhXK2haTmVTTThKQXJnOHpzOGYr?=
- =?utf-8?B?anQ3SHFHcEVmN1FKMnRwQ0hJenhsVFVTSHpCNGFRRDFFL2ZzTHJwMFBjclZG?=
- =?utf-8?B?WVVlTEhtZ05uMytiTS80Mm5qSlhuNGtyeENGNnB5MGw4aXpnZE9kOGFiMVA0?=
- =?utf-8?B?S1VESllUWjJwaUNQWnA4MVdHd0tOeElySUNrNmxGeU5IMjVJTFlQcjc0KzNa?=
- =?utf-8?B?d0lvK3dqYzNoWFNtbGFPNUdVWkxwTHIzc0crU1ZNcEtEMldBZ2FRMnNtUGdO?=
- =?utf-8?B?NS85ajQ0cXEzVk5QOUpwWFlmNS9mZDA1NjI5eE1NYUpjWmYxR2VnUzV1RXd3?=
- =?utf-8?B?R1RHc3JRZGQ3S2ZaTktLaHdYcFdsSFdNK1lzOTh4Nm5YN3p5Z3hOWHMrdm5M?=
- =?utf-8?B?eTJORTM0NUhVUW8xOXNKaGI0TTNGc041MzE5ZHZSYmQ2VmdzdTJZZks1Z2tl?=
- =?utf-8?B?NURUak1OVFFnWFp4d2F2MHVCbGp0RmJBQ1dmMTd3RnhwUkNNNjNEOXd2L2ZP?=
- =?utf-8?B?YW5MVUdyeHk0OEw4UXR1M0w2UHFjeWx1UXRHY1FHYU93VnB1NFBFK29CdnMv?=
- =?utf-8?B?UDVhRGF2L3RDbUU1L1V1RmNXZkpWWE1Oc0dOc1pTd2YvaXIvQkthWVNVNUVF?=
- =?utf-8?B?U3hOV1dwNDVUYU55K1RQZ29CZzd4K1IxWHpRTkVqS0RkclppQk5RZjVvM1Fa?=
- =?utf-8?B?Q3hFRm8wRFg5OVphL1BtM2Z0a0JLenEzd09sTmFjc2dOamp2MWpLU3BQb0k0?=
- =?utf-8?B?b3ZEamtVQXE0WEFQbEJ5aDFxbWxUNmhhNWJpanVEOG9CbjRjekRDcDRHU1pX?=
- =?utf-8?B?Qy8yQWRpTjlhS05XWko1aTY3L3BDU0hmS3ZSb3ZyelphcFpqeDh5UVJZeEdH?=
- =?utf-8?Q?sUpV9y2LJpCXETFNRq4f?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-91991.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff40dfeb-82bd-412a-909a-08daf7a43b9e
-X-MS-Exchange-CrossTenant-AuthSource: DB9P190MB1594.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 09:29:58.1740
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXP190MB2013
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230103064615.5311-1-a-bhatia1@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+Hi Aradhya,
 
-On 2023-01-16 09:41, Michael Riesch wrote:
-> Hi Jonas,
+On Tue, Jan 03, 2023 at 12:16:11PM +0530, Aradhya Bhatia wrote:
+> Hi all,
 > 
-> On 1/15/23 22:15, Jonas Karlman wrote:
->> The following was observed on my Radxa ROCK 3 Model A board:
->>
->>    rockchip-pinctrl pinctrl: pin gpio1-9 already requested by vcc-cam-regulator; cannot claim for fe410000.i2s
->>    ...
->>    platform rk809-sound: deferred probe pending
->>
->> Fix this by supplying a board specific pinctrl with the i2s1 pins used
->> by pmic codec according to the schematic [1].
->>
->> [1] https://emea01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdl.radxa.com%2Frock3%2Fdocs%2Fhw%2F3a%2FROCK-3A-V1.3-SCH.pdf&data=05%7C01%7C%7Cb09a8096d417409ca0c108daf79d85f2%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C638094553170941885%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=upix1Lqcu1y5vYkPtcB5Ao5TA04brBcecCS0LX2ipe4%3D&reserved=0
->>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> Microtips Technology Solutions USA, and Lincoln Technology Solutions are
+> 2 display panel vendors, and the first 2 patches add their vendor
+> prefixes.
 > 
-> Makes sense to me, but...
+> The fourth patch, simply introduces the new compatible for the generic
+> dual-link panels in the panel-lvds driver. This new compatible is based
+> from a new DT binding added in the third patch explained below.
 > 
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
->> index 00d873a03cfe..a149c8b83f94 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
->> @@ -573,6 +573,8 @@ &i2s0_8ch {
->>   };
->>   
->>   &i2s1_8ch {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&i2s1m0_sclktx &i2s1m0_lrcktx &i2s1m0_sdi0 &i2s1m0_sdo0>;
+> The third patch introduces a dt-binding for generic dual-link LVDS
+> panels. These panels do not have any documented constraints, except for
+> their timing characteristics. Further, these panels have 2 pixel-sinks.
+> In a dual-link connection between an LVDS encoder and the panel, one
+> sink accepts the odd set of LVDS pixels and the other, the even set.
 > 
-> ... shouldn't this include i2s1m0_mclk as well?
+> A lot of this has been based from the Advantech,idk-2121wr dual-link
+> panel[1] and Maxime's patches for generic LVDS panels[2] (which are
+> single-link by default.) and the discussions that happened before they
+> were finally merged.
+> 
+> Below are some notes and points that I want to bring forward.
+> 
+>   - The advantech,idk-2121wr panel binding uses 2 boolean properties
+>     dual-link-odd/even-pixels, to signify which port sink is being used
+>     for which set of LVDS pixels. I too have added similar support and
+>     introduced constraints around those properties, so as to not break
+>     the ABI... but I believe there is a better way to achieve this.
+> 
+>     A "pixel-type" enum property could be introduced in their stead,
+>     which can accept one of the 2 options <dual-lvds-odd-pixels> or
+>     <dual-lvds-even-pixels>.
+> 
+>     This method, in my opinion, is more accurate and cleaner to
+>     implement in the bindings as well.
+> 
+>     If this does sound a better I can push out a new revision where the
+>     driver supports both these methods (to not break the ABI) and the
+>     advantech,2121wr panel can remain as an exception.
 
-i2s1m0_mclk is already included in the pmic/rk809 pinctrl, so it was omitted from the i2s1_8ch pinctrl.
+It's usually best not to change an existing system if there are no good
+reasons, so I'd ask why you think a pixel-type property would be better
+(including when taking into account the fact that we would have to
+maintain the advantech,2121wtr driver separately) if you want to go that
+way. Otherwise, if we were developing this from scratch, I would have no
+real preference.
 
-Best regards,
-Jonas
+>   - As an alternative to the previous point, if that method is not
+>     preferred for some reason, the advantech,2121wtr panel binding
+>     could then be merged in the panel-dual-lvds binding as part of
+>     future work.
+> 
+> 
+>   - Another tweak, I am looking forward to do as part of future work and
+>     would like all your comments is to introduce driver-based
+>     implementation of the panel timing parameters, like it is with
+>     "panel-simple". The driver can then support both the panel-timing
+>     sources (DT node or hard-coded driver structure) and the binding
+>     can remove this from the "required" section.
 
-> 
-> For some reason this has been omitted in the pinctrl defined in
-> rk356x.dtsi. But then rk356x.dtsi also claims
->   - both i2s1m0_sdo1 and i2s1m0_sdi3
->   - both i2s1m0_sdo2 and i2s1m0_sdi2
->   - both i2s1m0_sdo3 and i2s1m0_sdi1
-> which are mapped to the same respective pins. Therefore it seems that
-> there might be something wrong with this pinctrl altogether.
-> 
-> Cc: Nicolas Frattaroli, maybe he can provide some clarification.
-> 
-> Best regards,
-> Michael
-> 
->>   	rockchip,trcm-sync-tx-only;
->>   	status = "okay";
->>   };
+There's been a very long discussion in the past (multiple discussions
+actually) regarding whether timings should be set in DT or in drivers.
+There were multiple arguments supporting both sides, without (it seems)
+a clear winner. If you want driver-side timings for dual-link panels,
+I'd like to understand why you think that's better. If the reasons are
+the same as the ones expressed when we discussed simple panels, you
+should also look at whether or not any of the fears expressed on either
+side have materialized.
 
+> Thank you!
+> 
+> [1]: https://patchwork.freedesktop.org/patch/357122/
+> [2]: https://patchwork.freedesktop.org/patch/471228/
+> 
+> Aradhya Bhatia (4):
+>   dt-bindings: vendor-prefixes: Add microtips
+>   dt-bindings: vendor-prefixes: Add lincolntech
+>   dt-bindings: panel: Introduce dual-link LVDS panel
+>   drm: panel-lvds: Introduce dual-link panels
+> 
+>  .../display/panel/panel-dual-lvds.yaml        | 157 ++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+>  MAINTAINERS                                   |   1 +
+>  drivers/gpu/drm/panel/panel-lvds.c            |   1 +
+>  4 files changed, 163 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+
+-- 
+Regards,
+
+Laurent Pinchart
