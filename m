@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 129DF66CFB4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:44:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A06566CFB9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:44:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233710AbjAPTor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 14:44:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51366 "EHLO
+        id S233857AbjAPToz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 14:44:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232473AbjAPToq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:44:46 -0500
+        with ESMTP id S233914AbjAPTov (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:44:51 -0500
 Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B0E2C67A
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:44:45 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id c6so31326983pls.4
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:44:45 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12BD02CC58
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:44:50 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id k12so9222195plk.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:44:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=schmorgal.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WqYz5wS1ns0kl8A6NpaJdCKujdrpwt6VlQVEZ72mUB8=;
-        b=JgGZYlqHWBDT0cSi8VIWA3vQKajGGfoljiLjNUR+0boPilQkPK6/05Ab4AgGogOeJB
-         1uNS8OKQ7znEpz4DR3ExcfV3qkM0shC5fUX0odRr0vDasuPeWy6aH650rw0v6+INA3BL
-         4j7Wt5LRfuMSOo7vJsD2f3NPkTZ6jJxAXPSRI=
+        bh=MY5kf847zY0nN9lKzWJgGUhJ3Yit9Nb6tzRd8EwwrE0=;
+        b=ZZ/FQ4Pb5VLNmaqh3DetovgycLhPjdlVhGYnnT1PlKhOw6wCs+LUeFb0mWhJ4n00yk
+         yGj0AGH8dDXpMoNf9MKu/5f7AOVVUn4L+YUsh0zDqMGXnJEnZST6l3xqmv7MNJhavTP0
+         0f+ORcYJCBizuyMkfqdCxEKFMbD144okWIYd4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WqYz5wS1ns0kl8A6NpaJdCKujdrpwt6VlQVEZ72mUB8=;
-        b=NHTC+EOn/X0PA+WWcppsszRf13gWv7v60zSgoj1tZOQL5f9K/x2FqLcaBn7r0ouLQr
-         4RJns6DE1i13GsDu+vbxzmAPvhsVUwVntA21dDRPhCp47PvaCPfDwZjsY574e8Co1pVL
-         4CkLs0OItRKRrI7klKipsN8j3VODx+H8HAKM4CgDFnm4lz/sioMnrsrElb/ySIHYJede
-         sm9FeqAv8iK6EPbnmpvKAiO+lOnzV6Bw9xAlnZpvqsXUmEVgM3oDbdcael2cHUU2BsLd
-         zCcnO7wbbtgLgYr+twLGKGJRz6NWB7CrStt0eKk7la84vX5BAGlH51Z5A6z2eb2QLdvB
-         apyg==
-X-Gm-Message-State: AFqh2kpCJIquKKI4xNBz9ZhHlaBFVaXS3ywIpkwOUWkDkw8jDwiyu0TT
-        tGIqjbnXPksVORbBTgdZVnywxQ==
-X-Google-Smtp-Source: AMrXdXubMwBfH/DZX7c3dFUOa8kG4jN6M/+ViULMkQLspFA2078qgDhevkj/6jCy6zbxF8nNGc/Aow==
-X-Received: by 2002:a17:902:e9cd:b0:194:5de4:52d0 with SMTP id 13-20020a170902e9cd00b001945de452d0mr970515plk.41.1673898285006;
-        Mon, 16 Jan 2023 11:44:45 -0800 (PST)
+        bh=MY5kf847zY0nN9lKzWJgGUhJ3Yit9Nb6tzRd8EwwrE0=;
+        b=aIJV4g7MWK/JRx1lR68Dh75XciixXPSsLyJMdo7ztPzFNugm8JgRcgDKG+L1Llfpe6
+         KxBQmpSHXOvsMbUYxULosgSU2FVTG46gTTgOFp8eUPk1YcJu0d3QX+P6rDLTEo4zwQlV
+         dlHiVXAKGRfORMcpBXISO9WJthyq7qvpcek38eZ1/URDMQoc8YNXX+6htJfpYveYF001
+         euFTztGrUTct6pk9XcYrZDjwQCilEm6LxCFCbpI7845VaycIRUSD4gWZQwt/3qjLPbzE
+         a0dK/IrCZWol4kk4X9RgQC9ZuPIRIaXc7+/ExOOGljnSzQGu0dNfB46axpXdmGIwbpC5
+         PHrA==
+X-Gm-Message-State: AFqh2kpixepvwN6ZMMCWZCPT7fW53+rIiPmiRWVDQ7ckhBwAyDeebOLO
+        dKOcb5m4N+uKgSZ9tSzHMACm1g==
+X-Google-Smtp-Source: AMrXdXu7LX8J0YgkYfZOFsZB5M2RQdPva+1b3z/ocNn4FConU3pe1sX2UUPpQG0a06B9a6rVjp6Riw==
+X-Received: by 2002:a17:902:8a8a:b0:191:13f2:173a with SMTP id p10-20020a1709028a8a00b0019113f2173amr816676plo.36.1673898289317;
+        Mon, 16 Jan 2023 11:44:49 -0800 (PST)
 Received: from doug-ryzen-5700G.. ([192.183.212.197])
-        by smtp.gmail.com with ESMTPSA id t13-20020a170902b20d00b001926a76e8absm19734663plr.114.2023.01.16.11.44.43
+        by smtp.gmail.com with ESMTPSA id t13-20020a170902b20d00b001926a76e8absm19734663plr.114.2023.01.16.11.44.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jan 2023 11:44:44 -0800 (PST)
+        Mon, 16 Jan 2023 11:44:48 -0800 (PST)
 From:   Doug Brown <doug@schmorgal.com>
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Adrian Hunter <adrian.hunter@intel.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Doug Brown <doug@schmorgal.com>
-Subject: [PATCH v5 4/8] mmc: sdhci-pxav2: change clock name to match DT bindings
-Date:   Mon, 16 Jan 2023 11:43:57 -0800
-Message-Id: <20230116194401.20372-5-doug@schmorgal.com>
+        Doug Brown <doug@schmorgal.com>,
+        kernel test robot <lkp@intel.com>,
+        Dan Carpenter <error27@gmail.com>
+Subject: [PATCH v5 5/8] mmc: sdhci-pxav2: add optional core clock
+Date:   Mon, 16 Jan 2023 11:43:58 -0800
+Message-Id: <20230116194401.20372-6-doug@schmorgal.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230116194401.20372-1-doug@schmorgal.com>
 References: <20230116194401.20372-1-doug@schmorgal.com>
@@ -63,52 +65,56 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The devicetree bindings for this driver specify that the two allowed
-clock names are io and core. Change this driver to look for io, but
-allow any name if it fails for backwards compatibility. Follow the same
-pattern used in sdhci-pxav3, but add support for EPROBE_DEFER.
+Add ability to have an optional core clock just like the pxav3 driver.
+The PXA168 needs this because its SDHC controllers have separate core
+and io clocks that both need to be enabled. This also correctly matches
+the documented devicetree bindings for this driver.
 
-Get rid of an unnecessary pdev->dev while we're at it.
-
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <error27@gmail.com>
 Signed-off-by: Doug Brown <doug@schmorgal.com>
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 ---
- drivers/mmc/host/sdhci-pxav2.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+The Reported-by tags above refer to a missing assignment to ret in an
+earlier version of this patch. The kernel test robot caught it.
+
+ drivers/mmc/host/sdhci-pxav2.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
-index 5e01dab94426..f5c86e1ba734 100644
+index f5c86e1ba734..3141901e1558 100644
 --- a/drivers/mmc/host/sdhci-pxav2.c
 +++ b/drivers/mmc/host/sdhci-pxav2.c
-@@ -199,16 +199,18 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+@@ -191,7 +191,7 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+ 	const struct sdhci_pxa_variant *variant;
  
- 	pltfm_host = sdhci_priv(host);
+ 	int ret;
+-	struct clk *clk;
++	struct clk *clk, *clk_core;
  
--	clk = devm_clk_get(dev, "PXA-SDHCLK");
-+	clk = devm_clk_get(dev, "io");
-+	if (IS_ERR(clk) && PTR_ERR(clk) != -EPROBE_DEFER)
-+		clk = devm_clk_get(dev, NULL);
- 	if (IS_ERR(clk)) {
--		dev_err(dev, "failed to get io clock\n");
- 		ret = PTR_ERR(clk);
-+		dev_err_probe(dev, ret, "failed to get io clock\n");
- 		goto free;
- 	}
- 	pltfm_host->clk = clk;
- 	ret = clk_prepare_enable(clk);
- 	if (ret) {
--		dev_err(&pdev->dev, "failed to enable io clock\n");
-+		dev_err(dev, "failed to enable io clock\n");
+ 	host = sdhci_pltfm_init(pdev, NULL, 0);
+ 	if (IS_ERR(host))
+@@ -214,6 +214,13 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
  		goto free;
  	}
  
++	clk_core = devm_clk_get_optional_enabled(dev, "core");
++	if (IS_ERR(clk_core)) {
++		ret = PTR_ERR(clk_core);
++		dev_err_probe(dev, ret, "failed to enable core clock\n");
++		goto disable_clk;
++	}
++
+ 	host->quirks = SDHCI_QUIRK_BROKEN_ADMA
+ 		| SDHCI_QUIRK_BROKEN_TIMEOUT_VAL
+ 		| SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN;
 -- 
 2.34.1
 
