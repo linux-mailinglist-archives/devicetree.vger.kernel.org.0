@@ -2,132 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C110666B5BC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 03:50:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30C6366B600
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 04:22:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231710AbjAPCuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Jan 2023 21:50:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52450 "EHLO
+        id S231523AbjAPDWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Jan 2023 22:22:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231806AbjAPCt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 21:49:58 -0500
-Received: from out28-218.mail.aliyun.com (out28-218.mail.aliyun.com [115.124.28.218])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B65607EED;
-        Sun, 15 Jan 2023 18:49:53 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09077504|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0574618-0.00379392-0.938744;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047207;MF=frank.sae@motor-comm.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.QtcxEZT_1673837386;
-Received: from 10.0.2.15(mailfrom:Frank.Sae@motor-comm.com fp:SMTPD_---.QtcxEZT_1673837386)
-          by smtp.aliyun-inc.com;
-          Mon, 16 Jan 2023 10:49:47 +0800
-Message-ID: <7c38c139-9a5d-f098-3252-cbf5fe51e776@motor-comm.com>
-Date:   Mon, 16 Jan 2023 10:49:43 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH net-next v1 1/3] dt-bindings: net: Add Motorcomm yt8xxx
- ethernet phy Driver bindings
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Peter Geis <pgwipeout@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231818AbjAPDWE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Jan 2023 22:22:04 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3816A7AA8;
+        Sun, 15 Jan 2023 19:21:59 -0800 (PST)
+X-UUID: e9febf54954c11ed945fc101203acc17-20230116
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Gg8bWb1FimtqSa/S00NIuzeLTb9/WRlCLgNfTbeYtTQ=;
+        b=GegkSOE3BVrFVCR/+ZcmVyEIegrTkGp1d5pv/4ZVDVe2lByQokq6nX8ayna6DauoxSv3KyRQtjY3cIXyCYj3bO5VjQkI0mvEGh8LOwvbT9XRCwVa34Pz836xkd3eVQnKm2cDAsM4jw39t+pu2HBViTmk/KYZZhPQUiGsKfxCtP0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.17,REQID:11ef97df-90e9-4b33-8953-f021eb2027b9,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:-25
+X-CID-META: VersionHash:543e81c,CLOUDID:e0f7ba54-dd49-462e-a4be-2143a3ddc739,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
+X-CID-BVR: 0,NGT
+X-UUID: e9febf54954c11ed945fc101203acc17-20230116
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1624900539; Mon, 16 Jan 2023 11:21:49 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Mon, 16 Jan 2023 11:21:48 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Mon, 16 Jan 2023 11:21:48 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
-        hua.sun@motor-comm.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230105073024.8390-1-Frank.Sae@motor-comm.com>
- <20230105073024.8390-2-Frank.Sae@motor-comm.com> <Y7bN4vJXMi66FF6v@lunn.ch>
- <e762c7ac-63e7-a86e-3e3f-5c8a450b25b0@motor-comm.com>
- <Y7goXXiRBE6XHuCc@lunn.ch>
- <83fd7a69-7e6a-ab93-b05a-4eba8af4d245@motor-comm.com>
- <Y760k6/pKdjwu1fU@lunn.ch>
-Content-Language: en-US
-From:   "Frank.Sae" <Frank.Sae@motor-comm.com>
-In-Reply-To: <Y760k6/pKdjwu1fU@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Moudy Ho <moudy.ho@mediatek.com>
+Subject: [RESEND v3 00/13] add support MDP3 on MT8195 platform
+Date:   Mon, 16 Jan 2023 11:21:34 +0800
+Message-ID: <20230116032147.23607-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Changes since v2:
+- Depend on :
+  [1] MMSYS/MUTEX: https://patchwork.kernel.org/project/linux-mediatek/list/?series=711592
+  [2] MDP3: https://patchwork.kernel.org/project/linux-mediatek/list/?series=711618
+- Suggested by Rob to revise MDP3 bindings to pass dtbs check
+- Add parallel paths feature.
+- Add blended components settings.
 
-On 2023/1/11 21:07, Andrew Lunn wrote:
->> RX delay = rx-delay-basic (0ns or 1.9ns) + x-delay-additional-ps
->> (N*150ps, N = 0 ~ 15)
->>  If rx-delay-basic is removed and controlled by phy-mode.
->>  when phy-mode is  rgmii-id or rgmii-rxid, RX delay is 1.9ns + N*150ps.
->>  But sometimes 1.9ns is still too big, we just need  0ns + N*150ps.
->>
->> For this case, can we do like following ?
->> rx-internal-delay-ps:
->>     enum: [ 0, 150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500,
->> 1650, 1800, 1900, 1950, 2050, 2100, 2200, 2250, 2350, 2500, 2650, 2800,
->> 2950, 3100, 3250, 3400, 3550, 3700, 3850, 4000, 4150 ]
->>     default: 0
->>  rx-internal-delay-ps is 0ns + N*150ps and  1.9ns + N*150ps.
->>  And check whether need rx-delay-basic (1.9ns) by the val of
->> rx-internal-delay-ps?
-> 
-> Nothing says delays are only positive. So you could have rgmii-id or
-> rgmii-rxid and a rx-internal-delay-ps of -150, if you need less than
-> 1.9ns.
-> 
-> As i said, rx-internal-delay-ps is used to fine tune the delay.
+Changes since v1:
+- Depend on :
+  [1] MDP3 : https://patchwork.kernel.org/project/linux-mediatek/list/?series=698872
+  [2] MMSYS/MUTEX: https://patchwork.kernel.org/project/linux-mediatek/list/?series=684959
+- Fix compilation failure due to use of undeclared identifier in file "mtk-mdp3-cmdq.c"
 
-The standard type of rx-internal-delay-ps is uint32-array, so it can't
-be -150.
+Hello,
 
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+This patch is used to add support for MDP3 on the MT8195 platform that
+contains more picture quality components, and can arrange more pipelines
+through two sets of MMSYS and MUTEX respectively.
 
- "-ps$":
-    $ref: types.yaml#/definitions/uint32-array
-    description: picosecond
+Moudy Ho (13):
+  dt-binding: mediatek: add bindings for MediaTek mt8195 MDP3 components
+  arm64: dts: mediatek: mt8195: add MDP3 nodes
+  media: platform: mtk-mdp3: add support second sets of MMSYS
+  media: platform: mtk-mdp3: add support second sets of MUTEX
+  media: platform: mtk-mdp3: introduce more MDP3 components
+  media: platform: mtk-mdp3: add checks for dummy components
+  media: platform: mtk-mdp3: avoid multiple driver registrations
+  media: platform: mtk-mdp3: extend GCE event waiting in RDMA and WROT
+  media: platform: mtk-mdp3: add the blend of component in MUTEX MOD
+  media: platform: mtk-mdp3: add mt8195 platform configuration
+  media: platform: mtk-mdp3: add mt8195 shared memory configurations
+  media: platform: mtk-mdp3: add mt8195 MDP3 component settings
+  media: platform: mtk-mdp3: add support for parallel pipe to improve
+    FPS
 
+ .../bindings/media/mediatek,mdp3-aal.yaml     |  63 ++
+ .../bindings/media/mediatek,mdp3-color.yaml   |  63 ++
+ .../bindings/media/mediatek,mdp3-fg.yaml      |  63 ++
+ .../bindings/media/mediatek,mdp3-hdr.yaml     |  62 ++
+ .../bindings/media/mediatek,mdp3-merge.yaml   |  63 ++
+ .../bindings/media/mediatek,mdp3-ovl.yaml     |  63 ++
+ .../bindings/media/mediatek,mdp3-pad.yaml     |  63 ++
+ .../bindings/media/mediatek,mdp3-rdma.yaml    |  30 +-
+ .../bindings/media/mediatek,mdp3-rsz.yaml     |  11 +-
+ .../bindings/media/mediatek,mdp3-split.yaml   |  75 ++
+ .../bindings/media/mediatek,mdp3-stitch.yaml  |  63 ++
+ .../bindings/media/mediatek,mdp3-tcc.yaml     |  62 ++
+ .../bindings/media/mediatek,mdp3-tdshp.yaml   |  63 ++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 420 +++++++++
+ .../platform/mediatek/mdp3/mdp_reg_aal.h      |  25 +
+ .../platform/mediatek/mdp3/mdp_reg_color.h    |  31 +
+ .../media/platform/mediatek/mdp3/mdp_reg_fg.h |  23 +
+ .../platform/mediatek/mdp3/mdp_reg_hdr.h      |  31 +
+ .../platform/mediatek/mdp3/mdp_reg_merge.h    |  25 +
+ .../platform/mediatek/mdp3/mdp_reg_ovl.h      |  25 +
+ .../platform/mediatek/mdp3/mdp_reg_pad.h      |  21 +
+ .../platform/mediatek/mdp3/mdp_reg_rdma.h     |  24 +
+ .../platform/mediatek/mdp3/mdp_reg_rsz.h      |   2 +
+ .../platform/mediatek/mdp3/mdp_reg_tdshp.h    |  34 +
+ .../platform/mediatek/mdp3/mdp_reg_wrot.h     |   8 +
+ .../mediatek/mdp3/mt8183/mdp3-plat-mt8183.h   |  38 +-
+ .../mediatek/mdp3/mt8195/mdp3-comp-mt8195.h   | 283 ++++++
+ .../mediatek/mdp3/mt8195/mdp3-plat-mt8195.h   | 669 ++++++++++++++
+ .../platform/mediatek/mdp3/mtk-img-ipi.h      |   4 +
+ .../platform/mediatek/mdp3/mtk-mdp3-cmdq.c    | 453 +++++++---
+ .../platform/mediatek/mdp3/mtk-mdp3-cmdq.h    |   1 +
+ .../platform/mediatek/mdp3/mtk-mdp3-comp.c    | 834 +++++++++++++++++-
+ .../platform/mediatek/mdp3/mtk-mdp3-comp.h    |  92 +-
+ .../platform/mediatek/mdp3/mtk-mdp3-core.c    | 115 ++-
+ .../platform/mediatek/mdp3/mtk-mdp3-core.h    |  33 +-
+ .../platform/mediatek/mdp3/mtk-mdp3-m2m.c     |  15 +
+ .../platform/mediatek/mdp3/mtk-mdp3-regs.c    |  18 +
+ .../platform/mediatek/mdp3/mtk-mdp3-regs.h    |   1 +
+ .../platform/mediatek/mdp3/mtk-mdp3-vpu.c     |   3 +-
+ 39 files changed, 3791 insertions(+), 181 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-aal.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-color.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-fg.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-hdr.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-merge.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-ovl.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-pad.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-split.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-stitch.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-tdshp.yaml
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_aal.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_color.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_fg.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_hdr.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_merge.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_ovl.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_pad.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_tdshp.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mt8195/mdp3-comp-mt8195.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mt8195/mdp3-plat-mt8195.h
 
-Can we used rx-internal-delay-ps with int32 type?
-like this:
-  rx-internal-delay-ps:
-    $ref: /schemas/types.yaml#/definitions/int32
-    enum: [ -1900, -1750, -1600, -1450, -1300, -1150, -1000, -850, -700,
--550, -400, -250, -100, 0, 50, 150, 200, 300, 350, 450, 600, 750, 900,
-1050, 1200, 1350, 1500, 1650, 1800, 1950, 2100, 2250 ]
-    default: 0
+-- 
+2.18.0
 
-
-> 
->> We can't reduce this down to tx-clk-inverted.
->> There are two mac and two yt8531 on their board. Each of yt8531 need
->> different config in DTS. They need adjust tx clk delay in
->> link_change_notify callback function according to current speed.
->>
->>  They configured tx-clk-xxxx-inverted like this :
->>
->>     speed     GMAC0             GMAC1
->>     1000M      1                  0		tx-clk-1000-inverted
->>     100M       1                  1		tx-clk-100-inverted
->>     10M       0/1                0/1     	tx-clk-10-inverted
-> 
-> What MAC is this? It seems very oddly designed, getting close to
-> broken. I've not seen any other MAC/PHY combination need anything like
-> this. 
-> 
->> Can we put tx-clk-adj-enabled, tx-clk-10-inverted, tx-clk-100-inverted
->> and tx-clk-1000-inverted in tx-clk-10-inverted like bit in byte?
-> 
-> No, they are individual boolean properties, so should be kept as they
-> are. But i really think somebody should be looking deep into the MAC
-> design to understand why it is like this, and if the MAC can sort out
-> this mess itself.
-> 
-> 	Andrew
-
-Tanks. We will remove tx-clk-xxxx-inverted and tx-clk-adj-enabled.
