@@ -2,116 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55F4E66D688
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 07:55:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC9F966D7F3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:21:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235764AbjAQGzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 01:55:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49106 "EHLO
+        id S236017AbjAQIVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 03:21:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235683AbjAQGzR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 01:55:17 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1742E22789;
-        Mon, 16 Jan 2023 22:55:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673938517; x=1705474517;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=E1uYgBwy7ys7iwpE4q42W3xbI5FgEWmS4DQH+Z4CUp8=;
-  b=XuAfga7s4DumizhVfi0Rr/tRK/mM1OGDr9ycOggbfiuSjX+Iw+Y1R52f
-   +ZmXpp5kJpccDd2m3ZAbXUEQoJq9ZiuebXMzewww89JpxKAUS8sFuHkjr
-   mE7hVXXGW2Id0KXFABOPF16fkwNzXtvZxldRHTcATXjgj7Olayn1mwemz
-   lqh42Xv1rD/60xTfeWyIQePtOwZF3YbnnUMdCFyncbg9E9diS5DtcN68N
-   OBwMixAocI3tCW4e2JS3TGnlEhZJuUhTSsFZXTPqzTm7COzbvdibTcY7p
-   0lvtfI8YGLMqcgF8z+BJNVsVyG1WCLlZJ9+UxKRN4lC1jOQBpdTLHQuNu
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="308185876"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="308185876"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2023 22:55:16 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="988018740"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="988018740"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.251.223.65])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2023 22:55:13 -0800
-Message-ID: <538a5839-3250-7a81-7221-19edcfefccb3@intel.com>
-Date:   Tue, 17 Jan 2023 08:55:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Subject: Re: [PATCH v5 5/8] mmc: sdhci-pxav2: add optional core clock
-Content-Language: en-US
-To:     Doug Brown <doug@schmorgal.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel test robot <lkp@intel.com>,
-        Dan Carpenter <error27@gmail.com>
-References: <20230116194401.20372-1-doug@schmorgal.com>
- <20230116194401.20372-6-doug@schmorgal.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20230116194401.20372-6-doug@schmorgal.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S236029AbjAQIVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:21:47 -0500
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E1027494
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:21:44 -0800 (PST)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20230117082142epoutp0319a51132f43d55002b32b2fc4618c2fa~7Cu2svG6U1768417684epoutp03B
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 08:21:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20230117082142epoutp0319a51132f43d55002b32b2fc4618c2fa~7Cu2svG6U1768417684epoutp03B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1673943702;
+        bh=ENCE8uiLf8l1fHPrs46GI/aw9Xxe4V1T7lZO3YvNhXk=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=DFVfVAV+H6JKsKeHA+GJJQzt2uHWpRmzAc3PW9yGrYICk9GWX043UlIiKlcdiNP6K
+         dObbPlFv01XjfZmt8i38eaaI5RWAOz/vVhJ4qEqUV+BIbu028kISvyXVwtRDiCX7aX
+         mRTLgykmuMiDLU7lqP1WMZJs3G0G+9ZyHC6hrgc0=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20230117082141epcas5p476e44f422744ae1abd079e6b6313ee64~7Cu2Bm3Bl0211002110epcas5p4D;
+        Tue, 17 Jan 2023 08:21:41 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.174]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4Nx2100zPDz4x9Pw; Tue, 17 Jan
+        2023 08:21:40 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        8C.49.02301.39A56C36; Tue, 17 Jan 2023 17:21:40 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20230116103841epcas5p17b33f2b6567935d6be59b4d2b5d9f847~6w9KzjTOU1456314563epcas5p1q;
+        Mon, 16 Jan 2023 10:38:41 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230116103841epsmtrp20600063219915088cf83f394d7256cb8~6w9KyrIlu0521705217epsmtrp2D;
+        Mon, 16 Jan 2023 10:38:41 +0000 (GMT)
+X-AuditID: b6c32a49-473fd700000108fd-a1-63c65a93bf2e
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        71.F8.10542.13925C36; Mon, 16 Jan 2023 19:38:41 +0900 (KST)
+Received: from cheetah.sa.corp.samsungelectronics.net (unknown
+        [107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20230116103835epsmtip13afc6816ffd45f4df958c248f3fee2ff~6w9F47GGD0462804628epsmtip18;
+        Mon, 16 Jan 2023 10:38:35 +0000 (GMT)
+From:   Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
+        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
+        alim.akhtar@samsung.com, rcsekar@samsung.com,
+        aswani.reddy@samsung.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+Subject: [PATCH v4 0/5] ASoC: samsung: fsd: audio support for FSD SoC
+Date:   Mon, 16 Jan 2023 16:08:18 +0530
+Message-Id: <20230116103823.90757-1-p.rajanbabu@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupnk+LIzCtJLcpLzFFi42LZdlhTQ3dK1LFkg6ZZLBYP5m1js7hy8RCT
+        xaHNW9ktpj58wmYx/8g5Vou+Fw+ZLb5d6WCyuLxrDpvFjPP7mCyObgy2WLT1C7tF565+VotZ
+        F3awWrTuPcJucfhNO6vFhu9rGR0EPDZ8bmLz2DnrLrvHplWdbB53ru1h89j3dhmbR9+WVYwe
+        67dcZfH4vEkugCMq2yYjNTEltUghNS85PyUzL91WyTs43jne1MzAUNfQ0sJcSSEvMTfVVsnF
+        J0DXLTMH6AMlhbLEnFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFKToFJgV5xYm5xaV66Xl5q
+        iZWhgYGRKVBhQnbGo819jAW7eSrenZjK0sB4kbOLkZNDQsBEYu3s56wgtpDAbkaJtfuiuhi5
+        gOxPjBKrD21nhEh8ZpQ42SUP03Dv6E52iKJdjBIvTh1ggnBamSR2vbsM1sEmYCqxak4jK0hC
+        RKCJSaLtzUQWEIdZYCOjxOljD5lAqoQFXCWmf+9nBrFZBFQlfp7dARbnFbCR+Pq6gQlin7zE
+        6g0HmEGaJQQ6OSTWTbvHBpFwkVgzdQ8rhC0s8er4FnYIW0ri87u9UDX5EtM+NkPZFRJtHzdA
+        DbWXOHBlDtBFHEAXaUqs36UPEZaVmHpqHVgJswCfRO/vJ1DlvBI75sHYqhLrl29ihLClJfZd
+        3wtle0i0b18CDa9Yieady5gmMMrOQtiwgJFxFaNkakFxbnpqsWmBYV5qOTymkvNzNzGCU6aW
+        5w7Guw8+6B1iZOJgPMQowcGsJMLrt+twshBvSmJlVWpRfnxRaU5q8SFGU2CYTWSWEk3OBybt
+        vJJ4QxNLAxMzMzMTS2MzQyVx3tSt85OFBNITS1KzU1MLUotg+pg4OKUamNQi+r9qKn298M9I
+        yuJryXK+owu0hKyueGTzTptiEBe7aZug8L29/RYWTe2S74+lz91Zde4h55OKII1bG/dP3JYp
+        NeFkin/h00OKza9rD0lunNxVrHGqVSY7dbJ4KUtp3qtar/mnlvnvc+F9tLR3yom1RbvDGRKZ
+        +htXrxEz39tmui6ew8cz+a3JnTS/z5av2Y783r8zW8Rn3++cby+r4jaubeQzqakJtN7ht8bH
+        lV98xuTAfWlWuQbs9+aYXrlpr6HuGzdhwyWR9TE+1gwal823msR/WOMsW5DXtHqf5hbG/ISf
+        xVLckw1C2bRnLb40JYc9oN4sY5Py3/A9dnEG9blndsxsdjZpO+9mk9OhxFKckWioxVxUnAgA
+        hEGw4CIEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFLMWRmVeSWpSXmKPExsWy7bCSnK6h5tFkg74LnBYP5m1js7hy8RCT
+        xaHNW9ktpj58wmYx/8g5Vou+Fw+ZLb5d6WCyuLxrDpvFjPP7mCyObgy2WLT1C7tF565+VotZ
+        F3awWrTuPcJucfhNO6vFhu9rGR0EPDZ8bmLz2DnrLrvHplWdbB53ru1h89j3dhmbR9+WVYwe
+        67dcZfH4vEkugCOKyyYlNSezLLVI3y6BK+PR5j7Ggt08Fe9OTGVpYLzI2cXIySEhYCJx7+hO
+        9i5GLg4hgR2MEs8nH2aBSEhLTO/fwwZhC0us/PecHcQWEmhmkli8SRDEZhMwlVg1p5EVpFlE
+        YAKTxMl3x8CamQW2MkpM/WwEYgsLuEpM/97PDGKzCKhK/Dy7gwnE5hWwkfj6uoEJYoG8xOoN
+        B5gnMPIsYGRYxSiZWlCcm55bbFhglJdarlecmFtcmpeul5yfu4kRHLxaWjsY96z6oHeIkYmD
+        8RCjBAezkgiv367DyUK8KYmVValF+fFFpTmpxYcYpTlYlMR5L3SdjBcSSE8sSc1OTS1ILYLJ
+        MnFwSjUwLSmr6krWeTj/4dsJaT1ZjFWPjs9L5pD5PzH694oTqw338xgmR3WJ/GjlPhZT/8G4
+        Pu9NVMo7aWGeIgFPt4B14WcWb372I0PuZpTumiOfFa78rDmsd6wvmVOlJP3AOmWHNo0T1xIi
+        1Pf/rLVX/vI/I0Wi+Er+5Ou3bNW9ktO1jX7Hp/QWvNULmLB9XmbMrICf/YzHrRzqLlUumNSn
+        IFa00+nGuiTVGCtz48KzR3uCDiov+RTYu+WputG8Ny/V0ll7Fv24uvfO1IuFC1RtDzjbX+W+
+        K7M5NmLxjbL7PvoN+cwyR4Md82dP2vlojbuc4AZ+Dr7gqm2f/t7dd9svV+5rQJndZC/PPVPk
+        IxYKTz6vxFKckWioxVxUnAgAJ7JgIc0CAAA=
+X-CMS-MailID: 20230116103841epcas5p17b33f2b6567935d6be59b4d2b5d9f847
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230116103841epcas5p17b33f2b6567935d6be59b4d2b5d9f847
+References: <CGME20230116103841epcas5p17b33f2b6567935d6be59b4d2b5d9f847@epcas5p1.samsung.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/23 21:43, Doug Brown wrote:
-> Add ability to have an optional core clock just like the pxav3 driver.
-> The PXA168 needs this because its SDHC controllers have separate core
-> and io clocks that both need to be enabled. This also correctly matches
-> the documented devicetree bindings for this driver.
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <error27@gmail.com>
-> Signed-off-by: Doug Brown <doug@schmorgal.com>
+This patch series enables audio support on FSD SoC.
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+Changes in v4:
+1. Rebased and addressed review comments provided for v3.
 
-> ---
-> The Reported-by tags above refer to a missing assignment to ret in an
-> earlier version of this patch. The kernel test robot caught it.
-> 
->  drivers/mmc/host/sdhci-pxav2.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
-> index f5c86e1ba734..3141901e1558 100644
-> --- a/drivers/mmc/host/sdhci-pxav2.c
-> +++ b/drivers/mmc/host/sdhci-pxav2.c
-> @@ -191,7 +191,7 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
->  	const struct sdhci_pxa_variant *variant;
->  
->  	int ret;
-> -	struct clk *clk;
-> +	struct clk *clk, *clk_core;
->  
->  	host = sdhci_pltfm_init(pdev, NULL, 0);
->  	if (IS_ERR(host))
-> @@ -214,6 +214,13 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
->  		goto free;
->  	}
->  
-> +	clk_core = devm_clk_get_optional_enabled(dev, "core");
-> +	if (IS_ERR(clk_core)) {
-> +		ret = PTR_ERR(clk_core);
-> +		dev_err_probe(dev, ret, "failed to enable core clock\n");
-> +		goto disable_clk;
-> +	}
-> +
->  	host->quirks = SDHCI_QUIRK_BROKEN_ADMA
->  		| SDHCI_QUIRK_BROKEN_TIMEOUT_VAL
->  		| SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN;
+Changes in v3:
+1. Addressed all the review comments provided for v2 patch.
+2. Fixed compilation warnings reported by kernel test robot.
+
+Changes in v2:
+1. New compatible added in Exynos I2S driver for FSD platform.
+2. Added Fixup support for Exynos I2S CPU DAI.
+3. Migration of manual PSR, OPCLK configuration to Exynos CPU DAI driver as
+fixup.
+4. Migrated from dedicated sound card to simple audio card.
+5. Support added for tlv320aic3x-i2c codec on FSD platform.
+
+Changes in v1:
+1. Add TDM support on samsung I2S interface.
+2. Allow sound card to directly configure I2S prescaler divider instead of
+calculating it from frame clock.
+3. The sound card support for FSD SoC which utilizes samsung I2S interface
+as CPU DAI.
+
+Padmanabhan Rajanbabu (5):
+  ASoC: dt-bindings: Add FSD I2S controller bindings
+  ASoC: samsung: i2s: add support for FSD I2S
+  arm64: dts: fsd: Add I2S DAI node for Tesla FSD
+  arm64: dts: fsd: Add codec node for Tesla FSD
+  arm64: dts: fsd: Add sound card node for Tesla FSD
+
+ .../bindings/sound/samsung-i2s.yaml           |  8 +++
+ arch/arm64/boot/dts/tesla/fsd-evb.dts         | 53 +++++++++++++++++++
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi    | 14 +++++
+ arch/arm64/boot/dts/tesla/fsd.dtsi            | 34 ++++++++++++
+ sound/soc/samsung/i2s-regs.h                  |  1 +
+ sound/soc/samsung/i2s.c                       | 53 +++++++++++++++++++
+ 6 files changed, 163 insertions(+)
+
+-- 
+2.17.1
 
