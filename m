@@ -2,84 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5440C66C8BB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 17:42:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD8B566C8CF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 17:43:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233669AbjAPQmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 11:42:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34714 "EHLO
+        id S233712AbjAPQnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 11:43:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233648AbjAPQlp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 11:41:45 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31062ED46
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 08:29:57 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id br9so8156001lfb.4
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 08:29:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G8K1RmWXIkiPGKo5rdIMlyUws+ytI7cIHwrzZJ2azso=;
-        b=Qwo73i7k4TFVW4W9ODHn2D31owplGN+ohI4BcXolF/ZQkD6do3Wcxz1nYOC9CNXonX
-         jS1RVfnJcQQVABWLq0jNH4zheVyf4h+GMcbONNoUdnri7EXnXonvt/hUQXFZFO1J4VIE
-         /jj/OeKV1qAbQdKi2V/45Q69RwkZ8rR1pOiTPZ1lgP/79MZ4kFTQhJqM76J+i1+8w8nD
-         ayeX1QToZyVrwU1GjlFcCXzJZKQ2R6Xhc/a61usDxr0B9tyokNrdPmr3dzt94h2Cm+WG
-         Sme/OPxLhDfUbhZysJgMsukjfrMJJnmj+xESqgD7xAN7XGm9ZDJkXBjaapDzuKZltmpU
-         79hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G8K1RmWXIkiPGKo5rdIMlyUws+ytI7cIHwrzZJ2azso=;
-        b=uk1ZhHtW9scZXUXgA2KM5v+Vl6azXyNkmXB+dibkmYhzndbRB0P7Et0BfrhutoZ+K7
-         O9NWUK8/pwMIkWYoGRUOfiGqZo0vDeUe6uTnOy6k9/wNakzywbngROX3xwjvoLx2GjIo
-         a1axt4kLh6G1wlh8yDKataJPt7yvRowvMHZtyTeZyrCS+gs3ts1gcawfxRZZvTdPFDjB
-         vD+gQPRqm3vbzZ+MtIJICFxBU4Lxt5c45BqjptNCkt0gbIhV4v89MVVcMhrs1tzjRxwk
-         jC6WkJAhTFQnC11jLUHSxtNZd3JKC2rz7pYMcPnN4mcTcbFZbsHpn/8IPtSFVnS0Ci6M
-         KCTQ==
-X-Gm-Message-State: AFqh2krvw+cBchq/ZkCnKdJ/QnRiU4vsZxzIUtz4UnXhyNELbKk+0jmH
-        7jhQG+J7zJhmdW3c3/UhOXO48g==
-X-Google-Smtp-Source: AMrXdXsPIZj1jWkctfyszi9JmAGWKyuU0BIXMPnSpGeeviVYMWHd72EtUdKxhks7JtVTHMQhAtHFmg==
-X-Received: by 2002:a19:e611:0:b0:4a4:68b9:608a with SMTP id d17-20020a19e611000000b004a468b9608amr24195186lfh.21.1673886596181;
-        Mon, 16 Jan 2023 08:29:56 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id x12-20020ac25dcc000000b0049fbf5facf4sm5087974lfq.75.2023.01.16.08.29.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 08:29:55 -0800 (PST)
-Message-ID: <09fe3e93-328b-13a3-540b-4ca47224b176@linaro.org>
-Date:   Mon, 16 Jan 2023 17:29:54 +0100
+        with ESMTP id S233728AbjAPQm3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 11:42:29 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 972CF38B5A;
+        Mon, 16 Jan 2023 08:30:39 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30GGUP8q057885;
+        Mon, 16 Jan 2023 10:30:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673886625;
+        bh=O2Ejt62mxUfx3tdgkGy7b2vFDYAAKe8GIb3qDpu9Tkg=;
+        h=Date:To:CC:References:From:Subject:In-Reply-To;
+        b=O5p1zKS05dBbPWH2OwB072suoBV4NmioQWqawQVR3rXXSC3o4sSX6FpvNkeU1bSNc
+         bJmiOPgyq/YeF50tQoEnvQ9XIRCUU32s+cZ7Z19Fb34Pi8/qKugBFvG4rxwiyPYPWs
+         ipS3THuMt6DhlwX3zXzDIm0nq5mncsMf4iPGLIok=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30GGUPk7053486
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 16 Jan 2023 10:30:25 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 16
+ Jan 2023 10:30:25 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 16 Jan 2023 10:30:25 -0600
+Received: from [10.250.234.92] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30GGUJFM063429;
+        Mon, 16 Jan 2023 10:30:20 -0600
+Message-ID: <4d7ac24a-0a35-323c-045c-cc5b3d3c715a@ti.com>
+Date:   Mon, 16 Jan 2023 22:00:18 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: qcom: geni-se: Fix '#address-cells' &
- '#size-cells' related dt-binding error
 Content-Language: en-US
-To:     bhupesh.sharma@linaro.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, andersson@kernel.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20230113201038.267449-1-bhupesh.sharma@linaro.org>
- <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org>
- <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
- <b9aa6d30-5fe8-57a9-e478-c99bca70d185@linaro.org>
- <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
- <23b4551c-db79-d859-c037-6ed3c8a11883@linaro.org>
- <6f08d466-9589-ebff-c38d-bf9015a0f6ad@linaro.org>
- <64e4b3b0-fc71-1876-9de8-e51d503d6183@linaro.org>
- <3e18a79b-fdd8-63f8-c27a-7515bbb6cb9b@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <3e18a79b-fdd8-63f8-c27a-7515bbb6cb9b@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+To:     Roger Quadros <rogerq@kernel.org>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nm@ti.com>,
+        <kristo@kernel.org>, <nsekhar@ti.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+References: <20230111114429.1297557-1-s-vadapalli@ti.com>
+ <20230111114429.1297557-6-s-vadapalli@ti.com>
+ <6ae650c9-d68d-d2fc-8319-b7784cd2a749@kernel.org>
+ <a889a47f-5f44-1ae6-1ab7-3b7e7011b4f7@ti.com>
+ <2007adb5-0980-eee3-8d2f-e30183cf408e@kernel.org>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH net-next 5/5] arm64: dts: ti: k3-am625-sk: Add cpsw3g cpts
+ PPS support
+In-Reply-To: <2007adb5-0980-eee3-8d2f-e30183cf408e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,70 +78,46 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 16.01.2023 17:18, bhupesh.sharma@linaro.org wrote:
-> 
-> On 1/16/23 9:35 PM, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->>
->> On 16.01.2023 17:02, Bhupesh Sharma wrote:
->> >
->> > On 1/16/23 9:24 PM, Konrad Dybcio wrote:
->> >>
->> >>
->> >> On 16.01.2023 16:43, Bhupesh Sharma wrote:
->> >>> On Mon, 16 Jan 2023 at 13:23, Krzysztof Kozlowski
->> >>> <krzysztof.kozlowski@linaro.org> wrote:
->> >>>>
->> >>>> On 15/01/2023 22:33, Bhupesh Sharma wrote:
->> >>>>> On Sun, 15 Jan 2023 at 20:57, Krzysztof Kozlowski
->> >>>>> <krzysztof.kozlowski@linaro.org> wrote:
->> >>>>>>
->> >>>>>> On 13/01/2023 21:10, Bhupesh Sharma wrote:
->> >>>>>>> Fix the following '#address-cells' & '#size-cells' related
->> >>>>>>> dt-binding error:
->> >>>>>>>
->> >>>>>>>      $ make dtbs_check
->> >>>>>>>
->> >>>>>>>      From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
->> >>>>>>>           arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dtb: geniqup@4ac0000:
->> >>>>>>>                 #address-cells:0:0: 2 was expected
->> >>>>>>>         From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
->> >>>>>>
->> >>>>>> Don't we want rather to unify the soc address range?
->> >>>>>
->> >>>>> Well, the assumption in the original dt-bindings was that every reg
->> >>>>> variable is 4 * u32 wide (as most new qcom SoCs set #address- and
->> >>>>> #size-cells to <2>). However, that is not the case for all of the
->> >>>>> SoCs.
->> >>>>
->> >>>> Hm, which device of that SoC cannot be used with address/size cells 2?
->> >>>
->> >>> As noted in the git log already the geniqup on sm6115 / sm4250 cannot
->> >>> be used with address/size cells 2 (See:
->> >>> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/sm6115.dtsi#L795)
->> >> SM6115 (and pretty much every other arm64 msm platform newer than 8916)
->> >> should be using addr/size-cells = 2 along with (dma-)ranges of 36 bit, as
->> >> that's what their smmus use and otherwise some addresses may get cut off
->> >> in translation, or so the story went with 845 N years ago.. We can either
->> >> pursue this patch or I can submit the 2-cell-ification if you don't plan on
->> >> adding more nodes shortly
->> >
->> >
->> > Have you tested this combination on SM6115 like SoCs with various IPs? I have tried a few experiments in the past and not all IPs work well with 36-bit DMA ranges (atleast not on the boards I have).
->> Can you list any specific examples? I've been using it for
->> quite some time now and I see nothing wrong..
-> 
-> I remember seeing some issues with SDHC controller booting (uSD card use case) with sm6115, but I cannot find the appropriate dmesg right now.
-FWIW it works completely fine for me, in fact I'm booting from
-uSD most of the time.
+On 16/01/23 9:35 pm, Roger Quadros wrote:
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>>>> index 4f179b146cab..962a922cc94b 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>>>> @@ -366,6 +366,10 @@ &cpsw3g {
+>>>>  	pinctrl-names = "default";
+>>>>  	pinctrl-0 = <&main_rgmii1_pins_default
+>>>>  		     &main_rgmii2_pins_default>;
+>>>> +
+>>>> +	cpts@3d000 {
+>>>> +		ti,pps = <2 1>;
+>>>> +	};
+>>>>  };
+>>>>  
+>>>>  &cpsw_port1 {
+>>>> @@ -464,3 +468,19 @@ partition@3fc0000 {
+>>>>  		};
+>>>>  	};
+>>>>  };
+>>>> +
+>>>> +#define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
+>>> Should this go in ./include/dt-bindings/pinctrl/k3.h ?
+>>> That way every board DT file doesn't have to define it.
+>>>
+>>> The name should be made more platform specific.
+>>> e.g. K3_TS_OFFSET if it is the same for all K3 platforms.
+>>> If not then please add Platform name instead of K3.
+>> The offsets are board specific. If it is acceptable, I will add board specific
+>> macro for the TS_OFFSET definition in the ./include/dt-bindings/pinctrl/k3.h
+>> file. Please let me know.
+> If it is board specific then it should remain in the board file.
 
-Konrad
-> 
->> >
->> > So, I think it might lead to more breakage (unless we are sure of a well-tested fix). A simpler patch to fix the dt-bindings looks more useful IMO.
->> I'm not saying no, you just have to convince Krzysztof :D
-> 
-> :)
-> 
-> Thanks,
-> Bhupesh
+
+The values you pass to macro maybe board specific. But the macro
+definition itself same for a given SoC right? Also, is its same across
+K3 family ?
+
+Please use SoC specific prefix like AM62X_TS_OFFSET() or K3_TS_OFFSET()
+accordingly.
+
+Regards
+Vignesh
