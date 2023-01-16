@@ -2,64 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27FF166CF20
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 19:50:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C98D266CF29
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 19:53:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231908AbjAPSuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 13:50:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52738 "EHLO
+        id S231611AbjAPSxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 13:53:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjAPSuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 13:50:22 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7883B190;
-        Mon, 16 Jan 2023 10:50:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2FEE4B810BC;
-        Mon, 16 Jan 2023 18:50:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D7244C433F0;
-        Mon, 16 Jan 2023 18:50:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673895018;
-        bh=Ek2S+o7lX4iOW9OiFwEK+MWyfVIXlWFpJHWnHVuYrDw=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=t6D9OIMxwQdk6gtG2QHP0B/o7FutF5hSWBI3v9Iqp8xS2LzithpsUQkQGXHxmUkwf
-         hLAqQhsh+loB1B97AyuldCp9ka24NI86Zt2w45AHpDmiAxox1CVV1sHf7PC9drc18i
-         5LbHVV4fopBWa/dLxvbuIdue63zr5cHtL8bGxcqaSOuAk8K3Y3jAi1oRiV/mnwb0jw
-         GljDxwT4WsCQmrLYZDRx4KK2Y6pwfw/63tP2JO91YgZ+Y4hMD6A0VRPnCbqkIKcK14
-         ae+NmLEaYzY8YeS8JUx7hpKq+BHyu36iZv6aj6lXYNx+3zLMoDFo70c64W8mhEBte7
-         iWVTwEMR/BH1Q==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id BA0AEE54D26;
-        Mon, 16 Jan 2023 18:50:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230521AbjAPSxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 13:53:13 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F02D34ED2
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 10:53:11 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id ss4so62869300ejb.11
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 10:53:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FhM/j9TA5swWlMFXNhb7HBu9EeesX3946xV+twadk5c=;
+        b=PAUBV+0OxPJB6qnsOMGZpGHNWUUpGxW9IncoZBLyYEyXDm/paOdyEgqQyIpjw6so1k
+         EEf4Q3E5+ZGUMI+QSWIbd7sAnLdlx9b39TqMCj+YR+Z5CXbc87e1UVo6iBcXDUBTx156
+         1+E5uHP/DDx5V3qnAniuakzrhjJlv8akVzOPtWQYAVvv54t2pI2dQAQkjW9QjIbQh9N8
+         sBTVEmOuzLe/NmFE4YgdlHqkh3dbE7ysQyys6+DHKs0tUTdW84V8Q1u65Vigl+BMUtdg
+         ixhVzAURRP0BOw5j6DnMqmMtfQc1yDm6vLNo1iBufw/lBj0p5DGwKFhofx5hx8VWUa+k
+         /NPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FhM/j9TA5swWlMFXNhb7HBu9EeesX3946xV+twadk5c=;
+        b=RV16dP581Aii8ardNn6cdKDBjbjvDyteSgQmx2PfBBye+EoUauFBbvIpWSkYhM0G1Z
+         7T+qomsjORddVy+nnrz2JVs2QaTGvN3wfFzX4rWZ5b2nGFrvehWCaJWkGwn+PACK+GqP
+         wYmnHmgTGnxbbu58AoPXpqGz0fCC+FJVai0cLGAGH3Pm1ELVEK3QQZJ9SaU740DJ7FZL
+         pHbMwCLG01NXRWBrMsjxp2t1JjnxMjpYhxlJYQcedpuwCA4sTYdTzRK83cQjA8n9z7nl
+         2wbsVFWdkj/EG01rwPjY3BTpSFT7q4H35BH6Qki/ejLtR42V1ps68sR1LL9KoaODGYhx
+         +uog==
+X-Gm-Message-State: AFqh2kptaYLzvAPWFRxeyUZ33bTE0RLvGCiwDSt0M4n8TEe2lQDL5EKM
+        LnTMUvlqSBbdLeHlla7505VglQ==
+X-Google-Smtp-Source: AMrXdXv79SowcrX2fmpfpRRZi/t1GSCB5WlHms073aijvvFrOkQFDm1oWPHVnpHFbwUEnbKyw7LJ5w==
+X-Received: by 2002:a17:907:c30c:b0:86c:cbfd:936 with SMTP id tl12-20020a170907c30c00b0086ccbfd0936mr72627ejc.11.1673895190543;
+        Mon, 16 Jan 2023 10:53:10 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id ez6-20020a056402450600b0048ebe118a46sm11734133edb.77.2023.01.16.10.53.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jan 2023 10:53:10 -0800 (PST)
+Message-ID: <f74fe561-dc20-0681-12af-4a4782a060be@linaro.org>
+Date:   Mon, 16 Jan 2023 19:53:07 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v7 net-next 00/10] dt-binding preparation for ocelot switches
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <167389501875.8578.15890444041722037565.git-patchwork-notify@kernel.org>
-Date:   Mon, 16 Jan 2023 18:50:18 +0000
-References: <20230112175613.18211-1-colin.foster@in-advantage.com>
-In-Reply-To: <20230112175613.18211-1-colin.foster@in-advantage.com>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        john@phrozen.org, alexandre.belloni@bootlin.com,
-        claudiu.manoil@nxp.com, marex@denx.de, sean.wang@mediatek.com,
-        dqfext@gmail.com, Landen.Chao@mediatek.com, arinc.unal@arinc9.com,
-        clement.leger@bootlin.com, alsi@bang-olufsen.dk,
-        linus.walleij@linaro.org, UNGLinuxDriver@microchip.com,
-        woojung.huh@microchip.com, matthias.bgg@gmail.com,
-        kurt@linutronix.de, robh+dt@kernel.org, pabeni@redhat.com,
-        kuba@kernel.org, edumazet@google.com, davem@davemloft.net,
-        olteanv@gmail.com, f.fainelli@gmail.com, andrew@lunn.ch,
-        george.mccollister@gmail.com
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 4/4] dt-bindings: hv: Add dt-bindings for VMBus
+Content-Language: en-US
+To:     Saurabh Sengar <ssengar@linux.microsoft.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
+        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+References: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
+ <1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,46 +78,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On 16/01/2023 17:48, Saurabh Sengar wrote:
+> Add dt-bindings for Hyper-V VMBus
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+Missing full stop.
 
-On Thu, 12 Jan 2023 07:56:03 -1000 you wrote:
-> Ocelot switches have the abilitiy to be used internally via
-> memory-mapped IO or externally via SPI or PCIe. This brings up issues
-> for documentation, where the same chip might be accessed internally in a
-> switchdev manner, or externally in a DSA configuration. This patch set
-> is perparation to bring DSA functionality to the VSC7512, utilizing as
-> much as possible with an almost identical VSC7514 chip.
+Subject: drop second/last, redundant "dt-bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+
 > 
-> [...]
+> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> ---
+>  .../devicetree/bindings/hv/msft,vmbus.yaml         | 34 ++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hv/msft,vmbus.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hv/msft,vmbus.yaml b/Documentation/devicetree/bindings/hv/msft,vmbus.yaml
+> new file mode 100644
+> index 0000000..66cb426
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hv/msft,vmbus.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/hv/msft,vmbus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microsoft Hyper-V VMBus device tree bindings
 
-Here is the summary with links:
-  - [v7,net-next,01/10] dt-bindings: dsa: sync with maintainers
-    https://git.kernel.org/netdev/net-next/c/4015dfce2fe7
-  - [v7,net-next,02/10] dt-bindings: net: dsa: sf2: fix brcm,use-bcm-hdr documentation
-    https://git.kernel.org/netdev/net-next/c/afdc0aab4972
-  - [v7,net-next,03/10] dt-bindings: net: dsa: qca8k: remove address-cells and size-cells from switch node
-    https://git.kernel.org/netdev/net-next/c/54890925f2a4
-  - [v7,net-next,04/10] dt-bindings: net: dsa: utilize base definitions for standard dsa switches
-    https://git.kernel.org/netdev/net-next/c/3cec368a8bec
-  - [v7,net-next,05/10] dt-bindings: net: dsa: allow additional ethernet-port properties
-    https://git.kernel.org/netdev/net-next/c/16401cdb08f0
-  - [v7,net-next,06/10] dt-bindings: net: dsa: qca8k: utilize shared dsa.yaml
-    https://git.kernel.org/netdev/net-next/c/956826446e3a
-  - [v7,net-next,07/10] dt-bindings: net: dsa: mediatek,mt7530: remove unnecessary dsa-port reference
-    https://git.kernel.org/netdev/net-next/c/000bd2af9dce
-  - [v7,net-next,08/10] dt-bindings: net: add generic ethernet-switch
-    https://git.kernel.org/netdev/net-next/c/7f5bccc8b6f8
-  - [v7,net-next,09/10] dt-bindings: net: add generic ethernet-switch-port binding
-    https://git.kernel.org/netdev/net-next/c/68e3e3be66bc
-  - [v7,net-next,10/10] dt-bindings: net: mscc,vsc7514-switch: utilize generic ethernet-switch.yaml
-    https://git.kernel.org/netdev/net-next/c/1f4d4ad677c4
+Drop "device tree bindings"
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> +
+> +maintainers:
+> +  - Saurabh Sengar <ssengar@linux.microsoft.com>
+> +
+> +description:
+> +  VMBus is a software bus that implement the protocols for communication
+> +  between the root or host OS and guest OSs (virtual machines).
 
+Why this cannot be auto-discoverable? Why do you need OF for this?
+
+> +
+> +properties:
+> +  compatible:
+> +    const: msft,vmbus
+> +
+> +  ranges :
+> +    const: <0x00 0x00 0x0f 0xf0000000 0x10000000>
+
+Did you test the bindings?
+
+This property does not look correct. If you have static addresses, you
+do not need OF. What do you want to discover here?
+
+> +
+> +required:
+> +  - compatible
+> +  - ranges
+> +
+> +examples:
+> +  - |
+> +        vmbus {
+
+Use 4 spaces for example indentation.
+
+> +		#address-cells = <0x02>;
+> +		#size-cells = <0x01>;
+
+That's not correct style. Drop hex notation. Drop leading zeros.
+
+But anyway you did not test the bindings. This cannot work. Try.
+
+> +		compatible = "msft,vmbus";
+
+compatible is a first property.
+
+> +		ranges = <0x00 0x00 0x0f 0xf0000000 0x10000000>;
+
+What do you translate? There is no reg, no unit address.
+
+> +	};
+
+Best regards,
+Krzysztof
 
