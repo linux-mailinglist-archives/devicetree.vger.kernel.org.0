@@ -2,155 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC20666C378
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0709E66C397
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:22:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230297AbjAPPUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 10:20:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40486 "EHLO
+        id S232305AbjAPPWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 10:22:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230147AbjAPPUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:20:18 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9F522032
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:14:38 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id j17so1692285wms.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:14:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uZq7KZ5es/oVm07Mu/lqqsKw8XYpJdtTEoce2xEIrxo=;
-        b=dIOeuulv+g0l0G+UNWjumOycCO6uwEpnPCGFt9OIFg2WEPVrIugyGOWgbYjZ1yoW/o
-         DzYFob7z/jZaNY/JyJ0dVeaMjbwDGfEq+bqPEV72fc+Uxge9MaqFbTD8DfVdVIXs3Vrd
-         BsggeADbJgJj4n9p4xwfwk40fsyWqvapc4Vs5EQp9jEYzeqsaxWlflUYXiFdz4LrCNf+
-         vsFIO/5tDtPZbDUZituTFFk0JBeW4H2yYFHGJGcU1IjelcAivPMOcLQVk5Tolw9WGDPJ
-         A33wsMM+ekC6wnIjz9miDjBKuRucGfkJnxNClGDZ4XIDc59vAbzf7YcJRCgzkv5Jk3nm
-         XllA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uZq7KZ5es/oVm07Mu/lqqsKw8XYpJdtTEoce2xEIrxo=;
-        b=du4rJ8ZwHA94Kd87v/m1bhJo2oBH9zAqwaqVxg3jZZhzmkXuV56gj70pc1uahciBbR
-         nbgXlMU7iQyMO+03hR5wjpvOK2NqT8jlMxAuDdLpuGX1UetgXnMMCbc42kceCPLu9as/
-         LsPi4KvXvYPAkga6lKfeZbdglwvo98KbRkqWwxE0FLrMwuULlYofISWKvyiuq0GlbxI2
-         Y0obJ5HTBXZ4h5taa/2ejFrJMCn3rSk8/vcJLYQqOawR8d5asGXG4DtiP67rrTQuSAD9
-         4NheLsRXmttQ31uxOPWcA8QPnh60ATeR6HN6XhmFYNN61xn4gpWbLW+9N2021YqZidQ3
-         yVZg==
-X-Gm-Message-State: AFqh2kpLmfhlsWC0HkRskMwkaoeHRHBY4eJUnzZWRf5ZNHJk+jGa6ggs
-        vsMbrlOtHrZK1lzJ4mW6BB0=
-X-Google-Smtp-Source: AMrXdXtupPOYy5yRRdXlMsUe8LgeR85RjB2tixi2DxqOhg5gOTkUx2jmGFM1uPIUJDNQB68i8wJC4A==
-X-Received: by 2002:a05:600c:35d4:b0:3d2:2d2a:d581 with SMTP id r20-20020a05600c35d400b003d22d2ad581mr66489602wmq.30.1673882077019;
-        Mon, 16 Jan 2023 07:14:37 -0800 (PST)
-Received: from archbox.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id k9-20020a05600c1c8900b003dafbd859a6sm3857272wms.43.2023.01.16.07.14.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jan 2023 07:14:36 -0800 (PST)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: fix probe of analog sound card on rock-3a
-Date:   Mon, 16 Jan 2023 16:14:35 +0100
-Message-ID: <4802111.31r3eYUQgx@archbox>
-In-Reply-To: <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
-References: <20230115211553.445007-1-jonas@kwiboo.se>
- <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231734AbjAPPVt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:21:49 -0500
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C943F1EFE3;
+        Mon, 16 Jan 2023 07:19:21 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id B82B35C01D1;
+        Mon, 16 Jan 2023 10:19:19 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Mon, 16 Jan 2023 10:19:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1673882359; x=1673968759; bh=N2AaqpF3HW
+        MCVXZ2qUPffZma9rjZbSafx8M41yLmuoE=; b=jHj/gDQGNBpfYh0yCyZRtlXclm
+        ueThgrKdnuCdyJROmmqJVs6lW2kLgffXl6PYuqJfF1RBj70yqhA3tx4Ref9hc1PT
+        DNVjtiQNkycJDb3OF4zN7AFfYtsOOAPI9lma+4vvaRzK7WegrNxshPqRgA8/Ulo5
+        iOohCEiDC36NdhQk2xF+hrZjr0pTWvz8RJeQpaEWoYdr5gQiThcsfA6JYNBNQhMy
+        SBt/gEIncnUX66ysNEYo4gQufb4lfXw+b0lkT2qk3/h2FtakuDtmVmn8ZDk79djx
+        CRC8t+5Bk0DkjYs7swPM1kzJ8i4U9us/VwnmPpI9kUAdqI1Yu8Bzj4ELT/WQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1673882359; x=1673968759; bh=N2AaqpF3HWMCVXZ2qUPffZma9rjZ
+        bSafx8M41yLmuoE=; b=I33uRZ+2TxBvz+HDJrERzoGN8v/hpeQGeyNS1upZxtwv
+        70WFNq/uW4axz/MT2Ju0pIbR5XlYi9pC6JTVfNvfCFErCPiRRHGz2fuMa6tO9t69
+        XAI6zTJd3FZLzRqSQgb3tAI/PLB7z8jDg2iZdTgdKQzrB89UK0JYOiFA9cpDtPgy
+        ojbOthdU36Kgq5pYirKmzAWRjFQ6WnWPSgq5Hpr1trHyyAHl35L9Q6Gp21fzn9NP
+        FAA7liEhYpBtQLkPft2TnziqOHNTS/pn2NoMEmwZHvJY25E1S5nxyXjxXxMxoypN
+        71UNW09Svhu0UiZ+RjnbzpQ/unrmo2SHzaYy2G+sNg==
+X-ME-Sender: <xms:92rFY7TluZs6vnNBIKbLoTITq3tq2hR8pqJ5462nvoQ-ecfbi0OEcA>
+    <xme:92rFY8yhbHRzN9BxsZEc2kpLEEpZFa7y0avgxesLIhr9OLb6Nm8KV8pRCM4xXDOGQ
+    htxkpM1Sf52YxytB14>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddtgedgjeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:92rFYw2EDjNAvsui3DHBrxwwI0Q75Mq55C5T23TdaIeFEmUVpShsiw>
+    <xmx:92rFY7BTsQ5ltipB4xnyQQG2OT6ezH6OE6FRuee4jr7-IpDhHmO2ig>
+    <xmx:92rFY0iGNJVbwhwsthYjed7X2QBV0kNQZauKs64RgamefFW-mhoNJw>
+    <xmx:92rFY3PAgibROA68VRHwy74SuX5MAVZMEc4r8WGDk1FBhV3FljmSOw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 3BA93B60086; Mon, 16 Jan 2023 10:19:19 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1187-g678636ba0d-fm-20230113.001-g678636ba
+Mime-Version: 1.0
+Message-Id: <55f09599-b553-4429-aa79-ca99ccf95cda@app.fastmail.com>
+In-Reply-To: <Y8VUOENIhe72sqMO@enigma.ccjz.io>
+References: <20230110042533.12894-1-clayc@hpe.com>
+ <20230110042533.12894-3-clayc@hpe.com>
+ <110af65f-9c18-524d-a073-ef7be60d1f5a@linaro.org>
+ <Y8AIHDizIqu9u9BR@enigma.ccjz.io>
+ <48cd3e28-f1db-487d-8971-473dc8c12c09@app.fastmail.com>
+ <Y8VUOENIhe72sqMO@enigma.ccjz.io>
+Date:   Mon, 16 Jan 2023 16:18:59 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Clay Chang" <clayc@hpe.com>
+Cc:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "Hawkins, Nick" <nick.hawkins@hpe.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        "Russell King" <linux@armlinux.org.uk>,
+        "Olof Johansson" <olof@lixom.net>
+Subject: Re: [PATCH 2/5] dt-bindings: soc: hpe: hpe,gxp-srom.yaml
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday, 16 January 2023 09:41:50 CET Michael Riesch wrote:
-> Hi Jonas,
-> 
-> On 1/15/23 22:15, Jonas Karlman wrote:
-> > The following was observed on my Radxa ROCK 3 Model A board:
-> >   rockchip-pinctrl pinctrl: pin gpio1-9 already requested by
-> >   vcc-cam-regulator; cannot claim for fe410000.i2s ...
-> >   platform rk809-sound: deferred probe pending
-> > 
-> > Fix this by supplying a board specific pinctrl with the i2s1 pins used
-> > by pmic codec according to the schematic [1].
-> > 
-> > [1] https://dl.radxa.com/rock3/docs/hw/3a/ROCK-3A-V1.3-SCH.pdf
-> > 
-> > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> 
-> Makes sense to me, but...
-> 
-> > ---
-> > 
-> >  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> > b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts index
-> > 00d873a03cfe..a149c8b83f94 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> > @@ -573,6 +573,8 @@ &i2s0_8ch {
-> > 
-> >  };
-> >  
-> >  &i2s1_8ch {
-> > 
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&i2s1m0_sclktx &i2s1m0_lrcktx &i2s1m0_sdi0 
-&i2s1m0_sdo0>;
-> 
-> ... shouldn't this include i2s1m0_mclk as well?
+On Mon, Jan 16, 2023, at 14:42, Clay Chang wrote:
+> On Thu, Jan 12, 2023 at 02:37:53PM +0100, Arnd Bergmann wrote:
+>> On Thu, Jan 12, 2023, at 14:16, Clay Chang wrote:
+>> For the user interface side, I don't really like the idea of
+>> having a hardware register directly exposed as driver in
+>> drivers/soc, this generally makes it impossible to have portable
+>> userspace that works across implementations of multiple SoC
+>> vendors, and it makes it too easy to come up with an ad-hoc
+>> interface to make a chip work for a particular use case when
+>> a more general solution would be better.
+>> 
+>
+> I agree with you. I have one question though: if we create a 'hpe'
+> directory under drivers/soc, and put all HPE BMC specific drivers there,
+> do you think this proper?
 
-You can totally use i2s without an mclk, but I don't have a specific
-explanation as to why this is lacking in this particular pinctrl, as
-I cargo-culted it from downstream.
+It certainly wouldn't be right to put "all HPE BMC specific drivers"
+in there. Most drivers will fit into some existing subsystem, and
+should be moved there instead. drivers/soc is used primarily for
+drivers using soc_device_register() to provide information about the
+soc, and we also use it as a place for drivers that just export
+soc-specific helper functions that can be used by other drivers.
 
-> For some reason this has been omitted in the pinctrl defined in
-> rk356x.dtsi. But then rk356x.dtsi also claims
->  - both i2s1m0_sdo1 and i2s1m0_sdi3
->  - both i2s1m0_sdo2 and i2s1m0_sdi2
->  - both i2s1m0_sdo3 and i2s1m0_sdi1
-> which are mapped to the same respective pins. Therefore it seems that
-> there might be something wrong with this pinctrl altogether.
+>> Again, it's hard for me to tell why this even needs to be runtime
+>> configurable, please try to describe what type of application
+>> would access the sysfs interface here, and why this can't just
+>> be set to a fixed value by bootloader or kernel without user
+>> interaction.
+>
+> The register is used for communication and synchronization between the
+> BMC and the host. During runtime, user-space daemons configures the
+> value of the register for interactions.
 
-This is actually correct, I believe. The driver has a feature called
-"io multiplex" which fiddles with the GRF to dynamically set the pin
-directions depending on the hardware parameters. As it happens, for
-example sdo1 and sdi3 are on the same pin mux, and can be switched
-between like this.
+That does not sound very specific. What is the subsystem on the
+host that this communicates with? Can you put the driver into the
+same subsystem?
 
-I don't know how well that meshes with upstream's understanding of
-pinctrl but in this case the two functions really can use the same
-pin.
-
-> 
-> Cc: Nicolas Frattaroli, maybe he can provide some clarification.
-> 
-> Best regards,
-> Michael
-> 
-> >  	rockchip,trcm-sync-tx-only;
-> >  	status = "okay";
-> >  
-> >  };
-
-Cheers,
-Nicolas Frattaroli
-
-
-
-
+    Arnd
