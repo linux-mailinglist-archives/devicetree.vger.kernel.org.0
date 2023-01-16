@@ -2,103 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FEB966CF4F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:06:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F236566CF58
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 20:10:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233603AbjAPTGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 14:06:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33566 "EHLO
+        id S232545AbjAPTKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 14:10:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233642AbjAPTGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:06:34 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C52274BE
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:06:33 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id s3so3791992edd.4
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:06:33 -0800 (PST)
+        with ESMTP id S232168AbjAPTKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 14:10:46 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9136B2884D
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:10:44 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id kt14so11334369ejc.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 11:10:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CV8tAfRPf2IHKFO84VR70240CzDv/yHe+xWXBC9YNck=;
-        b=QeJDGv2fUxNWwwetKotPZ+TRh8gJ+RlvO1uxBkjuQb8ZkAeeYnLOALxczfeh1MtpTl
-         n08bJKkqBv3F3+bKDR1PjNg3wIcxrtb9Of+pgl2avg185N8CXce/m3zUpQ1kxVFneVRt
-         WAFZtgGeaZ3ttMQ7H64Xw4sUpfJK0Ek5uQAHH3nI/uqEb3eEZDESzY+Vg39eotfynjGw
-         TdpgVKRsCJmU7aSh0HDmWjvt2mebSkp46uH0fi1eWSHZpzW6Pmf2m7/M9yW0g327aTd4
-         k4zALpCg0fGdSo8V/YssbcYg8VO/9wiqI5N+Mdk0d3VPT1kCRYyu2NQ1Iugow5LmK3dC
-         3lnw==
+        bh=Co2g9IMkk73uKQEckznsjPdf9rOk98qtlKq/GS31a/w=;
+        b=U714rqVZg173SnKUPuCRnKX3tvwBwaSG8VtImxN4rrf/BDh9nnYe6KzyleixazhPxP
+         A7OTCSaQrm1KfFD2C0ElinXw7VfsQzQkulca9N2XZsBa+yhZ8B7ZhE4C2i6mQvJiOyu/
+         Poam/01xBxy83M/lKNRrgnt0vs03iTu6v2co+WHq8hcqT3ngZ2/wLglaDPoSwNYf5mw0
+         FC4XfqtP0nF6sL8Tuo37qD/UUegdNfYUbRBb4QuCqqkTGujoOSGW4+LfiuezDrRLLKoW
+         ECWTHLo9wwg04wFeOD/bW4tYkWbv30totLZK3C5M+upSXf3Z9ZifyKqCh1XQJwecH4p9
+         BBzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CV8tAfRPf2IHKFO84VR70240CzDv/yHe+xWXBC9YNck=;
-        b=qIvuLMFH6yfJhZuIFQUrXJ92So2SH8grt+BVkURBXkufbiF5WpN3dkCzdoMAqjZUEu
-         vtoLv/aBsRRAv3WG33gZduO3B96kXriFHR8JIyEJ6a1d3UIpIPyKtLy8qyGrsSCAiFWF
-         8xnni2scj1mAQTQ2fQfXqNCHt0oCM4fQ02iNN/Mr6gUna0YBEN3gQLbS64hD+W1BCd8r
-         p8bkOdcPdy7ZfzU8K12Nb9Yk3XTBOap4M8jZFGYbg2Hvv/QwvTDvbV+fxMUbHMJAig5a
-         XMb2eo/A/3IYZIoSDj2ZGvy/mwQjuWewgP2EWmmEr+uP87O+KTOrmnAi76zIo7bqw3dW
-         hm6g==
-X-Gm-Message-State: AFqh2ko/xud4K+qU1nmUKofCbhL1Orcd/aN1XFpXlfxedI5twVwWVMkB
-        vtzXXxT6BLDIoxSX4ZL3QURizw==
-X-Google-Smtp-Source: AMrXdXsjBZjMnuV7YVxZpvP0hj3P56j70NAIFlFg7nArqAvUb/4acMKxsEX19XftKcyXLdXMVou5Jw==
-X-Received: by 2002:aa7:dbc4:0:b0:47c:445b:b4f with SMTP id v4-20020aa7dbc4000000b0047c445b0b4fmr296641edt.32.1673895992067;
-        Mon, 16 Jan 2023 11:06:32 -0800 (PST)
+        bh=Co2g9IMkk73uKQEckznsjPdf9rOk98qtlKq/GS31a/w=;
+        b=hb15mXKlaDHTdDEuyigzDe0K7fbSlgqTROwydgeiw3l41ZVWCGLHs1zXjWOyOCb5Q3
+         P5stRiZJklB8GjWHaH1ddt4uFXCWOPQwdups2SvIZsC0hCAT52PXSdQhEvtU0WWk0XJT
+         6FHj1TbEMXakKw50IbEzMWTlEzGML8hgAQwiBSlutzhf72TwwQuLNOxaWNhhFKrOARwT
+         YNkZx0GkRhenCSXkNOHzA0VQB9/F4WdkvA7dB3tQSwsdhdisdMn5ZH4NZbMcNbXNMWXg
+         zbn79c0IrwpthCcRYzxhRBiDhL0EjDjHz5v2iQ6EpcQQ4tHGY7IjbV0c+o5AUMV+2ShZ
+         NFgg==
+X-Gm-Message-State: AFqh2koUtkHHml+feIjDfJ7wwTiZqqvY8wwk3BCH2TZDrXGBqbD7kXgx
+        CJ/C+BoKDtckZle2qxYwEoar0w==
+X-Google-Smtp-Source: AMrXdXu7KxNRBkkMmI1eVW/Eoo9jAdHt6qJ1e/DZ7tGTObc7DPCWM2gvqdSko6LhWVAwn+JazerySg==
+X-Received: by 2002:a17:906:b855:b0:864:8c78:e7ff with SMTP id ga21-20020a170906b85500b008648c78e7ffmr12488537ejb.23.1673896243157;
+        Mon, 16 Jan 2023 11:10:43 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d20-20020a170906305400b007c0d64c1886sm12096487ejd.33.2023.01.16.11.06.29
+        by smtp.gmail.com with ESMTPSA id b17-20020a1709063cb100b0079e11b8e891sm12050219ejh.125.2023.01.16.11.10.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 11:06:31 -0800 (PST)
-Message-ID: <1a70a28b-b406-4d84-ced9-4d66bad94652@linaro.org>
-Date:   Mon, 16 Jan 2023 20:06:29 +0100
+        Mon, 16 Jan 2023 11:10:42 -0800 (PST)
+Message-ID: <18cab846-f62a-93f2-8d47-17b37b638278@linaro.org>
+Date:   Mon, 16 Jan 2023 20:10:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v6 2/3] dt-bindings: remoteproc: ti: Add new compatible
- for AM62 SoC family
+Subject: Re: [PATCH] dt-bindings: qcom: geni-se: Fix '#address-cells' &
+ '#size-cells' related dt-binding error
 Content-Language: en-US
-To:     Devarsh Thakkar <devarsht@ti.com>, andersson@kernel.org,
-        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
-        p.zabel@pengutronix.de, linux-remoteproc@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s-anna@ti.com
-Cc:     hnagalla@ti.com, praneeth@ti.com, nm@ti.com, vigneshr@ti.com,
-        a-bhatia1@ti.com, j-luthra@ti.com
-References: <20230116151906.549384-1-devarsht@ti.com>
- <20230116151906.549384-3-devarsht@ti.com>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20230113201038.267449-1-bhupesh.sharma@linaro.org>
+ <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org>
+ <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
+ <b9aa6d30-5fe8-57a9-e478-c99bca70d185@linaro.org>
+ <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230116151906.549384-3-devarsht@ti.com>
+In-Reply-To: <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 16:19, Devarsh Thakkar wrote:
-> AM62 family of devices don't have a R5F cluster, instead
-> they have single core DM R5F.
-> Add new compatible string ti,am62-r5fss to support this scenario.
+On 16/01/2023 16:43, Bhupesh Sharma wrote:
+> On Mon, 16 Jan 2023 at 13:23, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 15/01/2023 22:33, Bhupesh Sharma wrote:
+>>> On Sun, 15 Jan 2023 at 20:57, Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 13/01/2023 21:10, Bhupesh Sharma wrote:
+>>>>> Fix the following '#address-cells' & '#size-cells' related
+>>>>> dt-binding error:
+>>>>>
+>>>>>    $ make dtbs_check
+>>>>>
+>>>>>    From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+>>>>>         arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dtb: geniqup@4ac0000:
+>>>>>               #address-cells:0:0: 2 was expected
+>>>>>       From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+>>>>
+>>>> Don't we want rather to unify the soc address range?
+>>>
+>>> Well, the assumption in the original dt-bindings was that every reg
+>>> variable is 4 * u32 wide (as most new qcom SoCs set #address- and
+>>> #size-cells to <2>). However, that is not the case for all of the
+>>> SoCs.
+>>
+>> Hm, which device of that SoC cannot be used with address/size cells 2?
 > 
+> As noted in the git log already the geniqup on sm6115 / sm4250 cannot
+> be used with address/size cells 2 (See:
+> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/sm6115.dtsi#L795)
 
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.
-
+That's not relevant and not answering to my question. Address/size cells
+affect children, so not geniqup. address-cells 2 means you have
+everywhere 64 bit addresses, so which devices cannot work with such DTS?
+If you claim that geniqup and its children has some troubles - please
+point what troubles. The DTS and existing address/size cells have
+nothing to do with it.
 
 Best regards,
 Krzysztof
