@@ -2,95 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4208B66BF83
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 14:17:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D4D466BFD5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 14:33:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbjAPNRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 08:17:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39944 "EHLO
+        id S230289AbjAPNdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 08:33:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231611AbjAPNRi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 08:17:38 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE95C1F487
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 05:16:03 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 896DEB80D30
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 13:16:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19F72C433EF;
-        Mon, 16 Jan 2023 13:15:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673874961;
-        bh=29QfTPcs9/gEQmgCKCXaRl7jYtU3HRfzrfTR4DlbQv8=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=Rwwmd6He0NxJjr4f1ILWqhp9FNFKb4tQ4NS8uikEnEMibnZru5eRe99uMM72gNsju
-         cGn2Ss2REDrQgwy/ZolLQ8L6nxfmA+c2J8j8SGlO/QJOslphsntYH7XyFGimQFKRiu
-         iryooyKcgNgoakq++RWAswZz0ns7CHHtCE9E8Iiz9V17fxVbX31lBClYjlC6yAZkUT
-         EPQIjH0zsMA+9TARs5LtI0wnXJ4qbRAtvbXvJw3bqgsb4NhVDZ5u8OqG2fprc5njDg
-         Qn/pccU0lxSfZILJey4qi15/zoNIuFVuh9fsrzVhA03TeyN3rkNNeNnbhbR48dhJnI
-         66bGbBL9fqxYA==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jai Luthra <j-luthra@ti.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-In-Reply-To: <20221230132644.6398-1-j-luthra@ti.com>
-References: <20221230132644.6398-1-j-luthra@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: sound: tlv320aic3x: Add optional clock
- and port properties
-Message-Id: <167387495862.317762.14606265116095883268.b4-ty@kernel.org>
-Date:   Mon, 16 Jan 2023 13:15:58 +0000
+        with ESMTP id S230130AbjAPNdP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 08:33:15 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C161D917
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 05:33:13 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso95445wmq.5
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 05:33:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=vNvOX7djjjBjKEHmE27QSb/utZxm3kNjauubSDkICIY=;
+        b=6bhtEiB/26w40qL9HaO/mVd9X3p8jy6vR7QeqGrPRJ9VB4cbhqVmYX8lVFCN97bDp8
+         +SwI6iuAHzjQLzrGzQdusMA6GrMJ5o4ITzzzqlWBSXyBsu96TRSSoTiYjuDKjfoEIQTl
+         UOJLQioaei3BPtjjyn1U51LZtT64WFjP9YS1Uz6XnRV7A9TBSxPARRUB5iUO58JFaAaa
+         VHJfn12xJ5HIT8jyQD6neJWmA+Sr7sVm3iU4xnZi3JOxzzOBH/F4ZzRVmL8SSVUeuVy0
+         /O1ujgi0twVfWd0t7dgMSPfB2CpWz+cngGXWzdcdt96kJ7AIAb9UlnOVcDmlcxb7bsap
+         GJRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vNvOX7djjjBjKEHmE27QSb/utZxm3kNjauubSDkICIY=;
+        b=aPjfXr2KusM0rWmEew7yla51NIjkilssOBnGXyXVRsRbBexFXZDyRtCio+fs5BPfY+
+         E2hzPv+aF+Rik+4+Ri4a5wl6IoF6IPcv1/KbKt2dRX99UMBkyG4Nckx+tlRn/TCkqDnd
+         panRxNG+wXPYguFyTaoUkwHYJbwTX/1QyKY3agdYhHcAcvmqXllivW5SZNOR0eZW7e/o
+         H3RZ0XehkZKCqco8SKnckmLinlBVz8XlNhGvkrx3N9jeC2qu4ufhd8Vf6tdR97jHmi54
+         hgoaFDaJzF6PZH9mT0XddVrgrT01djza4ITEupHWmE/Thsd6tGH2eo47zZ4zdedWYese
+         dFJA==
+X-Gm-Message-State: AFqh2krWZKTAOjtRvdggqrxE0bGiQbBh/7Yj8kWXZ+JG8d5aZDSHI/2Q
+        Kepmt4KiYTsNj09L0DfbOvK1hw==
+X-Google-Smtp-Source: AMrXdXs7Udt0PVl+BdLhxYFkzaWgm2loEFFrkTgEVgK1GDAx8n6smMRhZQAkQmlOxiad+c7F5VlOMw==
+X-Received: by 2002:a05:600c:4d23:b0:3da:270b:ba6b with SMTP id u35-20020a05600c4d2300b003da270bba6bmr9967300wmp.41.1673875992502;
+        Mon, 16 Jan 2023 05:33:12 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id d6-20020a05600c3ac600b003da0dc39872sm16227317wms.6.2023.01.16.05.33.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 05:33:12 -0800 (PST)
+References: <20230116091637.272923-1-jbrunet@baylibre.com>
+ <20230116091637.272923-3-jbrunet@baylibre.com>
+ <Y8U+1ta6bmt86htm@corigine.com>
+User-agent: mu4e 1.8.10; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Simon Horman <simon.horman@corigine.com>
+Cc:     netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: mdio: add amlogic gxl mdio mux support
+Date:   Mon, 16 Jan 2023 14:27:57 +0100
+In-reply-to: <Y8U+1ta6bmt86htm@corigine.com>
+Message-ID: <1jk01mhaeg.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12-dev-69c4d
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Dec 2022 18:56:44 +0530, Jai Luthra wrote:
-> Describe optional properties for clocks and ports that were missing in
-> the original txt binding, to fix warnings like:
-> 
-> aic33@18: 'assigned-clock-parents', 'assigned-clock-rates',
-> 	'assigned-clocks' do not match any of the regexes:
-> 	'pinctrl-[0-9]+'
-> 	arch/arm/boot/dts/omap2420-n810.dtb
-> 
-> [...]
 
-Applied to
+On Mon 16 Jan 2023 at 13:11, Simon Horman <simon.horman@corigine.com> wrote:
 
-   broonie/sound.git for-next
+> On Mon, Jan 16, 2023 at 10:16:36AM +0100, Jerome Brunet wrote:
+>> Add support for the mdio mux and internal phy glue of the GXL SoC
+>> family
+>> 
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> ---
+>>  drivers/net/mdio/Kconfig              |  11 ++
+>>  drivers/net/mdio/Makefile             |   1 +
+>>  drivers/net/mdio/mdio-mux-meson-gxl.c | 160 ++++++++++++++++++++++++++
+>>  3 files changed, 172 insertions(+)
+>>  create mode 100644 drivers/net/mdio/mdio-mux-meson-gxl.c
+>
+> Hi Jerome,
+>
+> please run this patch through checkpatch.
 
-Thanks!
+Shame ... I really thought I did, but I forgot indeed.
+I am really sorry for this. I'll fix everything.
 
-[1/1] dt-bindings: sound: tlv320aic3x: Add optional clock and port properties
-      commit: b6e98cf4ed3baff0c2f7a1c1babf96fde8e129f3
+>
+> ...
+>
+>> diff --git a/drivers/net/mdio/mdio-mux-meson-gxl.c b/drivers/net/mdio/mdio-mux-meson-gxl.c
+>> new file mode 100644
+>> index 000000000000..205095d845ea
+>> --- /dev/null
+>> +++ b/drivers/net/mdio/mdio-mux-meson-gxl.c
+>
+> ...
+>
+>> +static int gxl_enable_internal_mdio(struct gxl_mdio_mux *priv)
+>> +{
+>
+> nit: I think void would be a more appropriate return type for this
+>      function. Likewise gxl_enable_external_mdio()
+>
+> ...
+>
+>> +static int gxl_mdio_mux_probe(struct platform_device *pdev){
+>
+> nit: '{' should be at the beginning of a new line
+>
+>> +	struct device *dev = &pdev->dev;
+>> +	struct clk *rclk;
+>> +	struct gxl_mdio_mux *priv;
+>
+> nit: reverse xmas tree for local variable declarations.
+>
+>> +	int ret;
+>> +
+>> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+>> +	if (!priv)
+>> +		return -ENOMEM;
+>
+> nit: may be it is nicer to use dev_err_probe() here for consistency.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+That was on purpose. I only use the `dev_err_probe()` when the probe may
+defer, which I don't expect here.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+I don't mind changing if you prefer it this way.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+>
+>> +	platform_set_drvdata(pdev, priv);
+>> +
+>> +	priv->regs = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(priv->regs))
+>> +		return PTR_ERR(priv->regs);
+>
+> And here.
+>
+> ...
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
