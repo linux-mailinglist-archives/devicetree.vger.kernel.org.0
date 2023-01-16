@@ -2,141 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AF9F66BA3C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B97C66BA5B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:30:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232439AbjAPJ0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 04:26:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52654 "EHLO
+        id S232041AbjAPJah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 04:30:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232345AbjAPJ0q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:26:46 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9E4166C1
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:26:45 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1pHLlG-0007IW-CX; Mon, 16 Jan 2023 10:26:38 +0100
-Message-ID: <e492a90c-147c-a50b-80aa-86f47306cff0@pengutronix.de>
-Date:   Mon, 16 Jan 2023 10:26:35 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH 2/2] ARM: dts: imx6qdl: support child mfd cells for the
- reset controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bastian Krause <bst@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232095AbjAPJaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:30:08 -0500
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02olkn2040.outbound.protection.outlook.com [40.92.50.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE97A18B10
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:30:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OLRCqgjfQhMkM8FKuMyokfLYj6BrqZt8LjEREl3El09UhdOsWSBXglhPfeIo5j9rk8wKTSSzTKNJvT8eh3lu6/dGjR5+iXtnNPGtJADoOl3AabTAViHIq38waiFYyvk/1C8KTeiQpQPMkcoLB97yfXrF+mVbIUDEg10bZdQxSQo3+9DPJD1p1uscZsvbybOwSnEyCT2q3lhqRM87NuEhs9LSogcD97bvUHwMmZQmZ9AWudIbZxrjFFXe9IQIbGfWysVGQ37lEDXdO3sM2jAaxno1lo96UKKn3nvSDa2XYiYCsFs8RA6Puqa0AK8ZoGEpZOXdW0qTOzMz1/bW9D0B4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/eifhGVqGoHCLxjeZL2lhpNLTApKoiMbXCKVFzYi46Q=;
+ b=ZFmEaF8RXb+l65X7Lb20YwVm9c+DR9UtsgANIgOIEwzHaVvwPAeKQC92QcFQS0aAr3JgYLBOjd+DYpMxdXeilpn7q4e+PV+6Bjg19L5DCAaUzk5DxZtHRUGPw/HHTaygHZEM2uSl4CFBAod+6mr7f+4X8A0b3PVLnz1iR5nhXcFf5d/mq+XvIwsZPMVj5ZsugRxJn7r9DtWp0u92aiUVzx/zcM2hDfroolpTM6g3OqamU46VIlk/4u0Z/H90CVOxYXotpIHadScqVFYPKyRZifBOc8VOBLKoKV4DWxmSJTfm6H6X0V17HOIysxjkTcMxgoOtHZJgqzgPmAiE83WU9Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from DB9P190MB1594.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:247::8) by
+ GVXP190MB2013.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:4::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5986.21; Mon, 16 Jan 2023 09:29:58 +0000
+Received: from DB9P190MB1594.EURP190.PROD.OUTLOOK.COM
+ ([fe80::2567:af26:29a2:850]) by DB9P190MB1594.EURP190.PROD.OUTLOOK.COM
+ ([fe80::2567:af26:29a2:850%8]) with mapi id 15.20.5986.023; Mon, 16 Jan 2023
+ 09:29:58 +0000
+Message-ID: <DB9P190MB1594D084408339B34C69B060ACC19@DB9P190MB1594.EURP190.PROD.OUTLOOK.COM>
+Date:   Mon, 16 Jan 2023 10:29:55 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] arm64: dts: rockchip: fix probe of analog sound card on
+ rock-3a
+To:     Michael Riesch <michael.riesch@wolfvision.net>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230113-syscon-child-mfd-v1-0-0dd31b7de373@pengutronix.de>
- <20230113-syscon-child-mfd-v1-2-0dd31b7de373@pengutronix.de>
- <392f6e9d-b7c2-37df-2067-f7d967a20f10@linaro.org>
- <12080bf5-2cc4-e215-555e-5438ed1bd851@pengutronix.de>
- <1b5613ad-6d0d-0979-ddd0-4677ade7beb9@linaro.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        frattaroli.nicolas@gmail.com
+References: <20230115211553.445007-1-jonas@kwiboo.se>
+ <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
 Content-Language: en-US
-In-Reply-To: <1b5613ad-6d0d-0979-ddd0-4677ade7beb9@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From:   Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-TMN:  [vbNKo9wQa5AjzOTTdgVFFkAG19dpSE6+]
+X-ClientProxiedBy: AM0P190CA0002.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:208:190::12) To DB9P190MB1594.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:10:247::8)
+X-Microsoft-Original-Message-ID: <8d41b5f8-bbd0-2a06-6506-88b290ac6cf8@kwiboo.se>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9P190MB1594:EE_|GVXP190MB2013:EE_
+X-MS-Office365-Filtering-Correlation-Id: ff40dfeb-82bd-412a-909a-08daf7a43b9e
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1aYQdkxRS+XDX9PVPkTxhba0erqWQfHaXM8VHvnr+IEqFlBDJlcbBK7TRuWSLBX1N9n2eVd1y4gMkvKBwFxpsrQV1/V+q86INmMSt2p+6nKktj44ZR3/04NAKDHjX+Za3yU7W+lK4F6gacUO/bv8fgIIEKrThNV9gb6bhcVkNgxkjF1z7g8uMmLQJDDUzoPCEXobDgVkbrBmCqcvTj7RqNr4L765F85w9PdhRBU0cCk5Oldpn9LTcLAbeTfVJ39A/Ea6XiRQaIEmfQ8Bkq/Ydlaan23AZGf4d7QW303sAAyZYUnbqjaOJLXIf6TEyCzEJ1A504L9e3bdXPdA5GlOJEYlrPAegef5alxnAyd10xcbiy7jnLQkdYx3v6mMPjUUiSmUbDztkqaxgmLFcfu614veGpapb2GNyRazy0RdG1uFDy+RPCfuTlSRvWVvIf/BWedr3QMahw6Di9gphA7boj4Rp4Yq6OeBssxFKFl99mGisJA/8dDU/0VbpB3n1U3gLvLTN7SGV/Bfg3Sv1qUT5N3p/8wwQeJOB6e7MsalDPZZiMuuW5qvHM/58aHqMz/KyvM6HHWxtt11lWLAaIbkyKqHV87m54cRjAg9M0Hl3C/xkHmHnxJKlFUjY3m9IpcASQIL5/+JVpaExb+hUegaQw==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UDJlckFmQlhMMWYzMUh3aUI3djhnd0VLOHBsd1dQRG00bVFtS3pIV1I1cnAz?=
+ =?utf-8?B?L0lPK0JtTmx3SHZ5ZGVYTzVyWUZFTTRteExxckJwL2FrY1FkUm9UdWFiQnNl?=
+ =?utf-8?B?TzQwdGxacVZVNWF0Zkp0ZkVKaFgrWnQ4TTZIak5MTzlQR0ViQkhuWnVyMFNZ?=
+ =?utf-8?B?Sy96Vk01bWNVZXllck9XZ0xBV0FrUk5lZndiWHFML2lHWTJReHgvUWhYR2Rr?=
+ =?utf-8?B?MmgzOXB1cWpyZUFOTkdnSjZNNlp2djRwV25UYnRPU1ZHdmJDMkJqRnJGLy9N?=
+ =?utf-8?B?SXhDNE5aaG5DQ24wN2FtVW5lbnlaVW9MekRZeXVZbGtIbnBYcHFzcXhJVE1v?=
+ =?utf-8?B?TStzOWV0UC8zczIyVjNCTjkvQmszMS8wSURIL2l2UGkzejJBUnJDc3NlaXdL?=
+ =?utf-8?B?Y3hVVHZJM28xU0U1N1BHZW1iM3VENzlaaGVGcDlLRVA1bDVXMHBvVXdWUk9R?=
+ =?utf-8?B?bnIxZmhmT09pVWV4WllBYlIzcmh1RWlpZWpQSXhuemhvT1FoYUl5Z05naXRI?=
+ =?utf-8?B?N2FiWmlsWXZGRE5zM21sa1hRVjIrOWpNNWtlZ0ZaMFA1V1pHS0wzUTQ5WHBH?=
+ =?utf-8?B?VE5IdmtzQ1k2MzQzdGtIUkV1NUxiNlg4bTlySUM5Q0N6bWVCM3lac2VYa25x?=
+ =?utf-8?B?K3VlTTdQd1JCRXdoa0RlYTAxRnpWc0lxUGc3dlUrRVl5S0JiTkpaZExWYTZG?=
+ =?utf-8?B?bmdwZWdjS3lSSGhhVC91SWlURS8wdjZQYXJJMHNHTDVaMDJ1SktqeGV4bGI5?=
+ =?utf-8?B?aWZzWjhsZzdKU0pyRmlkVnFMMWl4VFlrTzhXK2haTmVTTThKQXJnOHpzOGYr?=
+ =?utf-8?B?anQ3SHFHcEVmN1FKMnRwQ0hJenhsVFVTSHpCNGFRRDFFL2ZzTHJwMFBjclZG?=
+ =?utf-8?B?WVVlTEhtZ05uMytiTS80Mm5qSlhuNGtyeENGNnB5MGw4aXpnZE9kOGFiMVA0?=
+ =?utf-8?B?S1VESllUWjJwaUNQWnA4MVdHd0tOeElySUNrNmxGeU5IMjVJTFlQcjc0KzNa?=
+ =?utf-8?B?d0lvK3dqYzNoWFNtbGFPNUdVWkxwTHIzc0crU1ZNcEtEMldBZ2FRMnNtUGdO?=
+ =?utf-8?B?NS85ajQ0cXEzVk5QOUpwWFlmNS9mZDA1NjI5eE1NYUpjWmYxR2VnUzV1RXd3?=
+ =?utf-8?B?R1RHc3JRZGQ3S2ZaTktLaHdYcFdsSFdNK1lzOTh4Nm5YN3p5Z3hOWHMrdm5M?=
+ =?utf-8?B?eTJORTM0NUhVUW8xOXNKaGI0TTNGc041MzE5ZHZSYmQ2VmdzdTJZZks1Z2tl?=
+ =?utf-8?B?NURUak1OVFFnWFp4d2F2MHVCbGp0RmJBQ1dmMTd3RnhwUkNNNjNEOXd2L2ZP?=
+ =?utf-8?B?YW5MVUdyeHk0OEw4UXR1M0w2UHFjeWx1UXRHY1FHYU93VnB1NFBFK29CdnMv?=
+ =?utf-8?B?UDVhRGF2L3RDbUU1L1V1RmNXZkpWWE1Oc0dOc1pTd2YvaXIvQkthWVNVNUVF?=
+ =?utf-8?B?U3hOV1dwNDVUYU55K1RQZ29CZzd4K1IxWHpRTkVqS0RkclppQk5RZjVvM1Fa?=
+ =?utf-8?B?Q3hFRm8wRFg5OVphL1BtM2Z0a0JLenEzd09sTmFjc2dOamp2MWpLU3BQb0k0?=
+ =?utf-8?B?b3ZEamtVQXE0WEFQbEJ5aDFxbWxUNmhhNWJpanVEOG9CbjRjekRDcDRHU1pX?=
+ =?utf-8?B?Qy8yQWRpTjlhS05XWko1aTY3L3BDU0hmS3ZSb3ZyelphcFpqeDh5UVJZeEdH?=
+ =?utf-8?Q?sUpV9y2LJpCXETFNRq4f?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-91991.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff40dfeb-82bd-412a-909a-08daf7a43b9e
+X-MS-Exchange-CrossTenant-AuthSource: DB9P190MB1594.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 09:29:58.1740
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXP190MB2013
+X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.01.23 10:14, Krzysztof Kozlowski wrote:
-> On 16/01/2023 09:27, Ahmad Fatoum wrote:
->> Hello Krzysztof,
->>
->> On 16.01.23 09:20, Krzysztof Kozlowski wrote:
->>> On 13/01/2023 18:32, Bastian Krause wrote:
->>>> The actual syscon-reboot-mode child node can be added by a board
->>>> device-tree or fixed up by the bootloader. For the child node to be
->>>> probed, the compatible needs to include simple-mfd. The binding now
->>>> specifies this, so have the SoC dtsi adhere to it.
->>>>
->>>> Suggested-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
->>>> Signed-off-by: Bastian Krause <bst@pengutronix.de>
->>>> ---
->>>>  arch/arm/boot/dts/imx6qdl.dtsi | 3 ++-
->>>>  1 file changed, 2 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
->>>> index ff1e0173b39be..b16be39458aa6 100644
->>>> --- a/arch/arm/boot/dts/imx6qdl.dtsi
->>>> +++ b/arch/arm/boot/dts/imx6qdl.dtsi
->>>> @@ -865,7 +865,8 @@ epit2: epit@20d4000 { /* EPIT2 */
->>>>  			};
->>>>  
->>>>  			src: reset-controller@20d8000 {
->>>> -				compatible = "fsl,imx6q-src", "fsl,imx51-src";
->>>> +				compatible = "fsl,imx6q-src", "fsl,imx51-src",
->>>> +					     "syscon", "simple-mfd";
->>>
->>> You need children here. Otherwise simple-mfd does not make sense. If you
->>> expect something else to add children (I don't understand why, usually
->>> reboot capability is fixed per SoC and only sometimes extended with some
->>> other means), then this "else" will also change compatible.
->>
->> It's about syscon-reboot-mode, not syscon-reboot. Such modes are board-
->> not soc-specific. 
+Hi Michael,
+
+On 2023-01-16 09:41, Michael Riesch wrote:
+> Hi Jonas,
 > 
-> syscon-reboot-mode is also mostly SoC specific. What exactly would
-> differ on different boards? Register offsets of SoC component? Register
-> values used by SoC power management unit?
-
-The modes supported. Let's say you want a bootloader mode that drops
-the board's bootloader into a fastboot gadget mode. You'd add a
-syscon-reboot-mode pointing at one of the non-volatile registers and
-you would define a magic value to indicate fastboot, both in the
-bootloader and Linux.
-
-In theory, the reboot mode could also talk to the bootrom[1] to change
-the bootsource. This is also not board-agnostic, because it may not
-make sense to have a spinor reboot mode if your board doesn't have one.
-
-We have this scheme for STM32MP1 already and that's why I suggested
-Bastian to do it likewise for i.MX as he needs this functionality:
-https://lore.kernel.org/all/20201021102855.18026-1-a.fatoum@pengutronix.de/
-https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/stm32mp151.dtsi#L44
-
-Here's the barebox documentation for reboot modes btw:
-https://www.barebox.org/doc/latest/user/reboot-mode.html
-
-[1]: The i.MX bootrom samples two registers to determine boot mode
-     override. The upstream syscon-reboot-mode binding supports only
-     one 32-bit value and thus can be used as-is only for communicating
-     with the "user" bootloader.
-
-
-> Anyway, the binding is then not correct - it does not allow
-> syscon-reboot-mode child. I'll comment there.
+> On 1/15/23 22:15, Jonas Karlman wrote:
+>> The following was observed on my Radxa ROCK 3 Model A board:
+>>
+>>    rockchip-pinctrl pinctrl: pin gpio1-9 already requested by vcc-cam-regulator; cannot claim for fe410000.i2s
+>>    ...
+>>    platform rk809-sound: deferred probe pending
+>>
+>> Fix this by supplying a board specific pinctrl with the i2s1 pins used
+>> by pmic codec according to the schematic [1].
+>>
+>> [1] https://emea01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdl.radxa.com%2Frock3%2Fdocs%2Fhw%2F3a%2FROCK-3A-V1.3-SCH.pdf&data=05%7C01%7C%7Cb09a8096d417409ca0c108daf79d85f2%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C638094553170941885%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=upix1Lqcu1y5vYkPtcB5Ao5TA04brBcecCS0LX2ipe4%3D&reserved=0
+>>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 > 
+> Makes sense to me, but...
+> 
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>> index 00d873a03cfe..a149c8b83f94 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>> @@ -573,6 +573,8 @@ &i2s0_8ch {
+>>   };
+>>   
+>>   &i2s1_8ch {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&i2s1m0_sclktx &i2s1m0_lrcktx &i2s1m0_sdi0 &i2s1m0_sdo0>;
+> 
+> ... shouldn't this include i2s1m0_mclk as well?
+
+i2s1m0_mclk is already included in the pmic/rk809 pinctrl, so it was omitted from the i2s1_8ch pinctrl.
+
+Best regards,
+Jonas
+
+> 
+> For some reason this has been omitted in the pinctrl defined in
+> rk356x.dtsi. But then rk356x.dtsi also claims
+>   - both i2s1m0_sdo1 and i2s1m0_sdi3
+>   - both i2s1m0_sdo2 and i2s1m0_sdi2
+>   - both i2s1m0_sdo3 and i2s1m0_sdi1
+> which are mapped to the same respective pins. Therefore it seems that
+> there might be something wrong with this pinctrl altogether.
+> 
+> Cc: Nicolas Frattaroli, maybe he can provide some clarification.
 > 
 > Best regards,
-> Krzysztof
+> Michael
 > 
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+>>   	rockchip,trcm-sync-tx-only;
+>>   	status = "okay";
+>>   };
 
