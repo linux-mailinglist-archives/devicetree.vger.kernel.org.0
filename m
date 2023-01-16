@@ -2,216 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E38F366C329
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:01:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D9166C334
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:03:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232704AbjAPPBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 10:01:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56840 "EHLO
+        id S232834AbjAPPDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 10:03:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232952AbjAPPAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:00:38 -0500
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 736DA22DDE;
-        Mon, 16 Jan 2023 06:51:08 -0800 (PST)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id 12EC2419BE;
-        Mon, 16 Jan 2023 19:51:05 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1673880665; bh=urfMhxWEasdlUysIhKYeaqjGbBy/8LF6MobVrm0Cr/s=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MPTHHxbsQl+duwdTH4sZwUByTn2qxo3qwAzgWuGJtEiJpfWQdvw4Itn3JDpgJ+gd3
-         zTVTxUnh/oD9keXL1Y2xSSgeKlhwQw9X98+vIVPPdmCmb/H8GjOd0Hr2r6gK0HkbmY
-         +ofpHCoGSP2vAv2xSdgPBDhGAsUdkIzW/3acZ3iQLmtF2Od6fc58kOXfyEDGq4t1+k
-         Cr9UZCrHSDJLJaeBzZ2GTotG7i5GEirEJ5ggf12xJ9wwP6ZHMay+m4HjBxoVU2pzlZ
-         Y0WpzYXuvcFuMEHWEg/JAvgKHVuv63r32i8F/dduVkvMvOC6G+1ASkFx2zGpSHTc4E
-         aNUNePPbTbCBg==
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S233008AbjAPPBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:01:18 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 257DA25E07;
+        Mon, 16 Jan 2023 06:52:00 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 29C2A8108;
+        Mon, 16 Jan 2023 14:51:59 +0000 (UTC)
+Date:   Mon, 16 Jan 2023 16:51:57 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Andreas Kemnade <andreas@kemnade.info>, bcousson@baylibre.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: msm/apq8x16-*: Reorder some regulator properties
-Date:   Mon, 16 Jan 2023 19:50:53 +0500
-Message-Id: <20230116145053.1412501-5-nikita@trvn.ru>
-In-Reply-To: <20230116145053.1412501-1-nikita@trvn.ru>
-References: <20230116145053.1412501-1-nikita@trvn.ru>
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: Re: [PATCH] ARM: dts: gta04: fix excess dma channel usage
+Message-ID: <Y8VkjQ2yZQssx/wJ@atomide.com>
+References: <20230113211151.2314874-1-andreas@kemnade.info>
+ <CAHCN7xJH+c41Yas+xnWA57KNi9arOOJDxJ=joEDEJr2k6jrRrw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHCN7xJH+c41Yas+xnWA57KNi9arOOJDxJ=joEDEJr2k6jrRrw@mail.gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It's agreed that these properties should be ordered in the
-reverse-Christmas-tree order. Reorder them to give a better example.
+Hi,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
- arch/arm64/boot/dts/qcom/apq8016-sbc.dts                   | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts       | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts             | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts             | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts       | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts       | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts            | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts     | 2 +-
- arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts      | 2 +-
- 10 files changed, 10 insertions(+), 10 deletions(-)
+* Adam Ford <aford173@gmail.com> [230116 14:16]:
+> Would it make sense to make this default in the omap3.dtsi file and
+> enable them in the individual boards that need it?
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-index f0abb40d0c98..9dfe175607dc 100644
---- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-@@ -506,8 +506,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <1750000>;
- 		regulator-max-microvolt = <3337000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-index bc40721e4cbf..2555e920d7fd 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-@@ -254,8 +254,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <2950000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts b/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
-index 13b51d310940..c99aa80e52dc 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
-@@ -223,8 +223,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <2950000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-index a4dfb2ce7893..b1d01f7cc316 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-@@ -375,8 +375,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <2950000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-index 2596896e4a61..b0b2634b7f1d 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-@@ -326,8 +326,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <2950000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-index 135b38c67da1..fc5e846dad3b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-@@ -193,8 +193,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <2950000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-index d59587d42c0a..11e0930b1764 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-@@ -346,8 +346,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <2950000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
-index 9d5d84c0f9f6..6a4a40ca9dca 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
-@@ -158,8 +158,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <2950000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
-index 84a4713886c1..98e63d414974 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
-@@ -383,8 +383,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <2950000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-index 9e3351ceb752..6610cd0f8a0b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-@@ -247,8 +247,8 @@ l10 {
- 	l11 {
- 		regulator-min-microvolt = <2950000>;
- 		regulator-max-microvolt = <2950000>;
--		regulator-allow-set-load;
- 		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
- 	};
- 
- 	l12 {
--- 
-2.38.1
+In general disabling the unused devices by default for omaps will break
+the power management. The disabled devices are completely ignored by the
+kernel, and the devices are left to whatever the bootloader state might
+be.
 
+For SoCs using firmware to manage devices it's a bit different story
+however. The firmware can still idle disabled devices based on a
+late_initcall for example, even if the kernel knows nothing about the
+disabled devices.
+
+Regards,
+
+Tony
