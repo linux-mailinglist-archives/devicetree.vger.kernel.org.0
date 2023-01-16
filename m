@@ -2,106 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C866B66C455
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:51:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3839566C46E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:54:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231366AbjAPPvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 10:51:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35616 "EHLO
+        id S231421AbjAPPy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 10:54:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231142AbjAPPvi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:51:38 -0500
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2066.outbound.protection.outlook.com [40.107.237.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA16D1E2A1;
-        Mon, 16 Jan 2023 07:51:37 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jJ3ViLoJvUalX8tnrOl44h+leCq6hVkgGWidW382aCgwsgFrFTA+syVrEiDRBoIUBjURpPQIW2N/WfDVX7C14AsUsFbCj3sAnujS81knpmPb9T+IGH0bupoZSUxpejQWscYg6S9pLWlVqr40VaCNBGsvb/MuXqPvOL+AVaufS3ci0VZ/gnpydLNU1yn1zxs4+6GvNnFzFh1nz4wVdriP9wSF7J6l152yUFDlcJwbCbOKhCrKYcqSsUvXM4XXhAqA35qk7waW5oefi7EFgmAO/R9e9cVWmOSlIbWa3MqNdzGj203VmD0clMel8G2p8fezZqvcz/x7F+DEYmy+uC02OA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yjnA7qkGVQm7l6rnA0O6TuQ+17H5k/FgfH6AM63aH98=;
- b=kDvIPngHGNDZ0i8rXIm204D42TVDvJeIyjx9SC/udIQMgNJlWKe1sF1LvUFFkH5qX5owz72xuKqzibHDhfrjXACu4GeW0qNGKhe/Mm8zHvpMSMKaqpbX0hhfCrglE8kHxkNInle8SOlhL9nh6coR3V3hRqfxr0AP5uQskOW9LMg8pkxQTysomW8+4DQizypPSJNxX9HniodcyniHsYhvQUhkLlUQd/y6awnRdvDU4fLVnMt5dg9zWNVPVCwarxACHOcfWN6hTaIRqzEFqhJL5UZpt52RPY1g0MS5Tq2bGMTR3V4NlR1x0tmx5RmwB3E1Vye2ZPktEuGyBAruSVYbqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yjnA7qkGVQm7l6rnA0O6TuQ+17H5k/FgfH6AM63aH98=;
- b=G9ca0AgPgPfFHMwZ+aEKgfZBODfQQUdMaavlmWM+MAokKRlOUkIQQNMpWO0O9ishUnpfTVlL0Lw2GbRiAXCteGS5RStugyOuUtwQ68bnU4GWG2hFwB/aplUP5ehfidQHaV+jBTo3/j6DA1wfUusfswXptI2OQZ932CdaidDZDNpudme9FGuAMK+D22+hRf54BWjzal4V70yvLwjDn2jKNtcMZ2fn2MbewW+3SPA1ZKO3lOfN9nTWn1vK6kW4tweCehofxYIAPx6FeyfgAY5kJ8vJaXWn6csez21XSaftQowULJVQaizMQB0D1IZKkcdWOmxwiDxmga4yF9HV/MqWpw==
-Received: from MN2PR16CA0001.namprd16.prod.outlook.com (2603:10b6:208:134::14)
- by PH7PR12MB6693.namprd12.prod.outlook.com (2603:10b6:510:1b0::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.19; Mon, 16 Jan
- 2023 15:51:34 +0000
-Received: from BL02EPF00010206.namprd05.prod.outlook.com
- (2603:10b6:208:134:cafe::39) by MN2PR16CA0001.outlook.office365.com
- (2603:10b6:208:134::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.19 via Frontend
- Transport; Mon, 16 Jan 2023 15:51:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BL02EPF00010206.mail.protection.outlook.com (10.167.241.196) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.11 via Frontend Transport; Mon, 16 Jan 2023 15:51:32 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 16 Jan
- 2023 07:51:18 -0800
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail203.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 16 Jan
- 2023 07:51:18 -0800
-Received: from moonraker.nvidia.com (10.127.8.14) by mail.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server id 15.2.986.36 via Frontend
- Transport; Mon, 16 Jan 2023 07:51:15 -0800
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     Wayne Chang <waynec@nvidia.com>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH V4 5/5] arm64: tegra: Populate USB Type-C Controller for Jetson AGX Orin
-Date:   Mon, 16 Jan 2023 15:50:45 +0000
-Message-ID: <20230116155045.100780-6-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230116155045.100780-1-jonathanh@nvidia.com>
-References: <20230116155045.100780-1-jonathanh@nvidia.com>
+        with ESMTP id S231506AbjAPPyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:54:44 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6F7222DC
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:54:43 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id d30so38399241lfv.8
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 07:54:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/J5BwwFc+cz/TVDnLga/TBpZtC0SR+xIrcvCr3tsklE=;
+        b=mjEe8zC+F2uzPnl/V19BJ86H1CRNDA0hltY9Vvgnodci10MGhKWGVcfnVjG3kMJWq2
+         C6EL8sZ5hOTQsKERCDp+oGg6RRkDkRUOcIg7e7fSwuidSM0XgyhEvG8lXWSoffnZSJYE
+         tBvtE+U6BaD+q8NWWp6OuaqJMf9pN68BYeYepcxtDncxZojcgBJ1ClBKj6ppmrYGdEPS
+         lOOkujclXuQWaQn7wHUNr6sBaR7OJEJx7CuJMgu2edIMVEOGbFMpORghxSA1CLP8F8RD
+         tZa0DHcVYN5xa/Vovk9M7X6YYD82A7D6aUGHrTD/Idbb9ohDkIA9xNOHE9XHUe5QzkF2
+         bE/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/J5BwwFc+cz/TVDnLga/TBpZtC0SR+xIrcvCr3tsklE=;
+        b=wSF3DSivmgbtrknedRtoJynmLCwnJW4VF5thKIb5oh8K72UXVAYdgaJ83whSml1r04
+         iFO/34n3b4h8GRu58sYSD8J9HcXSutr0ibCALk/cYqrTU7my7Oe+zgWhEKSFHlaNfek9
+         +lRWW95Gn4mF4ppQTY5vp2dMBqlu3PG5b3E36YM34ESj0Bac7Vtm0d355OrViToHT19L
+         PSXce2MYQcHHzqHEaJM6R4K2TwpbpSVx02iSCP2kKFcdzlDLaS5kzSiPhlToI4psTq6t
+         Kj8LzU/1GH1uYg3kdMJodxIqUaJEqFFaPoInHJT0NsHKQK4WDapI1etGegqyCuqiM4oO
+         r0Vg==
+X-Gm-Message-State: AFqh2krOZjGSJsA/eZBUuuBOqJbiGLPiQjU8wXnROl2cXtj0Iyh9mvom
+        EM97C4+GhToNiE59xsYm91mQyA==
+X-Google-Smtp-Source: AMrXdXsBv/GWU6qRrChpha6bgiHRPoveqk+ry3Qo/ejYePhKMUqXzP3fbH+paG3qpb92rYWDro/jlg==
+X-Received: by 2002:ac2:5fad:0:b0:4b5:964d:499e with SMTP id s13-20020ac25fad000000b004b5964d499emr24222483lfe.8.1673884481873;
+        Mon, 16 Jan 2023 07:54:41 -0800 (PST)
+Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
+        by smtp.gmail.com with ESMTPSA id d23-20020a056512369700b004cc86bc8f22sm3604692lfs.90.2023.01.16.07.54.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jan 2023 07:54:41 -0800 (PST)
+Message-ID: <23b4551c-db79-d859-c037-6ed3c8a11883@linaro.org>
+Date:   Mon, 16 Jan 2023 16:54:39 +0100
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00010206:EE_|PH7PR12MB6693:EE_
-X-MS-Office365-Filtering-Correlation-Id: 935803a0-5b54-413c-b69a-08daf7d98a60
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RgeNFLKYUv40w13BV5RJt23pKjX4pIS+i6/Fseb48HsGTtbgk7n+rLVunDYWF+9gAFRbhyTribOVOEytGA89VbQxKRJRUevL7I5UzmLDrvLMmDA6nOqnyjEK3O6UAhobDGD8HBbXYE+QLbZnOi4ZZixlYROxvjjdrBFmd4vONpXVIDet06+eSKRGDgX08BO4UIhyGo5wHFHaUZSY1tZc65LNSanE1PQqATnuJh3yPg+JqFCF6T5UIwDcdQPlqFAV3pc4jGvLhAZNb6s8ooHV88v9fKvPpFOJKh3Og9bpyBltwBMJbbjzuUrwZYUWuQSC/zqEBOf2hgzaY3yGjair6DZf31exb2zcargMKKXMVyCyu19NxBqn/xKm3oOVCZVMNOopr7MLr++cnSLyDiiznVCdBTgYj2ZwO5h4u3AOuysE5a98zVa5+cyUPEpb8JfrpudOeOOxagWNepW3hgtDFUD5fqbt1plLiw65qjuh4Oga5aQ9k225EtD0B0bGRCLZkqvDJ5RMqkgjXZW/LiPc97ALppSFfx+HFDdAOTLdjdyOg7W95VZqfg5CmtigqU59JQn7Dz58qpD5JTvxXgKsLEPCLJgMQeW2tTwECpNquQHZlwHqnNdrifo6x+Eyyo0yFD/J5p3VUpz4+sxMK1zMENN/NqckSBtSTIaKHZJkh2Q56C18+ktXOlKjTehDj2RWk0cHkqxvWlZwzOmisnr62g==
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(396003)(346002)(136003)(376002)(39860400002)(451199015)(36840700001)(46966006)(40470700004)(5660300002)(8936002)(41300700001)(54906003)(70586007)(316002)(70206006)(4326008)(110136005)(8676002)(2906002)(7696005)(7636003)(356005)(478600001)(82740400003)(6666004)(82310400005)(26005)(107886003)(186003)(36756003)(47076005)(1076003)(36860700001)(336012)(426003)(40480700001)(40460700003)(2616005)(86362001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 15:51:32.5873
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 935803a0-5b54-413c-b69a-08daf7d98a60
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00010206.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6693
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] dt-bindings: qcom: geni-se: Fix '#address-cells' &
+ '#size-cells' related dt-binding error
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, andersson@kernel.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20230113201038.267449-1-bhupesh.sharma@linaro.org>
+ <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org>
+ <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
+ <b9aa6d30-5fe8-57a9-e478-c99bca70d185@linaro.org>
+ <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -109,47 +82,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the USB Type-C controller that is present on the Jetson AGX Orin
-board. The ports for the Type-C controller are not populated yet, but
-will be added later once the USB host and device support for Jetson AGX
-Orin is enabled.
 
-This is based upon a patch from Wayne Chang <waynec@nvidia.com>.
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
-V4: This is effectively a new patch that has been added, but based upon
-    a patch from Wayne Change that added USB host, device and type-C
-    support in a single patch.
+On 16.01.2023 16:43, Bhupesh Sharma wrote:
+> On Mon, 16 Jan 2023 at 13:23, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 15/01/2023 22:33, Bhupesh Sharma wrote:
+>>> On Sun, 15 Jan 2023 at 20:57, Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 13/01/2023 21:10, Bhupesh Sharma wrote:
+>>>>> Fix the following '#address-cells' & '#size-cells' related
+>>>>> dt-binding error:
+>>>>>
+>>>>>    $ make dtbs_check
+>>>>>
+>>>>>    From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+>>>>>         arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dtb: geniqup@4ac0000:
+>>>>>               #address-cells:0:0: 2 was expected
+>>>>>       From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+>>>>
+>>>> Don't we want rather to unify the soc address range?
+>>>
+>>> Well, the assumption in the original dt-bindings was that every reg
+>>> variable is 4 * u32 wide (as most new qcom SoCs set #address- and
+>>> #size-cells to <2>). However, that is not the case for all of the
+>>> SoCs.
+>>
+>> Hm, which device of that SoC cannot be used with address/size cells 2?
+> 
+> As noted in the git log already the geniqup on sm6115 / sm4250 cannot
+> be used with address/size cells 2 (See:
+> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/sm6115.dtsi#L795)
+SM6115 (and pretty much every other arm64 msm platform newer than 8916)
+should be using addr/size-cells = 2 along with (dma-)ranges of 36 bit, as
+that's what their smmus use and otherwise some addresses may get cut off
+in translation, or so the story went with 845 N years ago.. We can either
+pursue this patch or I can submit the 2-cell-ification if you don't plan on
+adding more nodes shortly
 
- .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts  | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-index 32c58aa00035..059a23ce810b 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-@@ -2115,6 +2115,20 @@ usb@3610000 {
- 			phy-names = "usb2-0", "usb2-1", "usb2-2", "usb2-3",
- 				"usb3-0", "usb3-1", "usb3-2";
- 		};
-+
-+		i2c@c240000 {
-+			status = "okay";
-+			ucsi_ccg: ucsi_ccg@8 {
-+				compatible = "cypress,cypd4226";
-+				cypress,firmware-build = "gn";
-+				interrupt-parent = <&gpio>;
-+				interrupts = <TEGRA234_MAIN_GPIO(Y, 4) IRQ_TYPE_LEVEL_LOW>;
-+				reg = <0x08>;
-+				status = "okay";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
- 	};
- 
- 	chosen {
--- 
-2.25.1
-
+Konrad
+> 
+>>> So, ideally we shouldn't set the  "#address-cells" and  "#size-cells":
+>>> as const: 2 in the bindings.
+>>>
+>>> See as an example:
+>>> https://www.kernel.org/doc/Documentation/devicetree/bindings/usb/usb-device.yaml
+>>
+>>
+>> How USB device - so entirely different device, not MMIO! - is related here?
+>>
+>> Best regards,
+>> Krzysztof
+>>
