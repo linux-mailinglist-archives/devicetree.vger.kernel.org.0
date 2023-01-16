@@ -2,142 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24E7B66BD3B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:54:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FFB166BD57
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:56:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbjAPLxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 06:53:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38546 "EHLO
+        id S230254AbjAPL4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 06:56:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230117AbjAPLxx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:53:53 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD97C1ABED
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:53:52 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1pHO3d-0006DK-Kq; Mon, 16 Jan 2023 12:53:45 +0100
-Message-ID: <0ac8e221-e88c-a05d-bc6f-9465783be866@pengutronix.de>
-Date:   Mon, 16 Jan 2023 12:53:44 +0100
+        with ESMTP id S230072AbjAPL4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:56:13 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A09A41A484
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:56:11 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id vm8so67497664ejc.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:56:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=opc9QPH8t0rwYGBLZ/6s2ZS8vH/2JFxpHjhMhYhyR6c=;
+        b=KlD4i9oGhDhDd3KNbQdH9lF+HOJ/AgqpYZwD/CxAPxWpNrMus2+Dd2lWHHX3PACOVi
+         uSA9AT1Bv5i4od2dOHIZNXmidte7lLnV+aIivtunzTzfpwhhTm86p8W2vIYI0kAQhNGM
+         gp3i31Q6G1aYgAa4RgRmZwYD1sBAHTD0L3Z87z/nb8dbRcZkZPnopllFyhXV922NYUbO
+         ZwH+lB/4eNI4X/lX/Ndg4g3hsBTN1McmPXf4InhrdQib+HszshPdXhAKCkxl6vCKMyUm
+         rCz9TiCePsv7GDdMqwhwivB6bP8QvinljsQpYHaqKHwV2XgByrDS/u1LtIlbtWGi6pGq
+         tX3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=opc9QPH8t0rwYGBLZ/6s2ZS8vH/2JFxpHjhMhYhyR6c=;
+        b=kdtBfBrJm0LhO0np8+9nc7yn/O4oSXUtYXy7ZXZByQVo60mlLDdrKWz8Qh2McFmKrJ
+         owJXftrPaEnyGMpBNRXhMYutPgyxbR9ZDO5RvEu9xAs0LMXimN8h+gQUy8+Bw0Yp+1sD
+         q+PwgXQds8Xxd/DLXaDgn0faJsgp8MjqZqQ+Dr1whwg4A/oyZiVSt8IyZhiELACv5jFC
+         usVD6BF0VV8iJGA4QC/TcVWTsGBcdUKmIGzl7ZStfWQ+RwIWt0M3cpmhKE9MkxGD4FDH
+         K50PX2gM2PY4COBZh+u7IFPmXNvg40zpL1XwMTsa4zieSm3XFDuP00QNzopT17TfBL7F
+         9kMQ==
+X-Gm-Message-State: AFqh2kqAdnfHdd9U+vYv79Wy/AOX+KQGnRudcYD/xDy7ioXNEk4Syzdo
+        ESqWklDpDhpT1tg2TillpXpSuA==
+X-Google-Smtp-Source: AMrXdXtPorQ/tIX0rgBIsJ9j1MJAYlH9dZoCXDU0vp+XdYqCRbho82nhjJOkeWYy5DpmT4mQb8oQCQ==
+X-Received: by 2002:a17:906:7193:b0:870:d9a:9ebb with SMTP id h19-20020a170906719300b008700d9a9ebbmr4434354ejk.38.1673870170238;
+        Mon, 16 Jan 2023 03:56:10 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id ad7-20020a170907258700b0084bfd0a117bsm11906977ejc.16.2023.01.16.03.56.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jan 2023 03:56:09 -0800 (PST)
+Message-ID: <6312bc6d-684b-1b01-411c-4c316e754edf@linaro.org>
+Date:   Mon, 16 Jan 2023 12:56:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH 2/2] ARM: dts: imx6qdl: support child mfd cells for the
- reset controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bastian Krause <bst@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] dt-bindings: msm/dsi: Don't require vdds-supply on 7nm
+ PHY
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230113-syscon-child-mfd-v1-0-0dd31b7de373@pengutronix.de>
- <20230113-syscon-child-mfd-v1-2-0dd31b7de373@pengutronix.de>
- <392f6e9d-b7c2-37df-2067-f7d967a20f10@linaro.org>
- <12080bf5-2cc4-e215-555e-5438ed1bd851@pengutronix.de>
- <1b5613ad-6d0d-0979-ddd0-4677ade7beb9@linaro.org>
- <e492a90c-147c-a50b-80aa-86f47306cff0@pengutronix.de>
- <7cffc639-3b61-1479-115c-34dffdfd8cc9@linaro.org>
-Content-Language: en-US
-In-Reply-To: <7cffc639-3b61-1479-115c-34dffdfd8cc9@linaro.org>
+        Jonathan Marek <jonathan@marek.ca>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230116115132.348961-1-konrad.dybcio@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230116115132.348961-1-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
-
-On 16.01.23 11:15, Krzysztof Kozlowski wrote:
->>>> It's about syscon-reboot-mode, not syscon-reboot. Such modes are board-
->>>> not soc-specific. 
->>>
->>> syscon-reboot-mode is also mostly SoC specific. What exactly would
->>> differ on different boards? Register offsets of SoC component? Register
->>> values used by SoC power management unit?
->>
->> The modes supported. Let's say you want a bootloader mode that drops
->> the board's bootloader into a fastboot gadget mode. You'd add a
->> syscon-reboot-mode pointing at one of the non-volatile registers and
->> you would define a magic value to indicate fastboot, both in the
->> bootloader and Linux.
+On 16/01/2023 12:51, Konrad Dybcio wrote:
+> On some SoCs (hello SM6375) vdds-supply is not wired to any smd-rpm
+> or rpmh regulator, but instead powered by the VDD_MX/mx.lvl line,
+> which is voted for in the DSI ctrl node.
 > 
-> Bootloader and other firmware (e.g. ATF) is tightly tied to SoC, not to
-> board. There might be differences between firmware used and OS (e.g.
-> ChromeOS uses their own bootloader, different than Linux and Android on
-> the same SoC), but again this is not board specific.
-
-The bootloader probes from a board device tree and it also implements
-initialization, update, boot and fallback logic specific to the board and
-part of that is what reboot modes are supported. E.g. ST had particular
-reboot modes in mind (e.g. reboot into eMMC as usb mass storage gadget),
-but that's just a convention they chose for the platform, not something
-inherent to the SoC.
-
->> In theory, the reboot mode could also talk to the bootrom[1] to change
->> the bootsource. This is also not board-agnostic, because it may not
->> make sense to have a spinor reboot mode if your board doesn't have one.
->>
->> We have this scheme for STM32MP1 already and that's why I suggested
->> Bastian to do it likewise for i.MX as he needs this functionality:
->> https://lore.kernel.org/all/20201021102855.18026-1-a.fatoum@pengutronix.de/
-> 
-> I don't understand why you use clearly wrong patches as examples. Bad
-> patterns and bugs are not reason to use same approach.
-
-I am trying to give you some context. It may be evident to you what's
-so clearly wrong about them, but for me it worked and I am trying to
-understand where you see a problem.
-
-> The binding is wrong - you do not allow syscon-reboot-mode and if you
-> ever tested your patches, you would see the errors.
-
-I did indeed not dump the device tree after the bootloader fixed it up and
-run into through the DT bindings checker. 
-
->> https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/stm32mp151.dtsi#L44
-> 
-> Whether this part is correct, tricky to say. Why these offsets are not
-> valid for other board?
-
-The offsets are valid, it may just not work. Also the user may choose to place
-the reboot mode somewhere else within the syscon if the register is unused
-otherwise.
-
-Still we could probably add a reboot-mode child node to the device tree
-with no extra modes and leave it disabled. That way boards can fill in the
-modes they support, enable it and use it. Does this work for you?
-
-Thanks,
-Ahmad
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
 
