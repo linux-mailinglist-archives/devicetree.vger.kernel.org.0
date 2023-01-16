@@ -2,140 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D01C66BD91
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 13:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1586C66BDE4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 13:33:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbjAPMRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 07:17:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48948 "EHLO
+        id S229902AbjAPMdU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 16 Jan 2023 07:33:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230174AbjAPMQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 07:16:57 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA951E288;
-        Mon, 16 Jan 2023 04:16:53 -0800 (PST)
-Received: from [192.168.2.131] (unknown [109.252.117.89])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 877BE6601ACF;
-        Mon, 16 Jan 2023 12:16:51 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673871412;
-        bh=DBPrqVIX0FkXdk29cXAhbSyKQJoqHM21fjclrZVPmYg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=O+iauYzlKCNj7yGhonfleUevaKod2TXyW+fN0XihMUOHtRjAjiAlIzdaGmo164C2B
-         /McP217ZQdZM+KKzy1H0bAeV15tIwXuwN1c9zI4uNGCv6+CkhaKbz688gdlmKxigFq
-         kIfadDHUAS/lg0RG99oe7D+b94XEXsrCMmJrtctXmjBZh8zN+tB5naC5798Sm3nAUs
-         ItNS+fEM6uYUWYZicGMjpPgdvTqqHfAf9uBteSD1SYiSvlaYjG7Aai0ohx2D49jZ2y
-         +fKdl6Af7Q6We8+FroExhZCEeg0CbzUWWfMb8n95b426PAGNqyoF+n59AMg4gMFADc
-         5NUSD6n0ebTuA==
-Message-ID: <8bd5cf36-e1fb-305c-08c5-3bbc80204866@collabora.com>
-Date:   Mon, 16 Jan 2023 15:16:48 +0300
+        with ESMTP id S229603AbjAPMdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 07:33:19 -0500
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C9401C338;
+        Mon, 16 Jan 2023 04:33:18 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id cm26-20020a056830651a00b00684e5c0108dso2292330otb.9;
+        Mon, 16 Jan 2023 04:33:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=F61H973BIjXBatem9Exy4ACFKfXqK3XYvjoCLybvptw=;
+        b=urS35smwwuNshpl0oM6fGqd1FUOAUSSCG6iA9TwpE6BUtpsYi/YpbzTmZMgjHpcAfd
+         HGsvbGF7Dw15wCdOnlpyNU5lisCA/0nS+X/2EGhE344d65eB4eHn/IdE3tb8fzP8RyPy
+         PHBfqHASoxMerIsu4s+QfAOaqj1fDbox2n6NyyqbfLeZXhamLIIyIc6vt1ndqgHpp/6y
+         JzVV1hcdonSrOP+L8ngIu4VnyMqjAjzg94I2CjiVQ0wFJ5CxK3n1fv24j5ZBbSrVKCip
+         Fqt+NrnE2omBjKmea25KMRJR7T+8/3phO+8q5lDX7reWI9gwuHWN3iyaxYRkvbRHnzys
+         LcWw==
+X-Gm-Message-State: AFqh2kr5AsMBreOS8pc3dhjc4i2heHPTqTYsOOHydPBshOteu7kCN5KY
+        atc9jQ+8mAnXSNENqYgvRM4bV0Fk6l1Xig==
+X-Google-Smtp-Source: AMrXdXtzSsNph0ejn7p8tIAE0wWLdos/hFo+vZ3ENfRhvFwTvGYdif1ebIp2V3Kjt1CZrmTBvLG4aA==
+X-Received: by 2002:a05:6830:2084:b0:685:134:b73d with SMTP id y4-20020a056830208400b006850134b73dmr2168892otq.23.1673872397164;
+        Mon, 16 Jan 2023 04:33:17 -0800 (PST)
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com. [209.85.210.51])
+        by smtp.gmail.com with ESMTPSA id cb2-20020a056830618200b0068460566f4bsm14613187otb.30.2023.01.16.04.33.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jan 2023 04:33:17 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id d6-20020a056830138600b0068585c52f86so1403698otq.4;
+        Mon, 16 Jan 2023 04:33:16 -0800 (PST)
+X-Received: by 2002:a25:5189:0:b0:7bf:d201:60cb with SMTP id
+ f131-20020a255189000000b007bfd20160cbmr1936519ybb.365.1673872073848; Mon, 16
+ Jan 2023 04:27:53 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [Patch v1 08/10] cpufreq: tegra194: add OPP support and set
- bandwidth
-To:     Sumit Gupta <sumitg@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>, treding@nvidia.com,
-        krzysztof.kozlowski@linaro.org, viresh.kumar@linaro.org,
-        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     sanjayc@nvidia.com, ksitaraman@nvidia.com, ishah@nvidia.com,
-        bbasu@nvidia.com, Rajkumar Kasirajan <rkasirajan@nvidia.com>
-References: <20221220160240.27494-1-sumitg@nvidia.com>
- <20221220160240.27494-9-sumitg@nvidia.com>
- <4e3e4485-ba22-eb47-fb95-e8d626160bc6@gmail.com>
- <8e6d7dd3-1bdc-ee4b-0c1e-1ae9cd8e4f29@nvidia.com>
-Content-Language: en-US
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <8e6d7dd3-1bdc-ee4b-0c1e-1ae9cd8e4f29@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230116103926.276869-1-clement.leger@bootlin.com> <20230116103926.276869-5-clement.leger@bootlin.com>
+In-Reply-To: <20230116103926.276869-5-clement.leger@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 16 Jan 2023 13:27:42 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVsa4t61AOnEHzuda7czE1fk-16-R8fXsp-MB3hZMJTEQ@mail.gmail.com>
+Message-ID: <CAMuHMdVsa4t61AOnEHzuda7czE1fk-16-R8fXsp-MB3hZMJTEQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 4/6] dt-bindings: net: renesas,rzn1-gmac:
+ Document RZ/N1 GMAC support
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Sergey Shtylyov <s.shtylyov@omp.ru>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Wong Vee Khee <veekhee@apple.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Revanth Kumar Uppala <ruppala@nvidia.com>,
+        Tan Tee Min <tee.min.tan@linux.intel.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Mohammad Athari Bin Ismail <mohammad.athari.ismail@intel.com>,
+        Jon Hunter <jonathanh@nvidia.com>, netdev@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/13/23 16:50, Sumit Gupta wrote:
-> 
-> 
-> On 22/12/22 21:16, Dmitry Osipenko wrote:
->> External email: Use caution opening links or attachments
->>
->>
->> 20.12.2022 19:02, Sumit Gupta пишет:
->>> Add support to use OPP table from DT in Tegra194 cpufreq driver.
->>> Tegra SoC's receive the frequency lookup table (LUT) from BPMP-FW.
->>> Cross check the OPP's present in DT against the LUT from BPMP-FW
->>> and enable only those DT OPP's which are present in LUT also.
->>>
->>> The OPP table in DT has CPU Frequency to bandwidth mapping where
->>> the bandwidth value is per MC channel. DRAM bandwidth depends on the
->>> number of MC channels which can vary as per the boot configuration.
->>> This per channel bandwidth from OPP table will be later converted by
->>> MC driver to final bandwidth value by multiplying with number of
->>> channels before sending the request to BPMP-FW.
->>>
->>> If OPP table is not present in DT, then use the LUT from BPMP-FW directy
->>> as the frequency table and not do the DRAM frequency scaling which is
->>> same as the current behavior.
->>>
->>> Now, as the CPU Frequency table is being controlling through OPP table
->>> in DT. Keeping fewer entries in the table will create less frequency
->>> steps and scale fast to high frequencies if required.
->>
->> It's not exactly clear what you're doing here. Are you going to scale
->> memory BW based on CPU freq? If yes, then this is wrong because CPU freq
->> is independent from the memory subsystem.
->>
->> All Tegra30+ SoCs have ACTMON hardware unit that monitors CPU memory
->> activity and CPU memory BW should be scaled based on CPU memory events
->> counter. We have ACTMON devfreq driver for older SoCs. I have no clue
->> how ACTMON can be accessed on T186+, perhaps there should be a BPMP FW
->> API for that.
->>
-> 
-> Yes, scaling the memory BW based on CPU freq.
-> Referred below patch set for previous generation of Tegra Soc's which
-> you mentioned and tried to trace the history.
-> 
-> https://patchwork.ozlabs.org/project/linux-tegra/patch/1418719298-25314-3-git-send-email-tomeu.vizoso@collabora.com/
-> 
-> In new Tegra Soc's, actmon counter control and usage has been moved to
-> BPMP-FW where only 'MCALL' counter is used and 'MCCPU is not being used.
-> Using the actmon counter was a reactive way to scale the frequency which
-> is less effective due to averaging over a time period.
-> We are now using the proactive way where clients tell their bandwidth
-> needs to help achieve better performance.
+Hi Clément,
 
-You don't know what bandwidth CPU needs, you trying to guess it.
+Thanks for your patch!
 
-It should be a bad decision to use cpufreq for memory bandwidth scaling.
-You'll be wasting memory power 90% of time because cpufreq doesn't have
-relation to the DRAM, your heuristics will be wrong and won't do
-anything good compared to using ACTMON. The L2 CPU cache + memory
-prefetching hides memory from CPU. And cpufreq should be less reactive
-than ACTMON in general.
+On Mon, Jan 16, 2023 at 11:37 AM Clément Léger
+<clement.leger@bootlin.com> wrote:
+> Add "renesas,rzn1-gmac" binding documention which is compatible which
 
-Scaling memory freq based on cpufreq is what downstream NV kernel did
-10+ years ago for the oldest Tegra generations. Today upstream has all
-the necessary infrastructure for doing memory bandwidth scaling properly
-and we even using h/w memory counters on T20. It's strange that you want
-to bring the downstream archaity to the modern upstream for the latest
-Tegra generations.
+documentation
 
-If you can skip the BPMP-FW and use ACTMON directly from kernel, then
-that's what I suggest to do.
+> "snps,dwmac" compatible driver but uses a custom PCS to communicate
+> with the phy.
+>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+>  .../bindings/net/renesas,rzn1-gmac.yaml       | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml b/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
+> new file mode 100644
+> index 000000000000..effb9a312832
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/renesas,rzn1-gmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas GMAC1 Device Tree Bindings
+> +
+> +maintainers:
+> +  - Clément Léger <clement.leger@bootlin.com>
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - renesas,r9a06g032-gmac
+> +          - renesas,rzn1-gmac
+> +  required:
+> +    - compatible
+> +
+> +allOf:
+> +  - $ref: "snps,dwmac.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    additionalItems: true
+> +    maxItems: 3
+> +    items:
+> +      - enum:
+> +          - renesas,r9a06g032-gmac
+> +          - renesas,rzn1-gmac
+> +    contains:
+> +      enum:
+> +        - snps,dwmac
 
--- 
-Best regards,
-Dmitry
+Why not just
 
+    items:
+      - enum:
+          - renesas,r9a06g032-gmac
+          - renesas,rzn1-gmac
+          - snps,dwmac
+
+?
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    ethernet@44000000 {
+> +      compatible = "renesas,rzn1-gmac";
+
+Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb:
+ethernet@44000000: compatible: ['renesas,rzn1-gmac'] does not contain
+items matching the given schema
+
+> +      reg = <0x44000000 0x2000>;
+> +      interrupt-parent = <&gic>;
+> +      interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
+> +             <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
+> +             <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> +      interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
+> +      clock-names = "stmmaceth";
+> +      clocks = <&sysctrl R9A06G032_HCLK_GMAC0>;
+> +      snps,multicast-filter-bins = <256>;
+> +      snps,perfect-filter-entries = <128>;
+> +      tx-fifo-depth = <2048>;
+> +      rx-fifo-depth = <4096>;
+> +      pcs-handle = <&mii_conv1>;
+> +      phy-mode = "mii";
+> +    };
+> +
+> +...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
