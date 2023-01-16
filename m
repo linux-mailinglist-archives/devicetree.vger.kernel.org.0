@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8359866BC70
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:08:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB78766BC71
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:08:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjAPLIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 06:08:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38600 "EHLO
+        id S229799AbjAPLIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 06:08:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbjAPLIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:08:30 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E4406A6B
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:08:30 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id u1-20020a17090a450100b0022936a63a21so7096395pjg.4
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:08:30 -0800 (PST)
+        with ESMTP id S230402AbjAPLIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:08:35 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9CCD14E88
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:08:33 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id g23so14396638plq.12
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:08:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dfRiQXYTUx6y8hhtdcAlsfGS9AhT12f1GNqfx+pyyDk=;
-        b=Eztij/jKwvQgLi8FDIq5tc40NYED6o9kyjWUtMs94tSD3Q0DoNhh88GZK3QOx5Mbjl
-         rqQtvulivsl9z30WiH5kwhs7vxyc4rBEs5Fa8Om0dq5CDMPtVdMp6i/fb/Ex37GBMe9q
-         TDCD8Ft7g+ZKdLIbmLWSTdQqsosUGLE69BZUI=
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=erd07UtB/CaRm8VAcdFsHqz5BD6J0Uh9OeVqXzbjdoQ=;
+        b=We2Nv/y1kzqc22WfmseNr651ji5otvZ5dRPvn3MVPNPxzpwrQiX8W+CbgI2ggX9eDN
+         IijlPSbDLYgdw5rtt9RXJBREJfk1JaJPpcsMiAJs64NhTr3NWbbEKKxwQuyGlX/o9Fdq
+         fcw9jaQWUy0ODz/rFTdFyBZmd2/ZmmvcU/43E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dfRiQXYTUx6y8hhtdcAlsfGS9AhT12f1GNqfx+pyyDk=;
-        b=hOHwokEddzQE9JjICK+7wQu8LrkcPlFN8VPFRNdCrY9lzbabIBJYM2MaOgZuoQS6vx
-         AjRNMSosmt7lFEtCRP8B6bQf2YL1LbmjvVPPI2cZkX7lmvR81CPt/mNT8piLEiclh0K7
-         55mHDAWXbE4ji/CmEZ6o/OrzdDN1G7170rIOrn2aMJBMnxaILoAx1Q0xNtUH7rGtYODK
-         LgD0KPam0fVBqGtxbd50DJIgrzpcRyKdxnzhOgHKLVN1zXRYQN5jqx0yTiONe5iyTx+v
-         f2CJEqGxQI2ZlyObID1PU2IRBH7B7bvOx2OaywbCHjhDgb+F7wRFSNM34TG80uv22PBS
-         5ZRQ==
-X-Gm-Message-State: AFqh2kpHURDhWP6dZyvXy25fZGF7Si4PWjZP3BYxxJhvbqU8PWhXiJRu
-        29nFkEjuDZdgYWOLfxcRFWEvktmkNZZIafL1
-X-Google-Smtp-Source: AMrXdXsggwYVYYGhO1zejEuuLPLjf5Zi64UVNlp925UPkPrexYScta5K/8VyKE2HL32TxjKI4YFFag==
-X-Received: by 2002:a17:90a:b110:b0:223:4308:1ab4 with SMTP id z16-20020a17090ab11000b0022343081ab4mr93379792pjq.46.1673867309636;
-        Mon, 16 Jan 2023 03:08:29 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=erd07UtB/CaRm8VAcdFsHqz5BD6J0Uh9OeVqXzbjdoQ=;
+        b=b0TSQa7+Sq9WKZbI+4b8hyPIdQaMnCGz83F+08KwxXIoWArncnSmg8WCwLAWwMnpB7
+         W6F9yCXu57ISxzEV21qNyR/aoktjzQZz8rkIWa/bTqhyoaj0/w5s6mq2v8gEV7P6l+h/
+         utU9rXXBrjk/GBDlRaYATIBmHFKbCV2JuN2SbGQxhqT6lmrqIsAjyyaguHMCt+65wjBT
+         CIOQbSnFFkkvV0RdN+lM0p1Lq7QImQcDMmLzcTwwWgg+viVVzi7ypE9g2O6DCbwGSt+U
+         EgAYyeRS4gLaAILmQN4/5I6C75PImJzLfv+F1cdap0vOAWuXwMc2iO4VQQJvc2NFL8+l
+         ACbg==
+X-Gm-Message-State: AFqh2kp6KAroQC9j3LaXVhAEekgTp88IFjT0MaX4E0Ormip9YHjwQurn
+        fSZ7G2txB7Wb4Eo2OX3Hd8LbDw==
+X-Google-Smtp-Source: AMrXdXuq+XEkjBV2F0TfS2QJ0JI1gIcLgpsZ1zLbf+nvAZJ8IJOaPuaSO88JzGD+CnIl2ceode0kfw==
+X-Received: by 2002:a17:90b:4ccf:b0:229:a39:2ad8 with SMTP id nd15-20020a17090b4ccf00b002290a392ad8mr14437596pjb.37.1673867313326;
+        Mon, 16 Jan 2023 03:08:33 -0800 (PST)
 Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:a3f3:9ba9:fe36:fbcb])
-        by smtp.gmail.com with ESMTPSA id i8-20020a17090a138800b00226369149cesm17993686pja.21.2023.01.16.03.08.26
+        by smtp.gmail.com with ESMTPSA id i8-20020a17090a138800b00226369149cesm17993686pja.21.2023.01.16.03.08.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jan 2023 03:08:29 -0800 (PST)
+        Mon, 16 Jan 2023 03:08:32 -0800 (PST)
 From:   Pin-yen Lin <treapking@chromium.org>
 To:     Andrzej Hajda <andrzej.hajda@intel.com>,
         Neil Armstrong <neil.armstrong@linaro.org>,
@@ -61,57 +62,141 @@ Cc:     Nicolas Boichat <drinkcat@chromium.org>,
         Hsin-Yi Wang <hsinyi@chromium.org>,
         dri-devel@lists.freedesktop.org,
         Pin-yen Lin <treapking@chromium.org>
-Subject: [PATCH v2 0/2] Add generic-display-mux driver and bindings
-Date:   Mon, 16 Jan 2023 19:08:18 +0800
-Message-Id: <20230116110820.2615650-1-treapking@chromium.org>
+Subject: [PATCH v2 1/2] dt-bindings: display: bridge: Add GPIO display mux binding
+Date:   Mon, 16 Jan 2023 19:08:19 +0800
+Message-Id: <20230116110820.2615650-2-treapking@chromium.org>
 X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
+In-Reply-To: <20230116110820.2615650-1-treapking@chromium.org>
+References: <20230116110820.2615650-1-treapking@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is the v2 the mux driver part of v1. This series is developed for
-and tested on MT8173 board, whose layout looks like:
+From: Nicolas Boichat <drinkcat@chromium.org>
 
-                                  /-- anx7688
--- MT8173 HDMI bridge -- GPIO mux
-                                  \-- native HDMI
+Add bindings for Generic GPIO mux driver.
 
-v1: https://patchwork.kernel.org/project/dri-devel/cover/20191211061911.238393-1-hsinyi@chromium.org/
-
-The other drm bridge callbacks is dropped in this version because:
-- The non-atomic callbacks are deprecated
-- It would be complicated to pass the atomic state to the downstream
-- We actually don't have the hardware to test them
+Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+---
 
 Changes in v2:
 - Referenced existing dt-binding schemas from graph.yaml
 - Added ddc-i2c-bus into the bindings
-- Dropped attach/mode_set/enable/disable callbacks
-- Fixed style issues
-- Removed the special case for the HDMI connector
-- Made the driver only read the GPIO status in IRQ handler
-- Rebased to drm-misc-next
-- Updated the license: "GPL v2" --> "GPL"
 
-Nicolas Boichat (2):
-  dt-bindings: display: bridge: Add GPIO display mux binding
-  drm: bridge: Generic GPIO mux driver
-
- .../bindings/display/bridge/gpio-mux.yaml     |  95 +++++++++
- drivers/gpu/drm/bridge/Kconfig                |  10 +
- drivers/gpu/drm/bridge/Makefile               |   1 +
- drivers/gpu/drm/bridge/generic-gpio-mux.c     | 201 ++++++++++++++++++
- 4 files changed, 307 insertions(+)
+ .../bindings/display/bridge/gpio-mux.yaml     | 95 +++++++++++++++++++
+ 1 file changed, 95 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
- create mode 100644 drivers/gpu/drm/bridge/generic-gpio-mux.c
 
+diff --git a/Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml b/Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+new file mode 100644
+index 000000000000..da29ba078f05
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/gpio-mux.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Generic display mux (1 input, 2 outputs)
++
++maintainers:
++  - Nicolas Boichat <drinkcat@chromium.org>
++
++description: |
++  This bindings describes a simple display (e.g. HDMI) mux, that has 1
++  input, and 2 outputs. The mux status is controlled by hardware, and
++  its status is read back using a GPIO.
++
++properties:
++  compatible:
++    const: gpio-display-mux
++
++  detect-gpios:
++    maxItems: 1
++    description: GPIO that indicates the active output
++
++  ddc-i2c-bus:
++    description: phandle link to the I2C controller used for DDC EDID probing
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: |
++          Video port for input.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: |
++          2 video ports for output.
++          The reg value in the endpoints matches the GPIO status: when
++          GPIO is asserted, endpoint with reg value <1> is selected.
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - detect-gpios
++  - ports
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    hdmi_mux: hdmi_mux {
++      compatible = "gpio-display-mux";
++      detect-gpios = <&pio 36 GPIO_ACTIVE_HIGH>;
++      pinctrl-names = "default";
++      pinctrl-0 = <&hdmi_mux_pins>;
++      ddc-i2c-bus = <&hdmiddc0>;
++
++      ports {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        port@0 { /* input */
++          reg = <0>;
++
++          hdmi_mux_in: endpoint {
++            remote-endpoint = <&hdmi0_out>;
++          };
++        };
++
++        port@1 { /* output */
++          reg = <1>;
++
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          hdmi_mux_out_anx: endpoint@0 {
++            reg = <0>;
++            remote-endpoint = <&dp_bridge_in>;
++          };
++
++          hdmi_mux_out_hdmi: endpoint@1 {
++            reg = <1>;
++            remote-endpoint = <&hdmi_connector_in>;
++          };
++        };
++      };
++    };
 -- 
 2.39.0.314.g84b9a713c41-goog
 
