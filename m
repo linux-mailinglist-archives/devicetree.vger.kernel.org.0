@@ -2,111 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C48166BC01
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 11:41:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9732C66BBD7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 11:37:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230511AbjAPKlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 05:41:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49092 "EHLO
+        id S229517AbjAPKh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 05:37:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230525AbjAPKka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 05:40:30 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45C61F5C0
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 02:39:17 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 295AF8532A;
-        Mon, 16 Jan 2023 11:39:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1673865555;
-        bh=3DlGDRvDfy9FkbG+yCdiwiSwTc67KUYJP1MaIxPZIQw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ja0JI6UOsr7ezXVIvW+oF05LjGXMvxbpW29Ffth31Rn1bBdgIl2OOnJtwZk8P1jb8
-         IF8tbTuN1V7itQo23AcsGXOEIEAyTyy3B8e1n1yzoWGed2xdADvNxSN+4NslGLizX1
-         pCI3DDy/fEoBdgCOuXA9MP3K5dx+JInbWLGUdUFV0FSdS76UAhJcBkwIuTEG+u3a9n
-         mPcBZTQ2IvqLg9uOy9EJH0KQmVpQIl4KbGRBtxOkbKJ7VPJGhWgJ9DtphRtnBGiwaY
-         dkUVwdviYDBDumYKKuQDHC1akujbwbeNngDx53x+ZLgwGGzu376YMkUzOC2yQTk3rJ
-         6OIvz+fOlpkSQ==
-Message-ID: <748a94f5-6977-9985-a547-ef3897db4bb4@denx.de>
-Date:   Mon, 16 Jan 2023 11:39:13 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add support for Data Modul i.MX8M
- Plus eDM SBC
-Content-Language: en-US
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Denys Drozdov <denys.drozdov@toradex.com>,
-        Fabio Estevam <festevam@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        with ESMTP id S229694AbjAPKh1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 05:37:27 -0500
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D6E74EEB;
+        Mon, 16 Jan 2023 02:37:24 -0800 (PST)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id D331A1BF20C;
+        Mon, 16 Jan 2023 10:37:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1673865443;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=iuogAIwpArvmHJjJhEa0zf0j5PCkZDBGtycwVIelMX8=;
+        b=CEhOE2qh+5jjLZr3yM8AnWuKjQL21XfBx2BU/akJuNd5H5Qld2ukY9uV2vsZYedWeZF2Pk
+        ZkBScwq/jK/2rnV+ioVHfb70cF9a0TBkD5d6UeTy5aiv7iZ7iL7aXsdomFhUXGcgFP4BPh
+        uPRGALpCDZnm6f+8GD9nDQAVSRnMeULNN0K99nnVq4yPZ+qw6w6aoeHgC04jxqhi5DOQg/
+        KrABaPJmOblW7Vaif6Dx3Tbg23fpguN0heuzjx32dVhL3Z5H31c/QD0BHx2njYuvD6KxxW
+        zeU6IGyGL9+WhfeWlplRXaZiiGpy9iKBnuUu0jyXlm9ymsssh86wYYQbbqJnUA==
+From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+To:     Sergey Shtylyov <s.shtylyov@omp.ru>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Matthias Schiffer <matthias.schiffer@tq-group.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20221218051800.495932-1-marex@denx.de>
- <20221218051800.495932-2-marex@denx.de>
- <7b77825d-cbdb-0150-c30b-aa97fa39fe27@pengutronix.de>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <7b77825d-cbdb-0150-c30b-aa97fa39fe27@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Wong Vee Khee <veekhee@apple.com>,
+        =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Revanth Kumar Uppala <ruppala@nvidia.com>,
+        Tan Tee Min <tee.min.tan@linux.intel.com>
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Mohammad Athari Bin Ismail <mohammad.athari.ismail@intel.com>,
+        Jon Hunter <jonathanh@nvidia.com>, netdev@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH net-next 0/6] net: stmmac: add renesas,rzn1-gmac support
+Date:   Mon, 16 Jan 2023 11:39:20 +0100
+Message-Id: <20230116103926.276869-1-clement.leger@bootlin.com>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/11/23 08:38, Ahmad Fatoum wrote:
-> Hello Marek,
+The rzn1-gmac instance is connected to a PCS (MIIC). In order to use
+this pcs, add support in the sttmac driver to set a generic phylink pcs
+device instead of the xpcs only. Moreover, it adds support to provide
+a phylink pcs device from the stmmac platform data and use it with the
+driver. It also adds the bindings and the new rzn1-gmac driver that
+retrieve this pcs from the device-tree.
 
-Hi,
+Clément Léger (6):
+  net: stmmac: add support to use a generic phylink_pcs as PCS
+  net: stmmac: add support to provide pcs from platform data
+  net: stmmac: start phylink before setting up hardware
+  dt-bindings: net: renesas,rzn1-gmac: Document RZ/N1 GMAC support
+  net: stmmac: add support for RZ/N1 GMAC
+  ARM: dts: r9a06g032: describe GMAC1
 
-[...]
+ .../bindings/net/renesas,rzn1-gmac.yaml       |  71 +++++++++++
+ arch/arm/boot/dts/r9a06g032.dtsi              |  18 +++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ drivers/net/ethernet/stmicro/stmmac/common.h  |   2 +
+ .../net/ethernet/stmicro/stmmac/dwmac-rzn1.c  | 113 ++++++++++++++++++
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c |  15 ++-
+ .../net/ethernet/stmicro/stmmac/stmmac_mdio.c |   1 +
+ include/linux/stmmac.h                        |   1 +
+ 9 files changed, 228 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-rzn1.c
 
-> Could you share your get_maintainers.pl invocation? I'd like to
-> adjust the reviewer entry in MAINTAINERS, so such patches get
-> into our kernel@pengutronix.de inbox as well.
+-- 
+2.39.0
 
-Plain get_maintainer -f path/to/dts
-
-> Some more comments below.
-> 
->> +	pmic: pmic@25 {
->> +		compatible = "nxp,pca9450c";
->> +		reg = <0x25>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_pmic>;
->> +		interrupt-parent = <&gpio1>;
->> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->> +		sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-> 
-> Here you assume GPIO1_IO04 is muxed as GPIO.
-> 
->> +	pinctrl_usdhc2: usdhc2-grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc1
-> 
-> Here you mux it for USDHC2_VSELECT though. Is this intended?
-
-That's a good question, other DTs do the same thing, I suspect the 
-sd-vsel-gpios could be dropped, but as long as it is not outright 
-harmful, it can be used for backward compatibility to support less 
-complete OSes which may not handle the eSDHC VSELECT bit , so I figured 
-it is good to keep both options.
-
-[...]
