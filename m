@@ -2,477 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C58066C1AC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:14:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6046266C216
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:21:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232245AbjAPOOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 09:14:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58412 "EHLO
+        id S232632AbjAPOVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 09:21:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232419AbjAPONa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:13:30 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 488AF23854;
-        Mon, 16 Jan 2023 06:05:08 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30GE4mGl028066;
-        Mon, 16 Jan 2023 08:04:48 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673877888;
-        bh=q9pIGMSKgokBRO/4ARjEGDANqYAzBOg28n00jmkhT84=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=xEOY1TEZabBhv2RXb0gApdF2lsNjEJarqR7Qb6Vig83+1+udLy7X0VUI7t+ehQXzJ
-         20qc0JQZnVKXPlnS6Dg4uF7HpoUHdBrhtcIMVdNOIbj6etmyax0jG9X5laYqx5Pipk
-         olO/0KDp7/Q9eBPUQvKNFykXvlQPlXLDgO3NyXpg=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30GE4m4T097989
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 16 Jan 2023 08:04:48 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 16
- Jan 2023 08:04:48 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 16 Jan 2023 08:04:48 -0600
-Received: from [10.24.69.141] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30GE4iZ5059429;
-        Mon, 16 Jan 2023 08:04:45 -0600
-Message-ID: <b4f7ef7f-a1b5-db23-ccca-76d041dd7dda@ti.com>
-Date:   Mon, 16 Jan 2023 19:34:44 +0530
+        with ESMTP id S232654AbjAPOVQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:21:16 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 546CD24485;
+        Mon, 16 Jan 2023 06:07:11 -0800 (PST)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30G9eUvf000401;
+        Mon, 16 Jan 2023 15:06:40 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=ZUFiwmuXUVXgB50AexCJ2aYXXaHlJR5y5ppvtTRfE5M=;
+ b=Ynb3g2gvkWCA3S6BQnWw+9IsEdYk6PRDDSoS5+Ixdvlq4gNMlHpP6Vi91He0GXFybI0c
+ PKgmKzxS/BJlagpQyZVjPRqAe/6+93YzeYUMmNluKe2K7w1PpT/+mUKvV2pEMR62c+Lt
+ xr0Rj1il4tHdOpSIDJy1U9kVdOZcRoXyNorvmZ+O6CRzzgBwia9i870GAUl1Rn00JSon
+ 40PDQRyxmp7JebhBwlbfMlYArt8i237IBpOvSYKtMB9Sje6BjPylSmZjFbqXV8mfgcEm
+ MubhEpSbkiZvUakCwF6cwjf8/SShJ0UinfSkUy3kIbaWBE3RuzX+TWeVSSC8xh909/da gg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3n3mm6a9vm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 16 Jan 2023 15:06:40 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E994010002A;
+        Mon, 16 Jan 2023 15:06:38 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D66472194F2;
+        Mon, 16 Jan 2023 15:06:38 +0100 (CET)
+Received: from [10.201.21.177] (10.201.21.177) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 16 Jan
+ 2023 15:06:38 +0100
+Message-ID: <b90e4b78-d84d-3a63-1aef-e7214d4b29d9@foss.st.com>
+Date:   Mon, 16 Jan 2023 15:06:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH V5 3/3] arm64: dts: ti: k3-am68-sk: Add support for AM68
- SK base board
+Subject: Re: [RFC PATCH 3/7] dt-bindings: bus: add STM32MP15 ETZPC firewall
+ bus bindings
 Content-Language: en-US
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        <alexandre.torgue@foss.st.com>, <robh+dt@kernel.org>,
+        <Oleksii_Moisieiev@epam.com>, <linus.walleij@linaro.org>,
+        <gregkh@linuxfoundation.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sinthu Raja <sinthu.raja@ti.com>
-References: <20230116071446.28867-1-sinthu.raja@ti.com>
- <20230116071446.28867-4-sinthu.raja@ti.com>
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20230116071446.28867-4-sinthu.raja@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-kernel@vger.kernel.org>, <loic.pallardy@st.com>,
+        <devicetree@vger.kernel.org>, <mark.rutland@arm.com>,
+        <arnd@arndb.de>
+References: <20221221173055.11719-1-gatien.chevallier@foss.st.com>
+ <20221221173055.11719-4-gatien.chevallier@foss.st.com>
+ <879325d2-4b2d-bc1d-310c-ece4c449ad8f@kernel.org>
+ <8357d887-c8ab-39bc-4ef0-62e9225fb2a6@foss.st.com>
+ <118e7f0c-bf5d-4bda-ee70-92eb2b71649c@kernel.org>
+ <8f022dc8-d728-ba91-35ed-8a4006855f0d@foss.st.com>
+ <dfe328fc-349b-3357-a8ac-6fc363f403fc@kernel.org>
+ <19157c67-fa83-e598-d7ee-c313f3d4b198@foss.st.com>
+ <f169d05a-7a07-aedf-bad2-30cb4a88fc16@kernel.org>
+From:   Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <f169d05a-7a07-aedf-bad2-30cb4a88fc16@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.21.177]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-16_11,2023-01-13_02,2022-06-22_01
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Krzysztof,
 
+On 1/11/23 13:32, Krzysztof Kozlowski wrote:
+> On 09/01/2023 12:54, Gatien CHEVALLIER wrote:
+>>>>> Then why do you define them in bindings? Use raw numbers. Do you see
+>>>>> anywhere in arm/arm64 bindings for GIC_SPI interrupt numbers?
+>>>>>
+>>>>
+>>>> What would you think of simply removing the comments that state that IDs
+>>>> are reserved, mimicking the way it is for qcom bindings? Fundamentally,
+>>>> they are indeed only IDs and could be raw numbers.
+>>>
+>>> If these are IDs then there are no reserved numbers and they are
+>>> continuous from 0 to X. Without gaps.
+>>>
+>>>> IMO, this makes reading the device tree harder. Because you'd have to
+>>>> look what the raw number corresponds to.
+>>>
+>>> Sure, but that's not the reason to put numbers to the bindings... You
+>>> mix defines with bindings.
+>>>
+>>>> To take an example, it has already been done for SCMI clocks and I find
+>>>> it eases comprehension.
+>>>
+>>> You need to be a bit more specific...
+>>
+>> Please see include/dt-bindings/clock/stm32mp1-clks.h, where there are
+>> various clock IDs defined, some of them not contiguous.
+> 
+> These are pretty often added to accommodate space for exposing these
+> clocks in the future. IOW, these might be IDs just not all are shared
+> via header. There are such platforms and it is OK.
+> 
+>>
+>> Errata: for SCMI clocks they are indeed contiguous but not clock IDs.
+>>
+>>>
+>>> Anyway, IDs should be placed in bindings. Some mapping of
+>>> internal/hardware ports, registers, offsets, values - usually not.
+>>>
+>>> I don't know where exactly your case fits, but when some IDs are
+>>> reserved it is a clear sign that these are not IDs (again - IDs start
+>>> from 0 and go incrementally by one, without gaps).
+>>>
+>>
+>> I do agree with your statement that IDs should not be reserved.
+>>
+>> I think I've missed something to better highlight my point of view: It
+>> would be perfectly fine using numbers that are not described in this
+>> bindings file. It would just not correspond to an ID of a peripheral
+>> described in the SoC reference manual, thus making no sense to use them.
+>> Stating that they are reserved was incorrect, it's just that peripherals
+>> get a firewall ID, depending on the platform.
+> 
+> Why peripheral ID should be put into the bindings? Why bindings is a
+> place for it? Interrupt numbers, GPIO indices/numbers, register offsets,
+> IOMMU ports - none of these are suitable for bindings.
+> 
+>>
+>> I think it should be okay not describing IDs that are not relevant, what
+>> do you think? I found that in include/dt-bindings/arm/qcom,ids.h, IDs
+>> are not continuous. Not mentioning an ID could be used for deprecation.
+> 
+> These are not IDs of clocks. These are unique identifiers assigned by
+> vendor and used by different pieces: firmware/bootloaders, DTS and Linux
+> driver. We have no control of them but they exist. They also do not
+> represent any hardware number.
+> 
+> You bring some examples as an argument, but these examples are not
+> always related to your case. To be clear - we talk here about bindings,
+> so they bind different interfaces of software components (e.g. Linux
+> kernel with DTS). Now, what is the different interface here in your
+> case? If you say your peripheral hardware ID, then answer is no - this
+> is not software interface.
 
-On 16/01/23 12:44, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
-> 
-> The SK architecture comprises of baseboard and a SOM board. The
-> AM68 Starter Kit's baseboard contains most of the actual connectors,
-> power supply etc. The System on Module (SoM) is plugged on to the base
-> board. Therefore, add support for peripherals brought out in the base
-> board.
-> 
-> Schematics: https://www.ti.com/lit/zip/SPRR463
-> 
-> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> ---
-> 
-> No changes in V4 & V5
-> 
-> Changes in V3:
-> =============
-> *Address review comments:
->  - Remove the unused nodes that are disabled by default.
->  - Update the gpio regulator node: gpio-regulator-tlv to "regulator-tlv".
-> 
-> Changes in V2:
-> =============
-> *Address the review comments:
->  - Update the commit description.
->  - Update the regulator nodes: fixedregulator to "regulator-"
->  - Update the commit $subject to align with rest of the commits.
->  - Drop the blank lines
->  - Change the node names that are added with underscore("_") with "-"
-> 
-> V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-4-sinthu.raja@ti.com/
-> V2: https://lore.kernel.org/lkml/20221107123852.8063-4-sinthu.raja@ti.com/
-> V3: https://lore.kernel.org/lkml/20230110110052.14851-4-sinthu.raja@ti.com/
-> V4: https://lore.kernel.org/lkml/20230105151740.29436-4-sinthu.raja@ti.com/
-> 
->  arch/arm64/boot/dts/ti/Makefile               |   2 +
->  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 335 ++++++++++++++++++
->  2 files changed, 337 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index cf7c509538a4..1b4e8b573de5 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -12,6 +12,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
->  
-> +dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
-> +
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> new file mode 100644
-> index 000000000000..2091cd2431fb
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> @@ -0,0 +1,335 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * Base Board: https://www.ti.com/lit/zip/SPRR463
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "k3-am68-sk-som.dtsi"
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +#include <dt-bindings/phy/phy-cadence.h>
-> +#include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/mux/ti-serdes.h>
-> +
-> +/ {
-> +	compatible = "ti,am68-sk", "ti,j721s2";
-> +	model = "Texas Instruments AM68 SK";
-> +
-> +	chosen {
-> +		stdout-path = "serial2:115200n8";
-> +	};
-> +
-> +	aliases {
-> +		serial2 = &main_uart8;
-> +		mmc1 = &main_sdhci1;
-> +		can0 = &mcu_mcan0;
-> +		can1 = &mcu_mcan1;
-> +		can2 = &main_mcan6;
-> +		can3 = &main_mcan7;
-> +	};
-> +
-> +	vusb_main: regulator-vusb-main5v0 {
-> +		/* USB MAIN INPUT 5V DC */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vusb-main5v0";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vsys_3v3: regulator-vsys3v3 {
-> +		/* Output of LM5141 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vusb_main>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vdd_mmc1: regulator-sd {
-> +		/* Output of TPS22918 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_mmc1";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		vin-supply = <&vsys_3v3>;
-> +		gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	vdd_sd_dv: regulator-tlv71033 {
-> +		/* Output of TLV71033 */
-> +		compatible = "regulator-gpio";
-> +		regulator-name = "tlv71033";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		vin-supply = <&vsys_3v3>;
-> +		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>;
-> +		states = <1800000 0x0>,
-> +			 <3300000 0x1>;
-> +	};
-> +
-> +	vsys_io_1v8: regulator-vsys-io-1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_io_1v8";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vsys_io_1v2: regulator-vsys-io-1v2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_io_1v2";
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	transceiver1: can-phy0 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +
-> +	transceiver2: can-phy1 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +
-> +	transceiver3: can-phy2 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +
-> +	transceiver4: can-phy3 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +	main_uart8_pins_default: main-uart8-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x0d0, PIN_INPUT, 11) /* (AF26) SPI0_CS1.UART8_RXD */
-> +			J721S2_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AH27) SPI0_CLK.UART8_TXD */
-> +		>;
-> +	};
-> +
-> +	main_i2c0_pins_default: main-i2c0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x0e0, PIN_INPUT, 0) /* (AH25) I2C0_SCL */
-> +			J721S2_IOPAD(0x0e4, PIN_INPUT, 0) /* (AE24) I2C0_SDA */
-> +		>;
-> +	};
-> +
-> +	main_mmc1_pins_default: main-mmc1-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
-> +			J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
-> +			J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
-> +			J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
-> +			J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
-> +			J721S2_IOPAD(0x0f0, PIN_INPUT, 0) /* (R22) MMC1_DAT3 */
-> +			J721S2_IOPAD(0x0e8, PIN_INPUT, 8) /* (AE25) TIMER_IO0.MMC1_SDCD */
-> +		>;
-> +	};
-> +
-> +	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x0c4, PIN_INPUT, 7) /* (AB26) ECAP0_IN_APWM_OUT.GPIO0_49 */
-> +		>;
-> +	};
-> +
-> +	main_usbss0_pins_default: main-usbss0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AG25) TIMER_IO1.USB0_DRVVBUS */
-> +		>;
-> +	};
-> +
-> +	main_mcan6_pins_default: main-mcan6-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x098, PIN_INPUT, 0) /* (V25) MCASP0_AXR10.MCAN6_RX */
-> +			J721S2_IOPAD(0x094, PIN_INPUT, 0) /* (AA25) MCASP0_AXR9.MCAN6_TX */
-> +		>;
-> +	};
-> +
-> +	main_mcan7_pins_default: main-mcan7-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
-> +			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
-> +		>;
-> +	};
-> +};
-> +
-> +&wkup_pmx0 {
-> +	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (B22) MCU_RGMII1_RD0 */
-> +			J721S2_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B21) MCU_RGMII1_RD1 */
-> +			J721S2_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C22) MCU_RGMII1_RD2 */
-> +			J721S2_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D23) MCU_RGMII1_RD3 */
-> +			J721S2_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (D22) MCU_RGMII1_RXC */
-> +			J721S2_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (E23) MCU_RGMII1_RX_CTL */
-> +			J721S2_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (F23) MCU_RGMII1_TD0 */
-> +			J721S2_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (G22) MCU_RGMII1_TD1 */
-> +			J721S2_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E21) MCU_RGMII1_TD2 */
-> +			J721S2_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E22) MCU_RGMII1_TD3 */
-> +			J721S2_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (F21) MCU_RGMII1_TXC */
-> +			J721S2_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (F22) MCU_RGMII1_TX_CTL */
-> +		>;
-> +	};
-> +
-> +	mcu_mdio_pins_default: mcu-mdio-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A21) MCU_MDIO0_MDC */
-> +			J721S2_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (A22) MCU_MDIO0_MDIO */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan0_pins_default: mcu-mcan0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x0bc, PIN_INPUT, 0) /* (E28) MCU_MCAN0_RX */
-> +			J721S2_WKUP_IOPAD(0x0b8, PIN_OUTPUT, 0) /* (E27) MCU_MCAN0_TX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan1_pins_default: mcu-mcan1-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x0d4, PIN_INPUT, 0) /* (F26) WKUP_GPIO0_5.MCU_MCAN1_RX */
-> +			J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
-> +		>;
-> +	};
-> +
-> +	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
-> +			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
-> +		>;
-> +	};
-> +};
-> +
-> +&main_gpio2 {
-> +	status = "disabled";
-> +};
-> +
-> +&main_gpio4 {
-> +	status = "disabled";
-> +};
-> +
-> +&main_gpio6 {
-> +	status = "disabled";
-> +};
-> +
-> +&wkup_gpio0 {
-> +	status = "disabled";
-> +};
-> +
-> +&wkup_gpio1 {
-> +	status = "disabled";
-> +};
-> +
-> +&wkup_uart0 {
-> +	status = "reserved";
-> +};
-> +
-> +&main_uart8 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_uart8_pins_default>;
-> +	/* Shared with TFA on this platform */
-> +	power-domains = <&k3_pds 357 TI_SCI_PD_SHARED>;
-> +};
-> +
-> +&main_i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_i2c0_pins_default>;
-> +	clock-frequency = <400000>;
-> +
-> +	exp1: gpio@21 {
-> +		compatible = "ti,tca6416";
-> +		reg = <0x21>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		gpio-line-names = "CSI_VIO_SEL", "CSI_SEL_FPC_EXPn", "HDMI_PDn",
-> +					"HDMI_LS_OE", "DP0_3V3 _EN", "BOARDID_EEPROM_WP",
-> +					"CAN_STB", " ", "GPIO_uSD_PWR_EN", "eDP_ENABLE",
-> +					"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_MCU_RGMII_RSTz",
-> +					"IO_EXP_CSI2_EXP_RSTz", " ", "CSI0_B_GPIO1",
-> +					"CSI1_B_GPIO1";
-> +	};
-> +};
-> +
-> +&main_sdhci0 {
-> +	/* Unused */
-> +	status = "disabled";
-> +};
-> +
-> +&main_sdhci1 {
-> +	/* SD card */
-> +	pinctrl-0 = <&main_mmc1_pins_default>;
-> +	pinctrl-names = "default";
-> +	disable-wp;
-> +	vmmc-supply = <&vdd_mmc1>;
-> +	vqmmc-supply = <&vdd_sd_dv>;
-> +};
-> +
-> +&mcu_cpsw {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
-> +};
-> +
-> +&davinci_mdio {
-> +	phy0: ethernet-phy@0 {
-> +		reg = <0>;
-> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +		ti,min-output-impedance;
-> +	};
-> +};
-> +
-> +&cpsw_port1 {
-> +	phy-mode = "rgmii-rxid";
-> +	phy-handle = <&phy0>;
-> +};
-> +
-> +&mcu_mcan0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_mcan0_pins_default>;
-> +	phys = <&transceiver1>;
-> +};
-> +
-> +&mcu_mcan1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_mcan1_pins_default>;
-> +	phys = <&transceiver2>;
-> +};
-> +
-> +&main_mcan6 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan6_pins_default>;
-> +	phys = <&transceiver3>;
-> +};
-> +
-> +&main_mcan7 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan7_pins_default>;
-> +	phys = <&transceiver4>;
+I see what you want to avoid,
 
-Tested-by: Vaishnav Achath <vaishnav.a@ti.com>
+These bindings are indeed presented as pure helpers here. They are not 
+used by the firewall bus driver on Linux except for the value that they 
+represent, thus your comment.
+However, they will be shared between different boot chain components. I 
+do not have an upstreamed example to give but please see that we might 
+use them in OP-TEE:
 
-> +};
+[1] 
+https://github.com/STMicroelectronics/optee_os/blob/3.16.0-stm32mp/core/include/dt-bindings/soc/stm32mp13-etzpc.h
 
--- 
-Regards,
-Vaishnav
+They could be used and used differently depending on the software 
+component (e.g: lock of secure configuration for a particular 
+peripheral, ...). This change is here for consistency between those.
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Best regards,
+Gatien
