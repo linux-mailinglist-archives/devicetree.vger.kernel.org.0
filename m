@@ -2,753 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 732DE66C2A3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:49:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B59266C2AE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 15:51:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbjAPOtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 09:49:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40056 "EHLO
+        id S230076AbjAPOvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 09:51:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbjAPOrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:47:37 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669602A14F
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 06:30:52 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id y25so42953656lfa.9
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 06:30:52 -0800 (PST)
+        with ESMTP id S229774AbjAPOvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 09:51:23 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D061D92C
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 06:36:03 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id x10so38081584edd.10
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 06:36:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FfL1rVHDvcSxq21lIwQ1cVLhrZd9L/JhJuc4PCIC8nU=;
-        b=CchHai/iJRYFn4LKvm3pW4qreXW+SBnXT3kIfvtg3kVhjJ5YtyHVANMeRUTFP0gDrd
-         Vq7vrVwPahBmOOf8N7i9XIvFcZqelr5/SvXZFMEIOxxH1U92dxJlmaLn2INXiOtB2gFW
-         FlTJPOSp/vxGj0P+es8Pf6ElxmpLVFUaOE1ZKMnPB1zCcI1WtYFHG70KHbPMoo47nEfL
-         hI80jNweqN1yLYd8sowB5132UttoPRk7TrOcPh3+hcQ41guPoF/dseMy1kn9FuiVR/N+
-         wTFwjqSy6MkUuGvMuZ4OSd5Prx/r92lll2modapw34qtFUhqiLJV5LUydkDWdn9NbrNW
-         LFvQ==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rCZPqWPiwmy+Qg3w9Zw0kU442c7Jihjgka7OZcZFvZ4=;
+        b=vK/m3ZhBu0rXmwlaHWgHg/SJV3wZwAcbhd6qMxLW6BfEHoQz0LWh1fbCr8C+lK5HmS
+         bhRZ1X9ylmKvKawQ3N6yph8My2pmJvfm0eafkOElbuheYZVdMhjGMwR8YExcCfbR/kL8
+         7eeGDkBW4uSNo0sICPIofDBbdeMdir6P4y2J0LpZl3rAU4eXG4k6SY8gQa6LsLjo1Hyd
+         UJgJqfqxKJJnyqeIXL8PxL4bMoBZkHOqmADuqiClaUMVQQH1XIk5czTyl31+GkSEqVyO
+         b/3x0jhIpJSBAntgZfJ52P3wbP7zLAnGw9xJE+2x3+hDg8AAW3SluiWijSVism0Kxc2q
+         uc/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FfL1rVHDvcSxq21lIwQ1cVLhrZd9L/JhJuc4PCIC8nU=;
-        b=mcuivI53L9850OY9IMZitXC050CCIWs5zlaQGw8pQVQ4+G9V/bIo58Pr/epCjN4OIp
-         xDORWgSA4k3q1ds2NM+qZJL7nSDzuqYMGkKBuAI3Tksqclsja6QusC5K5/OuA1eDFAV7
-         f5GjX9aPbFcfd1yw+I2OFBNdFQggMMonj91tUpqyHubtgsNGxGRWwcgkLflyGo/cvPRS
-         qrqeEgCxB3lBlYdQLwqWYS5LRmXxGIskmqDXe3OKZclSOz5Pu6Lx1GWrFNmeGY4zYuHl
-         cGnWLq5MHRae043wsoNZoSeDhfCHpg1se7DloSfAfa6ZpKInHOHt/FtIj9UqckGUPxqZ
-         3ciA==
-X-Gm-Message-State: AFqh2koD69/s1e3Dd5lGigJJyuQS6TIO3IFvaOaObODis3KryWZwdND9
-        4V1WbWFTTqc2k3yftRL8KFXwUg==
-X-Google-Smtp-Source: AMrXdXu8DclfWAJXndWel0CtWy44QcgmXIgzXCYr54I9YAIGmYNHxg/3tnjFyeZKYk9PncF5IJw9AQ==
-X-Received: by 2002:a19:6514:0:b0:4d0:a746:5c6d with SMTP id z20-20020a196514000000b004d0a7465c6dmr2921041lfb.14.1673879450655;
-        Mon, 16 Jan 2023 06:30:50 -0800 (PST)
-Received: from [192.168.1.101] (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id r16-20020ac252b0000000b004cc716da978sm4959959lfm.209.2023.01.16.06.30.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 06:30:50 -0800 (PST)
-Message-ID: <6145353d-0d33-7bca-c3eb-f635519a948e@linaro.org>
-Date:   Mon, 16 Jan 2023 15:30:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v9 6/6] arm64: dts: qcom: msm8998: Configure CPRh
-Content-Language: en-US
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rCZPqWPiwmy+Qg3w9Zw0kU442c7Jihjgka7OZcZFvZ4=;
+        b=naivcjMhtDaB+zTtpu9wBtRIDDqar14DB5kKcDcC/nxDtm8wIAC6IlE1FhqUck/4cU
+         J43mZeSFcRJsA75kOttvhVbA2TIBm1L0mKl+i2uNpDzXv66HLnzi2pB4xKbiqvsWW7g3
+         I354/M5ywNXjGtbmZSY7evQPknWNTxbKapbY5P/tsqhHnt17t5y/5mMi7TpozfXBFyjE
+         TvADmAbEROfbFkFNGzvvKFFx/YiZgVkdeTHFXj2xwDLbuSnKjLoW1uxpZJhSdx20on+d
+         iAM1IRZh7OxoAjIiIPL496r5kreeqAsLFIIkxVT69PDAQcwcjNF8pmVmBTLE5eH0PuN5
+         6JYg==
+X-Gm-Message-State: AFqh2kowmBt19+sP1N/fxSWUS2TQ+RkZ7LrlKvuq85PKFQWwhvu6OA27
+        6PvluS/5zDOaXKOqtdOVnaUaQA==
+X-Google-Smtp-Source: AMrXdXtV7SF+3RSBX9E7TN51Zz8RFwX6gb7hQ8yrCuB589NuTrrLEfdLDjrguaEyTdVgTYDRIpbTRw==
+X-Received: by 2002:a05:6402:2a02:b0:470:44eb:9e58 with SMTP id ey2-20020a0564022a0200b0047044eb9e58mr82109589edb.30.1673879762167;
+        Mon, 16 Jan 2023 06:36:02 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id d3-20020aa7d5c3000000b004835bd8dfe5sm11665624eds.35.2023.01.16.06.36.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 06:36:01 -0800 (PST)
+Date:   Mon, 16 Jan 2023 16:35:59 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, angelo@amarulasolutions.com,
+        michael@amarulasolutions.com, tommaso.merciai@amarulasolutions.com,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        linux-amarula@amarulasolutions.com, anthony@amarulasolutions.com,
+        jagan@amarulasolutions.com, Abel Vesa <abelvesa@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230116093845.72621-1-konrad.dybcio@linaro.org>
- <20230116093845.72621-7-konrad.dybcio@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230116093845.72621-7-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Subject: Re: [RFC PATCH v2 11/11] arm64: dts: imx8mn: add clocks description
+Message-ID: <Y8VgzyNxGpqSvJ2b@linaro.org>
+References: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
+ <20230101175740.1010258-12-dario.binacchi@amarulasolutions.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230101175740.1010258-12-dario.binacchi@amarulasolutions.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16.01.2023 10:38, Konrad Dybcio wrote:
-> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+On 23-01-01 18:57:40, Dario Binacchi wrote:
+> The patch creates a unique node for each clock in the imx8mn clock
+> control module (CCM).
 > 
-> Now that the CPR v3/v4/Hardened is ready, enable it on MSM8998.
+> To ensure backwards compatibility it was not possible to separate the
+> changes to the device tree from those applied to the clocks setup code.
+> In doing so, all clocks are initialized from the device tree and the
+> legacy setup code with hardwired parameters is removed.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> [Konrad: separate from adding cpufreq, sort nodes and use lowercase hex]
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> 
 > ---
+> 
+> (no changes since v1)
+> 
+>  .../boot/dts/freescale/imx8mn-clocks.dtsi     | 1885 +++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8mn.dtsi     |   54 +-
+>  drivers/clk/imx/clk-imx8mn.c                  |  714 ++-----
+>  3 files changed, 2086 insertions(+), 567 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
+> new file mode 100644
+> index 000000000000..21e02ea996d0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
+> @@ -0,0 +1,1885 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Device Tree Source for imx8mn clock data
+> + *
+> + * Copyright (c) 2022 Amarula Solutions
+> + *
+> + * Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> + */
+> +
+> +/ {
+> +	osc_32k: clock-osc-32k {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		clock-output-names = "osc_32k";
+> +	};
+> +
+
 [...]
-> +	cpu0_opp_table: opp-table-cpu0 {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp-1900800000 {
-> +			opp-hz = /bits/ 64 <1900800000>;
-> +			required-opps = <&cprh_opp22>;
 
-> +			qcom,pll-override = <0x094f004f>;
-> +			qcom,spare-data = <3>;
-As Dmitry pointed out to me in private, these properties belong
-to the CPUFREQ patch and - with this series alone - are considered
-undocumented.
+> +
+> +	clk_audio_pll2_bypass: clock-audio-pll2-bypass@14 {
+> +		compatible = "fsl,imx8mn-mux-clock";
+> +		#clock-cells = <0>;
+> +		clocks = <&clk_audio_pll2>, <&clk_audio_pll2_ref_sel>;
+> +		fsl,anatop = <&anatop 0x14>;
+> +		fsl,bit-shift = <16>;
+> +		fsl,set-rate-parent;
 
-Konrad
-> +		};
-> +
-> +		opp-1824000000 {
-> +			opp-hz = /bits/ 64 <1824000000>;
-> +			required-opps = <&cprh_opp21>;
-> +			qcom,pll-override = <0x084c004c>;
-> +			qcom,spare-data = <3>;
-> +		};
-> +
-> +		opp-1747200000 {
-> +			opp-hz = /bits/ 64 <1747200000>;
-> +			required-opps = <&cprh_opp20>;
-> +			qcom,pll-override = <0x08490049>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1670400000 {
-> +			opp-hz = /bits/ 64 <1670400000>;
-> +			required-opps = <&cprh_opp19>;
-> +			qcom,pll-override = <0x08460046>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1555200000 {
-> +			opp-hz = /bits/ 64 <1555200000>;
-> +			required-opps = <&cprh_opp18>;
-> +			qcom,pll-override = <0x07410041>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1478400000 {
-> +			opp-hz = /bits/ 64 <1478400000>;
-> +			required-opps = <&cprh_opp17>;
-> +			qcom,pll-override = <0x073e003e>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1401600000 {
-> +			opp-hz = /bits/ 64 <1401600000>;
-> +			required-opps = <&cprh_opp16>;
-> +			qcom,pll-override = <0x063a003a>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1324800000 {
-> +			opp-hz = /bits/ 64 <1324800000>;
-> +			required-opps = <&cprh_opp15>;
-> +			qcom,pll-override = <0x06370037>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1248000000 {
-> +			opp-hz = /bits/ 64 <1248000000>;
-> +			required-opps = <&cprh_opp14>;
-> +			qcom,pll-override = <0x05340034>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1171200000 {
-> +			opp-hz = /bits/ 64 <1171200000>;
-> +			required-opps = <&cprh_opp13>;
-> +			qcom,pll-override = <0x05310031>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1094400000 {
-> +			opp-hz = /bits/ 64 <1094400000>;
-> +			required-opps = <&cprh_opp12>;
-> +			qcom,pll-override = <0x052e002e>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1036800000 {
-> +			opp-hz = /bits/ 64 <1036800000>;
-> +			required-opps = <&cprh_opp11>;
-> +			qcom,pll-override = <0x042b002b>;
-> +			qcom,spare-data = <1>;
-> +		};
-> +
-> +		opp-960000000 {
-> +			opp-hz = /bits/ 64 <960000000>;
-> +			required-opps = <&cprh_opp10>;
-> +			qcom,pll-override = <0x4280028>;
-> +			qcom,spare-data = <1>;
-> +		};
-> +
-> +		opp-883200000 {
-> +			opp-hz = /bits/ 64 <883200000>;
-> +			required-opps = <&cprh_opp9>;
-> +			qcom,pll-override = <0x4250025>;
-> +			qcom,spare-data = <1>;
-> +		};
-> +
-> +		opp-825600000 {
-> +			opp-hz = /bits/ 64 <825600000>;
-> +			required-opps = <&cprh_opp8>;
-> +			qcom,pll-override = <0x3200022>;
-> +			qcom,spare-data = <1>;
-> +		};
-> +
-> +		opp-748800000 {
-> +			opp-hz = /bits/ 64 <748800000>;
-> +			required-opps = <&cprh_opp7>;
-> +			qcom,pll-override = <0x3200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-672000000 {
-> +			opp-hz = /bits/ 64 <672000000>;
-> +			required-opps = <&cprh_opp6>;
-> +			qcom,pll-override = <0x3200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-595200000 {
-> +			opp-hz = /bits/ 64 <595200000>;
-> +			required-opps = <&cprh_opp5>;
-> +			qcom,pll-override = <0x2200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-518400000 {
-> +			opp-hz = /bits/ 64 <518400000>;
-> +			required-opps = <&cprh_opp4>;
-> +			qcom,pll-override = <0x2200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-441600000 {
-> +			opp-hz = /bits/ 64 <441600000>;
-> +			required-opps = <&cprh_opp3>;
-> +			qcom,pll-override = <0x2200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-364800000 {
-> +			opp-hz = /bits/ 64 <364800000>;
-> +			required-opps = <&cprh_opp2>;
-> +			qcom,pll-override = <0x1200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-300000000 {
-> +			opp-hz = /bits/ 64 <300000000>;
-> +			required-opps = <&cprh_opp1>;
-> +			qcom,pll-override = <0x1200020>;
-> +		};
+NACK. I'm sorry, but this creates a huge effort on maintaining the
+bindings. Plus the vendor specific properties will keep increasing.
+
+I don't think Rob and Krzysztof will be OK with this either.
+
+
+> +		clock-output-names = "audio_pll2_bypass";
 > +	};
 > +
-> +	cpu4_opp_table: opp-table-cpu4 {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp-2361600000 {
-> +			opp-hz = /bits/ 64 <2361600000>;
-> +			required-opps = <&cprh_opp30>;
-> +			qcom,pll-override = <0x0a620062>;
-> +			qcom,spare-data = <3>;
-> +		};
-> +
-> +		opp-2342400000 {
-> +			opp-hz = /bits/ 64 <2342400000>;
-> +			required-opps = <&cprh_opp29>;
-> +			qcom,pll-override = <0x0a620062>;
-> +			qcom,spare-data = <3>;
-> +		};
-> +
-> +		opp-2323200000 {
-> +			opp-hz = /bits/ 64 <2323200000>;
-> +			required-opps = <&cprh_opp28>;
-> +			qcom,pll-override = <0x0a610061>;
-> +			qcom,spare-data = <3>;
-> +		};
-> +
-> +		opp-2265600000 {
-> +			opp-hz = /bits/ 64 <2265600000>;
-> +			required-opps = <&cprh_opp27>;
-> +			qcom,pll-override = <0x0a5e005e>;
-> +			qcom,spare-data = <3>;
-> +		};
-> +
-> +		opp-2208000000 {
-> +			opp-hz = /bits/ 64 <2208000000>;
-> +			required-opps = <&cprh_opp26>;
-> +			qcom,pll-override = <0x0a5c005c>;
-> +			qcom,spare-data = <3>;
-> +		};
-> +
-> +		opp-2112000000 {
-> +			opp-hz = /bits/ 64 <2112000000>;
-> +			required-opps = <&cprh_opp25>;
-> +			qcom,pll-override = <0x0a580058>;
-> +			qcom,spare-data = <3>;
-> +		};
-> +
-> +		opp-2035200000 {
-> +			opp-hz = /bits/ 64 <2035200000>;
-> +			required-opps = <&cprh_opp24>;
-> +			qcom,pll-override = <0x09550055>;
-> +			qcom,spare-data = <3>;
-> +		};
-> +
-> +		opp-1958400000 {
-> +			opp-hz = /bits/ 64 <1958400000>;
-> +			required-opps = <&cprh_opp23>;
-> +			qcom,pll-override = <0x09520052>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1881600000 {
-> +			opp-hz = /bits/ 64 <1881600000>;
-> +			required-opps = <&cprh_opp22>;
-> +			qcom,pll-override = <0x094e004e>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1804800000 {
-> +			opp-hz = /bits/ 64 <1804800000>;
-> +			required-opps = <&cprh_opp21>;
-> +			qcom,pll-override = <0x084b004b>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1728000000 {
-> +			opp-hz = /bits/ 64 <1728000000>;
-> +			required-opps = <&cprh_opp20>;
-> +			qcom,pll-override = <0x08480048>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1651200000 {
-> +			opp-hz = /bits/ 64 <1651200000>;
-> +			required-opps = <&cprh_opp19>;
-> +			qcom,pll-override = <0x07450045>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1574400000 {
-> +			opp-hz = /bits/ 64 <1574400000>;
-> +			required-opps = <&cprh_opp18>;
-> +			qcom,pll-override = <0x07420042>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1497600000 {
-> +			opp-hz = /bits/ 64 <1497600000>;
-> +			required-opps = <&cprh_opp17>;
-> +			qcom,pll-override = <0x073e003e>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1420800000 {
-> +			opp-hz = /bits/ 64 <1420800000>;
-> +			required-opps = <&cprh_opp16>;
-> +			qcom,pll-override = <0x063b003b>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1344000000 {
-> +			opp-hz = /bits/ 64 <1344000000>;
-> +			required-opps = <&cprh_opp15>;
-> +			qcom,pll-override = <0x06380038>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1267200000 {
-> +			opp-hz = /bits/ 64 <1267200000>;
-> +			required-opps = <&cprh_opp14>;
-> +			qcom,pll-override = <0x06350035>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1190400000 {
-> +			opp-hz = /bits/ 64 <1190400000>;
-> +			required-opps = <&cprh_opp13>;
-> +			qcom,pll-override = <0x05320032>;
-> +			qcom,spare-data = <2>;
-> +		};
-> +
-> +		opp-1132800000 {
-> +			opp-hz = /bits/ 64 <1132800000>;
-> +			required-opps = <&cprh_opp12>;
-> +			qcom,pll-override = <0x052f002f>;
-> +			qcom,spare-data = <1>;
-> +		};
-> +
-> +		opp-1056000000 {
-> +			opp-hz = /bits/ 64 <1056000000>;
-> +			required-opps = <&cprh_opp11>;
-> +			qcom,pll-override = <0x052c002c>;
-> +			qcom,spare-data = <1>;
-> +		};
-> +
-> +		opp-979200000 {
-> +			opp-hz = /bits/ 64 <979200000>;
-> +			required-opps = <&cprh_opp10>;
-> +			qcom,pll-override = <0x4290029>;
-> +			qcom,spare-data = <1>;
-> +		};
-> +
-> +		opp-902400000 {
-> +			opp-hz = /bits/ 64 <902400000>;
-> +			required-opps = <&cprh_opp9>;
-> +			qcom,pll-override = <0x4260026>;
-> +			qcom,spare-data = <1>;
-> +		};
-> +
-> +		opp-806400000 {
-> +			opp-hz = /bits/ 64 <806400000>;
-> +			required-opps = <&cprh_opp8>;
-> +			qcom,pll-override = <0x3200022>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-729600000 {
-> +			opp-hz = /bits/ 64 <729600000>;
-> +			required-opps = <&cprh_opp7>;
-> +			qcom,pll-override = <0x3200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-652800000 {
-> +			opp-hz = /bits/ 64 <652800000>;
-> +			required-opps = <&cprh_opp6>;
-> +			qcom,pll-override = <0x3200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-576000000 {
-> +			opp-hz = /bits/ 64 <576000000>;
-> +			required-opps = <&cprh_opp5>;
-> +			qcom,pll-override = <0x2200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-499200000 {
-> +			opp-hz = /bits/ 64 <499200000>;
-> +			required-opps = <&cprh_opp4>;
-> +			qcom,pll-override = <0x2200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-422400000 {
-> +			opp-hz = /bits/ 64 <422400000>;
-> +			required-opps = <&cprh_opp3>;
-> +			qcom,pll-override = <0x2200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-345600000 {
-> +			opp-hz = /bits/ 64 <345600000>;
-> +			required-opps = <&cprh_opp2>;
-> +			qcom,pll-override = <0x1200020>;
-> +			qcom,spare-data = <1>;
-> +			qcom,pll-div = <1>;
-> +		};
-> +
-> +		opp-300000000 {
-> +			opp-hz = /bits/ 64 <300000000>;
-> +			required-opps = <&cprh_opp1>;
-> +			qcom,pll-override = <0x1200020>;
-> +			qcom,spare-data = <1>;
-> +		};
+> +	clk_audio_pll2_out: clock-audio-pll2-out@14 {
+> +		compatible = "fsl,imx8mn-gate-clock";
+> +		#clock-cells = <0>;
+> +		clocks = <&clk_audio_pll2_bypass>;
+> +		fsl,anatop = <&anatop 0x14>;
+> +		fsl,bit-shift = <13>;
+> +		clock-output-names = "audio_pll2_out";
 > +	};
 > +
->  	psci {
->  		compatible = "arm,psci-1.0";
->  		method = "smc";
-> @@ -839,6 +1463,174 @@ qfprom: qfprom@784000 {
->  			#address-cells = <1>;
->  			#size-cells = <1>;
->  
-> +			cpr_efuse_speedbin: speedbin@133 {
-> +				reg = <0x133 0x8>;
-> +				bits = <5 3>;
-> +			};
-> +
-> +			cpr_fuse_revision: cpr_fusing_rev@13e {
-> +				reg = <0x13e 0x1>;
-> +				bits = <3 3>;
-> +			};
-> +
-> +			/* CPR Ring Oscillator: Power Cluster */
-> +			cpr_ro_sel3_pwrcl: rosel3_pwrcl@218 {
-> +				reg = <0x218 0x1>;
-> +				bits = <0 4>;
-> +			};
-> +
-> +			cpr_ro_sel2_pwrcl: rosel2_pwrcl@218 {
-> +				reg = <0x218 0x1>;
-> +				bits = <4 4>;
-> +			};
-> +
-> +			cpr_ro_sel1_pwrcl: rosel1_pwrcl@219 {
-> +				reg = <0x219 0x1>;
-> +				bits = <0 4>;
-> +			};
-> +
-> +			cpr_ro_sel0_pwrcl: rosel0_pwrcl@219 {
-> +				reg = <0x219 0x1>;
-> +				bits = <4 4>;
-> +			};
-> +
-> +			/* CPR Init Voltage: Power Cluster */
-> +			cpr_init_voltage3_pwrcl: ivolt3_pwrcl@21a {
-> +				reg = <0x21a 0x1>;
-> +				bits = <0 6>;
-> +			};
-> +
-> +			cpr_init_voltage2_pwrcl: ivolt2_pwrcl@21a {
-> +				reg = <0x21a 0x1>;
-> +				bits = <6 6>;
-> +			};
-> +
-> +			cpr_init_voltage1_pwrcl: ivolt1_pwrcl@21b {
-> +				reg = <0x21b 0x1>;
-> +				bits = <4 6>;
-> +			};
-> +
-> +			cpr_init_voltage0_pwrcl: ivolt0_pwrcl@21c {
-> +				reg = <0x21c 0x1>;
-> +				bits = <2 6>;
-> +			};
-> +
-> +			/* CPR Target Quotients: Power Cluster */
-> +			cpr_quot3_pwrcl: quot3_pwrcl@21d {
-> +				reg = <0x21d 0x2>;
-> +				bits = <6 12>;
-> +			};
-> +
-> +			cpr_quot2_pwrcl: quot2_pwrcl@21f {
-> +				reg = <0x21f 0x2>;
-> +				bits = <2 11>;
-> +			};
-> +
-> +			cpr_quot1_pwrcl: quot1_pwrcl@220 {
-> +				reg = <0x220 0x2>;
-> +				bits = <6 12>;
-> +			};
-> +
-> +			cpr_quot0_pwrcl: quot0_pwrcl@222 {
-> +				reg = <0x222 0x2>;
-> +				bits = <2 12>;
-> +			};
-> +
-> +			/* CPR Quotient Offsets: Power Cluster */
-> +			cpr_quot_offset3_pwrcl: qoff3_pwrcl@226 {
-> +				reg = <0x226 0x1>;
-> +				bits = <1 7>;
-> +			};
-> +
-> +			cpr_quot_offset2_pwrcl: qoff2_pwrcl@227 {
-> +				reg = <0x227 0x1>;
-> +				bits = <0 7>;
-> +			};
-> +
-> +			cpr_quot_offset1_pwrcl: qoff1_pwrcl@227 {
-> +				reg = <0x227 0x1>;
-> +				bits = <7 6>;
-> +			};
-> +
-> +			/* CPR Ring Oscillator: Performance Cluster */
-> +			cpr_ro_sel3_perfcl: rosel3_perfcl@229 {
-> +				reg = <0x229 0x1>;
-> +				bits = <6 4>;
-> +			};
-> +
-> +			cpr_ro_sel2_perfcl: rosel2_perfcl@22a {
-> +				reg = <0x22a 0x1>;
-> +				bits = <2 4>;
-> +			};
-> +
-> +			cpr_ro_sel1_perfcl: rosel1_perfcl@22a {
-> +				reg = <0x22a 0x1>;
-> +				bits = <6 4>;
-> +			};
-> +
-> +			cpr_ro_sel0_perfcl: rosel0_perfcl@22b {
-> +				reg = <0x22b 0x1>;
-> +				bits = <2 4>;
-> +			};
-> +
-> +			/* CPR Init Voltage: Performance Cluster */
-> +			cpr_init_voltage3_perfcl: ivolt3_perfcl@22b {
-> +				reg = <0x22b 0x1>;
-> +				bits = <6 6>;
-> +			};
-> +
-> +			cpr_init_voltage2_perfcl: ivolt2_perfcl@22c {
-> +				reg = <0x22c 0x1>;
-> +				bits = <4 6>;
-> +			};
-> +
-> +			cpr_init_voltage1_perfcl: ivolt1_perfcl@22d {
-> +				reg = <0x22d 0x1>;
-> +				bits = <2 6>;
-> +			};
-> +
-> +			cpr_init_voltage0_perfcl: ivolt0_perfcl@22e {
-> +				reg = <0x22e 0x1>;
-> +				bits = <0 6>;
-> +			};
-> +
-> +			/* CPR Target Quotients: Performance Cluster */
-> +			cpr_quot3_perfcl: quot3_perfcl@22f {
-> +				reg = <0x22f 0x2>;
-> +				bits = <4 11>;
-> +			};
-> +
-> +			cpr_quot2_perfcl: quot2_perfcl@231 {
-> +				reg = <0x231 0x2>;
-> +				bits = <0 12>;
-> +			};
-> +
-> +			cpr_quot1_perfcl: quot1_perfcl@232 {
-> +				reg = <0x232 0x2>;
-> +				bits = <4 12>;
-> +			};
-> +
-> +			cpr_quot0_perfcl: quot0_perfcl@234 {
-> +				reg = <0x234 0x2>;
-> +				bits = <0 12>;
-> +			};
-> +
-> +			/* CPR Quotient Offsets: Performance Cluster */
-> +			cpr_quot_offset3_perfcl: qoff3_perfcl@237 {
-> +				reg = <0x237 0x1>;
-> +				bits = <7 6>;
-> +			};
-> +
-> +			cpr_quot_offset2_perfcl: qoff2_perfcl@238 {
-> +				reg = <0x238 0x1>;
-> +				bits = <6 7>;
-> +			};
-> +
-> +			cpr_quot_offset1_perfcl: qoff1_perfcl@239 {
-> +				reg = <0x239 0x1>;
-> +				bits = <5 3>;
-> +			};
-> +
->  			qusb2_hstx_trim: hstx-trim@23a {
->  				reg = <0x23a 0x1>;
->  				bits = <0 4>;
-> @@ -2998,6 +3790,87 @@ frame@17928000 {
->  			};
->  		};
->  
-> +		apc_cprh: power-controller@179c8000 {
-> +			compatible = "qcom,msm8998-cprh", "qcom,cprh";
-> +			reg = <0x179c8000 0x4000>, <0x179c4000 0x4000>;
-> +
-> +			clocks = <&gcc GCC_HMSS_RBCPR_CLK>;
-> +			clock-names = "ref";
-> +
-> +			/* Set the CPR clock here, it needs to match XO */
-> +			assigned-clocks = <&gcc GCC_HMSS_RBCPR_CLK>;
-> +			assigned-clock-rates = <19200000>;
-> +
-> +			operating-points-v2 = <&cprh_opp_table>;
-> +			power-domains = <&rpmpd MSM8998_VDDCX_AO>;
-> +			#power-domain-cells = <1>;
-> +
-> +			nvmem-cells = <&cpr_efuse_speedbin>,
-> +				      <&cpr_fuse_revision>,
-> +				      <&cpr_quot0_pwrcl>,
-> +				      <&cpr_quot1_pwrcl>,
-> +				      <&cpr_quot2_pwrcl>,
-> +				      <&cpr_quot3_pwrcl>,
-> +				      <&cpr_quot_offset1_pwrcl>,
-> +				      <&cpr_quot_offset2_pwrcl>,
-> +				      <&cpr_quot_offset3_pwrcl>,
-> +				      <&cpr_init_voltage0_pwrcl>,
-> +				      <&cpr_init_voltage1_pwrcl>,
-> +				      <&cpr_init_voltage2_pwrcl>,
-> +				      <&cpr_init_voltage3_pwrcl>,
-> +				      <&cpr_ro_sel0_pwrcl>,
-> +				      <&cpr_ro_sel1_pwrcl>,
-> +				      <&cpr_ro_sel2_pwrcl>,
-> +				      <&cpr_ro_sel3_pwrcl>,
-> +				      <&cpr_quot0_perfcl>,
-> +				      <&cpr_quot1_perfcl>,
-> +				      <&cpr_quot2_perfcl>,
-> +				      <&cpr_quot3_perfcl>,
-> +				      <&cpr_quot_offset1_perfcl>,
-> +				      <&cpr_quot_offset2_perfcl>,
-> +				      <&cpr_quot_offset3_perfcl>,
-> +				      <&cpr_init_voltage0_perfcl>,
-> +				      <&cpr_init_voltage1_perfcl>,
-> +				      <&cpr_init_voltage2_perfcl>,
-> +				      <&cpr_init_voltage3_perfcl>,
-> +				      <&cpr_ro_sel0_perfcl>,
-> +				      <&cpr_ro_sel1_perfcl>,
-> +				      <&cpr_ro_sel2_perfcl>,
-> +				      <&cpr_ro_sel3_perfcl>;
-> +			nvmem-cell-names = "cpr_speed_bin",
-> +					   "cpr_fuse_revision",
-> +					   "cpr0_quotient1",
-> +					   "cpr0_quotient2",
-> +					   "cpr0_quotient3",
-> +					   "cpr0_quotient4",
-> +					   "cpr0_quotient_offset2",
-> +					   "cpr0_quotient_offset3",
-> +					   "cpr0_quotient_offset4",
-> +					   "cpr0_init_voltage1",
-> +					   "cpr0_init_voltage2",
-> +					   "cpr0_init_voltage3",
-> +					   "cpr0_init_voltage4",
-> +					   "cpr0_ring_osc1",
-> +					   "cpr0_ring_osc2",
-> +					   "cpr0_ring_osc3",
-> +					   "cpr0_ring_osc4",
-> +					   "cpr1_quotient1",
-> +					   "cpr1_quotient2",
-> +					   "cpr1_quotient3",
-> +					   "cpr1_quotient4",
-> +					   "cpr1_quotient_offset2",
-> +					   "cpr1_quotient_offset3",
-> +					   "cpr1_quotient_offset4",
-> +					   "cpr1_init_voltage1",
-> +					   "cpr1_init_voltage2",
-> +					   "cpr1_init_voltage3",
-> +					   "cpr1_init_voltage4",
-> +					   "cpr1_ring_osc1",
-> +					   "cpr1_ring_osc2",
-> +					   "cpr1_ring_osc3",
-> +					   "cpr1_ring_osc4";
-> +		};
-> +
->  		intc: interrupt-controller@17a00000 {
->  			compatible = "arm,gic-v3";
->  			reg = <0x17a00000 0x10000>,       /* GICD */
+
+[...]
+
+> -- 
+> 2.32.0
+> 
