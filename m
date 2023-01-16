@@ -2,128 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF5A166BCAA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:18:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BCF366BCB0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:19:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbjAPLSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 06:18:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46804 "EHLO
+        id S229509AbjAPLTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 06:19:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjAPLSU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:18:20 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FC151DB8F;
-        Mon, 16 Jan 2023 03:18:18 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30GBI1mj076899;
-        Mon, 16 Jan 2023 05:18:01 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673867881;
-        bh=DAuiYCUADfCRO/9+N0H7cdlBM2EtTekj/zRe4H7QKaU=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=NAZEtGwVp3CG0kOrJNhFO0nQ4VELN14Qa3KmJErImPqQRnt2Pi7O+RdVRCYOBNJCh
-         PpO7tXZPD6CRF4xC/8F3/kkTU8lfoqxvrgXLUk2AjCfqL6Dxkn8IqfBLBxGrueqZQQ
-         JTK42lNv7s9qCnA6xE1DHLtB0311SCh0u+bxNkPY=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30GBI1ix009870
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 16 Jan 2023 05:18:01 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 16
- Jan 2023 05:18:01 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 16 Jan 2023 05:18:01 -0600
-Received: from [172.24.145.71] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30GBHv7T042725;
-        Mon, 16 Jan 2023 05:17:58 -0600
-Message-ID: <c7e9d9bb-d3d1-f958-b255-9128751be568@ti.com>
-Date:   Mon, 16 Jan 2023 16:47:57 +0530
+        with ESMTP id S229989AbjAPLSb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:18:31 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 137B71E9EA;
+        Mon, 16 Jan 2023 03:18:29 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AC9DBB80E58;
+        Mon, 16 Jan 2023 11:18:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D77E2C433EF;
+        Mon, 16 Jan 2023 11:18:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673867907;
+        bh=8PrYbyCiD04eZZG/0z88bf7npnuEKHo0T6laY8odGoM=;
+        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+        b=OMsr+rFvO5dK7DgWTkloeRlOGNefEOoyAHywNsjkIs41BXdOKoCSID0G8lc2IZOTI
+         /tcmgfrqKZ8YybX5//WcG5XOYgLMMa5IT2W36gYlNaBI7OEK1k9vt6XKP033HIQYaF
+         cIBm/eRSw1Ol4r+0rVhI+uyNsVqgvdaO0/MAzs63Pj+Kzrhj3C35uovBFoliJyengS
+         FdZDrFC4dd+fhFNPibTKLL2k1JCUI3loFFWkm2/HfE3Zyjbp+XKIIDBi4B6unha/NQ
+         /y5FntAW/gPXxc4OpV9NkvhP5k9sl6SxcHNFmbqbIDReTMGt0zAMLB/+Lw19zM5Z/k
+         33ibAJVjRy/FA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V5 0/3] AM68 SK: Add initial support
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sinthu Raja <sinthu.raja@ti.com>
-References: <20230116071446.28867-1-sinthu.raja@ti.com>
-Content-Language: en-US
-From:   Neha Malcom Francis <n-francis@ti.com>
-In-Reply-To: <20230116071446.28867-1-sinthu.raja@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2] brcmfmac: Prefer DT board type over DMI board type
+From:   Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230106131905.81854-1-iivanov@suse.de>
+References: <20230106131905.81854-1-iivanov@suse.de>
+To:     "Ivan T. Ivanov" <iivanov@suse.de>
+Cc:     aspriel@gmail.com, marcan@marcan.st, franky.lin@broadcom.com,
+        hante.meuleman@broadcom.com, rmk+kernel@armlinux.org.uk,
+        stefan.wahren@i2se.com, pbrobinson@gmail.com,
+        jforbes@fedoraproject.org, davem@davemloft.net,
+        devicetree@vger.kernel.org, edumazet@google.com,
+        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com,
+        "Ivan T. Ivanov" <iivanov@suse.de>, stable@vger.kernel.org
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <167386788710.4736.8327846687234426691.kvalo@kernel.org>
+Date:   Mon, 16 Jan 2023 11:18:22 +0000 (UTC)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sinthu
+"Ivan T. Ivanov" <iivanov@suse.de> wrote:
 
-On 16/01/23 12:44, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
+> The introduction of support for Apple board types inadvertently changed
+> the precedence order, causing hybrid SMBIOS+DT platforms to look up the
+> firmware using the DMI information instead of the device tree compatible
+> to generate the board type. Revert back to the old behavior,
+> as affected platforms use firmwares named after the DT compatible.
 > 
-> Hi All,
-> This series of patches add support for AM68 Starter kit(SK). AM68 SK
-> is a low cost, small form factor board designed for TI’s AM68 SoC.
+> Fixes: 7682de8b3351 ("wifi: brcmfmac: of: Fetch Apple properties")
 > 
-> Refer below link to AM68 Technical Reference Manual for further details:
-> http://www.ti.com/lit/pdf/spruj28
+> [1] https://bugzilla.opensuse.org/show_bug.cgi?id=1206697#c13
 > 
-> Design files can be referrred from https://www.ti.com/lit/zip/SPRR463
-> 
-> Changes in V5:
-> =============
-> Address review comments:
-> - Remove the unessential comment.
-> - Remove alignment property from secure-ddr node, as no memory is allocated out
->    of this region.
-> 
-> Changes in V4:
-> =============
-> Repost after rebasing to 6.2 rc1
-> 
-> Changes in  V3:
-> ==============
-> Address all the review comments and the changes are captured in separate patches.
->   - Remove the unused nodes that are disabled by default.
->   - Update the gpio regulator node: gpio-regulator-tlv to "regulator-tlv".
-> 
-> V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-1-sinthu.raja@ti.com/t/#mbe43b02221733bb6eb06b203359e90ec08406afc
-> V2: https://lore.kernel.org/lkml/20221107123852.8063-1-sinthu.raja@ti.com/
-> V3: https://lore.kernel.org/lkml/20230110110052.14851-1-sinthu.raja@ti.com/
-> V4: https://lore.kernel.org/lkml/20230105151740.29436-1-sinthu.raja@ti.com/
-> 
-> Sinthu Raja (3):
->    dt-bindings: arm: ti: Add binding for AM68 SK
->    arm64: dts: ti: Add initial support for AM68 SK System on Module
->    arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board
-> 
->   .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
->   arch/arm64/boot/dts/ti/Makefile               |   2 +
->   .../boot/dts/ti/k3-am68-sk-base-board.dts     | 335 ++++++++++++++++++
->   arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi    |  29 ++
->   4 files changed, 367 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-> 
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> Reviewed-by: Hector Martin <marcan@marcan.st>
+> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Tested-by: Peter Robinson <pbrobinson@gmail.com>
 
-For the series:
+Dave applied this directly to net tree:
 
-Reviewed-by: Neha Malcom Francis <n-francis@ti.com>
+https://git.kernel.org/linus/a5a36720c3f6
 
 -- 
-Thanking You
-Neha Malcom Francis
+https://patchwork.kernel.org/project/linux-wireless/patch/20230106131905.81854-1-iivanov@suse.de/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
