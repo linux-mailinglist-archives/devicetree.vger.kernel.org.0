@@ -2,182 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5C166B931
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 09:42:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C747D66B940
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 09:46:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232347AbjAPImA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 03:42:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53558 "EHLO
+        id S232323AbjAPIqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 03:46:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232328AbjAPIl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 03:41:56 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2088.outbound.protection.outlook.com [40.107.20.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7199B12F09
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 00:41:55 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xlw4i/SLU96aLdR9/uQdtdt/WHAx5EqJZYasZXAdLr3lYbAu0MXpKoT+FRBpNUnHEor0mJl/pdPewwIp3/X+/EGXhhV5RLhJjnwGgOZrCpS1Mm6W0DHNBOOJztZb0Mj4sjat3ocmVFirOLIXAI56sf/akk0RtCNCvq+wACvsMGhezdH3t2N2TICw7T4QjEKWuLyB8/eOz09qowCX2FTg9aK7KWccUPNi/+f9pZP2JA8RUuM00hgtb4BIZg+rZqo7ATmzytFcizIdIwPC0rjWr1cUK/aXjQ7H2qPMPXRmvwNzxZ45VhF59nB4NnfnyGqK6YbTyFIDcWLtFWPWUHJ3hQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xBSZUZEsNbce5U+AdU2fg84edFd1WqiTQ/uQS+EZrGU=;
- b=b7lNSFL64Oh7QylmtEtifJ0cQJ90V1VNWFGJEDAmkCn8I31MmHYgS5v5+Vdyoki+R0YXEeSwuNy/8w2vWXra5O2OS9Xrj61LzMNyK0RfYIKzrB2DymZKaWPoNNUCd6i+0VrNEH52cgVk1ANk2XzO1vsutkS2scJBp7vg9iMnzgiXNeiU2tGJML0n3i5DBTVCTjg+T/jeNxe0LyGl9EZgw3K3DV5/6OCc8YGRKMoqKWf3d0UE20Oin/139t2ssc8YyvhVN/nxc6KZVX2zg+kJoz1AW/9GSw2Syp2LZg5tSo2ptZ4y6fO3gkmZsI86/VvsK8XkDZ/vVHfGH0DvECkz5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xBSZUZEsNbce5U+AdU2fg84edFd1WqiTQ/uQS+EZrGU=;
- b=vfr//lkIhsJIE+I3f5OTaV5OlJzFrDKMh4F/dTyVkQCKke6jzoJdFaGczk2B1ItzH2Od1+A8dTi9oEO7yF4Baj7a2yQOlXHocDKi8UKBjrbPT4xVc5ngUEOHmgQbrTiXztQJfcV+tkTi2/G8vriZk227ibE16xNP2Aott5fuY0k=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
- by AS2PR08MB10053.eurprd08.prod.outlook.com (2603:10a6:20b:640::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.12; Mon, 16 Jan
- 2023 08:41:52 +0000
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::4718:6092:e763:4219]) by DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::4718:6092:e763:4219%2]) with mapi id 15.20.5986.022; Mon, 16 Jan 2023
- 08:41:52 +0000
-Message-ID: <7caeb07b-8465-6bdd-d90d-06a905b56f37@wolfvision.net>
-Date:   Mon, 16 Jan 2023 09:41:50 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH] arm64: dts: rockchip: fix probe of analog sound card on
- rock-3a
-Content-Language: en-US
-To:     Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        frattaroli.nicolas@gmail.com
-References: <20230115211553.445007-1-jonas@kwiboo.se>
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-Organization: WolfVision GmbH
-In-Reply-To: <20230115211553.445007-1-jonas@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR0602CA0018.eurprd06.prod.outlook.com
- (2603:10a6:800:bc::28) To DU0PR08MB9155.eurprd08.prod.outlook.com
- (2603:10a6:10:416::5)
+        with ESMTP id S231969AbjAPIqd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 03:46:33 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D721F1286C;
+        Mon, 16 Jan 2023 00:46:32 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30G6ukmT032407;
+        Mon, 16 Jan 2023 08:46:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : reply-to : references : mime-version :
+ content-type : in-reply-to; s=qcppdkim1;
+ bh=9upRWgPsUI4MWJz8NNhINZoq9YCOZLLadpunlbq+F+I=;
+ b=UnN5PMZIYloM18yNkt42oJvysp3WI+HRVAA+lSiq4mk+L8/tCBO6Ho8UMeCuIpiYUx8m
+ iW/rmtED8PqAbB2/HLBCDpF3QBlCO9qzx0BlT581Hw+EB3RmFBaDok50qYP2uMSunDD8
+ +I/sxax71S9iPJNvBJduo2SQfj1e/vQdwRxeBqx2C4UXmD02oiLPBIbwAv7fCdy2gsEY
+ 0buEhutE2o5j3zNHww0xeeGSoyQLtdQLIffma6hPlyWMYpLJc3lyjX+RERKKIwJnQ9QJ
+ 02+EFkpN2opWjW0Gpd7owyODK8gtGMmqf1a8UsvQ93TE36J//gcybSDoirbDSNlWTzY6 lw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n3mm9tx1w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 16 Jan 2023 08:46:08 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30G8k74G028844
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 16 Jan 2023 08:46:07 GMT
+Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 16 Jan
+ 2023 00:46:00 -0800
+Date:   Mon, 16 Jan 2023 14:15:57 +0530
+From:   Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Carl van Schaik" <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-acpi@vger.kernel.org>
+Subject: Re: [PATCH v8 13/28] gunyah: rsc_mgr: Add RPC for sharing memory
+Message-ID: <20230116084557.GB1737564@quicinc.com>
+Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+References: <20221219225850.2397345-1-quic_eberman@quicinc.com>
+ <20221219225850.2397345-14-quic_eberman@quicinc.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|AS2PR08MB10053:EE_
-X-MS-Office365-Filtering-Correlation-Id: 47f42426-a782-4acd-64af-08daf79d8405
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZUsFZ1tlxLdmTgfLzzCC3CIPaoGOnWEJg8kli9MGFmmmPa2HreDJJvyvwDRWYRjdElU3EfTpHob+Q1ZUk68LbG/tVxrv2eUCyPhtCvodiMrG97o+/HwNpkypTkO/RYilPODuKD1M5O0wf3w2/CHZN7G93ax2rw4QCtTM4xcRbrZUh7jbCYDCO0e5cGXVE+0mgIJ44OeaiXUYQkqXZW4HxPare33eqrOpuiCdzK/DoLxqIdEU5Fwy6APAw6J0zhBKXePGRvUmuXsUv090FhiKHU/PRvsNi/hgwXw5d93GCWFMyxPHmpdnnqjKC86LH8pFCujStf135uSR13A42tKYbpQ4/36pqj/bhakvSJ2che/Bj+zMMkeEEaUIySYJ9c9qI+yRTIzBhJROVaVqB10sC3fv42l2K2w8BGL4LhBj/6UUO43y+kT+OO9z2Y8cn03zKQ3hJWUq2fehuBuWlRdkT+kgZCOozoJVkfi5aLqCZy3M8ogQKGK58s4phsjHz9+Dd4PeKDZ0HtxOkx/W6Pb0oJuhDyTYkpDjUFE5qYxr+3xBeYyzcskQ5W2qQjQeiJIq5SP5NzJVZmBnN/AMPnRu7yzVIT1LhYXEdL3M3L+La6rxw5mWELsutPdBdXbjIv3nrPoowSaUCaSY35YeWaT9a70TGF17l/9JwGAIXjgTo+rB+eNxm/jaV3oSY0DdG/9ABlLyQApXsSTFlbjA211uw+8cjWAOT3oXhHRJlMUCWXw83HTiGqHWGSYfHOpf5D8nWJ+eB8GEDkjXDGWKnnC9QpCk71QvuUKsW/E6KvGTnjY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(136003)(39840400004)(396003)(366004)(451199015)(31686004)(6506007)(53546011)(38100700002)(38350700002)(2906002)(316002)(8936002)(110136005)(478600001)(54906003)(6486002)(966005)(26005)(4326008)(52116002)(186003)(8676002)(36916002)(44832011)(5660300002)(2616005)(83380400001)(66476007)(66946007)(86362001)(66556008)(31696002)(6512007)(41300700001)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YTRtSFhJcDA1YUtXRzFEbkVwdW5HditXUHVVVW5UelJ4WS93OEg3V0NmeExZ?=
- =?utf-8?B?SWVaT0J3NmVWOXovbTNjV0FHRzZlSWVTaHhpeHNKZHpWVUxPYmMyakZTZlRO?=
- =?utf-8?B?WEt6WjJjZ3VsYTVhcmZvdExnS1lrOTFHZGZyS244aWZMQVNRcnUranZQaVJU?=
- =?utf-8?B?d2EreDlPT2dyWFRPbUpIVEx4ZDJIYUFXYzRValJwZnlCMk90MmhCQzBQTUFj?=
- =?utf-8?B?ajdJeFFVWElvNmNWT1hjdEZRVjVPMGtTaThlZjA4OTV3UmRoRWNWVmc5OVpx?=
- =?utf-8?B?ZjYra0ExQnQ0dkVYTm1RN3pNbjFFUnBFbkNUSmlYMEM3QnZwK3AxKzkyb3N4?=
- =?utf-8?B?T1ZqcHZwRVUyaGV5K2Zpd1gyaDlrUW1JbFN0TGdGa3lDNGdVcGlTUXhKbkJX?=
- =?utf-8?B?NzZwdFl1a1JrU1JaM29PelQ4TWJ6ZnMrNDJyRSthdHVGV2U5Z1NiajdrR2Fl?=
- =?utf-8?B?TkJwNnZzUUNQcmVaRzIvdU5nbGdPVDNwYzk2TjB4NE5Qc2Q4NS9lT25waGRw?=
- =?utf-8?B?by9sdnhXeWh2RXc4VDlWOGk5ekQwdCsxSHJSb09sM2o5dE9Kc2QwYWNWWVpN?=
- =?utf-8?B?bkpBVWpYY1lMcnczYk50a2svZ25SQkszQXUrcVg2UHRQTi84UVpRUWRzRnlL?=
- =?utf-8?B?cWpRcTFNd3JKZHpyczJuTjIzbkxNSGRuSXpmbDVBR3pVRTg0VzVNVTVFZlJ1?=
- =?utf-8?B?RTBmUlF4N1lGUjNVQllGS1dYdStaZGtTMzUyNzRpYzRjaWxUaDVUS0tnYkFn?=
- =?utf-8?B?bkMrOGZLTTFtdUdVWnI1bjRtU1ZZbDVxTmpKNGx2V1ROTzRWaHlnN2s2R3Fa?=
- =?utf-8?B?TTY4bkY5bHN6SktJZG00Qzl4QUc4MkNoa1NKTzlCdXJnVUhZdDFGU09lclNz?=
- =?utf-8?B?eFZWNm9jK0toSzVQSWlzMEdoS3kxRm52elFnVWZNcDBVNWFxcGI0MWtIQ1BE?=
- =?utf-8?B?KzNUOEhSS0hCOFZuNlUzWGpBQmtsSWV3YTRER1JlY2lycVQ3aVRTc3hKR1pX?=
- =?utf-8?B?NTVSZkwzUEhTQjhaeEpmM0R0MjZhM09hSXlMaFRHV0ZmbVR3WjVoU2pPVXl1?=
- =?utf-8?B?UnZQWW54UzZSR0FlYTh2cmtKb3ZScGdBSHdNQ09qQkRnQkYvREpHOFdKSWNo?=
- =?utf-8?B?SXVlenRka2hOdk1iTVZYTmpSVWJwZWgyZ3pJOW0vYzBYbGlyTkc0aFdHelda?=
- =?utf-8?B?Sy9KL2JQOUJ2NFVJU3NjNW4rRHdrdmUwUERFeFZKSThraVBHaHNLbTRZbGFa?=
- =?utf-8?B?SlY3TTNILzRWRnFRVCs1cnRZV0hIZXpBR2RXbHdSaHJzcVgxRmduWFlicmJY?=
- =?utf-8?B?Y2VLL0Zjb21IWWtXbC9JNndvZVY2VEpjRW1oTFBCeG1iV1R4M0xpbk9mR0wy?=
- =?utf-8?B?bFQ1aU8rRVUrTU9tNktOY2JwZkxvYnN6UWp5QkNjWXUzVlJPNW5LVDRQcnpL?=
- =?utf-8?B?T1BQejZ1L3MxVlY0NjNSdDJoN0xOa2xpaVdVZm9idERLWnZtU1JlNVdaUHlt?=
- =?utf-8?B?d2JJdEdoUEVBWW5MZ0hGajFMaWE2UEduZTdsaTJ2Qk1pK2FyU3k5eXJXSFQw?=
- =?utf-8?B?cW9USzIrTWsvS1pQZldVOURvczI1Q3RQYnhsUW5SRGd4UWxjOGt4VW5GeHBi?=
- =?utf-8?B?ZGg4NTNvbk1KMlNiaS91R0dIMFNoNXR4cFZueWJjZWlwS1E0eFVGbDFJNG9x?=
- =?utf-8?B?cjNLYVdLckVraitCaGpwcisyS01tYlRLYmVDZnpwSWJFZ1ZuS2t5R1hNQStX?=
- =?utf-8?B?WlZZRFB1c2lDMGNkdmVuOEJDR244cnRyR1IxNW5UM0NzaXlnVFN5SjBqajNy?=
- =?utf-8?B?YmpJZTluVGRZaUtuOXB5emJIOUVtQnYyOVJSbFlsUmVZajdWWlE3eDRQaERT?=
- =?utf-8?B?bG5memRuNzdhVHp3SmVpSHBhT2l2a3krcWx4UlpQUEtjMjlNcXdsOXhpMEc3?=
- =?utf-8?B?RHVjV29teFdEckRUbWkySjhiYnhaZ0psMW01NmpmTEorNk5ZQmpTc2Q0ZFFN?=
- =?utf-8?B?a1UxYWRBaktKWDdkbktvdk95Z3lVN0d6ZGhOUlpCb2lwbXgrUm1idHhLd3VC?=
- =?utf-8?B?dk53VmdjcU9rVkZZc0ZaR1BrSkFMeG1LUGdTdC93VXVicXNIa2dBT2F4ZU5o?=
- =?utf-8?B?bzFhcFVmejB3SkNiQzF3RHMxTWF4elZYSnZTODVLTmtoSWRDUGorTXBtYUkr?=
- =?utf-8?B?aEE9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47f42426-a782-4acd-64af-08daf79d8405
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 08:41:52.4625
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iFfeiol9bACkpJVlWFNZmtjf9UAN6NaqZBED3Ht4KgIQeLMgwMWOmVuAr4bUyQfoFSioM/2Vhfc0lFZMHVJHXhw3ZGNyoNE8Dr+tjtfq1YM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB10053
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+In-Reply-To: <20221219225850.2397345-14-quic_eberman@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _ofK556yL_a9qSF87Ooq6UE7hMu7sYIb
+X-Proofpoint-ORIG-GUID: _ofK556yL_a9qSF87Ooq6UE7hMu7sYIb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-16_06,2023-01-13_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ spamscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
+ impostorscore=0 adultscore=0 bulkscore=0 lowpriorityscore=0 clxscore=1011
+ mlxlogscore=839 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301160064
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonas,
+* Elliot Berman <quic_eberman@quicinc.com> [2022-12-19 14:58:34]:
 
-On 1/15/23 22:15, Jonas Karlman wrote:
-> The following was observed on my Radxa ROCK 3 Model A board:
-> 
->   rockchip-pinctrl pinctrl: pin gpio1-9 already requested by vcc-cam-regulator; cannot claim for fe410000.i2s
->   ...
->   platform rk809-sound: deferred probe pending
-> 
-> Fix this by supplying a board specific pinctrl with the i2s1 pins used
-> by pmic codec according to the schematic [1].
-> 
-> [1] https://dl.radxa.com/rock3/docs/hw/3a/ROCK-3A-V1.3-SCH.pdf
-> 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> +static int _gh_rm_mem_append(struct gh_rm_rpc *rm, u32 mem_handle, bool end_append,
+> +			struct gh_rm_mem_entry *mem_entries, size_t n_mem_entries)
+> +{
+> +	size_t msg_size = 0;
+> +	void *msg;
+> +	struct gh_mem_append_req_header *req_header;
+> +	struct gh_mem_share_req_mem_section *mem_section;
+> +	void *resp;
+> +	size_t resp_size;
+> +	int ret;
+> +
+> +	msg_size += sizeof(struct gh_mem_append_req_header);
+> +	msg_size += offsetof(struct gh_mem_share_req_mem_section, entries[n_mem_entries]);
+> +
+> +	msg = kzalloc(msg_size, GFP_KERNEL);
+> +	if (!msg)
+> +		return -ENOMEM;
+> +
+> +	req_header = msg;
+> +	mem_section = (void *)req_header + sizeof(struct gh_mem_append_req_header);
+> +
+> +	req_header->mem_handle = mem_handle;
 
-Makes sense to me, but...
+cpu_to_le(mem_handle);
 
-> ---
->  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> index 00d873a03cfe..a149c8b83f94 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> @@ -573,6 +573,8 @@ &i2s0_8ch {
->  };
->  
->  &i2s1_8ch {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2s1m0_sclktx &i2s1m0_lrcktx &i2s1m0_sdi0 &i2s1m0_sdo0>;
 
-... shouldn't this include i2s1m0_mclk as well?
+> +	if (end_append)
+> +		req_header->flags |= GH_MEM_APPEND_REQ_FLAGS_END;
+> +
+> +	mem_section->n_entries = n_mem_entries;
+> +	memcpy(mem_section->entries, mem_entries, sizeof(*mem_entries) * n_mem_entries);
+> +
+> +	ret = gh_rm_call(rm, GH_RM_RPC_MEM_APPEND, msg, msg_size, &resp, &resp_size);
+> +	if (ret)
 
-For some reason this has been omitted in the pinctrl defined in
-rk356x.dtsi. But then rk356x.dtsi also claims
- - both i2s1m0_sdo1 and i2s1m0_sdi3
- - both i2s1m0_sdo2 and i2s1m0_sdi2
- - both i2s1m0_sdo3 and i2s1m0_sdi1
-which are mapped to the same respective pins. Therefore it seems that
-there might be something wrong with this pinctrl altogether.
+kfree(msg);
 
-Cc: Nicolas Frattaroli, maybe he can provide some clarification.
+> +		return ret;
+> +	kfree(resp);
 
-Best regards,
-Michael
+kfree(msg);
 
->  	rockchip,trcm-sync-tx-only;
->  	status = "okay";
->  };
+> +
+> +	return ret;
+> +}
+> +
+> +static int gh_rm_mem_append(struct gh_rm_rpc *rm, u32 mem_handle, bool allow_append,
+
+Is there any scenario where allow_append will be 'true'? As of this patch
+atleast, its always 'false', so maybe just avoid this input argument?
+
+> +static int gh_rm_mem_lend_common(struct gh_rm_rpc *rm, u32 message_id, struct gh_rm_mem_parcel *p)
+> +{
+
+[snip]
+
+> +	acl_section->n_entries = p->n_acl_entries;
+
+cpu_to_le32(p->n_acl_entries);
+
+> +	memcpy(acl_section->entries, p->acl_entries, sizeof(*(p->acl_entries)) * p->n_acl_entries);
+> +
+> +	mem_section->n_entries = initial_n_mem_entries;
+
+cpu_to_le32(initial_n_mem_entries);
+
+> +	memcpy(mem_section->entries, p->mem_entries,
+> +		sizeof(*(p->mem_entries)) * initial_n_mem_entries);
+> +
+> +	/* Set n_entries for memory attribute section to 0 */
+> +	*mem_attr_section = 0;
+> +
+> +	ret = gh_rm_call(rm, message_id, msg, msg_size, &resp, &resp_size);
+> +	if (ret)
+
+kfree(msg)
+
+> +		return ret;
+> +
+> +	if (resp_size != sizeof(__le32)) {
+> +		ret = -EIO;
+> +		goto out;
+> +	}
+> +
+> +	p->mem_handle = le32_to_cpu(*(__le32 *)resp);
+> +
+> +	if (initial_n_mem_entries != p->n_mem_entries) {
+> +		ret = gh_rm_mem_append(rm, p->mem_handle, false,
+> +					&p->mem_entries[initial_n_mem_entries],
+> +					p->n_mem_entries - initial_n_mem_entries);
+> +		if (ret)
+> +			gh_rm_mem_reclaim(rm, p);
+
+			p->mem_handle = GH_MEM_HANDLE_INVAL in this case?
+
+> +	}
+> +
+> +out:
+
+kfree(msg) ?
+
