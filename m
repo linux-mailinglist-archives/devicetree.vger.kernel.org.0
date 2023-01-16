@@ -2,100 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74DC866CAD8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 18:08:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B94D266CBAE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 18:16:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231260AbjAPRIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 12:08:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33870 "EHLO
+        id S234496AbjAPRQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 12:16:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233970AbjAPRHn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 12:07:43 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 29823442FC;
-        Mon, 16 Jan 2023 08:48:14 -0800 (PST)
-Received: from linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net (linux.microsoft.com [13.77.154.182])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 4440B20DFE7B;
-        Mon, 16 Jan 2023 08:48:13 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4440B20DFE7B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1673887693;
-        bh=8WJ4zN5MuJ/C11+0ipegAO1si9SMvqeWNRylUa8fNzc=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=SjlDDfFhL9lfRd/aAv5hJ1HJ4R9srUQcXj9teGHm7+UGQLoLW1dy6/XPfY07mR9Ra
-         DEKKMNkKJvFKNbdBLAoKIa5nt3aDtEyKsM+wZm50Hz7rHu/8FO3BKNEzpDP566/I9I
-         QZPbBRsm8wDewAHHWkZxzmZQpq2ZxomBKn5QF3G4=
-From:   Saurabh Sengar <ssengar@linux.microsoft.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com
-Subject: [PATCH 4/4] dt-bindings: hv: Add dt-bindings for VMBus
-Date:   Mon, 16 Jan 2023 08:48:08 -0800
-Message-Id: <1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
-References: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S234497AbjAPRP2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 12:15:28 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B18A52BEE4;
+        Mon, 16 Jan 2023 08:56:27 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id C0C1A8108;
+        Mon, 16 Jan 2023 16:56:25 +0000 (UTC)
+Date:   Mon, 16 Jan 2023 18:56:24 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     Adam Ford <aford173@gmail.com>, bcousson@baylibre.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: Re: [PATCH] ARM: dts: gta04: fix excess dma channel usage
+Message-ID: <Y8WBuKt6mw6TN1Cp@atomide.com>
+References: <20230113211151.2314874-1-andreas@kemnade.info>
+ <CAHCN7xJH+c41Yas+xnWA57KNi9arOOJDxJ=joEDEJr2k6jrRrw@mail.gmail.com>
+ <Y8VkjQ2yZQssx/wJ@atomide.com>
+ <20230116173922.585904bf@aktux>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230116173922.585904bf@aktux>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt-bindings for Hyper-V VMBus
+* Andreas Kemnade <andreas@kemnade.info> [230116 16:39]:
+> On Mon, 16 Jan 2023 16:51:57 +0200
+> Tony Lindgren <tony@atomide.com> wrote:
+> 
+> > Hi,
+> > 
+> > * Adam Ford <aford173@gmail.com> [230116 14:16]:
+> > > Would it make sense to make this default in the omap3.dtsi file and
+> > > enable them in the individual boards that need it?  
+> > 
+> > In general disabling the unused devices by default for omaps will break
+> > the power management. The disabled devices are completely ignored by the
+> > kernel, and the devices are left to whatever the bootloader state might
+> > be.
+> > 
+> hmm, shouldn't ti-sysc keep things disabled in most cases? It is still a bit
+> known because there is no status = "disabled" in the target-module@xxx node.
 
-Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
----
- .../devicetree/bindings/hv/msft,vmbus.yaml         | 34 ++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hv/msft,vmbus.yaml
+Oh right, if the child device is tagged disabled (instead of the the parent
+ti-sysc tagged disabled) the module should get idled just fine as long as the
+module related quirks are implemented for ti-sysc.c.
 
-diff --git a/Documentation/devicetree/bindings/hv/msft,vmbus.yaml b/Documentation/devicetree/bindings/hv/msft,vmbus.yaml
-new file mode 100644
-index 0000000..66cb426
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hv/msft,vmbus.yaml
-@@ -0,0 +1,34 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/hv/msft,vmbus.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microsoft Hyper-V VMBus device tree bindings
-+
-+maintainers:
-+  - Saurabh Sengar <ssengar@linux.microsoft.com>
-+
-+description:
-+  VMBus is a software bus that implement the protocols for communication
-+  between the root or host OS and guest OSs (virtual machines).
-+
-+properties:
-+  compatible:
-+    const: msft,vmbus
-+
-+  ranges :
-+    const: <0x00 0x00 0x0f 0xf0000000 0x10000000>
-+
-+required:
-+  - compatible
-+  - ranges
-+
-+examples:
-+  - |
-+        vmbus {
-+		#address-cells = <0x02>;
-+		#size-cells = <0x01>;
-+		compatible = "msft,vmbus";
-+		ranges = <0x00 0x00 0x0f 0xf0000000 0x10000000>;
-+	};
--- 
-1.8.3.1
+But still, I'd rather not start tagging devices disabled by default and then
+re-enabling everywhere since we never needed it before. It just adds a lot
+of pointless status tinkering, see commit 12afc0cf8121 ("ARM: dts: Drop
+pointless status changing for am3 musb").
+
+So considering things, IMO it's best to set only the child device with
+status disabled, and set it at the board specific dts file in this case.
+
+Also note that the dma channels could be freed with /delete-property/ at the
+board specific dts file even for devices that are usable if not really
+needed.
+
+Regards,
+
+Tony
 
