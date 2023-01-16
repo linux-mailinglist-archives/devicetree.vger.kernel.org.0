@@ -2,111 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBB8B66BA38
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:25:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AF9F66BA3C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 10:26:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232338AbjAPJZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 04:25:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51954 "EHLO
+        id S232439AbjAPJ0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 04:26:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232213AbjAPJZJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:25:09 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E2D144BD
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:25:09 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id y25so41830934lfa.9
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:25:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z4CRc7b5in8r0rd5dEL7SAssCcA18qplF3EkYfmNT78=;
-        b=uUV2PpcOkw9p1crb6g3kqcR6F/zaUsfzgqjC6cIXpPQvpIcQQRmzNQ+UAZJ3QneTPM
-         MwDF9qM6DLJ4P6fcdJ6w6kMghW1avwlm8LP3aDo5LvSdiVq/Ad6utYP/608rDzzTZ2T6
-         T/SmrmlQegHCyKhRKTJqY+DCk52CBQptYIggx+hKdahed/whFFIL1QD2Uq36O/4ROKsi
-         wiXz7+1zRoCQO0lRgUgfQk4phIZ9EkF4d3lQocaZGMrmLnYp456wv66JyirLmzx2PipB
-         dGCsZX9+fyUQksVhXv9EZXb6A4/450vcMKzkK3L+QWnQH6yHBcYzZ31/9zUTMFGHdnFZ
-         Ra+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z4CRc7b5in8r0rd5dEL7SAssCcA18qplF3EkYfmNT78=;
-        b=zjEib/jfowfXSPLCcGeNAZVGyRsfsk8SEZ3oZxUuPaO4nKt9pg5KBI5AV/t7zmilU3
-         KHBf2fEezRcvOo+s1D3HFj0Miws3PcWatSnUCUoBf08IPwUzjATppcs52p4OEDUEcCfF
-         ytSEvDaG47f4VA5uZWCLBsrcMcMPOsTwNsFXEFlpPW34bM78bNMn94+889S6Ymc4NRdj
-         rLnm2Ue9GPdJ3ODobE1ECNm8ukkU2mrXG4FdLSt64ouZ775Mue0zzVUIyocxwbulvAyA
-         fP5ABR07DszhDuq9/BX71PxAnSNWT3dEO/mX2KAnnWRwXK5noszmxB0OUk8iBWQidfrh
-         jaUg==
-X-Gm-Message-State: AFqh2kooKnZxW6X4iRry8A16HjyNeHolBR0aSHJAdotkdYQ0zHkukGH7
-        CU9g7Agdp1Mipz61ZL2OxrNbVw==
-X-Google-Smtp-Source: AMrXdXsPZHxfkVpga19fGCmyb3HzbzGA84o9bApfuxNmqtonKX4jYH7/zCGE6NEV8Lst2Bse1Ln6Yg==
-X-Received: by 2002:a05:6512:d1:b0:4a4:68b7:dec0 with SMTP id c17-20020a05651200d100b004a468b7dec0mr2263148lfp.28.1673861107397;
-        Mon, 16 Jan 2023 01:25:07 -0800 (PST)
-Received: from localhost.localdomain (abym53.neoplus.adsl.tpnet.pl. [83.9.32.53])
-        by smtp.gmail.com with ESMTPSA id d22-20020a196b16000000b004d093d60f50sm1448003lfa.215.2023.01.16.01.25.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jan 2023 01:25:06 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S232345AbjAPJ0q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 04:26:46 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9E4166C1
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 01:26:45 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1pHLlG-0007IW-CX; Mon, 16 Jan 2023 10:26:38 +0100
+Message-ID: <e492a90c-147c-a50b-80aa-86f47306cff0@pengutronix.de>
+Date:   Mon, 16 Jan 2023 10:26:35 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH 2/2] ARM: dts: imx6qdl: support child mfd cells for the
+ reset controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bastian Krause <bst@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC PATCH] regulator: dt-bindings: qcom-labibb: Allow regulator-common properties
-Date:   Mon, 16 Jan 2023 10:25:02 +0100
-Message-Id: <20230116092502.71146-1-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230113-syscon-child-mfd-v1-0-0dd31b7de373@pengutronix.de>
+ <20230113-syscon-child-mfd-v1-2-0dd31b7de373@pengutronix.de>
+ <392f6e9d-b7c2-37df-2067-f7d967a20f10@linaro.org>
+ <12080bf5-2cc4-e215-555e-5438ed1bd851@pengutronix.de>
+ <1b5613ad-6d0d-0979-ddd0-4677ade7beb9@linaro.org>
+Content-Language: en-US
+In-Reply-To: <1b5613ad-6d0d-0979-ddd0-4677ade7beb9@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow regulator-common properties on lab/ibb regulators, such as
-regulator-always-on, etc.
+On 16.01.23 10:14, Krzysztof Kozlowski wrote:
+> On 16/01/2023 09:27, Ahmad Fatoum wrote:
+>> Hello Krzysztof,
+>>
+>> On 16.01.23 09:20, Krzysztof Kozlowski wrote:
+>>> On 13/01/2023 18:32, Bastian Krause wrote:
+>>>> The actual syscon-reboot-mode child node can be added by a board
+>>>> device-tree or fixed up by the bootloader. For the child node to be
+>>>> probed, the compatible needs to include simple-mfd. The binding now
+>>>> specifies this, so have the SoC dtsi adhere to it.
+>>>>
+>>>> Suggested-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+>>>> Signed-off-by: Bastian Krause <bst@pengutronix.de>
+>>>> ---
+>>>>  arch/arm/boot/dts/imx6qdl.dtsi | 3 ++-
+>>>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
+>>>> index ff1e0173b39be..b16be39458aa6 100644
+>>>> --- a/arch/arm/boot/dts/imx6qdl.dtsi
+>>>> +++ b/arch/arm/boot/dts/imx6qdl.dtsi
+>>>> @@ -865,7 +865,8 @@ epit2: epit@20d4000 { /* EPIT2 */
+>>>>  			};
+>>>>  
+>>>>  			src: reset-controller@20d8000 {
+>>>> -				compatible = "fsl,imx6q-src", "fsl,imx51-src";
+>>>> +				compatible = "fsl,imx6q-src", "fsl,imx51-src",
+>>>> +					     "syscon", "simple-mfd";
+>>>
+>>> You need children here. Otherwise simple-mfd does not make sense. If you
+>>> expect something else to add children (I don't understand why, usually
+>>> reboot capability is fixed per SoC and only sometimes extended with some
+>>> other means), then this "else" will also change compatible.
+>>
+>> It's about syscon-reboot-mode, not syscon-reboot. Such modes are board-
+>> not soc-specific. 
+> 
+> syscon-reboot-mode is also mostly SoC specific. What exactly would
+> differ on different boards? Register offsets of SoC component? Register
+> values used by SoC power management unit?
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../bindings/regulator/qcom-labibb-regulator.yaml           | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+The modes supported. Let's say you want a bootloader mode that drops
+the board's bootloader into a fastboot gadget mode. You'd add a
+syscon-reboot-mode pointing at one of the non-volatile registers and
+you would define a magic value to indicate fastboot, both in the
+bootloader and Linux.
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
-index f97b8083678f..c0be7d5a6d40 100644
---- a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
-@@ -20,7 +20,8 @@ properties:
- 
-   lab:
-     type: object
--    additionalProperties: false
-+    $ref: "regulator.yaml#"
-+    unevaluatedProperties: false
- 
-     properties:
-       qcom,soft-start-us:
-@@ -46,7 +47,8 @@ properties:
- 
-   ibb:
-     type: object
--    additionalProperties: false
-+    $ref: "regulator.yaml#"
-+    unevaluatedProperties: false
- 
-     properties:
-       qcom,discharge-resistor-kohms:
+In theory, the reboot mode could also talk to the bootrom[1] to change
+the bootsource. This is also not board-agnostic, because it may not
+make sense to have a spinor reboot mode if your board doesn't have one.
+
+We have this scheme for STM32MP1 already and that's why I suggested
+Bastian to do it likewise for i.MX as he needs this functionality:
+https://lore.kernel.org/all/20201021102855.18026-1-a.fatoum@pengutronix.de/
+https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/stm32mp151.dtsi#L44
+
+Here's the barebox documentation for reboot modes btw:
+https://www.barebox.org/doc/latest/user/reboot-mode.html
+
+[1]: The i.MX bootrom samples two registers to determine boot mode
+     override. The upstream syscon-reboot-mode binding supports only
+     one 32-bit value and thus can be used as-is only for communicating
+     with the "user" bootloader.
+
+
+> Anyway, the binding is then not correct - it does not allow
+> syscon-reboot-mode child. I'll comment there.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+
 -- 
-2.39.0
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
