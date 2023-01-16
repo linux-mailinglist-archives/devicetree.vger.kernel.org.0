@@ -2,101 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F14366BD5D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 12:58:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D06066BD67
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 13:00:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbjAPL6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 06:58:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40164 "EHLO
+        id S230271AbjAPMAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 07:00:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjAPL54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:57:56 -0500
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4CAA1CAF7;
-        Mon, 16 Jan 2023 03:57:54 -0800 (PST)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30G9sNGs003325;
-        Mon, 16 Jan 2023 12:57:32 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=EyZ3PoE4TGOG/ISsj6ehj1F8tAU4LB6EsxSJHFnDPjs=;
- b=u+uWs6eDijNvgD3rsaCe9mb7SnvxxrxpFN6zGjThjoVawvUJnazgJb726yIXHKxLyEBJ
- y6iii/dZdH614VxjMtgeZtZzIYOOsLD7D3Xwc0VjEWC7vxkhpyH9lrvCV6sKQBW2X2kE
- 8OeaBmgW+2nLDSMAQ5CWd8BDS1ia3DyqmasSDgxDiZynngnHL/Ez2Ng2OaoqVL/8w2/q
- 9UAmfPTiI5p8oldIQ+KZIC5ApmSO6f01gMQZpNh0Qh3PKPw+c3VTnooZDA1Kkrn0lSFM
- k+ch57YIBVaSKDNpOSBs3lWFkwM3QSpGGiJZTUci6xlWEVa/3ZOrfOnKKdOIIVk9v1By 9Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3n3jdf1wah-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 16 Jan 2023 12:57:32 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1712510002A;
-        Mon, 16 Jan 2023 12:57:29 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0E324215BF4;
-        Mon, 16 Jan 2023 12:57:29 +0100 (CET)
-Received: from localhost (10.201.20.208) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 16 Jan
- 2023 12:57:28 +0100
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] ARM: dts: stm32: Fix User button on stm32mp135f-dk
-Date:   Mon, 16 Jan 2023 12:57:27 +0100
-Message-ID: <20230116115727.1121169-1-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S230265AbjAPL7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 06:59:53 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFBE41F90D
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:59:26 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id ud5so67570051ejc.4
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 03:59:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3TbZE6s5T+iMHYdoGXhzWjy9v7YEHa+ewLj/SKxwHQ4=;
+        b=fSiDlrmb9wRKi8MDOOibxscvUq5gYtW+itGe6V6dT3adhzRz04tS0jMlBlOraE6dKo
+         67c7Y8jbU+2UAbUkHtWNW7pMv1JM6vieXm6BAAQ17HykhbZnlYil2HzVXdl2q+VWPoNE
+         juzSeHeFvm1D5UruUeY29UbmvYn3j5oJofSS9gwTGwjYbYBhzrEB4FJhuo5iSH/Sl6eI
+         8JFXX0a9TNQgpSg6C1Df0keh0firzgN3FncFYivG3rdZHoEFuHf9GPsvF6ENk/R21I0P
+         DThn0WQbAJVaJ9q8cL/FEHji4t67yncx5PJPs/hLEdliQ8bPbh9RXn018tXFA+ryFKnw
+         D0cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3TbZE6s5T+iMHYdoGXhzWjy9v7YEHa+ewLj/SKxwHQ4=;
+        b=2ovAPVoFzj47uIvQVUIYubelmECtG3RCiORB48j+ydnC8rW7DSGgGz7y9ZrdBoHwO5
+         EDpEt+Ac2sG+kHg6OiXwntsBgjBlN3pF/CDTlNHkxLwBi9yalXxi7SMvD6WI1mCiqqRo
+         8an6TyrHPEQGUvX9uV3Xig4NhiVl0cBsYCnw4Lbs0yvGWPSfaaTGrd0xogue6IbcdWtI
+         q87f+fddhizVu4O5c8WWrEL2vLCntGDPXcWlAHcCO+ljyAMXN3jNtZsAWf6VrPB6sBlN
+         m0Pw/jzsihjZodtqDHHInITCm8DTo3IU1ijYxg1ywmeT026Nhxuhxz60XTdfTzdFXyY/
+         npTg==
+X-Gm-Message-State: AFqh2kr/c3+EKyWMhBJfZujqrIjYgshJQBDF4TTR3TC8A/5V1Znlsb31
+        KMhR/vBelJr96t/Bc+SZ6vlVg9Z8dPpxPwDB
+X-Google-Smtp-Source: AMrXdXtOGYZiC+nvulbQhp3KktJk4riiE9SfEAy5zB73TBUbhQkIvOcsunA0sCmf+GVZXqpAxzPICQ==
+X-Received: by 2002:a17:907:8c0d:b0:7c1:d50:6dd3 with SMTP id ta13-20020a1709078c0d00b007c10d506dd3mr79542070ejc.36.1673870365378;
+        Mon, 16 Jan 2023 03:59:25 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l10-20020a1709060cca00b0082ddfb47d06sm11885662ejh.148.2023.01.16.03.59.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jan 2023 03:59:25 -0800 (PST)
+Message-ID: <76f3a771-2283-4e6e-d3b8-fdfcf1f4291f@linaro.org>
+Date:   Mon, 16 Jan 2023 12:59:23 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.20.208]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-16_09,2023-01-13_02,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2.1 02/17] dt-bindings: media: fsl-pxp: convert to yaml
+Content-Language: en-US
+To:     Michael Tretter <m.tretter@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20230112-imx-pxp-v2-1-e2281da1db55@pengutronix.de>
+ <20230116113856.1445078-1-m.tretter@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230116113856.1445078-1-m.tretter@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch fixes the following dtbs_check warning on stm32mp135f-dk:
-arch/arm/boot/dts/stm32mp135f-dk.dtb: gpio-keys: 'user-pa13' does not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pinctrl-[0-9]+'
-From schema: Documentation/devicetree/bindings/input/gpio-keys.yaml
+On 16/01/2023 12:38, Michael Tretter wrote:
+> Convert the bindings of the Freescale Pixel Pipeline to YAML.
+> 
+> The conversion drops the previously listed compatibles for several SoCs.
+> It is unclear, if the PXP on these SoCs is compatible to any of the PXPs
+> on the existing SoCs and would allow to reuse the already defined
+> compatibles. The missing compatibles should be brought back when the
+> support for the PXP on these SoCs is added.
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> ---
+> Changelog:
+> 
+> v2:
+> 
+> - add fsl,imx6sll-pxp and fsl,imx6sx-pxp compatibles
+> - restrict number of interrupts per variant
+> - cleanup syntax
+> 
+> v2.1:
+> 
+> - use enum for compatibles
+> - add power-domains property
+> - fix syntax for specifying the required number of interrupts
+> - fix number of interrupts for fsl,imx6ul-pxp
 
-It renames user-pa13 node into button-user so that it matches gpio-keys
-bindings.
+Attaching some half-baked patch to existing thread is not the way. It
+might not be supported by workflows at all (b4, patchwork), it messes
+with threads. Don't do it. Send a v3 of entire patchset once you collect
+proper feedback.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- arch/arm/boot/dts/stm32mp135f-dk.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
-index 9ff5a3eaf55b..931877d6ddb9 100644
---- a/arch/arm/boot/dts/stm32mp135f-dk.dts
-+++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
-@@ -40,7 +40,7 @@ optee@dd000000 {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		user-pa13 {
-+		button-user {
- 			label = "User-PA13";
- 			linux,code = <BTN_1>;
- 			gpios = <&gpioa 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
--- 
-2.25.1
+Best regards,
+Krzysztof
 
