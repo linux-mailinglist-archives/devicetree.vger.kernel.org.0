@@ -2,270 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1EDF66C394
-	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:22:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B77266C3A5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Jan 2023 16:22:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232123AbjAPPWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 10:22:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41916 "EHLO
+        id S230240AbjAPPWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 10:22:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231969AbjAPPVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:21:49 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0DBC1D930;
-        Mon, 16 Jan 2023 07:19:18 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30GFJCYp122825;
-        Mon, 16 Jan 2023 09:19:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673882352;
-        bh=Ar5bDMfpTIZIqvGuhD/7PaHv59UPDW0Jb+aRfXva76k=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Cb+Z0+Rt/XJ89ZO6nYeJTpZR2r6uofRIIOzxNy1qSJfRK/fb2cTMejrh6TQWhmlJb
-         yGfMJpvWtveQUoDBnDrECI5+oOfPIgji2DuYl58ArfiJlRopWw2PSY0bKMZAdD7Zbz
-         hkmcPMTKSzwueET/8eE56j5eM0zsX3ss4/TF1g+E=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30GFJC3E048410
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 16 Jan 2023 09:19:12 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 16
- Jan 2023 09:19:12 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 16 Jan 2023 09:19:12 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30GFJBR4128925;
-        Mon, 16 Jan 2023 09:19:11 -0600
-From:   Devarsh Thakkar <devarsht@ti.com>
-To:     <andersson@kernel.org>, <devicetree@vger.kernel.org>,
-        <mathieu.poirier@linaro.org>, <p.zabel@pengutronix.de>,
-        <linux-remoteproc@vger.kernel.org>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <s-anna@ti.com>
-CC:     <hnagalla@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <devarsht@ti.com>
-Subject: [PATCH v6 3/3] remoteproc: k3-r5: Use separate compatible string for TI AM62x SoC family
-Date:   Mon, 16 Jan 2023 20:49:06 +0530
-Message-ID: <20230116151906.549384-4-devarsht@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230116151906.549384-1-devarsht@ti.com>
-References: <20230116151906.549384-1-devarsht@ti.com>
+        with ESMTP id S231682AbjAPPV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 10:21:58 -0500
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2060.outbound.protection.outlook.com [40.107.94.60])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC29E2104;
+        Mon, 16 Jan 2023 07:19:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CBM+bKGmELs4UqK4bbkVfOrMkSGznMnxxKATROracdnwNnRNkFTB4x/6HrZ5y4mdy8f7GWLfu2YM6P9c+Bpc7U7iarAwGgSgtjNFH7AQ9hH+Ryt6KddVWSMmWAToNKM65ePxNfoMkZOj9EDFQfP4w+Grw1s8knLY7asBErkJmwvF2ThFMOV/wSLyByTbTizW5aKTAdhPhdNsv6aU0hhqV9O9XqFK8ZNWYEzmF6xmzZwSY618PtGgsa6EKx3H+buDbTEgu8kp0eafHE0nfq96Nm9T8XDVBQ0uBFgKo4lYFQFQJcRsq6W0YgXi0csN5VLZhqRxrEhVPGdTSsb1ZnAKiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ecWzoeOs6X4p9mO25Pz0CXxnWnudYcZJzDQ2irCds28=;
+ b=oE763lU3Usf1fbgncmpTW8003F7ZjbaEtn4rAirIhkzBPulrtGiVKR4gowHWU8yzcvwQie5L3WRMuGheaUc6Z3ghTeTK8hvwG3rvFwXG36wQ1miEaXyvKLzPzm8ILTa4LRAJaOTvzAr/lS4+O4n+4OIsltryh/mtaUnk3NAXngdlwGkiwkftJQTXy7JXGVYRRF504hR5ESRDwjW4ggsyUhAcrNAOHKVXfWZ3Tyky+rUu8JMdI6NNLgyLu5N9Tb1j9DS2abVNxZkqy/SOeliTfU+AOig+tJMP9fpZvN4UzZpv13LVHJrKQh+eU1CnNpiMhBU3lzWBFq+O0Tg1VlWhtQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.233) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ecWzoeOs6X4p9mO25Pz0CXxnWnudYcZJzDQ2irCds28=;
+ b=s8yOpy5EvAPJH15TceJ9nVsrP7bY3/4S8BLXaCWBL1C/b21Pd56wStvJoSyDqXfI8aFSQrFCBnruw+TjOhufQkyQLXx3OKcBvJQvVKZG9iqnzx5b+HUEOEJ1/nFOouZs/d695EesM37sRGbVfVfJgMii2iYPEznOhBucZXaM2bdog66QNKoTWbT0UljWWlVvR1g17ou4VP4hscaff2YpBV9UIke11hNWERNNtJNxPo+3U/v3zy7a7ORvkBF6dOT4iPyztxN8+OtWvutORjbEhvpXCnQRwBwTTeyD9JOdkOqtiN9JZBcBVWcuLekqJy5JsAgzFw/RfUH6GFYt+RgXRA==
+Received: from MW4PR03CA0292.namprd03.prod.outlook.com (2603:10b6:303:b5::27)
+ by BL0PR12MB5011.namprd12.prod.outlook.com (2603:10b6:208:1c9::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Mon, 16 Jan
+ 2023 15:19:44 +0000
+Received: from CO1NAM11FT038.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:b5:cafe::ec) by MW4PR03CA0292.outlook.office365.com
+ (2603:10b6:303:b5::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.19 via Frontend
+ Transport; Mon, 16 Jan 2023 15:19:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.233) by
+ CO1NAM11FT038.mail.protection.outlook.com (10.13.174.231) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6002.13 via Frontend Transport; Mon, 16 Jan 2023 15:19:44 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 16 Jan
+ 2023 07:19:27 -0800
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 16 Jan 2023 07:19:27 -0800
+Received: from moonraker.nvidia.com (10.127.8.14) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.986.36 via Frontend
+ Transport; Mon, 16 Jan 2023 07:19:25 -0800
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>
+Subject: [RESEND PATCH V4 0/5] Tegra USB device support updates
+Date:   Mon, 16 Jan 2023 15:19:12 +0000
+Message-ID: <20230116151917.94193-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT038:EE_|BL0PR12MB5011:EE_
+X-MS-Office365-Filtering-Correlation-Id: 506c1c5a-c949-4cd5-8bc0-08daf7d518d9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: q6y9vLcWZQfYGAVt9AkAa9J8bharA7Bv9o6vRMyGxK6Q9j4NPmSV5/vwwYoYXrZuxsCteRlD8QDj2dhxko6nVI71EbfkARHLlAHzQVed89hs+QU7DSoYczFrjLz1E6pA8PZvkiYy1CFmCt4F/VIvR8G8LswYhDgvsHo2e6S8yiwYO20gCmFEu8lW9mnH6JLaGzA/vY9kDG+YUC0HQm9eQHYzUOrDnefa+4wVWqasuv4rc/JwKTeIUOcG5bygbtjQXEVyNbTjxMN3gEIiLwQCAhpd2TwgHmeHbKkoJFLD8siOZUWUSCbgkBxjteut32hOVObo3A5rs5pYkRtaxc6ke2fdyJgOREmaBVtl6VSRJhHVoFFY1WcRnLthSKcvuOZ0fPc0Mz1LXfBB0RSMrK7X1B5W4qgB1bLCtjlyspNqsvUeYeLudjPYP61JZ3xd9cJ6q4ubtUDqW1phQtWms9zmpP5dWQ7NP8PBW1XexVIE+vx3MKqaGRpKAqNR3wXJnGW/IlVMzJdOPdW6e5N67TlBuWDDDhe0tBNdbpG93depo50K+B6t9xyKfvs/CgTMVDviWIhxqpONq5KqHxcJec1WrGGx0LNXdptvNEcXJkGmZO3+6BmpMcbpMh6qZYxFf8ZDnNvBUkSM4WlEDgwMrE9MO+mZT97LXEvSzXBHnUh891ami++/7i+ecjxKliYHiBbemKNtnROVHTcqM+/oDOns+4BXrLg0XJLkucSwnj05ngKbbDK0cFWwFIa3XBJ6rGMO
+X-Forefront-Antispam-Report: CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(346002)(136003)(39860400002)(451199015)(36840700001)(46966006)(36756003)(82740400003)(7636003)(8676002)(4326008)(336012)(70206006)(70586007)(356005)(186003)(82310400005)(86362001)(966005)(26005)(1076003)(316002)(7696005)(110136005)(40480700001)(2616005)(478600001)(54906003)(107886003)(5660300002)(6666004)(8936002)(41300700001)(47076005)(426003)(2906002)(36860700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 15:19:44.2414
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 506c1c5a-c949-4cd5-8bc0-08daf7d518d9
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT038.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB5011
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM62 and AM62A SoCs use single core R5F which is a new scenario
-different than the one being used with CLUSTER_MODE_SINGLECPU
-which is for utilizing a single core from a set of cores available
-in R5F cluster present in the SoC.
+This series adds USB device support for Tegra234. 3/5 patches were
+originally part of the series to add both USB host and device support
+for Tegra234 [0]. However, the series was getting quite large and so I
+have split this into a separate series but calling it 'V4' to indicate
+that this is not completely new either.
 
-To support this single core scenario map it with
-newly defined CLUSTER_MODE_SINGLECORE and use it when
-compatible is set to ti,am62-r5fss.
+I have added two more patches in this version to fix DMA coherency for
+Tegra194.
 
-Also set PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE config for
-CLUSTER_MODE_SINGLECORE too as it is required by R5 core when it
-is being as general purpose core instead of device manager.
+[0] https://lore.kernel.org/linux-tegra/20221114124053.1873316-1-waynec@nvidia.com/
 
-Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
----
-V2:
-- Fix indentation and ordering issues as per review comments
-V3:
-- Change CLUSTER_MODE_NONE value to -1
-V4:
-- No change
-V5:
-- No change (fixing typo in email address)
-V6:
-   - Use CLUSTER_MODE_SINGLECORE for AM62x
-   - Set PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE for single core.
----
- drivers/remoteproc/ti_k3_r5_remoteproc.c | 62 +++++++++++++++++++-----
- 1 file changed, 49 insertions(+), 13 deletions(-)
+Jon Hunter (3):
+  dt-bindings: usb: tegra-xudc: Add dma-coherent for Tegra194
+  arm64: tegra: Add dma-coherent property for Tegra194 XUDC
+  arm64: tegra: Populate the XUDC node for Tegra234
 
-diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-index 036c9dc217f3..089215144e6b 100644
---- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
-+++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-@@ -71,14 +71,16 @@ struct k3_r5_mem {
- /*
-  * All cluster mode values are not applicable on all SoCs. The following
-  * are the modes supported on various SoCs:
-- *   Split mode      : AM65x, J721E, J7200 and AM64x SoCs
-- *   LockStep mode   : AM65x, J721E and J7200 SoCs
-- *   Single-CPU mode : AM64x SoCs only
-+ *   Split mode       : AM65x, J721E, J7200 and AM64x SoCs
-+ *   LockStep mode    : AM65x, J721E and J7200 SoCs
-+ *   Single-CPU mode  : AM64x SoCs only
-+ *   Single-Core mode : AM62x, AM62A SoCs
-  */
- enum cluster_mode {
- 	CLUSTER_MODE_SPLIT = 0,
- 	CLUSTER_MODE_LOCKSTEP,
- 	CLUSTER_MODE_SINGLECPU,
-+	CLUSTER_MODE_SINGLECORE
- };
- 
- /**
-@@ -86,11 +88,13 @@ enum cluster_mode {
-  * @tcm_is_double: flag to denote the larger unified TCMs in certain modes
-  * @tcm_ecc_autoinit: flag to denote the auto-initialization of TCMs for ECC
-  * @single_cpu_mode: flag to denote if SoC/IP supports Single-CPU mode
-+ * @is_single_core: flag to denote if SoC/IP has only single core R5
-  */
- struct k3_r5_soc_data {
- 	bool tcm_is_double;
- 	bool tcm_ecc_autoinit;
- 	bool single_cpu_mode;
-+	bool is_single_core;
- };
- 
- /**
-@@ -838,7 +842,8 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
- 
- 	core0 = list_first_entry(&cluster->cores, struct k3_r5_core, elem);
- 	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
--	    cluster->mode == CLUSTER_MODE_SINGLECPU) {
-+	    cluster->mode == CLUSTER_MODE_SINGLECPU ||
-+	    cluster->mode == CLUSTER_MODE_SINGLECORE) {
- 		core = core0;
- 	} else {
- 		core = kproc->core;
-@@ -881,7 +886,8 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
- 		 * with the bit configured, so program it only on
- 		 * permitted cores
- 		 */
--		if (cluster->mode == CLUSTER_MODE_SINGLECPU) {
-+		if (cluster->mode == CLUSTER_MODE_SINGLECPU ||
-+		    cluster->mode == CLUSTER_MODE_SINGLECORE) {
- 			set_cfg = PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE;
- 		} else {
- 			/*
-@@ -1073,6 +1079,7 @@ static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
- 
- 	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
- 	    cluster->mode == CLUSTER_MODE_SINGLECPU ||
-+	    cluster->mode == CLUSTER_MODE_SINGLECORE ||
- 	    !cluster->soc_data->tcm_is_double)
- 		return;
- 
-@@ -1146,7 +1153,9 @@ static int k3_r5_rproc_configure_mode(struct k3_r5_rproc *kproc)
- 	atcm_enable = cfg & PROC_BOOT_CFG_FLAG_R5_ATCM_EN ?  1 : 0;
- 	btcm_enable = cfg & PROC_BOOT_CFG_FLAG_R5_BTCM_EN ?  1 : 0;
- 	loczrama = cfg & PROC_BOOT_CFG_FLAG_R5_TCM_RSTBASE ?  1 : 0;
--	if (cluster->soc_data->single_cpu_mode) {
-+	if (cluster->soc_data->is_single_core) {
-+		mode = CLUSTER_MODE_SINGLECORE;
-+	} else if (cluster->soc_data->single_cpu_mode) {
- 		mode = cfg & PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE ?
- 				CLUSTER_MODE_SINGLECPU : CLUSTER_MODE_SPLIT;
- 	} else {
-@@ -1268,9 +1277,12 @@ static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
- 			goto err_add;
- 		}
- 
--		/* create only one rproc in lockstep mode or single-cpu mode */
-+		/* create only one rproc in lockstep, single-cpu or
-+		 * single core mode
-+		 */
- 		if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
--		    cluster->mode == CLUSTER_MODE_SINGLECPU)
-+		    cluster->mode == CLUSTER_MODE_SINGLECPU ||
-+		    cluster->mode == CLUSTER_MODE_SINGLECORE)
- 			break;
- 	}
- 
-@@ -1699,12 +1711,19 @@ static int k3_r5_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 
- 	cluster->dev = dev;
-+
- 	/*
--	 * default to most common efuse configurations - Split-mode on AM64x
--	 * and LockStep-mode on all others
-+	 * default to most common efuse configurations -
-+	 * Split-mode on AM64x
-+	 * Single core on AM62x
-+	 * LockStep-mode on all others
- 	 */
--	cluster->mode = data->single_cpu_mode ?
-+	if (!data->is_single_core)
-+		cluster->mode = data->single_cpu_mode ?
- 				CLUSTER_MODE_SPLIT : CLUSTER_MODE_LOCKSTEP;
-+	else
-+		cluster->mode = CLUSTER_MODE_SINGLECORE;
-+
- 	cluster->soc_data = data;
- 	INIT_LIST_HEAD(&cluster->cores);
- 
-@@ -1716,8 +1735,14 @@ static int k3_r5_probe(struct platform_device *pdev)
- 	}
- 
- 	num_cores = of_get_available_child_count(np);
--	if (num_cores != 2) {
--		dev_err(dev, "MCU cluster requires both R5F cores to be enabled, num_cores = %d\n",
-+	if (num_cores != 2 && !data->is_single_core) {
-+		dev_err(dev, "MCU cluster requires both R5F cores to be enabled but num_cores is set to = %d\n",
-+			num_cores);
-+		return -ENODEV;
-+	}
-+
-+	if (num_cores != 1 && data->is_single_core) {
-+		dev_err(dev, "SoC supports only single core R5 but num_cores is set to %d\n",
- 			num_cores);
- 		return -ENODEV;
- 	}
-@@ -1759,18 +1784,28 @@ static const struct k3_r5_soc_data am65_j721e_soc_data = {
- 	.tcm_is_double = false,
- 	.tcm_ecc_autoinit = false,
- 	.single_cpu_mode = false,
-+	.is_single_core = false,
- };
- 
- static const struct k3_r5_soc_data j7200_j721s2_soc_data = {
- 	.tcm_is_double = true,
- 	.tcm_ecc_autoinit = true,
- 	.single_cpu_mode = false,
-+	.is_single_core = false,
- };
- 
- static const struct k3_r5_soc_data am64_soc_data = {
- 	.tcm_is_double = true,
- 	.tcm_ecc_autoinit = true,
- 	.single_cpu_mode = true,
-+	.is_single_core = false,
-+};
-+
-+static const struct k3_r5_soc_data am62_soc_data = {
-+	.tcm_is_double = false,
-+	.tcm_ecc_autoinit = true,
-+	.single_cpu_mode = false,
-+	.is_single_core = true,
- };
- 
- static const struct of_device_id k3_r5_of_match[] = {
-@@ -1778,6 +1813,7 @@ static const struct of_device_id k3_r5_of_match[] = {
- 	{ .compatible = "ti,j721e-r5fss", .data = &am65_j721e_soc_data, },
- 	{ .compatible = "ti,j7200-r5fss", .data = &j7200_j721s2_soc_data, },
- 	{ .compatible = "ti,am64-r5fss",  .data = &am64_soc_data, },
-+	{ .compatible = "ti,am62-r5fss",  .data = &am62_soc_data, },
- 	{ .compatible = "ti,j721s2-r5fss",  .data = &j7200_j721s2_soc_data, },
- 	{ /* sentinel */ },
- };
+Sing-Han Chen (1):
+  usb: gadget: tegra-xudc: Add Tegra234 support
+
+Wayne Chang (1):
+  dt-bindings: usb: tegra-xudc: Add Tegra234 XUDC support
+
+ .../bindings/usb/nvidia,tegra-xudc.yaml       | 15 ++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  1 +
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      | 23 +++++++++++++++++++
+ drivers/usb/gadget/udc/tegra-xudc.c           | 17 ++++++++++++++
+ 4 files changed, 56 insertions(+)
+
 -- 
-2.34.1
+2.25.1
 
