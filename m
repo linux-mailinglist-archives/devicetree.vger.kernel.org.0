@@ -2,102 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65E8C66E28D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 16:44:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC54466E295
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 16:45:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232766AbjAQPoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 10:44:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44550 "EHLO
+        id S233878AbjAQPpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 10:45:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234422AbjAQPnk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 10:43:40 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FDAF4900C
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 07:41:26 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id bk16so30990339wrb.11
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 07:41:26 -0800 (PST)
+        with ESMTP id S233241AbjAQPoy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 10:44:54 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E423F42DCD
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 07:42:55 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id k8so16523008wrc.9
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 07:42:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2Sq5mqKsexCWXCOic8J9pe+B3N8PYnTwi9qY7eGHBxk=;
-        b=rMtBegvKhr4EUsWsXeJbJPR4lIPhWn0VjwHAXcJ0LSgDBrkeHLrGw0MxB3AlVV2SLC
-         ZF6zVHCstouiIxxHulQuzpiPf+554IuqNSod1odrHmBulVH0asDz3UXu6DQ+3kh6r5IS
-         rIKs2olglP3f8NOqecLABX4Q0qFQhGWzTBSGmHKm1BiAEQxUsvqMP6zguAxdNr5uRCd8
-         dlK+4jjllZ7kj2DCxYzAngRj5osdHxyekJYlBEzQUN3zj8hLZLvWXXsooTGCfcdOo6NT
-         XTqXDA431ApzH6c2FOGlB0jHcvYPFfKyxZryr6ym/Sa3Nikg0J5wGToTfmFzWrCkZFeo
-         7Z5Q==
+        bh=7wMLUDIH2u9/pswBqiZWKFr3YnA0VJ7DKRwdJNPTORM=;
+        b=LwL7rLSiam2L1sRGB+ZIu3nfA6uXxCQPSTYuV4YH3BBDd2kwVeuGY+hM8hs8nRDj8i
+         qm6sHCSdaVMk3UigPhL3EWXrqzfj6G71+byWdSPqCGxH+O4mUljcLgU7sb9IHyQIffZN
+         IPO7Z7omHXiHdToy1KLVUm0b5axR40XrVkUdeiCRN/RRfeElZbenYDHg7kDv5Av8OJ5w
+         1DK/sd3bTNLNpaFNL+zO9RC0qg3dy/irgFQEQiJID5RGMKgooUPP5GOdj3MJp56ytH+b
+         ybMqcoZHId+UTsZGZ85tmZIQMFKJYBeFMcPEU4mnriuvdaVrzC/2LqMwxWubUwF/ZuWZ
+         ssLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Sq5mqKsexCWXCOic8J9pe+B3N8PYnTwi9qY7eGHBxk=;
-        b=acTC6inxBm/C65G24xrY+iVIZO+YmszJuxuqwbpXTkxJn3G/sGYt89IIlhR2M/vz14
-         x97FLKijVuSp29fFQJXM7gER/3DUngBNZEsRQxaA2zs4ewHyGzoHbm4P5N5STOmbZ/9m
-         eQNjF7IIHs+kp7M/Ph3hLS1TsDuJIzTjhAjw0w930N4Z4X3m+XOJQraoW0ZuluM9Q6o5
-         mhEYhtPU39v4wdiixYTBz7HXa27V/HoFmAJ16wQfWQmmXjLUhB0y7JenYNnGMh00wnFP
-         2xo11gWVS9rmQSbja0TBvxVzyg4ik7OwyzbTsLuHwJXo1DuOE95qwQQXnhNxHQ5ec1wV
-         X9rA==
-X-Gm-Message-State: AFqh2kocK1Hfrp+9LSbJSmalCeVhxU0o/8pWca4ATuoBTwv1ODnwNIEI
-        vRpkdaN2hRZp5i6tWOpv+FdPJw==
-X-Google-Smtp-Source: AMrXdXsZ1dgrVfEXi6FqUzbhTJkQGI2CqN5bloBxIDTiXwohuBAau4tN5lLMDf5WfR/m7bGjogUd0w==
-X-Received: by 2002:a5d:6e0e:0:b0:2bb:6c50:a559 with SMTP id h14-20020a5d6e0e000000b002bb6c50a559mr2992490wrz.38.1673970085079;
-        Tue, 17 Jan 2023 07:41:25 -0800 (PST)
+        bh=7wMLUDIH2u9/pswBqiZWKFr3YnA0VJ7DKRwdJNPTORM=;
+        b=2RPCkA9cJ/eO45O68iR9OZB1m2q2eiwBXP8PO43GrvuNTVNgK8mi6PdQzylYBWmWzM
+         KmSqfGu+4iYAT9iObyfbpfURNgEiKUlzCo8gvv5w1JxnDw3823w8SAz3z9+do/3+nkU2
+         bflaq2LVKK3WbfLYuo0fiQOrN8eQgEGxSHOUysgsQM+E84Or5LEW31tioK0hct/i8ImE
+         DGxA5+Gokin/gr8PfVypAYCr2N6b84BuxoBmmaKP+5/2tsSLTHa0T3LwRkWhdD3WUflz
+         r9mSCFIF6uC2NzNyzDiIWy7hMviRR2jK0RXUIhLIYnSh2Uhlc+wslUW3Bwgx5gbjDA+t
+         eUjw==
+X-Gm-Message-State: AFqh2krsblATwpGQGRQJxL6Q+D8nmFiZNMiqnZTcxpWRQkXIC/YTM/jJ
+        Yc7fvr/q/R0P7E3W2eWMQvqcWg==
+X-Google-Smtp-Source: AMrXdXtVgF8A66wqa/DHWKmBZ9PN3w6XmvV7QPpBfZ5+cE0/rHWN72iynsEjUXXbxMyfFfERBjUw3Q==
+X-Received: by 2002:a5d:6e91:0:b0:2be:1ea0:f794 with SMTP id k17-20020a5d6e91000000b002be1ea0f794mr2623740wrz.52.1673970174528;
+        Tue, 17 Jan 2023 07:42:54 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o14-20020a5d58ce000000b002879c013b8asm28863436wrf.42.2023.01.17.07.41.23
+        by smtp.gmail.com with ESMTPSA id r12-20020a5d4e4c000000b002be1d1c0bd7sm2215180wrt.93.2023.01.17.07.42.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 07:41:24 -0800 (PST)
-Message-ID: <23a7ae1d-cd49-8c78-5284-4134755ea19a@linaro.org>
-Date:   Tue, 17 Jan 2023 16:41:22 +0100
+        Tue, 17 Jan 2023 07:42:54 -0800 (PST)
+Message-ID: <d1bb1148-e273-f5bb-bccc-ceca82bb6836@linaro.org>
+Date:   Tue, 17 Jan 2023 16:42:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 4/4] dt-bindings: hv: Add dt-bindings for VMBus
+Subject: Re: [PATCH v5 1/6] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface bindings
 Content-Language: en-US
-To:     Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com
-References: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
- <1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com>
- <31d78b4c-1416-d8cb-a187-bf924168ee1e@linaro.org>
- <20230117151325.GA9806@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Mark Brown <broonie@kernel.org>, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230111022433.25950-1-yuji2.ishikawa@toshiba.co.jp>
+ <20230111022433.25950-2-yuji2.ishikawa@toshiba.co.jp>
+ <Y8a+Hk2jFOjbkIvZ@pendragon.ideasonboard.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230117151325.GA9806@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+In-Reply-To: <Y8a+Hk2jFOjbkIvZ@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 16:13, Saurabh Singh Sengar wrote:
-> On Mon, Jan 16, 2023 at 07:55:13PM +0100, Krzysztof Kozlowski wrote:
->> On 16/01/2023 17:48, Saurabh Sengar wrote:
->>> Add dt-bindings for Hyper-V VMBus
->>>
->>> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
->>> ---
->>>  .../devicetree/bindings/hv/msft,vmbus.yaml         | 34 ++++++++++++++++++++++
->>
->> Also, there is no "hv" hardware, so that's not correct location. If your
->> bindings describe firmware, this should go to firmware. Otherwise, this
->> does not look like suitable for DT. We do not describe software stuff in DT.
-> 
-> VMBus is a virtual device this is simmilar to virtio. I can rename this folder to vmbus.
+On 17/01/2023 16:26, Laurent Pinchart wrote:
 >
+>> +
+>> +          clock-lanes:
+>> +            description: VIIF supports 1 clock line
+> 
+> s/line/lane/
+> 
+>> +            const: 0
+> 
+> I would also add
+> 
+>           clock-noncontinuous: true
+>           link-frequencies: true
+> 
+> to indicate that the above two properties are used by this device.
 
-Then virtio directory. The directories are per subsystems (hardware
-classes).
+No, these are coming from other schema and there is never need to
+mention some property to indicate it is more used than other case. None
+of the bindings are created such way, so this should not be exception.
 
 Best regards,
 Krzysztof
