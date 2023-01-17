@@ -2,172 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED74766D871
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:43:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EABBA66D8A2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:50:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235841AbjAQIno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 03:43:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49362 "EHLO
+        id S236265AbjAQIuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 03:50:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236200AbjAQIni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:43:38 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E682A17C
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:43:37 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id k8so15281453wrc.9
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:43:37 -0800 (PST)
+        with ESMTP id S236221AbjAQIt4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:49:56 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940C8193C4
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:49:53 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id g10so21643779wmo.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:49:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WWm/D5U36CBBZnisDCQc8jy48M3+XXeWpLI/3U6tBZA=;
-        b=TupwNN700Dfm2HUutSMwjPlmPKv1qxM6rYQyMm0mpHkjqxUP6/0EINC3oD3RQ0ssr9
-         ZzPtSYa/mGq4cHtJcahITvOZmStCZdZWU1jfRSTQRltvQy18nreIqtAjQBDUJ5qUqWPj
-         Vmigbtmqu/qh3Crc2SEdV8EfGgnlOdVOyKxP8c2Fl4gjbBFiArELiXSHSbu9YA15LyiR
-         YFwyzD8iLVSiyiiQ62RpEg3nb5p1ifgQxrmUkaEAewQmadv8mXnL7W9/QY9FGQsohvEg
-         WVZAiCvLCyWsyG2KrU8FpyT04KS1EJ5k+p4CSGwyZJbNMrSOVPp4L6n3+x6r1ynkMaFR
-         vzfQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=xEPydhr2aJe8xzx6UgSq+GSHo/q8fq5XeTbPFG+Ef1E=;
+        b=D0itoJxIvbRfYUK3B5ms/XaDaAgZnGY5zgdjySULjRRJ6vYM/x0RiUColU4unA0VaN
+         ByhXyO5UQK2La4ZNt8CRrFelaZ8rvunJmOOVwXHvh3m4ENM34qNqN6cmjNm14zdHu5Va
+         wsQD5iSq0PRJNzqN/SdAooWVP7PicxCSzeiWTP4Qnvva4UvxmPcpG0ujokKFsj4X94YT
+         2KMCY4+6ht5GkA35kKaxCp7EdOOmaT10k8kDAvRT+MHtud+c9cSY+y/4CJWloNZbbPlh
+         xDDlr6W3AYeZm2ZrMnEnWChN7hhdZeyNVLd5fTgWrFT5xbQzLkA8225TqpXHnHdQPOct
+         Jj7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WWm/D5U36CBBZnisDCQc8jy48M3+XXeWpLI/3U6tBZA=;
-        b=fD41JnbxZo4wEwVlWWwsiDL75Z27+8HqItIAJdXsGKzHYlS/1c+t0LnZxoywA8aXuy
-         ivJjvzB/oTFMlSbIEB8YkYfh/2Lwy7Hj8SlMgCRgYm6g1LfmJwVmdm5cs8RtNs+ZAvjB
-         v0JEk1bjHz8MXPvjIpGpVALaqCpMIpVYd26aX/W4N57O/Cg2yMjzyP24/ZI/wKz7x7JS
-         7UpsqVnNVVKPTnE3LFDYk5dz5epT5rZlsiZ76Icl2xR2IzvSsZV4Stz/IkNNxI8oYw92
-         Fk2glwtk0gVx4ZWOxQ88qIoh0Rs65QaBGIC6ofVErO3g0vIrJ+M2/+ZhTBOEWBoWLr5m
-         1jjA==
-X-Gm-Message-State: AFqh2koelGCXqtFNvX23mOoPMUNvCi8h0GB6DjGPw1fLov4wtvZJQMRR
-        cV9D72cEkMPxk3qP99Lf0cXE5Q==
-X-Google-Smtp-Source: AMrXdXtxE8deHQ9xEqdyikgOrukHsDlEQ6sxKfSMn8K6gVKnLxFmtiGijYttJ+TeIIPxhisAU9lAVw==
-X-Received: by 2002:adf:e195:0:b0:2bd:d26c:ccc4 with SMTP id az21-20020adfe195000000b002bdd26cccc4mr2366095wrb.42.1673945015641;
-        Tue, 17 Jan 2023 00:43:35 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id bu3-20020a056000078300b002bbe7efd88csm23519456wrb.41.2023.01.17.00.43.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 00:43:35 -0800 (PST)
-Message-ID: <17f910a8-186f-48a3-8817-6a2fa4fe06ec@linaro.org>
-Date:   Tue, 17 Jan 2023 09:43:32 +0100
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xEPydhr2aJe8xzx6UgSq+GSHo/q8fq5XeTbPFG+Ef1E=;
+        b=1WypselznKDGlKInqVogCIZZ9FscqS3gPfg1Im4SEQ/3hpKrA1BvFEOeDAKaazj6k0
+         pxn0HFlm66ApaqJDqoUZwha/XBhj5tG1t9dW9YCJz30/ote7XasNaFCNAfBfLg+la2L4
+         Vj8sqfZypqz0Ba7PXKJ+gvUlAPFL3J9Hj1x+sDF6kfo82yXLsY/ZWx0jOLE3LU8AhHGq
+         QQAVg1K3DRla7l0NfZ8NrPcwUuUQZ5TtV6rhrn1srvS4AxQl6YxJpG/7DM8k0LIimOec
+         Ht2qyyhT1LM1Mv8YoG0V4duc+2FYCafFW0AeiG3yPS2J7KVqWCKOuot/G/stId2CFb5O
+         1nxA==
+X-Gm-Message-State: AFqh2krvq9D2ZIILOQT0nG0J2tkdB5UydmTMcbMvoMYbtFV9+uduRkBq
+        J3QBQPN4P8SfsBxyGgg+/eMWOA==
+X-Google-Smtp-Source: AMrXdXsth0t2XE+9x1CH+zP8XAEApd4py8h+Yh7T/kJ3qNhyBeE1ef1KJaTQ34ye/3/idqEeBZBLqw==
+X-Received: by 2002:a05:600c:510d:b0:3da:f719:50cd with SMTP id o13-20020a05600c510d00b003daf71950cdmr2191897wms.18.1673945392066;
+        Tue, 17 Jan 2023 00:49:52 -0800 (PST)
+Received: from [127.0.1.1] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id i14-20020a05600c354e00b003d1d5a83b2esm45040928wmq.35.2023.01.17.00.49.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 00:49:51 -0800 (PST)
+Subject: [PATCH 0/4] Add MediaTek MT8365 I2C support
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 2/7] dt-bindings: net: snps,dwmac: Update the maxitems
- number of resets and reset-names
-Content-Language: en-US
-To:     yanhong wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIACJhxmMC/w3LOwqAMAwA0KtIZgM2fhBvE2vUgNbSVBfx7nZ8w3vBJKkYTNULSR41vUKBqyvwO4
+ dNUJdioIbIOSI889gOPSp5tDvGK2VcfdONC9PghKHEmU1wThz8Xmq4j+P7fvHsOjlpAAAA
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Tue, 17 Jan 2023 09:49:38 +0100
+Message-Id: <20221122-mt8365-i2c-support-v1-0-4aeb7c54c67b@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>, Qii Wang <qii.wang@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20230106030001.1952-1-yanhong.wang@starfivetech.com>
- <20230106030001.1952-3-yanhong.wang@starfivetech.com>
- <2328562d-59a2-f60e-b17b-6cf16392e01f@linaro.org>
- <84e783a6-0aea-a6ba-13a0-fb29c66cc81a@starfivetech.com>
- <8ee5f6ef-80cb-2e0f-6681-598ccc697291@linaro.org>
- <bb1f3c71-e1a7-cd2d-b728-6e9027dae150@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bb1f3c71-e1a7-cd2d-b728-6e9027dae150@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-i2c@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1865; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=ZoJ6rFEEnxpa0J0RlavE7BjLWGiNdDKCFRMWyH2/oXo=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjxmEuo0/5O0tijs4XtUwu7qjPT93h9gaGCUQJLBYC
+ 0i1KUJSJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY8ZhLgAKCRArRkmdfjHURXnbEA
+ C6WBFcTFNKOgskrR1zywVwx4DgxxlM+D3fnWhJS2FBR6Oxh/jffkrs4Lot/UYQLPC3e4d5o9u+lPnm
+ LHzxa8DhULC3qnZflArXOx7nntaGEvC87HJtYslq5rh8KWgN8Oc+32CUxhi/LfzJ9JLxScEUwFHAQc
+ p0SSHYITj9hFPZg0ZHbW32lOUoStOih9SRloS/EzEwjYjSpYyuiuQUJpECsH23i+UfVcl5XIQi+nkV
+ Pv6mH/Q0TFRDElRt9oN/uOE9zJPX/R+IicRCabRDj0APkq3XFOMJI3ArnvaL0r1J2E22ybjPBoDjYE
+ SYNSQRwfT+ZLSbp2MJfGeOmMLviEzFlVFDMf1KFenaGHXGeB/G9joeHDGH+Ys9KYW8ypc4O7mgmSgN
+ w8Xli6MPi1RcE+eytXECEL10k3sQ2Whs3ljJEnBQ0s1qymV2jkRunIynL8WVtR+HuCw02mrgw8i3x/
+ 9Zk/lo59vZJw4LrW/yEAi9635fA9XYJWcUguMxZiNu9Psb61eDusrAPMxfGeLaaX1zAUcw7VcWnZCr
+ 2qZfh1PQyCxqh0ISFxG1Wo9zVBeeFO3b9Zni88ZLRN85GP7yN9RzSCcJbsIcPYebI021SshlglZPR7
+ vwrSYCJOsHQyFY8UcSSfxfZqIuHjPCCrKoyxvjkWaFnxhR9jfJnNOaLi39Rg==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 09:14, yanhong wang wrote:
->>> Thanks, refer to the definition of clocks. If it is defined as follows, is it OK?
->>>
->>> properties:
->>>   resets:
->>>     minItems: 1
->>>     maxItems: 3
->>>     additionalItems: true
->>
->> Drop
->>
->>>     items:
->>>       - description: MAC Reset signal.
->>
->> Drop both
->>
->>>
->>>   reset-names:
->>>     minItems: 1
->>>     maxItems: 3
->>>     additionalItems: true
->>
->> Drop
->>
->>>     contains:
->>>       enum:
->>>         - stmmaceth
->>
->> Drop all
->>
->>>
->>>
->>> allOf:
->>>   - if:
->>>       properties:
->>>         compatible:
->>>           contains:
->>>             const: starfive,jh7110-dwmac
->>>     then:
->>>       properties:
->>>         resets:
->>>           minItems: 2
->>>           maxItems: 2
->>>         reset-names:
->>>           items:
->>>             - const: stmmaceth
->>>             - const: ahb
->>>       required:
->>>         - resets
->>>         - reset-names  
->>>     else:
->>>       properties:
->>>         resets:
->>>           maxItems: 1
->>>           description:
->>>             MAC Reset signal.
->>>
->>>         reset-names:
->>>           const: stmmaceth
->>>
->>> Do you have any other better suggestions?
->>
->> More or less like this but the allOf should not be in snps,dwmac schema
->> but in individual schemas. The snps,dwmac is growing unmaintainable...
->>
-> 
-> Thanks, it is defined as follows, is it right?
-> 
-> properties:
->   resets:
->     minItems: 1
->     maxItems: 3
->     additionalItems: true
-> 
+Hi,
+This patch series adds I2C support for MT8365-EVK board.
+The I2C-0 is enabled, it can be used through the board pin header,
+as described directly on the PCB.
 
-Read my comments above. Drop.
+This series depends to another one which add support for
+MT8365 SoC and EVK board. Link [1]
+
+One patch has been cherry-picked from [2], so I've addressed the comment
+and kept the trailer.
+
+Regards,
+Alex
+
+[1]: https://lore.kernel.org/linux-mediatek/20230101220149.3035048-1-bero@baylibre.com/
+[2]: https://lore.kernel.org/all/20220531135026.238475-2-fparent@baylibre.com/
+
+To: Qii Wang <qii.wang@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: linux-i2c@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Fabien Parent <fparent@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+
+---
+Alexandre Mergnat (2):
+      arm64: dts: mediatek: add i2c support for mt8365 SoC
+      arm64: dts: mediatek: enable i2c0 for mt8365-evk board
+
+Fabien Parent (2):
+      dt-bindings: i2c: i2c-mt65xx: add binding for MT8365 SoC
+      i2c: i2c-mt65xx: add MT8365 SoC support
+
+ .../devicetree/bindings/i2c/i2c-mt65xx.yaml        |  4 ++
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts        | 19 +++++++
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           | 60 ++++++++++++++++++++++
+ drivers/i2c/busses/i2c-mt65xx.c                    | 14 +++++
+ 4 files changed, 97 insertions(+)
+---
+base-commit: 8b6cfcce3ce939db11166680a57253c39110f07e
+change-id: 20221122-mt8365-i2c-support-fc048da261ea
 
 Best regards,
-Krzysztof
-
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
