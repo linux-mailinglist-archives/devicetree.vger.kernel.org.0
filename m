@@ -2,131 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A0A166DD29
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:04:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6560C66DD2F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:07:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236940AbjAQMEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 07:04:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41956 "EHLO
+        id S236733AbjAQMHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 07:07:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236630AbjAQMEC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:04:02 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1CFD3527E
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 04:04:00 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id q10so11015872wrs.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 04:04:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=LC36tYOsrzMFKc1hIJMxOzyJIsB2d2g/sMGeMuvD72o=;
-        b=gEdKm4YiZXcUF8Nq9Qakm4fhHqWXOM33M0oeCopCt5ImvdYni59Wcptea4EUS/ev1U
-         p9LvckWFMNcJIlXS4Cad0obqRw0tH1b/saKAPuGy/r2FsWHCIQPniv2mP1N+LCslXFbM
-         4JEIat6zUxKfKpSS5fbV67+wful2yTalQPvP/RVthRVXSYMdynFddcGARv8SmJF8e9QL
-         MAaJZaocMVsDiHnNmcUi3SHs4GbuaWJHWxRe5W5Kg8g2UQfHW1p8+fIY9rLsZc/Kxhi4
-         7th2WI8J9ZnQMf+toftdjYdHBXUDbL+F4ifGUOCKLQSwiMd9qX34qGdRP1GQgC1dvzPT
-         Vx8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LC36tYOsrzMFKc1hIJMxOzyJIsB2d2g/sMGeMuvD72o=;
-        b=Aj9DfTetn3BgfiA03qYDyFyF1Oyua/1McjbSxK9bqo7OqHhhy4De4GO3hDPjw/itFk
-         AmZjmbn8Z4m4VkYLkpdGQ+hlJL3cIiwwbZDb4DdgWAthFD5z9z4TWQv3oJmpDzyEkDF3
-         Ki2feLjO9GZbIjBafqxn+AOB6iRKhFTWhfYAx8NMlVaDH7JqsMhlTu/IF/d+Z8vjV5+2
-         MGAwMIu+FFNMx/ZTjJppppH0q2PAciuZEDnayQqBUjN0p/B/Q0KvY+69jr9dfd5ercUR
-         X2M037QY4p4kOYuk5zZBG0avz8GlhcQ4jRhq0AlS9Obz/+qbsqNmwZ9ODHRcumxR1jtw
-         78Rw==
-X-Gm-Message-State: AFqh2krMuP4tdovquFSt7TTLDQ/D3L4UB7i50Uq8SSM0jwWcpWJkW6QS
-        eODaabMjJ1289OxE4us5DLi7iw==
-X-Google-Smtp-Source: AMrXdXvAGlWA2xaue4XwpCW7OPs6lBGRcjQrVSo4YqU3LwD3OrpkOBI+8cwnGGA4R1HlGWjj8rAVcQ==
-X-Received: by 2002:a05:6000:98d:b0:25f:8ead:96cc with SMTP id by13-20020a056000098d00b0025f8ead96ccmr2535229wrb.70.1673957039302;
-        Tue, 17 Jan 2023 04:03:59 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:dff1:a9dd:eccd:492d? ([2a01:e0a:982:cbb0:dff1:a9dd:eccd:492d])
-        by smtp.gmail.com with ESMTPSA id c13-20020adffb0d000000b00241fde8fe04sm28240223wrr.7.2023.01.17.04.03.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 04:03:58 -0800 (PST)
-Message-ID: <6746407d-e72b-4003-9c4d-b4be36ee3e16@linaro.org>
-Date:   Tue, 17 Jan 2023 13:03:57 +0100
+        with ESMTP id S234106AbjAQMHF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:07:05 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1E9F32E6A;
+        Tue, 17 Jan 2023 04:07:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673957224; x=1705493224;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=X9y6JJ7LWZRFX1y7+eMk68PaK0HXTuZgsWPEV17oNaU=;
+  b=NYPAi0VxO/JVGGFOKIsegAXl9naeYuQEbP2FmhI2dhxy3WoB8+YxgXib
+   X3/ilphHByBAvdp0B17mr+O1JNWXlcS7EqB5TRLx6KJKsqN2yXxWGbVFL
+   5JnJxWBiUD40U1hJPRUd0Y/6MIc4cuNEUbDPgWGB2tDLyrVgaX5wT9ZyB
+   y/RqnxSVdK9v432rN+lFuomnGCC9ER4y68HMpCvWnF2uNPQWxfVCu090V
+   +3nVg2HrsBcM4ky1Ynuif+bp3sAAVNhBOcCZgsEJe2nSOPo3mC7oF2wqK
+   NUkYB9sRDEJbOyHCap2SMvuIBtd1S2Q0qQlHa950snbORK1zd0C1dd29Y
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="387028985"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="387028985"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 04:07:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="801722803"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="801722803"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 17 Jan 2023 04:06:59 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 17 Jan 2023 14:06:59 +0200
+Date:   Tue, 17 Jan 2023 14:06:58 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Wayne Chang <waynec@nvidia.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH V4 4/5] i2c: nvidia-gpu: Replace ccgx to well-known regex
+Message-ID: <Y8aPYkFJ+TqQtatx@kuha.fi.intel.com>
+References: <20230116155045.100780-1-jonathanh@nvidia.com>
+ <20230116155045.100780-5-jonathanh@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 2/3] arm64: dts: qcom: sm8350-hdk: Enable display & dsi
- nodes
-Content-Language: en-US
-To:     rfoss@kernel.org, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Robert Foss <robert.foss@linaro.org>
-References: <20230117120223.1055225-1-rfoss@kernel.org>
- <20230117120223.1055225-3-rfoss@kernel.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230117120223.1055225-3-rfoss@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230116155045.100780-5-jonathanh@nvidia.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 13:02, rfoss@kernel.org wrote:
-> From: Robert Foss <robert.foss@linaro.org>
+On Mon, Jan 16, 2023 at 03:50:44PM +0000, Jon Hunter wrote:
+> From: Wayne Chang <waynec@nvidia.com>
 > 
-> Enable the display subsystem and the dsi0 output for
-> the sm8350-hdk board.
+> ccgx is refer to the cypress cypd4226 typec controller.
+> Replace ccgx to well-known regex "cypress".
 > 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->   arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 22 ++++++++++++++++++++++
->   1 file changed, 22 insertions(+)
+> V2 -> V4: nothing has changed
+> V1 -> V2: New change for adding cypress,firmware-build
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> index 26a608144886..7878f42e9378 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> @@ -221,10 +221,32 @@ &cdsp {
->   	firmware-name = "qcom/sm8350/cdsp.mbn";
->   };
->   
-> +&dispcc {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
-> +	vdda-supply = <&vreg_l6b_1p2>;
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0_phy  {
-> +	vdds-supply = <&vreg_l5b_0p88>;
-> +	status = "okay";
-> +};
-> +
->   &gpi_dma1 {
->   	status = "okay";
->   };
->   
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_mdp {
-> +	status = "okay";
-> +};
-> +
->   &mpss {
->   	status = "okay";
->   	firmware-name = "qcom/sm8350/modem.mbn";
+>  drivers/i2c/busses/i2c-nvidia-gpu.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-nvidia-gpu.c b/drivers/i2c/busses/i2c-nvidia-gpu.c
+> index 12e330cd7635..0934f8ad7f49 100644
+> --- a/drivers/i2c/busses/i2c-nvidia-gpu.c
+> +++ b/drivers/i2c/busses/i2c-nvidia-gpu.c
+> @@ -260,7 +260,7 @@ MODULE_DEVICE_TABLE(pci, gpu_i2c_ids);
+>  
+>  static const struct property_entry ccgx_props[] = {
+>  	/* Use FW built for NVIDIA (nv) only */
+> -	PROPERTY_ENTRY_U16("ccgx,firmware-build", ('n' << 8) | 'v'),
+> +	PROPERTY_ENTRY_U16("cypress,firmware-build", ('n' << 8) | 'v'),
+>  	{ }
+>  };
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+So you need a new patch where you first introduce that
+"cypress,firmware-build" property. That patch comes before patch 3/5.
+
+Then in this patch you only remove the old property
+"ccgx,firmware-build" property.
+
+thanks,
+
+-- 
+heikki
