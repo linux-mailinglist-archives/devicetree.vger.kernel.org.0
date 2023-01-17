@@ -2,112 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07FF066E87D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 22:34:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE90E66E897
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 22:39:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbjAQVev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 16:34:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50440 "EHLO
+        id S229581AbjAQVj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 16:39:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbjAQVbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 16:31:40 -0500
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E0BB58999;
-        Tue, 17 Jan 2023 11:57:25 -0800 (PST)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-12c8312131fso33200695fac.4;
-        Tue, 17 Jan 2023 11:57:25 -0800 (PST)
+        with ESMTP id S229550AbjAQViT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 16:38:19 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 422FB39B93
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 12:01:36 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id d2so11660063wrp.8
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 12:01:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4NbgmQ7vwZWISWrpORFndGUj0Z1v8WzwxSlAH052uaI=;
+        b=DDkxuKKBdTiKhwMOyfxlHgaEFjJoxSsFSon4tpKtYWiAsylwRuduHnpWAlMh7TIu5d
+         JqTK48Ax6peub1bM63LMmpHukChbBB/fEKpUHCI8TQEHitR883aApOvxbn9GcUYY404e
+         hxvRfDMj+UEA1qyAmwDlCy3/b4IMHm7izEKK2kWEkxUrYpo5xea4jIWf0uvixsQYFvCJ
+         Q1z/tMAHGqN4VbeUl83nZXq/8peD0AQkZEXLLJ/hTLKSl/r7gFTQexzuItqI5ikTa/3P
+         S9JOc2oY4pBoatoJHqRi97IZGnSKr5vA1yYZMy6v+avnIRLUx7ORskp0qU+77zkVfIfr
+         W4JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WoQ1Ujnm/vZWONGjo7EJYTRd9zE4o9AG/5l154hNW+Y=;
-        b=nxaZklT82ZHMQ5DyC+GUFan+usFVL7TEGBKGoACetZC9STI+05e7f49rPbkTd/OZY4
-         1N6LRfSpBk7qfBjOCFd2L7xx3rRWA2B6WTsmxIKS07OnhSCRrEajyhP5DShvNc3Ui7UD
-         fP/DxdABwUw+vvW2zfLGM+XktEvgRMkyLY+qiwMi7znCI2OnbqGIKVeubbtBy065GOh4
-         ABPUFhdjMac0N2NynPNYNnWJgWmqd+efprqgj4SK5fdcU4unGggj83S3vjl9Pe5Hy46G
-         5ZLrJKMykfaky6rTT2A6yV0DarIUflEuGWNQMMSJrlmXT16vEB+rvtY2D1iJ8T3cU2gS
-         2KIQ==
-X-Gm-Message-State: AFqh2kpnDNMFgkrD3ONsJOerTeRXO4QqOE68BEoxx3OUy5VcNRv11oFN
-        /rUO/9d9aP6h0cVcQuzf4Q==
-X-Google-Smtp-Source: AMrXdXsWU+wMIMJZJ0i92BSHODRi1mci32oCzZVAgx/IGlmoFNzIN6Vsk3DXaRLgbmBP86jPqZIr8w==
-X-Received: by 2002:a05:6870:588c:b0:15f:6de0:b74 with SMTP id be12-20020a056870588c00b0015f6de00b74mr1595745oab.19.1673985444692;
-        Tue, 17 Jan 2023 11:57:24 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q187-20020a4a4bc4000000b004a3c359fdaesm15462457ooa.30.2023.01.17.11.57.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 11:57:24 -0800 (PST)
-Received: (nullmailer pid 3536600 invoked by uid 1000);
-        Tue, 17 Jan 2023 19:57:23 -0000
-Date:   Tue, 17 Jan 2023 13:57:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?Q?Micha=C5=82?= Grzelak <mchl.grzlk@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, lars@metafoo.de,
-        Michael.Hennerich@analog.com, cosmin.tanislav@analog.com,
-        jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: addac: adi,74115: Add missing maxItems
-Message-ID: <20230117195723.GA3527095-robh@kernel.org>
-References: <20230115022558.145076-1-mchl.grzlk@gmail.com>
+        bh=4NbgmQ7vwZWISWrpORFndGUj0Z1v8WzwxSlAH052uaI=;
+        b=1nRRLTuVGgGzBjE1SIdH0OzMPuS6MZrPlwJzLqGcPP02Dma0Mmqdb7QLa8CyfMVwcZ
+         H5cQe97dGUiWN9j+PVONxo0or7Rlu1cwMisPPMMBkaZywnM0NU0Dj+vESwxgiJK7M8mO
+         fzElb6AvqYIBiI+bTX84n8WPySAsg0VSmZn+sHMiou0TydTYtFFtEutHbw3tQZalwgfS
+         YblxPrntNW8T6uHiD60Y+XHhmz93Ud9oim/y+tMD347IZe7mGUawh7DMoJAukKugi77t
+         7mGChrvT8qUIskQtC1FH+xTzNkf1lwQ3p5cmOp4wLg9QyC6A6J6AvnKhmCHR5UR8Qila
+         OIWQ==
+X-Gm-Message-State: AFqh2kqdlMJRNWTNj0OMSLI4zt9khbct/oWPrhdRVc5l/Sex7F6bPm1j
+        jJdTWEBv5D+h+TUwTi6k/XPMNg==
+X-Google-Smtp-Source: AMrXdXs4vMDYW9Wv8LmQ84pxtZoBKU4CXfy3IowTrSQqP8YN9k1B4gP9qV3XvnQv4pX/+ICuhpLO4Q==
+X-Received: by 2002:a5d:50c9:0:b0:2bd:db42:36cd with SMTP id f9-20020a5d50c9000000b002bddb4236cdmr3825481wrt.0.1673985694939;
+        Tue, 17 Jan 2023 12:01:34 -0800 (PST)
+Received: from [192.168.0.15] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
+        by smtp.gmail.com with ESMTPSA id i15-20020a05600011cf00b00294176c2c01sm29185345wrx.86.2023.01.17.12.01.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 12:01:34 -0800 (PST)
+Message-ID: <b127bf23-8752-47be-d98e-4a61794a3c48@linaro.org>
+Date:   Tue, 17 Jan 2023 20:01:32 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v6 4/6] arm64: dts: qcom: sm6125: Add UFS nodes
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lux Aliaga <they@mint.lgbt>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
+        bvanassche@acm.org, keescook@chromium.org, tony.luck@intel.com,
+        gpiccoli@igalia.com
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
+        phone-devel@vger.kernel.org, martin.botka@somainline.org,
+        marijn.suijten@somainline.org
+References: <20230108195336.388349-1-they@mint.lgbt>
+ <20230108195336.388349-5-they@mint.lgbt>
+ <475d3f2f-114f-d6d2-89db-465ba7acd0d6@linaro.org>
+ <f1f1337a-30cc-df3c-81d5-2daac61e874c@mint.lgbt>
+ <PxopLVxLOIJ3_2bHt6pxk7OW4uY69s6KglHqShGI_CuUgDQFA_yn8HwD5gdoQpMpvYYqKXqVNhOQmwBQ6y0REQ==@protonmail.internalid>
+ <51a8bb85-8fda-2d79-f753-9461316bae9e@linaro.org>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <51a8bb85-8fda-2d79-f753-9461316bae9e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230115022558.145076-1-mchl.grzlk@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 15, 2023 at 03:25:58AM +0100, Michał Grzelak wrote:
-> Running 'make dt_binding_check' gives following warnings:
-> iio/addac/adi,ad74115.example.dtb:
-> addac@0: adi,conv2-range-microvolt: 'oneOf' conditional failed, one must
-> be fixed:
->         4282967296 is not one of [-2500000, 0]
->         4282967296 is not one of [-12000000, 0]
->         -2500000 was expected
->         -104000 was expected
->         625000 was expected
-> 
-> addac@0: Unevaluated properties are not allowed
-> ('adi,conv2-range-microvolt' was unexpected)
->         From schema: iio/addac/adi,ad74115.yaml
 
-I think your dtschema version is out of date. I don't see this issue. 
-The issue has to do with signed types and there have been some fixes 
-related to them.
 
-> As every property with standard suffix has inferred type of array of
-> cells, adi,conv2-range-microvolt is required by meta-schemas/cell.yaml
-> to have maxItems >= 2. Fix these errors by setting maxItems to 2.
+On 11/01/2023 12:04, Konrad Dybcio wrote:
+> 
+> 
+> On 11.01.2023 03:53, Lux Aliaga wrote:
+>>
+>> On 09/01/2023 09:18, Konrad Dybcio wrote:
+>>>
+>>> On 8.01.2023 20:53, Lux Aliaga wrote:
+>>>> Adds a UFS host controller node and its corresponding PHY to
+>>>> the sm6125 platform.
+>>>>
+>>>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
+>>>> ---
+>>>>   arch/arm64/boot/dts/qcom/sm6125.dtsi | 57 ++++++++++++++++++++++++++++
+>>>>   1 file changed, 57 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>>>> index df5453fcf2b9..cec7071d5279 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>>>> @@ -511,6 +511,63 @@ sdhc_2: mmc@4784000 {
+>>>>               status = "disabled";
+>>>>           };
+>>>>   +        ufs_mem_hc: ufs@4804000 {
+>>>> +            compatible = "qcom,sm6125-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+>>>> +            reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
+>>> You need reg-names for ICE to probe, otherwise the second reg sits unused.
+>>>
+>>>> +            interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +            phys = <&ufs_mem_phy>;
+>>>> +            phy-names = "ufsphy";
+>>>> +            lanes-per-direction = <1>;
+>>>> +            #reset-cells = <1>;
+>>>> +            resets = <&gcc GCC_UFS_PHY_BCR>;
+>>>> +            reset-names = "rst";
+>>>> +            iommus = <&apps_smmu 0x200 0x0>;
+>>>> +
+>>>> +            clock-names = "core_clk",
+>>>> +                      "bus_aggr_clk",
+>>>> +                      "iface_clk",
+>>>> +                      "core_clk_unipro",
+>>>> +                      "ref_clk",
+>>>> +                      "tx_lane0_sync_clk",
+>>>> +                      "rx_lane0_sync_clk",
+>>>> +                      "ice_core_clk";
+>>>> +            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+>>>> +                 <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>,
+>>>> +                 <&gcc GCC_UFS_PHY_AHB_CLK>,
+>>>> +                 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+>>>> +                 <&rpmcc RPM_SMD_XO_CLK_SRC>,
+>>>> +                 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+>>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+>>>> +                 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+>>>> +            freq-table-hz = <50000000 240000000>,
+>>>> +                    <0 0>,
+>>>> +                    <0 0>,
+>>>> +                    <37500000 150000000>,
+>>>> +                    <0 0>,
+>>>> +                    <0 0>,
+>>>> +                    <0 0>,
+>>>> +                    <75000000 300000000>;
+>>>> +
+>>>> +            status = "disabled";
+>>>> +        };
+>>>> +
+>>>> +        ufs_mem_phy: phy@4807000 {
+>>>> +            compatible = "qcom,sm6125-qmp-ufs-phy";
+>>>> +            reg = <0x04807000 0x1c4>;
+>>> Isn't this too small? Downstream says 0xdb8, but it's probably even bigger..
+>> What do you think could help me find the new length of the registers? I tried 0x1000 and it probed just fine, but I'm not really sure until what extent I could push it.
+> The "true" values are probably only in documentation, which
+> I don't have.
 
-The meta-schemas have nothing to do with warnings in examples. It's like 
-this: meta-schemas check schemas check examples
+This patch series uses the "new" DT layout, where there isn't a subnode
+to define the address ranges of the different components.
 
+The reg size would be correct if it used the "legacy" DT layout.
+
+Confirming in downstream, 0xdb8 is the correct value (it's what DT uses
+there and the phy-qcom-ufs-qmp-v3-660 driver confirms the biggest
+register offset is PHY_BASE (0xc00) + PHY_SIZE (0x1b4) = 0xdb4 inclusive)
+
+I'd suggest going for that in your next revision Lux.
 > 
-> Signed-off-by: Michał Grzelak <mchl.grzlk@gmail.com>
-> ---
->  Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
-> index 72d2e910f206..cdeb04184f5a 100644
-> --- a/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
-> +++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
-> @@ -87,6 +87,7 @@ properties:
->  
->    adi,conv2-range-microvolt:
->      description: Conversion range for ADC conversion 2.
-> +    maxItems: 2
->      oneOf:
->        - items:
->            - enum: [-2500000, 0]
-> -- 
-> 2.37.3
-> 
+> Konrad
+>>
+
+-- 
+Kind Regards,
+Caleb (they/them)
