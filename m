@@ -2,127 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39A4766DDFA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:46:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0C3E66DE18
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:51:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236831AbjAQMp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 07:45:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34114 "EHLO
+        id S236895AbjAQMvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 07:51:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236832AbjAQMpz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:45:55 -0500
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D426B38B43
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 04:45:53 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id e130so4317447yba.7
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 04:45:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vxknlLDnsxojLcmQ59vK0ZLgoKiVLvxFkDDOG8faM4Q=;
-        b=uqcNVH96+N3QhwEoMwCX0XF8bNjcpWqYdeKTdHchHyJ1W9LW/wuK5nUhmLsPUlqcjz
-         7kV/qMP8k1vWUT7gagwrWaw7KqPt9kl/O1+irrBaSgnivLTfRy1btFgNHs0Gl7SiH9ji
-         A532CpWpeNHRHouB4wkT/dQOWzRCmCVnPNfD0yz9tD2N5LAH6g28XDE2L5EmjbPp6huX
-         HmiS0kgY0TYGihNMa3JOOZNERhi1bTob47MaH4+Nrpum65ConMPIFPErUsUSkUeMwqmm
-         3hVtI2/l7sxxTNcHAoq5MxayhbFf0SXOt3b2IzUI8MGo0MOoUV//HbK6Oam84fX+IabD
-         kN8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vxknlLDnsxojLcmQ59vK0ZLgoKiVLvxFkDDOG8faM4Q=;
-        b=mRUIhaEGXtO5/CoS8QG2qC/LpNYaQ03UtBPV/796vGLbb8bfvH+5554KSyvjkYMSip
-         rG5ZiPQFMAAe+4zrWyAdPOvXusM5zUTmsEUraSsRMVG7BVnBH27J+HxO70w7QmOQ9v5s
-         AaUQNDHLcOv/sagChrS4SG8MiJSrTkw5aRKcXXWcoObrJB5br8TwKVgpOKBYr2MazjRU
-         DqiTcl5x8pxL4aVOL3flNiN3H0C//gXgOruUPIlaX/EFAQrLpK0p2W/8ehSECfu9MkeJ
-         YcKCyj+gaPmOdh9qNXyWnMgIitDQCmOD0jHpkeweIdn2Ykq7BXWjSI4BiM32T/2dY1Ql
-         yxnQ==
-X-Gm-Message-State: AFqh2kolUNX/CY53Hcd7Wz+5ompUfwJndnD1qgC2BLOg0K/SbWvDQA9m
-        fLrMEka48LJA3kCZHZC6IPTe8sc5Dq6j3HeESIIozQ==
-X-Google-Smtp-Source: AMrXdXuPODb5km1vVWLEOajbQIs4XSX8t9jdXpVQTtsxlKrB6VmMItgiux+DXoc2jwTxQ8qklnWstNG6QM+ZlY6ut2o=
-X-Received: by 2002:a25:ca81:0:b0:7d2:891e:ee59 with SMTP id
- a123-20020a25ca81000000b007d2891eee59mr439542ybg.152.1673959553051; Tue, 17
- Jan 2023 04:45:53 -0800 (PST)
+        with ESMTP id S236824AbjAQMuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:50:32 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FFC3A595;
+        Tue, 17 Jan 2023 04:49:50 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D51126602D6D;
+        Tue, 17 Jan 2023 12:49:47 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1673959788;
+        bh=2f4/mH0AmuS+686ZhgQepdDKGjjvbP5co+SkciQwZ54=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fREZ3JJ9lELJEDVXlMRtWynjzQRr2cSZa0ufDIp6MWMx8eeAK2KZ50mD5cs0LkuDz
+         GLgFa9JaukEKBjYibCrFl91X5+Bt+mCD3BskgiPHx1ChgYmpab+8ZuDuEPrQf5sKvs
+         FdGiubXww7SzlAclSd/fFAEVujBXmFZXCAIgyFhmKJyvCYmjy6x6hhgwDs3P+tgKcO
+         /rh5LR2CAKS/iXmSm3yPgDz1meuRil3K9XCRwYkXC6fRBdp6m2wK5fU3P8wCSQZAAU
+         g42aoPD54UT8zWIXGMvbrfY0a7cGd2jU2Dn9qkXpttLXJZNpwcmDzvIsPREVndf2ip
+         AO7Is0EoLOZ7A==
+Message-ID: <7a6522ef-7cf7-808f-8be4-07cf5567d18a@collabora.com>
+Date:   Tue, 17 Jan 2023 13:49:44 +0100
 MIME-Version: 1.0
-References: <20230109174511.1740856-1-brgl@bgdev.pl> <20230109174511.1740856-3-brgl@bgdev.pl>
- <bbd21894-234e-542e-80ec-8f2bb11e268e@linaro.org> <843eed4b-552a-a529-83ed-b813c1346c5f@linaro.org>
- <CAMRc=MfTynAACwy+hB+FxOQ=-gA+307viz7LCUk8zmn4H7BaOQ@mail.gmail.com>
-In-Reply-To: <CAMRc=MfTynAACwy+hB+FxOQ=-gA+307viz7LCUk8zmn4H7BaOQ@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 17 Jan 2023 14:45:42 +0200
-Message-ID: <CAA8EJpp=w=PurE8GYBOPWmz5GnuXPo8Wyd=Xho0M_yNRciG+0w@mail.gmail.com>
-Subject: Re: [PATCH 02/18] clk: qcom: add the GCC driver for sa8775p
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 4/4] i2c: i2c-mt65xx: add MT8365 SoC support
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Qii Wang <qii.wang@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, linux-gpio@vger.kernel.org,
-        netdev@vger.kernel.org, Shazad Hussain <quic_shazhuss@quicinc.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-i2c@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org
+References: <20221122-mt8365-i2c-support-v1-0-4aeb7c54c67b@baylibre.com>
+ <20221122-mt8365-i2c-support-v1-4-4aeb7c54c67b@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221122-mt8365-i2c-support-v1-4-4aeb7c54c67b@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Jan 2023 at 14:44, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->
-> On Mon, Jan 9, 2023 at 10:06 PM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On 09/01/2023 19:58, Konrad Dybcio wrote:
-> > >
-> > >
-> > > On 9.01.2023 18:44, Bartosz Golaszewski wrote:
-> > >> From: Shazad Hussain <quic_shazhuss@quicinc.com>
-> > >>
-> > >> Add support for the Global Clock Controller found in the QTI SA8775P
-> > >> platforms.
-> > >>
-> > >> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
-> > >> [Bartosz: made the driver ready for upstream]
-> > >> Co-developed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > >> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > >> ---
-> > > [...]
-> > >
-> >
-> > As the driver didn't get to the list, I'll comment OOB.
-> >
-> > Please use clk_regmap_phy_mux_ops where applicable (PCIe PIPE clocks).
-> >
->
-> Looks like it's impossible for this platform as the PCIe PIPE clocks
-> have two parents.
+Il 17/01/23 09:49, Alexandre Mergnat ha scritto:
+> From: Fabien Parent <fparent@baylibre.com>
+> 
+> Add support for I2C on MT8365 SoCs.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>   drivers/i2c/busses/i2c-mt65xx.c | 14 ++++++++++++++
+>   1 file changed, 14 insertions(+)
+> 
+> diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
+> index d80e59340d97..2c9dbb42861a 100644
+> --- a/drivers/i2c/busses/i2c-mt65xx.c
+> +++ b/drivers/i2c/busses/i2c-mt65xx.c
+> @@ -511,6 +511,19 @@ static const struct mtk_i2c_compatible mt8192_compat = {
+>   	.max_dma_support = 36,
+>   };
+>   
+> +static const struct mtk_i2c_compatible mt8365_compat = {
 
-That's the point, please check the history of other platforms. XO
-becomes the 'off' state rather than being a separate parent.
+This is exactly the same as mt8168_compat... so you can avoid adding this one
+and you can also avoid adding the compatible to this driver.
 
--- 
-With best wishes
-Dmitry
+This means that you can get it working with a devicetree declaring
+
+compatible = "mediatek,mt8365-i2c", "mediatek,mt8168-i2c";
+
+like you're already doing and without any addition to this driver at all.
+So, you can drop this commit.
+
+Regards,
+Angelo
+
+
