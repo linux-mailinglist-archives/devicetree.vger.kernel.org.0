@@ -2,154 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C909B66DA28
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 10:42:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A28E66DA2D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 10:42:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236440AbjAQJmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 04:42:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41126 "EHLO
+        id S236037AbjAQJmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 04:42:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236477AbjAQJlG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 04:41:06 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35FC8233D9;
-        Tue, 17 Jan 2023 01:39:50 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30H9dVR0074470;
-        Tue, 17 Jan 2023 03:39:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673948371;
-        bh=hCiMEEOZ0FA8xfOwTl/n4EZiudIDwrwZeoE9cRopsZM=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=cvWEJ4Gj9JaBKSK0BBWt5ooV2x9m9QfJfCM0v5TB7WWQZEPc8is83BIpbShZzcwqr
-         NFwqcfEFgR/ZljXrDeRfHsuTYJJEQ2+FQwBjQEvdipZL+Zrqes3rdkxngaq2b5uru+
-         xkVITYKTvik9s+e7s9uR76Jqs9IAF01MWxBuSi1o=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30H9dVWR108848
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 17 Jan 2023 03:39:31 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 17
- Jan 2023 03:39:31 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 17 Jan 2023 03:39:31 -0600
-Received: from [172.24.145.61] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30H9dPuq018076;
-        Tue, 17 Jan 2023 03:39:26 -0600
-Message-ID: <3bd25e86-37c9-e2c5-d957-2ed111a3f4a7@ti.com>
-Date:   Tue, 17 Jan 2023 15:09:25 +0530
+        with ESMTP id S235875AbjAQJlP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 04:41:15 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E008189;
+        Tue, 17 Jan 2023 01:40:31 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A480810C;
+        Tue, 17 Jan 2023 10:40:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673948428;
+        bh=pwcY+nhMvG/TRw/6a23Tkmw05fU7m9erKXgldfhdtKs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=cYB3srwjuy25uquA3HfrV9XgcNNZC0uzFWAmKVLDC88prn2l7TdA8UdpW1riCiTUw
+         bI7W0xJvy84evkSzMYe0tyfBuelwxCmVcMXGkmy4d+7CMcOeg1y+z6HIrRxe+eBvlq
+         onJ8cV9jePy0uL5vg5jixJwRgV8Kxw5xOa3+GE5c=
+Message-ID: <367fba29-bc08-1f27-249c-09e406adfbbb@ideasonboard.com>
+Date:   Tue, 17 Jan 2023 11:40:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <kristo@kernel.org>,
-        <nsekhar@ti.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH net-next 5/5] arm64: dts: ti: k3-am625-sk: Add cpsw3g cpts
- PPS support
+Subject: Re: [PATCH 1/2] dt-bindings: clock: fixed-factor: Add TI AM62 SoC
+ OLDI clock
 Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>
-References: <20230111114429.1297557-1-s-vadapalli@ti.com>
- <20230111114429.1297557-6-s-vadapalli@ti.com>
- <6ae650c9-d68d-d2fc-8319-b7784cd2a749@kernel.org>
- <a889a47f-5f44-1ae6-1ab7-3b7e7011b4f7@ti.com>
- <2007adb5-0980-eee3-8d2f-e30183cf408e@kernel.org>
- <4d7ac24a-0a35-323c-045c-cc5b3d3c715a@ti.com>
- <566700c6-df9b-739b-81ff-8745eea10ff3@ti.com>
- <7bc26f28-2541-8cc4-3cde-abbe4bdf8911@kernel.org>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <7bc26f28-2541-8cc4-3cde-abbe4bdf8911@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Linux Clock List <linux-clk@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
+References: <20221226095745.19757-1-a-bhatia1@ti.com>
+ <20221226095745.19757-2-a-bhatia1@ti.com>
+ <8980856c1138571976f00413b94cfeb8.sboyd@kernel.org>
+ <1856e963-4514-92f3-5d43-d5b711083193@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <1856e963-4514-92f3-5d43-d5b711083193@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Roger,
-
-On 17/01/23 15:00, Roger Quadros wrote:
-> On 17/01/2023 07:28, Siddharth Vadapalli wrote:
->> Vignesh,
->>
->> On 16/01/23 22:00, Vignesh Raghavendra wrote:
->>>
->>>
->>> On 16/01/23 9:35 pm, Roger Quadros wrote:
->>>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>>>>> index 4f179b146cab..962a922cc94b 100644
->>>>>>> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>>>>> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>>>>> @@ -366,6 +366,10 @@ &cpsw3g {
->>>>>>>  	pinctrl-names = "default";
->>>>>>>  	pinctrl-0 = <&main_rgmii1_pins_default
->>>>>>>  		     &main_rgmii2_pins_default>;
->>>>>>> +
->>>>>>> +	cpts@3d000 {
->>>>>>> +		ti,pps = <2 1>;
->>>>>>> +	};
->>>>>>>  };
->>>>>>>  
->>>>>>>  &cpsw_port1 {
->>>>>>> @@ -464,3 +468,19 @@ partition@3fc0000 {
->>>>>>>  		};
->>>>>>>  	};
->>>>>>>  };
->>>>>>> +
->>>>>>> +#define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
->>>>>> Should this go in ./include/dt-bindings/pinctrl/k3.h ?
->>>>>> That way every board DT file doesn't have to define it.
->>>>>>
->>>>>> The name should be made more platform specific.
->>>>>> e.g. K3_TS_OFFSET if it is the same for all K3 platforms.
->>>>>> If not then please add Platform name instead of K3.
->>>>> The offsets are board specific. If it is acceptable, I will add board specific
->>>>> macro for the TS_OFFSET definition in the ./include/dt-bindings/pinctrl/k3.h
->>>>> file. Please let me know.
->>>> If it is board specific then it should remain in the board file.
->>>
->>>
->>> The values you pass to macro maybe board specific. But the macro
->>> definition itself same for a given SoC right? Also, is its same across
->>> K3 family ?
->>>
+On 16/01/2023 11:51, Aradhya Bhatia wrote:
+> Hi Stephen,
 > 
-> I misunderstood then. I agree with Vignesh.
+> Thanks for taking a look at the patch.
 > 
->>> Please use SoC specific prefix like AM62X_TS_OFFSET() or K3_TS_OFFSET()
->>> accordingly.
+> On 12-Jan-23 01:14, Stephen Boyd wrote:
+>> Quoting Aradhya Bhatia (2022-12-26 01:57:44)
+>>> Add "ti,k3-am62-oldi-clk-div" to the fixed factor clock compatible enum
+>>> list.
+>>>
+>>> "ti,k3-am62-oldi-clk-div" is a fixed-factor clock that helps the TI
+>>> display subsystem request a pixel clock for itself and a corresponding
+>>> serial clock for its OLDI Transmitters. The serial clock is 7 times the
+>>> pixel clock. This clock needs the clock set rate request to be
+>>> propagated to the parent clock provider.
+>>>
+>>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml 
+>>> b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
+>>> index 8f71ab300470..0696237530f7 100644
+>>> --- a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
+>>> +++ b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
+>>> @@ -14,6 +14,7 @@ properties:
+>>>     compatible:
+>>>       enum:
+>>>         - fixed-factor-clock
+>>> +      - ti,k3-am62-oldi-clk-div
 >>
->> For certain SoCs including AM62X, the macro is:
->> #define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
->> while for other SoCs (refer [0]), the macro is:
->> #define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x80000000 | val)
+>> I don't see this compatible anywhere in the kernel tree. Is there a
+>> patch that adds a node using this? I wonder why the display subsystem
+>> can't add this fixed factor clk directly in the driver. Does the OLDI
+>> Transmitter send a clk to the display subsystem?
 >>
->> Therefore, I will use SoC specific prefix in the macro. Please let me know if
->> the SoC specific macro can be added to the ./include/dt-bindings/pinctrl/k3.h
->> file for each SoC. If not, I will add the SoC specific macro in the board file
->> itself.
+>> I'm asking all these questions because we got rid of vendor compatibles
+>> here in hopes of simplifying the logic. Maybe the problem can be
+>> approached differently, but I don't know all the details.
 > 
-> Not in board file please. It should go in ./include/dt-bindings/pinctrl/k3.h
+> 
+> +--------+                       +------------------+
+> |        |                       |                  |
+> |  PLL   +---+----+------------->| OLDI Transmitter |
+> |        |   |    |              |                  |
+> +--------+   |    |              +------------------+
+>               |    |
+>               |    |              +------------------+
+>               |    |              |                  |
+>               |    +------------->| OLDI Transmitter |
+>               |                   |                  |
+>               |                   +------------------+
+>               |
+>               |                   +------------------+
+>               |   +----------+    |                  |
+>               |   |    /7    |    |      Display     |
+>               +-->|   Clock  +--->| Sub-System (DSS) |
+>                   |    Div   |    |                  |
+>                   +----------+    +------------------+
+> 
+> This is how the the clock architecture for DSS looks like.
+> 
+> The clock divider is not a part of DSS, but outside it.
+> 
+> The clock request flow is initiated by the DSS driver because it has the
+> required timing parameter information. It requests a certain pixel
+> frequency. But the frequency required by the OLDI TXes is 7 times
+> that pixel frequency.
+> 
+> (Just for clarification, in some cases, the OLDI TX does require only
+> 3.5 times the pixel frequency, but in those situations there is another
+> divider in-front of OLDI TX that gets activated with a signal and
+> divides the incoming frequency by 2, thereby requiring the PLL to still
+> generate a 7x frequency.)
+> 
+> Hence, the idea is that the clock divider is able to propagate the set
+> rate request back to PLL, asking for a frequency 7 times more than the
+> DSS's asking rate.
+> 
+> If this is something less than ideal and should not go up, then I can
+> implement a new clock device with a separate but similar clock driver.
+> 
+> Let me know what you think!
 
-Thank you for letting me know. I will do so in the device-tree series that I
-will post once the bindings and driver patches get merged.
+As a clarification I would also add to the above that on other TI SoCs 
+with DSS, and also for the second video port on AM62, the clock 
+framework provides DSS a clock using the pclk frequency.
 
-The v2 series for the bindings and driver patches that I am referring to is at:
-https://lore.kernel.org/r/20230116085534.440820-1-s-vadapalli@ti.com/
+  Tomi
 
-Regards,
-Siddharth.
