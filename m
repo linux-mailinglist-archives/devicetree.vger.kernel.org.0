@@ -2,59 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6240866D839
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:32:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9130566D86D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:42:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232630AbjAQIcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 03:32:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42748 "EHLO
+        id S235686AbjAQIms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 03:42:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235783AbjAQIb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:31:59 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29A711ABD2;
-        Tue, 17 Jan 2023 00:31:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D13E8B811E6;
-        Tue, 17 Jan 2023 08:31:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4560CC433F0;
-        Tue, 17 Jan 2023 08:31:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673944315;
-        bh=8uUX5CbGfhfHSNhlfNoYAhVgzakXKP3QFtiVxG4xGQY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CBMC1byv8p64gKubbCku9nqX58IT5fcGTAQYVcZ299UD8F+G6shUftd6FiezC34pI
-         Lmh6grgyHTvY28URYg7vKRkHPODXuzOhFaR09WM6OLrwnWptvykjgjyQIU4TU6rq7J
-         bp5a918ji0C6a5+0cYYYyu7SMYca3GDK10dLmEcIHOA+JcLczFLNQlHEN0soZn4ZPe
-         Qk5v99FUy4zqFBysZmL+KvLokW92AfkS3fDCMvKlX4Nk/8lVMqJc+oBtxV89yOmVZt
-         4XQHei6XzfIkt5eNdXXO4O9u9xrxCu5q/QHwTDigJkrzzanmKT7tTkmxFWasot9IVj
-         eo1giXE1PeGVA==
-Message-ID: <4be60ea2-cb67-7695-1144-bf39453e9e1f@kernel.org>
-Date:   Tue, 17 Jan 2023 09:31:48 +0100
+        with ESMTP id S235828AbjAQImq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:42:46 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D7C2CFE0;
+        Tue, 17 Jan 2023 00:42:45 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id r30so5354510wrr.10;
+        Tue, 17 Jan 2023 00:42:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WgdFG0TckMNNtSrMy3gzQpNweLlGgAmlRt/iXd54yE0=;
+        b=nTvxXqXF+OTl+nZ4SQJQp1kdtrb7VRE2jEfuP1rSxga5U9lbjSmzu2/eONA2xCo8sy
+         3ab5qp4NIaAxf+bbUjVL5A2MZbKVQ7jtMp2RU8XE8GGscq5WEBjzxLlIM90cnu7s2v+d
+         1QVtEAj8k8i+LTQhFjp8FYIATzrxlAdBrIfqtUySTRTel+YCJUFd3X0EZViNCTTZ3c79
+         afnXxirAzLqteFVUH9mpjdrhqSZ59Cofsjpnv+3G7BmMA8B6Du4vaBfI/XbmXH/nDR21
+         oggECKb40T8uVGos0DNVJqUj/AnK+34vpRBYdA1ENtZnrzW1MzpRFUDkcmh0MZD6lLoZ
+         +rCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WgdFG0TckMNNtSrMy3gzQpNweLlGgAmlRt/iXd54yE0=;
+        b=dzUm3GwWO90ommqcm9hv3AOCe9nZJZbv4CVCzo62mwuAgUTDbvc5EZN2aE3Z7CKrmP
+         bAPDMIJSB4N6oJNrAvykrfU5TfQ4qOUDMA8Z/nNLDX6yrgYEMtvrJNA+P7zpplNnrQ1G
+         9icpkwLfBTew7xgw7SHNUImfrYIgrXgFWLZQAVXXY2HQW997l15dKFz4F0Ws3m7Fdx4i
+         zKtacy8jeXrsLJ25H5yyfWZ8kzu/9AOalSfCuYYBqSfoY8YRHRs4qorQe1aN5dZxqEB9
+         hEZtgjMDzJAdvXMfuHYpniExgsTqwCcjaiR3px3G2An9cKIG9u0CjHf3ypEuHGX6T+47
+         hmnw==
+X-Gm-Message-State: AFqh2kqYen609CPRQq4/5hfboxEbzZ8KDQO2M5jfFeo9pGrfaifbChDV
+        Vl1mgFiGkjNCPqjg7Dq+EBw=
+X-Google-Smtp-Source: AMrXdXtShFi7g5M0+i35bby1+o6PPYiAiyxYRzenLTwkiB1lrFf0uhSPMYP5qNW4Ccc41g3ITBLDQg==
+X-Received: by 2002:a5d:6a51:0:b0:2bb:e7ac:af73 with SMTP id t17-20020a5d6a51000000b002bbe7acaf73mr2327828wrw.42.1673944963342;
+        Tue, 17 Jan 2023 00:42:43 -0800 (PST)
+Received: from [192.168.2.202] (pd9ea3141.dip0.t-ipconnect.de. [217.234.49.65])
+        by smtp.gmail.com with ESMTPSA id l14-20020a5d526e000000b0028e55b44a99sm10584676wrc.17.2023.01.17.00.42.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 00:42:42 -0800 (PST)
+Message-ID: <2107892a-0b9c-cb30-312a-54e4d8702e1f@gmail.com>
+Date:   Tue, 17 Jan 2023 09:42:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: add amlogic gxl mdio
- multiplexer
-To:     Jerome Brunet <jbrunet@baylibre.com>, netdev@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>
-Cc:     linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230116091637.272923-1-jbrunet@baylibre.com>
- <20230116091637.272923-2-jbrunet@baylibre.com>
+Subject: Re: [PATCH 3/4] firmware: Add support for Qualcomm UEFI Secure
+ Application
+To:     Johan Hovold <johan@kernel.org>, Ard Biesheuvel <ardb@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+ <20220723224949.1089973-4-luzmaximilian@gmail.com>
+ <Y8ZbN5LNn2fk0/xi@hovoldconsulting.com>
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230116091637.272923-2-jbrunet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
+From:   Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <Y8ZbN5LNn2fk0/xi@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,102 +87,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 10:16, Jerome Brunet wrote:
-> Add documentation for the MDIO bus multiplexer found on the Amlogic GXL
-> SoC family
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
-
+On 1/17/23 09:24, Johan Hovold wrote:
+> On Sun, Jul 24, 2022 at 12:49:48AM +0200, Maximilian Luz wrote:
+>> On platforms using the Qualcomm UEFI Secure Application (uefisecapp),
+>> EFI variables cannot be accessed via the standard interface in EFI
+>> runtime mode. The respective functions return EFI_UNSUPPORTED. On these
+>> platforms, we instead need to talk to uefisecapp. This commit provides
+>> support for this and registers the respective efivars operations to
+>> access EFI variables from the kernel.
+>>
+>> Communication with uefisecapp follows the standard Qualcomm Trusted
+>> Environment (TEE or TrEE) / Secure OS conventions via the respective SCM
+>> call interface. This is also the reason why variable access works
+>> normally while boot services are active. During this time, said SCM
+>> interface is managed by the boot services. When calling
+>> ExitBootServices(), the ownership is transferred to the kernel.
+>> Therefore, UEFI must not use that interface itself (as multiple parties
+>> accessing this interface at the same time may lead to complications) and
+>> cannot access variables for us.
+>>
+>> Signed-off-by: Maximilian Luz <luzmaximilian@gmail.com>
+>> ---
 > 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> +static struct platform_driver qcom_uefisecapp_driver = {
+>> +	.probe = qcom_uefisecapp_probe,
+>> +	.remove = qcom_uefisecapp_remove,
+>> +	.driver = {
+>> +		.name = "qcom_tee_uefisecapp",
+>> +		.of_match_table = qcom_uefisecapp_dt_match,
+>> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
+>> +	},
+>> +};
+>> +module_platform_driver(qcom_uefisecapp_driver);
+> 
+> I noticed that for efivarfs to work, you're currently relying on having
+> the firmware still claim that the variable services are supported in the
+> RT_PROP table so that efi core registers the default ops at subsys init
+> time (which are later overridden by this driver).
+> 
+> Otherwise efivarfs may fail to initialise when built in:
+> 
+> 	static __init int efivarfs_init(void)
+> 	{
+> 		if (!efivars_kobject())
+> 			return -ENODEV;
+> 
+> 		return register_filesystem(&efivarfs_type);
+> 	}
+> 
+> 	module_init(efivarfs_init);
+> 
+> With recent X13s firmware the corresponding bit in the RT_PROP table has
+> been cleared so that efivarfs would fail to initialise. Similar problem
+> when booting with 'efi=noruntime'.
+> 
+> One way to handle this is to register also the qcom_uefisecapp_driver at
+> subsys init time and prevent it from being built as a module (e.g. as is
+> done for the SCM driver). I'm using the below patch for this currently.
+> 
+> I guess the Google GSMI implementation suffers from a similar problem.
+
+Oh right, thanks for that tip!
+
+I'll try to include that in v2 then. I'll also try to test that case
+specifically.
+
+Regards,
+Max
+
+>  From 8fecce12d215bd8cab1b8c8f9f0d1e1fe20fe6e7 Mon Sep 17 00:00:00 2001
+> From: Johan Hovold <johan+linaro@kernel.org>
+> Date: Sun, 15 Jan 2023 15:32:34 +0100
+> Subject: [PATCH] firmware: qcom_tee_uefisecapp: register at subsys init
+> 
+> Register efivars at subsys init time so that it is available when
+> efivarfs probes. For the same reason, also prevent building the driver
+> as a module.
+> 
+> This is specifically needed on platforms such as the Lenovo Thinkpad
+> X13s where the firmware has cleared the variable services in the RT_PROP
+> table so that efi core does not register any efivar callbacks at subsys
+> init time (which are later overridden).
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->  .../bindings/net/amlogic,gxl-mdio-mux.yaml    | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/amlogic,gxl-mdio-mux.yaml
+>   drivers/firmware/Kconfig               | 2 +-
+>   drivers/firmware/qcom_tee_uefisecapp.c | 7 ++++++-
+>   2 files changed, 7 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/amlogic,gxl-mdio-mux.yaml b/Documentation/devicetree/bindings/net/amlogic,gxl-mdio-mux.yaml
-> new file mode 100644
-> index 000000000000..d21bce695fa9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/amlogic,gxl-mdio-mux.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/amlogic,gxl-mdio-mux.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
+> index 4e9e2c227899..48e712e363da 100644
+> --- a/drivers/firmware/Kconfig
+> +++ b/drivers/firmware/Kconfig
+> @@ -231,7 +231,7 @@ config QCOM_TEE
+>   	select QCOM_SCM
+>   
+>   config QCOM_TEE_UEFISECAPP
+> -	tristate "Qualcomm TrEE UEFI Secure App client driver"
+> +	bool "Qualcomm TrEE UEFI Secure App client driver"
+>   	select QCOM_TEE
+>   	depends on EFI
+>   	help
+> diff --git a/drivers/firmware/qcom_tee_uefisecapp.c b/drivers/firmware/qcom_tee_uefisecapp.c
+> index 65573e4b815a..e83bce4da70a 100644
+> --- a/drivers/firmware/qcom_tee_uefisecapp.c
+> +++ b/drivers/firmware/qcom_tee_uefisecapp.c
+> @@ -754,7 +754,12 @@ static struct platform_driver qcom_uefisecapp_driver = {
+>   		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
+>   	},
+>   };
+> -module_platform_driver(qcom_uefisecapp_driver);
 > +
-> +title: Amlogic GXL MDIO bus multiplexer
-> +
-> +maintainers:
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +
-> +description:
-> +  This is a special case of a MDIO bus multiplexer. It allows to choose between
-> +  the internal mdio bus leading to the embedded 10/100 PHY or the external
-> +  MDIO bus on the Amlogic GXL SoC family.
-> +
-> +allOf:
-> +  - $ref: mdio-mux.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,gxl-mdio-mux
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    eth_phy_mux: mdio@558 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      compatible = "amlogic,gxl-mdio-mux";
-
-compatible, then reg then the rest.
-
-> +      clocks = <&refclk>;
-> +      clock-names = "ref";
-> +      reg = <0x558 0xc>;
-> +      mdio-parent-bus = <&mdio0>;
-> +
-> +      external_mdio: mdio@0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        reg = <0x0>;
-
-reg is before other properties.
-
-> +      };
-> +
-> +      internal_mdio: mdio@1 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        reg = <0x1>;
-
-Ditto. If you resend, keep my tag and finally use get_maintainers.pl
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
-
+> +static int __init qcom_uefisecapp_init(void)
+> +{
+> +	return platform_driver_register(&qcom_uefisecapp_driver);
+> +}
+> +subsys_initcall(qcom_uefisecapp_init);
+>   
+>   MODULE_AUTHOR("Maximilian Luz <luzmaximilian@gmail.com>");
+>   MODULE_DESCRIPTION("Client driver for Qualcomm TrEE/TZ UEFI Secure App");
