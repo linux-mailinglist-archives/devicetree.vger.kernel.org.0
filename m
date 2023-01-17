@@ -2,408 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8DC2670E09
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 00:49:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F17B4670E27
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 00:53:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbjAQXtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 18:49:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41580 "EHLO
+        id S229897AbjAQXxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 18:53:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229746AbjAQXt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 18:49:27 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E8A5B45D
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 14:58:34 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id vm8so79027443ejc.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 14:58:34 -0800 (PST)
+        with ESMTP id S229921AbjAQXwD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 18:52:03 -0500
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C79C3C06;
+        Tue, 17 Jan 2023 15:05:18 -0800 (PST)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-15f64f2791dso3394544fac.7;
+        Tue, 17 Jan 2023 15:05:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8jEqdGtyBbqWcrp6Pvw8/l4oThEOWyJiXSzY/dBYsqg=;
-        b=gbtZn88Oxh9k7ANsEdCV3iSNPui95jhWmyBC5jZf++N+AMCkZwdzyds5JhV0nX8uOy
-         tBrYPte3WHtH+87Io7i/xKAFxr38uvIMeayzzODAxassOJH7x5a3Yfn3n3uLu49XArXj
-         Dsmbq08GEDtEhmLUc8DfCLsglth6DXYpPb5OYUV8h80MhSkhmANvYdu/cv0AoBbtmGRs
-         gMc9B9NQ9wkSF6IZa16j1uOyIoyYxi1ZCYIJMNHgHxRnZIHcvBxnigHSows5Q0jHOKLB
-         kPUCV2BwPEKvhTVaTWst1VcMrvuODoV7DuUsl1f1PtXqSGjt1BB3H29Bw3cFepEdw6FD
-         uwew==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=4AE2HZs9Ij2bBJhhAjrwEjzLChQl9bR57MnvWzA7x6U=;
+        b=DW8ifSPAga42dfR5FsmeN7ktP7xrF85FXw0C/+Pm5lDatitnt6M1CQj7M2iuNxfpn/
+         8Lqyqdz46gcYI65b7HEV2rZB0b9w18a0Vu2j5uxJKOihSIilp5BJI4J3to3fBGZBSOAg
+         qKZTbOqyIEM6sy28abPqdGt+yArW2Z23B5BMGrPIlI9/cDODcnnJxtAxcNyDFXPVHMXf
+         R48P+80RHdZ3pZH8azCzarSBYjkryNQm8JI66tMAqXqouswoKpLIWF/td2aT/9AEdW3K
+         k98TjNYTCV9B45cWKs661R8TJB1gnbsipfyvYuHwtR9zJJna1byThoO89hC/942uN+q5
+         JvyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8jEqdGtyBbqWcrp6Pvw8/l4oThEOWyJiXSzY/dBYsqg=;
-        b=NHea3+96/UrZWlgDKjXaRIg1YshaeFYW6ikmkF61vP3dNegWVTdL4/jQDjP+bUbbP+
-         ScNAk1o8ijv2+I1fvfYWlvczZdvrxyoDITV5xkaBHOOdJuOt72irQpOoVXhNNOMoZWcZ
-         MwjS8B6p82RhWDh5KOCrBUD9nOAZFODsaeILEBq2Ne4eBkhLwRYCNjXe9gDAMXYmZBma
-         kodYUreDLnVAQPrUOEqehFHt2GZ2/ZE9/KfgNZ8hnnxgI7aC8lEgLsH3Oe2mHdZ3JvFf
-         o8jnrrS66rK/z8uubPOFMOdEQBUZIBCC5Tm4+S+uB8Onp5+epnV4wf30zsV+GmxaeV9Z
-         ut1w==
-X-Gm-Message-State: AFqh2ko/d0uciLFTJk9333yBoXOe8PPaXvkyPNDrvKMxmfhdoVjuwrLy
-        Q75KZgnmpuBtR3rspaWBv3SHEA==
-X-Google-Smtp-Source: AMrXdXu4nBhl8pMvwCzOPf30JraOhXnT06IOwYElLA6qMZkDa2SbP+ArX3YGeAyG5PBSwbBBr3bXQw==
-X-Received: by 2002:a17:906:48cb:b0:86d:d334:b90b with SMTP id d11-20020a17090648cb00b0086dd334b90bmr4415264ejt.67.1673996313451;
-        Tue, 17 Jan 2023 14:58:33 -0800 (PST)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id t1-20020a1709061be100b0086f40238403sm3919762ejg.223.2023.01.17.14.58.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 14:58:33 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 7/7] arm64: dts: qcom: msm8996: scale CBF clock according to the CPUfreq
-Date:   Wed, 18 Jan 2023 00:58:24 +0200
-Message-Id: <20230117225824.1552604-8-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230117225824.1552604-1-dmitry.baryshkov@linaro.org>
-References: <20230117225824.1552604-1-dmitry.baryshkov@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4AE2HZs9Ij2bBJhhAjrwEjzLChQl9bR57MnvWzA7x6U=;
+        b=ogHjxdw00pH0qCHxnMLOIltJ8mCiNnU8fNmWeTnGvigU1FH8jkLdHPZQnaB/Fd4ChI
+         SifxelPWB5EeYHTMSukqZ/46ZsxDldDR6R9TllqiZuW5OiQHq5XPdBaDsUnp7vkNUhKL
+         yxHRIg/OtjIg6MRi1GUup/h7RZkb+Vzen2aWcKcyj/7tQM/BKayN/hMH7BEbghR9PZCB
+         d8YkJll5S70FWYpjo0mXJWRH1HQr9pOvhjIg37ISkbPjxrWL2uSa01ndzD6A1y0HNQak
+         VZW2oMKaUD2t6YVj+8osHAFxKetb5Juan78c1SLrCXy5sXZBTjglphOFUT0M7r1warR3
+         f21A==
+X-Gm-Message-State: AFqh2kqzkwhCoWttu0aDFYnd7dc/dPDMZ9YAT8rw3IVZ4VfBsWXQKT68
+        Tf5IPqvpLCIPXhloVistR3jg/3wBgNw=
+X-Google-Smtp-Source: AMrXdXtHuS2LexOqaSnPiZkh1ICiW0LO3fAy28p2lWPRYUg8JIB1z86k++pUvGweLF5SJ5SaQKIaNA==
+X-Received: by 2002:a05:6870:5386:b0:15f:385c:720c with SMTP id h6-20020a056870538600b0015f385c720cmr3233662oan.30.1673996717252;
+        Tue, 17 Jan 2023 15:05:17 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id cm18-20020a056870b61200b0012b298699dbsm17151555oab.1.2023.01.17.15.05.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 15:05:16 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <c9ce648e-e63e-8a47-03c6-7c7e30d8dbc7@roeck-us.net>
+Date:   Tue, 17 Jan 2023 15:05:12 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: remove arch/sh
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Landley <rob@landley.net>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-sh@vger.kernel.org
+References: <20230113062339.1909087-1-hch@lst.de>
+ <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
+ <20230116071306.GA15848@lst.de>
+ <9325a949-8d19-435a-50bd-9ebe0a432012@landley.net>
+ <CAMuHMdUJm5QvzH8hvqwvn9O6qSbzNOapabjw5nh9DJd0F55Zdg@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <CAMuHMdUJm5QvzH8hvqwvn9O6qSbzNOapabjw5nh9DJd0F55Zdg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Turn CBF into the interconnect provider. Scale CBF frequency (bandwidth)
-according to CPU frequencies.
+On 1/17/23 12:26, Geert Uytterhoeven wrote:
+> Hi Rob,
+> 
+> On Tue, Jan 17, 2023 at 8:01 PM Rob Landley <rob@landley.net> wrote:
+>> On 1/16/23 01:13, Christoph Hellwig wrote:
+>>> On Fri, Jan 13, 2023 at 09:09:52AM +0100, John Paul Adrian Glaubitz wrote:
+>>>> I'm still maintaining and using this port in Debian.
+>>>>
+>>>> It's a bit disappointing that people keep hammering on it. It works fine for me.
+>>>
+>>> What platforms do you (or your users) use it on?
+>>
+>> 3 j-core boards, two sh4 boards (the sh7760 one I patched the kernel of), and an
+>> sh4 emulator.
+>>
+>> I have multiple j-core systems (sh2 compatible with extensions, nommu, 3
+>> different kinds of boards running it here). There's an existing mmu version of
+>> j-core that's sh3 flavored but they want to redo it so it hasn't been publicly
+>> released yet, I have yet to get that to run Linux because the mmu code would
+>> need adapting, but the most recent customer projects were on the existing nommu
+>> SOC, as was last year's ASIC work via sky130.
+> 
+> J4 still vaporware?
+> 
+>> My physical sh4 boards are a Johnson Controls N40 (sh7760 chipset) and the
+>> little blue one is... sh4a I think? (It can run the same userspace, I haven't
+>> replaced that board's kernel since I got it, I think it's the type Glaubitz is
+>> using? It's mostly in case he had an issue I couldn't reproduce on different
+>> hardware, or if I spill something on my N40.)
+>>
+>> I also have a physical sh2 board on the shelf which I haven't touched in years
+>> (used to comparison test during j2 development, and then the j2 boards replaced it).
+>>
+>> I'm lazy and mostly test each new sh4 build under qemu -M r2d because it's
+>> really convenient: neither of my physical boards boot from SD card so replacing
+>> the kernel requires reflashing soldered in flash. (They'll net mount userspace
+>> but I haven't gotten either bootloader to net-boot a kernel.)
+> 
+> On my landisk (with boots from CompactFLASH), I boot the original 2.6.22
+> kernel, and use kexec to boot-test each and every renesas-drivers
+> release.  Note that this requires both the original 2.6.22 kernel
+> and matching kexec-tools.  Apparently both upstreamed kernel and
+> kexec-tools support for SH are different, and incompatible with each
+> other, so you cannot kexec from a contemporary kernel.
+> I tried working my way up from 2.6.22, but gave up around 2.6.29.
+> Probably I should do this with r2d and qemu instead ;-)
+> 
+> Both r2d and landisk are SH7751.
+> 
+> Probably SH7722/'23'24 (e.g. Migo-R and Ecovec boards) are also
+> worth keeping.  Most on-SoC blocks have drivers with DT support,
+> as they are shared with ARM.  So the hardest part is clock and
+> interrupt-controller support.
+> Unfortunately I no longer have access to the (remote) Migo-R.
+> 
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 50 +++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+Since there are people around with real hardware .... is sh in big endian mode
+(sheb) real ? Its qemu support is quite limited; most PCI devices don't work
+due to endianness issues. It would be interesting to know if this works better
+with real hardware.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 7d8e31b84959..fc932a059d9f 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -49,6 +49,7 @@ CPU0: cpu@0 {
- 			cpu-idle-states = <&CPU_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
- 			clocks = <&kryocc 0>;
-+			interconnects = <&cbf 0 &cbf 1>;
- 			operating-points-v2 = <&cluster0_opp>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_0>;
-@@ -66,6 +67,7 @@ CPU1: cpu@1 {
- 			cpu-idle-states = <&CPU_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
- 			clocks = <&kryocc 0>;
-+			interconnects = <&cbf 0 &cbf 1>;
- 			operating-points-v2 = <&cluster0_opp>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_0>;
-@@ -79,6 +81,7 @@ CPU2: cpu@100 {
- 			cpu-idle-states = <&CPU_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
- 			clocks = <&kryocc 1>;
-+			interconnects = <&cbf 0 &cbf 1>;
- 			operating-points-v2 = <&cluster1_opp>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_1>;
-@@ -96,6 +99,7 @@ CPU3: cpu@101 {
- 			cpu-idle-states = <&CPU_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
- 			clocks = <&kryocc 1>;
-+			interconnects = <&cbf 0 &cbf 1>;
- 			operating-points-v2 = <&cluster1_opp>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_1>;
-@@ -147,91 +151,109 @@ opp-307200000 {
- 			opp-hz = /bits/ 64 <307200000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-422400000 {
- 			opp-hz = /bits/ 64 <422400000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-480000000 {
- 			opp-hz = /bits/ 64 <480000000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-556800000 {
- 			opp-hz = /bits/ 64 <556800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-652800000 {
- 			opp-hz = /bits/ 64 <652800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <384000>;
- 		};
- 		opp-729600000 {
- 			opp-hz = /bits/ 64 <729600000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <460800>;
- 		};
- 		opp-844800000 {
- 			opp-hz = /bits/ 64 <844800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <537600>;
- 		};
- 		opp-960000000 {
- 			opp-hz = /bits/ 64 <960000000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <672000>;
- 		};
- 		opp-1036800000 {
- 			opp-hz = /bits/ 64 <1036800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <672000>;
- 		};
- 		opp-1113600000 {
- 			opp-hz = /bits/ 64 <1113600000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <825600>;
- 		};
- 		opp-1190400000 {
- 			opp-hz = /bits/ 64 <1190400000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <825600>;
- 		};
- 		opp-1228800000 {
- 			opp-hz = /bits/ 64 <1228800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <902400>;
- 		};
- 		opp-1324800000 {
- 			opp-hz = /bits/ 64 <1324800000>;
- 			opp-supported-hw = <0xd>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1056000>;
- 		};
- 		opp-1363200000 {
- 			opp-hz = /bits/ 64 <1363200000>;
- 			opp-supported-hw = <0x2>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1132800>;
- 		};
- 		opp-1401600000 {
- 			opp-hz = /bits/ 64 <1401600000>;
- 			opp-supported-hw = <0xd>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1132800>;
- 		};
- 		opp-1478400000 {
- 			opp-hz = /bits/ 64 <1478400000>;
- 			opp-supported-hw = <0x9>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1190400>;
- 		};
- 		opp-1497600000 {
- 			opp-hz = /bits/ 64 <1497600000>;
- 			opp-supported-hw = <0x04>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1305600>;
- 		};
- 		opp-1593600000 {
- 			opp-hz = /bits/ 64 <1593600000>;
- 			opp-supported-hw = <0x9>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1382400>;
- 		};
- 	};
- 
-@@ -245,136 +267,163 @@ opp-307200000 {
- 			opp-hz = /bits/ 64 <307200000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-403200000 {
- 			opp-hz = /bits/ 64 <403200000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-480000000 {
- 			opp-hz = /bits/ 64 <480000000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-556800000 {
- 			opp-hz = /bits/ 64 <556800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-652800000 {
- 			opp-hz = /bits/ 64 <652800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-729600000 {
- 			opp-hz = /bits/ 64 <729600000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <307200>;
- 		};
- 		opp-806400000 {
- 			opp-hz = /bits/ 64 <806400000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <384000>;
- 		};
- 		opp-883200000 {
- 			opp-hz = /bits/ 64 <883200000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <460800>;
- 		};
- 		opp-940800000 {
- 			opp-hz = /bits/ 64 <940800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <537600>;
- 		};
- 		opp-1036800000 {
- 			opp-hz = /bits/ 64 <1036800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <595200>;
- 		};
- 		opp-1113600000 {
- 			opp-hz = /bits/ 64 <1113600000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <672000>;
- 		};
- 		opp-1190400000 {
- 			opp-hz = /bits/ 64 <1190400000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <672000>;
- 		};
- 		opp-1248000000 {
- 			opp-hz = /bits/ 64 <1248000000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <748800>;
- 		};
- 		opp-1324800000 {
- 			opp-hz = /bits/ 64 <1324800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <825600>;
- 		};
- 		opp-1401600000 {
- 			opp-hz = /bits/ 64 <1401600000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <902400>;
- 		};
- 		opp-1478400000 {
- 			opp-hz = /bits/ 64 <1478400000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <979200>;
- 		};
- 		opp-1555200000 {
- 			opp-hz = /bits/ 64 <1555200000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1056000>;
- 		};
- 		opp-1632000000 {
- 			opp-hz = /bits/ 64 <1632000000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1190400>;
- 		};
- 		opp-1708800000 {
- 			opp-hz = /bits/ 64 <1708800000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1228800>;
- 		};
- 		opp-1785600000 {
- 			opp-hz = /bits/ 64 <1785600000>;
- 			opp-supported-hw = <0xf>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1305600>;
- 		};
- 		opp-1804800000 {
- 			opp-hz = /bits/ 64 <1804800000>;
- 			opp-supported-hw = <0xe>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1305600>;
- 		};
- 		opp-1824000000 {
- 			opp-hz = /bits/ 64 <1824000000>;
- 			opp-supported-hw = <0x1>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1382400>;
- 		};
- 		opp-1900800000 {
- 			opp-hz = /bits/ 64 <1900800000>;
- 			opp-supported-hw = <0x4>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1305600>;
- 		};
- 		opp-1920000000 {
- 			opp-hz = /bits/ 64 <1920000000>;
- 			opp-supported-hw = <0x1>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1459200>;
- 		};
- 		opp-1996800000 {
- 			opp-hz = /bits/ 64 <1996800000>;
- 			opp-supported-hw = <0x1>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1593600>;
- 		};
- 		opp-2073600000 {
- 			opp-hz = /bits/ 64 <2073600000>;
- 			opp-supported-hw = <0x1>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1593600>;
- 		};
- 		opp-2150400000 {
- 			opp-hz = /bits/ 64 <2150400000>;
- 			opp-supported-hw = <0x1>;
- 			clock-latency-ns = <200000>;
-+			opp-peak-kBps = <1593600>;
- 		};
- 	};
- 
-@@ -3567,6 +3616,7 @@ cbf: clock-controller@9a11000 {
- 			reg = <0x09a11000 0x10000>;
- 			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&apcs_glb>;
- 			#clock-cells = <0>;
-+			#interconnect-cells = <1>;
- 		};
- 
- 		intc: interrupt-controller@9bc0000 {
--- 
-2.39.0
+Thanks,
+Guenter
 
