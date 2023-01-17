@@ -2,113 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA7966DC5F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:28:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01DD666DC6D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:31:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236761AbjAQL24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 06:28:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46122 "EHLO
+        id S236431AbjAQLbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 06:31:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236608AbjAQL23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:28:29 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2FC2DE46
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:28:28 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id bi26-20020a05600c3d9a00b003d3404a89faso5159427wmb.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:28:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b7QySS8sX+rCfEVcFiwHdK87drcPLIRv7jTR3Ef+m7U=;
-        b=GhTYI1bo1NtfTix5Cyo757ae2aRDocMqQr9D60ev6QWvCm4a5eV+2io6PjGmnMDZEk
-         PWZsbPnsy8EBab75YCi86Fg8/DokN6jhraGvl9gn642eLGsOJzpD9OSTBckznQHTHVtG
-         DLG8HK+bKJX59+/4H2tkvP5oVERBJiyL7hxxEx8jl/VPHJWDDEBpMvCpg9jie7+nQ5CE
-         HXknNfPRRNtdC4UKN4ZLpqNDImcg7KJluYQqOBTbRx70xc1I3hygkT2Wr/qiaYGfN7cd
-         mx3qr37/gcsYFm91tcOCIs3MeR4/SEwlHsNAvoUHXgETjDMGrX2y8ToLIcV+i7WILo2g
-         8FbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b7QySS8sX+rCfEVcFiwHdK87drcPLIRv7jTR3Ef+m7U=;
-        b=nYJZ3ysoAlMOyRTPP7TUsCQ69h9XAHV2QH2kLWwGuSW+6kInWZhkuD9iTw/gLHx/h9
-         bQigSczOH6IPDCH9gV6Cm7QyAqHP1t6y6OImk/PzlZbZCsXwUxUGlZglU9sH3KXx0caw
-         l2ahvL9eE7Tti63udiBRWsdKu7Dzu+Z7rAA//O0Y0iaAhq6CNP0tAKlY86GvdEgapR3I
-         Rp3P7OADF4pKVay1/Xns3YY4C8I0YI3Zbz7z5OkgsQVrcpQogbZyjqlCHOTbUIBb/QxI
-         Y2XVQZMnZ7WmFHdtWvwFvjVtTgvKdZfsTEGGrlH1rENlzsQh0y2Ddo0KTtlycVDDvjUO
-         5hLA==
-X-Gm-Message-State: AFqh2kq1pZ8QuvZdm03UAUR7BKrD55r70+W+Ej0nAtAmY38oMqFA+kfm
-        QxTDvY3KAczQ2hRX9lrBppGtJm3yHqfxa7Zn
-X-Google-Smtp-Source: AMrXdXtLnHaHuaeFv5L3Vh+VPC3Xb4+iZJCGtmnWJmdoM/jdqpG02sq79R8ekQkcRR1GCybLYG6nQg==
-X-Received: by 2002:a05:600c:228d:b0:3d1:ee97:980 with SMTP id 13-20020a05600c228d00b003d1ee970980mr2748366wmf.7.1673954907271;
-        Tue, 17 Jan 2023 03:28:27 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id c6-20020adffb06000000b002423620d356sm8398144wrr.35.2023.01.17.03.28.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 03:28:26 -0800 (PST)
-Message-ID: <6e1a2182-ffbf-5684-dd2f-e3b862ad6763@linaro.org>
-Date:   Tue, 17 Jan 2023 12:28:24 +0100
+        with ESMTP id S236322AbjAQLbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:31:00 -0500
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 057E634576;
+        Tue, 17 Jan 2023 03:30:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673955036; x=1705491036;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=i3BuCS+pJ4oTm89xGBP/zNyMeh4Xwhz1HQ+sE6hvKJk=;
+  b=QBdLyISQYjMmpbkrNJZ0FbehE0L80WY9IVHYKC34ad5ZeK4erkGmj1ai
+   5OlgvQxAQwDZCBW3VlXPYsyUXGbzss/oUOZoX2n01Pay/VbOmJWuSuaty
+   gKYTA99frlzQwxaVF91cxkQZ/MEmQEH5NGuz3STcbgAHvaQvnriRlN5gz
+   4Y4K5VJoRhbqwFKuce6mkQevVRC0upKR/mAOVImGlUCvD7ERwPokB5J1N
+   IkCKSwqJd5iCu9Ha2XnOVbZwgpnxjdwRvV6Xzs+SzrbYxMU1RKyHu1YN4
+   GhpMUeYoydVFZ721LXnNZJShjClb/TO1UIFAh5Y06k3ZiSKvIcFvtWZo8
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="323369006"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="323369006"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 03:30:34 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="904615098"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="904615098"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.10.213]) ([10.213.10.213])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 03:30:29 -0800
+Message-ID: <309b58d6-3b4f-36ec-d68e-f0fc60790118@intel.com>
+Date:   Tue, 17 Jan 2023 12:30:27 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
- controller
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+Subject: Re: [PATCH v11 1/5] dt-bindings: display: bridge: Convert
+ cdns,dsi.txt to yaml
 Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230113103759.327698-1-herve.codina@bootlin.com>
- <20230113103759.327698-2-herve.codina@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230113103759.327698-2-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Rahul T R <r-ravikumar@ti.com>, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     narmstrong@baylibre.com, robert.foss@linaro.org, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
+        p.zabel@pengutronix.de, tomi.valkeinen@ideasonboard.com,
+        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
+        jpawar@cadence.com, sjakhade@cadence.com, mparab@cadence.com,
+        a-bhatia1@ti.com, devicetree@vger.kernel.org, vigneshr@ti.com,
+        lee.jones@linaro.org, Rob Herring <robh@kernel.org>
+References: <20230103101951.10963-1-r-ravikumar@ti.com>
+ <20230103101951.10963-2-r-ravikumar@ti.com>
+From:   Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230103101951.10963-2-r-ravikumar@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 11:37, Herve Codina wrote:
-> Add support for the time slot assigner (TSA)
-> available in some PowerQUICC SoC such as MPC885
-> or MPC866.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  .../bindings/soc/fsl/cpm_qe/fsl,tsa.yaml      | 260 ++++++++++++++++++
->  include/dt-bindings/soc/fsl,tsa.h             |  13 +
->  2 files changed, 273 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
->  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
-> 
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 03.01.2023 11:19, Rahul T R wrote:
+> Convert cdns,dsi.txt binding to yaml format
+>
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Best regards,
-Krzysztof
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Regards
+Andrzej
 
