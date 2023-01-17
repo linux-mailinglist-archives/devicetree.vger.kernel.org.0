@@ -2,278 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8809C66DFCA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:02:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1982866DFDA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:04:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbjAQOCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 09:02:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57900 "EHLO
+        id S230484AbjAQOEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 09:04:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbjAQOCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:02:11 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8CA038B7F;
-        Tue, 17 Jan 2023 06:02:09 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30HCQlBq010581;
-        Tue, 17 Jan 2023 14:01:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=VviILnZyVWkGxvkGB1/dVn87wzu/osCf11Yk7kCwkMo=;
- b=dQN0MIYdrFJR+v6Xzi+4YSPticDFUQ93W+5IEbdr57zCFDOw5g5LjiZBNlEpcNER45IR
- NPkDQ9Xl+dwMBYU4WsPir0WUwEZ7RaYquPu4L+Zq8SkgEGyDYtF9mr5Hl7od+W+ZvjMw
- j412BGPnBbieGJ+Dk2XVRXqRUocj3U7SexMqNL9PKp5zdjO6OSXsKJcn1boPhtcDul6X
- Fu/PtUMyYoUr7mmzQVS19qfQtPVrObP6dQ4eWmWS0NlOs1MmWIMVj+NrNdwZMg0t/sSs
- SNUJZL2T8HN7HJVAq8Cx62ZZrkQzi7nFDXSZK3UJnmGwtW2IIWkF2RJwgOvxYPxL0tt/ /g== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n53172ktu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 17 Jan 2023 14:01:54 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30HE1rOx029557
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 17 Jan 2023 14:01:53 GMT
-Received: from [10.216.62.177] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 17 Jan
- 2023 06:01:47 -0800
-Message-ID: <9671cade-1820-22e1-9db9-5c9836414908@quicinc.com>
-Date:   Tue, 17 Jan 2023 19:31:43 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [RFC v4 1/5] dt-bindings: usb: Add bindings to support multiport
- properties
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        with ESMTP id S230144AbjAQOEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:04:10 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ABF738B78
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:04:09 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id t5so26274753wrq.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:04:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=y4LXP+MvmQsKOsJ5hed0UZC24OVAbgZXP4avzgJImfo=;
+        b=opFgH3H9FQHOvkzBbVCJtTAWCFhR4Gl5cpi5yVHXNLW4da+cPYgoa34+Yc5btwsON6
+         wAFkWy9rpieA3cmX4wsInZCIhTwJyh4pf0ch+AlCuup/auiH2i2TrLh5sqb9j/Hod/Lz
+         WFM9X0msAR+amngpn9QrYSrXPiEFSTRc6ek40te5liqS/P46vGr52CTA6lftavMtiHgY
+         PPOdyZ/VhU/H812UoNX++Ky93zdzjsBhROMSZ+EgdH/K7S0UOuteh68xzTo2RX104+TW
+         usKWw3EHHG1EXoAnUSZfbfjDh5z6fU8a1bp61o5K/dIGqEyCrgzJMPSwqrswaFBiw6Vt
+         HeHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y4LXP+MvmQsKOsJ5hed0UZC24OVAbgZXP4avzgJImfo=;
+        b=sZ8mYvmBIBeOSFPdCjnYwGKaFjghfs3/unN3S+hZGbVcUHZf2BC0Yweh3bLnuspPXM
+         z0ZhPlD4HVa6YRCMxUXj2TNgzvoMGdt2r5hl1ZjMkGiWbdvCR6z33bjuwAxt7ktL8Wkk
+         mgMU07vlnvsr8s1SkLImYHp1UteEYvHf27wujHUlTNyIs79A5I4784W7ffuTsxhQ9ZBA
+         VgWJzrbwdwSdtc4eEuS0/Z3AkBKlym43yM/+4v2BnYGEr4APqzitXd1dCwYn3pXZ0U1r
+         /GsUZ/I6rZq44lSji0VJHJVDTlWmONUFCf90I6EKOPFBA+cwnif/3336Zp1JK5HxezAx
+         3Mdw==
+X-Gm-Message-State: AFqh2kreX11Z955/jyalvc3hL0hOPBlpukne/h1X3Kw2nxLs2g3kFGwJ
+        QRWp65WvHsy4ELZ19PMvlMNMXA==
+X-Google-Smtp-Source: AMrXdXvgQIsKAuGnrCo5SfyGi1kiUlgYMiOXbXCSkybN7DpkVs2OGedhHFnEkAHf5h4Swg1d0vCHsw==
+X-Received: by 2002:adf:e841:0:b0:2b9:d6ba:21f1 with SMTP id d1-20020adfe841000000b002b9d6ba21f1mr2885264wrn.21.1673964247673;
+        Tue, 17 Jan 2023 06:04:07 -0800 (PST)
+Received: from aspen.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id m15-20020adffe4f000000b002bdd155ca4dsm14561248wrs.48.2023.01.17.06.04.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 06:04:07 -0800 (PST)
+Date:   Tue, 17 Jan 2023 14:04:05 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Jianhua Lu <lujianhua000@gmail.com>
+Cc:     Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_wcheng@quicinc.com>,
-        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>
-References: <20230115114146.12628-1-quic_kriskura@quicinc.com>
- <20230115114146.12628-2-quic_kriskura@quicinc.com>
- <20230116163401.GA2371990-robh@kernel.org>
- <4eb26a54-148b-942f-01c6-64e66541de8b@quicinc.com>
- <ca729f62-672e-d3de-4069-e2205c97e7d8@linaro.org>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ca729f62-672e-d3de-4069-e2205c97e7d8@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DlY7iCIXBOyekOeOjf2G53_x7XDfiqtZ
-X-Proofpoint-ORIG-GUID: DlY7iCIXBOyekOeOjf2G53_x7XDfiqtZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-17_06,2023-01-17_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
- impostorscore=0 malwarescore=0 mlxscore=0 spamscore=0 priorityscore=1501
- suspectscore=0 mlxlogscore=999 bulkscore=0 lowpriorityscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301170115
-X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_SBL_CSS,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+        Helge Deller <deller@gmx.de>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] backlight: ktz8866: Add support for Kinetic
+ KTZ8866 backlight
+Message-ID: <Y8aq1aJd8QJCo3RU@aspen.lan>
+References: <20230117134742.23238-1-lujianhua000@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230117134742.23238-1-lujianhua000@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 17, 2023 at 09:47:41PM +0800, Jianhua Lu wrote:
+> Add support for Kinetic KTZ8866 backlight, which is used in
+> Xiaomi tablet, Mi Pad 5 series. This driver lightly based on
+> downstream implementation [1].
+> [1] https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/elish-r-oss/drivers/video/backlight/ktz8866.c
+>
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> ---
+> Changes in v2:
+>   - Add missing staitc modifier to ktz8866_write function.
+>
+> Changes in v3:
+>   - Add 2022 to Copyright line.
+>   - Sort headers.
+>   - Remove meaningless comment.
+>   - Use definitions instead of hardcoding.
+>   - Add missing maintainer info.
+>
+> Changes in v4:
+>   - Change 2022 to 2023.
+>   - Remove useless macro and enum.
+>   - Describe settings by devicetree.
+>   - Move header file to C file.
+>
+>  MAINTAINERS                       |   6 +
+>  drivers/video/backlight/Kconfig   |   8 ++
+>  drivers/video/backlight/Makefile  |   1 +
+>  drivers/video/backlight/ktz8866.c | 195 ++++++++++++++++++++++++++++++
+>  4 files changed, 210 insertions(+)
+>  create mode 100644 drivers/video/backlight/ktz8866.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 42fc47c6edfd..2084e74e1b58 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11674,6 +11674,12 @@ M:	John Hawley <warthog9@eaglescrag.net>
+>  S:	Maintained
+>  F:	tools/testing/ktest
+>
+> +KTZ8866 BACKLIGHT DRIVER
+> +M:	Jianhua Lu <lujianhua000@gmail.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> +F:	drivers/video/backlight/ktz8866.c
+> +
+>  L3MDEV
+>  M:	David Ahern <dsahern@kernel.org>
+>  L:	netdev@vger.kernel.org
+> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
+> index 936ba1e4d35e..2845fd7e33ad 100644
+> --- a/drivers/video/backlight/Kconfig
+> +++ b/drivers/video/backlight/Kconfig
+> @@ -190,6 +190,14 @@ config BACKLIGHT_KTD253
+>  	  which is a 1-wire GPIO-controlled backlight found in some mobile
+>  	  phones.
+>
+> +config BACKLIGHT_KTZ8866
+> +	tristate "Backlight Driver for Kinetic KTZ8866"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +		Say Y to enabled the backlight driver for the Kinetic KTZ8866
+> +		found in Xiaomi Mi Pad 5 series.
+> +
+>  config BACKLIGHT_LM3533
+>  	tristate "Backlight Driver for LM3533"
+>  	depends on MFD_LM3533
+> diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
+> index e815f3f1deff..f70a819c304c 100644
+> --- a/drivers/video/backlight/Makefile
+> +++ b/drivers/video/backlight/Makefile
+> @@ -36,6 +36,7 @@ obj-$(CONFIG_BACKLIGHT_HP680)		+= hp680_bl.o
+>  obj-$(CONFIG_BACKLIGHT_HP700)		+= jornada720_bl.o
+>  obj-$(CONFIG_BACKLIGHT_IPAQ_MICRO)	+= ipaq_micro_bl.o
+>  obj-$(CONFIG_BACKLIGHT_KTD253)		+= ktd253-backlight.o
+> +obj-$(CONFIG_BACKLIGHT_KTZ8866)		+= ktz8866.o
+>  obj-$(CONFIG_BACKLIGHT_LM3533)		+= lm3533_bl.o
+>  obj-$(CONFIG_BACKLIGHT_LM3630A)		+= lm3630a_bl.o
+>  obj-$(CONFIG_BACKLIGHT_LM3639)		+= lm3639_bl.o
+> diff --git a/drivers/video/backlight/ktz8866.c b/drivers/video/backlight/ktz8866.c
+> new file mode 100644
+> index 000000000000..98916f92d069
+> --- /dev/null
+> +++ b/drivers/video/backlight/ktz8866.c
+> @@ -0,0 +1,195 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Backlight driver for the Kinetic KTZ8866
+> + *
+> + * Copyright (C) 2023 Jianhua Lu <lujianhua000@gmail.com>
+
+Shouldn't this be:
+Copyright (C) 2022, 2023 Jianhua Lu <lujianhua000@gmail.com>
+
+> +static int ktz8866_probe(struct i2c_client *client,
+> +			 const struct i2c_device_id *id)
+> +{
+> +	struct backlight_device *backlight_dev;
+> +	struct backlight_properties props;
+> +	struct ktz8866 *ktz;
+> +
+> +	ktz = devm_kzalloc(&client->dev, sizeof(*ktz), GFP_KERNEL);
+> +	if (!ktz)
+> +		return -ENOMEM;
+> +
+> +	ktz->client = client;
+> +	ktz->regmap = devm_regmap_init_i2c(client, &ktz8866_regmap_config);
+> +
+> +	if (IS_ERR(ktz->regmap)) {
+> +		dev_err(&client->dev, "failed to init regmap\n");
+> +		return PTR_ERR(ktz->regmap);
+> +	}
+> +
+> +	memset(&props, 0, sizeof(props));
+> +	props.type = BACKLIGHT_RAW;
+> +	props.max_brightness = MAX_BRIGHTNESS;
+> +	props.brightness = DEFAULT_BRIGHTNESS;
+
+There is still pending feedback from v3.
+
+| Please set the scale property correctly. "Unknown" is never correct for
+| new drivers.
+
+Do not ignore feedback. You should either act on it or, if you disagree
+or need additional clarification then, reply on the mail thread.
 
 
-On 1/17/2023 4:32 PM, Krzysztof Kozlowski wrote:
-> On 17/01/2023 10:01, Krishna Kurapati PSSNV wrote:
->>
->>
->> On 1/16/2023 10:04 PM, Rob Herring wrote:
->>> On Sun, Jan 15, 2023 at 05:11:42PM +0530, Krishna Kurapati wrote:
->>>> Add bindings to indicate properties required to support multiport
->>>> on Snps Dwc3 controller.
->>>>
->>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->>>> ---
->>>>    .../devicetree/bindings/usb/snps,dwc3.yaml    | 53 ++++++++++++++++---
->>>>    1 file changed, 47 insertions(+), 6 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>> index 6d78048c4613..3ea051beb2f8 100644
->>>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>> @@ -81,15 +81,26 @@ properties:
->>>>    
->>>>      phys:
->>>>        minItems: 1
->>>> -    maxItems: 2
->>>> +    maxItems: 8
->>>>    
->>>>      phy-names:
->>>>        minItems: 1
->>>> -    maxItems: 2
->>>> -    items:
->>>> -      enum:
->>>> -        - usb2-phy
->>>> -        - usb3-phy
->>>> +    maxItems: 8
->>>> +    oneOf:
->>>> +    - items:
->>>> +        enum:
->>>> +          - usb2-phy
->>>> +          - usb3-phy
->>>> +    - items:
->>>> +        enum:
->>>> +          - usb2-phy_port0
->>>> +          - usb2-phy_port1
->>>> +          - usb2-phy_port2
->>>> +          - usb2-phy_port3
->>>> +          - usb3-phy_port0
->>>> +          - usb3-phy_port1
->>>> +          - usb3-phy_port2
->>>> +          - usb3-phy_port3
->>>
->>> usbN-portM
->>>
->>>>    
->>>>      resets:
->>>>        minItems: 1
->>>> @@ -360,6 +371,22 @@ properties:
->>>>        description:
->>>>          Enable USB remote wakeup.
->>>>    
->>>> +  num-ports:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    description:
->>>> +      This property indicates the number of ports present on the target that
->>>> +      are to be serviced by the DWC3 controller.
->>>> +    minimum: 1
->>>> +    maximum: 4
->>>> +
->>>> +  num-ss-ports:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    description:
->>>> +      This property indicates the number of SS capable ports present on the
->>>> +      target that are to be serviced by the DWC3 controller.
->>>> +    minimum: 1
->>>> +    maximum: 4
->>>
->>> This information is redundant. 'phy-names' tells you how many ports of
->>> each.
->>>
->> Hi Rob,
->>
->>    Thanks for the review. The reason I wanted to introduce two more
->> variables is to get info on number of ports  and ss-capable ports
->> present on hardware whether or not the user provides them in DTSI file.
->>
->> In the code there are two types of per port / per phy operations:
->> a) Modifying GUSB2PFYCFG and GUSB3PIPECTL registers per phy.
->> b) Generic Phy operations - per phy.
->>
->> In today's code, if someone doesn't mention the SSPHY in DTSI,
->> dwc->usb3_generic_phy will be NULL and any call to phy operations will
->> just bail out. And irrespective of whether we provide SS Phy in DTSI or
->> not, we still configure GUSB3PIPECTL register.
->>
->> Consider the following cases:
->>
->> 1. There are 3 ports and 2 of them are SS capable and all phy's are
->> mentioned in DTSI.
->>
->> phy-names= "usb2-port0", "usb3-port0", "usb2-port1", "usb3-port1",
->> "usb2-port2"
->>
->> When we count them in the driver, we get num ports as 3 (presuming
->> num-ports = num of hs ports) and num-ss-ports = 2.
->>
->> Since there is no ambiguity in which all ports to configure, we can
->> modify GUSB2PHYCFG registers for all 3 HS Phy's and GUSB3PIPECTL for
->> both SS Phy's.
->> This is a proper scenario.
->>
->> 2. If the user skips providing SS Phy on Port-0, then:
->>
->> phy-names= "usb2-port0", "usb2-port1", "usb3-port1", "usb2-port2"
->>
->> If we count the phys, we end up getting num-ports=3 and num-ss-ports=1.
->>
->> Since in the driver code, we are not keeping track of which ports are SS
->> capable and which ones are not, we end up configuring
->> GUSB2PIPECTL(port-0) instead of port-1  as the num-ss-ports is "1" which
->> is incorrect.
->>
->> 3. If the user skips providing one complete port, in this case port-1 is
->> skipped, then:
->>
->> phy-names= "usb2-port0", "usb3-port0", "usb2-port2"
->>
->> If we count the phys, we end up getting num-ports=2 and num-ss-ports=1.
->>
->> Since in the driver code, we are not keeping track of which ports are SS
->> capable and which ones are not, we end up configuring
->> GUSB2PHYCFG(port-0) and GUSB2PHYCFG(port-1) instead of port-2 which is
->> incorrect.
-> 
-> Why? You know you have port-2 from the phy name, so why would you ignore
-> this information?
-> 
-Hi Krzysztof,
-
-Thanks for the review,
-
-   The concern I had with that approach is that, we need to keep track 
-of per port supported speeds in some array /flags and check them 
-whenever we are modifying the dwc3-phy registers. This makes the code a 
-little unreadable.
->>
->> To avoid these scenarios, if we can get the exact number of SS Ports and
->> Ports in total present on the HW, we can configure all the registers
->> whether the phy's are provided in DTSI or not. (This is of no harm I
->> believe as it still works in today's code)
-> 
-> Doesn't the driver know how many phys it has in such case through
-> respective compatible?
-> 
-The core driver has only one compatible currently "snps,dwc3".
-
-Are you suggesting to add new compatible to driver core in case any 
-multiport device is being used and get this info from there ?
-
->>
->> Incase the 2nd and 3rd scenarios are not allowed and user *MUST* declare
->> all the phy's in the DTSI, then I can go ahead and remove these
->> properties and count them in the driver code.
-> 
-> 
-> Why you cannot then configure all phys in the driver all ports as some
-> safe default and then customize it depending on the actual port used?
-> 
-To do this, we still need to get info on number of hs/ss phy's present 
-on hardware and currently there is no register I believe in DWC3 core 
-global address space that can give this info. I see that HCSPARAMS1 Reg 
-gives some info but that is not accessible from driver core.
-
-According to databook:
-
-"Number of Ports (MaxPorts)
--> Number of ports implemented is defined by the parameter
-(`DWC_USB3_HOST_NUM_U2_ROOT_PORTS +
-`DWC_USB3_HOST_NUM_U3_ROOT_PORTS)
--> Number of ports enabled is controlled by the core input signals
-host_num_u2_port[3:0]+host_num_u3_port[3:0]"
-Regards,
-Krishna,
-
+Daniel.
