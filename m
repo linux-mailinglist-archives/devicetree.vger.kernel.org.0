@@ -2,99 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E29D66E335
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 17:14:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B77066E353
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 17:21:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbjAQQOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 11:14:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35234 "EHLO
+        id S231829AbjAQQVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 11:21:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231584AbjAQQOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 11:14:01 -0500
-Received: from mail.zeus06.de (www.zeus06.de [194.117.254.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F8153C2A8
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 08:14:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=kicherer.org; h=from:to
-        :cc:subject:date:message-id:in-reply-to:references:mime-version
-        :content-type:content-transfer-encoding; s=k1; bh=glk0Jn+gB8LWmA
-        L9qdHg8WIPJlrmdmB5eXawWIkps0U=; b=CnFTy6aV0jjyVwFQQKfUCko5dOngo3
-        pzFcykH83KV+rpZURQIxHZoY2FH5sfVQQMyTTofa/3+0ZUIuFCHhh2nkwPfV1M4F
-        rJPcqTgkRPErI+J26ozUKXSq/8CWRqO+ZU2+ZzUaDp4hYZ9p78fz9cyxtxc6qWpT
-        nXZniC15fan5Q=
-Received: (qmail 1170969 invoked from network); 17 Jan 2023 17:13:57 +0100
-Received: by mail.zeus06.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Jan 2023 17:13:57 +0100
-X-UD-Smtp-Session: l3s6476p2@Q+dR/Hfy1u7CtAHJ
-From:   Mario Kicherer <dev@kicherer.org>
-To:     linux-hwmon@vger.kernel.org
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        Mario Kicherer <dev@kicherer.org>
-Subject: [PATCH v3 3/3] docs: hwmon: add docs for the NXP MC34VR500 PMIC
-Date:   Tue, 17 Jan 2023 17:13:40 +0100
-Message-Id: <20230117161340.1310936-4-dev@kicherer.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230117161340.1310936-1-dev@kicherer.org>
-References: <20230117161340.1310936-1-dev@kicherer.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=y
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S229889AbjAQQVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 11:21:40 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A265A3EFE0;
+        Tue, 17 Jan 2023 08:21:39 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30HEbExR003566;
+        Tue, 17 Jan 2023 16:21:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=cg96SnQCqORoWKdPdsLknlM+aptVO8mCOtYYDlx2JgY=;
+ b=XmksmQGJat8kWnfxVIbK4EiyeHNk/px5J8lsPCZcwo7j1TlOTE88sTCmMGDF2JjqXpFD
+ aB+tkfzk1Amogju1q6IF/NTqPP9roDku3zsUNew6aozUhFiJDFQ1JBAjzrNzEzqCnygj
+ YDcuUDfcFHy+la0zS21tRHgbvnq70assq5edO1/ckN+0/k+kTY1HUWxeWoyhsHpxee9s
+ A8TQZAGdgH4exJY+RTMSMUYutZNQJlDdlJjqTt+8lKxBK/UAahneMbDyBNV3hOD3SmSo
+ v/AmqEU7aZZYwcn8npo5CMXmcET9ug224YXVsSIKfD0K9jNw2r3HtiCZ3w+zIjhr8tXX qA== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n3j3nnyya-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Jan 2023 16:21:36 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 30HGLWG5014779;
+        Tue, 17 Jan 2023 16:21:32 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3n3nfk7sum-1;
+        Tue, 17 Jan 2023 16:21:32 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30HGLWg1014774;
+        Tue, 17 Jan 2023 16:21:32 GMT
+Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 30HGLVJ2014773;
+        Tue, 17 Jan 2023 16:21:32 +0000
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id B31314B06; Tue, 17 Jan 2023 08:21:30 -0800 (PST)
+From:   Kalyan Thota <quic_kalyant@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
+        quic_abhinavk@quicinc.com
+Subject: [PATCH 0/3] Allow composer fallbacks for color features
+Date:   Tue, 17 Jan 2023 08:21:25 -0800
+Message-Id: <1673972488-30140-1-git-send-email-quic_kalyant@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cB_wSQ1_KLobwF_95PJA3bCadlxkTVGp
+X-Proofpoint-ORIG-GUID: cB_wSQ1_KLobwF_95PJA3bCadlxkTVGp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-17_08,2023-01-17_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 bulkscore=0 suspectscore=0 mlxlogscore=530 phishscore=0
+ clxscore=1011 mlxscore=0 lowpriorityscore=0 impostorscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301170130
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds documentation for the NXP MC34VR500 PMIC.
+This series will enable color features on sc7280 target which has primary panel as eDP
 
-Signed-off-by: Mario Kicherer <dev@kicherer.org>
----
- Documentation/hwmon/mc34vr500.rst | 32 +++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 Documentation/hwmon/mc34vr500.rst
+The series removes dspp allocation based on encoder type and allows the datapath reservation
+even if dspps are not available.
 
-diff --git a/Documentation/hwmon/mc34vr500.rst b/Documentation/hwmon/mc34vr500.rst
-new file mode 100644
-index 000000000000..5a8e0cbf4dbf
---- /dev/null
-+++ b/Documentation/hwmon/mc34vr500.rst
-@@ -0,0 +1,32 @@
-+Kernel driver mc34vr500
-+=======================
-+
-+Supported Chips:
-+
-+  * NXP MC34VR500
-+
-+    Prefix: 'mc34vr500'
-+
-+    Addresses scanned: I2C 0x08
-+
-+    Datasheet: https://www.nxp.com/docs/en/data-sheet/MC34VR500.pdf
-+
-+Author: Mario Kicherer <dev@kicherer.org>
-+
-+Description
-+-----------
-+
-+This driver implements initial support for the NXP MC34VR500 PMIC. The MC34VR500
-+monitors the temperature, input voltage and output currents and provides
-+corresponding alarms. For the temperature, the chip can send interrupts if
-+the temperature rises above one of the following values: 110°, 120°, 125° and
-+130° Celsius. For the input voltage, an interrupt is sent when the voltage
-+drops below 2.8V.
-+
-+Currently, this driver only implements the input voltage and temperature
-+alarms. The interrupts are mapped as follows:
-+
-+<= 2.8V  -> in_min_alarm
-+>110°c   -> temp_max_alarm
-+>120°c   -> temp_crit_alarm
-+>130°c   -> temp_emergency_alarm
+The series also adds a check to fail the composition during atomic check , if color management is requested 
+and no dspps are allocated in the datapath.
+
+This can allow composer fallbacks for color features if no relevant HW blocks are available.
+
+Kalyan Thota (3):
+  drm/msm/disp/dpu1: allow reservation even if dspps are not available.
+  drm/msm/disp/dpu1: allow dspp selection for all the interfaces
+  drm/msm/disp/dpu1: fail atomic check if color feature is requested
+    with no dspp
+
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    | 11 +++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 18 +++++++++---------
+ drivers/gpu/drm/msm/disp/dpu1/dpu_rm.c      |  8 +++++++-
+ 3 files changed, 27 insertions(+), 10 deletions(-)
+
 -- 
-2.34.1
+2.7.4
 
