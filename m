@@ -2,79 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8341B66DCA9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:40:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49F2B66DCB0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:40:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234607AbjAQLkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 06:40:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53732 "EHLO
+        id S235916AbjAQLkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 06:40:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235897AbjAQLjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:39:35 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314332E0FE
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:39:29 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id t5so25857010wrq.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:39:29 -0800 (PST)
+        with ESMTP id S236849AbjAQLkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:40:32 -0500
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E956E2DE54
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:40:27 -0800 (PST)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-4d0f843c417so304452777b3.7
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:40:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vF3QjaM7bROJjvJo2a/mn+CmXlw/84X7LZJ02v/ABAU=;
-        b=zLKBoIKI1X1tbKr4R/cZoQ7RMIGw8APCZhFTXrfz4YG7Gl5o99Y2nFQ6WoJk7DMG/3
-         yzzPBZIZ9K9Fuw2Ba+q7I3dUgVF8u14QN683j5+7pd3L1DnI4tNLzyF+Rq/viGT8TwBr
-         w8+2O3c+A9vkyf4Xh3VbrlCLVsDkDky8G6e1EtamptWw/sOAL/7jK3cxF20PpZQOrM+i
-         I0UibyUBGThQVEWaCHoOGrcuKXPzUSCaRTz1lfZdcWdUjCP43hjGHM01og21Q597wW9h
-         CCWv/qzbSM3Y+BflWlJgMyAFDUYzZYscvA9hEDk2hCmVow5TiANBZ28vQn1ozYo+ji8H
-         BMdA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1MAIkHrjYDmctZsK2XMilntX5BLh0ntnlds10JM8Kqk=;
+        b=Vk3LkUqJE/dfyGPezHTsWkWjaKYRkaJxHz4QDB4rSZwndLqSEjreRR2Jn4jUdEkQDU
+         qH/zzr79LTh7+caSTrYVTOcyCMYrb6/J+1Z3+PblEjsTqHZhwJnPJBP8aPksa4AiMUgA
+         S/hwJfx8Gy1pG6OFCwLBHUKK1uRfOoFog4pGoQIi2UkKeEjGTkDUskbl0blRSDfG8kQB
+         mtKwtxgDiTO4DO6vqimOL89NM7M06UK7RjdNMJupUDv87fpc52Z6IjdxmK7b48MJneN0
+         kWcfNZ7R87AYM0ywgW266Y0Y8vBqW3lkIdhvcVf00mcUN7w8SGDfTi+H5ToxUu2HrsE0
+         jYkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vF3QjaM7bROJjvJo2a/mn+CmXlw/84X7LZJ02v/ABAU=;
-        b=1hfKvUu2jcMLnuv92cAun3JfMKYO30+D/26YKMxPJQgjd7QpJs11bvMzAk9eHveL2n
-         O6JyNDolF2UADNWxVnkdNAjBthC9O0kkMD5voz8+ovOz/qEaFeS4jydHcMiSXMKHz3/g
-         3PyqS60aQp5kqc63GpGCPTRVA7X3nsSyUE0xS8ZRjBAfX+KQeItHQSkXV1DHq/EMOpla
-         v8C7sWD8Z/YMQz6bI9IK4VGfQDQwPn4QQmtoGu3u2W7spcYqZf5ZzVWRYxMoN388yt0R
-         +jkX0MmK3kVqKbiWPL3gWyKaTmCb3p9LA+domebImLQhh/+unpl4sWPJnNn7Lk0vdp/+
-         PBlg==
-X-Gm-Message-State: AFqh2kpaf2epkHa91r24CB9hGS/tX1PW3AhIXpOgSGjiBGWD04N0VW2e
-        UeadmHpjZO4gUgX1GA1lGP2PGZZ5jJIrf+n/
-X-Google-Smtp-Source: AMrXdXuCkpdLgZ/1mIa89YtmyXjuzTAlZJrLeKfPOg30l2hHTbnVlkY+nMfI32aoJYuG8fprjU9EAg==
-X-Received: by 2002:adf:f78d:0:b0:2bd:bed5:9207 with SMTP id q13-20020adff78d000000b002bdbed59207mr2498792wrp.12.1673955567741;
-        Tue, 17 Jan 2023 03:39:27 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u24-20020adfa198000000b002bc84c55758sm24641864wru.63.2023.01.17.03.39.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 03:39:26 -0800 (PST)
-Message-ID: <9c11bf53-6639-2cbe-0d27-ce1ea154f576@linaro.org>
-Date:   Tue, 17 Jan 2023 12:39:24 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1MAIkHrjYDmctZsK2XMilntX5BLh0ntnlds10JM8Kqk=;
+        b=Fp5TMHIMPdrg3CPbYO58hW2ELM1/BKfvYv/j6nAGBNC4znXWtsQTzLBEraYc9QCFCs
+         lETTgGX3oTW84+m60vYpGm6jXFGsHcW0+0auRHFvPwy7gfkpKlIf64tr3qg6LtlVIuXR
+         5CycZ2yheBMqgI/P/XWGCQnKdpHteNW4PhipoXHdK+2vB/wySVsQ809gLvvr4q3ec+m3
+         knK6v9h1a4FCEO4ypAIajBig75vrMqpOOI6RpqJo3juJdRuij71quNGgmBDOdLtnMjtf
+         UdWla5CUHVVCYF0p/fuOl6qGsZrw1Xl3jY+e0zoiF84UY3d+P/bxNSjI3PfJ4NV7/pYm
+         6jOw==
+X-Gm-Message-State: AFqh2kpY5PHg3l0Q2XPNxl/nNO5GH8AYO4c0BrJ7VltJApo9+WKgJ0RU
+        JCJ6Rye1+d4QjASqH/ATeYS9+p6U70/6N6lfRFwjPg==
+X-Google-Smtp-Source: AMrXdXseYk3L2GnPEh1gM0Jq/lHPuhOFw3F6VCswOOAoYtppdiOgDYLT1C2zOxnWhKhxZwwh/rCiy+ytiq1SWIr2yZY=
+X-Received: by 2002:a0d:f282:0:b0:4ed:c96d:1b89 with SMTP id
+ b124-20020a0df282000000b004edc96d1b89mr423452ywf.130.1673955627100; Tue, 17
+ Jan 2023 03:40:27 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 01/19] dt-bindings: ARM: MediaTek: Add new MT8188 clock
-Content-Language: en-US
-To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230117094425.19004-1-Delphine_CC_Chiu@Wiwynn.com> <20230117094425.19004-4-Delphine_CC_Chiu@Wiwynn.com>
+In-Reply-To: <20230117094425.19004-4-Delphine_CC_Chiu@Wiwynn.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 17 Jan 2023 12:40:14 +0100
+Message-ID: <CACRpkdY2ohNNJnnFUZscVg1ETEZBOCby7p-B-uCrrGwvLcQZ7Q@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] misc: Add meta cld driver
+To:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc:     patrick@stwcx.xyz, Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        garnermic@fb.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org
-References: <20230109124516.31425-1-Garmin.Chang@mediatek.com>
- <20230109124516.31425-2-Garmin.Chang@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230109124516.31425-2-Garmin.Chang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,148 +74,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 13:44, Garmin.Chang wrote:
-> Add the new binding documentation for system clock
-> and functional clock on MediaTek MT8188.
+Hi Delphine,
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+thanks for your patch!
 
-> 
-> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
-> ---
->  .../bindings/clock/mediatek,mt8188-clock.yaml |  71 ++
->  .../clock/mediatek,mt8188-sys-clock.yaml      |  55 ++
->  .../dt-bindings/clock/mediatek,mt8188-clk.h   | 733 ++++++++++++++++++
->  3 files changed, 859 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8188-sys-clock.yaml
->  create mode 100644 include/dt-bindings/clock/mediatek,mt8188-clk.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
-> new file mode 100644
-> index 000000000000..6654cead71f6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt8188-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Functional Clock Controller for MT8188
-> +
-> +maintainers:
-> +  - Garmin Chang <garmin.chang@mediatek.com>
-> +
-> +description: |
-> +  The clock architecture in MediaTek like below
-> +  PLLs -->
-> +          dividers -->
-> +                      muxes
-> +                           -->
-> +                              clock gate
-> +
-> +  The devices provide clock gate control in different IP blocks.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8188-adsp-audio26m
-> +      - mediatek,mt8188-imp-iic-wrap-c
-> +      - mediatek,mt8188-imp-iic-wrap-en
-> +      - mediatek,mt8188-imp-iic-wrap-w
-> +      - mediatek,mt8188-mfgcfg
-> +      - mediatek,mt8188-vppsys0
-> +      - mediatek,mt8188-wpesys
-> +      - mediatek,mt8188-wpesys-vpp0
-> +      - mediatek,mt8188-vppsys1
-> +      - mediatek,mt8188-imgsys
-> +      - mediatek,mt8188-imgsys-wpe1
-> +      - mediatek,mt8188-imgsys-wpe2
-> +      - mediatek,mt8188-imgsys-wpe3
-> +      - mediatek,mt8188-imgsys1-dip-top
-> +      - mediatek,mt8188-imgsys1-dip-nr
-> +      - mediatek,mt8188-ipesys
-> +      - mediatek,mt8188-camsys
-> +      - mediatek,mt8188-camsys-rawa
-> +      - mediatek,mt8188-camsys-yuva
-> +      - mediatek,mt8188-camsys-rawb
-> +      - mediatek,mt8188-camsys-yuvb
-> +      - mediatek,mt8188-ccusys
-> +      - mediatek,mt8188-vdecsys-soc
-> +      - mediatek,mt8188-vdecsys
-> +      - mediatek,mt8188-vencsys
+On Tue, Jan 17, 2023 at 10:46 AM Delphine CC Chiu
+<Delphine_CC_Chiu@wiwynn.com> wrote:
 
-The list should be ordered by name.
+> Add support for meta control-logic-device driver. The CLD manages the
+> server system power squence and other state such as host-power-state,
+> uart-selection and presense-slots. The baseboard management controller
+> (BMC) can access the CLD through I2C.
+>
+> The version 1 of CLD driver is supported. The registers number, name
+> and mode of CLD can be defined in dts file for version 1. The driver
+> exports the filesystem following the dts setting.
+>
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> Tested-by: Bonnie Lo <Bonnie_Lo@Wiwynn.com>
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller@11283000 {
-> +        compatible = "mediatek,mt8188-imp-iic-wrap-c";
-> +        reg = <0x11283000 0x1000>;
-> +        #clock-cells = <1>;
-> +    };
-> +
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8188-sys-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8188-sys-clock.yaml
-> new file mode 100644
-> index 000000000000..541e0f7df79f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8188-sys-clock.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt8188-sys-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek System Clock Controller for MT8188
-> +
-> +maintainers:
-> +  - Garmin Chang <garmin.chang@mediatek.com>
-> +
-> +description: |
-> +  The clock architecture in MediaTek like below
-> +  PLLs -->
-> +          dividers -->
-> +                      muxes
-> +                           -->
-> +                              clock gate
-> +
-> +  The apmixedsys provides most of PLLs which generated from SoC 26m.
-> +  The topckgen provides dividers and muxes which provide the clock source to other IP blocks.
-> +  The infracfg_ao provides clock gate in peripheral and infrastructure IP blocks.
-> +  The mcusys provides mux control to select the clock source in AP MCU.
-> +  The device nodes also provide the system control capacity for configuration.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - mediatek,mt8188-topckgen
-> +          - mediatek,mt8188-infracfg-ao
-> +          - mediatek,mt8188-apmixedsys
-> +          - mediatek,mt8188-pericfg-ao
+Why should this driver be in drivers/misc and not drivers/mfd?
+MFS has support code for spawning child devices for the LED
+you are also creating for example, so please use that.
 
-Ditto
+> +#include <linux/sysfs.h>
+(...)
+> +#include <linux/kthread.h>
+(...)
 
+> +static ssize_t cld_register_read(struct file *flip, struct kobject *kobj,
+> +                                struct bin_attribute *attr, char *buf,
+> +                                loff_t pos, size_t count)
+> +{
+(...)
+> +       snprintf(buf, sizeof(value), "%d\n", value);
+(...)
+> +static ssize_t cld_register_write(struct file *flip, struct kobject *kobj,
+> +                                 struct bin_attribute *attr, char *buf,
+> +                                 loff_t pos, size_t count)
+> +{
+> +       ret = kstrtoul(buf, 0, &val);
+(...)
 
-Best regards,
-Krzysztof
+Writing and reading some random regmap registers is something
+that the regmap debugfs already can do.
 
+> +static int cld_bin_register(struct cld_register_info info,
+> +                           struct cld_client *cld)
+> +{
+
+And this is for reading and writing binary blobs.
+
+It looks like something that should be using the firmware
+API.
+
+If the purpose of the driver is to open a hole from userspace
+down to the hardware, as Greg says why not just use
+userspace I2C then?
+
+It seems a bit dangerous to relay whatever the ASIC is doing
+to userspace though.
+
+Are you sure you can't use any of the existing kernel functionality
+for doing what these userspace "hole" is doing?
+
+There is drivers/power etc for power control and I bet it can
+be extended if need be.
+
+Yours,
+Linus Walleij
