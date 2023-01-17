@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F2D966D498
+	by mail.lfdr.de (Postfix) with ESMTP id ECD5366D499
 	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 03:52:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235729AbjAQCwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 21:52:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53330 "EHLO
+        id S235727AbjAQCwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 21:52:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235763AbjAQCwd (ORCPT
+        with ESMTP id S235769AbjAQCwd (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 21:52:33 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBDDB2CFE8
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 18:48:51 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id j34-20020a05600c1c2200b003da1b054057so9104680wms.5
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 18:48:51 -0800 (PST)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0390303E3
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 18:48:52 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so7109228wmc.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 18:48:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5xCA5EUgHOsGaSJm+l0Mf/p8bYHPKtpaW04F9aMMbZ8=;
-        b=u+36Dd8Nobty6WugHJlctyKf3Dcnq/2B4nl54+Y7foyxwmVxRM+cfD23/sLA0F6QYM
-         hk2ijwN1SrAnum0pMrlvYrfmabsC+v+39WVcS8hDoWkFBvebS6JxvAoHJWNpH7wI0TeP
-         2fKiyMDKCrwRBFFkldg80vtKwjiZypU4zK0pmRRjRuidTmEku5cn/Zlv/u/RbJfgk2xG
-         E9RxzV88eaqkdPfyAifTsglneDLB1AI7IZsMlrdI97Cmbjgbei76XNCe7xc0YlNKnfVD
-         hwlZKl/nvO2idiISjgNjY6kPWxwDjrH0f6H6AKMAG2ngfzoUglspjTCGF/1l49W7VL8B
-         CDmQ==
+        bh=Qk0VMlXiPa+i4ayp7VztPQc8wVANge6Uc5ro5vbjwLQ=;
+        b=NcVkqEdSSVMg/UN3FPkwG0cLZu6mxh4a/MABS8zd1lO2hTr9mczswJoN0dLNH/kKll
+         08w7hYsyMos0yc2l9WflE0gVeIF+ZfUS70xBXQqdA6YHjqWLQFIMTzNSa5aWVJHZWFgL
+         KGCV13jfvBTEEeysteiAMP870/V9tVahpUePzh5TgYPwyDbIEXlX7xk0UgtGWpul2GD9
+         YIt83CKTJgSHIUTtDCIYTD4EazkBN+vkCD/UW/NgSYg/ws3PUYmrpNKP2pCb+VS8v+F+
+         Joane6FQIJDe0OgY+Y+9zkORDnXFnwNnjT6GcdgMF0D4s2ekKL/QPteMMzJtHW5RxG7s
+         aNug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5xCA5EUgHOsGaSJm+l0Mf/p8bYHPKtpaW04F9aMMbZ8=;
-        b=ZpZDeimQvSQSU0ce30pBkkRyGz+oOqb8EsGjOyJpkHmCXsJzNBu/c5XuFNGPTWiji5
-         cmtIlB3lgDqEzGOsrab0CmByvN0RoOQp52i2Nn65u/15D0lM5XT1/jWrAZ2XbzaoSJHl
-         ZkOSPWRchEu6YTqFw3Q3kulhEDA0dImir21a7j6Osq171WgFJwVEzAqfV8vWyHylH8uz
-         pRqAYf4SnQmK7EOtbLVq2NesZOxAQqnOsvEIE15nABHo8I888kNaqLyds12fnZh6dRgO
-         auX6IWGEqtFtd6SIh/gGHcrGUedlD5ECUwVfNYoPcBRkmXFcLnRQfgkD7J3kYZxZRy6J
-         10JA==
-X-Gm-Message-State: AFqh2krrnqIwC38JRc/ljZkBk65UyEqjqyZhueSiuORt4ywF0lqLXpKW
-        vTlaLubX/R2BH/HgzD3qKUkITg==
-X-Google-Smtp-Source: AMrXdXtEDH/zbDvpHGRk8Txbxih5+0F7+HdQEWjlHmKs7nL4k4CGMCldSwmx5ay6i5krkyuLeTSFgA==
-X-Received: by 2002:a05:600c:3d99:b0:3d2:381f:2db5 with SMTP id bi25-20020a05600c3d9900b003d2381f2db5mr1423608wmb.22.1673923730513;
-        Mon, 16 Jan 2023 18:48:50 -0800 (PST)
+        bh=Qk0VMlXiPa+i4ayp7VztPQc8wVANge6Uc5ro5vbjwLQ=;
+        b=mIvNyjNyu52Ic1z+NUxm951YpQz9jhxJX/KXgbrBgfiOzVbHuk0ptlqQoTk+YTVid1
+         iLMjnngGiw0F40Ga+HP7nS0ApWkuv3t14JiKXEWCMG1G9gsTTgC3eY+x9rIleAeX+Bce
+         410YeHmZTO0k37XXqdiPLB8r3MtFlihOeXEZlBx8yZnrs0Fglt/FQqRp8JQQh6BsoNmW
+         se1pYZY1RfDwX+XDnKI0WNvIKfypGxSMw5/getdbFxBFgya2r5r3JrQKOUVRBcL3Cn46
+         mUrlp95W9ra5mvsCLpr6xFHbobRa7vNq4VPkUy6A1BuaokNcqGAHvKLEf0s8xXmLF34n
+         lCqw==
+X-Gm-Message-State: AFqh2kpT75Xe8t5bheuWO0s8TsMOYviFBlgLKNCwvdZlXfn89OAGBlW7
+        IXvSQfux6vkHLxSTTVLU1XjJbw==
+X-Google-Smtp-Source: AMrXdXuPt/jwsJTzS7848FxzhOZaBVAKnyGM+wBkufoq2JR77LRpwkg/pOuouyGgl6AjdYuK0sbCWQ==
+X-Received: by 2002:a05:600c:4248:b0:3d9:7667:c0e4 with SMTP id r8-20020a05600c424800b003d97667c0e4mr1404587wmm.31.1673923731402;
+        Mon, 16 Jan 2023 18:48:51 -0800 (PST)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id n7-20020a05600c4f8700b003c6bd12ac27sm39482660wmq.37.2023.01.16.18.48.49
+        by smtp.gmail.com with ESMTPSA id n7-20020a05600c4f8700b003c6bd12ac27sm39482660wmq.37.2023.01.16.18.48.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jan 2023 18:48:50 -0800 (PST)
+        Mon, 16 Jan 2023 18:48:51 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         djakov@kernel.org, robh+dt@kernel.org,
@@ -59,9 +59,9 @@ Cc:     bryan.odonoghue@linaro.org, linux-arm-msm@vger.kernel.org,
         shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
         dmitry.baryshkov@linaro.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 1/8] dt-bindings: arm: qcom: Document MSM8939 SoC binding
-Date:   Tue, 17 Jan 2023 02:48:39 +0000
-Message-Id: <20230117024846.1367794-2-bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 2/8] dt-bindings: soc: qcom: smd-rpm: Exclude MSM8936 from glink-channels
+Date:   Tue, 17 Jan 2023 02:48:40 +0000
+Message-Id: <20230117024846.1367794-3-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20230117024846.1367794-1-bryan.odonoghue@linaro.org>
 References: <20230117024846.1367794-1-bryan.odonoghue@linaro.org>
@@ -69,59 +69,35 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the MSM8939 and supported boards in upstream Sony "Tulip" M4 Aqua
-and Square APQ8039 T2.
-
-MSM8939 is one of the older SoCs so we need to expand the list of
-qcom,board-ids to allow for the bootloader DTS board-id matching
-dependency.
+MSM8936/MSM8939 should like MSM8916 not require glink-channels.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 47913a8e3eea3..0721d1a0b80e6 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -35,6 +35,7 @@ description: |
-         mdm9615
-         msm8226
-         msm8916
-+        msm8939
-         msm8953
-         msm8956
-         msm8974
-@@ -164,6 +165,12 @@ properties:
-               - samsung,s3ve3g
-           - const: qcom,msm8226
- 
-+      - items:
-+          - enum:
-+              - sony,kanuti-tulip
-+              - square,apq8039-t2
-+          - const: qcom,msm8939
-+
-       - items:
-           - enum:
-               - sony,kugo-row
-@@ -966,6 +973,7 @@ allOf:
-               - qcom,apq8026
-               - qcom,apq8094
-               - qcom,apq8096
-+              - qcom,msm8939
-               - qcom,msm8953
-               - qcom,msm8956
-               - qcom,msm8992
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+index 11c0f4dd797ce..16fd67c0bd1fd 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+@@ -80,6 +80,7 @@ if:
+         enum:
+           - qcom,rpm-apq8084
+           - qcom,rpm-msm8916
++          - qcom,rpm-msm8936
+           - qcom,rpm-msm8974
+           - qcom,rpm-msm8976
+           - qcom,rpm-msm8953
 -- 
 2.38.1
 
