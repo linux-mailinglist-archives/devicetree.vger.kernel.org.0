@@ -2,275 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 689F2670DCF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 00:43:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81C75670DDC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 00:46:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230056AbjAQXng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 18:43:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36592 "EHLO
+        id S229949AbjAQXqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 18:46:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230053AbjAQXnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 18:43:02 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FCA7656E7
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 14:48:41 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso491684wmb.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 14:48:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LYCcWqCCZCUHqzEyU/xnDg7cnPafRId64wsa4xHKDIA=;
-        b=y6NtW/6VxO1x8kKxzAS+q88Nf99KzaIP+D2IjKsLyOFqIjWSXZBEy7GiUTILBrFWye
-         bPbeaUC+x0Fu2tXv3IifcnPxKHhzNfVWY1GrU1kZdsz8GprC+PVxsF3z0WINvHJMhlcz
-         x9ZwiBtK3rhAOdN4YVIBCAJkUpTcgqmvlXTUugGxjATB6/AGSjuRjLruAtEH3aolU1Jq
-         pMRxrOeo1+/5mRNTN4F2aEhRix6CEgJzz0i73MG/60NZi5I3ytzccm96+eWCU/4YxwAA
-         wKHqZzmvWdTYfO+FJfYCTndwki5xB2wymqjQttORaUdKXJT2mFh6vgQ5erDSFSxecAwr
-         yn6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LYCcWqCCZCUHqzEyU/xnDg7cnPafRId64wsa4xHKDIA=;
-        b=SoCEo8cWxYk673oxUBKmJ7pBvTWm6o1Nl/JKBYMlP3PD9kxZFlOp2+qPgUTFcB6Oeq
-         b82WBkfaf0J7IoXlDerd7Vb8zX91kILBkDJRnpd4TanXDPsyVwoDjHcBY2wViSIP+WvL
-         psmLjkoth63UTBclfLRT0Qh5kbHMa2xgFu9xbpXZ/xzC8nKe6N9qnY3GpmuOpS4Oy5Tg
-         cNr6jWemeUDmabP90G+NN7sT++R/1TdkpduJdeHKjAXYQLU0ipj8X5xyfzoCPwIEsIBK
-         gB7mQ+41Mkj5MMaM6lDTO1LT604ZEg7152MQ3MdOwkolhHvhCOnwqtQyJiycngkUc9xO
-         X2RA==
-X-Gm-Message-State: AFqh2kqssny2Dg2tcJs9Jqfu9FJUr2b4MHZHsQnYXkOpqmSq+beur7Zp
-        jXWPm5JyuN+e4u0gKdVQ+eV1dQ==
-X-Google-Smtp-Source: AMrXdXuFvYbZV9S/7lQ8QJ10PZT/eT5LWRdZmBUuVkcgeLYgs3Z2XUHlrgXrVqMt4pxJK4LZ4oNphw==
-X-Received: by 2002:a05:600c:920:b0:3da:22a6:7b6b with SMTP id m32-20020a05600c092000b003da22a67b6bmr4561497wmp.13.1673995719688;
-        Tue, 17 Jan 2023 14:48:39 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id h6-20020a05600c314600b003d99469ece1sm159069wmo.24.2023.01.17.14.48.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 14:48:38 -0800 (PST)
-Message-ID: <28e1df7a-6577-bf39-9739-d0a047b36f12@linaro.org>
-Date:   Tue, 17 Jan 2023 22:48:37 +0000
+        with ESMTP id S229994AbjAQXqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 18:46:00 -0500
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2138.outbound.protection.outlook.com [40.107.114.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8424B7D652;
+        Tue, 17 Jan 2023 14:52:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ecdbkIS5e5pcnD47APNleEfeEIheYN5uFqZ3SfAbP1uGDdbn6vKK0m89WOa0gAfdyi42CK9PDk/pc/ENDRJsaXjyIXOLc7lLZz1UPqWMxbEo/8pG2B5GA8QhACpRDtmdakPKwaL/S7Ff8MjoBdPRfoB+//w1tAi8JAiwKp2o4Q2LOczpuWwcSqvnrXDprjxHMRE7Jagvmcs7lEWyGVlzo+CS9ai6W6qcVlmlDtoWj/dTyWL4YnycesDMYgcZUu6of6KxnJO0adVRMyA7eLe1sWP5AUM4mJ1qIdoXsiSbDc0qr+dHJK0k0LNIvtRW9zMil/czRNM7T9lM8UjWf/qkuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=O/hH+tGbJuZtF85CByKB3t4EoTi8CvYAcYaLwC2SE0E=;
+ b=U/aeDDvsHrbLshcAOnID6xCPHquf+Q25XYpbcUSsZVzRzvTnPA12uyLOpKgWCQwD/KicWzVc9Myy6IaWfFjFod59PENbcsQIm9ADmKa4IFnIDOkN+WsqVu14hp0AoY71Vx6JWThsANUKAUqS0B+XvY1oUxyKfmwlMyff3ekWF6C9cnGn6FEMgadx18yG/s53pd3dmdIZsn6aW55SPg4ghJxfP8xUHGl3LkwXEPBjmWVaoU0vgritVdHUiN0CJ/5uOSvvp6Abr9G48A9OCFGW8m4KHsUR8T0idxJ90OVo0eqniEzZQVzMpCOSydYskXc4E94kAZEZr1qndrtWwOb6nw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O/hH+tGbJuZtF85CByKB3t4EoTi8CvYAcYaLwC2SE0E=;
+ b=PYP/0HLopJ6OBpVGhKHkIdVJ2BLvWY6O4lR7DAFUF8x+N90AMG+/s7qBBAJYuAijrkZkgkUQ9MGWwuPrdYeKxMyPTsX3IlyFxSdf1T0R1vz3w9+QaPNC7mpjtDu/m2Krd4VEgvVRM8ZaIL3ODQuyxUjyyWvNqBaZOnMqa1avqFU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by TYAPR01MB6010.jpnprd01.prod.outlook.com (2603:1096:402:31::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.12; Tue, 17 Jan
+ 2023 22:52:23 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::3cd7:a7b5:ea86:9ae]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::3cd7:a7b5:ea86:9ae%4]) with mapi id 15.20.6002.012; Tue, 17 Jan 2023
+ 22:52:23 +0000
+Message-ID: <877cxkdba6.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-sh@vger.kernel.org
+Subject: Re: [PATCH 05/22] sound: remove sh-specific sounds/soc/sh drivers
+In-Reply-To: <20230113062339.1909087-6-hch@lst.de>
+References: <20230113062339.1909087-1-hch@lst.de>
+        <20230113062339.1909087-6-hch@lst.de>
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date:   Tue, 17 Jan 2023 22:52:22 +0000
+X-ClientProxiedBy: TYAPR01CA0070.jpnprd01.prod.outlook.com
+ (2603:1096:404:2b::34) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v3 5/8] arm64: dts: qcom: Add msm8939 SoC
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
-        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
-        Jun Nie <jun.nie@linaro.org>,
-        James Willcox <jwillcox@squareup.com>,
-        Joseph Gates <jgates@squareup.com>,
-        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230117024846.1367794-1-bryan.odonoghue@linaro.org>
- <20230117024846.1367794-6-bryan.odonoghue@linaro.org>
- <20230117205800.cqexxwxmtupapy7e@builder.lan>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230117205800.cqexxwxmtupapy7e@builder.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TYAPR01MB6010:EE_
+X-MS-Office365-Filtering-Correlation-Id: b379b111-69b2-4922-9459-08daf8dd7ef3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QfvrGbYcPVRDZqzEvw69I3/6c6y4wOmoABUT6hjIQ0LcPnxW5B+AP1BqefHu9U6pd8Z5Y45xZPLlNPM71u5BKTFjUjzDx6B+AgT0m5PRHBTxv2yhVCjC8DcjIx6bPUR9UstMuh8kZ/M+JGv9eZcemwi9zaMdJaaSqPd+m1d67EMBCsaRJHmgSXIaki2nbIeoKy6sCAqyNixO1jY7hDtxlPELZygbxbGotSxqAE5HihP2Sw1DunN9CS8P72zScF9i6TaKd2iAldxoamQ3Bi8ms8ZFNmVXVRFmYH+Wfx613oLR4ZOsHZ0Crz1oGQqy2/MU6Ruy0BVGyUXRToAW9qBAebcSiCWBAv9HD3rH4GJxyamHzL1o/wWNLCIlnAOjJ5vYXMEqmvp0qYnpUFRvn+WAlkLlGK4HEDYAyyzsLsmHBmeXJiTLu2E7epjRXwc17iBLFpclSGVTE8R34sdLqVT8lFdJcMhdfdX3XM7fXnXLw+5/Hk0OZPsYOonlHsBF3DpQDL4tDPaowNDfxa5zKVeQ1z7vX2UdBEumZJ75gVrP7CUpBY0lklpw5H3/Q8J58XPw2sQ2v+qHQkmKtr7FXajRalxr0TwpvywIuxvadA8OQae9Hgs96+tq3sMUUXJRLnR6xffoMd2gThesQQyqsPBu1WrD5TDHPikmMoATcS2yw8CVuZk3Wq4zGAgUS+dMyXec
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(376002)(396003)(39860400002)(346002)(451199015)(36756003)(41300700001)(66556008)(2616005)(66476007)(66946007)(26005)(6512007)(186003)(6916009)(8676002)(4326008)(86362001)(5660300002)(7416002)(38350700002)(8936002)(478600001)(54906003)(316002)(6506007)(52116002)(6486002)(38100700002)(2906002)(4744005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mZOl0elRhwt/KGbhGU8a1THpk6ytUEPKVJp140gOHJFbaPRrzSxXeVoa1oZZ?=
+ =?us-ascii?Q?IYomH6N4sZjvo6EOL1eO2Lq2VTXH6gvy/bytgluorShxS6ogxSiYb8OMi0oB?=
+ =?us-ascii?Q?wUGuebwXhnysR3O5ckcV/Qq2MlOn91hH5UhqFu80F73TEG3Ei6G5+ug95R42?=
+ =?us-ascii?Q?7otfnLYknydYIoOinGDfLgUVBMACiheyrXm5EFcS3ZIM6F7+1jKD7Eyqpsms?=
+ =?us-ascii?Q?fasKOBH0e1FJGCWXc5LA3md64OuHd1ZJZDjUrIIyVPjS/7HfYE5GmDI5GW1P?=
+ =?us-ascii?Q?BMgEbXtbpdTjjvOL9KNuix1r/h2rMl4CqqyM0ENx919W4GmVCJqqhsf6AE23?=
+ =?us-ascii?Q?p0jQVQhAzBfLblmv3vYGGL+VL6wzKM6/O2RJz2XwK/lCTdA6kyfw1xzEKCAL?=
+ =?us-ascii?Q?rrC4aDLkQoxBx3F5Y881Y6ukI34yBg0NqTmWHcVDNrxFwz8moXvkqHE848Oq?=
+ =?us-ascii?Q?fr27sf8MLKeiuUZzFhIETinxqm3kaROXn3kd/xdLHl+QsYjEa90Rd+iM2fiB?=
+ =?us-ascii?Q?Via+4zYpLFPGCrPDHkuIJH+4Ex5uEUxIPqRMiFADRe3aJWdxBjNbOkv9ClNt?=
+ =?us-ascii?Q?PjWnCBVc6uxCMfG7jR8zMm+g1PAViUga/hWk9sYKjv/ji9efwj5NmbeNd2cL?=
+ =?us-ascii?Q?tZwBQa1Xg1qMR2eqz2d5+pf/fYnppHdD12VHWYWrZJPkMlE+qy/rRBMG/MQQ?=
+ =?us-ascii?Q?7+PovCtLT7C9HykZsbY1T168gAQ0svOUkjmbjkHnzKvybkn9qRwumy8cYIey?=
+ =?us-ascii?Q?cOfPqd6NY7jcSw1hCKels9F1SVpnx9j4zzmm7hjte2xLvlP2avzN/5nrvPZV?=
+ =?us-ascii?Q?0vgHJIJ/T2ojiDnuCZxJqRKVlH8IhppZxiQZTqipBpcxcx03UvTUrb1kAsBN?=
+ =?us-ascii?Q?eXObdglw9mH9JQHCGZSwgHMl+7J6pY4RrXheOUBdxAhZ4dA9XrGGnV0e4k2b?=
+ =?us-ascii?Q?5fi5EawJmOpgYpTvrZ7GypK+0gUkXIysvedbS2Cs04qRXiTS/EBp1Ch59f6F?=
+ =?us-ascii?Q?LXNzpXOWQO7J4gzXJpDuMwHPkBh9d+7v6Z3BKnFVwhw/LCuqxU7cMn3WYNEY?=
+ =?us-ascii?Q?neUMQfFNNssM6C+uviOPSgFlsbdEmuA9HiAaAqjScsFsRvrxM9WRZNWoFnTd?=
+ =?us-ascii?Q?cDkVREQ6Re2NnYyfxNCurBNjPmnhIxBEnk8NZMLZNGx/rnHL73h2PrOq9SSR?=
+ =?us-ascii?Q?PTQMQ2xnWCIfTHBgWTrkXW6tzVKeJcCVZ1HPZo1jDXm1IQadXcKtzesM8gPy?=
+ =?us-ascii?Q?rSI5MIb/+W7YxdmK6MNVZ15DmBhWC/D2kBjrHHl2iB+3RG+94rbmU4xHoj5x?=
+ =?us-ascii?Q?ff3/NCy/zHpGbZEMc1SupvMx4iIs4/tiwBNQV5B2b2h/ESdLg2A2KmoyJIvG?=
+ =?us-ascii?Q?mDxRfOdRBR9g67CX4iPKpRNT4v5vF8LcnxhLpECO9TjQ6wBULvYP+lKRQ0w5?=
+ =?us-ascii?Q?kvKRBRKOfDM8RPF7SUSr1wRswGXZTd/x5o4KG1mUvkGHFlYdX+ss2q6WRT/H?=
+ =?us-ascii?Q?AqvE0KztlecLLtgCWBNpQmbEdjc9s7G1BjY3Wb3v/1amJ5j2UhYR1S8VEF63?=
+ =?us-ascii?Q?rqQvakXf0/xvQR09nxzbsWImBcwxTLatRZJPkok+xiYCKCYvLPRjLlVdXKKl?=
+ =?us-ascii?Q?XU7LeAeHdmrfSJsu14tKvPc=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b379b111-69b2-4922-9459-08daf8dd7ef3
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2023 22:52:23.0355
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Lj1mhU1Xlqt+WLwQ6CnlFII94JNv7so1T0iRaWrLBwU2hRYWSAXB0a+GQYnA4yJWzF5ZZrUJpX4Mux38JDOt+JIx9SvQMIOxU3VNEh82Bqg5avcw6VR/JHbrwjA4CTnZ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB6010
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 20:58, Bjorn Andersson wrote:
-> On Tue, Jan 17, 2023 at 02:48:43AM +0000, Bryan O'Donoghue wrote:
->> Add msm8939 a derivative SoC of msm8916. This SoC contains a number of key
->> differences to msm8916.
->>
->> - big.LITTLE Octa Core - quad 1.5GHz + quad 1.0GHz
->> - DRAM 1x800 LPDDR3
->> - Camera 4+4 lane CSI
->> - Venus @ 1080p60 HEVC
->> - DSI x 2
->> - Adreno A405
->> - WiFi wcn3660/wcn3680b 802.11ac
->>
->> Co-developed-by: Shawn Guo <shawn.guo@linaro.org>
->> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
->> Co-developed-by: Jun Nie <jun.nie@linaro.org>
->> Signed-off-by: Jun Nie <jun.nie@linaro.org>
->> Co-developed-by: Benjamin Li <benl@squareup.com>
->> Signed-off-by: Benjamin Li <benl@squareup.com>
->> Co-developed-by: James Willcox <jwillcox@squareup.com>
->> Signed-off-by: James Willcox <jwillcox@squareup.com>
->> Co-developed-by: Leo Yan <leo.yan@linaro.org>
->> Signed-off-by: Leo Yan <leo.yan@linaro.org>
->> Co-developed-by: Joseph Gates <jgates@squareup.com>
->> Signed-off-by: Joseph Gates <jgates@squareup.com>
->> Co-developed-by: Max Chen <mchen@squareup.com>
->> Signed-off-by: Max Chen <mchen@squareup.com>
->> Co-developed-by: Zac Crosby <zac@squareup.com>
->> Signed-off-by: Zac Crosby <zac@squareup.com>
->> Co-developed-by: Vincent Knecht <vincent.knecht@mailoo.org>
->> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
->> Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
->> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
+Hi Christoph
 > 
-> Just to make sure when I get the question, you all co-developed this
-> patch, right?
-
-A long list but a fair one.
-
->> ---
->>   arch/arm64/boot/dts/qcom/msm8939.dtsi | 2393 +++++++++++++++++++++++++
->>   1 file changed, 2393 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/msm8939.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
->> new file mode 100644
->> index 0000000000000..8cd358a9fe623
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
->> @@ -0,0 +1,2393 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2020-2023, Linaro Limited
->> + */
->> +
->> +#include <dt-bindings/clock/qcom,gcc-msm8939.h>
->> +#include <dt-bindings/clock/qcom,rpmcc.h>
->> +#include <dt-bindings/interconnect/qcom,msm8939.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/power/qcom-rpmpd.h>
->> +#include <dt-bindings/reset/qcom,gcc-msm8939.h>
->> +#include <dt-bindings/thermal/thermal.h>
->> +
->> +/ {
->> +	interrupt-parent = <&intc>;
->> +
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
+> Now that arch/sh is removed these drivers are dead code.
 > 
-> Why do you use a default of 2? In particular since you reduce it to 1 in
-> /soc...
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+(snip)
+>  sound/soc/sh/fsi.c         |   9 -
+(snip)
+>  config SND_SOC_SH4_FSI
+>  	tristate "SH4 FSI support"
+>  	depends on COMMON_CLK
 
-You asked that before, and I took a note of the answer but, then because 
-I was away from the main machine when I sent V2, I didn't have the log.
+You can remove sound/soc/sh/fsi.c
+It is for SH SoC.
 
-Here's what I wrote down.
+Thank you for your help !!
 
-"  - address-cells/size-cells = 1 in /soc - Bjorn
-     I experimentally changed address/cell sizes to 2
-     I'm finding that lk chokes "
-
-So AFAIR LK was unhappy about changing the top level address/size cells 
-to <1> <1> and converting the /soc address/size cells to <2> <2> caused 
-a number of breakages during boot.
-
-To be honest, this pattern is copied from the msm8916.dtsi original. 
-msm8953.dtsi has the same thing. msm8994 too, and 8998.
-
-If you think it needs changing, then I'll have to see what can be done 
-with soc@{} entries.
-
-> 
->> +
->> +	clocks {
->> +		xo_board: xo-board {
->> +			compatible = "fixed-clock";
->> +			#clock-cells = <0>;
->> +			clock-frequency = <19200000>;
->> +		};
->> +
->> +		sleep_clk: sleep-clk {
->> +			compatible = "fixed-clock";
->> +			#clock-cells = <0>;
->> +			clock-frequency = <32768>;
->> +		};
->> +	};
-> [..]
->> +	smp2p-hexagon {
-> 
-> To avoid having people start sending patches that changes the sort order
-> as soon as I merge this, could you please sort your nodes by address
-> (not applicable for this one), then by node name alphabetically, then by
-> label alphabetically.
-
-ah. I sorted the contents of soc. I missed the upper level groupings.
-
-> 
->> +		compatible = "qcom,smp2p";
->> +		qcom,smem = <435>, <428>;
->> +
->> +		interrupts = <GIC_SPI 27 IRQ_TYPE_EDGE_RISING>;
->> +
->> +		mboxes = <&apcs1_mbox 14>;
->> +
->> +		qcom,local-pid = <0>;
->> +		qcom,remote-pid = <1>;
->> +
->> +		hexagon_smp2p_out: master-kernel {
->> +			qcom,entry-name = "master-kernel";
->> +
->> +			#qcom,smem-state-cells = <1>;
->> +		};
->> +
->> +		hexagon_smp2p_in: slave-kernel {
->> +			qcom,entry-name = "slave-kernel";
->> +
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +			#address-cells = <0>;
->> +			#size-cells = <0>;
->> +		};
->> +	};
->> +
->> +	memory@80000000 {
->> +		device_type = "memory";
->> +		/* We expect the bootloader to fill in the reg */
->> +		reg = <0x0 0x80000000 0x0 0x0>;
->> +	};
->> +
-> [..]
->> +	soc: soc@0 {
-> [..]
->> +		pronto: remoteproc@a204000 {
->> +			compatible = "qcom,pronto-v2-pil", "qcom,pronto";
->> +			reg = <0x0a204000 0x2000>,
->> +			      <0x0a202000 0x1000>,
->> +			      <0x0a21b000 0x3000>;
->> +			reg-names = "ccu", "dxe", "pmu";
->> +
->> +			interrupts-extended = <&intc 0 149 IRQ_TYPE_EDGE_RISING>,
->> +					      <&wcnss_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
->> +					      <&wcnss_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
->> +					      <&wcnss_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
->> +					      <&wcnss_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
->> +			interrupt-names = "wdog", "fatal", "ready", "handover", "stop-ack";
->> +
->> +			memory-region = <&wcnss_mem>;
->> +
->> +			power-domains = <&rpmpd MSM8939_VDDCX>,
->> +					<&rpmpd MSM8939_VDDMX_AO>;
-> 
-> The purpose of the remoteproc driver's vote is to keep the rails powered
-> while we're booting the remote, in the event that Linux decides to
-> suspend and turn of the power rails while we're waiting...
-> 
-> Once the remote pulls the "handover" interrupt, it signals that it has
-> cast the necessary votes and need no more hand-holding.
-> 
-> So it's unlikely that _AO is the right choice here.
-
-Yes, it's probably just VDDMX isn't it.
-
-I'll change that.
-
+Best regards
 ---
-bod
+Kuninori Morimoto
