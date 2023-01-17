@@ -2,125 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5391466E4FB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:33:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F1C066E4FC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:33:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232629AbjAQRdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 12:33:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54366 "EHLO
+        id S235083AbjAQRdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 12:33:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235083AbjAQR2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:28:17 -0500
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71B154901C
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:27:02 -0800 (PST)
-Received: by mail-il1-x12a.google.com with SMTP id d10so15703478ilc.12
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:27:02 -0800 (PST)
+        with ESMTP id S235554AbjAQRaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:30:08 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D936B4C6CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:27:51 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so25053302wms.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:27:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yNUDy6KyAQAbRWnSnSUxNJKiFT2fKondnpix9cjKDOY=;
-        b=cJZHosGPywZrxxX0ZyqnueVZV3CFoZWMJXBY4yIkikJ5l8RAywicsO+rC7HzgCbYMS
-         YiGVtYUp1NwsmlRbeWTwmH9Mg1FtPjxhuewZl6aehZEhaItlxYM97xvvv1L1XTEEGcf8
-         GBJQ6gO6tPulme1tBA4Ab8cHC1SILZqFqcPzg=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HMhRj55+FlBV8AnEx7lPTuRrB6YXNSp4LjzY65UiMzU=;
+        b=mMRyB04Cs5nsYPURjKXknVEbmfwBu1pMQ3q0mVHsOjMBjki2X4Cnh1jViKjn8OYG2H
+         hkBvdKEx2dBEwk/qtCbyfmpD6J61K1UCZoM78V/fhrx4sCflEflNbysG6VKu2uf8RSNg
+         20UDbgpiEni0HETWgXvUhyGmbIvzfVCeQEl9vDbVz0ritOMcmBI8cv40R1yCYEKY1bo8
+         Ow+LUaTS9UN6LFkI3j/59rnyXVoYBIpJB0oQyIM8GDIaXW8I7qkWDPDHXrwv2sKUp6tK
+         +FyDnMGTYD11ELbAjaR4FxELuso6ubFAExB+Yc1gEMZB4IrA+RLFbDbCoolGds54jwnI
+         T0Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yNUDy6KyAQAbRWnSnSUxNJKiFT2fKondnpix9cjKDOY=;
-        b=cuHoxD7fSM7l5lqnXPaduF4bdO/ZOY1bo3YVE9zaZupn/0aMOUZT6454B87tnS7dvO
-         QPph62cFBlcmWBoW1b9gJv6JpHUstAAtsdhERztYcXZEhCexWjC74Fk53Bed0e5C2i4W
-         p+3bEsZCZqhFGmkr8ijj4IJdtB5fsVS9HnVNZCsvEymEwh8VuufjpSkcZRLiTtBIyg+X
-         n1aIo96MJYhL7uABXsgYRFsUZasKMpDsulbn0c+4Wuupya5xKnWNjtXa0G7L0+i7p5my
-         OkZ3JgONo2feK71N3GMVIW7sjk43cnFF319QVqO/ChFuAoaKQ1Mc6EFAh2hKfPvDO18i
-         fVQA==
-X-Gm-Message-State: AFqh2krleRh983HcFhyB737amvJRHHevv0D+d4rCp0jZelWjohEzDrsq
-        EEETo0NGp0ham/LlCS92XVsE5A==
-X-Google-Smtp-Source: AMrXdXulPcxFsVsyjyaJO/ymO6SL8ctVeJej39K1uFvkJaYf58YF6v4liYIPvKPOSVjRuSAyB8wPFw==
-X-Received: by 2002:a05:6e02:1a45:b0:302:392c:5878 with SMTP id u5-20020a056e021a4500b00302392c5878mr4409722ilv.13.1673976422085;
-        Tue, 17 Jan 2023 09:27:02 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id y9-20020a027309000000b0039e5cad0bebsm5703351jab.89.2023.01.17.09.27.01
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HMhRj55+FlBV8AnEx7lPTuRrB6YXNSp4LjzY65UiMzU=;
+        b=EQzudVyMu2ykBpF3BlX0oUpM84jptx79JQ+OFvCFeiLmtvzbwypZZQCKI6omPFLfig
+         qTytlUz8oKioWoe0yjswoY08qms3afHCWz3qQbtulUxOG+34RyuzbURz/ummhRX2u3SX
+         AcZ7YnFI7UCxSso6pCDtQzMRM3vEqpa9ICfqme0jYduQ/sjfj6sK1wbbfl8CtipVhxBd
+         Q8YCMx63g+e7hnvGDpjoRufbhi8Voz7ta5+/GZhWOJHZUgj26mjqXTzeeSzCdmEgD0fJ
+         RM2WMn4HvxSXGRNGme4UQm7wGptBBP4kJLq2pv2Td5sC05+iiiPK+0gO5zETKgP5Ckr/
+         PAOQ==
+X-Gm-Message-State: AFqh2kpY1/7g8TtRuFFXoBZMUd9jwHcV7ZLXPLkXxTreVjFwuKu7fehT
+        NpOj5D0rCJtm5NDHpRsKjINzow==
+X-Google-Smtp-Source: AMrXdXsZ5M/PaT4jLZnhd+vgeUw9SWN7Q+bjPS15BrBTwpini9J/Q0h5CT6wJmyRi25J8KtuhryzDQ==
+X-Received: by 2002:a1c:7312:0:b0:3d2:3eda:dd1 with SMTP id d18-20020a1c7312000000b003d23eda0dd1mr3746943wmb.17.1673976470471;
+        Tue, 17 Jan 2023 09:27:50 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u21-20020a7bc055000000b003d9aa76dc6asm49440264wmc.0.2023.01.17.09.27.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 09:27:01 -0800 (PST)
-Date:   Tue, 17 Jan 2023 17:27:01 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sc7280: Add cpu and llcc BWMON
- (=> interconnect issue)
-Message-ID: <Y8baZWlKB9vNGYJw@google.com>
-References: <20220902043511.17130-1-quic_rjendra@quicinc.com>
- <20220902043511.17130-5-quic_rjendra@quicinc.com>
- <Y8Ggh6RObbB1cxSS@google.com>
- <dc5487d8-d31e-28c6-07e8-8d1ff54a4ba4@linaro.org>
+        Tue, 17 Jan 2023 09:27:48 -0800 (PST)
+Message-ID: <6b62b95d-c8e9-527b-934e-b458d2e70d5e@linaro.org>
+Date:   Tue, 17 Jan 2023 18:27:46 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <dc5487d8-d31e-28c6-07e8-8d1ff54a4ba4@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 2/2] dt-bindings: mailbox: add Marvell MHU
+Content-Language: en-US
+To:     Wojciech Zmuda <wzmuda@marvell.com>, linux-kernel@vger.kernel.org
+Cc:     jassisinghbrar@gmail.com, robh+dt@kernel.org, sgoutham@marvell.com,
+        devicetree@vger.kernel.org
+References: <20230117171635.16739-1-wzmuda@marvell.com>
+ <20230117171635.16739-3-wzmuda@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230117171635.16739-3-wzmuda@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 15, 2023 at 04:13:40PM +0100, Krzysztof Kozlowski wrote:
-> On 13/01/2023 19:18, Matthias Kaehlcke wrote:
-> > Hi,
-> > 
-> > On Fri, Sep 02, 2022 at 10:05:11AM +0530, Rajendra Nayak wrote:
-> >> Add cpu and llcc BWMON nodes and their corresponding
-> >> OPP tables for sc7280 SoC.
-> >>
-> >> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > 
-> > I found that with a v6.1 kernel AOSS on sc7280 doesn't reach it's low
-> > power state during system. This can be observed on herobrine based
-> > boards on which the AP_SUSPEND signal should transition to 1 during
-> > system suspend. If it doesn't the Embedded Controller (EC) notices
-> > it and wakes the system up again.
-> > 
-> > Bisection points to this patch, the issue only occurs when
-> > CONFIG_QCOM_ICC_BWMON is *not* set. One might think the patch shouldn't
-> > have any impact at all when the driver is not enabled, but it does.
-> > 
-> > Debugging shows that the issue is interconnect related. A bare platform
-> > device is created for each bwmon devices, which results in the average
-> > and peak bandwidth of the interconnect link to be set 'initially' to
-> > INT_MAX. The driver is supposed to call icc_sync_state() during probe,
+On 17/01/2023 18:16, Wojciech Zmuda wrote:
+> Marvell Message Handling Unit is a mailbox controller present in
+> Marvell OcteonTx and OcteonTX2 SoC family.
 > 
-> This is for interconnect providers, not consumers.
-
-Ah, thanks for the clarification.
-
-Still, for the INT_MAX bandwidth setting remains in place unless the device
-is probed.
-
-> > which would set the initially bandwidths to 0 and determine the actually
-> > needed bandwidth. But since the driver isn't probed the initial
-> > bandwidths stay at INT_MAX.
-> > 
-> > This isn't actually an issue with this patch, but how the interconnect
-> > framework deals with devices that are registered on the bus, but aren't
-> > probed (yet). Not sure how this would be best fixed. Georgi, do you have
-> > any ideas?
+> Signed-off-by: Wojciech Zmuda <wzmuda@marvell.com>
+> ---
+>  .../bindings/mailbox/marvell,mhu.yaml         | 62 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
 > 
-> Why the device is not probed (yet)? If it is registered, it will come
-> soon during boot up.
+> diff --git a/Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml b/Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
+> new file mode 100644
+> index 000000000000..ace32a437af6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/marvell,mhu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Message Handling Unit
+> +
+> +maintainers:
+> +  - Sujeet Baranwal <sbaranwal@marvell.com>
+> +  - Sunil Goutham <sgoutham@marvell.com>
+> +  - Wojciech Bartczak <wbartczak@marvell.com>
+> +
+> +description:
+> +  The Control-Processors Cluster (CPC) provides Arm-platform specification
+> +  entities for managing the system. One of the CPC processors is the System
+> +  Control Processor (SCP). The SCP is responsible, among others, for booting
+> +  the chip, clock and power initialization, controlling power consumption
+> +  through DVFS, monitoring temperature sensors and controlling AVS. The SCP,
+> +  as each XCP, contains mailboxes for software-to-software communications.
+> +  Mailbox writes cause an interrupt to the local XCP core or to the AP.
+> +  This driver exposes AP-SCP Message Handling Unit to the system, providing
+> +  the mailbox communication mechanism to the system, with the intention
+> +  of plugging into the SCMI framework. It is designed to work with Marvell
+> +  OcteonTX and OcteonTX2-based platforms.
+> +  Mailbox has no other usage than SCMI communication. In case of
+> +  configurations running without SCMI support it should be disabled.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
 
-Because CONFIG_QCOM_ICC_BWMON is not enabled for the board in question (see
-above). It could be enabled as a short term mitigtion, however we shouldn't
-require drivers to be enabled just because the DT has a corresponding node.
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+
+Best regards,
+Krzysztof
+
