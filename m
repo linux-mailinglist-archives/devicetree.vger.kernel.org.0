@@ -2,181 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE90E66E897
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 22:39:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C95C866E896
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 22:39:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbjAQVj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 16:39:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54374 "EHLO
+        id S229446AbjAQVjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 16:39:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbjAQViT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 16:38:19 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 422FB39B93
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 12:01:36 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id d2so11660063wrp.8
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 12:01:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4NbgmQ7vwZWISWrpORFndGUj0Z1v8WzwxSlAH052uaI=;
-        b=DDkxuKKBdTiKhwMOyfxlHgaEFjJoxSsFSon4tpKtYWiAsylwRuduHnpWAlMh7TIu5d
-         JqTK48Ax6peub1bM63LMmpHukChbBB/fEKpUHCI8TQEHitR883aApOvxbn9GcUYY404e
-         hxvRfDMj+UEA1qyAmwDlCy3/b4IMHm7izEKK2kWEkxUrYpo5xea4jIWf0uvixsQYFvCJ
-         Q1z/tMAHGqN4VbeUl83nZXq/8peD0AQkZEXLLJ/hTLKSl/r7gFTQexzuItqI5ikTa/3P
-         S9JOc2oY4pBoatoJHqRi97IZGnSKr5vA1yYZMy6v+avnIRLUx7ORskp0qU+77zkVfIfr
-         W4JQ==
+        with ESMTP id S229880AbjAQVit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 16:38:49 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C86282E0E0;
+        Tue, 17 Jan 2023 12:04:39 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id r9so16121408oie.13;
+        Tue, 17 Jan 2023 12:04:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4NbgmQ7vwZWISWrpORFndGUj0Z1v8WzwxSlAH052uaI=;
-        b=1nRRLTuVGgGzBjE1SIdH0OzMPuS6MZrPlwJzLqGcPP02Dma0Mmqdb7QLa8CyfMVwcZ
-         H5cQe97dGUiWN9j+PVONxo0or7Rlu1cwMisPPMMBkaZywnM0NU0Dj+vESwxgiJK7M8mO
-         fzElb6AvqYIBiI+bTX84n8WPySAsg0VSmZn+sHMiou0TydTYtFFtEutHbw3tQZalwgfS
-         YblxPrntNW8T6uHiD60Y+XHhmz93Ud9oim/y+tMD347IZe7mGUawh7DMoJAukKugi77t
-         7mGChrvT8qUIskQtC1FH+xTzNkf1lwQ3p5cmOp4wLg9QyC6A6J6AvnKhmCHR5UR8Qila
-         OIWQ==
-X-Gm-Message-State: AFqh2kqdlMJRNWTNj0OMSLI4zt9khbct/oWPrhdRVc5l/Sex7F6bPm1j
-        jJdTWEBv5D+h+TUwTi6k/XPMNg==
-X-Google-Smtp-Source: AMrXdXs4vMDYW9Wv8LmQ84pxtZoBKU4CXfy3IowTrSQqP8YN9k1B4gP9qV3XvnQv4pX/+ICuhpLO4Q==
-X-Received: by 2002:a5d:50c9:0:b0:2bd:db42:36cd with SMTP id f9-20020a5d50c9000000b002bddb4236cdmr3825481wrt.0.1673985694939;
-        Tue, 17 Jan 2023 12:01:34 -0800 (PST)
-Received: from [192.168.0.15] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
-        by smtp.gmail.com with ESMTPSA id i15-20020a05600011cf00b00294176c2c01sm29185345wrx.86.2023.01.17.12.01.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 12:01:34 -0800 (PST)
-Message-ID: <b127bf23-8752-47be-d98e-4a61794a3c48@linaro.org>
-Date:   Tue, 17 Jan 2023 20:01:32 +0000
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aL+np8smkP7FSXt9qO9bmY6grgj8WYKwJKgXRY8ZBcU=;
+        b=ikTRkX1bA2UJb+Yquk92pvl+/JkbnFTqnuoQzfjNSwet1djDujiLrnDR/4Pgjtv/iC
+         BLXNrSOFcGfqhat9i1SMVDvl+WcDItVLVt58yGluaBRupDohY/Ov5sL3PppMusbL8iG2
+         mmaTyCCXuspGlDDiP0fN2viSG1grGKTbY2Ee2ZJhbCwJdmj/rwfTs3dtatAoGBXn/ub1
+         IDDMjbBwPN0tL6fldWAI+mUx14bFMnPapK00SUG5pbJIDkZCeNmncQ3NQ0mj8XWQTx5d
+         /c8JkN/fRs2GDbArVAhgb4Q1/4LLT3c+QdvbEPGizM1M8PMq7qtaiUNgfb3BZTb2Yt3S
+         znuw==
+X-Gm-Message-State: AFqh2koe45A99Z2DMe2sEk0yfgeP8MWa4esk7JFar/49HP2lz8gWTFYG
+        Imtwr6itI0xhZkp2Fx70nA==
+X-Google-Smtp-Source: AMrXdXvmzGoLs6M8Mi2uZIM7/ivg4qx44J6VbPcY9Vptlack77OOKL/RsfLrl5jEf5MiYZddcjILzg==
+X-Received: by 2002:aca:f1a:0:b0:36a:9706:665f with SMTP id 26-20020aca0f1a000000b0036a9706665fmr979417oip.10.1673985878974;
+        Tue, 17 Jan 2023 12:04:38 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r21-20020a9d7515000000b0068646611d0bsm1943619otk.44.2023.01.17.12.04.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 12:04:38 -0800 (PST)
+Received: (nullmailer pid 3546639 invoked by uid 1000);
+        Tue, 17 Jan 2023 20:04:37 -0000
+Date:   Tue, 17 Jan 2023 14:04:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Nishanth Menon <nm@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v3 1/1] dt-bindings: pinctrl: Update pinctrl-single to
+ use yaml
+Message-ID: <20230117200437.GA3538302-robh@kernel.org>
+References: <20230116071602.63788-1-tony@atomide.com>
+ <167388667378.596858.12053272103098373981.robh@kernel.org>
+ <CAL_JsqLQMkU-r=E2wmbgO9+PA=XxAeR2OC5isAYY701f6V+BOQ@mail.gmail.com>
+ <Y8WFIzElz8/pv4uy@atomide.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v6 4/6] arm64: dts: qcom: sm6125: Add UFS nodes
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lux Aliaga <they@mint.lgbt>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
-        bvanassche@acm.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
-        phone-devel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org
-References: <20230108195336.388349-1-they@mint.lgbt>
- <20230108195336.388349-5-they@mint.lgbt>
- <475d3f2f-114f-d6d2-89db-465ba7acd0d6@linaro.org>
- <f1f1337a-30cc-df3c-81d5-2daac61e874c@mint.lgbt>
- <PxopLVxLOIJ3_2bHt6pxk7OW4uY69s6KglHqShGI_CuUgDQFA_yn8HwD5gdoQpMpvYYqKXqVNhOQmwBQ6y0REQ==@protonmail.internalid>
- <51a8bb85-8fda-2d79-f753-9461316bae9e@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <51a8bb85-8fda-2d79-f753-9461316bae9e@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y8WFIzElz8/pv4uy@atomide.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11/01/2023 12:04, Konrad Dybcio wrote:
+On Mon, Jan 16, 2023 at 07:10:59PM +0200, Tony Lindgren wrote:
+> * Rob Herring <robh+dt@kernel.org> [230116 16:39]:
+> > I imagine you don't want to go change all these node names, so I'd
+> > make the schema accept them.
 > 
-> 
-> On 11.01.2023 03:53, Lux Aliaga wrote:
->>
->> On 09/01/2023 09:18, Konrad Dybcio wrote:
->>>
->>> On 8.01.2023 20:53, Lux Aliaga wrote:
->>>> Adds a UFS host controller node and its corresponding PHY to
->>>> the sm6125 platform.
->>>>
->>>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
->>>> ---
->>>>   arch/arm64/boot/dts/qcom/sm6125.dtsi | 57 ++++++++++++++++++++++++++++
->>>>   1 file changed, 57 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
->>>> index df5453fcf2b9..cec7071d5279 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
->>>> @@ -511,6 +511,63 @@ sdhc_2: mmc@4784000 {
->>>>               status = "disabled";
->>>>           };
->>>>   +        ufs_mem_hc: ufs@4804000 {
->>>> +            compatible = "qcom,sm6125-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
->>>> +            reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
->>> You need reg-names for ICE to probe, otherwise the second reg sits unused.
->>>
->>>> +            interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
->>>> +            phys = <&ufs_mem_phy>;
->>>> +            phy-names = "ufsphy";
->>>> +            lanes-per-direction = <1>;
->>>> +            #reset-cells = <1>;
->>>> +            resets = <&gcc GCC_UFS_PHY_BCR>;
->>>> +            reset-names = "rst";
->>>> +            iommus = <&apps_smmu 0x200 0x0>;
->>>> +
->>>> +            clock-names = "core_clk",
->>>> +                      "bus_aggr_clk",
->>>> +                      "iface_clk",
->>>> +                      "core_clk_unipro",
->>>> +                      "ref_clk",
->>>> +                      "tx_lane0_sync_clk",
->>>> +                      "rx_lane0_sync_clk",
->>>> +                      "ice_core_clk";
->>>> +            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
->>>> +                 <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>,
->>>> +                 <&gcc GCC_UFS_PHY_AHB_CLK>,
->>>> +                 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
->>>> +                 <&rpmcc RPM_SMD_XO_CLK_SRC>,
->>>> +                 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
->>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
->>>> +                 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
->>>> +            freq-table-hz = <50000000 240000000>,
->>>> +                    <0 0>,
->>>> +                    <0 0>,
->>>> +                    <37500000 150000000>,
->>>> +                    <0 0>,
->>>> +                    <0 0>,
->>>> +                    <0 0>,
->>>> +                    <75000000 300000000>;
->>>> +
->>>> +            status = "disabled";
->>>> +        };
->>>> +
->>>> +        ufs_mem_phy: phy@4807000 {
->>>> +            compatible = "qcom,sm6125-qmp-ufs-phy";
->>>> +            reg = <0x04807000 0x1c4>;
->>> Isn't this too small? Downstream says 0xdb8, but it's probably even bigger..
->> What do you think could help me find the new length of the registers? I tried 0x1000 and it probed just fine, but I'm not really sure until what extent I could push it.
-> The "true" values are probably only in documentation, which
-> I don't have.
+> Heh yeah, I was wondering about that too :) Some can be handled with a
+> regex, but there are still a lot of completely custom names. If you have
+> some preferred solution in mind, please let me know.
 
-This patch series uses the "new" DT layout, where there isn't a subnode
-to define the address ranges of the different components.
+If just allowing 'pins' anywhere in the name is not enough, you can 
+match on any other property with 'additionalProperties'. There's some 
+examples in pinctrl bindings.
 
-The reg size would be correct if it used the "legacy" DT layout.
+additionalProperties:
+  type: object
+  properties:
+    ...
 
-Confirming in downstream, 0xdb8 is the correct value (it's what DT uses
-there and the phy-qcom-ufs-qmp-v3-660 driver confirms the biggest
-register offset is PHY_BASE (0xc00) + PHY_SIZE (0x1b4) = 0xdb4 inclusive)
+Or use 'unevaluatedProperties' if there's properties defined behind a 
+$ref.
 
-I'd suggest going for that in your next revision Lux.
-> 
-> Konrad
->>
+There's also this hack, but I try to avoid it:
 
--- 
-Kind Regards,
-Caleb (they/them)
+patternProperties:
+ '.*':
+   if:
+     type: object
+   then:
+     ...
+
+
+Rob
