@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21B2B66E0AD
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:30:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C03EE66E0B3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:30:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbjAQOaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 09:30:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48434 "EHLO
+        id S232762AbjAQOaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 09:30:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232662AbjAQO3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:29:48 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1EF33E601
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:28:51 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id x36so10644874ede.13
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:28:51 -0800 (PST)
+        with ESMTP id S229730AbjAQO3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:29:50 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 428433C287
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:29:05 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id s21so1084917edi.12
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:29:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NaZ0IlVdh+q7MBEpI5jBa+K8Ee5vJI/lj2dgRFdnnfc=;
-        b=TunKgBrKl0nB1l1mnTlj9qfcrW7V7u2hmKrKebfgF7hNWS5OAtUPFGLW6NE4aRMG61
-         KgR6XPx76BJWkR/4/jxt6g1jNHayqp8cq6f3DZW6fpbsMuSKvQH4K6uLjaFGtAQQADbK
-         Rn/JMzaSFZM4eGJ6yvQIkFy4IkZzGkyxTIjuLMVudMn5N6BS8rD7sKbbH+c8YpAC0lel
-         hSxs7RUJ6yM+1TK/SUy/T9Flz5edcthPI/TsDvZKbb7Uipg7zJ4S2LaAaWns6zRDFZ1g
-         ODA7NJLDAteg/y2gsw77M6T8yRqynFSIH+fSD7cdCifYADENymasX9n25ZqLkSJ8uwKb
-         F4KA==
+        bh=4UGD3C9WKKhoLcns/YO+k60vwTruXIRCWksL33OjZZU=;
+        b=abmeYWOSlOCC0sm9Rn75XUSAgWCcUg+A6l5COGLADBxE0NlO8PyH1OPZQNvp61VOoX
+         f+ydVjTYmeQPoLmRP0nsPcE8HSbDzdWN1zBU2VOoKmZbtkeOOgRad3kyh3Ja94bCKWCh
+         j9H9C9WSPDWUjaPSn7PWUjeAU8kcZDVK/GQD/XuiOwnMaBYOEOh+FR+QRgkhGYex/UBJ
+         X9PtxP2VhMuABAjzxXJQMW14VcUB2lYwR/N3bpjgh7RzFVC7fTpqpCelIkeiIsFHjzfY
+         l6Il6TpAzqdv5UftkS6MWRsywpVOZmwtAsd79yosFw/9HbslH+1ifKrCbVfU2upyJLkW
+         TsYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NaZ0IlVdh+q7MBEpI5jBa+K8Ee5vJI/lj2dgRFdnnfc=;
-        b=xsa2CmAYpn1ataML3EnEoKa6EoOtKJob+OnGgMwOZFNxoOglffdJtYPhz9eprJKbdq
-         RjTk/hxoREmnFmOJQoLePYM1exd3IOdRhNL+rFM03OyGK/jLS0H5tfHRmPR+MJQVzTkV
-         94+NCq0CexGI8V89t8WwUmKmY5j9wdGRqhGDcKtKuLg5h2NSxDzkCy20mA1+5a3yyNkJ
-         8re/wv+/otOi17E0vZwjZFoNCp9UbgiCvrOyZ2Z6IgFkxt6jDQC2HcpuVlJk+JG0gH4O
-         VM6gbCHvVxNK+rD2EddjAcLgoV5xU0NezfQ9k467ZaARmzCX2Amr911hvT2iWob1B/ad
-         fjmQ==
-X-Gm-Message-State: AFqh2kq48YckC6MnHSUsXAj6M+JtvRn2I1jY0kJ5JwHKWGTOnCCq16Q9
-        f9l6euNeqHow4MdfFf6xAkAaWA==
-X-Google-Smtp-Source: AMrXdXsYfQvUo/LDJi+qTb01CAhI9LdxAJJZGKIxi9fU1dJzQV7GO0zUblV27hUr3bg/El7pIE+qeQ==
-X-Received: by 2002:a05:6402:1944:b0:49c:1fe4:9f17 with SMTP id f4-20020a056402194400b0049c1fe49f17mr13597246edz.37.1673965730355;
-        Tue, 17 Jan 2023 06:28:50 -0800 (PST)
+        bh=4UGD3C9WKKhoLcns/YO+k60vwTruXIRCWksL33OjZZU=;
+        b=xyBsOUebsLBQaksixbumg8qP3qdooFb3JATbTJYwfL1aKHJuNuYw6NtNq5lSjzdKxN
+         SxmoR0tSwDBKyY7tCP9Hald0XdxNmtfdA+7YmRNUFVVoAlJGCORrta/lNVMFx/wMR9em
+         hMwGcRIWBXr2vkSwv9mb7QdfOpLb0SpTzwj67uN6akCX7LGx8e27ELyM0FFMMdxGm3a5
+         K1AVXwNeK6psAbHgydl+lgMVRKnwFjAs5Qgu8Z0QfcHDCj1mYw9kjLXCTnJPpr+YkEMu
+         sytJhclly3c9LJta+DtWiTgXNAPo2Gdva1hn+WNYzL+4b800uhSTsLzg791cKe0NM0lo
+         5dkg==
+X-Gm-Message-State: AFqh2kobZ/o3SSIQ1oJ+X5E5rfbVdLnO7Rp9U3owYO/j8s11Q1N5SOIV
+        o43o0kg54SLjnj1XG4GlDJU7Dw==
+X-Google-Smtp-Source: AMrXdXvxf9/ZCk1lQ4i0cJ8vaYUkXgZ2w4SlStRI/xVCppgh3t+Ic79lLXRd+Ny5+lB/YlZcgccXJw==
+X-Received: by 2002:aa7:d7d9:0:b0:478:5688:7c9f with SMTP id e25-20020aa7d7d9000000b0047856887c9fmr12926771eds.29.1673965743743;
+        Tue, 17 Jan 2023 06:29:03 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id gh9-20020a170906e08900b0086f4b8f9e42sm3384284ejb.65.2023.01.17.06.28.49
+        by smtp.gmail.com with ESMTPSA id d3-20020aa7d5c3000000b004835bd8dfe5sm12988233eds.35.2023.01.17.06.29.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 06:28:50 -0800 (PST)
-Message-ID: <5d15d855-c239-7d4c-34eb-726577d53546@linaro.org>
-Date:   Tue, 17 Jan 2023 16:28:48 +0200
+        Tue, 17 Jan 2023 06:29:03 -0800 (PST)
+Message-ID: <49481b50-b68b-3c77-e398-8b0ae617ab06@linaro.org>
+Date:   Tue, 17 Jan 2023 16:29:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v4 2/6] phy: qcom-qmp: qserdes-com: Add v6 register
- offsets
+Subject: Re: [PATCH v4 5/6] phy: qcom-qmp: pcs-ufs: Add v6 register offsets
 Content-Language: en-GB
 To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -69,9 +68,9 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Johan Hovold <johan@kernel.org>
 References: <20230117142015.509675-1-abel.vesa@linaro.org>
- <20230117142015.509675-3-abel.vesa@linaro.org>
+ <20230117142015.509675-6-abel.vesa@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230117142015.509675-3-abel.vesa@linaro.org>
+In-Reply-To: <20230117142015.509675-6-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,15 +85,15 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 17/01/2023 16:20, Abel Vesa wrote:
 > The new SM8550 SoC bumps up the HW version of QMP phy to v6 for USB,
-> UFS and PCIE g3x2. Add the new qserdes com offsets in a dedicated
+> UFS and PCIE g3x2. Add the new PCS UFS specific offsets in a dedicated
 > header file.
 > 
 > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->   .../qualcomm/phy-qcom-qmp-qserdes-com-v6.h    | 82 +++++++++++++++++++
->   drivers/phy/qualcomm/phy-qcom-qmp.h           |  2 +
->   2 files changed, 84 insertions(+)
->   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h
+>   .../phy/qualcomm/phy-qcom-qmp-pcs-ufs-v6.h    | 31 +++++++++++++++++++
+>   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c       |  1 +
+>   2 files changed, 32 insertions(+)
+>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-ufs-v6.h
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
