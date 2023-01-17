@@ -2,53 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83170670C09
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 23:48:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DDD4670B87
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 23:17:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbjAQWsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 17:48:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46190 "EHLO
+        id S230023AbjAQWRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 17:17:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbjAQWqy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 17:46:54 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85ADCB4E14
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 13:49:04 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pHtog-0004mh-3v; Tue, 17 Jan 2023 22:48:26 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pHtoa-006lhq-DJ; Tue, 17 Jan 2023 22:48:20 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pHtoZ-00DhVz-MN; Tue, 17 Jan 2023 22:48:19 +0100
-Date:   Tue, 17 Jan 2023 22:48:06 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        lee@kernel.org, thierry.reding@gmail.com, corbet@lwn.net,
-        p.zabel@pengutronix.de, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [v4 0/5] Support pwm/tach driver for aspeed ast26xx
-Message-ID: <20230117214806.ptnnhgxmlvyzjdzp@pengutronix.de>
-References: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
+        with ESMTP id S229495AbjAQWRG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 17:17:06 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B93E3EFFD
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 13:58:41 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id ss4so71442760ejb.11
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 13:58:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=txGdDzUac92pqSWXdQlchfy3R9bwdZSF7lrIlBLtnf0=;
+        b=zvLJC9262oshfH0qHkMFmMxm+AP+JnbyhoYphCttXndwDgpsU++Fh8HyLEzzbV/Tcg
+         GM7xOF0MQMeryLO78JsF0m+RFvR5S/LaM5g90QTQmw/JTmzWVdySK/6Z2N8XqK6ebrhK
+         BgFgDSgzTejngffKJ4290DX/2wbmH1YIWgZiOXYkdGHF8IXTxvJ7yAj7JPT0h0o2xRGV
+         VlePIyV1n2ka5uE4Hjo2SV+QwKPZ50wdZ5daSRGRzyEmz7fHTodemNZmQcZQMDvTedDb
+         gyv+hyDLjyUorL5fw2Q4Q3iKSJZ7OR0yT6LK+V5MHk0YUdZBkQ5TZVxezdmD2wGt1W4o
+         mQIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=txGdDzUac92pqSWXdQlchfy3R9bwdZSF7lrIlBLtnf0=;
+        b=iXOKQ0Y5YABi0EttW+cu3a8SJGzVqAtHlq5gekW7ktwXpH+VipdQnnLfJ6DavtQ4Ml
+         tc0bGbehTtSLkqF/7oTSP+iffJzqHz/hueztfozUfjuooZj3mlATYTAGbtp73wAdsbw8
+         VidbokG3kP0Nk4oogZuBJd87l+yDnOo+O6iHwL8wDcuiCR50ZodV8YbTegrbJ3zumFE+
+         Vtf9gUrDSjo3Rm1BzvkaeQQ9Prt2gCGTCh4y1R2OMTAaMDiZhhW5SCbajhwZP5sleB+a
+         WSI+Or7DFZohMKiWK9hanCVJ0bLqRLFdyUUj6yV/Hxm9tdAvoCpXVIXluBgvM4WkZ/bP
+         wTSQ==
+X-Gm-Message-State: AFqh2krZxT+xOEMzE5EVIfMm4GEFRNzDFJlFkxtgD3xWhfQptp/sntW2
+        1TjDDgV8Ct8QelPqbAC64YC9wA==
+X-Google-Smtp-Source: AMrXdXsKVD6gHfiuaL4Os5vPq+eVVULRrsLQxcntuwbs7qCmWl/JkyRQsk1P2JGnim+usLSjboxZBQ==
+X-Received: by 2002:a17:907:1759:b0:85e:c4e4:cfbf with SMTP id lf25-20020a170907175900b0085ec4e4cfbfmr4575430ejc.15.1673992719265;
+        Tue, 17 Jan 2023 13:58:39 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id kz11-20020a17090777cb00b007aece68483csm13772544ejc.193.2023.01.17.13.58.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 13:58:38 -0800 (PST)
+Message-ID: <3579f89a-895c-d0a0-ce86-4e66881f0c99@linaro.org>
+Date:   Tue, 17 Jan 2023 23:58:37 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="y5jqbiyht4hvalnt"
-Content-Disposition: inline
-In-Reply-To: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: mailbox: qcom: correct the list of
+ platforms using clocks
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230113090739.45805-1-dmitry.baryshkov@linaro.org>
+ <20230113090739.45805-2-dmitry.baryshkov@linaro.org>
+ <aa5598ee-0dd1-caa7-c60d-5a409f039713@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <aa5598ee-0dd1-caa7-c60d-5a409f039713@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,42 +85,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 17/01/2023 13:34, Krzysztof Kozlowski wrote:
+> On 13/01/2023 10:07, Dmitry Baryshkov wrote:
+>> Only three platforms require `pll' and `aux' clocks: msm8916, msm8939
+>> and qcs404. Correct the list of platforms in the corresponding clause.
+>>
+>> Fixes: 0d17014e9189 ("dt-bindings: mailbox: Add binding for SDX55 APCS")
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../bindings/mailbox/qcom,apcs-kpss-global.yaml          | 9 +--------
+>>   1 file changed, 1 insertion(+), 8 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+>> index 943f9472ae10..b8a44ef0540f 100644
+>> --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+>> +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+>> @@ -71,15 +71,8 @@ allOf:
+>>           compatible:
+>>             enum:
+>>               - qcom,msm8916-apcs-kpss-global
+>> -            - qcom,msm8994-apcs-kpss-global
+>> -            - qcom,msm8996-apcs-hmss-global
+>> -            - qcom,msm8998-apcs-hmss-global
+>> +            - qcom,msm8939-apcs-kpss-global
+>>               - qcom,qcs404-apcs-apps-global
+>> -            - qcom,sc7180-apss-shared
+>> -            - qcom,sdm660-apcs-hmss-global
+>> -            - qcom,sdm845-apss-shared
+>> -            - qcom,sm6125-apcs-hmss-global
+>> -            - qcom,sm8150-apss-shared
+> 
+> And what in other case? Any clocks? They should be moved to their own if
+> forbidding the clocks and clock-names.
 
---y5jqbiyht4hvalnt
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Ack
 
-Hello Billy,
+-- 
+With best wishes
+Dmitry
 
-I wonder if you address the feedback you got for this series. I think
-there are no big issues left, are there?
-
-There is only one patch left open in the PWM patchwork (i.e. the patch
-implementing the driver that already has my Reviewed-by tag). I'll
-discard that one, too, as "changes requested" and hope you will send a
-v5.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---y5jqbiyht4hvalnt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmPHF5MACgkQwfwUeK3K
-7Am6Rgf/dyL2yHQajtxCDMIEYXoOPD0fs1U+AFUQZWILgnBky3GTsjqPb+iRF0Zr
-w+4QERyKzgxAyfJE3EptEtnxjBOPWZ1JKx1tBpJDsEBem7ew5QmjSZ9vX28jfcaa
-NR8HzbJdZKOdM/Brmd3jCKGNj63CYH8rD0CW4mUf07oVvw55j6g1ZULwVvHnOGse
-DG9GpBgzzhaIPYapwlkhIdfeESU84fWfQLlOxdcNxR4/8OXDCO2lUbzXULBVbjUe
-lzBlQzwJk2bQegMSAIXRIACskEMbmoMY6RBKJCJUEniyIcPyJ8//YGW1pHq8fnRO
-xriqAmZs2kKuyqloDKo4g/GVvGVikQ==
-=FqEI
------END PGP SIGNATURE-----
-
---y5jqbiyht4hvalnt--
