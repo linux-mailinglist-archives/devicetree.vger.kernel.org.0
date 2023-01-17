@@ -2,87 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54DFF66DE9A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:17:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 716AF66DEAE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:21:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236386AbjAQNRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 08:17:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53890 "EHLO
+        id S236853AbjAQNU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 08:20:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236214AbjAQNRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:17:39 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1BDE39CE1;
-        Tue, 17 Jan 2023 05:17:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=l5GYnfPodnVQISc2fnNDGCN36ORY7+q/Fybf955ZUzQ=; b=ppMz7mT+E+OJ1osQd5kVSnDKEh
-        TjanOtc9ebQ1mozYdxtE2R6BHuJfL53SSOb0AY9bj01xhsvx9T5n2tisAXPya4S6Gn1MucmLy5Xhl
-        Jjwfu6P6xpEpFZ8xdRqSz1IkJUMN4qzibVn9ep2AaN5/PsqfWU295a4o1+W7M3OY1EVk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pHlpi-002K7h-Vo; Tue, 17 Jan 2023 14:16:58 +0100
-Date:   Tue, 17 Jan 2023 14:16:58 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     yanhong wang <yanhong.wang@starfivetech.com>
-Cc:     "Frank.Sae" <Frank.Sae@motor-comm.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237062AbjAQNU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:20:57 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B048D39B96;
+        Tue, 17 Jan 2023 05:20:55 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id v10so43809136edi.8;
+        Tue, 17 Jan 2023 05:20:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gAENUVi4hhqvr1Q4evBoJVIdY6Hm7+5BmFRw2zMQP3E=;
+        b=lFCutm1+3XZlFSKBub+eKQ6GZK2WVaZXlDPfgogV3UltlZYGCKmrEWjx9CKuBamN2P
+         6NMhyLip/09+ysj7VHQ1qxVybSVi2erPX2QfA6msuWn0fXANMpmrgJ+CiC6FAcjx2R0F
+         ZZG+K9Ocacne5RqSFNqgGwCYL5xA35tiWlCqYrIm1HrePGl1awCC6RgM0BIO4IpTswO7
+         mrQP8Ywo+7NLn7c75JQfMhyCOKQq5SvmLohNMWS+XJYLffoM/xpFyOyIVcEjt8qCpK/z
+         dnNq+94TRF294EQ5USVL8qTqXp19QW/lOC1uFPysXNWOTQbjnAzToFrgDMUtPj/4Tdc/
+         n5uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gAENUVi4hhqvr1Q4evBoJVIdY6Hm7+5BmFRw2zMQP3E=;
+        b=NmVFxiCeCiUBUlhayYK+bOhho1B0uwgyi1/HZ4UrlDJHwC2fqNBrGGjeqyUiDBfi7i
+         G4N9vWuacuU3upPRKC7QUXHPnsoDpunkFrOf39uHmAwaAZCWyKR7rPHciyGlNN0EVusL
+         7N7D3cuJXq2txj6fCzjBUFDerh3lROiSnyCfQ9wMqizvk1h0KtzVz1z0260uUOlP/+FC
+         ZCC0QSZtq6u2cnI8nfVA7XN3ShNnLvzLe76CuXAJJn3GIVKhueOBaYZ3h8T7N/vjDkeN
+         SOvnxq1CSLj6EG619BI2RAupz5Z7Hf8ggYVpJJtbcP53dWuw7GNryBaREv88bZWDFAYr
+         L/rg==
+X-Gm-Message-State: AFqh2koWXKaKyBESBxbvyAk2mPRe0LQW2SrfrLpzG9vsKmhJVJvAkLVZ
+        w+QHdw0GD+FLRQchFbrHeNo=
+X-Google-Smtp-Source: AMrXdXtQXvor5PlCUzsmPWyNvzJ1vB0kNUSsCYvtw03M0cG5pZjRA35SwZ7Nj8g2AZQi1hcivGI/hQ==
+X-Received: by 2002:a05:6402:e01:b0:49b:65cc:faa6 with SMTP id h1-20020a0564020e0100b0049b65ccfaa6mr3604962edh.16.1673961654011;
+        Tue, 17 Jan 2023 05:20:54 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ed6-20020a056402294600b00499e5659988sm7471427edb.68.2023.01.17.05.20.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 05:20:53 -0800 (PST)
+Date:   Tue, 17 Jan 2023 14:20:51 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
-        hua.sun@motor-comm.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v1 1/3] dt-bindings: net: Add Motorcomm yt8xxx
- ethernet phy Driver bindings
-Message-ID: <Y8afyunHKYDNMbRI@lunn.ch>
-References: <20230105073024.8390-1-Frank.Sae@motor-comm.com>
- <20230105073024.8390-2-Frank.Sae@motor-comm.com>
- <Y7bN4vJXMi66FF6v@lunn.ch>
- <e762c7ac-63e7-a86e-3e3f-5c8a450b25b0@motor-comm.com>
- <Y7goXXiRBE6XHuCc@lunn.ch>
- <83fd7a69-7e6a-ab93-b05a-4eba8af4d245@motor-comm.com>
- <Y760k6/pKdjwu1fU@lunn.ch>
- <9b047a2a-ccd8-6079-efbf-5cb880bf5044@starfivetech.com>
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH V2 1/2] arm64: tegra: Populate address/size cells for
+ Tegra234 I2C
+Message-ID: <Y8ags26lApi2xINF@orome>
+References: <20230116120626.55942-1-jonathanh@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="7djJaBeADaPdS+tF"
 Content-Disposition: inline
-In-Reply-To: <9b047a2a-ccd8-6079-efbf-5cb880bf5044@starfivetech.com>
+In-Reply-To: <20230116120626.55942-1-jonathanh@nvidia.com>
+User-Agent: Mutt/2.2.9 (2022-11-12)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Hi Andrew, i'm an engineer from StarFive Technology Co.
-> 
-> This configuration is mainly to adapt to VF2 with JH7110 SoC.
-> This is a defect in the design of JH7110. Only the basic delay 
-> configuration of PHY can't meet the delay needs of JH7110,
-> must with the configuration of tx-clk-x-inverted together can
-> gmac work normally. Otherwise, gmac cannot work normally at 
-> different rates. JH7110 has been taped and cannot be modified 
-> in design, so it can only be corrected on software.
 
-So you have a choice of one PHY, since i don't know of any other PHY
-with this capability. I hope this is well documented, since PHYs tend
-to be considered interchangeable, use whatever is currently the
-cheapest. And i assume you will fix the MAC for the next version of
-the silicon?
+--7djJaBeADaPdS+tF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-So all these clock invert properties are fine.
+On Mon, Jan 16, 2023 at 12:06:25PM +0000, Jon Hunter wrote:
+> Populate the address and size cells properties for the I2C devices on
+> Tegra234.
+>=20
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+> Changes V1->V2: Added address/size cells for i2c@c240000
+>=20
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 
-I will take another look at the delay property..
+Both patches applied, though I had to reshuffle some of the regulators.
+They should always be listed after the nodes with unit-addresses.
 
-  Andrew
+Thanks,
+Thierry
+
+--7djJaBeADaPdS+tF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPGoLEACgkQ3SOs138+
+s6E+jA//dTqWoyJNJouBPI05hn4hSrhaCBe2Tr67FdKpax86R3/NTrvnpFqC9t/W
+IUfnjHUSYpIlMLbIVN326RB8EF2f3m+muwy+P6ZSe142os9q1CtS7qt1MsKRTtma
+BbamcWGZ8T/J1dv/xfjCNmTpVIuGJI1JMBhVowY7L4AgiX48EYijEhZ4tijtZeNh
+QMUBYSsdFjGeqWsEiCayz4oNmIwSxNwUfVI55UqjOsXpm6kWYBMfsZFmg5cuL07e
+DDv5p9Aof94XF8Y/RDSGk+MDPOYTwQbYD9ph4sD2ImtcSIEKegakB3LvgKogkWUc
+zHcMVg5ez+tn+6TaSvUDPSbZ5ZN8ToXTB7LwOJcKPmjshbFtcBaYE8owFKpT/q/n
+j4/IH1z0PYfvbIlB5N6wT887emKreU52Pu6NVizxwJ7RleQ8fx0MkRc/B2C+/Qg7
+Fx9elxewiKp7aXftO9ic37H2Ma0I4Iee37arau6BH44JZJB765hQ1Td32Okh8yG/
+f7+cE7oqI/ehwg9nR8MGmcI2i9UCpq2jipI74gN9I/sYkbbnF2AjeYNVGi6PRSQl
+bC15FtGt95TCDNMkqEf3/BsHOvhknudOooS7ZDaFock9O2jOzeANFO5dLt760ipY
+3/N55iwm0tbDEGa0NDDg6QnvRVd84gLbhTTvEiywVnhkl9xlp3k=
+=r0S9
+-----END PGP SIGNATURE-----
+
+--7djJaBeADaPdS+tF--
