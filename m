@@ -2,128 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B40ED66D8B2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:52:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB56F66D8DD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:56:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235853AbjAQIwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 03:52:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54610 "EHLO
+        id S235462AbjAQI41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 03:56:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235576AbjAQIwa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:52:30 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD722CFED
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:51:46 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so23853139wms.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:51:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=expaoc4a1kUuojomtX/CBeI3GGcWe8iG4JOwm7tA2Ms=;
-        b=GCBuP2ME3LEmq3d288LClfQ+DDoceb7qejVUCKci1Io3+3RT81PEq0YzI+C1ZzwsT5
-         6WyQCYKa7CiON2FBCWKBC+ZrjoPsaFO5JDZTtLTblFsb0I90j7ED6EsBVKGyb9eMbfjW
-         zL/aWSzykK4zTaUc4GgVZs/QUjdTlpK4BCVtJBhNAGmInT8k0Gh9CUOdgUMk/69WsWqI
-         T0liqYDKLBb7PqCc5cJAcgK/89PPlPM8ZoGDAHIjm6wK+/lYKZGo9fhmW0b7V9ja1joI
-         iA76KK54eIYL7LNUe07Mnj7MuYHzX2Q2/qBEMEkGW/HVJ9ZGhJpKcr5egZmElAtKO/yS
-         J6aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=expaoc4a1kUuojomtX/CBeI3GGcWe8iG4JOwm7tA2Ms=;
-        b=OBLzPqWgh7QO1cIE46Am9IpblDS8P4b7E6MsbebHKUaf5yMk+Xc2en/pi+JQl4oWWZ
-         Faja80SsHjy4VwV4/EMOpwzZxbGHmcBICLzpJwl2Zlsw3wz54rqfo79IP5lAXWCKMJla
-         4zV8rTCbAUi6t9kVjUkrir2X+M6YdwmJf9ccHMIcIIFyWdedeuTm1j40BpvxtVGmPe0O
-         xfBhItAaPlENqKV1FJHOkijELA+elm/yw6zJVHYRSWrLFJuMz5rZC5h2AuwkZcZOGo/N
-         B9HEbXi0VW+5YMUHL0OUezePGv4H0AWsL1Lxyct2omyr2aAJPRS0ApK64ozVo0uFWOrO
-         sU5w==
-X-Gm-Message-State: AFqh2kp56VfJ9koFhbPcYtdcIoKh1J18wC9Tvx7K35MMNJfYvVaBwzSy
-        q5HLnWWJv+LtWSiKiDdPxY7VLw==
-X-Google-Smtp-Source: AMrXdXueXFpF3XR7NYfg4P+jSjPuEvD2oSEf8abJxzrHhstw07/IPA3YDM4cBB/MjzxBAzfHOuxzSA==
-X-Received: by 2002:a05:600c:5006:b0:3da:f92a:5446 with SMTP id n6-20020a05600c500600b003daf92a5446mr2418854wmr.27.1673945504969;
-        Tue, 17 Jan 2023 00:51:44 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h19-20020a05600c351300b003d9a86a13bfsm39331066wmq.28.2023.01.17.00.51.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 00:51:44 -0800 (PST)
-Message-ID: <ee9ef65b-38c6-2283-b1e7-abf49abdccd6@linaro.org>
-Date:   Tue, 17 Jan 2023 09:51:42 +0100
+        with ESMTP id S236176AbjAQI4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:56:06 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2049F525D;
+        Tue, 17 Jan 2023 00:56:00 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2BB276602DEA;
+        Tue, 17 Jan 2023 08:55:58 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1673945758;
+        bh=1l8bRtve9AuPClri5xPXP0TG5XKpU9LVLc3BXtynT2A=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=TydjTD6Rj/FCxeBP/vVDTukf3FoK86aZv3JisYKUf+jzXnsGdqSRz2OqzPRF8EuJT
+         SWOlkcXU4EzKuuWy6429rVrpRC98rTsuNzsvjTZCCmBIaBRyTwJdB/gCj7+POLRrHi
+         shLx/I+Gxr37qOy9bzpHOHpb+cKbEv3D+89NdEGZ3KRy79Fx1VsfXwUaF21z90kEqY
+         xLus8/u6Sx63dh/5tBJPSJDuBc8ORn6IM3WgC+eJ5F56+8wnsQQe9av5HT3sS+s+v1
+         DYwQuMUSvDkbCw2rtdDN739bkHny8za/Nm7dH6NImgNgTuFk3uAE2EKWV5ZdBAB71R
+         4hBoLxlsD0Zqw==
+Message-ID: <a2fd85fd-c325-043b-a6d5-10969c4eb34b@collabora.com>
+Date:   Tue, 17 Jan 2023 09:55:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [RFC PATCH] regulator: dt-bindings: qcom-labibb: Allow
- regulator-common properties
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v3 03/11] arm64: dts: mt8195: Add SCP core 1 node
+To:     =?UTF-8?B?VGluZ0hhbiBTaGVuICjmsojlu7fnv7Ap?= 
+        <TingHan.Shen@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= 
+        <tiffany.lin@mediatek.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
+        <Yunfei.Dong@mediatek.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "andersson@kernel.org" <andersson@kernel.org>,
+        =?UTF-8?B?QW5kcmV3LUNUIENoZW4gKOmZs+aZuui/qik=?= 
+        <Andrew-CT.Chen@mediatek.com>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>
+Cc:     "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20220927025606.26673-1-tinghan.shen@mediatek.com>
+ <20220927025606.26673-4-tinghan.shen@mediatek.com>
+ <cbed65b6-bd7c-b750-ac8e-504fe143a804@collabora.com>
+ <52e3bf53a6197f5b42724d7c5e706781ae8a6e56.camel@mediatek.com>
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230116092502.71146-1-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230116092502.71146-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <52e3bf53a6197f5b42724d7c5e706781ae8a6e56.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 10:25, Konrad Dybcio wrote:
-> Allow regulator-common properties on lab/ibb regulators, such as
-> regulator-always-on, etc.
-
-Are these proper regulators? If so this looks sensible. Why calling it
-RFC? What is here questionable?
-
+Il 17/01/23 09:19, TingHan Shen (沈廷翰) ha scritto:
+> On Tue, 2022-09-27 at 13:01 +0200, AngeloGioacchino Del Regno wrote:
+>> Il 27/09/22 04:55, Tinghan Shen ha scritto:
+>>> Add the 2nd core(core 1) of MT8195 dual-core SCP to devicetree file.
+>>> Reserve some SRAM spaces for the core 1 image.
+>>>
+>>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+>>> ---
+>>>    arch/arm64/boot/dts/mediatek/mt8195.dtsi | 14 +++++++++++++-
+>>>    1 file changed, 13 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> index 905d1a90b406..48d457bd39b8 100644
+>>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> @@ -760,12 +760,24 @@
+>>>    
+>>>    		scp: scp@10500000 {
+>>>    			compatible = "mediatek,mt8195-scp";
+>>> -			reg = <0 0x10500000 0 0x100000>,
+>>> +			reg = <0 0x10500000 0 0xa0000>,
+>>>    			      <0 0x10720000 0 0xe0000>,
+>>>    			      <0 0x10700000 0 0x8000>;
+>>>    			reg-names = "sram", "cfg", "l1tcm";
+>>>    			interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
+>>>    			status = "disabled";
+>>> +
+>>> +			#address-cells = <1>;
+>>> +			#size-cells = <1>;
+>>> +			ranges = <0x105a0000 0 0x105a0000 0x20000>;
+>>> +
+>>> +			scp_c1: scp-c1@105a0000 {
+>>> +				compatible = "mediatek,mt8195-scp-core";
+>>> +				reg = <0x105a0000 0x20000>;
+>>> +				reg-names = "sram";
+>>> +				interrupts = <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH 0>;
+>>> +				status = "disabled";
+>>> +			};
+>>
+>> I think that the best way of describing a dual-core SCP in devicetree would
+>> be either something like:
+>>
+>> scp: scp@10500000 {
+>> 	compatible = "mediatek,mt8195-scp";
+>> 	reg = <0 0x10500000 0 0xa0000>, <0 0x105a0000 0 0x20000>,
+>> 	      <0 0x10720000 0 0xe0000>, <0 0x10700000 0 0x8000>;
+>> 	reg-names = "sram", "sram-c1", "cfg", "l1tcm";
+>> 	interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>,
+>> 		     <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH 0>;
+>> 	status = "disabled";
+>> };
+>>
+>> ...but that may pose an issue when trying to assign different (or more instances
+>> of the same) subnode(s) to each core... for which, I'd be more for something like:
+>>
+>> scp: scp@10500000 {
+>> 	compatible = "mediatek,mt8195-scp";
+>> 	reg = <0 0x10720000 0 0xe0000>, <0 0x10700000 0 0x8000>;
+>> 	reg-names = "cfg", "l1tcm";
+>> 	#address-cells = <1>;
+>> 	#size-cells = <1>;
+>> 	ranges = <0 0 0x10500000 0x100000>;
+>> 	status = "disabled";
+>>
+>> 	scp_c0: scp-core@0 {
+>> 		compatible = "mediatek,mt8195-scp-core";
+>> 		reg = <0x0 0xa0000>;
+>> 		reg-names = "sram";
+>> 		interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
+>> 	};
+>>
+>> 	scp_c1: scp-core@a0000 {
+>> 		compatible = "mediatek,mt8195-scp-core";
+>> 		reg = <0xa0000 0x20000>;
+>> 		reg-names = "sram";
+>> 		interrupts = <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH 0>;
+>> 	};
+>> };
+>>
+>> Regards,
+>> Angelo
+>>
+>>
+> Hi Angelo,
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../bindings/regulator/qcom-labibb-regulator.yaml           | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> I'm thinking about identifying the cores by the order of the sub nodes,
+> i.e. core 0 must be the first sub node and core 1 must be the second sub node,
+> because the scp cores in the example have the same compatible name.
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
-> index f97b8083678f..c0be7d5a6d40 100644
-> --- a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
-> @@ -20,7 +20,8 @@ properties:
->  
->    lab:
->      type: object
-> -    additionalProperties: false
-> +    $ref: "regulator.yaml#"
+> I'm hesitant to make the sub nodes appear in a certain order. Is it appropriate?
+> Or, would it be more readable to create a new core id property? Or utilizing
+> different compatble strings for cores? I would appreciat it if you could share your opinion.
+> 
+> 
 
-Drop quotes.
+Assuming that in a future >2 cores architecture only the first core, which I will
+call "core 0" for commodity, will have "special treatment" and core 1, 2, 3...N
+will always be "interchangeable", I think that something like `mediatek,scp-leader`
+would work to identify the first core.
 
-> +    unevaluatedProperties: false
->  
->      properties:
->        qcom,soft-start-us:
-> @@ -46,7 +47,8 @@ properties:
->  
->    ibb:
->      type: object
-> -    additionalProperties: false
-> +    $ref: "regulator.yaml#"
-
-Drop quotes.
-
-> +    unevaluatedProperties: false
->  
->      properties:
->        qcom,discharge-resistor-kohms:
-
-Best regards,
-Krzysztof
-
+Cheers!
+Angelo
