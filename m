@@ -2,139 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDFB666D59A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 06:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D40E066D5A6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 06:36:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235063AbjAQF3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 00:29:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41972 "EHLO
+        id S235150AbjAQFgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 00:36:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235177AbjAQF3C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 00:29:02 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB039233D2;
-        Mon, 16 Jan 2023 21:29:01 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30H5Si1c040614;
-        Mon, 16 Jan 2023 23:28:44 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673933324;
-        bh=m6wYalfTMNF3q/k6hE7vf1IFXNcR4EAEmeW5euyuYvM=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=RKXAy2bbS6FTxJddeKuTqFdawGMytEIgbEVb57Z7Kz5Yz7TMI0HwTKNxkM2ZR12e5
-         b96HQIyDjXWFuy2la5tSTy/6q/3NPo8c1y9vYa2xxLk9BuWaqJxL2jCKeX5mG5pl2d
-         edebBk92rm2y4rAJ4HNui10ccs54MtlZ64COODcQ=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30H5Siwr124918
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 16 Jan 2023 23:28:44 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 16
- Jan 2023 23:28:44 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 16 Jan 2023 23:28:44 -0600
-Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30H5Sdj1093170;
-        Mon, 16 Jan 2023 23:28:39 -0600
-Message-ID: <566700c6-df9b-739b-81ff-8745eea10ff3@ti.com>
-Date:   Tue, 17 Jan 2023 10:58:38 +0530
+        with ESMTP id S235245AbjAQFgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 00:36:21 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1473F17CD4;
+        Mon, 16 Jan 2023 21:36:19 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A0A97B80E76;
+        Tue, 17 Jan 2023 05:36:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A99BC433F0;
+        Tue, 17 Jan 2023 05:36:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673933777;
+        bh=asJm1FEO3RCTI9yXgHpd6dK9DTZntJ1KAbCE9ko3y+Y=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=IcYiayCbWMGTTFIh0EEe0exejTDmWE9l0RjFiqBj98UmqkCalRXE3C4omasKau9Bn
+         jByxdAKp/url4C9UtT8N3buxBDAVUl8pIhA0cyyfCncNXwsME08M3yDSzL6wbMSs2l
+         8Z+CLVvKCSlRGs2954djFxzzG43Tk16nTxCB1S/yrGKJ/Ie8X6pmznF8r+XMw9iXzO
+         Vx6yd0zWBVruK3dFlS1Q0+nXYxeK7C/8IJlgmKyM14LrsXfzEdViJwcMpolYOCKzG8
+         0Cf5w5VIXYfPR7JGSYS01vSKylK5D5BxdQpZ4s8Dy7Ja5leb0RXU17tcz1dXIjH8kp
+         i2jJpYQEnpdZQ==
+Date:   Tue, 17 Jan 2023 11:06:12 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "phy: qualcomm: usb28nm: Add MDM9607 init
+ sequence"
+Message-ID: <Y8YzzCEqGi3m9fWM@matsya>
+References: <20221214223733.648167-1-marijn.suijten@somainline.org>
+ <Y8GY51Cfkj7o1MJs@matsya>
+ <20230116203549.5jzd2olxua662n6w@SoMainline.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Roger Quadros <rogerq@kernel.org>, <nm@ti.com>,
-        <kristo@kernel.org>, <nsekhar@ti.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH net-next 5/5] arm64: dts: ti: k3-am625-sk: Add cpsw3g cpts
- PPS support
-Content-Language: en-US
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-References: <20230111114429.1297557-1-s-vadapalli@ti.com>
- <20230111114429.1297557-6-s-vadapalli@ti.com>
- <6ae650c9-d68d-d2fc-8319-b7784cd2a749@kernel.org>
- <a889a47f-5f44-1ae6-1ab7-3b7e7011b4f7@ti.com>
- <2007adb5-0980-eee3-8d2f-e30183cf408e@kernel.org>
- <4d7ac24a-0a35-323c-045c-cc5b3d3c715a@ti.com>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <4d7ac24a-0a35-323c-045c-cc5b3d3c715a@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230116203549.5jzd2olxua662n6w@SoMainline.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Vignesh,
-
-On 16/01/23 22:00, Vignesh Raghavendra wrote:
+On 16-01-23, 21:35, Marijn Suijten wrote:
+> On 2023-01-13 23:16:15, Vinod Koul wrote:
+> > On 14-12-22, 23:37, Marijn Suijten wrote:
+> > > This reverts commit 557a28811c7e0286d3816842032db5eb7bb5f156.
+> > > 
+> > > This commit introduced an init sequence from downstream DT [1] in the
+> > > driver.  As mentioned by the comment above the HSPHY_INIT_CFG macro for
+> > > this sequence:
+> > > 
+> > >     /*
+> > >      * The macro is used to define an initialization sequence.  Each tuple
+> > >      * is meant to program 'value' into phy register at 'offset' with 'delay'
+> > >      * in us followed.
+> > >      */
+> > > 
+> > > Instead of corresponding to offsets into the phy register, the sequence
+> > > read by the downstream driver [2] is passed into ulpi_write [3] which
+> > > crafts the address-value pair into a new value and writes it into the
+> > > same register at USB_ULPI_VIEWPORT [4].  In other words, this init
+> > > sequence is programmed into the hardware in a totally different way than
+> > > downstream and is unlikely to achieve the desired result, if the hsphy
+> > > is working at all.
+> > > 
+> > > An alternative method needs to be found to write these init values at
+> > > the desired location.  Fortunately mdm9607 did not land upstream yet [5]
+> > > and should have its compatible revised to use the generic one, instead
+> > > of a compatible that writes wrong data to the wrong registers.
+> > 
+> > Applied after adding missing subsystem tag, thanks
 > 
-> 
-> On 16/01/23 9:35 pm, Roger Quadros wrote:
->>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>>> index 4f179b146cab..962a922cc94b 100644
->>>>> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>>> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>>> @@ -366,6 +366,10 @@ &cpsw3g {
->>>>>  	pinctrl-names = "default";
->>>>>  	pinctrl-0 = <&main_rgmii1_pins_default
->>>>>  		     &main_rgmii2_pins_default>;
->>>>> +
->>>>> +	cpts@3d000 {
->>>>> +		ti,pps = <2 1>;
->>>>> +	};
->>>>>  };
->>>>>  
->>>>>  &cpsw_port1 {
->>>>> @@ -464,3 +468,19 @@ partition@3fc0000 {
->>>>>  		};
->>>>>  	};
->>>>>  };
->>>>> +
->>>>> +#define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
->>>> Should this go in ./include/dt-bindings/pinctrl/k3.h ?
->>>> That way every board DT file doesn't have to define it.
->>>>
->>>> The name should be made more platform specific.
->>>> e.g. K3_TS_OFFSET if it is the same for all K3 platforms.
->>>> If not then please add Platform name instead of K3.
->>> The offsets are board specific. If it is acceptable, I will add board specific
->>> macro for the TS_OFFSET definition in the ./include/dt-bindings/pinctrl/k3.h
->>> file. Please let me know.
->> If it is board specific then it should remain in the board file.
-> 
-> 
-> The values you pass to macro maybe board specific. But the macro
-> definition itself same for a given SoC right? Also, is its same across
-> K3 family ?
-> 
-> Please use SoC specific prefix like AM62X_TS_OFFSET() or K3_TS_OFFSET()
-> accordingly.
+> Thanks, it wasn't clear to me whether to suffix the title when already
+> included in the Revert: "phy: qualcomm: ..." title :)
 
-For certain SoCs including AM62X, the macro is:
-#define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
-while for other SoCs (refer [0]), the macro is:
-#define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x80000000 | val)
+A revert patch is a patch as well so the patch rules apply there as well,
+so should say "subsystem tag: other tags: Revert foo..."
 
-Therefore, I will use SoC specific prefix in the macro. Please let me know if
-the SoC specific macro can be added to the ./include/dt-bindings/pinctrl/k3.h
-file for each SoC. If not, I will add the SoC specific macro in the board file
-itself.
-
-[0] https://lwn.net/Articles/819313/
-
-Regards,
-Siddharth.
+Thanks
+-- 
+~Vinod
