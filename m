@@ -2,353 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06DDB66DFBE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B481066DFE5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:05:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbjAQN7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 08:59:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54144 "EHLO
+        id S230210AbjAQOFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 09:05:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231631AbjAQN6M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:58:12 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3052302BB
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 05:57:40 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id q8so10506502wmo.5
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 05:57:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4kCyxjJmoaa1FDcEajHuj+dQpqP0MwFN9vsb9Y+ywzQ=;
-        b=HZpx4xuXI8CivTeDtjvPGRvMZhgEEHW5jMhKC9NQFm9CGaxGqBH+sa38Pp6fPHPiWm
-         uO3Tk5ozaVULZdo+DkSq1y2hw4ZDJ6NP3UPgp++YRwKia3LyINs59JBHhyFL9BPDeBO8
-         h9JESjNj7cqf2zs3etHlsWLj+vMQyN3/NWbyo5P/CJTSZsIKhjVxBmEtdvX+eWh5vD3n
-         iKzTix12wTuVgGuQIDXuOUTf4UZImshvogZkfxIPiygrPC7l/vdMO/kCC8Y7Es8geYRm
-         cjc4fd0pRId/FjLsA8HCEgwYDvCBvxV3817k17ZQU1KtZyYU5h+z0jEfMrXt+sE5Jq1Y
-         cjzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4kCyxjJmoaa1FDcEajHuj+dQpqP0MwFN9vsb9Y+ywzQ=;
-        b=kG0pBwPIFt2fg1npwZKxPulVIdQYXVdVhGpMyzTzMyeepSnxl87d5nnTb1h6gI7Bt3
-         g01Bg+3Y1uoKmV0IeNl6AIO76z98zlWkS/Ah2mNrBwrOIkeaXGeIU4Jo9MfVotAruOmg
-         5aGXegP5qp+0JwKY1YvQkCbzBQfj3JrHafQy0UhOQnFxGIDWwDKGPXB2ej8e9CxT474C
-         04rfFRi7686Arw6XXtLSYHoP3Fe1euFgYLAuRVK371mo6K2+MLv30oVuMUnFeBwe1iaZ
-         04KqWfPLwE53tQgle2j8FEEuDvuLuB+xNG/1t8m4csd3G9tjVRMYjz6RUDCEj6JKf99V
-         9qLw==
-X-Gm-Message-State: AFqh2krXO1sMsR6JjoaOD3Nc3CbOybCF9e9XsbMCjRkw9SlNfU9Fg9oV
-        F3m/A0t12rNy7D7b+UaQee845w==
-X-Google-Smtp-Source: AMrXdXuOl0NZkqnzos2TZ/x/h4aRU+3wEkFoW3+Ru+XZ7cp5+rO9dEvXWzNL1jbcyLjWNzICRdhnOQ==
-X-Received: by 2002:a05:600c:1c21:b0:3d1:e1f4:21d1 with SMTP id j33-20020a05600c1c2100b003d1e1f421d1mr3200080wms.26.1673963859357;
-        Tue, 17 Jan 2023 05:57:39 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id t5-20020a1c7705000000b003daffc2ecdesm4726173wmi.13.2023.01.17.05.57.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 05:57:38 -0800 (PST)
-Date:   Tue, 17 Jan 2023 15:57:37 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 07/10] phy: qualcomm: qmp-pcie: Add support for SM8550
- g3x2 and g4x2 PCIEs
-Message-ID: <Y8apUXpfAyaMMmH/@linaro.org>
-References: <20221116120157.2706810-1-abel.vesa@linaro.org>
- <20221116120157.2706810-8-abel.vesa@linaro.org>
- <bbfba6ca-c410-b4aa-ba3c-2fbf55065b24@linaro.org>
+        with ESMTP id S231540AbjAQOE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:04:56 -0500
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2047.outbound.protection.outlook.com [40.107.237.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C747C39CFA;
+        Tue, 17 Jan 2023 06:04:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HxGrxT5snoJQgvVhG6lzkS+4bJIayJpmKAjZ8pRzoWiK2e3sMxXIMYQdoQ+zEUXt14goUXu4d86gTzmMrrRECofAzM/VuaP3rxMNF1iuwq1BENXgvFGZMpz3YE/6DW7MlnZMR2qfWXC+hiOalo7jhMxz9309uSpm6FdpVUKiTwYxT8p2q7qC6fHLgeOHLGVE3NQe1a0Ih2MkDQhckNP6tdJ87GWSytPLC2U1txiIkK6LOvEM8655HAa1kkJKMUI+vzO/e2ntX5GTyEJecFIeM1VpXbKE8qBVTJya6quYbTbSBtwdDu2FNmOwMTPXj3aXs+lQsgWhd5S/gBHZyjJrgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I8J5xfZVqFAxjBVf84UJYFFNFsjQ3NnumF8LLuOURVs=;
+ b=ZD416y8GZH7O9KL+BbJWQ/DPNr6trs3iEOcqvvAuGDdrILp8VMLgpoZcOAGFliyHBRcC8d7IorqnoDpF7mgy4xmPOa27brlwADR9x4BcJT1f8Pv8dwksAH7Ko40HJ1ipYxC6QqcHCVKGyWIdKELkG3B9mknCmdcnkAIAAUma4b0qzJmCmkxGNkrASbaEr+3vvK3T/BWVlVJTlHrGxQBKUrnp5NnkVEmQgfKZJs755DE45iWkkPIJnyTusMT4Oxc/mtIAfaaLSAIEoYPlw9+5YSoXMn5+tjfhOMqXPJ17xA/GuErozbHcFqcS5zxWzF0xm64nH2kzjoWpP3czjf9cNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I8J5xfZVqFAxjBVf84UJYFFNFsjQ3NnumF8LLuOURVs=;
+ b=XV+cVI3Kmk4yqpLmYoLihjMIepkFo3sW7glUf3sMudYTaC/mBUgr3+QzwhhgTR9lDyWa6+chxOzNMVSgRRd1NbsUEfq3gDwSnC7reEwiU28pZH7fGI17UWLpPPRlE2+OawgcRluOFHmkZARi9FyURygu4E+R5CpLLPQyB/dUrqn/B1aCRA4/Zb7IqvLPVea6o8FUKqS7hOWl2oYt8fklXtmvIRKH1CFeYxYUb2PYo6H86bdfkt2LijF3bCVPyJ3dRjPzy7A1JqHMoKOR7pfUupJJbL+i3g37j//yMBxx6mBbuxjD0K+4N5Pee+INMH+R26iTYro4m+Q5yQ2RQit1uQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ DM4PR12MB6542.namprd12.prod.outlook.com (2603:10b6:8:89::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5986.23; Tue, 17 Jan 2023 14:04:50 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::f1be:5d:f297:e2f]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::f1be:5d:f297:e2f%7]) with mapi id 15.20.6002.013; Tue, 17 Jan 2023
+ 14:04:50 +0000
+Message-ID: <cfcc047c-85bf-f012-30b1-5c07bd2c31c7@nvidia.com>
+Date:   Tue, 17 Jan 2023 14:00:22 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V4 1/5] dt-bindings: usb: tegra-xudc: Add dma-coherent for
+ Tegra194
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20230116145452.91442-1-jonathanh@nvidia.com>
+ <20230116145452.91442-2-jonathanh@nvidia.com>
+ <232ed345-aea1-5e68-5fca-9a93c3896acb@linaro.org>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <232ed345-aea1-5e68-5fca-9a93c3896acb@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0055.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:153::6) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bbfba6ca-c410-b4aa-ba3c-2fbf55065b24@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|DM4PR12MB6542:EE_
+X-MS-Office365-Filtering-Correlation-Id: 09b572fc-b312-459f-fea6-08daf893cc99
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xf52jX0A0nwadVfsrsnfJAArTbcftVPtcvtZxVL2MrXGSp65tX95GnhmvZRqW1gTpHV3iieDVHmECYiW+sRP+KTIeGU/d1rDhb2Rm4MLopVMz9bN2IblEc9Cmp4AWYu+On6iZWQ1GoXv0ERAvQ8Al3DNjYtU8BBYxRPtbJSzzB0QluHa38Cx5rMaCJVCc2rssTSCum/pd9+18U9WtsnXimPCD5jYTEcETjt19Z74Mpf5L7E550XnpmVqWSg09reSn2VQRULOMs7CBhmS+hBNcx6wmMR8RzH2b1WYLKj84FXELhkRGVT2Mek8FC9LTorV1TizeiHjQGofAm1n24ck26kZIArMgxNV/FU9Y5oghPDQHTB8QVBqUhZpu4OVYAFBLtCvaExeSllwzIvl21pXgT26jqdsvtnKJKMLH0/7sUo6glxA8XWXl/fhhuLMyEk2jKVCdimzmLoOireKcInDGSkXeKLOIsK6Ml8bpVHoWQUTNqhl39KWBRiYU2CxpJxaXUUvNlV2TyCLVC4sj3skKLk+j8y0eTGGyJqqlJrxj/eLCHZZRoPteJQT9gWOzJnYNJalwcy6s0bH6NiKmOoeB9/akNEvcHoX8tFly7soKPxXOQf7nUifvIw4nA3ol27VF5qDotc+djhpgddeu2iM8aIXb0Iy/Usp7D6W/poHePWgSeFqKutenqnkrJJuRXXerlA7xzWgnOiGA2HygGkoTPmbAdPOJVqOwjdqUxm4zWA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(376002)(136003)(346002)(396003)(39860400002)(451199015)(36756003)(31696002)(478600001)(6486002)(6512007)(110136005)(55236004)(6506007)(26005)(6666004)(41300700001)(2906002)(53546011)(4744005)(316002)(5660300002)(66556008)(66476007)(4326008)(66946007)(8936002)(8676002)(2616005)(186003)(38100700002)(86362001)(83380400001)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RHowaTdwWG9BVktFTktHYlNqcmQydDkyUHRxUXAxYWQ4ZHY4cTFJZHdwdW1X?=
+ =?utf-8?B?T1gwK0xndnVpS2JMVUYwQmMxUURicFBwT3ZPbU1zd0hWSVhsSlV6REdFVHVY?=
+ =?utf-8?B?MlRwNU9EYnZYZFFLUGtrOEdyUTVQeHpweEVLRzQwNHN5QjVvR2lCUUt5SGZu?=
+ =?utf-8?B?RmhsUWV1MmErSWZVZEI2RHNEYWpCaFo1M29FYkZDVkJMYmRCVHJJdUxZQ0Yx?=
+ =?utf-8?B?Q053RnhvNmVXeVY0ZUZtNHlIS2lySUdkdnlOL3pzTXp2ZTBvVWhWallaQWhw?=
+ =?utf-8?B?TjhvNWhFelUvbVh3YmM0Sjc1Wi9KVWJsdGRjbjFNMWR6UGFRdXhXeUJ4U3ZM?=
+ =?utf-8?B?SHU1cDFRWUpsZitWZHhlMUFrOEh5a054NmJqR1VyZlZQV3ZnbkhOR21oeHBa?=
+ =?utf-8?B?WERFV3ErWG53S21nQUVoTFZSbTlpRkdTN2pOYVIzNWFpeGlvc1RSQXpvT2Yr?=
+ =?utf-8?B?eE81WXZVS0k0eTc4VFFIOUJxYWM0QTdETktaNmxxeFBzSmNuZzZxTUpRcmFt?=
+ =?utf-8?B?WGRibVZTYjFveEUvMXFIZXZoVWYrL1ZDNTJOM3FqSW40NTZ4RkxlVWRqRkMx?=
+ =?utf-8?B?SHZhSnYxUUlpcjNLc01GVzUyNjNRakVWTFYvODM2NHBVcURqb01TTkM5NllQ?=
+ =?utf-8?B?Sk41S3NTRlRWV2J0dThoNUNZRHBuVDJDTUJEOXVvUzBpaTIvTHZTaWFuYk11?=
+ =?utf-8?B?dkkwcSszQ1ZiTExNS0N6SW4rcnR1Znh0YmtLR3VtVUVzdVd3SkhQRlpUYllO?=
+ =?utf-8?B?SDFWNEZ1WlZNYUNCRHpscXN5dlBVYjZ6RmllR093cktBSDl0UzRvRUZXdHdV?=
+ =?utf-8?B?SmxUeVJRbXViNmFOUE94SnBNSDhjUENiNS9zMFB4aEFhRG9oK3Y2QkJ3bGdB?=
+ =?utf-8?B?NWcwTDVMdTVnUUt2U0pUR0hmdDZUd2RNRi9Ua2pmenNReUFlcVp0Q1AxdlB1?=
+ =?utf-8?B?bTF1WXNBaGkvUm1mOVRZRXEvV0hxdXNGdEpDbm1VTFl2MGhCREpHcUhicVZO?=
+ =?utf-8?B?K1dMR0F4MlNlMXhYZ1hTVnd1cXNRWFAwL2ZxSlJYVFZpTWhIbWFnbEZacVNU?=
+ =?utf-8?B?TlFacWMzUkNiMXJQbTVuRDh6UGUvMWZVd3FrV2NTQnBvbTIrbXBtaXRyUnNU?=
+ =?utf-8?B?Z2I0QTZjVWZFOWFleHlBLzNVT05CSHAyNUd0VWc5OGFLbURheDNQSzVLdWEw?=
+ =?utf-8?B?d1BTTk5ncFd6alBjVEQ4MU9EdHpIWTh4S3A3NWtFRXB5RE5iSmFOOUIxU2xz?=
+ =?utf-8?B?ZkZCMHVtMFkwRWRzY3dmN2RidlFLM3F1aVZMYWt4UHBJN1E3akhzb2MxTlBQ?=
+ =?utf-8?B?bnZYdmlKT1B5R1oxOTJrRmwwbmRDS0xQMWpObHRpK05yWUJJM2JmY2c3bmxm?=
+ =?utf-8?B?VWw4UzFsWTJXTFBrNjR2bXZoT2xxVXNSNHgvT1I1eUQzTktHaXkyZWV4U1oy?=
+ =?utf-8?B?Nlp2TmQvZlN5RzVVRU9EMjN5WDRNZExKbkt5d2xzaGRFMXNrYjRKNGNnYnZw?=
+ =?utf-8?B?cEJDSWc3SWVGQ2hhODJEUHlJa0FheTB4NDdpZnhQVWxMc29GeW54K2Z2RVVI?=
+ =?utf-8?B?RVB2RzlPOE1jZS9TeVI5NlB2dUowYTZ4djFWclpxczdtUHBMRFA0THQ0MzVx?=
+ =?utf-8?B?THBOajB5RDNHbWs2cE1EV0ZiS25WYUxrQkxsY2RyZzVMaXdFYmdtWGhKcDV3?=
+ =?utf-8?B?aG1hRFhBdGNHOGVaNWpJNGh5NVBzQlJ4cHpPaFZxZWNDb3hXU2FVTUtwQ3dU?=
+ =?utf-8?B?WEYwTlN1NzBLdTZDUDhXR0lYRXdHbUlWcHBRakw1Nzk0QTE0VUlCQk5mNVZj?=
+ =?utf-8?B?WnlWKzVxcGJMKzRQbkl5TVZmaG1Cd0hyK295Z3VoN3pLL3BMZk9CdERqUnZn?=
+ =?utf-8?B?TGVpU1k1MWFEMW5LaWorRUJoenA3R3M1QXF4YkpVZHdhZE9yd1p4aXR3Y0ht?=
+ =?utf-8?B?SWMvajJtdVBmNS9mMnFTVlpTbklZbHQyc0prbGU0WUFaRlkyS1ZpV1BSNHlB?=
+ =?utf-8?B?Z2ZZSkZ3Y2pjOWZRYllGamJlb3p4R3F3SkMzcHBVMGEvY3hLak03WEVVNjVr?=
+ =?utf-8?B?cG9yVmcxV2M4NnlMOVdRcTd0dFNkNytmR0FGTXdPSnFjVHRxTVhoTGQ3OW00?=
+ =?utf-8?B?N1dVZmJSTytPTkE1RGJOeU5qRUhSK3owdnNVSkxqSC9uZTRCaThVdlZZSzZh?=
+ =?utf-8?B?cVE9PQ==?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09b572fc-b312-459f-fea6-08daf893cc99
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2023 14:04:50.6152
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VOjt6qAs8VY32KJ82kzbdzeE8ykHyCbW2i4W0ZqTOL0FzDbBeZhySxsCdlUJGQFRMPh34RPQDdMS775l79pUtQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6542
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-01 22:15:55, Dmitry Baryshkov wrote:
-> On 16/11/2022 14:01, Abel Vesa wrote:
-> > Add the SM8550 both g4 and g3 configurations. In addition, there is a
-> > new "lane shared" table that needs to be configured for g4, along with
-> > the No-CSR list of resets.
-> > 
-> > Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 354 +++++++++++++++++++++++
-> >   1 file changed, 354 insertions(+)
-> > 
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> > index 47cccc4b35b2..87c7c20dfc8d 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> 
-> [skipped tables]
-> 
-> > @@ -1473,6 +1701,8 @@ struct qmp_pcie_offsets {
-> >   struct qmp_phy_cfg_tbls {
-> >   	const struct qmp_phy_init_tbl *serdes;
-> >   	int serdes_num;
-> > +	const struct qmp_phy_init_tbl *ln_shrd_serdes;
-> > +	int ln_shrd_serdes_num;
-> >   	const struct qmp_phy_init_tbl *tx;
-> >   	int tx_num;
-> >   	const struct qmp_phy_init_tbl *rx;
-> > @@ -1510,6 +1740,9 @@ struct qmp_phy_cfg {
-> >   	/* resets to be requested */
-> >   	const char * const *reset_list;
-> >   	int num_resets;
-> > +	/* no CSR resets to be requested */
-> > +	const char * const *nocsr_reset_list;
-> > +	int num_nocsr_resets;
-> 
-> Is there any difference between 'no CSR' resets and the plain ones? Can we
-> handle them in a single array instead?
 
-Yes, on power on, only the 'No CSR' are necessary to be deasserted.
-
-So we need to differentiate between 'No CSR' and the rest.
-
+On 17/01/2023 11:12, Krzysztof Kozlowski wrote:
+> On 16/01/2023 15:54, Jon Hunter wrote:
+>> DMA operations for XUSB device controller are coherent for Tegra194 and
+>> so update the device-tree binding to add this property.
+>>
+>> Fixes: 394b012a422d ("dt-bindings: usb: tegra-xudc: Add Tegra194 XUSB controller support")
+>>
 > 
-> >   	/* regulators to be requested */
-> >   	const char * const *vreg_list;
-> >   	int num_vregs;
-> > @@ -1523,6 +1756,9 @@ struct qmp_phy_cfg {
-> >   	bool skip_start_delay;
-> > +	/* true, if PHY has lane shared serdes table */
-> > +	bool has_ln_shrd_serdes_tbl;
+> No blank lines between the tags.
 > 
-> s/shrd/shared/g ? I think it's easier to read and to understand.
+> If this is a fix, you need to describe the observed issue or bug. Commit
+> suggests this is just adding some missing piece, so not a fix for a bug.
 
-Sure. Will do.
+OK. I will drop this fixes tag. I have not observed problems without it, 
+but it should have been present.
 
-> 
-> > +
-> >   	/* QMP PHY pipe clock interface rate */
-> >   	unsigned long pipe_clock_rate;
-> >   };
-> > @@ -1534,6 +1770,7 @@ struct qmp_pcie {
-> >   	bool tcsr_4ln_config;
-> >   	void __iomem *serdes;
-> > +	void __iomem *ln_shrd_serdes;
-> >   	void __iomem *pcs;
-> >   	void __iomem *pcs_misc;
-> >   	void __iomem *tx;
-> > @@ -1548,6 +1785,7 @@ struct qmp_pcie {
-> >   	int num_pipe_clks;
-> >   	struct reset_control_bulk_data *resets;
-> > +	struct reset_control_bulk_data *nocsr_resets;
-> >   	struct regulator_bulk_data *vregs;
-> >   	struct phy *phy;
-> > @@ -1595,11 +1833,19 @@ static const char * const sdm845_pciephy_clk_l[] = {
-> >   	"aux", "cfg_ahb", "ref", "refgen",
-> >   };
-> > +static const char * const sm8550_pciephy_clk_l[] = {
-> > +	"aux", "aux_phy", "cfg_ahb", "ref", "refgen",
-> > +};
-> > +
-> >   /* list of regulators */
-> >   static const char * const qmp_phy_vreg_l[] = {
-> >   	"vdda-phy", "vdda-pll",
-> >   };
-> > +static const char * const sm8550_qmp_phy_vreg_l[] = {
-> > +	"vdda-phy", "vdda-pll", "vdda-qref",
-> > +};
-> > +
-> >   /* list of resets */
-> >   static const char * const ipq8074_pciephy_reset_l[] = {
-> >   	"phy", "common",
-> > @@ -1609,6 +1855,10 @@ static const char * const sdm845_pciephy_reset_l[] = {
-> >   	"phy",
-> >   };
-> > +static const char * const sm8550_pciephy_nocsr_reset_l[] = {
-> > +	"pcie_1_nocsr_com_phy_reset",
-> > +};
-> > +
-> >   static const struct qmp_pcie_offsets qmp_pcie_offsets_v5 = {
-> >   	.serdes		= 0,
-> >   	.pcs		= 0x0200,
-> > @@ -2084,6 +2334,65 @@ static const struct qmp_phy_cfg sm8450_qmp_gen4x2_pciephy_cfg = {
-> >   	.phy_status		= PHYSTATUS_4_20,
-> >   };
-> > +static const struct qmp_phy_cfg sm8550_qmp_gen3x2_pciephy_cfg = {
-> > +	.lanes = 2,
-> > +
-> > +	.tbls = {
-> > +		.serdes		= sm8550_qmp_gen3x2_pcie_serdes_tbl,
-> > +		.serdes_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_serdes_tbl),
-> > +		.tx		= sm8550_qmp_gen3x2_pcie_tx_tbl,
-> > +		.tx_num		= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_tx_tbl),
-> > +		.rx		= sm8550_qmp_gen3x2_pcie_rx_tbl,
-> > +		.rx_num		= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_rx_tbl),
-> > +		.pcs		= sm8550_qmp_gen3x2_pcie_pcs_tbl,
-> > +		.pcs_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_pcs_tbl),
-> > +		.pcs_misc	= sm8550_qmp_gen3x2_pcie_pcs_misc_tbl,
-> > +		.pcs_misc_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_pcs_misc_tbl),
-> > +	},
-> > +	.clk_list		= sdm845_pciephy_clk_l,
-> > +	.num_clks		= ARRAY_SIZE(sdm845_pciephy_clk_l),
-> > +	.reset_list		= sdm845_pciephy_reset_l,
-> > +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-> > +	.vreg_list		= qmp_phy_vreg_l,
-> > +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-> > +	.regs			= sm8250_pcie_regs_layout,
-> > +
-> > +	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-> > +	.phy_status		= PHYSTATUS,
-> > +};
-> > +
-> > +static const struct qmp_phy_cfg sm8550_qmp_gen4x2_pciephy_cfg = {
-> > +	.lanes = 2,
-> > +
-> > +	.tbls = {
-> > +		.serdes			= sm8550_qmp_gen4x2_pcie_serdes_tbl,
-> > +		.serdes_num		= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_serdes_tbl),
-> > +		.ln_shrd_serdes		= sm8550_qmp_gen4x2_pcie_serdes_ln_shrd_tbl,
-> > +		.ln_shrd_serdes_num	= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_serdes_ln_shrd_tbl),
-> > +		.tx			= sm8550_qmp_gen4x2_pcie_tx_tbl,
-> > +		.tx_num			= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_tx_tbl),
-> > +		.rx			= sm8550_qmp_gen4x2_pcie_rx_tbl,
-> > +		.rx_num			= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_rx_tbl),
-> > +		.pcs			= sm8550_qmp_gen4x2_pcie_pcs_tbl,
-> > +		.pcs_num		= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_pcs_tbl),
-> > +		.pcs_misc		= sm8550_qmp_gen4x2_pcie_pcs_misc_tbl,
-> > +		.pcs_misc_num		= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_pcs_misc_tbl),
-> > +	},
-> > +	.clk_list		= sm8550_pciephy_clk_l,
-> > +	.num_clks		= ARRAY_SIZE(sm8550_pciephy_clk_l),
-> > +	.reset_list		= sdm845_pciephy_reset_l,
-> > +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-> > +	.nocsr_reset_list	= sm8550_pciephy_nocsr_reset_l,
-> > +	.num_nocsr_resets	= ARRAY_SIZE(sm8550_pciephy_nocsr_reset_l),
-> > +	.vreg_list		= sm8550_qmp_phy_vreg_l,
-> > +	.num_vregs		= ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
-> > +	.regs			= sm8250_pcie_regs_layout,
-> > +
-> > +	.has_ln_shrd_serdes_tbl	= true,
-> > +	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-> > +	.phy_status		= PHYSTATUS_4_20,
-> > +};
-> > +
-> >   static void qmp_pcie_configure_lane(void __iomem *base,
-> >   					const struct qmp_phy_init_tbl tbl[],
-> >   					int num,
-> > @@ -2132,6 +2441,7 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
-> >   {
-> >   	const struct qmp_phy_cfg *cfg = qmp->cfg;
-> >   	void __iomem *serdes = qmp->serdes;
-> > +	void __iomem *ln_shrd_serdes = qmp->ln_shrd_serdes;
-> >   	void __iomem *tx = qmp->tx;
-> >   	void __iomem *rx = qmp->rx;
-> >   	void __iomem *tx2 = qmp->tx2;
-> > @@ -2159,6 +2469,10 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
-> >   		qmp_pcie_configure(serdes, cfg->serdes_4ln_tbl, cfg->serdes_4ln_num);
-> >   		qmp_pcie_init_port_b(qmp, tbls);
-> >   	}
-> > +
-> > +	if (cfg->has_ln_shrd_serdes_tbl)
-> > +		qmp_pcie_configure(ln_shrd_serdes, tbls->ln_shrd_serdes,
-> > +				       tbls->ln_shrd_serdes_num);
-> >   }
-> >   static int qmp_pcie_init(struct phy *phy)
-> > @@ -2179,6 +2493,14 @@ static int qmp_pcie_init(struct phy *phy)
-> >   		goto err_disable_regulators;
-> >   	}
-> > +	if (qmp->nocsr_resets) {
-> > +		ret = reset_control_bulk_assert(cfg->num_nocsr_resets, qmp->nocsr_resets);
-> > +		if (ret) {
-> > +			dev_err(qmp->dev, "no-csr reset assert failed\n");
-> > +			goto err_disable_regulators;
-> > +		}
-> > +	}
-> > +
-> >   	usleep_range(200, 300);
-> >   	ret = reset_control_bulk_deassert(cfg->num_resets, qmp->resets);
-> > @@ -2240,6 +2562,14 @@ static int qmp_pcie_power_on(struct phy *phy)
-> >   	if (ret)
-> >   		return ret;
-> > +	if (qmp->nocsr_resets) {
-> > +		ret = reset_control_bulk_deassert(cfg->num_nocsr_resets, qmp->nocsr_resets);
-> > +		if (ret) {
-> > +			dev_err(qmp->dev, "no-csr reset deassert failed\n");
-> > +			goto err_disable_pipe_clk;
-> > +		}
-> > +	}
-> > +
-> >   	/* Pull PHY out of reset state */
-> >   	qphy_clrbits(pcs, cfg->regs[QPHY_SW_RESET], SW_RESET);
-> > @@ -2373,6 +2703,21 @@ static int qmp_pcie_reset_init(struct qmp_pcie *qmp)
-> >   	if (ret)
-> >   		return dev_err_probe(dev, ret, "failed to get resets\n");
-> > +	if (cfg->nocsr_reset_list) {
-> > +		qmp->nocsr_resets = devm_kcalloc(dev, cfg->num_nocsr_resets,
-> > +				   sizeof(*qmp->nocsr_resets), GFP_KERNEL);
-> > +		if (!qmp->nocsr_resets)
-> > +			return -ENOMEM;
-> > +
-> > +		for (i = 0; i < cfg->num_nocsr_resets; i++)
-> > +			qmp->nocsr_resets[i].id = cfg->nocsr_reset_list[i];
-> > +
-> > +		ret = devm_reset_control_bulk_get_exclusive(dev, cfg->num_nocsr_resets,
-> > +								qmp->nocsr_resets);
-> > +		if (ret)
-> > +			return dev_err_probe(dev, ret, "failed to get no CSR resets\n");
-> > +	}
-> > +
-> >   	return 0;
-> >   }
-> > @@ -2502,6 +2847,9 @@ static int qmp_pcie_parse_dt_legacy(struct qmp_pcie *qmp, struct device_node *np
-> >   			return PTR_ERR(qmp->rx2);
-> >   		qmp->pcs_misc = devm_of_iomap(dev, np, 5, NULL);
-> > +
-> > +		if (cfg->has_ln_shrd_serdes_tbl)
-> > +			qmp->ln_shrd_serdes = devm_of_iomap(dev, np, 6, NULL);
-> 
-> I think we also need to check the returned value. Also, I think we can drop
-> the conditional check here. we don't have to validate the DT, so if the reg
-> is present in DT, then it's present. If not, it's not required.
+Jon
 
-Yeah, but I was trying to make sure that if there is a new type of reg
-for some upcomming SoC, we don't take that as ln_shrd. That's why the check
-was added.
-
-I'll add the returned value check though.
-
-> 
-> >   	} else {
-> >   		qmp->pcs_misc = devm_of_iomap(dev, np, 3, NULL);
-> >   	}
-> > @@ -2729,6 +3077,12 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
-> >   	}, {
-> >   		.compatible = "qcom,sm8450-qmp-gen4x2-pcie-phy",
-> >   		.data = &sm8450_qmp_gen4x2_pciephy_cfg,
-> > +	}, {
-> > +		.compatible = "qcom,sm8550-qmp-gen3x2-pcie-phy",
-> > +		.data = &sm8550_qmp_gen3x2_pciephy_cfg,
-> > +	}, {
-> > +		.compatible = "qcom,sm8550-qmp-gen4x2-pcie-phy",
-> > +		.data = &sm8550_qmp_gen4x2_pciephy_cfg,
-> >   	},
-> >   	{ },
-> >   };
-> 
-> -- 
-> With best wishes
-> Dmitry
-> 
+-- 
+nvpublic
