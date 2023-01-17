@@ -2,369 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC33D66E2AE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 16:47:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBFA466E2BE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 16:51:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233831AbjAQPrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 10:47:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43988 "EHLO
+        id S230284AbjAQPv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 10:51:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232764AbjAQPqd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 10:46:33 -0500
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D5B4521D;
-        Tue, 17 Jan 2023 07:44:24 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id k18so9899161pll.5;
-        Tue, 17 Jan 2023 07:44:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q6KLxSrMGKKhGyf8vUAVzUGzJT7bt87PdQ0Odi4CcQk=;
-        b=MHqGHYJ3uU+SmIjqLLXuCJmsIzyu1bDGbo6RFVpheBfSDbdYziL9XdtX1t2xCLP3Wp
-         pVBbWO2VZKkz23V2fxl198mOK0rcUx153Xgy+5MpuU/xF0OXb2uUfRKPFU72d0Sq/MT8
-         Jios1PGnEdxzc+SITjmF+3Kxcu14vIYn5yHbYLBVJfnd+p+nBhi7emXPoHQsIgvQn6Yi
-         4TAS0Bm+kPIumiq/W3f4xAq+L+zsNBlzej6RMDZeZv6H4osEJuEZXcn1/4dfNkTO83GY
-         2ktTJ7MZ19jiHHSUzJFGKeQbjCuTCEctbvjn9BvGA6O/OqrdzX74aqPwqKmQbTzFD8xT
-         o4Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q6KLxSrMGKKhGyf8vUAVzUGzJT7bt87PdQ0Odi4CcQk=;
-        b=tafEMPODjowQ8g8QX8052Ivu+Mz+2LYHC4ZK09qUKEaUsQyQj01k4kihq6xcTjJgGa
-         0cIJRjS6LKGqSPmIp8pHBoF9A5/itaZNXFmKmju22WDEygV55o6cHcZVQe70x7RQ3sYI
-         wUQmHyUgLw7l7JMvdh0QUa6Ld9npsacAjjTIlbnHG8mibsjBaMJVhCD9lCtPBIgUis6q
-         9qDxDarnZupONQhrS9mev3V16rSmrICag8lis2XESZVIHef0xvbACucHmtRM+JNqyRD7
-         P55wkTrJfc99kN1Nwxu1ubQLTIyXtRZ+6UGHlmK/OVFtUhvjoCbAzJ4zF+ZwViYhpW0f
-         tq5A==
-X-Gm-Message-State: AFqh2kqg38JSKnCpae0PGubx0eHJcNecUfWf6Swyp+QLTZp85Rf7uhMP
-        +oGtXr0KF9d+WFMMFWBI2fosNBAslxxrpA==
-X-Google-Smtp-Source: AMrXdXvEMGO0oIY+sMgTFZqmBGDy5sb9K703En88gv4rIS+FZRtH+zi7teZVhWA4lXZGesmpR0ePBg==
-X-Received: by 2002:a17:90a:be14:b0:229:8ada:ccb2 with SMTP id a20-20020a17090abe1400b002298adaccb2mr3644251pjs.27.1673970264255;
-        Tue, 17 Jan 2023 07:44:24 -0800 (PST)
-Received: from localhost.localdomain (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id l14-20020a17090aec0e00b0022908f1398dsm8909736pjy.32.2023.01.17.07.44.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 07:44:23 -0800 (PST)
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Lee Jones <lee@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S232273AbjAQPvF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 10:51:05 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F6DC140;
+        Tue, 17 Jan 2023 07:48:56 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30HEbM6K018622;
+        Tue, 17 Jan 2023 15:48:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=w2nX6Y1QlnLgHZimQggx7vsyuloQpoZa4CbCCG3+t2g=;
+ b=HiI4eSnOs/uocISK55f9GQ1heIAT8r1WXzZqc7EmdO1kROm3RaoYN+A/kFohk6gu0BQ/
+ ev7QCiLty0WrKn+RqBFXErtX18k6H4hodn2v1vYvlrHY5TWAcF6rokA3DFhNf4wKywbG
+ RDRsXslsmWaFjVvk1I4z1KGVlghPX0VEbwrXzKgcraz/u7gz9F28Zwf/LBR5oaIed+EO
+ u5IRQLjVyUSV43oGb2WXM/ewje39rCGivbPVdRDZFF2EV/Cep7mXhjvyXAmfw/R49pfa
+ Ai40NILqMaGPz1K71Z3G+sTIOBMs0kwrW42DnSkpGeiYF/c/7dr/PojaqX/+YI82Ls8W 6Q== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n5rfw0n3g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Jan 2023 15:48:53 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30HFmq1n006782
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Jan 2023 15:48:52 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 17 Jan 2023 07:48:51 -0800
+Date:   Tue, 17 Jan 2023 07:48:50 -0800
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Helge Deller <deller@gmx.de>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, Jianhua Lu <lujianhua000@gmail.com>
-Subject: [PATCH v5 2/2] backlight: ktz8866: Add support for Kinetic KTZ8866 backlight
-Date:   Tue, 17 Jan 2023 23:44:08 +0800
-Message-Id: <20230117154408.1882-2-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.38.2
-In-Reply-To: <20230117154408.1882-1-lujianhua000@gmail.com>
-References: <20230117154408.1882-1-lujianhua000@gmail.com>
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
+        Johan Hovold <johan@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 0/4] soc: qcom: Introduce PMIC GLINK
+Message-ID: <20230117154850.GD2350793@hu-bjorande-lv.qualcomm.com>
+References: <20230113041132.4189268-1-quic_bjorande@quicinc.com>
+ <9e831252-7198-7983-8a52-0e745688452d@linaro.org>
+ <20230117023238.GB2350793@hu-bjorande-lv.qualcomm.com>
+ <c1e3db0d-7593-b0fc-043b-60538faf9ba2@linaro.org>
+ <20230117025818.GC2350793@hu-bjorande-lv.qualcomm.com>
+ <ed32ade2-41b1-5aa0-cc1f-0f40f1d9f099@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ed32ade2-41b1-5aa0-cc1f-0f40f1d9f099@linaro.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4U9QQEFJnNMDqmPshFqZksIHX9b3Zoyu
+X-Proofpoint-ORIG-GUID: 4U9QQEFJnNMDqmPshFqZksIHX9b3Zoyu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-17_06,2023-01-17_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
+ impostorscore=0 adultscore=0 spamscore=0 clxscore=1015 mlxscore=0
+ suspectscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301170126
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Kinetic KTZ8866 backlight, which is used in
-Xiaomi tablet, Mi Pad 5 series. This driver lightly based on
-downstream implementation [1].
-[1] https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/elish-r-oss/drivers/video/backlight/ktz8866.c
+On Tue, Jan 17, 2023 at 11:26:58AM +0200, Dmitry Baryshkov wrote:
+> On 17/01/2023 04:58, Bjorn Andersson wrote:
+> > On Tue, Jan 17, 2023 at 02:37:27AM +0000, Bryan O'Donoghue wrote:
+> > > On 17/01/2023 02:32, Bjorn Andersson wrote:
+> > > > On Fri, Jan 13, 2023 at 05:10:17PM +0000, Bryan O'Donoghue wrote:
+> > > > > On 13/01/2023 04:11, Bjorn Andersson wrote:
+> > > > > > This implements the base PMIC GLINK driver, a power_supply driver and a
+> > > > > > driver for the USB Type-C altmode protocol. This has been tested and
+> > > > > > shown to provide battery information, USB Type-C switch and mux requests
+> > > > > > and DisplayPort notifications on SC8180X, SC8280XP and SM8350.
+> > > > > > 
+> > > > > > Bjorn Andersson (4):
+> > > > > >      dt-bindings: soc: qcom: Introduce PMIC GLINK binding
+> > > > > >      soc: qcom: pmic_glink: Introduce base PMIC GLINK driver
+> > > > > >      soc: qcom: pmic_glink: Introduce altmode support
+> > > > > >      power: supply: Introduce Qualcomm PMIC GLINK power supply
+> > > > > > 
+> > > > > >     .../bindings/soc/qcom/qcom,pmic-glink.yaml    |  102 ++
+> > > > > >     drivers/power/supply/Kconfig                  |    9 +
+> > > > > >     drivers/power/supply/Makefile                 |    1 +
+> > > > > >     drivers/power/supply/qcom_battmgr.c           | 1421 +++++++++++++++++
+> > > > > >     drivers/soc/qcom/Kconfig                      |   15 +
+> > > > > >     drivers/soc/qcom/Makefile                     |    2 +
+> > > > > >     drivers/soc/qcom/pmic_glink.c                 |  336 ++++
+> > > > > >     drivers/soc/qcom/pmic_glink_altmode.c         |  477 ++++++
+> > > > > >     include/linux/soc/qcom/pmic_glink.h           |   32 +
+> > > > > >     9 files changed, 2395 insertions(+)
+> > > > > >     create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+> > > > > >     create mode 100644 drivers/power/supply/qcom_battmgr.c
+> > > > > >     create mode 100644 drivers/soc/qcom/pmic_glink.c
+> > > > > >     create mode 100644 drivers/soc/qcom/pmic_glink_altmode.c
+> > > > > >     create mode 100644 include/linux/soc/qcom/pmic_glink.h
+> > > > > > 
+> > > > > 
+> > > > > How does the USB PHY and a USB redriver fit into this ?
+> > > > > 
+> > > > > Is the host supposed to manage both/neither ? Is the DSP responsible for
+> > > > > configuring the PHY lanes and the turnaround on orientation switch ?
+> > > > > 
+> > > > 
+> > > > As indicated above, the firmware deals with battery management and USB
+> > > > Type-C handling.
+> > > > 
+> > > > The battery/power management is handled by the battmgr implementation,
+> > > > exposing the various properties through a set of power_supply objects.
+> > > > 
+> > > > The USB Type-C handling comes in two forms. The "altmode" protocol
+> > > > handles DisplayPort notifications - plug detect, orientation and mode
+> > > > switches. The other part of the USB implementation exposes UCSI.
+> > > > 
+> > > > The altmode implementation provides two things:
+> > > > - A drm_bridge, per connector, which can be tied (of_graph) to a
+> > > >     DisplayPort instance, and will invoke HPD notifications on the
+> > > >     drm_bridge, based on notification messages thereof.
+> > > > 
+> > > > - Acquire typec_switch and typec_mux handles through the of_graph and
+> > > >     signal the remotes when notifications of state changes occur. Linking
+> > > >     this to the FSA4480, is sufficient to get USB/DP combo (2+2 lanes)
+> > > >     working on e.g. SM8350 HDK.
+> > > >     Work in progress patches also exists for teaching QMP about
+> > > >     orientation switching of the SS lines, but it seems this needs to be
+> > > >     rebased onto the refactored QMP driver.
+> > > >     I also have patches for QMP to make it switch USB/DP combo -> 4-lane
+> > > >     DP, which allow 4k support without DSC, unfortunately switch back to
+> > > >     USB has not been fully reliable, so this requires some more work
+> > > >     (downstream involves DWC3 here as well, to reprogram the PHY).
+> > > 
+> > > Oki doki that makes sense and is pretty much in-line with what I thought.
+> > > 
+> > > We still have a bunch of typec-mux and phy work to do even with adsp/glink
+> > > doing the TCPM.
+> > > 
+> > 
+> > Correct, the registration of QMP as a typec_switch and typec_mux and
+> > handling of respective notification remains open and should (by design)
+> > be independent of the TCPM implementation.
+> > 
+> > In particular the orientation switching is an itch worth scratching at
+> > this time. But when the DPU becomes capable of producing 4k@60 output it
+> > would obviously be nice to have the whole shebang :)
+> 
+> Did you try it with the wide planes patchset at [1]? I was able to get
+> stable 4k@30 on RB3 (being limited only by the DSI-HDMI bridge).
+> 
+> [1] https://lore.kernel.org/linux-arm-msm/20221229191856.3508092-1-dmitry.baryshkov@linaro.org/
+> 
 
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
----
-Changes in v2:
-  - Add missing staitc modifier to ktz8866_write function.
+I have not done so, as the patches I had for switching to 4-lane DP
+output needs to be rewritten since the refactoring.
 
-Changes in v3:
-  - Add 2022 to Copyright line.
-  - Sort headers.
-  - Remove meaningless comment.
-  - Use definitions instead of hardcoding.
-  - Add missing maintainer info.
+I had no problem doing 4k@30 prior to your efforts, so I'm interested in
+validating the changes you've made.
 
-Changes in v4:
-  - Change 2022 to 2023.
-  - Remove useless macro and enum.
-  - Describe settings by devicetree.
-  - Move header file to C file.
-Changes in v5:
-  - Change "2023" to "2022, 2023" in Copyright line.
-  - Set scale property for backlight.
+Thanks,
+Bjorn
 
- MAINTAINERS                       |   6 +
- drivers/video/backlight/Kconfig   |   8 ++
- drivers/video/backlight/Makefile  |   1 +
- drivers/video/backlight/ktz8866.c | 201 ++++++++++++++++++++++++++++++
- 4 files changed, 216 insertions(+)
- create mode 100644 drivers/video/backlight/ktz8866.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 42fc47c6edfd..2084e74e1b58 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11674,6 +11674,12 @@ M:	John Hawley <warthog9@eaglescrag.net>
- S:	Maintained
- F:	tools/testing/ktest
- 
-+KTZ8866 BACKLIGHT DRIVER
-+M:	Jianhua Lu <lujianhua000@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-+F:	drivers/video/backlight/ktz8866.c
-+
- L3MDEV
- M:	David Ahern <dsahern@kernel.org>
- L:	netdev@vger.kernel.org
-diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-index 936ba1e4d35e..2845fd7e33ad 100644
---- a/drivers/video/backlight/Kconfig
-+++ b/drivers/video/backlight/Kconfig
-@@ -190,6 +190,14 @@ config BACKLIGHT_KTD253
- 	  which is a 1-wire GPIO-controlled backlight found in some mobile
- 	  phones.
- 
-+config BACKLIGHT_KTZ8866
-+	tristate "Backlight Driver for Kinetic KTZ8866"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+		Say Y to enabled the backlight driver for the Kinetic KTZ8866
-+		found in Xiaomi Mi Pad 5 series.
-+
- config BACKLIGHT_LM3533
- 	tristate "Backlight Driver for LM3533"
- 	depends on MFD_LM3533
-diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
-index e815f3f1deff..f70a819c304c 100644
---- a/drivers/video/backlight/Makefile
-+++ b/drivers/video/backlight/Makefile
-@@ -36,6 +36,7 @@ obj-$(CONFIG_BACKLIGHT_HP680)		+= hp680_bl.o
- obj-$(CONFIG_BACKLIGHT_HP700)		+= jornada720_bl.o
- obj-$(CONFIG_BACKLIGHT_IPAQ_MICRO)	+= ipaq_micro_bl.o
- obj-$(CONFIG_BACKLIGHT_KTD253)		+= ktd253-backlight.o
-+obj-$(CONFIG_BACKLIGHT_KTZ8866)		+= ktz8866.o
- obj-$(CONFIG_BACKLIGHT_LM3533)		+= lm3533_bl.o
- obj-$(CONFIG_BACKLIGHT_LM3630A)		+= lm3630a_bl.o
- obj-$(CONFIG_BACKLIGHT_LM3639)		+= lm3639_bl.o
-diff --git a/drivers/video/backlight/ktz8866.c b/drivers/video/backlight/ktz8866.c
-new file mode 100644
-index 000000000000..02d9be6e9df2
---- /dev/null
-+++ b/drivers/video/backlight/ktz8866.c
-@@ -0,0 +1,201 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Backlight driver for the Kinetic KTZ8866
-+ *
-+ * Copyright (C) 2022, 2023 Jianhua Lu <lujianhua000@gmail.com>
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+
-+#define DEFAULT_BRIGHTNESS 1500
-+#define MAX_BRIGHTNESS 2047
-+#define REG_MAX 0x15
-+
-+/* reg */
-+#define DEVICE_ID 0x01
-+#define BL_CFG1 0x02
-+#define BL_CFG2 0x03
-+#define BL_BRT_LSB 0x04
-+#define BL_BRT_MSB 0x05
-+#define BL_EN 0x08
-+#define LCD_BIAS_CFG1 0x09
-+#define LCD_BIAS_CFG2 0x0A
-+#define LCD_BIAS_CFG3 0x0B
-+#define LCD_BOOST_CFG 0x0C
-+#define OUTP_CFG 0x0D
-+#define OUTN_CFG 0x0E
-+#define FLAG 0x0F
-+#define BL_OPTION1 0x10
-+#define BL_OPTION2 0x11
-+#define PWM2DIG_LSBs 0x12
-+#define PWM2DIG_MSBs 0x13
-+#define BL_DIMMING 0x14
-+#define PWM_RAMP_TIME 0x15
-+
-+/* definition */
-+#define BL_EN_BIT BIT(6)
-+#define LCD_BIAS_EN 0x9F
-+#define PWM_HYST 0x5
-+
-+struct ktz8866 {
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	bool led_on;
-+};
-+
-+static const struct regmap_config ktz8866_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = REG_MAX,
-+};
-+
-+static int ktz8866_write(struct ktz8866 *ktz, unsigned int reg,
-+			 unsigned int val)
-+{
-+	return regmap_write(ktz->regmap, reg, val);
-+}
-+
-+static int ktz8866_update_bits(struct ktz8866 *ktz, unsigned int reg,
-+			       unsigned int mask, unsigned int val)
-+{
-+	return regmap_update_bits(ktz->regmap, reg, mask, val);
-+}
-+
-+static int ktz8866_backlight_update_status(struct backlight_device *backlight_dev)
-+{
-+	struct ktz8866 *ktz = bl_get_data(backlight_dev);
-+	unsigned int brightness = backlight_get_brightness(backlight_dev);
-+
-+	if (!ktz->led_on && brightness > 0) {
-+		ktz8866_update_bits(ktz, BL_EN, BL_EN_BIT, BL_EN_BIT);
-+		ktz->led_on = true;
-+	} else if (brightness == 0) {
-+		ktz8866_update_bits(ktz, BL_EN, BL_EN_BIT, 0);
-+		ktz->led_on = false;
-+		msleep(10);
-+	}
-+
-+	/* Set brightness */
-+	ktz8866_write(ktz, BL_BRT_LSB, brightness & 0x7);
-+	ktz8866_write(ktz, BL_BRT_MSB, (brightness >> 3) & 0xFF);
-+
-+	return 0;
-+}
-+
-+static const struct backlight_ops ktz8866_backlight_ops = {
-+	.options = BL_CORE_SUSPENDRESUME,
-+	.update_status = ktz8866_backlight_update_status,
-+};
-+
-+static void ktz8866_init(struct ktz8866 *ktz)
-+{
-+	unsigned int val;
-+
-+	if(of_property_read_u32(ktz->client->dev.of_node, "current-num-sinks", &val))
-+		ktz8866_write(ktz, BL_EN, BIT(val) - 1);
-+	else
-+		/* Enable all 6 current sinks if the number of current sinks isn't specifed. */
-+		ktz8866_write(ktz, BL_EN, BIT(6) - 1);
-+
-+	if(of_property_read_u32(ktz->client->dev.of_node, "current-ramping-time-us", &val)) {
-+		if(val <= 128) {
-+			ktz8866_write(ktz, BL_CFG2, BIT(7) | (ilog2(val) << 3) | PWM_HYST);
-+		} else {
-+			ktz8866_write(ktz, BL_CFG2, BIT(7) | ((5 + val / 64) << 3) | PWM_HYST);
-+		}
-+	}
-+
-+	if(of_property_read_u32(ktz->client->dev.of_node, "led-ramping-time-us", &val)) {
-+		unsigned int ramp_off_time = ilog2(val) + 1;
-+		unsigned int ramp_on_time = ramp_off_time << 4;
-+		ktz8866_write(ktz, BL_DIMMING, ramp_on_time | ramp_off_time);
-+	}
-+
-+	if(of_property_read_bool(ktz->client->dev.of_node, "enable-lcd-bias"))
-+		ktz8866_write(ktz, LCD_BIAS_CFG1, LCD_BIAS_EN);
-+}
-+
-+static int ktz8866_probe(struct i2c_client *client,
-+			 const struct i2c_device_id *id)
-+{
-+	struct backlight_device *backlight_dev;
-+	struct backlight_properties props;
-+	struct ktz8866 *ktz;
-+
-+	ktz = devm_kzalloc(&client->dev, sizeof(*ktz), GFP_KERNEL);
-+	if (!ktz)
-+		return -ENOMEM;
-+
-+	ktz->client = client;
-+	ktz->regmap = devm_regmap_init_i2c(client, &ktz8866_regmap_config);
-+
-+	if (IS_ERR(ktz->regmap)) {
-+		dev_err(&client->dev, "failed to init regmap\n");
-+		return PTR_ERR(ktz->regmap);
-+	}
-+
-+	memset(&props, 0, sizeof(props));
-+	props.type = BACKLIGHT_RAW;
-+	props.max_brightness = MAX_BRIGHTNESS;
-+	props.brightness = DEFAULT_BRIGHTNESS;
-+	props.scale = BACKLIGHT_SCALE_LINEAR;
-+
-+	backlight_dev = devm_backlight_device_register(
-+		&client->dev, "ktz8866-backlight", &client->dev, ktz,
-+		&ktz8866_backlight_ops, &props);
-+
-+	if (IS_ERR(backlight_dev)) {
-+		dev_err(&client->dev, "failed to register backlight device\n");
-+		return PTR_ERR(backlight_dev);
-+	}
-+
-+	ktz8866_init(ktz);
-+
-+	i2c_set_clientdata(client, backlight_dev);
-+	backlight_update_status(backlight_dev);
-+
-+	return 0;
-+}
-+
-+static void ktz8866_remove(struct i2c_client *client)
-+{
-+	struct backlight_device *backlight_dev = i2c_get_clientdata(client);
-+
-+	backlight_dev->props.brightness = 0;
-+	backlight_update_status(backlight_dev);
-+}
-+
-+static const struct i2c_device_id ktz8866_ids[] = {
-+	{ "ktz8866", 0 },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(i2c, ktz8866_ids);
-+
-+static const struct of_device_id ktz8866_match_table[] = {
-+	{
-+		.compatible = "kinetic,ktz8866",
-+	},
-+	{},
-+};
-+
-+static struct i2c_driver ktz8866_driver = {
-+	.driver = {
-+		.name = "ktz8866",
-+		.of_match_table = ktz8866_match_table,
-+	},
-+	.probe = ktz8866_probe,
-+	.remove = ktz8866_remove,
-+	.id_table = ktz8866_ids,
-+};
-+
-+module_i2c_driver(ktz8866_driver);
-+
-+MODULE_DESCRIPTION("Kinetic KTZ8866 Backlight Driver");
-+MODULE_AUTHOR("Jianhua Lu <lujianhua000@gmail.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.38.2
-
+> -- 
+> With best wishes
+> Dmitry
+> 
