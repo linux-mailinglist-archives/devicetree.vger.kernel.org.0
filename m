@@ -2,184 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B79CA66D81A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:24:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D23C66D82D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:28:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236074AbjAQIYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 03:24:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36016 "EHLO
+        id S235407AbjAQI2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 03:28:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236133AbjAQIY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:24:26 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 310E62ED58;
-        Tue, 17 Jan 2023 00:24:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD6EA611F2;
-        Tue, 17 Jan 2023 08:24:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07E0EC433F1;
-        Tue, 17 Jan 2023 08:24:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673943843;
-        bh=jOMA2ItWhbyt6drah2KbBQDJgxvQk73yFlOfbO12fu4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ls0BQqaL23lBXhvrtbco3O6ro6b1+RhXmNl4/Mdz6e+k2JDSy7ZdQTYJNeENmVc0T
-         U1Yt33cs8/uUvDdt3cwrpXhFusU2Xyj6IElSjBwVVzTZm2kCeuuusisknHIzU9FF0+
-         iB2FFgpKaPaeWYge/fxtQFEz0j0+je1R4BSF5ZSdY5jU8EyjgZuP5I/AuHahvStnXf
-         apmrRFs0gHXYSux7PaGbuUvGyK9WhpR/FE8fzdWwFeQwbDcV0aUpIRYla23oe586S4
-         OMJm8CHF2MzvlFz/mdvrFmA/gY4yte5G0jLiNwrUDSi/4f9CCtJkHkc21fq5SidYnG
-         yLOCuy6LZYn9g==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pHhGZ-0007NH-6G; Tue, 17 Jan 2023 09:24:23 +0100
-Date:   Tue, 17 Jan 2023 09:24:23 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Maximilian Luz <luzmaximilian@gmail.com>,
-        Ard Biesheuvel <ardb@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] firmware: Add support for Qualcomm UEFI Secure
- Application
-Message-ID: <Y8ZbN5LNn2fk0/xi@hovoldconsulting.com>
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <20220723224949.1089973-4-luzmaximilian@gmail.com>
+        with ESMTP id S236221AbjAQI2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:28:52 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49A661350C
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:28:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1673944084;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=m+6BYudluJLerY8xv5pVK4MG77+MbXReDqsF/tlVARI=;
+        b=fwfdJJFR3u5BbPWm0zZXEsnx5GpNa/hU1fHPntGLa3q+SnHmhIosv4TjMryxzJWBQlAhlR
+        Uq07s0YjalUr3vkdrNsXOq2wk2610IjDfd5Q5IRFq2xmLChKAUPXAqaiyNxyvcUx2PUfEx
+        yNUTwACHBHPUTM5nA6zbH34quaWySi0=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-451-yarz1sPfN3mOuNluRUqdZw-1; Tue, 17 Jan 2023 03:28:03 -0500
+X-MC-Unique: yarz1sPfN3mOuNluRUqdZw-1
+Received: by mail-qk1-f200.google.com with SMTP id az6-20020a05620a170600b0070689de396dso2101722qkb.18
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:28:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=m+6BYudluJLerY8xv5pVK4MG77+MbXReDqsF/tlVARI=;
+        b=OaCdOCu3HJexNkfjyYXrubY5VdUyK+LK5+c8v5XXSF+3ejbI6qiVdu5ozt095AGQOR
+         xyeQjCzLkgvqBp88AeJKQMxsuT8GG0fF+TUp8sMkLbD+OtigzlkbTcT2eEiexrJlGlai
+         TeioFyF8zLWVnwVrVRBe2M2+jBsObmqBacm9M8FLk4vRqn1z8wO1edybUh2HLcm417F2
+         GXa+v6OdRKjdHM40A70SqCBCZ2GCQ3NkkXv+POWlihEhIqAVIASZm7esDFbKZfUqoS6/
+         L5r0zkjHm6qHFvuTiL864qKSntVon9NPjNeRSj0Tl4AyIalCUsFJ9KqaysZ7+oiWDCQp
+         x9jw==
+X-Gm-Message-State: AFqh2kpF/hnDjpk1/yH24rWAydyHtRuItF0AoIDmeJ1zpN/H6oVMOFmQ
+        7YCOP61o0pIhUa/Dr3eZoAkBgIcrQXRSInMARKogdcUN1sVov/4w6JQcT8aqAQ0ONLlzRicNkuL
+        8c06onDHlQbIB60UIpyK4fA==
+X-Received: by 2002:ac8:718f:0:b0:3b6:35a2:bb04 with SMTP id w15-20020ac8718f000000b003b635a2bb04mr2857493qto.7.1673944082568;
+        Tue, 17 Jan 2023 00:28:02 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXu/E4Cr9udbp9axgo1/YZ5h66bfn9nqv1hysCj476Ft8Z+EGz88GliVUvugE+ln2/ljJlMqIA==
+X-Received: by 2002:ac8:718f:0:b0:3b6:35a2:bb04 with SMTP id w15-20020ac8718f000000b003b635a2bb04mr2857480qto.7.1673944082284;
+        Tue, 17 Jan 2023 00:28:02 -0800 (PST)
+Received: from gerbillo.redhat.com (146-241-115-179.dyn.eolo.it. [146.241.115.179])
+        by smtp.gmail.com with ESMTPSA id bj30-20020a05620a191e00b006bb82221013sm19709741qkb.0.2023.01.17.00.27.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 00:28:01 -0800 (PST)
+Message-ID: <6ee1798af93cc5b8c46611ecca941ee57481358e.camel@redhat.com>
+Subject: Re: [PATCH V2 0/7] Add eqos and fec support for imx93
+From:   Paolo Abeni <pabeni@redhat.com>
+To:     Clark Wang <xiaoning.wang@nxp.com>, wei.fang@nxp.com,
+        shenwei.wang@nxp.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, peppe.cavallaro@st.com,
+        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com, richardcochran@gmail.com
+Cc:     linux-imx@nxp.com, kernel@pengutronix.de, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Date:   Tue, 17 Jan 2023 09:27:56 +0100
+In-Reply-To: <20230113033347.264135-1-xiaoning.wang@nxp.com>
+References: <20230113033347.264135-1-xiaoning.wang@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220723224949.1089973-4-luzmaximilian@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 24, 2022 at 12:49:48AM +0200, Maximilian Luz wrote:
-> On platforms using the Qualcomm UEFI Secure Application (uefisecapp),
-> EFI variables cannot be accessed via the standard interface in EFI
-> runtime mode. The respective functions return EFI_UNSUPPORTED. On these
-> platforms, we instead need to talk to uefisecapp. This commit provides
-> support for this and registers the respective efivars operations to
-> access EFI variables from the kernel.
-> 
-> Communication with uefisecapp follows the standard Qualcomm Trusted
-> Environment (TEE or TrEE) / Secure OS conventions via the respective SCM
-> call interface. This is also the reason why variable access works
-> normally while boot services are active. During this time, said SCM
-> interface is managed by the boot services. When calling
-> ExitBootServices(), the ownership is transferred to the kernel.
-> Therefore, UEFI must not use that interface itself (as multiple parties
-> accessing this interface at the same time may lead to complications) and
-> cannot access variables for us.
-> 
-> Signed-off-by: Maximilian Luz <luzmaximilian@gmail.com>
-> ---
+Hi,
 
-> +static struct platform_driver qcom_uefisecapp_driver = {
-> +	.probe = qcom_uefisecapp_probe,
-> +	.remove = qcom_uefisecapp_remove,
-> +	.driver = {
-> +		.name = "qcom_tee_uefisecapp",
-> +		.of_match_table = qcom_uefisecapp_dt_match,
-> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +	},
-> +};
-> +module_platform_driver(qcom_uefisecapp_driver);
+On Fri, 2023-01-13 at 11:33 +0800, Clark Wang wrote:
+> This patchset add imx93 support for dwmac-imx glue driver.
+> There are some changes of GPR implement.
+> And add fec and eqos nodes for imx93 dts.
+>=20
+> Clark Wang (7):
+>   net: stmmac: add imx93 platform support
+>   dt-bindings: add mx93 description
+>   dt-bindings: net: fec: add mx93 description
+>   arm64: dts: imx93: add eqos support
+>   arm64: dts: imx93: add FEC support
+>   arm64: dts: imx93-11x11-evk: enable eqos
+>   arm64: dts: imx93-11x11-evk: enable fec function
+>=20
+>  .../devicetree/bindings/net/fsl,fec.yaml      |  1 +
+>  .../bindings/net/nxp,dwmac-imx.yaml           |  4 +-
+>  .../boot/dts/freescale/imx93-11x11-evk.dts    | 78 +++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx93.dtsi      | 48 ++++++++++++
+>  .../net/ethernet/stmicro/stmmac/dwmac-imx.c   | 55 +++++++++++--
+>  5 files changed, 180 insertions(+), 6 deletions(-)
 
-I noticed that for efivarfs to work, you're currently relying on having
-the firmware still claim that the variable services are supported in the
-RT_PROP table so that efi core registers the default ops at subsys init
-time (which are later overridden by this driver).
+It's not clear to me if the whole series should go via netdev. I
+think/fear such option could cause later conflicts for Linus. Does it
+make sense to split this in 2 chunks, and have only the first 3 patches
+merged via netdev?
 
-Otherwise efivarfs may fail to initialise when built in:
+Thanks!
 
-	static __init int efivarfs_init(void)
-	{
-		if (!efivars_kobject())
-			return -ENODEV;
+Paolo
 
-		return register_filesystem(&efivarfs_type);
-	}
-
-	module_init(efivarfs_init);
-
-With recent X13s firmware the corresponding bit in the RT_PROP table has
-been cleared so that efivarfs would fail to initialise. Similar problem
-when booting with 'efi=noruntime'.
-
-One way to handle this is to register also the qcom_uefisecapp_driver at
-subsys init time and prevent it from being built as a module (e.g. as is
-done for the SCM driver). I'm using the below patch for this currently.
-
-I guess the Google GSMI implementation suffers from a similar problem.
-
-Johan
-
-
-From 8fecce12d215bd8cab1b8c8f9f0d1e1fe20fe6e7 Mon Sep 17 00:00:00 2001
-From: Johan Hovold <johan+linaro@kernel.org>
-Date: Sun, 15 Jan 2023 15:32:34 +0100
-Subject: [PATCH] firmware: qcom_tee_uefisecapp: register at subsys init
-
-Register efivars at subsys init time so that it is available when
-efivarfs probes. For the same reason, also prevent building the driver
-as a module.
-
-This is specifically needed on platforms such as the Lenovo Thinkpad
-X13s where the firmware has cleared the variable services in the RT_PROP
-table so that efi core does not register any efivar callbacks at subsys
-init time (which are later overridden).
-
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- drivers/firmware/Kconfig               | 2 +-
- drivers/firmware/qcom_tee_uefisecapp.c | 7 ++++++-
- 2 files changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
-index 4e9e2c227899..48e712e363da 100644
---- a/drivers/firmware/Kconfig
-+++ b/drivers/firmware/Kconfig
-@@ -231,7 +231,7 @@ config QCOM_TEE
- 	select QCOM_SCM
- 
- config QCOM_TEE_UEFISECAPP
--	tristate "Qualcomm TrEE UEFI Secure App client driver"
-+	bool "Qualcomm TrEE UEFI Secure App client driver"
- 	select QCOM_TEE
- 	depends on EFI
- 	help
-diff --git a/drivers/firmware/qcom_tee_uefisecapp.c b/drivers/firmware/qcom_tee_uefisecapp.c
-index 65573e4b815a..e83bce4da70a 100644
---- a/drivers/firmware/qcom_tee_uefisecapp.c
-+++ b/drivers/firmware/qcom_tee_uefisecapp.c
-@@ -754,7 +754,12 @@ static struct platform_driver qcom_uefisecapp_driver = {
- 		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
- 	},
- };
--module_platform_driver(qcom_uefisecapp_driver);
-+
-+static int __init qcom_uefisecapp_init(void)
-+{
-+	return platform_driver_register(&qcom_uefisecapp_driver);
-+}
-+subsys_initcall(qcom_uefisecapp_init);
- 
- MODULE_AUTHOR("Maximilian Luz <luzmaximilian@gmail.com>");
- MODULE_DESCRIPTION("Client driver for Qualcomm TrEE/TZ UEFI Secure App");
--- 
-2.38.2
