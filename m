@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B029D66E621
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 19:35:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62AE266E65A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 19:46:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233134AbjAQSe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 13:34:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56122 "EHLO
+        id S232187AbjAQSpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 13:45:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232607AbjAQSbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 13:31:55 -0500
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA995399F;
-        Tue, 17 Jan 2023 10:03:46 -0800 (PST)
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-15bb8ec196aso21054749fac.3;
-        Tue, 17 Jan 2023 10:03:46 -0800 (PST)
+        with ESMTP id S232112AbjAQScy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 13:32:54 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB7EE53F91
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 10:04:40 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so8829020wmc.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 10:04:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XsnU4SEnhYMX4K6JN06vg4T6uBL8G+Stssq81fySd1M=;
-        b=MNSI0nRjGgE6dC+a89cNENxUY0/vVd4JUd5AartSuHqzV5ypUrXyWoNO5nXE1xq0JK
-         6PbFmJ6sch3YXVDyjyxpjt9Vq7+oWZBkOk5ejMlO3LflLuVbF7y9Do9QA+YGEMFsNZUJ
-         FZCJywJihMTnaZb+Ezz9TVL50uH5dzFEPjiybwXoSlP/HDn/hpt2yqXiO2IL2SKqnRT+
-         P7muoVYPyzCaTRCodZFLpNwEybXm0xbNnKA1uQmj5sWveIosTE2Re40YM7wZ7S/WvDe7
-         AQH+h7yMmVvY4TiLEdFztBZdOUaYDqSjg9N3ZfTH0DoEbkRRu45HfQJ7P0smLd/3Os07
-         93xw==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KBPtb5kB7phRN2HyeU727IaxXRKzBI0qHI+gXLYhw7Y=;
+        b=ClpPpXyniScMXOMCRlplFUjOlwCjRSmBW9rMYR/cAmLHnmHaa2ASXhhoYZgW5AMz7D
+         7/1/E7MwBpNSPAdz+Ye155/YRdxU1XL9V8955MblAQGUlVaQDiQE1oJki8WsfKbeRgX5
+         i7fC3zAKp7KSgy3LzCJLRVcuTSt9kXDIrbO6+aQvd+7boGg00pItttB/7qGWlt6nWUCW
+         O4H6RZtoGXg4WaSmkzd47EdA6WKM60SZDu00opIRR/cLXk55aLC416kpQ0jwBtEfVyRW
+         4sSJGUSt+zyiHsCPIkmmpn974Oa83ih3eltGA3CrnfItJF+cBhVfbyzPJ66F8IH6Jzd2
+         IDeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XsnU4SEnhYMX4K6JN06vg4T6uBL8G+Stssq81fySd1M=;
-        b=Mb/hxlaWhDOYOZ1NXsS9BenZ+vjS17SVEEpuYFMkheLlwj1JzB5qsyu6v4C9m4dXyq
-         g478A629OEWeLTPc5GU2bUXZFAOdjNKh44ttQvfTUrx2F2KITXQT9dWiWYLpbPBemcZL
-         C93l+X0YJFsJr34QY/RkMfPF1x/S9Uxz1AJt/9mRzhVF6rVY7Yu+pvkZXlmIXGttose1
-         s+f4bBgcnWBzh/ia8vnogX2V2XIyek67MMMDHfiTfxYG1nJWU17lypiFYlcwfwRLxoCE
-         W1G6uJbx2uD/hy+y7k/Pt7hP4k2PxRka1zK4E9b9woTwZcEfzn3xcBNmh5qBS1VWdmZ1
-         u7Ng==
-X-Gm-Message-State: AFqh2krfJNi6Hb+K2VtlX70bKgEHfFCG20h1nS5e4TlklQ2U3+zZAi2V
-        OhPe90S/liWSV/u2sn3nrzo=
-X-Google-Smtp-Source: AMrXdXtV2I3oYBqihq1mYMRhNeJS77cAyaL3KZH5Wxo0rFba8xRBNJ4jqYpVvhKgTj6+dBkQbK1E1A==
-X-Received: by 2002:a05:6870:fd91:b0:15f:140a:6e72 with SMTP id ma17-20020a056870fd9100b0015f140a6e72mr2468270oab.1.1673978623953;
-        Tue, 17 Jan 2023 10:03:43 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id v12-20020a056870b50c00b0014fc049fc0asm17034675oap.57.2023.01.17.10.03.43
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KBPtb5kB7phRN2HyeU727IaxXRKzBI0qHI+gXLYhw7Y=;
+        b=LzDD1KLWe973XGsJW27Eh8UMS5hV41Dh3cTcg4G+8CdNuqoxnsd4XupbRbxJi9pzZi
+         i13FO2imDcHYnpvCpLuUbMvmydBBpe5+t3vuUABxpEKW6BzQsY1AQFxzcsZSkLNjuy8p
+         4X7gmdUBlPoFNBHC5QS83CP+aVo6P9jZOPDzQDtY2wtMQgYSUgVCK/X+wRVeF3oXmLaH
+         OjRYKiYRWUREIxV9AGJMvt6px85Yf7wLMoHMZoJA6jBi7C6JDa8APOX6aJEKVyOezheM
+         jZYBKgHmiFlBRbDc3Q9UJk6DhA3hDupcZUxf95UszJhnY3h8IM4sXYedJskZyuC+KEnR
+         zdJw==
+X-Gm-Message-State: AFqh2kqa3QiFyKziInBz8sUBM/dmikQxOJ67/HHuCnxzfrmbNblV0he+
+        GCEu4F9i5jJJ8O0v/aZlW2dawg==
+X-Google-Smtp-Source: AMrXdXu3unw8WBLHAeJhgOLo9n3+ap345utf67uMWZmJFzFH8SfgPHxxfhGIk2SYm9ufTb+ARBg4gw==
+X-Received: by 2002:a05:600c:3b1e:b0:3cf:497c:c4f5 with SMTP id m30-20020a05600c3b1e00b003cf497cc4f5mr4116868wms.13.1673978679194;
+        Tue, 17 Jan 2023 10:04:39 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:9236:abcb:4905:a64e])
+        by smtp.gmail.com with ESMTPSA id bp28-20020a5d5a9c000000b00273cd321a1bsm29356681wrb.107.2023.01.17.10.04.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 10:03:43 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 17 Jan 2023 10:03:42 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Mario Kicherer <dev@kicherer.org>
-Cc:     linux-hwmon@vger.kernel.org, jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: hwmon: add nxp,mc34vr500
-Message-ID: <20230117180342.GD2335664@roeck-us.net>
-References: <20230117161340.1310936-1-dev@kicherer.org>
- <20230117161340.1310936-3-dev@kicherer.org>
+        Tue, 17 Jan 2023 10:04:38 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v2 0/2] qcom: sa8775p: add the GCC clock driver for Qualcomm SA8775P platforms
+Date:   Tue, 17 Jan 2023 19:04:27 +0100
+Message-Id: <20230117180429.305266-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230117161340.1310936-3-dev@kicherer.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,62 +76,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 17, 2023 at 05:13:39PM +0100, Mario Kicherer wrote:
-> This patch adds dt-bindings for the NXP MC34VR500 PMIC.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-As with the other patches, use imperative mood.
+Add the DT bindings and driver for the GCC clock on the sa8775p platform
+from Qualcomm.
 
-Guenter
+v1 -> v2:
+- fix examples in DT bindings and make sure they pass tests
+- use lowercase letters in hex numbers
+- fix the name of DT compatible and headers (gcc-sa8775p -> sa8775p-gcc)
+- fix licensing of DT bindings
+- fix the regmap's max_register property
+- use clk_regmap_phy_mux_ops where applicable
+- other minor tweaks and improvements
 
-> 
-> Signed-off-by: Mario Kicherer <dev@kicherer.org>
-> ---
->  .../bindings/hwmon/nxp,mc34vr500.yaml         | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-> new file mode 100644
-> index 000000000000..dfbd6125e84a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/mc34vr500.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP MC34VR500 hwmon sensor
-> +
-> +maintainers:
-> +  - Mario Kicherer <dev@kicherer.org>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,mc34vr500
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      mc34vr500@8 {
-> +        compatible = "nxp,mc34vr500";
-> +        reg = <0x08>;
-> +      };
-> +    };
-> -- 
-> 2.34.1
-> 
+Bartosz Golaszewski (1):
+  dt-bindings: clock: qcom: document the GCC clock on Qualcomm sa8775p
+
+Shazad Hussain (1):
+  clk: qcom: add the GCC driver for sa8775p
+
+ .../bindings/clock/qcom,sa8775p-gcc.yaml      |   79 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-sa8775p.c                | 4805 +++++++++++++++++
+ include/dt-bindings/clock/qcom,sa8775p-gcc.h  |  320 ++
+ 5 files changed, 5214 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sa8775p-gcc.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sa8775p.c
+ create mode 100644 include/dt-bindings/clock/qcom,sa8775p-gcc.h
+
+-- 
+2.37.2
+
