@@ -2,111 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D70A66D3C7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 02:17:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9110566D3E0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 02:40:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232024AbjAQBRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 20:17:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38464 "EHLO
+        id S235037AbjAQBkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 20:40:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233226AbjAQBRk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 20:17:40 -0500
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD2124101;
-        Mon, 16 Jan 2023 17:17:39 -0800 (PST)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1442977d77dso30523259fac.6;
-        Mon, 16 Jan 2023 17:17:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=F4Bj+9QmhG6TNUKdKsjnHuIPQwjxlaYL7LZm3G7wZxA=;
-        b=VuneVeKCpRfJ4p6wsrtSnpVslcKRx+gP7oNUYc/Kxw99NIl/VkOGbYGg9zILxrXYSC
-         zIL5ktZ721gZLq99DLI5fkR7Yq/hm6JKBWsHihwlsHZqZDGOGOwNG9ZZY75ZVC0d9iHP
-         vd0rHtGPRVBJ17CuJl55c8zqseHvWGu+7pUu1EBtdkLXdLJKJRqetuTPEphYscXBNRvC
-         io2XgCzinyjEcUHAx50pW4CCJMQKt4/E/W6eVzQCczDV4hZsceunb5R7DVvxOpodcSYV
-         M8Y1pqfGQBJW/xiVvStPaPleFfn0mY3V2PlgoOlkoEBSpe+0tpp4dRIDzFXs6Gk5toGH
-         52Gw==
-X-Gm-Message-State: AFqh2krnq1cGaRoRbfeaon9fobV/Z9HYNLqZw4HZWCT4/Nj1FwKUr9r/
-        iiXl68RagQ9oy4UK1b2smg==
-X-Google-Smtp-Source: AMrXdXvyn5tRRIBo75GpJ3Ah/S7lll9isVzYuogPxxl78Gv5qOMGaO9/SAB1qriEJIwYcJbxeqwSRQ==
-X-Received: by 2002:a05:6870:bf0d:b0:150:c935:201d with SMTP id qh13-20020a056870bf0d00b00150c935201dmr880763oab.20.1673918258217;
-        Mon, 16 Jan 2023 17:17:38 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t18-20020a056870e75200b0014866eb34cesm654464oak.48.2023.01.16.17.17.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Jan 2023 17:17:37 -0800 (PST)
-Received: (nullmailer pid 1512748 invoked by uid 1000);
-        Tue, 17 Jan 2023 01:17:36 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S234031AbjAQBkj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 20:40:39 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3276F26584;
+        Mon, 16 Jan 2023 17:40:29 -0800 (PST)
+X-UUID: ea832008960711eda06fc9ecc4dadd91-20230117
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=260WfMFmV7gTCf7bcdowdVdB4l4oCLTurwzBetm6Z5c=;
+        b=XvB2a6HoY/C8stvxCVhWQU0spQxLCzxF88rvHN6cSRSpuRdKPEg8SqqqSMEWRJONs+rz/P5DH7phDtpgZEbpImnZEh6ok2RSToodrdXXLNmL5D17rOeo2NyLc1fUuT3J1I2Ckai1SZN/21Lks9gIc6XZFBtQOQ1C9qGwzaV2F9A=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.18,REQID:2332aea3-cf25-4b84-b007-8f7d0d6da977,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:3ca2d6b,CLOUDID:2f23fef5-ff42-4fb0-b929-626456a83c14,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
+X-CID-BVR: 0
+X-UUID: ea832008960711eda06fc9ecc4dadd91-20230117
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 55876540; Tue, 17 Jan 2023 09:40:26 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 17 Jan 2023 09:40:25 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Tue, 17 Jan 2023 09:40:25 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-watchdog@vger.kernel.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH v3 0/2] mtk-wdt: Add reset-by-toprgu support
+Date:   Tue, 17 Jan 2023 09:40:21 +0800
+Message-ID: <20230117014023.2993-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Saurabh Sengar <ssengar@linux.microsoft.com>
-Cc:     daniel.lezcano@linaro.org, kys@microsoft.com, robh+dt@kernel.org,
-        wei.liu@kernel.org, tglx@linutronix.de,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        haiyangz@microsoft.com, mikelley@microsoft.com,
-        ssengar@microsoft.com, linux-hyperv@vger.kernel.org,
-        devicetree@vger.kernel.org, decui@microsoft.com
-In-Reply-To: <1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com>
-References: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
- <1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com>
-Message-Id: <167391822562.1511774.11947732900116239438.robh@kernel.org>
-Subject: Re: [PATCH 4/4] dt-bindings: hv: Add dt-bindings for VMBus
-Date:   Mon, 16 Jan 2023 19:17:36 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series is based on next-20230116.
 
-On Mon, 16 Jan 2023 08:48:08 -0800, Saurabh Sengar wrote:
-> Add dt-bindings for Hyper-V VMBus
-> 
-> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
-> ---
->  .../devicetree/bindings/hv/msft,vmbus.yaml         | 34 ++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hv/msft,vmbus.yaml
-> 
+TOPRGU = Top Reset Generation Unit
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+In some cases, we may need TOPRGU to reset the wdt timer after system
+resets. Provide a reset_by_toprgu parameter for configuration. We can
+disable or enable it by adding reset_by_toprgu in dts.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/hv/msft,vmbus.yaml:20:9: [warning] too many spaces before colon (colons)
-./Documentation/devicetree/bindings/hv/msft,vmbus.yaml:30:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+Changes since v2:
+ - Correct the description
+Changes since v1:
+ - Add more information in bindings
+ - Modify some words in the commit message
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/hv/msft,vmbus.example.dts'
-Documentation/devicetree/bindings/hv/msft,vmbus.yaml:30:1: found a tab character where an indentation space is expected
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/hv/msft,vmbus.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/hv/msft,vmbus.yaml:30:1: found a tab character where an indentation space is expected
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hv/msft,vmbus.yaml: ignoring, error parsing file
-make: *** [Makefile:1508: dt_binding_check] Error 2
+Allen-KH Cheng (2):
+  dt-bindings: watchdog: mtk-wdt: Add reset-by-toprgu support
+  watchdog: mtk_wdt: Add reset_by_toprgu support
 
-doc reference errors (make refcheckdocs):
+ .../devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml     | 6 ++++++
+ drivers/watchdog/mtk_wdt.c                                 | 7 +++++++
+ 2 files changed, 13 insertions(+)
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.18.0
 
