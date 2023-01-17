@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BADD66D9FC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 10:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A16A66DA05
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 10:34:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236636AbjAQJcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 04:32:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60294 "EHLO
+        id S236260AbjAQJeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 04:34:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236625AbjAQJbs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 04:31:48 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF2523670;
-        Tue, 17 Jan 2023 01:30:43 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E871461228;
-        Tue, 17 Jan 2023 09:30:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95D01C433EF;
-        Tue, 17 Jan 2023 09:30:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673947842;
-        bh=Pa8118QX+TAvlu83PlPPJ0HZtwugWhDjYy0v4yJQQrA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=heHCYglHXa1m77v/+hkmFmnKPZvw5j7MCUdrcAwkYvskrQVBk3W0eP0ecf95UGjcA
-         5RQ0f4T6gFWNRFc3OnYfPnFiloTBx4GG5v9LeBoeMgV8WfVuy9wQMh8g+kHqHpejcT
-         3MVyBijAhGjMjAUAMhKZ8DwbVUf9BYJHFDnLpeNyYuBFeh2Mq0m7UIHrGQ9DXgp1yg
-         bzBOVafcjmueRI8HHI3Bvbt/MEdcu+/q+8ksTtTDW440QwaKB3JLEIuymGIzDJKLBD
-         Bv31mSCXB4zAK5N4aaf9TUIuVlLwOpTW8/VxgcFnRBVGzp/Kx9dUZlHOWbSc8ct5Lb
-         fzVbBNBoJDAEg==
-Message-ID: <7bc26f28-2541-8cc4-3cde-abbe4bdf8911@kernel.org>
-Date:   Tue, 17 Jan 2023 11:30:36 +0200
+        with ESMTP id S236607AbjAQJdZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 04:33:25 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1887E44A1;
+        Tue, 17 Jan 2023 01:32:50 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30H9WYq8129934;
+        Tue, 17 Jan 2023 03:32:34 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673947954;
+        bh=+N4fJ7UvYcL31lhx3PT2sqSpjRoDoDBgG+OHb6Sl8A8=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=KWwUmo2Jk1GdpxiVyOfzxeZCaTvZW3tsdPgyS07xE4e7S3AgBOilGryRVaG7795LK
+         YNXa2W6zIKnxJ77Ea6wSgOeISyMDB1LleVao/jW+z5b+X/pSB4ChKaXE+FNVnbmDve
+         EXoku8dmoIIa+WkhfUc/+92mQRbcdDUBvoy4lFvA=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30H9WYQ3104669
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 17 Jan 2023 03:32:34 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 17
+ Jan 2023 03:32:34 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 17 Jan 2023 03:32:34 -0600
+Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30H9WUju009929;
+        Tue, 17 Jan 2023 03:32:30 -0600
+Message-ID: <d978d797-2e04-89b0-4585-68d28347f469@ti.com>
+Date:   Tue, 17 Jan 2023 15:02:29 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH net-next 5/5] arm64: dts: ti: k3-am625-sk: Add cpsw3g cpts
- PPS support
+CC:     Andrew Davis <afd@ti.com>, Matt Ranostay <mranostay@ti.com>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <r-gunasekaran@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH v7 7/8] arm64: dts: ti: k3-j721s2-main: Add PCIe device
+ tree node
 Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        nm@ti.com, kristo@kernel.org, nsekhar@ti.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srk@ti.com
-References: <20230111114429.1297557-1-s-vadapalli@ti.com>
- <20230111114429.1297557-6-s-vadapalli@ti.com>
- <6ae650c9-d68d-d2fc-8319-b7784cd2a749@kernel.org>
- <a889a47f-5f44-1ae6-1ab7-3b7e7011b4f7@ti.com>
- <2007adb5-0980-eee3-8d2f-e30183cf408e@kernel.org>
- <4d7ac24a-0a35-323c-045c-cc5b3d3c715a@ti.com>
- <566700c6-df9b-739b-81ff-8745eea10ff3@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <566700c6-df9b-739b-81ff-8745eea10ff3@ti.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Achal Verma <a-verma1@ti.com>
+References: <20221122101616.770050-1-mranostay@ti.com>
+ <20221122101616.770050-8-mranostay@ti.com>
+ <a88349a2-94ac-1980-1998-a45ac5525f6b@ti.com>
+ <20230117092331.GA3277247@desktop-3598>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <20230117092331.GA3277247@desktop-3598>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,73 +73,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 07:28, Siddharth Vadapalli wrote:
-> Vignesh,
-> 
-> On 16/01/23 22:00, Vignesh Raghavendra wrote:
->>
->>
->> On 16/01/23 9:35 pm, Roger Quadros wrote:
->>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>>>> index 4f179b146cab..962a922cc94b 100644
->>>>>> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>>>> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>>>> @@ -366,6 +366,10 @@ &cpsw3g {
->>>>>>  	pinctrl-names = "default";
->>>>>>  	pinctrl-0 = <&main_rgmii1_pins_default
->>>>>>  		     &main_rgmii2_pins_default>;
->>>>>> +
->>>>>> +	cpts@3d000 {
->>>>>> +		ti,pps = <2 1>;
->>>>>> +	};
->>>>>>  };
->>>>>>  
->>>>>>  &cpsw_port1 {
->>>>>> @@ -464,3 +468,19 @@ partition@3fc0000 {
->>>>>>  		};
->>>>>>  	};
->>>>>>  };
->>>>>> +
->>>>>> +#define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
->>>>> Should this go in ./include/dt-bindings/pinctrl/k3.h ?
->>>>> That way every board DT file doesn't have to define it.
->>>>>
->>>>> The name should be made more platform specific.
->>>>> e.g. K3_TS_OFFSET if it is the same for all K3 platforms.
->>>>> If not then please add Platform name instead of K3.
->>>> The offsets are board specific. If it is acceptable, I will add board specific
->>>> macro for the TS_OFFSET definition in the ./include/dt-bindings/pinctrl/k3.h
->>>> file. Please let me know.
->>> If it is board specific then it should remain in the board file.
->>
->>
->> The values you pass to macro maybe board specific. But the macro
->> definition itself same for a given SoC right? Also, is its same across
->> K3 family ?
->>
+Hello Achal,
 
-I misunderstood then. I agree with Vignesh.
-
->> Please use SoC specific prefix like AM62X_TS_OFFSET() or K3_TS_OFFSET()
->> accordingly.
+On 17/01/23 14:53, Achal Verma wrote:
+>  Tue, Nov 29, 2022 at 11:53:46AM -0600, Andrew Davis wrote:
+>> On 11/22/22 4:16 AM, Matt Ranostay wrote:
+>>> From: Aswath Govindraju <a-govindraju@ti.com>
+>>>
+>>> Add PCIe1 RC device tree node for the single PCIe instance present on
+>>> the j721s2.
+>>>
+>>> Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>>> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+>>> ---
+>>>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 41 ++++++++++++++++++++++
+>>>   1 file changed, 41 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>>> index 2858ba589d54..27631ef32bf5 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+>>> @@ -841,6 +841,47 @@ serdes0: serdes@5060000 {
+>>>   		};
+>>>   	};
+>>> +	pcie1_rc: pcie@2910000 {
+>>
+>> NIT: Not sure we need to call this "_rc", and "1", 0 index these names for
+>> consistency, "pcie0".
 > 
-> For certain SoCs including AM62X, the macro is:
-> #define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
-> while for other SoCs (refer [0]), the macro is:
-> #define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x80000000 | val)
-> 
-> Therefore, I will use SoC specific prefix in the macro. Please let me know if
-> the SoC specific macro can be added to the ./include/dt-bindings/pinctrl/k3.h
-> file for each SoC. If not, I will add the SoC specific macro in the board file
-> itself.
+> Sure, I will name this node as "pcie0_rc" in next patch and "_rc" is because it can be used in endpoint mode too for which "pcie0_ep" node can be added in future.
 
-Not in board file please. It should go in ./include/dt-bindings/pinctrl/k3.h
+The naming is based on the PCIe instance documented in the Technical Reference
+Manual (TRM). For example, consider J7200 SoC which has "pcie1_rc" even though
+it has no "pcie0_rc". This convention is based on the numbering used in the TRM.
 
-> 
-> [0] https://lwn.net/Articles/819313/
-> 
-> Regards,
-> Siddharth.
-
-cheers,
--roger
+Regards,
+Siddharth.
