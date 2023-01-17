@@ -2,220 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8CB166DD1F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:03:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72DD966DD22
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:03:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236919AbjAQMCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 07:02:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40890 "EHLO
+        id S236965AbjAQMDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 07:03:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236798AbjAQMCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:02:49 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD37D36B0A;
-        Tue, 17 Jan 2023 04:02:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id E9A7ACE1689;
-        Tue, 17 Jan 2023 12:02:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B38C4C43392;
-        Tue, 17 Jan 2023 12:02:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673956957;
-        bh=b7leQCJ1hzDEzhNOIaU0dSmiOnzI32jbZ622PnNwXdY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bcY3G8vVPQeY2fnf2OCPlwfgh+M8N0byJRF+mzSvpvUtYlMKcCI/El+kpsRQuDvVF
-         GMl5/BgB1e685aQQ2aYz1oGqQLLJ9a+c37UhPX609007dt9wSa44PMFM8yOqgbCWjU
-         lAS3TGRBgHLftnUbgDdNjIAB+mkIKFN8egkxykWwHW7phAY/CsXxeZ6cErATNRjbSk
-         ZBB05wHYkKSKjXqbQFbp+xN6s5KzvJjGXX/LdFi893Pa1pKFMkgHUvUdqtPoV1ni+5
-         S9rb4VVDN98KaYUs6313c3/2I3ukqXhaumclPDn4WjzCp+Thh+UTptD2rja5CAolpg
-         n+V7NvD3wefkQ==
-From:   rfoss@kernel.org
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [PATCH v1 3/3] arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc dsi-hdmi bridge
-Date:   Tue, 17 Jan 2023 13:02:23 +0100
-Message-Id: <20230117120223.1055225-4-rfoss@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230117120223.1055225-1-rfoss@kernel.org>
-References: <20230117120223.1055225-1-rfoss@kernel.org>
+        with ESMTP id S236872AbjAQMDJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:03:09 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEEAA38663;
+        Tue, 17 Jan 2023 04:02:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673956973; x=1705492973;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OuQzpNaSFrQ7C7fN+vQ5fDXpH/q5UyXVPz+fXyzB23g=;
+  b=RjoTfzC1GKWV5yjyy4IbNxUD0oyza46f1BqPqDfobKmz3LSg0sCWSjpk
+   QlGSrUz6WO5S5Z6HaHJBQUnuAbtojH32rnXGjEbwNGNAn/EV1CkbBQPJX
+   c0jMpf8KIheMiznPcb229om+HEDllXShEOMJq3fchxEJaiuY8gBzxAwt+
+   J5B/jeexMFhV1HhSL1L9xjv+sVsl5zno6YWvuF8jeUWFE9jFjB471dKbS
+   CmqDj4Yo9xuIdV9mZvtOlTE4oypHeh8bJdSOSkXRcqPkN4qwfAGDhmxzW
+   IrndlKoqGa1uU0LC1AyH2K5ipMmXW5dDth0oPWNDkyZTBquWUZ7kpXXzT
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="387028107"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="387028107"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 04:02:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="801722381"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="801722381"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 17 Jan 2023 04:02:48 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 17 Jan 2023 14:02:48 +0200
+Date:   Tue, 17 Jan 2023 14:02:48 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Wayne Chang <waynec@nvidia.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH V4 3/5] usb: typec: ucsi_ccg: Replace ccgx to well-known
+ regex
+Message-ID: <Y8aOaH+ALBvjm/rH@kuha.fi.intel.com>
+References: <20230116155045.100780-1-jonathanh@nvidia.com>
+ <20230116155045.100780-4-jonathanh@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230116155045.100780-4-jonathanh@nvidia.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Robert Foss <robert.foss@linaro.org>
+On Mon, Jan 16, 2023 at 03:50:43PM +0000, Jon Hunter wrote:
+> From: Wayne Chang <waynec@nvidia.com>
+> 
+> ccgx is refer to the cypress cypd4226 typec controller.
+> Replace ccgx to well-known regex "cypress".
+> 
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+> V2 -> V4: nothing has changed
+> V1 -> V2: new change added for adding cypress,firmware-build
+> 
+>  drivers/usb/typec/ucsi/ucsi_ccg.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
+> index 4bc31ed8e5bc..d6114fb8d5a9 100644
+> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
+> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
+> @@ -1357,7 +1357,7 @@ static int ucsi_ccg_probe(struct i2c_client *client)
+>  	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
+>  
+>  	/* Only fail FW flashing when FW build information is not provided */
+> -	status = device_property_read_u16(dev, "ccgx,firmware-build",
+> +	status = device_property_read_u16(dev, "cypress,firmware-build",
+>  					  &uc->fw_build);
 
-The sm8350-hdk ships with the LT9611 UXC DSI/HDMI bridge chip.
+You need to first add that property to
+drivers/i2c/busses/i2c-nvidia-gpu.c.
 
-In order to toggle the board to enable the HDMI output,
-switch #7 & #8 on the rightmost multi-switch package have
-to be toggled to On.
+>  	if (status)
+>  		dev_err(uc->dev, "failed to get FW build information\n");
+> -- 
+> 2.25.1
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 105 ++++++++++++++++++++++++
- 1 file changed, 105 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index 7878f42e9378..49ff3033c120 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -20,6 +20,17 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con: endpoint {
-+				remote-endpoint = <&lt9611_out>;
-+			};
-+		};
-+	};
-+
- 	vph_pwr: vph-pwr-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vph_pwr";
-@@ -29,6 +40,31 @@ vph_pwr: vph-pwr-regulator {
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	lt9611_1v2: lt9611-1v2-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LT9611_1V2";
-+
-+		vin-supply = <&vph_pwr>;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		gpio = <&tlmm 49 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+	};
-+
-+	lt9611_3v3: lt9611-3v3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LT9611_3V3";
-+
-+		vin-supply = <&vreg_bob>;
-+		gpio = <&tlmm 47 GPIO_ACTIVE_HIGH>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		enable-active-high;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
- };
- 
- &adsp {
-@@ -228,6 +264,15 @@ &dispcc {
- &mdss_dsi0 {
- 	vdda-supply = <&vreg_l6b_1p2>;
- 	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			endpoint {
-+				remote-endpoint = <&lt9611_a>;
-+				data-lanes = <0 1 2 3>;
-+			};
-+		};
-+	};
- };
- 
- &mdss_dsi0_phy  {
-@@ -239,6 +284,46 @@ &gpi_dma1 {
- 	status = "okay";
- };
- 
-+&i2c15 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	lt9611_codec: hdmi-bridge@2b {
-+		compatible = "lontium,lt9611uxc";
-+		reg = <0x2b>;
-+
-+		interrupts-extended = <&tlmm 50 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&tlmm 48 GPIO_ACTIVE_HIGH>;
-+
-+		vdd-supply = <&lt9611_1v2>;
-+		vcc-supply = <&lt9611_3v3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&lt9611_state>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				lt9611_a: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+
-+				lt9611_out: endpoint {
-+					remote-endpoint = <&hdmi_con>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &mdss {
- 	status = "okay";
- };
-@@ -256,6 +341,10 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&qupv3_id_2 {
-+	status = "okay";
-+};
-+
- &slpi {
- 	status = "okay";
- 	firmware-name = "qcom/sm8350/slpi.mbn";
-@@ -347,4 +436,20 @@ usb_hub_enabled_state: usb-hub-enabled-state {
- 		drive-strength = <2>;
- 		output-low;
- 	};
-+
-+	lt9611_state: lt9611-state {
-+		rst {
-+			pins = "gpio48";
-+			function = "normal";
-+
-+			output-high;
-+			input-disable;
-+		};
-+
-+		irq {
-+			pins = "gpio50";
-+			function = "gpio";
-+			bias-disable;
-+		};
-+	};
- };
 -- 
-2.34.1
-
+heikki
