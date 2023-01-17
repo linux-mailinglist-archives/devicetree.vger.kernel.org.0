@@ -2,73 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8443466E5F4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 19:29:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2452E66E600
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 19:31:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230039AbjAQS3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 13:29:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54572 "EHLO
+        id S230201AbjAQSb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 13:31:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232083AbjAQS1P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 13:27:15 -0500
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E6145BEB;
-        Tue, 17 Jan 2023 09:58:33 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id cm26-20020a056830651a00b00684e5c0108dso4534472otb.9;
-        Tue, 17 Jan 2023 09:58:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=peHZzcdlWiZtJMYXBU66hMnjAkeh9CWIRD8xSD3q8Yg=;
-        b=HIu0XDHtZoEvy8/0DHv7GlG95JvEaUh+Br9gsWlsa6OwVUQKgILFdcuZvlK/A61zjy
-         9XWuDQ7HfaYUOsZOnWieE6Ol5IcOKOPXOAhzS8OA3nGN8lzSPb/RF1Flpo0KbpVsis7F
-         YdjTifZ6a8e3URQTZdpPF4Ye6GBObHhO7bRPbz6l8CBArfFaKibLtUkzUhar7+ukHIq4
-         RQIMuL+qgUPKkWPYjpFsjOsCf30mbDhPvct6eICWDoOZtsVSaMmiH8v+J5BcZOxLG/0l
-         BDdOzyLMrvqybiPsmVhM4NpUf7tsLxKdnT+FgrUrrzifQ4kugbkURgebl0yl0q5JQ2/1
-         thtg==
+        with ESMTP id S231373AbjAQS3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 13:29:37 -0500
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B6164741E;
+        Tue, 17 Jan 2023 10:01:02 -0800 (PST)
+Received: by mail-oo1-f53.google.com with SMTP id b10-20020a4a9fca000000b004e6f734c6b4so8162321oom.9;
+        Tue, 17 Jan 2023 10:01:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=peHZzcdlWiZtJMYXBU66hMnjAkeh9CWIRD8xSD3q8Yg=;
-        b=ZmKhXXekZ85gmuJzHa/MSbN4EQ1+cfT2oc2n0q0EaZvAjqbm6F1V7LfhAiDiaytYAn
-         ouzxV13vmfZ4U0ujl/7klk5GOJVmYaS2gMU6IdJLaV+ad8BQNucUlGzOUVboivSoDoZv
-         Xe28ckZp+l7NCPSrBbzNiQYyBGXLmUnapdtydfJS854plfSeLFEtoKP1nsgeFodxzXK7
-         0KtkzXNsgYpNdb9cgaMwKu1b2SpqIV4IXn7EZASi6P5+h4MfqTPL9ed7/2h5dHgQt991
-         KoKj/IwIvifwP+tVzoheri9QnHpYNIKBf4aKvvYEG7KC0ITnVaf4t9t2Zre4Vw4zWETr
-         8mgg==
-X-Gm-Message-State: AFqh2koOyEMQwm+QjjtUPKlbGereGZCMELcuVcDZ+IY05zjBiLEt5so1
-        NDrSW3bsfm3m/gD5jBeoyhs=
-X-Google-Smtp-Source: AMrXdXtvDkHGWSZUXaL1l21Yecfkbva5ULq2A6Q10MGZGMGSyqpsB3SCjTly2WUXyRrrji+wwdnd3g==
-X-Received: by 2002:a9d:62c4:0:b0:672:3f94:26a2 with SMTP id z4-20020a9d62c4000000b006723f9426a2mr1747692otk.11.1673978312233;
-        Tue, 17 Jan 2023 09:58:32 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l11-20020a056830268b00b006706cd202b0sm16750652otu.11.2023.01.17.09.58.30
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T/kHOFH1wU0NreMHdddHDbHuXCpkHB1PoZhcRnQt444=;
+        b=foCc1PFG7lYBexT6/8fkfiieupPw+yUWKOVHP2BP/rJxwJ+iP1fXirFkKgDzI/Qa4D
+         EZzGo/EbvWRN627NhAb2M+NsDIoD5dd1uaINbLVstiCqf7m0CSbYU2vWkeBPkZWbVAAq
+         c32/bO38RLbHr3WWC4FZy8T4aU+hWdLJBBw9dvYFh3F7SogOVmBEKmsrzte0n6NDzmbC
+         m+xLZOMqDZbBLKi+DJhW0WAfwbvxh/9RD63V8axdpToc/ESemhiaS/VIC/QQO8niZ9r6
+         sQUU9AAFfuLqi4RYhqGb2R9WVIrMDt/UokL0moYzRzRBLelOCDGb8P5Ch3ytui0fcv7M
+         r/nA==
+X-Gm-Message-State: AFqh2kqun0Ns/yMzVJNHuHbKMQA5pPcH9kqd9WR0VWAqg6rkOk4Y0d0H
+        jfYJSb25/de7O5E7ei6URg==
+X-Google-Smtp-Source: AMrXdXvcuKQfn+7icDnE4nUlh/ljNLsmHBHplIQtCw0qWiIdq35al99wEU9lDuQyulZvwL6n7ShSQA==
+X-Received: by 2002:a05:6820:3c7:b0:4f8:2e60:6afd with SMTP id s7-20020a05682003c700b004f82e606afdmr1593239ooj.8.1673978460048;
+        Tue, 17 Jan 2023 10:01:00 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p2-20020a4ab382000000b004d8c6815287sm15040211ooo.17.2023.01.17.10.00.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 09:58:31 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 17 Jan 2023 09:58:29 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Mario Kicherer <dev@kicherer.org>
-Cc:     linux-hwmon@vger.kernel.org, jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] hwmon: add initial NXP MC34VR500 PMIC monitoring
- support
-Message-ID: <20230117175829.GA2335664@roeck-us.net>
-References: <20230117161340.1310936-1-dev@kicherer.org>
- <20230117161340.1310936-2-dev@kicherer.org>
+        Tue, 17 Jan 2023 10:00:59 -0800 (PST)
+Received: (nullmailer pid 3319602 invoked by uid 1000);
+        Tue, 17 Jan 2023 18:00:58 -0000
+Date:   Tue, 17 Jan 2023 12:00:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
+        Johan Hovold <johan@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: qcom: Introduce PMIC GLINK
+ binding
+Message-ID: <20230117180058.GA3314512-robh@kernel.org>
+References: <20230113041132.4189268-1-quic_bjorande@quicinc.com>
+ <20230113041132.4189268-2-quic_bjorande@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230117161340.1310936-2-dev@kicherer.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+In-Reply-To: <20230113041132.4189268-2-quic_bjorande@quicinc.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,369 +72,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 17, 2023 at 05:13:38PM +0100, Mario Kicherer wrote:
-> This patch adds initial monitoring support for the MC34VR500 PMIC. In its
-> current form, input voltage and temperature alarms are reported to hwmon.
+On Thu, Jan 12, 2023 at 08:11:29PM -0800, Bjorn Andersson wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
 > 
-> Datasheet:
->  - https://www.nxp.com/docs/en/data-sheet/MC34VR500.pdf
+> The PMIC GLINK service, running on a coprocessor on some modern Qualcomm
+> platforms and implement USB Type-C handling and battery management.
+> This binding describes the component in the OS used to communicate with
+> the firmware and connect it's resources to those described in the
+> Devicetree, particularly the USB Type-C controllers relationship with
+> USB and DisplayPort components.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
 > 
 > Changes since v1:
->  - included required #defines directly in the C file
->  - removed separate header file
->  - removed #defines for unimplemented sensors
->  - removed error log output
->  - use hwmon_device_register_with_info API
->  - cleaned probe function
+> - Added reg under connector, to identify multiple connectors
+> - Updated maintainer email
 > 
-> Signed-off-by: Mario Kicherer <dev@kicherer.org>
-> ---
->  drivers/hwmon/Kconfig     |   7 ++
->  drivers/hwmon/Makefile    |   1 +
->  drivers/hwmon/mc34vr500.c | 245 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 253 insertions(+)
->  create mode 100644 drivers/hwmon/mc34vr500.c
+>  .../bindings/soc/qcom/qcom,pmic-glink.yaml    | 102 ++++++++++++++++++
+>  1 file changed, 102 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
 > 
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 3176c33af6c6..69d4c1609494 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -1166,6 +1166,13 @@ config SENSORS_MAX31790
->  	  This driver can also be built as a module. If so, the module
->  	  will be called max31790.
->  
-> +config SENSORS_MC34VR500
-> +	tristate "NXP MC34VR500 hardware monitoring driver"
-> +	depends on I2C
-> +	help
-> +	  If you say yes here you get support for the temperature and input
-> +	  voltage sensors of the NXP MC34VR500.
-> +
->  config SENSORS_MCP3021
->  	tristate "Microchip MCP3021 and compatibles"
->  	depends on I2C
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index e2e4e87b282f..4bef13d16c66 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -149,6 +149,7 @@ obj-$(CONFIG_SENSORS_MAX6650)	+= max6650.o
->  obj-$(CONFIG_SENSORS_MAX6697)	+= max6697.o
->  obj-$(CONFIG_SENSORS_MAX31790)	+= max31790.o
->  obj-$(CONFIG_SENSORS_MC13783_ADC)+= mc13783-adc.o
-> +obj-$(CONFIG_SENSORS_MC34VR500)	+= mc34vr500.o
->  obj-$(CONFIG_SENSORS_MCP3021)	+= mcp3021.o
->  obj-$(CONFIG_SENSORS_TC654)	+= tc654.o
->  obj-$(CONFIG_SENSORS_TPS23861)	+= tps23861.o
-> diff --git a/drivers/hwmon/mc34vr500.c b/drivers/hwmon/mc34vr500.c
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
 > new file mode 100644
-> index 000000000000..211dc44af42e
+> index 000000000000..a79dd0ed9275
 > --- /dev/null
-> +++ b/drivers/hwmon/mc34vr500.c
-> @@ -0,0 +1,245 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * An hwmon driver for the NXP MC34VR500 PMIC
-> + *
-> + * Author: Mario Kicherer <dev@kicherer.org>
-> + */
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+> @@ -0,0 +1,102 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/qcom/qcom,pmic-glink.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/hwmon.h>
-> +#include <linux/hwmon-sysfs.h>
+> +title: Qualcomm PMIC GLINK firmware interface for battery management, USB
+> +  Type-C and other things.
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +
+> +description:
+> +  The PMIC GLINK service, running on a coprocessor on some modern Qualcomm
+> +  platforms and implement USB Type-C handling and battery management. This
+> +  binding describes the component in the OS used to communicate with the
+> +  firmware and connect it's resources to those described in the Devicetree,
+> +  particularly the USB Type-C controllers relationship with USB and DisplayPort
+> +  components.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,sc8180x-pmic-glink
+> +          - qcom,sc8280xp-pmic-glink
+> +          - qcom,sm8350-pmic-glink
+> +      - const: qcom,pmic-glink
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +patternProperties:
+> +  '^connector@\d$':
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +
+> +    properties:
+> +      reg: true
 
-No longer necessary.
+       required:
+         - reg
 
-> +#include <linux/i2c.h>
-> +#include <linux/regmap.h>
+Or '@\d' needs to be optional.
 
-You are sparse with include files. The point is not to include as
-few as possible, but to include everything that declares functions
-or defines used in the code. I identified some below, but there may
-be more missing.
-
-> +
-> +#define MC34VR500_I2C_ADDR		0x08
-> +#define MC34VR500_DEVICEID_VALUE	0x14
-> +
-> +/* INTSENSE0 */
-> +#define ENS_BIT		BIT(0)
-> +#define LOWVINS_BIT	BIT(1)
-> +#define THERM110S_BIT	BIT(2)
-> +#define THERM120S_BIT	BIT(3)
-> +#define THERM125S_BIT	BIT(4)
-> +#define THERM130S_BIT	BIT(5)
-
-#include <linux/bits.h>
-
-> +
-> +#define MC34VR500_DEVICEID	0x00
-> +
-> +#define MC34VR500_SILICONREVID	0x03
-> +#define MC34VR500_FABID		0x04
-> +#define MC34VR500_INTSTAT0	0x05
-> +#define MC34VR500_INTMASK0	0x06
-> +#define MC34VR500_INTSENSE0	0x07
-> +
-> +struct mc34vr500_data {
-> +	struct device *hwmon_dev;
-> +	struct i2c_client *client;
-
-Unused
-
-> +	struct regmap *regmap;
-> +};
-> +
-> +static irqreturn_t mc34vr500_process_interrupt(int irq, void *userdata)
-
-#include <linux/irqreturn.h>
-
-> +{
-> +	struct mc34vr500_data *data = (struct mc34vr500_data *)userdata;
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	ret = regmap_read(data->regmap, MC34VR500_INTSTAT0, &reg);
-> +	if (ret < 0)
-> +		return IRQ_HANDLED;
-> +
-> +	if (reg) {
-> +		if (reg & LOWVINS_BIT)
-> +			hwmon_notify_event(data->hwmon_dev, hwmon_in,
-> +					   hwmon_in_min_alarm, 0);
-> +
-> +		if (reg & THERM110S_BIT)
-> +			hwmon_notify_event(data->hwmon_dev, hwmon_temp,
-> +					   hwmon_temp_max_alarm, 0);
-> +
-> +		if (reg & THERM120S_BIT)
-> +			hwmon_notify_event(data->hwmon_dev, hwmon_temp,
-> +					   hwmon_temp_crit_alarm, 0);
-> +
-> +		if (reg & THERM130S_BIT)
-> +			hwmon_notify_event(data->hwmon_dev, hwmon_temp,
-> +					   hwmon_temp_emergency_alarm, 0);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static umode_t mc34vr500_is_visible(const void *data,
-> +				    enum hwmon_sensor_types type,
-> +				    u32 attr, int channel)
-> +{
-> +	switch (attr) {
-> +	case hwmon_in_min_alarm:
-> +	case hwmon_temp_max_alarm:
-> +	case hwmon_temp_crit_alarm:
-> +	case hwmon_temp_emergency_alarm:
-> +		return 0444;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int mc34vr500_alarm_read(struct mc34vr500_data *data, int index,
-> +				long *val)
-> +{
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	ret = regmap_read(data->regmap, MC34VR500_INTSTAT0, &reg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	*val = !!(reg & index);
-> +
-> +	/* write 1 to clear */
-> +	reg = index;
-> +	regmap_write(data->regmap, MC34VR500_INTSTAT0, reg);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mc34vr500_read(struct device *dev, enum hwmon_sensor_types type,
-> +			  u32 attr, int channel, long *val)
-> +{
-> +	struct mc34vr500_data *data = dev_get_drvdata(dev);
-
-#include <linux/device.h>
 
 > +
-> +	switch (type) {
-> +	case hwmon_in:
-> +		switch (attr) {
-> +		case hwmon_in_min_alarm:
-> +			return mc34vr500_alarm_read(data, LOWVINS_BIT, val);
-> +		default:
-> +			return -EOPNOTSUPP;
-
-#include <linux/errno.h>
-
-> +		}
-> +	case hwmon_temp:
-> +		switch (attr) {
-> +		case hwmon_temp_max_alarm:
-> +			return mc34vr500_alarm_read(data, THERM110S_BIT, val);
-> +		case hwmon_temp_crit_alarm:
-> +			return mc34vr500_alarm_read(data, THERM120S_BIT, val);
-> +		case hwmon_temp_emergency_alarm:
-> +			return mc34vr500_alarm_read(data, THERM130S_BIT, val);
-> +		default:
-> +			return -EOPNOTSUPP;
-> +		}
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
+> +    unevaluatedProperties: false
 > +
-> +static const struct hwmon_channel_info *mc34vr500_info[] = {
-> +	HWMON_CHANNEL_INFO(in, HWMON_I_MIN_ALARM),
-> +	HWMON_CHANNEL_INFO(temp, HWMON_T_MAX_ALARM | HWMON_T_CRIT_ALARM
-> +			   | HWMON_T_EMERGENCY_ALARM),
-> +	NULL,
-> +};
+> +required:
+> +  - compatible
 > +
-> +static const struct hwmon_ops mc34vr500_hwmon_ops = {
-> +	.is_visible = mc34vr500_is_visible,
-> +	.read = mc34vr500_read,
-> +};
+> +additionalProperties: false
 > +
-> +static const struct hwmon_chip_info mc34vr500_chip_info = {
-> +	.ops = &mc34vr500_hwmon_ops,
-> +	.info = mc34vr500_info,
-> +};
+> +examples:
+> +  - |+
+> +    pmic-glink {
+> +        compatible = "qcom,sc8280xp-pmic-glink", "qcom,pmic-glink";
 > +
-> +static const struct regmap_config mc34vr500_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = MC34VR500_INTSENSE0,
-> +};
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +static int mc34vr500_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct mc34vr500_data *data;
-> +	struct device *hwmon_dev;
-> +	int ret;
-> +	unsigned int reg, revid, fabid;
-> +	struct regmap *regmap;
+> +        connector@0 {
+> +            compatible = "usb-c-connector";
+> +            reg = <0>;
+> +            power-role = "dual";
+> +            data-role = "dual";
 > +
-> +	regmap = devm_regmap_init_i2c(client, &mc34vr500_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return PTR_ERR(regmap);
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
 > +
-> +	data = devm_kzalloc(dev, sizeof(struct mc34vr500_data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
+> +                port@0 {
+> +                    reg = <0>;
+> +                    endpoint {
+> +                        remote-endpoint = <&usb_role>;
+> +                    };
+> +                };
 > +
-> +	data->regmap = regmap;
-> +	data->client = client;
+> +                port@1 {
+> +                    reg = <1>;
 > +
-> +	ret = regmap_read(regmap, MC34VR500_DEVICEID, &reg);
-> +	if (ret < 0)
-> +		return ret;
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
 > +
-> +	if (reg != MC34VR500_DEVICEID_VALUE)
-> +		return -ENODEV;
+> +                    endpoint@0 {
+> +                        reg = <0>;
+> +                        remote-endpoint = <&qmp_out>;
+> +                    };
 > +
-> +	ret = regmap_read(regmap, MC34VR500_SILICONREVID, &revid);
-> +	if (ret < 0)
-> +		return ret;
+> +                    endpoint@1 {
+> +                        reg = <1>;
+> +                        remote-endpoint = <&displayport_hpd>;
+> +                    };
+> +                };
 > +
-> +	ret = regmap_read(regmap, MC34VR500_FABID, &fabid);
-> +	if (ret < 0)
-> +		return ret;
+> +                port@2 {
+> +                    reg = <2>;
+> +                    endpoint {
+> +                        remote-endpoint = <&sbu_mux>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
 > +
-> +	dev_dbg(dev, "mc34vr500: revid 0x%x fabid 0x%x\n", revid, fabid);
-
-#include <linux/dev_printk.h>
-
-> +
-> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name,
-> +							 data,
-> +							 &mc34vr500_chip_info,
-> +							 NULL);
-> +	data->hwmon_dev = hwmon_dev;
-> +
-> +	if (client->irq) {
-
-This would still request and enable interrupts after registering the hwmon
-device failed for whatever reason. If an interrupt then occurs before the
-probe function actually fails, hwmon_notify_event() would be called with
-a bad hwmon device pointer and crash.
-
-The return value from devm_hwmon_device_register_with_info() needs to be
-checked before the interrupt is enabled.
-
-> +		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-> +						mc34vr500_process_interrupt,
-> +						IRQF_TRIGGER_RISING |
-> +						IRQF_ONESHOT |
-> +						IRQF_SHARED,
-> +						dev_name(dev), data);
-
-#include <linux/interrupt.h>
-
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* clear interrupts */
-> +		ret = regmap_write(regmap, MC34VR500_INTSTAT0, 0);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* unmask interrupts */
-> +		ret = regmap_write(regmap, MC34VR500_INTMASK0,
-> +				   ~(LOWVINS_BIT | THERM110S_BIT));
-
-Why not enable the other handled thermal event bits ?
-
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return PTR_ERR_OR_ZERO(hwmon_dev);
-
-Then this can just return 0. Also
-
-#include <linux/err.h>
-
-for both PTR_ERR_OR_ZERO() and PTR_ERR().
-
-> +}
-> +
-> +static const struct i2c_device_id mc34vr500_id[] = {
-> +	{ "mc34vr500", 0 },
-> +	{ }
-> +};
-> +
-
-Drop this empty line
-
-> +MODULE_DEVICE_TABLE(i2c, mc34vr500_id);
-
-#include <linux/module.h>
-
-> +
-
-What happened with nxp,mc34vr500 ? You'll need the devicetree
-match to instantiate the device in devicetree systems.
-
-> +static struct i2c_driver mc34vr500_driver = {
-> +	.driver = {
-> +		   .name = "mc34vr500",
-> +		    },
-> +	.probe_new = mc34vr500_probe,
-> +	.id_table = mc34vr500_id,
-> +};
-> +
-> +module_i2c_driver(mc34vr500_driver);
-> +
-> +MODULE_AUTHOR("Mario Kicherer <dev@kicherer.org>");
-> +
-> +MODULE_DESCRIPTION("MC34VR500 driver");
-> +MODULE_LICENSE("GPL");
 > -- 
-> 2.34.1
+> 2.37.3
 > 
