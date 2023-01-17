@@ -2,270 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99DA666E43D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 17:58:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5586D66E449
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:01:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbjAQQ62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 11:58:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34866 "EHLO
+        id S233911AbjAQRBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 12:01:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233766AbjAQQ60 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 11:58:26 -0500
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C6D4393B
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 08:58:25 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id D940C5C0176;
-        Tue, 17 Jan 2023 11:58:22 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 17 Jan 2023 11:58:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1673974702; x=1674061102; bh=mwIGHWCBek
-        Q9BMMNPOARhkG/MMqyeZiMnAu5idF4a44=; b=gqW1tXrcYmHRBtgbUr2F1/rAH0
-        9ZFp3lBa1B1wsFQPUPfib73+TlNg0RkkshBRDy6NQ1REEsVC12Hn7GA19OdbG+bD
-        qGoHEN1LwyQzJbp59dIBL0Ou/TLNRQvPs0BMfeROupwudmCvK5zh6RWvHSxHnUaP
-        UM/aRj8JWGHlEbkn+4jJNrgLKf0TomfRHMtBxztpniV9JF6yzEnSJCTbxoeSZaLE
-        bkL7m3nZnHuxXHyoELZ1sG2wFl4g52EwvDO6/s/4AvzhDL1ENKbvOjUkoSSHnRY6
-        cpcgdLoAkFt3JSIlrBJrZgZXL2AeJkDOsUKUcN81eEcGm1bsL4YccnCnHCqg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1673974702; x=1674061102; bh=mwIGHWCBekQ9BMMNPOARhkG/MMqy
-        eZiMnAu5idF4a44=; b=aGsip6jLC6+VCcXF7IXcCUdHpOIqeO38sfAVlVmKB8t6
-        E2fBX7dOZMEQ+XGaUOKz+ci8bASHYqn7Dm15vMdn1KCpxyfsWZFnHn9GSbLu/QOW
-        uGvWTmh4jPgeSM0ONQgPbnm6KtH6staeSqdUZJQ1F42P26hPlrH6er6bmkmB3bm/
-        NSLSh1wbTCZAcrrRutzEnC4up6DLUrdOegFOOZMiE1vQu6bhD2hWcezbxrg/utLl
-        KGJBW8uliPurLJwbZWD1GROJS5z8cyggXwhZSNMgxSihz1oxQHdtKdl9c1Q3HTF5
-        41xpCAq3qcEJy1IjfAo9Chs3or3QdJlaUYBFUG/PhA==
-X-ME-Sender: <xms:rtPGYxTNOWM0bbUi7EWZSH-aw3zNjbaC1SRmc29sY_3r2l7yFsNaAA>
-    <xme:rtPGY6xlQtzkBUarCNwCF30sAsPulQkmX2eZK7JKKgDHYCI8Lp0O1LeytOr6OunoD
-    gS2b6LxfcVsRz13Obg>
-X-ME-Received: <xmr:rtPGY20qjknBQzw9wv0Nx-ZiGohsgUAYaBMUb6lReJMmy-mKcRdEQSpnakrKO_PbG5jfOf6yIiX55IBSQt7XMGP4R4QNMIOvHxiHlFL2fUgfxA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddtiedgleefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
-    hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:rtPGY5BqBfOXJgPDCvw5zMamlk2nchiW1HUHq4BCdkz9V94rYi6I-Q>
-    <xmx:rtPGY6iDD7CdaA5lQMNhwlzMldQx2DkIlMc_g00sHYNaxKfun71ewg>
-    <xmx:rtPGY9qaqnZSvTAGeFax90SZ49EIs6VHqumFAv_6--SrSPXrlxhbvA>
-    <xmx:rtPGY_tSiDgX1I5qh3XTPDK1KiQbDnHhw18LJYH2c_Jb7owvrrRgyQ>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 17 Jan 2023 11:58:21 -0500 (EST)
-Date:   Tue, 17 Jan 2023 17:58:19 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org, maccraft123mc@gmail.com,
-        tzimmermann@suse.de, maarten.lankhorst@linux.intel.com,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, daniel@ffwll.ch, airlied@gmail.com,
-        sam@ravnborg.org, thierry.reding@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V10 1/4] drm: of: Add drm_of_get_dsi_bus helper function
-Message-ID: <20230117165819.4rx7aucvyp5e2rj6@houat>
-References: <20230112175358.421975-1-macroalpha82@gmail.com>
- <20230112175358.421975-2-macroalpha82@gmail.com>
+        with ESMTP id S233786AbjAQRBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:01:33 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA5439CFF
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:01:31 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id z5so30230452wrt.6
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:01:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iaIoioiiiOEumFM+lAmLzxpgsDICsGiz+IvsgBagPfE=;
+        b=m7Aw4OnFYBmkQyAKBqodVwzbRj81+GA4XBfM9/X1sPkgZ1YcurwQRlUWZ85dtEH9I7
+         9ROrmzUWksXod52FrFR1U/R07NyVEkfrEM+uuLoxY+LJ/MNmNuqmBCljltcZVq0VlPx/
+         rqRgi9rx7wf2huNwhZzb5TQr/QvNK34xTvw/LhU+vkQNFbzLgx2GX/7X9/1zNBHN8QQ7
+         wBx/u4wzI0N/fwNjgwohzyy1VNZ3kJGbk3q3VSZny0DdkTxUzg0q/S5/04b0qYBHSBb3
+         2uJKQE/YA2VbY2T0e4CzvaEwGULUsx3JbyxUN9dXIDuy9JOhw9Q9hIe6tVvI/ta/V5LM
+         p3+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iaIoioiiiOEumFM+lAmLzxpgsDICsGiz+IvsgBagPfE=;
+        b=QmvCMXx3PS3ZDIHCpO1C0VkMFJv1eSpZhHdzje6B0dGw9/6plmOCtvCOC+F9PCS5rI
+         KSRYgm/JA5gZTmdfpbP6paSaCDNWAnImC6w28b7Ublkx4qA2aiwM5+ILdU0oH8WmuIr2
+         GBoanphhdmwynup6DYix895UL5UsMLr1NQJYV/huRMg79/wcaQwcCC/OOuY9fsnu9ZOy
+         J8hml4uRJ5cEikt63oB5S9u5ETlxU7A2s1vxwJKxGaq0YKTcgUirZCy2OY5rRZIEAsZz
+         DR9XPvw/teY0eA+Ybip8epNfAWYLCw2zoaecBJtgNLuMw2YqRex99bHhp2E+WAUVdtOA
+         NeOw==
+X-Gm-Message-State: AFqh2kpUcKWx+XsJ5iIP4By5e3IJ09kc9Lyo0jtiwKaBv0uFParrQtGr
+        JIQe13znEV4Zf6Q9m7p77E1EjA==
+X-Google-Smtp-Source: AMrXdXtuYPP3e2NwiZHC+tcAro+jscRTu2L8lNw4uysmPrIUUWgLlKv1BYa+0nkvJxapOpf4g5vk7Q==
+X-Received: by 2002:a5d:522d:0:b0:2bd:ff91:7e1e with SMTP id i13-20020a5d522d000000b002bdff917e1emr3155288wra.57.1673974890353;
+        Tue, 17 Jan 2023 09:01:30 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l14-20020a5d526e000000b0028e55b44a99sm11576376wrc.17.2023.01.17.09.01.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 09:01:29 -0800 (PST)
+Message-ID: <c2740d66-b51f-efc2-6583-a69bde950c68@linaro.org>
+Date:   Tue, 17 Jan 2023 18:01:27 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7npjgdbxmfp4vihi"
-Content-Disposition: inline
-In-Reply-To: <20230112175358.421975-2-macroalpha82@gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v5 1/6] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface bindings
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Mark Brown <broonie@kernel.org>, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230111022433.25950-1-yuji2.ishikawa@toshiba.co.jp>
+ <20230111022433.25950-2-yuji2.ishikawa@toshiba.co.jp>
+ <Y8a+Hk2jFOjbkIvZ@pendragon.ideasonboard.com>
+ <d1bb1148-e273-f5bb-bccc-ceca82bb6836@linaro.org>
+ <Y8bFjhHkbNAKQK3t@pendragon.ideasonboard.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y8bFjhHkbNAKQK3t@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 17/01/2023 16:58, Laurent Pinchart wrote:
+> Hi Krzysztof,
+> 
+> On Tue, Jan 17, 2023 at 04:42:51PM +0100, Krzysztof Kozlowski wrote:
+>> On 17/01/2023 16:26, Laurent Pinchart wrote:
+>>>
+>>>> +
+>>>> +          clock-lanes:
+>>>> +            description: VIIF supports 1 clock line
+>>>
+>>> s/line/lane/
+>>>
+>>>> +            const: 0
+>>>
+>>> I would also add
+>>>
+>>>           clock-noncontinuous: true
+>>>           link-frequencies: true
+>>>
+>>> to indicate that the above two properties are used by this device.
+>>
+>> No, these are coming from other schema and there is never need to
+>> mention some property to indicate it is more used than other case. None
+>> of the bindings are created such way, so this should not be exception.
+> 
+> There are some bindings that do so, but that may not be a good enough
+> reason, as there's a chance I wrote those myself :-)
+> 
+> I would have sworn that at some point in the past the schema wouldn't
+> have validated the example with this omitted. I'm not sure if something
+> changed or if I got this wrong.
 
---7npjgdbxmfp4vihi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You probably think about case when using additionalProperties:false,
+where one has to explicitly list all valid properties. But not for
+unevaluatedProperties:false.
 
-Hi,
+> 
+> video-interfaces.yaml defines lots of properties applicable to
+> endpoints. For a given device, those properties should be required
 
-On Thu, Jan 12, 2023 at 11:53:55AM -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
->=20
-> Add helper function to find DSI host for devices where DSI panel is not
-> a minor of a DSI bus (such as the Samsung AMS495QA01 panel or the
-> official Raspberry Pi touchscreen display).
->=20
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> ---
->  drivers/gpu/drm/drm_of.c | 70 ++++++++++++++++++++++++++++++++++++++++
->  include/drm/drm_of.h     | 10 ++++++
->  2 files changed, 80 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
-> index 7bbcb999bb75..6c2c97a716fe 100644
-> --- a/drivers/gpu/drm/drm_of.c
-> +++ b/drivers/gpu/drm/drm_of.c
-> @@ -10,6 +10,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_encoder.h>
-> +#include <drm/drm_mipi_dsi.h>
->  #include <drm/drm_of.h>
->  #include <drm/drm_panel.h>
-> =20
-> @@ -493,3 +494,72 @@ int drm_of_get_data_lanes_count_ep(const struct devi=
-ce_node *port,
->  	return ret;
->  }
->  EXPORT_SYMBOL_GPL(drm_of_get_data_lanes_count_ep);
-> +
-> +#if IS_ENABLED(CONFIG_DRM_MIPI_DSI)
-> +
-> +/**
-> + * drm_of_get_dsi_bus - find the DSI bus for a given device
-> + * @dev: parent device of display (SPI, I2C)
-> + * @info: DSI device info to be updated with DSI node. This is optional
-> + * and if not needed can be NULL.
-> + *
-> + * Gets parent DSI bus for a DSI device controlled through a bus other
-> + * than MIPI-DCS (SPI, I2C, etc.) using the Device Tree.
-> + *
-> + * Returns pointer to mipi_dsi_host if successful, -EINVAL if the
-> + * request is unsupported, -EPROBE_DEFER if the DSI host is found but
-> + * not available, or -ENODEV otherwise.
-> + */
-> +struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
-> +					 struct mipi_dsi_device_info *info)
-> +{
-> +	struct mipi_dsi_host *dsi_host;
-> +	struct device_node *endpoint, *dsi_host_node;
-> +
-> +	/*
-> +	 * Get first endpoint child from device.
-> +	 */
-> +	endpoint =3D of_graph_get_next_endpoint(dev->of_node, NULL);
-> +	if (!endpoint)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	/*
-> +	 * Follow the first endpoint to get the DSI host node.
-> +	 */
-> +	dsi_host_node =3D of_graph_get_remote_port_parent(endpoint);
-> +	if (!dsi_host_node)
-> +		goto error;
-> +
-> +	/*
-> +	 * Get the DSI host from the DSI host node. If we get an error
-> +	 * or the return is null assume we're not ready to probe just
-> +	 * yet. Release the DSI host node since we're done with it.
-> +	 */
-> +	dsi_host =3D of_find_mipi_dsi_host_by_node(dsi_host_node);
-> +	of_node_put(dsi_host_node);
-> +	if (IS_ERR_OR_NULL(dsi_host)) {
-> +		of_node_put(endpoint);
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +	}
-> +
-> +	/*
-> +	 * Set the node of the mipi_dsi_device_info to the correct node
-> +	 * and then release the endpoint node since we're done with it.
-> +	 * since this is optional, check if the info is NULL first.
-> +	 */
-> +	if (info) {
-> +		info->node =3D of_graph_get_remote_port(endpoint);
+required:
+ - foo
 
-it looks to me that the info->node is actually the DSI device OF node,
-not its host port. Which begs the question, why should we even return it
-there, since there's a pretty big chance that dev->of.node =3D=3D
-info->node, and you obviously don't care about the channel and type fields.
+> (easy, that's defined in the bindings), optional,
 
-I've had a look and node of the current users of
-mipi_dsi_device_register_full actually register a mipi_dsi_device_info
-with a node pointer set to !NULL, including the driver in this series.
+by default (with unevaluatedProperties:false)
+or explicitly mention "foo: true (with additionalProperties:false)
 
-So, why do we care about the device info at all?
+>  or forbidden. How do
 
-> +		if (IS_ERR_OR_NULL(info->node))
+foo: false (with unevaluatedProperties:false)
+or by default (with additionalProperties:false)
 
-of_graph_get_remote_port doesn't return an error pointer.
+> we differentiate between the latter two cases ?
 
-> --- a/include/drm/drm_of.h
-> +++ b/include/drm/drm_of.h
-> @@ -15,6 +15,8 @@ struct drm_encoder;
->  struct drm_panel;
->  struct drm_bridge;
->  struct device_node;
-> +struct mipi_dsi_device_info;
-> +struct mipi_dsi_host;
-> =20
->  /**
->   * enum drm_lvds_dual_link_pixels - Pixel order of an LVDS dual-link con=
-nection
-> @@ -56,6 +58,8 @@ int drm_of_get_data_lanes_count_ep(const struct device_=
-node *port,
->  				   int port_reg, int reg,
->  				   const unsigned int min,
->  				   const unsigned int max);
-> +struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
-> +					 struct mipi_dsi_device_info *info);
->  #else
->  static inline uint32_t drm_of_crtc_port_mask(struct drm_device *dev,
->  					  struct device_node *port)
-> @@ -127,6 +131,12 @@ drm_of_get_data_lanes_count_ep(const struct device_n=
-ode *port,
->  {
->  	return -EINVAL;
->  }
-> +static inline struct
-> +mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
-> +					 struct mipi_dsi_device_info *info)
-> +{
-> +	return ERR_PTR(-EINVAL);
-> +}
->  #endif
 
-So it looks to me that if CONFIG_OF is defined, we'll define an external
-symbol declared for drm_of_get_dsi_bus, but that function will only be
-compiled if CONFIG_DRM_MIPI_DSI is enabled.
 
-What happens if we have CONFIG_OF but not CONFIG_DRM_MIPI_DSI?
+Best regards,
+Krzysztof
 
-If think you need to have here something like:
-
-#ifdef IS_ENABLED(CONFIG_OF) && IS_ENABLED(CONFIG_DRM_MIPI_DSI)
-struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
-       					 struct mipi_dsi_device_info *info);
-#else
-static inline struct
-mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
-				  struct mipi_dsi_device_info *info)
-{
-	return ERR_PTR(-EINVAL);
-}
-#endif
-
-Maxime
-
---7npjgdbxmfp4vihi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY8bToAAKCRDj7w1vZxhR
-xeNAAQDHf3gD/m6rIOl3XCKS1NtqNRV0SVpHe1YxIRdLehnAfQD/aa7TDSE3I6aL
-TSyB4r5bH6LV9iHI1J9Rs76LuemgTA8=
-=TFgQ
------END PGP SIGNATURE-----
-
---7npjgdbxmfp4vihi--
