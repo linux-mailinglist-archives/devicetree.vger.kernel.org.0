@@ -2,179 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1902866D9EB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 10:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BADD66D9FC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 10:32:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236631AbjAQJ3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 04:29:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57912 "EHLO
+        id S236636AbjAQJcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 04:32:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236674AbjAQJ2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 04:28:35 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA8B1DB9F
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 01:27:01 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id u19so73828586ejm.8
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 01:27:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aG/8wcVo3iRFKTM15eP07bvogfZDNrsKDxEfzDzAxqQ=;
-        b=I0xtpXyMLKdw4YC1KQ+i/CO9seD/pJWEEKfI4ib77wLtEsrjFfaYTeXcnp4hnHrjA1
-         m8S5X9QeXhhav0yuntaQ7x2KuQqNzfK8YPV4nXEaBlL13kg35pHmSY7Dltq3VnWAdeKk
-         XAia9YcWJLOdosghZQn3U77KI60Ryy6jz4pK/TeEWA65+vdd8dwQxAcwmYWXRSUNa83t
-         2TEF87WC10QFXfWyW7RwEK8PoCTFXn5lT1m5HQrEi+P5RyY/Jr7WMnja41VsATUH2+Lt
-         IuUzpnlsFspRKgwmSuDxBIYPVh/VYnbvCzydKX7GgIcKh2xSos5mlvWiS1celQVLkr22
-         IfOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aG/8wcVo3iRFKTM15eP07bvogfZDNrsKDxEfzDzAxqQ=;
-        b=J67hE0z37+e5fa0oBs6KHVG7wz1pb8PPiBmjKWAqUQCQJWCP6/afQPnTtB6cpFWsNI
-         Cp8kuI6RCjDsIu89Yr6H9+vaWY9RAI1wt+c/V8kF/u3gjeyfrUUkpQJqoZIvuNmdmgPO
-         GqpfyHOgEW6dUH+ZRsUVX5sPdwzfkU6lx8tHHpL2s5XMS+tJsPAxcPxacEMSXrjDJPoH
-         ggOOnT88/s8e+s+iPg2HXpHRoYFLQKy/0gIxJ5xi4GIsAibYXV94tP4RS7MxVyc/73RE
-         oE9vWQpYggm2HOalHo0ZCzpmiFXWD8QtDU68SFEo6qhqeQ5WwTQ1wrXQimWfHUHUAqo9
-         aEnw==
-X-Gm-Message-State: AFqh2koHJ28G8TYGAsyHSQ8ZAFM3MiSrJa0NNyDt0A62QISbbgk+wDJj
-        RS7bCPmeyJicednhgAJgp3O2Lw==
-X-Google-Smtp-Source: AMrXdXu2si9HzTcy4nOGsEf7y8i21dY9vxEP7F2SyxnNBkvx0AeN1qN1paxsr2aPYTdtxPI9Z81GaQ==
-X-Received: by 2002:a17:907:2a56:b0:84d:35e1:2781 with SMTP id fe22-20020a1709072a5600b0084d35e12781mr14583345ejc.46.1673947620250;
-        Tue, 17 Jan 2023 01:27:00 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id et21-20020a170907295500b00871f66bf354sm1254923ejc.204.2023.01.17.01.26.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 01:26:59 -0800 (PST)
-Message-ID: <ed32ade2-41b1-5aa0-cc1f-0f40f1d9f099@linaro.org>
-Date:   Tue, 17 Jan 2023 11:26:58 +0200
+        with ESMTP id S236625AbjAQJbs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 04:31:48 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF2523670;
+        Tue, 17 Jan 2023 01:30:43 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E871461228;
+        Tue, 17 Jan 2023 09:30:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95D01C433EF;
+        Tue, 17 Jan 2023 09:30:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673947842;
+        bh=Pa8118QX+TAvlu83PlPPJ0HZtwugWhDjYy0v4yJQQrA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=heHCYglHXa1m77v/+hkmFmnKPZvw5j7MCUdrcAwkYvskrQVBk3W0eP0ecf95UGjcA
+         5RQ0f4T6gFWNRFc3OnYfPnFiloTBx4GG5v9LeBoeMgV8WfVuy9wQMh8g+kHqHpejcT
+         3MVyBijAhGjMjAUAMhKZ8DwbVUf9BYJHFDnLpeNyYuBFeh2Mq0m7UIHrGQ9DXgp1yg
+         bzBOVafcjmueRI8HHI3Bvbt/MEdcu+/q+8ksTtTDW440QwaKB3JLEIuymGIzDJKLBD
+         Bv31mSCXB4zAK5N4aaf9TUIuVlLwOpTW8/VxgcFnRBVGzp/Kx9dUZlHOWbSc8ct5Lb
+         fzVbBNBoJDAEg==
+Message-ID: <7bc26f28-2541-8cc4-3cde-abbe4bdf8911@kernel.org>
+Date:   Tue, 17 Jan 2023 11:30:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 0/4] soc: qcom: Introduce PMIC GLINK
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
-        Johan Hovold <johan@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230113041132.4189268-1-quic_bjorande@quicinc.com>
- <9e831252-7198-7983-8a52-0e745688452d@linaro.org>
- <20230117023238.GB2350793@hu-bjorande-lv.qualcomm.com>
- <c1e3db0d-7593-b0fc-043b-60538faf9ba2@linaro.org>
- <20230117025818.GC2350793@hu-bjorande-lv.qualcomm.com>
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230117025818.GC2350793@hu-bjorande-lv.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.4.2
+Subject: Re: [PATCH net-next 5/5] arm64: dts: ti: k3-am625-sk: Add cpsw3g cpts
+ PPS support
+Content-Language: en-US
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        nm@ti.com, kristo@kernel.org, nsekhar@ti.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srk@ti.com
+References: <20230111114429.1297557-1-s-vadapalli@ti.com>
+ <20230111114429.1297557-6-s-vadapalli@ti.com>
+ <6ae650c9-d68d-d2fc-8319-b7784cd2a749@kernel.org>
+ <a889a47f-5f44-1ae6-1ab7-3b7e7011b4f7@ti.com>
+ <2007adb5-0980-eee3-8d2f-e30183cf408e@kernel.org>
+ <4d7ac24a-0a35-323c-045c-cc5b3d3c715a@ti.com>
+ <566700c6-df9b-739b-81ff-8745eea10ff3@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <566700c6-df9b-739b-81ff-8745eea10ff3@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 04:58, Bjorn Andersson wrote:
-> On Tue, Jan 17, 2023 at 02:37:27AM +0000, Bryan O'Donoghue wrote:
->> On 17/01/2023 02:32, Bjorn Andersson wrote:
->>> On Fri, Jan 13, 2023 at 05:10:17PM +0000, Bryan O'Donoghue wrote:
->>>> On 13/01/2023 04:11, Bjorn Andersson wrote:
->>>>> This implements the base PMIC GLINK driver, a power_supply driver and a
->>>>> driver for the USB Type-C altmode protocol. This has been tested and
->>>>> shown to provide battery information, USB Type-C switch and mux requests
->>>>> and DisplayPort notifications on SC8180X, SC8280XP and SM8350.
->>>>>
->>>>> Bjorn Andersson (4):
->>>>>      dt-bindings: soc: qcom: Introduce PMIC GLINK binding
->>>>>      soc: qcom: pmic_glink: Introduce base PMIC GLINK driver
->>>>>      soc: qcom: pmic_glink: Introduce altmode support
->>>>>      power: supply: Introduce Qualcomm PMIC GLINK power supply
->>>>>
->>>>>     .../bindings/soc/qcom/qcom,pmic-glink.yaml    |  102 ++
->>>>>     drivers/power/supply/Kconfig                  |    9 +
->>>>>     drivers/power/supply/Makefile                 |    1 +
->>>>>     drivers/power/supply/qcom_battmgr.c           | 1421 +++++++++++++++++
->>>>>     drivers/soc/qcom/Kconfig                      |   15 +
->>>>>     drivers/soc/qcom/Makefile                     |    2 +
->>>>>     drivers/soc/qcom/pmic_glink.c                 |  336 ++++
->>>>>     drivers/soc/qcom/pmic_glink_altmode.c         |  477 ++++++
->>>>>     include/linux/soc/qcom/pmic_glink.h           |   32 +
->>>>>     9 files changed, 2395 insertions(+)
->>>>>     create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
->>>>>     create mode 100644 drivers/power/supply/qcom_battmgr.c
->>>>>     create mode 100644 drivers/soc/qcom/pmic_glink.c
->>>>>     create mode 100644 drivers/soc/qcom/pmic_glink_altmode.c
->>>>>     create mode 100644 include/linux/soc/qcom/pmic_glink.h
->>>>>
->>>>
->>>> How does the USB PHY and a USB redriver fit into this ?
->>>>
->>>> Is the host supposed to manage both/neither ? Is the DSP responsible for
->>>> configuring the PHY lanes and the turnaround on orientation switch ?
->>>>
->>>
->>> As indicated above, the firmware deals with battery management and USB
->>> Type-C handling.
->>>
->>> The battery/power management is handled by the battmgr implementation,
->>> exposing the various properties through a set of power_supply objects.
->>>
->>> The USB Type-C handling comes in two forms. The "altmode" protocol
->>> handles DisplayPort notifications - plug detect, orientation and mode
->>> switches. The other part of the USB implementation exposes UCSI.
->>>
->>> The altmode implementation provides two things:
->>> - A drm_bridge, per connector, which can be tied (of_graph) to a
->>>     DisplayPort instance, and will invoke HPD notifications on the
->>>     drm_bridge, based on notification messages thereof.
->>>
->>> - Acquire typec_switch and typec_mux handles through the of_graph and
->>>     signal the remotes when notifications of state changes occur. Linking
->>>     this to the FSA4480, is sufficient to get USB/DP combo (2+2 lanes)
->>>     working on e.g. SM8350 HDK.
->>>     Work in progress patches also exists for teaching QMP about
->>>     orientation switching of the SS lines, but it seems this needs to be
->>>     rebased onto the refactored QMP driver.
->>>     I also have patches for QMP to make it switch USB/DP combo -> 4-lane
->>>     DP, which allow 4k support without DSC, unfortunately switch back to
->>>     USB has not been fully reliable, so this requires some more work
->>>     (downstream involves DWC3 here as well, to reprogram the PHY).
->>
->> Oki doki that makes sense and is pretty much in-line with what I thought.
->>
->> We still have a bunch of typec-mux and phy work to do even with adsp/glink
->> doing the TCPM.
->>
+On 17/01/2023 07:28, Siddharth Vadapalli wrote:
+> Vignesh,
 > 
-> Correct, the registration of QMP as a typec_switch and typec_mux and
-> handling of respective notification remains open and should (by design)
-> be independent of the TCPM implementation.
+> On 16/01/23 22:00, Vignesh Raghavendra wrote:
+>>
+>>
+>> On 16/01/23 9:35 pm, Roger Quadros wrote:
+>>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>>>>>> index 4f179b146cab..962a922cc94b 100644
+>>>>>> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>>>>>> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>>>>>> @@ -366,6 +366,10 @@ &cpsw3g {
+>>>>>>  	pinctrl-names = "default";
+>>>>>>  	pinctrl-0 = <&main_rgmii1_pins_default
+>>>>>>  		     &main_rgmii2_pins_default>;
+>>>>>> +
+>>>>>> +	cpts@3d000 {
+>>>>>> +		ti,pps = <2 1>;
+>>>>>> +	};
+>>>>>>  };
+>>>>>>  
+>>>>>>  &cpsw_port1 {
+>>>>>> @@ -464,3 +468,19 @@ partition@3fc0000 {
+>>>>>>  		};
+>>>>>>  	};
+>>>>>>  };
+>>>>>> +
+>>>>>> +#define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
+>>>>> Should this go in ./include/dt-bindings/pinctrl/k3.h ?
+>>>>> That way every board DT file doesn't have to define it.
+>>>>>
+>>>>> The name should be made more platform specific.
+>>>>> e.g. K3_TS_OFFSET if it is the same for all K3 platforms.
+>>>>> If not then please add Platform name instead of K3.
+>>>> The offsets are board specific. If it is acceptable, I will add board specific
+>>>> macro for the TS_OFFSET definition in the ./include/dt-bindings/pinctrl/k3.h
+>>>> file. Please let me know.
+>>> If it is board specific then it should remain in the board file.
+>>
+>>
+>> The values you pass to macro maybe board specific. But the macro
+>> definition itself same for a given SoC right? Also, is its same across
+>> K3 family ?
+>>
+
+I misunderstood then. I agree with Vignesh.
+
+>> Please use SoC specific prefix like AM62X_TS_OFFSET() or K3_TS_OFFSET()
+>> accordingly.
 > 
-> In particular the orientation switching is an itch worth scratching at
-> this time. But when the DPU becomes capable of producing 4k@60 output it
-> would obviously be nice to have the whole shebang :)
+> For certain SoCs including AM62X, the macro is:
+> #define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
+> while for other SoCs (refer [0]), the macro is:
+> #define TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x80000000 | val)
+> 
+> Therefore, I will use SoC specific prefix in the macro. Please let me know if
+> the SoC specific macro can be added to the ./include/dt-bindings/pinctrl/k3.h
+> file for each SoC. If not, I will add the SoC specific macro in the board file
+> itself.
 
-Did you try it with the wide planes patchset at [1]? I was able to get 
-stable 4k@30 on RB3 (being limited only by the DSI-HDMI bridge).
+Not in board file please. It should go in ./include/dt-bindings/pinctrl/k3.h
 
-[1] 
-https://lore.kernel.org/linux-arm-msm/20221229191856.3508092-1-dmitry.baryshkov@linaro.org/
+> 
+> [0] https://lwn.net/Articles/819313/
+> 
+> Regards,
+> Siddharth.
 
--- 
-With best wishes
-Dmitry
-
+cheers,
+-roger
