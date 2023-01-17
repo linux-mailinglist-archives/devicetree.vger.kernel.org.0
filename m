@@ -2,147 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5586D66E449
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:01:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8249366E45E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:04:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233911AbjAQRBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 12:01:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36682 "EHLO
+        id S230326AbjAQREn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 12:04:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233786AbjAQRBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:01:33 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA5439CFF
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:01:31 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id z5so30230452wrt.6
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:01:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iaIoioiiiOEumFM+lAmLzxpgsDICsGiz+IvsgBagPfE=;
-        b=m7Aw4OnFYBmkQyAKBqodVwzbRj81+GA4XBfM9/X1sPkgZ1YcurwQRlUWZ85dtEH9I7
-         9ROrmzUWksXod52FrFR1U/R07NyVEkfrEM+uuLoxY+LJ/MNmNuqmBCljltcZVq0VlPx/
-         rqRgi9rx7wf2huNwhZzb5TQr/QvNK34xTvw/LhU+vkQNFbzLgx2GX/7X9/1zNBHN8QQ7
-         wBx/u4wzI0N/fwNjgwohzyy1VNZ3kJGbk3q3VSZny0DdkTxUzg0q/S5/04b0qYBHSBb3
-         2uJKQE/YA2VbY2T0e4CzvaEwGULUsx3JbyxUN9dXIDuy9JOhw9Q9hIe6tVvI/ta/V5LM
-         p3+w==
+        with ESMTP id S231472AbjAQREm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:04:42 -0500
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9833739CED
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:04:41 -0800 (PST)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-15085b8a2f7so32638008fac.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:04:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iaIoioiiiOEumFM+lAmLzxpgsDICsGiz+IvsgBagPfE=;
-        b=QmvCMXx3PS3ZDIHCpO1C0VkMFJv1eSpZhHdzje6B0dGw9/6plmOCtvCOC+F9PCS5rI
-         KSRYgm/JA5gZTmdfpbP6paSaCDNWAnImC6w28b7Ublkx4qA2aiwM5+ILdU0oH8WmuIr2
-         GBoanphhdmwynup6DYix895UL5UsMLr1NQJYV/huRMg79/wcaQwcCC/OOuY9fsnu9ZOy
-         J8hml4uRJ5cEikt63oB5S9u5ETlxU7A2s1vxwJKxGaq0YKTcgUirZCy2OY5rRZIEAsZz
-         DR9XPvw/teY0eA+Ybip8epNfAWYLCw2zoaecBJtgNLuMw2YqRex99bHhp2E+WAUVdtOA
-         NeOw==
-X-Gm-Message-State: AFqh2kpUcKWx+XsJ5iIP4By5e3IJ09kc9Lyo0jtiwKaBv0uFParrQtGr
-        JIQe13znEV4Zf6Q9m7p77E1EjA==
-X-Google-Smtp-Source: AMrXdXtuYPP3e2NwiZHC+tcAro+jscRTu2L8lNw4uysmPrIUUWgLlKv1BYa+0nkvJxapOpf4g5vk7Q==
-X-Received: by 2002:a5d:522d:0:b0:2bd:ff91:7e1e with SMTP id i13-20020a5d522d000000b002bdff917e1emr3155288wra.57.1673974890353;
-        Tue, 17 Jan 2023 09:01:30 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l14-20020a5d526e000000b0028e55b44a99sm11576376wrc.17.2023.01.17.09.01.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 09:01:29 -0800 (PST)
-Message-ID: <c2740d66-b51f-efc2-6583-a69bde950c68@linaro.org>
-Date:   Tue, 17 Jan 2023 18:01:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v5 1/6] dt-bindings: media: platform: visconti: Add
- Toshiba Visconti Video Input Interface bindings
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O1NOHb8+nu+zYx4mxjmXXXdZFvqmNP0X7dlBHqnm0BQ=;
+        b=fkZiX0BnF9WA29Oqf046jActDg7s4H6bj6nR4DdNYzZafs/9cTSSSr/0tFOPRTpFE4
+         inTPLA10mokG9QokFRZmo7jX1OJa9qWkR07uPdJyL4DnsitmYr9sCzFaf55hvJixXipw
+         lOdFutbsxRja8vWPbAgqh15QrJGCDRkhaG5jxQ1TJAE+CCs7sJ/cwlQ2Hp1shUH7blki
+         N2oVovvW+ozdR1xReWXfClw3YVJkMffyVB/OjKChqAvNeNvNUovOaOSnAlsavaioC5Tc
+         fZNkU1b7cPU5ASByQAIAF5aZU6pVtWpecnlgozbZNfUr4xmuWx+RfXRKBzxoH0N48FuG
+         eGgw==
+X-Gm-Message-State: AFqh2ko6KkBEZHTs4fAXBJopoEyulAg8WkaX8XaEwvrkC+C5TlsNDBQ1
+        1ZYHCZQ8Nw78xbX2ReEKBX0h62GSXQ==
+X-Google-Smtp-Source: AMrXdXst7AkBNDxKvrdBelcXQ7R0QKqipV1QTofl1bzW+VXPgBTgX5inmaRNFjB18W58x4vx27DAHg==
+X-Received: by 2002:a05:6870:ac8e:b0:15f:4c8:7892 with SMTP id ns14-20020a056870ac8e00b0015f04c87892mr2439937oab.26.1673975080773;
+        Tue, 17 Jan 2023 09:04:40 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f15-20020a056870548f00b0015f1024d322sm5286475oan.37.2023.01.17.09.04.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 09:04:40 -0800 (PST)
+Received: (nullmailer pid 3244003 invoked by uid 1000);
+        Tue, 17 Jan 2023 17:04:39 -0000
+Date:   Tue, 17 Jan 2023 11:04:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Mark Brown <broonie@kernel.org>, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230111022433.25950-1-yuji2.ishikawa@toshiba.co.jp>
- <20230111022433.25950-2-yuji2.ishikawa@toshiba.co.jp>
- <Y8a+Hk2jFOjbkIvZ@pendragon.ideasonboard.com>
- <d1bb1148-e273-f5bb-bccc-ceca82bb6836@linaro.org>
- <Y8bFjhHkbNAKQK3t@pendragon.ideasonboard.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y8bFjhHkbNAKQK3t@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v2 02/10] ASoC: dt-bindings: audio-graph-port: add
+ definitions/ports
+Message-ID: <20230117170439.GA3225212-robh@kernel.org>
+References: <87358hj2ub.wl-kuninori.morimoto.gx@renesas.com>
+ <87zgapho68.wl-kuninori.morimoto.gx@renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87zgapho68.wl-kuninori.morimoto.gx@renesas.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 16:58, Laurent Pinchart wrote:
-> Hi Krzysztof,
+On Wed, Jan 11, 2023 at 01:09:52AM +0000, Kuninori Morimoto wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > 
-> On Tue, Jan 17, 2023 at 04:42:51PM +0100, Krzysztof Kozlowski wrote:
->> On 17/01/2023 16:26, Laurent Pinchart wrote:
->>>
->>>> +
->>>> +          clock-lanes:
->>>> +            description: VIIF supports 1 clock line
->>>
->>> s/line/lane/
->>>
->>>> +            const: 0
->>>
->>> I would also add
->>>
->>>           clock-noncontinuous: true
->>>           link-frequencies: true
->>>
->>> to indicate that the above two properties are used by this device.
->>
->> No, these are coming from other schema and there is never need to
->> mention some property to indicate it is more used than other case. None
->> of the bindings are created such way, so this should not be exception.
+> Audio Graph user needs "ports" not only "port".
+> This patch adds standard "ports" as definitions to use it easily.
 > 
-> There are some bindings that do so, but that may not be a good enough
-> reason, as there's a chance I wrote those myself :-)
+> If user needs standard "ports", it can use
 > 
-> I would have sworn that at some point in the past the schema wouldn't
-> have validated the example with this omitted. I'm not sure if something
-> changed or if I got this wrong.
-
-You probably think about case when using additionalProperties:false,
-where one has to explicitly list all valid properties. But not for
-unevaluatedProperties:false.
-
+>    ports:
+>      $ref: audio-graph-port.yaml#/definitions/ports
 > 
-> video-interfaces.yaml defines lots of properties applicable to
-> endpoints. For a given device, those properties should be required
+> If user want to use custom ports, it can re-use
+> audio-graph-port.yaml#/definitions/port-base"
+> audio-graph-port.yaml#/definitions/endpoint-base"
+> 
+> https://lore.kernel.org/r/87sfhipynv.wl-kuninori.morimoto.gx@renesas.com
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../devicetree/bindings/sound/audio-graph-port.yaml  | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> index fa66b73abcaf2..6fcf7f567424d 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> @@ -97,6 +97,18 @@ definitions:
+>                minimum: 1
+>                maximum: 64
+>  
+> +  ports:
+> +    $ref: "#/definitions/port-base"
 
-required:
- - foo
+This applies to 'port' nodes, but this is the 'ports' node.
 
-> (easy, that's defined in the bindings), optional,
+For example, this schema says you can have endpoint nodes directly under 
+'ports' which is not valid.
 
-by default (with unevaluatedProperties:false)
-or explicitly mention "foo: true (with additionalProperties:false)
+But why do you need this? The graph.yaml schema should be sufficient 
+because you aren't adding custom properties in 'ports'. BTW, the 
+preference is to only add properties in 'endpoint' nodes.
 
->  or forbidden. How do
+> +    unevaluatedProperties: false
+> +    patternProperties:
+> +      "^port(@[0-9a-f]+)?$":
+> +        $ref: "#/definitions/port-base"
+> +        unevaluatedProperties: false
 
-foo: false (with unevaluatedProperties:false)
-or by default (with additionalProperties:false)
+If 'ports' schema is applied to a DT, then its 'port' node(s) cannot 
+have any additional properties. That defeats the point of patch 1.
 
-> we differentiate between the latter two cases ?
+You cannot have 2 schemas with child nodes and be able to extend the 
+properties on the child nodes. The 2 child node schemas can't 'see' each 
+other in that case. In these cases, the base child node schema has to be 
+referenced directly by the extended child node schema.
 
 
+> +        patternProperties:
+> +          "^endpoint(@[0-9a-f]+)?":
+> +            $ref: "#/definitions/endpoint-base"
+> +            unevaluatedProperties: false
 
-Best regards,
-Krzysztof
+The same thing applies here.
 
+Rob
