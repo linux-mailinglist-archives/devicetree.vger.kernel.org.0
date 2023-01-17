@@ -2,212 +2,353 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CA1D66DFAE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:56:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06DDB66DFBE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:59:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231634AbjAQN4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 08:56:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52744 "EHLO
+        id S230189AbjAQN7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 08:59:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230401AbjAQN4e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:56:34 -0500
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A774695;
-        Tue, 17 Jan 2023 05:56:03 -0800 (PST)
-Received: by mail-qv1-f54.google.com with SMTP id p96so9542699qvp.13;
-        Tue, 17 Jan 2023 05:56:03 -0800 (PST)
+        with ESMTP id S231631AbjAQN6M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:58:12 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3052302BB
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 05:57:40 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id q8so10506502wmo.5
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 05:57:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4kCyxjJmoaa1FDcEajHuj+dQpqP0MwFN9vsb9Y+ywzQ=;
+        b=HZpx4xuXI8CivTeDtjvPGRvMZhgEEHW5jMhKC9NQFm9CGaxGqBH+sa38Pp6fPHPiWm
+         uO3Tk5ozaVULZdo+DkSq1y2hw4ZDJ6NP3UPgp++YRwKia3LyINs59JBHhyFL9BPDeBO8
+         h9JESjNj7cqf2zs3etHlsWLj+vMQyN3/NWbyo5P/CJTSZsIKhjVxBmEtdvX+eWh5vD3n
+         iKzTix12wTuVgGuQIDXuOUTf4UZImshvogZkfxIPiygrPC7l/vdMO/kCC8Y7Es8geYRm
+         cjc4fd0pRId/FjLsA8HCEgwYDvCBvxV3817k17ZQU1KtZyYU5h+z0jEfMrXt+sE5Jq1Y
+         cjzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oLCNgQgSzIWRwnZwPRVxRdnKYpvVJh9+ULJwZcc5wHA=;
-        b=CvVUvp3BqBjefv1JCZR9bhvIGrKF/aYGdJOXqVEj3fEzqTI22dvPkeXZvQe4DFZQV+
-         E5EOvhwDyR75jq1+WODhwbDzHkmo0F0DeMOwc2vnh25GB43lY1zkbpf9t4vbyYApXuv9
-         LWMqpZc0QRbPRmIhBLBtxhywISXUuwAaOJRl9Xd1L7jq38FDBj2fYzrgGjvB+ljO767A
-         3rQY7gw7YtLAgkTR5M8Dd3PDTpuSKZvjSjtFD1Ll4UqyPbMywcgU/Q2dEcRlM5IEx5WT
-         1m1UWktnibncW2nGc2yBQeJeQPC5Gusk4PiTP0W10qqtglCs8G4AXWxEd+HlGNg2//Xs
-         087w==
-X-Gm-Message-State: AFqh2koTNrW3H4+9yUcI6yTsxSl2Pqf/OMrn8Iq01/tNz3d2T74Jyc1q
-        5MslQfFL0fmIV6LO/S6MsAZ59FJXfFbmFQ==
-X-Google-Smtp-Source: AMrXdXuRcAyU5V+fIJpzGWuC1cyklgMuEAUpshXtpik7ebQFXPEj03lP+p/y5lSlvfgfs5ftWJU3cA==
-X-Received: by 2002:a05:6214:57d1:b0:515:5e33:505b with SMTP id lw17-20020a05621457d100b005155e33505bmr4544782qvb.20.1673963761916;
-        Tue, 17 Jan 2023 05:56:01 -0800 (PST)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id u12-20020a05620a430c00b006ee949b8051sm20129510qko.51.2023.01.17.05.56.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 05:56:01 -0800 (PST)
-Received: by mail-yb1-f180.google.com with SMTP id 20so14993171ybl.0;
-        Tue, 17 Jan 2023 05:56:01 -0800 (PST)
-X-Received: by 2002:a25:2f90:0:b0:7d5:620e:b60f with SMTP id
- v138-20020a252f90000000b007d5620eb60fmr454677ybv.89.1673963761015; Tue, 17
- Jan 2023 05:56:01 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4kCyxjJmoaa1FDcEajHuj+dQpqP0MwFN9vsb9Y+ywzQ=;
+        b=kG0pBwPIFt2fg1npwZKxPulVIdQYXVdVhGpMyzTzMyeepSnxl87d5nnTb1h6gI7Bt3
+         g01Bg+3Y1uoKmV0IeNl6AIO76z98zlWkS/Ah2mNrBwrOIkeaXGeIU4Jo9MfVotAruOmg
+         5aGXegP5qp+0JwKY1YvQkCbzBQfj3JrHafQy0UhOQnFxGIDWwDKGPXB2ej8e9CxT474C
+         04rfFRi7686Arw6XXtLSYHoP3Fe1euFgYLAuRVK371mo6K2+MLv30oVuMUnFeBwe1iaZ
+         04KqWfPLwE53tQgle2j8FEEuDvuLuB+xNG/1t8m4csd3G9tjVRMYjz6RUDCEj6JKf99V
+         9qLw==
+X-Gm-Message-State: AFqh2krXO1sMsR6JjoaOD3Nc3CbOybCF9e9XsbMCjRkw9SlNfU9Fg9oV
+        F3m/A0t12rNy7D7b+UaQee845w==
+X-Google-Smtp-Source: AMrXdXuOl0NZkqnzos2TZ/x/h4aRU+3wEkFoW3+Ru+XZ7cp5+rO9dEvXWzNL1jbcyLjWNzICRdhnOQ==
+X-Received: by 2002:a05:600c:1c21:b0:3d1:e1f4:21d1 with SMTP id j33-20020a05600c1c2100b003d1e1f421d1mr3200080wms.26.1673963859357;
+        Tue, 17 Jan 2023 05:57:39 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id t5-20020a1c7705000000b003daffc2ecdesm4726173wmi.13.2023.01.17.05.57.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 05:57:38 -0800 (PST)
+Date:   Tue, 17 Jan 2023 15:57:37 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 07/10] phy: qualcomm: qmp-pcie: Add support for SM8550
+ g3x2 and g4x2 PCIEs
+Message-ID: <Y8apUXpfAyaMMmH/@linaro.org>
+References: <20221116120157.2706810-1-abel.vesa@linaro.org>
+ <20221116120157.2706810-8-abel.vesa@linaro.org>
+ <bbfba6ca-c410-b4aa-ba3c-2fbf55065b24@linaro.org>
 MIME-Version: 1.0
-References: <20230104103432.1126403-1-s-vadapalli@ti.com> <20230104103432.1126403-4-s-vadapalli@ti.com>
-In-Reply-To: <20230104103432.1126403-4-s-vadapalli@ti.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 17 Jan 2023 14:55:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWiXu9OJxH4mRnneC3jhqTEcYXek3kbr7svhJ3cnPPwcw@mail.gmail.com>
-Message-ID: <CAMuHMdWiXu9OJxH4mRnneC3jhqTEcYXek3kbr7svhJ3cnPPwcw@mail.gmail.com>
-Subject: Re: [PATCH net-next v6 3/3] net: ethernet: ti: am65-cpsw: Add support
- for SERDES configuration
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        linux@armlinux.org.uk, vladimir.oltean@nxp.com, vigneshr@ti.com,
-        nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srk@ti.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bbfba6ca-c410-b4aa-ba3c-2fbf55065b24@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Siddharth,
+On 23-01-01 22:15:55, Dmitry Baryshkov wrote:
+> On 16/11/2022 14:01, Abel Vesa wrote:
+> > Add the SM8550 both g4 and g3 configurations. In addition, there is a
+> > new "lane shared" table that needs to be configured for g4, along with
+> > the No-CSR list of resets.
+> > 
+> > Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 354 +++++++++++++++++++++++
+> >   1 file changed, 354 insertions(+)
+> > 
+> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > index 47cccc4b35b2..87c7c20dfc8d 100644
+> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> 
+> [skipped tables]
+> 
+> > @@ -1473,6 +1701,8 @@ struct qmp_pcie_offsets {
+> >   struct qmp_phy_cfg_tbls {
+> >   	const struct qmp_phy_init_tbl *serdes;
+> >   	int serdes_num;
+> > +	const struct qmp_phy_init_tbl *ln_shrd_serdes;
+> > +	int ln_shrd_serdes_num;
+> >   	const struct qmp_phy_init_tbl *tx;
+> >   	int tx_num;
+> >   	const struct qmp_phy_init_tbl *rx;
+> > @@ -1510,6 +1740,9 @@ struct qmp_phy_cfg {
+> >   	/* resets to be requested */
+> >   	const char * const *reset_list;
+> >   	int num_resets;
+> > +	/* no CSR resets to be requested */
+> > +	const char * const *nocsr_reset_list;
+> > +	int num_nocsr_resets;
+> 
+> Is there any difference between 'no CSR' resets and the plain ones? Can we
+> handle them in a single array instead?
 
-On Wed, Jan 4, 2023 at 11:37 AM Siddharth Vadapalli <s-vadapalli@ti.com> wrote:
-> Use PHY framework APIs to initialize the SERDES PHY connected to CPSW MAC.
->
-> Define the functions am65_cpsw_disable_phy(), am65_cpsw_enable_phy(),
-> am65_cpsw_disable_serdes_phy() and am65_cpsw_enable_serdes_phy().
->
-> Add new member "serdes_phy" to struct "am65_cpsw_slave_data" to store the
-> SERDES PHY for each port, if it exists. Use it later while disabling the
-> SERDES PHY for each port.
->
-> Power on and initialize the SerDes PHY in am65_cpsw_nuss_init_slave_ports()
-> by invoking am65_cpsw_enable_serdes_phy().
->
-> Power off the SerDes PHY in am65_cpsw_nuss_remove() by invoking
-> am65_cpsw_disable_serdes_phy().
->
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Yes, on power on, only the 'No CSR' are necessary to be deasserted.
 
-Thanks for your patch, which is now commit dab2b265dd23ef8f ("net:
-ethernet: ti: am65-cpsw: Add support for SERDES configuration")
-in net-next.
+So we need to differentiate between 'No CSR' and the rest.
 
-> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
-> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
-> @@ -1416,6 +1416,68 @@ static const struct net_device_ops am65_cpsw_nuss_netdev_ops = {
->         .ndo_setup_tc           = am65_cpsw_qos_ndo_setup_tc,
->  };
->
-> +static void am65_cpsw_disable_phy(struct phy *phy)
-> +{
-> +       phy_power_off(phy);
-> +       phy_exit(phy);
-> +}
-> +
-> +static int am65_cpsw_enable_phy(struct phy *phy)
-> +{
-> +       int ret;
-> +
-> +       ret = phy_init(phy);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       ret = phy_power_on(phy);
-> +       if (ret < 0) {
-> +               phy_exit(phy);
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static void am65_cpsw_disable_serdes_phy(struct am65_cpsw_common *common)
-> +{
-> +       struct am65_cpsw_port *port;
-> +       struct phy *phy;
-> +       int i;
-> +
-> +       for (i = 0; i < common->port_num; i++) {
-> +               port = &common->ports[i];
-> +               phy = port->slave.serdes_phy;
-> +               if (phy)
-> +                       am65_cpsw_disable_phy(phy);
-> +       }
-> +}
-> +
-> +static int am65_cpsw_init_serdes_phy(struct device *dev, struct device_node *port_np,
-> +                                    struct am65_cpsw_port *port)
-> +{
-> +       const char *name = "serdes-phy";
-> +       struct phy *phy;
-> +       int ret;
-> +
-> +       phy = devm_of_phy_get(dev, port_np, name);
-> +       if (PTR_ERR(phy) == -ENODEV)
-> +               return 0;
-> +
-> +       /* Serdes PHY exists. Store it. */
+> 
+> >   	/* regulators to be requested */
+> >   	const char * const *vreg_list;
+> >   	int num_vregs;
+> > @@ -1523,6 +1756,9 @@ struct qmp_phy_cfg {
+> >   	bool skip_start_delay;
+> > +	/* true, if PHY has lane shared serdes table */
+> > +	bool has_ln_shrd_serdes_tbl;
+> 
+> s/shrd/shared/g ? I think it's easier to read and to understand.
 
-"phy" may be a different error here (e.g. -EPROBE_DEFER)...
+Sure. Will do.
 
-> +       port->slave.serdes_phy = phy;
-> +
-> +       ret =  am65_cpsw_enable_phy(phy);
+> 
+> > +
+> >   	/* QMP PHY pipe clock interface rate */
+> >   	unsigned long pipe_clock_rate;
+> >   };
+> > @@ -1534,6 +1770,7 @@ struct qmp_pcie {
+> >   	bool tcsr_4ln_config;
+> >   	void __iomem *serdes;
+> > +	void __iomem *ln_shrd_serdes;
+> >   	void __iomem *pcs;
+> >   	void __iomem *pcs_misc;
+> >   	void __iomem *tx;
+> > @@ -1548,6 +1785,7 @@ struct qmp_pcie {
+> >   	int num_pipe_clks;
+> >   	struct reset_control_bulk_data *resets;
+> > +	struct reset_control_bulk_data *nocsr_resets;
+> >   	struct regulator_bulk_data *vregs;
+> >   	struct phy *phy;
+> > @@ -1595,11 +1833,19 @@ static const char * const sdm845_pciephy_clk_l[] = {
+> >   	"aux", "cfg_ahb", "ref", "refgen",
+> >   };
+> > +static const char * const sm8550_pciephy_clk_l[] = {
+> > +	"aux", "aux_phy", "cfg_ahb", "ref", "refgen",
+> > +};
+> > +
+> >   /* list of regulators */
+> >   static const char * const qmp_phy_vreg_l[] = {
+> >   	"vdda-phy", "vdda-pll",
+> >   };
+> > +static const char * const sm8550_qmp_phy_vreg_l[] = {
+> > +	"vdda-phy", "vdda-pll", "vdda-qref",
+> > +};
+> > +
+> >   /* list of resets */
+> >   static const char * const ipq8074_pciephy_reset_l[] = {
+> >   	"phy", "common",
+> > @@ -1609,6 +1855,10 @@ static const char * const sdm845_pciephy_reset_l[] = {
+> >   	"phy",
+> >   };
+> > +static const char * const sm8550_pciephy_nocsr_reset_l[] = {
+> > +	"pcie_1_nocsr_com_phy_reset",
+> > +};
+> > +
+> >   static const struct qmp_pcie_offsets qmp_pcie_offsets_v5 = {
+> >   	.serdes		= 0,
+> >   	.pcs		= 0x0200,
+> > @@ -2084,6 +2334,65 @@ static const struct qmp_phy_cfg sm8450_qmp_gen4x2_pciephy_cfg = {
+> >   	.phy_status		= PHYSTATUS_4_20,
+> >   };
+> > +static const struct qmp_phy_cfg sm8550_qmp_gen3x2_pciephy_cfg = {
+> > +	.lanes = 2,
+> > +
+> > +	.tbls = {
+> > +		.serdes		= sm8550_qmp_gen3x2_pcie_serdes_tbl,
+> > +		.serdes_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_serdes_tbl),
+> > +		.tx		= sm8550_qmp_gen3x2_pcie_tx_tbl,
+> > +		.tx_num		= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_tx_tbl),
+> > +		.rx		= sm8550_qmp_gen3x2_pcie_rx_tbl,
+> > +		.rx_num		= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_rx_tbl),
+> > +		.pcs		= sm8550_qmp_gen3x2_pcie_pcs_tbl,
+> > +		.pcs_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_pcs_tbl),
+> > +		.pcs_misc	= sm8550_qmp_gen3x2_pcie_pcs_misc_tbl,
+> > +		.pcs_misc_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_pcs_misc_tbl),
+> > +	},
+> > +	.clk_list		= sdm845_pciephy_clk_l,
+> > +	.num_clks		= ARRAY_SIZE(sdm845_pciephy_clk_l),
+> > +	.reset_list		= sdm845_pciephy_reset_l,
+> > +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
+> > +	.vreg_list		= qmp_phy_vreg_l,
+> > +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
+> > +	.regs			= sm8250_pcie_regs_layout,
+> > +
+> > +	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> > +	.phy_status		= PHYSTATUS,
+> > +};
+> > +
+> > +static const struct qmp_phy_cfg sm8550_qmp_gen4x2_pciephy_cfg = {
+> > +	.lanes = 2,
+> > +
+> > +	.tbls = {
+> > +		.serdes			= sm8550_qmp_gen4x2_pcie_serdes_tbl,
+> > +		.serdes_num		= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_serdes_tbl),
+> > +		.ln_shrd_serdes		= sm8550_qmp_gen4x2_pcie_serdes_ln_shrd_tbl,
+> > +		.ln_shrd_serdes_num	= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_serdes_ln_shrd_tbl),
+> > +		.tx			= sm8550_qmp_gen4x2_pcie_tx_tbl,
+> > +		.tx_num			= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_tx_tbl),
+> > +		.rx			= sm8550_qmp_gen4x2_pcie_rx_tbl,
+> > +		.rx_num			= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_rx_tbl),
+> > +		.pcs			= sm8550_qmp_gen4x2_pcie_pcs_tbl,
+> > +		.pcs_num		= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_pcs_tbl),
+> > +		.pcs_misc		= sm8550_qmp_gen4x2_pcie_pcs_misc_tbl,
+> > +		.pcs_misc_num		= ARRAY_SIZE(sm8550_qmp_gen4x2_pcie_pcs_misc_tbl),
+> > +	},
+> > +	.clk_list		= sm8550_pciephy_clk_l,
+> > +	.num_clks		= ARRAY_SIZE(sm8550_pciephy_clk_l),
+> > +	.reset_list		= sdm845_pciephy_reset_l,
+> > +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
+> > +	.nocsr_reset_list	= sm8550_pciephy_nocsr_reset_l,
+> > +	.num_nocsr_resets	= ARRAY_SIZE(sm8550_pciephy_nocsr_reset_l),
+> > +	.vreg_list		= sm8550_qmp_phy_vreg_l,
+> > +	.num_vregs		= ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
+> > +	.regs			= sm8250_pcie_regs_layout,
+> > +
+> > +	.has_ln_shrd_serdes_tbl	= true,
+> > +	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> > +	.phy_status		= PHYSTATUS_4_20,
+> > +};
+> > +
+> >   static void qmp_pcie_configure_lane(void __iomem *base,
+> >   					const struct qmp_phy_init_tbl tbl[],
+> >   					int num,
+> > @@ -2132,6 +2441,7 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
+> >   {
+> >   	const struct qmp_phy_cfg *cfg = qmp->cfg;
+> >   	void __iomem *serdes = qmp->serdes;
+> > +	void __iomem *ln_shrd_serdes = qmp->ln_shrd_serdes;
+> >   	void __iomem *tx = qmp->tx;
+> >   	void __iomem *rx = qmp->rx;
+> >   	void __iomem *tx2 = qmp->tx2;
+> > @@ -2159,6 +2469,10 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
+> >   		qmp_pcie_configure(serdes, cfg->serdes_4ln_tbl, cfg->serdes_4ln_num);
+> >   		qmp_pcie_init_port_b(qmp, tbls);
+> >   	}
+> > +
+> > +	if (cfg->has_ln_shrd_serdes_tbl)
+> > +		qmp_pcie_configure(ln_shrd_serdes, tbls->ln_shrd_serdes,
+> > +				       tbls->ln_shrd_serdes_num);
+> >   }
+> >   static int qmp_pcie_init(struct phy *phy)
+> > @@ -2179,6 +2493,14 @@ static int qmp_pcie_init(struct phy *phy)
+> >   		goto err_disable_regulators;
+> >   	}
+> > +	if (qmp->nocsr_resets) {
+> > +		ret = reset_control_bulk_assert(cfg->num_nocsr_resets, qmp->nocsr_resets);
+> > +		if (ret) {
+> > +			dev_err(qmp->dev, "no-csr reset assert failed\n");
+> > +			goto err_disable_regulators;
+> > +		}
+> > +	}
+> > +
+> >   	usleep_range(200, 300);
+> >   	ret = reset_control_bulk_deassert(cfg->num_resets, qmp->resets);
+> > @@ -2240,6 +2562,14 @@ static int qmp_pcie_power_on(struct phy *phy)
+> >   	if (ret)
+> >   		return ret;
+> > +	if (qmp->nocsr_resets) {
+> > +		ret = reset_control_bulk_deassert(cfg->num_nocsr_resets, qmp->nocsr_resets);
+> > +		if (ret) {
+> > +			dev_err(qmp->dev, "no-csr reset deassert failed\n");
+> > +			goto err_disable_pipe_clk;
+> > +		}
+> > +	}
+> > +
+> >   	/* Pull PHY out of reset state */
+> >   	qphy_clrbits(pcs, cfg->regs[QPHY_SW_RESET], SW_RESET);
+> > @@ -2373,6 +2703,21 @@ static int qmp_pcie_reset_init(struct qmp_pcie *qmp)
+> >   	if (ret)
+> >   		return dev_err_probe(dev, ret, "failed to get resets\n");
+> > +	if (cfg->nocsr_reset_list) {
+> > +		qmp->nocsr_resets = devm_kcalloc(dev, cfg->num_nocsr_resets,
+> > +				   sizeof(*qmp->nocsr_resets), GFP_KERNEL);
+> > +		if (!qmp->nocsr_resets)
+> > +			return -ENOMEM;
+> > +
+> > +		for (i = 0; i < cfg->num_nocsr_resets; i++)
+> > +			qmp->nocsr_resets[i].id = cfg->nocsr_reset_list[i];
+> > +
+> > +		ret = devm_reset_control_bulk_get_exclusive(dev, cfg->num_nocsr_resets,
+> > +								qmp->nocsr_resets);
+> > +		if (ret)
+> > +			return dev_err_probe(dev, ret, "failed to get no CSR resets\n");
+> > +	}
+> > +
+> >   	return 0;
+> >   }
+> > @@ -2502,6 +2847,9 @@ static int qmp_pcie_parse_dt_legacy(struct qmp_pcie *qmp, struct device_node *np
+> >   			return PTR_ERR(qmp->rx2);
+> >   		qmp->pcs_misc = devm_of_iomap(dev, np, 5, NULL);
+> > +
+> > +		if (cfg->has_ln_shrd_serdes_tbl)
+> > +			qmp->ln_shrd_serdes = devm_of_iomap(dev, np, 6, NULL);
+> 
+> I think we also need to check the returned value. Also, I think we can drop
+> the conditional check here. we don't have to validate the DT, so if the reg
+> is present in DT, then it's present. If not, it's not required.
 
-... so it will crash when dereferencing phy in phy_init().
+Yeah, but I was trying to make sure that if there is a new type of reg
+for some upcomming SoC, we don't take that as ln_shrd. That's why the check
+was added.
 
-I think you want to add an extra check above:
+I'll add the returned value check though.
 
-    if (IS_ERR(phy))
-            return PTR_ERR(phy);
-
-> +       if (ret < 0)
-> +               goto err_phy;
-> +
-> +       return 0;
-> +
-> +err_phy:
-> +       devm_phy_put(dev, phy);
-> +       return ret;
-> +}
-> +
->  static void am65_cpsw_nuss_mac_config(struct phylink_config *config, unsigned int mode,
->                                       const struct phylink_link_state *state)
->  {
-> @@ -1959,6 +2021,11 @@ static int am65_cpsw_nuss_init_slave_ports(struct am65_cpsw_common *common)
-
-Right out of context we have:
-
-                port->slave.ifphy = devm_of_phy_get(dev, port_np, NULL);
-                if (IS_ERR(port->slave.ifphy)) {
-                        ret = PTR_ERR(port->slave.ifphy);
-                        dev_err(dev, "%pOF error retrieving port phy: %d\n",
-                                port_np, ret);
-
-So if there is only one PHY (named "serdes-phy") in DT, it will be
-used for both ifphy and serdes_phy. Is that intentional?
-
->                         goto of_node_put;
->                 }
->
-> +               /* Initialize the Serdes PHY for the port */
-> +               ret = am65_cpsw_init_serdes_phy(dev, port_np, port);
-> +               if (ret)
-> +                       return ret;
-> +
->                 port->slave.mac_only =
->                                 of_property_read_bool(port_np, "ti,mac-only");
->
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> >   	} else {
+> >   		qmp->pcs_misc = devm_of_iomap(dev, np, 3, NULL);
+> >   	}
+> > @@ -2729,6 +3077,12 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
+> >   	}, {
+> >   		.compatible = "qcom,sm8450-qmp-gen4x2-pcie-phy",
+> >   		.data = &sm8450_qmp_gen4x2_pciephy_cfg,
+> > +	}, {
+> > +		.compatible = "qcom,sm8550-qmp-gen3x2-pcie-phy",
+> > +		.data = &sm8550_qmp_gen3x2_pciephy_cfg,
+> > +	}, {
+> > +		.compatible = "qcom,sm8550-qmp-gen4x2-pcie-phy",
+> > +		.data = &sm8550_qmp_gen4x2_pciephy_cfg,
+> >   	},
+> >   	{ },
+> >   };
+> 
+> -- 
+> With best wishes
+> Dmitry
+> 
