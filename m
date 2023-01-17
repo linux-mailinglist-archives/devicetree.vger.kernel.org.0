@@ -2,180 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E69C66D433
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 03:19:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD31066D44B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 03:33:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230420AbjAQCTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 21:19:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59852 "EHLO
+        id S234749AbjAQCdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 21:33:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234976AbjAQCTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 21:19:23 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CAD223308
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 18:19:22 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id v13so8979639eda.11
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 18:19:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hcQxc2tbryNUtqB3FYleqM+oCMe9Hi/eZebyk02NgNg=;
-        b=Yw7RS40Ju3wfv111tJNUpkOAASKxbHu2DMGPt6VJDGX2wCFlgTh4/KUu0O/n2XS3q8
-         jO8VXR+6xfK/duKX7v6GKpQ9fLa1tuvOxfIBEqHMeCjEJe0zIZbbZVCNWNux2+uRo0qH
-         8C7Rz+dpqvnHM+kZ7jy9XrHGpPL0gRO3S5+uATiX9SqME8f66CO51wieubwsgnRL8ZxF
-         J6PNk6o6Z3oazbZwYrMMpN8Ly/W2QdnVLCZMpMFLf//2cZsPh0xRWQNV6JjxZ/tAo272
-         ubpbax6ishQWvi8Z7uOjNi6ktm/CHLZubygSmyWaeTTGuYdIdi/pp7ocD4TLRHYJmUO/
-         ST0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hcQxc2tbryNUtqB3FYleqM+oCMe9Hi/eZebyk02NgNg=;
-        b=4+Z+hndxr33dORX+rUwXexJgATX3WUCPFgJNi1syTWGe1YCfI/Sawn18aq+Uv44Ijl
-         xEu/QkA4Hwnr3Z67NasDfqjooKj9slguKUbmo+HI/4tNjyXJaY3b4FNqvwecxX+CAAyi
-         2E2lkO9dCLpfwCfU1lbh60lfOXRE6VTibwJlJBFwfjAXkiLDHbPvMmZaIAIrWkSuPeB4
-         DkzCdlbTUS+tZN3+rubXEPYIWkRUlTWAH/09lFHz9JnW0IkEloc3891XtFhk7tBn7IA4
-         iGe1knqvklO5ckrcbYjRYQWCNCZyTSvh5FNM2nAMy1H9QSLsRaVgb5ljPrwKgq72Eq4c
-         T45A==
-X-Gm-Message-State: AFqh2krQxEiqaeuBUSKPkLA8s4GJrEtEMFGRcdBBFH6O80DSimfE1W+6
-        SlMb31lrTs2lC315hIrYC+fGqVOD7DHVYsSD4BZlhw==
-X-Google-Smtp-Source: AMrXdXsCy8vynyxh4AU3GM9pr3pm51Ag+IGCft88mylhcRAoyRnQoxx9bZMTerPRX5zPxA07iVr4D6wqLtkheFZelzw=
-X-Received: by 2002:a05:6402:551a:b0:49d:feca:266d with SMTP id
- fi26-20020a056402551a00b0049dfeca266dmr151454edb.388.1673921960718; Mon, 16
- Jan 2023 18:19:20 -0800 (PST)
+        with ESMTP id S235393AbjAQCcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 21:32:52 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABA3B2C67B;
+        Mon, 16 Jan 2023 18:32:44 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30H2WflZ003294;
+        Tue, 17 Jan 2023 02:32:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=gPI8IrnBLe4xWc0jWZlIULUF+isizpYjaPD72DAALm8=;
+ b=L2j5/CuYst6aTPU3rDrxHyQqMiHvvFExCKmLezEB2N4x+oKPAOhE5s4nfRhF1LWfMKl/
+ 1bMnOHbnY7K33TnGmuic3FZBBTaf7/eZ87sQ45AtBgckNIHQyXK90I0ypXQ4LRguaDrr
+ cUVx1BNhRMnE547suskN8u8RS3qQu+86zgowCMhY7SstP+3voartNfN3r1z4epE/htFf
+ kzoTw0pGPEMA7CWzGhwFQzAiD+d/xXBoNwKwEFMYV0sODM5/EBTzfrUNFCMm+TQ95KHB
+ IXeayDjOc8raoBzCBjxg6Cun9/ZpRHXdJIOnRU0ngc+wJabxqkNJGBv7pcPrlEzyQfFr OQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n3j3nmmxr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Jan 2023 02:32:41 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30H2WeZ8008859
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Jan 2023 02:32:40 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 16 Jan 2023 18:32:40 -0800
+Date:   Mon, 16 Jan 2023 18:32:38 -0800
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
+        Johan Hovold <johan@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 0/4] soc: qcom: Introduce PMIC GLINK
+Message-ID: <20230117023238.GB2350793@hu-bjorande-lv.qualcomm.com>
+References: <20230113041132.4189268-1-quic_bjorande@quicinc.com>
+ <9e831252-7198-7983-8a52-0e745688452d@linaro.org>
 MIME-Version: 1.0
-References: <20230112145424.3791276-1-etienne.carriere@linaro.org>
- <20230112145424.3791276-3-etienne.carriere@linaro.org> <20230113204231.GA2873887-robh@kernel.org>
-In-Reply-To: <20230113204231.GA2873887-robh@kernel.org>
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-Date:   Tue, 17 Jan 2023 03:19:09 +0100
-Message-ID: <CAN5uoS9MrKXUrmR1Y=c9J8D03muBKPJcQk64YFHwOwBO_GX5jw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: optee: add interrupt controller properties
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <9e831252-7198-7983-8a52-0e745688452d@linaro.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: osh9xnguttiX6wNl7ddeOFZUg5rRTbsO
+X-Proofpoint-ORIG-GUID: osh9xnguttiX6wNl7ddeOFZUg5rRTbsO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-16_18,2023-01-13_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 bulkscore=0 suspectscore=0 mlxlogscore=999 phishscore=0
+ clxscore=1011 mlxscore=0 lowpriorityscore=0 impostorscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301170016
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Jan 2023 at 21:42, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Jan 12, 2023 at 03:54:23PM +0100, Etienne Carriere wrote:
-> > Adds optional interrupt controller properties used when OP-TEE generates
-> > interrupt events optee driver shall notified to its registered
-> > interrupt consumer. The example shows how OP-TEE can trigger a wakeup
-> > interrupt event consumed by a gpio-keys compatible device.
->
-> Why do we need this in DT? It's not a GPIO key, but an abuse of the
-> binding. It looks like unnecessary abstraction to me.
+On Fri, Jan 13, 2023 at 05:10:17PM +0000, Bryan O'Donoghue wrote:
+> On 13/01/2023 04:11, Bjorn Andersson wrote:
+> > This implements the base PMIC GLINK driver, a power_supply driver and a
+> > driver for the USB Type-C altmode protocol. This has been tested and
+> > shown to provide battery information, USB Type-C switch and mux requests
+> > and DisplayPort notifications on SC8180X, SC8280XP and SM8350.
+> > 
+> > Bjorn Andersson (4):
+> >    dt-bindings: soc: qcom: Introduce PMIC GLINK binding
+> >    soc: qcom: pmic_glink: Introduce base PMIC GLINK driver
+> >    soc: qcom: pmic_glink: Introduce altmode support
+> >    power: supply: Introduce Qualcomm PMIC GLINK power supply
+> > 
+> >   .../bindings/soc/qcom/qcom,pmic-glink.yaml    |  102 ++
+> >   drivers/power/supply/Kconfig                  |    9 +
+> >   drivers/power/supply/Makefile                 |    1 +
+> >   drivers/power/supply/qcom_battmgr.c           | 1421 +++++++++++++++++
+> >   drivers/soc/qcom/Kconfig                      |   15 +
+> >   drivers/soc/qcom/Makefile                     |    2 +
+> >   drivers/soc/qcom/pmic_glink.c                 |  336 ++++
+> >   drivers/soc/qcom/pmic_glink_altmode.c         |  477 ++++++
+> >   include/linux/soc/qcom/pmic_glink.h           |   32 +
+> >   9 files changed, 2395 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+> >   create mode 100644 drivers/power/supply/qcom_battmgr.c
+> >   create mode 100644 drivers/soc/qcom/pmic_glink.c
+> >   create mode 100644 drivers/soc/qcom/pmic_glink_altmode.c
+> >   create mode 100644 include/linux/soc/qcom/pmic_glink.h
+> > 
+> 
+> How does the USB PHY and a USB redriver fit into this ?
+> 
+> Is the host supposed to manage both/neither ? Is the DSP responsible for
+> configuring the PHY lanes and the turnaround on orientation switch ?
+> 
 
-This is when for example OP-TEE world controller a IOs controller
-device. When some IOs are relate to OP-TEE feature, the controller
-route to OP-TEE handler.
-When the IO detection relates to Linux irqs it is routed to Linux,
-using optee driver irqchip.
-As Linux uses DT for device drivers to get their interrupt (controler
-phandle + arg), defining the irqchip in the DT of the platform running
-that OP-TEE firmware make sense to me.
+As indicated above, the firmware deals with battery management and USB
+Type-C handling.
 
-The same way OP-TEE can be in charge of the wakeup source controllers
-and notify Linxu of event for the wakeup that relate to Linux
-services.
+The battery/power management is handled by the battmgr implementation,
+exposing the various properties through a set of power_supply objects.
 
->
->
-> >
-> > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
-> > ---
-> >  .../arm/firmware/linaro,optee-tz.yaml         | 19 ++++++++++++++++++-
-> >  1 file changed, 18 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > index d4dc0749f9fd..42874ca21b7e 100644
-> > --- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > @@ -40,6 +40,11 @@ properties:
-> >        HVC #0, register assignments
-> >        register assignments are specified in drivers/tee/optee/optee_smc.h
-> >
-> > +  interrupt-controller: true
-> > +
-> > +  "#interrupt-cells":
-> > +    const: 1
-> > +
-> >  required:
-> >    - compatible
-> >    - method
-> > @@ -48,12 +53,24 @@ additionalProperties: false
-> >
-> >  examples:
-> >    - |
-> > +    #include <dt-bindings/input/input.h>
-> >      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >      firmware  {
-> > -        optee  {
-> > +        optee: optee {
-> >              compatible = "linaro,optee-tz";
-> >              method = "smc";
-> >              interrupts = <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>;
-> > +            interrupt-controller;
-> > +            #interrupt-cells = <1>;
-> > +        };
-> > +    };
-> > +
-> > +    wake_up {
-> > +        compatible = "gpio-keys";
-> > +
-> > +        button {
-> > +            linux,code = <KEY_WAKEUP>;
-> > +            interrupts-extended = <&optee 0>;
->
-> In the end, you just need optee IRQ #0 to generate KEY_WAKEUP. Does
-> either the optee interrupt number or the key code need to be
-> configurable? If so, why? Why isn't #0 just wakeup and the driver can
-> send KEY_WAKEUP?
+The USB Type-C handling comes in two forms. The "altmode" protocol
+handles DisplayPort notifications - plug detect, orientation and mode
+switches. The other part of the USB implementation exposes UCSI.
 
-The OP-TEE driver is a generic firmware driver. Platforms do not have
-specific hooks in it.
-A generic DT definition of the irqs exposed by opte driver irqchip
-allows consumers to get their irq resource.
-I even think 'allows' above could be replaced by is-required-by.
+The altmode implementation provides two things:
+- A drm_bridge, per connector, which can be tied (of_graph) to a
+  DisplayPort instance, and will invoke HPD notifications on the
+  drm_bridge, based on notification messages thereof.
 
-Here, binding KEY_WAKEUP to the OP-TEE firmware related irq line from
-the platform DT reuses existing drivers and bindings to get a irq
-wkaeup source, signaling KEY_WAKEUP even, when wakeup stouce
-controller is assigned to (controller by) OP-TEE world.
-This is an example. Maybe the binding are miss used, but I don't see
-why. Another example I plan to post is building an mailbox for SMCI
-notification from a SCMI service host in OP-TEE. OP-TEE would use this
-optee irqchip to get the interrupt related to the SCMI notification
-channel. In embedded system, limited resources can be shared by
-subsystems.
+- Acquire typec_switch and typec_mux handles through the of_graph and
+  signal the remotes when notifications of state changes occur. Linking
+  this to the FSA4480, is sufficient to get USB/DP combo (2+2 lanes)
+  working on e.g. SM8350 HDK.
+  Work in progress patches also exists for teaching QMP about
+  orientation switching of the SS lines, but it seems this needs to be
+  rebased onto the refactored QMP driver.
+  I also have patches for QMP to make it switch USB/DP combo -> 4-lane
+  DP, which allow 4k support without DSC, unfortunately switch back to
+  USB has not been fully reliable, so this requires some more work
+  (downstream involves DWC3 here as well, to reprogram the PHY).
 
->
-> DT is for non-discoverable hardware that we can't fix. Why repeat that
-> for software interfaces to firmware?
+I have been experimenting with UCSI in the past, but my goal for this
+series was to support external displays on my desktop (laptop...), but
+through some experiments I've wired the connectors to dwc3 in order to
+get usb_role_switch working. Neil has been looking at this in more
+detail lately though.
 
-Do you mean the optee driver should enumerate the interrupt lines
-exposed by OP-TEE and register each line accordingly?
-This is doable I guess. But that would not prevent Linux kernel DT to
-define a interrupt controller consumer device nodes can refer to for
-their need.
-
-BR,
-Etienne
-
->
-> Rob
+Regards,
+Bjorn
