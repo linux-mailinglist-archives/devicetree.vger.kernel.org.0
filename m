@@ -2,183 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B607466DF72
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:53:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CA1D66DFAE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:56:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbjAQNxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 08:53:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46878 "EHLO
+        id S231634AbjAQN4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 08:56:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230372AbjAQNw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:52:56 -0500
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2056.outbound.protection.outlook.com [40.107.6.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C4A3CE29;
-        Tue, 17 Jan 2023 05:51:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fj5pykZYD+0kIOOeKyjJ4rvjEhC3esXJ8puMpxTbHtcGMWhfX9/vLzYCLglh0QfIU2bCYdY5McPiNiViVV1nYMvHrkSmnmnGTGAfiYzuxG4IShwBXvwB6dEzHd6IzNXS9wj1awNboFMe4ca/8rDHnQMgRZB44AAfY9HY8qZz1Dbu7Pz1EQZ9Ifa+QR4BtJTs85RXPfF0P2NNdx1Bi0SbS+/WE9L3O/x4Ze4D+GBY4kTpnOKU4v8CuRPvFTqMYMEbZEUjUn4fa99LIeJ+1b6X078ZklWj3Magjw/Xpce75lKEhg/Umq+G6dfGo4GwP2C3YaJ6QbbYoRIF3jpVPGp+yQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i9VMheMwhKy88WKtB/x0JuUemVSQFfTfqkFMuOlyidw=;
- b=fJxT1SRaCknqB+nORKja0B88miCZyMtpj9iAaC4DrmFplBymGqYasOxSEQKHhZh8fTXrLq1mgi71DGwkw/yh2bfkMQOkdZH2aGmcDm5klWH0DfmzAFSClsnop/7kQ9swgxOkxMoGf1Uh1H96B7jRzLgJ+U+3Yu75Hr3tuw79djcLtswlWwnvMEXEgBxIVNfRgxnCPADLbF9+RzbBYngy3RhyiHaVQDmXbVxHqxEkqxwUKUljaQ74z58RD6LmdmksrdOiQ0925Fx8aNtbo4fyja0sut1D6Q041ifFtGm9jJfMOKdSRUHEBIRJimoaDs6o98lhZvosBWBjNWHx6uMSgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i9VMheMwhKy88WKtB/x0JuUemVSQFfTfqkFMuOlyidw=;
- b=BH3IHMfMSBfP22BACx/PdNOAYfe7FAIgN3wyITcy1v73qUMHQsPfTSbqk0m/BWZU8mdB4ZFzcuTAkFREPhofGL7cQg7AMVAqyv074+eC7jmOGdyEw/dFuYCSnGrEdFtcvBPk3190ZD6gNJl0VKDaYdt/iy8tZlTgzzKvJ16uRgA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com (2603:10a6:5:21::30) by
- VI1PR04MB6909.eurprd04.prod.outlook.com (2603:10a6:803:13d::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Tue, 17 Jan
- 2023 13:51:26 +0000
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::7479:76ef:8e5:da0b]) by DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::7479:76ef:8e5:da0b%6]) with mapi id 15.20.6002.012; Tue, 17 Jan 2023
- 13:51:26 +0000
-From:   haibo.chen@nxp.com
-To:     jic23@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        haibo.chen@nxp.com
-Subject: [PATCH v6 3/3] arm64: dts: imx93: add ADC support
-Date:   Tue, 17 Jan 2023 21:51:37 +0800
-Message-Id: <20230117135137.1735536-4-haibo.chen@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230117135137.1735536-1-haibo.chen@nxp.com>
-References: <20230117135137.1735536-1-haibo.chen@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0016.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:140::17) To DB7PR04MB4010.eurprd04.prod.outlook.com
- (2603:10a6:5:21::30)
+        with ESMTP id S230401AbjAQN4e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:56:34 -0500
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A774695;
+        Tue, 17 Jan 2023 05:56:03 -0800 (PST)
+Received: by mail-qv1-f54.google.com with SMTP id p96so9542699qvp.13;
+        Tue, 17 Jan 2023 05:56:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oLCNgQgSzIWRwnZwPRVxRdnKYpvVJh9+ULJwZcc5wHA=;
+        b=CvVUvp3BqBjefv1JCZR9bhvIGrKF/aYGdJOXqVEj3fEzqTI22dvPkeXZvQe4DFZQV+
+         E5EOvhwDyR75jq1+WODhwbDzHkmo0F0DeMOwc2vnh25GB43lY1zkbpf9t4vbyYApXuv9
+         LWMqpZc0QRbPRmIhBLBtxhywISXUuwAaOJRl9Xd1L7jq38FDBj2fYzrgGjvB+ljO767A
+         3rQY7gw7YtLAgkTR5M8Dd3PDTpuSKZvjSjtFD1Ll4UqyPbMywcgU/Q2dEcRlM5IEx5WT
+         1m1UWktnibncW2nGc2yBQeJeQPC5Gusk4PiTP0W10qqtglCs8G4AXWxEd+HlGNg2//Xs
+         087w==
+X-Gm-Message-State: AFqh2koTNrW3H4+9yUcI6yTsxSl2Pqf/OMrn8Iq01/tNz3d2T74Jyc1q
+        5MslQfFL0fmIV6LO/S6MsAZ59FJXfFbmFQ==
+X-Google-Smtp-Source: AMrXdXuRcAyU5V+fIJpzGWuC1cyklgMuEAUpshXtpik7ebQFXPEj03lP+p/y5lSlvfgfs5ftWJU3cA==
+X-Received: by 2002:a05:6214:57d1:b0:515:5e33:505b with SMTP id lw17-20020a05621457d100b005155e33505bmr4544782qvb.20.1673963761916;
+        Tue, 17 Jan 2023 05:56:01 -0800 (PST)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id u12-20020a05620a430c00b006ee949b8051sm20129510qko.51.2023.01.17.05.56.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 05:56:01 -0800 (PST)
+Received: by mail-yb1-f180.google.com with SMTP id 20so14993171ybl.0;
+        Tue, 17 Jan 2023 05:56:01 -0800 (PST)
+X-Received: by 2002:a25:2f90:0:b0:7d5:620e:b60f with SMTP id
+ v138-20020a252f90000000b007d5620eb60fmr454677ybv.89.1673963761015; Tue, 17
+ Jan 2023 05:56:01 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4010:EE_|VI1PR04MB6909:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4d51a46-cb17-4a5b-f0a8-08daf891ed18
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ch9TJmmvReRiYSKt6wSTRBuO4THVNIt1ykSpIgQBad/88xfWyLcvsyyLuloNaZGs4Z44qvtoCOJb+KFgyuw1vE+BIEiHtYlMhySlbCtNIdehUKcLiEQVRIOwBWN+NrWPEOZzmlEvrgESFxLX+f5OvSahu1TqFbX1VuQAt5UEBB5zcw6H+HHQGZ7W8Tbx+YLl7xvoNWLFqpauNft3R5QwcZwvq8wBtZHkGyNWWRsVkAhpW1yo6tScbS/qit/Wx7sS3fFWu2WpfJ02QA1SjSVxqwFiA0BfKfETQNazyVwajOU/VTFBNUOXWo8jm8NMxenZBnenRWR4U0eBXcjNeSq0UyIDC0BvNw97ouMNwxdm0hNzwmgqXW4QTsXeYpBxmbH095SEHb9imk/k4ZjaKE5edZn8m1Dn8Gjb776qP+iXUGoh+WfZbp44VRK6dAVssEl5RXLNj0F/RiIhjwKveVbLlgtEMLOA9laS5ft0QFKlkuYVSgDl3UUhh1eIihX0jYxcpMAvrNZz/TQ/aKai8nQc7rRpG8mIaHSWTymbMaDUeFkHCv2dyfoamo9qHboNNXvSNoX+y1TuysdV5IWKxn5EWa0bAFUcqCHD0Ud66sA8BcrnUJf6hTkcPrnXYFl84fPVH6x+N4r92cgWH3/d7CZQWIZz0M3SXOrr2A+hKaYqj5R5k2exAdUqGuhGfX3PmQF29LUlVfLIXAEcjTJEajj/Kw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4010.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(366004)(136003)(39860400002)(346002)(376002)(451199015)(36756003)(86362001)(66946007)(66556008)(8936002)(8676002)(66476007)(7416002)(2906002)(4326008)(38100700002)(83380400001)(5660300002)(38350700002)(316002)(6666004)(6486002)(52116002)(41300700001)(478600001)(2616005)(6512007)(1076003)(9686003)(26005)(186003)(6506007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7LyFfEEKkUA2hlkkwFPtXNg3/G5Y9hztMnnkSfktsX16sbJP+jQJBO7Z8urP?=
- =?us-ascii?Q?kGZ2MyfenWc7oV/JpZbFrJS7oXTzpg79c1qS0YyU27JfFysVR/McN8+icANJ?=
- =?us-ascii?Q?xNEPTlMZut3SZ+Kodq2tT0W+TJWqFov8kl8APUniRtZgCuS2CLWPTgZ+Sbf0?=
- =?us-ascii?Q?960qBiEPDjFovnpxptMLR1L7KbFSEbwi+ITmSa5IJr5IXPHgUAR+A6GBmVaJ?=
- =?us-ascii?Q?4Ss3zDmvjZVCM6kbETYRAn2tMI2mTlVEAOyIgzPtOF4ndl5zl1/ndvZswBah?=
- =?us-ascii?Q?9NYdOpsrKqY7bMeie/mFOmbzxO6Ztw8axdweqjcSzm8QrQB8d5i35qOOhJAW?=
- =?us-ascii?Q?tlvBONnWjPubx++zHFsI+HoFmCiUDRWixkUgljxqlzu0iLRcgGOn/glSXfZL?=
- =?us-ascii?Q?bU02UxTskgKOaC1QfyKH+v7LZSlGpLBAKdt+CrcXNmd/0WfVwGZO9KBSyvZY?=
- =?us-ascii?Q?GqfOx36dTDjMGS9/CLhHS37creVIGYZWbNtdcPhOjLsceUSfuG6l+0iRzeWd?=
- =?us-ascii?Q?SYjFJ01OqRRK+DnSh1lBxq/EhQa7M16dSSPLeF1044chM9Xp5X3ULJLkO+e/?=
- =?us-ascii?Q?4XPAg+ZWs+F6i98ptDdAOqI+q0BAYGm7Qls9hraz+lJgeJsuoNj/O+6TbR+2?=
- =?us-ascii?Q?8j+dVj1HZZyOxLVl0qy1W8LH0BnvjOYlFBcYuzEhU6miX1yn4BvMtiDh+HlF?=
- =?us-ascii?Q?PEzewj1vK+H2xwJrkMArDYSeEvKNje4w4xbFysynAXYfuNOVPAhBUOykQsfy?=
- =?us-ascii?Q?xELIxCNxYI18Lgn1rJVoFyzpFwE2ikab4u+GYHax4z7J7udA6Cf7fMFj1Jjc?=
- =?us-ascii?Q?mPg5+YJWLLTmj89QFn6+FDiuOY2T5CcJPqloj8DXtje3Bwq/1onB+P4M9fd8?=
- =?us-ascii?Q?Y+AYJjBvuXWFKABFHz33sArfLLFNMl2mLAbofMiuzxFPQq/60jeJQiNFm0sn?=
- =?us-ascii?Q?ZmeXDx8Fo+p2L32D4CAFk2c5P4UlDwZKbvAyLtwgaLZNijpUoQjbDN0neMAB?=
- =?us-ascii?Q?6dt4IARIJbWUBzES3+ubPdLA/M0FbNKhTtKd2Nb8SbDOW7EQWWZFeKGRHcJg?=
- =?us-ascii?Q?frIhu7eYPbqWRkW9ok7kDOiYGbL+smyYIwAsfbAa2RobVZ9B6F3UxVLXpwMH?=
- =?us-ascii?Q?DagkFJiTJ4QKfqL9lflrvpJB2jQWrowlb0ukTuUFIS9WvDNs1rQ8PRPzoCsR?=
- =?us-ascii?Q?uf5sSGGMjbR3zG1u+9uzOn6rp7zcYvPjF8up6UdHiFJzKyloVtPBrjy2VWZj?=
- =?us-ascii?Q?ZT1XmzF8h+LzgpzGK4COwNC5ccev/GWWzhTSayuyrgzVBpqbD8RLtGJ55RsJ?=
- =?us-ascii?Q?Vo0TGBUqFARI6juBVHozXWGq/EkjMFdISA58DJaWnfMcn5q4KR7y5Rrf8jKG?=
- =?us-ascii?Q?prtWP20+R6wd/0qUHElieiXUcuNnqhkbb625+TZi3SJvjOTt1a+v2V50mDmJ?=
- =?us-ascii?Q?z0Y539nmHv+SHM3QeIyaPADfsoVEiLBokXyKKmhIlXAFjX0PgAP7RbVtgyxv?=
- =?us-ascii?Q?+bb2jqKr9qnspsImlfZ1Ag39ZZTH+zOcu6OqqH8wWbgz8/ust7CSr1f7iV2s?=
- =?us-ascii?Q?Kk33BdYjOwRKMDqBzvBd8t8GHtjW7zL42LB70tyi?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4d51a46-cb17-4a5b-f0a8-08daf891ed18
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4010.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2023 13:51:26.0627
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: s8a6DfiIqscXwTXNT9Z+Rr+upZA9xxqO7EtoE3RdMkQjFLgBL5UUwB6AX9NB3oaK+AtNnTwlR8582AUmrIziFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6909
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230104103432.1126403-1-s-vadapalli@ti.com> <20230104103432.1126403-4-s-vadapalli@ti.com>
+In-Reply-To: <20230104103432.1126403-4-s-vadapalli@ti.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 17 Jan 2023 14:55:49 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWiXu9OJxH4mRnneC3jhqTEcYXek3kbr7svhJ3cnPPwcw@mail.gmail.com>
+Message-ID: <CAMuHMdWiXu9OJxH4mRnneC3jhqTEcYXek3kbr7svhJ3cnPPwcw@mail.gmail.com>
+Subject: Re: [PATCH net-next v6 3/3] net: ethernet: ti: am65-cpsw: Add support
+ for SERDES configuration
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        linux@armlinux.org.uk, vladimir.oltean@nxp.com, vigneshr@ti.com,
+        nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srk@ti.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+Hi Siddharth,
 
-Add ADC support for imx93-11x11-evk board.
+On Wed, Jan 4, 2023 at 11:37 AM Siddharth Vadapalli <s-vadapalli@ti.com> wrote:
+> Use PHY framework APIs to initialize the SERDES PHY connected to CPSW MAC.
+>
+> Define the functions am65_cpsw_disable_phy(), am65_cpsw_enable_phy(),
+> am65_cpsw_disable_serdes_phy() and am65_cpsw_enable_serdes_phy().
+>
+> Add new member "serdes_phy" to struct "am65_cpsw_slave_data" to store the
+> SERDES PHY for each port, if it exists. Use it later while disabling the
+> SERDES PHY for each port.
+>
+> Power on and initialize the SerDes PHY in am65_cpsw_nuss_init_slave_ports()
+> by invoking am65_cpsw_enable_serdes_phy().
+>
+> Power off the SerDes PHY in am65_cpsw_nuss_remove() by invoking
+> am65_cpsw_disable_serdes_phy().
+>
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts | 12 ++++++++++++
- arch/arm64/boot/dts/freescale/imx93.dtsi          | 13 +++++++++++++
- 2 files changed, 25 insertions(+)
+Thanks for your patch, which is now commit dab2b265dd23ef8f ("net:
+ethernet: ti: am65-cpsw: Add support for SERDES configuration")
+in net-next.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-index 27f9a9f33134..c928b6824e41 100644
---- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-@@ -15,6 +15,13 @@ chosen {
- 		stdout-path = &lpuart1;
- 	};
- 
-+	reg_vref_1v8: regulator-adc-vref {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vref_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
- 	reg_usdhc2_vmmc: regulator-usdhc2 {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
-@@ -27,6 +34,11 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
- 	};
- };
- 
-+&adc1 {
-+	vref-supply = <&reg_vref_1v8>;
-+	status = "okay";
-+};
-+
- &mu1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 6808321ed809..abb3fbe4ba22 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -280,6 +280,19 @@ anatop: anatop@44480000 {
- 				compatible = "fsl,imx93-anatop", "syscon";
- 				reg = <0x44480000 0x10000>;
- 			};
-+
-+			adc1: adc@44530000 {
-+				compatible = "nxp,imx93-adc";
-+				reg = <0x44530000 0x10000>;
-+				interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX93_CLK_ADC1_GATE>;
-+				clock-names = "ipg";
-+				#io-channel-cells = <1>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		aips2: bus@42000000 {
--- 
-2.34.1
+> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> @@ -1416,6 +1416,68 @@ static const struct net_device_ops am65_cpsw_nuss_netdev_ops = {
+>         .ndo_setup_tc           = am65_cpsw_qos_ndo_setup_tc,
+>  };
+>
+> +static void am65_cpsw_disable_phy(struct phy *phy)
+> +{
+> +       phy_power_off(phy);
+> +       phy_exit(phy);
+> +}
+> +
+> +static int am65_cpsw_enable_phy(struct phy *phy)
+> +{
+> +       int ret;
+> +
+> +       ret = phy_init(phy);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret = phy_power_on(phy);
+> +       if (ret < 0) {
+> +               phy_exit(phy);
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static void am65_cpsw_disable_serdes_phy(struct am65_cpsw_common *common)
+> +{
+> +       struct am65_cpsw_port *port;
+> +       struct phy *phy;
+> +       int i;
+> +
+> +       for (i = 0; i < common->port_num; i++) {
+> +               port = &common->ports[i];
+> +               phy = port->slave.serdes_phy;
+> +               if (phy)
+> +                       am65_cpsw_disable_phy(phy);
+> +       }
+> +}
+> +
+> +static int am65_cpsw_init_serdes_phy(struct device *dev, struct device_node *port_np,
+> +                                    struct am65_cpsw_port *port)
+> +{
+> +       const char *name = "serdes-phy";
+> +       struct phy *phy;
+> +       int ret;
+> +
+> +       phy = devm_of_phy_get(dev, port_np, name);
+> +       if (PTR_ERR(phy) == -ENODEV)
+> +               return 0;
+> +
+> +       /* Serdes PHY exists. Store it. */
 
+"phy" may be a different error here (e.g. -EPROBE_DEFER)...
+
+> +       port->slave.serdes_phy = phy;
+> +
+> +       ret =  am65_cpsw_enable_phy(phy);
+
+... so it will crash when dereferencing phy in phy_init().
+
+I think you want to add an extra check above:
+
+    if (IS_ERR(phy))
+            return PTR_ERR(phy);
+
+> +       if (ret < 0)
+> +               goto err_phy;
+> +
+> +       return 0;
+> +
+> +err_phy:
+> +       devm_phy_put(dev, phy);
+> +       return ret;
+> +}
+> +
+>  static void am65_cpsw_nuss_mac_config(struct phylink_config *config, unsigned int mode,
+>                                       const struct phylink_link_state *state)
+>  {
+> @@ -1959,6 +2021,11 @@ static int am65_cpsw_nuss_init_slave_ports(struct am65_cpsw_common *common)
+
+Right out of context we have:
+
+                port->slave.ifphy = devm_of_phy_get(dev, port_np, NULL);
+                if (IS_ERR(port->slave.ifphy)) {
+                        ret = PTR_ERR(port->slave.ifphy);
+                        dev_err(dev, "%pOF error retrieving port phy: %d\n",
+                                port_np, ret);
+
+So if there is only one PHY (named "serdes-phy") in DT, it will be
+used for both ifphy and serdes_phy. Is that intentional?
+
+>                         goto of_node_put;
+>                 }
+>
+> +               /* Initialize the Serdes PHY for the port */
+> +               ret = am65_cpsw_init_serdes_phy(dev, port_np, port);
+> +               if (ret)
+> +                       return ret;
+> +
+>                 port->slave.mac_only =
+>                                 of_property_read_bool(port_np, "ti,mac-only");
+>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
