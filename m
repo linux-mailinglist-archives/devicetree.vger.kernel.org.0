@@ -2,355 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5257966DC9B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:37:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8341B66DCA9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:40:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236679AbjAQLg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 06:36:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51478 "EHLO
+        id S234607AbjAQLkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 06:40:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236825AbjAQLgb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:36:31 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E7652FCC2;
-        Tue, 17 Jan 2023 03:35:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673955350; x=1705491350;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=rcbX7Yq2TeGrvh8jl2p8Ylugl5wQT2kp4ppMzolEeA0=;
-  b=aIXU3NQVJr0wRyEChFCfFdGjGcXU4jNY5dtrpRJBjGa/HMt/zbzqXIbY
-   x9ZcA2FmHIEZZf5LQ5ODUJI73WVn6wYdCzIt10p6hVXRAC1g5DboEVQmp
-   mdg5CNWrZNBuqXnrYyddTBtYWQNe233EIhsKQWUzsiKIRj1weqxpGdqGN
-   zzzWUTP9vCknx+we30smNa1LIfmoFcSkadlSpCGh4JiemWg9Q3jZbjct0
-   gTSlev+XszOTaNU1apdx3lsL/Dvo3P4FkV6FG9XEhrOYyZMQwEk2SJXav
-   WOt1kCv/Q40tvUzyW6HdO4LxIFytdr39VpB5Usv4XgyRdg1572qORZ3To
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="324726745"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="324726745"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 03:35:50 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="783211178"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="783211178"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.10.213]) ([10.213.10.213])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 03:35:44 -0800
-Message-ID: <d437bf70-07d0-df52-e91f-8f632f44ac0e@intel.com>
-Date:   Tue, 17 Jan 2023 12:35:42 +0100
+        with ESMTP id S235897AbjAQLjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:39:35 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314332E0FE
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:39:29 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id t5so25857010wrq.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:39:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vF3QjaM7bROJjvJo2a/mn+CmXlw/84X7LZJ02v/ABAU=;
+        b=zLKBoIKI1X1tbKr4R/cZoQ7RMIGw8APCZhFTXrfz4YG7Gl5o99Y2nFQ6WoJk7DMG/3
+         yzzPBZIZ9K9Fuw2Ba+q7I3dUgVF8u14QN683j5+7pd3L1DnI4tNLzyF+Rq/viGT8TwBr
+         w8+2O3c+A9vkyf4Xh3VbrlCLVsDkDky8G6e1EtamptWw/sOAL/7jK3cxF20PpZQOrM+i
+         I0UibyUBGThQVEWaCHoOGrcuKXPzUSCaRTz1lfZdcWdUjCP43hjGHM01og21Q597wW9h
+         CCWv/qzbSM3Y+BflWlJgMyAFDUYzZYscvA9hEDk2hCmVow5TiANBZ28vQn1ozYo+ji8H
+         BMdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vF3QjaM7bROJjvJo2a/mn+CmXlw/84X7LZJ02v/ABAU=;
+        b=1hfKvUu2jcMLnuv92cAun3JfMKYO30+D/26YKMxPJQgjd7QpJs11bvMzAk9eHveL2n
+         O6JyNDolF2UADNWxVnkdNAjBthC9O0kkMD5voz8+ovOz/qEaFeS4jydHcMiSXMKHz3/g
+         3PyqS60aQp5kqc63GpGCPTRVA7X3nsSyUE0xS8ZRjBAfX+KQeItHQSkXV1DHq/EMOpla
+         v8C7sWD8Z/YMQz6bI9IK4VGfQDQwPn4QQmtoGu3u2W7spcYqZf5ZzVWRYxMoN388yt0R
+         +jkX0MmK3kVqKbiWPL3gWyKaTmCb3p9LA+domebImLQhh/+unpl4sWPJnNn7Lk0vdp/+
+         PBlg==
+X-Gm-Message-State: AFqh2kpaf2epkHa91r24CB9hGS/tX1PW3AhIXpOgSGjiBGWD04N0VW2e
+        UeadmHpjZO4gUgX1GA1lGP2PGZZ5jJIrf+n/
+X-Google-Smtp-Source: AMrXdXuCkpdLgZ/1mIa89YtmyXjuzTAlZJrLeKfPOg30l2hHTbnVlkY+nMfI32aoJYuG8fprjU9EAg==
+X-Received: by 2002:adf:f78d:0:b0:2bd:bed5:9207 with SMTP id q13-20020adff78d000000b002bdbed59207mr2498792wrp.12.1673955567741;
+        Tue, 17 Jan 2023 03:39:27 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u24-20020adfa198000000b002bc84c55758sm24641864wru.63.2023.01.17.03.39.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 03:39:26 -0800 (PST)
+Message-ID: <9c11bf53-6639-2cbe-0d27-ce1ea154f576@linaro.org>
+Date:   Tue, 17 Jan 2023 12:39:24 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Subject: Re: [PATCH v11 5/5] drm/bridge: cdns-dsi: Add support for J721E
- wrapper
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 01/19] dt-bindings: ARM: MediaTek: Add new MT8188 clock
 Content-Language: en-US
-To:     Rahul T R <r-ravikumar@ti.com>, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     narmstrong@baylibre.com, robert.foss@linaro.org, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        p.zabel@pengutronix.de, tomi.valkeinen@ideasonboard.com,
-        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
-        jpawar@cadence.com, sjakhade@cadence.com, mparab@cadence.com,
-        a-bhatia1@ti.com, devicetree@vger.kernel.org, vigneshr@ti.com,
-        lee.jones@linaro.org
-References: <20230103101951.10963-1-r-ravikumar@ti.com>
- <20230103101951.10963-6-r-ravikumar@ti.com>
-From:   Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230103101951.10963-6-r-ravikumar@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org
+References: <20230109124516.31425-1-Garmin.Chang@mediatek.com>
+ <20230109124516.31425-2-Garmin.Chang@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230109124516.31425-2-Garmin.Chang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 09/01/2023 13:44, Garmin.Chang wrote:
+> Add the new binding documentation for system clock
+> and functional clock on MediaTek MT8188.
 
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
-On 03.01.2023 11:19, Rahul T R wrote:
-> Add support for wrapper settings for DSI bridge on j721e. Also enable
-> DPI0
->
-> ---------------      -----------------------
-> |      -------|      |-------              |
-> | DSS  | DPI2 |----->| DPI0 |  DSI Wrapper |
-> |      -------|      |-------              |
-> ---------------      -----------------------
->
-> As shown above DPI2 output of DSS is connected to DPI0 input of DSI
-> Wrapper, DSI wrapper gives control wheather to enable/disable DPI0
-> input. In j721e above is the only configuration supported
->
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
+> 
+> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
 > ---
->   drivers/gpu/drm/bridge/cadence/Kconfig        | 10 ++++
->   drivers/gpu/drm/bridge/cadence/Makefile       |  1 +
->   .../gpu/drm/bridge/cadence/cdns-dsi-core.c    | 35 ++++++++++++-
->   .../gpu/drm/bridge/cadence/cdns-dsi-core.h    | 20 ++++++++
->   .../gpu/drm/bridge/cadence/cdns-dsi-j721e.c   | 51 +++++++++++++++++++
->   .../gpu/drm/bridge/cadence/cdns-dsi-j721e.h   | 16 ++++++
->   6 files changed, 132 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
->   create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
->
-> diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig b/drivers/gpu/drm/bridge/cadence/Kconfig
-> index 5f39859dcfdd..ec35215a2003 100644
-> --- a/drivers/gpu/drm/bridge/cadence/Kconfig
-> +++ b/drivers/gpu/drm/bridge/cadence/Kconfig
-> @@ -10,6 +10,16 @@ config DRM_CDNS_DSI
->   	  Support Cadence DPI to DSI bridge. This is an internal
->   	  bridge and is meant to be directly embedded in a SoC.
->   
-> +if DRM_CDNS_DSI
-> +
-> +config DRM_CDNS_DSI_J721E
-> +	bool "J721E Cadence DSI wrapper support"
-> +	default y
-> +	help
-> +	  Support J721E Cadence DSI wrapper. The wrapper manages
-> +	  the routing of the DSS DPI signal to the Cadence DSI.
-> +endif
-> +
->   config DRM_CDNS_MHDP8546
->   	tristate "Cadence DPI/DP bridge"
->   	select DRM_DISPLAY_DP_HELPER
-> diff --git a/drivers/gpu/drm/bridge/cadence/Makefile b/drivers/gpu/drm/bridge/cadence/Makefile
-> index 9e2f34c84480..c95fd5b81d13 100644
-> --- a/drivers/gpu/drm/bridge/cadence/Makefile
-> +++ b/drivers/gpu/drm/bridge/cadence/Makefile
-> @@ -1,6 +1,7 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
->   cdns-dsi-y := cdns-dsi-core.o
-> +cdns-dsi-$(CONFIG_DRM_CDNS_DSI_J721E) += cdns-dsi-j721e.o
->   obj-$(CONFIG_DRM_CDNS_MHDP8546) += cdns-mhdp8546.o
->   cdns-mhdp8546-y := cdns-mhdp8546-core.o cdns-mhdp8546-hdcp.o
->   cdns-mhdp8546-$(CONFIG_DRM_CDNS_MHDP8546_J721E) += cdns-mhdp8546-j721e.o
-> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
-> index 058349bfeb67..5dbfc7226b31 100644
-> --- a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
-> +++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
-> @@ -15,6 +15,7 @@
->   #include <linux/iopoll.h>
->   #include <linux/module.h>
->   #include <linux/of_address.h>
-> +#include <linux/of_device.h>
->   #include <linux/of_graph.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_runtime.h>
-> @@ -23,6 +24,9 @@
->   #include <linux/phy/phy-mipi-dphy.h>
->   
->   #include "cdns-dsi-core.h"
-> +#ifdef CONFIG_DRM_CDNS_DSI_J721E
-> +#include "cdns-dsi-j721e.h"
-> +#endif
->   
->   #define IP_CONF				0x0
->   #define SP_HS_FIFO_DEPTH(x)		(((x) & GENMASK(30, 26)) >> 26)
-> @@ -665,6 +669,10 @@ static void cdns_dsi_bridge_disable(struct drm_bridge *bridge)
->   
->   	val = readl(dsi->regs + MCTL_MAIN_EN) & ~IF_EN(input->id);
->   	writel(val, dsi->regs + MCTL_MAIN_EN);
-> +
-> +	if (dsi->platform_ops && dsi->platform_ops->disable)
-> +		dsi->platform_ops->disable(dsi);
-> +
->   	pm_runtime_put(dsi->base.dev);
->   }
->   
-> @@ -760,6 +768,9 @@ static void cdns_dsi_bridge_enable(struct drm_bridge *bridge)
->   	if (WARN_ON(pm_runtime_get_sync(dsi->base.dev) < 0))
->   		return;
->   
-> +	if (dsi->platform_ops && dsi->platform_ops->enable)
-> +		dsi->platform_ops->enable(dsi);
-> +
->   	mode = &bridge->encoder->crtc->state->adjusted_mode;
->   	nlanes = output->dev->lanes;
->   
-> @@ -1200,6 +1211,8 @@ static int cdns_dsi_drm_probe(struct platform_device *pdev)
->   		goto err_disable_pclk;
->   	}
->   
-> +	dsi->platform_ops = of_device_get_match_data(&pdev->dev);
-> +
->   	val = readl(dsi->regs + IP_CONF);
->   	dsi->direct_cmd_fifo_depth = 1 << (DIRCMD_FIFO_DEPTH(val) + 2);
->   	dsi->rx_fifo_depth = RX_FIFO_DEPTH(val);
-> @@ -1235,14 +1248,27 @@ static int cdns_dsi_drm_probe(struct platform_device *pdev)
->   	dsi->base.dev = &pdev->dev;
->   	dsi->base.ops = &cdns_dsi_ops;
->   
-> +	if (dsi->platform_ops && dsi->platform_ops->init) {
-> +		ret = dsi->platform_ops->init(dsi);
-> +		if (ret != 0) {
-> +			dev_err(&pdev->dev, "platform initialization failed: %d\n",
-> +				ret);
-> +			goto err_disable_runtime_pm;
-> +		}
-> +	}
-> +
->   	ret = mipi_dsi_host_register(&dsi->base);
->   	if (ret)
-> -		goto err_disable_runtime_pm;
-> +		goto err_deinit_platform;
->   
->   	clk_disable_unprepare(dsi->dsi_p_clk);
->   
->   	return 0;
->   
-> +err_deinit_platform:
-> +	if (dsi->platform_ops && dsi->platform_ops->deinit)
-> +		dsi->platform_ops->deinit(dsi);
-> +
->   err_disable_runtime_pm:
->   	pm_runtime_disable(&pdev->dev);
->   
-> @@ -1257,6 +1283,10 @@ static int cdns_dsi_drm_remove(struct platform_device *pdev)
->   	struct cdns_dsi *dsi = platform_get_drvdata(pdev);
->   
->   	mipi_dsi_host_unregister(&dsi->base);
-> +
-> +	if (dsi->platform_ops && dsi->platform_ops->deinit)
-> +		dsi->platform_ops->deinit(dsi);
-> +
->   	pm_runtime_disable(&pdev->dev);
->   
->   	return 0;
-> @@ -1264,6 +1294,9 @@ static int cdns_dsi_drm_remove(struct platform_device *pdev)
->   
->   static const struct of_device_id cdns_dsi_of_match[] = {
->   	{ .compatible = "cdns,dsi" },
-> +#ifdef CONFIG_DRM_CDNS_DSI_J721E
-> +	{ .compatible = "ti,j721e-dsi", .data = &dsi_ti_j721e_ops, },
-> +#endif
->   	{ },
->   };
->   MODULE_DEVICE_TABLE(of, cdns_dsi_of_match);
-> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
-> index d5bb5caf77b1..dc05f3ad6951 100644
-> --- a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
-> +++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
-> @@ -45,9 +45,29 @@ struct cdns_dsi_input {
->   	struct drm_bridge bridge;
->   };
->   
-> +struct cdns_dsi;
-> +
-> +/**
-> + * struct cdns_dsi_platform_ops - CDNS DSI Platform operations
-> + * @init: Called in the CDNS DSI probe
-> + * @deinit: Called in the CDNS DSI remove
-> + * @enable: Called at the begining of CDNS DSI bridge enable
-> + * @disable: Called at the end of CDNS DSI bridge disable
-> + */
-> +struct cdns_dsi_platform_ops {
-> +	int (*init)(struct cdns_dsi *dsi);
-> +	void (*deinit)(struct cdns_dsi *dsi);
-> +	void (*enable)(struct cdns_dsi *dsi);
-> +	void (*disable)(struct cdns_dsi *dsi);
-> +};
-> +
->   struct cdns_dsi {
->   	struct mipi_dsi_host base;
->   	void __iomem *regs;
-> +#ifdef CONFIG_DRM_CDNS_DSI_J721E
-> +	void __iomem *j721e_regs;
-> +#endif
-> +	const struct cdns_dsi_platform_ops *platform_ops;
->   	struct cdns_dsi_input input;
->   	struct cdns_dsi_output output;
->   	unsigned int direct_cmd_fifo_depth;
-> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
+>  .../bindings/clock/mediatek,mt8188-clock.yaml |  71 ++
+>  .../clock/mediatek,mt8188-sys-clock.yaml      |  55 ++
+>  .../dt-bindings/clock/mediatek,mt8188-clk.h   | 733 ++++++++++++++++++
+>  3 files changed, 859 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8188-sys-clock.yaml
+>  create mode 100644 include/dt-bindings/clock/mediatek,mt8188-clk.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
 > new file mode 100644
-> index 000000000000..b654d4b3cb5c
+> index 000000000000..6654cead71f6
 > --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
-> @@ -0,0 +1,51 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * TI j721e Cadence DSI wrapper
-> + *
-> + * Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com/
-> + * Author: Rahul T R <r-ravikumar@ti.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt8188-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/io.h>
-> +#include <linux/platform_device.h>
+> +title: MediaTek Functional Clock Controller for MT8188
 > +
-> +#include "cdns-dsi-j721e.h"
+> +maintainers:
+> +  - Garmin Chang <garmin.chang@mediatek.com>
 > +
-> +#define DSI_WRAP_REVISION		0x0
-> +#define DSI_WRAP_DPI_CONTROL		0x4
-> +#define DSI_WRAP_DSC_CONTROL		0x8
-> +#define DSI_WRAP_DPI_SECURE		0xc
-> +#define DSI_WRAP_DSI_0_ASF_STATUS	0x10
+> +description: |
+> +  The clock architecture in MediaTek like below
+> +  PLLs -->
+> +          dividers -->
+> +                      muxes
+> +                           -->
+> +                              clock gate
 > +
-> +#define DSI_WRAP_DPI_0_EN		BIT(0)
-> +#define DSI_WRAP_DSI2_MUX_SEL		BIT(4)
+> +  The devices provide clock gate control in different IP blocks.
 > +
-> +static int cdns_dsi_j721e_init(struct cdns_dsi *dsi)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dsi->base.dev);
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8188-adsp-audio26m
+> +      - mediatek,mt8188-imp-iic-wrap-c
+> +      - mediatek,mt8188-imp-iic-wrap-en
+> +      - mediatek,mt8188-imp-iic-wrap-w
+> +      - mediatek,mt8188-mfgcfg
+> +      - mediatek,mt8188-vppsys0
+> +      - mediatek,mt8188-wpesys
+> +      - mediatek,mt8188-wpesys-vpp0
+> +      - mediatek,mt8188-vppsys1
+> +      - mediatek,mt8188-imgsys
+> +      - mediatek,mt8188-imgsys-wpe1
+> +      - mediatek,mt8188-imgsys-wpe2
+> +      - mediatek,mt8188-imgsys-wpe3
+> +      - mediatek,mt8188-imgsys1-dip-top
+> +      - mediatek,mt8188-imgsys1-dip-nr
+> +      - mediatek,mt8188-ipesys
+> +      - mediatek,mt8188-camsys
+> +      - mediatek,mt8188-camsys-rawa
+> +      - mediatek,mt8188-camsys-yuva
+> +      - mediatek,mt8188-camsys-rawb
+> +      - mediatek,mt8188-camsys-yuvb
+> +      - mediatek,mt8188-ccusys
+> +      - mediatek,mt8188-vdecsys-soc
+> +      - mediatek,mt8188-vdecsys
+> +      - mediatek,mt8188-vencsys
+
+The list should be ordered by name.
+
 > +
-> +	dsi->j721e_regs = devm_platform_ioremap_resource(pdev, 1);
-> +	return PTR_ERR_OR_ZERO(dsi->j721e_regs);
-> +}
+> +  reg:
+> +    maxItems: 1
 > +
-> +static void cdns_dsi_j721e_enable(struct cdns_dsi *dsi)
-> +{
-> +	/*
-> +	 * Enable DPI0 as its input. DSS0 DPI2 is connected
-> +	 * to DSI DPI0. This is the only supported configuration on
-> +	 * J721E.
-> +	 */
-> +	writel(DSI_WRAP_DPI_0_EN, dsi->j721e_regs + DSI_WRAP_DPI_CONTROL);
-> +}
+> +  '#clock-cells':
+> +    const: 1
 > +
-> +static void cdns_dsi_j721e_disable(struct cdns_dsi *dsi)
-> +{
-> +	/* Put everything to defaults  */
-> +	writel(0, dsi->j721e_regs + DSI_WRAP_DPI_CONTROL);
-> +}
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
 > +
-> +const struct cdns_dsi_platform_ops dsi_ti_j721e_ops = {
-> +	.init = cdns_dsi_j721e_init,
-> +	.enable = cdns_dsi_j721e_enable,
-> +	.disable = cdns_dsi_j721e_disable,
-> +};
-> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clock-controller@11283000 {
+> +        compatible = "mediatek,mt8188-imp-iic-wrap-c";
+> +        reg = <0x11283000 0x1000>;
+> +        #clock-cells = <1>;
+> +    };
+> +
+> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8188-sys-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8188-sys-clock.yaml
 > new file mode 100644
-> index 000000000000..275e5e8e7583
+> index 000000000000..541e0f7df79f
 > --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
-> @@ -0,0 +1,16 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * TI j721e Cadence DSI wrapper
-> + *
-> + * Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com/
-> + * Author: Rahul T R <r-ravikumar@ti.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8188-sys-clock.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt8188-sys-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#ifndef __CDNS_DSI_J721E_H__
-> +#define __CDNS_DSI_J721E_H__
+> +title: MediaTek System Clock Controller for MT8188
 > +
-> +#include "cdns-dsi-core.h"
+> +maintainers:
+> +  - Garmin Chang <garmin.chang@mediatek.com>
 > +
-> +extern const struct cdns_dsi_platform_ops dsi_ti_j721e_ops;
+> +description: |
+> +  The clock architecture in MediaTek like below
+> +  PLLs -->
+> +          dividers -->
+> +                      muxes
+> +                           -->
+> +                              clock gate
 > +
-> +#endif /* !__CDNS_DSI_J721E_H__ */
+> +  The apmixedsys provides most of PLLs which generated from SoC 26m.
+> +  The topckgen provides dividers and muxes which provide the clock source to other IP blocks.
+> +  The infracfg_ao provides clock gate in peripheral and infrastructure IP blocks.
+> +  The mcusys provides mux control to select the clock source in AP MCU.
+> +  The device nodes also provide the system control capacity for configuration.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt8188-topckgen
+> +          - mediatek,mt8188-infracfg-ao
+> +          - mediatek,mt8188-apmixedsys
+> +          - mediatek,mt8188-pericfg-ao
+
+Ditto
+
+
+Best regards,
+Krzysztof
 
