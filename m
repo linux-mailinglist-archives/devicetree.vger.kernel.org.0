@@ -2,80 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FBC466DC4A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:24:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F07E066DC4C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:25:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236262AbjAQLYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 06:24:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44232 "EHLO
+        id S236569AbjAQLZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 06:25:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236181AbjAQLYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:24:35 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DD99212F;
-        Tue, 17 Jan 2023 03:24:34 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DD0B2B8159D;
-        Tue, 17 Jan 2023 11:24:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30908C433EF;
-        Tue, 17 Jan 2023 11:24:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673954671;
-        bh=KHuQBxrZomd1HoV6c2nGjKewKn6fSQrzgb2IdRr240A=;
-        h=From:To:Cc:Subject:Date:From;
-        b=abt/+p72P5FPhU9X5LDA/egyEwZ3d3J5BEo09kYvxXcw7igq7gUwcqoXLOk2Ll3lg
-         Yw0/XoxfHuy5iPcubATuqszGmyX3PASB4Pbohk8MEJNcp+wOQeF8la6u0VK5QEO9Co
-         GvP0KLsDDMQjWad4U/KIlzQylhO4hWxs6GEa7boyp/5cqkxrVYyT0uElLZxnlfN7xj
-         /yw30qUPbP8MUxa0rJZSByapm3dxxq76El1WshvxyPvWzNNGU98P9w3TTRFAjIhFF0
-         OxyOyIQX2OcS+5WOw+jDDQxpP6d1PQeJSPZqBzl76B+06JbPUpBc+ShWa90BycYY34
-         YllJyWRVbvjnQ==
-From:   rfoss@kernel.org
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [PATCH v1] arm64: dts: qcom: sm8350: Remove mmxc power-domain-name
-Date:   Tue, 17 Jan 2023 12:24:15 +0100
-Message-Id: <20230117112415.1015538-1-rfoss@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S236435AbjAQLZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:25:09 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F19923C3C;
+        Tue, 17 Jan 2023 03:25:07 -0800 (PST)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30HACJMP000401;
+        Tue, 17 Jan 2023 12:24:44 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=acU0cnZ3w2pKxKoWqTFB/CdxhadN2u2TMa8Y+vjXTA0=;
+ b=utEtmcQm4rgeRIBIy2tau6SKNVtqWWwSVY23wcD7wJrvNWSWqjYADB3kEybU1eW6JqPq
+ aXGGz+dWssoF9kBQKywLmSPXtFDOkGoi3h0yHQcvRx1os98JuWS4BSutCWYdVoqLnN/w
+ Fo3jmjT0HB5CSFQzkmK8fW1EcqakhZf70Tr2kIuhCr5LtQ9lfKY25N5EPqwz2aQ/dy8w
+ VhgwZXg5K/4SAr7rSD41nfCosnJBfM6cxE6KhXSty6YeiC8npeMyu2L1blEuOJjwQKch
+ 9YGtwJWIAcIrdzfqS7VvYtpi+1l74Rt0+TBgIqJRZag68BJ8jIDa4k+uxP5ZVaLtM2E3 dQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3n3mm6fygx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Jan 2023 12:24:44 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1AF7710002A;
+        Tue, 17 Jan 2023 12:24:43 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CDF61215BED;
+        Tue, 17 Jan 2023 12:24:43 +0100 (CET)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Tue, 17 Jan
+ 2023 12:24:43 +0100
+Message-ID: <2bfd93b7-0419-a972-5a52-f0db0650b29e@foss.st.com>
+Date:   Tue, 17 Jan 2023 12:24:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,TVD_SUBJ_WIPE_DEBT autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 6/6] ARM: dts: stm32: Use new media bus type macros
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>
+References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
+ <20220615221410.27459-7-laurent.pinchart@ideasonboard.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20220615221410.27459-7-laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-17_05,2023-01-17_01,2022-06-22_01
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Robert Foss <robert.foss@linaro.org>
+Hi Laurent
 
-The mmxc power-domain-name is not required, and is not
-used by either earlier or later SoC versions (sm8250 / sm8450).
+On 6/16/22 00:14, Laurent Pinchart wrote:
+> Now that a header exists with macros for the media interface bus-type
+> values, replace hardcoding numerical constants with the corresponding
+> macros in the DT sources.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index fafd92edc855..75723dd06d21 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -2642,7 +2642,6 @@ dispcc: clock-controller@af00000 {
- 			#power-domain-cells = <1>;
- 
- 			power-domains = <&rpmhpd SM8350_MMCX>;
--			power-domain-names = "mmcx";
- 		};
- 
- 		adsp: remoteproc@17300000 {
--- 
-2.34.1
+Applied on stm32-next.
+
+Thanks.
+Alex
+
+
 
