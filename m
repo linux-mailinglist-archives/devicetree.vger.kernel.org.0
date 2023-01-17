@@ -2,112 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAB4066E43A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 17:58:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99DA666E43D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 17:58:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233517AbjAQQ6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 11:58:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34776 "EHLO
+        id S229686AbjAQQ62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 11:58:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233616AbjAQQ6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 11:58:17 -0500
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CE104390A;
-        Tue, 17 Jan 2023 08:58:16 -0800 (PST)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out2.suse.de (Postfix) with ESMTP id C82ED1F74D;
-        Tue, 17 Jan 2023 16:58:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1673974694; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
-        bh=LPaYt3U/+H6P7eBulHoAyo/q+calGwfFAzTXNU5KimU=;
-        b=JUbOFdVFaKmrVOvq3sVHVsHhZME515FfjfYS7VHGzK5iYuLYMfMS6XuVdEFSaC0O6qpq3Q
-        vD1FYrqYADCWjNkGT4UKaY4wFwccoT86mCEXTJmmSh2x0JjDlcR1RT2FUCgRnNlzxX170d
-        ZcKLPiEXMhIFVsSNZKqEz0NNPOVa7Mc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1673974694;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
-        bh=LPaYt3U/+H6P7eBulHoAyo/q+calGwfFAzTXNU5KimU=;
-        b=6lqQPt2RsGNeAnbw/9nYXIXLKwIjFo1wjbBxGc33WOcfLKrlQtQ0VUgSK1Qb87xIA/hf/f
-        nU/JiqL58TrC/9Cw==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        by relay2.suse.de (Postfix) with ESMTP id 879F62C141;
-        Tue, 17 Jan 2023 16:58:14 +0000 (UTC)
-From:   Michal Suchanek <msuchanek@suse.de>
-Cc:     Michal Suchanek <msuchanek@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE), linux-kernel@vger.kernel.org (open list),
-        linuxppc-dev@lists.ozlabs.org, "Erhard F ." <erhard_f@mailbox.org>
-Subject: [PATCH] of: Make of framebuffer devices unique
-Date:   Tue, 17 Jan 2023 17:58:04 +0100
-Message-Id: <20230117165804.18036-1-msuchanek@suse.de>
-X-Mailer: git-send-email 2.35.3
+        with ESMTP id S233766AbjAQQ60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 11:58:26 -0500
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C6D4393B
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 08:58:25 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id D940C5C0176;
+        Tue, 17 Jan 2023 11:58:22 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 17 Jan 2023 11:58:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1673974702; x=1674061102; bh=mwIGHWCBek
+        Q9BMMNPOARhkG/MMqyeZiMnAu5idF4a44=; b=gqW1tXrcYmHRBtgbUr2F1/rAH0
+        9ZFp3lBa1B1wsFQPUPfib73+TlNg0RkkshBRDy6NQ1REEsVC12Hn7GA19OdbG+bD
+        qGoHEN1LwyQzJbp59dIBL0Ou/TLNRQvPs0BMfeROupwudmCvK5zh6RWvHSxHnUaP
+        UM/aRj8JWGHlEbkn+4jJNrgLKf0TomfRHMtBxztpniV9JF6yzEnSJCTbxoeSZaLE
+        bkL7m3nZnHuxXHyoELZ1sG2wFl4g52EwvDO6/s/4AvzhDL1ENKbvOjUkoSSHnRY6
+        cpcgdLoAkFt3JSIlrBJrZgZXL2AeJkDOsUKUcN81eEcGm1bsL4YccnCnHCqg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1673974702; x=1674061102; bh=mwIGHWCBekQ9BMMNPOARhkG/MMqy
+        eZiMnAu5idF4a44=; b=aGsip6jLC6+VCcXF7IXcCUdHpOIqeO38sfAVlVmKB8t6
+        E2fBX7dOZMEQ+XGaUOKz+ci8bASHYqn7Dm15vMdn1KCpxyfsWZFnHn9GSbLu/QOW
+        uGvWTmh4jPgeSM0ONQgPbnm6KtH6staeSqdUZJQ1F42P26hPlrH6er6bmkmB3bm/
+        NSLSh1wbTCZAcrrRutzEnC4up6DLUrdOegFOOZMiE1vQu6bhD2hWcezbxrg/utLl
+        KGJBW8uliPurLJwbZWD1GROJS5z8cyggXwhZSNMgxSihz1oxQHdtKdl9c1Q3HTF5
+        41xpCAq3qcEJy1IjfAo9Chs3or3QdJlaUYBFUG/PhA==
+X-ME-Sender: <xms:rtPGYxTNOWM0bbUi7EWZSH-aw3zNjbaC1SRmc29sY_3r2l7yFsNaAA>
+    <xme:rtPGY6xlQtzkBUarCNwCF30sAsPulQkmX2eZK7JKKgDHYCI8Lp0O1LeytOr6OunoD
+    gS2b6LxfcVsRz13Obg>
+X-ME-Received: <xmr:rtPGY20qjknBQzw9wv0Nx-ZiGohsgUAYaBMUb6lReJMmy-mKcRdEQSpnakrKO_PbG5jfOf6yIiX55IBSQt7XMGP4R4QNMIOvHxiHlFL2fUgfxA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddtiedgleefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
+    hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:rtPGY5BqBfOXJgPDCvw5zMamlk2nchiW1HUHq4BCdkz9V94rYi6I-Q>
+    <xmx:rtPGY6iDD7CdaA5lQMNhwlzMldQx2DkIlMc_g00sHYNaxKfun71ewg>
+    <xmx:rtPGY9qaqnZSvTAGeFax90SZ49EIs6VHqumFAv_6--SrSPXrlxhbvA>
+    <xmx:rtPGY_tSiDgX1I5qh3XTPDK1KiQbDnHhw18LJYH2c_Jb7owvrrRgyQ>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 17 Jan 2023 11:58:21 -0500 (EST)
+Date:   Tue, 17 Jan 2023 17:58:19 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org, maccraft123mc@gmail.com,
+        tzimmermann@suse.de, maarten.lankhorst@linux.intel.com,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, daniel@ffwll.ch, airlied@gmail.com,
+        sam@ravnborg.org, thierry.reding@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V10 1/4] drm: of: Add drm_of_get_dsi_bus helper function
+Message-ID: <20230117165819.4rx7aucvyp5e2rj6@houat>
+References: <20230112175358.421975-1-macroalpha82@gmail.com>
+ <20230112175358.421975-2-macroalpha82@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7npjgdbxmfp4vihi"
+Content-Disposition: inline
+In-Reply-To: <20230112175358.421975-2-macroalpha82@gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since Linux 5.19 this error is observed:
 
-sysfs: cannot create duplicate filename '/devices/platform/of-display'
+--7npjgdbxmfp4vihi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This is because multiple devices with the same name 'of-display' are
-created on the same bus.
+Hi,
 
-Update the code to create numbered device names for the non-boot
-disaplay.
+On Thu, Jan 12, 2023 at 11:53:55AM -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Add helper function to find DSI host for devices where DSI panel is not
+> a minor of a DSI bus (such as the Samsung AMS495QA01 panel or the
+> official Raspberry Pi touchscreen display).
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> ---
+>  drivers/gpu/drm/drm_of.c | 70 ++++++++++++++++++++++++++++++++++++++++
+>  include/drm/drm_of.h     | 10 ++++++
+>  2 files changed, 80 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
+> index 7bbcb999bb75..6c2c97a716fe 100644
+> --- a/drivers/gpu/drm/drm_of.c
+> +++ b/drivers/gpu/drm/drm_of.c
+> @@ -10,6 +10,7 @@
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_encoder.h>
+> +#include <drm/drm_mipi_dsi.h>
+>  #include <drm/drm_of.h>
+>  #include <drm/drm_panel.h>
+> =20
+> @@ -493,3 +494,72 @@ int drm_of_get_data_lanes_count_ep(const struct devi=
+ce_node *port,
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(drm_of_get_data_lanes_count_ep);
+> +
+> +#if IS_ENABLED(CONFIG_DRM_MIPI_DSI)
+> +
+> +/**
+> + * drm_of_get_dsi_bus - find the DSI bus for a given device
+> + * @dev: parent device of display (SPI, I2C)
+> + * @info: DSI device info to be updated with DSI node. This is optional
+> + * and if not needed can be NULL.
+> + *
+> + * Gets parent DSI bus for a DSI device controlled through a bus other
+> + * than MIPI-DCS (SPI, I2C, etc.) using the Device Tree.
+> + *
+> + * Returns pointer to mipi_dsi_host if successful, -EINVAL if the
+> + * request is unsupported, -EPROBE_DEFER if the DSI host is found but
+> + * not available, or -ENODEV otherwise.
+> + */
+> +struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
+> +					 struct mipi_dsi_device_info *info)
+> +{
+> +	struct mipi_dsi_host *dsi_host;
+> +	struct device_node *endpoint, *dsi_host_node;
+> +
+> +	/*
+> +	 * Get first endpoint child from device.
+> +	 */
+> +	endpoint =3D of_graph_get_next_endpoint(dev->of_node, NULL);
+> +	if (!endpoint)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	/*
+> +	 * Follow the first endpoint to get the DSI host node.
+> +	 */
+> +	dsi_host_node =3D of_graph_get_remote_port_parent(endpoint);
+> +	if (!dsi_host_node)
+> +		goto error;
+> +
+> +	/*
+> +	 * Get the DSI host from the DSI host node. If we get an error
+> +	 * or the return is null assume we're not ready to probe just
+> +	 * yet. Release the DSI host node since we're done with it.
+> +	 */
+> +	dsi_host =3D of_find_mipi_dsi_host_by_node(dsi_host_node);
+> +	of_node_put(dsi_host_node);
+> +	if (IS_ERR_OR_NULL(dsi_host)) {
+> +		of_node_put(endpoint);
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +	}
+> +
+> +	/*
+> +	 * Set the node of the mipi_dsi_device_info to the correct node
+> +	 * and then release the endpoint node since we're done with it.
+> +	 * since this is optional, check if the info is NULL first.
+> +	 */
+> +	if (info) {
+> +		info->node =3D of_graph_get_remote_port(endpoint);
 
-cc: linuxppc-dev@lists.ozlabs.org
-References: https://bugzilla.kernel.org/show_bug.cgi?id=216095
-Fixes: 52b1b46c39ae ("of: Create platform devices for OF framebuffers")
-Reported-by: Erhard F. <erhard_f@mailbox.org>
-Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Michal Suchanek <msuchanek@suse.de>
----
- drivers/of/platform.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+it looks to me that the info->node is actually the DSI device OF node,
+not its host port. Which begs the question, why should we even return it
+there, since there's a pretty big chance that dev->of.node =3D=3D
+info->node, and you obviously don't care about the channel and type fields.
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 81c8c227ab6b..f2a5d679a324 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -525,6 +525,7 @@ static int __init of_platform_default_populate_init(void)
- 	if (IS_ENABLED(CONFIG_PPC)) {
- 		struct device_node *boot_display = NULL;
- 		struct platform_device *dev;
-+		int display_number = 1;
- 		int ret;
- 
- 		/* Check if we have a MacOS display without a node spec */
-@@ -561,10 +562,15 @@ static int __init of_platform_default_populate_init(void)
- 			boot_display = node;
- 			break;
- 		}
-+
- 		for_each_node_by_type(node, "display") {
-+			char *buf[14];
- 			if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
- 				continue;
--			of_platform_device_create(node, "of-display", NULL);
-+			ret = snprintf(buf, "of-display-%d", display_number++);
-+			if (ret >= sizeof(buf))
-+				continue;
-+			of_platform_device_create(node, buf, NULL);
- 		}
- 
- 	} else {
--- 
-2.35.3
+I've had a look and node of the current users of
+mipi_dsi_device_register_full actually register a mipi_dsi_device_info
+with a node pointer set to !NULL, including the driver in this series.
 
+So, why do we care about the device info at all?
+
+> +		if (IS_ERR_OR_NULL(info->node))
+
+of_graph_get_remote_port doesn't return an error pointer.
+
+> --- a/include/drm/drm_of.h
+> +++ b/include/drm/drm_of.h
+> @@ -15,6 +15,8 @@ struct drm_encoder;
+>  struct drm_panel;
+>  struct drm_bridge;
+>  struct device_node;
+> +struct mipi_dsi_device_info;
+> +struct mipi_dsi_host;
+> =20
+>  /**
+>   * enum drm_lvds_dual_link_pixels - Pixel order of an LVDS dual-link con=
+nection
+> @@ -56,6 +58,8 @@ int drm_of_get_data_lanes_count_ep(const struct device_=
+node *port,
+>  				   int port_reg, int reg,
+>  				   const unsigned int min,
+>  				   const unsigned int max);
+> +struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
+> +					 struct mipi_dsi_device_info *info);
+>  #else
+>  static inline uint32_t drm_of_crtc_port_mask(struct drm_device *dev,
+>  					  struct device_node *port)
+> @@ -127,6 +131,12 @@ drm_of_get_data_lanes_count_ep(const struct device_n=
+ode *port,
+>  {
+>  	return -EINVAL;
+>  }
+> +static inline struct
+> +mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
+> +					 struct mipi_dsi_device_info *info)
+> +{
+> +	return ERR_PTR(-EINVAL);
+> +}
+>  #endif
+
+So it looks to me that if CONFIG_OF is defined, we'll define an external
+symbol declared for drm_of_get_dsi_bus, but that function will only be
+compiled if CONFIG_DRM_MIPI_DSI is enabled.
+
+What happens if we have CONFIG_OF but not CONFIG_DRM_MIPI_DSI?
+
+If think you need to have here something like:
+
+#ifdef IS_ENABLED(CONFIG_OF) && IS_ENABLED(CONFIG_DRM_MIPI_DSI)
+struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
+       					 struct mipi_dsi_device_info *info);
+#else
+static inline struct
+mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
+				  struct mipi_dsi_device_info *info)
+{
+	return ERR_PTR(-EINVAL);
+}
+#endif
+
+Maxime
+
+--7npjgdbxmfp4vihi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY8bToAAKCRDj7w1vZxhR
+xeNAAQDHf3gD/m6rIOl3XCKS1NtqNRV0SVpHe1YxIRdLehnAfQD/aa7TDSE3I6aL
+TSyB4r5bH6LV9iHI1J9Rs76LuemgTA8=
+=TFgQ
+-----END PGP SIGNATURE-----
+
+--7npjgdbxmfp4vihi--
