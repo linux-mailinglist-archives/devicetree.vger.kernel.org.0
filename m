@@ -2,162 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2900D66DC78
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:32:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D24DE66DC80
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:33:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236718AbjAQLcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 06:32:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48378 "EHLO
+        id S236911AbjAQLdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 06:33:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236883AbjAQLbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:31:55 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 632382E0F7;
-        Tue, 17 Jan 2023 03:31:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673955111; x=1705491111;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=CfMaOv1TVhzpe25wcQY53st61m4z6TQuhUI+F0Ssj/o=;
-  b=XKGedOe4i0HViO5fV6iwK+1U0Gubk41uOWsTzRzf89VcxBLiSxgD9+Ku
-   6UjEaD2TcEB013l6HHCKH+EiERVIJ+SkZo/HpVQQT0H9IZ9/Wfc88BVXf
-   bh3LkmfiL5N6RBoB8uNfOnuBQLZEtwOuwE0skhU5LSckKYosJtTUX9sNw
-   vfmqw3r7W4T5G2EtwV4yHqnSJm3vN2ppMCO4FjvhW0NEGuIh8CCjvKSK+
-   v8Og9uKeGksS478d0gGEgwcF07Gsty094Qrn7FS5czdGiRqu96DpTVGch
-   5GRE3jmxpOg3xkHu3S+b2XfRHAX+DLH5Tj8hqY9uH0g8WR+MZPH1aYG+k
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="324726032"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="324726032"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 03:31:50 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="659358777"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="659358777"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.10.213]) ([10.213.10.213])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 03:31:45 -0800
-Message-ID: <cdd3c75a-de9f-e1d7-2997-64cc0008c629@intel.com>
-Date:   Tue, 17 Jan 2023 12:31:43 +0100
+        with ESMTP id S236617AbjAQLcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:32:51 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7758C367F6
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:32:34 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id o17-20020a05600c511100b003db021ef437so2808841wms.4
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:32:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GO2eKjxO1iedMdXK50/d7P4tpciSJOhld+mYv0gRRXc=;
+        b=T4JaPbx5Qg4+WbL7GJMmSfpAFUnxdXuOeTRQgZhAauo/QmncDkQ1Doe9cV/ZIWX18z
+         Nma4y8iNmrkm64rsnZmbtiA9AVPzK729a4uhrGfYFmr5TGOgGfaQNX66zrXvP46bdCHh
+         cme4SVs/Dt1RGYCT9nJ2y0HWLZDyk0yrjztC+aDoCSy7N2pRLvdvu7Ml3Cc0DmrkjFcs
+         8GkGGyU3+1kcBpCkVZKQYtBr2rOe7tFiNWiOl4gb2ZZ8bEsM2V4gIYKDvVrge3k0UB+i
+         BEGHCNBix3AE0Pr1ockO2EoadlIDlJy7BfEz11Q6z/8Ni8XVZQwnLlPDNv+hP2IZb5hb
+         SQog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GO2eKjxO1iedMdXK50/d7P4tpciSJOhld+mYv0gRRXc=;
+        b=jc3vSqDYdR8iBrNVvTHr/yBPumRQ/0gBWAPhQKtT+C8/JlqnIbXxQr4OirxW/zrRCl
+         aO8Sp5++dyq3ODuOqtb5EaYHhrtrObsUJTyWs53IHXQLsOLuDM0QWfc+J+1OaUKNt/4U
+         cjEcwhkn54p26FkT4k4c3yrdR2wH0Ba3MUmfUMBZGPd0VuMAEtXPF1950GazNdoHPAxq
+         YheUw4RY2M2yZmHKiSDvKQrSJZIZ7PKoMbNoLNUYPMP6H3NI5oFMLLzBZQkUr8Wj00ZY
+         xiMk4FXp3hPNv2v9JiZ1NkmccfCTBq1nVA0R/PJkaHjePUtS9uZgi/GhZeKPKM4QjiQQ
+         djKA==
+X-Gm-Message-State: AFqh2koJfcDioKrCcHeMt3Pup+l8nUe/x9KwtOT2Q1C0vOs3JeVp9zGq
+        LHxpPNrMmq17VBqJmAdp3CM6bw==
+X-Google-Smtp-Source: AMrXdXsGd5j2tSvSR09VtVGdaTSDX2UTM7mcUyv1SW5KP7xJAX77Ip6jhrpihEqLCIfvpX8xfJMZvw==
+X-Received: by 2002:a05:600c:538c:b0:3cf:6f4d:c259 with SMTP id hg12-20020a05600c538c00b003cf6f4dc259mr2655123wmb.39.1673955153043;
+        Tue, 17 Jan 2023 03:32:33 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id he12-20020a05600c540c00b003d9ddc82450sm35745300wmb.45.2023.01.17.03.32.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 03:32:32 -0800 (PST)
+Message-ID: <c3746492-b943-9bb8-9c5f-10c0bbd219c8@linaro.org>
+Date:   Tue, 17 Jan 2023 12:32:30 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Subject: Re: [PATCH v11 3/5] drm/bridge: cdns-dsi: Move to drm/bridge/cadence
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 08/10] dt-bindings: sound: Add support for QMC audio
 Content-Language: en-US
-To:     Rahul T R <r-ravikumar@ti.com>, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     narmstrong@baylibre.com, robert.foss@linaro.org, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        p.zabel@pengutronix.de, tomi.valkeinen@ideasonboard.com,
-        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
-        jpawar@cadence.com, sjakhade@cadence.com, mparab@cadence.com,
-        a-bhatia1@ti.com, devicetree@vger.kernel.org, vigneshr@ti.com,
-        lee.jones@linaro.org
-References: <20230103101951.10963-1-r-ravikumar@ti.com>
- <20230103101951.10963-4-r-ravikumar@ti.com>
-From:   Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230103101951.10963-4-r-ravikumar@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230113103759.327698-1-herve.codina@bootlin.com>
+ <20230113103759.327698-9-herve.codina@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230113103759.327698-9-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13/01/2023 11:37, Herve Codina wrote:
+> The QMC (QUICC mutichannel controller) is a controller
+> present in some PowerQUICC SoC such as MPC885.
+> The QMC audio is an ASoC component that uses the QMC
+> controller to transfer the audio data.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 03.01.2023 11:19, Rahul T R wrote:
-> Move the cadence dsi bridge under drm/bridge/cadence directory, to
-> prepare for adding j721e wrapper support
->
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
-> ---
->   drivers/gpu/drm/bridge/Kconfig                        | 11 -----------
->   drivers/gpu/drm/bridge/Makefile                       |  1 -
->   drivers/gpu/drm/bridge/cadence/Kconfig                | 11 +++++++++++
->   drivers/gpu/drm/bridge/cadence/Makefile               |  2 ++
->   .../bridge/{cdns-dsi.c => cadence/cdns-dsi-core.c}    |  0
->   5 files changed, 13 insertions(+), 12 deletions(-)
->   rename drivers/gpu/drm/bridge/{cdns-dsi.c => cadence/cdns-dsi-core.c} (100%)
->
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> index 57946d80b02d..8b2226f72b24 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -15,17 +15,6 @@ config DRM_PANEL_BRIDGE
->   menu "Display Interface Bridges"
->   	depends on DRM && DRM_BRIDGE
->   
-> -config DRM_CDNS_DSI
-> -	tristate "Cadence DPI/DSI bridge"
-> -	select DRM_KMS_HELPER
-> -	select DRM_MIPI_DSI
-> -	select DRM_PANEL_BRIDGE
-> -	select GENERIC_PHY_MIPI_DPHY
-> -	depends on OF
-> -	help
-> -	  Support Cadence DPI to DSI bridge. This is an internal
-> -	  bridge and is meant to be directly embedded in a SoC.
-> -
->   config DRM_CHIPONE_ICN6211
->   	tristate "Chipone ICN6211 MIPI-DSI/RGB Converter bridge"
->   	depends on OF
-> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-> index 1884803c6860..52f6e8b4a821 100644
-> --- a/drivers/gpu/drm/bridge/Makefile
-> +++ b/drivers/gpu/drm/bridge/Makefile
-> @@ -1,5 +1,4 @@
->   # SPDX-License-Identifier: GPL-2.0
-> -obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
->   obj-$(CONFIG_DRM_CHIPONE_ICN6211) += chipone-icn6211.o
->   obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
->   obj-$(CONFIG_DRM_CROS_EC_ANX7688) += cros-ec-anx7688.o
-> diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig b/drivers/gpu/drm/bridge/cadence/Kconfig
-> index 1d06182bea71..5f39859dcfdd 100644
-> --- a/drivers/gpu/drm/bridge/cadence/Kconfig
-> +++ b/drivers/gpu/drm/bridge/cadence/Kconfig
-> @@ -1,4 +1,15 @@
->   # SPDX-License-Identifier: GPL-2.0-only
-> +config DRM_CDNS_DSI
-> +	tristate "Cadence DPI/DSI bridge"
-> +	select DRM_KMS_HELPER
-> +	select DRM_MIPI_DSI
-> +	select DRM_PANEL_BRIDGE
-> +	select GENERIC_PHY_MIPI_DPHY
-> +	depends on OF
-> +	help
-> +	  Support Cadence DPI to DSI bridge. This is an internal
-> +	  bridge and is meant to be directly embedded in a SoC.
-> +
->   config DRM_CDNS_MHDP8546
->   	tristate "Cadence DPI/DP bridge"
->   	select DRM_DISPLAY_DP_HELPER
-> diff --git a/drivers/gpu/drm/bridge/cadence/Makefile b/drivers/gpu/drm/bridge/cadence/Makefile
-> index 4d2db8df1bc6..9e2f34c84480 100644
-> --- a/drivers/gpu/drm/bridge/cadence/Makefile
-> +++ b/drivers/gpu/drm/bridge/cadence/Makefile
-> @@ -1,4 +1,6 @@
->   # SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
-> +cdns-dsi-y := cdns-dsi-core.o
->   obj-$(CONFIG_DRM_CDNS_MHDP8546) += cdns-mhdp8546.o
->   cdns-mhdp8546-y := cdns-mhdp8546-core.o cdns-mhdp8546-hdcp.o
->   cdns-mhdp8546-$(CONFIG_DRM_CDNS_MHDP8546_J721E) += cdns-mhdp8546-j721e.o
-> diff --git a/drivers/gpu/drm/bridge/cdns-dsi.c b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
-> similarity index 100%
-> rename from drivers/gpu/drm/bridge/cdns-dsi.c
-> rename to drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
+Best regards,
+Krzysztof
 
