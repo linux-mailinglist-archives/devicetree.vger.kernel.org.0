@@ -2,139 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4223166D8AA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:50:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B40ED66D8B2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:52:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236231AbjAQIuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 03:50:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53560 "EHLO
+        id S235853AbjAQIwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 03:52:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236240AbjAQIt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:49:58 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39245B91
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:49:56 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so23849618wms.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:49:56 -0800 (PST)
+        with ESMTP id S235576AbjAQIwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:52:30 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD722CFED
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:51:46 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so23853139wms.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:51:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GnntDb2wSxyksznyUK9vORluc24yy6XtA4jjRHLcBuk=;
-        b=LYUV60VqALvvzk6MilzChbMVqyD/B0GIA7z7QQD9RC9k/FTRraa9aq3o9DhdmmF3iq
-         bEZxLJ/EPaEukjPDguwckMzwT4iZWzklaDDCcm8uvmRbfgEzQZ6BypnK+5qR13RDCnuo
-         g/NoNBxqzf6YLnbLdMwkvsPYPgpfMg1IVWEfSQM4dsbIHLnsghP853ZEx8x80OXMesKO
-         Gu6CisBcCKzX5DE471QmgAykmNMIdj+swGJPBP7wSz0pf8//+a8SQFDGZUzGW+MnbWQ+
-         84Q0DSLD8KCf7zQKe08zeZA1GxLvcYKM7P0/3YWWTFKmdYhwcXPB8+J9/t/YfUwb6Dp9
-         NQvA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=expaoc4a1kUuojomtX/CBeI3GGcWe8iG4JOwm7tA2Ms=;
+        b=GCBuP2ME3LEmq3d288LClfQ+DDoceb7qejVUCKci1Io3+3RT81PEq0YzI+C1ZzwsT5
+         6WyQCYKa7CiON2FBCWKBC+ZrjoPsaFO5JDZTtLTblFsb0I90j7ED6EsBVKGyb9eMbfjW
+         zL/aWSzykK4zTaUc4GgVZs/QUjdTlpK4BCVtJBhNAGmInT8k0Gh9CUOdgUMk/69WsWqI
+         T0liqYDKLBb7PqCc5cJAcgK/89PPlPM8ZoGDAHIjm6wK+/lYKZGo9fhmW0b7V9ja1joI
+         iA76KK54eIYL7LNUe07Mnj7MuYHzX2Q2/qBEMEkGW/HVJ9ZGhJpKcr5egZmElAtKO/yS
+         J6aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GnntDb2wSxyksznyUK9vORluc24yy6XtA4jjRHLcBuk=;
-        b=AdgsJJaaoOtrJSdew5L3Z9Ucwa/9n0pdECjvJSNpH5Tagyu1F3G7beuXy1AcMfIL0Y
-         9w77/mBFVSwJrvC978xYvz6/0/qjarJ38hF6rYFDaxqOYM1WUtKi9KwlTfOFc7yMmdNl
-         /7qJ04G6LBj8oS6ZwaqrMfuNOc2Y8n3irHBN3BS8ae4BZYV+KtvFMjZFwkFQBNVA+Go/
-         HTFXXNCPvhtWwCgkoU3UFe/5ykPAdSMscuJB5vsfTKxMEpW6iGtpDhmcEiEZHouAPaM9
-         44Ni5MsexfHKMl4P+me0C/Ar5hhy/ikiN2BohEemb0oxfqQ0SMlsiV6GnpyC0GHYrZN3
-         dM8g==
-X-Gm-Message-State: AFqh2kr5XnfR8HwUPz2cfTWh01OkfuZnXBkQM7TL6SfPkLbSgwP4/llC
-        ACLRtjXqgAltQEoM7WR7LbynUA==
-X-Google-Smtp-Source: AMrXdXvVghYU3f6f4pnX+urBDdE5Tc0O9C8WHHbtOL7Y9xI3DWYl8EiIm5gXNSp4H0aKqqrXqdqEMg==
-X-Received: by 2002:a05:600c:920:b0:3da:22a6:7b6b with SMTP id m32-20020a05600c092000b003da22a67b6bmr2225151wmp.13.1673945396215;
-        Tue, 17 Jan 2023 00:49:56 -0800 (PST)
-Received: from [127.0.1.1] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id i14-20020a05600c354e00b003d1d5a83b2esm45040928wmq.35.2023.01.17.00.49.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 00:49:55 -0800 (PST)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 17 Jan 2023 09:49:42 +0100
-Subject: [PATCH 4/4] i2c: i2c-mt65xx: add MT8365 SoC support
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=expaoc4a1kUuojomtX/CBeI3GGcWe8iG4JOwm7tA2Ms=;
+        b=OBLzPqWgh7QO1cIE46Am9IpblDS8P4b7E6MsbebHKUaf5yMk+Xc2en/pi+JQl4oWWZ
+         Faja80SsHjy4VwV4/EMOpwzZxbGHmcBICLzpJwl2Zlsw3wz54rqfo79IP5lAXWCKMJla
+         4zV8rTCbAUi6t9kVjUkrir2X+M6YdwmJf9ccHMIcIIFyWdedeuTm1j40BpvxtVGmPe0O
+         xfBhItAaPlENqKV1FJHOkijELA+elm/yw6zJVHYRSWrLFJuMz5rZC5h2AuwkZcZOGo/N
+         B9HEbXi0VW+5YMUHL0OUezePGv4H0AWsL1Lxyct2omyr2aAJPRS0ApK64ozVo0uFWOrO
+         sU5w==
+X-Gm-Message-State: AFqh2kp56VfJ9koFhbPcYtdcIoKh1J18wC9Tvx7K35MMNJfYvVaBwzSy
+        q5HLnWWJv+LtWSiKiDdPxY7VLw==
+X-Google-Smtp-Source: AMrXdXueXFpF3XR7NYfg4P+jSjPuEvD2oSEf8abJxzrHhstw07/IPA3YDM4cBB/MjzxBAzfHOuxzSA==
+X-Received: by 2002:a05:600c:5006:b0:3da:f92a:5446 with SMTP id n6-20020a05600c500600b003daf92a5446mr2418854wmr.27.1673945504969;
+        Tue, 17 Jan 2023 00:51:44 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id h19-20020a05600c351300b003d9a86a13bfsm39331066wmq.28.2023.01.17.00.51.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 00:51:44 -0800 (PST)
+Message-ID: <ee9ef65b-38c6-2283-b1e7-abf49abdccd6@linaro.org>
+Date:   Tue, 17 Jan 2023 09:51:42 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20221122-mt8365-i2c-support-v1-4-4aeb7c54c67b@baylibre.com>
-References: <20221122-mt8365-i2c-support-v1-0-4aeb7c54c67b@baylibre.com>
-In-Reply-To: <20221122-mt8365-i2c-support-v1-0-4aeb7c54c67b@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>, Qii Wang <qii.wang@mediatek.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [RFC PATCH] regulator: dt-bindings: qcom-labibb: Allow
+ regulator-common properties
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-i2c@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org
-X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1454; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=TWV0BAft8RkOG5xbYhjbDPUS/3D2IDzrN9QH/A7cKxU=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjxmEuVzYMtofJIUJ5oFTa3W0oKUDkqaKLoTvfJXnh
- 0IBK/E2JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY8ZhLgAKCRArRkmdfjHURcOQEA
- DBqTEdZxCLimcj4ODKJJMfctwwdA7ZiAVFTtdGMWA71M/U79w8cFUVxFHSXnTn47gSHeFVcpiyFjaI
- DM0uhFv5NDrZdV3SvNjHSaHSCDFeQE+N5c9Uzhc431ttuJryYIry72+ioFiUOTnA+U/JDGaD1M7a9m
- 7tL5AJP/pd6FzUpK/mV+KL/oRcSU45dHzjB2WbXsafsVh0yoMAoH2ONYHbYsE9VACpkQs8w11L7I6f
- MgM+zhIRh9TzyVGZ4uL9mRIOgiVqSkRJgNyPnFKCVgpa89Dv+rxu0+Uc7ZJ9OaOXnAAw6+GIvFrF7B
- FMDPiQ89s5gm9KpDwc9Mq/QcKfGm6J9gpPGiMo8mMOx6Jjwl2Pe4PFrbj/CH7lGxINvxSdbUcOkZTL
- 1kUybTF+GoV300oW3Vfqd36rJNPg5T4A2obypuNuBiZ3UTueo+NATNKkWnJc+MxMy92nY4enQJ4TP2
- JKVX1z0A1FPrgtwj1B9IsKKaaK30kPyFuVZSIgLNpXQ5FqeHn9VQAypE9CUnNJdzDZBnOCaLYMeRmu
- XVLDdGgM/IsiHN6asVJvJMCpLe2H9voep8GpiI6rPdNcDDd9IQkkdOMROkZRyRto73sWYT2RlbZTwD
- GFFhgWu5qafDgyJWt1h1f8uSQDUo7fjIA0XyiyGP/zssH+KUXbMKkrEWIf/A==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230116092502.71146-1-konrad.dybcio@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230116092502.71146-1-konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabien Parent <fparent@baylibre.com>
+On 16/01/2023 10:25, Konrad Dybcio wrote:
+> Allow regulator-common properties on lab/ibb regulators, such as
+> regulator-always-on, etc.
 
-Add support for I2C on MT8365 SoCs.
+Are these proper regulators? If so this looks sensible. Why calling it
+RFC? What is here questionable?
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- drivers/i2c/busses/i2c-mt65xx.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../bindings/regulator/qcom-labibb-regulator.yaml           | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+> index f97b8083678f..c0be7d5a6d40 100644
+> --- a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+> @@ -20,7 +20,8 @@ properties:
+>  
+>    lab:
+>      type: object
+> -    additionalProperties: false
+> +    $ref: "regulator.yaml#"
 
-diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-index d80e59340d97..2c9dbb42861a 100644
---- a/drivers/i2c/busses/i2c-mt65xx.c
-+++ b/drivers/i2c/busses/i2c-mt65xx.c
-@@ -511,6 +511,19 @@ static const struct mtk_i2c_compatible mt8192_compat = {
- 	.max_dma_support = 36,
- };
- 
-+static const struct mtk_i2c_compatible mt8365_compat = {
-+	.regs = mt_i2c_regs_v1,
-+	.pmic_i2c = 0,
-+	.dcm = 1,
-+	.auto_restart = 1,
-+	.aux_len_reg = 1,
-+	.timing_adjust = 1,
-+	.dma_sync = 1,
-+	.ltiming_adjust = 0,
-+	.apdma_sync = 0,
-+	.max_dma_support = 33,
-+};
-+
- static const struct of_device_id mtk_i2c_of_match[] = {
- 	{ .compatible = "mediatek,mt2712-i2c", .data = &mt2712_compat },
- 	{ .compatible = "mediatek,mt6577-i2c", .data = &mt6577_compat },
-@@ -523,6 +536,7 @@ static const struct of_device_id mtk_i2c_of_match[] = {
- 	{ .compatible = "mediatek,mt8186-i2c", .data = &mt8186_compat },
- 	{ .compatible = "mediatek,mt8188-i2c", .data = &mt8188_compat },
- 	{ .compatible = "mediatek,mt8192-i2c", .data = &mt8192_compat },
-+	{ .compatible = "mediatek,mt8365-i2c", .data = &mt8365_compat },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, mtk_i2c_of_match);
+Drop quotes.
 
--- 
-b4 0.10.1
+> +    unevaluatedProperties: false
+>  
+>      properties:
+>        qcom,soft-start-us:
+> @@ -46,7 +47,8 @@ properties:
+>  
+>    ibb:
+>      type: object
+> -    additionalProperties: false
+> +    $ref: "regulator.yaml#"
+
+Drop quotes.
+
+> +    unevaluatedProperties: false
+>  
+>      properties:
+>        qcom,discharge-resistor-kohms:
+
+Best regards,
+Krzysztof
+
