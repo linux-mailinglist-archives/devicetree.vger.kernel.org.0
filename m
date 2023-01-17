@@ -2,48 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A763666E6C4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 20:15:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AB3066E6BE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 20:15:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232288AbjAQTPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 14:15:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43480 "EHLO
+        id S231373AbjAQTPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 14:15:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232462AbjAQTKm (ORCPT
+        with ESMTP id S232474AbjAQTKm (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 14:10:42 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB3A37B40;
-        Tue, 17 Jan 2023 10:24:38 -0800 (PST)
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D49845C0D1;
+        Tue, 17 Jan 2023 10:24:41 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1732261507;
+        by ams.source.kernel.org (Postfix) with ESMTPS id 946E7B819A6;
+        Tue, 17 Jan 2023 18:24:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97C01C433D2;
         Tue, 17 Jan 2023 18:24:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C97DC433EF;
-        Tue, 17 Jan 2023 18:24:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673979877;
-        bh=lRFwpAKdAYE3kwmieJAq9DQx3YaX1gDTwYemwH6BSiw=;
+        s=k20201202; t=1673979879;
+        bh=gGzSAHGhaOKYr/g4hrhGTS7W6RNOV6z+c+Gj5oaXjjI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=IRHLfRKvCchsVE8EgOtguM10LltM6kmiC1LW6jaXZ0si0wCbK/n15Fchh8ybLr4HP
-         wtRhevHjtteiE09zucHpRNot+oCg2HS69kmd48Bj22gMioTLKBlSsCgjIuAhBujYbA
-         CouF0NNPAl/V0Op7EL07mENxtMlKH4CAPzM/fXCFCAZt/xTZzDzVOZ8Q2e0GACD7A+
-         FFe4vz9CR+IKzJIf+nenvJx1rCyT3z8ubU0u4GxM3P8umS4ps3zWS23i64bBUWfslB
-         vbd334uK+ESZfn/ALkJ5FmLdfZYAzLuTnZEsJ+4D4APNJsKG79UrxPw9+elA/fQpKQ
-         kSp1pme05klbg==
+        b=YbB5v3kL/OS++r5Uu/t2OUFLmA1ovcHdWBR1+BrOuxr7zOLpWMG3SQFvtIKI/h1aZ
+         WrSqyk8TYjUTTNC+YptLJlAYV9UIBdF7dNVeYBLxymA9Q8+UzXW0nXSSTSKy6iXRKE
+         OfVaWr5wqfcrMd4w4IZEyF5G22Te0UARZ5TuS+UF/EQLPRH10dJ5O8K/ojwuDQ+C59
+         xvN5Yt4w6DcMTcH7a8H1E+188Mz6OeZUUuc1tcbD9I246MFZqw/V2vlmyyhWsn1TGS
+         cklcbjJEdKXZKGElKbufCZn3eqzZxVR4CDqUcjuOPTSg3HDJ8wjt7doxmvH22oa94i
+         1OAaV2XQHHrvQ==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     dmitry.baryshkov@linaro.org, kishon@kernel.org, robh+dt@kernel.org,
-        konrad.dybcio@somainline.org, agross@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, p.zabel@pengutronix.de,
-        johan@kernel.org
-Subject: Re: (subset) [PATCH v9 0/4] phy: qcom-qmp-ufs: add symbol clocks support
-Date:   Tue, 17 Jan 2023 12:24:22 -0600
-Message-Id: <167397986254.2832389.17639980033848881749.b4-ty@kernel.org>
+To:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        krzysztof.kozlowski@linaro.org, konrad.dybcio@linaro.org
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marijn.suijten@somainline.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 1/2] arm64: dts: qcom: sdm630-nile: Don't use underscores in node names
+Date:   Tue, 17 Jan 2023 12:24:24 -0600
+Message-Id: <167397986262.2832389.5984507396288650689.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221123104443.3415267-1-dmitry.baryshkov@linaro.org>
-References: <20221123104443.3415267-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230116141451.470158-1-konrad.dybcio@linaro.org>
+References: <20230116141451.470158-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -56,20 +55,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Nov 2022 12:44:39 +0200, Dmitry Baryshkov wrote:
-> Register UFS symbol clocks in the Qualcomm QMP PHY driver. Some of the
-> platforms (msm8996, sc7280, sm8350/sm8450) expect them to be defined (to
-> be used as GCC clock parents).
+On Mon, 16 Jan 2023 15:14:50 +0100, Konrad Dybcio wrote:
+> Rename the reserved-memory subnodes such that they don't use
+> undescores.
 > 
-> Changes since v8:
-> - Send proper patchset this time.
 > 
-> [...]
 
 Applied, thanks!
 
-[4/4] arm64: dts: qcom: use UFS symbol clocks provided by PHY
-      commit: 86543bc6eec499f7fd12e1628a29838aa90c288a
+[1/2] arm64: dts: qcom: sdm630-nile: Don't use underscores in node names
+      commit: 305db81657b47cbf041a45aa4c0845ed600e3157
+[2/2] arm64: dts: qcom: sdm630-nile: Reserve simplefb memory
+      commit: 2f20f276dd4f2796eba88a06a0fb90b5a9bbbd4b
 
 Best regards,
 -- 
