@@ -2,91 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEF0866E497
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:14:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 641A766E4AD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:18:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234511AbjAQRO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 12:14:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44356 "EHLO
+        id S234871AbjAQRSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 12:18:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234766AbjAQROD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:14:03 -0500
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E55D74B75C
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:12:22 -0800 (PST)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-15eeec85280so11520309fac.11
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:12:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GXlBNRvFyU5MgDW75FzyE0UnWFcuHtjWm9nMO/g5I80=;
-        b=nWlvyi9j1WsyZ6UHAqLyVW7IjWyAPgaXF8FL4KBoMNqtJYyuHhLOUIrYb4ByI3xIzr
-         d9vxkM18sZPBuIcyFY8v8qpVxpSVf8uaWvwov+QgbQCxWB0Ck7QaTp/VPpzLpMpOh5n6
-         qxBIG9YDG3TMJspAJ11Qigz4D8YWfpFjRH7YLRpgve5lS6vKwMu/dcYQGuGFTZb5Pz+b
-         /qV+aP54BH1PLhR65pMb4VxlSguHJN7EAI+spywqn8h9By9KvPT302LDgye+uPB56RVi
-         cvLD+MKqKyapIZR1r52i3bO/u4xp45zWWbiVHn9lE7UklPjuvv2sgsBVPeblywDMaw3b
-         5qtw==
-X-Gm-Message-State: AFqh2kony/Bs3lA3nNBf6DgA2r4mSQwpJRFHZYLZ6l0XBin37MOCYY7C
-        EoD5yPBwLlvgY14MBedoAew1Y37F8A==
-X-Google-Smtp-Source: AMrXdXu8V+uqDI4MWC4oLGDZEHxnrDrioeXqBqtb0L0hElhLpi2SY88Kcro4xEnIAWEr2y9E0lt4Nw==
-X-Received: by 2002:a05:6871:b324:b0:15f:931:5aa9 with SMTP id bd36-20020a056871b32400b0015f09315aa9mr1652176oac.59.1673975542064;
-        Tue, 17 Jan 2023 09:12:22 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u42-20020a056870f2aa00b00140d421445bsm16630106oap.11.2023.01.17.09.12.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 09:12:21 -0800 (PST)
-Received: (nullmailer pid 3254601 invoked by uid 1000);
-        Tue, 17 Jan 2023 17:12:21 -0000
-Date:   Tue, 17 Jan 2023 11:12:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v2 06/10] ASoC: dt-bindings: ti,pcm3168a: Convert to
- json-schema
-Message-ID: <167397554057.3254544.17294836275411987169.robh@kernel.org>
-References: <87358hj2ub.wl-kuninori.morimoto.gx@renesas.com>
- <87tu0xho3d.wl-kuninori.morimoto.gx@renesas.com>
+        with ESMTP id S235222AbjAQRSb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:18:31 -0500
+Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB4B4C6CE;
+        Tue, 17 Jan 2023 09:17:09 -0800 (PST)
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30HEDddV012339;
+        Tue, 17 Jan 2023 09:17:00 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=pfpt0220; bh=QPocXsN0YQ0WwsUk6Qr09CNN0rMBP8kKjtIb1brAwbE=;
+ b=HjkXP2l/3ghREQZ6RwprDPm/f4ZMaEh5fn4IOZGTVVzHYcx1yW0vJ3wKwNTlxgLKPDaS
+ jbB+VInx3HiZ4NCsp67Y0xuQtsYXP4oQuQVJeR+KBGfRz+NWjXX1P9XlJtegtFGc8bNI
+ oF6NNlEZlx2RDIhWZ5cfMgIdXo+/W2u3p7pj4SRTPnfhpBApk7mCytEM2Q7Tw99XG4L/
+ ZV/bq7GWSPHpQJiTS0DZPRAbU5/9uCawwomdNj1OKol4Tl7ofFtB5cUc1hEDpg3CROOh
+ 0nEKLZI28WK/mJkHAkhNBluTMPdg4wZkB5giRpSwdA4mxjBC4J3yABq4XBlPhMO6R9Lq Vg== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3n5by4uud4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Tue, 17 Jan 2023 09:17:00 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 17 Jan
+ 2023 09:16:58 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
+ Transport; Tue, 17 Jan 2023 09:16:58 -0800
+Received: from localhost.localdomain (unknown [10.110.150.170])
+        by maili.marvell.com (Postfix) with ESMTP id 4EC2B3F704C;
+        Tue, 17 Jan 2023 09:16:58 -0800 (PST)
+From:   Wojciech Zmuda <wzmuda@marvell.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, <sgoutham@marvell.com>,
+        <devicetree@vger.kernel.org>, Wojciech Zmuda <wzmuda@marvell.com>
+Subject: [PATCH v4 0/2] Add support for Marvell MHU on OcteonTX and OcteonTX2
+Date:   Tue, 17 Jan 2023 09:16:33 -0800
+Message-ID: <20230117171635.16739-1-wzmuda@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87tu0xho3d.wl-kuninori.morimoto.gx@renesas.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: WgOqHXn6WkwMhcBd_H1EYy6xHAhHY3Kw
+X-Proofpoint-ORIG-GUID: WgOqHXn6WkwMhcBd_H1EYy6xHAhHY3Kw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-17_08,2023-01-17_01,2022-06-22_01
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+In order to support ARM SCMI for the Marvell OcteonTX and OcteonTX2 SoC,
+add a generic platform MHU driver based loosely on arm_mhu.c and pcc.c.
 
-On Wed, 11 Jan 2023 01:11:35 +0000, Kuninori Morimoto wrote:
-> From: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> Convert the Texas Instruments PCM3168A Audio Codec Device Tree binding
-> documentation to json-schema.
-> 
-> Add missing properties.
-> Drop unneeded pinctrl properties from example.
-> 
-> Link: https://lore.kernel.org/r/cover.1669980383.git.geert+renesas@glider.be
-> Link: https://lore.kernel.org/r/87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->  .../devicetree/bindings/sound/ti,pcm3168a.txt |  56 ---------
->  .../bindings/sound/ti,pcm3168a.yaml           | 107 ++++++++++++++++++
->  2 files changed, 107 insertions(+), 56 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/ti,pcm3168a.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
-> 
+There is deliberately no interrupt in DT because interrupts are not
+configurable on the device level. This is the responsibility of the
+PCIe ECAM, since the MHU is a PCIe device.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+v3->v4:
+- Fix DT bindings to make dt_binding_check happy
+- Shorten driver's commit message 
+
+v2->v3:
+- Unify SoC naming used throughout the patch set
+- Drop 'driver' from patches titles and use correct prefix for bindings
+- Add detailed and extensible compatible matching (with SoC models)
+- Rename driver from mvl-mhu to marvell-mhu
+- DT bindings:
+  - Fix typos, indentation, reorder properties, use lowercase hex
+  - Drop usage example in the firmware/scmi node
+
+v1->v2:
+- Clean up
+- Rebase on 6.1
+- Remove PCI interrupts
+
+Wojciech Bartczak (1):
+  mailbox: marvell-mhu: add Marvell MHU
+
+Wojciech Zmuda (1):
+  dt-bindings: mailbox: add Marvell MHU
+
+ .../bindings/mailbox/marvell,mhu.yaml         |  62 ++++
+ MAINTAINERS                                   |   9 +
+ drivers/mailbox/Kconfig                       |  10 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/marvell_mhu.c                 | 295 ++++++++++++++++++
+ 5 files changed, 378 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
+ create mode 100644 drivers/mailbox/marvell_mhu.c
+
+-- 
+2.17.1
+
