@@ -2,104 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6560C66DD2F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:07:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA25F66DD32
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:07:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236733AbjAQMHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 07:07:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44152 "EHLO
+        id S236596AbjAQMHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 07:07:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234106AbjAQMHF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:07:05 -0500
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1E9F32E6A;
-        Tue, 17 Jan 2023 04:07:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673957224; x=1705493224;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X9y6JJ7LWZRFX1y7+eMk68PaK0HXTuZgsWPEV17oNaU=;
-  b=NYPAi0VxO/JVGGFOKIsegAXl9naeYuQEbP2FmhI2dhxy3WoB8+YxgXib
-   X3/ilphHByBAvdp0B17mr+O1JNWXlcS7EqB5TRLx6KJKsqN2yXxWGbVFL
-   5JnJxWBiUD40U1hJPRUd0Y/6MIc4cuNEUbDPgWGB2tDLyrVgaX5wT9ZyB
-   y/RqnxSVdK9v432rN+lFuomnGCC9ER4y68HMpCvWnF2uNPQWxfVCu090V
-   +3nVg2HrsBcM4ky1Ynuif+bp3sAAVNhBOcCZgsEJe2nSOPo3mC7oF2wqK
-   NUkYB9sRDEJbOyHCap2SMvuIBtd1S2Q0qQlHa950snbORK1zd0C1dd29Y
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="387028985"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="387028985"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 04:07:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="801722803"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="801722803"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 17 Jan 2023 04:06:59 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 17 Jan 2023 14:06:59 +0200
-Date:   Tue, 17 Jan 2023 14:06:58 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S236485AbjAQMH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:07:28 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 609A332E62;
+        Tue, 17 Jan 2023 04:07:27 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id q10so11025242wrs.2;
+        Tue, 17 Jan 2023 04:07:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jhCLOl1gfiDWYLG658j5YBz8FjzZRtMl97FC6ilH1Nw=;
+        b=PJ+D+G9LpqeM6ga1PYu23XZneM4IMlbtCEIYrVA01TB1CIRNGc52EQjxxqDWaCJrNA
+         bgcDFoRoR7zKp33uoe5OnCysLDlVJkUwx7MuTeSjryADkqK3nYmvn7N5yEO/wmS/K64s
+         kTkFkrlwdBz2CZnLo/o68ZVf8gch+h7LhPH7XsnurOih2RiOFYZ5OubvcCAR4UZLitu7
+         7yJdzuZpz0SgJG3T4OJqEvJEOx8DAnryoFtniiOtwvlrWr9WM2bnjC2jk+h7v2DjeoA2
+         Py5TVdwJ6nOoNdPs9XSnQBB4L3SABREU+Fnf8je/5O07MLp6lPNj+709DroVzsiUxINE
+         5aIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jhCLOl1gfiDWYLG658j5YBz8FjzZRtMl97FC6ilH1Nw=;
+        b=mAyD6GsP/QyuTkj+bQrCjinwijWiq4elGvItG6YofjXTXrd6RqEj5eqwRFhymzx973
+         Tklr+YVDVDSOZw9YeGvcQvEmSmN7XQtQmSme7+gm8LiqMWKwmXcXSJeou4gXikxzLyOn
+         Lhpf51QiRrF6nOWAJGMXTZN27TlOnJvickyezC1as0+vIAPrfM2MQXE4WQPhDUPlZhpV
+         BqsUADMNZfMd5uG+QnVdLSTcQGH0ZUHDqGNU2n9mV1zFZ2IB4/zjC0gRWRoE0zPzRBHk
+         Ai5NmjmEvuYmR+mCd9mIP/rn7UCQpge9mN4mQtw+sRUlaKkL8NXjd2tZ9RUjPvgB0ciD
+         sR1A==
+X-Gm-Message-State: AFqh2kqGOjZysixX4gmxVHLyypEJpuuULasCXI+p+HkOHMErDqokUJgM
+        NxDV5BkCsT/iKFEi5S+3704=
+X-Google-Smtp-Source: AMrXdXuJ2kqxZTRI6HJoyYnGfT9iM5c87NwN1/XerjU9jQuqsJSQLSV7n9ouA3ykGTHudsvfUVtEBg==
+X-Received: by 2002:a5d:6f03:0:b0:2bb:e896:5a09 with SMTP id ay3-20020a5d6f03000000b002bbe8965a09mr3037185wrb.66.1673957245833;
+        Tue, 17 Jan 2023 04:07:25 -0800 (PST)
+Received: from [192.168.2.202] (pd9ea3141.dip0.t-ipconnect.de. [217.234.49.65])
+        by smtp.gmail.com with ESMTPSA id b11-20020a05600018ab00b002be2279f100sm1394355wri.96.2023.01.17.04.07.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 04:07:25 -0800 (PST)
+Message-ID: <66f076ae-a9b5-f595-a88d-ede66a7e8e89@gmail.com>
+Date:   Tue, 17 Jan 2023 13:07:24 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 3/4] firmware: Add support for Qualcomm UEFI Secure
+ Application
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Wayne Chang <waynec@nvidia.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH V4 4/5] i2c: nvidia-gpu: Replace ccgx to well-known regex
-Message-ID: <Y8aPYkFJ+TqQtatx@kuha.fi.intel.com>
-References: <20230116155045.100780-1-jonathanh@nvidia.com>
- <20230116155045.100780-5-jonathanh@nvidia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230116155045.100780-5-jonathanh@nvidia.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+ <20220723224949.1089973-4-luzmaximilian@gmail.com>
+ <Y8aA60iJ0Sv2IrLm@hovoldconsulting.com>
+Content-Language: en-US
+From:   Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <Y8aA60iJ0Sv2IrLm@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 16, 2023 at 03:50:44PM +0000, Jon Hunter wrote:
-> From: Wayne Chang <waynec@nvidia.com>
+On 1/17/23 12:05, Johan Hovold wrote:
+> On Sun, Jul 24, 2022 at 12:49:48AM +0200, Maximilian Luz wrote:
+>> On platforms using the Qualcomm UEFI Secure Application (uefisecapp),
+>> EFI variables cannot be accessed via the standard interface in EFI
+>> runtime mode. The respective functions return EFI_UNSUPPORTED. On these
+>> platforms, we instead need to talk to uefisecapp. This commit provides
+>> support for this and registers the respective efivars operations to
+>> access EFI variables from the kernel.
+>>
+>> Communication with uefisecapp follows the standard Qualcomm Trusted
+>> Environment (TEE or TrEE) / Secure OS conventions via the respective SCM
+>> call interface. This is also the reason why variable access works
+>> normally while boot services are active. During this time, said SCM
+>> interface is managed by the boot services. When calling
+>> ExitBootServices(), the ownership is transferred to the kernel.
+>> Therefore, UEFI must not use that interface itself (as multiple parties
+>> accessing this interface at the same time may lead to complications) and
+>> cannot access variables for us.
+>>
+>> Signed-off-by: Maximilian Luz <luzmaximilian@gmail.com>
+>> ---
 > 
-> ccgx is refer to the cypress cypd4226 typec controller.
-> Replace ccgx to well-known regex "cypress".
+>> +static int qcom_uefisecapp_probe(struct platform_device *pdev)
+>> +{
+>> +	struct qcuefi_client *qcuefi;
+>> +	int status;
 > 
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
-> V2 -> V4: nothing has changed
-> V1 -> V2: New change for adding cypress,firmware-build
+> [...]
 > 
->  drivers/i2c/busses/i2c-nvidia-gpu.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>> +	/* Set up kobject for efivars interface. */
+>> +	qcuefi->kobj = kobject_create_and_add("qcom_tee_uefisecapp", firmware_kobj);
+>> +	if (!qcuefi->kobj) {
+>> +		status = -ENOMEM;
+>> +		goto err_kobj;
 > 
-> diff --git a/drivers/i2c/busses/i2c-nvidia-gpu.c b/drivers/i2c/busses/i2c-nvidia-gpu.c
-> index 12e330cd7635..0934f8ad7f49 100644
-> --- a/drivers/i2c/busses/i2c-nvidia-gpu.c
-> +++ b/drivers/i2c/busses/i2c-nvidia-gpu.c
-> @@ -260,7 +260,7 @@ MODULE_DEVICE_TABLE(pci, gpu_i2c_ids);
->  
->  static const struct property_entry ccgx_props[] = {
->  	/* Use FW built for NVIDIA (nv) only */
-> -	PROPERTY_ENTRY_U16("ccgx,firmware-build", ('n' << 8) | 'v'),
-> +	PROPERTY_ENTRY_U16("cypress,firmware-build", ('n' << 8) | 'v'),
->  	{ }
->  };
+> When preparing some related EFI patches, I noticed that the error labels
+> here are named after where you jump from rather than after what they do
+> (as is suggested by the coding standard).
+> 
+> Would you mind changing that (throughout) for your v2?
 
-So you need a new patch where you first introduce that
-"cypress,firmware-build" property. That patch comes before patch 3/5.
+Not at all. Will change that for v2.
 
-Then in this patch you only remove the old property
-"ccgx,firmware-build" property.
+Regards,
+Max
 
-thanks,
-
--- 
-heikki
+>> +	}
+>> +
+>> +	/* Register global reference. */
+>> +	platform_set_drvdata(pdev, qcuefi);
+>> +	status = qcuefi_set_reference(qcuefi);
+>> +	if (status)
+>> +		goto err_ref;
+>> +
+>> +	/* Register efivar ops. */
+>> +	status = efivars_register(&qcuefi->efivars, &qcom_efivar_ops, qcuefi->kobj);
+>> +	if (status)
+>> +		goto err_register;
+>> +
+>> +	return 0;
+>> +
+>> +err_register:
+>> +	qcuefi_set_reference(NULL);
+>> +err_ref:
+>> +	kobject_put(qcuefi->kobj);
+>> +err_kobj:
+>> +	qctee_dma_free(qcuefi->dev, &qcuefi->dma);
+>> +	return status;
+>> +}
+> 
+> Johan
