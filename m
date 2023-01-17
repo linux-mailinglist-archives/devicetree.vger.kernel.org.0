@@ -2,81 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44FF066D488
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 03:49:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C331166D48C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 03:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234405AbjAQCtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Jan 2023 21:49:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49418 "EHLO
+        id S235637AbjAQCuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Jan 2023 21:50:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235727AbjAQCsX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 21:48:23 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E54A531E17;
-        Mon, 16 Jan 2023 18:41:53 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id DDA9324E25B;
-        Tue, 17 Jan 2023 10:38:12 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 17 Jan
- 2023 10:38:13 +0800
-Received: from [192.168.125.72] (113.72.144.207) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 17 Jan
- 2023 10:38:12 +0800
-Message-ID: <7e641f5e-2d06-43c4-7c9b-9449ef567612@starfivetech.com>
-Date:   Tue, 17 Jan 2023 10:38:11 +0800
+        with ESMTP id S235265AbjAQCtv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Jan 2023 21:49:51 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7CAA34545
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 18:42:57 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id z13so4317928plg.6
+        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 18:42:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ci0ShutkyKqbRS5y4WPW5+YhID9YQTVWD129Yl/CGkY=;
+        b=QjjequB+bplNYxUEtGQzwSjo9+VvYNN/XhKvzZM0XlamFEbJs90Tth5t1TD3XAzRJz
+         JIvQGcRMwo0hwiH373b81nt6gPyhXwCWqvWLp2DM1FxT/KdKXTIdLWTaU8ICEMu7xpQd
+         5sceRvnB1/uFx94inIZAolVq0Pu95Ag3afa4A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ci0ShutkyKqbRS5y4WPW5+YhID9YQTVWD129Yl/CGkY=;
+        b=avG/2HSxuMFTj+QOmJXZwDtC4vJ8gM9UWDgqjOplo+civIOWj5RQvGWAqVeICWodgR
+         fa8fvNHY5OAHgQsfYSlaFnVerDB6UD0eyHFix3ibvgRotkEK6VBhsr2GUnwUZ11S8CDi
+         k+/VsF/xXHkudLoKksyA1/lHjqkmAmzppZRkff0nwdCeQBVl033cQJWiE24ZvcOpGWRC
+         hZovSxcGNeJsAhrpv9t/zqGzV/VAZ8Sg15LetX3vWjgx+cx2kZhCcqHytInxTIe0tnys
+         p05M6EbYFJ+qeMCQBJoa8Xde1xHnYNnB5mSbSmVRHFa5D4D3SHbaLuoKhYIW5bmHT81o
+         b82w==
+X-Gm-Message-State: AFqh2kp0/uHZ+23l4us6LrxEzZufcZIV4F5oo1n10fSWokZ0l2Eq36Pf
+        qdJg8ls5k2NuHQfXpM7o7ya8ow==
+X-Google-Smtp-Source: AMrXdXt9saMUMMymJC5GYhQSjizFrnpQID9HqmpQqPvwSrzjohq15SMwxJxf2Mno4CcOWYP9KWe9Dg==
+X-Received: by 2002:a17:902:7b85:b0:193:3bf7:40e6 with SMTP id w5-20020a1709027b8500b001933bf740e6mr735478pll.53.1673923364863;
+        Mon, 16 Jan 2023 18:42:44 -0800 (PST)
+Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
+        by smtp.gmail.com with ESMTPSA id e2-20020a170902784200b0017d97d13b18sm19958534pln.65.2023.01.16.18.42.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 18:42:44 -0800 (PST)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH v3] arm64: dts: qcom: sc7280: add display port audio
+Date:   Tue, 17 Jan 2023 02:42:36 +0000
+Message-Id: <20230117024236.1442437-1-judyhsiao@chromium.org>
+X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v3 0/5] Basic pinctrl support for StarFive JH7110 RISC-V
- SoC
-To:     Conor Dooley <conor@kernel.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221220005529.34744-1-hal.feng@starfivetech.com>
- <Y8BfvQCFNz9KNrDY@spud>
-Content-Language: en-US
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <Y8BfvQCFNz9KNrDY@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.144.207]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Jan 2023 19:30:05 +0000, Conor Dooley wrote:
-> Hey Hal Feng,
-> 
-> On Tue, Dec 20, 2022 at 08:55:24AM +0800, Hal Feng wrote:
-> > This patch series adds basic pinctrl support for StarFive JH7110 SoC.
-> > You can simply get or review the patches at the link [1].
-> 
-> > [1]: https://github.com/hal-feng/linux/commits/visionfive2-minimal
-> 
-> Do you intend submitting a new version of the patchset to address the
-> comments about the bindings, or are you waiting for comments on the
-> code?
+1. Add DisplayPort sound node and lpass_cpu node.
 
-Sorry for the late reply. If no other comments, I will fix the current
-known issues and submit a new version. Actually, I am busy with some
-other things recently, and I will reply the comments as soon as possible.
-Thanks.
+2. Adjust the dai-link order to make the order to
+   be consistent with sc7280-herobrine-audio-rt5682-3mic.dtsi.
 
-Best regards,
-Hal
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+
+---
+
+Changes in v3:
+- Add more detail in the commit message.
+
+Changes in v2:
+- Fix the commit message format.
+
+ .../qcom/sc7280-herobrine-audio-rt5682.dtsi   | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+index af685bc35e10..69e7aa7b2f6c 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+@@ -33,9 +33,22 @@ codec {
+ 		};
+ 
+ 		dai-link@1 {
+-			link-name = "ALC5682";
++			link-name = "DisplayPort";
+ 			reg = <1>;
+ 
++			cpu {
++				sound-dai = <&lpass_cpu LPASS_DP_RX>;
++			};
++
++			codec {
++				sound-dai = <&mdss_dp>;
++			};
++		};
++
++		dai-link@2 {
++			link-name = "ALC5682";
++			reg = <2>;
++
+ 			cpu {
+ 				sound-dai = <&lpass_cpu MI2S_PRIMARY>;
+ 			};
+@@ -92,6 +105,10 @@ dai-link@1 {
+ 		reg = <MI2S_SECONDARY>;
+ 		qcom,playback-sd-lines = <0>;
+ 	};
++
++	dai-link@5 {
++		reg = <LPASS_DP_RX>;
++	};
+ };
+ 
+ /* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
+-- 
+2.39.0.314.g84b9a713c41-goog
+
