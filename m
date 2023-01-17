@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD1CA670AD4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 23:02:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39B2E670B3F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 23:08:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229865AbjAQWC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 17:02:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43684 "EHLO
+        id S229919AbjAQWH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 17:07:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbjAQWA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 17:00:28 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 468914ABD8
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 12:45:41 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id qx13so19886894ejb.13
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 12:45:41 -0800 (PST)
+        with ESMTP id S230156AbjAQWGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 17:06:19 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6DC4ABEE
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 12:45:51 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id ss4so70982858ejb.11
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 12:45:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=eOm6YJiOLN3WpkUI18GnrhrupKVRnOUjPnLRzuUGs64=;
-        b=aIxMaBf0KzVTDv9FoMrHxleI84HKCfCdzNFpu74oXRGRaf5jXwm2LvEG5wEAdiJbBN
-         sPqJx995tjyKYdnAXzbgAGoenPX6ylkiYOIbB1aHdYg/3cRpf3zH8dX5799T2UyfaBZZ
-         boC2STLUNGbM2VxiLCe8/tj0ARxlP1DmGz27ACoV9yOpQ/w+Py9GVr95V3LM/vr0fKQQ
-         7qNx5bCRQaSpAyNxsqTV1sHeFf27x4dXH9cJMhYnOP1pF6nQIJ6pa1TSkSoc/6dfK0cr
-         epeHAVej0mEeOvYO/W5auW3mlDAJMJJzv+AaYWIIYeICGjWnL2U3YsqmFloVxUFbBWCe
-         afOQ==
+        bh=ihL4wd9bgg0XP72Mx30UbJj4Y5l/3v2lnIC1mu3yIzM=;
+        b=MeUY0XkAuz6KNgchkIQhLxnVvHN8NQSQ1bXfSzywL1h8nsxv1aVnohPQkesabBVQ3o
+         HEQLkUz/2cPkAoeGlZIgBiUX1VvprhI0dM7JwK2lbzlk+i79ZDbd/X3mxMvQr9g5R073
+         Rw5kD4UmpXFJIWdn+Fwj3Kkw45NSaBjvj2sc3b+vS96iNZf2aM9gq96bZG2b5GHRUz8w
+         j5TJvHa9ApyEAe7JtTI72LaVdyrFpBDHmNUFHX9fa8WGVQ5kEcRIARlVNZQdh+mkWK3A
+         Ql4mN8Vfe8dK3fx+jsfNHcwmNgiLFWOHd278LxCKCK2v4tGbQcvr3BCyT08HGOKSD1qg
+         I74g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eOm6YJiOLN3WpkUI18GnrhrupKVRnOUjPnLRzuUGs64=;
-        b=UJKt8p8/mTDeVUHsMuidCfIjosKhJYP0USknt+ulsahdYcE2UhHzHM2RWFGu0Zp7ZA
-         bWYhgvDWYWVg8xz5uydXMBzBa0cQjxEJomCU75Basklqbr/SNOo6P17jX0LQS7dRTHao
-         dXn61W60dIVI7i+nzCk06TeKLVHSy0hAYQuZ2EZFHF0EJXeqb1128YJcRQmNxya35LDE
-         rM6CyWkYRpJKM7IJ5FTmmVPvPfa/RG9D51ogliQC0mKI4QtxFblT75G+NzX0wiDoN3Cr
-         8uIclunsWJLYjTbBVBFU8syUI+fIpR2gg8og1R8p2OUOcySYeb4q9HDcnKAkzSnUMSr4
-         /R7Q==
-X-Gm-Message-State: AFqh2kqZSylUyM/UPEe+lKno/IE8tRkHaoi6eI00gHsRhzBl6ZotB7zn
-        2Dh8jgzw2fSJdO/kBi8pm2AgtZuMzuEToOIVIv8=
-X-Google-Smtp-Source: AMrXdXuyd/+CSRmDmzGaW7xRu4VtNyXtDT7t+cWyJHYLY0lq8YdNVQ9jTyxjw8s3Fbcf1573ngNc7XrLbSMJA+2FjxA=
-X-Received: by 2002:a17:906:1dc9:b0:7c1:1f28:afed with SMTP id
- v9-20020a1709061dc900b007c11f28afedmr410539ejh.678.1673988339671; Tue, 17 Jan
- 2023 12:45:39 -0800 (PST)
+        bh=ihL4wd9bgg0XP72Mx30UbJj4Y5l/3v2lnIC1mu3yIzM=;
+        b=ihhuOLCUprw0qHH/0vyaXXVbQtFro4BUkHmbYjh3w4Z02ZzLhJX6YDRAQ0DCnreGab
+         1tUzwnzawe0MONG26YSHvoyw6OdGdawKt5nGlasCIX80VFUZyxPde3YTYiX5LC0i6/jc
+         T4E2YvEkBWfHYLYfZ4cFXE0hKXfJiRsEH7znjYM3N0g9AKx9CeK86qqnsiugnK1rO/t0
+         P8T+aqOvwfWBg+HMdZSOVbIVKP/GI8XpbkLDadgGZ0IW6TDTR0095TXJWYd99aNnzts/
+         LBx1F9d1SpOu0IWX3rI0KWlnhQN952FIHo7E8F3vR/wry0ZjgU/UsAT9vqZz1gUCKehI
+         VpYg==
+X-Gm-Message-State: AFqh2kqdjkH4a+uUf9zic88fU27Zjfo2C2RvglbRX6TBZRn+xtkNeKsu
+        p2FuvZn6QIKApr/hIWH2Kw7bd5t7voXel1VbleA=
+X-Google-Smtp-Source: AMrXdXti88KkQz7vl1Pg56JPd5XOUBWWph8cF2lAvc07qS7pQ2SUYzYXymWhbvmLvwR8QGuubv2uDe+SaBq1Hqidu+k=
+X-Received: by 2002:a17:906:5658:b0:84d:4d82:1101 with SMTP id
+ v24-20020a170906565800b0084d4d821101mr348296ejr.77.1673988349950; Tue, 17 Jan
+ 2023 12:45:49 -0800 (PST)
 MIME-Version: 1.0
-References: <0a82be92-ce85-da34-9d6f-4b33034473e5@gmail.com>
-In-Reply-To: <0a82be92-ce85-da34-9d6f-4b33034473e5@gmail.com>
+References: <8d960029-e94d-224b-911f-03e5deb47ebc@gmail.com>
+In-Reply-To: <8d960029-e94d-224b-911f-03e5deb47ebc@gmail.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 17 Jan 2023 21:45:28 +0100
-Message-ID: <CAFBinCAYHQOrrjeWQZD2qjXMfSc-h6aQXDxEuKXqtqgGnXQQKA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: phy: g12a-usb3-pcie-phy: fix compatible
- string documentation
+Date:   Tue, 17 Jan 2023 21:45:38 +0100
+Message-ID: <CAFBinCD=RMR1Xv7+TKAqoipuNzA235Zf0oNH-xopUj2VEtV4tg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: phy: g12a-usb2-phy: fix compatible string documentation
 To:     Heiner Kallweit <hkallweit1@gmail.com>
 Cc:     Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
@@ -79,10 +78,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, Jan 16, 2023 at 9:21 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
 >
-> The compatible string in the driver doesn't have the meson prefix.
+> The compatible strings in the driver don't have the meson prefix.
 > Fix this in the documentation and rename the file accordingly.
 >
-> Fixes: 87a55485f2fc ("dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml")
+> Fixes: da86d286cce8 ("dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml")
 > Cc: stable@vger.kernel.org
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
