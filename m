@@ -2,303 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1005D66DCF6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:56:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32A3C66DCFD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:57:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236590AbjAQL43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 06:56:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36148 "EHLO
+        id S235955AbjAQL5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 06:57:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236588AbjAQL41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:56:27 -0500
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529BD166CB;
-        Tue, 17 Jan 2023 03:56:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673956586; x=1705492586;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gcnv7FtGXifpk5G8wjofQlyYGroL3+TkMBNsDwKKrQI=;
-  b=cL2avsgCpLWpUC7J2oA1lqUoWb27YJ0hPJh0p5233slMizyecsntduzQ
-   rErdTuODzbSRAc7Iux5LX5FCZ5YeNFKinm30msrsjM3ygHBp/PqYZYYoo
-   PXbaOAmsTMxW2/3fBI96Fzf8smi3KdidCxnJ9bvlUFvWB9gSYsxt52ew6
-   9vxB0vyRex68YxQLmkgximog58B1TcyrE5kx+/s6xsh+2btbF9H1Urc6G
-   xeWHnJYcJxBR1BfAwC2tIEcNpAxq/wO97+L6+xpjGSxDMrqpFCYeMMEqq
-   E13Fi4PoInGeciRUD1I33OzMdPzSLs8SVHN8DP0mxGDpxQSL14lcrNgPi
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="387026941"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="387026941"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 03:56:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="801720509"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
-   d="scan'208";a="801720509"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 17 Jan 2023 03:56:19 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 17 Jan 2023 13:56:18 +0200
-Date:   Tue, 17 Jan 2023 13:56:18 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S236934AbjAQL5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:57:35 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA7E1E9EF;
+        Tue, 17 Jan 2023 03:57:27 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 82626B815B8;
+        Tue, 17 Jan 2023 11:57:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E49D1C433EF;
+        Tue, 17 Jan 2023 11:57:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673956645;
+        bh=O5YJgBcs+Dwzc02v7yMcoAaQznEwrurOJJ6xMQqpwuM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=W59EeSFVdStHopnVSAPq3EIKAx1dnGmE91cc1NOuUIxE0gAypeM7Jx+bSQfbb4wXG
+         D9ZownLraG9sTtUHBNJyLm/gunnTSdCWpcVkUYJMCKnnvl5awmi5JFg8V9z4uteEUU
+         fzJeeW+6qzQoMrHaRbInyD5pok714MJaIoTitRyB2qi2OfqnhKhygpPyIcWUhuf2hK
+         /JVOUHVGI33t+VN6jVXaT4E6f68YGPEaN4g7m0t4KKHqPEMYVyqMExh7x08ceA8RBR
+         7ZHfGv9b5C55xOxtcepUSaMwQjcywXqc2c3cXQIDh9zuf84coVtIsFo3IYju/RYSbj
+         TvHFpQjP4M9Qg==
+From:   rfoss@kernel.org
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] usb: typec: mux: Introduce GPIO-based SBU mux
-Message-ID: <Y8aM4kTCphTfEszc@kuha.fi.intel.com>
-References: <20230113041115.4189210-1-quic_bjorande@quicinc.com>
- <20230113041115.4189210-2-quic_bjorande@quicinc.com>
+Cc:     Robert Foss <robert.foss@linaro.org>
+Subject: [PATCH v1] arm64: dts: qcom: sm8350: Use 2 interconnect cells
+Date:   Tue, 17 Jan 2023 12:57:11 +0100
+Message-Id: <20230117115712.1054613-1-rfoss@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230113041115.4189210-2-quic_bjorande@quicinc.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 12, 2023 at 08:11:15PM -0800, Bjorn Andersson wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> A design found in various Qualcomm-based boards is to use a USB switch,
-> controlled through a pair of GPIO lines to connect, disconnect and
-> switch the orientation of the SBU lines in USB Type-C applications.
-> 
-> This introduces a generic driver, which implements the typec_switch and
-> typec_mux interfaces to perform these operations.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+From: Robert Foss <robert.foss@linaro.org>
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Use two interconnect cells in order to optionally
+support a path tag.
 
-> ---
-> 
-> Changes since v1:
-> - Fixed "swapped" being uninitialized for TYPEC_ORIENTATION_NONE in switch_set
-> 
->  drivers/usb/typec/mux/Kconfig        |   6 +
->  drivers/usb/typec/mux/Makefile       |   1 +
->  drivers/usb/typec/mux/gpio-sbu-mux.c | 172 +++++++++++++++++++++++++++
->  3 files changed, 179 insertions(+)
->  create mode 100644 drivers/usb/typec/mux/gpio-sbu-mux.c
-> 
-> diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-> index 5eb2c17d72c1..c46fa4f9d3df 100644
-> --- a/drivers/usb/typec/mux/Kconfig
-> +++ b/drivers/usb/typec/mux/Kconfig
-> @@ -12,6 +12,12 @@ config TYPEC_MUX_FSA4480
->  	  common USB Type-C connector.
->  	  If compiled as a module, the module will be named fsa4480.
->  
-> +config TYPEC_MUX_GPIO_SBU
-> +	tristate "Generic GPIO based SBU mux for USB Type-C applications"
-> +	help
-> +	  Say Y or M if your system uses a GPIO based mux for managing the
-> +	  connected state and the swapping of the SBU lines in a Type-C port.
-> +
->  config TYPEC_MUX_PI3USB30532
->  	tristate "Pericom PI3USB30532 Type-C cross switch driver"
->  	depends on I2C
-> diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-> index e52a56c16bfb..dda67e19b58b 100644
-> --- a/drivers/usb/typec/mux/Makefile
-> +++ b/drivers/usb/typec/mux/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  
->  obj-$(CONFIG_TYPEC_MUX_FSA4480)		+= fsa4480.o
-> +obj-$(CONFIG_TYPEC_MUX_GPIO_SBU)	+= gpio-sbu-mux.o
->  obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
->  obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
-> diff --git a/drivers/usb/typec/mux/gpio-sbu-mux.c b/drivers/usb/typec/mux/gpio-sbu-mux.c
-> new file mode 100644
-> index 000000000000..f62516dafe8f
-> --- /dev/null
-> +++ b/drivers/usb/typec/mux/gpio-sbu-mux.c
-> @@ -0,0 +1,172 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2022 Linaro Ltd.
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/i2c.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/usb/typec_dp.h>
-> +#include <linux/usb/typec_mux.h>
-> +
-> +struct gpio_sbu_mux {
-> +	struct gpio_desc *enable_gpio;
-> +	struct gpio_desc *select_gpio;
-> +
-> +	struct typec_switch_dev *sw;
-> +	struct typec_mux_dev *mux;
-> +
-> +	struct mutex lock; /* protect enabled and swapped */
-> +	bool enabled;
-> +	bool swapped;
-> +};
-> +
-> +static int gpio_sbu_switch_set(struct typec_switch_dev *sw,
-> +			       enum typec_orientation orientation)
-> +{
-> +	struct gpio_sbu_mux *sbu_mux = typec_switch_get_drvdata(sw);
-> +	bool enabled;
-> +	bool swapped;
-> +
-> +	mutex_lock(&sbu_mux->lock);
-> +
-> +	enabled = sbu_mux->enabled;
-> +	swapped = sbu_mux->swapped;
-> +
-> +	switch (orientation) {
-> +	case TYPEC_ORIENTATION_NONE:
-> +		enabled = false;
-> +		break;
-> +	case TYPEC_ORIENTATION_NORMAL:
-> +		swapped = false;
-> +		break;
-> +	case TYPEC_ORIENTATION_REVERSE:
-> +		swapped = true;
-> +		break;
-> +	}
-> +
-> +	if (enabled != sbu_mux->enabled)
-> +		gpiod_set_value(sbu_mux->enable_gpio, enabled);
-> +
-> +	if (swapped != sbu_mux->swapped)
-> +		gpiod_set_value(sbu_mux->select_gpio, swapped);
-> +
-> +	sbu_mux->enabled = enabled;
-> +	sbu_mux->swapped = swapped;
-> +
-> +	mutex_unlock(&sbu_mux->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int gpio_sbu_mux_set(struct typec_mux_dev *mux,
-> +			    struct typec_mux_state *state)
-> +{
-> +	struct gpio_sbu_mux *sbu_mux = typec_mux_get_drvdata(mux);
-> +
-> +	mutex_lock(&sbu_mux->lock);
-> +
-> +	switch (state->mode) {
-> +	case TYPEC_STATE_SAFE:
-> +	case TYPEC_STATE_USB:
-> +		sbu_mux->enabled = false;
-> +		break;
-> +	case TYPEC_DP_STATE_C:
-> +	case TYPEC_DP_STATE_D:
-> +	case TYPEC_DP_STATE_E:
-> +		sbu_mux->enabled = true;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	gpiod_set_value(sbu_mux->enable_gpio, sbu_mux->enabled);
-> +
-> +	mutex_unlock(&sbu_mux->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int gpio_sbu_mux_probe(struct platform_device *pdev)
-> +{
-> +	struct typec_switch_desc sw_desc = { };
-> +	struct typec_mux_desc mux_desc = { };
-> +	struct device *dev = &pdev->dev;
-> +	struct gpio_sbu_mux *sbu_mux;
-> +
-> +	sbu_mux = devm_kzalloc(dev, sizeof(*sbu_mux), GFP_KERNEL);
-> +	if (!sbu_mux)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&sbu_mux->lock);
-> +
-> +	sbu_mux->enable_gpio = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-> +	if (IS_ERR(sbu_mux->enable_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(sbu_mux->enable_gpio),
-> +				     "unable to acquire enable gpio\n");
-> +
-> +	sbu_mux->select_gpio = devm_gpiod_get(dev, "select", GPIOD_OUT_LOW);
-> +	if (IS_ERR(sbu_mux->select_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(sbu_mux->select_gpio),
-> +				     "unable to acquire select gpio\n");
-> +
-> +	sw_desc.drvdata = sbu_mux;
-> +	sw_desc.fwnode = dev_fwnode(dev);
-> +	sw_desc.set = gpio_sbu_switch_set;
-> +
-> +	sbu_mux->sw = typec_switch_register(dev, &sw_desc);
-> +	if (IS_ERR(sbu_mux->sw))
-> +		return dev_err_probe(dev, PTR_ERR(sbu_mux->sw),
-> +				     "failed to register typec switch\n");
-> +
-> +	mux_desc.drvdata = sbu_mux;
-> +	mux_desc.fwnode = dev_fwnode(dev);
-> +	mux_desc.set = gpio_sbu_mux_set;
-> +
-> +	sbu_mux->mux = typec_mux_register(dev, &mux_desc);
-> +	if (IS_ERR(sbu_mux->mux)) {
-> +		typec_switch_unregister(sbu_mux->sw);
-> +		return dev_err_probe(dev, PTR_ERR(sbu_mux->mux),
-> +				     "failed to register typec mux\n");
-> +	}
-> +
-> +	platform_set_drvdata(pdev, sbu_mux);
-> +
-> +	return 0;
-> +}
-> +
-> +static int gpio_sbu_mux_remove(struct platform_device *pdev)
-> +{
-> +	struct gpio_sbu_mux *sbu_mux = platform_get_drvdata(pdev);
-> +
-> +	gpiod_set_value(sbu_mux->enable_gpio, 0);
-> +
-> +	typec_mux_unregister(sbu_mux->mux);
-> +	typec_switch_unregister(sbu_mux->sw);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id gpio_sbu_mux_match[] = {
-> +	{ .compatible = "gpio-sbu-mux", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, gpio_sbu_mux_match);
-> +
-> +static struct platform_driver gpio_sbu_mux_driver = {
-> +	.probe = gpio_sbu_mux_probe,
-> +	.remove = gpio_sbu_mux_remove,
-> +	.driver = {
-> +		.name = "gpio_sbu_mux",
-> +		.of_match_table = gpio_sbu_mux_match,
-> +	},
-> +};
-> +module_platform_driver(gpio_sbu_mux_driver);
-> +
-> +MODULE_DESCRIPTION("GPIO based SBU mux driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.37.3
+Signed-off-by: Robert Foss <robert.foss@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index fafd92edc855..20e3f1df70ad 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1548,56 +1548,56 @@ apps_smmu: iommu@15000000 {
+ 		config_noc: interconnect@1500000 {
+ 			compatible = "qcom,sm8350-config-noc";
+ 			reg = <0 0x01500000 0 0xa580>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
+ 		mc_virt: interconnect@1580000 {
+ 			compatible = "qcom,sm8350-mc-virt";
+ 			reg = <0 0x01580000 0 0x1000>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
+ 		system_noc: interconnect@1680000 {
+ 			compatible = "qcom,sm8350-system-noc";
+ 			reg = <0 0x01680000 0 0x1c200>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
+ 		aggre1_noc: interconnect@16e0000 {
+ 			compatible = "qcom,sm8350-aggre1-noc";
+ 			reg = <0 0x016e0000 0 0x1f180>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
+ 		aggre2_noc: interconnect@1700000 {
+ 			compatible = "qcom,sm8350-aggre2-noc";
+ 			reg = <0 0x01700000 0 0x33000>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
+ 		mmss_noc: interconnect@1740000 {
+ 			compatible = "qcom,sm8350-mmss-noc";
+ 			reg = <0 0x01740000 0 0x1f080>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
+ 		lpass_ag_noc: interconnect@3c40000 {
+ 			compatible = "qcom,sm8350-lpass-ag-noc";
+ 			reg = <0 0x03c40000 0 0xf080>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
+ 		compute_noc: interconnect@a0c0000 {
+ 			compatible = "qcom,sm8350-compute-noc";
+ 			reg = <0 0x0a0c0000 0 0xa180>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
+@@ -1625,8 +1625,8 @@ ipa: ipa@1e40000 {
+ 			clocks = <&rpmhcc RPMH_IPA_CLK>;
+ 			clock-names = "core";
+ 
+-			interconnects = <&aggre2_noc MASTER_IPA &mc_virt SLAVE_EBI1>,
+-					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_IPA_CFG>;
++			interconnects = <&aggre2_noc MASTER_IPA 0 &mc_virt SLAVE_EBI1 0>,
++					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_IPA_CFG 0>;
+ 			interconnect-names = "memory",
+ 					     "config";
+ 
+@@ -1666,7 +1666,7 @@ mpss: remoteproc@4080000 {
+ 					<&rpmhpd SM8350_MSS>;
+ 			power-domain-names = "cx", "mss";
+ 
+-			interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
++			interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
+ 
+ 			memory-region = <&pil_modem_mem>;
+ 
+@@ -2284,7 +2284,7 @@ cdsp: remoteproc@98900000 {
+ 					<&rpmhpd SM8350_MXC>;
+ 			power-domain-names = "cx", "mxc";
+ 
+-			interconnects = <&compute_noc MASTER_CDSP_PROC &mc_virt SLAVE_EBI1>;
++			interconnects = <&compute_noc MASTER_CDSP_PROC 0 &mc_virt SLAVE_EBI1 0>;
+ 
+ 			memory-region = <&pil_cdsp_mem>;
+ 
+@@ -2505,14 +2505,14 @@ usb_2_ssphy: phy@88ebe00 {
+ 		dc_noc: interconnect@90c0000 {
+ 			compatible = "qcom,sm8350-dc-noc";
+ 			reg = <0 0x090c0000 0 0x4200>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
+ 		gem_noc: interconnect@9100000 {
+ 			compatible = "qcom,sm8350-gem-noc";
+ 			reg = <0 0x09100000 0 0xb4000>;
+-			#interconnect-cells = <1>;
++			#interconnect-cells = <2>;
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
 -- 
-heikki
+2.34.1
+
