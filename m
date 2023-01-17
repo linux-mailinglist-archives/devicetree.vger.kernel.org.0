@@ -2,132 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8249366E45E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:04:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94CBF66E470
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:08:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230326AbjAQREn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 12:04:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38192 "EHLO
+        id S232844AbjAQRH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 12:07:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231472AbjAQREm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:04:42 -0500
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9833739CED
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:04:41 -0800 (PST)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-15085b8a2f7so32638008fac.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:04:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O1NOHb8+nu+zYx4mxjmXXXdZFvqmNP0X7dlBHqnm0BQ=;
-        b=fkZiX0BnF9WA29Oqf046jActDg7s4H6bj6nR4DdNYzZafs/9cTSSSr/0tFOPRTpFE4
-         inTPLA10mokG9QokFRZmo7jX1OJa9qWkR07uPdJyL4DnsitmYr9sCzFaf55hvJixXipw
-         lOdFutbsxRja8vWPbAgqh15QrJGCDRkhaG5jxQ1TJAE+CCs7sJ/cwlQ2Hp1shUH7blki
-         N2oVovvW+ozdR1xReWXfClw3YVJkMffyVB/OjKChqAvNeNvNUovOaOSnAlsavaioC5Tc
-         fZNkU1b7cPU5ASByQAIAF5aZU6pVtWpecnlgozbZNfUr4xmuWx+RfXRKBzxoH0N48FuG
-         eGgw==
-X-Gm-Message-State: AFqh2ko6KkBEZHTs4fAXBJopoEyulAg8WkaX8XaEwvrkC+C5TlsNDBQ1
-        1ZYHCZQ8Nw78xbX2ReEKBX0h62GSXQ==
-X-Google-Smtp-Source: AMrXdXst7AkBNDxKvrdBelcXQ7R0QKqipV1QTofl1bzW+VXPgBTgX5inmaRNFjB18W58x4vx27DAHg==
-X-Received: by 2002:a05:6870:ac8e:b0:15f:4c8:7892 with SMTP id ns14-20020a056870ac8e00b0015f04c87892mr2439937oab.26.1673975080773;
-        Tue, 17 Jan 2023 09:04:40 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f15-20020a056870548f00b0015f1024d322sm5286475oan.37.2023.01.17.09.04.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 09:04:40 -0800 (PST)
-Received: (nullmailer pid 3244003 invoked by uid 1000);
-        Tue, 17 Jan 2023 17:04:39 -0000
-Date:   Tue, 17 Jan 2023 11:04:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Mark Brown <broonie@kernel.org>,
+        with ESMTP id S232963AbjAQRH4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:07:56 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE223028C
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:07:54 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pHpRB-0003GK-8T; Tue, 17 Jan 2023 18:07:53 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pHpR9-006jNY-47; Tue, 17 Jan 2023 18:07:51 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1pHpR8-00DesE-4e; Tue, 17 Jan 2023 18:07:50 +0100
+Date:   Tue, 17 Jan 2023 18:07:49 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Ben Dooks <ben.dooks@sifive.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v2 02/10] ASoC: dt-bindings: audio-graph-port: add
- definitions/ports
-Message-ID: <20230117170439.GA3225212-robh@kernel.org>
-References: <87358hj2ub.wl-kuninori.morimoto.gx@renesas.com>
- <87zgapho68.wl-kuninori.morimoto.gx@renesas.com>
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+Subject: Re: [PATCH v7 00/10] Designware PWM driver updates for OF
+Message-ID: <20230117170749.vff5av32m6djc5dz@pengutronix.de>
+References: <20221223153820.404565-1-ben.dooks@sifive.com>
+ <46703b00-97d3-c21d-fbe1-71208fb50f73@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="m7xx7b55ldi3cgzf"
 Content-Disposition: inline
-In-Reply-To: <87zgapho68.wl-kuninori.morimoto.gx@renesas.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <46703b00-97d3-c21d-fbe1-71208fb50f73@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 11, 2023 at 01:09:52AM +0000, Kuninori Morimoto wrote:
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> 
-> Audio Graph user needs "ports" not only "port".
-> This patch adds standard "ports" as definitions to use it easily.
-> 
-> If user needs standard "ports", it can use
-> 
->    ports:
->      $ref: audio-graph-port.yaml#/definitions/ports
-> 
-> If user want to use custom ports, it can re-use
-> audio-graph-port.yaml#/definitions/port-base"
-> audio-graph-port.yaml#/definitions/endpoint-base"
-> 
-> https://lore.kernel.org/r/87sfhipynv.wl-kuninori.morimoto.gx@renesas.com
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->  .../devicetree/bindings/sound/audio-graph-port.yaml  | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> index fa66b73abcaf2..6fcf7f567424d 100644
-> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> @@ -97,6 +97,18 @@ definitions:
->                minimum: 1
->                maximum: 64
->  
-> +  ports:
-> +    $ref: "#/definitions/port-base"
 
-This applies to 'port' nodes, but this is the 'ports' node.
+--m7xx7b55ldi3cgzf
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-For example, this schema says you can have endpoint nodes directly under 
-'ports' which is not valid.
+Hello Ben,
 
-But why do you need this? The graph.yaml schema should be sufficient 
-because you aren't adding custom properties in 'ports'. BTW, the 
-preference is to only add properties in 'endpoint' nodes.
+On Tue, Jan 17, 2023 at 04:39:34PM +0000, Ben Dooks wrote:
+> On 23/12/2022 15:38, Ben Dooks wrote:
+> > An updated set of patches for the Designware PWM driver
+> > split into PCI and OF versions. I think I got all the
+> > review issues in this set.
+> >=20
+> > Sorry for the delay in getting this out, between conferences
+> > and other absences there has been little time to deal with
+> > this set. I will be now out of office until 3rd Jan 2023.
+>=20
+> Hi, how's the progress on review and getting this set finalised?
 
-> +    unevaluatedProperties: false
-> +    patternProperties:
-> +      "^port(@[0-9a-f]+)?$":
-> +        $ref: "#/definitions/port-base"
-> +        unevaluatedProperties: false
+Speaking for me:
 
-If 'ports' schema is applied to a DT, then its 'port' node(s) cannot 
-have any additional properties. That defeats the point of patch 1.
+Your patch set isn't forgotton. It's just that my time is limited and
+reviewing a new driver is time intensive.
 
-You cannot have 2 schemas with child nodes and be able to extend the 
-properties on the child nodes. The 2 child node schemas can't 'see' each 
-other in that case. In these cases, the base child node schema has to be 
-referenced directly by the extended child node schema.
+I'm sorry I cannot give feedback in a more timely manner, but I will
+come to it eventually.
 
+Best regards
+Uwe
 
-> +        patternProperties:
-> +          "^endpoint(@[0-9a-f]+)?":
-> +            $ref: "#/definitions/endpoint-base"
-> +            unevaluatedProperties: false
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-The same thing applies here.
+--m7xx7b55ldi3cgzf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Rob
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmPG1eMACgkQwfwUeK3K
+7AlzdQf/QUmeI4a1TFkUr15wS6W3iWDAylkgqXR4laiuB7kf6DN/uGDrCHCmch+n
+A7bzpFN16H0i39OSEwM6NLb27z5GDR/NPjjqnq1nXj7/9j2D240JDlYUxMSsnlot
+5ZgSEJWhzVWKSPBpgbhx92jPTlCK4qcFwpIcFtGw+UoTCZjK7ZN/cLDcRxl+szwj
+wDkA1cGwM21N7xZ9dtHXRMUJM45ReXU+BBCN6bbzNyFh/apiYkOH/bYwy4g4ssy+
+TgThWOBWOaxu8NGnegQjIcHK3eTPWVm5U3YTQm8l4ld8vvKOsk26oaUPxq7sXpjS
+f7LR0ThbA9nPrT/p/mnm3K1YCgXEYA==
+=HF7T
+-----END PGP SIGNATURE-----
+
+--m7xx7b55ldi3cgzf--
