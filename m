@@ -2,153 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D706D66E077
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:24:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B48466E08F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231950AbjAQOYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 09:24:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44542 "EHLO
+        id S232096AbjAQO1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 09:27:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232747AbjAQOXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:23:46 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB57F40BE8
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:22:08 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id h16so30732998wrz.12
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:22:08 -0800 (PST)
+        with ESMTP id S232484AbjAQO0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:26:41 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D469D402FE
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:25:07 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so24572300wms.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:25:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ybMp4yf1vi88OQah/2tawVPx6umiUGABzCImHyfek9Y=;
-        b=hAktI9Hg4DyrxZHcvy3fynCOTVjETjt/zk2FifC5B7sAmkDT4FXNVTJXaFvRyg9+PW
-         h2sMPFQ3W1yRaGT+aBC9EA0ARv2xmIhucPJiBWrU2xSjTtShNUjlexnybjRGdA1isVqL
-         i23k3jz9FjVvxSxty27+XaeI7X8woahLuf+6fQbOTZInjmiJ0UjpN090asX9M0ecXQ9i
-         3ffHvbT74wxs69cCzxFWaTu3U/6ey3kBofZUWIWhvtO5Vy+cVusZ+rglU33M+0CI+pus
-         k8P6d0RU0qQMnP19IimHEO0Brxy9Os4KagSi7/61CSOyIpa5focrveqSs7afG0riRx4i
-         afoQ==
+        bh=0o5JKqHA2jE2pZCqpewPRuIPIvKyqcaqw+l6676pGJY=;
+        b=Xt4JgcY4xB0r7T92IzDEDPjSB5vXfr00+YuDT1ZcYsxdhY22g+XGDHlWzWHw9EVfF/
+         glqP6b1I/M3w5Juepr1Bl0RkPLkE8LxIDMXphUZbGPfetM9yFlRvujF3XZrc0qY3+0Od
+         5ZEi738PWLGo4On8nvLAx8455u1MDkvtXUP170YCS4vlwXE2hfsNHuM0krmr86SE8QP7
+         5XV2c7tv7PDTPR79ox7PqF0mlon5JlVS+qW2kl54+SWj9TltiGQtQ5co3SfiwRffgR7u
+         BRXsh6Wn0j+nB1Zs05uXqcIOAS9hbqQaLK+0ejZ+6+qpspKMqapmjgbzx3JEYU6nVfMv
+         OxVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ybMp4yf1vi88OQah/2tawVPx6umiUGABzCImHyfek9Y=;
-        b=nXifQ59BEx9ROyycKQwz788zpXJAuVz2ayyRqearSs10HZ0MP+AKTiIrYfiZSIW1Tn
-         2SzWpvzxkuFDAtC1b/6ipvDPoDJEg2oFB8YfOwJgdZfOOmFcT5eN7lVpcSuSeL55LFpG
-         NRD8HuKjKjYkdsdV1s3y1/g6SZCQDhA9zG5FFSCqAYFClcR+B5mIhAJsvDErUBCWpd2a
-         xX55Bu6Dt3Yu402G6KHO0Jg9dGuzPgnzs1HpQB7v2m7QSSdcfRv7Ffot3IQLXDbVamD1
-         lBNmAxIZEQ6L+ThYdg8EXASPkaLPJanuGF1qxUXEgNsjyvfGpUtSLLSxauWk7VPP1AJj
-         /riw==
-X-Gm-Message-State: AFqh2koQYtG32aLaaSJ8EzSRAzH47sox4/4AXz90/DZVaAu/qovO3+aC
-        jR7uXDKIJmx2wae/PqJpFGnQqA==
-X-Google-Smtp-Source: AMrXdXtMv3z609fCfMMcn1lyVfLqtlv2kX3RFEiFg4rXFi4hUXOF/Cfb7gNI0fQ2luv3PkbTOGN4Vw==
-X-Received: by 2002:adf:cc8c:0:b0:293:1868:3a14 with SMTP id p12-20020adfcc8c000000b0029318683a14mr11101982wrj.0.1673965327363;
-        Tue, 17 Jan 2023 06:22:07 -0800 (PST)
-Received: from aspen.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id g2-20020a5d4882000000b00286ad197346sm28891037wrq.70.2023.01.17.06.22.05
+        bh=0o5JKqHA2jE2pZCqpewPRuIPIvKyqcaqw+l6676pGJY=;
+        b=e4UacEqH1++ZOgp0F8HQJAR+TtVLp8IQNI9rmwfP0rVoMgjJwRLrP+LyObQhryf8Ng
+         YVuKRtT2rV9vzViuYX5kQ6yg1ccSjmwCfCEd5dLBZU7BRtOhA38M3qAOMcxrII5CGF9k
+         aHBwv3WZozdkB+SEBcpLxFcBDmDVpFuuJJDW5kGjWEJcTlCR50JgqIIsIA3AWNedosG8
+         lZFo8vq3CkmjtbuyoSsTZD7CxUIiLLFwp6wg1VzXqV6avwK9S2jF8P45oIaepDObPp12
+         Bbf3L5oZ1zWU2vJFMDVf/GHBCzfyo8Ke9VF+7EEyyYo0UiYAch4GEtxcT12Uw/wihPZm
+         8NeQ==
+X-Gm-Message-State: AFqh2koQqdS8M9l/WI6V0x4ei63oRy86nL+wBd6fjzRwZc89/HG8p6eX
+        Lb3Pwca2HtEvD8tnYMhUdvWiMA==
+X-Google-Smtp-Source: AMrXdXvUiyE7TTzBBUfTs4/cb9g/hSrNJbSFCgye8F3KowhvGTrU+ni8vLPEN0p9Wn24H5f8GY1x9Q==
+X-Received: by 2002:a05:600c:181b:b0:3da:ff1f:e8d3 with SMTP id n27-20020a05600c181b00b003daff1fe8d3mr3255753wmp.15.1673965506462;
+        Tue, 17 Jan 2023 06:25:06 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id n6-20020a05600c3b8600b003db012d49b7sm5854466wms.2.2023.01.17.06.25.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 06:22:06 -0800 (PST)
-Date:   Tue, 17 Jan 2023 14:22:04 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Jianhua Lu <lujianhua000@gmail.com>
-Cc:     Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Tue, 17 Jan 2023 06:25:05 -0800 (PST)
+Date:   Tue, 17 Jan 2023 16:25:04 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Helge Deller <deller@gmx.de>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: leds: backlight: Add Kinetic KTZ8866
- backlight
-Message-ID: <Y8avDJj5PCy8OVWV@aspen.lan>
-References: <20230117134742.23238-1-lujianhua000@gmail.com>
- <20230117134742.23238-2-lujianhua000@gmail.com>
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/6] dt-bindings: phy: Add QMP UFS PHY comptible for
+ SM8550
+Message-ID: <Y8avwNKKQYwbgmRX@linaro.org>
+References: <20230117125555.163087-1-abel.vesa@linaro.org>
+ <20230117125555.163087-2-abel.vesa@linaro.org>
+ <33eda50c-c70f-1bb6-0917-22b6fdb4a2ca@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230117134742.23238-2-lujianhua000@gmail.com>
+In-Reply-To: <33eda50c-c70f-1bb6-0917-22b6fdb4a2ca@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 17, 2023 at 09:47:42PM +0800, Jianhua Lu wrote:
-> Add Kinetic KTZ8866 backlight binding documentation.
->
-> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+On 23-01-17 16:09:12, Dmitry Baryshkov wrote:
+> On 17/01/2023 14:55, Abel Vesa wrote:
+> > Document the QMP UFS PHY compatible for SM8550.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >   .../devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml       | 1 +
+> >   1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> > index 760791de0869..44745a5c64cd 100644
+> > --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> > @@ -17,6 +17,7 @@ properties:
+> >     compatible:
+> >       enum:
+> >         - qcom,sc8280xp-qmp-ufs-phy
+> > +      - qcom,sm8550-qmp-ufs-phy
+> >         - qcom,sm6125-qmp-ufs-phy
+> 
+> Please keep the list sorted
 
-Might be a good idea to take a look at this bit of the docs because
-the patchset is not in the right order (I.5):
-https://docs.kernel.org/devicetree/bindings/submitting-patches.html
+Ugh.
 
+I sent a new version.
 
-> ---
-> Changes in v2:
->   - Remove "items" between "compatible" and "const: kinetic,ktz8866"
->   - Change "additionalProperties" to "unevaluatedProperties"
->
-> Changes in v3:
->   - Add Krzysztof's R-b
->
-> Changes in v4:
->   - Drop Krzysztof's R-b
->   - Add some new properties
->
->  .../leds/backlight/kinetic,ktz8866.yaml       | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
->
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-> new file mode 100644
-> index 000000000000..18571d69accb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktz8866.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Kinetic Technologies KTZ8866 backlight
-> +
-> +maintainers:
-> +  - Jianhua Lu <lujianhua000@gmail.com>
-> +
-> +description: |
-> +  The Kinetic Technologies KTZ8866 is a high efficiency 6-sinks led backlight
-> +  with dual lcd bias power.
-> +  https://www.kinet-ic.com/ktz8866/
-> +
-> +allOf:
-> +  - $ref: common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: kinetic,ktz8866
-> +
-> +  current-num-sinks:
-> +    description: Number of LED current sinks.
-> +
-> +  current-ramping-time:
-> +    description: LED current ramping time.
-
-Needs to document know what units this value is expressed in. IIRC
-this should be expressed in SI units and included the property name.
-Something like:
-
-  current-ramping-time-us:
-    description: LED current ramping time in microseconds.
-
-
-> +
-> +  led-ramping-time:
-> +    description: LED on/off ramping time.
-
-+1
-
-
-Daniel.
+> 
+> >     reg:
+> 
+> -- 
+> With best wishes
+> Dmitry
+> 
