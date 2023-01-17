@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B84670AD1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 23:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12DB0670B7C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 23:14:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbjAQWCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 17:02:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42448 "EHLO
+        id S229544AbjAQWOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 17:14:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229913AbjAQWAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 17:00:06 -0500
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ABA553FA2;
-        Tue, 17 Jan 2023 12:40:34 -0800 (PST)
-Received: by mail-oi1-f182.google.com with SMTP id p185so5875459oif.2;
-        Tue, 17 Jan 2023 12:40:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=67/7qFGKU8v+ncCe98IgRm1sBY7EEsIFhO8RWKpy1ms=;
-        b=oLwIjmnbd11o+N3onDhjd/7mDTpHICkyYMhzyFd9cv4tSiWTWEJwgk+IuMfQUrpZFH
-         R5tK3lY9XiW0Jy8D7hVkhIewhTnDlQufCOTVcnm6oq56F4KKtDduEv/pcG8x7MoDhnsQ
-         gw/yHid/NNd+bAL6K8UHJuqPhYziu6kXNj+ZuZ8/lSBVl4D4UuWx4FYHIMhw+QMwrbrE
-         gvdUg01b7ynsHVprZfhzkhaNXBAaUsvQoYtB3087c1rtj2LWg7k53pEiYxrOZZgYCkIq
-         41nFtLOK7U6uY6qxF41jV+63F8kRHJFHf2nal3lweh1kxXC/MUGYSIbsP7egq61H+Hb9
-         qGBg==
-X-Gm-Message-State: AFqh2kpwcAFaXMZw2tMreQ+37SWVx/0L7O/q/GW0YFyP0nPIFGYg5pzc
-        2pHWPNP5gD9wo37smdGfuQ==
-X-Google-Smtp-Source: AMrXdXure+5iEtDRLsla/oJrLqVm1rjH+eOc28MjSr7MGs42Rvef5APfJfN9jWPwzpWJRiZswegkGw==
-X-Received: by 2002:a05:6808:193:b0:364:3de0:f933 with SMTP id w19-20020a056808019300b003643de0f933mr11257851oic.52.1673988033446;
-        Tue, 17 Jan 2023 12:40:33 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o9-20020a0568080f8900b0035e461d9b1bsm15272517oiw.50.2023.01.17.12.40.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 12:40:33 -0800 (PST)
-Received: (nullmailer pid 3669412 invoked by uid 1000);
-        Tue, 17 Jan 2023 20:40:32 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Mario Kicherer <dev@kicherer.org>
-Cc:     linux@roeck-us.net, robh+dt@kernel.org, corbet@lwn.net,
-        linux-hwmon@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jdelvare@suse.com, linux-doc@vger.kernel.org,
+        with ESMTP id S229911AbjAQWNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 17:13:38 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6D8949943;
+        Tue, 17 Jan 2023 12:42:10 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 84F26B818EE;
+        Tue, 17 Jan 2023 20:42:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F4F7C433D2;
+        Tue, 17 Jan 2023 20:42:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673988128;
+        bh=bN1rNc513vQmrecLRhCXnFkD9PGMHmyMJzDfwS8nfT8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tsTWxiHa3biQSfAqhmIIf1A5AYQV4HeVTuhO6QauJFJMyT2CsaswdOxuFQK8+HxXd
+         sl+lum2g1RuJlFIWm7vdNvlmrhEx90XxhsY862oaTX7BsaBKMaFcphJurL0oup7SsV
+         hQzzxKRChvB1nm9uY91DTr7SAmcfaedaOr4Eq/iYkNWt48xgfOrtzpbetrEoBISVQZ
+         WzjKIvzlPpd0GSS/egu/HNENkD2DmCw0VOBvNJmCBDP/oT8W4JtUYK1sNt5MLiGUGN
+         9OUIITCOJMYj378/XhBKy4OT3hDSz8HdmczZSQDi7a9p53LCuzD5hl2zDi1e5ZOYFH
+         UHs6BxcdPtm8g==
+Date:   Tue, 17 Jan 2023 20:42:03 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Anup Patel <anup@brainfault.org>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-In-Reply-To: <20230117161340.1310936-3-dev@kicherer.org>
-References: <20230117161340.1310936-1-dev@kicherer.org>
- <20230117161340.1310936-3-dev@kicherer.org>
-Message-Id: <167398779869.3664156.14251778655302872617.robh@kernel.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: hwmon: add nxp,mc34vr500
-Date:   Tue, 17 Jan 2023 14:40:32 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v2 1/9] RISC-V: Add AIA related CSR defines
+Message-ID: <Y8cIG6gKSlkTh5AF@spud>
+References: <20230103141409.772298-1-apatel@ventanamicro.com>
+ <20230103141409.772298-2-apatel@ventanamicro.com>
+ <Y7YGp/7ufyRPhkwg@spud>
+ <CAAhSdy2YKJfuxhBmsx9v-OMyxKQjys+J-z_ZqoPJF7q=YrE4Zw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="k2uHQ/1oXnALNsqN"
+Content-Disposition: inline
+In-Reply-To: <CAAhSdy2YKJfuxhBmsx9v-OMyxKQjys+J-z_ZqoPJF7q=YrE4Zw@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -65,39 +66,91 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 17 Jan 2023 17:13:39 +0100, Mario Kicherer wrote:
-> This patch adds dt-bindings for the NXP MC34VR500 PMIC.
-> 
-> Signed-off-by: Mario Kicherer <dev@kicherer.org>
-> ---
->  .../bindings/hwmon/nxp,mc34vr500.yaml         | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-> 
+--k2uHQ/1oXnALNsqN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hey Anup,
 
-yamllint warnings/errors:
+I thought I had already replied here but clearly not, sorry!
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/hwmon/nxp,mc34vr500.yaml#
+On Mon, Jan 09, 2023 at 10:39:08AM +0530, Anup Patel wrote:
+> On Thu, Jan 5, 2023 at 4:37 AM Conor Dooley <conor@kernel.org> wrote:
+> > On Tue, Jan 03, 2023 at 07:44:01PM +0530, Anup Patel wrote:
 
-doc reference errors (make refcheckdocs):
+> > > +/* AIA CSR bits */
+> > > +#define TOPI_IID_SHIFT               16
+> > > +#define TOPI_IID_MASK                0xfff
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230117161340.1310936-3-dev@kicherer.org
+While I think of it, it'd be worth noting that these are generic across
+all of topi, mtopi etc. Initially I thought that this mask was wrong as
+the topi section says:
+	bits 25:16 Interrupt identity (source number)
+	bits 7:0 Interrupt priority
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+> > > +#define TOPI_IPRIO_MASK              0xff
+> > > +#define TOPI_IPRIO_BITS              8
+> > > +
+> > > +#define TOPEI_ID_SHIFT               16
+> > > +#define TOPEI_ID_MASK                0x7ff
+> > > +#define TOPEI_PRIO_MASK              0x7ff
+> > > +
+> > > +#define ISELECT_IPRIO0               0x30
+> > > +#define ISELECT_IPRIO15              0x3f
+> > > +#define ISELECT_MASK         0x1ff
+> > > +
+> > > +#define HVICTL_VTI           0x40000000
+> > > +#define HVICTL_IID           0x0fff0000
+> > > +#define HVICTL_IID_SHIFT     16
+> > > +#define HVICTL_IPRIOM                0x00000100
+> > > +#define HVICTL_IPRIO         0x000000ff
+> >
+> > Why not name these as masks, like you did for the other masks?
+> > Also, the mask/shift defines appear inconsistent. TOPI_IID_MASK is
+> > intended to be used post-shift AFAICT, but HVICTL_IID_SHIFT is intended
+> > to be used *pre*-shift.
+> > Some consistency in naming and function would be great.
+>=20
+> The following convention is being followed in asm/csr.h for defining
+> MASK of any XYZ field in ABC CSR:
+> 1. ABC_XYZ : This name is used for MASK which is intended
+>    to be used before SHIFT
+> 2. ABC_XYZ_MASK: This name is used for MASK which is
+>    intended to be used after SHIFT
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Which makes sense in theory.
 
-pip3 install dtschema --upgrade
+> The existing defines for [M|S]STATUS, HSTATUS, SATP, and xENVCFG
+> follows the above convention. The only outlier is HGATPx_VMID_MASK
+> define which I will fix in my next KVM RISC-V series.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Yup, it is liable to end up like that.
 
+> I don't see how any of the AIA CSR defines are violating the above
+> convention.
+
+What I was advocating for was picking one style and sticking to it.
+These copy-paste from docs things are tedious and error prone to review,
+and I don't think having multiple styles is helpful.
+
+Tedious as it was, I did check all the numbers though, so in that
+respect:
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+
+--k2uHQ/1oXnALNsqN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY8cIAQAKCRB4tDGHoIJi
+0qosAQDNLMBZwn0pOgFxNRZ2gQ4mAB4/IDrKT4lV7uJ6FsZKTgD/d5T4U/puI+fm
+TEmdCdjhH8752eP4Q65/dDTea9aeXgk=
+=HSHv
+-----END PGP SIGNATURE-----
+
+--k2uHQ/1oXnALNsqN--
