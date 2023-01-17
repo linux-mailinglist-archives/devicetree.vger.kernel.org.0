@@ -2,142 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3355866E772
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 21:09:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37CFC66E7C2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 21:38:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233191AbjAQUJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 15:09:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44008 "EHLO
+        id S233848AbjAQUh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 15:37:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234711AbjAQUHS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 15:07:18 -0500
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA24145221
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 11:01:24 -0800 (PST)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-15eeec85280so11869610fac.11
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 11:01:24 -0800 (PST)
+        with ESMTP id S235426AbjAQUfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 15:35:38 -0500
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CC5F25E23
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 11:20:47 -0800 (PST)
+Received: by mail-io1-xd36.google.com with SMTP id y69so847967iof.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 11:20:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=landley-net.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OgaymgAXi9Z6g6pYwBOzM02/P477EqWitgDVTE3LFbU=;
-        b=7UFMvbpKkJyjWVLlq6ctk0nXiLL3RrLgvGqk+/g8pD0wAzMEFNodkoMNXxSPAzvJye
-         T4nqVDpRCF5Pkw4fe0ROrd1BjE8DZbycDcUSRlgnihtqJaZkkqELJ7TzEZYyPHojRNxM
-         MBh6YZCgcmJgLXwboxe3bvrjmez4qHhfCRIxGuc2G0+QOOJ/eKT38XBZ7MfSSmNLVm7z
-         gDt6C3Ymsnj+eKLcMZ0dj5q2KFKnZutgcY/1C6+IgeLmT5DwAU4QsUhG6TCQdnlD6nEb
-         fYtWfawIuB6wYahQA/cq89ISwAR2GZXbrrCFpCVxRJqHc9Mn337ID3jg/QgfKjbyHIu6
-         BObQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bQQhGaa8ME/qD8GrOmb/LR8k+tyYKhHj8WpJOgJmL40=;
+        b=N7yg3KxlCKSsu1VLFwTpGLiGTU9blVjz991dhmvqJBNqTfCy4BzvkPgeUjMrUYfSy7
+         /FxMBE0zLvyO99Y2aDlH1urHHynquVL1ldUueDFvMzJymo9wh22fKm27wHn1OzcAvL2T
+         yYe+MedHIUiQkwelizE9HuJVyQAPyC7xpw4b03TB4gKah2lNdziKu2cPMS/vPNsx85zl
+         dM1VbsPr0pQDaJLu/4imj/uLvr2B1Se8zh2vsO17KX0Ev6i94T7OwXZ8UphY4LQePhVc
+         HxR2F3B+CsvOQAhA5VwqE7riipIdmRRGiSzUoS3JcMcwJdBOGWUZJlbWW8myUH+mk0Vh
+         ksGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OgaymgAXi9Z6g6pYwBOzM02/P477EqWitgDVTE3LFbU=;
-        b=z3HDA0asSLvfho9PvSc7lNv6/3WH0Vr9dttk8QiDf8wxcxzqjyaGQtftVseGA6TAzN
-         bgHm4o9xXQZxoAMvg8fggl5KRtMXbFQRHMuC0OGoMhZIcCA1/ATtvEEB85Z6e50DbLuY
-         YTITgGSA839OM0/q0WO3EkXUxPISp9G0yHzV3Cfg3zJGevbU3bOXWgX5TzikW/ZqgEI+
-         fcaiDg3nk5e5WdLEwWwMbOFPrM7WM4+hestcfrmKlAJ70kYAsZj6WHwKBmP450S2yFwj
-         4jEcRqQfT7R3qAjiEb2hsx1b5J4sDJUE5DBRwwxr6P9hkzhNKvL6qdWfrMM0YAuJHWkn
-         JE0g==
-X-Gm-Message-State: AFqh2kq3huRhvDKuR4K4coOF+4MIGPqbTs0ukyqvPox+HAz9uK859r/K
-        E5ZFeSJOHo+u0RdxSj4k4vwxZQ==
-X-Google-Smtp-Source: AMrXdXsgzCxMhqm+bb3il7EsJjEv0NbGPCzT1qf9VREFYRxVllxrk/YEzaFAyrBdtefAaDgGfnk/UQ==
-X-Received: by 2002:a05:6870:c190:b0:15e:cfca:b312 with SMTP id h16-20020a056870c19000b0015ecfcab312mr2807015oad.52.1673982083592;
-        Tue, 17 Jan 2023 11:01:23 -0800 (PST)
-Received: from [192.168.86.224] ([136.62.38.22])
-        by smtp.gmail.com with ESMTPSA id r18-20020a05687080d200b0012763819bcasm16664335oab.50.2023.01.17.11.01.21
+        bh=bQQhGaa8ME/qD8GrOmb/LR8k+tyYKhHj8WpJOgJmL40=;
+        b=ax+9trwBpoWQzLvSJKLqzuaYp2kneNTzz/HWtKN+JknKrpORtUmV8b4B1jHnSn3/+O
+         LdpeH3d3kN9AIs6tEt6/Lrt/2PGiWuqckg8WBtQrgtc6nRJURRrDDIbcZyhwz6CUGBsT
+         zjVcHG7JaZfto4ZMYIJTe2b5lGMLMrWqNjiqE8zaoQslV2JjkYSg92JscYGwiGrLPVC0
+         7eJjTKcZ3xGG8U7fpauQWi2PKyhaVTr/R64Bt4fXOY0B7l6n2FebZXSHp7LWOrOy8fss
+         33qI6K1FPdfz7DLmPFZx8VaSntbQeSCUZMPFZpnHnNk/LR2S1iBXwTJfIz5cCns2TjRp
+         gdMg==
+X-Gm-Message-State: AFqh2krX6EdcRLqXhwc9cTNWrLDdoQ1e7ewN+/jItkAQi52XlJt/od8E
+        l86b0dNw9s7fJ5XZz0X4O4wlRw==
+X-Google-Smtp-Source: AMrXdXsRiQGWp5HyS8FdEGoGTMhjd2qK1yDflbDU2KXk0dOG/CUpT3PLJ7xrBuniiCZq5cJTQXdJqQ==
+X-Received: by 2002:a5e:df08:0:b0:704:6e8d:4891 with SMTP id f8-20020a5edf08000000b007046e8d4891mr3332526ioq.3.1673983246899;
+        Tue, 17 Jan 2023 11:20:46 -0800 (PST)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id o13-20020a0566022e0d00b006bb5af55ddfsm10651735iow.19.2023.01.17.11.20.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 11:01:22 -0800 (PST)
-Message-ID: <9325a949-8d19-435a-50bd-9ebe0a432012@landley.net>
-Date:   Tue, 17 Jan 2023 13:13:38 -0600
+        Tue, 17 Jan 2023 11:20:46 -0800 (PST)
+Message-ID: <b9686ab1-8f18-4175-2581-df84ba58e3ce@linaro.org>
+Date:   Tue, 17 Jan 2023 13:20:44 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: remove arch/sh
-Content-Language: en-US
-To:     Christoph Hellwig <hch@lst.de>,
-        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Cc:     Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
+ Thunderbird/102.4.2
+From:   Alex Elder <elder@linaro.org>
+Subject: Re: [PATCH v8 00/28] Drivers for gunyah hypervisor
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-sh@vger.kernel.org
-References: <20230113062339.1909087-1-hch@lst.de>
- <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
- <20230116071306.GA15848@lst.de>
-From:   Rob Landley <rob@landley.net>
-In-Reply-To: <20230116071306.GA15848@lst.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org
+References: <20221219225850.2397345-1-quic_eberman@quicinc.com>
+ <83b6dbc2-01da-04b6-64ec-9a69fd5c4c89@linaro.org>
+ <d945e654-9679-72d7-bb79-d09c45f6d5aa@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <d945e654-9679-72d7-bb79-d09c45f6d5aa@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/16/23 01:13, Christoph Hellwig wrote:
-> On Fri, Jan 13, 2023 at 09:09:52AM +0100, John Paul Adrian Glaubitz wrote:
->> I'm still maintaining and using this port in Debian.
+On 1/10/23 3:47 PM, Elliot Berman wrote:
 >>
->> It's a bit disappointing that people keep hammering on it. It works fine for me.
+>> I haven't looked at the earlier reviews; perhaps the RFC stuff
+>> was requested.  I'm sure it's useful to see that but it doesn't
+>> seem directly helpful if your goal is to get this code upstream.
+>>
 > 
-> What platforms do you (or your users) use it on?
+> Right, the RFC patches were requested. Do you have a recommendation for 
+> sharing those later patches? I understand it's best practice not to post 
+> too many patches. The logical split was to have 1-20 go in first, and 
+> the remaining patches submitted later.
 
-3 j-core boards, two sh4 boards (the sh7760 one I patched the kernel of), and an
-sh4 emulator.
+If they're RFC they should be tagged "RFC".
 
-I have multiple j-core systems (sh2 compatible with extensions, nommu, 3
-different kinds of boards running it here). There's an existing mmu version of
-j-core that's sh3 flavored but they want to redo it so it hasn't been publicly
-released yet, I have yet to get that to run Linux because the mmu code would
-need adapting, but the most recent customer projects were on the existing nommu
-SOC, as was last year's ASIC work via sky130.
+I do think it's easier for reviewers if you can divide up the
+code into a few smaller series, so reviewing each (sub-)series
+isn't such an overwhelming thing to consider.  I've started
+looking (IN GREAT DETAIL) the RPC core code, and haven't gone
+much past that, so I don't have any guidance about how things
+could be structured.  (I do appreciate that the early patches
+were small, and built things up gradually.)
 
-My physical sh4 boards are a Johnson Controls N40 (sh7760 chipset) and the
-little blue one is... sh4a I think? (It can run the same userspace, I haven't
-replaced that board's kernel since I got it, I think it's the type Glaubitz is
-using? It's mostly in case he had an issue I couldn't reproduce on different
-hardware, or if I spill something on my N40.)
+I personally try to keep my series to closer to 5-10 patches,
+though the maintainer(s) involved need to agree to accept the
+smaller series before the full functionality gets enabled when
+it's all accepted.
 
-I also have a physical sh2 board on the shelf which I haven't touched in years
-(used to comparison test during j2 development, and then the j2 boards replaced it).
+You'll get (lots) more feedback from me on the remaining patches,
+eventually.  If you decide to re-spin things soon I'd like to know
+your plan so I can review the latest when it's available.
 
-I'm lazy and mostly test each new sh4 build under qemu -M r2d because it's
-really convenient: neither of my physical boards boot from SD card so replacing
-the kernel requires reflashing soldered in flash. (They'll net mount userspace
-but I haven't gotten either bootloader to net-boot a kernel.)
-
-I include sh4 in the my mkroot builds each toybox release, I have a ~300 line
-bash script that builds bootable toybox systems for a dozen-ish architectures,
-including building a kernel configured to run under qemu:
-
-  https://github.com/landley/toybox/blob/master/scripts/mkroot.sh
-
-And I ship the resulting bootable system images, most recent release is at:
-
-  https://landley.net/toybox/downloads/binaries/mkroot/0.8.9/
-
-As described at:
-
-  http://landley.net/toybox/faq.html#mkroot
-
-Various people in Japan have more hardware, but I haven't made it physically
-back there since 2020. (My residency card expired during the pandemic.)
-
-Rob
+					-Alex
