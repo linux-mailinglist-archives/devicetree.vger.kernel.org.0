@@ -2,103 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D24DE66DC80
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:33:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4AC66DC91
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236911AbjAQLdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 06:33:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48260 "EHLO
+        id S236778AbjAQLfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 06:35:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236617AbjAQLcv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:32:51 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7758C367F6
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:32:34 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id o17-20020a05600c511100b003db021ef437so2808841wms.4
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:32:34 -0800 (PST)
+        with ESMTP id S236821AbjAQLer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:34:47 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACDD360AD
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:34:43 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id r30so5833936wrr.10
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:34:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GO2eKjxO1iedMdXK50/d7P4tpciSJOhld+mYv0gRRXc=;
-        b=T4JaPbx5Qg4+WbL7GJMmSfpAFUnxdXuOeTRQgZhAauo/QmncDkQ1Doe9cV/ZIWX18z
-         Nma4y8iNmrkm64rsnZmbtiA9AVPzK729a4uhrGfYFmr5TGOgGfaQNX66zrXvP46bdCHh
-         cme4SVs/Dt1RGYCT9nJ2y0HWLZDyk0yrjztC+aDoCSy7N2pRLvdvu7Ml3Cc0DmrkjFcs
-         8GkGGyU3+1kcBpCkVZKQYtBr2rOe7tFiNWiOl4gb2ZZ8bEsM2V4gIYKDvVrge3k0UB+i
-         BEGHCNBix3AE0Pr1ockO2EoadlIDlJy7BfEz11Q6z/8Ni8XVZQwnLlPDNv+hP2IZb5hb
-         SQog==
+        bh=0fREWHN2UQ1kl2XZ6OMZzGJJemz/P4M0H3yz7UyzV+A=;
+        b=QSscyCpFZNbbM6kyMW199uVthsV7aRgY+daSbfaJH7SmHUieDbJ3JqHGYU+FXCi55W
+         f1U84Y+nlWQhZvyaWVEDrbezdyNVKuByZpMdnvVDLCxc8hk6kvUnkAOekj8wFP94eZ6V
+         Fzzo3XG/40/WB0u4Rpu52uH0sb9kzmIJ7YWstAO9Q4/3YSeDi9jalDiGoLDOsB2OL9TF
+         s/Ar12W1+M2VcLYvQJrQT5CjtCtCMB7i9asQ4BKnWhBEWJA02RntWvh7DCbi2DnRxzsV
+         9U8YcPyUduEmxx3IRfq/xnrsfXhC/ppPJ7CNfcU8ZJk9CU8jBE1L08xZjjf4GKiGfj0u
+         ppnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GO2eKjxO1iedMdXK50/d7P4tpciSJOhld+mYv0gRRXc=;
-        b=jc3vSqDYdR8iBrNVvTHr/yBPumRQ/0gBWAPhQKtT+C8/JlqnIbXxQr4OirxW/zrRCl
-         aO8Sp5++dyq3ODuOqtb5EaYHhrtrObsUJTyWs53IHXQLsOLuDM0QWfc+J+1OaUKNt/4U
-         cjEcwhkn54p26FkT4k4c3yrdR2wH0Ba3MUmfUMBZGPd0VuMAEtXPF1950GazNdoHPAxq
-         YheUw4RY2M2yZmHKiSDvKQrSJZIZ7PKoMbNoLNUYPMP6H3NI5oFMLLzBZQkUr8Wj00ZY
-         xiMk4FXp3hPNv2v9JiZ1NkmccfCTBq1nVA0R/PJkaHjePUtS9uZgi/GhZeKPKM4QjiQQ
-         djKA==
-X-Gm-Message-State: AFqh2koJfcDioKrCcHeMt3Pup+l8nUe/x9KwtOT2Q1C0vOs3JeVp9zGq
-        LHxpPNrMmq17VBqJmAdp3CM6bw==
-X-Google-Smtp-Source: AMrXdXsGd5j2tSvSR09VtVGdaTSDX2UTM7mcUyv1SW5KP7xJAX77Ip6jhrpihEqLCIfvpX8xfJMZvw==
-X-Received: by 2002:a05:600c:538c:b0:3cf:6f4d:c259 with SMTP id hg12-20020a05600c538c00b003cf6f4dc259mr2655123wmb.39.1673955153043;
-        Tue, 17 Jan 2023 03:32:33 -0800 (PST)
+        bh=0fREWHN2UQ1kl2XZ6OMZzGJJemz/P4M0H3yz7UyzV+A=;
+        b=Kha/mzbRouDiiaUXKmis9Tzu+OBtN6t7QjOpmRzSePVa9p+tnnWNMBpCxKY+OdXZHs
+         0wUoosnbua4lAQCTkDu3l27CT+QhSIxOZxqVlZAIOr3lRhNt8MJdQK7iQ4kKRcsBvchA
+         hI/c7ufo8vZs2TZT5KYQzl2hfbj2UubnXSK4756e7RiT85f3p1Y6+P46Wsdg+Aj0wnrQ
+         jYGA+4p9Uoi7+MbnZYJcOpco1rWMES/dVnCM5Vnx2cG/bCoUoMJgRWXjk7diN/f9vxYm
+         IrZsEiBrxht5ZuI2MQKX9AH7IRg4LCHnZmuhULMXGAvirmphZ7l6We8Y+3uV1c5nbKWq
+         9D3A==
+X-Gm-Message-State: AFqh2krqk2RNiDb1IuMs3VGwt3y7rRI6+LJozOAB8BtLFrUkfl7A6GrI
+        xVZn7/6/IE39fk0KaTA/QvlS2w==
+X-Google-Smtp-Source: AMrXdXtVLG+lFxj/ILADCcRFl8jlKdWjcXBh4tuBystBmpfSjE2Lu+/jzWctDw6Y3TXUc20op7SLNw==
+X-Received: by 2002:a05:6000:248:b0:2bd:d4bd:581d with SMTP id m8-20020a056000024800b002bdd4bd581dmr10476975wrz.53.1673955282527;
+        Tue, 17 Jan 2023 03:34:42 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id he12-20020a05600c540c00b003d9ddc82450sm35745300wmb.45.2023.01.17.03.32.30
+        by smtp.gmail.com with ESMTPSA id n6-20020adfe786000000b002bdbde1d3absm18444072wrm.78.2023.01.17.03.34.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 03:32:32 -0800 (PST)
-Message-ID: <c3746492-b943-9bb8-9c5f-10c0bbd219c8@linaro.org>
-Date:   Tue, 17 Jan 2023 12:32:30 +0100
+        Tue, 17 Jan 2023 03:34:42 -0800 (PST)
+Message-ID: <aa5598ee-0dd1-caa7-c60d-5a409f039713@linaro.org>
+Date:   Tue, 17 Jan 2023 12:34:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v3 08/10] dt-bindings: sound: Add support for QMC audio
+Subject: Re: [PATCH v2 1/4] dt-bindings: mailbox: qcom: correct the list of
+ platforms using clocks
 Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230113103759.327698-1-herve.codina@bootlin.com>
- <20230113103759.327698-9-herve.codina@bootlin.com>
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230113090739.45805-1-dmitry.baryshkov@linaro.org>
+ <20230113090739.45805-2-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230113103759.327698-9-herve.codina@bootlin.com>
+In-Reply-To: <20230113090739.45805-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 11:37, Herve Codina wrote:
-> The QMC (QUICC mutichannel controller) is a controller
-> present in some PowerQUICC SoC such as MPC885.
-> The QMC audio is an ASoC component that uses the QMC
-> controller to transfer the audio data.
+On 13/01/2023 10:07, Dmitry Baryshkov wrote:
+> Only three platforms require `pll' and `aux' clocks: msm8916, msm8939
+> and qcs404. Correct the list of platforms in the corresponding clause.
 > 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Fixes: 0d17014e9189 ("dt-bindings: mailbox: Add binding for SDX55 APCS")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/mailbox/qcom,apcs-kpss-global.yaml          | 9 +--------
+>  1 file changed, 1 insertion(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+> index 943f9472ae10..b8a44ef0540f 100644
+> --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+> @@ -71,15 +71,8 @@ allOf:
+>          compatible:
+>            enum:
+>              - qcom,msm8916-apcs-kpss-global
+> -            - qcom,msm8994-apcs-kpss-global
+> -            - qcom,msm8996-apcs-hmss-global
+> -            - qcom,msm8998-apcs-hmss-global
+> +            - qcom,msm8939-apcs-kpss-global
+>              - qcom,qcs404-apcs-apps-global
+> -            - qcom,sc7180-apss-shared
+> -            - qcom,sdm660-apcs-hmss-global
+> -            - qcom,sdm845-apss-shared
+> -            - qcom,sm6125-apcs-hmss-global
+> -            - qcom,sm8150-apss-shared
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+And what in other case? Any clocks? They should be moved to their own if
+forbidding the clocks and clock-names.
 
 Best regards,
 Krzysztof
