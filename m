@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC6266DC09
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A75BE66DC06
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:14:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236738AbjAQLOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 06:14:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37168 "EHLO
+        id S236651AbjAQLOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 06:14:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236752AbjAQLOL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:14:11 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83BE92B091
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:14:09 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id q8so10137313wmo.5
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:14:09 -0800 (PST)
+        with ESMTP id S236245AbjAQLOD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:14:03 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5121022DF1
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:14:02 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id j17so3412253wms.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:14:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0svjkQXeqPPjfTGo80xgwbPJSj0KECAWp6boTThWzEc=;
-        b=zADoNCw2dyfUnX7gsWHTrrB4KC6ecW1Z+gdd5K1wA3H6Ozv4mwBxOsDhZVCoTMTpU9
-         /U25CswXBmlA0dDur+rJn1L4/CKv4YSAiHBJshfJXUXI0U3rfPAQpjYO/OlsWHIwEgZw
-         sqi0tZ/XGGkeYKu+NaYmmEdyEzKNwP02G0wilSx3rGqyRMYJizpK7tMVvjGpRm3jfdkj
-         W9Hvg3Bk4Dux/cG/Zus5x2M295od+F1vyJuGdWbSjBM6hEYyrGM5CUUh8GVAk23pBezb
-         nB0H1R2aPxYWG5jI6N1SWyKTPHIpjk7zuQDER9EZIhxidNQFrC2EAvdEUcuecYE1ICRH
-         BEqg==
+        bh=5c6PQv5GDgoyaWnn5uofPaSB861bzKOXtS7P1VBEJ/U=;
+        b=Nk/wdM/1VqUObTxcVlYCjIrEQiOGg01+NejeWKj3A0J0beqUDjQppB8tjx7tBpvlkr
+         rngzVdxAPrEZo51OICubrBRkuIyx58Wu8ssiLWJOMxUNByovxd8mQ/49jpjupLAmQfjC
+         iOQRZk1hPaV+HJYW4HJZVjt2uIhEHcowGRcV3lieECu5lsvrByPBb6Vv4ioKXwdE4LrW
+         NoFPu0Gjt2z3g12+u59NAC60TaBR6mMknCF7h7nA4W29YuIC6+8mBNc0dV39+ZO6v9OE
+         tmkSXoli1xeWAZOBR9Xj1AK3BKtirK/oFhFfttnofHpq2paqhlgdPS6ya2eVrHNf7WKb
+         dftw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0svjkQXeqPPjfTGo80xgwbPJSj0KECAWp6boTThWzEc=;
-        b=OXwflan4wFXdqD8qJZzIPmFFXnvWT4mPgbi0zcTu9nsBWHo0ZmVhyGncHzRBLJdM3+
-         mwqVzZWqZgGCHMHG42wAM4B3bonzlteBqh1RvXQveXZno6NULXmxo4BaobXUE/sNlHiQ
-         wyIRm8QUdZUDY8xCxojVazPHwFUXYjdoFDL0iBfNvEmL0IVVnkgCkwmQ0l3mtWeztwoH
-         DA3G6T1cnf+nsdcYMc73U7IMcAmXEvv97+mTxoXsfdha6Upxf6YjH03+1q/Ht4Vvhhwb
-         BwCfkKyYlUcBH4a7nJqJZOHnJ4NcaEJ82UvBqziEaTA08IuI0yfez/+sh2v4Xf+GXncd
-         zD4g==
-X-Gm-Message-State: AFqh2kozttGAaAIwkpJfAErME/CUptVmm7006SOVaQKfP8W1FmveMM73
-        X7/FWQ66bhkZSDxmtZLcHCkVwQ==
-X-Google-Smtp-Source: AMrXdXt0mz59bBj1Vmfnj5s25BOFWemhZ4FDzyq13LuJ35KBy2jXyRhrLxPeGcfx3mADH4PuLyagug==
-X-Received: by 2002:a05:600c:34d5:b0:3d9:e9fa:657d with SMTP id d21-20020a05600c34d500b003d9e9fa657dmr11297281wmq.22.1673954049153;
-        Tue, 17 Jan 2023 03:14:09 -0800 (PST)
+        bh=5c6PQv5GDgoyaWnn5uofPaSB861bzKOXtS7P1VBEJ/U=;
+        b=I1K9AstPA9FOK4bYrGs9pQJtzmS9l5rhLRIvBWrPM1tIgCZSA6tpL94BOG3U+qfp5e
+         pwUEWGHeTky4Cwshp2NU1Oh0b0w+ugP70Wdl4u8ikFAscbrjGGeE2lKbW/NGyWLU91zS
+         D2SNUbTA7vvBtFQz7+ty0qdOT/JrNCE1Z8aKittxBVk6QA+d1p1YvG4TEakkGiveAFGY
+         8X1w3LGHvWwTcp6mblIw706wAYzCe9nYC4TPF6c1yYqVDHeyLaFgRr4O6lDF0tQup9vf
+         EBsUrsM/dM/957uwzTZOQgNPe8FfjsS5SfLKZCnDygBkk88YRLyllAv70Vl0RYhwIWRJ
+         0eFA==
+X-Gm-Message-State: AFqh2krt1Hm8wdJIghmbjQfwIUmTqNUjeg73xNmL03+iRXpwYIqvaBYT
+        YvC7SgRobeqYaUwTcQbwFE95Rw==
+X-Google-Smtp-Source: AMrXdXuJrE/xyfiC0e2ujkxah8GjLYIzyARgUfH5DW/c0SrRHy2YVO0pgerg1muM2XJiTBtv7/MUcA==
+X-Received: by 2002:a05:600c:1e08:b0:3da:f443:9f0f with SMTP id ay8-20020a05600c1e0800b003daf4439f0fmr2682284wmb.18.1673954040940;
+        Tue, 17 Jan 2023 03:14:00 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id hg9-20020a05600c538900b003cfa622a18asm40244158wmb.3.2023.01.17.03.13.35
+        by smtp.gmail.com with ESMTPSA id h8-20020a05600c350800b003d990372dd5sm46086006wmq.20.2023.01.17.03.13.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 03:13:36 -0800 (PST)
-Message-ID: <489fa3b4-7659-d916-c467-4f418d8e0eb3@linaro.org>
-Date:   Tue, 17 Jan 2023 12:13:34 +0100
+        Tue, 17 Jan 2023 03:14:00 -0800 (PST)
+Message-ID: <d1d2ca7c-bdae-9c68-398a-8efa151dcdd0@linaro.org>
+Date:   Tue, 17 Jan 2023 12:13:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH V4 3/5] dt-bindings: usb: tegra-xudc: Add Tegra234 XUDC
- support
+Subject: Re: [RESEND PATCH V4 1/5] dt-bindings: usb: tegra-xudc: Add
+ dma-coherent for Tegra194
 Content-Language: en-US
 To:     Jon Hunter <jonathanh@nvidia.com>,
         Thierry Reding <thierry.reding@gmail.com>,
@@ -63,11 +63,11 @@ To:     Jon Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
-References: <20230116145452.91442-1-jonathanh@nvidia.com>
- <20230116145452.91442-4-jonathanh@nvidia.com>
+        linux-tegra@vger.kernel.org
+References: <20230116151917.94193-1-jonathanh@nvidia.com>
+ <20230116151917.94193-2-jonathanh@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230116145452.91442-4-jonathanh@nvidia.com>
+In-Reply-To: <20230116151917.94193-2-jonathanh@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,15 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 15:54, Jon Hunter wrote:
-> From: Wayne Chang <waynec@nvidia.com>
+On 16/01/2023 16:19, Jon Hunter wrote:
+> DMA operations for XUSB device controller are coherent for Tegra194 and
+> so update the device-tree binding to add this property.
 > 
-> Extend the Tegra XUSB controller device (XUDC) tree binding with
-> Tegra234 support.
+> Fixes: 394b012a422d ("dt-bindings: usb: tegra-xudc: Add Tegra194 XUSB controller support")
 > 
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+> V4: This is new in this version
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Same comments as before resend.
 
 Best regards,
 Krzysztof
