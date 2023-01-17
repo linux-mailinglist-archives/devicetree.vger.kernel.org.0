@@ -2,225 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7917266E04A
+	by mail.lfdr.de (Postfix) with ESMTP id C3E4C66E04B
 	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:21:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229830AbjAQOU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 09:20:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42580 "EHLO
+        id S231950AbjAQOVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 09:21:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232034AbjAQOUk (ORCPT
+        with ESMTP id S232030AbjAQOUk (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:20:40 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBBD23C2B3
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:20:39 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so25930306wmb.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:20:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SHwaAi3MrYeGkWyEPhqgh3sqGyG41qhb1u3JYra9iJY=;
-        b=bXjhyKdXoS04wGj1H25B4fGWOHSmKpeX1qELP9FbQg5yVyrtbZpQmNsqsZMfzPN+a5
-         ZIx0a89d5A+dZUG3OIFtmme8Xa7zhUalR8m8BlXe9EIEe7l1ZcViDIa5fLc49SIJutty
-         joj2JHHUPEjgOGy98/IyxDH+pGzhWpFoU3xcMkqUHgrq1hxbymBh7WcJZcU/zqRYHqU7
-         GpxYG8o6Zk4PF8IYrHHhLXjrBf8OhpjznGN3MN1rHREsokwUfs1olTb2/bZ/GFyzaIg1
-         3quiLmOWz3ZOhZ5MzsK1WAKPUcK2QgNsJnXU9ciHj+Ua62+BOPFvFGSrZjLnZGW1RnVo
-         WB2g==
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 851003C284;
+        Tue, 17 Jan 2023 06:20:39 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id d188so14836541oia.3;
+        Tue, 17 Jan 2023 06:20:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SHwaAi3MrYeGkWyEPhqgh3sqGyG41qhb1u3JYra9iJY=;
-        b=uKMS1zh+cdxGHUxBGLzLzfHP4bJKaHoEg8oTOaTzEQU5CrSBDsWEH6r7LOvvqFy1EX
-         F+LyLvLU16AjcEgNtsZH28iWjsqH4YVhvvYIbOQ1J40N5hzyfxy5CV/EcdirKyFDhsca
-         So93lZrwGxOgcU3+lc6YJl33tzMGC5TJzver0jDRPNsFIvxP7HGtyARH5Xh36LFHchA9
-         Fw+x+VLPraLcDou71c7QoKguxXNiKfAxWfbzm3s48mq2GRhFiIcbJ+5lpKHUPQc039v3
-         eS/lT2pBg81qF/51EOq0ZVt7Mri0OozUudbZB24pDQI+UecPDtm6nmIL8cEV0Fa8s4Dl
-         hzRg==
-X-Gm-Message-State: AFqh2krcbPG0kZ5/y/O7XgxBu2GRSWKs4NKjttqtwvES5KQSUeNrZqbG
-        9lBM5uux3jX1WlzdBIoLAyBNPQ==
-X-Google-Smtp-Source: AMrXdXtAcw/ucFR8KnIEUAUC7eqaXP/ABntER8vu+o1Y51c4dMMVV3V0b4ZogfovwQBpbYmZpdBKOg==
-X-Received: by 2002:a7b:cd11:0:b0:3d9:6c7d:c9ee with SMTP id f17-20020a7bcd11000000b003d96c7dc9eemr11894181wmj.25.1673965238367;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MH3H3V+eBq5T/xfJKkVDESQ+piPgSdjZmzNrx2AMZm8=;
+        b=AlzWW2iNvLsJHXgHAH1FnRtV+uMxKFvPu4kQ8Z23+6VcmiYOWrLts1aXUdoN8dZCT2
+         /GppHN/M3pY6BWnEAlkL/uZg/JGSmvBxvf7SzlOJBRVzxehReoBayHVUBye34ezBgPDl
+         HYd0vmDovahmbgAcxYx81c8sqofVU/SpKO3q+qBaSCERBWMbrUPbSNOdUyuosF/0ewCA
+         TOYFd3YHDKRt0CQ1uqZEl9SWyLJ6ut86GJDyYg5okTJtOrE+mRwYFtyIfDS5XjAa+twX
+         9J0HxKXPTxrstOcd2SjWTh6In+II6HJ76pCG+c5H9eOhDMlcSekW+t831oEepSCBdjZF
+         SCvg==
+X-Gm-Message-State: AFqh2kp0OUidjQM9FfPWVdA/gGRrBNb+v3TSVotZ2Ffa2ItPY8uSOdbn
+        oz/AAi5Ga6ZyPHQ0AZEWyz99X6gjfA==
+X-Google-Smtp-Source: AMrXdXu+6+mQmD5rSN8+f5f0xrTmZPjX86EHAvtAq4lpWrtw9TRfKcOHMi7OrRnzy4HW7S2MI5nnzg==
+X-Received: by 2002:a05:6808:641:b0:360:bc5d:2ed2 with SMTP id z1-20020a056808064100b00360bc5d2ed2mr1643776oih.53.1673965238642;
         Tue, 17 Jan 2023 06:20:38 -0800 (PST)
-Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id i8-20020a05600c354800b003cf894dbc4fsm40443133wmq.25.2023.01.17.06.20.37
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t17-20020a0568080b3100b0035bd1909a66sm7271237oij.57.2023.01.17.06.20.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 06:20:37 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Johan Hovold <johan@kernel.org>
-Subject: [PATCH v4 6/6] phy: qcom-qmp-ufs: Add SM8550 support
-Date:   Tue, 17 Jan 2023 16:20:15 +0200
-Message-Id: <20230117142015.509675-7-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230117142015.509675-1-abel.vesa@linaro.org>
-References: <20230117142015.509675-1-abel.vesa@linaro.org>
+        Tue, 17 Jan 2023 06:20:38 -0800 (PST)
+Received: (nullmailer pid 3008024 invoked by uid 1000);
+        Tue, 17 Jan 2023 14:20:37 -0000
+Date:   Tue, 17 Jan 2023 08:20:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Saurabh Sengar <ssengar@linux.microsoft.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, kys@microsoft.com,
+        haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
+        ssengar@microsoft.com
+Subject: Re: [PATCH 3/4] Drivers: hv: vmbus: Device Tree support
+Message-ID: <20230117142037.GA2995150-robh@kernel.org>
+References: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
+ <1673887688-19151-4-git-send-email-ssengar@linux.microsoft.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1673887688-19151-4-git-send-email-ssengar@linux.microsoft.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SM8550 specific register layout and table configs.
+On Mon, Jan 16, 2023 at 08:48:07AM -0800, Saurabh Sengar wrote:
+> Update the driver to use vmbus_root_dev device instead of acpi_device,
+> which can be assigned to either ACPI or OF device, making VMBus agnostic
+> to whether the device is using ACPI or device tree.
+> 
+> When built for OF, the driver registers as a platform driver and includes
+> a 'of' probe function that is alternate to the existing ACPI registration
+> and probe when built for ACPI. The VMBus driver maintains its registration
+> as the bus that other VMBus devices plug into, regardless of whether it is
+> initially probed and initialized via ACPI or OF.
+> 
+> This change also introduce vmbus_remove_mmio function, which helps removing
+> the duplicate code for mmio cleanup between APIC and OF driver.
+> 
+> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> ---
+>  drivers/hv/vmbus_drv.c | 190 ++++++++++++++++++++++++++++++++++++++++---------
+>  1 file changed, 155 insertions(+), 35 deletions(-)
+> 
+> diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
+> index 1901556..894b360 100644
+> --- a/drivers/hv/vmbus_drv.c
+> +++ b/drivers/hv/vmbus_drv.c
+> @@ -11,11 +11,13 @@
+>  
+>  #include <linux/init.h>
+>  #include <linux/module.h>
+> -#include <linux/device.h>
+> +#include <linux/platform_device.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/sysctl.h>
+>  #include <linux/slab.h>
+>  #include <linux/acpi.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+>  #include <linux/completion.h>
+>  #include <linux/hyperv.h>
+>  #include <linux/kernel_stat.h>
+> @@ -44,14 +46,14 @@ struct vmbus_dynid {
+>  	struct hv_vmbus_device_id id;
+>  };
+>  
+> -static struct acpi_device  *hv_acpi_dev;
+> -
+>  static int hyperv_cpuhp_online;
+>  
+>  static void *hv_panic_page;
+>  
+>  static long __percpu *vmbus_evt;
+>  
+> +static struct device *vmbus_root_dev;
+> +
+>  /* Values parsed from ACPI DSDT */
+>  int vmbus_irq;
+>  int vmbus_interrupt;
+> @@ -136,17 +138,13 @@ static int hv_die_panic_notify_crash(struct notifier_block *self,
+>  	return NOTIFY_DONE;
+>  }
+>  
+> -static const char *fb_mmio_name = "fb_range";
+>  static struct resource *fb_mmio;
+>  static struct resource *hyperv_mmio;
+>  static DEFINE_MUTEX(hyperv_mmio_lock);
+>  
+>  static int vmbus_exists(void)
+>  {
+> -	if (hv_acpi_dev == NULL)
+> -		return -ENODEV;
+> -
+> -	return 0;
+> +	return vmbus_root_dev ? 0 : -ENODEV;
+>  }
+>  
+>  static u8 channel_monitor_group(const struct vmbus_channel *channel)
+> @@ -932,7 +930,7 @@ static int vmbus_dma_configure(struct device *child_device)
+>  	 * On x86/x64 coherence is assumed and these calls have no effect.
+>  	 */
+>  	hv_setup_dma_ops(child_device,
+> -		device_get_dma_attr(&hv_acpi_dev->dev) == DEV_DMA_COHERENT);
+> +		device_get_dma_attr(vmbus_root_dev) == DEV_DMA_COHERENT);
+>  	return 0;
+>  }
+>  
+> @@ -2090,7 +2088,7 @@ int vmbus_device_register(struct hv_device *child_device_obj)
+>  		     &child_device_obj->channel->offermsg.offer.if_instance);
+>  
+>  	child_device_obj->device.bus = &hv_bus;
+> -	child_device_obj->device.parent = &hv_acpi_dev->dev;
+> +	child_device_obj->device.parent = vmbus_root_dev;
+>  	child_device_obj->device.release = vmbus_device_release;
+>  
+>  	child_device_obj->device.dma_parms = &child_device_obj->dma_parms;
+> @@ -2151,7 +2149,26 @@ void vmbus_device_unregister(struct hv_device *device_obj)
+>  	device_unregister(&device_obj->device);
+>  }
+>  
+> +static void vmbus_remove_mmio(void)
+> +{
+> +	struct resource *cur_res;
+> +	struct resource *next_res;
+> +
+> +	if (hyperv_mmio) {
+> +		if (fb_mmio) {
+> +			__release_region(hyperv_mmio, fb_mmio->start,
+> +					 resource_size(fb_mmio));
+> +			fb_mmio = NULL;
+> +		}
+> +
+> +		for (cur_res = hyperv_mmio; cur_res; cur_res = next_res) {
+> +			next_res = cur_res->sibling;
+> +			kfree(cur_res);
+> +		}
+> +	}
+> +}
+>  
+> +#ifdef CONFIG_ACPI
+>  /*
+>   * VMBUS is an acpi enumerated device. Get the information we
+>   * need from DSDT.
+> @@ -2264,21 +2281,7 @@ static acpi_status vmbus_walk_resources(struct acpi_resource *res, void *ctx)
+>  
+>  static void vmbus_acpi_remove(struct acpi_device *device)
+>  {
+> -	struct resource *cur_res;
+> -	struct resource *next_res;
+> -
+> -	if (hyperv_mmio) {
+> -		if (fb_mmio) {
+> -			__release_region(hyperv_mmio, fb_mmio->start,
+> -					 resource_size(fb_mmio));
+> -			fb_mmio = NULL;
+> -		}
+> -
+> -		for (cur_res = hyperv_mmio; cur_res; cur_res = next_res) {
+> -			next_res = cur_res->sibling;
+> -			kfree(cur_res);
+> -		}
+> -	}
+> +	vmbus_remove_mmio();
+>  }
+>  
+>  static void vmbus_reserve_fb(void)
+> @@ -2319,8 +2322,9 @@ static void vmbus_reserve_fb(void)
+>  	 * reserving a larger area and make it smaller until it succeeds.
+>  	 */
+>  	for (; !fb_mmio && (size >= 0x100000); size >>= 1)
+> -		fb_mmio = __request_region(hyperv_mmio, start, size, fb_mmio_name, 0);
+> +		fb_mmio = __request_region(hyperv_mmio, start, size, "fb_range", 0);
+>  }
+> +#endif /* CONFIG_ACPI */
+>  
+>  /**
+>   * vmbus_allocate_mmio() - Pick a memory-mapped I/O range.
+> @@ -2441,13 +2445,14 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t size)
+>  }
+>  EXPORT_SYMBOL_GPL(vmbus_free_mmio);
+>  
+> +#ifdef CONFIG_ACPI
+>  static int vmbus_acpi_add(struct acpi_device *device)
+>  {
+>  	acpi_status result;
+>  	int ret_val = -ENODEV;
+>  	struct acpi_device *ancestor;
+>  
+> -	hv_acpi_dev = device;
+> +	vmbus_root_dev = &device->dev;
+>  
+>  	/*
+>  	 * Older versions of Hyper-V for ARM64 fail to include the _CCA
+> @@ -2492,6 +2497,72 @@ static int vmbus_acpi_add(struct acpi_device *device)
+>  		vmbus_acpi_remove(device);
+>  	return ret_val;
+>  }
+> +#endif
+> +
+> +#ifdef CONFIG_OF
+> +static int vmbus_of_driver_probe(struct platform_device *dev)
+> +{
+> +	struct resource **cur_res = &hyperv_mmio;
+> +	struct device_node *np;
+> +	const __be32 *ranges;
+> +	u32 nr_addr, nr_size, nr_parent_addr_cells, nr_ranges;
+> +	u32 range_len, range_size;
+> +	int i;
+> +
+> +	vmbus_root_dev = &dev->dev;
+> +	np = vmbus_root_dev->of_node;
+> +
+> +	if (of_property_read_u32(np, "#address-cells", &nr_addr))
+> +		return -ENOENT;
+> +	if (of_property_read_u32(np, "#size-cells", &nr_size))
+> +		return -ENOENT;
+> +	nr_parent_addr_cells = of_n_addr_cells(np);
+> +
+> +	if (nr_parent_addr_cells != 2 || nr_addr != 2 || nr_size != 1) {
+> +		pr_err("Address format is not supported\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ranges = of_get_property(np, "ranges", &range_len);
+> +	if (!ranges)
+> +		return -ENOENT;
+> +
+> +	range_size = nr_parent_addr_cells + nr_addr + nr_size; // in cells
+> +	nr_ranges = range_len / sizeof(__be32) / range_size;
+> +
+> +	for (i = 0; i < nr_ranges; ++i, ranges += range_size) {
+> +		struct resource *res;
+> +		/*
+> +		 * The first u64 in the ranges description isn't used currently.
+> +		 * u64 _ = of_read_number(ranges, nr_parent_addr_cells);
+> +		 */
+> +		u64 start = of_read_number(ranges + nr_parent_addr_cells, nr_addr);
+> +		u32 len = of_read_number(ranges + nr_parent_addr_cells + nr_addr, nr_size);
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 96 +++++++++++++++++++++++++
- 1 file changed, 96 insertions(+)
+These are all standard properties, so you shouldn't be parsing them 
+yourself. Likely you are doing it wrong. For example, where do you 
+handle address translations in parent nodes?
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-index f142235432e1..2a300d9919e9 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-@@ -103,6 +103,13 @@ static const unsigned int ufsphy_v5_regs_layout[QPHY_LAYOUT_SIZE] = {
- 	[QPHY_PCS_POWER_DOWN_CONTROL]	= QPHY_V5_PCS_UFS_POWER_DOWN_CONTROL,
- };
- 
-+static const unsigned int ufsphy_v6_regs_layout[QPHY_LAYOUT_SIZE] = {
-+	[QPHY_START_CTRL]		= QPHY_V6_PCS_UFS_PHY_START,
-+	[QPHY_PCS_READY_STATUS]		= QPHY_V6_PCS_UFS_READY_STATUS,
-+	[QPHY_SW_RESET]			= QPHY_V6_PCS_UFS_SW_RESET,
-+	[QPHY_PCS_POWER_DOWN_CONTROL]	= QPHY_V6_PCS_UFS_POWER_DOWN_CONTROL,
-+};
-+
- static const struct qmp_phy_init_tbl msm8996_ufsphy_serdes[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_COM_CMN_CONFIG, 0x0e),
- 	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0xd7),
-@@ -607,6 +614,61 @@ static const struct qmp_phy_init_tbl sm8350_ufsphy_g4_pcs[] = {
- 	QMP_PHY_INIT_CFG(QPHY_V5_PCS_UFS_BIST_FIXED_PAT_CTRL, 0x0a),
- };
- 
-+static const struct qmp_phy_init_tbl sm8550_ufsphy_serdes[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_EN_SEL, 0xd9),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_CONFIG_1, 0x16),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x11),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_HS_SWITCH_SEL_1, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_EN, 0x01),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_MAP, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_IVCO, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_INITVAL2, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x41),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE0, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE0, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE0, 0x14),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x4c),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE0, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE0, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE0, 0x14),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0x99),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x07),
-+};
-+
-+static const struct qmp_phy_init_tbl sm8550_ufsphy_tx[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_TX_LANE_MODE_1, 0x05),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_TX_RES_CODE_LANE_OFFSET_TX, 0x07),
-+};
-+
-+static const struct qmp_phy_init_tbl sm8550_ufsphy_rx[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_UCDR_FO_GAIN_RATE2, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_UCDR_FO_GAIN_RATE4, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_VGA_CAL_MAN_VAL, 0x0e),
-+
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B0, 0xc2),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B1, 0xc2),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B3, 0x1a),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B6, 0x60),
-+
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE2_B3, 0x9e),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE2_B6, 0x60),
-+
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B3, 0x9e),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B4, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B5, 0x36),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B8, 0x02),
-+};
-+
-+static const struct qmp_phy_init_tbl sm8550_ufsphy_pcs[] = {
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_SIGDET_CTRL2, 0x69),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0f),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_PLL_CNTL, 0x2b),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
-+};
-+
- struct qmp_ufs_offsets {
- 	u16 serdes;
- 	u16 pcs;
-@@ -729,6 +791,15 @@ static const struct qmp_ufs_offsets qmp_ufs_offsets_v5 = {
- 	.rx2		= 0xa00,
- };
- 
-+static const struct qmp_ufs_offsets qmp_ufs_offsets_v6 = {
-+	.serdes		= 0,
-+	.pcs		= 0x0400,
-+	.tx		= 0x1000,
-+	.rx		= 0x1200,
-+	.tx2		= 0x1800,
-+	.rx2		= 0x1a00,
-+};
-+
- static const struct qmp_phy_cfg msm8996_ufsphy_cfg = {
- 	.lanes			= 1,
- 
-@@ -968,6 +1039,28 @@ static const struct qmp_phy_cfg sm8450_ufsphy_cfg = {
- 	.regs			= ufsphy_v5_regs_layout,
- };
- 
-+static const struct qmp_phy_cfg sm8550_ufsphy_cfg = {
-+	.lanes			= 2,
-+
-+	.offsets		= &qmp_ufs_offsets_v6,
-+
-+	.tbls = {
-+		.serdes		= sm8550_ufsphy_serdes,
-+		.serdes_num	= ARRAY_SIZE(sm8550_ufsphy_serdes),
-+		.tx		= sm8550_ufsphy_tx,
-+		.tx_num		= ARRAY_SIZE(sm8550_ufsphy_tx),
-+		.rx		= sm8550_ufsphy_rx,
-+		.rx_num		= ARRAY_SIZE(sm8550_ufsphy_rx),
-+		.pcs		= sm8550_ufsphy_pcs,
-+		.pcs_num	= ARRAY_SIZE(sm8550_ufsphy_pcs),
-+	},
-+	.clk_list		= sdm845_ufs_phy_clk_l,
-+	.num_clks		= ARRAY_SIZE(sdm845_ufs_phy_clk_l),
-+	.vreg_list		= qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.regs			= ufsphy_v6_regs_layout,
-+};
-+
- static void qmp_ufs_configure_lane(void __iomem *base,
- 					const struct qmp_phy_init_tbl tbl[],
- 					int num,
-@@ -1479,6 +1572,9 @@ static const struct of_device_id qmp_ufs_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,sm8450-qmp-ufs-phy",
- 		.data = &sm8450_ufsphy_cfg,
-+	}, {
-+		.compatible = "qcom,sm8550-qmp-ufs-phy",
-+		.data = &sm8550_ufsphy_cfg,
- 	},
- 	{ },
- };
--- 
-2.34.1
+Use or add to what is in drivers/of/address.c.
 
+
+> +		pr_debug("VMBUS DeviceTree MMIO region start %#llx, %#x\n", start, len);
+> +
+> +		res = kzalloc(sizeof(*res), GFP_ATOMIC);
+> +		if (!res)
+> +			return -ENOMEM;
+> +
+> +		res->name = "hyperv mmio";
+> +		res->flags = IORESOURCE_MEM | IORESOURCE_MEM_64;
+> +		res->start = start;
+> +		res->end = start + len;
+> +
+> +		*cur_res = res;
+> +		cur_res = &res->sibling;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int vmbus_of_driver_remove(struct platform_device *dev)
+> +{
+> +	vmbus_remove_mmio();
+> +	return 0;
+> +}
+> +#endif
+>  
+>  #ifdef CONFIG_PM_SLEEP
+>  static int vmbus_bus_suspend(struct device *dev)
+> @@ -2630,6 +2701,9 @@ static int vmbus_bus_resume(struct device *dev)
+>  #define vmbus_bus_resume NULL
+>  #endif /* CONFIG_PM_SLEEP */
+>  
+> +#define DRV_NAME "vmbus"
+> +
+> +#ifdef CONFIG_ACPI
+>  static const struct acpi_device_id vmbus_acpi_device_ids[] = {
+>  	{"VMBUS", 0},
+>  	{"VMBus", 0},
+> @@ -2659,7 +2733,7 @@ static int vmbus_bus_resume(struct device *dev)
+>  };
+>  
+>  static struct acpi_driver vmbus_acpi_driver = {
+> -	.name = "vmbus",
+> +	.name = DRV_NAME,
+>  	.ids = vmbus_acpi_device_ids,
+>  	.ops = {
+>  		.add = vmbus_acpi_add,
+> @@ -2669,6 +2743,7 @@ static int vmbus_bus_resume(struct device *dev)
+>  	.drv.probe_type = PROBE_FORCE_SYNCHRONOUS,
+>  };
+>  
+> +#endif
+>  static void hv_kexec_handler(void)
+>  {
+>  	hv_stimer_global_cleanup();
+> @@ -2737,7 +2812,32 @@ static void hv_synic_resume(void)
+>  	.resume = hv_synic_resume,
+>  };
+>  
+> -static int __init hv_acpi_init(void)
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id vmbus_of_match[] = {
+> +	{
+> +		.name = "msft,vmbus",
+> +		.compatible = "msft,vmbus",
+> +		.data = NULL
+> +	},
+> +	{
+> +		/* sentinel */
+> +	},
+> +};
+> +MODULE_DEVICE_TABLE(of, vmbus_of_match);
+> +
+> +static struct platform_driver vmbus_platform_driver = {
+> +	.probe = vmbus_of_driver_probe,
+> +	.remove = vmbus_of_driver_remove,
+> +	.driver = {
+> +		.name = DRV_NAME,
+> +		.of_match_table = of_match_ptr(vmbus_of_match),
+> +		.pm = &vmbus_pm,
+> +		.bus = &hv_bus,
+> +	}
+> +};
+> +#endif
+> +
+> +static int __init vmbus_init(void)
+>  {
+>  	int ret;
+>  
+> @@ -2747,18 +2847,27 @@ static int __init hv_acpi_init(void)
+>  	if (hv_root_partition && !hv_nested)
+>  		return 0;
+>  
+> +#ifdef CONFIG_ACPI
+
+Use 'if (IS_ENABLED(CONFIG_ACPI))' here and anywhere else you can.
+
+Rob
