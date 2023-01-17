@@ -2,183 +2,403 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A8A266E15A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:55:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89FEA66E15E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:55:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbjAQOzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 09:55:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37866 "EHLO
+        id S232122AbjAQOzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 09:55:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230219AbjAQOzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:55:24 -0500
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A41793CE05;
-        Tue, 17 Jan 2023 06:55:23 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 643981FF3B;
-        Tue, 17 Jan 2023 14:55:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1673967322; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=7zn+qbPC9I/AxsnszqwMEG/nee6e1k7IdY2WL8XPEkE=;
-        b=Ac7lxLdRIZz8VvRyMe7Pur7EIetFqX8gasSKI3fnp2JauUYCr3XROmw6Etg5GbZ53C3taq
-        aKANSNEVI2VM3sZUe97tXvDz2rVUjmHO+nm+HTJwewWKV5lp5UM2fqIf/pjVto72W5HHtH
-        7vYIy8av189lvJniHskekfRCBh5lX0U=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1673967322;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=7zn+qbPC9I/AxsnszqwMEG/nee6e1k7IdY2WL8XPEkE=;
-        b=hwm8dx7nsGQpvezCrPvur7s28NvbH1dqZWIb1SzORDYemMo2ka06G1oC1/6tzfTPN6nnG0
-        wZsRiqjm1ZlYesAA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 356011390C;
-        Tue, 17 Jan 2023 14:55:22 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id GqX8C9q2xmPtOQAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Tue, 17 Jan 2023 14:55:22 +0000
-Message-ID: <12cff1b1-b8dc-7fb4-2228-8af4b30c09c5@suse.de>
-Date:   Tue, 17 Jan 2023 15:55:21 +0100
+        with ESMTP id S230219AbjAQOze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:55:34 -0500
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 102543E62B;
+        Tue, 17 Jan 2023 06:55:32 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-15f64f2791dso1889995fac.7;
+        Tue, 17 Jan 2023 06:55:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r0xOPUwMGbHKwlz1eX+ZfzIFwn/1MAHYgP6guftK2G0=;
+        b=QsmuofTh3tL6pNnLGIlkEw0QvnnBuTtu77jvG0AJmRrq3CdRtBCU0LEZ8btw0eJz7b
+         +lzlAhyGb/1qWGKWeo+HfbzqZelrZT7QStCVepLvwk7YMACAiHsAqhWvjxembfvYG+qH
+         59cC+Yuhr3L7Yz1KIWN+DsgeiYgeq66fpcciMugUMYoYe6nFyAmL2CIN7RUjxwx0sRsc
+         sYuBxaCB8IJe8HKnpjhjIXTsCYoo7Stuws3Qg/vJ7eqMcGNGE0F+lgWugrp1+Q9OJ1gX
+         kod1mfB2IjoURiLzzTkgr0go0b0zBDc3bH8zP01uon/3AaXj6rdNuyoRZW1anmXXXo5H
+         M2ww==
+X-Gm-Message-State: AFqh2krxanjSKePbknml8NCAnkReyKQkrKrO2Xg90bm19zLgmPUO+OJl
+        TXS/6ppTpdwb321b32CfGQ==
+X-Google-Smtp-Source: AMrXdXsNUJ00dTOKvt2jfPMH4Ze0uTp6cmxdG4fza3JfdEkyhCZe9BD6Z//VMQY6JmDD12zrOOWqFg==
+X-Received: by 2002:a05:6870:2f02:b0:15f:3213:dfc6 with SMTP id qj2-20020a0568702f0200b0015f3213dfc6mr1901825oab.35.1673967331153;
+        Tue, 17 Jan 2023 06:55:31 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id g4-20020a056870d20400b0013ae5246449sm16348572oac.22.2023.01.17.06.55.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 06:55:30 -0800 (PST)
+Received: (nullmailer pid 3058299 invoked by uid 1000);
+        Tue, 17 Jan 2023 14:55:29 -0000
+Date:   Tue, 17 Jan 2023 08:55:29 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Li Yang <leoyang.li@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
+ controller
+Message-ID: <20230117145529.GA3044055-robh@kernel.org>
+References: <20230113103759.327698-1-herve.codina@bootlin.com>
+ <20230113103759.327698-2-herve.codina@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 8/8] arm64: tegra: Add simple framebuffer on Jetson
- Xavier NX
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@redhat.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221117184039.2291937-1-thierry.reding@gmail.com>
- <20221117184039.2291937-9-thierry.reding@gmail.com>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20221117184039.2291937-9-thierry.reding@gmail.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------JdpoF82CkkDZeNdPqNF054Kw"
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230113103759.327698-2-herve.codina@bootlin.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------JdpoF82CkkDZeNdPqNF054Kw
-Content-Type: multipart/mixed; boundary="------------7ToGNKb16hhOGsfc7HUcQvvk";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Thierry Reding <thierry.reding@gmail.com>,
- David Airlie <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
-Cc: Jon Hunter <jonathanh@nvidia.com>, Robin Murphy <robin.murphy@arm.com>,
- dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- devicetree@vger.kernel.org
-Message-ID: <12cff1b1-b8dc-7fb4-2228-8af4b30c09c5@suse.de>
-Subject: Re: [PATCH v3 8/8] arm64: tegra: Add simple framebuffer on Jetson
- Xavier NX
-References: <20221117184039.2291937-1-thierry.reding@gmail.com>
- <20221117184039.2291937-9-thierry.reding@gmail.com>
-In-Reply-To: <20221117184039.2291937-9-thierry.reding@gmail.com>
+On Fri, Jan 13, 2023 at 11:37:50AM +0100, Herve Codina wrote:
+> Add support for the time slot assigner (TSA)
+> available in some PowerQUICC SoC such as MPC885
+> or MPC866.
 
---------------7ToGNKb16hhOGsfc7HUcQvvk
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+An odd line wrap length... 
 
-SGkNCg0KQW0gMTcuMTEuMjIgdW0gMTk6NDAgc2NocmllYiBUaGllcnJ5IFJlZGluZzoNCj4g
-RnJvbTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4NCj4gDQo+IEFkZCB0
-aGUgZnJhbWVidWZmZXIgY2FydmVvdXQgcmVzZXJ2ZWQgbWVtb3J5IG5vZGUgYXMgd2VsbCBh
-cyBhIHNpbXBsZS0NCj4gZnJhbWVidWZmZXIgbm9kZSB0aGF0IGlzIHVzZWQgdG8gYmluZCB0
-byB0aGUgZnJhbWVidWZmZXIgdGhhdCB0aGUNCj4gYm9vdGxvYWRlciBoYXMgc2V0IHVwLg0K
-DQpJIGRvbid0IGtub3cgYWJvdXQgdGhlIGN1cnJlbnQgc3RhdHVzIG9mIHRoaXMgcGF0Y2hz
-ZXQsIGJ1dCBmZWVsIGZyZWUgdG8gDQpzZW5kIHdoYXRldmVyIHVwZGF0ZSB5b3UgaGF2ZS4N
-Cg0KQmVzdCByZWdhcmRzDQpUaG9tYXMNCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogVGhpZXJy
-eSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4NCj4gLS0tDQo+IENoYW5nZXMgaW4gdjI6
-DQo+IC0gY2xlYXIgb3V0IGR5bmFtaWMgZmllbGRzIGFuZCBsZWF2ZSBpdCB1cCB0byBmaXJt
-d2FyZSB0byBmaWxsIHRoZW0gaW4NCj4gLSBtYXJrIHNpbXBsZS1mcmFtZWJ1ZmZlciBub2Rl
-IGFzIGRpc2FibGVkIGJ5IGRlZmF1bHQNCj4gDQo+ICAgLi4uL252aWRpYS90ZWdyYTE5NC1w
-MzUwOS0wMDAwK3AzNjY4LTAwMDEuZHRzIHwgNDMgKysrKysrKysrKysrKysrKysrKw0KPiAg
-IGFyY2gvYXJtNjQvYm9vdC9kdHMvbnZpZGlhL3RlZ3JhMTk0LmR0c2kgICAgICB8ICAyICst
-DQo+ICAgMiBmaWxlcyBjaGFuZ2VkLCA0NCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0p
-DQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9udmlkaWEvdGVncmEx
-OTQtcDM1MDktMDAwMCtwMzY2OC0wMDAxLmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbnZp
-ZGlhL3RlZ3JhMTk0LXAzNTA5LTAwMDArcDM2NjgtMDAwMS5kdHMNCj4gaW5kZXggMjM4ZmQ5
-OGU4ZTQ1Li44NWI0YWFhMmFkNGUgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvbnZpZGlhL3RlZ3JhMTk0LXAzNTA5LTAwMDArcDM2NjgtMDAwMS5kdHMNCj4gKysrIGIv
-YXJjaC9hcm02NC9ib290L2R0cy9udmlkaWEvdGVncmExOTQtcDM1MDktMDAwMCtwMzY2OC0w
-MDAxLmR0cw0KPiBAQCAtNyw0ICs3LDQ3IEBADQo+ICAgLyB7DQo+ICAgCW1vZGVsID0gIk5W
-SURJQSBKZXRzb24gWGF2aWVyIE5YIERldmVsb3BlciBLaXQgKGVNTUMpIjsNCj4gICAJY29t
-cGF0aWJsZSA9ICJudmlkaWEscDM1MDktMDAwMCtwMzY2OC0wMDAxIiwgIm52aWRpYSx0ZWdy
-YTE5NCI7DQo+ICsNCj4gKwljaG9zZW4gew0KPiArCQlmcmFtZWJ1ZmZlciB7DQo+ICsJCQlj
-b21wYXRpYmxlID0gInNpbXBsZS1mcmFtZWJ1ZmZlciI7DQo+ICsJCQlzdGF0dXMgPSAiZGlz
-YWJsZWQiOw0KPiArCQkJbWVtb3J5LXJlZ2lvbiA9IDwmZmI+Ow0KPiArCQkJcG93ZXItZG9t
-YWlucyA9IDwmYnBtcCBURUdSQTE5NF9QT1dFUl9ET01BSU5fRElTUD47DQo+ICsJCQljbG9j
-a3MgPSA8JmJwbXAgVEVHUkExOTRfQ0xLX1NPUjFfUkVGPiwNCj4gKwkJCQkgPCZicG1wIFRF
-R1JBMTk0X0NMS19TT1IxX09VVD4sDQo+ICsJCQkJIDwmYnBtcCBURUdSQTE5NF9DTEtfU09S
-MV9QQURfQ0xLT1VUPiwNCj4gKwkJCQkgPCZicG1wIFRFR1JBMTk0X0NMS19QTExEMj4sDQo+
-ICsJCQkJIDwmYnBtcCBURUdSQTE5NF9DTEtfUExMRFA+LA0KPiArCQkJCSA8JmJwbXAgVEVH
-UkExOTRfQ0xLX05WRElTUExBWV9ESVNQPiwNCj4gKwkJCQkgPCZicG1wIFRFR1JBMTk0X0NM
-S19OVkRJU1BMQVlIVUI+LA0KPiArCQkJCSA8JmJwbXAgVEVHUkExOTRfQ0xLX05WRElTUExB
-WV9QMD47DQo+ICsJCQl3aWR0aCA9IDwwPjsNCj4gKwkJCWhlaWdodCA9IDwwPjsNCj4gKwkJ
-CXN0cmlkZSA9IDwwPjsNCj4gKwkJCWZvcm1hdCA9ICJ4OGI4ZzhyOCI7DQo+ICsJCX07DQo+
-ICsJfTsNCj4gKw0KPiArCXJlc2VydmVkLW1lbW9yeSB7DQo+ICsJCSNhZGRyZXNzLWNlbGxz
-ID0gPDI+Ow0KPiArCQkjc2l6ZS1jZWxscyA9IDwyPjsNCj4gKwkJcmFuZ2VzOw0KPiArDQo+
-ICsJCWZiOiBmcmFtZWJ1ZmZlckAwLDAgew0KPiArCQkJY29tcGF0aWJsZSA9ICJmcmFtZWJ1
-ZmZlciI7DQo+ICsJCQlyZWcgPSA8MHgwIDB4MCAweDAgMHgwPjsNCj4gKwkJCWlvbW11LWFk
-ZHJlc3NlcyA9IDwmZGMwIDB4MCAweDAgMHgwIDB4MD47DQo+ICsJCX07DQo+ICsJfTsNCj4g
-Kw0KPiArCWJ1c0AwIHsNCj4gKwkJaG9zdDF4QDEzZTAwMDAwIHsNCj4gKwkJCWRpc3BsYXkt
-aHViQDE1MjAwMDAwIHsNCj4gKwkJCQlkaXNwbGF5QDE1MjAwMDAwIHsNCj4gKwkJCQkJbWVt
-b3J5LXJlZ2lvbiA9IDwmZmI+Ow0KPiArCQkJCX07DQo+ICsJCQl9Ow0KPiArCQl9Ow0KPiAr
-CX07DQo+ICAgfTsNCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbnZpZGlh
-L3RlZ3JhMTk0LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL252aWRpYS90ZWdyYTE5NC5k
-dHNpDQo+IGluZGV4IGQwZGJmYWZiYzkzMC4uZWMzMThiOWU3MDBjIDEwMDY0NA0KPiAtLS0g
-YS9hcmNoL2FybTY0L2Jvb3QvZHRzL252aWRpYS90ZWdyYTE5NC5kdHNpDQo+ICsrKyBiL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvbnZpZGlhL3RlZ3JhMTk0LmR0c2kNCj4gQEAgLTE5NzIsNyAr
-MTk3Miw3IEBAIGRpc3BsYXktaHViQDE1MjAwMDAwIHsNCj4gICANCj4gICAJCQkJcmFuZ2Vz
-ID0gPDB4MTUyMDAwMDAgMHgxNTIwMDAwMCAweDQwMDAwPjsNCj4gICANCj4gLQkJCQlkaXNw
-bGF5QDE1MjAwMDAwIHsNCj4gKwkJCQlkYzA6IGRpc3BsYXlAMTUyMDAwMDAgew0KPiAgIAkJ
-CQkJY29tcGF0aWJsZSA9ICJudmlkaWEsdGVncmExOTQtZGMiOw0KPiAgIAkJCQkJcmVnID0g
-PDB4MTUyMDAwMDAgMHgxMDAwMD47DQo+ICAgCQkJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkg
-MTUzIElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KDQotLSANClRob21hcyBaaW1tZXJtYW5uDQpH
-cmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJt
-YW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQ0KKEhS
-QiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6IEl2byBUb3Rldg0K
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  .../bindings/soc/fsl/cpm_qe/fsl,tsa.yaml      | 260 ++++++++++++++++++
+>  include/dt-bindings/soc/fsl,tsa.h             |  13 +
+>  2 files changed, 273 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+>  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+> new file mode 100644
+> index 000000000000..eb17b6119abd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+> @@ -0,0 +1,260 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,tsa.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PowerQUICC CPM Time-slot assigner (TSA) controller
+> +
+> +maintainers:
+> +  - Herve Codina <herve.codina@bootlin.com>
+> +
+> +description: |
 
+Don't need '|' if no formatting.
 
---------------7ToGNKb16hhOGsfc7HUcQvvk--
+> +  The TSA is the time-slot assigner that can be found on some
+> +  PowerQUICC SoC.
+> +  Its purpose is to route some TDM time-slots to other internal
+> +  serial controllers.
 
---------------JdpoF82CkkDZeNdPqNF054Kw
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+Wrap at 80.
 
------BEGIN PGP SIGNATURE-----
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,mpc885-tsa
+> +          - fsl,mpc866-tsa
+> +      - const: fsl,cpm1-tsa
+> +
+> +  reg:
+> +    items:
+> +      - description: SI (Serial Interface) register base
+> +      - description: SI RAM base
+> +
+> +  reg-names:
+> +    items:
+> +      - const: si_regs
+> +      - const: si_ram
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +patternProperties:
+> +  '^tdm@[0-1]$':
+> +    description:
+> +      The TDM managed by this controller
+> +    type: object
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPGttkFAwAAAAAACgkQlh/E3EQov+An
-Gw//clp/pBn5J+tUISX27Ps3E8yNcZZELXgDzZIq1YZNZ1+S+tA6dMwZ4yJRqtV/Sts9NCZCgtxc
-JfbR63EN0rEpVOa3avBdktxxhLJRE1bvdnOo6KpPc8HQ31UKw35fRekrHKqa4QleIxdHgyf0nXvw
-4PxG1Ozi6fm7gCU+XlfPnyU4QsAWWGFvm/wv6NCOmUWX/XRikg91VMOOeA080C7xNTk/uez/kY5Z
-vBkgHXmcx1LFhuBffdQFFAMn4wSrJb505S+9VlnuLzNfuuCvyce2vCwSj0vEZUEu/zlCboHgdP67
-kFm3RYK1lrFFPqPfNJTw1g4r2uP59Mmc/0c/HMl1Y2fQkiQa5SXuQs5ZUHHYjaGRN8viGLGeuM21
-8MI//hxWm/JHaK4FSUqgAhUBU8HaRiopBip5pG4DQMq+N7CE++0phBxh/IJNfaoo4FcwgED3cLNp
-vHCxFlyfEneHHoTKymRXk+9uuFRHKiXFmvmYUnw2T00gQgmYhVDW1bKQjTfmFr3DeJoTgM/kQmzZ
-9i1vtYxFeIhgCBECNEnpKfrohF39jBH72jnio42mrzXLqcv9roe/a9m9Gh83hV1zwyKw207Av/LK
-D8TLhezEABE6g+6fr3G6TbpIlCto/yB7BbHQISvLm++2iqudMF3FVz1G6HB4XI0ESkH2RDg5lHPW
-stc=
-=Fbk7
------END PGP SIGNATURE-----
+       additionalProperties: false
 
---------------JdpoF82CkkDZeNdPqNF054Kw--
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 1
+> +        description:
+> +          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
+> +
+> +      fsl,common-rxtx-pins:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          The hardware can use four dedicated pins for Tx clock,
+> +          Tx sync, Rx clock and Rx sync or use only two pins,
+> +          Tx/Rx clock and Rx/Rx sync.
+> +          Without the 'fsl,common-rxtx-pins' property, the four
+> +          pins are used. With the 'fsl,common-rxtx-pins' property,
+> +          two pins are used.
+> +
+> +      clocks:
+> +        minItems: 2
+> +        maxItems: 4
+> +
+> +      clock-names:
+> +        minItems: 2
+> +        maxItems: 4
+> +
+> +      fsl,mode:
+
+'mode' is a bit vague. It's already used as well which can be a problem 
+if there are differing types. (There's not in this case)
+
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        enum: [normal, echo, internal-loopback, control-loopback]
+> +        default: normal
+> +        description: |
+> +          Operational mode:
+> +            - normal:
+> +                Normal operation
+> +            - echo:
+> +                Automatic echo. Rx data is resent on Tx
+> +            - internal-loopback:
+> +                The TDM transmitter is connected to the receiver.
+> +                Data appears on Tx pin.
+> +            - control-loopback:
+> +                The TDM transmitter is connected to the receiver.
+> +                The Tx pin is disconnected.
+> +
+> +      fsl,rx-frame-sync-delay-bits:
+> +        enum: [0, 1, 2, 3]
+> +        default: 0
+> +        description: |
+> +          Receive frame sync delay in number of bits.
+> +          Indicates the delay between the Rx sync and the first bit of the
+> +          Rx frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits delay.
+> +
+> +      fsl,tx-frame-sync-delay-bits:
+> +        enum: [0, 1, 2, 3]
+> +        default: 0
+> +        description: |
+> +          Transmit frame sync delay in number of bits.
+> +          Indicates the delay between the Tx sync and the first bit of the
+> +          Tx frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits delay.
+> +
+> +      fsl,clock-falling-edge:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description: |
+> +          Data is sent on falling edge of the clock (and received on the
+> +          rising edge).
+> +          If 'clock-falling-edge' is not present, data is sent on the
+> +          rising edge (and received on the falling edge).
+> +
+> +      fsl,fsync-rising-edge:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          Frame sync pulses are sampled with the rising edge of the channel
+> +          clock. If 'fsync-rising-edge' is not present, pulses are sample
+> +          with e falling edge.
+> +
+> +      fsl,double-speed-clock:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          The channel clock is twice the data rate.
+> +
+> +      fsl,tx-ts-routes:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +        description: |
+> +          A list of tupple that indicates the Tx time-slots routes.
+> +            tx_ts_routes =
+> +               < 2 0 >, /* The first 2 time slots are not used */
+> +               < 3 1 >, /* The next 3 ones are route to SCC2 */
+> +               < 4 0 >, /* The next 4 ones are not used */
+> +               < 2 2 >; /* The nest 2 ones are route to SCC3 */
+> +        items:
+> +          items:
+> +            - description:
+> +                The number of time-slots
+> +              minimum: 1
+> +              maximum: 64
+> +            - description: |
+> +                The source serial interface (dt-bindings/soc/fsl,tsa.h
+> +                defines these values)
+> +                 - 0: No destination
+> +                 - 1: SCC2
+> +                 - 2: SCC3
+> +                 - 3: SCC4
+> +                 - 4: SMC1
+> +                 - 5: SMC2
+> +              enum: [0, 1, 2, 3, 4, 5]
+> +        minItems: 1
+> +        maxItems: 64
+> +
+> +      fsl,rx-ts-routes:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +        description: |
+> +          A list of tupple that indicates the Rx time-slots routes.
+> +            tx_ts_routes =
+> +               < 2 0 >, /* The first 2 time slots are not used */
+> +               < 3 1 >, /* The next 3 ones are route from SCC2 */
+> +               < 4 0 >, /* The next 4 ones are not used */
+> +               < 2 2 >; /* The nest 2 ones are route from SCC3 */
+> +        items:
+> +          items:
+> +            - description:
+> +                The number of time-slots
+> +              minimum: 1
+> +              maximum: 64
+> +            - description: |
+> +                The destination serial interface (dt-bindings/soc/fsl,tsa.h
+> +                defines these values)
+> +                 - 0: No destination
+> +                 - 1: SCC2
+> +                 - 2: SCC3
+> +                 - 3: SCC4
+> +                 - 4: SMC1
+> +                 - 5: SMC2
+> +              enum: [0, 1, 2, 3, 4, 5]
+> +        minItems: 1
+> +        maxItems: 64
+> +
+> +    allOf:
+> +      # If fsl,common-rxtx-pins is present, only 2 clocks are needed.
+> +      # Else, the 4 clocks must be present.
+> +      - if:
+> +          required:
+> +            - fsl,common-rxtx-pins
+> +        then:
+> +          properties:
+> +            clocks:
+> +              items:
+> +                - description: External clock connected to L1RSYNC pin
+> +                - description: External clock connected to L1RCLK pin
+> +            clock-names:
+> +              items:
+> +                - const: l1rsync
+> +                - const: l1rclk
+> +        else:
+> +          properties:
+> +            clocks:
+> +              items:
+> +                - description: External clock connected to L1RSYNC pin
+> +                - description: External clock connected to L1RCLK pin
+> +                - description: External clock connected to L1TSYNC pin
+> +                - description: External clock connected to L1TCLK pin
+> +            clock-names:
+> +              items:
+> +                - const: l1rsync
+> +                - const: l1rclk
+> +                - const: l1tsync
+> +                - const: l1tclk
+
+As the names are the same, just the length varies between 2 or 4, move 
+all this to the main definition and here just put constraints on the 
+length.
+
+> +
+> +    required:
+> +      - reg
+> +      - clocks
+> +      - clock-names
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/soc/fsl,tsa.h>
+> +
+> +    tsa@ae0 {
+> +        compatible = "fsl,mpc885-tsa", "fsl,cpm1-tsa";
+> +        reg = <0xae0 0x10>,
+> +              <0xc00 0x200>;
+> +        reg-names = "si_regs", "si_ram";
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        tdm@0 {
+> +            /* TDMa */
+> +            reg = <0>;
+> +
+> +            clocks = <&clk_l1rsynca>, <&clk_l1rclka>;
+> +            clock-names = "l1rsync", "l1rclk";
+> +
+> +            fsl,common-rxtx-pins;
+> +            fsl,fsync-rising-edge;
+> +
+> +            fsl,tx-ts-routes = < 2 0 >,             /* TS 0..1 */
+> +                           < 24 FSL_CPM_TSA_SCC4 >, /* TS 2..25 */
+> +                           < 1 0 >,                 /* TS 26 */
+> +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
+> +
+> +            fsl,rx-ts-routes = < 2 0 >,             /* TS 0..1 */
+> +                           < 24 FSL_CPM_TSA_SCC4 >, /* 2..25 */
+> +                           < 1 0 >,                 /* TS 26 */
+> +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/soc/fsl,tsa.h b/include/dt-bindings/soc/fsl,tsa.h
+> new file mode 100644
+> index 000000000000..2cc44e867dbe
+> --- /dev/null
+> +++ b/include/dt-bindings/soc/fsl,tsa.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +
+> +#ifndef __DT_BINDINGS_SOC_FSL_TSA_H
+> +#define __DT_BINDINGS_SOC_FSL_TSA_H
+> +
+> +#define FSL_CPM_TSA_NU		0	/* Pseuso Cell Id for not used item */
+> +#define FSL_CPM_TSA_SCC2	1
+> +#define FSL_CPM_TSA_SCC3	2
+> +#define FSL_CPM_TSA_SCC4	3
+> +#define FSL_CPM_TSA_SMC1	4
+> +#define FSL_CPM_TSA_SMC2	5
+> +
+> +#endif
+> -- 
+> 2.38.1
+> 
