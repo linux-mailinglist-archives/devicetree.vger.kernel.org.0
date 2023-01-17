@@ -2,115 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BD9A66DFFD
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:09:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EBB666E004
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 15:10:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231522AbjAQOJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 09:09:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34574 "EHLO
+        id S230053AbjAQOKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 09:10:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231695AbjAQOJV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:09:21 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B693BDBA
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:09:16 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id m21so45212614edc.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 06:09:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8lRKNEyZBQ0MEz5uWRwQDY0cEHSnPNZLloQPoR0gCIA=;
-        b=Ocn4aUWP4m1u7SHcpx51JCkpswLgA9s1SPQ+8kNx8RMzL5jQL8ym9RHgpIqoauuWr3
-         CumVoCg6SU99qDrSXSCy0+6uGv1Xmq4C+xvNC+NuHoGKjHMmGjC1gB65fRZXelVlJ/DU
-         OEvy3SokQBpnk/vNiwM4r6j9hMLLBwCjSYUjmnuCEWaCgeGmgR1PROeq5neCTNBwJcsQ
-         bfxIYrAM8xZVQi9ffgEEDGLzx96VXF4L0qULKwE0TZQm43c4wBXeMwn3Q6ObUbFh2AhG
-         Z8Zp6A5Am/98qXzJM3Amna0xRaIk1oPXPcN/XnqkLR8dXoPnt5WyQPx9/0vI8xyXe8Tm
-         20IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8lRKNEyZBQ0MEz5uWRwQDY0cEHSnPNZLloQPoR0gCIA=;
-        b=RlT0qROwK8+AH9k9Nboe1JZFbL0V4NQXXxhug4RQwcbH2cnAZaIAJvQN9o6PlPeOGd
-         T6J/kTCggL7XkdXRPlwUaP6pWBPJAMHqTq9HcayK++TNOqGip2Xe2EEPQaHsD1rHUhTS
-         hFPBhRQluNMeQrMnQlQRovvL8Dbv1JD5Nh94l0Ri8LFsOnQCqNP7c1b3K4ONHUnrwinI
-         JRvJf2VuC84G4FwcwFYQ0NBZBHle8/63FS/LWx8rsjPhjya4yJf4dEtSJs7QEvnzml5I
-         2CiX0Yrk6HSOStDQmmlX+mF5SED9CY/5AptRakkJ+N2T+p6DT4Hgb8V8Zq8Qk2mpPWn/
-         J0sQ==
-X-Gm-Message-State: AFqh2kp+e8n699y+4McSc33trHPb89M73dIrDwBfi+lGAftdDGFCOyGJ
-        premxrZzoD0PJkT0gwoEe5RknA==
-X-Google-Smtp-Source: AMrXdXvxKfX7GGtuIFRDSzek0Q3sa3LydURkvRpFoLSK2KCXpzVuXwChigb90MTDqNsP6enNLybzKg==
-X-Received: by 2002:aa7:d310:0:b0:499:e564:a1c with SMTP id p16-20020aa7d310000000b00499e5640a1cmr2544846edq.11.1673964554809;
-        Tue, 17 Jan 2023 06:09:14 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id el14-20020a056402360e00b00458b41d9460sm12376641edb.92.2023.01.17.06.09.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 06:09:14 -0800 (PST)
-Message-ID: <33eda50c-c70f-1bb6-0917-22b6fdb4a2ca@linaro.org>
-Date:   Tue, 17 Jan 2023 16:09:12 +0200
+        with ESMTP id S231468AbjAQOKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 09:10:24 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF7A2A163;
+        Tue, 17 Jan 2023 06:10:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 99F6BB81645;
+        Tue, 17 Jan 2023 14:10:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB1F9C433D2;
+        Tue, 17 Jan 2023 14:10:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1673964621;
+        bh=1LQNFj0nyxhQ3JRrf8nhxOpkNbiHaRBCqv2yNnBl7JI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h74ssUzgixd7/MX7aln510ZzUSGlvxrMC2fWe1KPCNxqb1Uofh5aIOyn6gf8yI9Mx
+         7ytiUBK7gdiVe/1CCl80lRBPCLYW+xIHRt/VH4DhLVN8G4nQ1YwT38xZ7gGr9tFZIo
+         EzcZPmIfUCqzXZJpQnfjrUca1r7Z7c5ioCtFayaM=
+Date:   Tue, 17 Jan 2023 15:10:18 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Nipun Gupta <nipun.gupta@amd.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rafael@kernel.org, eric.auger@redhat.com,
+        alex.williamson@redhat.com, cohuck@redhat.com,
+        song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org,
+        maz@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com,
+        saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org,
+        yishaih@nvidia.com, jgg@ziepe.ca, jgg@nvidia.com,
+        robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
+        masahiroy@kernel.org, ndesaulniers@google.com,
+        linux-arm-kernel@lists.infradead.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        okaya@kernel.org, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
+        michal.simek@amd.com, git@amd.com
+Subject: Re: [PATCH 05/19] bus/cdx: add cdx controller
+Message-ID: <Y8asSo2daSm5AWfR@kroah.com>
+References: <20230117134139.1298-1-nipun.gupta@amd.com>
+ <20230117134139.1298-6-nipun.gupta@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v3 1/6] dt-bindings: phy: Add QMP UFS PHY comptible for
- SM8550
-Content-Language: en-GB
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Johan Hovold <johan@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230117125555.163087-1-abel.vesa@linaro.org>
- <20230117125555.163087-2-abel.vesa@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230117125555.163087-2-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230117134139.1298-6-nipun.gupta@amd.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 14:55, Abel Vesa wrote:
-> Document the QMP UFS PHY compatible for SM8550.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   .../devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml       | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> index 760791de0869..44745a5c64cd 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> @@ -17,6 +17,7 @@ properties:
->     compatible:
->       enum:
->         - qcom,sc8280xp-qmp-ufs-phy
-> +      - qcom,sm8550-qmp-ufs-phy
->         - qcom,sm6125-qmp-ufs-phy
+On Tue, Jan 17, 2023 at 07:11:37PM +0530, Nipun Gupta wrote:
+> --- /dev/null
+> +++ b/drivers/bus/cdx/controller/cdx_controller.c
+> @@ -0,0 +1,243 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Platform driver for CDX bus controller.
 
-Please keep the list sorted
+Why is this a platform driver?  Shouldn't it also be on some type of bus
+so that you can find it?
 
->   
->     reg:
+> +MODULE_VERSION("1.0");
 
--- 
-With best wishes
-Dmitry
+There's never need for any module versions once the code is in the
+kernel tree as then they make no sense at all.  Please drop them from
+this series.
 
+thanks,
+
+greg k-h
