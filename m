@@ -2,63 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C95C866E896
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 22:39:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B974D66E8CA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 22:56:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229446AbjAQVjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 16:39:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55960 "EHLO
+        id S229605AbjAQV4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 16:56:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229880AbjAQVit (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 16:38:49 -0500
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C86282E0E0;
-        Tue, 17 Jan 2023 12:04:39 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id r9so16121408oie.13;
-        Tue, 17 Jan 2023 12:04:39 -0800 (PST)
+        with ESMTP id S230259AbjAQVvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 16:51:51 -0500
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65CA237556;
+        Tue, 17 Jan 2023 12:17:05 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id p185so5821945oif.2;
+        Tue, 17 Jan 2023 12:17:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aL+np8smkP7FSXt9qO9bmY6grgj8WYKwJKgXRY8ZBcU=;
-        b=ikTRkX1bA2UJb+Yquk92pvl+/JkbnFTqnuoQzfjNSwet1djDujiLrnDR/4Pgjtv/iC
-         BLXNrSOFcGfqhat9i1SMVDvl+WcDItVLVt58yGluaBRupDohY/Ov5sL3PppMusbL8iG2
-         mmaTyCCXuspGlDDiP0fN2viSG1grGKTbY2Ee2ZJhbCwJdmj/rwfTs3dtatAoGBXn/ub1
-         IDDMjbBwPN0tL6fldWAI+mUx14bFMnPapK00SUG5pbJIDkZCeNmncQ3NQ0mj8XWQTx5d
-         /c8JkN/fRs2GDbArVAhgb4Q1/4LLT3c+QdvbEPGizM1M8PMq7qtaiUNgfb3BZTb2Yt3S
-         znuw==
-X-Gm-Message-State: AFqh2koe45A99Z2DMe2sEk0yfgeP8MWa4esk7JFar/49HP2lz8gWTFYG
-        Imtwr6itI0xhZkp2Fx70nA==
-X-Google-Smtp-Source: AMrXdXvmzGoLs6M8Mi2uZIM7/ivg4qx44J6VbPcY9Vptlack77OOKL/RsfLrl5jEf5MiYZddcjILzg==
-X-Received: by 2002:aca:f1a:0:b0:36a:9706:665f with SMTP id 26-20020aca0f1a000000b0036a9706665fmr979417oip.10.1673985878974;
-        Tue, 17 Jan 2023 12:04:38 -0800 (PST)
+        bh=LWeHEeDhyytvt0z9wAJVJnP5zvi6qEzhrzvFt2FSXKo=;
+        b=nqG++bv5SMbCkyItEJsopYmCrNQYBZliMYHw9/BRsf2f8/1TTZvisz1XWI3HAG3V1a
+         7shFtILFudcopzSS8ZojA9U6N/q9Yt60PvZnQMrF12YF6cLVfkBJ6g5tUw5woHJxROKY
+         KyOyVJCTonnlE1ueXx5f+TSkZ3h2U7TPBuQ4jeajT8M0eN0zjojAfFRqH92Jc75oiT3A
+         UXgEqPUKJb/fCXf7mR+TcxnTDNm89juDo/8M70nnp0BpzP036aGwXa0gz+FcIG0Gj08e
+         SBmBJSFE9/zoSENXn8Q1TDgtxsYP6Ej6deVYv5qJG3X5OoW9EIqBWS3ilXsYAGVMQ81k
+         yM3A==
+X-Gm-Message-State: AFqh2kpdgwrEqkYBuVIk1mZ0JnjAKXoR/I+CJMM67IhqXaVDX4Mja9Ci
+        7VxXXtLSBniOUxs+tJ8LxQ==
+X-Google-Smtp-Source: AMrXdXvN97KhxW15va857G2nD7sxVdqeGZh+s1NP2CQrFacIO7mFtVEcuvxG4t9ucxbdl0jh4jbfPw==
+X-Received: by 2002:a05:6808:b31:b0:360:ceb6:1f6f with SMTP id t17-20020a0568080b3100b00360ceb61f6fmr1910323oij.54.1673986624462;
+        Tue, 17 Jan 2023 12:17:04 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r21-20020a9d7515000000b0068646611d0bsm1943619otk.44.2023.01.17.12.04.38
+        by smtp.gmail.com with ESMTPSA id bu10-20020a0568300d0a00b0066eb4e9242esm17229273otb.67.2023.01.17.12.17.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 12:04:38 -0800 (PST)
-Received: (nullmailer pid 3546639 invoked by uid 1000);
-        Tue, 17 Jan 2023 20:04:37 -0000
-Date:   Tue, 17 Jan 2023 14:04:37 -0600
+        Tue, 17 Jan 2023 12:17:03 -0800 (PST)
+Received: (nullmailer pid 3636832 invoked by uid 1000);
+        Tue, 17 Jan 2023 20:17:03 -0000
+Date:   Tue, 17 Jan 2023 14:17:03 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Nishanth Menon <nm@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
+To:     Pin-yen Lin <treapking@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v3 1/1] dt-bindings: pinctrl: Update pinctrl-single to
- use yaml
-Message-ID: <20230117200437.GA3538302-robh@kernel.org>
-References: <20230116071602.63788-1-tony@atomide.com>
- <167388667378.596858.12053272103098373981.robh@kernel.org>
- <CAL_JsqLQMkU-r=E2wmbgO9+PA=XxAeR2OC5isAYY701f6V+BOQ@mail.gmail.com>
- <Y8WFIzElz8/pv4uy@atomide.com>
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: Add GPIO display
+ mux binding
+Message-ID: <20230117201703.GA3555326-robh@kernel.org>
+References: <20230116110820.2615650-1-treapking@chromium.org>
+ <20230116110820.2615650-2-treapking@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y8WFIzElz8/pv4uy@atomide.com>
+In-Reply-To: <20230116110820.2615650-2-treapking@chromium.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -69,35 +74,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 16, 2023 at 07:10:59PM +0200, Tony Lindgren wrote:
-> * Rob Herring <robh+dt@kernel.org> [230116 16:39]:
-> > I imagine you don't want to go change all these node names, so I'd
-> > make the schema accept them.
+On Mon, Jan 16, 2023 at 07:08:19PM +0800, Pin-yen Lin wrote:
+> From: Nicolas Boichat <drinkcat@chromium.org>
 > 
-> Heh yeah, I was wondering about that too :) Some can be handled with a
-> regex, but there are still a lot of completely custom names. If you have
-> some preferred solution in mind, please let me know.
+> Add bindings for Generic GPIO mux driver.
+> 
+> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> ---
+> 
+> Changes in v2:
+> - Referenced existing dt-binding schemas from graph.yaml
+> - Added ddc-i2c-bus into the bindings
+> 
+>  .../bindings/display/bridge/gpio-mux.yaml     | 95 +++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml b/Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+> new file mode 100644
+> index 000000000000..da29ba078f05
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/gpio-mux.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic display mux (1 input, 2 outputs)
+> +
+> +maintainers:
+> +  - Nicolas Boichat <drinkcat@chromium.org>
+> +
+> +description: |
+> +  This bindings describes a simple display (e.g. HDMI) mux, that has 1
+> +  input, and 2 outputs. The mux status is controlled by hardware, and
+> +  its status is read back using a GPIO.
+> +
+> +properties:
+> +  compatible:
+> +    const: gpio-display-mux
+> +
+> +  detect-gpios:
+> +    maxItems: 1
+> +    description: GPIO that indicates the active output
 
-If just allowing 'pins' anywhere in the name is not enough, you can 
-match on any other property with 'additionalProperties'. There's some 
-examples in pinctrl bindings.
+What are we detecting? That implies an input, but this is selecting the 
+output path, right? Or what does 'mux status is controlled by hardware' 
+mean exactly? Something else? That does not sound very generic.
 
-additionalProperties:
-  type: object
-  properties:
-    ...
+In any case, we have a common mux binding so any kind of mux control 
+could be used here, not just GPIO. Then you can make this just a generic 
+display mux.
 
-Or use 'unevaluatedProperties' if there's properties defined behind a 
-$ref.
+> +
+> +  ddc-i2c-bus:
+> +    description: phandle link to the I2C controller used for DDC EDID probing
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-There's also this hack, but I try to avoid it:
+This belongs in the connector node(s). 
 
-patternProperties:
- '.*':
-   if:
-     type: object
-   then:
-     ...
-
-
-Rob
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: |
+> +          Video port for input.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: |
+> +          2 video ports for output.
+> +          The reg value in the endpoints matches the GPIO status: when
+> +          GPIO is asserted, endpoint with reg value <1> is selected.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - detect-gpios
+> +  - ports
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    hdmi_mux: hdmi_mux {
+> +      compatible = "gpio-display-mux";
+> +      detect-gpios = <&pio 36 GPIO_ACTIVE_HIGH>;
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&hdmi_mux_pins>;
+> +      ddc-i2c-bus = <&hdmiddc0>;
+> +
+> +      ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        port@0 { /* input */
+> +          reg = <0>;
+> +
+> +          hdmi_mux_in: endpoint {
+> +            remote-endpoint = <&hdmi0_out>;
+> +          };
+> +        };
+> +
+> +        port@1 { /* output */
+> +          reg = <1>;
+> +
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          hdmi_mux_out_anx: endpoint@0 {
+> +            reg = <0>;
+> +            remote-endpoint = <&dp_bridge_in>;
+> +          };
+> +
+> +          hdmi_mux_out_hdmi: endpoint@1 {
+> +            reg = <1>;
+> +            remote-endpoint = <&hdmi_connector_in>;
+> +          };
+> +        };
+> +      };
+> +    };
+> -- 
+> 2.39.0.314.g84b9a713c41-goog
+> 
