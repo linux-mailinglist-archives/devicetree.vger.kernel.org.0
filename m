@@ -2,143 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46F2566E4D5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:24:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5391466E4FB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:33:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbjAQRYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 12:24:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47992 "EHLO
+        id S232629AbjAQRdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 12:33:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235415AbjAQRXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:23:41 -0500
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACAB74B742;
-        Tue, 17 Jan 2023 09:23:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=d4WBILilzYsNGArsge+y5s7v2GX865hdolZPV6TRt7I=; b=Em7g0qDcz7bEafI6aNIe2D0so+
-        Cg9kajB3XyiKTQiPy5XroTuGTnsQUOza+shC4LCIflse5oQMU9Uh0ycYhT5GDpVrxrOXCQAwdTQrJ
-        YHe/LqCUWDKmGtqzJieWDu7sMXEtSzFLVjVT0zWHy2eTapJOrzmfcZUXly1zP/kUY/V2+ATItLS24
-        0l+PABRuPUz68XY8uU9OOE1ZIK9IgIJr8Yg5zh+aOf6wkperDZYMdPid1ERuvYyX+cPfMOXCh0Djx
-        DI1mTyDKFHWBhae2IB11pVz8AAUyVITlkzhZ27g2KyLmuhs4LAEMlWXP/hYdcp3901yQpJq7e9RQr
-        Swg5WMlQ==;
-Received: from [2601:1c2:d80:3110::9307]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1pHpeg-00FF2u-Rl; Tue, 17 Jan 2023 17:21:50 +0000
-Message-ID: <cc20a76f-6de5-b850-2c54-1e2a535feca6@infradead.org>
-Date:   Tue, 17 Jan 2023 09:21:48 -0800
+        with ESMTP id S235083AbjAQR2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:28:17 -0500
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71B154901C
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:27:02 -0800 (PST)
+Received: by mail-il1-x12a.google.com with SMTP id d10so15703478ilc.12
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:27:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yNUDy6KyAQAbRWnSnSUxNJKiFT2fKondnpix9cjKDOY=;
+        b=cJZHosGPywZrxxX0ZyqnueVZV3CFoZWMJXBY4yIkikJ5l8RAywicsO+rC7HzgCbYMS
+         YiGVtYUp1NwsmlRbeWTwmH9Mg1FtPjxhuewZl6aehZEhaItlxYM97xvvv1L1XTEEGcf8
+         GBJQ6gO6tPulme1tBA4Ab8cHC1SILZqFqcPzg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yNUDy6KyAQAbRWnSnSUxNJKiFT2fKondnpix9cjKDOY=;
+        b=cuHoxD7fSM7l5lqnXPaduF4bdO/ZOY1bo3YVE9zaZupn/0aMOUZT6454B87tnS7dvO
+         QPph62cFBlcmWBoW1b9gJv6JpHUstAAtsdhERztYcXZEhCexWjC74Fk53Bed0e5C2i4W
+         p+3bEsZCZqhFGmkr8ijj4IJdtB5fsVS9HnVNZCsvEymEwh8VuufjpSkcZRLiTtBIyg+X
+         n1aIo96MJYhL7uABXsgYRFsUZasKMpDsulbn0c+4Wuupya5xKnWNjtXa0G7L0+i7p5my
+         OkZ3JgONo2feK71N3GMVIW7sjk43cnFF319QVqO/ChFuAoaKQ1Mc6EFAh2hKfPvDO18i
+         fVQA==
+X-Gm-Message-State: AFqh2krleRh983HcFhyB737amvJRHHevv0D+d4rCp0jZelWjohEzDrsq
+        EEETo0NGp0ham/LlCS92XVsE5A==
+X-Google-Smtp-Source: AMrXdXulPcxFsVsyjyaJO/ymO6SL8ctVeJej39K1uFvkJaYf58YF6v4liYIPvKPOSVjRuSAyB8wPFw==
+X-Received: by 2002:a05:6e02:1a45:b0:302:392c:5878 with SMTP id u5-20020a056e021a4500b00302392c5878mr4409722ilv.13.1673976422085;
+        Tue, 17 Jan 2023 09:27:02 -0800 (PST)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id y9-20020a027309000000b0039e5cad0bebsm5703351jab.89.2023.01.17.09.27.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Jan 2023 09:27:01 -0800 (PST)
+Date:   Tue, 17 Jan 2023 17:27:01 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Georgi Djakov <djakov@kernel.org>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sc7280: Add cpu and llcc BWMON
+ (=> interconnect issue)
+Message-ID: <Y8baZWlKB9vNGYJw@google.com>
+References: <20220902043511.17130-1-quic_rjendra@quicinc.com>
+ <20220902043511.17130-5-quic_rjendra@quicinc.com>
+ <Y8Ggh6RObbB1cxSS@google.com>
+ <dc5487d8-d31e-28c6-07e8-8d1ff54a4ba4@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 01/19] bus/cdx: add the cdx bus driver
-Content-Language: en-US
-To:     Nipun Gupta <nipun.gupta@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org,
-        maz@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com,
-        saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org,
-        yishaih@nvidia.com, jgg@ziepe.ca, jgg@nvidia.com,
-        robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
-        masahiroy@kernel.org, ndesaulniers@google.com,
-        linux-arm-kernel@lists.infradead.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     okaya@kernel.org, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        michal.simek@amd.com, git@amd.com
-References: <20230117134139.1298-1-nipun.gupta@amd.com>
- <20230117134139.1298-2-nipun.gupta@amd.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20230117134139.1298-2-nipun.gupta@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <dc5487d8-d31e-28c6-07e8-8d1ff54a4ba4@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi--
-
-On 1/17/23 05:41, Nipun Gupta wrote:
-> Introduce AMD CDX bus, which provides a mechanism for scanning
-> and probing CDX devices. These devices are memory mapped on
-> system bus for Application Processors(APUs).
+On Sun, Jan 15, 2023 at 04:13:40PM +0100, Krzysztof Kozlowski wrote:
+> On 13/01/2023 19:18, Matthias Kaehlcke wrote:
+> > Hi,
+> > 
+> > On Fri, Sep 02, 2022 at 10:05:11AM +0530, Rajendra Nayak wrote:
+> >> Add cpu and llcc BWMON nodes and their corresponding
+> >> OPP tables for sc7280 SoC.
+> >>
+> >> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > I found that with a v6.1 kernel AOSS on sc7280 doesn't reach it's low
+> > power state during system. This can be observed on herobrine based
+> > boards on which the AP_SUSPEND signal should transition to 1 during
+> > system suspend. If it doesn't the Embedded Controller (EC) notices
+> > it and wakes the system up again.
+> > 
+> > Bisection points to this patch, the issue only occurs when
+> > CONFIG_QCOM_ICC_BWMON is *not* set. One might think the patch shouldn't
+> > have any impact at all when the driver is not enabled, but it does.
+> > 
+> > Debugging shows that the issue is interconnect related. A bare platform
+> > device is created for each bwmon devices, which results in the average
+> > and peak bandwidth of the interconnect link to be set 'initially' to
+> > INT_MAX. The driver is supposed to call icc_sync_state() during probe,
 > 
-> CDX devices can be changed dynamically in the Fabric and CDX
-> bus interacts with CDX controller to rescan the bus and
-> rediscover the devices.
+> This is for interconnect providers, not consumers.
+
+Ah, thanks for the clarification.
+
+Still, for the INT_MAX bandwidth setting remains in place unless the device
+is probed.
+
+> > which would set the initially bandwidths to 0 and determine the actually
+> > needed bandwidth. But since the driver isn't probed the initial
+> > bandwidths stay at INT_MAX.
+> > 
+> > This isn't actually an issue with this patch, but how the interconnect
+> > framework deals with devices that are registered on the bus, but aren't
+> > probed (yet). Not sure how this would be best fixed. Georgi, do you have
+> > any ideas?
 > 
-> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
-> Signed-off-by: Tarak Reddy <tarak.reddy@amd.com>
-> ---
->  Documentation/ABI/testing/sysfs-bus-cdx |  12 +
->  MAINTAINERS                             |   7 +
->  drivers/bus/Kconfig                     |   1 +
->  drivers/bus/Makefile                    |   2 +
->  drivers/bus/cdx/Kconfig                 |  14 +
->  drivers/bus/cdx/Makefile                |   8 +
->  drivers/bus/cdx/cdx.c                   | 433 ++++++++++++++++++++++++
->  drivers/bus/cdx/cdx.h                   |  62 ++++
->  include/linux/cdx/cdx_bus.h             | 153 +++++++++
->  include/linux/mod_devicetable.h         |  15 +
->  scripts/mod/devicetable-offsets.c       |   4 +
->  scripts/mod/file2alias.c                |  12 +
->  12 files changed, 723 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-cdx
->  create mode 100644 drivers/bus/cdx/Kconfig
->  create mode 100644 drivers/bus/cdx/Makefile
->  create mode 100644 drivers/bus/cdx/cdx.c
->  create mode 100644 drivers/bus/cdx/cdx.h
->  create mode 100644 include/linux/cdx/cdx_bus.h
-> 
+> Why the device is not probed (yet)? If it is registered, it will come
+> soon during boot up.
 
-> diff --git a/drivers/bus/cdx/Kconfig b/drivers/bus/cdx/Kconfig
-> new file mode 100644
-> index 000000000000..54e0623ebcff
-> --- /dev/null
-> +++ b/drivers/bus/cdx/Kconfig
-> @@ -0,0 +1,14 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# CDX bus configuration
-> +#
-> +# Copyright (C) 2022-2023, Advanced Micro Devices, Inc.
-> +#
-> +
-> +config CDX_BUS
-> +	bool "CDX Bus driver"
-> +	help
-> +	  Driver to enable CDX Bus. CDX bus provides a mechanism for
-> +	  scanning and probing of CDX devices. CDX devices are memory
-> +	  mapped on system bus for embedded CPUs. CDX bus uses CDX
-> +	  controller and firmware to scan the CDX devices.
-
-Would you mind telling people who use 'make *config' what CDX means,
-either in the bool prompt string or in the help text?
-
-
-> +/**
-> + * cdx_unregister_device - Unregister a CDX device
-> + * @dev: CDX device
-> + * @data: This is always passed as NULL, and is not used in this API,
-> + *	  but is required here as the bus_for_each_dev() API expects
-> + *	  the passed function (cdx_unregister_device) to have this
-> + *	  as an argument.
-> + *
-> + * @return: -errno on failure, 0 on success.
-
-The syntax (or spelling) for a function's return value in kernel-doc is just:
- * Return: -errno on failure, 0 on success.
-
-That should be changed in many places throughout.
-
-Thanks.
-
--- 
-~Randy
+Because CONFIG_QCOM_ICC_BWMON is not enabled for the board in question (see
+above). It could be enabled as a short term mitigtion, however we shouldn't
+require drivers to be enabled just because the DT has a corresponding node.
