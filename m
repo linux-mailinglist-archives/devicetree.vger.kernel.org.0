@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B1E666D73B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 08:51:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 372B366D7D0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:14:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235735AbjAQHvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 02:51:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47194 "EHLO
+        id S236053AbjAQIOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 03:14:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235701AbjAQHvr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 02:51:47 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F801C335
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 23:51:45 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id q8so9745006wmo.5
-        for <devicetree@vger.kernel.org>; Mon, 16 Jan 2023 23:51:45 -0800 (PST)
+        with ESMTP id S236046AbjAQIOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:14:01 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E2EE27D6A
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:13:59 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id t5so25294690wrq.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:13:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HurAsoClkkfNishWyH7zyhaS3SjeDCn6WcRooyIarSk=;
-        b=HrQi2jM2o3k7MlGekuYzaRfGnWM40tf3DH1T7opEj1V16klaEMUxJI7aNqVcb/qg9r
-         ocIQtAl5h2SHhb45/fc+ld45TMwe7JarYlfaCvgM0h3KOb+01x6MY9mm/XF8RChm6QKo
-         mshyl8wMDh8x5RGAmN7kfShw+9NttQQWjBu2DRiX3r6NmYt4GPBRmHTorJ4HszSYa6Rw
-         8SzUKv9Qvsrmbbn6sNbpuwvUXvpkj9EVyfBWBXZBCQ6mu5BfB44zwirK8AvmeWfPmv0f
-         f0FJAcCviVIOc0lOejsbCVxherG0FCCtgZarK6JfyKqhqUVD0sabjJ9EzBHkbDp+jdeS
-         y0GA==
+        bh=3o46UZYtS1Pu7ldJQIr+TAat72ZYFFBxEVdiCktlPoU=;
+        b=suvkmS1JciHbwVIgP3xqKhqTdMyY+YJoEjWUlYAtlDxjyIzYm3VZDHFeZT6t07C3Z+
+         3t+sDXvIYK3+aYGDi8GJn/L9ZfiHHGhWSgWSdfQjt65wWOO/o6p/vjlzdlPaAIBAVfVN
+         8qEdTZF/79SDqtp964QKecHBGxosihCRz69fpmOR91hgbrBZc8GcML1MAXOIuB4ira8R
+         FsTdy6DoSCrcnp30tKrpU2wNk6Tc6gxOqSH9TJPPD/Q2NwCCHKmrsDwAgeQ5w/oDpPKd
+         ULovRbqegJsq9QWw72b4T5OyGBPMumxI+40JLqkXFtY0ElQ5UadiPE25gHJPEw+dH1oh
+         8BuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HurAsoClkkfNishWyH7zyhaS3SjeDCn6WcRooyIarSk=;
-        b=LfZq6Vkzwi24nNOCFK8Pblxjlv6eDHlcmpeMp7jY153s8IwPTOrvyg6SRzDsCjjGcf
-         eBr4hSPViBDL5MzSn8larR9zBVtMrgPLjEOP8nOoGKuJadnnqZ3bUI701m9P7UebW+LO
-         9+BVETa4cvwCaHSPWL0pYCGKi7WH7iu+SOKxYYOyww1NXQoAkg9qagJnTFtsLtigClJi
-         In7aXiVOUneNgn9on60hOWnoGinwWvIEBCZijynu6jhPOxOuIKKDDq4rhR7Ng++64q0n
-         k357QTN16L/ptE+3nivS+wf/ju1WkavxHH5DFhuQxLXeXOdvt2953zdEQCOvuhv1cI3M
-         c52g==
-X-Gm-Message-State: AFqh2kpIqbv2kukNuTIzK3nSy1BbBZZrXxhXYYq7QV/2k4diGN1rgX3y
-        0D3Efav+hT7slzFkufPDt3q2Ew==
-X-Google-Smtp-Source: AMrXdXvme5c+Y2+O5xOdzwHI53CavI+MeY/3uvmpsnhkqo7OyPX1WsvR43HhkCntqsykA4usyIw3mQ==
-X-Received: by 2002:a05:600c:c16:b0:3da:26e5:10b6 with SMTP id fm22-20020a05600c0c1600b003da26e510b6mr2193294wmb.30.1673941903802;
-        Mon, 16 Jan 2023 23:51:43 -0800 (PST)
+        bh=3o46UZYtS1Pu7ldJQIr+TAat72ZYFFBxEVdiCktlPoU=;
+        b=y7bHQmMks1g3c5O0PEfvxW15Ecbx8D54H3YV1yZXmGK6c+2Jj1XVxf40XA8U4Lfc3v
+         IT76Q7uOtZaSR8wcsSBSLsrv5iTwp2IKX8nrlIkcJzpF79iSKvQl6yKmnL2th1kRVpMF
+         iXm1GRuJnj+VTHkXs9WQHoJQBIQ1e72MG2aRIDh0Pet7bz293wM/2V8GGT2xR0EAx4rz
+         FYYNPrtG1D8tDDrw3QYCvDHAR6BEbzKYrDpUUdpP7SA35D/11FkEC5jCLLoacB4gcAtq
+         BmiTakJTssfhg/aX3nxqnzweeS772TYKOrQqseGIGMt9E5/pbSnT3II0gZWTiIq65t+c
+         4NOw==
+X-Gm-Message-State: AFqh2kqWrQc/g9g5LA/WI1ZbX98cYoKrwdveMPJhV5NP+IgkM9Usk4LN
+        MxP78us7g3VOTmsFG25fl/IYww==
+X-Google-Smtp-Source: AMrXdXultD1oPczMcR2wM7GOvGtVEJsJmU9PrB288t7nR9paaY4w+Hv5rSuhEJHfx6+sOSrhtEWYVQ==
+X-Received: by 2002:a5d:522d:0:b0:2bd:ff91:7e1e with SMTP id i13-20020a5d522d000000b002bdff917e1emr1721677wra.57.1673943237797;
+        Tue, 17 Jan 2023 00:13:57 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t5-20020a1c7705000000b003daffc2ecdesm3815750wmi.13.2023.01.16.23.51.42
+        by smtp.gmail.com with ESMTPSA id w4-20020adfee44000000b0029100e8dedasm28063917wro.28.2023.01.17.00.13.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Jan 2023 23:51:43 -0800 (PST)
-Message-ID: <948d6fec-12e3-f4e6-8024-d444e5a41df5@linaro.org>
-Date:   Tue, 17 Jan 2023 08:51:41 +0100
+        Tue, 17 Jan 2023 00:13:57 -0800 (PST)
+Message-ID: <627b62a4-47fe-02bd-7a0f-0377bf9d43d3@linaro.org>
+Date:   Tue, 17 Jan 2023 09:13:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 2/6] arm64: dts: qcom: sdm845: move WCD9340 codec to
- separate file
+Subject: Re: [PATCH] dt-bindings: sram: Tightly Coupled Memory (TCM) bindings
 Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230113162245.117324-1-krzysztof.kozlowski@linaro.org>
- <20230113162245.117324-2-krzysztof.kozlowski@linaro.org>
- <20230117035631.cgi6fjdrpz5eppca@builder.lan>
+To:     Tanmay Shah <tanmays@amd.com>, Tanmay Shah <tanmay.shah@amd.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org
+References: <20230113073045.4008853-1-tanmay.shah@amd.com>
+ <df4fdecb-6ca7-d96b-bcad-02cefb52ce4e@linaro.org>
+ <e675a037-3c07-a8bb-19d4-781ab881c920@amd.com>
+ <39b55b55-b0fd-95fc-5f68-e00cd20f076d@linaro.org>
+ <42c34b1a-3ea6-350a-86fe-89f93f32e893@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230117035631.cgi6fjdrpz5eppca@builder.lan>
+In-Reply-To: <42c34b1a-3ea6-350a-86fe-89f93f32e893@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -81,45 +79,160 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 04:56, Bjorn Andersson wrote:
-> On Fri, Jan 13, 2023 at 05:22:41PM +0100, Krzysztof Kozlowski wrote:
->> WCD9340 codec node is not a property of the SoC, but board.  Move it to
->> separate file and include it in the specific boards.  On all others,
->> keep the Slimbus node disabled as it is empty.
->>
+On 16/01/2023 19:17, Tanmay Shah wrote:
+> Hi Kryzsztop Thanks for reviews. Please find my comments below.
 > 
-> I think this seems like a reasonable idea. But without clearly
-> documenting your intentions/guidelines we will soon have
-> sdm845-display.dtsi, sdm845-pcie.dtsi etc.
+> On 1/15/23 6:45 AM, Krzysztof Kozlowski wrote:
+>> On 13/01/2023 19:04, Tanmay Shah wrote:
+>>> Hi Krzysztof Thanks for your reviews.
+>>>
+>>> Please find my comments below.
+>>>
+>>> On 1/12/23 11:52 PM, Krzysztof Kozlowski wrote:
+>>>> On 13/01/2023 08:30, Tanmay Shah wrote:
+>>>>> This patch introduces bindings for TCM memory address space on AMD-xilinx
+>>>>> platforms. As of now TCM addresses are hardcoded in xilinx remoteproc
+>>>>> driver. This bindings will help in defining TCM in device-tree and
+>>>>> make it's access platform agnostic and data-driven from the driver.
+>>>>>
+>>>>> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+>>>>> ---
+>>>>>    .../devicetree/bindings/sram/xlnx,tcm.yaml    | 137 ++++++++++++++++++
+>>>>>    1 file changed, 137 insertions(+)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/sram/xlnx,tcm.yaml b/Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..02d17026fb1f
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/sram/xlnx,tcm.yaml
+>>>>> @@ -0,0 +1,137 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/sram/xlnx,tcm.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Tightly Coupled Memory (TCM)
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Tanmay Shah <tanmay.shah@amd.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  Tightly Coupled Memory(TCM) is available on AMD-Xilinx paltforms for ARM
+>>>>> +  cortex remote processors to use. It is low-latency memory that provide
+>>>>> +  predictable instruction execution and predictable data load/store timing.
+>>>>> +  TCM can be configured in lockstep mode or split mode. In split mode
+>>>>> +  configuration each RPU core has its own set of ATCM and BTCM memories and in
+>>>>> +  lockstep mode redundant processor's TCM become available to lockstep
+>>>>> +  processor. So In lockstep mode ATCM and BTCM size is increased.
+>>>>> +
+>>>>> +properties:
+>>>>> +  $nodename:
+>>>>> +    pattern: "sram-[0-9a-f]+$"
+>>>> Drop node name requirement.
+>>>> Why do you need sram node at all?
+>>>
+>>> I will remove sram- node. However, it device-tree I was planning to put
+>>>
+>>> all TCM nodes under single node for example:
+>>>
+>>> tcm {
+>>>
+>>>       tcm-lockstep {
+>>>
+>>>       };
+>>>
+>>>       tcm-core@0 {
+>> Mix of nodes with and without unit address is pointing to some design
+>> issues.
 > 
-> So please start there.
+> 
+> The design currently tries to accommodate physical relocation of the 
+> memory. May be there is another way to represent this.
+> 
+> Here is address space of TCM memory on zynqmp platform: 
+> https://docs.xilinx.com/r/en-US/ug1085-zynq-ultrascale-trm/Tightly-Coupled-Memory-Address-Map
+> 
+> As per above address map, there are 4 TCM banks, each 64KB ( 0x10000 ) 
+> size at following addresses:
+> 
+> *In split mode*:
+> 
+> ATCM0: 0xFFE00000---|---> Assigned to RPU core0
+> BTCM0: 0xFFE20000---|
+> 
+> ATCM1: 0xFFE90000---|---> Assigned to RPU 1
+> BTCM1: 0xFFEB0000---|
+> 
+> However, In lockstep mode, ATCM1 and BTCM1 relocates to different 
+> addresses (i.e. 0xFFE10000 and 0xFFE30000 respectively)
+> 
+> and becomes available for RPU core 0:
+> 
+> 
+> *In lockstep mode Both used by RPU core 0*:
+> 
+> ATCM0: 0xFFE00000-----|
+>                                           |----> ATCM: 0xFFE00000 size: 
+> 128KB
+> ATCM1: 0xFFE10000-----|
+> 
+> BTCM0: 0xFFE20000-----|
+>                                           |----> BTCM: 0xFFE20000 size: 
+> 128KB
+> BTCM1: 0xFFE30000-----|
+> 
+> 
+> I am not sure how to represent this physical relocation of addresses in 
+> device-tree.
 
-You said like this started the process but it is already there for
-sc7280. Where do you want to store such documentation? In commit msg?
+What do you mean by "relocates"? Move? You set one address in DT and
+other address appears to be used? Then just set the other address?
 
 > 
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../boot/dts/qcom/sdm845-audio-wcd9340.dtsi   | 69 +++++++++++++++++++
->>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  1 +
->>  .../qcom/sdm845-xiaomi-beryllium-common.dtsi  |  1 +
->>  .../boot/dts/qcom/sdm845-xiaomi-polaris.dts   |  1 +
->>  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 60 +---------------
->>  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  1 +
->>  .../boot/dts/qcom/sdm850-samsung-w737.dts     |  1 +
->>  7 files changed, 75 insertions(+), 59 deletions(-)
->>  create mode 100644 arch/arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi b/arch/arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi
->> new file mode 100644
->> index 000000000000..5bcce7d0d709
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-audio-wcd9340.dtsi
+> Ideally such sram nodes can be represented as following:
 > 
-> Why does this include the substring "audio"?
+> [1] Representation of TCM in split mode:
+> 
+> [ a|b ]tcm[ 0|1 ] {
 
-To indicate it covers entire audio, which points me to the fact that
-probably I can also move there sound node.
+You do not have unit address here.
+
+> 
+>     compatible = "xlnx,zynqmp-tcm";
+> 
+>      reg <>;
+> 
+>      ranges <>;
+> 
+>      power-domain: (only 1 power domain for current bank)
+> 
+> }
+> 
+> However, to represent TCM in lockstep mode as well, I might have to add 
+> platform specific optional reg and ranges property which optionally 
+> represent address space of lockstep mode for atcm and btcm.
+
+I don't understand why. You have IO address space, so why do you remove
+unit address and make reg optional?
+
+> 
+> For example, ATCM0 and BTCM0 will be represented as above [1] However, 
+> ATCM1 and BTCM1 will have following extra properties:
+> 
+> [a|b]tcm1 {
+> 
+>     compatible = "xlnx,zynqmp-tcm";
+> 
+>      reg <>;
+> 
+>      lockstep-reg <>; /* represent address space of this bank in 
+> lockstep mode */
+
+Device is either in lockstep or it is not, right? Why do you put here
+some dualism?
+
 
 Best regards,
 Krzysztof
