@@ -2,225 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6434166DDC4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:39:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88A4166DDDE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:41:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236221AbjAQMjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 07:39:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57690 "EHLO
+        id S235952AbjAQMl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 07:41:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236129AbjAQMjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:39:05 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BC535252;
-        Tue, 17 Jan 2023 04:39:04 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B5E8310C;
-        Tue, 17 Jan 2023 13:38:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673959141;
-        bh=0xanUWyMoxJnvXqqNZ5UOGy3oyg6sQdr/aJLg0bLmX0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lhXA6EOBtju3hz7RVGApa3gFkm8IjwyEevWIttJjwuSssA6tWWX3VMk4dP6KCwshf
-         D1TXAw5l8b9t1Vd5W0sbVT1fBO26Skg59JiGVMd89TgWhDkXbpcp0S0PTFKKS9B67y
-         fFirV+o2rzHN81rIAuhffeTrNvXXekunotwKsK54=
-Message-ID: <808e831f-4282-0e58-ebb2-2f556aaeaca4@ideasonboard.com>
-Date:   Tue, 17 Jan 2023 14:38:57 +0200
+        with ESMTP id S236245AbjAQMlX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:41:23 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A7F6CC29
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 04:41:22 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1pHlHD-0006CB-Cd; Tue, 17 Jan 2023 13:41:19 +0100
+Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1pHlH8-00045q-Io; Tue, 17 Jan 2023 13:41:14 +0100
+Date:   Tue, 17 Jan 2023 13:41:14 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-rockchip@lists.infradead.org,
+        Shengyu Qu <wiagn233@outlook.com>, devicetree@vger.kernel.org,
+        heiko@sntech.de, jacob-chen@iotwrt.com, kernel@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        michael.riesch@wolfvision.net, robh+dt@kernel.org,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add RGA2 support to rk356x
+Message-ID: <20230117124114.GF23495@pengutronix.de>
+References: <20221121151755.2072816-3-m.tretter@pengutronix.de>
+ <CAAEAJfC74Am19+GSpCpbWJVpdbgv4n=3pjMHNkpRcCQfwi5xQA@mail.gmail.com>
+ <CAMdYzYr68xvNvJRiJw9JyHoN7v12bvucdWLhdkt5j1QJqEuApg@mail.gmail.com>
+ <2694546.oTxpM42Gb3@archbook>
+ <20221123092841.GB13042@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [RFC PATCH 3/4] dt-bindings: panel: Introduce dual-link LVDS
- panel
-Content-Language: en-US
-To:     Aradhya Bhatia <a-bhatia1@ti.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Guo Ren <guoren@kernel.org>
-Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux RISC-V List <linux-riscv@lists.infradead.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Linux Mediatek List <linux-mediatek@lists.infradead.org>,
-        Linux C-SKY Arch List <linux-csky@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230103064615.5311-1-a-bhatia1@ti.com>
- <20230103064615.5311-4-a-bhatia1@ti.com>
- <09f1ca83-c7d5-a186-6fa6-09cdd7a0b9cc@collabora.com>
- <431ddd82-055b-2526-3d5e-f6563e48d264@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <431ddd82-055b-2526-3d5e-f6563e48d264@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221123092841.GB13042@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2023 18:21, Aradhya Bhatia wrote:
-> Hi Angelo,
+On Wed, 23 Nov 2022 10:28:41 +0100, Michael Tretter wrote:
+> On Tue, 22 Nov 2022 20:47:49 +0100, Nicolas Frattaroli wrote:
+> > On Dienstag, 22. November 2022 00:10:25 CET Peter Geis wrote:
+> > > On Mon, Nov 21, 2022 at 12:34 PM Ezequiel Garcia
+> > > <ezequiel@vanguardiasur.com.ar> wrote:
+> > > > On Mon, Nov 21, 2022 at 2:13 PM Shengyu Qu <wiagn233@outlook.com> wrote:
+> > > > > I remember someone said that rga2 has only 32bit address space but not
+> > > > > having a mmu or mmu needs to be configured. Better ask by yourself in
+> > > > > pine64 discord since I'm not sure about that.
+> > > > > 于 2022年11月22日 GMT+08:00 上午12:41:16, Michael Tretter <m.tretter@pengutronix.de> 写到:
+> > > > > >On Tue, 22 Nov 2022 00:01:28 +0800, Shengyu Qu wrote:
+> > > > > >> Someone from pine64 discord found that RGA2 doesn't work properly on over
+> > > > > >>
+> > > > > >> 4GB memory RK3568 devices. Are you sure current driver works now?
+> > > > > >
+> > > > > >I am absolutely sure that the driver works on a 2GB ROCK3A board.
+> > > > > >Unfortunately, I don't have a device with 4GB or more memory and I cannot test
+> > > > > >the driver with such a device.
+> > > > > >
+> > > > > >As the documentation for the RGA2 is the same in the TRM of the rk3288 and
+> > > > > >rk3568, I would guess that the driver doesn't work on a rk3288 with more than
+> > > > > >4GB (if there is such a thing) either and the driver needs to be fixed for
+> > > > > >both SoCs.
+> > > > > >
+> > > >
+> > > > In any case, if there's some kind of issue it must be in the driver,
+> > > > and not in the device tree binding (i.e. this patchset).
+> > > 
+> > > An unfortunate number of Rockchip drivers break on rk356x boards with
+> > > more than 4GB of ram. I've found requesting memory allocations with
+> > > the GFP_DMA flag solves the problem, as the kernel only allocates
+> > > 32bit addresses for DMA on rk356x. This is similar to the bug with the
+> > > ITS MSI allocations.
+> > 
+> > the problem in this case at least partly seems to be down to the driver
+> > assuming 32 bit addresses, see e.g. [1] (if I understand the code
+> > correctly) and [2]. When I asked in the #armlinux IRC on Libera.chat
+> > about this, Robin Murphy remarked:
+> > 
+> >   <robmur01> yeesh, the virt_to_phys/dma_sync abuse is even worse
+> >   - in that particular instance I'd be inclined to replace
+> >   {src,dst}_mmu_pages with proper coherent DMA buffers
+> > 
+> > So the driver in general needs some cleanup, which contributes to the
+> > problem.
 > 
-> Thanks for taking a look at the patches!
+> As far as I understand the 4GB are a hardware limitation.
 > 
-> On 03-Jan-23 17:21, AngeloGioacchino Del Regno wrote:
->> Il 03/01/23 07:46, Aradhya Bhatia ha scritto:
->>> Dual-link LVDS interfaces have 2 links, with even pixels traveling on
->>> one link, and odd pixels on the other. These panels are also generic in
->>> nature, with no documented constraints, much like their single-link
->>> counterparts, "panel-lvds".
->>>
->>> Add a new compatible, "panel-dual-lvds", and a dt-binding document for
->>> these panels.
->>>
->>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->>> ---
->>>   .../display/panel/panel-dual-lvds.yaml        | 157 ++++++++++++++++++
->>>   MAINTAINERS                                   |   1 +
->>>   2 files changed, 158 insertions(+)
->>>   create mode 100644 
->>> Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
->>> new file mode 100644
->>> index 000000000000..88a7aa2410be
->>> --- /dev/null
->>> +++ 
->>> b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
->>> @@ -0,0 +1,157 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/display/panel/panel-dual-lvds.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Generic Dual-Link LVDS Display Panel
->>> +
->>> +maintainers:
->>> +  - Aradhya Bhatia <a-bhatia1@ti.com>
->>> +  - Thierry Reding <thierry.reding@gmail.com>
->>> +
->>> +description: |
->>> +  A dual-LVDS interface is a dual-link connection with the even pixels
->>> +  traveling on one link, and the odd pixels traveling on the other.
->>> +
->>> +allOf:
->>> +  - $ref: panel-common.yaml#
->>> +  - $ref: /schemas/display/lvds.yaml/#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - items:
->>> +          - enum:
->>> +              - lincolntech,lcd185-101ct
->>> +              - microtips,13-101hieb0hf0-s
->>> +          - const: panel-dual-lvds
->>> +      - const: panel-dual-lvds
->>> +
->>> +  ports:
->>> +    $ref: /schemas/graph.yaml#/properties/ports
->>> +
->>> +    properties:
->>> +      port@0:
->>> +        $ref: /schemas/graph.yaml#/$defs/port-base
->>> +        unevaluatedProperties: false
->>> +        description: The sink for first set of LVDS pixels.
->>> +
->>> +        properties:
->>> +          dual-lvds-odd-pixels:
->>> +            type: boolean
->>> +
->>> +          dual-lvds-even-pixels:
->>> +            type: boolean
->>> +
->>> +        oneOf:
->>> +          - required: [dual-lvds-odd-pixels]
->>
->> One question: why do we need a "panel-dual-lvds" compatible?
->> A Dual-LVDS panel is a LVDS panel using two ports, hence still a 
->> panel-lvds.
->>
->> If you're doing this to clearly distinguish, for human readability 
->> purposes,
->> single-link vs dual-link panels, I think that this would still be 
->> clear even
->> if we use panel-lvds alone because dual-link panels, as you wrote in this
->> binding, does *require* two ports, with "dual-lvds-{odd,even}-pixels" 
->> properties.
+> According to the rk3568 TRM, the RGA2_MMU_SRC_BASE has 28 bits for the upper
+> 28 bits of the address of the MMU TLB. Thus the MMU TLB must be located within
+> 4GB memory.
 > 
-> Yes, while they are both LVDS based panels the extra LVDS sink in these
-> panels, and the capability to decode and display the 2 sets of signals
-> are enough hardware differences that warrant for an addition of a new
-> compatible.
+> And within the MMU TLB, the addresses are 32 bit as well (unless I am missing
+> something important). Unfortunately, I couldn't find any documentation for the
+> TLB. The downstream driver writes only 32 bit addresses to the TLB as well.
+> Thus, I assume that all video buffers must be located within 4GB memory, too.
 > 
->>
->> So... the devicetree node would look like this:
->>
->> panel {
->>      compatible = "vendor,panel", "panel-lvds";
->>      ....
->>      ports {
->>          port@0 {
->>              .....
->>              -> dual-lvds-odd-pixels <-
->>          }
->>
->>          port@1 {
->>              .....
->>              -> dual-lvds-even-pixels <-
->>          };
->>      };
->> };
->>
->>> +          - required: [dual-lvds-even-pixels]
->>
->> ...Though, if you expect dual-lvds panels to get other quirks in the 
->> future,
->> that's a whole different story and you may actually need the 
->> panel-dual-lvds
->> compatible.
+> While I agree that the driver needs some cleanup and may use correct types for
+> handling the bit size limitation, I think this isn't some driver limitation.
+> Maybe the driver should set the dma mask to 32 bits and should be explicitly
+> aware of the 32 bit limit.
 > 
-> Yes, exactly. Even while being non-smart, there are going to be more
-> quirks in future. And it would be better if they have their own
-> compatible/binding, and are not getting appended in an ever-growing
-> if-else ladder. :)
+> > 
+> > But as was said, this isn't a problem with the device tree, so it should
+> > still make it in. It just means that the driver is broken on 8GB RK356x.
 
-I can imagine a panel which you can use with a single LVDS link if the 
-clock is high enough, or two LVDS links if the clock has to be lower. Is 
-that a dual-lvds panel? =)
+Nicolas: Is this your Acked-By?
 
-But probably that situation is no different than a panel that can work 
-with DSI or DPI input.
+Who would pick up the patch? Heiko?
 
-Still, I'm agree with Angelo in that a new compatible string for dual 
-link lvds feels a bit odd. That said, it's possible the panel-lvds 
-bindings might get rather confusing. So I don't have a strong feeling here.
-
-  Tomi
-
+Michael
