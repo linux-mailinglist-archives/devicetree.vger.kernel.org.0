@@ -2,111 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94CBF66E470
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:08:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C22D866E47D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 18:09:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232844AbjAQRH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 12:07:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40004 "EHLO
+        id S233582AbjAQRJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 12:09:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232963AbjAQRH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:07:56 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE223028C
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:07:54 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pHpRB-0003GK-8T; Tue, 17 Jan 2023 18:07:53 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pHpR9-006jNY-47; Tue, 17 Jan 2023 18:07:51 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pHpR8-00DesE-4e; Tue, 17 Jan 2023 18:07:50 +0100
-Date:   Tue, 17 Jan 2023 18:07:49 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Ben Dooks <ben.dooks@sifive.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
+        with ESMTP id S233134AbjAQRJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 12:09:44 -0500
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E82F42CFEA
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:09:43 -0800 (PST)
+Received: by mail-oo1-f43.google.com with SMTP id 123-20020a4a0681000000b004faa9c6f6b9so159170ooj.11
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 09:09:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EBt6OwEc7aWzfw3HNqGtJVkR6yiTPViGz+8y019qzbo=;
+        b=tWUonolJPZPpp1ioFkq/tkjOJJSB/yO/wfFIp+H5PPQpmQYL3ueKnJ2IHibgvgUNTx
+         YiDkc0vi71pTSjpCTlswbWQUA7uzrba6YGMXQi2Br4hosQypWGaYFbwR7b6nsOtiq9j9
+         i7edmVFnIdv7DCL507RrcuG6ssr+y9pUe4mmR9kZ1jdpMO2pLpEr8/NuB6Euva8VdgtW
+         lDgkfsL+yLy3XPQoQ+meyLrSc/DKs46u4mGaOBs6//FLXOWYJ9QLHKriZJewSrjoREV1
+         z/Vvc4SyomtLCYdHAz7R5daHWQ4yeI6Q+awS1NcBf+FwBtNeTsGndRFUB+YLdF1bctqC
+         qASg==
+X-Gm-Message-State: AFqh2krfivX1z2+SpymBKcNxFpA8Eopf2a56+J2b8R4mLKrJDELB/P9T
+        lybb+/4flVphWuacqkd7JA==
+X-Google-Smtp-Source: AMrXdXuoCd2emcRioMWSkuiL5UJXYiiL7j05Xg3FB4TAOariAaf9grOg2xUsCHaHs0HnjFZPhOVlFg==
+X-Received: by 2002:a05:6820:150a:b0:4f2:875:5252 with SMTP id ay10-20020a056820150a00b004f208755252mr12029257oob.3.1673975383168;
+        Tue, 17 Jan 2023 09:09:43 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r5-20020a4a83c5000000b0049ee88e86f9sm15310809oog.10.2023.01.17.09.09.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 09:09:42 -0800 (PST)
+Received: (nullmailer pid 3250793 invoked by uid 1000);
+        Tue, 17 Jan 2023 17:09:42 -0000
+Date:   Tue, 17 Jan 2023 11:09:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-Subject: Re: [PATCH v7 00/10] Designware PWM driver updates for OF
-Message-ID: <20230117170749.vff5av32m6djc5dz@pengutronix.de>
-References: <20221223153820.404565-1-ben.dooks@sifive.com>
- <46703b00-97d3-c21d-fbe1-71208fb50f73@sifive.com>
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v2 03/10] ASoC: dt-bindings: audio-graph-port: add
+ missing mclk-fs
+Message-ID: <20230117170942.GA3244879-robh@kernel.org>
+References: <87358hj2ub.wl-kuninori.morimoto.gx@renesas.com>
+ <87y1q9ho56.wl-kuninori.morimoto.gx@renesas.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="m7xx7b55ldi3cgzf"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <46703b00-97d3-c21d-fbe1-71208fb50f73@sifive.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <87y1q9ho56.wl-kuninori.morimoto.gx@renesas.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 11, 2023 at 01:10:29AM +0000, Kuninori Morimoto wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> audio-graph-port is missing "mclk-fs" on ports/port,
+> it is used not only endpoint. It is already defined on simple-card.
+> This patch fixup it.
+> Without this patch, we will get below warning.
+> 
+> ${LINUX}/arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: audio-codec@44: ports: 'mclk-fs' does not match any of the regexes: '^port@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> 	From schema: ${LINUX}/Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
 
---m7xx7b55ldi3cgzf
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+IMO, the warning is correct. 'ports' should not be anything but a 
+container of 'port' nodes. If something applies to all ports, then it 
+should probably be in the device node (or implicit).
 
-Hello Ben,
-
-On Tue, Jan 17, 2023 at 04:39:34PM +0000, Ben Dooks wrote:
-> On 23/12/2022 15:38, Ben Dooks wrote:
-> > An updated set of patches for the Designware PWM driver
-> > split into PCI and OF versions. I think I got all the
-> > review issues in this set.
-> >=20
-> > Sorry for the delay in getting this out, between conferences
-> > and other absences there has been little time to deal with
-> > this set. I will be now out of office until 3rd Jan 2023.
->=20
-> Hi, how's the progress on review and getting this set finalised?
-
-Speaking for me:
-
-Your patch set isn't forgotton. It's just that my time is limited and
-reviewing a new driver is time intensive.
-
-I'm sorry I cannot give feedback in a more timely manner, but I will
-come to it eventually.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---m7xx7b55ldi3cgzf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmPG1eMACgkQwfwUeK3K
-7AlzdQf/QUmeI4a1TFkUr15wS6W3iWDAylkgqXR4laiuB7kf6DN/uGDrCHCmch+n
-A7bzpFN16H0i39OSEwM6NLb27z5GDR/NPjjqnq1nXj7/9j2D240JDlYUxMSsnlot
-5ZgSEJWhzVWKSPBpgbhx92jPTlCK4qcFwpIcFtGw+UoTCZjK7ZN/cLDcRxl+szwj
-wDkA1cGwM21N7xZ9dtHXRMUJM45ReXU+BBCN6bbzNyFh/apiYkOH/bYwy4g4ssy+
-TgThWOBWOaxu8NGnegQjIcHK3eTPWVm5U3YTQm8l4ld8vvKOsk26oaUPxq7sXpjS
-f7LR0ThbA9nPrT/p/mnm3K1YCgXEYA==
-=HF7T
------END PGP SIGNATURE-----
-
---m7xx7b55ldi3cgzf--
+Rob
