@@ -2,221 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF4EA66DB3A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 11:34:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC7C466DB4C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 11:39:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236576AbjAQKeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 05:34:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43160 "EHLO
+        id S236738AbjAQKjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 05:39:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236865AbjAQKd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 05:33:59 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2219227987;
-        Tue, 17 Jan 2023 02:31:48 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id vm8so74244711ejc.2;
-        Tue, 17 Jan 2023 02:31:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U5q3UBZchnoCVIUVt8XmN98+cN/A2hPLkmxGQjqFfZQ=;
-        b=NE2ZkxgTnhWO1aCyeY7Y7nSrEPNWZKKlP+B26kOR8+9Ogq8MK8HMHetk+bEOfThVP3
-         vtFesPg4e6pckbaG+IT94VBsTCvsAN1pcwurzfKYane6VWM1r5YXg+/1Ud03boJ3xBLb
-         vquIqGv0pO8Vq+wDd93+Ux1V7vNBVePW8DQwkyvQzfL5Q/yoKQBA8u7bz4NWq5G7Db3s
-         Zyxh6ZpmntKHQwAYVhYcjrxRuT/ezkb4j2y0yS5b/fYo2rxk/2DuhnpvqyZ+7v7P0VjF
-         luMeQEJAVpm+0adKsx4QYHa6DS8Cvm+LYZQjVL7sdC7Iwl5F6+32kJPlbPV0f/FATz6X
-         /4lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U5q3UBZchnoCVIUVt8XmN98+cN/A2hPLkmxGQjqFfZQ=;
-        b=xiSIuFdP2c+T1lvOD8MczS0IYxXzzSYnoRllqjcW6Ssu5w6uQ9/3EYE6shPUSImKmv
-         +J1aKV8ZrUmBPMKmh/6qizwPb/TTch+SeZTatQFx/6uCGXZpLN7w5IBpEt3GEEQaSZgE
-         NML+Kn/iLMs26+G1LaGE+vvZ6Mhy+Y6XGIwUmNVK/KVF67Cj9vtSr5lEQN7V0gy26rqV
-         B3rYf4AnbgJbTh8qfbGaBE8eJmVYbtTJIVxXEj9J2ITmLrdgU3tGvY9oArl69JyTo/Q8
-         bhfYm6YxBeCGPCk8LSCLg8y1msbymtAA+iLNaBboBJKHfsEJEpDEidk/oKulT2nnmCj+
-         iaBQ==
-X-Gm-Message-State: AFqh2kos+WVmF+OfhT0SMLj2ZQZDyjN+ACeWGilgJOPFoW5Q+MpD5zZE
-        eQZUNoQsBKqSQR54kdJjhAAuNBdwU9IVm+QFG/AvmJBzPtDo/w==
-X-Google-Smtp-Source: AMrXdXt3Hiip4kLM0j6pOfDN05d1mi6mjmyXuep0BnopZ9LrsWf7BwM/W7wytIRcixuoMy1/D/yHarRFEIPFeCfMumM=
-X-Received: by 2002:a17:906:5a68:b0:86f:e36f:73ac with SMTP id
- my40-20020a1709065a6800b0086fe36f73acmr269341ejc.655.1673951506583; Tue, 17
- Jan 2023 02:31:46 -0800 (PST)
-MIME-Version: 1.0
-References: <20230113110738.1505973-1-keguang.zhang@gmail.com>
- <20230113110738.1505973-2-keguang.zhang@gmail.com> <63fdd223-c5e1-302d-ffef-9e582874e938@linaro.org>
-In-Reply-To: <63fdd223-c5e1-302d-ffef-9e582874e938@linaro.org>
-From:   Kelvin Cheung <keguang.zhang@gmail.com>
-Date:   Tue, 17 Jan 2023 18:31:29 +0800
-Message-ID: <CAJhJPsV5wC_fNgP9iSi1bUp+HFY=dgyh4-x0OueZ8fQO=p7r8w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add binding for Loongson-1 clock driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S236929AbjAQKjC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 05:39:02 -0500
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2125.outbound.protection.outlook.com [40.107.113.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 067282ED4D;
+        Tue, 17 Jan 2023 02:35:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZwNLtAT1injsA6eWmdzidbHptsSSsJcIWlj9g/FbveajJzZRMMmq1gg+qFLYRJOcVgkKePn8b1D0ExuLHupCBbm1UoCNCAINDSOc2PSqBhTWb3mkTStMCaz0K3gPdn3LtvdYPlrqQ5mZP4oUfZSs/jbNt3bwe4X0Jq/m60OLeJyJZ/6+mOwmEVEMtz6zgsCVqB/he529QXDcTepKBrlfHQxzxI82m5+BSoCcdMGb2ZD79XGxdRRjOgZJGWPLBFUfSbqLR6CphluPyuRrI5eJ8DrGpbkQ9iz3PfFif4ZXkG3KARIadttW+5xlHRsG5xsiNiUBn1SoveLrcHslCQO6Lw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Es662uYClP/IqbjnyBJPcIz9wc9c4nf6xIaHn7hC8U0=;
+ b=mhhk/H6wV+0/DfYxeWnAq56Fy7XZPNqBfW1em24AlJfHe9mQbVp/Zs87JTaF8lqCBMFmDGuTWlATdW8WM7CqbpLL7oTaAFbEAvTFhIKnaFmIGSoV2UUlLJukgIqTDaR4l+AqonesJirVx0b/RcCLc+MZu7K/igbeuNZuBAvT47jcEOvFeedN+k88tgxUBTBjcMpe9HgyE+9eNsLr8Io/bRh+a6RZKdpk1z5AeC649t07wmTQnZCAVbmVioHX1T0mdq7em1EYUe9YfmZV3pds3C+hQek2054+gRIB6FLzgkgSpTsQBh3AYuQ9F9Brkqq79u6hd10iGthUjKy5g7+gsg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Es662uYClP/IqbjnyBJPcIz9wc9c4nf6xIaHn7hC8U0=;
+ b=nkXOJfY37pgHtLp7/KQ2ks4NlluvaOm6AgLzjDV/crKrQANjUVT9LmMMDRhVeN0lbbqzTN+WIRL9OIQmQ2hgYSTA/69NHOgcF/FBgPcpzp6BNcPoB9OsscgExz1boOInHkVfX39G6C1GNk5soXPMclqNP0UgeqgeHO3r5JJjm6c=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by TYTPR01MB10936.jpnprd01.prod.outlook.com (2603:1096:400:39f::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Tue, 17 Jan
+ 2023 10:35:34 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::343d:7339:78e5:a46e]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::343d:7339:78e5:a46e%6]) with mapi id 15.20.5986.023; Tue, 17 Jan 2023
+ 10:35:34 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+CC:     Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: display: bridge: renesas,rzg2l-mipi-dsi:
+ Document RZ/V2L support
+Thread-Topic: [PATCH] dt-bindings: display: bridge: renesas,rzg2l-mipi-dsi:
+ Document RZ/V2L support
+Thread-Index: AQHY/qw3aeqnK+DFtki/nIh8FGiGM66iwLSg
+Date:   Tue, 17 Jan 2023 10:35:34 +0000
+Message-ID: <OS0PR01MB5922B51289D10994930F846A86C69@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20221122195413.1882486-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20221122195413.1882486-1-biju.das.jz@bp.renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TYTPR01MB10936:EE_
+x-ms-office365-filtering-correlation-id: 4a67b251-2685-48db-4f4b-08daf87690e4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: uu9pbh5gr5SCMZPD8uJ9zqf325Oz0rQos8VNpqi9JrcMUyptOKEccYsXgBnWH0QJDA31OwTYxP4QaB+lpfrIghR+8uQh2Vxtyso3/gBsOziPqg+z7j7Z7rIRcGC/UThIbi+u5LJ7jNWgtk5DbhIrqCxiA0eAsPKlEhQRl70G/atY3gXg1OBb2lt2dNrb5aVyMKItUdN5pO6JO0rbGIUI6k/lG3sTk8JdXq1MLGJ1cb6c0YAqUmtQa9cez2q7jccNmHeghjrfcC8k5N6buCmVyDCRR7YKoVGBqZJTz0tbDF/TwaHnd3CRu4BST/S3bwQKX2wPcEjGCDxxd3y/r5glWISdrmoqHlR25KYlcVRtuJ9K1STK2YoBj2eURk1ZHVU589ZDS3ttWAZB7yue7eLleOadcxmpdNyGuXl899RmCnmdFonLjCGxm068Fi97u1HRP7iaA4zXD1OTsN2fTcYty9km+3ED0xbuFMRzthgAQeSzsnXzdl7zhC4IRjovtcXlAY2tdoDWw1LD7IIbXTcXWoK5cJPpfueAVg3MNtSaIEY0rhmj89g4zLYiEvPG+90KNxlWqp2IuFQylXIknPkGvusRBRSujjVuvLUCF9qPhzSqSXBx+d6Mqa4hADibFScPbID7j34eZoyliAXZry8SeVE2htDbG/2fPQ/vBPCbpCszF8P3FoB/fcZ3hBGtek5MV9oP2+Qoil4K8w8NmVhLwt6nFBcPOaCGKTs054M3flI=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(346002)(39860400002)(136003)(366004)(376002)(451199015)(83380400001)(54906003)(110136005)(966005)(9686003)(71200400001)(478600001)(7696005)(33656002)(55016003)(38100700002)(38070700005)(122000001)(52536014)(41300700001)(186003)(26005)(53546011)(6506007)(2906002)(8676002)(7416002)(64756008)(66556008)(66446008)(66476007)(86362001)(76116006)(4326008)(8936002)(5660300002)(66946007)(316002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Ji2eqAjlzT+CJDo5r3AA12x9GqfeqnX4y/xab5iMXCZPylLngrdiC0q0y5tG?=
+ =?us-ascii?Q?ASJvsfLK4x38H+cCrJlvDnlNYa1NtoeQsSaPWfGPLmdDWfbb3GT4UCobUPh0?=
+ =?us-ascii?Q?ZrFPFaZelg4BZi1A3WvQfr+uwOa2xMYKHAqJh2MWgaCytfFWrmVcWagpKSw0?=
+ =?us-ascii?Q?/zFapLrcejByrfm+/eyrKvVIK3ewrtempp5W82dJpmvO5ilPyNcz9Kzn2NJp?=
+ =?us-ascii?Q?h6t18YpXqphzckE9Ce4Bf19NNwnYS2Ei0/QSS5xy3yGOSg3BY3chSjgIdkjr?=
+ =?us-ascii?Q?UzKYMAhtvSY5k0cLcQDOGdjlf4WlA7SfJotcErD4HI7LLdYfXzIHBeAL26+T?=
+ =?us-ascii?Q?k8L16q8IqAyRK+ZhIMn+h+6vnjyfTPWTIJg7U8MivncVedLSSQXJZdQb0TbB?=
+ =?us-ascii?Q?caYCj/VkG65/A9cD3HgbZlXx4d/Spi2+k/dBMamG/J67NwMPnQNVk52wlceN?=
+ =?us-ascii?Q?AsS/RkMRVo7qS7XNxHIHs08kofMkWAFNOYS+LN+SaqJgqCcp1LKEI8kRqJal?=
+ =?us-ascii?Q?vJQwi5yzB0P6OTt+zbtCtR4bw3djRJko5D5AofDd35EmItt7HxerAGYQhPbZ?=
+ =?us-ascii?Q?oZ8HMCygzyzSfq6cDVT+JLt1ksNar1OZkoQDKT38HqBOiwLfY5St9KJYp4ZO?=
+ =?us-ascii?Q?+D7oMhNFwqyYGOil+PEPHnn+ZG23UDzNs+gPUO3dT4SsvQbQPQJnD3Xoo/c7?=
+ =?us-ascii?Q?QgX0kxonu0PSmlDariZdVrJAvY0sbngwTWsNxXwQGlEhqNoyo8Hgtih/HMyN?=
+ =?us-ascii?Q?8DHh8uw4P/IbrXaNPfQrx0LDHCIwzyxonoxs8TjYop81F7de8wSnwdM/dFb5?=
+ =?us-ascii?Q?HTakg0DHT9ClPY//SlMPuAhASDDT3IvmzbfYmxicPuGm5r38Om/JmcFiImY4?=
+ =?us-ascii?Q?LwKEf0PyPmN5jnRjJ3ME6VagoFq4Y0VN8OQzkDRyV+OfmQ9i/urczU4fSWBh?=
+ =?us-ascii?Q?LaD7iGivhXUtl/+M6wCOfI8znteL+Y0oOVh4PVTYmyGraJTNdXzQ+8+hEGfd?=
+ =?us-ascii?Q?mkODBbez00ghUQ8yypbgfT1S/QQHdkfksIoyM26vH8IP0bFxy1r1KOcXH2J7?=
+ =?us-ascii?Q?gkG0FcMBD4krczKNdj8jiTfcER20F8d6rYA3B5bxN/lXUAt6kraIWl0iWO0P?=
+ =?us-ascii?Q?Hvxxq0ezEgmfQhj5UN3aD5EyTMud4EX0YX1bY3TmSbacMiAB0cdq52h6ZBbs?=
+ =?us-ascii?Q?BhKQtnbC47tHUbtSNB6CAn/AOCVO2w8xxmVHIWXDYGbK0KXUcN56fq4Jejqr?=
+ =?us-ascii?Q?HkA2Rmy9ugol1UJWHilAv2mxCFVKumH46TljQmnDiuKv3rwGNXMgVujPNjnk?=
+ =?us-ascii?Q?FKAxwLaX63qRQ0R7Lw5Rc7JmdbGmAYBa190YW0ZZxlXW7yMKmG5XqEFkYYZU?=
+ =?us-ascii?Q?C3FvhaL3Ur9JaRFbCXWeuLsqGH905Cc+qKZSsLJAnW7N9TxjWaQe2w32DLMH?=
+ =?us-ascii?Q?dS0yBLiZQSuClAKm7r3SvtRRvYzbCTmmxMbfbdhO4Sz+xXb/HB+Y/wroFq29?=
+ =?us-ascii?Q?BWZiocIzXRafaok2NSXoZqacSd1hMs1E981wRHzUb6v9e/AEj0GVUD1pUS7I?=
+ =?us-ascii?Q?L8EuJ2NRoYBzzkdVnB44Uai3ttYswBujh1KnurAfcEHUhtERV3VN3kv1oYvl?=
+ =?us-ascii?Q?jQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a67b251-2685-48db-4f4b-08daf87690e4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2023 10:35:34.6901
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PIYohxnvH4vAmHERplHWmYNh4HJY6kl3L2XJD7IUlIQPeLVh+zuOd+IFA3+1tnfYcW3R3DYjzCkpa0fhTQDa83mkghfFP7AAJdbt5x5bqKg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYTPR01MB10936
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E4=BA=8E2023=E5=B9=B4=
-1=E6=9C=8813=E6=97=A5=E5=91=A8=E4=BA=94 19:17=E5=86=99=E9=81=93=EF=BC=9A
->
-> On 13/01/2023 12:07, Keguang Zhang wrote:
-> > Add devicetree binding document for the Loongson-1 clock driver.
->
-> Subject: drop second/last, redundant "bindings". The "dt-bindings"
-> prefix is already stating that these are bindings.
->
-> Subject: Drop driver, not related to hardware.
+Hi All,
 
-Wil do.
->
-> >
-> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> > ---
-> >  .../bindings/clock/loongson,ls1x-clk.yaml     | 81 +++++++++++++++++++
-> >  1 file changed, 81 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls=
-1x-clk.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/loongson,ls1x-clk.=
-yaml b/Documentation/devicetree/bindings/clock/loongson,ls1x-clk.yaml
-> > new file mode 100644
-> > index 000000000000..4709c6757f1e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/loongson,ls1x-clk.yaml
-> > @@ -0,0 +1,81 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/loongson,ls1x-clk.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Loongson-1 Clock Controller
->
-> Wasn't this already sent?
-> https://lore.kernel.org/all/20190130194731.GA25716@bogus/
-> Then this is a v4? Aren't you duplicating efforts (and reviewers efforts)=
-?
+Gentle ping.=20
 
-Sorry. I didn't notice that patch.
-This binding is totally different from that, which goes with the
-following driver re-implementation.
->
-> > +
-> > +maintainers:
-> > +  - Keguang Zhang <keguang.zhang@gmail.com>
-> > +
-> > +properties:
->
-> compatible is a first property.
+It is acked by Krzysztof Kozlowski and Reviewed by Geert.
 
-Will do.
->
-> > +  "#clock-cells":
-> > +    const: 0
-> > +
-> > +  compatible:
-> > +    enum:
-> > +      - loongson,ls1b-clk-pll
-> > +      - loongson,ls1b-clk-cpu
-> > +      - loongson,ls1b-clk-ahb
-> > +      - loongson,ls1c-clk-pll
-> > +      - loongson,ls1c-clk-cpu
-> > +      - loongson,ls1c-clk-ahb
->
-> Are you registering single clocks? It looks like. No, make a proper
-> clock controller.
+It is blocking for accepting SoC dtsi patches[1] through renesas-soc tree
 
-This binding contains two types of clock, pll-clk and div-clk.
-Should I split the binding to two bindings files?
->
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - "#clock-cells"
-> > +  - compatible
-> > +  - clocks
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    clocks {
->
-> No, not really related to the binding.
+[1] https://lore.kernel.org/all/20221122213529.2103849-1-biju.das.jz@bp.ren=
+esas.com
 
-Should I remove the "clocks" section?
->
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <1>;
-> > +        ranges;
-> > +
-> > +        xtal: xtal {
->
-> Incorrect in this context. Missing unit address.
+Cheers,
+Biju
 
-XTAL doesn't have reg property.
->
-> > +            compatible =3D "fixed-clock";
-> > +            #clock-cells =3D <0>;
-> > +            clock-frequency =3D <33000000>;
-> > +        };
-> > +
-> > +        pll: pll@1fe78030 {
->
-> Node names should be generic, so "clock-controller"
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
-tree-basics.html#generic-names-recommendation
+> -----Original Message-----
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+> Sent: 22 November 2022 19:54
+> To: Andrzej Hajda <andrzej.hajda@intel.com>; Neil Armstrong
+> <neil.armstrong@linaro.org>; Robert Foss <robert.foss@linaro.org>; David
+> Airlie <airlied@gmail.com>; Daniel Vetter <daniel@ffwll.ch>; Rob Herring
+> <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Biju Das <biju.das.jz@bp.renesas.com>; Laurent Pinchart
+> <Laurent.pinchart@ideasonboard.com>; Jonas Karlman <jonas@kwiboo.se>; Jer=
+nej
+> Skrabec <jernej.skrabec@gmail.com>; dri-devel@lists.freedesktop.org;
+> devicetree@vger.kernel.org; Geert Uytterhoeven <geert+renesas@glider.be>;
+> Fabrizio Castro <fabrizio.castro.jz@renesas.com>; linux-renesas-
+> soc@vger.kernel.org
+> Subject: [PATCH] dt-bindings: display: bridge: renesas,rzg2l-mipi-dsi:
+> Document RZ/V2L support
+>=20
+> Document RZ/V2L DSI bindings. RZ/V2L MIPI DSI is identical to one found o=
+n
+> the RZ/G2L SoC. No driver changes are required as generic compatible stri=
+ng
+> "renesas,rzg2l-mipi-dsi" will be used as a fallback.
+>=20
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../devicetree/bindings/display/bridge/renesas,dsi.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git
+> a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+> b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+> index 131d5b63ec4f..e08c24633926 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+> @@ -22,6 +22,7 @@ properties:
+>      items:
+>        - enum:
+>            - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
+> +          - renesas,r9a07g054-mipi-dsi # RZ/V2L
+>        - const: renesas,rzg2l-mipi-dsi
+>=20
+>    reg:
+> --
+> 2.25.1
 
-Will change the node name.
->
-> > +            compatible =3D "loongson,ls1b-clk-pll";
-> > +            #clock-cells =3D <0>;
-> > +            clocks =3D <&xtal>;
-> > +            reg =3D <0x1fe78030 0x4>;
->
-> compatible is first property, then reg, then the rest.
-
-Will do.
->
-> > +        };
-> > +
-> > +        cpu_clk: cpu_clk@1fe78034 {
->
-> No underscores in node names. Anyway this should be gone - make a proper
-> clock controller.
-
-Will change the node name.
->
->
-> Best regards,
-> Krzysztof
->
-
-
---=20
-Best regards,
-
-Kelvin Cheung
