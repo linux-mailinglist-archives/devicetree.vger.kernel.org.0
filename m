@@ -2,120 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 716AF66DEAE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CC9766DEE9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:34:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236853AbjAQNU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 08:20:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57002 "EHLO
+        id S229616AbjAQNej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 08:34:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237062AbjAQNU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:20:57 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B048D39B96;
-        Tue, 17 Jan 2023 05:20:55 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id v10so43809136edi.8;
-        Tue, 17 Jan 2023 05:20:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gAENUVi4hhqvr1Q4evBoJVIdY6Hm7+5BmFRw2zMQP3E=;
-        b=lFCutm1+3XZlFSKBub+eKQ6GZK2WVaZXlDPfgogV3UltlZYGCKmrEWjx9CKuBamN2P
-         6NMhyLip/09+ysj7VHQ1qxVybSVi2erPX2QfA6msuWn0fXANMpmrgJ+CiC6FAcjx2R0F
-         ZZG+K9Ocacne5RqSFNqgGwCYL5xA35tiWlCqYrIm1HrePGl1awCC6RgM0BIO4IpTswO7
-         mrQP8Ywo+7NLn7c75JQfMhyCOKQq5SvmLohNMWS+XJYLffoM/xpFyOyIVcEjt8qCpK/z
-         dnNq+94TRF294EQ5USVL8qTqXp19QW/lOC1uFPysXNWOTQbjnAzToFrgDMUtPj/4Tdc/
-         n5uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gAENUVi4hhqvr1Q4evBoJVIdY6Hm7+5BmFRw2zMQP3E=;
-        b=NmVFxiCeCiUBUlhayYK+bOhho1B0uwgyi1/HZ4UrlDJHwC2fqNBrGGjeqyUiDBfi7i
-         G4N9vWuacuU3upPRKC7QUXHPnsoDpunkFrOf39uHmAwaAZCWyKR7rPHciyGlNN0EVusL
-         7N7D3cuJXq2txj6fCzjBUFDerh3lROiSnyCfQ9wMqizvk1h0KtzVz1z0260uUOlP/+FC
-         ZCC0QSZtq6u2cnI8nfVA7XN3ShNnLvzLe76CuXAJJn3GIVKhueOBaYZ3h8T7N/vjDkeN
-         SOvnxq1CSLj6EG619BI2RAupz5Z7Hf8ggYVpJJtbcP53dWuw7GNryBaREv88bZWDFAYr
-         L/rg==
-X-Gm-Message-State: AFqh2koWXKaKyBESBxbvyAk2mPRe0LQW2SrfrLpzG9vsKmhJVJvAkLVZ
-        w+QHdw0GD+FLRQchFbrHeNo=
-X-Google-Smtp-Source: AMrXdXtQXvor5PlCUzsmPWyNvzJ1vB0kNUSsCYvtw03M0cG5pZjRA35SwZ7Nj8g2AZQi1hcivGI/hQ==
-X-Received: by 2002:a05:6402:e01:b0:49b:65cc:faa6 with SMTP id h1-20020a0564020e0100b0049b65ccfaa6mr3604962edh.16.1673961654011;
-        Tue, 17 Jan 2023 05:20:54 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ed6-20020a056402294600b00499e5659988sm7471427edb.68.2023.01.17.05.20.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 05:20:53 -0800 (PST)
-Date:   Tue, 17 Jan 2023 14:20:51 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH V2 1/2] arm64: tegra: Populate address/size cells for
- Tegra234 I2C
-Message-ID: <Y8ags26lApi2xINF@orome>
-References: <20230116120626.55942-1-jonathanh@nvidia.com>
+        with ESMTP id S229583AbjAQNei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:34:38 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7286F65A6;
+        Tue, 17 Jan 2023 05:34:35 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30HDYQUj046175;
+        Tue, 17 Jan 2023 07:34:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673962466;
+        bh=1r0ZTGQvgLPf7ei0hCiziyMQKc87/3gnPfGB80ixdBY=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=OJxSzDBEkCsszWSX2ALO9W5Z2xk6z350iLGJuneY8FVhdvP+1k6Vaqw+ASYUeS/va
+         2+bUn/0BgD093nkNelF88kMFzU+Sy9VSsDMd73FXZGsb3yetDlRfLjM5h2iIfRVsnx
+         2XPiQszdgDTD2gawVJxOtrgDjFuHI0JHfJOC//qU=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30HDYQCu003796
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 17 Jan 2023 07:34:26 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 17
+ Jan 2023 07:34:26 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 17 Jan 2023 07:34:26 -0600
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30HDYNJE017157;
+        Tue, 17 Jan 2023 07:34:23 -0600
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Dhruva Gole <d-gole@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, Bryan Brattlof <bb@ti.com>,
+        <devicetree@vger.kernel.org>, Tero Kristo <kristo@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3] arm64: dts: ti: k3-am62-main: Fix clocks for McSPI
+Date:   Tue, 17 Jan 2023 19:04:12 +0530
+Message-ID: <167395338058.410173.2545278634752217876.b4-ty@ti.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230103054840.1133711-1-d-gole@ti.com>
+References: <20230103054840.1133711-1-d-gole@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7djJaBeADaPdS+tF"
-Content-Disposition: inline
-In-Reply-To: <20230116120626.55942-1-jonathanh@nvidia.com>
-User-Agent: Mutt/2.2.9 (2022-11-12)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Dhruva Gole,
 
---7djJaBeADaPdS+tF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 3 Jan 2023 11:18:40 +0530, Dhruva Gole wrote:
+> Fixes the clock Device ID's in the DT according to the tisci docs clock
+> identifiers for AM62x
+> 
+> 
 
-On Mon, Jan 16, 2023 at 12:06:25PM +0000, Jon Hunter wrote:
-> Populate the address and size cells properties for the I2C devices on
-> Tegra234.
->=20
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
-> Changes V1->V2: Added address/size cells for i2c@c240000
->=20
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+I have applied the following to branch ti-k3-next on [1].
+Thank you!
 
-Both patches applied, though I had to reshuffle some of the regulators.
-They should always be listed after the nodes with unit-addresses.
+[1/1] arm64: dts: ti: k3-am62-main: Fix clocks for McSPI
+      commit: 6be5d8e5d1804eb4cec29cd8a85dc9cb18683b5d
 
-Thanks,
-Thierry
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
---7djJaBeADaPdS+tF
-Content-Type: application/pgp-signature; name="signature.asc"
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
------BEGIN PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPGoLEACgkQ3SOs138+
-s6E+jA//dTqWoyJNJouBPI05hn4hSrhaCBe2Tr67FdKpax86R3/NTrvnpFqC9t/W
-IUfnjHUSYpIlMLbIVN326RB8EF2f3m+muwy+P6ZSe142os9q1CtS7qt1MsKRTtma
-BbamcWGZ8T/J1dv/xfjCNmTpVIuGJI1JMBhVowY7L4AgiX48EYijEhZ4tijtZeNh
-QMUBYSsdFjGeqWsEiCayz4oNmIwSxNwUfVI55UqjOsXpm6kWYBMfsZFmg5cuL07e
-DDv5p9Aof94XF8Y/RDSGk+MDPOYTwQbYD9ph4sD2ImtcSIEKegakB3LvgKogkWUc
-zHcMVg5ez+tn+6TaSvUDPSbZ5ZN8ToXTB7LwOJcKPmjshbFtcBaYE8owFKpT/q/n
-j4/IH1z0PYfvbIlB5N6wT887emKreU52Pu6NVizxwJ7RleQ8fx0MkRc/B2C+/Qg7
-Fx9elxewiKp7aXftO9ic37H2Ma0I4Iee37arau6BH44JZJB765hQ1Td32Okh8yG/
-f7+cE7oqI/ehwg9nR8MGmcI2i9UCpq2jipI74gN9I/sYkbbnF2AjeYNVGi6PRSQl
-bC15FtGt95TCDNMkqEf3/BsHOvhknudOooS7ZDaFock9O2jOzeANFO5dLt760ipY
-3/N55iwm0tbDEGa0NDDg6QnvRVd84gLbhTTvEiywVnhkl9xlp3k=
-=r0S9
------END PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
---7djJaBeADaPdS+tF--
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
