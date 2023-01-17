@@ -2,178 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA85F66D684
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 07:52:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55F4E66D688
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 07:55:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235759AbjAQGwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 01:52:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48480 "EHLO
+        id S235764AbjAQGzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 01:55:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235683AbjAQGww (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 01:52:52 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E18FD22789;
-        Mon, 16 Jan 2023 22:52:47 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 1E6C224E19A;
-        Tue, 17 Jan 2023 14:52:46 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 17 Jan
- 2023 14:52:45 +0800
-Received: from [192.168.120.49] (171.223.208.138) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 17 Jan
- 2023 14:52:44 +0800
-Message-ID: <84e783a6-0aea-a6ba-13a0-fb29c66cc81a@starfivetech.com>
-Date:   Tue, 17 Jan 2023 14:52:43 +0800
+        with ESMTP id S235683AbjAQGzR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 01:55:17 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1742E22789;
+        Mon, 16 Jan 2023 22:55:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673938517; x=1705474517;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=E1uYgBwy7ys7iwpE4q42W3xbI5FgEWmS4DQH+Z4CUp8=;
+  b=XuAfga7s4DumizhVfi0Rr/tRK/mM1OGDr9ycOggbfiuSjX+Iw+Y1R52f
+   +ZmXpp5kJpccDd2m3ZAbXUEQoJq9ZiuebXMzewww89JpxKAUS8sFuHkjr
+   mE7hVXXGW2Id0KXFABOPF16fkwNzXtvZxldRHTcATXjgj7Olayn1mwemz
+   lqh42Xv1rD/60xTfeWyIQePtOwZF3YbnnUMdCFyncbg9E9diS5DtcN68N
+   OBwMixAocI3tCW4e2JS3TGnlEhZJuUhTSsFZXTPqzTm7COzbvdibTcY7p
+   0lvtfI8YGLMqcgF8z+BJNVsVyG1WCLlZJ9+UxKRN4lC1jOQBpdTLHQuNu
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="308185876"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="308185876"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2023 22:55:16 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="988018740"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="988018740"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.251.223.65])
+  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2023 22:55:13 -0800
+Message-ID: <538a5839-3250-7a81-7221-19edcfefccb3@intel.com>
+Date:   Tue, 17 Jan 2023 08:55:09 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 2/7] dt-bindings: net: snps,dwmac: Update the maxitems
- number of resets and reset-names
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+Subject: Re: [PATCH v5 5/8] mmc: sdhci-pxav2: add optional core clock
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Doug Brown <doug@schmorgal.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20230106030001.1952-1-yanhong.wang@starfivetech.com>
- <20230106030001.1952-3-yanhong.wang@starfivetech.com>
- <2328562d-59a2-f60e-b17b-6cf16392e01f@linaro.org>
-From:   yanhong wang <yanhong.wang@starfivetech.com>
-In-Reply-To: <2328562d-59a2-f60e-b17b-6cf16392e01f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel test robot <lkp@intel.com>,
+        Dan Carpenter <error27@gmail.com>
+References: <20230116194401.20372-1-doug@schmorgal.com>
+ <20230116194401.20372-6-doug@schmorgal.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <20230116194401.20372-6-doug@schmorgal.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/1/6 20:44, Krzysztof Kozlowski wrote:
-> On 06/01/2023 03:59, Yanhong Wang wrote:
->> Some boards(such as StarFive VisionFive v2) require more than one value
->> which defined by resets property, so the original definition can not
->> meet the requirements. In order to adapt to different requirements,
->> adjust the maxitems number definition.
->> 
->> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->> ---
->>  .../devicetree/bindings/net/snps,dwmac.yaml   | 36 ++++++++++++++-----
->>  1 file changed, 28 insertions(+), 8 deletions(-)
->> 
->> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> index e26c3e76ebb7..f7693e8c8d6d 100644
->> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> @@ -132,14 +132,6 @@ properties:
->>          - pclk
->>          - ptp_ref
->>  
->> -  resets:
->> -    maxItems: 1
->> -    description:
->> -      MAC Reset signal.
->> -
->> -  reset-names:
->> -    const: stmmaceth
->> -
->>    power-domains:
->>      maxItems: 1
->>  
->> @@ -463,6 +455,34 @@ allOf:
->>              Enables the TSO feature otherwise it will be managed by
->>              MAC HW capability register.
->>  
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: starfive,jh7110-dwmac
->> +
+On 16/01/23 21:43, Doug Brown wrote:
+> Add ability to have an optional core clock just like the pxav3 driver.
+> The PXA168 needs this because its SDHC controllers have separate core
+> and io clocks that both need to be enabled. This also correctly matches
+> the documented devicetree bindings for this driver.
 > 
-> Looking at your next binding patch, this seems a bit clearer. First of
-> all, this patch on itself has little sense. It's not usable on its own,
-> because you need the next one.
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reported-by: Dan Carpenter <error27@gmail.com>
+> Signed-off-by: Doug Brown <doug@schmorgal.com>
+
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+
+> ---
+> The Reported-by tags above refer to a missing assignment to ret in an
+> earlier version of this patch. The kernel test robot caught it.
 > 
-> Probably the snps,dwmac should be just split into common parts used by
-> devices. It makes code much less readable and unnecessary complicated to
-> support in one schema both devices and re-usability.
+>  drivers/mmc/host/sdhci-pxav2.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
-> Otherwise I propose to make the resets/reset-names just like clocks are
-> made: define here wide constraints and update all other users of this
-> binding to explicitly restrict resets.
-> 
-> 
+> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
+> index f5c86e1ba734..3141901e1558 100644
+> --- a/drivers/mmc/host/sdhci-pxav2.c
+> +++ b/drivers/mmc/host/sdhci-pxav2.c
+> @@ -191,7 +191,7 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>  	const struct sdhci_pxa_variant *variant;
+>  
+>  	int ret;
+> -	struct clk *clk;
+> +	struct clk *clk, *clk_core;
+>  
+>  	host = sdhci_pltfm_init(pdev, NULL, 0);
+>  	if (IS_ERR(host))
+> @@ -214,6 +214,13 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>  		goto free;
+>  	}
+>  
+> +	clk_core = devm_clk_get_optional_enabled(dev, "core");
+> +	if (IS_ERR(clk_core)) {
+> +		ret = PTR_ERR(clk_core);
+> +		dev_err_probe(dev, ret, "failed to enable core clock\n");
+> +		goto disable_clk;
+> +	}
+> +
+>  	host->quirks = SDHCI_QUIRK_BROKEN_ADMA
+>  		| SDHCI_QUIRK_BROKEN_TIMEOUT_VAL
+>  		| SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN;
 
-Thanks, refer to the definition of clocks. If it is defined as follows, is it OK?
-
-properties:
-  resets:
-    minItems: 1
-    maxItems: 3
-    additionalItems: true
-    items:
-      - description: MAC Reset signal.
-
-  reset-names:
-    minItems: 1
-    maxItems: 3
-    additionalItems: true
-    contains:
-      enum:
-        - stmmaceth
-
-
-allOf:
-  - if:
-      properties:
-        compatible:
-          contains:
-            const: starfive,jh7110-dwmac
-    then:
-      properties:
-        resets:
-          minItems: 2
-          maxItems: 2
-        reset-names:
-          items:
-            - const: stmmaceth
-            - const: ahb
-      required:
-        - resets
-        - reset-names  
-    else:
-      properties:
-        resets:
-          maxItems: 1
-          description:
-            MAC Reset signal.
-
-        reset-names:
-          const: stmmaceth
-
-Do you have any other better suggestions?
-
-
-> Best regards,
-> Krzysztof
-> 
