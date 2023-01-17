@@ -2,121 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32CE666D7DD
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:16:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFED666D7E7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 09:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235587AbjAQIQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 03:16:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59842 "EHLO
+        id S235843AbjAQITu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 03:19:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235771AbjAQIQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:16:28 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E88C2B2AC
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:16:16 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id h12-20020a05600c314c00b003da50afcb33so5248579wmo.4
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 00:16:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MniqT50xTIKf23nCYYQVIFdFTyVxB6d77UGvsd3jQmE=;
-        b=QZUNGJxRadgtAqr6+gc3Q0csSv0U+Lwo0BrlcwwgeJ7BYRdGHtE7pL+sEL1oMPoycm
-         0nQWVJLRNRJPFqTu7UBUczm0o3Yd75YZMEXD/RRx64l2rHPZBSg49hNBSA/IiP5jVZ2u
-         k5Rdh0SZE62kBgEi5CAlAI336afwiYJcvT1ELz34ad7YrTG976NaDTDZS/9KVojsnMkj
-         MK8iuBSftWcBSjCrw+jyDpAa1hBZb3qblt4pCYM//HTujb1Pb2LhfcLr52PPgJ3/w+Fd
-         a69VbvJAII5II12rjYA0Hg98butbIhgkPAoFqvgJEQLozusJNmrOg9YW8wBs7RESvJ0/
-         0/vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MniqT50xTIKf23nCYYQVIFdFTyVxB6d77UGvsd3jQmE=;
-        b=FH/bxObcKHdSnxtjDv08DyWAw915PLYFHlcmNuPylgHh6LwUbLeNqhmd3bPGtmA8wp
-         XaAPQYiXYyVMWsDAPPlPHekq7WeqBoV1ncue/PH399kUqpbccrQwBk3KLAXYkifCBOce
-         /xV2fEaVvkaG3ml0ELVUUpB9GR1G3J8iZIa2sIDayyxi1VhCRbpxHRhUxgJhI9DqfF0R
-         DXBEsnlAnqZ/ZGmNNw6oWSQYdymkVMsNIiMnbTckZJSMMR4XNwoE5PgK/u7qCxj7nzH6
-         HOWgkCUkaMsCp0EiOWayiDdUQZ6YTRVpsaUJqFf1tTaprwnxr9f1EelodVuN6w2Yy9Aw
-         rluQ==
-X-Gm-Message-State: AFqh2krlV/JdE9TqnTaJCcJN7jTNKKFzCoFKqmHGwBzRXD2mad6r9kSa
-        2BSBTJO8Ot8xjccuecQRWH7lgA==
-X-Google-Smtp-Source: AMrXdXthfQHssHykaq9/OgDw5mF51VE1Y9UJZjDBIV6rSLZd74JZRc3aRCTURJ8wUHySl3Dh5eyvqA==
-X-Received: by 2002:a1c:f308:0:b0:3d9:fb59:c16b with SMTP id q8-20020a1cf308000000b003d9fb59c16bmr10759435wmq.36.1673943374886;
-        Tue, 17 Jan 2023 00:16:14 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g12-20020a05600c310c00b003c70191f267sm44245099wmo.39.2023.01.17.00.16.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 00:16:14 -0800 (PST)
-Message-ID: <96081a96-e74c-8165-c0e6-212a670c9074@linaro.org>
-Date:   Tue, 17 Jan 2023 09:16:09 +0100
+        with ESMTP id S235793AbjAQITt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 03:19:49 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8627EC7;
+        Tue, 17 Jan 2023 00:19:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1673943587; x=1705479587;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TW5FfshgIzZRRjLdDMxrOBpXSVNWPQuBogP5u7PR2gQ=;
+  b=SKMy+lmU6VtJ2bHDgF+1r8dTFVZoATweIcfGObBYHFyCJIZqVJe3MYy2
+   1mJSxTsTTtnIOS5Tlnf9tjlMeyZa4V+f3tVJuCVdmShboTnPrHjjaF1lA
+   EU7lODj+3WXqVc2fw9mxfvt3xdQKZmwbVHfGbV2NIjPW80IMEUGfZlCn9
+   zmswIi3eiR//Ur8R4Vw5VQ1ntotZdS5eQQwufAl+E+lbBbmmLU8fyJg+b
+   9O8BHalL/vk9VBoNGZD8L7yZbjZ+msC5FeHVpMeEBRlnkvaq1zY3JnjMV
+   pHno3pROOiUjjoEnRXMxSja5i+02sRua2HjHp/97gLhlF+deUQ3aCduhR
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.97,222,1669100400"; 
+   d="asc'?scan'208";a="196955778"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Jan 2023 01:19:46 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 17 Jan 2023 01:19:46 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Tue, 17 Jan 2023 01:19:44 -0700
+Date:   Tue, 17 Jan 2023 08:19:22 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Walker Chen <walker.chen@starfivetech.com>
+CC:     Conor Dooley <conor@kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/3] JH7110 PMU Support
+Message-ID: <Y8ZaCpEsmG4hChn+@wendy>
+References: <20230116074259.22874-1-walker.chen@starfivetech.com>
+ <Y8WjKArEZH5zd5jb@spud>
+ <02174460-87b8-bb1c-7b6f-39694fa416c3@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: sram: Tightly Coupled Memory (TCM) bindings
-Content-Language: en-US
-To:     Tanmay Shah <tanmays@amd.com>, Tanmay Shah <tanmay.shah@amd.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org
-References: <20230113073045.4008853-1-tanmay.shah@amd.com>
- <6f43e320-b533-e5fb-3886-1b6ccc7f9548@linaro.org>
- <b79f7e0a-8048-d0e1-ad0b-d15d72288fde@amd.com>
- <9f4994de-e468-43ea-f8db-d4a37ebc30e0@linaro.org>
- <980d9c9c-3dbf-3ebd-28a1-5b3b4b58e93e@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <980d9c9c-3dbf-3ebd-28a1-5b3b4b58e93e@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="RaSbWA0bl43jGaof"
+Content-Disposition: inline
+In-Reply-To: <02174460-87b8-bb1c-7b6f-39694fa416c3@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 18:43, Tanmay Shah wrote:
-> 
-> On 1/15/23 6:38 AM, Krzysztof Kozlowski wrote:
->> On 13/01/2023 19:08, Tanmay Shah wrote:
->>> On 1/12/23 11:52 PM, Krzysztof Kozlowski wrote:
->>>> On 13/01/2023 08:30, Tanmay Shah wrote:
->>>>> This patch introduces bindings for TCM memory address space on AMD-xilinx
->>>>> platforms. As of now TCM addresses are hardcoded in xilinx remoteproc
->>>>> driver. This bindings will help in defining TCM in device-tree and
->>>>> make it's access platform agnostic and data-driven from the driver.
->>>>>
->>>> Subject: drop second/last, redundant "bindings". The "dt-bindings"
->>>> prefix is already stating that these are bindings.
->>> Ack.
->>>
->>>
->>>> Where is driver or DTS? Are you now adding a dead binding without users?
->>>
->>> TCM is used by drivers/remoteproc/xlnx_r5_remoteproc.c driver. Howerver,
->>> we have hardcode addresses in TCM as bindings are not available yet.
->> I don't see usage of these compatibles there. You also did not supply
->> DTS here. Please provide users of bindings within the same patchset.
-> 
-> 
-> ACK. I will supply dts as well.
-> 
-> However, Is it ok if I convert this patch to RFC patch, and once 
-> bindings are fixed I will send actual patch with driver support.
-> 
-> If bindings design is not correct then I might have to change 
-> corresponding driver design lot.
+--RaSbWA0bl43jGaof
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-First, why this driver is particularly special? Why should have other
-treatment then all other cases?
+Hey Walker,=20
 
-Second, so think about bindings and do not submit something for "driver"
-but something describing hardware.
+On Tue, Jan 17, 2023 at 03:45:22PM +0800, Walker Chen wrote:
+> On 2023/1/17 3:19, Conor Dooley wrote:
 
-Best regards,
-Krzysztof
+> > It's helpful to do this, as when I went to apply your patch, there were
+> > some conflicts that needed to be sorted out. Because of your prerequisi=
+te
+> > patches, the usual `b4` commands would not usable. E.g.
+> >=20
+> > b4 am -3 20230116074259.22874-1-walker.chen@starfivetech.com
+> > Analyzing 4 messages in the thread
+> > Checking attestation on all messages, may take a moment...
+> > ---
+> >   [PATCH v3 1/3] dt-bindings: power: Add starfive,jh7110-pmu
+> >   [PATCH v3 2/3] soc: starfive: Add StarFive JH71XX pmu driver
+> >   [PATCH v3 3/3] riscv: dts: starfive: add pmu controller node
+> > ---
+> > Total patches: 3
+> > Preparing fake-am for v3: JH7110 PMU Support
+> >   ERROR: Could not find matching blob for MAINTAINERS (85e8f83161d7)
+> >          If you know on which tree this patchset is based,
+> >          add it as a remote and perform "git remote update"
+> >          in order to fetch the missing objects.
+> >=20
+> > Fortunately, this is just a driver addition so despite `b4` not
+> > helping it was easy to resolve but for other patches in the future,
+> > this may not be the case.
+> >=20
+> > Assuming the dt maintainers are happy with the binding, ping me in 2
+> > weeks if no-one else has commented and I'll apply patches 1 & 2.
+>=20
+> Could I drop patch 3 and rebase patch 1 & 2 on the latest mainline then s=
+ubmit as v4 ?
 
+I dunno, if someone has the pre-requisites then they should be okay, but
+I need to apply 1 & 2 without the pre-requisites.
+I dropped patch 3 & did the rebase myself so that the build bots would
+be able to build the patches:
+https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=3Dri=
+scv-jh7110_pmu
+I got the build success email this morning, so they appear happy with
+it.
+
+I would wait for some comments from the dt maintainers on patch 1 before
+considering re-sending the series. If they have comments, then please do
+rebase on v6.2
+
+Thanks,
+Conor.
+
+
+--RaSbWA0bl43jGaof
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY8ZaBAAKCRB4tDGHoIJi
+0vDcAPwMe+7Cb3Df6wDftdGrVQtuCZJrxoFppaxvImoNaQ5adwEAtrjpgkcsyweC
+fh9qvBjyHXKBxr5a7lkpYkS8+IRJzQs=
+=8lxA
+-----END PGP SIGNATURE-----
+
+--RaSbWA0bl43jGaof--
