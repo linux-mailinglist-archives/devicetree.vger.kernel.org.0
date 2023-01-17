@@ -2,120 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F4AC66DC91
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D80666DC94
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 12:36:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236778AbjAQLfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 06:35:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51320 "EHLO
+        id S236869AbjAQLgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 06:36:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236821AbjAQLer (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:34:47 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACDD360AD
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:34:43 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id r30so5833936wrr.10
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 03:34:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0fREWHN2UQ1kl2XZ6OMZzGJJemz/P4M0H3yz7UyzV+A=;
-        b=QSscyCpFZNbbM6kyMW199uVthsV7aRgY+daSbfaJH7SmHUieDbJ3JqHGYU+FXCi55W
-         f1U84Y+nlWQhZvyaWVEDrbezdyNVKuByZpMdnvVDLCxc8hk6kvUnkAOekj8wFP94eZ6V
-         Fzzo3XG/40/WB0u4Rpu52uH0sb9kzmIJ7YWstAO9Q4/3YSeDi9jalDiGoLDOsB2OL9TF
-         s/Ar12W1+M2VcLYvQJrQT5CjtCtCMB7i9asQ4BKnWhBEWJA02RntWvh7DCbi2DnRxzsV
-         9U8YcPyUduEmxx3IRfq/xnrsfXhC/ppPJ7CNfcU8ZJk9CU8jBE1L08xZjjf4GKiGfj0u
-         ppnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0fREWHN2UQ1kl2XZ6OMZzGJJemz/P4M0H3yz7UyzV+A=;
-        b=Kha/mzbRouDiiaUXKmis9Tzu+OBtN6t7QjOpmRzSePVa9p+tnnWNMBpCxKY+OdXZHs
-         0wUoosnbua4lAQCTkDu3l27CT+QhSIxOZxqVlZAIOr3lRhNt8MJdQK7iQ4kKRcsBvchA
-         hI/c7ufo8vZs2TZT5KYQzl2hfbj2UubnXSK4756e7RiT85f3p1Y6+P46Wsdg+Aj0wnrQ
-         jYGA+4p9Uoi7+MbnZYJcOpco1rWMES/dVnCM5Vnx2cG/bCoUoMJgRWXjk7diN/f9vxYm
-         IrZsEiBrxht5ZuI2MQKX9AH7IRg4LCHnZmuhULMXGAvirmphZ7l6We8Y+3uV1c5nbKWq
-         9D3A==
-X-Gm-Message-State: AFqh2krqk2RNiDb1IuMs3VGwt3y7rRI6+LJozOAB8BtLFrUkfl7A6GrI
-        xVZn7/6/IE39fk0KaTA/QvlS2w==
-X-Google-Smtp-Source: AMrXdXtVLG+lFxj/ILADCcRFl8jlKdWjcXBh4tuBystBmpfSjE2Lu+/jzWctDw6Y3TXUc20op7SLNw==
-X-Received: by 2002:a05:6000:248:b0:2bd:d4bd:581d with SMTP id m8-20020a056000024800b002bdd4bd581dmr10476975wrz.53.1673955282527;
-        Tue, 17 Jan 2023 03:34:42 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n6-20020adfe786000000b002bdbde1d3absm18444072wrm.78.2023.01.17.03.34.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 03:34:42 -0800 (PST)
-Message-ID: <aa5598ee-0dd1-caa7-c60d-5a409f039713@linaro.org>
-Date:   Tue, 17 Jan 2023 12:34:38 +0100
+        with ESMTP id S236881AbjAQLez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 06:34:55 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5402D8A42;
+        Tue, 17 Jan 2023 03:34:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1673955289; x=1705491289;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=mH1LIiq7Ergf44/MXT40cMfHwTFQC5bpCpuGbuueu0A=;
+  b=CQfvJ9syzf1GM8zdx6wBWCtQ1M+RXvS2SYLerJAp89h8hGfPWBb4E6oy
+   UD4k2iRkAGaKHtTIPmEv3+xSsNf3tsQGEillKY3ms8MkjSrPUtktawp40
+   pEANTqxrNs+Yg6fcfZBYZOp9HM/+ZnkfQXQvYu5QOoGrwect7Vl6lDvqb
+   jA0aZbwrx+NwIwm30rQ/waywp/KzCdC9vAZ//LPndXYWovdaJgUCH04BE
+   T2HzlJMW+egqNh2aV295l4veJEtmmKDd72kl+Ny/LEzQO7zu2/4M0RwlR
+   zEfwbW5kGCSZCL0LNe/qwzVjP0+s9KMMWrxbHtfuVKWbpSReEezqjKIBH
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="325947956"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="325947956"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 03:34:48 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="652521320"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; 
+   d="scan'208";a="652521320"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.10.213]) ([10.213.10.213])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2023 03:34:43 -0800
+Message-ID: <28feeeb6-c9e1-eb67-caa8-b0d2e709fdf5@intel.com>
+Date:   Tue, 17 Jan 2023 12:34:41 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/4] dt-bindings: mailbox: qcom: correct the list of
- platforms using clocks
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+Subject: Re: [PATCH v11 4/5] drm/bridge: cdns-dsi: Create a header file
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230113090739.45805-1-dmitry.baryshkov@linaro.org>
- <20230113090739.45805-2-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230113090739.45805-2-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Rahul T R <r-ravikumar@ti.com>, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     narmstrong@baylibre.com, robert.foss@linaro.org, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
+        p.zabel@pengutronix.de, tomi.valkeinen@ideasonboard.com,
+        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
+        jpawar@cadence.com, sjakhade@cadence.com, mparab@cadence.com,
+        a-bhatia1@ti.com, devicetree@vger.kernel.org, vigneshr@ti.com,
+        lee.jones@linaro.org
+References: <20230103101951.10963-1-r-ravikumar@ti.com>
+ <20230103101951.10963-5-r-ravikumar@ti.com>
+From:   Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230103101951.10963-5-r-ravikumar@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 10:07, Dmitry Baryshkov wrote:
-> Only three platforms require `pll' and `aux' clocks: msm8916, msm8939
-> and qcs404. Correct the list of platforms in the corresponding clause.
-> 
-> Fixes: 0d17014e9189 ("dt-bindings: mailbox: Add binding for SDX55 APCS")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../bindings/mailbox/qcom,apcs-kpss-global.yaml          | 9 +--------
->  1 file changed, 1 insertion(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> index 943f9472ae10..b8a44ef0540f 100644
-> --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-> @@ -71,15 +71,8 @@ allOf:
->          compatible:
->            enum:
->              - qcom,msm8916-apcs-kpss-global
-> -            - qcom,msm8994-apcs-kpss-global
-> -            - qcom,msm8996-apcs-hmss-global
-> -            - qcom,msm8998-apcs-hmss-global
-> +            - qcom,msm8939-apcs-kpss-global
->              - qcom,qcs404-apcs-apps-global
-> -            - qcom,sc7180-apss-shared
-> -            - qcom,sdm660-apcs-hmss-global
-> -            - qcom,sdm845-apss-shared
-> -            - qcom,sm6125-apcs-hmss-global
-> -            - qcom,sm8150-apss-shared
 
-And what in other case? Any clocks? They should be moved to their own if
-forbidding the clocks and clock-names.
 
-Best regards,
-Krzysztof
+On 03.01.2023 11:19, Rahul T R wrote:
+> Create a header file for cdns dsi and move structure definations to
+> prepare for adding j721e wrapper support
+>
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Regards
+Andrzej
 
