@@ -2,165 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 834C266DE56
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B545A66DE57
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 14:04:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232040AbjAQND6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 08:03:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47094 "EHLO
+        id S236818AbjAQNEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 08:04:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237000AbjAQNDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:03:17 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F5723866E
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 05:03:16 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id tz11so10783329ejc.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 05:03:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=OmXta0hG9IG3vOI9E/aHz0mdhlyVuxkuOdnYHs1S1h4=;
-        b=Ma2UqanvLKTHtwpjYdcMlNcPn8ydMlAnipu9gas+3bZRVXMFhdFdDZsKL6L8GN2T++
-         yUO4DEbREe/lvNxz033f4gYiFWs2D9UTOmPCN9xRFeCiDhQhb1HFxjlDz61pdZHenY4p
-         7qzPg4mlLml1UX0xb2pr4ZMao+lgqk887TA8LpJLw9hz8tkJqncPzM3vQrxHUmQt/ANr
-         y26gz6UWRwqp4HYET9QcCChGNjUHIjm0w68BcDu2DBhVEsEHrOcbg1sbPzjiiW4iE1hd
-         bglvRSBSJ+ORHIPRmHMT6xGV7Nr7xUlPKKB70NvOa7+kLrXNasFp9C5stlf1ltuQTHFO
-         1O4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OmXta0hG9IG3vOI9E/aHz0mdhlyVuxkuOdnYHs1S1h4=;
-        b=HhjX9KljFXyn+7P2X7SrGV1sDY1QUEgQ85rTL0Ct6o8VeaSUTtXJxhPXQcCisNzT6e
-         72Lqn0m5y3a3pAAYIj+RBN4A4EUCcbKZGfSgY5KRj+FMep0RmBltgeFcnI8/FtSzee6f
-         TOnFvCWSccfJRXL6SYSuSv2LKHSbr2V3T+Xhu24h/p7816rTHyNOw1Hg23k8NH77Gobl
-         7pxWNnh33LnW4k9JgM1s/fZRxI6lzgqLLTmdndBqlfIcI6suk+uFcJ+JfIdLoxL1Mt1H
-         rUIgw+SgJaFu5OBS8XR3tyywu+rxjUqdgQrJoG1pTxDBDQqGSFF14QftbtBb3PXGd4w+
-         heZA==
-X-Gm-Message-State: AFqh2kqrqza1bOKHTUKCqTAE75BFjimaUGIq1MueIk1CbEdDn7ZQr385
-        +7b/CHs2pyT01jtVTPQzt21EmFNu6VHmr845
-X-Google-Smtp-Source: AMrXdXvMdGquDZtT9+mCDweLoMaex0nK82kV8ckSUV2z5y3DVyJyfFsWn1Yg4aaJT+2tlghsIze00w==
-X-Received: by 2002:a17:907:6d21:b0:805:1e6e:6777 with SMTP id sa33-20020a1709076d2100b008051e6e6777mr22055019ejc.23.1673960594648;
-        Tue, 17 Jan 2023 05:03:14 -0800 (PST)
-Received: from fedora.. ([85.235.10.72])
-        by smtp.gmail.com with ESMTPSA id e20-20020a170906249400b0084d4cb00f0csm10327030ejb.99.2023.01.17.05.03.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 05:03:14 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Grant Likely <grant.likely@linaro.org>
-Subject: [PATCH] docs: dt: Make references and mention kernel abstractions
-Date:   Tue, 17 Jan 2023 14:03:10 +0100
-Message-Id: <20230117130310.493966-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.39.0
+        with ESMTP id S236755AbjAQNEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 08:04:21 -0500
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE1BB30EB2;
+        Tue, 17 Jan 2023 05:04:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KhRb9zRxxMxrHIKl8h6kbthNeVQY0VR5fhPjYrTZlLgNxA4Jy9HTTa22FINDP+8teCn3FGQBRkLGMltlCN/2Ve/jXI1KKteQOWH5H9S0kEaSyPFy/yJOMZW9MkJxOycyeESyw7aUWMbB6RG9zhhTuMM6Ro5TL984K+JXqckFmQis2KovkhUq046YOnqJ4Y0XZsecivzN4laATx+i9jlsP03hymqxAeYpYkEOrYrdcyeWsHRlRK6MJuFdwPaq7Sfr6/rvec55nA9byOZ8TwicqviHoMo2LZa0HtbHl+kFDhpLGoZdP7Yl1SwvyY6SF83EMezRCCdFPOh+J+FRwA1/IA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2Tb2rj8ATSr20Iy615KcmAnCYkh39k/9f0jxTvQmznI=;
+ b=csrEcZ+0Il+SkPr77BLmIXLCr58IFs82Ez8V1AF/6grYh4OQrXma5qrlCsxIWvUZzpxP+d0Zv+k/AkQG1JbwiFC2nbXNyOJf0G5O5V7JHCFrIckL9X+qXabmwqXEdQVzCijAikgFk/oagjF9YqnZgzWsPxGq7EmCkqADGaf0Zey8RgqUaOjuTLfkV4PzgbWexXMblji93YqMTyu39gHV/D9/914W2V2IPN229lpsO9I3RVC8a4eTU5IARv4sV+5qkmYkhslx0HPwRmTzl0Wf8qBto0YfG9qpG0KkoyOK50oZhufBMBD02Ucwr7ygqCVUjz1jXjWwTPuOowdGqJKjFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2Tb2rj8ATSr20Iy615KcmAnCYkh39k/9f0jxTvQmznI=;
+ b=XB6yMotCBRpJW71OP8SPeos4VfsMISo7L5Xo3qIWF5c3bjzTNcGQTNTeyhPmlUdZ3d/Vu/DTGER2w6bYUZ7RTmVXz6m3UpbX6N0FzroNr3X6H5N9IT3R/qdilVm8aie1RhTiiIa8iRNs+r6jJadtcnwOuwBTqpZDv9LLMbRLpBzvd8HbT7gCTx/OW+MKaCKoWuYgJL9RRv/wmVZneNKGSq6gexWtGFBn5SOO+sVUk2pfING5hDpGHGlic84q+BvAKS1EUCyjXv9OVd2wINL/U2t/VAGyiN6jLWdjnQyZaTs+DLsmv56JcQmEvGkLnapMcFcOTC3hEuU4HSOG7x2/hw==
+Received: from CY5PR19CA0063.namprd19.prod.outlook.com (2603:10b6:930:69::6)
+ by LV2PR12MB5821.namprd12.prod.outlook.com (2603:10b6:408:17a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Tue, 17 Jan
+ 2023 13:04:19 +0000
+Received: from CY4PEPF0000C979.namprd02.prod.outlook.com
+ (2603:10b6:930:69:cafe::4a) by CY5PR19CA0063.outlook.office365.com
+ (2603:10b6:930:69::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.19 via Frontend
+ Transport; Tue, 17 Jan 2023 13:04:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ CY4PEPF0000C979.mail.protection.outlook.com (10.167.241.137) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6002.11 via Frontend Transport; Tue, 17 Jan 2023 13:04:18 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 17 Jan
+ 2023 05:04:00 -0800
+Received: from [10.41.21.79] (10.126.230.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 17 Jan
+ 2023 05:03:56 -0800
+Message-ID: <6f4dc52f-934e-283f-ac0d-917794c896a8@nvidia.com>
+Date:   Tue, 17 Jan 2023 18:33:53 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [Patch v1 01/10] memory: tegra: add interconnect support for DRAM
+ scaling in Tegra234
+Content-Language: en-US
+To:     Dmitry Osipenko <digetx@gmail.com>, <treding@nvidia.com>,
+        <krzysztof.kozlowski@linaro.org>, <dmitry.osipenko@collabora.com>,
+        <viresh.kumar@linaro.org>, <rafael@kernel.org>,
+        <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>, <ishah@nvidia.com>,
+        <bbasu@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>
+References: <20221220160240.27494-1-sumitg@nvidia.com>
+ <20221220160240.27494-2-sumitg@nvidia.com>
+ <f4e05666-d094-18cf-2641-ebf92da85dc8@gmail.com>
+ <221c1bab-8f4d-9dbb-bb12-4f7ab5dc5d90@nvidia.com>
+ <98b5a73d-be59-457f-e7ce-71cfbbdd025f@gmail.com>
+From:   Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <98b5a73d-be59-457f-e7ce-71cfbbdd025f@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.126.230.37]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000C979:EE_|LV2PR12MB5821:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9696b56a-6bad-47b6-ced6-08daf88b580d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ArPgJh/s/mNXAYqkmaqmGqUI0rDTXXvPhC8J+HmWjseX2IrIG/wxLOfhF59enqYdezSejCekd8MV4PM/liKH6iuboHkcfLAvFiWT+B/Fjc/Ab9+nVoCOW3TpceN85i1G2q+U2UvvcBDSaYG0XpxVEp+SRkJoK10j5CQulC7AEhcAV5dU4KBoTbRCp9//IQVKEsFSyMzF0psqC5pSbs+gT7b58s0osN1FxitDtc9vgXdYVBgp3rTITiOMySzIhAKt/7JDTaENywfC7repIFYsmHgkPlOVETfw0iYaqR+vpkMxqa6a80IK/DQN/LBA0qYXlbG60mHc8g+n8gQhuqp9y0sqDtFPpccSHeSnmUpWQmb9z6EPSDDHW8qyir8pZcO55N+AGcam93SMriYtnB9QM3t4koIa6/Un6JvOSD/NtnSpHYZHITDa8mpM22P3HL7V3Jt901PQ56RXW8of/fUiarhtrtJ9PxW3MivaTUtDR8w1W99jgY82adcuZCuLaFoFWFZ3Tl/psHJXn7mup7N+BLolmdqeIWDwwYiM59RxWJFqqa4Klp4sCxXtjoYq0mL/ltP5guVUtQxqFE2h/72op24KuDLSVirqQtPKld0D9kZZBrRTTEXkxltIY0IP2vPHhnD8MwRLyaFeE7R/zsNELfG/Rh0DgeltlXgOAQJO+P8D5Xcy8s2Wr9b1QFxelg+UTAZ8rgTZmRG0X3RPT4dv+Fs4g9cuFyDAPIhtnQto3ICt3GX7Z4PxIAWke1esGjIt
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(346002)(39860400002)(136003)(451199015)(46966006)(40470700004)(36840700001)(40460700003)(921005)(40480700001)(82740400003)(7636003)(356005)(82310400005)(86362001)(16526019)(26005)(186003)(478600001)(36756003)(31696002)(2616005)(336012)(110136005)(70586007)(316002)(16576012)(31686004)(70206006)(54906003)(53546011)(7416002)(5660300002)(36860700001)(2906002)(41300700001)(426003)(6666004)(107886003)(47076005)(8676002)(4326008)(8936002)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2023 13:04:18.6070
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9696b56a-6bad-47b6-ced6-08daf88b580d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000C979.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5821
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This document is named "Linux and Devicetree" so I think we
-should write a bit more about how the device tree fits into
-the Linux kernel frameworks these days after we have created
-the fwnode and swnode.
 
-Cc: Grant Likely <grant.likely@linaro.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-I bet you get the idea but Rob and Krzysztof probably have
-some ideas on where this goes and what goes into it so it
-it at least a starting point for discussions.
----
- Documentation/devicetree/usage-model.rst | 45 +++++++++++++++++++++---
- 1 file changed, 41 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/usage-model.rst b/Documentation/devicetree/usage-model.rst
-index b6a287955ee5..789744b45ab2 100644
---- a/Documentation/devicetree/usage-model.rst
-+++ b/Documentation/devicetree/usage-model.rst
-@@ -75,7 +75,44 @@ out of mainline (nios) have some level of DT support.
- If you haven't already read the Device Tree Usage\ [1]_ page,
- then go read it now.  It's okay, I'll wait....
- 
--2.1 High Level View
-+2.1 Linux Kernel Firmware Abstractions
-+--------------------------------------
-+
-+The Linux kernel supports sevaral different hardware description
-+frameworks and DT is just one of them. The closest sibling is the
-+:ref:`Documentation/firmware-guide/acpi/index.rst ACPI`
-+DSDT (Differentiated System Description Table).
-+
-+To make it possible to write a device driver that will adapt to DT
-+or other hardware description models, the kernel has grown some
-+abstractions, first and foremost the firmware node API, exposing
-+device properties. The firmware node "fwnode" internals can be found
-+in ``<linux/fwnode.h>`` while the device driver-facing API can be
-+found in ``<linux/property.h>``. The idea is that if a driver is using
-+the firmware node API, it should be trivial to support DT and ACPI
-+DSDT alike in the same driver.
-+
-+The fwnode framework also makes it possible to modify and extend the
-+Linux in-kernel model with software-managed nodes "swnodes" to apply
-+quirks or manage registration of devices that cannot be handled any
-+other way. This API can also be found in ``<linux/property.h>``.
-+
-+Further, when the DT core register devices these need to fold into the
-+Linux device driver model, which essentially means that some kind of
-+``struct device`` has to be created to match a corresponding
-+``struct device_driver``. This API can be explored in
-+detail in :ref:`Documentation/driver-api/driver-model/index.rst the driver API documentation`
-+but what you need to know is that the Linux DT parser code will on its
-+own mostly spawn platform devices and AMBA devices on the platform
-+and AMBA bus respectively, and apart from that it will augment devices
-+spawn on other buses where applicable.
-+
-+Every Linux kernel subsystem that want to supply additional data to
-+detected devices using the device tree, or that want to provide
-+resources to other devices in the DT, will need to implement calls into
-+the DT abstractions.
-+
-+2.2 High Level View
- -------------------
- The most important thing to understand is that the DT is simply a data
- structure that describes the hardware.  There is nothing magical about
-@@ -97,7 +134,7 @@ Linux uses DT data for three major purposes:
- 2) runtime configuration, and
- 3) device population.
- 
--2.2 Platform Identification
-+2.3 Platform Identification
- ---------------------------
- First and foremost, the kernel will use data in the DT to identify the
- specific machine.  In a perfect world, the specific platform shouldn't
-@@ -180,7 +217,7 @@ However, this approach does not take into account the priority of the
- compatible list, and probably should be avoided for new architecture
- support.
- 
--2.3 Runtime configuration
-+2.4 Runtime configuration
- -------------------------
- In most cases, a DT will be the sole method of communicating data from
- firmware to the kernel, so also gets used to pass in runtime and
-@@ -217,7 +254,7 @@ On ARM, the function setup_machine_fdt() is responsible for early
- scanning of the device tree after selecting the correct machine_desc
- that supports the board.
- 
--2.4 Device population
-+2.5 Device population
- ---------------------
- After the board has been identified, and after the early configuration data
- has been parsed, then kernel initialization can proceed in the normal
--- 
-2.39.0
+On 21/12/22 22:14, Dmitry Osipenko wrote:
+> External email: Use caution opening links or attachments
+> 
+> 
+> 21.12.2022 11:05, Sumit Gupta пишет:
+>> On 20/12/22 23:37, Dmitry Osipenko wrote:
+>>> External email: Use caution opening links or attachments
+>>>
+>>>
+>>> 20.12.2022 19:02, Sumit Gupta пишет:
+>>>> +#ifndef MEMORY_TEGRA_ICC_H
+>>>> +#define MEMORY_TEGRA_ICC_H
+>>>> +
+>>>> +enum tegra_icc_client_type {
+>>>> +     TEGRA_ICC_NONE,
+>>>> +     TEGRA_ICC_NISO,
+>>>> +     TEGRA_ICC_ISO_DISPLAY,
+>>>> +     TEGRA_ICC_ISO_VI,
+>>>> +     TEGRA_ICC_ISO_AUDIO,
+>>>> +     TEGRA_ICC_ISO_VIFAL,
+>>>> +};
+>>>
+>>> You using only TEGRA_ICC_NISO and !TEGRA_ICC_NISO in the code.
+>>>
+>>> include/soc/tegra/mc.h defines TAG_DEFAULT/ISO, please drop all these
+>>> duplicated and unused "types" unless there is a good reason to keep them
+>>>
+>>
+>> These type are used while defining clients in "tegra234_mc_clients[]"
+>> and its passed to BPMP-FW which has handling for each client type.
+> 
+> The type should be based on the ICC tag, IMO. AFAICS, type isn't fixed
+> in FW and you can set both ISO and NISO BW, hence it's up to a device
+> driver to select the appropriate tag.
+> 
 
+Type for a MC client is fixed. So, adding the tag and giving option to 
+client driver won't have impact.
+Also, we need to pass the type to BPMP from bw set api. But the tag info 
+is available to aggregate api and not set.
