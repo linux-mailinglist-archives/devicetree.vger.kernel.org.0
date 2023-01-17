@@ -2,69 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2452E66E600
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 19:31:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5806A66E620
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 19:35:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230201AbjAQSb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 13:31:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54628 "EHLO
+        id S229891AbjAQSev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 13:34:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231373AbjAQS3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 13:29:37 -0500
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B6164741E;
-        Tue, 17 Jan 2023 10:01:02 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id b10-20020a4a9fca000000b004e6f734c6b4so8162321oom.9;
-        Tue, 17 Jan 2023 10:01:02 -0800 (PST)
+        with ESMTP id S231531AbjAQSbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 13:31:45 -0500
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5647F3E63E;
+        Tue, 17 Jan 2023 10:01:47 -0800 (PST)
+Received: by mail-oo1-xc35.google.com with SMTP id x15-20020a4ab90f000000b004e64a0a967fso8162049ooo.2;
+        Tue, 17 Jan 2023 10:01:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q++BI7qEFFq+GqGpGQ3prtgV+9puNAsv2TNTS331SFY=;
+        b=obspte2ZcMlOeMDwjjxfeT8PHbu/XF/1Q64Poqrn8/NwM8Zle5LD7f/C1o3dtE1tWx
+         lpLwK8J1sKrdrTl/eP6/quSkhaaJOEPDCt24PEcgBfNJWFogAoAG3XL/ljLbcP88msWk
+         6KfuzS4b1SnRSdgwakQRwGDCcYMlF1xSCgO/HFHdjY289YdCSH17rAPj0MGgqV78bjKp
+         fmvP70q3Wqn2Tzb9mM12ehZkf33QpdpnCENkyaDkJtdF2Jlj82oDCMfz9r8+J1sFCtKh
+         ypu7VJ05UxpWnRGP6EXkURT2h1sKX9vtqayaePzy2dW7bpx8effChz71MYjuVX7g5vb4
+         DGIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T/kHOFH1wU0NreMHdddHDbHuXCpkHB1PoZhcRnQt444=;
-        b=foCc1PFG7lYBexT6/8fkfiieupPw+yUWKOVHP2BP/rJxwJ+iP1fXirFkKgDzI/Qa4D
-         EZzGo/EbvWRN627NhAb2M+NsDIoD5dd1uaINbLVstiCqf7m0CSbYU2vWkeBPkZWbVAAq
-         c32/bO38RLbHr3WWC4FZy8T4aU+hWdLJBBw9dvYFh3F7SogOVmBEKmsrzte0n6NDzmbC
-         m+xLZOMqDZbBLKi+DJhW0WAfwbvxh/9RD63V8axdpToc/ESemhiaS/VIC/QQO8niZ9r6
-         sQUU9AAFfuLqi4RYhqGb2R9WVIrMDt/UokL0moYzRzRBLelOCDGb8P5Ch3ytui0fcv7M
-         r/nA==
-X-Gm-Message-State: AFqh2kqun0Ns/yMzVJNHuHbKMQA5pPcH9kqd9WR0VWAqg6rkOk4Y0d0H
-        jfYJSb25/de7O5E7ei6URg==
-X-Google-Smtp-Source: AMrXdXvcuKQfn+7icDnE4nUlh/ljNLsmHBHplIQtCw0qWiIdq35al99wEU9lDuQyulZvwL6n7ShSQA==
-X-Received: by 2002:a05:6820:3c7:b0:4f8:2e60:6afd with SMTP id s7-20020a05682003c700b004f82e606afdmr1593239ooj.8.1673978460048;
-        Tue, 17 Jan 2023 10:01:00 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p2-20020a4ab382000000b004d8c6815287sm15040211ooo.17.2023.01.17.10.00.59
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q++BI7qEFFq+GqGpGQ3prtgV+9puNAsv2TNTS331SFY=;
+        b=GH1XlruJNSb3MXmj6P2q4kSbG/RtTq/hlEWFxfKRSjQQ2X/Od8Zg01pc5pMWow/bd9
+         J5LAU57iDkZjfC9NV3D3Snh9Gtl4mhuYbQ1ToUF709uxz461ad/vPx7GGQW+SH3v4K36
+         u6tKepmJd+pFUGjoNDqEiIYeHKRgMd21WkLCN+Lp25jN6NYx8kBA5N3LMvByDu0wAAuF
+         VjU/+v3aoCICzdy+oqpt2WjxPsqzr6wUjcks4F1i0iY8XqBn6CFzJFkQFZB+IHSURef6
+         goQDmRXnt53TiHSxDmSRsMzPYMxaBaeGD/J6IOlS22fUl/okCa1nhZwMdXuum2L0YLuF
+         fy9A==
+X-Gm-Message-State: AFqh2krjZDdmEvJBltZfm2Pz29ERM3iaCXuWfZjbPGYTRnS8JQ8wcKdb
+        +L6vrjDxY0ZQqOvB3HX7X3o=
+X-Google-Smtp-Source: AMrXdXtpr9N7GCrNn2rBwA+oQ1FlhNeOREkhjGWU/mdp/qT/NIW1uyQw+5JgFkrdqJdaC+bc5ATJgQ==
+X-Received: by 2002:a4a:430d:0:b0:4f2:8f8:d2ff with SMTP id k13-20020a4a430d000000b004f208f8d2ffmr1644822ooj.6.1673978506434;
+        Tue, 17 Jan 2023 10:01:46 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x9-20020a4ae789000000b0049f098f4fb4sm15150375oov.24.2023.01.17.10.01.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 10:00:59 -0800 (PST)
-Received: (nullmailer pid 3319602 invoked by uid 1000);
-        Tue, 17 Jan 2023 18:00:58 -0000
-Date:   Tue, 17 Jan 2023 12:00:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
-        Johan Hovold <johan@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: qcom: Introduce PMIC GLINK
- binding
-Message-ID: <20230117180058.GA3314512-robh@kernel.org>
-References: <20230113041132.4189268-1-quic_bjorande@quicinc.com>
- <20230113041132.4189268-2-quic_bjorande@quicinc.com>
+        Tue, 17 Jan 2023 10:01:45 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 17 Jan 2023 10:01:44 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Mario Kicherer <dev@kicherer.org>
+Cc:     linux-hwmon@vger.kernel.org, jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] docs: hwmon: add docs for the NXP MC34VR500 PMIC
+Message-ID: <20230117180144.GB2335664@roeck-us.net>
+References: <20230117161340.1310936-1-dev@kicherer.org>
+ <20230117161340.1310936-4-dev@kicherer.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230113041132.4189268-2-quic_bjorande@quicinc.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230117161340.1310936-4-dev@kicherer.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,143 +76,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 12, 2023 at 08:11:29PM -0800, Bjorn Andersson wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Tue, Jan 17, 2023 at 05:13:40PM +0100, Mario Kicherer wrote:
+> This patch adds documentation for the NXP MC34VR500 PMIC.
+
+"Add documentation".
+
+See Documentation/process/submitting-patches.rst,
+"Describe your changes".
+
 > 
-> The PMIC GLINK service, running on a coprocessor on some modern Qualcomm
-> platforms and implement USB Type-C handling and battery management.
-> This binding describes the component in the OS used to communicate with
-> the firmware and connect it's resources to those described in the
-> Devicetree, particularly the USB Type-C controllers relationship with
-> USB and DisplayPort components.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Mario Kicherer <dev@kicherer.org>
 > ---
+>  Documentation/hwmon/mc34vr500.rst | 32 +++++++++++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 Documentation/hwmon/mc34vr500.rst
 > 
-> Changes since v1:
-> - Added reg under connector, to identify multiple connectors
-> - Updated maintainer email
-> 
->  .../bindings/soc/qcom/qcom,pmic-glink.yaml    | 102 ++++++++++++++++++
->  1 file changed, 102 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+> diff --git a/Documentation/hwmon/mc34vr500.rst b/Documentation/hwmon/mc34vr500.rst
 > new file mode 100644
-> index 000000000000..a79dd0ed9275
+> index 000000000000..5a8e0cbf4dbf
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/qcom/qcom,pmic-glink.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/Documentation/hwmon/mc34vr500.rst
+> @@ -0,0 +1,32 @@
+> +Kernel driver mc34vr500
+> +=======================
 > +
-> +title: Qualcomm PMIC GLINK firmware interface for battery management, USB
-> +  Type-C and other things.
+> +Supported Chips:
 > +
-> +maintainers:
-> +  - Bjorn Andersson <andersson@kernel.org>
+> +  * NXP MC34VR500
 > +
-> +description:
-> +  The PMIC GLINK service, running on a coprocessor on some modern Qualcomm
-> +  platforms and implement USB Type-C handling and battery management. This
-> +  binding describes the component in the OS used to communicate with the
-> +  firmware and connect it's resources to those described in the Devicetree,
-> +  particularly the USB Type-C controllers relationship with USB and DisplayPort
-> +  components.
+> +    Prefix: 'mc34vr500'
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,sc8180x-pmic-glink
-> +          - qcom,sc8280xp-pmic-glink
-> +          - qcom,sm8350-pmic-glink
-> +      - const: qcom,pmic-glink
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  '^connector@\d$':
-> +    $ref: /schemas/connector/usb-connector.yaml#
-> +
-> +    properties:
-> +      reg: true
+> +    Addresses scanned: I2C 0x08
 
-       required:
-         - reg
-
-Or '@\d' needs to be optional.
-
+No, since there is no detect function.
 
 > +
-> +    unevaluatedProperties: false
+> +    Datasheet: https://www.nxp.com/docs/en/data-sheet/MC34VR500.pdf
 > +
-> +required:
-> +  - compatible
+> +Author: Mario Kicherer <dev@kicherer.org>
 > +
-> +additionalProperties: false
+> +Description
+> +-----------
 > +
-> +examples:
-> +  - |+
-> +    pmic-glink {
-> +        compatible = "qcom,sc8280xp-pmic-glink", "qcom,pmic-glink";
+> +This driver implements initial support for the NXP MC34VR500 PMIC. The MC34VR500
+> +monitors the temperature, input voltage and output currents and provides
+> +corresponding alarms. For the temperature, the chip can send interrupts if
+> +the temperature rises above one of the following values: 110°, 120°, 125° and
+> +130° Celsius. For the input voltage, an interrupt is sent when the voltage
+> +drops below 2.8V.
 > +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+> +Currently, this driver only implements the input voltage and temperature
+> +alarms. The interrupts are mapped as follows:
 > +
-> +        connector@0 {
-> +            compatible = "usb-c-connector";
-> +            reg = <0>;
-> +            power-role = "dual";
-> +            data-role = "dual";
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    endpoint {
-> +                        remote-endpoint = <&usb_role>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg = <1>;
-> +
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +
-> +                    endpoint@0 {
-> +                        reg = <0>;
-> +                        remote-endpoint = <&qmp_out>;
-> +                    };
-> +
-> +                    endpoint@1 {
-> +                        reg = <1>;
-> +                        remote-endpoint = <&displayport_hpd>;
-> +                    };
-> +                };
-> +
-> +                port@2 {
-> +                    reg = <2>;
-> +                    endpoint {
-> +                        remote-endpoint = <&sbu_mux>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> +
+> +<= 2.8V  -> in_min_alarm
+
+in0_min_alarm
+
+> +>110°c   -> temp_max_alarm
+> +>120°c   -> temp_crit_alarm
+> +>130°c   -> temp_emergency_alarm
+
+temp1_xxx
+
 > -- 
-> 2.37.3
+> 2.34.1
 > 
