@@ -2,225 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52DB666D943
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 10:06:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A7E266D94F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 10:07:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236327AbjAQJGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 04:06:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35534 "EHLO
+        id S236449AbjAQJH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 04:07:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236382AbjAQJFW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 04:05:22 -0500
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2089.outbound.protection.outlook.com [40.107.14.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07F023D87;
-        Tue, 17 Jan 2023 01:00:56 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LM0mFNEgXki5wrtN5eCjZaG7m+gM6ki+EGodq8uG3q3Iljz5S2BaZ5w9uBy2BfI9uAcYaVSzuwbXY7Ul6qTKDkH0c0/CiGS2HyBRuAH0R2+7EnkzE+XNtCt2npUPncmvwO1NKp4YRYcVPY1fxyj4est8phmHNmvolSedVKAqstVajBIW1PeTvzpj/Cje0VNsAVzAzc/p6sC+YDWbN/PJBxY/QnqQBEZWXkg46Wtg3An1PlJKy0OJNLB4qg3wMTQkjwzethYMOnExGsBsLwHONxc2hAzuUN8KrmlRZa4jbuJK+5mH6KItTfWP1zF5cJq/nBjr+NCQhatW/Jf5XVZnog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pYhdNJkqJJZyFTjx8+JIvPDh+rRbHN0PbsgCqoumpvk=;
- b=lHfgOQdBUYP64d+onTNlksSQYjwn8peqNpwZpVKgQgbXTZ4FO1PUlKzxT2L421jxvfZD9enRpN2cQLssHqf8lo20Hx71eRTeByuTI4DgrWYQzOSOL50Ui7CGI2N6aOELMrWv60pKpbA7arKB2vfof2cAavEdGjGHMflDOmE3L0r1fqtnH/jTdRk1qzaapTBbc7RtaLPp/ynGrbx4uQ+XgmqG8ZYOIqE/0SyaC/5hD87hzIOpa0TPahJcoSSDtMo0Pw/BrFt+0sNCY9kUrPq008Ps9WKe+KuzMR49IQGHJ4CTOFego1I0+sT6l9LCx5MKoQ/vBApgTwlBkR3OZCwg/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pYhdNJkqJJZyFTjx8+JIvPDh+rRbHN0PbsgCqoumpvk=;
- b=s2lKN4fbo7jHPoCTBNFILFPOrY+GH/37E/4t+v6Qr5Q7PRtA4GGMVdK4cj1b3oNT1ln2sqewdG0j2Np5SZFiBmNSds/eQYUY+n6xt4FG+O7qmq6OPy0rKGte8tP8r2fhJG54pMoEWI971zrq3hQxv38rlcbaXJ/pfb7ZjH4l6Fg=
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com (2603:10a6:5:21::30) by
- AS8PR04MB7798.eurprd04.prod.outlook.com (2603:10a6:20b:2a3::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Tue, 17 Jan
- 2023 09:00:50 +0000
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::7479:76ef:8e5:da0b]) by DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::7479:76ef:8e5:da0b%6]) with mapi id 15.20.6002.012; Tue, 17 Jan 2023
- 09:00:50 +0000
-From:   Bough Chen <haibo.chen@nxp.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-CC:     "lars@metafoo.de" <lars@metafoo.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v5 0/3] add imx93 adc support
-Thread-Topic: [PATCH v5 0/3] add imx93 adc support
-Thread-Index: AQHZH2iRj6k+IgEHSk6WLlRdmX/9E66Uh6CAgA3PmeA=
-Date:   Tue, 17 Jan 2023 09:00:50 +0000
-Message-ID: <DB7PR04MB40106A96C5ABF81CA6613C8790C69@DB7PR04MB4010.eurprd04.prod.outlook.com>
-References: <20230103114359.2663262-1-haibo.chen@nxp.com>
- <20230108131505.0a51fe46@jic23-huawei>
-In-Reply-To: <20230108131505.0a51fe46@jic23-huawei>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB7PR04MB4010:EE_|AS8PR04MB7798:EE_
-x-ms-office365-filtering-correlation-id: 97233431-553f-4fcd-74db-08daf86954ef
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: rNkDYQoYVDbmfXN2jaU2dKpzQvo57BrEcygNInKQTu4gZwzlGC3lgk8biUaBanMdEgOaU+GYodIaUCh66CrCDEoKkjuRepH6FZ8/gC5Gt46XKJCOqC61RptK0QF6OUy4MZr4HMVY4opIdtvClx/EvWTenePeY5lvgG0uEae7AWd4TUhtWBP4ZfrYWkLDJGFTyXNHPsRbBCFBTLkrGc5HCVC3kmG2Sn82GtlCpTybVG2XwZvHQm/EBBYGsv4u6uh0NdEzr5hG5wByYB6v6abOMCvKWucJZA16Yt618De1Kc/lnBKX8Q3XflI5LiV8Z2tgy8gXdwCd+C7Mn4pL7sJepBT9N2SGw5Aoubmz7gA/JfSHhmJtzNokX+R7wU0//tSrLBOUYbUfL7lrrDCqTlTEc0zoMTjWcZ8Hv4BN9cAtFbfLQ0dm8q8txCquZ52bZnuPqI/GSl5SNuk/6MO/crW7Ez7LmY4VdUqcNHfOKY7h47pczYT1Y+hlrpJO0H+MAvMu1YcwePkwH3uzCwD2vrqz+bFCHA8OdhBMjE6jlSNmnIuXGsOFAUfXvGK/mYABYLU0xeofTXoH2AewB1EcHtDmo12PcGMEUWuGY0wtEhzNvKbFZcnzpVGrpM1qqVJRu+BflD19eR72pIo0F48+vtLBi4tN6XEppxi2KjPjda/nmmZG/UH/cWWYWy0hVQkzc3QVy0kcpV0Q/kG1/jkwkWfPWw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4010.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(366004)(346002)(396003)(376002)(39860400002)(451199015)(83380400001)(2906002)(33656002)(38100700002)(122000001)(8936002)(38070700005)(86362001)(5660300002)(55016003)(66946007)(4326008)(7416002)(6916009)(66446008)(8676002)(66476007)(66556008)(64756008)(76116006)(52536014)(41300700001)(186003)(53546011)(26005)(6506007)(9686003)(54906003)(478600001)(71200400001)(7696005)(316002)(66899015);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?gb2312?B?YUdGdnNSbTdId1hiTWVzRXh5OFg4L3J0SlQwL2t0ZUVEOU9mM0N6R2I4bkh0?=
- =?gb2312?B?RzlkUng1enpqYzZxb1dNbTlYa0NLTzZNaFB6NU9BbHU1UmdXaGQ1RDBQWm9K?=
- =?gb2312?B?eTFoWk9ZMWoxNzQ0dXU3MW9CU09YZDAyU3hrT2x4ZUFRYVVCNzAveGJNb0wv?=
- =?gb2312?B?eU9Pb1hHRVNRYUV2SldNd2tZUmpWSHlzUHJwU01kZllKMmlvT1BIOCtUMXpi?=
- =?gb2312?B?aVc2Wng2MVVkQWFlWTVXU1Z5dUJhUzhwdHhUK0d0N0t5eEo1dlFuKzMwNTll?=
- =?gb2312?B?eTZWS1FzTjFmaUtCMmlScDMyWWc0d2dwNDZaU1lmUGMvVFErMmVoeHVZcjkx?=
- =?gb2312?B?MlNDNzR2NjhMTzkyNU9hYzZKTGpuQ1I0Z1ZUQVNJYWlseWpkaCtVRVl4OURU?=
- =?gb2312?B?SmM4YUVjVmkrbWUrUkx3WlozTU01UHMwN3M0aEw5eHZ4eEVBM1hEVHpXZHRV?=
- =?gb2312?B?NHhMZEU5WEtQZUQwOE9SZytSWXcyQ1FIcEI4QVBkVWl6NWxGRExzUWZ5bnhS?=
- =?gb2312?B?ejhDQXI0UlhiOWN2dzNvOHprUUNxOVI2dldUalNjeTI4Y1lBYUFCTnVYbFQ3?=
- =?gb2312?B?NSswU1J4QTBMc1IwSm94b05rdXptOUc0VUFtaDNRMEZkSXludFk1M1FwYUFy?=
- =?gb2312?B?RUFCcktKcHI3VG5ZajFOeWVoWTB4b3pQRmdjZnFkWkdKSTZXMUowaEZUbGE4?=
- =?gb2312?B?UG0yMTBOYW9KU0lMQUd1TGdQclk5WWsvRGdNTEdwaktuMVdpbEtxMkhPb0w1?=
- =?gb2312?B?RWxOZHJHM1BuUDArbDB5QndVdS85VXJIUGxEUHV3ZVExdysrUXhXN2tWcDBW?=
- =?gb2312?B?aTNySkpSdzhhYVZQdkg0Uk1lWjI4TC9VYlduZnpETy9pMUJIUVBoYUJrREYz?=
- =?gb2312?B?Um9wM1JsYmdPQSsrem1tdU0rYTBuU1RMSmxmeU43aW5FT3pmYmVtTnU4SU1X?=
- =?gb2312?B?c2RvcWpORW5VS25IRStYWXBNOTJjMEdnWVhLZ0JFYzFIeUQ0dnVnVFUzR3lq?=
- =?gb2312?B?ZEphUzZseTkrc2dac1l6L2JucWU5WTJKNTVRVGVJV3NpV3FEbHY5ODJvNVBw?=
- =?gb2312?B?NnkyV202SGxRZzZ3S2g5T3R4Nk5iV0dvdjlab2xFSDVCWnFnMUo1QW9zT2tP?=
- =?gb2312?B?N1p0cWNoaXgyWnNtVHJLL1BHdExNME12bEF3MlhYRjZZOC9lSTJnbU1ueVRX?=
- =?gb2312?B?dWtXcE9rOW9ZbHYwNVEyVXBoSHFCTFllOWxGajZvMFNTQjBQMGRIZjU3bTI4?=
- =?gb2312?B?Q2hRK2NHWm1CWGdXT2FBM25nTmlnOGhJWVJLRDE0WndwU1dDTW1FeVZVSHpx?=
- =?gb2312?B?aUlwVUR3SXQ5VTNuZWNaYXNlaHdHb0dmM2JJUUQxMkVPV1RVd0t4UlFKZ0Er?=
- =?gb2312?B?WTkyVjB2WDFiUkt5NUxrUGJ0QWtudnBtSE55MktMRzJOb1hXVlNMV0krUTZl?=
- =?gb2312?B?NlBnYk40eW5GTjZXb0pWeVNjNEhEVlNyeFlVbGZkcWpWd0FubzQ2WUJRSEpp?=
- =?gb2312?B?WmR5SkF5a2t2WG5SYmpDaktDa0V5bFY3bEs4SFpnNTNqalVHVC9Ua0FBTlZN?=
- =?gb2312?B?Y0JEN3hZR1VMNzVaZWkxemdIRUN2dDRMcHMrdEdBaGJ0cUZsVjJpQ1NPQ1R0?=
- =?gb2312?B?RUhCdU9abzFRSW1FSEhmRE1uNEl3bmhFVmk1SHVxc3o5T3pSU29LYTkveFRD?=
- =?gb2312?B?d0I4NjZMbkkrTk5UZHFtSG1qcGJ3eGFyL1ZhVCtrdXNlRzRyRWFCUFp6SHQv?=
- =?gb2312?B?aGxHU3kra2c2WDdFZUF4cXB0YUFLMDV4NWlSdFY2VGhKV1JLU29ZN1hJb2Zk?=
- =?gb2312?B?KzdxK2dpR25OTURvbGRwZE1JWlM2SExrOXUvcUZONDNGODlRR2dQWW13WnRX?=
- =?gb2312?B?OXE5Y0tBTHhMYWRIbGxJVkhRQUNRa2YvN2xERjdvditiVjNNNjlmMEIxQ1Z4?=
- =?gb2312?B?Qm5FdmhLYWtCdW5MWEhpTWtGUm5qNFhaa1pGNnZRWXdMd2tOZ1BxZjJhUjA1?=
- =?gb2312?B?djNwVHpGdFV5TEMrQno3WGlrZmprM1VLazkvRlNwZHNKb0Irc1RhZWZRSUJo?=
- =?gb2312?B?MzRFQVJ0Q1ZiNEozbGxCaWdQb2NZYWFLdnZnVWdqVitIRWZjUnUrTEpVYm14?=
- =?gb2312?Q?6J8qkN/jqFgA3zEyurIR0i8m4?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        with ESMTP id S236386AbjAQJHB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 04:07:01 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7077E3253F;
+        Tue, 17 Jan 2023 01:01:57 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30H8ss9j015150;
+        Tue, 17 Jan 2023 09:01:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=y53Qn37kMzi9Fhc62GXAcreyZwbb55uF4YIqNoU/oFs=;
+ b=NQQX7wcrhlQTSk0+HHdQI/t3/9lmobkzjkCIS/8yIWhx+/6daPeM2HW+RFqqxv5B5kNm
+ jqd7XzzV1XG0eoGIf/VZ6cTAYpTEftlTUaBVJT2IaIp+Jfx5DRsfdrKUqghommtyrVS9
+ HRFlZd4ABeXTqLsJTL76p845+w2uOjGrT8synpdUDv8AHjsVZFXPpL5i763hbRB6A+3d
+ S2u6OO+W0pm6cNX+ZWH+4u0kZGus9tz7ZTINw/JwVTy5uK6Zwx+/jovHcAvl5iu1hYvw
+ gVTLQoxNBENM+qbBZeTzVWZjeq9tg20hu5miDFwHlYV3549/f+K+gGNO6JQLVjezGKv6 WA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n5pbm88g5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Jan 2023 09:01:48 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30H91lPi011467
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Jan 2023 09:01:47 GMT
+Received: from [10.216.62.177] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 17 Jan
+ 2023 01:01:41 -0800
+Message-ID: <4eb26a54-148b-942f-01c6-64e66541de8b@quicinc.com>
+Date:   Tue, 17 Jan 2023 14:31:38 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4010.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97233431-553f-4fcd-74db-08daf86954ef
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2023 09:00:50.6111
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ScdqR6TnShsqhYQtleptLqqt+nV+r1aM4Huug2XgFGDATxztIK8l5vlKfOeYLf64ZiASDhfZAz2fbracfRON3Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7798
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [RFC v4 1/5] dt-bindings: usb: Add bindings to support multiport
+ properties
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_wcheng@quicinc.com>,
+        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>
+References: <20230115114146.12628-1-quic_kriskura@quicinc.com>
+ <20230115114146.12628-2-quic_kriskura@quicinc.com>
+ <20230116163401.GA2371990-robh@kernel.org>
+From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <20230116163401.GA2371990-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: YvWsNEaZzIa9SDxjuaJaoWCx5FHsxqGw
+X-Proofpoint-GUID: YvWsNEaZzIa9SDxjuaJaoWCx5FHsxqGw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-17_04,2023-01-13_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=687
+ mlxscore=0 priorityscore=1501 adultscore=0 suspectscore=0 impostorscore=0
+ malwarescore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301170075
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_SBL_CSS,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBKb25hdGhhbiBDYW1lcm9uIDxq
-aWMyM0BrZXJuZWwub3JnPg0KPiBTZW50OiAyMDIzxOox1MI4yNUgMjE6MTUNCj4gVG86IEJvdWdo
-IENoZW4gPGhhaWJvLmNoZW5AbnhwLmNvbT4NCj4gQ2M6IGxhcnNAbWV0YWZvby5kZTsgcm9iaCtk
-dEBrZXJuZWwub3JnOyBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7DQo+IHNoYXdu
-Z3VvQGtlcm5lbC5vcmc7IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7IGtlcm5lbEBwZW5ndXRyb25p
-eC5kZTsNCj4gZmVzdGV2YW1AZ21haWwuY29tOyBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAu
-Y29tPjsNCj4gbGludXgtaWlvQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5l
-bC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NSAwLzNdIGFkZCBpbXg5MyBhZGMgc3VwcG9y
-dA0KPiANCj4gT24gVHVlLCAgMyBKYW4gMjAyMyAxOTo0Mzo1NSArMDgwMA0KPiBoYWliby5jaGVu
-QG54cC5jb20gd3JvdGU6DQo+IA0KPiA+IEZyb206IEhhaWJvIENoZW4gPGhhaWJvLmNoZW5Abnhw
-LmNvbT4NCj4gPg0KPiA+IFY1Og0KPiA+ICAgLUZvciBBREMgZHJpdmVyLCB1c2UgZGV2X2Vycl9w
-cm9iZSgpIHRvIHJlcGxhY2UgZGV2X2VycigpIGluDQo+IGRldl9lcnJfcHJvYmUoKS4NCj4gPiAg
-IC1BZGQgaW14OTNfYWRjX3Bvd2VyX2Rvd24oKSBpbiB0aGUgcHJvYmUgZXJyb3IgcGF0aC4NCj4g
-PiAgIC1SZS1vcmRlciB0aGUgZnVuY3Rpb24gaW4gaW14OTNfYWRjX3JlbW92ZSgpLCBtYWtlIHRo
-ZW0gaW52ZXJzZSBpbg0KPiBwcm9iZSgpLg0KPiA+ICAgLVJlbW92ZSB0aGUgcG1fcnVudGltZV9n
-ZXRfc3luYyhkZXYpIGluIGlteDkzX2FkY19yZW1vdmUoKSwgYmVjYXVzZQ0KPiB0aGlzIGRyaXZl
-cg0KPiA+ICAgIGVuYWJsZSB0aGUgcG1fcnVudGltZSBhdXRvc3VzcGVuZCBmZWF0dXJlLCBhbmQg
-Y29uZmlnIHRoZSBkZWxheSBhcw0KPiA1MG1zLiBTbyB3aGVuDQo+ID4gICAgY2FsbGVkIGlteDkz
-X2FkY19yZW1vdmUoKSwgdGhpcyBkZXZpY2Ugc3RpbGwgaW4gcnVudGltZSByZXN1bWUgc3RhdGUs
-IG5vDQo+IG5lZWQgdG8NCj4gPiAgICBmb3JjZSByZXN1bWUgdGhlIGRldmljZSBiYWNrLg0KPiBJ
-IGRvbid0IGZvbGxvdyB0aGlzIHBvaW50LiAgUGVyaGFwcyB0YWxrIG1lIHRocm91Z2ggaW4gbW9y
-ZSBkZXRhaWwgb24gd2h5IHRoZQ0KPiBkZXZpY2Ugd2lsbCBiZSBpbiBhIHJ1bnRpbWUgcmVzdW1l
-ZCBzdGF0ZSB3aGVuIGV2ZXIgd2UgaGl0IHJlbW92ZT8NCg0KSGkgSm9uYXRoYW4sDQoNClNvcnJ5
-IGZvciBkZWxheS4NCg0KVGhpcyBkcml2ZXIgdXNlIG1vZHVsZV9wbGF0Zm9ybV9kcml2ZXIsIHNv
-IHdoZW4gZG8gcm1tb2Qgb3IgdW5iaW5kIG9wZXJhdGlvbg0KVGhlIGZ1bmN0aW9uIGNhbGwgc3Rl
-cHMgYXJlIGFzIGJlbG93aW5nOg0KcGxhdGZvcm1fZHJpdmVyX3VucmVnaXN0ZXINCiAgLS0+IGRy
-aXZlcl91bnJlZ2lzdGVyDQogICAgIC0tPiBidXNfcmVtb3ZlX2RyaXZlcg0KICAgICAgICAtLT4g
-ZHJpdmVyX2RldGFjaA0KICAgICAgICAgICAtLT4gZGV2aWNlX3JlbGVhc2VfZHJpdmVyX2ludGVy
-bmFsDQogICAgICAgICAgICAgIC0tPiBfX2RldmljZV9yZWxlYXNlX2RyaXZlcg0KDQpJbiBfX2Rl
-dmljZV9yZWxlYXNlX2RyaXZlciB7DQogICAgICAgIHBtX3J1bnRpbWVfZ2V0X3N5bmMoZGV2KTsN
-CiAgICAgICAgLi4uDQogICAgICAgIHBtX3J1bnRpbWVfcHV0X3N5bmMoZGV2KTsNCiAgICAgICAg
-ZGV2aWNlX3JlbW92ZShkZXYpOyAgICAgLT4gY2FsbCBpbXg5M19hZGNfcmVtb3ZlKCkNCiAgICAg
-ICAgLi4uDQp9DQoNClNpbmNlIGluIHRoaXMgaW14OTMgYWRjIGRyaXZlciwgd2UgdXNlIDUwbXMg
-YXV0byBzdXNwZW5kIGRlYWx5LA0KICAgICAgcG1fcnVudGltZV9zZXRfYXV0b3N1c3BlbmRfZGVs
-YXkoZGV2LCA1MCk7DQoNCmFuZCBoZXJlIGlzIHRoZSBkZXNjcmlwdGlvbiBvZiB0aGlzIEFQSSAg
-KERvY3VtZW50YXRpb24vcG93ZXIvcnVudGltZV9wbS5yc3QpOg0KICBgdm9pZCBwbV9ydW50aW1l
-X3NldF9hdXRvc3VzcGVuZF9kZWxheShzdHJ1Y3QgZGV2aWNlICpkZXYsIGludCBkZWxheSk7YA0K
-ICAgIC0gc2V0IHRoZSBwb3dlci5hdXRvc3VzcGVuZF9kZWxheSB2YWx1ZSB0byAnZGVsYXknIChl
-eHByZXNzZWQgaW4NCiAgICAgIG1pbGxpc2Vjb25kcyk7IGlmICdkZWxheScgaXMgbmVnYXRpdmUg
-dGhlbiBydW50aW1lIHN1c3BlbmRzIGFyZQ0KICAgICAgcHJldmVudGVkOyBpZiBwb3dlci51c2Vf
-YXV0b3N1c3BlbmQgaXMgc2V0LCBwbV9ydW50aW1lX2dldF9zeW5jIG1heSBiZQ0KICAgICAgY2Fs
-bGVkIG9yIHRoZSBkZXZpY2UncyB1c2FnZSBjb3VudGVyIG1heSBiZSBkZWNyZW1lbnRlZCBhbmQN
-CiAgICAgIHBtX3J1bnRpbWVfaWRsZSBjYWxsZWQgZGVwZW5kaW5nIG9uIGlmIHBvd2VyLmF1dG9z
-dXNwZW5kX2RlbGF5IGlzDQogICAgICBjaGFuZ2VkIHRvIG9yIGZyb20gYSBuZWdhdGl2ZSB2YWx1
-ZTsgaWYgcG93ZXIudXNlX2F1dG9zdXNwZW5kIGlzIGNsZWFyLA0KICAgICAgcG1fcnVudGltZV9p
-ZGxlIGlzIGNhbGxlZA0KDQphbmQgdGhlIGRlc2NyaXB0aW9uIG9mIHBtX3J1bnRpbWVfcHV0X3N5
-bmMuDQovKioNCiAqIHBtX3J1bnRpbWVfcHV0X3N5bmMgLSBEcm9wIGRldmljZSB1c2FnZSBjb3Vu
-dGVyIGFuZCBydW4gImlkbGUgY2hlY2siIGlmIDAuDQogKiBAZGV2OiBUYXJnZXQgZGV2aWNlLg0K
-ICoNCiAqIERlY3JlbWVudCB0aGUgcnVudGltZSBQTSB1c2FnZSBjb3VudGVyIG9mIEBkZXYgYW5k
-IGlmIGl0IHR1cm5zIG91dCB0byBiZQ0KICogZXF1YWwgdG8gMCwgaW52b2tlIHRoZSAiaWRsZSBj
-aGVjayIgY2FsbGJhY2sgb2YgQGRldiBhbmQsIGRlcGVuZGluZyBvbiBpdHMNCiAqIHJldHVybiB2
-YWx1ZSwgc2V0IHVwIGF1dG9zdXNwZW5kIG9mIEBkZXYgb3Igc3VzcGVuZCBpdCAoZGVwZW5kaW5n
-IG9uIHdoZXRoZXINCiAqIG9yIG5vdCBhdXRvc3VzcGVuZCBoYXMgYmVlbiBlbmFibGVkIGZvciBp
-dCkuDQogKg0KICogVGhlIHBvc3NpYmxlIHJldHVybiB2YWx1ZXMgb2YgdGhpcyBmdW5jdGlvbiBh
-cmUgdGhlIHNhbWUgYXMgZm9yDQogKiBwbV9ydW50aW1lX2lkbGUoKSBhbmQgdGhlIHJ1bnRpbWUg
-UE0gdXNhZ2UgY291bnRlciBvZiBAZGV2IHJlbWFpbnMNCiAqIGRlY3JlbWVudGVkIGluIGFsbCBj
-YXNlcywgZXZlbiBpZiBpdCByZXR1cm5zIGFuIGVycm9yIGNvZGUuDQogKi8NCnN0YXRpYyBpbmxp
-bmUgaW50IHBtX3J1bnRpbWVfcHV0X3N5bmMoc3RydWN0IGRldmljZSAqZGV2KQ0Kew0KICAgICAg
-ICByZXR1cm4gX19wbV9ydW50aW1lX2lkbGUoZGV2LCBSUE1fR0VUX1BVVCk7DQp9DQoNClRoaXMg
-bWVhbnMgYWZ0ZXIgY2FsbCB0aGUgcG1fcnVudGltZV9wdXRfc3luYyBpbiBfX2RldmljZV9yZWxl
-YXNlX2RyaXZlcigpLCBpbXg5M19hZGMgd2lsbCBub3QgY2FsbCBpbXg5M19hZGNfcnVudGltZV9z
-dXNwZW5kKCkgaW1tZWRpYXRlbHksIHdpbGwgZG8gaXQgYWZ0ZXIgNTBtcywgYnV0IGp1c3QgdGhl
-biwgY2FsbCB0aGUgaW14OTNfYWRjX3JlbW92ZSgpLCBzbyB0aGlzIG1lYW5zIHdoZW4gaW14OTNf
-YWRjX3JlbW92ZSgpIGV4ZWN1dGUsIHRoZSBBREMgcmVsYXRlZCBjbG9ja3Mga2VlcCBvbi4NCg0K
-QmVzdCBSZWdhcmRzDQpIYWlibyBDaGVuDQo+IA0KPiA+ICAgLW5vIGNoYW5nZXMgZm9yIGJpbmRp
-bmcgZG9jIGFuZCBkdHMuDQo+ID4NCj4gPiBWNDoNCj4gPiAgIEZvciBBREMgZHJpdmVyLCByZS1k
-ZWZpbmUgdGhlIEFEQyBzdGF0dXMgc2hvdyB0aGUgcmVsYXRpb24gdG8gc3BlY2lmaWMNCj4gcmVn
-aXN0ZXIgYml0Lg0KPiA+ICAgUmVkbyB0aGUgaW14OTNfYWRjX3JlbW92ZSgpLCBjaGFuZ2UgdGhl
-IHJldHVybiBlcnJvciBzZXF1ZW5jZSBpbg0KPiBpbXg5M19hZGNfcmVhZF9yYXcoKSwNCj4gPiAg
-IGFuZCB1c2UgYSBkaXJlY3Qgc3RyaW5nIGZvciBpbmRpb19kZXYtPm5hbWUuDQo+ID4gICBGb3Ig
-ZHQtYmluZ3MsIGNoYW5nZSB0aGUgY29tbWl0IHRpdGxlIGFuZCBhZGQgbWFpbnRhaW5lcidzIHJl
-dmlld2VkIGJ5DQo+IHRhZw0KPiA+ICAgRm9yIGR0cywgbm8gY2hhbmdlLg0KPiA+DQo+ID4gVjM6
-DQo+ID4gICBGb3IgZHQtYmluZ3MsIGFkZCBzb21lIGNoYW5nZSBhY2NvcmRpbmcgdG8gcmV2aWV3
-IGNvbW1lbnRzLCBhbmQgcGFzcw0KPiBkdF9iaW5kaW5nX2NoZWNrLg0KPiA+ICAgRm9yIGR0cywg
-YWRkICNpby1jaGFubmVsLWNlbGxzID0gPDE+OyB0byBwYXNzIGR0YnNfY2hlY2sNCj4gPiAgIEZv
-ciBBREMgZHJpdmVyLCBubyBjaGFuZ2UuDQo+ID4NCj4gPiBWMjoNCj4gPiAgIEZvciBBREMgZHJp
-dmVyLCBhZGQgY2hhbmdlIGFjY29yZGluZyB0byBtYXRhaW5lcidzIGNvbW1ldHMuDQo+ID4NCj4g
-PiBIYWlibyBDaGVuICgzKToNCj4gPiAgIGlpbzogYWRjOiBhZGQgaW14OTMgYWRjIHN1cHBvcnQN
-Cj4gPiAgIGR0LWJpbmRpbmdzOiBpaW86IGFkYzogQWRkIE5YUCBJTVg5MyBBREMNCj4gPiAgIGFy
-bTY0OiBkdHM6IGlteDkzOiBhZGQgQURDIHN1cHBvcnQNCj4gPg0KPiA+ICAuLi4vYmluZGluZ3Mv
-aWlvL2FkYy9ueHAsaW14OTMtYWRjLnlhbWwgICAgICAgfCAgODEgKysrDQo+ID4gIE1BSU5UQUlO
-RVJTICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgNCArLQ0KPiA+ICAuLi4v
-Ym9vdC9kdHMvZnJlZXNjYWxlL2lteDkzLTExeDExLWV2ay5kdHMgICAgfCAgMTIgKw0KPiA+ICBh
-cmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg5My5kdHNpICAgICAgfCAgMTMgKw0KPiA+
-ICBkcml2ZXJzL2lpby9hZGMvS2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICAgfCAgMTAgKw0K
-PiA+ICBkcml2ZXJzL2lpby9hZGMvTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAgfCAgIDEg
-Kw0KPiA+ICBkcml2ZXJzL2lpby9hZGMvaW14OTNfYWRjLmMgICAgICAgICAgICAgICAgICAgfCA0
-NzcNCj4gKysrKysrKysrKysrKysrKysrDQo+ID4gIDcgZmlsZXMgY2hhbmdlZCwgNTk3IGluc2Vy
-dGlvbnMoKyksIDEgZGVsZXRpb24oLSkgIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+IERvY3VtZW50
-YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9paW8vYWRjL254cCxpbXg5My1hZGMueWFtbA0KPiA+
-ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9paW8vYWRjL2lteDkzX2FkYy5jDQo+ID4NCg0K
+
+
+On 1/16/2023 10:04 PM, Rob Herring wrote:
+> On Sun, Jan 15, 2023 at 05:11:42PM +0530, Krishna Kurapati wrote:
+>> Add bindings to indicate properties required to support multiport
+>> on Snps Dwc3 controller.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/usb/snps,dwc3.yaml    | 53 ++++++++++++++++---
+>>   1 file changed, 47 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> index 6d78048c4613..3ea051beb2f8 100644
+>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> @@ -81,15 +81,26 @@ properties:
+>>   
+>>     phys:
+>>       minItems: 1
+>> -    maxItems: 2
+>> +    maxItems: 8
+>>   
+>>     phy-names:
+>>       minItems: 1
+>> -    maxItems: 2
+>> -    items:
+>> -      enum:
+>> -        - usb2-phy
+>> -        - usb3-phy
+>> +    maxItems: 8
+>> +    oneOf:
+>> +    - items:
+>> +        enum:
+>> +          - usb2-phy
+>> +          - usb3-phy
+>> +    - items:
+>> +        enum:
+>> +          - usb2-phy_port0
+>> +          - usb2-phy_port1
+>> +          - usb2-phy_port2
+>> +          - usb2-phy_port3
+>> +          - usb3-phy_port0
+>> +          - usb3-phy_port1
+>> +          - usb3-phy_port2
+>> +          - usb3-phy_port3
+> 
+> usbN-portM
+> 
+>>   
+>>     resets:
+>>       minItems: 1
+>> @@ -360,6 +371,22 @@ properties:
+>>       description:
+>>         Enable USB remote wakeup.
+>>   
+>> +  num-ports:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      This property indicates the number of ports present on the target that
+>> +      are to be serviced by the DWC3 controller.
+>> +    minimum: 1
+>> +    maximum: 4
+>> +
+>> +  num-ss-ports:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      This property indicates the number of SS capable ports present on the
+>> +      target that are to be serviced by the DWC3 controller.
+>> +    minimum: 1
+>> +    maximum: 4
+> 
+> This information is redundant. 'phy-names' tells you how many ports of
+> each.
+> 
+Hi Rob,
+
+  Thanks for the review. The reason I wanted to introduce two more 
+variables is to get info on number of ports  and ss-capable ports 
+present on hardware whether or not the user provides them in DTSI file.
+
+In the code there are two types of per port / per phy operations:
+a) Modifying GUSB2PFYCFG and GUSB3PIPECTL registers per phy.
+b) Generic Phy operations - per phy.
+
+In today's code, if someone doesn't mention the SSPHY in DTSI, 
+dwc->usb3_generic_phy will be NULL and any call to phy operations will 
+just bail out. And irrespective of whether we provide SS Phy in DTSI or 
+not, we still configure GUSB3PIPECTL register.
+
+Consider the following cases:
+
+1. There are 3 ports and 2 of them are SS capable and all phy's are 
+mentioned in DTSI.
+
+phy-names= "usb2-port0", "usb3-port0", "usb2-port1", "usb3-port1", 
+"usb2-port2"
+
+When we count them in the driver, we get num ports as 3 (presuming 
+num-ports = num of hs ports) and num-ss-ports = 2.
+
+Since there is no ambiguity in which all ports to configure, we can 
+modify GUSB2PHYCFG registers for all 3 HS Phy's and GUSB3PIPECTL for 
+both SS Phy's.
+This is a proper scenario.
+
+2. If the user skips providing SS Phy on Port-0, then:
+
+phy-names= "usb2-port0", "usb2-port1", "usb3-port1", "usb2-port2"
+
+If we count the phys, we end up getting num-ports=3 and num-ss-ports=1.
+
+Since in the driver code, we are not keeping track of which ports are SS 
+capable and which ones are not, we end up configuring
+GUSB2PIPECTL(port-0) instead of port-1  as the num-ss-ports is "1" which 
+is incorrect.
+
+3. If the user skips providing one complete port, in this case port-1 is 
+skipped, then:
+
+phy-names= "usb2-port0", "usb3-port0", "usb2-port2"
+
+If we count the phys, we end up getting num-ports=2 and num-ss-ports=1.
+
+Since in the driver code, we are not keeping track of which ports are SS 
+capable and which ones are not, we end up configuring 
+GUSB2PHYCFG(port-0) and GUSB2PHYCFG(port-1) instead of port-2 which is 
+incorrect.
+
+To avoid these scenarios, if we can get the exact number of SS Ports and 
+Ports in total present on the HW, we can configure all the registers 
+whether the phy's are provided in DTSI or not. (This is of no harm I 
+believe as it still works in today's code)
+
+Incase the 2nd and 3rd scenarios are not allowed and user *MUST* declare 
+all the phy's in the DTSI, then I can go ahead and remove these 
+properties and count them in the driver code.
+
+Thanks,
+Krishna,
+
+>> +
+>>   unevaluatedProperties: false
+>>   
+>>   required:
+>> @@ -388,4 +415,18 @@ examples:
+>>         snps,dis_u2_susphy_quirk;
+>>         snps,dis_enblslpm_quirk;
+>>       };
+>> +  - |
+>> +    usb@4a000000 {
+>> +      compatible = "snps,dwc3";
+>> +      reg = <0x4a000000 0xcfff>;
+>> +      interrupts = <0 92 4>;
+>> +      clocks = <&clk 1>, <&clk 2>, <&clk 3>;
+>> +      clock-names = "bus_early", "ref", "suspend";
+>> +      num-ports = <2>;
+>> +      num-ss-ports = <1>;
+>> +      phys = <&usb2_phy0>, <&usb3_phy0>, <&usb2_phy1>;
+>> +      phy-names = "usb2-phy_port0", "usb3-phy_port0", "usb2-phy_port1";
+>> +      snps,dis_u2_susphy_quirk;
+>> +      snps,dis_enblslpm_quirk;
+>> +    };
+> 
+> Does a different number of phys really need its own example?
+> 
+> Rob
