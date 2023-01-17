@@ -2,256 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBE8C66DDA4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:32:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6434166DDC4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:39:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235462AbjAQMc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 07:32:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54924 "EHLO
+        id S236221AbjAQMjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 07:39:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236100AbjAQMc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:32:26 -0500
-Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D3A335264
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 04:32:24 -0800 (PST)
-Received: from CHE01-ZR0-obe.outbound.protection.outlook.com
- (mail-zr0che01lp2113.outbound.protection.outlook.com [104.47.22.113]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-53-I8IEfJaVOjei0ssfnatKvg-1; Tue, 17 Jan 2023 13:32:21 +0100
-X-MC-Unique: I8IEfJaVOjei0ssfnatKvg-1
-Received: from ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:34::14)
- by ZRAP278MB0128.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:13::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Tue, 17 Jan
- 2023 12:32:20 +0000
-Received: from ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM
- ([fe80::f9e:5ebd:d37b:b0cb]) by ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM
- ([fe80::f9e:5ebd:d37b:b0cb%6]) with mapi id 15.20.5986.023; Tue, 17 Jan 2023
- 12:32:20 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     "robh@kernel.org" <robh@kernel.org>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-CC:     "pavel@ucw.cz" <pavel@ucw.cz>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dmurphy@ti.com" <dmurphy@ti.com>,
-        "jacek.anaszewski@gmail.com" <jacek.anaszewski@gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: leds: Convert gpio-leds to DT schema
-Thread-Topic: [PATCH v2 2/2] dt-bindings: leds: Convert gpio-leds to DT schema
-Thread-Index: AQHZKm73W52UBrqkZkOCmaRvbTe0Fa6iipyA
-Date:   Tue, 17 Jan 2023 12:32:20 +0000
-Message-ID: <cf335bfe5979e2e4936104eb9f6b953d00af13a1.camel@toradex.com>
-References: <20200108001738.8209-1-robh@kernel.org>
-         <20200108001738.8209-2-robh@kernel.org>
-In-Reply-To: <20200108001738.8209-2-robh@kernel.org>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.2
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZR0P278MB0377:EE_|ZRAP278MB0128:EE_
-x-ms-office365-filtering-correlation-id: 0c2c1c04-cfe0-4107-2542-08daf886e08a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0
-x-microsoft-antispam-message-info: MMh+zgRduz/hyBEbDCKqXJxLpx6x8sSG0jYfM74HEyYLQHHv9faxRG/IholTWVXTkruiEOdpPdWsgbRvjEsJ1PGyIAcCwCvjR0ASUJ3aKwYLZqgzlfs4URcIT6FlKgm3Bh5sfTCvDrZ2a0XhoRfJqBO1WPVS4bmNDrOybISNdXh2YjofmCLf2tlzpbvwMC+Z9ujcdJ6xUDD2Km8fzcAR6GnaLi20ZUz8gTyiyWpxqTZZ9IwnfSHT9WbnzfjppAvZBgwO5tba1wveOy+sfdQBL2fD/tvDhNOTqh69XdBrq7D5Kli0G8pwWMDSRDbWeufgeEVg5UYpCt2fqGLsaZ9VpZFmAP2h9cgFf1kwbOb7ABqkWfqmT2OcW6PougH78PZfUoM2BpDbRm8R0GKYAtzXHiCfKWpqL0BeWUevSpCUbCr24beUc3jWZ9HztiQRApHVJyol59JrYMQG75tpSfvgIjJTBj69eFrampc14Lp9Zyce3k7f6VaDZ1p0RyNzbBld1P3Ts9FEpPtK28s30oxSxrVA4ZEfLNWJHrk+ymNGeG6hVC1AH3jfSSC7aczur3r1c5S9bZAJqwylwlzt4YSotzFEQaKSwDf2ELfCeCWm3oEHwG/j0ejGW3zUzuBddWEtuV50IwSD50sUzENEeOvRBkuW60soP8/dJIOBLKj+yO6OGVLZYaPZbivcPiGrYu0vzAAp7AvNgBY+pvJUNE5QMw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(39850400004)(366004)(136003)(396003)(346002)(451199015)(478600001)(6486002)(966005)(41300700001)(38070700005)(6512007)(66446008)(38100700002)(66556008)(71200400001)(186003)(316002)(110136005)(54906003)(86362001)(2616005)(66476007)(26005)(66946007)(76116006)(4326008)(5660300002)(36756003)(6506007)(2906002)(44832011)(83380400001)(64756008)(8936002)(8676002)(122000001);DIR:OUT;SFP:1102
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MEN2NHNKRjlnTlQ0YnlzRGRFUVVzbldtbDFSak9QdVVWTGZ0Vm8zTGZ0TXFq?=
- =?utf-8?B?RE45VDA4NktqMkZlWTJxWVpqMnhzSHI2cHpiUGZmUTVEeFZZRXBaaWVoam5i?=
- =?utf-8?B?anVJeC9uV3dNaVk4TzZQQzdoeXYyNzJVSFVPaHNoTHV6RUl5ejdSKzNqM2hN?=
- =?utf-8?B?cVVKYi95UDZhN0Mvb09yMWdRMUV4NkhnSWFkNFFGbTBTMi8vaUZ0R3h6eGw2?=
- =?utf-8?B?T3ZpOXJUdkRRY0RKMTNIbHk1aHZDU1NLZUIvRVNKaTlCcU56R3BzMC9vYnBS?=
- =?utf-8?B?aUFGcXREKzFyd2xXbFVyM3k5WWRkakR2bTBZek5WK2lZNkJDR1NjS1llZlg3?=
- =?utf-8?B?K1BmcyszOGZQcDQ5RWFTYVUvRHhycVlvblhkV2FoNFFvcE5yZFJtWHJxY2hV?=
- =?utf-8?B?TXE4aWdRSDQ1UmViaDZpSmFlKzIvT0xuZGQrd0Z1QjVCR3RHdGNHLyswL3FF?=
- =?utf-8?B?d2RRd0N5S21JODJ4a1VERVc3WjZkR1JGN2dpRkJ0ZzRyWkRkb2RHc0RHc0pS?=
- =?utf-8?B?NlNqT1lrd3UzeHRFKzFrWkVOdkdpb2FwV1BlNDVNRzJSZHZTWkJ6STFrWVg5?=
- =?utf-8?B?c3ZJbmJISXZKT0xqSGxacjdFM0tlRzBPZm1WanpUYmxiOUgwQXVSdFhjd2pn?=
- =?utf-8?B?WW9rNitQSU1UYmdpREdha2lpSVdad3BkOTB5aHJlRFg1RXZHNm1HaU5wdlhV?=
- =?utf-8?B?cjJ6RGNqYnRRUFpkTkRreWRnVmNrbXVTdW5EdlYrYTJkTUM3Vityb1UyZmNX?=
- =?utf-8?B?Z0d3QjBWZWpaak4yazcrQ2pwOUZjQjdlUG5Wdy8xRGhHSm5XZkhNYVIxSXBL?=
- =?utf-8?B?N1FsVmxOVG9VbUhHOEdjSENWMFhmeGJGSU9jNjZycjNHSXlrK3pReFk0UGc4?=
- =?utf-8?B?VmxZazdic08wR2ZXM0JjV25IaS93YVQ3Mkszc2xvVlBhQjVBYk1uQ0liZldI?=
- =?utf-8?B?QzBObFNCLzJzaUFGajFNV0hDaHpHK0NmV2t4WXYxREtRb1JsMFZ3SzBaQ0J5?=
- =?utf-8?B?Sk5lT0tCVkRLaEFzUmFhZENBUTFURmgrblBWcmtzY2s5K0h6UGFwcWNhMG5y?=
- =?utf-8?B?SWdncEI5dmNReTR6NmtrazF4eWhNeE5mMUV3RkY1MjhOaGE0bEZ2cGVTY1dx?=
- =?utf-8?B?L0RBV0lFVWl3QXdVTlBwbHR1MTN4djZsNEJPc1hyMStKVUFraS9ySVd6dEtt?=
- =?utf-8?B?SGlFT3MxY0gwaC9mMjRlUTVUR3U0TXd6Y2NSZEkwZ1JlSU9SeVdZZkxrUHBP?=
- =?utf-8?B?M1VvVDRLTmwvSVB4SWgvOGJLc1Q1T0lKSzNHVTRjRkYwbVY2dDFhTlRJempT?=
- =?utf-8?B?Z0xtUkxnai9tZ3Q4L3BNWThlRHVWREt2UGxjOGxONVcrQ2VKelk3UjQyOVRz?=
- =?utf-8?B?emxtWGxmMy8xZkVHTDlkMkFYd2EzZno0bmc1dE9VTWFTZzhPOWJqZW9kRmtY?=
- =?utf-8?B?YmlKelFBWDc0SFk5MlJsS1dtT0J2d0g0SnVDVUhnaHJjSmErNUR4SGJ0YVZ4?=
- =?utf-8?B?NnNvTEpMeGx5MlMyd3ZBQ3hUMHBYTXpnbjlZVUtPdzZtL3pUYVNLZmtQd0FI?=
- =?utf-8?B?bTJrMlV0Mm53SkFGTmM2eC9Mcis5Q0lOV2RoM1FjY3lkYjZoeDczWmNTaGZy?=
- =?utf-8?B?K2VadzZIdThKSklNZFNnNUUrUHBuTXhwWXFsUzRPUjNmcUdoTWlsd0lSa2Qv?=
- =?utf-8?B?WkJXTm9YdUIzUFF2YmphSTFEQ3hhMUNXa3lWdm5SRjgvdmpDeWdnSXdCMVp0?=
- =?utf-8?B?Nm93cmJNdkRyeExKbzZib29IMnUvNy9HNitiS2NtaWRBcUNjOFk5S0pSMEpQ?=
- =?utf-8?B?dWVaTlhRYUNsd3hlb0Q1ZmtBeDk1Vk9zM094RWp2Smw1bjFJd1VSRVoxT3Fu?=
- =?utf-8?B?by9zOW9xQ0diSXliT2ZmSHdMZTJxenhJMS9GOUExMFJLZGlMbFhvak1uNE81?=
- =?utf-8?B?NnozV0pDMEdvL0l4N00vLzdxOEwyUSs3T0VtNFZRRkhZNXBKNFZ4WWxjMzVY?=
- =?utf-8?B?T01mSG1mMHVrMGE4RlFsUjNKVGhjN0hqZ2pSQWpLaThEV3c3andaeEFEakRj?=
- =?utf-8?B?WW51bkdpVDJMZFpKZ0hkcy8xY3pERjVMMGUrZ0lTeVBUWGdmMkh5ZDRJR1ds?=
- =?utf-8?B?V21lVkxybXBxVVRrd0x2ZUdyZlVDeXVpMnp2WjZVblFPMkJ5akZwSmpHUzBQ?=
- =?utf-8?Q?7ntdg3Ouh/xX2qeL2NYOUjM=3D?=
+        with ESMTP id S236129AbjAQMjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:39:05 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BC535252;
+        Tue, 17 Jan 2023 04:39:04 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B5E8310C;
+        Tue, 17 Jan 2023 13:38:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673959141;
+        bh=0xanUWyMoxJnvXqqNZ5UOGy3oyg6sQdr/aJLg0bLmX0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=lhXA6EOBtju3hz7RVGApa3gFkm8IjwyEevWIttJjwuSssA6tWWX3VMk4dP6KCwshf
+         D1TXAw5l8b9t1Vd5W0sbVT1fBO26Skg59JiGVMd89TgWhDkXbpcp0S0PTFKKS9B67y
+         fFirV+o2rzHN81rIAuhffeTrNvXXekunotwKsK54=
+Message-ID: <808e831f-4282-0e58-ebb2-2f556aaeaca4@ideasonboard.com>
+Date:   Tue, 17 Jan 2023 14:38:57 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c2c1c04-cfe0-4107-2542-08daf886e08a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2023 12:32:20.2162
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JbF0bonQ0iTDzGWk2fFeYbym+6uYITmFCcuVK/UVjFcyy4qxrg9VDzCNLmrYhfIBVlXM75yczLSd58uRICedhvekc2MqI8T91/K8h1joAGQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZRAP278MB0128
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [RFC PATCH 3/4] dt-bindings: panel: Introduce dual-link LVDS
+ panel
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-ID: <B5A86C37C57FAC4C82A81CA82D0F7B06@CHEP278.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+To:     Aradhya Bhatia <a-bhatia1@ti.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Guo Ren <guoren@kernel.org>
+Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Linux RISC-V List <linux-riscv@lists.infradead.org>,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Linux Mediatek List <linux-mediatek@lists.infradead.org>,
+        Linux C-SKY Arch List <linux-csky@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230103064615.5311-1-a-bhatia1@ti.com>
+ <20230103064615.5311-4-a-bhatia1@ti.com>
+ <09f1ca83-c7d5-a186-6fa6-09cdd7a0b9cc@collabora.com>
+ <431ddd82-055b-2526-3d5e-f6563e48d264@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <431ddd82-055b-2526-3d5e-f6563e48d264@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIwLTAxLTA3IGF0IDE4OjE3IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToKPiBD
-b252ZXJ0IHRoZSBncGlvLWxlZHMgYmluZGluZyB0byBEVCBzY2hlbWEgZm9ybWF0Lgo+IAo+IERy
-b3AgdGhlIGxhc3QgZXhhbXBsZSBhcyB0aGUgbm9kZSBuYW1lIGNvbGxpZGVzIHdoZW4gYnVpbHQs
-IGFuZCBpdAo+IGRvZXNuJ3QKPiBhZGQgbXVjaCB2YWx1ZS4KPiAKPiBDYzogUGF2ZWwgTWFjaGVr
-IDxwYXZlbEB1Y3cuY3o+Cj4gQ2M6IERhbiBNdXJwaHkgPGRtdXJwaHlAdGkuY29tPgo+IEFja2Vk
-LWJ5OiBKYWNlayBBbmFzemV3c2tpIDxqYWNlay5hbmFzemV3c2tpQGdtYWlsLmNvbT4KPiBTaWdu
-ZWQtb2ZmLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPgo+IC0tLQo+IEphY2VrLCBQ
-bGVhc2UgdGFrZSB0aGlzIHZpYSBsZWQgdHJlZQo+IAo+IHYyOgo+IC0gbm8gY2hhbmdlCj4gCj4g
-wqAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9sZWRzL2xlZHMtZ3Bpby50eHTCoMKgwqAgfCA3NSAt
-LS0tLS0tLS0tLS0tLS0tCj4gwqAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9sZWRzL2xlZHMtZ3Bp
-by55YW1swqDCoCB8IDg2Cj4gKysrKysrKysrKysrKysrKysrKwo+IMKgMiBmaWxlcyBjaGFuZ2Vk
-LCA4NiBpbnNlcnRpb25zKCspLCA3NSBkZWxldGlvbnMoLSkKPiDCoGRlbGV0ZSBtb2RlIDEwMDY0
-NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbGVkcy9sZWRzLQo+IGdwaW8udHh0
-Cj4gwqBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L2xlZHMvbGVkcy0KPiBncGlvLnlhbWwKPiAKPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL2xlZHMvbGVkcy1ncGlvLnR4dAo+IGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL2xlZHMvbGVkcy1ncGlvLnR4dAo+IGRlbGV0ZWQgZmlsZSBtb2Rl
-IDEwMDY0NAo+IGluZGV4IGQyMTI4MWI2M2QzOC4uMDAwMDAwMDAwMDAwCj4gLS0tIGEvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2xlZHMvbGVkcy1ncGlvLnR4dAo+ICsrKyAvZGV2
-L251bGwKPiBAQCAtMSw3NSArMCwwIEBACj4gLUxFRHMgY29ubmVjdGVkIHRvIEdQSU8gbGluZXMK
-PiAtCj4gLVJlcXVpcmVkIHByb3BlcnRpZXM6Cj4gLS0gY29tcGF0aWJsZSA6IHNob3VsZCBiZSAi
-Z3Bpby1sZWRzIi4KPiAtCj4gLUVhY2ggTEVEIGlzIHJlcHJlc2VudGVkIGFzIGEgc3ViLW5vZGUg
-b2YgdGhlIGdwaW8tbGVkcyBkZXZpY2UuwqAgRWFjaAo+IC1ub2RlJ3MgbmFtZSByZXByZXNlbnRz
-IHRoZSBuYW1lIG9mIHRoZSBjb3JyZXNwb25kaW5nIExFRC4KPiAtCj4gLUxFRCBzdWItbm9kZSBw
-cm9wZXJ0aWVzOgo+IC0tIGdwaW9zIDrCoCBTaG91bGQgc3BlY2lmeSB0aGUgTEVEJ3MgR1BJTywg
-c2VlICJncGlvcyBwcm9wZXJ0eSIgaW4KPiAtwqAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL2dwaW8vZ3Bpby50eHQuwqAgQWN0aXZlIGxvdyBMRURzCj4gc2hvdWxkIGJlCj4gLcKg
-IGluZGljYXRlZCB1c2luZyBmbGFncyBpbiB0aGUgR1BJTyBzcGVjaWZpZXIuCj4gLS0gZnVuY3Rp
-b24gOsKgIChvcHRpb25hbCkKPiAtwqAgc2VlIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9sZWRzL2NvbW1vbi50eHQKPiAtLSBjb2xvciA6wqAgKG9wdGlvbmFsKQo+IC3CoCBzZWUg
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2xlZHMvY29tbW9uLnR4dAo+IC0tIGxh
-YmVsIDrCoCAob3B0aW9uYWwpCj4gLcKgIHNlZSBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvbGVkcy9jb21tb24udHh0IChkZXByZWNhdGVkKQo+IC0tIGxpbnV4LGRlZmF1bHQtdHJp
-Z2dlciA6wqAgKG9wdGlvbmFsKQo+IC3CoCBzZWUgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL2xlZHMvY29tbW9uLnR4dAo+IC0tIGRlZmF1bHQtc3RhdGU6wqAgKG9wdGlvbmFsKSBU
-aGUgaW5pdGlhbCBzdGF0ZSBvZiB0aGUgTEVELgo+IC3CoCBzZWUgRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL2xlZHMvY29tbW9uLnR4dAo+IC0tIHJldGFpbi1zdGF0ZS1zdXNwZW5k
-ZWQ6IChvcHRpb25hbCkgVGhlIHN1c3BlbmQgc3RhdGUgY2FuIGJlCj4gcmV0YWluZWQuU3VjaAo+
-IC3CoCBhcyBjaGFyZ2UtbGVkIGdwaW8uCj4gLS0gcmV0YWluLXN0YXRlLXNodXRkb3duOiAob3B0
-aW9uYWwpIFJldGFpbiB0aGUgc3RhdGUgb2YgdGhlIExFRCBvbgo+IHNodXRkb3duLgo+IC3CoCBV
-c2VmdWwgaW4gQk1DIHN5c3RlbXMsIGZvciBleGFtcGxlIHdoZW4gdGhlIEJNQyBpcyByZWJvb3Rl
-ZCB3aGlsZQo+IHRoZSBob3N0Cj4gLcKgIHJlbWFpbnMgdXAuCj4gLS0gcGFuaWMtaW5kaWNhdG9y
-IDogKG9wdGlvbmFsKQo+IC3CoCBzZWUgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L2xlZHMvY29tbW9uLnR4dAo+IC0KPiAtRXhhbXBsZXM6Cj4gLQo+IC0jaW5jbHVkZSA8ZHQtYmlu
-ZGluZ3MvZ3Bpby9ncGlvLmg+Cj4gLSNpbmNsdWRlIDxkdC1iaW5kaW5ncy9sZWRzL2NvbW1vbi5o
-Pgo+IC0KPiAtbGVkcyB7Cj4gLcKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJncGlvLWxlZHMi
-Owo+IC3CoMKgwqDCoMKgwqDCoGxlZDAgewo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqBncGlvcyA9IDwmbWN1X3BpbyAwIEdQSU9fQUNUSVZFX0xPVz47Cj4gLcKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoGxpbnV4LGRlZmF1bHQtdHJpZ2dlciA9ICJkaXNrLWFjdGl2aXR5IjsK
-PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZnVuY3Rpb24gPSBMRURfRlVOQ1RJT05f
-RElTSzsKPiAtwqDCoMKgwqDCoMKgwqB9Owo+IC0KPiAtwqDCoMKgwqDCoMKgwqBsZWQxIHsKPiAt
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3Bpb3MgPSA8Jm1jdV9waW8gMSBHUElPX0FD
-VElWRV9ISUdIPjsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLyogS2VlcCBMRUQg
-b24gaWYgQklPUyBkZXRlY3RlZCBoYXJkd2FyZSBmYXVsdCAqLwo+IC3CoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBkZWZhdWx0LXN0YXRlID0gImtlZXAiOwo+IC3CoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBmdW5jdGlvbiA9IExFRF9GVU5DVElPTl9GQVVMVDsKPiAtwqDCoMKgwqDC
-oMKgwqB9Owo+IC19Owo+IC0KPiAtcnVuLWNvbnRyb2wgewo+IC3CoMKgwqDCoMKgwqDCoGNvbXBh
-dGlibGUgPSAiZ3Bpby1sZWRzIjsKPiAtwqDCoMKgwqDCoMKgwqBsZWQwIHsKPiAtwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3Bpb3MgPSA8Jm1wYzg1NzIgNiBHUElPX0FDVElWRV9ISUdI
-PjsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29sb3IgPSA8TEVEX0NPTE9SX0lE
-X1JFRD47Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRlZmF1bHQtc3RhdGUgPSAi
-b2ZmIjsKPiAtwqDCoMKgwqDCoMKgwqB9Owo+IC3CoMKgwqDCoMKgwqDCoGxlZDEgewo+IC3CoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBncGlvcyA9IDwmbXBjODU3MiA3IEdQSU9fQUNUSVZF
-X0hJR0g+Owo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb2xvciA9IDxMRURfQ09M
-T1JfSURfR1JFRU4+Owo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkZWZhdWx0LXN0
-YXRlID0gIm9uIjsKPiAtwqDCoMKgwqDCoMKgwqB9Owo+IC19Owo+IC0KPiAtbGVkcyB7Cj4gLcKg
-wqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJncGlvLWxlZHMiOwo+IC0KPiAtwqDCoMKgwqDCoMKg
-wqBsZWQwIHsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3Bpb3MgPSA8JmdwaW8x
-IDIgR1BJT19BQ1RJVkVfSElHSD47Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxp
-bnV4LGRlZmF1bHQtdHJpZ2dlciA9ICJtYXg4OTAzLWNoYXJnZXItY2hhcmdpbmciOwo+IC3CoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXRhaW4tc3RhdGUtc3VzcGVuZGVkOwo+IC3CoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBmdW5jdGlvbiA9IExFRF9GVU5DVElPTl9DSEFSR0U7
-Cj4gLcKgwqDCoMKgwqDCoMKgfTsKPiAtfTsKPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL2xlZHMvbGVkcy1ncGlvLnlhbWwKPiBiL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9sZWRzL2xlZHMtZ3Bpby55YW1sCj4gbmV3IGZpbGUgbW9kZSAx
-MDA2NDQKPiBpbmRleCAwMDAwMDAwMDAwMDAuLjBlNzViMTg1ZGQxOQo+IC0tLSAvZGV2L251bGwK
-PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbGVkcy9sZWRzLWdwaW8u
-eWFtbAo+IEBAIC0wLDAgKzEsODYgQEAKPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BM
-LTIuMC1vbmx5Cj4gKyVZQU1MIDEuMgo+ICstLS0KPiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5v
-cmcvc2NoZW1hcy9sZWRzL2xlZHMtZ3Bpby55YW1sIwo+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNl
-dHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMKPiArCj4gK3RpdGxlOiBMRURzIGNvbm5l
-Y3RlZCB0byBHUElPIGxpbmVzCj4gKwo+ICttYWludGFpbmVyczoKPiArwqAgLSBKYWNlayBBbmFz
-emV3c2tpIDxqYWNlay5hbmFzemV3c2tpQGdtYWlsLmNvbT4KPiArwqAgLSBQYXZlbCBNYWNoZWsg
-PHBhdmVsQHVjdy5jej4KPiArCj4gK2Rlc2NyaXB0aW9uOgo+ICvCoCBFYWNoIExFRCBpcyByZXBy
-ZXNlbnRlZCBhcyBhIHN1Yi1ub2RlIG9mIHRoZSBncGlvLWxlZHMgZGV2aWNlLsKgCj4gRWFjaAo+
-ICvCoCBub2RlJ3MgbmFtZSByZXByZXNlbnRzIHRoZSBuYW1lIG9mIHRoZSBjb3JyZXNwb25kaW5n
-IExFRC4KPiArCj4gK3Byb3BlcnRpZXM6Cj4gK8KgIGNvbXBhdGlibGU6Cj4gK8KgwqDCoCBjb25z
-dDogZ3Bpby1sZWRzCj4gKwo+ICtwYXR0ZXJuUHJvcGVydGllczoKPiArwqAgIyBUaGUgZmlyc3Qg
-Zm9ybSBpcyBwcmVmZXJyZWQsIGJ1dCBmYWxsIGJhY2sgdG8ganVzdCAnbGVkJyBhbnl3aGVyZQo+
-IGluIHRoZQo+ICvCoCAjIG5vZGUgbmFtZSB0byBhdCBsZWFzdCBjYXRjaCBzb21lIGNoaWxkIG5v
-ZGVzLgo+ICvCoCAiKF5sZWQtWzAtOWEtZl0kfGxlZCkiOgoKSGkgUm9iLCBqdXN0IHN0dW1ibGVk
-IG9uIHRoaXMgcmVnZXhwIHdoaWNoIEkgZG8gbm90IHVuZGVyc3RhbmQgd2hhdCB5b3UKbWVhbnQg
-d2l0aCBpdC4KSXQgaXMgbGltaXRpbmcgdGhlIGFtb3VudCBvZiBMRURzIHRvIDE2IGluIHRoZSBw
-YXJ0ICJebGVkLVswLTlhLWZdJCIgYnV0CnRoZW4gYWZ0ZXIgdGhlIG9yICJ8IiBpdCBpcyBhbGxv
-d2VkIHRvIHB1dCBhbnkgbmFtZSBjb250YWluaW5nICJsZWQiPwoKSXMgdGhpcyByZWFsbHkgd2Fu
-dGVkPwpBbSBJIG5vdyBuZWVkZWQgdG8gbnVtYmVyIG15IGxlZHMgbGlrZSAibGVkLTEsIGxlZC0y
-LCAuLi4sIGxlZC1mIj8KClRoYW5rcyBpbiBhZHZhbmNlIGZvciB0aGUgZXhwbGFuYXRpb24uCgpQ
-aGlsaXBwZQoKPiArwqDCoMKgIHR5cGU6IG9iamVjdAo+ICsKPiArwqDCoMKgIGFsbE9mOgo+ICvC
-oMKgwqDCoMKgIC0gJHJlZjogY29tbW9uLnlhbWwjCj4gKwo+ICvCoMKgwqAgcHJvcGVydGllczoK
-PiArwqDCoMKgwqDCoCBncGlvczoKPiArwqDCoMKgwqDCoMKgwqAgbWF4SXRlbXM6IDEKPiArCj4g
-K8KgwqDCoMKgwqAgcmV0YWluLXN0YXRlLXN1c3BlbmRlZDoKPiArwqDCoMKgwqDCoMKgwqAgZGVz
-Y3JpcHRpb246Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoCBUaGUgc3VzcGVuZCBzdGF0ZSBjYW4gYmUg
-cmV0YWluZWQuU3VjaCBhcyBjaGFyZ2UtbGVkIGdwaW8uCj4gK8KgwqDCoMKgwqDCoMKgIHR5cGU6
-IGJvb2xlYW4KPiArCj4gK8KgwqDCoMKgwqAgcmV0YWluLXN0YXRlLXNodXRkb3duOgo+ICvCoMKg
-wqDCoMKgwqDCoCBkZXNjcmlwdGlvbjoKPiArwqDCoMKgwqDCoMKgwqDCoMKgIFJldGFpbiB0aGUg
-c3RhdGUgb2YgdGhlIExFRCBvbiBzaHV0ZG93bi4gVXNlZnVsIGluIEJNQwo+IHN5c3RlbXMsIGZv
-cgo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgZXhhbXBsZSB3aGVuIHRoZSBCTUMgaXMgcmVib290ZWQg
-d2hpbGUgdGhlIGhvc3QgcmVtYWlucyB1cC4KPiArwqDCoMKgwqDCoMKgwqAgdHlwZTogYm9vbGVh
-bgo+ICsKPiArwqDCoMKgIHJlcXVpcmVkOgo+ICvCoMKgwqDCoMKgIC0gZ3Bpb3MKPiArCj4gK2Fk
-ZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZQo+ICsKPiArZXhhbXBsZXM6Cj4gK8KgIC0gfAo+ICsK
-PiArwqDCoMKgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9ncGlvL2dwaW8uaD4KPiArwqDCoMKgICNp
-bmNsdWRlIDxkdC1iaW5kaW5ncy9sZWRzL2NvbW1vbi5oPgo+ICsKPiArwqDCoMKgIGxlZHMgewo+
-ICvCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImdwaW8tbGVkcyI7Cj4gK8KgwqDCoMKgwqDC
-oMKgIGxlZC0wIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBncGlvcyA9IDwmbWN1X3BpbyAw
-IEdQSU9fQUNUSVZFX0xPVz47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbGludXgsZGVmYXVs
-dC10cmlnZ2VyID0gImRpc2stYWN0aXZpdHkiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZ1
-bmN0aW9uID0gTEVEX0ZVTkNUSU9OX0RJU0s7Cj4gK8KgwqDCoMKgwqDCoMKgIH07Cj4gKwo+ICvC
-oMKgwqDCoMKgwqDCoCBsZWQtMSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ3Bpb3MgPSA8
-Jm1jdV9waW8gMSBHUElPX0FDVElWRV9ISUdIPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAv
-KiBLZWVwIExFRCBvbiBpZiBCSU9TIGRldGVjdGVkIGhhcmR3YXJlIGZhdWx0ICovCj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgZGVmYXVsdC1zdGF0ZSA9ICJrZWVwIjsKPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBmdW5jdGlvbiA9IExFRF9GVU5DVElPTl9GQVVMVDsKPiArwqDCoMKgwqDCoMKg
-wqAgfTsKPiArwqDCoMKgIH07Cj4gKwo+ICvCoMKgwqAgcnVuLWNvbnRyb2wgewo+ICvCoMKgwqDC
-oMKgwqDCoCBjb21wYXRpYmxlID0gImdwaW8tbGVkcyI7Cj4gK8KgwqDCoMKgwqDCoMKgIGxlZC0w
-IHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBncGlvcyA9IDwmbXBjODU3MiA2IEdQSU9fQUNU
-SVZFX0hJR0g+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbG9yID0gPExFRF9DT0xPUl9J
-RF9SRUQ+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRlZmF1bHQtc3RhdGUgPSAib2ZmIjsK
-PiArwqDCoMKgwqDCoMKgwqAgfTsKPiArwqDCoMKgwqDCoMKgwqAgbGVkLTEgewo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGdwaW9zID0gPCZtcGM4NTcyIDcgR1BJT19BQ1RJVkVfSElHSD47Cj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29sb3IgPSA8TEVEX0NPTE9SX0lEX0dSRUVOPjsKPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZWZhdWx0LXN0YXRlID0gIm9uIjsKPiArwqDCoMKgwqDC
-oMKgwqAgfTsKPiArwqDCoMKgIH07Cj4gKwo+ICsuLi4KCg==
+On 09/01/2023 18:21, Aradhya Bhatia wrote:
+> Hi Angelo,
+> 
+> Thanks for taking a look at the patches!
+> 
+> On 03-Jan-23 17:21, AngeloGioacchino Del Regno wrote:
+>> Il 03/01/23 07:46, Aradhya Bhatia ha scritto:
+>>> Dual-link LVDS interfaces have 2 links, with even pixels traveling on
+>>> one link, and odd pixels on the other. These panels are also generic in
+>>> nature, with no documented constraints, much like their single-link
+>>> counterparts, "panel-lvds".
+>>>
+>>> Add a new compatible, "panel-dual-lvds", and a dt-binding document for
+>>> these panels.
+>>>
+>>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>>> ---
+>>>   .../display/panel/panel-dual-lvds.yaml        | 157 ++++++++++++++++++
+>>>   MAINTAINERS                                   |   1 +
+>>>   2 files changed, 158 insertions(+)
+>>>   create mode 100644 
+>>> Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+>>> new file mode 100644
+>>> index 000000000000..88a7aa2410be
+>>> --- /dev/null
+>>> +++ 
+>>> b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
+>>> @@ -0,0 +1,157 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/display/panel/panel-dual-lvds.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Generic Dual-Link LVDS Display Panel
+>>> +
+>>> +maintainers:
+>>> +  - Aradhya Bhatia <a-bhatia1@ti.com>
+>>> +  - Thierry Reding <thierry.reding@gmail.com>
+>>> +
+>>> +description: |
+>>> +  A dual-LVDS interface is a dual-link connection with the even pixels
+>>> +  traveling on one link, and the odd pixels traveling on the other.
+>>> +
+>>> +allOf:
+>>> +  - $ref: panel-common.yaml#
+>>> +  - $ref: /schemas/display/lvds.yaml/#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - enum:
+>>> +              - lincolntech,lcd185-101ct
+>>> +              - microtips,13-101hieb0hf0-s
+>>> +          - const: panel-dual-lvds
+>>> +      - const: panel-dual-lvds
+>>> +
+>>> +  ports:
+>>> +    $ref: /schemas/graph.yaml#/properties/ports
+>>> +
+>>> +    properties:
+>>> +      port@0:
+>>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>>> +        unevaluatedProperties: false
+>>> +        description: The sink for first set of LVDS pixels.
+>>> +
+>>> +        properties:
+>>> +          dual-lvds-odd-pixels:
+>>> +            type: boolean
+>>> +
+>>> +          dual-lvds-even-pixels:
+>>> +            type: boolean
+>>> +
+>>> +        oneOf:
+>>> +          - required: [dual-lvds-odd-pixels]
+>>
+>> One question: why do we need a "panel-dual-lvds" compatible?
+>> A Dual-LVDS panel is a LVDS panel using two ports, hence still a 
+>> panel-lvds.
+>>
+>> If you're doing this to clearly distinguish, for human readability 
+>> purposes,
+>> single-link vs dual-link panels, I think that this would still be 
+>> clear even
+>> if we use panel-lvds alone because dual-link panels, as you wrote in this
+>> binding, does *require* two ports, with "dual-lvds-{odd,even}-pixels" 
+>> properties.
+> 
+> Yes, while they are both LVDS based panels the extra LVDS sink in these
+> panels, and the capability to decode and display the 2 sets of signals
+> are enough hardware differences that warrant for an addition of a new
+> compatible.
+> 
+>>
+>> So... the devicetree node would look like this:
+>>
+>> panel {
+>>      compatible = "vendor,panel", "panel-lvds";
+>>      ....
+>>      ports {
+>>          port@0 {
+>>              .....
+>>              -> dual-lvds-odd-pixels <-
+>>          }
+>>
+>>          port@1 {
+>>              .....
+>>              -> dual-lvds-even-pixels <-
+>>          };
+>>      };
+>> };
+>>
+>>> +          - required: [dual-lvds-even-pixels]
+>>
+>> ...Though, if you expect dual-lvds panels to get other quirks in the 
+>> future,
+>> that's a whole different story and you may actually need the 
+>> panel-dual-lvds
+>> compatible.
+> 
+> Yes, exactly. Even while being non-smart, there are going to be more
+> quirks in future. And it would be better if they have their own
+> compatible/binding, and are not getting appended in an ever-growing
+> if-else ladder. :)
+
+I can imagine a panel which you can use with a single LVDS link if the 
+clock is high enough, or two LVDS links if the clock has to be lower. Is 
+that a dual-lvds panel? =)
+
+But probably that situation is no different than a panel that can work 
+with DSI or DPI input.
+
+Still, I'm agree with Angelo in that a new compatible string for dual 
+link lvds feels a bit odd. That said, it's possible the panel-lvds 
+bindings might get rather confusing. So I don't have a strong feeling here.
+
+  Tomi
 
