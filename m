@@ -2,178 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1E016705CF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 22:59:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87B84670AD1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 23:02:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbjAQV7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 16:59:21 -0500
+        id S229783AbjAQWCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 17:02:11 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbjAQV6e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 16:58:34 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 104064B1BC;
-        Tue, 17 Jan 2023 12:39:52 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id mg12so5901510ejc.5;
-        Tue, 17 Jan 2023 12:39:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qhuunm12DEUADeX8dZ1+bPKvTYYCnKP/G5wxRkVG32M=;
-        b=C0R6/YwzfY0T7pWfj1KfzrJMC5SROY64WVHpv9q03vsb1sWMnmpnyJDkQ0577A527Y
-         Q5JvKbM4xbjkk5TBLmzKZ4CjUefEXu/yLdSOpk1kYGHKw0+/XNX1ZJqwtq8vGcJJjBlc
-         X1Z+VDPZ9J8ZAl6Kpr+5M8JhAocBRGc1Kz0r741kDFmONPvYv9/fhuoyZploNhkjIDBd
-         eyqhOE8oqXhzQjD6Jgd1521qa32Ftw6L9XqDt1N/9b0o0lWzhYSySg+Ym7wmdDo4iy2s
-         YONXrK7yRsIcJjYXuXQj+ta8z2iWkfSY+ibhge3MTdDDnsklxzkRt0wo+XdFXBnxSSO/
-         yhzw==
+        with ESMTP id S229913AbjAQWAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 17:00:06 -0500
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ABA553FA2;
+        Tue, 17 Jan 2023 12:40:34 -0800 (PST)
+Received: by mail-oi1-f182.google.com with SMTP id p185so5875459oif.2;
+        Tue, 17 Jan 2023 12:40:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qhuunm12DEUADeX8dZ1+bPKvTYYCnKP/G5wxRkVG32M=;
-        b=KUJsCX9WhItOrWCyi4RoGaeMUlUeU97G68a/txU/ieY804ojEEWT7KnEhaBzn0VZFG
-         3EH/s39FlZPRHANEH2iQPTOHaDjEf4JDBVeJZpj/uwuuDeVRU7m0kVstfUI+OdMJOF33
-         h3v5eYiFxFEVGBipvS5307x+AKSeaBfO4ZdvIK9UNmot7X+0EJ7k+3HNCx7/CwkjAEjp
-         c6q3Lgxy2zGrFMYGswB+F6E49klhmFkFLckw9fVczZw4VxQom+tXFbxIK47PoDTkNdhV
-         nFEz3lxefpmX1Tcsl2Ki0XOyxMu1zMBTxeOlmS88tZlqCxc38J8ykHKEww/szAi0kF6m
-         sZJA==
-X-Gm-Message-State: AFqh2kqOKPGRmSF+Zt5vWF0MOqSvN/9UU5W6/Uh/tWMMQZ9g2GXO9sSv
-        ncqiG7vIYstVSgh/CNuPu1JwzO1SX00=
-X-Google-Smtp-Source: AMrXdXuVeW6YLq5/ciKW4vskN7m/dm4j3ksM0yiEaslkEmcfX81qP4Hul8QfbtJ5HXmPY4q3blbKow==
-X-Received: by 2002:a17:906:6b03:b0:86e:26d8:52ff with SMTP id q3-20020a1709066b0300b0086e26d852ffmr5452018ejr.2.1673987990514;
-        Tue, 17 Jan 2023 12:39:50 -0800 (PST)
-Received: from ?IPV6:2a01:c22:7346:8100:11fa:3b53:e36a:9e73? (dynamic-2a01-0c22-7346-8100-11fa-3b53-e36a-9e73.c22.pool.telefonica.de. [2a01:c22:7346:8100:11fa:3b53:e36a:9e73])
-        by smtp.googlemail.com with ESMTPSA id p14-20020a17090653ce00b0085ea718a81bsm8213416ejo.198.2023.01.17.12.39.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 12:39:50 -0800 (PST)
-Message-ID: <b2b52a43-0dff-d363-fc2b-deb20c1097a2@gmail.com>
-Date:   Tue, 17 Jan 2023 21:39:23 +0100
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=67/7qFGKU8v+ncCe98IgRm1sBY7EEsIFhO8RWKpy1ms=;
+        b=oLwIjmnbd11o+N3onDhjd/7mDTpHICkyYMhzyFd9cv4tSiWTWEJwgk+IuMfQUrpZFH
+         R5tK3lY9XiW0Jy8D7hVkhIewhTnDlQufCOTVcnm6oq56F4KKtDduEv/pcG8x7MoDhnsQ
+         gw/yHid/NNd+bAL6K8UHJuqPhYziu6kXNj+ZuZ8/lSBVl4D4UuWx4FYHIMhw+QMwrbrE
+         gvdUg01b7ynsHVprZfhzkhaNXBAaUsvQoYtB3087c1rtj2LWg7k53pEiYxrOZZgYCkIq
+         41nFtLOK7U6uY6qxF41jV+63F8kRHJFHf2nal3lweh1kxXC/MUGYSIbsP7egq61H+Hb9
+         qGBg==
+X-Gm-Message-State: AFqh2kpwcAFaXMZw2tMreQ+37SWVx/0L7O/q/GW0YFyP0nPIFGYg5pzc
+        2pHWPNP5gD9wo37smdGfuQ==
+X-Google-Smtp-Source: AMrXdXure+5iEtDRLsla/oJrLqVm1rjH+eOc28MjSr7MGs42Rvef5APfJfN9jWPwzpWJRiZswegkGw==
+X-Received: by 2002:a05:6808:193:b0:364:3de0:f933 with SMTP id w19-20020a056808019300b003643de0f933mr11257851oic.52.1673988033446;
+        Tue, 17 Jan 2023 12:40:33 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o9-20020a0568080f8900b0035e461d9b1bsm15272517oiw.50.2023.01.17.12.40.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 12:40:33 -0800 (PST)
+Received: (nullmailer pid 3669412 invoked by uid 1000);
+        Tue, 17 Jan 2023 20:40:32 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: [PATCH v4 3/3] i2c: gpio: support write-only sda/scl w/o pull-up
-Content-Language: en-US
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>, Peter Rosin <peda@axentia.se>
-Cc:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <57666b4f-4c12-7feb-caf1-5bd38908bfc7@gmail.com>
-In-Reply-To: <57666b4f-4c12-7feb-caf1-5bd38908bfc7@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Mario Kicherer <dev@kicherer.org>
+Cc:     linux@roeck-us.net, robh+dt@kernel.org, corbet@lwn.net,
+        linux-hwmon@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jdelvare@suse.com, linux-doc@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20230117161340.1310936-3-dev@kicherer.org>
+References: <20230117161340.1310936-1-dev@kicherer.org>
+ <20230117161340.1310936-3-dev@kicherer.org>
+Message-Id: <167398779869.3664156.14251778655302872617.robh@kernel.org>
+Subject: Re: [PATCH v3 2/3] dt-bindings: hwmon: add nxp,mc34vr500
+Date:   Tue, 17 Jan 2023 14:40:32 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are slave devices that understand I2C but have read-only SDA and
-SCL. Examples are FD650 7-segment LED controller and its derivatives.
-Typical board designs don't even have a pull-up for both pins.
-Handle the new attributes for write-only SDA and missing pull-up on
-SDA/SCL.
 
-For either pin the open-drain and has-no-pullup properties are
-mutually-exclusive, what is documented in the DT property documentation.
-We don't add an extra warning here because the open-drain properties
-are marked deprecated anyway.
+On Tue, 17 Jan 2023 17:13:39 +0100, Mario Kicherer wrote:
+> This patch adds dt-bindings for the NXP MC34VR500 PMIC.
+> 
+> Signed-off-by: Mario Kicherer <dev@kicherer.org>
+> ---
+>  .../bindings/hwmon/nxp,mc34vr500.yaml         | 36 +++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
+> 
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v3:
-- improve description of attribute sda_is_output_only
-v4:
-- handle new no-pullup attributes
----
- drivers/i2c/busses/i2c-gpio.c          | 13 ++++++++++---
- include/linux/platform_data/i2c-gpio.h |  9 +++++++++
- 2 files changed, 19 insertions(+), 3 deletions(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/drivers/i2c/busses/i2c-gpio.c b/drivers/i2c/busses/i2c-gpio.c
-index 0e4385a9b..85b3beb20 100644
---- a/drivers/i2c/busses/i2c-gpio.c
-+++ b/drivers/i2c/busses/i2c-gpio.c
-@@ -316,6 +316,12 @@ static void of_i2c_gpio_get_props(struct device_node *np,
- 		of_property_read_bool(np, "i2c-gpio,scl-open-drain");
- 	pdata->scl_is_output_only =
- 		of_property_read_bool(np, "i2c-gpio,scl-output-only");
-+	pdata->sda_is_output_only =
-+		of_property_read_bool(np, "i2c-gpio,sda-output-only");
-+	pdata->sda_has_no_pullup =
-+		of_property_read_bool(np, "i2c-gpio,sda-has-no-pullup");
-+	pdata->scl_has_no_pullup =
-+		of_property_read_bool(np, "i2c-gpio,scl-has-no-pullup");
- }
- 
- static struct gpio_desc *i2c_gpio_get_desc(struct device *dev,
-@@ -392,7 +398,7 @@ static int i2c_gpio_probe(struct platform_device *pdev)
- 	 * handle them as we handle any other output. Else we enforce open
- 	 * drain as this is required for an I2C bus.
- 	 */
--	if (pdata->sda_is_open_drain)
-+	if (pdata->sda_is_open_drain || pdata->sda_has_no_pullup)
- 		gflags = GPIOD_OUT_HIGH;
- 	else
- 		gflags = GPIOD_OUT_HIGH_OPEN_DRAIN;
-@@ -400,7 +406,7 @@ static int i2c_gpio_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->sda))
- 		return PTR_ERR(priv->sda);
- 
--	if (pdata->scl_is_open_drain)
-+	if (pdata->scl_is_open_drain || pdata->scl_has_no_pullup)
- 		gflags = GPIOD_OUT_HIGH;
- 	else
- 		gflags = GPIOD_OUT_HIGH_OPEN_DRAIN;
-@@ -418,7 +424,8 @@ static int i2c_gpio_probe(struct platform_device *pdev)
- 
- 	if (!pdata->scl_is_output_only)
- 		bit_data->getscl = i2c_gpio_getscl;
--	bit_data->getsda = i2c_gpio_getsda;
-+	if (!pdata->sda_is_output_only)
-+		bit_data->getsda = i2c_gpio_getsda;
- 
- 	if (pdata->udelay)
- 		bit_data->udelay = pdata->udelay;
-diff --git a/include/linux/platform_data/i2c-gpio.h b/include/linux/platform_data/i2c-gpio.h
-index a907774fd..545639bcc 100644
---- a/include/linux/platform_data/i2c-gpio.h
-+++ b/include/linux/platform_data/i2c-gpio.h
-@@ -16,16 +16,25 @@
-  *	isn't actively driven high when setting the output value high.
-  *	gpio_get_value() must return the actual pin state even if the
-  *	pin is configured as an output.
-+ * @sda_is_output_only: SDA output drivers can't be turned off.
-+ *	This is for clients that can only read SDA/SCL.
-+ * @sda_has_no_pullup: SDA is used in a non-compliant way and has no pull-up.
-+ *	Therefore disable open-drain.
-  * @scl_is_open_drain: SCL is set up as open drain. Same requirements
-  *	as for sda_is_open_drain apply.
-  * @scl_is_output_only: SCL output drivers cannot be turned off.
-+ * @scl_has_no_pullup: SCL is used in a non-compliant way and has no pull-up.
-+ *	Therefore disable open-drain.
-  */
- struct i2c_gpio_platform_data {
- 	int		udelay;
- 	int		timeout;
- 	unsigned int	sda_is_open_drain:1;
-+	unsigned int	sda_is_output_only:1;
-+	unsigned int	sda_has_no_pullup:1;
- 	unsigned int	scl_is_open_drain:1;
- 	unsigned int	scl_is_output_only:1;
-+	unsigned int	scl_has_no_pullup:1;
- };
- 
- #endif /* _LINUX_I2C_GPIO_H */
--- 
-2.39.0
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/hwmon/nxp,mc34vr500.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230117161340.1310936-3-dev@kicherer.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
