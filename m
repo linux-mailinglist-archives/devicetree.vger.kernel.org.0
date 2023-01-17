@@ -2,97 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92FAB66DE25
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:53:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E0EB66DE27
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 13:53:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236741AbjAQMxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S236431AbjAQMxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 17 Jan 2023 07:53:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37982 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237029AbjAQMxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:53:08 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0E9722A2E;
-        Tue, 17 Jan 2023 04:52:23 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 697AA6602D6D;
-        Tue, 17 Jan 2023 12:52:21 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1673959942;
-        bh=Zy6UIHFiddxESUTWxezTFwLYwuiwsUZyyuC6D0UK0o8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=K4PMSwd19uLLwMgu0BrDk7n+pFxWk/AWCpiWDlDle16J/mxjN+qsFZh/Va2PBcs63
-         fot26hvufCnAGIqgmiEAnf+P2v6+TttXrHltMASaSockQlhka7zxqB17lcbw3ZwOTj
-         kx7owuM6mnoto8I02BFS7MQTf4ITtxEH5zeqENDvvXmhz9fDi2x9go6lhtk4dx9Nwp
-         yH6iFzsgX3nfCabV0PMH7Hy5NHx8zcAFTvpr1ISzD8ZehkpRv++XyGFanoaDtQ0ufZ
-         HoELW7xY7Hj9Mf6r0mk0KnQp1Yq3e5kkCRU6We7/65kReOwqGJUVQ/m+xTdLxyQLUd
-         JRJE97qs8niCQ==
-Message-ID: <ddb81fcb-b353-ce7f-8b12-9cdcbfcacb8e@collabora.com>
-Date:   Tue, 17 Jan 2023 13:52:19 +0100
+        with ESMTP id S237062AbjAQMxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 07:53:33 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D7A3864E
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 04:53:02 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id a9so17160383ybb.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 04:53:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9LkkVvu7FzyrV007GCsU3N43wRkzk8+7MQtFApKS2m4=;
+        b=UizF4D/yzPWU0fN9GtaOBMa7MKxVrVmvQL7aB64c96fCbS9KlX6vOdjFZcDuOTJdkb
+         nOzyuKDFtgjWhwLSJqaPsg7aNq5StexZtkZ6rabuZTQIKXd6oS5xNZHce4q6t7YdzvnL
+         DLDdeLuWkKWYD8QPScaYZc+bOKxlyU0d7827w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9LkkVvu7FzyrV007GCsU3N43wRkzk8+7MQtFApKS2m4=;
+        b=7ZfVEVf/WyiCNIVHq9g+IEPEKf2Yu2pRvkd3W0vTQ7CMIGPG0oxqFM4HNBa1eAMLNn
+         T5btsG0AzqzlGd+SuMHPoTmM5a5FYjmdpuk0hFFUANZW9HU8pGt1trrYz7X68l1L4jIc
+         2gzGRtkzp3BfQJktKPuTtwTcKDd5ZruX9dOZeJAjqfUbm1y4a3c937b+TwIu7Z0eX8lH
+         IKIn2LaYuSuEvQb0qaRmgTnqtsuBnRzHqjWrVRwmrdMMBvpI1E4xJuC9AiMJFhQynuk9
+         gaH/v/SGXutGue3u3X+Hq1IfLDB1HcWO7TLN8fyf6RYfUKSl+4Cm2RdG7u9KI2Pw/lr/
+         v4eA==
+X-Gm-Message-State: AFqh2kqRSHSnoVlc0I7+e0tjfBmDUEhH6cd3h8QlPpoXhw+mjtN0PxI/
+        AV48QqDTvkl9GcLmXG74Rt9ienZvdl/PHybS9dhByg==
+X-Google-Smtp-Source: AMrXdXuvT722mszRvsUSt3tgCxVajblDhyvGk41E1NwYt/EcPhEax8gX4KsXUJ0YcvBue9FF75Y36pFYBLusIgQKdLM=
+X-Received: by 2002:a25:bd54:0:b0:7d3:851c:e744 with SMTP id
+ p20-20020a25bd54000000b007d3851ce744mr469784ybm.84.1673959981220; Tue, 17 Jan
+ 2023 04:53:01 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 2/4] arm64: dts: mediatek: add i2c support for mt8365 SoC
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Qii Wang <qii.wang@mediatek.com>,
+References: <20230117105504.18296-1-jagan@amarulasolutions.com>
+ <20230117105504.18296-4-jagan@amarulasolutions.com> <2dcb7b4a-9751-ec7a-f0ea-6de748ca3bf7@linaro.org>
+In-Reply-To: <2dcb7b4a-9751-ec7a-f0ea-6de748ca3bf7@linaro.org>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 17 Jan 2023 18:22:49 +0530
+Message-ID: <CAMty3ZD_LWBR2+fu41Z5LEBcNw1KXEaY8P92Ypa-4rg2t8BH_A@mail.gmail.com>
+Subject: Re: [PATCH 4/7] arm64: dts: rockchip: Fix compatible and model for
+ Radxa CM3i
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-i2c@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20221122-mt8365-i2c-support-v1-0-4aeb7c54c67b@baylibre.com>
- <20221122-mt8365-i2c-support-v1-2-4aeb7c54c67b@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221122-mt8365-i2c-support-v1-2-4aeb7c54c67b@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Chukun Pan <amadeus@jmu.edu.cn>,
+        FUKAUMI Naoki <naoki@radxa.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/01/23 09:49, Alexandre Mergnat ha scritto:
-> There are four I2C master channels in MT8365 with a same HW architecture.
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8365.dtsi | 60 ++++++++++++++++++++++++++++++++
->   1 file changed, 60 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> index a32f2b7507be..3c2819bd32af 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> @@ -282,6 +282,66 @@ pwm: pwm@11006000 {
->   			clock-names = "top", "main", "pwm1", "pwm2", "pwm3";
->   		};
->   
-> +		i2c0: i2c@11007000 {
-> +			compatible = "mediatek,mt8365-i2c",
-> +				     "mediatek,mt8168-i2c";
-> +			reg = <0 0x11007000 0 0xa0>,
-> +			      <0 0x11000080 0 0x80>;
+On Tue, Jan 17, 2023 at 4:37 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 17/01/2023 11:55, Jagan Teki wrote:
+> > Fix the model name and compatible strings for Radxa CM3i SoM
+> > and Carrier board based on Radxa recommendation.
+> >
+> > Fixes: 2bf2f4d9f673 ("arm64: dts: rockchip: Add Radxa CM3I E25")
+> > Cc: Chukun Pan <amadeus@jmu.edu.cn>
+> > Reported-by: FUKAUMI Naoki <naoki@radxa.com>
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi | 2 +-
+> >  arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts   | 4 ++--
+> >  2 files changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
+> > index 225dbbe4955d..0c9a918b809a 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
+> > @@ -7,7 +7,7 @@
+> >
+> >  / {
+> >       model = "Radxa CM3 Industrial Board";
+> > -     compatible = "radxa,cm3i", "rockchip,rk3568";
+> > +     compatible = "radxa,radxa-cm3i", "rockchip,rk3568";
+>
+> Nope, second radxa is redundant.
 
-Compatibles fit in one line (83 columns is fine);
-regs fit in one line, reaching 76 columns.
+It is not redundant, Product name and vendor name is same. Vendor name
+is Radxa and product name is Radxa CM3i
 
-Same comments for the other nodes that you're adding.
+>
+> >
+> >       aliases {
+> >               mmc0 = &sdhci;
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+> > index a4c33310ca42..8ca15b723799 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+> > @@ -4,8 +4,8 @@
+> >  #include "rk3568-radxa-cm3i.dtsi"
+> >
+> >  / {
+> > -     model = "Radxa E25";
+> > -     compatible = "radxa,e25", "radxa,cm3i", "rockchip,rk3568";
+> > +     model = "Radxa E25 Carrier Board";
+> > +     compatible = "radxa,radxa-e25", "radxa,radxa-cm3i", "rockchip,rk3568";
+>
+> NAK. You just changed it in patch 2. Don't add broken compatibles in one
+> patch (cm3i) and fix them next one. It's like adding intentional bugs
+> and fixing them immediately...
 
-Regards,
-Angelo
+I did squash this with previous patch but the check patch showing
+warning to separate the dt-bindings patch from actual devicetree file
+change.
 
-
+Jagan.
