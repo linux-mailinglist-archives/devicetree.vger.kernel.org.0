@@ -2,63 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A313B670B71
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 23:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55F9F670B46
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 23:09:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229967AbjAQWLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 17:11:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54612 "EHLO
+        id S230004AbjAQWJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 17:09:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230271AbjAQWKc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 17:10:32 -0500
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C487627D66;
-        Tue, 17 Jan 2023 12:21:24 -0800 (PST)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1322d768ba7so33226730fac.5;
-        Tue, 17 Jan 2023 12:21:24 -0800 (PST)
+        with ESMTP id S229839AbjAQWIH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 17:08:07 -0500
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96BD23D911;
+        Tue, 17 Jan 2023 12:23:39 -0800 (PST)
+Received: by mail-ot1-f52.google.com with SMTP id f88-20020a9d03e1000000b00684c4041ff1so8799461otf.8;
+        Tue, 17 Jan 2023 12:23:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DK6EUVXiVoF71ZLpplwDGzXo79prqUrJw7XBoWZcTs8=;
-        b=gtU9I15LhrJLiT6znHlVTBaLzLWRkg0TEbexumLUE/BibJMAfpQKZ6ZqTeDK7CTNe7
-         Wk4DxzLQrc3gDJXMjVS6v/mwBcNz5215Qw8klrRpTvNBpaRIAPzhS1fjlpQ5bJgc4DJJ
-         wovpMmD7pF5eDjJMNRCE2S3KViETUzOIppC7Rgw5csWIgbjrKRcaa2YAqludTAGSjBFV
-         pvyFJZKC0onr0yaRItc/F+1WVvSkI4d+8MbAHWnUpt+EZah0EqoJu+gu/F58hIabBrWE
-         S7h2gNM6aQ/M8lrzo1rao+vHLjH1n3VsrbiljoPDgG/3Ict5Dj+a2+1aML/naSgYYfWT
-         +mqg==
-X-Gm-Message-State: AFqh2kr7tD5KJwAHAcLFog+XAIQjGp9694IzWSQhnBlj/umfOtrrRteb
-        M0KW8wXIqmC4gElAg1EuUQ==
-X-Google-Smtp-Source: AMrXdXuCptqQO49Wnk2iCANx4q2uWgP0CeAClw4Io8/MCaW/ZeiGmADjQhFwlr2Yvix9oRBsSVtN6g==
-X-Received: by 2002:a05:6870:be90:b0:144:d065:578e with SMTP id nx16-20020a056870be9000b00144d065578emr2778298oab.15.1673986883967;
-        Tue, 17 Jan 2023 12:21:23 -0800 (PST)
+        bh=AJGfJjVZYc/66/mbjIyBiEpogYyo22lwKH5yEocCOfs=;
+        b=gcPXewYuxEV8is8Pja6mngK+rmLxc3RCopQmp27nf5JWLIDR9Ft5IYpvRHNb7ZtLgy
+         do/scSeWnl1i7viJHDn9NccHz9hwasQ9Bo7Ku0ym+A513zfbD91bqhHIGPJ0rB3Ah6Ut
+         U+zf0fL9II+ehu6NA6BZ1URyvijQOcsUlXHnOuZDwIBg1sGknSdT//J5TZmNFr5O7wvI
+         +ra8jeXqlS4p2QKdoWzNFxxJWWq8PGnecKGKJAJ/jNhvHHKkoGv7v/h1eJ1sWyl72e4c
+         A80Vs5AQnfqPr/I7A2gG+nqhtxNK+2t8+gih25TOj/ihYQCpaTfeSasOUKB2rZ8h2EK9
+         YcXA==
+X-Gm-Message-State: AFqh2kp+NMPjb/mak3GB/emNNrvj46dGSPMaEs+feT49Rby97fq84SWu
+        z64JB6AtTiMCkQcrHUsF/g==
+X-Google-Smtp-Source: AMrXdXtrtMdthMi3WcbT2+KHvHkH22ask+SpyijR4WuOxDKY7bn2nv2wDl5pydtTKRPFzdumN9/Y9g==
+X-Received: by 2002:a9d:3e2:0:b0:682:65f3:c437 with SMTP id f89-20020a9d03e2000000b0068265f3c437mr13384664otf.22.1673987018555;
+        Tue, 17 Jan 2023 12:23:38 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l15-20020a4ad9cf000000b004fa6789a085sm722442oou.45.2023.01.17.12.21.22
+        by smtp.gmail.com with ESMTPSA id f8-20020a9d5e88000000b00684c9c77754sm1593341otl.69.2023.01.17.12.23.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 12:21:23 -0800 (PST)
-Received: (nullmailer pid 3643082 invoked by uid 1000);
-        Tue, 17 Jan 2023 20:21:22 -0000
-Date:   Tue, 17 Jan 2023 14:21:22 -0600
+        Tue, 17 Jan 2023 12:23:38 -0800 (PST)
+Received: (nullmailer pid 3646579 invoked by uid 1000);
+        Tue, 17 Jan 2023 20:23:37 -0000
+Date:   Tue, 17 Jan 2023 14:23:37 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        quic_abhinavk@quicinc.com, freedreno@lists.freedesktop.org,
-        dmitry.baryshkov@linaro.org, swboyd@chromium.org, daniel@ffwll.ch,
-        david@ixit.cz, konrad.dybcio@somainline.org, robdclark@gmail.com,
-        airlied@gmail.com, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        dianders@chromium.org, agross@kernel.org, sean@poorly.run
-Subject: Re: [PATCH v8 1/3] dt-bindings: msm: dsi-controller-main: Add
- compatible strings for every current SoC
-Message-ID: <167398688215.3643022.13982729074970285092.robh@kernel.org>
-References: <20230116225217.1056258-1-bryan.odonoghue@linaro.org>
- <20230116225217.1056258-2-bryan.odonoghue@linaro.org>
+To:     Faiz Abbas <faiz.abbas@arm.com>
+Cc:     robh+dt@kernel.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        alsa-devel@alsa-project.org, Deepak.Pandey@arm.com,
+        Anurag.Koul@arm.com, kuninori.morimoto.gx@renesas.com
+Subject: Re: [PATCH v2] ASoC: dt-bindings: simple-card: Document
+ simple-audio-card,plat
+Message-ID: <167398701684.3646521.11165836455939789490.robh@kernel.org>
+References: <20230117061808.18422-1-faiz.abbas@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230116225217.1056258-2-bryan.odonoghue@linaro.org>
+In-Reply-To: <20230117061808.18422-1-faiz.abbas@arm.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -71,50 +67,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 16 Jan 2023 22:52:15 +0000, Bryan O'Donoghue wrote:
-> Currently we do not differentiate between the various users of the
-> qcom,mdss-dsi-ctrl. The driver is flexible enough to operate from one
-> compatible string but, the hardware does have some significant differences
-> in the number of clocks.
+On Tue, 17 Jan 2023 11:48:08 +0530, Faiz Abbas wrote:
+> The simple card driver already has support for a simple-audio-card,plat
+> property but its not reflected in the documentation. Add documentation
+> for this plat property.
 > 
-> To facilitate documenting the clocks add the following compatible strings
-> 
-> - qcom,apq8064-dsi-ctrl
-> - qcom,msm8916-dsi-ctrl
-> - qcom,msm8953-dsi-ctrl
-> - qcom,msm8974-dsi-ctrl
-> - qcom,msm8996-dsi-ctrl
-> - qcom,msm8998-dsi-ctrl
-> - qcom,sc7180-dsi-ctrl
-> - qcom,sc7280-dsi-ctrl
-> - qcom,sdm660-dsi-ctrl
-> - qcom,sdm845-dsi-ctrl
-> - qcom,sm8150-dsi-ctrl
-> - qcom,sm8250-dsi-ctrl
-> - qcom,sm8350-dsi-ctrl
-> - qcom,sm8450-dsi-ctrl
-> - qcom,sm8550-dsi-ctrl
-> - qcom,qcm2290-dsi-ctrl
-> 
-> Deprecate qcom,dsi-ctrl-6g-qcm2290 in favour of the desired format while we
-> do so.
-> 
-> Several MDSS yaml files exist which document the dsi sub-node.
-> For each existing SoC MDSS yaml, provide the right dsi compat string.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Faiz Abbas <faiz.abbas@arm.com>
 > ---
->  .../display/msm/dsi-controller-main.yaml      | 30 ++++++++++++++++---
->  .../bindings/display/msm/qcom,mdss.yaml       |  3 +-
->  .../display/msm/qcom,msm8998-mdss.yaml        |  8 +++--
->  .../display/msm/qcom,sc7180-mdss.yaml         |  6 ++--
->  .../display/msm/qcom,sc7280-mdss.yaml         |  6 ++--
->  .../display/msm/qcom,sdm845-mdss.yaml         |  8 +++--
->  .../display/msm/qcom,sm8150-mdss.yaml         |  8 +++--
->  .../display/msm/qcom,sm8250-mdss.yaml         |  8 +++--
->  .../display/msm/qcom,sm8350-mdss.yaml         |  6 ++--
->  .../display/msm/qcom,sm8450-mdss.yaml         |  4 ++-
->  10 files changed, 63 insertions(+), 24 deletions(-)
+> Changes since v1:
+> 1. Updated commit message to indicate the property already exists
+> 2. Removed redundant example
+> 3. Fixed formatting issue found by 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> 
+>  Documentation/devicetree/bindings/sound/simple-card.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
