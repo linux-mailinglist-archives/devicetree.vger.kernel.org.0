@@ -2,94 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDC9A66E623
-	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 19:35:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B029D66E621
+	for <lists+devicetree@lfdr.de>; Tue, 17 Jan 2023 19:35:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232093AbjAQSfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 13:35:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54486 "EHLO
+        id S233134AbjAQSe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 13:34:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232575AbjAQSbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 13:31:50 -0500
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E3344392B;
-        Tue, 17 Jan 2023 10:03:42 -0800 (PST)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-15b9c93848dso24538503fac.1;
-        Tue, 17 Jan 2023 10:03:42 -0800 (PST)
+        with ESMTP id S232607AbjAQSbz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 13:31:55 -0500
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA995399F;
+        Tue, 17 Jan 2023 10:03:46 -0800 (PST)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-15bb8ec196aso21054749fac.3;
+        Tue, 17 Jan 2023 10:03:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XsnU4SEnhYMX4K6JN06vg4T6uBL8G+Stssq81fySd1M=;
+        b=MNSI0nRjGgE6dC+a89cNENxUY0/vVd4JUd5AartSuHqzV5ypUrXyWoNO5nXE1xq0JK
+         6PbFmJ6sch3YXVDyjyxpjt9Vq7+oWZBkOk5ejMlO3LflLuVbF7y9Do9QA+YGEMFsNZUJ
+         FZCJywJihMTnaZb+Ezz9TVL50uH5dzFEPjiybwXoSlP/HDn/hpt2yqXiO2IL2SKqnRT+
+         P7muoVYPyzCaTRCodZFLpNwEybXm0xbNnKA1uQmj5sWveIosTE2Re40YM7wZ7S/WvDe7
+         AQH+h7yMmVvY4TiLEdFztBZdOUaYDqSjg9N3ZfTH0DoEbkRRu45HfQJ7P0smLd/3Os07
+         93xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DOYPnyAt2J4Uh+rVJ+ehIUCeXiRFMPFo5jZlhneDgR4=;
-        b=j1CwvGMSGTkfCDAwf7YeTFOdMR/4mYqdZbgGnYyDjs7FUUZw+17XwCN5wmvMgS7Bc3
-         oozT2hDUYqAhCfn3+279xvnlrByxOQLzqvN0V4EIOTrSEHzsqHxmqU/hPDBDiU4yUFoC
-         5QwUf6bn0aGMslyPRBrchMwSvzxqwfq8aOn9y/DafgIIE5FvL/MJfLGNhttJTkxmmqha
-         dasKi6CVYdAcDynITWbuCyJpTW3qAp4Jz8Gg2dECKHO+yb26LDmI16hHJK8xUdhoYd4w
-         zHxQeXe9chOdfUTt1IkFT/eLAGDqUelpw4Skf0l0p7xAWO+/EMTiJLEFOHRV8bELFlj0
-         kZlw==
-X-Gm-Message-State: AFqh2kojTcQEAwminQbHbZaAq88lcEwtLJl0bKQvYSBvNGurAbHhoe4J
-        j/DukCZXeXus78wUjCDifw==
-X-Google-Smtp-Source: AMrXdXtXdEGZRX21HSHeHAgDRpQrycVFovajB2ZoPABGZ88wt1c/v3xzwZs6+aRiC5KlzuBvMMu+lw==
-X-Received: by 2002:a05:6870:fd99:b0:15f:ed7:c02d with SMTP id ma25-20020a056870fd9900b0015f0ed7c02dmr2433421oab.55.1673978610488;
-        Tue, 17 Jan 2023 10:03:30 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c6-20020a056870c08600b0014be94a12d0sm16837537oad.44.2023.01.17.10.03.29
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XsnU4SEnhYMX4K6JN06vg4T6uBL8G+Stssq81fySd1M=;
+        b=Mb/hxlaWhDOYOZ1NXsS9BenZ+vjS17SVEEpuYFMkheLlwj1JzB5qsyu6v4C9m4dXyq
+         g478A629OEWeLTPc5GU2bUXZFAOdjNKh44ttQvfTUrx2F2KITXQT9dWiWYLpbPBemcZL
+         C93l+X0YJFsJr34QY/RkMfPF1x/S9Uxz1AJt/9mRzhVF6rVY7Yu+pvkZXlmIXGttose1
+         s+f4bBgcnWBzh/ia8vnogX2V2XIyek67MMMDHfiTfxYG1nJWU17lypiFYlcwfwRLxoCE
+         W1G6uJbx2uD/hy+y7k/Pt7hP4k2PxRka1zK4E9b9woTwZcEfzn3xcBNmh5qBS1VWdmZ1
+         u7Ng==
+X-Gm-Message-State: AFqh2krfJNi6Hb+K2VtlX70bKgEHfFCG20h1nS5e4TlklQ2U3+zZAi2V
+        OhPe90S/liWSV/u2sn3nrzo=
+X-Google-Smtp-Source: AMrXdXtV2I3oYBqihq1mYMRhNeJS77cAyaL3KZH5Wxo0rFba8xRBNJ4jqYpVvhKgTj6+dBkQbK1E1A==
+X-Received: by 2002:a05:6870:fd91:b0:15f:140a:6e72 with SMTP id ma17-20020a056870fd9100b0015f140a6e72mr2468270oab.1.1673978623953;
+        Tue, 17 Jan 2023 10:03:43 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id v12-20020a056870b50c00b0014fc049fc0asm17034675oap.57.2023.01.17.10.03.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 10:03:29 -0800 (PST)
-Received: (nullmailer pid 3323388 invoked by uid 1000);
-        Tue, 17 Jan 2023 18:03:29 -0000
-Date:   Tue, 17 Jan 2023 12:03:29 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Airlie <airlied@gmail.com>,
-        linux-arm-msm@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Sean Paul <sean@poorly.run>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v6 01/11] dt-bindings: display/msm: convert MDP5 schema
- to YAML format
-Message-ID: <167397860857.3323332.1645036328845035692.robh@kernel.org>
-References: <20230113083720.39224-1-dmitry.baryshkov@linaro.org>
- <20230113083720.39224-2-dmitry.baryshkov@linaro.org>
+        Tue, 17 Jan 2023 10:03:43 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 17 Jan 2023 10:03:42 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Mario Kicherer <dev@kicherer.org>
+Cc:     linux-hwmon@vger.kernel.org, jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: hwmon: add nxp,mc34vr500
+Message-ID: <20230117180342.GD2335664@roeck-us.net>
+References: <20230117161340.1310936-1-dev@kicherer.org>
+ <20230117161340.1310936-3-dev@kicherer.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230113083720.39224-2-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230117161340.1310936-3-dev@kicherer.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 17, 2023 at 05:13:39PM +0100, Mario Kicherer wrote:
+> This patch adds dt-bindings for the NXP MC34VR500 PMIC.
 
-On Fri, 13 Jan 2023 10:37:10 +0200, Dmitry Baryshkov wrote:
-> Convert the mdp5.txt into the yaml format. Changes to the existing (txt) schema:
->  - MSM8996 has additional "iommu" clock, define it separately
->  - Add new properties used on some of platforms:
->    - interconnects, interconnect-names
->    - iommus
->    - power-domains
->    - operating-points-v2, opp-table
+As with the other patches, use imperative mood.
+
+Guenter
+
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Mario Kicherer <dev@kicherer.org>
 > ---
->  .../devicetree/bindings/display/msm/mdp5.txt  | 132 -----------------
->  .../bindings/display/msm/qcom,mdp5.yaml       | 138 ++++++++++++++++++
->  2 files changed, 138 insertions(+), 132 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/msm/mdp5.txt
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
+>  .../bindings/hwmon/nxp,mc34vr500.yaml         | 36 +++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
 > 
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+> diff --git a/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
+> new file mode 100644
+> index 000000000000..dfbd6125e84a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
+> @@ -0,0 +1,36 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/mc34vr500.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP MC34VR500 hwmon sensor
+> +
+> +maintainers:
+> +  - Mario Kicherer <dev@kicherer.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,mc34vr500
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      mc34vr500@8 {
+> +        compatible = "nxp,mc34vr500";
+> +        reg = <0x08>;
+> +      };
+> +    };
+> -- 
+> 2.34.1
+> 
