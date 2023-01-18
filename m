@@ -2,277 +2,413 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43ED4671FB0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:35:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69418671FB7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:36:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230339AbjAROfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:35:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33710 "EHLO
+        id S231395AbjAROgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:36:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231393AbjAROez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:34:55 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B322748C;
-        Wed, 18 Jan 2023 06:24:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674051842; x=1705587842;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JW3Z4qGJkww64HEvaFHH2zXhHyqrRqOdAVZDOpAtKk8=;
-  b=QaI4ogYNVLn/Yyb6QADgDDFmYQ7YIhwojhhpFnzhtaCb5e1Mendtx/Hv
-   41SVq+aqav0mpoAkiRTK0Asis/NMKZ3ID+DOJW0rguyhu0HzpGoAigTIP
-   mZzZPDpxtmRD5XgNFZJlILuhfEyWyRVlBTAiZUmrD7qg/E8zg44o23wq5
-   oL+PzSZtNhxlKNxoa7czIGtKkEVWQgx6y2VU4q5GLcQXXIV50WR7Rzqd1
-   fDpGNiCmOQbMfGrCi0vpa8stDQOv3XouOyo//TQ9HiqNdz0/tPdP4ZQAo
-   9jF7NkfH/yo3jQwVL4zYjjdJfBDKdIjpN45cOZ2pV2LHGLM2MtqGFx8Qo
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="352239982"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; 
-   d="scan'208";a="352239982"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2023 06:24:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="833598833"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; 
-   d="scan'208";a="833598833"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga005.jf.intel.com with ESMTP; 18 Jan 2023 06:23:56 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1pI9M1-00BDkv-1i;
-        Wed, 18 Jan 2023 16:23:53 +0200
-Date:   Wed, 18 Jan 2023 16:23:53 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-Subject: Re: [PATCH v7 1/7] i2c: add I2C Address Translator (ATR) support
-Message-ID: <Y8gA+cz9m7PaEhfP@smile.fi.intel.com>
-References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
- <20230118124031.788940-2-tomi.valkeinen@ideasonboard.com>
+        with ESMTP id S231356AbjAROgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:36:10 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EDD65CFCF
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:25:02 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id n7so8039874wrx.5
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:25:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WuzP/jaB8SzyapPtRBeUXHdkGGoxVUS/1cp5Czf/Za8=;
+        b=m9P576NVzReU6cAZ97xjCDVLaqkh+FUJSmIbgt1DzyyIQE/MfubIle3QDgHX3cBjRH
+         WJ5VFZL9UtGtiTaolY2GqSkG4WQuEWOWchx5DYgzmSz18PijLpl41/gbc/z9kBotMsLF
+         XS4m6hFXVRoTvFPt71Eb3nY2wO2/pH0D7Y37bp/3N99MHCq2MCMkYcTjoO205MawiLi5
+         qgk8s5PCO+U10Lrj0EOubi3oERBqHfEDx2f2NH3dcRAq1/lzfrnBeR31G2MFKoEs7DBO
+         1Zs6FMMWMfUkJ5vSnVYd6x0HGA27FOPSBM5ZMnHMOpXgdGcUIv+diWnFf8mdI3mq6v0P
+         u7lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WuzP/jaB8SzyapPtRBeUXHdkGGoxVUS/1cp5Czf/Za8=;
+        b=7e41qYu0x87iJNtygJ3NUH/tX5x8VJZciSTrGEFL5b+GlIRx+TaK3qdx/AUyQRWE9j
+         Q5UTfAGfmDP59viYirYnqa60a7cYV6U8jo/VCdlu836MxjonIg47IguAvYiJaLIKTQ4w
+         LAUrO98gT0dyYR6OFnzihI7OcgJppMsqyra+wJk/2PnO19UxNwo60pERFkS7PfD0Z3Ix
+         FMj7Gj3Kwp4ueQJGDllqukdngfo907bs8ineYLSDTJdqCknUKuB7OmzLtKyFLqms92LN
+         FzY5c0kLPJBju2bqbjaJKsvllEJcGUBZKfch07DsJFxjuAb2zRGg5AWMmBFWn+dSgyKC
+         N4ag==
+X-Gm-Message-State: AFqh2krXTyTcqe/D9EggZCohgP5FRywYVQ9F0Ch4P9f4okQkZU/3ym0p
+        NTy3UME/rb3b8rdYumMv/q1K+A==
+X-Google-Smtp-Source: AMrXdXufYd/H16RLmonSQX4Vu6dFWQJ1mQ8BzQbJ7fb41yBjHBg0VaFhiNZybRkQEAQ9YXJKqC7hOw==
+X-Received: by 2002:adf:f989:0:b0:2bd:db93:8f3b with SMTP id f9-20020adff989000000b002bddb938f3bmr6209778wrr.39.1674051901488;
+        Wed, 18 Jan 2023 06:25:01 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id h3-20020adfe983000000b002bdf5832843sm10612919wrm.66.2023.01.18.06.25.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 06:25:01 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Wed, 18 Jan 2023 15:24:56 +0100
+Subject: [PATCH v4 1/3] arm64: dts: qcom: sm8550: add display hardware devices
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230118124031.788940-2-tomi.valkeinen@ideasonboard.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230104-topic-sm8550-upstream-dts-display-v4-1-1729cfc0e5db@linaro.org>
+References: <20230104-topic-sm8550-upstream-dts-display-v4-0-1729cfc0e5db@linaro.org>
+In-Reply-To: <20230104-topic-sm8550-upstream-dts-display-v4-0-1729cfc0e5db@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.11.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 02:40:25PM +0200, Tomi Valkeinen wrote:
-> From: Luca Ceresoli <luca@lucaceresoli.net>
-> 
-> An ATR is a device that looks similar to an i2c-mux: it has an I2C
-> slave "upstream" port and N master "downstream" ports, and forwards
-> transactions from upstream to the appropriate downstream port. But is
-> is different in that the forwarded transaction has a different slave
+Add devices tree nodes describing display hardware on SM8550:
+- Display Clock Controller
+- MDSS
+- MDP
+- two DSI controllers and DSI PHYs
 
-is is ?
+This does not provide support for DP controllers present on the SM8550.
 
-> address. The address used on the upstream bus is called the "alias"
-> and is (potentially) different from the physical slave address of the
-> downstream chip.
-> 
-> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
-> implementing ATR features in a device driver. The helper takes care or
-> adapter creation/destruction and translates addresses at each transaction.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 300 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 300 insertions(+)
 
-...
-
-> +A typical example follows.
-> +
-> +Topology::
-> +
-> +                      Slave X @ 0x10
-> +              .-----.   |
-> +  .-----.     |     |---+---- B
-> +  | CPU |--A--| ATR |
-> +  `-----'     |     |---+---- C
-> +              `-----'   |
-> +                      Slave Y @ 0x10
-> +
-> +Alias table:
-> +
-> +.. table::
-> +
-> +   ======   =====
-> +   Client   Alias
-> +   ======   =====
-> +   X        0x20
-> +   Y        0x30
-> +   ======   =====
-> +
-> +Transaction:
-> +
-> + - Slave X driver sends a transaction (on adapter B), slave address 0x10
-> + - ATR driver rewrites messages with address 0x20, forwards to adapter A
-> + - Physical I2C transaction on bus A, slave address 0x20
-> + - ATR chip propagates transaction on bus B with address translated to 0x10
-> + - Slave X chip replies on bus B
-> + - ATR chip forwards reply on bus A
-> + - ATR driver rewrites messages with address 0x10
-> + - Slave X driver gets back the msgs[], with reply and address 0x10
-
-I'm not sure I got the real / virtual status of the adapters. Are the B and C
-virtual ones, while A is the real?
-
-...
-
-> +#define ATR_MAX_ADAPTERS 99	/* Just a sanity limit */
-
-Hmm... It's not clear why this is not 100, for example, and how 99 below is
-related to that, assuming channel numbering is started from 0.
-
-> +#define ATR_MAX_SYMLINK_LEN 16	/* Longest name is 10 chars: "channel-99" */
-
-...
-
-> +	/* Ensure we have enough room to save the original addresses */
-> +	if (unlikely(chan->orig_addrs_size < num)) {
-> +		u16 *new_buf;
-> +
-> +		new_buf = kmalloc_array(num, sizeof(*new_buf), GFP_KERNEL);
-
-I remember that I asked why we don't use krealloc_array() here... Perhaps
-that we don't need to copy the old mapping table? Can we put a short comment
-to clarify this in the code?
-
-> +		if (!new_buf)
-> +			return -ENOMEM;
-> +
-> +		kfree(chan->orig_addrs);
-> +		chan->orig_addrs = new_buf;
-> +		chan->orig_addrs_size = num;
-> +	}
-
-...
-
-> +struct i2c_atr *i2c_atr_new(struct i2c_adapter *parent, struct device *dev,
-> +			    const struct i2c_atr_ops *ops, int max_adapters)
-> +{
-> +	struct i2c_atr *atr;
-> +	int ret;
-> +
-> +	if (max_adapters > ATR_MAX_ADAPTERS)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	if (!ops || !ops->attach_client || !ops->detach_client)
-> +		return ERR_PTR(-EINVAL);
-
-> +	atr = devm_kzalloc(dev, struct_size(atr, adapter, max_adapters),
-> +			   GFP_KERNEL);
-
-How do you know (or why do we limit) that the scope of this function will be
-only in ->probe()? Even though, I would replace devm_ by non-devm_ since there
-is the tear-down function has to be called by the user anyway.
-
-> +	if (!atr)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	mutex_init(&atr->lock);
-> +
-> +	atr->parent = parent;
-> +	atr->dev = dev;
-> +	atr->ops = ops;
-> +	atr->max_adapters = max_adapters;
-> +
-> +	if (parent->algo->master_xfer)
-> +		atr->algo.master_xfer = i2c_atr_master_xfer;
-> +	if (parent->algo->smbus_xfer)
-> +		atr->algo.smbus_xfer = i2c_atr_smbus_xfer;
-> +	atr->algo.functionality = i2c_atr_functionality;
-> +
-> +	atr->i2c_nb.notifier_call = i2c_atr_bus_notifier_call;
-> +	ret = bus_register_notifier(&i2c_bus_type, &atr->i2c_nb);
-> +	if (ret) {
-> +		mutex_destroy(&atr->lock);
-> +		return ERR_PTR(ret);
-> +	}
-> +
-> +	return atr;
-> +}
-
-...
-
-> +void i2c_atr_del_adapter(struct i2c_atr *atr, u32 chan_id)
-> +{
-> +	char symlink_name[ATR_MAX_SYMLINK_LEN];
-
-> +
-
-Redundant blank line.
-
-> +	struct i2c_adapter *adap = atr->adapter[chan_id];
-> +	struct i2c_atr_chan *chan = adap->algo_data;
-> +	struct fwnode_handle *fwnode = dev_fwnode(&adap->dev);
-> +	struct device *dev = atr->dev;
-
-> +	if (!adap)
-> +		return;
-
-Redundant check (it will be optimized out by compiler) or wrong assignments
-above.
-
-> +	dev_dbg(dev, "Removing ATR child bus %d\n", i2c_adapter_id(adap));
-> +
-> +	snprintf(symlink_name, sizeof(symlink_name), "channel-%u",
-> +		 chan->chan_id);
-> +	sysfs_remove_link(&dev->kobj, symlink_name);
-> +	sysfs_remove_link(&chan->adap.dev.kobj, "atr_device");
-> +
-> +	i2c_del_adapter(adap);
-> +
-> +	atr->adapter[chan_id] = NULL;
-> +
-> +	fwnode_handle_put(fwnode);
-> +	mutex_destroy(&chan->orig_addrs_lock);
-> +	kfree(chan->orig_addrs);
-> +	kfree(chan);
-> +}
-
-...
-
-> +void i2c_atr_set_driver_data(struct i2c_atr *atr, void *data)
-> +{
-> +	atr->priv = data;
-> +}
-> +EXPORT_SYMBOL_NS_GPL(i2c_atr_set_driver_data, I2C_ATR);
-> +
-> +void *i2c_atr_get_driver_data(struct i2c_atr *atr)
-> +{
-> +	return atr->priv;
-> +}
-> +EXPORT_SYMBOL_NS_GPL(i2c_atr_get_driver_data, I2C_ATR);
-
-Just to be sure: Is it really _driver_ data and not _device instance_ data?
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 3d47281a276b..a2683709cd66 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -6,6 +6,7 @@
+ #include <dt-bindings/clock/qcom,rpmh.h>
+ #include <dt-bindings/clock/qcom,sm8550-gcc.h>
+ #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
++#include <dt-bindings/clock/qcom,sm8550-dispcc.h>
+ #include <dt-bindings/dma/qcom-gpi.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+@@ -1727,6 +1728,305 @@ opp-202000000 {
+ 			};
+ 		};
+ 
++		mdss: display-subsystem@ae00000 {
++			compatible = "qcom,sm8550-mdss";
++			reg = <0 0x0ae00000 0 0x1000>;
++			reg-names = "mdss";
++
++			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++
++			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++				 <&gcc GCC_DISP_AHB_CLK>,
++				 <&gcc GCC_DISP_HF_AXI_CLK>,
++				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
++
++			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
++
++			power-domains = <&dispcc MDSS_GDSC>;
++
++			interconnects = <&mmss_noc MASTER_MDP 0 &gem_noc SLAVE_LLCC 0>,
++				        <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
++			interconnect-names = "mdp0-mem", "mdp1-mem";
++
++			iommus = <&apps_smmu 0x1c00 0x2>;
++
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			status = "disabled";
++
++			mdss_mdp: display-controller@ae01000 {
++				compatible = "qcom,sm8550-dpu";
++				reg = <0 0x0ae01000 0 0x8f000>,
++				      <0 0x0aeb0000 0 0x2008>;
++				reg-names = "mdp", "vbif";
++
++				interrupt-parent = <&mdss>;
++				interrupts = <0>;
++
++				clocks = <&gcc GCC_DISP_AHB_CLK>,
++					 <&gcc GCC_DISP_HF_AXI_CLK>,
++					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
++					 <&dispcc DISP_CC_MDSS_MDP_CLK>,
++					 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++				clock-names = "bus",
++					      "nrt_bus",
++					      "iface",
++					      "lut",
++					      "core",
++					      "vsync";
++
++				power-domains = <&rpmhpd SM8550_MMCX>;
++
++				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++				assigned-clock-rates = <19200000>;
++
++				operating-points-v2 = <&mdp_opp_table>;
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						dpu_intf1_out: endpoint {
++							remote-endpoint = <&mdss_dsi0_in>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						dpu_intf2_out: endpoint {
++							remote-endpoint = <&mdss_dsi1_in>;
++						};
++					};
++				};
++
++				mdp_opp_table: opp-table {
++					compatible = "operating-points-v2";
++
++					opp-200000000 {
++						opp-hz = /bits/ 64 <200000000>;
++						required-opps = <&rpmhpd_opp_low_svs>;
++					};
++
++					opp-325000000 {
++						opp-hz = /bits/ 64 <325000000>;
++						required-opps = <&rpmhpd_opp_svs>;
++					};
++
++					opp-375000000 {
++						opp-hz = /bits/ 64 <375000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++
++					opp-514000000 {
++						opp-hz = /bits/ 64 <514000000>;
++						required-opps = <&rpmhpd_opp_nom>;
++					};
++				};
++			};
++
++			mdss_dsi0: dsi@ae94000 {
++				compatible = "qcom,mdss-dsi-ctrl";
++				reg = <0 0x0ae94000 0 0x400>;
++				reg-names = "dsi_ctrl";
++
++				interrupt-parent = <&mdss>;
++				interrupts = <4>;
++
++				clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
++					 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
++					 <&dispcc DISP_CC_MDSS_ESC0_CLK>,
++					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&gcc GCC_DISP_HF_AXI_CLK>;
++				clock-names = "byte",
++					      "byte_intf",
++					      "pixel",
++					      "core",
++					      "iface",
++					      "bus";
++
++				power-domains = <&rpmhpd SM8550_MMCX>;
++
++				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
++				assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
++
++				operating-points-v2 = <&mdss_dsi_opp_table>;
++
++				phys = <&mdss_dsi0_phy>;
++				phy-names = "dsi";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						mdss_dsi0_in: endpoint {
++							remote-endpoint = <&dpu_intf1_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						mdss_dsi0_out: endpoint {
++						};
++					};
++				};
++
++				mdss_dsi_opp_table: opp-table {
++					compatible = "operating-points-v2";
++
++					opp-187500000 {
++						opp-hz = /bits/ 64 <187500000>;
++						required-opps = <&rpmhpd_opp_low_svs>;
++					};
++
++					opp-300000000 {
++						opp-hz = /bits/ 64 <300000000>;
++						required-opps = <&rpmhpd_opp_svs>;
++					};
++
++					opp-358000000 {
++						opp-hz = /bits/ 64 <358000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++				};
++			};
++
++			mdss_dsi0_phy: phy@ae95000 {
++				compatible = "qcom,sm8550-dsi-phy-4nm";
++				reg = <0 0x0ae95000 0 0x200>,
++				      <0 0x0ae95200 0 0x280>,
++				      <0 0x0ae95500 0 0x400>;
++				reg-names = "dsi_phy",
++					    "dsi_phy_lane",
++					    "dsi_pll";
++
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&rpmhcc RPMH_CXO_CLK>;
++				clock-names = "iface", "ref";
++
++				#clock-cells = <1>;
++				#phy-cells = <0>;
++
++				status = "disabled";
++			};
++
++			mdss_dsi1: dsi@ae96000 {
++				compatible = "qcom,mdss-dsi-ctrl";
++				reg = <0 0x0ae96000 0 0x400>;
++				reg-names = "dsi_ctrl";
++
++				interrupt-parent = <&mdss>;
++				interrupts = <5>;
++
++				clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
++					 <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_PCLK1_CLK>,
++					 <&dispcc DISP_CC_MDSS_ESC1_CLK>,
++					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&gcc GCC_DISP_HF_AXI_CLK>;
++				clock-names = "byte",
++					      "byte_intf",
++					      "pixel",
++					      "core",
++					      "iface",
++					      "bus";
++
++				power-domains = <&rpmhpd SM8550_MMCX>;
++
++				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
++				assigned-clock-parents = <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>;
++
++				operating-points-v2 = <&mdss_dsi_opp_table>;
++
++				phys = <&mdss_dsi1_phy>;
++				phy-names = "dsi";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						mdss_dsi1_in: endpoint {
++							remote-endpoint = <&dpu_intf2_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						mdss_dsi1_out: endpoint {
++						};
++					};
++				};
++			};
++
++			mdss_dsi1_phy: phy@ae97000 {
++				compatible = "qcom,sm8550-dsi-phy-4nm";
++				reg = <0 0x0ae97000 0 0x200>,
++				      <0 0x0ae97200 0 0x280>,
++				      <0 0x0ae97500 0 0x400>;
++				reg-names = "dsi_phy",
++					    "dsi_phy_lane",
++					    "dsi_pll";
++
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&rpmhcc RPMH_CXO_CLK>;
++				clock-names = "iface", "ref";
++
++				#clock-cells = <1>;
++				#phy-cells = <0>;
++
++				status = "disabled";
++			};
++		};
++
++		dispcc: clock-controller@af00000 {
++			compatible = "qcom,sm8550-dispcc";
++			reg = <0 0x0af00000 0 0x20000>;
++			clocks = <&bi_tcxo_div2>,
++				 <&bi_tcxo_ao_div2>,
++				 <&gcc GCC_DISP_AHB_CLK>,
++				 <&sleep_clk>,
++				 <&mdss_dsi0_phy 0>,
++				 <&mdss_dsi0_phy 1>,
++				 <&mdss_dsi1_phy 0>,
++				 <&mdss_dsi1_phy 1>,
++				 <0>, /* dp0 */
++				 <0>,
++				 <0>, /* dp1 */
++				 <0>,
++				 <0>, /* dp2 */
++				 <0>,
++				 <0>, /* dp3 */
++				 <0>;
++			power-domains = <&rpmhpd SM8550_MMCX>;
++			required-opps = <&rpmhpd_opp_low_svs>;
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++			#power-domain-cells = <1>;
++			status = "disabled";
++		};
++
+ 		pdc: interrupt-controller@b220000 {
+ 			compatible = "qcom,sm8550-pdc", "qcom,pdc";
+ 			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+2.34.1
