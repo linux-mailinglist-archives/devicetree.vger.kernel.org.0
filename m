@@ -2,193 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1D8B671F60
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:22:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECB5B671F71
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:24:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbjAROWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:22:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48332 "EHLO
+        id S231403AbjAROY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:24:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231315AbjAROVv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:21:51 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18CF6E836
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:04:17 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id b7so8044392wrt.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:04:17 -0800 (PST)
+        with ESMTP id S230506AbjAROYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:24:09 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B454196AB
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:08:36 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id g10so24757347wmo.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:08:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BStJknkxNRkRdaOPMntui8WFVTLp1fXVr+hgk9OK3CA=;
-        b=HqO4zk2i3L2FfBM4Uj2xpJNG3ZIVGe7mW87LZa2tw6nMQZNAUd9ml5oWmmS07J4Ofp
-         2yK4LwD+K8R+22mNujCfVO8gKpoXKRyCTtDXclChY03p0TVd3WUKUyE8Mt8KUFZxkgMS
-         KR1bONAnE39Gkbc/mPMJIJdJ9vQNZWbtSGGhOoekDp88QKNNcxRFCPGlKrPEYAloXxmy
-         xzaymLTViFe+3DSidGNVb64JZDUazReeRh9j4pz7TwU+IPLgt/b0xWUh37EQw00RhsXY
-         Bz3e7hIgmc/Aic6soff8QNct4Tt90+QVUFM8rKa4eDSua4fQXrEZanhBH8iD1HXJBjkO
-         Avkg==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=voyq36MDE3tAT+mEidIfHFRQCvxeo+KUD1PRZZG5SU0=;
+        b=5rJqASU9iSQiHx66T22qg9IDXWVbiYgoGS8cNgZDYhwZdfKKzQJKdcjCv5DLl06Bjo
+         o58a4idkz25Ws+/09qIAhmYNhjHCybhAT87d4icilSN7YN2wdQuXuxs7nuBe7RP4mWRR
+         hZPYrStS6vPRQCjX9n+35t3f9iME5i4wJpZTrh5TetbJTl9auY8nSdt/FPBYNbJ9+VG4
+         wAhjRrBsq5Ypbz09PxPWHIVry9Wfk2DqD6AMWi/XHQvxJix22gTS+UamF486xuupwZ+O
+         y/rGZ3GYWXB9gYaYSfV5W4TO6HkC7ncIa74Ru5+5pTHSrAl4T4NhAy+HtPbkGK1InMqQ
+         T9Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=BStJknkxNRkRdaOPMntui8WFVTLp1fXVr+hgk9OK3CA=;
-        b=LbgMTuAWktw1hqVmlbu0aEEYgy2KHTWN+yAU+oWwik29UTiRuhUUM1R9fsm6m67Ks5
-         h1hyPPiJu2D7gysaS19ZyweT3s5LeMEqA7iHBU5ZYhPKi4un4Kj1EX/lUU3iqHim2Ydx
-         +OFQ83g7ayyxUKvAkZiMyggGqmeGcWM51hYiU3CXvd8vnQNPrv0F0rLT1NkvPDBJjVsB
-         sLzlpOY0w4qyPfvU/Jnhl+q18fEtyPjiLW8P4B/Vd4kr+xs94MC3SIiiAyyJdEMqjq9V
-         9VIAPEhvmn0HeY4lodqv5cyLzYDOX2092+k+4rU5hFOq+i0biWgNzP4Ic6gvsAMbglt4
-         cxxQ==
-X-Gm-Message-State: AFqh2kos/de4j8fPvKFiDjqel/3b7RzQefiPhNHHrJqg9LygjGNdP116
-        tOm3det9Qes0GSuzl6h3cQO7Tw==
-X-Google-Smtp-Source: AMrXdXvisreUlEjmD2E9PJTmXfgydOinhvuH8ytmedUlVBRJ/Vz6PU/+YBdLYpYO3dMPO8X37PikQA==
-X-Received: by 2002:a5d:50c9:0:b0:2bd:db42:36cd with SMTP id f9-20020a5d50c9000000b002bddb4236cdmr5869055wrt.0.1674050656317;
-        Wed, 18 Jan 2023 06:04:16 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:37dc:5071:959c:93e4? ([2a01:e0a:982:cbb0:37dc:5071:959c:93e4])
-        by smtp.gmail.com with ESMTPSA id n6-20020adfe786000000b002bdbde1d3absm21305586wrm.78.2023.01.18.06.04.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 06:04:15 -0800 (PST)
-Message-ID: <e7c0fd5a-f77c-a9ef-a648-a711e1eff5ad@linaro.org>
-Date:   Wed, 18 Jan 2023 15:04:15 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sm8550-mtp: add DSI panel
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        bh=voyq36MDE3tAT+mEidIfHFRQCvxeo+KUD1PRZZG5SU0=;
+        b=SQfMn4NszHQtU5pF+5VcUTuthUdraOpHJBsXGBTH898TzKTh9+tWPsbFE1KCWlNB3S
+         VmZy4g+xJJ0s0ZtKQTfEGlwd7pjkgi2RiSrLOSszKw7jRwQiAFqDSMp3ZsC89tWuA3hI
+         pVIaQDH+HnmReWi1fqdb/zGeWC8m+KZuSLi0EBxIaPLVhFPkb/Tpoe56Ro5vYd/hazKw
+         OcNg1RB7TVnZRwVkoBe1ZLIoYYfBSqatiyQM12/E3nBHtDpgHrUJlU5Gq1g8IhihCRQn
+         bTrden2bDWgQ6snAqWtDkpHhby/J47EBJE/rmrdxBVy9dUwBekFWhBcYsPC5CcVCuVzG
+         mgMw==
+X-Gm-Message-State: AFqh2kq7Q356xfUUu+qHxkUEHRdg9RXkINcl/sfSHQHRynFRh2BrWKFz
+        RrAOHQjWkx6RpnWkllN3XEkqHw==
+X-Google-Smtp-Source: AMrXdXvS075M7JzYZCCt5HQzpUsJnMKuIoUn0gu0aeia6fZtLwRS2+eMnr7izJtqNAXCiAddzDVa1A==
+X-Received: by 2002:a05:600c:3ca6:b0:3d1:caf1:3f56 with SMTP id bg38-20020a05600c3ca600b003d1caf13f56mr15628618wmb.9.1674050914743;
+        Wed, 18 Jan 2023 06:08:34 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:1866:5d91:a429:aba])
+        by smtp.gmail.com with ESMTPSA id m27-20020a05600c3b1b00b003db012d49b7sm3193431wms.2.2023.01.18.06.08.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 06:08:34 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230104-topic-sm8550-upstream-dts-display-v3-0-46f0d4e57752@linaro.org>
- <20230104-topic-sm8550-upstream-dts-display-v3-3-46f0d4e57752@linaro.org>
- <9fb2618f-43ab-c644-c957-67ffc4c05dc3@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <9fb2618f-43ab-c644-c957-67ffc4c05dc3@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v2 0/2] qcom: sa8775p: add the interconnect driver for Qualcomm SA8775P platforms
+Date:   Wed, 18 Jan 2023 15:08:23 +0100
+Message-Id: <20230118140825.242544-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 14:36, Konrad Dybcio wrote:
-> 
-> 
-> On 18.01.2023 09:55, Neil Armstrong wrote:
->> Add nodes for the Visionox VTDR6130 found on the SM8550-MTP
->> device.
->>
->> TLMM states are also added for the Panel reset GPIO and
->> Tearing Effect signal for when the panel is running in
->> DSI Command mode.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 56 +++++++++++++++++++++++++++++++++
->>   1 file changed, 56 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
->> index 0dfd1d3db86c..2de387aa2c2d 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
->> @@ -370,6 +370,34 @@ &mdss {
->>   &mdss_dsi0 {
->>   	vdda-supply = <&vreg_l3e_1p2>;
->>   	status = "okay";
->> +
->> +	panel@0 {
->> +		compatible = "visionox,vtdr6130";
->> +		reg = <0>;
->> +
->> +		pinctrl-names = "default", "sleep";
->> +		pinctrl-0 = <&sde_dsi_active>, <&sde_te_active>;
->> +		pinctrl-1 = <&sde_dsi_suspend>, <&sde_te_suspend>;
-> Hm.. I've just realized there are two styles of specifying
-> phandle arrays: <&a &b> and <&a>, <&b>.. even worse, we
-> have both of them in our tree.. Krzysztof, Bjorn, which one
-> should we go with, going forward?
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-I've been cleaning into <&a>, <&b> for the last few years and
-it clearer since it separates each phandle (+ parameters) in the DTS.
+Add the DT bindings and driver for the RPMh interconnect on the sa8775p
+platform from Qualcomm.
 
-Neil
+v1 -> v2:
+- create a separate DT binding document for the sa8775p interconnect
+- drop the lemans code name from the driver
+- constify the qcom_icc_desc structs
+- minor tweaks and improvements to the driver
+- make sure the bindings pass tests
 
-> 
-> 
->> +
->> +		vddio-supply = <&vreg_l12b_1p8>;
->> +		vci-supply = <&vreg_l13b_3p0>;
->> +		vdd-supply = <&vreg_l11b_1p2>;
->> +
->> +		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
->> +
->> +		status = "okay";
-> Superfluous, it's enabled by default, drop
+Bartosz Golaszewski (1):
+  dt-bindings: interconnect: qcom: document the interconnects for
+    sa8775p
 
-Ack, will remove
+Shazad Hussain (1):
+  interconnect: qcom: add a driver for sa8775p
 
-> 
-> Konrad
->> +
->> +		port {
->> +			panel0_in: endpoint {
->> +				remote-endpoint = <&mdss_dsi0_out>;
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&mdss_dsi0_out {
->> +	remote-endpoint = <&panel0_in>;
->> +	data-lanes = <0 1 2 3>;
->>   };
->>   
->>   &mdss_dsi0_phy {
->> @@ -415,6 +443,34 @@ &sleep_clk {
->>   
->>   &tlmm {
->>   	gpio-reserved-ranges = <32 8>;
->> +
->> +	sde_dsi_active: sde-dsi-active-state {
->> +		pins = "gpio133";
->> +		function = "gpio";
->> +		drive-strength = <8>;
->> +		bias-disable;
->> +	};
->> +
->> +	sde_dsi_suspend: sde-dsi-suspend-state {
->> +		pins = "gpio133";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-pull-down;
->> +	};
->> +
->> +	sde_te_active: sde-te-active-state {
->> +		pins = "gpio86";
->> +		function = "mdp_vsync";
->> +		drive-strength = <2>;
->> +		bias-pull-down;
->> +	};
->> +
->> +	sde_te_suspend: sde-te-suspend-state {
->> +		pins = "gpio86";
->> +		function = "mdp_vsync";
->> +		drive-strength = <2>;
->> +		bias-pull-down;
->> +	};
->>   };
->>   
->>   &uart7 {
->>
+ .../interconnect/qcom,sa8775p-rpmh.yaml       |   50 +
+ drivers/interconnect/qcom/Kconfig             |    9 +
+ drivers/interconnect/qcom/Makefile            |    2 +
+ drivers/interconnect/qcom/sa8775p.c           | 2541 +++++++++++++++++
+ .../interconnect/qcom,sa8775p-rpmh.h          |  231 ++
+ 5 files changed, 2833 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sa8775p-rpmh.yaml
+ create mode 100644 drivers/interconnect/qcom/sa8775p.c
+ create mode 100644 include/dt-bindings/interconnect/qcom,sa8775p-rpmh.h
+
+-- 
+2.37.2
 
