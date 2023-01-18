@@ -2,261 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 347C16717B6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 10:28:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 742326717B3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 10:28:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbjARJ21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 04:28:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45290 "EHLO
+        id S229496AbjARJ2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 04:28:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230307AbjARJZW (ORCPT
+        with ESMTP id S230306AbjARJZW (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 04:25:22 -0500
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD8F5CE6E
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:51:15 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 98CD5320029B;
-        Wed, 18 Jan 2023 03:51:12 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 18 Jan 2023 03:51:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1674031872; x=1674118272; bh=9KUlsgI3dn
-        S0cospHZM0OdIrpPKgU9PSIeNZux/mzes=; b=VHpuXgGRlkv5xc8SExS+dg31iB
-        +Q+CYFjSv9ud6aswis1izSDAblf05ZPwclFetYjnu8f9MfsaYSxXhZmiXlvEQRk4
-        2ZYkw7NleykQ9es6UTxzMIFiCgtywrbKreB9QP9eLKmcKacjfKiGptdJiNq3/tQA
-        Ap5ddP/R65lrHO29TZH7TX7F0swpIs7wogcyEivQnA2upeFwzqs3eyp97pdx3TND
-        y8RvcNsiyLmbtq8h5dqltyilugYulmbpA1RprvzoQ2TFxTaxzVU94TkidxOQUQOP
-        plreSci1FPoUwBbXEpJF6tomUxovNJ50vp0QyyJxWvdDzjLZvB+6KLC2E2SQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1674031872; x=1674118272; bh=9KUlsgI3dnS0cospHZM0OdIrpPKg
-        U9PSIeNZux/mzes=; b=rjz5pqWyZcUB3WkTJowupxeNrhtn1dvu8BqR8VDJKlia
-        /bxpnMP+NuFG40RzAxgYOI+GYH3EP8O2msetwFdQHV6hvkzeLDEOBL4b10d+H//+
-        WgxWpuf1qSpoKmer3WFBjlUwgmWyyYJ7LRDKicEpvRc6qyPvpTfSHpL1vU9tMzeJ
-        GvuIvISNbPeWKIUMEVsZYBO9+cJfMAiPTZKaWS61P2y+57NnGoJvC7EEH/E6nUkr
-        4LchYH0AEOhlBN3uZHHkJtkppQJXj2Qm1GtWDQjAGh+GEZkyTv9LDXFss2LURCfY
-        3hipnsWh+4oQPbgxPCt5RQGWxNT5PRDT6V7KLT1rfA==
-X-ME-Sender: <xms:_7LHYyUZ3W6_D0KDonQUvuqXT52av5tAtXbIb-IdyCRndIdlN953sw>
-    <xme:_7LHY-kOzWReXpWtrWdMqsy5feqDqeRNu94yZS38dizVRGbo6IZ98FJQEf9Pxbxbm
-    Hl9z9plykKvGDKoIDc>
-X-ME-Received: <xmr:_7LHY2YH4eqzPjJjuFr8iJsyFvPazhCNAly9u0GRWxsAA8Ck5m3hHtag647kf-Ahz5ipW_YUjkW0-Em4Oqx6ecI94t4vKMIuM6wjXQ3zcqHHvg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddtjedguddvkecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgig
-    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
-    grthhtvghrnhepteefffefgfektdefgfeludfgtdejfeejvddttdekteeiffejvdfgheeh
-    fffhvedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:_7LHY5U2Ybl6Oa0fGtX5eIMw9jzassbK-x78IIAttHDpoDDBlDeOFA>
-    <xmx:_7LHY8nfDQkoggn6SyxTl4ryUQMgvZnlopw_ROiFy1XwjRoPSWGFXQ>
-    <xmx:_7LHY-d6KW7OhfEBhpBRdCYPwofC_WAMgkKUWiHhzYAszG1Pb0I-1w>
-    <xmx:ALPHY6wcHIrClecEzdSuS6AP4OF_h2lEUu5RYDdVIow0CBot5Y0DSQ>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 18 Jan 2023 03:51:10 -0500 (EST)
-Date:   Wed, 18 Jan 2023 09:51:08 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linus.walleij@linaro.org, maccraft123mc@gmail.com,
-        tzimmermann@suse.de, maarten.lankhorst@linux.intel.com,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, daniel@ffwll.ch, airlied@gmail.com,
-        sam@ravnborg.org, thierry.reding@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V10 1/4] drm: of: Add drm_of_get_dsi_bus helper function
-Message-ID: <20230118085108.huhhod43ixwe7pwk@houat>
-References: <20230112175358.421975-1-macroalpha82@gmail.com>
- <20230112175358.421975-2-macroalpha82@gmail.com>
- <20230117165819.4rx7aucvyp5e2rj6@houat>
- <63c6f329.050a0220.82479.85d4@mx.google.com>
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC43C37F03
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:51:23 -0800 (PST)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id DC568B8B;
+        Wed, 18 Jan 2023 09:51:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1674031881;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=BzjI/eD/g/cYAAa/GfEEAFqCMUNeI0aSZEvb7n5U/zM=;
+        b=ddutgwBY+yRU9ND79tbhwdT/boOYkZCa6skiFzkA3y1sH8tmZXugYpvV8fQSMjSH8t1PMd
+        lnFHyZldv3Y8fZw/viGANFZDs/5T7z6xAke1p7GL6aMzWSQTT+Q8h4g+39nz93PvzfccRQ
+        LiBe4yJFME+pLGuqBns6nV2roI5EpDbthRaklwowtURgBNIJS2g6MX8ixWz8bUVH/M5YkY
+        +KSqtJd7WhnMGJhdDFM1PYbo0M9QiIzaWJoDg1LjPipCEYJSNrW5TOHXABt5hSYuudGNqR
+        9HBNWMwieLfCUKe7kClclCyV6g0n99CuKtyBmMavWI33c0/QjL4lJBMRxbUemw==
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rybdiaw5plw7ten3"
-Content-Disposition: inline
-In-Reply-To: <63c6f329.050a0220.82479.85d4@mx.google.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Wed, 18 Jan 2023 09:51:21 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     han.xu@nxp.com, broonie@kernel.org, dev@kicherer.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-spi@vger.kernel.org, robh@kernel.org
+Subject: Re: [PATCH 1/2] spi: dt-bindings: spi-fsl-qspi: add optional
+ sampling-delay
+In-Reply-To: <2a684f19-6749-ddb0-6e32-4ffe35269cb3@linaro.org>
+References: <20230117210500.oimf4yjkkqh3o4hi@umbrella>
+ <20230118080159.112295-1-michael@walle.cc>
+ <2a684f19-6749-ddb0-6e32-4ffe35269cb3@linaro.org>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <30a7f1174b5c16f4f6c86eb8b25fba7a@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+>>>>> unfortunately, the rx-sample-delay-ns property does not fit here, 
+>>>>> as we
+>>>>> can only delay
+>>>>> the sampling point between zero and three "half cycles" (or edges), 
+>>>>> not
+>>>>> by an arbitrary
+>>>>> number of nanoseconds.
+>>>> 
+>>>> Why this is a problem for FSL but not for other platforms having 
+>>>> exactly
+>>>> the same constraints/property?
+>>> 
+>>> Please use the common delay in DT and calculate to half cycle in 
+>>> driver, we have
+>>> the similar discussion before for fspi controller delay settings.
+>> 
+>> Do you mean [1]? There my suggestion was to use a -degrees property 
+>> (because
+>> it doesn't depend on the frequency). There wasn't any follow-up, or 
+>> did I miss
+>> something?
+>> 
+>> -michael
+>> 
+>> [1] 
+>> https://lore.kernel.org/linux-spi/62f113a0cdb0d58bf04ab0b274912eb7@walle.cc/
+> 
+> I think the patch using existing ns property (and calculating cycles or
+> phase shift or whatever was needed) was merged. In such case please go
+> the same way.
 
---rybdiaw5plw7ten3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I couldn't find anything that the fspi driver now supports this delay.
 
-On Tue, Jan 17, 2023 at 01:12:39PM -0600, Chris Morgan wrote:
-> On Tue, Jan 17, 2023 at 05:58:19PM +0100, Maxime Ripard wrote:
-> > Hi,
-> >=20
-> > On Thu, Jan 12, 2023 at 11:53:55AM -0600, Chris Morgan wrote:
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > >=20
-> > > Add helper function to find DSI host for devices where DSI panel is n=
-ot
-> > > a minor of a DSI bus (such as the Samsung AMS495QA01 panel or the
-> > > official Raspberry Pi touchscreen display).
-> > >=20
-> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_of.c | 70 ++++++++++++++++++++++++++++++++++++++=
-++
-> > >  include/drm/drm_of.h     | 10 ++++++
-> > >  2 files changed, 80 insertions(+)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
-> > > index 7bbcb999bb75..6c2c97a716fe 100644
-> > > --- a/drivers/gpu/drm/drm_of.c
-> > > +++ b/drivers/gpu/drm/drm_of.c
-> > > @@ -10,6 +10,7 @@
-> > >  #include <drm/drm_crtc.h>
-> > >  #include <drm/drm_device.h>
-> > >  #include <drm/drm_encoder.h>
-> > > +#include <drm/drm_mipi_dsi.h>
-> > >  #include <drm/drm_of.h>
-> > >  #include <drm/drm_panel.h>
-> > > =20
-> > > @@ -493,3 +494,72 @@ int drm_of_get_data_lanes_count_ep(const struct =
-device_node *port,
-> > >  	return ret;
-> > >  }
-> > >  EXPORT_SYMBOL_GPL(drm_of_get_data_lanes_count_ep);
-> > > +
-> > > +#if IS_ENABLED(CONFIG_DRM_MIPI_DSI)
-> > > +
-> > > +/**
-> > > + * drm_of_get_dsi_bus - find the DSI bus for a given device
-> > > + * @dev: parent device of display (SPI, I2C)
-> > > + * @info: DSI device info to be updated with DSI node. This is optio=
-nal
-> > > + * and if not needed can be NULL.
-> > > + *
-> > > + * Gets parent DSI bus for a DSI device controlled through a bus oth=
-er
-> > > + * than MIPI-DCS (SPI, I2C, etc.) using the Device Tree.
-> > > + *
-> > > + * Returns pointer to mipi_dsi_host if successful, -EINVAL if the
-> > > + * request is unsupported, -EPROBE_DEFER if the DSI host is found but
-> > > + * not available, or -ENODEV otherwise.
-> > > + */
-> > > +struct mipi_dsi_host *drm_of_get_dsi_bus(struct device *dev,
-> > > +					 struct mipi_dsi_device_info *info)
-> > > +{
-> > > +	struct mipi_dsi_host *dsi_host;
-> > > +	struct device_node *endpoint, *dsi_host_node;
-> > > +
-> > > +	/*
-> > > +	 * Get first endpoint child from device.
-> > > +	 */
-> > > +	endpoint =3D of_graph_get_next_endpoint(dev->of_node, NULL);
-> > > +	if (!endpoint)
-> > > +		return ERR_PTR(-ENODEV);
-> > > +
-> > > +	/*
-> > > +	 * Follow the first endpoint to get the DSI host node.
-> > > +	 */
-> > > +	dsi_host_node =3D of_graph_get_remote_port_parent(endpoint);
-> > > +	if (!dsi_host_node)
-> > > +		goto error;
-> > > +
-> > > +	/*
-> > > +	 * Get the DSI host from the DSI host node. If we get an error
-> > > +	 * or the return is null assume we're not ready to probe just
-> > > +	 * yet. Release the DSI host node since we're done with it.
-> > > +	 */
-> > > +	dsi_host =3D of_find_mipi_dsi_host_by_node(dsi_host_node);
-> > > +	of_node_put(dsi_host_node);
-> > > +	if (IS_ERR_OR_NULL(dsi_host)) {
-> > > +		of_node_put(endpoint);
-> > > +		return ERR_PTR(-EPROBE_DEFER);
-> > > +	}
-> > > +
-> > > +	/*
-> > > +	 * Set the node of the mipi_dsi_device_info to the correct node
-> > > +	 * and then release the endpoint node since we're done with it.
-> > > +	 * since this is optional, check if the info is NULL first.
-> > > +	 */
-> > > +	if (info) {
-> > > +		info->node =3D of_graph_get_remote_port(endpoint);
-> >=20
-> > it looks to me that the info->node is actually the DSI device OF node,
-> > not its host port. Which begs the question, why should we even return it
-> > there, since there's a pretty big chance that dev->of.node =3D=3D
-> > info->node, and you obviously don't care about the channel and type fie=
-lds.
-> >=20
-> > I've had a look and node of the current users of
-> > mipi_dsi_device_register_full actually register a mipi_dsi_device_info
-> > with a node pointer set to !NULL, including the driver in this series.
-> >=20
-> > So, why do we care about the device info at all?
->
-> I honestly thought it might be useful, but I can try without it.
+I still think this is the wrong way to go. Like I said, it depends on
+the frequency, which means that you need to change the delay-ns property
+everytime you change the frequency. Think of a bootloader which patches
+the frequency (or something like that). But what's worse is that you
+cannot have an enum in the binding for this property then.
 
-It might tbh, but it doesn't look like you use it in your driver. You have:
+Now OTOH, you could actually have a hardware which take the
+delay as a time period, in that case this -delay-ns makes sense
+and recalculating that into -degrees would be impossible.
 
-struct mipi_dsi_device_info info =3D {
-	.type =3D "d53e6ea8966",
-	.channel =3D 0,
-	.node =3D NULL,
-};
+Are there standard properties which expresses the same, but just in a
+different way? Like for example drive strength as an impedance or in
+current at a specific voltage. But having two different properties for
+the same thing might be just as bad..
 
-=2E..
-
-// info.node is NULL so far
-dsi_host =3D drm_of_get_dsi_bus(dev, &info);
-
-=2E..
-
-// info.node has been filled to the port node by drm_of_get_dsi_bus()
-db->dsi_dev =3D devm_mipi_dsi_device_register_full(dev, dsi_host, &info);
-
-// db->dsi_dev.dev.of_node is now set to the port node
-
-But if we grep through drm_mipi_dsi.c, we can see that the of_node is
-only really useful if we're using of_find_mipi_dsi_device_by_node, and
-it looks like you don't.
-
-So nothing uses info->node, which also explains why not reporting the
-proper node has been working.
-
-Looking more into the code, it really looks to me that info->node should
-be equal to the your panel device tree node, that's what
-of_mipi_dsi_device_add does at least.
-
-if info->node =3D=3D dev->of_node, and if info->node is the only thing
-filled by drm_of_get_dsi_bus(), then it doesn't need to fill it at all
-because it's already accessible easily to the caller (and even more
-easily than to the callee).
-
-So yeah, until we have a real-world need to retrieve the info function I
-think we should leave it aside for now, and we can always change the API
-later if we need to.
-
-Maxime
-
---rybdiaw5plw7ten3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCY8ey/AAKCRDj7w1vZxhR
-xVS/AQDUdnSGblEzWLEWmRten0nr00zGWqhrXBNcMiHWRnUERgD+JwQ2k5RXvHoW
-kEDhs0Tdt0wE9hYtSODBYAEGVjWMewo=
-=R/IG
------END PGP SIGNATURE-----
-
---rybdiaw5plw7ten3--
+-michael
