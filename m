@@ -2,128 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4632670EC1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 01:39:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5238D670F1A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 01:51:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229790AbjARAjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 19:39:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36928 "EHLO
+        id S229768AbjARAvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 19:51:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbjARAim (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 19:38:42 -0500
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD40741B5D;
-        Tue, 17 Jan 2023 16:10:29 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id e130so6705819yba.7;
-        Tue, 17 Jan 2023 16:10:29 -0800 (PST)
+        with ESMTP id S229986AbjARAuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 19:50:05 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 812C647EDA
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 16:38:44 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id j17so5048935wms.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 16:38:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mqoGaxCv32d9QDH8rbs+wNFx+mRHisbPyzqWglfmzdo=;
-        b=X8kEN2RCR0Z7j9dvYBPvrUngCUUeFWtb1S07rcVgUPJfjZWU74psq/1gmCn184hHsa
-         uAze+wMWm/HhTilA6p92QH5ri8+IauhT90wWGY1gF+L4D1hxqn6EEUAC2u4NEpV9Nmvn
-         x+3uw1f3Kj62qSMscS/TsPlYBzCYZoW6NNjmtZbAPUJ/5TKESadBgRtm8J1MdvDK06vz
-         WYfkJ4Sp7G5/xmXAjhT1J6VJC34p+oXr1s/hPXo04xworQlkKedZ7oKdZ+cdRdRuwnLj
-         FlNdnb/9pL7BHz0y6pWQYZ0EY4EDj4CwBCe3rsWwDGIkCSO63TNtAcqrhSR1ML+9G3SE
-         inSA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pT/tvb1zs7oqJaGipg0jXRVX8X7JE27Zd8ObevMN1oA=;
+        b=enNQAmr4/YEv7DVQNGVjKt4QCfUBVgk6jAWA8s7rI7iuWQu4n8UVOs9s5EECvf2YC7
+         uuFFdjVbCIle7SDvK94UQ5uvRAhOO2EQ0aVysnIoORXsNwE+yXmnE7YAXKdB3dRdsbo/
+         8GfZ88gPRcrZV3tdyD5zyfAoa7DP/rdIoTyEknmDHuBzvKGHEUahr1teVVJLhDJ8ci8h
+         cfTL4UMJWpqVG1Q0qYEOJjbXGa4ZraKnBUX9+31yomwJLy468YSE+HnnibN1c5cqT8Nj
+         10gTrRPrRTveieo0rdCiQhbXb4Jy4jedSUoHQ9+55CxXwhsLRTI0udnFZVRRzr0egqq1
+         yAig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mqoGaxCv32d9QDH8rbs+wNFx+mRHisbPyzqWglfmzdo=;
-        b=CkWMK8SSgKtwWDurvooUxsnwFaOrfo0s/0lVapsSexK3ZlfjE/KFildOSMZhUbtipo
-         Y2jlcU+lqWuvupbRvx7dfpm3OZkKnLe71kqG+1qYYDDMjEWG1m0b8p0YFbxFJ4aTJ9HU
-         2UJ3+iqXiejc8axSpH5z2oAIG1eCujwx+zLVMSGTnWX8bETMTgZEeF8mA7Daah1gB4ng
-         nUYC+t4YLxnxv7nXDsKGtwS+U3lFgmFxNaVdas9S74m55hz+ANQxTARJaWqq5GZXrDbl
-         WxZYfqpOjSgiBEPZ7iTORwId6em8pNr2DPWKH3hRXqnB2vWzni3hZtk6jsZFhf3Sy5uM
-         SaIg==
-X-Gm-Message-State: AFqh2kph3v8kIbeohz3YGLHiCLvsDDqoxePReUF7rPv87rsowlfXUtnl
-        HnXseFG/4YK/Pi70588+Opk=
-X-Google-Smtp-Source: AMrXdXvLckhDa1bG5Pn2IzKkim7J+U5lK7NIKjwNimaDoNI+pnG9GJpZUGRqId1mcbsUGnMptZYX1A==
-X-Received: by 2002:a25:4084:0:b0:7d8:aaf9:bdd7 with SMTP id n126-20020a254084000000b007d8aaf9bdd7mr4610072yba.3.1674000628976;
-        Tue, 17 Jan 2023 16:10:28 -0800 (PST)
-Received: from [192.168.0.14] (cpe84948cc906a3-cm84948cc906a0.cpe.net.cable.rogers.com. [99.231.72.42])
-        by smtp.gmail.com with ESMTPSA id h18-20020a05620a401200b007064fa2c616sm6796318qko.66.2023.01.17.16.10.26
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 17 Jan 2023 16:10:28 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.7\))
-Subject: Re: remove arch/sh
-From:   "D. Jeff Dionne" <djeffdionne@gmail.com>
-In-Reply-To: <c9ce648e-e63e-8a47-03c6-7c7e30d8dbc7@roeck-us.net>
-Date:   Tue, 17 Jan 2023 19:10:25 -0500
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Landley <rob@landley.net>, Christoph Hellwig <hch@lst.de>,
-        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-sh@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <9FC76FF3-9DD4-48E2-BC39-479A50B40C1D@gmail.com>
-References: <20230113062339.1909087-1-hch@lst.de>
- <11e2e0a8-eabe-2d8c-d612-9cdd4bcc3648@physik.fu-berlin.de>
- <20230116071306.GA15848@lst.de>
- <9325a949-8d19-435a-50bd-9ebe0a432012@landley.net>
- <CAMuHMdUJm5QvzH8hvqwvn9O6qSbzNOapabjw5nh9DJd0F55Zdg@mail.gmail.com>
- <c9ce648e-e63e-8a47-03c6-7c7e30d8dbc7@roeck-us.net>
-To:     Guenter Roeck <linux@roeck-us.net>
-X-Mailer: Apple Mail (2.3608.120.23.2.7)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pT/tvb1zs7oqJaGipg0jXRVX8X7JE27Zd8ObevMN1oA=;
+        b=rejkZGVoA3EN32AsyfmwhnaxFsKnzjmbMQfTKY5l59UNODfWcJTDNvDRN7JDBRlGO4
+         461vGxqUdcD/j8fp882kCUivDZManFvRrpm+Uy+V2bZ6p+KZy5nPsggVbirlaRm6OgvB
+         QTVyoEQQF7DT0wtzQnzes0/dTmeUaSLLUXmaGSxtD7dz0mDZCZiwXusoCdHhFv070O+X
+         p1Aqfhs6Urn0IEY6PDD6DlDYEjni3CG7e6f7n7HpQtsnLa9MyVdvLblXVfngoJkDVFMR
+         U0mlMVN/NAlNnXMfWeTVs2rC2b0ImT1dfQLXhLfPDPlqB/VXQe81XLWD7CANmhlTKaDO
+         y2oA==
+X-Gm-Message-State: AFqh2kpPpoRR1kyDdlUX4UdJr+tYz/SMdVevbyApwfFwNHEtFvKwY4Cl
+        ArpCU2M5Umc1yDMm0/TqYPPkJg==
+X-Google-Smtp-Source: AMrXdXvpvk2x693gfXhCStD/lN1ESwg8oZr6kmyQBnvzdRQ/Em4ANZPFnreUiW4QKcD8a5vip2P63g==
+X-Received: by 2002:a05:600c:1713:b0:3da:fd90:19dd with SMTP id c19-20020a05600c171300b003dafd9019ddmr4835990wmn.26.1674002323045;
+        Tue, 17 Jan 2023 16:38:43 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id m9-20020a7bca49000000b003d98f92692fsm365199wml.17.2023.01.17.16.38.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 16:38:42 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Johan Hovold <johan@kernel.org>
+Subject: [PATCH v2 0/7] phy: qualcomm: Add PCIe support for SM8550
+Date:   Wed, 18 Jan 2023 02:38:27 +0200
+Message-Id: <20230118003834.2330028-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset relies on the following patchset:
+https://lore.kernel.org/all/20230117224148.1914627-1-abel.vesa@linaro.org/
 
-> Since there are people around with real hardware .... is sh in big =
-endian mode
-> (sheb) real ? Its qemu support is quite limited; most PCI devices =
-don't work
-> due to endianness issues. It would be interesting to know if this =
-works better
-> with real hardware.
+The v1 of this patchset is:
+https://lore.kernel.org/all/20221116120157.2706810-1-abel.vesa@linaro.org/
 
-Hi Guenter,
+Changes since v1:
+ * dropped all PCIe unrelated patches and also register offsets
+ * split all the offsets into separate patches, like Vinod suggested
+ * dropped the legacy dt parse changes since we intend to support
+   only the new dt parse mechanism from now on
 
-SH big endian works very well, and is in use on J-Core J2 SMP (hardware =
-w/FPGA, simulation and ASIC this year) as well as some of the Hitachi / =
-Renesas IoT chips e.g. SH7619.
+Abel Vesa (7):
+  phy: qcom-qmp: pcs: Add v6 register offsets
+  phy: qcom-qmp: pcs: Add v6.20 register offsets
+  phy: qcom-qmp: pcs-pcie: Add v6 register offsets
+  phy: qcom-qmp: pcs-pcie: Add v6.20 register offsets
+  phy: qcom-qmp: qserdes-txrx: Add v6.20 register offsets
+  phy: qcom-qmp: qserdes-lane-shared: Add v6 register offsets
+  phy: qcom-qmp-pcie: Add support for SM8550 g3x2 and g4x2 PCIEs
 
-It=E2=80=99s the base of the real new line of development (as opposed to =
-backward looking support of older SH chips).  New chipsets will be based =
-on the same RTL.
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 371 ++++++++++++++++++
+ .../phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6.h   |  15 +
+ .../qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h    |  23 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6.h    |  16 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_20.h |  18 +
+ .../phy-qcom-qmp-qserdes-ln-shrd-v6.h         |  32 ++
+ .../phy-qcom-qmp-qserdes-txrx-v6_20.h         |  45 +++
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |   6 +
+ 8 files changed, 526 insertions(+)
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_20.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-ln-shrd-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v6_20.h
 
-But does it actually work?  Yes, we have (new) devices such as a USB =
-Wireguard based VPN hardware dongle, that are J2 (SH2 2 core SMP) that =
-are in use with Linux sheb, nommu and fdpic.  MMU chips will be little =
-endian.
-
-Cheers,
-J.
-
-> Thanks,
-> Guenter
->=20
+-- 
+2.34.1
 
