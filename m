@@ -2,167 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E69A671300
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 06:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCD1D671355
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 06:51:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbjARFJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 00:09:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35670 "EHLO
+        id S229436AbjARFuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 00:50:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjARFJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 00:09:54 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E7511E93;
-        Tue, 17 Jan 2023 21:09:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 555126157D;
-        Wed, 18 Jan 2023 05:09:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F9D9C433D2;
-        Wed, 18 Jan 2023 05:09:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674018591;
-        bh=MVabULCSkNV421jVEsP7DjhYVzrIeoLvfIJ7eMv+LXA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SIQvrDQUUMEyIMpQ6bG2KNlRIB7auqTJG76u8rZ5OD9Iw2YB2an3cPlqQ8ajBjcbM
-         rNO/PKVvm5X5x9U6VCBhE8kKM7qA47Salap0cVDwsh52I6d50VWR3IVe7ut3Kc2ZsO
-         AhBJD8PF7NyzWv4cZBA75TP1gH9XJshTcqetx7clLPFonm6Ag6ex/y+vsvliFJr8U0
-         8KKmcohtYsf97eLZDs4WrMrluN0UI1g7/CwryWZyZHH1sIjRqKbyOKXvBdljPMhlpw
-         MdNan4VNUYZvASuI0gn3C3PTKwSPf5JzwJmycu5DGM1R3UnefFsZPXsH/gZLppfGHG
-         qqDYARAx6eZtw==
-Date:   Tue, 17 Jan 2023 23:09:48 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
-        leo.yan@linaro.org, dmitry.baryshkov@linaro.org,
-        Jun Nie <jun.nie@linaro.org>,
-        James Willcox <jwillcox@squareup.com>,
-        Joseph Gates <jgates@squareup.com>,
-        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v3 5/8] arm64: dts: qcom: Add msm8939 SoC
-Message-ID: <20230118050948.bibhq26s6sgzullg@builder.lan>
-References: <20230117024846.1367794-1-bryan.odonoghue@linaro.org>
- <20230117024846.1367794-6-bryan.odonoghue@linaro.org>
- <20230117205800.cqexxwxmtupapy7e@builder.lan>
- <28e1df7a-6577-bf39-9739-d0a047b36f12@linaro.org>
+        with ESMTP id S229469AbjARFtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 00:49:03 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B7EE552AF;
+        Tue, 17 Jan 2023 21:48:09 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30I5leEq121959;
+        Tue, 17 Jan 2023 23:47:40 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1674020860;
+        bh=BrJrsYVahMtFpU7O/aRpM2BujKcpQcSo61rQrOwBF2c=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=xNDM/P2bqUZW035+W21sWSPw45hmBZPWV9ZKdcHsRW/PY3DrnckP/wYMu7VGsgwEI
+         lBV7j/+8UNJM03v6O2UgxKseFzmm95R+WIfxTwnyNVmFqgUFc28fAMpFz6Sk/zxofW
+         JBJaGC2X8yy+v3yvCF70Ezxwp5tZp3cRp0Zn0OO4=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30I5leAC052855
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 17 Jan 2023 23:47:40 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 17
+ Jan 2023 23:47:39 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 17 Jan 2023 23:47:39 -0600
+Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30I5lYrO023611;
+        Tue, 17 Jan 2023 23:47:35 -0600
+Message-ID: <69d39885-68df-7c94-5a98-5f1e174c7316@ti.com>
+Date:   Wed, 18 Jan 2023 11:17:33 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <28e1df7a-6577-bf39-9739-d0a047b36f12@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
+        <vladimir.oltean@nxp.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH net-next v6 3/3] net: ethernet: ti: am65-cpsw: Add support
+ for SERDES configuration
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+References: <20230104103432.1126403-1-s-vadapalli@ti.com>
+ <20230104103432.1126403-4-s-vadapalli@ti.com>
+ <CAMuHMdWiXu9OJxH4mRnneC3jhqTEcYXek3kbr7svhJ3cnPPwcw@mail.gmail.com>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <CAMuHMdWiXu9OJxH4mRnneC3jhqTEcYXek3kbr7svhJ3cnPPwcw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 17, 2023 at 10:48:37PM +0000, Bryan O'Donoghue wrote:
-> On 17/01/2023 20:58, Bjorn Andersson wrote:
-> > On Tue, Jan 17, 2023 at 02:48:43AM +0000, Bryan O'Donoghue wrote:
-> > > Add msm8939 a derivative SoC of msm8916. This SoC contains a number of key
-> > > differences to msm8916.
-> > > 
-> > > - big.LITTLE Octa Core - quad 1.5GHz + quad 1.0GHz
-> > > - DRAM 1x800 LPDDR3
-> > > - Camera 4+4 lane CSI
-> > > - Venus @ 1080p60 HEVC
-> > > - DSI x 2
-> > > - Adreno A405
-> > > - WiFi wcn3660/wcn3680b 802.11ac
-> > > 
-> > > Co-developed-by: Shawn Guo <shawn.guo@linaro.org>
-> > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > > Co-developed-by: Jun Nie <jun.nie@linaro.org>
-> > > Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> > > Co-developed-by: Benjamin Li <benl@squareup.com>
-> > > Signed-off-by: Benjamin Li <benl@squareup.com>
-> > > Co-developed-by: James Willcox <jwillcox@squareup.com>
-> > > Signed-off-by: James Willcox <jwillcox@squareup.com>
-> > > Co-developed-by: Leo Yan <leo.yan@linaro.org>
-> > > Signed-off-by: Leo Yan <leo.yan@linaro.org>
-> > > Co-developed-by: Joseph Gates <jgates@squareup.com>
-> > > Signed-off-by: Joseph Gates <jgates@squareup.com>
-> > > Co-developed-by: Max Chen <mchen@squareup.com>
-> > > Signed-off-by: Max Chen <mchen@squareup.com>
-> > > Co-developed-by: Zac Crosby <zac@squareup.com>
-> > > Signed-off-by: Zac Crosby <zac@squareup.com>
-> > > Co-developed-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> > > Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> > > Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > 
-> > Just to make sure when I get the question, you all co-developed this
-> > patch, right?
-> 
-> A long list but a fair one.
-> 
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/msm8939.dtsi | 2393 +++++++++++++++++++++++++
-> > >   1 file changed, 2393 insertions(+)
-> > >   create mode 100644 arch/arm64/boot/dts/qcom/msm8939.dtsi
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> > > new file mode 100644
-> > > index 0000000000000..8cd358a9fe623
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> > > @@ -0,0 +1,2393 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
-> > > + * Copyright (c) 2020-2023, Linaro Limited
-> > > + */
-> > > +
-> > > +#include <dt-bindings/clock/qcom,gcc-msm8939.h>
-> > > +#include <dt-bindings/clock/qcom,rpmcc.h>
-> > > +#include <dt-bindings/interconnect/qcom,msm8939.h>
-> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +#include <dt-bindings/power/qcom-rpmpd.h>
-> > > +#include <dt-bindings/reset/qcom,gcc-msm8939.h>
-> > > +#include <dt-bindings/thermal/thermal.h>
-> > > +
-> > > +/ {
-> > > +	interrupt-parent = <&intc>;
-> > > +
-> > > +	#address-cells = <2>;
-> > > +	#size-cells = <2>;
-> > 
-> > Why do you use a default of 2? In particular since you reduce it to 1 in
-> > /soc...
-> 
-> You asked that before, and I took a note of the answer but, then because I
-> was away from the main machine when I sent V2, I didn't have the log.
-> 
-> Here's what I wrote down.
-> 
-> "  - address-cells/size-cells = 1 in /soc - Bjorn
->     I experimentally changed address/cell sizes to 2
->     I'm finding that lk chokes "
-> 
-> So AFAIR LK was unhappy about changing the top level address/size cells to
-> <1> <1> and converting the /soc address/size cells to <2> <2> caused a
-> number of breakages during boot.
-> 
-> To be honest, this pattern is copied from the msm8916.dtsi original.
-> msm8953.dtsi has the same thing. msm8994 too, and 8998.
-> 
-> If you think it needs changing, then I'll have to see what can be done with
-> soc@{} entries.
-> 
+Hello Geert,
 
-Sounds like problems not worth pursuing further. How about leaving a
-comment for the next person here about LK's expectation of these being
-2?
+Thank you for reviewing the patch.
 
-Thanks,
-Bjorn
+On 17/01/23 19:25, Geert Uytterhoeven wrote:
+> Hi Siddharth,
+> 
+> On Wed, Jan 4, 2023 at 11:37 AM Siddharth Vadapalli <s-vadapalli@ti.com> wrote:
+>> Use PHY framework APIs to initialize the SERDES PHY connected to CPSW MAC.
+>>
+>> Define the functions am65_cpsw_disable_phy(), am65_cpsw_enable_phy(),
+>> am65_cpsw_disable_serdes_phy() and am65_cpsw_enable_serdes_phy().
+>>
+>> Add new member "serdes_phy" to struct "am65_cpsw_slave_data" to store the
+>> SERDES PHY for each port, if it exists. Use it later while disabling the
+>> SERDES PHY for each port.
+>>
+>> Power on and initialize the SerDes PHY in am65_cpsw_nuss_init_slave_ports()
+>> by invoking am65_cpsw_enable_serdes_phy().
+>>
+>> Power off the SerDes PHY in am65_cpsw_nuss_remove() by invoking
+>> am65_cpsw_disable_serdes_phy().
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> 
+> Thanks for your patch, which is now commit dab2b265dd23ef8f ("net:
+> ethernet: ti: am65-cpsw: Add support for SERDES configuration")
+> in net-next.
+> 
+>> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+>> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+>> @@ -1416,6 +1416,68 @@ static const struct net_device_ops am65_cpsw_nuss_netdev_ops = {
+>>         .ndo_setup_tc           = am65_cpsw_qos_ndo_setup_tc,
+>>  };
+>>
+>> +static void am65_cpsw_disable_phy(struct phy *phy)
+>> +{
+>> +       phy_power_off(phy);
+>> +       phy_exit(phy);
+>> +}
+>> +
+>> +static int am65_cpsw_enable_phy(struct phy *phy)
+>> +{
+>> +       int ret;
+>> +
+>> +       ret = phy_init(phy);
+>> +       if (ret < 0)
+>> +               return ret;
+>> +
+>> +       ret = phy_power_on(phy);
+>> +       if (ret < 0) {
+>> +               phy_exit(phy);
+>> +               return ret;
+>> +       }
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static void am65_cpsw_disable_serdes_phy(struct am65_cpsw_common *common)
+>> +{
+>> +       struct am65_cpsw_port *port;
+>> +       struct phy *phy;
+>> +       int i;
+>> +
+>> +       for (i = 0; i < common->port_num; i++) {
+>> +               port = &common->ports[i];
+>> +               phy = port->slave.serdes_phy;
+>> +               if (phy)
+>> +                       am65_cpsw_disable_phy(phy);
+>> +       }
+>> +}
+>> +
+>> +static int am65_cpsw_init_serdes_phy(struct device *dev, struct device_node *port_np,
+>> +                                    struct am65_cpsw_port *port)
+>> +{
+>> +       const char *name = "serdes-phy";
+>> +       struct phy *phy;
+>> +       int ret;
+>> +
+>> +       phy = devm_of_phy_get(dev, port_np, name);
+>> +       if (PTR_ERR(phy) == -ENODEV)
+>> +               return 0;
+>> +
+>> +       /* Serdes PHY exists. Store it. */
+> 
+> "phy" may be a different error here (e.g. -EPROBE_DEFER)...
+
+The Serdes is automatically configured for multi-link protocol (Example: PCIe +
+QSGMII) by the Serdes driver, due to which it is not necessary to invoke the
+Serdes configuration via phy_init(). However, for single-link protocol (Example:
+Serdes has to be configured only for SGMII), the Serdes driver doesn't configure
+the Serdes unless requested. For this case, the am65-cpsw driver explicitly
+invokes phy_init() for the Serdes to be configured, by looking up the optional
+device-tree phy named "serdes-phy". For this reason, the above section of code
+is actually emulating a non-existent "devm_of_phy_optional_get()". The
+"devm_of_phy_optional_get()" function is similar to the
+"devm_phy_optional_get()" function in the sense that the "serdes-phy" phy in the
+device-tree is optional and it is not truly an error if the property isn't present.
+
+Thank you for pointing out that if the Serdes driver is built as a module and
+the am65-cpsw driver runs first, then the "phy" returned for "serdes-phy" will
+be "-EPROBE_DEFER".
+
+> 
+>> +       port->slave.serdes_phy = phy;
+>> +
+>> +       ret =  am65_cpsw_enable_phy(phy);
+> 
+> ... so it will crash when dereferencing phy in phy_init().
+> 
+> I think you want to add an extra check above:
+> 
+>     if (IS_ERR(phy))
+>             return PTR_ERR(phy);
+
+Please let me know if posting a "Fixes" patch for fixing this net-next commit is
+the right process to address this.
+
+> 
+>> +       if (ret < 0)
+>> +               goto err_phy;
+>> +
+>> +       return 0;
+>> +
+>> +err_phy:
+>> +       devm_phy_put(dev, phy);
+>> +       return ret;
+>> +}
+>> +
+>>  static void am65_cpsw_nuss_mac_config(struct phylink_config *config, unsigned int mode,
+>>                                       const struct phylink_link_state *state)
+>>  {
+>> @@ -1959,6 +2021,11 @@ static int am65_cpsw_nuss_init_slave_ports(struct am65_cpsw_common *common)
+> 
+> Right out of context we have:
+> 
+>                 port->slave.ifphy = devm_of_phy_get(dev, port_np, NULL);
+>                 if (IS_ERR(port->slave.ifphy)) {
+>                         ret = PTR_ERR(port->slave.ifphy);
+>                         dev_err(dev, "%pOF error retrieving port phy: %d\n",
+>                                 port_np, ret);
+> 
+> So if there is only one PHY (named "serdes-phy") in DT, it will be
+> used for both ifphy and serdes_phy. Is that intentional?
+
+The PHY corresponding to "ifphy" is meant to be the CPSW MAC's PHY and not the
+Serdes PHY. The CPSW MAC's PHY is configured by the
+drivers/phy/ti/phy-gmii-sel.c driver and this is NOT an optional PHY, unlike the
+Serdes PHY. Therefore, it is assumed that the CPSW MAC's PHY is always provided
+in the device-tree, while the Serdes PHY is optional, depending on whether the
+Serdes is being configured for single-link protocol or multi-link protocol.
+Please let me know if this appears to be an issue and I will fix it based on
+your suggestion.
+
+Regards,
+Siddharth.
