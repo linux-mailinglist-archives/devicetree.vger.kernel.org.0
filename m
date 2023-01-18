@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39FBA672446
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:56:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 744A467244A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:57:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229804AbjARQ4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 11:56:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33190 "EHLO
+        id S230365AbjARQ5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 11:57:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230306AbjARQ4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:56:48 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50C9A31E3B;
-        Wed, 18 Jan 2023 08:56:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DB98561910;
-        Wed, 18 Jan 2023 16:56:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1C02C433D2;
-        Wed, 18 Jan 2023 16:56:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674061007;
-        bh=E3RoN2UBLg+xbugtNCvURjAmNDgUh/BpOKAe6HdbGW0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=KndQMtq/s2qsD+r9i7Tv7PA3agwEwLPlR+Ka3/+3DuE+IpjL6sxoNFPVUf86IypTj
-         LoH3245g9TQkuYMuowKL5JE6d5r+fQ/r77x9qCfOrwnBYSMKniWvxud5QFUIAvgRIX
-         scgBech16DpDYSvTgGHQv4YzaJanSIiQgZr1JO/vohV/MiKqQ92W9YiiRCbDKDy0rE
-         2pUwyJx1pX1gMDZJaCxlNN37s5vTQMszbhq2sGqbFTt1mlqWaT3s3vX0iOW7Ru5UnI
-         xyXw0MT5hihBzBfEHxXYDW0Ephdsdw4lPfpliXJiBIrTK/JmV9DiWtd4mhmFVoMeb1
-         3pe7GvBQTyNzQ==
-Date:   Wed, 18 Jan 2023 10:56:44 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Achal Verma <a-verma1@ti.com>
-Cc:     mranostay@ti.com, rogerq@kernel.org, lpieralisi@kernel.org,
-        robh@kernel.org, kw@linux.com, bhelgaas@google.com,
-        krzysztof.kozlowski@linaro.org, vigneshr@ti.com,
-        tjoseph@cadence.com, sergio.paracuellos@gmail.com,
-        pthombar@cadence.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 5/5] PCI: j721e: add j784s4 PCIe configuration
-Message-ID: <20230118165644.GA225110@bhelgaas>
+        with ESMTP id S230394AbjARQ5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:57:05 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABC84A235
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 08:57:01 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id 78so24958169pgb.8
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 08:57:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5TS776QSf+XZfy673cDJNFU1tHVWrzQdFJV93jLAyIM=;
+        b=UTTiXEXhcgQAvF1nocW2Kav/D3lwKFQqUY3WhYtgtSNob9fDZKf8JhoUkgCe8qbePa
+         Buid5982Q5lRilQceOkB4bO/T8cEbgOq1itEEirXckwojm3kfOTU7/0GslGNaA3V3o4e
+         b1nNaJRx4FDickripTe2UZZiLCokX2Bd202mlx77FrSl3fBpofL3zT49GRYqS2aiLtp6
+         zGQ3QVnObdkLsf3lg1NA6SqHJlJBovr71seE7sxxFpqWm53vGbPzi1SweAtfTmhioiA7
+         dIJrg2ocuz7o7Ld4lLCqyihAkG+GZskMhQX0V3rx7+3rn/dLmeSpXSUgKg5i6Qetevra
+         9E+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5TS776QSf+XZfy673cDJNFU1tHVWrzQdFJV93jLAyIM=;
+        b=U/5m3jv9gHBOM+8ZZi/wdgy5Z73Cg3kGSXgA8F3K7qpNHjmRmZDtmgRjLGV6SmChwo
+         oknFzWvfzbYFFBNYRvbBnl7KQbH6zSp97M+z48cS1P1iPJ86VcP0P+m8F096NdrW4q9A
+         XSW/Iifj3PBC9RuPvzaNxUYmlSyUuayf1Awasw8C88rh49wqNlAp0Fj/G2Y9IDebVCJR
+         qb3SFmWkxltaDg4vjwxCmA8FJuNUkKWR5NbvlYHaCbXhWKQlLq5KfU0vmgC7m0Q1IMWD
+         3P4LswKfmoT5EiwJz1JHTVedllN76rqSq7CBz2YXKzWw19uSlDP+lGcgAZaX9D0kvK/W
+         oOpQ==
+X-Gm-Message-State: AFqh2kpCyej3L841egIXCodXMtGULqbKtkIVcb05MRSMWe1cUC0yyW5A
+        VjPYYE4bLOkaoMCGInBcdaxSW1K8H+oqxD++Ytk=
+X-Google-Smtp-Source: AMrXdXu/fDDN5wQ6cH5A6VwbJ9Tbtwt7yeNTIr1Zun4Y9NgUnd3Z8C4Xurs87GFUQb+1qRo+p/JDmdLk+wU9vQAGipY=
+X-Received: by 2002:a65:66c9:0:b0:478:5c3b:bf57 with SMTP id
+ c9-20020a6566c9000000b004785c3bbf57mr561541pgw.358.1674061020928; Wed, 18 Jan
+ 2023 08:57:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230118125936.3456716-6-a-verma1@ti.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:7300:1491:b0:96:8a95:4622 with HTTP; Wed, 18 Jan 2023
+ 08:57:00 -0800 (PST)
+Reply-To: illuminatiinitiationcenter7@gmail.com
+From:   Garry Lee <abayostella@gmail.com>
+Date:   Wed, 18 Jan 2023 08:57:00 -0800
+Message-ID: <CABdr3XK1O1uXro7+fW+gmkOj_KmvTDOdLM3Ne9xjs3cy6+FnWg@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_FILL_THIS_FORM_SHORT,UNDISC_FREEM,UPPERCASE_75_100 autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If you repost for some other reason, fix the subject typo ("Add ..."
-to match the others).  Otherwise, Lorenzo may fix it up while
-applying.
+-- 
+DO YOU WANT TO BE RICH AND FAMOUS? JOIN THE GREAT ILLUMINATI ORDER OF
+RICHES, POWER/FAME  NOW AND ACHIEVE ALL YOUR DREAMS? IF YES EMAIL US :
+MAIL: illuminatiinitiationcenter7@gmail.com
 
-On Wed, Jan 18, 2023 at 06:29:36PM +0530, Achal Verma wrote:
-> From: Matt Ranostay <mranostay@ti.com>
-> 
-> Add PCIe configuration for j784s4 platform which has 4x lane support.
-> 
-> Tested-by: Achal Verma <a-verma1@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> Reviewed-by: Roger Quadros <rogerq@kernel.org>
-> Signed-off-by: Achal Verma <a-verma1@ti.com>
+YOUR FULL NAME:
+PHONE NUMBER :
+COUNTRY :
+GENDER:
