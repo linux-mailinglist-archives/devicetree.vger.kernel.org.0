@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F0046712B7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 05:45:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2E8E6712BB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 05:45:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbjAREo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 23:44:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50754 "EHLO
+        id S229676AbjAREpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 23:45:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbjAREoy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 23:44:54 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06750577D2;
-        Tue, 17 Jan 2023 20:44:52 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id 127so7981932pfe.4;
-        Tue, 17 Jan 2023 20:44:52 -0800 (PST)
+        with ESMTP id S229677AbjAREpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 23:45:16 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4293658649;
+        Tue, 17 Jan 2023 20:45:05 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id 141so23667311pgc.0;
+        Tue, 17 Jan 2023 20:45:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=itXWojnygtxjpIeaCDfV4R7hBZ6s5zXg2DD6bBlDmBs=;
-        b=eftewbe2CBi/5TV64gKK9OavY/tDi6b+9se+BEA3Z28iy4AcsbG082daQioK7e3Loi
-         804DCiNVLoBU7Mh3a2+1Li+ryCxBdytyRgUd00pGZsFgDegiZiKbMWPY9mZwcMMUPbQY
-         SOi7EZ3xkmngdy0yPw7iMuvyve+0A8DhScdS/+HQwhB2tWzssJE4qPcgy4sEuBGzcaYf
-         Bmb9MsJMk/PGphbVBl7Op+mFA71C5FNYN8qO5cu8jiC1v+eMPCV2hKmSnVSkRYzpeYXc
-         oUpqg6WrvR1pt60FnCNTD0kWYUTVMPE9WZTa1cH84ZuYbQjp5tjOy7x64Lpx3x9f5Rsa
-         8f1g==
+        bh=PfihuVFwjd5d3eUYDaVupZrTOejihs/ApCisILxFErw=;
+        b=iIZ7zPl+O+toE3nPuz0aILU48jCG0tEOyL1xKTUO7wLHUYujqTmYAwqEqKKVHgKecJ
+         LXU4VOntZP0lF9/kvYUdGa+JgcU6C4P9vvUjg1KcN6YSXHzE6gOUR6DdAGvax8go/t9a
+         1gDk60IpS5taasM3iCzOMJNgu7OJpz8VQzIF3gwq04XLUnmgqMbF8P+b+se/HsXRZULS
+         qJcElls5l4zMZa5YjwzfAZ+8+sMgI+Uf+1SkTBw3PdiCN6g3texCwlIneHxByniKWdxL
+         SODuxoM4s/KYhZiaylSHIKbDkTwwMSFJoWwDrZbB1ddWubwiylfEhp1OR8aTUSFuBCph
+         2EDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=itXWojnygtxjpIeaCDfV4R7hBZ6s5zXg2DD6bBlDmBs=;
-        b=i0VUYEIpU708b43lmCEV0/y0uYcaB6XIBJPqdPERp9LUl0swq+yVV8AryScpkVtBm6
-         odhdrJ+rohGIG9yoonIUT4ZFK4V/8kPUfMonckMTLuFel8u5/JfVJMjGLHZosuMI2N12
-         wr4UDVhX5eo/TEaP4/tHhNWkF/Ngv5g3tc+Z3BsvEl2xh1vFnukeg4PD22+skrmt9hpu
-         qqX0FWs/0G1wrqTsPoERaXyrcGaOyBXpKJb6Ghmh8OmObQGz5zaHX7oD01aTxtrInLA1
-         0oMVxIMdAZxYrX7Stv3aV2LrHeY+oM0FylggvOG4NiS88YhzFhuIhgfrOpR4dD86x6Bs
-         CGMA==
-X-Gm-Message-State: AFqh2krrLprpl5CwztZT4FrZr8piha1Y2xfxzH656XUv6KWeu95S4Txa
-        Ft8JTu+T5hYW3FIihI3nTVY=
-X-Google-Smtp-Source: AMrXdXtBJtSFjDvd+tEKeroo4rlbneH5l+K+HTCDwQ7LNibIc+cAzkuTh9IotDPhn2l/gjbk/m3wtA==
-X-Received: by 2002:a05:6a00:2986:b0:58c:8bdd:2e3c with SMTP id cj6-20020a056a00298600b0058c8bdd2e3cmr5927506pfb.20.1674017092407;
-        Tue, 17 Jan 2023 20:44:52 -0800 (PST)
+        bh=PfihuVFwjd5d3eUYDaVupZrTOejihs/ApCisILxFErw=;
+        b=uRdEND3Ayz4YF+PMX+Ix5ZgAmAPJPfWDK6MtOV/SVeH1Ij7JQwtOrT5ChwPgRPQrjX
+         A4Pzp1WHcjaBmgrVVB2iRjktLnTIl/51e7yFTIBGZxWH+tEXrVzSXnzBSiVaXNnlBQcY
+         P9UuEtqe14zXbN0t8isMnMw62oy06M/8twfd1MNcGyyaBQh/Rc5OsTcNApRU/Y8dk1PM
+         Zwe+wsCftqtU8J+WmB/yNqeMvWSpY3FGdpOIQYwXtV78TE35LLZIBISwijRzNU4MhpkT
+         9+EnjpQp8jA9f3oo7BUo2mUgmZk396YaHAriceTE3/y0VEHxd8AOENliEzPrn4KL4n7y
+         eG0A==
+X-Gm-Message-State: AFqh2kpBBMDf+EaP5s41XLvfnGINXxe0+rbZb0rnYUX/kHewwGB9TOqI
+        6mtvvA3KLlZWULS03K9v6qLPoWlmphs=
+X-Google-Smtp-Source: AMrXdXuPHaZARMk1tFINkL/nlmxzUDML6XCzLORMAthj8F2FYePyX1hUTAWnb30yDp8P3ssUGUGgSQ==
+X-Received: by 2002:a62:15d2:0:b0:58d:be61:8bc5 with SMTP id 201-20020a6215d2000000b0058dbe618bc5mr6584900pfv.13.1674017104956;
+        Tue, 17 Jan 2023 20:45:04 -0800 (PST)
 Received: from localhost.localdomain ([45.112.3.15])
-        by smtp.gmail.com with ESMTPSA id i1-20020a056a00004100b00581a156b920sm8682770pfk.132.2023.01.17.20.44.48
+        by smtp.gmail.com with ESMTPSA id i1-20020a056a00004100b00581a156b920sm8682770pfk.132.2023.01.17.20.45.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 20:44:52 -0800 (PST)
+        Tue, 17 Jan 2023 20:45:04 -0800 (PST)
 From:   Anand Moon <linux.amoon@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-amlogic@lists.infradead.org,
         Matthias Kaehlcke <mka@chromium.org>,
         Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/9] arm64: dts: amlogic: Used onboard usb hub reset on odroid c2
-Date:   Wed, 18 Jan 2023 04:44:11 +0000
-Message-Id: <20230118044418.875-4-linux.amoon@gmail.com>
+        Johan Hovold <johan@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 5/9] vendor-prefixes: Add VIA Labs, Inc.
+Date:   Wed, 18 Jan 2023 04:44:13 +0000
+Message-Id: <20230118044418.875-6-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20230118044418.875-1-linux.amoon@gmail.com>
 References: <20230118044418.875-1-linux.amoon@gmail.com>
@@ -79,63 +77,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Odroid c2 previously use gpio-hog to reset the usb hub,
-switch to used on-board usb hub reset to enable the usb hub
-and enable power to hub.
+Add the vendor prefix for VIA Labs, Inc. (VLI) is a supplier
+of USB and USB Power Delivery controllers for multi-functional devices
+and platforms.
 
+Website: https://www.via-labs.com/
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
-v2 - drop the vendor name from compatible string.
-   - move the hub node to USB controller node.
-   - drop the usb_otg_pwr since it only liked to OTG port
-         and link p5v0 to the vdd-supply.
+V2: - drop Drop marketing, so without "leading".
+    - add Ack of Krzysztof
 ---
- .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 26 ++++++++-----------
- 1 file changed, 11 insertions(+), 15 deletions(-)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 201596247fd9..01356437a077 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -250,21 +250,6 @@ eth_phy0: ethernet-phy@0 {
- 	};
- };
- 
--&gpio_ao {
--	/*
--	 * WARNING: The USB Hub on the Odroid-C2 needs a reset signal
--	 * to be turned high in order to be detected by the USB Controller
--	 * This signal should be handled by a USB specific power sequence
--	 * in order to reset the Hub when USB bus is powered down.
--	 */
--	hog-0 {
--		gpio-hog;
--		gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
--		output-high;
--		line-name = "usb-hub-reset";
--	};
--};
--
- &hdmi_tx {
- 	status = "okay";
- 	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-@@ -414,5 +399,16 @@ &usb0 {
- };
- 
- &usb1 {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
-+
-+	hub@1 {
-+		/* Genesys Logic GL852G USB 2.0 hub */
-+		compatible = "usb5e3,610";
-+		reg = <1>;
-+		vdd-supply = <&p5v0>;
-+		reset-gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
-+	};
- };
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 70ffb3780621..d19b7f9cef4c 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1398,6 +1398,8 @@ patternProperties:
+     description: Vertexcom Technologies, Inc.
+   "^via,.*":
+     description: VIA Technologies, Inc.
++  "^vialab,.*":
++    description: VIA Labs, Inc.
+   "^vicor,.*":
+     description: Vicor Corporation
+   "^videostrong,.*":
 -- 
 2.38.1
 
