@@ -2,365 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAEE7672B0B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 23:06:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A61B672B4A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 23:28:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbjARWGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 17:06:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52814 "EHLO
+        id S229997AbjARW2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 17:28:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229974AbjARWFm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 17:05:42 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395DF64DAF
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 14:05:41 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id v10so596480edi.8
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 14:05:41 -0800 (PST)
+        with ESMTP id S229590AbjARW2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 17:28:47 -0500
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2133.outbound.protection.outlook.com [40.107.244.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D04148588;
+        Wed, 18 Jan 2023 14:28:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=caVvVenC6vZqUEPjAvXRUZnehVIdGsI/OGGYa/BXi0cKsHivXEaJP7Y5m8U18AtB/PlvfRwod1rB3xtEa7tqD8mDyxyoahALoFt05u4FYnnow9iEBWvn18fVXY0B/wqZCA2+ZyyPZy0VGJ14kGm5RMAthZ1Ua4jGrNsmiwQ7YBsBXpRwTqvmb+Q8sNM67t1PJHxQyW6Ixh64ab249q1Xis2FD+a5cb8IYRAVagIe9XE6+3UU7bpxTFf1sUIdkJDlX7mXDIyvcjD8mj2q/jQzOQNO0N3dJ/Vt5E8s2yy8AI9xNnyMpoxPaSgYWfaqe9JWayYmrDzHMNjwG3C0zZmz0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QBzbf7j62jlH01WHmCTOPD+Ca+1JXVYczbnC3Gpnlrg=;
+ b=oVT9XR3P0ZzMXskMRxE7UldKiLNiDlyai8xNWS4HCp/Oi/CrNPCNbm1wT43JgQpfJbEEA97onzD+HpN5LAYt1fum/SrfD3EISoj3zPFahuifotA65VoMmyFss3+E46EoEitWuD8sKggsU4AhNB7K17adlHsW7DmqvgHrgoCNzKdBqQAyRc3qU6L01GRs844rZFBIvlIZuS7nBvNJr1pKsI9SB3e+IvjpE7sud+GU32vxKhZF86leYvemX6i1+xw9op3iFxD33rtRmuLoLF2yWmz+LxYzn9Dr07QXiQlzFAmL2KTbpLSol3TZYr1vzTzxG7fg8YvwW0DPQcVmDC7d6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5F8f4poEdRJ4er7HAs/7wlBadhDEHmvdpQ5oVB0an+U=;
-        b=PeYAiW27HuHKHz7nJQ/2qjpmFwtHaZzsARazkrI+XyvUAE55/mEUDaSueF3n7fHoNi
-         EzWFY6iGvZP+IFgJyChSn0jh+0/CaH3tdWCG9Qk5qtkqf+Ef405G4frMJBV+3p7uKu+n
-         jfuPHTbTw96yBQ+KqDWy5dpX0fy6l20OZf91k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5F8f4poEdRJ4er7HAs/7wlBadhDEHmvdpQ5oVB0an+U=;
-        b=ScwzackNrzsw9qGUAueuD/g7NmIF9V+ytpadfA867a8TNIkCzJ4WDpFl5ZdZm0lW4h
-         Hsnxk03mk6A0Iy94DNpQ7n0DhfrQZ72/zSk5/cxu7H34l73zHrFEseP4g+KyBKhJDN0w
-         zGyeG1OfpfitfCRReile/Y1R+HEYprkfG2eP/wtdFpQ2xNe4TH3TzRM8Ody583q730zA
-         UaQLVqQ6jjregsS4m7XIF7LkiGGna4JkwzqOUqXulTlNd8vjto3J25hfBr6N6Z3T9jtL
-         iA+wyyHg1PmC0VRSoC2obq0XyZFko8f47mM1meCvdvm+XKHwKjKNZXz7lgw1WyqgzXRZ
-         qPZw==
-X-Gm-Message-State: AFqh2krhGAaClkhV4DbLO8mItRn7t9TougyVJzN0VSMFSJkmDE5Y+Tbr
-        72eTxsaQ1Udin0vSNRy4z2Gq2cQh6dLjQWN5ec6pPdRdxY9yBAfk
-X-Google-Smtp-Source: AMrXdXsxk9KThE19SkDgSu7yg536wclWTjlKbhYRay4CJIE5dOeVaupZqWovDLYzIlOFCl0d3/A7AMt/+GPyjGcA4fA=
-X-Received: by 2002:a05:6402:28b1:b0:492:52b7:cb0b with SMTP id
- eg49-20020a05640228b100b0049252b7cb0bmr1080917edb.264.1674079539187; Wed, 18
- Jan 2023 14:05:39 -0800 (PST)
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QBzbf7j62jlH01WHmCTOPD+Ca+1JXVYczbnC3Gpnlrg=;
+ b=Z7Ozjfqx5WrYBNJQTBOIoeUwAt91vX2IaMuLmyZplG+HrY1ptOBPXFlDqRDILg2vywZlYCMCfd+mN1/1Q8Hq/yCyGgXVBxq+h3RbR7CGU4Z0/lvi20TyatZ+4fCdxp3N8V2S3c0GlXFesNUxt0jCtJIsWI0DoagAC2ZMU+HZ4m4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by DS0PR10MB7397.namprd10.prod.outlook.com
+ (2603:10b6:8:130::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.11; Wed, 18 Jan
+ 2023 22:28:43 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::2015:3589:3e96:2acd]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::2015:3589:3e96:2acd%5]) with mapi id 15.20.6002.012; Wed, 18 Jan 2023
+ 22:28:42 +0000
+Date:   Wed, 18 Jan 2023 12:28:36 -1000
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v3 net-next 12/14] dt-bindings: net: dsa: ocelot: add
+ ocelot-ext documentation
+Message-ID: <Y8hylFFOw4n5RH83@MSI.localdomain>
+References: <ec63b5aa-3dec-3c27-e987-25e36b1632ba@linaro.org>
+ <YzzLCYHmTcrHbZcH@colin-ia-desktop>
+ <455e31be-dc87-39b3-c7fe-22384959c556@linaro.org>
+ <Yz2mSOXf68S16Xg/@colin-ia-desktop>
+ <28b4d9f9-f41a-deca-aa61-26fb65dcc873@linaro.org>
+ <20221008000014.vs2m3vei5la2r2nd@skbuf>
+ <c9ce1d83-d1ca-4640-bba2-724e18e6e56b@linaro.org>
+ <20221010130707.6z63hsl43ipd5run@skbuf>
+ <d27d7740-bf35-b8d4-d68c-bb133513fa19@linaro.org>
+ <20221010174856.nd3n4soxk7zbmcm7@skbuf>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221010174856.nd3n4soxk7zbmcm7@skbuf>
+X-ClientProxiedBy: SJ0PR03CA0086.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::31) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
 MIME-Version: 1.0
-References: <20230113205518.206306-1-sjg@chromium.org> <20230113205518.206306-2-sjg@chromium.org>
- <CAL_JsqL6rOaFHcYTuP9YXhcWuhn7t0LKwZn0D0grLVMsu+PwLw@mail.gmail.com>
-In-Reply-To: <CAL_JsqL6rOaFHcYTuP9YXhcWuhn7t0LKwZn0D0grLVMsu+PwLw@mail.gmail.com>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Wed, 18 Jan 2023 15:05:27 -0700
-Message-ID: <CAPnjgZ37fcrnxcT4XOb=irVomRN1NYLni0p7MRgesjm7hwg8hg@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] schemas: Add schema for U-Boot driver model 'phase tags'
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-        autolearn=no autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|DS0PR10MB7397:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0522c5f-d314-4362-a85e-08daf9a35a13
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ThtX6Bv1w+xh+QvaJmQfEGeSrpi7k6KsH4f1kyK4QSKshjvOmq1sp3eJJuyG97hLpE4KzMzNXsN7JVlLGwwQJ3+M2VDeL6Sn25Kmqh52KVi5bx+O5S5Rq12CuCM7jxRwgHkojzCUz5p6bzPJ2npIbhrrtmNOvqtJkSGUcw3O4lW8Q1ev2qCAIY6hrBuCJTIy8pitqfj/l5qcom9W445GWzy/k96zJCPVxZHBHnHjrj2VhSxCywWi4zFROMjd+Ry+vmpH9Bs0q9XHjs9g+lXUKCgWpnpI+KpFgchwEcFT8bMaE6s7WoBf9yRbLqlFYJkpuMbrcdCuIKgs4eRhfDVBOkryOldgcShq5WUPikJq3aNLEcAY8QcemI2c3tYQp+RXtAn3cehhgb2icxyyhjGKRNlvTIXLN6INbwSAzG+j6oman9g0zBolZ0RKJFXeXtv6TSv43XpiCFtXGS+fHgJhxkK0bMkKv7WzQotuoph2kx5L49ltA2g4kZBkOH5xKFKc+va+gp92Or5/bcG3HkVugieWOCKzVALB8uE8/TRV8weO83st0kN0t5kv6p97Y4AbU/bET3EJgzO4HGylQ4eQ1H2iY0rqPqKcqfseVLkT3CFjUlCd2wdNpYPZw1KxHcVjZz6KVM7fej2U5uV8OP+pQw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(376002)(136003)(346002)(366004)(39840400004)(396003)(451199015)(2906002)(38100700002)(316002)(86362001)(54906003)(7416002)(5660300002)(44832011)(41300700001)(4326008)(66476007)(66556008)(66946007)(8676002)(6916009)(6506007)(6486002)(6666004)(8936002)(83380400001)(6512007)(186003)(9686003)(478600001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ViJ54NY0SJpFufOUgTv9X/MycTy5rwFQrFu1zWZUuwh4FFaVKwtj1O8tXdTf?=
+ =?us-ascii?Q?THcarjoFufO9thNWR0eFDH8I8owCA6YPDthTlEyS7d6DLxYm8ePFcQRuDX4J?=
+ =?us-ascii?Q?8XxI228kTxjBDoZO3rDkdr1I6Ap2cgsYvN1mlC7wlHP55oRdCdXeu9ChbqsD?=
+ =?us-ascii?Q?eupOjQyAD9qXv0K5CBeV90eOBha2D99ZkAVwCEes5fdbBT2xb43YDSgE0Unx?=
+ =?us-ascii?Q?b7l7hLNzk8U3L19hgnAQN0wUs7vz/7KMvVumfhlHfv7vZqhQAA4zwLnYQtZ4?=
+ =?us-ascii?Q?M90wrk6a+Hhu75jK+1wstdqs5jqLIfT6BSTrZG3XWaDhqe/Y5hzdG57KQZbF?=
+ =?us-ascii?Q?805YCWzWeQnkIFgi8JPx7MD5nyVTKojs3G9EEW90ALWCR+rXbEp0QdaZmcuG?=
+ =?us-ascii?Q?tu3/Lvt47Bf+1ET/X+1qHiIXTLj96MK/+vC7oKVw76Zr0ACwUNGbllsGqFp0?=
+ =?us-ascii?Q?2pcfAIdwcSJJxLZ6mpH18zxexeQ4Dm/bnXe9XMYfse1nPSclBz4fI/EKBrg9?=
+ =?us-ascii?Q?Q9OrBtLKUZK7aSDmbyZUHEqRVQD8OUT69YSjZJgj3TDgOwR0VzjldgBnfV2W?=
+ =?us-ascii?Q?IPbRW9v80W+CN1WaQSD16DDPIYS1jURCWfXxaaYwm/Ah1Pai82XKvc0Q22R5?=
+ =?us-ascii?Q?KqMUC0AajaTYKEnAndZu1CVHAqd2+b3ItqonnkCFXdwnOisluXIlKEk6JE8v?=
+ =?us-ascii?Q?gtHwYwu0LG1HpmW0oJi1JO8/k1lhr5RVtDryHzFlcaWBjev+Y1Wo9gwhuLZw?=
+ =?us-ascii?Q?w4T7N0hWTfeDu0bbK3AM4m7DvdStOUxbFG8t4A0js/EY09nUVU+ua7DUsXDT?=
+ =?us-ascii?Q?2+Xgs1ddKupv3Ga1h7EdfZph/Yu8EVHh5ZW0R/ahOBdyQlaRROsMEpLJU9I9?=
+ =?us-ascii?Q?g2F5SXbenuSPCh/p4//LckncBUrmua3K9+DAMqFAXpbw31XNhOBX77j/3CSx?=
+ =?us-ascii?Q?AX8VFxaXERWDcjGU09fk3XsX75vwxeXGv2kl7CEMv0GdP/BPE+NKv076vRcR?=
+ =?us-ascii?Q?82HemzAjmV7Pgc58H1bN1Xn/XiPuMGUkWakQ+kryHkWtC9JPdupCC9KA/sei?=
+ =?us-ascii?Q?urBbbHStkPxwDZelunyEigo0BkYrbcEf2Ant5kLH0rlRl8CJasKNiPk6bfk0?=
+ =?us-ascii?Q?hdSx+Fwl/LUwQwnO8+u8jciqQ0PZvJhRXOPKMeyCYphz8qmFdA37zg9v+OoJ?=
+ =?us-ascii?Q?RT/TPrbdGmm+A4fQ+aS2R/tbKphVhdVcwrnFtdW1RGsgunQoU1PpE4SfL0gZ?=
+ =?us-ascii?Q?mgxGo6ohp7RdLlFHxzDlhBFRF+dkjmpwTP5ohNYeHsBW56pirhQu1X+mNLyY?=
+ =?us-ascii?Q?Bgsyu1QzsmQ0juA/sodpcD+aLEycsLoxftTpjSXCvR+6G2eMUN6U8q4pIq/I?=
+ =?us-ascii?Q?xX2roFvfkzVY7CIvI5TJpf8d+SwB6Gqmi4Jfc6Glulq9eouF2OqF+UFEskBn?=
+ =?us-ascii?Q?YRFigKVMkkZVTkdJvNhgEc5mzcIwwnYFDm5pBFGd4B7eVChuEWzzHrduHQTB?=
+ =?us-ascii?Q?4eko+1W/taHyjM2IhG0Bu4RaaUEYyXEYXMfuBARYcQXjGnk1zFYNLQIBzI74?=
+ =?us-ascii?Q?soPBN6sMJAWq8+QryzVuWbEFbN6Esj+uWiYf1Yi1KvEpjlQJbeP3Z0SPjsUf?=
+ =?us-ascii?Q?zVcxESXl+h9JScaTWJN7RDd8+xc0YJ3F0kFkF7ghLB2rPEXS8NagNHHGMoEL?=
+ =?us-ascii?Q?WNn++Q=3D=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0522c5f-d314-4362-a85e-08daf9a35a13
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2023 22:28:42.6631
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CLWjU82FOZEYi1p9D5udyIr8g5sAkbfpl6NboYLFqQkFVw+Sep3ODE9BbRJ32RY/UTBqoFT6df9M+JUmjyqcTZaU1oAF1eG8n8j7aBaCLZY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7397
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Mon, Oct 10, 2022 at 08:48:56PM +0300, Vladimir Oltean wrote:
+> On Mon, Oct 10, 2022 at 09:37:23AM -0400, Krzysztof Kozlowski wrote:
+> > What stops you from doing that? What do you need from me?
+> 
+> To end the discussion on a constructive note, I think if I were Colin,
+> I would do the following, in the following order, according to what was
+> expressed as a constraint:
+> 
+...
+> 8. Introduce the "mscc,vsc7512-switch" compatible string as part of
+>    mscc,vsc7514-switch.yaml, but this will have "$ref: dsa.yaml#" (this
+>    will have to be referenced by full path because they are in different
+>    folders) instead of "ethernet-switch.yaml". Doing this will include
+>    the common bindings for a switch, plus the DSA specifics.
 
-On Wed, 18 Jan 2023 at 13:34, Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Jan 13, 2023 at 2:58 PM Simon Glass <sjg@chromium.org> wrote:
-> >
-> > U-Boot has some particular challenges with device tree and devices:
-> >
-> > - U-Boot has multiple build phases, such as a Secondary Program Loader
-> >   (SPL) phase which typically runs in a pre-SDRAM environment where code
-> >   and data space are limited. In particular, there may not be enough
-> >   space for the full device tree blob. U-Boot uses various automated
-> >   techniques to reduce the size from perhaps 40KB to 3KB. It is not
-> >   always possible to handle these tags entirely at build time, since
-> >   U-Boot proper must have the full device tree, even though we do not
-> >   want it to process all nodes until after relocation.
-> > - Some U-Boot phases needs to run before the clocks are properly set up,
-> >   where the CPU may be running very slowly. Therefore it is important to
-> >   bind only those devices which are actually needed in that phase
-> > - U-Boot uses lazy initialisation for its devices, with 'bind' and
-> >   'probe' being separate steps. Even if a device is bound, it is not
-> >   actually probed until it is used. This is necessary to keep the boot
-> >   time reasonable, e.g. to under a second
-> >
-> > The phases of U-Boot in order are: TPL, VPL, SPL, U-Boot (first
-> > pre-relocation, then post-relocation). ALl but the last two are optional.
-> >
-> > For the above reasons, U-Boot only includes the full device tree in the
-> > final 'U-Boot proper' build. Even then, before relocation U-Boot only
-> > processes nodes which are marked as being needed.
-> >
-> > For this to work, U-Boot's driver model[1] provides a way to mark device
-> > tree nodes as applicable for a particular phase. This works by adding a
-> > tag to the node, e.g.:
-> >
-> >    cru: clock-controller@ff760000 {
-> >       bootph-all;
-> >       compatible = "rockchip,rk3399-cru";
-> >       reg = <0x0 0xff760000 0x0 0x1000>;
-> >       rockchip,grf = <&grf>;
-> >       #clock-cells = <1>;
-> >       #reset-cells = <1>;
-> >       ...
-> >    };
-> >
-> > Here the "bootph-all" tag indicates that the node must be present in all
-> > phases, since the clock driver is required.
-> >
-> > There has been discussion over the years about whether this could be done
-> > in a property instead, e.g.
-> >
-> >    options {
-> >       bootph-all = <&cru> <&gpio_a> ...;
-> >       ...
-> >    };
-> >
-> > Some problems with this:
-> >
-> > - we need to be able to merge several such tags from different .dtsi files
-> >   since many boards have their own specific requirements
-> > - it is hard to find and cross-reference the affected nodes
-> > - it is more error-prone
-> > - it requires significant tool rework in U-Boot, including fdtgrep and
-> >   the build system
-> > - is harder (slower, more code) to process since it involves scanning
-> >   another node/property to find out what to do with a particular node
-> > - we don't want to add phandle arguments to the above since we are
-> >   referring, e.g., to the clock device as a whole, not a paricular clock
-> > - the of-platdata feature[2], which converts device tree to C for even
-> >   more constrained environments, would need to become aware of the
-> >   /options node
-> >
-> > There is also the question about whether this needs to be U-Boot-specific,
-> > or whether the tags could be generic. From what I can tell, U-Boot is the
-> > only bootloader which seriously attempts to use a runtime device tree in
-> > all cases. For this version, an attempt is made to name the phases in a
-> > generic manner.
-> >
-> > It should also be noted that the approach provided here has stood the test
-> > of time, used in U-Boot for 8 years so far.
-> >
-> > So add the schema for this. This will allow a major class of schema
-> > exceptions to be dropped from the U-Boot source tree.
-> >
-> > This being sent to the mailing list since it might attract more review.
-> > A PR will be sent when this has had some review. That is why the file
-> > path is set up for https://github.com/devicetree-org/dt-schema rather
-> > than the Linux kernel.
-> >
-> > [1] https://u-boot.readthedocs.io/en/latest/develop/driver-model/index.html
-> > [2] https://u-boot.readthedocs.io/en/latest/develop/driver-model/of-plat.html
-> >
-> > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > ---
-> >
-> > Changes in v6:
-> > - Use 'bootph' instead of 'phase'
-> > - Use | instead of , in patternProperties
-> > - Drop mention of 40KB for device-tree size
-> > - Rework description of handling of parent nodes
-> > - Use separate properties for each boot phase
-> > - Update validation example at the top of bootphases.dts
-> >
-> > Changes in v5:
-> > - Fix instructions to run test
-> > - Update binding title
-> > - Use 'phase-' instead of 'phase,'
-> >
-> > Changes in v4:
-> > - Drop some unnecessary context from the commit message
-> > - Explain why parent nodes do not automatically inherit their children's
-> >   tags
-> > - Rename the tags to use a phase,xxx format, explaining each one
-> >
-> > Changes in v3:
-> > - Fix an incorrect schema path in $id
-> >
-> > Changes in v2:
-> > - Expand docs to include a description of each tag
-> > - Fix some typos and unclear wording
-> >
-> >  dtschema/lib.py              |  5 +++
-> >  dtschema/schemas/bootph.yaml | 86 ++++++++++++++++++++++++++++++++++++
-> >  test/bootphases.dts          | 22 +++++++++
-> >  3 files changed, 113 insertions(+)
-> >  create mode 100644 dtschema/schemas/bootph.yaml
-> >  create mode 100644 test/bootphases.dts
-> >
-> > diff --git a/dtschema/lib.py b/dtschema/lib.py
-> > index c7b6cb9..95a4f10 100644
-> > --- a/dtschema/lib.py
-> > +++ b/dtschema/lib.py
-> > @@ -493,6 +493,11 @@ def fixup_node_props(schema):
-> >      schema['properties'].setdefault('status', True)
-> >      schema['properties'].setdefault('secure-status', True)
-> >      schema['properties'].setdefault('$nodename', True)
-> > +    schema['properties'].setdefault('bootph-pre-sram', True)
-> > +    schema['properties'].setdefault('bootph-verify', True)
-> > +    schema['properties'].setdefault('bootph-pre-ram', True)
-> > +    schema['properties'].setdefault('bootph-some-ram', True)
-> > +    schema['properties'].setdefault('bootph-all', True)
-> >
-> >      keys = list()
-> >      if 'properties' in schema:
-> > diff --git a/dtschema/schemas/bootph.yaml b/dtschema/schemas/bootph.yaml
-> > new file mode 100644
-> > index 0000000..275c4da
-> > --- /dev/null
-> > +++ b/dtschema/schemas/bootph.yaml
-> > @@ -0,0 +1,86 @@
-> > +# SPDX-License-Identifier: BSD-2-Clause
-> > +# Copyright 2022 Google LLC
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/bootph.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Boot-phase-specific device nodes
-> > +
-> > +maintainers:
-> > +  - Simon Glass <sjg@chromium.org>
-> > +
-> > +description: |
-> > +  Some programs run in memory-constrained environments yet want to make use
-> > +  of device tree.
-> > +
-> > +  The full device tree is often quite large relative to the available memory
-> > +  of a boot phase, so cannot fit into every phase of the boot process. Even
-> > +  when memory is not a problem, some phases may wish to limit which device
-> > +  nodes are present, so as to reduce execution time.
-> > +
-> > +  This binding supports adding tags to device tree nodes to allow them to be
-> > +  marked according to the phases where they should be included.
-> > +
-> > +  Without any tags, nodes are included only in the final phase, where all
-> > +  memory is available. Any untagged nodes are dropped from previous phases
-> > +  and are ignored before the final phase is reached.
-> > +
-> > +  The build process produces a separate executable for each phase. It can
-> > +  use fdtgrep to drop any nodes which are not needed for a particular build.
-> > +  For example, the pre-sram build will drop any nodes which are not marked
-> > +  with bootph-pre-sram or bootph-all tags.
-> > +
-> > +  Note that phase builds may drop the tags, since they have served their
-> > +  purpose by that point. So when looking at phase-specific device tree files
-> > +  you may not see these tags.
-> > +
-> > +  Multiple tags can be used in the same node.
-> > +
-> > +  Tags in a child node are implied to be present in all parent nodes as well.
-> > +  This is important, since some missing properties (such as "ranges", or
-> > +  "compatible") can cause the child node to be ignored or incorrectly
-> > +  parsed.
-> > +
-> > +  That said, at present, fdtgrep applies tags only to the node they are
-> > +  added to, not to any parents. This means U-Boot device tree files often
-> > +  add the same tag to parent nodes, rather than relying on tooling to do
-> > +  this. This is a limitation of fdtgrep and it will be addressed so that
-> > +  'Linux DTs' do not need to do this.
-> > +
-> > +  The available tags are describes as properties below, in order of phase
->
-> described
->
-> > +  execution.
-> > +
->
-> I think your issue testing is you need a 'select: true' here. 'select'
-> is how we test whether a schema should be applied to a node. The
-> default is to use compatible or $nodename for matching. You have
-> neither, so select is false.
+Resurrecting this conversation for a quick question / feedback, now that
+steps 1-7 are essentially done with everyone's help.
 
-I feel like I have the opposite problem, in that the validation is not
-actually happening, i.e. it isn't failing with something like
-bootph-pre-sramxxx or anything else I put into the node:
+I don't want to send out a full RFC / Patch, since I can't currently
+test on hardware this week. But I'd really like feedback on the
+documentation change that is coming up. And I also don't want to
+necessarily do a separate RFC for just this patch.
 
-I do see this:
+What happens here is interrupts and interrupt-names work as expected.
+They're required for the 7514, and optional for the 7512. Fantastic.
 
-dtc -O dtb -o test.dtb test/bootphases.dts && tools/dt-validate -m test.dtb
-test.dtb: /some-device: failed to match any schema with compatible:
-['vendor,soc1-ip']
+I'm not sure if the "$ref: ethernet-switch.yaml" and
+"$ref: /schemas/net/dsa/dsa.yaml#" have an effect, since removing that
+line outright doesn't seem to have an effect on dt_bindings_check.
 
-but even changing it into a 'cpus' node it still lets me any any
-random property I like.
+The "fdma" doesn't make sense for the 7512, and seems to be handled
+correctly by way of maxItems for the two scenarios.
 
->
-> > +properties:
-> > +  bootph-pre-sram:
-> > +    type: boolean
-> > +    description: |
->
-> Don't need '|' unless you want to preserve line endings.
->
-> Otherwise, looks good. Send a PR.
 
-OK, ta.
+The big miss in this patch is ethernet-switch-port vs dsa-port in the
+two scenarios. It isn't working as I'd hoped, where the 7514 pulls in
+ethernet-switch-port.yaml and the 7512 pulls in dsa-port.yaml. To squash
+errors about the incorrect "ethernet" property I switched this line:
 
->
-> > +      Enable this node when SRAM is not available. This phase must set up
-> > +      some SRAM or cache-as-RAM so it can obtain data/BSS space to use
-> > +      during execution.
-> > +
-> > +  bootph-verify:
-> > +    type: boolean
-> > +    description: |
-> > +      Enable this node in the verification step, which decides which of the
-> > +      available images should be run next.
-> > +
-> > +  bootph-pre-ram:
-> > +    type: boolean
-> > +    description: |
-> > +      Enable this node in the phase that sets up SDRAM.
-> > +
-> > +  bootph-some-ram:
-> > +    type: boolean
-> > +    description: |
-> > +      Enable this node in the phase that is run after SDRAM is working but
-> > +      before all of it is available. Some RAM is available but it is limited
-> > +      (e.g. it may be split into two pieces by the location of the running
-> > +      program) because the program code is not yet relocated out of the way.
-> > +
-> > +  bootph-all:
-> > +    type: boolean
-> > +    description: |
-> > +      Include this node in all phases (for U-Boot see enum u_boot_phase).
-> > +
-> > +additionalProperties: true
-> > diff --git a/test/bootphases.dts b/test/bootphases.dts
-> > new file mode 100644
-> > index 0000000..037c626
-> > --- /dev/null
-> > +++ b/test/bootphases.dts
-> > @@ -0,0 +1,22 @@
-> > +// SPDX-License-Identifier: BSD-2-Clause
-> > +// Copyright 2022 Google LLC
-> > +
-> > +// An attempt to provide a device tree to validate the phase properties
-> > +
-> > +// dtc -O dtb -o test.dtb test/bootphases.dts && tools/dt-validate test.dtb
-> > +
-> > +
-> > +/dts-v1/;
-> > +
-> > +/ {
-> > +       model = "none";
-> > +       compatible = "foo";
-> > +
-> > +       #address-cells = <1>;
-> > +       #size-cells = <1>;
-> > +
-> > +       some-device {
-> > +               compatible = "vendor,soc1-ip";
-> > +               bootph-pre-sram;
-> > +       };
-> > +};
-> > --
-> > 2.39.0.314.g84b9a713c41-goog
-> >
+-        $ref: ethernet-switch-port.yaml#
++        $ref: /schemas/net/dsa/dsa-port.yaml#
 
-Regards,
-Simon
+... knowing full well that the correct solution should be along the
+lines of "remove this, and only reference them in the conditional". That
+doesn't seem to work though...
+
+Is what I'm trying to do possible? I utilized
+Documentation/devicetree/bindings/net/dsa/*.yaml and
+Documentation/devicetree/bindings/net/*.yaml and found examples to get
+to my current state.
+
+
+diff --git a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+index 5ffe831e59e4..f012c64a0da3 100644
+--- a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
++++ b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+@@ -18,13 +18,50 @@ description: |
+   packets using CPU. Additionally, PTP is supported as well as FDMA for faster
+   packet extraction/injection.
+ 
+-$ref: ethernet-switch.yaml#
++allOf:
++  - if:
++      properties:
++        compatible:
++          const: mscc,vsc7514-switch
++    then:
++      $ref: ethernet-switch.yaml#
++      required:
++        - interrupts
++        - interrupt-names
++      properties:
++        reg:
++          minItems: 21
++        reg-names:
++          minItems: 21
++        ethernet-ports:
++          patternProperties:
++            "^port@[0-9a-f]+$":
++              $ref: ethernet-switch-port.yaml#
++
++  - if:
++      properties:
++        compatible:
++          const: mscc,vsc7512-switch
++    then:
++      $ref: /schemas/net/dsa/dsa.yaml#
++      properties:
++        reg:
++          maxItems: 20
++        reg-names:
++          maxItems: 20
++        ethernet-ports:
++          patternProperties:
++            "^port@[0-9a-f]+$":
++              $ref: /schemas/net/dsa/dsa-port.yaml#
+ 
+ properties:
+   compatible:
+-    const: mscc,vsc7514-switch
++    enum:
++      - mscc,vsc7512-switch
++      - mscc,vsc7514-switch
+ 
+   reg:
++    minItems: 20
+     items:
+       - description: system target
+       - description: rewriter target
+@@ -49,6 +86,7 @@ properties:
+       - description: fdma target
+ 
+   reg-names:
++    minItems: 20
+     items:
+       - const: sys
+       - const: rew
+@@ -100,7 +138,7 @@ properties:
+     patternProperties:
+       "^port@[0-9a-f]+$":
+ 
+-        $ref: ethernet-switch-port.yaml#
++        $ref: /schemas/net/dsa/dsa-port.yaml#
+ 
+         unevaluatedProperties: false
+ 
+@@ -108,13 +146,12 @@ required:
+   - compatible
+   - reg
+   - reg-names
+-  - interrupts
+-  - interrupt-names
+   - ethernet-ports
+ 
+ additionalProperties: false
+ 
+ examples:
++  # VSC7514 (Switchdev)
+   - |
+     switch@1010000 {
+       compatible = "mscc,vsc7514-switch";
+@@ -162,5 +199,51 @@ examples:
+         };
+       };
+     };
++  # VSC7512 (DSA)
++  - |
++    ethernet-switch@1{
++      compatible = "mscc,vsc7512-switch";
++      reg = <0x71010000 0x10000>,
++            <0x71030000 0x10000>,
++            <0x71080000 0x100>,
++            <0x710e0000 0x10000>,
++            <0x711e0000 0x100>,
++            <0x711f0000 0x100>,
++            <0x71200000 0x100>,
++            <0x71210000 0x100>,
++            <0x71220000 0x100>,
++            <0x71230000 0x100>,
++            <0x71240000 0x100>,
++            <0x71250000 0x100>,
++            <0x71260000 0x100>,
++            <0x71270000 0x100>,
++            <0x71280000 0x100>,
++            <0x71800000 0x80000>,
++            <0x71880000 0x10000>,
++            <0x71040000 0x10000>,
++            <0x71050000 0x10000>,
++            <0x71060000 0x10000>;
++            reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
++            "port2", "port3", "port4", "port5", "port6",
++            "port7", "port8", "port9", "port10", "qsys",
++            "ana", "s0", "s1", "s2";
++
++            ethernet-ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++           port@0 {
++            reg = <0>;
++            ethernet = <&mac_sw>;
++            phy-handle = <&phy0>;
++            phy-mode = "internal";
++          };
++          port@1 {
++            reg = <1>;
++            phy-handle = <&phy1>;
++            phy-mode = "internal";
++          };
++        };
++      };
+ 
