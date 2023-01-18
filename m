@@ -2,121 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37961671F90
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:28:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2E37671FA5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbjARO2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:28:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58508 "EHLO
+        id S231273AbjAROdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:33:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230146AbjARO2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:28:23 -0500
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C1384B48E
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:14:32 -0800 (PST)
-Received: by mail-vs1-xe36.google.com with SMTP id j185so4716801vsc.13
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:14:32 -0800 (PST)
+        with ESMTP id S231329AbjAROcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:32:45 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02904303D3
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:21:08 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id u19so83540018ejm.8
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:21:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yplg9S1JhovxIGfaL6Q6VaDnzZMitHU7C7LFyjrBCuM=;
-        b=mGOjDpy3dF95PKoyeVvrLC5FeH+PXh22DunupbTN82XxucIOoB9IfnAGgZWsA0bugk
-         ghgVxgGaqxmR1Suz1X/FfKWLNnkW3ZVoxc9K0HMrtBSkHdXD8DVM7N1sJaasijyFGpnR
-         L/1aqNTzRZrH3sdOcPKK1ofJQarqe9W68GcIg7QcyjwAzPuDPqSirGWp7t9mK1jTsa0i
-         WSgvuq7Y96gAC3j8N+B+YTGhhCGZDenxGIp5XgUgDA6CxWmjlDdcPunypgl1EpnbTA1F
-         yuNk7YZRFtrL0oFiPy1YRkh6kQwTk/WoF30VksoF4gQ7irgW1QWeXKd5LsQO9ulEYE34
-         1QKA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=33e6GgoXuh4+eRQrB35G/on3xqyiWTKOBlZuPx8InNI=;
+        b=Sb/PUPXAYas7wvDGn0+GrQNUMREqJ/xfUq7WdEavD1gxG55WsyzZG+i2xH+UlPg+vn
+         nPJLzTQd0D8IJPcT1ju6sIU7WgU3EOmTH9TKw8qXhrOmzsTnDfBkU3NR2XBMST66J+1E
+         /cFNop0pxpv3vfviyatW+1lwUcn5OTeX3g9VkWJALfYdz/dQoxfYVXPctyP+dGhZ2hKg
+         vnSlYmw6Iq4QeaOKnhbBjVZOHXvqDtKXGZHYkPaFQF0be+T1+HGVW0oKEHTlPSr7a1ai
+         h/AUYZJLKrB5z3Ch8t43jSV/hNvkIAS1S3dnXj9zGGN4PMu1ZMZ4szRZ3/Kq2M82znuu
+         9Klw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Yplg9S1JhovxIGfaL6Q6VaDnzZMitHU7C7LFyjrBCuM=;
-        b=dSsH0IytKpiHr+/yjjKLsn4COxMwjlmdkh8lgBAWpSjeaJcPBsrg/7+ZhNJDawyfXU
-         GoJyvqeFnsbV3qdOwZCdn8WcvN565lexbhOQN24zlxaucvBhmenKCw7PHhNnMlz/u0te
-         TRTaSw1nrcYrcBo0di6IlHaCo46Z2bYlBTQFNWT739RdZlfB7avO6frpbtB517CFczGl
-         kYadVS/y2r4V5hSLuu9x/pRheqen3VH7LH8zw6Xw0mzlAaLnxhxGQ/TYGTUkCkPddRBg
-         Uv73mGpJ3whUN5cSlqKG6Epjt58rkTKncrc9juw3/3oC/FxdPyMbEQFsW/kehUhIa0OJ
-         HulQ==
-X-Gm-Message-State: AFqh2krUGeWwOhokRK7UDvuLy60V3nAtPF08v4FeCMafGGBmly5Ty1K/
-        nPHZ3e1e0aEDd27QqXG/5Qm64fdstKq1GkYo3Ae2Ng==
-X-Google-Smtp-Source: AMrXdXsOVriRa6oQhyPR0ZpbJLJH4CUKQQvaM0V7d5YeQLv6Q29OqDl6sUg6xmxGgO5mtPbL0SJUElCeOqG5CnHMkcw=
-X-Received: by 2002:a05:6102:3e08:b0:3c5:1ac1:bf38 with SMTP id
- j8-20020a0561023e0800b003c51ac1bf38mr1062676vsv.78.1674051271374; Wed, 18 Jan
- 2023 06:14:31 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=33e6GgoXuh4+eRQrB35G/on3xqyiWTKOBlZuPx8InNI=;
+        b=e5gXO/aSVZyYKXDnBbQiQyvIm3914ZS1zkTmGvrYzN2R6gAeV3ijWYiSQmVjo/5yZb
+         AAUm75sPnaN10I7y/7S3q3QmiyYrFkZAWVk+AbGT4XqwF14wXUoz26IuqpHSBZvlRy5u
+         KFk1fEfFmY7W+r5wYQImP31h9mEzbxiO0b+W5iebmUBjca80lNj26Z4AtIXdTB/Fp38y
+         47196ZKCT9eutiYWQB5HKVOG27BOxyI5WjSwOQ77vutMHejyfMmzXI4irrfgvOVEZnI6
+         onJ+KseQQ3xlGR0+oBGLl5QXl25xFKHTGur5bbQ3C+zXuKBvWPcgewJsyffSlUI7Fns/
+         RXQg==
+X-Gm-Message-State: AFqh2kpF4rJoA4bRmco7sPQqfixaz1+8x9nbsAmKaFp++3xn+jfEOlJb
+        JBl2VFjBLlB2NgQ+AQCPl1SiyA==
+X-Google-Smtp-Source: AMrXdXtCAxv+2l1VlAteHKGFEAdd3zSyCQ73cImzSL4Y5Ql4b+9mRf0+X/Wf6Zyd5AeIviKMsaZVig==
+X-Received: by 2002:a17:906:1605:b0:870:2f70:c631 with SMTP id m5-20020a170906160500b008702f70c631mr9104735ejd.2.1674051666578;
+        Wed, 18 Jan 2023 06:21:06 -0800 (PST)
+Received: from [192.168.1.101] (abxh252.neoplus.adsl.tpnet.pl. [83.9.1.252])
+        by smtp.gmail.com with ESMTPSA id h10-20020a1709070b0a00b0084d4e9a13cbsm11599021ejl.221.2023.01.18.06.21.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 06:21:06 -0800 (PST)
+Message-ID: <671e8d1d-d41b-5747-540f-9174b12ffb4b@linaro.org>
+Date:   Wed, 18 Jan 2023 15:21:02 +0100
 MIME-Version: 1.0
-References: <08de3f4b-e33f-95c8-3297-814ea107272a@gmail.com> <1510c02c-f640-9924-e42e-fa34e28a580f@gmail.com>
-In-Reply-To: <1510c02c-f640-9924-e42e-fa34e28a580f@gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 18 Jan 2023 15:14:20 +0100
-Message-ID: <CAMRc=Me2yj6A5ZvLXbWn8H0yuL5pUqOJ7B7kGaOyN=jLXGJEGQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] gpio: gpio-rockchip: add compatible string per SoC
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kever.yang@rock-chips.com, sjg@chromium.org,
-        philipp.tomsich@vrull.eu
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 3/7] clk: qcom: cbf-msm8996: scale CBF clock according
+ to the CPUfreq
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230117225824.1552604-1-dmitry.baryshkov@linaro.org>
+ <20230117225824.1552604-4-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230117225824.1552604-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 1:14 PM Johan Jonker <jbx6244@gmail.com> wrote:
->
-> Currently all Rockchip gpio nodes have the same compatible.
-> Replace all the compatibles in gpio nodes to be able to
-> give them a consistent ID independent from probe order or alias.
->
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+
+
+On 17.01.2023 23:58, Dmitry Baryshkov wrote:
+> Turn CBF into the interconnect provider. Scale CBF frequency (bandwidth)
+> according to CPU frequencies.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->
-> For now only add new compatibles.
-> No changes to rockchip_gpio_probe() function yet.
-> ---
->  drivers/gpio/gpio-rockchip.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->
-> diff --git a/drivers/gpio/gpio-rockchip.c b/drivers/gpio/gpio-rockchip.c
-> index e5de15a2a..493207de1 100644
-> --- a/drivers/gpio/gpio-rockchip.c
-> +++ b/drivers/gpio/gpio-rockchip.c
-> @@ -790,7 +790,22 @@ static int rockchip_gpio_remove(struct platform_device *pdev)
->
->  static const struct of_device_id rockchip_gpio_match[] = {
->         { .compatible = "rockchip,gpio-bank", },
-> +       { .compatible = "rockchip,px30-gpio-bank", },
-> +       { .compatible = "rockchip,rk3036-gpio-bank", },
-> +       { .compatible = "rockchip,rk3066a-gpio-bank", },
-> +       { .compatible = "rockchip,rk3128-gpio-bank", },
-> +       { .compatible = "rockchip,rk3188-gpio-bank", },
->         { .compatible = "rockchip,rk3188-gpio-bank0" },
-> +       { .compatible = "rockchip,rk3228-gpio-bank", },
-> +       { .compatible = "rockchip,rk3288-gpio-bank", },
-> +       { .compatible = "rockchip,rk3328-gpio-bank", },
-> +       { .compatible = "rockchip,rk3308-gpio-bank", },
-> +       { .compatible = "rockchip,rk3368-gpio-bank", },
-> +       { .compatible = "rockchip,rk3399-gpio-bank", },
-> +       { .compatible = "rockchip,rk3568-gpio-bank", },
-> +       { .compatible = "rockchip,rk3588-gpio-bank", },
-> +       { .compatible = "rockchip,rv1108-gpio-bank", },
-> +       { .compatible = "rockchip,rv1126-gpio-bank", },
->         { },
+>  drivers/clk/qcom/clk-cbf-8996.c | 141 +++++++++++++++++++++++++++++++-
+>  1 file changed, 140 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/qcom/clk-cbf-8996.c b/drivers/clk/qcom/clk-cbf-8996.c
+> index 9cde0e660228..9e30311a310b 100644
+> --- a/drivers/clk/qcom/clk-cbf-8996.c
+> +++ b/drivers/clk/qcom/clk-cbf-8996.c
+> @@ -5,6 +5,7 @@
+>  #include <linux/bitfield.h>
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+> +#include <linux/interconnect-provider.h>
+>  #include <linux/of.h>
+>  #include <linux/module.h>
+>  #include <linux/platform_device.h>
+> @@ -225,6 +226,133 @@ static const struct regmap_config cbf_msm8996_regmap_config = {
+>  	.val_format_endian	= REGMAP_ENDIAN_LITTLE,
 >  };
->
-> --
-> 2.20.1
->
+>  
+> +#ifdef CONFIG_INTERCONNECT
+> +struct qcom_msm8996_cbf_icc_provider {
+> +	struct icc_provider provider;
+> +	struct clk *clk;
+> +};
+> +
+> +#define to_qcom_cbf_provider(_provider) \
+> +	container_of(_provider, struct qcom_msm8996_cbf_icc_provider, provider)
+> +
+> +enum {
+> +	CBF_MASTER_NODE = 2000,
+Where did the 2000 come from?
 
-If they don't have any additional data associated with each compatible
-- why not just use "rockchip,gpio-bank" as the fallback in DT?
+> +	CBF_SLAVE_NODE
+> +};
+> +
+> +#define CBF_NUM_NODES 2
+> +
+> +static int qcom_msm8996_cbf_set(struct icc_node *src, struct icc_node *dst)
+> +{
+> +	struct qcom_msm8996_cbf_icc_provider *qp;
+> +
+> +	qp = to_qcom_cbf_provider(src->provider);
+> +
+> +	return clk_set_rate(qp->clk, icc_units_to_bps(dst->peak_bw));
+> +}
+> +
+> +static int qcom_msm8996_cbf_icc_get_bw(struct icc_node *node, u32 *avg, u32 *peak)
+> +{
+> +	struct qcom_msm8996_cbf_icc_provider *qp;
+> +
+> +	qp = to_qcom_cbf_provider(node->provider);
+> +	*peak = clk_get_rate(qp->clk) / 1000ULL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_msm8996_cbf_icc_register(struct platform_device *pdev, struct clk_hw *cbf_hw)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct qcom_msm8996_cbf_icc_provider *qp;
+> +	struct icc_provider *provider;
+> +	struct icc_onecell_data *data;
+> +	struct icc_node *node;
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	clk = devm_clk_hw_get_clk(dev, cbf_hw, "cbf");
+> +	if (IS_ERR(clk))
+> +		return PTR_ERR(clk);
+> +
+> +	data = devm_kzalloc(dev, struct_size(data, nodes, CBF_NUM_NODES), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->num_nodes = CBF_NUM_NODES;
+> +
+> +	qp = devm_kzalloc(dev, sizeof(*qp), GFP_KERNEL);
+> +	if (!qp)
+> +		return -ENOMEM;
+> +
+> +	qp->clk = clk;
+> +
+> +	provider = &qp->provider;
+> +	provider->dev = dev;
+> +	provider->get_bw = qcom_msm8996_cbf_icc_get_bw;
+> +	provider->set = qcom_msm8996_cbf_set;
+> +	provider->aggregate = icc_std_aggregate;
+> +	provider->xlate = of_icc_xlate_onecell;
+> +	INIT_LIST_HEAD(&provider->nodes);
+> +	provider->data = data;
+> +
+> +	ret = icc_provider_add(provider);
+> +	if (ret) {
+> +		dev_err(dev, "error adding interconnect provider\n");
+> +		return ret;
+> +	}
+> +
+> +	node = icc_node_create(CBF_MASTER_NODE);
+> +	if (IS_ERR(node)) {
+> +		ret = PTR_ERR(node);
+> +		goto err;
+> +	}
+> +
+> +	node->name = "cbf_master";
+> +	icc_node_add(node, provider);
+> +	icc_link_create(node, CBF_SLAVE_NODE);
+> +	data->nodes[0] = node;
+> +
+> +	node = icc_node_create(CBF_SLAVE_NODE);
+> +	if (IS_ERR(node)) {
+> +		ret = PTR_ERR(node);
+> +		goto err;
+> +	}
+> +
+> +	node->name = "cbf_slave";
+> +	icc_node_add(node, provider);
+> +	data->nodes[1] = node;
+> +
+> +	platform_set_drvdata(pdev, provider);
+> +
+> +	return 0;
+> +
+> +err:
+> +	icc_nodes_remove(provider);
+> +	icc_provider_del(provider);
+> +
+> +	return ret;
+> +}
+> +
+> +static int qcom_msm8996_cbf_icc_remove(struct platform_device *pdev)
+> +{
+> +	struct icc_provider *provider = platform_get_drvdata(pdev);
+> +
+> +	icc_nodes_remove(provider);
+> +	icc_provider_del(provider);
+> +
+> +	return 0;
+> +}
+> +#else
+> +static int qcom_msm8996_cbf_icc_register(struct platform_device *pdev)
+> +{
+> +	dev_warn(&pdev->dev, "interconnects support is disabled, CBF clock is fixed\n");
+s/interconnects/interconnect
 
-Bart
+Will cpufreq still work correctly with opp tables having bw
+properties, the nodes having icc properties and the icc provider
+not probing? And then, will the system not choke up with high CPU
+and inadequately low CBF clocks?
+
+Maybe `select INTERCONNECT_something_8996` would be better?
+
+Konrad
+> +
+> +	return 0;
+> +}
+> +#define qcom_msm8996_cbf_icc_remove(pdev) (0)
+> +#endif
+> +
+>  static int qcom_msm8996_cbf_probe(struct platform_device *pdev)
+>  {
+>  	void __iomem *base;
+> @@ -283,7 +411,16 @@ static int qcom_msm8996_cbf_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &cbf_mux.clkr.hw);
+> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &cbf_mux.clkr.hw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return qcom_msm8996_cbf_icc_register(pdev, &cbf_mux.clkr.hw);
+> +}
+> +
+> +static int qcom_msm8996_cbf_remove(struct platform_device *pdev)
+> +{
+> +	return qcom_msm8996_cbf_icc_remove(pdev);
+>  }
+>  
+>  static const struct of_device_id qcom_msm8996_cbf_match_table[] = {
+> @@ -294,9 +431,11 @@ MODULE_DEVICE_TABLE(of, qcom_msm8996_cbf_match_table);
+>  
+>  static struct platform_driver qcom_msm8996_cbf_driver = {
+>  	.probe = qcom_msm8996_cbf_probe,
+> +	.remove = qcom_msm8996_cbf_remove,
+>  	.driver = {
+>  		.name = "qcom-msm8996-cbf",
+>  		.of_match_table = qcom_msm8996_cbf_match_table,
+> +		.sync_state = icc_sync_state,
+>  	},
+>  };
+>  
