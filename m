@@ -2,116 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB3EC67188D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 11:08:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 224B66718A0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 11:12:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230096AbjARKIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 05:08:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44216 "EHLO
+        id S230241AbjARKMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 05:12:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230121AbjARKHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 05:07:53 -0500
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4DB656D6;
-        Wed, 18 Jan 2023 01:13:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674033202; x=1705569202;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=HX0zyAQncS5vJj7zoni+iRi+Vpv7/c6EyhwOr9hb9OE=;
-  b=MPZHkIZlGcw0OOrVn+FQkQRobP1KWdDYpsM9L9qdwfl32KvNq8PMvJmA
-   mdlHIPjN5lteovrxhoEKtYtihe+f/vWo0w0KddIuGgJ8l8mJ3ddv5gr39
-   JVnpVphulAqSzK1XwGHZxqDQS+WIxgY/0YO/ljCsrENuI9Kkdn2MHEWXb
-   vwmonFDJsd0ZxETizRVIpczO8dPG93T1F/2vDiIxElWMfDyfK1f9+NO5l
-   yT2qDev08KIjmTKed7m/vb2rEv09T2NhXFktAn6aEppEk68n+mOsHsfsP
-   2sR0LgRWMj/XVOL36NVbuvWtey0JnixotngqGJRDR/tOCD73aqPj8kVi3
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="304619727"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; 
-   d="scan'208";a="304619727"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2023 01:13:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="802108498"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; 
-   d="scan'208";a="802108498"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 18 Jan 2023 01:13:14 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 18 Jan 2023 11:13:13 +0200
-Date:   Wed, 18 Jan 2023 11:13:13 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Jon Hunter <jonathanh@nvidia.com>,
-        Sanket Goswami <Sanket.Goswami@amd.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229787AbjARKLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 05:11:25 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 484F19AAA4;
+        Wed, 18 Jan 2023 01:18:37 -0800 (PST)
+X-UUID: 139659e2971111ed945fc101203acc17-20230118
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=uWVRgR/ln+/38QVR0gXqYzqLESpxkY2yEXnYWdBeJ4A=;
+        b=sOnXAnoVHKQl6QPF4kN20ZgBH5YEhb3sJ4G3bY7qkP9dg/X3DsRcbts+qKZ2rOLse1OEGuHqyivZo8JMmw1jkelmD1qb5EvTvxEqbU21VdDuX+U4/zO43ga833w7ZwsXmb5ledYDLAhf7MyH1d5swmvV28lopyJIEXyJPXxhC80=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.18,REQID:92713461-2396-4aca-ae49-57b9335c8682,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:3ca2d6b,CLOUDID:ac1a2af6-ff42-4fb0-b929-626456a83c14,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
+X-CID-BVR: 0
+X-UUID: 139659e2971111ed945fc101203acc17-20230118
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1935262506; Wed, 18 Jan 2023 17:18:31 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 18 Jan 2023 17:18:30 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 18 Jan 2023 17:18:30 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Wayne Chang <waynec@nvidia.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH V4 3/5] usb: typec: ucsi_ccg: Replace ccgx to well-known
- regex
-Message-ID: <Y8e4KXMh+bi6Gj7r@kuha.fi.intel.com>
-References: <20230116155045.100780-1-jonathanh@nvidia.com>
- <20230116155045.100780-4-jonathanh@nvidia.com>
- <Y8aOaH+ALBvjm/rH@kuha.fi.intel.com>
- <11349701-f82f-3a7f-61ef-11f1585958c3@nvidia.com>
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Stephen Boyd <sboyd@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH v2 0/9] Add and update some driver nodes for MT8186 SoC
+Date:   Wed, 18 Jan 2023 17:18:20 +0800
+Message-ID: <20230118091829.755-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <11349701-f82f-3a7f-61ef-11f1585958c3@nvidia.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 17, 2023 at 11:29:25PM +0000, Jon Hunter wrote:
-> 
-> On 17/01/2023 12:02, Heikki Krogerus wrote:
-> > On Mon, Jan 16, 2023 at 03:50:43PM +0000, Jon Hunter wrote:
-> > > From: Wayne Chang <waynec@nvidia.com>
-> > > 
-> > > ccgx is refer to the cypress cypd4226 typec controller.
-> > > Replace ccgx to well-known regex "cypress".
-> > > 
-> > > Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> > > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> > > ---
-> > > V2 -> V4: nothing has changed
-> > > V1 -> V2: new change added for adding cypress,firmware-build
-> > > 
-> > >   drivers/usb/typec/ucsi/ucsi_ccg.c | 2 +-
-> > >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
-> > > index 4bc31ed8e5bc..d6114fb8d5a9 100644
-> > > --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
-> > > +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
-> > > @@ -1357,7 +1357,7 @@ static int ucsi_ccg_probe(struct i2c_client *client)
-> > >   	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
-> > >   	/* Only fail FW flashing when FW build information is not provided */
-> > > -	status = device_property_read_u16(dev, "ccgx,firmware-build",
-> > > +	status = device_property_read_u16(dev, "cypress,firmware-build",
-> > >   					  &uc->fw_build);
-> > 
-> > You need to first add that property to
-> > drivers/i2c/busses/i2c-nvidia-gpu.c.
-> 
-> 
-> Looking at this some more, I wonder if we need to keep 'ccgx,firmware-build'
-> as a fallback for AMD? It is not clear to me if they implement this property
-> or not. Let me know what you think. I will still update the i2c-nvidia-gpu
-> driver. 	
+This series is based on matthias github, for-next.
 
-AMD needs to answer to that one. Sanket, do you have that device
-property ("ccgx,firmware-build") in your ACPI tables (as _DSD device
-property) for this device?
+Changes since v1:
+ - Remove the unnecessary trailing number
+ - Add aliases for ovl* and rdma*
 
-thanks,
+Allen-KH Cheng (9):
+  arm64: dts: mediatek: mt8186: Add MTU3 nodes
+  dt-bindings: spmi: spmi-mtk-pmif: Document mediatek,mt8195-spmi as
+    fallback of mediatek,mt8186-spmi
+  arm64: dts: mediatek: mt8186: Add SPMI node
+  arm64: dts: mediatek: mt8186: Add ADSP mailbox nodes
+  arm64: dts: mediatek: mt8186: Add ADSP node
+  arm64: dts: mediatek: mt8186: Add audio controller node
+  arm64: dts: mediatek: mt8186: Add DPI node
+  dt-bindings: display: mediatek: Fix the fallback for
+    mediatek,mt8186-disp-ccorr
+  arm64: dts: mediatek: mt8186: Add display nodes
+
+ .../display/mediatek/mediatek,ccorr.yaml      |   2 +-
+ .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      |  11 +-
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      | 342 ++++++++++++++++++
+ 3 files changed, 351 insertions(+), 4 deletions(-)
 
 -- 
-heikki
+2.18.0
+
