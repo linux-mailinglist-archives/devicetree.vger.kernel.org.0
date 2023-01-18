@@ -2,74 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32688672329
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:27:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A04D672356
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:31:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230213AbjARQ1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 11:27:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57392 "EHLO
+        id S230239AbjARQby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 11:31:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230191AbjARQ1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:27:25 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE4F558990
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 08:25:18 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id m15so3913223wms.4
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 08:25:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z2LqQldgrNJPcDI7p5vuw4ycWgmlXdq2eC/RcsIX/VU=;
-        b=SffSry5qO7cTumzlgWrGzzUXzaiocJTBbYvKSI+eeNH3+GpuwOSB2hrq4JdaNXXxqT
-         3OICczJREC9GO7IqR7z+kLqzAKM3lpF70ow6XKoz+UcEa8GDUv2/ncxF1DXTrLIUJVku
-         NX0lQ7vc0XbSafsVoIyNnh5CzBa+Hjv4g09A+OSSOf86h8d4tsB5ez+C7/TiDDtdOI5S
-         whLRkKEkCJzArHhw9HCVP1MXE09LbomfYL74nrsfhiIihsDPWn+uSEYY+Z+t91Hi//30
-         ITMRku3LiO9Fmve+Azp3sB+IM84XCCjOPAlJXiNSXpJaWAVjAqjPOL4qAbr0CbmiHxnq
-         zXZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z2LqQldgrNJPcDI7p5vuw4ycWgmlXdq2eC/RcsIX/VU=;
-        b=csKsuKBh4yFW3oO9LwpiTdwsw3maUTJ4ICmg5a/cyfR8oaB3s1GY2JW5a1DnjDf5hf
-         hd9JyENN7hX5M6u7VIyFt30qThTW5OsM3gd9X8gpniRaam9Sj9hSekNrxO0VavqcnvoP
-         xMNLItA9AArL8rKG5jNvTqgQAYldmMW5B48szQgESYHoR3zY+TJWRsm8OOwrO6r3gI6h
-         hmyswDcpQ71qyCGQs2HUgc5V6trb73BZiAlek4CHiV1eujWDNRMGV21f3743RoogMhuP
-         9eW/VAxLASu+Q5d6FDn/j89qK0t2oBTC/J4Wzt8zwEZ75rYxLfsTaTijKO/9tLRCGh/N
-         FN2A==
-X-Gm-Message-State: AFqh2kqA/aSIcfYIaJLd4XzkIX7P6SW1dVmWclj/3RBTt7w7/DV3sVUT
-        G+ZpYE2cTB8rpVpe2JUJqWlLOg==
-X-Google-Smtp-Source: AMrXdXugeQjWoOIfTOVUYB+z1tOrg0w7jGItCArPzaWowUAWzbkTZ5kh1xspWwE07Slny96CI9NWNg==
-X-Received: by 2002:a05:600c:281:b0:3da:1132:4b63 with SMTP id 1-20020a05600c028100b003da11324b63mr7293199wmk.5.1674059117316;
-        Wed, 18 Jan 2023 08:25:17 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id m27-20020a05600c3b1b00b003db012d49b7sm3670695wms.2.2023.01.18.08.25.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 08:25:17 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 18 Jan 2023 17:25:13 +0100
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sm8550-mtp: enable adsp, cdsp & mdss
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20221115-topic-sm8550-upstream-dts-remoteproc-v3-3-815a1753de34@linaro.org>
-References: <20221115-topic-sm8550-upstream-dts-remoteproc-v3-0-815a1753de34@linaro.org>
-In-Reply-To: <20221115-topic-sm8550-upstream-dts-remoteproc-v3-0-815a1753de34@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S230262AbjARQbc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:31:32 -0500
+X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 18 Jan 2023 08:29:27 PST
+Received: from mta-65-225.siemens.flowmailer.net (mta-65-225.siemens.flowmailer.net [185.136.65.225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5969847EFF
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 08:29:26 -0800 (PST)
+Received: by mta-65-225.siemens.flowmailer.net with ESMTPSA id 20230118162822a9c3cf875d8ce599f3
+        for <devicetree@vger.kernel.org>;
+        Wed, 18 Jan 2023 17:28:22 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=jan.kiszka@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=zxSi8dKwYZiywvsY7MyZLb0G86/MTfbrhUOZomLJW5c=;
+ b=KMKWchVJaBZaASkVcjXwTU1SyMxbsL2i0Rg43YguzFo+0VwQNYsIfLQIHVdZkwhB+EsmXI
+ i1M++LniE8mT0xKh/M+G5hJw24ZCHN4ibjXYeSlmSVoHocNQw8jQ7T8rIkh/8ILdV6kYH7Zv
+ YMWDAjuMz3QJ9AVni7Sap5ZPiSDcg=;
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.11.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
+        Chao Zeng <chao.zeng@siemens.com>
+Subject: [PATCH 0/3] arm64: dts: Add IOT2050 M.2 board, describe QSPI layout
+Date:   Wed, 18 Jan 2023 17:28:17 +0100
+Message-Id: <cover.1674059300.git.jan.kiszka@siemens.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-294854:519-21489:flowmailer
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,43 +50,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the aDSP, cDSP and MPSS firmware and "Devicetree" firmware paths
-for the SM8550 MTP platform.
+This adds the devices tree for a new variant of the IOT2050 which comes
+with two M.2 slots and is otherwise almost equivalent to the existing
+Advanced PG2 variant (USB3 is available via M.2 now).
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Furthermore, the device tree of the whole device series is extended to
+also hold the QSPI layout.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 81fcbdc6bdc4..5ab5ac05f989 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -374,6 +374,24 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	firmware-name = "qcom/sm8550/adsp.mbn",
-+			"qcom/sm8550/adsp_dtb.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/sm8550/cdsp.mbn",
-+			"qcom/sm8550/cdsp_dtb.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_mpss {
-+	firmware-name = "qcom/sm8550/modem.mbn",
-+			"qcom/sm8550/modem_dtb.mbn";
-+	status = "okay";
-+};
-+
- &sdhc_2 {
- 	cd-gpios = <&pm8550_gpios 12 GPIO_ACTIVE_LOW>;
- 	pinctrl-names = "default", "sleep";
+Jan
+
+Jan Kiszka (2):
+  arm64: dts: ti: iot2050: Add layout of OSPI flash
+  dt-bindings: arm: ti: Add binding for Siemens IOT2050 M.2 variant
+
+chao zeng (1):
+  arm64: dts: ti: iot2050: Add support for M.2 variant
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   3 +
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  46 +++++++
+ .../dts/ti/k3-am6548-iot2050-advanced-m2.dts  | 122 ++++++++++++++++++
+ 4 files changed, 172 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
 
 -- 
-2.34.1
+2.35.3
+
