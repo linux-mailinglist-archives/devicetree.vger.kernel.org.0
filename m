@@ -2,66 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B22367243F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:55:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39FBA672446
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:56:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbjARQzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 11:55:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60140 "EHLO
+        id S229804AbjARQ4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 11:56:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230002AbjARQzp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:55:45 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A194A16AE9;
-        Wed, 18 Jan 2023 08:55:44 -0800 (PST)
+        with ESMTP id S230306AbjARQ4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:56:48 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50C9A31E3B;
+        Wed, 18 Jan 2023 08:56:48 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3BDD9618CD;
-        Wed, 18 Jan 2023 16:55:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D86B7C433D2;
-        Wed, 18 Jan 2023 16:55:42 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DB98561910;
+        Wed, 18 Jan 2023 16:56:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1C02C433D2;
+        Wed, 18 Jan 2023 16:56:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674060943;
-        bh=KXVguWBBzZqFsfQ1lc00wLiy/2dhJ2rfbOtKjRQ+7Fc=;
-        h=Date:From:To:Subject:References:In-Reply-To:From;
-        b=I2i8rJpVWQewx83DF+4qKd3/0jlZUbp82IlICMCEhkUAxdW5Z/4zcU5F4tyIpNcdQ
-         WeZusJn5IK47rPyB7QjRElaoM1qd8obxUgoCpwQkXIfMrrpkITyQaRRFjOgdIKc6KD
-         8ZMBPfEeyteKjyvcFDzQgpEMn6yJ2k1UTFooe73GhPrgiUrVrJjM0VC2Kt+wt8VHJJ
-         GYJuqRO0YhlCimtYWviRn4iYqk4G4RuODGkhmcDON1FYe93ikRFWZBtd8tV1KvFRJX
-         VVVfEsdpLTETjDb8KwMuVNd+W2kx2bARCVbvoPrvkT2z+SiGGO9cB5dVsQN50w+aH4
-         jJlDu64EYJlEg==
-Date:   Wed, 18 Jan 2023 22:25:07 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Revert "phy: qualcomm: usb28nm: Add MDM9607 init
- sequence"
-Message-ID: <Y8gka33KTscXK3HK@matsya>
-References: <20221214223733.648167-1-marijn.suijten@somainline.org>
- <Y8GY51Cfkj7o1MJs@matsya>
- <20230116203549.5jzd2olxua662n6w@SoMainline.org>
- <Y8YzzCEqGi3m9fWM@matsya>
- <20230117091912.pzogxqvgf6kivi74@SoMainline.org>
+        s=k20201202; t=1674061007;
+        bh=E3RoN2UBLg+xbugtNCvURjAmNDgUh/BpOKAe6HdbGW0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=KndQMtq/s2qsD+r9i7Tv7PA3agwEwLPlR+Ka3/+3DuE+IpjL6sxoNFPVUf86IypTj
+         LoH3245g9TQkuYMuowKL5JE6d5r+fQ/r77x9qCfOrwnBYSMKniWvxud5QFUIAvgRIX
+         scgBech16DpDYSvTgGHQv4YzaJanSIiQgZr1JO/vohV/MiKqQ92W9YiiRCbDKDy0rE
+         2pUwyJx1pX1gMDZJaCxlNN37s5vTQMszbhq2sGqbFTt1mlqWaT3s3vX0iOW7Ru5UnI
+         xyXw0MT5hihBzBfEHxXYDW0Ephdsdw4lPfpliXJiBIrTK/JmV9DiWtd4mhmFVoMeb1
+         3pe7GvBQTyNzQ==
+Date:   Wed, 18 Jan 2023 10:56:44 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Achal Verma <a-verma1@ti.com>
+Cc:     mranostay@ti.com, rogerq@kernel.org, lpieralisi@kernel.org,
+        robh@kernel.org, kw@linux.com, bhelgaas@google.com,
+        krzysztof.kozlowski@linaro.org, vigneshr@ti.com,
+        tjoseph@cadence.com, sergio.paracuellos@gmail.com,
+        pthombar@cadence.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 5/5] PCI: j721e: add j784s4 PCIe configuration
+Message-ID: <20230118165644.GA225110@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230117091912.pzogxqvgf6kivi74@SoMainline.org>
+In-Reply-To: <20230118125936.3456716-6-a-verma1@ti.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -71,19 +56,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-01-23, 10:19, Marijn Suijten wrote:
-> On 2023-01-17 11:06:12, Vinod Koul wrote:
-> <snip>
-> > > Thanks, it wasn't clear to me whether to suffix the title when already
-> > > included in the Revert: "phy: qualcomm: ..." title :)
-> > 
-> > A revert patch is a patch as well so the patch rules apply there as well,
-> > so should say "subsystem tag: other tags: Revert foo..."
+If you repost for some other reason, fix the subject typo ("Add ..."
+to match the others).  Otherwise, Lorenzo may fix it up while
+applying.
+
+On Wed, Jan 18, 2023 at 06:29:36PM +0530, Achal Verma wrote:
+> From: Matt Ranostay <mranostay@ti.com>
 > 
-> Ack, but then /keep/ "subsystem tag: other tags:" /within/ the Revert
-> string, so "phy: qualcomm: Revert "phy: qualcomm: ...""?
-
-Ideally yes!
-
--- 
-~Vinod
+> Add PCIe configuration for j784s4 platform which has 4x lane support.
+> 
+> Tested-by: Achal Verma <a-verma1@ti.com>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> Signed-off-by: Achal Verma <a-verma1@ti.com>
