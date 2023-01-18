@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DFB5671F57
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:20:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D8B671F60
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:22:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231329AbjAROUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:20:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48092 "EHLO
+        id S231319AbjAROWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:22:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231207AbjAROUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:20:04 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FEE74CE7A
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:02:16 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id k8so19541151wrc.9
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:02:16 -0800 (PST)
+        with ESMTP id S231315AbjAROVv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:21:51 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18CF6E836
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:04:17 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id b7so8044392wrt.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:04:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KPNHdE6dCQ0u+vOjgzlU+mCeL0WOa6M5H4bxTnTVTpE=;
-        b=PUwqwesV/IZiMOBxo0ciDMw4He3GuHS3q7ncK0KV1jGsa2IOjtoyqvCRebjFhCWYh1
-         RPh6waXM5i3pbV/Z4g5Z9rPl74yBgTLlsyy8ZogCTWkIf6Dn4U91O6A6USuZIfKJ967R
-         j1WnkfCANxF4k4OLkmuSq6I++1VVanqEJibHev7Yc3kRGx9WgnK3CABFA5qOiXs0yIy/
-         qXBaH3YWgaO19fPQcRceLnQG5VK46pARBNE4LFq82myXoU6jf7HIRGv4KUP8jtVS7Lp/
-         iDanNK0k/OD9uui4ggBUGItxdOPv1NrqfWQdEAYjlyWoNjzvTaGuLHkC2XpvoucEWFST
-         ahWA==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=BStJknkxNRkRdaOPMntui8WFVTLp1fXVr+hgk9OK3CA=;
+        b=HqO4zk2i3L2FfBM4Uj2xpJNG3ZIVGe7mW87LZa2tw6nMQZNAUd9ml5oWmmS07J4Ofp
+         2yK4LwD+K8R+22mNujCfVO8gKpoXKRyCTtDXclChY03p0TVd3WUKUyE8Mt8KUFZxkgMS
+         KR1bONAnE39Gkbc/mPMJIJdJ9vQNZWbtSGGhOoekDp88QKNNcxRFCPGlKrPEYAloXxmy
+         xzaymLTViFe+3DSidGNVb64JZDUazReeRh9j4pz7TwU+IPLgt/b0xWUh37EQw00RhsXY
+         Bz3e7hIgmc/Aic6soff8QNct4Tt90+QVUFM8rKa4eDSua4fQXrEZanhBH8iD1HXJBjkO
+         Avkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KPNHdE6dCQ0u+vOjgzlU+mCeL0WOa6M5H4bxTnTVTpE=;
-        b=27zDjkUg3rSb57k5KZthXknqF22/979cXEb2hYyqb0PJgZKZMWIFnD3lS9o13S24hj
-         6eEyUvZcq5TdABPnGWvIZ+/oToyirh9XcrJ8wXdIhf+Kg7Ei0m8cJyaqig5i01CYj7S+
-         0CUp1IhTFr2BFlipt3+uv19wuOpOXXRQkzyk9ndTHRu1gojYO/8uoqO9+qyLS9ypQXTs
-         DkXXmmdFimP4NUh5x250F90PoszXRKPm+qoEY+BYiUKmpYE2upD3EZtTZ86DKzBRCX6S
-         AUYd2iNnMZlEKUelTX08FhtVFJ6/yrvvqEfST/kByNsTm/LOjWef23F/tKNHyQx6E381
-         bkCQ==
-X-Gm-Message-State: AFqh2kpVHAZckpvoZFEZ3jb9aecshw7/EpTGLf8rArJZKhqAF3KAwxaI
-        U9WxLXShTNsiCyKdTVMZ8is2kA==
-X-Google-Smtp-Source: AMrXdXsMT3JB4whYqqW4yxRL5v2upwn0jQSsyJl9yhLl62e6Ram/pCQErHyOh4gkyrtVFokwT+8FFw==
-X-Received: by 2002:a5d:43cf:0:b0:2bb:dca3:b29 with SMTP id v15-20020a5d43cf000000b002bbdca30b29mr5849763wrr.36.1674050534636;
-        Wed, 18 Jan 2023 06:02:14 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id k2-20020a5d5182000000b00236545edc91sm31951183wrv.76.2023.01.18.06.02.13
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BStJknkxNRkRdaOPMntui8WFVTLp1fXVr+hgk9OK3CA=;
+        b=LbgMTuAWktw1hqVmlbu0aEEYgy2KHTWN+yAU+oWwik29UTiRuhUUM1R9fsm6m67Ks5
+         h1hyPPiJu2D7gysaS19ZyweT3s5LeMEqA7iHBU5ZYhPKi4un4Kj1EX/lUU3iqHim2Ydx
+         +OFQ83g7ayyxUKvAkZiMyggGqmeGcWM51hYiU3CXvd8vnQNPrv0F0rLT1NkvPDBJjVsB
+         sLzlpOY0w4qyPfvU/Jnhl+q18fEtyPjiLW8P4B/Vd4kr+xs94MC3SIiiAyyJdEMqjq9V
+         9VIAPEhvmn0HeY4lodqv5cyLzYDOX2092+k+4rU5hFOq+i0biWgNzP4Ic6gvsAMbglt4
+         cxxQ==
+X-Gm-Message-State: AFqh2kos/de4j8fPvKFiDjqel/3b7RzQefiPhNHHrJqg9LygjGNdP116
+        tOm3det9Qes0GSuzl6h3cQO7Tw==
+X-Google-Smtp-Source: AMrXdXvisreUlEjmD2E9PJTmXfgydOinhvuH8ytmedUlVBRJ/Vz6PU/+YBdLYpYO3dMPO8X37PikQA==
+X-Received: by 2002:a5d:50c9:0:b0:2bd:db42:36cd with SMTP id f9-20020a5d50c9000000b002bddb4236cdmr5869055wrt.0.1674050656317;
+        Wed, 18 Jan 2023 06:04:16 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:37dc:5071:959c:93e4? ([2a01:e0a:982:cbb0:37dc:5071:959c:93e4])
+        by smtp.gmail.com with ESMTPSA id n6-20020adfe786000000b002bdbde1d3absm21305586wrm.78.2023.01.18.06.04.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 06:02:13 -0800 (PST)
-Message-ID: <b5a60852-f8f5-f3c4-fb75-bb5f00823c82@linaro.org>
-Date:   Wed, 18 Jan 2023 15:02:11 +0100
+        Wed, 18 Jan 2023 06:04:15 -0800 (PST)
+Message-ID: <e7c0fd5a-f77c-a9ef-a648-a711e1eff5ad@linaro.org>
+Date:   Wed, 18 Jan 2023 15:04:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v4 16/17] arm64: dts: freescale: apalis-imx8: fix
- reserved-memory node names
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sm8550-mtp: add DSI panel
 Content-Language: en-US
-To:     Marcel Ziswiler <marcel@ziswiler.com>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-References: <20230118072656.18845-1-marcel@ziswiler.com>
- <20230118072656.18845-17-marcel@ziswiler.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230118072656.18845-17-marcel@ziswiler.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230104-topic-sm8550-upstream-dts-display-v3-0-46f0d4e57752@linaro.org>
+ <20230104-topic-sm8550-upstream-dts-display-v3-3-46f0d4e57752@linaro.org>
+ <9fb2618f-43ab-c644-c957-67ffc4c05dc3@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <9fb2618f-43ab-c644-c957-67ffc4c05dc3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -82,38 +82,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 08:26, Marcel Ziswiler wrote:
-> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+On 18/01/2023 14:36, Konrad Dybcio wrote:
 > 
-> Fix reserved-memory node names using dashes rather than underscores.
 > 
-> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> 
-> ---
-> 
-> Changes in v4:
-> - New patch fixing reserved-memory node names.
-> 
->  arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-> index 70c00b92cb05..6217e0a48f96 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-> @@ -133,17 +133,17 @@ reserved-memory {
->  		#size-cells = <2>;
->  		ranges;
->  
-> -		decoder_boot: decoder_boot@84000000 {
-> +		decoder_boot: decoder-boot@84000000 {
+> On 18.01.2023 09:55, Neil Armstrong wrote:
+>> Add nodes for the Visionox VTDR6130 found on the SM8550-MTP
+>> device.
+>>
+>> TLMM states are also added for the Panel reset GPIO and
+>> Tearing Effect signal for when the panel is running in
+>> DSI Command mode.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 56 +++++++++++++++++++++++++++++++++
+>>   1 file changed, 56 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+>> index 0dfd1d3db86c..2de387aa2c2d 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+>> @@ -370,6 +370,34 @@ &mdss {
+>>   &mdss_dsi0 {
+>>   	vdda-supply = <&vreg_l3e_1p2>;
+>>   	status = "okay";
+>> +
+>> +	panel@0 {
+>> +		compatible = "visionox,vtdr6130";
+>> +		reg = <0>;
+>> +
+>> +		pinctrl-names = "default", "sleep";
+>> +		pinctrl-0 = <&sde_dsi_active>, <&sde_te_active>;
+>> +		pinctrl-1 = <&sde_dsi_suspend>, <&sde_te_suspend>;
+> Hm.. I've just realized there are two styles of specifying
+> phandle arrays: <&a &b> and <&a>, <&b>.. even worse, we
+> have both of them in our tree.. Krzysztof, Bjorn, which one
+> should we go with, going forward?
 
-This is ridiculous. You just added it! If we consider original code as
-wrong, then you intentionally added wrong code just to fix it.
+I've been cleaning into <&a>, <&b> for the last few years and
+it clearer since it separates each phandle (+ parameters) in the DTS.
 
-No, that's not the way how it should be developed.
+Neil
 
+> 
+> 
+>> +
+>> +		vddio-supply = <&vreg_l12b_1p8>;
+>> +		vci-supply = <&vreg_l13b_3p0>;
+>> +		vdd-supply = <&vreg_l11b_1p2>;
+>> +
+>> +		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
+>> +
+>> +		status = "okay";
+> Superfluous, it's enabled by default, drop
 
-Best regards,
-Krzysztof
+Ack, will remove
+
+> 
+> Konrad
+>> +
+>> +		port {
+>> +			panel0_in: endpoint {
+>> +				remote-endpoint = <&mdss_dsi0_out>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&mdss_dsi0_out {
+>> +	remote-endpoint = <&panel0_in>;
+>> +	data-lanes = <0 1 2 3>;
+>>   };
+>>   
+>>   &mdss_dsi0_phy {
+>> @@ -415,6 +443,34 @@ &sleep_clk {
+>>   
+>>   &tlmm {
+>>   	gpio-reserved-ranges = <32 8>;
+>> +
+>> +	sde_dsi_active: sde-dsi-active-state {
+>> +		pins = "gpio133";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	sde_dsi_suspend: sde-dsi-suspend-state {
+>> +		pins = "gpio133";
+>> +		function = "gpio";
+>> +		drive-strength = <2>;
+>> +		bias-pull-down;
+>> +	};
+>> +
+>> +	sde_te_active: sde-te-active-state {
+>> +		pins = "gpio86";
+>> +		function = "mdp_vsync";
+>> +		drive-strength = <2>;
+>> +		bias-pull-down;
+>> +	};
+>> +
+>> +	sde_te_suspend: sde-te-suspend-state {
+>> +		pins = "gpio86";
+>> +		function = "mdp_vsync";
+>> +		drive-strength = <2>;
+>> +		bias-pull-down;
+>> +	};
+>>   };
+>>   
+>>   &uart7 {
+>>
 
