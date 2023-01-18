@@ -2,101 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF197671D9D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 14:24:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21AFB671DA1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 14:24:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230045AbjARNYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 08:24:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53880 "EHLO
+        id S231425AbjARNYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 08:24:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229918AbjARNXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:23:46 -0500
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DCD23C3F;
-        Wed, 18 Jan 2023 04:50:21 -0800 (PST)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30IBB4qd002543;
-        Wed, 18 Jan 2023 13:49:57 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=linwnaEWaqbZU3PC233U2YpghYMe3CfWgXBH/zbTiZ0=;
- b=vmy13VNT9+DV5uroxs7W4WKUMH1wWVokOnVCYL8E/8zGRvjXbKir7vOQfHU3TMPNbH+o
- /kBFL6gkxIUfjqjlte+xCIQI/Itf5dtDqlHgxSh/K43fn2oW/ql4aQNNH/yJllgKS8Ij
- BKEHLEX6r+Hy5HUpMgCcOunhwcjN/ppsBSxngM42591+I4VlnUkr4HJI4kpMepQ4vQzQ
- xOsvBwbBCnCXVFIEfyz2i720HjivUFt58HQWwXwpNkacc9Go07O//o7dMgOidsYKGGcZ
- Lzrf5LjergcDiG1YznxNw/ki+ZZGeTxvoa1Luw1KXEM/gONUhcZJ6Ns63e6kVBmuS+Au 3A== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3n5mc4sxux-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 18 Jan 2023 13:49:57 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 74DE110002A;
-        Wed, 18 Jan 2023 13:49:55 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4BB9A21684A;
-        Wed, 18 Jan 2023 13:49:55 +0100 (CET)
-Received: from localhost (10.48.0.157) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Wed, 18 Jan
- 2023 13:49:54 +0100
-From:   Patrick Delaunay <patrick.delaunay@foss.st.com>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>
-CC:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: [PATCH] ARM: dts: stm32: Update part number NVMEM description on stm32mp131
-Date:   Wed, 18 Jan 2023 13:49:51 +0100
-Message-ID: <20230118134948.1.Ica923e4a2407c976dcf3d65c266c27c883734dd8@changeid>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229827AbjARNXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:23:49 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4222A14E88
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 04:50:57 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so1341926wmb.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 04:50:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=h6UofrQemZ4+eX1QPPo3KJD1icPLPcDXcolqW+JUoFQ=;
+        b=Cuq7EjnurKOrCWygPW2yM9RPlSaKj8NbC5g3CcHISAxiBoQTfL0TxFoby3SalLb0en
+         xdJ1dNFPlaVmAyovwRg26cBcjDQX+IK98f1YU/m5Jhq6HmeXtkK5ElIh83pdeHU8UInm
+         EIjJw1DMRk3dEm0iTYdO4H/KyEUutsz/7yGkO8u+sK9PdQCMPS8/DKdIfdrC9E2HcbRA
+         9CtuZ0M0R5tuR6HWeak7YE/I3dX2k1WfkNeOclyM6G11fTTMkDmehN9Otic4mn5uD+r+
+         uG5Qg7VIT0C4pMH79BAOqveRsMP6E1NKDde0LCcfvQVJ2wbAZ2FAvLIMZRnAyPhWug4C
+         6kcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=h6UofrQemZ4+eX1QPPo3KJD1icPLPcDXcolqW+JUoFQ=;
+        b=w7xhmJEJV2zrxvPKefLYdYj7ZbA4pXfEQ6PIqTgyLB9fVX+zfmF9u4J+y+XLTmqBz5
+         mRX371PYzihSh3jk/kQFve9KQT/S85OTwiLAcjvdDUtLhhKieFEzDu1n16d+kAgKfJF/
+         FUIMkhMPLOkiPXfoDn5hUDZQEv9DocIELsfPeZIHNSsujTD0VpTK+EArFkV5RnYu9IN9
+         aaOJklC/3V9vqKatB1BVSXPVrFACW3mql9XKmMIfDuG99AVjdvU54joRVww5aOzyiIrg
+         rkqMrnrshmq+a4U5NsEw6DFgmZwDIRSi768Y9ai74mhXAPXeK/Vn1Z4UzVHqg3S7SNMo
+         5tQg==
+X-Gm-Message-State: AFqh2kqN6eQ7Y0pKrJNtqpGBBcN6jALpTfNzF4uaFEB0tXrzH7GLeU3j
+        Z8qVHHWqGqIitRdJ1ELLSCJhhQ==
+X-Google-Smtp-Source: AMrXdXtQ0z5537FCj9ntjVW+joNiKI3tv3JZd/zlO+3v+/CSF+vqDDmlfBlrEksX79ozb6+vGn0Jiw==
+X-Received: by 2002:a05:600c:3d10:b0:3da:e4c:2a3c with SMTP id bh16-20020a05600c3d1000b003da0e4c2a3cmr6874947wmb.41.1674046255745;
+        Wed, 18 Jan 2023 04:50:55 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id k34-20020a05600c1ca200b003cfd4e6400csm2114848wms.19.2023.01.18.04.50.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 04:50:55 -0800 (PST)
+Message-ID: <8a704b63-9ef1-ed4d-3ee5-35ebfd2a2318@linaro.org>
+Date:   Wed, 18 Jan 2023 12:50:54 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v3 5/8] arm64: dts: qcom: Add msm8939 SoC
+Content-Language: en-US
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, benl@squareup.com,
+        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
+        dmitry.baryshkov@linaro.org, Jun Nie <jun.nie@linaro.org>,
+        James Willcox <jwillcox@squareup.com>,
+        Joseph Gates <jgates@squareup.com>,
+        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
+        Vincent Knecht <vincent.knecht@mailoo.org>
+References: <20230117024846.1367794-1-bryan.odonoghue@linaro.org>
+ <20230117024846.1367794-6-bryan.odonoghue@linaro.org>
+ <Y8fC/GCHfENQmBNC@gerhold.net>
+ <cf4920e6-c007-20a5-ba3a-5005b22f891b@linaro.org>
+In-Reply-To: <cf4920e6-c007-20a5-ba3a-5005b22f891b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.48.0.157]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-18_05,2023-01-18_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The STM32MP13x Device Part Number (also named RPN in reference manual)
-only uses the first 12 bits in OTP4, all the other bit are reserved and
-they can be different of zero; they must be masked in NVMEM result, so
-the number of bits must be defined in the nvmem cell description.
+On 18/01/2023 11:50, Bryan O'Donoghue wrote:
+>>> +                clocks = <&gcc GCC_MDSS_MDP_CLK>,
+>>> +                     <&gcc GCC_MDSS_AHB_CLK>,
+>>> +                     <&gcc GCC_MDSS_AXI_CLK>,
+>>> +                     <&gcc GCC_MDSS_BYTE1_CLK>,
+>>> +                     <&gcc GCC_MDSS_PCLK1_CLK>,
+>>> +                     <&gcc GCC_MDSS_ESC1_CLK>;
+>>> +                clock-names = "mdp_core",
+>>> +                          "iface",
+>>> +                          "bus",
+>>> +                          "byte",
+>>> +                          "pixel",
+>>> +                          "core";
+>>> +                assigned-clocks = <&gcc BYTE1_CLK_SRC>,
+>>> +                          <&gcc PCLK1_CLK_SRC>;
+>>> +                assigned-clock-parents = <&dsi_phy1 0>,
+>>> +                             <&dsi_phy1 1>;
+>>
+>> Does this work? Confusingly, BYTE1/PCLK1_CLK_SRC can only have dsi0pll
+>> as parent in gcc-msm8939 and not the dsi1pll. <&dsi_phy1 0/1> is not a
+>> valid parent for those clocks.
+> 
+> No you're right, its all wrong. I will correct it
+> 
+>          mdss_dsi0: qcom,mdss_dsi@1a98000 {
+>                  compatible = "qcom,mdss-dsi-ctrl";
+>                  label = "MDSS DSI CTRL->0";
+>                  cell-index = <0>;
+>                  reg = <0x1a98000 0x25c>,
+>                        <0x1a98500 0x2b0>,
+>                        <0x193e000 0x30>;
+>                  reg-names = "dsi_ctrl", "dsi_phy", "mmss_misc_phys";
+>                  qcom,mdss-fb-map = <&mdss_fb0>;
+>                  qcom,mdss-mdp = <&mdss_mdp>;
+>                  gdsc-supply = <&gdsc_mdss>;
+>                  vdda-supply = <&pm8916_l2>;
+>                  vdd-supply = <&pm8916_l17>;
+>                  vddio-supply = <&pm8916_l6>;
+>                  clocks = <&clock_gcc clk_gcc_mdss_mdp_clk>,
+>                           <&clock_gcc clk_gcc_mdss_ahb_clk>,
+>                           <&clock_gcc clk_gcc_mdss_axi_clk>,
+>                           <&clock_gcc_mdss clk_gcc_mdss_byte0_clk>,
+>                           <&clock_gcc_mdss clk_gcc_mdss_pclk0_clk>,
+>                           <&clock_gcc clk_gcc_mdss_esc0_clk>;
 
-Fixes: 1da8779c0029 ("ARM: dts: stm32: add STM32MP13 SoCs support")
-Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+Sorry what am I saying that's the wrong dsiX
+
+Here's downstream - byte1, plck1, esc1 exist
+
+         mdss_dsi1: qcom,mdss_dsi@1aa0000 {
+                 compatible = "qcom,mdss-dsi-ctrl";
+                 label = "MDSS DSI CTRL->1";
+                 cell-index = <1>;
+                 reg = <0x1aa0000 0x25c>,
+                       <0x1aa0500 0x2b0>,
+                       <0x193e000 0x30>;
+                 reg-names = "dsi_ctrl", "dsi_phy", "mmss_misc_phys";
+                 qcom,mdss-fb-map = <&mdss_fb0>;
+                 qcom,mdss-mdp = <&mdss_mdp>;
+                 gdsc-supply = <&gdsc_mdss>;
+                 vdda-supply = <&pm8916_l2>;
+                 vdd-supply = <&pm8916_l17>;
+                 vddio-supply = <&pm8916_l6>;
+                 clocks = <&clock_gcc clk_gcc_mdss_mdp_clk>,
+                          <&clock_gcc clk_gcc_mdss_ahb_clk>,
+                          <&clock_gcc clk_gcc_mdss_axi_clk>,
+                          <&clock_gcc_mdss clk_gcc_mdss_byte1_clk>,
+                          <&clock_gcc_mdss clk_gcc_mdss_pclk1_clk>,
+                          <&clock_gcc clk_gcc_mdss_esc1_clk>;
+                 clock-names = "mdp_core_clk", "iface_clk", "bus_clk",
+                                 "byte_clk", "pixel_clk", "core_clk";
+
+
+Parent clock is gpll0a but they waggle different rcgr addresses
+
+static struct clk_rcg2 byte0_clk_src = {
+         .cmd_rcgr = 0x4d044,    <- here
+         .hid_width = 5,
+         .parent_map = gcc_xo_gpll0a_dsibyte_map,
+         .clkr.hw.init = &(struct clk_init_data){
+                 .name = "byte0_clk_src",
+
+static struct clk_rcg2 byte1_clk_src = {
+         .cmd_rcgr = 0x4d0b0,    <- and here
+         .hid_width = 5,
+         .parent_map = gcc_xo_gpll0a_dsibyte_map,
+         .clkr.hw.init = &(struct clk_init_data){
+                 .name = "byte1_clk_src",
+
+It *should* work even with the wrong name but, I will send a GCC update 
+to address the naming, which looks wrong.
+
 ---
-
- arch/arm/boot/dts/stm32mp131.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index f50051e81ee3..2f186a0ae92e 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -1233,6 +1233,7 @@ bsec: efuse@5c005000 {
- 
- 			part_number_otp: part_number_otp@4 {
- 				reg = <0x4 0x2>;
-+				bits = <0 12>;
- 			};
- 			ts_cal1: calib@5c {
- 				reg = <0x5c 0x2>;
--- 
-2.25.1
-
+bod
