@@ -2,46 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC11C672BB9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 23:50:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0FC3672BC2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 23:50:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbjARWuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 17:50:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46796 "EHLO
+        id S230113AbjARWut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 17:50:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229861AbjARWug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 17:50:36 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71943656FF;
-        Wed, 18 Jan 2023 14:50:36 -0800 (PST)
+        with ESMTP id S230032AbjARWun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 17:50:43 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDA063E26;
+        Wed, 18 Jan 2023 14:50:40 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0033761A8D;
-        Wed, 18 Jan 2023 22:50:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4C20C433F1;
-        Wed, 18 Jan 2023 22:50:34 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EFB8AB81D76;
+        Wed, 18 Jan 2023 22:50:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E537CC433F0;
+        Wed, 18 Jan 2023 22:50:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674082235;
-        bh=x2CPrDH4N8Ln3uLQa0HkDU8iJh2M1bgQmAhx0PE5EV8=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=WgVNyAQGK17s9FyiF6gIqE9KIXyBSlbtlhM9iRH4rDuU6Kdki6g5NSAGPMnKVcf8/
-         uCoQkKMLSTeAe4TwDthrcTeHPf9I+h4HFW3TN9+aif4gcingehBWsRBDDxkjK710D1
-         2DbFTBOCS75glHiodMk53eY80/QIzoRJGkVzosGhtT0r9mA6mZLYKchPzN1FAoL19h
-         8ap4XemIGuzkkgV29W0EEr4blqjeIZxPPCS92OEsvNjYC+XPpP/nhfcsQF49ZXEkRo
-         +xeKaiIKq6fUAW0fNj++JJWEEVGwgn5veRIZ1IaZr7Yv7AWRlfCLjOTzItAG/orchi
-         K1KrjQa+NmuBw==
+        s=k20201202; t=1674082237;
+        bh=2blp33AOuNZgDL48gG5lYTR7R74zR8GX5DBx5UyySA0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=rL8tabuAZqwcjzroj/lcYe+3MwW6T/FjQjJ+xtyJwkHQsT1/3dqP462K8aCaP4pQx
+         jihZTCOo8labZCEyd/UNHjWynlGYWOeFP5x7KryMVzT+cPz1nkFVtXPABPvyYa7BcV
+         txzvzYPVxhv4EnS++80wr5FgibhyLcD1PUKYP+YpvJYQ7OxBQWJbRY8INRlsGQExrS
+         g6blVMtr8h0jCqRbyJRCeUi6bQ+zjVX17n5uSplBdju0Ez8ezUJESynGDWGNcFvgQa
+         kFXVgsnCNcPruBQp3t/jg0nnKRccjtKNlrYfKOGgoW0o7t2iMl7hmYr4suwEaVB1dr
+         7Ikw0zEJbIdwg==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski@linaro.org,
-        linux-arm-msm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, agross@kernel.org
-Subject: Re: (subset) [PATCH v2 1/3] arm64: dts: qcom: sm8250: drop unused clock-frequency from rx-macro
-Date:   Wed, 18 Jan 2023 16:50:25 -0600
-Message-Id: <167408222414.2952004.17106947349397428240.b4-ty@kernel.org>
+To:     konrad.dybcio@linaro.org, quic_bjorande@quicinc.com,
+        agross@kernel.org
+Cc:     ahalaney@redhat.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Manivannan Sadhasivam <mani@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc8280xp: Define CMA region for CRD and X13s
+Date:   Wed, 18 Jan 2023 16:50:28 -0600
+Message-Id: <167408222416.2952004.7134382340412664997.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230118094224.51704-1-krzysztof.kozlowski@linaro.org>
-References: <20230118094224.51704-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230117184630.2775905-1-quic_bjorande@quicinc.com>
+References: <20230117184630.2775905-1-quic_bjorande@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -54,22 +56,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Jan 2023 10:42:22 +0100, Krzysztof Kozlowski wrote:
-> Neither qcom,sm8250-lpass-rx-macro bindings nor the driver use
-> "clock-frequency" property.
+On Tue, 17 Jan 2023 10:46:30 -0800, Bjorn Andersson wrote:
+> While booting the CRD, a series of CMA allocation errors can be seen in
+> the kernel log:
 > 
->   sm8250-mtp.dtb: rxmacro@3200000: Unevaluated properties are not allowed ('clock-frequency' was unexpected)
+>   cma: cma_alloc: reserved: alloc failed, req-size: 128 pages, ret: -12
 > 
+> Growing the CMA region and querying /proc/meminfo indicates that a newly
+> booted system (currently) uses 64MB CMA.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/3] arm64: dts: qcom: sm8250: drop unused clock-frequency from rx-macro
-      commit: 30186f8573af259ff9928512c3256bf7f66e48e6
-[2/3] arm64: dts: qcom: sc8280xp: drop bogus clock-controller property
-      commit: c75286fe8968cb0cc4f0cc83caa2b2b38f6f6d4f
-[3/3] arm64: dts: qcom: sc8280xp: drop unused properties from tx-macro
-      commit: 91238d52fb0730564eec520541ec7bc4e120ae52
+[1/1] arm64: dts: qcom: sc8280xp: Define CMA region for CRD and X13s
+      commit: 5f84c7c35d49e6d92b720db19d421951f1ff8599
 
 Best regards,
 -- 
