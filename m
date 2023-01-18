@@ -2,72 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5419C671E8C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 14:54:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86BD0671E91
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 14:55:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230443AbjARNyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 08:54:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50458 "EHLO
+        id S229841AbjARNz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 08:55:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230476AbjARNxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:53:31 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15BFD792AF
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:24:22 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id m21so49574174edc.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:24:22 -0800 (PST)
+        with ESMTP id S229789AbjARNzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:55:39 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93C42829BD
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:26:11 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id q8so12865828wmo.5
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:26:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FgU9OV81VKNoacRkVG36DRzxhv8CRha3b241eiVTJOU=;
-        b=y943B9lru//EWuO6UMJJ3vYBFc9kuFRe8EjbWug/kitczTxrPpjydtYgnSU571IYWv
-         +10nJmvwC2S1qdxe0a7VIXrt7bzL9NvjoXV3JZYw+VkaPwnRR1TUxM3E6e+NsfiW1b7H
-         aSPjBKope0li8mNKoIOPXNqgXp1EkC6e6zkTjFI8vGKtu3kjWGTgXPlmjIoeGg+w9kOj
-         /rpQ6HH9TgFbHoKWCZn7HixvsioMN/DPvLsVrdK7Em/ga84IAYxB0pY2SovhaM0RId41
-         w7ZXC1UNMetFeJ8uLvCAahBmOMWXZGN0r5d1Gq0wo466bNPl+MfUBjrXacklZzeRvb5i
-         PMiw==
+        bh=S3k8frPalWO3Z3os+kNp0jp8dx/XM1Dyquz57dFW8EA=;
+        b=ZqJeDahIqkSzoQJifZAZvvOn5FPWyWN/dKqKzr+D0yILoa1Yhq+84XSUD+kB31zN5+
+         4DEJAL49lbIKnZqgHs08GIRJ5CfNDgSNm0f4qNyHdcD+WXOJxLBBZQV8gKFXJ5QtDtuY
+         0c1/E/SGQ9ZoM2awPSnLJVq5vsjYoeE4n98Wd9EsDpkix3xSQi/c675ZV7KYCjcm9Rcj
+         vX0BjIWYtdECxW6zSsHNVpFyLAHMyCCtjBztU9tw9Sge7b0K1bRL2FRRTwxlPfNlaktS
+         DnXRAsbly8J06BHP/jjWft47IImkOeS5IsCIpTEri0ZlRuW3+/g6NVDdqLteoI5ZNPUJ
+         9TVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FgU9OV81VKNoacRkVG36DRzxhv8CRha3b241eiVTJOU=;
-        b=IocDza4FVyuW5cirAVvE+oZYLuQ+sejwNgFAWVNuKwyOqhs9+6lbpbrNhn/y56KZM+
-         u7g/4vQd94P7e7tpB/AaxhVEH7afKGhTwCX39zp9c78CIIgrUrhmuyICV47bMnqsHlXQ
-         e70SLxiw2Pv/4lLdUwjG4xB2MBAhrsm8aIhxC+chlytEFQ1Cf98bGKTE5hOe78lMzZz4
-         V0AWTraS4GM2UIs9kffA9judle0Pt8/CxI9A2qyfVYVABjoQCROP0dhc9ZnrEHznPfyi
-         iuIVeVVlzFNaJDE+E5j+AXtEwEdagr2S/JLSQwdoX2UA68od0XR8nSdimoiQa2TEZ4/s
-         SFtA==
-X-Gm-Message-State: AFqh2krp5g4hydAIouVcn7JJRf2n2TuwpKm0FU8nRJJIVhkOqiZVTMId
-        lyulmmSCOsbuN9+9FxIOY7KTjRvuQ3pZU+5q
-X-Google-Smtp-Source: AMrXdXsp1+bb0awcdMhn3BnuUs3hIK4/cegYEOwsfNWiIBA5PynRHZ2PN+kb9S7rYz2DsxQSTLEm2g==
-X-Received: by 2002:aa7:c1ce:0:b0:49e:89e:3b36 with SMTP id d14-20020aa7c1ce000000b0049e089e3b36mr7350531edp.30.1674048261163;
-        Wed, 18 Jan 2023 05:24:21 -0800 (PST)
-Received: from [192.168.1.101] (abxh252.neoplus.adsl.tpnet.pl. [83.9.1.252])
-        by smtp.gmail.com with ESMTPSA id q24-20020a056402249800b0046ac460da13sm14286777eda.53.2023.01.18.05.24.19
+        bh=S3k8frPalWO3Z3os+kNp0jp8dx/XM1Dyquz57dFW8EA=;
+        b=VgPhpZZDh9He9pqYVG4PnM2JWzAGIzGhKAuesCIHB5a73drRa8jJzCwnX/T5ojsq+h
+         wQW0+QtM6XLGE0g2m7XaeZ0zXn/F+i0FsoWfxB2ymzLqwoZeFkGAlR7jbSgux5YAY7sR
+         msxko23DOBdpl8Jvcax9Jm1ympk35KvboOfuZBYS4grO34lFWqjGLxqWErkwzWPQ6fdD
+         YpwyiPtSISAZxXtfy4U1hINckCG/nLGVYzMFC8n3hLXEi+gWVMaefzrONlF94WLYa9jY
+         0XS6ypkDCfA7mOmFeTV0W1/lC+iJy2yS5Hf0WdM7EkKPpX5q/VYBTpb2/gIxXQU2WE/k
+         WPhQ==
+X-Gm-Message-State: AFqh2kqakB7imMjN4jm2lja6qwo4D4+ZpTp+5Ei/QEi1n39bQ7WeGVfF
+        Q6qGnEaj6jeastsnCq/ljGEhjw==
+X-Google-Smtp-Source: AMrXdXs37wvLroZfU7gxPexS9gisJjQH9LTOdnfUkpefHwuHlTbMrugwkgRc/efeLQZknOBY6HRD0g==
+X-Received: by 2002:a05:600c:281:b0:3da:1132:4b63 with SMTP id 1-20020a05600c028100b003da11324b63mr6726498wmk.5.1674048370192;
+        Wed, 18 Jan 2023 05:26:10 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id s4-20020a05600c384400b003d9862ec435sm1998066wmr.20.2023.01.18.05.26.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 05:24:20 -0800 (PST)
-Message-ID: <3b3709ce-c1ea-155f-f175-c07a3765836d@linaro.org>
-Date:   Wed, 18 Jan 2023 14:24:18 +0100
+        Wed, 18 Jan 2023 05:26:09 -0800 (PST)
+Message-ID: <b4ae25ea-bccd-d845-c133-488d23d92e47@linaro.org>
+Date:   Wed, 18 Jan 2023 14:26:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc8280xp: Define CMA region for CRD
- and X13s
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 2/3] ASoC: dt-bindings: qcom,wcd934x: Describe
+ slim-ifc-dev
 Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20230117184630.2775905-1-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230117184630.2775905-1-quic_bjorande@quicinc.com>
+        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230113162214.117261-1-krzysztof.kozlowski@linaro.org>
+ <20230113162214.117261-2-krzysztof.kozlowski@linaro.org>
+ <20230117192724.GA3489389-robh@kernel.org>
+ <331eed95-eaf7-5c5a-86c1-0ee7b5591b9a@linaro.org>
+ <CAL_JsqJUTFa24iZ2fovE_yJdBVcbkcUX8rBoPB12ptdAyxHW6g@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAL_JsqJUTFa24iZ2fovE_yJdBVcbkcUX8rBoPB12ptdAyxHW6g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,75 +87,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/01/2023 14:19, Rob Herring wrote:
+> On Wed, Jan 18, 2023 at 5:25 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 17/01/2023 20:27, Rob Herring wrote:
+>>> On Fri, Jan 13, 2023 at 05:22:13PM +0100, Krzysztof Kozlowski wrote:
+>>>> The "slim-ifc-dev" property should not be just "true", because it allows
+>>>> any type.
+>>>
+>>> Yes, but it is common, so it should be in a common schema. Though
+>>> there's only one other binding using it (wcd9335.txt).
+>>
+>> This is still wcd9335 and wcd934x specific, not really common. Maybe
+>> next Qualcomm codec would also bring it so then we can define common
+>> schema for the codecs. But so far I think it is not really a common
+>> property.
+> 
+> By common, I only mean used by more than 1 binding. That's already the
+> case, there's just not a schema for the 2nd one. In any case, can
+> address that later.
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
 
+Sure!
 
-On 17.01.2023 19:46, Bjorn Andersson wrote:
-> While booting the CRD, a series of CMA allocation errors can be seen in
-> the kernel log:
-> 
->   cma: cma_alloc: reserved: alloc failed, req-size: 128 pages, ret: -12
-> 
-> Growing the CMA region and querying /proc/meminfo indicates that a newly
-> booted system (currently) uses 64MB CMA.
-> 
-> Define a memory region sufficiently large for the current use cases, to
-> avoid forcing users to add this themselves, through command line
-> parameters etc.
-> 
-> While fixing the CRD define the same region for the X13s.
-> 
-> Tested-by: Andrew Halaney <ahalaney@redhat.com> # sc8280xp-lenovo-thinkpad-x13s
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Best regards,
+Krzysztof
 
-Konrad
-> 
-> Changes since v1:
-> - Updated commit message
-> 
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts                | 9 +++++++++
->  .../boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts      | 9 +++++++++
->  2 files changed, 18 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index 4e92dc28e2ce..6f686377dc3e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -128,6 +128,15 @@ vreg_wwan: regulator-wwan {
->  
->  		regulator-boot-on;
->  	};
-> +
-> +	reserved-memory {
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			size = <0x0 0x8000000>;
-> +			reusable;
-> +			linux,cma-default;
-> +		};
-> +	};
->  };
->  
->  &apps_rsc {
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 55ecbee19a58..8d485e0000cf 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -153,6 +153,15 @@ vreg_wwan: regulator-wwan {
->  		regulator-boot-on;
->  	};
->  
-> +	reserved-memory {
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			size = <0x0 0x8000000>;
-> +			reusable;
-> +			linux,cma-default;
-> +		};
-> +	};
-> +
->  	thermal-zones {
->  		skin-temp-thermal {
->  			polling-delay-passive = <250>;
