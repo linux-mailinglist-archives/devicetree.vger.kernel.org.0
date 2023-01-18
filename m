@@ -2,191 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 528D0672279
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:06:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 503456722A6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:11:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbjARQGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 11:06:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40066 "EHLO
+        id S229476AbjARQLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 11:11:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229864AbjARQGE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:06:04 -0500
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8A459756;
-        Wed, 18 Jan 2023 08:02:48 -0800 (PST)
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30I8f4IA009052;
-        Wed, 18 Jan 2023 08:02:30 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=pfpt0220; bh=4T0eCnCSn3ot26og/9AC5vrcmhPU97+jbxQrKlHXesQ=;
- b=lFiIIsOcz3AmX6SmtsE4lW6G3FHbl/wEatx5x/Jb15AQrdPUfU1889ukRsoNi0Z196Rs
- AmyCQ92nBG3LUhAuAu3kpVMkboPToEVd3tFjjQpdQMs86rVvf236BJIKQT/2rir6civQ
- ylRFkWEa+g2uqZrjybMuxRjC4u9ygNuN6j8L3Rr4jdJwKrZSSMwhXfPg6+6Pw6Fc0SCx
- kECaBgl+UY3NlwGDcZcGL+BTUwy3tV86inq7uBsOladCoASvdEie8ElQk2eRC33CULL4
- ui4POl2tOQAwHZgZ/so2W71twsC3hO/4cVM9ydbEg8tWnp3vteAe7lFSTDmqYfVyOrIh Lg== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3n3vstj4xv-8
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Wed, 18 Jan 2023 08:02:27 -0800
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 18 Jan
- 2023 08:02:18 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
- Transport; Wed, 18 Jan 2023 08:02:18 -0800
-Received: from Dell2s-9 (unknown [10.110.150.250])
-        by maili.marvell.com (Postfix) with ESMTP id AEE4A5B695F;
-        Wed, 18 Jan 2023 08:02:16 -0800 (PST)
-Date:   Wed, 18 Jan 2023 08:02:16 -0800
-From:   Piyush Malgujar <pmalgujar@marvell.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <yamada.masahiro@socionext.com>, <devicetree@vger.kernel.org>,
-        <jannadurai@marvell.com>, <cchavva@marvell.com>
-Subject: Re: [PATCH 3/5] dt-bindings: mmc: sdhci-cadence: SD6 support
-Message-ID: <20230118160216.GA19078@Dell2s-9>
-References: <20221219142418.27949-1-pmalgujar@marvell.com>
- <20221219142418.27949-4-pmalgujar@marvell.com>
- <5fc29d3c-e3da-3dc4-bce5-2158b81daa43@linaro.org>
- <20230106164812.GA14720@Dell2s-9>
- <f9d4c883-4b76-c95e-c6dc-a659b4410bf2@linaro.org>
+        with ESMTP id S229916AbjARQJf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:09:35 -0500
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8003B3E1;
+        Wed, 18 Jan 2023 08:05:43 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id v17so7664086oie.5;
+        Wed, 18 Jan 2023 08:05:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7tuGFAfqRCVW7qUbmXv4aoqXHqjRDkD2HH7zwkEHfLk=;
+        b=1RtIivoZyqzEmlHIQssJxZ2X08m5H4NEnVx9YVnGTU/Z7UVOOvZlIaoSdqkA93ibYB
+         tgvnWGWGa2YziYgWyBe4Whmw6Dfchx8q5Iyxd5Kpe+VhYMYnOAX6Db6afRnWitOpdWTk
+         rTp5i+mWfb4G9CB3L6hqfhEXMrIFpYWbZbSQ7W+JEOnzTv1dImBWuTa49Z+57gp4dmjT
+         cZt0UJ9Ig0zrmT5Ywbg5EwB9LtjxKlfY8mEpfCBn3iW0ThR40FoFp01deKUN02xOTj1K
+         teV3CTbfpdLP9wFztL4M00L6ODRMEzLGxzQKep+/hgENF7WQWhdCus6J+biJQWtoeNl7
+         FQ5Q==
+X-Gm-Message-State: AFqh2kpvFMAUycRLNLhiVwURHS3QOSNp6hxUxBRVmCKbODvJIAru+T38
+        TQAh/svE3WVNdaBVBT1qfKxa7k0tMA==
+X-Google-Smtp-Source: AMrXdXu75jJ57NWli2T25cgyRN8wEQAFExKDfERE3ly1W13hMhKaZ/tacFIMiyHP6aLAYiEKhNhoHQ==
+X-Received: by 2002:a05:6808:120d:b0:364:9e70:2d77 with SMTP id a13-20020a056808120d00b003649e702d77mr12791684oil.20.1674057942566;
+        Wed, 18 Jan 2023 08:05:42 -0800 (PST)
+Received: from robh_at_kernel.org ([4.31.143.193])
+        by smtp.gmail.com with ESMTPSA id bs1-20020a056830398100b00660e833baddsm18527592otb.29.2023.01.18.08.05.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 08:05:42 -0800 (PST)
+Received: (nullmailer pid 90065 invoked by uid 1000);
+        Wed, 18 Jan 2023 16:05:41 -0000
+Date:   Wed, 18 Jan 2023 10:05:41 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v7 2/7] dt-bindings: arm: msm: Convert and split kpss-acc
+ driver Documentation to yaml
+Message-ID: <167405794085.89999.14844192427406164237.robh@kernel.org>
+References: <20230116204751.23045-1-ansuelsmth@gmail.com>
+ <20230116204751.23045-3-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f9d4c883-4b76-c95e-c6dc-a659b4410bf2@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-ORIG-GUID: 6kslb20W85i3_AAAvtNMJwdG5rQ94t3s
-X-Proofpoint-GUID: 6kslb20W85i3_AAAvtNMJwdG5rQ94t3s
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-18_05,2023-01-18_01,2022-06-22_01
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230116204751.23045-3-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On Sat, Jan 07, 2023 at 02:25:02PM +0100, Krzysztof Kozlowski wrote:
-> On 06/01/2023 17:48, Piyush Malgujar wrote:
-> > Hi Krzysztof,
-> > 
-> > Thank you the review comments.
-> > 
-> > On Mon, Dec 19, 2022 at 04:40:35PM +0100, Krzysztof Kozlowski wrote:
-> >> On 19/12/2022 15:24, Piyush Malgujar wrote:
-> >>> From: Jayanthi Annadurai <jannadurai@marvell.com>
-> >>>
-> >>
-> >> Subject: use final prefix matching the file, so "cdns,sdhci:"
-> >>
-> >>> Add support for SD6 controller support
-> >>
-> >> Full stop.
-> >>
-> >>>
-> >>> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
-> >>> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
-> >>> ---
-> >>>  .../devicetree/bindings/mmc/cdns,sdhci.yaml   | 33 +++++++++++++++++--
-> >>>  1 file changed, 31 insertions(+), 2 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> >>> index 8b1a0fdcb5e3e2e8b87d8d7678e37f3dad447fc1..2043e78ccd5f708a01e87fd96ec410418fcd539f 100644
-> >>> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> >>> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> >>> @@ -4,7 +4,7 @@
-> >>>  $id: http://devicetree.org/schemas/mmc/cdns,sdhci.yaml#
-> >>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>  
-> >>> -title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
-> >>> +title: Cadence SD/SDIO/eMMC Host Controller (SD4HC, SD6HC)
-> >>>  
-> >>>  maintainers:
-> >>>    - Masahiro Yamada <yamada.masahiro@socionext.com>
-> >>> @@ -19,6 +19,7 @@ properties:
-> >>>            - microchip,mpfs-sd4hc
-> >>>            - socionext,uniphier-sd4hc
-> >>>        - const: cdns,sd4hc
-> >>> +      - const: cdns,sd6hc
-> >>
-> >> Does not look like you tested the DTS against bindings. Please run `make
-> >> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-> >> for instructions).
-> >>
-> >> ... because it does not really make sense. Why do you require SD6HC as
-> >> fallback? I think you meant enum.
-> >>
-> > 
-> > Yes, that's correct. I will change it to enum.
-> > 
-> >>>  
-> >>>    reg:
-> >>>      maxItems: 1
-> >>> @@ -111,6 +112,34 @@ properties:
-> >>>      minimum: 0
-> >>>      maximum: 0x7f
-> >>>  
-> >>> +  cdns,iocell_input_delay:
-> >>
-> >> No underscores. Use proper units in name suffix:
-> >> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
-> >>
-> >>
-> >>> +    description: Delay in ps across the input IO cells
-> >>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> >>
-> >> Ditto... and so on - all of the fields.
-> >>
-> >>> +
-> >>> +  cdns,iocell_output_delay:
-> >>> +    description: Delay in ps across the output IO cells
-> >>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> >>> +
-> >>> +  cdns,delay_element:
-> >>> +    description: Delay element in ps used for calculating phy timings
-> >>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> >>> +
-> >>> +  cdns,read_dqs_cmd_delay:
-> >>> +    description: Command delay used in HS200 tuning
-> >>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> >>> +
-> >>> +  cdns,tune_val_start:
-> >>> +    description: Staring value of data delay used in HS200 tuning
-> >>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> >>> +
-> >>> +  cdns,tune_val_step:
-> >>> +    description: Incremental value of data delay used in HS200 tuning
-> >>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> >>> +
-> >>> +  cdns,max_tune_iter:
-> >>> +    description: Maximum number of iterations to complete the HS200 tuning process
-> >>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> >>
-> >> Why these three are properties of DT?
-> >>
-> > 
-> > These tuning parameters are added here so to make them custom configurable for different
-> > boards.
+On Mon, 16 Jan 2023 21:47:46 +0100, Christian Marangi wrote:
+> Convert kpss-acc driver Documentation to yaml.
+> The original Documentation was wrong all along. Fix it while we are
+> converting it.
+> The example was wrong as kpss-acc-v2 should only expose the regs but we
+> don't have any driver that expose additional clocks. The kpss-acc driver
+> is only specific to v1. For this exact reason, split the Documentation
+> to 2 different schema, v1 as clock-controller and v2 for
+> power-manager as per msm-3.10 specification, the exposed regs handle
+> power manager.
 > 
-> I understand why do you wanted to add them, but I am asking why these
-> are suitable for DT? DT  describes hardware, so what is here specific to
-> hardware which requires DT property?
-> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/arm/msm/qcom,kpss-acc.txt        | 49 -------------
+>  .../bindings/clock/qcom,kpss-acc-v1.yaml      | 72 +++++++++++++++++++
+>  .../bindings/power/qcom,kpss-acc-v2.yaml      | 42 +++++++++++
+>  3 files changed, 114 insertions(+), 49 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,kpss-acc-v1.yaml
+>  create mode 100644 Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml
 > 
 
-We have different values based on emmc devices populated on different boards and these
-tuning parameters are used to program phy registers accordingly.
-
-> Best regards,
-> Krzysztof
-
-Thanks,
-Piyush> 
+Reviewed-by: Rob Herring <robh@kernel.org>
