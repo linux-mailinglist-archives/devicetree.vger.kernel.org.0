@@ -2,56 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B922C67297E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 21:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D68DE67297F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 21:36:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230206AbjARUfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 15:35:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39794 "EHLO
+        id S230121AbjARUf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 15:35:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230204AbjARUfZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 15:35:25 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FEB5618A7
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 12:34:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9090B61997
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 20:34:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E62A0C433D2
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 20:34:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674074042;
-        bh=1zERHFV5mVfGQpERgBWXV+Hsql8KufPoaP8e2J/tfNQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PDs7puuWc+w+0eYLO17+DzoRuB1OAVoGICzgHnhXz+DAgCreFbdMm4KGjMvIAWeDn
-         M6ylKp/TZH1Gavzog6J57Uqlv2N6lAWaBu7Ig8VWqAZwmTQs/GleQIwVLg1SmE6GGG
-         iI/Txv8kyzriwIzj8Du91xJDjS8maJ4UamogK6as24WRVMj8M8QO9c1mR+5q05jG45
-         327CljAwNqsoS6V5wNCp8ETo8V+L+h252GY3WxGvBPnl4QSUJQKwNx83f0ujD+y7XZ
-         RPhn0GCnxx7UQSDt1/+eueYiJF7AF8kLyGMTzzfVD0H4Zi/L9KWvuIgTESOR9ujwxg
-         FSf4QKphqa59Q==
-Received: by mail-ua1-f46.google.com with SMTP id g12so3187246uae.6
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 12:34:02 -0800 (PST)
-X-Gm-Message-State: AFqh2kr2po8oKnOnkS2vChQVWYUZ/i+yocZQ869Wdtas8DlvUOFYNgao
-        I9MKo/7VYGTjC6L8Ka/fW/Aaq4ow3xGpidadiQ==
-X-Google-Smtp-Source: AMrXdXsVeBHcCN1J5d6Y/eJd3HF/arhpMhQK2X0uN5Hww4w8/T2FrWDVeUQqpVa6ZhA9eGWFnV9v0Oz5RbYBdKQIxDU=
-X-Received: by 2002:a9f:3055:0:b0:5cb:2e5c:bccc with SMTP id
- i21-20020a9f3055000000b005cb2e5cbcccmr958040uab.63.1674074041692; Wed, 18 Jan
- 2023 12:34:01 -0800 (PST)
+        with ESMTP id S230140AbjARUfg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 15:35:36 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C68959B47
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 12:34:44 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id r18so25404756pgr.12
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 12:34:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1DqtnrZpeAQG00MExmoFCWtw4zspPS5f/QUn4GznZGU=;
+        b=TQob0NI6zROAPkKJ8WmU7oLNmIuTKjgr6fluG7lhVt0d1p04zLrRGgu6+GrnhEukcz
+         pE945lmOBcf20JJMtj96oeznOA9iEfsVK1FiIPRgcfhHiLyRueYZmkRTLjsoTfBKV59w
+         HWGLoe91MPAalxjjf2i2V4a9BGb9/Vjgjf1bhHUiBCpT6ZfBwEhL9+PLDDRG0cBp6LRV
+         K2zozTu+VWE9H7WSFO9VhaPw7JUsMqledw6ie48QFICVyxHWIWdaKgS8XiSc0T4r2hja
+         6xZ/1I9V/MsIViVT5JLQ8gZA5Z5VUq0eQ4ccqdE/EWzr12tstwvZGl7pgqLHuS7CKcip
+         95qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1DqtnrZpeAQG00MExmoFCWtw4zspPS5f/QUn4GznZGU=;
+        b=6ZPvazJ2tiKtKtUTpoC81qJmSQOzIuWlf964vplrv4wW4Hnqu9PmvuNfKVbYJnElUm
+         88ZvGGv497K6NoetzJ4Upf2VrQCY551oxheY4ibSPh088vy0OzE9uYH5LMMWEwqOKFdV
+         PKIhs39sIQUOgKtglx8nDin/b3ZCxbYY9MUxzHnwt5zuk6rldTrYYYjrF7sxAXzlmVgC
+         Y6l2aie8BleDYEKlJZPmMidqO4TAYZ9Xdy4dIoyqVCEdho17gRtu3VYqGx4bY59Pduez
+         zvOc8uBXD3kwCBvwWxm3Qj8CnVNAPimphqSGFtkF9URfUOOeCLB+SNpp1mMMZb0V3K0K
+         lLuw==
+X-Gm-Message-State: AFqh2kpev2v9kzE7+5bbNt4RGn2G2Fp3oN3lgprhbVXYcl9KR3vGn+sl
+        gmXnUjb8HXAYT1z8Cjd/uukcRg==
+X-Google-Smtp-Source: AMrXdXvz3W3yDzYxv2ad22wjF+zp5coz51GuRnc4XEQoJZlD+DwUtgnAsK2EDp8bHNW1OA6vRytqLg==
+X-Received: by 2002:a62:830d:0:b0:58d:94f4:a8b9 with SMTP id h13-20020a62830d000000b0058d94f4a8b9mr9722043pfe.11.1674074083380;
+        Wed, 18 Jan 2023 12:34:43 -0800 (PST)
+Received: from localhost.localdomain ([2401:4900:1c60:63d3:2d69:9f71:187e:f085])
+        by smtp.gmail.com with ESMTPSA id 8-20020a621608000000b0058a3d8eab6asm16303441pfw.134.2023.01.18.12.34.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 12:34:42 -0800 (PST)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH] arm64: dts: qcom: sm6115: Add CPU idle-states
+Date:   Thu, 19 Jan 2023 02:04:28 +0530
+Message-Id: <20230118203428.910992-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-References: <20230113205518.206306-1-sjg@chromium.org> <20230113205518.206306-2-sjg@chromium.org>
-In-Reply-To: <20230113205518.206306-2-sjg@chromium.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 18 Jan 2023 14:33:50 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL6rOaFHcYTuP9YXhcWuhn7t0LKwZn0D0grLVMsu+PwLw@mail.gmail.com>
-Message-ID: <CAL_JsqL6rOaFHcYTuP9YXhcWuhn7t0LKwZn0D0grLVMsu+PwLw@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] schemas: Add schema for U-Boot driver model 'phase tags'
-To:     Simon Glass <sjg@chromium.org>
-Cc:     devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,280 +69,191 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 13, 2023 at 2:58 PM Simon Glass <sjg@chromium.org> wrote:
->
-> U-Boot has some particular challenges with device tree and devices:
->
-> - U-Boot has multiple build phases, such as a Secondary Program Loader
->   (SPL) phase which typically runs in a pre-SDRAM environment where code
->   and data space are limited. In particular, there may not be enough
->   space for the full device tree blob. U-Boot uses various automated
->   techniques to reduce the size from perhaps 40KB to 3KB. It is not
->   always possible to handle these tags entirely at build time, since
->   U-Boot proper must have the full device tree, even though we do not
->   want it to process all nodes until after relocation.
-> - Some U-Boot phases needs to run before the clocks are properly set up,
->   where the CPU may be running very slowly. Therefore it is important to
->   bind only those devices which are actually needed in that phase
-> - U-Boot uses lazy initialisation for its devices, with 'bind' and
->   'probe' being separate steps. Even if a device is bound, it is not
->   actually probed until it is used. This is necessary to keep the boot
->   time reasonable, e.g. to under a second
->
-> The phases of U-Boot in order are: TPL, VPL, SPL, U-Boot (first
-> pre-relocation, then post-relocation). ALl but the last two are optional.
->
-> For the above reasons, U-Boot only includes the full device tree in the
-> final 'U-Boot proper' build. Even then, before relocation U-Boot only
-> processes nodes which are marked as being needed.
->
-> For this to work, U-Boot's driver model[1] provides a way to mark device
-> tree nodes as applicable for a particular phase. This works by adding a
-> tag to the node, e.g.:
->
->    cru: clock-controller@ff760000 {
->       bootph-all;
->       compatible = "rockchip,rk3399-cru";
->       reg = <0x0 0xff760000 0x0 0x1000>;
->       rockchip,grf = <&grf>;
->       #clock-cells = <1>;
->       #reset-cells = <1>;
->       ...
->    };
->
-> Here the "bootph-all" tag indicates that the node must be present in all
-> phases, since the clock driver is required.
->
-> There has been discussion over the years about whether this could be done
-> in a property instead, e.g.
->
->    options {
->       bootph-all = <&cru> <&gpio_a> ...;
->       ...
->    };
->
-> Some problems with this:
->
-> - we need to be able to merge several such tags from different .dtsi files
->   since many boards have their own specific requirements
-> - it is hard to find and cross-reference the affected nodes
-> - it is more error-prone
-> - it requires significant tool rework in U-Boot, including fdtgrep and
->   the build system
-> - is harder (slower, more code) to process since it involves scanning
->   another node/property to find out what to do with a particular node
-> - we don't want to add phandle arguments to the above since we are
->   referring, e.g., to the clock device as a whole, not a paricular clock
-> - the of-platdata feature[2], which converts device tree to C for even
->   more constrained environments, would need to become aware of the
->   /options node
->
-> There is also the question about whether this needs to be U-Boot-specific,
-> or whether the tags could be generic. From what I can tell, U-Boot is the
-> only bootloader which seriously attempts to use a runtime device tree in
-> all cases. For this version, an attempt is made to name the phases in a
-> generic manner.
->
-> It should also be noted that the approach provided here has stood the test
-> of time, used in U-Boot for 8 years so far.
->
-> So add the schema for this. This will allow a major class of schema
-> exceptions to be dropped from the U-Boot source tree.
->
-> This being sent to the mailing list since it might attract more review.
-> A PR will be sent when this has had some review. That is why the file
-> path is set up for https://github.com/devicetree-org/dt-schema rather
-> than the Linux kernel.
->
-> [1] https://u-boot.readthedocs.io/en/latest/develop/driver-model/index.html
-> [2] https://u-boot.readthedocs.io/en/latest/develop/driver-model/of-plat.html
->
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
->
-> Changes in v6:
-> - Use 'bootph' instead of 'phase'
-> - Use | instead of , in patternProperties
-> - Drop mention of 40KB for device-tree size
-> - Rework description of handling of parent nodes
-> - Use separate properties for each boot phase
-> - Update validation example at the top of bootphases.dts
->
-> Changes in v5:
-> - Fix instructions to run test
-> - Update binding title
-> - Use 'phase-' instead of 'phase,'
->
-> Changes in v4:
-> - Drop some unnecessary context from the commit message
-> - Explain why parent nodes do not automatically inherit their children's
->   tags
-> - Rename the tags to use a phase,xxx format, explaining each one
->
-> Changes in v3:
-> - Fix an incorrect schema path in $id
->
-> Changes in v2:
-> - Expand docs to include a description of each tag
-> - Fix some typos and unclear wording
->
->  dtschema/lib.py              |  5 +++
->  dtschema/schemas/bootph.yaml | 86 ++++++++++++++++++++++++++++++++++++
->  test/bootphases.dts          | 22 +++++++++
->  3 files changed, 113 insertions(+)
->  create mode 100644 dtschema/schemas/bootph.yaml
->  create mode 100644 test/bootphases.dts
->
-> diff --git a/dtschema/lib.py b/dtschema/lib.py
-> index c7b6cb9..95a4f10 100644
-> --- a/dtschema/lib.py
-> +++ b/dtschema/lib.py
-> @@ -493,6 +493,11 @@ def fixup_node_props(schema):
->      schema['properties'].setdefault('status', True)
->      schema['properties'].setdefault('secure-status', True)
->      schema['properties'].setdefault('$nodename', True)
-> +    schema['properties'].setdefault('bootph-pre-sram', True)
-> +    schema['properties'].setdefault('bootph-verify', True)
-> +    schema['properties'].setdefault('bootph-pre-ram', True)
-> +    schema['properties'].setdefault('bootph-some-ram', True)
-> +    schema['properties'].setdefault('bootph-all', True)
->
->      keys = list()
->      if 'properties' in schema:
-> diff --git a/dtschema/schemas/bootph.yaml b/dtschema/schemas/bootph.yaml
-> new file mode 100644
-> index 0000000..275c4da
-> --- /dev/null
-> +++ b/dtschema/schemas/bootph.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: BSD-2-Clause
-> +# Copyright 2022 Google LLC
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bootph.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Boot-phase-specific device nodes
-> +
-> +maintainers:
-> +  - Simon Glass <sjg@chromium.org>
-> +
-> +description: |
-> +  Some programs run in memory-constrained environments yet want to make use
-> +  of device tree.
-> +
-> +  The full device tree is often quite large relative to the available memory
-> +  of a boot phase, so cannot fit into every phase of the boot process. Even
-> +  when memory is not a problem, some phases may wish to limit which device
-> +  nodes are present, so as to reduce execution time.
-> +
-> +  This binding supports adding tags to device tree nodes to allow them to be
-> +  marked according to the phases where they should be included.
-> +
-> +  Without any tags, nodes are included only in the final phase, where all
-> +  memory is available. Any untagged nodes are dropped from previous phases
-> +  and are ignored before the final phase is reached.
-> +
-> +  The build process produces a separate executable for each phase. It can
-> +  use fdtgrep to drop any nodes which are not needed for a particular build.
-> +  For example, the pre-sram build will drop any nodes which are not marked
-> +  with bootph-pre-sram or bootph-all tags.
-> +
-> +  Note that phase builds may drop the tags, since they have served their
-> +  purpose by that point. So when looking at phase-specific device tree files
-> +  you may not see these tags.
-> +
-> +  Multiple tags can be used in the same node.
-> +
-> +  Tags in a child node are implied to be present in all parent nodes as well.
-> +  This is important, since some missing properties (such as "ranges", or
-> +  "compatible") can cause the child node to be ignored or incorrectly
-> +  parsed.
-> +
-> +  That said, at present, fdtgrep applies tags only to the node they are
-> +  added to, not to any parents. This means U-Boot device tree files often
-> +  add the same tag to parent nodes, rather than relying on tooling to do
-> +  this. This is a limitation of fdtgrep and it will be addressed so that
-> +  'Linux DTs' do not need to do this.
-> +
-> +  The available tags are describes as properties below, in order of phase
+Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
 
-described
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm6115.dtsi | 104 +++++++++++++++++++++++++++
+ 1 file changed, 104 insertions(+)
 
-> +  execution.
-> +
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index 478c5d009272..29c05cbb5fd7 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -44,6 +44,8 @@ CPU0: cpu@0 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD0>;
++			power-domain-names = "psci";
+ 			L2_0: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -59,6 +61,8 @@ CPU1: cpu@1 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD1>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU2: cpu@2 {
+@@ -70,6 +74,8 @@ CPU2: cpu@2 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD2>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU3: cpu@3 {
+@@ -81,6 +87,8 @@ CPU3: cpu@3 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD3>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU4: cpu@100 {
+@@ -92,6 +100,8 @@ CPU4: cpu@100 {
+ 			dynamic-power-coefficient = <282>;
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD4>;
++			power-domain-names = "psci";
+ 			L2_1: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -107,6 +117,8 @@ CPU5: cpu@101 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD5>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU6: cpu@102 {
+@@ -118,6 +130,8 @@ CPU6: cpu@102 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD6>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU7: cpu@103 {
+@@ -129,6 +143,8 @@ CPU7: cpu@103 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD7>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		cpu-map {
+@@ -168,6 +184,41 @@ core3 {
+ 				};
+ 			};
+ 		};
++
++		idle-states {
++			entry-method = "psci";
++
++			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "silver-rail-power-collapse";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <290>;
++				exit-latency-us = <376>;
++				min-residency-us = <800>;
++				local-timer-stop;
++			};
++
++			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "gold-rail-power-collapse";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <297>;
++				exit-latency-us = <324>;
++				min-residency-us = <1110>;
++				local-timer-stop;
++			};
++		};
++
++		domain-idle-states {
++			CLUSTER_SLEEP_0: cluster-sleep-0 {
++				compatible = "domain-idle-state";
++				idle-state-name = "cluster-power-collapse";
++				arm,psci-suspend-param = <0x41000043>;
++				entry-latency-us = <800>;
++				exit-latency-us = <2118>;
++				min-residency-us = <7376>;
++			};
++		};
+ 	};
+ 
+ 	firmware {
+@@ -191,6 +242,59 @@ pmu {
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
++
++		CPU_PD0: power-domain-cpu0 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD1: power-domain-cpu1 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD2: power-domain-cpu2 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD3: power-domain-cpu3 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD4: power-domain-cpu4 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD5: power-domain-cpu5 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD6: power-domain-cpu6 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD7: power-domain-cpu7 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CLUSTER_PD: power-domain-cpu-cluster0 {
++			#power-domain-cells = <0>;
++			domain-idle-states = <&CLUSTER_SLEEP_0>;
++		};
+ 	};
+ 
+ 	reserved_memory: reserved-memory {
+-- 
+2.38.1
 
-I think your issue testing is you need a 'select: true' here. 'select'
-is how we test whether a schema should be applied to a node. The
-default is to use compatible or $nodename for matching. You have
-neither, so select is false.
-
-> +properties:
-> +  bootph-pre-sram:
-> +    type: boolean
-> +    description: |
-
-Don't need '|' unless you want to preserve line endings.
-
-Otherwise, looks good. Send a PR.
-
-> +      Enable this node when SRAM is not available. This phase must set up
-> +      some SRAM or cache-as-RAM so it can obtain data/BSS space to use
-> +      during execution.
-> +
-> +  bootph-verify:
-> +    type: boolean
-> +    description: |
-> +      Enable this node in the verification step, which decides which of the
-> +      available images should be run next.
-> +
-> +  bootph-pre-ram:
-> +    type: boolean
-> +    description: |
-> +      Enable this node in the phase that sets up SDRAM.
-> +
-> +  bootph-some-ram:
-> +    type: boolean
-> +    description: |
-> +      Enable this node in the phase that is run after SDRAM is working but
-> +      before all of it is available. Some RAM is available but it is limited
-> +      (e.g. it may be split into two pieces by the location of the running
-> +      program) because the program code is not yet relocated out of the way.
-> +
-> +  bootph-all:
-> +    type: boolean
-> +    description: |
-> +      Include this node in all phases (for U-Boot see enum u_boot_phase).
-> +
-> +additionalProperties: true
-> diff --git a/test/bootphases.dts b/test/bootphases.dts
-> new file mode 100644
-> index 0000000..037c626
-> --- /dev/null
-> +++ b/test/bootphases.dts
-> @@ -0,0 +1,22 @@
-> +// SPDX-License-Identifier: BSD-2-Clause
-> +// Copyright 2022 Google LLC
-> +
-> +// An attempt to provide a device tree to validate the phase properties
-> +
-> +// dtc -O dtb -o test.dtb test/bootphases.dts && tools/dt-validate test.dtb
-> +
-> +
-> +/dts-v1/;
-> +
-> +/ {
-> +       model = "none";
-> +       compatible = "foo";
-> +
-> +       #address-cells = <1>;
-> +       #size-cells = <1>;
-> +
-> +       some-device {
-> +               compatible = "vendor,soc1-ip";
-> +               bootph-pre-sram;
-> +       };
-> +};
-> --
-> 2.39.0.314.g84b9a713c41-goog
->
