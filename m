@@ -2,39 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83D64671CF7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 14:07:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA589671CFF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 14:07:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231225AbjARNHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 08:07:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39608 "EHLO
+        id S231252AbjARNHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 08:07:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbjARNHB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:07:01 -0500
+        with ESMTP id S231241AbjARNHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:07:06 -0500
 Received: from smtp-out-01.comm2000.it (smtp-out-01.comm2000.it [212.97.32.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4106559D3;
-        Wed, 18 Jan 2023 04:29:08 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1D4EA3173;
+        Wed, 18 Jan 2023 04:29:16 -0800 (PST)
 Received: from francesco-nb.toradex.int (31-10-206-125.static.upc.ch [31.10.206.125])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-01.comm2000.it (Postfix) with ESMTPSA id 6EDB8843650;
-        Wed, 18 Jan 2023 13:28:47 +0100 (CET)
+        by smtp-out-01.comm2000.it (Postfix) with ESMTPSA id 6194C843669;
+        Wed, 18 Jan 2023 13:29:07 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1674044946;
-        bh=bjC01oSWRrukRi0FK/TP4lp7hs5che5aWaE7C4SjpZQ=;
+        s=mailsrv; t=1674044948;
+        bh=0bOuDHRgv4yI1qxuwgollvpptxyoZ4aEkCRt52XmrRk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=gtaXP8+mXEp6XCT+KrIjjks/aYQnMYzgSITxTjoJuyrOpWAKbuwIHCkqe/2apjSn6
-         jdHsZnJYBLgrFmoqBNBpkhwBu0WEXUlXKfeD1e1mH1Uzm/Bm6G5/H/brVdj8PKNOGf
-         WK4EBlvkNmhmjcLIyPZb1iMSq8pZJnt+lWLNqfGGKh3VZPVycGsrTLesyMaoOBPwqQ
-         h9bmnSCsVfNBsbl5p4juZnQrTnTv2sdj04QHlFNA1Esz+MXhDsDx29VcT0I+XB5+wm
-         s2574muvScFk92dSatCN/jdnbLmUsyX91M39FEmZbY88V9n9s1G3D9c8h2XRDkJ+wQ
-         +vsxAl1hoUY+A==
+        b=nKFJ7CKstccVEJ/iPEqM3Y0bYu7k1rqaAq/vT4By6H0ZP7vT+uAh5quLoWbDIzuCe
+         EOzB64Soex1PV6TvwqtHxI7Z97tMXsTIE+hSwMbdL3hCGin6sK11B8pBF92HhfPVzV
+         0AGX26R2UxlWH+GqlLNSdhMuU22+73bHR05w/sGHWPpmZ7QWCx+dmy9hvdju5bGl7S
+         gr76SElPl0O6nFzCU39+BZy0LOaXpZMYjl/doRxCXkmPga/hALn7+Z43awTKDMcSZx
+         yrKIEUpdvexqmqu0jyfE8QZmoNFpJ1XnUk+EMS7vOJ8WpYme5gjP7d/D20lx0Heq05
+         /ULIBRxG4dUvA==
 From:   Francesco Dolcini <francesco@dolcini.it>
 To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
         Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>
 Cc:     Stefan Eichenberger <stefan.eichenberger@toradex.com>,
         "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
@@ -44,10 +46,12 @@ Cc:     Stefan Eichenberger <stefan.eichenberger@toradex.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Johan Hedberg <johan.hedberg@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 2/4] dt-bindings: bluetooth: marvell: add max-speed property
-Date:   Wed, 18 Jan 2023 13:28:15 +0100
-Message-Id: <20230118122817.42466-3-francesco@dolcini.it>
+Subject: [PATCH v1 4/4] arm64: dts: imx8mp-verdin: add 88W8997 serdev to uart4
+Date:   Wed, 18 Jan 2023 13:28:17 +0100
+Message-Id: <20230118122817.42466-5-francesco@dolcini.it>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230118122817.42466-1-francesco@dolcini.it>
 References: <20230118122817.42466-1-francesco@dolcini.it>
@@ -64,44 +68,31 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 
-The 88W8997 bluetooth module supports setting the max-speed property.
+Use the serdev feature to load the driver for the 88W8997 bluetooth
+driver.
 
 Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- .../bindings/net/marvell-bluetooth.yaml          | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/marvell-bluetooth.yaml b/Documentation/devicetree/bindings/net/marvell-bluetooth.yaml
-index 83b64ed730f5..2fccea30c58d 100644
---- a/Documentation/devicetree/bindings/net/marvell-bluetooth.yaml
-+++ b/Documentation/devicetree/bindings/net/marvell-bluetooth.yaml
-@@ -19,9 +19,25 @@ properties:
-       - mrvl,88w8897
-       - mrvl,88w8997
- 
-+  max-speed:
-+    description: see Documentation/devicetree/bindings/serial/serial.yaml
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
+index 36289c175e6e..ef94f9a57e20 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
+@@ -65,6 +65,11 @@ &uart4 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_bt_uart>;
+ 	status = "okay";
 +
- required:
-   - compatible
++	bluetooth {
++		compatible = "mrvl,88w8997";
++		max-speed = <921600>;
++	};
+ };
  
-+allOf:
-+  - if:
-+    properties:
-+      compatible:
-+        contains:
-+          const: mrvl,88w8997
-+    then:
-+      properties:
-+        max-speed: true
-+    else:
-+      properties:
-+        max-speed: false
-+
- additionalProperties: false
- 
- examples:
+ /* On-module Wi-Fi */
 -- 
 2.25.1
 
