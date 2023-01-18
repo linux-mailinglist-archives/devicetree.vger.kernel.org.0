@@ -2,283 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2E37671FA5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:33:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43ED4671FB0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:35:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231273AbjAROdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:33:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33230 "EHLO
+        id S230339AbjAROfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:35:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231329AbjAROcp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:32:45 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02904303D3
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:21:08 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id u19so83540018ejm.8
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:21:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=33e6GgoXuh4+eRQrB35G/on3xqyiWTKOBlZuPx8InNI=;
-        b=Sb/PUPXAYas7wvDGn0+GrQNUMREqJ/xfUq7WdEavD1gxG55WsyzZG+i2xH+UlPg+vn
-         nPJLzTQd0D8IJPcT1ju6sIU7WgU3EOmTH9TKw8qXhrOmzsTnDfBkU3NR2XBMST66J+1E
-         /cFNop0pxpv3vfviyatW+1lwUcn5OTeX3g9VkWJALfYdz/dQoxfYVXPctyP+dGhZ2hKg
-         vnSlYmw6Iq4QeaOKnhbBjVZOHXvqDtKXGZHYkPaFQF0be+T1+HGVW0oKEHTlPSr7a1ai
-         h/AUYZJLKrB5z3Ch8t43jSV/hNvkIAS1S3dnXj9zGGN4PMu1ZMZ4szRZ3/Kq2M82znuu
-         9Klw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=33e6GgoXuh4+eRQrB35G/on3xqyiWTKOBlZuPx8InNI=;
-        b=e5gXO/aSVZyYKXDnBbQiQyvIm3914ZS1zkTmGvrYzN2R6gAeV3ijWYiSQmVjo/5yZb
-         AAUm75sPnaN10I7y/7S3q3QmiyYrFkZAWVk+AbGT4XqwF14wXUoz26IuqpHSBZvlRy5u
-         KFk1fEfFmY7W+r5wYQImP31h9mEzbxiO0b+W5iebmUBjca80lNj26Z4AtIXdTB/Fp38y
-         47196ZKCT9eutiYWQB5HKVOG27BOxyI5WjSwOQ77vutMHejyfMmzXI4irrfgvOVEZnI6
-         onJ+KseQQ3xlGR0+oBGLl5QXl25xFKHTGur5bbQ3C+zXuKBvWPcgewJsyffSlUI7Fns/
-         RXQg==
-X-Gm-Message-State: AFqh2kpF4rJoA4bRmco7sPQqfixaz1+8x9nbsAmKaFp++3xn+jfEOlJb
-        JBl2VFjBLlB2NgQ+AQCPl1SiyA==
-X-Google-Smtp-Source: AMrXdXtCAxv+2l1VlAteHKGFEAdd3zSyCQ73cImzSL4Y5Ql4b+9mRf0+X/Wf6Zyd5AeIviKMsaZVig==
-X-Received: by 2002:a17:906:1605:b0:870:2f70:c631 with SMTP id m5-20020a170906160500b008702f70c631mr9104735ejd.2.1674051666578;
-        Wed, 18 Jan 2023 06:21:06 -0800 (PST)
-Received: from [192.168.1.101] (abxh252.neoplus.adsl.tpnet.pl. [83.9.1.252])
-        by smtp.gmail.com with ESMTPSA id h10-20020a1709070b0a00b0084d4e9a13cbsm11599021ejl.221.2023.01.18.06.21.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 06:21:06 -0800 (PST)
-Message-ID: <671e8d1d-d41b-5747-540f-9174b12ffb4b@linaro.org>
-Date:   Wed, 18 Jan 2023 15:21:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 3/7] clk: qcom: cbf-msm8996: scale CBF clock according
- to the CPUfreq
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S231393AbjAROez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:34:55 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B322748C;
+        Wed, 18 Jan 2023 06:24:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674051842; x=1705587842;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JW3Z4qGJkww64HEvaFHH2zXhHyqrRqOdAVZDOpAtKk8=;
+  b=QaI4ogYNVLn/Yyb6QADgDDFmYQ7YIhwojhhpFnzhtaCb5e1Mendtx/Hv
+   41SVq+aqav0mpoAkiRTK0Asis/NMKZ3ID+DOJW0rguyhu0HzpGoAigTIP
+   mZzZPDpxtmRD5XgNFZJlILuhfEyWyRVlBTAiZUmrD7qg/E8zg44o23wq5
+   oL+PzSZtNhxlKNxoa7czIGtKkEVWQgx6y2VU4q5GLcQXXIV50WR7Rzqd1
+   fDpGNiCmOQbMfGrCi0vpa8stDQOv3XouOyo//TQ9HiqNdz0/tPdP4ZQAo
+   9jF7NkfH/yo3jQwVL4zYjjdJfBDKdIjpN45cOZ2pV2LHGLM2MtqGFx8Qo
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="352239982"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; 
+   d="scan'208";a="352239982"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2023 06:24:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10593"; a="833598833"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; 
+   d="scan'208";a="833598833"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga005.jf.intel.com with ESMTP; 18 Jan 2023 06:23:56 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1pI9M1-00BDkv-1i;
+        Wed, 18 Jan 2023 16:23:53 +0200
+Date:   Wed, 18 Jan 2023 16:23:53 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230117225824.1552604-1-dmitry.baryshkov@linaro.org>
- <20230117225824.1552604-4-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230117225824.1552604-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Luca Ceresoli <luca@lucaceresoli.net>
+Subject: Re: [PATCH v7 1/7] i2c: add I2C Address Translator (ATR) support
+Message-ID: <Y8gA+cz9m7PaEhfP@smile.fi.intel.com>
+References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
+ <20230118124031.788940-2-tomi.valkeinen@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230118124031.788940-2-tomi.valkeinen@ideasonboard.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 17.01.2023 23:58, Dmitry Baryshkov wrote:
-> Turn CBF into the interconnect provider. Scale CBF frequency (bandwidth)
-> according to CPU frequencies.
+On Wed, Jan 18, 2023 at 02:40:25PM +0200, Tomi Valkeinen wrote:
+> From: Luca Ceresoli <luca@lucaceresoli.net>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/clk/qcom/clk-cbf-8996.c | 141 +++++++++++++++++++++++++++++++-
->  1 file changed, 140 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/qcom/clk-cbf-8996.c b/drivers/clk/qcom/clk-cbf-8996.c
-> index 9cde0e660228..9e30311a310b 100644
-> --- a/drivers/clk/qcom/clk-cbf-8996.c
-> +++ b/drivers/clk/qcom/clk-cbf-8996.c
-> @@ -5,6 +5,7 @@
->  #include <linux/bitfield.h>
->  #include <linux/clk.h>
->  #include <linux/clk-provider.h>
-> +#include <linux/interconnect-provider.h>
->  #include <linux/of.h>
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
-> @@ -225,6 +226,133 @@ static const struct regmap_config cbf_msm8996_regmap_config = {
->  	.val_format_endian	= REGMAP_ENDIAN_LITTLE,
->  };
->  
-> +#ifdef CONFIG_INTERCONNECT
-> +struct qcom_msm8996_cbf_icc_provider {
-> +	struct icc_provider provider;
-> +	struct clk *clk;
-> +};
-> +
-> +#define to_qcom_cbf_provider(_provider) \
-> +	container_of(_provider, struct qcom_msm8996_cbf_icc_provider, provider)
-> +
-> +enum {
-> +	CBF_MASTER_NODE = 2000,
-Where did the 2000 come from?
+> An ATR is a device that looks similar to an i2c-mux: it has an I2C
+> slave "upstream" port and N master "downstream" ports, and forwards
+> transactions from upstream to the appropriate downstream port. But is
+> is different in that the forwarded transaction has a different slave
 
-> +	CBF_SLAVE_NODE
-> +};
+is is ?
+
+> address. The address used on the upstream bus is called the "alias"
+> and is (potentially) different from the physical slave address of the
+> downstream chip.
+> 
+> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
+> implementing ATR features in a device driver. The helper takes care or
+> adapter creation/destruction and translates addresses at each transaction.
+
+...
+
+> +A typical example follows.
 > +
-> +#define CBF_NUM_NODES 2
+> +Topology::
 > +
-> +static int qcom_msm8996_cbf_set(struct icc_node *src, struct icc_node *dst)
+> +                      Slave X @ 0x10
+> +              .-----.   |
+> +  .-----.     |     |---+---- B
+> +  | CPU |--A--| ATR |
+> +  `-----'     |     |---+---- C
+> +              `-----'   |
+> +                      Slave Y @ 0x10
+> +
+> +Alias table:
+> +
+> +.. table::
+> +
+> +   ======   =====
+> +   Client   Alias
+> +   ======   =====
+> +   X        0x20
+> +   Y        0x30
+> +   ======   =====
+> +
+> +Transaction:
+> +
+> + - Slave X driver sends a transaction (on adapter B), slave address 0x10
+> + - ATR driver rewrites messages with address 0x20, forwards to adapter A
+> + - Physical I2C transaction on bus A, slave address 0x20
+> + - ATR chip propagates transaction on bus B with address translated to 0x10
+> + - Slave X chip replies on bus B
+> + - ATR chip forwards reply on bus A
+> + - ATR driver rewrites messages with address 0x10
+> + - Slave X driver gets back the msgs[], with reply and address 0x10
+
+I'm not sure I got the real / virtual status of the adapters. Are the B and C
+virtual ones, while A is the real?
+
+...
+
+> +#define ATR_MAX_ADAPTERS 99	/* Just a sanity limit */
+
+Hmm... It's not clear why this is not 100, for example, and how 99 below is
+related to that, assuming channel numbering is started from 0.
+
+> +#define ATR_MAX_SYMLINK_LEN 16	/* Longest name is 10 chars: "channel-99" */
+
+...
+
+> +	/* Ensure we have enough room to save the original addresses */
+> +	if (unlikely(chan->orig_addrs_size < num)) {
+> +		u16 *new_buf;
+> +
+> +		new_buf = kmalloc_array(num, sizeof(*new_buf), GFP_KERNEL);
+
+I remember that I asked why we don't use krealloc_array() here... Perhaps
+that we don't need to copy the old mapping table? Can we put a short comment
+to clarify this in the code?
+
+> +		if (!new_buf)
+> +			return -ENOMEM;
+> +
+> +		kfree(chan->orig_addrs);
+> +		chan->orig_addrs = new_buf;
+> +		chan->orig_addrs_size = num;
+> +	}
+
+...
+
+> +struct i2c_atr *i2c_atr_new(struct i2c_adapter *parent, struct device *dev,
+> +			    const struct i2c_atr_ops *ops, int max_adapters)
 > +{
-> +	struct qcom_msm8996_cbf_icc_provider *qp;
-> +
-> +	qp = to_qcom_cbf_provider(src->provider);
-> +
-> +	return clk_set_rate(qp->clk, icc_units_to_bps(dst->peak_bw));
-> +}
-> +
-> +static int qcom_msm8996_cbf_icc_get_bw(struct icc_node *node, u32 *avg, u32 *peak)
-> +{
-> +	struct qcom_msm8996_cbf_icc_provider *qp;
-> +
-> +	qp = to_qcom_cbf_provider(node->provider);
-> +	*peak = clk_get_rate(qp->clk) / 1000ULL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int qcom_msm8996_cbf_icc_register(struct platform_device *pdev, struct clk_hw *cbf_hw)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct qcom_msm8996_cbf_icc_provider *qp;
-> +	struct icc_provider *provider;
-> +	struct icc_onecell_data *data;
-> +	struct icc_node *node;
-> +	struct clk *clk;
+> +	struct i2c_atr *atr;
 > +	int ret;
 > +
-> +	clk = devm_clk_hw_get_clk(dev, cbf_hw, "cbf");
-> +	if (IS_ERR(clk))
-> +		return PTR_ERR(clk);
+> +	if (max_adapters > ATR_MAX_ADAPTERS)
+> +		return ERR_PTR(-EINVAL);
 > +
-> +	data = devm_kzalloc(dev, struct_size(data, nodes, CBF_NUM_NODES), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
+> +	if (!ops || !ops->attach_client || !ops->detach_client)
+> +		return ERR_PTR(-EINVAL);
+
+> +	atr = devm_kzalloc(dev, struct_size(atr, adapter, max_adapters),
+> +			   GFP_KERNEL);
+
+How do you know (or why do we limit) that the scope of this function will be
+only in ->probe()? Even though, I would replace devm_ by non-devm_ since there
+is the tear-down function has to be called by the user anyway.
+
+> +	if (!atr)
+> +		return ERR_PTR(-ENOMEM);
 > +
-> +	data->num_nodes = CBF_NUM_NODES;
+> +	mutex_init(&atr->lock);
 > +
-> +	qp = devm_kzalloc(dev, sizeof(*qp), GFP_KERNEL);
-> +	if (!qp)
-> +		return -ENOMEM;
+> +	atr->parent = parent;
+> +	atr->dev = dev;
+> +	atr->ops = ops;
+> +	atr->max_adapters = max_adapters;
 > +
-> +	qp->clk = clk;
+> +	if (parent->algo->master_xfer)
+> +		atr->algo.master_xfer = i2c_atr_master_xfer;
+> +	if (parent->algo->smbus_xfer)
+> +		atr->algo.smbus_xfer = i2c_atr_smbus_xfer;
+> +	atr->algo.functionality = i2c_atr_functionality;
 > +
-> +	provider = &qp->provider;
-> +	provider->dev = dev;
-> +	provider->get_bw = qcom_msm8996_cbf_icc_get_bw;
-> +	provider->set = qcom_msm8996_cbf_set;
-> +	provider->aggregate = icc_std_aggregate;
-> +	provider->xlate = of_icc_xlate_onecell;
-> +	INIT_LIST_HEAD(&provider->nodes);
-> +	provider->data = data;
-> +
-> +	ret = icc_provider_add(provider);
+> +	atr->i2c_nb.notifier_call = i2c_atr_bus_notifier_call;
+> +	ret = bus_register_notifier(&i2c_bus_type, &atr->i2c_nb);
 > +	if (ret) {
-> +		dev_err(dev, "error adding interconnect provider\n");
-> +		return ret;
+> +		mutex_destroy(&atr->lock);
+> +		return ERR_PTR(ret);
 > +	}
 > +
-> +	node = icc_node_create(CBF_MASTER_NODE);
-> +	if (IS_ERR(node)) {
-> +		ret = PTR_ERR(node);
-> +		goto err;
-> +	}
-> +
-> +	node->name = "cbf_master";
-> +	icc_node_add(node, provider);
-> +	icc_link_create(node, CBF_SLAVE_NODE);
-> +	data->nodes[0] = node;
-> +
-> +	node = icc_node_create(CBF_SLAVE_NODE);
-> +	if (IS_ERR(node)) {
-> +		ret = PTR_ERR(node);
-> +		goto err;
-> +	}
-> +
-> +	node->name = "cbf_slave";
-> +	icc_node_add(node, provider);
-> +	data->nodes[1] = node;
-> +
-> +	platform_set_drvdata(pdev, provider);
-> +
-> +	return 0;
-> +
-> +err:
-> +	icc_nodes_remove(provider);
-> +	icc_provider_del(provider);
-> +
-> +	return ret;
+> +	return atr;
 > +}
-> +
-> +static int qcom_msm8996_cbf_icc_remove(struct platform_device *pdev)
-> +{
-> +	struct icc_provider *provider = platform_get_drvdata(pdev);
-> +
-> +	icc_nodes_remove(provider);
-> +	icc_provider_del(provider);
-> +
-> +	return 0;
-> +}
-> +#else
-> +static int qcom_msm8996_cbf_icc_register(struct platform_device *pdev)
-> +{
-> +	dev_warn(&pdev->dev, "interconnects support is disabled, CBF clock is fixed\n");
-s/interconnects/interconnect
 
-Will cpufreq still work correctly with opp tables having bw
-properties, the nodes having icc properties and the icc provider
-not probing? And then, will the system not choke up with high CPU
-and inadequately low CBF clocks?
+...
 
-Maybe `select INTERCONNECT_something_8996` would be better?
-
-Konrad
-> +
-> +	return 0;
-> +}
-> +#define qcom_msm8996_cbf_icc_remove(pdev) (0)
-> +#endif
-> +
->  static int qcom_msm8996_cbf_probe(struct platform_device *pdev)
->  {
->  	void __iomem *base;
-> @@ -283,7 +411,16 @@ static int qcom_msm8996_cbf_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &cbf_mux.clkr.hw);
-> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &cbf_mux.clkr.hw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return qcom_msm8996_cbf_icc_register(pdev, &cbf_mux.clkr.hw);
-> +}
-> +
-> +static int qcom_msm8996_cbf_remove(struct platform_device *pdev)
+> +void i2c_atr_del_adapter(struct i2c_atr *atr, u32 chan_id)
 > +{
-> +	return qcom_msm8996_cbf_icc_remove(pdev);
->  }
->  
->  static const struct of_device_id qcom_msm8996_cbf_match_table[] = {
-> @@ -294,9 +431,11 @@ MODULE_DEVICE_TABLE(of, qcom_msm8996_cbf_match_table);
->  
->  static struct platform_driver qcom_msm8996_cbf_driver = {
->  	.probe = qcom_msm8996_cbf_probe,
-> +	.remove = qcom_msm8996_cbf_remove,
->  	.driver = {
->  		.name = "qcom-msm8996-cbf",
->  		.of_match_table = qcom_msm8996_cbf_match_table,
-> +		.sync_state = icc_sync_state,
->  	},
->  };
->  
+> +	char symlink_name[ATR_MAX_SYMLINK_LEN];
+
+> +
+
+Redundant blank line.
+
+> +	struct i2c_adapter *adap = atr->adapter[chan_id];
+> +	struct i2c_atr_chan *chan = adap->algo_data;
+> +	struct fwnode_handle *fwnode = dev_fwnode(&adap->dev);
+> +	struct device *dev = atr->dev;
+
+> +	if (!adap)
+> +		return;
+
+Redundant check (it will be optimized out by compiler) or wrong assignments
+above.
+
+> +	dev_dbg(dev, "Removing ATR child bus %d\n", i2c_adapter_id(adap));
+> +
+> +	snprintf(symlink_name, sizeof(symlink_name), "channel-%u",
+> +		 chan->chan_id);
+> +	sysfs_remove_link(&dev->kobj, symlink_name);
+> +	sysfs_remove_link(&chan->adap.dev.kobj, "atr_device");
+> +
+> +	i2c_del_adapter(adap);
+> +
+> +	atr->adapter[chan_id] = NULL;
+> +
+> +	fwnode_handle_put(fwnode);
+> +	mutex_destroy(&chan->orig_addrs_lock);
+> +	kfree(chan->orig_addrs);
+> +	kfree(chan);
+> +}
+
+...
+
+> +void i2c_atr_set_driver_data(struct i2c_atr *atr, void *data)
+> +{
+> +	atr->priv = data;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(i2c_atr_set_driver_data, I2C_ATR);
+> +
+> +void *i2c_atr_get_driver_data(struct i2c_atr *atr)
+> +{
+> +	return atr->priv;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(i2c_atr_get_driver_data, I2C_ATR);
+
+Just to be sure: Is it really _driver_ data and not _device instance_ data?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
