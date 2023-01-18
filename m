@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65C1567109E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 03:06:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41A346710A7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 03:06:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229740AbjARCGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 21:06:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42842 "EHLO
+        id S229807AbjARCGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 21:06:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbjARCGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 21:06:31 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE9F4AA6B
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:06:30 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id ud5so79872833ejc.4
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:06:30 -0800 (PST)
+        with ESMTP id S229771AbjARCGi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 21:06:38 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A7F4997A
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:06:36 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id v6so36822029ejg.6
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:06:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EzS/zvWe4dE4qAlzyHEWNojqR1ZH/s6LTLUTq8cJCDs=;
-        b=x1UIMFzhhzmPp33rMJL9P9/UdyqBh0ezz8HdRiZ+FCVBLR2OShryDc+uG9Xvznt0vB
-         5cCrPmQCV0teL8HGC5L/s4RV3HC8ChldGjXbGsiZwjPVrQe2smTtDRRf7iqYqqn86TTk
-         LVQbZrb/+9Zbg3bHkzZp0HPycouflZYRFZ5BApQc5fCqveUceFQQI8X4Q9TodF6H0E+L
-         PsV3n7mIYFa0vm7jF+alaBDlUtsWJcHIWlCpZuUQsUxXdr+eF8htRbeQoPbKWKoaWv1C
-         w3P3jvnRQvUG7MFjeFymVS6p0OJBFlCKHbVNzYuTwjmpB+1q1Q1MGH55JGmDjYtJbDaG
-         2bgw==
+        bh=yOhzWcuJTV5IFxzT83GfyYBuQFtDL43V4pgyOp1rbt8=;
+        b=BZJK9KYCD5pDLNx+WgkyVn+9Aice3BiaQUQN1pTMQjOe0S/UgnMYDMsd6auuyRRE8S
+         H+Oo++QA68kwSRtjanvLC1c8pSUYlq5R6nDKMIdLhvKk/tsnye6h8asfpRBQ80BiMLNB
+         YsjKRFT9YPM8996chk28sJipFpOnIcbSvk6zQKaIFdxFWWeJu/BUh52E7tvk52LBvbL6
+         +DodcHcfFrO6Pds1bm4BukCz+ONuBuzOflwOu0HskpfOPSXcM6wZTjI2q8R85LiX1XbN
+         AhwoqmzPpILLsGRqMFqWJVGBC2acu4PLhtRgVHCcZC9klniZSagH7uK1RwlOJnTCYJAQ
+         V0wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EzS/zvWe4dE4qAlzyHEWNojqR1ZH/s6LTLUTq8cJCDs=;
-        b=cZ4TtCFKb/KrNLvNa+w4aBTiNih5aIZWo+cJCM4yp18WJrBYLuNKqzdxXw/B6M16aN
-         PHtjVZomYiJDQteB5Bhzx3EQvZob+QPo4x7mU+EJnQ0IH3FHEKqrvE2NmT5TitL0Sy1I
-         YQ8NGo+67e6d4CKmxGBgntvUz7otOhwdfIzTZbT90yoL1YynI0LMsaS+wCjW26IImOac
-         r5L6op6f6hrWkJt1SMIAFjYvuceWplUEmliCcpRbUiH3r6vFUjkA52gnJ9JYQGMl1TnD
-         kYVupxG+RB9Vy9N8nrNQ5ZLv5EBmAmoX3+fykAiNhmPNiS0EqQqkemhIABC5o9wOxNXl
-         pkZQ==
-X-Gm-Message-State: AFqh2kqmThalAeyH7j0nTlzPR7xzaia0dlAqeO4jkq0VXYl+5pNNBhV9
-        GftleUGty5+t2mdaEGeGzhbS9Q==
-X-Google-Smtp-Source: AMrXdXtPspMwAZbGwbr77eEM5eDgiYrt4RPaQoYwIAtRNNe3VLezx4/sosP5jnJFOjMOoW2VPQl9oQ==
-X-Received: by 2002:a17:906:ca59:b0:870:7e7d:97a3 with SMTP id jx25-20020a170906ca5900b008707e7d97a3mr4427567ejb.59.1674007589171;
-        Tue, 17 Jan 2023 18:06:29 -0800 (PST)
+        bh=yOhzWcuJTV5IFxzT83GfyYBuQFtDL43V4pgyOp1rbt8=;
+        b=YkYSEG9b7czKg0ltt/4qLayT7vpAfNaprwaU3N7sU9ff/LeYRyUiOQl2E2gqrAhPJu
+         zyCySUKd2MfH+xzzR/8X/VXFZXKX7GaCiGTLY0/pD6joClZNQ8o2O9bbMAbEkIro3Ts9
+         atxynUt5XPRNj8qd98y4k77h8JTsTd79oWR+bsg5Kj1a3vCr1otclgkHQNU4ZNUjoxX1
+         TsC64HaSqGXuTFyT2Y7xZEuko0fcByj1Yhdz7nEZo+pi20d4NbbdwSXg2DFWoN2RmMIY
+         q94gFdzPdxHkt6g4enu3URZxYGZQ0TwQXp/QPql/u4/mwk0dSqrf0w2nXZtFq2xUrEPX
+         QA0A==
+X-Gm-Message-State: AFqh2konH5/6bO7h++DMVjsGNDnnI+m3CsTdIpygu4dzzGZ9eyxE+GJ+
+        2TDQF0amZPG27EG8m/xsmjJKpw==
+X-Google-Smtp-Source: AMrXdXth30o8N6JigOeU9QfoMuA2uNMELa4iXuVsuYWhFwvd5DrSr8U0u5P3kBlF3wcOxEFzST5SJw==
+X-Received: by 2002:a17:907:d606:b0:86f:b541:cd02 with SMTP id wd6-20020a170907d60600b0086fb541cd02mr5993456ejc.28.1674007595443;
+        Tue, 17 Jan 2023 18:06:35 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id kx1-20020a170907774100b0084d368b1628sm12702694ejc.40.2023.01.17.18.06.28
+        by smtp.gmail.com with ESMTPSA id kx1-20020a170907774100b0084d368b1628sm12702694ejc.40.2023.01.17.18.06.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 18:06:28 -0800 (PST)
+        Tue, 17 Jan 2023 18:06:35 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH] dt-bindings: display/msm: qcom,mdss: fix HDMI PHY node names
-Date:   Wed, 18 Jan 2023 04:06:11 +0200
-Message-Id: <167400670545.1683873.1367688768865327080.b4-ty@linaro.org>
+        Jonathan Marek <jonathan@marek.ca>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm: Add SM6375 DSI PHY
+Date:   Wed, 18 Jan 2023 04:06:16 +0200
+Message-Id: <167400670533.1683873.6641648531354230560.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230109045453.316089-1-dmitry.baryshkov@linaro.org>
-References: <20230109045453.316089-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230116114059.346327-1-konrad.dybcio@linaro.org>
+References: <20230116114059.346327-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -83,16 +82,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 09 Jan 2023 06:54:53 +0200, Dmitry Baryshkov wrote:
-> On Qualcomm devices HDMI PHY node names were changed from hdmi-phy to
-> phy. Follow this change.
+On Mon, 16 Jan 2023 12:40:58 +0100, Konrad Dybcio wrote:
+> SM6375 has a single 7nm DSI PHY. Document it.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] dt-bindings: display/msm: qcom,mdss: fix HDMI PHY node names
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/759cc4914fb0
+[1/2] dt-bindings: display/msm: Add SM6375 DSI PHY
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/f8e6d45c8152
+[2/2] drm/msm/dsi: Add phy configuration for SM6375
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/88f46d2ccdf0
 
 Best regards,
 -- 
