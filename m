@@ -2,183 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADDEF671C27
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 13:34:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABB26671C5F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 13:43:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbjARMeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 07:34:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35386 "EHLO
+        id S230287AbjARMnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 07:43:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230332AbjARMdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 07:33:49 -0500
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44CCF2411A;
-        Wed, 18 Jan 2023 03:55:29 -0800 (PST)
-Received: by mail-vs1-xe34.google.com with SMTP id j185so4311102vsc.13;
-        Wed, 18 Jan 2023 03:55:29 -0800 (PST)
+        with ESMTP id S230370AbjARMlO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 07:41:14 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C0FA4A238
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 04:05:53 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id r2so33697806wrv.7
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 04:05:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uFwEIEOiSaW9hXN4k5YwZLmqm93pKj/xVyynsfLQsUA=;
-        b=R0kiAqJYRSp/UTQPUDyGlM8oim8OrtDNUFJ/VlCzx/Xz4ZdBcong/DY/nekEOAdtzM
-         CLy/t1aqHPjL/uJQ/6UxMuJeW60mzLgWwDh3uoUmrVidKcel2SUYy7Fi/8mAWrclK+lL
-         QeEgNCtgZ/f3je+Ds1lpR3Cc9qf6AoHP45CFGBx8gMCVTPx7o2MJgBbA3tsy8a4ywpTI
-         ir2+Hmy4s6s2FBFNsUHTkce82EOHqXSZkdskCfGSwfnyMRX1419R/Mg4+5z/VP9VE0wk
-         JIQyOGYUTaaBpEzB57nMeLemi4zy93VSIX8cVse8V00WmdgaL6mms/wKjnasesQBub6R
-         Vqlw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jOtBx7iuzRQsPxKN1y+9m4RLuvwP28DoAs7Gu1XGBOA=;
+        b=P6bO8vngjWSIT1XrIAM91BorkF/ywf8NRmLu2N4HPgWbx6ENup6EZGFzyFAaO4kTyt
+         BijCwnc6YuX5l0kgMI7QPtk+dH9VJi0YUSTnNkej28eJfuWziyV4CyTR2wa2RR0dtvPA
+         eKFFMdq73UeGETv/MccUPmItb+t0dezwpF1CPwa0WLXNtNoq/EYzbJlAnSyTUmdRMQfW
+         4hvHPmQv+XHF/3mXO1A6++0s/dnEYYlunbplWUXEK0RfddDtPWUxg4dnM+FDAgGprwVP
+         HEjiA6GM4PPYsjjCnf7/cbAlPzzE7K/ZQhYKGUwX1Oiy/c4+608MHijUSO0Z0aE+1hkJ
+         41nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uFwEIEOiSaW9hXN4k5YwZLmqm93pKj/xVyynsfLQsUA=;
-        b=WqIvbw+dpMZ+PvfoZauDDxvJwontdo6b602Xnwx8O3EpTH6/iHjUSwRKA+lzONZNfv
-         IqDZXpDqVMDDnCr1EDDu6EXGrHlc0+0K8w3ssKnWccKP3lKKNfOvEKnrjBJJ5BI6JRZd
-         gJQneW1/DUq3VK7IyprySLhiv5Z65vbXLCvxZQiglF2XLWRY4jg0SjLtQSXsYmb2cFQM
-         g3iVWvzJC7Nwevb/hBazEGZE2iAfgITyccdWg8U0J8SwTxfIZ2XamAkHXA7xi3gZbP03
-         mQ0yYzFJDKi6qP3nWBN15a72o6fjNtW9p04S57wjfnhkPO+NwsXLRIoXMqzIfMVKWW8F
-         Kr8g==
-X-Gm-Message-State: AFqh2kpVGrtCJGAORFt2gKpZq3Mj9tj0bANuNNKAzqRMjzDrYQqMRQK9
-        tDxcwxqO1PAZPPbZNz+cWjTEJr3BdC5znPirDaI=
-X-Google-Smtp-Source: AMrXdXskNkq+CbqgiO87f6+YCzqH7CO6djk3enoyI29WdSBF6Z/zFZS74ORoGWFWatnmI3x1aSC6mTW4xu2ljMf6pow=
-X-Received: by 2002:a67:e14a:0:b0:3d3:f10a:4f56 with SMTP id
- o10-20020a67e14a000000b003d3f10a4f56mr891572vsl.10.1674042928915; Wed, 18 Jan
- 2023 03:55:28 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jOtBx7iuzRQsPxKN1y+9m4RLuvwP28DoAs7Gu1XGBOA=;
+        b=KLjsRmgnFtGLvhRQrq/JeMhlk9825MgwrlRFwW/DpayOsH2YcwOVr5MCS7FDVMcpE9
+         OPnbxQAyTFg6slmJEiLT9lYwVhjTf5Ag9AdtyXMjpM9k5E5C6zlcwmnIbMbtrpSb7jth
+         wuO1U+JT8z2EmZhqUXbgrCxcvuLrCHfPq6TQbiVhj6tWfJgtEgOpXZh9VIQLeqwXtbBO
+         W9EO/OvSUGtfMYSpc9XWMbTuxhD8Dcehe2fdUoFpSrdIaQ9g9YF7pkW4zSSS5qQjdn1G
+         ekG17qtI2+CHjEwTsKeB1Cqz02e558cgQszlsWnXD0nYEF/kjTRdu3uXi6j+SfT31q69
+         Eg1w==
+X-Gm-Message-State: AFqh2kr01HYoWwbg18N3OGfoUjLFb32tGLloQ+h4eOrmfK+CTAtH+kaQ
+        I/50NW+Vl1UXHferAhgzl6q6Eg==
+X-Google-Smtp-Source: AMrXdXvC7BWWUHoh9f7f73Qbm2nv6DQNkQWjt2oVVrh14s35bOVD3wyjjp8Q+p1rcAfALaOJuwvL8g==
+X-Received: by 2002:a5d:6e82:0:b0:242:5563:c3b with SMTP id k2-20020a5d6e82000000b0024255630c3bmr5868223wrz.59.1674043551833;
+        Wed, 18 Jan 2023 04:05:51 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id j3-20020adfff83000000b002bddc1ac273sm14126833wrr.87.2023.01.18.04.05.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 04:05:51 -0800 (PST)
+Message-ID: <7822949a-c373-3028-6a42-66a04245e93b@linaro.org>
+Date:   Wed, 18 Jan 2023 12:05:50 +0000
 MIME-Version: 1.0
-References: <20230118044418.875-1-linux.amoon@gmail.com> <20230118044418.875-7-linux.amoon@gmail.com>
- <2c17eaa5-ee93-58c5-a35a-8366eb4cfc36@linaro.org>
-In-Reply-To: <2c17eaa5-ee93-58c5-a35a-8366eb4cfc36@linaro.org>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Wed, 18 Jan 2023 17:25:14 +0530
-Message-ID: <CANAwSgRJ6Tek7NxSfsExkrWrQ94Ro8mmitoWm3wfrg7NKbO+Lw@mail.gmail.com>
-Subject: Re: [PATCH v2 6/9] dt-bindings: usb: Add binding for Via lab VL817
- hub controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-amlogic@lists.infradead.org,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Johan Hovold <johan@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v3 1/8] dt-bindings: arm: qcom: Document MSM8939 SoC
+ binding
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, benl@squareup.com,
+        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
+        dmitry.baryshkov@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230117024846.1367794-1-bryan.odonoghue@linaro.org>
+ <20230117024846.1367794-2-bryan.odonoghue@linaro.org>
+ <Y8eyIO8BqKzvulbB@gerhold.net>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <Y8eyIO8BqKzvulbB@gerhold.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 18/01/2023 08:47, Stephan Gerhold wrote:
+> On Tue, Jan 17, 2023 at 02:48:39AM +0000, Bryan O'Donoghue wrote:
+>> Document the MSM8939 and supported boards in upstream Sony "Tulip" M4 Aqua
+>> and Square APQ8039 T2.
+>>
+>> MSM8939 is one of the older SoCs so we need to expand the list of
+>> qcom,board-ids to allow for the bootloader DTS board-id matching
+>> dependency.
+>>
+> 
+> The original LK bootloaders cannot boot your msm8939.dtsi correctly,
+> because a spin-table implementation is required to get the other CPU
+> cores up. This means that a modified bootloader is always needed from
+> the upstream point of view, since I doubt anyone wants to use these
+> devices with a single core only. lk2nd (as the primary spin-table
+> implementation right now) has never required qcom,board-ids and any
+> custom LK would be easy to patch to ignore these.
 
-Thanks for your review comments.
+The system boots just fine with the shipped LK. We get display, USB, SD, 
+WiFi.
 
-On Wed, 18 Jan 2023 at 13:49, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 18/01/2023 05:44, Anand Moon wrote:
-> > The VIA Lab VL817 is a USB 3.1 Gen 1 hub and USB 2.0 hub
-> > controller that features 4 downstream ports and 1 otg, with
-> > an internal 5V regulator and has external reset pin.
->
-> Subject: drop second/last, redundant "binding for". The "dt-bindings"
-> prefix is already stating that these are bindings.
->
-Ok
-> >
-> > Add a device tree binding for its USB protocol part.
-> > The internal LDO is not covered by this and can just be modelled
-> > as a fixed regulator.
-> >
-> > Add combo of USB 2.0 and USB 3.0 root hub using peer-hub.
-> >
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> > v2 - fix the compatible string and fix the $id
-> >    - update the commit message.
-> >    - update the example for use peer-hub node because it
-> >      combo of USB 2.0 and USB 3.0 hub.
-> >    - rename the yaml file from vialab,vl817q7.yaml to vialab,vl817.yaml
-> >      as q7 suffix is ued for USB 3.1 and q5 suffix is used for USB 2.0.
-> > ---
-> >  .../devicetree/bindings/usb/vialab,vl817.yaml | 69 +++++++++++++++++++
-> >  1 file changed, 69 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-> > new file mode 100644
-> > index 000000000000..5f9771e22058
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/vialab,vl817.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Via labs VL817 USB 3.1 hub controller
-> > +
-> > +maintainers:
-> > +  - Anand Moon <linux.amoon@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: usb-device.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
->
-> Drop items
->
-Ok,
-> > +      - enum:
-> > +          - usb2109,2817
-> > +          - usb2109,817
-> > +
-> > +  reg: true
-> > +
-> > +  reset-gpios:
-> > +    description: GPIO controlling the RESET# pin.
->
-> maxItems
->
-Ok,
-> > +
-> > +  vdd-supply:
-> > +    description:
-> > +      phandle to the regulator that provides power to the hub.
-> > +
-> > +  peer-hub:
-> > +    $ref: '/schemas/types.yaml#/definitions/phandle'
->
-> Drop quotes
->
-Ok,
-> > +    description:
-> > +      phandle to the peer hub on the controller.
-> > +
-> > +required:
-> > +  - peer-hub
-> > +  - compatible
-> > +  - reg
->
-> Keep same order as in properties: part.
->
-Ok
-> > +
->
-> Best regards,
-> Krzysztof
->
+We just don't support booting the second cluster via any other means 
+than lk2nd right now.
 
-I will update these in the next version.
+You could also not use lk2nd, stick with your default LK and import LPM 
+patches.
+
+Default LK:
+root@linaro-alip:~# cat /proc/cpuinfo
+processor       : 0
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 4
+
+root@linaro-alip:~# iw wlan0 info 
+ 
+
+Interface wlan0
+         ifindex 6
+         wdev 0x1
+         addr e2:b9:a0:ef:3a:ba
+         type managed
+         wiphy 0
+         channel 52 (5260 MHz), width: 80 MHz, center1: 5290 MHz
+         txpower 20.00 dBm
+         multicast TXQ:
+                 qsz-byt qsz-pkt flows   drops   marks   overlmt hashcol 
+tx-bytes        tx-packets
+                 0       0       0       0       0       0       0 
+0               0
+root@linaro-alip:~# uname -a
+Linux linaro-alip 6.2.0-rc4-next-20230116-00029-gf1a46ff9e812-dirty #392 
+SMP PREEMPT Tue Jan 17 23:46:42 GMT 2023 aarch64 GNU/Linux
 
 
+LK2ND:
+root@linaro-alip:~# cat /proc/cpuinfo
+processor       : 0
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 4
 
--Anand
+processor       : 1
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 4
+
+processor       : 2
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 4
+
+processor       : 3
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 4
+
+processor       : 4
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 4
+
+processor       : 5
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 4
+
+processor       : 6
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 4
+
+processor       : 7
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x0
+CPU part        : 0xd03
+CPU revision    : 4
+
+root@linaro-alip:~# iw wlan0 info
+Interface wlan0
+         ifindex 6
+         wdev 0x1
+         addr 02:00:0e:66:5c:21
+         type managed
+         wiphy 0
+         channel 64 (5320 MHz), width: 80 MHz, center1: 5290 MHz
+         txpower 20.00 dBm
+         multicast TXQ:
+                 qsz-byt qsz-pkt flows   drops   marks   overlmt hashcol 
+tx-bytes        tx-packets
+                 0       0       0       0       0       0       0 
+0               0
+root@linaro-alip:~# uname -a
+Linux linaro-alip 6.2.0-rc4-next-20230116-00029-gf1a46ff9e812-dirty #392 
+SMP PREEMPT Tue Jan 17 23:46:42 GMT 2023 aarch64 GNU/Linux
+
+---
+bod
