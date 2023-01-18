@@ -2,102 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3B4E672158
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F228367215D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:35:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231189AbjARPdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 10:33:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
+        id S229637AbjARPfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 10:35:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231165AbjARPdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:33:41 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EC721CF7E
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:33:39 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id d2so14210716wrp.8
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:33:39 -0800 (PST)
+        with ESMTP id S229646AbjARPfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:35:15 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2807D190
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:35:12 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id bk16so34317525wrb.11
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:35:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oUPpYf55nSewKPfRw1r8GTAzRNx6PisN+J3CJfYWWqM=;
-        b=ER+nRfLfGkm6S/o3MmxpSFWWo6T91uTm6DYUbVFOOUC+6DeFJbgFuuyS22UQ55nriy
-         pmWZqfjYVV5qpaqONICqbKhaC3QxF4E2pJOloNLIo5uS7NSvF7zNp56PPGTnHThiuF/p
-         LnEtVfxQlEncXoNaufozHXbHi8uLjaoucMIXqdQ1amadF3yujWJlVRJ+RVXxjD+bzNLM
-         9wpmSjZegYNzNgqR6zt8ODCpgAKpU2IsmMbu+Me5U6eiqvNui0GAjCg3SdGzjp0q5+ui
-         xJ89PpSRdyJmedgCuDXRY0yU2KRNDVosV2inzdam3HY3bz2jgEsYfnnEhAZSRW8gQcBY
-         Vfxw==
+        bh=LoHH2nj7NXm/nL0+Tx9tLOdfs2jN6SHgUks6Yuk9t9Q=;
+        b=gQ1Qcz5Xj2Q5vrDeF87Lwa/WHWtCPfHaFRIZ4IvKdaND+T7rTVeimD9FZoFTBRFZCo
+         l3AS0Te1y404bmoKZqWKu3m2bqQyehETXIBXez0WwVhWCtdrFHNYSAhaBid7ZF+FLGsz
+         LAhhU9y8Gymvdxu6JcW1lo0Qc34H41ASSKQEymQDN+c3n3nDxius4uoeqLRv6p1Re9nE
+         5Jr73WnpXPXYoWRMClcKXu+JrrE1+G6Mz74ffawad/WaR77pOPy12TBCVdugGKfK4pU2
+         RdAI1eyU6TFjaQ+MrRa6r4SwGEzlqeD04i1IE7SvtgEPU6DYaGL8pJKwKKNZJV7umSQH
+         pDqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oUPpYf55nSewKPfRw1r8GTAzRNx6PisN+J3CJfYWWqM=;
-        b=Ijq4VuoVS2hi+bVXDiyIOQiS8UxRNPiBXoLQRFexkXV7aSRtYHwuyQ0FOI5cZ7pjO6
-         XBOH/Ay8JFuKyvZCfYfdMq++X/OHBTrxFZ09l/uhPsNoAQBYLw1QgsTWyQij0jo7xuj6
-         IARDLaPgQbAAgvqRWLUe9F8GwKTadSyxLOUbqPn0NDd1kuyuTrcCti+LOQZROfu5zBez
-         s7WAYUDCoYmQSlPSRRw6IwHtWB79HaNjJr4DYYfOlAA1B7p8IRclWRXNuCpcKQtEZATm
-         h4MYHPtWo99LgE65JuhD+XpCf6YJInIYpNCvmoanilY/pTV1th2O+IvuVOcYryxI9XFK
-         r3yg==
-X-Gm-Message-State: AFqh2kr3ZniJYiBOX5nyEUFl6x2kkQ9F2Bg8Q0KLOh0RdX4z5gq/IZG+
-        gZSgAVgAuZ/AIPLAkmcm/t/qvw==
-X-Google-Smtp-Source: AMrXdXtsBYgy2yvXAk1HX7S7z4hIuZLQip5px4lekLCG5EOdySAkbweDKG6rgI8l5Dgzm8Noat9D+g==
-X-Received: by 2002:adf:df10:0:b0:2bb:e891:1829 with SMTP id y16-20020adfdf10000000b002bbe8911829mr6814451wrl.4.1674056017946;
-        Wed, 18 Jan 2023 07:33:37 -0800 (PST)
+        bh=LoHH2nj7NXm/nL0+Tx9tLOdfs2jN6SHgUks6Yuk9t9Q=;
+        b=VqKaXpbs83MpglyjLu9XQLO4neukDfg3LlACMEKUP12zJ4Vasc6ovTUhA3Z/IY83Se
+         76cg6+AboV9gPtiO/YXnpxhK1HElP3D0hOUn+ea5Vk+EnHPE88V7F4Ens5UKve6FbCz1
+         d6PnEWRWHa6kjheVzT6GX1qB1s3EdKYM5AC0f++0ywV83p9sxBSInHPHvOkauuF8Y1aV
+         0f3U5N3UmOypT9At/PdGMHMsYhGXCSfQGg8jOBWwUXyIyRFvlmEURz9i5Li/BivyiKxs
+         wvHWiEXZgPTNH5uciMcQUpjjEbTNm0Hgg3XZZAkph7qkj8HG7OcTq/nMvIZEI6l163Xm
+         +xww==
+X-Gm-Message-State: AFqh2koK7OqySLlGtVtvcwAc0Wy9L7Hj5rOgQmPXnoCGdwvg/8Hw2Vm3
+        UKBHLzKobPyxypC99j1Qa1AblA==
+X-Google-Smtp-Source: AMrXdXs66UXpqSe4xSmFeXLloUSAe1sRQSuZ068jrjBRmIzvXouEACawSgZsSQgK8yYKPRgL8jbGwg==
+X-Received: by 2002:adf:e703:0:b0:2bd:d948:3c3e with SMTP id c3-20020adfe703000000b002bdd9483c3emr6597146wrm.19.1674056110682;
+        Wed, 18 Jan 2023 07:35:10 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t17-20020a05600001d100b00241d21d4652sm31225540wrx.21.2023.01.18.07.33.36
+        by smtp.gmail.com with ESMTPSA id s2-20020adff802000000b00241bd7a7165sm31586447wrp.82.2023.01.18.07.35.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 07:33:37 -0800 (PST)
-Message-ID: <f7d3cd69-3eee-d96e-4c53-958c1e3d1c37@linaro.org>
-Date:   Wed, 18 Jan 2023 16:33:35 +0100
+        Wed, 18 Jan 2023 07:35:10 -0800 (PST)
+Message-ID: <ced7741a-3bd4-3be5-ab9f-ae388373d38a@linaro.org>
+Date:   Wed, 18 Jan 2023 16:35:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: interconnect: qcom: document the
- interconnects for sa8775p
+Subject: Re: [PATCH v1 2/4] gpio: gpio-rockchip: add compatible string per SoC
 Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230118140825.242544-1-brgl@bgdev.pl>
- <20230118140825.242544-2-brgl@bgdev.pl>
+To:     Johan Jonker <jbx6244@gmail.com>, linus.walleij@linaro.org,
+        brgl@bgdev.pl
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kever.yang@rock-chips.com, sjg@chromium.org,
+        philipp.tomsich@vrull.eu
+References: <08de3f4b-e33f-95c8-3297-814ea107272a@gmail.com>
+ <1510c02c-f640-9924-e42e-fa34e28a580f@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230118140825.242544-2-brgl@bgdev.pl>
+In-Reply-To: <1510c02c-f640-9924-e42e-fa34e28a580f@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 15:08, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 18/01/2023 13:14, Johan Jonker wrote:
+> Currently all Rockchip gpio nodes have the same compatible.
+> Replace all the compatibles in gpio nodes to be able to
+> give them a consistent ID independent from probe order or alias.
 > 
-> Add a DT binding document for the RPMh interconnects on Qualcomm sa8775p
-> platforms.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->  .../interconnect/qcom,sa8775p-rpmh.yaml       |  50 ++++
->  .../interconnect/qcom,sa8775p-rpmh.h          | 231 ++++++++++++++++++
->  2 files changed, 281 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sa8775p-rpmh.yaml
->  create mode 100644 include/dt-bindings/interconnect/qcom,sa8775p-rpmh.h
+> 
+> For now only add new compatibles.
+> No changes to rockchip_gpio_probe() function yet.
+> ---
+>  drivers/gpio/gpio-rockchip.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/drivers/gpio/gpio-rockchip.c b/drivers/gpio/gpio-rockchip.c
+> index e5de15a2a..493207de1 100644
+> --- a/drivers/gpio/gpio-rockchip.c
+> +++ b/drivers/gpio/gpio-rockchip.c
+> @@ -790,7 +790,22 @@ static int rockchip_gpio_remove(struct platform_device *pdev)
+> 
+>  static const struct of_device_id rockchip_gpio_match[] = {
+>  	{ .compatible = "rockchip,gpio-bank", },
+> +	{ .compatible = "rockchip,px30-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3036-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3066a-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3128-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3188-gpio-bank", },
+>  	{ .compatible = "rockchip,rk3188-gpio-bank0" },
+> +	{ .compatible = "rockchip,rk3228-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3288-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3328-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3308-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3368-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3399-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3568-gpio-bank", },
+> +	{ .compatible = "rockchip,rk3588-gpio-bank", },
+> +	{ .compatible = "rockchip,rv1108-gpio-bank", },
+> +	{ .compatible = "rockchip,rv1126-gpio-bank", },
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No, this list is useless. Entire patch should be dropped. Just use fallback.
+
 
 Best regards,
 Krzysztof
