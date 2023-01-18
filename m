@@ -2,76 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0FC3672BC2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 23:50:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0EE1672C3A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 00:05:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbjARWut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 17:50:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47218 "EHLO
+        id S229670AbjARXFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 18:05:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbjARWun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 17:50:43 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDA063E26;
-        Wed, 18 Jan 2023 14:50:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EFB8AB81D76;
-        Wed, 18 Jan 2023 22:50:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E537CC433F0;
-        Wed, 18 Jan 2023 22:50:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674082237;
-        bh=2blp33AOuNZgDL48gG5lYTR7R74zR8GX5DBx5UyySA0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=rL8tabuAZqwcjzroj/lcYe+3MwW6T/FjQjJ+xtyJwkHQsT1/3dqP462K8aCaP4pQx
-         jihZTCOo8labZCEyd/UNHjWynlGYWOeFP5x7KryMVzT+cPz1nkFVtXPABPvyYa7BcV
-         txzvzYPVxhv4EnS++80wr5FgibhyLcD1PUKYP+YpvJYQ7OxBQWJbRY8INRlsGQExrS
-         g6blVMtr8h0jCqRbyJRCeUi6bQ+zjVX17n5uSplBdju0Ez8ezUJESynGDWGNcFvgQa
-         kFXVgsnCNcPruBQp3t/jg0nnKRccjtKNlrYfKOGgoW0o7t2iMl7hmYr4suwEaVB1dr
-         7Ikw0zEJbIdwg==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     konrad.dybcio@linaro.org, quic_bjorande@quicinc.com,
-        agross@kernel.org
-Cc:     ahalaney@redhat.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc8280xp: Define CMA region for CRD and X13s
-Date:   Wed, 18 Jan 2023 16:50:28 -0600
-Message-Id: <167408222416.2952004.7134382340412664997.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230117184630.2775905-1-quic_bjorande@quicinc.com>
-References: <20230117184630.2775905-1-quic_bjorande@quicinc.com>
+        with ESMTP id S229644AbjARXFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 18:05:33 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8939144BF2
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 15:05:32 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso2128426wmb.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 15:05:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=m4PepIMgjunHPFAdcwLkHufzAvLogufkwZaXQ5q9ioM=;
+        b=rsFwZUUs/BZI/dJUyY8MiEWoUhj+bNz3VjHaDJHeXz7XYylPZPTiUMqb4hLC41yD/O
+         fngXVIRA9ow2YYhGSEMnEKN5gPBKcacPzaW7NKdm14UGyzJQwlbomr7JyO2iUN2wE7xO
+         efOQdqKkUbDm8IrPSR/0xD5qXneiEAGIA00X2/hdCJpjacFv4rYt4Wz1KSMmB8dY4xnM
+         vo5oM9FnZy2riRhECyQ1LSNb5zE7g1ISwQ7v3x18ZmDXQ5AzxgdjxD72OT89UCcfP5F5
+         4ufr5Y0xUVu8btnPZscb1IhsG0f/mB+HCfl/fU1csc9y+tFIvtn8SC6SThc4t592zqag
+         j0hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m4PepIMgjunHPFAdcwLkHufzAvLogufkwZaXQ5q9ioM=;
+        b=DxTZ2wgAdJC/kwJ5OBm4XlbNvWLwDBP38aDc2lvxWqSJo2GXiMEXTTXFOH3DDorSjp
+         /NSdfnAh9loykJoC4zyj1KqPqNQJTPczm+f1Y+spE8dO0aDsfDgZKobWfsdbXzcZzn35
+         ppCHkc41WYCqGg8d90HSCy6kqw6P++e/dJi62G6OnmAkzyA/4WBTO+EE39KPIr4GczFw
+         O8ovO9Boh/bgCcDzoKGYAudMAGQ4qfJayIJ6vXub5NIPx4GzuAEPAt6hpTVSRwZBR3Su
+         6+Bz084qSz4iChbeXgBRv+ov3dtkdaAopa30G7W/KEv8S+o1seYYtYQLi48PPtQ6qOEt
+         oGZA==
+X-Gm-Message-State: AFqh2koXXx+OieX4wEhFngxWe7zpcFvv8bzNKk5MyFEaGETMj/oJ6YPb
+        FEMA3gX2j9RdJ6Jw33DGV7kD9w==
+X-Google-Smtp-Source: AMrXdXvOn5g/rZ2qMOY5PWhwdG/0hZbasik5oaViA2GbP6IJAUe8eaPlnoW/Oct32slxARGRFO9gPg==
+X-Received: by 2002:a05:600c:510b:b0:3db:d3f:a919 with SMTP id o11-20020a05600c510b00b003db0d3fa919mr4297232wms.1.1674083131063;
+        Wed, 18 Jan 2023 15:05:31 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id o2-20020a05600c510200b003c6f8d30e40sm3523314wms.31.2023.01.18.15.05.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 15:05:30 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] arm64: dts: qcom: sm8550: Add PCIe HC and PHY support
+Date:   Thu, 19 Jan 2023 01:05:24 +0200
+Message-Id: <20230118230526.1499328-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Jan 2023 10:46:30 -0800, Bjorn Andersson wrote:
-> While booting the CRD, a series of CMA allocation errors can be seen in
-> the kernel log:
-> 
->   cma: cma_alloc: reserved: alloc failed, req-size: 128 pages, ret: -12
-> 
-> Growing the CMA region and querying /proc/meminfo indicates that a newly
-> booted system (currently) uses 64MB CMA.
-> 
-> [...]
+This patchset adds PCIe controllers and PHYs support to SM8550 platform
+and enables them on the MTP board.
 
-Applied, thanks!
+The v1 was here:
+https://lore.kernel.org/all/20221116130430.2812173-1-abel.vesa@linaro.org/
 
-[1/1] arm64: dts: qcom: sc8280xp: Define CMA region for CRD and X13s
-      commit: 5f84c7c35d49e6d92b720db19d421951f1ff8599
+Changes since v1:
+ * ordered pcie related nodes alphabetically in MTP dts
+ * dropped the pipe_mux, phy_pipe and ref clocks from the pcie nodes
+ * dropped the child node from the phy nodes, like Johan suggested,
+   and updated to use the sc8280xp binding scheme
+ * changed "pcie_1_nocsr_com_phy_reset" 2nd reset name of pcie1_phy
+   to "nocsr"
+ * reordered all pcie nodes properties to look similar to the ones
+   from sc8280xp
 
-Best regards,
+Abel Vesa (2):
+  arm64: dts: qcom: sm8550: Add PCIe PHYs and controllers nodes
+  arm64: dts: qcom: sm8550-mtp: Add PCIe PHYs and controllers nodes
+
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts |  29 ++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi    | 213 +++++++++++++++++++++++-
+ 2 files changed, 239 insertions(+), 3 deletions(-)
+
 -- 
-Bjorn Andersson <andersson@kernel.org>
+2.34.1
+
