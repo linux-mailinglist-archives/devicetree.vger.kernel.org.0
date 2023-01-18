@@ -2,95 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A4786720EC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 219FA672138
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:27:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231678AbjARPQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 10:16:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49394 "EHLO
+        id S229796AbjARP12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 10:27:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232000AbjARPPp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:15:45 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 452354AA64
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:11:16 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id m15so3722558wms.4
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:11:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=78lYokYe+waq3HiNNjOXctpwq/OP5wkSDRDqSFk4TAY=;
-        b=m0EIBUpH977o4AjCbdCqiWB8f9RmVT75RjaHmWM6Y0IiudCDPHtW7zYtWxNtFVXoD6
-         cLEJZfIye53eea2Jo62OAn98OFiGnd6G1veaQ3UM8BB6xM7nuHVOdznbfv4Hp4m5K1F3
-         TkWCh88t/fZk+cUOjxNjkNnaiJnyoLSEvPEhY4qWPsI+gZ1toUh56fYFD6trvJPS4VyU
-         RVzQtTUqrAJjqaQklRtuP2pkqvvtlR7Gr3AVx+VsqUOaW0ACEnXS3obf1FfZYco0Axer
-         kNdf0WdozC347rSFJmjvzyf914rxmzjdYqy9h/bF9enjUujD5O/8eXhyfjMAuKc/MLan
-         YhQw==
+        with ESMTP id S230507AbjARP1N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:27:13 -0500
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6385BA9;
+        Wed, 18 Jan 2023 07:26:15 -0800 (PST)
+Received: by mail-oo1-f53.google.com with SMTP id 123-20020a4a0681000000b004faa9c6f6b9so879156ooj.11;
+        Wed, 18 Jan 2023 07:26:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=78lYokYe+waq3HiNNjOXctpwq/OP5wkSDRDqSFk4TAY=;
-        b=6isjWo3AwaEk+vvmRQv97xtwRxkKHOjuUz81swcImMZ3s7p1ncn0ebmOqsjtN4rrAy
-         1taC/BospFtOcpBM8K4oITTFd+RMrQ+vDndkG2PyEOXWm3+WTDaCJ0urgd/DI/H+vqtb
-         KbdvQ4aDDV4sUYeKVmNrOlZ892Vyhu2bwk2SrMiMYk/qOBdeCR336MZ5RlONn1F6gc+m
-         4F3Y+TqxtOqa1HRFN3mQnIVYwLV435jpdtPYMN1du7C4BUyNb06OAOyOV5S4AuweoNQK
-         /WdgEUL5ePaugl9Qk9pTYXmb+vdw8INkcS7h7OUnLuri9hENG15kTB+KNLdRqd6r9iGs
-         cKKQ==
-X-Gm-Message-State: AFqh2kr6IrEQqZUZQ854xxFDo+RSfK3YG8tP8FsRWfCb7/g758+RaPXc
-        Pp2P3hMOFD7VM4rxWz/6DiE7Lg==
-X-Google-Smtp-Source: AMrXdXtcmI77IZ7bZcRUw62GSf9vkynapW4LtGSczt2ytIHEtT2D+Ny2IsERJl0ugNJiQhmKbiEj8Q==
-X-Received: by 2002:a05:600c:1f0b:b0:3da:fa80:62f9 with SMTP id bd11-20020a05600c1f0b00b003dafa8062f9mr7342774wmb.18.1674054674835;
-        Wed, 18 Jan 2023 07:11:14 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id bg1-20020a05600c3c8100b003db09eaddb5sm1525371wmb.3.2023.01.18.07.11.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 07:11:14 -0800 (PST)
-Message-ID: <0c35ee6a-6908-88c7-5b96-81ab2a8771c9@linaro.org>
-Date:   Wed, 18 Jan 2023 15:11:13 +0000
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nT7vo//zIHYtjuHwHvVEOuFwE5YKQ11WWGeqHMGeNf0=;
+        b=uTgpWe9P4CIdT+Q+FzQWm3ly8uH9REXn3e5KdRPdBuZcrRCMd8dPnIerWh5JNi9YzN
+         ABVUnOYZ4sUYXPwYD+AgED9E/7euME/lK9RrXFO6rJDaIKKK0tKnY2/TbGWXsOEajuLq
+         3uvBf9Vt1ZSqR4Q7+hoDX0QEbkpFbnMvu6o0F1vYiFIoB4RUsIIiTGwzQ1UcsSHam7UA
+         qYmt76lqxESlWXrEnKlxraiRir6a70i+DRn1mFy9MRQ+t/j53YWVtlKEyx5Qj0K6sTeB
+         eSIte1Ng6J1x5JbkFZ5DhCi35xCxQni2zYkW6B0Phm9UzwQkEJTIdhfQdX/oGy9qgDjo
+         sjAg==
+X-Gm-Message-State: AFqh2krorMvEFwLt581wDa7w7zgeycLZKSFniUvGkRPrxjoRyfIrBWSM
+        +IjE82fVXYOAbkT5tMKZsw==
+X-Google-Smtp-Source: AMrXdXvrHsL3B9As2RFndVMMqtmIzmNvUPOHglhiIYMLBz7EpgrDtHsKHz/dRPDHU+pft+uq8bi6Dg==
+X-Received: by 2002:a4a:b202:0:b0:4d1:c23:3c51 with SMTP id d2-20020a4ab202000000b004d10c233c51mr2822427ooo.9.1674055574338;
+        Wed, 18 Jan 2023 07:26:14 -0800 (PST)
+Received: from robh_at_kernel.org ([4.31.143.193])
+        by smtp.gmail.com with ESMTPSA id o10-20020a4aabca000000b004f22e40ad6fsm10435619oon.2.2023.01.18.07.26.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 07:26:13 -0800 (PST)
+Received: (nullmailer pid 30555 invoked by uid 1000);
+        Wed, 18 Jan 2023 15:26:13 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v3 8/8] arm64: dts: qcom: Add msm8939 Sony Xperia M4 Aqua
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
-        andersson@kernel.org, djakov@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
-        leo.yan@linaro.org, dmitry.baryshkov@linaro.org
-References: <20230117024846.1367794-1-bryan.odonoghue@linaro.org>
- <20230117024846.1367794-9-bryan.odonoghue@linaro.org>
- <cff5ed4b-ef6b-b573-2370-1fb55ae746fd@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <cff5ed4b-ef6b-b573-2370-1fb55ae746fd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof =?utf-8?q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-media@vger.kernel.org,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>, Shawn Tu <shawnx.tu@intel.com>
+In-Reply-To: <20230118103239.3409674-2-michael.riesch@wolfvision.net>
+References: <20230118103239.3409674-1-michael.riesch@wolfvision.net>
+ <20230118103239.3409674-2-michael.riesch@wolfvision.net>
+Message-Id: <167405509286.19309.13229390529677400429.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: add imx415 cmos image sensor
+Date:   Wed, 18 Jan 2023 09:26:13 -0600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 14:42, Konrad Dybcio wrote:
->>   &sdhc_1 {
->> -	vmmc-supply = <&pm8916_l8>;
->> -	vqmmc-supply = <&pm8916_l5>;
->>   	pinctrl-names = "default", "sleep";
->>   	pinctrl-0 = <&sdc1_default_state>;
->>   	pinctrl-1 = <&sdc1_sleep_state>;
-> This hunk doesn't belong in this patch..
+
+On Wed, 18 Jan 2023 11:32:38 +0100, Michael Riesch wrote:
+> Add devicetree binding for the Sony IMX415 CMOS image sensor.
 > 
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> ---
+>  .../bindings/media/i2c/sony,imx415.yaml       | 120 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 127 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
 > 
 
-bah.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-squashing
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx415.example.dtb: camera-sensor@1a: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx415.example.dtb: camera-sensor@1a: port:endpoint: 'link-frequencies' is a required property
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230118103239.3409674-2-michael.riesch@wolfvision.net
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
