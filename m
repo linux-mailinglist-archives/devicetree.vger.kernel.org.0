@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C43E67125B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 05:13:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E1FC67125F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 05:13:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbjAREM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 23:12:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41102 "EHLO
+        id S229582AbjARENA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 23:13:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbjAREMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 23:12:53 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFFB54138
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 20:12:52 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id u19so80210840ejm.8
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 20:12:52 -0800 (PST)
+        with ESMTP id S229614AbjAREM5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 23:12:57 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E79154230
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 20:12:54 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id ss4so72978589ejb.11
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 20:12:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HSpGY8OBvDU8g61I7cBvuZvlMJBnz3vM71dI47Sckdk=;
-        b=umPE4AvJFzFup1YJdR8FYgH42QOyavUcFUC8NPvQKGxr3o7xpeudm/Ij+fszy0rbqb
-         PnulAkgYVI0Bc2nWvA5vjgUph6b8dW62AgRAVSIf3hvr1FqH7kCE/FRtiePG/D3l5LNI
-         M0AoRiy3dck2kHv64qPbwORMNqv1R7bK7VajLm/sk+vhRxbiU07RiMSJ5q7LZ1VtKMn3
-         lX2KDny1CLvQH24Ta/qg31vXSFwwm1yRgByDLhi4Tz5/+VzfTvT0RM9Izi1p1na2gwbf
-         L27vd/zaz3qT+zbN8mjGI4SqRyixOIs/WQuDvlDka0bfx+h+KZWhpyIcHayAiGw98YBj
-         Ut3g==
+        bh=sFUVlLSeACjj16WsHbkWsVSEVF2l2EcRva5uQa0P5eA=;
+        b=ta6cKFKIcnvxcLSDER30uqEhLewgKf7nJnld+v4uH1szhfnRVQlvzKt5Wu4mtDdWfR
+         7NiTX+lr4xdrblHUP5hoA3h1hTpOnrwMfUoNqdlaeKug4u+Bi6u7+kwzzZGUEYUR5bjG
+         BTNVNLTCJrTkm8pjmkFBFp94ViuXTGrFuY1/B3R63gwfVNtMpuWb+QUYmdZ76beRF55e
+         H0N/n4gZr47liFFfZjfY7sZGNTn+T9YPHUWPSuhZ6+GuVyneWnfjYSIoJQiS+dKRMy+/
+         k1rNUTAvv9SL474tfV8mCduzK5mAnke1Dr5RFo9WJqw42Wd6kkkMnmKeERRfpPo7IFpe
+         GJww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HSpGY8OBvDU8g61I7cBvuZvlMJBnz3vM71dI47Sckdk=;
-        b=bTMRafigDg31NnKAUrPIFdPvvB5z78jLMVhbd8CROtpkQMxkzU7M3YWSDthKUFBSD+
-         zaUdzypF/9LuRakhh8s3lhoWg1vVTgTDINLvHYxeoKTw41O1//6HoACGhOh0WOAjgqxG
-         5jnszpkw7wxVvdCsuv65wxZbhIPKVNyle7OY3O5GrNZPRflVJaAUHce4ZEVAS5e8pJs+
-         to6e/ZQNZEqB9Ua/2OfG3crBNCL2GFKb0fH7XOPtOOP8Ge7tO6PdpJIkgZgKmT3o7gwA
-         h++UZPgugRsYmHrsNblEVSdJKQi39UznvSzRUwRsdkmdAHlyoYqucSWQhBPqbS1tlYoY
-         oTcw==
-X-Gm-Message-State: AFqh2krjVHjM612UugiYMx2JVmyyQVxT959frmCt6iD1V1iDYxCP4UEE
-        EETqEmOgJ1LKeutqqmgMnHNxWg==
-X-Google-Smtp-Source: AMrXdXsmismhuZGGoEJBSVO9ZjZwCqvTZ81ImsssxstGyCA74xmfyOyZnQoGM+ZlY2SAYD9ODu+/CQ==
-X-Received: by 2002:a17:907:c30c:b0:86c:cbfd:936 with SMTP id tl12-20020a170907c30c00b0086ccbfd0936mr6616799ejc.11.1674015171724;
-        Tue, 17 Jan 2023 20:12:51 -0800 (PST)
+        bh=sFUVlLSeACjj16WsHbkWsVSEVF2l2EcRva5uQa0P5eA=;
+        b=WXZ9yas/jMqoGBDDfmv9ipmPw++8+f+IGACKm22UK8ednMbZgybyx8iE26Q4pv8PZe
+         ogEhDLJqI3v46/6A1iVuWlw8hDpzCCBPS4gWIlSthlQ7aJQHIf5DUzpFLS0NKadq9bq5
+         GlIwYYqqtDe/1VgUunVNrfpa336uNbHzu6jFkO+GKYMyPTCUORxDr1MesUDuFeyFCGxF
+         4t3Y+L3vGGdFkwiMcACc9XHyzyGst2+x2Q/1Do+Je6dIT4x2lpRTCBqGdMKVtUnfFln7
+         hRA16nLK0ZivWl3tqYTA1rhC7Ek8HTGl7QReMFWabJvbDtDAorPVuHVtPECW3Vf1T/Y0
+         ScVA==
+X-Gm-Message-State: AFqh2kptZBERqywB3phfPB+X300yfNCU8bXLKsJpINV2c9DNVBA4k62I
+        Y01a8vOzi2TIZHLVZjifDgiSyw==
+X-Google-Smtp-Source: AMrXdXuwL+cahMr2hpDfw/s2+Q4zrO5FoqSL7dApKKtmlsGal/fg0nT9rnQSjPR2eepeEBEQf/h3QQ==
+X-Received: by 2002:a17:906:1605:b0:872:41a5:7c78 with SMTP id m5-20020a170906160500b0087241a57c78mr7561088ejd.3.1674015172894;
+        Tue, 17 Jan 2023 20:12:52 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id hp24-20020a1709073e1800b008720c458bd4sm2314100ejc.3.2023.01.17.20.12.50
+        by smtp.gmail.com with ESMTPSA id hp24-20020a1709073e1800b008720c458bd4sm2314100ejc.3.2023.01.17.20.12.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 20:12:51 -0800 (PST)
+        Tue, 17 Jan 2023 20:12:52 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,10 +61,10 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 05/11] dt-bindings: display/msm: rename mdp nodes to display-controller
-Date:   Wed, 18 Jan 2023 06:12:37 +0200
-Message-Id: <20230118041243.1720520-6-dmitry.baryshkov@linaro.org>
+        freedreno@lists.freedesktop.org
+Subject: [PATCH v7 06/11] ARM: dts: qcom-msm8974: add SoC specific compat string to mdp5 node
+Date:   Wed, 18 Jan 2023 06:12:38 +0200
+Message-Id: <20230118041243.1720520-7-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230118041243.1720520-1-dmitry.baryshkov@linaro.org>
 References: <20230118041243.1720520-1-dmitry.baryshkov@linaro.org>
@@ -72,81 +72,34 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Follow the 'generic names' rule and rename mdp nodes to
-display-controller.
+Add SoC-specific compat string to the MDP5 device node to ease
+distinguishing between various platforms.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../devicetree/bindings/display/msm/dpu-common.yaml       | 8 ++++++++
- .../devicetree/bindings/display/msm/qcom,mdp5.yaml        | 3 +++
- .../devicetree/bindings/display/msm/qcom,mdss.yaml        | 6 +++---
- 3 files changed, 14 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-common.yaml b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
-index 870158bb2aa0..3f953aa5e694 100644
---- a/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
-@@ -13,7 +13,15 @@ maintainers:
- description: |
-   Common properties for QCom DPU display controller.
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 44c4d8d8f51f..ced62937165a 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -1580,7 +1580,7 @@ mdss: mdss@fd900000 {
+ 			ranges;
  
-+# Do not select this by default, otherwise it is also selected for all
-+# display-controller@ nodes
-+select:
-+  false
-+
- properties:
-+  $nodename:
-+    pattern: '^display-controller@[0-9a-f]+$'
-+
-   interrupts:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
-index cb7bf48c3a58..ef461ad6ce4a 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
-@@ -33,6 +33,9 @@ properties:
-               - qcom,sdm660-mdp5
-           - const: qcom,mdp5
- 
-+  $nodename:
-+    pattern: '^display-controller@[0-9a-f]+$'
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-index 7dceb2c54edd..ef89ffe9b578 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-@@ -99,7 +99,7 @@ required:
-   - ranges
- 
- patternProperties:
--  "^mdp@[1-9a-f][0-9a-f]*$":
-+  "^display-controller@[1-9a-f][0-9a-f]*$":
-     type: object
-     properties:
-       compatible:
-@@ -171,8 +171,8 @@ examples:
-         #size-cells = <1>;
-         ranges;
- 
--        mdp@1a01000 {
--            compatible = "qcom,mdp5";
-+        display-controller@1a01000 {
-+            compatible = "qcom,msm8916-mdp5", "qcom,mdp5";
-             reg = <0x01a01000 0x89000>;
-             reg-names = "mdp_phys";
+ 			mdp: mdp@fd900000 {
+-				compatible = "qcom,mdp5";
++				compatible = "qcom,msm8974-mdp5", "qcom,mdp5";
+ 				reg = <0xfd900100 0x22000>;
+ 				reg-names = "mdp_phys";
  
 -- 
 2.39.0
