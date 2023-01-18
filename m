@@ -2,102 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 048986710E2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 03:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7AA6671123
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 03:28:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbjARCLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 21:11:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47630 "EHLO
+        id S229455AbjARC22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 21:28:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbjARCLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 21:11:32 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E01E23253C
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:11:29 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id v10so46507116edi.8
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:11:29 -0800 (PST)
+        with ESMTP id S229491AbjARC21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 21:28:27 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A6644BE5
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:28:25 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id mg12so7574410ejc.5
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:28:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+GW7I0VrYyXDQaLR5GtSXiM2WBJ7x/cZaIN3Wwv9s2M=;
-        b=TWLLN7E0rk58pAw58fgr9ZG/R++20o0Ja/Tb2x7RuRPFTEOnMn25Yp2cP+MsJrOu4h
-         e5/D12SpFyzR/HPnwll6Vpd8Cr3id9qcZRzbr0l7JVlLikHMSJ884NiXPvXa02CPTTLe
-         0bqoW3JI7cocGc13cUPDJzXzL4HYedJJWYAHKADBYsA1fwQ3n32uH54zPwyUAdpCOA6Y
-         bbKP33LOlfnUUkT1NnH1akb1FE6xNVEFIVbLybMXw+zBDzJxXzHQiSHjm2CdjED6wHrR
-         4eOJwLeD7V0bVgiPA6YRra2+CKdvkZyYW2g0nAhjGr2EIx0qD2V5vqwlRt/KdlDxcYj+
-         oR4A==
+        bh=N1TSyUdp4Jkds0cmJxddHX9zPn7SkqnsbQ6bC5wfOng=;
+        b=xrw2W7Kly2r6bTGksOwrn1vGjQhSuUBsKiTJSqeOXP50hfepW3Ib90dJRMoxtoyPlm
+         AdXZTdJibjsouWzBqXAq18GApiGJIojYiO3/5EtWvl8dpD3Fcwtt0PCkWsJhxNWkCbEr
+         IDcmicMVj8UXh0AP8OvrXnmvrbGmIIHvolBIa4+ZUbLbCbX+Uyrc6ruC7LmwlHOlYzaZ
+         ZJsIwQbUdmKAkjmyAKCEGHuEhlyMkGfCAWNZKliRzO1KFcENgngfEcZHgkhyY4Y/RUsV
+         gvuCmFox8WT8y8Fl/+vuIWqbPZ/OmKziGyD9rDYN9VBFPaeze/KRdTeghnVTSLgQGQac
+         4sGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+GW7I0VrYyXDQaLR5GtSXiM2WBJ7x/cZaIN3Wwv9s2M=;
-        b=N5Vt3WxGIWq/PJSaLGv3d4uczriNnt34O+RkUZLYBM5MG0Q5PR6vxwWCn/hZCsambj
-         qSbMDM/7FUpj11VTkg/g/B8Ga+0hHFGjyqyoIisMG7aF6U9c89K+XCaj64rsQyOno8Zs
-         OSM6Qcgi2QJHN4tkLQSC0SkbV8j9ObZPlBZvJGTcWoEonJBkI67m20dh11X8ZCaKqnYi
-         wj25/9ZOGEfm9MF6wp+nFm2SIsTjqRJ4ZkFvq72rdUHOq8RKX488n8iIV2NkjLA9N/H+
-         vYOuysgIE/0l3TVUPyEQ5ZMzJsIv6wc9jARiraUAmfQ0lc4jU4lqGDiVMy2N8Xe5cm2s
-         a3ng==
-X-Gm-Message-State: AFqh2kpGQ2bNVSjNk4LyhnZ5Z/IwIy6uiTj2W9nQIfVjJO20JjS6ZJUt
-        FHVyYs0Fa4B4u86uLgLRzOLG9A==
-X-Google-Smtp-Source: AMrXdXuERO0vlwGdXJUCd4MNMJSTzLzLEcBV4NIgIv0IXpiTvF8dU4K2xy8Yqe2PPsl+Kdoyg6s4sg==
-X-Received: by 2002:a05:6402:3894:b0:49e:45a8:1ac9 with SMTP id fd20-20020a056402389400b0049e45a81ac9mr1391644edb.24.1674007888516;
-        Tue, 17 Jan 2023 18:11:28 -0800 (PST)
+        bh=N1TSyUdp4Jkds0cmJxddHX9zPn7SkqnsbQ6bC5wfOng=;
+        b=M2E+HaynJ5JlRhOLqXdhImaoHqrwqKZPfUG5uzGo1V4XW7FtLtIQxf+zBAZMSg4KJ5
+         Fwu1+kLQlUPfn8CTbbC8uPdQOHUMmEOmgouZ8d9c+CwJnCjU06XcF6Jv7plcGq95csx3
+         HSA1DIU9b01fRsyyHHOrXbhw445V75loVsAWT66TXiJIvIODOsPy5zUH+gD837ksmPY9
+         iTisAp9CK/DyN9QnLHSg60NKU3Aft6MGzUy/jz7jQx7A1Zo8VS8URYlJiQ9KAZUCaDqI
+         w/wAjKf7668KvLnG6qzgjdFo50Y/scVLEzwhZq2dvWTJystfO7PyRuLSdReqPJGgdNcr
+         FLWg==
+X-Gm-Message-State: AFqh2kr8jh+8B+cZhRdoBAGHGPytYvCgSg1/cEFkLIthSfxbnj1WNiLG
+        CuuKbnAUjW0pfUQtBC70NT/4Ww==
+X-Google-Smtp-Source: AMrXdXvDc9I51HhY1IunUYtmSRVaUY3aNhtaCa9ZwYi9f/vzw6oGFSF1qdOoHWyFp2t2cE5Y+P1n2A==
+X-Received: by 2002:a17:907:ca85:b0:7c1:1e5a:ed10 with SMTP id ul5-20020a170907ca8500b007c11e5aed10mr5648255ejc.8.1674008904506;
+        Tue, 17 Jan 2023 18:28:24 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id ec49-20020a0564020d7100b0049e249c0e56sm2579123edb.56.2023.01.17.18.11.27
+        by smtp.gmail.com with ESMTPSA id fy5-20020a170906b7c500b0084d3bf4498csm12550657ejb.140.2023.01.17.18.28.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 18:11:28 -0800 (PST)
-Message-ID: <5ceeaf13-8073-efe2-7a56-370071ff8b3d@linaro.org>
-Date:   Wed, 18 Jan 2023 04:11:26 +0200
+        Tue, 17 Jan 2023 18:28:24 -0800 (PST)
+Message-ID: <2ec13e85-6640-df02-3069-9e2e67fb0e79@linaro.org>
+Date:   Wed, 18 Jan 2023 04:28:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v5 4/6] phy: qcom-qmp: qserdes-txrx-ufs: Add v6 register
- offsets
+Subject: Re: [PATCH v6 04/11] dt-bindings: display/msm: rename mdss nodes to
+ display-subsystem
 Content-Language: en-GB
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
         devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Johan Hovold <johan@kernel.org>
-References: <20230117224148.1914627-1-abel.vesa@linaro.org>
- <20230117224148.1914627-5-abel.vesa@linaro.org>
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        dri-devel@lists.freedesktop.org, Rob Clark <robdclark@gmail.com>,
+        Andy Gross <agross@kernel.org>, Daniel Vetter <daniel@ffwll.ch>
+References: <20230113083720.39224-1-dmitry.baryshkov@linaro.org>
+ <20230113083720.39224-5-dmitry.baryshkov@linaro.org>
+ <167362341911.2212079.15291287366051593468.robh@kernel.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230117224148.1914627-5-abel.vesa@linaro.org>
+In-Reply-To: <167362341911.2212079.15291287366051593468.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 00:41, Abel Vesa wrote:
-> The new SM8550 SoC bumps up the HW version of QMP phy to v6 for USB,
-> UFS and PCIE g3x2. Add the new qserdes TX RX but UFS specific offsets
-> in a dedicated header file.
+On 13/01/2023 17:26, Rob Herring wrote:
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->   .../phy-qcom-qmp-qserdes-txrx-ufs-v6.h        | 30 +++++++++++++++++++
->   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c       |  2 ++
->   2 files changed, 32 insertions(+)
->   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v6.h
+> On Fri, 13 Jan 2023 10:37:13 +0200, Dmitry Baryshkov wrote:
+>> Follow the 'generic names' rule and rename mdss nodes to
+>> display-subsystem.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../devicetree/bindings/display/msm/mdss-common.yaml      | 8 ++++++++
+>>   .../devicetree/bindings/display/msm/qcom,mdss.yaml        | 5 ++++-
+>>   2 files changed, 12 insertions(+), 1 deletion(-)
+>>
 > 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb: mdss@5e00000: $nodename:0: 'mdss@5e00000' does not match '^display-subsystem@[0-9a-f]+$'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.example.dtb: mdss@5e00000: $nodename:0: 'mdss@5e00000' does not match '^display-subsystem@[0-9a-f]+$'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+This should be fixed already by the commit e5266ca38294 ("dt-bindings: 
+display: msm: Rename mdss node name in example")
+
+See https://gitlab.freedesktop.org/drm/msm/-/commit/e5266ca38294
 
 -- 
 With best wishes
