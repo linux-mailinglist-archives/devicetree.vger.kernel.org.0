@@ -2,141 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D34A672083
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA282672095
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:08:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231324AbjARPFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 10:05:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36464 "EHLO
+        id S231527AbjARPIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 10:08:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231480AbjARPF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:05:28 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3789E32529
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:05:15 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so1737361wms.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:05:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sy9FqaPskON5MA8I0+FqJ4Z9VJahIZ8FHzsydP66LsA=;
-        b=EzfKz8WBnZ8u2u0ulDL+VpHXYEdT+jUt1JdhVpDIyiU+lKlKlNCgThRuQuvU7QziEF
-         A8w717ibNv9S9bMN531O/JeikVT6XyT/5Ql/wZrtsMNdk8XhhNq3/pXy69DpUA2ZXMHI
-         USDop2hSeGr4d/jqYd/ZlNqs7m3Nd6+zVsDxSBv0uIor/yoMHOiCHn4Bw9RanPtNCINZ
-         EBALUequjrD8pb5EBfojehzDYA8fKbTPqze2SmoFhF6veoflzcLoGzA6X5VlzmMP/hYp
-         WEgPNmhnZFsMeOtxMaW4yk+rZv+gljOVwcDnwGuZLqMTYA7hiTpimdVASafEkD/sQHvd
-         tvdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Sy9FqaPskON5MA8I0+FqJ4Z9VJahIZ8FHzsydP66LsA=;
-        b=sSSbHKQ0a1nTx/GOC0CqYtH662/ARuwVwwD0PulZhBNeuzcLf0mnYubv5ly9WmRJRe
-         PzjTtLhUCNM/GFrexIziJtKOqXbDU/tKmE7Vy8bA3rl99nXJhJzBZYHW8hMuuaOiwReP
-         ggUJd7HHx6RPUFXmJEXqpmjynx4Qk4PssukLbdKRtcfG/5xq4VWEEGQOKigEeiG+pwi4
-         cStCYzSHWtowhlmD8JUQwnWSL0I4PbWDt/qy8qDDNfLA/8wK7aIU/RiNvo7vlXag6cBj
-         UZBhe2yX4LYnyreAFWUp3ooeoDNXwCU+Af5Nt/rG9c6OH3t9ptSEb1S7DLHNfIpwZdgQ
-         YSeA==
-X-Gm-Message-State: AFqh2krXJNvj0ehvyx7hJg6aOLRL2Cjyj3n4VH2qzNhA9dSEx2uYAG+y
-        HxdiOLEybM21uYEdXkwPBoCLNw==
-X-Google-Smtp-Source: AMrXdXvlSfmfkb6rb42n86ovGFgnlYFhIh6UVJnQTf89DfwPrVph3fOYFhqTCUoNp2NyU+J5tv+x7g==
-X-Received: by 2002:a05:600c:1d8e:b0:3d9:f9ef:3d23 with SMTP id p14-20020a05600c1d8e00b003d9f9ef3d23mr7327500wms.23.1674054313725;
-        Wed, 18 Jan 2023 07:05:13 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:37dc:5071:959c:93e4? ([2a01:e0a:982:cbb0:37dc:5071:959c:93e4])
-        by smtp.gmail.com with ESMTPSA id az9-20020a05600c600900b003b3307fb98fsm2345343wmb.24.2023.01.18.07.05.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 07:05:13 -0800 (PST)
-Message-ID: <5ab38158-6e75-ea9c-f788-f3a2d77dbbe7@linaro.org>
-Date:   Wed, 18 Jan 2023 16:05:12 +0100
+        with ESMTP id S231281AbjARPIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:08:04 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4695C1A943;
+        Wed, 18 Jan 2023 07:08:04 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 981FB1643;
+        Wed, 18 Jan 2023 16:08:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674054481;
+        bh=cbYIJLxWYvhHSRoHhaPJMPAY7kxciyPP8qzt5JPTBHY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Qj4NmTJFzI7/kZUqMUTNBseLA4rYjHurwh61GjjfXOmW5S1FGn9a6L/cqXHQbQYD3
+         ExZfDDDY54ExJnmoAYklZkoaBi18uUruA5TzNYrdifEtk1fTc5IhCuLSj4zf0KE/7L
+         DYSUaUCNFYkRECyEskZTqUusasVMH02bdCatx3kc=
+Date:   Wed, 18 Jan 2023 17:07:59 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a09g011: Reword ethernet status
+Message-ID: <Y8gLTxuedrE2TUfq@pendragon.ideasonboard.com>
+References: <20230118135259.19249-1-fabrizio.castro.jz@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3] dt-bindings: interconnect: qcom-bwmon: document SM8550
- compatibles
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-bwmon-v3-1-7d63d2ae6bce@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-bwmon-v3-1-7d63d2ae6bce@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230118135259.19249-1-fabrizio.castro.jz@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Georgi,
+Hi Fabrizio,
 
-On 09/01/2023 13:11, Neil Armstrong wrote:
-> Document the compatibles used to describe the Bandwidth Monitors
-> present on the SM8550 platform.
-> 
-> A BWMON v4 IP monitors the CPU bandwidth, and a v5 does the LLCC
-> bandwidth monitoring.
-> 
-> This is described by adding "llcc" and "cpu" into the compatible
-> strings to differentiate the BWMON IPs.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thank you for the patch.
 
-Gentle ping,
-Neil
+On Wed, Jan 18, 2023 at 01:52:59PM +0000, Fabrizio Castro wrote:
+> Although of_fdt_device_is_available returns true when the DT
+> property "status" is assigned "ok" or "okay", and false for every
+> other value, it's become common practice to assign "disabled"
+> when we want of_fdt_device_is_available to return false.
+> For some reason, the status property of the ethernet node was
+> assigned "disable" when originally added to the kernel. Change
+> it to "disabled" for consistency.
+> 
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
 > ---
-> --
-> ---
-> Changes in v3:
-> - rebased on v6.2-rc1
-> - Link to v2: https://lore.kernel.org/r/20221114-narmstrong-sm8550-upstream-bwmon-v2-0-20c555e3ba5d@linaro.org
+>  arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Changes in v2:
-> - Reworded commit message
-> - Added Reviewed-by from Krzysztof
-> - Link to v1: https://lore.kernel.org/r/20221114-narmstrong-sm8550-upstream-bwmon-v1-0-b6dd08927f35@linaro.org
-> ---
->   Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> index 0c720dbde36e..12a0d3ecbabb 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> @@ -27,11 +27,13 @@ properties:
->                 - qcom,sc7280-cpu-bwmon
->                 - qcom,sc8280xp-cpu-bwmon
->                 - qcom,sdm845-bwmon
-> +              - qcom,sm8550-cpu-bwmon
->             - const: qcom,msm8998-bwmon
->         - const: qcom,msm8998-bwmon       # BWMON v4
->         - items:
->             - enum:
->                 - qcom,sc8280xp-llcc-bwmon
-> +              - qcom,sm8550-llcc-bwmon
->             - const: qcom,sc7280-llcc-bwmon
->         - const: qcom,sc7280-llcc-bwmon   # BWMON v5
->         - const: qcom,sdm845-llcc-bwmon   # BWMON v5
-> 
-> ---
-> base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
-> change-id: 20221114-narmstrong-sm8550-upstream-bwmon-a7c6227fab6d
-> 
-> Best regards,
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+> index dd35a8ff72ee..b0c066c5e0ba 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+> @@ -165,7 +165,7 @@ avb: ethernet@a3300000 {
+>  			power-domains = <&cpg>;
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+> -			status = "disable";
+> +			status = "disabled";
+>  		};
+>  
+>  		cpg: clock-controller@a3500000 {
 
+-- 
+Regards,
+
+Laurent Pinchart
