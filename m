@@ -2,175 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B146F670E7E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 01:19:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EFA0670EA4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 01:34:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbjARATG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 19:19:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57552 "EHLO
+        id S229561AbjARAeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 19:34:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjARASX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 19:18:23 -0500
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2067.outbound.protection.outlook.com [40.107.94.67])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4DF51C66;
-        Tue, 17 Jan 2023 15:34:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JFKyNuxUiA0mHeyyYutx8HOwU9M72tuERrc9aQS/2E0XdZMXJnVDHYuJfTDUQkl+x8uLNFARGuFVEF4cIjM8nBTUGARGElHHGpzV7/3uNgjA7thxQ+OXCUetSgvkF46yh/hOHO2VXNwjzLot7sblfuteW/okablS8LZReJ+Nn9LpD/fJnLI14fwWIT0/K2C4UUvIH7M2QmR9+vOgjD4Y8zhf1kggKBiRFgTd7mOcjk9hKc55Cf1seujQqXDKttqWAF7rHAJYYqEaAnII8rHgIQ2MML32D5D3R6ZQJCmPSdYA7PgP5QeJP6XxKfNlxQ42yfrdddWv98nms9BaQIZGmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7XDiE9IBvTjFZ9k1oUx1mwJGbcXOCri6vz4KGXjYYMo=;
- b=ArR5Ruyu84h0yPbD/b6uGw9+YkYh5SljfjhOv52r9Af1oSpHvJ5R8qgX8rIphF+kOjnTIs60B9cxsJaDgcWzxmRnqV5T3hUCR9Okk4eeRWmd0vzmbNAPiw/nG6vVLej95p1IL7RG78elvRrB23eKkVhruFaCRCkj9J0svtq/oalmzbp64d1dkftnqqGR9kDvwtuMptDPsVrOH/MBM8DVX8tW7FzYghj76+yWnYxW1gcyoMe1St8tN6ze46GaW7bXn4UwXRb8LD3ZEW9fS9H9xs0ulro+Ja+pCyGjmUgFuzEN7XCMXgfywAw/PbpJe4rDv7n7tjZnEc4dBwKMe8WCtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7XDiE9IBvTjFZ9k1oUx1mwJGbcXOCri6vz4KGXjYYMo=;
- b=ZL9t8gZ0AsgKuSuqqWG6FAtnMWmCdXbIcOBoSz/ysrZEGrBFj9zt/S2sPSLruUV/ukD0EWuAWqPUzkEbq/ZclMHQgVbBNm8feQt6Q2CXKB4YzfdMOEnQjJ3Ksq0OuZ9g062ZtqAy/eZi21XNO44piCpi6ntSAGezRTa6WqlSqMK/AHntSRArrKGAzo/2WY4NpGTS9tkEK+p5UktU6J2Whx2hh9mL1HiQRuayeJMsJiQHLV8JHtp5c/f4CCX2MdtlcwXB8LHJm9GLfjsrjmBlYb3cvSeROwaDEdnctKzR7iZBMVs0nzyya5v00S0KZJWFiv+BDVhBXuMl1SS64hQzYg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- MN6PR12MB8513.namprd12.prod.outlook.com (2603:10b6:208:472::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Tue, 17 Jan
- 2023 23:33:53 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::f1be:5d:f297:e2f%7]) with mapi id 15.20.6002.013; Tue, 17 Jan 2023
- 23:33:53 +0000
-Message-ID: <11349701-f82f-3a7f-61ef-11f1585958c3@nvidia.com>
-Date:   Tue, 17 Jan 2023 23:29:25 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V4 3/5] usb: typec: ucsi_ccg: Replace ccgx to well-known
- regex
-Content-Language: en-US
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Wayne Chang <waynec@nvidia.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20230116155045.100780-1-jonathanh@nvidia.com>
- <20230116155045.100780-4-jonathanh@nvidia.com>
- <Y8aOaH+ALBvjm/rH@kuha.fi.intel.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <Y8aOaH+ALBvjm/rH@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0487.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:13a::12) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+        with ESMTP id S229645AbjARAeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 19:34:03 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA10A5955B
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 16:01:51 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id q10so12997421wrs.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 16:01:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VM4KU2n0HRrYiCXcfwwNwOnDUUhhKsRzFTZMgsrTMWQ=;
+        b=Mn26nH7X4O6fTQ38DDIJSJ9ir/bBQxjzAy0eyNGjUQNQHKD2AaThmMuu9uq0PdPwft
+         T9FDz74tQjO1j0wOsoj85xFePqaime8vdQEa+mgSGx4ZQoktguIgUW32228cnJB9t5NK
+         IFDhy6mKXsdM8fjCM49oipmhbGQZ0I47J2xiz59OadODBEzIQx8pq/mKpNVAGusB8rAs
+         Ek2GgndQiI213ZsMO/8+c9G5n923+DqwVu+y5HTbICqgxbczAfL60Ibk5wW+3uz4XeZm
+         2G9TSuV+ATOMOqBPzYe4XbpytScrwyWEO+fI187XMZTqPg4mMv51o7PcCR/G3RfGIvUw
+         j1KA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VM4KU2n0HRrYiCXcfwwNwOnDUUhhKsRzFTZMgsrTMWQ=;
+        b=ZcCk0xYtVCDBLhIrWV69ISyqgJm4u6d7RCTdMKjRbbqf5f50e+PP95e9AclXofczMB
+         TTtAzO5PtH8s3hF/L1aoN+/tQ4m35qp6naCJOUN+O+cSBgAOIxxV3pwoOrQv7p+TQovz
+         gC3UOC/M6VC5VqTDs6b5TLes5c7eQhfbvpjM2y7o/HJxkF0AH/Dlb2stY54ohqzH8Dx9
+         4cYW8v7BcI3jxb8cpu9dj7BV2DT3KKIM3NCVLYyllqVkO3MCgZsYE4UX+t2ag1ZOMZ0t
+         JIn8k+4BIiZtiimryoCAf7EhmaUsE9DQvs0FgYHfanzboxwAvckQf6np4zVGOx/SZrFp
+         Tq4Q==
+X-Gm-Message-State: AFqh2kovpSi5YuC0R7ncUwwYFhaawSsD1NPFqgTa2/BGzUBSvzcoBplP
+        LAS1vv2ff16Wo4fYJRaO/+6k2XQNWE4=
+X-Google-Smtp-Source: AMrXdXvj2R9S/8u6fGMV9/RE1Ku4IlUwQRFE1HUaitb0X8DZCxUK464M/KOHVH6841uiGhus5n88JA==
+X-Received: by 2002:adf:e385:0:b0:2bd:d136:9eac with SMTP id e5-20020adfe385000000b002bdd1369eacmr4079144wrm.9.1674000110342;
+        Tue, 17 Jan 2023 16:01:50 -0800 (PST)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id g1-20020a5d46c1000000b00241cfe6e286sm29625200wrs.98.2023.01.17.16.01.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 16:01:49 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-rockchip@lists.infradead.org,
+        Shengyu Qu <wiagn233@outlook.com>, devicetree@vger.kernel.org,
+        heiko@sntech.de, jacob-chen@iotwrt.com, kernel@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        michael.riesch@wolfvision.net, robh+dt@kernel.org,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add RGA2 support to rk356x
+Date:   Wed, 18 Jan 2023 01:01:48 +0100
+Message-ID: <5241675.okTXgP3Kn8@archbook>
+In-Reply-To: <20230117124114.GF23495@pengutronix.de>
+References: <20221121151755.2072816-3-m.tretter@pengutronix.de>
+ <20221123092841.GB13042@pengutronix.de>
+ <20230117124114.GF23495@pengutronix.de>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|MN6PR12MB8513:EE_
-X-MS-Office365-Filtering-Correlation-Id: 15a126cb-d6fb-425d-a56f-08daf8e34b4a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bgfag+tkQ2Lu+JM6IvOuO6GN0vvWe0QDQIS9S6Z4Mb+cZCZK9SRuVZr5xTUOyX85IEPHRbtsNglwxxjZLQ6QklchA9drSF4EcNCoIvqO3+GlGynBEeHJo/uLywnsPSurTRepYVZo5uabWQAoxtJWkZLRXiAdYCIAMQ/PLXtA4auHYOrFt+thk4jB8/X6KcEE9mzWDV84MYRtawFoYYVZCTm0tb7AlELVx/C84m5GCZQxi/PVnkvdFxYGMwLJuLsMe/nzUHL0Yunu3x6nNgLdAJREOsPTy8Rz1w9TJNHvHhm33H2SSarbNevL09a5TtONErtmIe8lgO/GyvClBqNsQV601778142EalwU5lyc3xm3W0k4/V9V0+/Eo9jURkQPqnNZxG4FLnE0xpRn40xM1r0UJTGrwGn4Fti+u/7/Ceo67610m+A8W7EAt2nCNfPCtK7pRlZeRPRzUHCACFKsKyBefGM+WiPzuaZd8g5+x1tTbAkQrdNHxfOFDmvu0VnANEOPZPz1QGj0f8uk0PxFe04halpcRWjacejt28JpSNuwp4uJ/LQ2ng9RgvGiGLScFLWG4mXSaGAqTM3Fi4stJ76OEAjim1O44E2xFP4rhCtmGmIkL3SDX6/cvZQSIQapwFnEinAz/5+leSQaVYTkH/U9jQj2nPUuCfwqtYPYripsomcsEpeFSbbJBxrr/uCsfPTiuvBTaG7DrON+62MqJNGWA3d7EuUySYKPHGGaBH4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(376002)(39860400002)(396003)(136003)(346002)(451199015)(53546011)(2906002)(6506007)(6486002)(6666004)(26005)(6512007)(478600001)(186003)(55236004)(31686004)(6916009)(36756003)(316002)(66946007)(66476007)(8676002)(2616005)(66556008)(41300700001)(4326008)(8936002)(83380400001)(38100700002)(54906003)(5660300002)(86362001)(31696002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?blllVElIL2lpRHBLK0JPa0cvUVFvdjZsY1oyMkE0LzlOaHp5VjFCQVlUVndG?=
- =?utf-8?B?dFpLRVZiOUU2Z0hKMUUxTG51K0g2SkEzOEZ0L0hKZ1J4R1hjL0xNb24xMm5p?=
- =?utf-8?B?SUdldktzSFFPUU8wRWo2aXEwL0VEQ21lcXdndDZlR213L2FtSUQrRTkwWm9I?=
- =?utf-8?B?eWhHWiszMFFKS0FJcWVqVlRSVlo4WW5SczBtcFFkbkJTNWdWTWdpU3VKLzdn?=
- =?utf-8?B?dVhYZXN1UXU0bjExck9NTmJOSXRQWnNVV1ZJQmxkYkFWUXZtWUkxM3lGS0VU?=
- =?utf-8?B?VEN3eHRyN1lFalBEMUN5eWM5Wi9hdzNsL1l3M21HT0pma01UcjJZQVVJU3hu?=
- =?utf-8?B?cTBXbVBDYXdJYkkyc0pkR1ZiamRFa2dEUWdKNnExQ1BIYlJyQWxBZ281QVg4?=
- =?utf-8?B?Q3Jua3JicmdyemlzOEM4djZhV1NMK2NpZStjak1neGg3eXhUNklTQjhiYU5B?=
- =?utf-8?B?cjlKbFp2N3pCdVpyVWxIL3Q2a0ZvZkJmUEZyTDVVbXNWbjNKTlZ1a0RaOGlT?=
- =?utf-8?B?WDNKN2NUTml1N0V2d3hUSW9pTzBVOWs5ZUp6blQzbGRKRFRqTS9XL1FEOGlM?=
- =?utf-8?B?WDFETU1yTEtReS9samF6bjMxbE03MVk0dXRXZW9MazBKa0xSOEU3RU1CbVNS?=
- =?utf-8?B?NXVCMDJQVHZKTkNpRURHSlFTVjB4WjNvaE03UXZDR1ZhdDkraGN5L2M2UUJW?=
- =?utf-8?B?MHNqRkp3N1FPMkpzU2F6OGg4dnl2b1BXb1ZhdWhESEIrOWIrazVlN2phekcv?=
- =?utf-8?B?NnNqbFJtME93OEYzMGRqVnlnUE1jWEtKbWVtQUFjV3FjWmRyTXdFYi9HVlpx?=
- =?utf-8?B?NDdoTXluUWZCS3hKOXFaL0s4QmhQckEwSXlaMjRaUC9jUFJhaGpPQnNnL2Vl?=
- =?utf-8?B?MXhzMElTcXpRUEViUjYrVi82bkZxUDJiZVFYY2twUWNCUU1ZTkI5Sjd4aG9v?=
- =?utf-8?B?MmtaUEFvSDI2SmhXbStVN1I5VWMrcmhMMkV2SjF1aFdNRTRwNnIxbTlUV1pq?=
- =?utf-8?B?bk9jcTZBLytNKzIySHptdGxHN2VzRGdlQWJQM29IcWRWd25LbG1DMCtIb3c0?=
- =?utf-8?B?d1ZCR2oxbG9VVzFKUEhrelEyaTc4VFhhc0l3QmJkckVqTittOGxIdlM3Q201?=
- =?utf-8?B?SU1pdnM4L0doSjEyTnhDUWtBN2k0WHpyc1RkK1pCT0c0UzlUUUlSYng5UTBJ?=
- =?utf-8?B?dFk1ekpKUVpkSm1IdU5KSmdYSkxBdG9tSDNxNlEwRmlhbDVOSVRuQjZRYVU2?=
- =?utf-8?B?ZUhmMklXK3FpU2Y5ZXZod3htM0Z0SENZc3JCOWJ0Y2xMVW55M1R6bFdZWm1z?=
- =?utf-8?B?b2ZJTWUxNHo3NkY5UlIxL3k2c3d1QWtVU01lY3ViSTRDRjdGdldXLytrbDlx?=
- =?utf-8?B?MHNQMFZHczFWcFZaMTEyWXFxZEZhUEEwZTArU3pUZzV6R2tOZGlPeklSbitw?=
- =?utf-8?B?Y2ZpMExtTXhIR3doTm1wd0NzV1A0QU9INnM3enRBT1dBSXBxNysvNmtsa250?=
- =?utf-8?B?M3ErbGpvNzBZa3p0T09PdHNtUEFXM0xlUjBPOWhqdFFaZkFRT3ZuMUxkYVVm?=
- =?utf-8?B?MC9VOE8xZG1pU0lPZnhVTmM1Z0xpRHVIb2l4cGJMWnpTOFBIdEg1OG52Wm1h?=
- =?utf-8?B?bXpWcHNRb01BSXUwenVpWU9hUmpvQ2p2SVdyZFN6WWczUGxJTjY5a3YzQnNt?=
- =?utf-8?B?WkJ2bEVWOGVXVENmaHI1ZXQvWmRmdGtXbEl0UitUOTFjNXZvVmdKMWNQZjZD?=
- =?utf-8?B?Z0lwQ3FzajRQcm16bVRFRFFOWnprNXEwRzAwRGFueG5Lcm10SVRyL0NBRDJo?=
- =?utf-8?B?SURvSldCYmpZREVQOE5rMU5QNUVab2hsdEhMTjUvU1JGQXorU3VPTTcxQVZE?=
- =?utf-8?B?NGt4WTViWXJEV2VlUzVXRi9jY1pjbVpWcEFoNnlYc3g4OThvRWUvQms2ZXJQ?=
- =?utf-8?B?VFlPZFMrSEZVUEowazhaeG1UaEJGQjNhYmY5KzQ3NTFpZkNuTUZKa2hSSjFt?=
- =?utf-8?B?dkJGR2NpN3QvTEtHdjAvb0RTMHJ2VVdMbXZKY2lSajNRb2hqTFJRcUNMUHF6?=
- =?utf-8?B?KytkNG9NeWV5bFpWalZpRWhacitVZmhiTUdDVk44aXo5K21qTm9pbU9Jb3Vy?=
- =?utf-8?Q?hFtB6G+M/00+TAJFcrRN+77xR?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15a126cb-d6fb-425d-a56f-08daf8e34b4a
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2023 23:33:53.6430
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: spoFi1bm+UHEOIqCigiiIk74DEKb7Yo+zr8GQ1EYemzhL1s3lM7BYunxMSL8DIceX+OJxJtHCgvucj3oejeLIQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8513
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Dienstag, 17. Januar 2023 13:41:14 CET Michael Tretter wrote:
+> On Wed, 23 Nov 2022 10:28:41 +0100, Michael Tretter wrote:
+> > On Tue, 22 Nov 2022 20:47:49 +0100, Nicolas Frattaroli wrote:
+> > > On Dienstag, 22. November 2022 00:10:25 CET Peter Geis wrote:
+> > > > On Mon, Nov 21, 2022 at 12:34 PM Ezequiel Garcia
+> > > > <ezequiel@vanguardiasur.com.ar> wrote:
+> > > > > On Mon, Nov 21, 2022 at 2:13 PM Shengyu Qu <wiagn233@outlook.com>=
+ wrote:
+> > > > > > I remember someone said that rga2 has only 32bit address space =
+but not
+> > > > > > having a mmu or mmu needs to be configured. Better ask by yours=
+elf in
+> > > > > > pine64 discord since I'm not sure about that.
+> > > > > > =E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=
+=8A=E5=8D=8812:41:16, Michael Tretter <m.tretter@pengutronix.de> =E5=86=99=
+=E5=88=B0:
+> > > > > > >On Tue, 22 Nov 2022 00:01:28 +0800, Shengyu Qu wrote:
+> > > > > > >> Someone from pine64 discord found that RGA2 doesn't work pro=
+perly on over
+> > > > > > >>
+> > > > > > >> 4GB memory RK3568 devices. Are you sure current driver works=
+ now?
+> > > > > > >
+> > > > > > >I am absolutely sure that the driver works on a 2GB ROCK3A boa=
+rd.
+> > > > > > >Unfortunately, I don't have a device with 4GB or more memory a=
+nd I cannot test
+> > > > > > >the driver with such a device.
+> > > > > > >
+> > > > > > >As the documentation for the RGA2 is the same in the TRM of th=
+e rk3288 and
+> > > > > > >rk3568, I would guess that the driver doesn't work on a rk3288=
+ with more than
+> > > > > > >4GB (if there is such a thing) either and the driver needs to =
+be fixed for
+> > > > > > >both SoCs.
+> > > > > > >
+> > > > >
+> > > > > In any case, if there's some kind of issue it must be in the driv=
+er,
+> > > > > and not in the device tree binding (i.e. this patchset).
+> > > >=20
+> > > > An unfortunate number of Rockchip drivers break on rk356x boards wi=
+th
+> > > > more than 4GB of ram. I've found requesting memory allocations with
+> > > > the GFP_DMA flag solves the problem, as the kernel only allocates
+> > > > 32bit addresses for DMA on rk356x. This is similar to the bug with =
+the
+> > > > ITS MSI allocations.
+> > >=20
+> > > the problem in this case at least partly seems to be down to the driv=
+er
+> > > assuming 32 bit addresses, see e.g. [1] (if I understand the code
+> > > correctly) and [2]. When I asked in the #armlinux IRC on Libera.chat
+> > > about this, Robin Murphy remarked:
+> > >=20
+> > >   <robmur01> yeesh, the virt_to_phys/dma_sync abuse is even worse
+> > >   - in that particular instance I'd be inclined to replace
+> > >   {src,dst}_mmu_pages with proper coherent DMA buffers
+> > >=20
+> > > So the driver in general needs some cleanup, which contributes to the
+> > > problem.
+> >=20
+> > As far as I understand the 4GB are a hardware limitation.
+> >=20
+> > According to the rk3568 TRM, the RGA2_MMU_SRC_BASE has 28 bits for the =
+upper
+> > 28 bits of the address of the MMU TLB. Thus the MMU TLB must be located=
+ within
+> > 4GB memory.
+> >=20
+> > And within the MMU TLB, the addresses are 32 bit as well (unless I am m=
+issing
+> > something important). Unfortunately, I couldn't find any documentation =
+for the
+> > TLB. The downstream driver writes only 32 bit addresses to the TLB as w=
+ell.
+> > Thus, I assume that all video buffers must be located within 4GB memory=
+, too.
+> >=20
+> > While I agree that the driver needs some cleanup and may use correct ty=
+pes for
+> > handling the bit size limitation, I think this isn't some driver limita=
+tion.
+> > Maybe the driver should set the dma mask to 32 bits and should be expli=
+citly
+> > aware of the 32 bit limit.
+> >=20
+> > >=20
+> > > But as was said, this isn't a problem with the device tree, so it sho=
+uld
+> > > still make it in. It just means that the driver is broken on 8GB RK35=
+6x.
+>=20
+> Nicolas: Is this your Acked-By?
+>=20
+> Who would pick up the patch? Heiko?
+>=20
+> Michael
+>=20
 
-On 17/01/2023 12:02, Heikki Krogerus wrote:
-> On Mon, Jan 16, 2023 at 03:50:43PM +0000, Jon Hunter wrote:
->> From: Wayne Chang <waynec@nvidia.com>
->>
->> ccgx is refer to the cypress cypd4226 typec controller.
->> Replace ccgx to well-known regex "cypress".
->>
->> Signed-off-by: Wayne Chang <waynec@nvidia.com>
->> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->> ---
->> V2 -> V4: nothing has changed
->> V1 -> V2: new change added for adding cypress,firmware-build
->>
->>   drivers/usb/typec/ucsi/ucsi_ccg.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
->> index 4bc31ed8e5bc..d6114fb8d5a9 100644
->> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
->> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
->> @@ -1357,7 +1357,7 @@ static int ucsi_ccg_probe(struct i2c_client *client)
->>   	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
->>   
->>   	/* Only fail FW flashing when FW build information is not provided */
->> -	status = device_property_read_u16(dev, "ccgx,firmware-build",
->> +	status = device_property_read_u16(dev, "cypress,firmware-build",
->>   					  &uc->fw_build);
-> 
-> You need to first add that property to
-> drivers/i2c/busses/i2c-nvidia-gpu.c.
+Sure,
+
+Acked-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+
+Though I'm not sure how much weight my Acked-by carries here.
+
+=46or applying the patch, yes that would be done by Heiko.
+
+Cheers,
+Nicolas Frattaroli
 
 
-Looking at this some more, I wonder if we need to keep 
-'ccgx,firmware-build' as a fallback for AMD? It is not clear to me if 
-they implement this property or not. Let me know what you think. I will 
-still update the i2c-nvidia-gpu driver. 	
 
-Thanks
-Jon
-
--- 
-nvpublic
