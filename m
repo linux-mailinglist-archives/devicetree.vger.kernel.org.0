@@ -2,152 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B0DE672373
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B762E67237F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:37:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230346AbjARQgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 11:36:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41066 "EHLO
+        id S230203AbjARQhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 11:37:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230353AbjARQfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:35:43 -0500
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B10FA4617B;
-        Wed, 18 Jan 2023 08:34:47 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id m18-20020a05683026d200b0068661404380so234432otu.2;
-        Wed, 18 Jan 2023 08:34:47 -0800 (PST)
+        with ESMTP id S230320AbjARQhD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:37:03 -0500
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D59C21965;
+        Wed, 18 Jan 2023 08:36:50 -0800 (PST)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-15f944494ccso1069877fac.8;
+        Wed, 18 Jan 2023 08:36:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NHCZmTVHrP18h7OzNIc6YzJ2Md15wHzbbI9y81VEo1s=;
-        b=XuC5b0yo0TyWdS0zeuLd06VKAQ3WrSgb+ty/PuqS6AzgLwOBeBEX1qhgH6+1OUPcGe
-         PqANJUjYQDj9rStr2b73uQoF/5pFa70dQVr+BujUG2F2VRk1utOJ9+n3/fnUshb2RteW
-         r3hwkovs7TrKWisgB9lF2gJcPnMbb+HpN66nq3nwAajnluk6+DwxhL44TO/u5R2NPAiD
-         m+jWo6sSW15DL8spRTDCqO9YVlt6te2r1XtepKnwdDHUGru9JgQIVFTb+4DJFLlX/sJv
-         d69rqjqqhwWDRforY5bIloA8fqEjQrISGD6mmUzOiJBRbM2sjYStv2h5q3LhIQrFCaCw
-         7scQ==
-X-Gm-Message-State: AFqh2kqZgN7vBo/UbZr0/THhZ4Koc0yKA3oWYSDpjwX47Ns/FPToqNFq
-        pZzzq6zjBXav9HxeF7MScc6PDJIp4A==
-X-Google-Smtp-Source: AMrXdXvKu6JsB/GYQJuShHq2oPKg3M1pnMgLvFw9mt63zyUQp0okYXBcZaeSEdwx3ox8j3MfCt4hCw==
-X-Received: by 2002:a9d:61d9:0:b0:66e:43e3:449 with SMTP id h25-20020a9d61d9000000b0066e43e30449mr4206546otk.14.1674059686898;
-        Wed, 18 Jan 2023 08:34:46 -0800 (PST)
+        bh=ITuX+8zwC5q8D34a6fPDAXRGD1lwZVV/MYd3Iiq3SsU=;
+        b=lN+FXJDKq+l+s2oQxGBxe3I+6FiJiIp9WkoQIqMRFSJewxTyX5bGdgTOXM3IihDQbA
+         h0USW2H5BJ+H950TUr3Ib1c4527jMscdxv1QgrrnNsaisMPv7FKBAEaXeCdhjKfe9zGw
+         m7tDoLazH+luYObnREVnVF86HprwaN6hAQrJUqRF5Hiu/2RYBZEToGhoyDNhtv8dItQL
+         TCn+j3ThrkguOOdu6wMa38ErxmF/macQhpsCR/AA0W8d9pl+ScfIUVzwkJcyEVcZ6RB7
+         S7C10ErW/0C4MzyJeLhz8qbPdWxo/aWYFWQ1Bt17K1V4U2Qr9A7ZeHZRAMvN0FldIQwo
+         kWaw==
+X-Gm-Message-State: AFqh2kqPooxWUC7GgVWmPYvyHKe562bor2BJFInjcmKc/opBJjbthr96
+        /qDkAyDSIVuJqZea7Xv9C0YCy/dHFQ==
+X-Google-Smtp-Source: AMrXdXsqZ/WJDE7Vhs5jZ+/7JgHJqm/DqA/cAwKCbqtzxw33WJ3zGvkaRr5YXeMSYofR80ZjvdJ68w==
+X-Received: by 2002:a05:6870:bd47:b0:15f:11f9:a1fb with SMTP id og7-20020a056870bd4700b0015f11f9a1fbmr4143535oab.1.1674059809653;
+        Wed, 18 Jan 2023 08:36:49 -0800 (PST)
 Received: from robh_at_kernel.org ([4.31.143.193])
-        by smtp.gmail.com with ESMTPSA id o15-20020a9d764f000000b0066b9a6bf3bcsm18493668otl.12.2023.01.18.08.34.46
+        by smtp.gmail.com with ESMTPSA id el35-20020a056870f6a300b0014474019e50sm18311258oab.24.2023.01.18.08.36.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 08:34:46 -0800 (PST)
-Received: (nullmailer pid 128779 invoked by uid 1000);
-        Wed, 18 Jan 2023 16:34:45 -0000
-Date:   Wed, 18 Jan 2023 10:34:45 -0600
+        Wed, 18 Jan 2023 08:36:49 -0800 (PST)
+Received: (nullmailer pid 131535 invoked by uid 1000);
+        Wed, 18 Jan 2023 16:36:48 -0000
+Date:   Wed, 18 Jan 2023 10:36:48 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     nick.hawkins@hpe.com
-Cc:     verdun@hpe.com, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        linux@armlinux.org.uk, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: i2c: Add hpe,gxp-i2c
-Message-ID: <20230118163445.GA125487-robh@kernel.org>
-References: <20230117204439.76841-1-nick.hawkins@hpe.com>
- <20230117204439.76841-3-nick.hawkins@hpe.com>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH v3 1/8] dt-bindings: phy: Add QMP PCIe PHY comptible for
+ SM8550
+Message-ID: <167405980798.131477.17272900590548498744.robh@kernel.org>
+References: <20230118005328.2378792-1-abel.vesa@linaro.org>
+ <20230118005328.2378792-2-abel.vesa@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230117204439.76841-3-nick.hawkins@hpe.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <20230118005328.2378792-2-abel.vesa@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 17, 2023 at 02:44:36PM -0600, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> Document compatibility string to support I2C controller
-> in GXP.
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> ---
-> 
-> v2:
->  *Removed uneccessary size-cells and address-cells
->  *Removed phandle from hpe,sysreg-phandle
->  *Changed hpe,i2c-max-bus-freq to clock-frequency
-> ---
->  .../devicetree/bindings/i2c/hpe,gxp-i2c.yaml  | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml b/Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
-> new file mode 100644
-> index 000000000000..2f718d9ad504
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/hpe,gxp-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HPE GXP SoC I2C Controller
-> +
-> +maintainers:
-> +  - Nick Hawkins <nick.hawkins@hpe.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: hpe,gxp-i2c
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clock-frequency:
-> +    default: 100000
-> +
-> +  hpe,sysreg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Phandle to syscon used to control the system registers.
 
-Not too useful of a description. Something about what bits you need to 
-access and what they do would be useful.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c@2600 {
-> +        compatible = "hpe,gxp-i2c";
-> +        reg = <0x2500 0x70>;
-> +        interrupts = <9>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        hpe,sysreg = <&sysreg_system_controller>;
-> +        clock-frequency = <10000>;
-> +
-> +        eeprom@50 {
-> +            compatible = "atmel,24c128";
-> +            reg = <0x50>;
-> +        };
-> +    };
-> -- 
-> 2.17.1
+On Wed, 18 Jan 2023 02:53:21 +0200, Abel Vesa wrote:
+> Document the QMP PCIe PHY compatible for SM8550.
 > 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml     | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+
+Acked-by: Rob Herring <robh@kernel.org>
