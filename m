@@ -2,190 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40E4D67263E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 19:04:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06AD4672654
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 19:09:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230181AbjARSEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 13:04:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57046 "EHLO
+        id S230356AbjARSJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 13:09:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230382AbjARSEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 13:04:14 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6A855AA67
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 10:02:02 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id r30so10364703wrr.10
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 10:02:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zp84JUX2wPLB6FAIMuryYBX4UoBq5satkVPoiHfbwC8=;
-        b=SuzsQHg+VL7NqkwjrA63pCX0Wh/ri6IncPBZXyPuINUTQvvp788mh5J4vJJxBa9Mc/
-         y/ttCKrX0uNIm+tw6/vqD5JFPoJIAH/m1xJd12MANZgmNBGvfqVoslitJaDVlpYG6Gcg
-         ljT6biT3+fWn72zFSlQeveqfkUxSwqcVzuAg0RUZL3rklTY4sVg1jBK14OM92QHKLI48
-         rjYxW/75SOrTLmszDt2eq00ibyhe+I+UMNVBKLJKKppm//AV5dM89TEYBDgLS70RCG60
-         7ZznQt3ixUsuMaRIYB+5yX51Oph7bYwjr0NIzHepDaw7N5dDr9M05cbdJmoCBItHwWrH
-         SkwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zp84JUX2wPLB6FAIMuryYBX4UoBq5satkVPoiHfbwC8=;
-        b=5g1dTEqTlG9gtZSWJmJoAJ8GxmmTTzUUM+ztpgeE4J19zqJeZpAT9/lws4F7aDe2zz
-         4cQAsJsdv6TWQWoOYNDi0l0tx1YGvCMIO5GYwQm4V/oWgDVSPjpeW/GwR/2zlIjj6B1Y
-         vXS/Qttsh0MONBbKsN4qpA9a4pz6Rx8fKev0gkVcJTWhnzDEUxKRRGzgk0D1m2Q4IeT+
-         kgW9PDnlKNn3F8oCFr5QqoW0ZaSD29wjqoOkubpSEsQVy2p7HS++Vk11GeURAjQUibuI
-         2OdcocSdZkfKsxyJw8JZovnk4D3uL3XpQuAcWjktKvYI9smsADfyKPILamV18KoCP2qa
-         NCEQ==
-X-Gm-Message-State: AFqh2kpDwz1iK5LfJ22+D7FYo6ri2X+e6a8SZkDOEr95EUbYoCF15+tF
-        kUJQerktrZzsjQbNDkKhqw9b2g==
-X-Google-Smtp-Source: AMrXdXv3mSWZmyjShmt7WtX7nY6Hcxtp9KvdQ4XjWZI2xRezvrvP5e54ZFq9WAbXPQXpGcFKgypXlQ==
-X-Received: by 2002:adf:efc8:0:b0:29d:f817:42d4 with SMTP id i8-20020adfefc8000000b0029df81742d4mr16973520wrp.19.1674064912700;
-        Wed, 18 Jan 2023 10:01:52 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w4-20020a5d4b44000000b002366dd0e030sm31657450wrs.68.2023.01.18.10.01.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 10:01:52 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231290AbjARSIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 13:08:44 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D2D59E49;
+        Wed, 18 Jan 2023 10:08:25 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30IHe20q023109;
+        Wed, 18 Jan 2023 18:08:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=VjGaB6NlBlE2IyOc/pNC2n8e7KGS2UDLgRGKXfFgm70=;
+ b=h42SU5g+xzOtTo/aGwOhipivIuXFl2rgMO2ApB1Cc5+B7ZC6x0QmcNcygW5MHDzXB9PU
+ Tc15W3AZCsNfqG05aDyXVHleGMA+caI3qGftk+EbI2RIi94b06xZwfgwO0p+6aIrvXZH
+ bzTHZCkSYLVpdNcjymKqW/pqF6LNIKLTzz3XfO9gsaDYrk06BFkVBELnYR43hmJum5v3
+ ty6awGCQwX1cw5mZBq39yLF4O599chBL/43jdkJwU3b1XVyK+Nz9fjSqA1kEfUQnhQjV
+ QBc7P0rczHc/c5FjITpijJ24n5+AhPJr3hrVBMf+IdYh49VD8hLoymju63RJ/Zd38ths Sw== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n6e4r143j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 18 Jan 2023 18:08:13 +0000
+Received: from nasanex01a.na.qualcomm.com ([10.52.223.231])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30II8DUW023627
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 18 Jan 2023 18:08:13 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Wed, 18 Jan 2023 10:08:12 -0800
+Date:   Wed, 18 Jan 2023 10:08:11 -0800
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Olivier Dautricourt <olivierdautricourt@gmail.com>,
-        Stefan Roese <sr@denx.de>, Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Green Wan <green.wan@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        =?UTF-8?q?=A1er?= <povik+lin@cutebit.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        - <chuanhua.lei@intel.com>, Long Cheng <long.cheng@mediatek.com>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Palmer Debbelt <palmer@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-        linux-tegra@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-mediatek@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: dma: cleanup examples - indentation, lowercase hex
-Date:   Wed, 18 Jan 2023 19:01:44 +0100
-Message-Id: <20230118180144.364756-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230118180144.364756-1-krzysztof.kozlowski@linaro.org>
-References: <20230118180144.364756-1-krzysztof.kozlowski@linaro.org>
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Introduce GPIO-based SBU mux
+Message-ID: <20230118180811.GB3322341@hu-bjorande-lv.qualcomm.com>
+References: <20230113041115.4189210-1-quic_bjorande@quicinc.com>
+ <20230117175657.GA3275060-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230117175657.GA3275060-robh@kernel.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 1tDhuNKfhXogcIxd2n2-Jh9YFBmJcPFh
+X-Proofpoint-ORIG-GUID: 1tDhuNKfhXogcIxd2n2-Jh9YFBmJcPFh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-18_05,2023-01-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 mlxlogscore=999 adultscore=0 spamscore=0
+ phishscore=0 impostorscore=0 clxscore=1011 suspectscore=0 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301180153
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cleanup examples:
- - use 4-space indentation (for cases when it is neither 4 not 2 space),
- - use lowercase hex.
+On Tue, Jan 17, 2023 at 11:56:57AM -0600, Rob Herring wrote:
+> On Thu, Jan 12, 2023 at 08:11:14PM -0800, Bjorn Andersson wrote:
+> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > 
+> > Introduce a binding for GPIO-based mux hardware used for connecting,
+> > disconnecting and switching orientation of the SBU lines in USB Type-C
+> > applications.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > ---
+> > 
+> > Changes since v1:
+> > - Expanded the example to indicate how this fits with the TCPM
+> > - Updated maintainer email address.
+> > 
+> >  .../devicetree/bindings/usb/gpio-sbu-mux.yaml | 110 ++++++++++++++++++
+> >  1 file changed, 110 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > new file mode 100644
+> > index 000000000000..bf4b1d016e1f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+> > @@ -0,0 +1,110 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/usb/gpio-sbu-mux.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: GPIO-based SBU mux
+> > +
+> > +maintainers:
+> > +  - Bjorn Andersson <andersson@kernel.org>
+> > +
+> > +description:
+> > +  In USB Type-C applications the SBU lines needs to be connected, disconnected
+> > +  and swapped depending on the altmode and orientation. This binding describes
+> > +  a family of hardware solutions which switches between these modes using GPIO
+> > +  signals.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - onnn,fsusb43l10x
+> > +          - pericom,pi3usb102
+> > +      - const: gpio-sbu-mux
+> > +
+> > +  enable-gpios:
+> > +    description: Switch enable GPIO
+> > +
+> > +  select-gpios:
+> > +    description: Orientation select
+> > +
+> > +  vcc-supply:
+> > +    description: power supply
+> > +
+> > +  mode-switch:
+> > +    description: Flag the port as possible handle of altmode switching
+> > +    type: boolean
+> > +
+> > +  orientation-switch:
+> > +    description: Flag the port as possible handler of orientation switching
+> > +    type: boolean
+> > +
+> > +  port:
+> > +    $ref: /schemas/graph.yaml#/properties/port
+> > +    description:
+> > +      A port node to link the SBU mux to a TypeC controller for the purpose of
+> > +      handling altmode muxing and orientation switching.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - enable-gpios
+> > +  - select-gpios
+> > +  - mode-switch
+> > +  - orientation-switch
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    tcpm {
+> > +        connector {
+> > +            compatible = "usb-c-connector";
+> > +
+> > +            ports {
+> > +                #address-cells = <1>;
+> > +                #size-cells = <0>;
+> > +
+> > +                port@0 {
+> > +                    reg = <0>;
+> > +                    tcpm_hs_out: endpoint {
+> > +                        remote-endpoint = <&usb_hs_phy_in>;
+> > +                    };
+> > +                };
+> > +
+> > +                port@1 {
+> > +                    reg = <1>;
+> > +                    tcpm_ss_out: endpoint {
+> > +                        remote-endpoint = <&usb_ss_phy_in>;
+> > +                    };
+> > +                };
+> > +
+> > +                port@2 {
+> > +                    reg = <2>;
+> > +                    tcpm_sbu_out: endpoint {
+> > +                        remote-endpoint = <&sbu_mux_in>;
+> > +                    };
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +    sbu-mux {
+> > +        compatible = "pericom,pi3usb102", "gpio-sbu-mux";
+> > +
+> > +        enable-gpios = <&tlmm 101 GPIO_ACTIVE_LOW>;
+> > +        select-gpios = <&tlmm 164 GPIO_ACTIVE_HIGH>;
+> > +
+> > +        mode-switch;
+> > +        orientation-switch;
+> > +
+> > +        port {
+> > +            sbu_mux_in: endpoint {
+> > +                remote-endpoint = <&tcpm_sbu_out>;
+> > +            };
+> 
+> Don't you need a connection to whatever drives SBU? Maybe your case is 
+> fixed because the phy does the DP/USB muxing? But the binding needs to 
+> support the worst case which I guess would be all the muxing/switching 
+> is done by separate board level components.
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/dma/snps,dw-axi-dmac.yaml        | 36 +++++++++----------
- .../bindings/dma/stericsson,dma40.yaml        |  4 +--
- 2 files changed, 20 insertions(+), 20 deletions(-)
+Perhaps I'm misunderstanding your request, but I think this is the worst
+case you're talking about.
 
-diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-index 2bedab1f74e0..d34d0fa62ab5 100644
---- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-@@ -113,21 +113,21 @@ additionalProperties: false
- 
- examples:
-   - |
--     #include <dt-bindings/interrupt-controller/arm-gic.h>
--     #include <dt-bindings/interrupt-controller/irq.h>
--     /* example with snps,dw-axi-dmac */
--     dmac: dma-controller@80000 {
--         compatible = "snps,axi-dma-1.01a";
--         reg = <0x80000 0x400>;
--         clocks = <&core_clk>, <&cfgr_clk>;
--         clock-names = "core-clk", "cfgr-clk";
--         interrupt-parent = <&intc>;
--         interrupts = <27>;
--         #dma-cells = <1>;
--         dma-channels = <4>;
--         snps,dma-masters = <2>;
--         snps,data-width = <3>;
--         snps,block-size = <4096 4096 4096 4096>;
--         snps,priority = <0 1 2 3>;
--         snps,axi-max-burst-len = <16>;
--     };
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    /* example with snps,dw-axi-dmac */
-+    dmac: dma-controller@80000 {
-+        compatible = "snps,axi-dma-1.01a";
-+        reg = <0x80000 0x400>;
-+        clocks = <&core_clk>, <&cfgr_clk>;
-+        clock-names = "core-clk", "cfgr-clk";
-+        interrupt-parent = <&intc>;
-+        interrupts = <27>;
-+        #dma-cells = <1>;
-+        dma-channels = <4>;
-+        snps,dma-masters = <2>;
-+        snps,data-width = <3>;
-+        snps,block-size = <4096 4096 4096 4096>;
-+        snps,priority = <0 1 2 3>;
-+        snps,axi-max-burst-len = <16>;
-+    };
-diff --git a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-index 664ee61a00d8..57395a810719 100644
---- a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-+++ b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-@@ -147,9 +147,9 @@ examples:
-     #include <dt-bindings/interrupt-controller/irq.h>
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/mfd/dbx500-prcmu.h>
--    dma-controller@801C0000 {
-+    dma-controller@801c0000 {
-       compatible = "stericsson,db8500-dma40", "stericsson,dma40";
--      reg = <0x801C0000 0x1000>, <0x40010000 0x800>;
-+      reg = <0x801c0000 0x1000>, <0x40010000 0x800>;
-       reg-names = "base", "lcpa";
-       interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-       #dma-cells = <3>;
--- 
-2.34.1
+&usb_ss_phy_in is a reference to the PHY, which does switching/muxing of
+the SuperSpeed lanes in the connector, but the PHY provides no control
+over the SBU signals.
 
+So this sbu-mux is a separate component between the SBU-pads on the SoC
+and the usb-c-connector, referenced through he &sbu_mux_in reference.
+
+
+So upon e.g. a orientation switch, the typec_switch_set() call the tcpm
+implementation will request orientation switching from port@1 and port@2
+(no orientation-switch on port@0/HS pins).
+
+Regards,
+Bjorn
