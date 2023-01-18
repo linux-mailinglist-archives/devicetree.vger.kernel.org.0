@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D84671132
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 03:31:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BADD671151
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 03:50:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbjARCbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 21:31:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57316 "EHLO
+        id S229562AbjARCu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 21:50:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbjARCbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 21:31:37 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCA84FAF5
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:31:35 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id bk15so22412504ejb.9
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:31:34 -0800 (PST)
+        with ESMTP id S229530AbjARCu1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 21:50:27 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D76A4FC27
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:50:25 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id ss4so72695843ejb.11
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:50:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NxnRboJU1+XhJT8S+hL0GtakvcimvGhXOcI4sktIq8U=;
-        b=ucOtyDx//6iCvYOqmjUYETS4yW/rRmddl+enP//vK3+L+mVUoEaB070/V43zXuKwBe
-         a5nmoXvO5vLV8xKwHe0I7xtxIghXIzDSp273/rEWti3SejJFXMJwXfvyVLhJ4M0KS+Rd
-         WkWyhH/kVYjoswXmJtJYgmbG4QAw/PFclK4YJHxNGc7/9ylfuIwZ6jVxV7gYifJjKugA
-         ho3ZqDrbax16e/J9bKPauRM/D+ueT3BWJ7Noxco+qFFROWzuKD5CPOuOA9G5Zes5PnIB
-         7MG8LOFY+uYluOdPijpSWDNz+Oy+zZc7okq2qXgHo5seJkwOi1gBwgtqN+wYgAwmdZ/O
-         BglQ==
+        bh=+oWeg8meSzs44XhiL5Rp/pA/MJaJDS/aigL4xzCGs0U=;
+        b=DEL6t/7gj2s4mON5g5SB3CNFYOPx6YoirU9j0W7WYtN8eh30O2+T7Xun/VLqhea3xr
+         QBYfEgxQo2G2W17p8ZgIMTO4Gnl0B92A9Oo3nPYQSec58ESAb9ipigyC9RtOIQFPZDAs
+         FMhYHb75LBbnMHD55vJSrdxjPmXyRb9VY6ig7PuAGJrVX5+6URVQYHVr9Xw02TI5G+Qr
+         IvWSPFK1BR33xrd2J7NKxaCOjm2yY+dTQ2vWPyMmJaEK+yKfb6Y+uJtYcMA1CiygjlR0
+         XySUcKaf2oUM0AtsrXM5Z+j+Jp4ituhCmkF0wjEZaAq/M42Gux+n4+NyDWJ/4YGyDOtn
+         MXTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NxnRboJU1+XhJT8S+hL0GtakvcimvGhXOcI4sktIq8U=;
-        b=6MFq69zZ32u8VMrxNjwGF+9R4AVTlyC6gqiIVXqBbmK8iw7Z7pd8RvQDGPHHFFdpMm
-         ShWU6lOFrLJZ9YiR624L2/i1i1DfRq7PgBaOzvvyYd1zx+DIv3V4btKnEzSqgsDLdxKD
-         0bfTlRmkTqXeALr/si04KarKSMmeZieQOTxYQrumduE9T/Xkk+HXaaCg7kBMUzVXWQVe
-         1b7Cqv9e6aXaPzVPZrCf7gr4qshVZzu3E5CrpTA2KqLY0jdCzDiyhezwVkirTqZna/WJ
-         jOV5BjxWJp9oU88kfhI5TZk4KbaejWrh71SOd44FtrQ1GcaWTcd+zEm3bixu5puztXl1
-         qqyw==
-X-Gm-Message-State: AFqh2koNE2ihgnxQLaCvJ7YMhwPHUC61gYK8TvPuGVYBc0BPtYOsFHsI
-        PbXEo3o4JJc4DWhVAEFeLJbwgA==
-X-Google-Smtp-Source: AMrXdXtJdLZSh4HZz7YAtRHiUQbJ1b1lV4FZnU1Q+nwC7Fj3zMcA6jHdKVoqTRlA5UEdCiKu6oubHQ==
-X-Received: by 2002:a17:907:d007:b0:829:59d5:e661 with SMTP id va7-20020a170907d00700b0082959d5e661mr5340397ejc.29.1674009093565;
-        Tue, 17 Jan 2023 18:31:33 -0800 (PST)
+        bh=+oWeg8meSzs44XhiL5Rp/pA/MJaJDS/aigL4xzCGs0U=;
+        b=zaDyjz/7Ah9a+FbmXKgLVbvgm1HY0eNJuwejvlwTw1AG8L/4TfBegm4L92MBZ9WvH4
+         ynX2PxazPLdK8iBApeL1R816SQjZRqIhH4gCBrGivq57vp+N+Ze6eRjMAw6TH+p5wwRV
+         tZfU8LZWAO/Ieb8VvMX4Tn4/o/6wmjW+dG9FtTH8D5ZBhTm2bdmKTzVkQZc2GF0C7ai4
+         Xf6F94vsUH4aRPv5crlT6JHx3tDICIUVpTAAkgnopc1/3T3OEDYF75/Sq1d45nEmm3yP
+         ooVyFZL3xeIyxlR3eaFIxtAH87mp4onhDyZolHTwq3M0SwQAdSLs7LFPJeVQUmYUbm//
+         ixZw==
+X-Gm-Message-State: AFqh2kr3TrdKBJWw1kPu9ZF2FnsUQjGZgU03WoaD6k8CV1Pnt7YMISFm
+        3Op2RdZU8WGizN9rPW97MLn9Xg==
+X-Google-Smtp-Source: AMrXdXsoTO6RqYHs+R3tr16MfQfaTjAir7uZ3UgRN3rJfitNwZUHfTX/Ux3TwerOOd+gF4amCKGOOA==
+X-Received: by 2002:a17:906:a09:b0:7c1:4a3a:dc97 with SMTP id w9-20020a1709060a0900b007c14a3adc97mr6765984ejf.0.1674010224043;
+        Tue, 17 Jan 2023 18:50:24 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id q27-20020a1709066b1b00b0087329ff593fsm1319138ejr.144.2023.01.17.18.31.32
+        by smtp.gmail.com with ESMTPSA id e6-20020a170906314600b00781be3e7badsm13971460eje.53.2023.01.17.18.50.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 18:31:33 -0800 (PST)
-Message-ID: <44e5664b-ef88-8e63-ad62-db5c2c0ad130@linaro.org>
-Date:   Wed, 18 Jan 2023 04:31:31 +0200
+        Tue, 17 Jan 2023 18:50:23 -0800 (PST)
+Message-ID: <5d0eff7d-147c-b75a-9236-232a5a98e42a@linaro.org>
+Date:   Wed, 18 Jan 2023 04:50:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
@@ -76,8 +76,7 @@ Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -99,117 +98,9 @@ On 17/01/2023 00:52, Bryan O'Donoghue wrote:
 > index 35668caa190c4..47faf08a37443 100644
 > --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 > +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -9,9 +9,6 @@ title: Qualcomm Display DSI controller
->   maintainers:
->     - Krishna Manikandan <quic_mkrishn@quicinc.com>
->   
-> -allOf:
-> -  - $ref: "../dsi-controller.yaml#"
-> -
->   properties:
->     compatible:
->       oneOf:
-> @@ -50,22 +47,23 @@ properties:
->       maxItems: 1
->   
->     clocks:
-> -    items:
-> -      - description: Display byte clock
-> -      - description: Display byte interface clock
-> -      - description: Display pixel clock
-> -      - description: Display core clock
-> -      - description: Display AHB clock
-> -      - description: Display AXI clock
-> +    description: |
-> +      Several clocks are used, depending on the variant. Typical ones are::
-> +       - bus:: Display AHB clock.
-> +       - byte:: Display byte clock.
-> +       - byte_intf:: Display byte interface clock.
-> +       - core:: Display core clock.
-> +       - core_mss:: Core MultiMedia SubSystem clock.
-> +       - iface:: Display AXI clock.
-> +       - mdp_core:: MDP Core clock.
-> +       - mnoc:: MNOC clock
-> +       - pixel:: Display pixel clock.
-> +    minItems: 3
-> +    maxItems: 9
->   
->     clock-names:
-> -    items:
-> -      - const: byte
-> -      - const: byte_intf
-> -      - const: pixel
-> -      - const: core
-> -      - const: iface
-> -      - const: bus
-> +    minItems: 3
-> +    maxItems: 9
->   
->     phys:
->       maxItems: 1
-> @@ -161,6 +159,193 @@ required:
->     - assigned-clock-parents
->     - ports
->   
-> +allOf:
-> +  - $ref: ../dsi-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,apq8064-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 7
-> +        clock-names:
-> +          items:
-> +            - const: iface
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: src
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8916-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: iface
-> +            - const: bus
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8953-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: iface
-> +            - const: bus
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
+
+[skipped]
+
 > +
 > +  - if:
 > +      properties:
@@ -227,132 +118,15 @@ On 17/01/2023 00:52, Bryan O'Donoghue wrote:
 > +            - const: iface
 > +            - const: bus
 > +            - const: vsync
+
+vsync clock is not used on msm8974 platform, it causes DT verification 
+errors.
+
 > +            - const: byte
 > +            - const: pixel
 > +            - const: core
 > +            - const: core_mmss
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8996-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 7
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: byte
-> +            - const: iface
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8998-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc7180-dsi-ctrl
-> +              - qcom,sc7280-dsi-ctrl
-> +              - qcom,sm8250-dsi-ctrl
-> +              - qcom,sm8150-dsi-ctrl
-> +              - qcom,sm8250-dsi-ctrl
-
-Fails with:
-
-kernel/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml: 
-allOf:7:if:properties:compatible:contains:enum: ['qcom,sc7180-dsi-ctrl', 
-'qcom,sc7280-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 
-'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 
-'qcom,sm8550-dsi-ctrl'] has non-unique elements
-
-
-> +              - qcom,sm8350-dsi-ctrl
-> +              - qcom,sm8450-dsi-ctrl
-> +              - qcom,sm8550-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sdm660-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 9
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: mnoc
-> +            - const: iface
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sdm845-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-> +
->   additionalProperties: false
->   
->   examples:
-
--- 
+> +-- 
 With best wishes
 Dmitry
 
