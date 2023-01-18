@@ -2,103 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1D3F67214A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:30:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2310672150
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:32:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbjARPab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 10:30:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34228 "EHLO
+        id S230401AbjARPcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 10:32:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbjARP3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:29:52 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 460DF45F69
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:29:41 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id q10so15006861wrs.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:29:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=g/aLmWYhNKv7GH4DuCtvNQcDIMNkNsTtbotrrf7zjiA=;
-        b=dAUmF+XuY7jwyqIdcCmF0l7PlYH3GPW0DsYGSW9B2hk5CkXzg+v9LFbjNxv3GLjInU
-         I9/DvK6WvVzBfhD5wXdgY6Q/UmKejvOUIAmMm70YygoCPvU/3KiqHeqDOqazufqmC0dl
-         ViloPH6B1Wr8KbTXhXpefdHnZHw2IKSw/T+71IacGWZ3NJvTAOiENNfdlImZ3IQI3BQu
-         qAcRh8aaGXiDD4+R6qRystyKbnIlLcoEHIDUdU9kj+2GOxtR8516G8PwAPDB5uNXXuW3
-         TI7OJrA/0eWTom6gssGPuQemLE9Ek3NoJvS3odkBgophaWccAXWZHO3MWfXVO8PM/bgd
-         Wy+g==
+        with ESMTP id S230384AbjARPck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:32:40 -0500
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C05C94E510;
+        Wed, 18 Jan 2023 07:32:38 -0800 (PST)
+Received: by mail-ot1-f41.google.com with SMTP id k44-20020a9d19af000000b00683e176ab01so19839527otk.13;
+        Wed, 18 Jan 2023 07:32:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g/aLmWYhNKv7GH4DuCtvNQcDIMNkNsTtbotrrf7zjiA=;
-        b=gJbGJpcdZFOTLSpFw6qDgsVq9HRNsRxFh71ikwznUEtD4rxNHmTc1vmycnwq4By24w
-         yNptdg6UwMYyK2z5PntEnsXutKDZVNn8JCiwq2FJMKSPpqY7W25UHZXPEOo33OozWBy1
-         GvOtxmwxfc5gSzyC9kapSEumNrR4bsYqfOwslBWgWBUyExIl13tTQZMolNbgRm9iIXLy
-         BMuNTbdflDywHf0xNlMcTrEevLdr09g7mSIMqJSoB+iSud1ABIWvmnnaAYJkHEw5dPKQ
-         bZ2Dwoqyiy5HcJrYnuEb4stHqPet5BB3D427KucuIzK0kdS5l4gNVKM115rEcpkN9mX1
-         i+gg==
-X-Gm-Message-State: AFqh2krBmNDx6Jpm4c6YIMWivQGLqTp6lCEIUkg15aUQBfKP1/pd7WDJ
-        a1BuMSY5l7J15NwvaESdV4UyQQ==
-X-Google-Smtp-Source: AMrXdXsxCIHrIcEPYc3qMlgVpfKX2UUibBV126RLchHBNcq6Cfok29847L7anEX4KDvKklCjiK44pA==
-X-Received: by 2002:a05:6000:388:b0:2bc:7ec3:8b2 with SMTP id u8-20020a056000038800b002bc7ec308b2mr7422667wrf.68.1674055779869;
-        Wed, 18 Jan 2023 07:29:39 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l7-20020a5d6747000000b002b57bae7174sm31996847wrw.5.2023.01.18.07.29.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 07:29:39 -0800 (PST)
-Message-ID: <10a7ebd0-f174-a806-000a-6d50bfed8155@linaro.org>
-Date:   Wed, 18 Jan 2023 16:29:37 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=V0kLGC9r5lgXWTZfqO2aD1AR94agoSKCVwl2XarWV5Y=;
+        b=cvf2NV/Hq+lPPxvDplwedLJe5Z+FLtK2XZRueGMksa1Tn3PBEU2yfwwbjOQN27QDYD
+         59Ka8NBB6nEaLtOh9hjktKwUM07HCTAP0G4X5NmobikXk6I71Esl0FIXEfTnyxk6IP8A
+         xHcrbOQjsMFDIp8SkMrLuglksgAPhLqmWysijJQPvUrpEigDFTdmp5sRizVEA0exBYP6
+         IKvIwBb3j5NpaNgssLFs9MYtVp3HFAkY/8w8v4treMV6XjPg4TdU1JpS5c23cHOIBWSn
+         pCDQFlA2nkj+L+BT5C4w9IE6ynE11MWYE5FtuWiFNow9uRuQl21rCxAFj/ZKgrob6Wef
+         zlKQ==
+X-Gm-Message-State: AFqh2krShDPii4L08Z9pdKKxpSWdt4DcJEnUsHuQ5kYssCpj6RhdCQyx
+        7Al6+xaEDFy+yndBGhWI1g==
+X-Google-Smtp-Source: AMrXdXsBh/ovlvd71FQVIia7N0KbCDgpDylT7dGK+3iWXmyziKmrr6DxPup4FeuQxM1HvJM5X9s8pg==
+X-Received: by 2002:a9d:4d8c:0:b0:686:413f:a934 with SMTP id u12-20020a9d4d8c000000b00686413fa934mr3756396otk.38.1674055958013;
+        Wed, 18 Jan 2023 07:32:38 -0800 (PST)
+Received: from robh_at_kernel.org ([4.31.143.193])
+        by smtp.gmail.com with ESMTPSA id ce6-20020a056830628600b00670679748f9sm18944681otb.49.2023.01.18.07.32.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 07:32:37 -0800 (PST)
+Received: (nullmailer pid 39617 invoked by uid 1000);
+        Wed, 18 Jan 2023 15:32:36 -0000
+Date:   Wed, 18 Jan 2023 09:32:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kever.yang@rock-chips.com, sjg@chromium.org,
+        philipp.tomsich@vrull.eu
+Subject: Re: [PATCH v1 1/4] dt-bindings: gpio: rockchip,gpio-bank: add
+ compatible string per SoC
+Message-ID: <20230118153236.GA33699-robh@kernel.org>
+References: <08de3f4b-e33f-95c8-3297-814ea107272a@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl: Add verdin yavia carrier-board
-Content-Language: en-US
-To:     Philippe Schenker <dev@pschenker.ch>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
-        Denys Drozdov <denys.drozdov@toradex.com>,
-        Fabio Estevam <festevam@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Li Yang <leoyang.li@nxp.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Marek Vasut <marex@denx.de>,
-        Matthias Schiffer <matthias.schiffer@tq-group.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        linux-kernel@vger.kernel.org
-References: <20230118144042.7705-1-dev@pschenker.ch>
- <20230118144042.7705-2-dev@pschenker.ch>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230118144042.7705-2-dev@pschenker.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <08de3f4b-e33f-95c8-3297-814ea107272a@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 15:40, Philippe Schenker wrote:
-> From: Philippe Schenker <philippe.schenker@toradex.com>
-> 
-> Add the Verdin Yavia Carrier-Board that exists for both Verdin iMX8M
-> Plus and Verdin iMX8M Mini.
-> 
-> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-> ---
+On Wed, Jan 18, 2023 at 01:13:23PM +0100, Johan Jonker wrote:
+> Currently all Rockchip gpio nodes have the same compatible.
+> Replace all the compatibles in gpio nodes to be able to
+> give them a consistent ID independent from probe order or alias.
 
+I fail to see how the compatible change affects probe order or aliases. 
+It is also an ABI break if there is not the existing compatible as a 
+fallback. State the problem you are trying to solve with this change, 
+not just what your solution is.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+GPIO shouldn't really have an alias either IMO.
 
-Best regards,
-Krzysztof
-
+Rob
