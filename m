@@ -2,79 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA75E67168C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 09:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A746B671688
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 09:51:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229469AbjARIwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 03:52:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53462 "EHLO
+        id S229816AbjARIvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 03:51:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229897AbjARIsf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 03:48:35 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011E4392BF;
-        Wed, 18 Jan 2023 00:02:10 -0800 (PST)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id AC0D0D5D;
-        Wed, 18 Jan 2023 09:02:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1674028927;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=q4LtkWQwj+s5wRr9ftmaGPFVQWqkH/zbHMQ6iAuaZCk=;
-        b=KzMwo29z2YN5Fh3BND3jQ1EzGgDVcfwgB43ZKWFNqdLmMRudSFoliRpzicnJQPrnkCW8Ha
-        Kjyq3ICId+Gzeg1VMP+/AZ/NAsEZOa7RBIzUFt74X2scq2ycM/HJJO6ezCVZ4c5lswoYXo
-        bRyAa7FiBncPohpKUxD0j5sd3TlXJBZ1vBjbpaqfVcxSLIUVSmI+NnsontrtuUBdqHg76I
-        kYcgVoegHfDMhshDekkkZ5a0LHCZRRR21imc3tSZXkFMx/0+BdVjRiMvHRFq3KVPk4umgX
-        fm8x+yq2/bG11dNCIDi7Iol7aoa1dap05dCnFr3ucEGPZI2kZ4IyJfcY8cWrBA==
-From:   Michael Walle <michael@walle.cc>
-To:     han.xu@nxp.com
-Cc:     broonie@kernel.org, dev@kicherer.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-        linux-spi@vger.kernel.org, robh@kernel.org, michael@walle.cc
-Subject: Re: [PATCH 1/2] spi: dt-bindings: spi-fsl-qspi: add optional sampling-delay
-Date:   Wed, 18 Jan 2023 09:01:59 +0100
-Message-Id: <20230118080159.112295-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230117210500.oimf4yjkkqh3o4hi@umbrella>
-References: <20230117210500.oimf4yjkkqh3o4hi@umbrella>
+        with ESMTP id S229693AbjARIvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 03:51:18 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37BF39577D
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:03:37 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id k8so18546314wrc.9
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:03:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fLNM9ft32zFXXfqtL17IA3aBUBoKO11Uoqk9r9Qxwxk=;
+        b=TGLD0SbJq/4zsdHf0dT29VEd5JyE4lIP2crA5/0zBsk4mN4raFztSH6OQLcPdEGSGj
+         /VCftlZyAVPCL23s3lxBG0DQZ77uMjfQlPBKs7tYu30rYliLIFIekLbP9I6IejMjrfnh
+         VchoJ6fAzAy1j+qPwFyB1174mGlr+Jx5AtdKFauQhQ63ezraUgi3/8HJdy0g/X68SMzm
+         UgXx/BsF/LWrlZ1Piujj9Cpx3ia3DcUMbOuCWh5ttt5SX94+71yP1WDa2TKmXWSdTE8l
+         /L5yqVB4FQLuS05/7TQn5rn8UelQBlm68oQjcrM0lIO/yDaXrLhVl7Avrr/eG+sCv4e6
+         +IRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fLNM9ft32zFXXfqtL17IA3aBUBoKO11Uoqk9r9Qxwxk=;
+        b=6MuPbYW3J+0Ix3jrILuivCD9fiE3PF1azLc2hSXXOdliVN0+1VaPa2SAtOXPjB1t35
+         qUxqP//S62vWJWnnv/P0uiFeAYIPsI1zc7z1C5BK94BH/Wu9E+STN77wpw1WVrcoJK72
+         HlV9J047SjcikIoXLmj5ly1QXl1zz9ZqpxVyIHrj3QG+Zre7+Ud7raNUkpSPCcb8ojc8
+         zHf5GCHuMPAxRquAQYF7xSBraTkr+gfXBWN/80pUU4zIKpHgCnWbuWDZQCBFCyiuNYUZ
+         jSoFws92CdkkzsdWcfUip9EidcssxM234KXttXup1O5ThS6RSdagyt4YFBWDd13E5oJu
+         6Y/g==
+X-Gm-Message-State: AFqh2kqQlIU3+J9IJKNdEiGwrsfQcQC1zDyzuqwp36g3jk5FmRm4ApJu
+        XtMLvXLl4NGJwXrW9ync5o14Bg==
+X-Google-Smtp-Source: AMrXdXsAiQGCUW9JSEcjIZv6uYmDqncwiSSzh0o3FJWQMsNwfTwUMQxPpw9MCkHAAl9wMUPVxInnJw==
+X-Received: by 2002:adf:f8c4:0:b0:2be:34f:4fc4 with SMTP id f4-20020adff8c4000000b002be034f4fc4mr5487556wrq.13.1674029015746;
+        Wed, 18 Jan 2023 00:03:35 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u24-20020adfa198000000b002bc84c55758sm27206974wru.63.2023.01.18.00.03.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 00:03:34 -0800 (PST)
+Message-ID: <2a684f19-6749-ddb0-6e32-4ffe35269cb3@linaro.org>
+Date:   Wed, 18 Jan 2023 09:03:32 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] spi: dt-bindings: spi-fsl-qspi: add optional
+ sampling-delay
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>, han.xu@nxp.com
+Cc:     broonie@kernel.org, dev@kicherer.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-spi@vger.kernel.org,
+        robh@kernel.org
+References: <20230117210500.oimf4yjkkqh3o4hi@umbrella>
+ <20230118080159.112295-1-michael@walle.cc>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230118080159.112295-1-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "han.xu" <han.xu@nxp.com>
+On 18/01/2023 09:01, Michael Walle wrote:
+> From: "han.xu" <han.xu@nxp.com>
+> 
+> Hi,
+> 
+>>>> unfortunately, the rx-sample-delay-ns property does not fit here, as we 
+>>>> can only delay
+>>>> the sampling point between zero and three "half cycles" (or edges), not 
+>>>> by an arbitrary
+>>>> number of nanoseconds.
+>>>
+>>> Why this is a problem for FSL but not for other platforms having exactly
+>>> the same constraints/property?
+>>
+>> Please use the common delay in DT and calculate to half cycle in driver, we have
+>> the similar discussion before for fspi controller delay settings.
+> 
+> Do you mean [1]? There my suggestion was to use a -degrees property (because
+> it doesn't depend on the frequency). There wasn't any follow-up, or did I miss
+> something?
+> 
+> -michael
+> 
+> [1] https://lore.kernel.org/linux-spi/62f113a0cdb0d58bf04ab0b274912eb7@walle.cc/
 
-Hi,
+I think the patch using existing ns property (and calculating cycles or
+phase shift or whatever was needed) was merged. In such case please go
+the same way.
 
->>> unfortunately, the rx-sample-delay-ns property does not fit here, as we 
->>> can only delay
->>> the sampling point between zero and three "half cycles" (or edges), not 
->>> by an arbitrary
->>> number of nanoseconds.
->> 
->> Why this is a problem for FSL but not for other platforms having exactly
->> the same constraints/property?
->
-> Please use the common delay in DT and calculate to half cycle in driver, we have
-> the similar discussion before for fspi controller delay settings.
+Best regards,
+Krzysztof
 
-Do you mean [1]? There my suggestion was to use a -degrees property (because
-it doesn't depend on the frequency). There wasn't any follow-up, or did I miss
-something?
-
--michael
-
-[1] https://lore.kernel.org/linux-spi/62f113a0cdb0d58bf04ab0b274912eb7@walle.cc/
