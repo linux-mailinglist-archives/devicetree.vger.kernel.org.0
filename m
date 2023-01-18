@@ -2,119 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 219FA672138
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:27:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E01C672147
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 16:29:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbjARP12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 10:27:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33344 "EHLO
+        id S231607AbjARP3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 10:29:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230507AbjARP1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:27:13 -0500
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6385BA9;
-        Wed, 18 Jan 2023 07:26:15 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id 123-20020a4a0681000000b004faa9c6f6b9so879156ooj.11;
-        Wed, 18 Jan 2023 07:26:15 -0800 (PST)
+        with ESMTP id S231393AbjARP2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 10:28:49 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4B74A20A
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:28:19 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id y1so37240241plb.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 07:28:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1OpOAaZLDBZwIcKhB8f5D7QZijHxGB6vA+uOjDRAnP4=;
+        b=xsf6XlV16XgE3UECaYTxXM9NSNBUUd1c26+00o83eltx/b3NLDtDuWSkWKEdNjC8LO
+         9Vz102fr3QWaUf0xwi+L+lmP/cFV+v5lF5WV3enOjTulMMsAPvUNOFnyrBp/BQ0xFI04
+         RkLxiVh+WV81KjO55Fhc1o3e7U0XKK7z18Fvdm2iIQ1HziR4kumcZcpczsU2CeicBiRj
+         VwnCGVvjDhcpW+DGxzh5izoKH0J69gAc7gOZIKK8MtVMq0Tj9cKcBUQrQNZ3XtZ0xE48
+         jkqKdLQB2r2D/LbWa11zjPojTjeRH3hE9/tyIjLdihAFyNdtFHnT0yjc3XS5AIvs+G6y
+         Oxkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=nT7vo//zIHYtjuHwHvVEOuFwE5YKQ11WWGeqHMGeNf0=;
-        b=uTgpWe9P4CIdT+Q+FzQWm3ly8uH9REXn3e5KdRPdBuZcrRCMd8dPnIerWh5JNi9YzN
-         ABVUnOYZ4sUYXPwYD+AgED9E/7euME/lK9RrXFO6rJDaIKKK0tKnY2/TbGWXsOEajuLq
-         3uvBf9Vt1ZSqR4Q7+hoDX0QEbkpFbnMvu6o0F1vYiFIoB4RUsIIiTGwzQ1UcsSHam7UA
-         qYmt76lqxESlWXrEnKlxraiRir6a70i+DRn1mFy9MRQ+t/j53YWVtlKEyx5Qj0K6sTeB
-         eSIte1Ng6J1x5JbkFZ5DhCi35xCxQni2zYkW6B0Phm9UzwQkEJTIdhfQdX/oGy9qgDjo
-         sjAg==
-X-Gm-Message-State: AFqh2krorMvEFwLt581wDa7w7zgeycLZKSFniUvGkRPrxjoRyfIrBWSM
-        +IjE82fVXYOAbkT5tMKZsw==
-X-Google-Smtp-Source: AMrXdXvrHsL3B9As2RFndVMMqtmIzmNvUPOHglhiIYMLBz7EpgrDtHsKHz/dRPDHU+pft+uq8bi6Dg==
-X-Received: by 2002:a4a:b202:0:b0:4d1:c23:3c51 with SMTP id d2-20020a4ab202000000b004d10c233c51mr2822427ooo.9.1674055574338;
-        Wed, 18 Jan 2023 07:26:14 -0800 (PST)
-Received: from robh_at_kernel.org ([4.31.143.193])
-        by smtp.gmail.com with ESMTPSA id o10-20020a4aabca000000b004f22e40ad6fsm10435619oon.2.2023.01.18.07.26.13
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1OpOAaZLDBZwIcKhB8f5D7QZijHxGB6vA+uOjDRAnP4=;
+        b=4JBbE9b6gJNScp9GLVT+rbZY6cuKy7IfyuZYzlPUuj81vCVvzyFbOeBiK1Xe/D+tO6
+         3Zb0qDVlj49QdBQIrOqbXkMjL50LsXOHswj/G/pzLbVl0KCCAD5UaOR5aVBBZ9Hv/baX
+         ZcGlZlHw9KLiSmdiGazT75MJIkFhUrQCv4WLMvywsaz77maOd0NCudog+lMWyrqLv/bT
+         pZCGP18Qfai6SOpeoUdttUT3DM6ahVD9buybH0bZomN5Mk3Cv0foJkQkScFIjlC11l/B
+         YRgL7Q1A1zqxpjkPo6B5UYbfcPSeYl8sgPaAT6ZwNNUTmGNjTdT9Q4FG5IPe1Sz7FcFp
+         smFA==
+X-Gm-Message-State: AFqh2kqOWAIUPoiNqFnbC9a2IQhNrfYhMJr0HWlO8ToA7ulaaH4JGGlc
+        FjIDwy2dwhKeH2vpgDc9kbuM
+X-Google-Smtp-Source: AMrXdXue7Xsdr13GXyu90w85O2Fntx4faZksW69pVo7NLm0JWQLw2IALCxyJheaOCLZAMVv+OntIxA==
+X-Received: by 2002:a05:6a20:c189:b0:b8:6168:bc2e with SMTP id bg9-20020a056a20c18900b000b86168bc2emr8459540pzb.52.1674055698482;
+        Wed, 18 Jan 2023 07:28:18 -0800 (PST)
+Received: from thinkpad ([27.111.75.61])
+        by smtp.gmail.com with ESMTPSA id 35-20020a631563000000b0044ed37dbca8sm19032149pgv.2.2023.01.18.07.28.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 07:26:13 -0800 (PST)
-Received: (nullmailer pid 30555 invoked by uid 1000);
-        Wed, 18 Jan 2023 15:26:13 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Wed, 18 Jan 2023 07:28:17 -0800 (PST)
+Date:   Wed, 18 Jan 2023 20:58:09 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     andersson@kernel.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, konrad.dybcio@somainline.org,
+        amit.pundir@linaro.org, regressions@leemhuis.info,
+        sumit.semwal@linaro.org, will@kernel.org, catalin.marinas@arm.com,
+        robin.murphy@arm.com
+Subject: Re: [PATCH V4 06/11] remoteproc: qcom_q6v5_mss: Use a carveout to
+ authenticate modem headers
+Message-ID: <20230118152809.GC4690@thinkpad>
+References: <20230117085840.32356-1-quic_sibis@quicinc.com>
+ <20230117085840.32356-7-quic_sibis@quicinc.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof =?utf-8?q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-media@vger.kernel.org,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>, Shawn Tu <shawnx.tu@intel.com>
-In-Reply-To: <20230118103239.3409674-2-michael.riesch@wolfvision.net>
-References: <20230118103239.3409674-1-michael.riesch@wolfvision.net>
- <20230118103239.3409674-2-michael.riesch@wolfvision.net>
-Message-Id: <167405509286.19309.13229390529677400429.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: add imx415 cmos image sensor
-Date:   Wed, 18 Jan 2023 09:26:13 -0600
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230117085840.32356-7-quic_sibis@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 18 Jan 2023 11:32:38 +0100, Michael Riesch wrote:
-> Add devicetree binding for the Sony IMX415 CMOS image sensor.
+On Tue, Jan 17, 2023 at 02:28:35PM +0530, Sibi Sankar wrote:
+> Any access to the dynamically allocated metadata region by the application
+> processor after assigning it to the remote Q6 will result in a XPU
+> violation. Fix this by replacing the dynamically allocated memory region
+> with a no-map carveout and unmap the modem metadata memory region before
+> passing control to the remote Q6.
 > 
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> Reported-and-tested-by: Amit Pundir <amit.pundir@linaro.org>
+> Fixes: 6c5a9dc2481b ("remoteproc: qcom: Make secure world call for mem ownership switch")
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Thanks,
+Mani
+
 > ---
->  .../bindings/media/i2c/sony,imx415.yaml       | 120 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 127 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+> 
+> v4:
+>  * Use size/alloc-ranges instead of a specific address [Bjorn]
+>  * Include size checks
+> 
+> v3:
+>  * Drop revert no_kernel_mapping since it's already on the list [Mani]
+>  * kfree metadata from the branch for parity
+> 
+>  drivers/remoteproc/qcom_q6v5_mss.c | 59 +++++++++++++++++++++++++++---
+>  1 file changed, 53 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
+> index e2f765f87ec9..292e22f58df3 100644
+> --- a/drivers/remoteproc/qcom_q6v5_mss.c
+> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_device.h>
+> +#include <linux/of_reserved_mem.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_domain.h>
+>  #include <linux/pm_runtime.h>
+> @@ -215,6 +216,9 @@ struct q6v5 {
+>  	size_t mba_size;
+>  	size_t dp_size;
+>  
+> +	phys_addr_t mdata_phys;
+> +	size_t mdata_size;
+> +
+>  	phys_addr_t mpss_phys;
+>  	phys_addr_t mpss_reloc;
+>  	size_t mpss_size;
+> @@ -973,15 +977,35 @@ static int q6v5_mpss_init_image(struct q6v5 *qproc, const struct firmware *fw,
+>  	if (IS_ERR(metadata))
+>  		return PTR_ERR(metadata);
+>  
+> -	ptr = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL, dma_attrs);
+> -	if (!ptr) {
+> -		kfree(metadata);
+> -		dev_err(qproc->dev, "failed to allocate mdt buffer\n");
+> -		return -ENOMEM;
+> +	if (qproc->mdata_phys) {
+> +		if (size > qproc->mdata_size) {
+> +			ret = -EINVAL;
+> +			dev_err(qproc->dev, "metadata size outside memory range\n");
+> +			goto free_metadata;
+> +		}
+> +
+> +		phys = qproc->mdata_phys;
+> +		ptr = memremap(qproc->mdata_phys, size, MEMREMAP_WC);
+> +		if (!ptr) {
+> +			ret = -EBUSY;
+> +			dev_err(qproc->dev, "unable to map memory region: %pa+%zx\n",
+> +				&qproc->mdata_phys, size);
+> +			goto free_metadata;
+> +		}
+> +	} else {
+> +		ptr = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL, dma_attrs);
+> +		if (!ptr) {
+> +			ret = -ENOMEM;
+> +			dev_err(qproc->dev, "failed to allocate mdt buffer\n");
+> +			goto free_metadata;
+> +		}
+>  	}
+>  
+>  	memcpy(ptr, metadata, size);
+>  
+> +	if (qproc->mdata_phys)
+> +		memunmap(ptr);
+> +
+>  	/* Hypervisor mapping to access metadata by modem */
+>  	mdata_perm = BIT(QCOM_SCM_VMID_HLOS);
+>  	ret = q6v5_xfer_mem_ownership(qproc, &mdata_perm, false, true,
+> @@ -1010,7 +1034,9 @@ static int q6v5_mpss_init_image(struct q6v5 *qproc, const struct firmware *fw,
+>  			 "mdt buffer not reclaimed system may become unstable\n");
+>  
+>  free_dma_attrs:
+> -	dma_free_attrs(qproc->dev, size, ptr, phys, dma_attrs);
+> +	if (!qproc->mdata_phys)
+> +		dma_free_attrs(qproc->dev, size, ptr, phys, dma_attrs);
+> +free_metadata:
+>  	kfree(metadata);
+>  
+>  	return ret < 0 ? ret : 0;
+> @@ -1847,6 +1873,7 @@ static int q6v5_init_reset(struct q6v5 *qproc)
+>  static int q6v5_alloc_memory_region(struct q6v5 *qproc)
+>  {
+>  	struct device_node *child;
+> +	struct reserved_mem *rmem;
+>  	struct device_node *node;
+>  	struct resource r;
+>  	int ret;
+> @@ -1893,6 +1920,26 @@ static int q6v5_alloc_memory_region(struct q6v5 *qproc)
+>  	qproc->mpss_phys = qproc->mpss_reloc = r.start;
+>  	qproc->mpss_size = resource_size(&r);
+>  
+> +	if (!child) {
+> +		node = of_parse_phandle(qproc->dev->of_node, "memory-region", 2);
+> +	} else {
+> +		child = of_get_child_by_name(qproc->dev->of_node, "metadata");
+> +		node = of_parse_phandle(child, "memory-region", 0);
+> +		of_node_put(child);
+> +	}
+> +
+> +	if (!node)
+> +		return 0;
+> +
+> +	rmem = of_reserved_mem_lookup(node);
+> +	if (!rmem) {
+> +		dev_err(qproc->dev, "unable to resolve metadata region\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	qproc->mdata_phys = rmem->base;
+> +	qproc->mdata_size = rmem->size;
+> +
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.17.1
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx415.example.dtb: camera-sensor@1a: port:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx415.example.dtb: camera-sensor@1a: port:endpoint: 'link-frequencies' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230118103239.3409674-2-michael.riesch@wolfvision.net
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+மணிவண்ணன் சதாசிவம்
