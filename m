@@ -2,277 +2,442 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A56586718AD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 11:13:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 063D06718AE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 11:13:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230010AbjARKNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 05:13:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45802 "EHLO
+        id S229872AbjARKN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 05:13:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230117AbjARKL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 05:11:27 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C0B9577D;
-        Wed, 18 Jan 2023 01:18:42 -0800 (PST)
-X-UUID: 170fc892971111eda06fc9ecc4dadd91-20230118
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=v8dqe35PIjJM4g0zIru+4r9kftuAYVrE3lGfLmI9emw=;
-        b=WOI3LnKRwLDZhGsLwxLcDmeEWWVAe3gvxEdWLW/4nDoZl4kxwcAvdOlw4zuU/5XrQnWFrzrbelxmyudMUUi/3h78lUH8M0ZcHiKjN8FnnltgYTs20u/O49+f/0BDef22xNnyXILashJkHX5BcpXS/8fa7jxefm1MHESfNqQyPQg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.18,REQID:7ea8f6f1-5e2b-49ab-8e40-50f0107fa943,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:3ca2d6b,CLOUDID:c8379b8c-8530-4eff-9f77-222cf6e2895b,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-X-CID-BVR: 0
-X-UUID: 170fc892971111eda06fc9ecc4dadd91-20230118
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 231727774; Wed, 18 Jan 2023 17:18:37 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 18 Jan 2023 17:18:36 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Wed, 18 Jan 2023 17:18:36 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230024AbjARKLz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 05:11:55 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F41522CC47
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 01:20:47 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id j17so5631397wms.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 01:20:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2mdQy1xYPaaHGuA0a9LA6xfvLmFd2rIZsFn7hsp/hZU=;
+        b=kjk11as6enKtJ8ibAc1ZCIpjdiT8YtLHKSbthYja287PZy8e8NGkx4pJVxC6UFIpi+
+         ALnpv8EtNqxduasTX6l+KKPUdIzb/ewF2XYtjamuTAqMcKoHlD1sIcr3shnMRQgAmk3Q
+         28NJBPjzoZm/PCjePyTaPwYU7eL+rSmiO3xPVZZeAa875v0DnIIGU19jgBVHYwKqRI82
+         vL0iH63fp04hIN85U75FpCDDPtzAKPkr5+yH+rRmKj64CZ90D98jJslmp6rUc6hFnWNx
+         KhPNOJ0NAch2X/EaDZFVGDztyA8yYdZuFicStNO0UH+eHobn0ST1XvpbLnznTBplJPhP
+         2Ymw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2mdQy1xYPaaHGuA0a9LA6xfvLmFd2rIZsFn7hsp/hZU=;
+        b=y5Hu0NMcIlRIwFyfu6cN6ZH+ozadYUczxGCJkVDtfPsPTuf0bhpY9g8J3EkR3oSLRw
+         qbw5TVgifx3NA9URwf/0SiM7rFCwItrAWWOtjcwxZPqFBzBrK65D+S8pUoUiNsudMSku
+         B2lGS7uVyD5DiUFLHDJoLUhj79EZZMyJyQVys+olAs98NGFofrmQV7RSZeuJJ35D9JcT
+         blzqikMV3BKO5X+IGpa1SRs3Yp0fLlGlUW/Z5m9vBAIlYa4FonNbTg/fJiaun9Js2ohV
+         u57vIN6kLBZLEUWum+WaagCTEH8Ft9QnGwre56pcwQYpWaEcIHHawQ6VRtEk9rggBk6R
+         8Zaw==
+X-Gm-Message-State: AFqh2kqWwQtRup/ecpnUWtO/mZNQ3hDB2rsJVtpYH/z5BaP/Ha4L0r15
+        oXu4pkspE/als+Ny+mALMSeCwg==
+X-Google-Smtp-Source: AMrXdXtUunol89v+cbM3zPxVn5P5UERSja+yH7+yL7lS4slrV3hDbwKOrmLGF1hHEaU7dOAKgra5OA==
+X-Received: by 2002:a05:600c:35d0:b0:3db:c4c:9224 with SMTP id r16-20020a05600c35d000b003db0c4c9224mr4264433wmq.3.1674033646422;
+        Wed, 18 Jan 2023 01:20:46 -0800 (PST)
+Received: from lion.. (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
+        by smtp.gmail.com with ESMTPSA id f17-20020a1c6a11000000b003d9fba3c7a4sm1315372wmc.16.2023.01.18.01.20.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 01:20:45 -0800 (PST)
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Stephen Boyd <sboyd@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH v2 9/9] arm64: dts: mediatek: mt8186: Add display nodes
-Date:   Wed, 18 Jan 2023 17:18:29 +0800
-Message-ID: <20230118091829.755-10-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230118091829.755-1-allen-kh.cheng@mediatek.com>
-References: <20230118091829.755-1-allen-kh.cheng@mediatek.com>
+        Rob Herring <robh+dt@kernel.org>
+Cc:     phone-devel@vger.kernel.org,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Dylan Van Assche <me@dylanvanassche.be>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sdm845-oneplus-*: add audio devices
+Date:   Wed, 18 Jan 2023 09:20:39 +0000
+Message-Id: <20230118092040.1444129-1-caleb.connolly@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add display nodes and GCE info for MT8186 SoC. Also, add GCE
-(Global Command Engine) properties to the display nodes in order to
-enable the usage of the CMDQ (Command Queue), which is required for
-operating the display.
+Populate the audio devices found on the OnePlus 6 and 6T using the
+sdm845-sndcard driver.
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Both devices have the earpiece and headphone jack connected to the
+WCD9341 codec. The OnePlus 6 uses the MAX98927 speaker codec which is
+already supported upstream. The OnePlus 6T uses a currently unsupported
+TFA9894 codec.
+
+Two internal microphones are supported, as well as an external headset
+mic. Each DAI link is expected to be used for a single device.
+
+Alsa UCM2 configs for this setup can be found here, they are not yet
+upstream and include support for call audio which is missing in this
+patch
+
+https://gitlab.com/sdm845-mainline/alsa-ucm-conf/-/tree/9ed12836b269764c4a853411d38ccb6abb70b383/ucm2/OnePlus
+
+Co-developed-by: Dylan Van Assche <me@dylanvanassche.be>
+Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 135 +++++++++++++++++++++++
- 1 file changed, 135 insertions(+)
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 208 ++++++++++++++++++
+ .../dts/qcom/sdm845-oneplus-enchilada.dts     |  40 ++++
+ .../boot/dts/qcom/sdm845-oneplus-fajita.dts   |  29 +++
+ 3 files changed, 277 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index 45b9d6777929..90d1b631bc8f 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -5,6 +5,7 @@
-  */
- /dts-v1/;
- #include <dt-bindings/clock/mt8186-clk.h>
-+#include <dt-bindings/gce/mt8186-gce.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/memory/mt8186-memory-port.h>
-@@ -19,6 +20,13 @@
- 	#address-cells = <2>;
- 	#size-cells = <2>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 42cf4dd5ea28..76017fad4443 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -9,6 +9,8 @@
  
-+	aliases {
-+		ovl = &ovl;
-+		ovl_2l= &ovl_2l;
-+		rdma0 = &rdma0;
-+		rdma1 = &rdma1;
+ #include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
++#include <dt-bindings/sound/qcom,q6afe.h>
++#include <dt-bindings/sound/qcom,q6asm.h>
+ 
+ #include "sdm845.dtsi"
+ #include "pm8998.dtsi"
+@@ -466,6 +468,44 @@ &pmi8998_rradc {
+ 	status = "okay";
+ };
+ 
++&q6afedai {
++	qi2s@22 {
++		reg = <22>;
++		qcom,sd-lines = <1>;
 +	};
 +
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -632,6 +640,15 @@
- 			clocks = <&clk13m>;
- 		};
++	qi2s@23 {
++		reg = <23>;
++		qcom,sd-lines = <0>;
++	};
++};
++
++&q6asmdai {
++	dai@0 {
++		reg = <0>;
++	};
++
++	dai@1 {
++		reg = <1>;
++	};
++
++	dai@2 {
++		reg = <2>;
++	};
++
++	dai@3 {
++		reg = <3>;
++	};
++
++	dai@4 {
++		reg = <4>;
++	};
++
++	dai@5 {
++		reg = <5>;
++	};
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
+@@ -505,6 +545,140 @@ pinconf-rx {
+ 	};
+ };
  
-+		gce: mailbox@1022c000 {
-+			compatible = "mediatek,mt8186-gce";
-+			reg = <0 0X1022c000 0 0x4000>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_GCE>;
-+			clock-names = "gce";
-+			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-+			#mbox-cells = <2>;
++&sound {
++	compatible = "qcom,sdm845-sndcard";
++	pinctrl-0 = <&quat_mi2s_active &quat_mi2s_sd0_active &quat_mi2s_sd1_active>;
++	pinctrl-names = "default";
++
++	mm1-dai-link {
++		link-name = "MultiMedia1";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
++		};
++	};
++
++	mm2-dai-link {
++		link-name = "MultiMedia2";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA2>;
++		};
++	};
++
++	mm3-dai-link {
++		link-name = "MultiMedia3";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA3>;
++		};
++	};
++
++	mm4-dai-link {
++		link-name = "MultiMedia4";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA4>;
++		};
++	};
++
++	mm5-dai-link {
++		link-name = "MultiMedia5";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA5>;
++		};
++	};
++
++	mm6-dai-link {
++		link-name = "MultiMedia6";
++		cpu {
++			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA6>;
++		};
++	};
++
++	speaker_playback: speaker-dai-link {
++		link-name = "Speaker Playback";
++		cpu {
++			sound-dai = <&q6afedai QUATERNARY_MI2S_RX>;
 +		};
 +
- 		scp: scp@10500000 {
- 			compatible = "mediatek,mt8186-scp";
- 			reg = <0 0x10500000 0 0x40000>,
-@@ -1197,6 +1214,20 @@
- 			reg = <0 0x14000000 0 0x1000>;
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
-+			mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
-+				 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
++		platform {
++			sound-dai = <&q6routing>;
++		};
++	};
++
++	slim1-dai-link {
++		link-name = "SLIM Playback 1";
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_0_RX>;
 +		};
 +
-+		mutex: mutex@14001000 {
-+			compatible = "mediatek,mt8186-disp-mutex";
-+			reg = <0 0x14001000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_MUTEX0>;
-+			interrupts = <GIC_SPI 295 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
-+			mediatek,gce-events = <CMDQ_EVENT_DISP_STREAM_DONE_ENG_EVENT_0>,
-+					      <CMDQ_EVENT_DISP_STREAM_DONE_ENG_EVENT_1>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
- 		};
++		platform {
++			sound-dai = <&q6routing>;
++		};
++
++		codec {
++			sound-dai = <&wcd9340 0>; /* AIF1_PB */
++		};
++	};
++
++	slimcap1-dai-link {
++		link-name = "SLIM Capture 1";
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_0_TX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++
++		codec {
++			sound-dai = <&wcd9340 1>; /* AIF1_CAP */
++		};
++	};
++
++	slim2-dai-link {
++		link-name = "SLIM Playback 2";
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_1_RX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++
++		codec {
++			sound-dai = <&wcd9340 2>; /* AIF2_PB */
++		};
++	};
++
++	slimcap2-dai-link {
++		link-name = "SLIM Capture 2";
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_1_TX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++
++		codec {
++			sound-dai = <&wcd9340 3>; /* AIF2_CAP */
++		};
++	};
++
++	slimcap3-dai-link {
++		link-name = "SLIM Capture 3";
++		cpu {
++			sound-dai = <&q6afedai SLIMBUS_2_TX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++
++		codec {
++			sound-dai = <&wcd9340 5>; /* AIF3_CAP */
++		};
++	};
++};
++
+ &uart6 {
+ 	status = "okay";
  
- 		smi_common: smi@14002000 {
-@@ -1230,6 +1261,49 @@
- 			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
+@@ -634,6 +808,27 @@ mux {
+ 			input-enable;
  		};
+ 	};
++
++	speaker_default: speaker-default-state {
++		mux {
++			pins = "gpio69";
++			function = "gpio";
++			drive-strength = <16>;
++			bias-pull-up;
++			output-high;
++		};
++	};
++
++	wcd_default: wcd-default-state {
++		mux {
++			pins = "gpio54";
++			function = "gpio";
++
++			input-enable;
++			bias-pull-down;
++			drive-strength = <2>;
++		};
++	};
+ };
  
-+		ovl: ovl@14005000 {
-+			compatible = "mediatek,mt8186-disp-ovl",
-+				     "mediatek,mt8192-disp-ovl";
-+			reg = <0 0x14005000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_OVL0>;
-+			interrupts = <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH 0>;
-+			iommus = <&iommu_mm IOMMU_PORT_L0_OVL_RDMA0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x5000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
-+
-+		ovl_2l: ovl@14006000 {
-+			compatible = "mediatek,mt8186-disp-ovl-2l",
-+				     "mediatek,mt8192-disp-ovl-2l";
-+			reg = <0 0x14006000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_OVL0_2L>;
-+			interrupts = <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH 0>;
-+			iommus = <&iommu_mm IOMMU_PORT_L1_OVL_2L_RDMA0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x6000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
-+
-+		rdma0: rdma@14007000 {
-+			compatible = "mediatek,mt8186-disp-rdma",
-+				     "mediatek,mt8183-disp-rdma";
-+			reg = <0 0x14007000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
-+			interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH 0>;
-+			iommus = <&iommu_mm IOMMU_PORT_L1_DISP_RDMA0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x7000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
-+
-+		color: color@14009000 {
-+			compatible = "mediatek,mt8186-disp-color",
-+				     "mediatek,mt8173-disp-color";
-+			reg = <0 0x14009000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_COLOR0>;
-+			interrupts = <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x8000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
-+
- 		dpi: dpi@1400a000 {
- 			compatible = "mediatek,mt8186-dpi";
- 			reg = <0 0x1400a000 0 0x1000>;
-@@ -1247,6 +1321,56 @@
- 			};
- 		};
+ &venus {
+@@ -641,6 +836,19 @@ &venus {
+ 	firmware-name = "qcom/sdm845/oneplus6/venus.mbn";
+ };
  
-+		ccorr: ccorr@1400b000 {
-+			compatible = "mediatek,mt8186-disp-ccorr",
-+				     "mediatek,mt8192-disp-ccorr";
-+			reg = <0 0x1400b000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_CCORR0>;
-+			interrupts = <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xb000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
++&wcd9340 {
++	pinctrl-0 = <&wcd_default>;
++	pinctrl-names = "default";
++	clock-names = "extclk";
++	clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
++	reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
++	vdd-buck-supply = <&vreg_s4a_1p8>;
++	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
++	vdd-tx-supply = <&vreg_s4a_1p8>;
++	vdd-rx-supply = <&vreg_s4a_1p8>;
++	vdd-io-supply = <&vreg_s4a_1p8>;
++};
 +
-+		aal: aal@1400c000 {
-+			compatible = "mediatek,mt8186-disp-aal",
-+				     "mediatek,mt8183-disp-aal";
-+			reg = <0 0x1400c000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_AAL0>;
-+			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
+ &wifi {
+ 	status = "okay";
+ 	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index bf2cf92e8976..aae1a3a27144 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -32,3 +32,43 @@ &display_panel {
+ &bq27441_fg {
+ 	monitored-battery = <&battery>;
+ };
 +
-+		gamma: gamma@1400d000 {
-+			compatible = "mediatek,mt8186-disp-gamma",
-+				     "mediatek,mt8183-disp-gamma";
-+			reg = <0 0x1400d000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_GAMMA0>;
-+			interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xd000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
++&i2c4 {
++	status = "okay";
 +
-+		postmask: postmask@1400e000 {
-+			compatible = "mediatek,mt8186-disp-postmask",
-+				     "mediatek,mt8192-disp-postmask";
-+			reg = <0 0x1400e000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_POSTMASK0>;
-+			interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xe000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
++	max98927_codec: max98927@3a {
++		compatible = "maxim,max98927";
++		reg = <0x3a>;
++		#sound-dai-cells = <1>;
 +
-+		dither: dither@1400f000 {
-+			compatible = "mediatek,mt8186-disp-dither",
-+				     "mediatek,mt8183-disp-dither";
-+			reg = <0 0x1400f000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_DITHER0>;
-+			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
++		pinctrl-0 = <&speaker_default>;
++		pinctrl-names = "default";
 +
- 		dsi0: dsi@14013000 {
- 			compatible = "mediatek,mt8186-dsi";
- 			reg = <0 0x14013000 0 0x1000>;
-@@ -1280,6 +1404,17 @@
- 			#iommu-cells = <1>;
- 		};
++		reset-gpios = <&tlmm 69 GPIO_ACTIVE_LOW>;
++
++		vmon-slot-no = <1>;
++		imon-slot-no = <0>;
++	};
++};
++
++&sound {
++	model = "OnePlus 6";
++	audio-routing =	"RX_BIAS", "MCLK",
++			"AMIC2", "MIC BIAS2",
++			"AMIC3", "MIC BIAS4",
++			"AMIC4", "MIC BIAS1",
++			"AMIC5", "MIC BIAS4";
++
++	speaker-dai-link {
++		codec {
++			sound-dai = <&max98927_codec 0>;
++		};
++	};
++};
++
++&wcd9340 {
++	qcom,micbias1-microvolt = <1800000>;
++	qcom,micbias2-microvolt = <2700000>;
++	qcom,micbias3-microvolt = <1800000>;
++	qcom,micbias4-microvolt = <1800000>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+index 1b6b5bf368df..4b1a5d3c3713 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+@@ -29,10 +29,39 @@ &display_panel {
+ 	compatible = "samsung,s6e3fc2x01";
+ };
  
-+		rdma1: rdma@1401f000 {
-+			compatible = "mediatek,mt8186-disp-rdma",
-+				     "mediatek,mt8183-disp-rdma";
-+			reg = <0 0x1401f000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
-+			interrupts = <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH 0>;
-+			iommus = <&iommu_mm IOMMU_PORT_L1_DISP_RDMA1>;
-+			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0xf000 0x1000>;
-+			power-domains = <&spm MT8186_POWER_DOMAIN_DIS>;
-+		};
++&i2c4 {
++	/* nxp,tfa9894 @ 0x34 */
++};
 +
- 		wpesys: clock-controller@14020000 {
- 			compatible = "mediatek,mt8186-wpesys";
- 			reg = <0 0x14020000 0 0x1000>;
+ &bq27441_fg {
+ 	monitored-battery = <&battery>;
+ };
+ 
++&sound {
++	model = "OnePlus 6T";
++	audio-routing = "RX_BIAS", "MCLK",
++			"AMIC1", "MIC BIAS3",
++			"AMIC2", "MIC BIAS2",
++			"AMIC3", "MIC BIAS4",
++			"AMIC4", "MIC BIAS1",
++			"AMIC5", "MIC BIAS3";
++
++};
++
++/*
++ * The TFA9894 codec is currently unsupported.
++ * We need to delete the node to allow the soundcard
++ * to probe for headphones/earpiece.
++ */
++/delete-node/ &speaker_playback;
++
+ &rmi4_f12 {
+ 	touchscreen-y-mm = <148>;
+ };
++
++&wcd9340 {
++	qcom,micbias1-microvolt = <2700000>;
++	qcom,micbias2-microvolt = <2700000>;
++	qcom,micbias3-microvolt = <2700000>;
++	qcom,micbias4-microvolt = <2700000>;
++};
 -- 
-2.18.0
+2.39.0
 
