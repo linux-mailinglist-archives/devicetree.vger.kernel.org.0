@@ -2,102 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08176671B7B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 13:08:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 232E0671B8B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 13:10:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjARMIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 07:08:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40542 "EHLO
+        id S229840AbjARMKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 07:10:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230300AbjARMHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 07:07:32 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 038142BEEB
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 03:25:40 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so1185033wma.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 03:25:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9S8ByPT+cY6acXLQiIcdNeZj1HoatdZe/caRBhsxuvQ=;
-        b=LQWSOv3YQ2h5aKJS4y8NJjzjDQiY/Fck2pr/3Gu2YJkTEVEKXF9o7PHxgFzW91V3mx
-         emFkQVe0kEcO/f5nmTsfo9esCNJ9q8czxRQncOOVxyCogxufPgDTXslRu4zK3iCId6Y/
-         HoxATEEYMqK8H2F2picHLhAVqGodKyvfh8k10HICSoNwLfwZO9t2AxAvmJxZR0QSarjO
-         HOPxViL9D74ANNY1Xu0CtKMdF5G+UpKb9fAVKpPBXHLaB1vv4MINK/lgKezSU4wnbR6/
-         fMDVXsQe/CUEEqbf7Ua5iRiOnFbLoIJgSVJP3t0rAekAYF2lft9mOF4762qSNKClKaPa
-         bRfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9S8ByPT+cY6acXLQiIcdNeZj1HoatdZe/caRBhsxuvQ=;
-        b=YtRHj7RF6Wc1Hh8zyuVN+ps9WPRIjgiR8v4RXQqGg4uYClMbIznlQqXhU7FLYaoAOY
-         VIzLGQjDUjVtv2sXHd9pffeNn4aXySNXF4N9Ur0F5dgE5DpnbCw0EvYcb/m3ajkV/y0s
-         hwlGVjX1ZuIpURTHg1GgmeTQFME/2pxBqNvR49xhGXGgClTBQQjxCB3qvRaNg4+uPBta
-         lULIn8faPe3LzY/e4SE8QIl882wPkiJ7nF/jpU/nV/EswIw9gfuwPXVBuhm+G+e/gT0p
-         Eqfy6EuFgiAdgW0+/daoRYRGzLcP3uYZpsCRLKtBqTP9s8xhGTZYCl+Q323qdLEZqAPe
-         oG1A==
-X-Gm-Message-State: AFqh2kqgKXUnX3FPOxqHC1VUKnnhIPsCXcVBLjCGKeZsfM2ZThNZv2iB
-        5xidGUAfvQjEtURDFfDX0zrsXA==
-X-Google-Smtp-Source: AMrXdXvHoKu8bsx3tz1pLpniDjLrdVUdOpfIyyOb9hCGG1RqYdqx09IsxRagPtPlOw41/A8sDx+tJw==
-X-Received: by 2002:a05:600c:19cd:b0:3d9:922b:b148 with SMTP id u13-20020a05600c19cd00b003d9922bb148mr6527526wmq.27.1674041138553;
-        Wed, 18 Jan 2023 03:25:38 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u14-20020adfdd4e000000b002366e3f1497sm31460441wrm.6.2023.01.18.03.25.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 03:25:37 -0800 (PST)
-Message-ID: <331eed95-eaf7-5c5a-86c1-0ee7b5591b9a@linaro.org>
-Date:   Wed, 18 Jan 2023 12:25:35 +0100
+        with ESMTP id S230057AbjARMJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 07:09:43 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AAB94956F;
+        Wed, 18 Jan 2023 03:28:19 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30IBS1xb057677;
+        Wed, 18 Jan 2023 05:28:01 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1674041281;
+        bh=at1vaeGY8DDdVFlJntRD04T4GBNpSZ9lJveSQsHFpVI=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=clSpdEQmDyBTow75TnJqdDKLPN0BbuGugLIN1MDY3Jy73pki97acL7CI2ABC9pgco
+         R+kBD5OD92N8oX6XD6JbIrgbmBI/6dipxZos84qZqSIbya5TFqlsQfkgK1OeFb9Pl3
+         ppVNUGrK8JLPfSgRvm+p4Ep7H9Vqb4WuO5aZJ3es=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30IBS1Dd093279
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 18 Jan 2023 05:28:01 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 18
+ Jan 2023 05:28:01 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 18 Jan 2023 05:28:01 -0600
+Received: from [172.24.145.61] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30IBRthi007034;
+        Wed, 18 Jan 2023 05:27:56 -0600
+Message-ID: <260c19fe-d831-eaac-d7fb-e38495f3eda0@ti.com>
+Date:   Wed, 18 Jan 2023 16:57:55 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 2/3] ASoC: dt-bindings: qcom,wcd934x: Describe
- slim-ifc-dev
-To:     Rob Herring <robh@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230113162214.117261-1-krzysztof.kozlowski@linaro.org>
- <20230113162214.117261-2-krzysztof.kozlowski@linaro.org>
- <20230117192724.GA3489389-robh@kernel.org>
+ Thunderbird/102.4.2
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
+        <vladimir.oltean@nxp.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH net-next v6 3/3] net: ethernet: ti: am65-cpsw: Add support
+ for SERDES configuration
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230117192724.GA3489389-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+References: <20230104103432.1126403-1-s-vadapalli@ti.com>
+ <20230104103432.1126403-4-s-vadapalli@ti.com>
+ <CAMuHMdWiXu9OJxH4mRnneC3jhqTEcYXek3kbr7svhJ3cnPPwcw@mail.gmail.com>
+ <69d39885-68df-7c94-5a98-5f1e174c7316@ti.com>
+ <CAMuHMdX0+7UyjbR7HLVqghU3dpa+VEL9oV6tkLSZxcZdhM=UXQ@mail.gmail.com>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <CAMuHMdX0+7UyjbR7HLVqghU3dpa+VEL9oV6tkLSZxcZdhM=UXQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 20:27, Rob Herring wrote:
-> On Fri, Jan 13, 2023 at 05:22:13PM +0100, Krzysztof Kozlowski wrote:
->> The "slim-ifc-dev" property should not be just "true", because it allows
->> any type.
+Hello Geert,
+
+On 18/01/23 15:57, Geert Uytterhoeven wrote:
+> Hi Siddarth,
 > 
-> Yes, but it is common, so it should be in a common schema. Though 
-> there's only one other binding using it (wcd9335.txt).
+> On Wed, Jan 18, 2023 at 6:48 AM Siddharth Vadapalli <s-vadapalli@ti.com> wrote:
+>> On 17/01/23 19:25, Geert Uytterhoeven wrote:
+>>> On Wed, Jan 4, 2023 at 11:37 AM Siddharth Vadapalli <s-vadapalli@ti.com> wrote:
+>>>> Use PHY framework APIs to initialize the SERDES PHY connected to CPSW MAC.
+>>>>
+>>>> Define the functions am65_cpsw_disable_phy(), am65_cpsw_enable_phy(),
+>>>> am65_cpsw_disable_serdes_phy() and am65_cpsw_enable_serdes_phy().
+>>>>
+>>>> Add new member "serdes_phy" to struct "am65_cpsw_slave_data" to store the
+>>>> SERDES PHY for each port, if it exists. Use it later while disabling the
+>>>> SERDES PHY for each port.
+>>>>
+>>>> Power on and initialize the SerDes PHY in am65_cpsw_nuss_init_slave_ports()
+>>>> by invoking am65_cpsw_enable_serdes_phy().
+>>>>
+>>>> Power off the SerDes PHY in am65_cpsw_nuss_remove() by invoking
+>>>> am65_cpsw_disable_serdes_phy().
+>>>>
+>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>
+>>> Thanks for your patch, which is now commit dab2b265dd23ef8f ("net:
+>>> ethernet: ti: am65-cpsw: Add support for SERDES configuration")
+>>> in net-next.
+>>>
+>>>> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+>>>> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> 
+>>>> +static int am65_cpsw_init_serdes_phy(struct device *dev, struct device_node *port_np,
+>>>> +                                    struct am65_cpsw_port *port)
+>>>> +{
+>>>> +       const char *name = "serdes-phy";
+>>>> +       struct phy *phy;
+>>>> +       int ret;
+>>>> +
+>>>> +       phy = devm_of_phy_get(dev, port_np, name);
+>>>> +       if (PTR_ERR(phy) == -ENODEV)
+>>>> +               return 0;
+>>>> +
+>>>> +       /* Serdes PHY exists. Store it. */
+>>>
+>>> "phy" may be a different error here (e.g. -EPROBE_DEFER)...
+>>
+>> The Serdes is automatically configured for multi-link protocol (Example: PCIe +
+>> QSGMII) by the Serdes driver, due to which it is not necessary to invoke the
+>> Serdes configuration via phy_init(). However, for single-link protocol (Example:
+>> Serdes has to be configured only for SGMII), the Serdes driver doesn't configure
+>> the Serdes unless requested. For this case, the am65-cpsw driver explicitly
+>> invokes phy_init() for the Serdes to be configured, by looking up the optional
+>> device-tree phy named "serdes-phy". For this reason, the above section of code
+>> is actually emulating a non-existent "devm_of_phy_optional_get()". The
+>> "devm_of_phy_optional_get()" function is similar to the
+>> "devm_phy_optional_get()" function in the sense that the "serdes-phy" phy in the
+>> device-tree is optional and it is not truly an error if the property isn't present.
+> 
+> Yeah, I noticed while adding devm_phy_optional_get(), and looking for
+> possible users.
+> See "[PATCH treewide 0/7] phy: Add devm_of_phy_optional_get() helper"
+> https://lore.kernel.org/all/cover.1674036164.git.geert+renesas@glider.be
 
-This is still wcd9335 and wcd934x specific, not really common. Maybe
-next Qualcomm codec would also bring it so then we can define common
-schema for the codecs. But so far I think it is not really a common
-property.
+Thank you for working on this.
 
-Best regards,
-Krzysztof
+> 
+>> Thank you for pointing out that if the Serdes driver is built as a module and
+>> the am65-cpsw driver runs first, then the "phy" returned for "serdes-phy" will
+>> be "-EPROBE_DEFER".
+>>
+>>>
+>>>> +       port->slave.serdes_phy = phy;
+>>>> +
+>>>> +       ret =  am65_cpsw_enable_phy(phy);
+>>>
+>>> ... so it will crash when dereferencing phy in phy_init().
+>>>
+>>> I think you want to add an extra check above:
+>>>
+>>>     if (IS_ERR(phy))
+>>>             return PTR_ERR(phy);
+>>
+>> Please let me know if posting a "Fixes" patch for fixing this net-next commit is
+>> the right process to address this.
+> 
+> I think it is, as devm_of_phy_optional_get() might not make it in time.
 
+I posted the patch at:
+https://lore.kernel.org/r/20230118112136.213061-1-s-vadapalli@ti.com
+
+> 
+>>>> @@ -1959,6 +2021,11 @@ static int am65_cpsw_nuss_init_slave_ports(struct am65_cpsw_common *common)
+>>>
+>>> Right out of context we have:
+>>>
+>>>                 port->slave.ifphy = devm_of_phy_get(dev, port_np, NULL);
+>>>                 if (IS_ERR(port->slave.ifphy)) {
+>>>                         ret = PTR_ERR(port->slave.ifphy);
+>>>                         dev_err(dev, "%pOF error retrieving port phy: %d\n",
+>>>                                 port_np, ret);
+>>>
+>>> So if there is only one PHY (named "serdes-phy") in DT, it will be
+>>> used for both ifphy and serdes_phy. Is that intentional?
+>>
+>> The PHY corresponding to "ifphy" is meant to be the CPSW MAC's PHY and not the
+>> Serdes PHY. The CPSW MAC's PHY is configured by the
+>> drivers/phy/ti/phy-gmii-sel.c driver and this is NOT an optional PHY, unlike the
+>> Serdes PHY. Therefore, it is assumed that the CPSW MAC's PHY is always provided
+>> in the device-tree, while the Serdes PHY is optional, depending on whether the
+>> Serdes is being configured for single-link protocol or multi-link protocol.
+>> Please let me know if this appears to be an issue and I will fix it based on
+>> your suggestion.
+> 
+> Hence this should be documented in the DT bindings. Please document
+> there can be 1 or 2 phys, with an optional "phys-names" property,
+> listing "ifphy" and "serdes-phy" (the DT people might request a rename).
+
+I will work on this.
+
+Regards,
+Siddharth.
