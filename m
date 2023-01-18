@@ -2,105 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 512D3672781
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 19:55:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E5DA672787
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 19:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbjARSzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 13:55:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38004 "EHLO
+        id S229591AbjARS5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 13:57:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjARSzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 13:55:39 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 213E15957F
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 10:55:38 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pIDak-0000fm-BE; Wed, 18 Jan 2023 19:55:22 +0100
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:edde:b534:8a61:9dbc])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id B526B15B0E4;
-        Wed, 18 Jan 2023 18:55:19 +0000 (UTC)
-Date:   Wed, 18 Jan 2023 19:55:11 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S229568AbjARS5G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 13:57:06 -0500
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162C637B48;
+        Wed, 18 Jan 2023 10:57:05 -0800 (PST)
+Received: by mail-oi1-x235.google.com with SMTP id r9so18649218oie.13;
+        Wed, 18 Jan 2023 10:57:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kJ7c7Vo/BwNb8ATTZdK88lhtWOwVc9yYOlKvL9FOVbA=;
+        b=O+DTiB4eFPvwVSmh0Oc1RNyI3b4w/USC971MFIy2Oj7qv6Mb65NObYc27tFSaV3+Kt
+         JIyjlx6VTNZHyBOp1mgYA7VMJAC/1sQtJ5A4Rn6WvjGoH8r65+7YLZToSNvKYPn8sOQM
+         FO+hptovpfuSND4GgcEvyvPb1IgNO7w4A+aub/2mQKgnuzveYGQHMPwnOQgHRltScXLc
+         y2WLAqod+x3rfeAdktELotDaMOj7CgJRft13cF6ZKbDuHPpv95hioMgs/E4ZrN0xQNt4
+         faOmoGu46P+0eqzM2QICRLCb6jkHHkGXP6PSNopXAiZPzJG+hyFOJW/swBuAfsjLNnVe
+         N7Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kJ7c7Vo/BwNb8ATTZdK88lhtWOwVc9yYOlKvL9FOVbA=;
+        b=THJjH7tszCJ3JzJbmvN5+7Wa7G53j3Rs0WqpuTnXkO0JIFiTybNkY6l8bq/SWR8Geh
+         0236LaItP2ZGu8BXBUaTmhBQsADC2dcTWK8OZAlg4bezrTyhQ4LzYQMlgd3lJ2Hkkv1W
+         miGchox1C6i02g2el/KDuhc+yoUpSYIcNtkT5bDqxzxoMypczez4dwL0c0UJymZ8A6z0
+         VhVmf491bH3+eBfkkoUbkJ8aCK4LXXxcWZvatAy1dtQbizwUcAup7/CAHBQOUoWZySKo
+         U2dxve2f2rT/fd8/DlOMPtxQXtfoBAp9vyxuuQYiSEVSIU8O/kurlThDDtbKt68JhO2H
+         rGRw==
+X-Gm-Message-State: AFqh2krZSbKrKc0Ni7N7q7v8osDH7QC9VGoHA/4pEQNozxXgcpNzKiT+
+        6A4wBE3/Z2eeP4G5r+9u0zg=
+X-Google-Smtp-Source: AMrXdXu2Bjn3EDjplIz2SjCZ/VCSstcPXzUywHaCXzfO0sV13/OIseNAQOTmQIg/H5/1r3CV7FSqzA==
+X-Received: by 2002:a05:6808:238f:b0:360:d951:28bf with SMTP id bp15-20020a056808238f00b00360d95128bfmr18999677oib.19.1674068224314;
+        Wed, 18 Jan 2023 10:57:04 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id e23-20020aca1317000000b0035028730c90sm1539796oii.1.2023.01.18.10.57.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 10:57:03 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Wed, 18 Jan 2023 10:57:01 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 0/2] phy: Add support for NXP TJR1443 CAN Transceiver
-Message-ID: <20230118185511.jepo6sseafg452sk@pengutronix.de>
-References: <cover.1674037830.git.geert+renesas@glider.be>
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Akshay Gupta <Akshay.Gupta@amd.com>, Kun Yi <kunyi@google.com>,
+        Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Eric Tremblay <etremblay@distech-controls.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: adi,ltc2992: correct unit
+ address in example
+Message-ID: <20230118185701.GA965036@roeck-us.net>
+References: <20230118172237.349111-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vankhrwftcwisvsj"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1674037830.git.geert+renesas@glider.be>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230118172237.349111-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 18, 2023 at 06:22:36PM +0100, Krzysztof Kozlowski wrote:
+> lower-case hex is expected for unit addresses:
+> 
+>   adi,ltc2992.example.dts:22.24-38.15: Warning (i2c_bus_reg): /example-0/i2c/ltc2992@6F: I2C bus unit address format error, expected "6f"
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
---vankhrwftcwisvsj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to hwmon-next.
 
-On 18.01.2023 11:39:22, Geert Uytterhoeven wrote:
-> 	Hi all,
->=20
-> The NXP TJR1443 High-speed CAN transceiver with Sleep mode is a
-> pin-compatible alternative for the TI TCAN1043.  Hence this patch series
-> adds support for it to the existing TI TCAN1043 DT bindings and to the
-> generic CAN Transceiver PHY driver.
->=20
-> This has been tested on the Renesas White-Hawk development board.
->=20
-> Thanks for your comments!
+Thanks,
+Guenter
 
-For both patches:
-
-Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---vankhrwftcwisvsj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmPIQIwACgkQrX5LkNig
-013+TAf9FCnLGd5e/KZG5ygyduglODeGFDaDHkAb8Iks0AB7NzKvx8eMDOqoYnwB
-JPPpZMN5KxvE1E+8LSZ1IHygxiCtG9LwySztiQebfIhBLO4JkiIJR8w4x++viN0h
-5gKC5/PuBIa1v0znqOH44kRMKCIspJ4c1ALfav3ZRG5CBmJRYAR33CMtyqwrSRUm
-YKf1dJPoCBno/ll1j4hz/LWbQO5kBWw6itRVsm+fR66q/tiQtTtWTyq+zxZnfVnk
-vxNfuUSOrze5dIhmEVGnDhF+Vj5TDnVV4GfImBAbfD5zkqAaqq3DOuwoFeHMS78m
-/H7j72RSD4zA7zdw+Y9kT00/g+nLWA==
-=YaNG
------END PGP SIGNATURE-----
-
---vankhrwftcwisvsj--
+> ---
+> 
+> Changes since v1:
+> 1. Add Rb tag
+> 2. Reorder patches to silence warnings.
+> ---
+>  Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
+> index 64a8fcb7bc46..ec984248219e 100644
+> --- a/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
+> @@ -59,12 +59,12 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> -        ltc2992@6F {
+> +        ltc2992@6f {
+>                  #address-cells = <1>;
+>                  #size-cells = <0>;
+>  
+>                  compatible = "adi,ltc2992";
+> -                reg = <0x6F>;
+> +                reg = <0x6f>;
+>  
+>                  channel@0 {
+>                          reg = <0x0>;
