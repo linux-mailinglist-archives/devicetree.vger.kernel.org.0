@@ -2,77 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8A92671ED2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:04:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BC13671ED4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:04:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230473AbjAROEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:04:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60694 "EHLO
+        id S231244AbjAROEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:04:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230463AbjARODo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:03:44 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAD651B577
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:39:35 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id u19so83242839ejm.8
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:39:35 -0800 (PST)
+        with ESMTP id S231131AbjARODt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:03:49 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC592CC75
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:40:03 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so1569135wmq.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:40:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JLiOrZS+WePAJkBX0TaxEKJrTVBXquxBTcodLqsMjNk=;
-        b=eQtyOvP/X/xRyZAMWXl1+VsOoSBoK9UqH4812U/gp0c3KR1Ok/o0d39KuOqXx4BEvI
-         TgUgq1CHKl9jhe4ltarotU2DqcAoUmPCLTjVJMsjLlyIvQvIVuXZDk0DUhq+ywbGmcq7
-         hLPR8N4XsE8ly9XJ2VH84UGy2TiBnR9kpqGexZv7xhWEHA6EAs8NKDchld+dh27l/bZG
-         hGA/puaB/TKzI7avyRrXcIbO4UOZCbBsHCn3NEyAAcQ+HmBkdx7E5fy78WWqASzKu+wv
-         LR06IuZRLCCeqxIDxS2xPesq2lFLkn6QanU+5df2HgApLM4sGvQS9aQecF/ee0s8hDmj
-         E8Qg==
+        bh=Jjc4VCpZNQP556V0c7PmfHBKoB04p5vvZzElOaTdSEg=;
+        b=XV8+LO/0KQENBbmt/brfX4pIAJEO8/CsQI3T5uXentjRlVKmeZ+Lez9yC3jGyXpH7S
+         O98BAdGi3PF7LJ19YIl6AltWzzY6KDINRRbLEzyK+oXZ9peDaAEL8qewhOQ5TBIMLNvL
+         cY17/rRQddElbgeeOmueS/vt+DJnU+0yT0Y5fJIBcsd4bmthmE91Bpa3asUxaI0H2P46
+         Mp8gZ7WZCSG9TzLhYf8ZHbTkrYNPiMIBqWpdtq91zi70bdUI7YEzQTGCw3sLxg3/IIHp
+         8njKqiHGKyTlN53ZXhE0CBTE4zcsEllgVNwM4Se39fxtfRUxj6J3uOLbS0wsXRYXJSjH
+         daRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JLiOrZS+WePAJkBX0TaxEKJrTVBXquxBTcodLqsMjNk=;
-        b=gc83hWBspyis62ONVjyFXRzR5l8+3MtF5XRO1EiaNPFMO3mEqSqYgNM16L1wTv6GS/
-         SA6q7CJ+85v73E89nWk/44tNIW0GjsLrALRVB29MToAHJAjhCcsJY85Viik6qjVGvDVf
-         VzwDcLfnMpk9OXSkjmp0fszjM9ncgqR9pog77q7BNcnc0m1x3mWNep0B4FBrrssABy94
-         TRWq5BxAOj6u8xNswzPF2A3Ak+vYZtMlKid9Jgqlxm8sYrpoymck6BNj5eovU+K49hm8
-         URFUgJSX8RDorzfTSfTNb7lM0bQGXBH0GuzkC+UQ6sbkOrCuNoC75luzs+qhI0R9CDUy
-         ZQxA==
-X-Gm-Message-State: AFqh2kr4WjyiTYF+Ld2T6kI1Bx+qYeShhN6JIRuRICjorkWPB0FTg+gK
-        Em7rRjISpKEO61/2vyhCBxjWlw==
-X-Google-Smtp-Source: AMrXdXthsaKA+8RRlnzNfg9Kt6lw3j+0TnVTjJTV2+ax7ChEa3T445vCDL0tAo066OGm338qxTbz2Q==
-X-Received: by 2002:a17:907:10d4:b0:7ec:27d7:1838 with SMTP id rv20-20020a17090710d400b007ec27d71838mr7595357ejb.22.1674049174405;
-        Wed, 18 Jan 2023 05:39:34 -0800 (PST)
-Received: from [192.168.1.101] (abxh252.neoplus.adsl.tpnet.pl. [83.9.1.252])
-        by smtp.gmail.com with ESMTPSA id gn19-20020a1709070d1300b00815835b4b5fsm14543624ejc.134.2023.01.18.05.39.31
+        bh=Jjc4VCpZNQP556V0c7PmfHBKoB04p5vvZzElOaTdSEg=;
+        b=CnRUY4h7gWhTeQrE2pwfCYrDfwiCMq0tuZLKwFhXq40114HrfmDY1QdoVD8E9+s3h9
+         qZ+ccXP9nKHJxnv8CzvsvpK4anpwExtZmGEPTVOYdRezaq+wkRlD5hBDrXYe9hS2dks0
+         3vM7M4c0PVx/wLrdu2c3rG5FS8m7l9x528OGoDBRKcByGcUkthoAkTT3N62aYkju7UWM
+         hghgAhmbSAPcwkjj1VoIhBmTLo8owt4AEXXpzv2u67OWZFyGxEoE2b5/rqOO+og04i4a
+         9owqvfh67oUY9U1smjvB0ekca4Uz3NYo6xbBHSABynFo/7SNEZEcTKufcrb/J+nn8441
+         Tf0g==
+X-Gm-Message-State: AFqh2krsQeXeS8ofYNEqcPpfgOMMyD/OMcVe5kGIHbsD3XU2rEuYVgWL
+        c8oARiWjTbRcdHUKhcUYVqYMEA==
+X-Google-Smtp-Source: AMrXdXsYqqOpahJDdUdyjMPCRZYkQl34osNeO69nPzrNQAGp4jHjFNBdqZh1Sg7dDQ6W3H8ez7AfOQ==
+X-Received: by 2002:a05:600c:181b:b0:3da:ff1f:e8d3 with SMTP id n27-20020a05600c181b00b003daff1fe8d3mr6684165wmp.15.1674049202461;
+        Wed, 18 Jan 2023 05:40:02 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p15-20020a05600c468f00b003d9b87296a9sm2024751wmo.25.2023.01.18.05.40.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 05:39:34 -0800 (PST)
-Message-ID: <e4bf03b3-2097-0f71-a40c-d2a0e0f58401@linaro.org>
-Date:   Wed, 18 Jan 2023 14:39:30 +0100
+        Wed, 18 Jan 2023 05:40:02 -0800 (PST)
+Message-ID: <1a8c006d-c9b9-9fd0-147e-7e511cb236fe@linaro.org>
+Date:   Wed, 18 Jan 2023 14:40:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 5/7] arm64: qcom: dts: msm8996 switch from
- RPM_SMD_BB_CLK1 to RPM_SMD_XO_CLK_SRC
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v6 1/2] dt-bindings: leds: backlight: Add Kinetic KTZ8866
+ backlight
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+To:     Jianhua Lu <lujianhua000@gmail.com>, Lee Jones <lee@kernel.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230117225824.1552604-1-dmitry.baryshkov@linaro.org>
- <20230117225824.1552604-6-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230117225824.1552604-6-dmitry.baryshkov@linaro.org>
+        Helge Deller <deller@gmx.de>
+Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-fbdev@vger.kernel.org
+References: <20230118131002.15453-1-lujianhua000@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230118131002.15453-1-lujianhua000@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -83,87 +81,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 17.01.2023 23:58, Dmitry Baryshkov wrote:
-> The vendor kernel uses RPM_SMD_XO_CLK_SRC clock as an CXO clock rather
-> than using the RPM_SMD_BB_CLK1 directly. Follow this example and switch
-> msm8996.dtsi to use RPM_SMD_XO_CLK_SRC clock instead of RPM_SMB_BB_CLK1.
+On 18/01/2023 14:10, Jianhua Lu wrote:
+> Add Kinetic KTZ8866 backlight binding documentation.
 > 
-> Fixes: 2b8c9c77c268 ("arm64: dts: qcom: msm8996: convert xo_board to RPM_SMD_BB_CLK1")
-> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
+> Changes in v2:
+>   - Remove "items" between "compatible" and "const: kinetic,ktz8866"
+>   - Change "additionalProperties" to "unevaluatedProperties"
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index a8544c4158ac..150d13c0f4b8 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -713,7 +713,7 @@ gcc: clock-controller@300000 {
->  			#power-domain-cells = <1>;
->  			reg = <0x00300000 0x90000>;
->  
-> -			clocks = <&rpmcc RPM_SMD_BB_CLK1>,
-> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
->  				 <&rpmcc RPM_SMD_LN_BB_CLK>,
->  				 <&sleep_clk>,
->  				 <&pciephy_0>,
-> @@ -1055,7 +1055,7 @@ dsi0_phy: phy@994400 {
->  				#clock-cells = <1>;
->  				#phy-cells = <0>;
->  
-> -				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_BB_CLK1>;
-> +				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
->  				clock-names = "iface", "ref";
->  				status = "disabled";
->  			};
-> @@ -1123,7 +1123,7 @@ dsi1_phy: phy@996400 {
->  				#clock-cells = <1>;
->  				#phy-cells = <0>;
->  
-> -				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_BB_CLK1>;
-> +				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
->  				clock-names = "iface", "ref";
->  				status = "disabled";
->  			};
-> @@ -2952,7 +2952,7 @@ kryocc: clock-controller@6400000 {
->  			reg = <0x06400000 0x90000>;
->  
->  			clock-names = "xo", "sys_apcs_aux";
-> -			clocks = <&rpmcc RPM_SMD_BB_CLK1>, <&apcs_glb>;
-> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&apcs_glb>;
->  
->  			#clock-cells = <1>;
->  		};
-> @@ -3071,7 +3071,7 @@ sdhc1: mmc@7464900 {
->  			clock-names = "iface", "core", "xo";
->  			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
->  				<&gcc GCC_SDCC1_APPS_CLK>,
-> -				<&rpmcc RPM_SMD_BB_CLK1>;
-> +				<&rpmcc RPM_SMD_XO_CLK_SRC>;
->  			resets = <&gcc GCC_SDCC1_BCR>;
->  
->  			pinctrl-names = "default", "sleep";
-> @@ -3095,7 +3095,7 @@ sdhc2: mmc@74a4900 {
->  			clock-names = "iface", "core", "xo";
->  			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
->  				<&gcc GCC_SDCC2_APPS_CLK>,
-> -				<&rpmcc RPM_SMD_BB_CLK1>;
-> +				<&rpmcc RPM_SMD_XO_CLK_SRC>;
->  			resets = <&gcc GCC_SDCC2_BCR>;
->  
->  			pinctrl-names = "default", "sleep";
-> @@ -3417,7 +3417,7 @@ adsp_pil: remoteproc@9300000 {
->  			interrupt-names = "wdog", "fatal", "ready",
->  					  "handover", "stop-ack";
->  
-> -			clocks = <&rpmcc RPM_SMD_BB_CLK1>;
-> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
->  			clock-names = "xo";
->  
->  			memory-region = <&adsp_mem>;
+> Changes in v3:
+>   - Add Krzysztof's R-b
+> 
+> Changes in v4:
+>   - Drop Krzysztof's R-b
+>   - Add some new properties
+> 
+> Changes in v5:
+>   - Add missing enum under property description.
+>   - Rename uncorrect properties.
+> 
+> Changes in v6:
+>   - Correct wrong property suffix and description.
+> 
+>  .../leds/backlight/kinetic,ktz8866.yaml       | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> new file mode 100644
+> index 000000000000..ca0deba14523
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktz8866.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Kinetic Technologies KTZ8866 backlight
+> +
+> +maintainers:
+> +  - Jianhua Lu <lujianhua000@gmail.com>
+> +
+> +description: |
+> +  The Kinetic Technologies KTZ8866 is a high efficiency 6-sinks led backlight
+> +  with dual lcd bias power.
+> +  https://www.kinet-ic.com/ktz8866/
+> +
+> +allOf:
+> +  - $ref: common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: kinetic,ktz8866
+> +
+> +  current-num-sinks:
+> +    description: Number of LED current sinks.
+> +    enum: [1, 2, 3, 4, 5, 6]
+> +
+> +  current-ramping-time-ms:
+> +    description: LED current ramping time in milliseconds.
+> +    enum: [2, 4, 8, 16, 32, 64, 128, 192, 256, 320, 384, 448, 512, 576, 640]
+> +
+> +  led-ramping-time-ms:
+> +    description: |
+> +      LED on/off ramping time in milliseconds, note that the case 0 will be mapped
+> +      to 512μs because ktz8866 can't ramp faster than it.
+
+Aren't you just missing supplies here and their ramp up time?
+
+> +    enum: [0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]
+> +
+> +  enable-lcd-bias:
+> +    description: Set if we want to output bias power supply for LCD.
+
+Is it a generic property? I don't see any other users, so this looks
+device specific thus needs vendor prefix.
+
+This applies to all of the properties. They might be generic or might
+not, I don't know the backlight hardware that much.
+
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    backlight {
+> +        compatible = "kinetic,ktz8866";
+> +
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&bl_en_default>;
+> +
+> +        current-num-sinks = <5>;
+> +        current-ramping-time-ms = <128>;
+> +        led-ramping-time-ms = <1>;
+> +        enable-lcd-bias;
+> +    };
+
+Best regards,
+Krzysztof
+
