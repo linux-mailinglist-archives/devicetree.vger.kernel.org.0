@@ -2,156 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ADB4671E36
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 14:42:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23D50671E3E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 14:42:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230238AbjARNmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 08:42:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42940 "EHLO
+        id S230338AbjARNme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 08:42:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230260AbjARNl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:41:29 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6895CFCF
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:10:39 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so1476298wms.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:10:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gMt/wp3WbOXbTfbA+d1k09lZt+rQel9nwZQ3NXLePAc=;
-        b=XI9Hc0rxtv7qdXArMx0THTwzLrHzWSOElocAZ+jT5Ec7PcwRHPsx7GS761Kd+dCRpY
-         Z6lqSeBdIyoLQxiJLIUmleTXhYcuBagN7N1EpM4fSKnZFwiBG74PM9qNw2H6AcAsiL/4
-         QaaS4hIqUUrQMjsCJoJcuHpWXmlXKpSkoTcuqIzuEqvH+3JvObkCl7W5OhR+rdZmBDbF
-         PTlG/BLQYRyuPPMeci2If4izJ6dpSVtJqM1nPqhSfOizthD3wEMc7BVm+bPjmF1i+rNT
-         rSAm7T5Ynvw1nn8NiU+EjO+hpUnU4QA7BnQDVu4jQYEN4yYXJQF5JQFXUfl7XGMJwABz
-         zg6w==
+        with ESMTP id S230344AbjARNlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:41:55 -0500
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C86E4FC23;
+        Wed, 18 Jan 2023 05:10:55 -0800 (PST)
+Received: by mail-oo1-f50.google.com with SMTP id c145-20020a4a4f97000000b004f505540a20so2038170oob.1;
+        Wed, 18 Jan 2023 05:10:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gMt/wp3WbOXbTfbA+d1k09lZt+rQel9nwZQ3NXLePAc=;
-        b=in8+kEBtZHj0SeUZ7lO5zXRnClUuAlwm3EyBnKvGecGvjiCpZFb5ZYjoL0T3Ceqjsx
-         3BZyFuL7RXFOprWOOG1eo3EKh+wmka7B0RDP2F8m+UFuYivfeAHq2Lp0X29bnzIrEOq0
-         8Zm41gtKKF+/xhUNi0BehYyeS3wGN250m7TzomZ/r7AoVc7aHG8CjsgU4w55b9IWw+rE
-         rO+b2lFKxpftFoz81pba4W3RTZYdElLLolbn2oe9PEw5KkUhMPEatwdnHO8sOpgR0gvX
-         xMh+gDtopGo+HrykSQ9Chqe6lvZWB2qoFbZeIIQPBGkW9rUNerhoPyQXcGMrFyTLOFr3
-         D2Bg==
-X-Gm-Message-State: AFqh2krcZySJoRLFI6986L3cWa2aZUNY//g/QmQWwCb97g9c4MJ6JLmx
-        VWOL75k0DuENfuC5gTKtz2QY8V3J4JnUWJ6/
-X-Google-Smtp-Source: AMrXdXvJsQkYWVVLm/ooySmLne6fQKOUzS/1iKpwLlj2xSp4xexKExxdKGMZZC7qwEiS4TFB9gTlag==
-X-Received: by 2002:a05:600c:1e09:b0:3d1:f16d:5848 with SMTP id ay9-20020a05600c1e0900b003d1f16d5848mr6541616wmb.26.1674047436416;
-        Wed, 18 Jan 2023 05:10:36 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id bg14-20020a05600c3c8e00b003b4cba4ef71sm2416963wmb.41.2023.01.18.05.10.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 05:10:36 -0800 (PST)
-Message-ID: <50f1fe82-0589-1108-ca42-195cf48229a8@linaro.org>
-Date:   Wed, 18 Jan 2023 14:10:33 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] MAINTAINERS: Add entry for DHCOM i.MX8M Plus SoMs and
- boards
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-References: <20230117223852.130143-1-marex@denx.de>
- <e3b73baf-b36b-17c0-f414-bbf2dd746411@linaro.org>
- <13b341ba-92d1-0989-5d7c-a9df080ca56b@denx.de>
- <9dd523e7-5493-12b2-5bce-75ed632df0e0@linaro.org>
- <9fe9092e-953b-3e19-60aa-0d83904d9c84@denx.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9fe9092e-953b-3e19-60aa-0d83904d9c84@denx.de>
-Content-Type: text/plain; charset=UTF-8
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LPXKE4fWh08xIviaGRGhwlFYvgu/9wGipKwIrtn3ERY=;
+        b=uNf3VSqr6i/H/SFMqfg1Ekznu9B/ttX4LFx53AFBpqLvuRaridi0WoisuONJP0DI4E
+         CIUhqtFUp6R+RNR6VJCP8NDjg58H+rdOZfJQPC9vlvebCB5sesyodyWm5o7J4kRB5bK8
+         FlsSCHDREO7eqRMtYablV+9VSpswViPdcjzTMAgR4V1HQqx6niJC4wDya5utoSGmmvo4
+         ILwmFU9G0Nd6K4msTzxf4NuVrhbFU1q7FMNfjrtzhhBLOZ6rYjhIjMt9gIBAoNRA1vgA
+         4Oj30UkrEwUsrvnmgJ/JG07esO4aKfD5QG96d5/qSqV9XAma9ViK0ss8eCBFM5Y6EsBW
+         idIA==
+X-Gm-Message-State: AFqh2kroRSLQMRqx6qoc8sJdRuewxx8spJfWYtUx8DLS0N1iPOaTQE2y
+        CYNd4YbzeWbrER5Xu3vlKQ==
+X-Google-Smtp-Source: AMrXdXuaVkiDYUFtNuNfPCSPfjF3RtDj8mtkMncMjSfU5aOhhpiJCxGNF68RjD5jl+wYaaUCe+TGSw==
+X-Received: by 2002:a4a:1ac4:0:b0:4f2:21f7:cd93 with SMTP id 187-20020a4a1ac4000000b004f221f7cd93mr3356508oof.0.1674047449990;
+        Wed, 18 Jan 2023 05:10:49 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s23-20020a4ae557000000b0049f5ce88583sm16470775oot.7.2023.01.18.05.10.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 05:10:48 -0800 (PST)
+Received: (nullmailer pid 1459876 invoked by uid 1000);
+        Wed, 18 Jan 2023 13:10:47 -0000
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Yanhong Wang <yanhong.wang@starfivetech.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        Peter Geis <pgwipeout@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        Eric Dumazet <edumazet@google.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20230118061701.30047-3-yanhong.wang@starfivetech.com>
+References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
+ <20230118061701.30047-3-yanhong.wang@starfivetech.com>
+Message-Id: <167404705359.1390391.205840489556921087.robh@kernel.org>
+Subject: Re: [PATCH v4 2/7] dt-bindings: net: snps,dwmac: Update the maxitems
+ number of resets and reset-names
+Date:   Wed, 18 Jan 2023 07:10:47 -0600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 13:47, Marek Vasut wrote:
-> On 1/18/23 13:38, Krzysztof Kozlowski wrote:
->> On 18/01/2023 13:35, Marek Vasut wrote:
->>> On 1/18/23 12:37, Krzysztof Kozlowski wrote:
->>>> On 17/01/2023 23:38, Marek Vasut wrote:
->>>>> Add maintainers entry for DH electronics DHCOM i.MX8M Plus
->>>>> based SoMs and boards.
->>>>>
->>>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>>> ---
->>>>> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
->>>>> Cc: Fabio Estevam <festevam@gmail.com>
->>>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->>>>> Cc: Marek Vasut <marex@denx.de>
->>>>> Cc: NXP Linux Team <linux-imx@nxp.com>
->>>>> Cc: Peng Fan <peng.fan@nxp.com>
->>>>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->>>>> Cc: Rob Herring <robh+dt@kernel.org>
->>>>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->>>>> Cc: Shawn Guo <shawnguo@kernel.org>
->>>>> Cc: devicetree@vger.kernel.org
->>>>> To: linux-arm-kernel@lists.infradead.org
->>>>> ---
->>>>>    MAINTAINERS | 6 ++++++
->>>>>    1 file changed, 6 insertions(+)
->>>>>
->>>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>>> index d0a36e45aa4be..e9be585d507e9 100644
->>>>> --- a/MAINTAINERS
->>>>> +++ b/MAINTAINERS
->>>>> @@ -5968,6 +5968,12 @@ S:	Maintained
->>>>>    F:	arch/arm/boot/dts/imx6*-dhcom-*
->>>>>    F:	arch/arm/boot/dts/imx6*-dhcor-*
->>>>>    
->>>>> +DH ELECTRONICS IMX8M PLUS DHCOM BOARD SUPPORT
->>>>> +M:	Marek Vasut <marex@denx.de>
->>>>> +L:	kernel@dh-electronics.com
->>>>> +S:	Maintained
->>>>> +F:	arch/arm64/boot/dts/freescale/imx8mp*-dhcom-*
->>>>
->>>> We do not keep maintainer per board. The idea was to use in-board
->>>> emails, but the patch doing that was not accepted. But regardless -
->>>> entries per board in maintainers is crazy amount of new entries. Way too
->>>> many.
->>>
->>> What would you propose I should do here to get a valid entry for this
->>> machine ?
->>
->> There can be no entry for the machine because we do not keep entries for
->> machines. Just look at MAINTAINERS file.
->>
->> If anyone thinks per-board maintainership is useful, should revive patch:
->>
->> https://lore.kernel.org/all/20210809080204.8381-1-shawnguo@kernel.org/
+
+On Wed, 18 Jan 2023 14:16:56 +0800, Yanhong Wang wrote:
+> Some boards(such as StarFive VisionFive v2) require more than one value
+> which defined by resets property, so the original definition can not
+> meet the requirements. In order to adapt to different requirements,
+> adjust the maxitems number definition.
 > 
-> This wouldn't add the L: list entries to CC, would it ?
+> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+> ---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+> 
 
-Shawn's patch can be updated to parse whatever you wish. But anyway what
-stops in such case adding list address to the DTS, the same as person's
-address?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Anyway this is independent topic. This board is not special so it does
-not deserve special treatment. None of other boards receive entries.
-Otherwise please Cc Arnd, Olof and soc, so we can make a policy and
-start adding hundreds of per-board entries (I will be happy to add
-several of them).
+yamllint warnings/errors:
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.example.dtb: ethernet@1c0b000: Unevaluated properties are not allowed ('reset-names' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.example.dtb: ethernet@1c0b000: Unevaluated properties are not allowed ('reset-names' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.example.dtb: ethernet@1c0b000: Unevaluated properties are not allowed ('reset-names' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230118061701.30047-3-yanhong.wang@starfivetech.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
