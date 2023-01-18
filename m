@@ -2,125 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B287671BBA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 13:16:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10EB9671BD5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 13:19:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230369AbjARMQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 07:16:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48496 "EHLO
+        id S230012AbjARMTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 07:19:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230296AbjARMQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 07:16:22 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A1287656
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 03:38:02 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id q8so12649171wmo.5
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 03:38:02 -0800 (PST)
+        with ESMTP id S230385AbjARMRF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 07:17:05 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9F9153E75
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 03:40:14 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id r9so10847335wrw.4
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 03:40:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qOIO1rE9PZCrABiEdWhnhRZVKZAIBDgbALKy+wZ9WZU=;
-        b=yEEDWz+DBCwKVuO01d/Sn6NPLU6NuUCJl87MclQJCiAPh2nhWPX2DD2g8VuiMrO35D
-         KXSyGWXqE1DlTjYaKtdSeOJfYeRZgc37CduZ5tdB0DvbCVp2FlnXrrnB8F0RtQ9TdOaE
-         fuo6Io2j+yQG+bWlu0fMBJ45q1RQKSi4UMu91A947b9JNZeb1iBAZ/75v1IXF6AnWRHl
-         8UPv5vhtnETEsbgMzKjr5uNZdUG12cpfmdikOFgymleePBoyR03KwxZnFiiarVMGWlAG
-         2wMMBtYFdX4jR19qTObucelDhmRmTRixAKvnfMuleKwKjoJ5E67JdsF/zqkdhu/3lUa6
-         Z8Tw==
+        bh=kM4TmYHUESokHiFW3imA6PqhaD3cG8rorNJ+MQr3euM=;
+        b=h0Fl4+o6vE2/vPJbrvZttRQMtkF6bZ0VG2f6mJvUzGuUY5Vfo2lCxRx1AeTqaevaOE
+         VZQiNWTh98uL+Y7Y/yvfRdblexzTpjTeDAni7U6z1mEUaowNzkPhYDc0XP+o4KFP9d+g
+         shJ26R5xvZikoZEh2l35A0ruzCYdqtg9Z+wc0H2Q7Firyp48H9l0iWXH1NB2z3RMP5V+
+         ZOoGHS4Tpgu17SENmG515AJ2NO8ymKFkOI9rOyLhl3crtUK3tkbd3iavCqpIPDdV9jgN
+         Dn8pmIpfK2THl1M8vIuclFVjid8r3sNxxAe95+5DUrLr0t1EzBOCG+SRose7XP4/VLIh
+         PZgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qOIO1rE9PZCrABiEdWhnhRZVKZAIBDgbALKy+wZ9WZU=;
-        b=e/Bt+evwrwJ0DtlLLlR7vULoZpJqp/eoQXmqUyU6VgtTELoq+pUfibRv4hbdJ/n0rA
-         aDe/mXg9K7uNUKycuQoqnQvvZybguqDkwnMC7cspvdEuctlkyUOrKvCee7HH1oE6Z7oq
-         OpxX4gRXBLlCSReqo7ruv1elIPpK5U1MsukvbOhjKVurq0hcpoeE00L2C7ZcYJmC5qs0
-         HFlMM8W32tTCAvv6OAA2FacV2Sf2TtliIeH7sOwt+/R+pElX3c68v1zUG7Eb1crzbkhb
-         TTGAsY44B//CcoJiuay2c1Jmb8E58svm62SAfKZIzteVlNtJRdLj1xS6Cqjrf1Q4YYPl
-         by1w==
-X-Gm-Message-State: AFqh2krrHzQrpBj7R531XphdA5f2Aqz3agvuSyOk562QjLQVlJntyP5c
-        CQ4OTxxI/2tlPCnI+9yr6Ioptg==
-X-Google-Smtp-Source: AMrXdXsQ3cy6DIdh7n50FsR1WDFr2hHnUUKkJQZ96IKPItPCzcVlVbfw8MyaCzLb7hWt71G/FO7fkg==
-X-Received: by 2002:a05:600c:4256:b0:3da:1d51:ef9e with SMTP id r22-20020a05600c425600b003da1d51ef9emr6259902wmm.17.1674041881259;
-        Wed, 18 Jan 2023 03:38:01 -0800 (PST)
+        bh=kM4TmYHUESokHiFW3imA6PqhaD3cG8rorNJ+MQr3euM=;
+        b=W8QrmgTdhr1LwY23HwIYairV3bL7MvXPBmvZYlkXhwHssqIE2maORo8ALYeVdjXuhG
+         pFmLr1LEAwWQj6e6K1ruLNKWDi6HgPZ3ZU5xpdpkk5DukGLrPA64u8hpH4sYeNsRYRB5
+         cC5fm7c3yOZS3bw5k9RK9AfkkEXkXvc9KlKKIc7gAT7vR/hnN4CMiaf7Fbwa5JfZ8sMq
+         /gKGflj96k85Bl44uvD/7Huw/31zzNLOeoUcSjlxB+28m03J7NaywQy6+Y+izYQxnj3x
+         Mz3x/7fwkTihlvm1s2twBiGVlZRJkZyU6ylf2nIVMA65NOaaBjJXRxPgtRHdbXdsVeR+
+         5nqA==
+X-Gm-Message-State: AFqh2koCnP3grk4glbGcJd0avlmC+9w8W58huwyCzJYhUpEgWB7Hlyc7
+        uPCz7KV910ZbcE/MLmtBdJeq1g==
+X-Google-Smtp-Source: AMrXdXuBdBiAcwQWG/BeyGrwSRj2MigBb3eyc9eCrsnkqKeP4E8cQkVLTDUgmzDXiDagP+0iXvFQxw==
+X-Received: by 2002:adf:f90e:0:b0:2bd:9b1e:165a with SMTP id b14-20020adff90e000000b002bd9b1e165amr5883672wrr.6.1674042013397;
+        Wed, 18 Jan 2023 03:40:13 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j32-20020a05600c1c2000b003c6b7f5567csm2610092wms.0.2023.01.18.03.37.56
+        by smtp.gmail.com with ESMTPSA id l4-20020a05600012c400b002bbb2d43f65sm28061605wrx.14.2023.01.18.03.40.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 03:37:57 -0800 (PST)
-Message-ID: <e3b73baf-b36b-17c0-f414-bbf2dd746411@linaro.org>
-Date:   Wed, 18 Jan 2023 12:37:55 +0100
+        Wed, 18 Jan 2023 03:40:12 -0800 (PST)
+Message-ID: <ba0c861f-6349-32d8-33e8-26c7380fbee2@linaro.org>
+Date:   Wed, 18 Jan 2023 12:40:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH] MAINTAINERS: Add entry for DHCOM i.MX8M Plus SoMs and
- boards
+Subject: Re: [PATCH v3 1/6] dt-bindings: mailbox: qcom: add SDX55 compatible
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-References: <20230117223852.130143-1-marex@denx.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230117223013.1545026-1-dmitry.baryshkov@linaro.org>
+ <20230117223013.1545026-2-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230117223852.130143-1-marex@denx.de>
+In-Reply-To: <20230117223013.1545026-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 23:38, Marek Vasut wrote:
-> Add maintainers entry for DH electronics DHCOM i.MX8M Plus
-> based SoMs and boards.
+On 17/01/2023 23:30, Dmitry Baryshkov wrote:
+> The commit 0d17014e9189 ("dt-bindings: mailbox: Add binding for SDX55
+> APCS") added SDX55 compatible string to one of clock-selection
+> conditions, but failed to add one to the main schema's compatible list.
+> Fix this omission.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Fixes: 0d17014e9189 ("dt-bindings: mailbox: Add binding for SDX55 APCS")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
-> ---
->  MAINTAINERS | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d0a36e45aa4be..e9be585d507e9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -5968,6 +5968,12 @@ S:	Maintained
->  F:	arch/arm/boot/dts/imx6*-dhcom-*
->  F:	arch/arm/boot/dts/imx6*-dhcor-*
->  
-> +DH ELECTRONICS IMX8M PLUS DHCOM BOARD SUPPORT
-> +M:	Marek Vasut <marex@denx.de>
-> +L:	kernel@dh-electronics.com
-> +S:	Maintained
-> +F:	arch/arm64/boot/dts/freescale/imx8mp*-dhcom-*
 
-We do not keep maintainer per board. The idea was to use in-board
-emails, but the patch doing that was not accepted. But regardless -
-entries per board in maintainers is crazy amount of new entries. Way too
-many.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
