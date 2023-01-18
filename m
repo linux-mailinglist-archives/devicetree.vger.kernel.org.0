@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DA3767108D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 03:06:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65C1567109E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 03:06:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbjARCG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 21:06:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42670 "EHLO
+        id S229740AbjARCGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 21:06:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjARCG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 21:06:26 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D4503EFE1
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:06:25 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id v6so47645296edd.6
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:06:25 -0800 (PST)
+        with ESMTP id S229659AbjARCGb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 21:06:31 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE9F4AA6B
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:06:30 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id ud5so79872833ejc.4
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 18:06:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=04yt4xQQnP6dtAFyamorFDli5j18JC4M48HBXJbEbHY=;
-        b=HI9f++1UNXYSemQX1hiRHDg52hCshzdQeQ49dI9inGJXYUSByO6/WHrHEn6aUov9Z0
-         woCXty+Gr+WSNWODYzczAXW7pttpln+6Wo32fNKlzpl+ABBqKedSzbJV+luCus6y+ylq
-         tTOXrNAZmvStNPPrVLAD2mzhXQc2Ng7F04encX4+rdR08fPkIOYu8jpWKU3LZ7zMsgFG
-         z3AlxLI8iAXkXDRgMf7jOpq2egayOpk+4Soe9Bn/KP5b3FTqDkkyQ0IkYcLrV7QiucaJ
-         xOoK7bUVMbVEAkU5OCYNXheSbVh7VGBVFNT78j2cPZBcuu3IxfCNGIpKf7XFBPHsQodv
-         ejWg==
+        bh=EzS/zvWe4dE4qAlzyHEWNojqR1ZH/s6LTLUTq8cJCDs=;
+        b=x1UIMFzhhzmPp33rMJL9P9/UdyqBh0ezz8HdRiZ+FCVBLR2OShryDc+uG9Xvznt0vB
+         5cCrPmQCV0teL8HGC5L/s4RV3HC8ChldGjXbGsiZwjPVrQe2smTtDRRf7iqYqqn86TTk
+         LVQbZrb/+9Zbg3bHkzZp0HPycouflZYRFZ5BApQc5fCqveUceFQQI8X4Q9TodF6H0E+L
+         PsV3n7mIYFa0vm7jF+alaBDlUtsWJcHIWlCpZuUQsUxXdr+eF8htRbeQoPbKWKoaWv1C
+         w3P3jvnRQvUG7MFjeFymVS6p0OJBFlCKHbVNzYuTwjmpB+1q1Q1MGH55JGmDjYtJbDaG
+         2bgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=04yt4xQQnP6dtAFyamorFDli5j18JC4M48HBXJbEbHY=;
-        b=mPt6WoP7/yBzvOccZwFc4HD3yiBOwHTaMIaNLfaz/VlEYljtuS2YnpiIlpQ5Nj2dNY
-         mIrXKkhotHYfC/qaewIJvscxbzmChUjrgUX9PNfi1QEQFhmVoek5fk/zLx3Tzsd+buIb
-         RXVLavV55RxptU4FAfG+jQ3Cx0D+Y5FKiQ/jUsGedt8+RE5+jEu+gUd+l1FkU4bvVra0
-         25fUGf3YJdnXz9qRDdbfSIz6qp+35V7tzlfQyQvjkR6LUQDJ70aRmUTOyOSxWTB0Np52
-         RwGN2ywemR54umK/ojuNAVb+GuUn16S7sbmF4NryZL1+zJrhouLgN43zMlx/atS/gYlY
-         qUYQ==
-X-Gm-Message-State: AFqh2koSgKeJGCWT1df/IPNSKceVsnvTZrOh4EUUCpeFbtiaXPSiJbdu
-        dmttouhGm0ZW4EmN7Bd8AL9yDQ==
-X-Google-Smtp-Source: AMrXdXsBm3c0/1SvoATEKrB2V2Ccdr0KVPvkZK2NVqaD4EJEhMF5BSbtB3jAe4+zL9U5yrvoPppSYQ==
-X-Received: by 2002:a05:6402:e9f:b0:49a:f52f:eed0 with SMTP id h31-20020a0564020e9f00b0049af52feed0mr5406382eda.13.1674007583732;
-        Tue, 17 Jan 2023 18:06:23 -0800 (PST)
+        bh=EzS/zvWe4dE4qAlzyHEWNojqR1ZH/s6LTLUTq8cJCDs=;
+        b=cZ4TtCFKb/KrNLvNa+w4aBTiNih5aIZWo+cJCM4yp18WJrBYLuNKqzdxXw/B6M16aN
+         PHtjVZomYiJDQteB5Bhzx3EQvZob+QPo4x7mU+EJnQ0IH3FHEKqrvE2NmT5TitL0Sy1I
+         YQ8NGo+67e6d4CKmxGBgntvUz7otOhwdfIzTZbT90yoL1YynI0LMsaS+wCjW26IImOac
+         r5L6op6f6hrWkJt1SMIAFjYvuceWplUEmliCcpRbUiH3r6vFUjkA52gnJ9JYQGMl1TnD
+         kYVupxG+RB9Vy9N8nrNQ5ZLv5EBmAmoX3+fykAiNhmPNiS0EqQqkemhIABC5o9wOxNXl
+         pkZQ==
+X-Gm-Message-State: AFqh2kqmThalAeyH7j0nTlzPR7xzaia0dlAqeO4jkq0VXYl+5pNNBhV9
+        GftleUGty5+t2mdaEGeGzhbS9Q==
+X-Google-Smtp-Source: AMrXdXtPspMwAZbGwbr77eEM5eDgiYrt4RPaQoYwIAtRNNe3VLezx4/sosP5jnJFOjMOoW2VPQl9oQ==
+X-Received: by 2002:a17:906:ca59:b0:870:7e7d:97a3 with SMTP id jx25-20020a170906ca5900b008707e7d97a3mr4427567ejb.59.1674007589171;
+        Tue, 17 Jan 2023 18:06:29 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id kx1-20020a170907774100b0084d368b1628sm12702694ejc.40.2023.01.17.18.06.22
+        by smtp.gmail.com with ESMTPSA id kx1-20020a170907774100b0084d368b1628sm12702694ejc.40.2023.01.17.18.06.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 18:06:23 -0800 (PST)
+        Tue, 17 Jan 2023 18:06:28 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
-        airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        dianders@chromium.org, david@ixit.cz,
-        krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
-        konrad.dybcio@somainline.org, agross@kernel.org,
-        andersson@kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 0/3] mdss-dsi-ctrl binding and dts fixes
-Date:   Wed, 18 Jan 2023 04:06:06 +0200
-Message-Id: <167400670529.1683873.13012274230061226169.b4-ty@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH] dt-bindings: display/msm: qcom,mdss: fix HDMI PHY node names
+Date:   Wed, 18 Jan 2023 04:06:11 +0200
+Message-Id: <167400670545.1683873.1367688768865327080.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230116225217.1056258-1-bryan.odonoghue@linaro.org>
-References: <20230116225217.1056258-1-bryan.odonoghue@linaro.org>
+In-Reply-To: <20230109045453.316089-1-dmitry.baryshkov@linaro.org>
+References: <20230109045453.316089-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,28 +83,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 16 Jan 2023 22:52:14 +0000, Bryan O'Donoghue wrote:
-> V8:
-> - Squash first and last patch to fix bisectability
+On Mon, 09 Jan 2023 06:54:53 +0200, Dmitry Baryshkov wrote:
+> On Qualcomm devices HDMI PHY node names were changed from hdmi-phy to
+> phy. Follow this change.
 > 
-> link: https://lore.kernel.org/linux-arm-msm/167388664232.594279.4607492026981202284.robh@kernel.org/T/#u
 > 
-> V7:
-> - The bulk of the patches for this series have been merged.
->   There are still four patches to be pushed/updated.
-> - Adds clocks for msm8974 - Dmitry
-> - Adds compat strings for sm8150, sm8350, sm8450, sm8550 - Dmitry
-> - Changes last patch in series to state - Rob
->   compatible:
->     contains:
->       const: qcom,mdss-dsi-ctrl
-> 
-> [...]
 
 Applied, thanks!
 
-[3/3] dt-bindings: msm: dsi-controller-main: Add vdd* descriptions back in
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/e0c2a96cc939
+[1/1] dt-bindings: display/msm: qcom,mdss: fix HDMI PHY node names
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/759cc4914fb0
 
 Best regards,
 -- 
