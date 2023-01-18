@@ -2,527 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFBC46727F4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 20:15:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DF18672819
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 20:23:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229947AbjARTPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 14:15:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48774 "EHLO
+        id S229770AbjARTXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 14:23:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229936AbjARTPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 14:15:46 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F31D53B05;
-        Wed, 18 Jan 2023 11:15:41 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 1BF4385343;
-        Wed, 18 Jan 2023 20:15:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1674069339;
-        bh=qGw97+LyY1D4M9px/HE7lTajMDXJCzQ+TIT9yza7auE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MvqWR5wytGzAkp+6JD0l/oZx5ceIKKvitArNf9GOUkHChf1GC9Nmhzb7V826ActyU
-         JAyU1xaH/5RzyDcR6fKKEMElUVe9HEQq89FFrdAURU+TBgBPicAIsaaGPAj1W1pIoQ
-         3g4llj6Ug5pqqonoR1RGsOW5tG7M3wG7K9pyEj5Og0JKoe463tdXBX/151/tSm8PDX
-         wWJ3J+XCaD/RbhQgAzRiPDBmWOApPXBx2hHFNrfdAQxA+jLD0Fd6Ul3s3BCYwuTt91
-         JeJTzugMThKfELuxBExIyF6fy1bvO2LHNuj1BdChQRRj9/Aw9YlAH7sxHvI+4cRkz5
-         WqHtrmzDQMZww==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-clk@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v3 2/2] clk: si521xx: Clock driver for Skyworks Si521xx I2C PCIe clock generators
-Date:   Wed, 18 Jan 2023 20:15:21 +0100
-Message-Id: <20230118191521.15544-2-marex@denx.de>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230118191521.15544-1-marex@denx.de>
-References: <20230118191521.15544-1-marex@denx.de>
+        with ESMTP id S229939AbjARTXm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 14:23:42 -0500
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2069.outbound.protection.outlook.com [40.107.95.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11EF53E50;
+        Wed, 18 Jan 2023 11:23:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MiPsWdERAnH4ealY6pAwKsZcZ/qm6E10d7XPgqa79YHYqh1H/I+XCzJ2xSr/BDxNvDQdWKmFIZZ5yg4zDl2JZlIfK6eiH8IwQ+rfAWoYNdn1N1JWJKwV9yGECsZQVSnk8MV5rqIXROrn5Vh3tEPQ992Fj6oQI/9tgGqWme4iGP4/8raUwrxo3W+oUFDheSL7sfA+X7/F1AaNnG+x6N/mMmiM6/wDGgceCQi0KJEVkZVmzeJ5LBNtU5CYD6odrfzNNrdu3amN9xeW+CKFtJY8eeFTDtTvdttE7kj2JKaYY29oQLV7pHL69aCmk26jDJijs0oEAxG6Zr9p+M7/AnMJTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JLUzAN3mCn7ZZYACXcDtHF7Qg6xTBjh2QbzB30Yr81c=;
+ b=oLSImNgqFPLIqgrf5NIceGpdW0iAnTl9VhcEdz7KJjWXgEl7uMBjiAJ0iRTdtFvX+w5EJpjOfWgUHvyEg8zVUpR0aDwrvEnrK9r/f756qRQH+PrBadYJWv26fLpLQSUdzyXiFk6K3sSx+I2beTh+vCILapd/pHXRlqxKtXUBR6ulEshMxcBZqCmKClKE6EvKIxL46wEAU2IfyZWqSGLorEktP6weUoXotgiYjDTM4jqlNqJa2CQXjrHeQq8udHtMOb6Zb9yUXRrzH9teIGVVCICBGJX0KzlwbXvXmZobzMgDdSD4EBb7Tu6ZdBp2KzBE6bbN62HcJd0XmZczoCusyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JLUzAN3mCn7ZZYACXcDtHF7Qg6xTBjh2QbzB30Yr81c=;
+ b=vGRrcdGuv5ibUrCRPD/qFpuG3sxwmCct88UTL1NLx7XVBfJSqIbLH2IXr50XnOk6BZAl9DPiiX2YeViGf9iVlJiCeE3SofMBVcJIFP1SRHCMDv85lHzKtBUO0HxzNcI7CsGPQSA2KBzr1hW3s1kJx0DCzkqaUAYE/qExlkfsBaM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BY5PR12MB3683.namprd12.prod.outlook.com (2603:10b6:a03:1a5::16)
+ by CH2PR12MB4956.namprd12.prod.outlook.com (2603:10b6:610:69::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Wed, 18 Jan
+ 2023 19:23:36 +0000
+Received: from BY5PR12MB3683.namprd12.prod.outlook.com
+ ([fe80::3ddf:d47:b37a:5a7a]) by BY5PR12MB3683.namprd12.prod.outlook.com
+ ([fe80::3ddf:d47:b37a:5a7a%3]) with mapi id 15.20.5986.023; Wed, 18 Jan 2023
+ 19:23:36 +0000
+Message-ID: <b7c5d9ba-f5c4-48ff-a65c-da7d7d8d8b32@amd.com>
+Date:   Wed, 18 Jan 2023 11:23:34 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0)
+ Gecko/20100101 Thunderbird/109.0
+Subject: Re: [PATCH] dt-bindings: sram: Tightly Coupled Memory (TCM) bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Tanmay Shah <tanmay.shah@amd.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org
+References: <20230113073045.4008853-1-tanmay.shah@amd.com>
+ <6f43e320-b533-e5fb-3886-1b6ccc7f9548@linaro.org>
+ <b79f7e0a-8048-d0e1-ad0b-d15d72288fde@amd.com>
+ <9f4994de-e468-43ea-f8db-d4a37ebc30e0@linaro.org>
+ <980d9c9c-3dbf-3ebd-28a1-5b3b4b58e93e@amd.com>
+ <96081a96-e74c-8165-c0e6-212a670c9074@linaro.org>
+From:   Tanmay Shah <tanmays@amd.com>
+In-Reply-To: <96081a96-e74c-8165-c0e6-212a670c9074@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY3PR03CA0015.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::20) To BY5PR12MB3683.namprd12.prod.outlook.com
+ (2603:10b6:a03:1a5::16)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3683:EE_|CH2PR12MB4956:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8674cf5e-ff10-4e1a-4777-08daf9897f0f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4WlF5oYsdeGeBioAMnmY/GIdO8GmAbuS+AEU1eCkqD9rL07S6Nr9XvG786OFs32erYCZryHtpHcfCJwsWCBLuqxzFIzOwjb23zJZDnwB46+eei72MwBkeanQMQeSKFbADHmL4Rw5wmJmRhzTgd26F1CXZJuiVHwFdPdt/Ce3ZR5mM3B9kNiu/WUO/zw/8jFHGYMnSkCDu69DOZoaNftCmLKBFg8QJTIyK25h4W1oR71yta4sEnqV9SQzDwsH6eytYruXxthw64vmUkIaDLr+CzUtpQsJGxr0pvB4KNga4/fI27IuV89byNrJzMrfa/helQ7ld3YdFiRT3mUl/i5M240h6bG5uWKAvq6KpNm1ySLxpYnZWR5yLwfJ4FMvtKFboe3YqU05kaXuELWU9QyDImKTqXtHK3P9NDRwi2ZaVt2HIpgJ0x3gpJa7se88xmXP0ufWT6aoWNfphFZAr8v6/8vqEfsXLyEHv+zNrlAJIrFSdMqQ5BlpBq2sGrvUfY956QjUH0tHtDDdxOfcoF3oEVA2G9qzZAJTjOjLXsK8OR1jpPw+Wf5PQ1j1HUiTqyaeHF+Ij05mW63LfaSnE/EEYmlWdQNlT8H4l+CJ+9bYJfTOt+nyNuIfRsLhJOEARzC+bqWIdoD/8K5KAUKpKK/R0TSIEF8GlNJwE1UepP57DLxXnKKbSCW+HuPp8PmVGl+WlFBXvyus2zXkzRXupBj00qDI3lVQz9rmLR+TUdKHzdE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB3683.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(346002)(396003)(376002)(39860400002)(136003)(451199015)(38100700002)(31696002)(6486002)(36756003)(316002)(66556008)(6512007)(66946007)(4326008)(186003)(8676002)(66476007)(478600001)(31686004)(2616005)(110136005)(53546011)(5660300002)(6506007)(41300700001)(8936002)(83380400001)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SkFrd2JvUmNOMFNPQzNJbWR2OFpMYzBxWVpzOFI4bFAvaGxsNzRWMVFYNmUw?=
+ =?utf-8?B?d1ZQWm1XQllQWjU0MTFMU2RXU3luM1h5bUVWc2ROOXIxNDZueXczcFlhdkZn?=
+ =?utf-8?B?dGhSZVFMc0JnRkgrcUtyYTRWM3pOMm5OUzVzSHl2SW02dS84MDB0WDBzbGhM?=
+ =?utf-8?B?VGxGaVU3ampseGE0VVBVUkthM05hazY0S3NYS0NaalErd1Q4Wk1KT2JpNFRU?=
+ =?utf-8?B?b3d6MzJRVnV4WTIwYzBtb1owb2lxaTlSaWxVWllUTHN5UHdNNnUwQVRlK2NK?=
+ =?utf-8?B?akdtYndubUIwN2tiMldPSmNzUjNodnlFa0RlYk1mcS9ydGV2WSthYVdETE9J?=
+ =?utf-8?B?bnJQNFpjN2pOQ0pEcDJuVVRtdU1PTVZZaWVJR2xzY3RrdGdrakIzQWJHVy92?=
+ =?utf-8?B?SDJ3N085b2tLdEM4TTA2cldlWWhucXJuOXlHbDRDQWRyZm12SzFTMkMwazhq?=
+ =?utf-8?B?WlJFQXFKTjk3M0RMb1g4WEkzUkJCYjFtekhiYjJoRXhzT3Ntc0M3U09uZ3Rz?=
+ =?utf-8?B?Mmx2YjNQcCtDZEx0UWJUNjBSTmpObW9sZHlLN2hhdUNodWZHaEIyK3FpRm9W?=
+ =?utf-8?B?b21ZbjRmQ2ovUGZRbjdoYTlVSHNqeFlSajVyZ3ZLRVExcWx6azdlTSs5ZVdQ?=
+ =?utf-8?B?ZG51eGdkZ20rVnIzc3BPNDEwSUVEVExUMTdBbnBFL09zWEsxcU51UDNDRUxy?=
+ =?utf-8?B?MTVCU1ZFM1lxODRkNzYzNGM3MmMzbnFsV0o2b25KSUZtZmwxY1phaVYrZW5W?=
+ =?utf-8?B?blBRVVgvK1FRdUlJbzlldXB6bUd1bm05NXp0T0QrbDJ5VGZUS2VjQ0RsRWhJ?=
+ =?utf-8?B?MFd0dHhzNU8rVXpqKytTRG5obVNxSG1CL29qcGhrUHpLTU5LTDBlV0tZWmRn?=
+ =?utf-8?B?WVhwSVhYVmdOQXBYa1hKSWkyeURFaFJ4RUlHQWg5aksvNGZuVlVwMXpjVHY3?=
+ =?utf-8?B?dTNFU1FnZ1B5dkpRUEwyaHpoditnY3A2Um5NVzFXZ0F1YzFpNkJXb1gyTGRR?=
+ =?utf-8?B?anBSME5EeGZDOGxYek4vbWNJcVg1ME1hODZuSnNmd0puem1LalByUmlSd1JW?=
+ =?utf-8?B?azMzSDloaGJ4VUlwUTg4dmpuYXFxUFNQOWNveFJsRkZlVmdoVmhiczhLVGlr?=
+ =?utf-8?B?L2FFK0dPRDVhemVHNHhnVzdyeXV0TlJGRTc3dUFjSnhya2NBL3ZmTWdlb2Rl?=
+ =?utf-8?B?WU9IaHo0SElKUTlPMVZyREo0WlJmZGIwdEdJRCtLcVpVaEVSVTV6K1NCL1Fr?=
+ =?utf-8?B?cFRDVWowY3BsTUI1T3pkOFhyMVArZWptVXJEdWdnVUhCL1A2eWpBQWFZWUF0?=
+ =?utf-8?B?MWQ2dG9rckFaUnh6enkrTWMwVGc1YThsVkpVZmErbktHdThKYUp5VmFGQkJC?=
+ =?utf-8?B?R1hHWDlNeUlEU2g1bHNQNHBSQncwVFlFQWJoZnNMcVhJYjVSMytpWS9vL1A5?=
+ =?utf-8?B?MzVhOE1qcUQvTU5JZ0pHRDVBZVhGUkVBamRMalUwUFJObEVHb21oUlROVTY5?=
+ =?utf-8?B?bW5OZlBXc0gvYnNZRy9aWW5ZckRmaXRtQ3p6WFk4SWoyNm5SdHBHYVpsb0xG?=
+ =?utf-8?B?U1RaeExLak1PMFJnMjI3TkkvT3JSYXZLUTZQb08vMVdaSitFQmJNUmt1RWg4?=
+ =?utf-8?B?eURiMzhnT0JJMmRhYjBIQXFMdTRUTXg2R2tpK1FFOU1rbmphK3paVDdtTE5B?=
+ =?utf-8?B?S3BOQVU3SnFHNld2QThja2dyWkFxeVZzQTJWQ2NvVG9rNG13a0t6ZjlYaGty?=
+ =?utf-8?B?UTFyVzNYUTJGRXI2b3Z1ekd1YWhpa1VjRlRZTEpwUWpGdmt0QWtEQXM1NDVl?=
+ =?utf-8?B?SnRReFd1bXRBUTk3ekxoMTFYQXVIVjArNTNtTU8vZFVPZ2dSQjh0RCtiQ2k1?=
+ =?utf-8?B?WFMzR3NMVEMxVVdsV0IwUjNvRkVHS2t2WTk3aDJDbk10eHlPQ3d6aHFGQ2pV?=
+ =?utf-8?B?QmdsNURTb3psT3lJQmxpelhvQkhxU0x0U2doT2NBaVhuMENRMzR1azEzbGtV?=
+ =?utf-8?B?TmkveWNneFVPYk45T1BuZWtsclNCcFNYOWxUdThYSGZ6OG1VRDhpb0Y3M2lw?=
+ =?utf-8?B?bWV4NGwwVjFkbnRmN3VMSmJ1RmI0ZUtlM0l1TVhVUVJGS2kwbzdPVzBRdHFh?=
+ =?utf-8?B?ZGRaaXRvTjQ2L3drNTJ3SkVIbXpFNndzQVJid09iOVlxc0JxODZFZXRnelQ2?=
+ =?utf-8?Q?K6bO8ugUu4tqfC1gP7sWw+SIwIBKOdFv40KxygrCHkH4?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8674cf5e-ff10-4e1a-4777-08daf9897f0f
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3683.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2023 19:23:36.6233
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jAL7FMXnXzikiCrKi2iuRbZ+NarXEgFUSR3KqqWCHvdV/w2mNtZk0ms+SZDKGbFm
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4956
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for the Skyworks Si521xx PCIe clock generators. Supported models
-are Si52144/Si52146/Si52147, tested model is Si52144. It should be possible
-to add Si5213x series as well.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-mediatek@lists.infradead.org
-Cc: linux-riscv@lists.infradead.org
-To: linux-clk@vger.kernel.org
----
-V2: - Include bitfield.h to pull in FIELD_PREP macro
-V3: No change
----
- drivers/clk/Kconfig       |   9 +
- drivers/clk/Makefile      |   1 +
- drivers/clk/clk-si521xx.c | 395 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 405 insertions(+)
- create mode 100644 drivers/clk/clk-si521xx.c
+On 1/17/23 12:16 AM, Krzysztof Kozlowski wrote:
+> On 16/01/2023 18:43, Tanmay Shah wrote:
+>> On 1/15/23 6:38 AM, Krzysztof Kozlowski wrote:
+>>> On 13/01/2023 19:08, Tanmay Shah wrote:
+>>>> On 1/12/23 11:52 PM, Krzysztof Kozlowski wrote:
+>>>>> On 13/01/2023 08:30, Tanmay Shah wrote:
+>>>>>> This patch introduces bindings for TCM memory address space on AMD-xilinx
+>>>>>> platforms. As of now TCM addresses are hardcoded in xilinx remoteproc
+>>>>>> driver. This bindings will help in defining TCM in device-tree and
+>>>>>> make it's access platform agnostic and data-driven from the driver.
+>>>>>>
+>>>>> Subject: drop second/last, redundant "bindings". The "dt-bindings"
+>>>>> prefix is already stating that these are bindings.
+>>>> Ack.
+>>>>
+>>>>
+>>>>> Where is driver or DTS? Are you now adding a dead binding without users?
+>>>> TCM is used by drivers/remoteproc/xlnx_r5_remoteproc.c driver. Howerver,
+>>>> we have hardcode addresses in TCM as bindings are not available yet.
+>>> I don't see usage of these compatibles there. You also did not supply
+>>> DTS here. Please provide users of bindings within the same patchset.
+>>
+>> ACK. I will supply dts as well.
+>>
+>> However, Is it ok if I convert this patch to RFC patch, and once
+>> bindings are fixed I will send actual patch with driver support.
+>>
+>> If bindings design is not correct then I might have to change
+>> corresponding driver design lot.
+> First, why this driver is particularly special? Why should have other
+> treatment then all other cases?
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index d79905f3e1744..b853fc60d118d 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -368,6 +368,15 @@ config COMMON_CLK_RS9_PCIE
- 	  This driver supports the Renesas 9-series PCIe clock generator
- 	  models 9FGV/9DBV/9DMV/9FGL/9DML/9QXL/9SQ.
- 
-+config COMMON_CLK_SI521XX
-+	tristate "Clock driver for SkyWorks Si521xx PCIe clock generators"
-+	depends on I2C
-+	depends on OF
-+	select REGMAP_I2C
-+	help
-+	  This driver supports the SkyWorks Si521xx PCIe clock generator
-+	  models Si52144/Si52146/Si52147.
-+
- config COMMON_CLK_VC5
- 	tristate "Clock driver for IDT VersaClock 5,6 devices"
- 	depends on I2C
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index e3ca0d058a256..5e2c225f040c4 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -72,6 +72,7 @@ obj-$(CONFIG_COMMON_CLK_TPS68470)      += clk-tps68470.o
- obj-$(CONFIG_CLK_TWL6040)		+= clk-twl6040.o
- obj-$(CONFIG_ARCH_VT8500)		+= clk-vt8500.o
- obj-$(CONFIG_COMMON_CLK_RS9_PCIE)	+= clk-renesas-pcie.o
-+obj-$(CONFIG_COMMON_CLK_SI521XX)	+= clk-si521xx.o
- obj-$(CONFIG_COMMON_CLK_VC5)		+= clk-versaclock5.o
- obj-$(CONFIG_COMMON_CLK_VC7)		+= clk-versaclock7.o
- obj-$(CONFIG_COMMON_CLK_WM831X)		+= clk-wm831x.o
-diff --git a/drivers/clk/clk-si521xx.c b/drivers/clk/clk-si521xx.c
-new file mode 100644
-index 0000000000000..de952a6999479
---- /dev/null
-+++ b/drivers/clk/clk-si521xx.c
-@@ -0,0 +1,395 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Driver for Skyworks Si521xx PCIe clock generator driver
-+ *
-+ * The following series can be supported:
-+ *   - Si52144 - 4x DIFF
-+ *   - Si52146 - 6x DIFF
-+ *   - Si52147 - 9x DIFF
-+ * Currently tested:
-+ *   - Si52144
-+ *
-+ * Copyright (C) 2022 Marek Vasut <marex@denx.de>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitrev.h>
-+#include <linux/clk-provider.h>
-+#include <linux/i2c.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+
-+/* OE1 and OE2 register */
-+#define SI521XX_REG_OE(n)			(((n) & 0x1) + 1)
-+#define SI521XX_REG_ID				0x3
-+#define SI521XX_REG_ID_PROG			GENMASK(7, 4)
-+#define SI521XX_REG_ID_VENDOR			GENMASK(3, 0)
-+#define SI521XX_REG_BC				0x4
-+#define SI521XX_REG_DA				0x5
-+#define SI521XX_REG_DA_AMP_SEL			BIT(7)
-+#define SI521XX_REG_DA_AMP_MASK			GENMASK(6, 4)
-+#define SI521XX_REG_DA_AMP_MIN			300000
-+#define SI521XX_REG_DA_AMP_DEFAULT		800000
-+#define SI521XX_REG_DA_AMP_MAX			1000000
-+#define SI521XX_REG_DA_AMP_STEP			100000
-+#define SI521XX_REG_DA_AMP(UV)			\
-+	FIELD_PREP(SI521XX_REG_DA_AMP_MASK,	\
-+		   ((UV) - SI521XX_REG_DA_AMP_MIN) / SI521XX_REG_DA_AMP_STEP)
-+#define SI521XX_REG_DA_UNKNOWN			BIT(3)	/* Always set */
-+
-+/* Count of populated OE bits in control register ref, 1 and 2 */
-+#define SI521XX_OE_MAP(cr1, cr2)	(((cr2) << 8) | (cr1))
-+#define SI521XX_OE_MAP_GET_OE(oe, map)	(((map) >> (((oe) - 1) * 8)) & 0xff)
-+
-+#define SI521XX_DIFF_MULT	4
-+#define SI521XX_DIFF_DIV	1
-+
-+/* Supported Skyworks Si521xx models. */
-+enum si521xx_model {
-+	SI52144 = 0x44,
-+	SI52146 = 0x46,
-+	SI52147 = 0x47,
-+};
-+
-+struct si521xx;
-+
-+struct si_clk {
-+	struct clk_hw		hw;
-+	struct si521xx		*si;
-+	u8			reg;
-+	u8			bit;
-+};
-+
-+struct si521xx {
-+	struct i2c_client	*client;
-+	struct regmap		*regmap;
-+	struct si_clk		clk_dif[9];
-+	u16			chip_info;
-+	u8			pll_amplitude;
-+};
-+
-+/*
-+ * Si521xx i2c regmap
-+ */
-+static const struct regmap_range si521xx_readable_ranges[] = {
-+	regmap_reg_range(SI521XX_REG_OE(0), SI521XX_REG_DA),
-+};
-+
-+static const struct regmap_access_table si521xx_readable_table = {
-+	.yes_ranges = si521xx_readable_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(si521xx_readable_ranges),
-+};
-+
-+static const struct regmap_range si521xx_writeable_ranges[] = {
-+	regmap_reg_range(SI521XX_REG_OE(0), SI521XX_REG_OE(1)),
-+	regmap_reg_range(SI521XX_REG_BC, SI521XX_REG_DA),
-+};
-+
-+static const struct regmap_access_table si521xx_writeable_table = {
-+	.yes_ranges = si521xx_writeable_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(si521xx_writeable_ranges),
-+};
-+
-+static int si521xx_regmap_i2c_write(void *context, unsigned int reg,
-+				    unsigned int val)
-+{
-+	struct i2c_client *i2c = context;
-+	const u8 data[3] = { reg, 1, val };
-+	const int count = ARRAY_SIZE(data);
-+	int ret;
-+
-+	ret = i2c_master_send(i2c, data, count);
-+	if (ret == count)
-+		return 0;
-+	else if (ret < 0)
-+		return ret;
-+	else
-+		return -EIO;
-+}
-+
-+static int si521xx_regmap_i2c_read(void *context, unsigned int reg,
-+				   unsigned int *val)
-+{
-+	struct i2c_client *i2c = context;
-+	struct i2c_msg xfer[2];
-+	u8 txdata = reg;
-+	u8 rxdata[2];
-+	int ret;
-+
-+	xfer[0].addr = i2c->addr;
-+	xfer[0].flags = 0;
-+	xfer[0].len = 1;
-+	xfer[0].buf = (void *)&txdata;
-+
-+	xfer[1].addr = i2c->addr;
-+	xfer[1].flags = I2C_M_RD;
-+	xfer[1].len = 2;
-+	xfer[1].buf = (void *)rxdata;
-+
-+	ret = i2c_transfer(i2c->adapter, xfer, 2);
-+	if (ret < 0)
-+		return ret;
-+	if (ret != 2)
-+		return -EIO;
-+
-+	/*
-+	 * Byte 0 is transfer length, which is always 1 due
-+	 * to BCP register programming to 1 in si521xx_probe(),
-+	 * ignore it and use data from Byte 1.
-+	 */
-+	*val = rxdata[1];
-+	return 0;
-+}
-+
-+static const struct regmap_config si521xx_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.cache_type = REGCACHE_NONE,
-+	.max_register = SI521XX_REG_DA,
-+	.rd_table = &si521xx_readable_table,
-+	.wr_table = &si521xx_writeable_table,
-+	.reg_write = si521xx_regmap_i2c_write,
-+	.reg_read = si521xx_regmap_i2c_read,
-+};
-+
-+static unsigned long si521xx_diff_recalc_rate(struct clk_hw *hw,
-+					      unsigned long parent_rate)
-+{
-+	unsigned long long rate;
-+
-+	rate = (unsigned long long)parent_rate * SI521XX_DIFF_MULT;
-+	do_div(rate, SI521XX_DIFF_DIV);
-+	return (unsigned long)rate;
-+}
-+
-+static long si521xx_diff_round_rate(struct clk_hw *hw, unsigned long rate,
-+				    unsigned long *prate)
-+{
-+	unsigned long best_parent;
-+
-+	best_parent = (rate / SI521XX_DIFF_MULT) * SI521XX_DIFF_DIV;
-+	*prate = clk_hw_round_rate(clk_hw_get_parent(hw), best_parent);
-+
-+	return (*prate / SI521XX_DIFF_DIV) * SI521XX_DIFF_MULT;
-+}
-+
-+static int si521xx_diff_set_rate(struct clk_hw *hw, unsigned long rate,
-+				 unsigned long parent_rate)
-+{
-+	/*
-+	 * We must report success but we can do so unconditionally because
-+	 * si521xx_diff_round_rate returns values that ensure this call is a
-+	 * nop.
-+	 */
-+
-+	return 0;
-+}
-+
-+#define to_si521xx_clk(_hw) container_of(_hw, struct si_clk, hw)
-+
-+static int si521xx_diff_prepare(struct clk_hw *hw)
-+{
-+	struct si_clk *si_clk = to_si521xx_clk(hw);
-+	struct si521xx *si = si_clk->si;
-+
-+	regmap_set_bits(si->regmap, SI521XX_REG_OE(si_clk->reg), si_clk->bit);
-+
-+	return 0;
-+}
-+
-+static void si521xx_diff_unprepare(struct clk_hw *hw)
-+{
-+	struct si_clk *si_clk = to_si521xx_clk(hw);
-+	struct si521xx *si = si_clk->si;
-+
-+	regmap_clear_bits(si->regmap, SI521XX_REG_OE(si_clk->reg), si_clk->bit);
-+}
-+
-+const struct clk_ops si521xx_diff_clk_ops = {
-+	.round_rate	= si521xx_diff_round_rate,
-+	.set_rate	= si521xx_diff_set_rate,
-+	.recalc_rate	= si521xx_diff_recalc_rate,
-+	.prepare	= si521xx_diff_prepare,
-+	.unprepare	= si521xx_diff_unprepare,
-+};
-+
-+static int si521xx_get_common_config(struct si521xx *si)
-+{
-+	struct i2c_client *client = si->client;
-+	struct device_node *np = client->dev.of_node;
-+	unsigned int amp;
-+	int ret;
-+
-+	/* Set defaults */
-+	si->pll_amplitude = SI521XX_REG_DA_AMP(SI521XX_REG_DA_AMP_DEFAULT);
-+
-+	/* Output clock amplitude */
-+	ret = of_property_read_u32(np, "skyworks,out-amplitude-microvolt",
-+				   &amp);
-+	if (!ret) {
-+		if (amp < SI521XX_REG_DA_AMP_MIN || amp > SI521XX_REG_DA_AMP_MAX ||
-+		    amp % SI521XX_REG_DA_AMP_STEP) {
-+			return dev_err_probe(&client->dev, -EINVAL,
-+					     "Invalid skyworks,out-amplitude-microvolt value\n");
-+		}
-+		si->pll_amplitude = SI521XX_REG_DA_AMP(amp);
-+	}
-+
-+	return 0;
-+}
-+
-+static void si521xx_update_config(struct si521xx *si)
-+{
-+	/* If amplitude is non-default, update it. */
-+	if (si->pll_amplitude == SI521XX_REG_DA_AMP(SI521XX_REG_DA_AMP_DEFAULT))
-+		return;
-+
-+	regmap_update_bits(si->regmap, SI521XX_REG_DA,
-+			   SI521XX_REG_DA_AMP_MASK, si->pll_amplitude);
-+}
-+
-+static void si521xx_diff_idx_to_reg_bit(const u16 chip_info, const int idx,
-+					struct si_clk *clk)
-+{
-+	unsigned long mask;
-+	int oe, b, ctr = 0;
-+
-+	for (oe = 1; oe <= 2; oe++) {
-+		mask = bitrev8(SI521XX_OE_MAP_GET_OE(oe, chip_info));
-+		for_each_set_bit(b, &mask, 8) {
-+			if (ctr++ != idx)
-+				continue;
-+			clk->reg = SI521XX_REG_OE(oe);
-+			clk->bit = 7 - b;
-+			return;
-+		}
-+	}
-+}
-+
-+static struct clk_hw *
-+si521xx_of_clk_get(struct of_phandle_args *clkspec, void *data)
-+{
-+	struct si521xx *si = data;
-+	unsigned int idx = clkspec->args[0];
-+
-+	return &si->clk_dif[idx].hw;
-+}
-+
-+static int si521xx_probe(struct i2c_client *client)
-+{
-+	const u16 chip_info = (u16)(uintptr_t)device_get_match_data(&client->dev);
-+	const struct clk_parent_data clk_parent_data = { .index = 0 };
-+	struct si521xx *si;
-+	unsigned char name[6] = "DIFF0";
-+	struct clk_init_data init = {};
-+	int i, ret;
-+
-+	if (!chip_info)
-+		return -EINVAL;
-+
-+	si = devm_kzalloc(&client->dev, sizeof(*si), GFP_KERNEL);
-+	if (!si)
-+		return -ENOMEM;
-+
-+	i2c_set_clientdata(client, si);
-+	si->client = client;
-+
-+	/* Fetch common configuration from DT (if specified) */
-+	ret = si521xx_get_common_config(si);
-+	if (ret)
-+		return ret;
-+
-+	si->regmap = devm_regmap_init(&client->dev, NULL, client,
-+				      &si521xx_regmap_config);
-+	if (IS_ERR(si->regmap))
-+		return dev_err_probe(&client->dev, PTR_ERR(si->regmap),
-+				     "Failed to allocate register map\n");
-+
-+	/* Always read back 1 Byte via I2C */
-+	ret = regmap_write(si->regmap, SI521XX_REG_BC, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Register clock */
-+	for (i = 0; i < hweight16(chip_info); i++) {
-+		memset(&init, 0, sizeof(init));
-+		snprintf(name, 6, "DIFF%d", i);
-+		init.name = name;
-+		init.ops = &si521xx_diff_clk_ops;
-+		init.parent_data = &clk_parent_data;
-+		init.num_parents = 1;
-+		init.flags = CLK_SET_RATE_PARENT;
-+
-+		si->clk_dif[i].hw.init = &init;
-+		si->clk_dif[i].si = si;
-+
-+		si521xx_diff_idx_to_reg_bit(chip_info, i, &si->clk_dif[i]);
-+
-+		ret = devm_clk_hw_register(&client->dev, &si->clk_dif[i].hw);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = devm_of_clk_add_hw_provider(&client->dev, si521xx_of_clk_get, si);
-+	if (!ret)
-+		si521xx_update_config(si);
-+
-+	return ret;
-+}
-+
-+static int __maybe_unused si521xx_suspend(struct device *dev)
-+{
-+	struct si521xx *si = dev_get_drvdata(dev);
-+
-+	regcache_cache_only(si->regmap, true);
-+	regcache_mark_dirty(si->regmap);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused si521xx_resume(struct device *dev)
-+{
-+	struct si521xx *si = dev_get_drvdata(dev);
-+	int ret;
-+
-+	regcache_cache_only(si->regmap, false);
-+	ret = regcache_sync(si->regmap);
-+	if (ret)
-+		dev_err(dev, "Failed to restore register map: %d\n", ret);
-+	return ret;
-+}
-+
-+static const struct i2c_device_id si521xx_id[] = {
-+	{ "si52144", .driver_data = SI521XX_OE_MAP(0x5, 0xc0) },
-+	{ "si52146", .driver_data = SI521XX_OE_MAP(0x15, 0xe0) },
-+	{ "si52147", .driver_data = SI521XX_OE_MAP(0x17, 0xf8) },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, si521xx_id);
-+
-+static const struct of_device_id clk_si521xx_of_match[] = {
-+	{ .compatible = "skyworks,si52144", .data = (void *)SI521XX_OE_MAP(0x5, 0xc0) },
-+	{ .compatible = "skyworks,si52146", .data = (void *)SI521XX_OE_MAP(0x15, 0xe0) },
-+	{ .compatible = "skyworks,si52147", .data = (void *)SI521XX_OE_MAP(0x15, 0xf8) },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, clk_si521xx_of_match);
-+
-+static SIMPLE_DEV_PM_OPS(si521xx_pm_ops, si521xx_suspend, si521xx_resume);
-+
-+static struct i2c_driver si521xx_driver = {
-+	.driver = {
-+		.name = "clk-si521xx",
-+		.pm	= &si521xx_pm_ops,
-+		.of_match_table = clk_si521xx_of_match,
-+	},
-+	.probe_new	= si521xx_probe,
-+	.id_table	= si521xx_id,
-+};
-+module_i2c_driver(si521xx_driver);
-+
-+MODULE_AUTHOR("Marek Vasut <marex@denx.de>");
-+MODULE_DESCRIPTION("Skyworks Si521xx PCIe clock generator driver");
-+MODULE_LICENSE("GPL");
--- 
-2.39.0
 
+It's not different than others and shouldn't be treated differently. I 
+just didn't know correct bindings representation.
+
+Now I have some idea how this should be represented, so I will send 
+bindings patch, dts patch and driver patch all in same series.
+
+
+>
+> Second, so think about bindings and do not submit something for "driver"
+> but something describing hardware.
+
+
+ACK. It will take me some time to post next patch, as I will add support 
+of this tcm device in xlnx remoteproc driver as well.
+
+Thanks for all your suggestions, they were helpful.
+
+
+>
+> Best regards,
+> Krzysztof
+>
