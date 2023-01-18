@@ -2,168 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E29F3672701
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 19:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7530A672708
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 19:33:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230407AbjARScU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 13:32:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52296 "EHLO
+        id S230414AbjARSdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 13:33:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230235AbjARScU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 13:32:20 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBFB559B42
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 10:32:15 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id g10so25377473wmo.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 10:32:15 -0800 (PST)
+        with ESMTP id S230273AbjARSdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 13:33:03 -0500
+Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 334E359241
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 10:33:02 -0800 (PST)
+Received: by mail-vk1-xa2e.google.com with SMTP id w72so16856506vkw.7
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 10:33:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MDOMgu1R5MZdFuG1WoMkXEWXWPDB9V7oXEVPOSPFqMk=;
-        b=WHaUr7JkLqMIDHA/hXsqBjkSWmDZFiUxCHf2dftPrBezsoW+dLizp4JrGqrPYf3WLl
-         JOm5jBVrjlBDqw5Ha/qcs+r/dwUOKQCzYpcjU/p04GEBOccP9SeLIz6EDm/vLWbo8tBW
-         hhP3cVm1n6WGcDMAyMBWpQlW8F1PpQp5l0Qpge5N4cUjxUm/ty47jo8J4zHUcSvJ5vOA
-         uCzsdRdwwtJTcc2fW7Pg6xl1CgeYurWytPgfrvv3PGxI3FiNCLWGc9M0i6VWbXlKpWUX
-         S5zfo7sem5bmk2tW1QoVf3Swfgrwvtg28GBXWO3v/IVC9sjGqgTrpxoDQVkt1cLUwWeA
-         FL4w==
+        d=criticallink.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=79B2mrM6u98RtgwVRK2YijfD555WnZ5B39rU02m7674=;
+        b=g5B7qyrUaNc6oolT5docVghEpixtXxxQmEGVFsP5Y5bDqTjWVJCjUyZRX4dbXP76/C
+         5N/GBgQKjP/DtjBsuc2j974xWnwW9I45go5sewvORaC78STOhyX2AasSSIPiF2bavsNS
+         Qo3lnC5xxZLps4e5RJ8pf/WwRNOrCvGDkZYvyH6r74OF1dZ+KIz2VB3jsBFaUl5LPx7T
+         i49elfR+8eRBYIvsxt8VULh6ovHY1X0h5VWZNfXMfbp9fLHPq8MX+Hu++2CmPYHRmJuk
+         tBf2XSw70mG7UaHkT50n2vbpDbiLWH0RgpW9sV53TtOEYlTjjI/+hjmXvJyJlptOWqyr
+         kCBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MDOMgu1R5MZdFuG1WoMkXEWXWPDB9V7oXEVPOSPFqMk=;
-        b=mBTgWuVgcWAbj1bZnzCfRc8U0mDLMzIjtbTCJ0XHRRwyA5+29X/Vk9UPsjzbHTPTO9
-         k9IFmfhF8xe7JeUeLsx5qMG3Wzjd99mHtWts1GXw6VXQY6OcP/Owi5R6diE9ieQYsnhu
-         8fDaKXaZPD05597X/+34f5lLZf0oMa30JPElNQ7j/VE7u7ICRK/3js3GQr3clvug0Vvj
-         q7j5Qzl0Dq1T0WrauUV8KERyBra2oZJOnEeGXikzaVV8nMYhfRXvPgpkyHw5XSC9XWHm
-         Ztd5Bu7oQaGLwbP6LUIz+Z8eKLlsW2XwR9IA/6nJoXcjNbEvxugyTljDN+SF4m99VyHB
-         DQOA==
-X-Gm-Message-State: AFqh2krafBJjdAj48cpkm9PjYIPWjTmH2a4q7va9AJMMCkfldJoVwdRN
-        5zUsCNxxrh85zTbUyGFTAmxR8Q==
-X-Google-Smtp-Source: AMrXdXtdP5gAkiej7sOvZztosqeKCQeZenZx5m8n552mmlJwQ5zMJxYUgthGWLC97j6Vtmg0xkfOIw==
-X-Received: by 2002:a05:600c:214f:b0:3d9:ecae:84f2 with SMTP id v15-20020a05600c214f00b003d9ecae84f2mr7409139wml.25.1674066734461;
-        Wed, 18 Jan 2023 10:32:14 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id bg1-20020a05600c3c8100b003db09eaddb5sm2270616wmb.3.2023.01.18.10.32.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 10:32:13 -0800 (PST)
-Message-ID: <a60e7f50-c39f-07e5-7238-e3a4031b45a4@linaro.org>
-Date:   Wed, 18 Jan 2023 19:32:12 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=79B2mrM6u98RtgwVRK2YijfD555WnZ5B39rU02m7674=;
+        b=odEkYien7h72NxeHGyXLdDcPQQ/YWgmaXtCvyJ5UdpTrg8isTfOia4BwWjt2XYGd1K
+         AcqPbVa5DkB9S7BoWWSP6g6p28/d/4Tb8Fyeu5XQYMzSQXAG7iupClQEElwzjk9Fr1hJ
+         XLi/s4OsqOcPcWqlID+sz4cSyF3qPnvhjKiFwt7iD6CeQ4vtRZZ0ZnTYnnGPAdjgFa38
+         SWoNeniQBgykjj5/qjXLYM8Jl/nS5NUtfnTh5mN+7AKlKe8AlAvyWTBqy10I6YXy8KS4
+         xUX14vkXs0YKskX3/V0AX7AOxHLZWZUmI1fv3AzQ0KBaP26JfOsa2wehFubuIxgnAl99
+         Bn9g==
+X-Gm-Message-State: AFqh2kpSrQEv1bQBv2KXSRpNj5s8y4SO53XTzopbujxfUmjp5jJ292oK
+        JWtE6QZ1NJIJb5I7PI8vAzw9XU4ak1qf0BIManKWeg==
+X-Google-Smtp-Source: AMrXdXulXPk/v5TNnovUqrx8h4pMJTAOQuYyjn7YpigNfB8lvbsUI8BI2RXnI8ByaCCOSUXwLRZIIy5y+4HTM87Gtec=
+X-Received: by 2002:a1f:9b4d:0:b0:3e1:722f:9a6f with SMTP id
+ d74-20020a1f9b4d000000b003e1722f9a6fmr1086514vke.1.1674066781258; Wed, 18 Jan
+ 2023 10:33:01 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v1 1/4] dt-bindings: gpio: rockchip,gpio-bank: add
- compatible string per SoC
-Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh@kernel.org>
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kever.yang@rock-chips.com, sjg@chromium.org,
-        philipp.tomsich@vrull.eu
-References: <08de3f4b-e33f-95c8-3297-814ea107272a@gmail.com>
- <20230118153236.GA33699-robh@kernel.org>
- <f624fcf3-f8f1-68c0-eab0-43bcda3cbe90@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f624fcf3-f8f1-68c0-eab0-43bcda3cbe90@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221214220727.1350784-3-jcormier@criticallink.com>
+ <20230109233534.1932370-1-jcormier@criticallink.com> <20230109233534.1932370-4-jcormier@criticallink.com>
+ <d49d4b4c-e7ee-e0a1-56e6-7f193e0d1340@roeck-us.net> <CADL8D3YEkZaOjUY3mRLGT0M+b7MwN5zQZrbsw5W8Mn=PJ7PtcA@mail.gmail.com>
+ <dd80ee77-3b71-ee47-2744-36b09e0ec372@roeck-us.net> <CADL8D3YksXnRkEgXkY86KZXM4nouJBemno=db5KgbCi3xmSa8Q@mail.gmail.com>
+ <20230112004413.GD1991532@roeck-us.net>
+In-Reply-To: <20230112004413.GD1991532@roeck-us.net>
+From:   Jon Cormier <jcormier@criticallink.com>
+Date:   Wed, 18 Jan 2023 13:32:50 -0500
+Message-ID: <CADL8D3af+HTAbOwFKhv7h6hgwTaL=9dQDK8bv8Nkc8zuYEY+ug@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] hwmon: ltc2945: Handle error case in ltc2945_value_store
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bob Duke <bduke@criticallink.com>,
+        John Pruitt <jpruitt@criticallink.com>,
+        Dan Vincelette <dvincelette@criticallink.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 18:12, Johan Jonker wrote:
-> 
-> 
-> On 1/18/23 16:32, Rob Herring wrote:
->> On Wed, Jan 18, 2023 at 01:13:23PM +0100, Johan Jonker wrote:
->>> Currently all Rockchip gpio nodes have the same compatible.
->>> Replace all the compatibles in gpio nodes to be able to
->>> give them a consistent ID independent from probe order or alias.
->>
->> I fail to see how the compatible change affects probe order or aliases. 
->> It is also an ABI break if there is not the existing compatible as a 
->> fallback. State the problem you are trying to solve with this change, 
->> not just what your solution is.
-> 
-> Hi Rob,
-> 
-> Since the yaml conversion of rockchip,gpio-bank.yaml we have generic "gpio" names instead of "gpio-1".
-> For both Linux and U-boot there's a need for a consisted ID order between the nodes.
+Alright, I'll take another pass at it.
 
-Still do not see how compatible is related to this.
+On Wed, Jan 11, 2023 at 7:44 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On Tue, Jan 10, 2023 at 02:25:37PM -0500, Jon Cormier wrote:
+> > On Tue, Jan 10, 2023 at 1:22 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> > >
+> > > On 1/10/23 10:19, Jon Cormier wrote:
+> > > > On Mon, Jan 9, 2023 at 7:04 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> > > >>
+> > > >> On 1/9/23 15:35, Jonathan Cormier wrote:
+> > > >>> ltc2945_val_to_reg errors were not being handled
+> > > >>> which would have resulted in register being set to
+> > > >>> 0 (clamped) instead of being left alone.
+> > > >>>
+> > > >>> Change reg_to_val and val_to_reg to return values
+> > > >>> via parameters to make it more obvious when an
+> > > >>> error case isn't handled. Also to allow
+> > > >>> the regval type to be the correct sign in prep for
+> > > >>> next commits.
+> > > >>>
+> > > >>
+> > > >> Sorry, I don't see that as reason or argument for such invasive changes.
+> > > >> As far as I can see, a two-liner to check the return value of val_to_reg()
+> > > >> should have been sufficient. Most of the rest, such as splitting
+> > > >> the return value into two elements, is POV and just adds additional code
+> > > >> and complexity for zero gain.
+> > > > I can do that. However, you had also mentioned changing the return
+> > > > type to match what the calling function was expecting, an unsigned
+> > > > long. But I can't do that since error codes are negative so it would
+> > > > be a signed long which would lose precision and seemingly defeat the
+> > > > point of matching the variable type the caller wants.  I could make it
+> > > > a signed long long but that still doesn't match.  So it seemed saner
+> > > > to just return the error and the value separately, that way the
+> > > > function declaration was explicit about the types it wanted/returned,
+> > > > and less room for error.  Would love to know your preferred solution.
+> > > >
+> > >
+> > > That is only true if the upper bit is actually ever set in that signed long.
+> > > Which means I'll have to verify if "would lose precision" is actually
+> > > a correct statement.
+> > I'd like to argue that is another reason to go with this change
+> > instead of working out the math of just how many bits are needed in
+> > the worst case and having to document it. And potentially getting that
+> > calculation wrong.  But I can if you'd like me to.
+>
+> You are turning things on its head. We don't make changes like that
+> because of maybe. It is you who has to show that the change is
+> necessary, and that there is indeed a loss of precision otherwise.
+>
+> Guenter
 
-> 
-> The kernel has no logic to decide between the first compatible and the fallback.
-> A fallback doesn't have ability to add/select "data" with probe, but have to use
-> of_device_is_compatible(np, "rockchip,rk3188-gpio-bank") for  "15"  SoCs instead.
-> 
-> I can produce a serie with fall back.
-> Let us know how to move forward here.
-> 
-> Kind regards,
-> 
-> Johan Jonker
-> 
-> 
-> ===
-> Linux driver behavior:
-> 
-> 	id = of_alias_get_id(np, "gpio");
-> 	if (id < 0)
-> 		id = gpio++;
-> 
-> Problems:
-> Alias not always available in existing DT files(not part of the binding)
-> Probe order is not guarantied and possible number gap for rk3066a between gpio4 and gpio6.
-> (id counter gives not consistent result)
 
-Again, how compatible is related to this?
 
-> 
-> ===
-> U-boot rk_gpio.c current behavior:
-> 
-> 	end = strrchr(dev->name, '@');
-> 	priv->bank = trailing_strtoln(dev->name, end);
-> 	priv->name[0] = 'A' + priv->bank;
-> 	uc_priv->bank_name = priv->name;
-> 
-> Problems:
-> Crash when node name has no "gpio-1" format
-> 
-> U-boot rk-gpio proposed: 
-> 
-> 	priv->name[0] = 'A' + dev_seq(dev);
-> 	uc_priv->bank_name = priv->name;
-> 
-> Problems:
-> Reduced FDT's and rk3066a gives number gaps.
-> 
-> ===
-> 
-> My proposal:
-> 
-> struct lookup_table rk_gpio_rk3188_data[] = {
-> 	{0x2000a000, "A"},
-> 	{0x2003c000, "B"},
-> 	{0x2003e000, "C"},
-> 	{0x20080000, "D"},
-> };
-> 
-> 	{ .compatible = "rockchip,rk3188-gpio-bank", .data = &rk_gpio_rk3188_data },
+-- 
+Jonathan Cormier
+Software Engineer
 
-Which you did not do... Your patch is doing something entirely else.
+Voice:  315.425.4045 x222
 
-Best regards,
-Krzysztof
 
+
+http://www.CriticalLink.com
+6712 Brooklawn Parkway, Syracuse, NY 13211
