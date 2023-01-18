@@ -2,153 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6615167156E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 08:53:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B55F671597
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 08:56:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229687AbjARHxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 02:53:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50156 "EHLO
+        id S229927AbjARHyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 02:54:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229682AbjARHxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 02:53:14 -0500
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E652066CD5
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 23:20:43 -0800 (PST)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-4d4303c9de6so305565447b3.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 23:20:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QHYjNboy8i6R9pkgUzP7nFs+iFK9QG1SwwhxlUp7l3M=;
-        b=UvYtut9XPZkKgSHzioy0kuwrqatZGmtMqiRohPNf0LkkqPhoaxWT6DnJdyUSehLWGL
-         Aak74rM4QGI4BXUa/eIRNRbeoIEELMzp1G5Psr7FwraJOKbWrim31dvCrJB7UNnE9B+1
-         i9/ASuwi0Y4zZlq0try9819MXRYpF6gxGlUmk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QHYjNboy8i6R9pkgUzP7nFs+iFK9QG1SwwhxlUp7l3M=;
-        b=zBpW08UcpfPk14staJqwolCVBaYD/ZAIh21WjxPPHANRsdshJfJvApH0t6Sf8/s1l1
-         A6aF+1Jl9OiCJKNG2+GlUzG6ZlPSQRrTTFDorsAKW5DHAT2fhsfMLcmhIAwn39Rc0yrv
-         J9Tg2FotIz31NhgQkHbpqyMV8SQL7dsv3bxzgpFpHPmGt6ve58klgdqe3qx7Aw+NqxCM
-         WQj5SYvfm2Wgy1MecpRrflklrzeTKlOlWIBncX72TeLcgmKFEt+/FNmTTAe6YmckgzhJ
-         dJT0uy76hg/4wimGJuxKfJsabNexMIS+QpCnFqWK1zeVcmATAoe8TVGJrROZrDvg16ui
-         g11w==
-X-Gm-Message-State: AFqh2kq9HMyQAObBILZZFHKZfQq+YkSvDaPYvyaYxRcDq5Ek6CzjPyMn
-        Y+TRwLDJtviSZik01Jr1aQwU7p3s2URlBGNq2P1Dd9GGBXwBAZ/1tKA=
-X-Google-Smtp-Source: AMrXdXvtYDvMdtONGk24TUgUpLh2hVbPn7Lm7OA2tSJS7jb1XwdZK/sFwbClv6szed1mT098RXTqY7c7zA3yjmmsPuo=
-X-Received: by 2002:a05:690c:852:b0:4d7:eb11:6bf7 with SMTP id
- bz18-20020a05690c085200b004d7eb116bf7mr739362ywb.235.1674026443094; Tue, 17
- Jan 2023 23:20:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20230117105504.18296-1-jagan@amarulasolutions.com>
- <20230117105504.18296-4-jagan@amarulasolutions.com> <2dcb7b4a-9751-ec7a-f0ea-6de748ca3bf7@linaro.org>
- <CAMty3ZD_LWBR2+fu41Z5LEBcNw1KXEaY8P92Ypa-4rg2t8BH_A@mail.gmail.com> <c23bf1ef-de1d-ee64-f624-11e65915680a@linaro.org>
-In-Reply-To: <c23bf1ef-de1d-ee64-f624-11e65915680a@linaro.org>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 18 Jan 2023 12:50:30 +0530
-Message-ID: <CAMty3ZDjtmJ9Fh-muAOUTDVonM9wjPuP_Xw0Dz27hjOAgbBZkw@mail.gmail.com>
-Subject: Re: [PATCH 4/7] arm64: dts: rockchip: Fix compatible and model for
- Radxa CM3i
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        with ESMTP id S229578AbjARHx3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 02:53:29 -0500
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231B632E5F;
+        Tue, 17 Jan 2023 23:27:45 -0800 (PST)
+Received: from toolbox.int.toradex.com ([213.55.225.137]) by
+ mrelay.perfora.net (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id
+ 0LwJuC-1oevnl0WdC-01849n; Wed, 18 Jan 2023 08:27:11 +0100
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-imx@nxp.com,
         linux-arm-kernel@lists.infradead.org,
-        Chukun Pan <amadeus@jmu.edu.cn>,
-        FUKAUMI Naoki <naoki@radxa.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Fabio Estevam <festevam@denx.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Liu Ying <victor.liu@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Ming Qian <ming.qian@nxp.com>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Pierre Gondois <pierre.gondois@arm.com>,
+        Reinhold Mueller <reinhold.mueller@emtrion.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Shijie Qin <shijie.qin@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Viorel Suman <viorel.suman@nxp.com>,
+        Zhou Peng <eagle.zhou@nxp.com>
+Subject: [PATCH v4 00/17] arm64: dts: freescale: prepare and add apalis imx8 support
+Date:   Wed, 18 Jan 2023 08:26:38 +0100
+Message-Id: <20230118072656.18845-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:Pl6GOTSUiQJBx3PfR7nqmf9tnXyXEOUZd9HqKI7Md7g1YAjGVIb
+ lqEX4klknu+IRlCgyBqiIyfGHslnNiuX2QU2W3rpvfZhVcgJ2PJCnFbw5KG6xhoYfEsE1yK
+ v5gLFsyOBTFu0oOvam+xlJBUr8MJiFj0jQtruAxqjsrDa0o7dq1Vy7kmW0i/z6/Wmby1UXw
+ YOf+LcKJcgSEHWqYYYdXQ==
+UI-OutboundReport: notjunk:1;M01:P0:BhD8qwQtzCQ=;/MTU6rHTS8w2UVGYrceVLaFqr4g
+ VMHrMjE5fK/9xyxTUIz5Aobs0upNmdzJYz4LfxYyY71IU86lu6R7Upum1bhRu3o6p+RbobpIE
+ XRdfB1MR84fepnLLAkKWy9DnU8GRhzHtW/Os1GfetO9YGBlqSG3zHQAe9XcK5LhcjqLiY/lyE
+ 9zytBL3JsojN+/omDBK+Q1/M4b+hplWc4teXTDbQbOWRMjjf7Y6OX9GpnkEIOI1konBmse/ww
+ jrJuiyR+yeGenB9zGxc4DrFn8tUOz6/WR8GQYN/dzQPIhGIKpyJkYUsKux9hBM9V2mDIIb81z
+ XjbOBJZWqgciW2VnaJdy4kmglFAd5PifSKhYta8uKa8P+eQXOcxsui+ev/gB5YwYNea+i3eaR
+ OBXqbAoRfoj32m8Lt0KixgXDWmdqpwYqwDyhHm1kfedVpWgmO3JTkWlByLP0oHtFNiUV4uZbd
+ +UmBFlg8WpeepASnUUHdpuVcxpC1tvwD8jL5MZAKfylij2VfjZwgoN+McG+kOmDuE7AZ39Sj8
+ j8WfRG00dITFrEYFPYCyHMprhWxru41RpgoKKRc24Bql7DioNYlIVdBkdqsG65VIl+tTTjqJ6
+ 4xe2ypsuPKTl2bl7Cj655LuxKUXOG300x6rqOl3G9fma4B6JLpzkRxHyGSQ8gbG7+aEbEwd7I
+ 5XoWHurskUV5yxty8Mqe5N+xAPUVk/VnpTOI5lWTtg==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 17, 2023 at 6:28 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 17/01/2023 13:52, Jagan Teki wrote:
-> > On Tue, Jan 17, 2023 at 4:37 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 17/01/2023 11:55, Jagan Teki wrote:
-> >>> Fix the model name and compatible strings for Radxa CM3i SoM
-> >>> and Carrier board based on Radxa recommendation.
-> >>>
-> >>> Fixes: 2bf2f4d9f673 ("arm64: dts: rockchip: Add Radxa CM3I E25")
-> >>> Cc: Chukun Pan <amadeus@jmu.edu.cn>
-> >>> Reported-by: FUKAUMI Naoki <naoki@radxa.com>
-> >>> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> >>> ---
-> >>>  arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi | 2 +-
-> >>>  arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts   | 4 ++--
-> >>>  2 files changed, 3 insertions(+), 3 deletions(-)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
-> >>> index 225dbbe4955d..0c9a918b809a 100644
-> >>> --- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
-> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
-> >>> @@ -7,7 +7,7 @@
-> >>>
-> >>>  / {
-> >>>       model = "Radxa CM3 Industrial Board";
-> >>> -     compatible = "radxa,cm3i", "rockchip,rk3568";
-> >>> +     compatible = "radxa,radxa-cm3i", "rockchip,rk3568";
-> >>
-> >> Nope, second radxa is redundant.
-> >
-> > It is not redundant, Product name and vendor name is same. Vendor name
-> > is Radxa and product name is Radxa CM3i
->
-> If this was true, then on their website the product would be called
-> "Radxa Radxa CM3i", but it is not. It is called Radxa CM3i, to denote
-> the company name with the model name. Anyway, in the name of model you
-> can call it. In the context of compatible it is redundant.
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Is it mandatory to consider the manufacturer as well in order to
-denote the model name of the product?
 
-This I what I thought, correct me if I'm wrong. The recommended
-compatible format is "manufacturer,model" so we can consider only the
-model in compatible string in order to denote the model name, not the
-manufacturer. So with "radxa,radxa-cm3i"  compatible the desired model
-would be "Radxa CM3i"
+Add support for lsio_pwm0-3, add io-channel-cells property for ADC
+nodes, set lpspi0 max frequency to 60MHz, add toradex,apalis-imx8 et al.
+to dt-bindings and finally, add initial support for Apalis iMX8 split
+into module and carrier board parts.
 
->
-> >
-> >>
-> >>>
-> >>>       aliases {
-> >>>               mmc0 = &sdhci;
-> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
-> >>> index a4c33310ca42..8ca15b723799 100644
-> >>> --- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
-> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
-> >>> @@ -4,8 +4,8 @@
-> >>>  #include "rk3568-radxa-cm3i.dtsi"
-> >>>
-> >>>  / {
-> >>> -     model = "Radxa E25";
-> >>> -     compatible = "radxa,e25", "radxa,cm3i", "rockchip,rk3568";
-> >>> +     model = "Radxa E25 Carrier Board";
-> >>> +     compatible = "radxa,radxa-e25", "radxa,radxa-cm3i", "rockchip,rk3568";
-> >>
-> >> NAK. You just changed it in patch 2. Don't add broken compatibles in one
-> >> patch (cm3i) and fix them next one. It's like adding intentional bugs
-> >> and fixing them immediately...
-> >
-> > I did squash this with previous patch but the check patch showing
-> > warning to separate the dt-bindings patch from actual devicetree file
-> > change.
->
-> Patch 2 was not a bindings patch, so you squashed wrong files.
+The following 6 patches added in v4 were only kept separate for review
+purpose and may ultimately be squashed by the maintainer uppon
+application (just like this carrier board one with the previous module
+one):
+- analogue audio comment
+- add bkl1_pwm functionality
+- add flexcan functionality
+- enable messaging units
+- fix reserved-memory node names
+- enable vpu
 
-I mean 3/7 patch - "[PATCH 3/7] dt-bindings: arm: rockchip: Fix
-description and compatible for Radxa CM3i"
+Changes in v4:
+- New patch inspired by the following downstream patch:
+  commit 0c36c5b63c1e ("LF-3569-1 firmware: imx: scu-pd: add missed lvds lpi2c and pwm power domains")
+  Avoiding the following being reported upon boot:
+  [    1.309776] lvds0_pwm0_clk: failed to attached the power domain -2
+  [    1.334097] lvds1_pwm0_clk: failed to attached the power domain -2
+  ...
+  [   15.281767] platform 57244000.pwm: deferred probe pending
+  ...
+  [   15.292630] platform backlight: deferred probe pending
+- New patch combining the following downstream patches limitted to LVDS
+  PWM functionality for now:
+  commit 036c6b28a186 ("arm64: imx8qm.dtsi: Add LVDS0/1 subsystems support")
+  commit c3d29611d9d4 ("arm64: imx8qm-ss-lvds.dtsi: Add pwm_lvds0/1 support")
+  commit baf1b0f22f8a ("LF-882-1 arm64: imx8qm-ss-lvds.dtsi: Separate ipg clock for lvds0/1 subsystems")
+- New patch combining the following downstream patches:
+  commit e8fe3f57223a ("arm64: dts: imx8qxp: add FlexCAN in adma")
+  commit 4e90361f1ed3 ("arm64: dts: imx8qxp: add multi-pd support for CAN1/2")
+  commit 899f516e61f8 ("arm64: dts: imx8: dma: fully switched to new clk binding")
+  commit 8a28ca15a058 ("arm64: dts: imx8qxp: drop multi-pd for CAN device")
+  commit c493402197dd ("arm64: dts: imx8: update CAN fsl,clk-source and fsl,scu-index property")
+- New patch inspired by the following downstream patch:
+  commit 117607e6a7b5 ("arm64: dts: imx8qm: add CAN node in devicetree")
+- New patch combining the following downstream patches:
+  commit 4f2147ce6f0e ("arm64: dts: imx8qm: add vpu decoder and encoder")
+  commit 0c9f9b64d27d ("LF-6575: imx8q: vpu: switch to amphion upstream driver")
+- Shorten subject.
+- New patch adding comment about analogue audio being another todo.
+- New patch adding Apalis BKL1_PWM functionality.
+- New patch adding flexcan functionality.
+- New patch enabling messaging units aka MUs.
+- New patch fixing reserved-memory node names.
+- New patch enabling VPU functionality.
 
-Jagan.
+Changes in v3:
+- Fix subject as pointed out by Shawn. Thanks!
+- Properly accommodate for -v1.1 modules curtsey Francesco.
+- Only use V1.1 compatible for V1.1 module dtsi.
+- Split patch into separate module and carrier boards parts as suggested
+  by Shawn.
+- Put reg after compatible as requested by Shawn.
+- Move atmel_mxt_ts and rtc_i2c into module dtsi to save such
+  duplications as suggested by Shawn.
+- Change iomuxc pinctrl indent style as suggested by Shawn.
+- Change led node names to the preferred first form as suggested by
+  Shawn. While at it also add color (yikes), default-state and function
+  properties and remove the deprecated label property.
+- Put enable-active-high properties after the gpio ones as suggested by
+  Shawn. Thanks!
+- Remove adc node's vref-supply and accompanying reg_vref_1v8 regulator
+  node.
+- Rename gpio-hogs adherring to dt schema naming convention.
+
+Changes in v2:
+- Fixed missing space in the comment V1.1Module curtsey Max.
+- Added Rob's ack.
+
+Clark Wang (1):
+  firmware: imx: scu-pd: add missed lvds lpi2c and pwm power domains
+
+Joakim Zhang (2):
+  arm64: dts: imx8qxp: add flexcan in adma
+  arch: arm64: imx8qm: add can node in devicetree
+
+Liu Ying (1):
+  arm64: dts: imx8qm: add pwm_lvds0/1 support
+
+Marcel Ziswiler (9):
+  dt-bindings: arm: fsl: add toradex,apalis-imx8 et al.
+  arm64: dts: freescale: add initial apalis imx8 aka quadmax module
+    support
+  arm64: dts: freescale: add apalis imx8 aka quadmax carrier board
+    support
+  arm64: dts: freescale: apalis-imx8: analogue audio comment
+  arm64: dts: freescale: apalis-imx8: add bkl1_pwm functionality
+  arm64: dts: freescale: apalis-imx8: add flexcan functionality
+  arm64: dts: freescale: apalis-imx8: enable messaging units
+  arm64: dts: freescale: apalis-imx8: fix reserved-memory node names
+  arm64: dts: freescale: apalis-imx8: enable vpu
+
+Max Krummenacher (1):
+  arm64: dts: imx8-ss-dma: add io-channel-cells to adc nodes
+
+Philippe Schenker (2):
+  arm64: dts: freescale: imx8-ss-lsio: add support for lsio_pwm0-3
+  arm64: dts: freescale: imx8-ss-dma: set lpspi0 max frequency to 60mhz
+
+Zhou Peng (1):
+  arm64: dts: imx8qm: add vpu decoder and encoder
+
+ .../devicetree/bindings/arm/fsl.yaml          |   19 +
+ arch/arm64/boot/dts/freescale/Makefile        |    5 +
+ .../boot/dts/freescale/imx8-apalis-eval.dtsi  |  149 ++
+ .../dts/freescale/imx8-apalis-ixora-v1.1.dtsi |  225 +++
+ .../dts/freescale/imx8-apalis-ixora-v1.2.dtsi |  275 +++
+ .../boot/dts/freescale/imx8-apalis-v1.1.dtsi  | 1491 +++++++++++++++++
+ .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi |   76 +-
+ .../boot/dts/freescale/imx8-ss-lsio.dtsi      |   48 +
+ .../boot/dts/freescale/imx8qm-apalis-eval.dts |   16 +
+ .../freescale/imx8qm-apalis-ixora-v1.1.dts    |   16 +
+ .../dts/freescale/imx8qm-apalis-v1.1-eval.dts |   16 +
+ .../imx8qm-apalis-v1.1-ixora-v1.1.dts         |   16 +
+ .../imx8qm-apalis-v1.1-ixora-v1.2.dts         |   16 +
+ .../dts/freescale/imx8qm-apalis-v1.1.dtsi     |   16 +
+ .../boot/dts/freescale/imx8qm-apalis.dtsi     |  340 ++++
+ .../boot/dts/freescale/imx8qm-ss-dma.dtsi     |   44 +
+ .../boot/dts/freescale/imx8qm-ss-lvds.dtsi    |   83 +
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi     |    5 +
+ drivers/firmware/imx/scu-pd.c                 |    4 +
+ 19 files changed, 2859 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-eval.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-ixora-v1.1.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-eval.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.1.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
+
+-- 
+2.35.1
+
