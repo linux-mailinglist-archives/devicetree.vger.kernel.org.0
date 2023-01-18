@@ -2,123 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD2886724BD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 18:21:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DCF16724C3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 18:23:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbjARRVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 12:21:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51398 "EHLO
+        id S229615AbjARRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 12:23:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbjARRVm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 12:21:42 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56DD4A1C8;
-        Wed, 18 Jan 2023 09:21:39 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30IHLDRZ004442;
-        Wed, 18 Jan 2023 11:21:13 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1674062473;
-        bh=6WadCtvk8UAcJIveU7R2rxQCXinRZfK5AQ/s+qIEVrw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=uaZSGsUxBR1lBWbXccHBx+jZ+VhDJtiDyfvMFxQshGCCa0lwWBEhfuGR+fApogMmU
-         7HVneSWTwUKYEa7DXLwhAUpPvKBWbYfBaS4LTCP+rfHfqwBduOFufKmUTSS7HiRDf3
-         rtw0M9qIzvZqqmYYNLu5xMNNsdp/erhcbcuLFJ3E=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30IHLDmh031418
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 18 Jan 2023 11:21:13 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 18
- Jan 2023 11:21:13 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 18 Jan 2023 11:21:13 -0600
-Received: from [10.250.235.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30IHL7H8109811;
-        Wed, 18 Jan 2023 11:21:08 -0600
-Message-ID: <bb5bed0b-c68a-8e73-48d2-d949d6f90cae@ti.com>
-Date:   Wed, 18 Jan 2023 22:51:07 +0530
+        with ESMTP id S229776AbjARRW4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 12:22:56 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7C35529B
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 09:22:55 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so1891700wml.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 09:22:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QTHrIMlF4V0ckFLxeB8DR9WhaVsZX5PbMH6MIzdQoL0=;
+        b=OIPxQXahRqIyc5S3hnGhKnpU7KIAvICxeR/SBr7HP2wZIIz4A9gnLFxLRxkHKn03aD
+         goy0kke/murf5dzTgMiZrklMxeeAlCQO+rLg553Dho2NwigPzGTo6wTf7eMDkxPDDKXO
+         1WyY9nS75tuJlM/cW7yNuVcMLK3KzY+z98jLzpWIKSP8Zf3m3eUDUTS0bw9avJGdVsMK
+         co131aVlmKeyoBU991VDl+S3DsSGDhA6CboymqEvmLiy6Cqlhf3rzaSTa6DPrSiC8Bwt
+         dQ62n5lydam+cz4AW26aoLKUcVw9rwZWh5tN93Y7fMZv+6PlsuPMXRb2CfysyPTf30jk
+         JiJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QTHrIMlF4V0ckFLxeB8DR9WhaVsZX5PbMH6MIzdQoL0=;
+        b=mA0ze9VN1TmAhxufWDCVKmyTU2BpMhDmx2vvPWpKSi0QgGhc3i0fquF8LsUv78A9s5
+         k/8FdGi3goA/UKKU+bNoCD5qex01F+7OUf8LhOq0mxuOlyXbWMI1WJyJzw7LVs7C3J7w
+         UCsR42BjIAmTrI3j13KC4zOVt+hY8NFXMrehg1n2BcYA1NU6+MtiyGe7ccs0kpIu83A9
+         ciwzPz3mGIE2zURTNh2E4g+vUMuHKDugibzw1D3gWAjegBcwvC594+ABiEv9PoBJQMNJ
+         +ypkY0ZaSWTDfgSJFVI7kwadw1PAu9h7luu7zxGfa3cFDOd2+dLb1HRJ3nirENAlV98Z
+         xbnw==
+X-Gm-Message-State: AFqh2kq2Dvn3vPlWvN0Zzjq3KHrEcKAIKPiIqBOxHavWNKg4ukU2TgS2
+        ojxN/CJ/eiWSBV4QArxsT8+TVQ==
+X-Google-Smtp-Source: AMrXdXvGjjiLYQ6mh5t+ATqJa4pO1oWDgd9qn6J8/i6FO8XyLtcEOWAPZhSbqIBeo1hXusYDmYMDvg==
+X-Received: by 2002:a05:600c:1d12:b0:3da:ff82:f627 with SMTP id l18-20020a05600c1d1200b003daff82f627mr7760045wms.25.1674062573622;
+        Wed, 18 Jan 2023 09:22:53 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id v20-20020a05600c215400b003d358beab9dsm2434746wml.47.2023.01.18.09.22.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 09:22:52 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Akshay Gupta <Akshay.Gupta@amd.com>, Kun Yi <kunyi@google.com>,
+        Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Eric Tremblay <etremblay@distech-controls.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: hwmon: adi,ltc2992: correct unit address in example
+Date:   Wed, 18 Jan 2023 18:22:36 +0100
+Message-Id: <20230118172237.349111-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH net-next v6 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss:
- Add J721e CPSW9G support
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
-        <vladimir.oltean@nxp.com>, <nsekhar@ti.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-References: <20230104103432.1126403-1-s-vadapalli@ti.com>
- <20230104103432.1126403-2-s-vadapalli@ti.com>
- <CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com>
- <a3349dd8-6e1b-30bc-8247-5021f3733faf@linaro.org>
-From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
-In-Reply-To: <a3349dd8-6e1b-30bc-8247-5021f3733faf@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+lower-case hex is expected for unit addresses:
 
+  adi,ltc2992.example.dts:22.24-38.15: Warning (i2c_bus_reg): /example-0/i2c/ltc2992@6F: I2C bus unit address format error, expected "6f"
 
-On 1/17/2023 10:47 PM, Krzysztof Kozlowski wrote:
-> On 17/01/2023 14:45, Geert Uytterhoeven wrote:
->> Hi Siddharth,
->>
->> On Wed, Jan 4, 2023 at 11:37 AM Siddharth Vadapalli <s-vadapalli@ti.com> wrote:
->>> Update bindings for TI K3 J721e SoC which contains 9 ports (8 external
->>> ports) CPSW9G module and add compatible for it.
->>>
->>> Changes made:
->>>     - Add new compatible ti,j721e-cpswxg-nuss for CPSW9G.
->>>     - Extend pattern properties for new compatible.
->>>     - Change maximum number of CPSW ports to 8 for new compatible.
->>>
->>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>
->> Thanks for your patch, which is now commit c85b53e32c8ecfe6
->> ("dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J721e CPSW9G
->> support") in net-next.
->>
->> You forgot to document the presence of the new optional
->> "serdes-phy" PHY.
-> 
-> I think we should start rejecting most of bindings without DTS, because
-> submitters really like to forget to make complete bindings. Having a DTS
-> with such undocumented property gives a bit bigger chance it will get an
-> attention. :(
-> 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Agree, bindings should have been better tested against real DTS.
+---
 
-But for reviewers, this been a bit of chicken-egg problem. Bindings and
-driver changes have to go in first and via "subsystem" trees while DTS
-patches have to go via "arch" tree. So, they get posted separately.
+Changes since v1:
+1. Add Rb tag
+2. Reorder patches to silence warnings.
+---
+ Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-One may not see DTS patches (and thus user of the bindings) until
-bindings reach Torvalds' tree. So, user of bindings will only appear in
-the next kernel release cycle (at which time they do get flagged due to
-failing make dtbs_check but its bit late). Wondering how others are
-managing the same ?
+diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
+index 64a8fcb7bc46..ec984248219e 100644
+--- a/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
++++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
+@@ -59,12 +59,12 @@ examples:
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+-        ltc2992@6F {
++        ltc2992@6f {
+                 #address-cells = <1>;
+                 #size-cells = <0>;
+ 
+                 compatible = "adi,ltc2992";
+-                reg = <0x6F>;
++                reg = <0x6f>;
+ 
+                 channel@0 {
+                         reg = <0x0>;
+-- 
+2.34.1
 
-
-Regards
-Vignesh
