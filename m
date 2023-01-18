@@ -2,131 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE6BF672001
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:45:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79B50672016
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:48:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231534AbjAROpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:45:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44234 "EHLO
+        id S231514AbjAROsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:48:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231462AbjAROpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:45:31 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410A45AB49
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:37:33 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id t5so29738192wrq.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:37:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BerAg7MaTiqh8AGRs2l1bVSpcU/dcHYC1GMmqI8bSIE=;
-        b=P0A3t9d7EFYTQFvCohOEXhUrBZgzCWZlctxwJ2+fKkqwLIIy8i2LgbA0KNE5ybPVK0
-         1PE/je1saa8Qo0dJxmVb/VdY8TkfH8+jl3kaaXUoVw9GuOGzSIoqn/aKxbDUtm9FIcxL
-         eToo3p+qYadSRDaUlZruoFDzNpHUyVzeJtePxMBvp6kTq9j+kaFO+HVV/OKdnQ1iGdwq
-         /2F2oebDM7DbP/XI0hgibVtE8ml4VjKTbl9A+lsty5Bc1w5uTXH0X7K0YrkxchUA4HBT
-         9k2XJLgAa7XjwY1pL5kWPtQGsUOmX5F+XC9FFFjsBNXwlMYupiKcH7fwxoYavEjQDx9x
-         pxGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BerAg7MaTiqh8AGRs2l1bVSpcU/dcHYC1GMmqI8bSIE=;
-        b=g1WEw+TfZzc/aM6LMS/K5NQmdTDysaG6DSXWLbB89gp3774LJVd+dGM8K1DrfcLYbY
-         6SCTO+J6Tmo81HKF4vVdH0oziJGv+txCKtrHIE5pTenJDhgRDp1F+6L0Qe/Y7anhQUC6
-         6O2LyxOweqhM8OtgPro00DCB+F9/wr41Ts0cgUbJNBxFfrvOwrqNml/2I/eHdIhbZ4OS
-         oZAXd++V+AnMqW6UHVF9p3OQYyL3e/spQoVhi6Tgbtnc0HYTZ/cNBBPB4t3HhaYMrwQ6
-         wC2i0j2fx2vlW3tEeXIDzpF5DR+gmQ98fZ493bGmsXfYapKlBPA1Ori9u2mUNk7w1EaE
-         +hFQ==
-X-Gm-Message-State: AFqh2krshoJ36AoLf/nSTaCSfpYU+rkKC+s5d5jjYlGA2TnKLnvWtLGO
-        mW9Z6LYDSeVRuytCmr1AsJdTnQ==
-X-Google-Smtp-Source: AMrXdXs2yrAPAcyrY27r/gzfcjpjvvGd7OkYOEn/4I6hRGm6z8/ULmc9XPTmWiJRIrKxS5VGlT+7Fw==
-X-Received: by 2002:a5d:58f2:0:b0:2bd:fcd8:c778 with SMTP id f18-20020a5d58f2000000b002bdfcd8c778mr5570929wrd.31.1674052651820;
-        Wed, 18 Jan 2023 06:37:31 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f2-20020adff982000000b002bde537721dsm13537089wrr.20.2023.01.18.06.37.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 06:37:31 -0800 (PST)
-Message-ID: <83939b6b-0188-9cb7-c4fc-624f13437a48@linaro.org>
-Date:   Wed, 18 Jan 2023 15:37:29 +0100
+        with ESMTP id S229660AbjAROs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:48:29 -0500
+Received: from smtp-bc0c.mail.infomaniak.ch (smtp-bc0c.mail.infomaniak.ch [IPv6:2001:1600:4:17::bc0c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50BC16D344
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:41:03 -0800 (PST)
+Received: from smtp-3-0000.mail.infomaniak.ch (unknown [10.4.36.107])
+        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4NxpNF0zXgzMq4SK;
+        Wed, 18 Jan 2023 15:41:01 +0100 (CET)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4NxpNC4kZnzFYS;
+        Wed, 18 Jan 2023 15:40:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
+        s=20220412; t=1674052861;
+        bh=D3/v6IyvwMtBeEzhlKdhLBUfk5fPTY0u64kzIpDz1J0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=GoM8tBfwYpZGJnIK5sm0DgOhMtp6Irc9vghCPnv4SJFQUf+qd/DbS9KQmKmmk0t/y
+         f2uESyOG7LA4JwqTNNb/EZU+nHDgLIsCwtSd56lj080v14Tt93M+mF+ZmV+eUuXpb+
+         amYwI0l9Xzf1wjBgMzmbgMAbei76fQGg81CxWWhk=
+From:   Philippe Schenker <dev@pschenker.ch>
+To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
+        Aishwarya Kothari <aishwarya.kothari@toradex.com>,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Fabio Estevam <festevam@denx.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Marek Vasut <marex@denx.de>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Reinhold Mueller <reinhold.mueller@emtrion.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] arm64: dts: imx8m(m|p): Add yavia carrier board
+Date:   Wed, 18 Jan 2023 15:40:39 +0100
+Message-Id: <20230118144042.7705-1-dev@pschenker.ch>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v4 16/17] arm64: dts: freescale: apalis-imx8: fix
- reserved-memory node names
-Content-Language: en-US
-To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20230118072656.18845-1-marcel@ziswiler.com>
- <20230118072656.18845-17-marcel@ziswiler.com>
- <b5a60852-f8f5-f3c4-fb75-bb5f00823c82@linaro.org>
- <1d4dc13ce1ffae4885bceb439d5d259f3567e6c4.camel@toradex.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1d4dc13ce1ffae4885bceb439d5d259f3567e6c4.camel@toradex.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Infomaniak-Routing: alpha
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 15:36, Marcel Ziswiler wrote:
-> On Wed, 2023-01-18 at 15:02 +0100, Krzysztof Kozlowski wrote:
->> On 18/01/2023 08:26, Marcel Ziswiler wrote:
->>> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
->>>
->>> Fix reserved-memory node names using dashes rather than underscores.
->>>
->>> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
->>>
->>> ---
->>>
->>> Changes in v4:
->>> - New patch fixing reserved-memory node names.
->>>
->>>  arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 12 ++++++------
->>>  1 file changed, 6 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-
->>> apalis-v1.1.dtsi
->>> index 70c00b92cb05..6217e0a48f96 100644
->>> --- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
->>> +++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
->>> @@ -133,17 +133,17 @@ reserved-memory {
->>>                 #size-cells = <2>;
->>>                 ranges;
->>>  
->>> -               decoder_boot: decoder_boot@84000000 {
->>> +               decoder_boot: decoder-boot@84000000 {
->>
->> This is ridiculous. You just added it! If we consider original code as
->> wrong, then you intentionally added wrong code just to fix it.
->>
->> No, that's not the way how it should be developed.
-> 
-> Shawn asked me to ease the review process which is exactly what I did.
+From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Any reason why b4 diff cannot be used? If your patchset fails b4
-auto-detection of version, this should be fixed instead of fake split.
 
-Best regards,
-Krzysztof
+This series adds the new Yavia Carrier Board for the Verdin family.
+Specifically for Verdin iMX8M Mini and Verdin iMX8M Plus.
+
+Yavia is a compact carrier board providing easy access to the most
+common features of the Verdin family. The intended use of the carrier
+board is application software development. The board is compatible with
+all current and future Verdin SoMs.
+
+https://www.toradex.com/products/carrier-board/yavia
+
+
+Philippe Schenker (3):
+  dt-bindings: arm: fsl: Add verdin yavia carrier-board
+  arm64: dts: imx8mm-verdin: Add yavia carrier board
+  arm64: dts: imx8mp-verdin: Add yavia carrier board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   4 +
+ arch/arm64/boot/dts/freescale/Makefile        |   4 +
+ .../freescale/imx8mm-verdin-nonwifi-yavia.dts |  18 ++
+ .../freescale/imx8mm-verdin-wifi-yavia.dts    |  18 ++
+ .../dts/freescale/imx8mm-verdin-yavia.dtsi    | 155 ++++++++++++++
+ .../freescale/imx8mp-verdin-nonwifi-yavia.dts |  18 ++
+ .../freescale/imx8mp-verdin-wifi-yavia.dts    |  18 ++
+ .../dts/freescale/imx8mp-verdin-yavia.dtsi    | 199 ++++++++++++++++++
+ 8 files changed, 434 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-yavia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-yavia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-yavia.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-yavia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-yavia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-yavia.dtsi
+
+-- 
+2.39.0
 
