@@ -2,219 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C626A6716F9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 10:04:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AEE8671712
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 10:06:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbjARJEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 04:04:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60294 "EHLO
+        id S229879AbjARJGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 04:06:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230119AbjARJCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 04:02:10 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78A75521D3;
-        Wed, 18 Jan 2023 00:21:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1674030121; x=1705566121;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=2Pi2FhYms8rU5qm8xKHkMWUh3m1gamMEnH3Omx98304=;
-  b=yAraKtcy+KaUZweRuH2exmkk3gxihkIY8QHCXfgHhwzkSFs3fcwMZS+c
-   8XPfxzirdKieQNGG/dyx6NVmOik927Hhh7stkHYIQEUnG0EsvT5ab+XyO
-   rbDcWssQhVMAMxfMRZW1xThnUqWZG68cldIUpMdSYhqiGHXObDN2OgJY7
-   jxntT4zQ3T64ievE8MMr/YXtWeGS27Izf9TaHGhXAaSgUDXstRrOxpNgv
-   wprYfv+1eKtyDSStoqbmsJI7AulyvnPWkosnUm2giUOTGkikeyGKfqDRA
-   oNOnwglhKqyfD7hTMRximXiyir+de0EnZI+aM/ySRQS2M3woMJPHM28ea
-   g==;
-X-IronPort-AV: E=Sophos;i="5.97,224,1669100400"; 
-   d="scan'208";a="196300402"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Jan 2023 01:21:27 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 18 Jan 2023 01:21:26 -0700
-Received: from den-dk-m31857.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.16 via Frontend Transport; Wed, 18 Jan 2023 01:21:07 -0700
-Message-ID: <7eb58e2459715a6b2bb5eb45e2ce1f1e88050dff.camel@microchip.com>
-Subject: Re: [PATCH v2 13/23] arm64: dts: Update cache properties for
- microchip
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Pierre Gondois <pierre.gondois@arm.com>,
-        <linux-kernel@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "Tsahee Zidenberg" <tsahee@annapurnalabs.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Brijesh Singh <brijeshkumar.singh@amd.com>,
-        Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-        Tom Lendacky <thomas.lendacky@amd.com>,
-        "Neil Armstrong" <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        "Sudeep Holla" <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        William Zhang <william.zhang@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "NXP Linux Team" <linux-imx@nxp.com>, Chester Lin <clin@suse.com>,
-        Andreas =?ISO-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Matthias Brugger <mbrugger@suse.com>,
-        NXP S32 Linux Team <s32@nxp.com>,
-        Wei Xu <xuwei5@hisilicon.com>, Chanho Min <chanho.min@lge.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        "Sebastian Hesselbarth" <sebastian.hesselbarth@gmail.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Daniel Machon <daniel.machon@microchip.com>,
-        <UNGLinuxDriver@microchip.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        "Tomer Maimon" <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        "Patrick Venture" <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Ming Qian <ming.qian@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        Adam Ford <aford173@gmail.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>, Li Jun <jun.li@nxp.com>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Martin Kepplinger <martink@posteo.de>,
-        David Heidelberg <david@ixit.cz>, "Joy Zou" <joy.zou@nxp.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        "Liu Ying" <victor.liu@nxp.com>, Zhou Peng <eagle.zhou@nxp.com>,
-        Shijie Qin <shijie.qin@nxp.com>, Wei Fang <wei.fang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        Sameer Pujar <spujar@nvidia.com>,
-        Akhil R <akhilrajeev@nvidia.com>,
-        "Mikko Perttunen" <mperttunen@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        Sumit Gupta <sumitg@nvidia.com>,
-        Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
-        Vidya Sagar <vidyas@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        "Johan Jonker" <jbx6244@gmail.com>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Aswani Reddy <aswani.reddy@samsung.com>,
-        Shashank Prashar <s.prashar@samsung.com>,
-        "Arnd Bergmann" <arnd@arndb.de>, <devicetree@vger.kernel.org>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <openbmc@lists.ozlabs.org>,
-        <linux-tegra@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-realtek-soc@lists.infradead.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>
-Date:   Wed, 18 Jan 2023 09:21:07 +0100
-In-Reply-To: <20221107155825.1644604-14-pierre.gondois@arm.com>
-References: <20221107155825.1644604-1-pierre.gondois@arm.com>
-         <20221107155825.1644604-14-pierre.gondois@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3 
+        with ESMTP id S230073AbjARJEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 04:04:20 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42DAC166C5
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:23:04 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id r2so33082944wrv.7
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:23:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sC4oSthDqU9cf3u2CS4pwyGd5dXVv3IJrMPqW08SHjU=;
+        b=PHK37/6BC93sa2U8vVLffIfZLoLfvLEUdjc5PDUnIWHanPCuBFvmeXTAOktMipPju/
+         MU3gG/0WYsWu7craUR8r9AFY8IpVJkypg0GfImeoDwL3hHsytzJi1Z2T/rusVjmUVmuH
+         TOyoyatn5wIxzEFPbE4IzyrOApadPH5x2K1fj6ZvvgS0TiF8XZyROf7UL3p4x54xHmfD
+         Tb8TRj9VgeAsQjgOon9jeSOLFfurjByG2hHNeKHrvHskT30x6sAJ9+451BL1PuVJMa+z
+         kCmADvdlrDNL3a5NCbCv7bGv43HKl32uBS++n+tltJ6n/feVL9saJhXnTddedBUQ0Xg5
+         dngQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sC4oSthDqU9cf3u2CS4pwyGd5dXVv3IJrMPqW08SHjU=;
+        b=rDUC8iLWeqR0XKXWGzdeoLqkV9CA+FHjrZwbG7A+krHSA9C7UN2c3lB/x0OH3JmLIA
+         lKMQrf4aSjNyg1bgqxbSwqy1COn18QPo1jvIP3BZjECXSwi+5To4ELJ48eYeQGSbabVJ
+         guNmnkflfd33kympLuqRx/ZBnqn66Lll8lfbIleWeAbvLJ0AwxkJEkWKeF8zDtQXr3cm
+         XbeCpwvnnP8b6bGyIQmQS3I3iUsF7P2LPzOdz+JcGzLJeBpW+RMxl9IdGA0DE1UD9atN
+         u+bA9det6pveUitynDJdhxXAKLT1el2GfM4HcuJ50JrqUNXT8x0iFNNIfUWqgmH7WpIR
+         HocQ==
+X-Gm-Message-State: AFqh2kqGtXq+dHY5K84enhi4UE6vspmv+9jILZf9n5+m7Vp8BrAB0Km3
+        qrfXHXVnYJwFxvPBSBhgDjP+KA==
+X-Google-Smtp-Source: AMrXdXvOicajt2IQqs1cr0S7TxfA67bKcXWin0mWuNxnzOwgUl0pT6dXcK/3bL8CyUYii8kYqIashQ==
+X-Received: by 2002:adf:f703:0:b0:2bd:dd96:b06a with SMTP id r3-20020adff703000000b002bddd96b06amr5342051wrp.48.1674030183084;
+        Wed, 18 Jan 2023 00:23:03 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f8-20020a0560001b0800b002423edd7e50sm30440470wrz.32.2023.01.18.00.22.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 00:22:59 -0800 (PST)
+Message-ID: <c4433cba-ce35-e5d3-f04b-ba8f9f501732@linaro.org>
+Date:   Wed, 18 Jan 2023 09:22:57 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 2/5] dt-bindings: mfd: Add ADI MAX77541/MAX77540
+Content-Language: en-US
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+References: <20230118063822.14521-1-okan.sahin@analog.com>
+ <20230118063822.14521-3-okan.sahin@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230118063822.14521-3-okan.sahin@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre,
-
-This looks good to me.
-
-Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-
-BR
-Steen
-
-On Mon, 2022-11-07 at 16:57 +0100, Pierre Gondois wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e
-> content is safe
->=20
-> The DeviceTree Specification v0.3 specifies that the cache node
-> 'compatible' and 'cache-level' properties are 'required'. Cf.
-> s3.8 Multi-level and Shared Cache Nodes
-> The 'cache-unified' property should be present if one of the
-> properties for unified cache is present ('cache-size', ...).
->=20
-> Update the Device Trees accordingly.
->=20
-> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+On 18/01/2023 07:38, Okan Sahin wrote:
+> Add ADI MAX77541/MAX77540 devicetree document.
+> 
+> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
 > ---
-> =C2=A0arch/arm64/boot/dts/microchip/sparx5.dtsi | 1 +
-> =C2=A01 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> index 2dd5e38820b1..c4bca23b96b9 100644
-> --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> @@ -52,6 +52,7 @@ cpu1: cpu@1 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 };
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 L2_0: l2-cache0 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatib=
-le =3D "cache";
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cache-level =
-=3D <2>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 };
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->=20
-> --
-> 2.25.1
->=20
+>  .../devicetree/bindings/mfd/adi,max77541.yaml | 87 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/adi,max77541.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/adi,max77541.yaml b/Documentation/devicetree/bindings/mfd/adi,max77541.yaml
+> new file mode 100644
+> index 000000000000..91d15e9ca2e3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/adi,max77541.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/adi,max77541.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MAX77540/MAX77541 PMIC from ADI
+> +
+> +maintainers:
+> +  - Okan Sahin <okan.sahin@analog.com>
+> +
+> +description: |
+> +  MAX77540 is a Power Management IC with 2 buck regulators.
+> +
+> +  MAX77541 is a Power Management IC with 2 buck regulators and 1 ADC.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max77540
+> +      - adi,max77541
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    $ref: /schemas/regulator/adi,max77541-regulator.yaml#
+
+No improvements regarding bisectability - this patch fails. If you
+tested this patch, you would see it.
+
+Instead of ignoring comments, either implement them or ask for
+clarification.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,max77540
+> +    then:
+> +      properties:
+> +        regulator:
+
+You do not have 'regulator' property.
+
+> +          properties:
+> +            compatible:
+> +              const: adi,max77540-regulator
+> +    else:
+> +      properties:
+> +        regulator:
+
+Same problem.
+
+> +          properties:
+> +            compatible:
+> +              const: adi,max77541-regulator
+> +
+> +additionalProperties: false
+> +
+
+Best regards,
+Krzysztof
 
