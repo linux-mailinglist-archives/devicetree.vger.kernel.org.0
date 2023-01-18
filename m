@@ -2,105 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CBD3672562
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 18:46:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87351672572
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 18:48:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231174AbjARRqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 12:46:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39244 "EHLO
+        id S229618AbjARRs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 12:48:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231196AbjARRpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 12:45:32 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A301A5CE56;
-        Wed, 18 Jan 2023 09:44:07 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30IHhasV014490;
-        Wed, 18 Jan 2023 11:43:36 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1674063816;
-        bh=fjujXOtZGorkR1DrZlntefMwDmrRaH0kTqa8Ud9zEIA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=gpbmsV7vvKU+159er9IsFxDfDb0PYMp4s0RcYuIPfMF3a8cOxMDV44uBpzOsHErRY
-         H+Nl3+FutJ4SPWTR+FdaganYU8Z9MiRMTMgx73lmh+u1mqDgwCLWOYyoJcLUbbF3Yz
-         VccsvgH313qbmsiDagubq6u78LsVcwSufHyKYrOQ=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30IHhZkc079782
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 18 Jan 2023 11:43:36 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 18
- Jan 2023 11:43:35 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 18 Jan 2023 11:43:35 -0600
-Received: from [10.250.235.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30IHhV2F107851;
-        Wed, 18 Jan 2023 11:43:32 -0600
-Message-ID: <a219dcf6-412b-a9f8-cf06-1896df0709de@ti.com>
-Date:   Wed, 18 Jan 2023 23:13:31 +0530
+        with ESMTP id S230247AbjARRry (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 12:47:54 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 551A63CE0D;
+        Wed, 18 Jan 2023 09:47:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E973161944;
+        Wed, 18 Jan 2023 17:47:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C15EC433EF;
+        Wed, 18 Jan 2023 17:47:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674064069;
+        bh=dTOao7OTnDD2Bljll1cIh3aZadqaefZ1UzKEm/3O13s=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=iT9y7TEGJZWJK/D9ZgOxj5SpFsBm9v0WjU7S38iXzcBR1FgigHN9MHeM0yaPntq7Q
+         g1H1dET0MsaTIHxWIZiLxvpDbso5Hso6mUsUylgH2M6wc0GosV82ee/BNvhviIt/KI
+         ILtW5yYOB4RrF4BumnY2jK7vq4YmY6sPooHzsjWRgJNI/v/dm+9AN9XdfSVmmPypO1
+         ijyf7ScoBCof2ZN0IcsF+AYAMV7vtvAkrRnWoQalqhAy0ge60BVoM5MwjJkngjZq6z
+         mJrtEYCtVP79xafZcEdcbxtHbilFsH4+D+90tkE/vsRx6HyyOLsIQLSKVnppepinWc
+         5EgLJv1JXFbqQ==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     agross@kernel.org, robh+dt@kernel.org, neil.armstrong@linaro.org,
+        mani@kernel.org, srinivas.kandagatla@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, amahesh@qti.qualcomm.com,
+        mathieu.poirier@linaro.org, konrad.dybcio@somainline.org
+Cc:     linux-arm-msm@vger.kernel.org, krzysztof.kozlowski@linaro.org,
+        elder@linaro.org, abel.vesa@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH v4 0/5] remoteproc: qcom_q6v5_pas: add support for SM8550 adsp, cdsp & mpss
+Date:   Wed, 18 Jan 2023 11:47:47 -0600
+Message-Id: <167406406337.2924867.12230424280288709048.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-remoteproc-v4-0-54154c08c0b7@linaro.org>
+References: <20221114-narmstrong-sm8550-upstream-remoteproc-v4-0-54154c08c0b7@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 2/3] dt-bindings: arm: ti: Add binding for Siemens IOT2050
- M.2 variant
-Content-Language: en-US
-To:     Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-References: <cover.1674059300.git.jan.kiszka@siemens.com>
- <3f825ff8853b1ffd8228d3283c7da0483ddf55d5.1674059300.git.jan.kiszka@siemens.com>
-From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
-In-Reply-To: <3f825ff8853b1ffd8228d3283c7da0483ddf55d5.1674059300.git.jan.kiszka@siemens.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jan,
-
-On 1/18/2023 9:58 PM, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
+On Wed, 18 Jan 2023 17:22:39 +0100, Neil Armstrong wrote:
+> This patchsets adds support for the aDSP, cDSP and MPSS found in the
+> SM8550 SoC.
 > 
-> This new variant is derived from the Advanced PG2 board, replacing the
-> MiniPCI slot with B and E-keyed M.2 slots.
+> The aDSP, cDSP and MPSS boot process on SM8550 now requires a secondary
+> "Devicetree" firmware to be passed along the main Firmware, and the cDSP
+> a new power domain named "NSP".
 > 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index 203faab80142..7af813202f1f 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -43,6 +43,7 @@ properties:
->            - enum:
->                - siemens,iot2050-advanced
->                - siemens,iot2050-advanced-pg2
-> +              - siemens,iot2050-advanced-m2
+> [...]
 
-Could you re arrange alphabetically?
+Applied, thanks!
 
->                - siemens,iot2050-basic
->                - siemens,iot2050-basic-pg2
->                - ti,am654-evm
+[1/5] dt-bindings: remoteproc: qcom: adsp: move memory-region and firmware-name out of pas-common
+      commit: cee616c6884616aea3be72a9debafd0614332682
+[2/5] dt-bindings: remoteproc: qcom: adsp: document sm8550 adsp, cdsp & mpss compatible
+      commit: 084258d607128a7486311daf5e67ca414ee07cc9
+[3/5] remoteproc: qcom_q6v5_pas: add support for dtb co-firmware loading
+      commit: 29814986b82e820ae9d3eb7474cdcf66605bd114
+[4/5] remoteproc: qcom_q6v5_pas: add support for assigning memory to firmware
+      commit: c63c0a7cab91b930a6ee78c28b481b84bfa98b7f
+[5/5] remoteproc: qcom_q6v5_pas: add sm8550 adsp, cdsp & mpss compatible & data
+      commit: 7eddedc975638f9bf427e7964c74276450a3021d
 
-
-Regards
-Vignesh
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
