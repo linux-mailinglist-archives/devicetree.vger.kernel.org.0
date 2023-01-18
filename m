@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CBF0671297
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 05:25:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E1DE671299
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 05:26:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229462AbjAREZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 23:25:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45134 "EHLO
+        id S229496AbjARE04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 23:26:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbjAREZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 23:25:42 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3381A196BC
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 20:25:41 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id tz11so15908446ejc.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 20:25:41 -0800 (PST)
+        with ESMTP id S229475AbjARE0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 23:26:55 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B96554118
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 20:26:54 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id mg12so7978607ejc.5
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 20:26:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BGF78K5uxVMcxASRhj9Vo8p8NdJwhzA0eYIuGJGWWLo=;
-        b=An6OOmkyPzsKv0oVvpXgPHyn6ro3yRu1a7w/+aP1Np1IVgQMoVWrQBSm0tfkyz/8rP
-         fNZxGNcyFUNLXu16dw4UmwldkRfedwRr5dVg1AZ2gOVuwTW4yl0VOVcTxGiOO4JkFAl3
-         vGrRD2uws4mOcq1nbF6xFSrM951ioK29FC9/Jvx0nkH/JZDbvQvWMWrp88zS80VyOe0Q
-         bJ61fPYfbHjIJKcYCfOcfAO5j5Q/5pp+9b9es/Q9GAEI73JgJa1JWZOo8fcDI29JgMiN
-         QlRdqkWyrqi7eXGO1qScLz0+V9ZvG+VWgg2aVic8TKCbjQKcqaXwTJk+5amXDmXSywO2
-         l1mw==
+        bh=P5KYUTlBMHDS9rZ5AIZChzy+GDqYCA0ROWxq3541f0Q=;
+        b=RjhdAwsIoiY2El98eOLvDUmnYaJMo/NnkJdFdOPVmIhCXZqTgpIGKEl1G8qGp3mj+Q
+         QLIbV48QOtX33wqIauSXD0yK1bVcYCJws4s53/ITxQw7wSKJuOs/EALXqpme3x5HMTgS
+         SN0YWP+SyplE77QgQmtsvMjgmIqiHo1WDsYFNJpFli1ew+FR0JiJxs5VmaUHm37A1Vmc
+         klAzGuO5C2COg4+rTr6Cjo2820dhzUDukBjkRL1xsNOST0IvAPLiRQRH6il8hyVlG8zA
+         gEqkzK48qqMiQYq93Vbpx+qaclWDJwlZYLXC4KtaQ7bShQ4vgrTSznRvKaWG2I9U6YI3
+         2vAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BGF78K5uxVMcxASRhj9Vo8p8NdJwhzA0eYIuGJGWWLo=;
-        b=c9K+AjzXwSlk280OzuljRZlb1xnBwGg71WEQTkCPPDnRzapO8YDY/+xvM5BPhbl3fE
-         kagYt5AHtIi8TRWEzflfy58z85fhI2pQYhv/uZ5D6Xbyj/u1u5RMYxPKI0F1W3LdGssp
-         zkFZurv4faR0wPnDF3aQkQkGlbu5jU5ekG1Q4MKlrL9S1/hE8fiZs3aAsXMzZu9qM943
-         Pqm+/V628cT3cazL+/tqwMa8qbEc5QoweMMj9MXuPVhaPxIv13rh26PPoz6XdLw+cHAN
-         2q8vUtUiLlrDDCBsSJeNDPXz6ppObw84/+LAjEAj+mKankLzPjNnpyEex7v0GUwYDaiU
-         dXYg==
-X-Gm-Message-State: AFqh2kpuQOBA0YMOYZe8OPjDzd8izOE/yDbBv4YzwGyWV8UoDqZm0JAT
-        Gx0/wXKhqtofcTVjc5UO8MqHTw==
-X-Google-Smtp-Source: AMrXdXsq/bEn5LObZoxUw3gLg5N8OiTmO8Pqyij5vmyAwEwg7B0e+DRwxDk9J85mjR1TosuKEQpI9Q==
-X-Received: by 2002:a17:906:29d8:b0:86f:a1fe:237a with SMTP id y24-20020a17090629d800b0086fa1fe237amr5847894eje.54.1674015939829;
-        Tue, 17 Jan 2023 20:25:39 -0800 (PST)
+        bh=P5KYUTlBMHDS9rZ5AIZChzy+GDqYCA0ROWxq3541f0Q=;
+        b=5PiLfSCz3gihViL7/GzzW3S0WqZDkDPYSf8niSIdx+70uVDCPXTJhlYzvNBzO9pc8p
+         Qo3Yc4RRwR4+F4k9CeoKq90I3gGxDwIgvT8Ni3BqdA7/vxOv2QLasIuw4wnZNaZK1aBz
+         9VKUr7pZCpgUUNYC4faMdQuoHSzh8Sv+fOWeR47LnQ1ieW+LHqPo2sBfib9fRBsgcsMn
+         omr/vmP/ytYs/zKIYgLkd9e4y/Yp+rhOvzlSpKvkcoB3sM/TzK6Xd14srQHb6x3R2RM5
+         qCIDhFSXdECBlvVgphnrFiPAWXhX+zuqe8Gk4h2vesiqqSCC5V8a0zUDyhZaxF4GkdUw
+         M0hA==
+X-Gm-Message-State: AFqh2kq1s++o1UE9vG0aOM/AS68p43t3eBCSTGOAW5S09JL+jnr/aEHP
+        b1t3DDAQsN2qqhKnBESxgWi36g==
+X-Google-Smtp-Source: AMrXdXsy4obbY9VOkYpGsCFQvkd/d0iW6JL6J3zoSF0gvycTp2uXqZG7hJobI0ZJiUD8NDNN85i6vQ==
+X-Received: by 2002:a17:907:8c17:b0:871:38cc:7b3a with SMTP id ta23-20020a1709078c1700b0087138cc7b3amr9490203ejc.75.1674016013059;
+        Tue, 17 Jan 2023 20:26:53 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id q21-20020a17090676d500b0086a2e31d1c1sm6241301ejn.28.2023.01.17.20.25.38
+        by smtp.gmail.com with ESMTPSA id kr12-20020a1709079a0c00b0084d44553af9sm11932346ejc.215.2023.01.17.20.26.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Jan 2023 20:25:39 -0800 (PST)
-Message-ID: <62b5b6d7-312e-9112-b109-4e42f36445a2@linaro.org>
-Date:   Wed, 18 Jan 2023 06:25:38 +0200
+        Tue, 17 Jan 2023 20:26:52 -0800 (PST)
+Message-ID: <56a82356-83fc-0a6a-b6a5-7c698bd3c307@linaro.org>
+Date:   Wed, 18 Jan 2023 06:26:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v3 3/8] phy: qcom-qmp: pcs: Add v6.20 register offsets
+Subject: Re: [PATCH v3 5/8] phy: qcom-qmp: pcs-pcie: Add v6.20 register
+ offsets
 Content-Language: en-GB
 To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -68,15 +69,14 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Johan Hovold <johan@kernel.org>
 References: <20230118005328.2378792-1-abel.vesa@linaro.org>
- <20230118005328.2378792-4-abel.vesa@linaro.org>
+ <20230118005328.2378792-6-abel.vesa@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230118005328.2378792-4-abel.vesa@linaro.org>
+In-Reply-To: <20230118005328.2378792-6-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,16 +85,15 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 18/01/2023 02:53, Abel Vesa wrote:
 > The new SM8550 SoC bumps up the HW version of QMP phy to v6.20 for
-> PCIE g4x2. Add the new PCS offsets in a dedicated header file.
+> PCIE g4x2. Add the new PCS PCIE specific offsets in a dedicated
+> header file.
 > 
 > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->   drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_20.h | 18 ++++++++++++++++++
->   drivers/phy/qualcomm/phy-qcom-qmp.h           |  2 ++
->   2 files changed, 20 insertions(+)
->   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_20.h
-
-I can not verify register offsets, but generally looks good. Thus:
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      |  1 +
+>   .../qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h    | 23 +++++++++++++++++++
+>   2 files changed, 24 insertions(+)
+>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
