@@ -2,94 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 503456722A6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:11:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72A656722D3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:20:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbjARQLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 11:11:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43222 "EHLO
+        id S230055AbjARQUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 11:20:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229916AbjARQJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:09:35 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8003B3E1;
-        Wed, 18 Jan 2023 08:05:43 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id v17so7664086oie.5;
-        Wed, 18 Jan 2023 08:05:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7tuGFAfqRCVW7qUbmXv4aoqXHqjRDkD2HH7zwkEHfLk=;
-        b=1RtIivoZyqzEmlHIQssJxZ2X08m5H4NEnVx9YVnGTU/Z7UVOOvZlIaoSdqkA93ibYB
-         tgvnWGWGa2YziYgWyBe4Whmw6Dfchx8q5Iyxd5Kpe+VhYMYnOAX6Db6afRnWitOpdWTk
-         rTp5i+mWfb4G9CB3L6hqfhEXMrIFpYWbZbSQ7W+JEOnzTv1dImBWuTa49Z+57gp4dmjT
-         cZt0UJ9Ig0zrmT5Ywbg5EwB9LtjxKlfY8mEpfCBn3iW0ThR40FoFp01deKUN02xOTj1K
-         teV3CTbfpdLP9wFztL4M00L6ODRMEzLGxzQKep+/hgENF7WQWhdCus6J+biJQWtoeNl7
-         FQ5Q==
-X-Gm-Message-State: AFqh2kpvFMAUycRLNLhiVwURHS3QOSNp6hxUxBRVmCKbODvJIAru+T38
-        TQAh/svE3WVNdaBVBT1qfKxa7k0tMA==
-X-Google-Smtp-Source: AMrXdXu75jJ57NWli2T25cgyRN8wEQAFExKDfERE3ly1W13hMhKaZ/tacFIMiyHP6aLAYiEKhNhoHQ==
-X-Received: by 2002:a05:6808:120d:b0:364:9e70:2d77 with SMTP id a13-20020a056808120d00b003649e702d77mr12791684oil.20.1674057942566;
-        Wed, 18 Jan 2023 08:05:42 -0800 (PST)
-Received: from robh_at_kernel.org ([4.31.143.193])
-        by smtp.gmail.com with ESMTPSA id bs1-20020a056830398100b00660e833baddsm18527592otb.29.2023.01.18.08.05.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 08:05:42 -0800 (PST)
-Received: (nullmailer pid 90065 invoked by uid 1000);
-        Wed, 18 Jan 2023 16:05:41 -0000
-Date:   Wed, 18 Jan 2023 10:05:41 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v7 2/7] dt-bindings: arm: msm: Convert and split kpss-acc
- driver Documentation to yaml
-Message-ID: <167405794085.89999.14844192427406164237.robh@kernel.org>
-References: <20230116204751.23045-1-ansuelsmth@gmail.com>
- <20230116204751.23045-3-ansuelsmth@gmail.com>
+        with ESMTP id S231282AbjARQUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:20:04 -0500
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82F0450853;
+        Wed, 18 Jan 2023 08:15:46 -0800 (PST)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.207])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4NxrP02FgWz6J7G3;
+        Thu, 19 Jan 2023 00:11:48 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 18 Jan
+ 2023 16:15:43 +0000
+Date:   Wed, 18 Jan 2023 16:15:42 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Bough Chen <haibo.chen@nxp.com>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 0/3] add imx93 adc support
+Message-ID: <20230118161542.00002476@Huawei.com>
+In-Reply-To: <DB7PR04MB40106A96C5ABF81CA6613C8790C69@DB7PR04MB4010.eurprd04.prod.outlook.com>
+References: <20230103114359.2663262-1-haibo.chen@nxp.com>
+        <20230108131505.0a51fe46@jic23-huawei>
+        <DB7PR04MB40106A96C5ABF81CA6613C8790C69@DB7PR04MB4010.eurprd04.prod.outlook.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230116204751.23045-3-ansuelsmth@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml500005.china.huawei.com (7.191.163.240) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 17 Jan 2023 09:00:50 +0000
+Bough Chen <haibo.chen@nxp.com> wrote:
 
-On Mon, 16 Jan 2023 21:47:46 +0100, Christian Marangi wrote:
-> Convert kpss-acc driver Documentation to yaml.
-> The original Documentation was wrong all along. Fix it while we are
-> converting it.
-> The example was wrong as kpss-acc-v2 should only expose the regs but we
-> don't have any driver that expose additional clocks. The kpss-acc driver
-> is only specific to v1. For this exact reason, split the Documentation
-> to 2 different schema, v1 as clock-controller and v2 for
-> power-manager as per msm-3.10 specification, the exposed regs handle
-> power manager.
+> > -----Original Message-----
+> > From: Jonathan Cameron <jic23@kernel.org>
+> > Sent: 2023Äê1ÔÂ8ÈÕ 21:15
+> > To: Bough Chen <haibo.chen@nxp.com>
+> > Cc: lars@metafoo.de; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
+> > festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>;
+> > linux-iio@vger.kernel.org; devicetree@vger.kernel.org
+> > Subject: Re: [PATCH v5 0/3] add imx93 adc support
+> > 
+> > On Tue,  3 Jan 2023 19:43:55 +0800
+> > haibo.chen@nxp.com wrote:
+> >   
+> > > From: Haibo Chen <haibo.chen@nxp.com>
+> > >
+> > > V5:
+> > >   -For ADC driver, use dev_err_probe() to replace dev_err() in  
+> > dev_err_probe().  
+> > >   -Add imx93_adc_power_down() in the probe error path.
+> > >   -Re-order the function in imx93_adc_remove(), make them inverse in  
+> > probe().  
+> > >   -Remove the pm_runtime_get_sync(dev) in imx93_adc_remove(), because  
+> > this driver  
+> > >    enable the pm_runtime autosuspend feature, and config the delay as  
+> > 50ms. So when  
+> > >    called imx93_adc_remove(), this device still in runtime resume state, no  
+> > need to  
+> > >    force resume the device back.  
+> > I don't follow this point.  Perhaps talk me through in more detail on why the
+> > device will be in a runtime resumed state when ever we hit remove?  
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../bindings/arm/msm/qcom,kpss-acc.txt        | 49 -------------
->  .../bindings/clock/qcom,kpss-acc-v1.yaml      | 72 +++++++++++++++++++
->  .../bindings/power/qcom,kpss-acc-v2.yaml      | 42 +++++++++++
->  3 files changed, 114 insertions(+), 49 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,kpss-acc-v1.yaml
->  create mode 100644 Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml
+> Hi Jonathan,
+> 
+> Sorry for delay.
+> 
+> This driver use module_platform_driver, so when do rmmod or unbind operation
+> The function call steps are as belowing:
+> platform_driver_unregister
+>   --> driver_unregister
+>      --> bus_remove_driver
+>         --> driver_detach
+>            --> device_release_driver_internal
+>               --> __device_release_driver  
+> 
+> In __device_release_driver {
+>         pm_runtime_get_sync(dev);
+>         ...
+>         pm_runtime_put_sync(dev);
+>         device_remove(dev);     -> call imx93_adc_remove()
+>         ...
+> }
+> 
+> Since in this imx93 adc driver, we use 50ms auto suspend dealy,
+>       pm_runtime_set_autosuspend_delay(dev, 50);
+> 
+> and here is the description of this API  (Documentation/power/runtime_pm.rst):
+>   `void pm_runtime_set_autosuspend_delay(struct device *dev, int delay);`
+>     - set the power.autosuspend_delay value to 'delay' (expressed in
+>       milliseconds); if 'delay' is negative then runtime suspends are
+>       prevented; if power.use_autosuspend is set, pm_runtime_get_sync may be
+>       called or the device's usage counter may be decremented and
+>       pm_runtime_idle called depending on if power.autosuspend_delay is
+>       changed to or from a negative value; if power.use_autosuspend is clear,
+>       pm_runtime_idle is called
+> 
+> and the description of pm_runtime_put_sync.
+> /**
+>  * pm_runtime_put_sync - Drop device usage counter and run "idle check" if 0.
+>  * @dev: Target device.
+>  *
+>  * Decrement the runtime PM usage counter of @dev and if it turns out to be
+>  * equal to 0, invoke the "idle check" callback of @dev and, depending on its
+>  * return value, set up autosuspend of @dev or suspend it (depending on whether
+>  * or not autosuspend has been enabled for it).
+>  *
+>  * The possible return values of this function are the same as for
+>  * pm_runtime_idle() and the runtime PM usage counter of @dev remains
+>  * decremented in all cases, even if it returns an error code.
+>  */
+> static inline int pm_runtime_put_sync(struct device *dev)
+> {
+>         return __pm_runtime_idle(dev, RPM_GET_PUT);
+> }
+> 
+> This means after call the pm_runtime_put_sync in __device_release_driver(), imx93_adc will not call imx93_adc_runtime_suspend() immediately, will do it after 50ms, but just then, call the imx93_adc_remove(), so this means when imx93_adc_remove() execute, the ADC related clocks keep on.
+
+If I follow correctly, that means we are relying on a race?
+I don't think it is valid to assume that device_remove will be called within the 50 msec
+window even though it is extremely likely.  We should be incrementing the reference
+counter appropriately to ensure autosuspend doesn't happen.
+
+Jonathan
+
+> 
+> Best Regards
+> Haibo Chen
+> >   
+> > >   -no changes for binding doc and dts.
+> > >
+> > > V4:
+> > >   For ADC driver, re-define the ADC status show the relation to specific  
+> > register bit.  
+> > >   Redo the imx93_adc_remove(), change the return error sequence in  
+> > imx93_adc_read_raw(),  
+> > >   and use a direct string for indio_dev->name.
+> > >   For dt-bings, change the commit title and add maintainer's reviewed by  
+> > tag  
+> > >   For dts, no change.
+> > >
+> > > V3:
+> > >   For dt-bings, add some change according to review comments, and pass  
+> > dt_binding_check.  
+> > >   For dts, add #io-channel-cells = <1>; to pass dtbs_check
+> > >   For ADC driver, no change.
+> > >
+> > > V2:
+> > >   For ADC driver, add change according to matainer's commets.
+> > >
+> > > Haibo Chen (3):
+> > >   iio: adc: add imx93 adc support
+> > >   dt-bindings: iio: adc: Add NXP IMX93 ADC
+> > >   arm64: dts: imx93: add ADC support
+> > >
+> > >  .../bindings/iio/adc/nxp,imx93-adc.yaml       |  81 +++
+> > >  MAINTAINERS                                   |   4 +-
+> > >  .../boot/dts/freescale/imx93-11x11-evk.dts    |  12 +
+> > >  arch/arm64/boot/dts/freescale/imx93.dtsi      |  13 +
+> > >  drivers/iio/adc/Kconfig                       |  10 +
+> > >  drivers/iio/adc/Makefile                      |   1 +
+> > >  drivers/iio/adc/imx93_adc.c                   | 477  
+> > ++++++++++++++++++  
+> > >  7 files changed, 597 insertions(+), 1 deletion(-)  create mode 100644
+> > > Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> > >  create mode 100644 drivers/iio/adc/imx93_adc.c
+> > >  
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
