@@ -2,61 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4252E672433
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:54:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B22367243F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:55:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229804AbjARQyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 11:54:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59000 "EHLO
+        id S230152AbjARQzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 11:55:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229739AbjARQyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:54:18 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE8B12F2A;
-        Wed, 18 Jan 2023 08:54:16 -0800 (PST)
+        with ESMTP id S230002AbjARQzp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:55:45 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A194A16AE9;
+        Wed, 18 Jan 2023 08:55:44 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 33B9461913;
-        Wed, 18 Jan 2023 16:54:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B17FC433D2;
-        Wed, 18 Jan 2023 16:54:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3BDD9618CD;
+        Wed, 18 Jan 2023 16:55:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D86B7C433D2;
+        Wed, 18 Jan 2023 16:55:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674060855;
-        bh=RwHJvl4D5qmGQjZIXVYvEbuBvPMGq9xo3Uzk+iCGGwQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=L3K0/E6ZEJodJAoNLwcLbc/rvJf+WG7swxtU45xi7fxpLgd37pJeeBz8ZDP49BOyX
-         ugB7XV3yn0792GxNeqf0B4Qb/IZr/oHxSsQt9HPpMSXoogsnjPDkI7DCG9Ja86XSu5
-         tvFnjPoy+9Xti51EaWOiw0Bq33f9Ww25cQZKhLmxSwR1Wgii7jRpw0lHB2ofkbHIy+
-         hvYQt/cRX6poxw7TLOFqy71oALwYz669q0DnD4lH4AAMZud9bEqv0bYP1nYqxSYrzX
-         VBhbIXu0TzIDnW1504zyEt/RIjVqhp7xxiN2l7te08f8riYzS3naP0cf8I4k13NCNm
-         dYFlSQkl5qOaA==
-Date:   Wed, 18 Jan 2023 22:24:10 +0530
+        s=k20201202; t=1674060943;
+        bh=KXVguWBBzZqFsfQ1lc00wLiy/2dhJ2rfbOtKjRQ+7Fc=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=I2i8rJpVWQewx83DF+4qKd3/0jlZUbp82IlICMCEhkUAxdW5Z/4zcU5F4tyIpNcdQ
+         WeZusJn5IK47rPyB7QjRElaoM1qd8obxUgoCpwQkXIfMrrpkITyQaRRFjOgdIKc6KD
+         8ZMBPfEeyteKjyvcFDzQgpEMn6yJ2k1UTFooe73GhPrgiUrVrJjM0VC2Kt+wt8VHJJ
+         GYJuqRO0YhlCimtYWviRn4iYqk4G4RuODGkhmcDON1FYe93ikRFWZBtd8tV1KvFRJX
+         VVVfEsdpLTETjDb8KwMuVNd+W2kx2bARCVbvoPrvkT2z+SiGGO9cB5dVsQN50w+aH4
+         jJlDu64EYJlEg==
+Date:   Wed, 18 Jan 2023 22:25:07 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 00/10] phy: Add support for Lynx 10G SerDes
-Message-ID: <Y8gkMlqfPZic7reK@matsya>
-References: <20221230000139.2846763-1-sean.anderson@seco.com>
- <0024c780-ff9c-a9d3-8773-28e6b21bcc43@seco.com>
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "phy: qualcomm: usb28nm: Add MDM9607 init
+ sequence"
+Message-ID: <Y8gka33KTscXK3HK@matsya>
+References: <20221214223733.648167-1-marijn.suijten@somainline.org>
+ <Y8GY51Cfkj7o1MJs@matsya>
+ <20230116203549.5jzd2olxua662n6w@SoMainline.org>
+ <Y8YzzCEqGi3m9fWM@matsya>
+ <20230117091912.pzogxqvgf6kivi74@SoMainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0024c780-ff9c-a9d3-8773-28e6b21bcc43@seco.com>
+In-Reply-To: <20230117091912.pzogxqvgf6kivi74@SoMainline.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -66,15 +71,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-01-23, 11:46, Sean Anderson wrote:
+On 17-01-23, 10:19, Marijn Suijten wrote:
+> On 2023-01-17 11:06:12, Vinod Koul wrote:
+> <snip>
+> > > Thanks, it wasn't clear to me whether to suffix the title when already
+> > > included in the Revert: "phy: qualcomm: ..." title :)
+> > 
+> > A revert patch is a patch as well so the patch rules apply there as well,
+> > so should say "subsystem tag: other tags: Revert foo..."
 > 
-> I noticed that this series is marked "changes requested" on patchwork.
-> However, I have received only automated feedback. I have done my best
-> effort to address feedback I have received on prior revisions. I would
-> appreciate getting another round of review before resending this series.
+> Ack, but then /keep/ "subsystem tag: other tags:" /within/ the Revert
+> string, so "phy: qualcomm: Revert "phy: qualcomm: ...""?
 
-Looking at the series, looks like kernel-bot sent some warnings on the
-series so I was expecting an updated series for review
+Ideally yes!
 
 -- 
 ~Vinod
