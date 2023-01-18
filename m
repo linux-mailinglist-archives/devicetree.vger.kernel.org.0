@@ -2,65 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C0946723FD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:48:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 534F8672403
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:49:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbjARQsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 11:48:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53898 "EHLO
+        id S229895AbjARQtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 11:49:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjARQsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:48:40 -0500
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC089303F9;
-        Wed, 18 Jan 2023 08:48:37 -0800 (PST)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-15f64f2791dso5783524fac.7;
-        Wed, 18 Jan 2023 08:48:37 -0800 (PST)
+        with ESMTP id S229941AbjARQtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:49:07 -0500
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BEA236FE7;
+        Wed, 18 Jan 2023 08:49:06 -0800 (PST)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-15eec491b40so15145849fac.12;
+        Wed, 18 Jan 2023 08:49:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hxaC/+vj0+0cmZsvPmWAUPTa0igCb7E0vBb71/KtRnM=;
-        b=LK/ZJ/9TwSnXclLORbG1KImadD5WQutaOqYLdyv612o9daaFIql0N+GYvMubo9TVDT
-         78Cs+qqYHEm3HNUmKL6iNeOjDnV5xSjfoVnHfCITcoFyXkaxPzoPrtgEUWBUrS4id8NK
-         Uaca3M+4mlRHTmPor4IcWnEMz3U/nS+Mn2VSOAbhb2AixhbqJKduI9/fiWUqFKBtPHh4
-         YSL6DwM4FwsgUGc8KUHtWbaXfJVCds5hPSUoeLro3sxt+2H4Dpv9r/FMFKREwkpWyPJx
-         6Mky9OyQzlY5bDA8hohYBiKycALZLIZNb4iYLDbDno+aiSXFwUa3ZL0yGToZ32FGRGY4
-         wHww==
-X-Gm-Message-State: AFqh2kozCKh2EUFIcAoRBC0Zt+xvOhWjYJcjOvraSA61St58rGMLjJXU
-        S+0lSOkyvpyiyCPCPbeMAA==
-X-Google-Smtp-Source: AMrXdXspzsuKKi9p1SkaPBh1bqyhnNkFKbA/1xoHvQifmJAODs5ghXonjK8iX+dUNoevRqaM1aT+Ag==
-X-Received: by 2002:a05:6871:430e:b0:155:37ac:d907 with SMTP id lu14-20020a056871430e00b0015537acd907mr3681620oab.18.1674060517072;
-        Wed, 18 Jan 2023 08:48:37 -0800 (PST)
+        bh=9W9y7b/ziaOFjGUNm7d4cmFDdM4EDargAbRPiR5bNLQ=;
+        b=4hJywG/AKM9TeRQsQ1JvW4TgL+sbpr+Sl707UiCXzYMrBVwgnbADr+RPSX/FG3YQ0A
+         pkF1QZnOKYXM0DiggI10ZgyFmb0l9fOmxsVqQcamcWakQLBou5kVCVhwXAkXyEC5VBY6
+         cebO2azcAprqFZ5vJFM2gy0zgBrU5JsFi1pbdVc2JcduaqFhL9Pn3+w4cWzLA6pBGnX9
+         OyN0p8fh2HSi9qJ013Kh7QImxGms585wwCwMG4KmPQoZNcKGHZ8a/WapyaWlhbaB1ku8
+         klhCU/t1F12f6GLQZTYg7TDqp4LaxJDJvyrQFlh+sXlu1FyxHM6MEbhDdZvZVBFpwD36
+         rPmg==
+X-Gm-Message-State: AFqh2kpD5KiQuHSrJunYlzmGTj+Cfm/ahLv50+865QxVzlxybHy5fgwg
+        fhM8jW/NCulkwvhZ42EKnA==
+X-Google-Smtp-Source: AMrXdXtIWuC3J1y+UwrLmINbTm9kPgk76QzDW6udmvO3aPTiNNlYIcEhJTMYOiY45UdU64RY+g328A==
+X-Received: by 2002:a05:6870:c906:b0:15e:f1d6:3d8 with SMTP id hj6-20020a056870c90600b0015ef1d603d8mr4189671oab.14.1674060545753;
+        Wed, 18 Jan 2023 08:49:05 -0800 (PST)
 Received: from robh_at_kernel.org ([4.31.143.193])
-        by smtp.gmail.com with ESMTPSA id q187-20020a4a4bc4000000b004a3c359fdaesm16818498ooa.30.2023.01.18.08.48.36
+        by smtp.gmail.com with ESMTPSA id s18-20020a056870611200b0014c7958c55bsm18632011oae.42.2023.01.18.08.49.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 08:48:36 -0800 (PST)
-Received: (nullmailer pid 147773 invoked by uid 1000);
-        Wed, 18 Jan 2023 16:48:35 -0000
-Date:   Wed, 18 Jan 2023 10:48:35 -0600
+        Wed, 18 Jan 2023 08:49:05 -0800 (PST)
+Received: (nullmailer pid 148495 invoked by uid 1000);
+        Wed, 18 Jan 2023 16:49:04 -0000
+Date:   Wed, 18 Jan 2023 10:49:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chester Lin <clin@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
-        Larisa Grigore <larisa.grigore@nxp.com>,
-        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
-        linux-gpio@vger.kernel.org,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Matthias Brugger <mbrugger@suse.com>,
-        devicetree@vger.kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Jaroslav Kysela <perex@perex.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        s32@nxp.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: pinctrl: add schema for NXP S32 SoCs
-Message-ID: <167406051498.147713.15394591575288533598.robh@kernel.org>
-References: <20230118094728.3814-1-clin@suse.com>
- <20230118094728.3814-2-clin@suse.com>
+        Takashi Iwai <tiwai@suse.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,sm8250: use fallback for
+ SDM845 sound cards
+Message-ID: <167406054417.148440.18145295940494067473.robh@kernel.org>
+References: <20230118101542.96705-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230118094728.3814-2-clin@suse.com>
+In-Reply-To: <20230118101542.96705-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -73,21 +74,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 18 Jan 2023 17:47:26 +0800, Chester Lin wrote:
-> Add DT schema for the pinctrl driver of NXP S32 SoC family.
+On Wed, 18 Jan 2023 11:15:41 +0100, Krzysztof Kozlowski wrote:
+> All SDM845 sound cards are compatible with each other, so use one
+> generic fallback compatible for them.
 > 
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
-> Signed-off-by: Chester Lin <clin@suse.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> 
-> Changes in v4:
-> - Change the representation of available slew-rate DT values from register
->   values to real frequencies.
-> 
->  .../pinctrl/nxp,s32g2-siul2-pinctrl.yaml      | 123 ++++++++++++++++++
->  1 file changed, 123 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
+>  .../bindings/sound/qcom,sm8250.yaml           | 24 +++++++++++--------
+>  1 file changed, 14 insertions(+), 10 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
