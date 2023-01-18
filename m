@@ -2,98 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4EE671A5B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 12:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3410D671A77
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 12:24:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbjARLUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 06:20:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36702 "EHLO
+        id S230126AbjARLYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 06:24:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbjARLT5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 06:19:57 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 401D080160
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 02:35:47 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id k16so3682489wms.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 02:35:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=M3wabZmt+CW8MDjtdB4ADkYP9LZbXXt68/tBoGAwjTU=;
-        b=mo4No3sRnKkl/ddBb1xHJyihMQql5EKqedm5MWYJq/obEeE5bvAbSuOEAJMDK4mny6
-         NQoC2CEK/RJtumgWyoaXnyYLkQU5ktVIsI64sUbnSZ45M/ksKFuzRfiBNlmofFmlmQ4Y
-         bsEoDOq/gZ+vqDX++2t9fExyA/1vCKqKHAwz0ClthjmRJvpcVfUmvsvPYiczZZjQL0Sl
-         cRvuL/uCJ8N1hA7Mj5GcnlmSTj3WSMdh8RK5KP/fMsVhYIRJd0zOlUyMW5U2JBXqb5aS
-         qjfS0Ijjmhpg3HPKKkPEnFzb3DW/jKdrfWR/ywCHAj6y/J8aP0xaeuLSXMHgzxFnO0sI
-         /Dpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M3wabZmt+CW8MDjtdB4ADkYP9LZbXXt68/tBoGAwjTU=;
-        b=qS7/CilOQsiZwcsUS9Aw8tyBSRPXymynWCYYDk2Qlfz8Ii9lejVqagl0P+UOc4k5KJ
-         Nr2WCosTJ739BB8/mMoDhk6kVRq9Us+t+8/prZHacNC8intpJiISsxL7e3rhvDW6/Wd1
-         xvFFrKQchc6HTeYYtKrhPENI2qBhRkwyWBrPEJ/qizPpyySL9hBE7/66Xme2RYA5dnDD
-         Z2Yc2wSFE56yOSJYAqQ1ZxoXb3tFAEEkGcl2axvdFM48gyKfl6rmXuIIYrY4Pobq/hzO
-         524Eu/6X+OPanUBj0SpplzIyHkU2Dh5bg8Lg+BA5mvo8fGYf1vio8rqeAHtYIlslJS4O
-         xUKw==
-X-Gm-Message-State: AFqh2kqN5EIP6EGFgfgnk9uGByPnGpT4WU1/T5AKpShH/gP7IVTi5CjO
-        QXyX3J+7P3NGC0q27JvDetRO6A==
-X-Google-Smtp-Source: AMrXdXvmuJWrXQyoLVtdV4WDtX5woWaRANn1AadmaCH0aM/Jy2xGqNA0mqTaNBDVqA/O5ChuFdfeCQ==
-X-Received: by 2002:a05:600c:a4d:b0:3db:1d6:16f7 with SMTP id c13-20020a05600c0a4d00b003db01d616f7mr2114059wmq.23.1674038145812;
-        Wed, 18 Jan 2023 02:35:45 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id o12-20020a05600c4fcc00b003daff80f16esm2042804wmq.27.2023.01.18.02.35.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 02:35:45 -0800 (PST)
-Date:   Wed, 18 Jan 2023 12:35:43 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
+        with ESMTP id S230063AbjARLY3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 06:24:29 -0500
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B30734957C
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 02:39:37 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:4745:2e6d:e3a6:3327])
+        by andre.telenet-ops.be with bizsmtp
+        id AAfX2900N2zf9gW01AfXTq; Wed, 18 Jan 2023 11:39:35 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pI5qo-005aKI-7W;
+        Wed, 18 Jan 2023 11:39:31 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pI5qt-001Jt1-HX;
+        Wed, 18 Jan 2023 11:39:31 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 0/6] phy: qualcomm: Add UFS support for SM8550
-Message-ID: <Y8fLf056H8IjrwSO@linaro.org>
-References: <20230117224148.1914627-1-abel.vesa@linaro.org>
- <Y8eqdcLthEaYq/Pp@hovoldconsulting.com>
+        Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/2] phy: Add support for NXP TJR1443 CAN Transceiver
+Date:   Wed, 18 Jan 2023 11:39:22 +0100
+Message-Id: <cover.1674037830.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y8eqdcLthEaYq/Pp@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-18 09:14:45, Johan Hovold wrote:
-> On Wed, Jan 18, 2023 at 12:41:42AM +0200, Abel Vesa wrote:
-> > The v4 of this patchset is:
-> > https://lore.kernel.org/all/20230117142015.509675-1-abel.vesa@linaro.org/
-> > 
-> > Changes since v4:
-> >  * Renamed QSERDES_UFS_V6_RX_UCDR_FO_GAIN_RATE[24] to
-> >    QSERDES_UFS_V6_RX_UCDR_FASTLOCK_FO_GAIN_RATE[24] in patch #4
-> >  * Added Dmitry's R-b tag to patches 2, 3, 5 and 6
-> 
-> In the future, please include the full changelog here even if you
-> provide a link to the previous version. No need to make it harder than
-> it has to be for reviewers.
+	Hi all,
 
-OK, I'll do that from now on.
+The NXP TJR1443 High-speed CAN transceiver with Sleep mode is a
+pin-compatible alternative for the TI TCAN1043.  Hence this patch series
+adds support for it to the existing TI TCAN1043 DT bindings and to the
+generic CAN Transceiver PHY driver.
 
-> 
-> Johan
+This has been tested on the Renesas White-Hawk development board.
+
+Thanks for your comments!
+
+Geert Uytterhoeven (2):
+  dt-bindings: phy: ti,tcan104x-can: Document NXP TJR1443
+  phy: phy-can-transceiver: Add support for NXP TJR1443
+
+ Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 1 +
+ drivers/phy/phy-can-transceiver.c                          | 4 ++++
+ 2 files changed, 5 insertions(+)
+
+-- 
+2.34.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
