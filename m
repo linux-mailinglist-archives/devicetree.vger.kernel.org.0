@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C88CE671F54
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:20:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DFB5671F57
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:20:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231148AbjAROUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:20:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50008 "EHLO
+        id S231329AbjAROUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:20:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231144AbjAROTm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:19:42 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72FA6589B6
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:01:24 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id q10so14712140wrs.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:01:24 -0800 (PST)
+        with ESMTP id S231207AbjAROUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:20:04 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FEE74CE7A
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:02:16 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id k8so19541151wrc.9
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:02:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=59YX65i1aPfGuHqA5kZ44X3ahFvXLUXQukAt3gsTfws=;
-        b=scdnhlJwkNZ+lFcAwcVKpBVym4KL/ZFmWy7BTVitn8sGzabneG9KZdDG/wQgunGkVW
-         hKPnCV37emiTEduXKSrmjHgAd730p78gXBbWTxdwR+ctraU35LQGiCoG7eej9vQHmgLh
-         nEnVvc+4zrKBchzCE8KnQN5zpz927cXvUCrf9BK/exdGQw2kP6LaIFbRh0yl3XBMz+4b
-         MmQhdTEoouE8cHM9dPxzUxHSWuM9D/bl63eWYO6gtJhkPAled0GRH+P76Jfoocw9yv9y
-         rIYaj+AZuhRvIi5E5gUoxgHV/mzhPRArh7AX0dFbGk06fJHofdoK4nwTwgSgzAzwtu8y
-         N/6A==
+        bh=KPNHdE6dCQ0u+vOjgzlU+mCeL0WOa6M5H4bxTnTVTpE=;
+        b=PUwqwesV/IZiMOBxo0ciDMw4He3GuHS3q7ncK0KV1jGsa2IOjtoyqvCRebjFhCWYh1
+         RPh6waXM5i3pbV/Z4g5Z9rPl74yBgTLlsyy8ZogCTWkIf6Dn4U91O6A6USuZIfKJ967R
+         j1WnkfCANxF4k4OLkmuSq6I++1VVanqEJibHev7Yc3kRGx9WgnK3CABFA5qOiXs0yIy/
+         qXBaH3YWgaO19fPQcRceLnQG5VK46pARBNE4LFq82myXoU6jf7HIRGv4KUP8jtVS7Lp/
+         iDanNK0k/OD9uui4ggBUGItxdOPv1NrqfWQdEAYjlyWoNjzvTaGuLHkC2XpvoucEWFST
+         ahWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=59YX65i1aPfGuHqA5kZ44X3ahFvXLUXQukAt3gsTfws=;
-        b=qIb47M8Q5BOMIDMASEOpLF+noEL2Hn7LDGJCJQj7VvbUScE1cx5vIui5gObM1xbkPn
-         lZSdyR8Kgbs7Xk7AxlnAcb2BIE6qEO2hoDiJU7vF4q0y6gtirsVyURwiDiilOe0M4B96
-         XKFZQ4RnhdIb3XfWp15oJdijLI8AcZZq2UYDwJFD7d/7iUGwbXCikGptm51kN6sYuW3Q
-         VQR+QC7UpOaoyJZMPStaStY6qLaYZGOncs+2oSyR+sZvnompAr49RnyE4dhEgfkgChk6
-         bYvwfhEpaGcv5oVL71i4CRNWviAy3ncOLybRpH665u7wsia1TWPrCdN6yYnUDUzowzJs
-         bZ5Q==
-X-Gm-Message-State: AFqh2kpbIOvRu5uwNQ1GYAjc7CftpK/CtHZ3eY3xpd5ScE4KP84hNEUR
-        y57TPg2FZPdFsR/p6A8Py8YadA==
-X-Google-Smtp-Source: AMrXdXu00x0J9P2bv/jgrcotUNDAFg3sYfIGVLuk59ofX9BLs0uF68ODnCOtf4IMDzxGDZFKB7mwWw==
-X-Received: by 2002:a05:6000:1374:b0:2bd:f63c:5457 with SMTP id q20-20020a056000137400b002bdf63c5457mr6353718wrz.48.1674050482683;
-        Wed, 18 Jan 2023 06:01:22 -0800 (PST)
+        bh=KPNHdE6dCQ0u+vOjgzlU+mCeL0WOa6M5H4bxTnTVTpE=;
+        b=27zDjkUg3rSb57k5KZthXknqF22/979cXEb2hYyqb0PJgZKZMWIFnD3lS9o13S24hj
+         6eEyUvZcq5TdABPnGWvIZ+/oToyirh9XcrJ8wXdIhf+Kg7Ei0m8cJyaqig5i01CYj7S+
+         0CUp1IhTFr2BFlipt3+uv19wuOpOXXRQkzyk9ndTHRu1gojYO/8uoqO9+qyLS9ypQXTs
+         DkXXmmdFimP4NUh5x250F90PoszXRKPm+qoEY+BYiUKmpYE2upD3EZtTZ86DKzBRCX6S
+         AUYd2iNnMZlEKUelTX08FhtVFJ6/yrvvqEfST/kByNsTm/LOjWef23F/tKNHyQx6E381
+         bkCQ==
+X-Gm-Message-State: AFqh2kpVHAZckpvoZFEZ3jb9aecshw7/EpTGLf8rArJZKhqAF3KAwxaI
+        U9WxLXShTNsiCyKdTVMZ8is2kA==
+X-Google-Smtp-Source: AMrXdXsMT3JB4whYqqW4yxRL5v2upwn0jQSsyJl9yhLl62e6Ram/pCQErHyOh4gkyrtVFokwT+8FFw==
+X-Received: by 2002:a5d:43cf:0:b0:2bb:dca3:b29 with SMTP id v15-20020a5d43cf000000b002bbdca30b29mr5849763wrr.36.1674050534636;
+        Wed, 18 Jan 2023 06:02:14 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f2-20020adff982000000b002bde537721dsm13467031wrr.20.2023.01.18.06.01.20
+        by smtp.gmail.com with ESMTPSA id k2-20020a5d5182000000b00236545edc91sm31951183wrv.76.2023.01.18.06.02.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 06:01:22 -0800 (PST)
-Message-ID: <ec696e66-531e-6abc-f880-ed1dedbcaa8c@linaro.org>
-Date:   Wed, 18 Jan 2023 15:01:20 +0100
+        Wed, 18 Jan 2023 06:02:13 -0800 (PST)
+Message-ID: <b5a60852-f8f5-f3c4-fb75-bb5f00823c82@linaro.org>
+Date:   Wed, 18 Jan 2023 15:02:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v4 15/17] arm64: dts: freescale: apalis-imx8: enable
- messaging units
+Subject: Re: [PATCH v4 16/17] arm64: dts: freescale: apalis-imx8: fix
+ reserved-memory node names
 Content-Language: en-US
 To:     Marcel Ziswiler <marcel@ziswiler.com>, devicetree@vger.kernel.org
 Cc:     linux-kernel@vger.kernel.org, linux-imx@nxp.com,
@@ -68,9 +68,9 @@ Cc:     linux-kernel@vger.kernel.org, linux-imx@nxp.com,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>
 References: <20230118072656.18845-1-marcel@ziswiler.com>
- <20230118072656.18845-16-marcel@ziswiler.com>
+ <20230118072656.18845-17-marcel@ziswiler.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230118072656.18845-16-marcel@ziswiler.com>
+In-Reply-To: <20230118072656.18845-17-marcel@ziswiler.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,30 +85,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 18/01/2023 08:26, Marcel Ziswiler wrote:
 > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 > 
-> Enable messaging units aka MUs.
+> Fix reserved-memory node names using dashes rather than underscores.
 > 
 > Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 > 
 > ---
 > 
 > Changes in v4:
-> - New patch enabling messaging units aka MUs.
+> - New patch fixing reserved-memory node names.
 > 
->  arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-> index 545618799852..70c00b92cb05 100644
+> index 70c00b92cb05..6217e0a48f96 100644
 > --- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
 > +++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-> @@ -684,7 +684,18 @@ &lsio_pwm3 {
->  	#pwm-cells = <3>;
->  };
+> @@ -133,17 +133,17 @@ reserved-memory {
+>  		#size-cells = <2>;
+>  		ranges;
 >  
-> -/* TODO: Messaging Units */
-> +/* Messaging Units */
+> -		decoder_boot: decoder_boot@84000000 {
+> +		decoder_boot: decoder-boot@84000000 {
 
-Squash the patch.  It's not TODO anymore.
+This is ridiculous. You just added it! If we consider original code as
+wrong, then you intentionally added wrong code just to fix it.
+
+No, that's not the way how it should be developed.
+
 
 Best regards,
 Krzysztof
