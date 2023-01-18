@@ -2,148 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DE2671C8B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 13:51:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1511671C93
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 13:52:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230513AbjARMvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 07:51:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51500 "EHLO
+        id S230297AbjARMwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 07:52:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230511AbjARMum (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 07:50:42 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3CBA148612;
-        Wed, 18 Jan 2023 04:11:33 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 754C11477;
-        Wed, 18 Jan 2023 04:12:12 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8C0B73F71A;
-        Wed, 18 Jan 2023 04:11:28 -0800 (PST)
-Date:   Wed, 18 Jan 2023 12:11:24 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bin Liu <b-liu@ti.com>, devicetree@vger.kernel.org
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        soc@kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v5 00/11] ARM: suniv: USB and two new boards support
-Message-ID: <20230118121124.7ff25929@donnerap.cambridge.arm.com>
-In-Reply-To: <20230111015332.172021-1-andre.przywara@arm.com>
-References: <20230111015332.172021-1-andre.przywara@arm.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S230367AbjARMvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 07:51:50 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77CC64E50C;
+        Wed, 18 Jan 2023 04:13:27 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id mp20so36146978ejc.7;
+        Wed, 18 Jan 2023 04:13:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zSiUjqeIhXTuZdT6eBiGLcbiQdlWY4D946T8IZEq1tM=;
+        b=dKanFbSavWhQ2T04eS+23uXizOzrzix2u0Cn/8NyzbdwfmUOqEwbG0Mvvs/5qQAZYw
+         E9SMCML7RNO6mwGoYvIku1ZYootIDWCeVdQy4IOV9nnp5z9QMjUlEcQnoSIKsIEx4BuJ
+         ANNkfnb3q0U5o5qoR2AxxjfX55b1fjCrbA/clrv/NzXcYQ1K6icZHfFK3HCaDyb2Mzbl
+         W4iwTVmvr1HjtdQwfFXUlIwRHQJI+A58LMkUrbvyzCXpWKppAklGEwHAp0xqR1jcZ+pZ
+         OJGYYZxgSkoRYiN5wwame4F5h8Vyoad7PzXPCsFNSiUysNL3v82BgUkf8PgkyPZ+MqE8
+         5OpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zSiUjqeIhXTuZdT6eBiGLcbiQdlWY4D946T8IZEq1tM=;
+        b=Wt82lhEoccIh4J4Tam9mIeJrwnBuhWghOLr1xb/8Asu7wJc00yveUtjis8WM1jY6AJ
+         hOUOuewTZc0/sE5RBH0+1d2ZnR7UYFWcctwPK5/IRbFKkm3Tj/AuQj/HWKdlJjwyaaj5
+         grZYOR6CMZbetteq+C49kizbpmlXFsXhwrhXgeUgNweA1BHALU3msdpRLo/sj1AROsj5
+         emS70NVUOppdgc+m3k9MwyN/jXkFp93ysQYd/bOk950uyQ5zy116KrfEcANi4OAO/JFh
+         uCClHZi3wBJVPV82bb/35UV8UJMKjkws1c2dnF432ABt1gjyy3NW7W7n950OOAwB4d40
+         4tew==
+X-Gm-Message-State: AFqh2kqAPmtd1AhQS2uVhVM2xX5dSELTAdQed2BXvoXJhyu6frJQ3d4A
+        gVP6kdSwwNJF+PJe4aFp3os=
+X-Google-Smtp-Source: AMrXdXuJB5h75c09Lnc02md4iwcnhiUM2jh4kDT+SpXEP089W+YmPnXFzPBoQG85j5oV/lLrbE//Iw==
+X-Received: by 2002:a17:907:86a5:b0:870:d4f3:61b3 with SMTP id qa37-20020a17090786a500b00870d4f361b3mr8604731ejc.12.1674044005883;
+        Wed, 18 Jan 2023 04:13:25 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id r24-20020aa7da18000000b004704658abebsm14187212eds.54.2023.01.18.04.13.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 04:13:25 -0800 (PST)
+Message-ID: <08de3f4b-e33f-95c8-3297-814ea107272a@gmail.com>
+Date:   Wed, 18 Jan 2023 13:13:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1 1/4] dt-bindings: gpio: rockchip,gpio-bank: add compatible
+ string per SoC
+To:     linus.walleij@linaro.org, brgl@bgdev.pl
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kever.yang@rock-chips.com, sjg@chromium.org,
+        philipp.tomsich@vrull.eu
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Jan 2023 01:53:21 +0000
-Andre Przywara <andre.przywara@arm.com> wrote:
+Currently all Rockchip gpio nodes have the same compatible.
+Replace all the compatibles in gpio nodes to be able to
+give them a consistent ID independent from probe order or alias.
 
-Hi,
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ .../bindings/gpio/rockchip,gpio-bank.yaml         | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-> this is mostly a rebase of the former v4 series.
-> It is based on top of v6.2-rc1, and builds cleanly there. For passing
-> make dtbs_check, the PHY binding patch, part of a separate series[1], is
-> needed. For USB functionality, patch 2/3 from there is needed as well.
+diff --git a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+index affd823c8..72fdfcc65 100644
+--- a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
++++ b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+@@ -13,7 +13,22 @@ properties:
+   compatible:
+     enum:
+       - rockchip,gpio-bank
++      - rockchip,px30-gpio-bank
++      - rockchip,rk3036-gpio-bank
++      - rockchip,rk3066a-gpio-bank
++      - rockchip,rk3128-gpio-bank
++      - rockchip,rk3188-gpio-bank
+       - rockchip,rk3188-gpio-bank0
++      - rockchip,rk3228-gpio-bank
++      - rockchip,rk3288-gpio-bank
++      - rockchip,rk3328-gpio-bank
++      - rockchip,rk3308-gpio-bank
++      - rockchip,rk3368-gpio-bank
++      - rockchip,rk3399-gpio-bank
++      - rockchip,rk3568-gpio-bank
++      - rockchip,rk3588-gpio-bank
++      - rockchip,rv1108-gpio-bank
++      - rockchip,rv1126-gpio-bank
 
-This series has now been taken by Vinod and is available in linux-next
-since at least Friday.
-
-> I put a tree with both series combined here:
-> https://github.com/apritzel/linux/commits/f1c100s-usb-v5
-> 
-> There were no changes to the actual patches, this is just a resend since
-> the series missed the previous merge window.
-
-Is there anything I can do to move this series forward? If I see this
-correctly, this just misses a review of patch v5 03/11 "usb: musb: sunxi:
-Introduce config struct". I addressed Jernej's comments on this already in v4.
-
-Cheers,
-Andre
-
-> [1] https://lore.kernel.org/linux-phy/20230109012223.4079299-1-andre.przywara@arm.com/
-> 
-> ================
-> This patchset introduces support for F1C100s' USB, and the SourceParts
-> PopStick and Lctech Pi boards.
-> 
-> The DT binding and driver support for SUNIV USB MUSB device are added, in
-> addition to DT changes to the DTSI and Lichee Nano DT. New DTs are added
-> for the SourceParts PopStick v1.1 and Lctech Pi boards.
-> 
-> Changelog v4 ... v5:
-> - Rebase on top to v6.2-rc1
-> 
-> Changelog v3 ... v4:
-> - Dropped the PHY patches, they go via a different tree and need a
->   different base
-> - rebased on top of linux-sunxi/sunxi/for-next (provides H616 USB)
-> - musb DT binding: use enum
-> - musb cleanup: use musb_hdrc_config config pointer directly
-> - musb cleanup: use const where possible
-> - drop partitions from Popstick DTS file
-> - clarify Popstick has a USB type-A *plug*
-> - add tags
-> 
-> Changelog v2 ... v3:
-> - remove redundant "Device Tree Bindings" suffix in DT binding doc title
-> - add BSD license to binding doc file (as per checkpatch)
-> - fix some commit message title prefixes
-> - use proper plural spelling for usb0_id_det-gpios
-> - popstick.dts: Reorder otg_sram node reference alphabetically
-> - popstick.dts: Add regulator- prefix to 3.3V regulator node name
-> - popstick.dts: Fix status, compatible and reg property order
-> - popstick.dts: Drop unneeded mmc0 and spi0 aliases
-> - add patch to clean up sunxi MUSB driver
-> - add Acks and Reviewed-by's
-> 
-> Changelog v1 ... v2:
-> - USB PHY binding: clarify the relation with other phy-sun4i-usb bindings
-> - Add Popstick binding and .dts patches
-> 
-> 
-> Andre Przywara (4):
->   usb: musb: sunxi: Introduce config struct
->   dt-bindings: vendor-prefixes: add Lctech name
->   dt-bindings: arm: sunxi: add compatible strings for Lctech Pi
->   ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
-> 
-> Icenowy Zheng (7):
->   dt-bindings: usb: sunxi-musb: add F1C100s MUSB compatible string
->   usb: musb: sunxi: add support for the F1C100s MUSB controller
->   ARM: dts: suniv: add USB-related device nodes
->   ARM: dts: suniv: licheepi-nano: enable USB
->   dt-bindings: vendor-prefixes: add Source Parts
->   dt-binding: arm: sunxi: add compatible strings for PopStick v1.1
->   ARM: dts: suniv: add device tree for PopStick v1.1
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        | 13 +++
->  .../usb/allwinner,sun4i-a10-musb.yaml         | 10 +-
->  .../devicetree/bindings/vendor-prefixes.yaml  |  4 +
->  arch/arm/boot/dts/Makefile                    |  4 +-
->  .../boot/dts/suniv-f1c100s-licheepi-nano.dts  | 16 +++
->  arch/arm/boot/dts/suniv-f1c100s.dtsi          | 32 ++++++
->  arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 76 ++++++++++++++
->  .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 81 +++++++++++++++
->  drivers/usb/musb/sunxi.c                      | 99 +++++++++++++------
->  9 files changed, 301 insertions(+), 34 deletions(-)
->  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
->  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
-> 
-> 
-> base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
-> prerequisite-patch-id: 7734c0032dcc073e59f0217ee47ff023f0b47bcf
+   reg:
+     maxItems: 1
+--
+2.20.1
 
