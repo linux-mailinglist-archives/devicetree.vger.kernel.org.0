@@ -2,53 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 913EE672C57
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 00:16:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C598B672C7E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 00:22:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbjARXQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 18:16:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60768 "EHLO
+        id S229609AbjARXV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 18:21:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbjARXQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 18:16:33 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E914D613E1;
-        Wed, 18 Jan 2023 15:16:32 -0800 (PST)
+        with ESMTP id S229572AbjARXV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 18:21:59 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED31D15563;
+        Wed, 18 Jan 2023 15:21:57 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 53BB061AAF;
-        Wed, 18 Jan 2023 23:16:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D28F8C433D2;
-        Wed, 18 Jan 2023 23:16:30 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 548C261AA9;
+        Wed, 18 Jan 2023 23:21:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A85F1C433D2;
+        Wed, 18 Jan 2023 23:21:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674083791;
-        bh=PADYnbxw1Adyx4/MtjFPesFEFnaHJzS21f+PmiHCisU=;
+        s=k20201202; t=1674084116;
+        bh=i9S00yMf8qyKo0oOTiPvurWtSMXbNJFJ77YkIhe5t5k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NFgUS7N44OHhZE0vDJTWjMX9cb7uPqdDx1Uj7CwH7ddy/o95bBdnw8lQH4Z1vTwgV
-         /3KPI4/fW9DfK8PER/GyMaVKLjm4YF7tAYTzOZIs0996Yguyyv8pBw4QhNuY/XHE9G
-         HmQ+Z1P+aQsvJ/O9/MsJcD5nqCBJpLQQS3c+pq3OSMKbag0ZpvXMkf/3Isd9wxrwO9
-         6ZSVQ3Btf5wC5mYKr5cg0zMTnhC4f/spex2Zk02+q77t4+UGbAeYQjOB15i6ugx3R/
-         dJKpyO/TaQJzxZqKb1Lurm4KGFumewNYC89IdvDknYey7BSQGSej9zgdaC2LV7EAfr
-         vPPgI50cgj0YQ==
-Date:   Wed, 18 Jan 2023 17:16:28 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        krzysztof.kozlowski@linaro.org, marijn.suijten@somainline.org,
-        Georgi Djakov <djakov@kernel.org>,
+        b=j2upfGLoOgCF/BO7wNwbw0zmOs/IH5KaUcAgR+WtytEGd3TIOcjEaMg494JQ0vQg5
+         +xd6jbXucRrs2bbFavMHNvSfIQUSNxl7tsQPa0Mik175+pNhiO2if7w3doJCmO08+m
+         3zxlRgCanZ5MOLYRlQWb+semP4UzRWhPBacSSrtwiJcq4r44ym70MmGI95Hv1TyqQ8
+         iC6rA/UMCi76PbYqwV5Ed0laNIzujEkvZP23U4OoCdrF2fdNTETEtFMy6Pw3Kmv4hA
+         IumOC6XmGFP33tHbJNLDQ3Eg4rn48ni1Rvj79PlZ1G+s37IgMm+21rit1JIA93VQPB
+         kofi6m4FLuCng==
+Date:   Wed, 18 Jan 2023 23:21:51 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Yanhong Wang <yanhong.wang@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: OSM L3: Add SM6350 OSM
- L3 compatible
-Message-ID: <20230118231628.vwstxkqa73wphie2@builder.lan>
-References: <20230104171643.1004054-1-konrad.dybcio@linaro.org>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v4 0/7] Add Ethernet driver for StarFive JH7110 SoC
+Message-ID: <Y8h/D7I7/2KhgM00@spud>
+References: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CP+gNPEkC7FNanYh"
 Content-Disposition: inline
-In-Reply-To: <20230104171643.1004054-1-konrad.dybcio@linaro.org>
+In-Reply-To: <20230118061701.30047-1-yanhong.wang@starfivetech.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -58,33 +64,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 04, 2023 at 06:16:40PM +0100, Konrad Dybcio wrote:
-> SM6350, similarly to SDM845, uses OSM hardware for L3 scaling.
-> Document it.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+--CP+gNPEkC7FNanYh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> ---
-> v1 -> v2:
-> No changes
-> 
->  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> index 00afbbca9038..9d0a98d77ae9 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> @@ -22,6 +22,7 @@ properties:
->                - qcom,sc7180-osm-l3
->                - qcom,sc8180x-osm-l3
->                - qcom,sdm845-osm-l3
-> +              - qcom,sm6350-osm-l3
->                - qcom,sm8150-osm-l3
->            - const: qcom,osm-l3
->        - items:
-> -- 
-> 2.39.0
-> 
+Hey Yanhong!
+
+On Wed, Jan 18, 2023 at 02:16:54PM +0800, Yanhong Wang wrote:
+> This series adds ethernet support for the StarFive JH7110 RISC-V SoC. The=
+ series
+> includes MAC driver. The MAC version is dwmac-5.20 (from Synopsys DesignW=
+are).
+> For more information and support, you can visit RVspace wiki[1].
+> =09
+> This patchset should be applied after the patchset [2], [3], [4].
+> [1] https://wiki.rvspace.org/
+> [2] https://lore.kernel.org/all/20221118010627.70576-1-hal.feng@starfivet=
+ech.com/
+> [3] https://lore.kernel.org/all/20221118011108.70715-1-hal.feng@starfivet=
+ech.com/
+> [4] https://lore.kernel.org/all/20221118011714.70877-1-hal.feng@starfivet=
+ech.com/
+
+I've got those series applied, albeit locally, since they're not ready,
+but I cannot get the Ethernet to work properly on my board.
+I boot all of my dev boards w/ tftp, and the visionfive2 is no exception.
+The fact that I am getting to the kernel in the first place means the
+ethernet is working in the factory supplied U-Boot [1].
+
+However, in Linux this ethernet port does not appear to work at all.
+The other ethernet port is functional in Linux, but not in the factory
+supplied U-Boot.
+
+Is this a known issue? If it's not, I'll post the logs somewhere for
+you. In case it is relevant, my board is a v1.2a.
+
+Thanks,
+Conor.
+
+1 - U-Boot 2021.10 (Oct 31 2022 - 12:11:37 +0800), Build: jenkins-VF2_515_B=
+ranch_SDK_Release-10
+
+--CP+gNPEkC7FNanYh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY8h/DwAKCRB4tDGHoIJi
+0kw8AP9GfecCx2UsoFt4mQLdt1S4n6zge+JkYT0BSfNEGwD7rQEAqPYvoYDK4Awd
+bkmwzm7jj5RXNYNbs51sEKR/of7XXQ8=
+=g7DT
+-----END PGP SIGNATURE-----
+
+--CP+gNPEkC7FNanYh--
