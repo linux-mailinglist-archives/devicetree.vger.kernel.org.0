@@ -2,80 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DACD667166F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 09:46:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7040A671683
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 09:50:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230475AbjARIpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 03:45:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52396 "EHLO
+        id S229603AbjARIuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 03:50:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231129AbjARIpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 03:45:23 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC8B8F7CF
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:00:23 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id e3so23805277wru.13
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:00:23 -0800 (PST)
+        with ESMTP id S229512AbjARIsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 03:48:08 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9022694C93
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:01:31 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso851672wms.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:01:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6JHe7Mld7ca44zxKnapswWL8ppqp7gV/qk5d9Nzoevw=;
-        b=KTEP6I1p+vMcKWOb9+hnvxwJhNZClYy3mVLwvEaRmwrc3+YVVJ1SuxIoRZsnnhmQGi
-         /GnHcl1skgTY8B6z82bSuqdRFdYIel+Vg4WEEaP2iYUO4GnHRCa6P74G3zU7IPS1VyGT
-         I8WGfAj5FAoWzLc2mcs0ibz3ops67DOkZLXOJKYrpuVfP3vuGc0qCAEespNvrpu5AYGJ
-         Ldw/Xe/+zQtjzYJ/iv/riljurmbyz8fdRyf6p97zA0RBzok1XbAK6MqXtC1YSmuKwlPs
-         6XZXTBfV9oOVt02092OtdJZLlEDuUVXCc8B3UksAff2U5txyp0T/VH1e6N2Wi9r6EYKt
-         Z7+Q==
+        bh=llEHH2X8WYjCXN5EajkQx0NmyFU5CB3GauQfrzlzUfM=;
+        b=DzCw2fte32eiG1bD/c2WxEJDdqc03pd/smpQy5Xe69dqzm+v8lnNYVIhQMh3DDA++D
+         WosxvAmUePjR1aTlOKTGRl6v/dGGlHgqP59WKv+5JEZtnboRqTuMzDXOA/ARGMEbVdHM
+         1EFLiWrnjODDLQi6qmdtgr8UpZcC5OHQwkEc7JJJpBSH3Ki0YGFCjUfKOOK72BsGQlDw
+         Zpxw4YQ64NMDmwxXDcrfxBQR0lOc/n4ZMbBHpU/TgyLf3RhUnA6phj0veX1Hi41+jVkH
+         Zbrh75qZnE+HrVS/Ovw3c1PQiSZiLLAyLfEBJWK0ocpKIBMF3syNF9DReITDQ2jUxErO
+         DH2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6JHe7Mld7ca44zxKnapswWL8ppqp7gV/qk5d9Nzoevw=;
-        b=QKeTKfTXeKTRQeTvBkZUZMl+lxs0nr3O0dsIpXzOVotgtfs368pSmsdrbcj6XfbOc9
-         0AqJI+O97hnZGOPXpJxpR/zB5Z5DYnuj5cBbRQCdL4L18JSVU015mrQvaYud4ishOoqe
-         VSRIfSz9phz5ObGESo61D4lhF5IdUB/rKTkCVWDjSiHTXjAN7fFoHMJP0hCQsr5BW9I4
-         siviCrZF4VlAKjDx8a0vpPPKj32Iz3vVQpip3iEpqcnDKvNVdl9bNdcQ2/Z+EgzxcLHf
-         UOZgWoZ8WYNNAGP9hzQ/B9gcTxALIltFCBhZFUtA/JkxNMxdk67GtG7gmay4uMavKEfK
-         Rx6g==
-X-Gm-Message-State: AFqh2ko33cFsZW43IuaAcdf9WBlF/F72YGeQ7RMjYnDpCKmoLiGIHVib
-        sLzo2UvpDoTpNNMp/qzRZQV18A==
-X-Google-Smtp-Source: AMrXdXuEmKllwaiidwPgTn+Gamv50gFRp4dBCIpq9KI5N/ug614mLjZGjAIslqwj4xHNNfCH7W417A==
-X-Received: by 2002:a5d:6a86:0:b0:2bb:e805:c1ef with SMTP id s6-20020a5d6a86000000b002bbe805c1efmr4981345wru.52.1674028807988;
-        Wed, 18 Jan 2023 00:00:07 -0800 (PST)
+        bh=llEHH2X8WYjCXN5EajkQx0NmyFU5CB3GauQfrzlzUfM=;
+        b=G+FweMGtQyZr57DRXsjq4mMzNqAxrWapiGboqBAYG/WifafF8bewj30nPG09nFlCDA
+         NxfaEuMziDG9rYb/H5ShaJxNSW2QVzI70YmK4x6QSN+UmIoOMXeUrs3rQ4TVFbOs2+RL
+         qgh3cJyFDvv3jFDrFNtyO+loy29tVGHxe5uy62/vivuW6VCEHM14BonSxowsK72nZle1
+         EgS2jPAXo0a2XK2Z2Y8W6/woVbcJFeC6HhVdFU3Sm62xNq9fZy02EHAMbIP3GwkKipgF
+         OtYjNBeUc3hZXsA7Qg9ID2NzfUS2GiS0wrodIf+AsbPSjCcxwmcw2yIMkFwJMjHYN9MQ
+         9O5g==
+X-Gm-Message-State: AFqh2kpw2ChzAQNgTonPMdzn49fmb6ZSGh+lk468puEBxQmTbQI4VXtD
+        6zVEMkoqTASKmAmkCtof7FZj9A==
+X-Google-Smtp-Source: AMrXdXsBm07vZ/d2UAeyEvvURmGEk2oDPIpzcB6e7R/pDb+FAB2KhifAcPkhBzmj2IsiO5Ng5pv5Ew==
+X-Received: by 2002:a05:600c:1d92:b0:3da:1145:2196 with SMTP id p18-20020a05600c1d9200b003da11452196mr14278480wms.39.1674028889776;
+        Wed, 18 Jan 2023 00:01:29 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f8-20020a0560001b0800b002423edd7e50sm30387327wrz.32.2023.01.18.00.00.05
+        by smtp.gmail.com with ESMTPSA id j17-20020adff011000000b002a64e575b4esm31092111wro.47.2023.01.18.00.01.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 00:00:06 -0800 (PST)
-Message-ID: <787bb142-1ade-bd48-1f6a-0da992add3d3@linaro.org>
-Date:   Wed, 18 Jan 2023 09:00:04 +0100
+        Wed, 18 Jan 2023 00:01:25 -0800 (PST)
+Message-ID: <5d8fcc52-a1ca-e23b-02a6-120fbe9c30d2@linaro.org>
+Date:   Wed, 18 Jan 2023 09:01:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v3 4/7] dt-bindings: net: Add support StarFive dwmac
+Subject: Re: [PATCH v2 1/7] dt-bindings: usb: Correct and extend FOTG210
+ schema
 Content-Language: en-US
-To:     yanhong wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20230106030001.1952-1-yanhong.wang@starfivetech.com>
- <20230106030001.1952-5-yanhong.wang@starfivetech.com>
- <c114239e-2dae-3962-24f3-8277ff173582@linaro.org>
- <9c59e7b4-ba5f-365c-7d71-1ff2953f6672@starfivetech.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Fabian Vogt <fabian@ritter-vogt.de>
+References: <20230103-gemini-fotg210-usb-v2-0-100388af9810@linaro.org>
+ <20230103-gemini-fotg210-usb-v2-1-100388af9810@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9c59e7b4-ba5f-365c-7d71-1ff2953f6672@starfivetech.com>
+In-Reply-To: <20230103-gemini-fotg210-usb-v2-1-100388af9810@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,29 +79,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 02:45, yanhong wang wrote:
+On 18/01/2023 08:09, Linus Walleij wrote:
+> It turns out that this IP block exists in at least two
+> incarnations: FOTG200 and FOTG210. The one in the Gemini
+> is FOTG200, so add the variants and rectify the binding
+> for Gemini.
 > 
+> This affects things such as the placement of certain
+> registers.
 > 
-> On 2023/1/6 20:45, Krzysztof Kozlowski wrote:
->> On 06/01/2023 03:59, Yanhong Wang wrote:
->>> Add documentation to describe StarFive dwmac driver(GMAC).
->>>
->>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->>> ---
->>>  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
->>>  .../bindings/net/starfive,jh7110-dwmac.yaml   | 113 ++++++++++++++++++
->>>  MAINTAINERS                                   |   5 +
->>
->> Order the patches correctly. Why this binding patch is split from previous?
->>
+> It remains to be seen how similar this block is to the
+> third USB block from Faraday, FUSB220.
 > 
-> The previous binding patch was considered to be compatible with JH7100, but after discussion,
-> it is not compatible with JH7100 for the time being, so the name of binding has been modified
-> in this patch.
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> ChangeLog v1->v2:
+> - Drop stray word "bindings" in description
 
-I am not asking about name, but why this was split from the patch using
-the compatible in the first time. This does not make any sense. Please
-squash.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
