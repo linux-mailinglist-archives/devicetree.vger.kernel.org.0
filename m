@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E47C6724AA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 18:18:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD2886724BD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 18:21:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230492AbjARRSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 12:18:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47880 "EHLO
+        id S229774AbjARRVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 12:21:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230495AbjARRSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 12:18:04 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D80D51C41;
-        Wed, 18 Jan 2023 09:18:01 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 867E7FF803;
-        Wed, 18 Jan 2023 17:17:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674062279;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=HHiWQiQKmF9Aq364tQ1OQoYyXwqW/hpH1Vz8i01CmX4=;
-        b=W2GeEJNXWZ+yf3j1rPF8scQWxjgLiyhA2BCQpdJJj7AFFTLb/MgCZIUAiUqETbp8WtS0CS
-        0rPiblgQSwSGIwccSso7YA1KfnnxvlsOY413u0TdNHcb09xaZyKPpciZDkD2Am5/CskueT
-        GSTiH080p3ycDeogzaEXQ1oTxt+QLSIQQ61z1SJSIhQRzX0YPe8ucIMNzCut/UZQObmOzm
-        Rkk+cBP9wKmvoHpi1PyiQOgo0U0CDCY9vavR3Iszjfjl1flEHy/L79ojuljCxDcF3/UJCn
-        3QOfS56cFNigVaELWtoRE9ubBIj4bmwcG9AclRZGVqgd01zcvEJiNdpbnSkwsQ==
-Date:   Wed, 18 Jan 2023 18:17:53 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?UTF-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-Subject: Re: [PATCH v7 1/7] i2c: add I2C Address Translator (ATR) support
-Message-ID: <20230118181753.7a325953@booty>
-In-Reply-To: <Y8gA+cz9m7PaEhfP@smile.fi.intel.com>
-References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
-        <20230118124031.788940-2-tomi.valkeinen@ideasonboard.com>
-        <Y8gA+cz9m7PaEhfP@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229663AbjARRVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 12:21:42 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56DD4A1C8;
+        Wed, 18 Jan 2023 09:21:39 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30IHLDRZ004442;
+        Wed, 18 Jan 2023 11:21:13 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1674062473;
+        bh=6WadCtvk8UAcJIveU7R2rxQCXinRZfK5AQ/s+qIEVrw=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=uaZSGsUxBR1lBWbXccHBx+jZ+VhDJtiDyfvMFxQshGCCa0lwWBEhfuGR+fApogMmU
+         7HVneSWTwUKYEa7DXLwhAUpPvKBWbYfBaS4LTCP+rfHfqwBduOFufKmUTSS7HiRDf3
+         rtw0M9qIzvZqqmYYNLu5xMNNsdp/erhcbcuLFJ3E=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30IHLDmh031418
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 18 Jan 2023 11:21:13 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 18
+ Jan 2023 11:21:13 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 18 Jan 2023 11:21:13 -0600
+Received: from [10.250.235.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30IHL7H8109811;
+        Wed, 18 Jan 2023 11:21:08 -0600
+Message-ID: <bb5bed0b-c68a-8e73-48d2-d949d6f90cae@ti.com>
+Date:   Wed, 18 Jan 2023 22:51:07 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH net-next v6 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss:
+ Add J721e CPSW9G support
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
+        <vladimir.oltean@nxp.com>, <nsekhar@ti.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+References: <20230104103432.1126403-1-s-vadapalli@ti.com>
+ <20230104103432.1126403-2-s-vadapalli@ti.com>
+ <CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com>
+ <a3349dd8-6e1b-30bc-8247-5021f3733faf@linaro.org>
+From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
+In-Reply-To: <a3349dd8-6e1b-30bc-8247-5021f3733faf@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,106 +76,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andy,
 
-On Wed, 18 Jan 2023 16:23:53 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-> On Wed, Jan 18, 2023 at 02:40:25PM +0200, Tomi Valkeinen wrote:
-> > From: Luca Ceresoli <luca@lucaceresoli.net>
-> > 
-> > An ATR is a device that looks similar to an i2c-mux: it has an I2C
-> > slave "upstream" port and N master "downstream" ports, and forwards
-> > transactions from upstream to the appropriate downstream port. But is
-> > is different in that the forwarded transaction has a different slave  
+On 1/17/2023 10:47 PM, Krzysztof Kozlowski wrote:
+> On 17/01/2023 14:45, Geert Uytterhoeven wrote:
+>> Hi Siddharth,
+>>
+>> On Wed, Jan 4, 2023 at 11:37 AM Siddharth Vadapalli <s-vadapalli@ti.com> wrote:
+>>> Update bindings for TI K3 J721e SoC which contains 9 ports (8 external
+>>> ports) CPSW9G module and add compatible for it.
+>>>
+>>> Changes made:
+>>>     - Add new compatible ti,j721e-cpswxg-nuss for CPSW9G.
+>>>     - Extend pattern properties for new compatible.
+>>>     - Change maximum number of CPSW ports to 8 for new compatible.
+>>>
+>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>
+>> Thanks for your patch, which is now commit c85b53e32c8ecfe6
+>> ("dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J721e CPSW9G
+>> support") in net-next.
+>>
+>> You forgot to document the presence of the new optional
+>> "serdes-phy" PHY.
 > 
-> is is ?
+> I think we should start rejecting most of bindings without DTS, because
+> submitters really like to forget to make complete bindings. Having a DTS
+> with such undocumented property gives a bit bigger chance it will get an
+> attention. :(
 > 
-> > address. The address used on the upstream bus is called the "alias"
-> > and is (potentially) different from the physical slave address of the
-> > downstream chip.
-> > 
-> > Add a helper file (just like i2c-mux.c for a mux or switch) to allow
-> > implementing ATR features in a device driver. The helper takes care or
-> > adapter creation/destruction and translates addresses at each transaction.  
-> 
-> ...
-> 
-> > +A typical example follows.
-> > +
-> > +Topology::
-> > +
-> > +                      Slave X @ 0x10
-> > +              .-----.   |
-> > +  .-----.     |     |---+---- B
-> > +  | CPU |--A--| ATR |
-> > +  `-----'     |     |---+---- C
-> > +              `-----'   |
-> > +                      Slave Y @ 0x10
-> > +
-> > +Alias table:
-> > +
-> > +.. table::
-> > +
-> > +   ======   =====
-> > +   Client   Alias
-> > +   ======   =====
-> > +   X        0x20
-> > +   Y        0x30
-> > +   ======   =====
-> > +
-> > +Transaction:
-> > +
-> > + - Slave X driver sends a transaction (on adapter B), slave address 0x10
-> > + - ATR driver rewrites messages with address 0x20, forwards to adapter A
-> > + - Physical I2C transaction on bus A, slave address 0x20
-> > + - ATR chip propagates transaction on bus B with address translated to 0x10
-> > + - Slave X chip replies on bus B
-> > + - ATR chip forwards reply on bus A
-> > + - ATR driver rewrites messages with address 0x10
-> > + - Slave X driver gets back the msgs[], with reply and address 0x10  
-> 
-> I'm not sure I got the real / virtual status of the adapters. Are the B and C
-> virtual ones, while A is the real?
 
-Let me reply, as I wrote these docs back at the times and thus I feel
-guilty in case that's unclear. :)
+Agree, bindings should have been better tested against real DTS.
 
-I don't like the word "virtual" in this situation. A, B and C are all
-physical busses, made of copper and run by electrons on PCBs. B and C
-are the "remote" or "downstream" busses (w.r.t. the CPU), where the i2c
-devices are and where transactions happen using the address that the
-chip responds to. A is the "local" or "upstream" bus that is driven
-directly by the CPU (*) and where address aliases are used. Using
-aliases there is necessary because using address 0x10 would be
-ambiguous as there are two 0x10 chips out there.
+But for reviewers, this been a bit of chicken-egg problem. Bindings and
+driver changes have to go in first and via "subsystem" trees while DTS
+patches have to go via "arch" tree. So, they get posted separately.
 
-(*) There could be more layers of course, but still A is "closer to the
-CPU than B and C", for the sake of completeness.
+One may not see DTS patches (and thus user of the bindings) until
+bindings reach Torvalds' tree. So, user of bindings will only appear in
+the next kernel release cycle (at which time they do get flagged due to
+failing make dtbs_check but its bit late). Wondering how others are
+managing the same ?
 
-...
 
-> > +void i2c_atr_set_driver_data(struct i2c_atr *atr, void *data)
-> > +{
-> > +	atr->priv = data;
-> > +}
-> > +EXPORT_SYMBOL_NS_GPL(i2c_atr_set_driver_data, I2C_ATR);
-> > +
-> > +void *i2c_atr_get_driver_data(struct i2c_atr *atr)
-> > +{
-> > +	return atr->priv;
-> > +}
-> > +EXPORT_SYMBOL_NS_GPL(i2c_atr_get_driver_data, I2C_ATR);  
-> 
-> Just to be sure: Is it really _driver_ data and not _device instance_ data?
-
-It is device instance data indeed. I don't remember why this got
-changed, but in v3 it was i2c_atr_set_clientdata().
-
-[v3]
-https://lore.kernel.org/all/20220206115939.3091265-3-luca@lucaceresoli.net/
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Regards
+Vignesh
