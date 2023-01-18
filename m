@@ -2,108 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30E32671915
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 11:37:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFB5167196E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 11:44:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjARKhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 05:37:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58660 "EHLO
+        id S230115AbjARKol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 05:44:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230236AbjARKfz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 05:35:55 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E2B549435
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 01:42:48 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so1005731wmb.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 01:42:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jaewd2L8TgxgXbB/K1HfRKTMQWLJEFmYWcmTBCa0RC8=;
-        b=GU1REnZEAYxr5gnK/c11uqhYCCvVTzCtMtRsedU7qTu3etvRaFM1ZpHmrFwef2sDKL
-         ap5NSkPQoah09uVlxszezdLRT8XvN4PxInmt3rotCChRa+pYfQGhkD8zEIvA9b4kqLg5
-         QcN1ZUwhPHvgXsvfgR8agOl8RabEUfqje9SqpU6eU6FZTq4dWTue76QAGOS5La0N4wjV
-         +6c8vbKv9qX1cFyMaZDjR9YdkH1hxclBB6JO+HzQL4CNEz5sGk4gD5JHAvX/MpIt/m5A
-         c+nsL+z0hsLecaXXE3jbxUqXeVw8Rta5e2n7qsm9YZQs+LrTD+I50DWe6Yk8yi7uzXsG
-         Oqng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jaewd2L8TgxgXbB/K1HfRKTMQWLJEFmYWcmTBCa0RC8=;
-        b=Ems882OQ5MJpCgyQuujzzX3CI9lsS3LkY2Ptcxjd8L7euNhKmXLdq0v7fcuBONuxun
-         ijhNHtWSJFdWKSc5s2UnjbdqG2noC40Og6T0abh4Yi5XYCXL2ltksrG2nxhtBSqyD7T3
-         a9ZC2BqwP2aewrLDKcsRH9bFgZSvjR7TCzXIWwQVXx8vz1NSCip86vpzBNqJsEDLtSoa
-         pyRdu7LnmcnCKginUdECyQM1tSa4i0s7VVIIr0sfF2J41wzdeOfWKSJlvNJEPB7mt7+n
-         wEiojzGtgIAX3C7+aDO3sihOeY8bnG2uQfhanNHhT72Pjm0vOp8ylqpvdLj3xoAHXGXR
-         YMeQ==
-X-Gm-Message-State: AFqh2krz8/yfjT6kUJXHLj1oEfvvHgP56A3jwhmTQYYhQnKIVKLViFMW
-        88yMrlCNonThOpZ5TqqDOAdi/Q==
-X-Google-Smtp-Source: AMrXdXsBHwdvsYNou+cx4ItMPakpwEYAvNSUrq6Eo3TSnH7kFKV3tUETdCHSxQQuIiBLaZLQbHBpYw==
-X-Received: by 2002:a05:600c:2284:b0:3d3:5c21:dd9d with SMTP id 4-20020a05600c228400b003d35c21dd9dmr6009243wmf.19.1674034955224;
-        Wed, 18 Jan 2023 01:42:35 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m13-20020adfe94d000000b002714b3d2348sm30972662wrn.25.2023.01.18.01.42.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 01:42:33 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230125AbjARKmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 05:42:52 -0500
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2049.outbound.protection.outlook.com [40.107.13.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C4B03B3DD;
+        Wed, 18 Jan 2023 01:47:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iZmcKc+MbAJQu/a/BTor3PPhQ1rdwkQmKi6Uexb7ifYD8WGPIYPy8qfk59XoGicCBmkCMqpg4DfOmXfm7V2wumz40dRo8LeI5ps3pVdoUXPQ1vpjBlLUVjlW/EI9HGyshOUdNutou3k4TZRXCNcwCTcKEQ33wwv3oI8ZQZ3jSJ3s0GXXLMKWyCfUXJVwaNebPTUjGMv8t++TB8bqc3vkiRLemSI1VXDoDdeYFA6pW0Jtb51jic0GOGljcF9HhN79X63Tg+C1KiOtNGJOhDnmKE/B4h8dooX10zyp1CO8z8oqIszNW5Yvear1W5uVqB9zhCU7vwR2q1/mhgbYsy1XrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=htUDlL2fUPZGlv4ttgLfQORbYnyLTRt3+p0zVomaxoI=;
+ b=gLQRgTlQH/j1HAQkaEV7/VTXg/zmAUMoVjM6aRnJjM9aMpk+Q/Of6f1qROop2guu3JNOYqZvW5MuX9HMdrA3qyfgvFRlxN3GxJPLkaRb2Z2YpIWIQRYDMKqYWePQxVNmBwVs7NjEPuscvhISxKBDfqvFZrfTP1MAWGoun2/VLQSic4t8dfTwbtvIuzplRUzJREf9/yR4RUuYemibPxrWxf9rxWxXP3ONzT75nD+S3dS+BTo4zf6hI/dydVjoqvS1hC53BAfDL6gHnOMzUM4ljrLgtrLDoB5Drp1Ur2sO4qx7VasMplGCcEjEOvvuHee0jwa2lBZ8NAJ0NGpT2d9lqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=htUDlL2fUPZGlv4ttgLfQORbYnyLTRt3+p0zVomaxoI=;
+ b=5FAaQIxCZLlLg8q20ALao4IVrs/RUWrXvEE8x3j+UOhIIkGHn5jSqbiDJzZ8zBW73n6Fx6U1u++SvhLvbYtMXOlKwD77L0/An2q+yJkgWUoijWCwpWfhXy1sFgjsC4Xb7jFjmbRvAXXRn0Nvlj71KdYZal/dDmZTe1HA8qU9my12rybN7n+WgP2OyiPHb5AanAA4SumtSDJbM5sSTf5ZlWjG0AL4TV8fHaB8NuTTe+S5qmQpHuTZdIgeaqFyfuItFV83UbEp8aNmBAKHRcaVuPGC1j5qgTiFY713m/sJbwMf65PpwLOGWFh3rhs6JHtV1eVSMiiIbvwO3svndf7epA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=suse.com;
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
+ by PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Wed, 18 Jan
+ 2023 09:47:39 +0000
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::f46b:8bec:aa6:b8a1]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::f46b:8bec:aa6:b8a1%5]) with mapi id 15.20.6002.024; Wed, 18 Jan 2023
+ 09:47:39 +0000
+From:   Chester Lin <clin@suse.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp: drop unused properties from tx-macro
-Date:   Wed, 18 Jan 2023 10:42:24 +0100
-Message-Id: <20230118094224.51704-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230118094224.51704-1-krzysztof.kozlowski@linaro.org>
-References: <20230118094224.51704-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
+Cc:     Chester Lin <clin@suse.com>, s32@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        Matthias Brugger <mbrugger@suse.com>
+Subject: [PATCH v4 0/3] Add pinctrl support for S32 SoC family
+Date:   Wed, 18 Jan 2023 17:47:25 +0800
+Message-Id: <20230118094728.3814-1-clin@suse.com>
+X-Mailer: git-send-email 2.37.3
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR2P281CA0149.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:98::10) To VI1PR0402MB3439.eurprd04.prod.outlook.com
+ (2603:10a6:803:4::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3439:EE_|PAXPR04MB8829:EE_
+X-MS-Office365-Filtering-Correlation-Id: 16638680-f4ab-4362-2d73-08daf9390914
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zKJnJEYvsF8MqM2rlrfno7V+CZ/VPz768DiBU6GzWrkhyownh5n8Rb9kAqhSMCj4Z7t6Nhh3E7/iAW6OPVTZbZDndSKtUk1+roAH+nqP5JjWFmvoMZh/PSUZlrr6PEGg+3e2PzlPsceRWOmPtdBgbVgnkfelFwEl8iCSyHzZ/QNu5NM9fCpnUyF/dR75oyTpBwYHBBTsg2bnn0tPghPuusr3qcWtpTM+emvUhhd2X9KJJx9umqy4dQCv6D3ai15j31wO6iN4iH2YbIQ3hxiTWtAIbyfJXaoS5pXvCF09xp31jNY31l1JZm0efEsIT9OMY5gRgWxDJy4I9Sqdho4a8dhnM0GpHL7/JmC8hs6IZnxGvdA3iU3/6786kFCHM+9yDU1LhKNHb7+E1Z0DvWReR6DdyoZr9su/tFU4jnVfQlbDJEArrhtbMWTcz/wgCAhAzjsdrPmFVn/hBnYhr8bn/GYN5tNrWXHYUGxFKdhX0A6tUaOPGP5jsw/EeN7qi2u8dm/xY2moAaMD8fhc0dS77nOXGmJf4TVoWQrprGKsJLyVQuA44z3UhVvEcL6M50HP5uECyXAGZZ0BnbNS5BJ75+RvTm+vn/08EtR0XayPE7aVvFJYCtL7njaFpXsopQdpnjEbff1ePxgVCEXvStXGwXJBJR10a7sDPlskmyWWR1k=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(136003)(376002)(366004)(396003)(39860400002)(451199015)(6506007)(36756003)(478600001)(107886003)(6666004)(38100700002)(6486002)(8676002)(110136005)(66476007)(966005)(8936002)(66556008)(86362001)(316002)(4326008)(7416002)(41300700001)(5660300002)(54906003)(66946007)(2616005)(1076003)(2906002)(186003)(6512007)(26005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2utqbiSeLIU21Gkk9bppqRWo/qi3FeZpAvJIMQmiXXL5IFakDdcsNK6UIosn?=
+ =?us-ascii?Q?E8xaRdrFvDeT1Qi4PXJY9tjhpJSlTtmkGux2Cu15UuJr9nJ5aTX0c4CDhxKZ?=
+ =?us-ascii?Q?LFSjW1DVrSoclTdiVEXqIMOdJ5zWL2D84230MeO1EBNx/x9vwch1OBhwi1LM?=
+ =?us-ascii?Q?lN0Bv9F9lOLFkov5jqnMbKJucBY+Dc1K8HXM/bAudirImMzzGte/sqMFK4r2?=
+ =?us-ascii?Q?KRfliQvRSkMbffJSyWAC83dMr8eWpxamq9Y8QAdtq5Os+7gWXp6joKqQfy86?=
+ =?us-ascii?Q?ELo+B7LLb5jQ1zI66GMlmBVbFkH2O4F1Qwicyj0D2h+nGCv9nCpqpUUKWdLX?=
+ =?us-ascii?Q?CVNqePI8LHNFl+url3qz3d5j8g4UUq1Sat1ZNzc3SivVu8EsgEu5qrow7moO?=
+ =?us-ascii?Q?zDdllCBvUj8zldMaknwWigKPjt0WHbR+yFIXG8VLFP8sF3NapPmUe5vK4UXB?=
+ =?us-ascii?Q?0t8MAmnW7jqW+O3yGSltaXIoqYjjJLtVa7RfqzCUd7lR8boMcifu0gzgXDhA?=
+ =?us-ascii?Q?a9w5cngfCiLzeKqJCDoIqJJxJ/WrTPtamtOXmDZ5T1Flb14z0CNskjl/qxAa?=
+ =?us-ascii?Q?lte6VXbvqMxANmq5Tcis7nlzhDSJ1sFtp044mPZ0MK2IM+te79qdv5rwuZnb?=
+ =?us-ascii?Q?IkmHeslkqQj/DuFNGvUpzJIe5Sze4PaEatrp6ykc6zz107pRAOVM/G/hAQX7?=
+ =?us-ascii?Q?cMK4mAra70DhBa4bnqS+mPGuLsGE3MsDO6FBHgs+Isu2tDFUkXehae6waIru?=
+ =?us-ascii?Q?xF19+oVDDQfdfY4AfBsqBRyBK8+qGWMMqiEfa8Dh1wyKhrsxZFgWICzwLeI7?=
+ =?us-ascii?Q?83quHDpup71MtBVgYxJ0F8qQH4KLhzGb7AbQkMfZ+wq3Ll5tXJu7xCZm1PX5?=
+ =?us-ascii?Q?IoA6k7uQfEXib/ZAUWPz9fm25BER2THN5D9qQlWS2gqQvetmlYwkYKcmqKzB?=
+ =?us-ascii?Q?PDScMnjqqkUistEKDyaPC7+zO1dZfAWKJE5XRl3FrqPgzYdGaqf367Ul0k38?=
+ =?us-ascii?Q?YrJ5PweSzDQfx6RfIS+wiWmSBK1SB5q+n872WcorNzWVFFqWPM7EnIRJAZnk?=
+ =?us-ascii?Q?Uig9ptAzq9sdsibPcBEJp6oJ7QXln5NrJ52f86FJ4syX3iFPblMZWVBtHcKv?=
+ =?us-ascii?Q?IgC8vwXZV3DA4ibRX2D4z/W33hgdT+EC0p4BI0euJZ5aqcJvv3z57i1Un8v1?=
+ =?us-ascii?Q?VS+LkDAPVlK/xShQyIqLm4tgP1qC4lUsgDYXo7mNhwOC9B4s+wE/zwL9gMyh?=
+ =?us-ascii?Q?OOzEWGgdiscT0bYhjDHCtHrWswFF1c+5ufEaSAmn5WyCZccrWUVQyiK24vCC?=
+ =?us-ascii?Q?B+P5n+uJRG+cchDcOlthBBqUPRlVBeewzZuIC3b9tR2Sjy4I7ZbKcuLChZQg?=
+ =?us-ascii?Q?b3pDhMab5xO3+nkz4b5tZh8XHDwIWayQhy4sAlAvsr9zP+lHyJSl3IbbxzP5?=
+ =?us-ascii?Q?Afh8RxjST/qN5QljCikuS+CKZcpqmi1PPHmhPCBhl29/6SiwjdXrrr7o/GYE?=
+ =?us-ascii?Q?hFPkQb+L52vLli1l7qO29cJzJSVhICpY/tgF2scgkRfRPW5pXT2HkbmwJdKV?=
+ =?us-ascii?Q?NkfkhUYdfkErKJfi9wE=3D?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 16638680-f4ab-4362-2d73-08daf9390914
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2023 09:47:39.0240
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ep5iRld+lfqAlXPr8bRIqXH3v7q5FuL2SEshoRpiXc2kTUJCHWMFOSa+XHGnMs9I
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8829
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-tx-macro does not have children and does not allow address/size cells:
+Hello,
 
-  sc8280xp-crd.dtb: txmacro@3220000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
+Here I want to introduce a new patch series, which aims to support IOMUX
+functions provided by SIUL2 [System Integration Unit Lite2] on S32 SoCs,
+such as S32G2. This series is originally from NXP's implementation on
+nxp-auto-linux repo[1] and it will be required by upstream kernel for
+supporting a variety of devices on S32 SoCs which need to config PINMUXs,
+such as PHYs and MAC controllers.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Thanks,
+Chester
 
----
+Changes in v4:
+- dt-bindings:
+  - Change the representation of available slew-rate DT values from
+    register values to real frequencies.
+- driver:
+  - Add a mapping table for converting the slew rates to register
+    settings.
+  - Move driver files into an independent folder drivers/pinctrl/nxp
+- Add a MAINTAINER patch.
 
-Changes since v1:
-1. Add Rb tag.
-2. Split from SDM845 audio patchset, so this can easily be picked up.
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+Changes in v3:
+- dt-bindings:
+  - Remove the minItems from reg because there's no optional item for
+    s32g2.
+  - List supported properties of pinmux-node and pincfg-node and add more
+    descriptions.
+  - Adjust the location of "required:".
+  - Fix descriptions and wordings.
+  - Rename the yaml file to nxp,s32g2-siul2-pinctrl.yaml.
+- Rename pinctrl-s32g.c to pinctrl-s32g2.c
+- Adjust Kconfig options [menu-invisible] and names [S32G -> S32G2].
+- Add .suppress_bind_attrs
+- Drop the .remove callback and replace the module_platform_driver() call
+  with builtin_platform_driver()
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index fb1aa08c2524..bc698e417fae 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -1789,8 +1789,6 @@ txmacro: txmacro@3220000 {
- 			clock-output-names = "mclk";
- 
- 			#clock-cells = <0>;
--			#address-cells = <2>;
--			#size-cells = <2>;
- 			#sound-dai-cells = <1>;
- 		};
- 
+Changes in v2:
+- Move the "nxp,pins" ID range information from DT to the driver.
+- dt-bindings:
+  - Fix schema issues.
+  - Add descriptions for reg entries.
+  - Revise the example.
+- Refine the compatible name from "nxp,s32g-..." to "nxp,s32g2-...".
+- Fix the copyright format suggested by NXP.
+
+[1] https://github.com/nxp-auto-linux/linux/tree/bsp35.0-5.15.73-rt
+
+Chester Lin (3):
+  dt-bindings: pinctrl: add schema for NXP S32 SoCs
+  pinctrl: add NXP S32 SoC family support
+  MAINTAINERS: Add NXP S32 pinctrl maintainer and reviewer
+
+ .../pinctrl/nxp,s32g2-siul2-pinctrl.yaml      |  123 ++
+ MAINTAINERS                                   |    8 +
+ drivers/pinctrl/Kconfig                       |    1 +
+ drivers/pinctrl/Makefile                      |    1 +
+ drivers/pinctrl/nxp/Kconfig                   |   14 +
+ drivers/pinctrl/nxp/Makefile                  |    4 +
+ drivers/pinctrl/nxp/pinctrl-s32.h             |   76 ++
+ drivers/pinctrl/nxp/pinctrl-s32cc.c           | 1004 +++++++++++++++++
+ drivers/pinctrl/nxp/pinctrl-s32g2.c           |  773 +++++++++++++
+ 9 files changed, 2004 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/nxp/Kconfig
+ create mode 100644 drivers/pinctrl/nxp/Makefile
+ create mode 100644 drivers/pinctrl/nxp/pinctrl-s32.h
+ create mode 100644 drivers/pinctrl/nxp/pinctrl-s32cc.c
+ create mode 100644 drivers/pinctrl/nxp/pinctrl-s32g2.c
+
 -- 
-2.34.1
+2.37.3
 
