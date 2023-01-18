@@ -2,148 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C8C5670F9A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 02:10:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 288EA670FE4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 02:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229951AbjARBK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 20:10:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59224 "EHLO
+        id S229647AbjARBV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 20:21:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbjARBJu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 20:09:50 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51DD03E081;
-        Tue, 17 Jan 2023 17:04:22 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3244010B;
-        Wed, 18 Jan 2023 02:04:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674003860;
-        bh=8dYvO7RCDj5YepsmKT3DATpCzMC+EsJ6lY6n3joXjiQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iEJF85dTwRd2SKEz/INYvREepJ+tbVFmoIACgIBCALIyeTE0k3msphA9l5MGxlt54
-         bqJC3z6fGU2OHGd2ga2j3dWCBhtoTXcpmFzTZRDOW3bgVjOxyhvOVjjyuk9aHFN0TX
-         I5J7eP2KdsurHJZb8/MlvI9K8z2+FxyYNCyWKB/o=
-Date:   Wed, 18 Jan 2023 03:04:20 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Mark Brown <broonie@kernel.org>, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/6] media: platform: visconti: Add Toshiba Visconti
- Video Input Interface driver user interace
-Message-ID: <Y8dFlFkVJS/6+Ib1@pendragon.ideasonboard.com>
-References: <20230111022433.25950-1-yuji2.ishikawa@toshiba.co.jp>
- <20230111022433.25950-4-yuji2.ishikawa@toshiba.co.jp>
- <2b412539-2236-b41f-c777-bc9e9cf99d66@xs4all.nl>
+        with ESMTP id S229626AbjARBVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 20:21:14 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B000ECC20
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 17:19:02 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id b17so27845660pld.7
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 17:19:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yM0/ZgSXnPriP0s8Td7ncf1X5xesw5ro9ypu77r/PK0=;
+        b=BV117Kzh2UJo/RZBiMP4OXZU4kXp8mdi48JKZJMLPFMihgNhZzPzqYbkUzLWDXY6Lb
+         vAf8PqLlTxrCEba2lMkeotanIM/+dubx70HNK40Jd1vYL16+29poPIqIo6w0Ih6RcmFC
+         UzNMr/URPmE2+wiXJ+R2ECli2yQmt5dzyAjUk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yM0/ZgSXnPriP0s8Td7ncf1X5xesw5ro9ypu77r/PK0=;
+        b=rjDJG3pcJQQMu/GIJGO5ZgbtEx13QloegKwOOJLyUg4XErfsWKjxwA+09V3lLQsgO0
+         1a6wVMGaKKePLzGoEp+mXkBt051d7fisXpiZWdtqSmnruE9iaId7PQ6Qd+TbORunBjZB
+         vxSlm83+8CsOfISp9zGA5JXRlM+TJYfxNjNPYBnJpMZFdR4s/3lalM1fi7vyVWV+7ilS
+         dSP3X0kwSzolmxweBfmJ+suKOFosxSln83XubQwzwWUnLqtt9PQvFyOVFkMJojntHDKm
+         0xJfOhfJbSL25BUZoj3I0Qm9wnAKAsapv+MTYR1CmuXu1/6bXsh747Nhi3uSVInDyzoM
+         BUdw==
+X-Gm-Message-State: AFqh2kqGQsnpUeYUI0BFVGm1P7Xm38fjfUZrYtFU/CKUKjWzQ5A11R5T
+        bE7J5scGbfA0FyU2vHgZuJcjOA==
+X-Google-Smtp-Source: AMrXdXvp8hy99LqbYoteOM90Am/eEo/HgHBQWWXXYRic5vTpFMq2hhBNwBimm+r/63GraZGxPXd1DA==
+X-Received: by 2002:a05:6a20:b925:b0:9d:efbf:8156 with SMTP id fe37-20020a056a20b92500b0009defbf8156mr28765714pzb.31.1674004742127;
+        Tue, 17 Jan 2023 17:19:02 -0800 (PST)
+Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
+        by smtp.gmail.com with ESMTPSA id b3-20020a63d803000000b00477bfac06b7sm18014600pgh.34.2023.01.17.17.18.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Jan 2023 17:19:01 -0800 (PST)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH v4] arm64: dts: qcom: sc7280: add DP audio to herobrine rt5682 1-mic dtsi
+Date:   Wed, 18 Jan 2023 01:18:53 +0000
+Message-Id: <20230118011853.1614566-1-judyhsiao@chromium.org>
+X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <2b412539-2236-b41f-c777-bc9e9cf99d66@xs4all.nl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+1. Add DisplayPort sound node and lpass_cpu node.
 
-On Tue, Jan 17, 2023 at 12:47:10PM +0100, Hans Verkuil wrote:
-> More comments below:
-> 
-> On 11/01/2023 03:24, Yuji Ishikawa wrote:
-> > Add support to Video Input Interface on Toshiba Visconti ARM SoCs.
-> > The interface device includes CSI2 Receiver,
-> > frame grabber, video DMAC and image signal processor.
-> > This patch provides the user interface layer.
-> > 
-> > A driver instance provides three /dev/videoX device files;
-> > one for RGB image capture, another one for optional RGB capture
-> > with different parameters and the last one for RAW capture.
-> > 
-> > Through the device files, the driver provides streaming (DMA-BUF) interface.
-> > A userland application should feed DMA-BUF instances for capture buffers.
-> > 
-> > The driver is based on media controller framework.
-> > Its operations are roughly mapped to two subdrivers;
-> > one for ISP and CSI2 receiver (yields 1 instance),
-> > the other for capture (yields 3 instances for each capture mode).
-> > 
-> > Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> > ---
-> > Changelog v2:
-> > - Resend v1 because a patch exceeds size limit.
-> > 
-> > Changelog v3:
-> > - Adapted to media control framework
-> > - Introduced ISP subdevice, capture device
-> > - Remove private IOCTLs and add vendor specific V4L2 controls
-> > - Change function name avoiding camelcase and uppercase letters
-> > 
-> > Changelog v4:
-> > - Split patches because the v3 patch exceeds size limit 
-> > - Stop using ID number to identify driver instance:
-> >   - Use dynamically allocated structure to hold HW specific context,
-> >     instead of static one.
-> >   - Call HW layer functions with the context structure instead of ID number
-> > - Use pm_runtime to trigger initialization of HW
-> >   along with open/close of device files.
-> > 
-> > Changelog v5:
-> > - Fix coding style problems in viif.c
-> > ---
-> >  drivers/media/platform/visconti/Makefile      |    1 +
-> >  drivers/media/platform/visconti/viif.c        |  545 ++++++++
-> >  drivers/media/platform/visconti/viif.h        |  203 +++
-> >  .../media/platform/visconti/viif_capture.c    | 1201 +++++++++++++++++
-> >  drivers/media/platform/visconti/viif_isp.c    |  846 ++++++++++++
-> >  5 files changed, 2796 insertions(+)
-> >  create mode 100644 drivers/media/platform/visconti/viif.c
-> >  create mode 100644 drivers/media/platform/visconti/viif.h
-> >  create mode 100644 drivers/media/platform/visconti/viif_capture.c
-> >  create mode 100644 drivers/media/platform/visconti/viif_isp.c
+2. Adjust the dai-link order to make the order to
+   be consistent with sc7280-herobrine-audio-rt5682-3mic.dtsi.
 
-[snip]
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-> > +static int viif_s_edid(struct file *file, void *fh, struct v4l2_edid *edid)
-> > +{
-> > +	struct viif_device *viif_dev = video_drvdata_to_capdev(file)->viif_dev;
-> > +	struct viif_subdev *viif_sd = viif_dev->sd;
-> > +
-> > +	return v4l2_subdev_call(viif_sd->v4l2_sd, pad, set_edid, edid);
-> > +}
-> 
-> Has this driver been tested with an HDMI receiver? If not, then I would recommend
-> dropping support for it until you actually can test with such hardware.
-> 
-> The DV_TIMINGS API is for HDMI/DVI/DisplayPort etc. interfaces, it's not meant
-> for CSI and similar interfaces.
+---
 
-More than that, for MC-based drivers, the video node should *never*
-forward ioctls to a connected subdev. The *only* valid calls to
-v4l2_subdev_call() in this file are
+Changes in v4:
+- Fix the subject.
 
-- to video.s_stream() in the start and stop streaming handler
+Changes in v3:
+- Add more detail in the commit message.
 
-- to pad.g_fmt() when starting streaming to validate that the connected
-  subdev outputs a format compatible with the format set on the video
-  capture device
+Changes in v2:
+- Fix the commit message format.
 
-That's it, nothing else, all other calls to v4l2_subdev_call() must be
-dropped from the implementation of the video_device.
+ .../qcom/sc7280-herobrine-audio-rt5682.dtsi   | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
 
-[snip]
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+index af685bc35e10..69e7aa7b2f6c 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+@@ -33,9 +33,22 @@ codec {
+ 		};
+ 
+ 		dai-link@1 {
+-			link-name = "ALC5682";
++			link-name = "DisplayPort";
+ 			reg = <1>;
+ 
++			cpu {
++				sound-dai = <&lpass_cpu LPASS_DP_RX>;
++			};
++
++			codec {
++				sound-dai = <&mdss_dp>;
++			};
++		};
++
++		dai-link@2 {
++			link-name = "ALC5682";
++			reg = <2>;
++
+ 			cpu {
+ 				sound-dai = <&lpass_cpu MI2S_PRIMARY>;
+ 			};
+@@ -92,6 +105,10 @@ dai-link@1 {
+ 		reg = <MI2S_SECONDARY>;
+ 		qcom,playback-sd-lines = <0>;
+ 	};
++
++	dai-link@5 {
++		reg = <LPASS_DP_RX>;
++	};
+ };
+ 
+ /* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
 -- 
-Regards,
+2.39.0.314.g84b9a713c41-goog
 
-Laurent Pinchart
