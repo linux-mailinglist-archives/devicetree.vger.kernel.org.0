@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B864671184
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 04:08:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D198671181
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 04:08:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229457AbjARDIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 22:08:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39858 "EHLO
+        id S229603AbjARDIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 22:08:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbjARDIl (ORCPT
+        with ESMTP id S229670AbjARDIl (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 22:08:41 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07F6051C76
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9CFE51C71
         for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 19:08:34 -0800 (PST)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 1E94A855EB;
+        by phobos.denx.de (Postfix) with ESMTPSA id C652E855EC;
         Wed, 18 Jan 2023 04:08:31 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1674011311;
-        bh=yCUvH3cbu/3dVgZ0vX9TpRIh92dbwYC6KyliDAVQsQU=;
+        s=phobos-20191101; t=1674011312;
+        bh=mDQsj5fklnawGJhk5ScBP5gaOrvAw/iYRGQn0OxJ4u4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=wHv04TSdToyhbZE1xWEuQ4rPinHdmjT3HMX4p57M1CM6dvxo53d8hVYgRLEZUom4+
-         2XA+jwfbYaMOQQ94eHx+V/87HKE6KvkW5LBEgWMmrq8krK4SbeNlmqo0UT5+NiARkm
-         kfSGKtsyH5fyLfEbFaQUuE2Jo7ld54DMAy7FEJOl5vzpRzYZdEqsiXZ2FYceQS6+Xl
-         eAv/fs1S1nnDFjJ0KCIRQU60ha0uqv7cU7wN9OzjTcYSW7571FVRV7lZuci4dCBbOz
-         SLzUYTXxsCO4ATtdhVBgvF6MLaERMKtJ19CHRwyuGQ6jzkcc/ZzjT7zUQkbQJ+zVyE
-         n8VMMvYkbewGA==
+        b=MmnGlm4iNK3pbgd/DirTHgmTtU41Wiqu1zopdkTlnr+M7gXKmCKkcD32R4cpfTDD6
+         RROcuyYzk8vk3YUu6Vpp2kDRM71nIHfYk7iYw8VHicMOl7TtCUhEBRVQKfIARoVbPa
+         IRMxfzphl/SgxOTrtraSV91tVGOiHzfCxDIv1q7mn0Tav3cP4w4UvLPk7jwFflW9Re
+         8lps3LSNk4vEV/bxfjec6kXkKfngx8nJXfCMxlvfQBN8nEdGkD+xD/llrPP/iZLz1Q
+         NxA+czSHnXfSRuLoPbrVpac4pl1wN441Yh9psq1GFXR100TQ+uL1n64oDux7Xv+9yH
+         ZftBjlCxMtpWQ==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>,
@@ -46,9 +46,9 @@ Cc:     Marek Vasut <marex@denx.de>,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 2/3] arm64: dts: imx8mp: Drop sd-vsel-gpios from i.MX8M Plus Verdin SoM
-Date:   Wed, 18 Jan 2023 04:07:56 +0100
-Message-Id: <20230118030757.254086-2-marex@denx.de>
+Subject: [PATCH 3/3] arm64: dts: imx8mp: Drop sd-vsel-gpios from i.MX8M Plus DHCOM SoM
+Date:   Wed, 18 Jan 2023 04:07:57 +0100
+Message-Id: <20230118030757.254086-3-marex@denx.de>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230118030757.254086-1-marex@denx.de>
 References: <20230118030757.254086-1-marex@denx.de>
@@ -88,21 +88,21 @@ Cc: Shawn Guo <shawnguo@kernel.org>
 Cc: devicetree@vger.kernel.org
 To: linux-arm-kernel@lists.infradead.org
 ---
- arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 1 -
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-index 6a1890a4b5d88..a6e317af272fe 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-@@ -453,7 +453,6 @@ pca9450: pmic@25 {
- 		pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+index 21b1d75a9a1cf..fb87a73859830 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+@@ -239,7 +239,6 @@ pmic: pmic@25 {
  		pinctrl-0 = <&pinctrl_pmic>;
- 		reg = <0x25>;
+ 		interrupt-parent = <&gpio1>;
+ 		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
 -		sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
  
  		/*
- 		 * The bootloader is expected to switch on LDO4 for the on-module +V3.3_ADC and the
+ 		 * i.MX 8M Plus Data Sheet for Consumer Products
 -- 
 2.39.0
 
