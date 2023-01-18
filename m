@@ -2,113 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C9A67269B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 19:19:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7A856726A5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 19:20:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbjARSTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 13:19:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40676 "EHLO
+        id S229507AbjARSUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 13:20:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbjARSSy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 13:18:54 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC3E05926D
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 10:18:16 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id az20so66215734ejc.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 10:18:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=y8rqpNSnWJoAd7RWNJ6pL6pBeBIa9y6Cr5BMeltezbo=;
-        b=RNoL7UiEkkmjxXRiCl533s+afBXH1KBd4bTWyRRito1gOoPzaYIdVyjDfYW2RaNYSR
-         BYsYWyB9vuZeDdevkjREhPw0rbozUv9r8gZ/PAPM6wNp7O3tc4WXkkoDGpSjlv3b/sAV
-         Evu0HW+Bw2NckrwpzxobIkflnjy7EONMlNm/Vr/Y7Umf1CcxwstEoEYNufVcZCYi0ysm
-         0PeLOyVQRCpR363Jm7OuhnRJLgz3JBeyuC9wNTZpC4ISzdkJtEzsQAHjfjfUDRI8CI77
-         KjVYqa3OmR9eJqBybOqBradgUnh38veYzybOwjTSln+hiRM9vEMOfwBzgtS1WNL1L086
-         DDFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y8rqpNSnWJoAd7RWNJ6pL6pBeBIa9y6Cr5BMeltezbo=;
-        b=HDMU/F6WV0BsiiCnzYpeie5diZN4CbLcS4TZ6eH3ryTwyY5c01CF+DaNaieQrQlClW
-         Yk1z4pirhdPVfpbeXm7Xt9sPjZxPmj/M0dy30/OLr3NYOg1u4p3YY8+OHxh7JkRYIVk4
-         5/LgEfUjETzkxA0F7Maqnb1aycVcWdcFACnpMIn+SgCQjUuGur1ZE1cDoCXZreHxeTNf
-         TWC6zNJWjmRWOI9a9dRAx243xF8lASxS5Y1DLEHL6YN6fdB9FVppyavgCzydENa09kNP
-         aEaobcRllk0VgC2rgc0pmi0lEOxZ/E5ckFLfkuRkmSE5xqrcGAlqTiVCIEy1SFS2NzXS
-         ndfg==
-X-Gm-Message-State: AFqh2koEPPZDj24jsAMxQh4t3RM86TtEUu0jX3TVPI1f/BMhX0wmLzAj
-        7iAjQDslEVVy2mqTP3A5KZ2vhA==
-X-Google-Smtp-Source: AMrXdXtxFdF8DT83LJssmcSGedCQyhhgbv5d4EsL08lnegVvAzV1P/QbgamA2nxPLvARf+7HVoTbjA==
-X-Received: by 2002:a17:906:33cb:b0:86d:7c0e:c816 with SMTP id w11-20020a17090633cb00b0086d7c0ec816mr16910788eja.27.1674065895323;
-        Wed, 18 Jan 2023 10:18:15 -0800 (PST)
-Received: from localhost.localdomain (abxh150.neoplus.adsl.tpnet.pl. [83.9.1.150])
-        by smtp.gmail.com with ESMTPSA id kw16-20020a170907771000b0084d43e23436sm13103711ejc.38.2023.01.18.10.18.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 10:18:14 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229379AbjARSUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 13:20:23 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E603C2B;
+        Wed, 18 Jan 2023 10:20:23 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30IHdkNE023566;
+        Wed, 18 Jan 2023 18:20:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=rpn9fyJ7ZA2G8q62ByZIrUVodtb/mfp/4RpDzItXdv0=;
+ b=BpuOUX7OK0DVfyxv34PGpS8J9MOJmO/FObun2prGx2P4Uian3SgPTrZTW3Yhj+xXtx4Z
+ 0RZqCjQeC1l4KDnptrJZrphBLYK3m/e0A3ULyNZJcTa/OCPHeHNInGJBHHcxT6PkRgaZ
+ vwfv70lX61e/wQtd+bIgg0MekXBeIv6mLo+1y7u3oROIvvgsbofztc/Xa8w9z1R0bKcX
+ 050Mbohyq1brB1LirsgnpfEKpZE2xycELTmVKobyhs3dWQOsHWtbT5jzmqv0ygk58Yn1
+ qzB5xXOl5979K+f+WUmystquG493poL0r0nUBriiTqlKACvVPBMPjehm23Sa1r1PILqW qQ== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n5b18csw5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 18 Jan 2023 18:20:11 +0000
+Received: from nasanex01a.na.qualcomm.com ([10.52.223.231])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30IIKBot000931
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 18 Jan 2023 18:20:11 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Wed, 18 Jan 2023 10:20:10 -0800
+Date:   Wed, 18 Jan 2023 10:20:08 -0800
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2] regulator: dt-bindings: qcom-labibb: Allow regulator-common properties
-Date:   Wed, 18 Jan 2023 19:18:10 +0100
-Message-Id: <20230118181810.119922-1-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.1
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_wcheng@quicinc.com>,
+        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>
+Subject: Re: [RFC v4 1/5] dt-bindings: usb: Add bindings to support multiport
+ properties
+Message-ID: <20230118182008.GA3353734@hu-bjorande-lv.qualcomm.com>
+References: <20230115114146.12628-1-quic_kriskura@quicinc.com>
+ <20230115114146.12628-2-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230115114146.12628-2-quic_kriskura@quicinc.com>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: TI3iKUx2MIaZvawDWmj-NVQDmq9c2cJf
+X-Proofpoint-ORIG-GUID: TI3iKUx2MIaZvawDWmj-NVQDmq9c2cJf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.923,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-18_05,2023-01-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 phishscore=0 spamscore=0 malwarescore=0
+ priorityscore=1501 adultscore=0 impostorscore=0 suspectscore=0
+ mlxlogscore=443 bulkscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2301180155
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow regulator-common properties on lab/ibb regulators, such as
-regulator-always-on, etc.
+On Sun, Jan 15, 2023 at 05:11:42PM +0530, Krishna Kurapati wrote:
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+[..]
+>    phy-names:
+>      minItems: 1
+> -    maxItems: 2
+> -    items:
+> -      enum:
+> -        - usb2-phy
+> -        - usb3-phy
+> +    maxItems: 8
+> +    oneOf:
+> +    - items:
+> +        enum:
+> +          - usb2-phy
+> +          - usb3-phy
+> +    - items:
+> +        enum:
+> +          - usb2-phy_port0
+> +          - usb2-phy_port1
+> +          - usb2-phy_port2
+> +          - usb2-phy_port3
+> +          - usb3-phy_port0
+> +          - usb3-phy_port1
+> +          - usb3-phy_port2
+> +          - usb3-phy_port3
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-v1 -> v2:
-- Remove unnecessary quotes
+How about expressing this as:
 
- .../bindings/regulator/qcom-labibb-regulator.yaml           | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+    oneOf:
+      - items:
+          enum: [ usb2-phy, usb3-phy ]
+      - items:
+          pattern: "^usb[23]-phy_port[0-3]$"
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
-index f97b8083678f..e987c39b223e 100644
---- a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
-@@ -20,7 +20,8 @@ properties:
- 
-   lab:
-     type: object
--    additionalProperties: false
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
- 
-     properties:
-       qcom,soft-start-us:
-@@ -46,7 +47,8 @@ properties:
- 
-   ibb:
-     type: object
--    additionalProperties: false
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
- 
-     properties:
-       qcom,discharge-resistor-kohms:
--- 
-2.39.1
-
+Regards,
+Bjorn
