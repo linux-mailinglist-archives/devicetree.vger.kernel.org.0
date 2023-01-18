@@ -2,95 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9D15672261
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC16672270
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 17:06:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229881AbjARQD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 11:03:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38626 "EHLO
+        id S229843AbjARQF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 11:05:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231164AbjARQDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:03:39 -0500
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CDB8568B1;
-        Wed, 18 Jan 2023 07:59:38 -0800 (PST)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-15eec491b40so14982080fac.12;
-        Wed, 18 Jan 2023 07:59:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uYLwATUgXkSjEpYITC3xrrUBVVSKhXYf3klEB5MK1WI=;
-        b=wJarYY+HrgKVucUCJ5rTw5IKetYZsM7YtISq7AyN6sEfYSd3slyw9MGTIAANYoix2Z
-         5zrryNcVrwujEyqtvhMlnhamMnNwEph8UuvxsFfJ5nfgvGTCVHn1SedrgIu3cVQURFvr
-         f1uDya2bHSv/TXqg72mDWRGysBdTOsCIiY0D3wl9FsgZnPNpv/Fz7vO4J2M5U9nR0RaL
-         tUy3LEmmG0MvzAkqrA0hmDd/13r70/F/j5PKQG1rTwLWidoXhIQCsexBEAf32mt+/Yop
-         Ad+txOkYJ4HOdIH3PksrCgaSQugMAA+j0yCq1i1XbJHdHXkbfwwL+VeIqe2YAxIrPEdJ
-         Jqtg==
-X-Gm-Message-State: AFqh2kpXi0k4z5jNHAYNh+NQO38MZvnvHVFy+ekUBrMVUlpIaYHhMLx8
-        qpw5qXf7DdNW2Vb37VS1cA==
-X-Google-Smtp-Source: AMrXdXtNXcgtaf4kqxp3LkeZgl009U5TgsdRR7APA5uSgwVb7Iat9myzCJOSH4NszFG9TWuteb8Vig==
-X-Received: by 2002:a05:6870:4b9b:b0:15f:29ff:b84b with SMTP id lx27-20020a0568704b9b00b0015f29ffb84bmr4426352oab.53.1674057577328;
-        Wed, 18 Jan 2023 07:59:37 -0800 (PST)
-Received: from robh_at_kernel.org ([4.31.143.193])
-        by smtp.gmail.com with ESMTPSA id e23-20020aca1317000000b0035028730c90sm1293795oii.1.2023.01.18.07.59.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 07:59:37 -0800 (PST)
-Received: (nullmailer pid 80474 invoked by uid 1000);
-        Wed, 18 Jan 2023 15:59:36 -0000
-Date:   Wed, 18 Jan 2023 09:59:36 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Moudy Ho <moudy.ho@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        with ESMTP id S230113AbjARQFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 11:05:43 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F120E58290;
+        Wed, 18 Jan 2023 08:02:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674057753; x=1705593753;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mYfGJuIXXRAEIbpAJg9uFdYN4T7ljyJ2hkxHWZSL2KI=;
+  b=G0Pt/2IJVEbHKHebwE5WKdZ25WjBDAD4Q8/2lUUxaTixL5uydFTVHr1E
+   Plp5BZe//9FhoSRQyaJN9r9b5K94WZ88kvXq3iiTh6eRfTSjMjmNQUiMg
+   hVSd1OwOam6Yv+2cfLa0Lh2RxQk2D8SC2Gvq7pg1zj4rV16x1wrYJ5yMr
+   3vUPeJwSFOx4vNItq6oZoUvO3oqh28ONfx2hcuAM7Ckiy2ehggWUL6/Ho
+   GC1u0GGx7VyqdFjk3Nw+lcqCCf4wiO4rMD3HpEshX0ubDHWh0R6pM1df+
+   I9Xjpi/ucxuDeOMcg3zOUobim8+crpm4GmD9/mFTeyp4rEfm7aWuiUw/1
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="411252681"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; 
+   d="scan'208";a="411252681"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2023 08:01:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="637333673"
+X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; 
+   d="scan'208";a="637333673"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga006.jf.intel.com with ESMTP; 18 Jan 2023 08:01:25 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1pIAsM-00BG0e-1E;
+        Wed, 18 Jan 2023 18:01:22 +0200
+Date:   Wed, 18 Jan 2023 18:01:22 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v6 2/4] dt-bindings: arm: mediatek: mmsys: Add support
- for MT8195 VPPSYS
-Message-ID: <167405753490.79458.14830841571648305293.robh@kernel.org>
-References: <20230118031509.29834-1-moudy.ho@mediatek.com>
- <20230118031509.29834-3-moudy.ho@mediatek.com>
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v7 0/7] i2c-atr and FPDLink
+Message-ID: <Y8gX0krXayfOa4Hi@smile.fi.intel.com>
+References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230118031509.29834-3-moudy.ho@mediatek.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 18 Jan 2023 11:15:07 +0800, Moudy Ho wrote:
-> For MT8195, VPPSYS0 and VPPSYS1 are 2 display pipes with
-> hardware differences in power domains, clocks and subsystem counts,
-> which should be determined by compatible names.
+On Wed, Jan 18, 2023 at 02:40:24PM +0200, Tomi Valkeinen wrote:
+> Hi,
 > 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> ---
->  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        | 2 ++
->  1 file changed, 2 insertions(+)
+> You can find the v6 from:
 > 
+> https://lore.kernel.org/all/20230105140307.272052-1-tomi.valkeinen@ideasonboard.com/
+> 
+> Main changes:
+> 
+> * i2c-atr: Use bus notifier. This allows us to drop the patch that adds
+>   the attach_client/detach_client callbacks. On the downside, it removes
+>   the option for error handling if the translation setup fails, and also
+>   doesn't provide us the pointer to the i2c_board_info. I belive both
+>   are acceptable downsides.
+> 
+> * Use fwnode in the fpdlink drivers instead of OF
+> 
+> * Addressed all the review comments (I hope)
+> 
+> * Lots of cosmetic or minor fixes which I came up while doing the fwnode
+>   change
 
+I believe my comments to the first driver applies to the next two, so please
+address them whenever you are agree / it's possible / it makes sense.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+About ATR implementation. We have the i2c bus (Linux representation of
+the driver model) and i2c_adapter and i2c_client objects there. Can't we
+have an i2c_client_aliased in similar way and be transparent with users?
 
-If a tag was not added on purpose, please state why and what changed.
+It's just a thought which may be well far from the possibility
+to be implemented if even possible...
 
-Missing tags:
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
