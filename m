@@ -2,272 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 920556729A8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 21:49:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AC056729DA
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 22:03:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbjARUtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 15:49:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51958 "EHLO
+        id S230242AbjARVDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 16:03:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229657AbjARUtK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 15:49:10 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EAAC470A9
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 12:49:09 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id y25so143603lfa.9
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 12:49:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+89tqwjByMFlJh+90XLRKeR8816WhLFrnnBbHdowVik=;
-        b=U1YUNL0D28nLvQgCR8Fy4GZ1L2J1U3r/URkWeo5z9ZP8T2B4mt/3rlzutsVRHXu9j8
-         tc7kgJDU86gGGpFk8I/uVfpzR5xUOxXRxjZ23/CAqEnJG7Xa74zdvW4ANeaIyUAY0M6R
-         Sv/a2JvPaLsTQa/UY8P5By5ftMJZp8+coa18jrcv5yNCMJB/eKxfVJ/SOipqpwBo4aqz
-         T8X6SuZ0VatpeN4E+Kh63soN0mKVlmG1VSVJJK9guQGE87o1b/PeXFjWMhILTJR16uXx
-         RLxkkb/G+sq+mCQxB6oiSHRmucaJkTS7su255I2VVA5uKknjcVYH5PL+xG37gZ8jkJ1y
-         J1aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+89tqwjByMFlJh+90XLRKeR8816WhLFrnnBbHdowVik=;
-        b=yl1IUfj9y4bMCj6lFKy6vjjjRARx/+jRzIPxhz88svX5QkV+AnskqEA4ZxbWAvRFTP
-         LrVIBSYk5yNutU7ALAhUNNelE4Q3qkNimxbIgLQ8bQHWPrP54Ui+7bbR3JSO6pgjhmAB
-         02UerBWmO0DagJhMZvXrMSGAdN87ZZUk3soPyvtVM3A2ZK4tie/rw2tSrHj4pIkvhp13
-         byp/Q9aHk5v+6nPrErWels720aU/emDXTlWB4yMLi+FVPc6qPFrYMYkVOjyDnk7CLqVS
-         3M5OBB/0exWE6qo4OglcsQY2JAt4MBgdNqQcdn+faTwTZktNl+dh3ogPkZfGA8ILcJJ6
-         jEfg==
-X-Gm-Message-State: AFqh2krDj1dqREmU3R9MJDJS9TBYuwzpF2YUBCTPNp6FxL0tizwFBFFy
-        g2eTDLeK8UHhE6/Gn8ktSt3Sq2yxE9dNUX0kIQSDzw==
-X-Google-Smtp-Source: AMrXdXuLqfBIbdobOBxh7C5PpKfcFLwskMtjKLFdmaNSOgQ52gElbzEEAL+UqKv3gWXfHMrLyPxrgTN3ZBz9CyUFJRk=
-X-Received: by 2002:a05:6512:409:b0:4cc:7876:9f35 with SMTP id
- u9-20020a056512040900b004cc78769f35mr458836lfk.125.1674074947228; Wed, 18 Jan
- 2023 12:49:07 -0800 (PST)
+        with ESMTP id S230146AbjARVDf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 16:03:35 -0500
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E055552B7
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 13:03:33 -0800 (PST)
+Received: from TimeMachine.lan (adsl-dyn97.91-127-229.t-com.sk [91.127.229.97])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 1992F3F791;
+        Wed, 18 Jan 2023 22:03:30 +0100 (CET)
+From:   Martin Botka <martin.botka@somainline.org>
+To:     Martin Botka <martin.botka@somainline.org>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Jan Trmal <jtrmal@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Martin Botka <martin.botka1@gmail.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/3] regulator: Add X-Powers AXP313a PMIC support*
+Date:   Wed, 18 Jan 2023 22:03:15 +0100
+Message-Id: <20230118210319.464371-1-martin.botka@somainline.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-References: <20230118203428.910992-1-bhupesh.sharma@linaro.org> <77fbf01f-58fc-55a2-415b-c39d991e7c96@linaro.org>
-In-Reply-To: <77fbf01f-58fc-55a2-415b-c39d991e7c96@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Thu, 19 Jan 2023 02:18:55 +0530
-Message-ID: <CAH=2Ntw4hMyV2mqRu1t=WWG24=wKq96PB+eYFtZ4qYQz8dteog@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Add CPU idle-states
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Jan 2023 at 02:10, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
->
->
-> On 18.01.2023 21:34, Bhupesh Sharma wrote:
-> > Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
-> >
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 104 +++++++++++++++++++++++++++
-> >  1 file changed, 104 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > index 478c5d009272..29c05cbb5fd7 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > @@ -44,6 +44,8 @@ CPU0: cpu@0 {
-> >                       enable-method = "psci";
-> >                       next-level-cache = <&L2_0>;
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> > +                     power-domains = <&CPU_PD0>;
-> > +                     power-domain-names = "psci";
-> >                       L2_0: l2-cache {
-> >                               compatible = "cache";
-> >                               cache-level = <2>;
-> > @@ -59,6 +61,8 @@ CPU1: cpu@1 {
-> >                       enable-method = "psci";
-> >                       next-level-cache = <&L2_0>;
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> > +                     power-domains = <&CPU_PD1>;
-> > +                     power-domain-names = "psci";
-> >               };
-> >
-> >               CPU2: cpu@2 {
-> > @@ -70,6 +74,8 @@ CPU2: cpu@2 {
-> >                       enable-method = "psci";
-> >                       next-level-cache = <&L2_0>;
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> > +                     power-domains = <&CPU_PD2>;
-> > +                     power-domain-names = "psci";
-> >               };
-> >
-> >               CPU3: cpu@3 {
-> > @@ -81,6 +87,8 @@ CPU3: cpu@3 {
-> >                       enable-method = "psci";
-> >                       next-level-cache = <&L2_0>;
-> >                       qcom,freq-domain = <&cpufreq_hw 0>;
-> > +                     power-domains = <&CPU_PD3>;
-> > +                     power-domain-names = "psci";
-> >               };
-> >
-> >               CPU4: cpu@100 {
-> > @@ -92,6 +100,8 @@ CPU4: cpu@100 {
-> >                       dynamic-power-coefficient = <282>;
-> >                       next-level-cache = <&L2_1>;
-> >                       qcom,freq-domain = <&cpufreq_hw 1>;
-> > +                     power-domains = <&CPU_PD4>;
-> > +                     power-domain-names = "psci";
-> >                       L2_1: l2-cache {
-> >                               compatible = "cache";
-> >                               cache-level = <2>;
-> > @@ -107,6 +117,8 @@ CPU5: cpu@101 {
-> >                       enable-method = "psci";
-> >                       next-level-cache = <&L2_1>;
-> >                       qcom,freq-domain = <&cpufreq_hw 1>;
-> > +                     power-domains = <&CPU_PD5>;
-> > +                     power-domain-names = "psci";
-> >               };
-> >
-> >               CPU6: cpu@102 {
-> > @@ -118,6 +130,8 @@ CPU6: cpu@102 {
-> >                       enable-method = "psci";
-> >                       next-level-cache = <&L2_1>;
-> >                       qcom,freq-domain = <&cpufreq_hw 1>;
-> > +                     power-domains = <&CPU_PD6>;
-> > +                     power-domain-names = "psci";
-> >               };
-> >
-> >               CPU7: cpu@103 {
-> > @@ -129,6 +143,8 @@ CPU7: cpu@103 {
-> >                       enable-method = "psci";
-> >                       next-level-cache = <&L2_1>;
-> >                       qcom,freq-domain = <&cpufreq_hw 1>;
-> > +                     power-domains = <&CPU_PD7>;
-> > +                     power-domain-names = "psci";
-> >               };
-> >
-> >               cpu-map {
-> > @@ -168,6 +184,41 @@ core3 {
-> >                               };
-> >                       };
-> >               };
-> > +
-> > +             idle-states {
-> > +                     entry-method = "psci";
-> > +
-> > +                     LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
-> > +                             compatible = "arm,idle-state";
-> > +                             idle-state-name = "silver-rail-power-collapse";
-> > +                             arm,psci-suspend-param = <0x40000003>;
-> > +                             entry-latency-us = <290>;
-> > +                             exit-latency-us = <376>;
-> > +                             min-residency-us = <800>;
-> I think this value is incorrect, see:
->
-> https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/tags/android-11.0.0_r0.56/qcom/bengal-pm.dtsi#99
->
-> > +                             local-timer-stop;
-> > +                     };
-> > +
-> > +                     BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
-> > +                             compatible = "arm,idle-state";
-> > +                             idle-state-name = "gold-rail-power-collapse";
-> > +                             arm,psci-suspend-param = <0x40000003>;
-> > +                             entry-latency-us = <297>;
-> > +                             exit-latency-us = <324>;
-> > +                             min-residency-us = <1110>;
-> > +                             local-timer-stop;
-> > +                     };
-> > +             };
-> > +
-> > +             domain-idle-states {
-> > +                     CLUSTER_SLEEP_0: cluster-sleep-0 {
-> > +                             compatible = "domain-idle-state";
-> > +                             idle-state-name = "cluster-power-collapse";
-> > +                             arm,psci-suspend-param = <0x41000043>;
-> > +                             entry-latency-us = <800>;
-> > +                             exit-latency-us = <2118>;
-> > +                             min-residency-us = <7376>;
-> These values vary per cluster, see qcom,pm-cluster-level@2 in the
-> file linked above.. We should either split that, or at least take
-> max() of each value between the two nodes to make sure the sleep
-> state is exited properly on both types of cores.
+This patch series adds support for the X-Powers AXP313a PMIC, which is
+often bundled with Allwinner H616 or H313 SoCs.
+Andre Przywara took over the series for v6 but I now have a bit more time
+so I took over the series again.
 
-Ack to both the above observations. Will send a fixed v2 shortly.
+Up to v5 this was speaking of the AXP1530, which seems to be some internal
+name. The chips we have seen in the wild are all labeled AXP313a, so we
+go with this name here, from now on. This is supported by the fact that
+there is an AXP313a datasheet, but none for the AXP1530.
 
-Thanks,
-Bhupesh
+Patch 1 is the binding documentation (just the new compatible string),
+patch 2 adds the MFD bits (mostly describing the extent of the regmap),
+while patch 3 describes the actual AXP313a register definitions.
+Since this ties neatly into the existing AXP and generic regulator
+framework, the patches are indeed only structure definitions, there is no
+new code.
 
-> > +                     };
-> > +             };
-> >       };
-> >
-> >       firmware {
-> > @@ -191,6 +242,59 @@ pmu {
-> >       psci {
-> >               compatible = "arm,psci-1.0";
-> >               method = "smc";
-> > +
-> > +             CPU_PD0: power-domain-cpu0 {
-> > +                     #power-domain-cells = <0>;
-> > +                     power-domains = <&CLUSTER_PD>;
-> > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> > +             };
-> > +
-> > +             CPU_PD1: power-domain-cpu1 {
-> > +                     #power-domain-cells = <0>;
-> > +                     power-domains = <&CLUSTER_PD>;
-> > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> > +             };
-> > +
-> > +             CPU_PD2: power-domain-cpu2 {
-> > +                     #power-domain-cells = <0>;
-> > +                     power-domains = <&CLUSTER_PD>;
-> > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> > +             };
-> > +
-> > +             CPU_PD3: power-domain-cpu3 {
-> > +                     #power-domain-cells = <0>;
-> > +                     power-domains = <&CLUSTER_PD>;
-> > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> > +             };
-> > +
-> > +             CPU_PD4: power-domain-cpu4 {
-> > +                     #power-domain-cells = <0>;
-> > +                     power-domains = <&CLUSTER_PD>;
-> > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> > +             };
-> > +
-> > +             CPU_PD5: power-domain-cpu5 {
-> > +                     #power-domain-cells = <0>;
-> > +                     power-domains = <&CLUSTER_PD>;
-> > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> > +             };
-> > +
-> > +             CPU_PD6: power-domain-cpu6 {
-> > +                     #power-domain-cells = <0>;
-> > +                     power-domains = <&CLUSTER_PD>;
-> > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> > +             };
-> > +
-> > +             CPU_PD7: power-domain-cpu7 {
-> > +                     #power-domain-cells = <0>;
-> > +                     power-domains = <&CLUSTER_PD>;
-> > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> > +             };
-> > +
-> > +             CLUSTER_PD: power-domain-cpu-cluster0 {
-> > +                     #power-domain-cells = <0>;
-> > +                     domain-idle-states = <&CLUSTER_SLEEP_0>;
-> > +             };
-> >       };
-> >
-> >       reserved_memory: reserved-memory {
+For now Andre papered over this "fixed customizable" RTC-LDO regulator in the
+same way this was done before for other PMICs (AXP803, for instance), Andre
+thinks we can fix this properly with a follow-up patch, for all instances.
+
+Please have a look!
+
+Cheers,
+Martin
+
+Changelog:
+v6 .. v7:
+- Use alphabetical ordering
+
+v5 .. v6:
+- change name from AXP1530 to AXP313a
+- extend commit messages
+- drop AXP*_FREQUENCY register (not used anyway)
+- better vertically align struct definitions
+- rename IRQs to match names used for other PMICs
+- add RTC_LDO regulator
+- use decimal numbers for selector ranges
+- use macro definitions to name some values
+- force DC/DC switching frequency to be fixed at 3 MHz
+- change LDO source supply to VIN1 (as per datasheet)
+
+v4 .. v5:
+- Use alphabetical ordering in mfd
+- Correct { placement line
+- Replace spaces with tabs in 1 struct
+
+v3 .. v4:
+- Fix indentation
+
+v2 .. v3:
+- Move AXP1530 dt-binding to alphabetical order
+
+v1 .. v2:
+- Remove RSB support.
+- Drop .id = 0
+- Add dt-binding for the AXP1530
+
+Martin Botka (3):
+  dt-bindings: mfd: x-powers,axp152: Document the AXP313a variant
+  mfd: axp20x: Add support for AXP313a PMIC
+  regulator: axp20x: Add support for AXP313a variant
+
+ .../bindings/mfd/x-powers,axp152.yaml         |  1 +
+ drivers/mfd/axp20x-i2c.c                      |  2 +
+ drivers/mfd/axp20x.c                          | 61 +++++++++++++++++++
+ drivers/regulator/axp20x-regulator.c          | 60 ++++++++++++++++++
+ include/linux/mfd/axp20x.h                    | 32 ++++++++++
+ 5 files changed, 156 insertions(+)
+
+-- 
+2.39.0
+
