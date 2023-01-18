@@ -2,142 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5E7672ACD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 22:46:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7176F672AD9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 22:50:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231201AbjARVqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 16:46:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41702 "EHLO
+        id S231124AbjARVuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 16:50:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231243AbjARVqY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 16:46:24 -0500
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C22C1CACE;
-        Wed, 18 Jan 2023 13:46:21 -0800 (PST)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out2.suse.de (Postfix) with ESMTP id 472725BEFB;
-        Wed, 18 Jan 2023 21:46:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1674078380; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=IzvhNBEDond1bMUJ1A5xbmF0h2vm61ldNgtjCSRkqYY=;
-        b=swyQHK2rv734pRTyYVLVbazA1S/KXLpGGpQnMpJvVVR4iNjKHivIyAZ8uyCJPsx0GaUEsH
-        hGwL9rQFw9vAmeVG+OpClgKR0XBrokXN3utCG+MIoROFXU9szhV/X5suSLtPXZ9O9ok+iX
-        IpmnLVhIoqTb/a9crsbndzETNs3MH6U=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1674078380;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=IzvhNBEDond1bMUJ1A5xbmF0h2vm61ldNgtjCSRkqYY=;
-        b=9Y+u+wPlaedpJNko+qyomGqIic2z8UZC/zp9hCZj1Tz6H+DJeEHf7tLnsSlg0REQm6p8+2
-        zyuKvlHS4Oa0hZCA==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id C71112C141;
-        Wed, 18 Jan 2023 21:46:19 +0000 (UTC)
-Date:   Wed, 18 Jan 2023 22:46:18 +0100
-From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
-To:     "Erhard F." <erhard_f@mailbox.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH] of: Make of framebuffer devices unique
-Message-ID: <20230118214618.GM16547@kitsune.suse.cz>
-References: <20230117165804.18036-1-msuchanek@suse.de>
- <20230118211305.42e50a4a@yea>
+        with ESMTP id S231311AbjARVt4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 16:49:56 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A599653B37;
+        Wed, 18 Jan 2023 13:49:55 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id x10so535004edd.10;
+        Wed, 18 Jan 2023 13:49:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Yb/C3spzKnUDdjhlZvjBZg+IJ28N2MyVtHoQt9/7I/U=;
+        b=baSUebx+t5JDT+L3z/M/N+pVAPzi3c8CKN0i8MW4t77mnjpbow/8oHL5q6uC0uwM6x
+         Tu/j9DyB4Ppsyw3DvdQRzOLd0MT+vtqOoy7y89z74zxOiZcYNsC+90OxQehrq1T9uWIJ
+         kzJiRA8xYw86YRQW70y4sc3T0A9t/AQ8axazjVuLFvVZX+tVnZEt9WC506fsEU73l1ec
+         Ww35AEMwCaT/EY0XxodE87XXps/eJzgvukqqvcsItuXGMm3v3gJmg8xsuwrajPUf6NPR
+         ArZyNvQMukhxXjqC3b9YPJrYl5x8XaJa0nwUaLCtWinDi9Qpt9AysIof+5mv/Gaiwxbj
+         4ROg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Yb/C3spzKnUDdjhlZvjBZg+IJ28N2MyVtHoQt9/7I/U=;
+        b=E8SgT61atoAEwwBQyudEoHXWMHbtJ68vPjtGpyQ7TGUrq1NqvqDevK1/82W8CLBDoS
+         414oMybLO6vnuXowW/3jfPuUhtJAQHOs6fksjuK20o4zzc7yMVZgsgwt5oZffDcz2/FR
+         dvwcSj1vWYlZIlIa9HZ1kP7er/ibOh/iTwVIWXfvZcUkK3gx9nmNhOeNhKSS+k4SQsdL
+         tUXqUmX7yCbP0huXLQCcbDQ2jNzEntMlONRgkkarZlAbNXPePMjXHXLt8etKcOIxlgNM
+         sfpM3lK0fswD/tzWIoD/uKYxRrfGsCQyc+tEA/qBAp8EMrO4VbaURbqZP+wGRuhg4Mol
+         sveQ==
+X-Gm-Message-State: AFqh2kqY5F/ro87RokFyQxXBg3sp1rjxzzb9Ec+E4o/eSvpdT/RrAxQe
+        Kms9TCjPDC9P09DFBp1KjGtpuZ2a/pg=
+X-Google-Smtp-Source: AMrXdXsaZh0MiSdNihvrnbthUgCrIhFU8c1s17dtZUxoTRI8oO6vJKrJnHdbhF1os6BXvsMwRRgpwg==
+X-Received: by 2002:a05:6402:4284:b0:499:b672:ee30 with SMTP id g4-20020a056402428400b00499b672ee30mr10833875edc.11.1674078594062;
+        Wed, 18 Jan 2023 13:49:54 -0800 (PST)
+Received: from ?IPV6:2a02:3100:94be:5400:80c7:5ea4:ed2f:1a59? (dynamic-2a02-3100-94be-5400-80c7-5ea4-ed2f-1a59.310.pool.telefonica.de. [2a02:3100:94be:5400:80c7:5ea4:ed2f:1a59])
+        by smtp.googlemail.com with ESMTPSA id w5-20020a50fa85000000b00491c819d6d2sm14746264edr.44.2023.01.18.13.49.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 13:49:53 -0800 (PST)
+Message-ID: <6f4b54d9-ab6d-a4d4-5142-27c89e03c6d2@gmail.com>
+Date:   Wed, 18 Jan 2023 22:49:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230118211305.42e50a4a@yea>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH v5 0/3] i2c: gpio: support write-only sda
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>, Peter Rosin <peda@axentia.se>
+Cc:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 09:13:05PM +0100, Erhard F. wrote:
-> On Tue, 17 Jan 2023 17:58:04 +0100
-> Michal Suchanek <msuchanek@suse.de> wrote:
-> 
-> > Since Linux 5.19 this error is observed:
-> > 
-> > sysfs: cannot create duplicate filename '/devices/platform/of-display'
-> > 
-> > This is because multiple devices with the same name 'of-display' are
-> > created on the same bus.
-> > 
-> > Update the code to create numbered device names for the non-boot
-> > disaplay.
-> > 
-> > cc: linuxppc-dev@lists.ozlabs.org
-> > References: https://bugzilla.kernel.org/show_bug.cgi?id=216095
-> > Fixes: 52b1b46c39ae ("of: Create platform devices for OF framebuffers")
-> > Reported-by: Erhard F. <erhard_f@mailbox.org>
-> > Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
-> > Signed-off-by: Michal Suchanek <msuchanek@suse.de>
-> > ---
-> >  drivers/of/platform.c | 8 +++++++-
-> >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > index 81c8c227ab6b..f2a5d679a324 100644
-> > --- a/drivers/of/platform.c
-> > +++ b/drivers/of/platform.c
-> > @@ -525,6 +525,7 @@ static int __init of_platform_default_populate_init(void)
-> >  	if (IS_ENABLED(CONFIG_PPC)) {
-> >  		struct device_node *boot_display = NULL;
-> >  		struct platform_device *dev;
-> > +		int display_number = 1;
-> >  		int ret;
-> >  
-> >  		/* Check if we have a MacOS display without a node spec */
-> > @@ -561,10 +562,15 @@ static int __init of_platform_default_populate_init(void)
-> >  			boot_display = node;
-> >  			break;
-> >  		}
-> > +
-> >  		for_each_node_by_type(node, "display") {
-> > +			char *buf[14];
-> >  			if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
-> >  				continue;
-> > -			of_platform_device_create(node, "of-display", NULL);
-> > +			ret = snprintf(buf, "of-display-%d", display_number++);
-> > +			if (ret >= sizeof(buf))
-> > +				continue;
-> > +			of_platform_device_create(node, buf, NULL);
-> >  		}
-> >  
-> >  	} else {
-> > -- 
-> > 2.35.3
-> > 
-> 
-> Thank you for the patch Michal!
-> 
-> It applies on 6.2-rc4 but I get this build error with my config:
+There are slave devices that understand I2C but have read-only SDA and
+SCL. Examples are FD650 7-segment LED controller and its derivatives.
+Typical board designs don't even have a pull-up for both pins.
+Therefore add properties for not using open-drain. For write-only SCL
+we have a property already, add one for write-only SDA.
 
-Indeed, it's doubly bad.
+v2:
+- improve commit message for patch 1
 
-Where is the kernel test robot when you need it?
+v3:
+- patch 2: check for adap->getsda in readbytes()
+- patch 2: align warning message level for info on missing getscl/getsda
+- patch 3: improve description of attribute sda_is_output_only
 
-It should not be that easy to miss this file but clearly it can happen.
+v4:
+- patch 1: add no-pullup properties
+- patch 2: handle SDA and SCL independently
+- patch 2: properly handle case that SDA is NULL but SCL not
+- patch 3: handle new no-pullup attributes
+v5:
+- patch 1: add checking mutually-exclusive attributes to schema
 
-I will send a fixup.
+Heiner Kallweit (3):
+  dt-bindings: i2c-gpio: Add properties for dealing with write-only SDA/SCL w/o pullup
+  i2c: algo: bit: allow getsda to be NULL
+  i2c: gpio: support write-only sda/scl w/o pull-up
 
-Sorry about the mess.
+ .../devicetree/bindings/i2c/i2c-gpio.yaml     | 26 +++++++
+ drivers/i2c/algos/i2c-algo-bit.c              | 77 +++++++++----------
+ drivers/i2c/busses/i2c-gpio.c                 | 13 +++-
+ include/linux/platform_data/i2c-gpio.h        |  9 +++
+ 4 files changed, 80 insertions(+), 45 deletions(-)
 
-Thanks
+-- 
+2.39.0
 
-Michal
