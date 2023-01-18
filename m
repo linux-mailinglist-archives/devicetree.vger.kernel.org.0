@@ -2,127 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2C4367287C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 20:35:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3B0F6728CC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 20:56:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbjARTfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 14:35:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58350 "EHLO
+        id S229612AbjART4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 14:56:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230351AbjARTen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 14:34:43 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B039559549;
-        Wed, 18 Jan 2023 11:33:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674070380; x=1705606380;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rd8D9WM+DMkQQdSGbyw+RjACp0njYXtWMwISiTkUNq4=;
-  b=FR0gX07Jn6Qzoa+7ScFsE6DPRqSccs0Y5B1esE5X7spub9gRc4zt5UXF
-   L4TO8MAYLbCoQUWkY8M+u5mP7ZLnzvYMshMb7c67WSWHEqFjhUV+WLvgG
-   wyJwSLKvNa7wwwWefuD7sqUiwd8gN+NTEnyRNrZPS/gRUDSc2VKLilTpj
-   5Dv9Prm+tzqlcmvdfrscy4PvjkJOVp/AA83FsRGVOZXskPvhXQmY2CEyK
-   lt7zyi15XzCPiiBU024UXmNh9knr46sLiWhnk4Mk2mwlKMRKX7UC67geZ
-   8T67qS+nS1UEpuncY+8TnmVEF/55QT0Tdi+i9xPhqTZAGF8thShI6/JqI
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="411319199"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; 
-   d="scan'208";a="411319199"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2023 11:32:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="802328577"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; 
-   d="scan'208";a="802328577"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP; 18 Jan 2023 11:32:35 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pIEAh-00BLES-15;
-        Wed, 18 Jan 2023 21:32:31 +0200
-Date:   Wed, 18 Jan 2023 21:32:31 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229606AbjART4b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 14:56:31 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FF6559549;
+        Wed, 18 Jan 2023 11:56:30 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id d188so18399885oia.3;
+        Wed, 18 Jan 2023 11:56:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=akZulwLnMRZAXk7khxYZKnUiCXgcGRehJrIuYvwvNb0=;
+        b=xSUOYlDCZPOPhoTSZG57XG3xt0KI6uL/8sfHwVd83BrMWZLYD+fWSbSMF89A5o0Kd4
+         4opnTOuF9jlDB54eMFmEQtgG6PuTT3bpWDtVqlE+ach6Vd4pgxUD2SCTvKhtvFE/iJeq
+         rY9zWUIMNWEn+SpTdzmRTErCg9+RE/OgRqzx5T2/VESdviR4qSTjO1+9SrpWpyHWnY/6
+         clwb03FuPDb9wOzChfhjmEnV11rHf+TXWybzP3OHH5NeYw2pqZGe9gewCL2Fx15MALZF
+         9ozGh8mf5BHdcreh048Ka6YG9t2e1OUvumUlwFsyfNvNq4SgmghaSBCI+15ibhaOo2o7
+         QL+w==
+X-Gm-Message-State: AFqh2kphms+iv6RQ6clB9hJMK6WOcNWEsptIu90fGJAMK5baEzpe4nNv
+        Ft9OJm/oYPjE/pD6QqL/kg==
+X-Google-Smtp-Source: AMrXdXs9lF5ksgkjo+IhPIHJNNYeSJLIwYvkoIWS/Qllw83zdH43zruP0gkDfhp+tqRcnjdJWEHDfw==
+X-Received: by 2002:a54:469a:0:b0:363:b22c:4c7 with SMTP id k26-20020a54469a000000b00363b22c04c7mr3447152oic.7.1674071789726;
+        Wed, 18 Jan 2023 11:56:29 -0800 (PST)
+Received: from robh_at_kernel.org ([4.31.143.193])
+        by smtp.gmail.com with ESMTPSA id r42-20020a056808212a00b00364e8f85c08sm6095948oiw.21.2023.01.18.11.56.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 11:56:29 -0800 (PST)
+Received: (nullmailer pid 706834 invoked by uid 1000);
+        Wed, 18 Jan 2023 19:56:28 -0000
+Date:   Wed, 18 Jan 2023 13:56:28 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Olivier Dautricourt <olivierdautricourt@gmail.com>,
-        Stefan Roese <sr@denx.de>, Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Green Wan <green.wan@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        =?utf-8?B?77+9ZXI=?= <povik+lin@cutebit.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        - <chuanhua.lei@intel.com>, Long Cheng <long.cheng@mediatek.com>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Palmer Debbelt <palmer@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-        linux-tegra@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: dma: drop unneeded quotes
-Message-ID: <Y8hJT7gaw3+s62rv@smile.fi.intel.com>
-References: <20230118180144.364756-1-krzysztof.kozlowski@linaro.org>
+        linux-kernel@vger.kernel.org, Shawn Lin <shawn.lin@rock-chips.com>,
+        linux-pci@vger.kernel.org,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "linux-rockchip@lists.infradead.org , Heiko Stuebner" 
+        <heiko@sntech.de>
+Subject: Re: [PATCH] dt-bindings: PCI: Convert Rockchip RK3399 PCIe to DT
+ schema
+Message-ID: <167407178127.706640.6877082216577984494.robh@kernel.org>
+References: <20221219191209.1975834-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230118180144.364756-1-krzysztof.kozlowski@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221219191209.1975834-1-robh@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 07:01:43PM +0100, Krzysztof Kozlowski wrote:
-> Cleanup by removing unneeded quotes from refs and redundant blank lines.
-> No functional impact except adjusting to preferred coding style.
+
+On Mon, 19 Dec 2022 13:12:08 -0600, Rob Herring wrote:
+> Convert the Rockchip RK3399 PCIe Host/Endpoint controller to DT schema
+> format. Like most dual mode PCI controllers, we need to split the schema
+> into common, host and endpoint schemas.
 > 
->  Documentation/devicetree/bindings/dma/dma-controller.yaml       | 2 +-
->  Documentation/devicetree/bindings/dma/dma-router.yaml           | 2 +-
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Shawn (or anyone from Rockchip), Note and please ack the license change.
+> ---
+>  .../pci/rockchip,rk3399-pcie-common.yaml      |  69 +++++++++
+>  .../bindings/pci/rockchip,rk3399-pcie-ep.yaml |  68 +++++++++
+>  .../bindings/pci/rockchip,rk3399-pcie.yaml    | 132 +++++++++++++++++
+>  .../bindings/pci/rockchip-pcie-ep.txt         |  62 --------
+>  .../bindings/pci/rockchip-pcie-host.txt       | 135 ------------------
+>  MAINTAINERS                                   |   2 +-
+>  6 files changed, 270 insertions(+), 198 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-common.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-ep.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/rockchip-pcie-ep.txt
+>  delete mode 100644 Documentation/devicetree/bindings/pci/rockchip-pcie-host.txt
+> 
 
->  Documentation/devicetree/bindings/dma/intel,ldma.yaml           | 2 +-
-
->  Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml   | 2 +-
-
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Applied, thanks!
