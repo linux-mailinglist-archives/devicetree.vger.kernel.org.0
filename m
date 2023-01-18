@@ -2,76 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EFA0670EA4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 01:34:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41D2E670EBD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 01:39:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbjARAeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 19:34:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34828 "EHLO
+        id S229771AbjARAjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 19:39:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbjARAeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 19:34:03 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA10A5955B
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 16:01:51 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id q10so12997421wrs.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 16:01:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VM4KU2n0HRrYiCXcfwwNwOnDUUhhKsRzFTZMgsrTMWQ=;
-        b=Mn26nH7X4O6fTQ38DDIJSJ9ir/bBQxjzAy0eyNGjUQNQHKD2AaThmMuu9uq0PdPwft
-         T9FDz74tQjO1j0wOsoj85xFePqaime8vdQEa+mgSGx4ZQoktguIgUW32228cnJB9t5NK
-         IFDhy6mKXsdM8fjCM49oipmhbGQZ0I47J2xiz59OadODBEzIQx8pq/mKpNVAGusB8rAs
-         Ek2GgndQiI213ZsMO/8+c9G5n923+DqwVu+y5HTbICqgxbczAfL60Ibk5wW+3uz4XeZm
-         2G9TSuV+ATOMOqBPzYe4XbpytScrwyWEO+fI187XMZTqPg4mMv51o7PcCR/G3RfGIvUw
-         j1KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VM4KU2n0HRrYiCXcfwwNwOnDUUhhKsRzFTZMgsrTMWQ=;
-        b=ZcCk0xYtVCDBLhIrWV69ISyqgJm4u6d7RCTdMKjRbbqf5f50e+PP95e9AclXofczMB
-         TTtAzO5PtH8s3hF/L1aoN+/tQ4m35qp6naCJOUN+O+cSBgAOIxxV3pwoOrQv7p+TQovz
-         gC3UOC/M6VC5VqTDs6b5TLes5c7eQhfbvpjM2y7o/HJxkF0AH/Dlb2stY54ohqzH8Dx9
-         4cYW8v7BcI3jxb8cpu9dj7BV2DT3KKIM3NCVLYyllqVkO3MCgZsYE4UX+t2ag1ZOMZ0t
-         JIn8k+4BIiZtiimryoCAf7EhmaUsE9DQvs0FgYHfanzboxwAvckQf6np4zVGOx/SZrFp
-         Tq4Q==
-X-Gm-Message-State: AFqh2kovpSi5YuC0R7ncUwwYFhaawSsD1NPFqgTa2/BGzUBSvzcoBplP
-        LAS1vv2ff16Wo4fYJRaO/+6k2XQNWE4=
-X-Google-Smtp-Source: AMrXdXvj2R9S/8u6fGMV9/RE1Ku4IlUwQRFE1HUaitb0X8DZCxUK464M/KOHVH6841uiGhus5n88JA==
-X-Received: by 2002:adf:e385:0:b0:2bd:d136:9eac with SMTP id e5-20020adfe385000000b002bdd1369eacmr4079144wrm.9.1674000110342;
-        Tue, 17 Jan 2023 16:01:50 -0800 (PST)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id g1-20020a5d46c1000000b00241cfe6e286sm29625200wrs.98.2023.01.17.16.01.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 16:01:49 -0800 (PST)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        linux-rockchip@lists.infradead.org,
-        Shengyu Qu <wiagn233@outlook.com>, devicetree@vger.kernel.org,
-        heiko@sntech.de, jacob-chen@iotwrt.com, kernel@pengutronix.de,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        michael.riesch@wolfvision.net, robh+dt@kernel.org,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add RGA2 support to rk356x
-Date:   Wed, 18 Jan 2023 01:01:48 +0100
-Message-ID: <5241675.okTXgP3Kn8@archbook>
-In-Reply-To: <20230117124114.GF23495@pengutronix.de>
-References: <20221121151755.2072816-3-m.tretter@pengutronix.de>
- <20221123092841.GB13042@pengutronix.de>
- <20230117124114.GF23495@pengutronix.de>
+        with ESMTP id S229683AbjARAiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 19:38:06 -0500
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2124.outbound.protection.outlook.com [40.107.114.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E80F237F3A
+        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 16:08:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=W8dylzCNolELCuCzRFj+IR+tN1KS/wC0lDzdbPEN8gvZo3Lz5LH35A85CJzIuRiBPfX2RvoElBl2v+PgaqPc2/FfQed3zU4qEzGCNimAZVaxOpa0+mNmCDJ8NE6OTMOkgdu6F9VimsLIVgomtc98vw1yPi5ON+lE5aC3dcYoE8tnSOaLr1K7Rtn7z8ZAFrvc/fy7VOpwlpCunbfUo3uoViwUrVl4ggwuTCMSl518X2I14cpDZFAv6j4DhB7prEbvrYSstSFnDKkrYEca42KWX9/TNJkbnwYKkihdDYO5Lkaszf0QIH2krKbc1Mzhd58Aej4AV0aSpwoj01asVIiSgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=O4o0z540TedtUZovYKFBjTKLnSxvp9p06nAtKw48S/E=;
+ b=SBPuDFZ9omTlM4gMMzHVIE8EiC1VFjHwet00hG47Bt05z8TEdESi7at+iYAMWD9LZqAGXVbbluVefz7P2LMzK5Q50DsLZgUeAy1i8y0jG6lnzZirxLfZFVWNIoFizgHtonvA4yta/dXqtHRWwLyP/a9aTxmtkelt+y6rRgPdOr84B9ngVhTrq+Vt+CpP7HZPDn0HSiYnOhbvYUDmAfpk3/8+kGRGtjNTWvBrlNdoX9Z/CwVtge2A5hI8eRKI0GcQywe59P+1EzMSgZkJCsN5IUaCY4EOrq0KwxwD/AdhM5+OMs8nyZJjsQUAQMjJEYlVpoe2zi/d7l2+U0WExabPTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O4o0z540TedtUZovYKFBjTKLnSxvp9p06nAtKw48S/E=;
+ b=D+iarF3t7VR/71WiKR8FndW31smapB/Z3z67+MEL29YOEC/sCnrIW6Yc6js5WW7J1xV4vXGw0X+0w+w3EJbrxCoKpVA3JbyiBSJepQffpcc15Wp4gIye7a6vAXMPXzxp4LkMy0Dwu0kaf0WhF+YKfE4wWWD5FZuyFDhxPjtnhGI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by TYCPR01MB5709.jpnprd01.prod.outlook.com (2603:1096:400:a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Wed, 18 Jan
+ 2023 00:08:41 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::3cd7:a7b5:ea86:9ae]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::3cd7:a7b5:ea86:9ae%4]) with mapi id 15.20.6002.012; Wed, 18 Jan 2023
+ 00:08:41 +0000
+Date:   Wed, 18 Jan 2023 09:08:40 +0900
+Message-ID: <871qnsd7qv.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     "Rob Herring" <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v2 02/10] ASoC: dt-bindings: audio-graph-port: add definitions/ports
+In-Reply-To: <20230117170439.GA3225212-robh@kernel.org>
+References: <20230117170439.GA3225212-robh@kernel.org>
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+X-ClientProxiedBy: TY2PR01CA0022.jpnprd01.prod.outlook.com
+ (2603:1096:404:a::34) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TYCPR01MB5709:EE_
+X-MS-Office365-Filtering-Correlation-Id: d2916f36-07ea-4738-f818-08daf8e827e4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: llLXPwY1h0PvCZRy92y5HB25abHum7YHH3lMOigBqO9UtXU1SVih5LQxqN7fFKBewne3ttvOTu/mjpyIJ4oeF9BhC8rIcC/XJlGBCKobcHrORQr6hBGELh7ZnzKZDObBOr/UmVssccWJ0PdG3N6e3TwXPNPaqWbrIluruvqQ97PT304OkI8fNXxkj4TkCHOH899tbTxPGnQAX7EzLw+S31ZQRwo9WsHgJ6n2Zx4G7YcYOcTi20VwOWaicGUXYqQAJp6vVw61v9McvkRTEY20iOAV2zB11FnWg5skUwmPIBhDJeuMxqm3RGY94RxhkV+Q3zYr8U+OV2L6IVoTVLpYu3pzm+bz3GQ6BzvMQY5xLSC6LeCxitFJO3/jcugzxZ/yz65Myve+YQ36eRkkpDNkeHCq66YZgyjs54sp0Rd9lOPSSZNEEixLPOCCXrQRHyeAA/IewSapoZHJWEzpt3Ws/yV/Xmk7KYOsRAKGC2MwfNVBh//bVK8BQHGNpZzlUAogOqjhDctPf54ss1ImtxDpqpJ1U+AZ4Fiua8YVqXzBzhZE8Mmr0oivUKImo/+D1+o3E02818tqSD4Jp/B8nE9SO0G48QH3HM+GIOhqOrAZLxvByuN9W81nEEAgA1EoWcgU9F7FM900zSJoqXOObKH09vfRBoH2mXzmGCGa9zZdBz1+QKFO2j12yiUa2a68Crd1WjthOMqm3VIQsxgkDdSmZA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(366004)(376002)(39860400002)(136003)(346002)(451199015)(5660300002)(36756003)(2906002)(54906003)(41300700001)(316002)(2616005)(6916009)(66556008)(66946007)(66476007)(8676002)(4326008)(8936002)(38350700002)(38100700002)(6506007)(52116002)(86362001)(6512007)(26005)(186003)(6486002)(478600001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?T0hO27Dcjp1nO3oXEu0C4LRlYrvsw7H2v1uRZelC8GFNoWEKhhrG//1L5Ggt?=
+ =?us-ascii?Q?8wwwpDqjg7JUF79oWkOrWI2zxZG2rF1OYAA4ZBLxCk0S5YLisrIW+AQzNiDf?=
+ =?us-ascii?Q?e7V4euiNxJGL6uTs6byAh3yod/AmPmQxgth53LfdUL0c5dJl6MfonbcWlWy8?=
+ =?us-ascii?Q?Zm7Gt2mAXLcQsmIU97GpR4C7aKkDrH3g9tTOMVZF9bZdpIGy1ONbm9ALgJE5?=
+ =?us-ascii?Q?5Blu+GYtNlm0YzAXFElr81LzOaXk5sG3Ej65RHhO9UPsEODkJ6ujg8tx3KUI?=
+ =?us-ascii?Q?xtfOar/FG41Eb88X0+zEV9/ZwPOInvKvPYWH0oskEFUQ3Rn2Bq4JVH60YQlq?=
+ =?us-ascii?Q?ppdv4IRbWQaI+A9DBoP6zi8df+QxeYk0OyOlOf6LdsPOBI0UNd+lHHhHNI6n?=
+ =?us-ascii?Q?dlZ2en1gLKDoVEdSsbPn+kbhR+v8q97x/olLXEbQ6IIL52gJlbzqDQ5ypVnS?=
+ =?us-ascii?Q?MCckmqSye9UnZ5dAcNuEHCdsqSEfYf9JI0eBPvZLeiK0J1c4Zxfsr8jLnMi5?=
+ =?us-ascii?Q?ArduWVMRz+kBTa+ba+N7tVJf2udjxm0yDM4hrCthdesDTrGMbJXgDH5eFLiZ?=
+ =?us-ascii?Q?ouY0OcC75t2ZL+3N+fsZ4k04Qv66iPylXrmN3Ts+aUI+mxPlsDiKAvK6EjF5?=
+ =?us-ascii?Q?MVFgeVPsefQL2173i0ftKrwUw4OVTd+BFgJ1FeNNg9+W812eqsLrOWUYCTTo?=
+ =?us-ascii?Q?s3997q8mdOPw+aY4mDvo2QVuv8W9PWBZoTUpF7vhTTvX3JJ8E7+Y4JVaD5SX?=
+ =?us-ascii?Q?P1G5evXP4sOMRUiQp/Jd+Luh39+OGo1zlHygH3w2DGUCPBKHSLNR5NTIcVwj?=
+ =?us-ascii?Q?eAHPfKkvyZnGNulB0DELRdTe5QzO2XW+Ok+QzHBsX16hiQbZytEbUPFmGbI1?=
+ =?us-ascii?Q?S92F4JzgXKTi+UbTKlOuDyMSoQHwceTAMzqZTwLHoEOhzMV2vOtutwwuWbtu?=
+ =?us-ascii?Q?lCEsK+FKwWupwwEZOuIGU80bTZOuIhy5jpczTx6QJ8kHI67LXT/6D47l91Lo?=
+ =?us-ascii?Q?PP7Yio7pGMchjST7hWywJn5Et2B28XbQvl7THKFqhVwak5y4OiBoTs5yLnUU?=
+ =?us-ascii?Q?AYi6DoAZvYis2VHNEais8bYh/hfmwJ/Ue5kGY/YDc8RlXAkEtRnRvEblQtOz?=
+ =?us-ascii?Q?8T1iNb4/8BJST8d6MmQXUtG2ksrzgWkJeWDbs8bkJaz2avC3ttg+448y//p7?=
+ =?us-ascii?Q?cR0igRuKvULNP52MxhmpNQW1vcFJxCaix5EUpGBqnNpXYVVbk3UcrFq+K7Y2?=
+ =?us-ascii?Q?vuZkMgMyA/vKA84eMwCZFUoCwYUP5zLZfOks55HL6gPH6txeYVuMOrOeHtam?=
+ =?us-ascii?Q?N0Pia/TPWvaTqkgNC9w3OuQuudWW+9eNzUP2HUXAdEp3c3UKwyS7Vk5Otivu?=
+ =?us-ascii?Q?AI53uFKEoJ/XSXFP7w6kBXgJom2h9xbOe3wO84u0EuC7zb6wHVXsJHt5lFnW?=
+ =?us-ascii?Q?tFpyj0uE3vkv+WveZYJ9TnR4c9rcJO7ZX4yB00dtSSKcCOpnACcD9qdIAZ9W?=
+ =?us-ascii?Q?lsx+tjxKx/mBnfvBC6DZQy83U2Zx7JkIraw5fjMoSO6V5ikIThCtpHJ1PaRi?=
+ =?us-ascii?Q?H+pm3x1V2d5CmGKw5y5C6JDVps/Vvw6gBZn5lPq5yyIunZEnRAVWBrocfc2G?=
+ =?us-ascii?Q?KbImV+FF61z0TgpF07roKNk=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2916f36-07ea-4738-f818-08daf8e827e4
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2023 00:08:41.7232
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bG3Rm0710iUGRG2gg9k7QDz6mU1qWl6np2ahEQFqOvONBEKLB7lUXY8xyCH2nj9n0fm76lqsnopYG7a2Eibhj4NQSbwGhT1k9F13brHkjOWOQVDHq/D7lEUYt1XkPMeu
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB5709
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,117 +116,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Dienstag, 17. Januar 2023 13:41:14 CET Michael Tretter wrote:
-> On Wed, 23 Nov 2022 10:28:41 +0100, Michael Tretter wrote:
-> > On Tue, 22 Nov 2022 20:47:49 +0100, Nicolas Frattaroli wrote:
-> > > On Dienstag, 22. November 2022 00:10:25 CET Peter Geis wrote:
-> > > > On Mon, Nov 21, 2022 at 12:34 PM Ezequiel Garcia
-> > > > <ezequiel@vanguardiasur.com.ar> wrote:
-> > > > > On Mon, Nov 21, 2022 at 2:13 PM Shengyu Qu <wiagn233@outlook.com>=
- wrote:
-> > > > > > I remember someone said that rga2 has only 32bit address space =
-but not
-> > > > > > having a mmu or mmu needs to be configured. Better ask by yours=
-elf in
-> > > > > > pine64 discord since I'm not sure about that.
-> > > > > > =E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=
-=8A=E5=8D=8812:41:16, Michael Tretter <m.tretter@pengutronix.de> =E5=86=99=
-=E5=88=B0:
-> > > > > > >On Tue, 22 Nov 2022 00:01:28 +0800, Shengyu Qu wrote:
-> > > > > > >> Someone from pine64 discord found that RGA2 doesn't work pro=
-perly on over
-> > > > > > >>
-> > > > > > >> 4GB memory RK3568 devices. Are you sure current driver works=
- now?
-> > > > > > >
-> > > > > > >I am absolutely sure that the driver works on a 2GB ROCK3A boa=
-rd.
-> > > > > > >Unfortunately, I don't have a device with 4GB or more memory a=
-nd I cannot test
-> > > > > > >the driver with such a device.
-> > > > > > >
-> > > > > > >As the documentation for the RGA2 is the same in the TRM of th=
-e rk3288 and
-> > > > > > >rk3568, I would guess that the driver doesn't work on a rk3288=
- with more than
-> > > > > > >4GB (if there is such a thing) either and the driver needs to =
-be fixed for
-> > > > > > >both SoCs.
-> > > > > > >
-> > > > >
-> > > > > In any case, if there's some kind of issue it must be in the driv=
-er,
-> > > > > and not in the device tree binding (i.e. this patchset).
-> > > >=20
-> > > > An unfortunate number of Rockchip drivers break on rk356x boards wi=
-th
-> > > > more than 4GB of ram. I've found requesting memory allocations with
-> > > > the GFP_DMA flag solves the problem, as the kernel only allocates
-> > > > 32bit addresses for DMA on rk356x. This is similar to the bug with =
-the
-> > > > ITS MSI allocations.
-> > >=20
-> > > the problem in this case at least partly seems to be down to the driv=
-er
-> > > assuming 32 bit addresses, see e.g. [1] (if I understand the code
-> > > correctly) and [2]. When I asked in the #armlinux IRC on Libera.chat
-> > > about this, Robin Murphy remarked:
-> > >=20
-> > >   <robmur01> yeesh, the virt_to_phys/dma_sync abuse is even worse
-> > >   - in that particular instance I'd be inclined to replace
-> > >   {src,dst}_mmu_pages with proper coherent DMA buffers
-> > >=20
-> > > So the driver in general needs some cleanup, which contributes to the
-> > > problem.
-> >=20
-> > As far as I understand the 4GB are a hardware limitation.
-> >=20
-> > According to the rk3568 TRM, the RGA2_MMU_SRC_BASE has 28 bits for the =
-upper
-> > 28 bits of the address of the MMU TLB. Thus the MMU TLB must be located=
- within
-> > 4GB memory.
-> >=20
-> > And within the MMU TLB, the addresses are 32 bit as well (unless I am m=
-issing
-> > something important). Unfortunately, I couldn't find any documentation =
-for the
-> > TLB. The downstream driver writes only 32 bit addresses to the TLB as w=
-ell.
-> > Thus, I assume that all video buffers must be located within 4GB memory=
-, too.
-> >=20
-> > While I agree that the driver needs some cleanup and may use correct ty=
-pes for
-> > handling the bit size limitation, I think this isn't some driver limita=
-tion.
-> > Maybe the driver should set the dma mask to 32 bits and should be expli=
-citly
-> > aware of the 32 bit limit.
-> >=20
-> > >=20
-> > > But as was said, this isn't a problem with the device tree, so it sho=
-uld
-> > > still make it in. It just means that the driver is broken on 8GB RK35=
-6x.
->=20
-> Nicolas: Is this your Acked-By?
->=20
-> Who would pick up the patch? Heiko?
->=20
-> Michael
->=20
 
-Sure,
+Hi Rob
 
-Acked-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Thank for your feedback. 
 
-Though I'm not sure how much weight my Acked-by carries here.
+> > +  ports:
+> > +    $ref: "#/definitions/port-base"
+> 
+> This applies to 'port' nodes, but this is the 'ports' node.
+> 
+> For example, this schema says you can have endpoint nodes directly under 
+> 'ports' which is not valid.
 
-=46or applying the patch, yes that would be done by Heiko.
+It is a little bit confusable, but "port-base" doesn't include "endpoint" (A).
+It is the reason why audio-graph-port.yaml has patternProperties for endpoint (B),
+if my understand was correct.
+And user use audio-graph-port.yaml for "port" (C)
+Thus, above doesn't indicate that "ports" can use direct "endpoint".
 
-Cheers,
-Nicolas Frattaroli
+	--- audio-graph-port.yaml ---
+ ^	port-base:
+ |	    $ref: /schemas/graph.yaml#/$defs/port-base
+ |	    properties:
+ |	      convert-rate:
+ |	        $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-sample-rate"
+(A)	      convert-channels:
+ |	        $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-channels"
+ |	      convert-sample-format:
+ |	        $ref: "/schemas/sound/dai-params.yaml#/$defs/dai-sample-format"
+ |	      mclk-fs:
+ v	        $ref: "simple-card.yaml#/definitions/mclk-fs"
+
+	endpoint-base:
+	    ...
+
+	allOf:
+(B)	  - $ref: "#/definitions/port-base"	/* this doesn't include "endpoint" */
+
+	patternProperties:
+(B)	  "^endpoint(@[0-9a-f]+)?":
+	    $ref: "#/definitions/endpoint-base"	/* "endpoint" is defined here */
+	    unevaluatedProperties: false
+	-----------------------------
+
+	--- port user ----
+	port:
+(C)	  $ref: audio-graph-port.yaml#
+	------------------
 
 
+> But why do you need this? The graph.yaml schema should be sufficient 
 
+Sometimes Audio Graph Card/Card2 want to use "ports" not only "port".
+People can use "audio-graph-card.yaml" as "port" today (C).
+So we want to use similar style for *normal* "ports.
+"ports" is defined under "definitions" (D), so there is no effect for normal
+"port" user, I think.
+
+	--- port user ----
+	port:
+(C)	  $ref: audio-graph-port.yaml#
+	------------------
+	--- ports user ---
+	ports:
+(D)	  $ref: audio-graph-port.yaml#/definitions/ports
+	------------------
+
+As I mentioned on git-log, *normal* ports user can use (D) style.
+*custom* ports user can reuse "port-base" and "endpoint-base".
+see below.
+
+	---- git log ---------------------------------------
+	If user needs standard "ports", it can use
+
+	    ports:
+	      $ref: audio-graph-port.yaml#/definitions/ports
+
+	If user want to use custom ports, it can re-use
+	audio-graph-port.yaml#/definitions/port-base"
+	audio-graph-port.yaml#/definitions/endpoint-base"
+	----------------------------------------------------
+
+> because you aren't adding custom properties in 'ports'.
+(snip)
+> If 'ports' schema is applied to a DT, then its 'port' node(s) cannot 
+> have any additional properties. That defeats the point of patch 1.
+
+Renesas Sound want to have custom "port", but sometimes it want to use
+"ports" too. [08/10] patch customs both "ports" and "port".
+
+Thank you for your help !!
+
+Best regards
+---
+Kuninori Morimoto
