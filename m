@@ -2,46 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35CBA67203C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58B8D672058
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:57:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231623AbjAROyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:54:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53796 "EHLO
+        id S231415AbjARO5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:57:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjAROyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:54:00 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2EDC44ABD7;
-        Wed, 18 Jan 2023 06:48:11 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.97,226,1669042800"; 
-   d="scan'208";a="146745768"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 18 Jan 2023 23:48:10 +0900
-Received: from mulinux.example.org (unknown [10.226.93.55])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 51D5C4007209;
-        Wed, 18 Jan 2023 23:48:07 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH 3/3] arm64: dts: renesas: v2mevk2: Add uSD card and eMMC support
-Date:   Wed, 18 Jan 2023 14:47:47 +0000
-Message-Id: <20230118144747.24968-4-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230118144747.24968-1-fabrizio.castro.jz@renesas.com>
-References: <20230118144747.24968-1-fabrizio.castro.jz@renesas.com>
+        with ESMTP id S230212AbjARO5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:57:35 -0500
+X-Greylist: delayed 69 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 18 Jan 2023 06:53:25 PST
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F73393C1
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 06:53:25 -0800 (PST)
+Received: from CHE01-GV0-obe.outbound.protection.outlook.com
+ (mail-gv0che01lp2047.outbound.protection.outlook.com [104.47.22.47]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-8-qx5KjuwZMT2TR-fk15EFtQ-3; Wed, 18 Jan 2023 15:52:05 +0100
+X-MC-Unique: qx5KjuwZMT2TR-fk15EFtQ-3
+Received: from ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:34::14)
+ by ZRAP278MB0063.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:12::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Wed, 18 Jan
+ 2023 14:51:58 +0000
+Received: from ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::f9e:5ebd:d37b:b0cb]) by ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::f9e:5ebd:d37b:b0cb%6]) with mapi id 15.20.5986.023; Wed, 18 Jan 2023
+ 14:51:58 +0000
+From:   Philippe Schenker <philippe.schenker@toradex.com>
+To:     "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "marex@denx.de" <marex@denx.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "reinhold.mueller@emtrion.com" <reinhold.mueller@emtrion.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Aishwarya Kothari <aishwarya.kothari@toradex.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "frieder.schrempf@kontron.de" <frieder.schrempf@kontron.de>
+Subject: Re: [PATCH 2/3] arm64: dts: imx8mm-verdin: Add yavia carrier board
+Thread-Topic: [PATCH 2/3] arm64: dts: imx8mm-verdin: Add yavia carrier board
+Thread-Index: AQHZK0rlf/xVXti07U6rrNeHwKVA166kQBcAgAACJoA=
+Date:   Wed, 18 Jan 2023 14:51:57 +0000
+Message-ID: <342f1633d0400087c5188cbe17823df9b450d526.camel@toradex.com>
+References: <20230118144042.7705-1-dev@pschenker.ch>
+         <20230118144042.7705-3-dev@pschenker.ch>
+         <c55d26a9-21dc-4c64-38fa-446975df16cd@denx.de>
+In-Reply-To: <c55d26a9-21dc-4c64-38fa-446975df16cd@denx.de>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.46.2
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZR0P278MB0377:EE_|ZRAP278MB0063:EE_
+x-ms-office365-filtering-correlation-id: 102d2398-2dcc-41ce-43ff-08daf9638c7f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: v/fbHf74Vp3iwnHweNxo1QsCUhc+E1YFHl3sHVwH6koFiXrlh16R9Pdqp53JgaZeAqEEV/mVO/SZobX3xiJM8j4LtJQMjLYbTdtcSYMBaQJl9mtNRmZdm765qtoxznc7OCah+MYIhSYG9U9aEYndOt729s5BDQY7zasCRm8J8z346YbqUI6C+uIfSUEQ1/2Y0b7Ocba6cXbLUE/ax8gAVjj5yZeRVHal8ZI6cCRqAIflB15z4earLZikqpns1pP/UlnJLh1aX0Cqo44VJtjWkQq4H08B2iNCUkqC2jvqPeM1JeV5xFKYF34DwxnyJiqiuqC+rN2Yef1oRATM/wNzO/NFqXqu/SeMPH1GesoGVAsCCYZ16Q36AeGZGt2vDHrUr/AdWCNMRiPfx1db5xwk1/zIFvOQE96D3leFe6op3gvMjdL6ASUAKYJseZvEUP60SvqImKxfpQVbMMdHcGUktbGgJODntPMmty15uoANjohfHdEG87BiS9oNb5R9XqgPJzCkDUJ9bzFDlyukr3zfbdqnCY+ZvXvts3zwVUtQIawe+Es2UM7S6dI7NSRstKw9SB4UcigGg5FMvckxInclgCi1dONEI7DPd9qRfG+TwkrHnIb0kBcpYCrGl+q7K+f3e5NqJCV+4ssyJYmHxD5mSqVvYFsl9my+79QdPc0oyrbj3asVPyYbYmUIAjYNpOzULoT9zpSjV7kjo9aFOGClGBvvMZhp9TEw8prF35viYb8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(136003)(39850400004)(366004)(396003)(346002)(451199015)(38070700005)(86362001)(66476007)(44832011)(66946007)(4744005)(66556008)(7416002)(2906002)(5660300002)(8936002)(122000001)(38100700002)(316002)(76116006)(54906003)(71200400001)(110136005)(53546011)(6506007)(6486002)(478600001)(36756003)(8676002)(66446008)(64756008)(4326008)(41300700001)(186003)(6512007)(26005)(2616005)(32563001);DIR:OUT;SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Wm05eFA0cW9MOEVQb2w2SXU3dDd2dTREK1hhZTZJMWRyL3ZJcW1IQXN0d2p4?=
+ =?utf-8?B?bzhEYURWVDJCWUQwRUh1dTF4bUVmcDFQVEQ3YXJJalVYNlNzVDBSZDMyR1Q3?=
+ =?utf-8?B?dHhEM0s3amRFOUgwdlhXVUVWd2RlV1ZXRHQ4RjlvTE5GZG5EM3NEMXJiYWlo?=
+ =?utf-8?B?OTREWDVHR1BqY29PNjBCbUgwZnRDRmxKZmxkZTMzdDBDNmgwVEVRTEpTUmNF?=
+ =?utf-8?B?dlplUTJPNGdDMng3WXlaWXVlaklrcTFtTXMrSzZCYXc4b3hpMnNNaG5yNVA5?=
+ =?utf-8?B?N3ZzK0RUUHhiUTdDRTYzVGNBSytvWXdPazBPSnVUc1RtUXFocGRjUUZyY2Q4?=
+ =?utf-8?B?ak9wakRxL09WdTByeno0U1VSNnNwUnloT3JlUHF1SWlEMloxUDZDenhRSDJm?=
+ =?utf-8?B?NDdDd2Y4NCszQXJiWlRiREd0N2FKUXpzTFZBQnIyMitGYXVoNnJrY1J2eG1h?=
+ =?utf-8?B?eEYyVXQybzBMaEdWa1cvRlpoU0tZeVUxdVc3WDRiMm1wRUd1clUyeHJURTh6?=
+ =?utf-8?B?WmpHUlp4ZGtSZ3hvK2NvVkozOXpJOEJwa3JBOThBTFFSQVhYZlc3QURla09q?=
+ =?utf-8?B?c05IdWpmMXROR00wU3R5cHJnQVdQcmxKcjBPY2I4UVdmeDE0eHh2R25sZ0hs?=
+ =?utf-8?B?eFdVN21HeEErUWZWZkRFKysvME1DSWd2Z3FHTUo4akFid1Q4WDFFWDg1N2RH?=
+ =?utf-8?B?L3pFWHh6V2lHdkpvQW80a1BRYjd6UGFQOGhmN0VwaGd1aGlnMDlHNTZrbWJU?=
+ =?utf-8?B?aFpKMy92bXJPL09pZWRsSmFnYW5Rc3FQUDlRZ2RqWVNLTU9EeGh3c0J1Uits?=
+ =?utf-8?B?MzVUYTR3Ungyd0UrVFhwL3dwdUFjdERnTWl3V1pEU2M2V3czTk9WQnBOejh6?=
+ =?utf-8?B?b0R5b2pCN3ppTVQvd3dOSHNkWkRJbmc1Z3VhanBlWWI5eW1CUmVFNGIyZlNC?=
+ =?utf-8?B?NHI0OEYvNHlUOUUwR25idWsva1I4bjVlOUE5VDlneTk0VU5PbWVJemUrTkND?=
+ =?utf-8?B?S0NDYXNjcEFSOWVKdWRwbEZJVUJzaElab0cwOUZlak9KSkl1ZURDa2c0MTd6?=
+ =?utf-8?B?dFczUlBpOGZyb2RGWkd6MVpTK3JBeWM1by96Uy8rdC9hUWFKdU9uMDlqM0RP?=
+ =?utf-8?B?aTRQT0VhTEJGZ25BbXVya1VYWVBiTFdwSzE5d1hURStTU2VULzIzZWdjMlVR?=
+ =?utf-8?B?OU92N0xWU1NsT3pnNmVQZHVBRWE0Vy8vN1hHcjVxSDQ0akNzQk0xMGtYcVRw?=
+ =?utf-8?B?RGdUZDQ2WFdPbkdBeDc4QWhEQStUeDRMYnRab1d4bGFaNnlrUGZFUXF0UTdH?=
+ =?utf-8?B?czJXNFVlbmNId05tQS9TcWxkNHQ1RkxWUEdnOTAvM1kzVE0rOCs5amNwV3Z6?=
+ =?utf-8?B?a3hMcFQxZU1VRWUrT2d4Y1dUVGxqMDBMRU50RDVicEZNSHBCTitPcDFTVDk1?=
+ =?utf-8?B?VEZvOFN3OW1QdVFGWTNFaXhYUGVobjZVSDViclN2dzZLeGpKV1Awa0ZtN211?=
+ =?utf-8?B?ZTBITFRLQ2hxZkJlcVRwK29TWFR2YVBsYW0vakRHRHc3Nkk1YUlsZ0hmNU9V?=
+ =?utf-8?B?SlRtbnY4L0YwREJWV2NweUo0ajFqUlBVYkxwVFVmQjN6ampvRVBIT1gxWjRi?=
+ =?utf-8?B?ejVLLzFzYlZOQW9tT290UEQ3VEU2NnIyTTNKaGNyM3VqdXRnZUV5dWgwUUdX?=
+ =?utf-8?B?eUNaQnc2eFUvNGpyZ3NBNS9aOW5uQjVYTDZWbFdHUVFMZVFzcHNvekp5UmdY?=
+ =?utf-8?B?YzdBRGR0MUlaUk1DNnU2dEptQU4zNlpma0NPMFhsZW9CazllU1RENFlJakhU?=
+ =?utf-8?B?dGRsTWV0ZUNOSGR6SUFsK2Q3bWtxdDBuODhyVU5wc1B2MTIxWDIvSm0xaEZl?=
+ =?utf-8?B?ODl4ZndJSXovcEF1SlFIelJMMmtDVU9SSFVaSXIrTWl4RFVIbFRXais1K1Fs?=
+ =?utf-8?B?WnN4cThsbHZwOHNndCtjV0tqemxKS3daRXNGbUI4bUlPb0VOSWMyN3k2aDJP?=
+ =?utf-8?B?YlFpNWdxN0ozUU9xWWdudXVhN2wxdWQ1V0t4Q3JvZnh6RklEYWhPZmZWQ3dr?=
+ =?utf-8?B?MDR5eG5yYnRpMjZaeXlQcFQ3UFFVN1ZXL3VHaExuZ2ZmKzFGZUJEalpPM0Y4?=
+ =?utf-8?B?ajhHRndzdlhIc0dZci9zRGl4VEVaMHpOUDd5eFZ4R0NobTlnRUtiRG5wRTRj?=
+ =?utf-8?Q?sHX1HA8Qq3D1BHJjS1F1LJw=3D?=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,LOTS_OF_MONEY,
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0377.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 102d2398-2dcc-41ce-43ff-08daf9638c7f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jan 2023 14:51:58.0263
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Tnx4MmVM+gWqBgx9G1CkO/xaBNOTbFAb8i6+BTFojLAwUzZRESFzeEMbme0gVZ9uJtOHQsfYGC7Sox6VWBAWCVtc5UgOu5Tw9IXmXIuylu4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZRAP278MB0063
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-ID: <1B98B448B60B404F9DE5D831DCC5DAA4@CHEP278.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,182 +134,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/V2M EVK comes with a slot for a uSD card, and an eMMC.
-Add support for the both of them.
-
-Please note that the pinctrl driver for RZ/V2M doesn't support
-interrupts yet, therefore the card detect pin has been connected
-to the SDHI IP directly in this patch.
-We'll connect the card detect pin to its corresponding GPIO when
-we'll have driver support for interrupts in the RZ/V2M pinctrl
-driver.
-
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
- .../boot/dts/renesas/r9a09g011-v2mevk2.dts    | 122 ++++++++++++++++++
- 1 file changed, 122 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-index d6737395df67..75ded4680dba 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-@@ -7,6 +7,7 @@
- 
- /dts-v1/;
- #include "r9a09g011.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/rzv2m-pinctrl.h>
- 
- / {
-@@ -35,6 +36,36 @@ memory@180000000 {
- 		device_type = "memory";
- 		reg = <0x1 0x80000000 0x0 0x80000000>;
- 	};
-+
-+	reg_1v8: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-3.3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vccq_sdhi0: regulator-vccq-sdhi0 {
-+		compatible = "regulator-gpio";
-+
-+		regulator-name = "SDHI0 VccQ";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpios = <&pwc 0 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <1>;
-+		states = <3300000 0>, <1800000 1>;
-+	};
- };
- 
- &avb {
-@@ -50,6 +81,22 @@ phy0: ethernet-phy@0 {
- 	};
- };
- 
-+&emmc {
-+	pinctrl-0 = <&emmc_pins>;
-+	pinctrl-1 = <&emmc_pins>;
-+	pinctrl-names = "default", "state_uhs";
-+
-+	vmmc-supply = <&reg_3v3>;
-+	vqmmc-supply = <&reg_1v8>;
-+	bus-width = <8>;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	fixed-emmc-driver-type = <1>;
-+	max-frequency = <200000000>;
-+	status = "okay";
-+};
-+
-+
- &extal_clk {
- 	clock-frequency = <48000000>;
- };
-@@ -78,6 +125,68 @@ i2c2_pins: i2c2 {
- 		pinmux = <RZV2M_PORT_PINMUX(3, 8, 2)>, /* SDA */
- 			 <RZV2M_PORT_PINMUX(3, 9, 2)>; /* SCL */
- 	};
-+
-+	sdhi0_pins: sd0 {
-+		sd0_data {
-+			pinmux = <RZV2M_PORT_PINMUX(8, 2, 1)>, /* SD0DAT0 */
-+				 <RZV2M_PORT_PINMUX(8, 3, 1)>, /* SD0DAT1 */
-+				 <RZV2M_PORT_PINMUX(8, 4, 1)>, /* SD0DAT2 */
-+				 <RZV2M_PORT_PINMUX(8, 5, 1)>; /* SD0DAT3 */
-+			power-source = <3300>;
-+		};
-+
-+		sd0_ctrl {
-+			pinmux = <RZV2M_PORT_PINMUX(8, 0, 1)>, /* SD0CMD */
-+				 <RZV2M_PORT_PINMUX(8, 1, 1)>; /* SD0CLK */
-+			power-source = <3300>;
-+		};
-+
-+		sd0_cd {
-+			pinmux = <RZV2M_PORT_PINMUX(8, 7, 1)>; /* SD0CD */
-+			power-source = <3300>;
-+		};
-+	};
-+
-+	sdhi0_pins_uhs: sd0_uhs {
-+		sd0_data_uhs {
-+			pinmux = <RZV2M_PORT_PINMUX(8, 2, 1)>, /* SD0DAT0 */
-+				 <RZV2M_PORT_PINMUX(8, 3, 1)>, /* SD0DAT1 */
-+				 <RZV2M_PORT_PINMUX(8, 4, 1)>, /* SD0DAT2 */
-+				 <RZV2M_PORT_PINMUX(8, 5, 1)>; /* SD0DAT3 */
-+			power-source = <1800>;
-+		};
-+
-+		sd0_ctrl_uhs {
-+			pinmux = <RZV2M_PORT_PINMUX(8, 0, 1)>, /* SD0CMD */
-+				 <RZV2M_PORT_PINMUX(8, 1, 1)>; /* SD0CLK */
-+			power-source = <1800>;
-+		};
-+
-+		sd0_cd_uhs {
-+			pinmux = <RZV2M_PORT_PINMUX(8, 7, 1)>; /* SD0CD */
-+			power-source = <1800>;
-+		};
-+	};
-+
-+	emmc_pins: emmc {
-+		emmc_pins_data {
-+			pinmux = <RZV2M_PORT_PINMUX(0, 0, 2)>, /* MMDAT0 */
-+				 <RZV2M_PORT_PINMUX(0, 1, 2)>, /* MMDAT1 */
-+				 <RZV2M_PORT_PINMUX(0, 2, 2)>, /* MMDAT2 */
-+				 <RZV2M_PORT_PINMUX(0, 3, 2)>, /* MMDAT3 */
-+				 <RZV2M_PORT_PINMUX(0, 4, 2)>, /* MMDAT4 */
-+				 <RZV2M_PORT_PINMUX(0, 5, 2)>, /* MMDAT5 */
-+				 <RZV2M_PORT_PINMUX(0, 6, 2)>, /* MMDAT6 */
-+				 <RZV2M_PORT_PINMUX(0, 7, 2)>; /* MMDAT7 */
-+			power-source = <1800>;
-+		};
-+
-+		emmc_pins_ctrl {
-+			pinmux = <RZV2M_PORT_PINMUX(0, 10, 2)>, /* MMCMD */
-+				 <RZV2M_PORT_PINMUX(0, 11, 2)>; /* MMCLK */
-+			power-source = <1800>;
-+		};
-+	};
- };
- 
- &pwc {
-@@ -85,6 +194,19 @@ &pwc {
- 	status = "okay";
- };
- 
-+&sdhi0 {
-+	pinctrl-0 = <&sdhi0_pins>;
-+	pinctrl-1 = <&sdhi0_pins_uhs>;
-+	pinctrl-names = "default", "state_uhs";
-+
-+	vmmc-supply = <&reg_3v3>;
-+	vqmmc-supply = <&vccq_sdhi0>;
-+	bus-width = <4>;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	status = "okay";
- };
--- 
-2.34.1
+T24gV2VkLCAyMDIzLTAxLTE4IGF0IDE1OjQ0ICswMTAwLCBNYXJlayBWYXN1dCB3cm90ZToKPiBP
+biAxLzE4LzIzIDE1OjQwLCBQaGlsaXBwZSBTY2hlbmtlciB3cm90ZToKPiAKPiBbLi4uXQo+IAo+
+ID4gK8KgwqDCoMKgwqDCoMKgbGVkcyB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgY29tcGF0aWJsZSA9ICJncGlvLWxlZHMiOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4gPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgcGluY3RybC0wID0gPCZwaW5jdHJsX2xlZHNfeWF2aWE+Owo+ID4g
+Kwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qIFNPRElNTSA1MiAqLwo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxlZC0xIHsKPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbGFiZWwgPSAiTEQxX1JFRCI7Cj4gCj4g
+SSB0aGluayBsYWJlbCBpcyBkZXByZWNhdGVkIGluIAo+IERvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9sZWRzL2NvbW1vbi55YW1sIGluIGZhdm9yIG9mIAo+IGZ1bmN0aW9uL2Z1bmN0
+aW9uLWVudW1lcmF0b3IvY29sb3IgYmluZGluZ3MuCgpUaGFuayB5b3UhIEkgZGlkIG92ZXJsb29r
+IHRoYXQgb25lLiBXaWxsIGxpbmV1cCBhIHYyIGFuZCBzZW5kIGl0IG5leHQKd2Vlay4KClBoaWxp
+cHBlCgo+IAo+IFsuLi5dCj4gCgo=
 
