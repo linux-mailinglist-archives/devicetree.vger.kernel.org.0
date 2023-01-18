@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FC2D6717ED
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 10:39:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 538C56717EF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 10:39:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbjARJjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 04:39:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58944 "EHLO
+        id S229971AbjARJj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 04:39:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230298AbjARJhW (ORCPT
+        with ESMTP id S230309AbjARJhW (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 04:37:22 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A96E82D7B
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:55:39 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id r9so10386732wrw.4
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:55:39 -0800 (PST)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED6183848
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:55:40 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id z5so32117388wrt.6
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:55:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Uzn7hv2j1faGO2V1F3EOeiij8K9U+0X2K4JZRvimNyg=;
-        b=I1SO4EdHewVIJEYLodRm0jmfXxrOHmYOi+i7FfNihTG4tDh/8DQh9ZEHXaMa8YbA5G
-         X/lVL4gqLX7IDPgQj/JLQczOX+VriNjEyLFKg2SmkeuqCljsWihfoHEVq18I08y45reW
-         oBPDiitfJ5vVuIoKQDolmqrS0/ingp3qCeaIWKTjM7S0f8cV/amB+vfn7G2ufUHNYbE9
-         ibsVqkSjIMty5wUWX41g+2budB39LlxxJBftfaU5R5V6YkQukl6+zZYPEovjwdHxPgIb
-         XlOpqRrIVYlcP3ZNnJSNpS2JM3zYU98ZpYHT3DewBwuLKqu1vWVer3JhUnfyPfBi/qUw
-         nGVg==
+        bh=TUkyFlJusLSnwIIR/wf8AL5ONjMFRSNPV9rHtyU1Zww=;
+        b=NAf6PRUgzKvJUO8QfuTGrMgcpMo8+M42aliYlHmVuYWbmM2f2jZXACU6nRO8PGbRtJ
+         uksqyLd0/hoagkwrNZnc9XhksEIn7pbaivNbKo7ThXrKCybbkc8vqVIJb350JYt4wgJh
+         JPOFdcCkpsyW+APag+xhQDIZAFbCM7bxKcN0iAuCpfKmlRpueA+inftPj8avYVRu0TD9
+         8RIqf4sA2wJAF2QidsB0UR3/Un0Mx5Rzk9LO4Pst02KQVV+bArFbgvPr5/tpgF31TNeF
+         qp632+rQzGXIAlsfR7NBo7bb0xObpMc8V2srszSR8Wq1LTMo3thK+hAldNqIaZFMsGxQ
+         KVCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Uzn7hv2j1faGO2V1F3EOeiij8K9U+0X2K4JZRvimNyg=;
-        b=kHoPkxZOjmQNUnfvMGW4bsh1TcfUbCLhemfruRI1J5wqdDUn09bO4VmzrXxEzCoZF+
-         zI6ipesiFCUKkngHR3/x+fCzBC1vvsAox+QO3E7orek/BZL4vdoT0XoiLf9eHmWYEi+j
-         EmoXOLbVIYaFY+WfhSGtEgkcJGyfpNMnuU0DH0qTJAmdc24WGkNTSpIbge2PAiNJHNzO
-         MWRstMxawBYnHujiH6jIyYRWglHJUdgMJk6pF0oKjs/eLN/9AADR98h22pGqXiFeSUVF
-         1Sp1ZOjfrAY/aqPWYqrSeYUxaa0n0C/QF4DlLXtCh2VR4Fz1/NDT2BnNnZgcgjCClD4c
-         Ii/w==
-X-Gm-Message-State: AFqh2krf64Asfzo+0smfqioO74R547lUgG0Q1D18VJBS3YRuU6/6jpTy
-        5et65TJEUQQNsxrJYcdxGL5tLQ==
-X-Google-Smtp-Source: AMrXdXuu5aZ5MeGg4xxHmLELP2/D21jVqlxKkwBxNY2amKRBSESEHkdC8kSEHTlDFKrvomUCaV4DYQ==
-X-Received: by 2002:a5d:58fa:0:b0:2bd:d819:83ee with SMTP id f26-20020a5d58fa000000b002bdd81983eemr1305490wrd.39.1674032138143;
-        Wed, 18 Jan 2023 00:55:38 -0800 (PST)
+        bh=TUkyFlJusLSnwIIR/wf8AL5ONjMFRSNPV9rHtyU1Zww=;
+        b=ylrB8wSQK9njWityxMwOU9EBcO8gen8U26etALrGx9NvPBFJrj/mnFgXFuSJUnyYSv
+         /Y9EI0CHxYkf48JnDGo46f+bfiePr/IJVzQEMYapuWTsagEMbexjTFjL+odWIADgA72o
+         uAEO590sIX2vc88mqKJhvcUyMmvKSfd/KyMCcxzqlsVoyaZzjhicZCvxs2LxLnmtLhrq
+         zazf/AmILasJTBv1o7Rgf3qex2GTmhEVHrE5y74Nb9SdEmAXc9Ly7GLKHI1mOJ0lwlro
+         ZUk/73dXF5VkwBuXZwhrSEbIH4P3J7UrctqnsUmIGho/E2DgqYZnd8qYVTOHgBpBQHGK
+         f3VQ==
+X-Gm-Message-State: AFqh2kpzdXxqR730i7RYH4wUUmHF9j9o9OqvIvKRw0SAqy5kYPp/4/Sn
+        CopfjhlB4C+1NexhFm4Hbt1p9g==
+X-Google-Smtp-Source: AMrXdXueWivmk+UIm5eeWgNmUrPIsk+sVehKOBKy2JrxdNgb9uTTXwP3icLfXn0agr0LmCgO1u3zvg==
+X-Received: by 2002:adf:e196:0:b0:2be:1ea2:54d0 with SMTP id az22-20020adfe196000000b002be1ea254d0mr4839878wrb.11.1674032139012;
+        Wed, 18 Jan 2023 00:55:39 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id m15-20020adffe4f000000b002bdd155ca4dsm16480212wrs.48.2023.01.18.00.55.37
+        by smtp.gmail.com with ESMTPSA id m15-20020adffe4f000000b002bdd155ca4dsm16480212wrs.48.2023.01.18.00.55.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 00:55:37 -0800 (PST)
+        Wed, 18 Jan 2023 00:55:38 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 18 Jan 2023 09:55:33 +0100
-Subject: [PATCH v3 1/3] arm64: dts: qcom: sm8550: add display hardware devices
+Date:   Wed, 18 Jan 2023 09:55:34 +0100
+Subject: [PATCH v3 2/3] arm64: dts: qcom: sm8550-mtp: enable display hardware
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230104-topic-sm8550-upstream-dts-display-v3-1-46f0d4e57752@linaro.org>
+Message-Id: <20230104-topic-sm8550-upstream-dts-display-v3-2-46f0d4e57752@linaro.org>
 References: <20230104-topic-sm8550-upstream-dts-display-v3-0-46f0d4e57752@linaro.org>
 In-Reply-To: <20230104-topic-sm8550-upstream-dts-display-v3-0-46f0d4e57752@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -76,336 +76,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devices tree nodes describing display hardware on SM8550:
-- Display Clock Controller
-- MDSS
-- MDP
-- two DSI controllers and DSI PHYs
-
-This does not provide support for DP controllers present on the SM8550.
+Enable MDSS/DPU/DSI0 on SM8550-MTP device.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 299 +++++++++++++++++++++++++++++++++++
- 1 file changed, 299 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 3d47281a276b..a76ee4e50854 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,sm8550-gcc.h>
- #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
-+#include <dt-bindings/clock/qcom,sm8550-dispcc.h>
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -1727,6 +1728,304 @@ opp-202000000 {
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+index 81fcbdc6bdc4..0dfd1d3db86c 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+@@ -359,6 +359,28 @@ vreg_l3g_1p2: ldo3 {
+ 	};
+ };
  
-+		mdss: display-subsystem@ae00000 {
-+			compatible = "qcom,sm8550-mdss";
-+			reg = <0 0x0ae00000 0 0x1000>;
-+			reg-names = "mdss";
++&dispcc {
++	status = "okay";
++};
 +
-+			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
++&mdss {
++	status = "okay";
++};
 +
-+			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+				 <&gcc GCC_DISP_AHB_CLK>,
-+				 <&gcc GCC_DISP_HF_AXI_CLK>,
-+				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
++&mdss_dsi0 {
++	vdda-supply = <&vreg_l3e_1p2>;
++	status = "okay";
++};
 +
-+			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
++&mdss_dsi0_phy {
++	vdds-supply = <&vreg_l1e_0p88>;
++	status = "okay";
++};
 +
-+			power-domains = <&dispcc MDSS_GDSC>;
++&mdss_mdp {
++	status = "okay";
++};
 +
-+			interconnects = <&mmss_noc MASTER_MDP 0 &gem_noc SLAVE_LLCC 0>,
-+				        <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "mdp0-mem", "mdp1-mem";
-+
-+			iommus = <&apps_smmu 0x1c00 0x2>;
-+
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			status = "disabled";
-+
-+			mdss_mdp: display-controller@ae01000 {
-+				compatible = "qcom,sm8550-dpu";
-+				reg = <0 0x0ae01000 0 0x8f000>,
-+				      <0 0x0aeb0000 0 0x2008>;
-+				reg-names = "mdp", "vbif";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <0>;
-+
-+				clocks = <&gcc GCC_DISP_AHB_CLK>,
-+					<&gcc GCC_DISP_HF_AXI_CLK>,
-+					<&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					<&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-+					<&dispcc DISP_CC_MDSS_MDP_CLK>,
-+					<&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+				clock-names = "bus",
-+					      "nrt_bus",
-+					      "iface",
-+					      "lut",
-+					      "core",
-+					      "vsync";
-+
-+				power-domains = <&rpmhpd SM8550_MMCX>;
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+				assigned-clock-rates = <19200000>;
-+
-+				operating-points-v2 = <&mdp_opp_table>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						dpu_intf1_out: endpoint {
-+							remote-endpoint = <&mdss_dsi0_in>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						dpu_intf2_out: endpoint {
-+							remote-endpoint = <&mdss_dsi1_in>;
-+						};
-+					};
-+				};
-+
-+				mdp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-200000000 {
-+						opp-hz = /bits/ 64 <200000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-325000000 {
-+						opp-hz = /bits/ 64 <325000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-375000000 {
-+						opp-hz = /bits/ 64 <375000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-514000000 {
-+						opp-hz = /bits/ 64 <514000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
-+			mdss_dsi0: dsi@ae94000 {
-+				compatible = "qcom,mdss-dsi-ctrl";
-+				reg = <0 0x0ae94000 0 0x400>;
-+				reg-names = "dsi_ctrl";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <4>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
-+					 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
-+					 <&dispcc DISP_CC_MDSS_ESC0_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&gcc GCC_DISP_HF_AXI_CLK>;
-+				clock-names = "byte",
-+					      "byte_intf",
-+					      "pixel",
-+					      "core",
-+					      "iface",
-+					      "bus";
-+
-+				power-domains = <&rpmhpd SM8550_MMCX>;
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
-+				assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
-+
-+				operating-points-v2 = <&mdss_dsi_opp_table>;
-+
-+				phys = <&mdss_dsi0_phy>;
-+				phy-names = "dsi";
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						mdss_dsi0_in: endpoint {
-+							remote-endpoint = <&dpu_intf1_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						mdss_dsi0_out: endpoint {
-+						};
-+					};
-+				};
-+
-+				mdss_dsi_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-187500000 {
-+						opp-hz = /bits/ 64 <187500000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-300000000 {
-+						opp-hz = /bits/ 64 <300000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-358000000 {
-+						opp-hz = /bits/ 64 <358000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+				};
-+			};
-+
-+			mdss_dsi0_phy: phy@ae95000 {
-+				compatible = "qcom,sm8550-dsi-phy-4nm";
-+				reg = <0 0x0ae95000 0 0x200>,
-+				      <0 0x0ae95200 0 0x280>,
-+				      <0 0x0ae95500 0 0x400>;
-+				reg-names = "dsi_phy",
-+					    "dsi_phy_lane",
-+					    "dsi_pll";
-+
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&rpmhcc RPMH_CXO_CLK>;
-+				clock-names = "iface", "ref";
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+
-+				status = "disabled";
-+			};
-+
-+			mdss_dsi1: dsi@ae96000 {
-+				compatible = "qcom,mdss-dsi-ctrl";
-+				reg = <0 0x0ae96000 0 0x400>;
-+				reg-names = "dsi_ctrl";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <5>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
-+					 <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_PCLK1_CLK>,
-+					 <&dispcc DISP_CC_MDSS_ESC1_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&gcc GCC_DISP_HF_AXI_CLK>;
-+				clock-names = "byte",
-+					      "byte_intf",
-+					      "pixel",
-+					      "core",
-+					      "iface",
-+					      "bus";
-+
-+				power-domains = <&rpmhpd SM8550_MMCX>;
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
-+				assigned-clock-parents = <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>;
-+
-+				operating-points-v2 = <&mdss_dsi_opp_table>;
-+
-+				phys = <&mdss_dsi1_phy>;
-+				phy-names = "dsi";
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						mdss_dsi1_in: endpoint {
-+							remote-endpoint = <&dpu_intf2_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						mdss_dsi1_out: endpoint {
-+						};
-+					};
-+				};
-+			};
-+
-+			mdss_dsi1_phy: phy@ae97000 {
-+				compatible = "qcom,sm8550-dsi-phy-4nm";
-+				reg = <0 0x0ae97000 0 0x200>,
-+				      <0 0x0ae97200 0 0x280>,
-+				      <0 0x0ae97500 0 0x400>;
-+				reg-names = "dsi_phy",
-+					    "dsi_phy_lane",
-+					    "dsi_pll";
-+
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&rpmhcc RPMH_CXO_CLK>;
-+				clock-names = "iface", "ref";
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+
-+				status = "disabled";
-+			};
-+		};
-+
-+		dispcc: clock-controller@af00000 {
-+			compatible = "qcom,sm8550-dispcc";
-+			reg = <0 0x0af00000 0 0x20000>;
-+			clocks = <&bi_tcxo_div2>,
-+				 <&bi_tcxo_ao_div2>,
-+				 <&gcc GCC_DISP_AHB_CLK>,
-+				 <&sleep_clk>,
-+				 <&mdss_dsi0_phy 0>,
-+				 <&mdss_dsi0_phy 1>,
-+				 <&mdss_dsi1_phy 0>,
-+				 <&mdss_dsi1_phy 1>,
-+				 <0>, /* dp0 */
-+				 <0>,
-+				 <0>, /* dp1 */
-+				 <0>,
-+				 <0>, /* dp2 */
-+				 <0>,
-+				 <0>, /* dp3 */
-+				 <0>;
-+			power-domains = <&rpmhpd SM8550_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+			status = "disabled";
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sm8550-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
+ &pm8550_gpios {
+ 	sdc2_card_det_n: sdc2-card-det-state {
+ 		pins = "gpio12";
 
 -- 
 2.34.1
