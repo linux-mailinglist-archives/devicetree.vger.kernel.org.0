@@ -2,89 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA7CB671615
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 09:21:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DACD667166F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 09:46:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbjARIVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 03:21:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40832 "EHLO
+        id S230475AbjARIpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 03:45:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230009AbjARIU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 03:20:29 -0500
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314FE6F8B4
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 23:48:02 -0800 (PST)
-Received: by mail-yb1-xb2d.google.com with SMTP id v19so31253316ybv.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 23:48:02 -0800 (PST)
+        with ESMTP id S231129AbjARIpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 03:45:23 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC8B8F7CF
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:00:23 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id e3so23805277wru.13
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 00:00:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3lsVmwWpUbBcZLhC1PgXubVGuc7DZUQhVqbV9/Kjs9g=;
-        b=Xb1rOdJA8KqYKynuQGkZtv9Xa3vI+W9rpQTtbkR9Yp9J0GVcDZKjAi7aKombg3nAQo
-         kzPVXnCK6NE+R1DpzebUHvgQxqhqOqfK5lYu6/3h3rwKCeW7v7SimfoR7BgGCMz+RHLm
-         du4DpsiBKEdrpktvKTUDLPb6Z4FDOo5290XMPN8TXtQ2w08/+f34T1SZNJ1ypELbLYZ5
-         WnZfoMnIcFMP/LHTZ1/M3xEvSR6szPEW6Ua3GnIZY+W8nZywkq/etFzmai7llrbJheO2
-         CayT6L5ENJe+THXD6qlGUoxGHW/3vAcPdW9ezdRZ2wqAGxKa71yGp7guH5ZygmPjXknf
-         2iMA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6JHe7Mld7ca44zxKnapswWL8ppqp7gV/qk5d9Nzoevw=;
+        b=KTEP6I1p+vMcKWOb9+hnvxwJhNZClYy3mVLwvEaRmwrc3+YVVJ1SuxIoRZsnnhmQGi
+         /GnHcl1skgTY8B6z82bSuqdRFdYIel+Vg4WEEaP2iYUO4GnHRCa6P74G3zU7IPS1VyGT
+         I8WGfAj5FAoWzLc2mcs0ibz3ops67DOkZLXOJKYrpuVfP3vuGc0qCAEespNvrpu5AYGJ
+         Ldw/Xe/+zQtjzYJ/iv/riljurmbyz8fdRyf6p97zA0RBzok1XbAK6MqXtC1YSmuKwlPs
+         6XZXTBfV9oOVt02092OtdJZLlEDuUVXCc8B3UksAff2U5txyp0T/VH1e6N2Wi9r6EYKt
+         Z7+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3lsVmwWpUbBcZLhC1PgXubVGuc7DZUQhVqbV9/Kjs9g=;
-        b=25LWuiVkR3wPeuglMOetVPD26Zu70TJUcKRQI0tkU1Bb+fRd+JniV89RVBxEdEGw/X
-         OhrSjcOZ6hoO3GPW8kWUv+h7BVMK+QhOTPGG40s2nl/yIKoimQVdRNun4fehmmh5fyao
-         sgWvvqAt66MI4VxwhxGHRTiwdgUlOMtXXbnoWa5sv642qa8n5fWssWh2llkjir0ouatc
-         1FcVg935/Jud+6VWncAvO3PfOs+oMRwMEoUFmQ5FBC4NYoU4yWdgvEWSOe2wcVycp108
-         j84HCmSHhmTavTGh84s//Wc5+YgXvbiyGTyBE5OBklt2+7xQXIx3LynIzkM6wdUV/PoK
-         7HRQ==
-X-Gm-Message-State: AFqh2koG/J0hBEWo3MJxsTJFczbnKZIuxmSHRI/YDpBUSPnz7mS0UYrQ
-        i5tRXXpxHn+WxSonhgx95WMWZTyG1owTzkc+d3bczQ==
-X-Google-Smtp-Source: AMrXdXsXwout0TrOcTOdN6y5F8uwNzphuPk9mcVCrUGLySs0iZEnk/drbasiu8yUy96SDbaiCFBajMK4mNLyshjjU64=
-X-Received: by 2002:a25:9d88:0:b0:7c0:acd2:6300 with SMTP id
- v8-20020a259d88000000b007c0acd26300mr634228ybp.520.1674028081450; Tue, 17 Jan
- 2023 23:48:01 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6JHe7Mld7ca44zxKnapswWL8ppqp7gV/qk5d9Nzoevw=;
+        b=QKeTKfTXeKTRQeTvBkZUZMl+lxs0nr3O0dsIpXzOVotgtfs368pSmsdrbcj6XfbOc9
+         0AqJI+O97hnZGOPXpJxpR/zB5Z5DYnuj5cBbRQCdL4L18JSVU015mrQvaYud4ishOoqe
+         VSRIfSz9phz5ObGESo61D4lhF5IdUB/rKTkCVWDjSiHTXjAN7fFoHMJP0hCQsr5BW9I4
+         siviCrZF4VlAKjDx8a0vpPPKj32Iz3vVQpip3iEpqcnDKvNVdl9bNdcQ2/Z+EgzxcLHf
+         UOZgWoZ8WYNNAGP9hzQ/B9gcTxALIltFCBhZFUtA/JkxNMxdk67GtG7gmay4uMavKEfK
+         Rx6g==
+X-Gm-Message-State: AFqh2ko33cFsZW43IuaAcdf9WBlF/F72YGeQ7RMjYnDpCKmoLiGIHVib
+        sLzo2UvpDoTpNNMp/qzRZQV18A==
+X-Google-Smtp-Source: AMrXdXuEmKllwaiidwPgTn+Gamv50gFRp4dBCIpq9KI5N/ug614mLjZGjAIslqwj4xHNNfCH7W417A==
+X-Received: by 2002:a5d:6a86:0:b0:2bb:e805:c1ef with SMTP id s6-20020a5d6a86000000b002bbe805c1efmr4981345wru.52.1674028807988;
+        Wed, 18 Jan 2023 00:00:07 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f8-20020a0560001b0800b002423edd7e50sm30387327wrz.32.2023.01.18.00.00.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 00:00:06 -0800 (PST)
+Message-ID: <787bb142-1ade-bd48-1f6a-0da992add3d3@linaro.org>
+Date:   Wed, 18 Jan 2023 09:00:04 +0100
 MIME-Version: 1.0
-References: <20230103-gemini-fotg210-usb-v1-0-f2670cb4a492@linaro.org>
- <CACRpkdaE+b_=6mecuWe4EUfYP9C3j5cXZXMO0s2t7Bf3eMtV_A@mail.gmail.com> <Y8ebS2lMvXs6LSZl@kroah.com>
-In-Reply-To: <Y8ebS2lMvXs6LSZl@kroah.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 18 Jan 2023 08:47:46 +0100
-Message-ID: <CACRpkdZxo7TWBanzfLTEqo9E5Ajk23Z4Y-R_qDaVG2crKfcKVA@mail.gmail.com>
-Subject: Re: [PATCH 0/7] usb: fotg210: Various improvements
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 4/7] dt-bindings: net: Add support StarFive dwmac
+Content-Language: en-US
+To:     yanhong wang <yanhong.wang@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Fabian Vogt <fabian@ritter-vogt.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20230106030001.1952-1-yanhong.wang@starfivetech.com>
+ <20230106030001.1952-5-yanhong.wang@starfivetech.com>
+ <c114239e-2dae-3962-24f3-8277ff173582@linaro.org>
+ <9c59e7b4-ba5f-365c-7d71-1ff2953f6672@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9c59e7b4-ba5f-365c-7d71-1ff2953f6672@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 8:10 AM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
-> On Wed, Jan 18, 2023 at 08:03:59AM +0100, Linus Walleij wrote:
-> > On Wed, Jan 4, 2023 at 12:35 AM Linus Walleij <linus.walleij@linaro.org> wrote:
-> >
-> > > This is some gradual improvements to the FOTG210 dual-mode
-> > > USB host/gadget driver.
-> >
-> > Been two weeks, something I should change or are these good to
-> > go?
->
-> I dropped the series from my review queue due to this comment:
->         https://lore.kernel.org/r/9bbd5343-30bc-1146-3296-2c3a43b9a91b@linaro.org
->
-> so I was expecting a new series, is that not the case?
+On 18/01/2023 02:45, yanhong wang wrote:
+> 
+> 
+> On 2023/1/6 20:45, Krzysztof Kozlowski wrote:
+>> On 06/01/2023 03:59, Yanhong Wang wrote:
+>>> Add documentation to describe StarFive dwmac driver(GMAC).
+>>>
+>>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+>>> ---
+>>>  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+>>>  .../bindings/net/starfive,jh7110-dwmac.yaml   | 113 ++++++++++++++++++
+>>>  MAINTAINERS                                   |   5 +
+>>
+>> Order the patches correctly. Why this binding patch is split from previous?
+>>
+> 
+> The previous binding patch was considered to be compatible with JH7100, but after discussion,
+> it is not compatible with JH7100 for the time being, so the name of binding has been modified
+> in this patch.
 
-You're right, I've dropped a single word and resent!
+I am not asking about name, but why this was split from the patch using
+the compatible in the first time. This does not make any sense. Please
+squash.
 
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
+
