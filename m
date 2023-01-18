@@ -2,156 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 234976711AC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 04:17:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC02B6711B7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 04:19:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbjARDR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Jan 2023 22:17:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45704 "EHLO
+        id S229450AbjARDT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Jan 2023 22:19:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjARDRZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 22:17:25 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0179050844
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 19:17:24 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id vw16so16935048ejc.12
-        for <devicetree@vger.kernel.org>; Tue, 17 Jan 2023 19:17:23 -0800 (PST)
+        with ESMTP id S229446AbjARDTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Jan 2023 22:19:25 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034BA4FCC9;
+        Tue, 17 Jan 2023 19:19:24 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id v6so37074911ejg.6;
+        Tue, 17 Jan 2023 19:19:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zxuWlUI/PcZStTas2G6sOrezS1sqVdlcznrK0ab6Pgo=;
-        b=ViRt+oxiXo/beRGmqh2R7Vt++z4Ji56XtaeVEfunsPZdfelpwHdtKML7eKpPrHmkl6
-         4RHsud7MW8TPXi49/7jKgw+8O/iqWZc8e0RaplhIpVBBL6q2wJeWeWpVYcwEA4WICyZr
-         yCkYLGXSiWWejwRfp+NQKgqASvfyOXK97z3okpNoaKZnCgDZJMX+v5d7AgZQBPmyjh7W
-         WOb/AvzaKMdoJZEjJx1Gm73IjNfRnoXHmlgKrjpKoclx3nihVQzoiwniaPN14HW970uU
-         I5d/0q0zSvvcL5kC2Sw6Wdmk9rRP+Q49CW9TzBYqqXPNYSrpQa56z7fWdvYAImJLFlIG
-         7tbw==
+        d=jms.id.au; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FgA+6yqUgolw/SqxO1YAy7+szNjmtGYdLu65H2lP81o=;
+        b=gFJ6plrGY2qMO2z6gkb3oSWK7AMapIqGWeg4VhsfPJQ3yF5qtcB5TSjijGQibJL8aI
+         5ZcYvl4phtUmhwoVVWlnghRSHBf+w4zha54HhzQk8XYYCpLvWRWM5TflHwuCvaT3Ipad
+         1PiD+YpN4tNwnLllc4kviZkPn4Uagic+7Cnp8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zxuWlUI/PcZStTas2G6sOrezS1sqVdlcznrK0ab6Pgo=;
-        b=fmpe08vJeqC8zwk83GQG/nnNNBXqvo3BbnQO7zeQB9L+pD2whGnMqNEEcReko1YTtu
-         T9IbM/jHiMvLkVUFwH+sMf7/lVHPAjdSyg9Lz9FD6GTpWsHLqP503QHgWrchSHQ3evlQ
-         7OIZ6r+OgHCLgylVaKTi2TrlQNZFAcFCbpcbqnl5qUI1PDk001g3DfR/xOl/9N/7sOQf
-         c1w+uEJIysSIKhEqGzy9g0kDwHftrzOHP0uJckbPcglmSBklVdtkxStV8qfnagt/0kjy
-         NMOoxEkNgSSC+zfeVcvP34L/j2qx3hEc8Pc6V2ts+TDjq7mis/AIfubDFOhT7XmIfmze
-         dQGQ==
-X-Gm-Message-State: AFqh2kqx2/R4xTaAKgpPN9+vQwPO9NbJxOtkNUA5yijJtAbvS+mDykiN
-        26XaUSVIqxmZ94vqnKFrbtdEjA==
-X-Google-Smtp-Source: AMrXdXtBtKIdExTwOXf4FveFWN9yH+Z1q36Rfnh+ukpilSiCiS1HU+9ZMx8dngkQH3OIX3AMMd1z7w==
-X-Received: by 2002:a17:907:6e05:b0:871:dd2:4afb with SMTP id sd5-20020a1709076e0500b008710dd24afbmr10953246ejc.42.1674011843554;
-        Tue, 17 Jan 2023 19:17:23 -0800 (PST)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id 2-20020a170906210200b00876479361edsm535639ejt.149.2023.01.17.19.17.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Jan 2023 19:17:23 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: [PATCH 4/4] arm64: dts: qcom: sc8280xp: add p1 register blocks to DP nodes
-Date:   Wed, 18 Jan 2023 05:17:18 +0200
-Message-Id: <20230118031718.1714861-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230118031718.1714861-1-dmitry.baryshkov@linaro.org>
-References: <20230118031718.1714861-1-dmitry.baryshkov@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FgA+6yqUgolw/SqxO1YAy7+szNjmtGYdLu65H2lP81o=;
+        b=Z+rlduZwRbKwR23prWuQBbthEIgeD5oQE5ZwAhpJr5KacDizsYHB0ZWs+jsUVN22iS
+         Cj+poQSap3k7N3I0UYjBKAr+GojJ3l/X1XZjPEAiqrebJwvu5PPd4c6XJpFRfsa3CmcJ
+         dJPe5dfRGBr1YoVNsj5KkW3lUjFVrcTb2N23oAzkZpaKb9wtNT4Spkw2gpQzJ7sIAJjh
+         C/E0aOBjtJq8SYPwKmZTtcrC0w6/0QFb6zNLQ08XxMIKTYXAfAsJsnDgyH1sUdKc+eDD
+         GG625xG4HcQp2TxZNBfhwaOaLlAWS1FFlCCLw8XxeX0DmyV0VU4b7WwvKdrLIhN88Gtg
+         qwqw==
+X-Gm-Message-State: AFqh2krlm/b+bnncJE+vl8tDoI7HwbTdTNlKLQhGL4faqphTvZkJsRZe
+        gB71shAA7GUaBdLGLAOwhGGb0Yg5/oBegDa5ONM=
+X-Google-Smtp-Source: AMrXdXsF4H3MGnT6GULCJ3IMPm1iznAunBegxShAmG0yJaPN1dHMmR98JqAWtVJ7/AwYH44IZCvxUjrEJny8HwSs1g0=
+X-Received: by 2002:a17:907:75e8:b0:872:1905:4185 with SMTP id
+ jz8-20020a17090775e800b0087219054185mr362309ejc.651.1674011962419; Tue, 17
+ Jan 2023 19:19:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221226054535.2836110-1-potin.lai.pt@gmail.com> <Y7SX/6bsztulhw7/@heinlein.taila677.ts.net>
+In-Reply-To: <Y7SX/6bsztulhw7/@heinlein.taila677.ts.net>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 18 Jan 2023 03:19:09 +0000
+Message-ID: <CACPK8XdPiHZJo69K99ZL=kWVis_X=JtSAWuYN6FCAVpijcjirw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] ARM: dts: aspeed: bletchley: Update Bletchley devicetree
+To:     Patrick Williams <patrick@stwcx.xyz>
+Cc:     Potin Lai <potin.lai.pt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Per DT bindings add p1 register blocks to all DP controllers on SC8280XP
-platform.
+On Tue, 3 Jan 2023 at 21:10, Patrick Williams <patrick@stwcx.xyz> wrote:
+>
+> On Mon, Dec 26, 2022 at 01:45:33PM +0800, Potin Lai wrote:
+> > Update Bletchley BMC devicetree.
+> >
+> > Potin Lai (2):
+> >   ARM: dts: aspeed: bletchley: rename flash1 label
+> >   ARM: dts: aspeed: bletchley: enable wdtrst1
+>
+> Series is
+>
+> Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
 
-Fixes: 6f299ae7f96d ("arm64: dts: qcom: sc8280xp: add p1 register blocks to DP nodes")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
+Merged for submission in v6.3.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index ea2c8ad37ccb..ed11fb89cdc7 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -2448,7 +2448,8 @@ mdss0_dp2: displayport-controller@ae9a000 {
- 				reg = <0 0xae9a000 0 0x200>,
- 				      <0 0xae9a200 0 0x200>,
- 				      <0 0xae9a400 0 0x600>,
--				      <0 0xae9b000 0 0x400>;
-+				      <0 0xae9b000 0 0x400>,
-+				      <0 0xae9b400 0 0x400>;
- 
- 				clocks = <&dispcc0 DISP_CC_MDSS_AHB_CLK>,
- 					 <&dispcc0 DISP_CC_MDSS_DPTX2_AUX_CLK>,
-@@ -2519,7 +2520,8 @@ mdss0_dp3: displayport-controller@aea0000 {
- 				reg = <0 0xaea0000 0 0x200>,
- 				      <0 0xaea0200 0 0x200>,
- 				      <0 0xaea0400 0 0x600>,
--				      <0 0xaea1000 0 0x400>;
-+				      <0 0xaea1000 0 0x400>,
-+				      <0 0xaea1400 0 0x400>;
- 
- 				clocks = <&dispcc0 DISP_CC_MDSS_AHB_CLK>,
- 					 <&dispcc0 DISP_CC_MDSS_DPTX3_AUX_CLK>,
-@@ -3394,7 +3396,8 @@ mdss1_dp0: displayport-controller@22090000 {
- 				reg = <0 0x22090000 0 0x200>,
- 				      <0 0x22090200 0 0x200>,
- 				      <0 0x22090400 0 0x600>,
--				      <0 0x22091000 0 0x400>;
-+				      <0 0x22091000 0 0x400>,
-+				      <0 0x22091400 0 0x400>;
- 
- 				clocks = <&dispcc1 DISP_CC_MDSS_AHB_CLK>,
- 					 <&dispcc1 DISP_CC_MDSS_DPTX0_AUX_CLK>,
-@@ -3466,7 +3469,8 @@ mdss1_dp1: displayport-controller@22098000 {
- 				reg = <0 0x22098000 0 0x200>,
- 				      <0 0x22098200 0 0x200>,
- 				      <0 0x22098400 0 0x600>,
--				      <0 0x22099000 0 0x400>;
-+				      <0 0x22099000 0 0x400>,
-+				      <0 0x22099400 0 0x400>;
- 
- 				clocks = <&dispcc1 DISP_CC_MDSS_AHB_CLK>,
- 					 <&dispcc1 DISP_CC_MDSS_DPTX1_AUX_CLK>,
-@@ -3537,7 +3541,8 @@ mdss1_dp2: displayport-controller@2209a000 {
- 				reg = <0 0x2209a000 0 0x200>,
- 				      <0 0x2209a200 0 0x200>,
- 				      <0 0x2209a400 0 0x600>,
--				      <0 0x2209b000 0 0x400>;
-+				      <0 0x2209b000 0 0x400>,
-+				      <0 0x2209b400 0 0x400>;
- 
- 				clocks = <&dispcc1 DISP_CC_MDSS_AHB_CLK>,
- 					 <&dispcc1 DISP_CC_MDSS_DPTX2_AUX_CLK>,
-@@ -3608,7 +3613,8 @@ mdss1_dp3: displayport-controller@220a0000 {
- 				reg = <0 0x220a0000 0 0x200>,
- 				      <0 0x220a0200 0 0x200>,
- 				      <0 0x220a0400 0 0x600>,
--				      <0 0x220a1000 0 0x400>;
-+				      <0 0x220a1000 0 0x400>,
-+				      <0 0x220a1400 0 0x400>;
- 
- 				clocks = <&dispcc1 DISP_CC_MDSS_AHB_CLK>,
- 					 <&dispcc1 DISP_CC_MDSS_DPTX3_AUX_CLK>,
--- 
-2.39.0
+Cheers,
 
+Joel
