@@ -2,97 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 801D7672ADE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 22:51:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A673C672AEE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 22:55:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbjARVvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 16:51:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44334 "EHLO
+        id S229446AbjARVzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 16:55:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230174AbjARVvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 16:51:00 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 353C7630AF;
-        Wed, 18 Jan 2023 13:50:58 -0800 (PST)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id DCD3F3F824;
-        Wed, 18 Jan 2023 21:50:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1674078656; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ImXWQyU4WFGAYv86tZ8Xzi8aUY2vgULsXE686tIBgtA=;
-        b=aqBu6/y8+eY7NxuH49S2vhQnojNiXzIIFVXUoWwqh4gQTC/EBxdbk9xbSc9VpUYsGxke+H
-        I4j/1Fe8CJ4hNNrv+izPi93x0VR2Nr4YmUAE5duvZK3xnDSsqplfZP/lORSvCITsvISo5b
-        vI0Nrq88LJgj1V/hOg/QWTM0fuXMkpk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1674078656;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ImXWQyU4WFGAYv86tZ8Xzi8aUY2vgULsXE686tIBgtA=;
-        b=wshYCj7T4L0m6eOKuX/ezCn2oMy5WSPFrp+Mx2EJgbAw9tG7KVya4xbzPFwcjcUOLPVyRw
-        PrWMvVbalNRogDBA==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        by relay2.suse.de (Postfix) with ESMTP id A99192C141;
-        Wed, 18 Jan 2023 21:50:56 +0000 (UTC)
-From:   Michal Suchanek <msuchanek@suse.de>
-To:     "Erhard F." <erhard_f@mailbox.org>
-Cc:     Michal Suchanek <msuchanek@suse.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>, linuxppc-dev@lists.ozlabs.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH] of: Fix of platform build on powerpc due to bad of disaply code
-Date:   Wed, 18 Jan 2023 22:50:45 +0100
-Message-Id: <20230118215045.5551-1-msuchanek@suse.de>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20230118211305.42e50a4a@yea>
-References: 
+        with ESMTP id S229540AbjARVzn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 16:55:43 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C7A654C3;
+        Wed, 18 Jan 2023 13:55:42 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id y19so608189edc.2;
+        Wed, 18 Jan 2023 13:55:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GGp3fURHIN1KwNTqdNdjD2I+NMZ/HjTDkqRonIyKzP0=;
+        b=Q7l9Y1KCwtVaG6F9kdtLyBSEuBe9Yq3gfImFqR7ha0I8Hs637R5+dp4JuFyFwqCLhO
+         jdWNEGAN6CrCd4BgLoN5NV/kcE6BrjkevUpja9/Uzzaxq5qnVSOSnO1P9qlcUtjcjvr+
+         bJ/27XJtmktx8uUC3R5KeY3QtEr+UIkI3cls+blmzmNUOVKUwUd1OQ+WG2ob507W1GbH
+         7e7Phgr2uI3Hu2PLKsR3stHLwH1JuSPxWI6OY02cgdVE7zUfMjbDGEqYZW250KH2R5Jv
+         WQhxCA6PcBEh1auAmWSlrmMHiw8XaJYZKI+Ff6iCVfyJh8GP9ERA+MFbx+c957OkLtMA
+         kolw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GGp3fURHIN1KwNTqdNdjD2I+NMZ/HjTDkqRonIyKzP0=;
+        b=sbmZL0Y+ExiTLMAePWa3C5QDsR7XuPHHaZ0JL34G6cRY/gkYHIVl1EF4J4fNqdHnUq
+         IO8dX1yibKFsglqPxaVr0R6X5IzbO3u3jszcN4h2jvc0KSq18jOeL8mbH0vsmIsT7hHT
+         rIaD0jMl33djlUbYGVLdCz3UeoAvaEncO+DWSJmWwDmdoYdkNceVbXkZFa05CJUJgDaz
+         txGo5n9nuqLwksW7DFkpsiSYEjoQ/JT1virF893aC7Wo4PfPs08XrtDluGv674tBtq9n
+         RCOWFX86bTbwJ4N9wGTh+cwKoy8sXrr2r5hxcVWN0yDCbbGVxttzyxglwjmFj5QHDcFg
+         agKA==
+X-Gm-Message-State: AFqh2ko3MIsmVqcdQ0q0NlUE4MBO1KxFpJA4BGnzTBpLdBPfeNq8g5JQ
+        AogFotq0hqzmtIAF/NP4yOU=
+X-Google-Smtp-Source: AMrXdXuqflzAwGKvmroxu08+OTiyKxYQ7H5wD0vfImmUnbT33aaMzx7ga+j2/CIdWWMADLRXdwWodQ==
+X-Received: by 2002:aa7:c0d4:0:b0:48f:acd1:8da2 with SMTP id j20-20020aa7c0d4000000b0048facd18da2mr9071632edp.27.1674078940653;
+        Wed, 18 Jan 2023 13:55:40 -0800 (PST)
+Received: from ?IPV6:2a02:3100:94be:5400:80c7:5ea4:ed2f:1a59? (dynamic-2a02-3100-94be-5400-80c7-5ea4-ed2f-1a59.310.pool.telefonica.de. [2a02:3100:94be:5400:80c7:5ea4:ed2f:1a59])
+        by smtp.googlemail.com with ESMTPSA id l4-20020a056402344400b004822681a671sm14775284edc.37.2023.01.18.13.55.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 13:55:40 -0800 (PST)
+Message-ID: <8eb4fb92-ea53-fb4e-4cdd-daed4ad96806@gmail.com>
+Date:   Wed, 18 Jan 2023 22:51:58 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: [PATCH v5 1/3] dt-bindings: i2c-gpio: Add properties for dealing with
+ write-only SDA/SCL w/o pullup
+Content-Language: en-US
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>, Peter Rosin <peda@axentia.se>
+Cc:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <6f4b54d9-ab6d-a4d4-5142-27c89e03c6d2@gmail.com>
+In-Reply-To: <6f4b54d9-ab6d-a4d4-5142-27c89e03c6d2@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+There are slave devices that understand I2C but have read-only SDA and
+SCL. Examples are FD650 7-segment LED controller and its derivatives.
+Typical board designs don't even have a pull-up for both pins.
+Therefore add properties for not using open-drain. For write-only SCL
+we have a property already, add one for write-only SDA.
 
-The commit 2d681d6a23a1 ("of: Make of framebuffer devices unique")
-breaks build because of wrong argument to snprintf. That certainly
-avoids the runtime error but is not the intended outcome.
-
-Fixes: 2d681d6a23a1 ("of: Make of framebuffer devices unique")
-Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/of/platform.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+v4:
+- add no-pullup properties
+v5:
+- add checking mutually-exclusive properties to schema
+---
+ .../devicetree/bindings/i2c/i2c-gpio.yaml     | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index f2a5d679a324..e9dd7371f27a 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -564,10 +564,10 @@ static int __init of_platform_default_populate_init(void)
- 		}
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml b/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
+index e0d76d5eb..afd4925c2 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-gpio.yaml
+@@ -33,6 +33,10 @@ properties:
+       open drain.
+     maxItems: 1
  
- 		for_each_node_by_type(node, "display") {
--			char *buf[14];
-+			char buf[14];
- 			if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
- 				continue;
--			ret = snprintf(buf, "of-display-%d", display_number++);
-+			ret = snprintf(buf, sizeof(buf), "of-display-%d", display_number++);
- 			if (ret >= sizeof(buf))
- 				continue;
- 			of_platform_device_create(node, buf, NULL);
++  i2c-gpio,sda-output-only:
++    description: sda as output only
++    type: boolean
++
+   i2c-gpio,scl-output-only:
+     description: scl as output only
+     type: boolean
+@@ -63,6 +67,28 @@ properties:
+       GPIO line used for SCL into open drain mode, and that something is not
+       the GPIO chip. It is essentially an inconsistency flag.
+ 
++  i2c-gpio,sda-has-no-pullup:
++    type: boolean
++    description: sda is used in a non-compliant way and has no pull-up.
++      Therefore disable open-drain. This property is mutually-exclusive
++      with i2c-gpio,sda-open-drain.
++
++  i2c-gpio,scl-has-no-pullup:
++    type: boolean
++    description: scl is used in a non-compliant way and has no pull-up.
++      Therefore disable open-drain. This property is mutually-exclusive
++      with i2c-gpio,scl-open-drain.
++
++dependencies:
++  i2c-gpio,sda-has-no-pullup:
++    not:
++      required:
++        - i2c-gpio,sda-open-drain
++  i2c-gpio,scl-has-no-pullup:
++    not:
++      required:
++        - i2c-gpio,scl-open-drain
++
+ required:
+   - compatible
+   - sda-gpios
 -- 
-2.35.3
+2.39.0
+
 
