@@ -2,128 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0A4B671EAB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 14:58:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 077B0671EB3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:00:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229593AbjARN6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 08:58:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55676 "EHLO
+        id S231401AbjAROAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:00:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230263AbjARN5h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:57:37 -0500
-Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 749303EC75
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:31:45 -0800 (PST)
-Received: from CHE01-GV0-obe.outbound.protection.outlook.com
- (mail-gv0che01lp2049.outbound.protection.outlook.com [104.47.22.49]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-46-s1ymGKkXOVWoYraluedUCw-1; Wed, 18 Jan 2023 14:31:42 +0100
-X-MC-Unique: s1ymGKkXOVWoYraluedUCw-1
-Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:3b::9) by
- ZR0P278MB0121.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1a::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.24; Wed, 18 Jan 2023 13:31:40 +0000
-Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
- ([fe80::ace5:84e5:2754:a1fa]) by ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
- ([fe80::ace5:84e5:2754:a1fa%2]) with mapi id 15.20.6002.012; Wed, 18 Jan 2023
- 13:31:40 +0000
-From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
-To:     "victor.liu@nxp.com" <victor.liu@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "oliver.graute@kococonnector.com" <oliver.graute@kococonnector.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "abelvesa@kernel.org" <abelvesa@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "eagle.zhou@nxp.com" <eagle.zhou@nxp.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "viorel.suman@nxp.com" <viorel.suman@nxp.com>
-Subject: Re: [PATCH v4 05/17] arm64: dts: imx8qm: add pwm_lvds0/1 support
-Thread-Topic: [PATCH v4 05/17] arm64: dts: imx8qm: add pwm_lvds0/1 support
-Thread-Index: AQHZKw5a0PYjH3Mpn066jFnlaBrRFK6j3NQAgABPcoA=
-Date:   Wed, 18 Jan 2023 13:31:40 +0000
-Message-ID: <d959972f5897f68a468c61bb74cbf89e93efdc5d.camel@toradex.com>
-References: <20230118072656.18845-1-marcel@ziswiler.com>
-         <20230118072656.18845-6-marcel@ziswiler.com>
-         <60f8f656cf466b8fbd8dfe93177119cfa4839b72.camel@nxp.com>
-In-Reply-To: <60f8f656cf466b8fbd8dfe93177119cfa4839b72.camel@nxp.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZR0P278MB0683:EE_|ZR0P278MB0121:EE_
-x-ms-office365-filtering-correlation-id: 627a16bb-7096-4885-6e29-08daf95854de
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0
-x-microsoft-antispam-message-info: 1ibDLpcKcCVXliBo3LwwBKumdcjlHEBOxjVioXCPhH3qCAhmYY5tW0LwMjG/gdUKUyCWCSGV6IfRtM/Z/uoeXxU0bXcxGDtSTOrD0kK7ncKUQMKCtBVsrH4t2Tbhqyh2GFxhhV2xgrQLHTepqlRgvKN51aAtEDJFzS3fCjUM7i01H0aOoyIfjNjdloNaANEdYMIu9RvFtxIu3r0wfaGBfKKfIRuTL+9kS4Lbi4ezj8hwxyQpfj+ZfgH8PL36FJEl4QzJiAQJzh7OYs9UWiSR2T3BQbQX9/AFjh9tkcgZv9YtgGL9PTejq/dIMmJ/Kc0I4ekvVh9WaCK9M4bH6I+9ZkAzcsDsMf8N6lVuwW+h5C4+4FiSk0f7l2wyUdU5pXsoHFzqF01SA9yjjFL4dZgF4XCLajmqGGeZdoXuAJeELowL+uvzmJT3XeL/7shmblyqkJTV36zScme5KFHaw6QNPi8CWGDM1k56DfYL0z0mNh9BE3vE/5Gtc5C1T4lf1Nsohc8sQo6byjjjWNss7yKyilvn1itsnGLiSxVdj5EmG8knuetL+dACFRqsayuUDQwcLo7Qgzb3gE5a1dVVpsFZUzEz3Zl1H37OryNhwgfpiQkFhS4MoUrw1+k00ewKi39zEG1QyXMil5G6xlG9Dw4hky3Fw2ylq6WCbxsFEIs3hGLs6BdkroVnqfNPzqg6UJE3M7UXNoKYyGdQ5a2CDkaxuqEaNI++GEiWb4fpAcEkbl3ONXfr9zDtmPkYMVKt73kD
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39840400004)(136003)(376002)(396003)(366004)(346002)(451199015)(2906002)(966005)(6486002)(86362001)(71200400001)(478600001)(41300700001)(5660300002)(8936002)(36756003)(8676002)(66446008)(66476007)(66946007)(64756008)(4326008)(66556008)(76116006)(44832011)(83380400001)(122000001)(38100700002)(7416002)(6512007)(6506007)(26005)(186003)(2616005)(38070700005)(110136005)(54906003)(316002)(32563001);DIR:OUT;SFP:1102
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QWxOb1ZsdWhUMkpwL0VYMjhKNTdNb2dCOUxLeStGaENsR1kxWGtRVzJiTzl0?=
- =?utf-8?B?OC96dU1GdVdyTHJFMkgzTVF5NmFSSzJUNlJHRWlIdk82MWlNYmdVVE1JQklW?=
- =?utf-8?B?cDVzTXJJMExaUkV5WTQ0WmtyclVEb01LZlIrZjZ1am9YWFVQQzZBd3pwQ2Ju?=
- =?utf-8?B?R2llQmpMa2FEMzlpQ1diajB1bmJ0amdiMCtodlNnd1VDSlAyNGdFdDZHQndG?=
- =?utf-8?B?SHExM1BWN2M0L0V1QVl1M1d1MWhWRDJ0NkhHZ1BGQ3laN3Jhb2hMRWdodXVZ?=
- =?utf-8?B?OUQvbUUyaGtEWTN6UnFieHZPTjlKY0RFQjdDYWZ0WlRFejY1aGRrSDRPWTZ6?=
- =?utf-8?B?YUJyWUVjRVBwY0pnQUNXQ2t4SnRNMHYzY2ZyRXdBS0QyTlRoUTlsR2E1NWtF?=
- =?utf-8?B?M01Nc05EaFowaGpXY3hIQlExRlZCaVRnejRZb0dWQVUvVERuZ1N3MVlZV1B5?=
- =?utf-8?B?djN3M3lCT0VBVTdJVGhwQkhHWXliRkFWNDMxVW5namp5SXlJVnFJSjRpdzN6?=
- =?utf-8?B?UDJEVDRkbjdJMzBEbmYyTzNaNTJHREkwSjRPeVlmU1RlY3ZPMFhhcHA2TVpT?=
- =?utf-8?B?Mk5rYW1jcitvbEZ6QjRybjFaZGU3ZE1nZHMxVUJ5UGtqSjc5dHhyRlJyVjZD?=
- =?utf-8?B?RmJISGx2TGNoeFZrcXRub2ErQzZSUDRzRW9kYTBTNHJ1QnU0RFJRLy9sTnZL?=
- =?utf-8?B?ZDIyeC9GY3VDRGIxTlhLRXp0VWxOaFdqUGdyUlJWUFB4SXoyd3JRc3d5Y0ZP?=
- =?utf-8?B?ZDA1Wkhub2c3cFZqSzhxcXQ2VGFFNDZvY3VRSFFKb3dCdlJMVDFCN3dtZmNk?=
- =?utf-8?B?MHkzQmNRQWJXZmp6QTZNN3kxK1BlU0hvbkp6M2FwbGJCSjRXQnRwbU5vd1NV?=
- =?utf-8?B?TVNXZU1YRldRcDZXZDduMG5kdHU4OS9sc3BSUUhPUU9za2VScjZ6Y1hxcEZZ?=
- =?utf-8?B?RW5aV0FVa3hTVmU0ZDB2SGFXOFFFNUliMHhUN1gzK0pMS2NmenYzektrK2Ev?=
- =?utf-8?B?M3RCMEprWGZZQmF2MWEzamRGQVYzVTJud1dMTGRyem5XaG1COW5HWk41SVdE?=
- =?utf-8?B?RDF3U2wzd3lBWXVHajlhbk8wVndRcE5nRnd0WFB4S0VMNTdoNlZIamFFZUd5?=
- =?utf-8?B?eTRqNXJqd3ZBdVhuZWZRZUNkMnd1Vm5XMndUQ2RNSlRQZ05zRS9td202SmRO?=
- =?utf-8?B?dEtleW5FUHJ4b1ZVOWNzOGRHN2wyY0s4OUxTQWRVZEV4cElWeGJ2OFUrNGY5?=
- =?utf-8?B?UFlvWWtxVENxRDhwdXh0MXhrUTQzZ1VaN0JGUE5xSWx3VU80cThsL0dWbUtW?=
- =?utf-8?B?bnlsTlpXMnBUVlZNcFRZc25LaFg5S08xcnpxWUU3Mi9KTXRMUkQ2T2laTFZQ?=
- =?utf-8?B?MkJSRzdoRHU3M25mOXZ1Z2Z3aFpJVGVheUIyZWNPVFdzd3YvL3JWN3pOcFEx?=
- =?utf-8?B?d2ZMcnFyZTd5bjVBeVlkRmVSdHQvY2ZDMlZYYzIrQ0tvOC9EdWUrMWNJQVgy?=
- =?utf-8?B?dzNUenJuM1ByUzFyUGI2WjFaNXdQR1BhUWtuNFlLTWFRVlQxWnBDUEZ6dW1T?=
- =?utf-8?B?ODJYTi9jV0JEQVppMTZkcVM1ajhqY0Y0YzgvaG10SE9COTFnSnN0NTRucDd2?=
- =?utf-8?B?TW04dEFROTQ3S2haQjFJdmVSaXg5VGtoYUNsR3lvRU1Jb2dwaGdjVzd4ejVr?=
- =?utf-8?B?S0JBcFIrTHN5UFE0VWgrU3EyUEY0NjNJWjZRekJNK3ZFT0dEQjNYQzlIaVV2?=
- =?utf-8?B?ODFha2t5UFRJeW1OV01HTkRkTEl2bDYxV1g0T1B3Q3l6VU4xcDRLOUE0Mktx?=
- =?utf-8?B?eTBORkpJa204R0hHQUNXTlpkRlJ6MVNSMWl5Wkp4YWFvSGJnMHZ6ellpeWcr?=
- =?utf-8?B?dm9HRUhRKzR1TVJRS0tWL2VoM0NJRmgrRFZXVXpLR1lhR1A3Ny83aWwxQWp2?=
- =?utf-8?B?T1JJb0VjUnNDYzMvaGwwMkc3NVhqNUF1ZjdxNmhUZ0RIbWhLSFlTK01zL0ZO?=
- =?utf-8?B?dVM1d3kvUksydnQzUEk0ejBCRlpHZzFnSnJXb1JmREpCaS80dmt4Wlo4a1FX?=
- =?utf-8?B?QXR5VWJVcDJhZXU2bSsxWDVldVNHRS9WbTB0NCswV3NwaG1CaVFyRldiL0Q0?=
- =?utf-8?B?RUVwczQ3R00xb1hDWDZTazhCbHVJTS83QURwSDJVNDFWRWhFOU9GODEraGhP?=
- =?utf-8?Q?r+AFYk1VR+HmG7WEKhMCir0=3D?=
+        with ESMTP id S230390AbjARN7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 08:59:38 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236A0611D8
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:33:49 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id x36so14968034ede.13
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:33:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=m6YsBCiUdWHXbO8fGSyRMt7kg0zwtJIGOYXspzO4lbo=;
+        b=GtmEidBEuF4DHsR9BEnJQKamXAs7Pbt5m8KOrWtyq/dOR/Pkd4XZCz3vJWaGNXKDJT
+         jbpBef/EeWRA2jlWtdQxq6833ydQi/Ou4NT8IzsBj+lwbe41B/r7PicEVU2Uy5XVpqqB
+         rZOpUZWWHFlZVQ6Ot88PizzJXz4b3T3POu4SpQha644cllnuaeAw5+T29fx0kLxL64bd
+         Y9uH9S2c26LXf9aQxu/Dxf8y8yEo78JW2NCwcGQFDfQxPxnD4vAhWwQTyuCcDeJuakFD
+         +y0F9ABs4cW/toNsE4vRhyhH17WnLdTIpz0RvTJQcqGKyXniv+QqUdghF+ffTZjpN7z9
+         Rchw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=m6YsBCiUdWHXbO8fGSyRMt7kg0zwtJIGOYXspzO4lbo=;
+        b=UIyuoce0fmNHJFxh3xSn9cNgasVbgqLCCu+57OfSeDrnNbl1Nzy6f2hXYA6Sb42jAG
+         vpo6dPE/ewjoEcNf883FoZr0RIAfcygHqTMwlwy9en3AfQlMX0yiV4CE08wKqlK8jAGD
+         11wxmEB04pnweqGK9jo5yowIRREMugF9txMPpEORG/9Xq84aCn/LtrwAQvFJqSO9Yejq
+         xfy4ya4BwaeZkHw2pKFmr6zgdtcAJzWnCMJ5yIWw9Fr4PkIbmshYe+eMFAnOn2T60CvY
+         uVWxEQPJaA+j3izzM6N6cAh4N6u3xZAgNfd56BRz9Ht00qc6MxX1Oyt9YkJ5My5TIRNE
+         j1Hg==
+X-Gm-Message-State: AFqh2ko/xsgPDYk5DjEAdpzVeN/JrUaRorrg+Prw9janHnexF4mqDqSN
+        8Fpw4gMa286ApvCCZu3qfzCsEg==
+X-Google-Smtp-Source: AMrXdXsHmxTgFdAi77OZNHUeoWs/efYqbQdZBoc7Kc1hERAXW1nufHROSxQf8x85ZV/I9Rpo7DldWQ==
+X-Received: by 2002:a05:6402:360d:b0:46c:2c94:d30b with SMTP id el13-20020a056402360d00b0046c2c94d30bmr7830919edb.33.1674048827252;
+        Wed, 18 Jan 2023 05:33:47 -0800 (PST)
+Received: from [192.168.1.101] (abxh252.neoplus.adsl.tpnet.pl. [83.9.1.252])
+        by smtp.gmail.com with ESMTPSA id x13-20020aa7cd8d000000b0047e6fdbf81csm14246381edv.82.2023.01.18.05.33.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 05:33:46 -0800 (PST)
+Message-ID: <a84dfe63-1dff-f697-effb-96842221e174@linaro.org>
+Date:   Wed, 18 Jan 2023 14:33:43 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 627a16bb-7096-4885-6e29-08daf95854de
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jan 2023 13:31:40.2179
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: F0qZqyAfeNkrphaqc4Qho9Jg5w+zm7s5oJlb+h8niFqUT+U/JRh+aA2PFV8ZJovfbdd0YjXing+U8RxN4aZLvhpnjYE14n+tK00ejbIOk8U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZR0P278MB0121
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 1/3] arm64: dts: qcom: sm8550: add display hardware
+ devices
 Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230104-topic-sm8550-upstream-dts-display-v3-0-46f0d4e57752@linaro.org>
+ <20230104-topic-sm8550-upstream-dts-display-v3-1-46f0d4e57752@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230104-topic-sm8550-upstream-dts-display-v3-1-46f0d4e57752@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-ID: <0B267A29230EB64581AE99EB6C6A94D7@CHEP278.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -131,154 +79,348 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTGl1CgpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB5b3VyIHZhbHVhYmxlIGZlZWRiYWNrLgoK
-T24gV2VkLCAyMDIzLTAxLTE4IGF0IDE2OjQ3ICswODAwLCBMaXUgWWluZyB3cm90ZToKPiBIaSBN
-YXJjZWwsCj4gCj4gT24gV2VkLCAyMDIzLTAxLTE4IGF0IDA4OjI2ICswMTAwLCBNYXJjZWwgWmlz
-d2lsZXIgd3JvdGU6Cj4gPiBGcm9tOiBMaXUgWWluZyA8dmljdG9yLmxpdUBueHAuY29tPgo+ID4g
-Cj4gPiBUaGlzIHBhdGNoIGFkZHMgcHdtX2x2ZHMwLzEgc3VwcG9ydCB0b2dldGhlciB3aXRoIGEK
-PiA+IGkuTVggOFFNIExWRFMgc3Vic3lzdGVtIGRldmljZSB0cmVlLgo+ID4gCj4gPiBTaWduZWQt
-b2ZmLWJ5OiBMaXUgWWluZyA8dmljdG9yLmxpdUBueHAuY29tPgo+ID4gU2lnbmVkLW9mZi1ieTog
-TWFyY2VsIFppc3dpbGVyIDxtYXJjZWwuemlzd2lsZXJAdG9yYWRleC5jb20+Cj4gPiAKPiA+IC0t
-LQo+ID4gCj4gPiBDaGFuZ2VzIGluIHY0Ogo+ID4gLSBOZXcgcGF0Y2ggY29tYmluaW5nIHRoZSBm
-b2xsb3dpbmcgZG93bnN0cmVhbSBwYXRjaGVzIGxpbWl0dGVkIHRvCj4gPiBMVkRTCj4gPiDCoCBQ
-V00gZnVuY3Rpb25hbGl0eSBmb3Igbm93Ogo+ID4gwqAgY29tbWl0IDAzNmM2YjI4YTE4NiAoImFy
-bTY0OiBpbXg4cW0uZHRzaTogQWRkIExWRFMwLzEgc3Vic3lzdGVtcwo+ID4gc3VwcG9ydCIpCj4g
-PiDCoCBjb21taXQgYzNkMjk2MTFkOWQ0ICgiYXJtNjQ6IGlteDhxbS1zcy1sdmRzLmR0c2k6IEFk
-ZCBwd21fbHZkczAvMQo+ID4gc3VwcG9ydCIpCj4gPiDCoCBjb21taXQgYmFmMWIwZjIyZjhhICgi
-TEYtODgyLTEgYXJtNjQ6IGlteDhxbS1zcy1sdmRzLmR0c2k6IFNlcGFyYXRlCj4gPiBpcGcgY2xv
-Y2sgZm9yIGx2ZHMwLzEgc3Vic3lzdGVtcyIpCj4gCj4gU29ycnksIEkgZG9uJ3QgdGhpbmsgdGhl
-IGRvd25zdHJlYW0gcGF0Y2hlcyBhcmUgZG9pbmcgdGhpbmdzIGNvcnJlY3QuCj4gVGhlIGJpZ2dl
-c3QgcHJvYmxlbSBpcyB0aGF0IHRoZSBsdmRzIHJlbGF0ZWQgZGV2aWNlcyBzaG91bGQgYmUgY2hp
-bGQKPiBkZXZpY2VzIG9mIGRpc3BsYXkgc3Vic3lzdGVtIHBpeGVsIGxpbmsgTVNJIGJ1cyBkZXZp
-Y2UoU2VlIGJlbG93Cj4gY29tbWVudHMpLgoKUmVtZW1iZXIsIEkgZXZlbiBpbnF1aXJlZCBhYm91
-dCB0aGlzIFsxXSBidXQgZGlkIG5vdCBnZXQgYW55IGZlZWRiYWNrICh5ZXQpLgoKPiBJIGhhdmUg
-bG9jYWwgcGF0Y2hlcyB0byBhZGQgc29tZSBsdmRzIHJlbGF0ZWQgZGV2aWNlcyB3aGljaCBoYXZl
-bid0Cj4gYmVlbiBzdWJtaXR0ZWQuCgpBcyBtZW50aW9uZWQgYmVmb3JlLCBJIHdvdWxkIGJlIHZl
-cnkgaW50ZXJlc3RlZCBpbiBhY3R1YWxseSB0ZXN0aW5nIHN1Y2ggYW5kIGdpdmluZyBob3BlZnVs
-bHkgdmFsdWFibGUKZmVlZGJhY2suCgo+ID4gwqAuLi4vYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhx
-bS1zcy1sdmRzLmR0c2nCoMKgwqAgfCA4Mwo+ID4gKysrKysrKysrKysrKysrKysrKwo+ID4gwqBh
-cmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cW0uZHRzacKgwqDCoMKgIHzCoCAxICsK
-PiA+IMKgMiBmaWxlcyBjaGFuZ2VkLCA4NCBpbnNlcnRpb25zKCspCj4gPiDCoGNyZWF0ZSBtb2Rl
-IDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cW0tc3MtbHZkcy5kdHNp
-Cj4gPiAKPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
-cW0tc3MtbHZkcy5kdHNpCj4gPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhx
-bS1zcy1sdmRzLmR0c2kKPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gPiBpbmRleCAwMDAwMDAw
-MDAwMDAuLjRiOTQwZmMzYzg5MAo+ID4gLS0tIC9kZXYvbnVsbAo+ID4gKysrIGIvYXJjaC9hcm02
-NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHFtLXNzLWx2ZHMuZHRzaQo+ID4gQEAgLTAsMCArMSw4
-MyBAQAo+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wKwo+ID4gKy8qCj4g
-PiArICogQ29weXJpZ2h0IDIwMjMgTlhQCj4gPiArICovCj4gPiArCj4gPiArLyB7Cj4gPiArwqDC
-oMKgwqDCoMKgwqBsdmRzMV9zdWJzeXM6IGJ1c0A1NjI0MDAwMCB7Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJzaW1wbGUtYnVzIjsKPiAKPiBJbiBteSBs
-b2NhbCBwYXRjaGVzLCB0aGVyZSBpcyBubyAnbHZkc3swLDF9X3N1YnN5cycuIEluc3RlYWQsIGx2
-ZHMKPiByZWxhdGVkIGRldmljZXMgYXJlIGNoaWxkIGRldmljZXMgb2YgJ2RjezAsMX1fcGxfbXNp
-X2J1cycgYnVzZXMsCj4gc29tZXRoaW5nIGxpa2UgdGhpczoKPiAKPiBJbiBpbXg4cW0tc3MtZGMu
-ZHRzaToKPiAmZGMwX3N1YnN5cyB7Cj4gwqDCoMKgwqDCoMKgwqAgZGMwX3BsX21zaV9idXM6IGJ1
-c0A1NjIwMDAwMCB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUg
-PSAiZnNsLGlteDhxbS1kaXNwbGF5LXBpeGVsLWxpbmstbXNpLWJ1cyIsCj4gInNpbXBsZS1wbS1i
-dXMiOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjYWRkcmVzcy1jZWxscyA9IDwx
-PjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI3NpemUtY2VsbHMgPSA8MT47Cj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9IDwweDU2MjAwMDAwIDB4MjAwMDA+
-Owo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHQtcGFyZW50ID0gPCZk
-YzBfaXJxc3RlZXI+OwoKQ29uY2VybmluZyBpcnFzdGVlciBJIHdhcyB1bnN1cmUgYWJvdXQgd2hl
-dGhlciBvciBub3QgYWxsIHRoaXMgaXMgYWxyZWFkeSB1cHN0cmVhbS4gQXQgbGVhc3QgdGhlIGRl
-dmljZSB0cmVlCnBhcnRzIHNlZW0gbWlzc2luZy4KCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIGludGVycnVwdHMgPSA8MzIwPjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgcmFuZ2VzOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9ja3MgPSA8JmRj
-MF9kaXNwX2N0cmxfbGlua19tc3QwX2xwY2cKPiBJTVhfTFBDR19DTEtfND4sCgpJIGJlbGlldmUg
-dGhvc2UgSU1YX0xQQ0dfQ0xLXyBhcmUgaW5kaWNlcyBvbmx5LiBCdXQgbW9yZSBvbiB0aGF0IGZ1
-cnRoZXIgYmVsb3cuCgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCA8JmRjMF9kaXNwX2N0cmxfbGlua19tc3QwX2xwY2cKPiBJTVhfTFBDR19DTEtfND47
-Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNsb2NrLW5hbWVzID0gIm1zaSIsICJh
-aGIiOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwb3dlci1kb21haW5zID0gPCZw
-ZCBJTVhfU0NfUl9EQ18wPjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RhdHVz
-ID0gImRpc2FibGVkIjsKPiDCoMKgwqDCoMKgwqDCoCB9Owo+IH07Cj4gCj4gSW4gaW14OHFtLXNz
-LWx2ZHMuZHRzaToKPiAmZGMwX3BsX21zaV9idXMgewo+IMKgwqDCoMKgwqDCoMKgIGx2ZHMwX2ly
-cXN0ZWVyOiBpbnRlcnJ1cHQtY29udHJvbGxlckA1NjI0MDAwMCB7Cj4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiZnNsLGlteC1pcnFzdGVlciI7Cj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC4uLgo+IMKgwqDCoMKgwqDCoMKgIH07Cj4gCj4gwqDC
-oMKgwqDCoMKgwqAgbHZkczBfY3NyOiBidXNANTYyNDEwMDAgewo+IMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImZzbCxpbXg4cW0tbHZkcy1jc3IiLCAic3lzY29u
-IiwgInNpbXBsZS0KPiBwbS1idXMiOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-Li4uCj4gwqDCoMKgwqDCoMKgwqDCoH07Cj4gCj4gwqDCoMKgwqDCoMKgwqDCoGx2ZHMwX3B3bV9s
-cGNnOiBjbG9jay1jb250cm9sbGVyQDU2MjQzMDBjIHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgY29tcGF0aWJsZSA9ICJmc2wsaW14OHFtLWxwY2ciLCAiZnNsLGlteDhxeHAtbHBj
-ZyI7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAuLi4KPiDCoMKgwqDCoMKgwqDC
-oMKgfTsKPiAKPiDCoMKgwqDCoMKgwqDCoMKgbHZkczBfcHdtOiBwd21ANTYyNDQwMDAgewo+IMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImZzbCxpbXg4cW0tcHdt
-IiwgImZzbCxpbXgyNy1wd20iOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLi4u
-Cj4gwqDCoMKgwqDCoMKgwqDCoH07Cj4gfTsKPiAKPiBUaGUgYmVsb3cgcGF0Y2ggaXMgbmVlZGVk
-IHRvIHVzZSBjbG9ja3MgZm9yIHBpeGVsIGxpbmsgTVNJIGJ1cyBhcyBhCj4gc2ltcGxlLXBtLWJ1
-cy4KPiAKPiAKPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzIwMjIxMjI2MDMxNDE3LjEw
-NTY3NDUtMS12aWN0b3IubGl1QG54cC5jb20vdC8KPiAKPiAiZnNsLGlteDhxbS1sdmRzLWNzciIg
-bmVlZHMgdG8gYmUgYWRkZWQgaW50byBzaW1wbGVfcG1fYnVzX29mX21hdGNoW10KPiBpbiBzaW1w
-bGUtcG0tYnVzLmMuCgpPa2F5LCBJIHdhcyBub3QgYXdhcmUgb2YgdGhhdC4KCj4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3MtY2VsbHMgPSA8MT47Cj4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI3NpemUtY2VsbHMgPSA8MT47Cj4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgcmFuZ2VzID0gPDB4NTYyNDAwMDAgMHgwIDB4NTYyNDAwMDAg
-MHgxMDAwMD47Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbHZkczBf
-aXBnX2NsazogY2xvY2stbHZkcy1pcGcgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2Nsb2NrLWNlbGxzID0g
-PDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBj
-bG9jay1mcmVxdWVuY3kgPSA8MjQwMDAwMDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9jay1vdXRwdXQtbmFtZXMgPSAibHZkczBfaXBnX2Ns
-ayI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiA+ICsKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBsdmRzMF9wd21fbHBjZzogY2xvY2stY29udHJvbGxl
-ckA1NjI0MzAwYyB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoGNvbXBhdGlibGUgPSAiZnNsLGlteDhxbS1scGNnIjsKPiAKPiBTaG91bGQgbGlzdCAi
-ZnNsLGlteDhxeHAtbHBjZyIgYXMgb25lIGl0ZW0gYXMgd2VsbCwgc2luY2UgaW14OHF4cC0KPiBs
-cGNnLnlhbWwgbWVudGlvbnMgaXQuCgpBZ3JlZWQuCgo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MHg1NjI0MzAwYyAweDQ+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAjY2xvY2stY2VsbHMg
-PSA8MT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGNsb2NrcyA9IDwmY2xrIElNWF9TQ19SX0xWRFNfMF9QV01fMAo+ID4gSU1YX1NDX1BNX0NMS19Q
-RVI+LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIDwmbHZkczBfaXBnX2Nsaz47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2NrLWluZGljZXMgPSA8SU1YX0xQQ0dfQ0xL
-XzA+LAo+ID4gPElNWF9MUENHX0NMS180PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgY2xvY2stb3V0cHV0LW5hbWVzID0gImx2ZHMwX3B3bV9scGNn
-X2NsayIsCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImx2ZHMwX3B3bV9scGNn
-X2lwZ19jbGsiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqBwb3dlci1kb21haW5zID0gPCZwZCBJTVhfU0NfUl9MVkRTXzBfUFdNXzA+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgcHdtX2x2ZHMwOiBwd21ANTYyNDQwMDAgewo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gImZzbCxpbXgy
-Ny1wd20iOwo+IAo+IE5lZWQgdG8gZG9jdW1lbnQgImZzbCxpbXg4cW0tcHdtIiBpbiBpbXgtcHdt
-LnlhbWwgYW5kIGxpc3QgaXQgaW4gdGhlCj4gY29tcGF0aWJsZSBzdGluZyBoZXJlLgoKQnV0IHNv
-IGZhciBubyBzdWNoICJmc2wsaW14OHFtLXB3bSIgZXhpc3RzIGFueXdoZXJlLiBJcyBpdCByZWFs
-bHkgcmVxdWlyZWQ/Cgo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqByZWcgPSA8MHg1NjI0NDAwMCAweDEwMDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9ja3MgPSA8Jmx2ZHMwX3B3bV9scGNnIDA+
-LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIDwmbHZkczBfcHdtX2xwY2cgMT47Cj4gCj4gSW4gbXkgbG9jYWwgcGF0Y2hl
-cywgSSBzZXQgdGhlIGNsb2NrcyBwcm9wZXJ0eSBhczoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgY2xvY2tzID0gPCZsdmRzMF9wd21fbHBjZyBJTVhfTFBDR19DTEtfMD4sCj4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDwmbHZkczBfcHdt
-X2xwY2cgSU1YX0xQQ0dfQ0xLXzQ+Owo+IAo+IEknbSBub3Qgc3VyZSBpZiBpdCBpcyBjb3JyZWN0
-IG5vdy4KCkkgZG91YnQgYXMgdGhvc2UgSU1YX0xQQ0dfQ0xLXyBhcmUgZGVmaW5lcyBmb3IgdGhl
-IGluZGljZXMgZS5nLiBJTVhfTFBDR19DTEtfNCBhY3R1YWxseSBpcyAxNiBhbmQgbm90IDEgKG9y
-IDQpCig7LXApLgoKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgY2xvY2stbmFtZXMgPSAicGVyIiwgImlwZyI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGFzc2lnbmVkLWNsb2NrcyA9IDwmY2xrIElNWF9T
-Q19SX0xWRFNfMF9QV01fMAo+ID4gSU1YX1NDX1BNX0NMS19QRVI+Owo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBhc3NpZ25lZC1jbG9jay1yYXRlcyA9
-IDwyNDAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCNwd20tY2VsbHMgPSA8Mj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoHBvd2VyLWRvbWFpbnMgPSA8JnBkIElNWF9TQ19SX0xWRFNfMF9Q
-V01fMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oHN0YXR1cyA9ICJkaXNhYmxlZCI7Cj4gCj4gSW4gbXkgbG9jYWwgcGF0Y2hlcywgdGhpcyBub2Rl
-IGhhcyB0aGUgYmVsb3cgaW50ZXJydXB0IHJlbGF0ZWQKPiBwcm9wZXJ0aWVzOgo+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHQtcGFyZW50ID0gPCZsdmRzMF9pcnFzdGVl
-cj47Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGludGVycnVwdHMgPSA8MTI+OwoK
-QXMgbWVudGlvbmVkIGFib3ZlIG15IGZhbWlsaWFyaXR5IHdpdGggaXJxc3RlZXIgaXMgZmFyIGZy
-b20gY29tcGxldGUuIFBsdXMgaW50ZXJlc3RpbmdseSBmb3IgbWUgdGhpcyBMVkRTIFBXTQphY3R1
-YWxseSByZWFsbHkgd29ya3Mgd2l0aG91dCBpbnRlcnJ1cHRzLiBOb3Qgc3VyZSB3aGV0aGVyIG9y
-IG5vdCBvciB3aGF0IGV4YWN0bHkgbWlnaHQgbm90ICJmdWxseSIgd29yawp3aXRob3V0LgoKPiA+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgfTsK
-PiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoGx2ZHMyX3N1YnN5czogYnVzQDU3MjQwMDAwIHsKPiAK
-PiBBYm92ZSBjb21tZW50cyBhcHBseSBmb3IgJ2x2ZHMyX3N1YnN5cycgc2ltaWxhcmx5Lgo+IAo+
-IFsuLi5dCj4gCj4gUmVnYXJkcywKPiBMaXUgWWluZwoKWzFdIGh0dHBzOi8vbG9yZS5rZXJuZWwu
-b3JnL2FsbC81NDliZjFmMjZiODIxMmRlMmQ0ODkwYTI3ZTM5NjI1MDI1N2FhMDI3LmNhbWVsQHRv
-cmFkZXguY29tLwoKQ2hlZXJzCgpNYXJjZWwK
 
+
+On 18.01.2023 09:55, Neil Armstrong wrote:
+> Add devices tree nodes describing display hardware on SM8550:
+> - Display Clock Controller
+> - MDSS
+> - MDP
+> - two DSI controllers and DSI PHYs
+> 
+> This does not provide support for DP controllers present on the SM8550.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 299 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 299 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 3d47281a276b..a76ee4e50854 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -6,6 +6,7 @@
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/clock/qcom,sm8550-gcc.h>
+>  #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
+> +#include <dt-bindings/clock/qcom,sm8550-dispcc.h>
+>  #include <dt-bindings/dma/qcom-gpi.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> @@ -1727,6 +1728,304 @@ opp-202000000 {
+>  			};
+>  		};
+>  
+> +		mdss: display-subsystem@ae00000 {
+> +			compatible = "qcom,sm8550-mdss";
+> +			reg = <0 0x0ae00000 0 0x1000>;
+> +			reg-names = "mdss";
+> +
+> +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <1>;
+> +
+> +			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +				 <&gcc GCC_DISP_AHB_CLK>,
+> +				 <&gcc GCC_DISP_HF_AXI_CLK>,
+> +				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> +
+> +			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
+> +
+> +			power-domains = <&dispcc MDSS_GDSC>;
+> +
+> +			interconnects = <&mmss_noc MASTER_MDP 0 &gem_noc SLAVE_LLCC 0>,
+> +				        <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
+> +			interconnect-names = "mdp0-mem", "mdp1-mem";
+> +
+> +			iommus = <&apps_smmu 0x1c00 0x2>;
+> +
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			status = "disabled";
+> +
+> +			mdss_mdp: display-controller@ae01000 {
+> +				compatible = "qcom,sm8550-dpu";
+> +				reg = <0 0x0ae01000 0 0x8f000>,
+> +				      <0 0x0aeb0000 0 0x2008>;
+> +				reg-names = "mdp", "vbif";
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <0>;
+> +
+> +				clocks = <&gcc GCC_DISP_AHB_CLK>,
+> +					<&gcc GCC_DISP_HF_AXI_CLK>,
+> +					<&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					<&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
+> +					<&dispcc DISP_CC_MDSS_MDP_CLK>,
+> +					<&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+I think it's misindented..
+
+
+> +				clock-names = "bus",
+> +					      "nrt_bus",
+> +					      "iface",
+> +					      "lut",
+> +					      "core",
+> +					      "vsync";
+> +
+> +				power-domains = <&rpmhpd SM8550_MMCX>;
+> +
+> +				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> +				assigned-clock-rates = <19200000>;
+> +
+> +				operating-points-v2 = <&mdp_opp_table>;
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						dpu_intf1_out: endpoint {
+> +							remote-endpoint = <&mdss_dsi0_in>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						dpu_intf2_out: endpoint {
+> +							remote-endpoint = <&mdss_dsi1_in>;
+> +						};
+> +					};
+> +				};
+> +
+> +				mdp_opp_table: opp-table {
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-200000000 {
+> +						opp-hz = /bits/ 64 <200000000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-325000000 {
+> +						opp-hz = /bits/ 64 <325000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-375000000 {
+> +						opp-hz = /bits/ 64 <375000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +
+> +					opp-514000000 {
+> +						opp-hz = /bits/ 64 <514000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+> +					};
+> +				};
+> +			};
+> +
+> +			mdss_dsi0: dsi@ae94000 {
+> +				compatible = "qcom,mdss-dsi-ctrl";
+> +				reg = <0 0x0ae94000 0 0x400>;
+> +				reg-names = "dsi_ctrl";
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <4>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_ESC0_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&gcc GCC_DISP_HF_AXI_CLK>;
+> +				clock-names = "byte",
+> +					      "byte_intf",
+> +					      "pixel",
+> +					      "core",
+> +					      "iface",
+> +					      "bus";
+> +
+> +				power-domains = <&rpmhpd SM8550_MMCX>;
+> +
+> +				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
+Please wrap here and in dsi1
+
+
+With these 2:
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+> +				assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
+> +
+> +				operating-points-v2 = <&mdss_dsi_opp_table>;
+> +
+> +				phys = <&mdss_dsi0_phy>;
+> +				phy-names = "dsi";
+> +
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						mdss_dsi0_in: endpoint {
+> +							remote-endpoint = <&dpu_intf1_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						mdss_dsi0_out: endpoint {
+> +						};
+> +					};
+> +				};
+> +
+> +				mdss_dsi_opp_table: opp-table {
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-187500000 {
+> +						opp-hz = /bits/ 64 <187500000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-300000000 {
+> +						opp-hz = /bits/ 64 <300000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-358000000 {
+> +						opp-hz = /bits/ 64 <358000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +				};
+> +			};
+> +
+> +			mdss_dsi0_phy: phy@ae95000 {
+> +				compatible = "qcom,sm8550-dsi-phy-4nm";
+> +				reg = <0 0x0ae95000 0 0x200>,
+> +				      <0 0x0ae95200 0 0x280>,
+> +				      <0 0x0ae95500 0 0x400>;
+> +				reg-names = "dsi_phy",
+> +					    "dsi_phy_lane",
+> +					    "dsi_pll";
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&rpmhcc RPMH_CXO_CLK>;
+> +				clock-names = "iface", "ref";
+> +
+> +				#clock-cells = <1>;
+> +				#phy-cells = <0>;
+> +
+> +				status = "disabled";
+> +			};
+> +
+> +			mdss_dsi1: dsi@ae96000 {
+> +				compatible = "qcom,mdss-dsi-ctrl";
+> +				reg = <0 0x0ae96000 0 0x400>;
+> +				reg-names = "dsi_ctrl";
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <5>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_PCLK1_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_ESC1_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&gcc GCC_DISP_HF_AXI_CLK>;
+> +				clock-names = "byte",
+> +					      "byte_intf",
+> +					      "pixel",
+> +					      "core",
+> +					      "iface",
+> +					      "bus";
+> +
+> +				power-domains = <&rpmhpd SM8550_MMCX>;
+> +
+> +				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
+> +				assigned-clock-parents = <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>;
+> +
+> +				operating-points-v2 = <&mdss_dsi_opp_table>;
+> +
+> +				phys = <&mdss_dsi1_phy>;
+> +				phy-names = "dsi";
+> +
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						mdss_dsi1_in: endpoint {
+> +							remote-endpoint = <&dpu_intf2_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						mdss_dsi1_out: endpoint {
+> +						};
+> +					};
+> +				};
+> +			};
+> +
+> +			mdss_dsi1_phy: phy@ae97000 {
+> +				compatible = "qcom,sm8550-dsi-phy-4nm";
+> +				reg = <0 0x0ae97000 0 0x200>,
+> +				      <0 0x0ae97200 0 0x280>,
+> +				      <0 0x0ae97500 0 0x400>;
+> +				reg-names = "dsi_phy",
+> +					    "dsi_phy_lane",
+> +					    "dsi_pll";
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&rpmhcc RPMH_CXO_CLK>;
+> +				clock-names = "iface", "ref";
+> +
+> +				#clock-cells = <1>;
+> +				#phy-cells = <0>;
+> +
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		dispcc: clock-controller@af00000 {
+> +			compatible = "qcom,sm8550-dispcc";
+> +			reg = <0 0x0af00000 0 0x20000>;
+> +			clocks = <&bi_tcxo_div2>,
+> +				 <&bi_tcxo_ao_div2>,
+> +				 <&gcc GCC_DISP_AHB_CLK>,
+> +				 <&sleep_clk>,
+> +				 <&mdss_dsi0_phy 0>,
+> +				 <&mdss_dsi0_phy 1>,
+> +				 <&mdss_dsi1_phy 0>,
+> +				 <&mdss_dsi1_phy 1>,
+> +				 <0>, /* dp0 */
+> +				 <0>,
+> +				 <0>, /* dp1 */
+> +				 <0>,
+> +				 <0>, /* dp2 */
+> +				 <0>,
+> +				 <0>, /* dp3 */
+> +				 <0>;
+> +			power-domains = <&rpmhpd SM8550_MMCX>;
+> +			required-opps = <&rpmhpd_opp_low_svs>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +			status = "disabled";
+> +		};
+> +
+>  		pdc: interrupt-controller@b220000 {
+>  			compatible = "qcom,sm8550-pdc", "qcom,pdc";
+>  			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
+> 
