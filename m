@@ -2,93 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27265671EE2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:06:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 728A2671EE8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Jan 2023 15:08:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230181AbjAROGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 09:06:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32836 "EHLO
+        id S231166AbjAROIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 09:08:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230310AbjAROGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:06:31 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA002A5798;
-        Wed, 18 Jan 2023 05:42:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 237186181D;
-        Wed, 18 Jan 2023 13:42:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 497EEC433F0;
-        Wed, 18 Jan 2023 13:42:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674049364;
-        bh=aF1vAtO//C1XF9AQ5nzlkEx0tMeil3RfjeIi7EtuUu0=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ihZWz81pyWzvJdsvlvz4m8Ur7xAg8Dde58yOtNO3Ha+GUPucbyX9r/Ik+lN6Gsz6K
-         2AlQoLLjPYqAHppLT8Z+Y/MNGth0EfNLR9FWeJvHQyw6CVBblMhzu31K+e7JzUHb2t
-         KzlBcRwsLNb6QPjFuWXF42CzdfFUewsRu1Y6ZClJhBMU47Jjzory8CvZdpSmbm4yxI
-         jmnSEPMjJAmf7BQepzSPMdIi2K5RrbSs99f2Bp9ViHp0k3TVDOTTeWWyB13WFEwGGW
-         e9FbBMXQJoQdqYLoMJa1PP/tojDac3ekIn3ESdu+HcmedkbdXrS1PhiqGd/RSXz4Uy
-         ZhfAMuhtLFYuA==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, Faiz Abbas <faiz.abbas@arm.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, Anurag.Koul@arm.com,
-        Deepak.Pandey@arm.com
-In-Reply-To: <20230117061808.18422-1-faiz.abbas@arm.com>
-References: <20230117061808.18422-1-faiz.abbas@arm.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: simple-card: Document
- simple-audio-card,plat
-Message-Id: <167404935974.749539.3058245186501349723.b4-ty@kernel.org>
-Date:   Wed, 18 Jan 2023 13:42:39 +0000
+        with ESMTP id S230267AbjAROIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 09:08:02 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07740A838B
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:44:13 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id tz11so18932078ejc.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 05:44:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0Dh0QLLZzta5LKG1zmma3eIkQGyszm+yGfi2ZxnY8pA=;
+        b=TwCNCRUBe+6um3oYvtnga0duZE0bo0MKFCPyFy2a269oi7MNc0D4Ln0nQsc01r1dFF
+         W7sNPKNQpT93Mx2YcaUeCWEfu/hLBXNc9n/4A5PsDeNpHH+iMvfc3tkowpA1A25yxVHv
+         cADATgM2Hf5AS9ZzYEjvQw+bmIL4zi3+pl8K95KBPmgR/lOZ9GnRF+4nWuT7RftBqrp6
+         NobVwEwYqMmmw9FT80MU7GVuNx4F0ZeSQyajJpn0J31PLt7ELmmHD9HiPIIEtrLJL/AX
+         nYFcUlEj6QUyZ/J9WIibHWOR4cv/CQ4rfjK4RYtRxumD/WlEYNXwmfHyk2V1nZBZ+MDS
+         Y4oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0Dh0QLLZzta5LKG1zmma3eIkQGyszm+yGfi2ZxnY8pA=;
+        b=iIADh9Qzs5GrQODLfJjTPKUmfG1XT7poggyclEqsfs4g0ZRQYORLjFgbIKP3QbaXII
+         +O65JFddJbR9ECr6CUM/qVxGAExozbQ5QawsjvbA68qtSu+rBWUg9f3jMk2B2CcxQxd8
+         xpd7yvzYnOHJv2aNbnHcIGcR9X5Y32hIEqFBMrVfPvIdR3g7E1ov/H6EvmzYtWz/n8Kx
+         2ZeDZivhrQx0DCrn2tCOYbNOEBGix1JxVUx8RhrzJLWrOHF8BHpMKMmyqj9VCUgDH0xB
+         6mCSLOJhTMT853p4SpgLEjtpdMvmtR1tXxOsdmK9nVUyMAvPvG0yP4QlnrZpnDc7Ixrn
+         DK6Q==
+X-Gm-Message-State: AFqh2ko8T2EnVcWr2vqRbKizaJputr661fJKUGpGblrCX3TcCfvI9KYy
+        fp4Z0H5i38ZotgHPC8SaR9TNYbJv0vbK3zl1
+X-Google-Smtp-Source: AMrXdXsbkgf2ylb56IUty71Eu7bxQxGqm5DhzImRcE3FZmcy5YZL4PQNGjPS7eTdbK3G7hvaLZ/nWA==
+X-Received: by 2002:a17:906:8154:b0:866:d17a:e50 with SMTP id z20-20020a170906815400b00866d17a0e50mr6825572ejw.70.1674049451589;
+        Wed, 18 Jan 2023 05:44:11 -0800 (PST)
+Received: from [192.168.1.101] (abxh252.neoplus.adsl.tpnet.pl. [83.9.1.252])
+        by smtp.gmail.com with ESMTPSA id k2-20020a170906970200b0073dbaeb50f6sm14507622ejx.169.2023.01.18.05.44.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 05:44:10 -0800 (PST)
+Message-ID: <2382c5f5-f57d-1fc6-497c-b355aed08036@linaro.org>
+Date:   Wed, 18 Jan 2023 14:44:06 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: msm8996: add CBF device entry
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230117225824.1552604-1-dmitry.baryshkov@linaro.org>
+ <20230117225824.1552604-7-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230117225824.1552604-7-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12-dev-77e06
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Jan 2023 11:48:08 +0530, Faiz Abbas wrote:
-> The simple card driver already has support for a simple-audio-card,plat
-> property but its not reflected in the documentation. Add documentation
-> for this plat property.
+
+
+On 17.01.2023 23:58, Dmitry Baryshkov wrote:
+> Add device tree node for the CBF clock.
 > 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 150d13c0f4b8..7d8e31b84959 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -3562,6 +3562,13 @@ saw3: syscon@9a10000 {
+>  			reg = <0x09a10000 0x1000>;
+>  		};
+>  
+> +		cbf: clock-controller@9a11000 {
+> +			compatible = "qcom,msm8996-cbf";
+> +			reg = <0x09a11000 0x10000>;
+> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&apcs_glb>;
+This should be RPM_SMD_XO_A_CLK_SRC, downstream consumes cxo_ao.
 
-Applied to
-
-   broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: dt-bindings: simple-card: Document simple-audio-card,plat
-      commit: e7e2b92e609f82cd164209509f852de941e1285b
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Konrad
+> +			#clock-cells = <0>;
+> +		};
+> +
+>  		intc: interrupt-controller@9bc0000 {
+>  			compatible = "qcom,msm8996-gic-v3", "arm,gic-v3";
+>  			#interrupt-cells = <3>;
