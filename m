@@ -2,245 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F62967316B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 06:56:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A337673171
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 06:58:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbjASF4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 00:56:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41444 "EHLO
+        id S230022AbjASF6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 00:58:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjASF4F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 00:56:05 -0500
-Received: from out28-194.mail.aliyun.com (out28-194.mail.aliyun.com [115.124.28.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6049F10B;
-        Wed, 18 Jan 2023 21:56:00 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.0744085|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0161519-0.00312963-0.980718;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047190;MF=frank.sae@motor-comm.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.QwzW1nf_1674107754;
-Received: from 10.0.2.15(mailfrom:Frank.Sae@motor-comm.com fp:SMTPD_---.QwzW1nf_1674107754)
-          by smtp.aliyun-inc.com;
-          Thu, 19 Jan 2023 13:55:56 +0800
-Message-ID: <50e59ffd-aa52-4fde-c2b5-f5ce1dc64c95@motor-comm.com>
-Date:   Thu, 19 Jan 2023 13:56:44 +0800
+        with ESMTP id S230041AbjASF6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 00:58:13 -0500
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E9A1BED
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 21:58:10 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id d9so1342474pll.9
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 21:58:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NqoJEjKcl3UOYqd7SPQRjzEP7ckIMaJAKD1OzGpEQKw=;
+        b=hzqrmcOWUVXCz5l2YZEAhL2A7qelvCmWkLTe/GpehR2IISgGvRw4CcXkt11epZaZjM
+         HafMdnpe3P6+JZK+Tzp/817fzzFvgFEEvEdmIw4vSnO5zwAnSqCIsvOK9uAevfnYRn2r
+         vW+RX6F1mHr4dvllfGArzC4Pta6oOf6A0XIRQjAdu+cFbs0b5Uts0JWckJhu+f0xeO1H
+         3GnES/v2G6SEtPgoMIjxqZxxzYjUIhCICb66I+eoK3Trwe9pD6UOyxC+8d8pxylk0QcZ
+         iE2kXCkKWx1YdhLxwiOY2EWVP5qMLthknpVSe1tRj2Rn/akGdxc6rJs7nOIRJZFEAISj
+         Xv9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NqoJEjKcl3UOYqd7SPQRjzEP7ckIMaJAKD1OzGpEQKw=;
+        b=XTufbSKO7QS42XVZV6JpYnEXgGx4qnvlcnacr4UV0fcEtSRxTO6HDMnRmPgb2zQbIu
+         d+PFPaWj54YfJDMDHy6Y9SFV3tR+m7uhDgSp0bvE+nQ43Q1pvRdwM3Laz4STVsI4UIOI
+         rHhc+7fJriuqbxCLhew4h/3uFmqxxmQ6VWZ/kNPvv9tr4DreJYdMW2eC/SItunLUtFio
+         G8bzc9lKwHFMaItoJI3HsvOgM+lzI9uoFPnd5TiQoubZT5DmlNuNcm+ub42Sac6efaSQ
+         MOquKFsoRuG96/fsNe4n6Yryyw8+60WZITA36Ax0/ZfXSXCLaLzupBad4akz3yeTekyZ
+         EUAg==
+X-Gm-Message-State: AFqh2koFWfU7oK6hHPZmTNcuggopMojJhnp+mGPnRV/cadPpxARrQhKH
+        W/94mtv3TXMUo/+tcrddLWTKcw==
+X-Google-Smtp-Source: AMrXdXssNyzCzGULvihUFdc0LouhxBz/1PBL4DSn/DIblNtvXTi0WFwPkCvDNqLvH1BSIbWe7wlrGw==
+X-Received: by 2002:a17:902:a514:b0:194:476b:1af0 with SMTP id s20-20020a170902a51400b00194476b1af0mr9729302plq.65.1674107889637;
+        Wed, 18 Jan 2023 21:58:09 -0800 (PST)
+Received: from ?IPV6:2401:4900:1c60:63d3:2d69:9f71:187e:f085? ([2401:4900:1c60:63d3:2d69:9f71:187e:f085])
+        by smtp.gmail.com with ESMTPSA id k6-20020a170902c40600b0017f8094a52asm7109120plk.29.2023.01.18.21.58.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 21:58:08 -0800 (PST)
+Message-ID: <ee2dea71-771b-a574-1016-14c357a215d3@linaro.org>
+Date:   Thu, 19 Jan 2023 11:28:04 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH net-next v1 1/3] dt-bindings: net: Add Motorcomm yt8xxx
- ethernet phy Driver bindings
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Peter Geis <pgwipeout@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
-        hua.sun@motor-comm.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230105073024.8390-1-Frank.Sae@motor-comm.com>
- <20230105073024.8390-2-Frank.Sae@motor-comm.com> <Y7bN4vJXMi66FF6v@lunn.ch>
- <e762c7ac-63e7-a86e-3e3f-5c8a450b25b0@motor-comm.com>
- <Y7goXXiRBE6XHuCc@lunn.ch>
- <83fd7a69-7e6a-ab93-b05a-4eba8af4d245@motor-comm.com>
- <Y8f254xNPdtR8gq1@lunn.ch>
+ Thunderbird/102.3.1
+Subject: Re: [PATCH] dt-bindings: qcom: geni-se: Fix '#address-cells' &
+ '#size-cells' related dt-binding error
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20230113201038.267449-1-bhupesh.sharma@linaro.org>
+ <aef753a5-e8b1-5b7b-1b9e-e92a84de15bd@linaro.org>
+ <CAH=2Ntx5rLWu4jzXV8DwKj+yweHPRqb4+Rv8uZpDn_brWDxyJg@mail.gmail.com>
+ <b9aa6d30-5fe8-57a9-e478-c99bca70d185@linaro.org>
+ <CAH=2Nty2gUL3DufowzHavhUNdeht2dcX4EU7ooM+xzax2vP7uQ@mail.gmail.com>
+ <20230119032332.w5in5zmoyavi2s45@builder.lan>
 Content-Language: en-US
-From:   "Frank.Sae" <Frank.Sae@motor-comm.com>
-In-Reply-To: <Y8f254xNPdtR8gq1@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <20230119032332.w5in5zmoyavi2s45@builder.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hi Bjorn,
 
-On 2023/1/18 21:40, Andrew Lunn wrote:
-> On Wed, Jan 11, 2023 at 05:20:18PM +0800, Frank.Sae wrote:
->> Hi Andrew,
->>
->> On 2023/1/6 21:55, Andrew Lunn wrote:
->>>>> Why is this needed? When the MAC driver connects to the PHY, it passes
->>>>> phy-mode. For RGMII, this is one of:
->>>>
->>>>> linux/phy.h:	PHY_INTERFACE_MODE_RGMII,
->>>>> linux/phy.h:	PHY_INTERFACE_MODE_RGMII_ID,
->>>>> linux/phy.h:	PHY_INTERFACE_MODE_RGMII_RXID,
->>>>> linux/phy.h:	PHY_INTERFACE_MODE_RGMII_TXID,
+On 1/19/23 8:53 AM, Bjorn Andersson wrote:
+> On Mon, Jan 16, 2023 at 09:13:12PM +0530, Bhupesh Sharma wrote:
+>> On Mon, 16 Jan 2023 at 13:23, Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>> On 15/01/2023 22:33, Bhupesh Sharma wrote:
+>>>> On Sun, 15 Jan 2023 at 20:57, Krzysztof Kozlowski
+>>>> <krzysztof.kozlowski@linaro.org> wrote:
 >>>>>
->>>>> This tells you if you need to add a delay for the RX clock line, the
->>>>> TX clock line, or both. That is all you need to know for basic RGMII
->>>>> delays.
+>>>>> On 13/01/2023 21:10, Bhupesh Sharma wrote:
+>>>>>> Fix the following '#address-cells' & '#size-cells' related
+>>>>>> dt-binding error:
+>>>>>>
+>>>>>>     $ make dtbs_check
+>>>>>>
+>>>>>>     From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+>>>>>>          arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dtb: geniqup@4ac0000:
+>>>>>>                #address-cells:0:0: 2 was expected
+>>>>>>        From schema: Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
 >>>>>
+>>>>> Don't we want rather to unify the soc address range?
 >>>>
->>>> This basic delay can be controlled by hardware or the phy-mode which
->>>> passes from MAC driver.
->>>> Default value depends on power on strapping, according to the voltage
->>>> of RXD0 pin (low = 0, turn off;   high = 1, turn on).
->>>>
->>>> Add this for the case that This basic delay is controlled by hardware,
->>>> and software don't change this.
+>>>> Well, the assumption in the original dt-bindings was that every reg
+>>>> variable is 4 * u32 wide (as most new qcom SoCs set #address- and
+>>>> #size-cells to <2>). However, that is not the case for all of the
+>>>> SoCs.
 >>>
->>> You should always do what phy-mode contains. Always. We have had
->>> problems in the past where a PHY driver ignored the phy-mode, and left
->>> the PHY however it was strapped. Which worked. But developers put the
->>> wrong phy-mode value in DT. Then somebody had a board which actually
->>> required that the DT value really did work, because the strapping was
->>> wrong. So the driver was fixed to respect the PHY mode, made that
->>> board work, and broke all the other boards which had the wrong
->>> phy-mode in DT.
->>>
->>> If the user want the driver to leave the mode alone, use the
->>> strapping, they should use PHY_INTERFACE_MODE_NA. It is not well
->>> documented, but it is used in a few places. However, i don't recommend
->>> it.
->>>
+>>> Hm, which device of that SoC cannot be used with address/size cells 2?
 >>
->> RX delay = rx-delay-basic (0ns or 1.9ns) + x-delay-additional-ps
->> (N*150ps, N = 0 ~ 15)
->>  If rx-delay-basic is removed and controlled by phy-mode.
->>  when phy-mode is  rgmii-id or rgmii-rxid, RX delay is 1.9ns + N*150ps.
->>  But sometimes 1.9ns is still too big, we just need  0ns + N*150ps.
+>> As noted in the git log already the geniqup on sm6115 / sm4250 cannot
+>> be used with address/size cells 2 (See:
+>> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/sm6115.dtsi#L795)
 >>
->> For this case, can we do like following ?
->> rx-internal-delay-ps:
->>     enum: [ 0, 150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500,
->> 1650, 1800, 1900, 1950, 2050, 2100, 2200, 2250, 2350, 2500, 2650, 2800,
->> 2950, 3100, 3250, 3400, 3550, 3700, 3850, 4000, 4150 ]
->>     default: 0
->>  rx-internal-delay-ps is 0ns + N*150ps and  1.9ns + N*150ps.
->>  And check whether need rx-delay-basic (1.9ns) by the val of
->> rx-internal-delay-ps?
 > 
-> Please take a look at phy_get_internal_delay() and the drivers which
-> use it.
+> I'm not able to find the reasoning you're referring to. We do have cells
+> of 2 for these nodes on all other platforms.  If there is a specific
+> problem, that can be documented and you can probably use ranges to
+> reduce keep the cells of 1 in the geni wrappers.
 > 
->     Andrew
+> 
+> The reason why we have cells = 2 on most platforms is because the SMMU
+> reports that it's capable of more address bits than the buses will
+> handle. So without cells = 2, we can't describe dma-ranges appropriately
+> and you get page faults due to truncated addresses on the bus when the
+> iommu iova has been picking addresses for you.
 
- Thanks. But it may be not suitable.
+Consolidating the replies to your, Krzysztof's and Rob's observations / 
+suggestions here..
 
-rx-internal-delay-ps has two part:
-0ns + N*150ps =
-0,150,300,450,600,750,900,1050,1200,1350,1500,1650,1800,1950,2100,2250
+Yes, the original background to the problem was that I observed that for
+the sm6115 based Qualcomm board with me, if I was using 36-bit DMA 
+configuration with a few IP blocks (like SDHC), I was seeing some issues.
 
-1.9ns + N*150ps =
-1900,2050,2200,2350,2500,2650,2800,2950,3100,3250,3400,3550,3700,3850,4000,4150
+But, Konrad observed in [1] that it works fine for me on the sm6115 
+based Lenovo tab, so I agree to his suggestions and may be he can help
+send the '2-cell-ification' patch he has working, in which case I think
+we can drop this patch.
 
-The problem is "1900,2050,2200" is less than "2250".
+@Konrad, please feel free to share the patch you were mentioning and I 
+can help test it as well.
 
-If I take this two parts in one sorted table, there will be three
-tables, one for tx-internal-delay-ps, one for rx-internal-delay-ps and
-one for the rx index to reg(delay value and 1.9ns on or off) value.
+[1]. 
+https://lore.kernel.org/linux-arm-msm/09fe3e93-328b-13a3-540b-4ca47224b176@linaro.org/
 
-So we tend to use the following methods.
-
-#define YT8521_CCR_RXC_DLY_1_900_NS		1900
-
-#define YT8521_RC1R_RGMII_0_000_NS		0
-#define YT8521_RC1R_RGMII_0_150_NS		1
-...
-#define	YT8521_RC1R_RGMII_2_250_NS		15
-
-struct ytphy_cfg_reg_map {
-	u32 cfg;
-	u32 reg;
-};
-
-static const struct ytphy_cfg_reg_map ytphy_rgmii_delays[] = {
-	/* for tx delay / rx delay with YT8521_CCR_RXC_DLY_EN is not set. */
-	{ 0,	YT8521_RC1R_RGMII_0_000_NS },
-	{ 150,	YT8521_RC1R_RGMII_0_150_NS },
-	...
-	{ 2250,	YT8521_RC1R_RGMII_2_250_NS },
-
-	/* only for rx delay with YT8521_CCR_RXC_DLY_EN is set. */
-	{ 0    + YT8521_CCR_RXC_DLY_1_900_NS,YT8521_RC1R_RGMII_0_000_NS },
-	{ 150  + YT8521_CCR_RXC_DLY_1_900_NS,YT8521_RC1R_RGMII_0_150_NS },
-	...
-	{ 2250 + YT8521_CCR_RXC_DLY_1_900_NS,YT8521_RC1R_RGMII_2_250_NS }
-};
-
-
-static u32 ytphy_get_delay_reg_value(struct phy_device *phydev,
-				     const char *prop_name,
-				     const struct ytphy_cfg_reg_map *tbl,
-				     int tb_size,
-				     u16 *rxc_dly_en,
-				     u32 dflt)
-{
-	struct device_node *node = phydev->mdio.dev.of_node;
-	int tb_size_half = tb_size / 2;
-	u32 val;
-	int i;
-
-	if (of_property_read_u32(node, prop_name, &val))
-		return dflt;
-
-	/* when rxc_dly_en is NULL, it is get the delay for tx, only half of
-	 * tb_size is valid.
-	 */
-	if (!rxc_dly_en)
-		tb_size = tb_size_half;
-
-	for (i = 0; i < tb_size; i++) {
-		if (tbl[i].cfg == val) {
-			if (rxc_dly_en && i < tb_size_half)
-				*rxc_dly_en = 0;
-			return tbl[i].reg;
-		}
-	}
-
-	phydev_warn(phydev, "Unsupported value %d for %s using default (%u)\n",
-		    val, prop_name, dflt);
-	return dflt;
-}
-
-static int ytphy_rgmii_clk_delay_config(struct phy_device *phydev)
-{
-	int tb_size = ARRAY_SIZE(ytphy_rgmii_delays);
-	u16 rxc_dly_en = YT8521_CCR_RXC_DLY_EN;
-	u32 rx_reg, tx_reg;
-	u16 mask, val = 0;
-	int ret;
-
-	rx_reg = ytphy_get_delay_reg_value(phydev, "rx-internal-delay-ps",
-					   ytphy_rgmii_delays, tb_size,
-					   &rxc_dly_en,
-					   YT8521_RC1R_RGMII_0_000_NS);
-	tx_reg = ytphy_get_delay_reg_value(phydev, "tx-internal-delay-ps",
-					   ytphy_rgmii_delays, tb_size, NULL,
-					   YT8521_RC1R_RGMII_0_150_NS);
-
-	switch (phydev->interface) {
-	case PHY_INTERFACE_MODE_RGMII:
-		rxc_dly_en = 0;
-		break;
-	case PHY_INTERFACE_MODE_RGMII_RXID:
-		val |= FIELD_PREP(YT8521_RC1R_RX_DELAY_MASK, rx_reg);
-		break;
-	case PHY_INTERFACE_MODE_RGMII_TXID:
-		rxc_dly_en = 0;
-		val |= FIELD_PREP(YT8521_RC1R_GE_TX_DELAY_MASK, tx_reg);
-		break;
-	case PHY_INTERFACE_MODE_RGMII_ID:
-		val |= FIELD_PREP(YT8521_RC1R_RX_DELAY_MASK, rx_reg) |
-		       FIELD_PREP(YT8521_RC1R_GE_TX_DELAY_MASK, tx_reg);
-		break;
-	default: /* do not support other modes */
-		return -EOPNOTSUPP;
-	}
-
-	ret = ytphy_modify_ext(phydev, YT8521_CHIP_CONFIG_REG,
-			       YT8521_CCR_RXC_DLY_EN, rxc_dly_en);
-	if (ret < 0)
-		return ret;
-
-	/* Generally, it is not necessary to adjust YT8521_RC1R_FE_TX_DELAY */
-	mask = YT8521_RC1R_RX_DELAY_MASK | YT8521_RC1R_GE_TX_DELAY_MASK;
-	return ytphy_modify_ext(phydev, YT8521_RGMII_CONFIG1_REG, mask, val);
-}
+Thanks,
+Bhupesh
