@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FA35673CA9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:46:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D23C673CB0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:46:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231410AbjASOqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 09:46:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35876 "EHLO
+        id S231192AbjASOqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 09:46:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231140AbjASOqQ (ORCPT
+        with ESMTP id S230231AbjASOqQ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:46:16 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 339FE8758A
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:29 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id bk15so6195658ejb.9
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:29 -0800 (PST)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1937E84571
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:30 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id mp20so6219387ejc.7
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9KHL7S0sw0CegFriPkOF815DSWCPV/UoYSgl9XlgPOY=;
-        b=rI60sDSpn5RzojNYOrqgO+epm0kV/SqZlHJaYJpL6rOLd4quu6COOI4QQUxn5hDufC
-         wvmpYBA/n8ZesJA7fGa7GhyhbgTciGXVbP1c8V13I52l04+WA+1jUasLeBfgqJmcF718
-         s269U+eS5Llwb+cIpfDxvv91RIB09MRX/sWALY/+aquNq4o/rYhBk9codbUErbq0hkE8
-         drfuRyZeIXKOD/SdTJKPsilXpYHSpwhQ262iyh+/hQ7CNfK1PKMLWHbKB5YTnEzsMIbG
-         MBwLpmeCMkQByoLOUtGZ7VAdi0/DHPPRYqSmzRigksJDvM1VNXWrX4xKODVHFpsdmOw/
-         SkPw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BYSomJedHVK5BgX0m4rXPBquuvOf7ReCuCFfsJfS4GM=;
+        b=maYfXj04Xta4w0c1XO9/IR+Q/80pEhaWzVXWYBoOct1f3Sdy80UbFN5a71VtlJwzN6
+         qOMGNf1dsLuSi82WDnzTm5AjMdRDrrqK68tjaI0Zd2iVLpzrdsFRK6gn7cbe3CNKZMbi
+         9X7MPlHezHVBxbm5JqrG6MzU/4XrbKX5b0LBEFMWblzHSPDiDoK8BDbe66P5ZQUMPtjZ
+         vpWuVk6hJP42tUsJsXZ8MfYzpNiTnESTDeEkmG0wM0alylVlXDuHNH3tI23kNTuir3QY
+         9VRkVVVGr7WHgFD0yapCyVcvW0w3VhzLpa8VJyVpHvvzUoISzbHVjeeUxrCLuHOogaXM
+         EuVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9KHL7S0sw0CegFriPkOF815DSWCPV/UoYSgl9XlgPOY=;
-        b=UeHdQT8aYYrUOdnFXMSogpilOVSClDRdbz/AmXYxnbIM5NPz9HcxvbB9+a5RfAy9IG
-         dzBl44zRj7Gw4z7Ak1t+rMJlcTFqNrCWTXEv5gN7h7HugHonNcmRTiOrfe1Xm+KkRE/W
-         Yey0F281Bakz3GQW+Urt13LQHY8dTxemJ6VTL+hp2quigX9oI1ZaXHHfRhXZCAn5d7dL
-         3opFWzjAQTgI7Uvbp2N2aCMTUFD6aiQMzl1kfLKimFNgxzxILoOebnqxBUgjgsxCEh/T
-         t1lLHOpb/zcYxvRXdI4FpKBofOhVkEqx7wbHiHE0lEb46mOYCmUOsd0IMsTEIUg7PT8x
-         d12w==
-X-Gm-Message-State: AFqh2kokF+kItCbFg6A0Hphtjbdu59dsJnvc8T/zCY8KBhpfX7QGpEBp
-        JpSoJvAUJ6rYjXpReabnvSuuBQ==
-X-Google-Smtp-Source: AMrXdXvKKXPY95QPENbEySgQE55aRaDebl+PjzRWVQqS4XzsL/YEJ8XskLiETVUXqdvkKsyyCLtJWQ==
-X-Received: by 2002:a17:907:b610:b0:7c0:d23c:ead3 with SMTP id vl16-20020a170907b61000b007c0d23cead3mr12951464ejc.27.1674139407713;
-        Thu, 19 Jan 2023 06:43:27 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BYSomJedHVK5BgX0m4rXPBquuvOf7ReCuCFfsJfS4GM=;
+        b=3Mc9RcqLqorxEP+S2KClBp1lfp+2N7eITb3D6cElQQlUQP8z22LpFZ+a+NOoq39k6m
+         gClifX8nlDkiALWfnCQCsPLxHX8v8+hcgqeWVjtsHJU4Vbb5FjTI0XSLuAGlVgMcUZUt
+         YYaPLtsIyWbwq3RVroa69ZGrZCOlikDBS5aB7Hbn9EH6RZ64b8DyICstCnAZ/ZzQGhvb
+         w05VyhudA9jJzTzyksnzwRxI96HaVoQme3PxUTzb/buzl0y61Ne5pgD2lrBKMm9ox22M
+         Y1JGoPbNPPxnajYACZZkrIJ8flAIHGK8+vdOAmuoYj8WhqVl5HDS2aZ0J38FZ8Q2zH0F
+         sfpA==
+X-Gm-Message-State: AFqh2kosth43L0fF5IPWvNlfuCnqyUPrRtKSi5Ud70Qm/vHW2jgt8v4r
+        Wd+BhqpcHwu+t70hvNV4ImJgMg==
+X-Google-Smtp-Source: AMrXdXup0qQiB3Ms0hDsfnIUU0B2wvk2sx0H2sklDz6S7UZmvU+vwHYHlGYSoH9Y5m6ZXk0i+lopRA==
+X-Received: by 2002:a17:907:6746:b0:871:2051:637a with SMTP id qm6-20020a170907674600b008712051637amr12847347ejc.60.1674139408688;
+        Thu, 19 Jan 2023 06:43:28 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id fn4-20020a1709069d0400b0084d4b907ff8sm13434169ejc.120.2023.01.19.06.43.26
+        by smtp.gmail.com with ESMTPSA id fn4-20020a1709069d0400b0084d4b907ff8sm13434169ejc.120.2023.01.19.06.43.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 06:43:27 -0800 (PST)
+        Thu, 19 Jan 2023 06:43:28 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,11 +58,13 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         "James E.J. Bottomley" <jejb@linux.ibm.com>,
         "Martin K. Petersen" <martin.petersen@oracle.com>,
-        linux-scsi@vger.kernel.org
-Subject: [PATCH 0/2] arm64/msm8996: enable UFS interconnect
-Date:   Thu, 19 Jan 2023 16:43:24 +0200
-Message-Id: <20230119144326.2492847-1-dmitry.baryshkov@linaro.org>
+        linux-scsi@vger.kernel.org, Brian Masney <bmasney@redhat.com>
+Subject: [PATCH 1/2] scsi: ufs: ufs-qcom: add basic interconnect support
+Date:   Thu, 19 Jan 2023 16:43:25 +0200
+Message-Id: <20230119144326.2492847-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230119144326.2492847-1-dmitry.baryshkov@linaro.org>
+References: <20230119144326.2492847-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,21 +77,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8996 requires a vote on UFS interconnects to work in a stable manner.
-The first patch is a rework of older patch from Brian, see [1]
+From: Brian Masney <bmasney@redhat.com>
 
-[1] https://lore.kernel.org/all/20221117104957.254648-2-bmasney@redhat.com/
+The firmware on the Qualcomm platforms expects the interconnect votes to
+be present. Let's add very basic support where the maximum throughput is
+requested to match what's done in a few other drivers.
 
-Brian Masney (1):
-  scsi: ufs: ufs-qcom: add basic interconnect support
+This will not break boot on systems where the interconnects and
+interconnect-names properties are not specified in device tree for UFS
+since the interconnect framework will silently return.
 
-Dmitry Baryshkov (1):
-  arm64: dts: qcom: msm8996: enable UFS interconnects
+Signed-off-by: Brian Masney <bmasney@redhat.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ drivers/ufs/host/ufs-qcom.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
- arch/arm64/boot/dts/qcom/msm8996.dtsi |  4 ++++
- drivers/ufs/host/ufs-qcom.c           | 26 ++++++++++++++++++++++++++
- 2 files changed, 30 insertions(+)
-
+diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
+index 8ad1415e10b6..8267a4056120 100644
+--- a/drivers/ufs/host/ufs-qcom.c
++++ b/drivers/ufs/host/ufs-qcom.c
+@@ -14,6 +14,7 @@
+ #include <linux/gpio/consumer.h>
+ #include <linux/reset-controller.h>
+ #include <linux/devfreq.h>
++#include <linux/interconnect.h>
+ 
+ #include <ufs/ufshcd.h>
+ #include "ufshcd-pltfrm.h"
+@@ -936,6 +937,23 @@ static const struct reset_control_ops ufs_qcom_reset_ops = {
+ 	.deassert = ufs_qcom_reset_deassert,
+ };
+ 
++static int ufs_qcom_icc_init(struct device *dev, char *pathname,
++		u32 avg_bw, u32 peak_bw)
++{
++	struct icc_path *path;
++	int ret;
++
++	path = devm_of_icc_get(dev, pathname);
++	if (IS_ERR(path))
++		return dev_err_probe(dev, PTR_ERR(path), "failed to acquire interconnect path\n");
++
++	ret = icc_set_bw(path, avg_bw, peak_bw);
++	if (ret < 0)
++		return dev_err_probe(dev, ret, "failed to set bandwidth request\n");
++
++	return 0;
++}
++
+ /**
+  * ufs_qcom_init - bind phy with controller
+  * @hba: host controller instance
+@@ -1005,6 +1023,14 @@ static int ufs_qcom_init(struct ufs_hba *hba)
+ 	ufs_qcom_get_controller_revision(hba, &host->hw_ver.major,
+ 		&host->hw_ver.minor, &host->hw_ver.step);
+ 
++	err = ufs_qcom_icc_init(dev, "ufs-ddr", 4096000, 0);
++	if (err)
++		goto out_variant_clear;
++
++	err = ufs_qcom_icc_init(dev, "cpu-ufs", 1000, 0);
++	if (err)
++		goto out_variant_clear;
++
+ 	/*
+ 	 * for newer controllers, device reference clock control bit has
+ 	 * moved inside UFS controller register address space itself.
 -- 
 2.39.0
 
