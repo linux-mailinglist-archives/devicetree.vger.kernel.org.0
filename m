@@ -2,48 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE2716731E3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 07:42:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D313067324F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 08:20:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229593AbjASGmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 01:42:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55714 "EHLO
+        id S229482AbjASHUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 02:20:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbjASGmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 01:42:06 -0500
-X-Greylist: delayed 70 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 18 Jan 2023 22:42:00 PST
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4046766030
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 22:41:51 -0800 (PST)
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 20230119064044b0e13deb8c513ebeab
-        for <devicetree@vger.kernel.org>;
-        Thu, 19 Jan 2023 07:40:44 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=jan.kiszka@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=Dcf04xi6uIGTMAmtMttis/LhQI/XZantTrG75v5MBDg=;
- b=JFCIapROzfeUfZKj6a5ldtMdKtjYEQcrb5E5mpVEdOKiEMKhHcCCc5DLWgk2OvR/ZdqWac
- K7Rgrl9pjjulBenOQ4BzBLURiha86YskK8burnXG5JmIG5N3r7OexFGN4+du9KpWcI/IvLW3
- vGiwOHT/H/qw6T+Z/oNci0dUtXR3Y=;
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-Subject: [PATCH v2 3/3] arm64: dts: ti: iot2050: Add support for M.2 variant
-Date:   Thu, 19 Jan 2023 07:40:42 +0100
-Message-Id: <878e3a023767b5a6d9d2cff09015678aaba13fce.1674110442.git.jan.kiszka@siemens.com>
-In-Reply-To: <cover.1674110442.git.jan.kiszka@siemens.com>
-References: <cover.1674110442.git.jan.kiszka@siemens.com>
+        with ESMTP id S229590AbjASHUn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 02:20:43 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 300EC53E75
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 23:20:40 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id fl11-20020a05600c0b8b00b003daf72fc844so2946246wmb.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 23:20:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=EonMWt4N08H4pcq7W9DgoBt7pacxKJTS9n8ZU1ACaR4=;
+        b=c5k888DHCMgwj2p4c7VKB+53hbN8QqUUGD+eq4cBJ9SFiF/Lcsd2MBJc6I+F/CglPN
+         TSHD5ijJMGyCKkf8ZgRZxEUVgGHTVq6170KaXg7gnYBHlJvVAyAjam/Hp/T4I6RiVuB7
+         TWHXbsgI7BqheCpGU6MPZOhYHQVXZxIK54s9NeSXWMSgxU+TkALp6He4GOjDEgd4BlE6
+         822Cuvr+uUPA/zcB3X5loJ7MfWIgMGisEfZlN2ZcSvT7UenCQkSEYtIf6HjfoZmaBYwk
+         acTxloUojf3EbUtOlGH+zsgWf4s2kiqpP7Hc6FrBklnpn+KcNBmD7rGwm7CjmVkBmUdO
+         jPuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EonMWt4N08H4pcq7W9DgoBt7pacxKJTS9n8ZU1ACaR4=;
+        b=re046cpx97FBGnPpkYMflKcIVTxUhLcDHkaYxHOvQ8HN9TTdiFR51ZqChhlW3f+iHI
+         K64x+grgOgyTT3VwQqOXsYNWk1oEoCVlU7GiYoscwafBsc1aWeKVFGB1ACtfYxAtmc56
+         V8ZJKhHGaHbKXRokEbX0peaaDkP26MMTvozpg9Jet/6F5SfLNlIQSSJ8VIMPm+TgE+jb
+         F2DDCW2tb7mK3YSPDgwF0wX6uEcuLLi+9jLh9sZFbIkQx1CAy2mncPqTeCT6YwFprPz8
+         HFVwdaa/Ftrs4M+c6d8cpwR/GdS5++Q1wAef7+iMItwhB1lDfUdBgTSQrva0NEc9Bamr
+         21sA==
+X-Gm-Message-State: AFqh2koYX3RO4U7WG8gaC44iFHwIo5BwyKOtOEbsfGaECKJ/N8VmnRfE
+        JLoGsKZRelRrKCuhAJJCxU5hHg==
+X-Google-Smtp-Source: AMrXdXvWsSpXnziYInRsyzHlCtWTCvH0LOIewncRqr3HS2r29MSj6gXsgc/2gLu1d+ZnN7zjC8CbUA==
+X-Received: by 2002:a05:600c:4f8d:b0:3d3:3d1b:6354 with SMTP id n13-20020a05600c4f8d00b003d33d1b6354mr5351090wmq.3.1674112838626;
+        Wed, 18 Jan 2023 23:20:38 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:3936:d49c:4a01:ee1e? ([2a01:e0a:982:cbb0:3936:d49c:4a01:ee1e])
+        by smtp.gmail.com with ESMTPSA id l23-20020a05600c1d1700b003db0dbbea53sm4488667wms.30.2023.01.18.23.20.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 23:20:38 -0800 (PST)
+Message-ID: <ad80f09b-3e05-ac71-b471-2b0279eb5ae6@linaro.org>
+Date:   Thu, 19 Jan 2023 08:20:35 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-294854:519-21489:flowmailer
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/2] spi: dt-bindings: drop unneeded quotes
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        =?UTF-8?Q?C=c3=a9dric_Le_Goat?= =?UTF-8?Q?er?= <clg@kaod.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>, Han Xu <han.xu@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Li-hao Kuo <lhjeff911@gmail.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Parshuram Thombare <pthombar@cadence.com>,
+        Leilk Liu <leilk.liu@mediatek.com>,
+        Gabor Juhos <juhosg@openwrt.org>,
+        Bert Vermeulen <bert@biot.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Marek Vasut <marex@denx.de>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Pragnesh Patel <pragnesh.patel@sifive.com>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Erwan Leray <erwan.leray@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20230118173932.358153-1-krzysztof.kozlowski@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230118173932.358153-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -52,167 +143,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: chao zeng <chao.zeng@siemens.com>
+On 18/01/2023 18:39, Krzysztof Kozlowski wrote:
+> Cleanup by removing unneeded quotes from refs and redundant blank lines.
+> No functional impact except adjusting to preferred coding style.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../bindings/spi/allwinner,sun4i-a10-spi.yaml  |  2 +-
+>   .../bindings/spi/allwinner,sun6i-a31-spi.yaml  |  2 +-
+>   .../bindings/spi/amlogic,meson-gx-spicc.yaml   |  6 +++---
+>   .../bindings/spi/amlogic,meson6-spifc.yaml     |  6 +++---
 
-The M.2 variant comes with 2 slots, one B-keyed and another one E-keyed.
-They are configured by the firmware during startup. Also the device tree
-will be adjusted according to the detect or manually configured
-interface mode by the firmware. The kernel only carries a single
-configuration as base device tree. It has to be built with a symbols
-node so that the firmware can apply overlays for the connector modes.
+For meson changes:
 
-Signed-off-by: chao zeng <chao.zeng@siemens.com>
-[Jan: refactored to a single DT]
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
----
- arch/arm64/boot/dts/ti/Makefile               |   3 +
- .../dts/ti/k3-am6548-iot2050-advanced-m2.dts  | 121 ++++++++++++++++++
- 2 files changed, 124 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index cf7c509538a4..bfb16b62c58d 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -10,8 +10,11 @@ dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
- 
-+DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-+
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
-new file mode 100644
-index 000000000000..9400e35882a6
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
-@@ -0,0 +1,121 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2018-2023
-+ *
-+ * Authors:
-+ *   Chao Zeng <chao.zeng@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * AM6548-based (quad-core) IOT2050 M.2 variant (based on Advanced Product
-+ * Generation 2), 2 GB RAM, 16 GB eMMC, USB-serial converter on connector X30
-+ *
-+ * Product homepage:
-+ * https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-+ */
-+
-+#include "k3-am6548-iot2050-advanced-common.dtsi"
-+#include "k3-am65-iot2050-common-pg2.dtsi"
-+
-+/ {
-+	compatible = "siemens,iot2050-advanced-m2", "ti,am654";
-+	model = "SIMATIC IOT2050 Advanced M2";
-+};
-+
-+&mcu_r5fss0 {
-+	/* lock-step mode not supported on this board */
-+	ti,cluster-mode = <0>;
-+};
-+
-+&main_pmx0 {
-+	main_m2_enable_pins_default: main-m2-enable-pins-default {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x01c4, PIN_INPUT_PULLUP, 7)  /* (AH13) GPIO1_17 */
-+		>;
-+	};
-+
-+	main_bkey_pcie_reset: main-bkey-pcie-reset {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x01bc, PIN_OUTPUT_PULLUP, 7)  /* (AG13) GPIO1_15 */
-+		>;
-+	};
-+
-+	main_pmx0_m2_config_pins_default: main-pmx0-m2-config-pins-default {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x01c8, PIN_INPUT_PULLUP, 7)  /* (AE13) GPIO1_18 */
-+			AM65X_IOPAD(0x01cc, PIN_INPUT_PULLUP, 7)  /* (AD13) GPIO1_19 */
-+		>;
-+	};
-+
-+	main_m2_pcie_mux_control: main-m2-pcie-mux-control {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x0148, PIN_INPUT_PULLUP, 7)  /* (AG22) GPIO0_82 */
-+			AM65X_IOPAD(0x0160, PIN_INPUT_PULLUP, 7)  /* (AE20) GPIO0_88 */
-+			AM65X_IOPAD(0x0164, PIN_INPUT_PULLUP, 7)  /* (AF19) GPIO0_89 */
-+		>;
-+	};
-+};
-+
-+&main_pmx1 {
-+	main_pmx1_m2_config_pins_default: main-pmx1-m2-config-pins-default {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x0018, PIN_INPUT_PULLUP, 7)  /* (B22) GPIO1_88 */
-+			AM65X_IOPAD(0x001c, PIN_INPUT_PULLUP, 7)  /* (C23) GPIO1_89 */
-+		>;
-+	};
-+};
-+
-+&main_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <
-+		&main_m2_pcie_mux_control
-+		&arduino_io_d4_to_d9_pins_default
-+	>;
-+};
-+
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <
-+		&main_m2_enable_pins_default
-+		&main_pmx0_m2_config_pins_default
-+		&main_pmx1_m2_config_pins_default
-+		&cp2102n_reset_pin_default
-+	>;
-+};
-+
-+/*
-+ * Base configuration for B-key slot with PCIe x2, E-key with USB 2.0 only.
-+ * Firmware switches to other modes via device tree overlays.
-+ */
-+
-+&serdes0 {
-+	assigned-clocks = <&k3_clks 153 4>, <&serdes0 AM654_SERDES_CMU_REFCLK>;
-+	assigned-clock-parents = <&k3_clks 153 8>, <&k3_clks 153 4>;
-+};
-+
-+&pcie0_rc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_bkey_pcie_reset>;
-+
-+	num-lanes = <2>;
-+	phys = <&serdes0 PHY_TYPE_PCIE 1>, <&serdes1 PHY_TYPE_PCIE 1>;
-+	phy-names = "pcie-phy0","pcie-phy1";
-+	reset-gpios = <&main_gpio1 15 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+};
-+
-+&pcie1_rc {
-+	status = "disabled";
-+};
-+
-+&dwc3_0 {
-+	assigned-clock-parents = <&k3_clks 151 4>,  /* set REF_CLK to 20MHz i.e. PER0_PLL/48 */
-+				 <&k3_clks 151 9>;  /* set PIPE3_TXB_CLK to CLK_12M_RC/256 (for HS only) */
-+	/delete-property/ phys;
-+	/delete-property/ phy-names;
-+};
-+
-+&usb0 {
-+	maximum-speed = "high-speed";
-+	/delete-property/ snps,dis-u1-entry-quirk;
-+	/delete-property/ snps,dis-u2-entry-quirk;
-+};
--- 
-2.35.3
+>   .../bindings/spi/aspeed,ast2600-fmc.yaml       |  2 +-
+>   .../devicetree/bindings/spi/cdns,qspi-nor.yaml |  2 +-
+>   .../devicetree/bindings/spi/cdns,xspi.yaml     |  6 +++---
+>   .../bindings/spi/fsl,spi-fsl-qspi.yaml         |  2 +-
+>   .../devicetree/bindings/spi/fsl-imx-cspi.yaml  |  2 +-
+>   .../bindings/spi/mediatek,spi-mt65xx.yaml      |  2 +-
+>   .../spi/mediatek,spi-slave-mt27xx.yaml         |  2 +-
+>   .../bindings/spi/mikrotik,rb4xx-spi.yaml       |  2 +-
+>   .../bindings/spi/mxicy,mx25f0a-spi.yaml        |  2 +-
+>   .../devicetree/bindings/spi/mxs-spi.yaml       |  2 +-
+>   .../bindings/spi/nvidia,tegra210-quad.yaml     |  2 +-
+>   .../bindings/spi/qcom,spi-qcom-qspi.yaml       |  5 ++---
+>   .../bindings/spi/realtek,rtl-spi.yaml          |  2 +-
+>   .../bindings/spi/snps,dw-apb-ssi.yaml          |  2 +-
+>   .../devicetree/bindings/spi/spi-cadence.yaml   |  2 +-
+>   .../devicetree/bindings/spi/spi-fsl-lpspi.yaml |  2 +-
+>   .../devicetree/bindings/spi/spi-gpio.yaml      |  4 ++--
+>   .../devicetree/bindings/spi/spi-mux.yaml       |  4 ++--
+>   .../devicetree/bindings/spi/spi-nxp-fspi.yaml  |  2 +-
+>   .../devicetree/bindings/spi/spi-pl022.yaml     | 18 +++++++++---------
+>   .../devicetree/bindings/spi/spi-rockchip.yaml  |  2 +-
+>   .../devicetree/bindings/spi/spi-sifive.yaml    |  6 +++---
+>   .../bindings/spi/spi-sunplus-sp7021.yaml       |  2 +-
+>   .../devicetree/bindings/spi/spi-xilinx.yaml    |  2 +-
+>   .../bindings/spi/spi-zynqmp-qspi.yaml          |  2 +-
+>   .../devicetree/bindings/spi/sprd,spi-adi.yaml  |  5 ++---
+>   .../devicetree/bindings/spi/st,stm32-qspi.yaml |  2 +-
+>   .../devicetree/bindings/spi/st,stm32-spi.yaml  |  2 +-
+>   .../bindings/spi/xlnx,zynq-qspi.yaml           |  2 +-
+>   33 files changed, 53 insertions(+), 55 deletions(-)
+> 
+
+<snip>
+
+> diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+> index 53eb6562b979..e5eca3a6f132 100644
+> --- a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+> +++ b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+> @@ -2,8 +2,8 @@
+>   # Copyright 2019 BayLibre, SAS
+>   %YAML 1.2
+>   ---
+> -$id: "http://devicetree.org/schemas/spi/amlogic,meson-gx-spicc.yaml#"
+> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/spi/amlogic,meson-gx-spicc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>   
+>   title: Amlogic Meson SPI Communication Controller
+>   
+> @@ -41,7 +41,7 @@ properties:
+>       maxItems: 2
+>   
+>   allOf:
+> -  - $ref: "spi-controller.yaml#"
+> +  - $ref: spi-controller.yaml#
+>     - if:
+>         properties:
+>           compatible:
+> diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
+> index ac3b2ec300ac..806043fed4d1 100644
+> --- a/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
+> +++ b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
+> @@ -2,8 +2,8 @@
+>   # Copyright 2019 BayLibre, SAS
+>   %YAML 1.2
+>   ---
+> -$id: "http://devicetree.org/schemas/spi/amlogic,meson6-spifc.yaml#"
+> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/spi/amlogic,meson6-spifc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>   
+>   title: Amlogic Meson SPI Flash Controller
+>   
+> @@ -11,7 +11,7 @@ maintainers:
+>     - Neil Armstrong <neil.armstrong@linaro.org>
+>   
+>   allOf:
+> -  - $ref: "spi-controller.yaml#"
+> +  - $ref: spi-controller.yaml#
+>   
+>   description: |
+>     The Meson SPIFC is a controller optimized for communication with SPI
+
+<snip>
 
