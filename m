@@ -2,57 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80282674C72
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 06:34:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0E1674BD5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 06:11:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbjATFeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 00:34:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39976 "EHLO
+        id S230263AbjATFLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 00:11:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230467AbjATFeC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 00:34:02 -0500
+        with ESMTP id S229986AbjATFKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 00:10:51 -0500
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D794D7DFBC;
-        Thu, 19 Jan 2023 21:29:44 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED6D5A1036;
+        Thu, 19 Jan 2023 20:58:49 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05155B82129;
-        Thu, 19 Jan 2023 07:59:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3E05C433EF;
-        Thu, 19 Jan 2023 07:59:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674115183;
-        bh=pKKL2++V2LWrneLPbZFMOa/GzAMecbfqoMLCr5AN248=;
+        by ams.source.kernel.org (Postfix) with ESMTPS id B6E9CB82338;
+        Thu, 19 Jan 2023 13:10:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2131C433D2;
+        Thu, 19 Jan 2023 13:10:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1674133803;
+        bh=E8WnlaXuMoIHoxLQkdjKRvzK/gOIXYE5uRmmWpBtzqQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DeFFmDzj5d95mRvTYw7/wTDKRGk/n1kX/4BQt30Q4tGIODlIINATXyb3nhL6sDXsR
-         W+trEXi0E8mT+tPqZoVyzrzrnFi83AIiZeHkZ4ZQhapyScl5s5db7H0fjiRJkGn+12
-         VCWHakJi3Whk0y+QitH/mRJilBqTAlh0SvOnoEGFZP9AzeIS7fJq0oVZnNbJ8OaDP5
-         70XEzgok5JWFclMip7D+2Tx7WZJvtalU/8Os0ktmF2KDb8KoM3kXJ+++Ku0k+JCGp+
-         ttt34R3WBqi78ooZOZsRlMNNb3i10wJbdDd0lhoAZGvp2lvAncN+nfBAd0x+RdXuYZ
-         jYku2HfpvoBlw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pIPqE-0005We-P1; Thu, 19 Jan 2023 09:00:10 +0100
-Date:   Thu, 19 Jan 2023 09:00:10 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        b=x+vflYQaOjePpkJYvoCf3R8lo6M4R+ygaY/6avHYGCg0F9d/uPVVKyezu8CTpjnhK
+         lGV8wSAsIRXaGBye3xT/Rse+TL1pcbgbscXrvpB1NWBO8QJFssmrOP7ziwYHSZMDD/
+         pDGZrFbAH/HLVHY+h/YmFI/5kyL+hemCG4SrhrsY=
+Date:   Thu, 19 Jan 2023 14:10:00 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc8280xp: Define CMA region for CRD
- and X13s
-Message-ID: <Y8j4ikRGiHC5m+y/@hovoldconsulting.com>
-References: <20230117184630.2775905-1-quic_bjorande@quicinc.com>
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 00/12] ADD USB3.1 HOST, Peri and DRD support
+Message-ID: <Y8lBKKPjci7+goiV@kroah.com>
+References: <20230112215906.494394-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230117184630.2775905-1-quic_bjorande@quicinc.com>
+In-Reply-To: <20230112215906.494394-1-biju.das.jz@bp.renesas.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -62,47 +57,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 17, 2023 at 10:46:30AM -0800, Bjorn Andersson wrote:
-> While booting the CRD, a series of CMA allocation errors can be seen in
-> the kernel log:
+On Thu, Jan 12, 2023 at 09:58:54PM +0000, Biju Das wrote:
+> This patch series aims to add USB3.1 HOST, Peri and DRD support
+> on RZ/V2M EVK platform.
 > 
->   cma: cma_alloc: reserved: alloc failed, req-size: 128 pages, ret: -12
+> The reset for both host and peri are located in USB3DRD block. The
+> USB3DRD registers are mapped in the AXI address space of the Peripheral
+> module.
 > 
-> Growing the CMA region and querying /proc/meminfo indicates that a newly
-> booted system (currently) uses 64MB CMA.
-
-The NVMe driver buffers alone always take up 64 MB and in total roughly
-92 MB is used on the CRD after boot here. Perhaps you're missing some
-driver in you config (e.g. modem or wifi?).
-
-On the X13s I even have 105 MB allocated after boot.
-
-That's why I increased the CMA region to 128 MB in my out-of-tree
-config, which is also what you are doing here but in the devicetree.
-
-> Define a memory region sufficiently large for the current use cases, to
-> avoid forcing users to add this themselves, through command line
-> parameters etc.
+> RZ/V2M XHCI is similar to R-Car XHCI but it doesn't require any
+> firmware.
 > 
-> While fixing the CRD define the same region for the X13s.
-> 
-> Tested-by: Andrew Halaney <ahalaney@redhat.com> # sc8280xp-lenovo-thinkpad-x13s
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-> 
-> Changes since v1:
-> - Updated commit message
+> Host/device needs to do reset release and set the host/device function
+> on DRD module, before accessing any registers.
 
-> +
-> +	reserved-memory {
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			size = <0x0 0x8000000>;
-> +			reusable;
-> +			linux,cma-default;
-> +		};
-> +	};
->  };
+After applying this series and building it on x86_64 I get the following
+build errors:
 
-Johan
+ERROR: modpost: "rzv2m_usb3drd_reset" [drivers/usb/host/xhci-plat-hcd.ko] undefined!
+ERROR: modpost: "rzv2m_usb3drd_reset" [drivers/usb/gadget/udc/renesas_usb3.ko] undefined!
+
+:(
+
