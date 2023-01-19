@@ -2,134 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61039673666
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:11:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 906A4673675
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:14:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230042AbjASLLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 06:11:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54788 "EHLO
+        id S230006AbjASLO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 06:14:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230210AbjASLKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:10:53 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716547497C
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:10:31 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id ud5so4739478ejc.4
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:10:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jFEYKKgVFwVXs5cKTPaIK+MI9cmiPLzvQLxxZZJC6DI=;
-        b=Qr+vAkM6UGTyNaXghLE7XaUsVbveKd5dNgLYerCk0CJJfzevvUnYgkJ+QNZg4wvGUn
-         DSs31iOTTOUSXpbbN/oqzxDZhkrxQNSVC7ldXNpgLka5gx9kzzlZz5AK5OfgA717jpbe
-         nJLEAAP2nrtlpkuskVOlOFLoshkCz1pwXExLCjQ1WGa0/OgjdXThEDBKFhApfD3WjfUW
-         0Z3DBLhSQu7BycIKtJRMFKdi3J4pcuSu4/Gm6o1E347IVSlx0L1FnBz1+v2ucruD1XxO
-         S/BmHf5BMJsnufxYzQuclNUv4tFIkVwN8TbD+TPtnyyhw1nmD2FigYV6vLr8+yfEgoMF
-         xTSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jFEYKKgVFwVXs5cKTPaIK+MI9cmiPLzvQLxxZZJC6DI=;
-        b=mdC4AlbNKRI/XbVGHPTxORil7qOWWKwdP0UGy2noL2b8Vd/3+baX3vgoQtOoCHt+vH
-         Y/MBsKkv5HQsD0Oum9VJpEvUAN3BcCucWpOa2AbFeONoTL04MunlRa6lSltnA8mXO44J
-         Hch0u9WWv8R8J+iTr9+4vtJ77ACLreGUYKG+uV0bXIQx6BeG/Savr9+q/+uN9A0GuKnf
-         B3IVNQwKenFSxyEr0T6A2UfFJtEPzAMXCSLawyq8U7ptismw36HZxGkyD/mqTKhlj71f
-         zQh5MTOyx4u79xmbwSKLyDGzCrYyggU94KACMmn2htMGLijJPATTiI6ku2+ZMy2FNj7d
-         PjPg==
-X-Gm-Message-State: AFqh2koZnDNO2+dAtsPcDMmY5ZBXSQMil4uDjghcRe1QeCxprPpOE64o
-        khhX6EfxXXyYQ+SsCjCn8ttkSA==
-X-Google-Smtp-Source: AMrXdXtozZLbb+W8xF3Dp986+miOd8UiFeWHI+JPSTlQ7xSF4mnYc2ha+zsWUatMIGJsaozw4xj+0w==
-X-Received: by 2002:a17:906:ad82:b0:872:e6fd:1c79 with SMTP id la2-20020a170906ad8200b00872e6fd1c79mr10246833ejb.77.1674126629791;
-        Thu, 19 Jan 2023 03:10:29 -0800 (PST)
-Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
-        by smtp.gmail.com with ESMTPSA id n12-20020a1709062bcc00b007ae38d837c5sm16520246ejg.174.2023.01.19.03.10.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 03:10:29 -0800 (PST)
-Message-ID: <8e357341-3cf1-3714-4f5d-f4be94f91438@linaro.org>
-Date:   Thu, 19 Jan 2023 12:10:27 +0100
+        with ESMTP id S230316AbjASLOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:14:10 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A42B7494D;
+        Thu, 19 Jan 2023 03:13:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674126831; x=1705662831;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=O9Ppel+iepCFWa6otaPpGVfa9DVKCGM/plTA65MWvdg=;
+  b=fr+UZ78W0BxpRGn55hsZauF9EisInUU9bGVB+z/LVmV/yWy0SNXT+UqB
+   F42ce4VWf+2uHWG494QoISJuTE8P3fgfXH72fqbSLUIJXfjl3bLFjK5Xl
+   YoDLe3MsS+4jwd1muENb8KMydJu7lQLsRaG9L9OmQ+XSejT0hyDP9HLJa
+   BFoI8f5Io/eOCcjh5l0lCtzbbe/cnRzRtBr5S3vGM/ZBDZdTq69XSWnI/
+   OrjLZOH+AnK1eK16reS5OCy0fGEe7OnHZHE1wvQGRMF+9wNQFl0nWD1vL
+   8edcTfAmhg3baZ9/NTCnh1X6/xa5gGXalVGFGITVhgE1UV9cf11d2vPT8
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="326518923"
+X-IronPort-AV: E=Sophos;i="5.97,228,1669104000"; 
+   d="scan'208";a="326518923"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2023 03:13:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="768183528"
+X-IronPort-AV: E=Sophos;i="5.97,228,1669104000"; 
+   d="scan'208";a="768183528"
+Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 19 Jan 2023 03:13:47 -0800
+Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pISrb-0001P2-00;
+        Thu, 19 Jan 2023 11:13:47 +0000
+Date:   Thu, 19 Jan 2023 19:13:35 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Keguang Zhang <keguang.zhang@gmail.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Keguang Zhang <keguang.zhang@gmail.com>
+Subject: Re: [PATCH 2/2] clk: loongson1: Refactor to add devicetree support
+Message-ID: <202301191914.Rs7JrOPY-lkp@intel.com>
+References: <20230113110738.1505973-3-keguang.zhang@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 0/4] Minor cleanup in msm8916 dts files
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Nikita Travkin <nikita@trvn.ru>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230116145053.1412501-1-nikita@trvn.ru>
- <20230119033428.ga6sbu42jaueac5o@builder.lan>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230119033428.ga6sbu42jaueac5o@builder.lan>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230113110738.1505973-3-keguang.zhang@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Keguang,
 
+I love your patch! Yet something to improve:
 
-On 19.01.2023 04:34, Bjorn Andersson wrote:
-> On Mon, Jan 16, 2023 at 07:50:49PM +0500, Nikita Travkin wrote:
->> This series performs some minor cleanup on msm8916/apq8016 files to
->> bring them in line with the current standard and be closer to the new
->> submissions.
->>
->> The series is separated into commits by each specific change made across
->> all files and these commits should not cause any functional difference.
->>
->> Changes in v2:
->> - Rebase on top of newly applied upstream patches
->>
-> 
-> The first patch looks pretty reasonable, but without documenting the
-> guidelines and tools to help others maintain the ordering this
-> unfortunately just moves things around arbitrarily.
-> 
-> Forgive me, but I will ignore this series until this is finalized and
-> documented.
-Ack, the idea is good, but I rushed enforcing it.
+[auto build test ERROR on 1b929c02afd37871d5afb9d498426f83432e71c2]
 
-Konrad
-> 
-> Thanks,
-> Bjorn
-> 
->> Nikita Travkin (4):
->>   arm64: dts: qcom: msm/apq8x16-*: Move status property last
->>   arm64: dts: qcom: msm/apq8x16-*: Reorder the pinctrl properties.
->>   arm64: dts: qcom: msm/apq8x16-*: Drop empty lines in pinctrl states
->>   arm64: dts: qcom: msm/apq8x16-*: Reorder some regulator properties
->>
->>  arch/arm64/boot/dts/qcom/apq8016-sbc.dts      | 78 +++++++--------
->>  .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 15 ++-
->>  .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 46 ++++-----
->>  .../arm64/boot/dts/qcom/msm8916-asus-z00l.dts | 34 +++----
->>  .../arm64/boot/dts/qcom/msm8916-huawei-g7.dts | 52 ++++------
->>  .../boot/dts/qcom/msm8916-longcheer-l8150.dts | 42 ++++----
->>  .../boot/dts/qcom/msm8916-longcheer-l8910.dts | 30 +++---
->>  arch/arm64/boot/dts/qcom/msm8916-pins.dtsi    | 96 +++++--------------
->>  .../qcom/msm8916-samsung-a2015-common.dtsi    | 64 +++++--------
->>  .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts | 11 +--
->>  .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts |  5 +-
->>  .../qcom/msm8916-samsung-e2015-common.dtsi    |  5 +-
->>  .../dts/qcom/msm8916-samsung-grandmax.dts     |  3 +-
->>  .../boot/dts/qcom/msm8916-samsung-j5.dts      | 21 ++--
->>  .../dts/qcom/msm8916-samsung-serranove.dts    | 62 +++++-------
->>  .../dts/qcom/msm8916-wingtech-wt88047.dts     | 35 +++----
->>  arch/arm64/boot/dts/qcom/msm8916.dtsi         | 32 +++----
->>  17 files changed, 245 insertions(+), 386 deletions(-)
->>
->> -- 
->> 2.38.1
->>
+url:    https://github.com/intel-lab-lkp/linux/commits/Keguang-Zhang/dt-bindings-clock-Add-binding-for-Loongson-1-clock-driver/20230113-192017
+base:   1b929c02afd37871d5afb9d498426f83432e71c2
+patch link:    https://lore.kernel.org/r/20230113110738.1505973-3-keguang.zhang%40gmail.com
+patch subject: [PATCH 2/2] clk: loongson1: Refactor to add devicetree support
+config: mips-loongson1b_defconfig (https://download.01.org/0day-ci/archive/20230119/202301191914.Rs7JrOPY-lkp@intel.com/config)
+compiler: mipsel-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/b753dca857d9c85e25ba410fe013b78c7c73ca40
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Keguang-Zhang/dt-bindings-clock-Add-binding-for-Loongson-1-clock-driver/20230113-192017
+        git checkout b753dca857d9c85e25ba410fe013b78c7c73ca40
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=mips olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All error/warnings (new ones prefixed by >>):
+
+>> drivers/clk/clk-loongson1.c:115:23: warning: no previous prototype for 'ls1x_clk_hw_register_pll' [-Wmissing-prototypes]
+     115 | struct clk_hw *__init ls1x_clk_hw_register_pll(struct device *dev,
+         |                       ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-loongson1.c: In function 'ls1x_divider_set_rate':
+>> drivers/clk/clk-loongson1.c:186:13: warning: the comparison will always evaluate as 'true' for the address of 'lock' will never be NULL [-Waddress]
+     186 |         if (&divider->lock)
+         |             ^
+   drivers/clk/clk-loongson1.c:28:20: note: 'lock' declared here
+      28 |         spinlock_t lock;        /* protect access to DIV registers */
+         |                    ^~~~
+   drivers/clk/clk-loongson1.c:212:13: warning: the comparison will always evaluate as 'true' for the address of 'lock' will never be NULL [-Waddress]
+     212 |         if (&divider->lock)
+         |             ^
+   drivers/clk/clk-loongson1.c:28:20: note: 'lock' declared here
+      28 |         spinlock_t lock;        /* protect access to DIV registers */
+         |                    ^~~~
+   drivers/clk/clk-loongson1.c: At top level:
+>> drivers/clk/clk-loongson1.c:226:23: warning: no previous prototype for 'ls1x_clk_hw_register_divider' [-Wmissing-prototypes]
+     226 | struct clk_hw *__init ls1x_clk_hw_register_divider(struct device *dev,
+         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-loongson1.c:310:34: warning: 'ls1x_divider_match' defined but not used [-Wunused-const-variable=]
+     310 | static const struct of_device_id ls1x_divider_match[] __initconst = {
+         |                                  ^~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-loongson1.c:275:34: warning: 'ls1x_pll_match' defined but not used [-Wunused-const-variable=]
+     275 | static const struct of_device_id ls1x_pll_match[] __initconst = {
+         |                                  ^~~~~~~~~~~~~~
+--
+   mipsel-linux-ld: arch/mips/loongson32/common/time.o: in function `plat_time_init':
+>> time.c:(.init.text+0x8): undefined reference to `ls1x_clk_init'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
