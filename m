@@ -2,77 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D07467413F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 19:49:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D1786741CC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 20:00:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229807AbjASStz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 13:49:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34352 "EHLO
+        id S229914AbjASTAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 14:00:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbjASSti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 13:49:38 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 771D78BA9C;
-        Thu, 19 Jan 2023 10:49:34 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id d30so4540162lfv.8;
-        Thu, 19 Jan 2023 10:49:34 -0800 (PST)
+        with ESMTP id S230376AbjASS7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 13:59:50 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5651894C87;
+        Thu, 19 Jan 2023 10:59:00 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so1980158wmc.1;
+        Thu, 19 Jan 2023 10:59:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OFat64LMoXDYuRBJ5PYrBQ4w2KeQw9mnd+EpUQW2z98=;
-        b=Smx7EiRZr0YFLFdiLbw9CGyQYH5KkwXlCnXcJXZVaw24v8CD2LwOklq3XKkYwQAf9L
-         4eceQvdoqisR5BsqY9Ne3XFyEVzhktoK4W/68XSZYFHdGLZlAuP2Yb1ICYtV7eJK7Adz
-         zxbeQvDMm29TiPJ7ZMbEkCf1RcLeoAs9R0kW14sbx/5rjqSlbR9zaCirDouEDdg2GW6L
-         IOXdzIfg7p33PhAn9eJ9Ng3jwa/UjdU7ZKKQMMAbBJ7dkWKPIU+4tC48u1SY81+chX2P
-         rICN1Q5mgGAe8s9KP/ZO1ptMg8lGTGO3bdeqMenCmrgnlP/OjSkN/XVw1JqCouw7Kshw
-         QV7g==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5zctZ2DfOPnSiD7ZptxyzEXDvaTUy3vq5hDZIJ2ooBA=;
+        b=My6BTbzil3RwSeY6SKZ8mEjCQLPA8sVElBsVAqSRdZSqB0wHVzqey9b9QAb8ih0ulw
+         Rj59HIWe0fERei0NJSXTJUMhIaQtCA90vgaADnLEMjX60IstGO1Ibm9lga94MIW//wQb
+         aBVkX6eQ5mlg28k8QzgMo6G7qUsdyhn79L2UPVhu/lol11tIl4//vjUR27yWYgzZoJ0L
+         0tDY3/ZJcfkpSFfvM2FRnFI8n5cr2cIQCFS/LztDvnxA+kxW206mI1oE5AUOH4CbZAEp
+         FjpMQtYOsIBX4nm7quPN0/Hx5L9yMb73F9a1CynoUADVlWTsM2UgVdN2GucKAqHdSl8P
+         2CFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OFat64LMoXDYuRBJ5PYrBQ4w2KeQw9mnd+EpUQW2z98=;
-        b=qXTWCe+tg5HLPPXLElE5BtQi1nci4mjM9Ek/BFp5yJRoVgakaYSL1GD+1GpqeYPTOu
-         HMFZIjxKQlQmZjfiyWB2qdmrXvumR9Vwxua6iSHklHPy+kKS9ilvKfHISEdgN/g6K3By
-         BvSUs3Wv1PdbYLf+zCfLFxccw3Iix58XYVh/qBbSqW+aE2qP9zgoJejhR5UCefAf8sq+
-         ig20S88eBLkGWu3WMUYmghlzLGo2p5f23vui+wY6n2afdKtR87d0hQxXet2VLayoS3Qp
-         iNMnEYPr18B9YM61co1aNKBdZoTX2BODU/2FbFtaFURiNO7clNV4gzx2O2hZi8rmpiMe
-         RyBw==
-X-Gm-Message-State: AFqh2kqWOqG8ux8c5AG7SDzmwywXT8GnDkoLKmojnQslqXBvvQFyMzJA
-        tWRuTIwAg/RVq1pC46cZu/s=
-X-Google-Smtp-Source: AMrXdXsS73pkCKlic27wdJ6t/u2GF8WN5cOENCK0syWt1LSQd2eWuZ+/51FXuUHtnDJ3XgjSGs8C2Q==
-X-Received: by 2002:a05:6512:2529:b0:4d2:9f92:a145 with SMTP id be41-20020a056512252900b004d29f92a145mr7462574lfb.50.1674154172862;
-        Thu, 19 Jan 2023 10:49:32 -0800 (PST)
-Received: from U19.ag.local (static.187.76.181.135.clients.your-server.de. [135.181.76.187])
-        by smtp.gmail.com with ESMTPSA id b31-20020a0565120b9f00b004d30752a561sm2112737lfv.298.2023.01.19.10.49.31
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5zctZ2DfOPnSiD7ZptxyzEXDvaTUy3vq5hDZIJ2ooBA=;
+        b=SFyVQ3SLgE3KUrY1cAO1EsGoi0Z2j9YS/TaopF4ADaWHdSi0Y1OnfwFcFCccdYtXHd
+         ldLaInq4MOnt+h2HQugyqV4BNBKHRKPt409lhMbA5RaFHChbbn+EjrOicxNX8tEor55b
+         FC3rrTZNI3iMl+LRQjf9zlqgs81hsjB+XJJ5i9cFyo3sDqyqT/tXuMXUBYnqGAx/D2KH
+         ajLAXBMMMgyAuHUErUqgk6tb2FZnQPYrB/V1CAbXQPUwk8TYUheEjM4fM+PzO9Nm+iBn
+         IxTFUsBlsOsQMLgaTW0N+b2hA7t1L+zi+cgAfnkkuMg4MUQiKSURu0O4puwlX8/SMbq2
+         f1KQ==
+X-Gm-Message-State: AFqh2koMi0AqRBfxXYGgznvKfEPZkKCtGIQvJhngE5cfoHPkyr4DwJ5s
+        UfV8gdeuzLmPBu5M/MRwNns8XqZugE4=
+X-Google-Smtp-Source: AMrXdXvwGx3rijOtSmLzSWCy6TFXUhQR1BI7Fx77MhzLOOjjgleAtnn2wM96S08SIOPNQ/8C+OufGA==
+X-Received: by 2002:a05:600c:ccf:b0:3db:f34:e9e0 with SMTP id fk15-20020a05600c0ccf00b003db0f34e9e0mr8086140wmb.35.1674154738190;
+        Thu, 19 Jan 2023 10:58:58 -0800 (PST)
+Received: from localhost.localdomain ([37.55.203.63])
+        by smtp.gmail.com with ESMTPSA id c2-20020a05600c0a4200b003daf6e3bc2fsm7757544wmq.1.2023.01.19.10.58.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 10:49:32 -0800 (PST)
-From:   Alibek Omarov <a1ba.omarov@gmail.com>
-Cc:     a1ba.omarov@gmail.com, alexander.sverdlin@siemens.com,
-        macromorgan@hotmail.com, Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        Thu, 19 Jan 2023 10:58:57 -0800 (PST)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Markuss Broks <markuss.broks@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Alex Bee <knaerzche@gmail.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: display: rockchip-lvds: add compatible string for RK3568
-Date:   Thu, 19 Jan 2023 21:48:05 +0300
-Message-Id: <20230119184807.171132-4-a1ba.omarov@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230119184807.171132-1-a1ba.omarov@gmail.com>
-References: <20230119184807.171132-1-a1ba.omarov@gmail.com>
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Add support for Samsung Galaxy S5 (Exynos)
+Date:   Thu, 19 Jan 2023 20:58:42 +0200
+Message-Id: <20230119185848.156502-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,31 +69,47 @@ X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RK3568 SoCs have a single LVDS output, that use PHY shared by two display
-pipelines: LVDS and MIPI DSI.
+Samsung Galaxy S5 (Exynos) is a mobile phone released in 2014.
+It has an Exynos5422 platform. This version of Galaxy S5 is only
+capable of 3G communication using the Intel modem, while the
+LTE version of the device (klte) has a Qualcomm Snapdragon SoC.
 
-Signed-off-by: Alibek Omarov <a1ba.omarov@gmail.com>
----
- .../devicetree/bindings/display/rockchip/rockchip-lvds.txt       | 1 +
- 1 file changed, 1 insertion(+)
+Currently, internal eMMC, USB, regulators on a PMIC, and touchscreen
+are enabled in the device-tree.
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt b/Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
-index aaf8c44cf90f..ec8a8d05368a 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
-@@ -5,6 +5,7 @@ Required properties:
- - compatible: matching the soc type, one of
- 	- "rockchip,rk3288-lvds";
- 	- "rockchip,px30-lvds";
-+	- "rockchip,rk3568-lvds";
- 
- - reg: physical base address of the controller and length
- 	of memory mapped region.
+It also has the following peripherals:
+
+- 5" 1080p S6E3FA2 DSI display,
+- Cypress StreetFighter touch buttons,
+- Broadcom BCM4354 wireless connectivity module,
+- Intel XMM6360 3G modem,
+- STM32F401 serving as a sensor hub,
+- Validify Solutions VFS61 series fingerprint sensor,
+- Lattice ICE401M FPGA as an IRDA controller,
+- Maxim MAX86900 heart rate sensor,
+- NXP PN547 NFC controller,
+- Wolfson WM5110 Audio DSP,
+- Broadcom BCM4753 GPS radio,
+- Maxim MAX77804 PMIC,
+- Silicon Image SII8240 MHL controller,
+- TI LP5562 LED driver
+
+
+Markuss Broks (2):
+  Documentation: devicetree: bindings: Add compatible for Samsung Galaxy
+    S5 (Exynos)
+  arm: dts: Add device-tree for Samsung Galaxy S5 (Exynos)
+
+ .../bindings/arm/samsung/samsung-boards.yaml  |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/exynos5422-samsung-k3g.dts  | 676 ++++++++++++++++++
+ 3 files changed, 678 insertions(+)
+ create mode 100644 arch/arm/boot/dts/exynos5422-samsung-k3g.dts
+
 -- 
-2.34.1
+2.39.0
 
