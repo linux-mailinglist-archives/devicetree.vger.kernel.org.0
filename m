@@ -2,127 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C2C2673D28
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:10:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0B23673D36
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:14:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229918AbjASPKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 10:10:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50832 "EHLO
+        id S230092AbjASPOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 10:14:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230148AbjASPKR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:10:17 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2347A71795;
-        Thu, 19 Jan 2023 07:10:11 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id v5so3244704edc.3;
-        Thu, 19 Jan 2023 07:10:11 -0800 (PST)
+        with ESMTP id S229844AbjASPON (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:14:13 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4E716797F
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:14:11 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso2295553wmn.5
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:14:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b3hWPa5eaE1VlRQVh/vMNXzrQxeXSBHyXqQOtX9y708=;
-        b=e0fz5LvLSsENChDm0SAC0yL0oNM0POBFQiCdbDweehEDuMJIEONyAGgtdUPGFCiqqR
-         Id/h6C/GazpqSxZamu9mjDNvex5dlA4fvF0jc+PtHw3gABqKvJPtUMEVkOcXcj8J1AAR
-         PLnRLIaYYudfxKXoyTbYwC728sbH/Vp/SYtuqM2fpiS+nF//YyLm6+ZVhWrxrT4Q0hRY
-         a0hOqlk1Pq1a/Ske4YxV88ZkoibTzl5/lm2iQWzGROYUNhTFj+PXvZ5oyDZul+1npUtc
-         /aWgddo2LOXbI2ntusjEDbihUUDWi123jkrB+cgnn/akq4wL7jLWwAljnm3yAd/mP764
-         vDEA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HD3jSa6zl99b1k1iQFDMjEt5nT4zeae/hJhML5gvv2o=;
+        b=FxNqCf7FYUdZoUA8KDytXhw/BOb3S+qc4gbNrZ37p892yoDAYgsyZzjNgpFnRyqlPR
+         N+0cKqDvKFNo98kWKPg/XJLV1UQPr0sddD1k/bItHmQnxFn8XJ1p8TE+RWLX2MWKIhRR
+         +gNR+BDWKwVU26J1wR18s2ZUDFQ8RjVvoeY2vA5iFYj7kfm3Z9erAJd1zHvczOSI/aux
+         rvJg64HFjZ/wi5MXUPkdLltIqiyijcquE2UckRHTi4BRXhoY4YRASm9AqCSnjY/RYQI3
+         F/HKzr8iETMLtDhQ7pVS8iIbS5/P62nxTwBvjwGNrvRs0YyfdfioED9mBNlIA+RtXIDI
+         dNrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b3hWPa5eaE1VlRQVh/vMNXzrQxeXSBHyXqQOtX9y708=;
-        b=IGSTwekJcpUxLLTe01WpSCQQrqWaq/qaz5N9rRK79cSR5YRAO57hhk7k2qnhuxHKlz
-         pqybxq4UsydcnrSEWCXHtqOJBwuKwr23/jmulf61N2higJWt9DG8tMQ8xGvHoG/jDYu/
-         5LKh10v2UfhVxrj9Zdua+7ZYIc7xe1vM+9jTOy+AhePvcyDeK+2uftOQbGK8N66lSm2+
-         t5xXzrnxWi9hF3IJNtYmU53aBsz1eADyMBIF5uGrfJYfsaL2pfpzd9Ij6GkpC6Es/7hD
-         GX0LqUpQpK15xIMfHe6F4arKinjABmo+tvLujQsFSH/VRPnvpPD1oxHWHkqpt7ZMbgRO
-         exTw==
-X-Gm-Message-State: AFqh2kpI7Vw7IbhzcFH+XSSls+n75qYoMHnutYtlSAsbBxrL/afv43/D
-        ezYpIdRtu7GBUCJPMVfa7GE=
-X-Google-Smtp-Source: AMrXdXsTwyv07suDfVAoeVH9mB1DXCTlXvaAj3SNIzmRc1ujB0XCruBScq2XQFPO2DZi0mB2a8FvoA==
-X-Received: by 2002:aa7:c994:0:b0:499:bf81:be6 with SMTP id c20-20020aa7c994000000b00499bf810be6mr12264790edt.37.1674141009481;
-        Thu, 19 Jan 2023 07:10:09 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id d9-20020a1709063ec900b007c0d6b34d54sm16278717ejj.129.2023.01.19.07.10.08
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HD3jSa6zl99b1k1iQFDMjEt5nT4zeae/hJhML5gvv2o=;
+        b=jYibs5XHKUEZOqSx5M152/XGF0H2HYcGLi2fJhenqeP4ikaRd6RSU+mLHT2vt9y3ld
+         3TWeYyzrMWByqbE5AmiKWvzkxy88IA3nHR620vYoXcdX5cSA6oOIgkCcn1agCSqo5PcU
+         rRyajruU5k19/LCplGxnk8wVYL58RQHwCYC/J+r3BfVbDUBqPpMqpCUmZL356tC2+Qrs
+         H/RSI7EzuZDN/Vw7i8NrJDaIit/OEtXVQEwjR6WVR8DgKRtALjhSxOwg53A7M4lOPv6V
+         rIRjbDYD4qIwM0MPaWjpjIce2q1YSeuYqaaDzq78IDK3p3qfMwtTodbzbAVYEigkv47G
+         ZdpQ==
+X-Gm-Message-State: AFqh2krTxkR3rD+S8YeVEm07wIZLN8BKTKbI1+7tSoOTIFuTpa4f/4Yx
+        UxIdmugX6gPyBjnQxa4mQ4IsGQ==
+X-Google-Smtp-Source: AMrXdXv9erm4zRyGtwJNCFo1mbvzOCOLFjZuhebCW2xo4EiMv+d2zQZFAHx0NYxVXcgYc2/G9z3ZfQ==
+X-Received: by 2002:a05:600c:3596:b0:3da:1357:4ca2 with SMTP id p22-20020a05600c359600b003da13574ca2mr11196032wmq.11.1674141250122;
+        Thu, 19 Jan 2023 07:14:10 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id o16-20020a05600c379000b003db15b1fb3csm4566605wmr.13.2023.01.19.07.14.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 07:10:08 -0800 (PST)
-Date:   Thu, 19 Jan 2023 16:10:07 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     David Airlie <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 8/8] arm64: tegra: Add simple framebuffer on Jetson
- Xavier NX
-Message-ID: <Y8ldT2CdwFpNAZoB@orome>
-References: <20221117184039.2291937-1-thierry.reding@gmail.com>
- <20221117184039.2291937-9-thierry.reding@gmail.com>
- <12cff1b1-b8dc-7fb4-2228-8af4b30c09c5@suse.de>
+        Thu, 19 Jan 2023 07:14:09 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] ufs: host: ufs-qcom: Add support for SM8550
+Date:   Thu, 19 Jan 2023 17:14:04 +0200
+Message-Id: <20230119151406.4168685-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="bQw0EXWTigETpFy5"
-Content-Disposition: inline
-In-Reply-To: <12cff1b1-b8dc-7fb4-2228-8af4b30c09c5@suse.de>
-User-Agent: Mutt/2.2.9 (2022-11-12)
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds UFS HC support for the new Qualcomm SM8550 SoC.
 
---bQw0EXWTigETpFy5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The v1 was here:
+https://lore.kernel.org/all/20221116121732.2731448-1-abel.vesa@linaro.org/
 
-On Tue, Jan 17, 2023 at 03:55:21PM +0100, Thomas Zimmermann wrote:
-> Hi
->=20
-> Am 17.11.22 um 19:40 schrieb Thierry Reding:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Add the framebuffer carveout reserved memory node as well as a simple-
-> > framebuffer node that is used to bind to the framebuffer that the
-> > bootloader has set up.
->=20
-> I don't know about the current status of this patchset, but feel free to
-> send whatever update you have.
+Changes since v1:
+ * replaced REG_UFS_PA_LINK_STARTUP_TIMER with REG_UFS_CFG0 and added a
+   comment saying that the older version use the first name as reg name
+ * moved QUNIPRO_G4_SEL in a separate section dedicated to CFG0 bits
+ * forces the update_link_startup_timer condition to be skipped in case
+   of HW version 5.x
 
-Sorry, got side-tracked a few times during the last few weeks. I've had
-to rework some parts of this for the recent changes to the format
-helpers, but nothing major. I'll send out the updated version shortly
-once I've tested all cases.
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Alim Akhtar <alim.akhtar@samsung.com>
+To: Avri Altman <avri.altman@wdc.com>
+To: Bart Van Assche <bvanassche@acm.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: "James E.J. Bottomley" <jejb@linux.ibm.com>
+To: "Martin K. Petersen" <martin.petersen@oracle.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-scsi@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-Thierry
+Abel Vesa (2):
+  scsi: ufs: ufs-qcom: Clear qunipro_g4_sel for HW version major 5
+  dt-bindings: ufs: qcom: Add SM8550 compatible string
 
---bQw0EXWTigETpFy5
-Content-Type: application/pgp-signature; name="signature.asc"
+ Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+ drivers/ufs/host/ufs-qcom.c                         | 8 ++++++--
+ drivers/ufs/host/ufs-qcom.h                         | 6 +++++-
+ 3 files changed, 13 insertions(+), 3 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.34.1
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPJXU4ACgkQ3SOs138+
-s6Hlww/+IzPc1AX147Ir+grpgjfk1Xmbl2ycd89CjRpRo6yWlN4RZ8Yuc9D8nWjI
-oed/TJUnvyih1nZwL6OrqR2m1H9yo2fE10w9bRCTO4dde/4p0H+8oKJbOSyLnzFk
-y7e7QaJXGqZWOj9wl6g1ba1aqnRPsucDfpwXQcf8xHuhcHuZZtBAJCAJ6sV6aC97
-+2IGqM6ExaLhEw8CIB6EFpl2r/SA0ig/qrEQhZ/YqqZNw/TShUlNs++C1HH9CN3X
-hVMBe4IoK28yuAfg+P95ESHdF3V9sqi4j9bUtc7cpTFu2+7HwRBzeePA0bEtsMIm
-AKknYPEM+fKfT0K2MrcAm9VNzGLaFhuAaq20O5VK/cm1SCCBCMEgpyw38w51pOBh
-P6i+zZHDub/lRsPP/mOfM1yKD9HvbKLMH4jsKnhivD1o3eMOY3XWC6mpCXjyXlaV
-4kB+EdmcLB/a9rFU4YClFIASgeruC6oQOyfcKgAXpFer9FarKzyxLGjNNUnz4eHw
-QTucGI0Lwzubyws7HfhFgbexIRHQrI0U3iSJ7j9dc9iiC6V8Nu9pkvQQuBfLU62B
-D0VyuqOp/Y7sVFQL7fLIqXVrJ9wr/IrmDRVo3ylbQX8Xs4AoqtGyQwUTd/59Jsb7
-MoYbuKJPP+qQBesE2cY2hhS+LfpIIP5RdP2VUe6knqEA8ercDRI=
-=c2qP
------END PGP SIGNATURE-----
-
---bQw0EXWTigETpFy5--
