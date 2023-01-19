@@ -2,141 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6795673A6B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:36:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87E2F673A70
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:36:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231273AbjASNgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:36:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43058 "EHLO
+        id S231343AbjASNgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 08:36:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231340AbjASNgF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:36:05 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D817ED46
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:36:03 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id k16so1552720wms.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:36:03 -0800 (PST)
+        with ESMTP id S231261AbjASNgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:36:20 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81ADD74E9F
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:36:19 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id g10so1558094wmo.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:36:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UJD7Kl5VEUATsJzLnc7eycDEXwQ+o0DclxGlPjICZ2Q=;
-        b=cnwWF3cKGyszbj8Ip5UQW4g9Fw/rEj6vq4lu/uq4EabnkzOlPzBWU6Y9VHjCHJSBh+
-         +VcReyEbz62vkPvZy9/zJZXkC+82fLWT7eWSmQPX5HRe8ZNGzZqiqLvdetOB4PqLWtKc
-         Mv6LR3dEOsD1PdPgRhtbXeowXGfbG1avlFbG3FGjUR38kCPGJiXC3OjOGhIPPvgEHOnz
-         bEqFB9wDqdns/yVj0J7tosPaXKtFGk5Rwru5x0/Yw3kIs4+2Mnpn3YtQmSKCz1GD5sl3
-         TeujiB1cF69jZj43u9aUZqYEvo0RzlYZn1tNkaxL7IONJTeUxEfj5Yp+Z6mAigVLz4Vo
-         cgGg==
+        bh=rWq/yizVAl7S9V3ovhWY4OsnNwxPEQxeEtQ2nHLCzTM=;
+        b=wrNU5GWnr3H3PZs0TZnwnMwYLs7RV49edZQYX8aLXYI+JXQdKOizHSG8dXmZzBN00o
+         tZ4oxffn+7chO5VHoAIQeXuJTOKKwCEBcD76xggxuVORvAbk7qUdK/Q5zljj22Txf8Hc
+         dPFwyXvkrgLPZwcU9785swysknOCy8VLQsAGVz/RJ/gTvZSOzfWR1N0I/I46Z7KW2t2q
+         l25BA3O8GwU/ctBsXouUIYzw3LvnLe/VVDMBDkCyhgt5ZvAz+nAfuF1406sorpWs4GpJ
+         4vi8Jgng3X1si/0HSIolJ/lIk+7o+UmA33GARzfeWZwtm92CwJ1MQAlCX1L2vyX/rVsm
+         o+Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UJD7Kl5VEUATsJzLnc7eycDEXwQ+o0DclxGlPjICZ2Q=;
-        b=MKHQdN6f8ggy4Fxe9sMS9kj2EFLTeFkRPDpzvVziBb4lyWOufaxZRAHlkr4qQ8jQa/
-         2IMWJSdLux+ZDohvQLctU4wYc4rmPCDAZ4Avx1bUUrHPJUkAf+PSh10qjZOmvh+zMzPT
-         wMS/iMITItBbrQg9EppALJ8G6h4eXrmL1WR7DMN7Ha7hgeWipd3E00+FHRqf72Jw5gcV
-         bR28aegMzzq2AbHXygpnowbYXTY2Mf6MH2C7ypF9qOUStIaDhQyENAAZLWi2uX18Tx84
-         r05OwAF96YX2MXdfjAezyzxoH5Z/7UlD+sk1UySr3WanOwMmjnpXIBEBAwkrQvBHj7gi
-         sovw==
-X-Gm-Message-State: AFqh2kpSQN9JiNsRnFc3b90A5IwORj0/7ejGCBVon6s2Wq/ISKAMXWi+
-        Lzv6LxvKLxnSLG7YmQUKgOmPslxsisNIdDxy
-X-Google-Smtp-Source: AMrXdXvIb8PdQfhtBzGOuCTnzF7AN0ml/BERewJ3b2fRVJPNoGzEVUvejglYNDqQs9GUp/W4bTyiNQ==
-X-Received: by 2002:a05:600c:540b:b0:3da:282b:e774 with SMTP id he11-20020a05600c540b00b003da282be774mr18847188wmb.38.1674135361860;
-        Thu, 19 Jan 2023 05:36:01 -0800 (PST)
+        bh=rWq/yizVAl7S9V3ovhWY4OsnNwxPEQxeEtQ2nHLCzTM=;
+        b=NR9NYp/iyvVPlUoO+eadrI5UKuVH2/59v2iKywfFtpDa0ipiaaODVWZCYhePVVQY7l
+         AbyvITdChCpfiKvdCYSR/i+WN4+g8Z7wa+XgeQyjo611o4pEic6p9Sl72mV3hzfVlojT
+         J/3xEniePC0sSiZJVDjSNi9W90G2bOTEDO7dNjciJ8tz230PESiXyjwoqmC08dcKjOpH
+         ZpyB5fDzCiq2PfEdHWb20faSRu1rWqQDIie9xcJDpqwiSeMp3FuLNjHh/AWIJldzIefA
+         sjiKuIWbmKuZ98RlsfTIve3LwvdmTutoxXeOoBTyZyDwu+ltPeTpZIRp3tZOX3oGf4m6
+         4bIQ==
+X-Gm-Message-State: AFqh2krwByDpH40FMuR6KPsRErlWASg7xyd4PRBW7Z2lx+d/aXEErRkT
+        gp1l3DmR8dF9aAkLEP/H1YbIxA==
+X-Google-Smtp-Source: AMrXdXsKjSmcqQHPHyH1l93tp75nCJ2mRi+NoOakU7rVj78hivbHOkzI2srayBQye1ppwblDbCeEKQ==
+X-Received: by 2002:a05:600c:5386:b0:3cf:9844:7b11 with SMTP id hg6-20020a05600c538600b003cf98447b11mr10792603wmb.23.1674135378084;
+        Thu, 19 Jan 2023 05:36:18 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t13-20020a05600c198d00b003cfa81e2eb4sm5454359wmq.38.2023.01.19.05.36.00
+        by smtp.gmail.com with ESMTPSA id d3-20020a05600c34c300b003dab77aa911sm4731569wmq.23.2023.01.19.05.36.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 05:36:01 -0800 (PST)
-Message-ID: <802ae1e3-8046-675d-cf4e-d3468604a3e8@linaro.org>
-Date:   Thu, 19 Jan 2023 14:36:00 +0100
+        Thu, 19 Jan 2023 05:36:17 -0800 (PST)
+Message-ID: <760c9404-62b7-d3c9-4407-4665b1e336bb@linaro.org>
+Date:   Thu, 19 Jan 2023 14:36:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 2/2] arch: arm64: dts: Add support for AM69 Starter Kit
+Subject: Re: [PATCH resend] dt-bindings: iommu: renesas,ipmmu-vmsa: add
+ r8a779g0 support
 Content-Language: en-US
-To:     sabiya.d@mistralsolutions.com, nm@ti.com, vigneshr@ti.com,
-        kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>
-References: <20230119132958.124435-1-sabiya.d@ti.com>
- <20230119132958.124435-3-sabiya.d@ti.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     iommu@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20230119133514.1008925-1-yoshihiro.shimoda.uh@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230119132958.124435-3-sabiya.d@ti.com>
+In-Reply-To: <20230119133514.1008925-1-yoshihiro.shimoda.uh@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 14:29, sabiya.d@mistralsolutions.com wrote:
-> From: Dasnavis Sabiya <sabiya.d@ti.com>
+On 19/01/2023 14:35, Yoshihiro Shimoda wrote:
+> Document the compatible values for the IPMMU-VMSA blocks in
+> the Renesas R-Car V4H (R8A779G0) SoC.
 > 
-> AM69 Starter Kit is a single board designed for TI AM69 SOC that
-> provides advanced system integration in automotive ADAS applications,
-> autonomous mobile robot and edge AI applications. The SOC comprises
-> of Cortex-A72s in dual clusters, lockstep capable dual Cortex-R5F MCUs,
-> Vision Processing Accelerators (VPAC) with Image Signal Processor (ISP)
-> and multiple vision assist accelerators, Depth and Motion Processing
-> Accelerators (DMPAC), Deep-learning Matrix Multiply Accelerator(MMA)
-> and C7x floating point vector DSP
-> 
-> AM69 SK supports the following interfaces:
->        * 32 GB LPDDR4 RAM
->        * x1 Gigabit Ethernet interface
->        * x3 USB 3.0 Type-A ports
->        * x1 USB 3.0 Type-C port
->        * x1 UHS-1 capable micro-SD card slot
->        * x4 MCAN instances
->        * 32 GB eMMC Flash
->        * 512 Mbit OSPI flash
->        * x2 Display connectors
->        * x1 PCIe M.2 M Key
->        * x1 PCIe M.2 E Key
->        * x1 4L PCIe Card Slot
->        * x3 CSI2 Camera interface
->        * 40-pin Raspberry Pi header
-> 
-> Add initial support for the AM69 SK board.
-
-Thank you for your patch. There is something to discuss/improve.
-
-> 
-> Design Files: https://www.ti.com/lit/zip/SPRR466
-> TRM: https://www.ti.com/lit/zip/spruj52
-> 
-> Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->  arch/arm64/boot/dts/ti/Makefile       |   1 +
->  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 180 ++++++++++++++++++++++++++
->  2 files changed, 181 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index e7c2c7dd0b25..04b1a7611096 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
->  
->  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
->  
-> +dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
+>  Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-I was told the order of entries here is "time of release". Is it
-correct? This is the order you want to keep here and am69-sk was
-released after j721s2-common-proc-board but before j784s4-evm?
 
->  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
->  
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
