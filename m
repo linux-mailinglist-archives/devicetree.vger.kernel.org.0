@@ -2,86 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DEE8673AD0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3505673A45
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:32:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbjASN4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:56:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55740 "EHLO
+        id S231251AbjASNcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 08:32:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231395AbjASNz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:55:56 -0500
-Received: from egress-ip33b.ess.de.barracuda.com (egress-ip33b.ess.de.barracuda.com [18.185.115.237])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D714A75A0F
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:55:37 -0800 (PST)
-Received: from mail-oi1-f199.google.com (mail-oi1-f199.google.com [209.85.167.199]) by mx-outbound23-43.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Thu, 19 Jan 2023 13:55:34 +0000
-Received: by mail-oi1-f199.google.com with SMTP id eb8-20020a056808634800b0036e1f34427aso675953oib.18
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:55:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ij+LKypRyC4ET1YOYoExmQTJSo7+G67OGUgekgJ94Yg=;
-        b=IRFYsRaD3I302AXwlsHkOJZzKQHYhQBWslTiVQsarDNNbZMFI9zYx00lHQ7aYchuZb
-         EOLu2p+bx26HGkcVmY9AjwUYBJm7DPo/YHG2k59lcvERuyF19CLHJW2DzvYFdDL7iUHa
-         MRarZbk9AahGmNWep1EDRUB6mFhC4HyA0wP0s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ij+LKypRyC4ET1YOYoExmQTJSo7+G67OGUgekgJ94Yg=;
-        b=o2oUtubIGLZnHisD2sSdu9njFZmA9HS+537HsAf6MUPfcZlWo+EGBBSoS3HWj0ZA1X
-         5ZvJZ5Kjh4tZUbLkxcRo/rvNBGe3ypyM6Qnfv7Xn0kJQPROiIcKXmvleLHkzotNsWYNv
-         ftlXJLxY1Gjo3FdIiqFOgAnRYfJiok8hj1+1kRobFo6IaTKUSXrWQv0N4LFS4egx7uli
-         RYcQylUJ0YnVt9wgSxTf3O+n2kuU08jlmPUJiB3oLG5MUf1qaSNtlGb4Z3HBqnAB3vkf
-         UeRYtXdoh5/1E529cNGBDILi0P09vPEb1i/cRYYB1ZyX0/66afNfAlylJHyNagd0KoQo
-         l7lA==
-X-Gm-Message-State: AFqh2koFpL2ePRGwqtH9vgdDVl88DJCskyhCm9Kwz8A9DlXgt+vYnQH3
-        2rby1zd0pljA3ZGeWdMuuJ7nfxobrZf/4hrh5zwkD6IsQChZxaCYSE1T1QHB+ZrvvXabmACla4A
-        hMbYjsfowuigprLW9ngpj80rd+deDJXKPBju/degc4qOi19IGy8Uhkhw8VA==
-X-Received: by 2002:a62:63c6:0:b0:576:ddd4:6a02 with SMTP id x189-20020a6263c6000000b00576ddd46a02mr11386278pfb.22.1674135064563;
-        Thu, 19 Jan 2023 05:31:04 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXtSilHtZxuUmQzIhtirA57CSvuBMsp+pEpNPo/LV67F9fFfUijD8PDM6qo9lanw/gfKgyaohg==
-X-Received: by 2002:a62:63c6:0:b0:576:ddd4:6a02 with SMTP id x189-20020a6263c6000000b00576ddd46a02mr11386245pfb.22.1674135064263;
-        Thu, 19 Jan 2023 05:31:04 -0800 (PST)
-Received: from LAP789U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id l123-20020a622581000000b005818d429d98sm23949210pfl.136.2023.01.19.05.31.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 05:31:03 -0800 (PST)
-From:   sabiya.d@mistralsolutions.com
-X-Google-Original-From: sabiya.d@ti.com
-To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>
-Subject: [PATCH 2/2] arch: arm64: dts: Add support for AM69 Starter Kit
-Date:   Thu, 19 Jan 2023 18:59:58 +0530
-Message-Id: <20230119132958.124435-3-sabiya.d@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230119132958.124435-1-sabiya.d@ti.com>
-References: <20230119132958.124435-1-sabiya.d@ti.com>
+        with ESMTP id S231206AbjASNcF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:32:05 -0500
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2138.outbound.protection.outlook.com [40.107.114.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97C8B7E6A1;
+        Thu, 19 Jan 2023 05:31:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lYDdkOVKSb31c/zksLv7tJ+418emV26BpRTgoNjY5TxRCPnlwD7m9PwnKoaykxTvd+oG2APO+LUl7xGzKJxHNUyWHqE21kGJPldF18iap+uc621chOxXuPuem5G185OoNWqAjTqhxqexgseQ51HQcAP04WvGTawzTRAIzTk2oJ2pOYv/Aacv3l18Apce64PudH1T5AoJxwxEuQGhCVC0PmrP17fqmUa4BQ0uh8QRA0Ab8UsTvV1Rn3RDPSVFnuPiG9y0xhIehtUP05duMPos0rH0VHUcFK/fo4GrBzIzoenRSvhC7zP0EJChdzGa1Rq/oXgQs60GChh1LjohZMeOPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=W2V+Q02m+WlRe+tQ47H9CAEUSvvQKFSxjQhBsKmQBKw=;
+ b=U/M0S2yrG/fHCwLrDuDViqU9AsLXDHvOYwFrvJivNOKowMcxXm4mGZecdIdjBMvc3hXWANf+3K+bY/B/k1WA4H+WXThwq++aWEZ6gLi5MLOt5gNj/LJouf27GIyo0qn9SRri8TNtrWa3hTpFpxfE3wRklhAVUMqhCi6cILTQxm6o2hG8WFKTyYO/VYM2GlLsEb7DVowD2w0HmRBAusvB2nvbhd5PttBRb9/yhg5kFjKTrYjeWkVItlZgtBASNqUTpfFPCwqSfPPn5oOpMPU98Az1BuhqpjrxYVYSrVwtqmpL3/+GhTU7XsWfzdci2O1y6+8Dvdt9zvUHTJwbGgk1Pw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W2V+Q02m+WlRe+tQ47H9CAEUSvvQKFSxjQhBsKmQBKw=;
+ b=bFG0hA2kIgoGbSP4G9x7YL1nMYcQ4Ab2pUoTmC3rNXal08febOKNQjXxKWuy+HM3nLPh6tdDYZy2y9tw9iskM/oXIFmxsFq5Q1BqH6UwBFUnDpcHnP5xwDNiy5j0/C1MCqqw08tKtmcPE7adfSrp4jm1HaMGlAMmWX1oEnhAm78=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by OS3PR01MB6007.jpnprd01.prod.outlook.com
+ (2603:1096:604:d5::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Thu, 19 Jan
+ 2023 13:31:55 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::3e61:3792:227e:5f18]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::3e61:3792:227e:5f18%9]) with mapi id 15.20.6002.026; Thu, 19 Jan 2023
+ 13:31:55 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779g0
+ support
+Thread-Topic: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779g0
+ support
+Thread-Index: AQHZLAiMfXACliUnd06YTlbcju5liq6lvD1w
+Date:   Thu, 19 Jan 2023 13:31:55 +0000
+Message-ID: <TYBPR01MB5341B89B3DF27EECF51507E9D8C49@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20230119131833.1008752-1-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20230119131833.1008752-1-yoshihiro.shimoda.uh@renesas.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS3PR01MB6007:EE_
+x-ms-office365-filtering-correlation-id: 09a5e903-9b7b-475f-f05d-08dafa218855
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: PYvr4/CAb623QPwGoGGG2xzg4TPy/xNLoiahBuXaHxrOnQn0mKeocJGsQLRhx9Z8Is7Y9sSUTl6IhU6QwJb8vuQaikNmiyEJNjuRFFG2/CD5D0ljxAAvuB3mni9FpD2befuEj30+EBZQeH09m8+XkF83rq2pJaZbEPdNLs8ugzRPnEmNsVKmfmZmUiAwZjKI1OhYxst3hugiZzZQu1I77qH8xGl3PE8l90NdwRhP0IeCdaaUlZkMrzPMnle0A9Fb+/h/zq4g3dfrQuNJ3wYQvdYKltCxPYyw0TxHSwaLLcGgzRVvsHnlOdTh9b0CMocANhOBvC8LJRreUOkl6o8mFbqbLSxIdgzZpCbiTLnU+wP0NhS/gdnwbEGGS15GZwFn1pq71Izd5CLb/YJ8yx0G7IZssY3onpKlWDUhT2QxI95lDz8/yIyneJ9NOTboo7HCRXRr6SRwnocYyjDa62PV4XCSPdCHJSDkJ58+iqQob3kW4rf2+MMNjtZkrAEMz7cKNOH4eAVZfV4V936Qw7ZVqkGc7faZ09kkkyA+qjk1s8oERU2+x4fGDoTd1kytN+1HKEQcKs1YYwNNaH8gZA/8OcDehB45HDt/rzo9e95FMZx+xINW7pktQhgAiFmxUAwcD+CxT6nZM0KT1q3X1lrJiSLipYIOYaRROu9o4iJvBJVS4JcUgALQS04EJ0WA2VBBagNTZKPMvaDxww2zBNoxfQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(346002)(39860400002)(366004)(396003)(376002)(451199015)(86362001)(38100700002)(122000001)(2906002)(41300700001)(8936002)(5660300002)(52536014)(558084003)(110136005)(7696005)(4326008)(316002)(33656002)(71200400001)(54906003)(38070700005)(8676002)(6506007)(55016003)(66446008)(64756008)(9686003)(66476007)(76116006)(66946007)(186003)(478600001)(66556008)(26005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lNtrEldfB7vovoux9p8vvF8ajB9kfr3b2QrN32nHySuV4ykHXrL6FZCr0jbl?=
+ =?us-ascii?Q?ghPvUTVJy8V2DMHdwWqyeMpxSmYFueaK0pSU4u7qklFZMSfcETlL2RAwG2is?=
+ =?us-ascii?Q?K5fG+fKFOHsoZKB1lrikzjF1DjTnfGTwHVW/VWzYvcnsQvMxi3OH5BLTgivP?=
+ =?us-ascii?Q?7CUpwcxt1BuI/9SCoMRC1QrFfUcWLRNy+oqO3/jdYX8wroLc2agNnsn/3yH1?=
+ =?us-ascii?Q?rtv/i0bn8tB0Hl07gxjXQ6C/C2tzk/csYPotgZ5qvHbadXeV8KDIrELaOd/Y?=
+ =?us-ascii?Q?GkyTbB7O8vmJrYHMmgHaFdsAy5Iy8qlkoNSIz0ZDKKj5/PLyxFQ2hQwI41mH?=
+ =?us-ascii?Q?9oDyNi4oZZdLaoD1tEewl/I0Bkfphbn5fcp0Rj9jo5xJoO/jUc3Aj2qFPGyh?=
+ =?us-ascii?Q?GLFC6g6eXvxUucXPWweGzfLnnfLvPSBZOZThuOcD3nZb8Yh62sdX14faAWip?=
+ =?us-ascii?Q?/gZysrowc+q2BcRgXwos8s06+gnitnCY4MFmSsqnrMmj3R2/1bX5g/uoMoY7?=
+ =?us-ascii?Q?eGxbK6GPFyD/ri6axZQ0cM5GF3EAbtDdrlzZKz6n8X+f236DDEpo+vCoVO8O?=
+ =?us-ascii?Q?3fe2d3TQ8Vpbo+DYUqbhr92gI6lJ0hqUWD1xpDYtv5nrnsUY0H1wqHVp7mM5?=
+ =?us-ascii?Q?5UAnwpHu6HXQtjPSZ5YkKZB3Cu5vq5+6SPje/In48K1hCCTrFxN7/0HVsALq?=
+ =?us-ascii?Q?6ek+UTNItIouATbYrUksik/gV8UXFAew+S2YdVLxFrDSLVoHF/qlU4QMWa8c?=
+ =?us-ascii?Q?l9Ej0Bn9iDWo5q0sN1de7EnQFGSBqAugMx0M0vjBU2id9QRpYsK8UEXrdbC8?=
+ =?us-ascii?Q?fahE+oc/5G+9RTJZHDEnEvIRWQGKxK969jwpo/oVNcVNA76BZRLXlv0rxL3e?=
+ =?us-ascii?Q?3PjDliBaYmxK0RcJtYfD4f1Ur6gw2wAKhTsNYu1Lm/nw1SXnGCHBfDPaLqkg?=
+ =?us-ascii?Q?q8bUaSiExkT93cfnQI/GxcTxZjOlW7y0MEquVks2Vdtt2TOhB0gMaTuSOQCh?=
+ =?us-ascii?Q?AiGgM14TCfDdSLyrmE5fH2t1QwD6TG2PfjSDPUX5zMEFINhQDLgQudYpjvvi?=
+ =?us-ascii?Q?LACF4Mx4C0jugf53nShZSVGmaxiGcpKxorqQ6froHGOugNfb7pTSTuvx9sp3?=
+ =?us-ascii?Q?7AaLaMEXGuoEUkrohhwdmwQCXRdOgGdwF+2dDXhFdqCFzYIBgb6cfTVLAfs1?=
+ =?us-ascii?Q?KX6+BhuGA+4joK/cBEqBBlZWqdJ7Nze/r/5uWvA9OTlhOd9wCcvPLY1mc/Ee?=
+ =?us-ascii?Q?LQRdINRG0GnzHxBuPCtVx5uo7AfLIIpZvGwa4hooCh3B+bKqbt4cc9AeDmdy?=
+ =?us-ascii?Q?EFlH96IWcsSWqU8Tab/EEBdBNkwKV7ZwZj9wkhnGy/nb8Hc2hLisn4FqVY3k?=
+ =?us-ascii?Q?e9xJfd9XSoU7+xuz/rn/1FUQg5MWoDJ6wmhJ0eEY/zQx8FkfczK8MgfkTIVL?=
+ =?us-ascii?Q?8+HLrYVlN3grTgx54gDNdekd3tUYzT3u+SV65WvVlSYQ4zexR6WcO5Dk55z/?=
+ =?us-ascii?Q?QzsNWBse0KfVZFL7fL6YTK3EG8TTN3nqAMUhi3heiX5h1tqyC7FVDAFMQb5y?=
+ =?us-ascii?Q?3j3lHTxCQ+kRmCDq3CRIJ6L6PkmnVohAWaaPRQ4i9iUee9bc50WprTLv8FKc?=
+ =?us-ascii?Q?vQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1674136534-305931-5378-9940-1
-X-BESS-VER: 2019.1_20221214.2106
-X-BESS-Apparent-Source-IP: 209.85.167.199
-X-BESS-Outbound-Spam-Score: 0.50
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245567 [from 
-        cloudscan8-57.eu-central-1a.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.00 NO_REAL_NAME           HEADER: From: does not include a real name 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_RULE7568M, BSF_SC0_MISMATCH_TO, NO_REAL_NAME, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09a5e903-9b7b-475f-f05d-08dafa218855
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2023 13:31:55.4076
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wYp+iZ579P0rziZ15BVqB0ug0IVxZ2a8LxnAst0TLHlWmdlbAoyPIf835dM+Iv2ja8RmCsPaMBuiTHgWwKLElps9YuZMMxVXfvuiMhbnfej2g5UmAhU6oE9VZP98DlpD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6007
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,243 +125,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dasnavis Sabiya <sabiya.d@ti.com>
+Hi,
 
-AM69 Starter Kit is a single board designed for TI AM69 SOC that
-provides advanced system integration in automotive ADAS applications,
-autonomous mobile robot and edge AI applications. The SOC comprises
-of Cortex-A72s in dual clusters, lockstep capable dual Cortex-R5F MCUs,
-Vision Processing Accelerators (VPAC) with Image Signal Processor (ISP)
-and multiple vision assist accelerators, Depth and Motion Processing
-Accelerators (DMPAC), Deep-learning Matrix Multiply Accelerator(MMA)
-and C7x floating point vector DSP
+> From: Yoshihiro Shimoda , Sent: Thursday, January 19, 2023 10:19 PM
+<snip>
+> Cc: iommu@lists.linux-foundation.org
 
-AM69 SK supports the following interfaces:
-       * 32 GB LPDDR4 RAM
-       * x1 Gigabit Ethernet interface
-       * x3 USB 3.0 Type-A ports
-       * x1 USB 3.0 Type-C port
-       * x1 UHS-1 capable micro-SD card slot
-       * x4 MCAN instances
-       * 32 GB eMMC Flash
-       * 512 Mbit OSPI flash
-       * x2 Display connectors
-       * x1 PCIe M.2 M Key
-       * x1 PCIe M.2 E Key
-       * x1 4L PCIe Card Slot
-       * x3 CSI2 Camera interface
-       * 40-pin Raspberry Pi header
+I didn't realize that the mailing list was ended. I'll repost this patch to=
+ the new mailing list soon.
 
-Add initial support for the AM69 SK board.
-
-Design Files: https://www.ti.com/lit/zip/SPRR466
-TRM: https://www.ti.com/lit/zip/spruj52
-
-Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile       |   1 +
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 180 ++++++++++++++++++++++++++
- 2 files changed, 181 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am69-sk.dts
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index e7c2c7dd0b25..04b1a7611096 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
- 
-+dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-new file mode 100644
-index 000000000000..bc49ba534790
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -0,0 +1,180 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2022-2023 Texas Instruments Incorporated - https://www.ti.com/
-+ *
-+ * Design Files: https://www.ti.com/lit/zip/SPRR466
-+ * TRM: https://www.ti.com/lit/zip/spruj52
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-j784s4.dtsi"
-+
-+/ {
-+	compatible = "ti,am69-sk", "ti,j784s4";
-+	model = "Texas Instruments AM69 SK";
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	aliases {
-+		serial2 = &main_uart8;
-+		mmc1 = &main_sdhci1;
-+		i2c0 = &main_i2c0;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 32G RAM */
-+		reg = <0x00 0x80000000 0x00 0x80000000>,
-+		      <0x08 0x80000000 0x07 0x80000000>;
-+	};
-+
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>;
-+			no-map;
-+		};
-+	};
-+
-+	vusb_main: regulator-vusb-main5v0 {
-+		/* USB MAIN INPUT 5V DC */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vusb-main5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_5v0: regulator-vsys5v0 {
-+		/* Output of LM61460 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vusb_main>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_3v3: regulator-vsys3v3 {
-+		/* Output of LM5143 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vusb_main>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: regulator-sd {
-+		/* Output of TPS22918 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vdd_sd_dv: regulator-tlv71033 {
-+		/* Output of TLV71033 */
-+		compatible = "regulator-gpio";
-+		regulator-name = "tlv71033";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_5v0>;
-+		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_uart8_pins_default: main-uart8-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0d0, PIN_INPUT, 11) /* (AP38) SPI0_CS1.UART8_RXD */
-+			J784S4_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AN38) SPI0_CLK.UART8_TXD */
-+		>;
-+	};
-+
-+	main_i2c0_pins_default: main-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0e0, PIN_INPUT_PULLUP, 0) /* (AN36) I2C0_SCL */
-+			J784S4_IOPAD(0x0e4, PIN_INPUT_PULLUP, 0) /* (AP37) I2C0_SDA */
-+		>;
-+	};
-+
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x104, PIN_INPUT, 0) /* (AB38) MMC1_CLK */
-+			J784S4_IOPAD(0x108, PIN_INPUT, 0) /* (AB36) MMC1_CMD */
-+			J784S4_IOPAD(0x100, PIN_INPUT, 0) /* (No Pin) MMC1_CLKLB */
-+			J784S4_IOPAD(0x0fc, PIN_INPUT, 0) /* (AA33) MMC1_DAT0 */
-+			J784S4_IOPAD(0x0f8, PIN_INPUT, 0) /* (AB34) MMC1_DAT1 */
-+			J784S4_IOPAD(0x0f4, PIN_INPUT, 0) /* (AA32) MMC1_DAT2 */
-+			J784S4_IOPAD(0x0f0, PIN_INPUT, 0) /* (AC38) MMC1_DAT3 */
-+			J784S4_IOPAD(0x0e8, PIN_INPUT, 8) /* (AR38) TIMER_IO0.MMC1_SDCD */
-+		>;
-+	};
-+
-+	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0C4, PIN_INPUT, 7) /* (AD36) ECAP0_IN_APWM_OUT.GPIO0_49 */
-+		>;
-+	};
-+};
-+
-+&main_uart8 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart8_pins_default>;
-+};
-+
-+&main_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp1: gpio@21 {
-+		compatible = "ti,tca6416";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names	= "BOARDID_EEPROM_WP", "CAN_STB", "GPIO_uSD_PWR_EN",
-+				"IO_EXP_MCU_RGMII_RST#", "IO_EXP_PCIe0_4L_PERST#",
-+				"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_PCIe3_M.2_RTSz",
-+				"PM_INA_BUS_EN", "ENET1_EXP_PWRDN", "EXP1_ENET_RSTz",
-+				"ENET1_I2CMUX_SEL", "PCIe0_CLKREQ#", "PCIe1_M.2_CLKREQ#",
-+				"PCIe3_M2_CLKREQ#", "PCIe0_PRSNT2#_1", "PCIe0_PRSNT2#_2";
-+	};
-+};
-+
-+&main_sdhci1 {
-+	/* SD card */
-+	status = "okay";
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	pinctrl-names = "default";
-+	disable-wp;
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv>;
-+};
-+
-+&main_gpio0 {
-+	status = "okay";
-+};
--- 
-2.25.1
+Best regards,
+Yoshihiro Shimoda
 
