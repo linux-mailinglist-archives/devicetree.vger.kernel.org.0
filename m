@@ -2,126 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A9F673EC5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 17:28:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A59F7673ECC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 17:29:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230344AbjASQ2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 11:28:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52154 "EHLO
+        id S230160AbjASQ3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 11:29:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230226AbjASQ1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 11:27:53 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5753C4B740;
-        Thu, 19 Jan 2023 08:27:44 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id e3so2370504wru.13;
-        Thu, 19 Jan 2023 08:27:44 -0800 (PST)
+        with ESMTP id S229590AbjASQ3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 11:29:00 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A506EA2
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 08:28:58 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id i4so1769279wrs.9
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 08:28:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G/U5zgB7p6OPqHMQlkEy+bwIc9R4WIoTQK22mTGWePo=;
-        b=fehBeiL89VwQgVcafbZ9QQSKjqCm23MRx5+udadtSKvVH7KDt3+9ShdubuWImJZN/d
-         hWHtyRDCOTanWJpvde1aFlT+v2Q+xYATcGL4q1NVrotOUXxUqFeTWXWJfgo9a0F/LrK7
-         dcLbQMkXf057SiNAUXv2qK89NpwC8CGpy40BDeccLXhCdCcj8a7VaNsJsiX0m2GV50gJ
-         f1a/OxIqlVSvdITWsbx6fVKoy/306HGBPBl8SfeZsONDZ2qrOfWfa+QDqBEVm6wSmGJI
-         aDSoOaqcOOT4Yq4pcCZc1qO00QACoRO9B/3vJM6eiRtXluU2ClwyQznEWa5GZG72NLbB
-         Js8Q==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=KyDTae+yIRm9B46y4fh6l6TTAmMj8UP4bhexXvaxQvg=;
+        b=jQmM25167/Sn9MWbEEi7q8VYIVZHNgon8DyMdOgJCTr9GR1WuYLMkyIHkOf+KPaf6Q
+         qUkEZ82pmtBBSKocFxUDWgHD0OLIUMPR1EBi2Pp2x6U/tWE78MhwQZ1aOjpJllx4k56D
+         tzP70DHL16qp514tucSo9s9AKLuq4ILNJ+rd/Db75VCaEdppiC6BAW1rhdVXDlnNhRcx
+         ikHz6B7jXfJ2J0qBCXWaUO6gE7SLOisgUfgM5dlPop+8KrIuII43CKJ2hodbxjViJD75
+         VP3NOJq9R3x8U6WftOTdcYAQb7v3ufd3XyeFsCjpCS7tztVGs5XmspmRSVxb9lVHXtNg
+         wSsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G/U5zgB7p6OPqHMQlkEy+bwIc9R4WIoTQK22mTGWePo=;
-        b=l0LUK/FISh5cqB2byZJcwGAf92pjepLTZO9pRd0mTCr/TKJOrSu6OqAeLvnjeblZu8
-         RtRGeORsHY4Vn1QxJnhFMplxDjOiHMSFDQftsuRiX+aDliW4+khTd8N+n+2TgLWX0dJS
-         vKsFO6W4FZ1oJUVqx2tmCOLuIVGBKjjGo9v8aG01mFu0waLLJ5eYXoMuBtJ4QNrcWGZ7
-         icSIKXAD77GBlNYvSFHbmmbuLXKd+yj02b1Ft3ImtCLRMUM8t0+tlrdVTEg8Z0kzyRJC
-         X1vVEVOEJYM1jfkO8BIchAKhNqrSpU+920lrhYSL2Up0NustEDOIcEYDR5Imnm6NuWJz
-         3m7Q==
-X-Gm-Message-State: AFqh2kq0jZ+tjVFIW1iJP8jA4+YjDagpm5rC2EqyX7E1lyL1S/tvFvQI
-        IJVslheFWVngjZ7+hewuqHc=
-X-Google-Smtp-Source: AMrXdXs9Cqz0kN5li7jUZKL9XHr8uTasSMBvof1S8Lp/gYpd11zsi5j9VtdWxlRUsSXtROeRulr9/w==
-X-Received: by 2002:adf:ee10:0:b0:2bd:d5f5:8820 with SMTP id y16-20020adfee10000000b002bdd5f58820mr10124489wrn.27.1674145663376;
-        Thu, 19 Jan 2023 08:27:43 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id co22-20020a0560000a1600b002a01e64f7a1sm10707038wrb.88.2023.01.19.08.27.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 08:27:42 -0800 (PST)
-Message-ID: <9d991211-4c5a-f6c7-6179-b5740a484a75@gmail.com>
-Date:   Thu, 19 Jan 2023 17:27:41 +0100
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KyDTae+yIRm9B46y4fh6l6TTAmMj8UP4bhexXvaxQvg=;
+        b=Ybic7OdNYTCEuWFCDHens1JAQHXjRsExAETpG1B1ImsqKMLfnCfRkaycn4f8VDobKP
+         GZJZLMJIBif3ccUFFez4h/9xG1tg42BzbB960cSUhy3Jm84RJ+hybWiT5hACpTKZ0j0l
+         bkAbsIzYEzlKknWQ3vBa0Sn6vS2dHHdRwspJMPLq0hsPMGsWRiboWpqPMX2zw0nF1YLg
+         pt0v+b3FENFjuLt37zAqYfUfra00177MyofQCKTG1kvFqq79Gpmcao3vdO5pPOEj/f96
+         x8kt5SWGEFpFiyut5texKZzUu4teXwdQhB7YNhD5vr7nFTpiMq65ui/KjMbswfUWrQqO
+         TT3Q==
+X-Gm-Message-State: AFqh2kqQm8j5QzCfxp7IPKtog0Kt+9qrJ+xzS+vNRta8Ko+5l3fhufD/
+        fPvZQoh2RJ6CdteSn54vMCXa3Q==
+X-Google-Smtp-Source: AMrXdXv+CmLOrA89B0ZuZyKvu9Y6N46QigmiVMi0IyY1PCKErMDy0IN7Aid9IuYATD/a9LBe7hsUOQ==
+X-Received: by 2002:a05:6000:689:b0:2bd:ffad:1bce with SMTP id bo9-20020a056000068900b002bdffad1bcemr11263798wrb.59.1674145736528;
+        Thu, 19 Jan 2023 08:28:56 -0800 (PST)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id f7-20020a5d6647000000b002bbeb700c38sm29008771wrw.91.2023.01.19.08.28.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 08:28:55 -0800 (PST)
+Subject: [PATCH 0/2] Add MediaTek MT8365 SPI support
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/9] dt-bindings: spmi: spmi-mtk-pmif: Document
- mediatek,mt8195-spmi as fallback of mediatek,mt8186-spmi
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIAMBvyWMC/w3LwQ5AMAwA0F+RnjXZMMHfdNPQhFlWXBb/bsd3eAWUs7DC0hTI/IrKFSts20DYKW
+ 6MslZDZ7reWDvheU/96FCToD4pXflGs86jD87RQAZq9KSMPlMMe63xOY7v+wFAMS4raQAAAA==
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Thu, 19 Jan 2023 17:28:48 +0100
+Message-Id: <20230118-mt8365-spi-support-v1-0-842a21e50494@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Stephen Boyd <sboyd@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        dri-devel@lists.freedesktop.org
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        hsinyi@chromium.org
-References: <20230118091829.755-1-allen-kh.cheng@mediatek.com>
- <20230118091829.755-3-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230118091829.755-3-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1434; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=zgfYtWJl6Qnh+hLsShyx1UnAkEV+3eaUlo+MkmgoDbQ=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjyW/GdVwaejjtWKRvxKzRFY+EaDyo/lXcw1dm3b7c
+ BghChKGJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY8lvxgAKCRArRkmdfjHURVPHEA
+ CvuZFIUu1KDwRFFmDhM1p3ChGZDGxZhGCrp3BOOs7Mmoku/x9997da+lBrVEZ+5Kwpi4sm/2UV9W4g
+ 47uNrjzbVfOPUJDqFfJDKk/FMEo2t2LauRdVmOG6zNHUj2/XKa0CU8wt8vVQE4XxH9nvX0ewx+k8IX
+ DyjnKgV7dwjYD0T1JNMB+8iSDiSTtbEdFBvEc0jrMZSPAJRGk8TJX00ttRwWWs8VTQ3LFgCKJb85Ix
+ blfxbAAwqg6cvy//4jErY0QNhrPEIoLrbGLbOaekvOhKeopaWyIGZFVhLifWtCSNykjnb8umEqvz35
+ ekvplHL+BK7TYjX+H0bGy4uhoRkTGKGl0210Tid45WkfpqX3CMQaMGHMzqzhQG5xPUc1VvL0DccZCS
+ /Gbc/uXRyJCLhU5oVWCyYUNNi0SOKttpVw+ZJVfiO/NYXFAmBEKtROZx8L4I4SFoeTEEE1qo9B/+Ln
+ Nm/3pD4ZOPHlsrzNFfDkOTIEaAsgSa3o0NvP0YQbJzZ4P6BVLSxAkHyGvVacrw05mNWdcbMw5gX000
+ oYRe5+d9rpLg+UjuAIhtQRVD07hq4lsUxYu5PGVuQZc/qEwC0MElkgEJEnJc2uGK4RpPicKq99DW64
+ 9JEM8NsHRlfWoYA+SWcz1KF8CmEpMUUSIvb4XgLYXLI/n3UET3fz8Arn1Vkw==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+This patch series adds SPI support for MT8365-EVK board.
+The SPIDEV is enabled, it can be used through the board pin header,
+as described directly on the PCB.
 
+This series depends to another one which add support for
+MT8365 SoC and EVK board. Link [1].
 
-On 18/01/2023 10:18, Allen-KH Cheng wrote:
-> The mt8186-spmi is used as compatible with mt8195-spmi on the MT8186,
-> document this situation.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Test:
+- Loopback MOSI and MISO pins
+- Issue the following command:
+spidev_test -D /dev/spidev0.0 -v
+- RX line should be the same as TX line.
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+Regards,
+Alex
 
-> ---
->   .../devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml   | 11 ++++++++---
->   1 file changed, 8 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml b/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
-> index abcbbe13723f..e4f465abcfe9 100644
-> --- a/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
-> +++ b/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
-> @@ -18,9 +18,14 @@ allOf:
->   
->   properties:
->     compatible:
-> -    enum:
-> -      - mediatek,mt6873-spmi
-> -      - mediatek,mt8195-spmi
-> +    oneOf:
-> +      - enum:
-> +          - mediatek,mt6873-spmi
-> +          - mediatek,mt8195-spmi
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt8186-spmi
-> +          - const: mediatek,mt8195-spmi
->   
->     reg:
->       maxItems: 2
+[1]: https://lore.kernel.org/linux-mediatek/20230101220149.3035048-1-bero@baylibre.com/
+
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-spi@vger.kernel.org
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+
+---
+Alexandre Mergnat (2):
+      arm64: dts: mediatek: add spidev support for mt8365-evk board
+      spi: spidev: add new mediatek support
+
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 24 ++++++++++++++++++++++++
+ drivers/spi/spidev.c                        |  2 ++
+ 2 files changed, 26 insertions(+)
+---
+base-commit: 8b6cfcce3ce939db11166680a57253c39110f07e
+change-id: 20230118-mt8365-spi-support-0d96bc55a4a0
+
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
