@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36F506746EE
+	by mail.lfdr.de (Postfix) with ESMTP id DABA96746EF
 	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 00:12:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231129AbjASXMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 18:12:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55412 "EHLO
+        id S231166AbjASXMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 18:12:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231130AbjASXMS (ORCPT
+        with ESMTP id S231133AbjASXMS (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 18:12:18 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F2F53E5C
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 15:04:21 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id a1-20020a056830008100b006864df3b1f8so2125432oto.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 15:04:21 -0800 (PST)
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D87A54210
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 15:04:22 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id n24-20020a0568301e9800b006865671a9d5so2116922otr.6
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 15:04:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=i3Jm3hFZNo5z8bfeqahjJFhHVybeUAHAxq92W8HlP58=;
-        b=EaOJVS18vr+oAvWemNb4t06wHZNfuo+zezeukYrKLAjLlmNuNm/yCZpJ23iJzQT9tw
-         HheGGlVNxT1quWtyiZtB3HlztcM2ktKR/rpLthGr7lV7PxajpY9spwqsbX5PFh8Qf/Rx
-         gu++MgwNyNaB1MBr5Kcf/puCxr8bXJ3lbOYdyE9n1CQ+mr+uhafJWqXYEd9hOFnjUtRR
-         Sou7oXaP/wKnFYRDI9+0krb46Ed+52S0a6VbiyHUmpFqVnQ1dpjPayBzPUl92LJBWDZC
-         ihoE8Zj6w4GjGB3m7SEuinFMUkj96Y9tXlQOs6mMTkxnteEgIWGQE+DqeTsHujWxS4P1
-         NE3A==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I+a8us++zKCqwb90bOoz2QhCcN83KUtlRyH4tzf0Qzw=;
+        b=R2lMKvx3yjc4Zbg85MDM/X6VRNai+OLurLQ9Y6g7WcdJz/HfcnHqzDwF60WHY5IyMM
+         v6G1VwGQpJmSFbWmjpxj2PpD1uLbc4zbIUYHEgccxoilRVCXAy1PVT14v8EQwlUcfSyL
+         PfmQS6t3k3npwYzAE17fc8QUi/Do6VxrganZcOLBqRqgFvWSxS5AB9lbWiG9Z9Hho3dq
+         OQXDpPtI/VulWARdYf5PVbrQIyY6vGX7kn91hX8+q5d0PwRVnFYSpSb18buGikt/QLGs
+         Nm5ubugYs+STsydVCj7+WtGTIaYNXo6MjspmTK2On9V7cblH+CbyLA4E7FF/jVh/eSBh
+         UxQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=i3Jm3hFZNo5z8bfeqahjJFhHVybeUAHAxq92W8HlP58=;
-        b=NHQ3XShnmGt8FbD3jt9v/njwdyIqeNs06abFJ4Y8N7s+4SCl0F6i3KlRQ3J2Ow6seY
-         YqE5v5EeC7Ez5xpoYOkwWRcDcjvmdE33WMZaLZXhkr5q2DyIldROmLJrqdZqyZsLCcE+
-         P1ADsNrb+659xHBtKc7+4+ZIf6TD23jdzpCFUi1DN/m8Tl0Rn1A6BmdTUxomFN4YhlSU
-         7a+a84vW9mZjSkVDLB/YmMAilVd9JiQ+0hyC3ei2K8ELwZwdk2DDpe4twSySUHEM0L8u
-         f4cdUjEzrlIdiLaj7ViCYqmMtxYX7uE/ZBpNZeNQE5auVqgiLCkQ94ICbeiOv9lW4D/Q
-         q7Ow==
-X-Gm-Message-State: AFqh2kpZtg4+pNMGG1hMPcrHiJu5uj2Bpv4x04aNoWhy/6fzv8r/u4qX
-        eBh6cXNZn/UbhImqGhZIgrIIwE7EbNk=
-X-Google-Smtp-Source: AMrXdXtPbPBrwtQmEZRjUhoEB1ESAp6Nz1k12sB5atje47H0YyfvQ1Pt7GIagBYN3sSzxcRbm26g7A==
-X-Received: by 2002:a9d:66c:0:b0:686:419c:cb10 with SMTP id 99-20020a9d066c000000b00686419ccb10mr4149861otn.38.1674169460911;
-        Thu, 19 Jan 2023 15:04:20 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=I+a8us++zKCqwb90bOoz2QhCcN83KUtlRyH4tzf0Qzw=;
+        b=n+3fbk9Y31dgPt6voHMCabJAtmy0h0xit+GWexLeJz339tW3dpiQja330unJkKnI9R
+         0IBazCAsczBt8lyhfPHypHjvZtoZcN4h6y9e+u0m8n9GPXSQ1pjvxbcPNNazMgRH6yYm
+         KdN1nYXlJyz7jLF1sM7ShXXLIzpmvzKOp2iRmEgcUeAT/amiItCuEjAf9kNKOg+mZXol
+         +cdnQuDi34aVzOIojHtrYhy5RtzVwnCd81dXgqEa7pWw3JD7I2e5b0i3fiB/InWj2lph
+         XH/6XkNhM+hphl+6dtXL3MEx5gFwGuOq+NupkhM21TYbZAdAFJXHn7iT5QhyimPhe7zU
+         CBng==
+X-Gm-Message-State: AFqh2koXdi5qve9LXdQEGxZOwq7cD1RDvq4h7yMmlbBusMJH+7TCBkIV
+        G1+l+JMOvE7p98vUJHb2Si0=
+X-Google-Smtp-Source: AMrXdXvHQoRRaaAHU+VU9MnkgBvzK/W5AF92UBQ3EHQMfNj0yCZ0ivLeFnU0lsC24ASGwgFTLu/lFw==
+X-Received: by 2002:a9d:805:0:b0:670:6247:fde1 with SMTP id 5-20020a9d0805000000b006706247fde1mr6045593oty.24.1674169461645;
+        Thu, 19 Jan 2023 15:04:21 -0800 (PST)
 Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id bv10-20020a0568300d8a00b00684e09b43bdsm9254034otb.13.2023.01.19.15.04.20
+        by smtp.gmail.com with ESMTPSA id bv10-20020a0568300d8a00b00684e09b43bdsm9254034otb.13.2023.01.19.15.04.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 15:04:20 -0800 (PST)
+        Thu, 19 Jan 2023 15:04:21 -0800 (PST)
 From:   Chris Morgan <macroalpha82@gmail.com>
 To:     dri-devel@lists.freedesktop.org
 Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -55,10 +56,12 @@ Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
         sam@ravnborg.org, thierry.reding@gmail.com, megous@megous.com,
         kernel@puri.sm, agx@sigxcpu.org,
         Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 0/2] drm/panel: Add Anbernic RG353V-V2 Panel
-Date:   Thu, 19 Jan 2023 17:04:13 -0600
-Message-Id: <20230119230415.1283379-1-macroalpha82@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: panel: Add compatible for Anbernic RG353V-V2 panel
+Date:   Thu, 19 Jan 2023 17:04:14 -0600
+Message-Id: <20230119230415.1283379-2-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230119230415.1283379-1-macroalpha82@gmail.com>
+References: <20230119230415.1283379-1-macroalpha82@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -73,18 +76,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add the NewVision NV3051D panel as found on the second revision of the
-RG353V. The underlying LCD panel itself is unknown (ST7703 is the
-controller IC).
+The Anbernic RG353V-V2 panel is a 5 inch 640x480 MIPI-DSI LCD panel.
+It's based on the ST7703 LCD controller just like rocktech,jh057n00900.
+It's used in a 2nd revision of the Anbernic RG353V handheld gaming
+device. Like the first revision of the RG353V the control chip is known
+but the panel itself is unknown, so name it for the device.
 
-Chris Morgan (2):
-  dt-bindings: panel: Add compatible for Anbernic RG353V-V2 panel
-  drm/panel: st7703: Add support for Anbernic RG353V-V2 panel
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ .../devicetree/bindings/display/panel/rocktech,jh057n00900.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../display/panel/rocktech,jh057n00900.yaml   |   2 +
- drivers/gpu/drm/panel/panel-sitronix-st7703.c | 102 +++++++++++++++++-
- 2 files changed, 101 insertions(+), 3 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
+index 09b5eb7542f8..150e81090af2 100644
+--- a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
++++ b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
+@@ -20,6 +20,8 @@ allOf:
+ properties:
+   compatible:
+     enum:
++      # Anberic RG353V-V2 5.0" 640x480 TFT LCD panel
++      - anbernic,rg353v-panel-v2
+       # Rocktech JH057N00900 5.5" 720x1440 TFT LCD panel
+       - rocktech,jh057n00900
+       # Xingbangda XBD599 5.99" 720x1440 TFT LCD panel
 -- 
 2.34.1
 
