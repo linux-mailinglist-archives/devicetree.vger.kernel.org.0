@@ -2,56 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49053673CA1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:45:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7313673CA7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:46:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230417AbjASOpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 09:45:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36334 "EHLO
+        id S230486AbjASOqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 09:46:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229816AbjASOo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:44:56 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CDA508B30C;
-        Thu, 19 Jan 2023 06:42:21 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1A4CA176A;
-        Thu, 19 Jan 2023 06:42:36 -0800 (PST)
-Received: from [10.57.75.229] (unknown [10.57.75.229])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 965B33F445;
-        Thu, 19 Jan 2023 06:41:51 -0800 (PST)
-Message-ID: <b9e39e9e-6f59-f8b0-6f5d-401151455488@arm.com>
-Date:   Thu, 19 Jan 2023 14:41:50 +0000
+        with ESMTP id S230457AbjASOpx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:45:53 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDEF582D4E
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674139381; x=1705675381;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=aprGr6eVthOxNxFYeHFmXsfEPa0pNWq7D2Wdek7QuEE=;
+  b=a1VRrEmGAEmhAkPHexrm2iG5vzQc+3iMWRhfk4z0P9cQyKgd0uYEy/YG
+   SDlm1dOQyD3zcE02RAEqiHTlFxwCgiBJZZz2FwthlaKkOCC3XJkuMXgaO
+   W1CL4O3DbucPYM1ZpNFyhsnfOCsY7YG+iT6Zm3BhvY59q9zL9Ltf3zZm5
+   gLCNCQvH0jM8RJiYy2u5cG8srWKcUZNtyNmwSdyE/JNsRhdEfZ22qH8LV
+   zeWF0S89grGGvE4X6UE7yAD6yXn3wMxpS2fo+RaE7F/R+/LcDcOo0+KE3
+   7l0SgTnO4buFap99u6kRu+q1AX7h75vvsY5WTLPK2xNmpjOdYj6g8PZY0
+   g==;
+X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
+   d="scan'208";a="28537301"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 19 Jan 2023 15:42:43 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 19 Jan 2023 15:42:43 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 19 Jan 2023 15:42:43 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674139363; x=1705675363;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=aprGr6eVthOxNxFYeHFmXsfEPa0pNWq7D2Wdek7QuEE=;
+  b=H1qc7/ET2JwQbRuwAH0CLnHyIgycjCU7xbJdvqQlGf+/weo3rSjil5VK
+   3BTzntf1nIu27p7Fu4rbGlO68xzDWOvjKRmnMlOZu/mJOc/R4XN1FUPJ5
+   mCbxAU0TXluS5bN+J5vJEUDFPYBNTrAJEDa0tgOQxTvLKZekZA4TPpfTT
+   15i+yjPACZkp8QZei/ehE5nvjN7IjTGuxC035PTijBnw2oPxvrUs1UNJx
+   QGet3zNLU0DGyhQBnxPvjcevKC8dozu/Oz8bXSIhkZ8vE0HLyfA9IPMst
+   nR2zG0HQtHmjYWHDUU4/VGMOcXfJ22STmxUkn/lC7GoO48phG/ZCnOj82
+   w==;
+X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
+   d="scan'208";a="28537299"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 19 Jan 2023 15:42:43 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id EF55B280056;
+        Thu, 19 Jan 2023 15:42:42 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/9] TQMLS1021A support
+Date:   Thu, 19 Jan 2023 15:42:27 +0100
+Message-Id: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.6.1
-Subject: Re: [PATCH v17 6/9] Coresight: Add TPDA link driver
-To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>
-References: <20230117145708.16739-1-quic_jinlmao@quicinc.com>
- <20230117145708.16739-7-quic_jinlmao@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20230117145708.16739-7-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,102 +83,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2023 14:57, Mao Jinlong wrote:
-> TPDA(Trace, Profiling and Diagnostics Aggregator) is
-> to provide packetization, funneling and timestamping of
-> TPDM data. Multiple monitors are connected to different
-> input ports of TPDA.This change is to add tpda
-> enable/disable/probe functions for coresight tpda driver.
-> 
->   - - - -         - - - -        - - - -
-> | TPDM 0|      | TPDM 1 |     | TPDM 2|
->   - - - -         - - - -        - - - -
->      |               |             |
->      |_ _ _ _ _ _    |     _ _ _ _ |
->                  |   |    |
->                  |   |    |
->             ------------------
->            |        TPDA      |
->             ------------------
-> 
-> Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-> ---
->   drivers/hwtracing/coresight/Kconfig          |  11 +
->   drivers/hwtracing/coresight/Makefile         |   1 +
->   drivers/hwtracing/coresight/coresight-tpda.c | 211 +++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-tpda.h |  35 +++
->   4 files changed, 258 insertions(+)
->   create mode 100644 drivers/hwtracing/coresight/coresight-tpda.c
->   create mode 100644 drivers/hwtracing/coresight/coresight-tpda.h
-> 
-> diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
-> index e2debad59608..2b5bbfffbc4f 100644
-> --- a/drivers/hwtracing/coresight/Kconfig
-> +++ b/drivers/hwtracing/coresight/Kconfig
-> @@ -217,6 +217,7 @@ config ULTRASOC_SMB
->   config CORESIGHT_TPDM
->   	tristate "CoreSight Trace, Profiling & Diagnostics Monitor driver"
->   	select CORESIGHT_LINKS_AND_SINKS
-> +	select CORESIGHT_TPDA
->   	help
->   	  This driver provides support for configuring monitor. Monitors are
->   	  primarily responsible for data set collection and support the
-> @@ -225,4 +226,14 @@ config CORESIGHT_TPDM
->   	  To compile this driver as a module, choose M here: the module will be
->   	  called coresight-tpdm.
->   
-> +config CORESIGHT_TPDA
-> +	tristate "CoreSight Trace, Profiling & Diagnostics Aggregator driver"
-> +	help
-> +	  This driver provides support for configuring aggregator. This is
-> +	  primarily useful for pulling the data sets from one or more
-> +	  attached monitors and pushing the resultant data out. Multiple
-> +	  monitors are connected on different input ports of TPDA.
-> +
-> +	  To compile this driver as a module, choose M here: the module will be
-> +	  called coresight-tpda.
->   endif
-> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-> index c637376e0efd..33bcc3f7b8ae 100644
-> --- a/drivers/hwtracing/coresight/Makefile
-> +++ b/drivers/hwtracing/coresight/Makefile
-> @@ -26,6 +26,7 @@ obj-$(CONFIG_CORESIGHT_CATU) += coresight-catu.o
->   obj-$(CONFIG_CORESIGHT_CTI) += coresight-cti.o
->   obj-$(CONFIG_CORESIGHT_TRBE) += coresight-trbe.o
->   obj-$(CONFIG_CORESIGHT_TPDM) += coresight-tpdm.o
-> +obj-$(CONFIG_CORESIGHT_TPDA) += coresight-tpda.o
->   coresight-cti-y := coresight-cti-core.o	coresight-cti-platform.o \
->   		   coresight-cti-sysfs.o
->   obj-$(CONFIG_ULTRASOC_SMB) += ultrasoc-smb.o
-> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
-> new file mode 100644
-> index 000000000000..59897980bbb8
-> --- /dev/null
-> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
-> @@ -0,0 +1,211 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
+Hi,
 
-...
+this adds the DT files for the TQMLS1021A using the MBLS1021A mainboard.
+This includes general board support and several overlays enabling various
+graphic devices. RCW and hardware configuration using dip switches is not
+needed, the default DT can be used. Just video output needs specific
+overlays.
 
-> +static struct amba_driver tpda_driver = {
-> +	.drv = {
-> +		.name   = "coresight-tpda",
-> +		.owner	= THIS_MODULE,
-> +		.suppress_bind_attrs = true,
-> +	},
-> +	.probe          = tpda_probe,
-> +	.remove		= tpda_remove,
-> +	.id_table	= tpda_ids,
-> +};
-> +
-> +module_amba_driver(tpda_driver);
-> +
-> +MODULE_LICENSE("GPL v2");
+The last patch enabling LPAE in defconfig is just for demonstration what's
+needed for PCIe support. There was a patchset ([1]) supporting LPAE on
+armv7 defconfig, but there was no feedback.
 
-Similarly here too.
+[1] https://lore.kernel.org/linux-arm-kernel/20200203184820.4433-2-nsaenzjulienne@suse.de/T/
+
+Alexander Stein (8):
+  ARM: dts: ls1021a: add TQ-Systems MBLS102xA device tree
+  ARM: dts: ls1021a: add TQMLS1021A flash partition layout
+  ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA LVDS TM070JVHG33 overlay
+  ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA HDMI overlay
+  ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA LVDS CDTECH DC44 overlay
+  ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA LVDS CDTECH FC21 overlay
+  ARM: multi_v7_defconfig: Add options to support TQMLS102xA series
+  [DNI] ARM: multi_v7_defconfig: Enable CONFIG_ARM_LPAE for
+    multi_v7_config
+
+Matthias Schiffer (1):
+  dt-bindings: arm: fsl: add TQ-Systems LS1021A board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   7 +
+ arch/arm/boot/dts/Makefile                    |  12 +
+ ...1021a-tqmls1021a-mbls1021a-cdtech-dc44.dts |  55 +++
+ ...1021a-tqmls1021a-mbls1021a-cdtech-fc21.dts |  55 +++
+ .../ls1021a-tqmls1021a-mbls1021a-hdmi.dtso    |  36 ++
+ ...tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtso |  56 +++
+ .../boot/dts/ls1021a-tqmls1021a-mbls1021a.dts | 409 ++++++++++++++++++
+ arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi     | 124 ++++++
+ arch/arm/configs/multi_v7_defconfig           |  14 +
+ 9 files changed, 768 insertions(+)
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-cdtech-dc44.dts
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-cdtech-fc21.dts
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-hdmi.dtso
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtso
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
+
+-- 
+2.34.1
 
