@@ -2,173 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A80673FC3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 18:19:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17032673FC9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 18:22:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230095AbjASRTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 12:19:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60580 "EHLO
+        id S229683AbjASRWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 12:22:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbjASRTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 12:19:32 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0306783DB;
-        Thu, 19 Jan 2023 09:19:31 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id n7so2552047wrx.5;
-        Thu, 19 Jan 2023 09:19:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fJ0JG+1+vzDx+1woc5zISYYnWWHU/+tyzkwsQk+BhPQ=;
-        b=HiutLUBgPNKoinxepplGwduI4t+6YJl/44EjhVyhwpIefpMjkY/j8ZBxN0L/qgCKM1
-         +ZQItAVsnNU27zgEcSz38sGnz3HBKHl5SSGgEJZNrzvOvBaHNO4YZ46BoYRs97u+qqET
-         AXUrXtXaDbPLj6Z4yPBh6TyMdfk15W7KsJxFTu/StnAGeSatFGSw7yG6ULv8DvRVqhOh
-         dlEV1pF/2wx2c90OAClSlkYyWqIvAdnm4LEMIYLHApBkS3fUTthqSWrqUrktb7yh5Jl6
-         u548RE7aoOxW/JvzvLr98mkcgWDEDH951UpcS7jlPr3pVTMLaq7wuPVNfmTJCbX1R5WP
-         Kz5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fJ0JG+1+vzDx+1woc5zISYYnWWHU/+tyzkwsQk+BhPQ=;
-        b=MQiRTGJL75sIka8rFhxD3EsxIfvKWmaAWV9sj+6DTFUWuuoQo8fxwcYq3oPWTEXVI9
-         W6oqOVKArmRhRFYXYpDLdxYxm3hyBKHK8FStj6ADpcbPlFy+LAbZf8QMJ/nFF2/vv1sd
-         a6yT1oSiHxzQ+u31yi/AQ2n5EuI7L1tWxGR+FjiPWHSsf5SgODns8IJg13CjVPoY2dhK
-         dQc3/kLwiEmTLGHHhP8DxRAvPFKumlWUafH6mfPXvNW1Dq74fVdLEJ4EZNlgj/X/+tw9
-         jk+8FnUR08AvXn9kR7bIEWOLkbEorqVEK1l4ztaWBZ5XAqDt128QFbZJ4UzG2aIBqNyJ
-         pTeQ==
-X-Gm-Message-State: AFqh2kqQl6wqz8De6EgxIgvl+szzEMB7grMwZShcPOhLCnXaX59zgw5G
-        jwGiXhQJUvRtiW2cs7Vs6yp6vWpDFWEajA==
-X-Google-Smtp-Source: AMrXdXtnhhV23wxbkvJ5TPod11uXEnITyMWelsTKmu03NNRfq7qQeiDNNiw0jOxkg9PrVROMM2wAAg==
-X-Received: by 2002:a5d:508f:0:b0:2bd:cb39:2ca3 with SMTP id a15-20020a5d508f000000b002bdcb392ca3mr6141237wrt.59.1674148769369;
-        Thu, 19 Jan 2023 09:19:29 -0800 (PST)
-Received: from [10.22.0.8] ([194.126.177.40])
-        by smtp.gmail.com with ESMTPSA id q12-20020adff50c000000b002be25db0b7bsm6024396wro.10.2023.01.19.09.19.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 09:19:28 -0800 (PST)
-Message-ID: <f68a5ca0-3c57-2655-59ec-1bcae8050153@gmail.com>
-Date:   Thu, 19 Jan 2023 18:19:22 +0100
+        with ESMTP id S229711AbjASRWE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 12:22:04 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9865593D9;
+        Thu, 19 Jan 2023 09:22:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=cqG1MRAXLPrHaT+eAcJye0uuBLqSJFewuZYbSXYEZvo=; b=Tz5pVxX1z7Y3PKklioNj4Bdv+a
+        lKq0NRHt9xkawqp2p35oH+WxcKLOX4kbAKNFCeCazSgl8RH4codmTFH5O50dWAtK6ml20dbiw7FDY
+        wNqYUBRBj2I0LBJt2Hb8WNMo4SRjg3C4K3y5QnAhPWuHlOfEWNX169BgrAghaR6dd8Ic=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pIYbs-002c3x-Pa; Thu, 19 Jan 2023 18:21:56 +0100
+Date:   Thu, 19 Jan 2023 18:21:56 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 0/2] net: mdio: add amlogic gxl mdio mux support
+Message-ID: <Y8l8NJdulOTX4GpI@lunn.ch>
+References: <20230116091637.272923-1-jbrunet@baylibre.com>
+ <Y8dimCI7ybeL09j0@lunn.ch>
+ <1jr0vqyet1.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 3/4] firmware: Add support for Qualcomm UEFI Secure
- Application
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Ard Biesheuvel <ardb@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <20220723224949.1089973-4-luzmaximilian@gmail.com>
- <Y8ZbN5LNn2fk0/xi@hovoldconsulting.com>
- <2b0fdc2d-6457-059b-bbdf-27e7de59abeb@gmail.com>
- <Y8l0PdZlXLym//xS@hovoldconsulting.com>
-Content-Language: en-US
-From:   Maximilian Luz <luzmaximilian@gmail.com>
-In-Reply-To: <Y8l0PdZlXLym//xS@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1jr0vqyet1.fsf@starbuckisacylon.baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/19/23 17:47, Johan Hovold wrote:
-> On Wed, Jan 18, 2023 at 09:45:18PM +0100, Maximilian Luz wrote:
->> On 1/17/23 09:24, Johan Hovold wrote:
->>> On Sun, Jul 24, 2022 at 12:49:48AM +0200, Maximilian Luz wrote:
+> I usually avoid doing this since the DT part is intended for another
+> maintainer. The idea is make life easy for them and let them pick the
+> entire series (or not). I don't mind sending the DT update along if it
+> is the perferred way with netdev.
 > 
->>>> +module_platform_driver(qcom_uefisecapp_driver);
->>>
->>> I noticed that for efivarfs to work, you're currently relying on having
->>> the firmware still claim that the variable services are supported in the
->>> RT_PROP table so that efi core registers the default ops at subsys init
->>> time (which are later overridden by this driver).
->>>
->>> Otherwise efivarfs may fail to initialise when built in:
->>>
->>> 	static __init int efivarfs_init(void)
->>> 	{
->>> 		if (!efivars_kobject())
->>> 			return -ENODEV;
->>>
->>> 		return register_filesystem(&efivarfs_type);
->>> 	}
->>>
->>> 	module_init(efivarfs_init);
->>>
->>> With recent X13s firmware the corresponding bit in the RT_PROP table has
->>> been cleared so that efivarfs would fail to initialise. Similar problem
->>> when booting with 'efi=noruntime'.
->>>
->>> One way to handle this is to register also the qcom_uefisecapp_driver at
->>> subsys init time and prevent it from being built as a module (e.g. as is
->>> done for the SCM driver). I'm using the below patch for this currently.
->>
->> So I've had another look and I'm not sure this will work reliably:
->>
->> First, you are correct in case the RT_PROP table is cleared. In that
->> case, using subsys_initcall() will move the efivar registration before
->> the efivarfs_init() call.
->>
->> However, in case EFI indicates support for variables, we will then have
->> generic_ops_register() and the uefisecapp's driver call running both in
->> subsys_initcall(). So if I'm not mistaken, this could cause the generic
->> ops to be registered after the uefisecapp ones, which we want to avoid.
+> FYI, the DT update would look like this :
+> https://gitlab.com/jbrunet/linux/-/commit/1d38ccf1b9f264111b1c56f18cfb4804227d3894.patch
 > 
-> Good catch, I was using 'efi=noruntime' on the CRD so I did not notice
-> that race.
+> >
+> >> This has been tested on the aml-s905x-cc (LePotato) for the internal path
+> >> and the aml-s912-pc (Tartiflette) for the external path.
+> >
+> > So these exist in mainline, which is enough for me.
 > 
->> One solution is bumping uefisecapp to fs_initcall(). Or do you have any
->> other suggestions?
-> 
-> I think it would be best to avoid that if we can, but that should work.
-> 
-> The problem here is that the firmware claims to support the EFI variable
-> services even when it clearly does not and the corresponding callbacks
-> just return EFI_UNSUPPORTED. As far as I understand, this is still spec
-> compliant though so we just need to handle that.
-> 
-> One way to address this could be to have efi core not register the
-> default efivars ops in this case. That would require checking that the
-> services are indeed available by making one of those calls during
-> initialisation.
-> 
-> This would however expose the fact that the Google SMI implementation
-> implicitly relies on overriding the default ops, but I think that's a
-> good thing as what we have now is racy in multiple ways.
-> 
-> Instead I think we should move the efivarfs availability check from
-> module init to mount time. That should allow the Google driver, and your
-> SCM implementation, to continue to be built as modules.
-> 
-> Any consumers (e.g. the Qualcomm RTC driver) would instead need to
-> check if efivars is available or else defer probe.
-> 
-> Alternatively, it seems all efivars implementation would need to be
-> always-built in which is not ideal for generic kernels.
-> 
-> I just posted a series here as food for thought:
-> 
-> 	https://lore.kernel.org/r/20230119164255.28091-1-johan+linaro@kernel.org
+> Yes the boards exists in mainline, there are still using the mdio-mux-mmioreg driver
+> ATM
 
-Thanks, I agree that those checks are probably the better option.
+The point of posting the actual users is sometimes we get vendor crap
+with no actual in tree users. We want to avoid that. It can be enough
+to mention in the cover letter than a future patchset will change the
+DT files X, Y and Z, making it clear there are in tree users.
 
-Regards,
-Max
+   Andrew
