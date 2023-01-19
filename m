@@ -2,234 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1032C674566
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 23:02:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5338E674673
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 23:56:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbjASWCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 17:02:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42528 "EHLO
+        id S229723AbjASW4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 17:56:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230038AbjASWBZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 17:01:25 -0500
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 895695864D
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 13:39:44 -0800 (PST)
-Received: by mail-qt1-x82c.google.com with SMTP id o5so2680719qtr.11
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 13:39:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sparkcharge.io; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jgeqi6RRPNuIjdr+16qci9xGfe9jHTKnAUBA+hjYEZ0=;
-        b=EM5fiD7lxkWQV4cO85UqeJfo5w+/+GA2DxMmx4KyqmT7Ya6x/ZZDUCblPCkvNdy1wP
-         eOnDdtzU7Dzhj7aBf5k4JCwJgaKhAEKpgFuiFm2+OZihWKRjm0AJK9SeGMigFFbSu7Np
-         Dqf7+iOUcd/GbfnWuLKlBTs7KYKsrUOfr3SiRBFVr5cNIy459kiW9zegQ9VuwMdDpVqt
-         PXcYxClPSEa8poQU4+FSqgQOscFd1R8EX+dEGCTII96FpWD/iryz8gKlwkRhASWv3YR9
-         V71zL2cBuKkZd6gpIWwpv8ityyo9feO7MpJ2QKjHFlnU4xFbgFhtj9AkIpRjyYY838YA
-         V8rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jgeqi6RRPNuIjdr+16qci9xGfe9jHTKnAUBA+hjYEZ0=;
-        b=w6hFcVnQo4Ogkw4aVKr+ViEiuRtXeFiHGnet0zq/NdsnsuYR0t+wrOVJeYouXBHcR2
-         Jy+nNi4AmUm/Y3aeGMw3zvmwXvH9fQyv3r4nFtpJ1fO+jMmklcnN/KwmtgOUDYCt9SAR
-         TWfdxLKc42XSBveBZBz6ZT8/PcvxZ6qoTpVxbnSdrwW90P0BNhlkVfk+YgXZO15DHalz
-         26v2p9Yz1jB9W34Sb2CGUUMLjc2cDIdXDsbh3RHbwsY7ORkwetjATyhTGJxvGisvJQgc
-         KS+jSZYuFkws+3zVDEHURpIzy3FruQcjdrtKNPqIEh+zcOfmMzLYSzRskZQBDmXYX8Ax
-         7fJA==
-X-Gm-Message-State: AFqh2kqVJsL/t6gXvlJhk2B5IPE703yyDjl8HilWCdRYF/VdYWfymJ3n
-        0dMWb8EuGJWASPDTtSQNpYMTHQ==
-X-Google-Smtp-Source: AMrXdXtHHcZdlw6wPUTOUTPnLQ3VB2DUtwWDS/88v7sZM2nnU2rHJymWFvpGKOwx2VP9jbQaovN2Dg==
-X-Received: by 2002:ac8:4703:0:b0:3b6:2bbf:581e with SMTP id f3-20020ac84703000000b003b62bbf581emr17315557qtp.35.1674164382424;
-        Thu, 19 Jan 2023 13:39:42 -0800 (PST)
-Received: from localhost.localdomain (c-66-31-16-167.hsd1.ma.comcast.net. [66.31.16.167])
-        by smtp.gmail.com with ESMTPSA id l13-20020a05620a28cd00b0070531c5d655sm2600676qkp.90.2023.01.19.13.39.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 13:39:42 -0800 (PST)
-From:   Dennis Lambe Jr <dennis@sparkcharge.io>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Atsushi Nemoto <atsushi.nemoto@sord.co.jp>
-Cc:     =?UTF-8?q?Myl=C3=A8ne=20Josserand?= 
-        <mylene.josserand@free-electrons.com>,
-        Gary Bisson <gary.bisson@boundarydevices.com>,
-        Javier Martinez Canillas <javier@osg.samsung.com>,
-        Troy Kisky <troy.kisky@boundarydevices.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, Dennis Lambe Jr <dennis@sparkcharge.io>
-Subject: [PATCH v3 3/3] rtc: m41t80: set xtal load capacitance from DT
-Date:   Thu, 19 Jan 2023 21:39:03 +0000
-Message-Id: <20230119213903.899756-4-dennis@sparkcharge.io>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230119213903.899756-1-dennis@sparkcharge.io>
-References: <20230119213903.899756-1-dennis@sparkcharge.io>
+        with ESMTP id S230298AbjASWys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 17:54:48 -0500
+X-Greylist: delayed 1804 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 19 Jan 2023 14:37:44 PST
+Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [IPv6:2a01:4f8:a0:821d::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 730BD274BF;
+        Thu, 19 Jan 2023 14:37:36 -0800 (PST)
+Received: from [192.168.20.3] (unknown [77.239.252.99])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 65D081403B8;
+        Thu, 19 Jan 2023 21:42:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+        s=donut; t=1674164550;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=pSfJvkA8qQyd90Fkn4T/rhPgWpZURUCYqaG0v5R3RU0=;
+        b=qa8xeREzk6YR2I5fkmVBjzmGpI4UWdZWWJj8pjXZuuvRW4Kq9MreLg3lySmQztFycriBTq
+        savt0hyq2evuc6CvQL0KD1Xu1mrCP7/eZKofZhlmfKYyPqmK0mwjHtm0KqsFoG6nLk8Kfc
+        CNA3UZaAGzdalPUuAA1rC1YLxrIsQQ4=
+Message-ID: <e079e820-2df0-3c95-10ef-527020b97f5d@postmarketos.org>
+Date:   Fri, 20 Jan 2023 00:42:31 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 2/2] ARM: dts: qcom: msm8226: add clocks and
+ clock-names to gcc node
+To:     Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230119190534.317041-1-rayyan@ansari.sh>
+ <20230119190534.317041-3-rayyan@ansari.sh>
+Content-Language: ru
+From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
+In-Reply-To: <20230119190534.317041-3-rayyan@ansari.sh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for specifying the xtal load capacitance in the DT node for
-devices with an Analog Calibration register.
+Hi!
 
-the m41t82 and m41t83 support xtal load capacitance from 3.5 pF to 17.4
-pF.
+On 2023-01-19 22:05, Rayyan Ansari wrote:
+> Add the XO and Sleep Clock sources to the GCC node.
+> 
+> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+> ---
+>   arch/arm/boot/dts/qcom-msm8226.dtsi | 6 ++++++
 
-If no xtal load capacitance is specified, the battery-backed register
-won't be modified. The hardware defaults to 12.5 pF on reset.
-
-Signed-off-by: Dennis Lambe Jr <dennis@sparkcharge.io>
----
- drivers/rtc/rtc-m41t80.c | 75 +++++++++++++++++++++++++++++++++++++---
- 1 file changed, 71 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/rtc/rtc-m41t80.c b/drivers/rtc/rtc-m41t80.c
-index f963b76e5fc0..85bde7130a4d 100644
---- a/drivers/rtc/rtc-m41t80.c
-+++ b/drivers/rtc/rtc-m41t80.c
-@@ -44,12 +44,17 @@
- #define M41T80_REG_ALARM_MIN	0x0d
- #define M41T80_REG_ALARM_SEC	0x0e
- #define M41T80_REG_FLAGS	0x0f
-+#define M41T80_REG_AC		0x12
- #define M41T80_REG_SQW		0x13
- 
- #define M41T80_DATETIME_REG_SIZE	(M41T80_REG_YEAR + 1)
- #define M41T80_ALARM_REG_SIZE	\
- 	(M41T80_REG_ALARM_SEC + 1 - M41T80_REG_ALARM_MON)
- 
-+#define M41T80_AC_MIN		 3500
-+#define M41T80_AC_MAX		17375
-+#define M41T80_AC_DEFAULT	12500
-+
- #define M41T80_SQW_MAX_FREQ	32768
- 
- #define M41T80_SEC_ST		BIT(7)	/* ST: Stop Bit */
-@@ -68,6 +73,7 @@
- #define M41T80_FEATURE_SQ	BIT(2)	/* Squarewave feature */
- #define M41T80_FEATURE_WD	BIT(3)	/* Extra watchdog resolution */
- #define M41T80_FEATURE_SQ_ALT	BIT(4)	/* RSx bits are in reg 4 */
-+#define M41T80_FEATURE_AC	BIT(5) /* Analog calibration */
- 
- static const struct i2c_device_id m41t80_id[] = {
- 	{ "m41t62", M41T80_FEATURE_SQ | M41T80_FEATURE_SQ_ALT },
-@@ -75,8 +81,10 @@ static const struct i2c_device_id m41t80_id[] = {
- 	{ "m41t80", M41T80_FEATURE_SQ },
- 	{ "m41t81", M41T80_FEATURE_HT | M41T80_FEATURE_SQ},
- 	{ "m41t81s", M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ },
--	{ "m41t82", M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ },
--	{ "m41t83", M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ },
-+	{ "m41t82", M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ
-+		    | M41T80_FEATURE_AC },
-+	{ "m41t83", M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ
-+		    | M41T80_FEATURE_AC },
- 	{ "m41st84", M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ },
- 	{ "m41st85", M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ },
- 	{ "m41st87", M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ },
-@@ -108,11 +116,13 @@ static const __maybe_unused struct of_device_id m41t80_of_match[] = {
- 	},
- 	{
- 		.compatible = "st,m41t82",
--		.data = (void *)(M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ)
-+		.data = (void *)(M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ
-+				 | M41T80_FEATURE_AC)
- 	},
- 	{
- 		.compatible = "st,m41t83",
--		.data = (void *)(M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ)
-+		.data = (void *)(M41T80_FEATURE_HT | M41T80_FEATURE_BL | M41T80_FEATURE_SQ
-+				 | M41T80_FEATURE_AC)
- 	},
- 	{
- 		.compatible = "st,m41t84",
-@@ -405,6 +415,54 @@ static const struct rtc_class_ops m41t80_rtc_ops = {
- 	.alarm_irq_enable = m41t80_alarm_irq_enable,
- };
- 
-+static u8 to_sign_magnitude_u8(int n)
-+{
-+	if (n < 0)
-+		return 0x80 | -n;
-+	return n;
-+}
-+
-+static int m41t80_encode_ac(int quartz_load)
-+{
-+	if (quartz_load < M41T80_AC_MIN || quartz_load > M41T80_AC_MAX)
-+		return -EINVAL;
-+
-+	/*
-+	 * register representation is the per-capacitor offset from its default
-+	 * value in units of 1/4 pF, in sign-magnitude form.
-+	 */
-+	return to_sign_magnitude_u8((quartz_load - M41T80_AC_DEFAULT) / 125);
-+}
-+
-+static int m41t80_set_ac(struct m41t80_data *m41t80_data, int quartz_load)
-+{
-+	struct i2c_client *client = m41t80_data->client;
-+	struct device *dev = &client->dev;
-+	int ret;
-+	int ac;
-+
-+	if (!(m41t80_data->features & M41T80_FEATURE_AC)) {
-+		dev_err(dev, "analog calibration requested but not supported\n");
-+		return -EOPNOTSUPP;
-+	}
-+
-+	ac = m41t80_encode_ac(quartz_load);
-+	if (ac < 0) {
-+		dev_err(dev, "quartz load %d fF out of range\n",
-+			quartz_load);
-+		return ac;
-+	}
-+
-+	ret = i2c_smbus_write_byte_data(client, M41T80_REG_AC, ac);
-+	if (ret < 0) {
-+		dev_err(dev, "Can't set AC register\n");
-+		return ret;
-+	}
-+
-+	dev_info(dev, "quartz load set to %d fF (AC=0x%x)\n", quartz_load, ac);
-+	return 0;
-+}
-+
- #ifdef CONFIG_PM_SLEEP
- static int m41t80_suspend(struct device *dev)
- {
-@@ -883,6 +941,7 @@ static int m41t80_probe(struct i2c_client *client)
- 	struct rtc_time tm;
- 	struct m41t80_data *m41t80_data = NULL;
- 	bool wakeup_source = false;
-+	u32 quartz_load = M41T80_AC_DEFAULT;
- 
- 	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_I2C_BLOCK |
- 				     I2C_FUNC_SMBUS_BYTE_DATA)) {
-@@ -912,6 +971,14 @@ static int m41t80_probe(struct i2c_client *client)
- 	if (IS_ENABLED(CONFIG_OF)) {
- 		wakeup_source = of_property_read_bool(client->dev.of_node,
- 						      "wakeup-source");
-+
-+		rc = of_property_read_u32(client->dev.of_node,
-+					  "quartz-load-femtofarads",
-+					  &quartz_load);
-+		if (!rc)
-+			m41t80_set_ac(m41t80_data, quartz_load);
-+		else if (rc != -EINVAL)
-+			dev_err(&client->dev, "quartz-load-femtofarads property value is missing or invalid\n");
- 	}
- 
- 	if (client->irq > 0) {
--- 
-2.25.1
-
+Should the same be done for msm8974 dtsi as well?
