@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E2F673A70
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:36:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6022673A74
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:37:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231343AbjASNgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:36:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42338 "EHLO
+        id S230182AbjASNhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 08:37:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231261AbjASNgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:36:20 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81ADD74E9F
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:36:19 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id g10so1558094wmo.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:36:19 -0800 (PST)
+        with ESMTP id S231342AbjASNhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:37:00 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4DB57EE77
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:36:57 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id s3so2885454edd.4
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:36:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rWq/yizVAl7S9V3ovhWY4OsnNwxPEQxeEtQ2nHLCzTM=;
-        b=wrNU5GWnr3H3PZs0TZnwnMwYLs7RV49edZQYX8aLXYI+JXQdKOizHSG8dXmZzBN00o
-         tZ4oxffn+7chO5VHoAIQeXuJTOKKwCEBcD76xggxuVORvAbk7qUdK/Q5zljj22Txf8Hc
-         dPFwyXvkrgLPZwcU9785swysknOCy8VLQsAGVz/RJ/gTvZSOzfWR1N0I/I46Z7KW2t2q
-         l25BA3O8GwU/ctBsXouUIYzw3LvnLe/VVDMBDkCyhgt5ZvAz+nAfuF1406sorpWs4GpJ
-         4vi8Jgng3X1si/0HSIolJ/lIk+7o+UmA33GARzfeWZwtm92CwJ1MQAlCX1L2vyX/rVsm
-         o+Yg==
+        bh=ul2QoxkNx6V65kWnLOrufKLqPcbvPbRP5IqxNTkmCWs=;
+        b=ly7/ErrfnFARsBkd7LDXnsdKYGHdGD8IIXbMEun0t/RogWbaaXvq8T4fWJFYzAoLg5
+         GmCNM5Msz6HSwSSHThUk5DrOKrHna/0OduFjnDpVpH15iA7hg6bBpt//2joyJrJFA7gi
+         P67eVh/gloF6OG1Shqp1UN6sL8UZTZNo/dec0I0J5bMBrU06VEqdHhFxLo0SQMoSTKj0
+         DyFT2IwFiy5PQwPRddeTO+d0ITetx8VitkzlyCh+JJ6M54gw4SiQlnu4hUy4qaf6D2WE
+         /p/iPBXT/M/R8xF1UwqwKHN+pg+ttvgltCvgzHWHywhap2YsAHCr+0KpaOpko2n61u+E
+         5mTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rWq/yizVAl7S9V3ovhWY4OsnNwxPEQxeEtQ2nHLCzTM=;
-        b=NR9NYp/iyvVPlUoO+eadrI5UKuVH2/59v2iKywfFtpDa0ipiaaODVWZCYhePVVQY7l
-         AbyvITdChCpfiKvdCYSR/i+WN4+g8Z7wa+XgeQyjo611o4pEic6p9Sl72mV3hzfVlojT
-         J/3xEniePC0sSiZJVDjSNi9W90G2bOTEDO7dNjciJ8tz230PESiXyjwoqmC08dcKjOpH
-         ZpyB5fDzCiq2PfEdHWb20faSRu1rWqQDIie9xcJDpqwiSeMp3FuLNjHh/AWIJldzIefA
-         sjiKuIWbmKuZ98RlsfTIve3LwvdmTutoxXeOoBTyZyDwu+ltPeTpZIRp3tZOX3oGf4m6
-         4bIQ==
-X-Gm-Message-State: AFqh2krwByDpH40FMuR6KPsRErlWASg7xyd4PRBW7Z2lx+d/aXEErRkT
-        gp1l3DmR8dF9aAkLEP/H1YbIxA==
-X-Google-Smtp-Source: AMrXdXsKjSmcqQHPHyH1l93tp75nCJ2mRi+NoOakU7rVj78hivbHOkzI2srayBQye1ppwblDbCeEKQ==
-X-Received: by 2002:a05:600c:5386:b0:3cf:9844:7b11 with SMTP id hg6-20020a05600c538600b003cf98447b11mr10792603wmb.23.1674135378084;
-        Thu, 19 Jan 2023 05:36:18 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d3-20020a05600c34c300b003dab77aa911sm4731569wmq.23.2023.01.19.05.36.17
+        bh=ul2QoxkNx6V65kWnLOrufKLqPcbvPbRP5IqxNTkmCWs=;
+        b=vgVaX/5h/+eVNyPnazYg8TfF4eTIens6CY1gZc5VDzokzjd29m01P9ly1exZty4IfN
+         HneqWhsFkEfYYjLVuwBGD5esjEMwnJ1iDBbDmqphTZXbOJIPvZA+C25qinC5bH92yZJk
+         12sMJeFNzULYh8s1wDWHlJFskMHvcq4JQU2FZjplatxSNCOl9YOdw8ZFMncSYKwklmyF
+         TPdNXvafrvZj/tD3SxehgrHC9QcT9TAC1tOFVuMQMR4C4ol0D3mWmPi2UBPzl6pjFJxE
+         sJyqCYpQsUnOYo/3+Q+PZoEQPWdPBXU2RCe4/nEtGdSaoXhOXhEV8L3aZZtsawwmSWjg
+         stmA==
+X-Gm-Message-State: AFqh2kqieUFalPMJk4Ey9kNv3Gq2QtaOEVx+iIDbU7Dveo6LM2a55CqW
+        JVMODfl+s874axOPtRd/3oF1jQ==
+X-Google-Smtp-Source: AMrXdXuIfyla87CmWJcxhOl5p2kzwJveDFvUR21VRAsZvgC5Elf6y8XbV71T51FQpl53s5GVCd1y1A==
+X-Received: by 2002:a05:6402:e8c:b0:463:e2cd:a8b5 with SMTP id h12-20020a0564020e8c00b00463e2cda8b5mr10405163eda.11.1674135416361;
+        Thu, 19 Jan 2023 05:36:56 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id r8-20020a05640251c800b0049df0f91b78sm6928239edd.78.2023.01.19.05.36.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 05:36:17 -0800 (PST)
-Message-ID: <760c9404-62b7-d3c9-4407-4665b1e336bb@linaro.org>
-Date:   Thu, 19 Jan 2023 14:36:16 +0100
+        Thu, 19 Jan 2023 05:36:56 -0800 (PST)
+Message-ID: <4a4d8da9-4068-b74d-5811-759cd7d1b34e@linaro.org>
+Date:   Thu, 19 Jan 2023 15:36:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH resend] dt-bindings: iommu: renesas,ipmmu-vmsa: add
- r8a779g0 support
-Content-Language: en-US
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <20230119133514.1008925-1-yoshihiro.shimoda.uh@renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230119133514.1008925-1-yoshihiro.shimoda.uh@renesas.com>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: msm8996: add CBF device entry
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230117225824.1552604-1-dmitry.baryshkov@linaro.org>
+ <20230117225824.1552604-7-dmitry.baryshkov@linaro.org>
+ <2382c5f5-f57d-1fc6-497c-b355aed08036@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <2382c5f5-f57d-1fc6-497c-b355aed08036@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -76,18 +82,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 14:35, Yoshihiro Shimoda wrote:
-> Document the compatible values for the IPMMU-VMSA blocks in
-> the Renesas R-Car V4H (R8A779G0) SoC.
+On 18/01/2023 15:44, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> 
+> On 17.01.2023 23:58, Dmitry Baryshkov wrote:
+>> Add device tree node for the CBF clock.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/msm8996.dtsi | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>> index 150d13c0f4b8..7d8e31b84959 100644
+>> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>> @@ -3562,6 +3562,13 @@ saw3: syscon@9a10000 {
+>>   			reg = <0x09a10000 0x1000>;
+>>   		};
+>>   
+>> +		cbf: clock-controller@9a11000 {
+>> +			compatible = "qcom,msm8996-cbf";
+>> +			reg = <0x09a11000 0x10000>;
+>> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&apcs_glb>;
+> This should be RPM_SMD_XO_A_CLK_SRC, downstream consumes cxo_ao.
 
+Ack
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Konrad
+>> +			#clock-cells = <0>;
+>> +		};
+>> +
+>>   		intc: interrupt-controller@9bc0000 {
+>>   			compatible = "qcom,msm8996-gic-v3", "arm,gic-v3";
+>>   			#interrupt-cells = <3>;
 
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
