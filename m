@@ -2,55 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97B2B674C4B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 06:28:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7294674CD7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 06:53:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbjATF2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 00:28:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33152 "EHLO
+        id S230183AbjATFxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 00:53:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231173AbjATF21 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 00:28:27 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A646B76AC;
-        Thu, 19 Jan 2023 21:23:27 -0800 (PST)
+        with ESMTP id S230527AbjATFxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 00:53:46 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5CD149550;
+        Thu, 19 Jan 2023 21:53:27 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 59DD4B826AA;
-        Thu, 19 Jan 2023 17:36:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C02DC433D2;
-        Thu, 19 Jan 2023 17:36:28 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9E923B825ED;
+        Thu, 19 Jan 2023 18:43:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63261C433D2;
+        Thu, 19 Jan 2023 18:43:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674149789;
-        bh=EQ1fSGGlGH77kXooVwbjybwU1LhFwJogktLoTx8jPAQ=;
+        s=k20201202; t=1674153802;
+        bh=vF/z5qpyXP/mL10MG7EvPirP8eSE/txoS1bJzYmIYPI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Mz7rCjR/A33xwAO7ZrvKUN7jh8KtBbd7CBPKGiVSdyLBLmM+cwcl38xhjCKqv8ey6
-         i9TkTBrT538e04b5/quBdE7b4XeTRQUEVPJ7EG09A5Y0FBRp7UYIlqin9YP7zj6CxP
-         RM+FC0eKo8W6L8jB0pFZr2ZjOeWRxNy7M5srSVRBIyMIwSLpppt4+ZfM784Vk21gUs
-         RsPxKj0NgF3FjMhNdhoW2YbOe4HsqpH3IorX9l22WD5lUDEqYvMPgGPx3Kn/987zuH
-         1Zm4hvm/A9fKsJC5eo5yY64TPTfJ8oI7B68xbMpWixcnm5ObJENOhSBJDFI5DHjJvn
-         RcMZ43COLKsjA==
-Date:   Thu, 19 Jan 2023 17:36:25 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        b=LzvGBaP/l+y/aBXX3v0npik84cCY1DzBJscI5jxbYKBb3zILhlGtoDoQp2ZMPy+Cy
+         WHtoa4ZVFyjrBAqRcpqpiPUejOAx5K2HtT4Qhy+TOtc08TWCeq7VxNz+1oj6ETt6Q9
+         ZMgwkoh1km/yo3W5vXjpst8RLohLNfj+t6SpayNbp+9RiQ+/sJ3a/UEg8h62bmU5aF
+         xYzqs7MNpc+TcSjmTNx5u3M4S8aSFh2tgDIUGEi/8NUzKpOwaLHXLkg8aO3Y9zqL/G
+         aS6I29C1ZmYj99R1kC4TO+c3J50+RlRyQjSYYP95R3+xabEHG/uX2JZsZazmU8POxO
+         HkuD0zfSKFb3A==
+Date:   Thu, 19 Jan 2023 18:43:17 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] spi: spidev: add new mediatek support
-Message-ID: <Y8l/mQjjgKJiE1/F@sirena.org.uk>
-References: <20230118-mt8365-spi-support-v2-0-be3ac97a28c6@baylibre.com>
- <20230118-mt8365-spi-support-v2-2-be3ac97a28c6@baylibre.com>
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: Add mmc node
+Message-ID: <Y8mPRQnGPpAhpu8C@spud>
+References: <20221227122227.460921-1-william.qiu@starfivetech.com>
+ <20221227122227.460921-4-william.qiu@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Jz0aOHbv75kB/Hqi"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="XKsT41m8CI9UsBxP"
 Content-Disposition: inline
-In-Reply-To: <20230118-mt8365-spi-support-v2-2-be3ac97a28c6@baylibre.com>
-X-Cookie: Serving suggestion.
+In-Reply-To: <20221227122227.460921-4-william.qiu@starfivetech.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -61,30 +59,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Jz0aOHbv75kB/Hqi
+--XKsT41m8CI9UsBxP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 19, 2023 at 06:28:20PM +0100, Alexandre Mergnat wrote:
-> Add the "mediatek,genio" compatible string to support Mediatek
-> SPI controller on the genio boards.
+Hey William,
 
-All my previous review comments stand, please don't ignore review
-feedback.
+On Tue, Dec 27, 2022 at 08:22:27PM +0800, William Qiu wrote:
+> This adds the mmc node for the StarFive JH7110 SoC.
+> Set sdioo node to emmc and set sdio1 node to sd.
+>=20
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
+>  .../jh7110-starfive-visionfive-v2.dts         | 25 ++++++++++++
 
---Jz0aOHbv75kB/Hqi
+FYI, this file does not exist in the v3 Devicetree patchset sent by Hal
+Feng:
+https://lore.kernel.org/linux-riscv/20221220011247.35560-1-hal.feng@starfiv=
+etech.com
+
+Would you make sure that future revisions take into account that there
+is now a jh7110-starfive-visionfive-2.dtsi file instead?
+
+Thanks,
+Conor.
+
+
+--XKsT41m8CI9UsBxP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPJf5gACgkQJNaLcl1U
-h9C0BAf+Jl+1E0pCscUWyq547PeayYiVt04DMkk+4q1qCXREpiJP/zLOicoEZCWz
-2xIkBo1hIB1RAJXIZWkrMO/kN5SbqsLQ+ySgMVaWK/Lp3aL0M8YyPF34pmEhLojN
-ly/WNvpWVwmdO6n6NGGsK1tgp7IE4pyEj9M08YmBcRbWzMddKO71u1YMgY+mmOcN
-NDEc2E1vmp4aWd22lsMmgtFlJgpRPAw0+/T6nA+XLdP4u3EvGo+Au3LOa3ij1xOA
-tWw3+wlro3nIC9+h0Iwy5rWLBzuaxMccUhM2ZEYAbj1a8Nq8yq8Of+7vlxOhiee/
-NdWsOYPhtLy6IuWthaMnaMi7vzliew==
-=uuJE
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY8mPRQAKCRB4tDGHoIJi
+0toIAP4zpbU0OLSqlFxJVLB/Y+fIjOaoIFT/p8c4yIjZ70N3XAEA5X6zPiLp8UDG
+nNz0GgJfub7PTipxdxFuprUVZpvnkAg=
+=roCg
 -----END PGP SIGNATURE-----
 
---Jz0aOHbv75kB/Hqi--
+--XKsT41m8CI9UsBxP--
