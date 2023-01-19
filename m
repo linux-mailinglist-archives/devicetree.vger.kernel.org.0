@@ -2,79 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0166732DB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 08:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F0976732DF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 08:47:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229944AbjASHpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 02:45:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49882 "EHLO
+        id S229895AbjASHrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 02:47:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229900AbjASHpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 02:45:16 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F626843A
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 23:43:29 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id k16so812617wms.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 23:43:29 -0800 (PST)
+        with ESMTP id S230107AbjASHq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 02:46:56 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6C46D6B4
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 23:44:26 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so2298942wmq.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 23:44:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f0CROLqyxrtD2VIy8QlyK5dNlwxAQqg2okbLFCKA2k0=;
-        b=wJX5apVLdkyWFq+iKhD3fOtOOLGX8erlpfKyHbSerA2IfwED9ST6RKS+cxc51TV8mB
-         dPH0qZFAIcb9e4pm50th7d+Jx3bfcGWC4Mkc0XBQnIyzTfRh1YFwEfFDvtTnUXyavstF
-         sDNYwhxs1Zt898m5/BptimQN21HiKd1dXbUQ51hpZAP0JMwB0ShDuBvIB1TFYgfDyo19
-         Nn29S2/zWKQX0gm9vYQieRHlOuLvu20Vocfd58uA6hibgXpC26F0ddIJS5U23Hh5a6ee
-         m+STm7kJCC4YinpSkSzalyU9QRDUGni7aTZ7hGpjLeXi0kIsMOfQJVBrwEJpoYAZXRbY
-         Gfiw==
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eKZQ91Aw87nv1viQEfl8utbxQ45kNGlGmqk/4SGhfo0=;
+        b=APlxfIM5M6KKMl7wxzQSVG/X+R3Otv6xmy8/ek59j069tVUBauUpKlA/NpRiyUTOYL
+         D7lHh7ru4PscfSHCKTD+Br9JN/Uhwmqe0ilar2hD8SPN6E1JwDVybbA4oSw7uEgdFKeK
+         BVx7RPozYTkiu//FFz1Ccinye/mdF4djVez8ALMfiEfiMupIFQzBqN9jEM5RAEcfh44b
+         kuYmOUGeCT2F/iLe2o1OOkp3q+qSnF2+R/FXkb3LXgpsaAMzcElvBKoNUDwTw4Wz6dp4
+         v6DRfT2Fof+tSEBLjJYIzMdWuJfbcAq2PiSwuC0nitaOvdKnXH4G1l+yOdE2zz7540m7
+         gKDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f0CROLqyxrtD2VIy8QlyK5dNlwxAQqg2okbLFCKA2k0=;
-        b=78cz9tN9KQFJDvXj4XLuv+Jaoa8IM7+EYv8o3CqZ7NXrnLXLJV+zhxxfv1VdHbI+q4
-         qQ7JQSW0F4t7b/vY7CgmvmBIHeG8o+Z2lsSIX2e8k+o/NojlRDzhpsUHcCi74jsWFwfo
-         nEDQiERFNVAfe++Q/s6EDSd/fjjfnah8JfqcmDVtu21DnQBk1A5SwCNZe9B3HgZENTuE
-         OQwQO0nylbZ4j1GE+0uF6zlHzwSIj1fZJUa0oPl1vKkqD3YJ2lqHnyf1P3DqdOD5zZit
-         IkZuaR0tyeQOHAsR4tcf0tb/oyUgcnZ8g3HYoqtLX9bS7mjPaUGvpiAqD9jrfunpM43H
-         5Bzw==
-X-Gm-Message-State: AFqh2kpiB7ZHJB4OKUUBtPMxZSB9/MWlEo4Xu+nMX9Z+koi1yUlcAzq5
-        bxH++8pqXxvPAvblMMiGABMelg==
-X-Google-Smtp-Source: AMrXdXsf6UgwAMMHYZKd3YnMVuWZ0OmtPNqyKE/YX4WoBTwnAK/rPMX2cWyGCRutQI/6fxngEm6uCw==
-X-Received: by 2002:a05:600c:a11:b0:3db:f1f:bc31 with SMTP id z17-20020a05600c0a1100b003db0f1fbc31mr5364883wmp.16.1674114207940;
-        Wed, 18 Jan 2023 23:43:27 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v14-20020adff68e000000b002365730eae8sm33264308wrp.55.2023.01.18.23.43.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 23:43:27 -0800 (PST)
-Message-ID: <04a37865-516c-45a8-8099-7d3a284fdf98@linaro.org>
-Date:   Thu, 19 Jan 2023 08:43:25 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 2/3] dt-bindings: arm: ti: Add binding for Siemens IOT2050
- M.2 variant
-Content-Language: en-US
-To:     Jan Kiszka <jan.kiszka@siemens.com>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eKZQ91Aw87nv1viQEfl8utbxQ45kNGlGmqk/4SGhfo0=;
+        b=uxLNT+yvp3TQfoZKpY5u3Ms7w1cQUaG4lVFLmP5iBHAPl5p4upQMlxT8sQ0Sbib47d
+         sGtB9+tJwPFLD4N9+fhyJK04S7ADvm0ntXclq21IgzuNcTVjp5ZcT/F+Gwg+VlSzCsz1
+         1D0qa8wzUgLDCHWqvmbw178+tU63xlM/ONFbK66Gsfbv1J48W0PVuL2RcJU1mbAKwCSX
+         Kb1QNvg77cJA/m28ArXp5sdr2NdpvAB+/nfQgxlPPavU9aX/q8FwO0b8gmdo/bNa0/Lj
+         hrJYhVD5Vh+zaLD8IyUNRI6ktRx1rBBvAMGoeJlaiPb7kTDYa3eI7PPpYL1G668R4AqY
+         6r7Q==
+X-Gm-Message-State: AFqh2kpMRs2CwveWooDQly0+Slk4L9yrD4y/TbcFRYU+uS9S7dI04/sp
+        12K02EEYEq8r+xe5FPX+xpwalBbN9fHLGy4hJ1M=
+X-Google-Smtp-Source: AMrXdXssvCc0ssiNmEmtP7KI9CPYfAoVDx4z1HqRc6HVFNdJza4wLoqwdqwR31tj/d37i2pUyCt9qQ==
+X-Received: by 2002:a05:600c:539b:b0:3d9:f836:3728 with SMTP id hg27-20020a05600c539b00b003d9f8363728mr9342406wmb.11.1674114260907;
+        Wed, 18 Jan 2023 23:44:20 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id bg14-20020a05600c3c8e00b003dab40f9eafsm5143529wmb.35.2023.01.18.23.44.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 23:44:20 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-References: <cover.1674059300.git.jan.kiszka@siemens.com>
- <3f825ff8853b1ffd8228d3283c7da0483ddf55d5.1674059300.git.jan.kiszka@siemens.com>
- <a219dcf6-412b-a9f8-cf06-1896df0709de@ti.com>
- <dc6fc5be-0b53-00fc-3664-4dfd11b1fea9@siemens.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dc6fc5be-0b53-00fc-3664-4dfd11b1fea9@siemens.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+In-Reply-To: <20221122195413.1882486-1-biju.das.jz@bp.renesas.com>
+References: <20221122195413.1882486-1-biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: display: bridge: renesas,rzg2l-mipi-dsi:
+ Document RZ/V2L support
+Message-Id: <167411426002.269815.4893986069711340416.b4-ty@linaro.org>
+Date:   Thu, 19 Jan 2023 08:44:20 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Mailer: b4 0.11.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,39 +84,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 07:34, Jan Kiszka wrote:
-> On 18.01.23 18:43, Raghavendra, Vignesh wrote:
->> Hi Jan,
->>
->> On 1/18/2023 9:58 PM, Jan Kiszka wrote:
->>> From: Jan Kiszka <jan.kiszka@siemens.com>
->>>
->>> This new variant is derived from the Advanced PG2 board, replacing the
->>> MiniPCI slot with B and E-keyed M.2 slots.
->>>
->>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
->>> index 203faab80142..7af813202f1f 100644
->>> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
->>> @@ -43,6 +43,7 @@ properties:
->>>            - enum:
->>>                - siemens,iot2050-advanced
->>>                - siemens,iot2050-advanced-pg2
->>> +              - siemens,iot2050-advanced-m2
->>
->> Could you re arrange alphabetically?
+Hi,
+
+On Tue, 22 Nov 2022 19:54:13 +0000, Biju Das wrote:
+> Document RZ/V2L DSI bindings. RZ/V2L MIPI DSI is identical to one found on
+> the RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rzg2l-mipi-dsi" will be used as a fallback.
 > 
-> Time of release ordering, but I can reorder as well.
+> 
 
-The entries look ordered alphabetically, not by time of release. BTW, I
-assume time of release != time of adding to Linux, which would be just
-dropping stuff to the end...
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
 
-Best regards,
-Krzysztof
+[1/1] dt-bindings: display: bridge: renesas,rzg2l-mipi-dsi: Document RZ/V2L support
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=ae5a8dce3c86c1ea8e17910c3836b92a406f9ad8
 
+-- 
+Neil
