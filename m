@@ -2,138 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3505673A45
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3668673A47
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:32:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231251AbjASNcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:32:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39862 "EHLO
+        id S231167AbjASNcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 08:32:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231206AbjASNcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:32:05 -0500
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2138.outbound.protection.outlook.com [40.107.114.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97C8B7E6A1;
-        Thu, 19 Jan 2023 05:31:57 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lYDdkOVKSb31c/zksLv7tJ+418emV26BpRTgoNjY5TxRCPnlwD7m9PwnKoaykxTvd+oG2APO+LUl7xGzKJxHNUyWHqE21kGJPldF18iap+uc621chOxXuPuem5G185OoNWqAjTqhxqexgseQ51HQcAP04WvGTawzTRAIzTk2oJ2pOYv/Aacv3l18Apce64PudH1T5AoJxwxEuQGhCVC0PmrP17fqmUa4BQ0uh8QRA0Ab8UsTvV1Rn3RDPSVFnuPiG9y0xhIehtUP05duMPos0rH0VHUcFK/fo4GrBzIzoenRSvhC7zP0EJChdzGa1Rq/oXgQs60GChh1LjohZMeOPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W2V+Q02m+WlRe+tQ47H9CAEUSvvQKFSxjQhBsKmQBKw=;
- b=U/M0S2yrG/fHCwLrDuDViqU9AsLXDHvOYwFrvJivNOKowMcxXm4mGZecdIdjBMvc3hXWANf+3K+bY/B/k1WA4H+WXThwq++aWEZ6gLi5MLOt5gNj/LJouf27GIyo0qn9SRri8TNtrWa3hTpFpxfE3wRklhAVUMqhCi6cILTQxm6o2hG8WFKTyYO/VYM2GlLsEb7DVowD2w0HmRBAusvB2nvbhd5PttBRb9/yhg5kFjKTrYjeWkVItlZgtBASNqUTpfFPCwqSfPPn5oOpMPU98Az1BuhqpjrxYVYSrVwtqmpL3/+GhTU7XsWfzdci2O1y6+8Dvdt9zvUHTJwbGgk1Pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W2V+Q02m+WlRe+tQ47H9CAEUSvvQKFSxjQhBsKmQBKw=;
- b=bFG0hA2kIgoGbSP4G9x7YL1nMYcQ4Ab2pUoTmC3rNXal08febOKNQjXxKWuy+HM3nLPh6tdDYZy2y9tw9iskM/oXIFmxsFq5Q1BqH6UwBFUnDpcHnP5xwDNiy5j0/C1MCqqw08tKtmcPE7adfSrp4jm1HaMGlAMmWX1oEnhAm78=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OS3PR01MB6007.jpnprd01.prod.outlook.com
- (2603:1096:604:d5::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Thu, 19 Jan
- 2023 13:31:55 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::3e61:3792:227e:5f18]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::3e61:3792:227e:5f18%9]) with mapi id 15.20.6002.026; Thu, 19 Jan 2023
- 13:31:55 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "will@kernel.org" <will@kernel.org>,
-        "robin.murphy@arm.com" <robin.murphy@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779g0
- support
-Thread-Topic: [PATCH] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779g0
- support
-Thread-Index: AQHZLAiMfXACliUnd06YTlbcju5liq6lvD1w
-Date:   Thu, 19 Jan 2023 13:31:55 +0000
-Message-ID: <TYBPR01MB5341B89B3DF27EECF51507E9D8C49@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20230119131833.1008752-1-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20230119131833.1008752-1-yoshihiro.shimoda.uh@renesas.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS3PR01MB6007:EE_
-x-ms-office365-filtering-correlation-id: 09a5e903-9b7b-475f-f05d-08dafa218855
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: PYvr4/CAb623QPwGoGGG2xzg4TPy/xNLoiahBuXaHxrOnQn0mKeocJGsQLRhx9Z8Is7Y9sSUTl6IhU6QwJb8vuQaikNmiyEJNjuRFFG2/CD5D0ljxAAvuB3mni9FpD2befuEj30+EBZQeH09m8+XkF83rq2pJaZbEPdNLs8ugzRPnEmNsVKmfmZmUiAwZjKI1OhYxst3hugiZzZQu1I77qH8xGl3PE8l90NdwRhP0IeCdaaUlZkMrzPMnle0A9Fb+/h/zq4g3dfrQuNJ3wYQvdYKltCxPYyw0TxHSwaLLcGgzRVvsHnlOdTh9b0CMocANhOBvC8LJRreUOkl6o8mFbqbLSxIdgzZpCbiTLnU+wP0NhS/gdnwbEGGS15GZwFn1pq71Izd5CLb/YJ8yx0G7IZssY3onpKlWDUhT2QxI95lDz8/yIyneJ9NOTboo7HCRXRr6SRwnocYyjDa62PV4XCSPdCHJSDkJ58+iqQob3kW4rf2+MMNjtZkrAEMz7cKNOH4eAVZfV4V936Qw7ZVqkGc7faZ09kkkyA+qjk1s8oERU2+x4fGDoTd1kytN+1HKEQcKs1YYwNNaH8gZA/8OcDehB45HDt/rzo9e95FMZx+xINW7pktQhgAiFmxUAwcD+CxT6nZM0KT1q3X1lrJiSLipYIOYaRROu9o4iJvBJVS4JcUgALQS04EJ0WA2VBBagNTZKPMvaDxww2zBNoxfQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(346002)(39860400002)(366004)(396003)(376002)(451199015)(86362001)(38100700002)(122000001)(2906002)(41300700001)(8936002)(5660300002)(52536014)(558084003)(110136005)(7696005)(4326008)(316002)(33656002)(71200400001)(54906003)(38070700005)(8676002)(6506007)(55016003)(66446008)(64756008)(9686003)(66476007)(76116006)(66946007)(186003)(478600001)(66556008)(26005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lNtrEldfB7vovoux9p8vvF8ajB9kfr3b2QrN32nHySuV4ykHXrL6FZCr0jbl?=
- =?us-ascii?Q?ghPvUTVJy8V2DMHdwWqyeMpxSmYFueaK0pSU4u7qklFZMSfcETlL2RAwG2is?=
- =?us-ascii?Q?K5fG+fKFOHsoZKB1lrikzjF1DjTnfGTwHVW/VWzYvcnsQvMxi3OH5BLTgivP?=
- =?us-ascii?Q?7CUpwcxt1BuI/9SCoMRC1QrFfUcWLRNy+oqO3/jdYX8wroLc2agNnsn/3yH1?=
- =?us-ascii?Q?rtv/i0bn8tB0Hl07gxjXQ6C/C2tzk/csYPotgZ5qvHbadXeV8KDIrELaOd/Y?=
- =?us-ascii?Q?GkyTbB7O8vmJrYHMmgHaFdsAy5Iy8qlkoNSIz0ZDKKj5/PLyxFQ2hQwI41mH?=
- =?us-ascii?Q?9oDyNi4oZZdLaoD1tEewl/I0Bkfphbn5fcp0Rj9jo5xJoO/jUc3Aj2qFPGyh?=
- =?us-ascii?Q?GLFC6g6eXvxUucXPWweGzfLnnfLvPSBZOZThuOcD3nZb8Yh62sdX14faAWip?=
- =?us-ascii?Q?/gZysrowc+q2BcRgXwos8s06+gnitnCY4MFmSsqnrMmj3R2/1bX5g/uoMoY7?=
- =?us-ascii?Q?eGxbK6GPFyD/ri6axZQ0cM5GF3EAbtDdrlzZKz6n8X+f236DDEpo+vCoVO8O?=
- =?us-ascii?Q?3fe2d3TQ8Vpbo+DYUqbhr92gI6lJ0hqUWD1xpDYtv5nrnsUY0H1wqHVp7mM5?=
- =?us-ascii?Q?5UAnwpHu6HXQtjPSZ5YkKZB3Cu5vq5+6SPje/In48K1hCCTrFxN7/0HVsALq?=
- =?us-ascii?Q?6ek+UTNItIouATbYrUksik/gV8UXFAew+S2YdVLxFrDSLVoHF/qlU4QMWa8c?=
- =?us-ascii?Q?l9Ej0Bn9iDWo5q0sN1de7EnQFGSBqAugMx0M0vjBU2id9QRpYsK8UEXrdbC8?=
- =?us-ascii?Q?fahE+oc/5G+9RTJZHDEnEvIRWQGKxK969jwpo/oVNcVNA76BZRLXlv0rxL3e?=
- =?us-ascii?Q?3PjDliBaYmxK0RcJtYfD4f1Ur6gw2wAKhTsNYu1Lm/nw1SXnGCHBfDPaLqkg?=
- =?us-ascii?Q?q8bUaSiExkT93cfnQI/GxcTxZjOlW7y0MEquVks2Vdtt2TOhB0gMaTuSOQCh?=
- =?us-ascii?Q?AiGgM14TCfDdSLyrmE5fH2t1QwD6TG2PfjSDPUX5zMEFINhQDLgQudYpjvvi?=
- =?us-ascii?Q?LACF4Mx4C0jugf53nShZSVGmaxiGcpKxorqQ6froHGOugNfb7pTSTuvx9sp3?=
- =?us-ascii?Q?7AaLaMEXGuoEUkrohhwdmwQCXRdOgGdwF+2dDXhFdqCFzYIBgb6cfTVLAfs1?=
- =?us-ascii?Q?KX6+BhuGA+4joK/cBEqBBlZWqdJ7Nze/r/5uWvA9OTlhOd9wCcvPLY1mc/Ee?=
- =?us-ascii?Q?LQRdINRG0GnzHxBuPCtVx5uo7AfLIIpZvGwa4hooCh3B+bKqbt4cc9AeDmdy?=
- =?us-ascii?Q?EFlH96IWcsSWqU8Tab/EEBdBNkwKV7ZwZj9wkhnGy/nb8Hc2hLisn4FqVY3k?=
- =?us-ascii?Q?e9xJfd9XSoU7+xuz/rn/1FUQg5MWoDJ6wmhJ0eEY/zQx8FkfczK8MgfkTIVL?=
- =?us-ascii?Q?8+HLrYVlN3grTgx54gDNdekd3tUYzT3u+SV65WvVlSYQ4zexR6WcO5Dk55z/?=
- =?us-ascii?Q?QzsNWBse0KfVZFL7fL6YTK3EG8TTN3nqAMUhi3heiX5h1tqyC7FVDAFMQb5y?=
- =?us-ascii?Q?3j3lHTxCQ+kRmCDq3CRIJ6L6PkmnVohAWaaPRQ4i9iUee9bc50WprTLv8FKc?=
- =?us-ascii?Q?vQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S230436AbjASNcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:32:08 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 758B07CCF0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:32:01 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso3018357wmb.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:32:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8EOpVZnjKrO7Yh5EsqJUZSLEPLkGrMAnumjuBQ+xGD8=;
+        b=NWQl8S/zxWQpym0QTAJs8bV0RBtPthkFvu+DJtU+JtZJXhezEyO3AdJSpA01ocqB2R
+         QTgKsnUbtkEDt9JMbstPSlMTHIWHr2kbEiyqo9piVzn32z8odIHrBM3FkIRa8Jc1eMMW
+         p6bABsONEnWhlmH9tLc4gqI2f0Td2NLxBE4caLFMKYgzHy9poG+Zl/RsXjGOsCVaa8cq
+         XXrvET532RdoT6a10n0vm8epB/RKuMwq9Ti+nsZZi4jKWiW22/f/MWlx0YygEac7Fp8s
+         lsTK+N8hzDEz6rhvjzka8Ncb8VSHtovgyMZ8f4DfE8DPRHq6riPiIMCoSLw8s0ClRcH6
+         l1tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8EOpVZnjKrO7Yh5EsqJUZSLEPLkGrMAnumjuBQ+xGD8=;
+        b=dDftRFFvvQ6wnt/1QEPIG/Cz06Ce+TrtpsWrjkE1xWgXVZmhiaSQw0BHwyiDujoRSg
+         H/CjdOZv+IQUeYwoBaruaqeRDifTIDTYehXpTyEmU6B+nDWNRpQ0nneCGWUCw1aRQwJI
+         aZk6HZs2MKR64ewsusv6btfehfFm2YULYUWd65lc3m0mfFL3MyIaA1NxXOj3g70diu16
+         DBbfpEK7sjSGxzy3K9SNxcJXbuHBVYOlSWGtXMCWjNF5P/GKe/cul6o8vX0WKxK5rtT1
+         P9kqTRKCwHTOIGR/t8OEZwz51ulBxFrHcZVICaUbIgbc3Y2Qx6I5XnzLWJQEK2SbWTb0
+         EhdA==
+X-Gm-Message-State: AFqh2kq/A/tOEgEy42Oh3KPasG79cGtWubFHHGO0J3cHjXB3drNMOEUf
+        n72W8IE0hMVEocl7WIpw0vkDeyIfqpstQBuT
+X-Google-Smtp-Source: AMrXdXt/GzDdw4HU7OC2tsFKY7iQ/IaxIdtDr0iP7gx5odSJTGcJgQlhP1BNyv7JUpM4mUu9ISlTFA==
+X-Received: by 2002:a05:600c:524a:b0:3da:fa71:a333 with SMTP id fc10-20020a05600c524a00b003dafa71a333mr10827273wmb.12.1674135120045;
+        Thu, 19 Jan 2023 05:32:00 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id ay22-20020a05600c1e1600b003dafbd859a6sm4975286wmb.43.2023.01.19.05.31.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jan 2023 05:31:59 -0800 (PST)
+Message-ID: <17b895c0-3985-a012-9b02-94d5ebb11ff9@linaro.org>
+Date:   Thu, 19 Jan 2023 14:31:58 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09a5e903-9b7b-475f-f05d-08dafa218855
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2023 13:31:55.4076
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wYp+iZ579P0rziZ15BVqB0ug0IVxZ2a8LxnAst0TLHlWmdlbAoyPIf835dM+Iv2ja8RmCsPaMBuiTHgWwKLElps9YuZMMxVXfvuiMhbnfej2g5UmAhU6oE9VZP98DlpD
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6007
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v3 4/7] arm64: dts: qcom: sc7280: Update VA/RX/TX macro
+ clock nodes
+Content-Language: en-US
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
+        robh+dt@kernel.org, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
+        konrad.dybcio@somainline.org, mka@chromium.org
+References: <1674131227-26456-1-git-send-email-quic_srivasam@quicinc.com>
+ <1674131227-26456-5-git-send-email-quic_srivasam@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1674131227-26456-5-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 19/01/2023 13:27, Srinivasa Rao Mandadapu wrote:
+> Update VA, RX and TX macro and lpass_tlmm clock properties and
+> enable them.
 
-> From: Yoshihiro Shimoda , Sent: Thursday, January 19, 2023 10:19 PM
-<snip>
-> Cc: iommu@lists.linux-foundation.org
+Everything is an update and this does not explain what exactly you are
+updating in the nodes and why.
 
-I didn't realize that the mailing list was ended. I'll repost this patch to=
- the new mailing list soon.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> ---
+>  .../qcom/sc7280-herobrine-audioreach-wcd9385.dtsi  | 59 ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> index 81e0f3a..674b01a 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> @@ -8,8 +8,67 @@
+>  
+>  #include <dt-bindings/sound/qcom,q6afe.h>
+>  
+> +/delete-node/ &lpass_rx_macro;
+
+Why?
+
+> +/delete-node/ &lpass_tx_macro;
+> +/delete-node/ &lpass_va_macro;
+> +
+>  /{
+>  	/* BOARD-SPECIFIC TOP LEVEL NODES */
+> +	lpass_rx_macro: codec@3200000 {
+> +		compatible = "qcom,sc7280-lpass-rx-macro";
+> +		reg = <0 0x03200000 0 0x1000>;
+
+Why? They are the same.
+
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&lpass_rx_swr_clk>, <&lpass_rx_swr_data>;
+
+Still the same...
+
+> +
+> +		clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +			 <&lpass_va_macro>;
+> +
+> +		clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+
+This is different...
+
+> +
+> +		#clock-cells = <0>;
+> +		#sound-dai-cells = <1>;
+
+But this not.
+
 
 Best regards,
-Yoshihiro Shimoda
+Krzysztof
 
