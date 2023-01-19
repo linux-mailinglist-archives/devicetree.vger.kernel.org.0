@@ -2,130 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B369E674110
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 19:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30ABE67413A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 19:49:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbjASSgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 13:36:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57568 "EHLO
+        id S230358AbjASStf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 13:49:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbjASSge (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 13:36:34 -0500
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D2866033;
-        Thu, 19 Jan 2023 10:36:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674153393; x=1705689393;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zwVVjUESJIESReT22YjiSWRMur/H9GgTgPJMfoIT7L0=;
-  b=KWphWsiCioYMECx6nzJITeyUJJQuDX/swYpZgLsElr+y+knr6YER8gWU
-   2fExfoMTHUfJYfan5o1vdIw4nGW1hmvLejw61cF7l3Ks6Mc5dCG69qMHq
-   mEgphmjDSbMuzJNX8SftxL40XMSwGF4Y2fLhVbL54UUzlHNijhPLl6EJs
-   qv8SY0IqFQ+xa64hU1az9Fc/7jE8ZDM2H0P97+/KAVK77W4kH507EjBv5
-   41DUvK41HuC3ZLPIA/dn8DaEBVBQ8OIzRlsgf1HmBSnFQnpThYh8N3OID
-   5JLlT/+OcrEYeQMdZXlB80keCTAnDU8rEjEak6F/izI+ekTIM/eZrlV/z
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="389895167"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; 
-   d="scan'208";a="389895167"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2023 10:36:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="768345053"
-X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; 
-   d="scan'208";a="768345053"
-Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 19 Jan 2023 10:36:06 -0800
-Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pIZld-0001jS-1k;
-        Thu, 19 Jan 2023 18:36:05 +0000
-Date:   Fri, 20 Jan 2023 02:35:21 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jianhua Lu <lujianhua000@gmail.com>, Lee Jones <lee@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S230273AbjASSta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 13:49:30 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323FD8BAAD;
+        Thu, 19 Jan 2023 10:49:19 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id br9so4578637lfb.4;
+        Thu, 19 Jan 2023 10:49:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0tYQWEbUqqtKGBVD+CO4A492dYz/WsYLmCYf41kZNY0=;
+        b=n4+uFCk4bo7SZ7RmgW5WWFS2/uh17oFHi2Wu9OV80FtxP/hAJM9pjaHBJ5mpNMX4zp
+         iqUbr25lWZiyYIdkoLZHprxJ4JDQEiSqI7v0q/QYCLR3UBEKWET2ObvRHhWUKDyvsB2s
+         YObPiYCnEY0r7z+Keof0aqnZ1Zi5fNiEVxqf5FsInWplXEqz/kqY1BirhVrF1e8YKUuq
+         fkW05KcHdREfG9ceIUhO+7zrn3HBd5vnYGE0aAo2VdY+Cnz7OlDJj/JN5qfDJUxYqRBB
+         CADly1MC2ftqbiAlNtjs0w5MBnay+SAahDiPJ7cUj9iSDgEtV2qFXwdkpcv6hBBR7nTq
+         rkqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0tYQWEbUqqtKGBVD+CO4A492dYz/WsYLmCYf41kZNY0=;
+        b=cnKNRY5ih5ndBcpAKspYMg6PguowkUhFkeLn8/45mT7q0/8O/sAxy6DOO3CkEP7VJ/
+         aHZYc2L3R46MSiPzS1Gxj25PQFvGHb+mdb7H9j8fMci/AEMDoEVBjtciKJ5acg6OWPWn
+         IkIwSKNZqWHoRTduBiDGaoKbq0OE1YBvs6IIhty/eFD9eFoTsECimNiEnE1/a7HcbRFC
+         k7ARO03dsJqRutYKqLOqYNIcTPM6wUKQfR68B2JRPfsyOJV9tUaN3pw4n5TlI26034jO
+         0muFVFTjvugn0tzQ6IxzJqMJh0mbhH94AQMpeEvg5LMfK0b/Kofbf8xXFy9OnunVmvaZ
+         519A==
+X-Gm-Message-State: AFqh2kr/kUm1ZfHJ4CG2aGeVqvQ7mM+izSOwJ+dXX1M5bE58Yx/IAKN1
+        s/F8I8Lj3Od3d094l+EyCS4=
+X-Google-Smtp-Source: AMrXdXsjFhKWKq7za7X1ZzjrMsEeb9ETu3sg+Kbqp8I3AZi5X5TNNlg+CZgXDBTXn0b9+8w2zTN+zw==
+X-Received: by 2002:ac2:57cd:0:b0:4cd:afbf:c206 with SMTP id k13-20020ac257cd000000b004cdafbfc206mr2700092lfo.22.1674154157481;
+        Thu, 19 Jan 2023 10:49:17 -0800 (PST)
+Received: from U19.ag.local (static.187.76.181.135.clients.your-server.de. [135.181.76.187])
+        by smtp.gmail.com with ESMTPSA id b31-20020a0565120b9f00b004d30752a561sm2112737lfv.298.2023.01.19.10.49.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 10:49:16 -0800 (PST)
+From:   Alibek Omarov <a1ba.omarov@gmail.com>
+Cc:     a1ba.omarov@gmail.com, alexander.sverdlin@siemens.com,
+        macromorgan@hotmail.com, Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Helge Deller <deller@gmx.de>
-Cc:     oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        Jianhua Lu <lujianhua000@gmail.com>
-Subject: Re: [PATCH v6 2/2] backlight: ktz8866: Add support for Kinetic
- KTZ8866 backlight
-Message-ID: <202301200239.m4ZDprWz-lkp@intel.com>
-References: <20230118131002.15453-2-lujianhua000@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] drm/rockchip: lvds: add support for rk356x
+Date:   Thu, 19 Jan 2023 21:48:02 +0300
+Message-Id: <20230119184807.171132-1-a1ba.omarov@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230118131002.15453-2-lujianhua000@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jianhua,
+Hi all,
 
-I love your patch! Perhaps something to improve:
+This series adds support for the LVDS controller on the Rockchip RK3566 and
+RK3568. First patch adds the support in rockchip-lvds.c driver, setting all
+the needed GRF registers. Second patch adds device tree bindings, and third
+patch adds a note in the documentation.
 
-[auto build test WARNING on lee-backlight/for-backlight-next]
-[also build test WARNING on lee-backlight/for-backlight-fixes lee-leds/for-leds-next pavel-leds/for-next linus/master v6.2-rc4 next-20230119]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+LVDS controller on rk356x does share DSI DPHY with MIPI DSI, and all
+groundwork on enabling it is done by Chris Morgan.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jianhua-Lu/backlight-ktz8866-Add-support-for-Kinetic-KTZ8866-backlight/20230118-214354
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/backlight.git for-backlight-next
-patch link:    https://lore.kernel.org/r/20230118131002.15453-2-lujianhua000%40gmail.com
-patch subject: [PATCH v6 2/2] backlight: ktz8866: Add support for Kinetic KTZ8866 backlight
-config: parisc-randconfig-r031-20230119 (https://download.01.org/0day-ci/archive/20230120/202301200239.m4ZDprWz-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/b862510e8bf9eb34db9d71a372b9de05682cb8ad
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jianhua-Lu/backlight-ktz8866-Add-support-for-Kinetic-KTZ8866-backlight/20230118-214354
-        git checkout b862510e8bf9eb34db9d71a372b9de05682cb8ad
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=parisc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=parisc SHELL=/bin/bash drivers/video/backlight/
+Tested on Autogramma Monitor RockChip, custom board based on Radxa Rock 3
+Computing Module Plus.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+Alibek Omarov (3):
+  drm/rockchip: lvds: add rk3568 support
+  arm64: dts: rockchip: rk356x: add LVDS bindings
+  dt-bindings: display: rockchip-lvds: add compatible string for RK3568
 
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/bits.h:6,
-                    from include/linux/ratelimit_types.h:5,
-                    from include/linux/ratelimit.h:5,
-                    from include/linux/dev_printk.h:16,
-                    from include/linux/device.h:15,
-                    from include/linux/backlight.h:12,
-                    from drivers/video/backlight/ktz8866.c:8:
-   include/vdso/bits.h: In function 'ktz8866_init':
->> include/vdso/bits.h:7:40: warning: 'val' is used uninitialized [-Wuninitialized]
-       7 | #define BIT(nr)                 (UL(1) << (nr))
-         |                                        ^~
-   drivers/video/backlight/ktz8866.c:98:22: note: 'val' was declared here
-      98 |         unsigned int val;
-         |                      ^~~
-
-
-vim +/val +7 include/vdso/bits.h
-
-3945ff37d2f48d Vincenzo Frascino 2020-03-20  6  
-3945ff37d2f48d Vincenzo Frascino 2020-03-20 @7  #define BIT(nr)			(UL(1) << (nr))
-3945ff37d2f48d Vincenzo Frascino 2020-03-20  8  
+ .../display/rockchip/rockchip-lvds.txt        |   1 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  25 +++
+ drivers/gpu/drm/rockchip/rockchip_lvds.c      | 144 +++++++++++++++++-
+ drivers/gpu/drm/rockchip/rockchip_lvds.h      |  10 ++
+ 4 files changed, 173 insertions(+), 7 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.34.1
+
