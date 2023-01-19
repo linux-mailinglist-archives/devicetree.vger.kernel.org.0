@@ -2,168 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EAFB673A00
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:23:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E142673A04
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:23:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229966AbjASNXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:23:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33566 "EHLO
+        id S229942AbjASNXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 08:23:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230394AbjASNWy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:22:54 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E3965BF
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:22:52 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id mp20so5597624ejc.7
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:22:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5anTg9HNFSMINQ7lkO2Gxr/FAOhOJdyJakgcx2braz8=;
-        b=Sr/S1iw3IrT0j2JMfizhF1hi0ge6U4ge704ZnseaKhlDFY5THR/jV+DBfFg8L8j8jl
-         ky0jVpIcpnLhLImZb6zKj3m5qUZ9tbp8HK5V+COsafB/jKslQF8g0LT7QmwBpkpF4k7D
-         pUhmE/PFipQA61axtR2PmBxwycg9TYguIG8LyD0tNYbo+8gASojzp8GJXV50qgbNGnuj
-         jtREBtZi9hk23WT3cNLCUIn9W7Y5Qa0zwm5vg6sDyYmR2QT2++kjljGiXBuz/cMZ+5XB
-         UMFNESfqe3nOUH6eiYQ95dDJ7ZCXTds9rembXP9pgAhp61hole+b/3w2oOxEMOpWhNCm
-         +ypA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5anTg9HNFSMINQ7lkO2Gxr/FAOhOJdyJakgcx2braz8=;
-        b=KNgsz30B6LPix/qJaCRadNiyMtqGFB7cI+sgyZXRn6VQ/a4n5v7wpUGrSLHXDGIlk2
-         7rtHPvYZoceeLDevXEFtvceJmmtUBwl0csDUB5DTxs0CriWZSsju7udt79RCUWzr40gK
-         Bedib1hDZUf6V6XEvSMTAeV7opcz6VBujceV8UyH6iwdvQ/2BTJAUBnzRD4+RVCdb+fk
-         PdoVP8/V8MUvoMAqmj14qTKc5retswbpx+LiAC3BlKl0dHIgCyp7ouci+DGMeZCjz3T0
-         DPu9Hc4ieMdMxU/WpeFHdKEBShxCMwS4oR1C/SugJ0nMqvJpMwb+RiW6ZNf4z5lXbkQc
-         T2EQ==
-X-Gm-Message-State: AFqh2ko7lN6ypjmqKeuoqhZElfBrFmxc6V4F7uRxq/rSoOshmcVQUc6/
-        YfgSuL0Pro4bePJ5RFmtJpJ4bw==
-X-Google-Smtp-Source: AMrXdXtGkEXt2SNCvuXKuJAmtxQDRSvIXylH4vkfWsqaVupSpfc+r11Nt55iuygkiTB5Isn4k5q+wg==
-X-Received: by 2002:a17:906:7152:b0:84d:1f00:e29 with SMTP id z18-20020a170906715200b0084d1f000e29mr26084660ejj.7.1674134571272;
-        Thu, 19 Jan 2023 05:22:51 -0800 (PST)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id 18-20020a170906311200b0084b89c66eb5sm16179883ejx.4.2023.01.19.05.22.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 05:22:50 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229914AbjASNXe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:23:34 -0500
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45BCC83;
+        Thu, 19 Jan 2023 05:23:33 -0800 (PST)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out2.suse.de (Postfix) with ESMTP id EA88E5CE24;
+        Thu, 19 Jan 2023 13:23:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1674134611; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=7SU3rQc/6KT2OT+CNuvmsp7JyhHd1jX5deqXc9F/9wA=;
+        b=iI07z7Blumf+H21YP2Mkk2ClWk78WRME3oLbSOOFV/v4BOWBRybqtzAwUEGhtJa98uOp+V
+        gdPNXpxmVXBXQ+lJqBacxUrwGxP0sQSKA2q+UbhEy6kQhDJL5VQBDq6hdOZaDmZKHLkeWV
+        LFyHklh8vHoXmn7OKFGEmVz7u1Zbg64=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1674134611;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=7SU3rQc/6KT2OT+CNuvmsp7JyhHd1jX5deqXc9F/9wA=;
+        b=WFHyP+E9iU1XvgkR3PtCE6TnVRXhNO8Ezz3UaOX08tobrcUA+H73ECL7O37u4RPh4pZa/l
+        LdACLQbVs6HPquBg==
+Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by relay2.suse.de (Postfix) with ESMTPS id 9AFC82C141;
+        Thu, 19 Jan 2023 13:23:31 +0000 (UTC)
+Date:   Thu, 19 Jan 2023 14:23:30 +0100
+From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
+        "Erhard F." <erhard_f@mailbox.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: qcom: apq8064: add second DSI host and PHY
-Date:   Thu, 19 Jan 2023 15:22:49 +0200
-Message-Id: <20230119132249.2480022-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.0
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Subject: Re: [PATCH v2] of: Fix of platform build on powerpc due to bad of
+ disaply code
+Message-ID: <20230119132330.GP16547@kitsune.suse.cz>
+References: <20230119095323.4659-1-msuchanek@suse.de>
+ <8a9f7ba5-37a4-0927-4ab2-d212f1b098a9@csgroup.eu>
+ <57e026bf-c412-0c47-8956-b565894948e0@suse.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <57e026bf-c412-0c47-8956-b565894948e0@suse.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add second DSI host and PHY available on the APQ8064 platform.
+On Thu, Jan 19, 2023 at 02:11:13PM +0100, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 19.01.23 um 11:24 schrieb Christophe Leroy:
+> > 
+> > 
+> > Le 19/01/2023 à 10:53, Michal Suchanek a écrit :
+> > > The commit 2d681d6a23a1 ("of: Make of framebuffer devices unique")
+> > > breaks build because of wrong argument to snprintf. That certainly
+> > > avoids the runtime error but is not the intended outcome.
+> > > 
+> > > Also use standard device name format of-display.N for all created
+> > > devices.
+> > > 
+> > > Fixes: 2d681d6a23a1 ("of: Make of framebuffer devices unique")
+> > > Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+> > > ---
+> > > v2: Update the device name format
+> > > ---
+> > >    drivers/of/platform.c | 12 ++++++++----
+> > >    1 file changed, 8 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > > index f2a5d679a324..8c1b1de22036 100644
+> > > --- a/drivers/of/platform.c
+> > > +++ b/drivers/of/platform.c
+> > > @@ -525,7 +525,9 @@ static int __init of_platform_default_populate_init(void)
+> > >    	if (IS_ENABLED(CONFIG_PPC)) {
+> > >    		struct device_node *boot_display = NULL;
+> > >    		struct platform_device *dev;
+> > > -		int display_number = 1;
+> > > +		int display_number = 0;
+> > > +		char buf[14];
+> > 
+> > Can you declare that in the for block where it is used instead ?
+> > 
+> > > +		char *of_display_format = "of-display.%d";
+> > 
+> > Should be const ?
+> 
+> That should be static const of_display_format[] = then
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom-apq8064.dtsi | 69 ++++++++++++++++++++++++++++-
- 1 file changed, 67 insertions(+), 2 deletions(-)
+Why? It sounds completely fine to have a const pointer to a string
+constatnt.
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index b7e5b45e1c04..3ae6abd85f3d 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -865,8 +865,8 @@ mmcc: clock-controller@4000000 {
- 				 <&gcc PLL8_VOTE>,
- 				 <&dsi0_phy 1>,
- 				 <&dsi0_phy 0>,
--				 <0>,
--				 <0>,
-+				 <&dsi1_phy 1>,
-+				 <&dsi1_phy 0>,
- 				 <&hdmi_phy>;
- 			clock-names = "pxo",
- 				      "pll3",
-@@ -1342,6 +1342,71 @@ dsi0_phy: phy@4700200 {
- 			status = "disabled";
- 		};
- 
-+		dsi1: dsi@5800000 {
-+			compatible = "qcom,mdss-dsi-ctrl";
-+			label = "MDSS DSI CTRL->0";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
-+			reg = <0x05800000 0x200>;
-+			reg-names = "dsi_ctrl";
-+
-+			clocks = <&mmcc DSI2_M_AHB_CLK>,
-+				<&mmcc DSI2_S_AHB_CLK>,
-+				<&mmcc AMP_AHB_CLK>,
-+				<&mmcc DSI2_CLK>,
-+				<&mmcc DSI2_BYTE_CLK>,
-+				<&mmcc DSI2_PIXEL_CLK>,
-+				<&mmcc DSI2_ESC_CLK>;
-+			clock-names = "iface", "bus", "core_mmss",
-+					"src", "byte", "pixel",
-+					"core";
-+
-+			assigned-clocks = <&mmcc DSI2_BYTE_SRC>,
-+					<&mmcc DSI2_ESC_SRC>,
-+					<&mmcc DSI2_SRC>,
-+					<&mmcc DSI2_PIXEL_SRC>;
-+			assigned-clock-parents = <&dsi0_phy 0>,
-+						<&dsi0_phy 0>,
-+						<&dsi0_phy 1>,
-+						<&dsi0_phy 1>;
-+			syscon-sfpb = <&mmss_sfpb>;
-+			phys = <&dsi1_phy>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					dsi1_in: endpoint {
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					dsi1_out: endpoint {
-+					};
-+				};
-+			};
-+		};
-+
-+
-+		dsi1_phy: dsi-phy@5800200 {
-+			compatible = "qcom,dsi-phy-28nm-8960";
-+			#clock-cells = <1>;
-+			#phy-cells = <0>;
-+
-+			reg = <0x05800200 0x100>,
-+				<0x05800300 0x200>,
-+				<0x05800500 0x5c>;
-+			reg-names = "dsi_pll", "dsi_phy", "dsi_phy_regulator";
-+			clock-names = "iface", "ref";
-+			clocks = <&mmcc DSI2_M_AHB_CLK>,
-+				 <&pxo_board>;
-+			status = "disabled";
-+		};
- 
- 		mdp_port0: iommu@7500000 {
- 			compatible = "qcom,apq8064-iommu";
--- 
-2.39.0
+Thanks
+
+Michal
+
+> 
+> > 
+> > >    		int ret;
+> > >    		/* Check if we have a MacOS display without a node spec */
+> > > @@ -556,7 +558,10 @@ static int __init of_platform_default_populate_init(void)
+> > >    			if (!of_get_property(node, "linux,opened", NULL) ||
+> > >    			    !of_get_property(node, "linux,boot-display", NULL))
+> > >    				continue;
+> > > -			dev = of_platform_device_create(node, "of-display", NULL);
+> > > +			ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
+> > > +			if (ret >= sizeof(buf))
+> > > +				continue;
+> > 
+> > 
+> > Can you make buf big enough to avoid that ?
+> > 
+> > And by the way could it be called something else than 'buf' ?
+> > 
+> > See exemple here :
+> > https://elixir.bootlin.com/linux/v6.1/source/drivers/fsi/fsi-occ.c#L690
+> > 
+> > 
+> > > +			dev = of_platform_device_create(node, buf, NULL);
+> > >    			if (WARN_ON(!dev))
+> > >    				return -ENOMEM;
+> > >    			boot_display = node;
+> > > @@ -564,10 +569,9 @@ static int __init of_platform_default_populate_init(void)
+> > >    		}
+> > >    		for_each_node_by_type(node, "display") {
+> > > -			char *buf[14];
+> > >    			if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
+> > >    				continue;
+> > > -			ret = snprintf(buf, "of-display-%d", display_number++);
+> > > +			ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
+> > >    			if (ret >= sizeof(buf))
+> > >    				continue;
+> > >    			of_platform_device_create(node, buf, NULL);
+> 
+> -- 
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 Nürnberg, Germany
+> (HRB 36809, AG Nürnberg)
+> Geschäftsführer: Ivo Totev
+
+
 
