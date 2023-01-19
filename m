@@ -2,112 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 368E46737E0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 13:06:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E706737EE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 13:09:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbjASMGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 07:06:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38514 "EHLO
+        id S229787AbjASMI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 07:08:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230169AbjASMGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 07:06:31 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B87D4EC2
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 04:06:27 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1pITgU-0001is-CQ; Thu, 19 Jan 2023 13:06:22 +0100
-Message-ID: <729c4be6-00f7-4b88-235e-0e9bdeed3e5f@pengutronix.de>
-Date:   Thu, 19 Jan 2023 13:06:19 +0100
+        with ESMTP id S230241AbjASMIz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 07:08:55 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E2B2BEC3;
+        Thu, 19 Jan 2023 04:08:53 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30J5Fmes017643;
+        Thu, 19 Jan 2023 12:08:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=gfTqnOTWGqZDemDVHdu2Cs2qANt8WoEK/JLQa6iXSAY=;
+ b=HdylZ1tpR0zZFAkhsT3OUoR9qt6HANDa6jZ7EKe/eeiQuLxae/VxQXVpplG85yhK/cgb
+ V0M80CaoAOzszRKVFFtEZiBNvfN5G0bOXnKqHJlmw54P0D1NqIQL8YfS/pNvFqU6t5rV
+ lWzw1DFhbv2OcIynrpW3jkaBuweJSe0PfYmwhEC9q5sIces1qPk/nOyLQb04v6+BHWv2
+ yxYdnIM9k4mDiFH3iZdYR3FQZxsnxE9TxS7sLKHdbeu4miq/zINTUQfvNjoJ647QVDPT
+ VpvMtNORygCkrYQqCorh0TIZpus5vzxlbF2FNXhnMpaCEZq3Jyb/qMmpnnZRqilZSe8R pA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n6wbs9asr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 19 Jan 2023 12:08:47 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30JC8k49017768
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 19 Jan 2023 12:08:46 GMT
+Received: from [10.216.43.228] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 19 Jan
+ 2023 04:08:41 -0800
+Message-ID: <77d4cb35-aff1-e35d-f1bf-957d17970714@quicinc.com>
+Date:   Thu, 19 Jan 2023 17:38:38 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [Linux-stm32] [PATCH v6 1/3] ARM: dts: stm32mp13: fix compatible
- for BSEC
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/8] arm64: dts: qcom: sc7280: Extract audio nodes from
+ common idp dtsi file
 Content-Language: en-US
-To:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Etienne CARRIERE <etienne.carriere@linaro.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230118172940.841094-1-patrick.delaunay@foss.st.com>
- <20230118182856.v6.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20230118182856.v6.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <dianders@chromium.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <konrad.dybcio@linaro.org>, <mka@chromium.org>
+References: <1672925875-2107-1-git-send-email-quic_srivasam@quicinc.com>
+ <1672925875-2107-2-git-send-email-quic_srivasam@quicinc.com>
+ <6a0b4fff-e012-92df-c2fb-82184eba8aef@linaro.org>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <6a0b4fff-e012-92df-c2fb-82184eba8aef@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 5KXhCBnl6Dtc7vRx4_i7VbR8a8QUvyBC
+X-Proofpoint-GUID: 5KXhCBnl6Dtc7vRx4_i7VbR8a8QUvyBC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-19_09,2023-01-19_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 malwarescore=0 impostorscore=0 priorityscore=1501
+ bulkscore=0 phishscore=0 adultscore=0 mlxscore=0 suspectscore=0
+ clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301190096
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.01.23 18:29, Patrick Delaunay wrote:
-> Use the correct compatible for stm32mp13 support.
-> 
-> The BSEC driver for STM32MP15x is not compatible with STM32MP13x. For
-> example the proprietary's smc STM32_SMC_BSEC is not supported in
-> STM32MP13x OP-TEE, it is replaced by SM32MP BSEC Pseudo Trusted
-> Application in OP-TEE to access to the secured IP BSEC on STM32MP13X SoC.
-> 
-> The correct compatible is already used in U-Boot and in upstream is in
-> progress for OP-TEE device tree.
-> 
-> As the SoC STM32MP13X is not yet official and it is not available
-> outside STMicroelectronics, it is the good time to break the DTS
-> compatibility and to correct the error done in the introduction of
-> STM32MP131.
-> 
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
 
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-
-> ---
-> This patch is already sent separately in:
-> https://lore.kernel.org/all/20221017134437.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid/
-> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=685815
-> 
-> I create a serie for more efficient review.
-> 
-> Patrick.
-> 
-> (no changes since v1)
-> 
-> Changes in v1:
-> - update commit message to indicate DTS break reason.
-> 
->  arch/arm/boot/dts/stm32mp131.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-> index accc3824f7e9..0b79380cc627 100644
-> --- a/arch/arm/boot/dts/stm32mp131.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp131.dtsi
-> @@ -520,7 +520,7 @@ rtc: rtc@5c004000 {
->  		};
->  
->  		bsec: efuse@5c005000 {
-> -			compatible = "st,stm32mp15-bsec";
-> +			compatible = "st,stm32mp13-bsec";
->  			reg = <0x5c005000 0x400>;
->  			#address-cells = <1>;
->  			#size-cells = <1>;
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
+On 1/10/2023 4:27 PM, Krzysztof Kozlowski wrote:
+Thanks for your time Krzysztof!!!
+> On 05/01/2023 14:37, Srinivasa Rao Mandadapu wrote:
+>> Split common idp dtsi file into audio specific dtsi and common
+>> idp dtsi file.
+>>
+>> It is required to isolate idp and crd-rev3 platform device tree nodes
+>> and convert crd-rev3 platform device tree nodes into audioreach specific
+>> device tree nodes.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> ---
+> Please include a changelog - either per patch or in cover letter.
+Okay. Will include and re post it.
+>
+>>   arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi | 135 +++++++++++++++++++++++++
+>>   arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts     |   1 +
+>>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 126 -----------------------
+>>   3 files changed, 136 insertions(+), 126 deletions(-)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
+>> new file mode 100644
+>> index 0000000..d1aea28
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
+>> @@ -0,0 +1,135 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * sc7280 Audio IDP board device tree source (common between SKU1 and SKU2)
+>> + *
+>> + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
+>> + */
+>> +
+>> +/{
+>> +   /* BOARD-SPECIFIC TOP LEVEL NODES */
+> Still wrong indentation.
+Okay. Will fix it.
+>
+>> +	sound: sound {
+>> +		compatible = "google,sc7280-herobrine";
+>> +		model = "sc7280-wcd938x-max98360a-1mic";
+>> +
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
