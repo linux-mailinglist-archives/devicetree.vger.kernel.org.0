@@ -2,134 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B677A6736B4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 600166736BF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:26:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230269AbjASLZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 06:25:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34468 "EHLO
+        id S230360AbjASL03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 06:26:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230143AbjASLZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:25:08 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 809CB717BF
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:25:06 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id e3so1500146wru.13
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:25:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Jjumn+I+wkHZk5NVVYexup8sGnkZ4VyPciwtVSYN3y8=;
-        b=IhWrXLqtYqFTRUG0/z62w2T8MBWpTFNipnLhMR3XSGokgY5LWm+zCPvIqgcL8TBcum
-         9RJSAoS/ZyYyCjOIxDuoGmYWV1TXamIMZ3LkVvbazMZENQ+KFF2lJAyazU60T9jEDaW3
-         yZWvEXiINvKtfv9DuI6+5TpHSbnTJ7EUmtigC/wdKeJTnp/7pt+VGTPjC1r9H0RfMStO
-         Nb47ANOONNt3/SCJhyhPwWzZ126MB/89DJxndPWGJAcPh30t7FJWqsNl83CuBZCA07Pa
-         3I2Gs4UV8QSr7sBTkf+QKitlKpDx+ILC51YXIOWhp+xxh5IFcJxTdGcDS0QaucSr89of
-         9LdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Jjumn+I+wkHZk5NVVYexup8sGnkZ4VyPciwtVSYN3y8=;
-        b=LNkD7+qgonE4uMIrlJNoHahaTxdtsqm53UE+q4PBn0SwS/v5lp8yLIfUbtb9YlGXCE
-         LuZa7ks2LQPWR/MVGw+GzTYOMeu6SIBm3IB/j+0YQ3xC0mmCKvrQPAknVe7bKWhjgyFl
-         m4pDj9eUAFubxqtHEOYhRXgwpvmsDQcs2IdbfzWDXFwg4W8kxwcfnwwvRB7E3LD5DfH2
-         hvt6gbtj9xuj5A3pc1wRyq50VU4jDrPbewfI4MMJMkRGaduXqDvaQNiZ/zdgqvSIldgC
-         RHrvUwaoHQVYb4nqSSeu81j2YZPMnLMusqSQuOPhbwBw0QtUD4yZDMZTTUj8gKr6l0kS
-         nDxg==
-X-Gm-Message-State: AFqh2krJz3vBRrmLfLHDOBiaGUgDRSJq7vYbkmeP4R7O/Wr2ox79dqKM
-        5yN1bUwqZix4NGVswMaPI8Rzgg==
-X-Google-Smtp-Source: AMrXdXvPbSq3xK4D65Edtw3e5PzfKKeFt2TmJ1e+1mU6FlJ7V9ToKuqrWDNM9rZCGzZV+8Bh5Vkceg==
-X-Received: by 2002:a5d:548d:0:b0:2aa:438a:2165 with SMTP id h13-20020a5d548d000000b002aa438a2165mr8615483wrv.24.1674127505074;
-        Thu, 19 Jan 2023 03:25:05 -0800 (PST)
-Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id w10-20020a5d404a000000b00275970a85f4sm33436999wrp.74.2023.01.19.03.25.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 03:25:04 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 2/2] PCI: qcom: Add SM8550 PCIe support
-Date:   Thu, 19 Jan 2023 13:24:53 +0200
-Message-Id: <20230119112453.3393911-2-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230119112453.3393911-1-abel.vesa@linaro.org>
-References: <20230119112453.3393911-1-abel.vesa@linaro.org>
+        with ESMTP id S230255AbjASL0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:26:00 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 130906FF9D;
+        Thu, 19 Jan 2023 03:25:48 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 090286600871;
+        Thu, 19 Jan 2023 11:25:46 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1674127547;
+        bh=P24BRF7G7AAJcBdQBiIy1w/i3HakP9ngzoNRVWMdu7M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=KpvG3szd4tWA0VjCEYmAoCWKdkBPJuPlFQdL8rOhTvoY+HEBYkHuT/G9OsOI3cJaO
+         +zKIogHTO850/DhNIz7klyy5Pday+8CmJewQ+9rc4HLPG8XlBoduL8AJe3TUoiugT5
+         XZAGtA1cH6r8dIigXdGymIMRKoIaviOdDZtZHCK2j/zedqwT7M+ToAP37IlTytv34z
+         NH5pbOOZ5eWRYLPtrPP2SWA/oXGyM+A4vx/6K8VWS//Gkr2rP7vwtabci2BY7DkIx1
+         RVt43lAzL/4y9kSLSv7FOLHq8gS+fYPUWQDyxEO9R+7nVkxHHnzqlHILJLh12j1THg
+         eTy7x4/zZMO4A==
+Message-ID: <eaf43efd-e750-a09a-00b2-513c1a11a4aa@collabora.com>
+Date:   Thu, 19 Jan 2023 12:25:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v3 2/2] soc: mediatek: pm-domains: Add support for mt8188
+To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org
+References: <20221223080553.9397-1-Garmin.Chang@mediatek.com>
+ <20221223080553.9397-3-Garmin.Chang@mediatek.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221223080553.9397-3-Garmin.Chang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for both PCIe found on SM8550.
-Also add the cnoc_pcie_sf_axi clock needed by the SM8550.
+Il 23/12/22 09:05, Garmin.Chang ha scritto:
+> Add domain control data including bus protection data size
+> change due to more protection steps in mt8188.
+> 
+> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-The v2 was here:
-https://lore.kernel.org/all/20230118111704.3553542-2-abel.vesa@linaro.org/
-
-Changes since v2:
- * none
-
-Changes since v1:
- * changed the subject line prefix for the patch to match the history,
-   like Bjorn Helgaas suggested.
- * added Konrad's R-b tag
-
-
- drivers/pci/controller/dwc/pcie-qcom.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 77e5dc7b88ad..85988b3fd4f6 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -182,7 +182,7 @@ struct qcom_pcie_resources_2_3_3 {
- 
- /* 6 clocks typically, 7 for sm8250 */
- struct qcom_pcie_resources_2_7_0 {
--	struct clk_bulk_data clks[12];
-+	struct clk_bulk_data clks[13];
- 	int num_clks;
- 	struct regulator_bulk_data supplies[2];
- 	struct reset_control *pci_reset;
-@@ -1208,6 +1208,7 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
- 	res->clks[idx++].id = "noc_aggr_4";
- 	res->clks[idx++].id = "noc_aggr_south_sf";
- 	res->clks[idx++].id = "cnoc_qx";
-+	res->clks[idx++].id = "cnoc_pcie_sf_axi";
- 
- 	num_opt_clks = idx - num_clks;
- 	res->num_clks = idx;
-@@ -1828,6 +1829,7 @@ static const struct of_device_id qcom_pcie_match[] = {
- 	{ .compatible = "qcom,pcie-sm8250", .data = &cfg_1_9_0 },
- 	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &cfg_1_9_0 },
- 	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
-+	{ .compatible = "qcom,pcie-sm8550", .data = &cfg_1_9_0 },
- 	{ }
- };
- 
--- 
-2.34.1
 
