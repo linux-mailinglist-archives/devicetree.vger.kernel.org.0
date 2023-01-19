@@ -2,204 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 991386736EA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:32:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE7856736B7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:25:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230179AbjASLc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 06:32:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40370 "EHLO
+        id S230155AbjASLZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 06:25:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230381AbjASLb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:31:56 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D81F67573D
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:31:49 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so1028602wmc.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:31:49 -0800 (PST)
+        with ESMTP id S230168AbjASLZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:25:13 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F367717AB
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:25:05 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id b5so1574970wrn.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:25:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=8y8gxYsUcnAtqMlaYXb0rYXDx4AIIfXHx+EI4g6LIBE=;
-        b=8L+sVM6mzom55nfPj24OcrHW9b+jXmKtqWVfrpg0my6d9IhYPJ8CF81ioXO9Y6ShEl
-         sYiCLiJ1xqsJMBBX1F1b1Z5WMGCaLew+EdssnRL9fe9Jz44X38f5n4KeGk25goQDwotB
-         j9yQP+trfu/QlJZt02ULpS5ykf+5UvDBcbBS9Y5QSatYpzzyt7oaOwSBSfmjEBRPAef1
-         y0jVjSVcKg+gywd0fwJX2k4DhrZmTo3joV3S7ulVu8NAObTFSBorb/zsMVx7pvyK7dX2
-         VKVrNca2sqTFL7LoXvKRwprhKpVbChx3Mb0fUKkCwqr1h3U5hevPI7tZG22HKitKvsqm
-         XgSg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KhSiUckYJfa4o89CtDf2AZXZu6HVpjJ+//JV2rKmVLg=;
+        b=WvcFi6kJBN9JAXBniyOPQnvo2unN7GntUV7VMw6qzjHsVIy5jHYUnhcRq++hAEZ+PY
+         j0vI+SHcPqh6cfLmrpzHL+nE0kfZ6V4EXh+1jKfHL38b+NW4daapZvFLIxYXfb4/N7I8
+         LHRI5dPr2PU6Y/WEAzqohuH4QfP2RSONIXoCl7ZrT12eRJRipR04Ij/a2Js5pvMCTezl
+         mu/CfGR50FwaVQ0S1FueBqPI5ytLIrKTnrcC/Tw/Evl+9h7s6ASJKObzhlYUeFSptYWS
+         pvnqQsr74m6Ul4JTxLnS8FgmOUu7IReNcayob4NEuLXoAK5pS75hAsViqPzHlvgR6k+3
+         3wkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8y8gxYsUcnAtqMlaYXb0rYXDx4AIIfXHx+EI4g6LIBE=;
-        b=suwEt3rAuoE/pU9/U0lqKrRy6EYEKkiHwt95XgFakmZv3fN7ttw9vKdosP9H5DZHqc
-         5P3C4pAHni2fMoP4ykBHNf7PR45LTW7gIO5kDcJsi92u8vAylEjoLzHQxLaPuewOvv8t
-         e6fumpv5BTRsgcz93+KSZWdkucFaWDD/N0f598xOKF8ryIRz0aYzjKIcVceXVuwhFVD7
-         6aSYD3V9WX+Cer4b/1YxcmLJr9TErJMtUisGPXxHrPp3TbvcfIj6acxFKslxQ1g7RxOG
-         45xxdNad6JaZo/iALjDyBoYKGUscACjegf4TrmHPip3NHfbz3R6e5G/gpBnFPf0JkQre
-         UchA==
-X-Gm-Message-State: AFqh2kqB4q9q6Vra1oez9/o7BeRNfGxLqFFDVd/KJ+gserG+fExgEONY
-        uTRQxzOYo2Qp8vzbr3MsMLdICQ==
-X-Google-Smtp-Source: AMrXdXsWetgX83imAS+ETSHgMkanTq9tZSORTCmP1Hf79hKgFNFlP03wmr07wJXc++XyUDs3N5UyGA==
-X-Received: by 2002:a7b:c5d6:0:b0:3d9:fb89:4e3d with SMTP id n22-20020a7bc5d6000000b003d9fb894e3dmr10406935wmk.28.1674127908326;
-        Thu, 19 Jan 2023 03:31:48 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id h10-20020a05600c314a00b003db0659c454sm5757084wmo.32.2023.01.19.03.31.47
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KhSiUckYJfa4o89CtDf2AZXZu6HVpjJ+//JV2rKmVLg=;
+        b=Jl3jB9DNwF/8Su7lEuTfPSLNJEZk6PaUOwYy9hPPxS73dFYa7c+RwJWaxxoEnB9sLZ
+         WVFpefOgqzYoT+yyqVNzulheG21TAA5nSEXYzlyCKa0oRjHJof2HtHrotRlCx940sWNZ
+         VWyc6BjgN6L2Vkq08WZ5chCzzdJb8txdzc7ii96kwqSMu32idCr+pWPxsL0m/kGk9CAf
+         7teBIAd7p3C7S13PDfTFmH+81ZcyyT3FWseHKmNQj2MDu7w5JeNd8aImLlE/r25UQxbr
+         WzHmqj0IEPnmPF0M8p2e/CV7F8YeMtXAAdryJclaPH9y02W9LfuoDmqnYaLpVuPh2hex
+         Omtg==
+X-Gm-Message-State: AFqh2ko34CIHnMSrtjYA/xLCp0VXOpGYPmlqk1xCODqKw5YJ0dn/23Vi
+        4TQDOblzkcwUdOSQAWz7x7VqiC/wi35vEM5W
+X-Google-Smtp-Source: AMrXdXtr/1SnwzKV1Ymz1oTGH63DnBZsafreFHgSL4qxEjoJgRNo39jDHtIL6+V7oqnUunap0UQDAA==
+X-Received: by 2002:a5d:40ce:0:b0:2bd:e8a6:f7cd with SMTP id b14-20020a5d40ce000000b002bde8a6f7cdmr9099417wrq.62.1674127503766;
+        Thu, 19 Jan 2023 03:25:03 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id w10-20020a5d404a000000b00275970a85f4sm33436999wrp.74.2023.01.19.03.25.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 03:31:47 -0800 (PST)
-References: <20230116074214.2326-1-yu.tu@amlogic.com>
- <20230116074214.2326-3-yu.tu@amlogic.com>
-User-agent: mu4e 1.8.10; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Thu, 19 Jan 2023 03:25:03 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
-        "qi . duan" <qi.duan@amlogic.com>
-Subject: Re: [PATCH V6 2/3] clk: meson: S4: add support for Amlogic S4 SoC
- PLL clock driver
-Date:   Thu, 19 Jan 2023 12:20:39 +0100
-In-reply-to: <20230116074214.2326-3-yu.tu@amlogic.com>
-Message-ID: <1jedrqyd3w.fsf@starbuckisacylon.baylibre.com>
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: PCI: qcom: Add SM8550 compatible
+Date:   Thu, 19 Jan 2023 13:24:52 +0200
+Message-Id: <20230119112453.3393911-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the SM8550 platform to the binding.
 
-On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
 
-> Add the S4 PLL clock controller driver in the s4 SoC family.
->
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> ---
+The v2 was here:
+https://lore.kernel.org/all/20230118111704.3553542-1-abel.vesa@linaro.org/
 
-[...]
+Changes since v2:
+ * dropped the pipe from clock-names
+ * removed the pcie instance number from aggre clock-names comment
+ * renamed aggre clock-names to noc_aggr
+ * dropped the _pcie infix from cnoc_pcie_sf_axi
+ * renamed pcie_1_link_down_reset to simply link_down
+ * added enable-gpios back, since pcie1 node will use it
 
-> +
-> +static struct clk_regmap s4_fclk_div2 = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = ANACTRL_FIXPLL_CTRL1,
-> +		.bit_idx = 24,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "fclk_div2",
-> +		.ops = &clk_regmap_gate_ro_ops,
+Changes since v1:
+ * Switched to single compatible for both PCIes (qcom,pcie-sm8550)
+ * dropped enable-gpios property
+ * dropped interconnects related properties, the power-domains
+ * properties
+   and resets related properties the sm8550 specific allOf:if:then
+ * dropped pipe_mux, phy_pipe and ref clocks from the sm8550 specific
+   allOf:if:then clock-names array and decreased the minItems and
+   maxItems for clocks property accordingly
+ * added "minItems: 1" to interconnects, since sm8550 pcie uses just one,
+   same for interconnect-names
 
-On the previous SoC, these fixed divider gate were not read-only.
-They are marked as critical when necessary, with the appropriate
-comment.
 
-Why is it different on the s4 ?
+ .../devicetree/bindings/pci/qcom,pcie.yaml    | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_fclk_div2_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-
-[...]
-
-> +#ifndef __MESON_S4_PLL_H__
-> +#define __MESON_S4_PLL_H__
-> +
-> +/* ANA_CTRL - Registers
-> + * REG_BASE:  REGISTER_BASE_ADDR = 0xfe008000
-
-This multi-line comment style is wrong in clk/
-REG_BASE is not used so I'm not sure this is useful
-
-> + */
-> +#define ANACTRL_FIXPLL_CTRL0                       0x040
-> +#define ANACTRL_FIXPLL_CTRL1                       0x044
-> +#define ANACTRL_FIXPLL_CTRL2                       0x048
-> +#define ANACTRL_FIXPLL_CTRL3                       0x04c
-> +#define ANACTRL_FIXPLL_CTRL4                       0x050
-> +#define ANACTRL_FIXPLL_CTRL5                       0x054
-> +#define ANACTRL_FIXPLL_CTRL6                       0x058
-> +#define ANACTRL_FIXPLL_STS                         0x05c
-> +#define ANACTRL_GP0PLL_CTRL0                       0x080
-> +#define ANACTRL_GP0PLL_CTRL1                       0x084
-> +#define ANACTRL_GP0PLL_CTRL2                       0x088
-> +#define ANACTRL_GP0PLL_CTRL3                       0x08c
-> +#define ANACTRL_GP0PLL_CTRL4                       0x090
-> +#define ANACTRL_GP0PLL_CTRL5                       0x094
-> +#define ANACTRL_GP0PLL_CTRL6                       0x098
-> +#define ANACTRL_GP0PLL_STS                         0x09c
-> +#define ANACTRL_HIFIPLL_CTRL0                      0x100
-> +#define ANACTRL_HIFIPLL_CTRL1                      0x104
-> +#define ANACTRL_HIFIPLL_CTRL2                      0x108
-> +#define ANACTRL_HIFIPLL_CTRL3                      0x10c
-> +#define ANACTRL_HIFIPLL_CTRL4                      0x110
-> +#define ANACTRL_HIFIPLL_CTRL5                      0x114
-> +#define ANACTRL_HIFIPLL_CTRL6                      0x118
-> +#define ANACTRL_HIFIPLL_STS                        0x11c
-> +#define ANACTRL_MPLL_CTRL0                         0x180
-> +#define ANACTRL_MPLL_CTRL1                         0x184
-> +#define ANACTRL_MPLL_CTRL2                         0x188
-> +#define ANACTRL_MPLL_CTRL3                         0x18c
-> +#define ANACTRL_MPLL_CTRL4                         0x190
-> +#define ANACTRL_MPLL_CTRL5                         0x194
-> +#define ANACTRL_MPLL_CTRL6                         0x198
-> +#define ANACTRL_MPLL_CTRL7                         0x19c
-> +#define ANACTRL_MPLL_CTRL8                         0x1a0
-> +#define ANACTRL_MPLL_STS                           0x1a4
-> +#define ANACTRL_HDMIPLL_CTRL0                      0x1c0
-> +#define ANACTRL_HDMIPLL_CTRL1                      0x1c4
-> +#define ANACTRL_HDMIPLL_CTRL2                      0x1c8
-> +#define ANACTRL_HDMIPLL_CTRL3                      0x1cc
-> +#define ANACTRL_HDMIPLL_CTRL4                      0x1d0
-> +#define ANACTRL_HDMIPLL_CTRL5                      0x1d4
-> +#define ANACTRL_HDMIPLL_CTRL6                      0x1d8
-> +#define ANACTRL_HDMIPLL_STS                        0x1dc
-> +#define ANACTRL_HDMIPLL_VLOCK                      0x1e4
-> +
-> +/*
-> + * CLKID index values
-> + *
-> + * These indices are entirely contrived and do not map onto the hardware.
-> + * It has now been decided to expose everything by default in the DT header:
-> + * include/dt-bindings/clock/axg-clkc.h. Only the clocks ids we don't want
-> + * to expose, such as the internal muxes and dividers of composite clocks,
-> + * will remain defined here.
-> + */
-> +#define CLKID_FIXED_PLL_DCO		0
-> +#define CLKID_FCLK_DIV2_DIV		2
-> +#define CLKID_FCLK_DIV3_DIV		4
-> +#define CLKID_FCLK_DIV4_DIV		6
-> +#define CLKID_FCLK_DIV5_DIV		8
-> +#define CLKID_FCLK_DIV7_DIV		10
-> +#define CLKID_FCLK_DIV2P5_DIV		12
-> +#define CLKID_GP0_PLL_DCO		14
-> +#define CLKID_HIFI_PLL_DCO		16
-> +#define CLKID_HDMI_PLL_DCO		18
-> +#define CLKID_HDMI_PLL_OD		19
-> +#define CLKID_MPLL_50M_DIV		21
-> +#define CLKID_MPLL_PREDIV		23
-> +#define CLKID_MPLL0_DIV			24
-> +#define CLKID_MPLL1_DIV			26
-> +#define CLKID_MPLL2_DIV			28
-> +#define CLKID_MPLL3_DIV			30
-> +
-> +#define NR_PLL_CLKS			32
-> +/* include the CLKIDs that have been made part of the DT binding */
-> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
-> +
-> +#endif /* __MESON_S4_PLL_H__ */
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index a5859bb3dc28..93e86dfdd6fe 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -34,6 +34,7 @@ properties:
+       - qcom,pcie-sm8250
+       - qcom,pcie-sm8450-pcie0
+       - qcom,pcie-sm8450-pcie1
++      - qcom,pcie-sm8550
+       - qcom,pcie-ipq6018
+ 
+   reg:
+@@ -65,9 +66,11 @@ properties:
+   dma-coherent: true
+ 
+   interconnects:
++    minItems: 1
+     maxItems: 2
+ 
+   interconnect-names:
++    minItems: 1
+     items:
+       - const: pcie-mem
+       - const: cpu-pcie
+@@ -102,6 +105,10 @@ properties:
+   power-domains:
+     maxItems: 1
+ 
++  enable-gpios:
++    description: GPIO controlled connection to ENABLE# signal
++    maxItems: 1
++
+   perst-gpios:
+     description: GPIO controlled connection to PERST# signal
+     maxItems: 1
+@@ -197,6 +204,7 @@ allOf:
+               - qcom,pcie-sm8250
+               - qcom,pcie-sm8450-pcie0
+               - qcom,pcie-sm8450-pcie1
++              - qcom,pcie-sm8550
+     then:
+       properties:
+         reg:
+@@ -611,6 +619,41 @@ allOf:
+           items:
+             - const: pci # PCIe core reset
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,pcie-sm8550
++    then:
++      properties:
++        clocks:
++          minItems: 7
++          maxItems: 8
++        clock-names:
++          minItems: 7
++          items:
++            - const: aux # Auxiliary clock
++            - const: cfg # Configuration clock
++            - const: bus_master # Master AXI clock
++            - const: bus_slave # Slave AXI clock
++            - const: slave_q2a # Slave Q2A clock
++            - const: ddrss_sf_tbu # PCIe SF TBU clock
++            - const: noc_aggr # Aggre NoC PCIe AXI clock
++            - const: cnoc_sf_axi # Config NoC PCIe1 AXI clock
++        iommus:
++          maxItems: 1
++        iommu-map:
++          maxItems: 2
++        resets:
++          minItems: 1
++          maxItems: 2
++        reset-names:
++          minItems: 1
++          items:
++            - const: pci # PCIe core reset
++            - const: link_down # PCIe link down reset
++
+   - if:
+       properties:
+         compatible:
+@@ -694,6 +737,7 @@ allOf:
+               - qcom,pcie-sm8250
+               - qcom,pcie-sm8450-pcie0
+               - qcom,pcie-sm8450-pcie1
++              - qcom,pcie-sm8550
+     then:
+       oneOf:
+         - properties:
+-- 
+2.34.1
 
