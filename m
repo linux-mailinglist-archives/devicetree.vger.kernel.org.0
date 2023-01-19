@@ -2,108 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E48673CBC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:47:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FA35673CA9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:46:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231382AbjASOrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 09:47:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35872 "EHLO
+        id S231410AbjASOqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 09:46:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231390AbjASOrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:47:12 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF1F87298
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:44:57 -0800 (PST)
+        with ESMTP id S231140AbjASOqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:46:16 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 339FE8758A
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:29 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id bk15so6195658ejb.9
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1674139498; x=1705675498;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=z5BOX24eWOopSXeN2xDF09qwu6cHJYzrrndKi7ZS7C8=;
-  b=VOP0x+ur4bCeON0KZ/escw0MyqwF6O6wLSx11f0A5kxDg1lX3jwAvGBg
-   dug0FMoFzQl//MIb2EazR4rNaCDTZZLf0xOUI/wiNwYgBof5HIdt1+2Ko
-   qV+Xjb1u7xDoN0Z9oFuLVloB8+n/3RHw5bHQeir/oiQY4AQUFpL8wgxAK
-   F+YKQIQywlqJzSw/BeV5S0C1AR77g09d7m2Nk/ozTq9cjWCrQFgr7oC++
-   AfRXIXZSrI3WH+5dXfmDjtb/OcP94GGkC8JwiZxmiCRi+2poCapaEBSl8
-   3E06FT/BwxDc1ArTiayQwCFlojpDz3O+fJdrm55v6WyaHUM5Ko2xX8bkG
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
-   d="scan'208";a="28537321"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 19 Jan 2023 15:42:45 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 19 Jan 2023 15:42:45 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 19 Jan 2023 15:42:45 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1674139365; x=1705675365;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=z5BOX24eWOopSXeN2xDF09qwu6cHJYzrrndKi7ZS7C8=;
-  b=F/GOiNDV1vM6UCF7p6tHvKYh/aAJutlVLtXZhJ5EiN8ZKoJrxbLrwJP3
-   ADIRGe8SaulRupDbCDr76BdIB/kXXXHqGlplVK/ioqM6yPlzU5TYuIqO+
-   zuY5ufLMGxQXqbG20l7vELHeFIiX4xK7YCISChnhi95omBM6P5cle51B9
-   krU13bvF8jQY+hpsV1t3NHgsfeoYPdCdZN2g4QF/4VYU8/oB88Nan4u79
-   N9LGqCvPQwJ6tWdFKmierBI7bdZ2fsSheWzKXiKSjj3HNwcvnfDZP1O8y
-   D58uRsVRMk7M7/QRUZ5XqxDD7RXgLE58M/9MjlCbm6P60H93AsMQY0pgU
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
-   d="scan'208";a="28537319"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 19 Jan 2023 15:42:45 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id E78C6280056;
-        Thu, 19 Jan 2023 15:42:44 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Marek Vasut <marex@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 9/9] [DNI] ARM: multi_v7_defconfig: Enable CONFIG_ARM_LPAE for multi_v7_config
-Date:   Thu, 19 Jan 2023 15:42:36 +0100
-Message-Id: <20230119144236.3541751-10-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
-References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9KHL7S0sw0CegFriPkOF815DSWCPV/UoYSgl9XlgPOY=;
+        b=rI60sDSpn5RzojNYOrqgO+epm0kV/SqZlHJaYJpL6rOLd4quu6COOI4QQUxn5hDufC
+         wvmpYBA/n8ZesJA7fGa7GhyhbgTciGXVbP1c8V13I52l04+WA+1jUasLeBfgqJmcF718
+         s269U+eS5Llwb+cIpfDxvv91RIB09MRX/sWALY/+aquNq4o/rYhBk9codbUErbq0hkE8
+         drfuRyZeIXKOD/SdTJKPsilXpYHSpwhQ262iyh+/hQ7CNfK1PKMLWHbKB5YTnEzsMIbG
+         MBwLpmeCMkQByoLOUtGZ7VAdi0/DHPPRYqSmzRigksJDvM1VNXWrX4xKODVHFpsdmOw/
+         SkPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9KHL7S0sw0CegFriPkOF815DSWCPV/UoYSgl9XlgPOY=;
+        b=UeHdQT8aYYrUOdnFXMSogpilOVSClDRdbz/AmXYxnbIM5NPz9HcxvbB9+a5RfAy9IG
+         dzBl44zRj7Gw4z7Ak1t+rMJlcTFqNrCWTXEv5gN7h7HugHonNcmRTiOrfe1Xm+KkRE/W
+         Yey0F281Bakz3GQW+Urt13LQHY8dTxemJ6VTL+hp2quigX9oI1ZaXHHfRhXZCAn5d7dL
+         3opFWzjAQTgI7Uvbp2N2aCMTUFD6aiQMzl1kfLKimFNgxzxILoOebnqxBUgjgsxCEh/T
+         t1lLHOpb/zcYxvRXdI4FpKBofOhVkEqx7wbHiHE0lEb46mOYCmUOsd0IMsTEIUg7PT8x
+         d12w==
+X-Gm-Message-State: AFqh2kokF+kItCbFg6A0Hphtjbdu59dsJnvc8T/zCY8KBhpfX7QGpEBp
+        JpSoJvAUJ6rYjXpReabnvSuuBQ==
+X-Google-Smtp-Source: AMrXdXvKKXPY95QPENbEySgQE55aRaDebl+PjzRWVQqS4XzsL/YEJ8XskLiETVUXqdvkKsyyCLtJWQ==
+X-Received: by 2002:a17:907:b610:b0:7c0:d23c:ead3 with SMTP id vl16-20020a170907b61000b007c0d23cead3mr12951464ejc.27.1674139407713;
+        Thu, 19 Jan 2023 06:43:27 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id fn4-20020a1709069d0400b0084d4b907ff8sm13434169ejc.120.2023.01.19.06.43.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 06:43:27 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        linux-scsi@vger.kernel.org
+Subject: [PATCH 0/2] arm64/msm8996: enable UFS interconnect
+Date:   Thu, 19 Jan 2023 16:43:24 +0200
+Message-Id: <20230119144326.2492847-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is necessary to support PCIe on LS1021A.
+MSM8996 requires a vote on UFS interconnects to work in a stable manner.
+The first patch is a rework of older patch from Brian, see [1]
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm/configs/multi_v7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+[1] https://lore.kernel.org/all/20221117104957.254648-2-bmasney@redhat.com/
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 441a449172368..f0757f05ec2c2 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -105,6 +105,7 @@ CONFIG_ARCH_VEXPRESS=y
- CONFIG_ARCH_VEXPRESS_TC2_PM=y
- CONFIG_ARCH_WM8850=y
- CONFIG_ARCH_ZYNQ=y
-+CONFIG_ARM_LPAE=y
- CONFIG_SMP=y
- CONFIG_NR_CPUS=16
- CONFIG_ARM_APPENDED_DTB=y
+Brian Masney (1):
+  scsi: ufs: ufs-qcom: add basic interconnect support
+
+Dmitry Baryshkov (1):
+  arm64: dts: qcom: msm8996: enable UFS interconnects
+
+ arch/arm64/boot/dts/qcom/msm8996.dtsi |  4 ++++
+ drivers/ufs/host/ufs-qcom.c           | 26 ++++++++++++++++++++++++++
+ 2 files changed, 30 insertions(+)
+
 -- 
-2.34.1
+2.39.0
 
