@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 192AE673B75
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB0A673B76
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:15:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231621AbjASOOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 09:14:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38672 "EHLO
+        id S229787AbjASOPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 09:15:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231355AbjASOOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:14:22 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB6B7ED57
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:13:41 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id s3so3019276edd.4
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:13:41 -0800 (PST)
+        with ESMTP id S231548AbjASOOo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:14:44 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8117E45885
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:14:03 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id z11so3056833ede.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:14:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2b72xzyYEwe+BDz0AdbUJhplbp7LG8mUHd24+FfdEnY=;
-        b=hOcKUt8aJ03XfHinJXi9uOUSqHeneVvv6N9jD5QdyQNMSvFnZTMY+WhUULL5ql7AJG
-         PlowfebVGvu9GvU4XbjGsohpSEXlw7aLbQL7fkIQ9aEKkaKQYseN0ZEMHL2KPrnB4YFx
-         eDmAWmQ5fzwGKhMCp4Uxf57t2uum9sirXyERxZCx4lgcAEmrX0uWAvKZHPY3RRzwRYaK
-         WifVWT858oxF1qSCYYSWsykK4Tm8UtbBKRu7dO+DEn75h8UUSAQ6jAAcHRW+aMmXkMgu
-         kZBLtraClUixCEpDwIc91QcG3sJpZyVC5TzZewgiOBZYcOpujAn0CumNPKuW+YHExZVt
-         YAyg==
+        bh=O8+Q1PlYOd/3jq/Ct66oKi7A5pNhIhS9/AykSy5kXAo=;
+        b=cB39M1hNvo5ETlJXRXWGaNCJIx3Iofuu2LyIZwg0CD3ZHcSVVsGqR2zF1BKmD2vEP2
+         rKQ0ZFPgJrTt//1TKkGQx8oRMV3TtQneH0JL48pQDLFNz9CP4vlPbz7CwmJ62MqVc2+t
+         T3ehUMdTu4dpJAXp1QbQZwD33jABnHNjakeKD4JVQ3UAzLEeRVnA8Be2RIXx0n9lnI0r
+         lx040/emL1wXiQ4pu7oV3NeFUwmB5PrZMGwjY9BdaQRQFMB+4fGcakNwKvwFRqbPpzSt
+         B6Do334WzdrBFPfbzRDaP19SwF0kzHH3+bDcpGYvCnhZT2XZ6D+7af9qqiXjFE4PjQPX
+         Caiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2b72xzyYEwe+BDz0AdbUJhplbp7LG8mUHd24+FfdEnY=;
-        b=eC3ORYVm9GobJROhDZHLI0UOSsM9MvFe3qEHcaqfyTnReFIZMSJNDA2MXj+nH7tQye
-         UT7wtKphNgu3rq8NzqGc1Z785+kYb53XxKkzqsGcSytxxjAtOCOwF/xyVvUQH1+IZu7S
-         kBYF5RZ04Kb5h2vGjyT5sVi6SRwNHddmCky9n+1j6JpqiFiypM/5Kthu+eToGlTe1ffU
-         63i6mN0nG5fPifSlXFLC0bkdqYuPqq3BVNRdWB1jEgeKc+7ZeNgf/s8eujCQR3AWFsT2
-         o2LKAPFCaDekgP8B50pqlek58gMEw8rkYWObJrwkAE1EGki2WxdSXE7MzNcXYkRA7VfG
-         V38w==
-X-Gm-Message-State: AFqh2krLGq0zCtKpRWH11ZgJF/HXhnACLgZ9k5FhxyqluyXjyvHrqvEt
-        evI6Fi2lSFXWGu3/3OHhEp3NkQ==
-X-Google-Smtp-Source: AMrXdXuImw9mytoihWW77/1Cfkomh9Xw/jeOOR7Osdu4QWrGgo8E7yBIcJ6Axn3RyxTSuUO6uihIiA==
-X-Received: by 2002:a05:6402:2405:b0:49d:1a59:176b with SMTP id t5-20020a056402240500b0049d1a59176bmr13326366eda.30.1674137620192;
-        Thu, 19 Jan 2023 06:13:40 -0800 (PST)
+        bh=O8+Q1PlYOd/3jq/Ct66oKi7A5pNhIhS9/AykSy5kXAo=;
+        b=GnA8jIeAU9rhJH4gg/Z83/XdqzhRsjP8fqGmzhgv/FNQ/YtpPSw7d4uTdC2/6d7IL2
+         BQ1OC+wHm/LRhlZZZ9a/9FV0pRMLdXzZ2gRMFH0PniWrNPeZSXW1bRUoWdk0wdKynvgs
+         ICUy0zHZyzX+EJVcBLIreglHQZQxWGdcxhfCZbdJ1XAAdI0MVi6V65DBBqT43IgjSsy5
+         M56jbCtR36qXVtm4arE3OVRf6Bo7kIeTb124xcqi5j94alyRjqvGJSi7+BdI1kAxcoFS
+         Zxv2dARUSWTxHMg0UQjGCv/1VVZ6J4jVtQ5nYBOBStCQi2Pt8LY4lc8YrgbemUGQiwWe
+         GkeA==
+X-Gm-Message-State: AFqh2kpVHmz4FI342EKV09dfY5ClYIqEcQEp31rbEq7aeiPmT+o7dNdp
+        RrkCxSdt6S/vXBTtsAeJ+1f2Dw==
+X-Google-Smtp-Source: AMrXdXtYX2hBeXugcheLGbFyUKf9r52lBDT7hi4K/THGQ+IaRAVeFFu3R3oSzp3E+ZrHQucbORi4MA==
+X-Received: by 2002:aa7:dbd0:0:b0:49e:351b:5ab3 with SMTP id v16-20020aa7dbd0000000b0049e351b5ab3mr8255049edt.6.1674137642114;
+        Thu, 19 Jan 2023 06:14:02 -0800 (PST)
 Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
-        by smtp.gmail.com with ESMTPSA id dk1-20020a0564021d8100b0049be07c9ff5sm8549381edb.4.2023.01.19.06.13.38
+        by smtp.gmail.com with ESMTPSA id 17-20020a170906059100b007c16f120aacsm16229309ejn.121.2023.01.19.06.13.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 06:13:39 -0800 (PST)
-Message-ID: <65dde4c5-6189-d3a2-83a1-7a0cae9b70d0@linaro.org>
-Date:   Thu, 19 Jan 2023 15:13:36 +0100
+        Thu, 19 Jan 2023 06:14:01 -0800 (PST)
+Message-ID: <8b71ca84-197d-127f-0caa-e0ec7b1ae15c@linaro.org>
+Date:   Thu, 19 Jan 2023 15:13:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7280-herobrine-audio-wcd9385:
- drop incorrect properties
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280-idp: drop incorrect
+ properties
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -66,8 +66,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-kernel@vger.kernel.org
 Cc:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 References: <20230119122205.73372-1-krzysztof.kozlowski@linaro.org>
+ <20230119122205.73372-2-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230119122205.73372-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230119122205.73372-2-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,7 +87,7 @@ On 19.01.2023 13:22, Krzysztof Kozlowski wrote:
 > properties, so drop '#sound-dai-cells', 'qcom,msm-mbhc-gnd-swh' and
 > 'qcom,msm-mbhc-hphl-swh':
 > 
->   sc7280-herobrine-crd.dtb: sound: '#sound-dai-cells', 'qcom,msm-mbhc-gnd-swh', 'qcom,msm-mbhc-hphl-swh' do not match any of the regexes: '^dai-link@[0-9a-f]$', 'pinctrl-[0-9]+'
+>   sc7280-idp.dtb: sound: '#sound-dai-cells', 'qcom,msm-mbhc-gnd-swh', 'qcom,msm-mbhc-hphl-swh' do not match any of the regexes: '^dai-link@[0-9a-f]$', 'pinctrl-[0-9]+'
 > 
 > Reported-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
@@ -94,14 +95,14 @@ On 19.01.2023 13:22, Krzysztof Kozlowski wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi | 4 ----
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 4 ----
 >  1 file changed, 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi
-> index ae2552094cda..020ef666e35f 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi
-> @@ -32,12 +32,8 @@ sound: sound {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 43e61a1aa779..8b5293e7fd2a 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -113,12 +113,8 @@ sound: sound {
 >  			"TX SWR_DMIC6", "DMIC7_OUTPUT",
 >  			"TX SWR_DMIC7", "DMIC8_OUTPUT";
 >  
