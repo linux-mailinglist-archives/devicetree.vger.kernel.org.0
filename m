@@ -2,144 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 314AB673D1B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:09:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80180673D1E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:09:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbjASPJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 10:09:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50066 "EHLO
+        id S229696AbjASPJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 10:09:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230122AbjASPJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:09:12 -0500
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2082.outbound.protection.outlook.com [40.92.22.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBEF764DBF
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:09:10 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J4C+atf6qm52WiLXRJPwPrIrfjmsVt+hTyOIHK/dZ5t7v3Za0NsVJfalXooolzy6kM42jRlkvux0Un3GP/TCfnIEO7fLGBTVg6AGsyMlZqUwnG7prFun/lA2sNR6Ky6hAKVta1nctXvbkB4eUKEXSZ8RvRY2pb8mhOtYPrvRHbBdVEIU22w6StWW539/SECbpKb98YQEtpvOer00lXWOVY/2v7eFjxL9kIxPUuFKhgBS5ghOQ7Vn/A/MgWn8I5HJV1KnWwCnzpEiGHr8zxbeyeayvuWS6Jn58buw9AmFgHOfAq2xxbfWWkVCAuYKwR7KrguuJ83yyFH3rGoFIjll+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/5zU96Nfw/1LfWDeN6rJMurXno7exiwm3mBlMPvRfec=;
- b=XFxV3x95m0TiIymi8tI41aUbqjffckCKJnoVuAducAs5d+yiH3GrhP+YQwyz26bu15GBZEGyE3SaHOnrNBY9h7SQou3Pv7KLWrVDZW6z22A2n7t4L6slEVX7JWngpPBO0T1AryTXUK07347oyVYiFmDmJ6VHV16iZsnTDnPgHT7mOfvGXcvbQ5tO8FOPNQxzIRdST1cY4Q04IUE18CRcHw5jQyAmJdrlDV5Ea5T9XN/GZ+vUi/zsLVViwlaQcbZSzOzIU8Una/gQSMWIge2jhZR/l4S5QkTmGmSBRTtdebIhSuLkGcqnxDD1mq8nZL2VctFT97wBO9ezXIQGn+FpVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/5zU96Nfw/1LfWDeN6rJMurXno7exiwm3mBlMPvRfec=;
- b=jbvAN4vY05MzWU9bAzOJ57Fi0J0tXlCDNX/yMmiMC3WO9GCTaz2ixqf6yMZSgkQL2fFCAy2+6d3XqBn1OHZsC+PZlH4LpAbIJkuHMKA2yWnG30aT8uhSgJqC2dc5KUY+DXG5f7n9Eg9gfiQ6na6PLsp8uN6FZ+xXGa4uboIhaH/4nJHzyA053/lUv/LTgNXqoiA9waDmvcBtTifgOH6P3jtbjpzDIvRJJsnUoZyxILysDilK9muNVvsVhPPc3eQxsFKs3abqY4/1GMe/KzrG6+I6V9GbcOoRbzpt/0RvhmwsrJ9WlvhYlp96RxNYXqQHzOG/NGyxcWdQ4rtNB2jJmg==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by SJ0PR06MB7083.namprd06.prod.outlook.com (2603:10b6:a03:2e0::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.26; Thu, 19 Jan
- 2023 15:09:08 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::ff4f:2e64:cf70:cc68]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::ff4f:2e64:cf70:cc68%5]) with mapi id 15.20.5986.018; Thu, 19 Jan 2023
- 15:09:08 +0000
-Date:   Thu, 19 Jan 2023 09:09:03 -0600
-From:   Chris Morgan <macromorgan@hotmail.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        tzimmermann@suse.de, maarten.lankhorst@linux.intel.com,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, daniel@ffwll.ch, airlied@gmail.com,
-        sam@ravnborg.org, thierry.reding@gmail.com,
-        linus.walleij@linaro.org, Maya Matuszczyk <maccraft123mc@gmail.com>
-Subject: Re: [PATCH V11 1/4] drm: of: Add drm_of_get_dsi_bus helper function
-Message-ID: <SN6PR06MB5342B2ABF5C08A2A62CF8715A5C49@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20230118233135.1174859-1-macroalpha82@gmail.com>
- <20230118233135.1174859-2-macroalpha82@gmail.com>
- <20230119081542.lfgvaj6lwwdb2eaa@houat>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230119081542.lfgvaj6lwwdb2eaa@houat>
-X-TMN:  [lcnx6urk4fvGOQ1Lc0ulVO7l3+aFfhFs]
-X-ClientProxiedBy: DM6PR07CA0058.namprd07.prod.outlook.com
- (2603:10b6:5:74::35) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <Y8ldDwb13TG98X7o@wintermute.localhost.fail>
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SJ0PR06MB7083:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7461db61-9c75-4c32-fe3f-08dafa2f1c79
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: n1jMsbDLiHxoZBZkzDdG+4Ixi8aSG//4F4y+F8KDKO5aaHcQOMRs83LqAzrUqtuO8GZe5f8wM3PiSUTcO7cXIdsHqxRrBODGYdcJjrBwUNWY6KV4aYsScbtlgoUkEPandjeVO00OOk8EmX3FempD8w6zDyHP7Awj2jgFaQDddNz5mnX1Y6kq0SVbyE5OGKoUX50EgHaGbeutJzWvNIBX7DoXsyIFXC9IKA2CB4gn2COlQ2R5kf+SVogfZ+n1Va2On+FfZ4fdQ2BsK+RJkftJ0eqF/QieKZt42qbTK6Jrlm8LNnFy33o7NLlHpzI2sACC8LoFsgcup1jps9gy4dJd/dnERpHpX2iHsD21P5So1GrB4YGkNRX871etzkR8Bu5RR9XCbKdx4KZZHIAJGV0fk0wCYApLou7gxJ3HJlQGi+D/MXceCHTHzep2t56/IhDd2/ZCjdSVh2Ll+2nDZo03rMJ1NyOkbJ4d4tDJw9hq+Y7Snf1MgvV8VYI6dP/6Vqoi9U8LrxWovNVqvvdrFLSbezUVpCl8loVij20cFQ4af4jBW15odQNmC44SQBPECHM/IEjn0iJqpWKDzuhDP53SkowCVYRI5Ai7Wjo+EiABAj4b4E0GT9FI7gWeVflNtWRFVGRCw8d/L+bmhqwLdjoooA==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+4oWPLIeOhAscu1k3fMExSmB1m2fe+3dSo4aqYwSgX4s/iVKKAa5a2AEDF45?=
- =?us-ascii?Q?JObpPk0yhd6CNdscqx2w9kosNqi38RfVEIlTO+E5S7ORxrJeqaZbI1DMOS48?=
- =?us-ascii?Q?O/pilwirZAZ1IUXCcttBvf0PlPLxVfKaK8IBG8BZYFtUYwLV3ebehPsjwaVS?=
- =?us-ascii?Q?AQa0Xii3TDA6/9xDUMWp99ALe9CcvIWYEmtJ16UKyQQ2U4H3ubFf1bHN1Kvl?=
- =?us-ascii?Q?8gRCVKUyFXL+JeQyt+7KM1ucVZheWSMW1eY7GMz4cDbMvW1DgEjy8mhSmbl0?=
- =?us-ascii?Q?5dLgSHWKGBtnABAygjiPscBwlDWlUxJasO0NTbo+9Sg//rdNIPzkEgDBJJT3?=
- =?us-ascii?Q?usQ7q/TBWoVp7ZtZcBAye1O74vYIIv5J8AHzfn7a5D63AyO+knjM5yylTs7p?=
- =?us-ascii?Q?Wg+TtX+PIekcuLHQbI7bFJx97sxqbtW66KbH27Epg1oq4h8xeiyvIztsnGAy?=
- =?us-ascii?Q?sRmbg2HM+6FDjL9yAf0/01jn0MWNcPPOhSu+b/OPVgHQMI3P580mnl3khd43?=
- =?us-ascii?Q?DEOs2sBLwMjzGb4+KBC8lIwQ4mqChbrKP42JxPKQyxmgcvgPCDQN7RR+N+Ns?=
- =?us-ascii?Q?kgZKXt1CD+0F0vEFyidyDUgYH0oKV8HyaBfaJV4SRDqBe9NmSChghRa99nnL?=
- =?us-ascii?Q?lmdt0hRFZ86uvEf5oI8yoN8l23LqOEvUFfDe1MOQAsC+Q+HwwmocVSUOV8h9?=
- =?us-ascii?Q?IEv/3/wBGvndQ5wc+D5MCOXyR/TX83Y8QnExYTQHxCShHHZaLHMEWDyzlHtR?=
- =?us-ascii?Q?EgqF8kIZDQA3CEVVb+D5jrcJT+hdmeMlJlWyRNeR4h23eoGcHMuxHF3rYGb5?=
- =?us-ascii?Q?JknrKO7vHbMB4xIif4pEgHcf12i8VS8bdJqQ2tCi78Y1xFWbEb2RQE7WTzO7?=
- =?us-ascii?Q?Bm8axZIcnKq+SJ7YTZS0USRv2h1hEa66ICCWaA5cER1jBZhTaMaNJ+qqcYCX?=
- =?us-ascii?Q?qdYc7F59hIyRo1KriyDW0eL+M2QbmZ94YLGQWyMvTEVwIa0CUIOalCTO1rVK?=
- =?us-ascii?Q?G+eUqsk45H1Dh2KaKT7y26K0o1w8UfOrPhM510uQPTC7Xl/YfxxTcVrAJR35?=
- =?us-ascii?Q?vU0gUa+qUZ8M7nyHPPYatlytLc76xUkvVc9M/lEnGoNg1ZNdJQA0eT672xzd?=
- =?us-ascii?Q?4geKZ+fXYH+MKGmgzbFKwVjwgtnp9MwHYDgPf8e7VM6fWnjYa/WMV5i6jz4R?=
- =?us-ascii?Q?rHDRGKmqf72PSQeVmEQUE4pH8qrBvTD/UH1O5DwupuFwOWglmiAFnt3tq8WQ?=
- =?us-ascii?Q?Kquxw5qDA4Y55mCZ9YfdxD9NrqLLhCNV2IvNNwJXSw=3D=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7461db61-9c75-4c32-fe3f-08dafa2f1c79
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 15:09:08.8103
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR06MB7083
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229483AbjASPJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:09:32 -0500
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EAFB64DBF
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:09:31 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 617415C009E;
+        Thu, 19 Jan 2023 10:09:28 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 19 Jan 2023 10:09:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1674140968; x=1674227368; bh=93MK1e9ilZ
+        3paFDFGrXMn6AVbSKSvQpQ50BYcz3A68s=; b=HiTx94/J6ekTZROPZlwRoFCM0O
+        6rmOcL1zuj+XWZAnkM/gV2bNAdK/9Z6d/tGVpuYZ9W8RIqMIdpUIXvQn0A+O89/b
+        /A8Na35e9kqYQPV0ckOIDlGS+7vHFbdj1BRfBbEnXz7NQPKCVewov6Z755wAfiP6
+        ZKHvwuQnKNJf+e4/nIdc3ke0qJUKTtJ6SbkzX319L5yChf2sRrzOp5W77Bg6QgpV
+        B16Ng6D0KNlbsW3niaLjwfIl3FphacGUCbjFGV46GqT/kHQYiUvmw+lcyYvHUNn3
+        gXqMY2AUIkl1Rm08scXOwdEMZOM7UqnVz2CSQW3gb9lew2fKJSCpJF4Y/qfg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1674140968; x=1674227368; bh=93MK1e9ilZ3paFDFGrXMn6AVbSKS
+        vQpQ50BYcz3A68s=; b=KmCQAc1G8LO5Dbj834YAx7mTgg6KVRw6EgJJcfRkeZ0T
+        m4EeKlAPxRqQiml01IRMZOWb5BdtKUzGq18cvrdnoBvr/+LYZMsmS478MSfuBfIm
+        jmoOpKCXuQLONnNmS8lUpRtUoGWL7SIGW4NrYAbSG/LUqVdwqHh2UhsH/VpkGcMM
+        mQyZyNVUgPIBiwm8QaG2J5Okbv3ku2kS+QI3CAqVQoITOomScoEVUloSDNgeKOYj
+        9i17A9BfLirIPt8ppLIWIJW8gTOFGEDevLZq9f0sqtGOiEetrBGotX4FZJjjIzMt
+        5M4fnFwUAoqiXAauhs79ac1S298Ivw72qNFxbHlraA==
+X-ME-Sender: <xms:J13JYyI1X5vpJwSghC0-Ri1b1CGN811o1k506xs5yl_TAIViPka6iQ>
+    <xme:J13JY6JHlHAjlToIqxzmSypz1pphqXpzO_vVyk1NeQjXUvqS39xph4zw_dRUgcllR
+    U78ssJoczQUrH6L_5c>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddutddgjeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:J13JYytkNqQnjHWpPHA-KepXyTz4tv-Evc4uIG75UWhdvn2LYQ2SjA>
+    <xmx:J13JY3a0rq9BzPnVwbIhmCCLSmJJuJ6owhigvjiIMDQPkREmyzQXmw>
+    <xmx:J13JY5aekLBUsBUZceqXVy6pei8XlzWW9Bd4P_bkRypWh1QNyAt8rQ>
+    <xmx:KF3JY7neURukhGOShGrfcMpvW2_A8jueEmYexJH8FoVO-yeeGGHI9g>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id D9737B60086; Thu, 19 Jan 2023 10:09:27 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
+Mime-Version: 1.0
+Message-Id: <f1de9cd9-a163-4b56-adf8-319eaf85e38e@app.fastmail.com>
+In-Reply-To: <20230119144236.3541751-10-alexander.stein@ew.tq-group.com>
+References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
+ <20230119144236.3541751-10-alexander.stein@ew.tq-group.com>
+Date:   Thu, 19 Jan 2023 16:09:05 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Alexander Stein" <alexander.stein@ew.tq-group.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Olof Johansson" <olof@lixom.net>,
+        "Shawn Guo" <shawnguo@kernel.org>, "Li Yang" <leoyang.li@nxp.com>,
+        "Russell King" <linux@armlinux.org.uk>,
+        "Marek Vasut" <marex@denx.de>,
+        "Marcel Ziswiler" <marcel.ziswiler@toradex.com>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 9/9] [DNI] ARM: multi_v7_defconfig: Enable CONFIG_ARM_LPAE for
+ multi_v7_config
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 09:15:42AM +0100, Maxime Ripard wrote:
-> Hi,
-> 
-> On Wed, Jan 18, 2023 at 05:31:32PM -0600, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Add helper function to find DSI host for devices where DSI panel is not
-> > a minor of a DSI bus (such as the Samsung AMS495QA01 panel or the
-> > official Raspberry Pi touchscreen display).
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> 
-> Sorry for not noticing this earlier, but this is a bit confusing.
-> Signed-off-by is there usually to follow either the authors or the
-> maintainers (or people that passed the patch along).
-> 
-> Given the order, the SoB here indicates that it's Maya Matuszczyk that
-> committed/submitted that patch, while you are the author. Obviously,
-> that isn't the case since you are both the author and submitter.
+On Thu, Jan 19, 2023, at 15:42, Alexander Stein wrote:
+> This is necessary to support PCIe on LS1021A.
+>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-I borrowed a few lines of code from her, which is why she is listed
-here. If this is not correct let me know.
+Can you explain why this is actually required? I can see that the
+ranges in the PCIe device point to a high address (0x4000000000,
+2^40), but I can't tell if this is hardwired in the SoC or a
+setting that is applied by software (either the bootloader or
+the PCIe driver).
 
-Thank you.
+If you can reprogram the memory map, I would expect this to fit
+easily into the 32-bit address space, with 1GB for DDR3 memory
+and 1GB for PCIe BARs.
 
-> 
-> So what's going on?
-> 
-> Maxime
+I don't mind having a defconfig with LPAE enabled, I think this
+can be done using a Makefile target that applies a config
+fragment on top of the normal multi_v7_defconfig, you can find
+some examples in arch/powerpc/configs/*.config.
 
-
+   Arnd
