@@ -2,153 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CD9D673698
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:18:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12306673689
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:18:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbjASLSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 06:18:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58940 "EHLO
+        id S229752AbjASLSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 06:18:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbjASLSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:18:30 -0500
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2075.outbound.protection.outlook.com [40.107.93.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD9D6778B;
-        Thu, 19 Jan 2023 03:18:19 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fyp0Dq7cqIB1bermjUn+TYmCiImsCPswvMaxCFK4xk2IKPV4IUp5MYkGosdOx/39ZLtJ08atGGgSVra7oSyYi9H1gOMuU/F1gUX64B1dQWmzpzoTRCDIAwJ4PaquXzMwjjYjC8Jxr+ffG/npC0oNNGxtHSow4PYdvNY8OPqW2GQzzR5zf3PSkn2MlZLJ7wAtWtf5xvjBqP3vtlKTjuzKVu+Y0ZUv6ROD6UCKGRVQxVUZ2Tr5IYAi5Mus3USEvdTw6lDGpvLGHNzzysTik2VW5nsb0u7YgoQBJ2nXPDiQkxtIDhBtiBmWSd1qL7BsxlymEE1PLfaJsBK6cT2O3DSVKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vD8Gel07kVVU3zP+dzdUznrU3NZtgLXGgQUcm7TCDXk=;
- b=Uh1duxrHtRjk0oPx66zC+HmJkau3ppVnx2THNz7f3RE7OH8kDvAdZCbKPoIgnDvVg+gsfQNPEPymqgX5bFT7nvxSvKfHpZWCIIW3ChOYN03/8gHhmnLXCGt++BSN3jPlGN5dx/x+5OepmJPKvK6d5ciTiWqa9CNMkJL+CzAwCkosmM5Qe1/tAS+HgTdVqloHsT4GJeOp48UuZXEBzCwmhPG0K8yxwksI4tdkGsMzqoUHnv+bYtEQoI59Y9D4zMPEUjcWerQ5Jsk/QiXc5u/KmmKRFx/yq1G24GkT4pyPcoP5dewtyr5A4ytnCNLzSN37kB6uyxJq8yVfb/zSoXz5ZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vD8Gel07kVVU3zP+dzdUznrU3NZtgLXGgQUcm7TCDXk=;
- b=qGMBx2Uh1Ng18jdzv7C7P9BpjrAbxmklSTjCVvpxf296VdFzeu95fZwDNCGQzIrY6k/JzN3Yn+Q6IqPImghXEMhg4YKSF8PF/1z1oa94YMxtplRPbdDoOpy1sJ6JVEq1cGCwtuHjvp8Dg1wAW0emF0MrJXzzuJLFRo7ByJ3oOX8GuqSRNcFtU0ZGJHns+VsP3tHEUxTf6thT7D/RoRevWi1+K+uwshDTw6nV9l52D0KyarJQ4ufJ//0q8p90czd6+0d7HNwCHUuIowlyAsaM5dVBbiou00DFdXazH0QyBEodWq+A2f8kmc0J4tPieAtIBwsW4R1gFMwJdijQg0MIsg==
-Received: from DM6PR12CA0012.namprd12.prod.outlook.com (2603:10b6:5:1c0::25)
- by DM4PR12MB8560.namprd12.prod.outlook.com (2603:10b6:8:189::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Thu, 19 Jan
- 2023 11:18:17 +0000
-Received: from DS1PEPF0000E637.namprd02.prod.outlook.com
- (2603:10b6:5:1c0:cafe::a4) by DM6PR12CA0012.outlook.office365.com
- (2603:10b6:5:1c0::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.25 via Frontend
- Transport; Thu, 19 Jan 2023 11:18:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- DS1PEPF0000E637.mail.protection.outlook.com (10.167.17.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.11 via Frontend Transport; Thu, 19 Jan 2023 11:18:17 +0000
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 19 Jan
- 2023 03:18:08 -0800
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail202.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 19 Jan
- 2023 03:18:07 -0800
-Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server id 15.2.986.36 via Frontend
- Transport; Thu, 19 Jan 2023 03:18:05 -0800
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, Wayne Chang <waynec@nvidia.com>,
-        Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH V5 6/6] arm64: tegra: Populate USB Type-C Controller for Jetson AGX Orin
-Date:   Thu, 19 Jan 2023 11:17:41 +0000
-Message-ID: <20230119111741.33901-7-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230119111741.33901-1-jonathanh@nvidia.com>
-References: <20230119111741.33901-1-jonathanh@nvidia.com>
+        with ESMTP id S229916AbjASLSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:18:12 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17C446F894
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:18:11 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id m15so1225057wms.4
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:18:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6Y/7gmhFhCAZgaW8XwXPZJxeQ167TuH5cJsnd9QCY0A=;
+        b=Vtdvrj5mqGL5Qwyz7fZlW2SRUuyTH60A/JM+xN3FUpPJTBLokcSytP/QQ7Ng9YByVa
+         OZseG7rOaETa3ijIc3tqjWwUBC/vHfSDvfyPTaiOoS2bg4iqfVKXERhiOYodXUyFFUmP
+         w8L0aa44TrdKpioA8iBUkjIgat/VZU7sPWwRh7+NyuFPm9syfBtAfzqFVMURZV+0gYNu
+         TYU5zi64UEb0bzXBCczqAloHvFzJROdg9CknZOMhyYm+RTBWCVyyOvqtFCOWJUMZv6KB
+         BtszcMzNvSiNbe9Ubv8m+e7Jpv65KP9a28w7VlmFWUk00wEwzA9ASL81QEvXS6JLq9Wn
+         wBpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Y/7gmhFhCAZgaW8XwXPZJxeQ167TuH5cJsnd9QCY0A=;
+        b=Kmh1gnWbrnt4i2LQDL6Se/zBfFMlf4DFROTRrUjqc8SJ1kOfKX3ZANecnNJVMM4sdQ
+         r1rR4RvMcTR9kybJfcunX6S/gb25at3va+7YL6ppzaXMRUgrmfej10stbtV8mOQqF2mE
+         01UnxuRnvGfyn5CFPzIru835uKdM58hKSbjG0CRH3cXrZzSJStQiT8OSpFeM6HHi3xFh
+         ORrKzxJStxPDUFcVptjXaOeav1fwqZApyVnx9iSStCO7HoEUTDG0GHGB9BNz/lk7+p1T
+         TyE++8/8hmBVWC3p9ASqfV1MsGpRL36TSfk479c9csG1ol0fhoWVHLvlLU5KjGIkTI6p
+         YLRw==
+X-Gm-Message-State: AFqh2kqjuLRjK8b2/6RXcyLDw65xbGMVAI2IKQ0W7S8rLC12OQ4mOIyT
+        9TLI84icelrb4bFDze2wpGfGXQ==
+X-Google-Smtp-Source: AMrXdXsNLRE6TCmBw96DPdVTL/oG7el495vqcCnFNIL+CV051Rw93O1+XVUmqZkQ3fe6P4fxNDSUBg==
+X-Received: by 2002:a05:600c:348f:b0:3db:742:cfe9 with SMTP id a15-20020a05600c348f00b003db0742cfe9mr9501898wmq.34.1674127089348;
+        Thu, 19 Jan 2023 03:18:09 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l4-20020a05600012c400b002bbb2d43f65sm30424666wrx.14.2023.01.19.03.18.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jan 2023 03:18:08 -0800 (PST)
+Message-ID: <d5ae4755-26df-f4e7-b69a-83d9431bfbee@linaro.org>
+Date:   Thu, 19 Jan 2023 12:18:07 +0100
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0000E637:EE_|DM4PR12MB8560:EE_
-X-MS-Office365-Filtering-Correlation-Id: f6c5259c-e0fb-4fb4-042f-08dafa0edd4d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VdQnLziabeIKGVvp5aNiYu/OkeV8N+xeRXo2qMCrsQs1RoTG0uOYGgM+/XEDtyueaOLTsMAfRZWJSXbMCp6GvJmN1BLZaeSxwhDGntQG5LoVJW+rvAqDANPaM0utzY1AMNWITqSb2xCEtJ3xWC3VpZnunxSp7vVSz2K/hEvQVpGMO4QD4nKla7WujYQfG1YjpHQ/QWx582Z45GmxKgTF4jez+ILhEshon5C6H9TwoS/wv8M/R5qliHwFn+0Fq5xAyU0Caw7C4Yw6w6UIk4b7Sasj6o/x+jIptt2xp0ph0Uzf7jOv8FvntwGmHRQqP6eLZc3Icktsut1lU4zXWqCQ5z6DeqxqzJttxqCxwZd5AKm9bv2ittIvwkotELsMVmdnnjmOFhHv4fzgGgq/vBFa6EWtn+X6DjtidazZqELO4/U2ZFQ1tUkKgap0PVP1qu6XPP66DvTXDSj4WhTR33jvqHIhuhHZrBtQp4Hb10HB9zYrksXAck3Y+ceGC4hitqD+kocTEei0GRRH8NPtyvJASTd8NE0FWnHxxLCA+enn5U1pYnEVI/WSG7LkeucDD1Mn4+ROTqjPEKbje2YeofDDEQkJ4Q4j6asIFQT0AJeT7f1GanlO/zQDknIxA0/VgrQGKOLBugAsYNX/tnQQjbrOuS7eGrNscHcTAUwdc1sf9Nvu1sy8SqLHueOO6lMg1sB3Ms5obaryoZdmZ/4TDZQ3TQ==
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(376002)(136003)(39860400002)(396003)(346002)(451199015)(40470700004)(36840700001)(46966006)(36756003)(356005)(86362001)(82740400003)(2906002)(70206006)(8936002)(5660300002)(70586007)(7636003)(36860700001)(426003)(316002)(107886003)(54906003)(110136005)(6666004)(47076005)(7696005)(478600001)(82310400005)(8676002)(40480700001)(4326008)(41300700001)(186003)(1076003)(26005)(40460700003)(336012)(2616005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 11:18:17.4082
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f6c5259c-e0fb-4fb4-042f-08dafa0edd4d
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E637.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8560
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v1 4/4] ASoC: dt-bindings: simple-card: create jack for
+ aux_devs
+Content-Language: en-US
+To:     Astrid Rost <astrid.rost@axis.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     kernel@axis.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230118125226.333214-1-astrid.rost@axis.com>
+ <20230118125226.333214-5-astrid.rost@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230118125226.333214-5-astrid.rost@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the USB Type-C controller that is present on the Jetson AGX Orin
-board. The ports for the Type-C controller are not populated yet, but
-will be added later once the USB host and device support for Jetson AGX
-Orin is enabled.
+On 18/01/2023 13:52, Astrid Rost wrote:
+> Add simple-card,aux-jack-types:
+> Array of snd_jack_type to create jack-input-event for jack devices in
+> aux-devs. If the setting is 0, the supported type of the device is used.
+> A device which has the functions set_jack and get_jack_supported_type
+> counts as jack device.
 
-This is based upon a patch from Wayne Chang <waynec@nvidia.com>.
+How a device can have "set_jack"? Isn't this part of code? Are you sure
+you describe here hardware, not Linux driver behavior?
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
-V5: nothing has changed
-V4: added in this version
+> 
+> Signed-off-by: Astrid Rost <astrid.rost@axis.com>
+> ---
+>  .../bindings/sound/simple-card.yaml           | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/Documentation/devicetree/bindings/sound/simple-card.yaml
+> index ed19899bc94b..2635b1c04fc9 100644
+> --- a/Documentation/devicetree/bindings/sound/simple-card.yaml
+> +++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
+> @@ -199,6 +199,13 @@ properties:
+>      maxItems: 1
+>    simple-audio-card,mic-det-gpio:
+>      maxItems: 1
+> +  simple-audio-card,aux-jack-types:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
 
- .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts  | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Drop quotes.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-index 32c58aa00035..05819d8f8038 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-@@ -2115,6 +2115,20 @@ usb@3610000 {
- 			phy-names = "usb2-0", "usb2-1", "usb2-2", "usb2-3",
- 				"usb3-0", "usb3-1", "usb3-2";
- 		};
-+
-+		i2c@c240000 {
-+			status = "okay";
-+			ucsi_ccg@8 {
-+				compatible = "cypress,cypd4226";
-+				reg = <0x08>;
-+				interrupt-parent = <&gpio>;
-+				interrupts = <TEGRA234_MAIN_GPIO(Y, 4) IRQ_TYPE_LEVEL_LOW>;
-+				firmware-name = "nvidia,jetson-agx-xavier";
-+				status = "okay";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
- 	};
- 
- 	chosen {
--- 
-2.25.1
+> +    description: |
+> +      Array of snd_jack_type to create jack-input-event for jack
+> +      devices in aux-devs. If the setting is 0, the supported
+> +      type of the device is used. A device which has the functions
+> +      set_jack and get_jack_supported_type counts as jack device.
+
+Same problems.
+
+Additionally, if this is a type of aux-dev, then maybe it should be just
+added as argument to aux-dev?
+
+>  
+>  patternProperties:
+>    "^simple-audio-card,cpu(@[0-9a-f]+)?$":
+> @@ -498,3 +505,31 @@ examples:
+>              };
+>          };
+>      };
+> +#--------------------
+> +# Add a headphone and a headset mic jack,
+> +# which use an auxiliary jack detector e.g. via i2c.
+> +# The events, which should be enabled are:
+> +# SND_JACK_HEADPHONE = 1
+> +# SND_JACK_MICROPHONE = 2
+> +#--------------------
+
+No new examples, integrate it into some existing one.
+
+> +    sound {
+> +        compatible = "simple-audio-card";
+> +        simple-audio-card,widgets =
+> +            "Headphone", "Headphone Jack",
+> +            "Headset Mic", "Headset Mic Jack";
+> +        simple-audio-card,routing =
+> +            "Headphone Jack", "HPLEFT",
+> +            "Headphone Jack", "HPRIGHT",
+> +            "LEFTIN", "Headset Mic",
+> +            "RIGHTIN", "Headset Mic";
+> +        simple-audio-card,aux-devs = <&hp_jack>, <&hs_mic_jack>;
+> +        simple-audio-card,aux-jack-types = <1 2>;
+> +        simple-audio-card,cpu {
+> +            sound-dai = <&ssi2>;
+> +        };
+> +        simple-audio-card,codec {
+> +            sound-dai = <&codec>;
+> +            clocks = <&clocks>;
+> +        };
+> +    };
+
+Best regards,
+Krzysztof
 
