@@ -2,246 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12CF167351E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:09:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D6C66734FA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:02:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbjASKJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 05:09:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44466 "EHLO
+        id S230251AbjASKCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 05:02:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjASKJe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:09:34 -0500
-X-Greylist: delayed 507 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 19 Jan 2023 02:09:32 PST
-Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72686768A;
-        Thu, 19 Jan 2023 02:09:32 -0800 (PST)
-Received: by soltyk.jannau.net (Postfix, from userid 1000)
-        id 4C68D26F685; Thu, 19 Jan 2023 11:01:04 +0100 (CET)
-Date:   Thu, 19 Jan 2023 11:01:04 +0100
-From:   Janne Grunau <janne@jannau.net>
-To:     Rayyan Ansari <rayyan@ansari.sh>
-Cc:     dri-devel@lists.freedesktop.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        asahi@lists.linux.dev
-Subject: Re: [RFC PATCH] drm/simpledrm: Allow physical width and height
- configuration via DT
-Message-ID: <20230119100104.GE3576@jannau.net>
-References: <20230118184817.608551-1-rayyan@ansari.sh>
+        with ESMTP id S229769AbjASKCB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:02:01 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEFCC6E831;
+        Thu, 19 Jan 2023 02:01:46 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C80917EC;
+        Thu, 19 Jan 2023 11:01:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674122498;
+        bh=UjM3igFLWj6BIm/BUGu8Ky1nK53+svqBdHbhRlvGPag=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=t5NoNKtdRHNE8//jhILU0So6+89flupJ//3UXPwuZ9O7joUuk6QKrIbxEidLTByPC
+         b3EVcdLss4y5Y+i9WrIFt5TqENJkyK7Y9hAwMkcxomD3VrmB9NzEwKgYS+QrxX769U
+         sclAGp8/GrGwTnvxzGkgk5BUTtFK83CoOlST58Nw=
+Message-ID: <31562353-0794-8ad4-d609-3c117dd28d46@ideasonboard.com>
+Date:   Thu, 19 Jan 2023 12:01:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230118184817.608551-1-rayyan@ansari.sh>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v7 1/7] i2c: add I2C Address Translator (ATR) support
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Luca Ceresoli <luca@lucaceresoli.net>
+References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
+ <20230118124031.788940-2-tomi.valkeinen@ideasonboard.com>
+ <Y8gA+cz9m7PaEhfP@smile.fi.intel.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <Y8gA+cz9m7PaEhfP@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hej,
-
-adding devicetree@vger.kernel.org and asahi@lists.linux.dev to cc:, the 
-former for the obvious devictree/bindings related questions,
-asahi for the prospect of supporting high DPI displays during early boot 
-and in u-boot.
-
-On 2023-01-18 18:48:17 +0000, Rayyan Ansari wrote:
-> Hello,
-> The following draft patch adds support for configuring the
-> height-mm and width-mm DRM properties in the simpledrm driver
-> via devicetree.
-> This is useful to get proper scaling in UIs such as Phosh.
-> An example of using this property is this, taken from my local tree:
+On 18/01/2023 16:23, Andy Shevchenko wrote:
+> On Wed, Jan 18, 2023 at 02:40:25PM +0200, Tomi Valkeinen wrote:
+>> From: Luca Ceresoli <luca@lucaceresoli.net>
+>>
+>> An ATR is a device that looks similar to an i2c-mux: it has an I2C
+>> slave "upstream" port and N master "downstream" ports, and forwards
+>> transactions from upstream to the appropriate downstream port. But is
+>> is different in that the forwarded transaction has a different slave
 > 
-> 		framebuffer0: framebuffer@3200000 {
-> 			compatible = "simple-framebuffer";
-> 			reg = <0x3200000 0x800000>;
-> 			format = "a8r8g8b8";
-> 			width = <720>;
-> 			height = <1280>;
-> 			stride = <(720 * 4)>;
-> 			width-mm = /bits/ 16 <58>;
-> 			height-mm = /bits/ 16 <103>;
+> is is ?
+
+Is is a typo, I'll fix it.
+
+>> address. The address used on the upstream bus is called the "alias"
+>> and is (potentially) different from the physical slave address of the
+>> downstream chip.
+>>
+>> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
+>> implementing ATR features in a device driver. The helper takes care or
+>> adapter creation/destruction and translates addresses at each transaction.
 > 
-> 			clocks = <&mmcc MDSS_AHB_CLK>,
-> 				 <&mmcc MDSS_AXI_CLK>,
-> 				 <&mmcc MDSS_BYTE0_CLK>,
-> 				 <&mmcc MDSS_MDP_CLK>,
-> 				 <&mmcc MDSS_PCLK0_CLK>,
-> 				 <&mmcc MDSS_VSYNC_CLK>;
-> 			power-domains = <&mmcc MDSS_GDSC>;
-> 		};
+> ...
 > 
-> I have tested this on my Lumia 735, and it does indeed
-> allow Phosh to scale correctly on the screen.
+>> +A typical example follows.
+>> +
+>> +Topology::
+>> +
+>> +                      Slave X @ 0x10
+>> +              .-----.   |
+>> +  .-----.     |     |---+---- B
+>> +  | CPU |--A--| ATR |
+>> +  `-----'     |     |---+---- C
+>> +              `-----'   |
+>> +                      Slave Y @ 0x10
+>> +
+>> +Alias table:
+>> +
+>> +.. table::
+>> +
+>> +   ======   =====
+>> +   Client   Alias
+>> +   ======   =====
+>> +   X        0x20
+>> +   Y        0x30
+>> +   ======   =====
+>> +
+>> +Transaction:
+>> +
+>> + - Slave X driver sends a transaction (on adapter B), slave address 0x10
+>> + - ATR driver rewrites messages with address 0x20, forwards to adapter A
+>> + - Physical I2C transaction on bus A, slave address 0x20
+>> + - ATR chip propagates transaction on bus B with address translated to 0x10
+>> + - Slave X chip replies on bus B
+>> + - ATR chip forwards reply on bus A
+>> + - ATR driver rewrites messages with address 0x10
+>> + - Slave X driver gets back the msgs[], with reply and address 0x10
 > 
-> However, I would like to get some feedback before I write the
-> documentation.
-> - What data type should be used?
-> 	The width_mm and height_mm properties of the drm_display_mode
-> 	struct are defined as u16. I have also made the devicetree
-> 	properties as the u16 type, but this requires specifying
-> 	"/bits/ 16" before the value. Should u32 be used instead to get
-> 	rid of this? If so, how could the conversion from u32->u16 be
-> 	handled?
-
-u32 is the appropriate type. The device tree describes the hardware and 
-not the data types used in a "random" linux driver/subsystem. 65m is 
-probably enough for all practical purposes but u32 is the better choice.  
-Documentation/devicetree/bindings/display/panel/panel-common.yaml 
-already specifies "height-mm" and "width-mm" and all device tree files 
-using this binding code the properties as u32.
-
-We probably do not want add height and width properties to the 
-simple-framebuffer node directly. At least for the static case I would 
-expect that it duplicates information already present in a panel node.  
-For that case parsing the panel dimensions via a phandle reference to 
-that panel node would be preferred.
-
-I'm not sure if it worth considering the dynamic case. The bootloader 
-may be able to provide dimensions of HDMI, DP, ...  connected displays 
-from the EDID. In that case "height-mm" and "width-mm" properties would 
-make sense.
-
-The existing panel drivers seem to ignore the u32 -> u16 conversion 
-problem.
-
-> - Style?
-> 	I have split the arguments to the DRM_MODE_INIT macro across
-> 	multiple lines to increase readability. I'm not sure if this
-> 	is the correct style though.
-
-I think the code would be more readable if width_mm and height_mm would 
-be calculated outside of DRM_MODE_INIT if they are zero.
-
-> - Anything else?
-> 	This is my first time writing code for a Linux driver, so I
-> 	would be grateful if you have any suggestions for improvements.
-
-Documentation/devicetree/bindings/display/simple-framebuffer.yaml needs 
-to be updates to list and document the properties added to the node.
-
-> ---
->  drivers/gpu/drm/tiny/simpledrm.c | 49 +++++++++++++++++++++++++++-----
->  1 file changed, 42 insertions(+), 7 deletions(-)
+> I'm not sure I got the real / virtual status of the adapters. Are the B and C
+> virtual ones, while A is the real?
 > 
-> diff --git a/drivers/gpu/drm/tiny/simpledrm.c b/drivers/gpu/drm/tiny/simpledrm.c
-> index 162eb44dcba8..92109f870b35 100644
-> --- a/drivers/gpu/drm/tiny/simpledrm.c
-> +++ b/drivers/gpu/drm/tiny/simpledrm.c
-> @@ -116,6 +116,15 @@ simplefb_get_format_pd(struct drm_device *dev,
->  	return simplefb_get_validated_format(dev, pd->format);
->  }
->  
-> +static void
-> +simplefb_read_u16_of_optional(struct drm_device *dev, struct device_node *of_node,
-> +		     const char *name, u16 *value)
-> +{
-> +	int ret = of_property_read_u16(of_node, name, value);
-> +	if (ret)
-> +		value = 0;
-> +}
-> +
->  static int
->  simplefb_read_u32_of(struct drm_device *dev, struct device_node *of_node,
->  		     const char *name, u32 *value)
-> @@ -184,6 +193,21 @@ simplefb_get_format_of(struct drm_device *dev, struct device_node *of_node)
->  	return simplefb_get_validated_format(dev, format);
->  }
->  
-> +static u16
-> +simplefb_get_width_mm_of(struct drm_device *dev, struct device_node *of_node)
-> +{
-> +	u16 width_mm;
-> +	simplefb_read_u16_of_optional(dev, of_node, "width-mm", &width_mm);
-> +	return width_mm;
-> +}
-> +
-> +static u16
-> +simplefb_get_height_mm_of(struct drm_device *dev, struct device_node *of_node)
-> +{
-> +	u16 height_mm;
-> +	simplefb_read_u16_of_optional(dev, of_node, "height-mm", &height_mm);
-> +	return height_mm;
-> +}
+> ...
+> 
+>> +#define ATR_MAX_ADAPTERS 99	/* Just a sanity limit */
+> 
+> Hmm... It's not clear why this is not 100, for example, and how 99 below is
+> related to that, assuming channel numbering is started from 0.
+> 
+>> +#define ATR_MAX_SYMLINK_LEN 16	/* Longest name is 10 chars: "channel-99" */
 
-I don't think it makes sense to have these two mostly identical wrapper 
-functions. Please pass the name of the property as parameter. It could 
-make sense to have a function to both height and width. I think we 
-should ignore both height and width if one fails to parse or is 0.
-That could of course also be done in simpledrm_mode() for example like:
+Right, it should be 100.
 
-|	if (!width_mm || !height_mm) {
-|		width_mm = DRM_MODE_RES_MM(width, 96ul);
-|		height_mm = DRM_MODE_RES_MM(height, 96ul);
-|	}
+I think I set the ATR_MAX_SYMLINK_LEN to 16 just for alignment, but that 
+probably doesn't make sense and I should just set ATR_MAX_SYMLINK_LEN to 
+11 (10 + zero byte).
 
->  /*
->   * Simple Framebuffer device
->   */
-> @@ -599,16 +623,24 @@ static const struct drm_mode_config_funcs simpledrm_mode_config_funcs = {
->   */
->  
->  static struct drm_display_mode simpledrm_mode(unsigned int width,
-> -					      unsigned int height)
-> +					      unsigned int height,
-> +					      u16 width_mm,
-> +					      u16 height_mm)
->  {
->  	/*
-> -	 * Assume a monitor resolution of 96 dpi to
-> -	 * get a somewhat reasonable screen size.
-> +	 * Assume a monitor resolution of 96 dpi if physical
-> +	 * dimensions are not specified to get a somewhat reasonable
-> +	 * screen size.
->  	 */
-> +
->  	const struct drm_display_mode mode = {
-> -		DRM_MODE_INIT(60, width, height,
-> -			      DRM_MODE_RES_MM(width, 96ul),
-> -			      DRM_MODE_RES_MM(height, 96ul))
-> +		DRM_MODE_INIT(
-> +			60,
-> +			width,
-> +			height,
-> +			(width_mm ? width_mm : DRM_MODE_RES_MM(width, 96ul)),
-> +			(height_mm ? height_mm : DRM_MODE_RES_MM(height, 96ul))
-> +			)
->  	};
->  
->  	return mode;
-> @@ -622,6 +654,7 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
->  	struct simpledrm_device *sdev;
->  	struct drm_device *dev;
->  	int width, height, stride;
-> +	u16 width_mm, height_mm;
+> ...
+> 
+>> +	/* Ensure we have enough room to save the original addresses */
+>> +	if (unlikely(chan->orig_addrs_size < num)) {
+>> +		u16 *new_buf;
+>> +
+>> +		new_buf = kmalloc_array(num, sizeof(*new_buf), GFP_KERNEL);
+> 
+> I remember that I asked why we don't use krealloc_array() here... Perhaps
+> that we don't need to copy the old mapping table? Can we put a short comment
+> to clarify this in the code?
 
-these need to be initialized to 0 otherwise they may end up used 
-unitialized if pd is not NULL.
+Yes, we don't care about the old data, we just require the buffer to be 
+large enough.
 
->  	const struct drm_format_info *format;
->  	struct resource *res, *mem;
->  	void __iomem *screen_base;
-> @@ -676,6 +709,8 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
->  		format = simplefb_get_format_of(dev, of_node);
->  		if (IS_ERR(format))
->  			return ERR_CAST(format);
-> +		width_mm = simplefb_get_width_mm_of(dev, of_node);
-> +		height_mm = simplefb_get_height_mm_of(dev, of_node);
->  	} else {
->  		drm_err(dev, "no simplefb configuration found\n");
->  		return ERR_PTR(-ENODEV);
-> @@ -686,7 +721,7 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
->  			return ERR_PTR(-EINVAL);
->  	}
->  
-> -	sdev->mode = simpledrm_mode(width, height);
-> +	sdev->mode = simpledrm_mode(width, height, width_mm, height_mm);
->  	sdev->format = format;
->  	sdev->pitch = stride;
+I'm not sure what kind of comment you want here. Isn't this a common 
+idiom, where you have a buffer for temporary data, but you might need to 
+resize at some point if you need a larger one?
 
-Janne
+>> +		if (!new_buf)
+>> +			return -ENOMEM;
+>> +
+>> +		kfree(chan->orig_addrs);
+>> +		chan->orig_addrs = new_buf;
+>> +		chan->orig_addrs_size = num;
+>> +	}
+> 
+> ...
+> 
+>> +struct i2c_atr *i2c_atr_new(struct i2c_adapter *parent, struct device *dev,
+>> +			    const struct i2c_atr_ops *ops, int max_adapters)
+>> +{
+>> +	struct i2c_atr *atr;
+>> +	int ret;
+>> +
+>> +	if (max_adapters > ATR_MAX_ADAPTERS)
+>> +		return ERR_PTR(-EINVAL);
+>> +
+>> +	if (!ops || !ops->attach_client || !ops->detach_client)
+>> +		return ERR_PTR(-EINVAL);
+> 
+>> +	atr = devm_kzalloc(dev, struct_size(atr, adapter, max_adapters),
+>> +			   GFP_KERNEL);
+> 
+> How do you know (or why do we limit) that the scope of this function will be
+> only in ->probe()? Even though, I would replace devm_ by non-devm_ since there
+> is the tear-down function has to be called by the user anyway.
+
+That's a very good point. I don't know why devm_kzalloc is used here.
+
+>> +	if (!atr)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	mutex_init(&atr->lock);
+>> +
+>> +	atr->parent = parent;
+>> +	atr->dev = dev;
+>> +	atr->ops = ops;
+>> +	atr->max_adapters = max_adapters;
+>> +
+>> +	if (parent->algo->master_xfer)
+>> +		atr->algo.master_xfer = i2c_atr_master_xfer;
+>> +	if (parent->algo->smbus_xfer)
+>> +		atr->algo.smbus_xfer = i2c_atr_smbus_xfer;
+>> +	atr->algo.functionality = i2c_atr_functionality;
+>> +
+>> +	atr->i2c_nb.notifier_call = i2c_atr_bus_notifier_call;
+>> +	ret = bus_register_notifier(&i2c_bus_type, &atr->i2c_nb);
+>> +	if (ret) {
+>> +		mutex_destroy(&atr->lock);
+>> +		return ERR_PTR(ret);
+>> +	}
+>> +
+>> +	return atr;
+>> +}
+> 
+> ...
+> 
+>> +void i2c_atr_del_adapter(struct i2c_atr *atr, u32 chan_id)
+>> +{
+>> +	char symlink_name[ATR_MAX_SYMLINK_LEN];
+> 
+>> +
+> 
+> Redundant blank line.
+
+Right.
+
+>> +	struct i2c_adapter *adap = atr->adapter[chan_id];
+>> +	struct i2c_atr_chan *chan = adap->algo_data;
+>> +	struct fwnode_handle *fwnode = dev_fwnode(&adap->dev);
+>> +	struct device *dev = atr->dev;
+> 
+>> +	if (!adap)
+>> +		return;
+> 
+> Redundant check (it will be optimized out by compiler) or wrong assignments
+> above.
+
+Indeed.
+
+The doc for the function says "If no I2C bus has been added this 
+function is a no-op", so we need the check, and I need to fix the 
+assignments.
+
+Although to be honest, I don't usually like this kind of "do nothing if 
+given wrong parameters".
+
+  Tomi
+
