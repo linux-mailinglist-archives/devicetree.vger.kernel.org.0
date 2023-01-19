@@ -2,98 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF63A673A65
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:35:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B2E5673A68
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:35:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231192AbjASNfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:35:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41990 "EHLO
+        id S231324AbjASNfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 08:35:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbjASNec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:34:32 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 284EF7E692
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:34:28 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id k16so1549451wms.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:34:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EEuluooIe1Djy5Pq1DXpRGYzfjqm0LFTSxqLkps9dlU=;
-        b=R3/MBCO1fZ0ko2of28QHp6yL51jXKDrPCWYgLX15MNRmeDeBb3WfLt5B4cv2oTK8nv
-         waX8+Y4WuAQ7DWrcksP1MYMUzoOabYyoN2OdddTrkWYE1VT/WGHdRI9T45jv/qiKXNoG
-         Gb1tTn1nKiMiPFsoBH/SUxANigq1GlLVWtoogB8K1rzJaKuBw1C5hqszllr3TGDj3H1J
-         6wE5G3MZAk+N3CFY1jauEBf1P6FJnDTmZUvEHfKEuOwlZwY+fBPd0IezBGHOl6xco+kK
-         YAo5xd3IeniD99t5E+1uvvO9W7WPWNiDhQAG5Y86HDlUmeIAVmkG0NB14arykyzalcIE
-         P7ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EEuluooIe1Djy5Pq1DXpRGYzfjqm0LFTSxqLkps9dlU=;
-        b=MolALlqE+xphX8y02+cNY0O9oHo7YBzuljpXuIBvilhc7wfGQ22CQqxKWzbWNKpOCk
-         ybpvxMVJHNjNgkpJOyIqiB7Ji2Uz5Z3Ejmisdqu7bU/SsOZ5tWfo6iu9+oZSRxUZSRXe
-         i+HVByM3DffDvaFoCGg0u5JYpEAzXY4e5HK7cN/Ku2i856y8Mdj5kfu60ekiL8oV7ic3
-         MibkEDvyi90TK2AI4XOw6x+6EFVHFGPOU991RRICza1Pw4Es3gOIiBcTpGfNYEA8GhK5
-         gaTv/7DON/r4LxsGLW/NPHEZHPQNluGbSh7nvMUA+PVZHd/DyZ7ixT+xstT2vZlG89VZ
-         7kOA==
-X-Gm-Message-State: AFqh2krnu589Cw38KcGdS8IsRPoaV3KdPGS6hejGnOGKatCKqLKArfxV
-        jNJ/lDkEe5p9AasHIGu17M+MMA==
-X-Google-Smtp-Source: AMrXdXtiWkBP0Xweh+UUX5iU+3F6iXV1yxsDEBLCFSlq0agjo3MiueI+xACVmz5ZOnyuWlBe1zHJuA==
-X-Received: by 2002:a1c:f203:0:b0:3da:fa42:bbf2 with SMTP id s3-20020a1cf203000000b003dafa42bbf2mr9960769wmc.28.1674135266748;
-        Thu, 19 Jan 2023 05:34:26 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l11-20020a1ced0b000000b003dafb0c8dfbsm5945459wmh.14.2023.01.19.05.34.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 05:34:26 -0800 (PST)
-Message-ID: <a0c944b3-d212-43bd-23a5-666b141a657b@linaro.org>
-Date:   Thu, 19 Jan 2023 14:34:24 +0100
+        with ESMTP id S231355AbjASNfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:35:25 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4E47A7ED71;
+        Thu, 19 Jan 2023 05:35:20 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.97,229,1669042800"; 
+   d="scan'208";a="149953118"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 19 Jan 2023 22:35:19 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9042C42704B3;
+        Thu, 19 Jan 2023 22:35:19 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     iommu@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH resend] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779g0 support
+Date:   Thu, 19 Jan 2023 22:35:14 +0900
+Message-Id: <20230119133514.1008925-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: Add binding for AM69 Starter
- Kit
-Content-Language: en-US
-To:     sabiya.d@mistralsolutions.com, nm@ti.com, vigneshr@ti.com,
-        kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>
-References: <20230119132958.124435-1-sabiya.d@ti.com>
- <20230119132958.124435-2-sabiya.d@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230119132958.124435-2-sabiya.d@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 14:29, sabiya.d@mistralsolutions.com wrote:
-> From: Dasnavis Sabiya <sabiya.d@ti.com>
-> 
+Document the compatible values for the IPMMU-VMSA blocks in
+the Renesas R-Car V4H (R8A779G0) SoC.
 
-Subject: drop second/last, redundant "binding for". The "dt-bindings"
-prefix is already stating that these are bindings.
+Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+---
+ Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> AM69 Starter Kit is a single board designed for TI AM69 SoC.
-> The AM69 SoC belongs to the K3 Multicore SoC architecture platform,
-> providing advanced system integration in automotive ADAS applications,
-> autonomous mobile robot and edge AI applications.
-
-
-With fixed subject:
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+index 26d0a5121f02..72308a4c14e7 100644
+--- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
++++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+@@ -49,6 +49,7 @@ properties:
+           - enum:
+               - renesas,ipmmu-r8a779a0           # R-Car V3U
+               - renesas,ipmmu-r8a779f0           # R-Car S4-8
++              - renesas,ipmmu-r8a779g0           # R-Car V4H
+           - const: renesas,rcar-gen4-ipmmu-vmsa  # R-Car Gen4
+ 
+   reg:
+-- 
+2.25.1
 
