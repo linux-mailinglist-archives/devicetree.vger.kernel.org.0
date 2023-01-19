@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D23C673CB0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:46:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44502673CB2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:46:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231192AbjASOqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 09:46:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36196 "EHLO
+        id S230231AbjASOqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 09:46:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230231AbjASOqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:46:16 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1937E84571
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:30 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id mp20so6219387ejc.7
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:30 -0800 (PST)
+        with ESMTP id S230501AbjASOqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:46:17 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49557875A3
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:33 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id qx13so6153067ejb.13
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:43:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BYSomJedHVK5BgX0m4rXPBquuvOf7ReCuCFfsJfS4GM=;
-        b=maYfXj04Xta4w0c1XO9/IR+Q/80pEhaWzVXWYBoOct1f3Sdy80UbFN5a71VtlJwzN6
-         qOMGNf1dsLuSi82WDnzTm5AjMdRDrrqK68tjaI0Zd2iVLpzrdsFRK6gn7cbe3CNKZMbi
-         9X7MPlHezHVBxbm5JqrG6MzU/4XrbKX5b0LBEFMWblzHSPDiDoK8BDbe66P5ZQUMPtjZ
-         vpWuVk6hJP42tUsJsXZ8MfYzpNiTnESTDeEkmG0wM0alylVlXDuHNH3tI23kNTuir3QY
-         9VRkVVVGr7WHgFD0yapCyVcvW0w3VhzLpa8VJyVpHvvzUoISzbHVjeeUxrCLuHOogaXM
-         EuVQ==
+        bh=/SjsBNMpD4lZAQm70QlBxW7ORK3Yy/nXIpNP1UrfVfI=;
+        b=RPWI3CM2kjPcSfl13sUQ7vn8lWKboXorxsiuNW+wn6crJkRE/ul1u0E/TTvKK/YTyz
+         ErEE7x6dH0839U1IPasUeVBM54g+r0m7YdAmDMlq3obYdJ3vkxaoqWF2xXVaUT0IIRye
+         NndvlOLutR2hSUSFdIAKwA9Qe4D1SZfJAlTA5C8ARAdPpVhniKdTmklzJb6+RiZ51UV1
+         Qk9eQ9wMVQxrB0d/14AJOou2woLdZPzytgeets4hDlyZ84bkbC6cNxRArcxzC0K8FSDE
+         gN4AxoPuZ1fJ2LvDqOOoP1c1tvsn/ulz1u5w9R+MsP/CZMToaQ0ls0IohvxYlNxBSvG2
+         4GeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BYSomJedHVK5BgX0m4rXPBquuvOf7ReCuCFfsJfS4GM=;
-        b=3Mc9RcqLqorxEP+S2KClBp1lfp+2N7eITb3D6cElQQlUQP8z22LpFZ+a+NOoq39k6m
-         gClifX8nlDkiALWfnCQCsPLxHX8v8+hcgqeWVjtsHJU4Vbb5FjTI0XSLuAGlVgMcUZUt
-         YYaPLtsIyWbwq3RVroa69ZGrZCOlikDBS5aB7Hbn9EH6RZ64b8DyICstCnAZ/ZzQGhvb
-         w05VyhudA9jJzTzyksnzwRxI96HaVoQme3PxUTzb/buzl0y61Ne5pgD2lrBKMm9ox22M
-         Y1JGoPbNPPxnajYACZZkrIJ8flAIHGK8+vdOAmuoYj8WhqVl5HDS2aZ0J38FZ8Q2zH0F
-         sfpA==
-X-Gm-Message-State: AFqh2kosth43L0fF5IPWvNlfuCnqyUPrRtKSi5Ud70Qm/vHW2jgt8v4r
-        Wd+BhqpcHwu+t70hvNV4ImJgMg==
-X-Google-Smtp-Source: AMrXdXup0qQiB3Ms0hDsfnIUU0B2wvk2sx0H2sklDz6S7UZmvU+vwHYHlGYSoH9Y5m6ZXk0i+lopRA==
-X-Received: by 2002:a17:907:6746:b0:871:2051:637a with SMTP id qm6-20020a170907674600b008712051637amr12847347ejc.60.1674139408688;
-        Thu, 19 Jan 2023 06:43:28 -0800 (PST)
+        bh=/SjsBNMpD4lZAQm70QlBxW7ORK3Yy/nXIpNP1UrfVfI=;
+        b=vmZLlheyctsJlVvowEo2f96K6d5iMr8/0VYmbn+aJaUJuhWwtz3+gZ2W6vATt4JP0F
+         /0SJyQfMzVpDCdl9mjQknLQOlFI/nSqFSaLlY8eRJBMvQ297y4QTDgBMY+N2khfFaKkA
+         S+L+cy751/QMBQGNgC86p4zpHG9wum25Qc7EmNumu9SMuziCB9zaD1clzZZoL01ISCDS
+         Llm/dSisRt6et7U76WW4AdGTI0fiTqgx5/0HUCoJ5tKJRVRW8P22qjDe4XRP8aleeI1Q
+         RS9b5JZik8T+XDWpl1IxsuGCeEN2tdNBTim0Fb8jNKzpk/6goNwPz4mlAM4XU5eIVYPC
+         KzlA==
+X-Gm-Message-State: AFqh2ko+k7J48c6tsjk7rcB1gL2HZTrGuKtYbDFOfeF2Yzyp22JWiyQ2
+        hUpsYgdlISOMQkMJ1WYqGgZOUg==
+X-Google-Smtp-Source: AMrXdXvFKWEUSD94XSs6bCoHqhRdPLttSrOIIiZQ0FY8j9hZ4PpgLaSGE8/M1Z9Y3wVkY1THHheeOA==
+X-Received: by 2002:a17:907:9620:b0:871:2051:6377 with SMTP id gb32-20020a170907962000b0087120516377mr15201852ejc.60.1674139409664;
+        Thu, 19 Jan 2023 06:43:29 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id fn4-20020a1709069d0400b0084d4b907ff8sm13434169ejc.120.2023.01.19.06.43.27
+        by smtp.gmail.com with ESMTPSA id fn4-20020a1709069d0400b0084d4b907ff8sm13434169ejc.120.2023.01.19.06.43.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 06:43:28 -0800 (PST)
+        Thu, 19 Jan 2023 06:43:29 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,10 +58,10 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         "James E.J. Bottomley" <jejb@linux.ibm.com>,
         "Martin K. Petersen" <martin.petersen@oracle.com>,
-        linux-scsi@vger.kernel.org, Brian Masney <bmasney@redhat.com>
-Subject: [PATCH 1/2] scsi: ufs: ufs-qcom: add basic interconnect support
-Date:   Thu, 19 Jan 2023 16:43:25 +0200
-Message-Id: <20230119144326.2492847-2-dmitry.baryshkov@linaro.org>
+        linux-scsi@vger.kernel.org
+Subject: [PATCH 2/2] arm64: dts: qcom: msm8996: enable UFS interconnects
+Date:   Thu, 19 Jan 2023 16:43:26 +0200
+Message-Id: <20230119144326.2492847-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230119144326.2492847-1-dmitry.baryshkov@linaro.org>
 References: <20230119144326.2492847-1-dmitry.baryshkov@linaro.org>
@@ -69,81 +69,35 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Brian Masney <bmasney@redhat.com>
+Specify interconnects to be used by the UFS host controller.
 
-The firmware on the Qualcomm platforms expects the interconnect votes to
-be present. Let's add very basic support where the maximum throughput is
-requested to match what's done in a few other drivers.
-
-This will not break boot on systems where the interconnects and
-interconnect-names properties are not specified in device tree for UFS
-since the interconnect framework will silently return.
-
-Signed-off-by: Brian Masney <bmasney@redhat.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/ufs/host/ufs-qcom.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-index 8ad1415e10b6..8267a4056120 100644
---- a/drivers/ufs/host/ufs-qcom.c
-+++ b/drivers/ufs/host/ufs-qcom.c
-@@ -14,6 +14,7 @@
- #include <linux/gpio/consumer.h>
- #include <linux/reset-controller.h>
- #include <linux/devfreq.h>
-+#include <linux/interconnect.h>
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 55180586f7b6..0c2f7be9f205 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -2037,6 +2037,10 @@ ufshc: ufshc@624000 {
+ 				<0 0>,
+ 				<0 0>;
  
- #include <ufs/ufshcd.h>
- #include "ufshcd-pltfrm.h"
-@@ -936,6 +937,23 @@ static const struct reset_control_ops ufs_qcom_reset_ops = {
- 	.deassert = ufs_qcom_reset_deassert,
- };
- 
-+static int ufs_qcom_icc_init(struct device *dev, char *pathname,
-+		u32 avg_bw, u32 peak_bw)
-+{
-+	struct icc_path *path;
-+	int ret;
++			interconnects = <&a2noc MASTER_UFS &bimc SLAVE_EBI_CH0>,
++					<&bimc MASTER_AMPSS_M0 &cnoc SLAVE_UFS_CFG>;
++			interconnect-names = "ufs-ddr", "cpu-ufs";
 +
-+	path = devm_of_icc_get(dev, pathname);
-+	if (IS_ERR(path))
-+		return dev_err_probe(dev, PTR_ERR(path), "failed to acquire interconnect path\n");
-+
-+	ret = icc_set_bw(path, avg_bw, peak_bw);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to set bandwidth request\n");
-+
-+	return 0;
-+}
-+
- /**
-  * ufs_qcom_init - bind phy with controller
-  * @hba: host controller instance
-@@ -1005,6 +1023,14 @@ static int ufs_qcom_init(struct ufs_hba *hba)
- 	ufs_qcom_get_controller_revision(hba, &host->hw_ver.major,
- 		&host->hw_ver.minor, &host->hw_ver.step);
- 
-+	err = ufs_qcom_icc_init(dev, "ufs-ddr", 4096000, 0);
-+	if (err)
-+		goto out_variant_clear;
-+
-+	err = ufs_qcom_icc_init(dev, "cpu-ufs", 1000, 0);
-+	if (err)
-+		goto out_variant_clear;
-+
- 	/*
- 	 * for newer controllers, device reference clock control bit has
- 	 * moved inside UFS controller register address space itself.
+ 			lanes-per-direction = <1>;
+ 			#reset-cells = <1>;
+ 			status = "disabled";
 -- 
 2.39.0
 
