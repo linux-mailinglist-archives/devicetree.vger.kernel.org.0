@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 224C4673CB8
+	by mail.lfdr.de (Postfix) with ESMTP id 6E0B9673CB9
 	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:47:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbjASOr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 09:47:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34952 "EHLO
+        id S229659AbjASOr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 09:47:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbjASOrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:47:08 -0500
+        with ESMTP id S231359AbjASOrJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:47:09 -0500
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BA0288746
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:44:38 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 006CB4ABDF
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:44:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1674139479; x=1705675479;
+  t=1674139483; x=1705675483;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=088AciiDdUGFfIMLtBLyVCYO9uBHBgqq/A72XRwMW2k=;
-  b=Tcl9cUD52M5tc6099F8g4a7OqEb9dgLbpEsSqkLx6uaZsqtyHr810Vho
-   7ZRdrj1yZZoQosZ85tSszINUN6g9tWfOJW0EoltdKSNwRLBx6bbQSYUzr
-   v3IwNR6gJmiBtPF1mca196FL9zH+dNgL3ygV5HinvaUa4IXKYjcadlkn8
-   1Cfo8OCNaVhMBJiEd+G/1JKkT8fRnmUAIkP6ZIp37ZTV8BEgocOlgprNE
-   CVcLZGXY3Ee3jisFCjfySi5+Wb05j1vrKe9kcN20s9YSxMqZYrzYpzMsW
-   7erPIv2NQkwhBQmMdG3n0wYgY9rAufAclI2sYFCNxYX5SaCHqfiVFnbVR
-   g==;
+  bh=Gw2Osjw555DbuyirS/h/UMrdBDnbIATunQmh06M0EX8=;
+  b=ATUeZOtfg7VZaNDFfDmOSZURR25hKcLE7iXRGt20NU1liMZS6Ee2iinr
+   0htb24rlUTuQxi4HbJsByDiZHa+0hrcCvD6b+S7bGx436YZYLNt0sAdIR
+   GtLHcTrPOsOxrrsp4AVZBv7YGHYh/4yS0w6Dp3fch93XIlz/IwsfkspIu
+   jmPtYO6IZPzMTFKdaErGsmScsloPfZgn24B++Gz3k08q54MQf6n8+rud8
+   WLR9ePKKodn8z5mHMg0sC1ACoUZnw7vupdfLVH10odKq8k7onqfzev5yX
+   sQpVhL7p3FIySHNKO67rDQCkBWYwrF2mFIrlGaEPdrISvgF21h60RI99x
+   w==;
 X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
-   d="scan'208";a="28537310"
+   d="scan'208";a="28537312"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
   by mx1-pgp.tq-group.com with ESMTP; 19 Jan 2023 15:42:44 +0100
 Received: from mx1.tq-group.com ([192.168.6.7])
@@ -41,22 +41,22 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   t=1674139364; x=1705675364;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=088AciiDdUGFfIMLtBLyVCYO9uBHBgqq/A72XRwMW2k=;
-  b=KFVInPq8oORBibKSSengVgUAhLJzJvPkWaXl4QUsBN+DYWUTLVbVKctq
-   MjshrPuNFvNQVoZLAEOPqgvq8xs4BMDbkKoa3fHUjVTiHTN1+QjUM10Sh
-   /5s3JP45KGYnBWpOemhZhQLN3lw9SGgdpGoMtJBKi5/uayH4d3KPO9l75
-   VJLPIzVqpsx9XLSydzo3rvXGMvcBVOVSv8RUx3u+qpyHixdAAXd66WTSl
-   RVlKE+UQdRIY2gVxvCJyKxb94QMc2228vnw1lfObh5CWgPKub4zm9Egug
-   RQBXMVufprXPCzC3taXkk1tdU0Scvj5EtXTRSy+9s670nEf5hEGPxXWev
-   g==;
+  bh=Gw2Osjw555DbuyirS/h/UMrdBDnbIATunQmh06M0EX8=;
+  b=YBZGKmu/RDvIwP3S0g77b5kR1HN4W8eAwRuEhgK1Y6rp/4VE6Aoj+OIq
+   +OuS5FevSCNTeRctk2W26FxDL9KI9QWyx6J8y6LSa+e4qkWjxP0/ubzcw
+   Yr7QJkvOuAHAblKs8j5vfyquVEtoQSxL9Bd010kqGcB5aFsxr1eJqdVgH
+   fxsHBGWOpSoPY4GhTTJFSbkfGa1xUYkNanMqM9hpFvjHeXTFoBK4vgObb
+   Oc5sj6T/R0fvD5c8di4qGJwUht7DZf/NrR79c+I2QaHOoGwCGcuJKuqXW
+   dgZb8EV66mvxuh+DJ62kHS2Vj70yH6QKUC+00opH8qjnstVHmLyUPuGmq
+   w==;
 X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
-   d="scan'208";a="28537309"
+   d="scan'208";a="28537311"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 19 Jan 2023 15:42:44 +0100
 Received: from steina-w.tq-net.de (unknown [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 19E4D280056;
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 4D1E5280072;
         Thu, 19 Jan 2023 15:42:44 +0100 (CET)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -68,9 +68,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Marcel Ziswiler <marcel.ziswiler@toradex.com>
 Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>, soc@kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/9] ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA HDMI overlay
-Date:   Thu, 19 Jan 2023 15:42:32 +0100
-Message-Id: <20230119144236.3541751-6-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 6/9] ARM: dts: ls1021a: add TQMLS1021A/MBLS102xA LVDS CDTECH DC44 overlay
+Date:   Thu, 19 Jan 2023 15:42:33 +0100
+Message-Id: <20230119144236.3541751-7-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
 References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
@@ -85,36 +85,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree overlay for HDMI usage.
+Add device tree overlay for LVDS display usage.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm/boot/dts/Makefile                    |  2 ++
- .../ls1021a-tqmls1021a-mbls1021a-hdmi.dtso    | 36 +++++++++++++++++++
- 2 files changed, 38 insertions(+)
- create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-hdmi.dtso
+ arch/arm/boot/dts/Makefile                    |  2 +
+ ...1021a-tqmls1021a-mbls1021a-cdtech-dc44.dts | 55 +++++++++++++++++++
+ 2 files changed, 57 insertions(+)
+ create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-cdtech-dc44.dts
 
 diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index e6943dc73a3fd..d5105e8179431 100644
+index d5105e8179431..774cc57274e20 100644
 --- a/arch/arm/boot/dts/Makefile
 +++ b/arch/arm/boot/dts/Makefile
-@@ -806,8 +806,10 @@ dtb-$(CONFIG_SOC_LS1021A) += \
+@@ -806,9 +806,11 @@ dtb-$(CONFIG_SOC_LS1021A) += \
  	ls1021a-tsn.dtb \
  	ls1021a-twr.dtb
  
-+ls1021a-tqmls1021a-mbls1021a-hdmi-dtbs := ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-hdmi.dtbo
++ls1021a-tqmls1021a-mbls1021a-cdtech-dc44-dtbs := ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-cdtech-dc44.dtbo
+ ls1021a-tqmls1021a-mbls1021a-hdmi-dtbs := ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-hdmi.dtbo
  ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33-dtbs := ls1021a-tqmls1021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtbo
  
-+dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-hdmi.dtb
++dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-cdtech-dc44.dtb
+ dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-hdmi.dtb
  dtb-$(CONFIG_SOC_LS1021A) += ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtb
  
- dtb-$(CONFIG_SOC_VF610) += \
-diff --git a/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-hdmi.dtso b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-hdmi.dtso
+diff --git a/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-cdtech-dc44.dts b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-cdtech-dc44.dts
 new file mode 100644
-index 0000000000000..f5ca22643c08e
+index 0000000000000..ddc71bc597295
 --- /dev/null
-+++ b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-hdmi.dtso
-@@ -0,0 +1,36 @@
++++ b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a-cdtech-dc44.dts
+@@ -0,0 +1,55 @@
 +// SPDX-License-Identifier: (GPL-2.0-or-later OR X11)
 +/*
 + * Copyright 2018-2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
@@ -126,29 +127,48 @@ index 0000000000000..f5ca22643c08e
 +/dts-v1/;
 +/plugin/;
 +
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++
++&backlight_dcu {
++	status = "okay";
++};
++
 +&dcu {
 +	status = "okay";
 +
 +	port {
 +		dcu_out: endpoint {
-+			remote-endpoint = <&sii9022a_in>;
++			remote-endpoint = <&panel_in>;
 +		};
 +	};
 +};
 +
-+&hdmi_out {
++&display {
++	compatible = "cdtech,s070swv29hg-dc44";
 +	status = "okay";
++
++	port {
++		panel_in: endpoint {
++			remote-endpoint = <&dcu_out>;
++		};
++	};
 +};
 +
-+&sii9022a {
-+	status = "okay";
++&i2c0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
 +
-+	ports {
-+		port@0 {
-+			sii9022a_in: endpoint {
-+				remote-endpoint = <&dcu_out>;
-+			};
-+		};
++	polytouch: touchscreen@38 {
++		compatible = "edt,edt-ft5406";
++		reg = <0x38>;
++		interrupt-parent = <&pca9554_0>;
++		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
++		/* LCD_PWR_EN -> TSC_WAKE */
++		wake-gpios = <&pca9554_1 4 GPIO_ACTIVE_HIGH>;
++		gain = <20>;
++		touchscreen-size-x = <800>;
++		touchscreen-size-y = <480>;
 +	};
 +};
 -- 
