@@ -2,148 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED6DA673808
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 13:15:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F948673815
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 13:17:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbjASMP4 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 19 Jan 2023 07:15:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42946 "EHLO
+        id S230313AbjASMRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 07:17:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbjASMPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 07:15:55 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BE1C6E91
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 04:15:52 -0800 (PST)
-Received: from wf0783.dip.tu-dresden.de ([141.76.183.15] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1pITpV-0002mO-3s; Thu, 19 Jan 2023 13:15:41 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Michael Tretter <m.tretter@pengutronix.de>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        robh+dt@kernel.org, Peter Geis <pgwipeout@gmail.com>
-Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        linux-rockchip@lists.infradead.org,
-        Shengyu Qu <wiagn233@outlook.com>, devicetree@vger.kernel.org,
-        jacob-chen@iotwrt.com, kernel@pengutronix.de,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, michael.riesch@wolfvision.net
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add RGA2 support to rk356x
-Date:   Thu, 19 Jan 2023 13:15:39 +0100
-Message-ID: <4455473.LvFx2qVVIh@phil>
-In-Reply-To: <5241675.okTXgP3Kn8@archbook>
-References: <20221121151755.2072816-3-m.tretter@pengutronix.de>
- <20230117124114.GF23495@pengutronix.de> <5241675.okTXgP3Kn8@archbook>
+        with ESMTP id S229974AbjASMRG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 07:17:06 -0500
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8A659B6E;
+        Thu, 19 Jan 2023 04:17:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=T5VGzxFxExyrW2VOG1JCzKXD/lSdAvZuaifPid/N0gK3g0XwDb3TSvoevhZl+s8ehr7w/vNAJN0l8kk/XJ2dEsmNs5+ETqyfq6mI0WoRJiY38YTpXtrt86tnTjqA5ybq8HlwlwS9tEXKixU6WtArTLlMUhMfh8Jbxp/OOopoashjsA8bpn+Teio/D6l7Bjd/ahRrw1u9IuUE1Lw7GG3NyRP1UA/kngIwacaLz6lpPu/ZFY1VOkQQgas/ems1/e3LXE8pz2QFeoRDqGwVR7eA4Zz+noOXu4VylhVhoYOB9pWKiu1p72pANgEdw0X3VmOf5uhDqDgc868k31qZX2mSJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tgjqfldTnaVGw8G0YJdVz5UHQnN4iwn7TGs6yY9oqP0=;
+ b=knaYvQvCr9J3oZJ8VCh8g0wtohEIVU98wtgVpfjYanxeXecJNimhukVhOOtNxfky4z/+KKCS+QC1aeqgggDr/uE9bHK9vPsdc22BiLBUw4s7biNX+DY/F4slQ0Y1AbXNNaZibVTKn7VxT49hrYbpUpQwM6MpE4oMgKQKmS92SWO9mO9uo8eaFLKSWywS0z4vs2QYkp6gDq6CJOWjetDdZ2Ybs+ij8C2RZp9z1L0P9hjBGq+HZBryDWh/Kr96C+u0qd+3oSYoAQnvZ+S5QTG6uHkch/06sgdqvarXr/O2m/9QjQ5j7sh7mmorM5arq4c77eoCHvTqq2am9/oA+SaoLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.233) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tgjqfldTnaVGw8G0YJdVz5UHQnN4iwn7TGs6yY9oqP0=;
+ b=aViM9I0T0WFDFpTiWod54vOkFWA0Zg/iOmrk0e6mSKIig4WUIzpnCVl3CKiul5I5LKmBlPKWUh9uJb3b08vruGUK9kh6L9kuAo4e0pCyqwXF27FC6J90reJYeSbtaGBpRqNEgCSVXVjix5Sp7wySGMfIk8FjgnWDeanBY4d05aHGASWHH8EkiJw4uThIwG0p9cGm3sVqnioW9d94SOiXA057A+/Lgy8A4KVqeIve1uOkKGMrOlzEpcs4dDREByOcq9yywtzLiDCzCRoljhjjBSYDhPvHgU9aDbJCOn2o+UpkRcQKWxgVnt2u0YgSToWRQeDYp1wLJxTSJ+jDYY/SBg==
+Received: from MW4P222CA0001.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::6)
+ by CH3PR12MB7570.namprd12.prod.outlook.com (2603:10b6:610:149::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.25; Thu, 19 Jan
+ 2023 12:17:02 +0000
+Received: from CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:114:cafe::73) by MW4P222CA0001.outlook.office365.com
+ (2603:10b6:303:114::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24 via Frontend
+ Transport; Thu, 19 Jan 2023 12:17:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.233) by
+ CO1NAM11FT060.mail.protection.outlook.com (10.13.175.132) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6002.13 via Frontend Transport; Thu, 19 Jan 2023 12:17:02 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 19 Jan
+ 2023 04:16:55 -0800
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Thu, 19 Jan 2023 04:16:54 -0800
+Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.986.36 via Frontend
+ Transport; Thu, 19 Jan 2023 04:16:52 -0800
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, Wayne Chang <waynec@nvidia.com>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH V6 0/6] Add device-tree support for Cypress CYPD4226
+Date:   Thu, 19 Jan 2023 12:16:33 +0000
+Message-ID: <20230119121639.226729-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT060:EE_|CH3PR12MB7570:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ddb5f83-dffd-48a6-4caf-08dafa17123c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qp/NDFczjl+ycMWquYvLt9le9vF4Od3qVhHvtovtcp061gYtUBReB3JEIXmjZJVZcudflW8n2Dh6QYyNIMVrdh/btAEoOgsVL/FHL5gGs5NRKyVaKAoSKX+Qr7x+7lQgn8GFc44xUsY00L/bLnVyrJb/tmGoFu/rJvzcCoIEwI7PTdGnteGw9iMnPJlyYUDsRLj2epBIoXXb/0C4FNqZ3LdM5Zpi1sxMXZiONNNromDPdHHT2GLJaAVBzRuaSs/ViqGkgvpxmLyjaf3Ia6iWhwaYFFc8ht/vSz33LwEMjGXDGRRmtrHAbwmwHtofY7BUX+MRhF67u7Z7dhaIlIToYTPuDYZUZI0HlHtdC8Mat0QGJ5w2qNLNtqdUihh9j3Wt7qATDySkKMktXbYZPUO9KM/lhkVfYoQ+g0FNNtnVeH/Oi/YIJb03ZPQKkzDx91ocDFn6ZiXtowlR365FhQrVHVGnC9CH2Xgvi+JHRk+rgMHc6IdgfeRnPJX41VWTItuT3eUeMAfItd6GXKlg/N0De23eJXQDq8WOriibN5pQZfvkgk1Sk01xxLBuekaDTBzacgx2kfThtyiAKvuH/CTvqrlsEzK93RbJkzS6wGebYpa3FiTAgfziUPw/qI9H3Kx/vNrZGfab/pYREdZNeryBYeMRL4zK7jjXT49gHwJJyEnkEPyrz7Zp5rnt2u2N6uVrrkz3QqqOUDaqPfASA0u9T5LlAvPm+MESrE7ghhFOJBivyOnXS+A+JuHqCZq5ndCXm6/boRsm32S9nql2m4vxl4mtDUS9sIe0HTW/+4+lefs=
+X-Forefront-Antispam-Report: CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(346002)(39860400002)(376002)(396003)(136003)(451199015)(46966006)(40470700004)(36840700001)(110136005)(54906003)(316002)(7636003)(2616005)(82740400003)(4326008)(5660300002)(1076003)(8936002)(426003)(41300700001)(186003)(8676002)(36756003)(26005)(83380400001)(47076005)(70206006)(70586007)(40460700003)(107886003)(6666004)(40480700001)(82310400005)(356005)(336012)(86362001)(2906002)(966005)(36860700001)(478600001)(7696005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 12:17:02.2542
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ddb5f83-dffd-48a6-4caf-08dafa17123c
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7570
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add device-tree support for Cypress CYPD4226 Type-C controller and
+enable for the Jetson AGX Orin board. This series is derived from the
+series to enable USB host and device support for Jetson AGX Orin [0].
+I have split this out from that series because it was getting quite
+big.
 
-Am Mittwoch, 18. Januar 2023, 01:01:48 CET schrieb Nicolas Frattaroli:
-> On Dienstag, 17. Januar 2023 13:41:14 CET Michael Tretter wrote:
-> > On Wed, 23 Nov 2022 10:28:41 +0100, Michael Tretter wrote:
-> > > On Tue, 22 Nov 2022 20:47:49 +0100, Nicolas Frattaroli wrote:
-> > > > On Dienstag, 22. November 2022 00:10:25 CET Peter Geis wrote:
-> > > > > On Mon, Nov 21, 2022 at 12:34 PM Ezequiel Garcia
-> > > > > <ezequiel@vanguardiasur.com.ar> wrote:
-> > > > > > On Mon, Nov 21, 2022 at 2:13 PM Shengyu Qu <wiagn233@outlook.com> wrote:
-> > > > > > > I remember someone said that rga2 has only 32bit address space but not
-> > > > > > > having a mmu or mmu needs to be configured. Better ask by yourself in
-> > > > > > > pine64 discord since I'm not sure about that.
-> > > > > > > 于 2022年11月22日 GMT+08:00 上午12:41:16, Michael Tretter <m.tretter@pengutronix.de> 写到:
-> > > > > > > >On Tue, 22 Nov 2022 00:01:28 +0800, Shengyu Qu wrote:
-> > > > > > > >> Someone from pine64 discord found that RGA2 doesn't work properly on over
-> > > > > > > >>
-> > > > > > > >> 4GB memory RK3568 devices. Are you sure current driver works now?
-> > > > > > > >
-> > > > > > > >I am absolutely sure that the driver works on a 2GB ROCK3A board.
-> > > > > > > >Unfortunately, I don't have a device with 4GB or more memory and I cannot test
-> > > > > > > >the driver with such a device.
-> > > > > > > >
-> > > > > > > >As the documentation for the RGA2 is the same in the TRM of the rk3288 and
-> > > > > > > >rk3568, I would guess that the driver doesn't work on a rk3288 with more than
-> > > > > > > >4GB (if there is such a thing) either and the driver needs to be fixed for
-> > > > > > > >both SoCs.
-> > > > > > > >
-> > > > > >
-> > > > > > In any case, if there's some kind of issue it must be in the driver,
-> > > > > > and not in the device tree binding (i.e. this patchset).
-> > > > > 
-> > > > > An unfortunate number of Rockchip drivers break on rk356x boards with
-> > > > > more than 4GB of ram. I've found requesting memory allocations with
-> > > > > the GFP_DMA flag solves the problem, as the kernel only allocates
-> > > > > 32bit addresses for DMA on rk356x. This is similar to the bug with the
-> > > > > ITS MSI allocations.
-> > > > 
-> > > > the problem in this case at least partly seems to be down to the driver
-> > > > assuming 32 bit addresses, see e.g. [1] (if I understand the code
-> > > > correctly) and [2]. When I asked in the #armlinux IRC on Libera.chat
-> > > > about this, Robin Murphy remarked:
-> > > > 
-> > > >   <robmur01> yeesh, the virt_to_phys/dma_sync abuse is even worse
-> > > >   - in that particular instance I'd be inclined to replace
-> > > >   {src,dst}_mmu_pages with proper coherent DMA buffers
-> > > > 
-> > > > So the driver in general needs some cleanup, which contributes to the
-> > > > problem.
-> > > 
-> > > As far as I understand the 4GB are a hardware limitation.
-> > > 
-> > > According to the rk3568 TRM, the RGA2_MMU_SRC_BASE has 28 bits for the upper
-> > > 28 bits of the address of the MMU TLB. Thus the MMU TLB must be located within
-> > > 4GB memory.
-> > > 
-> > > And within the MMU TLB, the addresses are 32 bit as well (unless I am missing
-> > > something important). Unfortunately, I couldn't find any documentation for the
-> > > TLB. The downstream driver writes only 32 bit addresses to the TLB as well.
-> > > Thus, I assume that all video buffers must be located within 4GB memory, too.
-> > > 
-> > > While I agree that the driver needs some cleanup and may use correct types for
-> > > handling the bit size limitation, I think this isn't some driver limitation.
-> > > Maybe the driver should set the dma mask to 32 bits and should be explicitly
-> > > aware of the 32 bit limit.
-> > > 
-> > > > 
-> > > > But as was said, this isn't a problem with the device tree, so it should
-> > > > still make it in. It just means that the driver is broken on 8GB RK356x.
-> > 
-> > Nicolas: Is this your Acked-By?
-> > 
-> > Who would pick up the patch? Heiko?
-> > 
-> > Michael
-> > 
-> 
-> Sure,
-> 
-> Acked-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> 
-> Though I'm not sure how much weight my Acked-by carries here.
-> 
-> For applying the patch, yes that would be done by Heiko.
+[0] https://lore.kernel.org/linux-tegra/20221114124053.1873316-1-waynec@nvidia.com/
 
-Hmm, normally the binding goes through the relevant subsystem tree
-(media in this case), after which I'd normally pick the dts patch.
-Media is always pretty hard, as one never really knows if and when said
-patches get applied.
+Jon Hunter (1):
+  arm64: tegra: Populate USB Type-C Controller for Jetson AGX Orin
 
-I don't really see media-people in the Cc list as well, so don't
-really know what's the plan.
+Wayne Chang (5):
+  dt-bindings: usb: Add Cypress cypd4226 Type-C controller
+  i2c: nvidia-gpu: Add ACPI property to align with device-tree
+  usb: typec: ucsi_ccg: Add OF support
+  i2c: nvidia-gpu: Remove ccgx,firmware-build property
+  usb: typec: ucsi_ccg: Remove ccgx,firmware-build property
 
-I guess you might want to resend with Reviews appended and include
-the media people + list for the binding. (Or I'd need an Ack from
-someone from media for me to take the binding)
+ .../bindings/usb/cypress,cypd4226.yaml        | 86 +++++++++++++++++++
+ .../nvidia/tegra234-p3737-0000+p3701-0000.dts | 14 +++
+ drivers/i2c/busses/i2c-nvidia-gpu.c           |  4 +-
+ drivers/usb/typec/ucsi/ucsi_ccg.c             | 23 ++++-
+ 4 files changed, 121 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
 
-
-Heiko
-
+-- 
+2.25.1
 
