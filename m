@@ -2,173 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DE916734F3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12CF167351E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:09:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbjASKAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 05:00:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37694 "EHLO
+        id S229540AbjASKJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 05:09:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230256AbjASKAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:00:08 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D48FA6D340;
-        Thu, 19 Jan 2023 02:00:06 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id 8A02437DAE;
-        Thu, 19 Jan 2023 10:00:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1674122405; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=WflaWenmJHH4rAhtkZhIjHcrqAF9qidkuyy4Rr5CBd8=;
-        b=AhU/ybjSimvlzIXHPra39UaLHQzGagZb7Cpdf3URHSe8Xr0dGXzI5BDhzPd2jttocKrWym
-        0UFNdcrA/nxlhEsNAQ2Y7DvJ590rmyadgR/HTgQ3WNRjT0+29p47m+morcbQJi2BipdbQu
-        jBBeroX0PjpzXT+lH+oozeNeWSh9KdQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1674122405;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=WflaWenmJHH4rAhtkZhIjHcrqAF9qidkuyy4Rr5CBd8=;
-        b=XVfEjhAUiOjUU4lhVy103ayaLi7ZZFSrVBd+3nqKWdCTBskbIx0LXn1Ix5qNrROxe7skGU
-        odrgdI8OOV0/IVBg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5E802134F5;
-        Thu, 19 Jan 2023 10:00:05 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id An81FqUUyWOBDgAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Thu, 19 Jan 2023 10:00:05 +0000
-Message-ID: <419f18fe-ad37-e6d4-1b8e-51f973f21d22@suse.de>
-Date:   Thu, 19 Jan 2023 11:00:04 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2] of: Fix of platform build on powerpc due to bad of
- disaply code
-Content-Language: en-US
-To:     Michal Suchanek <msuchanek@suse.de>,
-        "Erhard F." <erhard_f@mailbox.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        with ESMTP id S229487AbjASKJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:09:34 -0500
+X-Greylist: delayed 507 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 19 Jan 2023 02:09:32 PST
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72686768A;
+        Thu, 19 Jan 2023 02:09:32 -0800 (PST)
+Received: by soltyk.jannau.net (Postfix, from userid 1000)
+        id 4C68D26F685; Thu, 19 Jan 2023 11:01:04 +0100 (CET)
+Date:   Thu, 19 Jan 2023 11:01:04 +0100
+From:   Janne Grunau <janne@jannau.net>
+To:     Rayyan Ansari <rayyan@ansari.sh>
+Cc:     dri-devel@lists.freedesktop.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
         Javier Martinez Canillas <javierm@redhat.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-References: <20230119095323.4659-1-msuchanek@suse.de>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20230119095323.4659-1-msuchanek@suse.de>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------1TgcrI16NSSsDhFGOmuhbipA"
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        asahi@lists.linux.dev
+Subject: Re: [RFC PATCH] drm/simpledrm: Allow physical width and height
+ configuration via DT
+Message-ID: <20230119100104.GE3576@jannau.net>
+References: <20230118184817.608551-1-rayyan@ansari.sh>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230118184817.608551-1-rayyan@ansari.sh>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------1TgcrI16NSSsDhFGOmuhbipA
-Content-Type: multipart/mixed; boundary="------------jTb7U4Y01UjAcWDHQmJCQQhg";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Michal Suchanek <msuchanek@suse.de>, "Erhard F." <erhard_f@mailbox.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE"
- <devicetree@vger.kernel.org>, linuxppc-dev@lists.ozlabs.org,
- Javier Martinez Canillas <javierm@redhat.com>,
- open list <linux-kernel@vger.kernel.org>,
- Frank Rowand <frowand.list@gmail.com>
-Message-ID: <419f18fe-ad37-e6d4-1b8e-51f973f21d22@suse.de>
-Subject: Re: [PATCH v2] of: Fix of platform build on powerpc due to bad of
- disaply code
-References: <20230119095323.4659-1-msuchanek@suse.de>
-In-Reply-To: <20230119095323.4659-1-msuchanek@suse.de>
+Hej,
 
---------------jTb7U4Y01UjAcWDHQmJCQQhg
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+adding devicetree@vger.kernel.org and asahi@lists.linux.dev to cc:, the 
+former for the obvious devictree/bindings related questions,
+asahi for the prospect of supporting high DPI displays during early boot 
+and in u-boot.
 
-DQoNCkFtIDE5LjAxLjIzIHVtIDEwOjUzIHNjaHJpZWIgTWljaGFsIFN1Y2hhbmVrOg0KPiBU
-aGUgY29tbWl0IDJkNjgxZDZhMjNhMSAoIm9mOiBNYWtlIG9mIGZyYW1lYnVmZmVyIGRldmlj
-ZXMgdW5pcXVlIikNCj4gYnJlYWtzIGJ1aWxkIGJlY2F1c2Ugb2Ygd3JvbmcgYXJndW1lbnQg
-dG8gc25wcmludGYuIFRoYXQgY2VydGFpbmx5DQo+IGF2b2lkcyB0aGUgcnVudGltZSBlcnJv
-ciBidXQgaXMgbm90IHRoZSBpbnRlbmRlZCBvdXRjb21lLg0KPiANCj4gQWxzbyB1c2Ugc3Rh
-bmRhcmQgZGV2aWNlIG5hbWUgZm9ybWF0IG9mLWRpc3BsYXkuTiBmb3IgYWxsIGNyZWF0ZWQN
-Cj4gZGV2aWNlcy4NCj4gDQo+IEZpeGVzOiAyZDY4MWQ2YTIzYTEgKCJvZjogTWFrZSBvZiBm
-cmFtZWJ1ZmZlciBkZXZpY2VzIHVuaXF1ZSIpDQo+IFNpZ25lZC1vZmYtYnk6IE1pY2hhbCBT
-dWNoYW5layA8bXN1Y2hhbmVrQHN1c2UuZGU+DQoNClJldmlld2VkLWJ5OiBUaG9tYXMgWmlt
-bWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4NCg0KVGhhbmtzIGFnYWluIGZvciB0YWtp
-bmcgY2FyZSBvZiB0aGlzIGlzc3VlLg0KDQo+IC0tLQ0KPiB2MjogVXBkYXRlIHRoZSBkZXZp
-Y2UgbmFtZSBmb3JtYXQNCj4gLS0tDQo+ICAgZHJpdmVycy9vZi9wbGF0Zm9ybS5jIHwgMTIg
-KysrKysrKystLS0tDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgNCBk
-ZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL29mL3BsYXRmb3JtLmMg
-Yi9kcml2ZXJzL29mL3BsYXRmb3JtLmMNCj4gaW5kZXggZjJhNWQ2NzlhMzI0Li44YzFiMWRl
-MjIwMzYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvb2YvcGxhdGZvcm0uYw0KPiArKysgYi9k
-cml2ZXJzL29mL3BsYXRmb3JtLmMNCj4gQEAgLTUyNSw3ICs1MjUsOSBAQCBzdGF0aWMgaW50
-IF9faW5pdCBvZl9wbGF0Zm9ybV9kZWZhdWx0X3BvcHVsYXRlX2luaXQodm9pZCkNCj4gICAJ
-aWYgKElTX0VOQUJMRUQoQ09ORklHX1BQQykpIHsNCj4gICAJCXN0cnVjdCBkZXZpY2Vfbm9k
-ZSAqYm9vdF9kaXNwbGF5ID0gTlVMTDsNCj4gICAJCXN0cnVjdCBwbGF0Zm9ybV9kZXZpY2Ug
-KmRldjsNCj4gLQkJaW50IGRpc3BsYXlfbnVtYmVyID0gMTsNCj4gKwkJaW50IGRpc3BsYXlf
-bnVtYmVyID0gMDsNCj4gKwkJY2hhciBidWZbMTRdOw0KPiArCQljaGFyICpvZl9kaXNwbGF5
-X2Zvcm1hdCA9ICJvZi1kaXNwbGF5LiVkIjsNCj4gICAJCWludCByZXQ7DQo+ICAgDQo+ICAg
-CQkvKiBDaGVjayBpZiB3ZSBoYXZlIGEgTWFjT1MgZGlzcGxheSB3aXRob3V0IGEgbm9kZSBz
-cGVjICovDQo+IEBAIC01NTYsNyArNTU4LDEwIEBAIHN0YXRpYyBpbnQgX19pbml0IG9mX3Bs
-YXRmb3JtX2RlZmF1bHRfcG9wdWxhdGVfaW5pdCh2b2lkKQ0KPiAgIAkJCWlmICghb2ZfZ2V0
-X3Byb3BlcnR5KG5vZGUsICJsaW51eCxvcGVuZWQiLCBOVUxMKSB8fA0KPiAgIAkJCSAgICAh
-b2ZfZ2V0X3Byb3BlcnR5KG5vZGUsICJsaW51eCxib290LWRpc3BsYXkiLCBOVUxMKSkNCj4g
-ICAJCQkJY29udGludWU7DQo+IC0JCQlkZXYgPSBvZl9wbGF0Zm9ybV9kZXZpY2VfY3JlYXRl
-KG5vZGUsICJvZi1kaXNwbGF5IiwgTlVMTCk7DQo+ICsJCQlyZXQgPSBzbnByaW50ZihidWYs
-IHNpemVvZihidWYpLCBvZl9kaXNwbGF5X2Zvcm1hdCwgZGlzcGxheV9udW1iZXIrKyk7DQo+
-ICsJCQlpZiAocmV0ID49IHNpemVvZihidWYpKQ0KPiArCQkJCWNvbnRpbnVlOw0KPiArCQkJ
-ZGV2ID0gb2ZfcGxhdGZvcm1fZGV2aWNlX2NyZWF0ZShub2RlLCBidWYsIE5VTEwpOw0KPiAg
-IAkJCWlmIChXQVJOX09OKCFkZXYpKQ0KPiAgIAkJCQlyZXR1cm4gLUVOT01FTTsNCj4gICAJ
-CQlib290X2Rpc3BsYXkgPSBub2RlOw0KPiBAQCAtNTY0LDEwICs1NjksOSBAQCBzdGF0aWMg
-aW50IF9faW5pdCBvZl9wbGF0Zm9ybV9kZWZhdWx0X3BvcHVsYXRlX2luaXQodm9pZCkNCj4g
-ICAJCX0NCj4gICANCj4gICAJCWZvcl9lYWNoX25vZGVfYnlfdHlwZShub2RlLCAiZGlzcGxh
-eSIpIHsNCj4gLQkJCWNoYXIgKmJ1ZlsxNF07DQo+ICAgCQkJaWYgKCFvZl9nZXRfcHJvcGVy
-dHkobm9kZSwgImxpbnV4LG9wZW5lZCIsIE5VTEwpIHx8IG5vZGUgPT0gYm9vdF9kaXNwbGF5
-KQ0KPiAgIAkJCQljb250aW51ZTsNCj4gLQkJCXJldCA9IHNucHJpbnRmKGJ1ZiwgIm9mLWRp
-c3BsYXktJWQiLCBkaXNwbGF5X251bWJlcisrKTsNCj4gKwkJCXJldCA9IHNucHJpbnRmKGJ1
-Ziwgc2l6ZW9mKGJ1ZiksIG9mX2Rpc3BsYXlfZm9ybWF0LCBkaXNwbGF5X251bWJlcisrKTsN
-Cj4gICAJCQlpZiAocmV0ID49IHNpemVvZihidWYpKQ0KPiAgIAkJCQljb250aW51ZTsNCj4g
-ICAJCQlvZl9wbGF0Zm9ybV9kZXZpY2VfY3JlYXRlKG5vZGUsIGJ1ZiwgTlVMTCk7DQoNCi0t
-IA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0Ug
-U29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkg
-TsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOk
-ZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
+On 2023-01-18 18:48:17 +0000, Rayyan Ansari wrote:
+> Hello,
+> The following draft patch adds support for configuring the
+> height-mm and width-mm DRM properties in the simpledrm driver
+> via devicetree.
+> This is useful to get proper scaling in UIs such as Phosh.
+> An example of using this property is this, taken from my local tree:
+> 
+> 		framebuffer0: framebuffer@3200000 {
+> 			compatible = "simple-framebuffer";
+> 			reg = <0x3200000 0x800000>;
+> 			format = "a8r8g8b8";
+> 			width = <720>;
+> 			height = <1280>;
+> 			stride = <(720 * 4)>;
+> 			width-mm = /bits/ 16 <58>;
+> 			height-mm = /bits/ 16 <103>;
+> 
+> 			clocks = <&mmcc MDSS_AHB_CLK>,
+> 				 <&mmcc MDSS_AXI_CLK>,
+> 				 <&mmcc MDSS_BYTE0_CLK>,
+> 				 <&mmcc MDSS_MDP_CLK>,
+> 				 <&mmcc MDSS_PCLK0_CLK>,
+> 				 <&mmcc MDSS_VSYNC_CLK>;
+> 			power-domains = <&mmcc MDSS_GDSC>;
+> 		};
+> 
+> I have tested this on my Lumia 735, and it does indeed
+> allow Phosh to scale correctly on the screen.
+> 
+> However, I would like to get some feedback before I write the
+> documentation.
+> - What data type should be used?
+> 	The width_mm and height_mm properties of the drm_display_mode
+> 	struct are defined as u16. I have also made the devicetree
+> 	properties as the u16 type, but this requires specifying
+> 	"/bits/ 16" before the value. Should u32 be used instead to get
+> 	rid of this? If so, how could the conversion from u32->u16 be
+> 	handled?
 
---------------jTb7U4Y01UjAcWDHQmJCQQhg--
+u32 is the appropriate type. The device tree describes the hardware and 
+not the data types used in a "random" linux driver/subsystem. 65m is 
+probably enough for all practical purposes but u32 is the better choice.  
+Documentation/devicetree/bindings/display/panel/panel-common.yaml 
+already specifies "height-mm" and "width-mm" and all device tree files 
+using this binding code the properties as u32.
 
---------------1TgcrI16NSSsDhFGOmuhbipA
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+We probably do not want add height and width properties to the 
+simple-framebuffer node directly. At least for the static case I would 
+expect that it duplicates information already present in a panel node.  
+For that case parsing the panel dimensions via a phandle reference to 
+that panel node would be preferred.
 
------BEGIN PGP SIGNATURE-----
+I'm not sure if it worth considering the dynamic case. The bootloader 
+may be able to provide dimensions of HDMI, DP, ...  connected displays 
+from the EDID. In that case "height-mm" and "width-mm" properties would 
+make sense.
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPJFKQFAwAAAAAACgkQlh/E3EQov+Bl
-FhAAtOe4ycE6kKlY8LfRKDUIhrgZoSO+CL2P7edV0ZvkvTVbV+lE1O8J/RX4FFxPKf7wCymLaet0
-VRuITaF673lZ2qBvajuKQYQx1ehf3MgIfE/GpKfIznEO54nmUQi12XyjlHXdiibwZAW2iojZUzgd
-WS/6YLoY6XiKukAVQ9Ysl7D7spjTSZOCwTkuFMzwbXGrHfoGK1TZoyxdrVG5iKvSrDtlfcNK9Feu
-k8Isi9awo6W6/Nb9KBmJmGnU6OXU2y5HwUJ1aSZrIEl+9VSXZerPv89dQfp+yxOJ2UopvUSrxX+P
-aORjGcJUPYoOxHeVa/af+aoe+DfFNrOHYhr1UMxz9gcHhRJ4aPRxGatv3rbuJFfamdW6hP9l7Kap
-KSWB5ap7v8+Ut89A/FyAUua9LoR0fJby9ZMpnL4KO7KswEaMlULlmPfn4WujbheA5MnKwU03e/UF
-YPrfTPR08OO/71E5AMjkIu+JisHafU+QbKt69qomWIEtIYhNsA1DElvmLNu4XBZyKu2gieUtuNnp
-VjVPUgzGQp1Me0nGodY314YyrvP7gtgh5xYfkLmR4rK1jSJCMXcGKQ+biZk+dckTLwd5ELT7mInX
-il31rNetQeoqFPKL3jEzblZTceimLqsQvlzioR6EMKLqFM07sWbwd0Fj4jBXrlPh9LOTITJBCyAA
-DA8=
-=REm2
------END PGP SIGNATURE-----
+The existing panel drivers seem to ignore the u32 -> u16 conversion 
+problem.
 
---------------1TgcrI16NSSsDhFGOmuhbipA--
+> - Style?
+> 	I have split the arguments to the DRM_MODE_INIT macro across
+> 	multiple lines to increase readability. I'm not sure if this
+> 	is the correct style though.
+
+I think the code would be more readable if width_mm and height_mm would 
+be calculated outside of DRM_MODE_INIT if they are zero.
+
+> - Anything else?
+> 	This is my first time writing code for a Linux driver, so I
+> 	would be grateful if you have any suggestions for improvements.
+
+Documentation/devicetree/bindings/display/simple-framebuffer.yaml needs 
+to be updates to list and document the properties added to the node.
+
+> ---
+>  drivers/gpu/drm/tiny/simpledrm.c | 49 +++++++++++++++++++++++++++-----
+>  1 file changed, 42 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/tiny/simpledrm.c b/drivers/gpu/drm/tiny/simpledrm.c
+> index 162eb44dcba8..92109f870b35 100644
+> --- a/drivers/gpu/drm/tiny/simpledrm.c
+> +++ b/drivers/gpu/drm/tiny/simpledrm.c
+> @@ -116,6 +116,15 @@ simplefb_get_format_pd(struct drm_device *dev,
+>  	return simplefb_get_validated_format(dev, pd->format);
+>  }
+>  
+> +static void
+> +simplefb_read_u16_of_optional(struct drm_device *dev, struct device_node *of_node,
+> +		     const char *name, u16 *value)
+> +{
+> +	int ret = of_property_read_u16(of_node, name, value);
+> +	if (ret)
+> +		value = 0;
+> +}
+> +
+>  static int
+>  simplefb_read_u32_of(struct drm_device *dev, struct device_node *of_node,
+>  		     const char *name, u32 *value)
+> @@ -184,6 +193,21 @@ simplefb_get_format_of(struct drm_device *dev, struct device_node *of_node)
+>  	return simplefb_get_validated_format(dev, format);
+>  }
+>  
+> +static u16
+> +simplefb_get_width_mm_of(struct drm_device *dev, struct device_node *of_node)
+> +{
+> +	u16 width_mm;
+> +	simplefb_read_u16_of_optional(dev, of_node, "width-mm", &width_mm);
+> +	return width_mm;
+> +}
+> +
+> +static u16
+> +simplefb_get_height_mm_of(struct drm_device *dev, struct device_node *of_node)
+> +{
+> +	u16 height_mm;
+> +	simplefb_read_u16_of_optional(dev, of_node, "height-mm", &height_mm);
+> +	return height_mm;
+> +}
+
+I don't think it makes sense to have these two mostly identical wrapper 
+functions. Please pass the name of the property as parameter. It could 
+make sense to have a function to both height and width. I think we 
+should ignore both height and width if one fails to parse or is 0.
+That could of course also be done in simpledrm_mode() for example like:
+
+|	if (!width_mm || !height_mm) {
+|		width_mm = DRM_MODE_RES_MM(width, 96ul);
+|		height_mm = DRM_MODE_RES_MM(height, 96ul);
+|	}
+
+>  /*
+>   * Simple Framebuffer device
+>   */
+> @@ -599,16 +623,24 @@ static const struct drm_mode_config_funcs simpledrm_mode_config_funcs = {
+>   */
+>  
+>  static struct drm_display_mode simpledrm_mode(unsigned int width,
+> -					      unsigned int height)
+> +					      unsigned int height,
+> +					      u16 width_mm,
+> +					      u16 height_mm)
+>  {
+>  	/*
+> -	 * Assume a monitor resolution of 96 dpi to
+> -	 * get a somewhat reasonable screen size.
+> +	 * Assume a monitor resolution of 96 dpi if physical
+> +	 * dimensions are not specified to get a somewhat reasonable
+> +	 * screen size.
+>  	 */
+> +
+>  	const struct drm_display_mode mode = {
+> -		DRM_MODE_INIT(60, width, height,
+> -			      DRM_MODE_RES_MM(width, 96ul),
+> -			      DRM_MODE_RES_MM(height, 96ul))
+> +		DRM_MODE_INIT(
+> +			60,
+> +			width,
+> +			height,
+> +			(width_mm ? width_mm : DRM_MODE_RES_MM(width, 96ul)),
+> +			(height_mm ? height_mm : DRM_MODE_RES_MM(height, 96ul))
+> +			)
+>  	};
+>  
+>  	return mode;
+> @@ -622,6 +654,7 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
+>  	struct simpledrm_device *sdev;
+>  	struct drm_device *dev;
+>  	int width, height, stride;
+> +	u16 width_mm, height_mm;
+
+these need to be initialized to 0 otherwise they may end up used 
+unitialized if pd is not NULL.
+
+>  	const struct drm_format_info *format;
+>  	struct resource *res, *mem;
+>  	void __iomem *screen_base;
+> @@ -676,6 +709,8 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
+>  		format = simplefb_get_format_of(dev, of_node);
+>  		if (IS_ERR(format))
+>  			return ERR_CAST(format);
+> +		width_mm = simplefb_get_width_mm_of(dev, of_node);
+> +		height_mm = simplefb_get_height_mm_of(dev, of_node);
+>  	} else {
+>  		drm_err(dev, "no simplefb configuration found\n");
+>  		return ERR_PTR(-ENODEV);
+> @@ -686,7 +721,7 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
+>  			return ERR_PTR(-EINVAL);
+>  	}
+>  
+> -	sdev->mode = simpledrm_mode(width, height);
+> +	sdev->mode = simpledrm_mode(width, height, width_mm, height_mm);
+>  	sdev->format = format;
+>  	sdev->pitch = stride;
+
+Janne
