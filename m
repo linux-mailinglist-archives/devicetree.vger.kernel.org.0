@@ -2,112 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80180673D1E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:09:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C2C2673D28
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:10:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbjASPJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 10:09:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50192 "EHLO
+        id S229918AbjASPKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 10:10:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjASPJc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:09:32 -0500
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EAFB64DBF
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:09:31 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 617415C009E;
-        Thu, 19 Jan 2023 10:09:28 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 19 Jan 2023 10:09:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1674140968; x=1674227368; bh=93MK1e9ilZ
-        3paFDFGrXMn6AVbSKSvQpQ50BYcz3A68s=; b=HiTx94/J6ekTZROPZlwRoFCM0O
-        6rmOcL1zuj+XWZAnkM/gV2bNAdK/9Z6d/tGVpuYZ9W8RIqMIdpUIXvQn0A+O89/b
-        /A8Na35e9kqYQPV0ckOIDlGS+7vHFbdj1BRfBbEnXz7NQPKCVewov6Z755wAfiP6
-        ZKHvwuQnKNJf+e4/nIdc3ke0qJUKTtJ6SbkzX319L5yChf2sRrzOp5W77Bg6QgpV
-        B16Ng6D0KNlbsW3niaLjwfIl3FphacGUCbjFGV46GqT/kHQYiUvmw+lcyYvHUNn3
-        gXqMY2AUIkl1Rm08scXOwdEMZOM7UqnVz2CSQW3gb9lew2fKJSCpJF4Y/qfg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1674140968; x=1674227368; bh=93MK1e9ilZ3paFDFGrXMn6AVbSKS
-        vQpQ50BYcz3A68s=; b=KmCQAc1G8LO5Dbj834YAx7mTgg6KVRw6EgJJcfRkeZ0T
-        m4EeKlAPxRqQiml01IRMZOWb5BdtKUzGq18cvrdnoBvr/+LYZMsmS478MSfuBfIm
-        jmoOpKCXuQLONnNmS8lUpRtUoGWL7SIGW4NrYAbSG/LUqVdwqHh2UhsH/VpkGcMM
-        mQyZyNVUgPIBiwm8QaG2J5Okbv3ku2kS+QI3CAqVQoITOomScoEVUloSDNgeKOYj
-        9i17A9BfLirIPt8ppLIWIJW8gTOFGEDevLZq9f0sqtGOiEetrBGotX4FZJjjIzMt
-        5M4fnFwUAoqiXAauhs79ac1S298Ivw72qNFxbHlraA==
-X-ME-Sender: <xms:J13JYyI1X5vpJwSghC0-Ri1b1CGN811o1k506xs5yl_TAIViPka6iQ>
-    <xme:J13JY6JHlHAjlToIqxzmSypz1pphqXpzO_vVyk1NeQjXUvqS39xph4zw_dRUgcllR
-    U78ssJoczQUrH6L_5c>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddutddgjeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:J13JYytkNqQnjHWpPHA-KepXyTz4tv-Evc4uIG75UWhdvn2LYQ2SjA>
-    <xmx:J13JY3a0rq9BzPnVwbIhmCCLSmJJuJ6owhigvjiIMDQPkREmyzQXmw>
-    <xmx:J13JY5aekLBUsBUZceqXVy6pei8XlzWW9Bd4P_bkRypWh1QNyAt8rQ>
-    <xmx:KF3JY7neURukhGOShGrfcMpvW2_A8jueEmYexJH8FoVO-yeeGGHI9g>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id D9737B60086; Thu, 19 Jan 2023 10:09:27 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
-Mime-Version: 1.0
-Message-Id: <f1de9cd9-a163-4b56-adf8-319eaf85e38e@app.fastmail.com>
-In-Reply-To: <20230119144236.3541751-10-alexander.stein@ew.tq-group.com>
-References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
- <20230119144236.3541751-10-alexander.stein@ew.tq-group.com>
-Date:   Thu, 19 Jan 2023 16:09:05 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Alexander Stein" <alexander.stein@ew.tq-group.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Olof Johansson" <olof@lixom.net>,
-        "Shawn Guo" <shawnguo@kernel.org>, "Li Yang" <leoyang.li@nxp.com>,
-        "Russell King" <linux@armlinux.org.uk>,
-        "Marek Vasut" <marex@denx.de>,
-        "Marcel Ziswiler" <marcel.ziswiler@toradex.com>
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 9/9] [DNI] ARM: multi_v7_defconfig: Enable CONFIG_ARM_LPAE for
- multi_v7_config
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230148AbjASPKR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:10:17 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2347A71795;
+        Thu, 19 Jan 2023 07:10:11 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id v5so3244704edc.3;
+        Thu, 19 Jan 2023 07:10:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b3hWPa5eaE1VlRQVh/vMNXzrQxeXSBHyXqQOtX9y708=;
+        b=e0fz5LvLSsENChDm0SAC0yL0oNM0POBFQiCdbDweehEDuMJIEONyAGgtdUPGFCiqqR
+         Id/h6C/GazpqSxZamu9mjDNvex5dlA4fvF0jc+PtHw3gABqKvJPtUMEVkOcXcj8J1AAR
+         PLnRLIaYYudfxKXoyTbYwC728sbH/Vp/SYtuqM2fpiS+nF//YyLm6+ZVhWrxrT4Q0hRY
+         a0hOqlk1Pq1a/Ske4YxV88ZkoibTzl5/lm2iQWzGROYUNhTFj+PXvZ5oyDZul+1npUtc
+         /aWgddo2LOXbI2ntusjEDbihUUDWi123jkrB+cgnn/akq4wL7jLWwAljnm3yAd/mP764
+         vDEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b3hWPa5eaE1VlRQVh/vMNXzrQxeXSBHyXqQOtX9y708=;
+        b=IGSTwekJcpUxLLTe01WpSCQQrqWaq/qaz5N9rRK79cSR5YRAO57hhk7k2qnhuxHKlz
+         pqybxq4UsydcnrSEWCXHtqOJBwuKwr23/jmulf61N2higJWt9DG8tMQ8xGvHoG/jDYu/
+         5LKh10v2UfhVxrj9Zdua+7ZYIc7xe1vM+9jTOy+AhePvcyDeK+2uftOQbGK8N66lSm2+
+         t5xXzrnxWi9hF3IJNtYmU53aBsz1eADyMBIF5uGrfJYfsaL2pfpzd9Ij6GkpC6Es/7hD
+         GX0LqUpQpK15xIMfHe6F4arKinjABmo+tvLujQsFSH/VRPnvpPD1oxHWHkqpt7ZMbgRO
+         exTw==
+X-Gm-Message-State: AFqh2kpI7Vw7IbhzcFH+XSSls+n75qYoMHnutYtlSAsbBxrL/afv43/D
+        ezYpIdRtu7GBUCJPMVfa7GE=
+X-Google-Smtp-Source: AMrXdXsTwyv07suDfVAoeVH9mB1DXCTlXvaAj3SNIzmRc1ujB0XCruBScq2XQFPO2DZi0mB2a8FvoA==
+X-Received: by 2002:aa7:c994:0:b0:499:bf81:be6 with SMTP id c20-20020aa7c994000000b00499bf810be6mr12264790edt.37.1674141009481;
+        Thu, 19 Jan 2023 07:10:09 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id d9-20020a1709063ec900b007c0d6b34d54sm16278717ejj.129.2023.01.19.07.10.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 07:10:08 -0800 (PST)
+Date:   Thu, 19 Jan 2023 16:10:07 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     David Airlie <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 8/8] arm64: tegra: Add simple framebuffer on Jetson
+ Xavier NX
+Message-ID: <Y8ldT2CdwFpNAZoB@orome>
+References: <20221117184039.2291937-1-thierry.reding@gmail.com>
+ <20221117184039.2291937-9-thierry.reding@gmail.com>
+ <12cff1b1-b8dc-7fb4-2228-8af4b30c09c5@suse.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="bQw0EXWTigETpFy5"
+Content-Disposition: inline
+In-Reply-To: <12cff1b1-b8dc-7fb4-2228-8af4b30c09c5@suse.de>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023, at 15:42, Alexander Stein wrote:
-> This is necessary to support PCIe on LS1021A.
->
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Can you explain why this is actually required? I can see that the
-ranges in the PCIe device point to a high address (0x4000000000,
-2^40), but I can't tell if this is hardwired in the SoC or a
-setting that is applied by software (either the bootloader or
-the PCIe driver).
+--bQw0EXWTigETpFy5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If you can reprogram the memory map, I would expect this to fit
-easily into the 32-bit address space, with 1GB for DDR3 memory
-and 1GB for PCIe BARs.
+On Tue, Jan 17, 2023 at 03:55:21PM +0100, Thomas Zimmermann wrote:
+> Hi
+>=20
+> Am 17.11.22 um 19:40 schrieb Thierry Reding:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Add the framebuffer carveout reserved memory node as well as a simple-
+> > framebuffer node that is used to bind to the framebuffer that the
+> > bootloader has set up.
+>=20
+> I don't know about the current status of this patchset, but feel free to
+> send whatever update you have.
 
-I don't mind having a defconfig with LPAE enabled, I think this
-can be done using a Makefile target that applies a config
-fragment on top of the normal multi_v7_defconfig, you can find
-some examples in arch/powerpc/configs/*.config.
+Sorry, got side-tracked a few times during the last few weeks. I've had
+to rework some parts of this for the recent changes to the format
+helpers, but nothing major. I'll send out the updated version shortly
+once I've tested all cases.
 
-   Arnd
+Thierry
+
+--bQw0EXWTigETpFy5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPJXU4ACgkQ3SOs138+
+s6Hlww/+IzPc1AX147Ir+grpgjfk1Xmbl2ycd89CjRpRo6yWlN4RZ8Yuc9D8nWjI
+oed/TJUnvyih1nZwL6OrqR2m1H9yo2fE10w9bRCTO4dde/4p0H+8oKJbOSyLnzFk
+y7e7QaJXGqZWOj9wl6g1ba1aqnRPsucDfpwXQcf8xHuhcHuZZtBAJCAJ6sV6aC97
++2IGqM6ExaLhEw8CIB6EFpl2r/SA0ig/qrEQhZ/YqqZNw/TShUlNs++C1HH9CN3X
+hVMBe4IoK28yuAfg+P95ESHdF3V9sqi4j9bUtc7cpTFu2+7HwRBzeePA0bEtsMIm
+AKknYPEM+fKfT0K2MrcAm9VNzGLaFhuAaq20O5VK/cm1SCCBCMEgpyw38w51pOBh
+P6i+zZHDub/lRsPP/mOfM1yKD9HvbKLMH4jsKnhivD1o3eMOY3XWC6mpCXjyXlaV
+4kB+EdmcLB/a9rFU4YClFIASgeruC6oQOyfcKgAXpFer9FarKzyxLGjNNUnz4eHw
+QTucGI0Lwzubyws7HfhFgbexIRHQrI0U3iSJ7j9dc9iiC6V8Nu9pkvQQuBfLU62B
+D0VyuqOp/Y7sVFQL7fLIqXVrJ9wr/IrmDRVo3ylbQX8Xs4AoqtGyQwUTd/59Jsb7
+MoYbuKJPP+qQBesE2cY2hhS+LfpIIP5RdP2VUe6knqEA8ercDRI=
+=c2qP
+-----END PGP SIGNATURE-----
+
+--bQw0EXWTigETpFy5--
