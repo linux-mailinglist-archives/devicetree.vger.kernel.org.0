@@ -2,123 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2B886734D0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 10:53:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E7996734E8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 10:59:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbjASJxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 04:53:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33706 "EHLO
+        id S229937AbjASJ7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 04:59:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbjASJxs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 04:53:48 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 315D15D106;
-        Thu, 19 Jan 2023 01:53:47 -0800 (PST)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id D8E7E38562;
-        Thu, 19 Jan 2023 09:53:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1674122025; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=K5Wjtf9hLzRkuQgSxBaDv2x2hWptBx8DnMTdLdxBFys=;
-        b=JmeRmKIxA6LcTyfKL46wUKQQNW++j5YCwI2EWzrWqc5lJBCJIisF2fK988F9sSL9hOiPLb
-        7VDN++/nwTj39/JeiH2rRbyjjJ3Lybm1hAjvfdiXu1dj6hmt2KO/8opk+B/kYdfQBKc4K1
-        hK5CGO2UJtE0+0SnXEbldehQ/6TlDAY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1674122025;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=K5Wjtf9hLzRkuQgSxBaDv2x2hWptBx8DnMTdLdxBFys=;
-        b=W4gz9+a1bRbUTmeUmj43HT5F78l511dttU0eg+3fYuLsqWanKN8UgFIovvKDV5LDR+eYhH
-        +5jwqSM1gnnDzMDw==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        by relay2.suse.de (Postfix) with ESMTP id A9E912C141;
-        Thu, 19 Jan 2023 09:53:45 +0000 (UTC)
-From:   Michal Suchanek <msuchanek@suse.de>
-To:     "Erhard F." <erhard_f@mailbox.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Michal Suchanek <msuchanek@suse.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>, linuxppc-dev@lists.ozlabs.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH v2] of: Fix of platform build on powerpc due to bad of disaply code
-Date:   Thu, 19 Jan 2023 10:53:23 +0100
-Message-Id: <20230119095323.4659-1-msuchanek@suse.de>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20230118215045.5551-1-msuchanek@suse.de>
-References: 
+        with ESMTP id S229752AbjASJ7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 04:59:04 -0500
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A064B53E41;
+        Thu, 19 Jan 2023 01:59:03 -0800 (PST)
+Received: by mail-qk1-x72f.google.com with SMTP id u7so884592qkk.10;
+        Thu, 19 Jan 2023 01:59:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7+Zs6gnnTdAd+D97a2ATi7zK4ycLCkd6CidyqSInY1Y=;
+        b=UVB6W5a+FK5ArV85JrvGH+fE1PJJGKjDzgy1NM486w13TwHk09pj5TYZLiLQrOF1b4
+         MS3WsRoatTuycWVrj1100PTaERrfi7aWgxiHRIleKWvWpWwjbpK1V6ystWsu6+C4crzv
+         uzOwMMGk8+L776v0tHNMH8NOcC0DdlaNDijt6y3Nq2aB+xp9ljnxGEpszBfOdrspGRRl
+         7nvxbGmx55WuywyrJyfoUykAmn6yFSwHMf1kb8iwc/mrrZymEpEJBizZlT+jupS8NUIt
+         JtUpRQ5rJnOgHxXQj6/lTFlLpSjm+FrFhzEwbUTKK2IvDwrlBw77W7v/J5FNOV1WtmFs
+         3X7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7+Zs6gnnTdAd+D97a2ATi7zK4ycLCkd6CidyqSInY1Y=;
+        b=4yYeCSwRykGF4aXE02uVmJDyCAIIovgchOeGY78P4vKKmFCm3Up0zImd1KNYQXL2FG
+         ZwpDMkqfwA/ibMJSFMta5cXeKSUkY8QrXl6DEocVbOxccTtXq1pg2wscwmx+/2voxaRw
+         ECnTdyQKWsaWcdgw6VfaGNtxsfnwVJgwJPRP0TVdgoC3Tkl95ighzkIl5x8j5RYduu/v
+         MDWCtPy6i8I5DBkazwSfV8s86Jlt5GT2k21JqX5+IV6+CVmmAJMhrPn+YFX5/iI9Bq8+
+         +WUYi8aWu8u2YZcYaPiRmLIxGpx2A1qxmOQcHZuTTpgejwPXLvSsZXVmS7gG0ln0tHyN
+         IRVw==
+X-Gm-Message-State: AFqh2koj4hbNC21N8JEcqyGNpjA/8quk2rAakVorDhIexG9+FIh6d7Zu
+        0T15XWplC+VwIEWlbVvZEVZ7q3F4lDPbAISn0rg=
+X-Google-Smtp-Source: AMrXdXuo4ZrtXMR/Q2FSoFIwK22LeSmwFHyHKtY1qPpJwahsDcF2y2KerSe48P74eOdW7USYk6MQHUExeU9LjMrUSIQ=
+X-Received: by 2002:a05:620a:56d:b0:706:5fba:6192 with SMTP id
+ p13-20020a05620a056d00b007065fba6192mr581153qkp.383.1674122342460; Thu, 19
+ Jan 2023 01:59:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230119035136.21603-1-blarson@amd.com> <20230119035136.21603-12-blarson@amd.com>
+In-Reply-To: <20230119035136.21603-12-blarson@amd.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 19 Jan 2023 11:58:26 +0200
+Message-ID: <CAHp75VfurZMfRbqDt7WRY368uu4NM3r2a6SDCogOukBZN5J8yQ@mail.gmail.com>
+Subject: Re: [PATCH v9 11/15] spi: dw: Add support for AMD Pensando Elba SoC
+To:     Brad Larson <blarson@amd.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
+        adrian.hunter@intel.com, alcooperx@gmail.com, arnd@arndb.de,
+        brad@pensando.io, brendan.higgins@linux.dev,
+        briannorris@chromium.org, brijeshkumar.singh@amd.com,
+        catalin.marinas@arm.com, davidgow@google.com, gsomlo@gmail.com,
+        gerg@linux-m68k.org, krzk@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
+        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
+        robh+dt@kernel.org, samuel@sholland.org, fancer.lancer@gmail.com,
+        skhan@linuxfoundation.org, suravee.suthikulpanit@amd.com,
+        thomas.lendacky@amd.com, tonyhuang.sunplus@gmail.com,
+        ulf.hansson@linaro.org, vaishnav.a@ti.com, will@kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit 2d681d6a23a1 ("of: Make of framebuffer devices unique")
-breaks build because of wrong argument to snprintf. That certainly
-avoids the runtime error but is not the intended outcome.
+On Thu, Jan 19, 2023 at 5:52 AM Brad Larson <blarson@amd.com> wrote:
+>
+> The AMD Pensando Elba SoC includes a DW apb_ssi v4 controller
+> with device specific chip-select control.  The Elba SoC
+> provides four chip-selects where the native DW IP supports
+> two chip-selects.  The Elba DW_SPI instance has two native
+> CS signals that are always overridden.
 
-Also use standard device name format of-display.N for all created
-devices.
+...
 
-Fixes: 2d681d6a23a1 ("of: Make of framebuffer devices unique")
-Signed-off-by: Michal Suchanek <msuchanek@suse.de>
----
-v2: Update the device name format
----
- drivers/of/platform.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+> +struct dw_spi_elba {
+> +       struct regmap *syscon;
+> +};
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index f2a5d679a324..8c1b1de22036 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -525,7 +525,9 @@ static int __init of_platform_default_populate_init(void)
- 	if (IS_ENABLED(CONFIG_PPC)) {
- 		struct device_node *boot_display = NULL;
- 		struct platform_device *dev;
--		int display_number = 1;
-+		int display_number = 0;
-+		char buf[14];
-+		char *of_display_format = "of-display.%d";
- 		int ret;
- 
- 		/* Check if we have a MacOS display without a node spec */
-@@ -556,7 +558,10 @@ static int __init of_platform_default_populate_init(void)
- 			if (!of_get_property(node, "linux,opened", NULL) ||
- 			    !of_get_property(node, "linux,boot-display", NULL))
- 				continue;
--			dev = of_platform_device_create(node, "of-display", NULL);
-+			ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
-+			if (ret >= sizeof(buf))
-+				continue;
-+			dev = of_platform_device_create(node, buf, NULL);
- 			if (WARN_ON(!dev))
- 				return -ENOMEM;
- 			boot_display = node;
-@@ -564,10 +569,9 @@ static int __init of_platform_default_populate_init(void)
- 		}
- 
- 		for_each_node_by_type(node, "display") {
--			char *buf[14];
- 			if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
- 				continue;
--			ret = snprintf(buf, "of-display-%d", display_number++);
-+			ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
- 			if (ret >= sizeof(buf))
- 				continue;
- 			of_platform_device_create(node, buf, NULL);
+Why can't struct regmap be used directly?
+
+...
+
+> +static void dw_spi_elba_override_cs(struct dw_spi_elba *dwselba, int cs, int enable)
+> +{
+> +       regmap_update_bits(dwselba->syscon, ELBA_SPICS_REG, ELBA_SPICS_MASK(cs),
+> +                          ELBA_SPICS_SET(cs, enable));
+
+> +
+
+Redundant blank line.
+
+> +}
+
+...
+
+> +               dev_err(&pdev->dev, "failed to find %s\n", syscon_name);
+> +               return -ENODEV;
+
+return dev_err_probe();
+
+...
+
+> +               dev_err(&pdev->dev, "syscon regmap lookup failed\n");
+> +               return PTR_ERR(regmap);
+
+Ditto.
+
 -- 
-2.35.3
-
+With Best Regards,
+Andy Shevchenko
