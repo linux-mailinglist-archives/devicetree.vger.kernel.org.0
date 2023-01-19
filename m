@@ -2,163 +2,351 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70E5B673706
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:35:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 689CE6737C0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 13:01:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230505AbjASLft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 06:35:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
+        id S229954AbjASMBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 07:01:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230421AbjASLfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:35:39 -0500
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4092B83;
-        Thu, 19 Jan 2023 03:35:29 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id A9052E0012;
-        Thu, 19 Jan 2023 11:35:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674128128;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9b4Gd71VIpRzmWAFvIEX9qIOF0R0AhLHNhOUdNP3BeY=;
-        b=dwQEieih0KVf2hhXRvwQq0Dfw9zd0/0j7TapWPquKpkqFdrH1zKD/aKuctuBVhciWWfqMi
-        isuP5qMq4WOLwJ4n0SLcsXDH51ybVlGZfVeKOC2QqqzXs0Dj2eBiXyRmD6czMihTluHhJi
-        r35o/pZRGJooSKyOtcPzL2ucsqvfzHQ120rM4A5gMMyXGO1guHYDp+UsEoBd0N8R4d+KGi
-        XtWhPtJGMvBy+sAc9R4EhQSjcbcLmPlQ4ubJ2ylTLx2FBxMXmCnpU/eovi2ZVBg2/csI35
-        ecMDVy8a/qHpzX9LBJsiD2jvxhlwoPJJU+JxNGtBio8F0yVjKedBxw+IaGjkKA==
-Date:   Thu, 19 Jan 2023 12:35:20 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230243AbjASMAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 07:00:55 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB1C59251
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 04:00:44 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id b7so1630057wrt.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 04:00:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=vGhIkmV1Mg5mNM04dUi+JtodrePHaCkSPqrX88wSfSg=;
+        b=p5o4ZpD1aUW3PcV63Vrgja65ZwshpeLx1kn/CB4pG7R7haBNsptV/2h9SjVp/Y1ohK
+         gFPLhpCUMbtLP4F+EuqWLAjWfHdOJ1TbPnTmicJ2vBd9Oa5Y9PTnvh/IufMB5ZEjFs18
+         nAjG2ZxmuCKNvQyPdurcvMMMD24FeZXH5rMcJSf4xrk6IM5aseQMPPUfVWjJ0ZPf1PrT
+         KHn3WM7Ns5yy/MG7IYvfEh8o/KBN2e0niu7VvAPfb+nsGrVTijCBj2k0RQYMrcwO4APC
+         5wnWhjP+pKN2eFBVqw/BxWugdYfwN71BmLoOtaiSxdVOEZgeZ5I6T0KCv29h8rW2eJlv
+         LK2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vGhIkmV1Mg5mNM04dUi+JtodrePHaCkSPqrX88wSfSg=;
+        b=5ZnN9lBm5SSBNmEIAX7bd6QzC4z7KyeDePiKM1KPRYRb4hFT3nXjtFkjWLr7OB3AH9
+         GPA3fCQ6Go1uQ/QpjZy77oIOe3YcP3Xf+h2V61obJaI+y3Nm2yYx+vcJYc3nb5782vzX
+         67dBoSq5tlcHhCQ7MU2MJGlxhVSIiuTkj9hZjL7ivSwyuUJi/ME0xDSKJoO4DfXwCCQZ
+         kVKCfKhT7huEIUOzUtWLa9WmUCMH+V4KkZK4ps2KYpx7XJNRKewduiOCW4oqy4azmuTQ
+         vpTZo8WHISy4+25horM+1mPcz/XPU1DysEDoDXaM2PP2WF80WaE56Zyv9pHH2uR/1Vwc
+         x9wA==
+X-Gm-Message-State: AFqh2kp6lHXyRZ71ggXCnDO572+F1GSPKekXFuGeHLwWmA1hazEEr8tg
+        s6PWUKgvoluv5pn+60WOz9H96dY16YaBshNa
+X-Google-Smtp-Source: AMrXdXvE6zeWlw2COOPr4i3Zcc8CGy1UYJgXpOyXeL5P/Vz7p5Rm9U/wVBzw89FTf13sxsjk/VqjdA==
+X-Received: by 2002:a5d:674a:0:b0:2bb:e864:7a30 with SMTP id l10-20020a5d674a000000b002bbe8647a30mr9658049wrw.32.1674129643006;
+        Thu, 19 Jan 2023 04:00:43 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id b16-20020adff910000000b002bdf8dd6a8bsm11591895wrr.80.2023.01.19.04.00.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 04:00:41 -0800 (PST)
+References: <20230116074214.2326-1-yu.tu@amlogic.com>
+ <20230116074214.2326-4-yu.tu@amlogic.com>
+User-agent: mu4e 1.8.10; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?UTF-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-Subject: Re: [PATCH v7 1/7] i2c: add I2C Address Translator (ATR) support
-Message-ID: <20230119123520.7f1aa680@booty>
-In-Reply-To: <db2e7386-e625-5bad-0c99-bae633e96d80@ideasonboard.com>
-References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
-        <20230118124031.788940-2-tomi.valkeinen@ideasonboard.com>
-        <Y8gA+cz9m7PaEhfP@smile.fi.intel.com>
-        <20230118181753.7a325953@booty>
-        <Y8gu4mlXUlyiFKZD@smile.fi.intel.com>
-        <20230119092115.02cbbab3@booty>
-        <db2e7386-e625-5bad-0c99-bae633e96d80@ideasonboard.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
+        "qi . duan" <qi.duan@amlogic.com>
+Subject: Re: [PATCH V6 3/3] clk: meson: s4: add support for Amlogic S4 SoC
+ peripheral clock controller
+Date:   Thu, 19 Jan 2023 12:37:20 +0100
+In-reply-to: <20230116074214.2326-4-yu.tu@amlogic.com>
+Message-ID: <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi, Andy,
 
-On Thu, 19 Jan 2023 12:09:57 +0200
-Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
+On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
 
-> On 19/01/2023 10:21, Luca Ceresoli wrote:
-> 
-> <snip>
-> 
-> >>>>> +void i2c_atr_set_driver_data(struct i2c_atr *atr, void *data)
-> >>>>> +{
-> >>>>> +	atr->priv = data;
-> >>>>> +}
-> >>>>> +EXPORT_SYMBOL_NS_GPL(i2c_atr_set_driver_data, I2C_ATR);
-> >>>>> +
-> >>>>> +void *i2c_atr_get_driver_data(struct i2c_atr *atr)
-> >>>>> +{
-> >>>>> +	return atr->priv;
-> >>>>> +}
-> >>>>> +EXPORT_SYMBOL_NS_GPL(i2c_atr_get_driver_data, I2C_ATR);  
-> >>>>
-> >>>> Just to be sure: Is it really _driver_ data and not _device instance_ data?  
-> >>>
-> >>> It is device instance data indeed. I don't remember why this got
-> >>> changed, but in v3 it was i2c_atr_set_clientdata().  
-> >>
-> >> It's me who was and is against calling it clientdata due to possible
-> >> confusion with i2c_set/get_clientdata() that is about *driver data*.
-> >> I missed that time the fact that this is about device instance data.
-> >> I dunno which name would be better in this case, i2c_atr_set/get_client_priv() ?  
-> > 
-> > Not sure I'm following you here. The i2c_atr_set_clientdata() name was
-> > given for similarity with i2c_set_clientdata(). The latter wraps
-> > dev_set_drvdata(), which sets `struct device`->driver_data. There is
-> > one driver_data per each `struct device` instance, not per each driver.
-> > The same goes for i2c_atr_set_driver_data(): there is one priv pointer
-> > per each `struct i2c_atr` instance.  
-> 
-> I'm a bit confused. What is "driver data" and what is "device instance 
-> data"?
-> 
-> This deals with the driver's private data, where the "driver" is the 
-> owner/creator of the i2c-atr. The i2c-atr itself doesn't have a device 
-> (it's kind of part of the owner's device), and there's no driver in 
-> i2c-atr.c
-> 
-> I don't like "client" here, as it reminds me of i2c_client (especially 
-> as we're in i2c context).
-> 
-> What about i2c_atr_set_user_data()? Or "owner_data"?
+> Add the peripherals clock controller driver in the s4 SoC family.
+>
+> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 
-Ah, only now I got the point Andy made initially about "client" not
-being an appropriate word.
+[...]
 
-In i2c we have:
+> +
+> +/* Video Clocks */
+> +static struct clk_regmap s4_vid_pll_div = {
+> +	.data = &(struct meson_vid_pll_div_data){
+> +		.val = {
+> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+> +			.shift   = 0,
+> +			.width   = 15,
+> +		},
+> +		.sel = {
+> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+> +			.shift   = 16,
+> +			.width   = 2,
+> +		},
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "vid_pll_div",
+> +		/*
+> +		 * The frequency division from the hdmi_pll clock to the vid_pll_div
+> +		 * clock is the default value of this register. When designing the
+> +		 * video module of the chip, a default value that can meet the
+> +		 * requirements of the video module will be solidified according
+> +		 * to the usage requirements of the chip, so as to facilitate chip
+> +		 * simulation. So this is ro_ops.
+> +		 * It is important to note that this clock is not used on this
+> +		 * chip and is described only for the integrity of the clock tree.
+> +		 */
 
-  i2c_set_clientdata(struct i2c_client *client, void *data)
-          ^^^^^^~~~~            ^^^^^^                ~~~~
+If it is reset value and will be applicable to all the design, regarless
+of the use-case, then yes RO ops is OK
 
-so "client" clearly makes sense there, now here.
+From what I understand here, the value will depend on the use-case requirements.
+This is a typical case where the DT prop "assigned-rate" should be used, not RO ops.
 
-The same logic applied here would lead to:
+> +		.ops = &meson_vid_pll_div_ro_ops,
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .fw_name = "hdmi_pll", }
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
 
-  i2c_atr_set_atrdata(struct i2c_atr *atr, void *data)
-              ^^^~~~~            ^^^             ~~~~
+> +
+> +/* VDEC clocks */
+> +static const struct clk_parent_data s4_dec_parent_data[] = {
+> +	{ .fw_name = "fclk_div2p5", },
+> +	{ .fw_name = "fclk_div3", },
+> +	{ .fw_name = "fclk_div4", },
+> +	{ .fw_name = "fclk_div5", },
+> +	{ .fw_name = "fclk_div7", },
+> +	{ .fw_name = "hifi_pll", },
+> +	{ .fw_name = "gp0_pll", },
+> +	{ .fw_name = "xtal", }
+> +};
+> +
+> +static struct clk_regmap s4_vdec_p0_mux = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = CLKCTRL_VDEC_CLK_CTRL,
+> +		.mask = 0x7,
+> +		.shift = 9,
+> +		.flags = CLK_MUX_ROUND_CLOSEST,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "vdec_p0_mux",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = s4_dec_parent_data,
+> +		.num_parents = ARRAY_SIZE(s4_dec_parent_data),
+> +		/*
+> +		 * When the driver uses this clock, needs to specify the patent clock
+> +		 * he wants in the dts.
 
-which makes sense but it is a ugly IMO.
+s/patent/parent ?
+s/he wants/it requires ?
 
-So I think i2c_atr_get_driver_data() in this v7 makes sense, it's to
-set the data that the ATR driver instance needs.
+> +		 */
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
 
-This is coherent with logic in spi/spi.h:
+[...]
 
-  spi_set_drvdata(struct spi_device *spi, void *data)
+> +static const struct clk_parent_data s4_vpu_clkc_parent_data[] = {
+> +	{ .fw_name = "fclk_div4", },
+> +	{ .fw_name = "fclk_div3", },
+> +	{ .fw_name = "fclk_div5", },
+> +	{ .fw_name = "fclk_div7", },
+> +	{ .fw_name = "mpll1", },
+> +	{ .hw = &s4_vid_pll.hw },
+> +	{ .fw_name = "mpll2", },
+> +	{ .fw_name = "gp0_pll", },
+> +};
+> +
+> +static struct clk_regmap s4_vpu_clkc_p0_mux  = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = CLKCTRL_VPU_CLKC_CTRL,
+> +		.mask = 0x7,
+> +		.shift = 9,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "vpu_clkc_p0_mux",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = s4_vpu_clkc_parent_data,
+> +		.num_parents = ARRAY_SIZE(s4_vpu_clkc_parent_data),
+> +		/*
+> +		 * When the driver uses this clock, needs to specify the patent clock
+> +		 * he wants in the dts.
+> +		 */
 
-except for the abbreviation ("_drvdata" vs "_driver_data").
+That's quite a lot of occurences of the same comment.
+At the same time, other clocks with the same flag have no comment.
 
-Andy, Tomi, would i2c_atr_set_drvdata() be OK for you, just like SPI
-does?
+Please make general comment, before the Video/VPU section, explaining
+which clocks needs on a use-case basis (through DT) and possibly how it
+should be set, what should drive the choices.
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+
+> +
+> +/* EMMC/NAND clock */
+> +static const struct clk_parent_data s4_sd_emmc_clk0_parent_data[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "fclk_div2", },
+> +	{ .fw_name = "fclk_div3", },
+> +	{ .fw_name = "hifi_pll", },
+> +	{ .fw_name = "fclk_div2p5", },
+> +	{ .fw_name = "mpll2", },
+> +	{ .fw_name = "mpll3", },
+> +	{ .fw_name = "gp0_pll", },
+> +};
+> +
+> +static struct clk_regmap s4_sd_emmc_c_clk0_sel = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = CLKCTRL_NAND_CLK_CTRL,
+> +		.mask = 0x7,
+> +		.shift = 9,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "sd_emmc_c_clk0_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = s4_sd_emmc_clk0_parent_data,
+> +		.num_parents = ARRAY_SIZE(s4_sd_emmc_clk0_parent_data),
+> +		/*
+> +		 * When the driver uses this clock, needs to specify the patent clock
+> +		 * he wants in the dts.
+> +		 */
+
+I'm getting a bit suspicious about the use (and abuse ...) of this flag.
+I don't quite get how selecting the base PLL for MMC should be done on
+use-case basis and should be up the board DT ...
+
+Other SoC have all used fdiv2 so far. Do you expect this setting to be
+part of the dtsi SoC file ?
+
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+
+> +
+> +/* SPICC Clock */
+> +static const struct clk_parent_data s4_spicc_parent_data[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .hw = &s4_sys_clk.hw },
+> +	{ .fw_name = "fclk_div4", },
+> +	{ .fw_name = "fclk_div3", },
+> +	{ .fw_name = "fclk_div2", },
+> +	{ .fw_name = "fclk_div5", },
+> +	{ .fw_name = "fclk_div7", },
+> +};
+> +
+> +static struct clk_regmap s4_spicc0_mux = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = CLKCTRL_SPICC_CLK_CTRL,
+> +		.mask = 0x7,
+> +		.shift = 7,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "spicc0_mux",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = s4_spicc_parent_data,
+> +		.num_parents = ARRAY_SIZE(s4_spicc_parent_data),
+> +		/*
+> +		 * When the driver uses this clock, needs to specify the patent clock
+> +		 * he wants in the dts.
+> +		 */
+
+This is getting too far. All the parent clocks are fixed.
+Let CCF do the job of picking the most adequate clock for the job
+instead of manually settings things
+
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+
+
+> +
+> +/* PWM Clock */
+> +static const struct clk_parent_data s4_pwm_parent_data[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .hw = &s4_vid_pll.hw },
+> +	{ .fw_name = "fclk_div4", },
+> +	{ .fw_name = "fclk_div3", },
+> +};
+> +
+> +static struct clk_regmap s4_pwm_a_mux = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
+> +		.mask = 0x3,
+> +		.shift = 9,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "pwm_a_mux",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = s4_pwm_parent_data,
+> +		.num_parents = ARRAY_SIZE(s4_pwm_parent_data),
+> +		/*
+> +		 * When the driver uses this clock, needs to specify the patent clock
+> +		 * he wants in the dts.
+> +		 */
+
+Same here ... this is really going to far.
+
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+
+> +
+> +static struct clk_regmap s4_saradc_mux = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CLKCTRL_SAR_CLK_CTRL,
+> +		.mask = 0x3,
+> +		.shift = 9,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "saradc_mux",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .fw_name = "xtal", },
+> +			{ .hw = &s4_sys_clk.hw },
+> +		},
+> +		.num_parents = 2,
+> +		/*
+> +		 * When the driver uses this clock, needs to specify the patent clock
+> +		 * he wants in the dts.
+> +		 */
+
+For each clock type, if this flag is going to be used, I'd like a clear
+explanation about why it is use-case dependent and why you need manual
+control over this. Same applies to all the occurence.
+
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+> +	},
+> +};
