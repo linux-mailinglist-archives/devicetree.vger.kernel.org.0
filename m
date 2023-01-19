@@ -2,351 +2,1129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 689CE6737C0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 13:01:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CA2667371A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:41:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjASMBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 07:01:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35674 "EHLO
+        id S230304AbjASLlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 06:41:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230243AbjASMAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 07:00:55 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB1C59251
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 04:00:44 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id b7so1630057wrt.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 04:00:44 -0800 (PST)
+        with ESMTP id S230452AbjASLlA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:41:00 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9B646082
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:40:41 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id f25-20020a1c6a19000000b003da221fbf48so1047751wmc.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:40:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=vGhIkmV1Mg5mNM04dUi+JtodrePHaCkSPqrX88wSfSg=;
-        b=p5o4ZpD1aUW3PcV63Vrgja65ZwshpeLx1kn/CB4pG7R7haBNsptV/2h9SjVp/Y1ohK
-         gFPLhpCUMbtLP4F+EuqWLAjWfHdOJ1TbPnTmicJ2vBd9Oa5Y9PTnvh/IufMB5ZEjFs18
-         nAjG2ZxmuCKNvQyPdurcvMMMD24FeZXH5rMcJSf4xrk6IM5aseQMPPUfVWjJ0ZPf1PrT
-         KHn3WM7Ns5yy/MG7IYvfEh8o/KBN2e0niu7VvAPfb+nsGrVTijCBj2k0RQYMrcwO4APC
-         5wnWhjP+pKN2eFBVqw/BxWugdYfwN71BmLoOtaiSxdVOEZgeZ5I6T0KCv29h8rW2eJlv
-         LK2w==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ap65kPaWrg//vaLcwMT2fWDG60R1Z9fU8o81hSnfmog=;
+        b=jHU/xFTlHQHRdepj1BTNZeUBjp45xi+8LTUOWgJktzOWGxIQCyCDzxVeWLaHHU7Ra/
+         agJtm4Vim4iDM7REsR8Wz+DxLWynz3ywVkhMz5GGJeH+JV2xxNG7Q6Ji9XuhKHbD5bbm
+         Kzi0e5Vn8qztHjExqa9LjHcjLyXl5ge7A1d1cBunlIvf1GRan+xJZmRmwXc7jmDRkbMY
+         0kjn6BmMojixvTYslhCZt34ZR0CjdLX2BBoAnlPmLCgQpa0s1Ir1kGL7STLB28ZDBbCS
+         LChampJT2tVVLQX3PxMfa0hDpTuYwCDm8iEM3rankOhYuhriPsR7dD2RIjbqo8eFhUv+
+         B5Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vGhIkmV1Mg5mNM04dUi+JtodrePHaCkSPqrX88wSfSg=;
-        b=5ZnN9lBm5SSBNmEIAX7bd6QzC4z7KyeDePiKM1KPRYRb4hFT3nXjtFkjWLr7OB3AH9
-         GPA3fCQ6Go1uQ/QpjZy77oIOe3YcP3Xf+h2V61obJaI+y3Nm2yYx+vcJYc3nb5782vzX
-         67dBoSq5tlcHhCQ7MU2MJGlxhVSIiuTkj9hZjL7ivSwyuUJi/ME0xDSKJoO4DfXwCCQZ
-         kVKCfKhT7huEIUOzUtWLa9WmUCMH+V4KkZK4ps2KYpx7XJNRKewduiOCW4oqy4azmuTQ
-         vpTZo8WHISy4+25horM+1mPcz/XPU1DysEDoDXaM2PP2WF80WaE56Zyv9pHH2uR/1Vwc
-         x9wA==
-X-Gm-Message-State: AFqh2kp6lHXyRZ71ggXCnDO572+F1GSPKekXFuGeHLwWmA1hazEEr8tg
-        s6PWUKgvoluv5pn+60WOz9H96dY16YaBshNa
-X-Google-Smtp-Source: AMrXdXvE6zeWlw2COOPr4i3Zcc8CGy1UYJgXpOyXeL5P/Vz7p5Rm9U/wVBzw89FTf13sxsjk/VqjdA==
-X-Received: by 2002:a5d:674a:0:b0:2bb:e864:7a30 with SMTP id l10-20020a5d674a000000b002bbe8647a30mr9658049wrw.32.1674129643006;
-        Thu, 19 Jan 2023 04:00:43 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id b16-20020adff910000000b002bdf8dd6a8bsm11591895wrr.80.2023.01.19.04.00.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 04:00:41 -0800 (PST)
-References: <20230116074214.2326-1-yu.tu@amlogic.com>
- <20230116074214.2326-4-yu.tu@amlogic.com>
-User-agent: mu4e 1.8.10; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
-        "qi . duan" <qi.duan@amlogic.com>
-Subject: Re: [PATCH V6 3/3] clk: meson: s4: add support for Amlogic S4 SoC
- peripheral clock controller
-Date:   Thu, 19 Jan 2023 12:37:20 +0100
-In-reply-to: <20230116074214.2326-4-yu.tu@amlogic.com>
-Message-ID: <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ap65kPaWrg//vaLcwMT2fWDG60R1Z9fU8o81hSnfmog=;
+        b=XhuZPW5MNus5v6QFHkN4QEb+jQZHdQe0aGEkkglUab1h1jPPTLmpjLXlCOJcX0O0y6
+         0O524CNobnCLLl5u27y95jj8lNO/yQ4vSn4g7XgLyj7dQPlgmuqWI+ddYnl4zivKHCXh
+         7vxiJMm5puIUbiNXrpPgXuwZ5XgFmP9zAnOe68kbH28OmgDOlvSnsyHOO3+JLNUjNRYc
+         YhDSFqvTUo15zkF/LVTx6uxnMKtJdpxJPZcs+1GUcYZtxVpzwdn4Y9DvngTTb9Nk85YJ
+         3oydl5cgqfy0JHFG4+6/mDymlMOQ/gWGawQHtP6BIt1c9RKS7qpZ0fGuXn6gs053HoP4
+         D95Q==
+X-Gm-Message-State: AFqh2kpuxhqxY1tXHjfidJLaRQDSVidtvOwKLolbWlQyiFnxgr29eDF8
+        6Xxkc/d7PcNCLVUbwugwa127lQ==
+X-Google-Smtp-Source: AMrXdXs9VQHlr0++gE1JRCqV+bGS1HsqSexUqe30Kx05zSgjA7MI+E+QDIVPCtRoEhdT7Uc/76/M2A==
+X-Received: by 2002:a1c:7417:0:b0:3da:fcd:7dfe with SMTP id p23-20020a1c7417000000b003da0fcd7dfemr18575115wmc.10.1674128440297;
+        Thu, 19 Jan 2023 03:40:40 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k14-20020a05600c1c8e00b003d9ed40a512sm6475563wms.45.2023.01.19.03.40.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jan 2023 03:40:39 -0800 (PST)
+Message-ID: <41fd5c2a-9fc5-8af8-b66e-45bb83b24179@linaro.org>
+Date:   Thu, 19 Jan 2023 12:40:37 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] arm64: dts: Add support for Unisoc's UMS512
+Content-Language: en-US
+To:     Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, soc@kernel.org,
+        devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20230118084025.2898404-1-chunyan.zhang@unisoc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230118084025.2898404-1-chunyan.zhang@unisoc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/01/2023 09:40, Chunyan Zhang wrote:
+> Add basic support for Unisoc's UMS512, with this patch,
+> the board ums512-1h10 can run into console.
+> 
 
-On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching), e.g. "arm64: dts: sprd:"
 
-> Add the peripherals clock controller driver in the s4 SoC family.
->
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-
-[...]
-
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> ---
+>  arch/arm64/boot/dts/sprd/Makefile        |   3 +-
+>  arch/arm64/boot/dts/sprd/ums512-1h10.dts |  64 ++
+>  arch/arm64/boot/dts/sprd/ums512.dtsi     | 919 +++++++++++++++++++++++
+>  3 files changed, 985 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/sprd/ums512-1h10.dts
+>  create mode 100644 arch/arm64/boot/dts/sprd/ums512.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/sprd/Makefile b/arch/arm64/boot/dts/sprd/Makefile
+> index f4f1f5148cc2..97522fb0bf66 100644
+> --- a/arch/arm64/boot/dts/sprd/Makefile
+> +++ b/arch/arm64/boot/dts/sprd/Makefile
+> @@ -1,4 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_SPRD) += sc9836-openphone.dtb \
+>  			sp9860g-1h10.dtb	\
+> -			sp9863a-1h10.dtb
+> +			sp9863a-1h10.dtb	\
+> +			ums512-1h10.dtb
+> diff --git a/arch/arm64/boot/dts/sprd/ums512-1h10.dts b/arch/arm64/boot/dts/sprd/ums512-1h10.dts
+> new file mode 100644
+> index 000000000000..d549a8c361d4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/sprd/ums512-1h10.dts
+> @@ -0,0 +1,64 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Unisoc UMS512-1h10 boards DTS file
+> + *
+> + * Copyright (C) 2021, Unisoc Inc.
+> + */
 > +
-> +/* Video Clocks */
-> +static struct clk_regmap s4_vid_pll_div = {
-> +	.data = &(struct meson_vid_pll_div_data){
-> +		.val = {
-> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
-> +			.shift   = 0,
-> +			.width   = 15,
-> +		},
-> +		.sel = {
-> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
-> +			.shift   = 16,
-> +			.width   = 2,
-> +		},
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "vid_pll_div",
-> +		/*
-> +		 * The frequency division from the hdmi_pll clock to the vid_pll_div
-> +		 * clock is the default value of this register. When designing the
-> +		 * video module of the chip, a default value that can meet the
-> +		 * requirements of the video module will be solidified according
-> +		 * to the usage requirements of the chip, so as to facilitate chip
-> +		 * simulation. So this is ro_ops.
-> +		 * It is important to note that this clock is not used on this
-> +		 * chip and is described only for the integrity of the clock tree.
-> +		 */
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "ums512.dtsi"
+> +
+> +/ {
+> +	model = "Unisoc UMS512-1H10 Board";
+> +
+> +	compatible = "sprd,ums512-1h10", "sprd,ums512";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x80000000 0x0 0x80000000>;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial1:115200n8";
+> +		bootargs = "earlycon";
 
-If it is reset value and will be applicable to all the design, regarless
-of the use-case, then yes RO ops is OK
+earlycon is for debugging, not wide, mainline usage. Drop.
 
-From what I understand here, the value will depend on the use-case requirements.
-This is a typical case where the DT prop "assigned-rate" should be used, not RO ops.
-
-> +		.ops = &meson_vid_pll_div_ro_ops,
-> +		.parent_data = (const struct clk_parent_data []) {
-> +			{ .fw_name = "hdmi_pll", }
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
+> +	};
 > +};
 > +
-
-> +
-> +/* VDEC clocks */
-> +static const struct clk_parent_data s4_dec_parent_data[] = {
-> +	{ .fw_name = "fclk_div2p5", },
-> +	{ .fw_name = "fclk_div3", },
-> +	{ .fw_name = "fclk_div4", },
-> +	{ .fw_name = "fclk_div5", },
-> +	{ .fw_name = "fclk_div7", },
-> +	{ .fw_name = "hifi_pll", },
-> +	{ .fw_name = "gp0_pll", },
-> +	{ .fw_name = "xtal", }
+> +&uart0 {
+> +	status = "okay";
 > +};
 > +
-> +static struct clk_regmap s4_vdec_p0_mux = {
-> +	.data = &(struct clk_regmap_mux_data){
-> +		.offset = CLKCTRL_VDEC_CLK_CTRL,
-> +		.mask = 0x7,
-> +		.shift = 9,
-> +		.flags = CLK_MUX_ROUND_CLOSEST,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "vdec_p0_mux",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = s4_dec_parent_data,
-> +		.num_parents = ARRAY_SIZE(s4_dec_parent_data),
-> +		/*
-> +		 * When the driver uses this clock, needs to specify the patent clock
-> +		 * he wants in the dts.
-
-s/patent/parent ?
-s/he wants/it requires ?
-
-> +		 */
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-> +	},
+> +&uart1 {
+> +	status = "okay";
 > +};
 > +
-
-[...]
-
-> +static const struct clk_parent_data s4_vpu_clkc_parent_data[] = {
-> +	{ .fw_name = "fclk_div4", },
-> +	{ .fw_name = "fclk_div3", },
-> +	{ .fw_name = "fclk_div5", },
-> +	{ .fw_name = "fclk_div7", },
-> +	{ .fw_name = "mpll1", },
-> +	{ .hw = &s4_vid_pll.hw },
-> +	{ .fw_name = "mpll2", },
-> +	{ .fw_name = "gp0_pll", },
+> +/* SD card */
+> +&sdio0 {
+> +	status = "okay";
+> +	bus-width = <4>;
+> +	no-sdio;
+> +	no-mmc;
+> +	sprd,phy-delay-sd-uhs-sdr104 = <0x7f 0x73 0x72 0x72>;
+> +	sprd,phy-delay-sd-uhs-sdr50 = <0x6e 0x7f 0x01 0x01>;
+> +	sprd,phy-delay-sd-highspeed = <0x7f 0x1a 0x9a 0x9a>;
+> +	sprd,phy-delay-legacy = <0x7f 0x1a 0x9a 0x9a>;
+> +	sd-uhs-sdr104;
+> +	sd-uhs-sdr50;
 > +};
 > +
-> +static struct clk_regmap s4_vpu_clkc_p0_mux  = {
-> +	.data = &(struct clk_regmap_mux_data){
-> +		.offset = CLKCTRL_VPU_CLKC_CTRL,
-> +		.mask = 0x7,
-> +		.shift = 9,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "vpu_clkc_p0_mux",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = s4_vpu_clkc_parent_data,
-> +		.num_parents = ARRAY_SIZE(s4_vpu_clkc_parent_data),
-> +		/*
-> +		 * When the driver uses this clock, needs to specify the patent clock
-> +		 * he wants in the dts.
-> +		 */
-
-That's quite a lot of occurences of the same comment.
-At the same time, other clocks with the same flag have no comment.
-
-Please make general comment, before the Video/VPU section, explaining
-which clocks needs on a use-case basis (through DT) and possibly how it
-should be set, what should drive the choices.
-
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-> +	},
+> +/* EMMC storage */
+> +&sdio3 {
+> +	status = "okay";
+> +	bus-width = <8>;
+> +	no-sdio;
+> +	no-sd;
+> +	non-removable;
+> +	cap-mmc-hw-reset;
 > +};
+> diff --git a/arch/arm64/boot/dts/sprd/ums512.dtsi b/arch/arm64/boot/dts/sprd/ums512.dtsi
+> new file mode 100644
+> index 000000000000..028e17f8198e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/sprd/ums512.dtsi
+> @@ -0,0 +1,919 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Unisoc UMS512 SoC DTS file
+> + *
+> + * Copyright (C) 2021, Unisoc Inc.
+> + */
 > +
+> +#include <dt-bindings/clock/sprd,ums512-clk.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&CPU0>;
+> +				};
+> +				core1 {
+> +					cpu = <&CPU1>;
+> +				};
+> +				core2 {
+> +					cpu = <&CPU2>;
+> +				};
+> +				core3 {
+> +					cpu = <&CPU3>;
+> +				};
+> +				core4 {
+> +					cpu = <&CPU4>;
+> +				};
+> +				core5 {
+> +					cpu = <&CPU5>;
+> +				};
+> +				core6 {
+> +					cpu = <&CPU6>;
+> +				};
+> +				core7 {
+> +					cpu = <&CPU7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		CPU0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CORE_PD>;
+> +		};
+> +
+> +		CPU1: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x100>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CORE_PD>;
+> +		};
+> +
+> +		CPU2: cpu@200 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x200>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CORE_PD>;
+> +		};
+> +
+> +		CPU3: cpu@300 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x300>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CORE_PD>;
+> +		};
+> +
+> +		CPU4: cpu@400 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x400>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CORE_PD>;
+> +		};
+> +
+> +		CPU5: cpu@500 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x500>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CORE_PD>;
+> +		};
+> +
+> +		CPU6: cpu@600 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x600>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CORE_PD>;
+> +		};
+> +
+> +		CPU7: cpu@700 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x700>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CORE_PD>;
+> +		};
+> +	};
+> +
+> +	idle-states {
+> +		entry-method = "psci";
+> +		CORE_PD: core-pd {
+> +			compatible = "arm,idle-state";
+> +			entry-latency-us = <4000>;
+> +			exit-latency-us = <4000>;
+> +			min-residency-us = <10000>;
+> +			local-timer-stop;
+> +			arm,psci-suspend-param = <0x00010000>;
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>, /* Physical Secure PPI */
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>, /* Physical Non-Secure PPI */
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>, /* Virtual PPI */
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>; /* Hipervisor PPI */
+> +	};
+> +
+> +	pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	soc: soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		gic: interrupt-controller@12000000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			redistributor-stride = <0x0 0x20000>;	/* 128KB stride */
+> +			#redistributor-regions = <1>;
+> +			interrupt-controller;
+> +			reg = <0x0 0x12000000 0 0x20000>,	/* GICD */
+> +			      <0x0 0x12040000 0 0x100000>;	/* GICR */
 
+Keep reg as second property, after compatible. This applies everywhere.
+
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
 > +
-> +/* EMMC/NAND clock */
-> +static const struct clk_parent_data s4_sd_emmc_clk0_parent_data[] = {
-> +	{ .fw_name = "xtal", },
-> +	{ .fw_name = "fclk_div2", },
-> +	{ .fw_name = "fclk_div3", },
-> +	{ .fw_name = "hifi_pll", },
-> +	{ .fw_name = "fclk_div2p5", },
-> +	{ .fw_name = "mpll2", },
-> +	{ .fw_name = "mpll3", },
-> +	{ .fw_name = "gp0_pll", },
+> +		ap_ahb_regs: syscon@20100000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x20100000 0 0x4000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x20100000 0x4000>;
+> +
+> +			apahb_gate: clock-controller@0 {
+> +				compatible = "sprd,ums512-apahb-gate";
+> +				reg = <0x0 0x3000>;
+> +				clocks = <&ext_26m>;
+> +				clock-names = "ext-26m";
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		pub_apb_regs: syscon@31050000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x31050000 0 0x9000>;
+> +		};
+> +
+> +		top_dvfs_apb_regs: syscon@322a0000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x322a0000 0 0x8000>;
+> +		};
+> +
+> +		ap_intc0_regs: syscon@32310000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x32310000 0 0x1000>;
+> +		};
+> +
+> +		ap_intc1_regs: syscon@32320000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x32320000 0 0x1000>;
+> +		};
+> +
+> +		ap_intc2_regs: syscon@32330000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x32330000 0 0x1000>;
+> +		};
+> +
+> +		ap_intc3_regs: syscon@32340000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x32340000 0 0x1000>;
+> +		};
+> +
+> +		ap_intc4_regs: syscon@32350000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x32350000 0 0x1000>;
+> +		};
+> +
+> +		ap_intc5_regs: syscon@32360000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x32360000 0 0x1000>;
+> +		};
+> +
+> +		anlg_phy_g0_regs: syscon@32390000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x32390000 0 0x3000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x32390000 0x3000>;
+> +
+> +			dpll0: clock-controller@0 {
+> +				compatible = "sprd,ums512-g0-pll";
+> +				reg = <0x0 0x100>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		anlg_phy_g2_regs: syscon@323b0000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x323b0000 0 0x3000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x323b0000 0x3000>;
+> +
+> +			mpll1: clock-controller@0 {
+> +				compatible = "sprd,ums512-g2-pll";
+> +				reg = <0x0 0x100>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		anlg_phy_g3_regs: syscon@323c0000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x323c0000 0 0x3000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x323c0000 0x3000>;
+> +
+> +			pll1: clock-controller@0 {
+> +				compatible = "sprd,ums512-g3-pll";
+> +				reg = <0x0 0x3000>;
+> +				clocks = <&ext_26m>;
+> +				clock-names = "ext-26m";
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		anlg_phy_gc_regs: syscon@323e0000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x323e0000 0 0x3000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x323e0000 0x3000>;
+> +
+> +			pll2: clock-controller@0 {
+> +				compatible = "sprd,ums512-gc-pll";
+> +				reg = <0x0 0x100>;
+> +				clock-names = "ext-26m";
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		anlg_phy_g10_regs: syscon@323f0000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x323f0000 0 0x3000>;
+> +		};
+> +
+> +		aon_apb_regs: syscon@327d0000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x327d0000 0 0x3000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x327d0000 0x3000>;
+> +
+> +			aonapb_gate: clock-controller@0 {
+> +				compatible = "sprd,ums512-aon-gate";
+> +				reg = <0x0 0x3000>;
+> +				clocks = <&ext_26m>;
+> +				clock-names = "ext-26m";
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		pmu_apb_regs: syscon@327e0000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x327e0000 0 0x3000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x327e0000 0x3000>;
+> +
+> +			pmu_gate: clock-controller@0 {
+> +				compatible = "sprd,ums512-pmu-gate";
+> +				reg = <0x0 0x3000>;
+> +				clocks = <&ext_26m>;
+> +				clock-names = "ext-26m";
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		audcp_apb_regs: syscon@3350d000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x3350d000 0 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x3350d000 0x1000>;
+> +
+> +			audcpapb_gate: clock-controller@0 {
+> +				compatible = "sprd,ums512-audcpapb-gate";
+> +				reg = <0x0 0x300>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		audcp_ahb_regs: syscon@335e0000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x335e0000 0 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x335e0000 0x1000>;
+> +
+> +			audcpahb_gate: clock-controller@0 {
+> +				compatible = "sprd,ums512-audcpahb-gate";
+> +				reg = <0x0 0x300>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		gpu_apb_regs: syscon@60100000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x60100000 0 0x3000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x60100000 0x3000>;
+> +
+> +			gpu_clk: clock-controller@0 {
+> +				compatible = "sprd,ums512-gpu-clk";
+> +				clocks = <&ext_26m>;
+> +				clock-names = "ext-26m";
+> +				reg = <0x0 0x100>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		gpu_dvfs_apb_regs: syscon@60110000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x60110000 0 0x3000>;
+> +		};
+> +
+> +		mm_ahb_regs: syscon@62200000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x62200000 0 0x3000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x62200000 0x3000>;
+> +
+> +			mm_gate: clock-controller@0 {
+> +				compatible = "sprd,ums512-mm-gate-clk";
+> +				reg = <0x0 0x3000>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		ap_apb_regs: syscon@71000000 {
+> +			compatible = "sprd,ums512-glbregs", "syscon",
+> +				     "simple-mfd";
+> +			reg = <0 0x71000000 0 0x3000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0x71000000 0x3000>;
+> +
+> +			apapb_gate: clock-controller@0 {
+> +				compatible = "sprd,ums512-apapb-gate";
+> +				reg = <0x0 0x3000>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +		ap_clk: clock-controller@20200000 {
+> +			compatible = "sprd,ums512-ap-clk";
+> +			reg = <0 0x20200000 0 0x1000>;
+> +			clocks = <&ext_26m>;
+> +			clock-names = "ext-26m";
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		aon_clk: clock-controller@32080000 {
+> +			compatible = "sprd,ums512-aonapb-clk";
+> +			reg = <0 0x32080000 0 0x1000>;
+> +			clocks = <&ext_26m>, <&ext_32k>,
+> +				 <&ext_4m>, <&rco_100m>;
+> +			clock-names = "ext-26m", "ext-32k",
+> +				      "ext-4m", "rco-100m";
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		mm_clk: clock-controller@62100000 {
+> +			compatible = "sprd,ums512-mm-clk";
+> +			reg = <0 0x62100000 0 0x1000>;
+> +			clocks = <&ext_26m>;
+> +			clock-names = "ext-26m";
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		/* SoC Funnel */
+> +		funnel@3c002000 {
+> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +			reg = <0 0x3c002000 0 0x1000>;
+> +			clocks = <&ext_26m>;
+> +			clock-names = "apb_pclk";
+> +
+> +			out-ports {
+> +				port {
+> +					funnel_soc_out_port: endpoint {
+> +						remote-endpoint = <&etb_in>;
+> +					};
+> +				};
+> +			};
+> +
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					funnel_soc_in_port: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_corinth_out_port>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		/* SoC ETF */
+> +		soc_etb: etb@3c003000 {
+> +			compatible = "arm,coresight-tmc", "arm,primecell";
+> +			reg = <0 0x3c003000 0 0x1000>;
+> +			clocks = <&ext_26m>;
+> +			clock-names = "apb_pclk";
+> +
+> +			in-ports {
+> +				port {
+> +					etb_in: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_soc_out_port>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		/* AP-CPU Funnel for core3/4/5/7 */
+> +		funnel@3e001000 {
+> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +			reg = <0 0x3e001000 0 0x1000>;
+> +			clocks = <&ext_26m>;
+> +			clock-names = "apb_pclk";
+> +
+> +			out-ports {
+> +				port {
+> +					funnel_corinth_lit_out_port: endpoint {
+> +						remote-endpoint =
+> +						<&corinth_etf_lit_in>;
+> +					};
+> +				};
+> +			};
+> +
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					funnel_core_in_port3: endpoint {
+> +						remote-endpoint = <&etm3_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					funnel_core_in_port4: endpoint {
+> +						remote-endpoint = <&etm4_out>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +					funnel_core_in_port5: endpoint {
+> +						remote-endpoint = <&etm5_out>;
+> +					};
+> +				};
+> +
+> +				port@3 {
+> +					reg = <3>;
+> +					funnel_core_in_port7: endpoint {
+> +						remote-endpoint = <&etm7_out>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		/* AP-CPU ETF for little cores */
+> +		etf@3e002000 {
+> +			compatible = "arm,coresight-tmc", "arm,primecell";
+> +			reg = <0 0x3e002000 0 0x1000>;
+> +			clocks = <&ext_26m>;
+> +			clock-names = "apb_pclk";
+> +
+> +			out-ports {
+> +				port {
+> +					corinth_etf_lit_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_corinth_from_lit_in_port>;
+> +					};
+> +				};
+> +			};
+> +
+> +			in-ports {
+> +				port {
+> +					corinth_etf_lit_in: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_corinth_lit_out_port>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		/* AP-CPU ETF for big cores */
+> +		etf@3e003000 {
+> +			compatible = "arm,coresight-tmc", "arm,primecell";
+> +			reg = <0 0x3e003000 0 0x1000>;
+> +			clocks = <&ext_26m>;
+> +			clock-names = "apb_pclk";
+> +
+> +			out-ports {
+> +				port {
+> +					corinth_etf_big_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_corinth_from_big_in_port>;
+> +					};
+> +				};
+> +			};
+> +
+> +			in-ports {
+> +				port {
+> +					corinth_etf_big_in: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_corinth_big_out_port>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		/* Funnel to SoC */
+> +		funnel@3e004000 {
+> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +			reg = <0 0x3e004000 0 0x1000>;
+> +			clocks = <&ext_26m>;
+> +			clock-names = "apb_pclk";
+> +
+> +			out-ports {
+> +				port {
+> +					funnel_corinth_out_port: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_soc_in_port>;
+> +					};
+> +				};
+> +			};
+> +
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					funnel_corinth_from_lit_in_port: endpoint {
+> +						remote-endpoint = <&corinth_etf_lit_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					funnel_corinth_from_big_in_port: endpoint {
+> +						remote-endpoint = <&corinth_etf_big_out>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		/* AP-CPU Funnel for core0/1/2/6 */
+> +		funnel@3e005000 {
+> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +			reg = <0 0x3e005000 0 0x1000>;
+> +			clocks = <&ext_26m>;
+> +			clock-names = "apb_pclk";
+> +
+> +			out-ports {
+> +				port {
+> +					funnel_corinth_big_out_port: endpoint {
+> +						remote-endpoint = <&corinth_etf_big_in>;
+> +					};
+> +				};
+> +			};
+> +
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					funnel_core_in_port0: endpoint {
+> +						remote-endpoint = <&etm0_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					funnel_core_in_port1: endpoint {
+> +						remote-endpoint = <&etm1_out>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +					funnel_core_in_port2: endpoint {
+> +						remote-endpoint = <&etm2_out>;
+> +					};
+> +				};
+> +
+> +				port@3 {
+> +					reg = <3>;
+> +					funnel_core_in_port6: endpoint {
+> +						remote-endpoint = <&etm6_out>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm0: etm@3f040000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0 0x3f040000 0 0x1000>;
+> +			cpu = <&CPU0>;
+> +			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
+> +			clock-names = "apb_pclk", "clk_cs", "cs_src";
+> +
+> +			out-ports {
+> +				port {
+> +					etm0_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_core_in_port0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm1: etm@3f140000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0 0x3f140000 0 0x1000>;
+> +			cpu = <&CPU1>;
+> +			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
+> +			clock-names = "apb_pclk", "clk_cs", "cs_src";
+> +
+> +			out-ports {
+> +				port {
+> +					etm1_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_core_in_port1>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm2: etm@3f240000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0 0x3f240000 0 0x1000>;
+> +			cpu = <&CPU2>;
+> +			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
+> +			clock-names = "apb_pclk", "clk_cs", "cs_src";
+> +
+> +			out-ports {
+> +				port {
+> +					etm2_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_core_in_port2>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm3: etm@3f340000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0 0x3f340000 0 0x1000>;
+> +			cpu = <&CPU3>;
+> +			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
+> +			clock-names = "apb_pclk", "clk_cs", "cs_src";
+> +
+> +			out-ports {
+> +				port {
+> +					etm3_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_core_in_port3>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm4: etm@3f440000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0 0x3f440000 0 0x1000>;
+> +			cpu = <&CPU4>;
+> +			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
+> +			clock-names = "apb_pclk", "clk_cs", "cs_src";
+> +
+> +			out-ports {
+> +				port {
+> +					etm4_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_core_in_port4>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm5: etm@3f540000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0 0x3f540000 0 0x1000>;
+> +			cpu = <&CPU5>;
+> +			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
+> +			clock-names = "apb_pclk", "clk_cs", "cs_src";
+> +
+> +			out-ports {
+> +				port {
+> +					etm5_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_core_in_port5>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm6: etm@3f640000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0 0x3f640000 0 0x1000>;
+> +			cpu = <&CPU6>;
+> +			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
+> +			clock-names = "apb_pclk", "clk_cs", "cs_src";
+> +
+> +			out-ports {
+> +				port {
+> +					etm6_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_core_in_port6>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm7: etm@3f740000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0 0x3f740000 0 0x1000>;
+> +			cpu = <&CPU7>;
+> +			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
+> +			clock-names = "apb_pclk", "clk_cs", "cs_src";
+> +
+> +			out-ports {
+> +				port {
+> +					etm7_out: endpoint {
+> +						remote-endpoint =
+> +						<&funnel_core_in_port7>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +
+> +		apb@70000000 {
+> +			compatible = "simple-bus";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0x0 0x70000000 0x10000000>;
+> +
+> +			uart0: serial@0 {
+> +				compatible = "sprd,ums512-uart",
+> +					     "sprd,sc9836-uart";
+> +				reg = <0x0 0x100>;
+> +				interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&ext_26m>;
+> +				status = "disabled";
+> +			};
+> +
+> +			uart1: serial@100000 {
+> +				compatible = "sprd,ums512-uart",
+> +					     "sprd,sc9836-uart";
+> +				reg = <0x100000 0x100>;
+> +				interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&ext_26m>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		ap-apb {
+
+Non-unit-address nodes cannot be mixed with unit address ones. Something
+is wrong here.
+
+> +			compatible = "simple-bus";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			sdio0: sdio@71100000 {
+> +				compatible = "sprd,sdhci-r11";
+> +				reg = <0 0x71100000 0 0x1000>;
+> +				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+> +				clock-names = "sdio", "enable";
+> +				clocks = <&ap_clk CLK_SDIO0_2X>,
+> +					 <&apapb_gate CLK_SDIO0_EB>;
+> +				assigned-clocks = <&ap_clk CLK_SDIO0_2X>;
+> +				assigned-clock-parents = <&pll1 CLK_RPLL>;
+> +				status = "disabled";
+> +			};
+> +
+> +			sdio3: sdio@71400000 {
+> +				compatible = "sprd,sdhci-r11";
+> +				reg = <0 0x71400000 0 0x1000>;
+> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +				clock-names = "sdio", "enable";
+> +				clocks = <&ap_clk CLK_EMMC_2X>,
+> +					 <&apapb_gate CLK_EMMC_EB>;
+> +				assigned-clocks = <&ap_clk CLK_EMMC_2X>;
+> +				assigned-clock-parents = <&pll1 CLK_RPLL>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		aon {
+
+Same problem.
+
+> +			compatible = "simple-bus";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			adi_bus: spi@32100000 {
+> +				compatible = "sprd,ums512-adi";
+> +				reg = <0 0x32100000 0 0x100000>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				sprd,hw-channels = <2 0x18cc>, <3 0x18cc>, <13 0x1854>, <15 0x1874>,
+> +					<17 0x1844>,<19 0x1844>, <21 0x1864>, <30 0x1820>,
+> +					<35 0x19b8>, <39 0x19ac>;
+> +			};
+> +		};
+> +	};
+> +
+> +	ext_26m: ext-26m {
+
+Node names should be generic, so at least clock prefix or suffix. This
+applies to all further places as well.
+
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <26000000>;
+> +		clock-output-names = "ext-26m";
+> +	};
+> +
+> +	ext_32k: ext-32k {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		clock-output-names = "ext-32k";
+> +	};
+> +
+> +	ext_4m: ext-4m {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <4000000>;
+> +		clock-output-names = "ext-4m";
+> +	};
+> +
+> +	rco_100m: rco-100m {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <100000000>;
+> +		clock-output-names = "rco-100m";
+> +	};
 > +};
-> +
-> +static struct clk_regmap s4_sd_emmc_c_clk0_sel = {
-> +	.data = &(struct clk_regmap_mux_data){
-> +		.offset = CLKCTRL_NAND_CLK_CTRL,
-> +		.mask = 0x7,
-> +		.shift = 9,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "sd_emmc_c_clk0_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = s4_sd_emmc_clk0_parent_data,
-> +		.num_parents = ARRAY_SIZE(s4_sd_emmc_clk0_parent_data),
-> +		/*
-> +		 * When the driver uses this clock, needs to specify the patent clock
-> +		 * he wants in the dts.
-> +		 */
 
-I'm getting a bit suspicious about the use (and abuse ...) of this flag.
-I don't quite get how selecting the base PLL for MMC should be done on
-use-case basis and should be up the board DT ...
+Best regards,
+Krzysztof
 
-Other SoC have all used fdiv2 so far. Do you expect this setting to be
-part of the dtsi SoC file ?
-
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-
-> +
-> +/* SPICC Clock */
-> +static const struct clk_parent_data s4_spicc_parent_data[] = {
-> +	{ .fw_name = "xtal", },
-> +	{ .hw = &s4_sys_clk.hw },
-> +	{ .fw_name = "fclk_div4", },
-> +	{ .fw_name = "fclk_div3", },
-> +	{ .fw_name = "fclk_div2", },
-> +	{ .fw_name = "fclk_div5", },
-> +	{ .fw_name = "fclk_div7", },
-> +};
-> +
-> +static struct clk_regmap s4_spicc0_mux = {
-> +	.data = &(struct clk_regmap_mux_data){
-> +		.offset = CLKCTRL_SPICC_CLK_CTRL,
-> +		.mask = 0x7,
-> +		.shift = 7,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "spicc0_mux",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = s4_spicc_parent_data,
-> +		.num_parents = ARRAY_SIZE(s4_spicc_parent_data),
-> +		/*
-> +		 * When the driver uses this clock, needs to specify the patent clock
-> +		 * he wants in the dts.
-> +		 */
-
-This is getting too far. All the parent clocks are fixed.
-Let CCF do the job of picking the most adequate clock for the job
-instead of manually settings things
-
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-
-
-> +
-> +/* PWM Clock */
-> +static const struct clk_parent_data s4_pwm_parent_data[] = {
-> +	{ .fw_name = "xtal", },
-> +	{ .hw = &s4_vid_pll.hw },
-> +	{ .fw_name = "fclk_div4", },
-> +	{ .fw_name = "fclk_div3", },
-> +};
-> +
-> +static struct clk_regmap s4_pwm_a_mux = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
-> +		.mask = 0x3,
-> +		.shift = 9,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "pwm_a_mux",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = s4_pwm_parent_data,
-> +		.num_parents = ARRAY_SIZE(s4_pwm_parent_data),
-> +		/*
-> +		 * When the driver uses this clock, needs to specify the patent clock
-> +		 * he wants in the dts.
-> +		 */
-
-Same here ... this is really going to far.
-
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-
-> +
-> +static struct clk_regmap s4_saradc_mux = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = CLKCTRL_SAR_CLK_CTRL,
-> +		.mask = 0x3,
-> +		.shift = 9,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "saradc_mux",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = (const struct clk_parent_data []) {
-> +			{ .fw_name = "xtal", },
-> +			{ .hw = &s4_sys_clk.hw },
-> +		},
-> +		.num_parents = 2,
-> +		/*
-> +		 * When the driver uses this clock, needs to specify the patent clock
-> +		 * he wants in the dts.
-> +		 */
-
-For each clock type, if this flag is going to be used, I'd like a clear
-explanation about why it is use-case dependent and why you need manual
-control over this. Same applies to all the occurence.
-
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-> +	},
-> +};
