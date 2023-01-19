@@ -2,109 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6901673A52
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:34:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF63A673A65
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:35:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230525AbjASNd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:33:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41462 "EHLO
+        id S231192AbjASNfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 08:35:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231211AbjASNd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:33:57 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81DEC798C1
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:33:55 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id h16so1848955wrz.12
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:33:55 -0800 (PST)
+        with ESMTP id S231319AbjASNec (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:34:32 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 284EF7E692
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:34:28 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id k16so1549451wms.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:34:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RjThMdha5LNwL1tIcbTJcnP9YVuxnfVPyJu5t74tMoc=;
-        b=CCw59ZE4sZFlC5z+0Xvd1NqLmD1Rtb6Vsr/EigP/UoiEqBqz+4ClMcrfcGPvzeIMLg
-         gke1TuWjpacEm1gA2dA/W1Sa71BH78wxBOffwE+J2XdxbXeZvdd0qno8KmU9W0C9qsol
-         46oB4xNoOYkwWLG8DFQy+SeyIvbbTusxkTA/wueVPaeGF/3Jt3duS8zDYLySonBKQIoh
-         FBxM38H7y61X2JC+8vRC0S8pw9gPlYQEkrsxRPL6ytFUpqGCcxXNzD1UyHVeFA3RVxyz
-         5TZCMf1KekC1ko6pQPS3ttcivi1bVea3XerJVhXb5ElpDjwNa+UYhXxVqwgMYJWbYfYM
-         yAqQ==
+        bh=EEuluooIe1Djy5Pq1DXpRGYzfjqm0LFTSxqLkps9dlU=;
+        b=R3/MBCO1fZ0ko2of28QHp6yL51jXKDrPCWYgLX15MNRmeDeBb3WfLt5B4cv2oTK8nv
+         waX8+Y4WuAQ7DWrcksP1MYMUzoOabYyoN2OdddTrkWYE1VT/WGHdRI9T45jv/qiKXNoG
+         Gb1tTn1nKiMiPFsoBH/SUxANigq1GlLVWtoogB8K1rzJaKuBw1C5hqszllr3TGDj3H1J
+         6wE5G3MZAk+N3CFY1jauEBf1P6FJnDTmZUvEHfKEuOwlZwY+fBPd0IezBGHOl6xco+kK
+         YAo5xd3IeniD99t5E+1uvvO9W7WPWNiDhQAG5Y86HDlUmeIAVmkG0NB14arykyzalcIE
+         P7ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RjThMdha5LNwL1tIcbTJcnP9YVuxnfVPyJu5t74tMoc=;
-        b=fREChF48/PJn0dk7dhBBPLlIN83GuAto/uq94MGAt8CHTFM2fQHZbzw9x+OKhZL2pB
-         WeZN2g9gI8mONGdLKcjEk03PE9jaAOOZypg+DjF10+/xzcFELN38CikXqtoOXRY66E70
-         xUtDdWKpB9h2xe0HDaUmT1CSaqYc1rjmtB1UA4+kow8HSZPRjTJ7B5g2xH/REPNo39gJ
-         XXV/lw3XdBnrXoUoc9EikymxImsslqiGjX11s6PcCEzpbJh5/PQpY5J6P+y4sIplkUPn
-         g6B0em9EJz0NpRxoFxq/WPZK0+4Z2tBQYcacFsuXQwCg26h0QLSowvT98xnvS5Ey8rmi
-         kitQ==
-X-Gm-Message-State: AFqh2kpAx2eKolh0gg+JJX/d0Z41CwfHxBbDLmz3V2rkjLS7E2H/e6yC
-        xSIp8tqxMB7uP5/F4lZLu9HHng==
-X-Google-Smtp-Source: AMrXdXuKkqjOj/Snuxtk6R5TZv/J/HGKQ+nDtuYpPG1Dg+MLbpR6GJU1qnsPUo5Ge44k67XChHhpQQ==
-X-Received: by 2002:a5d:5a96:0:b0:2bd:fedc:38fb with SMTP id bp22-20020a5d5a96000000b002bdfedc38fbmr10355818wrb.3.1674135234101;
-        Thu, 19 Jan 2023 05:33:54 -0800 (PST)
+        bh=EEuluooIe1Djy5Pq1DXpRGYzfjqm0LFTSxqLkps9dlU=;
+        b=MolALlqE+xphX8y02+cNY0O9oHo7YBzuljpXuIBvilhc7wfGQ22CQqxKWzbWNKpOCk
+         ybpvxMVJHNjNgkpJOyIqiB7Ji2Uz5Z3Ejmisdqu7bU/SsOZ5tWfo6iu9+oZSRxUZSRXe
+         i+HVByM3DffDvaFoCGg0u5JYpEAzXY4e5HK7cN/Ku2i856y8Mdj5kfu60ekiL8oV7ic3
+         MibkEDvyi90TK2AI4XOw6x+6EFVHFGPOU991RRICza1Pw4Es3gOIiBcTpGfNYEA8GhK5
+         gaTv/7DON/r4LxsGLW/NPHEZHPQNluGbSh7nvMUA+PVZHd/DyZ7ixT+xstT2vZlG89VZ
+         7kOA==
+X-Gm-Message-State: AFqh2krnu589Cw38KcGdS8IsRPoaV3KdPGS6hejGnOGKatCKqLKArfxV
+        jNJ/lDkEe5p9AasHIGu17M+MMA==
+X-Google-Smtp-Source: AMrXdXtiWkBP0Xweh+UUX5iU+3F6iXV1yxsDEBLCFSlq0agjo3MiueI+xACVmz5ZOnyuWlBe1zHJuA==
+X-Received: by 2002:a1c:f203:0:b0:3da:fa42:bbf2 with SMTP id s3-20020a1cf203000000b003dafa42bbf2mr9960769wmc.28.1674135266748;
+        Thu, 19 Jan 2023 05:34:26 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t18-20020adff612000000b002be2f18938csm3906606wrp.41.2023.01.19.05.33.52
+        by smtp.gmail.com with ESMTPSA id l11-20020a1ced0b000000b003dafb0c8dfbsm5945459wmh.14.2023.01.19.05.34.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 05:33:53 -0800 (PST)
-Message-ID: <8c3b7821-72ba-41f6-a362-527b73c33cac@linaro.org>
-Date:   Thu, 19 Jan 2023 14:33:51 +0100
+        Thu, 19 Jan 2023 05:34:26 -0800 (PST)
+Message-ID: <a0c944b3-d212-43bd-23a5-666b141a657b@linaro.org>
+Date:   Thu, 19 Jan 2023 14:34:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v3 6/7] arm64: dts: qcom: sc7280: Update
- qcom,adsp-pil-mode property
+Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: Add binding for AM69 Starter
+ Kit
 Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
-        robh+dt@kernel.org, broonie@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
-        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
-        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
-        konrad.dybcio@somainline.org, mka@chromium.org
-References: <1674131227-26456-1-git-send-email-quic_srivasam@quicinc.com>
- <1674131227-26456-7-git-send-email-quic_srivasam@quicinc.com>
+To:     sabiya.d@mistralsolutions.com, nm@ti.com, vigneshr@ti.com,
+        kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>
+References: <20230119132958.124435-1-sabiya.d@ti.com>
+ <20230119132958.124435-2-sabiya.d@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1674131227-26456-7-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <20230119132958.124435-2-sabiya.d@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 13:27, Srinivasa Rao Mandadapu wrote:
-> Add "qcom,adsp-pil-mode" property in clock nodes for herobrine
-> crd revision 3 board specific device tree.
-
-Why? Each of your commit msgs should answer to this question.
-
+On 19/01/2023 14:29, sabiya.d@mistralsolutions.com wrote:
+> From: Dasnavis Sabiya <sabiya.d@ti.com>
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> ---
->  .../boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi  | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> index 232e1dc..e4afce6 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> @@ -1,4 +1,5 @@
->  // SPDX-License-Identifier: BSD-3-Clause
-> +
 
-Not related, drop.
+Subject: drop second/last, redundant "binding for". The "dt-bindings"
+prefix is already stating that these are bindings.
 
+> AM69 Starter Kit is a single board designed for TI AM69 SoC.
+> The AM69 SoC belongs to the K3 Multicore SoC architecture platform,
+> providing advanced system integration in automotive ADAS applications,
+> autonomous mobile robot and edge AI applications.
+
+
+With fixed subject:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
