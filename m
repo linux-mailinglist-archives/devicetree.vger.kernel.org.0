@@ -2,91 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26B4C673731
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:43:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69AD867373B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:44:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231143AbjASLnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 06:43:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49368 "EHLO
+        id S231232AbjASLoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 06:44:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231144AbjASLnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:43:17 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DFD170C7F
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:42:48 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id f19-20020a1c6a13000000b003db0ef4dedcso3363888wmc.4
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:42:48 -0800 (PST)
+        with ESMTP id S230505AbjASLnw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:43:52 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C614B4B8
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:43:30 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id r30so1561811wrr.10
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:43:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aGOCUa90Q6GecXZlyktaQMT3FaJcTaKaXef4xUwVlsI=;
-        b=mQJdRPQT/G925muxm5y5X5xxGvrzo9HRieViv3UPDfZ0YnByak959w8xB5xBRvW691
-         +pvsFhbbf0sKaRSDu744jxUU2O/kZyH3j4plKgd2/4caZ2b0yfAybXtbjNWL3vhjGVDS
-         SWFzsbuIrnhhJoFFP62F1nfIFAk5oAdkEMElKmbHx8Efk2rCMQ59pNNnfxWh/NQUYEdx
-         wHWaK4yeFhFPPVSZpzOpOpjYuW3iqKQIAnTM2BH1yu8LD48ni1sgvqK5rSAL8G3tUlgy
-         gz9LUuxC4fcLDeQkOUzFnK46bF97fyHhhDw5rqYjSFNRJutq1oHNNyRdFoptOcd3yhrR
-         AunQ==
+        bh=DsM8SnUX6738vv+FuZQZAB/Sb1enJJrq9R2KmfyF4DI=;
+        b=I/NXo+JB+dcup6NvcY8BqxzMi77cSBmI2IToRjwoTrQqSmADhE+sn4M1eU9bhKi1QP
+         N7W/AGnmDS83tZtL91EJGXFINWvkUUWmMERIMmM2jJnxmSQo51T7j0hMEhHHYb0S15AV
+         kTix2fUMeczs5T8IF7DnYBbY1Cnuwza0sxbFPAE8CdLJo4lwuylQ9aLqHs5iNuc1nOxR
+         n6ZinYbjOWPYAqajmOE48LjEw96HGmfDpoStrM01GS2WGQaVj5tn58faWtBgxHtULUrO
+         eC7TXRsJZ1pQWv5bc+9v2q37CiCKnvwSgsFMHtKbpFvmY2qQoTKARBbuGpaJ66N9gMok
+         Tq+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aGOCUa90Q6GecXZlyktaQMT3FaJcTaKaXef4xUwVlsI=;
-        b=foISu7JItP5bDad5KewrQ0R9x9IVHm7C0Lv8uYzSEyjPMHXV83bF3NhLcx/9/qPjmj
-         FcYd4wX/ITszSle3e/ym+/IRZOGreCbrrNwXuv7tGA+sf9t9TnSwOmlfi/AkRtajrwG6
-         q7gnID9yti3gFPvSbp50RAdfW1e8yhe2pJ9CNj8qf76BKKpMZG1g+GURnOq4OfnXQIj6
-         doh01gidMhjskd8LWKPeH1Pz84Sx40kzpFXXnATh2HLV9/9IOF8nw3hlfNUwWXSZsEFF
-         nn3sfasmUhMrKW4SUkGZrGdeCxtZJfYa9VLgzf9jv30U7V6uAhZly4hW5L9d/caqwcPT
-         GsFA==
-X-Gm-Message-State: AFqh2koQdjP0GdGpiSC7P3u1JgiuxTG/vOlWaQ6Bi8/5jQaWF9W2ZnOb
-        jfrJNW0IYN8vlkbmfSHs0Sapuw==
-X-Google-Smtp-Source: AMrXdXssEIeVpk3X1FIFFciJq51Cu5AreREsl/mdQ1un6vSac+sLtqMVI3HE4pbO8c7AuMUXfQ38Qw==
-X-Received: by 2002:a1c:cc11:0:b0:3da:1d52:26b5 with SMTP id h17-20020a1ccc11000000b003da1d5226b5mr18469160wmb.14.1674128565881;
-        Thu, 19 Jan 2023 03:42:45 -0800 (PST)
+        bh=DsM8SnUX6738vv+FuZQZAB/Sb1enJJrq9R2KmfyF4DI=;
+        b=L0HvMNhSGZoXj54aZrHbP5IzsZ0AnsZ4f3W/1fjY8WN8fwe4gnK4DywiVGsmr6ZR14
+         yZJ9m6lrdGokaF2S68qkex3voQnXMSRIM3ZOP1S4h/GVRNxjZwSjKsnDns0Me8gL56t9
+         xgxRuGRAp676Eqxv9KoIxmm3A6HZ9grwbPGLI8Ji2Y855naVdWeeIbmfqJeXydH5tvGW
+         WV2lWsCETEoHs7943Enpn1wXF0Ji0rVR4irWOrLHOvFkwwBD6wmaMSCnhV6XA+XND5I7
+         2dT0v8u+6VPZoy6xS/1nU/F6QHxFX3ZyKSidraPqIzl9rOP5x8m9IndtHu9zQyhLbQ79
+         dpnA==
+X-Gm-Message-State: AFqh2kpBo07MgZh5S1yr7HM+p1Q45hiVNGcQhvKdUt9BlO4wGRh+pro3
+        fg4gmyoFZfrF9Psx1Ofq+UnVlw==
+X-Google-Smtp-Source: AMrXdXv0v3jBWqBuFxLi8NxQbVFDlr7srs6jAca5/ZayShqefie0jHw4QWVBoBpugpkzBHTlW5nSZA==
+X-Received: by 2002:a5d:6988:0:b0:2bd:f18d:e909 with SMTP id g8-20020a5d6988000000b002bdf18de909mr8898365wru.1.1674128608983;
+        Thu, 19 Jan 2023 03:43:28 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p18-20020a05600c359200b003db040f0d5esm4959764wmq.33.2023.01.19.03.42.44
+        by smtp.gmail.com with ESMTPSA id l1-20020adfe9c1000000b00289bdda07b7sm32739711wrn.92.2023.01.19.03.43.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 03:42:45 -0800 (PST)
-Message-ID: <5e504304-9130-1662-c048-a5863ba9ddb2@linaro.org>
-Date:   Thu, 19 Jan 2023 12:42:44 +0100
+        Thu, 19 Jan 2023 03:43:28 -0800 (PST)
+Message-ID: <73e4c2e5-800d-5595-004c-03f9cdf7f567@linaro.org>
+Date:   Thu, 19 Jan 2023 12:43:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: add nxp,mc34vr500
+Subject: Re: [PATCH v1 1/4] dt-bindings: bluetooth: marvell: add 88W8997 DT
+ binding
 Content-Language: en-US
-To:     Mario Kicherer <dev@kicherer.org>, linux-hwmon@vger.kernel.org
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230118123019.3041303-1-dev@kicherer.org>
- <20230118123019.3041303-2-dev@kicherer.org>
+To:     Francesco Dolcini <francesco@dolcini.it>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc:     Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+References: <20230118122817.42466-1-francesco@dolcini.it>
+ <20230118122817.42466-2-francesco@dolcini.it>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230118123019.3041303-2-dev@kicherer.org>
+In-Reply-To: <20230118122817.42466-2-francesco@dolcini.it>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2023 13:30, Mario Kicherer wrote:
-> Add dt-bindings for the NXP MC34VR500 PMIC.
+On 18/01/2023 13:28, Francesco Dolcini wrote:
+> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 > 
-> Signed-off-by: Mario Kicherer <dev@kicherer.org>
-> ---
->  .../bindings/hwmon/nxp,mc34vr500.yaml         | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-> 
+> Update the documentation with the device tree binding for the Marvell
+> 88W8997 bluetooth device.
 
+Subject: drop second/last, redundant "DT binding". The "dt-bindings"
+prefix is already stating that these are bindings.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+With above:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
