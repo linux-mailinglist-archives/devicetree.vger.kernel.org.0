@@ -2,217 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97D4E673803
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 13:13:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED6DA673808
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 13:15:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbjASMNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 07:13:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42332 "EHLO
+        id S229982AbjASMP4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 19 Jan 2023 07:15:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbjASMNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 07:13:37 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4010B6E91;
-        Thu, 19 Jan 2023 04:13:34 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30JBFiZ8013617;
-        Thu, 19 Jan 2023 12:13:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=1BLNPwdD2MIkGCnflVreUOktXJImRH9Nu9SpRY1ajKg=;
- b=cl2EIhNDrbmVNGeTnOw52zuwov7a0mHYxOV+QnF98y/aZnzKg7lRC70ZjT8ybbPtL1Kh
- TK9zmySNRJF2Z+inLDd1dDIcXC9ODyl5aMcigUMRAcCQTOG84I27K/YG0QI/3LYXd93B
- /mxb0eZymaU6jsymDrOmyAS+6zDhoNIdnyt6FNvb6PIeo9vcN+XaRrcRQm8pYnjed29+
- OAf4rwqcd/2hBxmrwyjgp7wSXO8HTCx+dOSbqc0s9uPf4dB1TxRfkUo6ngJU953H8PkX
- Dk3atpX3dz+/lEE3fCXNYxhIutPAqosdqHse6YeHgb5W6MwIaZUk6GEwQ+YPlyezqIUH Fw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n6ya2s4d7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 19 Jan 2023 12:13:30 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30JCDT08019257
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 19 Jan 2023 12:13:29 GMT
-Received: from [10.216.43.228] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 19 Jan
- 2023 04:13:25 -0800
-Message-ID: <94d64ba8-4a49-5f94-79a0-5b09c6f39f5d@quicinc.com>
-Date:   Thu, 19 Jan 2023 17:43:21 +0530
+        with ESMTP id S229804AbjASMPz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 07:15:55 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BE1C6E91
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 04:15:52 -0800 (PST)
+Received: from wf0783.dip.tu-dresden.de ([141.76.183.15] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pITpV-0002mO-3s; Thu, 19 Jan 2023 13:15:41 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Michael Tretter <m.tretter@pengutronix.de>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        robh+dt@kernel.org, Peter Geis <pgwipeout@gmail.com>
+Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-rockchip@lists.infradead.org,
+        Shengyu Qu <wiagn233@outlook.com>, devicetree@vger.kernel.org,
+        jacob-chen@iotwrt.com, kernel@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, michael.riesch@wolfvision.net
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add RGA2 support to rk356x
+Date:   Thu, 19 Jan 2023 13:15:39 +0100
+Message-ID: <4455473.LvFx2qVVIh@phil>
+In-Reply-To: <5241675.okTXgP3Kn8@archbook>
+References: <20221121151755.2072816-3-m.tretter@pengutronix.de>
+ <20230117124114.GF23495@pengutronix.de> <5241675.okTXgP3Kn8@archbook>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/8] arm64: dts: qcom: sc7280: audioreach: Add sound
- node
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <dianders@chromium.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <konrad.dybcio@linaro.org>, <mka@chromium.org>
-References: <1672925875-2107-1-git-send-email-quic_srivasam@quicinc.com>
- <1672925875-2107-3-git-send-email-quic_srivasam@quicinc.com>
- <a6e0fce9-3a59-1014-9ae8-f07b50d122a2@linaro.org>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <a6e0fce9-3a59-1014-9ae8-f07b50d122a2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9MFpG3EPn8hPxc-IpzkqH9dEu15KHocz
-X-Proofpoint-GUID: 9MFpG3EPn8hPxc-IpzkqH9dEu15KHocz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-19_09,2023-01-19_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- mlxscore=0 priorityscore=1501 lowpriorityscore=0 suspectscore=0
- impostorscore=0 adultscore=0 mlxlogscore=830 malwarescore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301190096
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On 1/10/2023 4:30 PM, Krzysztof Kozlowski wrote:
-Thanks for your time Krzysztof!!!
-> On 05/01/2023 14:37, Srinivasa Rao Mandadapu wrote:
->> Add sound node for sc7280 based audioreach platforms.
->>
->> Include audioreach dtsi into crd-rev3 platform specific dts file.
->> Also remove phandle to sound node, as audio routing is same as
->> audioreach specific dtsi file.
->>
-> Thank you for your patch. There is something to discuss/improve.
->
->> +#include <dt-bindings/sound/qcom,q6afe.h>
->> +
->> +/{
->> +	/* BOARD-SPECIFIC TOP LEVEL NODES */
->> +	sound: sound {
->> +		compatible = "google,sc7280-herobrine";
->> +		model = "SC7280-AUDIOREACH";
->> +		adsp-mode;
-> There is no such property. Test DTS against your schema, so make
-> dtbs_check DT_SCHEMA_FILES=google,sc7280-herobrine
-Okay. Will fix it.
->
->> +		audio-routing =
->> +			"IN1_HPHL", "HPHL_OUT",
->> +			"IN2_HPHR", "HPHR_OUT",
->> +			"AMIC1", "MIC BIAS1",
->> +			"AMIC2", "MIC BIAS2",
->> +			"VA DMIC0", "MIC BIAS1",
->> +			"VA DMIC1", "MIC BIAS1",
->> +			"VA DMIC2", "MIC BIAS3",
->> +			"VA DMIC3", "MIC BIAS3",
->> +			"TX SWR_ADC0", "ADC1_OUTPUT",
->> +			"TX SWR_ADC1", "ADC2_OUTPUT",
->> +			"TX SWR_ADC2", "ADC3_OUTPUT",
->> +			"TX SWR_DMIC0", "DMIC1_OUTPUT",
->> +			"TX SWR_DMIC1", "DMIC2_OUTPUT",
->> +			"TX SWR_DMIC2", "DMIC3_OUTPUT",
->> +			"TX SWR_DMIC3", "DMIC4_OUTPUT",
->> +			"TX SWR_DMIC4", "DMIC5_OUTPUT",
->> +			"TX SWR_DMIC5", "DMIC6_OUTPUT",
->> +			"TX SWR_DMIC6", "DMIC7_OUTPUT",
->> +			"TX SWR_DMIC7", "DMIC8_OUTPUT";
->> +
->> +		qcom,msm-mbhc-hphl-swh = <1>;
->> +		qcom,msm-mbhc-gnd-swh = <1>;
->> +
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		#sound-dai-cells = <0>;
->> +
->> +		dai-link@0 {
->> +			link-name = "WCD9385 Playback";
->> +			reg = <0>;
->> +
->> +			cpu {
->> +				sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
->> +			};
->> +			codec {
->> +				sound-dai = <&wcd9385 0>, <&swr0 0>, <&lpass_rx_macro 0>;
->> +			};
->> +			platform {
->> +				sound-dai = <&q6apm>;
->> +			};
->> +		};
->> +
->> +		dai-link@1 {
->> +			link-name = "WCD9385 Capture";
->> +			reg = <1>;
->> +
->> +			cpu {
->> +				sound-dai = <&q6apmbedai TX_CODEC_DMA_TX_3>;
->> +			};
->> +			codec {
->> +				sound-dai = <&wcd9385 1>, <&swr1 0>, <&lpass_tx_macro 0>;
->> +			};
->> +			platform {
->> +				sound-dai = <&q6apm>;
->> +			};
->> +		};
->> +
->> +		dai-link@2 {
->> +			link-name = "Amplifier Playback";
->> +			reg = <3>;
-> Missing dtbs W=1 build.
-Okay. Will fix it.
->
->> +
->> +			cpu {
->> +				sound-dai = <&q6apmbedai SECONDARY_MI2S_RX>;
->> +			};
->> +
-> Use consistent style. Either blank line or not between the
-> cpu/codec/platform nodes.
-Okay. will fix it.
->
->> +			codec {
->> +				sound-dai = <&max98360a>;
->> +			};
->> +
->> +			platform {
->> +				sound-dai = <&q6apm>;
->> +			};
->> +		};
->> +
->> +		dai-link@3 {
->> +			link-name = "DMIC";
->> +			reg = <4>;
-> Same problem, wrong reg.
-Okay.
->
->> +
->> +			cpu {
->> +				sound-dai = <&q6apmbedai VA_CODEC_DMA_TX_0>;
->> +			};
->> +
->> +			codec {
->> +				sound-dai = <&lpass_va_macro 0>;
->> +			};
->> +
->> +			platform {
->> +				sound-dai = <&q6apm>;
->> +			};
->> +		};
->> +	};
->> +};
-> Best regards,
-> Krzysztof
->
+Am Mittwoch, 18. Januar 2023, 01:01:48 CET schrieb Nicolas Frattaroli:
+> On Dienstag, 17. Januar 2023 13:41:14 CET Michael Tretter wrote:
+> > On Wed, 23 Nov 2022 10:28:41 +0100, Michael Tretter wrote:
+> > > On Tue, 22 Nov 2022 20:47:49 +0100, Nicolas Frattaroli wrote:
+> > > > On Dienstag, 22. November 2022 00:10:25 CET Peter Geis wrote:
+> > > > > On Mon, Nov 21, 2022 at 12:34 PM Ezequiel Garcia
+> > > > > <ezequiel@vanguardiasur.com.ar> wrote:
+> > > > > > On Mon, Nov 21, 2022 at 2:13 PM Shengyu Qu <wiagn233@outlook.com> wrote:
+> > > > > > > I remember someone said that rga2 has only 32bit address space but not
+> > > > > > > having a mmu or mmu needs to be configured. Better ask by yourself in
+> > > > > > > pine64 discord since I'm not sure about that.
+> > > > > > > 于 2022年11月22日 GMT+08:00 上午12:41:16, Michael Tretter <m.tretter@pengutronix.de> 写到:
+> > > > > > > >On Tue, 22 Nov 2022 00:01:28 +0800, Shengyu Qu wrote:
+> > > > > > > >> Someone from pine64 discord found that RGA2 doesn't work properly on over
+> > > > > > > >>
+> > > > > > > >> 4GB memory RK3568 devices. Are you sure current driver works now?
+> > > > > > > >
+> > > > > > > >I am absolutely sure that the driver works on a 2GB ROCK3A board.
+> > > > > > > >Unfortunately, I don't have a device with 4GB or more memory and I cannot test
+> > > > > > > >the driver with such a device.
+> > > > > > > >
+> > > > > > > >As the documentation for the RGA2 is the same in the TRM of the rk3288 and
+> > > > > > > >rk3568, I would guess that the driver doesn't work on a rk3288 with more than
+> > > > > > > >4GB (if there is such a thing) either and the driver needs to be fixed for
+> > > > > > > >both SoCs.
+> > > > > > > >
+> > > > > >
+> > > > > > In any case, if there's some kind of issue it must be in the driver,
+> > > > > > and not in the device tree binding (i.e. this patchset).
+> > > > > 
+> > > > > An unfortunate number of Rockchip drivers break on rk356x boards with
+> > > > > more than 4GB of ram. I've found requesting memory allocations with
+> > > > > the GFP_DMA flag solves the problem, as the kernel only allocates
+> > > > > 32bit addresses for DMA on rk356x. This is similar to the bug with the
+> > > > > ITS MSI allocations.
+> > > > 
+> > > > the problem in this case at least partly seems to be down to the driver
+> > > > assuming 32 bit addresses, see e.g. [1] (if I understand the code
+> > > > correctly) and [2]. When I asked in the #armlinux IRC on Libera.chat
+> > > > about this, Robin Murphy remarked:
+> > > > 
+> > > >   <robmur01> yeesh, the virt_to_phys/dma_sync abuse is even worse
+> > > >   - in that particular instance I'd be inclined to replace
+> > > >   {src,dst}_mmu_pages with proper coherent DMA buffers
+> > > > 
+> > > > So the driver in general needs some cleanup, which contributes to the
+> > > > problem.
+> > > 
+> > > As far as I understand the 4GB are a hardware limitation.
+> > > 
+> > > According to the rk3568 TRM, the RGA2_MMU_SRC_BASE has 28 bits for the upper
+> > > 28 bits of the address of the MMU TLB. Thus the MMU TLB must be located within
+> > > 4GB memory.
+> > > 
+> > > And within the MMU TLB, the addresses are 32 bit as well (unless I am missing
+> > > something important). Unfortunately, I couldn't find any documentation for the
+> > > TLB. The downstream driver writes only 32 bit addresses to the TLB as well.
+> > > Thus, I assume that all video buffers must be located within 4GB memory, too.
+> > > 
+> > > While I agree that the driver needs some cleanup and may use correct types for
+> > > handling the bit size limitation, I think this isn't some driver limitation.
+> > > Maybe the driver should set the dma mask to 32 bits and should be explicitly
+> > > aware of the 32 bit limit.
+> > > 
+> > > > 
+> > > > But as was said, this isn't a problem with the device tree, so it should
+> > > > still make it in. It just means that the driver is broken on 8GB RK356x.
+> > 
+> > Nicolas: Is this your Acked-By?
+> > 
+> > Who would pick up the patch? Heiko?
+> > 
+> > Michael
+> > 
+> 
+> Sure,
+> 
+> Acked-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> 
+> Though I'm not sure how much weight my Acked-by carries here.
+> 
+> For applying the patch, yes that would be done by Heiko.
+
+Hmm, normally the binding goes through the relevant subsystem tree
+(media in this case), after which I'd normally pick the dts patch.
+Media is always pretty hard, as one never really knows if and when said
+patches get applied.
+
+I don't really see media-people in the Cc list as well, so don't
+really know what's the plan.
+
+I guess you might want to resend with Reviews appended and include
+the media people + list for the binding. (Or I'd need an Ack from
+someone from media for me to take the binding)
+
+
+Heiko
+
+
