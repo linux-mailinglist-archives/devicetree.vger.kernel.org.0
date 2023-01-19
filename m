@@ -2,102 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1237674037
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 18:44:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E211674043
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 18:47:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbjASRoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 12:44:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52098 "EHLO
+        id S229995AbjASRro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 12:47:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229912AbjASRoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 12:44:10 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D1658BAB7;
-        Thu, 19 Jan 2023 09:43:55 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EAD9D6134C;
-        Thu, 19 Jan 2023 17:43:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66446C433D2;
-        Thu, 19 Jan 2023 17:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674150234;
-        bh=esBoZHarCRcBXHGsNJk462bLB02o1AxAN9bNjEUye3w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mxGAXbfdIG/R1xqREgWOldwDvC1gw+KtwyNEXQDW8Hx8zJk7TZeqU6yZdXKg9gLzG
-         iKDIYtYnidUdca599t/DIIbhnDHVOX+p9Bpe1YsOCxqXpk9mDo4tZJEj3DBBMmehIp
-         046fhTpxlEtv8H17OO28vX8S15/5BoPAMsqqqL5BC73SMNSUzPSzVfqXIJ5le+vP4G
-         +HGlBRzLx9g/tjNB2FejeaFHP35zKcbIEebde+LhUd7hfhIjsPUpOFd59U3P8C0BuO
-         wqV4Nt9D7HtOjNp8YOLVGXPzjd6Am42PB8/1iBQ9LXfRV3MaNH9fYvr4cxZs5Ov8Or
-         9A7HQxBkGiRhA==
-Date:   Thu, 19 Jan 2023 17:43:48 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: arm-smmu: document the smmu on Qualcomm
- SA8775P
-Message-ID: <20230119174348.GA20275@willie-the-truck>
-References: <20230112154554.442808-1-brgl@bgdev.pl>
- <20230119173448.GB20092@willie-the-truck>
+        with ESMTP id S229966AbjASRri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 12:47:38 -0500
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D80457CA;
+        Thu, 19 Jan 2023 09:47:37 -0800 (PST)
+Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30JGs6N8010426;
+        Thu, 19 Jan 2023 17:47:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=nDBtNbxiTsR1pRQ6YNTP5Elyaltxfsu1m6pub8C7Vs8=;
+ b=pLlrvzXBVvMKbQo9sqI+NKd/oVyUWm6HbZAXl5TjUIbm2mwGW9TYT+X6rwKrGJdl880+
+ 4Lo8q45PNAQBc4ddNOT0Hg9m2P3k504REVuWZKKteydhcmXq/OGNAphbyrRd7dsuquLL
+ vDjSfXhrlllnJa7mmzntcHbzdL44G1jN/ZyhBKNhaKtQ4Du4Gan+yfbxkipmeYiFIoSH
+ Hg8MZZcIQFT1yFnzafyN/juVUZJzzLwafoK46vD5rixngMSkkcgPPicWSxeBwddc20HN
+ nVaLmg3ZTZiOoTlXOeGl3+iXdOcu4SqRtpLSaUqy0nt4LYa3N7na5Ug5anI/e7AlSyvf IQ== 
+Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3n79ss99g9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 19 Jan 2023 17:47:20 +0000
+Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
+        by ppma04wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30JF0GkR018337;
+        Thu, 19 Jan 2023 17:47:19 GMT
+Received: from smtprelay02.dal12v.mail.ibm.com ([9.208.130.97])
+        by ppma04wdc.us.ibm.com (PPS) with ESMTPS id 3n3m17nj2n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 19 Jan 2023 17:47:19 +0000
+Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
+        by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 30JHlITB37028542
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 19 Jan 2023 17:47:18 GMT
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id CECF05803F;
+        Thu, 19 Jan 2023 17:47:18 +0000 (GMT)
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id BDDA258060;
+        Thu, 19 Jan 2023 17:47:17 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.160.43.39])
+        by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
+        Thu, 19 Jan 2023 17:47:17 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-fsi@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, jk@ozlabs.org, joel@jms.id.au,
+        alistair@popple.id.au, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH 0/2] fsi: Add IBM I2C Responder virtual FSI master
+Date:   Thu, 19 Jan 2023 11:47:12 -0600
+Message-Id: <20230119174714.1486042-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230119173448.GB20092@willie-the-truck>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: -HjMonkYG-iH4vn-gB0FUF2D-7iIjpzX
+X-Proofpoint-ORIG-GUID: -HjMonkYG-iH4vn-gB0FUF2D-7iIjpzX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-19_11,2023-01-19_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ bulkscore=0 adultscore=0 mlxscore=0 priorityscore=1501 impostorscore=0
+ clxscore=1011 lowpriorityscore=0 malwarescore=0 mlxlogscore=655
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301190144
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 05:34:51PM +0000, Will Deacon wrote:
-> On Thu, Jan 12, 2023 at 04:45:54PM +0100, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > 
-> > Document the qcom,smmu-500 SMMU on SA8775P platforms.
-> > 
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> > - rebase on top of Krzysztof's work and add the compatible to the
-> >   "clock disallow" list
-> > 
-> >  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> > index 124253e84c02..ea9205706b7c 100644
-> > --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> > +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> > @@ -36,6 +36,7 @@ properties:
-> >            - enum:
-> >                - qcom,qcm2290-smmu-500
-> >                - qcom,qdu1000-smmu-500
-> > +              - qcom,sa8775p-smmu-500
-> >                - qcom,sc7180-smmu-500
-> >                - qcom,sc7280-smmu-500
-> >                - qcom,sc8180x-smmu-500
-> > @@ -326,6 +327,7 @@ allOf:
-> >                - nvidia,smmu-500
-> >                - qcom,qcm2290-smmu-500
-> >                - qcom,qdu1000-smmu-500
-> > +              - qcom,sa8775p-smmu-500
-> >                - qcom,sc7180-smmu-500
-> >                - qcom,sc8180x-smmu-500
-> >                - qcom,sc8280xp-smmu-500
-> 
-> I can't get this to apply. Which tree is it against?
+The I2C Responder (I2CR) is an I2C device that translates I2C commands
+to CFAM or SCOM operations, effectively implementing an FSI master and
+bus.
 
-Aha, I just needed Krzysztof's patch for the unused clocks. All good now,
-thanks!
+Eddie James (2):
+  dt-bindings: fsi: Document the IBM I2C Responder virtual FSI master
+  fsi: Add IBM I2C Responder virtual FSI master
 
-Will
+ .../devicetree/bindings/fsi/ibm,i2cr.yaml     |  42 ++++
+ drivers/fsi/Kconfig                           |   9 +
+ drivers/fsi/Makefile                          |   1 +
+ drivers/fsi/fsi-master-i2cr.c                 | 225 ++++++++++++++++++
+ include/trace/events/fsi_master_i2cr.h        |  96 ++++++++
+ 5 files changed, 373 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,i2cr.yaml
+ create mode 100644 drivers/fsi/fsi-master-i2cr.c
+ create mode 100644 include/trace/events/fsi_master_i2cr.h
+
+-- 
+2.31.1
+
