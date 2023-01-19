@@ -2,60 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34FFD673406
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 09:55:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC7B67340D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 09:57:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229486AbjASIzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 03:55:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56694 "EHLO
+        id S229760AbjASI5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 03:57:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229898AbjASIyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 03:54:55 -0500
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389016E96;
-        Thu, 19 Jan 2023 00:54:54 -0800 (PST)
-Received: from toolbox.toradex.int ([31.10.206.125]) by mrelay.perfora.net
- (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1N33hJ-1oZIlF0O2H-013PPj;
- Thu, 19 Jan 2023 09:54:36 +0100
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH v1 2/2] dt-bindings: imx8ulp: clock: no spaces before tabs
-Date:   Thu, 19 Jan 2023 09:54:21 +0100
-Message-Id: <20230119085421.102804-3-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230119085421.102804-1-marcel@ziswiler.com>
-References: <20230119085421.102804-1-marcel@ziswiler.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:3lsqMvUjg840JDNVAxsVGyJ9oYSECeJt/YcR4tz5LlvH0MyIZ5M
- 8Npt2lmIuRVcgtf1FuK5eoaiXKMvRPsy03Q6VVJH3lsSLnN2gYdZEAWQsDbTE/2rTJmN8Ny
- mDYkTeBq2CZQToy+ImK2B61bskOsXQpfclANoSvv8huslrBWc4l+TwjcPLtnViecnxUt0z0
- YO+I3Wm/IbA8cJEvn3NNA==
-UI-OutboundReport: notjunk:1;M01:P0:qsOGRUs7uxk=;6Y32JOM4qSFqYSkH2hCZz0y+qvq
- mJ1LkLzyZYA+62RRpTLon8dPQHTEM7kcQ+Uv3MRxpmGOBfgeNEVd+8Syfg3NOk9xQhdynx6Qn
- SJuPimdg1WPk6B1Gq/aUEOGKeTPVEdT6xIGKhJV3fZIcP1Fa7Dx8heZ8Hwz2EWq5QEW6HEGul
- 4pEAcwI+fZmRr9ZQ8q2Qs0VBCkIHd0U8uHWQOFJeVaEamUSQ6WY5pUMHmilzF50Xei9u8OeJC
- qYXrPGjAYUoHl8LA+gDtjBEz1+vgLaE1xB9Z8ONGx/vwXQGOiGAtBnhfxDY8C8P90coxp8PLO
- t8uM8/IDT+7JO0thjFGhiPh6lQwAI3ku/wIcUo1XGLRWZ8qqYP2EyOOpoeUPwj71CL3JfOTQ/
- N8n0FkCRtr7CylHZcl9aeQ+cr+BDnjJylct0Q/r4jPXXfgWYThHgi2hly7kQpwvowLQqIQ8Ls
- cm6sn3cwt1Zg6EGO9DwVQwCHltnL0eD6TK9PXo73Y6r1DqTH9YOmm8bNfP7HezVeOP4c0nq5V
- pq9AoBjgHsodfRxqcwIdEZNJ7qltqSwsYALorkFz7xHGVcy2V/eYzM9sRStMEas2hucfVwq14
- vZ3c66eMjzUYhqNkO4QYBEBcpFCychHW+krZ52AkJhNl0N11gGR0f9c12ERUB8/VG16ZZlxLE
- rzmpa/o3lIQwy6b6Z1CTXqqsOEYoWUpAi/sw6Ssbfw==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        with ESMTP id S229610AbjASI5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 03:57:46 -0500
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D93A6796A;
+        Thu, 19 Jan 2023 00:57:44 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id EC7655C006C;
+        Thu, 19 Jan 2023 03:57:40 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 19 Jan 2023 03:57:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1674118660; x=1674205060; bh=mn2JbKYAQs
+        NeYnkRN5qpIkeRXL317vu4/izCeLSldg0=; b=rc+37mK0rgykOYr91sA8MJnxUK
+        JcUHSxUB69vOrQtZLXtQ2y3+34WpCXOv3Se7NsQYwRQjhOc/nxIogKjP2Cp3Pyy7
+        /bGWCTq29Nhfcr/I1Il7AkCRw5PxOB9wRp00ZE/IDjd0LBUJsr8zESXbA30FuT7u
+        FIe9Mziudr3VeSlEvXdg2vOFG2+3G2fJMvaYg2jxHhlGjy8jdEbr2XVSr3mw2cPP
+        Z/1GqQBp32x0h3HW5IgWBhPCjYP5lBi/XX8MJ3U+6SQE8sN1QuSZfDN/PZ+u5FFg
+        h12taYI556qigoUGGooWgAGvKAUHpVvtIZ+6XlEUlmubSroMCbZdjsLP9U9Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1674118660; x=1674205060; bh=mn2JbKYAQsNeYnkRN5qpIkeRXL31
+        7vu4/izCeLSldg0=; b=Z1Wc+S3Uwo5G8OQ47N8l6W0p2DSVnHbOqaJT5Lfwazt/
+        jLStp3Z0z7T3hPQYkOrgBsTUm2KAlHS3Vw8aot9X5U/ZAAJbxEt7wbl7UMcxpFqW
+        bfr2SLl7M3IVB0aCOVsVd7WQhoMYa0/ooT0EY89pcOT7LwA+lAaGwORxN8AySvgp
+        DDCDnDX4FNS7pLe8+md/xCCaXNr8/Wk/nksHhW0oDMKN/kUVjae/TLea1wEEJqCU
+        S7A0xfL25qYEBYOCErtUqJdDxriE3F5HvGjqmSEfkzRJoT4xRsl3d/O5FLl9ONEM
+        Brb1Ub0USVaO72dOJUCmDS+SQt1ZpJQcOKEj6/cLcQ==
+X-ME-Sender: <xms:AwbJY-DkTuOpk5u44J0x7IocCo8g_SnyL0S-7ewEnG-Jl_GgI5pjSg>
+    <xme:AwbJY4jPrjB_ynq5d0V35sAqI_RFKI3i32_2_vLHbE9N9AjPPw7qk3u43Tf8-M357
+    uln4SLYMHH-5XmXBlQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddtledguddviecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:BAbJYxnlogFPWU-btDV4FqPMmP1wS6ncEsvY_z-Tdayd2bIBaZ5i3A>
+    <xmx:BAbJY8xtHzI6qEgYIfOrMUE7A7zbF8YWSHBFqVDm2Vp5L2yYy_8NwQ>
+    <xmx:BAbJYzTMWvDcUb7RNzQL-rJ_ArAFtZqMmtdDmIbJ451KoynkVaOdng>
+    <xmx:BAbJYzzBAtjYuSwk0drj5G6_GAGB4kmfMm6BLaELLIYFmZWIuvzhKA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id EAAB2B60086; Thu, 19 Jan 2023 03:57:39 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
+Mime-Version: 1.0
+Message-Id: <a958eb22-39c9-4f91-8f72-cd1db7829a3d@app.fastmail.com>
+In-Reply-To: <20230119033918.44117-15-blarson@amd.com>
+References: <20230119033918.44117-1-blarson@amd.com>
+ <20230119033918.44117-15-blarson@amd.com>
+Date:   Thu, 19 Jan 2023 09:57:20 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Brad Larson" <brad@pensando.io>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org,
+        "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
+        linux-spi@vger.kernel.org, adrian.hunter@intel.com,
+        alcooperx@gmail.com, "Andy Shevchenko" <andy.shevchenko@gmail.com>,
+        blarson@amd.com, brendan.higgins@linux.dev,
+        "Brian Norris" <briannorris@chromium.org>,
+        brijeshkumar.singh@amd.com,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        "David Gow" <davidgow@google.com>, gsomlo@gmail.com,
+        gerg@linux-m68k.org, "Krzysztof Kozlowski" <krzk@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
+        "Lee Jones" <lee.jones@linaro.org>,
+        "Mark Brown" <broonie@kernel.org>, yamada.masahiro@socionext.com,
+        "Philipp Zabel" <p.zabel@pengutronix.de>, piotrs@cadence.com,
+        p.yadav@ti.com, "Randy Dunlap" <rdunlap@infradead.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Samuel Holland" <samuel@sholland.org>,
+        "Serge Semin" <fancer.lancer@gmail.com>, skhan@linuxfoundation.org,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        "Tony Huang" <tonyhuang.sunplus@gmail.com>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>, vaishnav.a@ti.com,
+        "Will Deacon" <will@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 14/15] mmc: sdhci-cadence: Support mmc hardware reset
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,44 +104,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+On Thu, Jan 19, 2023, at 04:39, Brad Larson wrote:
+> 
+> +extern unsigned int sdhci_timeout_val;
+> +
 
-This fixes the following warnings:
+This declaration should not be in the .c file, and I don't think
+there should be a global variable with this overly generic name either.
 
-include/dt-bindings/clock/imx8ulp-clock.h:204: warning: please, no space
- before tabs
-include/dt-bindings/clock/imx8ulp-clock.h:215: warning: please, no space
- before tabs
-
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-
----
-
- include/dt-bindings/clock/imx8ulp-clock.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/include/dt-bindings/clock/imx8ulp-clock.h b/include/dt-bindings/clock/imx8ulp-clock.h
-index 953ecfe8ebcc..827404fadf5c 100644
---- a/include/dt-bindings/clock/imx8ulp-clock.h
-+++ b/include/dt-bindings/clock/imx8ulp-clock.h
-@@ -201,7 +201,7 @@
- #define IMX8ULP_CLK_SAI7		2
- #define IMX8ULP_CLK_SPDIF		3
- #define IMX8ULP_CLK_ISI			4
--#define IMX8ULP_CLK_CSI_REGS 		5
-+#define IMX8ULP_CLK_CSI_REGS		5
- #define IMX8ULP_CLK_PCTLD		6
- #define IMX8ULP_CLK_CSI			7
- #define IMX8ULP_CLK_DSI			8
-@@ -212,7 +212,7 @@
- #define IMX8ULP_CLK_GPU2D		13
- #define IMX8ULP_CLK_GPU3D		14
- #define IMX8ULP_CLK_DC_NANO		15
--#define IMX8ULP_CLK_CSI_CLK_UI 		16
-+#define IMX8ULP_CLK_CSI_CLK_UI		16
- #define IMX8ULP_CLK_CSI_CLK_ESC		17
- #define IMX8ULP_CLK_RGPIOD		18
- #define IMX8ULP_CLK_DMA2_MP		19
--- 
-2.36.1
-
+     Arnd
