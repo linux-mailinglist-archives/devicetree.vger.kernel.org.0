@@ -2,122 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84CEA673651
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:04:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61039673666
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 12:11:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbjASLEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 06:04:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50444 "EHLO
+        id S230042AbjASLLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 06:11:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230122AbjASLEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:04:25 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B835D7179D
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:04:19 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso962183wms.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:04:19 -0800 (PST)
+        with ESMTP id S230210AbjASLKx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 06:10:53 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716547497C
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:10:31 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id ud5so4739478ejc.4
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 03:10:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WFPCHnH4BLHfsWKrLXL/kRkVribIQYKCD+0tbIu1RlY=;
-        b=ORycp9/f4UvnbRnieWYiheKRbz4dQRj6ZCKMBB8oUeU+Id+izspyrbe1d8SJD4TDnv
-         MXQTkk087qeT27gM+1xw+eOBqCKd02Xkc/Z8OfZsov0zJlEmRy7p7LqiE1SuxWvkPvy+
-         /xn5/67z4Q7Xwm7frblc0U8DMCXVz21egKc2CWa6TfS/0R7KPah5ytNYmzdU2GPcl2YW
-         bLnPTu/qFioJ6YsjbOfJVtskoEMEJnnG6Glg/XClwEDAFGE8WnFgNvr0sC4W/OMYq2A9
-         af/fsFHT3N1QQDnMANHrF1SmKqmfQDYzqcZQzrCE0lUxazmex15ivd+DmNH84RsP5iW2
-         TXvA==
+        bh=jFEYKKgVFwVXs5cKTPaIK+MI9cmiPLzvQLxxZZJC6DI=;
+        b=Qr+vAkM6UGTyNaXghLE7XaUsVbveKd5dNgLYerCk0CJJfzevvUnYgkJ+QNZg4wvGUn
+         DSs31iOTTOUSXpbbN/oqzxDZhkrxQNSVC7ldXNpgLka5gx9kzzlZz5AK5OfgA717jpbe
+         nJLEAAP2nrtlpkuskVOlOFLoshkCz1pwXExLCjQ1WGa0/OgjdXThEDBKFhApfD3WjfUW
+         0Z3DBLhSQu7BycIKtJRMFKdi3J4pcuSu4/Gm6o1E347IVSlx0L1FnBz1+v2ucruD1XxO
+         S/BmHf5BMJsnufxYzQuclNUv4tFIkVwN8TbD+TPtnyyhw1nmD2FigYV6vLr8+yfEgoMF
+         xTSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WFPCHnH4BLHfsWKrLXL/kRkVribIQYKCD+0tbIu1RlY=;
-        b=592u8V9HlXz4oj8bRTEkd39JVjpqcruw1haN5v43aMqbd/h9OcGAVMgTe8DkG4f5vP
-         ftsUEVT6jilwRQzjYgydKBJHBFNhcqhHEbOqP529RDa0W4rqi4Zm1tKbyQqQ+sL4EdDT
-         no1bdsZRy6cpSHSzTLll+WTjxiZqIjx8AgutIsjiaRI3xB8IfQ89Y0cIMc2NmMSdiX0P
-         E7PWWUdPn4WEfk3Z+CXCt60ZTwm9FiA188YZw7CQ/Sk7sKObw4eo3eGm3yl2IrumTkzG
-         /TF3nhTH9hUoAfctQoA0+mec7BinPodRVA5plXc1QwBCIyG4/+Y1o90nCTQ+hnF0tmMv
-         KNjw==
-X-Gm-Message-State: AFqh2kpAx4iSHsZj171qzTospahYRVJQKVz+uYs6r53hxdXBtVgDnDbx
-        NQ6P1QXjyy9jgITMjiQMc624uw==
-X-Google-Smtp-Source: AMrXdXv1b/NdkFoUj8MkBo3cwBpSRggisPj59zoDU29d9SSgAJdooDC4XRMfufn4i6dLoRwq4xM07Q==
-X-Received: by 2002:a05:600c:3b17:b0:3cf:7397:c768 with SMTP id m23-20020a05600c3b1700b003cf7397c768mr9770538wms.30.1674126258288;
-        Thu, 19 Jan 2023 03:04:18 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id a10-20020adfdd0a000000b002bb6b45ab57sm31533210wrm.85.2023.01.19.03.04.16
+        bh=jFEYKKgVFwVXs5cKTPaIK+MI9cmiPLzvQLxxZZJC6DI=;
+        b=mdC4AlbNKRI/XbVGHPTxORil7qOWWKwdP0UGy2noL2b8Vd/3+baX3vgoQtOoCHt+vH
+         Y/MBsKkv5HQsD0Oum9VJpEvUAN3BcCucWpOa2AbFeONoTL04MunlRa6lSltnA8mXO44J
+         Hch0u9WWv8R8J+iTr9+4vtJ77ACLreGUYKG+uV0bXIQx6BeG/Savr9+q/+uN9A0GuKnf
+         B3IVNQwKenFSxyEr0T6A2UfFJtEPzAMXCSLawyq8U7ptismw36HZxGkyD/mqTKhlj71f
+         zQh5MTOyx4u79xmbwSKLyDGzCrYyggU94KACMmn2htMGLijJPATTiI6ku2+ZMy2FNj7d
+         PjPg==
+X-Gm-Message-State: AFqh2koZnDNO2+dAtsPcDMmY5ZBXSQMil4uDjghcRe1QeCxprPpOE64o
+        khhX6EfxXXyYQ+SsCjCn8ttkSA==
+X-Google-Smtp-Source: AMrXdXtozZLbb+W8xF3Dp986+miOd8UiFeWHI+JPSTlQ7xSF4mnYc2ha+zsWUatMIGJsaozw4xj+0w==
+X-Received: by 2002:a17:906:ad82:b0:872:e6fd:1c79 with SMTP id la2-20020a170906ad8200b00872e6fd1c79mr10246833ejb.77.1674126629791;
+        Thu, 19 Jan 2023 03:10:29 -0800 (PST)
+Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
+        by smtp.gmail.com with ESMTPSA id n12-20020a1709062bcc00b007ae38d837c5sm16520246ejg.174.2023.01.19.03.10.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 03:04:17 -0800 (PST)
-Message-ID: <b6dae46b-7dd4-f731-aa26-f4ea3e4f3118@linaro.org>
-Date:   Thu, 19 Jan 2023 12:04:16 +0100
+        Thu, 19 Jan 2023 03:10:29 -0800 (PST)
+Message-ID: <8e357341-3cf1-3714-4f5d-f4be94f91438@linaro.org>
+Date:   Thu, 19 Jan 2023 12:10:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] dt-bindings: clock: qcom,a53pll: drop operating-points-v2
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 0/4] Minor cleanup in msm8916 dts files
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Nikita Travkin <nikita@trvn.ru>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, fabien.parent@linaro.org
-References: <20230113145859.82868-1-krzysztof.kozlowski@linaro.org>
- <e73ad320fafa1365e3506bbd4cc77d8d.sboyd@kernel.org>
- <063c5516-417d-7c21-b58f-a6552779a621@linaro.org>
- <705c78c1d0da18089419b064832d5fed.sboyd@kernel.org>
- <20230119031136.27vson2awemt3nkt@builder.lan>
- <776b67b2-2405-36f5-f072-78f33ae59fcc@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <776b67b2-2405-36f5-f072-78f33ae59fcc@linaro.org>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20230116145053.1412501-1-nikita@trvn.ru>
+ <20230119033428.ga6sbu42jaueac5o@builder.lan>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230119033428.ga6sbu42jaueac5o@builder.lan>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 11:55, Bryan O'Donoghue wrote:
-> On 19/01/2023 03:11, Bjorn Andersson wrote:
->> On Wed, Jan 18, 2023 at 11:11:00AM -0800, Stephen Boyd wrote:
->>> Quoting Krzysztof Kozlowski (2023-01-15 06:35:23)
->>>> On 13/01/2023 21:28, Stephen Boyd wrote:
->>>>> Quoting Krzysztof Kozlowski (2023-01-13 06:58:59)
->>>>>> The CPU PLL clock node does not use OPP tables (neither driver).
->>>>>
->>>>> What device is qcom_a53pll_get_freq_tbl() operating on?
->>>>
->>>> On its own, internal table. While of course driver could be converted to
->>>> operating-points-v2, no one did it within last 5 years, so why it should
->>>> happen now?
->>>>
->>>
->>> The property was added mid 2021 by Shawn[1], that's not 5 years ago. I
->>> guess there were plans to add an OPP table that never happened[2]? Is
->>> Shawn still working on this? If not, we should revert the OPP code out
->>> of the driver.
->>>
+
+
+On 19.01.2023 04:34, Bjorn Andersson wrote:
+> On Mon, Jan 16, 2023 at 07:50:49PM +0500, Nikita Travkin wrote:
+>> This series performs some minor cleanup on msm8916/apq8016 files to
+>> bring them in line with the current standard and be closer to the new
+>> submissions.
 >>
->> @Bryan, what do you think about this?
+>> The series is separated into commits by each specific change made across
+>> all files and these commits should not cause any functional difference.
+>>
+>> Changes in v2:
+>> - Rebase on top of newly applied upstream patches
+>>
 > 
-> I'd be in favour of starting the CPR patchset instead, which depends on 
-> the opps.
+> The first patch looks pretty reasonable, but without documenting the
+> guidelines and tools to help others maintain the ordering this
+> unfortunately just moves things around arbitrarily.
 > 
-> I think @Fabien has been waiting on the core 8939 dtsi, I also think the 
-> dtsi is close enough to merge that we could reasonably initiate the CPR 
-> stuff.
+> Forgive me, but I will ignore this series until this is finalized and
+> documented.
+Ack, the idea is good, but I rushed enforcing it.
 
-So you would make use of operating-points-v2 property? Then probably we
-also miss opp-table, but anyway this patch can be dropped then.
-
-Best regards,
-Krzysztof
-
+Konrad
+> 
+> Thanks,
+> Bjorn
+> 
+>> Nikita Travkin (4):
+>>   arm64: dts: qcom: msm/apq8x16-*: Move status property last
+>>   arm64: dts: qcom: msm/apq8x16-*: Reorder the pinctrl properties.
+>>   arm64: dts: qcom: msm/apq8x16-*: Drop empty lines in pinctrl states
+>>   arm64: dts: qcom: msm/apq8x16-*: Reorder some regulator properties
+>>
+>>  arch/arm64/boot/dts/qcom/apq8016-sbc.dts      | 78 +++++++--------
+>>  .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 15 ++-
+>>  .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 46 ++++-----
+>>  .../arm64/boot/dts/qcom/msm8916-asus-z00l.dts | 34 +++----
+>>  .../arm64/boot/dts/qcom/msm8916-huawei-g7.dts | 52 ++++------
+>>  .../boot/dts/qcom/msm8916-longcheer-l8150.dts | 42 ++++----
+>>  .../boot/dts/qcom/msm8916-longcheer-l8910.dts | 30 +++---
+>>  arch/arm64/boot/dts/qcom/msm8916-pins.dtsi    | 96 +++++--------------
+>>  .../qcom/msm8916-samsung-a2015-common.dtsi    | 64 +++++--------
+>>  .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts | 11 +--
+>>  .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts |  5 +-
+>>  .../qcom/msm8916-samsung-e2015-common.dtsi    |  5 +-
+>>  .../dts/qcom/msm8916-samsung-grandmax.dts     |  3 +-
+>>  .../boot/dts/qcom/msm8916-samsung-j5.dts      | 21 ++--
+>>  .../dts/qcom/msm8916-samsung-serranove.dts    | 62 +++++-------
+>>  .../dts/qcom/msm8916-wingtech-wt88047.dts     | 35 +++----
+>>  arch/arm64/boot/dts/qcom/msm8916.dtsi         | 32 +++----
+>>  17 files changed, 245 insertions(+), 386 deletions(-)
+>>
+>> -- 
+>> 2.38.1
+>>
