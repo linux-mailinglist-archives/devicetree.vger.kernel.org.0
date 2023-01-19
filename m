@@ -2,169 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62D5F6735ED
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:45:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEB6267360C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:51:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229776AbjASKpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 05:45:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39086 "EHLO
+        id S230394AbjASKvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 05:51:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230225AbjASKo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:44:59 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2EA46176
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 02:44:57 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id t5so1441244wrq.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 02:44:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8xlnawePa78ICFwjfjsW90f7mFfyeG73gzlxTncqwyE=;
-        b=h5WDQK2D6C9l5TGsa7heKev8ShkmZ1JPY5cxwLtzRlVKbAZFrP1SjLeg6p7u0CzyX+
-         ZtI98ciCrs1G6ED70BKYjH1OQt1qjnvI0ruFbP3KmYzNKqmODOiSrIu/SS/4e1B1Ja5+
-         wLBlagSVGeherUSZGt2wnqhYfLeLmrYs/TVm6v9aNWTVzjgFf30B0wKbNCK3mI7LUGRZ
-         GCEtgyUbTxLKvPThn23sDnde6Q5JUoEnbJ6/W23yxrQFfZzsgw6ntkcyzuKOpOjDNE6/
-         dFiLBrO7Zg/s0EnMnMllp8N+jnRR8K4X1Al03LXNaNO8cYTZ6SM9xCElMxBS4u8YQxPt
-         IMRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8xlnawePa78ICFwjfjsW90f7mFfyeG73gzlxTncqwyE=;
-        b=I93ysbg25j9w+gnH6dsZ/sKqfOvq/4JGE6w4hC+cOqLwWyhghzdy7LzLJ2UOPA9vFw
-         wcPIx9zx5KanPVxk34AtMQLX8Kg8UmCNrotqRyxqQDzRKu89YW0bGzyx35emHaJf7/i1
-         DJ+wmnwtBOe902xD2M0m4b8CfSzwEHfCwBXeNBv3/kwf6y1zRG/JtzVtT/opOv2rKJSW
-         zSlWHhfFUUt8eiS9+GoNXIedmPZUO2xl3YIPB6FLfcWzcJwEJ9ZlQNI0ke5+SopD9Nl0
-         vMwUhyRLMyRdNSj9tqRHx9raInxyKtXkwhwlcd7+SK57Tg54cz9GDmGMc2URinSzatuo
-         Jo+Q==
-X-Gm-Message-State: AFqh2kpMUGwxaaii2rkiuvqdo5m4ZJ5xH4TpMvNd4sKuP64OsHdXclNq
-        vUJxCzfLo/ncj9mDggFQ0uok/w==
-X-Google-Smtp-Source: AMrXdXvel3nvZiaEnBT/xHs7rT2NUHqn9HRzAttFMuh2VrOKEUaH5uPNdNIHlLOFA6xljS1sQgnihw==
-X-Received: by 2002:a5d:68c5:0:b0:2bc:846a:8eb2 with SMTP id p5-20020a5d68c5000000b002bc846a8eb2mr8837850wrw.11.1674125096077;
-        Thu, 19 Jan 2023 02:44:56 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l4-20020a05600012c400b002bbb2d43f65sm30361062wrx.14.2023.01.19.02.44.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 02:44:55 -0800 (PST)
-Message-ID: <cd7a2eac-5d70-6dcd-ddbd-317e1cbd7d23@linaro.org>
-Date:   Thu, 19 Jan 2023 11:44:52 +0100
-MIME-Version: 1.0
+        with ESMTP id S230453AbjASKuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:50:07 -0500
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2045.outbound.protection.outlook.com [40.107.101.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 049876F8B5;
+        Thu, 19 Jan 2023 02:49:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LBRzgfPB3H44yKS2HgDt+q6YldkmniVbQJFtYOFMKDcmL/XFRf3b4KbhvKw0gkX4OE2zy9lcd3IB8U5JA20HJ+k9qeEnZmpAY4JkEOIvqKkcG5VeZlmZuEJu7310S0e4A/dHdiXnKFQgWxFQuA5aKj+hxi20kI1j6qEMBcyvuoud5etz+Cf/HLK4guVo0DvqRv5W7iqdumn+pDxGSe2fGVEYheB2M0A5EzQOrPfcTQi24htJlsnioAuYTiNqCwrnXa8YcgTCper9Vj54Uqs+1rXstoTUQsBojwt023zNt6p3nIItPsHZ9BpA/1s23eoNdmidoBV62et0z6T69aPD4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KZxTmtZ2QbI5gRerP9rAC8ec0SEhWV6niMqi1Z9q+7U=;
+ b=BrBMSqQ6swf1HCRfXMgJwkyJicTGaIh/n5vnIUj+VxlU6q6bfwip6JMk8NYGjQDIm+bdFUEdC8zemc72svdiMBaA1y2eZ/wFA4ASkfy9OLkO4VZXLRnkx+oeCg4taqREvIqD4nFdBaCsG1tF2by4+C9MeF8oWdYaIPJ0jfjmIpJyPJdQR1FvOYPUrcATyJE7MIJm048gBf8tssRzKRZYXEvuqOauknYA0pl6k1H7RROIew51hvEmwMaywa56OBY4sWWRMeHXY1jjz00aQWLplgxKCN1OmEZ+fpNr/hjbrBXL0z6mttAfNfHWhz7h4uvXBO7N+RRkPsNpB9rlTTnc2A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KZxTmtZ2QbI5gRerP9rAC8ec0SEhWV6niMqi1Z9q+7U=;
+ b=py2fZcrD5thLUw+IEQK+sm6UKuH7NpaXS/fRU4CadNF0ecc71FdtszkXc30IHUP3lMfmwFt6h3ZZzTxSb7Y5IrjMNq3p5voJ8eclr25mMzzxPtK7yopHvO1UOoLIvp5dQfhZ65DnOxb70a+HJCSKA/bLGgKSyV6n/cpZn7ZgZorZ40eSv0EIpTjETxzFadj01s9Kr08o8isv6zFxVoyM2h77dchHt73VlDnJP9l0hYA5feCJyQ7CEbeTTPXJPw6g/fG4svhCqU53PckWF3rnFZjJ0NDQ3pOKBIV/MjSIJKUqKDBTEaLn9jR4y6K5xF8/EHjBSWxsP0k2PoQQSm8UUw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ BY5PR12MB4308.namprd12.prod.outlook.com (2603:10b6:a03:20a::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6002.24; Thu, 19 Jan 2023 10:49:45 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::f1be:5d:f297:e2f]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::f1be:5d:f297:e2f%7]) with mapi id 15.20.6002.013; Thu, 19 Jan 2023
+ 10:49:45 +0000
+Message-ID: <8bbcaf13-c83b-5804-64f7-23635013a11d@nvidia.com>
+Date:   Thu, 19 Jan 2023 10:45:16 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 1/9] dt-bindings: arm: Add support for DSB element
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V4 3/5] usb: typec: ucsi_ccg: Replace ccgx to well-known
+ regex
 Content-Language: en-US
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sanket Goswami <Sanket.Goswami@amd.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
-        Tao Zhang <taozha@qti.qualcomm.com>
-References: <1674114105-16651-1-git-send-email-quic_taozha@quicinc.com>
- <1674114105-16651-2-git-send-email-quic_taozha@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1674114105-16651-2-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Wayne Chang <waynec@nvidia.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20230116155045.100780-1-jonathanh@nvidia.com>
+ <20230116155045.100780-4-jonathanh@nvidia.com>
+ <Y8aOaH+ALBvjm/rH@kuha.fi.intel.com>
+ <11349701-f82f-3a7f-61ef-11f1585958c3@nvidia.com>
+ <Y8e4KXMh+bi6Gj7r@kuha.fi.intel.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <Y8e4KXMh+bi6Gj7r@kuha.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-ClientProxiedBy: LO2P265CA0305.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:a5::29) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|BY5PR12MB4308:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0eb08fb-e893-446d-84aa-08dafa0ae0c1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: D2Tezhzdih2K9SfQkbn3Z6miJ+MQkQ/kpTaywbWSsCmEEQnfA8KBZ8JfFPjoUyLf+jHbkYty/CmkxU3bBpON75fWvFtsd2YeDnZOnJrbc3MgyCiegEeY/hdHaXy8khOiLQsAVbDUcjzowkdPImz6tAcbOy0xdXUDlwGfVolq2kvpHSnptasOry1L96KOi9V0VOFFZ/u5t2ZyiLtxfbioN3d+sOYwl1tkxmOotNCW8Hm8NhU75U81hmNp8mhfDvRRsClQOPsWwByH/FZYxL+dvLFZPfQukIMFZQ0+hyIn5k19YD/saHh/A32kxBEZnqU8d/wSzj+bpj1Mo7ZBFniBkNV6n+d54iZc4CwtjAWT0e9oRmu9v7zFsx67wBBZ/chSIhlPhbNaAnrGjf/piE65AIFdoAWak+MkT398QB7jXry9nTFo5yS7u9Up9WWL05lcP7y9S5UIaDiSFsRVNhfeqeUxQdNiFkaaBYKz0ZoP8VHmMYiPmp16MFQwbUnfZr7TCbaG8gq3DT4mR0EE0O9k8hoIZFTYIG+pfBmGlQiIRZP6UOJywTNfbXNbGbTzkcGA2ZVDpuyAEOuXJV4Yqny9wn08LhpmDcqePgofnuFRf6oOT6nr7SZqcDPls6qXT0TKvGkWx2TyttiwqIrGkf+5ZV7RpaWCu1NwMAcRqeKEM1E84eT/Tght97iqunzpG78boIyHQdQhPbxaWAJa+O9GA/8JeW9vzjZqYs2/+Io7GYc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(366004)(346002)(396003)(376002)(39860400002)(451199015)(31686004)(86362001)(66476007)(8936002)(2906002)(31696002)(66556008)(5660300002)(38100700002)(66946007)(6666004)(478600001)(316002)(55236004)(54906003)(110136005)(53546011)(6506007)(4326008)(6486002)(36756003)(8676002)(41300700001)(26005)(186003)(6512007)(83380400001)(2616005)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bC9sYytpVFU3UDlXREl6bEIyWHdlYnVEU2dNMGN0a3NFQXlROFRIY3V4VUNX?=
+ =?utf-8?B?QmxZaHNNdk1OR0tOODcwL0pyWXZmSmVRRnpQaDd0WmFhVHgzNTV0cjdwdVRK?=
+ =?utf-8?B?Vks5eTJXMk15ZkhncGVXS2xJcnVrQ2hhZmVscFIyZFFiYTNJWHFudDV4aU52?=
+ =?utf-8?B?Wi9xM3pEaHRFMVNRbDhHRVN4UkduVkZNR3RPYmNmdUJhQ2lodEZES3YvaDhN?=
+ =?utf-8?B?dEUrU1g4VHNWMG9Fb3VlRUdEelVDYkh0bGlSK2VDRjUvRlM5dUZoQ1FYZE9Q?=
+ =?utf-8?B?UE5SOVhxWHVvWWFFSS9VUEh2MWI0a2JNL1JMcEx1RzZRUVd3ekJSdm1kNXRa?=
+ =?utf-8?B?bExkS2VUK2l1bUczQ2xTWmVReDhiZmFHdk1kWjVrUCtZaGZwMUl2SnlCR2Fx?=
+ =?utf-8?B?WnVXTzZBczFaRVRLbVNma0hqb2I4R2RiYVdUUFRGSG8xNUpGZmNzeGc1TE95?=
+ =?utf-8?B?dHpkKzJ5S0NOejZ3aEhwYlhCQTFabVlvMGtPNGZDWnRpNnFNWEVKNGxNbHl0?=
+ =?utf-8?B?dzZ4ZGlGUEVQd1hNL3ZtQ2VCazBud0JqaitWd3hhbUlOYlR0VDZoRmQ1TDBO?=
+ =?utf-8?B?Q09OWU56UlVscDRaamh3LzJNRnlkUmJkK3lvSWUzVGJnUWo5NFJqK2JjNjdB?=
+ =?utf-8?B?TE53RGo5blFrMVkva25NNjhxS3YrTWFrOHR3andXeW10enBleE1nd01PVGt3?=
+ =?utf-8?B?QWpTK29YQ0ZlYm4wcHFxdDBsWWJnZXd1S2UyV1RrdnVGcXhPU3dRdGtLRG85?=
+ =?utf-8?B?QlJmSXYvcGZjRzl4MTZBMkVpM3NPdklQM256bXZ2ZUdUc3Vic0FEamRFSzJL?=
+ =?utf-8?B?OStKUDI2eFI1RGVUU1ZQYzJWL3kxeFRhN25UakJoQVlyVEgxemF3L0tVaEVO?=
+ =?utf-8?B?SFJCUzl6cEgrMzlVVTNBV2VhK1pFUG1SR24vRm4rNGNLN1Jmd2JZZUk5OC90?=
+ =?utf-8?B?QnV2OElxcW43YUsrS0lTOU5VamtBMnl3WE1tTGFjSXlIdlVYL210VjVzVXo3?=
+ =?utf-8?B?aHZWSFk3a3BIUDMwRVV1bXlxNldlNk5LN1ZWWTgwWXFBaEl4T21OZzBtbGNY?=
+ =?utf-8?B?QXBIUU5BL0Vzekx1NExMM25tWGh0VHN4eWl0bzQvRDBQOHR4UGtHbzdxWTRR?=
+ =?utf-8?B?WWtJbWhyZlZ2QkNjaWxSSVNpTFV0QllBZWd0Sk1ZMGNjS1VYVWZRS0JlTnVs?=
+ =?utf-8?B?T3p0WExUTTRSb01oQWloc2psNlVoeWpUNno4NjlUYnNHZnNWdTNlNHVUOUEx?=
+ =?utf-8?B?b0ozMWJZVytEVTV3MU5XUTBaU3hQOUE3WjB1UFVac2Q1TFhwVWtNUWhsbzFq?=
+ =?utf-8?B?WHY3UnNLa1JFdVdrL0lJS2NPNTlCZisvSEVMY1hoNmRqSXp3UEZjbmxvVSt6?=
+ =?utf-8?B?ZzBuQmtiM3YxeDk4SHk3WmV2eEhxa1AzT1hsTit6K0xBdTZvOXhaWmZPRTZY?=
+ =?utf-8?B?K0NUbW16OFBQTDV6UlZRVlo1WnRuTVlxOGV5ZXF1eHZjQjRBTnpmSjMwT1M5?=
+ =?utf-8?B?U0Zveno1OTJoRzRZbzhrVGYwUXVNTDlCNUFkL2crcUY3ZjhObGtWMm1RdlhB?=
+ =?utf-8?B?L3RRWlJZWmsyZDNwM3paVUxESVBHVDJLNFN1Yjd6TVVuK0JnTS9OWEkrUDFx?=
+ =?utf-8?B?NkcwU3hlZnZCYU91dlhtZVZkbGdkK3pMWkVxckx1SmRDL3ZsdGgvaWhOaXNM?=
+ =?utf-8?B?M1JYSDVFM1RNMXArWEJRY0I2WXRaNXdNYi8rZDczdE5YQXlWNzlXeW5kQWZi?=
+ =?utf-8?B?Mno3N1BIWFpHZ0RNQlRlSWtwbTF0YVBaVG5naUgwb0N0Z0N1ekxSVXBHZWow?=
+ =?utf-8?B?N2hYRStPY1kxaWF6MUthTXI5MG5uTldNc2VHbkQ0bWt1WWlGeVdweGhiVjAz?=
+ =?utf-8?B?L1VMaExCRndGM1VTM3l3Vm1WS2tFSVlJa0VEbjd5QlQwMlR2U3l5aDRsNTN2?=
+ =?utf-8?B?TmxqRXBQdnl5RlpxajZuMmxXQUZ6aVhQMERMbDNrSm11bjlCTnVIcVJjbUp1?=
+ =?utf-8?B?OHY5MHBqNEh0Z2U1VGJ1bURyTFdZT2hrN3NGSGExcFVTdCt0U2dpVVNPeUo0?=
+ =?utf-8?B?S3JReGR0Q2lwc2lCbnJpRXgwVUpNRWxXSFE0aUNHS0ltZWR1QnZ6WFZmNVFP?=
+ =?utf-8?B?Mi9QZ2RFdVZ6TkV0dHllWlhVWUwwK1hkYmh5dVMvbTUyV29wUlRTY1J5S3ZG?=
+ =?utf-8?B?SFE9PQ==?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0eb08fb-e893-446d-84aa-08dafa0ae0c1
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 10:49:45.6554
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gcZezMPEDM+WILIYpCjGXREBEKCA1uAVh2Qn4PBCJe1m+pm/T5yQ+bbDdN4mOvOTmiT6SvAhmGu03baAWNGksA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4308
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 08:41, Tao Zhang wrote:
-> Add property "qcom,dsb-elem-size" to support DSB(Discrete Single
-> Bit) element for TPDA. Specifies the DSB element size supported
-> by each monitor connected to the aggregator on each port. Should
-> be specified in pairs (port, dsb element size).
+
+On 18/01/2023 09:13, Heikki Krogerus wrote:
+> On Tue, Jan 17, 2023 at 11:29:25PM +0000, Jon Hunter wrote:
+>>
+>> On 17/01/2023 12:02, Heikki Krogerus wrote:
+>>> On Mon, Jan 16, 2023 at 03:50:43PM +0000, Jon Hunter wrote:
+>>>> From: Wayne Chang <waynec@nvidia.com>
+>>>>
+>>>> ccgx is refer to the cypress cypd4226 typec controller.
+>>>> Replace ccgx to well-known regex "cypress".
+>>>>
+>>>> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+>>>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>>>> ---
+>>>> V2 -> V4: nothing has changed
+>>>> V1 -> V2: new change added for adding cypress,firmware-build
+>>>>
+>>>>    drivers/usb/typec/ucsi/ucsi_ccg.c | 2 +-
+>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
+>>>> index 4bc31ed8e5bc..d6114fb8d5a9 100644
+>>>> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
+>>>> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
+>>>> @@ -1357,7 +1357,7 @@ static int ucsi_ccg_probe(struct i2c_client *client)
+>>>>    	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
+>>>>    	/* Only fail FW flashing when FW build information is not provided */
+>>>> -	status = device_property_read_u16(dev, "ccgx,firmware-build",
+>>>> +	status = device_property_read_u16(dev, "cypress,firmware-build",
+>>>>    					  &uc->fw_build);
+>>>
+>>> You need to first add that property to
+>>> drivers/i2c/busses/i2c-nvidia-gpu.c.
+>>
+>>
+>> Looking at this some more, I wonder if we need to keep 'ccgx,firmware-build'
+>> as a fallback for AMD? It is not clear to me if they implement this property
+>> or not. Let me know what you think. I will still update the i2c-nvidia-gpu
+>> driver. 	
 > 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> Signed-off-by: Tao Zhang <taozha@qti.qualcomm.com>
+> AMD needs to answer to that one. Sanket, do you have that device
+> property ("ccgx,firmware-build") in your ACPI tables (as _DSD device
+> property) for this device?
 
-You are the same person and it is still the same organization
-(Qualcomm), right? Only one SoB.
 
-> ---
->  .../bindings/arm/qcom,coresight-tpda.yaml          | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-> index 2ec9b5b..298db7f 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-> @@ -58,6 +58,26 @@ properties:
->      minItems: 1
->      maxItems: 2
->  
-> +  qcom,dsb-element-size:
-> +    description: |
-> +      Specifies the DSB(Discrete Single Bit) element size supported by
-> +      each monitor connected to the aggregator on each port. Should be
-> +      specified in pairs <port, dsb element size>.
+I will resend the series now, but we can wait on Sanket's response on 
+whether we pick this one up or drop it. If the rest are OK, I would like 
+to get them in queued for v6.3.
 
-s/port/port number/
+Thanks
+Jon
 
-> +
-> +      Note: The maximum value of the port number depends on how many
-> +      input ports the current TPDA has. DSB element size currently only
-> +      supports 32-bit and 64-bit.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    items:
-
-Are some reasonable maxItems known?
-
-> +      items:
-> +        - description: |
-> +            "port" indicates TPDA input port number
-
-What is "port"? You quoted it like it was some name of variable or
-property. Where is then?
-
-> +          minimum: 0
-> +        - description: |
-> +            "dsb element size" indicates dsb element size
-
-"A" indicates A. This sentence does not make sense.
-
-Also missing units.
-
-s/dsb/DSB/
-
-> +          minimum: 0
-> +          maximum: 64
-> +
->    clocks:
->      maxItems: 1
->  
-> @@ -100,6 +120,8 @@ examples:
->         compatible = "qcom,coresight-tpda", "arm,primecell";
->         reg = <0x6004000 0x1000>;
->  
-> +       qcom,dsb-element-size = <0 32>;
-> +
->         clocks = <&aoss_qmp>;
->         clock-names = "apb_pclk";
->  
-
-Best regards,
-Krzysztof
-
+-- 
+nvpublic
