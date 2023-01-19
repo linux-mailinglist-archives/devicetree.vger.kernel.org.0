@@ -2,548 +2,370 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E97EA6734AE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 10:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B98136734CB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 10:51:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229790AbjASJpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 04:45:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55180 "EHLO
+        id S229769AbjASJvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 04:51:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbjASJpK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 04:45:10 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5576EB3;
-        Thu, 19 Jan 2023 01:45:03 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 90AFE24E2AB;
-        Thu, 19 Jan 2023 17:45:00 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 19 Jan
- 2023 17:45:00 +0800
-Received: from localhost.localdomain (113.72.144.40) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 19 Jan
- 2023 17:44:59 +0800
-From:   Walker Chen <walker.chen@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230200AbjASJv3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 04:51:29 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E306CCEB
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 01:51:23 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pIRZi-0006bL-Av; Thu, 19 Jan 2023 10:51:14 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pIRZh-0004qb-0q; Thu, 19 Jan 2023 10:51:13 +0100
+Date:   Thu, 19 Jan 2023 10:51:13 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 2/2] soc: starfive: Add StarFive JH71XX pmu driver
-Date:   Thu, 19 Jan 2023 17:44:47 +0800
-Message-ID: <20230119094447.21939-3-walker.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230119094447.21939-1-walker.chen@starfivetech.com>
-References: <20230119094447.21939-1-walker.chen@starfivetech.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v7 1/3] arm64: dts: imx8mm-evk: move PMIC configuration
+Message-ID: <20230119095112.mpo56lf4nd3udtht@pengutronix.de>
+References: <20230110152316.1149940-1-johannes.schneider@leica-geosystems.com>
+ <20230110152316.1149940-2-johannes.schneider@leica-geosystems.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.144.40]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230110152316.1149940-2-johannes.schneider@leica-geosystems.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pmu driver for the StarFive JH71XX SoC.
+Hi Johannes,
 
-As the power domains provider, the Power Management Unit (PMU) is
-designed for including multiple PM domains that can be used for power
-gating of selected IP blocks for power saving by reduced leakage
-current. It accepts software encourage command to switch the power mode
-of SoC.
+thanks for your patch.
 
-Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
----
- MAINTAINERS                       |  14 ++
- drivers/soc/Kconfig               |   1 +
- drivers/soc/Makefile              |   1 +
- drivers/soc/starfive/Kconfig      |  12 +
- drivers/soc/starfive/Makefile     |   3 +
- drivers/soc/starfive/jh71xx_pmu.c | 383 ++++++++++++++++++++++++++++++
- 6 files changed, 414 insertions(+)
- create mode 100644 drivers/soc/starfive/Kconfig
- create mode 100644 drivers/soc/starfive/Makefile
- create mode 100644 drivers/soc/starfive/jh71xx_pmu.c
+On 23-01-10, Johannes Schneider wrote:
+> Move the PMIC configuration out of imx8mm-evk.dtsi into a separate
+> file; to accommodate devicetrees for the rev-b EVK, which comes with a
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 42fc47c6edfd..8366e1de5030 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19914,6 +19914,20 @@ F:	Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
- F:	drivers/reset/reset-starfive-jh7100.c
- F:	include/dt-bindings/reset/starfive-jh7100.h
- 
-+STARFIVE SOC DRIVER
-+M:	Conor Dooley <conor@kernel.org>
-+S:	Maintained
-+T:	git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
-+F:	drivers/soc/starfive/
-+F:	include/soc/starfive/
-+
-+STARFIVE JH71XX PMU CONTROLLER DRIVER
-+M:	Walker Chen <walker.chen@starfivetech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/power/starfive*
-+F:	drivers/soc/starfive/jh71xx_pmu.c
-+F:	include/dt-bindings/power/starfive,jh7110-pmu.h
-+
- STATIC BRANCH/CALL
- M:	Peter Zijlstra <peterz@infradead.org>
- M:	Josh Poimboeuf <jpoimboe@kernel.org>
-diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig
-index 5dbb09f843f7..81ae4f77974b 100644
---- a/drivers/soc/Kconfig
-+++ b/drivers/soc/Kconfig
-@@ -22,6 +22,7 @@ source "drivers/soc/renesas/Kconfig"
- source "drivers/soc/rockchip/Kconfig"
- source "drivers/soc/samsung/Kconfig"
- source "drivers/soc/sifive/Kconfig"
-+source "drivers/soc/starfive/Kconfig"
- source "drivers/soc/sunxi/Kconfig"
- source "drivers/soc/tegra/Kconfig"
- source "drivers/soc/ti/Kconfig"
-diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
-index fff513bd522d..bc7491d9e1ed 100644
---- a/drivers/soc/Makefile
-+++ b/drivers/soc/Makefile
-@@ -28,6 +28,7 @@ obj-y				+= renesas/
- obj-y				+= rockchip/
- obj-$(CONFIG_SOC_SAMSUNG)	+= samsung/
- obj-$(CONFIG_SOC_SIFIVE)	+= sifive/
-+obj-$(CONFIG_SOC_STARFIVE)	+= starfive/
- obj-y				+= sunxi/
- obj-$(CONFIG_ARCH_TEGRA)	+= tegra/
- obj-y				+= ti/
-diff --git a/drivers/soc/starfive/Kconfig b/drivers/soc/starfive/Kconfig
-new file mode 100644
-index 000000000000..bdb96dc4c989
---- /dev/null
-+++ b/drivers/soc/starfive/Kconfig
-@@ -0,0 +1,12 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+config JH71XX_PMU
-+	bool "Support PMU for StarFive JH71XX Soc"
-+	depends on PM
-+	depends on SOC_STARFIVE || COMPILE_TEST
-+	default SOC_STARFIVE
-+	select PM_GENERIC_DOMAINS
-+	help
-+	  Say 'y' here to enable support power domain support.
-+	  In order to meet low power requirements, a Power Management Unit (PMU)
-+	  is designed for controlling power resources in StarFive JH71XX SoCs.
-diff --git a/drivers/soc/starfive/Makefile b/drivers/soc/starfive/Makefile
-new file mode 100644
-index 000000000000..13b589d6b5f3
---- /dev/null
-+++ b/drivers/soc/starfive/Makefile
-@@ -0,0 +1,3 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+obj-$(CONFIG_JH71XX_PMU)	+= jh71xx_pmu.o
-diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/jh71xx_pmu.c
-new file mode 100644
-index 000000000000..7d5f50d71c0d
---- /dev/null
-+++ b/drivers/soc/starfive/jh71xx_pmu.c
-@@ -0,0 +1,383 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * StarFive JH71XX PMU (Power Management Unit) Controller Driver
-+ *
-+ * Copyright (C) 2022 StarFive Technology Co., Ltd.
-+ */
-+
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
-+#include <dt-bindings/power/starfive,jh7110-pmu.h>
-+
-+/* register offset */
-+#define JH71XX_PMU_SW_TURN_ON_POWER	0x0C
-+#define JH71XX_PMU_SW_TURN_OFF_POWER	0x10
-+#define JH71XX_PMU_SW_ENCOURAGE		0x44
-+#define JH71XX_PMU_TIMER_INT_MASK	0x48
-+#define JH71XX_PMU_CURR_POWER_MODE	0x80
-+#define JH71XX_PMU_EVENT_STATUS		0x88
-+#define JH71XX_PMU_INT_STATUS		0x8C
-+
-+/* sw encourage cfg */
-+#define JH71XX_PMU_SW_ENCOURAGE_EN_LO	0x05
-+#define JH71XX_PMU_SW_ENCOURAGE_EN_HI	0x50
-+#define JH71XX_PMU_SW_ENCOURAGE_DIS_LO	0x0A
-+#define JH71XX_PMU_SW_ENCOURAGE_DIS_HI	0xA0
-+#define JH71XX_PMU_SW_ENCOURAGE_ON	0xFF
-+
-+/* pmu int status */
-+#define JH71XX_PMU_INT_SEQ_DONE		BIT(0)
-+#define JH71XX_PMU_INT_HW_REQ		BIT(1)
-+#define JH71XX_PMU_INT_SW_FAIL		GENMASK(3, 2)
-+#define JH71XX_PMU_INT_HW_FAIL		GENMASK(5, 4)
-+#define JH71XX_PMU_INT_PCH_FAIL		GENMASK(8, 6)
-+#define JH71XX_PMU_INT_ALL_MASK		GENMASK(8, 0)
-+
-+/*
-+ * The time required for switching power status is based on the time
-+ * to turn on the largest domain's power, which is at microsecond level
-+ */
-+#define JH71XX_PMU_TIMEOUT_US		100
-+
-+struct jh71xx_domain_info {
-+	const char * const name;
-+	unsigned int flags;
-+	u8 bit;
-+};
-+
-+struct jh71xx_pmu_match_data {
-+	const struct jh71xx_domain_info *domain_info;
-+	int num_domains;
-+};
-+
-+struct jh71xx_pmu {
-+	struct device *dev;
-+	const struct jh71xx_pmu_match_data *match_data;
-+	void __iomem *base;
-+	struct generic_pm_domain **genpd;
-+	struct genpd_onecell_data genpd_data;
-+	int irq;
-+	spinlock_t lock;	/* protects pmu reg */
-+};
-+
-+struct jh71xx_pmu_dev {
-+	const struct jh71xx_domain_info *domain_info;
-+	struct jh71xx_pmu *pmu;
-+	struct generic_pm_domain genpd;
-+};
-+
-+static int jh71xx_pmu_get_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool *is_on)
-+{
-+	struct jh71xx_pmu *pmu = pmd->pmu;
-+
-+	if (!mask)
-+		return -EINVAL;
-+
-+	*is_on = readl(pmu->base + JH71XX_PMU_CURR_POWER_MODE) & mask;
-+
-+	return 0;
-+}
-+
-+static int jh71xx_pmu_set_state(struct jh71xx_pmu_dev *pmd, u32 mask, bool on)
-+{
-+	struct jh71xx_pmu *pmu = pmd->pmu;
-+	unsigned long flags;
-+	u32 val;
-+	u32 mode;
-+	u32 encourage_lo;
-+	u32 encourage_hi;
-+	bool is_on;
-+	int ret;
-+
-+	ret = jh71xx_pmu_get_state(pmd, mask, &is_on);
-+	if (ret) {
-+		dev_dbg(pmu->dev, "unable to get current state for %s\n",
-+			pmd->genpd.name);
-+		return ret;
-+	}
-+
-+	if (is_on == on) {
-+		dev_dbg(pmu->dev, "pm domain [%s] is already %sable status.\n",
-+			pmd->genpd.name, on ? "en" : "dis");
-+		return 0;
-+	}
-+
-+	spin_lock_irqsave(&pmu->lock, flags);
-+
-+	/*
-+	 * The PMU accepts software encourage to switch power mode in the following 2 steps:
-+	 *
-+	 * 1.Configure the register SW_TURN_ON_POWER (offset 0x0c) by writing 1 to
-+	 *   the bit corresponding to the power domain that will be turned on
-+	 *   and writing 0 to the others.
-+	 *   Likewise, configure the register SW_TURN_OFF_POWER (offset 0x10) by
-+	 *   writing 1 to the bit corresponding to the power domain that will be
-+	 *   turned off and writing 0 to the others.
-+	 */
-+	if (on) {
-+		mode = JH71XX_PMU_SW_TURN_ON_POWER;
-+		encourage_lo = JH71XX_PMU_SW_ENCOURAGE_EN_LO;
-+		encourage_hi = JH71XX_PMU_SW_ENCOURAGE_EN_HI;
-+	} else {
-+		mode = JH71XX_PMU_SW_TURN_OFF_POWER;
-+		encourage_lo = JH71XX_PMU_SW_ENCOURAGE_DIS_LO;
-+		encourage_hi = JH71XX_PMU_SW_ENCOURAGE_DIS_HI;
-+	}
-+
-+	writel(mask, pmu->base + mode);
-+
-+	/*
-+	 * 2.Write SW encourage command sequence to the Software Encourage Reg (offset 0x44)
-+	 *   First write SW_MODE_ENCOURAGE_ON to JH71XX_PMU_SW_ENCOURAGE. This will reset
-+	 *   the state machine which parses the command sequence. This register must be
-+	 *   written every time software wants to power on/off a domain.
-+	 *   Then write the lower bits of the command sequence, followed by the upper
-+	 *   bits. The sequence differs between powering on & off a domain.
-+	 */
-+	writel(JH71XX_PMU_SW_ENCOURAGE_ON, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
-+	writel(encourage_lo, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
-+	writel(encourage_hi, pmu->base + JH71XX_PMU_SW_ENCOURAGE);
-+
-+	spin_unlock_irqrestore(&pmu->lock, flags);
-+
-+	/* Wait for the power domain bit to be enabled / disabled */
-+	if (on) {
-+		ret = readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MODE,
-+						val, val & mask,
-+						1, JH71XX_PMU_TIMEOUT_US);
-+	} else {
-+		ret = readl_poll_timeout_atomic(pmu->base + JH71XX_PMU_CURR_POWER_MODE,
-+						val, !(val & mask),
-+						1, JH71XX_PMU_TIMEOUT_US);
-+	}
-+
-+	if (ret) {
-+		dev_err(pmu->dev, "%s: failed to power %s\n",
-+			pmd->genpd.name, on ? "on" : "off");
-+		return -ETIMEDOUT;
-+	}
-+
-+	return 0;
-+}
-+
-+static int jh71xx_pmu_on(struct generic_pm_domain *genpd)
-+{
-+	struct jh71xx_pmu_dev *pmd = container_of(genpd,
-+						  struct jh71xx_pmu_dev, genpd);
-+	u32 pwr_mask = BIT(pmd->domain_info->bit);
-+
-+	return jh71xx_pmu_set_state(pmd, pwr_mask, true);
-+}
-+
-+static int jh71xx_pmu_off(struct generic_pm_domain *genpd)
-+{
-+	struct jh71xx_pmu_dev *pmd = container_of(genpd,
-+						  struct jh71xx_pmu_dev, genpd);
-+	u32 pwr_mask = BIT(pmd->domain_info->bit);
-+
-+	return jh71xx_pmu_set_state(pmd, pwr_mask, false);
-+}
-+
-+static void jh71xx_pmu_int_enable(struct jh71xx_pmu *pmu, u32 mask, bool enable)
-+{
-+	u32 val;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&pmu->lock, flags);
-+	val = readl(pmu->base + JH71XX_PMU_TIMER_INT_MASK);
-+
-+	if (enable)
-+		val &= ~mask;
-+	else
-+		val |= mask;
-+
-+	writel(val, pmu->base + JH71XX_PMU_TIMER_INT_MASK);
-+	spin_unlock_irqrestore(&pmu->lock, flags);
-+}
-+
-+static irqreturn_t jh71xx_pmu_interrupt(int irq, void *data)
-+{
-+	struct jh71xx_pmu *pmu = data;
-+	u32 val;
-+
-+	val = readl(pmu->base + JH71XX_PMU_INT_STATUS);
-+
-+	if (val & JH71XX_PMU_INT_SEQ_DONE)
-+		dev_dbg(pmu->dev, "sequence done.\n");
-+	if (val & JH71XX_PMU_INT_HW_REQ)
-+		dev_dbg(pmu->dev, "hardware encourage requestion.\n");
-+	if (val & JH71XX_PMU_INT_SW_FAIL)
-+		dev_err(pmu->dev, "software encourage fail.\n");
-+	if (val & JH71XX_PMU_INT_HW_FAIL)
-+		dev_err(pmu->dev, "hardware encourage fail.\n");
-+	if (val & JH71XX_PMU_INT_PCH_FAIL)
-+		dev_err(pmu->dev, "p-channel fail event.\n");
-+
-+	/* clear interrupts */
-+	writel(val, pmu->base + JH71XX_PMU_INT_STATUS);
-+	writel(val, pmu->base + JH71XX_PMU_EVENT_STATUS);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int jh71xx_pmu_init_domain(struct jh71xx_pmu *pmu, int index)
-+{
-+	struct jh71xx_pmu_dev *pmd;
-+	u32 pwr_mask;
-+	int ret;
-+	bool is_on = false;
-+
-+	pmd = devm_kzalloc(pmu->dev, sizeof(*pmd), GFP_KERNEL);
-+	if (!pmd)
-+		return -ENOMEM;
-+
-+	pmd->domain_info = &pmu->match_data->domain_info[index];
-+	pmd->pmu = pmu;
-+	pwr_mask = BIT(pmd->domain_info->bit);
-+
-+	pmd->genpd.name = pmd->domain_info->name;
-+	pmd->genpd.flags = pmd->domain_info->flags;
-+
-+	ret = jh71xx_pmu_get_state(pmd, pwr_mask, &is_on);
-+	if (ret)
-+		dev_warn(pmu->dev, "unable to get current state for %s\n",
-+			 pmd->genpd.name);
-+
-+	pmd->genpd.power_on = jh71xx_pmu_on;
-+	pmd->genpd.power_off = jh71xx_pmu_off;
-+	pm_genpd_init(&pmd->genpd, NULL, !is_on);
-+
-+	pmu->genpd_data.domains[index] = &pmd->genpd;
-+
-+	return 0;
-+}
-+
-+static int jh71xx_pmu_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	const struct jh71xx_pmu_match_data *match_data;
-+	struct jh71xx_pmu *pmu;
-+	unsigned int i;
-+	int ret;
-+
-+	pmu = devm_kzalloc(dev, sizeof(*pmu), GFP_KERNEL);
-+	if (!pmu)
-+		return -ENOMEM;
-+
-+	pmu->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(pmu->base))
-+		return PTR_ERR(pmu->base);
-+
-+	pmu->irq = platform_get_irq(pdev, 0);
-+	if (pmu->irq < 0)
-+		return pmu->irq;
-+
-+	ret = devm_request_irq(dev, pmu->irq, jh71xx_pmu_interrupt,
-+			       0, pdev->name, pmu);
-+	if (ret)
-+		dev_err(dev, "failed to request irq\n");
-+
-+	match_data = of_device_get_match_data(dev);
-+	if (!match_data)
-+		return -EINVAL;
-+
-+	pmu->genpd = devm_kcalloc(dev, match_data->num_domains,
-+				  sizeof(struct generic_pm_domain *),
-+				  GFP_KERNEL);
-+	if (!pmu->genpd)
-+		return -ENOMEM;
-+
-+	pmu->dev = dev;
-+	pmu->match_data = match_data;
-+	pmu->genpd_data.domains = pmu->genpd;
-+	pmu->genpd_data.num_domains = match_data->num_domains;
-+
-+	for (i = 0; i < match_data->num_domains; i++) {
-+		ret = jh71xx_pmu_init_domain(pmu, i);
-+		if (ret) {
-+			dev_err(dev, "failed to initialize power domain\n");
-+			return ret;
-+		}
-+	}
-+
-+	spin_lock_init(&pmu->lock);
-+	jh71xx_pmu_int_enable(pmu, JH71XX_PMU_INT_ALL_MASK & ~JH71XX_PMU_INT_PCH_FAIL, true);
-+
-+	ret = of_genpd_add_provider_onecell(np, &pmu->genpd_data);
-+	if (ret) {
-+		dev_err(dev, "failed to register genpd driver: %d\n", ret);
-+		return ret;
-+	}
-+
-+	dev_dbg(dev, "registered %u power domains\n", i);
-+
-+	return 0;
-+}
-+
-+static const struct jh71xx_domain_info jh7110_power_domains[] = {
-+	[JH7110_PD_SYSTOP] = {
-+		.name = "SYSTOP",
-+		.bit = 0,
-+		.flags = GENPD_FLAG_ALWAYS_ON,
-+	},
-+	[JH7110_PD_CPU] = {
-+		.name = "CPU",
-+		.bit = 1,
-+		.flags = GENPD_FLAG_ALWAYS_ON,
-+	},
-+	[JH7110_PD_GPUA] = {
-+		.name = "GPUA",
-+		.bit = 2,
-+	},
-+	[JH7110_PD_VDEC] = {
-+		.name = "VDEC",
-+		.bit = 3,
-+	},
-+	[JH7110_PD_VOUT] = {
-+		.name = "VOUT",
-+		.bit = 4,
-+	},
-+	[JH7110_PD_ISP] = {
-+		.name = "ISP",
-+		.bit = 5,
-+	},
-+	[JH7110_PD_VENC] = {
-+		.name = "VENC",
-+		.bit = 6,
-+	},
-+};
-+
-+static const struct jh71xx_pmu_match_data jh7110_pmu = {
-+	.num_domains = ARRAY_SIZE(jh7110_power_domains),
-+	.domain_info = jh7110_power_domains,
-+};
-+
-+static const struct of_device_id jh71xx_pmu_of_match[] = {
-+	{
-+		.compatible = "starfive,jh7110-pmu",
-+		.data = (void *)&jh7110_pmu,
-+	}, {
-+		/* sentinel */
-+	}
-+};
-+
-+static struct platform_driver jh71xx_pmu_driver = {
-+	.probe = jh71xx_pmu_probe,
-+	.driver = {
-+		.name = "jh71xx-pmu",
-+		.of_match_table = jh71xx_pmu_of_match,
-+		.suppress_bind_attrs = true,
-+	},
-+};
-+builtin_platform_driver(jh71xx_pmu_driver);
-+
-+MODULE_AUTHOR("Walker Chen <walker.chen@starfivetech.com>");
-+MODULE_DESCRIPTION("StarFive JH71XX PMU Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.17.1
+I'm not sure if we should call it rev-b since this is quite confusing.
+The whole EVK bundle (cpu-board + baseboard) is called EVKB. The most
+recent cpu board revision is A4 and the the cpu board itself is called
+8MMINILPD4-CPU2 whereas the older cpu board is called 8MMINILPD4-CPU.
 
+So dts file name imx8mm-evkb is correct, but mention it as rev-b in your
+commit message is wrong in my opinion.
+
+> different PMIC.
+
+
+> 
+> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+> ---
+>  .../boot/dts/freescale/imx8mm-ddr4-evk.dts    |   1 +
+>  .../dts/freescale/imx8mm-evk-rohm-pmic.dtsi   | 118 ++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dts  |   1 +
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 112 -----------------
+>  4 files changed, 120 insertions(+), 112 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-evk-rohm-pmic.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts
+> index 6c079c0a3a48..f39182ce65b4 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts
+> @@ -6,6 +6,7 @@
+>  /dts-v1/;
+>  
+>  #include "imx8mm-evk.dtsi"
+> +#include "imx8mm-evk-rohm-pmic.dtsi"
+
+Do we really need to move it into another dtsi file? I would either
+suggest to move the pmic description into the .dts file since it is not
+common anymore. This way we can avoid the imx8mm-evk-rohm-pmic.dtsi.
+
+Regards,
+  Marco
+
+>  / {
+>  	model = "FSL i.MX8MM DDR4 EVK with CYW43455 WIFI/BT board";
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk-rohm-pmic.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk-rohm-pmic.dtsi
+> new file mode 100644
+> index 000000000000..0b056996a27b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk-rohm-pmic.dtsi
+> @@ -0,0 +1,118 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2020 NXP
+> + */
+> +
+> +&i2c1 {
+> +	pmic@4b {
+> +		compatible = "rohm,bd71847";
+> +		reg = <0x4b>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +		rohm,reset-snvs-powered;
+> +
+> +		#clock-cells = <0>;
+> +		clocks = <&osc_32k 0>;
+> +		clock-output-names = "clk-32k-out";
+> +
+> +		regulators {
+> +			buck1_reg: BUCK1 {
+> +				regulator-name = "buck1";
+> +				regulator-min-microvolt = <700000>;
+> +				regulator-max-microvolt = <1300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <1250>;
+> +			};
+> +
+> +			buck2_reg: BUCK2 {
+> +				regulator-name = "buck2";
+> +				regulator-min-microvolt = <700000>;
+> +				regulator-max-microvolt = <1300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <1250>;
+> +				rohm,dvs-run-voltage = <1000000>;
+> +				rohm,dvs-idle-voltage = <900000>;
+> +			};
+> +
+> +			buck3_reg: BUCK3 {
+> +				// BUCK5 in datasheet
+> +				regulator-name = "buck3";
+> +				regulator-min-microvolt = <700000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck4_reg: BUCK4 {
+> +				// BUCK6 in datasheet
+> +				regulator-name = "buck4";
+> +				regulator-min-microvolt = <3000000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5_reg: BUCK5 {
+> +				// BUCK7 in datasheet
+> +				regulator-name = "buck5";
+> +				regulator-min-microvolt = <1605000>;
+> +				regulator-max-microvolt = <1995000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6_reg: BUCK6 {
+> +				// BUCK8 in datasheet
+> +				regulator-name = "buck6";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1_reg: LDO1 {
+> +				regulator-name = "ldo1";
+> +				regulator-min-microvolt = <1600000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo2_reg: LDO2 {
+> +				regulator-name = "ldo2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3_reg: LDO3 {
+> +				regulator-name = "ldo3";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4_reg: LDO4 {
+> +				regulator-name = "ldo4";
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo6_reg: LDO6 {
+> +				regulator-name = "ldo6";
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> index a2b24d4d4e3e..d2b6d7de7e53 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> @@ -7,6 +7,7 @@
+>  
+>  #include <dt-bindings/usb/pd.h>
+>  #include "imx8mm-evk.dtsi"
+> +#include "imx8mm-evk-rohm-pmic.dtsi"
+>  
+>  / {
+>  	model = "FSL i.MX8MM EVK board";
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index 7d6317d95b13..21d0614af44c 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -182,118 +182,6 @@ &i2c1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_i2c1>;
+>  	status = "okay";
+> -
+> -	pmic@4b {
+> -		compatible = "rohm,bd71847";
+> -		reg = <0x4b>;
+> -		pinctrl-names = "default";
+> -		pinctrl-0 = <&pinctrl_pmic>;
+> -		interrupt-parent = <&gpio1>;
+> -		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> -		rohm,reset-snvs-powered;
+> -
+> -		#clock-cells = <0>;
+> -		clocks = <&osc_32k 0>;
+> -		clock-output-names = "clk-32k-out";
+> -
+> -		regulators {
+> -			buck1_reg: BUCK1 {
+> -				regulator-name = "buck1";
+> -				regulator-min-microvolt = <700000>;
+> -				regulator-max-microvolt = <1300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -				regulator-ramp-delay = <1250>;
+> -			};
+> -
+> -			buck2_reg: BUCK2 {
+> -				regulator-name = "buck2";
+> -				regulator-min-microvolt = <700000>;
+> -				regulator-max-microvolt = <1300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -				regulator-ramp-delay = <1250>;
+> -				rohm,dvs-run-voltage = <1000000>;
+> -				rohm,dvs-idle-voltage = <900000>;
+> -			};
+> -
+> -			buck3_reg: BUCK3 {
+> -				// BUCK5 in datasheet
+> -				regulator-name = "buck3";
+> -				regulator-min-microvolt = <700000>;
+> -				regulator-max-microvolt = <1350000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			buck4_reg: BUCK4 {
+> -				// BUCK6 in datasheet
+> -				regulator-name = "buck4";
+> -				regulator-min-microvolt = <3000000>;
+> -				regulator-max-microvolt = <3300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			buck5_reg: BUCK5 {
+> -				// BUCK7 in datasheet
+> -				regulator-name = "buck5";
+> -				regulator-min-microvolt = <1605000>;
+> -				regulator-max-microvolt = <1995000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			buck6_reg: BUCK6 {
+> -				// BUCK8 in datasheet
+> -				regulator-name = "buck6";
+> -				regulator-min-microvolt = <800000>;
+> -				regulator-max-microvolt = <1400000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo1_reg: LDO1 {
+> -				regulator-name = "ldo1";
+> -				regulator-min-microvolt = <1600000>;
+> -				regulator-max-microvolt = <3300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo2_reg: LDO2 {
+> -				regulator-name = "ldo2";
+> -				regulator-min-microvolt = <800000>;
+> -				regulator-max-microvolt = <900000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo3_reg: LDO3 {
+> -				regulator-name = "ldo3";
+> -				regulator-min-microvolt = <1800000>;
+> -				regulator-max-microvolt = <3300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo4_reg: LDO4 {
+> -				regulator-name = "ldo4";
+> -				regulator-min-microvolt = <900000>;
+> -				regulator-max-microvolt = <1800000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo6_reg: LDO6 {
+> -				regulator-name = "ldo6";
+> -				regulator-min-microvolt = <900000>;
+> -				regulator-max-microvolt = <1800000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -		};
+> -	};
+>  };
+>  
+>  &i2c2 {
+> -- 
+> 2.25.1
+> 
+> 
+> 
