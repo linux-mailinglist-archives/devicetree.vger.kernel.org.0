@@ -2,212 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FC64673E55
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 17:14:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69F52673E6F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 17:18:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbjASQOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 11:14:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39954 "EHLO
+        id S230347AbjASQSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 11:18:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230074AbjASQOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 11:14:16 -0500
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2060.outbound.protection.outlook.com [40.107.22.60])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 340E6442CF;
-        Thu, 19 Jan 2023 08:14:13 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dACqw1HnyWmM5AtAMFwYw1EF/Y8J/etsebDps+q6ltm7bfyGzsp+BDWnjn7g/FWaO6c84XUs8oDoSb0i7KsfnfvoMXRLGthXx7X+XeXY8I9HAunc/MXfmIDqz8xMzF4/wwBrXsm60qfh7GurGR5LH+EejK3w8a8/tegQgyB5Lf6KNuoa5wqARkdSJE1rCb01+ePGS7kpFvv2d4VL00J1d6+dAU2xkDk2SC57kok5EFgMLVOUSeJcvDKDJ5//P7UPqoBwk04CiPzluXqyL0qUtkcC6etmotnHfnwBMdlo0ymEu3TIzek8q5O3vS5WQa9fAwxo5505TYq8uABrO8PZlw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K3Bz2r2ka+bL1NORbJAMKGCPTh/P9Cs5yaxSXNOvFrQ=;
- b=dbpVdxBJT40VfRanEkDZvMd9y5WRJKAM4e/p6A99BKk/Wj3wp+BG9cNDB6frl2C7l3UY5cjMGOAhjp22pgJLTIwVK7Ka2OoRUyrJ0blYbCs7GecJI5tp+ZmJC2DUhujrllqBdhzp9+PQgsLxnSIiDHmF1H4PW/uEriWE2fQzyfywQY5v8xntekgCLovzRBIQl5x2mbXNAKqXgEvyGBcE18vGtFhcEdkfSF8TqMFQ6GiTEN7RAPXpTZZ3BCZrUMOiJz7ZHVieTMDDXBl5FjoZIl5la+joTBVlYODv1PyFET41UHKhR8Y3V4MVxx0BDAdKuRgMQAVNYX41VekQf4cDbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K3Bz2r2ka+bL1NORbJAMKGCPTh/P9Cs5yaxSXNOvFrQ=;
- b=yrrAeivEjVnBZ/A85EqXPlhmMfc7ba/ryZ3SjnDwIzu+m8rt2puylZMhBU+wS9JQeSQJDf00Fx6mTRYAQXfzUhEMPpkLsZuKcqe0Ugy8PTgfv/Qkn7PXrBlNXtD1IFN8SMqCVkpZhm55r8IGIlvw9qLsWWvykjS5eH5LNv4cIhc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
- by PR3PR08MB5786.eurprd08.prod.outlook.com (2603:10a6:102:85::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.25; Thu, 19 Jan
- 2023 16:14:10 +0000
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::4718:6092:e763:4219]) by DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::4718:6092:e763:4219%2]) with mapi id 15.20.6002.024; Thu, 19 Jan 2023
- 16:14:10 +0000
-Message-ID: <6e7844f0-2a41-6542-9a0c-4837233f1251@wolfvision.net>
-Date:   Thu, 19 Jan 2023 17:14:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 5/6] drm/rockchip: vop2: add support for the rgb output
- block
-Content-Language: en-US
-To:     Sascha Hauer <sha@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-References: <20230119143911.3793654-1-michael.riesch@wolfvision.net>
- <20230119143911.3793654-6-michael.riesch@wolfvision.net>
- <20230119151734.GH24755@pengutronix.de>
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-In-Reply-To: <20230119151734.GH24755@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR06CA0140.eurprd06.prod.outlook.com
- (2603:10a6:803:a0::33) To DU0PR08MB9155.eurprd08.prod.outlook.com
- (2603:10a6:10:416::5)
+        with ESMTP id S230092AbjASQSR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 11:18:17 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD62E4B767
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 08:18:08 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id hw16so6955081ejc.10
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 08:18:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=75CApwyoYZwB9vzOQ7DfHNnPCwckr8Pwh0B/ncYxlkA=;
+        b=UZa5xD2TGmBoMEgkVNNtelfVbGvESaW3KLlHnokagVgG6+O4POq4nXvv1uJtYggGC5
+         F4vOZD1rzCIFNNdzO5A+oeh5a587aN3p8rxxajSbfPVEf3P2hO4LhnXlL6vn0/D7aqgk
+         EIpg8DS1+74AwNCXldSURzBaCtwGaf5emaCvI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=75CApwyoYZwB9vzOQ7DfHNnPCwckr8Pwh0B/ncYxlkA=;
+        b=M9USV3fb7Jk4lp6yaVGaYxvUmJMtowv0MZipBMe0Sq8jNkHmjSeAsTHc+T0qmylZP5
+         cd+9H0L8MEJOgi9n8p0f36rzDlhoc66l2Fj4E8GZ0/ahWrjoz453DpH6NdoLlnspmovM
+         bR5Vz+eyqgFFo8jy/keughKd0I9LmAGoa1oUp9dQUIREHmF/TzlPnyFCmVQkQ/PAYBtC
+         eCxcWp3pLsMK11h37UR2QbUSn4PBE0GyK6v1pd5PtfYJPEqyGmifK88MF8H1RApQFooH
+         NIonJe0d48X9tUH/K+Fy/Vfw08HQG1IIWuMg96YFMMbIBtTYGVVg3jqP87u6x26MIKuL
+         V6Gg==
+X-Gm-Message-State: AFqh2koL9/NatWFVpSsLZC3QC+XdAk+LZAmQBWCze1A3l1RY278BxHMH
+        n+vlVPvzamTAHMdOMAGJqBoTtfOGaPwMug6pcAeOp4dDlfcp51LP
+X-Google-Smtp-Source: AMrXdXuPMdUVXlyniSTjJFlOS8NU9CeoSYFOuGeQ1uMYDjjyOKjtRTaUujRoKPcFy0QsWnQUjtOaawNrm35ccbneIA8=
+X-Received: by 2002:a17:906:2b57:b0:85c:86a7:ad7b with SMTP id
+ b23-20020a1709062b5700b0085c86a7ad7bmr1596606ejg.745.1674145086854; Thu, 19
+ Jan 2023 08:18:06 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|PR3PR08MB5786:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7445ae7-8199-4251-61aa-08dafa3832cb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5r6bbRBGzSLprzfo4bLrobejxq+UT4z3m0ZjHee0X7ex18Brqj5FTZ4y8x+elCko/R7NoUwNgoFl5Kh85D5myh7rapsYoU9NQ6aC6XmP17XraBJsLvf7PkgC+wiZ27E55ErP+eCW487MECLFmAOgA2d1OuqJwTz5M6iYFG0+jxRHYjhTjs8vsKYx3BqJs3JayGhbEsVEREcdHDt5QZE4AFFrh3iULU3u36pstWWah5z3eu2ECWQ/kZwILs85QJso+imY+/7cVr1b1JHf2LenIHqCR3WsDekdaO8mIs8pTVbgpWtigcvERoyiXM428uWpVJZlfkKtOm7B8pbveuauAV1VjYm7LLn7Iiwt96XRJ9oTYSECuNsmrnSuX6AkXlah61HDsrmCa6K2FmmqiOPfKaCqUTRqBC/vpandy7cviicV87O0S6BdUxRb2hogCaGmAN5DqCC55eBYvdK8NtOOF1PLx20Jdv7TPe2xOkC1lLmwoynx3Ldz39oc3/GPjvYLI6vTmnq1OAU8TYJGbQyD1YrOA+SwQEClpTY3ZZQrsfnRBSwQ1bCXzb3JkqsDnhAjRAwfYv35Ll/r6P4BgAs3hed5MEpGYYTswGbjEFQth/N7H8WHWiFsdGOuOVzlilaPIx32xS7HxcdFferO3lsGeybiW//aQBX+qQJWA2GPiiIUIjHHz54he7Nuxq3iuFU8yEJEIj0yGHV9W+MfI4Ub/Bx2pg6+DTvyOq1XoJMkBgE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(39840400004)(376002)(396003)(366004)(451199015)(36756003)(5660300002)(41300700001)(6916009)(66556008)(66946007)(4326008)(7416002)(66476007)(44832011)(83380400001)(8936002)(478600001)(6512007)(6486002)(186003)(6666004)(53546011)(6506007)(8676002)(2616005)(316002)(52116002)(54906003)(31696002)(86362001)(2906002)(38100700002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Uk5uajhHdkJIV0lqanRGVEpNZjJteERBQ3BocE5KTEFmVUovTlNGMmpxMHFy?=
- =?utf-8?B?anNWLy9xUlp2ZWsvd2NYSDV2VHdkL2swTG1Jcy9KVTljeERZYXJRQkJaZU9X?=
- =?utf-8?B?M2ZEdFp4UG15MlNMQnJXNGw1RXN6QmNySWhFSnU0c2VQd2VGVUlGVFRaNFpQ?=
- =?utf-8?B?KzA2MVY1eldrc1RwOEd6SnYrOHlHYlBOVzZvWWRQTm1ESFRBVU1ZR3RMNUV2?=
- =?utf-8?B?WGRWMndMVTQ5V1NOdVJGV0wyZ2dxcHFQVG5URENJTkRzcTUyMFNRUjVoN1p3?=
- =?utf-8?B?Rk1vOTgzaHlBeWVFL3lBYWtJem8wMlE3dGV5UE0wR1Q4NkJZR0tNblZpY1Vw?=
- =?utf-8?B?QjVhZWRUOHNiSURlcUtRWUpnenZ0YUhuMGlsd3JLNXFvT1ltSTA5V3hsdkxY?=
- =?utf-8?B?RmcvVVRYNHVUZlhEQnhGV2RIS3BvSW9wcTJqMWNneTMyL2Z4citXb1lWSDRG?=
- =?utf-8?B?VlowTmh5MHZsOExCdUFBVVAwelRCZFl2aVRZbEN4M09lWUtVS3FTV2Zxb0Jm?=
- =?utf-8?B?b1ppZ3hYenUzYnVMbWJhV0E5SUFmYjU5K0tTNUVmWm05bWc5eWx2MEtpaVF1?=
- =?utf-8?B?b2l6RGRJZnVXY0NwTnVlbnV2VncrVGoyVFRkdGJwaFVpWis0K3Y5NkNyTk9T?=
- =?utf-8?B?VUowdXZEQmhVK0MvaGc4SjMzVHdOZ2ZzTDVoL3JmNTFHWFlQb0xCNVIvVGRL?=
- =?utf-8?B?OFMwL2pWeUFqUkw3Vllaa3MwYmJzaDZCS3lEdWI4d3dLVVZtN1dzc1h3V0Nn?=
- =?utf-8?B?SnpVM29FUThxNHdscWdzZklrU3g1bmY5MzBkK3FaRGlwdjhzRmtmcTZBVS9B?=
- =?utf-8?B?emQyakx2SmlVVUJLSmFPSTBUTTY5K1FmRXlkRHRNb1ZpcUorbnl4TkF5STlz?=
- =?utf-8?B?YWRQZ2xCNmVQcHFsQ0gwbWxzWEt2TWFlaXM4bFRhVWdnazhLeVpPZlFSTndY?=
- =?utf-8?B?ME1DOGo2a2FOdlVTRnU5T0F5Y1hCQThNYlZtVVpnSU5uYStRMWpIalpaVlBJ?=
- =?utf-8?B?TmNrZElaVTBtN0MrNGZXWlBIMEE3TG5JUkY1aVlMajhoOVRzbFZFaHZIM3Qw?=
- =?utf-8?B?UkZkZUpER3pkc3Bxb0RyQnZDMVl4UnMvb1g1Vng0UEhsOEJGWnNrUmI5MTB6?=
- =?utf-8?B?TU1CNElTVnp3MFpwMDB0dWZuQXVVUFY1dGs3SERvc2RlRFdsVElhamxkb0Fj?=
- =?utf-8?B?VmlJVkF0OURwL3hETWQ3S0xEWHA3M0E4VEc3WnZ5VFlIc2N5Q0xVcnIyaXU3?=
- =?utf-8?B?Nm9qMHdXVHJoSWpibS90WFF6dzJuYWhaOXlNOUJFYXJpRkZpMTVmamRMVjlh?=
- =?utf-8?B?UVE3OGNzNWJIUEJmT01jMUNGZ3dwUVAvNDZKeXdhU0hmLzdZWjB4NTJKb0gw?=
- =?utf-8?B?UldvUWJoRkhkRmk3OXBESlpSSkMrcEJ4WEFJTXp1cWFMbkVDYWFoWUNWU3ZQ?=
- =?utf-8?B?QnhoMVpsMnRjSXJRd0ROcXlXTzY5ZmtMQjVwbTU2aWY2dmpHZHh3TlkyUTVa?=
- =?utf-8?B?d01zVXRBRDlNeDVnN1Y0cXFuY3UzQmxja05ncUVSTUxhODNaRUpNSDgrM3RR?=
- =?utf-8?B?NlA1UVZKbEtLRFVIczB6dm04VCtLUXgxVXVQblVhRjhJRlptdTdZTzJTdDA4?=
- =?utf-8?B?UmN2YXlsYmdWUUxRRUNVbHJiYTlGZ0dtdUFzTFd2Z0I0KzJ4SGg4MXFJcFB5?=
- =?utf-8?B?TnoxZWRqamVYUVp2SGE0MGNCaHkxd0NvVlNLZjFoZkxjbTBPM0Myc1F5WHF5?=
- =?utf-8?B?czhMYkFub3pLckpib0lneEFkODJkYlB0L3l6di9ramhrb2kwWmtqaEt4STJS?=
- =?utf-8?B?eGd2Y1ZPWDZJcjA2Q0VjbDhqMXdJM2J5M1hMR1RTLzdZU0tMdHFIMFNJcFFN?=
- =?utf-8?B?cXFMc0tJUk9zTDJnZkdGZ3NCY1doYlQzMWpma2x6Rm5DWHo4a2VLdUFoUUJi?=
- =?utf-8?B?Z2NQWnkvRWkwcElOQitCRUFpOWh0cnRUSVlIU0F0dVVUTTI0S0lBK0xCd080?=
- =?utf-8?B?Z0NBWXp5bmdmQjVNVFEyWU02QkpPNVVuTDVsZEF3VmN1bEpjL1JBQ0xBSFlw?=
- =?utf-8?B?NUEySFNlV2hoNm9kRU9YbE1BT3VzTVd3MW9xaWVrcUNZMVQ0ZHhBOUtpMWpB?=
- =?utf-8?B?Z1k0eHBMZlBvM1dkL20vUTdmNkhxYlpOUEZFNHM1ME9rZkNyNmZNWWxTUklh?=
- =?utf-8?B?N2J4YXFhem95c3k3cEorTkk3MVZHNWRFM2IrVXo2dFYxMllYZEh3bVQrRGx4?=
- =?utf-8?Q?+bqutDQ5MskqIMyiYUVO1iKSaLGfC5Uhn24y5xAxk8=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7445ae7-8199-4251-61aa-08dafa3832cb
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 16:14:10.4597
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: W00t7krhLiCBHXJQnfN50iOG9HVVWzBAusnUJgGOrGean2tniTSlhgGpkOKaFcUS32NTmjYEspK/pzhDAb7IFKVBR2i1mM19O33xg9Ft3Ks=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR08MB5786
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230113205518.206306-1-sjg@chromium.org> <20230113205518.206306-2-sjg@chromium.org>
+ <CAL_JsqL6rOaFHcYTuP9YXhcWuhn7t0LKwZn0D0grLVMsu+PwLw@mail.gmail.com>
+ <CAPnjgZ37fcrnxcT4XOb=irVomRN1NYLni0p7MRgesjm7hwg8hg@mail.gmail.com> <CAL_Jsq+xevOq1ZsgSge2MijXPXojAFq545JT4XuGgyPf7tKX5g@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+xevOq1ZsgSge2MijXPXojAFq545JT4XuGgyPf7tKX5g@mail.gmail.com>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Thu, 19 Jan 2023 09:17:54 -0700
+Message-ID: <CAPnjgZ3Cztbm_irU-nLPCa73sZYEftT4p8rQ36tnXLS8XdSDVQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] schemas: Add schema for U-Boot driver model 'phase tags'
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha,
+Hi Rob,
 
-On 1/19/23 16:17, Sascha Hauer wrote:
-> Hi Michael,
-> 
-> On Thu, Jan 19, 2023 at 03:39:10PM +0100, Michael Riesch wrote:
->> The Rockchip VOP2 features an internal RGB output block, which can be
->> attached to the video port 2 of the VOP2. Add support for this output
->> block.
->>
->> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
->> ---
->> v2:
->>  - move away from wrong assumption that the RGB block is always
->>    connected to video port 2 -> check devicetree to find RGB block
-> 
-> Traces of that assumption are still in the commmit message.
+On Thu, 19 Jan 2023 at 08:28, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Jan 18, 2023 at 4:05 PM Simon Glass <sjg@chromium.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Wed, 18 Jan 2023 at 13:34, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Fri, Jan 13, 2023 at 2:58 PM Simon Glass <sjg@chromium.org> wrote:
+> > > >
+> > > > U-Boot has some particular challenges with device tree and devices:
+> > > >
+> > > > - U-Boot has multiple build phases, such as a Secondary Program Loader
+> > > >   (SPL) phase which typically runs in a pre-SDRAM environment where code
+> > > >   and data space are limited. In particular, there may not be enough
+> > > >   space for the full device tree blob. U-Boot uses various automated
+> > > >   techniques to reduce the size from perhaps 40KB to 3KB. It is not
+> > > >   always possible to handle these tags entirely at build time, since
+> > > >   U-Boot proper must have the full device tree, even though we do not
+> > > >   want it to process all nodes until after relocation.
+> > > > - Some U-Boot phases needs to run before the clocks are properly set up,
+> > > >   where the CPU may be running very slowly. Therefore it is important to
+> > > >   bind only those devices which are actually needed in that phase
+> > > > - U-Boot uses lazy initialisation for its devices, with 'bind' and
+> > > >   'probe' being separate steps. Even if a device is bound, it is not
+> > > >   actually probed until it is used. This is necessary to keep the boot
+> > > >   time reasonable, e.g. to under a second
+> > > >
+> > > > The phases of U-Boot in order are: TPL, VPL, SPL, U-Boot (first
+> > > > pre-relocation, then post-relocation). ALl but the last two are optional.
+> > > >
+> > > > For the above reasons, U-Boot only includes the full device tree in the
+> > > > final 'U-Boot proper' build. Even then, before relocation U-Boot only
+> > > > processes nodes which are marked as being needed.
+> > > >
+> > > > For this to work, U-Boot's driver model[1] provides a way to mark device
+> > > > tree nodes as applicable for a particular phase. This works by adding a
+> > > > tag to the node, e.g.:
+> > > >
+> > > >    cru: clock-controller@ff760000 {
+> > > >       bootph-all;
+> > > >       compatible = "rockchip,rk3399-cru";
+> > > >       reg = <0x0 0xff760000 0x0 0x1000>;
+> > > >       rockchip,grf = <&grf>;
+> > > >       #clock-cells = <1>;
+> > > >       #reset-cells = <1>;
+> > > >       ...
+> > > >    };
+> > > >
+> > > > Here the "bootph-all" tag indicates that the node must be present in all
+> > > > phases, since the clock driver is required.
+> > > >
+> > > > There has been discussion over the years about whether this could be done
+> > > > in a property instead, e.g.
+> > > >
+> > > >    options {
+> > > >       bootph-all = <&cru> <&gpio_a> ...;
+> > > >       ...
+> > > >    };
+> > > >
+> > > > Some problems with this:
+> > > >
+> > > > - we need to be able to merge several such tags from different .dtsi files
+> > > >   since many boards have their own specific requirements
+> > > > - it is hard to find and cross-reference the affected nodes
+> > > > - it is more error-prone
+> > > > - it requires significant tool rework in U-Boot, including fdtgrep and
+> > > >   the build system
+> > > > - is harder (slower, more code) to process since it involves scanning
+> > > >   another node/property to find out what to do with a particular node
+> > > > - we don't want to add phandle arguments to the above since we are
+> > > >   referring, e.g., to the clock device as a whole, not a paricular clock
+> > > > - the of-platdata feature[2], which converts device tree to C for even
+> > > >   more constrained environments, would need to become aware of the
+> > > >   /options node
+> > > >
+> > > > There is also the question about whether this needs to be U-Boot-specific,
+> > > > or whether the tags could be generic. From what I can tell, U-Boot is the
+> > > > only bootloader which seriously attempts to use a runtime device tree in
+> > > > all cases. For this version, an attempt is made to name the phases in a
+> > > > generic manner.
+> > > >
+> > > > It should also be noted that the approach provided here has stood the test
+> > > > of time, used in U-Boot for 8 years so far.
+> > > >
+> > > > So add the schema for this. This will allow a major class of schema
+> > > > exceptions to be dropped from the U-Boot source tree.
+> > > >
+> > > > This being sent to the mailing list since it might attract more review.
+> > > > A PR will be sent when this has had some review. That is why the file
+> > > > path is set up for https://github.com/devicetree-org/dt-schema rather
+> > > > than the Linux kernel.
+> > > >
+> > > > [1] https://u-boot.readthedocs.io/en/latest/develop/driver-model/index.html
+> > > > [2] https://u-boot.readthedocs.io/en/latest/develop/driver-model/of-plat.html
+> > > >
+> > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > ---
+> > > >
+> > > > Changes in v6:
+> > > > - Use 'bootph' instead of 'phase'
+> > > > - Use | instead of , in patternProperties
+> > > > - Drop mention of 40KB for device-tree size
+> > > > - Rework description of handling of parent nodes
+> > > > - Use separate properties for each boot phase
+> > > > - Update validation example at the top of bootphases.dts
+> > > >
+> > > > Changes in v5:
+> > > > - Fix instructions to run test
+> > > > - Update binding title
+> > > > - Use 'phase-' instead of 'phase,'
+> > > >
+> > > > Changes in v4:
+> > > > - Drop some unnecessary context from the commit message
+> > > > - Explain why parent nodes do not automatically inherit their children's
+> > > >   tags
+> > > > - Rename the tags to use a phase,xxx format, explaining each one
+> > > >
+> > > > Changes in v3:
+> > > > - Fix an incorrect schema path in $id
+> > > >
+> > > > Changes in v2:
+> > > > - Expand docs to include a description of each tag
+> > > > - Fix some typos and unclear wording
+> > > >
+> > > >  dtschema/lib.py              |  5 +++
+> > > >  dtschema/schemas/bootph.yaml | 86 ++++++++++++++++++++++++++++++++++++
+> > > >  test/bootphases.dts          | 22 +++++++++
+> > > >  3 files changed, 113 insertions(+)
+> > > >  create mode 100644 dtschema/schemas/bootph.yaml
+> > > >  create mode 100644 test/bootphases.dts
+> > > >
+> > > > diff --git a/dtschema/lib.py b/dtschema/lib.py
+> > > > index c7b6cb9..95a4f10 100644
+> > > > --- a/dtschema/lib.py
+> > > > +++ b/dtschema/lib.py
+> > > > @@ -493,6 +493,11 @@ def fixup_node_props(schema):
+> > > >      schema['properties'].setdefault('status', True)
+> > > >      schema['properties'].setdefault('secure-status', True)
+> > > >      schema['properties'].setdefault('$nodename', True)
+> > > > +    schema['properties'].setdefault('bootph-pre-sram', True)
+> > > > +    schema['properties'].setdefault('bootph-verify', True)
+> > > > +    schema['properties'].setdefault('bootph-pre-ram', True)
+> > > > +    schema['properties'].setdefault('bootph-some-ram', True)
+> > > > +    schema['properties'].setdefault('bootph-all', True)
+> > > >
+> > > >      keys = list()
+> > > >      if 'properties' in schema:
+> > > > diff --git a/dtschema/schemas/bootph.yaml b/dtschema/schemas/bootph.yaml
+> > > > new file mode 100644
+> > > > index 0000000..275c4da
+> > > > --- /dev/null
+> > > > +++ b/dtschema/schemas/bootph.yaml
+> > > > @@ -0,0 +1,86 @@
+> > > > +# SPDX-License-Identifier: BSD-2-Clause
+> > > > +# Copyright 2022 Google LLC
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/bootph.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Boot-phase-specific device nodes
+> > > > +
+> > > > +maintainers:
+> > > > +  - Simon Glass <sjg@chromium.org>
+> > > > +
+> > > > +description: |
+> > > > +  Some programs run in memory-constrained environments yet want to make use
+> > > > +  of device tree.
+> > > > +
+> > > > +  The full device tree is often quite large relative to the available memory
+> > > > +  of a boot phase, so cannot fit into every phase of the boot process. Even
+> > > > +  when memory is not a problem, some phases may wish to limit which device
+> > > > +  nodes are present, so as to reduce execution time.
+> > > > +
+> > > > +  This binding supports adding tags to device tree nodes to allow them to be
+> > > > +  marked according to the phases where they should be included.
+> > > > +
+> > > > +  Without any tags, nodes are included only in the final phase, where all
+> > > > +  memory is available. Any untagged nodes are dropped from previous phases
+> > > > +  and are ignored before the final phase is reached.
+> > > > +
+> > > > +  The build process produces a separate executable for each phase. It can
+> > > > +  use fdtgrep to drop any nodes which are not needed for a particular build.
+> > > > +  For example, the pre-sram build will drop any nodes which are not marked
+> > > > +  with bootph-pre-sram or bootph-all tags.
+> > > > +
+> > > > +  Note that phase builds may drop the tags, since they have served their
+> > > > +  purpose by that point. So when looking at phase-specific device tree files
+> > > > +  you may not see these tags.
+> > > > +
+> > > > +  Multiple tags can be used in the same node.
+> > > > +
+> > > > +  Tags in a child node are implied to be present in all parent nodes as well.
+> > > > +  This is important, since some missing properties (such as "ranges", or
+> > > > +  "compatible") can cause the child node to be ignored or incorrectly
+> > > > +  parsed.
+> > > > +
+> > > > +  That said, at present, fdtgrep applies tags only to the node they are
+> > > > +  added to, not to any parents. This means U-Boot device tree files often
+> > > > +  add the same tag to parent nodes, rather than relying on tooling to do
+> > > > +  this. This is a limitation of fdtgrep and it will be addressed so that
+> > > > +  'Linux DTs' do not need to do this.
+> > > > +
+> > > > +  The available tags are describes as properties below, in order of phase
+> > >
+> > > described
+> > >
+> > > > +  execution.
+> > > > +
+> > >
+> > > I think your issue testing is you need a 'select: true' here. 'select'
+> > > is how we test whether a schema should be applied to a node. The
+> > > default is to use compatible or $nodename for matching. You have
+> > > neither, so select is false.
+> >
+> > I feel like I have the opposite problem, in that the validation is not
+> > actually happening, i.e. it isn't failing with something like
+> > bootph-pre-sramxxx or anything else I put into the node:
+>
+> Right. Since you get the default 'select: false', your schema is never
+> used for validation.
+>
+> >
+> > I do see this:
+> >
+> > dtc -O dtb -o test.dtb test/bootphases.dts && tools/dt-validate -m test.dtb
+> > test.dtb: /some-device: failed to match any schema with compatible:
+> > ['vendor,soc1-ip']
+>
+> Adding '-s test/schemas' to dt-validate should fix that error (and
+> probably add schema errors).
 
-Oops, this needs fixing of course...
+dtc -O dtb -o test.dtb test/bootphases.dts && tools/dt-validate -s
+test/schemas -m test.dtb
+/usr/local/google/home/sjg/cosarm/dt-schema/test/schemas/bad-example.yaml:
+ignoring, error in schema: title
+/usr/local/google/home/sjg/cosarm/dt-schema/test.dtb: some-device:
+'bootph-pre-sram' does not match any of the regexes: 'pinctrl-[0-9]+'
+From schema: /usr/local/google/home/sjg/cosarm/dt-schema/test/schemas/good-example.yaml
 
->>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 44 ++++++++++++++++++++
->>  1 file changed, 44 insertions(+)
->>
->> +static int vop2_find_rgb_encoder(struct vop2 *vop2)
->> +{
->> +	struct device_node *node = vop2->dev->of_node;
->> +	struct device_node *endpoint;
->> +	int i;
->> +
->> +	for (i = 0; i < vop2->data->nr_vps; i++) {
->> +		endpoint = of_graph_get_endpoint_by_regs(node, i,
->> +							 ROCKCHIP_VOP2_EP_RGB0);
->> +		if (!endpoint)
->> +			continue;
->> +
->> +		of_node_put(endpoint);
->> +		return i;
->> +	}
->> +
->> +	return -ENOENT;
->> +}
->> +
->>  static struct reg_field vop2_cluster_regs[VOP2_WIN_MAX_REG] = {
->>  	[VOP2_WIN_ENABLE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 0, 0),
->>  	[VOP2_WIN_FORMAT] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 1, 5),
->> @@ -2698,11 +2721,29 @@ static int vop2_bind(struct device *dev, struct device *master, void *data)
->>  	if (ret)
->>  		return ret;
->>  
->> +	ret = vop2_find_rgb_encoder(vop2);
->> +	if (ret > 0) {
-> 
-> '0' seems to be a valid vp as well. Shouldn't this be ret >= 0?
+So now it seems unhappy. Are you sure that I have the schema set up
+correctly? Unfortunately I find the whole thing quite hard to get my
+head around. I think I understand what it is supposed to be doing, but
+I cannot make what it does match my understanding :-)
 
-...and you are right of course. What a stupid mistake.
+>
+>
+> > but even changing it into a 'cpus' node it still lets me any any
+> > random property I like.
+>
+> ATM, I think we allow additional properties in cpus nodes. That's
+> something I'm working on...
+>
+> Most of what's in dt-schema doesn't restrict properties present in a
+> node in any way other than global rules on property names and values
+> because dt-schema is all common schemas except for the test schemas.
 
-Will fix these in v3.
+OK I see.
 
-Best regards,
-Michael
-
-> 
->> +		vop2->rgb = rockchip_rgb_init(dev, &vop2->vps[ret].crtc,
->> +					      vop2->drm, ret);
->> +		if (IS_ERR(vop2->rgb)) {
->> +			if (PTR_ERR(vop2->rgb) == -EPROBE_DEFER) {
->> +				ret = PTR_ERR(vop2->rgb);
->> +				goto err_crtcs;
->> +			}
->> +			vop2->rgb = NULL;
->> +		}
->> +	}
->> +
-> 
-> Sascha
-> 
+Regards,
+Simon
