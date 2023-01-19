@@ -2,37 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 072FE674236
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 20:07:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B072467423C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 20:07:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231262AbjASTH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 14:07:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48934 "EHLO
+        id S229775AbjASTHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 14:07:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231270AbjASTGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 14:06:41 -0500
+        with ESMTP id S229506AbjASTG7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 14:06:59 -0500
 Received: from out2.migadu.com (out2.migadu.com [IPv6:2001:41d0:2:aacc::])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF0795169;
-        Thu, 19 Jan 2023 11:06:02 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 391C2951B0;
+        Thu, 19 Jan 2023 11:06:04 -0800 (PST)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
-        t=1674155160;
+        t=1674155161;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=181+U7hoXVEs3PRIvqYL+aOou8nlMGYT2aXfPxxQmfE=;
-        b=SVFT3h+iVwGSJPqr9uMhGC8e45HMg8aZgrcCWkxLToyEmmtgt2uYx6HvpAOdmsxOYXz0nB
-        od+kCgfJm1ZFNfEFZbdEsrguMX47byaSLwA1I4U5LyuBWH8vWV3oLCsX1cDSSqdHu9VyYh
-        WEto3ccFLdJDlas1TtgPLjHQmVPPTzE=
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=CBES6x1qNNbCC+Ve+6NYbTgTVKhUPguGspOpoYfBcQ0=;
+        b=RuN+aSXdcUZw8w6JBLZkF+kPH+rFfzUS50v402ybY1AgVxxXyghVk5gqtIlMhtyawy+vB/
+        tbyE3igYhcKioiYlCdDrI6tC3TwkDun8DOdQH/T6fqDpFueCKzHTHenLmkJWe6moGZHpH7
+        2OF0KIMAQ+FjN18M8SWjZA3c/Pf719E=
 From:   Rayyan Ansari <rayyan@ansari.sh>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Rayyan Ansari <rayyan@ansari.sh>, devicetree@vger.kernel.org,
+        Rayyan Ansari <rayyan@ansari.sh>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] Add XO clocks for MSM8226
-Date:   Thu, 19 Jan 2023 19:05:32 +0000
-Message-Id: <20230119190534.317041-1-rayyan@ansari.sh>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 2/2] ARM: dts: qcom: msm8226: add clocks and clock-names to gcc node
+Date:   Thu, 19 Jan 2023 19:05:34 +0000
+Message-Id: <20230119190534.317041-3-rayyan@ansari.sh>
+In-Reply-To: <20230119190534.317041-1-rayyan@ansari.sh>
+References: <20230119190534.317041-1-rayyan@ansari.sh>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
@@ -45,14 +52,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rayyan Ansari (2):
-  clk: qcom: smd: Add XO RPM clocks for MSM8226/MSM8974
-  ARM: dts: qcom: msm8226: add clocks and clock-names to gcc node
+Add the XO and Sleep Clock sources to the GCC node.
 
+Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+---
  arch/arm/boot/dts/qcom-msm8226.dtsi | 6 ++++++
- drivers/clk/qcom/clk-smd-rpm.c      | 2 ++
- 2 files changed, 8 insertions(+)
+ 1 file changed, 6 insertions(+)
 
+diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
+index c373081bc21b..42acb9ddb8cc 100644
+--- a/arch/arm/boot/dts/qcom-msm8226.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
+@@ -8,6 +8,7 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/clock/qcom,gcc-msm8974.h>
+ #include <dt-bindings/clock/qcom,mmcc-msm8974.h>
++#include <dt-bindings/clock/qcom,rpmcc.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/power/qcom-rpmpd.h>
+ #include <dt-bindings/reset/qcom,gcc-msm8974.h>
+@@ -377,6 +378,11 @@ gcc: clock-controller@fc400000 {
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+ 			#power-domain-cells = <1>;
++
++			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
++				 <&sleep_clk>;
++			clock-names = "xo",
++				      "sleep_clk";
+ 		};
+ 
+ 		mmcc: clock-controller@fd8c0000 {
 -- 
 2.39.0
 
