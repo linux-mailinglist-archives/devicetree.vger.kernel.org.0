@@ -2,55 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D65F76733D5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 09:37:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28EFB6733E1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 09:40:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbjASIhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 03:37:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51480 "EHLO
+        id S230045AbjASIkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 03:40:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230174AbjASIhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 03:37:12 -0500
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA764DBC5
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 00:37:11 -0800 (PST)
-Received: by mail-yb1-xb29.google.com with SMTP id 66so1615297yba.4
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 00:37:11 -0800 (PST)
+        with ESMTP id S229515AbjASIko (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 03:40:44 -0500
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F34B4DBC5
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 00:40:42 -0800 (PST)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-4a263c4ddbaso17914927b3.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 00:40:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5W30qCxVKf0KARy+TLTjIt9Y3WaxPoZtvKimLdjidWI=;
-        b=dZmYHThxSgG/zloX7Dz/TblAHFGnQhaqJk3S0H4Co64uzDBruSrZJJAa414xkyUiZ6
-         GqXevocPagiBF441A9XBAHat6S7FH48JHWwnnC6LPJeYmsq8zWSIsyMKf8KlBU8TV0qU
-         csfJ8Ic2UG8OkBQU6W5nggtagyfFDQ9pK7fquszs+FGyc/ZoNNrgVV2pa4SexUZjrT13
-         ocq/z2jBesQxSbF6VdXdyKsudFED0HQsJL0Kv1j/+WOZs4HxCL6BxUeaYzzYYmafDaeb
-         dVddQeLZDMbbY/TRxhw5YKERjHg1IZ6NqcVmnKueThsnwWgJSCmYhVWZD1b1yKKEUd1A
-         +1pw==
+        bh=Wz30k0eHuCJ5qW+R1e/5VxG1p016U2jxYAEXQ6zDyEk=;
+        b=IYs36GIo4XvlIdNhAXfovMq2GHRF7gmKwKlRQmrnF4ajNS9SSKRkjhGtnAxNu+XsbF
+         4lYop2I58AhUQvp6C1U8Sg08CXcjtReKV5TH3rsatEn+FiyLfnN9fgHV1E+wNqhtC7yG
+         PG0GsRqAPE27R94ZCIOFARXmHTa5kkQNuo8c41oWFdmGazDVm9n0g/NEBvel22/cQdx8
+         7qvT1InMrpl3t+rEjLo2EXjI7kfGnUUbPo+JU8AtVJgubdVEQaSNIXTB5foczjEY/yRD
+         9SFXwwWe8k6x1G8apIF7slaNxKeCFm7zsrNxnNaHwXSzp0W7897zq3kN4mQl9VXyopSZ
+         CCwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5W30qCxVKf0KARy+TLTjIt9Y3WaxPoZtvKimLdjidWI=;
-        b=l8vSV8Iz86BOko7MJ5Rclv4BX6pjsq92u8ntmlaV8EUYkbqVLTiMCiKnBx0x5qj/fF
-         B2wB2MzBQ5+pvjPcYhwI6oyKTR/p9zcJawghQuiATvx/UZ2dkCUNxlG/bwMzSvdj2KAM
-         QtFDkA7ujmH/M13CCytCdbc6tyiBwStmKXACT6xv1tL+BrD5pIADsB6P4jimORQBIduQ
-         4giYBGILq2bRmryN0ZGxpruGjdjsCXQOdiObpGO6JRvtkBj2JntZE6epeKLwmlePnwMc
-         tOCSyfVmr37pjjvTK+Yq6fBJID0WGT1BzQaoxDiTCXr6LjKmLG1on5sfirJKCG2uPPeB
-         SuAQ==
-X-Gm-Message-State: AFqh2ko69SbPDseb/tN4L+wQj7eQAM8FW+/HgFXGXVl+1EbrCXDqXxk7
-        +nfeMFCWapgUw4Q4qFsdDqbFzuYeqe54r/HpUAZA9Q==
-X-Google-Smtp-Source: AMrXdXuaEM66ZFVHU3adMHT8v6p6wBn0BYXl02ic25ZtL9O2RpLvMcfl5xsbyGaABZf1lpRV0+JwNKzTNmOGQDTLOdI=
-X-Received: by 2002:a5b:592:0:b0:7ed:9cee:464 with SMTP id l18-20020a5b0592000000b007ed9cee0464mr1308159ybp.194.1674117430262;
- Thu, 19 Jan 2023 00:37:10 -0800 (PST)
+        bh=Wz30k0eHuCJ5qW+R1e/5VxG1p016U2jxYAEXQ6zDyEk=;
+        b=uidgh/mqdC6yA4vFp6qi34uVDDXL2smCokUQLou1pNJWgVutkxwWW11Jh0KAgwZ6f7
+         f9j6EvQ0NpJwB/MYOUgO2OSi+PxWvQIPD0MSaJroS+5DwqxDvO9DKtJquvO0GA0teM6t
+         Dhvl01d57cIQnwAREFtajetfgX6rlrbaq864nggENpDrZs0hlB1DIfRFRnCdrH4gpe0Z
+         oiwZ7z9SuZakIF793TsqrveyhXeNjYIQlmgYHMGMB2NcZDfRVKD1QRAuvstzdrtKsiun
+         WwdWFLo4q7nFCq2ykzXOCYjsp/p7r2uvoMQb0yrN2/oI2J4ZEG76WkN7e2mv754f0Lex
+         f+Jg==
+X-Gm-Message-State: AFqh2krE2o8tIHeYYRStaOLhDC3xgrytuZdM//1B05vpLssE1EUlQwOz
+        JPI2wB1F5RIHW1TG6ORuQAc5rjaHwJ9Ll/cRjbqTSw==
+X-Google-Smtp-Source: AMrXdXvA8Npb0BzSkuo6iBimkuIOlahd1dNVQpsDdSqUrv249CwsCg4zyuf/p2yX6ErTXCQN9nQbqKKzNwL6V4wL72M=
+X-Received: by 2002:a81:7582:0:b0:370:4c23:eacc with SMTP id
+ q124-20020a817582000000b003704c23eaccmr1183986ywc.127.1674117641858; Thu, 19
+ Jan 2023 00:40:41 -0800 (PST)
 MIME-Version: 1.0
-References: <20230118193015.911074-1-markyacoub@google.com> <20230118193015.911074-9-markyacoub@google.com>
-In-Reply-To: <20230118193015.911074-9-markyacoub@google.com>
+References: <20230118193015.911074-1-markyacoub@google.com> <20230118193015.911074-10-markyacoub@google.com>
+In-Reply-To: <20230118193015.911074-10-markyacoub@google.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 19 Jan 2023 10:36:59 +0200
-Message-ID: <CAA8EJpq689pt0VXEjo_F48W8JQ+MGnEX3TH1z2ACdD_49YG-mg@mail.gmail.com>
-Subject: Re: [PATCH v6 08/10] dt-bindings: msm/dp: Add bindings for HDCP registers
+Date:   Thu, 19 Jan 2023 10:40:31 +0200
+Message-ID: <CAA8EJppqft3vtB9PgLe=NunYCo48rAQzAb_nLYACAQ8Onr_ZaA@mail.gmail.com>
+Subject: Re: [PATCH v6 09/10] arm64: dts: qcom: sc7180: Add support for HDCP
+ in dp-controller
 To:     Mark Yacoub <markyacoub@chromium.org>
 Cc:     quic_khsieh@quicinc.com, linux-arm-msm@vger.kernel.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
@@ -73,9 +75,7 @@ Cc:     quic_khsieh@quicinc.com, linux-arm-msm@vger.kernel.org,
         christophe.jaillet@wanadoo.fr, quic_sbillaka@quicinc.com,
         johan+linaro@kernel.org, dianders@chromium.org, marex@denx.de,
         quic_jesszhan@quicinc.com, bjorn.andersson@linaro.org,
-        abhinavk@codeaurora.org, seanpaul@chromium.org,
-        Rob Herring <robh@kernel.org>,
-        Mark Yacoub <markyacoub@chromiu.org>
+        abhinavk@codeaurora.org, seanpaul@chromium.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -90,93 +90,63 @@ On Wed, 18 Jan 2023 at 21:30, Mark Yacoub <markyacoub@chromium.org> wrote:
 >
 > From: Sean Paul <seanpaul@chromium.org>
 >
-> This patch adds the bindings for the MSM DisplayPort HDCP registers
-> which are required to write the HDCP key into the display controller as
-> well as the registers to enable HDCP authentication/key
-> exchange/encryption.
->
-> We'll use a new compatible string for this since the fields are optional.
+> This patch adds the register ranges required for HDCP key injection and
+> HDCP TrustZone interaction as described in the dt-bindings for the
+> sc7180 dp controller. Now that these are supported, change the
+> compatible string to "dp-hdcp".
 
-This doesn't correspond to patch contents.
+No change in compatibles, so patch description should be updated.
 
 >
-> Cc: Rob Herring <robh@kernel.org>
-
-This should be a
-
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> Signed-off-by: Mark Yacoub <markyacoub@chromiu.org>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-13-sean@poorly.run #v1
-> Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-13-sean@poorly.run #v2
-> Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-13-sean@poorly.run #v3
-> Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-13-sean@poorly.run #v4
-> Link: https://patchwork.freedesktop.org/patch/msgid/20211115202153.117244-1-sean@poorly.run #v4.5
-> Link: https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-9-sean@poorly.run #v5
+> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run #v1
+> Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-14-sean@poorly.run #v2
+> Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-14-sean@poorly.run #v3
+> Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-14-sean@poorly.run #v4
+> Link: https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-10-sean@poorly.run #v5
 
-Please, clean this up. I suspect that the long list of previous
-iterations might belong to the cover letter, but not to the series
-themselves.
+Again, this probably belongs to a cover letter
 
 >
-> Changes in v2:
-> -Drop register range names (Stephen)
-> -Fix yaml errors (Rob)
 > Changes in v3:
-> -Add new compatible string for dp-hdcp
-> -Add descriptions to reg
-> -Add minItems/maxItems to reg
-> -Make reg depend on the new hdcp compatible string
+> -Split off into a new patch containing just the dts change (Stephen)
+> -Add hdcp compatible string (Stephen)
 > Changes in v4:
 > -Rebase on Bjorn's multi-dp patchset
-> Changes in v4.5:
-> -Remove maxItems from reg (Rob)
-> -Remove leading zeros in example (Rob)
 > Changes in v5:
-> -None
+> -Put the tz register offsets in trogdor dtsi (Rob C)
 > Changes in v6:
-> -Rebased: modify minItems instead of adding it as new line.
+> -Rebased: Removed modifications in sc7180.dtsi as it's already upstream
 >
 > ---
->  .../devicetree/bindings/display/msm/dp-controller.yaml    | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> index f2515af8256f..17d741f9af86 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> @@ -24,13 +24,15 @@ properties:
->        - qcom,sm8350-dp
->
->    reg:
-> -    minItems: 4
-> +    minItems: 5
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 178efaaa89ec..6f6fe5cb6563 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -817,6 +817,14 @@ &mdss_dp {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&dp_hot_plug_det>;
+>         data-lanes = <0 1>;
+> +
+> +       reg = <0 0x0ae90000 0 0x200>,
+> +             <0 0x0ae90200 0 0x200>,
+> +             <0 0x0ae90400 0 0xc00>,
+> +             <0 0x0ae91000 0 0x400>,
+> +             <0 0x0ae91400 0 0x400>,
+> +             <0 0x0aed1000 0 0x175>,
+> +             <0 0x0aee1000 0 0x2c>;
 
-No. eDP uses 4 register blocks.
+Is there any reason for adding these to the -trogdor instead of adding
+them to the base dtsi? Does hardware differ between the sc7180.dtsi
+and sc7180-trogdor.dtsi?
 
->      items:
->        - description: ahb register block
->        - description: aux register block
->        - description: link register block
->        - description: p0 register block
->        - description: p1 register block
-> +      - description: (Optional) Registers for HDCP device key injection
-> +      - description: (Optional) Registers for HDCP TrustZone interaction
+>  };
 >
->    interrupts:
->      maxItems: 1
-> @@ -154,7 +156,9 @@ examples:
->                <0xae90200 0x200>,
->                <0xae90400 0xc00>,
->                <0xae91000 0x400>,
-> -              <0xae91400 0x400>;
-> +              <0xae91400 0x400>,
-> +              <0xaed1000 0x174>,
-> +              <0xaee1000 0x2c>;
->          interrupt-parent = <&mdss>;
->          interrupts = <12>;
->          clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>  &pm6150_adc {
 > --
 > 2.39.0.246.g2a6d74b583-goog
 >
