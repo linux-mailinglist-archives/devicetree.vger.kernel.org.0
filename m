@@ -2,111 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5629672D88
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 01:39:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E626D672D9F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 01:45:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbjASAi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Jan 2023 19:38:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50650 "EHLO
+        id S229814AbjASAp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Jan 2023 19:45:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjASAi4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 19:38:56 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09825526E
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 16:38:54 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id jm10so753295plb.13
-        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 16:38:54 -0800 (PST)
+        with ESMTP id S229816AbjASApx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Jan 2023 19:45:53 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C3715DC39
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 16:45:45 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so188434wmq.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Jan 2023 16:45:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0pSJsyEuQeHOPQujX6GF/hc1kQvX/3d1HVOxLVeB5NM=;
-        b=EbNzGLNE7LspsNHRUeA2YlT3UgmXKZeffa6bV9okWj3cd03C1F78DHJ3byO3HluS5X
-         U9P4mYAxMdi4HCWA7dW9oMxsu0lQbEcm7uoRyyvK3Lyu8ls8LASbl45C1niy3/s47R8t
-         3SKd3HlZX+zreMAT2e1GNSOwHzktglcV9BJDP9J0jb5Uhc4KMHZiT3YMhtTR+KLOB/KM
-         aJHvJOfAeM6hH5hzQajWrXy3ErcWhWEaDLsKRALSOXGS1N3FvIQBYU/5GG6mrOWzCKY4
-         i8xM7btP73LNWTw7kJ/RYbM6ZgG0EH/BzVRML1iMHjAMzauZCDfmwY26f4YBTKepGHdf
-         6F8g==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Kip7JGtKPH/G7ir14KAj9xQjGYwxexOnro2oZg7kXI=;
+        b=dMyubnXXrCdlf8aWxP0t1d2AsTEVrNLTZH+P1zI6lRjGoplCpYdgl1CeEY8Uv3tsDG
+         4Ck5yos1VxcWeL+4vibdNV2wER3TWdoedO41v+rGf5ubyPFIWsEqRMTsTc6AivEdI3fe
+         KxNgTOgZf7GFsnPuuG7NpHGQ40vXg17FxCbngMaORcBw+Y6KjbUHNC6DeUGVYK1lbUCM
+         c2/uRMIJX6lqjVamAmSu+d0Sa2Qz5sHIGCQ8dCUU43il4Kwa8whSUvEpkvTT8XUfVYxj
+         oZunfSmJ8y2NKjuSFCQw7jEPjUvQzI88FwWX1W8FkBSQvwobWOUlxFy7vny49cbEVqsN
+         SS5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0pSJsyEuQeHOPQujX6GF/hc1kQvX/3d1HVOxLVeB5NM=;
-        b=xxRzENgT9/7O+h3ao5gSMHqzr5hSmc9YC9JYl5cDSYzKpzGQKp40RcABGSlGtiTNCT
-         5H/tKPe7yfVFojf7o6tocfV1Ypfv4DeFGDw0OduQvM11jeKkAZyvoZREDjqm35DqZSh3
-         qGbJFYF/WjyXOCDPYkGBZ4UHGlUKuoEYPFMt7kH3inpwuXxh3j2i9hs0tjTLVfIjiXjM
-         fxU3GoIy9GXZWAqvAaJYGkmsqRmfqsCIiH36RUUt9pVEFyKfpzCR2E/15KqNjqWCtMWU
-         vclrl+6puawSsaddt2bWy6kOlr0mxjjKc8NXbRhy+GT44eZ2SSTUSRMN9z4lgZkPDJ7+
-         haZw==
-X-Gm-Message-State: AFqh2kp1lYtZ+jkfCaU20hHMPLICLuMl+9pA0LqHYlUwhyI6TauCZs38
-        h65kcGUHdWz/5z33MbZqgXkoiA==
-X-Google-Smtp-Source: AMrXdXvQq9B8SMDm5SwwnnsawEcii6nO/KyhwuuoqAEsw3lR96thBWo5cUzxR1ocSmk1tWa47XsA5Q==
-X-Received: by 2002:a17:903:41d2:b0:189:361f:89ac with SMTP id u18-20020a17090341d200b00189361f89acmr13118308ple.64.1674088733420;
-        Wed, 18 Jan 2023 16:38:53 -0800 (PST)
-Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
-        by smtp.gmail.com with ESMTPSA id a1-20020a1709027e4100b00193020e8a90sm23531224pln.294.2023.01.18.16.38.52
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4Kip7JGtKPH/G7ir14KAj9xQjGYwxexOnro2oZg7kXI=;
+        b=qFtzSthvz9bvmrpkC59DCXncn4yZR7EXGa3GrxgSlL194nVbBkj8kutNbIOl/QszI7
+         agIoFnL59rwzIPo/MhhB3kW0TF0fYqiT9VZZh5U7ttkkJyChyoHIPCQbNPo9vt8bc5tQ
+         Vnd5qKJf5s1k1BKKspOOBGxIggU1WxeLCZkBCJ5IRg0ujyQHMfPiP+0LGp4VLwUp8D2x
+         M8Ma6q/2PnSYeUfb6NhgWdr8pOLz+yBOv/S4EmROAWgOfvJ1h5yqpIK1Cf9WK1UBPRP0
+         UO2yk41x7VYtfz+HNmj4KZhWUAe16BXLxNm6gm1detNJIdXbg5x4gtaUjfpTc0sSjE4j
+         8eDA==
+X-Gm-Message-State: AFqh2koNL2sc2vMz6kmTw6PAVTY3OIVYnJ4RoKKz4l4z4fRUUVhdmrXM
+        1bMiZu6M4roRo0lAzb65P3kLzg==
+X-Google-Smtp-Source: AMrXdXsqVTDn5/Ya5ZDs8WcPVLvXYvsIFToX2e5F2K30NnDa3M5Is8xIWW+ax41fhNb9Aj6b782yaA==
+X-Received: by 2002:a05:600c:3596:b0:3da:1357:4ca2 with SMTP id p22-20020a05600c359600b003da13574ca2mr8778377wmq.11.1674089143804;
+        Wed, 18 Jan 2023 16:45:43 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id m16-20020a05600c3b1000b003dafadd2f77sm3870491wms.1.2023.01.18.16.45.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 16:38:52 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
-        "qi . duan" <qi.duan@amlogic.com>
-Subject: Re: [PATCH V6 1/3] dt-bindings: clock: document Amlogic S4 SoC PLL
- & peripheral clock controller
-In-Reply-To: <7c0133a2-ea4d-645e-3df2-2bb832bbd498@amlogic.com>
-References: <20230116074214.2326-1-yu.tu@amlogic.com>
- <20230116074214.2326-2-yu.tu@amlogic.com>
- <02b6b3a6-e2ad-8cbc-fa15-fbd2db6ada64@linaro.org>
- <7c0133a2-ea4d-645e-3df2-2bb832bbd498@amlogic.com>
-Date:   Wed, 18 Jan 2023 16:38:52 -0800
-Message-ID: <7hwn5jqrxf.fsf@baylibre.com>
+        Wed, 18 Jan 2023 16:45:43 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] arm64: dts: qcom: sm8550: Add USB HC and PHY support
+Date:   Thu, 19 Jan 2023 02:45:31 +0200
+Message-Id: <20230119004533.1869870-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Yu Tu <yu.tu@amlogic.com> writes:
+This patchset adds USB controller and PHYs support to SM8550 platform
+and enables them on the MTP board.
 
-> On 2023/1/16 16:29, Krzysztof Kozlowski wrote:
+The v1 was here:
+https://lore.kernel.org/all/20221116132212.2842655-1-abel.vesa@linaro.org/
 
-[...]
+Changes since v1:
+ * fixed the clocks and clock-names of qmpphy to be aligned with sc8280xp
+ * dropped the child node from the phy nodes, like Johan suggested,
+   and updated to use the sc8280xp binding scheme
+ * moved status property last everywhere needed
+ * dropped the newline for phy-names, like Konrad suggested
+ * decided to move #address-cells, #size-cells and ranges properties
+   in such a way to be aligned with sc8280xp 
 
->>> diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>> new file mode 100644
->>> index 000000000000..bbec5094d5c3
->>> --- /dev/null
->>> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>> @@ -0,0 +1,131 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->> 
->> Unusual license... are you sure to license the bindings under GPLv4 or
->> GPLv5? Fine by me.
->> 
->
-> Yes.
+Abel Vesa (2):
+  arm64: dts: qcom: sm8550: Add USB PHYs and controller nodes
+  arm64: dts: qcom: sm8550-mtp: Add USB PHYs and HC nodes
 
-The rest of the bindings for Amlogic SoCs are GPL-2.0 (without the '+').
-Adding the dual-license for MIT seems fine, but adding the '+' is
-curious.
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 22 ++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi    | 92 ++++++++++++++++++++++++-
+ 2 files changed, 113 insertions(+), 1 deletion(-)
 
-It would be helpful if you could please explain why you'd like these
-bindings to be licensed differently than the rest of the SoC family.
-
-Kevin
+-- 
+2.34.1
 
