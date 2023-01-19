@@ -2,146 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25E34673F93
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 18:09:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB488673FB9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 18:18:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230031AbjASRJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 12:09:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52676 "EHLO
+        id S229811AbjASRSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 12:18:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbjASRJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 12:09:18 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BA55A5CB
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 09:09:16 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id r9so2525626wrw.4
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 09:09:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vY1pR8A7OW80xkAZYg++krO0fJkxZ30BhhNRiI4WE+4=;
-        b=P65lYM/d/tq/Tl+523m0GHYdBPr1YEqPOFcgIGr7Fb3OmHUpAzkHxBwCvneoSkKqSA
-         cN0C1PdoheStFj4oa4A9us8dMWFJn7V+qQYlsv37VHnvy1GYHeegrbBb0cBJ1c0kyVzm
-         QCvRRVTGBRpngeUjZifN4H6yV9v0BpllFhZvtPnyMwPnPPjI76H5wBeVC6JlND4/YIQp
-         GHn2y2tC18K5hsmJ/YGbBCbCLWg/wKzrdV5V2kR1EL9Z8mwfqxXhcTGYB8lOD4x6oGV6
-         P6DNeaV4536ihL0rpi7B/3oCM2OY1hdr3f1tmb8ZjZm2tEA5cizIF3FwtEtHFHD9Phya
-         uARw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vY1pR8A7OW80xkAZYg++krO0fJkxZ30BhhNRiI4WE+4=;
-        b=0DONeJeiSa4QOgEQJ307ixCOG2D/o2aHcapflrMqT+O96s5pCNxBwpUAcYrZex9M0D
-         xiP+gzx4TJsWvDqDMcfRkoEIEpH9+zkTOXTmbWjCikeTtQocFkWqRuGlpmprBtdKYgaE
-         H7ZQHw73TaxtdnkMkhmnqfe+sOWTpwZRO8ZUbACB4mGZx7Ovr4UdKBbMjWqoQgP0lCz6
-         kXzKm+5EgHiIBPgL81Cz/ccohPD49UR4SZdoz9db26ht1CrnYSUGZloBGuSwQAEoa7wi
-         UMvGz1ixOAHwWZwhFIBOOZ/pq/VK7N1tSgur7YDE4I/Ae0eCoNTLdRIMDsY/JHyAtz4t
-         mcOg==
-X-Gm-Message-State: AFqh2kqXJN4dcy6t1WRWat6pdnlmPSgEyyjRd92Qf2wNMwmWqgyCs/PD
-        gUD4sq06D++sXjk2ocQcxpt8iQ==
-X-Google-Smtp-Source: AMrXdXuVy8ToVBnQPqscQFHF/FAJ0rM3gQzJN+hV5KyJBH7B3bYj/kUMevWR4CjW9sGQCBIdSI7M8g==
-X-Received: by 2002:adf:e841:0:b0:2bd:bf01:5c3 with SMTP id d1-20020adfe841000000b002bdbf0105c3mr10191130wrn.61.1674148155117;
-        Thu, 19 Jan 2023 09:09:15 -0800 (PST)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id bu9-20020a056000078900b002be1dcb6efbsm8738701wrb.9.2023.01.19.09.09.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 09:09:14 -0800 (PST)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Thu, 19 Jan 2023 18:08:54 +0100
-Subject: [PATCH v2 3/3] arm64: dts: mediatek: enable i2c0 for mt8365-evk board
+        with ESMTP id S229924AbjASRSW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 12:18:22 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324762A14C;
+        Thu, 19 Jan 2023 09:18:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=goNppuvMsvAqTs2f6LDSEjPwHmSsgV4gH7uC2Dwvo8A=; b=JlTJVlLtDX5VBm3jpr+T7LKb8s
+        R8oUOd9OnwmO+diUvmHieYRV+PDwhqRgzuzFstpbcFeYi6IBjBBcT/0z7umETLxwcSrd1ZllMScRL
+        NsSeERJrV65F4oxWbeUwsqe5ORDdSBFu8ohfpsHXGaIVxjEvl9TB+OAIFwvV+KUGKzmU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pIYY1-002c22-I1; Thu, 19 Jan 2023 18:17:57 +0100
+Date:   Thu, 19 Jan 2023 18:17:57 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: mdio: add amlogic gxl mdio mux support
+Message-ID: <Y8l7Rc9Vde9J45ij@lunn.ch>
+References: <20230116091637.272923-1-jbrunet@baylibre.com>
+ <20230116091637.272923-3-jbrunet@baylibre.com>
+ <Y8dhUwIMb4tTeqWN@lunn.ch>
+ <1jmt6eye1m.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20221122-mt8365-i2c-support-v2-3-e4c7c514e781@baylibre.com>
-References: <20221122-mt8365-i2c-support-v2-0-e4c7c514e781@baylibre.com>
-In-Reply-To: <20221122-mt8365-i2c-support-v2-0-e4c7c514e781@baylibre.com>
-To:     Qii Wang <qii.wang@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh@kernel.org>, linux-i2c@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org
-X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1340; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=VOgzUWYZ5LqJIocyR/msYYzp26C90wB0hqeJ/d6bEGk=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjyXk2ouw0TaK/YymL8/LwYG7zbgNsYWk7Sm4QaG1v
- Hq9eNMeJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY8l5NgAKCRArRkmdfjHURZhID/
- 9Uub2bUuBaf78i7z9ZyRrS0l1yJ8Bdey5zQzK/4aK8mPTm5Nl9fubCpzirBoXEG8bhSVJjvmZwyo1G
- RaJkZfkeBqgLOJKpWVHZNGWpoGrsrNBkJoWkhNvK2qfqsOrK1w2RIbO8lefpgWEyvDM3JRCEW/WDJc
- i0pj+XSJSlvga7oQPj9FmDe9blRKUlGJDJTa2RQvdpsD+RE+Cq2wK75i0s0+Qmi6JEW8QcWXLIroNv
- lgqeZRqvP4ZBHWeQ6zRF/u+lyUNHKnRR4jU9DIM5f7xBmwQT3rAEdrRck4Px0Peb8tBqrov38SNyq9
- A70WPxxZ8VFGSC1FkhuROcCV61CNyfxQSdAI9eKlmzav2RDqVbTjBSX+5jxcbLsd+gS2kS5rWWlFiE
- 8psXIUQHk9FxSOt0knnWdNgq2oMQ9MkBrmh3xDVJVKkCzBm1DJ/89cXh+Ems3p1VUYNt3MHOXIDDeM
- 1SQoV1em6g9NpHeegLBV1V/zKJ7D2+6avO1l9p2Ay8/4GZHtSOosLIQn2i0iT1mIgiXVZ3fFTv1SLK
- Ck+g+gNQ+/TN0hXC0qiPja3qxrwsuv1EnANH9SEJMt2OLgrXDyUV5yHWgRwmbBCWt/mfsh7+mbL31H
- 80CefxZZyl5wX20zlkLw5zEso3Vz3EOdA4uXryCmzG3y74NAbfq2W1SSwkVw==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1jmt6eye1m.fsf@starbuckisacylon.baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the I2C0 bus provides communication with:
-- The integrated RT9466 Switching Battery Charger.
-- The integrated MT6691 LP4X buck for VDDQ.
-- The integrated MT6691 LP4X buck for VDD2.
-- The pin header, to plug external I2C devices.
+> >> +
+> >> +	/* Set the internal phy id */
+> >> +	writel_relaxed(FIELD_PREP(REG2_PHYID, 0x110181),
+> >> +		       priv->regs + ETH_REG2);
+> >
+> > So how does this play with what Heiner has been reporting recently?
+> 
+> What Heiner reported recently is related to the g12 family, not the gxl
+> which this driver address.
+> 
+> That being said, the g12 does things in a similar way - the glue
+> is just a bit different:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/mdio/mdio-mux-meson-g12a.c?h=v6.2-rc4#n165
+> 
+> > What is the reset default? Who determined this value?
+> 
+> It's the problem, the reset value is 0. That is why GXL does work with the
+> internal PHY if the bootloader has not initialized it before the kernel
+> comes up ... and there is no guarantee that it will.
+> 
+> The phy id value is arbitrary, same as the address. They match what AML
+> is using internally.
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Please document where these values have come from. In the future we
+might need to point a finger when it all goes horribly wrong.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index 275ea3a0e708..d5d76a7dbd82 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -88,6 +88,15 @@ optee_reserved: optee@43200000 {
- 	};
- };
- 
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0_pins>;
-+	clock-frequency = <100000>;
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+};
-+
- &pio {
- 	gpio_keys: gpio-keys-pins {
- 		pins {
-@@ -97,6 +106,16 @@ pins {
- 		};
- 	};
- 
-+	i2c0_pins: i2c0 {
-+		pins_i2c {
-+			pinmux = <MT8365_PIN_57_SDA0__FUNC_SDA0_0>,
-+				 <MT8365_PIN_58_SCL0__FUNC_SCL0_0>;
-+			mediatek,pull-up-adv = <3>;
-+			mediatek,drive-strength-adv = <00>;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	uart0_pins: uart0-pins {
- 		pins {
- 			pinmux = <MT8365_PIN_35_URXD0__FUNC_URXD0>,
+> They have been kept to avoid making a mess if a vendor bootloader is
+> used with the mainline kernel, I guess.
+> 
+> I suppose any value could be used here, as long as it matches the value
+> in the PHY driver:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/meson-gxl.c?h=v6.2-rc4#n253
 
--- 
-b4 0.10.1
+Some Marvell Ethernet switches with integrated PHYs have IDs with the
+vendor part set to Marvell, but the lower part is 0. The date sheet
+even says this is deliberate, you need to look at some other register
+in the switches address space to determine what the part is. That
+works O.K in the vendor crap monolithic driver, but not for Linux
+which separates the drivers up. So we have to intercept the reads and
+fill in the lower part. And we have no real knowledge if the PHYs are
+all the same, or there are differences. So we put in the switch ID,
+and the PHY driver then has an entry per switch. That gives us some
+future wiggle room if we find the PHYs are actually different.
+
+Is there any indication in the datasheets that the PHY is the exact
+same one as in the g12? Are we really safe to reuse this value between
+different SoCs?
+
+I actually find it an odd feature. Does the datasheet say anything
+about Why you can set the ID in software? The ID describes the
+hardware, and software configuration should not be able to change the
+hardware in any meaningful way.
+
+> >> +	/* Enable the internal phy */
+> >> +	val |= REG3_PHYEN;
+> >> +	writel_relaxed(val, priv->regs + ETH_REG3);
+> >> +	writel_relaxed(0, priv->regs + ETH_REG4);
+> >> +
+> >> +	/* The phy needs a bit of time to come up */
+> >> +	mdelay(10);
+> >
+> > What do you mean by 'come up'? Not link up i assume. But maybe it will
+> > not respond to MDIO requests?
+> 
+> Yes this MDIO multiplexer is also the glue that provides power and
+> clocks to the internal PHY. Once the internal PHY is selected, it needs
+> a bit a of time before it is usuable. 
+
+O.K, please reword it to indicate power up, not link up.
+
+     Andrew
