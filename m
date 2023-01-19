@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3668673A47
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:32:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 299DD673A4D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:33:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231167AbjASNcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:32:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39856 "EHLO
+        id S231192AbjASNdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 08:33:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230436AbjASNcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:32:08 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 758B07CCF0
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:32:01 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id iv8-20020a05600c548800b003db04a0a46bso3018357wmb.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:32:01 -0800 (PST)
+        with ESMTP id S229688AbjASNdQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:33:16 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3224C78AB2
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:33:14 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id r2so1869333wrv.7
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:33:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8EOpVZnjKrO7Yh5EsqJUZSLEPLkGrMAnumjuBQ+xGD8=;
-        b=NWQl8S/zxWQpym0QTAJs8bV0RBtPthkFvu+DJtU+JtZJXhezEyO3AdJSpA01ocqB2R
-         QTgKsnUbtkEDt9JMbstPSlMTHIWHr2kbEiyqo9piVzn32z8odIHrBM3FkIRa8Jc1eMMW
-         p6bABsONEnWhlmH9tLc4gqI2f0Td2NLxBE4caLFMKYgzHy9poG+Zl/RsXjGOsCVaa8cq
-         XXrvET532RdoT6a10n0vm8epB/RKuMwq9Ti+nsZZi4jKWiW22/f/MWlx0YygEac7Fp8s
-         lsTK+N8hzDEz6rhvjzka8Ncb8VSHtovgyMZ8f4DfE8DPRHq6riPiIMCoSLw8s0ClRcH6
-         l1tg==
+        bh=b6PeiBNsTffvX/+4lco6RlfjzIGjTxljWE9nlGGQ60s=;
+        b=u9CLrJA58gIJ7sWycV0DKTP4oJj5TQqH5ZpZF6mne+zMV/Amze+sz05Vm627nA6l7f
+         W7W6Jorg0uzHv9qA90odd7XDydVt4meLs1HgjZUSbbCLSp97FjwdnCkRKZtQcniqhgX1
+         f/9XJYTjXPDnBoV/Prnfft4b9RKWK8zd5sHmn0I/t5pbi04eQc+ePtOkzq7+zx+v+HK+
+         gemTi+gJNzg56DfmuI1iCTmuKZ9CJHydXwaygOCYmaXOovt/2AMrYuSizXHjR09YAbOY
+         n0s7odIw6Gf4RQXzXN8eNJi8dzHv5zt90aJEL2Pdm86dukdKnyhTRsWP2WeHQaZSxObn
+         pjEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8EOpVZnjKrO7Yh5EsqJUZSLEPLkGrMAnumjuBQ+xGD8=;
-        b=dDftRFFvvQ6wnt/1QEPIG/Cz06Ce+TrtpsWrjkE1xWgXVZmhiaSQw0BHwyiDujoRSg
-         H/CjdOZv+IQUeYwoBaruaqeRDifTIDTYehXpTyEmU6B+nDWNRpQ0nneCGWUCw1aRQwJI
-         aZk6HZs2MKR64ewsusv6btfehfFm2YULYUWd65lc3m0mfFL3MyIaA1NxXOj3g70diu16
-         DBbfpEK7sjSGxzy3K9SNxcJXbuHBVYOlSWGtXMCWjNF5P/GKe/cul6o8vX0WKxK5rtT1
-         P9kqTRKCwHTOIGR/t8OEZwz51ulBxFrHcZVICaUbIgbc3Y2Qx6I5XnzLWJQEK2SbWTb0
-         EhdA==
-X-Gm-Message-State: AFqh2kq/A/tOEgEy42Oh3KPasG79cGtWubFHHGO0J3cHjXB3drNMOEUf
-        n72W8IE0hMVEocl7WIpw0vkDeyIfqpstQBuT
-X-Google-Smtp-Source: AMrXdXt/GzDdw4HU7OC2tsFKY7iQ/IaxIdtDr0iP7gx5odSJTGcJgQlhP1BNyv7JUpM4mUu9ISlTFA==
-X-Received: by 2002:a05:600c:524a:b0:3da:fa71:a333 with SMTP id fc10-20020a05600c524a00b003dafa71a333mr10827273wmb.12.1674135120045;
-        Thu, 19 Jan 2023 05:32:00 -0800 (PST)
+        bh=b6PeiBNsTffvX/+4lco6RlfjzIGjTxljWE9nlGGQ60s=;
+        b=zmasPviUAnZ9g/ZLkwEQkg1w6ygpF9aMsvH2oaG6mm+gA3AqDtpS/7Dt9jYkAF8niS
+         VuNccx9LBZbR+MZDkHLQuG5E0B/UC2jhEVaa4YK6P2RfG4d+u8mRAUXE05foyOyFhwf1
+         IHeGxPFyZ5Tim2Er6iHhdK7gnpGD5y50bjQTjqzg0pejGBy6EuYjJeB7ZJ8g1pf3vShR
+         ECyZEVCOEsuYrlQtz1h1P/L+yNJ6Ge71DT0A6dROqJaw88sVMr7pdh97LV/V6jvQIPWT
+         gBu/fFr/p26n9q46fpaKIeuaV2nZbNS5BKAZuLv79Q06kwwgTDVbbvTmaNJpPNiJF/vm
+         gHTQ==
+X-Gm-Message-State: AFqh2kr5Z6lJt8V3KvvGZOpqjSqfjB9eK9Arkyjeb8v0H/bLY+6wy3Vc
+        tsKQYIzkdkbQ8BpFC5u6jcRjog==
+X-Google-Smtp-Source: AMrXdXtpARPAFImaw2quJx+/Q2zAHbUDSbv0xp/JTokBa7EhBS3eWwexKNtaG9aCwUtv/pIP/LpQvQ==
+X-Received: by 2002:a5d:66c9:0:b0:2b9:d6ba:21ef with SMTP id k9-20020a5d66c9000000b002b9d6ba21efmr9518068wrw.65.1674135192733;
+        Thu, 19 Jan 2023 05:33:12 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id ay22-20020a05600c1e1600b003dafbd859a6sm4975286wmb.43.2023.01.19.05.31.58
+        by smtp.gmail.com with ESMTPSA id q11-20020adf9dcb000000b00268aae5fb5bsm34369555wre.3.2023.01.19.05.33.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 05:31:59 -0800 (PST)
-Message-ID: <17b895c0-3985-a012-9b02-94d5ebb11ff9@linaro.org>
-Date:   Thu, 19 Jan 2023 14:31:58 +0100
+        Thu, 19 Jan 2023 05:33:12 -0800 (PST)
+Message-ID: <ffa9e555-f351-d05c-0524-6bc81b88120b@linaro.org>
+Date:   Thu, 19 Jan 2023 14:33:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v3 4/7] arm64: dts: qcom: sc7280: Update VA/RX/TX macro
- clock nodes
+Subject: Re: [PATCH v3 5/7] arm64: dts: qcom: sc7280: Update lpass_tlmm node
 Content-Language: en-US
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
@@ -67,9 +66,9 @@ To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
         konrad.dybcio@somainline.org, mka@chromium.org
 References: <1674131227-26456-1-git-send-email-quic_srivasam@quicinc.com>
- <1674131227-26456-5-git-send-email-quic_srivasam@quicinc.com>
+ <1674131227-26456-6-git-send-email-quic_srivasam@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1674131227-26456-5-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1674131227-26456-6-git-send-email-quic_srivasam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,64 +82,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 19/01/2023 13:27, Srinivasa Rao Mandadapu wrote:
-> Update VA, RX and TX macro and lpass_tlmm clock properties and
-> enable them.
-
-Everything is an update and this does not explain what exactly you are
-updating in the nodes and why.
-
+> Update lpass_tlmm clock properties, as different clock sources
+> are required in ADSP enabled platforms
 > 
 > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
 > ---
->  .../qcom/sc7280-herobrine-audioreach-wcd9385.dtsi  | 59 ++++++++++++++++++++++
->  1 file changed, 59 insertions(+)
+>  .../arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> index 81e0f3a..674b01a 100644
+> index 674b01a..232e1dc 100644
 > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> @@ -8,8 +8,67 @@
+> @@ -167,6 +167,15 @@
+>  	};
+>  };
 >  
->  #include <dt-bindings/sound/qcom,q6afe.h>
->  
-> +/delete-node/ &lpass_rx_macro;
-
-Why?
-
-> +/delete-node/ &lpass_tx_macro;
-> +/delete-node/ &lpass_va_macro;
+> +&lpass_tlmm {
+> +	clocks = <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +		 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
 > +
->  /{
->  	/* BOARD-SPECIFIC TOP LEVEL NODES */
-> +	lpass_rx_macro: codec@3200000 {
-> +		compatible = "qcom,sc7280-lpass-rx-macro";
-> +		reg = <0 0x03200000 0 0x1000>;
+> +	clock-names = "core", "audio";
+> +	reg = <0 0x033c0000 0x0 0x20000>,
+> +	      <0 0x03550000 0x0 0xa100>;
 
-Why? They are the same.
-
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&lpass_rx_swr_clk>, <&lpass_rx_swr_data>;
-
-Still the same...
-
-> +
-> +		clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +			 <&q6prmcc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +			 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +			 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +			 <&lpass_va_macro>;
-> +
-> +		clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
-
-This is different...
-
-> +
-> +		#clock-cells = <0>;
-> +		#sound-dai-cells = <1>;
-
-But this not.
+What is the difference? The length of audio IO space? You need to
+explain this in commit msg.
 
 
 Best regards,
