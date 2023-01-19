@@ -2,53 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7294674CD7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 06:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA0AB674C52
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 06:29:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230183AbjATFxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 00:53:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35324 "EHLO
+        id S229980AbjATF3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 00:29:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbjATFxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 00:53:46 -0500
+        with ESMTP id S230512AbjATF2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 00:28:35 -0500
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5CD149550;
-        Thu, 19 Jan 2023 21:53:27 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A3043E0BB;
+        Thu, 19 Jan 2023 21:23:45 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9E923B825ED;
-        Thu, 19 Jan 2023 18:43:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63261C433D2;
-        Thu, 19 Jan 2023 18:43:20 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 332D3B82726;
+        Thu, 19 Jan 2023 19:57:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D68BFC433F1;
+        Thu, 19 Jan 2023 19:57:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674153802;
-        bh=vF/z5qpyXP/mL10MG7EvPirP8eSE/txoS1bJzYmIYPI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LzvGBaP/l+y/aBXX3v0npik84cCY1DzBJscI5jxbYKBb3zILhlGtoDoQp2ZMPy+Cy
-         WHtoa4ZVFyjrBAqRcpqpiPUejOAx5K2HtT4Qhy+TOtc08TWCeq7VxNz+1oj6ETt6Q9
-         ZMgwkoh1km/yo3W5vXjpst8RLohLNfj+t6SpayNbp+9RiQ+/sJ3a/UEg8h62bmU5aF
-         xYzqs7MNpc+TcSjmTNx5u3M4S8aSFh2tgDIUGEi/8NUzKpOwaLHXLkg8aO3Y9zqL/G
-         aS6I29C1ZmYj99R1kC4TO+c3J50+RlRyQjSYYP95R3+xabEHG/uX2JZsZazmU8POxO
-         HkuD0zfSKFb3A==
-Date:   Thu, 19 Jan 2023 18:43:17 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: Add mmc node
-Message-ID: <Y8mPRQnGPpAhpu8C@spud>
-References: <20221227122227.460921-1-william.qiu@starfivetech.com>
- <20221227122227.460921-4-william.qiu@starfivetech.com>
+        s=k20201202; t=1674158234;
+        bh=YvR/w5eKFpu1A0Yi53SCAxbUZ3sMKB9y4mXIIgVvUFk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=b5qt7o1/sqMdU6AFjjIcmJXQEJKqZiCnXKLb5MStq9uyzOXgG0PBGguO1tLr4chah
+         PPJlg4EED3ACTgWZRCwCy1fZLAVQacAi3OjKGOkhATqjRCO7fFvple5cPqo/czonSE
+         sffmqPpIZS5V9wm/JksN8dANVILYk1xscLLDPm5vuSS4AEA9bdTuEsKSfh0ZiLIpiB
+         QvOumaBMGIOKCzGLs8fea6LlOsuQN4d/kE8ULvbjgOYcrxPZADIl1g5j8kwPrc88lZ
+         qPlbTf8ZjC10UdRJx/tmhvUhBhbjrdPwDDkO5YJ/AczRQgHdG1tLRGRPg8mUgyTfId
+         U7zeBtq7HTtVQ==
+Received: by mail-vs1-f46.google.com with SMTP id k4so3391285vsc.4;
+        Thu, 19 Jan 2023 11:57:14 -0800 (PST)
+X-Gm-Message-State: AFqh2ko6zy/C5PmJ1uwl1Eo8xAQbPRDchwqHJ0G2ka2O9nTZje2V9g5s
+        JgxCrygfGI2/wZ4Fy9DQOaJztvQB7YDAe6f81Q==
+X-Google-Smtp-Source: AMrXdXto5Lwb1f3PGyYWK0XSc7w8sqifaP3Jj00Cp/pE9GJlhsSUHjH1yNJpXLa6NVF84aDN7ySy+z7EHEE7IgERQNM=
+X-Received: by 2002:a05:6102:5490:b0:3b5:1fe4:f1c2 with SMTP id
+ bk16-20020a056102549000b003b51fe4f1c2mr1672722vsb.0.1674158233768; Thu, 19
+ Jan 2023 11:57:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="XKsT41m8CI9UsBxP"
-Content-Disposition: inline
-In-Reply-To: <20221227122227.460921-4-william.qiu@starfivetech.com>
+References: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
+ <20221219154948.GA1439405-robh@kernel.org> <96590704-fc2e-5a30-15b9-32fda9cb571e@socionext.com>
+ <0c5d917b-5cc9-2b09-390c-8888a1de2a48@socionext.com>
+In-Reply-To: <0c5d917b-5cc9-2b09-390c-8888a1de2a48@socionext.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 19 Jan 2023 13:57:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKPEeQW3WER+K0UgWp8yx_Fh4OB9o1skU9mndM-=SYV7g@mail.gmail.com>
+Message-ID: <CAL_JsqKPEeQW3WER+K0UgWp8yx_Fh4OB9o1skU9mndM-=SYV7g@mail.gmail.com>
+Subject: Re: [PATCH v3 00/17] dt-bindings: soc: Introduce UniPhier
+ miscellaneous register blocks and fix examples
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -58,43 +65,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jan 19, 2023 at 2:22 AM Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
+>
+> Hi Rob,
+>
+> On 2022/12/20 10:13, Kunihiko Hayashi wrote:
+>
+> >> You sent this To me, so I'm assuming you want me to apply it?
+> >> Otherwise, it can go via the Socionext tree. Let me know and I can fix
+> >> up Krzysztof's comments and apply the series.
+> >
+> > Currently I don't have the Socionext tree for pull-request,
+> > so I'd be happy if you could fix up the comments and apply the series.
+> Could you please do the above?
 
---XKsT41m8CI9UsBxP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, I've already applied this.
 
-Hey William,
-
-On Tue, Dec 27, 2022 at 08:22:27PM +0800, William Qiu wrote:
-> This adds the mmc node for the StarFive JH7110 SoC.
-> Set sdioo node to emmc and set sdio1 node to sd.
->=20
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-v2.dts         | 25 ++++++++++++
-
-FYI, this file does not exist in the v3 Devicetree patchset sent by Hal
-Feng:
-https://lore.kernel.org/linux-riscv/20221220011247.35560-1-hal.feng@starfiv=
-etech.com
-
-Would you make sure that future revisions take into account that there
-is now a jh7110-starfive-visionfive-2.dtsi file instead?
-
-Thanks,
-Conor.
-
-
---XKsT41m8CI9UsBxP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY8mPRQAKCRB4tDGHoIJi
-0toIAP4zpbU0OLSqlFxJVLB/Y+fIjOaoIFT/p8c4yIjZ70N3XAEA5X6zPiLp8UDG
-nNz0GgJfub7PTipxdxFuprUVZpvnkAg=
-=roCg
------END PGP SIGNATURE-----
-
---XKsT41m8CI9UsBxP--
+Rob
