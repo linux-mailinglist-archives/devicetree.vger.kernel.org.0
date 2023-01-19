@@ -2,370 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B98136734CB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 10:51:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B886734D0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 10:53:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbjASJvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 04:51:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60506 "EHLO
+        id S230146AbjASJxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 04:53:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230200AbjASJv3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 04:51:29 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E306CCEB
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 01:51:23 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pIRZi-0006bL-Av; Thu, 19 Jan 2023 10:51:14 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pIRZh-0004qb-0q; Thu, 19 Jan 2023 10:51:13 +0100
-Date:   Thu, 19 Jan 2023 10:51:13 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH v7 1/3] arm64: dts: imx8mm-evk: move PMIC configuration
-Message-ID: <20230119095112.mpo56lf4nd3udtht@pengutronix.de>
-References: <20230110152316.1149940-1-johannes.schneider@leica-geosystems.com>
- <20230110152316.1149940-2-johannes.schneider@leica-geosystems.com>
+        with ESMTP id S229515AbjASJxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 04:53:48 -0500
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 315D15D106;
+        Thu, 19 Jan 2023 01:53:47 -0800 (PST)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id D8E7E38562;
+        Thu, 19 Jan 2023 09:53:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1674122025; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=K5Wjtf9hLzRkuQgSxBaDv2x2hWptBx8DnMTdLdxBFys=;
+        b=JmeRmKIxA6LcTyfKL46wUKQQNW++j5YCwI2EWzrWqc5lJBCJIisF2fK988F9sSL9hOiPLb
+        7VDN++/nwTj39/JeiH2rRbyjjJ3Lybm1hAjvfdiXu1dj6hmt2KO/8opk+B/kYdfQBKc4K1
+        hK5CGO2UJtE0+0SnXEbldehQ/6TlDAY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1674122025;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=K5Wjtf9hLzRkuQgSxBaDv2x2hWptBx8DnMTdLdxBFys=;
+        b=W4gz9+a1bRbUTmeUmj43HT5F78l511dttU0eg+3fYuLsqWanKN8UgFIovvKDV5LDR+eYhH
+        +5jwqSM1gnnDzMDw==
+Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
+        by relay2.suse.de (Postfix) with ESMTP id A9E912C141;
+        Thu, 19 Jan 2023 09:53:45 +0000 (UTC)
+From:   Michal Suchanek <msuchanek@suse.de>
+To:     "Erhard F." <erhard_f@mailbox.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Michal Suchanek <msuchanek@suse.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [PATCH v2] of: Fix of platform build on powerpc due to bad of disaply code
+Date:   Thu, 19 Jan 2023 10:53:23 +0100
+Message-Id: <20230119095323.4659-1-msuchanek@suse.de>
+X-Mailer: git-send-email 2.35.3
+In-Reply-To: <20230118215045.5551-1-msuchanek@suse.de>
+References: 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230110152316.1149940-2-johannes.schneider@leica-geosystems.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johannes,
+The commit 2d681d6a23a1 ("of: Make of framebuffer devices unique")
+breaks build because of wrong argument to snprintf. That certainly
+avoids the runtime error but is not the intended outcome.
 
-thanks for your patch.
+Also use standard device name format of-display.N for all created
+devices.
 
-On 23-01-10, Johannes Schneider wrote:
-> Move the PMIC configuration out of imx8mm-evk.dtsi into a separate
-> file; to accommodate devicetrees for the rev-b EVK, which comes with a
+Fixes: 2d681d6a23a1 ("of: Make of framebuffer devices unique")
+Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+---
+v2: Update the device name format
+---
+ drivers/of/platform.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-I'm not sure if we should call it rev-b since this is quite confusing.
-The whole EVK bundle (cpu-board + baseboard) is called EVKB. The most
-recent cpu board revision is A4 and the the cpu board itself is called
-8MMINILPD4-CPU2 whereas the older cpu board is called 8MMINILPD4-CPU.
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index f2a5d679a324..8c1b1de22036 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -525,7 +525,9 @@ static int __init of_platform_default_populate_init(void)
+ 	if (IS_ENABLED(CONFIG_PPC)) {
+ 		struct device_node *boot_display = NULL;
+ 		struct platform_device *dev;
+-		int display_number = 1;
++		int display_number = 0;
++		char buf[14];
++		char *of_display_format = "of-display.%d";
+ 		int ret;
+ 
+ 		/* Check if we have a MacOS display without a node spec */
+@@ -556,7 +558,10 @@ static int __init of_platform_default_populate_init(void)
+ 			if (!of_get_property(node, "linux,opened", NULL) ||
+ 			    !of_get_property(node, "linux,boot-display", NULL))
+ 				continue;
+-			dev = of_platform_device_create(node, "of-display", NULL);
++			ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
++			if (ret >= sizeof(buf))
++				continue;
++			dev = of_platform_device_create(node, buf, NULL);
+ 			if (WARN_ON(!dev))
+ 				return -ENOMEM;
+ 			boot_display = node;
+@@ -564,10 +569,9 @@ static int __init of_platform_default_populate_init(void)
+ 		}
+ 
+ 		for_each_node_by_type(node, "display") {
+-			char *buf[14];
+ 			if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
+ 				continue;
+-			ret = snprintf(buf, "of-display-%d", display_number++);
++			ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
+ 			if (ret >= sizeof(buf))
+ 				continue;
+ 			of_platform_device_create(node, buf, NULL);
+-- 
+2.35.3
 
-So dts file name imx8mm-evkb is correct, but mention it as rev-b in your
-commit message is wrong in my opinion.
-
-> different PMIC.
-
-
-> 
-> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
-> ---
->  .../boot/dts/freescale/imx8mm-ddr4-evk.dts    |   1 +
->  .../dts/freescale/imx8mm-evk-rohm-pmic.dtsi   | 118 ++++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx8mm-evk.dts  |   1 +
->  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 112 -----------------
->  4 files changed, 120 insertions(+), 112 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-evk-rohm-pmic.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts
-> index 6c079c0a3a48..f39182ce65b4 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dts
-> @@ -6,6 +6,7 @@
->  /dts-v1/;
->  
->  #include "imx8mm-evk.dtsi"
-> +#include "imx8mm-evk-rohm-pmic.dtsi"
-
-Do we really need to move it into another dtsi file? I would either
-suggest to move the pmic description into the .dts file since it is not
-common anymore. This way we can avoid the imx8mm-evk-rohm-pmic.dtsi.
-
-Regards,
-  Marco
-
->  / {
->  	model = "FSL i.MX8MM DDR4 EVK with CYW43455 WIFI/BT board";
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk-rohm-pmic.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk-rohm-pmic.dtsi
-> new file mode 100644
-> index 000000000000..0b056996a27b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk-rohm-pmic.dtsi
-> @@ -0,0 +1,118 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2020 NXP
-> + */
-> +
-> +&i2c1 {
-> +	pmic@4b {
-> +		compatible = "rohm,bd71847";
-> +		reg = <0x4b>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> +		rohm,reset-snvs-powered;
-> +
-> +		#clock-cells = <0>;
-> +		clocks = <&osc_32k 0>;
-> +		clock-output-names = "clk-32k-out";
-> +
-> +		regulators {
-> +			buck1_reg: BUCK1 {
-> +				regulator-name = "buck1";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <1250>;
-> +			};
-> +
-> +			buck2_reg: BUCK2 {
-> +				regulator-name = "buck2";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <1250>;
-> +				rohm,dvs-run-voltage = <1000000>;
-> +				rohm,dvs-idle-voltage = <900000>;
-> +			};
-> +
-> +			buck3_reg: BUCK3 {
-> +				// BUCK5 in datasheet
-> +				regulator-name = "buck3";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1350000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck4_reg: BUCK4 {
-> +				// BUCK6 in datasheet
-> +				regulator-name = "buck4";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5_reg: BUCK5 {
-> +				// BUCK7 in datasheet
-> +				regulator-name = "buck5";
-> +				regulator-min-microvolt = <1605000>;
-> +				regulator-max-microvolt = <1995000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck6_reg: BUCK6 {
-> +				// BUCK8 in datasheet
-> +				regulator-name = "buck6";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1_reg: LDO1 {
-> +				regulator-name = "ldo1";
-> +				regulator-min-microvolt = <1600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2_reg: LDO2 {
-> +				regulator-name = "ldo2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3_reg: LDO3 {
-> +				regulator-name = "ldo3";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4_reg: LDO4 {
-> +				regulator-name = "ldo4";
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo6_reg: LDO6 {
-> +				regulator-name = "ldo6";
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-> index a2b24d4d4e3e..d2b6d7de7e53 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-> @@ -7,6 +7,7 @@
->  
->  #include <dt-bindings/usb/pd.h>
->  #include "imx8mm-evk.dtsi"
-> +#include "imx8mm-evk-rohm-pmic.dtsi"
->  
->  / {
->  	model = "FSL i.MX8MM EVK board";
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> index 7d6317d95b13..21d0614af44c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> @@ -182,118 +182,6 @@ &i2c1 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_i2c1>;
->  	status = "okay";
-> -
-> -	pmic@4b {
-> -		compatible = "rohm,bd71847";
-> -		reg = <0x4b>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&pinctrl_pmic>;
-> -		interrupt-parent = <&gpio1>;
-> -		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> -		rohm,reset-snvs-powered;
-> -
-> -		#clock-cells = <0>;
-> -		clocks = <&osc_32k 0>;
-> -		clock-output-names = "clk-32k-out";
-> -
-> -		regulators {
-> -			buck1_reg: BUCK1 {
-> -				regulator-name = "buck1";
-> -				regulator-min-microvolt = <700000>;
-> -				regulator-max-microvolt = <1300000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -				regulator-ramp-delay = <1250>;
-> -			};
-> -
-> -			buck2_reg: BUCK2 {
-> -				regulator-name = "buck2";
-> -				regulator-min-microvolt = <700000>;
-> -				regulator-max-microvolt = <1300000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -				regulator-ramp-delay = <1250>;
-> -				rohm,dvs-run-voltage = <1000000>;
-> -				rohm,dvs-idle-voltage = <900000>;
-> -			};
-> -
-> -			buck3_reg: BUCK3 {
-> -				// BUCK5 in datasheet
-> -				regulator-name = "buck3";
-> -				regulator-min-microvolt = <700000>;
-> -				regulator-max-microvolt = <1350000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			buck4_reg: BUCK4 {
-> -				// BUCK6 in datasheet
-> -				regulator-name = "buck4";
-> -				regulator-min-microvolt = <3000000>;
-> -				regulator-max-microvolt = <3300000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			buck5_reg: BUCK5 {
-> -				// BUCK7 in datasheet
-> -				regulator-name = "buck5";
-> -				regulator-min-microvolt = <1605000>;
-> -				regulator-max-microvolt = <1995000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			buck6_reg: BUCK6 {
-> -				// BUCK8 in datasheet
-> -				regulator-name = "buck6";
-> -				regulator-min-microvolt = <800000>;
-> -				regulator-max-microvolt = <1400000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			ldo1_reg: LDO1 {
-> -				regulator-name = "ldo1";
-> -				regulator-min-microvolt = <1600000>;
-> -				regulator-max-microvolt = <3300000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			ldo2_reg: LDO2 {
-> -				regulator-name = "ldo2";
-> -				regulator-min-microvolt = <800000>;
-> -				regulator-max-microvolt = <900000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			ldo3_reg: LDO3 {
-> -				regulator-name = "ldo3";
-> -				regulator-min-microvolt = <1800000>;
-> -				regulator-max-microvolt = <3300000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			ldo4_reg: LDO4 {
-> -				regulator-name = "ldo4";
-> -				regulator-min-microvolt = <900000>;
-> -				regulator-max-microvolt = <1800000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -
-> -			ldo6_reg: LDO6 {
-> -				regulator-name = "ldo6";
-> -				regulator-min-microvolt = <900000>;
-> -				regulator-max-microvolt = <1800000>;
-> -				regulator-boot-on;
-> -				regulator-always-on;
-> -			};
-> -		};
-> -	};
->  };
->  
->  &i2c2 {
-> -- 
-> 2.25.1
-> 
-> 
-> 
