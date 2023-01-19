@@ -2,521 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BA34674729
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 00:25:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B2AD674736
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 00:28:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbjASXY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 18:24:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38096 "EHLO
+        id S229813AbjASX2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 18:28:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbjASXY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 18:24:56 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88263392B6;
-        Thu, 19 Jan 2023 15:24:37 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C9749514;
-        Fri, 20 Jan 2023 00:24:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674170675;
-        bh=D/CJsDjy/R+NMpXdK/50LjkKzRk6WC0ZdiaCrgXo/N8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gaPrWL7ih4F4w+K7+tRVbd9g60r7JVDLNnW3nNAmYLXauOB4QgZwGCc0zPX/bIMSg
-         rmkEX7/GV/qrL2Q85lnplb/kX1bXJ2yT4gB0ZvO6cud5s+J/bb0dRm09ERmURVL9YV
-         vuWPElWJb0Q0KLAsy2m4QprPUtvJEFgSaMXapNDc=
-Date:   Fri, 20 Jan 2023 01:24:32 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v7 4/7] dt-bindings: media: add TI DS90UB960 FPD-Link III
- Deserializer
-Message-ID: <Y8nRMK8GJ+vLCS+H@pendragon.ideasonboard.com>
-References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
- <20230118124031.788940-5-tomi.valkeinen@ideasonboard.com>
+        with ESMTP id S229679AbjASX17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 18:27:59 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7963B48A1E
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 15:27:57 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id e16so3830004ljn.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 15:27:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sparkcharge.io; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=kDmL0K++1s4Mya2O7kGY5mEjqqYCgvB7aw/CJew8g1A=;
+        b=H9de9Us+oCArxhPuh/jcI4Kqmlwh86mbB8kLQ3GkLQYmFNLghxvMaVGj6JgRoaIJQ3
+         50BKzPWzTCyD2VzffNQWhueJqdyS1ha3CvqnbjZTdlhni1/Qzt+u5+7lSegxNAz4FV5F
+         YD/DuzVbRsh51NkdsNatjpvUNyhrJN0kFRgbKg5MM7PmpbIwkZq1/drTdM4C1BhFqSZn
+         C/ttYQNN1WrNzmDnRpfb+D4QZ5RoUwcULM34aUKscTgS+5iOFEDH2Bhaio6FfJ599Ecp
+         0W9x3pNDybRvG2QiTGRafAjekyAmocC6whnzZLJgnQY6vkVNalEZQ5uuEIWW4AxrdrvC
+         lSdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kDmL0K++1s4Mya2O7kGY5mEjqqYCgvB7aw/CJew8g1A=;
+        b=acO/BgTcG/v5aJnzsFRYJmO9OHCgWmzpjC1vWT4LExtXvDYLf5Ls23RAaC2sN+4PUE
+         juxzA91Bnn7lDHkSrA+cwvrlPhvvAuD2+N4F40ribr0bqIppqSjoF8vw492m0GlaB6ye
+         JyOlFwc87SYyFMLByZ1j/bVslUGH36EwzmT7B60AtfJctkleRkhrju5jqHWu9pFLhRdN
+         jL0r0BasgSz7YXxq50aB1qQy8uC7ZA5exbIc4mwEZJfm/8eROK16DlXrLXdOjcETeKT1
+         kuRsf+137wL/jBUGLrRuU3YyNMUeERyxpnPAXyLt3NRGmRJ3W4jRJxTh8CRjSkUT9m6H
+         m9FQ==
+X-Gm-Message-State: AFqh2kok/UOkb/sNkldu77dX7cOt+/Cm3we3GfRHmT3jjkLOjUmKw9b7
+        U0tv9kmlA3Ympih5w4P/uRmFF7DH9+SjV6gDtWtqGA==
+X-Google-Smtp-Source: AMrXdXsc63eeOG5QbM3YICUOh1tZoXR66/wQ9YOZ202aHSDWYdO/MhMACQJCFcKE6uC/PYsgEh7sGIjSLPmxCGJpFYA=
+X-Received: by 2002:a2e:9449:0:b0:28b:9755:77a with SMTP id
+ o9-20020a2e9449000000b0028b9755077amr1230879ljh.152.1674170875783; Thu, 19
+ Jan 2023 15:27:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230118124031.788940-5-tomi.valkeinen@ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230119213903.899756-1-dennis@sparkcharge.io> <Y8nBloQfBPK3t5ce@mail.local>
+In-Reply-To: <Y8nBloQfBPK3t5ce@mail.local>
+From:   Dennis Lambe <dennis@sparkcharge.io>
+Date:   Thu, 19 Jan 2023 18:27:44 -0500
+Message-ID: <CAKYiA1Dr0TAmsqDf1wMeeysN4N8K+KJL6onCgQL98LVV5L7Vmg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] rtc: Set M41T82 & M41T83 xtal load capacitance
+ from DT
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Atsushi Nemoto <atsushi.nemoto@sord.co.jp>,
+        Gary Bisson <gary.bisson@boundarydevices.com>,
+        Javier Martinez Canillas <javier@osg.samsung.com>,
+        Troy Kisky <troy.kisky@boundarydevices.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
+On Thu, Jan 19, 2023 at 5:18 PM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
 
-Thank you for the patch.
+> I need to find time to think about it because while setting the analog
+> trimming statically from the device tree solves your immediate problem,
+> it will also remove the possibility to handle it from userspace later
+> on. I would really prefer this uses the offset interface or a better
+> interface that unfortunately doesn't exist yet.
 
-On Wed, Jan 18, 2023 at 02:40:28PM +0200, Tomi Valkeinen wrote:
-> Add DT bindings for TI DS90UB960 FPD-Link III Deserializer.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/media/i2c/ti,ds90ub960.yaml      | 425 ++++++++++++++++++
->  1 file changed, 425 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> new file mode 100644
-> index 000000000000..1ba22450cdba
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> @@ -0,0 +1,425 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ti,ds90ub960.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments DS90UB9XX Family FPD-Link Deserializer Hubs
-> +
-> +maintainers:
-> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> +
-> +description:
-> +  The TI DS90UB9XX devices are FPD-Link video deserializers with I2C and GPIO
-> +  forwarding.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,ds90ub960-q1
-> +      - ti,ds90ub9702-q1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description:
-> +      Reference clock connected to the REFCLK pin.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: refclk
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Specifier for the GPIO connected to the PDB pin.
-> +
-> +  i2c-alias-pool:
-> +    $ref: /schemas/types.yaml#/definitions/uint16-array
-> +    description:
-> +      I2C alias pool is a pool of I2C addresses on the main I2C bus that can be
-> +      used to access the remote peripherals on the serializer's I2C bus. The
-> +      addresses must be available, not used by any other peripheral. Each
-> +      remote peripheral is assigned an alias from the pool, and transactions to
-> +      that address will be forwarded to the remote peripheral, with the address
-> +      translated to the remote peripheral's real address. This property is not
-> +      needed if there are no I2C addressable remote peripherals.
-> +
-> +  links:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      ti,manual-strobe:
-> +        type: boolean
-> +        description:
-> +          Enable manual strobe position and EQ level
-> +
-> +    patternProperties:
-> +      '^link@[0-3]$':
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          reg:
-> +            description: The link number
-> +            maxItems: 1
-> +
-> +          i2c-alias:
-> +            description:
-> +              The I2C address used for the serializer. Transactions to this
-> +              address on the I2C bus where the deserializer resides are
-> +              forwarded to the serializer.
-> +
-> +          ti,rx-mode:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            enum:
-> +              - 0 # RAW10
-> +              - 1 # RAW12 HF
-> +              - 2 # RAW12 LF
-> +              - 3 # CSI2 SYNC
-> +              - 4 # CSI2 NON-SYNC
-> +            description:
-> +              FPD-Link Input Mode. This should reflect the hardware and the
-> +              default mode of the connected device.
-> +
-> +          ti,cdr-mode:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            enum:
-> +              - 0 # FPD-Link III
-> +              - 1 # FPD-Link IV
-> +            description:
-> +              FPD-Link CDR Mode. This should reflect the hardware and the
-> +              default mode of the connected device.
-> +
-> +          ti,strobe-pos:
-> +            $ref: /schemas/types.yaml#/definitions/int32
-> +            minimum: -13
-> +            maximum: 13
-> +            description: Manual strobe position
-> +
-> +          ti,eq-level:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            maximum: 14
-> +            description: Manual EQ level
-> +
-> +          serializer:
-> +            type: object
-> +            description: FPD-Link Serializer node
-> +
-> +        required:
-> +          - reg
-> +          - i2c-alias
-> +          - ti,rx-mode
-> +          - serializer
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: FPD-Link input 0
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +            description:
-> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
-> +              hsync-active and vsync-active must be defined.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: FPD-Link input 1
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +            description:
-> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
-> +              hsync-active and vsync-active must be defined.
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: FPD-Link input 2
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +            description:
-> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
-> +              hsync-active and vsync-active must be defined.
-> +
-> +      port@3:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: FPD-Link input 3
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +            description:
-> +              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
-> +              hsync-active and vsync-active must be defined.
-> +
-> +      port@4:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: CSI-2 Output 0
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +      port@5:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: CSI-2 Output 1
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +      - port@2
-> +      - port@3
-> +      - port@4
-> +      - port@5
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      clock-frequency = <400000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      deser@3d {
-> +        compatible = "ti,ds90ub960-q1";
-> +        reg = <0x3d>;
-> +
-> +        clock-names = "refclk";
-> +        clocks = <&fixed_clock>;
-> +
-> +        powerdown-gpios = <&pca9555 7 GPIO_ACTIVE_LOW>;
-> +
-> +        i2c-alias-pool = /bits/ 16 <0x4a 0x4b 0x4c 0x4d 0x4e 0x4f>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          /* Port 0, Camera 0 */
-> +          port@0 {
-> +            reg = <0>;
-> +
-> +            ub960_fpd3_1_in: endpoint {
-> +              remote-endpoint = <&ub953_1_out>;
-> +            };
-> +          };
-> +
-> +          /* Port 1, Camera 1 */
-> +          port@1 {
-> +            reg = <1>;
-> +
-> +            ub960_fpd3_2_in: endpoint {
-> +              remote-endpoint = <&ub913_2_out>;
-> +              hsync-active = <0>;
-> +              vsync-active = <1>;
-> +            };
-> +          };
-> +
-> +          /* Port 2, unused */
+Thanks for letting me know what you're thinking about this. I think I
+see what you're getting at.
 
-Minor comment. I'd write "unconnected" instead of "unused" (same below).
-Either way,
+However, I think this is more complex than either of us had
+considered. The M41T82 has two different calibration capabilities:
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+1. Digital calibration. This looks to me like it behaves similarly to
+the digital calibration feature of the M41T00, which ds1307.c exposes
+through the offset interface. The M41T8x driver doesn't currently
+expose the digital calibration register at all, but if it did I would
+agree that the offset interface looks appropriate.
 
-> +          port@2 {
-> +            reg = <2>;
-> +          };
-> +
-> +          /* Port 3, unused */
-> +          port@3 {
-> +            reg = <3>;
-> +          };
-> +
-> +          /* Port 4, CSI-2 TX */
-> +          port@4 {
-> +            reg = <4>;
-> +            ds90ub960_0_csi_out: endpoint {
-> +              data-lanes = <1 2 3 4>;
-> +              link-frequencies = /bits/ 64 <800000000>;
-> +              remote-endpoint = <&csi2_phy0>;
-> +            };
-> +          };
-> +
-> +          /* Port 5, unused */
-> +          port@5 {
-> +            reg = <5>;
-> +          };
-> +        };
-> +
-> +        links {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          /* Link 0 has DS90UB953 serializer and IMX274 sensor */
-> +
-> +          link@0 {
-> +            reg = <0>;
-> +            i2c-alias = <0x44>;
-> +
-> +            ti,rx-mode = <3>;
-> +
-> +            serializer1: serializer {
-> +              compatible = "ti,ds90ub953-q1";
-> +
-> +              gpio-controller;
-> +              #gpio-cells = <2>;
-> +
-> +              #clock-cells = <0>;
-> +
-> +              ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                  reg = <0>;
-> +                  ub953_1_in: endpoint {
-> +                    data-lanes = <1 2 3 4>;
-> +                    remote-endpoint = <&sensor_1_out>;
-> +                  };
-> +                };
-> +
-> +                port@1 {
-> +                  reg = <1>;
-> +
-> +                  ub953_1_out: endpoint {
-> +                    remote-endpoint = <&ub960_fpd3_1_in>;
-> +                  };
-> +                };
-> +              };
-> +
-> +              i2c {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                sensor@1a {
-> +                  compatible = "sony,imx274";
-> +                  reg = <0x1a>;
-> +
-> +                  reset-gpios = <&serializer1 0 GPIO_ACTIVE_LOW>;
-> +
-> +                  port {
-> +                    sensor_1_out: endpoint {
-> +                      remote-endpoint = <&ub953_1_in>;
-> +                    };
-> +                  };
-> +                };
-> +              };
-> +            };
-> +          };  /* End of link@0 */
-> +
-> +          /* Link 1 has DS90UB913 serializer and MT9V111 sensor */
-> +
-> +          link@1 {
-> +            reg = <1>;
-> +            i2c-alias = <0x45>;
-> +
-> +            ti,rx-mode = <0>;
-> +
-> +            serializer2: serializer {
-> +              compatible = "ti,ds90ub913a-q1";
-> +
-> +              gpio-controller;
-> +              #gpio-cells = <2>;
-> +
-> +              clocks = <&clk_cam_48M>;
-> +              clock-names = "clkin";
-> +
-> +              #clock-cells = <0>;
-> +
-> +              ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                  reg = <0>;
-> +                  ub913_2_in: endpoint {
-> +                    remote-endpoint = <&sensor_2_out>;
-> +                    pclk-sample = <1>;
-> +                  };
-> +                };
-> +
-> +                port@1 {
-> +                  reg = <1>;
-> +
-> +                  ub913_2_out: endpoint {
-> +                    remote-endpoint = <&ub960_fpd3_2_in>;
-> +                  };
-> +                };
-> +              };
-> +
-> +              i2c {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                sensor@48 {
-> +                  compatible = "aptina,mt9v111";
-> +                  reg = <0x48>;
-> +
-> +                  clocks = <&serializer2>;
-> +
-> +                  port {
-> +                    sensor_2_out: endpoint {
-> +                      remote-endpoint = <&ub913_2_in>;
-> +                    };
-> +                  };
-> +                };
-> +              };
-> +            };
-> +          }; /* End of link@1 */
-> +        };
-> +      };
-> +    };
-> +...
+2. Analog calibration -- that's what the datasheet calls it, but the
+range on it is very big -- 3.5 pF all the way up to 17.4 pF -- and
+their reference design uses it as the only xtal load capacitance in
+the circuit. Most of the values you could set for this would be wildly
+inappropriate for any given design's choice of xtal oscillator.
 
+Between these, I don't know if you'd want to expose just one, the
+other, or some synthesis of both via the offset interface or some new
+interface.
+
+I'd make the case that the xtal's required load capacitance is a
+hardware requirement that's appropriate to configure via the Device
+Tree. Even if you did want to allow some amount of runtime fine-tuning
+of this register, you'd still want to document a rational starting
+value chosen based on the hardware.
+
+I agree with you, though, that if a runtime fine-tuning feature were
+added, we'd have to find a way to choose whether to initialize the
+register on boot or not, so that we didn't overwrite the fine-tuning.
+
+Just to demonstrate something that could work, and would be
+backward-compatible with this patchset, here's a hypothetical design:
+* dt-bindings: add quartz-load-femtofarad-tuning-min and
+quartz-load-femtofarad-tuning-max
+* Limit run-time tuning adjustments to be within that range
+* Only overwrite the analog calibration register on start-up if its
+value is outside that range
+
+After thinking through all this, I'd still advocate for merging this
+patchset in some form and leaving integration with runtime APIs as a
+potential future enhancement. I look forward to hearing your thoughts
+about it.
 -- 
-Regards,
-
-Laurent Pinchart
+Dennis Lambe (He/Him)
+Lead Firmware Engineer
+sparkcharge.io
