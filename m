@@ -2,100 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D93267426A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 20:12:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E4C674299
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 20:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231340AbjASTL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 14:11:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53688 "EHLO
+        id S229487AbjASTUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 14:20:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231314AbjASTLf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 14:11:35 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED9495762;
-        Thu, 19 Jan 2023 11:10:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B4BAA61D57;
-        Thu, 19 Jan 2023 19:09:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61705C433EF;
-        Thu, 19 Jan 2023 19:09:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674155361;
-        bh=L96CiyxDqJQ1R3tSGxtY8MIZKLSX74xqYGN6oYu3uJw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=pvwiCEhA4FKeukST+Pm8eh/01rTbHQ19Mcd3hpODmzZ2H76O6lZZ0qzsXVMkTK8Pd
-         WffM7EFzIMPUtEQkB8IiS2MyzPDU0r/y9Qcb393Bix5vyGEhd0jAZW4x+MqVSaiJuu
-         WmN0Zakt4hsyNtLCebhnns02keHskm3gYg9H+vodk+aEn8tckO713zN7j24IB+Aujy
-         c2RPAQCfTLBO/+Yhjk5ixriW5u8XKzfgpymWu1p84qQcM5oVS565p5rMZSzNTP+CTK
-         zaXCoTtjKlm1Vtq9ETIPeg6A9vrWiXHVpaunCNEhj06Ul5NrmCZ7ipg3eOzmG/2xSc
-         MGWT3q9pDLc9A==
-From:   Will Deacon <will@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Thierry Reding <treding@nvidia.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Lux Aliaga <they@mint.lgbt>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        iommu@lists.linux.dev, ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH v5 0/4] arm64: dts: qcom: sm6125: Enable APPS SMMU
-Date:   Thu, 19 Jan 2023 19:08:40 +0000
-Message-Id: <167415032929.2381501.12211116927490999924.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221222193254.126925-1-marijn.suijten@somainline.org>
-References: <20221222193254.126925-1-marijn.suijten@somainline.org>
+        with ESMTP id S231424AbjASTTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 14:19:32 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D9DB966F7
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 11:18:36 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id 20so3927265ybl.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 11:18:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J+U4onQw8J6//2ZhGgL02cz4dornnJ3jQwTHu/4YyLg=;
+        b=latVkeTlJC1MhsTEw4hyUxoaOwZlYA8HI1VkQBSq6KkesQVhFnCjpqw5kDf9mJJLZv
+         pXnwqATf83GvJqs66hWsEZcS4OA5GqjN+oZlQNCkHGMFyTyVVe5FIT+sv3M7YfTGC6ZW
+         ryhSBZ5aez2AHOyoS+pRZRgkBggvQCa8XLJXrbFOnOG+qBUh0PjGbN3oVzczQz0w2xnJ
+         Iu3tECiPKtT9gFzobXwPFYusR66FCPjjQMbdO3f19tEAmaUI7aQ1eSsMJt5zchJMxNzj
+         d49Mx2Aq4x2IvtQNFAsk6dqdgCOUHTfjuJHTzjHdt3zhmR9/e+HYjsy8P0VFM21j3eTl
+         McSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J+U4onQw8J6//2ZhGgL02cz4dornnJ3jQwTHu/4YyLg=;
+        b=QOEmV43kb/PvNrKjRaCxFhMpxbvNBeW2F9zQHjGAFEOftHxJuqJNFr7pGkKmB+7aaK
+         UINAHRoqC9oTlIXLp2VAyeSPlWlV1aZh91r5vIUCQOFDseQ7X1MP7QPZCWncW2ZaZpWO
+         F/rDB0+OMUssL5vFqVhnKEiUe7uk9SnGuaS4II+HmkrUrsWar4K2hpbni/OZQ4Mx5XUH
+         F6db+2Ygs6UrL/QLF9SjVQ+leWwrvWqRAkKthrwhRssFEDa0MBcCb1zuz+k5/sz+gbd+
+         dUw1K1M04HHF16WRGn/NULJGKAZw2zshDaHhXFbsX4JKG0qQ7rJcGDwQhnUZBJGWWyj2
+         B8Qw==
+X-Gm-Message-State: AFqh2kqaqm+nDUEbpNMvpBcHONVT2UygbUGIyZVicHuEb3i1htCu5qYa
+        7BKF+WppBaphP9pZHOurFhg64tQ2PSphlAESo1FVRw==
+X-Google-Smtp-Source: AMrXdXvdTXiCgoRxs/AtsimpHKT/QMbNhLg3oEemY0fsJQphWe6eLtMm87GW9EyUGmLS7gobT44hzZvCkU2w4yxVFro=
+X-Received: by 2002:a25:4e54:0:b0:7fe:6d35:1a28 with SMTP id
+ c81-20020a254e54000000b007fe6d351a28mr291812ybb.534.1674155915290; Thu, 19
+ Jan 2023 11:18:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230118-mt8365-spi-support-v1-0-842a21e50494@baylibre.com>
+ <20230118-mt8365-spi-support-v1-2-842a21e50494@baylibre.com> <60766c7b-abb2-3afb-aa16-0e1385b88a73@linaro.org>
+In-Reply-To: <60766c7b-abb2-3afb-aa16-0e1385b88a73@linaro.org>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Thu, 19 Jan 2023 20:18:24 +0100
+Message-ID: <CAFGrd9rtO0B2XWEEU6gtv39PndjdjLL6tbRWimWT3RvLu1GFrQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] spi: spidev: add new mediatek support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Dec 2022 20:32:50 +0100, Marijn Suijten wrote:
-> Add APPS SMMU to SM6125 dtsi and use it in SDHCI/USB nodes.
-> 
-> Changes since v4:
-> 
-> - Use hexadecimal 0x0 for iommu mask;
-> - Add sm6125 to the dt-bindings list without clocks, now depending on:
->   https://lore.kernel.org/linux-arm-kernel/20221222092355.74586-1-krzysztof.kozlowski@linaro.org/
-> 
-> [...]
+Le jeu. 19 janv. 2023 =C3=A0 17:49, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> a =C3=A9crit :
+>
+> On 19/01/2023 17:28, Alexandre Mergnat wrote:
+> >       { .compatible =3D "micron,spi-authenta", .data =3D &spidev_of_che=
+ck },
+> > +     { .compatible =3D "mediatek,genio", .data =3D &spidev_of_check },
+>
+> Please run scripts/checkpatch.pl and fix reported warnings.
 
-Applied first patch to will (for-joerg/arm-smmu/bindings), thanks!
+Actually I did.
+I saw: "WARNING: DT compatible string "mediatek,genio" appears
+un-documented -- check ./Documentation/devicetree/bindings/"
+But there are no bindings for spidev. I've made some grep on already
+supported compatible devices like "micron,spi-authenta", but I didn't
+find documentation to add "mediatek,genio".
+Do you know where I should document it please ?
 
-[1/4] dt-bindings: arm-smmu: Document smmu-500 binding for SM6125
-      https://git.kernel.org/will/c/c940c8787929
-
-Cheers,
--- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+Regards,
+Alex
