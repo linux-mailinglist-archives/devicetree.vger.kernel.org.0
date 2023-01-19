@@ -2,160 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DC1E673B46
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:06:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 486D0673B69
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:13:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231420AbjASOGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 09:06:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33648 "EHLO
+        id S231613AbjASOND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 09:13:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231415AbjASOGI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:06:08 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAD8808B1
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:05:27 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id j17so1651304wms.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:05:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KyPmIKhrj5llOSZUdUq5Kr/KaLcp/C/7nBe8Tyy5vk4=;
-        b=Ro0EqqAi9yh4lpsziLAifpMMIiVgu35zQr/kylSTf6VsCoedWvgRvRk+1jDdX0XIYi
-         dLMOCFDVto+0Kg78ScF0l2ebFvoRj1Fq09X7dT2NMIBhnhnUUbSOO8iMSQKKE0m/Rd95
-         6v30MpHu2PuwT04eAsBLxoauENCr9MMqdxoRqzVWREkv48G7fx2K8Gk28aZi8dGlOZJX
-         Rcfx3+F72UebuTmN1B/iHf/H2Kk0V5B2BosmozETT+F3XdDCRRfEmvt2gAxkGNHhclCR
-         5DXbqljI/MNaaKxdDxGspyYOdiLr4jmb/fjq76EF6kvi0q1TG6XfKwKZqrp1y/jFwdEC
-         bdOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KyPmIKhrj5llOSZUdUq5Kr/KaLcp/C/7nBe8Tyy5vk4=;
-        b=6U2anLWR7fHyGigjJaXbBV+WXaowg7nijcH+9psT/+qev1Nq4YDticm610MNatdw/I
-         BZdXOOiS5xaXMczT2LsBtNzwObhwxLYAKkThGyVoJuN37edp+SqjClj1zy12QRwdGAJP
-         yH8VWN/LWtNZ1yD9BboCXs80v0VAeriq6sea1Qg/Wv7bmrKUsUrJdRc2SAq+M5cgXq/9
-         qZV9B0+bfgM5GzgPt9lU4h61nq0/LGG2SvDXQvK5/QfxcfENb+34zE4MbWii5wynOaqV
-         J3cQ4JE2bLmgIi6Q6I9tfGCZ9GZcgQIk0iluteBahj8/R98CsTdL7xvkNFPE0WwAoJnW
-         tSyQ==
-X-Gm-Message-State: AFqh2krSHCdugach5bEiloaY8uCh1EH1HZVngrmbJQrOZkHc2biCM1Q6
-        smEf0V3t3LC35f/nWYUIOh7NSQ==
-X-Google-Smtp-Source: AMrXdXtz9rqfygqM2faXYVw6dTuktiFobisglXW40wIIAv8MVziyyjsOF8Jgn/ATvMoD1cN4YsQYHg==
-X-Received: by 2002:a05:600c:3d19:b0:3db:1810:8c9e with SMTP id bh25-20020a05600c3d1900b003db18108c9emr5298390wmb.38.1674137126642;
-        Thu, 19 Jan 2023 06:05:26 -0800 (PST)
-Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id m10-20020a05600c4f4a00b003d96efd09b7sm5263883wmq.19.2023.01.19.06.05.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 06:05:26 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S231573AbjASOMg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:12:36 -0500
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F251E4ED12;
+        Thu, 19 Jan 2023 06:11:15 -0800 (PST)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1pIVdE-0008Lb-1h;
+        Thu, 19 Jan 2023 15:11:08 +0100
+Date:   Thu, 19 Jan 2023 14:11:01 +0000
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v4 12/12] arm64: dts: qcom: sm8550-mtp: Add PCIe PHYs and controllers nodes
-Date:   Thu, 19 Jan 2023 16:04:53 +0200
-Message-Id: <20230119140453.3942340-13-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230119140453.3942340-1-abel.vesa@linaro.org>
-References: <20230119140453.3942340-1-abel.vesa@linaro.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Edward-JW Yang <edward-jw.yang@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>,
+        Jianhui Zhao <zhaojh329@gmail.com>
+Subject: [PATCH 0/2] add support for clocks on MT7981 SoC
+Message-ID: <cover.1674137304.git.daniel@makrotopia.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable PCIe controllers and PHYs nodes on SM8550 MTP board.
+The MediaTek MT7981 SoC is quite similar to its big sibling, the
+MT7986. Hence most drivers can be reused and not much is missing the
+get also this SoC working on mainline Linux.
 
-Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
+Start with a cleaned-up version of the clock drivers, based on what can
+also be found in MediaTek's SDK[1].
 
-This patch does not have a v3, but since it is now part of the same
-patchset with the controller and the phy drivers patches, I had to
-bump the version to 4.
+[1]: https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/refs/heads/master/target/linux/mediatek/files-5.4/drivers/clk/mediatek/clk-mt7981.c
 
-Latest version was here (v2):
-https://lore.kernel.org/all/20230118230526.1499328-3-abel.vesa@linaro.org/
+Daniel Golle (2):
+  dt-bindings: clock: add some compatible strings for MT7981
+  clk: mediatek: add MT7981 clock support
 
-Changes since latest version (v2):
- * none
+ .../bindings/clock/mediatek,apmixedsys.yaml   |   1 +
+ .../bindings/clock/mediatek,topckgen.yaml     |   1 +
+ drivers/clk/mediatek/Kconfig                  |  17 +
+ drivers/clk/mediatek/Makefile                 |   4 +
+ drivers/clk/mediatek/clk-mt7981-apmixed.c     | 103 +++++
+ drivers/clk/mediatek/clk-mt7981-eth.c         | 138 ++++++
+ drivers/clk/mediatek/clk-mt7981-infracfg.c    | 236 ++++++++++
+ drivers/clk/mediatek/clk-mt7981-topckgen.c    | 431 ++++++++++++++++++
+ include/dt-bindings/clock/mt7981-clk.h        | 215 +++++++++
+ 9 files changed, 1146 insertions(+)
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-apmixed.c
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-eth.c
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-infracfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-topckgen.c
+ create mode 100644 include/dt-bindings/clock/mt7981-clk.h
 
-Changes since v1:
- * ordered pcie related nodes alphabetically in MTP dts
- * dropped the pipe_mux, phy_pipe and ref clocks from the pcie nodes
- * dropped the child node from the phy nodes, like Johan suggested,
-   and updated to use the sc8280xp binding scheme
- * changed "pcie_1_nocsr_com_phy_reset" 2nd reset name of pcie1_phy
-   to "nocsr"
- * reordered all pcie nodes properties to look similar to the ones
-   from sc8280xp
 
-
-
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 29 +++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 81fcbdc6bdc4..b69ded9c4b57 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -359,6 +359,35 @@ vreg_l3g_1p2: ldo3 {
- 	};
- };
- 
-+&pcie_1_phy_aux_clk {
-+	clock-frequency = <1000>;
-+};
-+
-+&pcie0 {
-+	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-+	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	vdda-phy-supply = <&vreg_l1e_0p88>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	wake-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
-+	perst-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&pcie1_phy {
-+	vdda-phy-supply = <&vreg_l3c_0p91>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+	vdda-qref-supply = <&vreg_l1e_0p88>;
-+	status = "okay";
-+};
-+
- &pm8550_gpios {
- 	sdc2_card_det_n: sdc2-card-det-state {
- 		pins = "gpio12";
+base-commit: aa5c49149a823599764e6953229b028e4bf6e9cc
 -- 
-2.34.1
+2.39.1
 
