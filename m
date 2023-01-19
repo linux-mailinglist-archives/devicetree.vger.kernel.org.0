@@ -2,174 +2,625 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B668673F72
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 18:03:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA474673F74
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 18:03:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230444AbjASRDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 12:03:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49014 "EHLO
+        id S229659AbjASRDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 12:03:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230379AbjASRDS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 12:03:18 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A014DBFD
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 09:03:15 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso1741748wmq.5
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 09:03:15 -0800 (PST)
+        with ESMTP id S230452AbjASRDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 12:03:20 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4B274DCE8
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 09:03:17 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id n7so2506102wrx.5
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 09:03:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xoDg7X6k/SjUQcyWVxb++knJQou/HfRjq27D3pK1OL0=;
-        b=1hrdE6EhVZapN/amnndIOVoCyNf2PV5AUtAzDtKRv2WE7dv+4JYyd12hJtZZmEQfNg
-         3unnzAFt3Ei2XSXRQ/382g6ej48VXzNYBSocOMr2bvg3dUc9WGRZhEkCDD8OjAxdeFDS
-         j/hEXC0lom9dHs+G9YMstoUY1PzRiX4Gq9UniA38h1YFkA4N6cDzUHMgV/ta21+W7iqA
-         sYtJ5hc5jHIH69AI267vdjXQH8ttU24qNCX6UVpI5JojnLTa9HdfJoK1VbvfIHs4aHVA
-         1LUXsoBE/oGphFk0PGffJ/ThRyFprXILexDcb91ZNqkjorykOr6X1SKXSKRMuSuEvh8A
-         5AAg==
+        bh=xvYDFOte+y444JWaSHlt11X1Ok1x50lPWefoN5f90Bs=;
+        b=XvGl7xvOZo4P1ZHNXJURo/9Y1xmVeTX+UMejvLcjn6TA2S6VcpcADvk4lpsnVQbqEw
+         2lY09ICnFbDAN1cHWcEx+5+OMsBXH87TX8J4FKMwZfuPu8KDHsOmDTPUoiDPa0/ujleT
+         QKhc5W16dzDdELy6b+XEf0vEK0Ta6dzFtNTEKpfnQGE3a3oHFtS2kJwRx2qQ/n1lLjeR
+         58NY/FjdAUXgBChQaW/NcBN9XlF+2oP1TZupjzZwHF0npAQRtb1vEWMY+9BmrR0EOwBy
+         hIFhJAjgmMHhRom5kuPMGY68AZzj4HSLw+LAxXWFKOzlIdzRMbWklUCWn1aYYITOs9N6
+         cYXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xoDg7X6k/SjUQcyWVxb++knJQou/HfRjq27D3pK1OL0=;
-        b=5/m++3BLBtuR6EhZ54/yguJN6T7eAX8cEmv+iMmQU6SrqKA/IFlXWyFjGr0yLsplvi
-         7vpPahon4blB/2imK/8SoFFhu3a3zT2e+d21LlVUl/R4dBtEUNDgcrHizss77QHEy2C1
-         tNDuBzqypctEZBSsVbATD8cfeZ4ZqbcKBw0JpFXUt6u/lJMiuQ5bZx530EsSciFS3mL1
-         wPxJHFgiegtCIiWw3zCLywgDEEaz3xfUuJDgU7Jaj98vUnUlUw2kz4h06nVN1VDUsm+7
-         kOcIWxJvltW7pNpogFk4chGGp8sZOIijh3qEEmXQbvD5oAMtABiypA0JcE2FCAhQ/9ib
-         x9tQ==
-X-Gm-Message-State: AFqh2kq7F/Da9cv6h0sf0uwvULhXlgigQLORzmyK8r13wT3SkMrF8giH
-        tt3bKvjhuAkP6S5OUA3IpBe+TQ==
-X-Google-Smtp-Source: AMrXdXvVqir7OAh4deRHUpeRJymXdvbDE5Wl8w9DSxpLlPsa1In7nF1ob0+NOI0SLMtg6L6CnI5eQg==
-X-Received: by 2002:a05:600c:1d8e:b0:3d9:f9ef:3d23 with SMTP id p14-20020a05600c1d8e00b003d9f9ef3d23mr11316499wms.23.1674147793846;
-        Thu, 19 Jan 2023 09:03:13 -0800 (PST)
-Received: from [10.8.2.10] ([195.200.221.42])
-        by smtp.gmail.com with ESMTPSA id g10-20020a05600c4eca00b003a3442f1229sm6193662wmq.29.2023.01.19.09.03.08
+        bh=xvYDFOte+y444JWaSHlt11X1Ok1x50lPWefoN5f90Bs=;
+        b=A7KG99p5pWGTRNIoh1WKpHOcsdHN29ZdaVhZJI1Kl/402l1BXb5I3O68TMy7BCw8ka
+         E79RabEDFgRHAc1y6zkeAAPWh+Sr3uyNo4RuBcTp7JVx8nU60ksA+yFnYJbN46PGaoNQ
+         4dgM53LzFd+Reu2JUmsLH9rso2ce0Y6JPKjHIKUkxwA+Lw4xkgxFs+304H/8T0I5z8zl
+         oNV4EQ7EQfEyN2upjCx2o/soeQIlpOEclcUh7XQMJglSQDta4+6bvLF7Ij1/kklg7RhI
+         mHFkeDId2XyxSGoWe3HKf97QsQO1BcMdB+b8XS2BwmPL/ZWmP5lsc0dz8l6YkRK6r8BT
+         W3tA==
+X-Gm-Message-State: AFqh2kqmKv3CkHr3vtS6HqqRT2/XIIMrYA9mqDKZvpDttEqOdPP2yxCS
+        OwvRY3KNzqCZ1jCneoKRmOk+XA==
+X-Google-Smtp-Source: AMrXdXsg1Kf23JrLeA2zftd5LGJzqqEpdZTWxt7DrKM/ZNIQhK96ZEvPuUbLPbtbLBCuPbr37mS2vA==
+X-Received: by 2002:a5d:58fa:0:b0:2bd:d819:83ee with SMTP id f26-20020a5d58fa000000b002bdd81983eemr5646553wrd.39.1674147796369;
+        Thu, 19 Jan 2023 09:03:16 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f16-20020a5d50d0000000b002755e301eeasm16305698wrt.100.2023.01.19.09.03.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 09:03:10 -0800 (PST)
-Message-ID: <187b0fe1-1f14-d8b8-c827-1e824da0b1d3@baylibre.com>
-Date:   Thu, 19 Jan 2023 18:03:07 +0100
+        Thu, 19 Jan 2023 09:03:15 -0800 (PST)
+Message-ID: <7cc4c0d4-d863-a62d-3867-ab03d7f7507a@linaro.org>
+Date:   Thu, 19 Jan 2023 18:03:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v7 4/4] thermal: mediatek: add another get_temp ops for
- thermal sensors
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
+Subject: Re: [PATCH 2/9] ARM: dts: ls1021a: add TQ-Systems MBLS102xA device
+ tree
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        linux-pm@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Michael Kao <michael.kao@mediatek.com>,
-        linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-References: <20221018-up-i350-thermal-bringup-v7-0-ebf08ff2eddb@baylibre.com>
- <20221018-up-i350-thermal-bringup-v7-4-ebf08ff2eddb@baylibre.com>
- <4121bb6b-30db-7a23-f4c8-40afdda7a0b5@linaro.org>
- <COTTJX635TNF.1WL2TEZN7VW9O@amjad-ThinkPad-T490>
- <adfe41f7-00e5-876b-7803-3127919fba13@linaro.org>
- <COUMF3IZ9Y63.LA3KFHJSUZIC@amjad-ThinkPad-T490>
- <0644aede-c281-3919-50e0-4466f6587d81@linaro.org>
-Content-Language: en-US
-From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
-In-Reply-To: <0644aede-c281-3919-50e0-4466f6587d81@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
+ <20230119144236.3541751-3-alexander.stein@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230119144236.3541751-3-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+On 19/01/2023 15:42, Alexander Stein wrote:
+> Add device tree for the MBLS102xA mainboard with TQMLS1021A SoM.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../boot/dts/ls1021a-tqmls1021a-mbls1021a.dts | 409 ++++++++++++++++++
+>  arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi     |  93 ++++
+>  3 files changed, 503 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
+>  create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index d0c07867aeabe..44b5ed44b13d6 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -802,6 +802,7 @@ dtb-$(CONFIG_SOC_LS1021A) += \
+>  	ls1021a-iot.dtb \
+>  	ls1021a-moxa-uc-8410a.dtb \
+>  	ls1021a-qds.dtb \
+> +	ls1021a-tqmls1021a-mbls1021a.dtb \
+>  	ls1021a-tsn.dtb \
+>  	ls1021a-twr.dtb
+>  dtb-$(CONFIG_SOC_VF610) += \
+> diff --git a/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
+> new file mode 100644
+> index 0000000000000..21da171b9f38e
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
+> @@ -0,0 +1,409 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR X11)
+> +/*
+> + * Copyright 2013-2014 Freescale Semiconductor, Inc.
+> + * Copyright 2018-2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
+> + * D-82229 Seefeld, Germany.
+> + * Author: Alexander Stein
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/leds/leds-pca9532.h>
+> +#include <dt-bindings/net/ti-dp83867.h>
+> +#include "ls1021a-tqmls1021a.dtsi"
+> +
+> +/ {
+> +	model = "TQMLS102xA SOM on MBLS102xA";
+> +	compatible = "tq,ls1021a-tqmls1021a-mbls102xa", "tq,ls1021a-tqmls1021a", "fsl,ls1021a";
+> +
+> +	audio_mclk: audio-clock {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <25000000>;
+> +	};
+> +
+> +	backlight_dcu: backlight {
+> +		compatible = "gpio-backlight";
+> +		gpios = <&pca9530 0 GPIO_ACTIVE_LOW>;
+> +		status = "disabled";
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		autorepeat;
+> +
+> +		switch-1 {
+> +			label = "S6";
+> +			linux,code = <BTN_0>;
+> +			gpios = <&pca9554_0 0 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		btn2: switch-2 {
+> +			label = "S7";
+> +			linux,code = <BTN_1>;
+> +			gpios = <&pca9554_0 1 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		switch-3 {
+> +			label = "S8";
+> +			linux,code = <BTN_2>;
+> +			gpios = <&pca9554_0 2 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +
+> +	gpio_leds: gpio-leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <0>;
+> +			gpios = <&pca9554_2 4 GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger = "default-on";
+> +		};
+> +
+> +		led-1 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <1>;
+> +			gpios = <&pca9554_2 5 GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger = "default-on";
+> +		};
+> +
+> +		led-2 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <2>;
+> +			gpios = <&pca9554_2 6 GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger = "default-on";
+> +		};
+> +
+> +		led-3 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_HEARTBEAT;
+> +			function-enumerator = <0>;
+> +			gpios = <&pca9554_2 7 GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	lvds_encoder: lvds-encoder {
+> +		compatible = "ti,sn75lvds83", "lvds-encoder";
+> +		power-supply = <&reg_3p3v>;
+> +		status = "disabled";
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				lvds_encoder_in: endpoint {};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				lvds_encoder_out: endpoint {};
+> +			};
+> +		};
+> +	};
+> +
+> +	reg_1p2v: regulator-1p2v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "1P2V";
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +		regulator-always-on;
+> +		vin-supply = <&reg_3p3v>;
+> +	};
+> +
+> +	reg_3p3v: regulator-3p3v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "3P3V";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	hdmi_out: hdmi {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +		ddc-i2c-bus = <&i2c0>;
+> +		status = "disabled";
+> +
+> +		port {
+> +			hdmi_in: endpoint {
+> +				remote-endpoint = <&sii9022a_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	display: panel {
+> +		backlight = <&backlight_dcu>;
+> +		enable-gpios = <&pca9554_1 3 GPIO_ACTIVE_HIGH>;
+> +		status = "disabled";
+> +
+> +		port {
+> +			panel_in: endpoint {};
+> +		};
+> +	};
+> +
+> +	sound {
+> +		compatible = "fsl,imx-audio-tlv320aic32x4";
+> +		model = "ls1021a-mbls1021a-tlv320aic32";
+> +		ssi-controller = <&sai1>;
+> +		audio-codec = <&tlv320aic32x4>;
+> +	};
+> +
+> +};
+> +
+> +&can0 {
+> +	status = "okay";
+> +	xceiver-supply = <&reg_3p3v>;
+> +};
+> +
+> +&can1 {
+> +	status = "okay";
+> +	xceiver-supply = <&reg_3p3v>;
+> +};
+> +
+> +&dspi0 {
+> +	bus-num = <0>;
+> +	status = "okay";
+> +};
+> +
+> +&enet0 {
+> +	phy-handle = <&rgmii_phy0c>;
+> +	phy-mode = "rgmii-id";
+> +	mac-address = [ 00 00 00 00 00 00 ];
+> +	status = "okay";
+> +};
+> +
+> +&enet1 {
+> +	tbi-handle = <&tbi1>;
+> +	phy-handle = <&sgmii_phy03>;
+> +	phy-mode = "sgmii";
+> +	mac-address = [ 00 00 00 00 00 00 ];
+> +	status = "okay";
+> +};
+> +
+> +&enet2 {
+> +	phy-handle = <&rgmii_phy04>;
+> +	phy-mode = "rgmii-id";
+> +	mac-address = [ 00 00 00 00 00 00 ];
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	tlv320aic32x4: audio-codec@18 {
+> +		compatible = "ti,tlv320aic32x4";
+> +		reg = <0x18>;
+> +		clocks = <&audio_mclk>;
+> +		clock-names = "mclk";
+> +		ldoin-supply = <&reg_3p3v>;
+> +		iov-supply = <&reg_3p3v>;
+> +	};
+> +
+> +	pca9554_0: gpio-expander@20 {
+> +		compatible = "nxp,pca9554";
+> +		reg = <0x20>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		vcc-supply = <&reg_3p3v>;
+> +		gpio-line-names = "BUTTON0", "BUTTON1",
+> +				  "BUTTON2", "EMMC_SEL",
+> +				  "DIP2", "DIP3",
+> +				  "EXT_TOUCH_INT", "GPIO_1";
+> +	};
+> +
+> +	pca9554_1: gpio-expander@21 {
+> +		compatible = "nxp,pca9554";
+> +		reg = <0x21>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		vcc-supply = <&reg_3p3v>;
+> +		gpio-line-names = "PCIE_PWR_EN", "MPCIE_DISABLE#",
+> +				  "MPCIE_WAKE#", "LCD_BLT_EN",
+> +				  "LCD_PWR_EN", "EC1_PHY_PWDN",
+> +				  "EC3_PHY_PWDN", "SGMII_PHY_PWDN";
+> +	};
+> +
+> +	pca9554_2: gpio-expander@22 {
+> +		compatible = "nxp,pca9554";
+> +		reg = <0x22>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&extirq>;
+> +		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		vcc-supply = <&reg_3p3v>;
+> +		gpio-line-names = "MUX_SEL0", "MUX_SEL1",
+> +				  "MUX_SEL2", "MUX_SEL3",
+> +				  "V95", "V96", "V97", "V98";
+> +	};
+> +
+> +	sii9022a: hdmi-transmitter@3b {
+> +		compatible = "sil,sii9022";
+> +		reg = <0x3b>;
+> +		iovcc-supply = <&reg_3p3v>;
+> +		cvcc12-supply = <&reg_1p2v>;
+> +		interrupts = <GIC_SPI 167 IRQ_TYPE_EDGE_RISING>;
+> +		#sound-dai-cells = <0>;
+> +		sil,i2s-data-lanes = <0>;
+> +		status = "disabled";
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				sii9022a_in: endpoint {};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				sii9022a_out: endpoint {
+> +					remote-endpoint = <&hdmi_in>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	stmpe811: touchscreen@41 {
+> +		compatible = "st,stmpe811";
+> +		reg = <0x41>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
+> +		vcc-supply = <&reg_3p3v>;
+> +		vio-supply = <&reg_3p3v>;
+> +		status = "okay";
 
-On 12/29/22 16:49, Daniel Lezcano wrote:
-> On 06/12/2022 10:18, Amjad Ouled-Ameur wrote:
->> Hi Daniel,
->> On Mon Dec 5, 2022 at 8:39 PM CET, Daniel Lezcano wrote:
->>>
->>> Hi Amjad,
->>>
->>>
->>> On 05/12/2022 11:41, Amjad Ouled-Ameur wrote:
->>>
->>> [ ... ]
->>>
->>>>>> @@ -1161,11 +1197,24 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->>>>>>             platform_set_drvdata(pdev, mt);
->>>>>>     -    tzdev = devm_thermal_of_zone_register(&pdev->dev, 0, mt,
->>>>>> -                          &mtk_thermal_ops);
->>>>>> -    if (IS_ERR(tzdev)) {
->>>>>> -        ret = PTR_ERR(tzdev);
->>>>>> -        goto err_disable_clk_peri_therm;
->>>>>> +    for (i = 0; i < mt->conf->num_sensors + 1; i++) {
->>>>>> +        tz = devm_kmalloc(&pdev->dev, sizeof(*tz), GFP_KERNEL);
->>>>>> +        if (!tz)
->>>>>> +            return -ENOMEM;
->>>>>> +
->>>>>> +        tz->mt = mt;
->>>>>> +        tz->id = i;
->>>>>> +
->>>>>> +        tzdev = devm_thermal_of_zone_register(&pdev->dev, i, tz, (i == 0) ?
->>>>>> +                                 &mtk_thermal_ops :
->>>>>> + &mtk_thermal_sensor_ops);
->>>>>
->>>>> Here you use again the aggregation
->>>> I addressed this concern in V6, could you please take a look and let me
->>>> know what you think [0].
->>>>
->>>> [0]: https://lore.kernel.org/all/5eb0cdc2-e9f9-dd42-bf80-b7dcd8bcc196@baylibre.com/
->>>
->>> May I misunderstanding but AFAICS, this patch is setting the
->>> mtk_thermal_ops if the sensor id is zero. The get_temp is computing the
->>> max temperature in this ops which is what we don't want to do.
->>
->> Correct, but I think that is out of scope of this patchset, as the current
->> driver already uses mtk_thermal_ops for sensor 0. The focus of this patchset
->> is to add support for the other sensors.
->>
->> Besides, what do you suggest as a clean implementation if the current one
->> no longer meets thermal core requirements ?
->
-> IIUC, there is a sensor per couple of cores. 1 x 2Bigs, 1 x 2Bigs, 1 x 4 Little, right ?
+Drop, why do you need it?
 
-MT8365 SoC has 4 x A53 CPUs. The SoC has 4 thermal zones per sensor. Thermal zone 0 corresponds
+> +
+> +		stmpe_gpio {
 
-to all 4 x A53 CPUs, the other thermal zones (1, 2 and 3) has nothing to do with CPUs. The cooling device type
+No underscores in node names, generic node names, so "gpio". Does
+anything depend on odd naming?
 
-used for CPUs is passive. FYI, thermal zones 1, 2 and 3 are present in the SoC for debug-purpose only, they are not supposed
+> +			compatible = "st,stmpe-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			/* GPIO 5-7 used for touch */
+> +			st,norequest-mask = <0xf0>;
+> +			gpio-line-names = "GPIO_ADC_I2C1_1",
+> +					  "GPIO_ADC_I2C1_2",
+> +					  "GPIO_ADC_I2C1_3",
+> +					  "GPIO_ADC_I2C1_4";
+> +		};
+> +
+> +		stmpe_touchscreen {
 
-to be used for production.
+Same problems.
 
+> +			compatible = "st,stmpe-ts";
+> +			status = "disabled";
+> +		};
+> +	};
+> +
+> +	pca9530: leds@60 {
+> +		compatible = "nxp,pca9530";
+> +		reg = <0x60>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names = "PWM_0", "PWM_1";
+> +
+> +		gpio_pwm_0 {
 
-Regards,
+No underscores in node names, generic node names. This is neither GPIO
+nor PWM.
 
-Amjad
+> +			label = "pca9530:pwm0";
+> +			type = <PCA9532_TYPE_GPIO>;
+> +		};
+> +
+> +		gpio_pwm_1 {
+> +			label = "pca9530:pwm1";
+> +			type = <PCA9532_TYPE_GPIO>;
+> +		};
+> +	};
+> +
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +};
+> +
+> +&lpuart0 {
+> +	status = "okay";
+> +	linux,rs485-enabled-at-boot-time;
+> +};
+> +
+> +&mdio0 {
+> +	sgmii_phy03: ethernet-phy@3 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x03>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> +		ti,dp83867-rxctrl-strap-quirk;
+> +	};
+> +
+> +	rgmii_phy04: ethernet-phy@4 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x04>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
+> +		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> +	};
+> +
+> +	rgmii_phy0c: ethernet-phy@c {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x0c>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
+> +		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> +	};
+> +};
+> +
+> +&pwm6 {
+> +	status = "okay";
+> +};
+> +
+> +&pwm7 {
+> +	status = "okay";
+> +};
+> +
+> +&sai1 {
+> +	status = "okay";
+> +};
+> +
+> +&sata {
+> +	/delete-property/ dma-coherent;
+> +	status = "okay";
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb3 {
+> +	/*
+> +	 * Although DR connector, VBUS is always driven, so
+> +	 * restrict to host mode.
+> +	 */
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi b/arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
+> new file mode 100644
+> index 0000000000000..1ab518c489252
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
+> @@ -0,0 +1,93 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR X11)
+> +/*
+> + * Copyright 2013-2014 Freescale Semiconductor, Inc.
+> + * Copyright 2018-2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
+> + * D-82229 Seefeld, Germany.
+> + * Author: Alexander Stein
+> + */
+> +
+> +#include "ls1021a.dtsi"
+> +
+> +/ {
+> +	model = "TQMLS102xA SOM";
+> +	compatible = "tq,ls1021a-tqmls1021a", "fsl,ls1021a";
+> +
+> +	reg_3p3v_som: regulator-3p3v-som {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "3P3V_SOM";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +};
+> +
+> +&esdhc {
+> +	compatible = "fsl,esdhc", "fsl,ls1021a-esdhc";
+> +	/* e-MMC over 8 data lines */
+> +	bus-width = <8>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	mc34vr500: pmic@8 {
+> +		reg = <0x08>;
 
->
-> If it is the case, then a thermal zone per sensor with the trip points and a cooling device for each of them.
->
-> The two thermal zones for the big will share the same cooling device. The little thermal zone will have its own cooling device.
->
-> If there is the GPU, then its own cooling device also with devfreq.
->
->
->>> <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
->>>
->>> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
->>> <http://twitter.com/#!/linaroorg> Twitter |
->>> <http://www.linaro.org/linaro-blog/> Blog
->>
->
+No compatible? What's this?
+
+> +		status = "disabled";
+> +	};
+> +
+> +	pmc0: pmc@11 {
+
+No compatible? What's this?
+
+> +		reg = <0x11>;
+> +		status = "disabled";
+> +	};
+> +
+> +	sa56004: temperature-sensor@4c {
+> +		compatible = "nxp,sa56004";
+> +		reg = <0x4c>;
+> +		vcc-supply = <&reg_3p3v_som>;
+> +	};
+> +
+> +	adm1069: supervisor@4f {
+
+No compatible? What's this?
+
+> +		reg = <0x4f>;
+> +		status = "disabled";
+> +	};
+> +
+> +	rtc0: rtc@51 {
+> +		compatible = "nxp,pcf85063a";
+> +		quartz-load-femtofarads = <12500>;
+> +		reg = <0x51>;
+
+Reg is second property
+
+> +	};
+> +
+> +	m24c64_54: eeprom@54 {
+> +		compatible = "atmel,24c64";
+> +		reg = <0x54>;
+> +		pagesize = <32>;
+> +		read-only;
+> +		vcc-supply = <&reg_3p3v_som>;
+> +	};
+> +};
+Best regards,
+Krzysztof
+
