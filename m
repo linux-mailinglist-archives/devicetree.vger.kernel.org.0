@@ -2,94 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E89E3673B6F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:14:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7285D673B6D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:13:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbjASOOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 09:14:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38828 "EHLO
+        id S231473AbjASONs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 09:13:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231518AbjASOMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:12:53 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 289E859576;
-        Thu, 19 Jan 2023 06:11:46 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pIVdm-0008M3-0v;
-        Thu, 19 Jan 2023 15:11:42 +0100
-Date:   Thu, 19 Jan 2023 14:11:35 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Jianhui Zhao <zhaojh329@gmail.com>
-Subject: [PATCH 1/2] dt-bindings: clock: add some compatible strings for
- MT7981
-Message-ID: <cad4f70cd009ba82e39c623485389c021992762e.1674137304.git.daniel@makrotopia.org>
-References: <cover.1674137304.git.daniel@makrotopia.org>
+        with ESMTP id S231573AbjASONJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:13:09 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B88488298E
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:12:27 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id hw16so5935899ejc.10
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 06:12:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gVwpwP4L2BBwb3CX7YjZPuDAVWCzEvEalSJdJwSRjy0=;
+        b=K6D3cZTtI4P0GGX9GapAMig+nqZ+ed3QgZmNNYCNmRjkFhQdLm5Pet2+pp53RiIbvi
+         rNnYocJlG6PyYNC+7s+J9isvVJ6mfH4UtxUJm3P0edKa77oKjaPAGHA/Dy6vHVP8PhlC
+         zD1b6EZ1YcZRVfsAcgzaSXHDONvhCkM3/5SvjiAFRCsAWSQK4O0TabgRpOxi8Y5NcTNw
+         ND56jyVHwPC+vsGkJIJGTu8U3qdX2Re0apTHvZuhQIs/xrr0LEpaD7JVAnQMuPt9cPXt
+         ACHDxqzVTZzjs3jW5Nueb+B3x5IV6494792I5DX0r9sX6a7KOqLAaiv0gLbSEo+FIdj7
+         4rNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gVwpwP4L2BBwb3CX7YjZPuDAVWCzEvEalSJdJwSRjy0=;
+        b=2fYR9UMpFiPSEcWa0XtyEUUMxMycIfd7KpkuS4Q2DQcJgBgl3lJ/H1Vf3RjLFFTCbC
+         u8ksuVpwjLmAX/kcE9m79O1J62XZ89w4kRWDWYOmOYie0LXf8V/B8jnXAObsWuy9NmVa
+         5GJwA6zJ4O7YGZhPwswVaS1OU5+KSkM+Ib/eMJweGLwD3ZYc0jjE/p47fUxN/U9R/3zB
+         sbGV/G3Xprz5wYdG1cWZqBBFKRk4MU3xUe6XihE05kNXEJk/f7X3CLZvOY4uMUi5Kffo
+         5SFUUY8ShIh1Cy0SqwiX47Oqy5URbRszIfkScrvh0CY2jKHqidCsZt3vvJbK9hxjq6ab
+         3AXw==
+X-Gm-Message-State: AFqh2krI8J9C0dHb1WoLI33Jc6CQn4RJHxerkuBXmenvwhf8SNw7Yyaf
+        DwdFCOmNtZJC/9XB8/vckzfiEQ==
+X-Google-Smtp-Source: AMrXdXuSLrB/4Yal9O+dE3vloHptxIe4v96pa+K0yU3MXj7aUevxYZtIqSE8JE+iVqmZ57coJ5RerA==
+X-Received: by 2002:a17:906:eb99:b0:7ad:c8d7:4fd9 with SMTP id mh25-20020a170906eb9900b007adc8d74fd9mr11284421ejb.36.1674137546286;
+        Thu, 19 Jan 2023 06:12:26 -0800 (PST)
+Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
+        by smtp.gmail.com with ESMTPSA id kz11-20020a17090777cb00b007aece68483csm16450322ejc.193.2023.01.19.06.12.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jan 2023 06:12:25 -0800 (PST)
+Message-ID: <3ead87e3-7ba6-4455-8f21-0e482df4cee9@linaro.org>
+Date:   Thu, 19 Jan 2023 15:12:21 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1674137304.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 6/6] ARM: dts: qcom: apq8064: use hdmi_phy for the MMCC's
+ hdmipll clock
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230119132219.2479775-1-dmitry.baryshkov@linaro.org>
+ <20230119132219.2479775-7-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230119132219.2479775-7-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible strings for MT7981 to existing binding documenation
-at mediatek,apmixedsys.yaml and mediatek,topckgen.yaml.
 
-Signed-off-by: Jianhui Zhao <zhaojh329@gmail.com>
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml | 1 +
- Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml   | 1 +
- 2 files changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
-index 731bfe0408c20..dae25dba4ba69 100644
---- a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
-+++ b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
-@@ -20,6 +20,7 @@ properties:
-       - enum:
-           - mediatek,mt6797-apmixedsys
-           - mediatek,mt7622-apmixedsys
-+          - mediatek,mt7981-apmixedsys
-           - mediatek,mt7986-apmixedsys
-           - mediatek,mt8135-apmixedsys
-           - mediatek,mt8173-apmixedsys
-diff --git a/Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml b/Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml
-index 81531b5b0db79..0fdf564148334 100644
---- a/Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml
-+++ b/Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml
-@@ -35,6 +35,7 @@ properties:
-               - mediatek,mt6779-topckgen
-               - mediatek,mt6795-topckgen
-               - mediatek,mt7629-topckgen
-+              - mediatek,mt7981-topckgen
-               - mediatek,mt7986-topckgen
-               - mediatek,mt8167-topckgen
-               - mediatek,mt8183-topckgen
--- 
-2.39.1
+On 19.01.2023 14:22, Dmitry Baryshkov wrote:
+> Link hdmi_phy as a clock provider of "hdmipll" clock to the MMCC.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
+Konrad
+>  arch/arm/boot/dts/qcom-apq8064.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+> index 82c795beb8a1..b7e5b45e1c04 100644
+> --- a/arch/arm/boot/dts/qcom-apq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+> @@ -867,7 +867,7 @@ mmcc: clock-controller@4000000 {
+>  				 <&dsi0_phy 0>,
+>  				 <0>,
+>  				 <0>,
+> -				 <0>;
+> +				 <&hdmi_phy>;
+>  			clock-names = "pxo",
+>  				      "pll3",
+>  				      "pll8_vote",
