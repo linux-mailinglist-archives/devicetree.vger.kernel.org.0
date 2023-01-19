@@ -2,218 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9455D673D5D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87184673D7B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:27:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230503AbjASPVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 10:21:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58786 "EHLO
+        id S230271AbjASP1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 10:27:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230421AbjASPVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:21:09 -0500
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2589486EEA;
-        Thu, 19 Jan 2023 07:20:59 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        with ESMTP id S229844AbjASP1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:27:45 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5372D457C4
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:27:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674142063; x=1705678063;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Fan4CH7rMTs971QPB7GBxYLxAh59SKl4VCqfYSc+19Y=;
+  b=nOZ+oq1su/uVZQU5y4lleJa7VAfgCO0fZ9tROwYUZ+91JRQBfqIqF+BC
+   r+8wFxDQmsJ0uhZ9nCBaaqjdYMS/RkK1i3hXhuVrm6o6VKSORkJP7IjT0
+   5y+DnuDZTdsRoI+ucyY5GW66RVbn2f41zAEDepuNu+WzcNWbxQlAENmOZ
+   1Ez++1lbwlKMDsFvZNSmxr+T5+artvNWjyEpPsD3lBCRD9h1C9zI/Gb4K
+   wSbxFjh9rX0lyBs0zhdtDAqZu1FDEceKeM8fwmIXxIq6p1OiyXruFYeY8
+   KccWSelQYelTQq52Pset7A03GHeZhDZNiD/lH85GdMEHi7YKVOK0bDHX+
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
+   d="scan'208";a="28538910"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 19 Jan 2023 16:27:41 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 19 Jan 2023 16:27:41 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 19 Jan 2023 16:27:41 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674142061; x=1705678061;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Fan4CH7rMTs971QPB7GBxYLxAh59SKl4VCqfYSc+19Y=;
+  b=Y4ZXSfPsmou0BqtmC/HsSTlVirenHbure0fK64PMB2e7zhGlocBbFGlc
+   sX7432u5lFS/Va/Nk0HlIxGPqW1QxCG5edSCmA/+IGRh4s6Qmrpbk23Zl
+   uLjQEV6hL3V14Gj//zZ77lwR8JTW7Khq3dz6WibOmsn+IOm8g3GjAzhrF
+   2NOZWf6r/Ahv5YRLQQ/b7Q06KagHQ4KMojVwpxSua+hGbD513/HnKN6Ti
+   PS2RBKZFzSqKKRrdDt5N19DcigYVJeDcWP9Vpd/5WHnucuK0t8X+9IWLp
+   mU8YaPocdX3ZasBz06ZSj89rNTJRaZvpcmE3AyCws7H+O5NSiNqiitOjp
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
+   d="scan'208";a="28538909"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 19 Jan 2023 16:27:41 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 9E6515CF87;
-        Thu, 19 Jan 2023 15:20:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1674141658; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+bijK/57LraMRcjjukMyAka7jOBDKoo0azbec51CHr4=;
-        b=aLJ7Vi2tZbfSMbh9ss7dORVlM8id/4iLLKhIrCjiomfNdmWwR9UZ1xfTak0JsTkNhgLkpM
-        a+gUmPYK5M/Qf5eij+TyiJimAONbBWFm+PvPAusQQWq5mTZULw34cUpolO2ZstwpL3RZOj
-        oZ1tGvug+b533OVKzZW6/7+dpFV+jYE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1674141658;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+bijK/57LraMRcjjukMyAka7jOBDKoo0azbec51CHr4=;
-        b=WY5LGUnAknFE8AiMAiWsO2W8ECPmG4VaLrnp26dq8MSXkOMt3uLo3hVHWdWphPfwCx95h6
-        r5AlzaN3yNBKD7AQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 697F7134F5;
-        Thu, 19 Jan 2023 15:20:58 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id mKmTGNpfyWMIRAAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Thu, 19 Jan 2023 15:20:58 +0000
-Message-ID: <190c1c68-0249-a291-f2ab-45c9a7f716d7@suse.de>
-Date:   Thu, 19 Jan 2023 16:20:57 +0100
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 4F701280056;
+        Thu, 19 Jan 2023 16:27:41 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 9/9] [DNI] ARM: multi_v7_defconfig: Enable CONFIG_ARM_LPAE for multi_v7_config
+Date:   Thu, 19 Jan 2023 16:27:39 +0100
+Message-ID: <2617470.BddDVKsqQX@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <f1de9cd9-a163-4b56-adf8-319eaf85e38e@app.fastmail.com>
+References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com> <20230119144236.3541751-10-alexander.stein@ew.tq-group.com> <f1de9cd9-a163-4b56-adf8-319eaf85e38e@app.fastmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2] of: Fix of platform build on powerpc due to bad of
- disaply code
-Content-Language: en-US
-To:     =?UTF-8?Q?Michal_Such=c3=a1nek?= <msuchanek@suse.de>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        "Erhard F." <erhard_f@mailbox.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-References: <20230119095323.4659-1-msuchanek@suse.de>
- <8a9f7ba5-37a4-0927-4ab2-d212f1b098a9@csgroup.eu>
- <57e026bf-c412-0c47-8956-b565894948e0@suse.de>
- <20230119132330.GP16547@kitsune.suse.cz>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20230119132330.GP16547@kitsune.suse.cz>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------hrL0XHWHA5bbnro0AHMZM0MN"
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------hrL0XHWHA5bbnro0AHMZM0MN
-Content-Type: multipart/mixed; boundary="------------hXohnY0kZhhQ8LRpKgUVVVWJ";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: =?UTF-8?Q?Michal_Such=c3=a1nek?= <msuchanek@suse.de>
-Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
- "Erhard F." <erhard_f@mailbox.org>, Rob Herring <robh+dt@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE"
- <devicetree@vger.kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- open list <linux-kernel@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Message-ID: <190c1c68-0249-a291-f2ab-45c9a7f716d7@suse.de>
-Subject: Re: [PATCH v2] of: Fix of platform build on powerpc due to bad of
- disaply code
-References: <20230119095323.4659-1-msuchanek@suse.de>
- <8a9f7ba5-37a4-0927-4ab2-d212f1b098a9@csgroup.eu>
- <57e026bf-c412-0c47-8956-b565894948e0@suse.de>
- <20230119132330.GP16547@kitsune.suse.cz>
-In-Reply-To: <20230119132330.GP16547@kitsune.suse.cz>
+Hi Arnd,
 
---------------hXohnY0kZhhQ8LRpKgUVVVWJ
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+thanks for the fast response.
 
-SGkNCg0KQW0gMTkuMDEuMjMgdW0gMTQ6MjMgc2NocmllYiBNaWNoYWwgU3VjaMOhbmVrOg0K
-PiBPbiBUaHUsIEphbiAxOSwgMjAyMyBhdCAwMjoxMToxM1BNICswMTAwLCBUaG9tYXMgWmlt
-bWVybWFubiB3cm90ZToNCj4+IEhpDQo+Pg0KPj4gQW0gMTkuMDEuMjMgdW0gMTE6MjQgc2No
-cmllYiBDaHJpc3RvcGhlIExlcm95Og0KPj4+DQo+Pj4NCj4+PiBMZSAxOS8wMS8yMDIzIMOg
-IDEwOjUzLCBNaWNoYWwgU3VjaGFuZWsgYSDDqWNyaXTCoDoNCj4+Pj4gVGhlIGNvbW1pdCAy
-ZDY4MWQ2YTIzYTEgKCJvZjogTWFrZSBvZiBmcmFtZWJ1ZmZlciBkZXZpY2VzIHVuaXF1ZSIp
-DQo+Pj4+IGJyZWFrcyBidWlsZCBiZWNhdXNlIG9mIHdyb25nIGFyZ3VtZW50IHRvIHNucHJp
-bnRmLiBUaGF0IGNlcnRhaW5seQ0KPj4+PiBhdm9pZHMgdGhlIHJ1bnRpbWUgZXJyb3IgYnV0
-IGlzIG5vdCB0aGUgaW50ZW5kZWQgb3V0Y29tZS4NCj4+Pj4NCj4+Pj4gQWxzbyB1c2Ugc3Rh
-bmRhcmQgZGV2aWNlIG5hbWUgZm9ybWF0IG9mLWRpc3BsYXkuTiBmb3IgYWxsIGNyZWF0ZWQN
-Cj4+Pj4gZGV2aWNlcy4NCj4+Pj4NCj4+Pj4gRml4ZXM6IDJkNjgxZDZhMjNhMSAoIm9mOiBN
-YWtlIG9mIGZyYW1lYnVmZmVyIGRldmljZXMgdW5pcXVlIikNCj4+Pj4gU2lnbmVkLW9mZi1i
-eTogTWljaGFsIFN1Y2hhbmVrIDxtc3VjaGFuZWtAc3VzZS5kZT4NCj4+Pj4gLS0tDQo+Pj4+
-IHYyOiBVcGRhdGUgdGhlIGRldmljZSBuYW1lIGZvcm1hdA0KPj4+PiAtLS0NCj4+Pj4gICAg
-IGRyaXZlcnMvb2YvcGxhdGZvcm0uYyB8IDEyICsrKysrKysrLS0tLQ0KPj4+PiAgICAgMSBm
-aWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkNCj4+Pj4NCj4+
-Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvb2YvcGxhdGZvcm0uYyBiL2RyaXZlcnMvb2YvcGxh
-dGZvcm0uYw0KPj4+PiBpbmRleCBmMmE1ZDY3OWEzMjQuLjhjMWIxZGUyMjAzNiAxMDA2NDQN
-Cj4+Pj4gLS0tIGEvZHJpdmVycy9vZi9wbGF0Zm9ybS5jDQo+Pj4+ICsrKyBiL2RyaXZlcnMv
-b2YvcGxhdGZvcm0uYw0KPj4+PiBAQCAtNTI1LDcgKzUyNSw5IEBAIHN0YXRpYyBpbnQgX19p
-bml0IG9mX3BsYXRmb3JtX2RlZmF1bHRfcG9wdWxhdGVfaW5pdCh2b2lkKQ0KPj4+PiAgICAg
-CWlmIChJU19FTkFCTEVEKENPTkZJR19QUEMpKSB7DQo+Pj4+ICAgICAJCXN0cnVjdCBkZXZp
-Y2Vfbm9kZSAqYm9vdF9kaXNwbGF5ID0gTlVMTDsNCj4+Pj4gICAgIAkJc3RydWN0IHBsYXRm
-b3JtX2RldmljZSAqZGV2Ow0KPj4+PiAtCQlpbnQgZGlzcGxheV9udW1iZXIgPSAxOw0KPj4+
-PiArCQlpbnQgZGlzcGxheV9udW1iZXIgPSAwOw0KPj4+PiArCQljaGFyIGJ1ZlsxNF07DQo+
-Pj4NCj4+PiBDYW4geW91IGRlY2xhcmUgdGhhdCBpbiB0aGUgZm9yIGJsb2NrIHdoZXJlIGl0
-IGlzIHVzZWQgaW5zdGVhZCA/DQo+Pj4NCj4+Pj4gKwkJY2hhciAqb2ZfZGlzcGxheV9mb3Jt
-YXQgPSAib2YtZGlzcGxheS4lZCI7DQo+Pj4NCj4+PiBTaG91bGQgYmUgY29uc3QgPw0KPj4N
-Cj4+IFRoYXQgc2hvdWxkIGJlIHN0YXRpYyBjb25zdCBvZl9kaXNwbGF5X2Zvcm1hdFtdID0g
-dGhlbg0KPiANCj4gV2h5PyBJdCBzb3VuZHMgY29tcGxldGVseSBmaW5lIHRvIGhhdmUgYSBj
-b25zdCBwb2ludGVyIHRvIGEgc3RyaW5nDQo+IGNvbnN0YXRudC4NCg0KR2VuZXJhbGx5IHNw
-ZWFraW5nOg0KDQonc3RhdGljJyBiZWNhdXNlIHlvdXIgY29uc3QgcG9pbnRlciBpcyB0aGVu
-IG5vdCBhIGxvY2FsIHZhcmlhYmxlLCBzbyBpdCANCnRha2VzIHByZXNzdXJlIG9mZiB0aGUg
-c3RhY2suIEZvciBnbG9iYWwgdmFyaWFibGVzLCB5b3UgZG9uJ3Qgd2FudCB0aGVtIA0KdG8g
-c2hvdyB1cCBpbiBhbnkgbGlua2VyIHN5bWJvbCB0YWJsZXMuDQoNClRoZSBzdHJpbmcgIm9m
-LWRpc3BsYXkuJWQiIGlzIHN0b3JlZCBhcyBhbiBhcnJheSBpbiB0aGUgRUxGIGRhdGEgDQpz
-ZWN0aW9uLiBBbmQgeW91ciBjaGFyIHBvaW50ZXIgaXMgYSByZWZlcmVuY2UgdG8gdGhhdCBh
-cnJheS4gRm9yIHN0YXRpYyANCnBvaW50ZXJzLCB0aGVzZSBpbmRpcmVjdGlvbnMgdGFrZSBD
-UFUgY3ljbGVzIHRvIHVwZGF0ZSB3aGVuIHRoZSBsb2FkZXIgDQpoYXMgdG8gcmVsb2NhdGUg
-c2VjdGlvbnMuIElmIHlvdSBkZWNsYXJlIG9mX2Rpc3BsYXlfZm9ybWF0W10gZGlyZWN0bHkg
-YXMgDQphcnJheSwgeW91IGF2b2lkIHRoZSByZWZlcmVuY2UgYW5kIHdvcmsgZGlyZWN0bHkg
-d2l0aCB0aGUgYXJyYXkuDQoNCk9mIGNvdXJzZSwgdGhpcyBpcyBhIGtlcm5lbCBtb2R1bGUg
-YW5kIHRoZSBzdHJpbmcgaXMgc2VsZi1jb250YWluZWQgDQp3aXRoaW4gdGhlIGZ1bmN0aW9u
-LiBTbyB0aGUgY29tcGlsZXIgY2FuIHByb2JhYmx5IGRldGVjdCB0aGF0IGFuZCANCm9wdGlt
-aXplIHRoZSBjb2RlIHRvIGJlIGxpa2UgdGhlICdzdGF0aWMgY29uc3QgW10nIHZlcnNpb24u
-IEl0J3Mgc3RpbGwgDQpnb29kIHRvIGZvbGxvdyBiZXN0IHByYWN0aWNlcywgYXMgc29tZW9u
-ZSBtaWdodCBjb3B5IGZyb20gdGhpcyBmdW5jdGlvbi4NCg0KQmVzdCByZWdhcmRzDQpUaG9t
-YXMNCg0KPiANCj4gVGhhbmtzDQo+IA0KPiBNaWNoYWwNCj4gDQo+Pg0KPj4+DQo+Pj4+ICAg
-ICAJCWludCByZXQ7DQo+Pj4+ICAgICAJCS8qIENoZWNrIGlmIHdlIGhhdmUgYSBNYWNPUyBk
-aXNwbGF5IHdpdGhvdXQgYSBub2RlIHNwZWMgKi8NCj4+Pj4gQEAgLTU1Niw3ICs1NTgsMTAg
-QEAgc3RhdGljIGludCBfX2luaXQgb2ZfcGxhdGZvcm1fZGVmYXVsdF9wb3B1bGF0ZV9pbml0
-KHZvaWQpDQo+Pj4+ICAgICAJCQlpZiAoIW9mX2dldF9wcm9wZXJ0eShub2RlLCAibGludXgs
-b3BlbmVkIiwgTlVMTCkgfHwNCj4+Pj4gICAgIAkJCSAgICAhb2ZfZ2V0X3Byb3BlcnR5KG5v
-ZGUsICJsaW51eCxib290LWRpc3BsYXkiLCBOVUxMKSkNCj4+Pj4gICAgIAkJCQljb250aW51
-ZTsNCj4+Pj4gLQkJCWRldiA9IG9mX3BsYXRmb3JtX2RldmljZV9jcmVhdGUobm9kZSwgIm9m
-LWRpc3BsYXkiLCBOVUxMKTsNCj4+Pj4gKwkJCXJldCA9IHNucHJpbnRmKGJ1Ziwgc2l6ZW9m
-KGJ1ZiksIG9mX2Rpc3BsYXlfZm9ybWF0LCBkaXNwbGF5X251bWJlcisrKTsNCj4+Pj4gKwkJ
-CWlmIChyZXQgPj0gc2l6ZW9mKGJ1ZikpDQo+Pj4+ICsJCQkJY29udGludWU7DQo+Pj4NCj4+
-Pg0KPj4+IENhbiB5b3UgbWFrZSBidWYgYmlnIGVub3VnaCB0byBhdm9pZCB0aGF0ID8NCj4+
-Pg0KPj4+IEFuZCBieSB0aGUgd2F5IGNvdWxkIGl0IGJlIGNhbGxlZCBzb21ldGhpbmcgZWxz
-ZSB0aGFuICdidWYnID8NCj4+Pg0KPj4+IFNlZSBleGVtcGxlIGhlcmUgOg0KPj4+IGh0dHBz
-Oi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y2LjEvc291cmNlL2RyaXZlcnMvZnNpL2Zz
-aS1vY2MuYyNMNjkwDQo+Pj4NCj4+Pg0KPj4+PiArCQkJZGV2ID0gb2ZfcGxhdGZvcm1fZGV2
-aWNlX2NyZWF0ZShub2RlLCBidWYsIE5VTEwpOw0KPj4+PiAgICAgCQkJaWYgKFdBUk5fT04o
-IWRldikpDQo+Pj4+ICAgICAJCQkJcmV0dXJuIC1FTk9NRU07DQo+Pj4+ICAgICAJCQlib290
-X2Rpc3BsYXkgPSBub2RlOw0KPj4+PiBAQCAtNTY0LDEwICs1NjksOSBAQCBzdGF0aWMgaW50
-IF9faW5pdCBvZl9wbGF0Zm9ybV9kZWZhdWx0X3BvcHVsYXRlX2luaXQodm9pZCkNCj4+Pj4g
-ICAgIAkJfQ0KPj4+PiAgICAgCQlmb3JfZWFjaF9ub2RlX2J5X3R5cGUobm9kZSwgImRpc3Bs
-YXkiKSB7DQo+Pj4+IC0JCQljaGFyICpidWZbMTRdOw0KPj4+PiAgICAgCQkJaWYgKCFvZl9n
-ZXRfcHJvcGVydHkobm9kZSwgImxpbnV4LG9wZW5lZCIsIE5VTEwpIHx8IG5vZGUgPT0gYm9v
-dF9kaXNwbGF5KQ0KPj4+PiAgICAgCQkJCWNvbnRpbnVlOw0KPj4+PiAtCQkJcmV0ID0gc25w
-cmludGYoYnVmLCAib2YtZGlzcGxheS0lZCIsIGRpc3BsYXlfbnVtYmVyKyspOw0KPj4+PiAr
-CQkJcmV0ID0gc25wcmludGYoYnVmLCBzaXplb2YoYnVmKSwgb2ZfZGlzcGxheV9mb3JtYXQs
-IGRpc3BsYXlfbnVtYmVyKyspOw0KPj4+PiAgICAgCQkJaWYgKHJldCA+PSBzaXplb2YoYnVm
-KSkNCj4+Pj4gICAgIAkJCQljb250aW51ZTsNCj4+Pj4gICAgIAkJCW9mX3BsYXRmb3JtX2Rl
-dmljZV9jcmVhdGUobm9kZSwgYnVmLCBOVUxMKTsNCj4+DQo+PiAtLSANCj4+IFRob21hcyBa
-aW1tZXJtYW5uDQo+PiBHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQo+PiBTVVNFIFNvZnR3
-YXJlIFNvbHV0aW9ucyBHZXJtYW55IEdtYkgNCj4+IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7D
-vHJuYmVyZywgR2VybWFueQ0KPj4gKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KPj4gR2Vz
-Y2jDpGZ0c2bDvGhyZXI6IEl2byBUb3Rldg0KPiANCj4gDQo+IA0KDQotLSANClRob21hcyBa
-aW1tZXJtYW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNv
-bHV0aW9ucyBHZXJtYW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywg
-R2VybWFueQ0KKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6
-IEl2byBUb3Rldg0K
+Am Donnerstag, 19. Januar 2023, 16:09:05 CET schrieb Arnd Bergmann:
+> On Thu, Jan 19, 2023, at 15:42, Alexander Stein wrote:
+> > This is necessary to support PCIe on LS1021A.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> 
+> Can you explain why this is actually required? I can see that the
+> ranges in the PCIe device point to a high address (0x4000000000,
+> 2^40), but I can't tell if this is hardwired in the SoC or a
+> setting that is applied by software (either the bootloader or
+> the PCIe driver).
 
---------------hXohnY0kZhhQ8LRpKgUVVVWJ--
+The RM ([1]) memory map (Table 2-1) says that 'PCI Express 1' is located at 
+'400000_0000', 'PCI Express 2' at '480000_0000', so I assume this is hardcoded 
+in SoC.
+It also explicitly lists in that table PCIe 1&2 is only accessible with 40-bit 
+addressing.
 
---------------hrL0XHWHA5bbnro0AHMZM0MN
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+> If you can reprogram the memory map, I would expect this to fit
+> easily into the 32-bit address space, with 1GB for DDR3 memory
+> and 1GB for PCIe BARs.
 
------BEGIN PGP SIGNATURE-----
+I'm not sure which part of memory map you can reprogram and where, but I guess 
+this is fixed on this SoC.
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPJX9kFAwAAAAAACgkQlh/E3EQov+Ap
-thAAluEwlz7dsOI61KA7WGHTsw934yyIYBEvpfpsoRZmIesT9cWO7JcK8NogJ+kjFcQuiNtL3Bbl
-9DdCQWgzg5N/G8HbRezeApkF/mN4wnaxgKiwEnCHha93PDzoxizE0uRvtCdL8p44fxe22Ua4dktr
-Wcer/VjPC+c5e2UqnfpT7NQWrsmBBqnW1DcYc9m1+9nf4BJnuGdFHbyB0vTkDG4g0XSFrS/AnwAi
-rCCdluB9ge2dS2o6Homp1dOn4t+DSKz25mmD8lHMtNrp7cmK+oG0BGICvJzD5cfPkKUvDuOJb88B
-zx4GOpVJQUKMgagWE0cLQlTLnT6idtZi9bd5FprelUrmY41xLxILAoSnty8J6mMOPBwPcFFRxjx/
-f6kNTtQ7qRJ49uBtde4NNEMXsgPLX88agNRofGraXI4zpYmkXEa4NMFA5qDM5Xpe/sd1E+XEzjs/
-oMpN1CEIwXfvTuWODmBHdJiBC9IJ9dd0aspM8IeL4fR71hcEsO7O9AeF0Wvdrw9ekRgHHtkyGjpF
-Z0XQGTYkL0+Y4GG+WbwdWoCX528SBpvPMXXEA7+DNb2UtLLB+kfYqP1j1FdDGtgrxPY5tG+Z/O5l
-vlegW9csMIx0y/kytWgmGG4Wt5ksf6A00A/drWDU+XUqqYWWnr841zO6KNVzsRYk1zBaBTjeYEgX
-Jok=
-=YC4Z
------END PGP SIGNATURE-----
+> I don't mind having a defconfig with LPAE enabled, I think this
+> can be done using a Makefile target that applies a config
+> fragment on top of the normal multi_v7_defconfig, you can find
+> some examples in arch/powerpc/configs/*.config.
 
---------------hrL0XHWHA5bbnro0AHMZM0MN--
+Ah, nice. This can be a good starter. Thanks.
+
+Best regards,
+Alexander
+
+[1] https://www.nxp.com/webapp/Download?colCode=LS1021ARM
+
+
+
