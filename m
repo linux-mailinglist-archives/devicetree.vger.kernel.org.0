@@ -2,118 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAEC0673523
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:10:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB6DF673548
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:16:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229834AbjASKKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 05:10:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44842 "EHLO
+        id S230005AbjASKQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 05:16:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbjASKKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:10:04 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A605066FB6;
-        Thu, 19 Jan 2023 02:10:03 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1F4D77EC;
-        Thu, 19 Jan 2023 11:10:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674123001;
-        bh=KeS3ZYlh0v1hgL0ubBbk0cm/I4qwuUYr/hTn/NPRngw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jC2PNGu9dua0vIbdOBh1G+iQ0MzFzcucrYoElYzktJUvYPo770BRKM3Lksy5LKOjn
-         VD7dMrirvMpZTaCupD6iBWTPWYnFJNHpYg9uq7Tu/Il4GfJsywW4TgpFx9O9Lxc77P
-         AG1sd5foL/PfPoZ1TR2hq7a15lL7LfdojcvU8YV0=
-Message-ID: <db2e7386-e625-5bad-0c99-bae633e96d80@ideasonboard.com>
-Date:   Thu, 19 Jan 2023 12:09:57 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v7 1/7] i2c: add I2C Address Translator (ATR) support
-Content-Language: en-US
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        with ESMTP id S229618AbjASKQy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:16:54 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C251ABD9
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 02:16:51 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id qx13so4276595ejb.13
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 02:16:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CCiWcJgs3v2UFVbhnt0FHWa8hkSYJwHrTQ1+qu+SAeE=;
+        b=ei1Np/Ve2C++EtWJmYhy9OJDbx3kjT4RHsjZwQlW399cQ9/zgOfUPzs1QAQCkqGFtm
+         JRejEIdaUl+wZCN53dyM7Jfaf8tVajvO6aRoaZ9CPoaCaFspo3lml9aj5l9ml/1swATk
+         XSzefJR16pn/F0ZfAHDkagIhIAw+i9lOcJqAzTgMVw0g7ItQN32s66YiRVqHSh6qZdZm
+         q4xVpBR9tacSF8RZmOX1KTBbvaIqvG0zAmQOkzrKrQjPedzlp0aVruOOMDQ0DIbc5LIv
+         2khlvNMtnTlEFKsu7nb+/u6vgycAznZE4of0sAwXKIWsFpKMeMhtf7ComrQRgs8ybZMs
+         1JNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CCiWcJgs3v2UFVbhnt0FHWa8hkSYJwHrTQ1+qu+SAeE=;
+        b=77BXF4aHIYKyWAAlxP7up5wUmMy21BD5SsOEwL4bTpajZIA2uLcXG+SlEQYI6/12pv
+         Wm6mOYE62Lg8gF/rBUWb3wus0zdUcIy+yjqoKHqCU3/m78TsummlPTnRrJM9iRJrVmay
+         tzphMm1xdJRHotMxYp9/w8jpMXDBCXG+D6zF8H8TVHPEi160Bg+ugVgl2/wrSpr7yUGC
+         SMNZJJlp/EvMKnfhxPKdDDXl5PdgED6cUMT8GVO+nsFGWPdP21AlLkfogx8V/CxBL78V
+         1c6z/+G3vtFI2oQwaZrZM/7X554WzZkm1DWQShpwNIPQYJQ2gp+8jjlp8WJdHpNbvCOd
+         mZcg==
+X-Gm-Message-State: AFqh2krJb+KpRf+LYGflUZerLjW/GT7IoV9DCrgAXJBpGBkCz568YStf
+        INbZm398tVETtMQaqC+cJYmj3g==
+X-Google-Smtp-Source: AMrXdXvGlBggF3OBnlkkzUFz3ravUut2adNhCG+1cPWiWMR83av0Rdob2kg6qIj/l53/pd4wUOALeQ==
+X-Received: by 2002:a17:906:774f:b0:870:94e:13f9 with SMTP id o15-20020a170906774f00b00870094e13f9mr10565932ejn.0.1674123410057;
+        Thu, 19 Jan 2023 02:16:50 -0800 (PST)
+Received: from localhost.localdomain (abxh150.neoplus.adsl.tpnet.pl. [83.9.1.150])
+        by smtp.gmail.com with ESMTPSA id x11-20020a170906b08b00b0084c62b7b7d8sm16083276ejy.187.2023.01.19.02.16.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 02:16:49 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org, bhupesh.sharma@linaro.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
- <20230118124031.788940-2-tomi.valkeinen@ideasonboard.com>
- <Y8gA+cz9m7PaEhfP@smile.fi.intel.com> <20230118181753.7a325953@booty>
- <Y8gu4mlXUlyiFKZD@smile.fi.intel.com> <20230119092115.02cbbab3@booty>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230119092115.02cbbab3@booty>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: qcom: sm6115: Add mdss_ prefix to mdss nodes
+Date:   Thu, 19 Jan 2023 11:16:43 +0100
+Message-Id: <20230119101644.10711-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 10:21, Luca Ceresoli wrote:
+Add a mdss_ prefix to mdss nodes to keep them all near each other
+when referencing them by label in device DTs.
 
-<snip>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm6115.dtsi | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
->>>>> +void i2c_atr_set_driver_data(struct i2c_atr *atr, void *data)
->>>>> +{
->>>>> +	atr->priv = data;
->>>>> +}
->>>>> +EXPORT_SYMBOL_NS_GPL(i2c_atr_set_driver_data, I2C_ATR);
->>>>> +
->>>>> +void *i2c_atr_get_driver_data(struct i2c_atr *atr)
->>>>> +{
->>>>> +	return atr->priv;
->>>>> +}
->>>>> +EXPORT_SYMBOL_NS_GPL(i2c_atr_get_driver_data, I2C_ATR);
->>>>
->>>> Just to be sure: Is it really _driver_ data and not _device instance_ data?
->>>
->>> It is device instance data indeed. I don't remember why this got
->>> changed, but in v3 it was i2c_atr_set_clientdata().
->>
->> It's me who was and is against calling it clientdata due to possible
->> confusion with i2c_set/get_clientdata() that is about *driver data*.
->> I missed that time the fact that this is about device instance data.
->> I dunno which name would be better in this case, i2c_atr_set/get_client_priv() ?
-> 
-> Not sure I'm following you here. The i2c_atr_set_clientdata() name was
-> given for similarity with i2c_set_clientdata(). The latter wraps
-> dev_set_drvdata(), which sets `struct device`->driver_data. There is
-> one driver_data per each `struct device` instance, not per each driver.
-> The same goes for i2c_atr_set_driver_data(): there is one priv pointer
-> per each `struct i2c_atr` instance.
-
-I'm a bit confused. What is "driver data" and what is "device instance 
-data"?
-
-This deals with the driver's private data, where the "driver" is the 
-owner/creator of the i2c-atr. The i2c-atr itself doesn't have a device 
-(it's kind of part of the owner's device), and there's no driver in 
-i2c-atr.c
-
-I don't like "client" here, as it reminds me of i2c_client (especially 
-as we're in i2c context).
-
-What about i2c_atr_set_user_data()? Or "owner_data"?
-
-  Tomi
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index 08f93b1dc2f8..c0f9bdc25508 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -1097,7 +1097,7 @@ ports {
+ 					port@0 {
+ 						reg = <0>;
+ 						dpu_intf1_out: endpoint {
+-							remote-endpoint = <&dsi0_in>;
++							remote-endpoint = <&mdss_dsi0_in>;
+ 						};
+ 					};
+ 				};
+@@ -1132,7 +1132,7 @@ opp-384000000 {
+ 				};
+ 			};
+ 
+-			dsi0: dsi@5e94000 {
++			mdss_dsi0: dsi@5e94000 {
+ 				compatible = "qcom,dsi-ctrl-6g-qcm2290";
+ 				reg = <0x05e94000 0x400>;
+ 				reg-names = "dsi_ctrl";
+@@ -1155,11 +1155,11 @@ dsi0: dsi@5e94000 {
+ 
+ 				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
+ 						  <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
+-				assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
++				assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
+ 
+ 				operating-points-v2 = <&dsi_opp_table>;
+ 				power-domains = <&rpmpd SM6115_VDDCX>;
+-				phys = <&dsi0_phy>;
++				phys = <&mdss_dsi0_phy>;
+ 
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+@@ -1172,14 +1172,14 @@ ports {
+ 
+ 					port@0 {
+ 						reg = <0>;
+-						dsi0_in: endpoint {
++						mdss_dsi0_in: endpoint {
+ 							remote-endpoint = <&dpu_intf1_out>;
+ 						};
+ 					};
+ 
+ 					port@1 {
+ 						reg = <1>;
+-						dsi0_out: endpoint {
++						mdss_dsi0_out: endpoint {
+ 						};
+ 					};
+ 				};
+@@ -1204,7 +1204,7 @@ opp-187500000 {
+ 				};
+ 			};
+ 
+-			dsi0_phy: phy@5e94400 {
++			mdss_dsi0_phy: phy@5e94400 {
+ 				compatible = "qcom,dsi-phy-14nm-2290";
+ 				reg = <0x05e94400 0x100>,
+ 				      <0x05e94500 0x300>,
+@@ -1229,8 +1229,8 @@ dispcc: clock-controller@5f00000 {
+ 			reg = <0x05f00000 0x20000>;
+ 			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+ 				 <&sleep_clk>,
+-				 <&dsi0_phy 0>,
+-				 <&dsi0_phy 1>,
++				 <&mdss_dsi0_phy 0>,
++				 <&mdss_dsi0_phy 1>,
+ 				 <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>;
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+-- 
+2.39.1
 
