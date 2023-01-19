@@ -2,150 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FAFF67392A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:01:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 722FF673932
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:02:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230398AbjASNB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:01:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43168 "EHLO
+        id S230378AbjASNCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 08:02:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230210AbjASNBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:01:20 -0500
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2085.outbound.protection.outlook.com [40.107.94.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9FA792BF;
-        Thu, 19 Jan 2023 05:01:07 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c/qYN3Wq0CUtvTgk3EhvH3vEVWr9WwxNkiUapQ6gemjpRe2VV1MXPeRcA2ixYbrTKsvErxZ7XYLxPgMIi6gNCgMv7pp1DnOJldO1iPZ+Xu9Gm1PvnPf6vfrsMUK9itYqNDHulLjiNX4K9iJ/kqLYI/2GkQNkG6nJfT7nMQub0NrBi/oQTLGNxIb9amvXoXogX9BamhTUj9TMkvsWqtCU0O+2HjP40k4Moe1kZogQQt62bbER+oNWmZ0DezRDJw/Wl5SEXn51d1zwPGess8Rwiod8y1LRDeQhVvQpWdenkXEg2eGAeJodltEeOS+RPNTfMXF5ybXG0ABLKvTgEe358w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i76HrzGz6HNiRqJSxWsq9FQ6mSvhq5PmxYvx/HcYyrs=;
- b=fb2xJM5lnyrDTiEMN9hcZADbxeT9On8fmIJKR6gjRVqnVEg6txptf+T3ImBzCKRfWQH623WMPIU5L4PSVCT0aQY5YHbcjacoFBlhf/CPCOtAfe75HEv8WzaS4jrKFGNTiA7o4s1cGczVGVn5ifxED4wRWWMd7bRolKhNtqUKQKC5V7icG7cI8gci0OcrAyxcrxA0g0RZDJehmuCEOySuV+E9dsIEWsNiey0mLwqcB1GngZaFwYAJixq4NNdEUeyu/1dwMzUE0eVMlN8nyUqk1KXlQ1cy7LbQLGjkqmrAScfr7aUIU/TCq3cVOg+nULdQxzgJ5amlV20j1I3DVUMuxA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i76HrzGz6HNiRqJSxWsq9FQ6mSvhq5PmxYvx/HcYyrs=;
- b=k2xFlmGcj7BmMQKtddcS7HrrS4yk4TSrqZdz+m7FKwlsgJXHiZbLQ3oguM2wsruvUoCN+Hn9fQZVpxklAbqDXEHUYS23SrWURTW2TezCsPMAL70oow8W9RMedFG3127ITx311+YxBrYclOeg8sAm93rFRsZ/eE/OBHNLtI9rCRA=
-Received: from BN9PR03CA0402.namprd03.prod.outlook.com (2603:10b6:408:111::17)
- by DM6PR12MB4355.namprd12.prod.outlook.com (2603:10b6:5:2a3::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Thu, 19 Jan
- 2023 13:01:05 +0000
-Received: from BL02EPF000108EB.namprd05.prod.outlook.com
- (2603:10b6:408:111:cafe::d) by BN9PR03CA0402.outlook.office365.com
- (2603:10b6:408:111::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.25 via Frontend
- Transport; Thu, 19 Jan 2023 13:01:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF000108EB.mail.protection.outlook.com (10.167.241.200) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6002.11 via Frontend Transport; Thu, 19 Jan 2023 13:01:05 +0000
-Received: from [10.254.241.50] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 19 Jan
- 2023 07:01:01 -0600
-Message-ID: <ce401cab-a602-40fc-4033-8005a7903505@amd.com>
-Date:   Thu, 19 Jan 2023 14:00:59 +0100
+        with ESMTP id S230348AbjASNCH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:02:07 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7FC27929F;
+        Thu, 19 Jan 2023 05:01:40 -0800 (PST)
+Received: from [192.168.2.218] (109-252-117-89.nat.spd-mgts.ru [109.252.117.89])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: dmitry.osipenko)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 98A3D6600869;
+        Thu, 19 Jan 2023 13:01:37 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1674133298;
+        bh=fjUaht6DPGtzehSfi1kenXnsEEFgFtJ1Jb/3qy0Vx2U=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=azaiCvD3FzN4KWRBkluCI07EtjI1o7ek8bp69iHSYLlcgS/TGcLrqOYkaq74ETHRI
+         gXqbe6Tu7hOU70g/PHJGzrxpDTq6p8ADIr69y8cy1C0AVGZZmcnLKA3P2A4SyhSmsn
+         uH1aTmAkaZ7zmu8gynVBhNshnRBWfwK4LDiL/aSL4YNoOGN12dgpGY5639ti+EzW8Y
+         apNLjR7j3/FhMNWJ5OzCDP+Nqd00yTnCcoRjKi53fB4xZRZPn3T3EnNrXeeDakF/xl
+         Ulka15dWFSGGKU2Zi5XtDuNlGbRt5VxH6w2/YYf1faHldEWvkxyKjH0G6bzn3VFoDg
+         eyaPjV+yZS6gQ==
+Message-ID: <65e596c9-a472-d0b8-ec2f-6935d647ddb2@collabora.com>
+Date:   Thu, 19 Jan 2023 16:01:34 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2] ARM: dts: zynq: Add xlnx prefix to GEM compatible
- string
+ Thunderbird/102.6.0
+Subject: Re: [Patch v1 08/10] cpufreq: tegra194: add OPP support and set
+ bandwidth
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Sumit Gupta <sumitg@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>, treding@nvidia.com,
+        krzysztof.kozlowski@linaro.org, viresh.kumar@linaro.org,
+        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        sanjayc@nvidia.com, ksitaraman@nvidia.com, ishah@nvidia.com,
+        bbasu@nvidia.com, Rajkumar Kasirajan <rkasirajan@nvidia.com>
+References: <20221220160240.27494-1-sumitg@nvidia.com>
+ <20221220160240.27494-9-sumitg@nvidia.com>
+ <4e3e4485-ba22-eb47-fb95-e8d626160bc6@gmail.com>
+ <8e6d7dd3-1bdc-ee4b-0c1e-1ae9cd8e4f29@nvidia.com>
+ <8bd5cf36-e1fb-305c-08c5-3bbc80204866@collabora.com> <Y8kay0/AmjqhU2jO@orome>
 Content-Language: en-US
-To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <michal.simek@xilinx.com>, <git@xilinx.com>
-CC:     Harini Katakam <harini.katakam@amd.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <7768d5d68fe38dd8e9300e9c6e09c228e79b2862.1672909533.git.michal.simek@amd.com>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <7768d5d68fe38dd8e9300e9c6e09c228e79b2862.1672909533.git.michal.simek@amd.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000108EB:EE_|DM6PR12MB4355:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45d47cbb-eb84-488e-04fa-08dafa1d39d4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5yK2d76sydq1i2jF94A6OAfD832oPXLMC5Gm2940xXeO56tJjgldk8QXIErXhR90ZoqPh+H6IgNduqXXesBUqmgXdhSy5Lcnh+Rm6ddk1miJCcLjeD0T/NVBYohSYB3awm2OpXb/oLNZciFVhYNh1BnS8lD6F/l0guq6QC1sNTJE2gdyGuWurZTLUg32WlEPp7aqQ554GXtmPcTBGtWHUF3PZFVCz2EKtaIRge7FKFyDPuaiZJmEhYzFNZL0LLMA82Ea9hoObVkevgytH0F2kB8QMesLWfGZydmO+X+3kqvbhe9+QrHkIa5pChOMg4nrjxxU1PGh2RrCrDaCUx7KKluQ+8fGcy7h7RZgw2xm9ak0fTOGfKuB6XcvNnObt4/qXIFRnDTdZUopQ9zpNPjoxk5h1co9OqMoD9OjLKqdkSx8lYkdwYEMJyiz4P1N+QSYIzhjtfZhdppiTasaxiD42NcDqS7+OS3a9Q9bFzNC9Qv1RjR0/msdDiS2gCVoD/D0jVGJI7AbmRUvnt5cE98qmujaOqzZBEoLwohLLUl/A569UBabpaEv9PSXFTCJdk9f57I4cOOvVyotUt9g3vdt8nZAdKPdLSM69xtJtejrWoZ+6xySzfuu5Iz5aDo0uel9Kgk7a+d7ubNI7GhnjPu9x87U4WaKodsolNaJh7H8BhzvYvoQ6vYkbW6AdP0ZqO4TJEh5w0j7HqjMqkLFvaAxV28pUXj0TX9v3Y3624BqfonQHJ3KTatpnohWEXflWMbgYBv8xhS/liDF5n1eHufNyeQDElpq/22KNF+xcrJl/8k=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(346002)(136003)(39860400002)(451199015)(46966006)(40470700004)(36840700001)(40460700003)(31696002)(356005)(81166007)(36756003)(82310400005)(40480700001)(86362001)(82740400003)(31686004)(16526019)(2616005)(53546011)(478600001)(26005)(186003)(44832011)(8936002)(5660300002)(36860700001)(2906002)(41300700001)(8676002)(54906003)(4326008)(16576012)(70206006)(70586007)(110136005)(336012)(316002)(83380400001)(47076005)(426003)(43740500002)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 13:01:05.7069
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45d47cbb-eb84-488e-04fa-08dafa1d39d4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000108EB.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4355
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <Y8kay0/AmjqhU2jO@orome>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 1/19/23 13:26, Thierry Reding wrote:
+> On Mon, Jan 16, 2023 at 03:16:48PM +0300, Dmitry Osipenko wrote:
+>> On 1/13/23 16:50, Sumit Gupta wrote:
+>>>
+>>>
+>>> On 22/12/22 21:16, Dmitry Osipenko wrote:
+>>>> External email: Use caution opening links or attachments
+>>>>
+>>>>
+>>>> 20.12.2022 19:02, Sumit Gupta пишет:
+>>>>> Add support to use OPP table from DT in Tegra194 cpufreq driver.
+>>>>> Tegra SoC's receive the frequency lookup table (LUT) from BPMP-FW.
+>>>>> Cross check the OPP's present in DT against the LUT from BPMP-FW
+>>>>> and enable only those DT OPP's which are present in LUT also.
+>>>>>
+>>>>> The OPP table in DT has CPU Frequency to bandwidth mapping where
+>>>>> the bandwidth value is per MC channel. DRAM bandwidth depends on the
+>>>>> number of MC channels which can vary as per the boot configuration.
+>>>>> This per channel bandwidth from OPP table will be later converted by
+>>>>> MC driver to final bandwidth value by multiplying with number of
+>>>>> channels before sending the request to BPMP-FW.
+>>>>>
+>>>>> If OPP table is not present in DT, then use the LUT from BPMP-FW directy
+>>>>> as the frequency table and not do the DRAM frequency scaling which is
+>>>>> same as the current behavior.
+>>>>>
+>>>>> Now, as the CPU Frequency table is being controlling through OPP table
+>>>>> in DT. Keeping fewer entries in the table will create less frequency
+>>>>> steps and scale fast to high frequencies if required.
+>>>>
+>>>> It's not exactly clear what you're doing here. Are you going to scale
+>>>> memory BW based on CPU freq? If yes, then this is wrong because CPU freq
+>>>> is independent from the memory subsystem.
+>>>>
+>>>> All Tegra30+ SoCs have ACTMON hardware unit that monitors CPU memory
+>>>> activity and CPU memory BW should be scaled based on CPU memory events
+>>>> counter. We have ACTMON devfreq driver for older SoCs. I have no clue
+>>>> how ACTMON can be accessed on T186+, perhaps there should be a BPMP FW
+>>>> API for that.
+>>>>
+>>>
+>>> Yes, scaling the memory BW based on CPU freq.
+>>> Referred below patch set for previous generation of Tegra Soc's which
+>>> you mentioned and tried to trace the history.
+>>>
+>>> https://patchwork.ozlabs.org/project/linux-tegra/patch/1418719298-25314-3-git-send-email-tomeu.vizoso@collabora.com/
+>>>
+>>> In new Tegra Soc's, actmon counter control and usage has been moved to
+>>> BPMP-FW where only 'MCALL' counter is used and 'MCCPU is not being used.
+>>> Using the actmon counter was a reactive way to scale the frequency which
+>>> is less effective due to averaging over a time period.
+>>> We are now using the proactive way where clients tell their bandwidth
+>>> needs to help achieve better performance.
+>>
+>> You don't know what bandwidth CPU needs, you trying to guess it.
+>>
+>> It should be a bad decision to use cpufreq for memory bandwidth scaling.
+>> You'll be wasting memory power 90% of time because cpufreq doesn't have
+>> relation to the DRAM, your heuristics will be wrong and won't do
+>> anything good compared to using ACTMON. The L2 CPU cache + memory
+>> prefetching hides memory from CPU. And cpufreq should be less reactive
+>> than ACTMON in general.
+>>
+>> Scaling memory freq based on cpufreq is what downstream NV kernel did
+>> 10+ years ago for the oldest Tegra generations. Today upstream has all
+>> the necessary infrastructure for doing memory bandwidth scaling properly
+>> and we even using h/w memory counters on T20. It's strange that you want
+>> to bring the downstream archaity to the modern upstream for the latest
+>> Tegra generations.
+>>
+>> If you can skip the BPMP-FW and use ACTMON directly from kernel, then
+>> that's what I suggest to do.
+> 
+> After talking to a few people, it turns out that BPMP is already using
+> ACTMON internally to do the actual scaling of the EMC frequency (or the
+> CPUs contribution to that). So BPMP will use ACTMON counters to monitor
+> the effective memory load of the CPU and adjust the EMC frequency. The
+> bandwidth request that we generate from the cpufreq driver is more of a
+> guideline for the maximum bandwidth we might consume.
 
+Our kernel ACTMON driver uses cpufreq for guiding the EMC freq. Driving
+EMC rate solely based on cpufreq would be a not good decision. So does
+it mean you're now going to extend the ACTMON driver with the BPMP support?
 
-On 1/5/23 10:05, Michal Simek wrote:
-> From: Harini Katakam <harini.katakam@amd.com>
-> 
-> cdns,zynq/zynqmp/versal-gem was recently deprecated in Linux in
-> favour of xlnx prefix. Add this new compatible string and remove
-> the existing cdns,zynq-gem compatible string.
-> 
-> Signed-off-by: Harini Katakam <harini.katakam@amd.com>
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
-> 
-> Changes in v2:
-> - Remove deprecated compatible string
-> - Update commit message
-> 
->   arch/arm/boot/dts/zynq-7000.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
-> index f221c60643e4..cd9931f6bcbd 100644
-> --- a/arch/arm/boot/dts/zynq-7000.dtsi
-> +++ b/arch/arm/boot/dts/zynq-7000.dtsi
-> @@ -243,7 +243,7 @@ qspi: spi@e000d000 {
->   		};
->   
->   		gem0: ethernet@e000b000 {
-> -			compatible = "cdns,zynq-gem", "cdns,gem";
-> +			compatible = "xlnx,zynq-gem", "cdns,gem";
->   			reg = <0xe000b000 0x1000>;
->   			status = "disabled";
->   			interrupts = <0 22 4>;
-> @@ -254,7 +254,7 @@ gem0: ethernet@e000b000 {
->   		};
->   
->   		gem1: ethernet@e000c000 {
-> -			compatible = "cdns,zynq-gem", "cdns,gem";
-> +			compatible = "xlnx,zynq-gem", "cdns,gem";
->   			reg = <0xe000c000 0x1000>;
->   			status = "disabled";
->   			interrupts = <0 45 4>;
+-- 
+Best regards,
+Dmitry
 
-Applied.
-M
