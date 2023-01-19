@@ -2,121 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC3C5673AE8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 14:58:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45768673AF3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 15:00:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbjASN6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 08:58:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57072 "EHLO
+        id S230023AbjASOAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 09:00:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbjASN6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 08:58:46 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B969630D2
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:58:45 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id ss4so5809547ejb.11
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 05:58:45 -0800 (PST)
+        with ESMTP id S229575AbjASOAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 09:00:30 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328F97497D;
+        Thu, 19 Jan 2023 06:00:29 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id vw16so5831968ejc.12;
+        Thu, 19 Jan 2023 06:00:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v5VA13rKavxidD6QZf4qicQ0tLUJkUNd8HIS3LC6dxo=;
-        b=PWCZl2VTRdVabv7tAsmmEjHi0KAPXIZzgyYn/fBfSjQVqBLbc2losYTOZ5hrPcVMFG
-         nRHEZ5l43KQS0NdYKK9rU/yW/4TnDdnHnPS0jCi5Aa+4nImiaEWqr8oqRUzQelJzcRaE
-         pZCegyUTU1/GhoYWmISS0X2bn/SvZXZGKuuU2AkSCazjPVvGyQ+wnk4J60XuG771DZ+K
-         53Iv+YPXIYOTYeldMvtlqr6/8NBhKVe3jrJ5plgg1qu2YnXk+tS7Zpji2Xia0cIsaoyT
-         ArrfMwolKEatHRJzQIRhIAwIxISp4b9lrbwoy56Odo9JJlNCxi/JOMOEZY4oEzaEkdL0
-         maHQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5nhXtkwWxCqczJgyl/G+oVIZHRqmQUVsu8qAe4yutDM=;
+        b=qRn/j0NfPcUBhFkrjwPaRG0kfnyqomU5L8Uu0C0yP4/kno4f2gKw9fqzUnwuLa0u2d
+         LpDpaY1Z11XegkqV+ezn5bg+YcrB748Biq2Lm2W0GKovSY7MfAgdMiNU0+OFgbM0KLnL
+         T1si0aFYmOApa5wDuVDy4YpUuUHG8o2qwYhvmpjNINmyZUkbo1JxVUzKG+gsXK7e8/SP
+         ShenOdA2tPFvW96PkVDjZirvLbw6x4eWLFSug8CUqGocAgmnGMQe2o0yEreu/gJCNNVA
+         xV1pwTO51DTg2JbLQsmQyR///MwV9MkLie8263npBOnYvvU6VHu/6a/N7Bq3HMppRhK5
+         Z7Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v5VA13rKavxidD6QZf4qicQ0tLUJkUNd8HIS3LC6dxo=;
-        b=iGnKm929wM4gSkfeWZDO+Lrj8+SX2dWr/c40nA5lAIIqCv0PB/YmUPNwpZHnFSAynO
-         hykQPQNP7cQK0CUee9UI/bA3y8BAzFcQ1ES4RbXcgb79PkSUMp84gdgM1KJHm4oKqUO3
-         yqsSPMikpyMNmosDtBq0BQ3XMyTSNFdKYHbZg5bP90fnN+gJFMvTZJnpnchECJoi4sP8
-         Y75W/sutzB3mwZ46fTTrFGYrR1hB36+LlWZPhP2h9QR8A/HZQrokDoIHT0EdsCAgNyjT
-         lJhkIWCGrQ7ytFWUnOFeScFwbe+ENPpkSCIh79OH9CTWf9xJ5nOSUcbN13KWvnYIP13T
-         aJIA==
-X-Gm-Message-State: AFqh2kpSku0JM8hAyZiPwaZEoQ1ENSldFlvsKugHFzbvaqO0Oc8Y73IN
-        BujoUhubaJOSnjBSsLE1OjfGLg==
-X-Google-Smtp-Source: AMrXdXtYefbql8K3mRe8ERJ+/0jQZceqnzFob0etHYSasfOZFhWUpP9pkwJrvofHlN7vpD7L+M0zWw==
-X-Received: by 2002:a17:906:5d1:b0:861:7a02:1046 with SMTP id t17-20020a17090605d100b008617a021046mr10824609ejt.37.1674136724343;
-        Thu, 19 Jan 2023 05:58:44 -0800 (PST)
-Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
-        by smtp.gmail.com with ESMTPSA id rf26-20020a1709076a1a00b00871a4ab4736sm5047319ejc.97.2023.01.19.05.58.42
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5nhXtkwWxCqczJgyl/G+oVIZHRqmQUVsu8qAe4yutDM=;
+        b=Sz+l4EJv2iyfxxatc59wdtRdVJLkjbx5EfWJaVm0fhIjNBKn7BLEvCUh/XVOjwAE3U
+         FFLxPuu/PEzSwIFbQ7iVELoObJkGMH5aiLHPgOFqq2Y5VGFSYeFFAKuhalwIoz0wKyf+
+         94ueqIOupouWM8MfUmerlJCL7uOBjmMsyTtnyA/jksLUQAHt0ye5tNFjyH/kHFpuA1Gj
+         gtl2VBvl0dBLPUTuEnoSsrW9M24U9cOBVG9B8BJH5L9I62GvXXj2zdvF3Aof1G3UY31h
+         ionmUJR0vV3y6J8XJOvA0N+Y6Vzoj36bMs+w+7Ri+KVHk0nXRYeQ3DAajm3XfGr08mFT
+         u3hw==
+X-Gm-Message-State: AFqh2kqegkcrM8+b61b1pnu4I201QVAJLfuZxKrYraC6sQTn3fu57hoh
+        NTJN2g7redh4qR/uUtFwK4x6Pf/5nIQ=
+X-Google-Smtp-Source: AMrXdXufIwdwaQ4Q6337XG0zwWnwHq5J4E6m2rvnrrrcYS8U7J9jbLgUuUFelGA26kq69th2z+hltQ==
+X-Received: by 2002:a17:906:b806:b0:84d:430a:5e63 with SMTP id dv6-20020a170906b80600b0084d430a5e63mr11123910ejb.27.1674136827752;
+        Thu, 19 Jan 2023 06:00:27 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id mj19-20020a170906af9300b008776e2fccfesm1105409ejb.72.2023.01.19.06.00.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 05:58:43 -0800 (PST)
-Message-ID: <851c2209-f9ad-3f70-972c-ab5920dcad88@linaro.org>
-Date:   Thu, 19 Jan 2023 14:58:41 +0100
+        Thu, 19 Jan 2023 06:00:27 -0800 (PST)
+Message-ID: <91a339b3-f233-d7f6-54d8-061b1cd6a6ba@gmail.com>
+Date:   Thu, 19 Jan 2023 15:00:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 3/6] drm/msm/hdmi: switch hdmi_pll_8960 to use parent_data
+ Thunderbird/102.3.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [RFC PATCH v1 1/3] gpio: gpio-rockchip: parse gpio-ranges for bank id
+To:     linus.walleij@linaro.org, brgl@bgdev.pl
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kever.yang@rock-chips.com, sjg@chromium.org,
+        philipp.tomsich@vrull.eu, john@metanate.com,
+        quentin.schulz@theobroma-systems.com
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230119132219.2479775-1-dmitry.baryshkov@linaro.org>
- <20230119132219.2479775-4-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230119132219.2479775-4-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Parse the gpio-ranges property in Rockchip gpio nodes to be
+independent from aliases and probe order for our bank id.
 
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ drivers/gpio/gpio-rockchip.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-On 19.01.2023 14:22, Dmitry Baryshkov wrote:
-> Replace parent_names usage with parent_data. Note, that this makes the
-> PLL default to board's `pxo_board' clock rather than just `pxo' clock,
-> as we are on a way to deprecate the global cxo/pxo clocks.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+diff --git a/drivers/gpio/gpio-rockchip.c b/drivers/gpio/gpio-rockchip.c
+index e5de15a2a..3eaa1a5de 100644
+--- a/drivers/gpio/gpio-rockchip.c
++++ b/drivers/gpio/gpio-rockchip.c
+@@ -706,6 +706,7 @@ static int rockchip_gpio_probe(struct platform_device *pdev)
+ 	struct pinctrl_dev *pctldev = NULL;
+ 	struct rockchip_pin_bank *bank = NULL;
+ 	struct rockchip_pin_deferred *cfg;
++	struct of_phandle_args args;
+ 	static int gpio;
+ 	int id, ret;
 
-Konrad
->  drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c b/drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c
-> index be4b0b67e797..c3e7ff45e52a 100644
-> --- a/drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c
-> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c
-> @@ -406,14 +406,14 @@ static const struct clk_ops hdmi_pll_ops = {
->  	.set_rate = hdmi_pll_set_rate,
->  };
->  
-> -static const char * const hdmi_pll_parents[] = {
-> -	"pxo",
-> +static const struct clk_parent_data hdmi_pll_parents[] = {
-> +	{ .fw_name = "pxo", .name = "pxo_board" },
->  };
->  
->  static struct clk_init_data pll_init = {
->  	.name = "hdmi_pll",
->  	.ops = &hdmi_pll_ops,
-> -	.parent_names = hdmi_pll_parents,
-> +	.parent_data = hdmi_pll_parents,
->  	.num_parents = ARRAY_SIZE(hdmi_pll_parents),
->  	.flags = CLK_IGNORE_UNUSED,
->  };
+@@ -716,9 +717,14 @@ static int rockchip_gpio_probe(struct platform_device *pdev)
+ 	if (!pctldev)
+ 		return -EPROBE_DEFER;
+
+-	id = of_alias_get_id(np, "gpio");
+-	if (id < 0)
+-		id = gpio++;
++	ret = of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3, 0, &args);
++	if (ret == 0) {
++		id = args.args[1] / 32;
++	} else {
++		id = of_alias_get_id(np, "gpio");
++		if (id < 0)
++			id = gpio++;
++	}
+
+ 	bank = rockchip_gpio_find_bank(pctldev, id);
+ 	if (!bank)
+--
+2.20.1
+
