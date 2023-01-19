@@ -2,115 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E9F7673D3D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:14:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3099F673D45
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:17:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230364AbjASPOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 10:14:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53076 "EHLO
+        id S229814AbjASPRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 10:17:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230230AbjASPOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:14:16 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A44CC676DD
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:14:14 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso1496330wms.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:14:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9NPQPBsKrvaOn9sdw34Chj6FAIMw9mMDoh9PXJ52yo8=;
-        b=eL1onUrTJJhsavn7jRGxAHwMhcLe30RuHlCuuluA4LWR8R2UYsIt1D4NHeiCLCJXvL
-         0FCveMkFJfp82qWAIJLa76KgYHeo5Ti+3A6kQfN/iCwhJgIEy9ylLmgg9j6QQ8fmUM0w
-         dwDiWF4eUZ9KgpzJ16iKB4dGghPPSlusLrHtqs3IVVkZVxEr9QlbDIoCV7MWvhOSxj0P
-         NFwfdRcZYhIlyfVxYd5QunVKmN65BTMUGM0om7LeoTLze1qT5QhYXnnvszDKq2KPTgT9
-         x+rTgRiU7Npnj56e1rid4L/fIGFhk0hB2CgSxEJpnvtIHGdpQxQke5hjn5ALRcGIP6eT
-         ytpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9NPQPBsKrvaOn9sdw34Chj6FAIMw9mMDoh9PXJ52yo8=;
-        b=xBGeksXCdkmdYav+dmiy2ehWogxgbjPdDMmwGsciHJJ0j3W4bxwkbFeeURQHbCgigI
-         YvoZ6/sQVn3Cui/M4AKU72iveZfQyHfhr2eVrZDDzdYu8VsIqJfgZtor/35bhClcbhrl
-         Oio13QbmJPGGdagG7EgDGNKb/bMwYmhpaUYf5npgraLIVBH94LdXgJXY9V+whnFuJdvh
-         tVEplGYPasuHi6rwXrACeBEq6TapPG+1tM5mBcQgt3HmwlLTQW1d4wGEzvZ20wuEBtVa
-         nhDDsXmcOjnSO1HH3bCPdvMmDiWM8HpYsrSbggarHFGElbHwYKDvTmJTRbu9pXG/Dtut
-         ftag==
-X-Gm-Message-State: AFqh2koehz3AKj8jXep8+ZpLHx4cLZHlyfuS6t1qZt9VKSGWXFyRgnfu
-        y5NMTnH/+8pVRKrjpR7s9HnIlw==
-X-Google-Smtp-Source: AMrXdXtFaR78IHfb+vhWQY7bzEJpoiv5Zq927fsyxfpUe2pZcQnkoR91Z4gva/A/2hsMmOor335XbQ==
-X-Received: by 2002:a05:600c:c0c:b0:3db:1caf:1044 with SMTP id fm12-20020a05600c0c0c00b003db1caf1044mr3969515wmb.13.1674141253216;
-        Thu, 19 Jan 2023 07:14:13 -0800 (PST)
-Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id o16-20020a05600c379000b003db15b1fb3csm4566605wmr.13.2023.01.19.07.14.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 07:14:12 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229568AbjASPRy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:17:54 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33B268102C
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:17:52 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pIWfe-0000BA-C4; Thu, 19 Jan 2023 16:17:42 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1pIWfW-0001oM-RK; Thu, 19 Jan 2023 16:17:34 +0100
+Date:   Thu, 19 Jan 2023 16:17:34 +0100
+From:   Sascha Hauer <sha@pengutronix.de>
+To:     Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: ufs: qcom: Add SM8550 compatible string
-Date:   Thu, 19 Jan 2023 17:14:06 +0200
-Message-Id: <20230119151406.4168685-3-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230119151406.4168685-1-abel.vesa@linaro.org>
-References: <20230119151406.4168685-1-abel.vesa@linaro.org>
+        Heiko Stuebner <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v2 5/6] drm/rockchip: vop2: add support for the rgb
+ output block
+Message-ID: <20230119151734.GH24755@pengutronix.de>
+References: <20230119143911.3793654-1-michael.riesch@wolfvision.net>
+ <20230119143911.3793654-6-michael.riesch@wolfvision.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230119143911.3793654-6-michael.riesch@wolfvision.net>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the compatible for the UFS found on SM8550.
+Hi Michael,
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On Thu, Jan 19, 2023 at 03:39:10PM +0100, Michael Riesch wrote:
+> The Rockchip VOP2 features an internal RGB output block, which can be
+> attached to the video port 2 of the VOP2. Add support for this output
+> block.
+> 
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> ---
+> v2:
+>  - move away from wrong assumption that the RGB block is always
+>    connected to video port 2 -> check devicetree to find RGB block
 
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-index 54f5f8dc5c87..108c281e9d09 100644
---- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-@@ -33,6 +33,7 @@ properties:
-           - qcom,sm8250-ufshc
-           - qcom,sm8350-ufshc
-           - qcom,sm8450-ufshc
-+          - qcom,sm8550-ufshc
-       - const: qcom,ufshc
-       - const: jedec,ufs-2.0
- 
-@@ -106,6 +107,7 @@ allOf:
-               - qcom,sm8250-ufshc
-               - qcom,sm8350-ufshc
-               - qcom,sm8450-ufshc
-+              - qcom,sm8550-ufshc
-     then:
-       properties:
-         clocks:
+Traces of that assumption are still in the commmit message.
+
+> 
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 44 ++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+> 
+> +static int vop2_find_rgb_encoder(struct vop2 *vop2)
+> +{
+> +	struct device_node *node = vop2->dev->of_node;
+> +	struct device_node *endpoint;
+> +	int i;
+> +
+> +	for (i = 0; i < vop2->data->nr_vps; i++) {
+> +		endpoint = of_graph_get_endpoint_by_regs(node, i,
+> +							 ROCKCHIP_VOP2_EP_RGB0);
+> +		if (!endpoint)
+> +			continue;
+> +
+> +		of_node_put(endpoint);
+> +		return i;
+> +	}
+> +
+> +	return -ENOENT;
+> +}
+> +
+>  static struct reg_field vop2_cluster_regs[VOP2_WIN_MAX_REG] = {
+>  	[VOP2_WIN_ENABLE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 0, 0),
+>  	[VOP2_WIN_FORMAT] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 1, 5),
+> @@ -2698,11 +2721,29 @@ static int vop2_bind(struct device *dev, struct device *master, void *data)
+>  	if (ret)
+>  		return ret;
+>  
+> +	ret = vop2_find_rgb_encoder(vop2);
+> +	if (ret > 0) {
+
+'0' seems to be a valid vp as well. Shouldn't this be ret >= 0?
+
+> +		vop2->rgb = rockchip_rgb_init(dev, &vop2->vps[ret].crtc,
+> +					      vop2->drm, ret);
+> +		if (IS_ERR(vop2->rgb)) {
+> +			if (PTR_ERR(vop2->rgb) == -EPROBE_DEFER) {
+> +				ret = PTR_ERR(vop2->rgb);
+> +				goto err_crtcs;
+> +			}
+> +			vop2->rgb = NULL;
+> +		}
+> +	}
+> +
+
+Sascha
+
 -- 
-2.34.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
