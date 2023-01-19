@@ -2,131 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87184673D7B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:27:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7693F673D7C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 16:28:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230271AbjASP1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 10:27:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34188 "EHLO
+        id S230319AbjASP2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 10:28:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229844AbjASP1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:27:45 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5372D457C4
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:27:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1674142063; x=1705678063;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Fan4CH7rMTs971QPB7GBxYLxAh59SKl4VCqfYSc+19Y=;
-  b=nOZ+oq1su/uVZQU5y4lleJa7VAfgCO0fZ9tROwYUZ+91JRQBfqIqF+BC
-   r+8wFxDQmsJ0uhZ9nCBaaqjdYMS/RkK1i3hXhuVrm6o6VKSORkJP7IjT0
-   5y+DnuDZTdsRoI+ucyY5GW66RVbn2f41zAEDepuNu+WzcNWbxQlAENmOZ
-   1Ez++1lbwlKMDsFvZNSmxr+T5+artvNWjyEpPsD3lBCRD9h1C9zI/Gb4K
-   wSbxFjh9rX0lyBs0zhdtDAqZu1FDEceKeM8fwmIXxIq6p1OiyXruFYeY8
-   KccWSelQYelTQq52Pset7A03GHeZhDZNiD/lH85GdMEHi7YKVOK0bDHX+
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
-   d="scan'208";a="28538910"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 19 Jan 2023 16:27:41 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 19 Jan 2023 16:27:41 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 19 Jan 2023 16:27:41 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1674142061; x=1705678061;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Fan4CH7rMTs971QPB7GBxYLxAh59SKl4VCqfYSc+19Y=;
-  b=Y4ZXSfPsmou0BqtmC/HsSTlVirenHbure0fK64PMB2e7zhGlocBbFGlc
-   sX7432u5lFS/Va/Nk0HlIxGPqW1QxCG5edSCmA/+IGRh4s6Qmrpbk23Zl
-   uLjQEV6hL3V14Gj//zZ77lwR8JTW7Khq3dz6WibOmsn+IOm8g3GjAzhrF
-   2NOZWf6r/Ahv5YRLQQ/b7Q06KagHQ4KMojVwpxSua+hGbD513/HnKN6Ti
-   PS2RBKZFzSqKKRrdDt5N19DcigYVJeDcWP9Vpd/5WHnucuK0t8X+9IWLp
-   mU8YaPocdX3ZasBz06ZSj89rNTJRaZvpcmE3AyCws7H+O5NSiNqiitOjp
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,229,1669071600"; 
-   d="scan'208";a="28538909"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 19 Jan 2023 16:27:41 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S229844AbjASP2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 10:28:32 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BC1383F8
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:28:30 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 4F701280056;
-        Thu, 19 Jan 2023 16:27:41 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Marek Vasut <marex@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 9/9] [DNI] ARM: multi_v7_defconfig: Enable CONFIG_ARM_LPAE for multi_v7_config
-Date:   Thu, 19 Jan 2023 16:27:39 +0100
-Message-ID: <2617470.BddDVKsqQX@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <f1de9cd9-a163-4b56-adf8-319eaf85e38e@app.fastmail.com>
-References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com> <20230119144236.3541751-10-alexander.stein@ew.tq-group.com> <f1de9cd9-a163-4b56-adf8-319eaf85e38e@app.fastmail.com>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D98F761C52
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 15:28:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E6A9C433F0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 15:28:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674142109;
+        bh=a+6h8CPA5WHimLm+4EYp5Fu2zWhj5ERqxBYSzlEr4d8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZU+CU0Bof9Dwe8hDfHEG0xLCuHTDRGgQEYKd5lb6r1E2HQQLBpi3ZpmevNrSvSgCB
+         HQ5v9k8ZqLHJ6I4w15fO22tFFnjOtYiWseR7CIRvetnwHf/X6BU+qseLlHNUxqypHP
+         o8wSkWxlofUoNDNSugxMRsbo5wH04o/IzDxyuZ03EB56mYWHHspSy+YHCWIajs+UkO
+         09w4bX3Bwic3vOwJo1l1b+Q7FM6MEZMtIpehIXWqYANLa725ny19dv0Rxr1zQ1ws4b
+         gAgWTsSHRKzbKEDwtHkEtm5PGjkPhH/qPFapbeWBg0kd8+yMu5ImPsygEgroK1CczM
+         EmGsoLERHh4cQ==
+Received: by mail-vs1-f43.google.com with SMTP id i185so2497582vsc.6
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 07:28:29 -0800 (PST)
+X-Gm-Message-State: AFqh2kq2J+gBoKMdNMD/8T9WOC5jJ3/gKsUtiLIOHKJPOaspIN5PajH1
+        KRtPo4jV0/bOe2Wc5DjT+j5qCqW+67xgYXNTPA==
+X-Google-Smtp-Source: AMrXdXt9/aI6gOYjKvfmjT1rQlrz9P480mL++/XlewFwps/hqbIDWQP0p5AslwiWMV7i2KgGMvNX0Gc1e3vivOtopQo=
+X-Received: by 2002:a67:eb86:0:b0:3b1:4b76:5b44 with SMTP id
+ e6-20020a67eb86000000b003b14b765b44mr1484385vso.53.1674142108134; Thu, 19 Jan
+ 2023 07:28:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230113205518.206306-1-sjg@chromium.org> <20230113205518.206306-2-sjg@chromium.org>
+ <CAL_JsqL6rOaFHcYTuP9YXhcWuhn7t0LKwZn0D0grLVMsu+PwLw@mail.gmail.com> <CAPnjgZ37fcrnxcT4XOb=irVomRN1NYLni0p7MRgesjm7hwg8hg@mail.gmail.com>
+In-Reply-To: <CAPnjgZ37fcrnxcT4XOb=irVomRN1NYLni0p7MRgesjm7hwg8hg@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 19 Jan 2023 09:28:16 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+xevOq1ZsgSge2MijXPXojAFq545JT4XuGgyPf7tKX5g@mail.gmail.com>
+Message-ID: <CAL_Jsq+xevOq1ZsgSge2MijXPXojAFq545JT4XuGgyPf7tKX5g@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] schemas: Add schema for U-Boot driver model 'phase tags'
+To:     Simon Glass <sjg@chromium.org>
+Cc:     devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
+On Wed, Jan 18, 2023 at 4:05 PM Simon Glass <sjg@chromium.org> wrote:
+>
+> Hi Rob,
+>
+> On Wed, 18 Jan 2023 at 13:34, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Fri, Jan 13, 2023 at 2:58 PM Simon Glass <sjg@chromium.org> wrote:
+> > >
+> > > U-Boot has some particular challenges with device tree and devices:
+> > >
+> > > - U-Boot has multiple build phases, such as a Secondary Program Loader
+> > >   (SPL) phase which typically runs in a pre-SDRAM environment where code
+> > >   and data space are limited. In particular, there may not be enough
+> > >   space for the full device tree blob. U-Boot uses various automated
+> > >   techniques to reduce the size from perhaps 40KB to 3KB. It is not
+> > >   always possible to handle these tags entirely at build time, since
+> > >   U-Boot proper must have the full device tree, even though we do not
+> > >   want it to process all nodes until after relocation.
+> > > - Some U-Boot phases needs to run before the clocks are properly set up,
+> > >   where the CPU may be running very slowly. Therefore it is important to
+> > >   bind only those devices which are actually needed in that phase
+> > > - U-Boot uses lazy initialisation for its devices, with 'bind' and
+> > >   'probe' being separate steps. Even if a device is bound, it is not
+> > >   actually probed until it is used. This is necessary to keep the boot
+> > >   time reasonable, e.g. to under a second
+> > >
+> > > The phases of U-Boot in order are: TPL, VPL, SPL, U-Boot (first
+> > > pre-relocation, then post-relocation). ALl but the last two are optional.
+> > >
+> > > For the above reasons, U-Boot only includes the full device tree in the
+> > > final 'U-Boot proper' build. Even then, before relocation U-Boot only
+> > > processes nodes which are marked as being needed.
+> > >
+> > > For this to work, U-Boot's driver model[1] provides a way to mark device
+> > > tree nodes as applicable for a particular phase. This works by adding a
+> > > tag to the node, e.g.:
+> > >
+> > >    cru: clock-controller@ff760000 {
+> > >       bootph-all;
+> > >       compatible = "rockchip,rk3399-cru";
+> > >       reg = <0x0 0xff760000 0x0 0x1000>;
+> > >       rockchip,grf = <&grf>;
+> > >       #clock-cells = <1>;
+> > >       #reset-cells = <1>;
+> > >       ...
+> > >    };
+> > >
+> > > Here the "bootph-all" tag indicates that the node must be present in all
+> > > phases, since the clock driver is required.
+> > >
+> > > There has been discussion over the years about whether this could be done
+> > > in a property instead, e.g.
+> > >
+> > >    options {
+> > >       bootph-all = <&cru> <&gpio_a> ...;
+> > >       ...
+> > >    };
+> > >
+> > > Some problems with this:
+> > >
+> > > - we need to be able to merge several such tags from different .dtsi files
+> > >   since many boards have their own specific requirements
+> > > - it is hard to find and cross-reference the affected nodes
+> > > - it is more error-prone
+> > > - it requires significant tool rework in U-Boot, including fdtgrep and
+> > >   the build system
+> > > - is harder (slower, more code) to process since it involves scanning
+> > >   another node/property to find out what to do with a particular node
+> > > - we don't want to add phandle arguments to the above since we are
+> > >   referring, e.g., to the clock device as a whole, not a paricular clock
+> > > - the of-platdata feature[2], which converts device tree to C for even
+> > >   more constrained environments, would need to become aware of the
+> > >   /options node
+> > >
+> > > There is also the question about whether this needs to be U-Boot-specific,
+> > > or whether the tags could be generic. From what I can tell, U-Boot is the
+> > > only bootloader which seriously attempts to use a runtime device tree in
+> > > all cases. For this version, an attempt is made to name the phases in a
+> > > generic manner.
+> > >
+> > > It should also be noted that the approach provided here has stood the test
+> > > of time, used in U-Boot for 8 years so far.
+> > >
+> > > So add the schema for this. This will allow a major class of schema
+> > > exceptions to be dropped from the U-Boot source tree.
+> > >
+> > > This being sent to the mailing list since it might attract more review.
+> > > A PR will be sent when this has had some review. That is why the file
+> > > path is set up for https://github.com/devicetree-org/dt-schema rather
+> > > than the Linux kernel.
+> > >
+> > > [1] https://u-boot.readthedocs.io/en/latest/develop/driver-model/index.html
+> > > [2] https://u-boot.readthedocs.io/en/latest/develop/driver-model/of-plat.html
+> > >
+> > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > ---
+> > >
+> > > Changes in v6:
+> > > - Use 'bootph' instead of 'phase'
+> > > - Use | instead of , in patternProperties
+> > > - Drop mention of 40KB for device-tree size
+> > > - Rework description of handling of parent nodes
+> > > - Use separate properties for each boot phase
+> > > - Update validation example at the top of bootphases.dts
+> > >
+> > > Changes in v5:
+> > > - Fix instructions to run test
+> > > - Update binding title
+> > > - Use 'phase-' instead of 'phase,'
+> > >
+> > > Changes in v4:
+> > > - Drop some unnecessary context from the commit message
+> > > - Explain why parent nodes do not automatically inherit their children's
+> > >   tags
+> > > - Rename the tags to use a phase,xxx format, explaining each one
+> > >
+> > > Changes in v3:
+> > > - Fix an incorrect schema path in $id
+> > >
+> > > Changes in v2:
+> > > - Expand docs to include a description of each tag
+> > > - Fix some typos and unclear wording
+> > >
+> > >  dtschema/lib.py              |  5 +++
+> > >  dtschema/schemas/bootph.yaml | 86 ++++++++++++++++++++++++++++++++++++
+> > >  test/bootphases.dts          | 22 +++++++++
+> > >  3 files changed, 113 insertions(+)
+> > >  create mode 100644 dtschema/schemas/bootph.yaml
+> > >  create mode 100644 test/bootphases.dts
+> > >
+> > > diff --git a/dtschema/lib.py b/dtschema/lib.py
+> > > index c7b6cb9..95a4f10 100644
+> > > --- a/dtschema/lib.py
+> > > +++ b/dtschema/lib.py
+> > > @@ -493,6 +493,11 @@ def fixup_node_props(schema):
+> > >      schema['properties'].setdefault('status', True)
+> > >      schema['properties'].setdefault('secure-status', True)
+> > >      schema['properties'].setdefault('$nodename', True)
+> > > +    schema['properties'].setdefault('bootph-pre-sram', True)
+> > > +    schema['properties'].setdefault('bootph-verify', True)
+> > > +    schema['properties'].setdefault('bootph-pre-ram', True)
+> > > +    schema['properties'].setdefault('bootph-some-ram', True)
+> > > +    schema['properties'].setdefault('bootph-all', True)
+> > >
+> > >      keys = list()
+> > >      if 'properties' in schema:
+> > > diff --git a/dtschema/schemas/bootph.yaml b/dtschema/schemas/bootph.yaml
+> > > new file mode 100644
+> > > index 0000000..275c4da
+> > > --- /dev/null
+> > > +++ b/dtschema/schemas/bootph.yaml
+> > > @@ -0,0 +1,86 @@
+> > > +# SPDX-License-Identifier: BSD-2-Clause
+> > > +# Copyright 2022 Google LLC
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/bootph.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Boot-phase-specific device nodes
+> > > +
+> > > +maintainers:
+> > > +  - Simon Glass <sjg@chromium.org>
+> > > +
+> > > +description: |
+> > > +  Some programs run in memory-constrained environments yet want to make use
+> > > +  of device tree.
+> > > +
+> > > +  The full device tree is often quite large relative to the available memory
+> > > +  of a boot phase, so cannot fit into every phase of the boot process. Even
+> > > +  when memory is not a problem, some phases may wish to limit which device
+> > > +  nodes are present, so as to reduce execution time.
+> > > +
+> > > +  This binding supports adding tags to device tree nodes to allow them to be
+> > > +  marked according to the phases where they should be included.
+> > > +
+> > > +  Without any tags, nodes are included only in the final phase, where all
+> > > +  memory is available. Any untagged nodes are dropped from previous phases
+> > > +  and are ignored before the final phase is reached.
+> > > +
+> > > +  The build process produces a separate executable for each phase. It can
+> > > +  use fdtgrep to drop any nodes which are not needed for a particular build.
+> > > +  For example, the pre-sram build will drop any nodes which are not marked
+> > > +  with bootph-pre-sram or bootph-all tags.
+> > > +
+> > > +  Note that phase builds may drop the tags, since they have served their
+> > > +  purpose by that point. So when looking at phase-specific device tree files
+> > > +  you may not see these tags.
+> > > +
+> > > +  Multiple tags can be used in the same node.
+> > > +
+> > > +  Tags in a child node are implied to be present in all parent nodes as well.
+> > > +  This is important, since some missing properties (such as "ranges", or
+> > > +  "compatible") can cause the child node to be ignored or incorrectly
+> > > +  parsed.
+> > > +
+> > > +  That said, at present, fdtgrep applies tags only to the node they are
+> > > +  added to, not to any parents. This means U-Boot device tree files often
+> > > +  add the same tag to parent nodes, rather than relying on tooling to do
+> > > +  this. This is a limitation of fdtgrep and it will be addressed so that
+> > > +  'Linux DTs' do not need to do this.
+> > > +
+> > > +  The available tags are describes as properties below, in order of phase
+> >
+> > described
+> >
+> > > +  execution.
+> > > +
+> >
+> > I think your issue testing is you need a 'select: true' here. 'select'
+> > is how we test whether a schema should be applied to a node. The
+> > default is to use compatible or $nodename for matching. You have
+> > neither, so select is false.
+>
+> I feel like I have the opposite problem, in that the validation is not
+> actually happening, i.e. it isn't failing with something like
+> bootph-pre-sramxxx or anything else I put into the node:
 
-thanks for the fast response.
+Right. Since you get the default 'select: false', your schema is never
+used for validation.
 
-Am Donnerstag, 19. Januar 2023, 16:09:05 CET schrieb Arnd Bergmann:
-> On Thu, Jan 19, 2023, at 15:42, Alexander Stein wrote:
-> > This is necessary to support PCIe on LS1021A.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> 
-> Can you explain why this is actually required? I can see that the
-> ranges in the PCIe device point to a high address (0x4000000000,
-> 2^40), but I can't tell if this is hardwired in the SoC or a
-> setting that is applied by software (either the bootloader or
-> the PCIe driver).
+>
+> I do see this:
+>
+> dtc -O dtb -o test.dtb test/bootphases.dts && tools/dt-validate -m test.dtb
+> test.dtb: /some-device: failed to match any schema with compatible:
+> ['vendor,soc1-ip']
 
-The RM ([1]) memory map (Table 2-1) says that 'PCI Express 1' is located at 
-'400000_0000', 'PCI Express 2' at '480000_0000', so I assume this is hardcoded 
-in SoC.
-It also explicitly lists in that table PCIe 1&2 is only accessible with 40-bit 
-addressing.
-
-> If you can reprogram the memory map, I would expect this to fit
-> easily into the 32-bit address space, with 1GB for DDR3 memory
-> and 1GB for PCIe BARs.
-
-I'm not sure which part of memory map you can reprogram and where, but I guess 
-this is fixed on this SoC.
-
-> I don't mind having a defconfig with LPAE enabled, I think this
-> can be done using a Makefile target that applies a config
-> fragment on top of the normal multi_v7_defconfig, you can find
-> some examples in arch/powerpc/configs/*.config.
-
-Ah, nice. This can be a good starter. Thanks.
-
-Best regards,
-Alexander
-
-[1] https://www.nxp.com/webapp/Download?colCode=LS1021ARM
+Adding '-s test/schemas' to dt-validate should fix that error (and
+probably add schema errors).
 
 
+> but even changing it into a 'cpus' node it still lets me any any
+> random property I like.
 
+ATM, I think we allow additional properties in cpus nodes. That's
+something I'm working on...
+
+Most of what's in dt-schema doesn't restrict properties present in a
+node in any way other than global rules on property names and values
+because dt-schema is all common schemas except for the test schemas.
+
+Rob
