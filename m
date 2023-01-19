@@ -2,157 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A36866735E0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:43:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 733A8673621
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 11:55:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230145AbjASKna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 05:43:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37392 "EHLO
+        id S229813AbjASKzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 05:55:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230194AbjASKnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:43:12 -0500
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A8B44BF7;
-        Thu, 19 Jan 2023 02:42:49 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FwzhDmz1+ket15G68nTn2i1QvenqWZ8b7ZuRrFZaESs931T9hPPQUHPHxwlkm05l5HuYNBz9f+WJ6v8iuSBQ+Vsqhrq+Tph3dXqnv23CGxZKsbtL/iwZzh5CRRNxGC3IaqbdkW+Wv+FscrmdIROo/83E6ZBJiqbMjn2rTc7kbSS5mVvD2PvLIm14vVL1e277CcvTIZBaJXAq55Lk7a659dv1maAKDrKCKSUb+NsRIE4JDzragbAzUjGMCcYM9GQVNDt9h63t4iZWlG/F8uyuISOahZdi/zQv4NLlE1UvoWWbdE2pKiOUoW8yfZyeXrWCXEHtjUhVZvxf9xED4y/V1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2ktNQcZcw7Tnz+Lzteza0SHXXEQHQcszCvb+eseQEq8=;
- b=EPxGf4NbcDl41DufMnoImy+c1F5oTbDA2VZHCNaFQnDKOzHIBq4B/CGS2fdYhu8+TkXvTpGtP/bQ0LszUhMX0zPFLMP/SPGUdu3rwfMlu/Dfa2CIzaS4wr4xG8KlrGbs6R8HXf9TahGt7MZ2RF3p22UXcWPP0YqDcnsKAITcWQEbuihUiDvaFKw7t1djU2YfbJP1B0EwOQS8GkrTs/1Hze2smx1wa22eeIer0gpNgx2wEd6Tqq5fIwf/UWJw998pHsMY9K9PR7odbhqpSmeesugxLlSczQR10hl1VLpF53Rk9P24Mb6ZVRTFimgnfhkuIw0ygCDrhp4x2+DviuL5qw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=linuxfoundation.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2ktNQcZcw7Tnz+Lzteza0SHXXEQHQcszCvb+eseQEq8=;
- b=Lk+ifcfwzGIS6TxLwJQ7ImUcBRX9c6RraWAQd85JMq4fjeSmHmpur+Qe2dHVwSCWKcfv+fQWbUgpz/rS2OGrKmFChZOosS8ALIzHs7TlfcKtC3amY/ymsWJEodtu8x2KkFV3sVY4GoSscYxx8WUqGx8IQf9arc5oBxL1pt7yOJgClPO0y55uQbI1dF6MeEe5myrizBwY19aDuLZIXZUtY7qJta923HXBz2ZNloajjvhnCMnHvc9zUFsvYla6tkeYEngtd6F7BcbeYaNOBFmY+RyThMAFwByZ1ZvncDpKOVd4jKVhSbfOZlyY/S2Old24gAE0yebfUSycYmFcts8snw==
-Received: from CY5PR10CA0020.namprd10.prod.outlook.com (2603:10b6:930:1c::10)
- by IA1PR12MB8335.namprd12.prod.outlook.com (2603:10b6:208:3fa::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Thu, 19 Jan
- 2023 10:42:39 +0000
-Received: from CY4PEPF0000C983.namprd02.prod.outlook.com
- (2603:10b6:930:1c:cafe::83) by CY5PR10CA0020.outlook.office365.com
- (2603:10b6:930:1c::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.26 via Frontend
- Transport; Thu, 19 Jan 2023 10:42:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CY4PEPF0000C983.mail.protection.outlook.com (10.167.241.199) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.11 via Frontend Transport; Thu, 19 Jan 2023 10:42:38 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 19 Jan
- 2023 02:42:28 -0800
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 19 Jan
- 2023 02:42:28 -0800
-Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server id 15.2.986.36 via Frontend
- Transport; Thu, 19 Jan 2023 02:42:26 -0800
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH V5 5/5] arm64: tegra: Populate the XUDC node for Tegra234
-Date:   Thu, 19 Jan 2023 10:42:08 +0000
-Message-ID: <20230119104208.28726-6-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230119104208.28726-1-jonathanh@nvidia.com>
-References: <20230119104208.28726-1-jonathanh@nvidia.com>
+        with ESMTP id S230074AbjASKzL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 05:55:11 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B4C6FF98
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 02:55:09 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id r9so1456783wrw.4
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 02:55:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=W2iLqxzBf2lt/ncg4h7D713Xr/C62DP8hgV7AbUocoI=;
+        b=P5LppqRYfNZ6ipt7+ZeQwYBdFqfSnUFgGDqlQvZ4vusjXWwLO9BYeS5+93bNYfRRmh
+         qWajrm+xWAbEHdcQlzRE2FFz4nN4nVoMWfAYRfKyZWCOB7S7uTT3SsJKD/yS88bdZbom
+         kXVs014BApTave9Lv2C7QjqXXZoNVvbE5BRUf43hOizXTkAElkuep4PNbXZKv/Y6iCKt
+         wDb/QsJFjYQRj5xYFjIabG/FfeLBniAWjlxYCj3ASQVfoy4d31yHz4MPpWhiWqVaPS82
+         Y73Sq/Gf5Fbg7LC7AlenM9EXejEZpPWaaLpvwSWTl8Ie9KkIHrGGQ3DdRsjCnUWuJ1E2
+         38Bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W2iLqxzBf2lt/ncg4h7D713Xr/C62DP8hgV7AbUocoI=;
+        b=H4t4Lm+Fpy58JMkAzCSLBWp34X0w3M/MIiK9fFkFE+UIhbkT33f2TQ0PPVEnxpMrZ3
+         Oo5srdT2XKBD7RooLcDck6lIEkDNxkzzFS7+UFTqkbkD/ZCM8SZmUTO6XOKrP0Uyqhn/
+         zkwKtn43fZ73gH/+UYqILbM5/6qXkrwKL09p6/IVaS+Wd0iJyKur/L1dxThpnmw09oQ/
+         jECpnKs5ACiHKdIqfpMpqc+MMllVv5ylphIfpOmyyicM/IA2nuK5/IJ3nHDZje2n80AL
+         RFZ6est3LLndMpe555PlFyXkIFeuZZyeUoPfPWpgd4N2c44Jk5KZB69gI/DK6dZ26bOy
+         bpqA==
+X-Gm-Message-State: AFqh2kpyGcwuOqLSHJw1otBA2cbFnvZ/nC9RrQSQqeL92EOoAR/Ys41P
+        EZNwhQVeoJRHYREK1GWb3kQtlA==
+X-Google-Smtp-Source: AMrXdXtKFaRuKk7aQfl2q8ApDCvIPRIpAPBN2Nc4ZtdNxVZ0nz3wqSUr8VfedhOedhFNga6qKAibsw==
+X-Received: by 2002:a5d:6545:0:b0:2bb:5d8c:9575 with SMTP id z5-20020a5d6545000000b002bb5d8c9575mr8403717wrv.12.1674125708342;
+        Thu, 19 Jan 2023 02:55:08 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id b13-20020a05600003cd00b002be07cbefb2sm11691659wrg.18.2023.01.19.02.55.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 02:55:07 -0800 (PST)
+References: <20230116091637.272923-1-jbrunet@baylibre.com>
+ <Y8dimCI7ybeL09j0@lunn.ch>
+User-agent: mu4e 1.8.10; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 0/2] net: mdio: add amlogic gxl mdio mux support
+Date:   Thu, 19 Jan 2023 11:42:11 +0100
+In-reply-to: <Y8dimCI7ybeL09j0@lunn.ch>
+Message-ID: <1jr0vqyet1.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000C983:EE_|IA1PR12MB8335:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6df32588-1cfa-4b72-0032-08dafa09e28e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xAsKA+p+Bk83I4u/t4F/nZXrwBn5l/D2h5KrH0vs2m+Y2GLHv0uBW8v0lc6E9/OC1g6MWAXHZnx9B6dMuO49Jc+A7FeLdI3kGiaL0e8NfW6XaFbjKNR0P6vGjHEHLJFM3+OokYuIIR/neyDf5ESH9rUrfdDHvg6HcyKiINpOd2kqQSzQyniAuERndLHn3bvuMWr2DxK33qHj3+sha9naVax2tg70CJPxUfVjCKNtDLb91HVrm89viRrgozg1y7aV/ax6WAPIr47wPWVCQjsRtDWNIzlQLEVst7d/iddAGufb4bzIk6H0wj0Y6KP37EZ/777/699+K/ExnH+ioWFEOhhlN3yL9R2G07hBInXx+8XPJEslgg2HdDRRxgk/Qo3RB91MJoszfZggdaRpUxdDKAM1ymn0Xscpq4kvtDkmyZGR7kfzLwy2OiScxPa9TaSdcyIq2lqFArb5su6svel6+ck6HgdclHbonavISSBYGHupJLirZkFnhNY/1XNgKHetX4BU94Ld7/xOWCI+Sjb3a5cgt2Bu7PPTLE6MtxSLmbzvukX6F8XMjWtLws4iOmrSx3UNGLgJOf/IbiKYghvsdyUeZblR6BkqZnP0vzQeCAehIUdMa8lC68avYdumNeJrgbWZw4mP82vdhRASVMiTiWtNdyhTQ79N+0VSsK+PR+DRS1fN06EQrKOV9+N9Cjfv+95JfXr9eOI9eMaby98uQg==
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(136003)(346002)(39860400002)(451199015)(46966006)(36840700001)(40470700004)(40460700003)(356005)(82310400005)(40480700001)(36756003)(7636003)(86362001)(82740400003)(7696005)(107886003)(2616005)(6666004)(36860700001)(478600001)(186003)(26005)(8936002)(5660300002)(2906002)(8676002)(4326008)(54906003)(70586007)(70206006)(110136005)(1076003)(336012)(41300700001)(83380400001)(316002)(47076005)(426003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2023 10:42:38.7703
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6df32588-1cfa-4b72-0032-08dafa09e28e
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000C983.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8335
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Populate the Tegra XUSB device controller (XUDC) node for Tegra234.
 
-This is based upon a patch from Wayne Chang <waynec@nvidia.com>.
+On Wed 18 Jan 2023 at 04:08, Andrew Lunn <andrew@lunn.ch> wrote:
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
-V5: Nothing has changed
-V4: Added a new patch
+> On Mon, Jan 16, 2023 at 10:16:34AM +0100, Jerome Brunet wrote:
+>> Add support for the MDIO multiplexer found in the Amlogic GXL SoC family.
+>> This multiplexer allows to choose between the external (SoC pins) MDIO bus,
+>> or the internal one leading to the integrated 10/100M PHY.
+>> 
+>> This multiplexer has been handled with the mdio-mux-mmioreg generic driver
+>> so far. When it was added, it was thought the logic was handled by a
+>> single register.
+>> 
+>> It turns out more than a single register need to be properly set.
+>> As long as the device is using the Amlogic vendor bootloader, or upstream
+>> u-boot with net support, it is working fine since the kernel is inheriting
+>> the bootloader settings. Without net support in the bootloader, this glue
+>> comes unset in the kernel and only the external path may operate properly.
+>> 
+>> With this driver (and the associated DT update), the kernel no longer relies
+>> on the bootloader to set things up, fixing the problem.
+>
+> Ideally, you should also post an actual user of this driver, i.e. the
+> DT updates.
 
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+I usually avoid doing this since the DT part is intended for another
+maintainer. The idea is make life easy for them and let them pick the
+entire series (or not). I don't mind sending the DT update along if it
+is the perferred way with netdev.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 242bf59711f8..728099116dd0 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -1199,6 +1199,29 @@ usb3-3 {
- 			};
- 		};
- 
-+		usb@3550000 {
-+			compatible = "nvidia,tegra234-xudc";
-+			reg = <0x03550000 0x8000>,
-+			      <0x03558000 0x8000>;
-+			reg-names = "base", "fpci";
-+			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&bpmp TEGRA234_CLK_XUSB_CORE_DEV>,
-+				 <&bpmp TEGRA234_CLK_XUSB_CORE_SS>,
-+				 <&bpmp TEGRA234_CLK_XUSB_SS>,
-+				 <&bpmp TEGRA234_CLK_XUSB_FS>;
-+			clock-names = "dev", "ss", "ss_src", "fs_src";
-+			interconnects = <&mc TEGRA234_MEMORY_CLIENT_XUSB_DEVR &emc>,
-+					<&mc TEGRA234_MEMORY_CLIENT_XUSB_DEVW &emc>;
-+			interconnect-names = "dma-mem", "write";
-+			iommus = <&smmu_niso1 TEGRA234_SID_XUSB_DEV>;
-+			power-domains = <&bpmp TEGRA234_POWER_DOMAIN_XUSBB>,
-+					<&bpmp TEGRA234_POWER_DOMAIN_XUSBA>;
-+			power-domain-names = "dev", "ss";
-+			nvidia,xusb-padctl = <&xusb_padctl>;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
- 		usb@3610000 {
- 			compatible = "nvidia,tegra234-xusb";
- 			reg = <0x03610000 0x40000>,
--- 
-2.25.1
+FYI, the DT update would look like this :
+https://gitlab.com/jbrunet/linux/-/commit/1d38ccf1b9f264111b1c56f18cfb4804227d3894.patch
+
+>
+>> This has been tested on the aml-s905x-cc (LePotato) for the internal path
+>> and the aml-s912-pc (Tartiflette) for the external path.
+>
+> So these exist in mainline, which is enough for me.
+
+Yes the boards exists in mainline, there are still using the mdio-mux-mmioreg driver
+ATM
+
+>
+>    Andrew
 
