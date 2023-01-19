@@ -2,275 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5234567409A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 19:12:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE2056740BD
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 19:20:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230021AbjASSMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 13:12:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39338 "EHLO
+        id S229561AbjASSUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 13:20:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230108AbjASSMh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 13:12:37 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E137F9014;
-        Thu, 19 Jan 2023 10:12:35 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30JHwKpD014280;
-        Thu, 19 Jan 2023 18:12:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=0t2cAvZhP3n5DRBDOYFkpTsSxhPTrz9mt2vhX4yrNnk=;
- b=Apuur0BlUxrFtAbJqmBUC2zxULdrbVdhD0QihvWBprkyLve9rePPCNWL6qyvkmYNhyZ7
- 9NI55chMnODc6W1xmtRKMCicZuhLagIlTyhFzK64jk1NDDbcrXzYqSlurRAzJwl+MCIt
- ctqdLxmHqISLE/Dt/wZBVlz8xyzaxKZ/Ap53OaXDKrGBOLeLLvXg2+mJAFDLrUQGlQoZ
- NzjLpZtd9RsOvaDFSS/U8VVcq/tlphC5XJZ5xCZzyByl8Ebg18EO+OTQ1pBb1dgndtW7
- T9wlVzBl5xUBBbsMwWrZnU0klrsvLJSOGN3Xc7BYpgTw+vf5pzWXjiQj2D/UaIuuthmD ng== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n6vg026e7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 19 Jan 2023 18:12:23 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30JICNkF002387
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 19 Jan 2023 18:12:23 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Thu, 19 Jan 2023 10:12:22 -0800
-Date:   Thu, 19 Jan 2023 10:12:21 -0800
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        "Kuogee Hsieh" <quic_khsieh@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 10/12] arm64: dts: qcom: sc8280xp: Define some of the
- display blocks
-Message-ID: <20230119181221.GA3951310@hu-bjorande-lv.qualcomm.com>
-References: <20221207220012.16529-1-quic_bjorande@quicinc.com>
- <20221207220012.16529-11-quic_bjorande@quicinc.com>
- <6e7b1518-0dd5-59a6-128a-e3c3c194bf52@linaro.org>
+        with ESMTP id S230064AbjASSUA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 13:20:00 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F171449F;
+        Thu, 19 Jan 2023 10:19:58 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so4159590wml.3;
+        Thu, 19 Jan 2023 10:19:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oHH+KmVkm4uaS5su6DhQGdf280FMF9BCxat013P5oGQ=;
+        b=GqKp2vOVQlufREuR+mxKuUX/qXUZVhR/2fU4TQRP7zRuP3onF9SvxcIZUU12qbKKO3
+         GA74CUGvcgfj6xg9d0591RN7dfxwN3w4OPiF9QfYA/Fw4pL64+hAXaHEGkCtBr/nsHZ/
+         Ta7SSWWR89aEi1FET0Hx9aJPYmJmFGAedLZKagiMBQ5+tZcMP6WFARpaGl3pAQAoAnO3
+         FDJVcuUvZxnnBxSsfze+rlI0Wpe4dIqXmHjPYSUh6EooRGvn/QDZ1pEXoGwi0l2z5zPo
+         cAmbd+2ubz9AZW7mbV4O3DqfDoIXPKkCGf9foK+oJZ/Oe/3hM2+FeStvV+iIhkqCcEfZ
+         UNww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oHH+KmVkm4uaS5su6DhQGdf280FMF9BCxat013P5oGQ=;
+        b=0yfpIhrIXWCeNMGsyzan+BFOMBcTDF0hAWAlzSlqykx9QRLLhADlgJ7poMRAYmSLsp
+         AbEWU0SAS4S6vrz0h1+8IUwFdDErsWX4vJbtierN/kqzkLBCYRxCw62LSHbvLrev5FPw
+         6DElSNSa5tU/ELk9UXBCLXOkSWYpA7P88rcC3IaKZ3lkDu8HclHNju5WcComZFfz4rni
+         +JqEOfqcBXqd5mqBAqJ0F0oG/yj2ju+A1dUGz84plrNWiItA7Ob50cS95dIov1JQSYKU
+         N6DAQ/WdYYlIN7gUEhdfcFv/ivvHa5wAewF7UaWroBziMfcloKGX9cH1uPy0Ocb7d+Kx
+         +6Lg==
+X-Gm-Message-State: AFqh2kp6wi0/5bGYSKAxM73tPtje8e0b+7KYKrKMrffVt8lNmwAEJ791
+        ikxIbBaBMzK1Yr7xLfQmQ5k=
+X-Google-Smtp-Source: AMrXdXutKZIpKraeZQVfKb2+7pXev/RBBlJWtd2oCakLdYQqUCD5lRtEWIx2JODT4tXHXXYajoe+mg==
+X-Received: by 2002:a05:600c:510d:b0:3da:f719:50cd with SMTP id o13-20020a05600c510d00b003daf71950cdmr10826371wms.18.1674152397010;
+        Thu, 19 Jan 2023 10:19:57 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id s7-20020a1cf207000000b003db11dfc687sm5464787wmc.36.2023.01.19.10.19.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jan 2023 10:19:56 -0800 (PST)
+Message-ID: <d580f1dc-e49f-48c9-30be-a0ef25ad1435@gmail.com>
+Date:   Thu, 19 Jan 2023 19:19:54 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <6e7b1518-0dd5-59a6-128a-e3c3c194bf52@linaro.org>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: xAP35k12o5c-4LTeND7FjchopdsRVfqB
-X-Proofpoint-GUID: xAP35k12o5c-4LTeND7FjchopdsRVfqB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-19_11,2023-01-19_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- spamscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501
- bulkscore=0 impostorscore=0 mlxlogscore=999 suspectscore=0 adultscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301190150
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v8 2/2] arm64: dts: mt8195: Add Ethernet controller
+Content-Language: en-US
+To:     Biao Huang <biao.huang@mediatek.com>, Andrew Lunn <andrew@lunn.ch>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        macpaul.lin@mediatek.com, netdev@vger.kernel.org
+References: <20230105010712.10116-1-biao.huang@mediatek.com>
+ <20230105010712.10116-3-biao.huang@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230105010712.10116-3-biao.huang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 04:58:26AM +0200, Dmitry Baryshkov wrote:
-> On 08/12/2022 00:00, Bjorn Andersson wrote:
-> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > 
-> > Define the display clock controllers, the MDSS instances, the DP phys
-> > and connect these together.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> > ---
-> > 
-> > Changes since v4:
-> > - None
-> > 
-> >   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 838 +++++++++++++++++++++++++
-> >   1 file changed, 838 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > index 9f3132ac2857..c2f186495506 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > @@ -4,6 +4,7 @@
-> >    * Copyright (c) 2022, Linaro Limited
-> >    */
-> > +#include <dt-bindings/clock/qcom,dispcc-sc8280xp.h>
-> >   #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
-> >   #include <dt-bindings/clock/qcom,rpmh.h>
-> >   #include <dt-bindings/interconnect/qcom,sc8280xp.h>
-> > @@ -1698,6 +1699,44 @@ usb_1_qmpphy: phy@8903000 {
-> >   			status = "disabled";
-> >   		};
-> > +		mdss1_dp0_phy: phy@8909a00 {
-> > +			compatible = "qcom,sc8280xp-dp-phy";
-> > +			reg = <0 0x08909a00 0 0x19c>,
-> > +			      <0 0x08909200 0 0xec>,
-> > +			      <0 0x08909600 0 0xec>,
-> > +			      <0 0x08909000 0 0x1c8>;
-> > +
-> > +			clocks = <&dispcc1 DISP_CC_MDSS_DPTX0_AUX_CLK>,
-> > +				 <&dispcc1 DISP_CC_MDSS_AHB_CLK>;
-> > +			clock-names = "aux", "cfg_ahb";
-> > +
-> > +			power-domains = <&rpmhpd SC8280XP_MX>;
-> > +
-> > +			#clock-cells = <1>;
-> > +			#phy-cells = <0>;
-> > +
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		mdss1_dp1_phy: phy@890ca00 {
-> > +			compatible = "qcom,sc8280xp-dp-phy";
-> > +			reg = <0 0x0890ca00 0 0x19c>,
-> > +			      <0 0x0890c200 0 0xec>,
-> > +			      <0 0x0890c600 0 0xec>,
-> > +			      <0 0x0890c000 0 0x1c8>;
-> > +
-> > +			clocks = <&dispcc1 DISP_CC_MDSS_DPTX1_AUX_CLK>,
-> > +				 <&dispcc1 DISP_CC_MDSS_AHB_CLK>;
-> > +			clock-names = "aux", "cfg_ahb";
-> > +
-> > +			power-domains = <&rpmhpd SC8280XP_MX>;
-> > +
-> > +			#clock-cells = <1>;
-> > +			#phy-cells = <0>;
-> > +
-> > +			status = "disabled";
-> > +		};
-> > +
-> >   		system-cache-controller@9200000 {
-> >   			compatible = "qcom,sc8280xp-llcc";
-> >   			reg = <0 0x09200000 0 0x58000>, <0 0x09600000 0 0x58000>;
-> > @@ -1813,6 +1852,326 @@ usb_1_dwc3: usb@a800000 {
-> >   			};
-> >   		};
-> > +		mdss0: display-subsystem@ae00000 {
-> > +			compatible = "qcom,sc8280xp-mdss";
-> > +			reg = <0 0x0ae00000 0 0x1000>;
-> > +			reg-names = "mdss";
-> > +
-> > +			power-domains = <&dispcc0 MDSS_GDSC>;
-> > +
-> > +			clocks = <&gcc GCC_DISP_AHB_CLK>,
-> > +				 <&dispcc0 DISP_CC_MDSS_AHB_CLK>,
-> > +				 <&dispcc0 DISP_CC_MDSS_MDP_CLK>;
-> > +			clock-names = "iface",
-> > +				      "ahb",
-> > +				      "core";
-> > +
-> > +			resets = <&dispcc0 DISP_CC_MDSS_CORE_BCR>;
-> > +
-> > +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-controller;
-> > +			#interrupt-cells = <1>;
-> > +
-> > +			interconnects = <&mmss_noc MASTER_MDP0 0 &mc_virt SLAVE_EBI1 0>,
-> > +					<&mmss_noc MASTER_MDP1 0 &mc_virt SLAVE_EBI1 0>;
-> > +			interconnect-names = "mdp0-mem", "mdp1-mem";
-> > +
-> > +			iommus = <&apps_smmu 0x1000 0x402>;
-> > +
-> > +			status = "disabled";
-> > +
-> > +			#address-cells = <2>;
-> > +			#size-cells = <2>;
-> > +			ranges;
-> > +
-> > +			mdss0_mdp: display-controller@ae01000 {
-> > +				compatible = "qcom,sc8280xp-dpu";
-> > +				reg = <0 0x0ae01000 0 0x8f000>,
-> > +				      <0 0x0aeb0000 0 0x2008>;
-> > +				reg-names = "mdp", "vbif";
-> > +
-> > +				clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-> > +					 <&gcc GCC_DISP_SF_AXI_CLK>,
-> > +					 <&dispcc0 DISP_CC_MDSS_AHB_CLK>,
-> > +					 <&dispcc0 DISP_CC_MDSS_MDP_LUT_CLK>,
-> > +					 <&dispcc0 DISP_CC_MDSS_MDP_CLK>,
-> > +					 <&dispcc0 DISP_CC_MDSS_VSYNC_CLK>;
-> > +				clock-names = "bus",
-> > +					      "nrt_bus",
-> > +					      "iface",
-> > +					      "lut",
-> > +					      "core",
-> > +					      "vsync";
-> > +
-> > +				assigned-clocks = <&dispcc0 DISP_CC_MDSS_MDP_CLK>,
-> > +						  <&dispcc0 DISP_CC_MDSS_VSYNC_CLK>;
-> > +				assigned-clock-rates = <460000000>,
-> > +						       <19200000>;
-> > +
-> > +				operating-points-v2 = <&mdss0_mdp_opp_table>;
-> > +				power-domains = <&rpmhpd SC8280XP_MMCX>;
-> > +
-> > +				interrupt-parent = <&mdss0>;
-> > +				interrupts = <0>;
-> > +
-> > +				ports {
-> > +					#address-cells = <1>;
-> > +					#size-cells = <0>;
-> > +
-> > +					port@5 {
-> > +						reg = <5>;
-> > +						mdss0_intf5_out: endpoint {
-> > +							remote-endpoint = <&mdss0_dp3_in>;
-> > +						};
-> > +					};
-> > +
-> > +					port@6 {
-> > +						reg = <6>;
-> > +						mdss0_intf6_out: endpoint {
-> > +							remote-endpoint = <&mdss0_dp2_in>;
-> > +						};
-> > +					};
-> > +				};
-> 
-> This now fails with:
-> 
-> arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: display-controller@ae01000:
-> ports: 'port@0' is a required property
-> 	From schema:
-> Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
-> arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: display-controller@ae01000:
-> Unevaluated properties are not allowed ('ports' was unexpected)
-> 	From schema:
-> Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
-> 
-> We do not map reg ids to INTF indices. So, unless you plan to change that,
-> could you please change these to port@0 / port@1 ?
-> 
 
-Too bad, I liked the fact that I gave these numbers any form of meaning.
-I guess we can change it to just be an arbitrary index, and keep the
-intf-information in the label...
 
-Regards,
-Bjorn
+On 05/01/2023 02:07, Biao Huang wrote:
+> Add Ethernet controller node for mt8195.
+> 
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
 
-> [skipped the rest]
+Applied, thanks!
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 77 ++++++++++++++++
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 92 ++++++++++++++++++++
+>   2 files changed, 169 insertions(+)
 > 
-> -- 
-> With best wishes
-> Dmitry
-> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> index 4fbd99eb496a..6a48c135f0da 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> @@ -78,6 +78,23 @@ optee_reserved: optee@43200000 {
+>   	};
+>   };
+>   
+> +&eth {
+> +	phy-mode ="rgmii-id";
+> +	phy-handle = <&ethernet_phy0>;
+> +	snps,reset-gpio = <&pio 93 GPIO_ACTIVE_HIGH>;
+> +	snps,reset-delays-us = <0 10000 80000>;
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&eth_default_pins>;
+> +	pinctrl-1 = <&eth_sleep_pins>;
+> +	status = "okay";
+> +
+> +	mdio {
+> +		ethernet_phy0: ethernet-phy@1 {
+> +			reg = <0x1>;
+> +		};
+> +	};
+> +};
+> +
+>   &i2c6 {
+>   	clock-frequency = <400000>;
+>   	pinctrl-0 = <&i2c6_pins>;
+> @@ -258,6 +275,66 @@ &mt6359_vsram_others_ldo_reg {
+>   };
+>   
+>   &pio {
+> +	eth_default_pins: eth-default-pins {
+> +		pins-txd {
+> +			pinmux = <PINMUX_GPIO77__FUNC_GBE_TXD3>,
+> +				 <PINMUX_GPIO78__FUNC_GBE_TXD2>,
+> +				 <PINMUX_GPIO79__FUNC_GBE_TXD1>,
+> +				 <PINMUX_GPIO80__FUNC_GBE_TXD0>;
+> +			drive-strength = <MTK_DRIVE_8mA>;
+> +		};
+> +		pins-cc {
+> +			pinmux = <PINMUX_GPIO85__FUNC_GBE_TXC>,
+> +				 <PINMUX_GPIO88__FUNC_GBE_TXEN>,
+> +				 <PINMUX_GPIO87__FUNC_GBE_RXDV>,
+> +				 <PINMUX_GPIO86__FUNC_GBE_RXC>;
+> +			drive-strength = <MTK_DRIVE_8mA>;
+> +		};
+> +		pins-rxd {
+> +			pinmux = <PINMUX_GPIO81__FUNC_GBE_RXD3>,
+> +				 <PINMUX_GPIO82__FUNC_GBE_RXD2>,
+> +				 <PINMUX_GPIO83__FUNC_GBE_RXD1>,
+> +				 <PINMUX_GPIO84__FUNC_GBE_RXD0>;
+> +		};
+> +		pins-mdio {
+> +			pinmux = <PINMUX_GPIO89__FUNC_GBE_MDC>,
+> +				 <PINMUX_GPIO90__FUNC_GBE_MDIO>;
+> +			input-enable;
+> +		};
+> +		pins-power {
+> +			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
+> +				 <PINMUX_GPIO92__FUNC_GPIO92>;
+> +			output-high;
+> +		};
+> +	};
+> +
+> +	eth_sleep_pins: eth-sleep-pins {
+> +		pins-txd {
+> +			pinmux = <PINMUX_GPIO77__FUNC_GPIO77>,
+> +				 <PINMUX_GPIO78__FUNC_GPIO78>,
+> +				 <PINMUX_GPIO79__FUNC_GPIO79>,
+> +				 <PINMUX_GPIO80__FUNC_GPIO80>;
+> +		};
+> +		pins-cc {
+> +			pinmux = <PINMUX_GPIO85__FUNC_GPIO85>,
+> +				 <PINMUX_GPIO88__FUNC_GPIO88>,
+> +				 <PINMUX_GPIO87__FUNC_GPIO87>,
+> +				 <PINMUX_GPIO86__FUNC_GPIO86>;
+> +		};
+> +		pins-rxd {
+> +			pinmux = <PINMUX_GPIO81__FUNC_GPIO81>,
+> +				 <PINMUX_GPIO82__FUNC_GPIO82>,
+> +				 <PINMUX_GPIO83__FUNC_GPIO83>,
+> +				 <PINMUX_GPIO84__FUNC_GPIO84>;
+> +		};
+> +		pins-mdio {
+> +			pinmux = <PINMUX_GPIO89__FUNC_GPIO89>,
+> +				 <PINMUX_GPIO90__FUNC_GPIO90>;
+> +			input-disable;
+> +			bias-disable;
+> +		};
+> +	};
+> +
+>   	gpio_keys_pins: gpio-keys-pins {
+>   		pins {
+>   			pinmux = <PINMUX_GPIO106__FUNC_GPIO106>;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 5d31536f4c48..28b3ebd145bf 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1046,6 +1046,98 @@ spis1: spi@1101e000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		eth: ethernet@11021000 {
+> +			compatible = "mediatek,mt8195-gmac", "snps,dwmac-5.10a";
+> +			reg = <0 0x11021000 0 0x4000>;
+> +			interrupts = <GIC_SPI 716 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			interrupt-names = "macirq";
+> +			clock-names = "axi",
+> +				      "apb",
+> +				      "mac_main",
+> +				      "ptp_ref",
+> +				      "rmii_internal",
+> +				      "mac_cg";
+> +			clocks = <&pericfg_ao CLK_PERI_AO_ETHERNET>,
+> +				 <&pericfg_ao CLK_PERI_AO_ETHERNET_BUS>,
+> +				 <&topckgen CLK_TOP_SNPS_ETH_250M>,
+> +				 <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
+> +				 <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>,
+> +				 <&pericfg_ao CLK_PERI_AO_ETHERNET_MAC>;
+> +			assigned-clocks = <&topckgen CLK_TOP_SNPS_ETH_250M>,
+> +					  <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
+> +					  <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_ETHPLL_D2>,
+> +						 <&topckgen CLK_TOP_ETHPLL_D8>,
+> +						 <&topckgen CLK_TOP_ETHPLL_D10>;
+> +			power-domains = <&spm MT8195_POWER_DOMAIN_ETHER>;
+> +			mediatek,pericfg = <&infracfg_ao>;
+> +			snps,axi-config = <&stmmac_axi_setup>;
+> +			snps,mtl-rx-config = <&mtl_rx_setup>;
+> +			snps,mtl-tx-config = <&mtl_tx_setup>;
+> +			snps,txpbl = <16>;
+> +			snps,rxpbl = <16>;
+> +			snps,clk-csr = <0>;
+> +			status = "disabled";
+> +
+> +			mdio {
+> +				compatible = "snps,dwmac-mdio";
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +
+> +			stmmac_axi_setup: stmmac-axi-config {
+> +				snps,wr_osr_lmt = <0x7>;
+> +				snps,rd_osr_lmt = <0x7>;
+> +				snps,blen = <0 0 0 0 16 8 4>;
+> +			};
+> +
+> +			mtl_rx_setup: rx-queues-config {
+> +				snps,rx-queues-to-use = <4>;
+> +				snps,rx-sched-sp;
+> +				queue0 {
+> +					snps,dcb-algorithm;
+> +					snps,map-to-dma-channel = <0x0>;
+> +				};
+> +				queue1 {
+> +					snps,dcb-algorithm;
+> +					snps,map-to-dma-channel = <0x0>;
+> +				};
+> +				queue2 {
+> +					snps,dcb-algorithm;
+> +					snps,map-to-dma-channel = <0x0>;
+> +				};
+> +				queue3 {
+> +					snps,dcb-algorithm;
+> +					snps,map-to-dma-channel = <0x0>;
+> +				};
+> +			};
+> +
+> +			mtl_tx_setup: tx-queues-config {
+> +				snps,tx-queues-to-use = <4>;
+> +				snps,tx-sched-wrr;
+> +				queue0 {
+> +					snps,weight = <0x10>;
+> +					snps,dcb-algorithm;
+> +					snps,priority = <0x0>;
+> +				};
+> +				queue1 {
+> +					snps,weight = <0x11>;
+> +					snps,dcb-algorithm;
+> +					snps,priority = <0x1>;
+> +				};
+> +				queue2 {
+> +					snps,weight = <0x12>;
+> +					snps,dcb-algorithm;
+> +					snps,priority = <0x2>;
+> +				};
+> +				queue3 {
+> +					snps,weight = <0x13>;
+> +					snps,dcb-algorithm;
+> +					snps,priority = <0x3>;
+> +				};
+> +			};
+> +		};
+> +
+>   		xhci0: usb@11200000 {
+>   			compatible = "mediatek,mt8195-xhci",
+>   				     "mediatek,mtk-xhci";
