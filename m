@@ -2,93 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24899673E40
-	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 17:08:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FFEC673E43
+	for <lists+devicetree@lfdr.de>; Thu, 19 Jan 2023 17:09:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbjASQIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 11:08:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34456 "EHLO
+        id S229534AbjASQJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 11:09:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230281AbjASQIX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 11:08:23 -0500
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98ADE24100
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 08:07:56 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 0D5345C0055;
-        Thu, 19 Jan 2023 11:07:51 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 19 Jan 2023 11:07:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1674144471; x=
-        1674230871; bh=PbWLyJhw/iOQwuGvoWBn3gRU7g08AnJRlkgtH2IlX0I=; b=A
-        LMbV8sQPjVhfyk9HBTBLymb5/nO2fC/GCx4IlsLkVT2KJRsiwFD075qM9Ilcc8l2
-        GoWpQXPYSvnNajAO4ICNvu4sI8XtgfasfZgkQ/ctF0UxCsBRczDVfnxh8g9K+TIn
-        xmPuu4cJWcEnTpCcbQev59lFeTAIXkYiINLbGE2ZgG6oJYfcLjN4NmnOB/DREn1H
-        C+uMGIAJ2pLzmcbjKn1LxPUqjium2ICQqnGf0lR5LvCWi1IPYtPcjdMTRELnjWzR
-        B4eEkH4eh+suGPOt/VsTdXZ8YY+U0afjmwF63xcWrqDnFGDb4Nv+2w8qPXSVnR1b
-        UD2pGfML1MMaJIJh1L/kQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1674144471; x=
-        1674230871; bh=PbWLyJhw/iOQwuGvoWBn3gRU7g08AnJRlkgtH2IlX0I=; b=i
-        SnzL49b6sGeSefWu/AApMexpcDkyz+UFZo81y8J5xyxYgRLPkn+OJoeoEHsnt2zE
-        edoInvz1O7LnaGoelmIKHsZZ3q+0mMZIvLjQG805woESpeAqIPFV4dw9FP0BY3pj
-        1LvYT8x6HJTg2J6HwO8PY6g8g63j5Kwa8V/Vy/TftLsHQ4ehJFAID/fHuSEoeN5M
-        VAdb/1tg7gc7lrcqMS/1qBiSBesDBbHww0piPh9OR+YUe3Nw2awCwAHdHtCWQJth
-        zGj9gGcumqEmhdzCGjF6nT7zv9P+FAGoC7c6e6QprPxYkpari2YorPO1PivqFV6k
-        JVAYG3LOMuqg1CIE/Y/LA==
-X-ME-Sender: <xms:1mrJYyLRbuKaSx2TjSUd4uhmxoh4jTIxNm-ANcDGSf8lFV7OlXbZQw>
-    <xme:1mrJY6KzYYjSqycBb9YLboYG5szeWkJvIrMCGEZDxgwNM4NMoG_d36qi-mxEQfq-d
-    rkoUvZYhXm1sI7NUoQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddutddgkeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
-    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:1mrJYytgteWEyV7T3jdA0lsZPwERYFyKqYY1mByOr21i2hKDONm4Cw>
-    <xmx:1mrJY3YAKPk9bg55m5JP_G8Dt05nzJA57RLnkfpNLN3ontSiN1kHjw>
-    <xmx:1mrJY5b6fQM80HULn5fFmosRZAueiVUY5DGY1fJiGW-gaN5agKznow>
-    <xmx:12rJY7kqtiWYhqWgBfqvolU0Pdu9g9wPoFyALhXv_l8W09s8nbthlA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 5F5A6B60089; Thu, 19 Jan 2023 11:07:50 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
-Mime-Version: 1.0
-Message-Id: <9e2aa58c-10dc-49d0-a492-4d724cf29c2b@app.fastmail.com>
-In-Reply-To: <2617470.BddDVKsqQX@steina-w>
-References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
- <20230119144236.3541751-10-alexander.stein@ew.tq-group.com>
- <f1de9cd9-a163-4b56-adf8-319eaf85e38e@app.fastmail.com>
- <2617470.BddDVKsqQX@steina-w>
-Date:   Thu, 19 Jan 2023 17:07:30 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Alexander Stein" <alexander.stein@ew.tq-group.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Olof Johansson" <olof@lixom.net>,
-        "Shawn Guo" <shawnguo@kernel.org>, "Li Yang" <leoyang.li@nxp.com>,
-        "Russell King" <linux@armlinux.org.uk>,
-        "Marek Vasut" <marex@denx.de>,
-        "Marcel Ziswiler" <marcel.ziswiler@toradex.com>
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 9/9] [DNI] ARM: multi_v7_defconfig: Enable CONFIG_ARM_LPAE for
- multi_v7_config
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        with ESMTP id S229734AbjASQIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 11:08:53 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4954649425;
+        Thu, 19 Jan 2023 08:08:51 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so3911517wmb.2;
+        Thu, 19 Jan 2023 08:08:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yXxv4f/GrzSHSPu/QzcHkyK4EnmsjXpwAUc8WugyuBY=;
+        b=C1lMrrVx4bxj9zX1x/HNOWUgVfK4+6w+sbcqfAxU0BO8dfhmUvSl511zCVyOpOAUlu
+         rabqut5ECP1iUkMafoskAChJhOM3IIgczRnAZ+k1NVX6MH5WDI7aScfamWfhihq3SC3N
+         6DoyRntCpYgjrS9ZS357UbdY76LKm/zKp9RVQd8AOoMMH4OJgrTGwnsAu8uzBvN6xzeE
+         6jeU9GYiD0vVd6tGfc3VGmOMYccvbADx1K+/3oTfvUj9U7pUEWdQcq8jKfT96XxXKnHy
+         Hy5L3pKxRjsoL/GUpPbDa7ugLBA20zdmAAy5zPcKo9J8tiEsoXfIcC5nD1/zXag5Lkyy
+         KseA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yXxv4f/GrzSHSPu/QzcHkyK4EnmsjXpwAUc8WugyuBY=;
+        b=68+y6wmAEyHoyFQXLRAQ9Z1fYGEdLHC9Y91j/HHArinlcSIeVoha5A0udljbzWu9md
+         GtcEh7s6/JRvaMAkno6+rcrRzL4xzJiFiQbomkI9CkRUsEpyfc4GznH6o2Zk9MLiITUT
+         /1oQrSyW5VEOUgb7Y2XYI0RoUE0gkScq0H1DLBCTc9uUN/CpZY6csQN8nURCz/8FiGvy
+         Xym3vcF0Aeu4xdesCCxtbnX//5xNY2uV9E5G7vqvy9ns80BFzWRhitGnVs19cOW5IPl2
+         enJX+9MwtejAfvFyF0J8hdqCcjy5sReixfgAEx1t2U1VeoZl/7lJxZkmSKsjzRQFsk7/
+         vbLg==
+X-Gm-Message-State: AFqh2kplI8qeKsBcDOXh5vwp4b1UAmsElsm7o8k4Q603F+Qlgww+72rC
+        6cdK3mZZ+l8zTeGcCNGIPlI=
+X-Google-Smtp-Source: AMrXdXuHd37802o67zKMA0vSXhoL6McWWKMzRHrp3BkFuf9/dCjllHInE53NvVEDqDJ4iZmyFfmG4w==
+X-Received: by 2002:a05:600c:1912:b0:3db:f0a:8707 with SMTP id j18-20020a05600c191200b003db0f0a8707mr7630059wmq.40.1674144529818;
+        Thu, 19 Jan 2023 08:08:49 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id be12-20020a05600c1e8c00b003db06224953sm6249655wmb.41.2023.01.19.08.08.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Jan 2023 08:08:49 -0800 (PST)
+Message-ID: <8ae4469e-ed2c-5019-605b-013a49af77ea@gmail.com>
+Date:   Thu, 19 Jan 2023 17:08:48 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v6 1/4] dt-bindings: arm: mediatek: migrate MT8195
+ vppsys0/1 to mtk-mmsys driver
+Content-Language: en-US
+To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230118031509.29834-1-moudy.ho@mediatek.com>
+ <20230118031509.29834-2-moudy.ho@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230118031509.29834-2-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,54 +81,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023, at 16:27, Alexander Stein wrote:
-> Am Donnerstag, 19. Januar 2023, 16:09:05 CET schrieb Arnd Bergmann:
->> On Thu, Jan 19, 2023, at 15:42, Alexander Stein wrote:
->> > This is necessary to support PCIe on LS1021A.
->> >=20
->> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>=20
->> Can you explain why this is actually required? I can see that the
->> ranges in the PCIe device point to a high address (0x4000000000,
->> 2^40), but I can't tell if this is hardwired in the SoC or a
->> setting that is applied by software (either the bootloader or
->> the PCIe driver).
->
-> The RM ([1]) memory map (Table 2-1) says that 'PCI Express 1' is locat=
-ed at=20
-> '400000_0000', 'PCI Express 2' at '480000_0000', so I assume this is h=
-ardcoded=20
-> in SoC.
-> It also explicitly lists in that table PCIe 1&2 is only accessible wit=
-h 40-bit=20
-> addressing.
->
->> If you can reprogram the memory map, I would expect this to fit
->> easily into the 32-bit address space, with 1GB for DDR3 memory
->> and 1GB for PCIe BARs.
->
-> I'm not sure which part of memory map you can reprogram and where, but=
- I guess=20
-> this is fixed on this SoC.
 
-Ok, I see it now. It looks like they fell victim to the=20
-cursed "Principles of ARM=C2=AE Memory Maps White Paper"
-document and messed it up even further ;-)
 
-In particular, it seems that the memory map of the PCI address
-spaces is configurable, but only within that area you listed.
-I see that section "28.4.2 PEX register descriptions" does list
-a 64-bit prefetchable address space in addition to the 32-bit
-non-prefetchable memory space, but the 64-bit space is not
-listed in the DT. It would be a good idea to configure that
-as well in order for devices to work that need a larger BAR,
-such as a GPU, but it wouldn't help with fitting the PCIe
-into non-LPAE 32-bit CPU address space.
+On 18/01/2023 04:15, Moudy Ho wrote:
+> MT8195 VPPSYS 0/1 should be probed from mtk-mmsys driver to
+> populate device by platform_device_register_data then start
+> its own clock driver.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 
-In the datasheet I also see that the chip theoretically
-supports 8GB of DDR4, which would definitely put it beyond
-the highmem limit, even with the 4G:4G memory split. Do you
-know if there are ls1021a devices with more than 4GB of
-installed memory?
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
-    Arnd
+Stephen, if you want I can take 1/4 and 3/4 through my tree. 3/4 shouldn't be a 
+problem, not sure about this patch. In any case if you want me to do so, I'd 
+need a Acked-by from you.
+
+Regards,
+Matthias
+
+> ---
+>   .../arm/mediatek/mediatek,mt8195-clock.yaml      | 16 ----------------
+>   1 file changed, 16 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml
+> index 17fcbb45d121..d62d60181147 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml
+> @@ -28,11 +28,9 @@ properties:
+>             - mediatek,mt8195-imp_iic_wrap_s
+>             - mediatek,mt8195-imp_iic_wrap_w
+>             - mediatek,mt8195-mfgcfg
+> -          - mediatek,mt8195-vppsys0
+>             - mediatek,mt8195-wpesys
+>             - mediatek,mt8195-wpesys_vpp0
+>             - mediatek,mt8195-wpesys_vpp1
+> -          - mediatek,mt8195-vppsys1
+>             - mediatek,mt8195-imgsys
+>             - mediatek,mt8195-imgsys1_dip_top
+>             - mediatek,mt8195-imgsys1_dip_nr
+> @@ -92,13 +90,6 @@ examples:
+>           #clock-cells = <1>;
+>       };
+>   
+> -  - |
+> -    vppsys0: clock-controller@14000000 {
+> -        compatible = "mediatek,mt8195-vppsys0";
+> -        reg = <0x14000000 0x1000>;
+> -        #clock-cells = <1>;
+> -    };
+> -
+>     - |
+>       wpesys: clock-controller@14e00000 {
+>           compatible = "mediatek,mt8195-wpesys";
+> @@ -120,13 +111,6 @@ examples:
+>           #clock-cells = <1>;
+>       };
+>   
+> -  - |
+> -    vppsys1: clock-controller@14f00000 {
+> -        compatible = "mediatek,mt8195-vppsys1";
+> -        reg = <0x14f00000 0x1000>;
+> -        #clock-cells = <1>;
+> -    };
+> -
+>     - |
+>       imgsys: clock-controller@15000000 {
+>           compatible = "mediatek,mt8195-imgsys";
