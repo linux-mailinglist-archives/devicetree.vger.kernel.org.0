@@ -2,111 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E21CA675241
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 11:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28F9567523F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 11:21:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbjATKVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 05:21:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33588 "EHLO
+        id S229543AbjATKVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 05:21:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbjATKVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 05:21:52 -0500
-Received: from formenos.hmeau.com (helcar.hmeau.com [216.24.177.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DC364617D;
-        Fri, 20 Jan 2023 02:21:51 -0800 (PST)
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-        id 1pIoWd-002BGR-8C; Fri, 20 Jan 2023 18:21:36 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 20 Jan 2023 18:21:35 +0800
-Date:   Fri, 20 Jan 2023 18:21:35 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S229526AbjATKVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 05:21:40 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E44244617D
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:21:38 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id k16so3626688wms.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:21:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=opTxvrNzoM90zf6iRlxw6xlAEQi0T3iaraiUbrs0+KI=;
+        b=HlT9nOfUeMCu/pLD2N8cPd086rwZWAiDOILIZPoVbjDw1TKmGja6qR+xeZs355WtMF
+         /stt66FXI8rKnyuUzuoWYXw6KNTare5tlw6cVaJM43FJvg7OUNZbe5ivc7cqRwkckg0s
+         MLliU/Ve0LbKltbMN93BvgFPBZmdOupv0SGKWSlFY/AbbYyCRnaYknOLEh4poKKMAlCF
+         Cj9dnGPEfdPltLA5dCxRkDceLvRTOFdxMW4FwF/ov7oZoHuATB938g9KeK1vL8zdjaeZ
+         qSUDN137FE+vnffdKdOilVOTtjlZ05kV12RF1gPwQE0PM51M1pS/8nD/TzSeZGeBPeM6
+         j78Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=opTxvrNzoM90zf6iRlxw6xlAEQi0T3iaraiUbrs0+KI=;
+        b=CwhPhGx3ibFaXx260VlhzoPWkX74Bsx10dReOWY68QsiGSwg1q1kAcRq40aonDYkZr
+         X7k0YmLZG6los2kvkcECtL2bAmYJ6YjFCW/UYEO+RuSL5ksQCsotKKFonxvawku96i7I
+         tB31J9KTfLx3aPxwOmQMfq4Ee2IPnc9Qxrc1DLgJZZk/l+XOclDKfq1WiFCIUmrFSGoY
+         uevSicc9XdNxfzmEf27doitwIkJeKOEitDX0Pc0jGQVaXOTs0KN5c7ZGGClKVXduOOsr
+         yE3wNboLJteuWH3bJu1f1A5L4peYPiYDKgtZlrHz1fFeKq3X89eKYYrTMmR/uJ3dSliI
+         RboA==
+X-Gm-Message-State: AFqh2koAp0SI/u1v8s6ZHdOeSuuxtqYYY3ZrShs+huev8iiWUGoUfIk7
+        LqvvIcYDVDPVrrqvaTD4O9PvOmCUqvzk9Yq3
+X-Google-Smtp-Source: AMrXdXunXvSvbGCf6rhdGbv1vceov01lLIyxAajwlt4psjJxQ2qF62COX+4qgWFlTWOXGm0F12cUaQ==
+X-Received: by 2002:a05:600c:1695:b0:3da:f502:83b5 with SMTP id k21-20020a05600c169500b003daf50283b5mr13679062wmn.2.1674210097517;
+        Fri, 20 Jan 2023 02:21:37 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p7-20020a05600c468700b003a3442f1229sm1914667wmo.29.2023.01.20.02.21.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 02:21:37 -0800 (PST)
+Message-ID: <64c676cc-774c-0c6b-cbc6-9a6f1c58967f@linaro.org>
+Date:   Fri, 20 Jan 2023 11:21:35 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 2/9] ARM: dts: ls1021a: add TQ-Systems MBLS102xA device
+ tree
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] crypto: stm32/hash: Support Ux500 hash
-Message-ID: <Y8prL1fzhdf1jEyT@gondor.apana.org.au>
-References: <20221227-ux500-stm32-hash-v2-0-bc443bc44ca4@linaro.org>
- <20221227-ux500-stm32-hash-v2-5-bc443bc44ca4@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221227-ux500-stm32-hash-v2-5-bc443bc44ca4@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
+ <20230119144236.3541751-3-alexander.stein@ew.tq-group.com>
+ <7cc4c0d4-d863-a62d-3867-ab03d7f7507a@linaro.org>
+ <2902259.VdNmn5OnKV@steina-w>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2902259.VdNmn5OnKV@steina-w>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 10, 2023 at 08:19:16PM +0100, Linus Walleij wrote:
->  
-> +static void stm32_hash_emptymsg_fallback(struct ahash_request *req)
-> +{
-> +	struct crypto_ahash *ahash = crypto_ahash_reqtfm(req);
-> +	struct stm32_hash_ctx *ctx = crypto_ahash_ctx(ahash);
-> +	struct stm32_hash_request_ctx *rctx = ahash_request_ctx(req);
-> +	struct stm32_hash_dev *hdev = rctx->hdev;
-> +	struct crypto_shash *xtfm;
-> +	struct shash_desc *sdesc;
-> +	size_t len;
-> +	int ret;
-> +
-> +	dev_dbg(hdev->dev, "use fallback message size 0 key size %d\n",
-> +		ctx->keylen);
-> +	xtfm = crypto_alloc_shash(crypto_ahash_alg_name(ahash),
-> +				  0, CRYPTO_ALG_NEED_FALLBACK);
-> +	if (IS_ERR(xtfm)) {
-> +		dev_err(hdev->dev, "failed to allocate synchronous fallback\n");
-> +		return;
-> +	}
-> +
-> +	len = sizeof(*sdesc) + crypto_shash_descsize(xtfm);
-> +	sdesc = kmalloc(len, GFP_KERNEL);
-> +	if (!sdesc)
-> +		goto err_hashkey_sdesc;
-> +	sdesc->tfm = xtfm;
-> +
-> +	if (ctx->keylen) {
-> +		ret = crypto_shash_setkey(xtfm, ctx->key, ctx->keylen);
-> +		if (ret) {
-> +			dev_err(hdev->dev, "failed to set key ret=%d\n", ret);
-> +			goto err_hashkey;
-> +		}
-> +	}
-> +
-> +	ret = crypto_shash_init(sdesc);
-> +	if (ret) {
-> +		dev_err(hdev->dev, "shash init error ret=%d\n", ret);
-> +		goto err_hashkey;
-> +	}
-> +
-> +	ret = crypto_shash_finup(sdesc, NULL, 0, rctx->digest);
-> +	if (ret)
-> +		dev_err(hdev->dev, "shash finup error\n");
-> +err_hashkey:
-> +	kfree(sdesc);
-> +err_hashkey_sdesc:
-> +	crypto_free_shash(xtfm);
-> +}
+On 20/01/2023 11:08, Alexander Stein wrote:
+> Thanks, will drop it.
+> 
+>>> +
+>>> +		stmpe_gpio {
+>>
+>> No underscores in node names, generic node names, so "gpio". Does
+>> anything depend on odd naming?
+> 
+> You are right, node names should have underscores, but in the end I was 
+> following the bindings (Documentation/devicetree/bindings/input/touchscreen/
+> stmpe.txt) naming 'stmpe_touchscreen' and 'stmpe_adc' in the example.
 
-Calling crypto_alloc_shash is not allowed in this context.  For
-example, we might have been called down from the block layer due to
-swapping.  Even if you intermediate this with kernel threads, it
-still doesn't change the nature of the dead-lock.
+Example is not bindings.
 
-So if you need a fallback for zero-length messages, just allocate
-it unconditionally in the init_tfm function.
+> Each subdevice has it's own compatible, so there should be no issue.
+> Using just 'gpio' and 'touchscreen' below I didn't notice any difference.
 
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+(...)
+
+>>> +
+>>> +&i2c0 {
+>>> +	status = "okay";
+>>> +
+>>> +	mc34vr500: pmic@8 {
+>>> +		reg = <0x08>;
+>>
+>> No compatible? What's this?
+> 
+> That's a DC/DC regulator on the module, currently without any driver support. 
+> It's controlled by the PMC, see below.
+> 
+> We had an internal discussion as well whether to state clients without a 
+> driver (and thus no compatible) on the i2c bus. What is the guidelines for DT?
+> The benefit stating, even without compatible, is to show there is some device 
+> on the bus.
+
+Leave a comment, but not empty nodes.
+
+Best regards,
+Krzysztof
+
