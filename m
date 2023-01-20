@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B723C675E68
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 20:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 546C2675E6F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 20:53:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbjATTuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 14:50:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44266 "EHLO
+        id S229645AbjATTxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 14:53:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbjATTuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 14:50:12 -0500
+        with ESMTP id S230031AbjATTxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 14:53:42 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08BCBB96
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 11:50:10 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F0CF6197
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 11:53:41 -0800 (PST)
 Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1pIxOk-0006XR-7Q; Fri, 20 Jan 2023 20:50:02 +0100
+        id 1pIxS9-00070g-SX; Fri, 20 Jan 2023 20:53:33 +0100
 Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1pIxOj-0007mo-2W; Fri, 20 Jan 2023 20:50:01 +0100
-Date:   Fri, 20 Jan 2023 20:50:01 +0100
+        id 1pIxS7-0007vo-GU; Fri, 20 Jan 2023 20:53:31 +0100
+Date:   Fri, 20 Jan 2023 20:53:31 +0100
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -32,19 +32,18 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Fabio Estevam <festevam@gmail.com>,
         Li Yang <leoyang.li@nxp.com>,
         Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 3/3] dt-bindings: arm: fsl: Add i.MX8MM-EVK rev-b
-Message-ID: <20230120195001.ai5zg2fapu43q6ni@pengutronix.de>
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v7 2/3] arm64: dts: imx8mm-evk: add revision-B EVK
+Message-ID: <20230120195331.c62pvvljcd36jr3s@pengutronix.de>
 References: <20230110152316.1149940-1-johannes.schneider@leica-geosystems.com>
- <20230110152316.1149940-4-johannes.schneider@leica-geosystems.com>
+ <20230110152316.1149940-3-johannes.schneider@leica-geosystems.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230110152316.1149940-4-johannes.schneider@leica-geosystems.com>
+In-Reply-To: <20230110152316.1149940-3-johannes.schneider@leica-geosystems.com>
 User-Agent: NeoMutt/20180716
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -60,39 +59,160 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Johannes,
 
-On 23-01-10, Johannes Schneider wrote:
-> Add DT compatible strings for a rev-b imx8mm-EVK which come with a
-> different PMIC than rev-a.
+please adapt the subject to:
 
-Please correct the commit message it is not rev-b it is EVKB. The most
-recent revision of the 'original' EVK CPU module is C2 and the most
-recent revision of EVKB CPU2 module is A4.
+arm64: dts: add support for i.MX8MM-EVKB
 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index fbfc4f99c01e..9c3a02c19847 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -818,6 +818,7 @@ properties:
->                - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
->                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
->                - fsl,imx8mm-evk            # i.MX8MM EVK Board
-> +              - fsl,imx8mm-evkb           # i.MX8MM EVK Board, rev-B
-								   ^
-			Please drop this rev-B and instead just write:
-			# i.MX8MM EVKB board
+to avoid confusion with the revisions written in the schematics.
 
 Regards,
   Marco
 
->                - gateworks,imx8mm-gw7904
->                - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
->                - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
+On 23-01-10, Johannes Schneider wrote:
+> Add devicetree for the EVKB, which comes with LPDDR4 and a different
+> PMIC.
+> 
+> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  arch/arm64/boot/dts/freescale/imx8mm-evkb.dts | 116 ++++++++++++++++++
+>  2 files changed, 117 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 3ea9edc87909..3bccc4d10928 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -55,6 +55,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-data-modul-edm-sbc.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-emcon-avari.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-evkb.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-bl.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
+> new file mode 100644
+> index 000000000000..b2d724ad43b2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
+> @@ -0,0 +1,116 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2019-2020 NXP
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "imx8mm-evk.dtsi"
+> +
+> +/ {
+> +	model = "FSL i.MX8MM EVKB"; // with LPDDR4 and PCA9450 PMIC
+> +	compatible = "fsl,imx8mm-evkb", "fsl,imx8mm";
+> +};
+> +
+> +&i2c1 {
+> +	pmic: pmic@25 {
+> +		compatible = "nxp,pca9450a";
+> +		reg = <0x25>;
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		pinctrl-names = "default";
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		regulators {
+> +			buck1_reg: BUCK1 {
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +				nxp,dvs-run-voltage = <820000>;
+> +				nxp,dvs-standby-voltage = <800000>;
+> +			};
+> +
+> +			buck2_reg: BUCK2 {
+> +				regulator-name = "BUCK2";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck3_reg: BUCK3 {
+> +				regulator-name = "BUCK3";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck4_reg: BUCK4 {
+> +				regulator-name = "BUCK4";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5_reg: BUCK5 {
+> +				regulator-name = "BUCK5";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6_reg: BUCK6 {
+> +				regulator-name = "BUCK6";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1_reg: LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <1600000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo2_reg: LDO2 {
+> +				regulator-name = "LDO2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1150000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3_reg: LDO3 {
+> +				regulator-name = "LDO3";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4_reg: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo5_reg: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +			};
+> +		};
+> +	};
+> +};
 > -- 
 > 2.25.1
 > 
