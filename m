@@ -2,158 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 866466747F3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 01:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F93567480A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 01:31:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229379AbjATAWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 19:22:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37816 "EHLO
+        id S229631AbjATAbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 19:31:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbjATAWe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 19:22:34 -0500
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD1BA3179;
-        Thu, 19 Jan 2023 16:22:27 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id D90C95C00AB;
-        Thu, 19 Jan 2023 19:22:24 -0500 (EST)
-Received: from imap50 ([10.202.2.100])
-  by compute6.internal (MEProxy); Thu, 19 Jan 2023 19:22:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1674174144; x=1674260544; bh=UBJx3MEhhS
-        kS0nTq6+EY3mTxrBySnKyRU7xD/0Tfmoo=; b=vIttYy5PVlBJ4QNzYxEQkxhiuw
-        /8RRTaMcX7A602EtZwiiSVKmVY2RRRmcw4TvEmRoiTWgl0vX5nDQcI/XePKIdblZ
-        28fonX59Oq5CJR2ugH7pUGuxkBWzOWQJIbytFoULBqnHCDf21td28k9xVdApm44c
-        aWr+e42i8rERfYdwQ0VEqDHuusQSOQfLFOr69XNrYH5CyUag1oKZKMfT0pX0VOpf
-        Vip+eOXbVR6Wsf5Z3C9UKlfwq3iGvx1kQN0aeCYc0vu7Na3H+zTG25qZIiMhFED2
-        L7Ao1CfdqEw9h/wyFL7t5LUVzKE+dHSkFMzg1wz5YOH6kbvXZvgKzwgLxuEQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1674174144; x=1674260544; bh=UBJx3MEhhSkS0nTq6+EY3mTxrByS
-        nKyRU7xD/0Tfmoo=; b=V42GuWCNsjvWBlc/91lfeCktWm4s5RDB/u9PkFAh7vza
-        DJct3dl7kiAsK99SUkoAfALpUUP3TOP6kYBRDkbPA24pXisY3RaVUAwcBqGgpXEg
-        tAnAe0Ho2WCLCSk00Nwp5YCvBN8krSesjVL0/J9WBmoKXmSV9plO5OnbwDL7/XA6
-        VQcE+xIX5M654OO+AAPZ6VmxqRxTpRb3Ynn1s1KXmL7jLlqRJR2H7wHZAd6eg6cH
-        OhpSY8MNmXgwLdMQlQYOxk7MsLg9t+7De+ScpIyeIAY5729PyP3nht+Y+jagwHfS
-        RipwyhCA2qv49n7bXHULZCeqE+vyaSK7NUcUah+CUg==
-X-ME-Sender: <xms:wN7JY6CcoH-cjTbeF_tFUgydp0UvZ2XShiQjwCcd1dg19liTK_f9Lw>
-    <xme:wN7JY0iMkA87oV97Dtgq6XTupd0k4z1qvz7UGiSfFL_nYgkd7MnnoBb9tlsOFlhX5
-    3TAI42-ByvnC_T0pQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudduuddgvddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehn
-    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtf
-    frrghtthgvrhhnpeeffeejgfefieetueeffeeiiedthffghefhtdffveegudegffduuddt
-    hfelleeludenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsth
-    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdr
-    ihgurdgruh
-X-ME-Proxy: <xmx:wN7JY9nCVDg2s3Dfzj5oEpmhYPH_gN9CCYcu6eQYuOQq5EA9Tuv8wQ>
-    <xmx:wN7JY4xYFTZ5fVhV-zB2IB2NS-KqTJnySYuaFawaiLjApoarPrAuYQ>
-    <xmx:wN7JY_Q_-HmUYxx3qGVHPKxpYpzuODHITCj7hENHBaxBtwLA0i1q5w>
-    <xmx:wN7JY9MKBJYPG-U4JPerKJskV3ecnO4cGUmWTTou9oB6l6mu0C8eqQ>
-Feedback-ID: idfb84289:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 024D21700090; Thu, 19 Jan 2023 19:22:23 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
-Mime-Version: 1.0
-Message-Id: <a8be2b47-b0e9-4a28-8c32-81b9af81299e@app.fastmail.com>
-In-Reply-To: <20230119174714.1486042-2-eajames@linux.ibm.com>
-References: <20230119174714.1486042-1-eajames@linux.ibm.com>
- <20230119174714.1486042-2-eajames@linux.ibm.com>
-Date:   Fri, 20 Jan 2023 10:52:03 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Eddie James" <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org
-Cc:     devicetree@vger.kernel.org,
-        "Alistair Popple" <alistair@popple.id.au>,
-        linux-kernel@vger.kernel.org, "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: fsi: Document the IBM I2C Responder virtual FSI
- master
+        with ESMTP id S229602AbjATAbU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 19:31:20 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903CEA314C;
+        Thu, 19 Jan 2023 16:31:19 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30K0V3QS069171;
+        Thu, 19 Jan 2023 18:31:03 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1674174663;
+        bh=QI3jGoiKu26FSZ/wdcz1oEu9cF+OA0pEXajTOAXlOro=;
+        h=From:To:CC:Subject:Date;
+        b=tYnwbXNp+Mea6QtnVNoOHtSf1NKrygtz3W0g225LoJ+d/tjWb6ahfvWbrgJs0WkHt
+         tGZHfu2fy9RFR8BC7W1Bkacp1J7QNBSO69vpsWJlLLrNoUxslSAr/TdsFcc9lEFPBj
+         Yt4TuPoxukG/IFJeR97hGPbbT7bjn+pfiP6IjY7Q=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30K0V3o3089208
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 19 Jan 2023 18:31:03 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 19
+ Jan 2023 18:31:02 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 19 Jan 2023 18:31:02 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30K0V2Qt021515;
+        Thu, 19 Jan 2023 18:31:02 -0600
+From:   Bryan Brattlof <bb@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     ARM Linux Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Keerthy <j-keerthy@ti.com>, Bryan Brattlof <bb@ti.com>
+Subject: [PATCH v2 0/6] add VTM nodes to TI's K3 SoCs
+Date:   Thu, 19 Jan 2023 18:30:45 -0600
+Message-ID: <20230120003051.9100-1-bb@ti.com>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2334; i=bb@ti.com; h=from:subject; bh=UAsq2vmkYfexlMtM7q09h820QahEgllfp8q6IGLvVh0=; b=owNCWmg5MUFZJlNZN+sw5wAAXv/////dzzVjX/f1zH7/27mTfemuZd9+++f3f/m42vf95/6wARtr YO1A0AGTQAAPU0BoAAGgBoAAANPU0ABtT1AAAGgAAA09Rp6ENpPU2mk3qiBoaNGmhpoMgDJhAAHqaD QNGEaaZNDEAADQGg9JoA0G1GmQZD1BhGmgNAMRoMUbU9TCDQ00BpoBpoAADIyBpoANABoAAG1MQAaa GgaBoNNHlNBoPUaNDTIaMEFrFKYVi5y1+G8pKJ3HLx9mIaJCDYHqluiu1APYDCooB0kCClN6Hwb54w cHNA52ABcKHUl/JNvsvSIu49tIV3cmEA4b65vZZxzbSqr2MIYTEA3IHfeJ8beIim46dT/CI8AkGN8B pb9LqVQ7nNnBUSpeqfTzSSdeZIZlYmzFGkU7kHEE+rlMPbb7qNwGtOzmlrdmLax0GhRA8SPgQhC04Q bC+gpFEp/oZl9k+ThdUqoiG1W8fjGeiJCzzpJkr6Q4T6jqudFbPFUJ9w/N/AhL1YDO4nEOQjYlf283 rsiAaKB1g3IiXNpDkQny88xFYi2t0vKll2ygFKH9mH2SkGNLSHb6TW1kbzGspYYEmOhWB8lWN4ZC20 +RDUuZ0BH1KFktyi9D93ZjaLDL3jJXy5UYcKDXAkYHlgFAW5xhgYoQVLqIUD/F3JFOFCQN+sw5wA==
+X-Developer-Key: i=bb@ti.com; a=openpgp; fpr=D3D177E40A38DF4D1853FEEF41B90D5D71D56CE0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello again everyone!
+
+This patch series adds in basic VTM nodes for all of TI's K3 SoCs. As of
+right now these do not do much other than add thermal entries into the
+sysfs directory and power down the device once it's exceeded a critical
+temperature.
+
+Changes from v1:
+- Fixed indexing of thermal nodes[0]
+
+[0] https://lore.kernel.org/all/20230119221322.12563-1-bb@ti.com/
+
+Thanks for reviewing!
+~Bryan
+
+Bryan Brattlof (6):
+  arm64: dts: ti: k3-am64-main: add VTM node
+  arm64: dts: ti: k3-am62-wakeup: add VTM node
+  arm64: dts: ti: k3-j721e-mcu-wakeup: add VTM node
+  arm64: dts: ti: k3-j721s2-mcu-wakeup: add VTM node
+  arm64: dts: ti: k3-j7200-mcu-wakeup: add VTM node
+  arm64: dts: ti: k3-am62a-wakeup: add VTM node
+
+ arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi   |  33 ++++++
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi    |   8 ++
+ arch/arm64/boot/dts/ti/k3-am62.dtsi           |   6 +-
+ arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi  |  47 ++++++++
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   |   8 ++
+ arch/arm64/boot/dts/ti/k3-am62a.dtsi          |   2 +
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |   8 ++
+ arch/arm64/boot/dts/ti/k3-am64-thermal.dtsi   |  33 ++++++
+ arch/arm64/boot/dts/ti/k3-am64.dtsi           |   3 +
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |   8 ++
+ arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi  |  47 ++++++++
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi          |   2 +
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |   9 ++
+ arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi  |  75 +++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi          |   2 +
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |   8 ++
+ arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi | 103 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2.dtsi         |   2 +
+ 18 files changed, 403 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am64-thermal.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi
 
 
-On Fri, 20 Jan 2023, at 04:17, Eddie James wrote:
-> The I2C Responder translates I2C commands to CFAM or SCOM operations,
-> effectively implementing an FSI master.
->
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  .../devicetree/bindings/fsi/ibm,i2cr.yaml     | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/fsi/ibm,i2cr.yaml
->
-> diff --git a/Documentation/devicetree/bindings/fsi/ibm,i2cr.yaml 
-> b/Documentation/devicetree/bindings/fsi/ibm,i2cr.yaml
-> new file mode 100644
-> index 000000000000..929ca10988f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/fsi/ibm,i2cr.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/fsi/ibm,i2cr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: IBM I2C Responder virtual FSI master
-> +
-> +maintainers:
-> +  - Eddie James <eajames@linux.ibm.com>
-> +
-> +description: |
-> +  This binding describes an I2C device called the I2C Responder 
-> (I2CR). The
-> +  I2CR translates commands sent over I2C bus to FSI CFAM reads and 
-> writes or
-> +  SCOM operations. The CFAM access means that the I2CR can act as an 
-> FSI
-> +  master.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ibm,i2cr
+base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+-- 
+2.39.0
 
-
-I think this should be a bit more descriptive and at least mention that
-it's FSI-related, e.g. `ibm,fsi-i2cr`? Thoughts?
-
-> +
-> +   reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> + - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      i2cr@20 {
-> +        compatible = "ibm,i2cr";
-
-Change this in accordance with the above.
-
-Andrew
