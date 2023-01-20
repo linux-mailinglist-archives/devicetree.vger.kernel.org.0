@@ -2,71 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E1C96760C9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 23:50:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D56646760CE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 23:55:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbjATWu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 17:50:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59400 "EHLO
+        id S229656AbjATWzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 17:55:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbjATWu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 17:50:56 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1807970293;
-        Fri, 20 Jan 2023 14:50:11 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id q8so5121505wmo.5;
-        Fri, 20 Jan 2023 14:50:11 -0800 (PST)
+        with ESMTP id S229585AbjATWzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 17:55:47 -0500
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4303153E5C
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 14:55:17 -0800 (PST)
+Received: by mail-lf1-f47.google.com with SMTP id cf42so10212980lfb.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 14:55:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-id:mime-version:references:message-id:in-reply-to:subject
-         :cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TBg2ZGSLJCHCe4StnuS4Rf2XAsBlx+T2xK8kBvKv+5I=;
-        b=SJ7Ngi78KdWr+dxt92Brtb7mMmMsDrdUtcVnXudTPfxsCxacHixF+sq839NSklew4L
-         GzGHgchDYxFk0G5Aax4ap0njAnvnowwwFrbRZY0iOLvW8bDJiso09wqMc6s/6B8ab5ZJ
-         J45WrKTY1F0Ha7DZSBpIvTopG7OorcjJ3xNyQ1KBDG7NalXcVbaZMlt3YM19syr7fYnm
-         6Sani86aF9mm2Qe0S1SUv0LJ6t/0xtgsGcndZfKI52r9uLzob9AefVKTJ3uKBaOzz06C
-         To94OMUcIUNQ4NZTmRnyJFv1Q6nH9EarFCEeT46nMi3tTBkkVhs3SiQvAWEyKuqlcncf
-         CxAw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Hbm1EsGZAeT2mHTFiqh0Dx28LeC9mCKTbUcH0BzL/No=;
+        b=mpB0UJHp3a+W4Up5ODk4M/2agnrtRI29W7jdtrMM7sUitAEWVM0wn5iQVGuvoaEGgE
+         6KIO6Ww3/MGhL0X73TxjqOkp2UgPHhe9QOq9A4V2txjt4REmD0oVtS2bnaGUs/bTC4iR
+         f8JvVwXUcyCMkDyR+av/kZ639ZXYLPvgRG02Fp4L834KU7JkUDuCueeJZQoTsaUNXmRF
+         UDSLjXx/p3BG8KUFVISw/lGWZoY9W+ZD6VI+T39nbT8GmxB2iskrWQJ/i3+VhkzIDT1f
+         k5cR3I6m4xyyvgwmCG9G0h3v8v2lLkiogUo83rSf9sg5zmvxe4DB0bAM7OtIaA1ClEye
+         BJdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-id:mime-version:references:message-id:in-reply-to:subject
-         :cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TBg2ZGSLJCHCe4StnuS4Rf2XAsBlx+T2xK8kBvKv+5I=;
-        b=ysbONUR8/PDTouraaogxxsrJ0Iiq+cyKnPG63ZZugBEB4Tq4/iEaZiUji7Pz/0/09b
-         iS4mVpSkaHONaYmDiLrZNmbipllshynasi+i2eUutziFXXQP7p3RoCWGNyS9UDoQBRSz
-         resWEQXQkyWR8MueADgIS3EF59h0edORkh76KXhDKknKz2xkO4CruOq6nTUhBT4y48lC
-         jL5ymhNtSwKuzUCZz4fPeetYNmgRxFhQMH20GWb9d85JAtpol1f11KfGk3FghClQ7dEu
-         eCNdCPpy15tWG9v37lD6bd2Tmj3Oo536wOeAEOJoVlUdrB85438SQfaF/OPQYBJWXKZ7
-         tzEQ==
-X-Gm-Message-State: AFqh2kq6nJ2m1rEJAvjnF2r++OLWNahesINRmgPqWvtnTQ61pfVORaDO
-        QjSDUCtmizZKQAMhdnwbMGHYKsCqq96bYDwY
-X-Google-Smtp-Source: AMrXdXtn/n4mw/1xYuM53NkndS8FqUOcqZ1AW1INz0Q8ktjH/XJksS8iILG8ofDkgnklJ9s1+mi1/g==
-X-Received: by 2002:a05:600c:444b:b0:3da:fd06:a6f1 with SMTP id v11-20020a05600c444b00b003dafd06a6f1mr15392053wmn.31.1674254955845;
-        Fri, 20 Jan 2023 14:49:15 -0800 (PST)
-Received: from fedora.36 ([78.10.206.44])
-        by smtp.gmail.com with ESMTPSA id j8-20020a05600c190800b003d9aa76dc6asm4974827wmq.0.2023.01.20.14.49.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 14:49:15 -0800 (PST)
-Date:   Fri, 20 Jan 2023 23:49:10 +0100 (CET)
-From:   =?ISO-8859-2?Q?Micha=B3_Grzelak?= <mchl.grzlk@gmail.com>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-cc:     =?ISO-8859-2?Q?Micha=B3_Grzelak?= <mchl.grzlk@gmail.com>,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: sound: audio-graph-port: Add capture and
- playback
-In-Reply-To: <87lelxlt18.wl-kuninori.morimoto.gx@renesas.com>
-Message-ID: <c6b1ad16-894d-e9a4-1fd1-cc94ec11df7@student.agh.edu.pl>
-References: <20230120011744.550701-1-mchl.grzlk@gmail.com> <87lelxlt18.wl-kuninori.morimoto.gx@renesas.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hbm1EsGZAeT2mHTFiqh0Dx28LeC9mCKTbUcH0BzL/No=;
+        b=Goi5lbsaYmPM8DRyptWSi1wcPq8RNEjCPBYkSDB5Z57HKkAe/yrYp15+HbiVGfet4W
+         AXJx1SUDg0eKHCEw2InaXejakf7mOGIxer4vrZ+voSrr8ft81h/n2fo3x2Jb3H31KlSF
+         PA0vLJ7ZhEr81xWsjCxasIWEfNw8ISj7Cl6TNrgzKLBI/+VdjNt2mmJyTX9e3UV5LbTH
+         Nq8L/yRxIdrYWPGDILfluSaGDdWtJZ/YS07s9vBUgtdkElXxVHfyNkVSIHWhRffNw1t3
+         U9Z0+S81bfDYSXFR65BSBhbFqHxJ2NHB0maCO0h3K87R8mh9klrwWK1DqOWpjMvJ7n5X
+         jtRQ==
+X-Gm-Message-State: AFqh2kpZqyRrXVcXR4aA6xM6voIGxwHdjj5ZH+B9PS6hkv324Skiguql
+        KxUDGIqxBf3FiE5mrDrGKlOhpg==
+X-Google-Smtp-Source: AMrXdXu7FVclTVblU/bHESbrokULCekzEfzB978ZHJVMnBBS6ReI9nV7Te2jsL6OuDizMc61dMzDpg==
+X-Received: by 2002:a05:6512:143:b0:4cc:a1a1:9aaf with SMTP id m3-20020a056512014300b004cca1a19aafmr3834418lfo.23.1674255203191;
+        Fri, 20 Jan 2023 14:53:23 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id j5-20020a05651231c500b004b5480edf67sm6197207lfe.36.2023.01.20.14.53.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 14:53:22 -0800 (PST)
+Message-ID: <3a355075-cc29-957a-678b-2a05aed25587@linaro.org>
+Date:   Sat, 21 Jan 2023 00:53:21 +0200
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="-1463809024-776833584-1674254459=:3790"
-Content-ID: <5b8b88f9-a34b-dacf-ccb7-9b5973b44de3@student.agh.edu.pl>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HK_RANDOM_ENVFROM,
-        HK_RANDOM_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v3 4/8] clk: qcom: cbf-msm8996: scale CBF clock according
+ to the CPUfreq
+Content-Language: en-GB
+To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
+ <20230120061417.2623751-5-dmitry.baryshkov@linaro.org>
+ <078c5a8254ac006b65fc5fa81dfbc515.sboyd@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <078c5a8254ac006b65fc5fa81dfbc515.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,40 +83,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
----1463809024-776833584-1674254459=:3790
-Content-Type: text/plain; charset=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <71d82d96-8152-10ea-ddc-26c14e852aa@student.agh.edu.pl>
-
-Hi Kuninori,
-
-Thanks for quick reply.
-
-On Fri, 20 Jan 2023, Kuninori Morimoto wrote:
-
->
-> Hi Micha³
->
-> Thank you for your patch
->
->> Running 'make DT_SCHEMA_FILES=renesas,rsnd.yaml dt_binding_check'
->> gives following warning:
+On 21/01/2023 00:11, Stephen Boyd wrote:
+> Quoting Dmitry Baryshkov (2023-01-19 22:14:13)
+>> Turn CBF into the interconnect provider. Scale CBF frequency (bandwidth)
+>> according to CPU frequencies.
 >>
->> bindings/sound/renesas,rsnd.example.dtb:
->> sound@ec500000: port:endpoint: Unevaluated properties are not allowed
->> ('capture', 'playback' were unexpected)
->>         From schema: bindings/sound/renesas,rsnd.yaml
->
-> Now I'm posting the patch for it.
->
-> 	https://lore.kernel.org/r/87358hj2ub.wl-kuninori.morimoto.gx@renesas.com
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/clk/qcom/clk-cbf-8996.c | 143 +++++++++++++++++++++++++++++++-
+>>   1 file changed, 142 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/qcom/clk-cbf-8996.c b/drivers/clk/qcom/clk-cbf-8996.c
+>> index 9cde0e660228..b049b4f7b270 100644
+>> --- a/drivers/clk/qcom/clk-cbf-8996.c
+>> +++ b/drivers/clk/qcom/clk-cbf-8996.c
+>> @@ -5,11 +5,14 @@
+>>   #include <linux/bitfield.h>
+>>   #include <linux/clk.h>
+>>   #include <linux/clk-provider.h>
+>> +#include <linux/interconnect-provider.h>
+>>   #include <linux/of.h>
+>>   #include <linux/module.h>
+>>   #include <linux/platform_device.h>
+>>   #include <linux/regmap.h>
+>>   
+>> +#include <dt-bindings/interconnect/qcom,msm8996-cbf.h>
+>> +
+>>   #include "clk-alpha-pll.h"
+>>   #include "clk-regmap.h"
+>>   
+>> @@ -225,6 +228,133 @@ static const struct regmap_config cbf_msm8996_regmap_config = {
+>>          .val_format_endian      = REGMAP_ENDIAN_LITTLE,
+>>   };
+>>   
+>> +#ifdef CONFIG_INTERCONNECT
+> 
+> Can you move this driver to drivers/interconnect/ ?
 
-Thanks also for pointing that out, I should have given more time to
-searching for existing patches.
+Only the interconnect part? At some point I considered dropping the 
+whole CBF mux support and moving the whole driver to 
+drivers/interconnect, but I could not find a good way to use alpha-pll 
+from the interconnect driver. Would you recommend one?
 
-Best regards,
-Micha³
----1463809024-776833584-1674254459=:3790--
+> 
+>> +struct qcom_msm8996_cbf_icc_provider {
+>> +       struct icc_provider provider;
+>> +       struct clk *clk;
+>> +};
+>> +
+>> +#define to_qcom_cbf_provider(_provider) \
+>> +       container_of(_provider, struct qcom_msm8996_cbf_icc_provider, provider)
+>> +
+>> +enum {
+>> +       CBF_MASTER_NODE = 2000,
+> [...]
+>> +static int qcom_msm8996_cbf_icc_remove(struct platform_device *pdev)
+>> +{
+>> +       struct icc_provider *provider = platform_get_drvdata(pdev);
+>> +
+>> +       icc_nodes_remove(provider);
+>> +       icc_provider_del(provider);
+>> +
+>> +       return 0;
+>> +}
+>> +#else
+>> +static int qcom_msm8996_cbf_icc_register(struct platform_device *pdev)
+>> +{
+>> +       dev_warn(&pdev->dev, "interconnects support is disabled, CBF clock is fixed\n");
+>> +
+>> +       return 0;
+>> +}
+>> +#define qcom_msm8996_cbf_icc_remove(pdev) (0)
+> 
+> It's like two drivers in one.
+> 
+>> +#endif
+>> +
+>>   static int qcom_msm8996_cbf_probe(struct platform_device *pdev)
+>>   {
+>>          void __iomem *base;
+
+-- 
+With best wishes
+Dmitry
+
