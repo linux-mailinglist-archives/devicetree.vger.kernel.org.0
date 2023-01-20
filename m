@@ -2,211 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3DE4675ABE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D528675ACC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:09:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229825AbjATRFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:05:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50128 "EHLO
+        id S230319AbjATRJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:09:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjATRFE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:05:04 -0500
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E94D7495C;
-        Fri, 20 Jan 2023 09:05:03 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 5D3D33200A46;
-        Fri, 20 Jan 2023 12:05:01 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Fri, 20 Jan 2023 12:05:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1674234300; x=
-        1674320700; bh=YXir1cBKVSIl8ncpYdIhv313q6EHddedfJlIGmxdQ48=; b=j
-        0K/SidyWGRubZXkXPnrsLz5CVySWPQULowlDXUz6HY1MaFN/D4LsuOcGTMy6oAOy
-        9pUHEBw4fLHSEJP3rwO4DFW80gEVGwvGsFf4R1Oo+Ny8/D2ySBhbXJK89Fu89kPg
-        2oJZKpmjpghLVS3RQP4p0IZqG5FGtcRXtJdFc5AvqIJIOZELmbDiQp8zohlOf3wH
-        BQpy2ZcIg/NRxqJiaEjDsck0mwp6xbq4mGb7YeGnvMcDTI8+byRSDyh0aFQfkrC5
-        MFwTmadSGVVhJYOpxLEUxwpXDi0gVBJaZzusUpGn6r2flXD9fcaZrdFaBWuwMzPV
-        PAStBxMywbMPUrSi8F2kg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1674234300; x=
-        1674320700; bh=YXir1cBKVSIl8ncpYdIhv313q6EHddedfJlIGmxdQ48=; b=C
-        MknTjwegB1X/8av4QkyxN7bM1FGuYJSuE/HQruTFttXJzE1w4SBCy3HDpkYolOGs
-        iE4FZjdZGMinnYysNs+5GRdq0b79kZ7k95UavTuRRVbknHLqyXjEE+97ZnxN4+Nm
-        Kzt62o7tq+a65P9Non0UZfyHxDGs94Ye+Y+l4QK+Ard1sd1Wrp4T/QF+v8Ke2jsZ
-        MuAZEL4o1beL80y3H8zaj5UbjX5Eo/fb89aYQH57tgOccVzrUno0y5Dbf17x3cyW
-        /Tsis+X6GJsl35eXxyc8nwUzbgG11zPmYkVrMCptR83Sy8d3fBNZWMiAVJ2hVsYJ
-        Sxz3eZWy/qup6wBeV1ugg==
-X-ME-Sender: <xms:usnKY9DDWOO1TbiUwWKN4wMlTkIgSymB87bFgcCOJx-25CwJzyvdUA>
-    <xme:usnKY7hbbrgWzWEtEanTgoBG1iRKRFjHfYoubEqGdQPmCIRGC8UjGT458pXS0yh7y
-    -ZIsH2HmHtJXuYbmoo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudduvddgleelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
-    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:usnKY4m1ZMIO0sagwSwcUAnazWKJB8-UJkAL4nxKYLIun1aaYF0Pyw>
-    <xmx:usnKY3zNKa0SBYpjno7jpxY2VsRH-Q5qqvFhn5p1vjjSw9KoYJ6fpA>
-    <xmx:usnKYySq_XvVHO2CFShTw8eXQd0-jbHe_iwRcO8MmLfdV0M9twZDUw>
-    <xmx:vMnKY7RFLwGz9Au1jewjf4t8UD_4RhNXA7Haog3YJU4lFiwLen8sRQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id AC226B60086; Fri, 20 Jan 2023 12:04:58 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
-Mime-Version: 1.0
-Message-Id: <ea4cb121-97e9-4365-861a-b3635fd34721@app.fastmail.com>
-In-Reply-To: <20230113054807.GA23179@lst.de>
-References: <20230106185526.260163-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230106185526.260163-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <6f7d06ef-d74d-4dfc-9b77-6ae83e0d7816@app.fastmail.com>
- <CA+V-a8uF1s+dwKC_+apL+CBiHN8w_J0n_G2dqsgiAUZVEibfqg@mail.gmail.com>
- <9017adf0-acd4-4c43-8aea-3579b214b477@app.fastmail.com>
- <CA+V-a8u6jvR=EDeE3mAbDr6-06NoBJ7mwmi_Y9qVyHT+aC-9rg@mail.gmail.com>
- <45d6eb0c-cbe3-4a83-aa12-3483638473ae@app.fastmail.com>
- <20230110070144.GG10289@lst.de>
- <02988e70-b099-46fd-b260-2d537c50543a@app.fastmail.com>
- <20230113054807.GA23179@lst.de>
-Date:   Fri, 20 Jan 2023 18:04:37 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Christoph Hellwig" <hch@lst.de>
-Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
-        "Conor.Dooley" <conor.dooley@microchip.com>,
-        "Geert Uytterhoeven" <geert+renesas@glider.be>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        guoren <guoren@kernel.org>,
-        "Andrew Jones" <ajones@ventanamicro.com>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        "Albert Ou" <aou@eecs.berkeley.edu>,
-        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "Philipp Tomsich" <philipp.tomsich@vrull.eu>,
-        "Nathan Chancellor" <nathan@kernel.org>,
-        "Atish Patra" <atishp@rivosinc.com>,
-        "Anup Patel" <apatel@ventanamicro.com>,
-        "Tsukasa OI" <research_trasio@irq.a4lg.com>,
-        "Jisheng Zhang" <jszhang@kernel.org>,
-        "Mayuresh Chitale" <mchitale@ventanamicro.com>,
-        "Will Deacon" <will@kernel.org>
-Subject: Re: [RFC PATCH v6 1/6] riscv: mm: dma-noncoherent: Switch using function
- pointers for cache management
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230298AbjATRJf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:09:35 -0500
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [IPv6:2001:41d0:1004:224b::b1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7380C5E517
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:09:32 -0800 (PST)
+Message-ID: <77aea6a7-8a83-b748-5443-a5303f17ff51@ansari.sh>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
+        t=1674234570;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=9PQlRQJRFcCkFdYbq/AOrVsh5vPJ6/jx9IWzOtP6f+I=;
+        b=N3XO1OZfljoBTBWT2R/DjvKTfmXdWkqZlYTc2jifvDyNg8JXbpOKKe3yA+MEm/k35OpNXe
+        BirWdBR1A1Dd1G76gf4S06nAM7IhAlBBX/rY5eF+AQjAS+KwaHY/c60k/3L2+8qkfje2I0
+        mXmOqhXNmob4YPktaVmmiMAzGozXovE=
+Date:   Fri, 20 Jan 2023 17:09:29 +0000
+MIME-Version: 1.0
+Subject: Re: [RFC PATCH] drm/simpledrm: Allow physical width and height
+ configuration via DT
+To:     Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, asahi@lists.linux.dev
+References: <20230118184817.608551-1-rayyan@ansari.sh>
+ <9acf95f1-0bce-62c7-b524-4eac408b4207@suse.de>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From:   Rayyan Ansari <rayyan@ansari.sh>
+In-Reply-To: <9acf95f1-0bce-62c7-b524-4eac408b4207@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 13, 2023, at 06:48, Christoph Hellwig wrote:
-> On Tue, Jan 10, 2023 at 04:03:06PM +0100, Arnd Bergmann wrote:
->> I looked at all the implementations now and put them in a table[1]
->> to see what the differences are. The only bit that I think needs
->> discussion is the dma_sync_single_for_device(DMA_FROM_DEVICE) op
->> that I mentioned above. I see that arm64, csky, powerpc, riscv
->> and parisc all write out at least partical cache lines first to
->> avoid losing dirty data in the part that is not written by the
->> device[2][3], while the other ones don't[4].=20
->
-> I'm tempted to declare [4] buggy until proof of the inverse.
+On 19/01/2023 10:44, Thomas Zimmermann wrote:
+> (cc: devicetree@vger.kernel.org, asahi@lists.linux.dev)
+> 
+> Hi,
+> 
+> thanks for the patch. I already wondered if the DPI value should be 
+> configurable in some way.
+> 
+> Am 18.01.23 um 19:48 schrieb Rayyan Ansari:
+>> Hello,
+>> The following draft patch adds support for configuring the
+>> height-mm and width-mm DRM properties in the simpledrm driver
+>> via devicetree.
+>> This is useful to get proper scaling in UIs such as Phosh.
+>> An example of using this property is this, taken from my local tree:
+>>
+>>         framebuffer0: framebuffer@3200000 {
+>>             compatible = "simple-framebuffer";
+>>             reg = <0x3200000 0x800000>;
+>>             format = "a8r8g8b8";
+>>             width = <720>;
+>>             height = <1280>;
+>>             stride = <(720 * 4)>;
+>>             width-mm = /bits/ 16 <58>;
+>>             height-mm = /bits/ 16 <103>;
+>>
+>>             clocks = <&mmcc MDSS_AHB_CLK>,
+>>                  <&mmcc MDSS_AXI_CLK>,
+>>                  <&mmcc MDSS_BYTE0_CLK>,
+>>                  <&mmcc MDSS_MDP_CLK>,
+>>                  <&mmcc MDSS_PCLK0_CLK>,
+>>                  <&mmcc MDSS_VSYNC_CLK>;
+>>             power-domains = <&mmcc MDSS_GDSC>;
+>>         };
+>>
+>> I have tested this on my Lumia 735, and it does indeed
+>> allow Phosh to scale correctly on the screen.
+> 
+> Is this something that is already supported by some device, or just a 
+> pet project of yours?
+> 
 
-Having looked at this some more, I see that the powerpc
-version is a bit problematic here as well: this one
-flushes the partial cache lines before and after the
-DMA transfer, while only invalidating the full
-cache lines. If a partical cache line gets written
-to by the CPU while the buffer is owned by the device,
-this means that the received data from the device is
-immediately overwritten by the second flush.
+Phosh is a mobile environment, developed for use on the Librem 5 phone, 
+but it's also packaged by mobile-focused distros such as postmarketOS 
+and used on other phones.
+https://puri.sm/posts/phosh-overview/
 
-The arm64 and riscv behavior of doing a flush before
-and an invalidate after the DMA seems a bit more
-appropriate, as that ends up keeping the DMA
-data but discarding anything written by the CPU.
+This is my Lumia running Phosh with Firefox open: 
+https://wiki.postmarketos.org/images/c/c3/Lumia_735_Phosh.png
 
-Obviously there is no winning either way if the same
-cache line gets written by both CPU and device, I'm
-just trying to figure out what behavior we actually
-want here.
+>>
+>> However, I would like to get some feedback before I write the
+>> documentation.
+>> - What data type should be used?
+>>     The width_mm and height_mm properties of the drm_display_mode
+>>     struct are defined as u16. I have also made the devicetree
+>>     properties as the u16 type, but this requires specifying
+>>     "/bits/ 16" before the value. Should u32 be used instead to get
+>>     rid of this? If so, how could the conversion from u32->u16 be
+>>     handled?
+> 
+> I'd use 32 bits in the DT, just like the other properties.
+> 
 
-The best I can think of so far is:
+Noted.
 
-- flush the partial cache lines before the DMA,
-  as powerpc does, and just invalidate the full
-  cache lines
+>> - Style?
+>>     I have split the arguments to the DRM_MODE_INIT macro across
+>>     multiple lines to increase readability. I'm not sure if this
+>>     is the correct style though.
+>> - Anything else?
+>>     This is my first time writing code for a Linux driver, so I
+>>     would be grateful if you have any suggestions for improvements.
+>> Thanks,
+>> Rayyan.
+>> ---
+>>   drivers/gpu/drm/tiny/simpledrm.c | 49 +++++++++++++++++++++++++++-----
+>>   1 file changed, 42 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/tiny/simpledrm.c 
+>> b/drivers/gpu/drm/tiny/simpledrm.c
+>> index 162eb44dcba8..92109f870b35 100644
+>> --- a/drivers/gpu/drm/tiny/simpledrm.c
+>> +++ b/drivers/gpu/drm/tiny/simpledrm.c
+>> @@ -116,6 +116,15 @@ simplefb_get_format_pd(struct drm_device *dev,
+>>       return simplefb_get_validated_format(dev, pd->format);
+>>   }
+>> +static void
+>> +simplefb_read_u16_of_optional(struct drm_device *dev, struct 
+>> device_node *of_node,
+> 
+> Maybe call it simplefb_read_u16_of_opt()
+> 
+>> +             const char *name, u16 *value)
+> 
+> The alignment looks off.
+> 
+>> +{
+>> +    int ret = of_property_read_u16(of_node, name, value);
+>> +    if (ret)
+>> +        value = 0;
+> 
+> You mean *value = 0 ?
+> 
+> I think we should be stricter here. Look at the docs at [1]. A result of 
+> 0 means success and -EINVAL means that the property does not exist. We 
+> should still report errors for the other errno codes.
+> 
+> Something like
+> 
+>    ret = of_property_read_u16()
+> 
+>    if (ret) {
+>      if(ret == -EINVAL) {
+>          *value = 0;
+>      ret= 0;
+>      } else {
+>          drm_err(dev, "simplefb: cannot parse framebuffer %s:
+>              "error %d\n", name, ret);
+>      }
+>    }
+> 
+>    return ret;
+> 
+> [1] https://elixir.bootlin.com/linux/latest/source/include/linux/of.h#L1202
+> 
 
-- only invalidate but not clean/flush after the
-  DMA. This is the arm64 behavior
+Will change, thanks for the example and reference.
 
-- warn when flushing partial cache lines
-  if dma_debug is enabled.
+>> +}
+>> +
+>>   static int
+>>   simplefb_read_u32_of(struct drm_device *dev, struct device_node 
+>> *of_node,
+>>                const char *name, u32 *value)
+>> @@ -184,6 +193,21 @@ simplefb_get_format_of(struct drm_device *dev, 
+>> struct device_node *of_node)
+>>       return simplefb_get_validated_format(dev, format);
+>>   }
+>> +static u16
+>> +simplefb_get_width_mm_of(struct drm_device *dev, struct device_node 
+>> *of_node)
+>> +{
+>> +    u16 width_mm;
+>> +    simplefb_read_u16_of_optional(dev, of_node, "width-mm", &width_mm);
+>> +    return width_mm;
+>> +}
+>> +
+>> +static u16
+>> +simplefb_get_height_mm_of(struct drm_device *dev, struct device_node 
+>> *of_node)
+>> +{
+>> +    u16 height_mm;
+>> +    simplefb_read_u16_of_optional(dev, of_node, "height-mm", 
+>> &height_mm);
+>> +    return height_mm;
+>> +}
+>>   /*
+>>    * Simple Framebuffer device
+>>    */
+>> @@ -599,16 +623,24 @@ static const struct drm_mode_config_funcs 
+>> simpledrm_mode_config_funcs = {
+>>    */
+>>   static struct drm_display_mode simpledrm_mode(unsigned int width,
+>> -                          unsigned int height)
+>> +                          unsigned int height,
+>> +                          u16 width_mm,
+>> +                          u16 height_mm)
+>>   {
+>>       /*
+>> -     * Assume a monitor resolution of 96 dpi to
+>> -     * get a somewhat reasonable screen size.
+>> +     * Assume a monitor resolution of 96 dpi if physical
+>> +     * dimensions are not specified to get a somewhat reasonable
+> 
+> Please move 'dimensions' to the previous line to make it more pleasant 
+> to the eyes.
+> 
+>> +     * screen size.
+>>        */
+>> +
+>>       const struct drm_display_mode mode = {
+>> -        DRM_MODE_INIT(60, width, height,
+>> -                  DRM_MODE_RES_MM(width, 96ul),
+>> -                  DRM_MODE_RES_MM(height, 96ul))
+>> +        DRM_MODE_INIT(
+>> +            60,
+>> +            width,
+>> +            height,
+>> +            (width_mm ? width_mm : DRM_MODE_RES_MM(width, 96ul)),
+>> +            (height_mm ? height_mm : DRM_MODE_RES_MM(height, 96ul))
+>> +            )
+> 
+> The coding style is awkward and the ?: doesn't belong here. Please see 
+> further below.
+> 
+>>       };
+>>       return mode;
+>> @@ -622,6 +654,7 @@ static struct simpledrm_device 
+>> *simpledrm_device_create(struct drm_driver *drv,
+>>       struct simpledrm_device *sdev;
+>>       struct drm_device *dev;
+>>       int width, height, stride;
+>> +    u16 width_mm, height_mm;
+> 
+> Init those two variables to zero.
+> 
+>>       const struct drm_format_info *format;
+>>       struct resource *res, *mem;
+>>       void __iomem *screen_base;
+>> @@ -676,6 +709,8 @@ static struct simpledrm_device 
+>> *simpledrm_device_create(struct drm_driver *drv,
+>>           format = simplefb_get_format_of(dev, of_node);
+>>           if (IS_ERR(format))
+>>               return ERR_CAST(format);
+>> +        width_mm = simplefb_get_width_mm_of(dev, of_node);
+>> +        height_mm = simplefb_get_height_mm_of(dev, of_node);
+>>       } else {
+>>           drm_err(dev, "no simplefb configuration found\n");
+>>           return ERR_PTR(-ENODEV);
+>> @@ -686,7 +721,7 @@ static struct simpledrm_device 
+>> *simpledrm_device_create(struct drm_driver *drv,
+>>               return ERR_PTR(-EINVAL);
+>>       }
+> 
+> Just like with the framebuffer stride, here's the place to detect 
+> default values. So at this point, do something like
+> 
+>       if (!width_mm)
+>          width_mm = DRM_MODE_RES_MM(width, 96ul);
+>       if (!height_mm)
+>          height_mm = DRM_MODE_RES_MM(height, 96ul);
+> 
+> And pass the initialized physical dimensions to simpldrm_mode(). You can 
+> move the comment in simpledrm_mode() before the branches.
+> 
+> Best regards
+> Thomas
+> 
+>> -    sdev->mode = simpledrm_mode(width, height);
+>> +    sdev->mode = simpledrm_mode(width, height, width_mm, height_mm);
+>>       sdev->format = format;
+>>       sdev->pitch = stride;
+> 
 
->> I also see that at least arc, arm, mips and riscv all want
->> CPU specific cache management operations to be registered
->> at boot time. While Russell had some concerns about your
->> suggestion to generalize the arm version, we could start
->> by moving the abstracted riscv version into
->> kernel/dma/direct.c and make sure it can be shared with
->> at least mips and arc, provided that we can agree on the
->> DMA_FROM_DEVICE behavior.
->
-> Yes, I'd really like to start out with a common version and then
-> move bits over.  There's also some interesting bits about handling
-> highmem for architectures that needs virtual addresss for flushing
-> that might be worth sharing, too.
->
-> Th=D1=96s should be a new file in kernel/dma/ as it's not only used by
-> dma-direct but also by dma-iommu, and to keep the code nicely
-> separated.
->
-> Can you give it a go?
+Thanks for the feedback! I'll improve on this patch and write 
+documentation to hopefully make this mainline-ready.
 
-I started this at the beginning of the week but couldn't
-finish it at all, but still plan to get back to it
-next week.
+-- 
+Rayyan Ansari
+https://ansari.sh
 
-Aside from the question for how to handle flush vs invalidate
-on DMA_FROM_DEVICE, I'm still trying to figure out how to
-best handle highmem with architecture specific cache management
-operations. The easy approach would be to leave that up
-to the architecture, passing only a physical address to
-the flush function. A nicer interface might be to move the
-loop over highmem pages out into common code, flush
-lowmem pages by virtual addresss, and have a separate
-callback for highmem pages that takes a page pointer,
-like
-
-struct dma_cache_ops {
-        void (*dma_cache_wback_inv)(void *start, unsigned long sz);
-        void (*dma_cache_inv)(void *start, unsigned long sz);
-        void (*dma_cache_wback)(void *start, unsigned long sz);
-#ifdef CONFIG_HIGHMEM
-        void (*dma_cache_wback_inv_high_page)(struct page *, size_t star=
-t, unsigned long sz);
-        void (*dma_cache_inv_high_page)(struct page *, size_t start, uns=
-igned long sz);
-        void (*dma_cache_wback_high_page)(struct page *, size_t start, u=
-nsigned long sz);
-#endif
-};
-
-Let me know if you have a preference here, before I spend
-too much time on something we don't want in the end.
-
-     Arnd
