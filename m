@@ -2,98 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32E6E675BB2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:38:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56CBE675BC0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:40:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbjATRiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:38:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55468 "EHLO
+        id S229986AbjATRkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:40:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjATRiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:38:16 -0500
-Received: from smtp-fw-9102.amazon.com (smtp-fw-9102.amazon.com [207.171.184.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95BBC5FDD;
-        Fri, 20 Jan 2023 09:38:15 -0800 (PST)
+        with ESMTP id S229766AbjATRkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:40:42 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0545EDBCD
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:40:41 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso4264094wms.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:40:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
-  t=1674236296; x=1705772296;
-  h=from:to:cc:subject:references:date:in-reply-to:
-   message-id:mime-version;
-  bh=VjofiAXhO5C80JdyAXswdYDTLZEOnLHRkk1uSsByVus=;
-  b=ND3GaapqjA4uSB6dtlYJfJmFmceYssSqm5jcJHXZt1eH71iv2vi/xPpM
-   RO8D855D5JnSBMMnSQSvS0CoI1pxz7HLpL6gvYw4zvoAaasKJ98hH2X0u
-   LF9jzec5lGLBpXDfbMKFKrshW5ef2JKNBXgPcTQZPE3tBVUQ5m7QPbMlJ
-   M=;
-X-IronPort-AV: E=Sophos;i="5.97,232,1669075200"; 
-   d="scan'208";a="302491059"
-Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-iad-1a-m6i4x-93c3b254.us-east-1.amazon.com) ([10.25.36.210])
-  by smtp-border-fw-9102.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2023 17:38:10 +0000
-Received: from EX13MTAUEB002.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
-        by email-inbound-relay-iad-1a-m6i4x-93c3b254.us-east-1.amazon.com (Postfix) with ESMTPS id 473B7E5D3C;
-        Fri, 20 Jan 2023 17:38:06 +0000 (UTC)
-Received: from EX19D001UEB002.ant.amazon.com (10.252.135.17) by
- EX13MTAUEB002.ant.amazon.com (10.43.60.12) with Microsoft SMTP Server (TLS)
- id 15.0.1497.45; Fri, 20 Jan 2023 17:38:06 +0000
-Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
- EX19D001UEB002.ant.amazon.com (10.252.135.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.7;
- Fri, 20 Jan 2023 17:38:06 +0000
-Received: from dev-dsk-ptyadav-1c-37607b33.eu-west-1.amazon.com (10.15.11.255)
- by mail-relay.amazon.com (10.43.60.234) with Microsoft SMTP Server id
- 15.0.1497.45 via Frontend Transport; Fri, 20 Jan 2023 17:38:06 +0000
-Received: by dev-dsk-ptyadav-1c-37607b33.eu-west-1.amazon.com (Postfix, from userid 23027615)
-        id 2B9BB20D16; Fri, 20 Jan 2023 18:38:05 +0100 (CET)
-From:   Pratyush Yadav <ptyadav@amazon.de>
-To:     Rob Herring <robh@kernel.org>
-CC:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: mtd: partitions: Fix partition node name
- pattern
-References: <20230120020454.3225796-1-robh@kernel.org>
-Date:   Fri, 20 Jan 2023 18:38:05 +0100
-In-Reply-To: <20230120020454.3225796-1-robh@kernel.org> (Rob Herring's message
-        of "Thu, 19 Jan 2023 20:04:53 -0600")
-Message-ID: <mafs03585cdj6.fsf@amazon.de>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (gnu/linux)
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sPLPvg2uT7xNYWk0DfZ111zSBkmikQxIwUT5J/mgO2c=;
+        b=RVt/425eYeb1svgpsQcsE7Egizut7s4oCVOkqu3iBbdq2A3Yvo2+JwNybc6UMo3tvE
+         ej4o6wHa6E7stF2mTCv2BBpaxeT/x/jG50PKDqjY7NFzS9sQDkNUW2WMgqPsor5qOSHC
+         UeOG5ltZy0y1MdFqIljy82w/YbkIxBEt2TQlnDHKrw06Ehee+FwAdvagjEJTsRisNc+Z
+         D6inwzhfGwhu/uGXxDTlWk1FDi7hyBpLUKixFSHU6VGQ7zWqb9t1bPlNsMnyrFd9h6hl
+         Xk6TXmzNOmuKMJnBFNaZU55GSPrk2QMWkCa3isthkzyiiKE3R++yfjqB7KHgwBJ9sEfR
+         0zUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sPLPvg2uT7xNYWk0DfZ111zSBkmikQxIwUT5J/mgO2c=;
+        b=uoZ5WCM0rERF9LQkenx8uW7M9ZYTDSWi8vRUpzn2ujJlBSzQonBzFV+jcCTb1tb+XL
+         +fNaj9cxS+4fZrJGos5gx/Yh9qcUd32Mqp5dI+ZUNw1KfQvTpAkkjxeUtusZeUoVxuXl
+         VSZEFMetE1SqPxH1oXLo+D7/XvZkN3ryKmvRtZPtxS9OMMMhg1pcu2bSutGDhrcIFlNe
+         ue55Dk5G6UJgu9sSORLru6C8oayxhTXeY0LUw2nmwxjEncUrsiczQAZ4i5YkzAGQSNwB
+         +0RCcZG8G8GYJvbnlyb9H8DeJrZwykiEoNdRKRE73i81VquiOkqV1nqviOfWg9Jpx5Uy
+         8KwQ==
+X-Gm-Message-State: AFqh2krTfkcJYfw6dsL5Fo9lo7jpveOuMF9JJ4elKtYd9zu0rn1Fb3Ho
+        JIVN/3Ir97WKeWpSDFAKqqXEdA==
+X-Google-Smtp-Source: AMrXdXuOlPk+5uf/TXLUtIfdayDgrrFEdR/JC8sDpjol9StC6mUzODgxz8QP9mpVRIPgHzuB+NF7aw==
+X-Received: by 2002:a05:600c:3514:b0:3c6:c6c9:d75e with SMTP id h20-20020a05600c351400b003c6c6c9d75emr15856181wmq.0.1674236439587;
+        Fri, 20 Jan 2023 09:40:39 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id k10-20020a05600c1c8a00b003db2dbbd710sm3467855wms.25.2023.01.20.09.40.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jan 2023 09:40:39 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: qcom: apq8060-dragonboard: align MPP pin node names with DT schema
+Date:   Fri, 20 Jan 2023 18:40:36 +0100
+Message-Id: <20230120174036.351937-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19 2023, Rob Herring wrote:
+DT schema expects nodes ending with "pins:
 
-> The 'partition' node name pattern is missing start and end anchors, so
-> anything is allowed before or after the regex pattern. There's no in tree
-> users needing that, so add anchors to the pattern.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+  qcom-apq8060-dragonboard.dtb: mpps@50: cm3605-mpps-state: 'oneOf' conditional failed, one must be fixed:
+    'mpp5' does not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
 
-Reviewed-by: Pratyush Yadav <ptyadav@amazon.de>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+---
+
+Warning visible after:
+https://lore.kernel.org/r/20230120165103.1278852-1-robh@kernel.org
+---
+ arch/arm/boot/dts/qcom-apq8060-dragonboard.dts | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
+
+diff --git a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
+index 7a4c59e04af6..8e4b61e4d4b1 100644
+--- a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
++++ b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
+@@ -435,15 +435,13 @@ &pm8058_led133 {
+ 
+ &pm8058_mpps {
+ 	dragon_cm3605_mpps: cm3605-mpps-state {
+-		mpp5 {
+-			pins = "mpp5";
+-			function = "analog";
+-			input-enable;
+-			bias-high-impedance;
+-			/* Let's use channel 5 */
+-			qcom,amux-route = <PMIC_MPP_AMUX_ROUTE_CH5>;
+-			power-source = <PM8058_GPIO_S3>;
+-		};
++		pins = "mpp5";
++		function = "analog";
++		input-enable;
++		bias-high-impedance;
++		/* Let's use channel 5 */
++		qcom,amux-route = <PMIC_MPP_AMUX_ROUTE_CH5>;
++		power-source = <PM8058_GPIO_S3>;
+ 	};
+ };
+ 
 -- 
-Regards,
-Pratyush Yadav
-
-
-
-Amazon Development Center Germany GmbH
-Krausenstr. 38
-10117 Berlin
-Geschaeftsfuehrung: Christian Schlaeger, Jonathan Weiss
-Eingetragen am Amtsgericht Charlottenburg unter HRB 149173 B
-Sitz: Berlin
-Ust-ID: DE 289 237 879
-
-
+2.34.1
 
