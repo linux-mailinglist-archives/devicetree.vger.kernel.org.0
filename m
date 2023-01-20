@@ -2,136 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD577675820
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:08:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E0AA675828
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:09:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230005AbjATPI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 10:08:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43112 "EHLO
+        id S230037AbjATPJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 10:09:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbjATPI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:08:56 -0500
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC910BF89F
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:08:54 -0800 (PST)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5018be4ae8eso13379227b3.4
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:08:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=pBi3ffU51iejmbjZQdj0oR9LDHIFBr0OZALJjIdQl6s=;
-        b=IAR+djixseOq3jujbfi2bCnwrdqKvF/Hj92LldFzw7K3pR0UkGgZo29Kj1ScJMqbVT
-         QWO1o80x9LlwXtpRk3xF3uN0OmsR0u42fQWOf3fDIuzu13H0miJ701CibLZpoOtLwFo2
-         2jqgEwILWw9h7eHpp90ieOd1D+/9wY1RY4R2g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pBi3ffU51iejmbjZQdj0oR9LDHIFBr0OZALJjIdQl6s=;
-        b=uNWaCemuY86epRoIQQ0gwUcLvmHAU83uNV0sPIpF6DqU5fQ8Q+pIAJom2fIXQTI2I/
-         JBtPPKiZeOW6LxjrOAEWDoKUsGZGdka6/l14CjBqzWPpnTp8LXm8+X4qsLVFcvI4XXR9
-         reYG27LaVkuxSckFKewOFMPRTcMWFjmV1HDSzAHxSf8ztrf+lOwbb7V2fGar7Q9B7bYl
-         EJ5JKm4RPiLfWQ/apFKMlG1KABlRkqjCndJsNMvRFTUKJWTIHBgppOhcLnLfDfC7BTfI
-         juJSA1m2RPGQUqTFoxwvHUberQCuzNQWflCj2E/1Vw2n4W+vSWyghi06VPRjmUtt3Sgv
-         uD9g==
-X-Gm-Message-State: AFqh2kpGU+NLoi2puSk5rjF0AH+d8odKrPwVCcpycCLMqxIrRR7o1Ucd
-        KM/8SxQQipeYEIO65qCLeISS0KrrH8mwJH1JLmXARw==
-X-Google-Smtp-Source: AMrXdXte3RJRifErKDri4ufOLNtUc+I381qg5srevvWpCT+9akcsEUzeJT7w9khoMlB0A7nSuyN3J3u1pWiC2hEGDCg=
-X-Received: by 2002:a0d:cbcb:0:b0:4f2:1365:fa5 with SMTP id
- n194-20020a0dcbcb000000b004f213650fa5mr1686671ywd.279.1674227333774; Fri, 20
- Jan 2023 07:08:53 -0800 (PST)
-MIME-Version: 1.0
-References: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Fri, 20 Jan 2023 08:08:07 -0700
-Message-ID: <CAPnjgZ3MQ4E_3n_Z881QsdO-zELPkLaCm0cOFwz6Fds+u73OWg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/8] clk: qcom: msm8996: add support for the CBF clock
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230368AbjATPJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:09:37 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4005BC13CF;
+        Fri, 20 Jan 2023 07:09:36 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D6C5AB82865;
+        Fri, 20 Jan 2023 15:09:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F01A7C433D2;
+        Fri, 20 Jan 2023 15:09:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674227373;
+        bh=peKWyvA00/J4ADxFPcOLLkQp13SsZuDfZ8mX77eLT9U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gaW2nDiCnmEA1IGUr1wprvi2wT55A036DoUI0MAELWfYtF2dX9h9Ax7nxJCjmikLc
+         KZfK74bAOXoKxmlR9mYBFxbacm1D8FDiPcAxK4gt6sXoelssHw+gAyRyxMWx3H0H6M
+         NrndF1VhgJrvjD+xmGj+zdb3n7W8jbXxq/3y7s5hyIu0neGI+Nkvx3ti7LUEdh7qJH
+         Opp/1XplWOZ8trTyrkBL7GfQPsone7dr1zeOS7CERJvm+jYQDSEkjjwUM7vFL48en1
+         McNIFvhXpXa7uACR6T2LpKbJ/75HMZGmxU7R9pjzW2hVoJxLYffwr/8KRiVIEviMgi
+         myII6B8hchU0A==
+Date:   Fri, 20 Jan 2023 15:09:30 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-        autolearn=no autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: document SPI dev
+ compatibles
+Message-ID: <Y8quqsiRmMbPyyar@sirena.org.uk>
+References: <20230120075618.153664-1-krzysztof.kozlowski@linaro.org>
+ <20230120075618.153664-2-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="YyLy3D3xhC0HNElW"
+Content-Disposition: inline
+In-Reply-To: <20230120075618.153664-2-krzysztof.kozlowski@linaro.org>
+X-Cookie: Serving suggestion.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
 
-On Thu, 19 Jan 2023 at 23:14, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On MSM8996 two CPU clusters are interconnected using the Core Bus
-> Fabric (CBF). In order for the CPU clusters to function properly, it
-> should be clocked following the core's frequencies to provide adequate
-> bandwidth. On the other hand the CBF's clock rate can be used by other
-> drivers (e.g. by the pending SPDM driver to provide input on the CPU
-> performance).
->
-> Thus register CBF as a clock (required for CPU to boot) and add a tiny
-> interconnect layer on top of it to let cpufreq/opp scale the CBF clock.
->
-> Dependencies: [1]
->
-> [1] https://lore.kernel.org/linux-arm-msm/20230111191453.2509468-1-dmitry.baryshkov@linaro.org/
->
-> Changes since v2:
-> - Added interconnect-related bindings
-> - Switched CPU and CBF clocks to RPM_SMD_XO_A_CLK_SRC
->
-> Changes since v1:
-> - Relicensed schema to GPL-2.0 + BSD-2-Clause (Krzysztof)
-> - Changed clock driver to use parent_hws (Konrad)
-> - Fixed indentation in CBF clock driver (Konrad)
-> - Changed MODULE_LICENSE of CBF clock driver to GPL from GPL-v2
-> - Switched CBF to use RPM_SMD_XO_CLK_SRC as one of the parents
-> - Enabled RPM_SMD_XO_CLK_SRC on msm8996 platform and switch to it from
->   RPM_SMD_BB_CLK1 clock
->
-> Dmitry Baryshkov (8):
->   dt-bindings: clock: qcom,msm8996-cbf: Describe the MSM8996 CBF clock
->     controller
->   dt-bindints: interconnect/msm8996-cbf: add defines to be used by CBF
->   clk: qcom: add msm8996 Core Bus Framework (CBF) support
->   clk: qcom: cbf-msm8996: scale CBF clock according to the CPUfreq
->   clk: qcom: smd-rpm: provide RPM_SMD_XO_CLK_SRC on MSM8996 platform
->   arm64: qcom: dts: msm8996 switch from RPM_SMD_BB_CLK1 to
->     RPM_SMD_XO_CLK_SRC
->   arm64: dts: qcom: msm8996: add CBF device entry
->   arm64: dts: qcom: msm8996: scale CBF clock according to the CPUfreq
->
->  .../bindings/clock/qcom,msm8996-cbf.yaml      |  53 ++
->  arch/arm64/boot/dts/qcom/msm8996.dtsi         |  72 ++-
->  drivers/clk/qcom/Makefile                     |   2 +-
->  drivers/clk/qcom/clk-cbf-8996.c               | 458 ++++++++++++++++++
->  drivers/clk/qcom/clk-smd-rpm.c                |   2 +
->  .../interconnect/qcom,msm8996-cbf.h           |  12 +
->  6 files changed, 591 insertions(+), 8 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,msm8996-cbf.yaml
->  create mode 100644 drivers/clk/qcom/clk-cbf-8996.c
->  create mode 100644 include/dt-bindings/interconnect/qcom,msm8996-cbf.h
->
-> --
-> 2.39.0
->
+--YyLy3D3xhC0HNElW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Could you please tell me which dev board this is targeting and where I
-can get one? Also could you please point me to the SoC documentation?
+On Fri, Jan 20, 2023 at 08:56:18AM +0100, Krzysztof Kozlowski wrote:
+> Document existing SPI dev compatibles.
 
-Thanks,
-Simon
+I'm missing patch 1/2 here - what's the story with dependencies?
+
+--YyLy3D3xhC0HNElW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmPKrqkACgkQJNaLcl1U
+h9B52Qf/RickB1eqf1M22Btw5a8pAHEiaM16lLisG2SGq78tGur7mTepZQSpLY/L
+9Cs6CYuhCToI8aX17xQ1IZeWSVO0SEX0blBYXMX+LzxEUlE41tnkpBQY5V2ssUPf
+kSh+EKYEiqsWM0O0w0rbbBK8YN/7NKF2NwW5gti40xIQmZHKPr8x1SEeZlgBj4/p
+PfxqtmiO6YWrdLhQCxrzeA7XoIvec8THYKevHVKnacFuW7c80yCn3xb4TiffURL1
+BoD7/TwIUXOT8OnhN5ylXLosXkPrW92CxaJqVkc/ocO9oaho7uMAe/s1IZ5s1eUp
+iDRVB5pVShnKaawuoumwcQTCj0cNZQ==
+=kaoS
+-----END PGP SIGNATURE-----
+
+--YyLy3D3xhC0HNElW--
