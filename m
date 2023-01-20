@@ -2,108 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DB6C6751B6
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:54:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 627A36751C7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:56:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbjATJyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 04:54:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45120 "EHLO
+        id S229493AbjATJ4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 04:56:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229767AbjATJyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:54:31 -0500
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E06B8518F6;
-        Fri, 20 Jan 2023 01:54:24 -0800 (PST)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30K8fqbH023335;
-        Fri, 20 Jan 2023 04:54:16 -0500
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3n7qnw09j8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 20 Jan 2023 04:54:16 -0500
-Received: from m0167089.ppops.net (m0167089.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30K9sGjb001974;
-        Fri, 20 Jan 2023 04:54:16 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3n7qnw09j5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 20 Jan 2023 04:54:15 -0500
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 30K9sECh036494
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 20 Jan 2023 04:54:14 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 20 Jan
- 2023 04:54:13 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Fri, 20 Jan 2023 04:54:13 -0500
-Received: from tachici-Precision-5530.ad.analog.com ([10.48.65.139])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 30K9rqU0021132;
-        Fri, 20 Jan 2023 04:54:09 -0500
-From:   Alexandru Tachici <alexandru.tachici@analog.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     <netdev@vger.kernel.org>, <davem@davemloft.net>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <richardcochran@gmail.com>, <yangyingliang@huawei.com>,
-        <weiyongjun1@huawei.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <lennart@lfdomain.com>
-Subject: [net-next 3/3] dt-bindings: net: adin1110: Document ts-capt pin
-Date:   Fri, 20 Jan 2023 11:53:48 +0200
-Message-ID: <20230120095348.26715-4-alexandru.tachici@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230120095348.26715-1-alexandru.tachici@analog.com>
-References: <20230120095348.26715-1-alexandru.tachici@analog.com>
+        with ESMTP id S229477AbjATJ4Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:56:16 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D9580B8C;
+        Fri, 20 Jan 2023 01:55:31 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BE927514;
+        Fri, 20 Jan 2023 10:55:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674208524;
+        bh=j8S6Gdb+RcZjpA9ccAUgC+Tk6AJVUMl0mpaT0mynImc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jNhQ48HPPsOaeB9aI7pdnX5VDQePaakBdq1CFGnCfyQwL93/CLURBMKH+tBaOTEME
+         66ABUXZMyJOIUiLJsn5YcjEcVnyjPQYEQH4XaJqHF4POlCEZ1S9HlyQzLhgGlbI1dW
+         6q/EY7KPoxXnkDEmDEKiNPJRDSW6IePWllJlNcTE=
+Date:   Fri, 20 Jan 2023 11:55:21 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Luca Ceresoli <luca@lucaceresoli.net>
+Subject: Re: [PATCH v7 1/7] i2c: add I2C Address Translator (ATR) support
+Message-ID: <Y8plCZ/27zy4J2Tk@pendragon.ideasonboard.com>
+References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
+ <20230118124031.788940-2-tomi.valkeinen@ideasonboard.com>
+ <Y8gA+cz9m7PaEhfP@smile.fi.intel.com>
+ <20230118181753.7a325953@booty>
+ <Y8gu4mlXUlyiFKZD@smile.fi.intel.com>
+ <20230119092115.02cbbab3@booty>
+ <db2e7386-e625-5bad-0c99-bae633e96d80@ideasonboard.com>
+ <20230119123520.7f1aa680@booty>
+ <79331f60-0849-9d5a-822a-987df01a4b96@ideasonboard.com>
+ <20230119140056.686c0dea@booty>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: YDNBpWrcHGfszGd-G8B6bCenBJZ8bm7d
-X-Proofpoint-ORIG-GUID: 4XgliSjMGY250yf6wsqSYqB3E4URa4XP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-20_06,2023-01-19_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 adultscore=0 mlxscore=0 bulkscore=0 phishscore=0
- spamscore=0 priorityscore=1501 clxscore=1015 suspectscore=0 malwarescore=0
- mlxlogscore=888 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301200093
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230119140056.686c0dea@booty>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the use of the timestamp capture pin.
+Hello,
 
-Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
----
- Documentation/devicetree/bindings/net/adi,adin1110.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Thu, Jan 19, 2023 at 02:00:56PM +0100, Luca Ceresoli wrote:
+> On Thu, 19 Jan 2023 14:22:26 +0200 Tomi Valkeinen wrote:
+> > On 19/01/2023 13:35, Luca Ceresoli wrote:
+> > > On Thu, 19 Jan 2023 12:09:57 +0200 Tomi Valkeinen wrote:
+> > >> On 19/01/2023 10:21, Luca Ceresoli wrote:
+> > >>
+> > >> <snip>
+> > >>  
+> > >>>>>>> +void i2c_atr_set_driver_data(struct i2c_atr *atr, void *data)
+> > >>>>>>> +{
+> > >>>>>>> +	atr->priv = data;
+> > >>>>>>> +}
+> > >>>>>>> +EXPORT_SYMBOL_NS_GPL(i2c_atr_set_driver_data, I2C_ATR);
+> > >>>>>>> +
+> > >>>>>>> +void *i2c_atr_get_driver_data(struct i2c_atr *atr)
+> > >>>>>>> +{
+> > >>>>>>> +	return atr->priv;
+> > >>>>>>> +}
+> > >>>>>>> +EXPORT_SYMBOL_NS_GPL(i2c_atr_get_driver_data, I2C_ATR);  
+> > >>>>>>
+> > >>>>>> Just to be sure: Is it really _driver_ data and not _device instance_ data?  
+> > >>>>>
+> > >>>>> It is device instance data indeed. I don't remember why this got
+> > >>>>> changed, but in v3 it was i2c_atr_set_clientdata().  
+> > >>>>
+> > >>>> It's me who was and is against calling it clientdata due to possible
+> > >>>> confusion with i2c_set/get_clientdata() that is about *driver data*.
+> > >>>> I missed that time the fact that this is about device instance data.
+> > >>>> I dunno which name would be better in this case, i2c_atr_set/get_client_priv() ?  
+> > >>>
+> > >>> Not sure I'm following you here. The i2c_atr_set_clientdata() name was
+> > >>> given for similarity with i2c_set_clientdata(). The latter wraps
+> > >>> dev_set_drvdata(), which sets `struct device`->driver_data. There is
+> > >>> one driver_data per each `struct device` instance, not per each driver.
+> > >>> The same goes for i2c_atr_set_driver_data(): there is one priv pointer
+> > >>> per each `struct i2c_atr` instance.  
+> > >>
+> > >> I'm a bit confused. What is "driver data" and what is "device instance
+> > >> data"?
+> > >>
+> > >> This deals with the driver's private data, where the "driver" is the
+> > >> owner/creator of the i2c-atr. The i2c-atr itself doesn't have a device
+> > >> (it's kind of part of the owner's device), and there's no driver in
+> > >> i2c-atr.c
+> > >>
+> > >> I don't like "client" here, as it reminds me of i2c_client (especially
+> > >> as we're in i2c context).
+> > >>
+> > >> What about i2c_atr_set_user_data()? Or "owner_data"?  
+> > > 
+> > > Ah, only now I got the point Andy made initially about "client" not
+> > > being an appropriate word.
+> > > 
+> > > In i2c we have:
+> > > 
+> > >    i2c_set_clientdata(struct i2c_client *client, void *data)
+> > >            ^^^^^^~~~~            ^^^^^^                ~~~~
+> > > 
+> > > so "client" clearly makes sense there, now here.  
+> > 
+> > Isn't that also used by the i2c_client? A driver which handles an i2c 
+> > device is the "i2c client", in a sense?
+> > 
+> > > The same logic applied here would lead to:
+> > > 
+> > >    i2c_atr_set_atrdata(struct i2c_atr *atr, void *data)
+> > >                ^^^~~~~            ^^^             ~~~~
+> > > 
+> > > which makes sense but it is a ugly IMO.  
+> > 
+> > Here, I think, there's a bit of a difference to the i2c_client case, as 
+> > we have a separate component for the i2c-atr. Although I guess one can 
+> > argue that the top level driver is the ATR driver, as it handles the HW, 
+> > and i2c-atr.c is just a set of helpers, so... I don't know =).
+> > 
+> > > So I think i2c_atr_get_driver_data() in this v7 makes sense, it's to
+> > > set the data that the ATR driver instance needs.
+> > > 
+> > > This is coherent with logic in spi/spi.h:
+> > > 
+> > >    spi_set_drvdata(struct spi_device *spi, void *data)
+> > > 
+> > > except for the abbreviation ("_drvdata" vs "_driver_data").
+> > > 
+> > > Andy, Tomi, would i2c_atr_set_drvdata() be OK for you, just like SPI
+> > > does?  
+> > 
+> > Well, I'm good with the current i2c_atr_set_driver_data(). If all agrees 
+> > that it's "driver data", I'd rather keep it like that. I find this 
+> > "drvdata" style very odd. Why no underscore between drv and data? Why 
+> > abbreviate drv, it doesn't really help anything here?
+> 
+> Agreed, I'm OK with either form of "driver data".
 
-diff --git a/Documentation/devicetree/bindings/net/adi,adin1110.yaml b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
-index 9de865295d7a..f2db919c166b 100644
---- a/Documentation/devicetree/bindings/net/adi,adin1110.yaml
-+++ b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
-@@ -50,6 +50,13 @@ properties:
-     maxItems: 1
-     description: GPIO connected to active low reset
- 
-+  ts-capt-gpios:
-+    maxItems: 1
-+    description: |
-+      Optional active high GPIO. Connected to the TS_TIMER pin of ADIN1110.
-+      When pulled up device will save a timestamp containing both the
-+      seconds and nanoseconds part simultaneously.
-+
- required:
-   - compatible
-   - reg
+Have you considered allowing drivers to embed i2c_atr in a larger
+structure, instead of forcing allocation through i2c_atr_new() ? Drivers
+could then use container_of() instead of the get/set driver/device data
+accessors.
+
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
