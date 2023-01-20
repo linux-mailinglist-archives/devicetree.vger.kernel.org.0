@@ -2,113 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D69C675DB4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 20:12:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B723C675E68
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 20:50:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbjATTMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 14:12:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47610 "EHLO
+        id S229489AbjATTuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 14:50:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbjATTMY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 14:12:24 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD77875A24
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 11:12:22 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id br9so9508963lfb.4
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 11:12:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sparkcharge.io; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bSA3wh9gMj+Mvd34uj2dtbNIbWdD9BJi2jkGKY8O+Nw=;
-        b=cQAixSrgYRlylZTk1zBwdTwmpPb8cWCe1rkPu3F6V6FnCJifFUhoUsEdyDkQwata26
-         Zpdo9+yWgpMs6vSDFHLsHp6w71sBnx0VSr5YHOcsafHER85JeFnMrYXS3fW3iSEGlJwc
-         7IxIIm3IvK4tWlEzY4LDcZq+44Yq+y4aPHDf9kXs4HW2AmX9LdZrPh2iRHe4syc4SH0S
-         N9ZP/dml6mjg+eat2j+wIfXNkgW0BWFNDrHBrMW4YJEtjapJfaW7DgnQmeyE1NEkoOb8
-         4gqdfBS6Axrj/Z/uikspm49smMOUW0X2Zzgqs4EIF4KTUSIsQ84eZAfFzOgTD0OQDa1S
-         BTmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bSA3wh9gMj+Mvd34uj2dtbNIbWdD9BJi2jkGKY8O+Nw=;
-        b=1wiAMYaOL5S4ItJH2PF+WD2W1PRIm2oPjq5lH3KnAOPVLiauoLfxANtQWrzVGIMHB8
-         oRFS7AtXjdJSxtZ7Vu949FifAWZ2hqkU5tj3EBelthcTz2yv36U4GDAOJ0O5xPDHIPq9
-         wfgiD3+mzLbqf9nIY+SuNEQ67qRXwsHGBuHA5uKsUJp8Nejie2C1708tm/ihR6s3Zj1J
-         ctdwEyFW2Z7oMGSqEV4y0shYv71zaOhbzgmOH46wxBZg0Uvrw7ex5ineEdmWXX3dRQZd
-         T4QQTNvWx1Kd0zdSHEerQLnGBLjpHWJBtimieH9vmrolDwZnuOzYrVjaohhRa3G0wkY5
-         naSA==
-X-Gm-Message-State: AFqh2kqiL/khgkYkkNoGBHxhO81xkzMD0rC+mrC2yReaOaW5uD+cmdQ6
-        k7nMzXpDD+4LX6e1Ti4lsnTZgYcG4YBan6uCSgnIv6VNW1tqQclAirs=
-X-Google-Smtp-Source: AMrXdXsmKNfhtpIFKW5CZxtAmamvdxaQgh9Nkd9XD/xUxdytFu5paVK1tK63g/5bW7BwTl2cji9jEpurDAZcsRqErp8=
-X-Received: by 2002:a05:6512:39c5:b0:4d5:8faa:bfe8 with SMTP id
- k5-20020a05651239c500b004d58faabfe8mr952594lfu.277.1674241940987; Fri, 20 Jan
- 2023 11:12:20 -0800 (PST)
+        with ESMTP id S229645AbjATTuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 14:50:12 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08BCBB96
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 11:50:10 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pIxOk-0006XR-7Q; Fri, 20 Jan 2023 20:50:02 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pIxOj-0007mo-2W; Fri, 20 Jan 2023 20:50:01 +0100
+Date:   Fri, 20 Jan 2023 20:50:01 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 3/3] dt-bindings: arm: fsl: Add i.MX8MM-EVK rev-b
+Message-ID: <20230120195001.ai5zg2fapu43q6ni@pengutronix.de>
+References: <20230110152316.1149940-1-johannes.schneider@leica-geosystems.com>
+ <20230110152316.1149940-4-johannes.schneider@leica-geosystems.com>
 MIME-Version: 1.0
-References: <20230119213903.899756-1-dennis@sparkcharge.io>
- <Y8nBloQfBPK3t5ce@mail.local> <CAKYiA1Dr0TAmsqDf1wMeeysN4N8K+KJL6onCgQL98LVV5L7Vmg@mail.gmail.com>
- <Y8nXoZjco8uIrtFJ@mail.local>
-In-Reply-To: <Y8nXoZjco8uIrtFJ@mail.local>
-From:   Dennis Lambe <dennis@sparkcharge.io>
-Date:   Fri, 20 Jan 2023 14:12:09 -0500
-Message-ID: <CAKYiA1CTWeGPQDsNGzJwjwJgW7SGTPCH3NQ0rFqKQVHbgWh9sw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] rtc: Set M41T82 & M41T83 xtal load capacitance
- from DT
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Atsushi Nemoto <atsushi.nemoto@sord.co.jp>,
-        Gary Bisson <gary.bisson@boundarydevices.com>,
-        Javier Martinez Canillas <javier@osg.samsung.com>,
-        Troy Kisky <troy.kisky@boundarydevices.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230110152316.1149940-4-johannes.schneider@leica-geosystems.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 6:52 PM Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
-> On 19/01/2023 18:27:44-0500, Dennis Lambe wrote:
-> > 2. Analog calibration -- that's what the datasheet calls it, but the
-> > range on it is very big -- 3.5 pF all the way up to 17.4 pF -- and
-> > their reference design uses it as the only xtal load capacitance in
-> > the circuit. Most of the values you could set for this would be wildly
-> > inappropriate for any given design's choice of xtal oscillator.
+Hi Johannes,
 
-I think I should start with an apology, almost everything I wrote
-yesterday was in error one way or another. I was conflating this RTC
-with I'm also working with. I see now that the datasheet for this one
-clearly states that it's only to be used with 12.5 pF crystals, and
-that the analog adjustments are meant exclusively for calibration. I
-get what you mean about wanting it to be a new runtime interface and
-it not making sense to put in the DeviceTree.
+On 23-01-10, Johannes Schneider wrote:
+> Add DT compatible strings for a rev-b imx8mm-EVK which come with a
+> different PMIC than rev-a.
 
-I also see what you mean about the datasheet not providing a good
-capacitance vs. ppm table. The graph is approximate at best, and ST's
-appnote recommends an iterative tuning procedure rather than just
-assuming a certain value gives exactly a certain ppm adjustment. I see
-why you would want to avoid using 'offset' for this.
+Please correct the commit message it is not rev-b it is EVKB. The most
+recent revision of the 'original' EVK CPU module is C2 and the most
+recent revision of EVKB CPU2 module is A4.
 
-I'll hold off on submitting any more patches for this until you've had
-a chance to think about how you would want a new interface to work.
-Would it be useful to you if I start working up a patchset that makes
-a new rtc sysfs attribute and wires the m41t80 driver into it so that
-I'm ready to adapt it to whatever naming, scaling, semantics,
-interpretation, etc. you decide is right for it?
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index fbfc4f99c01e..9c3a02c19847 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -818,6 +818,7 @@ properties:
+>                - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
+>                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
+>                - fsl,imx8mm-evk            # i.MX8MM EVK Board
+> +              - fsl,imx8mm-evkb           # i.MX8MM EVK Board, rev-B
+								   ^
+			Please drop this rev-B and instead just write:
+			# i.MX8MM EVKB board
 
-> I advocate against merging as is without more thought because changing
-> anything later will mean breaking the DT ABI and this is not allowed.
+Regards,
+  Marco
 
-Me too, thanks for taking the time to get through to me about it.
--- 
-
-Dennis Lambe (He/Him)
-Lead Firmware Engineer
-sparkcharge.io
+>                - gateworks,imx8mm-gw7904
+>                - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
+>                - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
+> -- 
+> 2.25.1
+> 
+> 
+> 
