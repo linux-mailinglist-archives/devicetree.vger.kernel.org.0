@@ -2,56 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7044674C56
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 06:29:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71B26674C25
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 06:24:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbjATF3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 00:29:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35096 "EHLO
+        id S230194AbjATFYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 00:24:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231488AbjATF2q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 00:28:46 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E04D45895;
-        Thu, 19 Jan 2023 21:23:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1BC96B82752;
-        Thu, 19 Jan 2023 22:17:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7243C433EF;
-        Thu, 19 Jan 2023 22:17:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674166630;
-        bh=89utuYKQCGzeq83oKyHYUYUZDVIx127sMQsoQcEb2wo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qbXgWUQIUKpa3h09/Ocor30Egjb4MGaL7bx1gdKjpc2q4enyEUlMoMPksx2Cf0CKc
-         oAYbo3lLTXDxvwnhRTSMe54EZETX4XQUIIsfASm1hjfv7MVEYFNjROj38OoDBRrRp8
-         UHZt2wqjGbJMPxyBmBdirkPnFiyaeLVUaK0mgkleCHMunxOVh291Y92pbDPNshygZU
-         5XxibQVOkBWbshESs3encPisolIseGbkEhJz3HflnIL5vOf3LeVICHn3vdbwoI5a+3
-         4QGTHrp/yz+f0opebObVO2TfTK2GbSs6+QAn1wJoUkNnsISE3NcHWnIGqs6aXU98hv
-         h8ZZNNVBFeFbw==
-Date:   Thu, 19 Jan 2023 22:17:06 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] mmc: starfive: Add sdio/emmc driver support
-Message-ID: <Y8nBYpMWZnPfIqxH@spud>
-References: <20221227122227.460921-1-william.qiu@starfivetech.com>
- <20221227122227.460921-3-william.qiu@starfivetech.com>
+        with ESMTP id S230341AbjATFY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 00:24:26 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82234EF8C;
+        Thu, 19 Jan 2023 21:15:01 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30K3mYPb017468;
+        Fri, 20 Jan 2023 04:47:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=T4sS9BoBfz9WEu5JOgwas1AqI7OGUq6xBiqPC0K1GBU=;
+ b=kuKViTnX3eCfB9njWvcViKsgUYOpNQxMZkfBEB6DWAVAQts6u6KPlKsNn7f2IcBTUhpU
+ jXMfgker/gRhcA/Ly/3m+u3KOqAxJK2YPRO97xM8B05VQblS32+xqLG02V5QE2z1qyMW
+ qYLqaB5AvKdxEryHpUqfgdrsY0iPoOCXv6K+bZ0+f4JBTHec3cgPNc9b/UmcyzAUW1XS
+ 0F9LVxOvUFs5IRfCJxUX5ElHm+kwqkswEfnClIUhbc9vC3JcJ0uF5HIsnGCOe8XXYz2p
+ P/CbjpVkQS1wS2jPS5E2KoWo7Ltx3HMMBE4gOsxdQ/QjkRhOH7FDT3KBAnKlm4WyuN5d /A== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n75w3hs82-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 20 Jan 2023 04:47:18 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30K4lH5A001066
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 20 Jan 2023 04:47:17 GMT
+Received: from [10.216.43.228] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 19 Jan
+ 2023 20:47:11 -0800
+Message-ID: <9ae3b1b0-e9d6-6370-667b-88af5d0efa2e@quicinc.com>
+Date:   Fri, 20 Jan 2023 10:17:08 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="NUNkl8OsrY3EJ11E"
-Content-Disposition: inline
-In-Reply-To: <20221227122227.460921-3-william.qiu@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v3 4/7] arm64: dts: qcom: sc7280: Update VA/RX/TX macro
+ clock nodes
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <vkoul@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>,
+        <robh+dt@kernel.org>, <broonie@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <dianders@chromium.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <alsa-devel@alsa-project.org>, <quic_rjendra@quicinc.com>,
+        <konrad.dybcio@somainline.org>, <mka@chromium.org>
+References: <1674131227-26456-1-git-send-email-quic_srivasam@quicinc.com>
+ <1674131227-26456-5-git-send-email-quic_srivasam@quicinc.com>
+ <17b895c0-3985-a012-9b02-94d5ebb11ff9@linaro.org>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <17b895c0-3985-a012-9b02-94d5ebb11ff9@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: BnwV-s8f1FOGMETikuYZKLkrVEE2vGAn
+X-Proofpoint-GUID: BnwV-s8f1FOGMETikuYZKLkrVEE2vGAn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-20_02,2023-01-19_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015 mlxscore=0
+ spamscore=0 priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301200042
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -59,32 +89,70 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---NUNkl8OsrY3EJ11E
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 1/19/2023 7:01 PM, Krzysztof Kozlowski wrote:
+Thanks for your time Krzysztof!!!
+> On 19/01/2023 13:27, Srinivasa Rao Mandadapu wrote:
+>> Update VA, RX and TX macro and lpass_tlmm clock properties and
+>> enable them.
+> Everything is an update and this does not explain what exactly you are
+> updating in the nodes and why.
+>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> ---
+>>   .../qcom/sc7280-herobrine-audioreach-wcd9385.dtsi  | 59 ++++++++++++++++++++++
+>>   1 file changed, 59 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>> index 81e0f3a..674b01a 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>> @@ -8,8 +8,67 @@
+>>   
+>>   #include <dt-bindings/sound/qcom,q6afe.h>
+>>   
+>> +/delete-node/ &lpass_rx_macro;
+> Why?
 
-On Tue, Dec 27, 2022 at 08:22:26PM +0800, William Qiu wrote:
-> Add sdio/emmc driver support for StarFive JH7110 soc.
->=20
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+Actually in SoC dtsi (sc7280.dtsi) power domains property used.
 
-Gave the patch a go w/ a chroot running on the sdcard. Seemed fine :)
-Tested-by: Conor Dooley <conor.dooley@microchip.com>
+Which is not required for ADSP based solution. As there is no way to delete
 
-Thanks,
-Conor.
+individual property, deleting node and recreating it here.
 
-
---NUNkl8OsrY3EJ11E
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY8nBYgAKCRB4tDGHoIJi
-0ugVAQCT1oOYndDpHRFXvRmGKO5D1/5gymrPbI0BvzUu7bYCzwD/djaRzOTVgw9C
-+WbQyiNFGpHXG1pGlshWuMzzbeKYYgY=
-=pLQz
------END PGP SIGNATURE-----
-
---NUNkl8OsrY3EJ11E--
+>
+>> +/delete-node/ &lpass_tx_macro;
+>> +/delete-node/ &lpass_va_macro;
+>> +
+>>   /{
+>>   	/* BOARD-SPECIFIC TOP LEVEL NODES */
+>> +	lpass_rx_macro: codec@3200000 {
+>> +		compatible = "qcom,sc7280-lpass-rx-macro";
+>> +		reg = <0 0x03200000 0 0x1000>;
+> Why? They are the same.
+Explained above.
+>
+>> +
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&lpass_rx_swr_clk>, <&lpass_rx_swr_data>;
+> Still the same...
+>
+>> +
+>> +		clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>> +			 <&q6prmcc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>> +			 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>> +			 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>> +			 <&lpass_va_macro>;
+>> +
+>> +		clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+> This is different...
+>
+>> +
+>> +		#clock-cells = <0>;
+>> +		#sound-dai-cells = <1>;
+> But this not.
+>
+>
+> Best regards,
+> Krzysztof
+>
