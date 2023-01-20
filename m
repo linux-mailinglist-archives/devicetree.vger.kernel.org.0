@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BE18675092
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:19:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C0626750A1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:20:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230057AbjATJTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 04:19:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33312 "EHLO
+        id S230126AbjATJUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 04:20:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230055AbjATJTG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:19:06 -0500
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97FEFDE;
-        Fri, 20 Jan 2023 01:18:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674206335; x=1705742335;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pmzBJ5ymiRL8p5H8Es5wRR2UT7IGWgFePiidxrdzTJg=;
-  b=LC9qpZ5WxD4rmj3bIev2QTZ9Ei3TmfqVCw8rIz+qTymLcpJHxBjAL1ZN
-   gJGFm2PSLTZtB26qaDZDkve+SxRWgrgyFbRR5g6uupnMviTJaaTsbg2n9
-   goTMRqFHM0bVvkx8zKL3gpmVNQA8Nc4MYUt2g5jd7KBb5QgGC+hsYn6CP
-   VF9Jn8g8aCrpBSugyQvlRWNf6oSYmF1j7epQk37hpKu/4sPFSWq1JpAA0
-   KxXueKmDsKjht8Hl1iX5BHilNZq1DlbA+AumzWdIa4HCekFD/6sRkQlpl
-   SdPBbr4U40S3fLT6B/mLN9XXm5E6zLY0kEMM15yU+3+vIno7T12SyOMtJ
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="305215476"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; 
-   d="scan'208";a="305215476"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2023 01:18:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="803015038"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; 
-   d="scan'208";a="803015038"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 20 Jan 2023 01:18:49 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 20 Jan 2023 11:18:48 +0200
-Date:   Fri, 20 Jan 2023 11:18:48 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S230125AbjATJUl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:20:41 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D27794C87;
+        Fri, 20 Jan 2023 01:20:29 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 17EF6514;
+        Fri, 20 Jan 2023 10:20:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1674206427;
+        bh=ZpjEdpxmp0MOhQncB4X9KLDvc6Eb6mlNo8Th3w38MgA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mD1w388r9+eI010yQLul2/0vDGJV1Yo6++L0HS7MPo2z+VAIviYFW3BRBdFiHDydx
+         3YIgPhe2qZyzsjpSiDUSG1w0Ic/GDS4cKPPfC2iurld7rul27CTHe1T22V9mXt43KJ
+         5QobO9LYudcxLGMtp2SlB2BMAzrm2NElnHrN4A9s=
+Date:   Fri, 20 Jan 2023 11:20:24 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
-Subject: Re: [PATCH V6 2/6] i2c: nvidia-gpu: Add ACPI property to align with
- device-tree
-Message-ID: <Y8pceFh88BdhAkMu@kuha.fi.intel.com>
-References: <20230119121639.226729-1-jonathanh@nvidia.com>
- <20230119121639.226729-3-jonathanh@nvidia.com>
+        Fabio Estevam <festevam@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v2 08/16] ARM: dts: imx7d: add node for PXP
+Message-ID: <Y8pc2IZl09iNaUiR@pendragon.ideasonboard.com>
+References: <20230112-imx-pxp-v2-0-e2281da1db55@pengutronix.de>
+ <20230112-imx-pxp-v2-8-e2281da1db55@pengutronix.de>
+ <Y8V6yU8bZoVt32wN@pendragon.ideasonboard.com>
+ <20230120090609.GB13264@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230119121639.226729-3-jonathanh@nvidia.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230120090609.GB13264@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 12:16:35PM +0000, Jon Hunter wrote:
-> From: Wayne Chang <waynec@nvidia.com>
+On Fri, Jan 20, 2023 at 10:06:09AM +0100, Michael Tretter wrote:
+> On Mon, 16 Jan 2023 18:26:49 +0200, Laurent Pinchart wrote:
+> > On Fri, Jan 13, 2023 at 10:54:14AM +0100, Michael Tretter wrote:
+> > > The i.MX7d contains a Pixel Pipeline in version 3.0. Add the device tree
+> > > node to make it available.
+> > > 
+> > > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> > 
+> > Should this go through Shawn's tree ? If so, how would you like to
+> > handle the dependency on the DT bindings in patch 01/16 ?
 > 
-> Device-tree uses the 'firmware-name' string property to pass a name of
-> the firmware build to the Cypress CCGx driver. Add a new ACPI string
-> property to the NVIDIA GPU I2C driver to align with device-tree so that
-> we can migrate to using a common property name for both ACPI and
-> device-tree.
-> 
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> There is no actual dependency. The binding was already specified as a txt,
+> just not as a yaml, and the added node matches both.
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Good point. I'll send a pull request for the series then, without this
+patch, which can be picked by Shawn separately.
 
-> ---
-> V6: no changes
-> V5: Added this patch from V3
-> 
->  drivers/i2c/busses/i2c-nvidia-gpu.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/i2c/busses/i2c-nvidia-gpu.c b/drivers/i2c/busses/i2c-nvidia-gpu.c
-> index 12e330cd7635..6d81ea530a83 100644
-> --- a/drivers/i2c/busses/i2c-nvidia-gpu.c
-> +++ b/drivers/i2c/busses/i2c-nvidia-gpu.c
-> @@ -261,6 +261,7 @@ MODULE_DEVICE_TABLE(pci, gpu_i2c_ids);
->  static const struct property_entry ccgx_props[] = {
->  	/* Use FW built for NVIDIA (nv) only */
->  	PROPERTY_ENTRY_U16("ccgx,firmware-build", ('n' << 8) | 'v'),
-> +	PROPERTY_ENTRY_STRING("firmware-name", "nvidia,gpu"),
->  	{ }
->  };
->  
-> -- 
-> 2.25.1
+> > > ---
+> > > Changelog
+> > > 
+> > > v2:
+> > > 
+> > > - fix alignment
+> > > ---
+> > >  arch/arm/boot/dts/imx7d.dtsi | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > > 
+> > > diff --git a/arch/arm/boot/dts/imx7d.dtsi b/arch/arm/boot/dts/imx7d.dtsi
+> > > index 7ceb7c09f7ad..4b94b8afb55d 100644
+> > > --- a/arch/arm/boot/dts/imx7d.dtsi
+> > > +++ b/arch/arm/boot/dts/imx7d.dtsi
+> > > @@ -165,6 +165,15 @@ pcie_phy: pcie-phy@306d0000 {
+> > >  		  reg = <0x306d0000 0x10000>;
+> > >  		  status = "disabled";
+> > >  	};
+> > > +
+> > > +	pxp: pxp@30700000 {
+> > > +		compatible = "fsl,imx7d-pxp";
+> > > +		reg = <0x30700000 0x10000>;
+> > > +		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> > > +			     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+> > > +		clocks = <&clks IMX7D_PXP_CLK>;
+> > > +		clock-names = "axi";
+> > > +	};
+> > >  };
+> > >  
+> > >  &aips3 {
 
 -- 
-heikki
+Regards,
+
+Laurent Pinchart
