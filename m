@@ -2,109 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C034675B2E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:23:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01D19675B30
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:24:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbjATRXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:23:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37092 "EHLO
+        id S229737AbjATRYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:24:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbjATRXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:23:49 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38E9DC13CB;
-        Fri, 20 Jan 2023 09:23:27 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pIv6o-00054u-0o;
-        Fri, 20 Jan 2023 18:23:22 +0100
-Date:   Fri, 20 Jan 2023 17:23:12 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Jianhui Zhao <zhaojh329@gmail.com>
-Subject: [PATCH v3 0/3] add support for clocks on MT7981 SoC
-Message-ID: <cover.1674233728.git.daniel@makrotopia.org>
+        with ESMTP id S229634AbjATRYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:24:01 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD6FA1029;
+        Fri, 20 Jan 2023 09:23:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 617ED62024;
+        Fri, 20 Jan 2023 17:23:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C79D7C433A1;
+        Fri, 20 Jan 2023 17:23:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674235431;
+        bh=kykmCbV6IRYOFllGzMa92OaZb1qf5DrMRxNjvVxG+9I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=i6DA1ih7OebsueOAmNKk+5pwlaVjpBJjYuR8ah9s4QzqW97xx1aLlSMQCamtivTaK
+         LsGXrMffr9KQbrPV0z4UZE33LXN32yLX198q8c9/iKET2Vb4vXLn3majxYdj+dD2tY
+         VgQuSuZs+hAHQvUPrF9wQkvSmpvSnJRDDeuaRJWnowERXGvhFpeUTp2c334vW2SSgU
+         3yC5cMYYWvVyxPxmW6QOKpZDgVgJGdUGoJhsR4XFzaCsYxKKdRiFqv6XQk16n51lCU
+         gXT+6KiEUUDqPpGA5BIioX/nwvnW7pfhDzJ6IpzBUxalhB05OPgdONIb8SNY95dxut
+         3mYV233hdxCow==
+Received: by mail-vk1-f173.google.com with SMTP id z190so2865608vka.4;
+        Fri, 20 Jan 2023 09:23:51 -0800 (PST)
+X-Gm-Message-State: AFqh2krKVd7E2lSyRuz/zwYXX5AY3577EUWosLQX8DtUEPSGjxSjl5Eh
+        ytN3lpbm+i5A5HGpdxrsduxCLJrvBGATwOAdEw==
+X-Google-Smtp-Source: AMrXdXu2xY8OuzC6ho07U2ZqrqiowfM9QsN/jXfdu+/jSvwpGDFrNsNOjey8R8nuGOLE6Ei3OtZobRWMEK2H9u/Vf3k=
+X-Received: by 2002:a1f:edc2:0:b0:3e1:6dc2:d562 with SMTP id
+ l185-20020a1fedc2000000b003e16dc2d562mr2141801vkh.35.1674235430676; Fri, 20
+ Jan 2023 09:23:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230118215045.5551-1-msuchanek@suse.de> <20230119095323.4659-1-msuchanek@suse.de>
+In-Reply-To: <20230119095323.4659-1-msuchanek@suse.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 20 Jan 2023 11:23:39 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKo+mdjA485KDb1ZauJcbOU-FR1G-Z2sYYNu7+Zn32wSA@mail.gmail.com>
+Message-ID: <CAL_JsqKo+mdjA485KDb1ZauJcbOU-FR1G-Z2sYYNu7+Zn32wSA@mail.gmail.com>
+Subject: Re: [PATCH v2] of: Fix of platform build on powerpc due to bad of
+ disaply code
+To:     Michal Suchanek <msuchanek@suse.de>
+Cc:     "Erhard F." <erhard_f@mailbox.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MediaTek MT7981 SoC is quite similar to its big sibling, the
-MT7986. Hence most drivers can be reused and not much is missing the
-get also this SoC working on mainline Linux.
+On Thu, Jan 19, 2023 at 3:53 AM Michal Suchanek <msuchanek@suse.de> wrote:
+>
+> The commit 2d681d6a23a1 ("of: Make of framebuffer devices unique")
+> breaks build because of wrong argument to snprintf. That certainly
+> avoids the runtime error but is not the intended outcome.
+>
+> Also use standard device name format of-display.N for all created
+> devices.
+>
+> Fixes: 2d681d6a23a1 ("of: Make of framebuffer devices unique")
+> Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+> ---
+> v2: Update the device name format
+> ---
+>  drivers/of/platform.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index f2a5d679a324..8c1b1de22036 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -525,7 +525,9 @@ static int __init of_platform_default_populate_init(void)
+>         if (IS_ENABLED(CONFIG_PPC)) {
+>                 struct device_node *boot_display = NULL;
+>                 struct platform_device *dev;
+> -               int display_number = 1;
+> +               int display_number = 0;
+> +               char buf[14];
+> +               char *of_display_format = "of-display.%d";
 
-Start with a cleaned-up version of the clock drivers, based on what can
-also be found in MediaTek's SDK[1].
+static const as suggested and can we just move on please...
 
-Upon request of AngeloGioacchino Del Regno this series has been rebased
-and adapted to be applied on top of the pending series
-"MediaTek clocks cleanups and improvements"[2]
+>                 int ret;
+>
+>                 /* Check if we have a MacOS display without a node spec */
+> @@ -556,7 +558,10 @@ static int __init of_platform_default_populate_init(void)
+>                         if (!of_get_property(node, "linux,opened", NULL) ||
+>                             !of_get_property(node, "linux,boot-display", NULL))
+>                                 continue;
+> -                       dev = of_platform_device_create(node, "of-display", NULL);
+> +                       ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
 
-The complete tree used for testing (with still some to-be-cleaned-up
-changes, esp. for the Ethernet driver) can be found on Github[3].
+The boot display is always "of-display.0". Just use the fixed string
+here. Then we can get rid of the whole debate around static const.
 
-[1]: https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/refs/heads/master/target/linux/mediatek/files-5.4/drivers/clk/mediatek/clk-mt7981.c
-[2]: https://patchwork.kernel.org/project/linux-clk/list/?series=714057
-[3]: https://github.com/dangowrt/linux
+> +                       if (ret >= sizeof(buf))
+> +                               continue;
 
-Changes since v2:
- * rebase on top of next-20230120 with v4 of AngeloGioacchino's series[2]
- * fix titles of dt-bindings commits (this time for real)
- * convert clk-mt7981-infracfg to use mtk_clk_simple_probe
- * make use of PLL_AO flag in clk-mt7981-apmixed
- * convert clk-mt7981-ethsys into platform driver, also using the generic
-   probe function, allow building as module
+This only happens if display_number becomes too big. Why continue on?
+The next iteration will fail too.
 
-Changes since v1:
- * rebase and adapt on top of [2]
- * split-off addition of dt-bindings header, fix filename
- * changed commit title as requested
+> +                       dev = of_platform_device_create(node, buf, NULL);
+>                         if (WARN_ON(!dev))
+>                                 return -ENOMEM;
+>                         boot_display = node;
+> @@ -564,10 +569,9 @@ static int __init of_platform_default_populate_init(void)
+>                 }
+>
+>                 for_each_node_by_type(node, "display") {
+> -                       char *buf[14];
+>                         if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
+>                                 continue;
+> -                       ret = snprintf(buf, "of-display-%d", display_number++);
+> +                       ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
+>                         if (ret >= sizeof(buf))
+>                                 continue;
 
-Daniel Golle (3):
-  dt-bindings: clock: Add apmixedsys/topckgen compatibles for MT7981
-  dt-bindings: clock: mediatek: add mt7981 clock IDs
-  clk: mediatek: add MT7981 clock support
+Here too in the original change.
 
- .../bindings/clock/mediatek,apmixedsys.yaml   |   1 +
- .../bindings/clock/mediatek,topckgen.yaml     |   1 +
- drivers/clk/mediatek/Kconfig                  |  17 +
- drivers/clk/mediatek/Makefile                 |   4 +
- drivers/clk/mediatek/clk-mt7981-apmixed.c     | 102 +++++
- drivers/clk/mediatek/clk-mt7981-eth.c         | 117 +++++
- drivers/clk/mediatek/clk-mt7981-infracfg.c    | 207 +++++++++
- drivers/clk/mediatek/clk-mt7981-topckgen.c    | 422 ++++++++++++++++++
- .../dt-bindings/clock/mediatek,mt7981-clk.h   | 215 +++++++++
- 9 files changed, 1086 insertions(+)
- create mode 100644 drivers/clk/mediatek/clk-mt7981-apmixed.c
- create mode 100644 drivers/clk/mediatek/clk-mt7981-eth.c
- create mode 100644 drivers/clk/mediatek/clk-mt7981-infracfg.c
- create mode 100644 drivers/clk/mediatek/clk-mt7981-topckgen.c
- create mode 100644 include/dt-bindings/clock/mediatek,mt7981-clk.h
-
--- 
-2.39.1
-
+>                         of_platform_device_create(node, buf, NULL);
+> --
+> 2.35.3
+>
