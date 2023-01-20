@@ -2,52 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85F456748CB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 02:27:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60B1B6748DE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 02:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbjATB1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 20:27:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43326 "EHLO
+        id S229687AbjATBc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 20:32:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjATB1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 20:27:23 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3F5BA2959;
-        Thu, 19 Jan 2023 17:27:19 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pIgBZ-0005yB-1C;
-        Fri, 20 Jan 2023 02:27:17 +0100
-Date:   Fri, 20 Jan 2023 01:27:09 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-armkernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S229877AbjATBc2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 20:32:28 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1527186EE6;
+        Thu, 19 Jan 2023 17:32:22 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30K1NFTB008821;
+        Fri, 20 Jan 2023 01:32:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : from : subject : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=mIgoW/fLOQ033D0tM09c6IF0e+za6gisYdjdnnouWZI=;
+ b=e1KMfyZCd7CNHffr0WV5Z5d1jKb5rYreoXdTlP5P9AvqtX15bNfmHMXjRbo113xpcdmr
+ lzP3c3wtbI/bQV7iCc4SW4Jgj/lqfRVjPlHi0m/OAQafBSCVFZUsA+NEggkrnHhe4uzG
+ spvmrf7bUSDMuWvlTkK0Ca/fN8wJ8/nW6qrkEvHrzGlus1OfAEBLIkoaamiHyPU50uMI
+ xNKFJHuaUWQDXmXGBxxvtWCjdhSmt5CcHxf6Zk2o+hZHJJIZjHvHIdoYTfTQ2eFiyQ/3
+ mjR6R4PebzP8QCZEXBf4FPwOHUomAG4jdHSJjAUU6VK9TKiy4ERgbLK9NkC/72UAVkp8 XA== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n700ytkq0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 20 Jan 2023 01:32:00 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30K1Vxle022112
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 20 Jan 2023 01:31:59 GMT
+Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 19 Jan
+ 2023 17:31:58 -0800
+Message-ID: <6ae00909-7d05-3be9-c5f9-dcd403afaf04@quicinc.com>
+Date:   Thu, 19 Jan 2023 17:31:58 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From:   Elliot Berman <quic_eberman@quicinc.com>
+Subject: Re: [PATCH v8 11/28] gunyah: rsc_mgr: Add VM lifecycle RPC
+To:     Alex Elder <elder@linaro.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>
+CC:     Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Jianhui Zhao <zhaojh329@gmail.com>
-Subject: [PATCH v2 3/3] clk: mediatek: add MT7981 clock support
-Message-ID: <1f5749622816b9da315ac092cfa2be515b1d3505.1674152610.git.daniel@makrotopia.org>
-References: <cover.1674152610.git.daniel@makrotopia.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1674152610.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Bagas Sanjaya" <bagasdotme@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        "Sudeep Holla" <sudeep.holla@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-acpi@vger.kernel.org>
+References: <20221219225850.2397345-1-quic_eberman@quicinc.com>
+ <20221219225850.2397345-12-quic_eberman@quicinc.com>
+ <7a4fdcca-b72a-d155-854f-07ec1a4a9107@linaro.org>
+Content-Language: en-US
+In-Reply-To: <7a4fdcca-b72a-d155-854f-07ec1a4a9107@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: z9hdqLUt_tAVFydd48aSI-J7xFxaPSL4
+X-Proofpoint-ORIG-GUID: z9hdqLUt_tAVFydd48aSI-J7xFxaPSL4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-19_16,2023-01-19_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 priorityscore=1501 mlxscore=0 bulkscore=0 phishscore=0
+ mlxlogscore=999 impostorscore=0 adultscore=0 suspectscore=0 spamscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301200010
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,996 +100,630 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT7986 clock support, include topckgen, apmixedsys, infracfg and
-ethernet subsystem clocks.
 
-The drivers are based on clk-mt7981.c which can be found in MediaTek's
-SDK sources. To be fit for upstream inclusion the driver has been split
-into clock domains and the infracfg part has been significantly
-de-bloated by removing all the 1:1 factors (aliases).
 
-Signed-off-by: Jianhui Zhao <zhaojh329@gmail.com>
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- drivers/clk/mediatek/Kconfig               |  17 +
- drivers/clk/mediatek/Makefile              |   4 +
- drivers/clk/mediatek/clk-mt7981-apmixed.c  | 103 +++++
- drivers/clk/mediatek/clk-mt7981-eth.c      | 138 +++++++
- drivers/clk/mediatek/clk-mt7981-infracfg.c | 236 ++++++++++++
- drivers/clk/mediatek/clk-mt7981-topckgen.c | 423 +++++++++++++++++++++
- 6 files changed, 921 insertions(+)
- create mode 100644 drivers/clk/mediatek/clk-mt7981-apmixed.c
- create mode 100644 drivers/clk/mediatek/clk-mt7981-eth.c
- create mode 100644 drivers/clk/mediatek/clk-mt7981-infracfg.c
- create mode 100644 drivers/clk/mediatek/clk-mt7981-topckgen.c
+On 1/18/2023 10:26 AM, Alex Elder wrote:
+> On 12/19/22 4:58 PM, Elliot Berman wrote:
+>> Add Gunyah Resource Manager RPC to launch an unauthenticated VM.
+> 
+> I have a number of general comments on your patch, and there
+> are a few bugs that you will need to address.
+> 
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> ---
+>>   drivers/virt/gunyah/Makefile      |   2 +-
+>>   drivers/virt/gunyah/rsc_mgr.h     |  41 ++++++
+>>   drivers/virt/gunyah/rsc_mgr_rpc.c | 224 ++++++++++++++++++++++++++++++
+>>   include/linux/gunyah_rsc_mgr.h    |  50 +++++++
+>>   4 files changed, 316 insertions(+), 1 deletion(-)
+>>   create mode 100644 drivers/virt/gunyah/rsc_mgr_rpc.c
+>>
+>> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
+>> index e7cf59b9e64e..5caa05267a58 100644
+>> --- a/drivers/virt/gunyah/Makefile
+>> +++ b/drivers/virt/gunyah/Makefile
+>> @@ -1,4 +1,4 @@
+>>   obj-$(CONFIG_GUNYAH) += gunyah.o
+>> -gunyah_rsc_mgr-y += rsc_mgr.o
+>> +gunyah_rsc_mgr-y += rsc_mgr.o rsc_mgr_rpc.o
+>>   obj-$(CONFIG_GUNYAH_RESOURCE_MANAGER) += gunyah_rsc_mgr.o
+>> diff --git a/drivers/virt/gunyah/rsc_mgr.h 
+>> b/drivers/virt/gunyah/rsc_mgr.h
+>> index b5bb36a7a4cc..1f9e3c38038e 100644
+>> --- a/drivers/virt/gunyah/rsc_mgr.h
+>> +++ b/drivers/virt/gunyah/rsc_mgr.h
+>> @@ -33,4 +33,45 @@ struct gh_rm_rpc;
+>>   int gh_rm_call(struct gh_rm_rpc *rsc_mgr, u32 message_id, void 
+>> *req_buff, size_t req_buff_size,
+>>           void **resp_buf, size_t *resp_buff_size);
+>> +/* Message IDs: VM Management */
+>> +#define GH_RM_RPC_VM_ALLOC_VMID            0x56000001
+> 
+> These values very clearly appear to be encoded.  Like the top
+> byte (0x56) might be defining the resource type and bytes below
+> it are the request ID?  If that is truly the case I think it
+> is useful to lay out that format, and perhaps define the values
+> based on the components that they are comprised of.
+> 
 
-diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-index a40135f563777..c8f045a7f4aa8 100644
---- a/drivers/clk/mediatek/Kconfig
-+++ b/drivers/clk/mediatek/Kconfig
-@@ -388,6 +388,23 @@ config COMMON_CLK_MT7629_HIFSYS
- 	  This driver supports MediaTek MT7629 HIFSYS clocks providing
- 	  to PCI-E and USB.
- 
-+config COMMON_CLK_MT7981
-+	bool "Clock driver for MediaTek MT7981"
-+	depends on ARCH_MEDIATEK || COMPILE_TEST
-+	select COMMON_CLK_MEDIATEK
-+	default ARCH_MEDIATEK
-+	help
-+	  This driver supports MediaTek MT7981 basic clocks and clocks
-+	  required for various peripherals found on this SoC.
-+
-+config COMMON_CLK_MT7981_ETHSYS
-+	bool "Clock driver for MediaTek MT7981 ETHSYS"
-+	depends on COMMON_CLK_MT7981
-+	default COMMON_CLK_MT7981
-+	help
-+	  This driver adds support for clocks for Ethernet and SGMII
-+	  required on MediaTek MT7981 SoC.
-+
- config COMMON_CLK_MT7986
- 	bool "Clock driver for MediaTek MT7986"
- 	depends on ARCH_MEDIATEK || COMPILE_TEST
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index a5c216c948319..e5d018270ed0d 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -53,6 +53,10 @@ obj-$(CONFIG_COMMON_CLK_MT7622_AUDSYS) += clk-mt7622-aud.o
- obj-$(CONFIG_COMMON_CLK_MT7629) += clk-mt7629.o
- obj-$(CONFIG_COMMON_CLK_MT7629_ETHSYS) += clk-mt7629-eth.o
- obj-$(CONFIG_COMMON_CLK_MT7629_HIFSYS) += clk-mt7629-hif.o
-+obj-$(CONFIG_COMMON_CLK_MT7981) += clk-mt7981-apmixed.o
-+obj-$(CONFIG_COMMON_CLK_MT7981) += clk-mt7981-topckgen.o
-+obj-$(CONFIG_COMMON_CLK_MT7981) += clk-mt7981-infracfg.o
-+obj-$(CONFIG_COMMON_CLK_MT7981_ETHSYS) += clk-mt7981-eth.o
- obj-$(CONFIG_COMMON_CLK_MT7986) += clk-mt7986-apmixed.o
- obj-$(CONFIG_COMMON_CLK_MT7986) += clk-mt7986-topckgen.o
- obj-$(CONFIG_COMMON_CLK_MT7986) += clk-mt7986-infracfg.o
-diff --git a/drivers/clk/mediatek/clk-mt7981-apmixed.c b/drivers/clk/mediatek/clk-mt7981-apmixed.c
-new file mode 100644
-index 0000000000000..df41d2aa8706e
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt7981-apmixed.c
-@@ -0,0 +1,103 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Author: Sam Shih <sam.shih@mediatek.com>
-+ * Author: Wenzhen Yu <wenzhen.yu@mediatek.com>
-+ * Author: Jianhui Zhao <zhaojh329@gmail.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-gate.h"
-+#include "clk-mtk.h"
-+#include "clk-mux.h"
-+#include "clk-pll.h"
-+
-+#include <dt-bindings/clock/mediatek,mt7981-clk.h>
-+#include <linux/clk.h>
-+
-+#define MT7981_PLL_FMAX (2500UL * MHZ)
-+#define CON0_MT7981_RST_BAR BIT(27)
-+
-+#define PLL_xtal(_id, _name, _reg, _pwr_reg, _en_mask, _flags, _pcwbits,       \
-+		 _pd_reg, _pd_shift, _tuner_reg, _pcw_reg, _pcw_shift,         \
-+		 _div_table, _parent_name)                                     \
-+	{                                                                      \
-+		.id = _id, .name = _name, .reg = _reg, .pwr_reg = _pwr_reg,    \
-+		.en_mask = _en_mask, .flags = _flags,                          \
-+		.rst_bar_mask = CON0_MT7981_RST_BAR, .fmax = MT7981_PLL_FMAX,  \
-+		.pcwbits = _pcwbits, .pd_reg = _pd_reg, .pd_shift = _pd_shift, \
-+		.tuner_reg = _tuner_reg, .pcw_reg = _pcw_reg,                  \
-+		.pcw_shift = _pcw_shift, .div_table = _div_table,              \
-+		.parent_name = _parent_name,                                   \
-+	}
-+
-+#define PLL(_id, _name, _reg, _pwr_reg, _en_mask, _flags, _pcwbits, _pd_reg,   \
-+	    _pd_shift, _tuner_reg, _pcw_reg, _pcw_shift)                       \
-+	PLL_xtal(_id, _name, _reg, _pwr_reg, _en_mask, _flags, _pcwbits,       \
-+		 _pd_reg, _pd_shift, _tuner_reg, _pcw_reg, _pcw_shift, NULL,   \
-+		 "clkxtal")
-+
-+static const struct mtk_pll_data plls[] = {
-+	PLL(CLK_APMIXED_ARMPLL, "armpll", 0x0200, 0x020C, 0x00000001, 0, 32,
-+		0x0200, 4, 0, 0x0204, 0),
-+	PLL(CLK_APMIXED_NET2PLL, "net2pll", 0x0210, 0x021C, 0x00000001, 0, 32,
-+		0x0210, 4, 0, 0x0214, 0),
-+	PLL(CLK_APMIXED_MMPLL, "mmpll", 0x0220, 0x022C, 0x00000001, 0, 32,
-+		0x0220, 4, 0, 0x0224, 0),
-+	PLL(CLK_APMIXED_SGMPLL, "sgmpll", 0x0230, 0x023C, 0x00000001, 0, 32,
-+		0x0230, 4, 0, 0x0234, 0),
-+	PLL(CLK_APMIXED_WEDMCUPLL, "wedmcupll", 0x0240, 0x024C, 0x00000001, 0, 32,
-+		0x0240, 4, 0, 0x0244, 0),
-+	PLL(CLK_APMIXED_NET1PLL, "net1pll", 0x0250, 0x025C, 0x00000001, 0, 32,
-+		0x0250, 4, 0, 0x0254, 0),
-+	PLL(CLK_APMIXED_MPLL, "mpll", 0x0260, 0x0270, 0x00000001, 0, 32,
-+		0x0260, 4, 0, 0x0264, 0),
-+	PLL(CLK_APMIXED_APLL2, "apll2", 0x0278, 0x0288, 0x00000001, 0, 32,
-+		0x0278, 4, 0, 0x027C, 0),
-+};
-+
-+static const struct of_device_id of_match_clk_mt7981_apmixed[] = {
-+	{ .compatible = "mediatek,mt7981-apmixedsys", },
-+	{}
-+};
-+
-+static int clk_mt7981_apmixed_probe(struct platform_device *pdev)
-+{
-+	struct clk_hw_onecell_data *clk_data;
-+	struct device_node *node = pdev->dev.of_node;
-+	int r;
-+
-+	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(plls));
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	mtk_clk_register_plls(node, plls, ARRAY_SIZE(plls), clk_data);
-+
-+	clk_prepare_enable(clk_data->hws[CLK_APMIXED_ARMPLL]->clk);
-+
-+	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-+	if (r) {
-+		pr_err("%s(): could not register clock provider: %d\n",
-+		       __func__, r);
-+		goto free_apmixed_data;
-+	}
-+	return r;
-+
-+free_apmixed_data:
-+	mtk_free_clk_data(clk_data);
-+	return r;
-+}
-+
-+static struct platform_driver clk_mt7981_apmixed_drv = {
-+	.probe = clk_mt7981_apmixed_probe,
-+	.driver = {
-+		.name = "clk-mt7981-apmixed",
-+		.of_match_table = of_match_clk_mt7981_apmixed,
-+	},
-+};
-+builtin_platform_driver(clk_mt7981_apmixed_drv);
-diff --git a/drivers/clk/mediatek/clk-mt7981-eth.c b/drivers/clk/mediatek/clk-mt7981-eth.c
-new file mode 100644
-index 0000000000000..ade7645c921ec
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt7981-eth.c
-@@ -0,0 +1,138 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Author: Sam Shih <sam.shih@mediatek.com>
-+ * Author: Wenzhen Yu <wenzhen.yu@mediatek.com>
-+ * Author: Jianhui Zhao <zhaojh329@gmail.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+
-+#include <dt-bindings/clock/mediatek,mt7981-clk.h>
-+
-+static const struct mtk_gate_regs sgmii0_cg_regs = {
-+	.set_ofs = 0xE4,
-+	.clr_ofs = 0xE4,
-+	.sta_ofs = 0xE4,
-+};
-+
-+#define GATE_SGMII0(_id, _name, _parent, _shift) {	\
-+		.id = _id,				\
-+		.name = _name,				\
-+		.parent_name = _parent,			\
-+		.regs = &sgmii0_cg_regs,			\
-+		.shift = _shift,			\
-+		.ops = &mtk_clk_gate_ops_no_setclr_inv,	\
-+	}
-+
-+static const struct mtk_gate sgmii0_clks[] __initconst = {
-+	GATE_SGMII0(CLK_SGM0_TX_EN, "sgm0_tx_en", "usb_tx250m", 2),
-+	GATE_SGMII0(CLK_SGM0_RX_EN, "sgm0_rx_en", "usb_eq_rx250m", 3),
-+	GATE_SGMII0(CLK_SGM0_CK0_EN, "sgm0_ck0_en", "usb_ln0", 4),
-+	GATE_SGMII0(CLK_SGM0_CDR_CK0_EN, "sgm0_cdr_ck0_en", "usb_cdr", 5),
-+};
-+
-+static const struct mtk_gate_regs sgmii1_cg_regs = {
-+	.set_ofs = 0xE4,
-+	.clr_ofs = 0xE4,
-+	.sta_ofs = 0xE4,
-+};
-+
-+#define GATE_SGMII1(_id, _name, _parent, _shift) {	\
-+		.id = _id,				\
-+		.name = _name,				\
-+		.parent_name = _parent,			\
-+		.regs = &sgmii1_cg_regs,			\
-+		.shift = _shift,			\
-+		.ops = &mtk_clk_gate_ops_no_setclr_inv,	\
-+	}
-+
-+static const struct mtk_gate sgmii1_clks[] __initconst = {
-+	GATE_SGMII1(CLK_SGM1_TX_EN, "sgm1_tx_en", "usb_tx250m", 2),
-+	GATE_SGMII1(CLK_SGM1_RX_EN, "sgm1_rx_en", "usb_eq_rx250m", 3),
-+	GATE_SGMII1(CLK_SGM1_CK1_EN, "sgm1_ck1_en", "usb_ln0", 4),
-+	GATE_SGMII1(CLK_SGM1_CDR_CK1_EN, "sgm1_cdr_ck1_en", "usb_cdr", 5),
-+};
-+
-+static const struct mtk_gate_regs eth_cg_regs = {
-+	.set_ofs = 0x30,
-+	.clr_ofs = 0x30,
-+	.sta_ofs = 0x30,
-+};
-+
-+#define GATE_ETH(_id, _name, _parent, _shift) {	\
-+		.id = _id,				\
-+		.name = _name,				\
-+		.parent_name = _parent,			\
-+		.regs = &eth_cg_regs,			\
-+		.shift = _shift,			\
-+		.ops = &mtk_clk_gate_ops_no_setclr_inv,	\
-+	}
-+
-+static const struct mtk_gate eth_clks[] __initconst = {
-+	GATE_ETH(CLK_ETH_FE_EN, "eth_fe_en", "netsys_2x", 6),
-+	GATE_ETH(CLK_ETH_GP2_EN, "eth_gp2_en", "sgm_325m", 7),
-+	GATE_ETH(CLK_ETH_GP1_EN, "eth_gp1_en", "sgm_325m", 8),
-+	GATE_ETH(CLK_ETH_WOCPU0_EN, "eth_wocpu0_en", "netsys_wed_mcu", 15),
-+};
-+
-+static void __init mtk_sgmiisys_0_init(struct device_node *node)
-+{
-+	struct clk_hw_onecell_data *clk_data;
-+	int r;
-+
-+	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(sgmii0_clks));
-+
-+	mtk_clk_register_gates(NULL, node, sgmii0_clks, ARRAY_SIZE(sgmii0_clks),
-+			       clk_data);
-+
-+	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-+	if (r)
-+		pr_err("%s(): could not register clock provider: %d\n",
-+		       __func__, r);
-+}
-+CLK_OF_DECLARE(mtk_sgmiisys_0, "mediatek,mt7981-sgmiisys_0",
-+	       mtk_sgmiisys_0_init);
-+
-+static void __init mtk_sgmiisys_1_init(struct device_node *node)
-+{
-+	struct clk_hw_onecell_data *clk_data;
-+	int r;
-+
-+	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(sgmii1_clks));
-+
-+	mtk_clk_register_gates(NULL, node, sgmii1_clks, ARRAY_SIZE(sgmii1_clks),
-+			       clk_data);
-+
-+	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-+
-+	if (r)
-+		pr_err("%s(): could not register clock provider: %d\n",
-+		       __func__, r);
-+}
-+CLK_OF_DECLARE(mtk_sgmiisys_1, "mediatek,mt7981-sgmiisys_1",
-+	       mtk_sgmiisys_1_init);
-+
-+static void __init mtk_ethsys_init(struct device_node *node)
-+{
-+	struct clk_hw_onecell_data *clk_data;
-+	int r;
-+
-+	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(eth_clks));
-+
-+	mtk_clk_register_gates(NULL, node, eth_clks, ARRAY_SIZE(eth_clks), clk_data);
-+
-+	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-+
-+	if (r)
-+		pr_err("%s(): could not register clock provider: %d\n",
-+		       __func__, r);
-+}
-+CLK_OF_DECLARE(mtk_ethsys, "mediatek,mt7981-ethsys", mtk_ethsys_init);
-diff --git a/drivers/clk/mediatek/clk-mt7981-infracfg.c b/drivers/clk/mediatek/clk-mt7981-infracfg.c
-new file mode 100644
-index 0000000000000..0cb301895c7bf
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt7981-infracfg.c
-@@ -0,0 +1,236 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Author: Sam Shih <sam.shih@mediatek.com>
-+ * Author: Wenzhen Yu <wenzhen.yu@mediatek.com>
-+ * Author: Jianhui Zhao <zhaojh329@gmail.com>
-+ * Author: Daniel Golle <daniel@makrotopia.org>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+#include "clk-mux.h"
-+
-+#include <dt-bindings/clock/mediatek,mt7981-clk.h>
-+#include <linux/clk.h>
-+
-+static DEFINE_SPINLOCK(mt7981_clk_lock);
-+
-+static const struct mtk_fixed_factor infra_divs[] = {
-+	FACTOR(CLK_INFRA_66M_MCK, "infra_66m_mck", "sysaxi_sel", 1, 2),
-+};
-+
-+static const char *const infra_uart_parent[] __initconst = { "csw_f26m_sel",
-+								"uart_sel" };
-+
-+static const char *const infra_spi0_parents[] __initconst = { "i2c_sel",
-+							      "spi_sel" };
-+
-+static const char *const infra_spi1_parents[] __initconst = { "i2c_sel",
-+							      "spim_mst_sel" };
-+
-+static const char *const infra_pwm1_parents[] __initconst = { "pwm_sel" };
-+
-+static const char *const infra_pwm_bsel_parents[] __initconst = {
-+	"cb_rtc_32p7k", "csw_f26m_sel", "infra_66m_mck", "pwm_sel"
-+};
-+
-+static const char *const infra_pcie_parents[] __initconst = {
-+	"cb_rtc_32p7k", "csw_f26m_sel", "cb_cksq_40m", "pextp_tl_ck_sel"
-+};
-+
-+static const struct mtk_mux infra_muxes[] = {
-+	/* MODULE_CLK_SEL_0 */
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_UART0_SEL, "infra_uart0_sel",
-+			     infra_uart_parent, 0x0018, 0x0010, 0x0014, 0, 1,
-+			     -1, -1, -1),
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_UART1_SEL, "infra_uart1_sel",
-+			     infra_uart_parent, 0x0018, 0x0010, 0x0014, 1, 1,
-+			     -1, -1, -1),
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_UART2_SEL, "infra_uart2_sel",
-+			     infra_uart_parent, 0x0018, 0x0010, 0x0014, 2, 1,
-+			     -1, -1, -1),
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_SPI0_SEL, "infra_spi0_sel",
-+			     infra_spi0_parents, 0x0018, 0x0010, 0x0014, 4, 1,
-+			     -1, -1, -1),
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_SPI1_SEL, "infra_spi1_sel",
-+			     infra_spi1_parents, 0x0018, 0x0010, 0x0014, 5, 1,
-+			     -1, -1, -1),
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_SPI2_SEL, "infra_spi2_sel",
-+			     infra_spi0_parents, 0x0018, 0x0010, 0x0014, 6, 1,
-+			     -1, -1, -1),
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_PWM1_SEL, "infra_pwm1_sel",
-+			     infra_pwm1_parents, 0x0018, 0x0010, 0x0014, 9, 1,
-+			     -1, -1, -1),
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_PWM2_SEL, "infra_pwm2_sel",
-+			     infra_pwm1_parents, 0x0018, 0x0010, 0x0014, 11, 1,
-+			     -1, -1, -1),
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_PWM3_SEL, "infra_pwm3_sel",
-+			     infra_pwm1_parents, 0x0018, 0x0010, 0x0014, 15, 1,
-+			     -1, -1, -1),
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_PWM_BSEL, "infra_pwm_bsel",
-+			     infra_pwm_bsel_parents, 0x0018, 0x0010, 0x0014, 13,
-+			     2, -1, -1, -1),
-+	/* MODULE_CLK_SEL_1 */
-+	MUX_GATE_CLR_SET_UPD(CLK_INFRA_PCIE_SEL, "infra_pcie_sel",
-+			     infra_pcie_parents, 0x0028, 0x0020, 0x0024, 0, 2,
-+			     -1, -1, -1),
-+};
-+
-+static const struct mtk_gate_regs infra0_cg_regs = {
-+	.set_ofs = 0x40,
-+	.clr_ofs = 0x44,
-+	.sta_ofs = 0x48,
-+};
-+
-+static const struct mtk_gate_regs infra1_cg_regs = {
-+	.set_ofs = 0x50,
-+	.clr_ofs = 0x54,
-+	.sta_ofs = 0x58,
-+};
-+
-+static const struct mtk_gate_regs infra2_cg_regs = {
-+	.set_ofs = 0x60,
-+	.clr_ofs = 0x64,
-+	.sta_ofs = 0x68,
-+};
-+
-+#define GATE_INFRA0(_id, _name, _parent, _shift)                               \
-+	{                                                                      \
-+		.id = _id, .name = _name, .parent_name = _parent,              \
-+		.regs = &infra0_cg_regs, .shift = _shift,                      \
-+		.ops = &mtk_clk_gate_ops_setclr,                               \
-+	}
-+
-+#define GATE_INFRA1(_id, _name, _parent, _shift)                               \
-+	{                                                                      \
-+		.id = _id, .name = _name, .parent_name = _parent,              \
-+		.regs = &infra1_cg_regs, .shift = _shift,                      \
-+		.ops = &mtk_clk_gate_ops_setclr,                               \
-+	}
-+
-+#define GATE_INFRA2(_id, _name, _parent, _shift)                               \
-+	{                                                                      \
-+		.id = _id, .name = _name, .parent_name = _parent,              \
-+		.regs = &infra2_cg_regs, .shift = _shift,                      \
-+		.ops = &mtk_clk_gate_ops_setclr,                               \
-+	}
-+
-+static const struct mtk_gate infra_clks[] = {
-+	/* INFRA0 */
-+	GATE_INFRA0(CLK_INFRA_GPT_STA, "infra_gpt_sta", "infra_66m_mck", 0),
-+	GATE_INFRA0(CLK_INFRA_PWM_HCK, "infra_pwm_hck", "infra_66m_mck", 1),
-+	GATE_INFRA0(CLK_INFRA_PWM_STA, "infra_pwm_sta", "infra_pwm_bsel", 2),
-+	GATE_INFRA0(CLK_INFRA_PWM1_CK, "infra_pwm1", "infra_pwm1_sel", 3),
-+	GATE_INFRA0(CLK_INFRA_PWM2_CK, "infra_pwm2", "infra_pwm2_sel", 4),
-+	GATE_INFRA0(CLK_INFRA_CQ_DMA_CK, "infra_cq_dma", "sysaxi", 6),
-+
-+	GATE_INFRA0(CLK_INFRA_AUD_BUS_CK, "infra_aud_bus", "sysaxi", 8),
-+	GATE_INFRA0(CLK_INFRA_AUD_26M_CK, "infra_aud_26m", "csw_f26m_sel", 9),
-+	GATE_INFRA0(CLK_INFRA_AUD_L_CK, "infra_aud_l", "aud_l", 10),
-+	GATE_INFRA0(CLK_INFRA_AUD_AUD_CK, "infra_aud_aud", "a1sys", 11),
-+	GATE_INFRA0(CLK_INFRA_AUD_EG2_CK, "infra_aud_eg2", "a_tuner", 13),
-+	GATE_INFRA0(CLK_INFRA_DRAMC_26M_CK, "infra_dramc_26m", "csw_f26m_sel",
-+		    14),
-+	GATE_INFRA0(CLK_INFRA_DBG_CK, "infra_dbg", "infra_66m_mck", 15),
-+	GATE_INFRA0(CLK_INFRA_AP_DMA_CK, "infra_ap_dma", "infra_66m_mck", 16),
-+	GATE_INFRA0(CLK_INFRA_SEJ_CK, "infra_sej", "infra_66m_mck", 24),
-+	GATE_INFRA0(CLK_INFRA_SEJ_13M_CK, "infra_sej_13m", "csw_f26m_sel", 25),
-+	GATE_INFRA0(CLK_INFRA_PWM3_CK, "infra_pwm3", "infra_pwm3_sel", 27),
-+	/* INFRA1 */
-+	GATE_INFRA1(CLK_INFRA_THERM_CK, "infra_therm", "csw_f26m_sel", 0),
-+	GATE_INFRA1(CLK_INFRA_I2C0_CK, "infra_i2c0", "i2c_bck", 1),
-+	GATE_INFRA1(CLK_INFRA_UART0_CK, "infra_uart0", "infra_uart0_sel", 2),
-+	GATE_INFRA1(CLK_INFRA_UART1_CK, "infra_uart1", "infra_uart1_sel", 3),
-+	GATE_INFRA1(CLK_INFRA_UART2_CK, "infra_uart2", "infra_uart2_sel", 4),
-+	GATE_INFRA1(CLK_INFRA_SPI2_CK, "infra_spi2", "infra_spi2_sel", 6),
-+	GATE_INFRA1(CLK_INFRA_SPI2_HCK_CK, "infra_spi2_hck", "infra_66m_mck", 7),
-+	GATE_INFRA1(CLK_INFRA_NFI1_CK, "infra_nfi1", "nfi1x", 8),
-+	GATE_INFRA1(CLK_INFRA_SPINFI1_CK, "infra_spinfi1", "spinfi_bck", 9),
-+	GATE_INFRA1(CLK_INFRA_NFI_HCK_CK, "infra_nfi_hck", "infra_66m_mck", 10),
-+	GATE_INFRA1(CLK_INFRA_SPI0_CK, "infra_spi0", "infra_spi0_sel", 11),
-+	GATE_INFRA1(CLK_INFRA_SPI1_CK, "infra_spi1", "infra_spi1_sel", 12),
-+	GATE_INFRA1(CLK_INFRA_SPI0_HCK_CK, "infra_spi0_hck", "infra_66m_mck",
-+		    13),
-+	GATE_INFRA1(CLK_INFRA_SPI1_HCK_CK, "infra_spi1_hck", "infra_66m_mck",
-+		    14),
-+	GATE_INFRA1(CLK_INFRA_FRTC_CK, "infra_frtc", "cb_rtc_32k", 15),
-+	GATE_INFRA1(CLK_INFRA_MSDC_CK, "infra_msdc", "emmc_400m", 16),
-+	GATE_INFRA1(CLK_INFRA_MSDC_HCK_CK, "infra_msdc_hck", "emmc_208m", 17),
-+	GATE_INFRA1(CLK_INFRA_MSDC_133M_CK, "infra_msdc_133m", "sysaxi", 18),
-+	GATE_INFRA1(CLK_INFRA_MSDC_66M_CK, "infra_msdc_66m", "sysaxi", 19),
-+	GATE_INFRA1(CLK_INFRA_ADC_26M_CK, "infra_adc_26m", "infra_adc_frc", 20),
-+	GATE_INFRA1(CLK_INFRA_ADC_FRC_CK, "infra_adc_frc", "csw_f26m", 21),
-+	GATE_INFRA1(CLK_INFRA_FBIST2FPC_CK, "infra_fbist2fpc", "nfi1x", 23),
-+	GATE_INFRA1(CLK_INFRA_I2C_MCK_CK, "infra_i2c_mck", "sysaxi", 25),
-+	GATE_INFRA1(CLK_INFRA_I2C_PCK_CK, "infra_i2c_pck", "infra_66m_mck", 26),
-+	/* INFRA2 */
-+	GATE_INFRA2(CLK_INFRA_IUSB_133_CK, "infra_iusb_133", "sysaxi", 0),
-+	GATE_INFRA2(CLK_INFRA_IUSB_66M_CK, "infra_iusb_66m", "sysaxi", 1),
-+	GATE_INFRA2(CLK_INFRA_IUSB_SYS_CK, "infra_iusb_sys", "u2u3_sys", 2),
-+	GATE_INFRA2(CLK_INFRA_IUSB_CK, "infra_iusb", "u2u3_ref", 3),
-+	GATE_INFRA2(CLK_INFRA_IPCIE_CK, "infra_ipcie", "pextp_tl", 12),
-+	GATE_INFRA2(CLK_INFRA_IPCIE_PIPE_CK, "infra_ipcie_pipe", "cb_cksq_40m",
-+		    13),
-+	GATE_INFRA2(CLK_INFRA_IPCIER_CK, "infra_ipcier", "csw_f26m", 14),
-+	GATE_INFRA2(CLK_INFRA_IPCIEB_CK, "infra_ipcieb", "sysaxi", 15),
-+};
-+
-+static int clk_mt7981_infracfg_probe(struct platform_device *pdev)
-+{
-+	struct clk_hw_onecell_data *clk_data;
-+	struct device_node *node = pdev->dev.of_node;
-+	int r;
-+	void __iomem *base;
-+	int nr = ARRAY_SIZE(infra_divs) + ARRAY_SIZE(infra_muxes) +
-+		 ARRAY_SIZE(infra_clks);
-+
-+	base = of_iomap(node, 0);
-+	if (!base) {
-+		pr_err("%s(): ioremap failed\n", __func__);
-+		return -ENOMEM;
-+	}
-+
-+	clk_data = mtk_alloc_clk_data(nr);
-+
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	mtk_clk_register_factors(infra_divs, ARRAY_SIZE(infra_divs), clk_data);
-+	mtk_clk_register_muxes(&pdev->dev, infra_muxes, ARRAY_SIZE(infra_muxes), node,
-+			       &mt7981_clk_lock, clk_data);
-+	mtk_clk_register_gates(&pdev->dev, node, infra_clks, ARRAY_SIZE(infra_clks),
-+			       clk_data);
-+
-+	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-+	if (r) {
-+		pr_err("%s(): could not register clock provider: %d\n",
-+		       __func__, r);
-+		goto free_infracfg_data;
-+	}
-+	return r;
-+
-+free_infracfg_data:
-+	mtk_free_clk_data(clk_data);
-+	return r;
-+
-+}
-+
-+static const struct of_device_id of_match_clk_mt7981_infracfg[] = {
-+	{ .compatible = "mediatek,mt7981-infracfg", },
-+	{}
-+};
-+
-+static struct platform_driver clk_mt7981_infracfg_drv = {
-+	.probe = clk_mt7981_infracfg_probe,
-+	.driver = {
-+		.name = "clk-mt7981-infracfg",
-+		.of_match_table = of_match_clk_mt7981_infracfg,
-+	},
-+};
-+builtin_platform_driver(clk_mt7981_infracfg_drv);
-diff --git a/drivers/clk/mediatek/clk-mt7981-topckgen.c b/drivers/clk/mediatek/clk-mt7981-topckgen.c
-new file mode 100644
-index 0000000000000..e711c39993dd3
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt7981-topckgen.c
-@@ -0,0 +1,423 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Author: Sam Shih <sam.shih@mediatek.com>
-+ * Author: Wenzhen Yu <wenzhen.yu@mediatek.com>
-+ * Author: Jianhui Zhao <zhaojh329@gmail.com>
-+ */
-+
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+#include "clk-mux.h"
-+
-+#include <dt-bindings/clock/mediatek,mt7981-clk.h>
-+#include <linux/clk.h>
-+
-+static DEFINE_SPINLOCK(mt7981_clk_lock);
-+
-+static const struct mtk_fixed_factor top_divs[] = {
-+	FACTOR(CLK_TOP_CB_CKSQ_40M, "cb_cksq_40m", "clkxtal", 1, 1),
-+	FACTOR(CLK_TOP_CB_M_416M, "cb_m_416m", "mpll", 1, 1),
-+	FACTOR(CLK_TOP_CB_M_D2, "cb_m_d2", "mpll", 1, 2),
-+	FACTOR(CLK_TOP_CB_M_D3, "cb_m_d3", "mpll", 1, 3),
-+	FACTOR(CLK_TOP_M_D3_D2, "m_d3_d2", "mpll", 1, 2),
-+	FACTOR(CLK_TOP_CB_M_D4, "cb_m_d4", "mpll", 1, 4),
-+	FACTOR(CLK_TOP_CB_M_D8, "cb_m_d8", "mpll", 1, 8),
-+	FACTOR(CLK_TOP_M_D8_D2, "m_d8_d2", "mpll", 1, 16),
-+	FACTOR(CLK_TOP_CB_MM_720M, "cb_mm_720m", "mmpll", 1, 1),
-+	FACTOR(CLK_TOP_CB_MM_D2, "cb_mm_d2", "mmpll", 1, 2),
-+	FACTOR(CLK_TOP_CB_MM_D3, "cb_mm_d3", "mmpll", 1, 3),
-+	FACTOR(CLK_TOP_CB_MM_D3_D5, "cb_mm_d3_d5", "mmpll", 1, 15),
-+	FACTOR(CLK_TOP_CB_MM_D4, "cb_mm_d4", "mmpll", 1, 4),
-+	FACTOR(CLK_TOP_CB_MM_D6, "cb_mm_d6", "mmpll", 1, 6),
-+	FACTOR(CLK_TOP_MM_D6_D2, "mm_d6_d2", "mmpll", 1, 12),
-+	FACTOR(CLK_TOP_CB_MM_D8, "cb_mm_d8", "mmpll", 1, 8),
-+	FACTOR(CLK_TOP_CB_APLL2_196M, "cb_apll2_196m", "apll2", 1, 1),
-+	FACTOR(CLK_TOP_APLL2_D2, "apll2_d2", "apll2", 1, 2),
-+	FACTOR(CLK_TOP_APLL2_D4, "apll2_d4", "apll2", 1, 4),
-+	FACTOR(CLK_TOP_NET1_2500M, "net1_2500m", "net1pll", 1, 1),
-+	FACTOR(CLK_TOP_CB_NET1_D4, "cb_net1_d4", "net1pll", 1, 4),
-+	FACTOR(CLK_TOP_CB_NET1_D5, "cb_net1_d5", "net1pll", 1, 5),
-+	FACTOR(CLK_TOP_NET1_D5_D2, "net1_d5_d2", "net1pll", 1, 10),
-+	FACTOR(CLK_TOP_NET1_D5_D4, "net1_d5_d4", "net1pll", 1, 20),
-+	FACTOR(CLK_TOP_CB_NET1_D8, "cb_net1_d8", "net1pll", 1, 8),
-+	FACTOR(CLK_TOP_NET1_D8_D2, "net1_d8_d2", "net1pll", 1, 16),
-+	FACTOR(CLK_TOP_NET1_D8_D4, "net1_d8_d4", "net1pll", 1, 32),
-+	FACTOR(CLK_TOP_CB_NET2_800M, "cb_net2_800m", "net2pll", 1, 1),
-+	FACTOR(CLK_TOP_CB_NET2_D2, "cb_net2_d2", "net2pll", 1, 2),
-+	FACTOR(CLK_TOP_CB_NET2_D4, "cb_net2_d4", "net2pll", 1, 4),
-+	FACTOR(CLK_TOP_NET2_D4_D2, "net2_d4_d2", "net2pll", 1, 8),
-+	FACTOR(CLK_TOP_NET2_D4_D4, "net2_d4_d4", "net2pll", 1, 16),
-+	FACTOR(CLK_TOP_CB_NET2_D6, "cb_net2_d6", "net2pll", 1, 6),
-+	FACTOR(CLK_TOP_CB_WEDMCU_208M, "cb_wedmcu_208m", "wedmcupll", 1, 1),
-+	FACTOR(CLK_TOP_CB_SGM_325M, "cb_sgm_325m", "sgmpll", 1, 1),
-+	FACTOR(CLK_TOP_CKSQ_40M_D2, "cksq_40m_d2", "cb_cksq_40m", 1, 2),
-+	FACTOR(CLK_TOP_CB_RTC_32K, "cb_rtc_32k", "cb_cksq_40m", 1, 1250),
-+	FACTOR(CLK_TOP_CB_RTC_32P7K, "cb_rtc_32p7k", "cb_cksq_40m", 1, 1220),
-+	FACTOR(CLK_TOP_USB_TX250M, "usb_tx250m", "cb_cksq_40m", 1, 1),
-+	FACTOR(CLK_TOP_FAUD, "faud", "aud_sel", 1, 1),
-+	FACTOR(CLK_TOP_NFI1X, "nfi1x", "nfi1x_sel", 1, 1),
-+	FACTOR(CLK_TOP_USB_EQ_RX250M, "usb_eq_rx250m", "cb_cksq_40m", 1, 1),
-+	FACTOR(CLK_TOP_USB_CDR_CK, "usb_cdr", "cb_cksq_40m", 1, 1),
-+	FACTOR(CLK_TOP_USB_LN0_CK, "usb_ln0", "cb_cksq_40m", 1, 1),
-+	FACTOR(CLK_TOP_SPINFI_BCK, "spinfi_bck", "spinfi_sel", 1, 1),
-+	FACTOR(CLK_TOP_SPI, "spi", "spi_sel", 1, 1),
-+	FACTOR(CLK_TOP_SPIM_MST, "spim_mst", "spim_mst_sel", 1, 1),
-+	FACTOR(CLK_TOP_UART_BCK, "uart_bck", "uart_sel", 1, 1),
-+	FACTOR(CLK_TOP_PWM_BCK, "pwm_bck", "pwm_sel", 1, 1),
-+	FACTOR(CLK_TOP_I2C_BCK, "i2c_bck", "i2c_sel", 1, 1),
-+	FACTOR(CLK_TOP_PEXTP_TL, "pextp_tl", "pextp_tl_ck_sel", 1, 1),
-+	FACTOR(CLK_TOP_EMMC_208M, "emmc_208m", "emmc_208m_sel", 1, 1),
-+	FACTOR(CLK_TOP_EMMC_400M, "emmc_400m", "emmc_400m_sel", 1, 1),
-+	FACTOR(CLK_TOP_DRAMC_REF, "dramc_ref", "dramc_sel", 1, 1),
-+	FACTOR(CLK_TOP_DRAMC_MD32, "dramc_md32", "dramc_md32_sel", 1, 1),
-+	FACTOR(CLK_TOP_SYSAXI, "sysaxi", "sysaxi_sel", 1, 1),
-+	FACTOR(CLK_TOP_SYSAPB, "sysapb", "sysapb_sel", 1, 1),
-+	FACTOR(CLK_TOP_ARM_DB_MAIN, "arm_db_main", "arm_db_main_sel", 1, 1),
-+	FACTOR(CLK_TOP_AP2CNN_HOST, "ap2cnn_host", "ap2cnn_host_sel", 1, 1),
-+	FACTOR(CLK_TOP_NETSYS, "netsys", "netsys_sel", 1, 1),
-+	FACTOR(CLK_TOP_NETSYS_500M, "netsys_500m", "netsys_500m_sel", 1, 1),
-+	FACTOR(CLK_TOP_NETSYS_WED_MCU, "netsys_wed_mcu", "netsys_mcu_sel", 1, 1),
-+	FACTOR(CLK_TOP_NETSYS_2X, "netsys_2x", "netsys_2x_sel", 1, 1),
-+	FACTOR(CLK_TOP_SGM_325M, "sgm_325m", "sgm_325m_sel", 1, 1),
-+	FACTOR(CLK_TOP_SGM_REG, "sgm_reg", "sgm_reg_sel", 1, 1),
-+	FACTOR(CLK_TOP_F26M, "csw_f26m", "csw_f26m_sel", 1, 1),
-+	FACTOR(CLK_TOP_EIP97B, "eip97b", "eip97b_sel", 1, 1),
-+	FACTOR(CLK_TOP_USB3_PHY, "usb3_phy", "usb3_phy_sel", 1, 1),
-+	FACTOR(CLK_TOP_AUD, "aud", "faud", 1, 1),
-+	FACTOR(CLK_TOP_A1SYS, "a1sys", "a1sys_sel", 1, 1),
-+	FACTOR(CLK_TOP_AUD_L, "aud_l", "aud_l_sel", 1, 1),
-+	FACTOR(CLK_TOP_A_TUNER, "a_tuner", "a_tuner_sel", 1, 1),
-+	FACTOR(CLK_TOP_U2U3_REF, "u2u3_ref", "u2u3_sel", 1, 1),
-+	FACTOR(CLK_TOP_U2U3_SYS, "u2u3_sys", "u2u3_sys_sel", 1, 1),
-+	FACTOR(CLK_TOP_U2U3_XHCI, "u2u3_xhci", "u2u3_xhci_sel", 1, 1),
-+	FACTOR(CLK_TOP_USB_FRMCNT, "usb_frmcnt", "usb_frmcnt_sel", 1, 1),
-+};
-+
-+static const char * const nfi1x_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_mm_d4",
-+	"net1_d8_d2",
-+	"cb_net2_d6",
-+	"cb_m_d4",
-+	"cb_mm_d8",
-+	"net1_d8_d4",
-+	"cb_m_d8"
-+};
-+
-+static const char * const spinfi_parents[] __initconst = {
-+	"cksq_40m_d2",
-+	"cb_cksq_40m",
-+	"net1_d5_d4",
-+	"cb_m_d4",
-+	"cb_mm_d8",
-+	"net1_d8_d4",
-+	"mm_d6_d2",
-+	"cb_m_d8"
-+};
-+
-+static const char * const spi_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_m_d2",
-+	"cb_mm_d4",
-+	"net1_d8_d2",
-+	"cb_net2_d6",
-+	"net1_d5_d4",
-+	"cb_m_d4",
-+	"net1_d8_d4"
-+};
-+
-+static const char * const uart_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_m_d8",
-+	"m_d8_d2"
-+};
-+
-+static const char * const pwm_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"net1_d8_d2",
-+	"net1_d5_d4",
-+	"cb_m_d4",
-+	"m_d8_d2",
-+	"cb_rtc_32k"
-+};
-+
-+static const char * const i2c_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"net1_d5_d4",
-+	"cb_m_d4",
-+	"net1_d8_d4"
-+};
-+
-+static const char * const pextp_tl_ck_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"net1_d5_d4",
-+	"cb_m_d4",
-+	"cb_rtc_32k"
-+};
-+
-+static const char * const emmc_208m_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_m_d2",
-+	"cb_net2_d4",
-+	"cb_apll2_196m",
-+	"cb_mm_d4",
-+	"net1_d8_d2",
-+	"cb_mm_d6"
-+};
-+
-+static const char * const emmc_400m_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_net2_d2",
-+	"cb_mm_d2",
-+	"cb_net2_d2"
-+};
-+
-+static const char * const csw_f26m_parents[] __initconst = {
-+	"cksq_40m_d2",
-+	"m_d8_d2"
-+};
-+
-+static const char * const dramc_md32_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_m_d2",
-+	"cb_wedmcu_208m"
-+};
-+
-+static const char * const sysaxi_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"net1_d8_d2"
-+};
-+
-+static const char * const sysapb_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"m_d3_d2"
-+};
-+
-+static const char * const arm_db_main_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_net2_d6"
-+};
-+
-+static const char * const ap2cnn_host_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"net1_d8_d4"
-+};
-+
-+static const char * const netsys_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_mm_d2"
-+};
-+
-+static const char * const netsys_500m_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_net1_d5"
-+};
-+
-+static const char * const netsys_mcu_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_mm_720m",
-+	"cb_net1_d4",
-+	"cb_net1_d5",
-+	"cb_m_416m"
-+};
-+
-+static const char * const netsys_2x_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_net2_800m",
-+	"cb_mm_720m"
-+};
-+
-+static const char * const sgm_325m_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_sgm_325m"
-+};
-+
-+static const char * const sgm_reg_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_net2_d4"
-+};
-+
-+static const char * const eip97b_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_net1_d5",
-+	"cb_m_416m",
-+	"cb_mm_d2",
-+	"net1_d5_d2"
-+};
-+
-+static const char * const aud_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_apll2_196m"
-+};
-+
-+static const char * const a1sys_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"apll2_d4"
-+};
-+
-+static const char * const aud_l_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_apll2_196m",
-+	"m_d8_d2"
-+};
-+
-+static const char * const a_tuner_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"apll2_d4",
-+	"m_d8_d2"
-+};
-+
-+static const char * const u2u3_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"m_d8_d2"
-+};
-+
-+static const char * const u2u3_sys_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"net1_d5_d4"
-+};
-+
-+static const char * const usb_frmcnt_parents[] __initconst = {
-+	"cb_cksq_40m",
-+	"cb_mm_d3_d5"
-+};
-+
-+static const struct mtk_mux top_muxes[] = {
-+	/* CLK_CFG_0 */
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_NFI1X_SEL, "nfi1x_sel", nfi1x_parents,
-+			     0x000, 0x004, 0x008, 0, 3, 7, 0x1C0, 0),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_SPINFI_SEL, "spinfi_sel", spinfi_parents,
-+			     0x000, 0x004, 0x008, 8, 3, 15, 0x1C0, 1),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_SPI_SEL, "spi_sel", spi_parents,
-+			     0x000, 0x004, 0x008, 16, 3, 23, 0x1C0, 2),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_SPIM_MST_SEL, "spim_mst_sel", spi_parents,
-+			     0x000, 0x004, 0x008, 24, 3, 31, 0x1C0, 3),
-+	/* CLK_CFG_1 */
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_UART_SEL, "uart_sel", uart_parents,
-+			     0x010, 0x014, 0x018, 0, 2, 7, 0x1C0, 4),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_PWM_SEL, "pwm_sel", pwm_parents,
-+			     0x010, 0x014, 0x018, 8, 3, 15, 0x1C0, 5),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_I2C_SEL, "i2c_sel", i2c_parents,
-+			     0x010, 0x014, 0x018, 16, 2, 23, 0x1C0, 6),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_PEXTP_TL_SEL, "pextp_tl_ck_sel",
-+			     pextp_tl_ck_parents, 0x010, 0x014, 0x018, 24, 2, 31,
-+			     0x1C0, 7),
-+	/* CLK_CFG_2 */
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_EMMC_208M_SEL, "emmc_208m_sel",
-+			     emmc_208m_parents, 0x020, 0x024, 0x028, 0, 3, 7,
-+			     0x1C0, 8),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_EMMC_400M_SEL, "emmc_400m_sel",
-+			     emmc_400m_parents, 0x020, 0x024, 0x028, 8, 2, 15,
-+			     0x1C0, 9),
-+	MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_F26M_SEL, "csw_f26m_sel",
-+				   csw_f26m_parents, 0x020, 0x024, 0x028, 16, 1, 23,
-+				   0x1C0, 10,
-+				   CLK_IS_CRITICAL | CLK_SET_RATE_PARENT),
-+	MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_DRAMC_SEL, "dramc_sel",
-+				   csw_f26m_parents, 0x020, 0x024, 0x028, 24, 1,
-+				   31, 0x1C0, 11,
-+				   CLK_IS_CRITICAL | CLK_SET_RATE_PARENT),
-+	/* CLK_CFG_3 */
-+	MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_DRAMC_MD32_SEL, "dramc_md32_sel",
-+				   dramc_md32_parents, 0x030, 0x034, 0x038, 0, 2,
-+				   7, 0x1C0, 12,
-+				   CLK_IS_CRITICAL | CLK_SET_RATE_PARENT),
-+	MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_SYSAXI_SEL, "sysaxi_sel",
-+				   sysaxi_parents, 0x030, 0x034, 0x038, 8, 1, 15,
-+				   0x1C0, 13,
-+				   CLK_IS_CRITICAL | CLK_SET_RATE_PARENT),
-+	MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_SYSAPB_SEL, "sysapb_sel",
-+				   sysapb_parents, 0x030, 0x034, 0x038, 16, 1,
-+				   23, 0x1C0, 14,
-+				   CLK_IS_CRITICAL | CLK_SET_RATE_PARENT),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_ARM_DB_MAIN_SEL, "arm_db_main_sel",
-+			     arm_db_main_parents, 0x030, 0x034, 0x038, 24, 1, 31,
-+			     0x1C0, 15),
-+	/* CLK_CFG_4 */
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_AP2CNN_HOST_SEL, "ap2cnn_host_sel",
-+			     ap2cnn_host_parents, 0x040, 0x044, 0x048, 0, 1, 7,
-+			     0x1C0, 16),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_NETSYS_SEL, "netsys_sel", netsys_parents,
-+			     0x040, 0x044, 0x048, 8, 1, 15, 0x1C0, 17),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_NETSYS_500M_SEL, "netsys_500m_sel",
-+			     netsys_500m_parents, 0x040, 0x044, 0x048, 16, 1, 23,
-+			     0x1C0, 18),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_NETSYS_MCU_SEL, "netsys_mcu_sel",
-+			     netsys_mcu_parents, 0x040, 0x044, 0x048, 24, 3, 31,
-+			     0x1C0, 19),
-+	/* CLK_CFG_5 */
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_NETSYS_2X_SEL, "netsys_2x_sel",
-+			     netsys_2x_parents, 0x050, 0x054, 0x058, 0, 2, 7,
-+			     0x1C0, 20),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_SGM_325M_SEL, "sgm_325m_sel",
-+			     sgm_325m_parents, 0x050, 0x054, 0x058, 8, 1, 15,
-+			     0x1C0, 21),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_SGM_REG_SEL, "sgm_reg_sel", sgm_reg_parents,
-+			     0x050, 0x054, 0x058, 16, 1, 23, 0x1C0, 22),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_EIP97B_SEL, "eip97b_sel", eip97b_parents,
-+			     0x050, 0x054, 0x058, 24, 3, 31, 0x1C0, 23),
-+	/* CLK_CFG_6 */
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_USB3_PHY_SEL, "usb3_phy_sel",
-+			     csw_f26m_parents, 0x060, 0x064, 0x068, 0, 1,
-+			     7, 0x1C0, 24),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_AUD_SEL, "aud_sel", aud_parents, 0x060,
-+			     0x064, 0x068, 8, 1, 15, 0x1C0, 25),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_A1SYS_SEL, "a1sys_sel", a1sys_parents,
-+			     0x060, 0x064, 0x068, 16, 1, 23, 0x1C0, 26),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_AUD_L_SEL, "aud_l_sel", aud_l_parents,
-+			     0x060, 0x064, 0x068, 24, 2, 31, 0x1C0, 27),
-+	/* CLK_CFG_7 */
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_A_TUNER_SEL, "a_tuner_sel",
-+			     a_tuner_parents, 0x070, 0x074, 0x078, 0, 2, 7,
-+			     0x1C0, 28),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_U2U3_SEL, "u2u3_sel", u2u3_parents, 0x070,
-+			     0x074, 0x078, 8, 1, 15, 0x1C0, 29),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_U2U3_SYS_SEL, "u2u3_sys_sel",
-+			     u2u3_sys_parents, 0x070, 0x074, 0x078, 16, 1, 23,
-+			     0x1C0, 30),
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_U2U3_XHCI_SEL, "u2u3_xhci_sel",
-+			     u2u3_sys_parents, 0x070, 0x074, 0x078, 24, 1, 31,
-+			     0x1C4, 0),
-+	/* CLK_CFG_8 */
-+	MUX_GATE_CLR_SET_UPD(CLK_TOP_USB_FRMCNT_SEL, "usb_frmcnt_sel",
-+			     usb_frmcnt_parents, 0x080, 0x084, 0x088, 0, 1, 7,
-+			     0x1C4, 1),
-+};
-+
-+static struct mtk_composite top_aud_divs[] = {
-+	DIV_GATE(CLK_TOP_AUD_I2S_M, "aud_i2s_m", "aud",
-+		0x0420, 0, 0x0420, 8, 8),
-+};
-+
-+static const struct mtk_clk_desc topck_desc = {
-+	.factor_clks = top_divs,
-+	.num_factor_clks = ARRAY_SIZE(top_divs),
-+	.mux_clks = top_muxes,
-+	.num_mux_clks = ARRAY_SIZE(top_muxes),
-+	.composite_clks = top_aud_divs,
-+	.num_composite_clks = ARRAY_SIZE(top_aud_divs),
-+	.clk_lock = &mt7981_clk_lock,
-+};
-+
-+static const struct of_device_id of_match_clk_mt7981_topckgen[] = {
-+	{ .compatible = "mediatek,mt7981-topckgen", .data = &topck_desc },
-+	{}
-+};
-+
-+static struct platform_driver clk_mt7981_topckgen_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.remove = mtk_clk_simple_remove,
-+
-+	.driver = {
-+		.name = "clk-mt7981-topckgen",
-+		.of_match_table = of_match_clk_mt7981_topckgen,
-+	},
-+};
-+builtin_platform_driver(clk_mt7981_topckgen_drv);
--- 
-2.39.1
+Gunyah doesn't have any formal encoding scheme. It's separated out into 
+logical regions, but there is no meaning for the "0x56" except that it 
+mostly has functions related to VM management.
 
+>> +#define GH_RM_RPC_VM_DEALLOC_VMID        0x56000002
+>> +#define GH_RM_RPC_VM_START            0x56000004
+>> +#define GH_RM_RPC_VM_STOP            0x56000005
+>> +#define GH_RM_RPC_VM_CONFIG_IMAGE        0x56000009
+>> +#define GH_RM_RPC_VM_INIT            0x5600000B
+>> +#define GH_RM_RPC_VM_GET_HYP_RESOURCES        0x56000020
+>> +#define GH_RM_RPC_VM_GET_VMID            0x56000024
+>> +
+>> +/* Call: CONSOLE_OPEN, CONSOLE_CLOSE, CONSOLE_FLUSH */
+> 
+> The above comment is nonsense.  None of these symbols (or
+> similar) are defined, anywhere.  For the current patch, this
+> structure is used for VM_ALLOC_VMID, VM_GET_HYP_RESOURCES,
+> and via gh_rm_common_vmid_call(), VM_DEALLOC_VMID, VM_START,
+> and VM_INIT.  It's possible you'll use it for other requests
+> in subsequent patches.
+> 
+> Here you are defining a single "common" structure that's
+> used for several message types.  I think there are legitimate
+> reasons for that.  However...
+> 
+> In general, I think I'd rather see every message type laid
+> out separately.  It becomes a little long, here, where you
+> would define them, but in the code that uses them it allows
+> some simple patterns to be used in message handler functions
+> that I think improve understandability and perhaps correctness.
+> I'll provide some examples below to try to make my case.
+> 
+>> +struct gh_vm_common_vmid_req {
+>> +    __le16 vmid;
+>> +    __le16 reserved0;
+> 
+> If the above is really reserved (and unused), its
+> endianness doesn't matter.  (Not really a big deal.)
+> 
+>> +} __packed;
+> 
+> The above structure defines the format of a *request*
+> message.  But it is *also* the format of a VM_ALLOC_VMID
+> *response* message.  So the name of the type does not
+> match the way it's used.  As a reviewer, this seems off.
+> 
+
+Yes, I see the point here. I've created separate struct for the 
+VM_ALLOC_VMID response message. I'd still like to keep the 
+"gh_vm_common_vmid_req" for
+
+>> +/* Call: VM_STOP */
+>> +struct gh_vm_stop_req {
+>> +    __le16 vmid;
+>> +    u8 flags;
+> 
+> I don't believe you specify what the valid values this
+> "flags" field can hold.  If not, I think you should (and
+> if it's currently not used/needed, say that).
+> 
+>> +    u8 reserved;
+>> +    __le32 stop_reason;
+> 
+> Same thing here.  This field is defined but from what
+> I can tell, it is not currently used.  What values
+> *could* it take on?  Why is it currently ignored?
+> 
+
+Neither of the fields are currently used, so I've not defined them.
+
+Flags has the following bit:
+
+// Forcibly shutdown VM without sending a VM_SHUTDOWN notification
+#define GH_VM_STOP_FORCE_SHUTDOWN BIT(1)
+
+stop_reason is a code that is passed to the VM in the VM_SHUTDOWN 
+notification.
+
+>> +} __packed;
+>> +
+>> +/* Call: VM_CONFIG_IMAGE */
+>> +struct gh_vm_config_image_req {
+>> +    __le16 vmid;
+>> +    __le16 auth_mech;
+>> +    __le32 mem_handle;
+>> +    __le64 image_offset;
+>> +    __le64 image_size;
+>> +    __le64 dtb_offset;
+>> +    __le64 dtb_size;
+>> +} __packed;
+>> +
+>> +/* Call: GET_HYP_RESOURCES */
+>> +struct gh_vm_get_hyp_resources_resp {
+>> +    __le32 n_entries;
+>> +    struct gh_rm_hyp_resource entries[];
+> 
+> This header file should include <linux/gunyah_rsrc_mgr.h> to get
+> the required definition of struct gh_rm_hyp_resource.
+> 
+
+Done.
+
+>> +} __packed;
+>> +
+>>   #endif
+>> diff --git a/drivers/virt/gunyah/rsc_mgr_rpc.c 
+>> b/drivers/virt/gunyah/rsc_mgr_rpc.c
+>> new file mode 100644
+>> index 000000000000..8d9c1c635a27
+>> --- /dev/null
+>> +++ b/drivers/virt/gunyah/rsc_mgr_rpc.c
+>> @@ -0,0 +1,224 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights 
+>> reserved.
+>> + */
+>> +
+>> +#include <linux/gunyah_rsc_mgr.h>
+>> +
+>> +#include "rsc_mgr.h"
+>> +
+>> +/*
+>> + * Several RM calls take only a VMID as a parameter and give only 
+>> standard
+>> + * response back. Deduplicate boilerplate code by using this common 
+>> call.
+> 
+> In other words, the response message is empty for the requests that use
+> this function.
+> 
+>> + */
+>> +static int gh_rm_common_vmid_call(struct gh_rm_rpc *rm, u32 
+>> message_id, u16 vmid)
+>> +{
+>> +    void *resp = NULL;
+> 
+> No need to set this to NULL if you ignore its value
+> when the gh_rm_call() is unsuccessful.
+> 
+
+Done.
+
+>> +    struct gh_vm_common_vmid_req req_payload = {
+>> +        .vmid = cpu_to_le16(vmid),
+>> +    };
+>> +    size_t resp_size;
+>> +    int ret;
+>> +
+>> +    ret = gh_rm_call(rm, message_id, &req_payload, 
+>> sizeof(req_payload), &resp, &resp_size);
+> 
+> Here and in all other calls to gh_rm_call() here (and added later),
+> you need to handle the return value differently.  (THIS IS A BUG.)
+> 
+> There are three classes of return value from gh_rm_call():
+> - Zero (success)
+> - Negative errno
+> - Positive Gunyah resource manager error code
+> 
+> In practice, it might be nice to distinguish Gunyah error codes from
+> Linux errnos, but I think the easiest solution might be to have a
+> function that maps Gunyah codes to comparable errno values, and have
+> gh_rm_call() use it so its return value is always 0 or negative.
+> 
+>> +    if (!ret)
+>> +        kfree(resp);
+>> +
+>> +    WARN_ON(!ret && resp_size);
+> 
+> You should have well-defined behavior when the response message
+> is empty.  Will the response pointer be valid or not?  I suggest
+> that a 0 length response message be guaranteed to return a null
+> pointer if the return value indicates success.  And a non-zero
+> length should be guaranteed to be valid.  There should be no
+> need for callers to issue warnings like this.
+> 
+> So the above would then just be (note this follows a pattern
+> similar to used by handlers later in the file):
+> 
+>      if (ret)
+>          return ret;
+> 
+>      if (resp_size)        /* (this is optional) */
+>          kfree(resp);
+> 
+>      return 0;
+> 
+> 
+
+Done, I'll clean up the error flow here.
+
+>> +
+>> +    return ret;
+>> +}
+>> +
+>> +/**
+>> + * gh_rm_alloc_vmid() - Allocate a new VM in Gunyah. Returns the VM 
+>> identifier.
+>> + * @vmid: Use GH_VMID_INVAL to dynamically allocate a VM. A reserved 
+>> VMID can also be requested
+>> + *        for a special-purpose platform-defined VM.
+>> + *
+>> + * Returns - the allocated VMID or negative value on error
+> 
+> Currently (based on a comment I made above) this statement
+> is not correct.  But I think what's described is the proper
+> return convention.  It's probably worth mentioning that it
+> will never return GH_VMID_SELF or GH_VMID_INVAL.
+> 
+>> + */
+>> +int gh_rm_alloc_vmid(struct gh_rm_rpc *rm, u16 vmid)
+>> +{
+>> +    void *resp;
+>> +    struct gh_vm_common_vmid_req req_payload = {
+>> +        .vmid = cpu_to_le16(vmid),
+>> +    };
+>> +    struct gh_vm_common_vmid_req *resp_payload;
+>> +    size_t resp_size;
+>> +    int ret;
+>> +
+> 
+> What is the meaning of this call if you pass GH_VMID_SELF?
+> Is that defined to be valid?  The code allows it, and if
+> so it treats it as equivalent to passing GH_VMID_INVAL.
+> 
+
+I've updated the docstring to allow for GH_VMID_SELF and 0 to all be 
+equivalent.
+
+>> +    if (vmid == GH_VMID_INVAL)
+>> +        vmid = 0;
+>> +
+>> +    ret = gh_rm_call(rm, GH_RM_RPC_VM_ALLOC_VMID, &req_payload, 
+>> sizeof(req_payload), &resp,
+>> +            &resp_size);
+> 
+> This *can* return a positive Gunyah resource manager error ID.
+> So in this case the caller would (erroneously) assume it was
+> a valid VMID.
+> 
+> You need to fix this.
+> 
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    if (!vmid) {
+>> +        if (resp_size != sizeof(*resp_payload)) {
+>> +            ret = -EINVAL;
+> 
+> EINVAL means "invalid argument".  I *think* the right thing
+> to return would be -EBADMSG.  In any case I don't really
+> think -EINVAL is appropriate.
+> 
+>> +        } else {
+>> +            resp_payload = resp;
+>> +            ret = resp_payload->vmid;
+> 
+> This is a bug.  The vmid is a little-endian value, so you need
+> to use:
+> 
+>      ret = le16_to_cpu(resp_payload->vmid);
+> 
+>> +        }
+>> +    }
+>> +    kfree(resp);
+>> +
+>> +    return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_alloc_vmid);
+>> +
+>> +/**
+>> + * gh_rm_dealloc_vmid() - Dispose the VMID
+>> + * @vmid: VM identifier
+> 
+>    * Returns: ...    (here and throughout)
+> 
+>> + */
+>> +int gh_rm_dealloc_vmid(struct gh_rm_rpc *rm, u16 vmid)
+>> +{
+>> +    return gh_rm_common_vmid_call(rm, GH_RM_RPC_VM_DEALLOC_VMID, vmid);
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_dealloc_vmid);
+>> +
+>> +/**
+>> + * gh_rm_vm_start() - Move the VM into "ready to run" state
+>> + * @vmid: VM identifier
+>> + *
+>> + * On VMs which use proxy scheduling, vcpu_run is needed to actually 
+>> run the VM.
+>> + * On VMs which use Gunyah's scheduling, the vCPUs start executing in 
+>> accordance with Gunyah
+>> + * scheduling policies.
+>> + */
+>> +int gh_rm_vm_start(struct gh_rm_rpc *rm, u16 vmid)
+>> +{
+>> +    return gh_rm_common_vmid_call(rm, GH_RM_RPC_VM_START, vmid);
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_vm_start);
+>> +
+>> +/**
+>> + * gh_rm_vm_stop() - Send a request to Resource Manager VM to stop a VM.
+>> + * @vmid: VM identifier
+>> + */
+>> +int gh_rm_vm_stop(struct gh_rm_rpc *rm, u16 vmid)
+>> +{
+>> +    struct gh_vm_stop_req req_payload = {
+>> +        .vmid = cpu_to_le16(vmid),
+> 
+> This structure has a flags and a stop_reason field.  As I mentioned
+> earlier, I think you ought to explain what values this might have,
+> or perhaps explain why they're not used.
+> 
+>> +    };
+>> +    void *resp;
+>> +    size_t resp_size;
+>> +    int ret;
+>> +
+>> +    ret = gh_rm_call(rm, GH_RM_RPC_VM_STOP, &req_payload, 
+>> sizeof(req_payload),
+>> +            &resp, &resp_size);
+>> +    if (ret)
+>> +        return ret;
+> 
+> Is the response in this case in fact empty?  You are discarding
+> it, but because you don't specify how every request/response is
+> structured, we can only guess what's contained in the response
+> (if there is one).  This is a reason why I prefer having every
+> message structure shown explicitly, even if some are identical.
+> It makes it very clear to the reader what the protocol actually
+> looks like.  And unlike what you do in gh_rm_common_vmid_call(),
+> you ignore the resp_size, which could be checked if we knew its
+> expected size.
+> 
+
+The response is empty, I've added the resp_size check.
+
+>> +    kfree(resp);
+>> +
+>> +    return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_vm_stop);
+>> +
+>> +int gh_rm_vm_configure(struct gh_rm_rpc *rm, u16 vmid, enum 
+>> gh_rm_vm_auth_mechanism auth_mechanism,
+>> +        u32 mem_handle, u64 image_offset, u64 image_size, u64 
+>> dtb_offset, u64 dtb_size)
+>> +{
+>> +    struct gh_vm_config_image_req req_payload = { 0 };
+>> +    void *resp;
+>> +    size_t resp_size;
+>> +    int ret;
+>> +
+>> +    req_payload.vmid = cpu_to_le16(vmid);
+>> +    req_payload.auth_mech = cpu_to_le32(auth_mechanism);
+>> +    req_payload.mem_handle = cpu_to_le32(mem_handle);
+>> +    req_payload.image_offset = cpu_to_le64(image_offset);
+>> +    req_payload.image_size = cpu_to_le64(image_size);
+>> +    req_payload.dtb_offset = cpu_to_le64(dtb_offset);
+>> +    req_payload.dtb_size = cpu_to_le64(dtb_size);
+>> +
+>> +    ret = gh_rm_call(rm, GH_RM_RPC_VM_CONFIG_IMAGE, &req_payload, 
+>> sizeof(req_payload),
+>> +            &resp, &resp_size);
+>> +    if (ret)
+>> +        return ret;
+>> +    kfree(resp);
+>> +
+>> +    return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_vm_configure);
+>> +
+>> +/**
+>> + * gh_rm_vm_init() - Move the VM to initialized state.
+>> + * @vmid: VM identifier
+>> + *
+>> + * RM will allocate needed resources for the VM. After gh_rm_vm_init, 
+>> gh_rm_get_hyp_resources()
+>> + * can be called to learn of the capabilities we can use with the new 
+>> VM.
+>> + */
+>> +int gh_rm_vm_init(struct gh_rm_rpc *rm, u16 vmid)
+>> +{
+>> +    return gh_rm_common_vmid_call(rm, GH_RM_RPC_VM_INIT,vmid);
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_vm_init);
+>> +
+>> +/**
+>> + * gh_rm_get_hyp_resources() - Retrieve hypervisor resources 
+>> (capabilities) associated with a VM
+>> + * @vmid: VMID of the other VM to get the resources of
+>> + * @resources: Set by gh_rm_get_hyp_resources and contains the 
+>> returned hypervisor resources.
+>> + *
+>> + * Return: >=0 value indicates the number of gh_rm_hyp_resource 
+>> entries filled into *resources
+>> + */
+>> +ssize_t gh_rm_get_hyp_resources(struct gh_rm_rpc *rm, u16 vmid,
+>> +                struct gh_rm_hyp_resource **resources)
+> 
+> First, this function can return a positive Gunyah resource manager
+> error as well, which is a problem.
+> 
+> But this function is also pretty different from the rest, returning
+> the number of elements in the array whose address is returned.
+> 
+> I don't know why you don't just return the actual response
+> buffer (rather than duplicating most of it), and let the
+> caller use its embedded n_entries field to determine its
+> length.  Either way it's not beautiful I guess, but the
+> kmemdup() call seems unneccesary and adds a possible
+> additional error condition.
+> 
+
+I can return the response buffer. It arbitrarily felt like a better idea 
+at the time, but returning the actual response is also a clean approach.
+
+>> +{
+>> +    struct gh_vm_get_hyp_resources_resp *resp;
+>> +    size_t resp_size;
+>> +    int ret;
+>> +    struct gh_vm_common_vmid_req req_payload = {
+>> +        .vmid = cpu_to_le16(vmid),
+>> +    };
+>> +
+>> +    ret = gh_rm_call(rm, GH_RM_RPC_VM_GET_HYP_RESOURCES,
+>> +             &req_payload, sizeof(req_payload),
+>> +             (void **)&resp, &resp_size);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    if (resp_size < sizeof(*resp) ||
+>> +        (sizeof(*resp->entries) && (resp->n_entries > U32_MAX / 
+>> sizeof(*resp->entries))) ||
+>> +        (resp_size != sizeof(*resp) + (resp->n_entries * 
+>> sizeof(*resp->entries)))) {
+>> +        ret = -EIO;
+>> +        goto out;
+>> +    }
+>> +
+>> +    *resources = kmemdup(resp->entries, (resp->n_entries * 
+>> sizeof(*resp->entries)), GFP_KERNEL);
+> 
+> If *resources is NULL you should return -ENOMEM.
+> 
+>> +    ret = resp->n_entries;
+>> +
+>> +out:
+>> +    kfree(resp);
+>> +    return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_get_hyp_resources);
+>> +
+>> +/**
+>> + * gh_rm_get_vmid() - Retrieve VMID of this virtual machine
+>> + * @vmid: Filled with the VMID of this VM
+>> + */
+>> +int gh_rm_get_vmid(struct gh_rm_rpc *rm, u16 *vmid)
+>> +{
+>> +    static u16 cached_vmid = GH_VMID_INVAL;
+> 
+> This cached VMID seems like a good idea, but you don't actually use it.
+> 
+>> +    void *resp;
+>> +    size_t resp_size;
+>> +    int ret;
+>> +    int payload = 0;
+> 
+> In fact the payload has type __le16 (or at least I assume so).
+> I don't actually know what this payload represents.  Is it a
+> VMID (which would I presume in this case be GH_VMID_SELF)?
+> How big is it, actually?
+> 
+> If you were to define each request and response, I would hope
+> each would be a packed structure, so in this case:
+> 
+>      struct gh_rm_get_vmid_request {
+>          __le16 vmid;
+>          u16 reserved;    /* ??? */
+>      } __packed;
+> 
+
+The payload here is a dummy payload and not used due to some earlier 
+limitations in RM's handling of messages. This brought up the point 
+again, and they have fixed the limitation. I should've commented that it 
+is empty payload without meaning. In v9, I'll simply remove the payload 
+entirely.
+
+>> +
+>> +    if (cached_vmid != GH_VMID_INVAL) {
+>> +        *vmid = cached_vmid;
+>> +        return 0;
+>> +    }
+>> +
+>> +    ret = gh_rm_call(rm, GH_RM_RPC_VM_GET_VMID, &payload, 
+>> sizeof(payload), &resp, &resp_size);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    if (resp_size != sizeof(*vmid))
+>> +        return -EIO;
+>> +    *vmid = *(u16 *)resp;
+> 
+> This is a bug.  The response is little endian, so you need to do:
+> 
+>      *vmid = le16_to_32(resp);
+> 
+>> +    kfree(resp);
+>> +
+>> +    return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(gh_rm_get_vmid);
+>> diff --git a/include/linux/gunyah_rsc_mgr.h 
+>> b/include/linux/gunyah_rsc_mgr.h
+>> index b4f55c19954b..eb94b48c41de 100644
+>> --- a/include/linux/gunyah_rsc_mgr.h
+>> +++ b/include/linux/gunyah_rsc_mgr.h
+>> @@ -15,4 +15,54 @@
+>>   /* Gunyah recognizes VMID0 as an alias to the current VM's ID */
+>>   #define GH_VMID_SELF            0
+> 
+> Please be sure to use this symbol in place of 0 when that's
+> what you mean.  In gh_rm_get_vmid() it looked like *maybe*
+> that's what was being passed as an argument in the request
+> payload--and if so, that's a case I'd like to see GH_VMID_SELF.
+> 
+>                      -Alex
+> 
+>> +struct gh_rm_rpc;
+>> +
+>> +enum gh_rm_vm_status {
+>> +    GH_RM_VM_STATUS_NO_STATE    = 0,
+>> +    GH_RM_VM_STATUS_INIT        = 1,
+>> +    GH_RM_VM_STATUS_READY        = 2,
+>> +    GH_RM_VM_STATUS_RUNNING        = 3,
+>> +    GH_RM_VM_STATUS_PAUSED        = 4,
+>> +    GH_RM_VM_STATUS_LOAD        = 5,
+>> +    GH_RM_VM_STATUS_AUTH        = 6,
+>> +    GH_RM_VM_STATUS_INIT_FAILED    = 8,
+>> +    GH_RM_VM_STATUS_EXITED        = 9,
+>> +    GH_RM_VM_STATUS_RESETTING    = 10,
+>> +    GH_RM_VM_STATUS_RESET        = 11,
+>> +};
+>> +
+>> +/* RPC Calls */
+>> +int gh_rm_alloc_vmid(struct gh_rm_rpc *rm, u16 vmid);
+>> +int gh_rm_dealloc_vmid(struct gh_rm_rpc *rm, u16 vmid);
+>> +int gh_rm_vm_start(struct gh_rm_rpc *rm, u16 vmid);
+>> +int gh_rm_vm_stop(struct gh_rm_rpc *rm, u16 vmid);
+>> +
+>> +enum gh_rm_vm_auth_mechanism {
+>> +    GH_RM_VM_AUTH_NONE        = 0,
+>> +    GH_RM_VM_AUTH_QCOM_PIL_ELF    = 1,
+>> +    GH_RM_VM_AUTH_QCOM_ANDROID_PVM    =2,
+>> +};
+>> +
+>> +int gh_rm_vm_configure(struct gh_rm_rpc *rm, u16 vmid, enum 
+>> gh_rm_vm_auth_mechanism auth_mechanism,
+>> +            u32 mem_handle, u64 image_offset, u64 image_size,
+>> +            u64 dtb_offset, u64 dtb_size);
+>> +int gh_rm_vm_init(struct gh_rm_rpc *rm, u16 vmid);
+>> +
+>> +struct gh_rm_hyp_resource {
+>> +    u8 type;
+>> +    u8 reserved;
+>> +    __le16 partner_vmid;
+>> +    __le32 resource_handle;
+>> +    __le32 resource_label;
+>> +    __le64 cap_id;
+>> +    __le32 virq_handle;
+>> +    __le32 virq;
+>> +    __le64 base;
+>> +    __le64 size;
+>> +} __packed;
+>> +
+>> +ssize_t gh_rm_get_hyp_resources(struct gh_rm_rpc *rm, u16 vmid,
+>> +                struct gh_rm_hyp_resource **resources);
+>> +int gh_rm_get_vmid(struct gh_rm_rpc *rm, u16 *vmid);
+>> +
+>>   #endif
+> 
