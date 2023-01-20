@@ -2,124 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55D41675140
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:35:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E095567514A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:36:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbjATJfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 04:35:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56814 "EHLO
+        id S229516AbjATJgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 04:36:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjATJew (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:34:52 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1111D5BBE;
-        Fri, 20 Jan 2023 01:34:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674207272; x=1705743272;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6lIDR4z4RQuA46b04i56IywoXYvWWasF4FtmGMaqhIo=;
-  b=KNFo7L755zgDLmb9N0qmwygulQgUirR+Z/B6U3JTHDFFQ/zDHjFNJY+p
-   q1lKE+1ZSeSPgI0Yfzr4XnKW9xM0FpWimEAzLcaAVDI1k4lAPV7n2ZR5z
-   TqSL7AFKtUsQUZkI9NMhqwEoH+rp7Y0TXlgJuc/YbsEHencGMUdFZPgyS
-   GU7ECJp/KXQx8Qx0ecQa2ye3vAwTm9rkRPxv9swzXon0gWWJGNFtvVUBt
-   AH0VmVRIivCOLwTmVnAX/sLFQx6N6C3YSjCS1TZ5fywRhtJ1SnRI3Y34C
-   r/gNaKhKPAoTVT65TcUekf86hEc0y15Zf3CWrpnMgfNwjsGK3bj5oHUlR
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="411775449"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; 
-   d="scan'208";a="411775449"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2023 01:34:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="803018746"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; 
-   d="scan'208";a="803018746"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 20 Jan 2023 01:34:18 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 20 Jan 2023 11:34:17 +0200
-Date:   Fri, 20 Jan 2023 11:34:17 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229597AbjATJgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:36:24 -0500
+Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3D2C940EA;
+        Fri, 20 Jan 2023 01:36:23 -0800 (PST)
+Received: from 8bytes.org (p200300c27714bc0086ad4f9d2505dd0d.dip0.t-ipconnect.de [IPv6:2003:c2:7714:bc00:86ad:4f9d:2505:dd0d])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.8bytes.org (Postfix) with ESMTPSA id A827D262AAF;
+        Fri, 20 Jan 2023 10:36:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+        s=default; t=1674207381;
+        bh=E27B5P92vamwc0WgGeMPoDYf0t5y2F4XmTYYeL00rZY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=7wgFBMnyfil5Ub6uuA3bZ1Cb6XNhWuaz4uatZCFKatC8jTWgGw68EmRMKxrCn7vBP
+         9Es1c2D7sA4pg+Rza5dsGnDW6Y97UgWLWwOF+OBdK1k1CkKu9HhdsCPdRY8a3sHtCg
+         Q1t3w7lRYtJ340kn9XB8/nI1q0mz7D/I9AXXhlTNIvNtnlaq6Ot5RycICBRaYRLZ7a
+         Uqkyfknre+kYfNgRTd7uDVtIeLGFohhYzAywWzBdHVauvD6s8UMgvWPjPlBOlquBtX
+         frT5CwJ1RGsEkMc8LVXhuj+NLmHPwCOwu8MdSOlu04XbbDebn2bRewVqfFV7FnikOa
+         hdp1iXe66ESwQ==
+Date:   Fri, 20 Jan 2023 10:36:20 +0100
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Janne Grunau <j@jannau.net>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
-Subject: Re: [PATCH V6 5/6] usb: typec: ucsi_ccg: Remove ccgx,firmware-build
- property
-Message-ID: <Y8pgGTNwSRZ8VaGW@kuha.fi.intel.com>
-References: <20230119121639.226729-1-jonathanh@nvidia.com>
- <20230119121639.226729-6-jonathanh@nvidia.com>
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/7] iommu: dart: Apple t8110 DART support
+Message-ID: <Y8pglA0vvtZmKKnx@8bytes.org>
+References: <20230113105029.26654-1-marcan@marcan.st>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230119121639.226729-6-jonathanh@nvidia.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230113105029.26654-1-marcan@marcan.st>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 12:16:38PM +0000, Jon Hunter wrote:
-> From: Wayne Chang <waynec@nvidia.com>
+On Fri, Jan 13, 2023 at 07:50:23PM +0900, Hector Martin wrote:
+> Hector Martin (7):
+>   dt-bindings: iommu: dart: add t8110 compatible
+>   iommu: dart: Add suspend/resume support
+>   iommu: dart: Support >64 stream IDs
+>   iommu: dart: Support a variable number of TTBRs per stream
+>   iommu: dart: Fix DART_PARAMS1/2 bit define names
+>   iommu: dart: Support different variants with different registers
+>   iommu: dart: Add t8110 DART support
 > 
-> Remove the property 'ccgx,firmware-build' now we have migrated devices
-> to using the 'firmware-name' property.
+>  .../devicetree/bindings/iommu/apple,dart.yaml |   1 +
+>  drivers/iommu/apple-dart.c                    | 557 ++++++++++++++----
+>  2 files changed, 448 insertions(+), 110 deletions(-)
 
-Ah, so just do this in the patch 3/6.
-
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
-> V6: fixed compilation
-> V5: Added this patch from V3
-> 
->  drivers/usb/typec/ucsi/ucsi_ccg.c | 18 +++++++-----------
->  1 file changed, 7 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
-> index 661a3988b39d..8f5ad2094f26 100644
-> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
-> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
-> @@ -1358,17 +1358,13 @@ static int ucsi_ccg_probe(struct i2c_client *client)
->  	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
->  
->  	/* Only fail FW flashing when FW build information is not provided */
-> -	status = device_property_read_u16(dev, "ccgx,firmware-build",
-> -					  &uc->fw_build);
-> -	if (status) {
-> -		status = device_property_read_string(dev, "firmware-name",
-> -						     &fw_name);
-> -		if (!status) {
-> -			if (!strcmp(fw_name, "nvidia,jetson-agx-xavier"))
-> -				uc->fw_build = CCG_FW_BUILD_NVIDIA_TEGRA;
-> -			else if (!strcmp(fw_name, "nvidia,gpu"))
-> -				uc->fw_build = CCG_FW_BUILD_NVIDIA;
-> -		}
-> +	status = device_property_read_string(dev, "firmware-name",
-> +					     &fw_name);
-
-One line.
-
-> +	if (!status) {
-> +		if (!strcmp(fw_name, "nvidia,jetson-agx-xavier"))
-> +			uc->fw_build = CCG_FW_BUILD_NVIDIA_TEGRA;
-> +		else if (!strcmp(fw_name, "nvidia,gpu"))
-> +			uc->fw_build = CCG_FW_BUILD_NVIDIA;
->  	}
->  
->  	if (!uc->fw_build)
-> -- 
-> 2.25.1
-
-thanks,
-
--- 
-heikki
+Applied, thanks Hector.
