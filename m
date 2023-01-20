@@ -2,93 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 774FC6758D4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:37:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2EEA675910
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:50:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjATPhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 10:37:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40512 "EHLO
+        id S231370AbjATPu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 10:50:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbjATPhy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:37:54 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4768C9256;
-        Fri, 20 Jan 2023 07:37:07 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 60867514;
-        Fri, 20 Jan 2023 16:37:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1674229024;
-        bh=2HCZlX0ybfHa9FB4nm34wAFz2riqSXuY7G4fB/sY36w=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=BPfwtKyww49ztjQbKIqzhHCRqj0FhUUPBqs1NvD9soczmnsyKLL/b61xhHxHIOHgM
-         KYgO8y9wBFz0HXwCmCBcS3f7zKZUZXfhtf+Nxa7Fi8LfdeRalar44iue//75DycCXH
-         DXPdPk1mttSUJ5ueILgsGLZNE7sj7Pbj/kYWMXy0=
-Message-ID: <64a970f9-3339-3841-4b82-1cb4155630ad@ideasonboard.com>
-Date:   Fri, 20 Jan 2023 17:37:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v8 0/7] i2c-atr and FPDLink
-Content-Language: en-US
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        with ESMTP id S229550AbjATPu1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:50:27 -0500
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D06A2729;
+        Fri, 20 Jan 2023 07:50:26 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id k18so5674288pll.5;
+        Fri, 20 Jan 2023 07:50:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ifz3vDvAEZ7BS42gIpHTFMzrz22EW4dCog2+fKqAMLc=;
+        b=h5wWDnI4mu+2WaMB0V6kZe+MaCszFySNtwk1wV9PkALf7br2lcsHhs6/izaBZwFkn5
+         jRm2JNU9hyZ6skEnL97rpTa2d+49yxfOX5DwNk/t31dYjFVbFtsBumcLWbg+vou9R0eu
+         OXwNEvMOjFhBB7BxHdx9o4wfJLhfInYPofZaykiRHXjvQK/UtxoIkG2/ae/eUMZ7whXB
+         e6ZP44jhBc8QU7/YcuxUwULgHDzJCIoNOaGcGq3jXqLhyY4zmDr43mfvP3xkwZQ6LF1u
+         LUQnbEA3WWlY2WdbHSRD+XXoHSyKwn6aOeIfWRUXUrl64RH9iFX3AVL85i9TeJQzsSEy
+         zBPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ifz3vDvAEZ7BS42gIpHTFMzrz22EW4dCog2+fKqAMLc=;
+        b=xUqzS/K5tdzctt5V8I4XPj0hji2r/COWWh3odg/Y1Viftd3NalrCimesgPdxbmWqcC
+         C6oeKC5OEPmn4iEGASkteXDWp8OJuv5b9Nlwsb8WseS6jXz2IHk8gwpvnWTqY5NQ8ITd
+         OUh6VoUZM99KTf+UmapRMvdEs4JYsjruZuT5jhaf/z4m9czm3Ucufp/FIdhG6O8O9kK5
+         MAzrY1ocO1EaczNV9CPZFmSPQ4MItngTl+lTi4lXPn5pxA5i566k3LWEWeSJoP72fE6F
+         RJEc2gpIF9SYYnmIpNFj67hGQsnFNprltHEY7perBpWmYW+uCrvIvWdjGCx/zEgLlz5c
+         GyVA==
+X-Gm-Message-State: AFqh2krK33dkcCqkGN9KjQcLO7Qpo1Y/Gxfcv3EHo5TvwJSi0vykw/KG
+        wy7TBUISKNWc/mWZvH5Zf7z40FrFGqg=
+X-Google-Smtp-Source: AMrXdXurnIoilt6fN2sw9uvaZYbWJ6iIHk57f5fmjv34pWqyznNfo6PJJyMgiSTYY9REG2JkqaV4JQ==
+X-Received: by 2002:a17:903:449:b0:189:6ab3:9e75 with SMTP id iw9-20020a170903044900b001896ab39e75mr14309167plb.15.1674229825960;
+        Fri, 20 Jan 2023 07:50:25 -0800 (PST)
+Received: from localhost.localdomain (n220246252084.netvigator.com. [220.246.252.84])
+        by smtp.gmail.com with ESMTPSA id p9-20020a170902780900b00188fc6766d6sm27012824pll.219.2023.01.20.07.50.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jan 2023 07:50:25 -0800 (PST)
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Lee Jones <lee@kernel.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>
-References: <20230120153417.1156207-1-tomi.valkeinen@ideasonboard.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230120153417.1156207-1-tomi.valkeinen@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Helge Deller <deller@gmx.de>
+Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, Jianhua Lu <lujianhua000@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v9 1/2] dt-bindings: leds: backlight: Add Kinetic KTZ8866 backlight
+Date:   Fri, 20 Jan 2023 23:50:17 +0800
+Message-Id: <20230120155018.15376-1-lujianhua000@gmail.com>
+X-Mailer: git-send-email 2.39.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/01/2023 17:34, Tomi Valkeinen wrote:
-> Hi,
-> 
-> You can find v7 from:
-> 
-> https://lore.kernel.org/all/20230118124031.788940-1-tomi.valkeinen@ideasonboard.com/
-> 
-> Diff to v7 included below.
-> 
-> Main changes in v8:
-> - Added missing 'link-frequencies' to ti,ds90ub960.yaml
-> - Dropped ATR select/deselect ops
-> - Don't use devm_kzalloc() in i2c_atr_new()
-> - Fixed the reported error handling paths (mainly adding
->    fwnode_handle_puts)
-> - Dropped all WARNs
-> - Plenty of cosmetic/style changes
-> 
-> I saw the suggestion to change the i2c_atr to be embedded in the main
-> driver's private data struct. That change has not been done in this
-> version.
+Add Kinetic KTZ8866 backlight binding documentation.
 
-Ah, and just now I realized I did not pick the documentation changes 
-from Luca.
+Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes in v2:
+  - Remove "items" between "compatible" and "const: kinetic,ktz8866".
+  - Change "additionalProperties" to "unevaluatedProperties".
 
-  Tomi
+Changes in v3:
+  - Add Krzysztof's R-b.
+
+Changes in v4:
+  - Drop Krzysztof's R-b.
+  - Add some new properties.
+
+Changes in v5:
+  - Add missing enum under property description.
+  - Rename uncorrect properties.
+
+Changes in v6:
+  - Correct wrong property suffix and description.
+
+Changes in v7:
+  - Add vddpos and vddeg supply.
+  - Use enable-gpios instead of defining enable pin.
+
+Changes in v8:
+  - Rename current ramping time. 
+  - Rename led ramping time. 
+
+Changes in v9:
+  - Add Krzysztof's R-b.
+  - Add missing 1μs to the enum of "kinetic,led-enable-ramp-delay-ms".
+
+ .../leds/backlight/kinetic,ktz8866.yaml       | 76 +++++++++++++++++++
+ 1 file changed, 76 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+
+diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+new file mode 100644
+index 000000000000..e1191453c2f0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktz8866.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Kinetic Technologies KTZ8866 backlight
++
++maintainers:
++  - Jianhua Lu <lujianhua000@gmail.com>
++
++description: |
++  The Kinetic Technologies KTZ8866 is a high efficiency 6-channels-current-sinks
++  led backlight with dual lcd bias power.
++  https://www.kinet-ic.com/ktz8866/
++
++allOf:
++  - $ref: common.yaml#
++
++properties:
++  compatible:
++    const: kinetic,ktz8866
++
++  vddpos-supply:
++    description: positive boost supply regulator.
++
++  vddneg-supply:
++    description: negative boost supply regulator.
++
++  enable-gpios:
++    description: GPIO to use to enable/disable the backlight (HWEN pin).
++    maxItems: 1
++
++  current-num-sinks:
++    description: number of the LED current sinks' channels.
++    enum: [1, 2, 3, 4, 5, 6]
++
++  kinetic,current-ramp-delay-ms:
++    description: |
++      LED current ramping delay time in milliseconds, note that the
++      case 1 will be mapped to 1μs.
++    enum: [1, 2, 4, 8, 16, 32, 64, 128, 192, 256, 320, 384, 448, 512, 576, 640]
++
++  kinetic,led-enable-ramp-delay-ms:
++    description: |
++      LED on/off ramping delay time in milliseconds, note that the case 0 will be
++      mapped to 512μs because ktz8866 can't ramp faster than it.
++    enum: [0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]
++
++  kinetic,enable-lcd-bias:
++    description: Set if we want to output bias power supply for LCD.
++    type: boolean
++
++required:
++  - compatible
++  - vddpos-supply
++  - vddneg-supply
++  - enable-gpios
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    backlight {
++        compatible = "kinetic,ktz8866";
++
++        vddpos-supply = <&bl_vddpos_5p5>;
++        vddneg-supply = <&bl_vddneg_5p5>;
++        enable-gpios = <&tlmm 139 GPIO_ACTIVE_HIGH>;
++        current-num-sinks = <5>;
++        kinetic,current-ramp-delay-ms = <128>;
++        kinetic,led-enable-ramp-delay-ms = <1>;
++        kinetic,enable-lcd-bias;
++    };
+-- 
+2.39.1
 
