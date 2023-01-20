@@ -2,161 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A43C5675138
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5366867513A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:34:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbjATJeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 04:34:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55972 "EHLO
+        id S229448AbjATJeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 04:34:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231137AbjATJeI (ORCPT
+        with ESMTP id S231146AbjATJeI (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:34:08 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2806A6C56;
-        Fri, 20 Jan 2023 01:33:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674207222; x=1705743222;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7Bjm+trFUTtS/i82Eu7JZl1wzHSlKzvi9wvH7CXa8P0=;
-  b=Xb4/wAwcpSThNPbiBF1/fvoZmGGYSQ7lV4430e46+P4RNsZSd+bqOA6o
-   kJXCKCq9ojdVi9Q43DGj3VGL3jA8YBkUnDsWybK1sg/2nACRVIk1O1atn
-   Iz1rTpFFyFDuZg5FU1tcI6K5NHmEph+92oL8Py7BCMnhpPu8YNVD+TPKG
-   WNzn+IE2y56ILu5ojFN7c28fp2vQnavd4n+UcP16reaGf5j9FY7LgMj9W
-   M3LRWtMzSi9ol3t/BMj2iwc3aOg8/qPurfCjmkHBehqa08urebOPLuT/F
-   cleOUpn+vRfVjQ9skYqsEzY9G+Y4p7y/jRfkxSlBOi9l1StTo3NWsbv8Z
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="411775262"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; 
-   d="scan'208";a="411775262"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2023 01:33:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="803018500"
-X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; 
-   d="scan'208";a="803018500"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 20 Jan 2023 01:33:06 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 20 Jan 2023 11:33:05 +0200
-Date:   Fri, 20 Jan 2023 11:33:05 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
-Subject: Re: [PATCH V6 3/6] usb: typec: ucsi_ccg: Add OF support
-Message-ID: <Y8pf0Vo+HzTZ7+H7@kuha.fi.intel.com>
-References: <20230119121639.226729-1-jonathanh@nvidia.com>
- <20230119121639.226729-4-jonathanh@nvidia.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015E6D7;
+        Fri, 20 Jan 2023 01:33:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E7D3061E60;
+        Fri, 20 Jan 2023 09:33:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36969C433D2;
+        Fri, 20 Jan 2023 09:33:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674207225;
+        bh=flGcaxUpqgF9SiqX+TICUIWFq/FXqENur7P1o86/rHY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=XJYyIMynCAzLWyyw3ZwFpO5CSRJVeTfe+kvui3Qu7aZ8m5bhWAZwP2S7XE5Dcxky+
+         7+e44erve1l6DUdzSKFijm68uYg7l4z1imA+tvF52F4jZ/b3fY1Qk57WTVcfTO+1eP
+         dnRr8iej2Yi5gsyPH3e+bJV9tRpEgPGC+I+1TuRtx3sJCVVaauUFqvHNIGVWb5AJL8
+         0VHRTVhFUezNFyEHIDFkVsamlCjhq3/1AQoyG1v6+rKRv62ucNyIurI7+CfAk2TIgq
+         aW4TZwrCanxNizsExEBscyEI/qp94kTSxy9q296hCdmxXtYuS+vN0iLd2p7DlLxHPP
+         80FpsvKWIlq6Q==
+Message-ID: <72112478-32fe-7e00-aa69-073140bc6713@kernel.org>
+Date:   Fri, 20 Jan 2023 11:33:40 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230119121639.226729-4-jonathanh@nvidia.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v3] dt-bindings: interconnect: qcom-bwmon: document SM8550
+ compatibles
+Content-Language: en-US
+To:     neil.armstrong@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-bwmon-v3-1-7d63d2ae6bce@linaro.org>
+ <5ab38158-6e75-ea9c-f788-f3a2d77dbbe7@linaro.org>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <5ab38158-6e75-ea9c-f788-f3a2d77dbbe7@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 19, 2023 at 12:16:36PM +0000, Jon Hunter wrote:
-> From: Wayne Chang <waynec@nvidia.com>
+On 18.01.23 17:05, Neil Armstrong wrote:
+> Hi Georgi,
 > 
-> Add device-tree support for the Cypress CCG UCSI driver. The device-tree
-> binding for the Cypress CCG device uses the standard device-tree
-> 'firmware-name' string property to indicate the firmware build that is
-> used. For ACPI a 16-bit property named 'ccgx,firmware-build' is used and
-> if this is not found fall back to the 'firmware-name' property.
+> On 09/01/2023 13:11, Neil Armstrong wrote:
+>> Document the compatibles used to describe the Bandwidth Monitors
+>> present on the SM8550 platform.
+>>
+>> A BWMON v4 IP monitors the CPU bandwidth, and a v5 does the LLCC
+>> bandwidth monitoring.
+>>
+>> This is described by adding "llcc" and "cpu" into the compatible
+>> strings to differentiate the BWMON IPs.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
-> V5 -> V6: fixed compilation
-> V4 -> V5: add support for 'firmware-name'
-> V1 -> V4: nothing has changed
-> 
->  drivers/usb/typec/ucsi/ucsi_ccg.c | 23 +++++++++++++++++++++--
->  1 file changed, 21 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
-> index 46441f1477f2..661a3988b39d 100644
-> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
-> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
-> @@ -643,7 +643,7 @@ static int ccg_request_irq(struct ucsi_ccg *uc)
->  {
->  	unsigned long flags = IRQF_ONESHOT;
->  
-> -	if (!has_acpi_companion(uc->dev))
-> +	if (!dev_fwnode(uc->dev))
->  		flags |= IRQF_TRIGGER_HIGH;
->  
->  	return request_threaded_irq(uc->irq, NULL, ccg_irq_handler, flags, dev_name(uc->dev), uc);
-> @@ -1342,6 +1342,7 @@ static int ucsi_ccg_probe(struct i2c_client *client)
->  {
->  	struct device *dev = &client->dev;
->  	struct ucsi_ccg *uc;
-> +	const char *fw_name;
->  	int status;
->  
->  	uc = devm_kzalloc(dev, sizeof(*uc), GFP_KERNEL);
-> @@ -1359,7 +1360,18 @@ static int ucsi_ccg_probe(struct i2c_client *client)
->  	/* Only fail FW flashing when FW build information is not provided */
->  	status = device_property_read_u16(dev, "ccgx,firmware-build",
->  					  &uc->fw_build);
+> Gentle ping,
+> Neil
 
-You don't need this anymore. You already added the new property
-"firmware-name" to drivers/i2c/busses/i2c-nvidia-gpu.c.
+Thanks Neil! Applied and in linux-next already.
 
-> -	if (status)
-> +	if (status) {
-> +		status = device_property_read_string(dev, "firmware-name",
-> +						     &fw_name);
-> +		if (!status) {
-> +			if (!strcmp(fw_name, "nvidia,jetson-agx-xavier"))
-> +				uc->fw_build = CCG_FW_BUILD_NVIDIA_TEGRA;
-> +			else if (!strcmp(fw_name, "nvidia,gpu"))
-> +				uc->fw_build = CCG_FW_BUILD_NVIDIA;
-> +		}
+BR,
+Georgi
 
-So this will already work also with the build-in properties from
-i2c-nvidia-gpu.c.
-
-> +	}
-> +
-> +	if (!uc->fw_build)
->  		dev_err(uc->dev, "failed to get FW build information\n");
->  
->  	/* reset ccg device and initialize ucsi */
-> @@ -1426,6 +1438,12 @@ static void ucsi_ccg_remove(struct i2c_client *client)
->  	free_irq(uc->irq, uc);
->  }
->  
-> +static const struct of_device_id ucsi_ccg_of_match_table[] = {
-> +		{ .compatible = "cypress,cypd4226", },
-> +		{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ucsi_ccg_of_match_table);
-> +
->  static const struct i2c_device_id ucsi_ccg_device_id[] = {
->  	{"ccgx-ucsi", 0},
->  	{}
-> @@ -1480,6 +1498,7 @@ static struct i2c_driver ucsi_ccg_driver = {
->  		.pm = &ucsi_ccg_pm,
->  		.dev_groups = ucsi_ccg_groups,
->  		.acpi_match_table = amd_i2c_ucsi_match,
-> +		.of_match_table = ucsi_ccg_of_match_table,
->  	},
->  	.probe_new = ucsi_ccg_probe,
->  	.remove = ucsi_ccg_remove,
-> -- 
-> 2.25.1
-
--- 
-heikki
