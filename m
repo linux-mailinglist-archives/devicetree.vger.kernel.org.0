@@ -2,80 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7449767558B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 14:19:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91BC36755B8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 14:25:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbjATNTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 08:19:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36210 "EHLO
+        id S229461AbjATNZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 08:25:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231159AbjATNSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 08:18:37 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B949C458D
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 05:16:09 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id w14so6732254edi.5
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 05:16:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gafe9P/3LkcqiXBJGXaZu00WTSPzwj/fCBVH8Ff8/6E=;
-        b=H87wx7re1NhxJvF9wmt5LosXLmkltHWG4ikLnS2OFWmmRddGF1eCQZTFReJs5hC01S
-         jT7hwVyZEAhueKavri13CGz50cCIGGznDjHAPGF0+ba6WYGm+PA9bHO2082nUOhJPX7g
-         A69c3eXJE1v5RyDl/EBfy4/jBUybaFcejoDEH6ORWdtRmvbtxf4b6buU0dJeWX8hg4F6
-         4s5kdG2Shlcr8+dbrYQCHWASLaQ8wprkF9hCdAXWdHFzmdk8oZMC4QUw5plnogXWE4+0
-         3jPtH8b/rzwhX6gjw02TY5ZNLZMckrzcSiBKsMTWfdcHQ2nUMEsLhCUoJ6uW9THFewaR
-         IShQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gafe9P/3LkcqiXBJGXaZu00WTSPzwj/fCBVH8Ff8/6E=;
-        b=fPNmADwU0CCoIqoucAO3g+UZ+7wZvRTZYPOZidTFFcKOpFZaDPmvMBO/x6Z0Vwk40/
-         CknsT5cOyhHmt9v6Qcte6Js0d1Cn12/1N3iUbesV0+z/Y1yu/2uQ01BtG36iZGuX6EM4
-         1YlCC/1pE7Jmql1Z7MXg9kUO+D8VPlDv0FOEzGsV5b+3tXEoupeq8jN5PzIMen4NcJ2g
-         yn0DjrafbpFQlI+zZKnikv6pL9mZXD3WZEmpOFwxnbGx5MTbJ4uP4aVHq+6gPCTfxVRj
-         yYNfCMqo09SCNmPv/aVH7cY0YDTLvRajBz0CNwdYG69ShWbfPvGCzGz673li17de16NB
-         zE9g==
-X-Gm-Message-State: AFqh2kp1sMzcfmeKsa7gIvX4IiFzrmzRys6VLgD/zQpZOWfsU0bk7SgA
-        fD5aRjWkVfBALQ7o4pRnMjU1MFdfBfBW5lye
-X-Google-Smtp-Source: AMrXdXtaBT/vlbufvsp44/JbzjNu62RrYibeiuVZ1/NI+JOP4CQ8dGXg9onBP/ZwQfjw8yUdu8DbNw==
-X-Received: by 2002:aa7:de87:0:b0:49c:d620:4bf8 with SMTP id j7-20020aa7de87000000b0049cd6204bf8mr15535309edv.24.1674220567847;
-        Fri, 20 Jan 2023 05:16:07 -0800 (PST)
-Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
-        by smtp.gmail.com with ESMTPSA id s5-20020a170906c30500b008552bc8399dsm14086113ejz.172.2023.01.20.05.16.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 05:16:07 -0800 (PST)
-Message-ID: <ac74d330-713a-fd68-efce-9c01cc120a45@linaro.org>
-Date:   Fri, 20 Jan 2023 14:16:05 +0100
-MIME-Version: 1.0
+        with ESMTP id S229695AbjATNZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 08:25:05 -0500
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2089.outbound.protection.outlook.com [40.107.212.89])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47543C131F;
+        Fri, 20 Jan 2023 05:25:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U31HZb2QL/imf5jH2IbT9k92L0qn6x/knMi+YzZDkLYvjTMwOlWG9C/MIxyREJ7yNm964Ewyuucs2ylFXTvQ17O+HaAc1baW6Q0aZUSoEEJIzvtgu0ZS9d29hoY9YoPMBdKOXXe/JsvsyMYckunZnWOB8rG4aPSJKD3hUi2Mdih2MsR/f5M8U/TID7U8SnYpU5iPOCpkk9NTzKlrNKbDouQYwcEBrDIs/6tLwe7BdeLgP3shYqBLhp1Q0nsPqULfHlkVcZUfMcMRnOGfUjwAam2Bbeq1NIMyv3+4kVJ6NuMRCmDVfGOSpzIblNwUKUF+JbK/696ihC2gk6kfZ8wrxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=djLFCvkGqWpqR2frdZlrrjqlTCxh5EK9J7sBzdz0sWQ=;
+ b=NkqJoJNpDesP58qzKX/T7UUXoEUSQdDxhtC+oUmn1h8mifEiPNwqQ1bsMYAX4qwoAC6RELKZ1iR8hgLwX2l0aIewn38oYhDJFE2xLX6gAdvTPALy9ZakIskWivE9hVLdiWz3VK7+Q/Yw94zY1QGafmBHXoe0ikbHp1sSZuU3wYpO/V4stWjHVCu88yJ873k8BPss4ehzQcWDN/d1cIcnMqUt106PY1ivAj8rsXYvQzR7Rja8N2rTDlzW3dWFku4UqcdFdhPKW7DPQnSAEgBpKMjRAwpyI3HrytH73QepZct+ASUYImEA2zQhg7Zx9ObH8kpmb9GD/MIsUsvojSDPJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=djLFCvkGqWpqR2frdZlrrjqlTCxh5EK9J7sBzdz0sWQ=;
+ b=UhiK+RI0Y+d+5Jo/jB/SnCBRprWGB+hsP2j84YsvQP+3dAj2KfzoWPv1UqOqIYweqtmm7PYzG+u1VjXSO29pbgPA7A19GI+1bobbX1R982RI6IV61a1wcBINoOig7+m03qqqbY0X6pMNlwDGD1TOiHLAxqo+8dD6LPGyMcNS92snymRf7eUEZpPoaLvkugDnTK4a6Tu9pn0mQO2WPhVnxnkpotSsGLyPJxc2c+lSQopyn85p9hKLvdjnW4iV1uSAunony7ZSnQWeipTMnXi7LosXD2tX8X103+AHaIjFiVsrRty48HVr3XXgtyVfAzFQ7Qb4lZlPKwMPUrFmYqwdoQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ PH7PR12MB8056.namprd12.prod.outlook.com (2603:10b6:510:269::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.27; Fri, 20 Jan
+ 2023 13:25:00 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::f1be:5d:f297:e2f]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::f1be:5d:f297:e2f%8]) with mapi id 15.20.6002.027; Fri, 20 Jan 2023
+ 13:25:00 +0000
+Message-ID: <794c2cb5-e5da-5c49-5465-9b9c8049ceb7@nvidia.com>
+Date:   Fri, 20 Jan 2023 13:18:20 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sm6350: Add CCI nodes
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V6 3/6] usb: typec: ucsi_ccg: Add OF support
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221213-sm6350-cci-v2-0-15c2c14c34bb@fairphone.com>
- <20221213-sm6350-cci-v2-3-15c2c14c34bb@fairphone.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221213-sm6350-cci-v2-3-15c2c14c34bb@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
+References: <20230119121639.226729-1-jonathanh@nvidia.com>
+ <20230119121639.226729-4-jonathanh@nvidia.com>
+ <Y8pf0Vo+HzTZ7+H7@kuha.fi.intel.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <Y8pf0Vo+HzTZ7+H7@kuha.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-ClientProxiedBy: LO4P123CA0284.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:195::19) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|PH7PR12MB8056:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec698a1b-7fd9-46f8-d56d-08dafae9bad4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: emLbeshqvWW0ZOMrb7xo4c0TPyEPfeDSf9WZ/7Izjkj3AT2QrvU9JlXMfkMlXjxFufjxObdzvH6NupmIH+M1h9Ds6zS7aIgEoiaVD0H7eyqLsr0vxoZs9tyWBae2txTZahfW0Gzm1Cwrx5t8rB1kHWB1MpNOkJugEj1lg4Xx3kQ2Sf8/wcRmHoHU6N3frVUBH6h/rE5C8Q6EyONar5qFDFdLHe6ZEEnVHHXRdsMsRv3D0SjVW8WKQJeqFl0gAouMm24tg/hrZGfC67VHFwTojggu/ZyadWUCwZ7coavf/DVPKKcj2ovKPwvKF6wH1u9/H3zb1R45DDIlqxQQO9PGoBJ+U21K1HEUkXbtUKa1sNtD1rB67z+V4zd/j5hG2ZsqgqeUy83Wgvo5ZF11YKArhuf+KfqFi6pC6jlNXtu/15W9F2EiTww05tD4AInZ8HFUiMxCerM1c8U5icQttrOXADWpdo+Td0WQT1OlYEN6a+GdKTAIA5K6fPQAy+dN2yI/n0Qoshg+3r/ZmJmC033vBhRY5oqzzo4j7HE7JJ2SLH9Ky789ohPUZUL4feNRsdnIUsjyR3Pd90uPpjScnsv+2VhA2mgiC77/zuDLGA5iOHjqB1UHabf0gQZN73xxHhPbVeWUc/wIq7UztdVTIq6XyiTdiDziSgZU7PsRchGsDajrj8PYR7wYXTuY6Uif+KNe5AmPKv8d5Z06ibSi4NGTR1v2Nlpd4UZMvq6A06E+Jtc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(136003)(366004)(396003)(39860400002)(451199015)(31696002)(36756003)(6486002)(478600001)(6512007)(186003)(26005)(107886003)(6666004)(53546011)(55236004)(2906002)(6506007)(41300700001)(8936002)(5660300002)(54906003)(2616005)(6916009)(4326008)(316002)(8676002)(66946007)(66556008)(66476007)(38100700002)(86362001)(83380400001)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TnkwUzN0OUVwaHB2TmJCOWdCRHdZTVUyWnVxWGxvZ3gvdWNnT2FGQ21kQm5p?=
+ =?utf-8?B?YTBYa0RmY2dDalYwRUd4dTlrOFhjci83TE9ZWXAyME9XMWxWM3NoWlUweFB1?=
+ =?utf-8?B?d3pBTURxRFJ0eUgwOHZzVDBFU1JHbjQrY3k5Yk1qYU9Fci9CYXpkU3Avdmc0?=
+ =?utf-8?B?cWlhTkFTb3Nqek8wZ25tRVpaQ2laWlpxVDlvVkZMUW1yUkFQQzhacm9zMnVC?=
+ =?utf-8?B?Q0VzbU1Ud3JaS0lvRXNUMXp4TncyOWFidkpaeityd2U4Vjd6TVhUeEZ3dmlY?=
+ =?utf-8?B?Q1Z5am5OVFg5L1VHQ0pock41UGRleUJhVDVPUTJoMWNPSlpneEtPUUJRMTFh?=
+ =?utf-8?B?WUtYYWFFSjA1VGlwcld6bDFUbmtkTHY2S1lLZDRIV1U1NWtpZi83MkxVN2ZT?=
+ =?utf-8?B?dzJ6Zjloc3VRNHA1SEFKN08xY254YmtrZi82djA4cWFmcmJya2h0ZFU5Q0U1?=
+ =?utf-8?B?ZlBPRHpMektLR2ZxQVlPckRJOEg2VHJaZ21XbVlLek1xTHBWV1dxZFloQU5k?=
+ =?utf-8?B?S1BtOS80cmxyenNFelk4cW9VMSs0MnF4QUZ2L09pUlQ3VXBXWUVVbTJpWU1W?=
+ =?utf-8?B?MmxPckl4OXVWdXFmaUFUSzQ2c1hxN3RmbnRMdjQ3aEJkR1hxU0Q3QWV1dlBx?=
+ =?utf-8?B?bEVzbktzVnRIdVM4M1hFOWlQTVcvRUZKRWNLU1ZWWVUyTnREVW85ZmN2SmlS?=
+ =?utf-8?B?YjdDekF3dkJDeE9WZmJvb05LVWZjUlVtOTRQbnRGL0dNSUZRRFkzYU5YMXdt?=
+ =?utf-8?B?MWMvT0lGdytYbkFoUWs3RVZLYjJYQU9MY3VUMjc2NkIyUXB6UG95ZGd1NmIz?=
+ =?utf-8?B?MS8rQW9MRUNsQUJpMEZEUkJQR3hHbzFQTzBRRXZtZmUrRStGK2JpMGN0ZzU1?=
+ =?utf-8?B?R1FVYWw4U2dwVGxER3JuSlYxSnphVTVhaGdjKzFTUFJUUS9ZQWthaWo3ZWxv?=
+ =?utf-8?B?ajgvSTZVckp2cVN2M1U4UlNmMVRZRThkejJXK1ZUQzFOeFNjek9KeUhqTUVV?=
+ =?utf-8?B?M0w5Z2pKK05xd3JtQ2NzZnU1a212UkpMeCtPOWtYQWhxRFVIdmZUTGFwTFBu?=
+ =?utf-8?B?ZFpsdzYxdDY0Y05GQmtRVDRqSFpJRXJtSFVmMWlJVFMyRDlqb3hZTlREOXN5?=
+ =?utf-8?B?dUFPMFhOU2kwSnlmWjRzQ2hyaVZvRHFOU1BxVE9wUXdNbzdTV2MwdEh0dTZU?=
+ =?utf-8?B?ZE0rM0FTbElRcFl3dTgwc3FNcFZPcjJiaFNXcThKc2ZaT2h0MzdoR1QvelpL?=
+ =?utf-8?B?VXlWUExhZjhBeVp5MlVqMDd3NkJxVWN3N1A4a1ovV0o4OXN1N1krNUdKL3g5?=
+ =?utf-8?B?a1NzY2swS0xoaTFsczN2dHIxd0RveE8wQzdRaHpSSFVtaHJaT1hSdm5HUXRU?=
+ =?utf-8?B?b3FUVjNBQTgyL05DT2V0bnhjeWF1MkdLYjlFdm5ZS2xXYndOR2g4Q1hwRE8r?=
+ =?utf-8?B?SmxRRERMelk4M0lxS1Fhd2JaTDB6QUZlV3BjamNieUFhNlNRNVd1dURqNWlU?=
+ =?utf-8?B?bEQ4R043WURkbjkyZzQzM0lRaGZWSVFSYWwxUlFSYitmck1MdExrRVJ4Z24w?=
+ =?utf-8?B?Z2ZVT3M1OFdLd3lmV2JBaGlDK0g5VHJpZWFwcm1RYkhaa044a2pGZXlWbDVj?=
+ =?utf-8?B?V2RrcTY2b2ZDMlROUXdySHNqaGIvTnZIdnVyOVdUVVhxcUQ0T1NLZUZUTkp1?=
+ =?utf-8?B?VmR6eTJXTGlHSHFwWkg1d0Qzc2dqZVFCeGdUSXIvUXZWVDF2Uzd1N3loQVFj?=
+ =?utf-8?B?b2dCSFF0QVI5Rk1tckhpcm5Mb3plOHI3c294a0dNcllwWWtOUDRnUkNwTHhz?=
+ =?utf-8?B?K1NUYlRYdVhlR2xTM3BjS21YRW51eHlvdDNHSTZBc0NreTZwdHhZazdGdndj?=
+ =?utf-8?B?SFJOU3lEZ0gvdVhtQ3lrWkNnSVRuSTZISFFQVncxcnUvK2ZUQkVFOGZEbFhk?=
+ =?utf-8?B?T0dpZkpCWEgzQ1pXMytFVnRBN2tORHUyTzMwanMrUGY1SnhnUkk3Z0N4ZGhL?=
+ =?utf-8?B?U3JRUjhJT29oZmM5VmZ5ODRLRURxRmQ2cDA1QW8ycGhRZUJTOFgzVGltaGdU?=
+ =?utf-8?B?QWNSd2JiRmpDM1YwS3l3cHlhM1ZmUE1TcVc3c2ZmMmFFbEZsNFdBL0hiU2ky?=
+ =?utf-8?B?UzlRcVVNM1BTWHNjMUw3c2M1SDViYkEvYXhObnpLVHM3ZUs4TEw3dUdtUzQy?=
+ =?utf-8?B?VWc9PQ==?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec698a1b-7fd9-46f8-d56d-08dafae9bad4
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2023 13:24:59.9879
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6iURTZyqsbs90HD0BLmLdaYWOrzunuwkuQosPUWxWimD5T+RWIjXfjJsiVGn7kdlCNv1v/3uqwSOilrWml3zgw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8056
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,177 +133,62 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 20.01.2023 14:13, Luca Weiss wrote:
-> Add nodes for the two CCI blocks found on SM6350.
+On 20/01/2023 09:33, Heikki Krogerus wrote:
+> On Thu, Jan 19, 2023 at 12:16:36PM +0000, Jon Hunter wrote:
+>> From: Wayne Chang <waynec@nvidia.com>
+>>
+>> Add device-tree support for the Cypress CCG UCSI driver. The device-tree
+>> binding for the Cypress CCG device uses the standard device-tree
+>> 'firmware-name' string property to indicate the firmware build that is
+>> used. For ACPI a 16-bit property named 'ccgx,firmware-build' is used and
+>> if this is not found fall back to the 'firmware-name' property.
+>>
+>> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+>> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
+>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>> ---
+>> V5 -> V6: fixed compilation
+>> V4 -> V5: add support for 'firmware-name'
+>> V1 -> V4: nothing has changed
+>>
+>>   drivers/usb/typec/ucsi/ucsi_ccg.c | 23 +++++++++++++++++++++--
+>>   1 file changed, 21 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
+>> index 46441f1477f2..661a3988b39d 100644
+>> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
+>> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
+>> @@ -643,7 +643,7 @@ static int ccg_request_irq(struct ucsi_ccg *uc)
+>>   {
+>>   	unsigned long flags = IRQF_ONESHOT;
+>>   
+>> -	if (!has_acpi_companion(uc->dev))
+>> +	if (!dev_fwnode(uc->dev))
+>>   		flags |= IRQF_TRIGGER_HIGH;
+>>   
+>>   	return request_threaded_irq(uc->irq, NULL, ccg_irq_handler, flags, dev_name(uc->dev), uc);
+>> @@ -1342,6 +1342,7 @@ static int ucsi_ccg_probe(struct i2c_client *client)
+>>   {
+>>   	struct device *dev = &client->dev;
+>>   	struct ucsi_ccg *uc;
+>> +	const char *fw_name;
+>>   	int status;
+>>   
+>>   	uc = devm_kzalloc(dev, sizeof(*uc), GFP_KERNEL);
+>> @@ -1359,7 +1360,18 @@ static int ucsi_ccg_probe(struct i2c_client *client)
+>>   	/* Only fail FW flashing when FW build information is not provided */
+>>   	status = device_property_read_u16(dev, "ccgx,firmware-build",
+>>   					  &uc->fw_build);
 > 
-> The first contains two i2c busses and while the second one might also
-> contains two busses, the downstream kernel only has one configured, and
-> some boards use the GPIOs for the potential cci1_i2c1 one other
-> purposes, so leave that one unconfigured.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> You don't need this anymore. You already added the new property
+> "firmware-name" to drivers/i2c/busses/i2c-nvidia-gpu.c.
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 132 +++++++++++++++++++++++++++++++++++
->  1 file changed, 132 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> index 300ced5cda57..802d7f494162 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> @@ -6,6 +6,7 @@
->  
->  #include <dt-bindings/clock/qcom,gcc-sm6350.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/clock/qcom,sm6350-camcc.h>
->  #include <dt-bindings/dma/qcom-gpi.h>
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interconnect/qcom,icc.h>
-> @@ -1435,6 +1436,95 @@ usb_1_dwc3: usb@a600000 {
->  			};
->  		};
->  
-> +		cci0: cci@ac4a000 {
-> +			compatible = "qcom,sm6350-cci", "qcom,msm8996-cci";
-> +			reg = <0 0x0ac4a000 0 0x1000>;
-> +			interrupts = <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc TITAN_TOP_GDSC>;
-> +
-> +			clocks = <&camcc CAMCC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAMCC_SOC_AHB_CLK>,
-> +				 <&camcc CAMCC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAMCC_CPAS_AHB_CLK>,
-> +				 <&camcc CAMCC_CCI_0_CLK>,
-> +				 <&camcc CAMCC_CCI_0_CLK_SRC>;
-> +			clock-names = "camnoc_axi",
-> +				      "soc_ahb",
-> +				      "slow_ahb_src",
-> +				      "cpas_ahb",
-> +				      "cci",
-> +				      "cci_src";
-> +
-> +			assigned-clocks = <&camcc CAMCC_CAMNOC_AXI_CLK>,
-> +					  <&camcc CAMCC_CCI_0_CLK>;
-> +			assigned-clock-rates = <80000000>, <37500000>;
-> +
-> +			pinctrl-0 = <&cci0_default &cci1_default>;
-> +			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
-> +			pinctrl-names = "default", "sleep";
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			status = "disabled";
-> +
-> +			cci0_i2c0: i2c-bus@0 {
-> +				reg = <0>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			cci0_i2c1: i2c-bus@1 {
-> +				reg = <1>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
-> +		cci1: cci@ac4b000 {
-> +			compatible = "qcom,sm6350-cci", "qcom,msm8996-cci";
-> +			reg = <0 0x0ac4b000 0 0x1000>;
-> +			interrupts = <GIC_SPI 462 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc TITAN_TOP_GDSC>;
-> +
-> +			clocks = <&camcc CAMCC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAMCC_SOC_AHB_CLK>,
-> +				 <&camcc CAMCC_SLOW_AHB_CLK_SRC>,
-> +				 <&camcc CAMCC_CPAS_AHB_CLK>,
-> +				 <&camcc CAMCC_CCI_1_CLK>,
-> +				 <&camcc CAMCC_CCI_1_CLK_SRC>;
-> +			clock-names = "camnoc_axi",
-> +				      "soc_ahb",
-> +				      "slow_ahb_src",
-> +				      "cpas_ahb",
-> +				      "cci",
-> +				      "cci_src";
-> +
-> +			assigned-clocks = <&camcc CAMCC_CAMNOC_AXI_CLK>,
-> +					  <&camcc CAMCC_CCI_1_CLK>;
-> +			assigned-clock-rates = <80000000>, <37500000>;
-> +
-> +			pinctrl-0 = <&cci2_default>;
-> +			pinctrl-1 = <&cci2_sleep>;
-> +			pinctrl-names = "default", "sleep";
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			status = "disabled";
-> +
-> +			cci1_i2c0: i2c-bus@0 {
-> +				reg = <0>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			/* SM6350 seems to have cci1_i2c1 on gpio2 & gpio3 but unused downstream */
-> +		};
-> +
->  		camcc: clock-controller@ad00000 {
->  			compatible = "qcom,sm6350-camcc";
->  			reg = <0 0x0ad00000 0 0x16000>;
-> @@ -1522,6 +1612,48 @@ tlmm: pinctrl@f100000 {
->  			#interrupt-cells = <2>;
->  			gpio-ranges = <&tlmm 0 0 157>;
->  
-> +			cci0_default: cci0-default-state {
-> +				pins = "gpio39", "gpio40";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
-> +
-> +			cci0_sleep: cci0-sleep-state {
-> +				pins = "gpio39", "gpio40";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-down;
-> +			};
-> +
-> +			cci1_default: cci1-default-state {
-> +				pins = "gpio41", "gpio42";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
-> +
-> +			cci1_sleep: cci1-sleep-state {
-> +				pins = "gpio41", "gpio42";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-down;
-> +			};
-> +
-> +			cci2_default: cci2-default-state {
-> +				pins = "gpio43", "gpio44";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
-> +
-> +			cci2_sleep: cci2-sleep-state {
-> +				pins = "gpio43", "gpio44";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-down;
-> +			};
-> +
->  			sdc2_off_state: sdc2-off-state {
->  				clk-pins {
->  					pins = "sdc2_clk";
-> 
+
+I was planning to get rid of this here, but I was not sure if AMD need 
+this. I see now that Sanket has confirmed they don't use this and so 
+will drop it from here.
+
+Jon
+
+-- 
+nvpublic
