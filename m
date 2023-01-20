@@ -2,101 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C7A674ED9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 09:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6106A674EE1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 09:04:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbjATICt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 03:02:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33780 "EHLO
+        id S230218AbjATIEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 03:04:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjATICr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 03:02:47 -0500
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C86A140D6;
-        Fri, 20 Jan 2023 00:02:44 -0800 (PST)
+        with ESMTP id S229924AbjATIET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 03:04:19 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A2A351C49
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 00:04:17 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id d2so4073190wrp.8
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 00:04:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1674201765;
-  x=1705737765;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=ZasFDb7nYvB8EN2NFjes7tHLvuWokK8uCN1JO+3qhDQ=;
-  b=iqNv+OApEn3+iQMc3EAR6qdFrEooUCc/4ozsGNUkstoARhSKiOww9kbV
-   BZ7DTryP2zS/3artu1EwqIymoJgo1Ig+NhgrsCwvY9DuiJlSYVMD91ZyD
-   q6sP8iABhF/C5f4g2f5t9U1HWRXrQxvc+hM/fZo8kikGcronWutXvaBPy
-   KwA1aqTKFTrKngxXBUfiofT2JNeDkiDPdhyJsdoINqnElY898UBmaOkW7
-   YQD3JTyXHfp1bE2rTRN4a38yrfaQpFIxWeBXArn+AhvAm3JZlzRE2Xnsh
-   XHZ2KzjFkHk2VfRy27FDd91DCOTwCzxcaMt31F3WAOhc7AFBT0JpgjiL2
-   Q==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-Date:   Fri, 20 Jan 2023 09:02:32 +0100
-Subject: [PATCH] um: virt-pci: implement pcibios_get_phb_of_node()
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V6LXkIx8BANILDQmoLHswehPH28NdMe4BBg+GYgmQJc=;
+        b=gd4l01rhpsa8H54xUMgiQ+zJGbH0SoJyTrI51hbsZysaJi8L40ZQIGPyyul0z7Ocg4
+         zpTey7QZIqkSZ7gD5mfJdzGH+L4xP/Jxx56pspJ6DDz/Nuu1VfZEFelRQ4fi1j2kbkDG
+         w6trpgj2whXf8arw9tAjTnPhr22VOyiu53zB5CjdInNNnTHdHsFAf3a3zOM2pa3gRF1e
+         JnyE9UIa+CjL/Wu7vll6UEQG/D9fdAAnH4sEvkUbrmMjEHAcpAzpaIhiQwydr0b83pxt
+         4aCsRknCcqzwyo8rJRE4R7ChWA6EjnQh9pcWq482df90gL/dh5ZcxXYq5aygoTOLg8md
+         5CUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V6LXkIx8BANILDQmoLHswehPH28NdMe4BBg+GYgmQJc=;
+        b=MGLjqEa+BZDKNjMHydXwFdn021LiGDvPW16DTsWEcxX7508NISWyZfdKAKs97JRR9E
+         EipERwXQEGK3kgkCsWIQwi+E+quf4oYXrPYBH38IFA+tPfXbmcORDLq1U3WgZXdcjwMe
+         QcXf+c6F2DFb6qj4zZxu37wpskcqg9sfmHov8ty3LASPvoZyo6uJxWC6WV5npZTJ0P3l
+         DS5bdRwvPmLnjkvIB4Iz+IeZhoxzPH+ygoobSFkA0/vhvNw4fMzKWNg/j7P63BUhGxOy
+         pGksTmf20nMgPVXy18oCSynAALYDjHFBUcyKmHjewq6NF/PuBJr8he1twoMCp0bubu84
+         BoXg==
+X-Gm-Message-State: AFqh2kqHMLizd0u0dwIM+X/Pjk0m7EONsqj32L2JA/IzUyvV2brStg3e
+        oaRBvGojfr1uEePzbPMVAwfm1QsLjwyI23sr
+X-Google-Smtp-Source: AMrXdXsMXAoaC0AHQ2YBbTngF/qLL6GGMIQ5qXh9iHZwnWh7GupAm7r9lc0MoGv9BvDY3wk+bH3dTg==
+X-Received: by 2002:adf:8b1c:0:b0:2bf:9478:a91d with SMTP id n28-20020adf8b1c000000b002bf9478a91dmr1393wra.39.1674201855853;
+        Fri, 20 Jan 2023 00:04:15 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id e11-20020a5d6d0b000000b002bdda9856b5sm1822404wrq.50.2023.01.20.00.04.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 00:04:15 -0800 (PST)
+Message-ID: <4be5a020-c9a3-cab9-921a-c4cdfe6ce979@linaro.org>
+Date:   Fri, 20 Jan 2023 09:04:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v3 4/7] arm64: dts: qcom: sc7280: Update VA/RX/TX macro
+ clock nodes
+Content-Language: en-US
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
+        robh+dt@kernel.org, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
+        konrad.dybcio@somainline.org, mka@chromium.org
+References: <1674131227-26456-1-git-send-email-quic_srivasam@quicinc.com>
+ <1674131227-26456-5-git-send-email-quic_srivasam@quicinc.com>
+ <17b895c0-3985-a012-9b02-94d5ebb11ff9@linaro.org>
+ <9ae3b1b0-e9d6-6370-667b-88af5d0efa2e@quicinc.com>
+ <7d874a5d-5a26-1ae1-58bc-dd819774190d@linaro.org>
+ <3299b57b-7260-0189-ba6f-824db391d81c@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3299b57b-7260-0189-ba6f-824db391d81c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20230120-uml-pci-of-v1-1-134fb66643d8@axis.com>
-X-B4-Tracking: v=1; b=H4sIAJhKymMC/x2NQQqEMAwAvyI5G2izetmvLB7ammpAa2lVFqR/t
- 3qcgWEuyJyEM3ybCxKfkmULFXTbgJtNmBhlrAyk6KM0KTzWBaMT3Dx60mNvTWep66EG1mRGm0xw
- 85Psa3xsTOzl/y5+Qyk35d7giHIAAAA=
-To:     Richard Weinberger <richard@nod.at>,
-        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
-        Johannes Berg <johannes@sipsolutions.net>
-CC:     <linux-um@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        <kernel@axis.com>
-X-Mailer: b4 0.11.2
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implement pcibios_get_phb_of_node() as x86 does in order to allow PCI
-busses to be associated with devicetree nodes.
+On 20/01/2023 07:35, Srinivasa Rao Mandadapu wrote:
+> 
+> On 1/20/2023 11:54 AM, Krzysztof Kozlowski wrote:
+> Thanks for your valuable suggestion Krzysztof!!!
+>> On 20/01/2023 05:47, Srinivasa Rao Mandadapu wrote:
+>>> On 1/19/2023 7:01 PM, Krzysztof Kozlowski wrote:
+>>> Thanks for your time Krzysztof!!!
+>>>> On 19/01/2023 13:27, Srinivasa Rao Mandadapu wrote:
+>>>>> Update VA, RX and TX macro and lpass_tlmm clock properties and
+>>>>> enable them.
+>>>> Everything is an update and this does not explain what exactly you are
+>>>> updating in the nodes and why.
+>>>>
+>>>>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>>>> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>>>>> ---
+>>>>>    .../qcom/sc7280-herobrine-audioreach-wcd9385.dtsi  | 59 ++++++++++++++++++++++
+>>>>>    1 file changed, 59 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>>>>> index 81e0f3a..674b01a 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>>>>> @@ -8,8 +8,67 @@
+>>>>>    
+>>>>>    #include <dt-bindings/sound/qcom,q6afe.h>
+>>>>>    
+>>>>> +/delete-node/ &lpass_rx_macro;
+>>>> Why?
+>>> Actually in SoC dtsi (sc7280.dtsi) power domains property used.
+>>>
+>>> Which is not required for ADSP based solution. As there is no way to delete
+>>>
+>>> individual property, deleting node and recreating it here.
+>>>
+>> You can delete property - delete-property. However why in AudioReach
+>> device comes without power domains? What does it mean "power domains
+>> property is not required"? DTS describes the hardware and the rx macro
+>> is powered, isn't it?
+> 
+> Actually in case ADSP bypass solution power domains are handled in HLOS 
+> clock driver.
+> 
+> Whereas in ADSP based solution they are handled in ADSP firmware, and 
+> from HLOS
+> 
+> voted as clocks.
+> 
+> Below is the reference commit.
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9e3d83c52844f955aa2975f78cee48bf9f72f5e1
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
- arch/um/drivers/virt-pci.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/arch/um/drivers/virt-pci.c b/arch/um/drivers/virt-pci.c
-index 3ac220dafec4..6884e1be38e4 100644
---- a/arch/um/drivers/virt-pci.c
-+++ b/arch/um/drivers/virt-pci.c
-@@ -533,6 +533,25 @@ static void um_pci_irq_vq_cb(struct virtqueue *vq)
- 	}
- }
- 
-+/* Copied from arch/x86/kernel/devicetree.c */
-+struct device_node *pcibios_get_phb_of_node(struct pci_bus *bus)
-+{
-+	struct device_node *np;
-+
-+	for_each_node_by_type(np, "pci") {
-+		const void *prop;
-+		unsigned int bus_min;
-+
-+		prop = of_get_property(np, "bus-range", NULL);
-+		if (!prop)
-+			continue;
-+		bus_min = be32_to_cpup(prop);
-+		if (bus->number == bus_min)
-+			return np;
-+	}
-+	return NULL;
-+}
-+
- static int um_pci_init_vqs(struct um_pci_device *dev)
- {
- 	struct virtqueue *vqs[2];
-
----
-base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
-change-id: 20230120-uml-pci-of-f21d5ba4b245
+I am sorry, but this is one big mess. Hardware is one. I understand that
+Linux drivers can be entirely different but here - and in the past with
+few clocks - the hardware description keeps changing depending on the
+wishes of developers. That's not how bindings and DTS work. This suggest
+that DTS is being pushed to satisfy driver needs, not to properly
+describe the hardware. I am sorry, but hardware does not change.
 
 Best regards,
--- 
-Vincent Whitchurch <vincent.whitchurch@axis.com>
+Krzysztof
+
