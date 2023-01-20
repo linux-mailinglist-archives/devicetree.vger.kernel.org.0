@@ -2,128 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6EC675A26
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 17:39:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 006A8675A2B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 17:40:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229874AbjATQjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 11:39:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49402 "EHLO
+        id S230157AbjATQj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 11:39:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbjATQjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 11:39:23 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90AD94699;
-        Fri, 20 Jan 2023 08:39:20 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 1AE58FF809;
-        Fri, 20 Jan 2023 16:39:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674232759;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=RTcqpcvjSuMhMocjoOJ/438aoJ+MVvQH8jGg8nUJVFs=;
-        b=UgsGEBFradR2vJ/uKQZyFKy1n+VNMKyvJZRXJqKyf3d7Njiz/zvui1+dBOQYGl5fM6mAN/
-        2CD9WCo5y8OYzN/4Yzn6kCtKs4oRdouV2/up6CLL0CD9up7v3OJDFcBId9T2ilf7jtsp4J
-        7/FfC9xL0AJbVJtZnQmYcStq16Si0gSijHaepuRGbP0eLiaJst+3ftZylEuEhmmQ/ykO8x
-        +C3Oyy8EDrdNvZS202w/pB7SlZbDroPwH978z7DJfrtiK7nZJ53A2XstOvnM0A0H9MpSH8
-        S5vEH2DVT2RgUC+mxc4PSCu9zCBW0xM8+lgeg/2lsf3v3kkVuxqLE6eSHhlH2Q==
-Date:   Fri, 20 Jan 2023 17:39:17 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Bruno Thomsen <bruno.thomsen@gmail.com>
-Cc:     Hugo Villeneuve <hugo@hugovil.com>, a.zummo@towertech.it,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: Re: [PATCH v3 09/14] rtc: pcf2127: set PWRMNG value for PCF2131
-Message-ID: <Y8rDtWEoepkd1D1u@mail.local>
-References: <20221215150214.1109074-1-hugo@hugovil.com>
- <20221215150214.1109074-10-hugo@hugovil.com>
- <CAH+2xPDpdDZzE7z-caaVV53fy+RQCcYweNyYFu133YOyao2e6A@mail.gmail.com>
+        with ESMTP id S229526AbjATQj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 11:39:57 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C3F4699
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 08:39:56 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id y1so853993wru.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 08:39:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pGYySup8p6S2QLbw0VKiZbUhVbWmQ+yt84mNVfAu/t0=;
+        b=UApWjzlXda6CKOsxYSAekXBHCiPYv6pVkiWHbI7PK6NXlDBf2dZaBDBu3pcMBX4Dvp
+         6pVJCoYaf28tSrmY+cQXTcE5NCML/7/aNdhPsd9f1zZGxwjZ8KtIc0zafg1CDt+MmL1t
+         ht+1uJ+qps8er08SQIPj8jCpqo9gs3doYVucXRacX8doWIlUzIZI6fYKJoTuT8NrG42t
+         MEw5W4JoUE4dXTKy6NU3b03SLyKAPuoCmZGqaBryF9fm76CMUuyzmAcMzhe2Gc9aBSvv
+         rVqHAHr0IWrNPbn8V79yED7CryU1Vk3Sen0HSlqKLB5YcHIC9rN/57uXiyLuvli0/Rbt
+         Yz+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pGYySup8p6S2QLbw0VKiZbUhVbWmQ+yt84mNVfAu/t0=;
+        b=XlTExstj45YGq0S45E+NXSVHOt/FO8YskP5AyvHY9Le41hxsUpzCeBvVkkQMC26IkE
+         GM+60NqGXqzvyoRV62EsbUbDTkurJTfdvQFwO6BwsBaHmHtwBByisiq/KWOBqHevn56x
+         HAQwKEb1HDy6UIGfMux/vkMP5UgUBdgWNYI4QzpBX7KyFZyXyVJRjjECGX6w1gJhoEd+
+         CWQnVdLQQcV20F4hDNDxOJhSdJ/xHKce2OiEGYNJu9PEaZBLgn9ldc91Gn0VIIAaxQSO
+         Zzn5UlCqhRMDeXqiSyE1AwA5G0oeZutfsaS6UsTQvGBDClkSQCwujzMkOFlhIsb5Ml/Z
+         EdEA==
+X-Gm-Message-State: AFqh2kqZGau7Fo2YTMjEsMlkxP8t04sMpNF5jynH79UORWzlkfZZvHrL
+        jz+yqJ0ZZopPoQA8kkRCIT7TzA==
+X-Google-Smtp-Source: AMrXdXtZ9DWblZSaKSzMSMqI/0YMAXlKAx5MWIAT7Z2mmChtlRMs75VNjLqzEiOVvNoaJZ95nuiIUg==
+X-Received: by 2002:a05:6000:98d:b0:25f:8ead:96cc with SMTP id by13-20020a056000098d00b0025f8ead96ccmr14507795wrb.70.1674232794812;
+        Fri, 20 Jan 2023 08:39:54 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id z12-20020adfd0cc000000b002bdff778d87sm13385996wrh.34.2023.01.20.08.39.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 08:39:54 -0800 (PST)
+Message-ID: <0bb76233-062c-a1c5-da88-4f04feccd5b2@linaro.org>
+Date:   Fri, 20 Jan 2023 17:39:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAH+2xPDpdDZzE7z-caaVV53fy+RQCcYweNyYFu133YOyao2e6A@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH] dt-bindings: leds: Document Bluetooth and WLAN triggers
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <a85c256af01f64389a078c2b37c3b72a27d97536.1668005062.git.geert+renesas@glider.be>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a85c256af01f64389a078c2b37c3b72a27d97536.1668005062.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-On 07/01/2023 19:36:06+0100, Bruno Thomsen wrote:
-> Den tor. 15. dec. 2022 kl. 16.19 skrev Hugo Villeneuve <hugo@hugovil.com>:
-> >
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >
-> > Default PWRMNG[2:0] bits are set to 000b for PCF2127/29, but to
-> > 111b for PCF2131.
-> >
-> > Set these bits to 000b to select same mode as PCF2127/29.
-> >
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On 09/11/2022 15:46, Geert Uytterhoeven wrote:
+> Add the missing trigger patterns for Bluetooth and WLAN activity, which
+> are already in active use.
 > 
-> Reviewed-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+> While at it, move the mmc pattern comment where it belongs, and restore
+> alphabetical sort order.
 > 
-> I think it's a good idea[1] but there have been concerns about
-> setting default values in the past[2]. In case somebody needs
-> a different behaviour they should add a device tree property.
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: bt_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> 	'hci0-power' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> 	'hci0-power' does not match '^mmc[0-9]+$'
+> 	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: wlan_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> 	'phy0tx' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> 	'phy0tx' does not match '^mmc[0-9]+$'
+> 	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+
+This patch got lost... Rob, Lee or Pavel, can you pick it up?
+
+It's with Rob's approval:
+https://lore.kernel.org/all/166861772609.231295.14812410099261417331.robh@kernel.org/
+
+> ---
+>  Documentation/devicetree/bindings/leds/common.yaml | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> [1] https://lore.kernel.org/linux-rtc/20190910143945.9364-1-bruno.thomsen@gmail.com/
-> [2] https://lore.kernel.org/linux-rtc/20191211163354.GC1463890@piout.net/
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> index f5c57a580078ea23..d34bb58c00371402 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -98,9 +98,13 @@ properties:
+>              # LED alters the brightness for the specified duration with one software
+>              # timer (requires "led-pattern" property)
+>            - pattern
+> -        # LED is triggered by SD/MMC activity
+> -      - pattern: "^mmc[0-9]+$"
+>        - pattern: "^cpu[0-9]*$"
+> +      - pattern: "^hci[0-9]+-power$"
+> +        # LED is triggered by Bluetooth activity
+> +      - pattern: "^mmc[0-9]+$"
+> +        # LED is triggered by SD/MMC activity
+> +      - pattern: "^phy[0-9]+tx$"
+> +        # LED is triggered by WLAN activity
+>  
+>    led-pattern:
+>      description: |
 
-I confirm this is still my point of view and I won't take this patch as
-this may break existing users.
+Best regards,
+Krzysztof
 
-> 
-> > ---
-> >  drivers/rtc/rtc-pcf2127.c | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> >
-> > diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-> > index 68af4d0438b8..241189ee4a05 100644
-> > --- a/drivers/rtc/rtc-pcf2127.c
-> > +++ b/drivers/rtc/rtc-pcf2127.c
-> > @@ -53,6 +53,7 @@
-> >  #define PCF2127_BIT_CTRL3_BLF                  BIT(2)
-> >  #define PCF2127_BIT_CTRL3_BF                   BIT(3)
-> >  #define PCF2127_BIT_CTRL3_BTSE                 BIT(4)
-> > +#define PCF2127_CTRL3_PWRMNG_MASK              GENMASK(7, 5)
-> >  /* Control register 4 */
-> >  #define PCF2131_REG_CTRL4              0x03
-> >  #define PCF2131_BIT_CTRL4_TSF4                 BIT(4)
-> > @@ -1129,6 +1130,20 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
-> >         regmap_clear_bits(pcf2127->regmap, PCF2127_REG_CTRL1,
-> >                                 PCF2127_BIT_CTRL1_POR_OVRD);
-> >
-> > +       /* Make sure PWRMNG[2:0] is set to 000b. This is the default for
-> > +        * PCF2127/29, but not for PCF2131 (default of 111b).
-> > +        *
-> > +        * PWRMNG[2:0]  = 000b:
-> > +        *   battery switch-over function is enabled in standard mode;
-> > +        *   battery low detection function is enabled
-> > +        */
-> > +       ret = regmap_clear_bits(pcf2127->regmap, PCF2127_REG_CTRL3,
-> > +                               PCF2127_CTRL3_PWRMNG_MASK);
-> > +       if (ret < 0) {
-> > +               dev_err(dev, "PWRMNG config failed\n");
-> > +               return ret;
-> > +       }
-> > +
-> >         ret = regmap_read(pcf2127->regmap, pcf2127->cfg->reg_clkout, &val);
-> >         if (ret < 0)
-> >                 return ret;
-> > --
-> > 2.30.2
-> >
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
