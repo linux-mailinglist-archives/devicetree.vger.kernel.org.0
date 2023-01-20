@@ -2,293 +2,328 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86DE267583C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:13:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 503D967583E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:13:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjATPN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 10:13:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47112 "EHLO
+        id S231162AbjATPNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 10:13:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbjATPN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:13:27 -0500
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2033.outbound.protection.outlook.com [40.92.41.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5712D42
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:13:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j7Em6qxMtrcfTDbW0MMax6DJBsW9HmEJ8Cyy74DyFGezzm9df6XPKafZaHDNKfalF5Hz6oIEYF8SCR6OESufw9AjsWeXwaHS7YW5mRlI6GS/NB5M2f9v8BeyEnpQe2GkIEKHsVTum3S+/LpLlICX5jlyLX0VLDINOXazm4uvtDRkM19MGcBI0C4XiT5pFviymVqp9OJQBJVP+F4iDMajsdAxyu0AIzn4nTcqWjL9hM84hfxqKC24NBnugTXre61fdb9aTMSitzCwTCfzcqBxufkJ1BaS84jIEfEB2xxlcS9Ou/LFOpCjOBqT7eNdMEpO8IT8EbVkeJQHKRIkz24VSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T5jfMJIQ1c/FJr4Uaq22BkUMmn2Lt6icYyEyhnHQBoE=;
- b=hfvP081inmQRaFmGRYLyao2dvibeZbIivx5a1QO4KjNeu/9qN3nAlTDusIUa5epRxNUk/OHxKXnssF9b70wzktkoAUFSVgkmTWMibKvZGWJQG93j8F9VaLSnhwyF3rgCvjUmzGECTr1Xt8jyl4wM7OiTcehZsgos+jmhGLqEnwgfsCZu644oNrWI4eAwljYU/HEFMCCT8Ow7fyOE0PqdxNJYPIro3cX/adl4JtehQdTCFIC4Z5sLVSCc3Clx6FhyciyUSkOFm4tu769t0RSj5qY//VI3AtNHQo3iY3YJAxU/ltdYvJ/pJCOVtL4eH7T5TZdBwJUqpTuHpXExm0o3uQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T5jfMJIQ1c/FJr4Uaq22BkUMmn2Lt6icYyEyhnHQBoE=;
- b=MtUTkglyi2x+G0kr46I7XVV26aO0Ay2J57ZdhgRNrxTAsjM0y80nQF+wx8Q1uGFSqDOe/DL+ZESqZKLZt5a1get3sSMKtTWm91XSd83dRn4D123pJTf00J3TH/xKU0N9rzDVZ4zLMS3fF0fnfy45pnW1bSgtfShINcquo3frfAE3VfIG65z8npfntRo3sEZikNOlD2p1+mT4i7HbXLP/IBd7s3Vh0iH1AoZWWEhk4Ju6VctUYDLsncVpQurrOe4gfxvEp3tRB03ttgj1jFaqBP2dNZ+hZeNSWVecGw99pFXbThOukbu2/EF9VL5YjuWdrYDz8jYPt0/F8gy9M+ssPw==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by SA2PR06MB7513.namprd06.prod.outlook.com (2603:10b6:806:141::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.27; Fri, 20 Jan
- 2023 15:13:24 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::ff4f:2e64:cf70:cc68]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::ff4f:2e64:cf70:cc68%5]) with mapi id 15.20.5986.018; Fri, 20 Jan 2023
- 15:13:24 +0000
-Date:   Fri, 20 Jan 2023 09:13:20 -0600
-From:   Chris Morgan <macromorgan@hotmail.com>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-Cc:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-        thierry.reding@gmail.com, megous@megous.com, kernel@puri.sm
-Subject: Re: [PATCH 2/2] drm/panel: st7703: Add support for Anbernic
- RG353V-V2 panel
-Message-ID: <SN6PR06MB534266FFAD4BAF52A4253D51A5C59@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20230119230415.1283379-1-macroalpha82@gmail.com>
- <20230119230415.1283379-3-macroalpha82@gmail.com>
- <Y8pZqPH0rDSfxhVr@qwark.sigxcpu.org>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y8pZqPH0rDSfxhVr@qwark.sigxcpu.org>
-X-TMN:  [TB3EbAdXvzNsDqCgaec3kblNdWUYuo0S]
-X-ClientProxiedBy: SA1PR03CA0010.namprd03.prod.outlook.com
- (2603:10b6:806:2d3::26) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <Y8qvkN5lYSRSfCyt@wintermute.localhost.fail>
+        with ESMTP id S229972AbjATPNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:13:54 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718672D42;
+        Fri, 20 Jan 2023 07:13:53 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30KDpEqA022484;
+        Fri, 20 Jan 2023 15:13:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=DK9yGzxIUsJIV7QBqGFeeya+if5trtIrubu8K3Xyq80=;
+ b=JXEh7x1tfc87FLGuk/+2pYDoGtTr15LGJS4YwfFrAGT859i3PXcqNQyqvBtkavBSmdet
+ D5z/sF8YHZYgtLUwFGT2YnXSGm2xGU5n6dafKd+vZhJxmFTx2V5pDrNaTXAaRRn4E3QT
+ vsK7jYDvH60zBD/yYCsEEbXku9uSItRv+e3BjEJXfk8/xvCuvJXI+Qi3zHN2JzNxq/jS
+ +0QPtreETrmQ2V6XUJlAMThxd4iM+W0r+vT9igtHD8+CQ8RO0kOLs0GYj+QU+PsAyi34
+ xNEpGrDZg5vdDHfAUEmQ7tMV0uiCcFXR15SS0Sow+J8KxMCdMyPKi3KmlSLKWS6QJ1K8 jA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n75w3ju5v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 20 Jan 2023 15:13:42 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30KFDfoI016000
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 20 Jan 2023 15:13:41 GMT
+Received: from [10.216.48.43] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 20 Jan
+ 2023 07:13:34 -0800
+Message-ID: <84ad5269-dd48-32ef-1313-6241980834bc@quicinc.com>
+Date:   Fri, 20 Jan 2023 20:43:30 +0530
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SA2PR06MB7513:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5bcb4a79-6799-4f22-72fc-08dafaf8df74
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KS8Gtzn+Z6O5cRBhSyQQXHsQ7oJDaKfs/b0ZoeZceDKxOtC7UWDNLx6gAPvGIeDo0d2HpYdbrUhbFrVQ2nRqSAcx9P3lZc8OxYgp9OPUNEsmAfo5tiSgpOU3plpUTZDlDtCT2gdu3lV0cne0ynDwhRYavio11MsV2n+r/R8Kr0NpxgslipLbwws8YBnrOfA0ExNEGfeo+3ooiXXjVo4SOZnpKBBi5U/egkuBcu7VePA+Qy8Qa6d3XGiJ/Xq4lpH92ev9u5hyYZpYa8m2CRS1bC+e8a72z2TJJxsayHPPRfatp4aB+W0zR9M6Dtp/1RBBod1p0aZUKn6Fl22TWi9gxg/cWAzZCu/IFYLAZry7XfK48D0kmrfjYZc2m0eKU0Bu6UeCgI38Fc8vGMSv8P3wT+cNBQnlO+IYpCcS1Nt+q0xk02xmBnyt9aYDLRUU13JyOuMAk/Jk4gRVKK2CTjdKceoSFMnVJkyt09N/jcg4P17MtTkyAXpR3DCTt8L2OfMgUShfCVrfqrKXXUcXfFXgoEo3f7IuG9Ytx0mSh/GqUVrGKNgG+vrl+uNcS+2YudzyZSWmHxrTRaI1e4FjvXIngJYv54l1/GMqkjog+AOGBQvf4F818kW1fhr0XxTY+ZV3pd8ldvU0IW+6IJOHHOXIwA==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?hrSBP7sAjvZ7L7pZ01fZYK7INNBPHp51zSsGamSfDD3/47xfAtwFLp/psm?=
- =?iso-8859-1?Q?7v2cExXZ/Iv/urppckDRT0M/w1rbdgTLckVrV3tF/flEU2iIQpUwCAG+Tf?=
- =?iso-8859-1?Q?6+rbEGT33he1US1RDp5Pcn/rfpZpYLJy/0rHBIQx3mEk/seCci+UYVOX+0?=
- =?iso-8859-1?Q?fqk+Hkh4YofEdOsi3WgeHFTNq0PEAqwdp6r30nsJHUIKzLSdzYIKYyYDMc?=
- =?iso-8859-1?Q?djOyhptAnDfvmGRaG0aSWo88fdiJxV6tdMVG9DzxfqOzAuECtHVRrZf+sS?=
- =?iso-8859-1?Q?kBUklwrqxm2rRzCgFxo7WgeU5O/4NCJJS+l+b+gDixAzzbX+8Ws7x2C7Cj?=
- =?iso-8859-1?Q?dwSFAUOkNA1odRgDbbMgreCgQ3IK1cd2SCwxaniAoUuNwgnMuSf4DBdQky?=
- =?iso-8859-1?Q?NUVyxRnYHEu+PnCzfRzwEFjzhqbyqE0mdhu5m9dTRYieUPFdASsY+WjWDt?=
- =?iso-8859-1?Q?YTBJ7V9OCGaCkI0T1BA1Vb6YRrIZmNt1aJ+4fSIx8HBjD5oOZ7XKgijKnL?=
- =?iso-8859-1?Q?CzbigraFEqmZrZ4dELpsQ606LcssoR/zk75th5xvWErI/wtSwYjxkSQdNO?=
- =?iso-8859-1?Q?ew2zU/Cvmp8ErVEwJMuvLgBsrXAGfI3P6X2zK4YoVS6vteWxdMb8IyrRLf?=
- =?iso-8859-1?Q?WcqIudErNOu+hFbxBiWlXwaoXLNyUNC7Zg0eo7kcWeTUtYAkWZs6AdpLtL?=
- =?iso-8859-1?Q?rsdRgGngiDkKtsjc2XMvXWjFBmcBH2nLrW3jM+KRHufr1eY07gIVVRhrmV?=
- =?iso-8859-1?Q?FcHh6kknJgNHbo/mKfzu4rIRaucUaHtKpo56UzrtflQyTtJjN7wiaW1qdk?=
- =?iso-8859-1?Q?u/Ig29dhglV2MECkDp8tmVfsJJBs7JK7SeqcST3bX3og/EtIBY3SuO7eG2?=
- =?iso-8859-1?Q?k6bBE/qRbfCx4+nm6pRyt1qEjwwFs6rB5qBwDPPEupriY5mTCN8q+01EpY?=
- =?iso-8859-1?Q?h+PHRftr5OKBAhV9/HtWwrpR78EiFuU/03tq0+2Tp6PQduM77cuH9rBYP+?=
- =?iso-8859-1?Q?sfXDdRjxb/D0wV5KmFIRe8EuPXJf/yCX5Mp3bgzvYBwc8AFeVmmsFoW+uJ?=
- =?iso-8859-1?Q?sl/GrAJ+vnbNkf/TSDVI5Si8pnE3CzXfLBoruWg6dQAUiZNNfI3CVal9T7?=
- =?iso-8859-1?Q?bCov+KOX7qStnajVFf2SVafenUI2xcmfUUV1mmaRXyjhbsmnyCsbAIFeAm?=
- =?iso-8859-1?Q?A3ACvxgvsWweCJHYXHJxtfxXWJkTg/H2CyAEo1JdXMggfAE9jeC+w7ktOq?=
- =?iso-8859-1?Q?A3HdeHR3uth1RxY9voH8EAm4hrPKQQySGqThS1D75L0CLAzqJsfA4tK9L6?=
- =?iso-8859-1?Q?zzo/J23JBjmjoVYilnPParHPwQ=3D=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bcb4a79-6799-4f22-72fc-08dafaf8df74
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2023 15:13:24.5223
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR06MB7513
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [RFC v4 2/5] usb: dwc3: core: Refactor PHY logic to support
+ Multiport Controller
+Content-Language: en-US
+To:     Andrew Halaney <ahalaney@redhat.com>
+CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_wcheng@quicinc.com>,
+        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>,
+        <quic_shazhuss@quicinc.com>
+References: <20230115114146.12628-1-quic_kriskura@quicinc.com>
+ <20230115114146.12628-3-quic_kriskura@quicinc.com>
+ <20230119220942.ja5gbo3t3fl63gpy@halaney-x13s>
+ <8f32c2e5-2743-1017-6a33-4849021c5287@quicinc.com>
+ <20230120143717.ikbcb6x7wl4yy5d7@halaney-x13s>
+From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <20230120143717.ikbcb6x7wl4yy5d7@halaney-x13s>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: o8g9lzWgeeO-zs8vOBQdAKYsjxXGL6E3
+X-Proofpoint-GUID: o8g9lzWgeeO-zs8vOBQdAKYsjxXGL6E3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-20_09,2023-01-20_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015 mlxscore=0
+ spamscore=0 priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301200144
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 20, 2023 at 10:06:48AM +0100, Guido Günther wrote:
-> Hi,
-> On Thu, Jan 19, 2023 at 05:04:15PM -0600, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > The Anbernic RG353V-V2 is a 5 inch panel used in a new revision of the
-> > Anbernic RG353V handheld gaming device. Add support for it.
-> > 
-> > Unfortunately it appears this controller is not able to support 120hz
-> > or 100hz mode like the first revision panel.
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  drivers/gpu/drm/panel/panel-sitronix-st7703.c | 102 +++++++++++++++++-
-> >  1 file changed, 99 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7703.c b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> > index 86a472b01360..2ed0cdfa86de 100644
-> > --- a/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> > +++ b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> > @@ -28,6 +28,7 @@
-> >  /* Manufacturer specific Commands send via DSI */
-> >  #define ST7703_CMD_ALL_PIXEL_OFF 0x22
-> >  #define ST7703_CMD_ALL_PIXEL_ON	 0x23
-> > +#define ST7703_CMD_SETAPID	 0xB1
-> >  #define ST7703_CMD_SETDISP	 0xB2
-> >  #define ST7703_CMD_SETRGBIF	 0xB3
-> >  #define ST7703_CMD_SETCYC	 0xB4
-> > @@ -41,12 +42,15 @@
-> >  #define ST7703_CMD_UNKNOWN_BF	 0xBF
-> >  #define ST7703_CMD_SETSCR	 0xC0
-> >  #define ST7703_CMD_SETPOWER	 0xC1
-> > +#define ST7703_CMD_SETECO	 0xC6
-> > +#define ST7703_CMD_SETIO	 0xC7
-> > +#define ST7703_CMD_SETCABC	 0xC8
-> >  #define ST7703_CMD_SETPANEL	 0xCC
-> > -#define ST7703_CMD_UNKNOWN_C6	 0xC6
-> >  #define ST7703_CMD_SETGAMMA	 0xE0
-> >  #define ST7703_CMD_SETEQ	 0xE3
-> >  #define ST7703_CMD_SETGIP1	 0xE9
-> >  #define ST7703_CMD_SETGIP2	 0xEA
-> > +#define ST7703_CMD_UNKNOWN_EF	 0xEF
-> >  
-> >  struct st7703 {
-> >  	struct device *dev;
-> > @@ -266,8 +270,7 @@ static int xbd599_init_sequence(struct st7703 *ctx)
-> >  				 * ESD_DET_TIME_SEL = 0 frames
-> >  				 */);
-> >  
-> > -	/* Undocumented command. */
-> > -	dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_C6, 0x01, 0x00, 0xFF, 0xFF, 0x00);
-> > +	dsi_dcs_write_seq(dsi, ST7703_CMD_SETECO, 0x01, 0x00, 0xFF, 0xFF, 0x00);
-> 
-> Thanks for catching this! Would make sense to split that into a separate
-> commit. With that fixed
 
-I can, if you would prefer. I just thought it was trivial so I wrapped
-it up in a single commit. I had a newer revision of the ST7703
-datasheet on hand that had that command documented, but unfortunately
-not BF or a new command I added EF. If a new commit is preferred I'll
-resubmit early next week.
 
-Thank you.
+On 1/20/2023 8:07 PM, Andrew Halaney wrote:
+> On Fri, Jan 20, 2023 at 07:25:57AM +0530, Krishna Kurapati PSSNV wrote:
+>>
+>>
+>> On 1/20/2023 3:39 AM, Andrew Halaney wrote:
+>>> On Sun, Jan 15, 2023 at 05:11:43PM +0530, Krishna Kurapati wrote:
+>>>> Currently the DWC3 driver supports only single port controller
+>>>> which requires at most one HS and one SS PHY.
+>>>>
+>>>> But the DWC3 USB controller can be connected to multiple ports and
+>>>> each port can have their own PHYs. Each port of the multiport
+>>>> controller can either be HS+SS capable or HS only capable
+>>>> Proper quantification of them is required to modify GUSB2PHYCFG
+>>>> and GUSB3PIPECTL registers appropriately.
+>>>>
+>>>> Add support for detecting, obtaining and configuring phy's supported
+>>>> by a multiport controller and limit the max number of ports
+>>>> supported to 4.
+>>>>
+>>>> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
+>>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>>> ---
+>>>>    drivers/usb/dwc3/core.c | 304 +++++++++++++++++++++++++++++-----------
+>>>>    drivers/usb/dwc3/core.h |  15 +-
+>>>>    drivers/usb/dwc3/drd.c  |  14 +-
+>>>>    3 files changed, 244 insertions(+), 89 deletions(-)
+>>>>
+>>>> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+>>>> index 476b63618511..7e0a9a598dfd 100644
+>>>> --- a/drivers/usb/dwc3/core.c
+>>>> +++ b/drivers/usb/dwc3/core.c
+>>>
+>>> <snip>
+>>>
+>>>> @@ -1575,6 +1690,21 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+>>>>    	dwc->dis_split_quirk = device_property_read_bool(dev,
+>>>>    				"snps,dis-split-quirk");
+>>>> +
+>>>> +	/*
+>>>> +	 * If no mulitport properties are defined, default
+>>>> +	 * the port count to '1'.
+>>>> +	 */
+>>>> +	ret = device_property_read_u32(dev, "num-ports",
+>>>> +				&dwc->num_ports);
+>>>> +	if (ret)
+>>>> +		dwc->num_ports = 1;
+>>>> +
+>>>> +	ret = device_property_read_u32(dev, "num-ss-ports",
+>>>> +				&dwc->num_ss_ports);
+>>>> +	if (ret)
+>>>> +		dwc->num_ss_ports = 1;
+>>>
+>>> By using this DT property instead of using the number of each phy type you
+>>> find you can get into situations where you're writing DWC3_GUSB2PHYCFG, etc,
+>>> when there's no phy to go along with it.
+>>>
+>> Hi Andrew,
+>>
+>>   Thanks for the review. Yes, this decoupling is still there and its fine I
+>> believe.
+>>
+>>> I ran into this when testing on sa8540p-ride, which only uses one of the
+>>> ports on the multiport controller. I didn't enable the other phys (not
+>>> sure if that was smart or not) and overrode phy-names/phys, but did not
+>>> override num-ports/num-ss-ports, which resulted in that. Nothing bad
+>>> happened on a quick test.. but I thought I'd highlight that as another
+>>> downside of decoupling this value from the number of phys you grab.
+>>>
+>> If we do not override phy-names or num-ports/num-ss-ports info in DT, they
+>> are just defaulted to '1' and as per the current logic only port-1 registers
+>> must be configured. Isn't that the case happening ?
+>>
+> 
+> In my dts I'm inheriting from the sc8280xp.dtsi usb_2 phandle you've created!
+> So unless I override them I get this from your sc8280xp.dtsi:
+> 
+> +                       usb_2_dwc3: usb@a400000 {
+> +                               compatible = "snps,dwc3";
+> +                               reg = <0 0x0a400000 0 0xcd00>;
+> +                               interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> +                               iommus = <&apps_smmu 0x800 0x0>;
+> +                               num-ports = <4>;
+> +                               num-ss-ports = <2>;
+> +                               phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>,
+> +                                       <&usb_2_hsphy1>, <&usb_2_qmpphy1>,
+> +                                       <&usb_2_hsphy2>,
+> +                                       <&usb_2_hsphy3>;
+> +                               phy-names = "usb2-phy_port0", "usb3-phy_port0",
+> +                                               "usb2-phy_port1", "usb3-phy_port1",
+> +                                               "usb2-phy_port2",
+> +                                               "usb2-phy_port3";
+> +                       };
+> 
+> Since this board only uses one port of the multiport controller, I
+> redefined phys/phy-names to indicate that. I figured that was more
+> desireable than enabling unnecessary phys. Without overriding
+> num-ports/num-ss-ports all the for loops in this patch would act like
+> the values were 4 and 2 respectively, writing to DWC3_GUSB2PHYCFG
+> multiple times etc as well as look for the multiport phy-names and fail
+> to actually get any phys. Hope that makes sense!
+> 
+Hi Andrew,
 
+  My Bad. I missed the fact that it was based on sc8280xp.dtsi. In that 
+case it makes complete sense to override the num-ports and num-ss-ports 
+to "1" and the usb phy-names.
+>>> Here's a patch enabling sa8540p-ride, I'd love if you'd add it to the
+>>> series (probably needs clean up after review, and will definitely need
+>>> alteration after you update the dt-binding again). If not I'll continue
+>>> to test/review so please CC me!:
+>>>
+>>>
+>> Sure, I can add this patch (probably will add the other phy's too) during
+>> the final submission.
 > 
-> Reviewed-by: Guido Günther <agx@sigxcpu.org>
+> I don't have a great understanding of the mapping of the phys to
+> physical connections (as well as what registers like DWC3_GUSB2PHYCFG do),
+> so if it makes more sense to enable all the relevant SoC phys, write
+> those registers in the DWC3 IP, etc, and only use one of the actual
+> board outputs then feel free. I think this is a good example of "what if
+> a board designer only uses a single port of the multiport IP" imo.
+> Agreed. This could be a good example of multi port with only single port 
+working.
+
+>>
+>>>   From dcb27d07f079194ebd7efe1c9bec64da78beb290 Mon Sep 17 00:00:00 2001
+>>> From: Andrew Halaney <ahalaney@redhat.com>
+>>> Date: Thu, 19 Jan 2023 14:53:38 -0600
+>>> Subject: [PATCH] arm64: dts: qcom: sa8540p-ride: Enable usb_2
+>>> Content-type: text/plain
+>>>
+>>> There is now support for the multiport USB controller this uses
+>>> so enable it.
+>>>
+>>> The board only has a single port hooked up (despite it being wired up to
+>>> the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
+>>> which by default on boot is selected to mux properly. Grab the gpio
+>>> controlling that and ensure it stays in the right position so USB 2.0
+>>> continues to be routed from the external port to the SoC.
+>>>
+>>> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+>>> ---
+>>>    arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 24 +++++++++++++++++++++++
+>>>    1 file changed, 24 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+>>> index 97957f3baa64..56d4f43faa1e 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+>>> @@ -246,6 +246,21 @@ &usb_0_qmpphy {
+>>>    	status = "okay";
+>>>    };
+>>> +&usb_2 {
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&usb2_en_state>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb_2_dwc3 {
+>>> +	dr_mode = "host";
+>>> +	num-ports = <1>;
+>>> +	num-ss-ports = <1>;
+>>
+>> More over, if this is a multiport controller and you are using only port-1,
+>> it is as good as a single port controller I believe and the normal DT
+>> convention must work. Adding these properties as "1" is not required as the
+>> driver logic defaults them to "1" if they are not found.
 > 
->  -- Guido
+> See above comment about inheriting from sc8280xp.dtsi and needing to
+> override their values.
 > 
-> >  
-> >  	dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER,
-> >  			  0x74, /* VBTHS, VBTLS: VGH = 17V, VBL = -11V */
-> > @@ -355,6 +358,98 @@ static const struct st7703_panel_desc xbd599_desc = {
-> >  	.init_sequence = xbd599_init_sequence,
-> >  };
-> >  
-> > +static int rg353v2_init_sequence(struct st7703 *ctx)
-> > +{
-> > +	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
-> > +
-> > +	/*
-> > +	 * Init sequence was supplied by the panel vendor.
-> > +	 */
-> > +
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEXTC, 0xf1, 0x12, 0x83);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETAPID, 0x00, 0x00, 0x00,
-> > +			       0xda, 0x80);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETDISP, 0x00, 0x13, 0x70);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETRGBIF, 0x10, 0x10, 0x28,
-> > +			       0x28, 0x03, 0xff, 0x00, 0x00, 0x00, 0x00);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCYC, 0x80);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETBGP, 0x0a, 0x0a);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVCOM, 0x92, 0x92);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER_EXT, 0x25, 0x22,
-> > +			       0xf0, 0x63);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETMIPI, 0x33, 0x81, 0x05,
-> > +			       0xf9, 0x0e, 0x0e, 0x20, 0x00, 0x00, 0x00, 0x00,
-> > +			       0x00, 0x00, 0x00, 0x44, 0x25, 0x00, 0x90, 0x0a,
-> > +			       0x00, 0x00, 0x01, 0x4f, 0x01, 0x00, 0x00, 0x37);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVDC, 0x47);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_BF, 0x02, 0x11, 0x00);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETSCR, 0x73, 0x73, 0x50, 0x50,
-> > +			       0x00, 0x00, 0x12, 0x50, 0x00);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER, 0x53, 0xc0, 0x32,
-> > +			       0x32, 0x77, 0xe1, 0xdd, 0xdd, 0x77, 0x77, 0x33,
-> > +			       0x33);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETECO, 0x82, 0x00, 0xbf, 0xff,
-> > +			       0x00, 0xff);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETIO, 0xb8, 0x00, 0x0a, 0x00,
-> > +			       0x00, 0x00);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCABC, 0x10, 0x40, 0x1e,
-> > +			       0x02);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPANEL, 0x0b);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGAMMA, 0x00, 0x07, 0x0d,
-> > +			       0x37, 0x35, 0x3f, 0x41, 0x44, 0x06, 0x0c, 0x0d,
-> > +			       0x0f, 0x11, 0x10, 0x12, 0x14, 0x1a, 0x00, 0x07,
-> > +			       0x0d, 0x37, 0x35, 0x3f, 0x41, 0x44, 0x06, 0x0c,
-> > +			       0x0d, 0x0f, 0x11, 0x10, 0x12, 0x14, 0x1a);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEQ, 0x07, 0x07, 0x0b, 0x0b,
-> > +			       0x0b, 0x0b, 0x00, 0x00, 0x00, 0x00, 0xff, 0x00,
-> > +			       0xc0, 0x10);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP1, 0xc8, 0x10, 0x02, 0x00,
-> > +			       0x00, 0xb0, 0xb1, 0x11, 0x31, 0x23, 0x28, 0x80,
-> > +			       0xb0, 0xb1, 0x27, 0x08, 0x00, 0x04, 0x02, 0x00,
-> > +			       0x00, 0x00, 0x00, 0x04, 0x02, 0x00, 0x00, 0x00,
-> > +			       0x88, 0x88, 0xba, 0x60, 0x24, 0x08, 0x88, 0x88,
-> > +			       0x88, 0x88, 0x88, 0x88, 0x88, 0xba, 0x71, 0x35,
-> > +			       0x18, 0x88, 0x88, 0x88, 0x88, 0x88, 0x00, 0x00,
-> > +			       0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > +			       0x00, 0x00, 0x00);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP2, 0x97, 0x0a, 0x82, 0x02,
-> > +			       0x03, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > +			       0x81, 0x88, 0xba, 0x17, 0x53, 0x88, 0x88, 0x88,
-> > +			       0x88, 0x88, 0x88, 0x80, 0x88, 0xba, 0x06, 0x42,
-> > +			       0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x23, 0x00,
-> > +			       0x00, 0x02, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > +			       0x00);
-> > +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_EF, 0xff, 0xff, 0x01);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct drm_display_mode rg353v2_mode = {
-> > +	.hdisplay	= 640,
-> > +	.hsync_start	= 640 + 40,
-> > +	.hsync_end	= 640 + 40 + 2,
-> > +	.htotal		= 640 + 40 + 2 + 80,
-> > +	.vdisplay	= 480,
-> > +	.vsync_start	= 480 + 18,
-> > +	.vsync_end	= 480 + 18 + 2,
-> > +	.vtotal		= 480 + 18 + 2 + 28,
-> > +	.clock		= 24150,
-> > +	.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> > +	.width_mm	= 70,
-> > +	.height_mm	= 57,
-> > +};
-> > +
-> > +static const struct st7703_panel_desc rg353v2_desc = {
-> > +	.mode = &rg353v2_mode,
-> > +	.lanes = 4,
-> > +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> > +		      MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_LPM,
-> > +	.format = MIPI_DSI_FMT_RGB888,
-> > +	.init_sequence = rg353v2_init_sequence,
-> > +};
-> > +
-> >  static int st7703_enable(struct drm_panel *panel)
-> >  {
-> >  	struct st7703 *ctx = panel_to_st7703(panel);
-> > @@ -615,6 +710,7 @@ static void st7703_remove(struct mipi_dsi_device *dsi)
-> >  }
-> >  
-> >  static const struct of_device_id st7703_of_match[] = {
-> > +	{ .compatible = "anbernic,rg353v-panel-v2", .data = &rg353v2_desc },
-> >  	{ .compatible = "rocktech,jh057n00900", .data = &jh057n00900_panel_desc },
-> >  	{ .compatible = "xingbangda,xbd599", .data = &xbd599_desc },
-> >  	{ /* sentinel */ }
-> > -- 
-> > 2.34.1
-> > 
+>>
+>> Just to add a point here (as I was not clear in DT Binding description, My
+>> bad), the num-ports and num-ss-ports must indicate the HS/SS Phys present on
+>> HW whether they are used in DT or not. Just to cover all cases which user
+>> can use [1].
+>>
+>> []1:
+>> https://lore.kernel.org/all/4eb26a54-148b-942f-01c6-64e66541de8b@quicinc.com/
+> 
+> Ok, if you're going with that approach of "must indicate the HS/SS Phys
+> present on HW whether they are used in the DT or not" (/me assumes DT
+> here means on the board and not an incorrect coding of the DT) then I
+> suppose I should not have overridden anything but phys/phy-names to
+> indicate that I'm only using the first port (and used the multiport
+> phy-names convention). It looks like in that link you also mention that
+> it is ok to write to DWC3_GUSB2PHYCFG and friends even if the phy isn't
+> defined, which was my concern and reasoning above for overriding
+> num-ports/num-ss-ports.
+> 
+> Thanks,
+> Andrew
+> 
+Actually, I was trying to mandate that rule to take care of cases where 
+the phy's for say port2 or port3 are missing for a quad port controller 
+in dtsi and we don't want to end up configuring wrong dwc3-phy regs.
+
+For just the first port, the changes you have mentioned must be 
+sufficient. (Furthermore, thanks for the review and testing it on 
+sa8295-ride and confirming nothing breaks while the first port is enabled)
+
+Regards,
+Krishna,
+>>
+>> Regards,
+>> Krishna,
+>>
+>>> +	phy-names = "usb2-phy", "usb3-phy";
+>>> +	phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
+>>> +};
+>>> +
+>>>    &usb_2_hsphy0 {
+>>>    	vdda-pll-supply = <&vreg_l5a>;
+>>>    	vdda18-supply = <&vreg_l7g>;
+>>> @@ -313,4 +328,13 @@ wake-pins {
+>>>    			bias-pull-up;
+>>>    		};
+>>>    	};
+>>> +
+>>> +	usb2_en_state: usb2-en-state {
+>>> +		/* TS3USB221A USB2.0 mux select */
+>>> +		pins = "gpio24";
+>>> +		function = "gpio";
+>>> +		drive-strength = <2>;
+>>> +		bias-disable;
+>>> +		output-low;
+>>> +	};
+>>>    };
+>>
+> 
