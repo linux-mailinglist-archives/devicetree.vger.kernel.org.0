@@ -2,371 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 564F567573F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 15:34:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE360675789
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 15:40:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230417AbjATOeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 09:34:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36962 "EHLO
+        id S230417AbjATOki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 09:40:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230281AbjATOeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 09:34:15 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A854C73EEB
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 06:34:09 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id v30so6979403edb.9
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 06:34:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oAfUlaeW+K6M/HgZ6GkLei9UBETfy9MtkdkJtfFv/fs=;
-        b=Q0xjYQLWWDmixBXxVmP91tRowG6sRpIamQ5gsT4bH0HwtQuO6xCUGdw+JRY2iqygxL
-         oeIUXlRXpUBDEfapXL7zKAUUs0ahADR6qtRr1eOcwphvQVn3ISASFr1X4rK4HjFBmoox
-         pyQ6iTYVuQLpcbUanP311hk+kkwQ3SMqFIImk=
+        with ESMTP id S230387AbjATOkg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 09:40:36 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848C66E0E1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 06:39:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1674225446;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=q9nhE1NTwmfnVWve8AVaEOn2Xi0Qdr1U6uub8XxZ9tg=;
+        b=MxfhmFbczZ1IQuEixdglmh/eYP4/TmwBg9hSuKpEgVpwarMF/24alpk7HC7ot+sWSthA25
+        mWtGJoMDps/6bbMyKUIjjrJd3rSHQ0XoCEuMT6/t2Sn6n0VwIq2Pe/1iNsud2OeccsoYPs
+        ZDjusuhJbjrTOOojQvzs93+DB9ElRqA=
+Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
+ [209.85.210.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-517-SXa0ALa2Pxy9fEPUNcVfqw-1; Fri, 20 Jan 2023 09:37:25 -0500
+X-MC-Unique: SXa0ALa2Pxy9fEPUNcVfqw-1
+Received: by mail-ot1-f69.google.com with SMTP id c10-20020a056830314a00b00684c39c324eso2476877ots.12
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 06:37:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oAfUlaeW+K6M/HgZ6GkLei9UBETfy9MtkdkJtfFv/fs=;
-        b=XP1J17euWFjabW/Ibr4ZGic8PqUghoaq4hzJjHL8GnAhaG+bYNSATSIOykhxHqvNZ6
-         ySZk35bQwsH1/PnYUaXe1wkssmUhXnldlSQphacf8jWxAa1BDKjDRNeAnNVC0RGT8YZY
-         dQZaUB2udPTKQ5Zrk4jGSCtQAfBj5rt1ttHtMEbI+nyz0daT+NN7eftuWor0HM0PRTAQ
-         XpGpP0/N56sUz/7BIpqO+z1aCr2HROxH+OsRHUSxHkE59XVYnqpbEXNoC7P69Dfx5w/4
-         B7TSK+VkWkfT4AYTWklKPeYseD8seNYmgaykVirF8o6fwBJPnpTIVNpK0VD1EFtUfot1
-         UQvQ==
-X-Gm-Message-State: AFqh2kr/i7leCD0YqEOQ026686UgLJNSgIJaVq9yBP/s6Yxj1eV9q+CP
-        0le3gia5/f+jyQpQW+PeEUtF6SVyEgAwYo3ZCFUTj6955A5BBSByMmY=
-X-Google-Smtp-Source: AMrXdXuT5+YEd5JJO9CLYW8bBGJQjOrAqffS6etjRgQ1Gn425vOxYFDJvKnfw4NgXCGPV+fXDRvQQZWoHSD6PkI0IJw=
-X-Received: by 2002:a05:6402:1053:b0:49b:67c3:d226 with SMTP id
- e19-20020a056402105300b0049b67c3d226mr2190297edu.122.1674225247484; Fri, 20
- Jan 2023 06:34:07 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q9nhE1NTwmfnVWve8AVaEOn2Xi0Qdr1U6uub8XxZ9tg=;
+        b=32Y9mp0tOPAedNTdPozHaE9iwu7xtCHZa1iBVSotUYh1TrU8nF/nIkPWE+6rDar3TX
+         v+l5xHss5L9+S6RGaGot+2psqBhpyyzCR9zsKq13bs0kByAQhQ6fg0Lx1ScbQz9c/be8
+         nJiXSiaJJgCkoivNHnkU2Sg5pmz/t1Z9NewGCb8wTaFEKt5Tf1ut//XjYmODHqXG1Tx5
+         kLhLfkPxAeQMSkivf2gpvZzCzrjKilLT0gtipt/z7zqGdq2nQ2P85MhaXEnC3vv7ubcf
+         wbqh2Qmwo3fVUr7jdcYXM9rq7xbpZVM71YRKFrgj20Qp1O7ptB65wsmF3tXQTjnGe0au
+         MmUg==
+X-Gm-Message-State: AFqh2kpGAT4kc4GuGgse4qGbxubVJs6+CCUhnE6ORMK3GHz0KRxgqMfT
+        8Ylhgm+6b5II2Kqs7yWUr56TXd/Q3C5IGaUQLCEyXyP2zi51fvI3q+aYDDXD75goSuDfiyKCBFZ
+        IN6rUzvEmtYAe7jqZPmtNlQ==
+X-Received: by 2002:a05:6870:670b:b0:15e:ee5d:8696 with SMTP id gb11-20020a056870670b00b0015eee5d8696mr8538118oab.54.1674225441688;
+        Fri, 20 Jan 2023 06:37:21 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXvmxHEs7IOvDmv8B1cEtpfFCbjcPfnzN4JydFfzpBKL4PxeXf4/AeFJ0ZIFP0QhuQtGCobjzQ==
+X-Received: by 2002:a05:6870:670b:b0:15e:ee5d:8696 with SMTP id gb11-20020a056870670b00b0015eee5d8696mr8538105oab.54.1674225441379;
+        Fri, 20 Jan 2023 06:37:21 -0800 (PST)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::21])
+        by smtp.gmail.com with ESMTPSA id t17-20020a056871055100b001447602267esm21583208oal.41.2023.01.20.06.37.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jan 2023 06:37:20 -0800 (PST)
+Date:   Fri, 20 Jan 2023 08:37:17 -0600
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        quic_shazhuss@quicinc.com
+Subject: Re: [RFC v4 2/5] usb: dwc3: core: Refactor PHY logic to support
+ Multiport Controller
+Message-ID: <20230120143717.ikbcb6x7wl4yy5d7@halaney-x13s>
+References: <20230115114146.12628-1-quic_kriskura@quicinc.com>
+ <20230115114146.12628-3-quic_kriskura@quicinc.com>
+ <20230119220942.ja5gbo3t3fl63gpy@halaney-x13s>
+ <8f32c2e5-2743-1017-6a33-4849021c5287@quicinc.com>
 MIME-Version: 1.0
-References: <20230113205518.206306-1-sjg@chromium.org> <20230113205518.206306-2-sjg@chromium.org>
- <CAL_JsqL6rOaFHcYTuP9YXhcWuhn7t0LKwZn0D0grLVMsu+PwLw@mail.gmail.com>
- <CAPnjgZ37fcrnxcT4XOb=irVomRN1NYLni0p7MRgesjm7hwg8hg@mail.gmail.com>
- <CAL_Jsq+xevOq1ZsgSge2MijXPXojAFq545JT4XuGgyPf7tKX5g@mail.gmail.com>
- <CAPnjgZ3Cztbm_irU-nLPCa73sZYEftT4p8rQ36tnXLS8XdSDVQ@mail.gmail.com>
- <CAL_Jsq+dLHppmmyNWEncZG3o0HkJ6WOcQPfqyw-yCR4SjMNrfA@mail.gmail.com>
- <CAPnjgZ3c7A+=n0ZS03T3kHAC1cVTUyeGQ2330O=q06SLf7zMVQ@mail.gmail.com>
- <CAPnjgZ3FG8p8sXcPozo-4SQ0+xCyAiyyYhxRam8cp9F2LaHoGg@mail.gmail.com> <CAL_Jsq+qK1gq-OmiEX+=a0CXh7seeo3Kdtc9YZyaOzzBQ_NiPQ@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+qK1gq-OmiEX+=a0CXh7seeo3Kdtc9YZyaOzzBQ_NiPQ@mail.gmail.com>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Fri, 20 Jan 2023 07:33:55 -0700
-Message-ID: <CAPnjgZ35qjhSKH7D2k6CT-Y8StuqqQW5mGLXYCv7dR0z38z5ew@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] schemas: Add schema for U-Boot driver model 'phase tags'
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8f32c2e5-2743-1017-6a33-4849021c5287@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, Jan 20, 2023 at 07:25:57AM +0530, Krishna Kurapati PSSNV wrote:
+> 
+> 
+> On 1/20/2023 3:39 AM, Andrew Halaney wrote:
+> > On Sun, Jan 15, 2023 at 05:11:43PM +0530, Krishna Kurapati wrote:
+> > > Currently the DWC3 driver supports only single port controller
+> > > which requires at most one HS and one SS PHY.
+> > > 
+> > > But the DWC3 USB controller can be connected to multiple ports and
+> > > each port can have their own PHYs. Each port of the multiport
+> > > controller can either be HS+SS capable or HS only capable
+> > > Proper quantification of them is required to modify GUSB2PHYCFG
+> > > and GUSB3PIPECTL registers appropriately.
+> > > 
+> > > Add support for detecting, obtaining and configuring phy's supported
+> > > by a multiport controller and limit the max number of ports
+> > > supported to 4.
+> > > 
+> > > Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
+> > > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> > > ---
+> > >   drivers/usb/dwc3/core.c | 304 +++++++++++++++++++++++++++++-----------
+> > >   drivers/usb/dwc3/core.h |  15 +-
+> > >   drivers/usb/dwc3/drd.c  |  14 +-
+> > >   3 files changed, 244 insertions(+), 89 deletions(-)
+> > > 
+> > > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> > > index 476b63618511..7e0a9a598dfd 100644
+> > > --- a/drivers/usb/dwc3/core.c
+> > > +++ b/drivers/usb/dwc3/core.c
+> > 
+> > <snip>
+> > 
+> > > @@ -1575,6 +1690,21 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+> > >   	dwc->dis_split_quirk = device_property_read_bool(dev,
+> > >   				"snps,dis-split-quirk");
+> > > +
+> > > +	/*
+> > > +	 * If no mulitport properties are defined, default
+> > > +	 * the port count to '1'.
+> > > +	 */
+> > > +	ret = device_property_read_u32(dev, "num-ports",
+> > > +				&dwc->num_ports);
+> > > +	if (ret)
+> > > +		dwc->num_ports = 1;
+> > > +
+> > > +	ret = device_property_read_u32(dev, "num-ss-ports",
+> > > +				&dwc->num_ss_ports);
+> > > +	if (ret)
+> > > +		dwc->num_ss_ports = 1;
+> > 
+> > By using this DT property instead of using the number of each phy type you
+> > find you can get into situations where you're writing DWC3_GUSB2PHYCFG, etc,
+> > when there's no phy to go along with it.
+> > 
+> Hi Andrew,
+> 
+>  Thanks for the review. Yes, this decoupling is still there and its fine I
+> believe.
+> 
+> > I ran into this when testing on sa8540p-ride, which only uses one of the
+> > ports on the multiport controller. I didn't enable the other phys (not
+> > sure if that was smart or not) and overrode phy-names/phys, but did not
+> > override num-ports/num-ss-ports, which resulted in that. Nothing bad
+> > happened on a quick test.. but I thought I'd highlight that as another
+> > downside of decoupling this value from the number of phys you grab.
+> > 
+> If we do not override phy-names or num-ports/num-ss-ports info in DT, they
+> are just defaulted to '1' and as per the current logic only port-1 registers
+> must be configured. Isn't that the case happening ?
+> 
 
-On Fri, 20 Jan 2023 at 07:24, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Jan 19, 2023 at 2:33 PM Simon Glass <sjg@chromium.org> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Thu, 19 Jan 2023 at 10:32, Simon Glass <sjg@chromium.org> wrote:
-> > >
-> > > Hi Rob,
-> > >
-> > > On Thu, 19 Jan 2023 at 10:21, Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Thu, Jan 19, 2023 at 10:18 AM Simon Glass <sjg@chromium.org> wrote:
-> > > > >
-> > > > > Hi Rob,
-> > > > >
-> > > > > On Thu, 19 Jan 2023 at 08:28, Rob Herring <robh@kernel.org> wrote:
-> > > > > >
-> > > > > > On Wed, Jan 18, 2023 at 4:05 PM Simon Glass <sjg@chromium.org> wrote:
-> > > > > > >
-> > > > > > > Hi Rob,
-> > > > > > >
-> > > > > > > On Wed, 18 Jan 2023 at 13:34, Rob Herring <robh@kernel.org> wrote:
-> > > > > > > >
-> > > > > > > > On Fri, Jan 13, 2023 at 2:58 PM Simon Glass <sjg@chromium.org> wrote:
-> > > > > > > > >
-> > > > > > > > > U-Boot has some particular challenges with device tree and devices:
-> > > > > > > > >
-> > > > > > > > > - U-Boot has multiple build phases, such as a Secondary Program Loader
-> > > > > > > > >   (SPL) phase which typically runs in a pre-SDRAM environment where code
-> > > > > > > > >   and data space are limited. In particular, there may not be enough
-> > > > > > > > >   space for the full device tree blob. U-Boot uses various automated
-> > > > > > > > >   techniques to reduce the size from perhaps 40KB to 3KB. It is not
-> > > > > > > > >   always possible to handle these tags entirely at build time, since
-> > > > > > > > >   U-Boot proper must have the full device tree, even though we do not
-> > > > > > > > >   want it to process all nodes until after relocation.
-> > > > > > > > > - Some U-Boot phases needs to run before the clocks are properly set up,
-> > > > > > > > >   where the CPU may be running very slowly. Therefore it is important to
-> > > > > > > > >   bind only those devices which are actually needed in that phase
-> > > > > > > > > - U-Boot uses lazy initialisation for its devices, with 'bind' and
-> > > > > > > > >   'probe' being separate steps. Even if a device is bound, it is not
-> > > > > > > > >   actually probed until it is used. This is necessary to keep the boot
-> > > > > > > > >   time reasonable, e.g. to under a second
-> > > > > > > > >
-> > > > > > > > > The phases of U-Boot in order are: TPL, VPL, SPL, U-Boot (first
-> > > > > > > > > pre-relocation, then post-relocation). ALl but the last two are optional.
-> > > > > > > > >
-> > > > > > > > > For the above reasons, U-Boot only includes the full device tree in the
-> > > > > > > > > final 'U-Boot proper' build. Even then, before relocation U-Boot only
-> > > > > > > > > processes nodes which are marked as being needed.
-> > > > > > > > >
-> > > > > > > > > For this to work, U-Boot's driver model[1] provides a way to mark device
-> > > > > > > > > tree nodes as applicable for a particular phase. This works by adding a
-> > > > > > > > > tag to the node, e.g.:
-> > > > > > > > >
-> > > > > > > > >    cru: clock-controller@ff760000 {
-> > > > > > > > >       bootph-all;
-> > > > > > > > >       compatible = "rockchip,rk3399-cru";
-> > > > > > > > >       reg = <0x0 0xff760000 0x0 0x1000>;
-> > > > > > > > >       rockchip,grf = <&grf>;
-> > > > > > > > >       #clock-cells = <1>;
-> > > > > > > > >       #reset-cells = <1>;
-> > > > > > > > >       ...
-> > > > > > > > >    };
-> > > > > > > > >
-> > > > > > > > > Here the "bootph-all" tag indicates that the node must be present in all
-> > > > > > > > > phases, since the clock driver is required.
-> > > > > > > > >
-> > > > > > > > > There has been discussion over the years about whether this could be done
-> > > > > > > > > in a property instead, e.g.
-> > > > > > > > >
-> > > > > > > > >    options {
-> > > > > > > > >       bootph-all = <&cru> <&gpio_a> ...;
-> > > > > > > > >       ...
-> > > > > > > > >    };
-> > > > > > > > >
-> > > > > > > > > Some problems with this:
-> > > > > > > > >
-> > > > > > > > > - we need to be able to merge several such tags from different .dtsi files
-> > > > > > > > >   since many boards have their own specific requirements
-> > > > > > > > > - it is hard to find and cross-reference the affected nodes
-> > > > > > > > > - it is more error-prone
-> > > > > > > > > - it requires significant tool rework in U-Boot, including fdtgrep and
-> > > > > > > > >   the build system
-> > > > > > > > > - is harder (slower, more code) to process since it involves scanning
-> > > > > > > > >   another node/property to find out what to do with a particular node
-> > > > > > > > > - we don't want to add phandle arguments to the above since we are
-> > > > > > > > >   referring, e.g., to the clock device as a whole, not a paricular clock
-> > > > > > > > > - the of-platdata feature[2], which converts device tree to C for even
-> > > > > > > > >   more constrained environments, would need to become aware of the
-> > > > > > > > >   /options node
-> > > > > > > > >
-> > > > > > > > > There is also the question about whether this needs to be U-Boot-specific,
-> > > > > > > > > or whether the tags could be generic. From what I can tell, U-Boot is the
-> > > > > > > > > only bootloader which seriously attempts to use a runtime device tree in
-> > > > > > > > > all cases. For this version, an attempt is made to name the phases in a
-> > > > > > > > > generic manner.
-> > > > > > > > >
-> > > > > > > > > It should also be noted that the approach provided here has stood the test
-> > > > > > > > > of time, used in U-Boot for 8 years so far.
-> > > > > > > > >
-> > > > > > > > > So add the schema for this. This will allow a major class of schema
-> > > > > > > > > exceptions to be dropped from the U-Boot source tree.
-> > > > > > > > >
-> > > > > > > > > This being sent to the mailing list since it might attract more review.
-> > > > > > > > > A PR will be sent when this has had some review. That is why the file
-> > > > > > > > > path is set up for https://github.com/devicetree-org/dt-schema rather
-> > > > > > > > > than the Linux kernel.
-> > > > > > > > >
-> > > > > > > > > [1] https://u-boot.readthedocs.io/en/latest/develop/driver-model/index.html
-> > > > > > > > > [2] https://u-boot.readthedocs.io/en/latest/develop/driver-model/of-plat.html
-> > > > > > > > >
-> > > > > > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > > > > > > > ---
-> > > > > > > > >
-> > > > > > > > > Changes in v6:
-> > > > > > > > > - Use 'bootph' instead of 'phase'
-> > > > > > > > > - Use | instead of , in patternProperties
-> > > > > > > > > - Drop mention of 40KB for device-tree size
-> > > > > > > > > - Rework description of handling of parent nodes
-> > > > > > > > > - Use separate properties for each boot phase
-> > > > > > > > > - Update validation example at the top of bootphases.dts
-> > > > > > > > >
-> > > > > > > > > Changes in v5:
-> > > > > > > > > - Fix instructions to run test
-> > > > > > > > > - Update binding title
-> > > > > > > > > - Use 'phase-' instead of 'phase,'
-> > > > > > > > >
-> > > > > > > > > Changes in v4:
-> > > > > > > > > - Drop some unnecessary context from the commit message
-> > > > > > > > > - Explain why parent nodes do not automatically inherit their children's
-> > > > > > > > >   tags
-> > > > > > > > > - Rename the tags to use a phase,xxx format, explaining each one
-> > > > > > > > >
-> > > > > > > > > Changes in v3:
-> > > > > > > > > - Fix an incorrect schema path in $id
-> > > > > > > > >
-> > > > > > > > > Changes in v2:
-> > > > > > > > > - Expand docs to include a description of each tag
-> > > > > > > > > - Fix some typos and unclear wording
-> > > > > > > > >
-> > > > > > > > >  dtschema/lib.py              |  5 +++
-> > > > > > > > >  dtschema/schemas/bootph.yaml | 86 ++++++++++++++++++++++++++++++++++++
-> > > > > > > > >  test/bootphases.dts          | 22 +++++++++
-> > > > > > > > >  3 files changed, 113 insertions(+)
-> > > > > > > > >  create mode 100644 dtschema/schemas/bootph.yaml
-> > > > > > > > >  create mode 100644 test/bootphases.dts
-> > > > > > > > >
-> > > > > > > > > diff --git a/dtschema/lib.py b/dtschema/lib.py
-> > > > > > > > > index c7b6cb9..95a4f10 100644
-> > > > > > > > > --- a/dtschema/lib.py
-> > > > > > > > > +++ b/dtschema/lib.py
-> > > > > > > > > @@ -493,6 +493,11 @@ def fixup_node_props(schema):
-> > > > > > > > >      schema['properties'].setdefault('status', True)
-> > > > > > > > >      schema['properties'].setdefault('secure-status', True)
-> > > > > > > > >      schema['properties'].setdefault('$nodename', True)
-> > > > > > > > > +    schema['properties'].setdefault('bootph-pre-sram', True)
-> > > > > > > > > +    schema['properties'].setdefault('bootph-verify', True)
-> > > > > > > > > +    schema['properties'].setdefault('bootph-pre-ram', True)
-> > > > > > > > > +    schema['properties'].setdefault('bootph-some-ram', True)
-> > > > > > > > > +    schema['properties'].setdefault('bootph-all', True)
-> > > > > > > > >
-> > > > > > > > >      keys = list()
-> > > > > > > > >      if 'properties' in schema:
-> > > > > > > > > diff --git a/dtschema/schemas/bootph.yaml b/dtschema/schemas/bootph.yaml
-> > > > > > > > > new file mode 100644
-> > > > > > > > > index 0000000..275c4da
-> > > > > > > > > --- /dev/null
-> > > > > > > > > +++ b/dtschema/schemas/bootph.yaml
-> > > > > > > > > @@ -0,0 +1,86 @@
-> > > > > > > > > +# SPDX-License-Identifier: BSD-2-Clause
-> > > > > > > > > +# Copyright 2022 Google LLC
-> > > > > > > > > +%YAML 1.2
-> > > > > > > > > +---
-> > > > > > > > > +$id: http://devicetree.org/schemas/bootph.yaml#
-> > > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > > > > +
-> > > > > > > > > +title: Boot-phase-specific device nodes
-> > > > > > > > > +
-> > > > > > > > > +maintainers:
-> > > > > > > > > +  - Simon Glass <sjg@chromium.org>
-> > > > > > > > > +
-> > > > > > > > > +description: |
-> > > > > > > > > +  Some programs run in memory-constrained environments yet want to make use
-> > > > > > > > > +  of device tree.
-> > > > > > > > > +
-> > > > > > > > > +  The full device tree is often quite large relative to the available memory
-> > > > > > > > > +  of a boot phase, so cannot fit into every phase of the boot process. Even
-> > > > > > > > > +  when memory is not a problem, some phases may wish to limit which device
-> > > > > > > > > +  nodes are present, so as to reduce execution time.
-> > > > > > > > > +
-> > > > > > > > > +  This binding supports adding tags to device tree nodes to allow them to be
-> > > > > > > > > +  marked according to the phases where they should be included.
-> > > > > > > > > +
-> > > > > > > > > +  Without any tags, nodes are included only in the final phase, where all
-> > > > > > > > > +  memory is available. Any untagged nodes are dropped from previous phases
-> > > > > > > > > +  and are ignored before the final phase is reached.
-> > > > > > > > > +
-> > > > > > > > > +  The build process produces a separate executable for each phase. It can
-> > > > > > > > > +  use fdtgrep to drop any nodes which are not needed for a particular build.
-> > > > > > > > > +  For example, the pre-sram build will drop any nodes which are not marked
-> > > > > > > > > +  with bootph-pre-sram or bootph-all tags.
-> > > > > > > > > +
-> > > > > > > > > +  Note that phase builds may drop the tags, since they have served their
-> > > > > > > > > +  purpose by that point. So when looking at phase-specific device tree files
-> > > > > > > > > +  you may not see these tags.
-> > > > > > > > > +
-> > > > > > > > > +  Multiple tags can be used in the same node.
-> > > > > > > > > +
-> > > > > > > > > +  Tags in a child node are implied to be present in all parent nodes as well.
-> > > > > > > > > +  This is important, since some missing properties (such as "ranges", or
-> > > > > > > > > +  "compatible") can cause the child node to be ignored or incorrectly
-> > > > > > > > > +  parsed.
-> > > > > > > > > +
-> > > > > > > > > +  That said, at present, fdtgrep applies tags only to the node they are
-> > > > > > > > > +  added to, not to any parents. This means U-Boot device tree files often
-> > > > > > > > > +  add the same tag to parent nodes, rather than relying on tooling to do
-> > > > > > > > > +  this. This is a limitation of fdtgrep and it will be addressed so that
-> > > > > > > > > +  'Linux DTs' do not need to do this.
-> > > > > > > > > +
-> > > > > > > > > +  The available tags are describes as properties below, in order of phase
-> > > > > > > >
-> > > > > > > > described
-> > > > > > > >
-> > > > > > > > > +  execution.
-> > > > > > > > > +
-> > > > > > > >
-> > > > > > > > I think your issue testing is you need a 'select: true' here. 'select'
-> > > > > > > > is how we test whether a schema should be applied to a node. The
-> > > > > > > > default is to use compatible or $nodename for matching. You have
-> > > > > > > > neither, so select is false.
-> > > > > > >
-> > > > > > > I feel like I have the opposite problem, in that the validation is not
-> > > > > > > actually happening, i.e. it isn't failing with something like
-> > > > > > > bootph-pre-sramxxx or anything else I put into the node:
-> > > > > >
-> > > > > > Right. Since you get the default 'select: false', your schema is never
-> > > > > > used for validation.
-> > > > > >
-> > > > > > >
-> > > > > > > I do see this:
-> > > > > > >
-> > > > > > > dtc -O dtb -o test.dtb test/bootphases.dts && tools/dt-validate -m test.dtb
-> > > > > > > test.dtb: /some-device: failed to match any schema with compatible:
-> > > > > > > ['vendor,soc1-ip']
-> > > > > >
-> > > > > > Adding '-s test/schemas' to dt-validate should fix that error (and
-> > > > > > probably add schema errors).
-> > > > >
-> > > > > dtc -O dtb -o test.dtb test/bootphases.dts && tools/dt-validate -s
-> > > > > test/schemas -m test.dtb
-> > > > > /usr/local/google/home/sjg/cosarm/dt-schema/test/schemas/bad-example.yaml:
-> > > > > ignoring, error in schema: title
-> > > > > /usr/local/google/home/sjg/cosarm/dt-schema/test.dtb: some-device:
-> > > > > 'bootph-pre-sram' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > > > > From schema: /usr/local/google/home/sjg/cosarm/dt-schema/test/schemas/good-example.yaml
-> > > >
-> > > > I pulled your 'dm' branch, ran the above command and only got the
-> > > > first expected error.
-> > > >
-> > > > I added 2 expected failing cases and got:
-> > > > $ dtc -O dtb -o test.dtb test/bootphases.dts && tools/dt-validate -s
-> > > > test/schemas -m test.dtb
-> > > > /home/rob/proj/dt-schema/test/schemas/bad-example.yaml: ignoring,
-> > > > error in schema: title
-> > > > bootph-all: size (4) error for type flag
-> > > > /home/rob/proj/dt-schema/test.dtb: some-device: 'bootph-pre-sram-foo'
-> > > > does not match any of the regexes: 'pinctrl-[0-9]+'
-> > > >         From schema: /home/rob/proj/dt-schema/test/schemas/good-example.yaml
-> > > > /home/rob/proj/dt-schema/test.dtb: some-device: bootph-all: [[0]] is
-> > > > not of type 'boolean'
-> > > >         From schema: /home/rob/proj/dt-schema/dtschema/schemas/bootph.yaml
-> > > >
-> > > >
-> > > > The error message you see seems like the change in dtschema/lib.py is
-> > > > missing. Are you picking up a non-editable installed dtschema instead
-> > > > of the local one?
-> > >
-> > > Yes that was it...a previous installation so that it ignores the local one.
-> > >
-> > > >
-> > > > If you run 'dt-mk-schema test/schemas' and find 'good-example' in the
-> > > > output, you should see all the bootph entries added to the schema.
-> > >
-> > > Yes, all good, thank you. So we can go ahead?
-> > >
-> >
-> > I just wanted to check, is there anything else needed on the Linux
-> > side, or can people start submitting .dts files with this binding now?
->
-> I should make a release probably which I intended to soon anyways, but
-> that shouldn't hold up submitting dts files.
->
+In my dts I'm inheriting from the sc8280xp.dtsi usb_2 phandle you've created!
+So unless I override them I get this from your sc8280xp.dtsi:
 
-OK./ Thank for helping get this through. I have started things on the
-U-Boot side and see what else is needed to unify the DT files.
++                       usb_2_dwc3: usb@a400000 {
++                               compatible = "snps,dwc3";
++                               reg = <0 0x0a400000 0 0xcd00>;
++                               interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
++                               iommus = <&apps_smmu 0x800 0x0>;
++                               num-ports = <4>;
++                               num-ss-ports = <2>;
++                               phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>,
++                                       <&usb_2_hsphy1>, <&usb_2_qmpphy1>,
++                                       <&usb_2_hsphy2>,
++                                       <&usb_2_hsphy3>;
++                               phy-names = "usb2-phy_port0", "usb3-phy_port0",
++                                               "usb2-phy_port1", "usb3-phy_port1",
++                                               "usb2-phy_port2",
++                                               "usb2-phy_port3";
++                       };
 
-Regards,
-Simon
+Since this board only uses one port of the multiport controller, I
+redefined phys/phy-names to indicate that. I figured that was more
+desireable than enabling unnecessary phys. Without overriding
+num-ports/num-ss-ports all the for loops in this patch would act like
+the values were 4 and 2 respectively, writing to DWC3_GUSB2PHYCFG
+multiple times etc as well as look for the multiport phy-names and fail
+to actually get any phys. Hope that makes sense!
+
+> > Here's a patch enabling sa8540p-ride, I'd love if you'd add it to the
+> > series (probably needs clean up after review, and will definitely need
+> > alteration after you update the dt-binding again). If not I'll continue
+> > to test/review so please CC me!:
+> > 
+> > 
+> Sure, I can add this patch (probably will add the other phy's too) during
+> the final submission.
+
+I don't have a great understanding of the mapping of the phys to
+physical connections (as well as what registers like DWC3_GUSB2PHYCFG do),
+so if it makes more sense to enable all the relevant SoC phys, write
+those registers in the DWC3 IP, etc, and only use one of the actual
+board outputs then feel free. I think this is a good example of "what if
+a board designer only uses a single port of the multiport IP" imo.
+
+> 
+> >  From dcb27d07f079194ebd7efe1c9bec64da78beb290 Mon Sep 17 00:00:00 2001
+> > From: Andrew Halaney <ahalaney@redhat.com>
+> > Date: Thu, 19 Jan 2023 14:53:38 -0600
+> > Subject: [PATCH] arm64: dts: qcom: sa8540p-ride: Enable usb_2
+> > Content-type: text/plain
+> > 
+> > There is now support for the multiport USB controller this uses
+> > so enable it.
+> > 
+> > The board only has a single port hooked up (despite it being wired up to
+> > the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
+> > which by default on boot is selected to mux properly. Grab the gpio
+> > controlling that and ensure it stays in the right position so USB 2.0
+> > continues to be routed from the external port to the SoC.
+> > 
+> > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> > ---
+> >   arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 24 +++++++++++++++++++++++
+> >   1 file changed, 24 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> > index 97957f3baa64..56d4f43faa1e 100644
+> > --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> > @@ -246,6 +246,21 @@ &usb_0_qmpphy {
+> >   	status = "okay";
+> >   };
+> > +&usb_2 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&usb2_en_state>;
+> > +
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb_2_dwc3 {
+> > +	dr_mode = "host";
+> > +	num-ports = <1>;
+> > +	num-ss-ports = <1>;
+> 
+> More over, if this is a multiport controller and you are using only port-1,
+> it is as good as a single port controller I believe and the normal DT
+> convention must work. Adding these properties as "1" is not required as the
+> driver logic defaults them to "1" if they are not found.
+
+See above comment about inheriting from sc8280xp.dtsi and needing to
+override their values.
+
+> 
+> Just to add a point here (as I was not clear in DT Binding description, My
+> bad), the num-ports and num-ss-ports must indicate the HS/SS Phys present on
+> HW whether they are used in DT or not. Just to cover all cases which user
+> can use [1].
+> 
+> []1:
+> https://lore.kernel.org/all/4eb26a54-148b-942f-01c6-64e66541de8b@quicinc.com/
+
+Ok, if you're going with that approach of "must indicate the HS/SS Phys
+present on HW whether they are used in the DT or not" (/me assumes DT
+here means on the board and not an incorrect coding of the DT) then I
+suppose I should not have overridden anything but phys/phy-names to
+indicate that I'm only using the first port (and used the multiport
+phy-names convention). It looks like in that link you also mention that
+it is ok to write to DWC3_GUSB2PHYCFG and friends even if the phy isn't
+defined, which was my concern and reasoning above for overriding
+num-ports/num-ss-ports.
+
+Thanks,
+Andrew
+
+> 
+> Regards,
+> Krishna,
+> 
+> > +	phy-names = "usb2-phy", "usb3-phy";
+> > +	phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
+> > +};
+> > +
+> >   &usb_2_hsphy0 {
+> >   	vdda-pll-supply = <&vreg_l5a>;
+> >   	vdda18-supply = <&vreg_l7g>;
+> > @@ -313,4 +328,13 @@ wake-pins {
+> >   			bias-pull-up;
+> >   		};
+> >   	};
+> > +
+> > +	usb2_en_state: usb2-en-state {
+> > +		/* TS3USB221A USB2.0 mux select */
+> > +		pins = "gpio24";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+> > +		output-low;
+> > +	};
+> >   };
+> 
+
