@@ -2,159 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C081A675C22
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:53:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB133675C58
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 19:00:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbjATRxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:53:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45050 "EHLO
+        id S229591AbjATSAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 13:00:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230301AbjATRxT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:53:19 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58D44C16D;
-        Fri, 20 Jan 2023 09:52:56 -0800 (PST)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id 2C66C33795;
-        Fri, 20 Jan 2023 17:52:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1674237175; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=UNyEsjm7hTRHmPW+XmOpTTJAr6gba2jkZnI10liz/yE=;
-        b=GjbiRjgqTWyXCgMsFjtKYs9AvuDkHg49it+0qX0XS2aTMfPj7Mw2LGq4NMAoFYcaj9PVej
-        vMAyYMvPMBYBuZ3p8DCAt5IgRAcn/Lj3Sm6fk2rJ/G7ZgTQRF8kz1VRmIiI7Mso2WhAkiI
-        qH5MslyqTpbp47xkbnG2yy0C43RDIu8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1674237175;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=UNyEsjm7hTRHmPW+XmOpTTJAr6gba2jkZnI10liz/yE=;
-        b=JKFUMRfVDlOz7Gei5bw7WnRU5/xBTxCqxl9tiG+nANWfa+RRqPUrsxile+0ykUzlS10JwM
-        oHseEXEeJdaFmKAQ==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229516AbjATSAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 13:00:09 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC528BFF77;
+        Fri, 20 Jan 2023 09:59:39 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id F157F2C141;
-        Fri, 20 Jan 2023 17:52:54 +0000 (UTC)
-Date:   Fri, 20 Jan 2023 18:52:53 +0100
-From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "Erhard F." <erhard_f@mailbox.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>, linuxppc-dev@lists.ozlabs.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2] of: Fix of platform build on powerpc due to bad of
- disaply code
-Message-ID: <20230120175253.GW16547@kitsune.suse.cz>
-References: <20230118215045.5551-1-msuchanek@suse.de>
- <20230119095323.4659-1-msuchanek@suse.de>
- <CAL_JsqKo+mdjA485KDb1ZauJcbOU-FR1G-Z2sYYNu7+Zn32wSA@mail.gmail.com>
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 559AA84474;
+        Fri, 20 Jan 2023 18:59:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1674237577;
+        bh=89npFUlJ05OuP5SszTV+TrhLpUB0UjWi2Plc7nZCAvQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fzfzID+UEPgqTzcP0eR+Gpse91HbEo03rbS3g2DsBm01PKtbitE958hQwNpFFyEv6
+         x0IQwHXWgZ4217D0HaTm8aTviX2YfI3AQ6kc7YzzsUlfWvDPnEAlmPu244X8ixm4IQ
+         v7pX9eb6nhmV0iSQZbwHu1sJPRT69nNMsp+YQFMGPH7sV7wKA0VK0Ag7Ku4sfQBSqK
+         OQHYdsKVjyxK3T1FknKTPtmOiCumy3HblxKEf2NYKc9t5kemUC+R+x63890cgi1N8+
+         TTPdyGFq2WPAFuuNtdTQZptdYXPQQ/VUP6Y2JMbMqeaxJeQ9n9hFRRJ1M+lUVQChFW
+         qWWB8RgIAfhsQ==
+Message-ID: <670d04a5-f56a-95b5-4132-2df9919eaeaa@denx.de>
+Date:   Fri, 20 Jan 2023 18:59:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKo+mdjA485KDb1ZauJcbOU-FR1G-Z2sYYNu7+Zn32wSA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH V3 1/4] dt-bindings: arm: fsl: Add PDK2, PicoITX and DRC02
+ boards for the DHCOM i.MX6ULL SoM
+Content-Language: en-US
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        kernel@dh-electronics.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230120162915.12699-1-cniedermaier@dh-electronics.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230120162915.12699-1-cniedermaier@dh-electronics.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-On Fri, Jan 20, 2023 at 11:23:39AM -0600, Rob Herring wrote:
-> On Thu, Jan 19, 2023 at 3:53 AM Michal Suchanek <msuchanek@suse.de> wrote:
-> >
-> > The commit 2d681d6a23a1 ("of: Make of framebuffer devices unique")
-> > breaks build because of wrong argument to snprintf. That certainly
-> > avoids the runtime error but is not the intended outcome.
-> >
-> > Also use standard device name format of-display.N for all created
-> > devices.
-> >
-> > Fixes: 2d681d6a23a1 ("of: Make of framebuffer devices unique")
-> > Signed-off-by: Michal Suchanek <msuchanek@suse.de>
-> > ---
-> > v2: Update the device name format
-> > ---
-> >  drivers/of/platform.c | 12 ++++++++----
-> >  1 file changed, 8 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > index f2a5d679a324..8c1b1de22036 100644
-> > --- a/drivers/of/platform.c
-> > +++ b/drivers/of/platform.c
-> > @@ -525,7 +525,9 @@ static int __init of_platform_default_populate_init(void)
-> >         if (IS_ENABLED(CONFIG_PPC)) {
-> >                 struct device_node *boot_display = NULL;
-> >                 struct platform_device *dev;
-> > -               int display_number = 1;
-> > +               int display_number = 0;
-> > +               char buf[14];
-> > +               char *of_display_format = "of-display.%d";
+On 1/20/23 17:29, Christoph Niedermaier wrote:
+> Add DH electronics DHCOM PDK2, PicoITX and DRC02 boards
+> for the DHCOM i.MX6ULL SoM.
 > 
-> static const as suggested and can we just move on please...
-Only const, static could be dodgy
-
-> >                 int ret;
-> >
-> >                 /* Check if we have a MacOS display without a node spec */
-> > @@ -556,7 +558,10 @@ static int __init of_platform_default_populate_init(void)
-> >                         if (!of_get_property(node, "linux,opened", NULL) ||
-> >                             !of_get_property(node, "linux,boot-display", NULL))
-> >                                 continue;
-> > -                       dev = of_platform_device_create(node, "of-display", NULL);
-> > +                       ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Fabio Estevam <festevam@denx.de>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: kernel@dh-electronics.com
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: - Add Acked-by tag
+> V3: - No changes
+> ---
+>   Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
 > 
-> The boot display is always "of-display.0". Just use the fixed string
-> here. Then we can get rid of the whole debate around static const.
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 3ba354578e8f..5fa51e63975f 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -645,6 +645,16 @@ properties:
+>             - const: armadeus,imx6ull-opos6ul     # OPOS6UL (i.MX6ULL) SoM
+>             - const: fsl,imx6ull
+>   
+> +      - description: i.MX6ULL DHCOM SoM based Boards
+> +        items:
+> +          - enum:
+> +              - dh,imx6ull-dhcom-pdk2
+> +              - dh,imx6ull-dhcom-picoitx
+> +              - dh,imx6ull-dhcom-drc02
 
-I prefer to use the same format string when the names should be
-consistent. Also it would resurrect the starting from 1 debate.
-
-But if you really want to have two strings I do not care all that much.
-
-> 
-> > +                       if (ret >= sizeof(buf))
-> > +                               continue;
-> 
-> This only happens if display_number becomes too big. Why continue on?
-> The next iteration will fail too.
-
-Yes, there is no need to continue with the loop.
-
-Thanks
-
-Michal
-
-> 
-> > +                       dev = of_platform_device_create(node, buf, NULL);
-> >                         if (WARN_ON(!dev))
-> >                                 return -ENOMEM;
-> >                         boot_display = node;
-> > @@ -564,10 +569,9 @@ static int __init of_platform_default_populate_init(void)
-> >                 }
-> >
-> >                 for_each_node_by_type(node, "display") {
-> > -                       char *buf[14];
-> >                         if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
-> >                                 continue;
-> > -                       ret = snprintf(buf, "of-display-%d", display_number++);
-> > +                       ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
-> >                         if (ret >= sizeof(buf))
-> >                                 continue;
-> 
-> Here too in the original change.
-> 
-> >                         of_platform_device_create(node, buf, NULL);
-> > --
-> > 2.35.3
-> >
+Please keep the list sorted (drc02 should be at the top)
