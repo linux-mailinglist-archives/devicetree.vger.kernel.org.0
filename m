@@ -2,106 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43305674EA4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 08:48:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6674674EBB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 08:56:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230354AbjATHso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 02:48:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51754 "EHLO
+        id S229789AbjATH42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 02:56:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230225AbjATHsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 02:48:37 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 994CE85348
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:48:13 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id q10so4073585wrs.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:48:13 -0800 (PST)
+        with ESMTP id S229498AbjATH41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 02:56:27 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C2E360AD
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:56:25 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id b7so4080335wrt.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:56:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SUbYG6CNFZkAaSfmbsiOn5ZLfVicT6OQUe0wKNSaOFg=;
-        b=E/gsgiKDlovjPEr1wVqqhP64WUTBcW7LnrIaA4cGorpachmtdKSTBYWEnqah2dt/ro
-         1xumU7oIe5rQIZ6aGhYE5xSJwLTldpojPXW1rqA1+1h/HnlvGwt1yQMMJaWTfnLw+fGJ
-         /jhjZNOe4+iFJYnBW5/8uANdzqMhKWVjryvU9eCf4ZpwED4iiCqNoKE/i7ftjwXzlMUN
-         uQYg8rgLbc27HtpviXGt4mc51RFmQYU6aTIPJ1+GtcDafEg0fhIv9mkBvEfHRoRskB7d
-         0+jHp1P1kPTFwujMCz268zCKy1yN454PEPflBYCbr14i5q4hrSusYofS/dqyeGNzriFe
-         jOBQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KUADaIFSKnQf+0SoHIzKkUQFN+SsRrz208WuulVyoak=;
+        b=VzXc8gHt0v1Iy2HIVuJLp9hhp9Azx8FYGaD2i4vCsD9eIgUTDv/yok0aYcmPQtkEZu
+         S0ecNiUw7RO4DYS1xYuBM7GNSmue7XVeCLo3t/uqH1IwK/Nan/K3eBYI3UGe7gGd3Yhs
+         0nlEsio2m5AqBLNPOri23PxcwJyZDrsQx2XaL/K81Jf5Gt+nZlrNVv9d9isRJI6cdEFl
+         unYYMbJ5OLMSYHJ3km2I6sR/+t9Vk9kLn5FDtTPVlhV38uqG+i7gvQ0w1UUtTpbequll
+         EPd/IknSq18eDkDftrWv/TlPrrk9GkeI/62SRyHhW24F9dev97+NAYt2n7lg17obB4L8
+         /hnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SUbYG6CNFZkAaSfmbsiOn5ZLfVicT6OQUe0wKNSaOFg=;
-        b=KZj2Qxt/RUeL0PdkzbCmTVWacbEdHAnnYlkji2zVHJyEzEbRpbGh7ry6yAwWIJZ6zt
-         e704Egjvp01hodCH+JG2OwLriul+NDjIySQc2xAgP9WZuEjei7auhxIp885pfH9mqq4+
-         lyBGYGKEGVINwiygAPDianD+gYPNlfRMgpsqraS440UCq/S7UZzi6SXQpCPHMCk8vlKn
-         7UM3ZMLLGC70IZQB+bzBNQLmPze0iZCQYusIK4VsgqXODAGtTCKN/eDUK3kLM8niEITq
-         f8onYF79abEPNu+gFxTAey749rVbZHfBIlhRkDsLbpFLFgr0cdXzJElLKOa89sJjDPqJ
-         gY1A==
-X-Gm-Message-State: AFqh2kpsEZ5Hf5sCixNId0dF+0Mo/NOC6INONS2VLgqVlNUEbLsh/UuO
-        I+xsWelo8EAbw7DYYymVWsY2uQ==
-X-Google-Smtp-Source: AMrXdXuXFnAh8TD3IFzfCwiyzZGic0IxxbCUXc7p1siPzKJJVl9d52SoYbHlIXsU456hEn0aOzJiQw==
-X-Received: by 2002:a5d:58e8:0:b0:2be:b07:d411 with SMTP id f8-20020a5d58e8000000b002be0b07d411mr11456316wrd.3.1674200825135;
-        Thu, 19 Jan 2023 23:47:05 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f3-20020adfdb43000000b00236883f2f5csm35975719wrj.94.2023.01.19.23.47.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 23:47:04 -0800 (PST)
-Message-ID: <259d738b-5717-8fda-22f0-c61db4660e95@linaro.org>
-Date:   Fri, 20 Jan 2023 08:47:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 2/2] spi: spidev: add new mediatek support
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230118-mt8365-spi-support-v1-0-842a21e50494@baylibre.com>
- <20230118-mt8365-spi-support-v1-2-842a21e50494@baylibre.com>
- <60766c7b-abb2-3afb-aa16-0e1385b88a73@linaro.org>
- <CAFGrd9rtO0B2XWEEU6gtv39PndjdjLL6tbRWimWT3RvLu1GFrQ@mail.gmail.com>
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KUADaIFSKnQf+0SoHIzKkUQFN+SsRrz208WuulVyoak=;
+        b=psOdxSaHPBed4MPspbFyKCpQBqykbkCyoBDi6e1d8LcBA9eRjVOosnCztv0uTMspUH
+         obfNJ4R8iopZXD+wxNoneHzvZFCfRU0HcQNoP1rq/H9WfcAgrLm2eLmzh8j9gjI7CIUB
+         vm7nJuPwXYm/uQOsX4Y9EYXgTKqCB5lMK22M+qiLcutM87SGw62qxY0R7Vh5+HOCMOWa
+         VO+zFgfgMmTO3CSHxXxOOalpyG5u1wwxduzyzmkyycNqM5QEWGj8G1l9Gy12WBP+0LZu
+         pitioa72s/5zyXEF3lX1fT6xdBgplp8VRaOz+cFIC+vEZEWnXA0Ho1CWWaCKfYGS8Tuh
+         IQQg==
+X-Gm-Message-State: AFqh2kqrdlZid3sf7xwvmrGl55/9SmjpVS7okwBwKMzW3BKuRKfuGPJ3
+        tOpDJlsHbFlswJ7rzo5g2Te2bA==
+X-Google-Smtp-Source: AMrXdXuk0XpVWWB7iKPpaTnxrfqEpVje1+p9N+X/GMB3aJy0mMUZZDjU7nb0e92eT+NhovPhkY0ULQ==
+X-Received: by 2002:a5d:67c3:0:b0:242:8af9:b987 with SMTP id n3-20020a5d67c3000000b002428af9b987mr6985970wrw.13.1674201383929;
+        Thu, 19 Jan 2023 23:56:23 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id d5-20020adfa345000000b002be546f947asm975622wrb.61.2023.01.19.23.56.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jan 2023 23:56:23 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAFGrd9rtO0B2XWEEU6gtv39PndjdjLL6tbRWimWT3RvLu1GFrQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: vendor-prefixes: document lineartechnology
+Date:   Fri, 20 Jan 2023 08:56:17 +0100
+Message-Id: <20230120075618.153664-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 20:18, Alexandre Mergnat wrote:
-> Le jeu. 19 janv. 2023 à 17:49, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> a écrit :
->>
->> On 19/01/2023 17:28, Alexandre Mergnat wrote:
->>>       { .compatible = "micron,spi-authenta", .data = &spidev_of_check },
->>> +     { .compatible = "mediatek,genio", .data = &spidev_of_check },
->>
->> Please run scripts/checkpatch.pl and fix reported warnings.
-> 
-> Actually I did.
-> I saw: "WARNING: DT compatible string "mediatek,genio" appears
-> un-documented -- check ./Documentation/devicetree/bindings/"
-> But there are no bindings for spidev. I've made some grep on already
-> supported compatible devices like "micron,spi-authenta", but I didn't
-> find documentation to add "mediatek,genio".
+Document lineartechnology vendor prefix, already used in SPI dev.
 
-Another point - why is this after "micron"? Don't add entries to the end
-but in order.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 38edfa65fde8..bbf710b6e4c9 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -735,6 +735,8 @@ patternProperties:
+     description: Lichee Pi
+   "^linaro,.*":
+     description: Linaro Limited
++  "^lineartechnology,.*":
++    description: Linear Technology
+   "^linksprite,.*":
+     description: LinkSprite Technologies, Inc.
+   "^linksys,.*":
+-- 
+2.34.1
 
