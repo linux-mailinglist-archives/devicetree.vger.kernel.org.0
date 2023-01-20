@@ -2,179 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 603A3675CF1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 19:45:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D53BA675CFF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 19:48:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229518AbjATSp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 13:45:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49422 "EHLO
+        id S230123AbjATSsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 13:48:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229983AbjATSp1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 13:45:27 -0500
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3ADB6FD19
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 10:45:22 -0800 (PST)
-Received: from TimeMachine.lan (adsl-dyn97.91-127-229.t-com.sk [91.127.229.97])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 7338B3F424;
-        Fri, 20 Jan 2023 19:45:20 +0100 (CET)
-From:   Martin Botka <martin.botka@somainline.org>
-To:     martin.botka1@gmail.com
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Martin Botka <martin.botka@somainline.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v8 3/3] regulator: axp20x: Add support for AXP313a variant
-Date:   Fri, 20 Jan 2023 19:44:59 +0100
-Message-Id: <20230120184500.1899814-4-martin.botka@somainline.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230120184500.1899814-1-martin.botka@somainline.org>
-References: <20230120184500.1899814-1-martin.botka@somainline.org>
+        with ESMTP id S230152AbjATSsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 13:48:17 -0500
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73FA89754;
+        Fri, 20 Jan 2023 10:47:59 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 375F7E0004;
+        Fri, 20 Jan 2023 18:47:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1674240478;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=qYYcMi8M2SstQ9kQS8OvJk5vcsSwdKVjKYpbhTa3riA=;
+        b=TuKOMCa1+/AyB41Jnwlt/qvw9K1FxPNLSWr8Q4UxXFos7tOohVCi81FbYdQhkStarOaY5Y
+        Mn0Mh8BVQltI0xt157IKYThdI+B18IPkI8uBc+fdWdeZpv19h6LUwvzupzStE4wKNTeTC+
+        8zADLxwfcKY4ziezobvD9e4OvQlVgsdjXVnzD/evSo8H6a94gZPh1oUUavJIc7vNg5qM/K
+        knGrzsqQzdfH0Q/8H/D4bi2jJMHFLblU4VliooKmqkGCA7GjFAFJsbU4lEtmxf3xFO+3IE
+        uUEq78Yp+XzGTW0BMeYeIFX/sPyA0WnG+QMcvFAEG0oO70mNWUPX74TmTAj1SA==
+Date:   Fri, 20 Jan 2023 19:47:53 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: Re: [PATCH v3 02/14] rtc: pcf2127: adapt for time/date registers at
+ any offset
+Message-ID: <Y8rh2SByHp773UXu@mail.local>
+References: <20221215150214.1109074-1-hugo@hugovil.com>
+ <20221215150214.1109074-3-hugo@hugovil.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221215150214.1109074-3-hugo@hugovil.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AXP313a is your typical I2C controlled PMIC, although in a lighter
-fashion compared to the other X-Powers PMICs: it has only three DCDC
-rails, three LDOs, and no battery charging support.
+On 15/12/2022 10:02:03-0500, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> 
+> This will simplify the implementation of new variants into this driver.
+> 
+> Some variants (PCF2131) have a 100th seconds register. This register is
+> currently not supported in this driver.
+> 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> ---
+>  drivers/rtc/rtc-pcf2127.c | 68 ++++++++++++++++++++++-----------------
+>  1 file changed, 39 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
+> index b9a5d47a439f..fb0caacaabee 100644
+> --- a/drivers/rtc/rtc-pcf2127.c
+> +++ b/drivers/rtc/rtc-pcf2127.c
+> @@ -44,14 +44,17 @@
+>  #define PCF2127_BIT_CTRL3_BF			BIT(3)
+>  #define PCF2127_BIT_CTRL3_BTSE			BIT(4)
+>  /* Time and date registers */
+> -#define PCF2127_REG_SC			0x03
+> +#define PCF2127_REG_TIME_DATE_BASE	0x03
+> +/* Time and date registers offsets (starting from base register) */
+> +#define PCF2127_OFFSET_TD_SC		0
+> +#define PCF2127_OFFSET_TD_MN		1
+> +#define PCF2127_OFFSET_TD_HR		2
+> +#define PCF2127_OFFSET_TD_DM		3
+> +#define PCF2127_OFFSET_TD_DW		4
+> +#define PCF2127_OFFSET_TD_MO		5
+> +#define PCF2127_OFFSET_TD_YR		6
 
-The AXP313a datasheet does not describe a register to change the DCDC
-switching frequency, and talks of it being fixed at 3 MHz. The BSP
-driver hints at a register being able to change that, but we haven't
-verified that, so leave that one out. It can be added later, if needed
-and/or required.
+Same comment as for the alarms, I would simply remove the defines as
+they don't really carry any useful information.
 
-The third LDO, RTCLDO, is fixed, and cannot even be turned on or off,
-programmatically. On top of that, its voltage is customisable (either
-1.8V or 3.3V), which we cannot describe easily using the existing
-regulator wrapper functions. This should be fixed properly, using
-regulator-{min,max}-microvolt in the DT, but this requires more changes
-to the code. As some other PMICs (AXP2xx, AXP803) seem to paper over the
-same problem as well, we follow suit here and pretend it's a fixed 1.8V
-regulator. A proper fix can follow later. The BSP code seems to ignore
-this regulator altogether.
+> +/* Time and date registers bits */
+>  #define PCF2127_BIT_SC_OSF			BIT(7)
+> -#define PCF2127_REG_MN			0x04
+> -#define PCF2127_REG_HR			0x05
+> -#define PCF2127_REG_DM			0x06
+> -#define PCF2127_REG_DW			0x07
+> -#define PCF2127_REG_MO			0x08
+> -#define PCF2127_REG_YR			0x09
+>  /* Alarm registers */
+>  #define PCF2127_REG_ALARM_SC		0x0A
+>  #define PCF2127_REG_ALARM_MN		0x0B
+> @@ -106,6 +109,7 @@ struct pcf21xx_config {
+>  	int max_register;
+>  	unsigned int has_nvmem:1;
+>  	unsigned int has_bit_wd_ctl_cd0:1;
+> +	u8 regs_td_base; /* Time/data base registers. */
+>  };
+>  
+>  struct pcf2127 {
+> @@ -125,27 +129,31 @@ struct pcf2127 {
+>  static int pcf2127_rtc_read_time(struct device *dev, struct rtc_time *tm)
+>  {
+>  	struct pcf2127 *pcf2127 = dev_get_drvdata(dev);
+> -	unsigned char buf[10];
+> +	unsigned char buf[7];
+> +	unsigned int ctrl3;
+>  	int ret;
+>  
+>  	/*
+>  	 * Avoid reading CTRL2 register as it causes WD_VAL register
+>  	 * value to reset to 0 which means watchdog is stopped.
+>  	 */
+> -	ret = regmap_bulk_read(pcf2127->regmap, PCF2127_REG_CTRL3,
+> -			       (buf + PCF2127_REG_CTRL3),
+> -			       ARRAY_SIZE(buf) - PCF2127_REG_CTRL3);
+> -	if (ret) {
+> -		dev_err(dev, "%s: read error\n", __func__);
+> +	ret = regmap_read(pcf2127->regmap, PCF2127_REG_CTRL3, &ctrl3);
+> +	if (ret)
+>  		return ret;
+> -	}
+>  
+> -	if (buf[PCF2127_REG_CTRL3] & PCF2127_BIT_CTRL3_BLF)
+> +	if (ctrl3 & PCF2127_BIT_CTRL3_BLF)
+>  		dev_info(dev,
+>  			"low voltage detected, check/replace RTC battery.\n");
+>  
+> +	ret = regmap_bulk_read(pcf2127->regmap, pcf2127->cfg->regs_td_base,
+> +			       buf, sizeof(buf));
+> +	if (ret) {
+> +		dev_err(dev, "%s: read error\n", __func__);
+> +		return ret;
+> +	}
+> +
+>  	/* Clock integrity is not guaranteed when OSF flag is set. */
+> -	if (buf[PCF2127_REG_SC] & PCF2127_BIT_SC_OSF) {
+> +	if (buf[PCF2127_OFFSET_TD_SC] & PCF2127_BIT_SC_OSF) {
+>  		/*
+>  		 * no need clear the flag here,
+>  		 * it will be cleared once the new date is saved
+> @@ -158,18 +166,18 @@ static int pcf2127_rtc_read_time(struct device *dev, struct rtc_time *tm)
+>  	dev_dbg(dev,
+>  		"%s: raw data is cr3=%02x, sec=%02x, min=%02x, hr=%02x, "
+>  		"mday=%02x, wday=%02x, mon=%02x, year=%02x\n",
+> -		__func__, buf[PCF2127_REG_CTRL3], buf[PCF2127_REG_SC],
+> -		buf[PCF2127_REG_MN], buf[PCF2127_REG_HR],
+> -		buf[PCF2127_REG_DM], buf[PCF2127_REG_DW],
+> -		buf[PCF2127_REG_MO], buf[PCF2127_REG_YR]);
+> -
+> -	tm->tm_sec = bcd2bin(buf[PCF2127_REG_SC] & 0x7F);
+> -	tm->tm_min = bcd2bin(buf[PCF2127_REG_MN] & 0x7F);
+> -	tm->tm_hour = bcd2bin(buf[PCF2127_REG_HR] & 0x3F); /* rtc hr 0-23 */
+> -	tm->tm_mday = bcd2bin(buf[PCF2127_REG_DM] & 0x3F);
+> -	tm->tm_wday = buf[PCF2127_REG_DW] & 0x07;
+> -	tm->tm_mon = bcd2bin(buf[PCF2127_REG_MO] & 0x1F) - 1; /* rtc mn 1-12 */
+> -	tm->tm_year = bcd2bin(buf[PCF2127_REG_YR]);
+> +		__func__, ctrl3, buf[PCF2127_OFFSET_TD_SC],
+> +		buf[PCF2127_OFFSET_TD_MN], buf[PCF2127_OFFSET_TD_HR],
+> +		buf[PCF2127_OFFSET_TD_DM], buf[PCF2127_OFFSET_TD_DW],
+> +		buf[PCF2127_OFFSET_TD_MO], buf[PCF2127_OFFSET_TD_YR]);
+> +
+> +	tm->tm_sec = bcd2bin(buf[PCF2127_OFFSET_TD_SC] & 0x7F);
+> +	tm->tm_min = bcd2bin(buf[PCF2127_OFFSET_TD_MN] & 0x7F);
+> +	tm->tm_hour = bcd2bin(buf[PCF2127_OFFSET_TD_HR] & 0x3F); /* rtc hr 0-23 */
 
-Describe the AXP313A's voltage settings and switch registers, how the
-voltages are encoded, and connect this to the MFD device via its
-regulator ID.
+You can drop the comment
 
-Signed-off-by: Martin Botka <martin.botka@somainline.org>
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- drivers/regulator/axp20x-regulator.c | 60 ++++++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+> +	tm->tm_mday = bcd2bin(buf[PCF2127_OFFSET_TD_DM] & 0x3F);
+> +	tm->tm_wday = buf[PCF2127_OFFSET_TD_DW] & 0x07;
+> +	tm->tm_mon = bcd2bin(buf[PCF2127_OFFSET_TD_MO] & 0x1F) - 1; /* rtc mn 1-12 */
 
-diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
-index d260c442b788..3087bc98694f 100644
---- a/drivers/regulator/axp20x-regulator.c
-+++ b/drivers/regulator/axp20x-regulator.c
-@@ -134,6 +134,11 @@
- #define AXP22X_PWR_OUT_DLDO4_MASK	BIT_MASK(6)
- #define AXP22X_PWR_OUT_ALDO3_MASK	BIT_MASK(7)
- 
-+#define AXP313A_DCDC1_NUM_VOLTAGES	107
-+#define AXP313A_DCDC23_NUM_VOLTAGES	88
-+#define AXP313A_DCDC_V_OUT_MASK		GENMASK(6, 0)
-+#define AXP313A_LDO_V_OUT_MASK		GENMASK(4, 0)
-+
- #define AXP803_PWR_OUT_DCDC1_MASK	BIT_MASK(0)
- #define AXP803_PWR_OUT_DCDC2_MASK	BIT_MASK(1)
- #define AXP803_PWR_OUT_DCDC3_MASK	BIT_MASK(2)
-@@ -638,6 +643,48 @@ static const struct regulator_desc axp22x_drivevbus_regulator = {
- 	.ops		= &axp20x_ops_sw,
- };
- 
-+static const struct linear_range axp313a_dcdc1_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000,   0,  70,  10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 71,  87,  20000),
-+	REGULATOR_LINEAR_RANGE(1600000, 88, 106, 100000),
-+};
-+
-+static const struct linear_range axp313a_dcdc2_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000,   0, 70, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
-+};
-+
-+/*
-+ * This is deviating from the datasheet. The values here are taken from the
-+ * BSP driver and have been confirmed by measurements.
-+ */
-+static const struct linear_range axp313a_dcdc3_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000,   0,  70, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 71, 102, 20000),
-+};
-+
-+static const struct regulator_desc axp313a_regulators[] = {
-+	AXP_DESC_RANGES(AXP313A, DCDC1, "dcdc1", "vin1",
-+			axp313a_dcdc1_ranges, AXP313A_DCDC1_NUM_VOLTAGES,
-+			AXP313A_DCDC1_CONRTOL, AXP313A_DCDC_V_OUT_MASK,
-+			AXP313A_OUTPUT_CONTROL, BIT(0)),
-+	AXP_DESC_RANGES(AXP313A, DCDC2, "dcdc2", "vin2",
-+			axp313a_dcdc2_ranges, AXP313A_DCDC23_NUM_VOLTAGES,
-+			AXP313A_DCDC2_CONRTOL, AXP313A_DCDC_V_OUT_MASK,
-+			AXP313A_OUTPUT_CONTROL, BIT(1)),
-+	AXP_DESC_RANGES(AXP313A, DCDC3, "dcdc3", "vin3",
-+			axp313a_dcdc3_ranges, AXP313A_DCDC23_NUM_VOLTAGES,
-+			AXP313A_DCDC3_CONRTOL, AXP313A_DCDC_V_OUT_MASK,
-+			AXP313A_OUTPUT_CONTROL, BIT(2)),
-+	AXP_DESC(AXP313A, LDO1, "ldo1", "vin1", 500, 3500, 100,
-+		 AXP313A_ALDO1_CONRTOL, AXP313A_LDO_V_OUT_MASK,
-+		 AXP313A_OUTPUT_CONTROL, BIT(3)),
-+	AXP_DESC(AXP313A, LDO2, "ldo2", "vin1", 500, 3500, 100,
-+		 AXP313A_DLDO1_CONRTOL, AXP313A_LDO_V_OUT_MASK,
-+		 AXP313A_OUTPUT_CONTROL, BIT(4)),
-+	AXP_DESC_FIXED(AXP313A, RTC_LDO, "rtc-ldo", "vin1", 1800),
-+};
-+
- /* DCDC ranges shared with AXP813 */
- static const struct linear_range axp803_dcdc234_ranges[] = {
- 	REGULATOR_LINEAR_RANGE(500000,
-@@ -1040,6 +1087,15 @@ static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
- 		def = 3000;
- 		step = 150;
- 		break;
-+	case AXP313A_ID:
-+		/* The DCDC PWM frequency seems to be fixed to 3 MHz. */
-+		if (dcdcfreq != 3000000 && dcdcfreq != 0) {
-+			dev_err(&pdev->dev,
-+				"DCDC frequency on AXP313a is fixed to 3 MHz.\n");
-+			return -EINVAL;
-+		}
-+
-+		return 0;
- 	default:
- 		dev_err(&pdev->dev,
- 			"Setting DCDC frequency for unsupported AXP variant\n");
-@@ -1232,6 +1288,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
- 		drivevbus = of_property_read_bool(pdev->dev.parent->of_node,
- 						  "x-powers,drive-vbus-en");
- 		break;
-+	case AXP313A_ID:
-+		regulators = axp313a_regulators;
-+		nregulators = AXP313A_REG_ID_MAX;
-+		break;
- 	case AXP803_ID:
- 		regulators = axp803_regulators;
- 		nregulators = AXP803_REG_ID_MAX;
+This comment too.
+
+> +	tm->tm_year = bcd2bin(buf[PCF2127_OFFSET_TD_YR]);
+>  	tm->tm_year += 100;
+>  
+>  	dev_dbg(dev, "%s: tm is secs=%d, mins=%d, hours=%d, "
+> @@ -207,7 +215,7 @@ static int pcf2127_rtc_set_time(struct device *dev, struct rtc_time *tm)
+>  	buf[i++] = bin2bcd(tm->tm_year - 100);
+>  
+>  	/* write register's data */
+> -	err = regmap_bulk_write(pcf2127->regmap, PCF2127_REG_SC, buf, i);
+> +	err = regmap_bulk_write(pcf2127->regmap, pcf2127->cfg->regs_td_base, buf, i);
+>  	if (err) {
+>  		dev_err(dev,
+>  			"%s: err=%d", __func__, err);
+> @@ -650,11 +658,13 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
+>  		.max_register = 0x1d,
+>  		.has_nvmem = 1,
+>  		.has_bit_wd_ctl_cd0 = 1,
+> +		.regs_td_base = PCF2127_REG_TIME_DATE_BASE,
+>  	},
+>  	[PCF2129] = {
+>  		.max_register = 0x19,
+>  		.has_nvmem = 0,
+>  		.has_bit_wd_ctl_cd0 = 0,
+> +		.regs_td_base = PCF2127_REG_TIME_DATE_BASE,
+>  	},
+>  };
+>  
+> -- 
+> 2.30.2
+> 
+
 -- 
-2.39.0
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
