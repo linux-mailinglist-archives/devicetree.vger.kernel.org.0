@@ -2,88 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 266D267601D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 23:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 220A3676024
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 23:23:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbjATWWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 17:22:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39624 "EHLO
+        id S229470AbjATWXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 17:23:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjATWWw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 17:22:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B72671BDF;
-        Fri, 20 Jan 2023 14:22:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 023C1B82A95;
-        Fri, 20 Jan 2023 22:22:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E812FC4339B;
-        Fri, 20 Jan 2023 22:22:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674253357;
-        bh=/B3zFHsbmUuGcZFPrh9xj1KkPrOVA+AyCX+HZKfxBSs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fpYwxFukNmMNbXlyBZIS3seg83mrQYDkDXJPUU2/yt0Sevg1q41fnxmiXxikKHr+K
-         TaLL6FeojH28nSTCZxdFLaESnSk7UrMiN4gRc4ykfl8JR4YRWwS1hJeGk/Jr1ruxuV
-         Ksb0N/mBWl5NYBvUfxm4eZQeo3vXCN/qZTWtB6ZyO4UrUzmQ6VuO5n8Z+GGZBCZ7fo
-         xxY+FsODVZgWKliDzH3WD+r6J+fdDsaUJC1M9o8fZTzfQhXmcdFmPNNgWj1VvtqI4r
-         r+XP9P/ikkE/LATGVdkctIEICL5/cWnvppt4tTnXwnpA30gyW/r2E6x31TDbTUIfbs
-         GbayQlsvzsiuQ==
-From:   Conor Dooley <conor@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Walker Chen <walker.chen@starfivetech.com>
-Cc:     conor@kernel.org, Daire McNamara <daire.mcnamara@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] JH7110 PMU Support
-Date:   Fri, 20 Jan 2023 22:21:54 +0000
-Message-Id: <167425300253.196995.6414153954346182622.b4-ty@microchip.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230119094447.21939-1-walker.chen@starfivetech.com>
-References: <20230119094447.21939-1-walker.chen@starfivetech.com>
+        with ESMTP id S229768AbjATWW6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 17:22:58 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA1C762E6
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 14:22:55 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id mg12so17424479ejc.5
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 14:22:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=u40lzikLYg8795MWGyZBi7bwhQii+L33u/S3JKTaugk=;
+        b=ESgagTDuK8jSiPbu+Ai9FCHEOTYjWomQsYOXTTLU2J5X4V4d8qZp41FsOGZV8C12O+
+         S8fbxFvBN8SylEl8SIGj1wfw4JU/pVcmPwgxNlGQU664xNabbZpF6hX0obOGn7jhOApB
+         aA3ddyVVZYiJMwr23CSfTu+FLbGjol37zU4SA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u40lzikLYg8795MWGyZBi7bwhQii+L33u/S3JKTaugk=;
+        b=zSEmVFlzOYp6ReGAj+yhmB3VcPOrZxM6pBQYPVqKj8vXMVrob0axXMGlSinrpVDoCY
+         PlUkREYDbCDoq1C2jvHaS9pPiGxKuxg+4KLERHUB4qI9wRQUW5Hm9llOOOxvba1aSSvb
+         kOxrHkBMuGIMhoas9Qsbn3GM4VkAPnFK4AIE5mlmFmkSmqtLqdPEJ1MJpSEnbm0cmBv0
+         nWwl2orsgU5alLiimk+GssCRVJaM4ZyhuLIjC1Ay5zu6zGKF0Qg+r8r8OjOs4vCyzZcc
+         HVDTvTIkki/93FtDmiGOGltUuJ/mweAYc6UDgr+HVTIPaR+ypNZthozPQTLb3nYVbJE5
+         pZ5A==
+X-Gm-Message-State: AFqh2krw418ip7lZzOHahxiYQ3Kz47v51ThOFp+zgGAbCGt0ThZ1cVqp
+        HifvpYqLaZU45X+ml65WpE22AiF7EYDXQRON+6/8QQ==
+X-Google-Smtp-Source: AMrXdXvi+q4N11ckSl3ko5OuysgYr0HNnL4+xkrwtRQS+XGLTRH4A3QSYJ1uluQHlog8S2oM6XeSb+378hY+Bqe5Hmw=
+X-Received: by 2002:a17:906:ae56:b0:86c:fe1:b97f with SMTP id
+ lf22-20020a170906ae5600b0086c0fe1b97fmr2246086ejb.388.1674253373621; Fri, 20
+ Jan 2023 14:22:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=934; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=PKB/daeDLqS7LF3I2YHL9Fy5Hx8w0JBq6gduu4aGKmM=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDMmnhf849mce2XZrb5Z/abxJmdacbacr3FcbLMhLFJiWp2Kt vep/RykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACbi9YuR4VD73DnrulU3XPO+tuteo8 LEe3zGwasXsmxI29R5YmHFibOMDG8nKkzUjnz1Xr77VVpwQGRhTsk63eB9830LCqs/HFnDyA4A
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
+ <CAPnjgZ3MQ4E_3n_Z881QsdO-zELPkLaCm0cOFwz6Fds+u73OWg@mail.gmail.com> <4f63a3e0-daeb-5b6a-f998-681502dd7abf@linaro.org>
+In-Reply-To: <4f63a3e0-daeb-5b6a-f998-681502dd7abf@linaro.org>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Fri, 20 Jan 2023 15:22:42 -0700
+Message-ID: <CAPnjgZ1Cw51q=nHrqv5YOr4SFtZRWhgv_X=mSJ4vgAT9dJjvuQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/8] clk: qcom: msm8996: add support for the CBF clock
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Hi Dmitry,
 
-On Thu, 19 Jan 2023 17:44:45 +0800, Walker Chen wrote:
-> This patchset adds PMU (Power Management Unit) controller driver for the
-> StarFive JH7110 SoC. In order to meet low power requirements, PMU is
-> designed for including multiple PM domains that can be used for power
-> gating of selected IP blocks for power saving by reduced leakage
-> current. The first patch adds device tree binding for PM domain provider
-> and consumer. The second patch adds pmu driver and support JH7110 SoC.
-> 
-> [...]
+On Fri, 20 Jan 2023 at 15:18, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On 20/01/2023 17:08, Simon Glass wrote:
+> > Hi Dmitry,
+> >
+> > On Thu, 19 Jan 2023 at 23:14, Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> >>
+> >> On MSM8996 two CPU clusters are interconnected using the Core Bus
+> >> Fabric (CBF). In order for the CPU clusters to function properly, it
+> >> should be clocked following the core's frequencies to provide adequate
+> >> bandwidth. On the other hand the CBF's clock rate can be used by other
+> >> drivers (e.g. by the pending SPDM driver to provide input on the CPU
+> >> performance).
+> >>
+> >> Thus register CBF as a clock (required for CPU to boot) and add a tiny
+> >> interconnect layer on top of it to let cpufreq/opp scale the CBF clock.
+> >>
+> >> Dependencies: [1]
+> >>
+> >> [1] https://lore.kernel.org/linux-arm-msm/20230111191453.2509468-1-dmitry.baryshkov@linaro.org/
+> >>
+> >> Changes since v2:
+> >> - Added interconnect-related bindings
+> >> - Switched CPU and CBF clocks to RPM_SMD_XO_A_CLK_SRC
+> >>
+> >> Changes since v1:
+> >> - Relicensed schema to GPL-2.0 + BSD-2-Clause (Krzysztof)
+> >> - Changed clock driver to use parent_hws (Konrad)
+> >> - Fixed indentation in CBF clock driver (Konrad)
+> >> - Changed MODULE_LICENSE of CBF clock driver to GPL from GPL-v2
+> >> - Switched CBF to use RPM_SMD_XO_CLK_SRC as one of the parents
+> >> - Enabled RPM_SMD_XO_CLK_SRC on msm8996 platform and switch to it from
+> >>    RPM_SMD_BB_CLK1 clock
+> >>
+> >> Dmitry Baryshkov (8):
+> >>    dt-bindings: clock: qcom,msm8996-cbf: Describe the MSM8996 CBF clock
+> >>      controller
+> >>    dt-bindints: interconnect/msm8996-cbf: add defines to be used by CBF
+> >>    clk: qcom: add msm8996 Core Bus Framework (CBF) support
+> >>    clk: qcom: cbf-msm8996: scale CBF clock according to the CPUfreq
+> >>    clk: qcom: smd-rpm: provide RPM_SMD_XO_CLK_SRC on MSM8996 platform
+> >>    arm64: qcom: dts: msm8996 switch from RPM_SMD_BB_CLK1 to
+> >>      RPM_SMD_XO_CLK_SRC
+> >>    arm64: dts: qcom: msm8996: add CBF device entry
+> >>    arm64: dts: qcom: msm8996: scale CBF clock according to the CPUfreq
+> >>
+> >>   .../bindings/clock/qcom,msm8996-cbf.yaml      |  53 ++
+> >>   arch/arm64/boot/dts/qcom/msm8996.dtsi         |  72 ++-
+> >>   drivers/clk/qcom/Makefile                     |   2 +-
+> >>   drivers/clk/qcom/clk-cbf-8996.c               | 458 ++++++++++++++++++
+> >>   drivers/clk/qcom/clk-smd-rpm.c                |   2 +
+> >>   .../interconnect/qcom,msm8996-cbf.h           |  12 +
+> >>   6 files changed, 591 insertions(+), 8 deletions(-)
+> >>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,msm8996-cbf.yaml
+> >>   create mode 100644 drivers/clk/qcom/clk-cbf-8996.c
+> >>   create mode 100644 include/dt-bindings/interconnect/qcom,msm8996-cbf.h
+> >>
+> >> --
+> >> 2.39.0
+> >>
+> >
+> > Could you please tell me which dev board this is targeting and where I
+> > can get one?
+>
+> This is targeting db820c, which is available from arrow.com. Note, this
+> patchset is related only msm8996 aka Snapdragon 820, it has limited
+> applicability to msm8996-pro and is of no concern to most of other chipsets.
 
-Applied to riscv-soc-for-next, thanks!
+Thanks!
 
-[1/2] dt-bindings: power: Add starfive,jh7110-pmu
-      https://git.kernel.org/conor/c/1fc7606d5083f79a20eb9cfd77c0dbd9299421c1
-[2/2] soc: starfive: Add StarFive JH71XX pmu driver
-      https://git.kernel.org/conor/c/08b9a94e8654d402bfd1f5496b077503d69aa2cf
+>
+> > Also could you please point me to the SoC documentation?
+>
+> https://developer.qualcomm.com/hardware/apq-8096sg/tools
 
-I modified the MAINTAINERS entry to remove the include directory that
-was deleted along the way.
+Which doc has the register descriptions for I2C, etc.? I am not seeing it.
 
-Thanks,
-Conor.
+Regards,
+Simon
