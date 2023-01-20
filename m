@@ -2,223 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BEE0675D32
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 19:57:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B15E3675D37
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 19:58:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjATS5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 13:57:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60122 "EHLO
+        id S229485AbjATS6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 13:58:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjATS5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 13:57:13 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2574D564BD;
-        Fri, 20 Jan 2023 10:57:10 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9D1361C0002;
-        Fri, 20 Jan 2023 18:57:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674241029;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=XT7VlRCFpLsl/BJ9dql5jQ1wL2D/AfrEjza1AGq4vg4=;
-        b=GAi7Dxr05BGKSylSlDEt1u/vjh5WR7PZSaQzqllmk42o/jXkP+yn3e2Zq7KVlqIzpgR75o
-        su23IAKfa5jN3dbKtjmr3iDMX5AaA+M+SCWF0OO/dEcSHmhrVLDmgSYumUpyW8sjthU/f5
-        gOgaqufU+rI0x59ObHRF+9gQgemf69qcJ1rfnE7ZTK6wCusnNXOFOpoWKJcsm1sz1wWUcw
-        9sd+rVDRyfiNUC92sqii2UluK/8bsd46LUyZN5WGRL6J8UCV47ce+b59H+LE4HzvC3k07q
-        J5iLIVjBX9Fco/Ig51vijhpO5t72wF/fDeP0XYGk5CKwoUz4Ho0cFbvbZnl6vg==
-Date:   Fri, 20 Jan 2023 19:57:07 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: Re: [PATCH v3 07/14] rtc: pcf2127: add support for PCF2131 RTC
-Message-ID: <Y8rkA/N6RqSzgXpt@mail.local>
-References: <20221215150214.1109074-1-hugo@hugovil.com>
- <20221215150214.1109074-8-hugo@hugovil.com>
+        with ESMTP id S229461AbjATS6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 13:58:37 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDAB212869
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 10:58:34 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id bk15so16246203ejb.9
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 10:58:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yBS2NFopPHzfJYrxlHmgujPz1HoeR8ijao605ezME18=;
+        b=tEy5zxWMaQki5bCipulkcyrZGhmVLLcl9dq0NUqIqT7PXVAzUHQvLD2PrEtbFAtm5v
+         o78K3nm+rG3+WPfayuMIsuI7nmMaZCjJ3RBFx+lcZtQSKYk2zR6586d3zL1pOXgI7RkX
+         V8BN+T1Rm0h9T95Om/laAs5XMoWHIx64IvzBBnCF2I+0fpgpZZO+9ZUyNB4dysNX3txC
+         YlZFE8jmBhy22lk5du5xp54/1eilTHUFoVYzRptnk3j/7W7AmiGbU++BTMDxEahtI3mr
+         eedI318ROB5n/fzQHuG3DSyPz3nZpy2aFzmHZQIUZ5AOkyBVT28Gfasbdmv9+IA5YjNU
+         7UpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yBS2NFopPHzfJYrxlHmgujPz1HoeR8ijao605ezME18=;
+        b=sIAc3FOdQxZGBCiHa2y+O07mmqm/JQDur7N9FxDFE3c6hgOIeuXcjJ4fx/gQdljY75
+         3GwTOHbiceSUz7H/F3tHQBv1+RQk5rTazhVvBdnwYf0/4/3kUpgfUEgy6Ptz29PCgN6+
+         RtScAiw4MoU2DP6aJ719Cupghc/nhGeNc+YseoHTJ6CV6Ey4yNKw0zobOO5zVPB6Z+X0
+         C8sTLWhMVcXjqwgamYDHk9XtT7ohOrMEZvbTgpr/jw4d9JDn7GEOMK/WuI59E7854E7i
+         9AW4/A2EcfvC/jCY98JbnkuDrfgCkBMPGtc7OMGVuaOwWA+QD0f+Wa4l/wraRXOGfRNA
+         pyMQ==
+X-Gm-Message-State: AFqh2krvOQ/QAYXl0UAv5JUuPUaZD8lpvd1VT+fz82EiIPPPOs/mjx1t
+        267NgrBUvkFM8p1lNrToFuDANg==
+X-Google-Smtp-Source: AMrXdXuyZ0HONVpsPKfKSyqCULU7fXja/Lktvf/niubfVJPS3eXqPcbuMmePQW7ZCblB/WmcojGQrg==
+X-Received: by 2002:a17:907:760e:b0:86e:fccc:bc19 with SMTP id jx14-20020a170907760e00b0086efcccbc19mr16440510ejc.43.1674241113525;
+        Fri, 20 Jan 2023 10:58:33 -0800 (PST)
+Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
+        by smtp.gmail.com with ESMTPSA id tk22-20020a170907c29600b00870d3fdceb9sm7462526ejc.89.2023.01.20.10.58.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 10:58:33 -0800 (PST)
+Message-ID: <9821623b-fcca-2a3a-1cd6-9e95c480b1a4@linaro.org>
+Date:   Fri, 20 Jan 2023 19:58:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221215150214.1109074-8-hugo@hugovil.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] ARM: dts: qcom: apq8060-dragonboard: align MPP pin node
+ names with DT schema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230120174036.351937-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230120174036.351937-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/12/2022 10:02:08-0500, Hugo Villeneuve wrote:
->  	  PCF2127 has an additional feature of 512 bytes battery backed
-> diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-> index 3265878edc48..4148e135f935 100644
-> --- a/drivers/rtc/rtc-pcf2127.c
-> +++ b/drivers/rtc/rtc-pcf2127.c
-> @@ -1,16 +1,26 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * An I2C and SPI driver for the NXP PCF2127/29 RTC
-> + * An I2C and SPI driver for the NXP PCF2127/29/31 RTC
->   * Copyright 2013 Til-Technologies
-> + * Copyright 2021 DimOnOff
 
-For the record, I don't really like that because git will be the
-authoritative source for the copyright. This will only end up being
-outdated info (as it is already)
 
->   *
->   * Author: Renaud Cerrato <r.cerrato@til-technologies.fr>
->   *
->   * Watchdog and tamper functions
->   * Author: Bruno Thomsen <bruno.thomsen@gmail.com>
->   *
-> + * PCF2131 support
-> + * Author: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> + *
->   * based on the other drivers in this same directory.
->   *
-> - * Datasheet: https://www.nxp.com/docs/en/data-sheet/PCF2127.pdf
-> + * Datasheets: https://www.nxp.com/docs/en/data-sheet/PCF2127.pdf
-> + *             https://www.nxp.com/docs/en/data-sheet/PCF2131DS.pdf
-> + */
-> +
-> +/*
-> + * The following features are not yet implemented for the PCF2131:
-> + *   - support for 1/100th seconds
+On 20.01.2023 18:40, Krzysztof Kozlowski wrote:
+> DT schema expects nodes ending with "pins:
+> 
+>   qcom-apq8060-dragonboard.dtb: mpps@50: cm3605-mpps-state: 'oneOf' conditional failed, one must be fixed:
+>     'mpp5' does not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-This will never be added so I would remove that comment
-
->   */
+Konrad
+> 
+> Warning visible after:
+> https://lore.kernel.org/r/20230120165103.1278852-1-robh@kernel.org
+> ---
+>  arch/arm/boot/dts/qcom-apq8060-dragonboard.dts | 16 +++++++---------
+>  1 file changed, 7 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
+> index 7a4c59e04af6..8e4b61e4d4b1 100644
+> --- a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
+> +++ b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
+> @@ -435,15 +435,13 @@ &pm8058_led133 {
 >  
->  #include <linux/i2c.h>
-> @@ -43,8 +53,30 @@
->  #define PCF2127_BIT_CTRL3_BLF			BIT(2)
->  #define PCF2127_BIT_CTRL3_BF			BIT(3)
->  #define PCF2127_BIT_CTRL3_BTSE			BIT(4)
-> +/* Control register 4 */
-> +#define PCF2131_REG_CTRL4		0x03
-> +#define PCF2131_BIT_CTRL4_TSF4			BIT(4)
-> +#define PCF2131_BIT_CTRL4_TSF3			BIT(5)
-> +#define PCF2131_BIT_CTRL4_TSF2			BIT(6)
-> +#define PCF2131_BIT_CTRL4_TSF1			BIT(7)
-> +/* Control register 5 */
-> +#define PCF2131_REG_CTRL5		0x04
-> +#define PCF2131_BIT_CTRL5_TSIE4			BIT(4)
-> +#define PCF2131_BIT_CTRL5_TSIE3			BIT(5)
-> +#define PCF2131_BIT_CTRL5_TSIE2			BIT(6)
-> +#define PCF2131_BIT_CTRL5_TSIE1			BIT(7)
-> +/* Software reset register */
-> +#define PCF2131_REG_SR_RESET		0x05
-> +#define PCF2131_SR_RESET_READ_PATTERN	0b00100100 /* Fixed pattern. */
-> +#define PCF2131_SR_RESET_RESET_CMD	0x2C /* SR is bit 3. */
->  /* Time and date registers */
->  #define PCF2127_REG_TIME_DATE_BASE	0x03
-> +#define PCF2131_REG_TIME_DATE_BASE	0x07 /* Register 0x06 is 100th seconds,
-> +					      * but we do not support it. By
-> +					      * using offset 0x07, we can be
-> +					      * compatible with existing
-> +					      * time/date functions.
-> +					      */
-
-Because we will never support 100th of seconds, this comment is not
-useful
-
->  /* Time and date registers offsets (starting from base register) */
->  #define PCF2127_OFFSET_TD_SC		0
->  #define PCF2127_OFFSET_TD_MN		1
-> @@ -57,6 +89,7 @@
->  #define PCF2127_BIT_SC_OSF			BIT(7)
->  /* Alarm registers */
->  #define PCF2127_REG_ALARM_BASE		0x0A
-> +#define PCF2131_REG_ALARM_BASE		0x0E
-
-I'd keep the defines ordered by address, so you could move all the
-PCF2131 defines after the PCF2127 ones
-
->  /* Alarm registers offsets (starting from base register) */
->  #define PCF2127_OFFSET_ALARM_SC		0
->  #define PCF2127_OFFSET_ALARM_MN		1
-> @@ -67,16 +100,26 @@
->  #define PCF2127_BIT_ALARM_AE			BIT(7)
->  /* CLKOUT control register */
->  #define PCF2127_REG_CLKOUT		0x0f
-> +#define PCF2131_REG_CLKOUT		0x13
->  #define PCF2127_BIT_CLKOUT_OTPR			BIT(5)
->  /* Watchdog registers */
->  #define PCF2127_REG_WD_CTL		0x10
-> +#define PCF2131_REG_WD_CTL		0x35
->  #define PCF2127_BIT_WD_CTL_TF0			BIT(0)
->  #define PCF2127_BIT_WD_CTL_TF1			BIT(1)
->  #define PCF2127_BIT_WD_CTL_CD0			BIT(6)
->  #define PCF2127_BIT_WD_CTL_CD1			BIT(7)
->  #define PCF2127_REG_WD_VAL		0x11
-> +#define PCF2131_REG_WD_VAL		0x36
->  /* Tamper timestamp1 registers */
->  #define PCF2127_REG_TS1_BASE		0x12
-> +#define PCF2131_REG_TS1_BASE		0x14
-> +/* Tamper timestamp2 registers */
-> +#define PCF2131_REG_TS2_BASE		0x1B
-> +/* Tamper timestamp3 registers */
-> +#define PCF2131_REG_TS3_BASE		0x22
-> +/* Tamper timestamp4 registers */
-> +#define PCF2131_REG_TS4_BASE		0x29
->  /* Tamper timestamp registers common offsets (starting from base register) */
->  #define PCF2127_OFFSET_TS_CTL		0
->  #define PCF2127_OFFSET_TS_SC		1
-> @@ -92,11 +135,22 @@
->   * RAM registers
->   * PCF2127 has 512 bytes general-purpose static RAM (SRAM) that is
->   * battery backed and can survive a power outage.
-> - * PCF2129 doesn't have this feature.
-> + * PCF2129/31 doesn't have this feature.
->   */
->  #define PCF2127_REG_RAM_ADDR_MSB	0x1A
->  #define PCF2127_REG_RAM_WRT_CMD		0x1C
->  #define PCF2127_REG_RAM_RD_CMD		0x1D
-> +/* Interrupt mask registers */
-> +#define PCF2131_REG_INT_A_MASK1		0x31
-> +#define PCF2131_REG_INT_A_MASK2		0x32
-> +#define PCF2131_REG_INT_B_MASK1		0x33
-> +#define PCF2131_REG_INT_B_MASK2		0x34
-> +#define PCF2131_BIT_INT_BLIE		BIT(0)
-> +#define PCF2131_BIT_INT_BIE		BIT(1)
-> +#define PCF2131_BIT_INT_AIE		BIT(2)
-> +#define PCF2131_BIT_INT_WD_CD		BIT(3)
-> +#define PCF2131_BIT_INT_SI		BIT(4)
-> +#define PCF2131_BIT_INT_MI		BIT(5)
+>  &pm8058_mpps {
+>  	dragon_cm3605_mpps: cm3605-mpps-state {
+> -		mpp5 {
+> -			pins = "mpp5";
+> -			function = "analog";
+> -			input-enable;
+> -			bias-high-impedance;
+> -			/* Let's use channel 5 */
+> -			qcom,amux-route = <PMIC_MPP_AMUX_ROUTE_CH5>;
+> -			power-source = <PM8058_GPIO_S3>;
+> -		};
+> +		pins = "mpp5";
+> +		function = "analog";
+> +		input-enable;
+> +		bias-high-impedance;
+> +		/* Let's use channel 5 */
+> +		qcom,amux-route = <PMIC_MPP_AMUX_ROUTE_CH5>;
+> +		power-source = <PM8058_GPIO_S3>;
+>  	};
+>  };
 >  
->  /* Watchdog timer value constants */
->  #define PCF2127_WD_VAL_STOP		0
-> @@ -110,6 +164,14 @@
->  		PCF2127_BIT_CTRL2_AF | \
->  		PCF2127_BIT_CTRL2_WDTF | \
->  		PCF2127_BIT_CTRL2_TSF2)
-> +#define PCF2131_CTRL2_IRQ_MASK ( \
-> +		PCF2127_BIT_CTRL2_AF | \
-> +		PCF2127_BIT_CTRL2_WDTF)
-> +#define PCF2131_CTRL4_IRQ_MASK ( \
-> +		PCF2131_BIT_CTRL4_TSF4 | \
-> +		PCF2131_BIT_CTRL4_TSF3 | \
-> +		PCF2131_BIT_CTRL4_TSF2 | \
-> +		PCF2131_BIT_CTRL4_TSF1)
->  
->  struct pcf21xx_ts_config {
->  	u8 regs_base; /* Base register to read timestamp values. */
-> @@ -370,7 +432,7 @@ static int pcf2127_wdt_set_timeout(struct watchdog_device *wdd,
->  }
->  
->  static const struct watchdog_info pcf2127_wdt_info = {
-> -	.identity = "NXP PCF2127/PCF2129 Watchdog",
-> +	.identity = "NXP PCF2127/29/31 Watchdog",
-
-This change may break userspace tools as this is exposed to userspace
-
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
