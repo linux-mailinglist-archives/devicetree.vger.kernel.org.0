@@ -2,174 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E562675264
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 11:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5577D675235
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 11:19:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229533AbjATK1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 05:27:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38186 "EHLO
+        id S229696AbjATKTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 05:19:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbjATK1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 05:27:17 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4713B27AC
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:26:51 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id g10so3644866wmo.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:26:51 -0800 (PST)
+        with ESMTP id S229500AbjATKTD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 05:19:03 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2398D881E9
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:19:01 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id t5so4420121wrq.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:19:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=e4mt5lGPeAiHXoegntNYO5GB6SA6d9P+daV7EOX7KxE=;
-        b=fUjHtccIWB0vyjuM9shK7iOBnKRcjVRyDKG0+xnJ/+VnAf+laV6pKo7tbZ3ksh8PvH
-         DTpqVBt9YxlTy9n6MPUwHXfZ17dkV9yIPWutuUoJu1xJKHVVNMqdVkVp71GC8ya2gIrM
-         eKdkevkw7tLtIFyHILfqruPo7R105xSjIPdWcI+57E+FGKb1pzNud70c4jQxXTrpbH5g
-         0MuACQyEH65XIdgQYsrV8x7ILK0SztEBKHhA8qS4PiGT/5AJcMjRPWZSU7O7U19qxeM6
-         AqiHyd94dI/VIZPCUrv69g6vEPxL73eyTPX7/XkYMkKowY3ofeEkr6zxH/d9UwiJo5pd
-         XOnA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=d8BcJzXSs607af8t7kqUBgjRke129BH5lCDD+YUTH7w=;
+        b=LpfSiNltaoV7bWfi3yQR6wIwTKqlLH7Cjtwa/XneNU61Ua5EWCgWLAmqQW4ko0k8hT
+         7nuNnorRsj8t9/48i19w6P2TUdPkm4CyGE2Yz2+MfpMRt0T7BdOQ55DOkkwsEVlOCXzE
+         hS5JDPHJU3BA2gZU16GZAw37kzK3q/u9bQQ0UtRPyu/TLBIhpD6usPD828f08UdUSxXS
+         YySKUR3JB5bmEdzRIKnZps+lJwVscq4/xFDjvBmGNpVL0ybJO9d2/TfrNZYppcH6tnfS
+         GxiR3AYWsyaulrms7NLKr3R/Ms8Bs/W4errDUbskI+8/qTbdpiSCp4oZIPL+CCIB5nEp
+         T9WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e4mt5lGPeAiHXoegntNYO5GB6SA6d9P+daV7EOX7KxE=;
-        b=cuT2sHvaxD2yhRbsIwDbf/oULLqOSgyV7ZjsCyTW75Skeh8/FBnnJ3VXRHK2kC8mFA
-         4iC+EagozS8H4pUdjiXUp97bOVq9lN4os/UakBpAnckYyrz/vzKbrr7eC41B3n251aVp
-         15e3ObZGTSv5zuWYDDLJ0Cg5+Z6QIMaovhWuig7F9rgVjtJnx3njldZUwDtEZDmGEyru
-         Zs8SxPICC7LztkjCzQuCXlgpAvweVO8tVjez+9rkF4oTxOQkSXKP7yrxWNK6IWMgetbe
-         x9iZ1lqHAvuWS0fW50XP30Kx7bbeIFNQuEuGcvej5hTwdMCjIRu0qXBm3kOx53+fsD4d
-         ZffA==
-X-Gm-Message-State: AFqh2kqpAtb1UUSUhRf2USCQIBWSi1gf8+EPY4Sj1CQEPRyHNi/rPwIM
-        Iu8wPv1fTnMFMS4jCEAGJkyW3Q==
-X-Google-Smtp-Source: AMrXdXurHyG2XSMT/oqWAcqCqisVjbAkEuwYynC+zJ20Z/Wc3RoAgIV4gZyyioyzciWoE/Yk0mgjTg==
-X-Received: by 2002:a05:600c:3ac8:b0:3da:f67c:aca6 with SMTP id d8-20020a05600c3ac800b003daf67caca6mr13518984wms.34.1674210407420;
-        Fri, 20 Jan 2023 02:26:47 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id z4-20020a05600c0a0400b003db01178b62sm2095567wmp.40.2023.01.20.02.26.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 02:26:46 -0800 (PST)
-References: <20230116091637.272923-1-jbrunet@baylibre.com>
- <20230116091637.272923-3-jbrunet@baylibre.com> <Y8dhUwIMb4tTeqWN@lunn.ch>
- <1jmt6eye1m.fsf@starbuckisacylon.baylibre.com> <Y8l7Rc9Vde9J45ij@lunn.ch>
-User-agent: mu4e 1.8.10; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-        linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: mdio: add amlogic gxl mdio mux support
-Date:   Fri, 20 Jan 2023 11:16:20 +0100
-In-reply-to: <Y8l7Rc9Vde9J45ij@lunn.ch>
-Message-ID: <1jcz79wlgc.fsf@starbuckisacylon.baylibre.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d8BcJzXSs607af8t7kqUBgjRke129BH5lCDD+YUTH7w=;
+        b=umtjewCWUmsKlPIpZquSyYZCYKlER1VaeCn9fBOFqWvjLAVc0Q+VfD3QSi3mQ0GYjU
+         jTyBzg+z8E29thrppsXsoNBzG+PZZ8VwQ+KtNU/woq6UZVEyUGbUaJ6JRR9E/Uq0DupX
+         +2wDojM/7atutOQwhhXifKpiLuB0cCSJYHaXG0JTWhUr9sut1r6AoCK8Sd5SP+5Jp7KK
+         vMpPny/TLV64C93iUqWVNTdbS7SSa9CYw6Fy5xWnKvbA9qVQh1jIJCO5kIXw+8Hoz+mf
+         VFtQNoF2P6aVKHoGVHAjllWU40oM9W7FDpDRH5nOGnCKJzFbL2eCyPj4743qYs4qk343
+         78Cg==
+X-Gm-Message-State: AFqh2kpPUA9tSuRYxOxZ95+8axqCbuvFT97kiPa0FZ8eSzwi5Im3Lk4/
+        C0ibAmNUTcZXqRy27P+5Y5as1w==
+X-Google-Smtp-Source: AMrXdXuKdhKIqJEou6IJmM5yvUMjMnUD67NRnsbGkBHfaQP6Ex2vg3VDK1+5I1ULAcU+W6HSfx0aeA==
+X-Received: by 2002:adf:f0cd:0:b0:2bd:d783:377 with SMTP id x13-20020adff0cd000000b002bdd7830377mr12934188wro.22.1674209939686;
+        Fri, 20 Jan 2023 02:18:59 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id r9-20020adff709000000b00291f1a5ced6sm14862170wrp.53.2023.01.20.02.18.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 02:18:59 -0800 (PST)
+Message-ID: <a9c47e2f-aacb-4c8f-3a0b-67274ef15376@linaro.org>
+Date:   Fri, 20 Jan 2023 11:18:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v7 1/2] dt-bindings: leds: backlight: Add Kinetic KTZ8866
+ backlight
+Content-Language: en-US
+To:     Jianhua Lu <lujianhua000@gmail.com>, Lee Jones <lee@kernel.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Helge Deller <deller@gmx.de>
+Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-fbdev@vger.kernel.org
+References: <20230120094728.19967-1-lujianhua000@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230120094728.19967-1-lujianhua000@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20/01/2023 10:47, Jianhua Lu wrote:
+> Add Kinetic KTZ8866 backlight binding documentation.
+> 
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> ---
+> Changes in v2:
+>   - Remove "items" between "compatible" and "const: kinetic,ktz8866".
+>   - Change "additionalProperties" to "unevaluatedProperties".
+> 
+> Changes in v3:
+>   - Add Krzysztof's R-b.
+> 
+> Changes in v4:
+>   - Drop Krzysztof's R-b.
+>   - Add some new properties.
+> 
+> Changes in v5:
+>   - Add missing enum under property description.
+>   - Rename uncorrect properties.
+> 
+> Changes in v6:
+>   - Correct wrong property suffix and description.
+> 
+> Changes in v7:
+>   - Add vddpos and vddeg supply.
+>   - Use enable-gpios instead of defining enable pin.
+> 
+>  .../leds/backlight/kinetic,ktz8866.yaml       | 74 +++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> new file mode 100644
+> index 000000000000..b1d0ade0dfb6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktz8866.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Kinetic Technologies KTZ8866 backlight
+> +
+> +maintainers:
+> +  - Jianhua Lu <lujianhua000@gmail.com>
+> +
+> +description: |
+> +  The Kinetic Technologies KTZ8866 is a high efficiency 6-channels-current-sinks
+> +  led backlight with dual lcd bias power.
+> +  https://www.kinet-ic.com/ktz8866/
+> +
+> +allOf:
+> +  - $ref: common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: kinetic,ktz8866
+> +
+> +  vddpos-supply:
+> +    description: positive boost supply regulator.
+> +
+> +  vddneg-supply:
+> +    description: negative boost supply regulator.
+> +
+> +  enable-gpios:
+> +    description: GPIO to use to enable/disable the backlight (HWEN pin).
+> +    maxItems: 1
+> +
+> +  current-num-sinks:
+> +    description: number of the LED current sinks' channels.
+> +    enum: [1, 2, 3, 4, 5, 6]
+> +
+> +  current-ramping-time-ms:
+> +    description: LED current ramping time in milliseconds.
+> +    enum: [2, 4, 8, 16, 32, 64, 128, 192, 256, 320, 384, 448, 512, 576, 640]
 
-On Thu 19 Jan 2023 at 18:17, Andrew Lunn <andrew@lunn.ch> wrote:
+kinetic,current-ramp-delay-ms
 
->> >> +
->> >> +	/* Set the internal phy id */
->> >> +	writel_relaxed(FIELD_PREP(REG2_PHYID, 0x110181),
->> >> +		       priv->regs + ETH_REG2);
->> >
->> > So how does this play with what Heiner has been reporting recently?
->> 
->> What Heiner reported recently is related to the g12 family, not the gxl
->> which this driver address.
->> 
->> That being said, the g12 does things in a similar way - the glue
->> is just a bit different:
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/mdio/mdio-mux-meson-g12a.c?h=v6.2-rc4#n165
->> 
->> > What is the reset default? Who determined this value?
->> 
->> It's the problem, the reset value is 0. That is why GXL does work with the
->> internal PHY if the bootloader has not initialized it before the kernel
->> comes up ... and there is no guarantee that it will.
->> 
->> The phy id value is arbitrary, same as the address. They match what AML
->> is using internally.
->
-> Please document where these values have come from. In the future we
-> might need to point a finger when it all goes horribly wrong.
->
+> +
+> +  led-ramping-time-ms:
 
-OK
+kinetic,led-enable-ramp-delay-ms
 
->> They have been kept to avoid making a mess if a vendor bootloader is
->> used with the mainline kernel, I guess.
->> 
->> I suppose any value could be used here, as long as it matches the value
->> in the PHY driver:
->> 
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/meson-gxl.c?h=v6.2-rc4#n253
->
-> Some Marvell Ethernet switches with integrated PHYs have IDs with the
-> vendor part set to Marvell, but the lower part is 0. The date sheet
-> even says this is deliberate, you need to look at some other register
-> in the switches address space to determine what the part is. That
-> works O.K in the vendor crap monolithic driver, but not for Linux
-> which separates the drivers up. So we have to intercept the reads and
-> fill in the lower part. And we have no real knowledge if the PHYs are
-> all the same, or there are differences. So we put in the switch ID,
-> and the PHY driver then has an entry per switch. That gives us some
-> future wiggle room if we find the PHYs are actually different.
->
-> Is there any indication in the datasheets that the PHY is the exact
-> same one as in the g12? Are we really safe to reuse this value between
-> different SoCs?
+So both are similar to existing regulator properties.
 
-There is zero information about the PHY in the datasheet.
-The gxl and g12 don't use the same ID values.
-The PHY ip is very similar but slightly different between the 2.
-(see https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/meson-gxl.c)
+Best regards,
+Krzysztof
 
-My guess is the g12 as another version of the IP, with some bug fixed.
-The integration (clocking scheme mostly) is also different, which is why
-the mux/glue is different.
-
->
-> I actually find it an odd feature. Does the datasheet say anything
-> about Why you can set the ID in software? The ID describes the
-> hardware, and software configuration should not be able to change the
-> hardware in any meaningful way.
-
-Again, zero information. 
-It is a bought IP (similar to the Rockchip judging by the PHY driver).
-I'm not surprised the provider of the IP would make the ID
-easy to configure. AML chose to keep that configurable through the glue,
-instead of fixing it. This is how it is.
-
->
->> >> +	/* Enable the internal phy */
->> >> +	val |= REG3_PHYEN;
->> >> +	writel_relaxed(val, priv->regs + ETH_REG3);
->> >> +	writel_relaxed(0, priv->regs + ETH_REG4);
->> >> +
->> >> +	/* The phy needs a bit of time to come up */
->> >> +	mdelay(10);
->> >
->> > What do you mean by 'come up'? Not link up i assume. But maybe it will
->> > not respond to MDIO requests?
->> 
->> Yes this MDIO multiplexer is also the glue that provides power and
->> clocks to the internal PHY. Once the internal PHY is selected, it needs
->> a bit a of time before it is usuable. 
->
-> O.K, please reword it to indicate power up, not link up.
->
-
-Sure
-
->      Andrew
