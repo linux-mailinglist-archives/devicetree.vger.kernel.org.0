@@ -2,65 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81465675526
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 14:01:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0BD4675570
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 14:18:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229801AbjATNBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 08:01:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54426 "EHLO
+        id S230507AbjATNSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 08:18:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjATNBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 08:01:15 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26AC6BCE35
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 05:01:14 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id g10so4007831wmo.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 05:01:14 -0800 (PST)
+        with ESMTP id S231130AbjATNSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 08:18:35 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60ABC41DA
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 05:14:52 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id qx13so13768424ejb.13
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 05:14:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TcM8XhDKOPbBsFGO0+W5tGL9iLdvv5/DvMQLA7ZA1gw=;
-        b=IrxCUmhLzvaQmFPa0wmZropX0S4nPCOToD2CgGQ/h5wz9kdpXybcdLemwOlLsgdFmY
-         33dumliNcnI+hpx7/aMUEAnKeilUU1/ipb1T68ufo1+8TMsYgs/ffDWB4UeBEo1TmkgX
-         kBl9D6zmAt5vMPtK9Ow4Awf4kT3k1WY3i9CCzYma2+jmlCfvrJTa0rwfN2FJkYJ1xRJC
-         DIW5/6NsmHVHQjsMauS/J3MP5BTKdkEsMlFpFVDCIfdib8/mJn1NnQxgLURMOKlQjGUL
-         0of13CoeBYEFytIqLIUeQzm+/GLbj5d9Ifyx9QwWOdaWawv2sah1SoyUSW7SGQffj1g6
-         zaHw==
+        d=fairphone.com; s=fair;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sG3PS8nuni6BtffOEZijtC58vcZHCox57Y1HsnncO6g=;
+        b=CiQw79VRaVPPwAXmSYsAJg9G88x6kGxDTJPi/mZf7Hbw6RtuFKFjxBb3K2bBQYA7AH
+         dBZhCHB7NryJhy4vXXXU/ON4COaY/Pd0Ssvnhy+B/oOovDwMRcrsEEE6ykROltaW82mT
+         YPEjdjTYzJtaePAepi3sXDkAd3gsWy7nt08eGi1NbVq/mdzMkP9bGXjam+d7u5cEOorc
+         1v/I7t+0iw0KYrLHEda8+AybPunrbyNEUN+NQc1xqu0MSZlzwcw3Nn2uSx8VbVuSZtXl
+         g0+riJ6NkhUN5Iv0ktkAs6YvTQDTZsxyPFsdimAfDLgnTclmeAcZ8jjdPUwSgS0jhFYv
+         nDPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TcM8XhDKOPbBsFGO0+W5tGL9iLdvv5/DvMQLA7ZA1gw=;
-        b=5omLsi+CmidhQH+si2Dr0Nw220kK5D/BzZmkLBIlyq64IViKG0UEaYeAgC4X2WBhXS
-         CUU9/AHlvbf4+o9fSefG5KHY3MW+xSiRfnneMuO2MzvdagGKi9dJpoqWpIIC9u+pYUsl
-         wbUJOYQURZRaRCDwabrwpPrntaZT18OBBUoW0zSDawSNrjLvEwY/ZMdisezeNL0Lx1zS
-         UhBC/e9KlCo5+cHiZKJ7P7MVnxlkveodglQ9f8UnoLbQanGfKaj4IiWtMzMyqZlOorCr
-         RqPPIo0eMD62VwE1AUNgR23hB+xJ2/N4/VT2hR+KtJFwm+aK12jVcacTUX45coNk6zOQ
-         WRhQ==
-X-Gm-Message-State: AFqh2kpEiHybj9cKcuyGxCCQ/vlbcsWppJVhoGVLlygVyBHQcTuQAMp7
-        bjbGcwJ8a1VbCTTlEmTLGWQ+1g==
-X-Google-Smtp-Source: AMrXdXvpbA/Ou+cnHvZNOOu0VIf5TFaLA2b9bSfYKs6ZNohSp2Px51Y30p44NWNMw0wcC4XbIeETBw==
-X-Received: by 2002:a7b:cd11:0:b0:3d9:6c7d:c9ee with SMTP id f17-20020a7bcd11000000b003d96c7dc9eemr22435915wmj.25.1674219672635;
-        Fri, 20 Jan 2023 05:01:12 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w12-20020a05600c474c00b003db2b81660esm2275631wmo.21.2023.01.20.05.01.11
+        bh=sG3PS8nuni6BtffOEZijtC58vcZHCox57Y1HsnncO6g=;
+        b=tDG4BJww+pIWdckxnqIA8C7pOvjL6Vh1V7tI4sakPwI0Tb+8vzB6iYCZo8k4YmjyAP
+         QrUWBIM26HH7RFDW52WLgly6/L9cOhQPnfFH4vtq+saDADQ1kgIa5q4l6A6SWrRmzieU
+         9HuxHaTu0fLBP4S0u+oEmxNc1s/YTRXAvvoRhEYMmRt0qP8yvnj5wKSGdnmU+B2B0Rx2
+         e0x7uiz+8rdgS2K/BBs2WWV7KxfRmfW4lFrQf2RlH5PskYl8JrnybLKkiqGHdsX2E2dM
+         JiW47paFZA+ais4GwNh3TMeeQyvZ5YN5RfCOlrzq33JQnyXdsIkVSstrOATkhu0gUxDm
+         6hew==
+X-Gm-Message-State: AFqh2kq9MqOu/eoJHGYpdxBySapxRW/feDnroZcfHYFaP1MwpjO7y9XZ
+        KF9CP9R7i5hG8c/iZs5VPll42PnnvlhDGm9ddZRk6A==
+X-Google-Smtp-Source: AMrXdXvwteo+cNreaAuqxl9/M1U7opM9iKY723pc0eH80ss0mePHE8BnN7fzg8jcQMU7uLf3gR1FQQ==
+X-Received: by 2002:a17:907:cc03:b0:7c4:f8fb:6a27 with SMTP id uo3-20020a170907cc0300b007c4f8fb6a27mr25051938ejc.0.1674220491112;
+        Fri, 20 Jan 2023 05:14:51 -0800 (PST)
+Received: from [172.16.220.87] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id t1-20020a1709061be100b0086f40238403sm8063276ejg.223.2023.01.20.05.14.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 05:01:12 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: exynos: drop unsupported UFS properties in ExynosAutov9 SADK
-Date:   Fri, 20 Jan 2023 14:01:08 +0100
-Message-Id: <20230120130108.278851-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Fri, 20 Jan 2023 05:14:50 -0800 (PST)
+From:   Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 0/4] Add CCI bus support for SM6350
+Date:   Fri, 20 Jan 2023 14:13:43 +0100
+Message-Id: <20221213-sm6350-cci-v2-0-15c2c14c34bb@fairphone.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIeTymMC/22NzQrCMBCEX6Xs2ZX82KKefA/xkGy3ZqFNSqIBK
+ X13g2dPwzfwzWxQOAsXuHYbZK5SJMUG5tABBRefjDI2BqOM0UZbLMtge4VEgvbs3aQvjth6aIJ
+ 3hdFnFyk0Jb7nuZVByivlz++g6hb3v1tVo0LuR0V2YEWn6TY5yWtIkY+UFnjs+/4FYvniXa0AA
+ AA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12-dev-78462
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -71,33 +82,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no vcc-fixed-regulator property for UFS nodes:
+Add the camera clock controller node and CCI nodes to sm6350 dtsi and enable
+the i2c busses on Fairphone 4 dts.
 
-  exynosautov9-sadk.dtb: ufs@17e00000: Unevaluated properties are not allowed ('vcc-fixed-regulator' was unexpected)
+This is tested using PM8008 regulator patches from the lists which power the
+cameras, and using i2cdetect/i2cget/i2cset reading the sensor ID registers.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts | 2 --
- 1 file changed, 2 deletions(-)
+Changes in v2:
+- Correct ordering of attributes in sm6350.dtsi (#*-cells, pinctrl-names,
+  bias-*)
+- Link to v1: https://lore.kernel.org/r/20221213-sm6350-cci-v1-0-e5d0c36e0c4f@fairphone.com
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-index eec3192c0631..101f51bf565a 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-@@ -65,13 +65,11 @@ &ufs_1_phy {
- &ufs_0 {
- 	status = "okay";
- 	vcc-supply = <&ufs_0_fixed_vcc_reg>;
--	vcc-fixed-regulator;
- };
- 
- &ufs_1 {
- 	status = "okay";
- 	vcc-supply = <&ufs_1_fixed_vcc_reg>;
--	vcc-fixed-regulator;
- };
- 
- &usi_0 {
+---
+Luca Weiss (4):
+      dt-bindings: i2c: qcom-cci: Document SM6350 compatible
+      arm64: dts: qcom: sm6350: Add camera clock controller
+      arm64: dts: qcom: sm6350: Add CCI nodes
+      arm64: dts: qcom: sm7225-fairphone-fp4: Enable CCI busses
+
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml      |   2 +
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 141 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  |  20 +++
+ 3 files changed, 163 insertions(+)
+---
+base-commit: 1578f85d549045aac441821064e7953732460e51
+change-id: 20221213-sm6350-cci-38baf19ace3b
+
+Best regards,
 -- 
-2.34.1
+Luca Weiss <luca.weiss@fairphone.com>
 
