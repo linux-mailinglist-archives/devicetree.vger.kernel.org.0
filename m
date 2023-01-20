@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2A4567531C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 12:12:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82F71675321
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 12:12:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229881AbjATLM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 06:12:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39556 "EHLO
+        id S230042AbjATLMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 06:12:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbjATLM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 06:12:27 -0500
+        with ESMTP id S229544AbjATLMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 06:12:30 -0500
 Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7257539290
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:12:25 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id rl14so9727452ejb.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:12:25 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D79CB4E16
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:12:28 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id rl14so9727729ejb.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:12:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=OfzggvR5GAJWNY3SBEL5sV3sSdqBdNkvzmkoduGkVE8=;
-        b=i+30OnT1UGVubEaZYDCXe923zdH6oxIyNZy6VplKDTQhND+CFPoChZchGf2gUlhfis
-         f6ml4pnH6Nm+S6ZFV2YubEpD5fPEpWIxb+8kG/1yuYvLHGToWOIBJWZfShZgczjzWqzl
-         7U/sbj4IGJs7M8+rPfMoJiJoxRCg/Zd2GXeEj/id8EtLFtJGzaRMSVa0W1plXRSaRLBS
-         s0+W11t8QcNtLPvc+5yOx3AhUasHdrh0dfrn8prbcXCpBW5vqSp09xCRxnBmh1hT66dN
-         JN4fnGgZwr/wVnHL/92+DNO2CQecaqyAPmHOSXytIyx5uQJxYE9WEf30G10/GVM8R2wk
-         vCBg==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2RXu2CTf5qqejj8lbgLBVRfpf8P5U0FJ4fIWSUv6pnU=;
+        b=stX3538Eyi9291zlurX4ljF3jqI6Nr3N2fsHoJKaQLpUcfQldpvxYHSefLVREEOExx
+         4APxPs1YH/PhmSrTN2jjpLyzyqCkrSURucrwtfX/D0wKIdBJEB4rYCKDldQNCoaCxIdA
+         uG8eUAsO2TGsSfVXgjp/DqbGZXxvEs0WRw1si4jc3HZ0UCqdT+CPQnLKs9I8m/ag82pH
+         2AuN5pdAwtsZwq+rYT6PtYC4dFZPL+NHm1hEEJGwc4bfo33ZhgAxDmE11RfpOl6i6gfc
+         S3Jpc7Glgfnh6pz/7t+fA7aN5nBJPSRB3SaLP4HzwR7V6iqePM/O3vNPY3szI632bwLK
+         DY/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OfzggvR5GAJWNY3SBEL5sV3sSdqBdNkvzmkoduGkVE8=;
-        b=TcKBT16CZatyYJEbSlGbCG1+Hx4a49pG7lCBQ2orL5M1hD1W9yVCymrvkQ9yHAeZQi
-         OwpUpNskqPD7qFRNFAWFtP5SofONl58JAz0Md356h8Pq1oBOpBBge+9GQ/qVzqnOg5hb
-         7GZKEr0GTI/8eA7RPRJJlTQiWpeAYQ3L7FEy/Sbw7dNEsuFgGX2mvGOU/Q3R/y3r+pof
-         KV7CA3aIeboAV1MNmY/tLRwHflLVQizAZFmobRwgb/rc/gV8Tce96QWKvBTwUfjXxox3
-         pzx0ldJZa2eBwkSk1brzWCX6M1/HqYEq2je6Qqb2JTnoNYcqwVgTIJQNORYPiHxFcawL
-         Ut0g==
-X-Gm-Message-State: AFqh2krw2sE1TWCf/5CAydljdXWZvZ2cI05EZHLv6K9b9rL0AuLmvpBY
-        Em8v59kBHYFPYo6jdqhON5XKvw==
-X-Google-Smtp-Source: AMrXdXvwwjl6H+vQuYjU15Y/5EYFYujeX2U4qQUVU9C8x0lGStLvU4bjDnP4JSaZ0hmlMFyB7O/Q2w==
-X-Received: by 2002:a17:906:c0c1:b0:7c4:fa17:7203 with SMTP id bn1-20020a170906c0c100b007c4fa177203mr13130663ejb.63.1674213144017;
-        Fri, 20 Jan 2023 03:12:24 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2RXu2CTf5qqejj8lbgLBVRfpf8P5U0FJ4fIWSUv6pnU=;
+        b=A94u91jpM2PfOur9a7NvwoQMga76YBbyHBE9t82KzAeai6eq9oh8Ykri+cn151CKx5
+         nka8enWcKcEJdT/W3rfmE0K5gfS9KZPkxspV27sFaucZZ/dR7dEE1corLCEj6Ske2OfG
+         DgEtAhDs6xgwMkRP4TIDql6FCREw3kx2N3WDp1SvnIMtJeiZbJBhPa8wDakUzWcXpkQ/
+         uMgWR+nPY05mImU51y1TBXg00EjjiOXztMqQQ7eDXNvAVgn9QnIhIurqTdzqe7lDlTrx
+         4z1Njo1VNjVcegIQtzjauNaLpHQD8hO/mlXRtM9FnvR/tZJwqSJ/WUZXdePRYo22Wl6o
+         rCbA==
+X-Gm-Message-State: AFqh2ko2PJi0Jzwt7y2AlnjGoBF1Drfp/PfUBbfcsPRERKGEvwVXheq5
+        G2NfA5P3mQgtD1sJHlf0/vPutA==
+X-Google-Smtp-Source: AMrXdXvfUH6HAo/MBe66mt/NA7W75XIbcII4n4yAGpx/0n5qQ2QbdK1OFAiODowDr111N2f95NYHaw==
+X-Received: by 2002:a17:906:a0ce:b0:86e:7683:422b with SMTP id bh14-20020a170906a0ce00b0086e7683422bmr13505335ejb.68.1674213146831;
+        Fri, 20 Jan 2023 03:12:26 -0800 (PST)
 Received: from [172.16.220.87] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id du1-20020a17090772c100b0084bfd56fb3bsm17667492ejc.162.2023.01.20.03.12.23
+        by smtp.gmail.com with ESMTPSA id du1-20020a17090772c100b0084bfd56fb3bsm17667492ejc.162.2023.01.20.03.12.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 03:12:23 -0800 (PST)
+        Fri, 20 Jan 2023 03:12:26 -0800 (PST)
 From:   Luca Weiss <luca.weiss@fairphone.com>
-Subject: [PATCH 0/4] Add CCI bus support for SM6350
-Date:   Fri, 20 Jan 2023 12:11:53 +0100
-Message-Id: <20221213-sm6350-cci-v1-0-e5d0c36e0c4f@fairphone.com>
+Date:   Fri, 20 Jan 2023 12:11:54 +0100
+Subject: [PATCH 2/4] arm64: dts: qcom: sm6350: Add camera clock controller
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAPl2ymMC/w3LOwqAMAwA0KtIZgP9oKi3SWPUgFZo0EV6dzu+4
- X1gUlQMlu6DIq+a3rnB9x3wQXkX1LUZggvBBx/RrjEODpkV45Ro8zOxxAQtJDLBVCjz0Up+zrPW
- H6nd2HBhAAAA
+Message-Id: <20221213-sm6350-cci-v1-2-e5d0c36e0c4f@fairphone.com>
+References: <20221213-sm6350-cci-v1-0-e5d0c36e0c4f@fairphone.com>
+In-Reply-To: <20221213-sm6350-cci-v1-0-e5d0c36e0c4f@fairphone.com>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -80,42 +80,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the camera clock controller node and CCI nodes to sm6350 dtsi and enable
-the i2c busses on Fairphone 4 dts.
+Add a node for the camcc found on SM6350 SoC.
 
-This is tested using PM8008 regulator patches from the lists which power the
-cameras, and using i2cdetect/i2cget/i2cset reading the sensor ID registers.
-
-To: Andy Gross <agross@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-To: Loic Poulain <loic.poulain@linaro.org>
-To: Robert Foss <rfoss@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht
-Cc: phone-devel@vger.kernel.org
-Cc: linux-i2c@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-
 ---
-Luca Weiss (4):
-      dt-bindings: i2c: qcom-cci: Document SM6350 compatible
-      arm64: dts: qcom: sm6350: Add camera clock controller
-      arm64: dts: qcom: sm6350: Add CCI nodes
-      arm64: dts: qcom: sm7225-fairphone-fp4: Enable CCI busses
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
- .../devicetree/bindings/i2c/qcom,i2c-cci.yaml      |   2 +
- arch/arm64/boot/dts/qcom/sm6350.dtsi               | 141 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  |  20 +++
- 3 files changed, 163 insertions(+)
----
-base-commit: 1578f85d549045aac441821064e7953732460e51
-change-id: 20221213-sm6350-cci-38baf19ace3b
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 8224adb99948..300ced5cda57 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -1435,6 +1435,15 @@ usb_1_dwc3: usb@a600000 {
+ 			};
+ 		};
+ 
++		camcc: clock-controller@ad00000 {
++			compatible = "qcom,sm6350-camcc";
++			reg = <0 0x0ad00000 0 0x16000>;
++			clocks = <&rpmhcc RPMH_CXO_CLK>;
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++			#power-domain-cells = <1>;
++		};
++
+ 		pdc: interrupt-controller@b220000 {
+ 			compatible = "qcom,sm6350-pdc", "qcom,pdc";
+ 			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x64>;
 
-Best regards,
 -- 
-Luca Weiss <luca.weiss@fairphone.com>
+2.39.1
