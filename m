@@ -2,213 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6A26675BDC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:44:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32F3A675BED
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:47:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229950AbjATRot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:44:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33178 "EHLO
+        id S230060AbjATRrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:47:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230246AbjATRoq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:44:46 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1C0270E;
-        Fri, 20 Jan 2023 09:44:45 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id vw16so15773178ejc.12;
-        Fri, 20 Jan 2023 09:44:44 -0800 (PST)
+        with ESMTP id S229575AbjATRrY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:47:24 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66905421B
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:47:22 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id x36so7597992ede.13
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:47:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vzb4x08rONaBPBHIhhbhW5ohbXZ5cJXrWYA/At79tyw=;
-        b=LPd/gTfKunhmGKiURJuHX9NJhqp3/bnZ4ltlgKjqY9O95iNKqEkuXkieP47CAgwIVk
-         4DxWAXrpQdNVJqH+WXu5MDsXaUu60Vt7tv0aLaqRP7cb2J/c1OZbUgBJcfqjO8fhTuTB
-         X3jPnXDipwTwUuNNJw0odTM68Whsnxs8v3vcZvFfwf8tsHIdwjkUnD1UVIKRmkt9A8Zx
-         iD1QHuPmKpnBs07BE45ddNQGG0tcUOShz7FkKl7Ljk69lnkoC37xj6/l1hAjGNS2np8l
-         pOd2FDamgXTCzaXibeCyhd9yS+dQv3Q1k/5bDseDWQRjOvOo3tmOhenlYzqUcNv6DG74
-         RTrQ==
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BipnOyO2jsAkSmzvNbujWDpxdaTEf2MUiztSdhwIYZM=;
+        b=Bd3FjursiOsjI69j3RURLqlVLWzxWtZw1tS9m3pap8RceZvgWm6SQ18OSQOwxnZbR5
+         95CZzqiuQtlbzDTw2+kXJfHS47PqWgeBCNsJUrBetsIVxT7d35ITORG35757jkfXMExY
+         AMS2ZeC+x8/ZpqzWF+fvfradiRNEznbCJqmEI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vzb4x08rONaBPBHIhhbhW5ohbXZ5cJXrWYA/At79tyw=;
-        b=525IctQLM/cicaAm/nON4nYVH9zd9wbvDkVvw2IJzvbQ+ZQc9eytl9UnHBAA56+wBB
-         GJKQXUuW7FyxlkUCViJ/WqQsCI8hTwZSKzILjEPv7LLSEyIa49SsJ9aT5P3eCxCO5obj
-         5kne90S6TCL4Pm77JdlKwY5iHWvNVTH2et6E0Ql1SOAUz2lDy1Mn/zEeWBmXjTpvICDX
-         zfiOz3REnjkGAT4wp6I6mMbEMrCvnPw7waFu4BTS1o8dn5XWxNBoSIWVX7D5zUKtlxXn
-         IMQiad7W4WjDR1yv0OXN1cvRsWx4DqJrcwk4xI5Rp23NMV4xJ4yYWLxQi6HdvoDqwYuk
-         jmIg==
-X-Gm-Message-State: AFqh2kqRZfhkqDy7TJVNkgYFc8b9vI9VQn6CiBRhnnMf+RRtGvLkpgrE
-        zfPZwmruhWbUY4diFs/6XE0=
-X-Google-Smtp-Source: AMrXdXvzA9GOPZrGKAIM9iXmf52TVAZdwrrFDq0+5sdCJlH+MjWz7qmxZfsTuYvnZavJe6vZgDmCGw==
-X-Received: by 2002:a17:907:a586:b0:86a:316:d107 with SMTP id vs6-20020a170907a58600b0086a0316d107mr18250916ejc.72.1674236683436;
-        Fri, 20 Jan 2023 09:44:43 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id sa37-20020a1709076d2500b00870ebda9479sm7340014ejc.100.2023.01.20.09.44.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 09:44:43 -0800 (PST)
-Date:   Fri, 20 Jan 2023 18:44:41 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
-Subject: Re: [PATCH v12 0/4] iommu: Support mappings/reservations in
- reserved-memory regions
-Message-ID: <Y8rTCeEvYG/Cx75S@orome>
-References: <20221117185424.2359687-1-thierry.reding@gmail.com>
- <Y8rRDyFxx5KQSwD3@orome>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BipnOyO2jsAkSmzvNbujWDpxdaTEf2MUiztSdhwIYZM=;
+        b=6XK5Kp0KzPg1j2A+6TiymxRyO1zaKWo1ylraydCPeTHqgRPRCeAi1CuqDSWtwKpYem
+         VCTSlL25m2zMSfHhsr2WaZOR1burN3lT2hBhUcnMF+H5aFCXxP9qgGwzE22vrCV8m/DC
+         /EVUlERBiWcELNGEZlNteb7Mb+6Nl3PAITA4gg/cu6lPJR2BI/bD9QZlG68SkU1Qrrc2
+         M7U2AHCSyEu6CRacRYLt4Tp/vWt9kp3U1vHfSKeqqS0L2/lroP/VBV5SxCcWTloI90GB
+         Mw8XcXfci5VRW/XsiZ/DbpnRFtle6PiN8z8f9QZN36JPIy461DcDvA6CZPAkIfapsdbi
+         kEwA==
+X-Gm-Message-State: AFqh2koTOkQ5m4MayhxaMWUkRi3v6sy7q6lRHiQ64/w2SswuvV7ecqip
+        ALiOFINqMJHKciZPFnhD5CW1sidfzFBhSO7Qe4Eu1g==
+X-Google-Smtp-Source: AMrXdXtTqlcT7UkNlFBypYAC/4a4mGUM44HYZB7Bo3ZplyiQ8KH3qBRlCAOatXHxjolMvMR8xpieQN103+X9bl+aHh4=
+X-Received: by 2002:a05:6402:1396:b0:49b:52b4:83ca with SMTP id
+ b22-20020a056402139600b0049b52b483camr1773177edv.225.1674236841244; Fri, 20
+ Jan 2023 09:47:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YcfcTRnmgAM6V3Ln"
-Content-Disposition: inline
-In-Reply-To: <Y8rRDyFxx5KQSwD3@orome>
-User-Agent: Mutt/2.2.9 (2022-11-12)
+References: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
+ <20230101175740.1010258-12-dario.binacchi@amarulasolutions.com> <Y8VgzyNxGpqSvJ2b@linaro.org>
+In-Reply-To: <Y8VgzyNxGpqSvJ2b@linaro.org>
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date:   Fri, 20 Jan 2023 18:47:10 +0100
+Message-ID: <CABGWkvrmKzPHozcB6Wn94sG50qEsR8rK-p32eP127XPBJ7xe0A@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 11/11] arm64: dts: imx8mn: add clocks description
+To:     Abel Vesa <abel.vesa@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, angelo@amarulasolutions.com,
+        michael@amarulasolutions.com, tommaso.merciai@amarulasolutions.com,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        linux-amarula@amarulasolutions.com, anthony@amarulasolutions.com,
+        jagan@amarulasolutions.com, Abel Vesa <abelvesa@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>, Li Jun <jun.li@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        Tero Kristo <kristo@kernel.org>,
+        Tony Lindgren <tony@atomide.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---YcfcTRnmgAM6V3Ln
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Jan 16, 2023 at 3:36 PM Abel Vesa <abel.vesa@linaro.org> wrote:
+>
+> On 23-01-01 18:57:40, Dario Binacchi wrote:
+> > The patch creates a unique node for each clock in the imx8mn clock
+> > control module (CCM).
+> >
+> > To ensure backwards compatibility it was not possible to separate the
+> > changes to the device tree from those applied to the clocks setup code.
+> > In doing so, all clocks are initialized from the device tree and the
+> > legacy setup code with hardwired parameters is removed.
+> >
+> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> >
+> > ---
+> >
+> > (no changes since v1)
+> >
+> >  .../boot/dts/freescale/imx8mn-clocks.dtsi     | 1885 +++++++++++++++++
+> >  arch/arm64/boot/dts/freescale/imx8mn.dtsi     |   54 +-
+> >  drivers/clk/imx/clk-imx8mn.c                  |  714 ++-----
+> >  3 files changed, 2086 insertions(+), 567 deletions(-)
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
+> > new file mode 100644
+> > index 000000000000..21e02ea996d0
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
+> > @@ -0,0 +1,1885 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Device Tree Source for imx8mn clock data
+> > + *
+> > + * Copyright (c) 2022 Amarula Solutions
+> > + *
+> > + * Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> > + */
+> > +
+> > +/ {
+> > +     osc_32k: clock-osc-32k {
+> > +             compatible = "fixed-clock";
+> > +             #clock-cells = <0>;
+> > +             clock-frequency = <32768>;
+> > +             clock-output-names = "osc_32k";
+> > +     };
+> > +
+>
+> [...]
+>
+> > +
+> > +     clk_audio_pll2_bypass: clock-audio-pll2-bypass@14 {
+> > +             compatible = "fsl,imx8mn-mux-clock";
+> > +             #clock-cells = <0>;
+> > +             clocks = <&clk_audio_pll2>, <&clk_audio_pll2_ref_sel>;
+> > +             fsl,anatop = <&anatop 0x14>;
+> > +             fsl,bit-shift = <16>;
+> > +             fsl,set-rate-parent;
+>
+> NACK. I'm sorry, but this creates a huge effort on maintaining the
+> bindings.
 
-On Fri, Jan 20, 2023 at 06:36:15PM +0100, Thierry Reding wrote:
-> On Thu, Nov 17, 2022 at 07:54:20PM +0100, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Hi,
-> >=20
-> > This version is a minor update to the previous v11, which can be found
-> > here:
-> >=20
-> >   https://lore.kernel.org/all/20221111161806.630527-1-thierry.reding@gm=
-ail.com/
-> >=20
-> > The only change here is that the #dma-{address,size}-cells is dropped.
-> > It turns out to be much simpler to just update #{address,size}-cells to
-> > what they should be rather than add extra complexity for the DMA work-
-> > around. There's a minor update to the DT binding so that it can now
-> > properly validate cases where we have both reg and iommu-addresses
-> > properties.
-> >=20
-> > An example is included in the DT bindings, but here is an extract of
-> > what I've used to test this:
-> >=20
-> >         reserved-memory {
-> >                 #address-cells =3D <2>;
-> >                 #size-cells =3D <2>;
-> >                 ranges;
-> >=20
-> >                 /*
-> >                  * Creates an identity mapping for the framebuffer that
-> >                  * the firmware has setup to scan out a bootsplash from.
-> >                  */
-> >                 fb: framebuffer@92cb2000 {
-> >                         reg =3D <0x0 0x92cb2000 0x0 0x00800000>;
-> >                         iommu-addresses =3D <&dc0 0x0 0x92cb2000 0x0 0x=
-00800000>;
-> >                 };
-> >=20
-> >                 /*
-> >                  * Creates a reservation in the IOVA space to prevent
-> >                  * any buffers from being mapped to that region. Note
-> >                  * that on Tegra the range is actually quite different
-> >                  * from this, but it would conflict with the display
-> >                  * driver that I tested this against, so this is just
-> >                  * a dummy region for testing.
-> >                  */
-> >                 adsp: reservation-adsp {
-> >                         iommu-addresses =3D <&dc0 0x0 0x90000000 0x0 0x=
-00010000>;
-> >                 };
-> >         };
-> >=20
-> >         host1x@50000000 {
-> >                 dc@54200000 {
-> >                         memory-region =3D <&fb>, <&adsp>;
-> >                 };
-> >         };
-> >=20
-> > This is abbreviated a little to focus on the essentials. Note also that
-> > the ADSP reservation is not actually used on this device and the driver
-> > for this doesn't exist yet, but I wanted to include this variant for
-> > testing, because we'll want to use these bindings for the reservation
-> > use-case as well at some point.
-> >=20
-> > I've also been able to make use of this binding and the IOMMU code in
-> > conjunction with the simple-framebuffer driver to hand over a display
-> > configuration set up by UEFI to the Linux kernel.
-> >=20
-> > Janne has confirmed[0] this to be suitable for indirect mappings as
-> > well, though these patches don't implement that feature yet. Potential
-> > extensions to this have been discussed but are not yet included at this
-> > time to not further complicate things.
-> >=20
-> > Thierry
-> >=20
-> > [0]: https://lore.kernel.org/all/20220909144504.GA4024@jannau.net/
-> >=20
-> > Thierry Reding (4):
-> >   of: Introduce of_translate_dma_region()
-> >   dt-bindings: reserved-memory: Document iommu-addresses
-> >   iommu: Implement of_iommu_get_resv_regions()
-> >   iommu: dma: Use of_iommu_get_resv_regions()
->=20
-> Hi Joerg,
->=20
-> I think this has all the Acked-by's and Reviewed-by's that it needs. Can
-> you pick this up? I'd really like to see this go into v6.3.
->=20
-> If there's anything that you'd like to see addressed, please let me
-> know.
+IMHO I don't think that's the point. Rather, is it correct to keep adding
+platforms always replicating the same code that makes use of hardwired
+parameters? When I thought about the development of this series I
+thought it could be an opportunity to reverse the trend. In the direction
+suggested by the linux kernel development policies.The benefits of using the
+device tree have been proven for quite some time now.
+The 03/11 and 04/11 patches of the series make a list of the legacy code that
+has been added over time (functions with names that are sometimes unclear)
+and that with the progressive use of the device tree would be removed.
 
-Joerg,
+As written in the cover letter, I am available to add the necessary DT
+bindings to
+the series.
 
-I just noticed that this no longer applies on v6.2-rc4, so I just sent
-out a v13 which is really only a rebase with the tags from v12 applied,
-no further changes.
+Plus the vendor specific properties will keep increasing.
+>
+> I don't think Rob and Krzysztof will be OK with this either.
 
-Again, let me know if there's anything else you think this needs before
-it can be picked up.
+I hope instead that they agree with me. I didn't answer right away as
+I was waiting
+for their opinion. And I keep hoping for their response. And any other
+recipients of
+the series as well.
 
-Thanks,
-Thierry
+By the way, I add Tero Kristo and Toni Lindgren as their work done for
+the TI clock
+subsystem has been a great help for me in the implementation of this series.
 
---YcfcTRnmgAM6V3Ln
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks and regards,
+Dario
 
------BEGIN PGP SIGNATURE-----
+>
+>
+> > +             clock-output-names = "audio_pll2_bypass";
+> > +     };
+> > +
+> > +     clk_audio_pll2_out: clock-audio-pll2-out@14 {
+> > +             compatible = "fsl,imx8mn-gate-clock";
+> > +             #clock-cells = <0>;
+> > +             clocks = <&clk_audio_pll2_bypass>;
+> > +             fsl,anatop = <&anatop 0x14>;
+> > +             fsl,bit-shift = <13>;
+> > +             clock-output-names = "audio_pll2_out";
+> > +     };
+> > +
+>
+> [...]
+>
+> > --
+> > 2.32.0
+> >
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPK0wkACgkQ3SOs138+
-s6F6WxAAnUP8cHSS7eoxrCpbXmpTBFaE8xdvwJ1mMKCVoUk1FTggU5ErCU1ON1Q/
-eEYAARrKx3ii9oVummkwsCINQGzA4QwiVSA9mUn8apTI/HtUS2Pt+q46MvzCdVqS
-mCphLLuR/wgp+brHA0NPPYMqXpvWMO/tcR09ZXsqOEYtezBsi7en/Ff6TLz9Ftd7
-RsoBacAdAR9sulS2/BZTCS4y25cgqqz0PUG0urKKdES+MkOR/ZW3a2SMJ0P1uLm6
-DZzlQpTHWXPVKGXWGiy+Rb/XpzOkT0CYYYpjJAAY8pPRjRDC/H0K8qbfEGJ0v060
-K66j1oQpCJLS2yMR7qqVfN/K6mJfs4oNn6WH6X0QFENFPqjsxlYjwcshSsMuqcMt
-s1JtjhI671BYiD4BgB27jUJ6DchorC69/PoidhZxNOvxKEgyczVPuoFywntPXgcf
-GXaPJOgnXi+3vT9959uQYeTv0Kt1/HBiopjXV/F7nYU6KXpsXn5Q2bQ1LPFJm7UM
-6FACXb/uSVZst3NJ++bCFFUfcksWXs/9jbjILCwhHf7hm2CzXPk+qVZRqpEzcAX2
-SNb7BNUvzNPP300XVm3iEIFpKmwtAgG8NXUWyVnM7s9yQp4gVdIh7iEd54ldG0Ok
-JVzM4aWSpZxKWLSFSmAZCvh7cfYQPyrofQYgzaZPQOD/BDiNbAA=
-=D6IK
------END PGP SIGNATURE-----
 
---YcfcTRnmgAM6V3Ln--
+
+-- 
+
+Dario Binacchi
+
+Senior Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
