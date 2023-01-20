@@ -2,679 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4386F67520C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 11:09:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E562675264
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 11:27:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229690AbjATKJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 05:09:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54782 "EHLO
+        id S229533AbjATK1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 05:27:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbjATKI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 05:08:59 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6228A8B336
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:08:55 -0800 (PST)
+        with ESMTP id S229590AbjATK1R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 05:27:17 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4713B27AC
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:26:51 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id g10so3644866wmo.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:26:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1674209335; x=1705745335;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=TK+KRM3EMKMFlX0ZyA3HSIzsHmLWCaz9ZD/WieX73Q4=;
-  b=ROwZ/3LlWvepnkd8za5LujfxBYxXcWF/FKpb6l98CJ2pS/HpndUZ43I3
-   5dXMCJ2R5mNRJLOLSKUSz36K4xIz6Xx+5v+olz75EG44s+DJMuv9W54nJ
-   sCbA5rvVPJasVeZb7WKi4kKC9ItrNdKFEEhpwR4iMj1wNvPQDE3hIv06k
-   bNGAKuNr6ArOsy3qSJwAZBwKvhBbcb4fl1n0ot+XLeywAuHOfqTl5XhfJ
-   rzWXMKpA3luGPnTx3WaA5afatA4pmLlwByVk3fUEN6QKU5rJn03gzLECp
-   QSycQbhDGYuVFTgstjvzEOMjRJangUaiNUvbt00HpDSK/QftHp+piH+8M
-   A==;
-X-IronPort-AV: E=Sophos;i="5.97,231,1669071600"; 
-   d="scan'208";a="28555295"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 20 Jan 2023 11:08:53 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 20 Jan 2023 11:08:53 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 20 Jan 2023 11:08:53 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1674209333; x=1705745333;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=TK+KRM3EMKMFlX0ZyA3HSIzsHmLWCaz9ZD/WieX73Q4=;
-  b=JcR7lkkfVRlJAw4KhK2uXcVEjDBrZ0ErgdPwuYJ2v9Tgd3P3tv+UdniS
-   sWiDRiosv3+7Z7Zm5dJ+EMhBfO56NFcN1L56O74LlJcMLWJFll9RZEe2s
-   SHdl4GGQ6sRAkoXu4/pYSWqVXZxG6qpjMzzYMsnBQQ/tw6QI0SnT6wnhT
-   dW3gmHbhFdViKvcX24Sb7iTqmfkacPfXdoyZJZgktoUterd8fRxaTbhGQ
-   kOPLVNFAUviFCYZBcB/GBiYbERK3p9GDgGyKSCnYzFy7irNOMkxJNq1ts
-   k//UDfldXngxH4jh5bW9iZpVZf4/0AxgoTPAYRXi5MeTL/Es+NVNZU/ct
-   g==;
-X-IronPort-AV: E=Sophos;i="5.97,231,1669071600"; 
-   d="scan'208";a="28555294"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 20 Jan 2023 11:08:53 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 954AD280056;
-        Fri, 20 Jan 2023 11:08:52 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Marek Vasut <marex@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/9] ARM: dts: ls1021a: add TQ-Systems MBLS102xA device tree
-Date:   Fri, 20 Jan 2023 11:08:51 +0100
-Message-ID: <2902259.VdNmn5OnKV@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <7cc4c0d4-d863-a62d-3867-ab03d7f7507a@linaro.org>
-References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com> <20230119144236.3541751-3-alexander.stein@ew.tq-group.com> <7cc4c0d4-d863-a62d-3867-ab03d7f7507a@linaro.org>
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=e4mt5lGPeAiHXoegntNYO5GB6SA6d9P+daV7EOX7KxE=;
+        b=fUjHtccIWB0vyjuM9shK7iOBnKRcjVRyDKG0+xnJ/+VnAf+laV6pKo7tbZ3ksh8PvH
+         DTpqVBt9YxlTy9n6MPUwHXfZ17dkV9yIPWutuUoJu1xJKHVVNMqdVkVp71GC8ya2gIrM
+         eKdkevkw7tLtIFyHILfqruPo7R105xSjIPdWcI+57E+FGKb1pzNud70c4jQxXTrpbH5g
+         0MuACQyEH65XIdgQYsrV8x7ILK0SztEBKHhA8qS4PiGT/5AJcMjRPWZSU7O7U19qxeM6
+         AqiHyd94dI/VIZPCUrv69g6vEPxL73eyTPX7/XkYMkKowY3ofeEkr6zxH/d9UwiJo5pd
+         XOnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e4mt5lGPeAiHXoegntNYO5GB6SA6d9P+daV7EOX7KxE=;
+        b=cuT2sHvaxD2yhRbsIwDbf/oULLqOSgyV7ZjsCyTW75Skeh8/FBnnJ3VXRHK2kC8mFA
+         4iC+EagozS8H4pUdjiXUp97bOVq9lN4os/UakBpAnckYyrz/vzKbrr7eC41B3n251aVp
+         15e3ObZGTSv5zuWYDDLJ0Cg5+Z6QIMaovhWuig7F9rgVjtJnx3njldZUwDtEZDmGEyru
+         Zs8SxPICC7LztkjCzQuCXlgpAvweVO8tVjez+9rkF4oTxOQkSXKP7yrxWNK6IWMgetbe
+         x9iZ1lqHAvuWS0fW50XP30Kx7bbeIFNQuEuGcvej5hTwdMCjIRu0qXBm3kOx53+fsD4d
+         ZffA==
+X-Gm-Message-State: AFqh2kqpAtb1UUSUhRf2USCQIBWSi1gf8+EPY4Sj1CQEPRyHNi/rPwIM
+        Iu8wPv1fTnMFMS4jCEAGJkyW3Q==
+X-Google-Smtp-Source: AMrXdXurHyG2XSMT/oqWAcqCqisVjbAkEuwYynC+zJ20Z/Wc3RoAgIV4gZyyioyzciWoE/Yk0mgjTg==
+X-Received: by 2002:a05:600c:3ac8:b0:3da:f67c:aca6 with SMTP id d8-20020a05600c3ac800b003daf67caca6mr13518984wms.34.1674210407420;
+        Fri, 20 Jan 2023 02:26:47 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id z4-20020a05600c0a0400b003db01178b62sm2095567wmp.40.2023.01.20.02.26.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jan 2023 02:26:46 -0800 (PST)
+References: <20230116091637.272923-1-jbrunet@baylibre.com>
+ <20230116091637.272923-3-jbrunet@baylibre.com> <Y8dhUwIMb4tTeqWN@lunn.ch>
+ <1jmt6eye1m.fsf@starbuckisacylon.baylibre.com> <Y8l7Rc9Vde9J45ij@lunn.ch>
+User-agent: mu4e 1.8.10; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: mdio: add amlogic gxl mdio mux support
+Date:   Fri, 20 Jan 2023 11:16:20 +0100
+In-reply-to: <Y8l7Rc9Vde9J45ij@lunn.ch>
+Message-ID: <1jcz79wlgc.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-thanks for the feedback.
+On Thu 19 Jan 2023 at 18:17, Andrew Lunn <andrew@lunn.ch> wrote:
 
-Am Donnerstag, 19. Januar 2023, 18:03:14 CET schrieb Krzysztof Kozlowski:
-> On 19/01/2023 15:42, Alexander Stein wrote:
-> > Add device tree for the MBLS102xA mainboard with TQMLS1021A SoM.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > 
-> >  arch/arm/boot/dts/Makefile                    |   1 +
-> >  .../boot/dts/ls1021a-tqmls1021a-mbls1021a.dts | 409 ++++++++++++++++++
-> >  arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi     |  93 ++++
-> >  3 files changed, 503 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
-> >  create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
-> > 
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index d0c07867aeabe..44b5ed44b13d6 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -802,6 +802,7 @@ dtb-$(CONFIG_SOC_LS1021A) += \
-> > 
-> >  	ls1021a-iot.dtb \
-> >  	ls1021a-moxa-uc-8410a.dtb \
-> >  	ls1021a-qds.dtb \
-> > 
-> > +	ls1021a-tqmls1021a-mbls1021a.dtb \
-> > 
-> >  	ls1021a-tsn.dtb \
-> >  	ls1021a-twr.dtb
-> >  
-> >  dtb-$(CONFIG_SOC_VF610) += \
-> > 
-> > diff --git a/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
-> > b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts new file mode 100644
-> > index 0000000000000..21da171b9f38e
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
-> > @@ -0,0 +1,409 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-or-later OR X11)
-> > +/*
-> > + * Copyright 2013-2014 Freescale Semiconductor, Inc.
-> > + * Copyright 2018-2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
-> > + * D-82229 Seefeld, Germany.
-> > + * Author: Alexander Stein
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/input/linux-event-codes.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +#include <dt-bindings/leds/leds-pca9532.h>
-> > +#include <dt-bindings/net/ti-dp83867.h>
-> > +#include "ls1021a-tqmls1021a.dtsi"
-> > +
-> > +/ {
-> > +	model = "TQMLS102xA SOM on MBLS102xA";
-> > +	compatible = "tq,ls1021a-tqmls1021a-mbls102xa", "tq,ls1021a-
-tqmls1021a",
-> > "fsl,ls1021a"; +
-> > +	audio_mclk: audio-clock {
-> > +		compatible = "fixed-clock";
-> > +		#clock-cells = <0>;
-> > +		clock-frequency = <25000000>;
-> > +	};
-> > +
-> > +	backlight_dcu: backlight {
-> > +		compatible = "gpio-backlight";
-> > +		gpios = <&pca9530 0 GPIO_ACTIVE_LOW>;
-> > +		status = "disabled";
-> > +	};
-> > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +		autorepeat;
-> > +
-> > +		switch-1 {
-> > +			label = "S6";
-> > +			linux,code = <BTN_0>;
-> > +			gpios = <&pca9554_0 0 GPIO_ACTIVE_LOW>;
-> > +		};
-> > +
-> > +		btn2: switch-2 {
-> > +			label = "S7";
-> > +			linux,code = <BTN_1>;
-> > +			gpios = <&pca9554_0 1 GPIO_ACTIVE_LOW>;
-> > +		};
-> > +
-> > +		switch-3 {
-> > +			label = "S8";
-> > +			linux,code = <BTN_2>;
-> > +			gpios = <&pca9554_0 2 GPIO_ACTIVE_LOW>;
-> > +		};
-> > +	};
-> > +
-> > +	gpio_leds: gpio-leds {
-> > +		compatible = "gpio-leds";
-> > +
-> > +		led-0 {
-> > +			color = <LED_COLOR_ID_GREEN>;
-> > +			function = LED_FUNCTION_STATUS;
-> > +			function-enumerator = <0>;
-> > +			gpios = <&pca9554_2 4 GPIO_ACTIVE_LOW>;
-> > +			linux,default-trigger = "default-on";
-> > +		};
-> > +
-> > +		led-1 {
-> > +			color = <LED_COLOR_ID_GREEN>;
-> > +			function = LED_FUNCTION_STATUS;
-> > +			function-enumerator = <1>;
-> > +			gpios = <&pca9554_2 5 GPIO_ACTIVE_LOW>;
-> > +			linux,default-trigger = "default-on";
-> > +		};
-> > +
-> > +		led-2 {
-> > +			color = <LED_COLOR_ID_GREEN>;
-> > +			function = LED_FUNCTION_STATUS;
-> > +			function-enumerator = <2>;
-> > +			gpios = <&pca9554_2 6 GPIO_ACTIVE_LOW>;
-> > +			linux,default-trigger = "default-on";
-> > +		};
-> > +
-> > +		led-3 {
-> > +			color = <LED_COLOR_ID_GREEN>;
-> > +			function = LED_FUNCTION_HEARTBEAT;
-> > +			function-enumerator = <0>;
-> > +			gpios = <&pca9554_2 7 GPIO_ACTIVE_LOW>;
-> > +			linux,default-trigger = "heartbeat";
-> > +		};
-> > +	};
-> > +
-> > +	lvds_encoder: lvds-encoder {
-> > +		compatible = "ti,sn75lvds83", "lvds-encoder";
-> > +		power-supply = <&reg_3p3v>;
-> > +		status = "disabled";
-> > +
-> > +		ports {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			port@0 {
-> > +				reg = <0>;
-> > +
-> > +				lvds_encoder_in: endpoint {};
-> > +			};
-> > +
-> > +			port@1 {
-> > +				reg = <1>;
-> > +
-> > +				lvds_encoder_out: endpoint {};
-> > +			};
-> > +		};
-> > +	};
-> > +
-> > +	reg_1p2v: regulator-1p2v {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "1P2V";
-> > +		regulator-min-microvolt = <1200000>;
-> > +		regulator-max-microvolt = <1200000>;
-> > +		regulator-always-on;
-> > +		vin-supply = <&reg_3p3v>;
-> > +	};
-> > +
-> > +	reg_3p3v: regulator-3p3v {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "3P3V";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		regulator-always-on;
-> > +	};
-> > +
-> > +	hdmi_out: hdmi {
-> > +		compatible = "hdmi-connector";
-> > +		type = "a";
-> > +		ddc-i2c-bus = <&i2c0>;
-> > +		status = "disabled";
-> > +
-> > +		port {
-> > +			hdmi_in: endpoint {
-> > +				remote-endpoint = <&sii9022a_out>;
-> > +			};
-> > +		};
-> > +	};
-> > +
-> > +	display: panel {
-> > +		backlight = <&backlight_dcu>;
-> > +		enable-gpios = <&pca9554_1 3 GPIO_ACTIVE_HIGH>;
-> > +		status = "disabled";
-> > +
-> > +		port {
-> > +			panel_in: endpoint {};
-> > +		};
-> > +	};
-> > +
-> > +	sound {
-> > +		compatible = "fsl,imx-audio-tlv320aic32x4";
-> > +		model = "ls1021a-mbls1021a-tlv320aic32";
-> > +		ssi-controller = <&sai1>;
-> > +		audio-codec = <&tlv320aic32x4>;
-> > +	};
-> > +
-> > +};
-> > +
-> > +&can0 {
-> > +	status = "okay";
-> > +	xceiver-supply = <&reg_3p3v>;
-> > +};
-> > +
-> > +&can1 {
-> > +	status = "okay";
-> > +	xceiver-supply = <&reg_3p3v>;
-> > +};
-> > +
-> > +&dspi0 {
-> > +	bus-num = <0>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&enet0 {
-> > +	phy-handle = <&rgmii_phy0c>;
-> > +	phy-mode = "rgmii-id";
-> > +	mac-address = [ 00 00 00 00 00 00 ];
-> > +	status = "okay";
-> > +};
-> > +
-> > +&enet1 {
-> > +	tbi-handle = <&tbi1>;
-> > +	phy-handle = <&sgmii_phy03>;
-> > +	phy-mode = "sgmii";
-> > +	mac-address = [ 00 00 00 00 00 00 ];
-> > +	status = "okay";
-> > +};
-> > +
-> > +&enet2 {
-> > +	phy-handle = <&rgmii_phy04>;
-> > +	phy-mode = "rgmii-id";
-> > +	mac-address = [ 00 00 00 00 00 00 ];
-> > +	status = "okay";
-> > +};
-> > +
-> > +&i2c0 {
-> > +	status = "okay";
-> > +
-> > +	tlv320aic32x4: audio-codec@18 {
-> > +		compatible = "ti,tlv320aic32x4";
-> > +		reg = <0x18>;
-> > +		clocks = <&audio_mclk>;
-> > +		clock-names = "mclk";
-> > +		ldoin-supply = <&reg_3p3v>;
-> > +		iov-supply = <&reg_3p3v>;
-> > +	};
-> > +
-> > +	pca9554_0: gpio-expander@20 {
-> > +		compatible = "nxp,pca9554";
-> > +		reg = <0x20>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		interrupt-parent = <&gpio0>;
-> > +		interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
-> > +		interrupt-controller;
-> > +		#interrupt-cells = <2>;
-> > +		vcc-supply = <&reg_3p3v>;
-> > +		gpio-line-names = "BUTTON0", "BUTTON1",
-> > +				  "BUTTON2", "EMMC_SEL",
-> > +				  "DIP2", "DIP3",
-> > +				  "EXT_TOUCH_INT", "GPIO_1";
-> > +	};
-> > +
-> > +	pca9554_1: gpio-expander@21 {
-> > +		compatible = "nxp,pca9554";
-> > +		reg = <0x21>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		interrupt-parent = <&gpio0>;
-> > +		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-> > +		interrupt-controller;
-> > +		#interrupt-cells = <2>;
-> > +		vcc-supply = <&reg_3p3v>;
-> > +		gpio-line-names = "PCIE_PWR_EN", "MPCIE_DISABLE#",
-> > +				  "MPCIE_WAKE#", "LCD_BLT_EN",
-> > +				  "LCD_PWR_EN", "EC1_PHY_PWDN",
-> > +				  "EC3_PHY_PWDN", "SGMII_PHY_PWDN";
-> > +	};
-> > +
-> > +	pca9554_2: gpio-expander@22 {
-> > +		compatible = "nxp,pca9554";
-> > +		reg = <0x22>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		interrupt-parent = <&extirq>;
-> > +		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-> > +		interrupt-controller;
-> > +		#interrupt-cells = <2>;
-> > +		vcc-supply = <&reg_3p3v>;
-> > +		gpio-line-names = "MUX_SEL0", "MUX_SEL1",
-> > +				  "MUX_SEL2", "MUX_SEL3",
-> > +				  "V95", "V96", "V97", "V98";
-> > +	};
-> > +
-> > +	sii9022a: hdmi-transmitter@3b {
-> > +		compatible = "sil,sii9022";
-> > +		reg = <0x3b>;
-> > +		iovcc-supply = <&reg_3p3v>;
-> > +		cvcc12-supply = <&reg_1p2v>;
-> > +		interrupts = <GIC_SPI 167 IRQ_TYPE_EDGE_RISING>;
-> > +		#sound-dai-cells = <0>;
-> > +		sil,i2s-data-lanes = <0>;
-> > +		status = "disabled";
-> > +
-> > +		ports {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			port@0 {
-> > +				reg = <0>;
-> > +
-> > +				sii9022a_in: endpoint {};
-> > +			};
-> > +
-> > +			port@1 {
-> > +				reg = <1>;
-> > +
-> > +				sii9022a_out: endpoint {
-> > +					remote-endpoint = 
-<&hdmi_in>;
-> > +				};
-> > +			};
-> > +		};
-> > +	};
-> > +
-> > +	stmpe811: touchscreen@41 {
-> > +		compatible = "st,stmpe811";
-> > +		reg = <0x41>;
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +		interrupt-parent = <&gpio0>;
-> > +		interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
-> > +		vcc-supply = <&reg_3p3v>;
-> > +		vio-supply = <&reg_3p3v>;
-> > +		status = "okay";
-> 
-> Drop, why do you need it?
+>> >> +
+>> >> +	/* Set the internal phy id */
+>> >> +	writel_relaxed(FIELD_PREP(REG2_PHYID, 0x110181),
+>> >> +		       priv->regs + ETH_REG2);
+>> >
+>> > So how does this play with what Heiner has been reporting recently?
+>> 
+>> What Heiner reported recently is related to the g12 family, not the gxl
+>> which this driver address.
+>> 
+>> That being said, the g12 does things in a similar way - the glue
+>> is just a bit different:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/mdio/mdio-mux-meson-g12a.c?h=v6.2-rc4#n165
+>> 
+>> > What is the reset default? Who determined this value?
+>> 
+>> It's the problem, the reset value is 0. That is why GXL does work with the
+>> internal PHY if the bootloader has not initialized it before the kernel
+>> comes up ... and there is no guarantee that it will.
+>> 
+>> The phy id value is arbitrary, same as the address. They match what AML
+>> is using internally.
+>
+> Please document where these values have come from. In the future we
+> might need to point a finger when it all goes horribly wrong.
+>
 
-Thanks, will drop it.
+OK
 
-> > +
-> > +		stmpe_gpio {
-> 
-> No underscores in node names, generic node names, so "gpio". Does
-> anything depend on odd naming?
+>> They have been kept to avoid making a mess if a vendor bootloader is
+>> used with the mainline kernel, I guess.
+>> 
+>> I suppose any value could be used here, as long as it matches the value
+>> in the PHY driver:
+>> 
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/meson-gxl.c?h=v6.2-rc4#n253
+>
+> Some Marvell Ethernet switches with integrated PHYs have IDs with the
+> vendor part set to Marvell, but the lower part is 0. The date sheet
+> even says this is deliberate, you need to look at some other register
+> in the switches address space to determine what the part is. That
+> works O.K in the vendor crap monolithic driver, but not for Linux
+> which separates the drivers up. So we have to intercept the reads and
+> fill in the lower part. And we have no real knowledge if the PHYs are
+> all the same, or there are differences. So we put in the switch ID,
+> and the PHY driver then has an entry per switch. That gives us some
+> future wiggle room if we find the PHYs are actually different.
+>
+> Is there any indication in the datasheets that the PHY is the exact
+> same one as in the g12? Are we really safe to reuse this value between
+> different SoCs?
 
-You are right, node names should have underscores, but in the end I was 
-following the bindings (Documentation/devicetree/bindings/input/touchscreen/
-stmpe.txt) naming 'stmpe_touchscreen' and 'stmpe_adc' in the example.
-Each subdevice has it's own compatible, so there should be no issue.
-Using just 'gpio' and 'touchscreen' below I didn't notice any difference.
+There is zero information about the PHY in the datasheet.
+The gxl and g12 don't use the same ID values.
+The PHY ip is very similar but slightly different between the 2.
+(see https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/meson-gxl.c)
 
-> > +			compatible = "st,stmpe-gpio";
-> > +			gpio-controller;
-> > +			#gpio-cells = <2>;
-> > +			/* GPIO 5-7 used for touch */
-> > +			st,norequest-mask = <0xf0>;
-> > +			gpio-line-names = "GPIO_ADC_I2C1_1",
-> > +					  "GPIO_ADC_I2C1_2",
-> > +					  "GPIO_ADC_I2C1_3",
-> > +					  "GPIO_ADC_I2C1_4";
-> > +		};
-> > +
-> > +		stmpe_touchscreen {
-> 
-> Same problems.
+My guess is the g12 as another version of the IP, with some bug fixed.
+The integration (clocking scheme mostly) is also different, which is why
+the mux/glue is different.
 
-See above. When enabled driver loads fine.
+>
+> I actually find it an odd feature. Does the datasheet say anything
+> about Why you can set the ID in software? The ID describes the
+> hardware, and software configuration should not be able to change the
+> hardware in any meaningful way.
 
-> > +			compatible = "st,stmpe-ts";
-> > +			status = "disabled";
-> > +		};
-> > +	};
-> > +
-> > +	pca9530: leds@60 {
-> > +		compatible = "nxp,pca9530";
-> > +		reg = <0x60>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		gpio-line-names = "PWM_0", "PWM_1";
-> > +
-> > +		gpio_pwm_0 {
-> 
-> No underscores in node names, generic node names. This is neither GPIO
-> nor PWM.
+Again, zero information. 
+It is a bought IP (similar to the Rockchip judging by the PHY driver).
+I'm not surprised the provider of the IP would make the ID
+easy to configure. AML chose to keep that configurable through the glue,
+instead of fixing it. This is how it is.
 
-You are right, no underscores. Well, actually it's used as a GPIO for 
-backlight brightness, on a signal called 'PWM_0'. But I'll go for 'led-0' and 
-'led-1' for node names and remove the labels, as they are type GPIO.
+>
+>> >> +	/* Enable the internal phy */
+>> >> +	val |= REG3_PHYEN;
+>> >> +	writel_relaxed(val, priv->regs + ETH_REG3);
+>> >> +	writel_relaxed(0, priv->regs + ETH_REG4);
+>> >> +
+>> >> +	/* The phy needs a bit of time to come up */
+>> >> +	mdelay(10);
+>> >
+>> > What do you mean by 'come up'? Not link up i assume. But maybe it will
+>> > not respond to MDIO requests?
+>> 
+>> Yes this MDIO multiplexer is also the glue that provides power and
+>> clocks to the internal PHY. Once the internal PHY is selected, it needs
+>> a bit a of time before it is usuable. 
+>
+> O.K, please reword it to indicate power up, not link up.
+>
 
-> > +			label = "pca9530:pwm0";
-> > +			type = <PCA9532_TYPE_GPIO>;
-> > +		};
-> > +
-> > +		gpio_pwm_1 {
-> > +			label = "pca9530:pwm1";
-> > +			type = <PCA9532_TYPE_GPIO>;
-> > +		};
-> > +	};
-> > +
-> > +};
-> > +
-> > +&i2c1 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&lpuart0 {
-> > +	status = "okay";
-> > +	linux,rs485-enabled-at-boot-time;
-> > +};
-> > +
-> > +&mdio0 {
-> > +	sgmii_phy03: ethernet-phy@3 {
-> > +		compatible = "ethernet-phy-ieee802.3-c22";
-> > +		reg = <0x03>;
-> > +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> > +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-> > +		ti,dp83867-rxctrl-strap-quirk;
-> > +	};
-> > +
-> > +	rgmii_phy04: ethernet-phy@4 {
-> > +		compatible = "ethernet-phy-ieee802.3-c22";
-> > +		reg = <0x04>;
-> > +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
-> > +		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> > +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> > +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-> > +	};
-> > +
-> > +	rgmii_phy0c: ethernet-phy@c {
-> > +		compatible = "ethernet-phy-ieee802.3-c22";
-> > +		reg = <0x0c>;
-> > +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
-> > +		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> > +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> > +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-> > +	};
-> > +};
-> > +
-> > +&pwm6 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&pwm7 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&sai1 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&sata {
-> > +	/delete-property/ dma-coherent;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&uart0 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&uart1 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb3 {
-> > +	/*
-> > +	 * Although DR connector, VBUS is always driven, so
-> > +	 * restrict to host mode.
-> > +	 */
-> > +	dr_mode = "host";
-> > +	status = "okay";
-> > +};
-> > diff --git a/arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
-> > b/arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi new file mode 100644
-> > index 0000000000000..1ab518c489252
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
-> > @@ -0,0 +1,93 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-or-later OR X11)
-> > +/*
-> > + * Copyright 2013-2014 Freescale Semiconductor, Inc.
-> > + * Copyright 2018-2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
-> > + * D-82229 Seefeld, Germany.
-> > + * Author: Alexander Stein
-> > + */
-> > +
-> > +#include "ls1021a.dtsi"
-> > +
-> > +/ {
-> > +	model = "TQMLS102xA SOM";
-> > +	compatible = "tq,ls1021a-tqmls1021a", "fsl,ls1021a";
-> > +
-> > +	reg_3p3v_som: regulator-3p3v-som {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "3P3V_SOM";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		regulator-always-on;
-> > +	};
-> > +};
-> > +
-> > +&esdhc {
-> > +	compatible = "fsl,esdhc", "fsl,ls1021a-esdhc";
-> > +	/* e-MMC over 8 data lines */
-> > +	bus-width = <8>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&i2c0 {
-> > +	status = "okay";
-> > +
-> > +	mc34vr500: pmic@8 {
-> > +		reg = <0x08>;
-> 
-> No compatible? What's this?
+Sure
 
-That's a DC/DC regulator on the module, currently without any driver support. 
-It's controlled by the PMC, see below.
-
-We had an internal discussion as well whether to state clients without a 
-driver (and thus no compatible) on the i2c bus. What is the guidelines for DT?
-The benefit stating, even without compatible, is to show there is some device 
-on the bus.
-
-> > +		status = "disabled";
-> > +	};
-> > +
-> > +	pmc0: pmc@11 {
-> 
-> No compatible? What's this?
-
-That's a PMC monitoring voltages using the DC/DC regulator from above. It's 
-connected to i2c bus, but apparently there is no interface using this device.
-
-> > +		reg = <0x11>;
-> > +		status = "disabled";
-> > +	};
-> > +
-> > +	sa56004: temperature-sensor@4c {
-> > +		compatible = "nxp,sa56004";
-> > +		reg = <0x4c>;
-> > +		vcc-supply = <&reg_3p3v_som>;
-> > +	};
-> > +
-> > +	adm1069: supervisor@4f {
-> 
-> No compatible? What's this?
-
-Another monitor, similar to above connected to i2c bus but no actual interface 
-to ARM cpu.
-
-> > +		reg = <0x4f>;
-> > +		status = "disabled";
-> > +	};
-> > +
-> > +	rtc0: rtc@51 {
-> > +		compatible = "nxp,pcf85063a";
-> > +		quartz-load-femtofarads = <12500>;
-> > +		reg = <0x51>;
-> 
-> Reg is second property
-
-Sounds reasonable, thanks.
-
-> > +	};
-> > +
-> > +	m24c64_54: eeprom@54 {
-> > +		compatible = "atmel,24c64";
-> > +		reg = <0x54>;
-> > +		pagesize = <32>;
-> > +		read-only;
-> > +		vcc-supply = <&reg_3p3v_som>;
-> > +	};
-> > +};
-> 
-> Best regards,
-> Krzysztof
-
-Best regards,
-Alexander
-
-
-
+>      Andrew
