@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56B13674E8D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 08:45:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43305674EA4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 08:48:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230409AbjATHpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 02:45:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45670 "EHLO
+        id S230354AbjATHso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 02:48:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230457AbjATHpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 02:45:40 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18CDF8B740
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:44:54 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so3024297wmq.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:44:53 -0800 (PST)
+        with ESMTP id S230225AbjATHsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 02:48:37 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 994CE85348
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:48:13 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id q10so4073585wrs.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:48:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=drfFdgpb4YkUjSwdoc9Z5a3O+ognmoqBbo2eF6alSdU=;
-        b=e+mfRRxTfGW5YTv/Rk9ZBMpWJa9fMCCQ17hOT/s5m2unxnuD9/dQh529Rr8DacQ8/9
-         Pyn4ZGgPU0hBpE4SZEuuurb0zU1EOSM3CGagMFIn+q7stgDJm3j+dM3p5zO7GSu+Kp/1
-         Vl6gjh8CuC7mH346RLr42h9JUD5657RToSf8famYSTfsPFxiucbg+DLVP1EYB0SX5PeB
-         Nia+5KEjroz2gFWuMsvL+Nf++pfSdjOXfB+ohS03PZRyUTWwM6F/cTpEBWLt7Q3oHZ34
-         OunY3n/J6VouQ5NEnAJP60JSmc8OdVhgFHg1vhcqS1+5+2qCjwPZcurLVSIwbbWMl0YP
-         k+rw==
+        bh=SUbYG6CNFZkAaSfmbsiOn5ZLfVicT6OQUe0wKNSaOFg=;
+        b=E/gsgiKDlovjPEr1wVqqhP64WUTBcW7LnrIaA4cGorpachmtdKSTBYWEnqah2dt/ro
+         1xumU7oIe5rQIZ6aGhYE5xSJwLTldpojPXW1rqA1+1h/HnlvGwt1yQMMJaWTfnLw+fGJ
+         /jhjZNOe4+iFJYnBW5/8uANdzqMhKWVjryvU9eCf4ZpwED4iiCqNoKE/i7ftjwXzlMUN
+         uQYg8rgLbc27HtpviXGt4mc51RFmQYU6aTIPJ1+GtcDafEg0fhIv9mkBvEfHRoRskB7d
+         0+jHp1P1kPTFwujMCz268zCKy1yN454PEPflBYCbr14i5q4hrSusYofS/dqyeGNzriFe
+         jOBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=drfFdgpb4YkUjSwdoc9Z5a3O+ognmoqBbo2eF6alSdU=;
-        b=Rs+7DO24ZuZFrId5rQbP0C5vw4lFSAKeREiW5X7U+5ynfS4fhngsOhOvT/7WLNE1xZ
-         t8WCjkXnHZcOae8nhfNTyEgms8m+aGjY1UP1kukE0kSw21ElWsKtu5fzmoNg9YfAPOZ2
-         2yVNi9DT9iPTBceVy30r1GMXY3QTSHsSZECzio4zQmVN8Bts0PjZk3a8VUj85jIDZb/2
-         bnOMSvDbb5PD0mquIyRBY3W0ojMdIEndUNp+Tke6QT/hjtgjGRedo0rN0TU+9bohzcDZ
-         uf++KmOqRTg9taxZknHgXQH6TQG9WdW6UsBe8/iI0WGBhiT1w/8RGnpa+qEOA9DOFONW
-         Cjjw==
-X-Gm-Message-State: AFqh2kolC2GUZsV1J4Ge747R5iGc1c8ODErHxDxJ8I8eCOztpdzOaZcT
-        SoM7xyKXo+IugTqdxENkr0zMrQ==
-X-Google-Smtp-Source: AMrXdXul6atu6mzYQTY69VMfekx6QHfoNRoaaWTtrahYGNQRtASVGIqsSfmGvRdAjKSkA656+k/cyA==
-X-Received: by 2002:a05:600c:4c21:b0:3cf:900c:de6b with SMTP id d33-20020a05600c4c2100b003cf900cde6bmr12667812wmp.15.1674200673849;
-        Thu, 19 Jan 2023 23:44:33 -0800 (PST)
+        bh=SUbYG6CNFZkAaSfmbsiOn5ZLfVicT6OQUe0wKNSaOFg=;
+        b=KZj2Qxt/RUeL0PdkzbCmTVWacbEdHAnnYlkji2zVHJyEzEbRpbGh7ry6yAwWIJZ6zt
+         e704Egjvp01hodCH+JG2OwLriul+NDjIySQc2xAgP9WZuEjei7auhxIp885pfH9mqq4+
+         lyBGYGKEGVINwiygAPDianD+gYPNlfRMgpsqraS440UCq/S7UZzi6SXQpCPHMCk8vlKn
+         7UM3ZMLLGC70IZQB+bzBNQLmPze0iZCQYusIK4VsgqXODAGtTCKN/eDUK3kLM8niEITq
+         f8onYF79abEPNu+gFxTAey749rVbZHfBIlhRkDsLbpFLFgr0cdXzJElLKOa89sJjDPqJ
+         gY1A==
+X-Gm-Message-State: AFqh2kpsEZ5Hf5sCixNId0dF+0Mo/NOC6INONS2VLgqVlNUEbLsh/UuO
+        I+xsWelo8EAbw7DYYymVWsY2uQ==
+X-Google-Smtp-Source: AMrXdXuXFnAh8TD3IFzfCwiyzZGic0IxxbCUXc7p1siPzKJJVl9d52SoYbHlIXsU456hEn0aOzJiQw==
+X-Received: by 2002:a5d:58e8:0:b0:2be:b07:d411 with SMTP id f8-20020a5d58e8000000b002be0b07d411mr11456316wrd.3.1674200825135;
+        Thu, 19 Jan 2023 23:47:05 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j25-20020a05600c1c1900b003c71358a42dsm1893276wms.18.2023.01.19.23.44.32
+        by smtp.gmail.com with ESMTPSA id f3-20020adfdb43000000b00236883f2f5csm35975719wrj.94.2023.01.19.23.47.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 23:44:33 -0800 (PST)
-Message-ID: <b277b67c-bd00-a543-1945-f986134a78f7@linaro.org>
-Date:   Fri, 20 Jan 2023 08:44:31 +0100
+        Thu, 19 Jan 2023 23:47:04 -0800 (PST)
+Message-ID: <259d738b-5717-8fda-22f0-c61db4660e95@linaro.org>
+Date:   Fri, 20 Jan 2023 08:47:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
@@ -95,11 +95,12 @@ On 19/01/2023 20:18, Alexandre Mergnat wrote:
 > Actually I did.
 > I saw: "WARNING: DT compatible string "mediatek,genio" appears
 > un-documented -- check ./Documentation/devicetree/bindings/"
-> But there are no bindings for spidev. 
+> But there are no bindings for spidev. I've made some grep on already
+> supported compatible devices like "micron,spi-authenta", but I didn't
+> find documentation to add "mediatek,genio".
 
-There are. Just some other people were as well ignoring warnings. What
-is the purpose of having tools if people keep ignoring the warnings, sigh...
-
+Another point - why is this after "micron"? Don't add entries to the end
+but in order.
 
 Best regards,
 Krzysztof
