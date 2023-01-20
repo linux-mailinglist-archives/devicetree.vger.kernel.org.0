@@ -2,104 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89B3B674FBC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 09:50:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3E70675016
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:02:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbjATIuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 03:50:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60946 "EHLO
+        id S229498AbjATJCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 04:02:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbjATIuB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 03:50:01 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2558F74960;
-        Fri, 20 Jan 2023 00:49:58 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id EB256660087F;
-        Fri, 20 Jan 2023 08:49:55 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1674204596;
-        bh=dtOCdLeTQE8zVSUcE8A4hi8VQQlIAstmK+GCMOpm3gw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dNmUuKaMEpcLhTJXo8+9pFLy257FUS5znKBB7aPeH8tiqJudb246wHzQ1/LV8XLKP
-         RhfzW2YxAypWrQoAJUfYu+Mm64RVJwVQeTa6dtO7DAU8BW+7Gp+IRwG+n5fdkhldbp
-         K3pmge3y07BdVmi/tAWxLuQZ8aZ6S43luTpzTIyVVruh1mTpG1Diwl/fu8fbdhuNbi
-         BgTB12x5Db6a5k/Ady/vXeGRwWVV5B0w52XBfAtippXsZcWS7ZkjCP3PGF0THdimjK
-         nHpAMlriHnf1jgt9E5gS5G7vgQdSWJn9PD8G0FJy8frYa+/aQqMgB0DVeb9yHo2Pv6
-         R2pJz8iNvt0yQ==
-Message-ID: <c4cf0c0d-9863-fa3a-88da-591c26e08188@collabora.com>
-Date:   Fri, 20 Jan 2023 09:49:53 +0100
+        with ESMTP id S229481AbjATJCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:02:38 -0500
+X-Greylist: delayed 606 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 20 Jan 2023 01:02:34 PST
+Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F087F2D6B
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 01:02:34 -0800 (PST)
+Received: by mail.tryweryn.pl (Postfix, from userid 1002)
+        id 2E06AA7A10; Fri, 20 Jan 2023 08:51:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
+        t=1674204717; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
+        h=Date:From:To:Subject:From;
+        b=R7dcEx0y2TNLXFxKBB4DVkqqzSkLYGdjwBpDs1rcb/PXlizE+jMTx1QJC+SdlmPsh
+         Ji+UGM2Ps+C0NOa/Jdj273GNmF34vlYTlRRqbqIwCUN4+mtjjl6D3XS/Or6IeRXGIe
+         sPawXgmiu/bQ0qWkjOktR7BtTtv3aTyC0WsW6rObFOFyGYAWCu++YKBOSr3FYJSmnN
+         thI7iDPtgLmwR3BxWi0dT7yZKBDBGlp0fv1wOg7urEmD8w6NOY3GCSUhvHhcQAKnlK
+         zG8xnlXK/ai2+5ZIvc9t9k4AESHULdg4ft6XLfzuUMMEG3rcvK5GFHNg0xRM+KRhOk
+         q5w4CyAA1NoAA==
+Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 08:50:44 GMT
+Message-ID: <20230120074500-0.1.7o.2r57h.0.w2e0ig82qb@tryweryn.pl>
+Date:   Fri, 20 Jan 2023 08:50:44 GMT
+From:   "Karol Michun" <karol.michun@tryweryn.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Prezentacja
+X-Mailer: mail.tryweryn.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 0/3 v2] add support for clocks on MT7981 SoC
-Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-armkernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Jianhui Zhao <zhaojh329@gmail.com>
-References: <cover.1674152610.git.daniel@makrotopia.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <cover.1674152610.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_VALIDITY_RPBL,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 20/01/23 02:24, Daniel Golle ha scritto:
-> The MediaTek MT7981 SoC is quite similar to its big sibling, the
-> MT7986. Hence most drivers can be reused and not much is missing the
-> get also this SoC working on mainline Linux.
-> 
-> Start with a cleaned-up version of the clock drivers, based on what can
-> also be found in MediaTek's SDK[1].
-> 
-> Upon request of AngeloGioacchino Del Regno this series has been rebased
-> and adapted to be applied on top of the pending series
-> "MediaTek clocks cleanups and improvements"[2]
-> 
-> Changes since v1:
->   * rebase and adapt on top of [2]
->   * split-off addition of dt-bindings header, fix filename
->   * changed commit title as requested
+Dzie=C5=84 dobry!
 
-You didn't change it as requested :-P
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
+=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
+zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
 
-> 
-> [1]: https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/refs/heads/master/target/linux/mediatek/files-5.4/drivers/clk/mediatek/clk-mt7981.c
-> [2]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=711734
-> 
-> Daniel Golle (3):
->    dt-bindings: clk: Add apmixedsys/topckgen compatibles for MT7981
->    dt-bindings: clk: mediatek: add mt7981 clock IDs
+Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
+=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
+dostaw.
 
-s/clk/clock/g :-)
+Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
+nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
+ co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
 
-Regards,
-Angelo
+Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
+=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
+zania w Pa=C5=84stwa firmie.
 
 
+Pozdrawiam
+Karol Michun
