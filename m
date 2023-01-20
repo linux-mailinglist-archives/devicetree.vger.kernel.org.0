@@ -2,82 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C434B6761AB
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 00:40:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32C2C6761C6
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 00:55:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbjATXkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 18:40:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36840 "EHLO
+        id S229912AbjATXzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 18:55:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbjATXkV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 18:40:21 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B907ED69;
-        Fri, 20 Jan 2023 15:40:15 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id v5so8540440edc.3;
-        Fri, 20 Jan 2023 15:40:15 -0800 (PST)
+        with ESMTP id S229500AbjATXzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 18:55:39 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB5BE613E3
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 15:55:37 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id m5-20020a05600c4f4500b003db03b2559eso4775524wmq.5
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 15:55:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YlFQs5uK1REKCJrhOvImfAktaMDFYnGI105SvemPmlY=;
-        b=RRiBdw8uKBYsQzBGG11bH8QpnGKO+OrOgFZgbwJ0LEsEIPHcP7NIdCOplfvqJq8Gcn
-         IDtizdX6lIF3alkc+hWGOqX8r13i2qRyNZp9JDHxXCaqxMbK9x5OKjof6i4tFgOSr3r5
-         tjuYBJAMeg/FMtfXejJCJ9r6vFrvi65I7Itw6TiKTUVIyLJegXEgLmgksKWfK+PqzEsi
-         H9P7nID/+0DuRX9/GhZ2wmEOfsmc0xKQsQrdu1EA/dnpRuFBVRaPndkx4OiPgtazlxEn
-         VdJXWiQveKeHn4g4HKUvrrTXj7UwfzR9tISQR/41dRU/sSQfgY1fuiSQQE0ogA67JIO/
-         uUUw==
+        bh=Ff0A3kv/bgct8rqbXfX4KXy2H1Te2l8OeqZhx13j8HI=;
+        b=rXJEYKqxZSNOEEj7Bp746mpBz+AjotzURkZk2iiq5Jlmd2JFT99TtAJ+OUqiCPvQMO
+         Tf/StJrJTS8Hmwxp4mrVS/XyEDtf5vDvQnk/pD7irkMrflPHgJCOoXaFqPMtATDT1bJg
+         IZNpbuqPib7LpTYWSbCZbEYIR4um2oewtayqw44k4kK1ghUdvuT0lNz+MJjVdyM7R8/h
+         bFvhpyo6SfMg65FL8kVPcfxEu7AauldoTtMTKVtMurh/woqqWEpqRpKLHQ7fhsSQsy+u
+         lD1lyFd4fxkYNRpmNc0K2Ut22lmAtOEa86EQf447h64lV+LhXDITcv2AVuG8tiUGC3U5
+         aoow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YlFQs5uK1REKCJrhOvImfAktaMDFYnGI105SvemPmlY=;
-        b=BORCqbLvsxnYN9NJ+5cH+jyyR4sfGNUuorW+FIDsk0X4gjGHnkhZKXgUdL7QFw4qL0
-         PayXEwDFi9ErJ8Oa4hqEG6waXcP7Aa8BuMTKaiP/68BGRqjUuKHmq4jq7Bc2GnEs8ZvA
-         LkPinfVsxDEeogexzPxIPkRELgbIx1sywJNcQNl+pn9WeGm2Ps2d/PTxenwn2j0KVh0o
-         46VKqpOy6Ycljh7LXmI4so3FyTw4ehikAsmLx77KPRwDCBnBVUIgiMJPzsNYv+3cR3OW
-         /r4oxprsJx/wNGVR9OMl2uTAlrxM4R7N8UuEJOYxBfJTIH1rBkYghiWzH6z/sdijyQvZ
-         t9qw==
-X-Gm-Message-State: AFqh2kotMapyYq4Iawv5Wij9h+kiimWD6QMZVJh1SJK1EZJblGppTBi9
-        mCGz4aT4H7URrTnfhMU6FZwRZucMfrY=
-X-Google-Smtp-Source: AMrXdXuVuW4WzQPRX+Id1GCwSM7qs0K6dzLXuAUos1Todbd5RBeS68VoXDFF+todOBUIwUvJl8vzWQ==
-X-Received: by 2002:aa7:c44d:0:b0:46c:b919:997f with SMTP id n13-20020aa7c44d000000b0046cb919997fmr7738082edr.17.1674258014332;
-        Fri, 20 Jan 2023 15:40:14 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id ec49-20020a0564020d7100b0049e249c0e56sm7066080edb.56.2023.01.20.15.40.13
+        bh=Ff0A3kv/bgct8rqbXfX4KXy2H1Te2l8OeqZhx13j8HI=;
+        b=SkFV1nhp6ePdUzBmCbleuipwRhWmrhzIYz3Tovi3g1jtYSpbhnuGu1HtRvr32VtZjf
+         Cabzq7qGHpO2TkkEQ1rEKtpeDyZoozHrite25U+vMvpjE2COzdFJBWSg9u7ZQOoVF9Rv
+         qDxFkY4JDv06HPlVAt76k6YN7kppg7j2L6xhFVAOqM+5mjKbF+Cm3wEgLYUyjOGFiGdN
+         LJ+tJ8wVripE0Oauba+MqJWLU/nj1itOzWT2xx4uRXm0EarP9Q9xrBRmojfjh8wrqdgY
+         Ao+MxZ+LMpIOUvYbSXmoU0D56XHk6tyHsUVlVb2i7OBajhvBNdVrf75dq7TrIMKTNjtM
+         4lgQ==
+X-Gm-Message-State: AFqh2koXYDT2TRTt5M91loM1g/4GLftkpc750FwPjrixvc7FyhUX3098
+        8P91enfMDeIbvpzDDx0iJ2OvLw==
+X-Google-Smtp-Source: AMrXdXuW1MKzdMucZFZGu2HrYDLuLfT/y0K+3EqW9j/yN3rMlnlz21zrNlxDaFBUImqHxB2zW9FuYg==
+X-Received: by 2002:a05:600c:cc8:b0:3cf:497c:c59e with SMTP id fk8-20020a05600c0cc800b003cf497cc59emr12474479wmb.6.1674258936218;
+        Fri, 20 Jan 2023 15:55:36 -0800 (PST)
+Received: from [192.168.0.15] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
+        by smtp.gmail.com with ESMTPSA id q23-20020adfb197000000b002be5bdbe40csm2731007wra.27.2023.01.20.15.55.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 15:40:13 -0800 (PST)
-Message-ID: <be193659-e97f-23b9-b89c-d02205705db6@gmail.com>
-Date:   Sat, 21 Jan 2023 00:40:12 +0100
+        Fri, 20 Jan 2023 15:55:35 -0800 (PST)
+Message-ID: <46929065-0f8d-9487-d44c-406503fe7a0c@linaro.org>
+Date:   Fri, 20 Jan 2023 23:55:35 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: usb: rockchip,dwc3: Move RK3399 to
- its own schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230118193056.673514-1-robh@kernel.org>
- <20230118193056.673514-2-robh@kernel.org>
- <4eca2695-cb73-eaad-4c8a-82dec923825e@gmail.com>
- <CAL_JsqKqiRbBJErkh2Hch+XZyLggGyjYo1rvKWPhxb99pA8mAA@mail.gmail.com>
+ Thunderbird/102.6.1
+Subject: Re: [RFT PATCH v2 4/6] arm64: dts: qcom: sdm845: move audio to
+ separate file
 Content-Language: en-US
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <CAL_JsqKqiRbBJErkh2Hch+XZyLggGyjYo1rvKWPhxb99pA8mAA@mail.gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20230118103458.107434-1-krzysztof.kozlowski@linaro.org>
+ <20230118103458.107434-4-krzysztof.kozlowski@linaro.org>
+ <46acf2f4-3272-c33d-887f-05d4f4aad4d7@linaro.org>
+ <1711636c-8aa1-eccc-eded-14a64baf7bec@linaro.org>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <1711636c-8aa1-eccc-eded-14a64baf7bec@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,38 +85,83 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 1/20/23 21:30, Rob Herring wrote:
-> On Wed, Jan 18, 2023 at 3:05 PM Johan Jonker <jbx6244@gmail.com> wrote:
+On 20/01/2023 07:42, Krzysztof Kozlowski wrote:
+> On 20/01/2023 00:24, Caleb Connolly wrote:
 >>
->> Hi,
 >>
->> Some alignment at the examples and the unknown extcon property.
+>> On 18/01/2023 10:34, Krzysztof Kozlowski wrote:
+>>> Re-organize SDM845 sound components into separate, audio DTSI which
+>>> should be included and customized by the SDM845 boards wanting audio.
+>>> The DTSI includes:
+>>> 1. WCD9340 codec node because it is not a property of the SoC, but board.
+>>> 2. Common sound DAI links, shared with all sound cards.
 >>
->> usb@fe800000: 'extcon' does not match any of the regexes
+>> Hi Krzysztof,
+>>
+>> I know I already reported this on IRC, I thought I'd duplicate the info
+>> here for completeness sake.
+>>
+>> Due to how the sound node is parsed the device numbers in alsa are
+>> derived from the index of the sound/mmX-dai-link child nodes.
+>>
+>> For boards which use more than 3 FE's this causes breaking changes in
+>> userspace, as the slim-dai-link and slimcap-dai-link nodes now come
+>> before the other mmX-dai-link nodes, for example with my OnePlus 6
+>> patches "aplay -l" shows:
+>>
+>> card 0: O6 [OnePlus 6], device 0: MultiMedia1 (*) []
+>>   Subdevices: 1/1
+>>   Subdevice #0: subdevice #0
+>> card 0: O6 [OnePlus 6], device 1: MultiMedia2 (*) []
+>>   Subdevices: 1/1
+>>   Subdevice #0: subdevice #0
+>> card 0: O6 [OnePlus 6], device 2: MultiMedia3 (*) []
+>>   Subdevices: 1/1
+>>   Subdevice #0: subdevice #0
+>> card 0: O6 [OnePlus 6], device 5: MultiMedia4 (*) [] <-- 5 instead of 3
+>>   Subdevices: 1/1
+>>   Subdevice #0: subdevice #0
+>> card 0: O6 [OnePlus 6], device 6: MultiMedia5 (*) []
+>>   Subdevices: 1/1
+>>   Subdevice #0: subdevice #0
+>> card 0: O6 [OnePlus 6], device 7: MultiMedia6 (*) []
+>>   Subdevices: 1/1
+>>   Subdevice #0: subdevice #0
+>>
+>> This breaks the UCM configs shipped by postmarketOS and Mobian - though
+>> none of it is "upstream".
 > 
-> Does that go in the wrapper or dwc3 node?:
+> Thanks for the report.
 > 
-> arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dtb: usb@fe800000:
-> usb@fe800000: Unevaluated properties are not allowed ('extcon' was
-> unexpected)
->         From schema:
-> /home/rob/proj/linux-dt/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
+> 
+>>
+>> Would it be reasonable to add all 6 FE DAI's and then disable the unused
+>> ones on a per-board basis?
+> 
+> 
+> Or just drop the sound node from the audio DTSI, not sure if there are
+> benefits in such case...
+
+That sounds reasonable to me. I'd be happy to rebase my OnePlus 6 patch
+on this.
+> 
+>>
+>>>
+>>> The Xiaomi Polaris, although includes WCD9340 codec, it lacks sound
+>>> node, so it stays disabled.
+>>>
+>>> On all others boards not using audio, keep the Slimbus node disabled as
+>>> it is empty.
+> 
+> Please trim your replies - there is a lot of unrelated content here and
+> I don't know if I should keep scrolling to look for something or not.
+
+Will do, thanks for pointing that out.
+> 
+> Best regards,
+> Krzysztof
 > 
 
-
-> That's the dwc3 node, but the majority are in the wrapper node, so I'm
-> going with the majority and leaving this one.
-
-In wrapper code for rk33899 in dwc3-of-simple.c I don't see no extcon activity I think.
-
-In core there's recently made some changes:
-https://github.com/torvalds/linux/blame/master/drivers/usb/dwc3/core.c#L1710
-
-usb: dwc3: Don't switch OTG -> peripheral if extcon is present 
-https://lore.kernel.org/all/20221017233510.53336-1-andriy.shevchenko@linux.intel.com/
-
-Binding status update for that is unknown for me.
-Do whatever suites you best.
-
-Johan
-> Rob
+-- 
+Kind Regards,
+Caleb (they/them)
