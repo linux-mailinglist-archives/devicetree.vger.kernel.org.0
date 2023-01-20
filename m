@@ -2,75 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 124FB675948
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:55:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09DA4675953
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:55:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231628AbjATPyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 10:54:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58550 "EHLO
+        id S230203AbjATPzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 10:55:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231676AbjATPyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:54:41 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02EC85E532
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:54:29 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so6154491wmb.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:54:29 -0800 (PST)
+        with ESMTP id S229929AbjATPzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:55:39 -0500
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737075E53E
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:55:12 -0800 (PST)
+Received: by mail-qt1-x82e.google.com with SMTP id e8so4460941qts.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:55:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xSgM6n49EcyShr7fktwdqot3K5AnX5J3htXp++CJjcc=;
-        b=CqA6PkaGMtx+7DxIVeb9sNrO2cMLSAP4jLzXDmtYGVMDnO4n8FKU1XsKN/ScyoB+mP
-         CY8gJO9tKusLityrvFcnX5NQ5qAhbdj/2ixMEGQfCZ4UhVz3yECHfq63a8w+33n8YtkE
-         U3k8drugwg1A7LA21QHPQqRAiB4oeiGJiaRV7z0BH3iN3tMrJp1Nf5wot/i+INxG8V6z
-         RcT1hvLvRc2jRv+ls1Ho2ZWBd68Lx4iJgGGR9qHAI/p9vfL+trU5Zd6/kq2y/ZxTiUxA
-         9mSkRLMIK4hh+rVAZX9MNc5hfmm7xSpXqnH1nv8kcl0bfHn86ORS2QWIGOYCN87s5gii
-         uWgQ==
+        d=poorly.run; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cIZBov414cRAviPU8wwR8NqtPTpO7JU2x/UOZjpaEK8=;
+        b=I+/367Wr7qAl4QZ19Xa8tMaf6OqBl6nT+owiFtMqLB3/Pk1nuu/DhyGmoEK7Lb+cBd
+         //6UGaGGTvOGvzJ/mWDIIYHpM5WkOc2aTbH28Z5mpomge2PFcZWk0jPPE8ng1P9KJICw
+         kYEMN9hgS7OBMWqEVVXpEj+uPpGaVXdsBHwT1L5aA7FsjQPf0Z3TStJ+iaepVd5A72HF
+         wvf5b52cvYfFrjB5l0ouephNq/+wZXsmyY1xI7jEACR3zpiFVnJGl1fUMjGlE8xgQr2+
+         9GwZy1WuKMfqeSoyDSpeMrCnVUYV9UONb7Y8Ru7Xa3AMfHs1LyJSouAVHeWITYRdqKw5
+         NHYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xSgM6n49EcyShr7fktwdqot3K5AnX5J3htXp++CJjcc=;
-        b=09TP3ICrb4jq5b9ODklksatWc5P6jgXd25NF8GtiRO68kpTgdYZ9TJnmK7TEclohWu
-         fPyHiGkvoQm8hYExLiTI8jyzyq8HH+y2PfaxjyOuCXmve4mz43bzB91UA3lpmn8X6Lxb
-         cXbw99lqpJPxmGRtW6bPtJRcciHF6hUe0C6h3E3ZHxuxkj98HSbYEZQcT8Z7sWcYj2Fl
-         s8aga6iU+Zej4hlrLBCZtK5M3PIdnFFnzvESdxcQkkjUkjYrMa9OH6A7GqFy3/aBy86B
-         8kEs5ap2DvXW1+RtUCiv4aELMSolOABFIf14t2cUVSdmfRRXbh/L9zm5/Z6yv3NqKgL8
-         JSkw==
-X-Gm-Message-State: AFqh2kozTBDcHM++tpYk90TRjwyo0dBK9fvDBchC7w5s15cIxOHMYL5f
-        UCflVv4YE5cGPqbDs2BPrBpQTA==
-X-Google-Smtp-Source: AMrXdXtfWuN/VpvBtso8zJRkonoucoMHvJlt8jabUZsECy6yV9zjjBJaMqPyhxI1boBEX6X3fA8krA==
-X-Received: by 2002:a05:600c:600e:b0:3da:fb0b:849f with SMTP id az14-20020a05600c600e00b003dafb0b849fmr14952401wmb.25.1674230069613;
-        Fri, 20 Jan 2023 07:54:29 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n42-20020a05600c3baa00b003d96efd09b7sm3349596wms.19.2023.01.20.07.54.28
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cIZBov414cRAviPU8wwR8NqtPTpO7JU2x/UOZjpaEK8=;
+        b=wlqiS+PGTX5NvzlGhrcnm22BJR617BaqfN8goAyBVf4k31etoID6Z2x+LnpaPYMcK9
+         ayyIAo0fMzhBLL4zFTbOnB/bUh8VPY+BwDYgcB7GiIYIgS72mjSnkiTdu+EJnzqZAmqE
+         vwq9h8sfV0ebB/J7pY3+wy4gZK/qfQA3e7bfOOGCvI6vPychnAC+ce6n7pK6ka9WvWok
+         2O2geEdPNvi8Sik5rW5N+CuwtRpiHJ/0b+iIBZcaACUATjnVrKNhmQsWEkZ8qhs0Xu+R
+         HwK9wIktkyyHCpZP8NNk+j19TkO9Yz3B5igUxrrsGmhOBE5gf/6TR/toCpZLwnUc+6bl
+         vt9g==
+X-Gm-Message-State: AFqh2kqYkCiZylnuuz3oJMuIOlNfihXo4HKULX3/wJkSyubFIA/yKFff
+        sDU4YP7zWew1vgEhfdRAE1FAIg==
+X-Google-Smtp-Source: AMrXdXsjEvmwrWcwoIJKQJn80PQaEbBtBLRSxwKE/E0XlC2LInWRVyvOb56cD5VovaJaFNuBUXq/4w==
+X-Received: by 2002:ac8:7ed1:0:b0:3ab:5a62:453b with SMTP id x17-20020ac87ed1000000b003ab5a62453bmr21415426qtj.53.1674230099206;
+        Fri, 20 Jan 2023 07:54:59 -0800 (PST)
+Received: from localhost (200.234.86.34.bc.googleusercontent.com. [34.86.234.200])
+        by smtp.gmail.com with ESMTPSA id g19-20020a05620a40d300b006cec8001bf4sm26567015qko.26.2023.01.20.07.54.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 07:54:29 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 11/11] ARM: dts: exynos: correct HSI2C properties in Exynos5410 Odroid XU
-Date:   Fri, 20 Jan 2023 16:54:04 +0100
-Message-Id: <20230120155404.323386-12-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230120155404.323386-1-krzysztof.kozlowski@linaro.org>
-References: <20230120155404.323386-1-krzysztof.kozlowski@linaro.org>
+        Fri, 20 Jan 2023 07:54:58 -0800 (PST)
+Date:   Fri, 20 Jan 2023 15:54:57 +0000
+From:   Sean Paul <sean@poorly.run>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mark Yacoub <markyacoub@chromium.org>, quic_khsieh@quicinc.com,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+        robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+        rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com,
+        tzimmermann@suse.de, ville.syrjala@linux.intel.com,
+        stanislav.lisovskiy@intel.com, matthew.d.roper@intel.com,
+        imre.deak@intel.com, lucas.demarchi@intel.com,
+        manasi.d.navare@intel.com, swati2.sharma@intel.com,
+        bhanuprakash.modem@intel.com, javierm@redhat.com,
+        jose.souza@intel.com, lyude@redhat.com, hbh25y@gmail.com,
+        arun.r.murthy@intel.com, ashutosh.dixit@intel.com,
+        ankit.k.nautiyal@intel.com, maxime@cerno.tech, swboyd@chromium.org,
+        christophe.jaillet@wanadoo.fr, quic_sbillaka@quicinc.com,
+        johan+linaro@kernel.org, dianders@chromium.org, marex@denx.de,
+        quic_jesszhan@quicinc.com, bjorn.andersson@linaro.org,
+        abhinavk@codeaurora.org, seanpaul@chromium.org
+Subject: Re: [PATCH v6 09/10] arm64: dts: qcom: sc7180: Add support for HDCP
+ in dp-controller
+Message-ID: <Y8q5UfpIg0+qnAuG@art_vandelay>
+References: <20230118193015.911074-1-markyacoub@google.com>
+ <20230118193015.911074-10-markyacoub@google.com>
+ <aee03688-54b6-ed9f-e32c-b46e31d72198@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aee03688-54b6-ed9f-e32c-b46e31d72198@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -80,31 +93,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The HSI2C controller uses clock-frequency and does not have
-i2c-sda-delay.  The properties were copy-pasted from the slower
-S3C-family I2C controller:
+On Thu, Jan 19, 2023 at 11:35:32AM +0100, Krzysztof Kozlowski wrote:
+> On 18/01/2023 20:30, Mark Yacoub wrote:
+> > From: Sean Paul <seanpaul@chromium.org>
+> > 
+> > This patch adds the register ranges required for HDCP key injection and
+> 
+> Do not use "This commit/patch".
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> 
+> This applies to all your patches. Fix it everywhere.
 
-  exynos5410-odroidxu.dtb: i2c@12ca0000: Unevaluated properties are not allowed ('samsung,i2c-max-bus-freq', 'samsung,i2c-sda-delay' were unexpected)
+My goodness, this is peak bikeshedding. Surely we have better things to do with
+our time?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/exynos5410-odroidxu.dts | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> > HDCP TrustZone interaction as described in the dt-bindings for the
+> > sc7180 dp controller. Now that these are supported, change the
+> > compatible string to "dp-hdcp".
+> 
+> What does it mean? Where do you do it?
+> 
+> > 
+> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run #v1
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-14-sean@poorly.run #v2
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-14-sean@poorly.run #v3
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-14-sean@poorly.run #v4
+> > Link: https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-10-sean@poorly.run #v5
+> 
+> Drop the links.
 
-diff --git a/arch/arm/boot/dts/exynos5410-odroidxu.dts b/arch/arm/boot/dts/exynos5410-odroidxu.dts
-index d1cbc6b8a570..232561620da2 100644
---- a/arch/arm/boot/dts/exynos5410-odroidxu.dts
-+++ b/arch/arm/boot/dts/exynos5410-odroidxu.dts
-@@ -164,8 +164,7 @@ map2 {
- };
- 
- &hsi2c_4 {
--	samsung,i2c-sda-delay = <100>;
--	samsung,i2c-max-bus-freq = <400000>;
-+	clock-frequency = <400000>;
- 	status = "okay";
- 
- 	usb3503: usb-hub@8 {
+Why? I've always done this, it seems helpful to me?
+
+> 
+> > 
+> > Changes in v3:
+> > -Split off into a new patch containing just the dts change (Stephen)
+> > -Add hdcp compatible string (Stephen)
+> > Changes in v4:
+> > -Rebase on Bjorn's multi-dp patchset
+> > Changes in v5:
+> > -Put the tz register offsets in trogdor dtsi (Rob C)
+> > Changes in v6:
+> > -Rebased: Removed modifications in sc7180.dtsi as it's already upstream
+> > 
+> > ---
+> 
+> Changelog after --- .
+
+It's common practice in drm subsystem to include this in the commit message.
+
+Sean
+
+
+> 
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> 
+> Best regards,
+> Krzysztof
+> 
+
 -- 
-2.34.1
-
+Sean Paul, Software Engineer, Google / Chromium OS
