@@ -2,140 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66338675F95
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:22:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D9E7675FA5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:28:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbjATVWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 16:22:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40884 "EHLO
+        id S229535AbjATV2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 16:28:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjATVWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:22:30 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B734716319
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:22:29 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id az20so17159727ejc.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:22:29 -0800 (PST)
+        with ESMTP id S229464AbjATV2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:28:22 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F7C413525;
+        Fri, 20 Jan 2023 13:28:20 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id o7so6862567ljj.8;
+        Fri, 20 Jan 2023 13:28:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zs+UmtgIVGddv6KprN6BXtkow6vxqhZUCHnX30GG25U=;
-        b=X9pJ7J7c4pfA5xNIpjYeRsukd/H1nHACT4Nfu4T99rkLdG5idf+bsF2NWw7izRYvhq
-         oVE2WqaOfgjZpydJ6CRTsYYkoIZ6ozHvMmgVlXtfuLMF98vjtwILcyx+2P15Eg1fyWRB
-         70yLM2xN2acXpqRDAOmNh9BR0O5IczjGqsBSNKDfy1Ul2YCWt7txgcEnMkqrZ1RHJXbQ
-         bnZLICF5V8nE00jHEQYqFZjaMzzGEM4q8yxH8WR2nXaOsko7rJx8tsRF8xNEEtEpzxqC
-         GmCqmjRvyMSV5TSGA5Z/ETZKxLULBsZu6UEEfFRGOPdg69bDNX0MjTN/C0ZiaM7eCCTK
-         IBQA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=L6XTbctyjJuiaEzlBOG1ARAyGnfelnTEYPz3b788Q50=;
+        b=jkyTlGVIJzztnDFFrJNnHyxRnrtmCbyk3jOf5SUuvDV71gDGIHYAT9gKDThokvojYQ
+         NbniCrDCFhv0+oYTu2ExkvtsoHzY3FvjzsfvpVWkV0Admv4yiX/m8RYzbb5MHmpPXk9Z
+         fsBG6eTMZ/iAgD66ERU3UO1yx8igBJxhjmpMRlwz0epMLs5VUxBBoH9qu4Fywb90Zzeq
+         DoUse+wahv+6vaxle4kT9fXMgqrhp+M+qgqPR2rXIzROY+ZfvP5nJv96dlf3felIrN3d
+         /jbB19KXFQj4ErcSKw/MJ/aUG854BdpqBwV87GAXU6Rv/LxIxLTvjT/+Lopa2JOSA1c1
+         bM7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zs+UmtgIVGddv6KprN6BXtkow6vxqhZUCHnX30GG25U=;
-        b=lau1gwGoZvc+VjeH16VuG8ak/6rC6JGz9BbgYXh0mKA5BY3afV6Z57x1E5hbAWpyqV
-         FgZmUrh8IOWi6GRMZYKRIhfrbS/PxNhoZ0eLH/xsSEk5t/HKAZzLg28lIbX38p9RMl1B
-         bP1nvIH877mh4F5OwcqdEulg96wvtU2NW9yWM3Cr4dgoiAun1OZJsx4Kfp7A9xFE6CH6
-         IeLwjlwlIDBR+b9i6gVV19f5LBfOCApNmcPrH00gzMU61SWMuEJQ6f9KPfu6QyTfNFOG
-         34HHPCxd/YGq0Xi4ihCbufDfn913KS+5ByDCsc/8+JE0vbd3PJi9h3FVFK4h6ZDrm+h4
-         gAsA==
-X-Gm-Message-State: AFqh2krzAkbugKqRjJU+8JYyL8aKKhkET/BWkQ3Ck0d1ho8pNRhgcAbw
-        o55a/bgNcrxk2wEBevgG6zCIkw==
-X-Google-Smtp-Source: AMrXdXuLUbPoZoARW90jlFLIvQDjlEXpxoRIk7pxHrrrCXNjAqSD+GPJEpN5eEiS01RZnbQ3wX2A4A==
-X-Received: by 2002:a17:906:1911:b0:870:29fd:be41 with SMTP id a17-20020a170906191100b0087029fdbe41mr11380858eje.48.1674249748345;
-        Fri, 20 Jan 2023 13:22:28 -0800 (PST)
-Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
-        by smtp.gmail.com with ESMTPSA id g3-20020a1709067c4300b007c0a7286ac8sm18494294ejp.69.2023.01.20.13.22.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 13:22:27 -0800 (PST)
-Message-ID: <e5bd7941-0a7e-f8b5-2be8-d0d7cc0f84f7@linaro.org>
-Date:   Fri, 20 Jan 2023 22:22:25 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=L6XTbctyjJuiaEzlBOG1ARAyGnfelnTEYPz3b788Q50=;
+        b=rLGrVfJXjeVrPd8z/OSrXqHxptMXMqvohP8V2VZWi7b4Y96Yk+WWleYAot/9d3ZrEC
+         OJUaUabA5KAben+KariJob934zbe94VX/o7Q/6UVnZZT5pC6yFuETppsFCXj+lWOpuwe
+         ODNgQYyxHa3O4nwlM3OPp5VkT9TyTuDK3nlGWDSgSHxdJsSzTm8vTurOVvZiHfXWVGvk
+         p780etH4+X/j7wh3Sev1tw9TU0X72xVFicibhqlbHNQ0pKeFMOpYoh/wMX0Lvdl4MBgZ
+         JwPqTdYJsRMBl47cgTVbKH3hjCAAZuP6YRSrU4KNqxbgQJ5VN0ZMsCCwfn2S8sryjbqB
+         /3rg==
+X-Gm-Message-State: AFqh2kp5JbcWQBG/DbaOekHw07t+eoayQJkq0gso8NChahidFhnNzYk3
+        pK5nT9kkAAWrfAYnG/ihd5g61hUTDNGyb1pCVa8=
+X-Google-Smtp-Source: AMrXdXvbYs0GsrXDeFVwrDWcr/ZKXKHi4GXDCr076tjbDWyLo6wIxf7LwFWlW3g3q3cFLgPGCLjJFF/gKeQxPEoEg8M=
+X-Received: by 2002:a2e:b94f:0:b0:28b:88b3:2ead with SMTP id
+ 15-20020a2eb94f000000b0028b88b32eadmr1389772ljs.293.1674250098612; Fri, 20
+ Jan 2023 13:28:18 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs
-Content-Language: en-US
-To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230112210722.6234-1-quic_molvera@quicinc.com>
- <20230112210722.6234-2-quic_molvera@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230112210722.6234-2-quic_molvera@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <a85c256af01f64389a078c2b37c3b72a27d97536.1668005062.git.geert+renesas@glider.be>
+ <0bb76233-062c-a1c5-da88-4f04feccd5b2@linaro.org>
+In-Reply-To: <0bb76233-062c-a1c5-da88-4f04feccd5b2@linaro.org>
+From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Date:   Fri, 20 Jan 2023 13:28:07 -0800
+Message-ID: <CABBYNZJX+9SxW48qSSmyyMa7_bvqzwHafa0BNOz4Kz_Jc+gu9Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: leds: Document Bluetooth and WLAN triggers
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
+
+On Fri, Jan 20, 2023 at 8:42 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 09/11/2022 15:46, Geert Uytterhoeven wrote:
+> > Add the missing trigger patterns for Bluetooth and WLAN activity, which
+> > are already in active use.
+> >
+> > While at it, move the mmc pattern comment where it belongs, and restore
+> > alphabetical sort order.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: bt_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> >       'hci0-power' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> >       'hci0-power' does not match '^mmc[0-9]+$'
+> >       From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> > arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: wlan_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> >       'phy0tx' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> >       'phy0tx' does not match '^mmc[0-9]+$'
+> >       From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+>
+> This patch got lost... Rob, Lee or Pavel, can you pick it up?
+>
+> It's with Rob's approval:
+> https://lore.kernel.org/all/166861772609.231295.14812410099261417331.robh@kernel.org/
+
+If it is going to be applied via bluetooth-next make sure to resend it
+since last time our CI was not able to apply it thus why we didn't
+apply it in the first place.
+
+>
+> > ---
+> >  Documentation/devicetree/bindings/leds/common.yaml | 8 ++++++--
+> >  1 file changed, 6 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> > index f5c57a580078ea23..d34bb58c00371402 100644
+> > --- a/Documentation/devicetree/bindings/leds/common.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> > @@ -98,9 +98,13 @@ properties:
+> >              # LED alters the brightness for the specified duration with one software
+> >              # timer (requires "led-pattern" property)
+> >            - pattern
+> > -        # LED is triggered by SD/MMC activity
+> > -      - pattern: "^mmc[0-9]+$"
+> >        - pattern: "^cpu[0-9]*$"
+> > +      - pattern: "^hci[0-9]+-power$"
+> > +        # LED is triggered by Bluetooth activity
+> > +      - pattern: "^mmc[0-9]+$"
+> > +        # LED is triggered by SD/MMC activity
+> > +      - pattern: "^phy[0-9]+tx$"
+> > +        # LED is triggered by WLAN activity
+> >
+> >    led-pattern:
+> >      description: |
+>
+> Best regards,
+> Krzysztof
+>
 
 
-On 12.01.2023 22:07, Melody Olvera wrote:
-> Add the base DTSI files for QDU1000 and QRU1000 SoCs, including base
-> descriptions of CPUs, GCC, RPMHCC, QUP, TLMM, and interrupt-controller
-> to boot to shell with console on these SoCs.
-> 
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> ---
-
-[...]
-> +
-> +	arch_timer: timer {
-Unused label
-
-Otherwise:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
-
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/qru1000.dtsi b/arch/arm64/boot/dts/qcom/qru1000.dtsi
-> new file mode 100644
-> index 000000000000..eac5dc54a8ab
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qru1000.dtsi
-> @@ -0,0 +1,26 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include "qdu1000.dtsi"
-> +/delete-node/ &tenx_mem;
-> +/delete-node/ &oem_tenx_mem;
-> +/delete-node/ &tenx_q6_buffer_mem;
-> +
-> +&reserved_memory {
-> +	oem_tenx_mem: oem-tenx@a0000000 {
-> +		reg = <0x0 0xa0000000 0x0 0x6400000>;
-> +		no-map;
-> +	};
-> +
-> +	mpss_diag_buffer_mem: mpss-diag-buffer@aea00000 {
-> +		reg = <0x0 0xaea00000 0x0 0x6400000>;
-> +		no-map;
-> +	};
-> +
-> +	tenx_q6_buffer_mem: tenx-q6-buffer@b4e00000 {
-> +		reg = <0x0 0xb4e00000 0x0 0x3200000>;
-> +		no-map;
-> +	};
-> +};
+-- 
+Luiz Augusto von Dentz
