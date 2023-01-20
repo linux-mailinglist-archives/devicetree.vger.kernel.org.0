@@ -2,105 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D5FA675501
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 13:51:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81465675526
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 14:01:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230227AbjATMvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 07:51:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47538 "EHLO
+        id S229801AbjATNBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 08:01:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbjATMvo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 07:51:44 -0500
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A3BEF423C;
-        Fri, 20 Jan 2023 04:51:43 -0800 (PST)
-Received: by linux.microsoft.com (Postfix, from userid 1127)
-        id 353FB20E1A40; Fri, 20 Jan 2023 04:51:43 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 353FB20E1A40
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1674219103;
-        bh=URyTRIuqDCY2NGOe+vSA2YTEI+XPx3DrrID//4KSy68=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ROn7BuxEpZm5tJAGHIAm2uKzT1fbzxuMHKTlXSS36RayXzcgdaGyiH6tAwYZ68PnW
-         05SssYkGJaBb9WS+lGmIOiOCQusTvwFCm7dbP7t/0/V1w9Gba6+qbEki1u9dP7PEHe
-         zEke1Q3A3HeQS/fIj2WESibMX2sVqQYyXI/bgzQs=
-Date:   Fri, 20 Jan 2023 04:51:43 -0800
-From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        ssengar@microsoft.com
-Subject: Re: [PATCH 4/4] dt-bindings: hv: Add dt-bindings for VMBus
-Message-ID: <20230120125143.GA20797@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1673887688-19151-1-git-send-email-ssengar@linux.microsoft.com>
- <1673887688-19151-5-git-send-email-ssengar@linux.microsoft.com>
- <31d78b4c-1416-d8cb-a187-bf924168ee1e@linaro.org>
- <20230117151325.GA9806@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <23a7ae1d-cd49-8c78-5284-4134755ea19a@linaro.org>
- <20230117155258.GA14857@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <f6b80686-d8bc-9c7b-205c-635d4e681f50@linaro.org>
+        with ESMTP id S229635AbjATNBP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 08:01:15 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26AC6BCE35
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 05:01:14 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id g10so4007831wmo.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 05:01:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TcM8XhDKOPbBsFGO0+W5tGL9iLdvv5/DvMQLA7ZA1gw=;
+        b=IrxCUmhLzvaQmFPa0wmZropX0S4nPCOToD2CgGQ/h5wz9kdpXybcdLemwOlLsgdFmY
+         33dumliNcnI+hpx7/aMUEAnKeilUU1/ipb1T68ufo1+8TMsYgs/ffDWB4UeBEo1TmkgX
+         kBl9D6zmAt5vMPtK9Ow4Awf4kT3k1WY3i9CCzYma2+jmlCfvrJTa0rwfN2FJkYJ1xRJC
+         DIW5/6NsmHVHQjsMauS/J3MP5BTKdkEsMlFpFVDCIfdib8/mJn1NnQxgLURMOKlQjGUL
+         0of13CoeBYEFytIqLIUeQzm+/GLbj5d9Ifyx9QwWOdaWawv2sah1SoyUSW7SGQffj1g6
+         zaHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TcM8XhDKOPbBsFGO0+W5tGL9iLdvv5/DvMQLA7ZA1gw=;
+        b=5omLsi+CmidhQH+si2Dr0Nw220kK5D/BzZmkLBIlyq64IViKG0UEaYeAgC4X2WBhXS
+         CUU9/AHlvbf4+o9fSefG5KHY3MW+xSiRfnneMuO2MzvdagGKi9dJpoqWpIIC9u+pYUsl
+         wbUJOYQURZRaRCDwabrwpPrntaZT18OBBUoW0zSDawSNrjLvEwY/ZMdisezeNL0Lx1zS
+         UhBC/e9KlCo5+cHiZKJ7P7MVnxlkveodglQ9f8UnoLbQanGfKaj4IiWtMzMyqZlOorCr
+         RqPPIo0eMD62VwE1AUNgR23hB+xJ2/N4/VT2hR+KtJFwm+aK12jVcacTUX45coNk6zOQ
+         WRhQ==
+X-Gm-Message-State: AFqh2kpEiHybj9cKcuyGxCCQ/vlbcsWppJVhoGVLlygVyBHQcTuQAMp7
+        bjbGcwJ8a1VbCTTlEmTLGWQ+1g==
+X-Google-Smtp-Source: AMrXdXvpbA/Ou+cnHvZNOOu0VIf5TFaLA2b9bSfYKs6ZNohSp2Px51Y30p44NWNMw0wcC4XbIeETBw==
+X-Received: by 2002:a7b:cd11:0:b0:3d9:6c7d:c9ee with SMTP id f17-20020a7bcd11000000b003d96c7dc9eemr22435915wmj.25.1674219672635;
+        Fri, 20 Jan 2023 05:01:12 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id w12-20020a05600c474c00b003db2b81660esm2275631wmo.21.2023.01.20.05.01.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jan 2023 05:01:12 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: exynos: drop unsupported UFS properties in ExynosAutov9 SADK
+Date:   Fri, 20 Jan 2023 14:01:08 +0100
+Message-Id: <20230120130108.278851-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f6b80686-d8bc-9c7b-205c-635d4e681f50@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 20, 2023 at 12:43:40PM +0100, Krzysztof Kozlowski wrote:
-> On 17/01/2023 16:52, Saurabh Singh Sengar wrote:
-> > On Tue, Jan 17, 2023 at 04:41:22PM +0100, Krzysztof Kozlowski wrote:
-> >> On 17/01/2023 16:13, Saurabh Singh Sengar wrote:
-> >>> On Mon, Jan 16, 2023 at 07:55:13PM +0100, Krzysztof Kozlowski wrote:
-> >>>> On 16/01/2023 17:48, Saurabh Sengar wrote:
-> >>>>> Add dt-bindings for Hyper-V VMBus
-> >>>>>
-> >>>>> Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
-> >>>>> ---
-> >>>>>  .../devicetree/bindings/hv/msft,vmbus.yaml         | 34 ++++++++++++++++++++++
-> >>>>
-> >>>> Also, there is no "hv" hardware, so that's not correct location. If your
-> >>>> bindings describe firmware, this should go to firmware. Otherwise, this
-> >>>> does not look like suitable for DT. We do not describe software stuff in DT.
-> >>>
-> >>> VMBus is a virtual device this is simmilar to virtio. I can rename this folder to vmbus.
-> >>>
-> >>
-> >> Then virtio directory. The directories are per subsystems (hardware
-> >> classes).
-> > 
-> > Apologies if I was not clear, I meant to say this is a device conceptually
-> > similar to virtio. But this driver has nothing to do with virtio, we should
-> 
-> Bindings are for hardware, not drivers, so if the device serves the same
-> purpose, it's driver differences do not matter.
-> 
-> > be creating a new folder for it OR I am fine moving it under bus if that's
-> > okay.
-> 
-> Since you do not have children here, it's not really a bus to fit under
-> bus directory...
-> 
-> Probably this should go together with virtio bindings to dedicated
-> hypervisor interfaces directory. We do not create directories for
-> specific solutions (implementations) with only one or few bindings.
-> Directories are for entire classes.
+There is no vcc-fixed-regulator property for UFS nodes:
 
-I am OK to keep it anywhere, but I believe virtio is not its correct place. I am also
-concern how will the virtio maintainers will perceive it. Ideally we should be renaming
-virtio to virtualization OR hypervisor OR something more generic where both virtio and
-VMBus can co-exist. Please let me know if renaming virtio is acceptable.
+  exynosautov9-sadk.dtb: ufs@17e00000: Unevaluated properties are not allowed ('vcc-fixed-regulator' was unexpected)
 
-> 
-> Best regards,
-> Krzysztof
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+index eec3192c0631..101f51bf565a 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
++++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+@@ -65,13 +65,11 @@ &ufs_1_phy {
+ &ufs_0 {
+ 	status = "okay";
+ 	vcc-supply = <&ufs_0_fixed_vcc_reg>;
+-	vcc-fixed-regulator;
+ };
+ 
+ &ufs_1 {
+ 	status = "okay";
+ 	vcc-supply = <&ufs_1_fixed_vcc_reg>;
+-	vcc-fixed-regulator;
+ };
+ 
+ &usi_0 {
+-- 
+2.34.1
+
