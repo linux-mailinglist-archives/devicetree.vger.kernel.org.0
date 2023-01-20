@@ -2,178 +2,588 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C739675A56
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 17:43:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31038675A65
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 17:47:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230396AbjATQnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 11:43:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55224 "EHLO
+        id S230452AbjATQrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 11:47:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbjATQnt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 11:43:49 -0500
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2082.outbound.protection.outlook.com [40.107.15.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07E373EC6;
-        Fri, 20 Jan 2023 08:43:45 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Scr5fd7eiu2ecT52N/QBLDS5wXrxjvHPUYnksXERLVz4AdCuJ1pMYU784VrCtOR53IYti+0SZsnLdUHdv1Mx0OEMU1Sg80Rkx7he7+WYxPtXxlowXc4LtnWq4BH9SZi6S9lgeGJchqFRq6XAR/0w6nvRll0xJdekBID0iE8bvfLIg0jxxq0qZVgnRV+RrzFnG5y16xoQcsKJechqw2PHtILkujwMuleY2sz87V++H6+ZVTXCR5Xt74bdIh0gKV4fUmM7FXdxhf1n+XUwsOkMFnZS6X0er4EW0zfrQrxHK2a0Hz1HTPMtQj8DApxPBYOo+Od3KXt9Mcvt7XbIyRwv7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3e9A/P3A19zEil+QaDcY6Sgruew8nJlQnQeUcdtGTi0=;
- b=l9yZOvN0wz68Xjlx14IIPcFrsqY02bHkQE06HnIK16quYLAjT/TjPh8JuyvG8fh+mvwcs5rEkSJ8qsPWl2HyOuhWQQOkYUW50L7JbIklyq1IrWiFTUOMvn+ek6QxUBaN2u6dWB8clWIuN96ldLVyY28ZWzRKV9AMKZHTM9o1fWtSnT8UZO3dI9pSJ9KaqxmbNOl62slOzFclnhJrQjdzgCggp97FEIPhjEs/2sPRsUeqLR/AkUTDBvyUeFNd1H/x+Moz56FqxYpHZYtUry58LjTWf+sYFSyoXrqyfrcdWAFBPQ9OD00A+oqhX9fzHK63apST5hSIx6FRxxTwXBM20Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3e9A/P3A19zEil+QaDcY6Sgruew8nJlQnQeUcdtGTi0=;
- b=iHm2Eq6/tnMsS7vrrPoQmz2M08dwDtkgIR8EpzERjQjkZIHukEcYeDzswJS+PmICHP6cKKauo59PmASp4LDaRlp60rgj59Trl6BiLgbuieliBhMHLpfSyO5E1SQIHUby11aZs4fdyO552On3To9OtdnkJ0ok5kCZIw5kxFpHyoVSIj1EVr6gw8nhHIZ39F0qi3fOsbF5GJWqw2CfZpt2+Teshl95p58ZD8GBG7owVa+SNz+R7LAnsyoGWViXcrKniM1syN0iS50waU4TOqR3xYY3Q80SupAdZla+KxMJ5vpkj+tNTaCuvt61gaTSFtVWDs1QqDcHpzM8SqVuQFuCIg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by DB9PR03MB7581.eurprd03.prod.outlook.com (2603:10a6:10:2c4::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Fri, 20 Jan
- 2023 16:43:42 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::6b03:ac16:24b5:9166]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::6b03:ac16:24b5:9166%2]) with mapi id 15.20.6002.027; Fri, 20 Jan 2023
- 16:43:41 +0000
-Message-ID: <444e3a17-464f-c487-fedb-9c749c5f599e@seco.com>
-Date:   Fri, 20 Jan 2023 11:43:29 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v9 00/10] phy: Add support for Lynx 10G SerDes
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
+        with ESMTP id S229840AbjATQrO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 11:47:14 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59950CDF5;
+        Fri, 20 Jan 2023 08:47:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674233232; x=1705769232;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=E+S5dYOs7O14d/eAGbQrXtEnqveih+tcbQ4ZfC2HFUY=;
+  b=cmY/qklubrIEfsaWUxhU5jZCtV4Q6vjRhi6Y5q4EQdGYD2/XkQK30j0q
+   ZEegmRHwa3NEptScEoPCwP5wuQ8mnD3pbwHQke6MX1hf2mxVaVGXd6/k2
+   /JTpjvwK+BSVAzhhMeTXTgDjKFMnWvykfnya7lk/dmKsOINw5itxBiH9A
+   UG12stpx99GziSTOuTfxmXHoGKhOG6srJ8zGfSneTRawfUMFFR/rJz5pn
+   Ru1XhvIE0RTwFgabNOdysbAXQBEWtptTJt9b3DMYqRdVBowd1WOKYtpUw
+   Gf1RQx/+ToJHnaJEziOFt7BjlEl7Pr4IwUx7NvRceyCAW87us4w8NAj4M
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="325659381"
+X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; 
+   d="scan'208";a="325659381"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2023 08:47:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="768738758"
+X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; 
+   d="scan'208";a="768738758"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP; 20 Jan 2023 08:47:06 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1pIuXf-00CJnn-1P;
+        Fri, 20 Jan 2023 18:47:03 +0200
+Date:   Fri, 20 Jan 2023 18:47:03 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20221230000139.2846763-1-sean.anderson@seco.com>
- <0024c780-ff9c-a9d3-8773-28e6b21bcc43@seco.com> <Y8gkMlqfPZic7reK@matsya>
- <17e428ae-7789-a1ab-3ccd-90b3b9a088f1@seco.com> <Y8pLjLWjv0nJa+ww@matsya>
-From:   Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <Y8pLjLWjv0nJa+ww@matsya>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY3PR10CA0001.namprd10.prod.outlook.com
- (2603:10b6:a03:255::6) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v7 5/7] media: i2c: add DS90UB960 driver
+Message-ID: <Y8rFh6zO7Hp9mLxE@smile.fi.intel.com>
+References: <20230118124031.788940-1-tomi.valkeinen@ideasonboard.com>
+ <20230118124031.788940-6-tomi.valkeinen@ideasonboard.com>
+ <Y8gUuqLBXsXQoNUC@smile.fi.intel.com>
+ <aba49d82-c76f-7ff2-751c-d1be7b8f3bca@ideasonboard.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|DB9PR03MB7581:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2ec08bbe-f758-4638-2d44-08dafb057cdf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CpQ941SeTt42V1l22AOMureB+txBVkq3WnbVAOdVKEhvh0HL4In7D90fwetorqeGnuzH0IgY0rcVS+76+80huUkYtnS36xnMT+UOzNwwUx8MvRVFJCRxyRsTPQnwaStY56PrhBQFVHKx5Jwza1Y9AbYgPWuecnUTJKEuK7P4NKHMqebi79el1fl/o9z8bYbTSt5i4zCrN9gAaPwXZHXLtUX4QHA7Wuq3wEbB4VYykXd/OWUmsX8Id0c4jZc/JSv3v+N97il/YM+m5QODRzIywr6FrLbNyaprd0QM7wxFltef3W0tSgTCEoYuJiWVWSczYS6bRJjPatmAG+hMuwX9ht7HXh19jqOB9gAsLnHvIkQPziQKI5PzTxsqvhQ6DXXMASotve+AEX/Z23XzqBBuQ5vyaZxfZXev9TDJpF3tgRTMvlfy6FbTY8IpmRFDGb5Ayi0Pog5WUh2yBTR5Esl925tRimNZK/n8A4da+1McGMGq3DkPCfgoaPUwAPlvY3J07Nj+uhewvp/2EjBwG9byZb9aRMH/3mgZgYxjj+OzKogtsDs23wBKKhlDK61qVlI4DWUNdbquIGh+A0SMWOpHyerwa6wZZ49sctkXN7mwhgVbeExhhnPgIaGpgJ/0NBomzfJrBwAjQzT21H2kjYKpNgaJfpLdT6Q9hIw/TsQc+1HLWNPMUNGGndfPyBR0R2skroKbv/iBb5MB9HFZ+k9Pol8swsiqTaavDlfg4axBumdfwKwJ/ebuMShg5DGomqZ+WYyA8QmocR7v20/KddV9yw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(366004)(396003)(346002)(136003)(39850400004)(376002)(451199015)(31686004)(83380400001)(36756003)(478600001)(52116002)(6486002)(31696002)(86362001)(38100700002)(38350700002)(6506007)(26005)(53546011)(4326008)(44832011)(41300700001)(6916009)(6512007)(2616005)(6666004)(186003)(8676002)(2906002)(54906003)(66946007)(66556008)(66476007)(8936002)(5660300002)(7416002)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TVVzUEY3TGp5RkhYUnZsZFZhVTNlR2R3UHFUbnFoWGdUcG01OEJzVEVKL1dx?=
- =?utf-8?B?RmxUZWhyYmNRM1puUkRDdmdiSGZMZGVkemtLYmU0WEYwTnBwNTJ2cXlOSnRD?=
- =?utf-8?B?OU4yMVkxMnBGSjlSd0xndHlORVkwQU90OE1ZUWdlMkRSVjlyTWJYc0VWSkNU?=
- =?utf-8?B?d0RzY1FVQm11ZG1XaWFEUnVHRXNWUWZ0cDU4OU9uLzJieHpEa2h6ZXV0cXRk?=
- =?utf-8?B?ZXZ0VFNhWXBld3BTRTg1V1VtRE1lUE5VaWhTRFd4dk9VR3ZvRWQ1UDVma0hh?=
- =?utf-8?B?c1p2OG00NUw2VVdGeU9WNzhtOHBzOE50ZU1acmh1WVpxcEhxOHU2Znh5RVRx?=
- =?utf-8?B?MVJ4WnAybFkxck9yb2FNTW1xVkx5T2svUzNucFdNTllRZDNybCt3cmcvMVdh?=
- =?utf-8?B?V2sxdnRvdkxJVDdSM2M1V0lrWVYwQk52YlhNbll5WWkrK1AxUlpiTFFEbEFO?=
- =?utf-8?B?a1hTTHdyb2ppNkJ5ZDNxeS82QzQ1Yk5CZ0dtSlRKVENscHd0cHNjT01XcUFh?=
- =?utf-8?B?NE5pYmJzT3JjZHhKVEVmTE0vOW5jSTQrS0FqTzN3TlpWUnozREZ5MVJ4K0po?=
- =?utf-8?B?ZE1LM0RaM2NOS21SWStjNTNTRWJhaGJVQThZNGVvMGwvNkZZRGUwWndVdDNZ?=
- =?utf-8?B?Y1RjeHBXaTMzNzlFZjNEYTJ0N3d0UWc5QlJCYTg2bDY3TnNsQSszRVE0a2Yv?=
- =?utf-8?B?UkZsKzBZbElFSnU5RForVkdVMXlzUjJVWFljV2RKMlMzbHVpelhkRDlTZnEz?=
- =?utf-8?B?bFVyQXFBcm53TWc0d2hPdGNMNVFKZU9tbFRyZzBHK1NMRDBiNVRuNitWVENH?=
- =?utf-8?B?dmpmakYrUTYrTm1naHllT0FiN2hydHh4MHg2NzRWdmpXRjRsUjVjbzdRR0o1?=
- =?utf-8?B?d29RVG13a0VkdzBPVXUvd1FTQ0c1RFJtMFRSTTJuUmk4Zmt1akw1cjFnZ3JU?=
- =?utf-8?B?NG9ma0VPNllYMVNoZGZMRk9FSG5SS3NoL01lS1NXWitBTnBtUFhjOEorcTJn?=
- =?utf-8?B?cUkyVmNHbDlUYmZaMHdBelpPRUFZelVJOXdqUWk5Z2NhdG4vRkRxYTF5MFJ6?=
- =?utf-8?B?dGF6VjViVUNNQlhTMGwyeWs5MjRPSXR4eTg5R0FnbmhtMWVFSTAyRk1IdVV1?=
- =?utf-8?B?YmhieUlPbWgzQWJvbmlTUnNhcGtCbldIaXhTampYWXVzYkpmNTBUKzBocFJo?=
- =?utf-8?B?T2U3WjRTOTZrVUdUVExwU3ZpYjh6cEJGd01LN1hkNTdSNXRoblR3ak1tMjZx?=
- =?utf-8?B?b1F2WGRveWVrMVh0aVJuQ21FMkhUQ3JFU2hTM1BiZVRlSCtPbE82Mnd6V2Jx?=
- =?utf-8?B?UkxrQlB5eVl6Z2c1ejBLRFBxM21jUU5wdGZaVHJMVWhNZHp3dVlDTTRPWGNU?=
- =?utf-8?B?cjJHTmRJb1BBOXc3SXFYcGU1MGRFWHN3Q0FpcWNuYVBJY1Eva2ZqTWlSMHFp?=
- =?utf-8?B?ZCtUaVFHUGNWY09VRjl0a2ZXaUt5RTVZbnBWZHNWT2FwYlZrUUs0dlZNV3Nu?=
- =?utf-8?B?Vnl6ZVFwVjkxNHNaZVRoVmR1ekIrcGRkeS8wTEcyZU43cmZTRytyS1pWL2tM?=
- =?utf-8?B?b2h4MUQ4U2xjNDF2ai93U3pSRGovdDRKSXpVRU1UR2ZyclZKSDdNOWpqK0xS?=
- =?utf-8?B?VTJiTUE5YUJCcXltZlRTcjRiNTFBYkhrUWdNYVNtTWNObGtGOEV2RjRxWmdC?=
- =?utf-8?B?Qy9DeDRodWtQVC96SnRmMnEzcmc4OFdwN1liWkJzeTFZU1RhRWd3SWJRdWdZ?=
- =?utf-8?B?c1ovOGpFUGxLRktnalIyM05obzFDL3VFUC84V1dybytLRytXSEpHWEp0L013?=
- =?utf-8?B?M1VSckF1RVZaeEdxcFhCRTNJSTZYVFpIblZYT3k4OHh1WUJZdDlEVEFKLy82?=
- =?utf-8?B?Ujc4eGMyck9HMExoeG81c3NreHY2MjdFUkhsdE9sSU1qY2NRWEVDS3k4cUpV?=
- =?utf-8?B?Rkc2TEhLVDFacVkwUHdvNUFLbUdxeXVXL3d0RGIxaklxdjllQm16Uis3cWkz?=
- =?utf-8?B?OWpSd1l4dGZENENFNDdjQkNuanU4NG9wUmxZZnRsNjdmUmtjaFR2dXEwOEk4?=
- =?utf-8?B?bFAveUM2b2xFVmdueUZvd0F2d0l2eUZ5a05FOGhNZXFrNE9TRnFoZ2sxSnF1?=
- =?utf-8?B?WmgrNGRhZ29HUWV6b1QydVJ3NzB6dGpzWjRaMjZuRHAzWG1oNG9uanl3SHlE?=
- =?utf-8?B?eXc9PQ==?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ec08bbe-f758-4638-2d44-08dafb057cdf
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR03MB8847.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2023 16:43:41.7255
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pK2++aIYazR2bfIIPmi+rUJ8hOTlfgs2WO+mLfYJSM9cyD07hnEva6hMTRwxtJNHmViQ9kNUKefh1cPn0PhBcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB7581
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aba49d82-c76f-7ff2-751c-d1be7b8f3bca@ideasonboard.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/20/23 03:06, Vinod Koul wrote:
-> On 19-01-23, 11:22, Sean Anderson wrote:
->> On 1/18/23 11:54, Vinod Koul wrote:
->> > On 17-01-23, 11:46, Sean Anderson wrote:
->> >> 
->> >> I noticed that this series is marked "changes requested" on patchwork.
->> >> However, I have received only automated feedback. I have done my best
->> >> effort to address feedback I have received on prior revisions. I would
->> >> appreciate getting another round of review before resending this series.
->> > 
->> > Looking at the series, looks like kernel-bot sent some warnings on the
->> > series so I was expecting an updated series for review
->> > 
->> 
->> Generally, multiple reviewers will comment on a patch, even if another
->> reviewer finds something which needs to be changed. This is a one-line
->> fix, so I would appreciate getting more substantial feedback before
->> respinning. Every time I send a new series I have to rebase and test on
->> hardware. It's work that I would rather do when there is something to be
->> gained.
-> 
-> I review to apply, if I can apply, I would typically skip this
-> 
+On Thu, Jan 19, 2023 at 06:27:31PM +0200, Tomi Valkeinen wrote:
+> On 18/01/2023 17:48, Andy Shevchenko wrote:
+> > On Wed, Jan 18, 2023 at 02:40:29PM +0200, Tomi Valkeinen wrote:
+> > > Add driver for TI DS90UB960 FPD-Link III Deserializer.
 
-It is much more efficient to conduct reviews in parallel. So e.g. the
-bindings can be reviewed at the same time as the driver, at the same
-time as the device tree changes. This way, I can get a series applied
-after max(N, M, ...) revisions, where I would otherwise need N revisions
-to get the bindings ready, M revisions to get the driver ready, etc.
-But what's happening is that I have to make N + M + ... revisions! I am
-very frustrated by your refusal to review anything until there are no
-other comments, since it unnecessarily extends the process of getting a
-series applied. I have been trying to get this series applied since
-June, with nine revisions, and you have reviewed it *twice*! I think the
-driver is in a good state and is ready to be applied (aside from the one
-known issue), but I have no idea if you agree with that assessment.
+...
 
---Sean
+> > > +#define UB960_MIN_AEQ_STROBE_POS -7
+> > 
+> > I believe it might need parentheses due to theoretical possibilities to be used
+> > in the expression.
+> 
+> Hmm, for my education, in which kind of expressions this could cause an
+> issue?
+
+To mine as well, surprised by 'foo = foo - - - -7;' being compilable.
+But according to the Operator Precedence it's fine.
+
+...
+
+> Is that an important thing to restrict in the DT?
+
+I believe so. It's a part of the idea behind YAML schema to make it possible
+to validate for all possible scenarios. AFAIU that's how they can actually
+see if firmware doesn't have any bugs in the description (read: DT).
+
+> I'd rather handle these in
+> the driver. There may well be HW revisions/versions or tricks not documented
+> in the public docs to use other data rates. And, while this is not quite
+> clear to me, the input refclk might also affect the exact data rate.
+> 
+> With a quick glance, I don't see any other binding defining the data rates.
+> I didn't see any of them even limiting the number of items.
+
+Then I suggest to have Rob's Ack on this. If he is fine, I'll keep that
+in mind.
+
+...
+
+> > > +	if (!ret) {
+> > 
+> > What's wrong with the positive and traditional check, i.e.
+> > 
+> > 	if (ret)
+> > 		return;
+> > 
+> > ?
+> 
+> Nothing, just a different style. I can change it.
+
+The benefit is a decreased level of the indentation.
+
+> > > +		if (csi_tx_isr & UB960_TR_CSI_TX_ISR_IS_CSI_SYNC_ERROR)
+> > > +			dev_warn(dev, "TX%u: CSI_SYNC_ERROR\n", nport);
+> > > +
+> > > +		if (csi_tx_isr & UB960_TR_CSI_TX_ISR_IS_CSI_PASS_ERROR)
+> > > +			dev_warn(dev, "TX%u: CSI_PASS_ERROR\n", nport);
+> > > +	}
+
+...
+
+> > > +/* -----------------------------------------------------------------------------
+> > > + * RX ports
+> > > + */
+> > 
+> > Multi-line comment is not in the style.
+> 
+> True. Interesting that checkpatch didn't complain.
+
+Because this format is the official for net subsystem.
+
+...
+
+> > > +	for (nport = 0; nport < priv->hw_data->num_rxports; ++nport) {
+> > 
+> > Post-increment is good enough, no? Ditto for other places.
+> 
+> Sure. Pre-increment is good enough too, right? It's a simpler operation,
+> although obviously they both compile into the same code. I usually use
+> pre-increment when there's no particular reason to pick either one, although
+> it also depends on how it looks.
+
+Then be consistent, use it everywhere.
+
+> > Esp. taking into account that some of them are using actually
+> > post-inc. Why this difference?
+> 
+> Possibly a different person has written that particular piece of code, or
+> maybe a copy paste from somewhere.
+> 
+> I'm personally fine with seeing both post and pre increments in code.
+
+I'm not :-), if it's not required by the code. Pre-increment always puzzles
+me: Is here anything I have to pay an additional attention to?
+
+> > > +		struct ub960_rxport *rxport = priv->rxports[nport];
+> > > +
+> > > +		if (!rxport || !rxport->vpoc)
+> > > +			continue;
+> > > +
+> > > +		ret = regulator_enable(rxport->vpoc);
+> > > +		if (ret)
+> > > +			goto err_disable_vpocs;
+> > > +	}
+
+...
+
+> > > +	if (WARN_ON(strobe_pos < UB960_MIN_MANUAL_STROBE_POS ||
+> > > +		    strobe_pos > UB960_MAX_MANUAL_STROBE_POS))
+> > > +		return;
+> > 
+> > Always be careful about WARN*() APIs because with a little trick they may
+> > become equivalent to BUG() which is a beast that nobody likes. I.o.w.
+> > you have to have justify why this is needed and can't be replaced with
+> > dev_*() or analogue.
+> > 
+> > Same for the other places with WARN*().
+> 
+> Valid point. I think most of them here are in cases that really shouldn't
+> happen. But if they do happen, I'd like to see a big loud shout about it.
+
+...if you have time to catch it. Read about "panic_on_warn".
+
+> The above is not a best example of this, and I think I can just drop the
+> above warns, but, e.g. handling the default case for "switch
+> (rxport->rx_mode)" (which shouldn't happen), I'd prefer to have a big yell
+> in place rather than return silently or print a "normal" error print.
+> 
+> Obviously WARN is not a good one if it can be toggled to become a BUG.
+> 
+> So... I think I'll just drop most of them and probably convert the rest
+> (two, actually) to dev_errs.
+
+...
+
+> > > +	if (strobe_pos < -7)
+> > > +		clk_delay = abs(strobe_pos) - 6;
+> > > +	else if (strobe_pos > 7)
+> > > +		data_delay = strobe_pos - 6;
+> > > +	else if (strobe_pos < 0)
+> > > +		clk_delay = abs(strobe_pos) | UB960_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY;
+> > > +	else if (strobe_pos > 0)
+> > > +		data_delay = strobe_pos | UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY;
+> > 
+> > I'm wondering if clamp_t()/clamp_val() can be utilised here... And maybe in other
+> > places in the driver.
+> 
+> Hmm, I'm not sure how.
+
+I can't suggest you, because it's magic to me what is going on, e.g. for
+the strobe_pos < -7 case, and why abs(strobe_pos) - 6 wouldn't overflow
+the bit field or whatever that uses it.
+
+...
+
+> > > +	if (eq_level <= 7) {
+> > > +		eq_stage_1_select_value = eq_level;
+> > > +		eq_stage_2_select_value = 0;
+> > > +	} else {
+> > > +		eq_stage_1_select_value = 7;
+> > > +		eq_stage_2_select_value = eq_level - 7;
+> > 
+> > A lot of magic 7 in the code. Are they all of the same semantic? Are they can
+> > be converted to use a macro (including respective MIN/MAX macros)?
+> 
+> It's related to how the value has to be encoded into the register. We keep
+> the equalization level in a simple variable, but need to write it like this
+> into the register. I'm not sure what I would call the magic 7 here.
+> 
+> Then for the strobe position, we use a logical signed value between -7 and
+> 7, so we have to +7 when writing that to a register. Except when using a
+> manual strobe position, where the range is -13 to 13 (7+6, that's the 6 in
+> ub960_rxport_set_strobe_pos()).
+> 
+> It's rather confusing, in my opinion, but I think defines may just make this
+> more confusing. The magic numbers used should always be very close to the
+> registers in question, so if you know how the HW works wrt. strobe & eq,
+> they should be "clear". I'll try to come up with defines that make this
+> clearer, but no promises.
+
+Obviously I disagree on the fact that it's more confusing. Consider that 7
+and 7. How do I know that their semantics is the same or different? With
+the name assigned it's differentiated by the name used.
+
+...
+
+> > > +	ub960_rxport_read(priv, nport, UB960_RR_AEQ_BYPASS, &v);
+> > > +
+> > > +	v &= ~(UB960_RR_AEQ_BYPASS_EQ_STAGE1_VALUE_MASK |
+> > > +	       UB960_RR_AEQ_BYPASS_EQ_STAGE2_VALUE_MASK);
+> > > +	v |= eq_stage_1_select_value << UB960_RR_AEQ_BYPASS_EQ_STAGE1_VALUE_SHIFT;
+> > > +	v |= eq_stage_2_select_value << UB960_RR_AEQ_BYPASS_EQ_STAGE2_VALUE_SHIFT;
+> > > +	v |= UB960_RR_AEQ_BYPASS_ENABLE; /* Enable AEQ Bypass */
+> > > +
+> > > +	ub960_rxport_write(priv, nport, UB960_RR_AEQ_BYPASS, v);
+> > 
+> > Can't you provide ub960_rxport_update_bits() ?
+> 
+> I could, but I think it's worse:
+> 
+> ub960_rxport_update_bits(priv, nport, UB960_RR_AEQ_BYPASS,
+> 	UB960_RR_AEQ_BYPASS_EQ_STAGE1_VALUE_MASK |
+> 		UB960_RR_AEQ_BYPASS_EQ_STAGE2_VALUE_MASK |
+> 		UB960_RR_AEQ_BYPASS_ENABLE,
+> 	(eq_stage_1_select_value
+> 	 << UB960_RR_AEQ_BYPASS_EQ_STAGE1_VALUE_SHIFT) |
+> 		(eq_stage_2_select_value
+> 		 << UB960_RR_AEQ_BYPASS_EQ_STAGE2_VALUE_SHIFT) |
+> 		UB960_RR_AEQ_BYPASS_ENABLE /* Enable AEQ Bypass */
+> );
+> 
+> Indenting it differently, I think it's still worse:
+> 
+> ub960_rxport_update_bits(priv, nport, UB960_RR_AEQ_BYPASS,
+> 	UB960_RR_AEQ_BYPASS_EQ_STAGE1_VALUE_MASK |
+> 	UB960_RR_AEQ_BYPASS_EQ_STAGE2_VALUE_MASK |
+> 	UB960_RR_AEQ_BYPASS_ENABLE,
+> 	(eq_stage_1_select_value << UB960_RR_AEQ_BYPASS_EQ_STAGE1_VALUE_SHIFT) |
+> 	(eq_stage_2_select_value << UB960_RR_AEQ_BYPASS_EQ_STAGE2_VALUE_SHIFT) |
+> 	UB960_RR_AEQ_BYPASS_ENABLE /* Enable AEQ Bypass */
+> );
+
+You can always use temporary variables to make code better to read.
+But it's up to you. Usually the R-M-W <--> vs. U is about locking or
+serialisation and handling it in a separate code is better.
+
+...
+
+> > > +	ret = ub960_rxport_read(priv, nport, UB960_RR_RX_PAR_ERR_HI, &v1);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = ub960_rxport_read(priv, nport, UB960_RR_RX_PAR_ERR_LO, &v2);
+> > > +	if (ret)
+> > > +		return ret;
+> > 
+> > Can this be read at once as BE16/LE16 value?
+> > Or if the stream of bytes, you can use le/be16_to_cpu().
+> 
+> I'm not sure, possibly. But is it worth it? I'd need to add new helper
+> functions to read such a value.
+
+I think it worth it to show exactly what is provided by the hardware
+and how we handle it (endianess wise).
+
+> > > +	parity_errors = (v1 << 8) | v2;
+
+...
+
+> > > +	*ok = !errors;
+> > 
+> > How this is different to the something like returning 1 here (and 0 above)?
+> > You may save some code by dropping redundant parameter.
+> 
+> Return value 1 means there was an error when reading the register values. 0
+> means we read the values, and "ok" contains a summary (ok or not) of the
+> link's status.
+
+I was expecting that error is negative, no?
+
+> > > +	return 0;
+
+...
+
+> > > +	while (time_before(jiffies, timeout)) {
+> > > +		missing = 0;
+> > > +
+> > > +		for_each_set_bit(nport, &port_mask,
+> > > +				 priv->hw_data->num_rxports) {
+> > > +			struct ub960_rxport *rxport = priv->rxports[nport];
+> > > +			bool ok;
+> > > +
+> > > +			if (!rxport)
+> > > +				continue;
+> > > +
+> > > +			ret = ub960_rxport_link_ok(priv, nport, &ok);
+> > > +			if (ret)
+> > > +				return ret;
+> > > +
+> > > +			if (!ok || !(link_ok_mask & BIT(nport)))
+> > > +				missing++;
+> > > +
+> > > +			if (ok)
+> > > +				link_ok_mask |= BIT(nport);
+> > > +			else
+> > > +				link_ok_mask &= ~BIT(nport);
+> > > +		}
+> > > +
+> > > +		loops++;
+> > > +
+> > > +		if (missing == 0)
+> > > +			break;
+> > > +
+> > > +		msleep(50);
+> > > +	}
+> > 
+> > You can wrap the body into readx_poll_timeout() from iopoll.h.
+> 
+> Hmm... How would I do that? With some kind of helper structs to wrap the
+> input and output parameters? Sounds very messy, but maybe I'm missing
+> something.
+
+It's me who added extra 'x', what I meant is read_poll_timeout(). It
+accepts variadic arguments, i.o.w. any function with any arguments can
+be provided.
+
+...
+
+> > > +		ub960_rxport_read(priv, nport, UB960_RR_RX_FREQ_HIGH, &v1);
+> > > +		ub960_rxport_read(priv, nport, UB960_RR_RX_FREQ_LOW, &v2);
+> > 
+> > Same Q, can these be unified to some kind of bulk read?
+> 
+> Perhaps, but again, I don't see the value for creating a bulk read helper
+> function for these few cases.
+
+OK.
+
+...
+
+> > > +		dev_dbg(dev, "\trx%u: locked, SP: %d, EQ: %u, freq %u Hz\n",
+> > > +			nport, strobe_pos, eq_level,
+> > > +			v1 * 1000000 + v2 * 1000000 / 256);
+> > 
+> > Even this will be simpler with above suggestion.
+> 
+> Hmm... How is that?
+
+		dev_dbg(dev, "\trx%u: locked, SP: %d, EQ: %u, freq %u Hz\n",
+			nport, strobe_pos, eq_level, v * 1000000 / 256);
+
+See?
+
+...
+
+> > > +	for (nport = 0; nport < priv->hw_data->num_rxports; ++nport) {
+> > 
+> > Post-inc?
+> 
+> I still like pre-inc =).
+> 
+> I see there's a mix os post and pre incs in the code. I'll align those when
+> I encounter them, but I don't think it's worth the effort to methodically go
+> through all of them to change them use the same style.
+
+Kernel uses post-inc is an idiom for loops:
+
+$ git grep -n -w '[_a-z0-9]\+++' | wc -l
+148693
+
+$ git grep -n -w ' ++[a-z0-9_]\+' | wc -l
+8701
+
+So, non-standard pattern needs to be explained.
+
+> > > +	}
+
+...
+
+> > > +	for (unsigned int i = 0; i < 6; ++i)
+> > > +		ub960_read(priv, UB960_SR_FPD3_RX_ID(i), &id[i]);
+> > > +	id[6] = 0;
+> > 
+> > If it's only for printing, the 0 is not needed...
+> > 
+> > > +	dev_info(dev, "ID '%s'\n", id);
+> > 
+> > ...as you may put it as
+> > 
+> > 	dev_info(dev, "ID: '%.*s'\n", (int)sizeof(id), id);
+> > 
+> > (I wrote from the top of my head, maybe not compilable as is).
+> 
+> And you think that is clearer? =)
+
+To me, yes. Maybe because I'm familiar with that.
+
+> I have to disagree.
+
+Your right :-)
+
+...
+
+> I'm not quite fine with dropping all these DT checks. If the user happens to
+> provide a DT with illegal values, the end results can be odd and the reason
+> quite difficult to figure out. Isn't it much better to have a few extra
+> checks in the driver?
+
+As I said above, ask Rob, if he is fine with that I will have no objections.
+
+...
+
+> > > +		rxport->eq.strobe_pos = strobe_pos;
+> > > +		if (!priv->strobe.manual)
+> > > +			dev_warn(dev,
+> > > +				 "rx%u: 'ti,strobe-pos' ignored as 'ti,manual-strobe' not set\n",
+> > > +				 nport);
+> > > +	}
+> > 
+> > This and below looks a bit different to the above in the same function. Perhaps
+> > these can be refactored to be less LoCs.
+> 
+> Hmm what did you have in mind?
+> 
+> > > +	ret = fwnode_property_read_u32(link_fwnode, "ti,eq-level", &eq_level);
+> > > +	if (ret) {
+> > > +		if (ret != -EINVAL) {
+> > > +			dev_err(dev, "rx%u: failed to read 'ti,eq-level': %d\n",
+> > > +				nport, ret);
+> > > +			return ret;
+> > > +		}
+
+This seems like trying to handle special cases, if you want it to be optional,
+why not ignoring all errors?
+
+> > > +	} else if (eq_level > UB960_MAX_EQ_LEVEL) {
+> > > +		dev_err(dev, "rx%u: illegal 'ti,eq-level' value: %d\n", nport,
+> > > +			eq_level);
+
+This part is a validation of DT again, but we discussed above this.
+
+> > > +	} else {
+> > > +		rxport->eq.manual_eq = true;
+> > > +		rxport->eq.manual.eq_level = eq_level;
+> > > +	}
+
+...
+
+> > > +err_pd_gpio:
+> > > +	if (priv->pd_gpio)
+> > 
+> > Dup test.
+> 
+> What do you mean dup? You mean gpiod_set_value_cansleep can be called with
+> gpio = NULL? The docs don't say this, but I guess that is the case.
+
+Yes. This is the idea of having _optional() GPIO APIs.
+
+> > > +		gpiod_set_value_cansleep(priv->pd_gpio, 1);
+
+...
+
+> > > +	if (priv->pd_gpio)
+> > > +		gpiod_set_value_cansleep(priv->pd_gpio, 1);
+
+Ditto.
+
+...
+
+> > > +	priv->hw_data = of_device_get_match_data(dev);
+> > 
+> > Why of_ out of the blue?!
+> 
+> Hmm... How do I get the data in a generic way? I'll have to study this a
+> bit.
+
+Just drop of_ :-)
+
+	priv->hw_data = device_get_match_data(dev);
+
+> > > +	if (!priv->hw_data)
+> > > +		return -ENODEV;
+
+...
+
+> > > +	priv->current_indirect_target = 0xff;
+> > > +	priv->current_read_rxport = 0xff;
+> > > +	priv->current_write_rxport_mask = 0xff;
+> > > +	priv->current_read_csiport = 0xff;
+> > > +	priv->current_write_csiport_mask = 0xff;
+> > 
+> > GENMASK()
+> 
+> These are not masks, but invalid values. We set these to an invalid value
+> (0xff) so that when a reg access function next time checks if we are already
+> targeting, e.g. a particular rxport, it will always opt to select the rxport
+> by writing to the approriate registers.
+
+Then define with respective name?
+
+...
+
+> > > +struct ds90ub9xx_platform_data {
+> > > +	u32 port;
+> > > +	struct i2c_atr *atr;
+> > > +	unsigned long bc_rate;
+> > 
+> > Not sure why we need this to be public except, probably, atr...
+> 
+> The port and atr are used by the serializers, for atr. The bc_rate is used
+> by the serializers to figure out the clocking (they may use the FPD-Link's
+> frequency internally).
+
+The plain numbers can be passed as device properties. That's why the question
+about platform data. Platform data in general is discouraged to be used in a
+new code.
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
