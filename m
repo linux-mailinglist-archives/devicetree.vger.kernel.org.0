@@ -2,64 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7D7B67619E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 00:34:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C434B6761AB
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 00:40:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbjATXej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 18:34:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34302 "EHLO
+        id S229741AbjATXkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 18:40:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjATXei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 18:34:38 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D01957ED56;
-        Fri, 20 Jan 2023 15:34:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674257676; x=1705793676;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ekt4X4xR1TAIasVRR9OHuNebiCvC80dSkNaTSp9S32E=;
-  b=IoU/V4IstOBvaGOyFLypl4QDQQFUbP40evXobSfbwhpZtLHaZ2nWy3So
-   nJu7KgVJkf9wxsta14ilICcns+YHwYFFjVaziSrgBaRokqB+T0nUIYTEY
-   moNh8AFYTrn1zNngLL5/ZW7Lb52OJj5Kae28KqI8VQaWuzSfHm4RS9FRN
-   KNToyq6NduMoRw7YBNkujDuFoIb0akTjUJ46/2yLOSyIMzs8cmd5cPxHS
-   2ZiO2K5e2t+9g/Vm2Sj3NnTZz+Shd581tjeGqNCc+uLB5NAVN/Im13FyV
-   AbM5Q16d731eihZHP/gVymqAoJr1UU5SYUDy/7K7YbFslSpxbnLiUz2pd
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="313613673"
-X-IronPort-AV: E=Sophos;i="5.97,233,1669104000"; 
-   d="scan'208";a="313613673"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2023 15:34:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="749525893"
-X-IronPort-AV: E=Sophos;i="5.97,233,1669104000"; 
-   d="scan'208";a="749525893"
-Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 20 Jan 2023 15:34:32 -0800
-Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pJ0tz-00036K-2C;
-        Fri, 20 Jan 2023 23:34:31 +0000
-Date:   Sat, 21 Jan 2023 07:34:12 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        linux-kernel@vger.kernel.org, jk@ozlabs.org, joel@jms.id.au,
-        alistair@popple.id.au, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Eddie James <eajames@linux.ibm.com>
-Subject: Re: [PATCH 2/2] fsi: Add IBM I2C Responder virtual FSI master
-Message-ID: <202301210758.mY8JSNOf-lkp@intel.com>
-References: <20230119174714.1486042-3-eajames@linux.ibm.com>
+        with ESMTP id S229722AbjATXkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 18:40:21 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B907ED69;
+        Fri, 20 Jan 2023 15:40:15 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id v5so8540440edc.3;
+        Fri, 20 Jan 2023 15:40:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YlFQs5uK1REKCJrhOvImfAktaMDFYnGI105SvemPmlY=;
+        b=RRiBdw8uKBYsQzBGG11bH8QpnGKO+OrOgFZgbwJ0LEsEIPHcP7NIdCOplfvqJq8Gcn
+         IDtizdX6lIF3alkc+hWGOqX8r13i2qRyNZp9JDHxXCaqxMbK9x5OKjof6i4tFgOSr3r5
+         tjuYBJAMeg/FMtfXejJCJ9r6vFrvi65I7Itw6TiKTUVIyLJegXEgLmgksKWfK+PqzEsi
+         H9P7nID/+0DuRX9/GhZ2wmEOfsmc0xKQsQrdu1EA/dnpRuFBVRaPndkx4OiPgtazlxEn
+         VdJXWiQveKeHn4g4HKUvrrTXj7UwfzR9tISQR/41dRU/sSQfgY1fuiSQQE0ogA67JIO/
+         uUUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YlFQs5uK1REKCJrhOvImfAktaMDFYnGI105SvemPmlY=;
+        b=BORCqbLvsxnYN9NJ+5cH+jyyR4sfGNUuorW+FIDsk0X4gjGHnkhZKXgUdL7QFw4qL0
+         PayXEwDFi9ErJ8Oa4hqEG6waXcP7Aa8BuMTKaiP/68BGRqjUuKHmq4jq7Bc2GnEs8ZvA
+         LkPinfVsxDEeogexzPxIPkRELgbIx1sywJNcQNl+pn9WeGm2Ps2d/PTxenwn2j0KVh0o
+         46VKqpOy6Ycljh7LXmI4so3FyTw4ehikAsmLx77KPRwDCBnBVUIgiMJPzsNYv+3cR3OW
+         /r4oxprsJx/wNGVR9OMl2uTAlrxM4R7N8UuEJOYxBfJTIH1rBkYghiWzH6z/sdijyQvZ
+         t9qw==
+X-Gm-Message-State: AFqh2kotMapyYq4Iawv5Wij9h+kiimWD6QMZVJh1SJK1EZJblGppTBi9
+        mCGz4aT4H7URrTnfhMU6FZwRZucMfrY=
+X-Google-Smtp-Source: AMrXdXuVuW4WzQPRX+Id1GCwSM7qs0K6dzLXuAUos1Todbd5RBeS68VoXDFF+todOBUIwUvJl8vzWQ==
+X-Received: by 2002:aa7:c44d:0:b0:46c:b919:997f with SMTP id n13-20020aa7c44d000000b0046cb919997fmr7738082edr.17.1674258014332;
+        Fri, 20 Jan 2023 15:40:14 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id ec49-20020a0564020d7100b0049e249c0e56sm7066080edb.56.2023.01.20.15.40.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 15:40:13 -0800 (PST)
+Message-ID: <be193659-e97f-23b9-b89c-d02205705db6@gmail.com>
+Date:   Sat, 21 Jan 2023 00:40:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230119174714.1486042-3-eajames@linux.ibm.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: usb: rockchip,dwc3: Move RK3399 to
+ its own schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230118193056.673514-1-robh@kernel.org>
+ <20230118193056.673514-2-robh@kernel.org>
+ <4eca2695-cb73-eaad-4c8a-82dec923825e@gmail.com>
+ <CAL_JsqKqiRbBJErkh2Hch+XZyLggGyjYo1rvKWPhxb99pA8mAA@mail.gmail.com>
+Content-Language: en-US
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <CAL_JsqKqiRbBJErkh2Hch+XZyLggGyjYo1rvKWPhxb99pA8mAA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,60 +84,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eddie,
-
-I love your patch! Yet something to improve:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.2-rc4 next-20230120]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Eddie-James/dt-bindings-fsi-Document-the-IBM-I2C-Responder-virtual-FSI-master/20230120-014831
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230119174714.1486042-3-eajames%40linux.ibm.com
-patch subject: [PATCH 2/2] fsi: Add IBM I2C Responder virtual FSI master
-config: arm-randconfig-c002-20230120 (https://download.01.org/0day-ci/archive/20230121/202301210758.mY8JSNOf-lkp@intel.com/config)
-compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project 4196ca3278f78c6e19246e54ab0ecb364e37d66a)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/intel-lab-lkp/linux/commit/1312ba80b81ef02457d213ee6bc6ee80739c3e01
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Eddie-James/dt-bindings-fsi-Document-the-IBM-I2C-Responder-virtual-FSI-master/20230120-014831
-        git checkout 1312ba80b81ef02457d213ee6bc6ee80739c3e01
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/fsi/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/fsi/fsi-master-i2cr.c:214:12: error: incompatible function pointer types initializing 'void (*)(struct i2c_client *)' with an expression of type 'int (struct i2c_client *)' [-Wincompatible-function-pointer-types]
-           .remove = i2cr_remove,
-                     ^~~~~~~~~~~
-   1 error generated.
 
 
-vim +214 drivers/fsi/fsi-master-i2cr.c
+On 1/20/23 21:30, Rob Herring wrote:
+> On Wed, Jan 18, 2023 at 3:05 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>>
+>> Hi,
+>>
+>> Some alignment at the examples and the unknown extcon property.
+>>
+>> usb@fe800000: 'extcon' does not match any of the regexes
+> 
+> Does that go in the wrapper or dwc3 node?:
+> 
+> arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dtb: usb@fe800000:
+> usb@fe800000: Unevaluated properties are not allowed ('extcon' was
+> unexpected)
+>         From schema:
+> /home/rob/proj/linux-dt/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
+> 
 
-   211	
-   212	static struct i2c_driver i2cr_driver = {
-   213		.probe_new = i2cr_probe,
- > 214		.remove = i2cr_remove,
-   215		.driver = {
-   216			.name = "i2cr",
-   217			.of_match_table = i2cr_i2c_ids,
-   218		},
-   219	};
-   220	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+> That's the dwc3 node, but the majority are in the wrapper node, so I'm
+> going with the majority and leaving this one.
+
+In wrapper code for rk33899 in dwc3-of-simple.c I don't see no extcon activity I think.
+
+In core there's recently made some changes:
+https://github.com/torvalds/linux/blame/master/drivers/usb/dwc3/core.c#L1710
+
+usb: dwc3: Don't switch OTG -> peripheral if extcon is present 
+https://lore.kernel.org/all/20221017233510.53336-1-andriy.shevchenko@linux.intel.com/
+
+Binding status update for that is unknown for me.
+Do whatever suites you best.
+
+Johan
+> Rob
