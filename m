@@ -2,220 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2970B675033
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:06:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3019B675035
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:07:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjATJG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 04:06:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45984 "EHLO
+        id S229539AbjATJHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 04:07:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjATJG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:06:56 -0500
-X-Greylist: delayed 101 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 20 Jan 2023 01:06:53 PST
-Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95521EC4A
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 01:06:53 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id A08BEFB04;
-        Fri, 20 Jan 2023 10:06:51 +0100 (CET)
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id l5x_tzIgNx7W; Fri, 20 Jan 2023 10:06:49 +0100 (CET)
-Date:   Fri, 20 Jan 2023 10:06:48 +0100
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-        thierry.reding@gmail.com, megous@megous.com, kernel@puri.sm,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 2/2] drm/panel: st7703: Add support for Anbernic
- RG353V-V2 panel
-Message-ID: <Y8pZqPH0rDSfxhVr@qwark.sigxcpu.org>
-References: <20230119230415.1283379-1-macroalpha82@gmail.com>
- <20230119230415.1283379-3-macroalpha82@gmail.com>
+        with ESMTP id S229517AbjATJHa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:07:30 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665B1EC4A
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 01:07:29 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id t5so4250311wrq.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 01:07:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+9cxosX/i5nv3EeDP+R/+smZUAdn9NQG0UWoxfN1zBA=;
+        b=tAzBgOXegXMIff64cxp1KeBPq6FHZg/dktVY3gc2WeTpXyyTabEyuMhnkY4Ajfyg3q
+         qU6mBjnCDTsEqtSoJHAkQ9cG2N4Qt6LiUFIhXDHPVQOTkzhg2ZI81vDlIGhL2JRA9A3e
+         tw2GcXAroNgZN3/a5OvpTdddfTnLO3t9kVCnlzsZ7AjS5Kc2KgRHPiQwKpoFBsKoDxYN
+         47rG4SVhVyRZc7fUW4R3WWzHYqjIwck/y1HqIU3yqXeEzyj3fNUUlpifTVLCWSaCXtiw
+         Nxa0B4qi3JYsA8C3q4Q2JGl2FPstEoZWwNk2REzElun0BxxzQCC/kXOlJ2iczy0GvJwO
+         wl5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+9cxosX/i5nv3EeDP+R/+smZUAdn9NQG0UWoxfN1zBA=;
+        b=sm2G1VIL+Pp28WPDS0RORN2bbUVOjlUNakQ1ZQWS5poscTZG32yiWm0ddBITqbLHP1
+         VUTBClJdIMk8W5AX9nTXc8wDF1pti3SE0RnbfWSJrYMp249pf5cTRV0oSHLrXEW58PJ0
+         fYcndCOxFkTKLCCJOX2srl40R5o3Urlwlxicj08Xw3cnikHwqfHrB6l0wD7zKafQhEap
+         XhWslsLvB2L4rCTroytyzrWkSkwjOOF33BEPDJGuvB1dJGCRHXnLeTTAn87tB1GkId8k
+         9vfJXW75NUrMGqOafeHk/aIwdMLlqJip/R0IYHxVCEOQuQ7MuYL9uifff1+gk6xYwgHe
+         Y4Nw==
+X-Gm-Message-State: AFqh2kqPBgyzJHyuDOahSuGSe6qSufcr4NkWebPy52GSJHMiucG6UFQ1
+        hdPNHi5fi9gSpCvymvt81FBH9w==
+X-Google-Smtp-Source: AMrXdXsHwTJReQjKFzfioraTTDlbnBxvBKuyMDPfO/H6c7I+wvv/GRJ0uzqiO/nuw8Z4Ho3JJyOwVA==
+X-Received: by 2002:a5d:6350:0:b0:2bc:7d12:7400 with SMTP id b16-20020a5d6350000000b002bc7d127400mr12788369wrw.36.1674205647883;
+        Fri, 20 Jan 2023 01:07:27 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id t13-20020adfe10d000000b002b6bcc0b64dsm23316547wrz.4.2023.01.20.01.07.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 01:07:27 -0800 (PST)
+Message-ID: <fa9e401c-01d8-dd50-366e-ef582828797f@linaro.org>
+Date:   Fri, 20 Jan 2023 10:07:25 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230119230415.1283379-3-macroalpha82@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_FAIL,
-        SPF_HELO_NONE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 1/9] dt-bindings: arm: fsl: add TQ-Systems LS1021A board
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc:     Matthias Schiffer <matthias.schiffer@tq-group.com>, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
+ <20230119144236.3541751-2-alexander.stein@ew.tq-group.com>
+ <3c1b8078-1f23-aba7-f3b6-ddead64e85c8@linaro.org>
+ <23586057.ouqheUzb2q@steina-w>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <23586057.ouqheUzb2q@steina-w>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Thu, Jan 19, 2023 at 05:04:15PM -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 20/01/2023 09:58, Alexander Stein wrote:
+> Hi Krzysztof,
 > 
-> The Anbernic RG353V-V2 is a 5 inch panel used in a new revision of the
-> Anbernic RG353V handheld gaming device. Add support for it.
+> thanks for your feedback.
 > 
-> Unfortunately it appears this controller is not able to support 120hz
-> or 100hz mode like the first revision panel.
+> Am Donnerstag, 19. Januar 2023, 17:59:20 CET schrieb Krzysztof Kozlowski:
+>> On 19/01/2023 15:42, Alexander Stein wrote:
+>>> From: Matthias Schiffer <matthias.schiffer@tq-group.com>
+>>>
+>>> TQMLS102xA is a SOM family using NXP LS1021A CPU family.
+>>> MBLS102xA is an evaluation mainbord for this SOM.
+>>
+>> typo: mainboard
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  drivers/gpu/drm/panel/panel-sitronix-st7703.c | 102 +++++++++++++++++-
->  1 file changed, 99 insertions(+), 3 deletions(-)
+> Thanks.
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7703.c b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> index 86a472b01360..2ed0cdfa86de 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> @@ -28,6 +28,7 @@
->  /* Manufacturer specific Commands send via DSI */
->  #define ST7703_CMD_ALL_PIXEL_OFF 0x22
->  #define ST7703_CMD_ALL_PIXEL_ON	 0x23
-> +#define ST7703_CMD_SETAPID	 0xB1
->  #define ST7703_CMD_SETDISP	 0xB2
->  #define ST7703_CMD_SETRGBIF	 0xB3
->  #define ST7703_CMD_SETCYC	 0xB4
-> @@ -41,12 +42,15 @@
->  #define ST7703_CMD_UNKNOWN_BF	 0xBF
->  #define ST7703_CMD_SETSCR	 0xC0
->  #define ST7703_CMD_SETPOWER	 0xC1
-> +#define ST7703_CMD_SETECO	 0xC6
-> +#define ST7703_CMD_SETIO	 0xC7
-> +#define ST7703_CMD_SETCABC	 0xC8
->  #define ST7703_CMD_SETPANEL	 0xCC
-> -#define ST7703_CMD_UNKNOWN_C6	 0xC6
->  #define ST7703_CMD_SETGAMMA	 0xE0
->  #define ST7703_CMD_SETEQ	 0xE3
->  #define ST7703_CMD_SETGIP1	 0xE9
->  #define ST7703_CMD_SETGIP2	 0xEA
-> +#define ST7703_CMD_UNKNOWN_EF	 0xEF
->  
->  struct st7703 {
->  	struct device *dev;
-> @@ -266,8 +270,7 @@ static int xbd599_init_sequence(struct st7703 *ctx)
->  				 * ESD_DET_TIME_SEL = 0 frames
->  				 */);
->  
-> -	/* Undocumented command. */
-> -	dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_C6, 0x01, 0x00, 0xFF, 0xFF, 0x00);
-> +	dsi_dcs_write_seq(dsi, ST7703_CMD_SETECO, 0x01, 0x00, 0xFF, 0xFF, 0x00);
+>>> Signed-off-by: Matthias Schiffer <matthias.schiffer@tq-group.com>
+>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>>> ---
+>>>
+>>>  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+>>>  1 file changed, 7 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> b/Documentation/devicetree/bindings/arm/fsl.yaml index
+>>> 3ba354578e8f9..b54a920934c9d 100644
+>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>>
+>>> @@ -1164,6 +1164,13 @@ properties:
+>>>                - fsl,ls1021a-twr
+>>>            
+>>>            - const: fsl,ls1021a
+>>>
+>>> +      - description: TQ-Systems TQMLS1021A SoM on MBLS102xA board
+>>> +        items:
+>>> +          - enum:
+>>> +              - tq,ls1021a-tqmls1021a-mbls102xa
+>>
+>> Can mbls102xa come with something else than tqmls1021a?
+> 
+> I don't expect this. MBLS102xa is the starterkit carrier board for TQMLS1021A 
+> module. But the module can come on other custom carrier boards.
+> This name schema is similar to e.g. imx8mp-tqma8mpql-mba8mpxl.dts
 
-Thanks for catching this! Would make sense to split that into a separate
-commit. With that fixed
+If mbls102xa has soldered module, I would drop some part of it. It's
+really redundant. If it is a SoM, so module could be replaced, then it
+would make sense.
 
-Reviewed-by: Guido Günther <agx@sigxcpu.org>
-
- -- Guido
-
->  
->  	dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER,
->  			  0x74, /* VBTHS, VBTLS: VGH = 17V, VBL = -11V */
-> @@ -355,6 +358,98 @@ static const struct st7703_panel_desc xbd599_desc = {
->  	.init_sequence = xbd599_init_sequence,
->  };
->  
-> +static int rg353v2_init_sequence(struct st7703 *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
-> +
-> +	/*
-> +	 * Init sequence was supplied by the panel vendor.
-> +	 */
-> +
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEXTC, 0xf1, 0x12, 0x83);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETAPID, 0x00, 0x00, 0x00,
-> +			       0xda, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETDISP, 0x00, 0x13, 0x70);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETRGBIF, 0x10, 0x10, 0x28,
-> +			       0x28, 0x03, 0xff, 0x00, 0x00, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCYC, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETBGP, 0x0a, 0x0a);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVCOM, 0x92, 0x92);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER_EXT, 0x25, 0x22,
-> +			       0xf0, 0x63);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETMIPI, 0x33, 0x81, 0x05,
-> +			       0xf9, 0x0e, 0x0e, 0x20, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x44, 0x25, 0x00, 0x90, 0x0a,
-> +			       0x00, 0x00, 0x01, 0x4f, 0x01, 0x00, 0x00, 0x37);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVDC, 0x47);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_BF, 0x02, 0x11, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETSCR, 0x73, 0x73, 0x50, 0x50,
-> +			       0x00, 0x00, 0x12, 0x50, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER, 0x53, 0xc0, 0x32,
-> +			       0x32, 0x77, 0xe1, 0xdd, 0xdd, 0x77, 0x77, 0x33,
-> +			       0x33);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETECO, 0x82, 0x00, 0xbf, 0xff,
-> +			       0x00, 0xff);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETIO, 0xb8, 0x00, 0x0a, 0x00,
-> +			       0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCABC, 0x10, 0x40, 0x1e,
-> +			       0x02);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPANEL, 0x0b);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGAMMA, 0x00, 0x07, 0x0d,
-> +			       0x37, 0x35, 0x3f, 0x41, 0x44, 0x06, 0x0c, 0x0d,
-> +			       0x0f, 0x11, 0x10, 0x12, 0x14, 0x1a, 0x00, 0x07,
-> +			       0x0d, 0x37, 0x35, 0x3f, 0x41, 0x44, 0x06, 0x0c,
-> +			       0x0d, 0x0f, 0x11, 0x10, 0x12, 0x14, 0x1a);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEQ, 0x07, 0x07, 0x0b, 0x0b,
-> +			       0x0b, 0x0b, 0x00, 0x00, 0x00, 0x00, 0xff, 0x00,
-> +			       0xc0, 0x10);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP1, 0xc8, 0x10, 0x02, 0x00,
-> +			       0x00, 0xb0, 0xb1, 0x11, 0x31, 0x23, 0x28, 0x80,
-> +			       0xb0, 0xb1, 0x27, 0x08, 0x00, 0x04, 0x02, 0x00,
-> +			       0x00, 0x00, 0x00, 0x04, 0x02, 0x00, 0x00, 0x00,
-> +			       0x88, 0x88, 0xba, 0x60, 0x24, 0x08, 0x88, 0x88,
-> +			       0x88, 0x88, 0x88, 0x88, 0x88, 0xba, 0x71, 0x35,
-> +			       0x18, 0x88, 0x88, 0x88, 0x88, 0x88, 0x00, 0x00,
-> +			       0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP2, 0x97, 0x0a, 0x82, 0x02,
-> +			       0x03, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x81, 0x88, 0xba, 0x17, 0x53, 0x88, 0x88, 0x88,
-> +			       0x88, 0x88, 0x88, 0x80, 0x88, 0xba, 0x06, 0x42,
-> +			       0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x23, 0x00,
-> +			       0x00, 0x02, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_EF, 0xff, 0xff, 0x01);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_display_mode rg353v2_mode = {
-> +	.hdisplay	= 640,
-> +	.hsync_start	= 640 + 40,
-> +	.hsync_end	= 640 + 40 + 2,
-> +	.htotal		= 640 + 40 + 2 + 80,
-> +	.vdisplay	= 480,
-> +	.vsync_start	= 480 + 18,
-> +	.vsync_end	= 480 + 18 + 2,
-> +	.vtotal		= 480 + 18 + 2 + 28,
-> +	.clock		= 24150,
-> +	.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> +	.width_mm	= 70,
-> +	.height_mm	= 57,
-> +};
-> +
-> +static const struct st7703_panel_desc rg353v2_desc = {
-> +	.mode = &rg353v2_mode,
-> +	.lanes = 4,
-> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> +		      MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_LPM,
-> +	.format = MIPI_DSI_FMT_RGB888,
-> +	.init_sequence = rg353v2_init_sequence,
-> +};
-> +
->  static int st7703_enable(struct drm_panel *panel)
->  {
->  	struct st7703 *ctx = panel_to_st7703(panel);
-> @@ -615,6 +710,7 @@ static void st7703_remove(struct mipi_dsi_device *dsi)
->  }
->  
->  static const struct of_device_id st7703_of_match[] = {
-> +	{ .compatible = "anbernic,rg353v-panel-v2", .data = &rg353v2_desc },
->  	{ .compatible = "rocktech,jh057n00900", .data = &jh057n00900_panel_desc },
->  	{ .compatible = "xingbangda,xbd599", .data = &xbd599_desc },
->  	{ /* sentinel */ }
-> -- 
-> 2.34.1
 > 
+>>> +          - const: tq,ls1021a-tqmls1021a
+>>
+>> Why duplicating ls1021a? Can tqmls1021a come with something else? This
+>> is redundant.
+> 
+> I agree this is somewhat redundant, but this follows the naming scheme 
+> '<vendor>,<soc>-<module>' which is rather widespread for i.MX boards/modules. 
+> TQMLS1021A is the module name I can't change, actually part of the series 
+> TQMLS102xA.
+
+Ah, you're right... the double ls1021a is a bit confusing but that's
+indeed common pattern.
+
+Best regards,
+Krzysztof
+
