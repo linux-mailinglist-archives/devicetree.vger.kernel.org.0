@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A34C674F70
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 09:26:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56424674F7A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 09:29:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230481AbjATI05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 03:26:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48868 "EHLO
+        id S230021AbjATI3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 03:29:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbjATI04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 03:26:56 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39318A0C9
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 00:26:52 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id z5so4135465wrt.6
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 00:26:52 -0800 (PST)
+        with ESMTP id S229916AbjATI3s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 03:29:48 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01B2F74957
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 00:29:46 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id l8so3391885wms.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 00:29:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dQD3SeU5cieHqSaSQOFOuvwfEvzyXZdGHoT+3iMV3+Q=;
-        b=sVyo1WQwvoZ440cfSfd/pBn6sA68vMHM8R19MkVLWsSsjdsZTDLI/NPzuoCWheFB43
-         U7XktPstpagWZ2qz+/mHgKjzQQgu3K9H8IY2GeXgWQYXzCePDwAWGP8CDHTPDv1XAbUK
-         dLcildkMljvAn1QFV/+0m7H3A/iSELWMk8RmyCxo4MfsLd0NJX4Bq5SCA2I+UggX4tp6
-         W6pC9BpEKDUFQ3uN21L7ZEHZbdVwujf+RUFsv+roVc6i/LE8/3KauFC7lJjED2eJXAaD
-         OkTontz5KnEQacEvrHalrX1nNKaPgQUBXoYOJu+4WJhlFa3MztSxvXw8DUEY7rb12NJP
-         jhYg==
+        bh=UZ1kQ6Dc/Aq1ANuf4SsTTOiufClKPa57UzLLGIHz6lA=;
+        b=jgParfB21yrZPlsfTLXKtBj85ZlU3hEUYG35prDPSa/wKEWSILYui/Q3N+ntb9bx0O
+         ET1RwUNCNFkHjT27224FkDTS/BAKl6L9ih9LE263YlBkVH8M3+mHSmuTJRBGQjV8yGCg
+         d26UkidnKC0QT+633G1nO3V5hzfRenrn1rT0Dbn/ii2IGC2zJpKMd7IhuHNbINUeXrlQ
+         2++OWg+2lmEUQ04u/MZBXp02tM2VAzigE/6gnzVofKEpp95WW65TNNnK76dvnbsgJgdC
+         92VRjB/s+lDxvnOjZETVrDh97aV9sxWfl+dUeYDg9GEkEup6M/SZng4wU8U+zb7GzSZm
+         kEnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dQD3SeU5cieHqSaSQOFOuvwfEvzyXZdGHoT+3iMV3+Q=;
-        b=dREKGs18CUHwibipR56JGyPJaJCdWArxgev4+VtJOl6EEeX1ZAJufODCbEBRamMliC
-         TF6JZxTyS2HzZn9B5dGCcAKmFjua4OngYIVp3arhDeGNPp7uQT2vRN5KdmAA//kqA5PT
-         hoJgpsRVL+qTQ3iBlMwMDSWe8CW+9Dtkvl5XlDsgmE589dDJ+ePeohI6mYRaL93B8mpr
-         dnUP5AvnUw+XAGUznPOkrNozSawEChpXsHVQUMHCUJC8JGmUFlWBkF7qF+O9+cOfEWGO
-         L21AQ9uOYxVlskxP3MgnNhxlRbxdjvyrkt/HlKjwPU1Zi1YBVSqTuQs9gNJNTB+P5UZH
-         4ypw==
-X-Gm-Message-State: AFqh2krDRFb8DPKCgrmjZQWWoFpG6n6ZoD21XD8HeRO51rxNkHkCLfMK
-        MlgQjt52+chI4Y8tTZFpZuLGIA==
-X-Google-Smtp-Source: AMrXdXumlxfJ8KEAKW4uHiXN9MBz2WNa1cx1COulyE/9/p90MuXxNfk3ZAmuW8Tb8rR6CiXOYcG//A==
-X-Received: by 2002:a5d:6447:0:b0:2be:34f9:5284 with SMTP id d7-20020a5d6447000000b002be34f95284mr6818039wrw.48.1674203206302;
-        Fri, 20 Jan 2023 00:26:46 -0800 (PST)
+        bh=UZ1kQ6Dc/Aq1ANuf4SsTTOiufClKPa57UzLLGIHz6lA=;
+        b=nXR93NyMwM/UBl5mLtVHQB5nu5+vmwHKsOYIrIaoExEeU8dkRju1YVXMJTpe1YRSji
+         JmPTfbGu7ghWzrg5XRGpHDyQ3YLfqUkAXSkWuz4q0JV7IMCMi9+PJL+tvvGnKF/iSX2r
+         HL39RDXUPT9ACbmtojvzk3korYfvweu7ndnt8AfPMwsY+iYTMhpkuiSXiAJo5qeN0Zsq
+         w7MhdFw5D1PwxOTK67dxM9ZijEDkPL8vE1fXux3/Uyq1EVvz9NL000woLcmqvxFRrft7
+         GYj/PxKoriJ2iyexPARhM90gPNCzw8Nvqk8Y3plRjAWyiZAbVeQpHqcNQ9YLsP5HfsDk
+         Q/ow==
+X-Gm-Message-State: AFqh2koI8bjz/dcDRPdNn4LlEUSi8x3pC3LtZHZ/gBR5nynDJvJcAMpa
+        rY+4qrg4EZLjMQB2yIB8eDZjpA==
+X-Google-Smtp-Source: AMrXdXvt2hZOZLqdPD4UWX5LsE6FgLHiW5K1inIkH+ssvdTcXfKQ/nK9NhNqjlexM0zd0IwTVVGTcQ==
+X-Received: by 2002:a05:600c:a13:b0:3db:1de2:af31 with SMTP id z19-20020a05600c0a1300b003db1de2af31mr5499408wmp.37.1674203385532;
+        Fri, 20 Jan 2023 00:29:45 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w10-20020a5d404a000000b00275970a85f4sm35371733wrp.74.2023.01.20.00.26.44
+        by smtp.gmail.com with ESMTPSA id t13-20020a1c770d000000b003db1ca20170sm1485418wmi.37.2023.01.20.00.29.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 00:26:45 -0800 (PST)
-Message-ID: <94655b6a-4e2b-9ec5-8c86-17cb8690f44f@linaro.org>
-Date:   Fri, 20 Jan 2023 09:26:43 +0100
+        Fri, 20 Jan 2023 00:29:45 -0800 (PST)
+Message-ID: <402ac5a2-334e-1843-0517-5ecf61f6a965@linaro.org>
+Date:   Fri, 20 Jan 2023 09:29:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 3/3] dt-bindings: display: rockchip-lvds: add compatible
- string for RK3568
+Subject: Re: [PATCH v5 01/19] dt-bindings: clock: mediatek: Add new MT8188
+ clock
 Content-Language: en-US
-To:     Alibek Omarov <a1ba.omarov@gmail.com>
-Cc:     alexander.sverdlin@siemens.com, macromorgan@hotmail.com,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Alex Bee <knaerzche@gmail.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230119184807.171132-1-a1ba.omarov@gmail.com>
- <20230119184807.171132-4-a1ba.omarov@gmail.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org
+References: <20230119124848.26364-1-Garmin.Chang@mediatek.com>
+ <20230119124848.26364-2-Garmin.Chang@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230119184807.171132-4-a1ba.omarov@gmail.com>
+In-Reply-To: <20230119124848.26364-2-Garmin.Chang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,14 +84,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 19:48, Alibek Omarov wrote:
-> RK3568 SoCs have a single LVDS output, that use PHY shared by two display
-> pipelines: LVDS and MIPI DSI.
+On 19/01/2023 13:48, Garmin.Chang wrote:
+> Add the new binding documentation for system clock
+> and functional clock on MediaTek MT8188.
 > 
-> Signed-off-by: Alibek Omarov <a1ba.omarov@gmail.com>
+> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
+> ---
+>  .../bindings/clock/mediatek,mt8188-clock.yaml |  71 ++
+>  .../clock/mediatek,mt8188-sys-clock.yaml      |  55 ++
+>  .../dt-bindings/clock/mediatek,mt8188-clk.h   | 733 ++++++++++++++++++
+>  3 files changed, 859 insertions(+)
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
