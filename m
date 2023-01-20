@@ -2,422 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00A6F6751AC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19AD06751B4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:54:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230107AbjATJxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 04:53:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44214 "EHLO
+        id S229928AbjATJyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 04:54:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbjATJxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:53:45 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B942A44BE5;
-        Fri, 20 Jan 2023 01:53:43 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30K9mYVs029064;
-        Fri, 20 Jan 2023 09:53:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=rvW8pkap+Qxf9hlgOk3HgVB5JlS1AFhNBs6EoZYg4Lc=;
- b=QixFMsgofvf1J57jyAFxj/AZKws5lx4VQ3oxkfo9PFy0Llmpdy9SO/pf0+y6RcqqdrBD
- dbLcpJXlVegj3seoNDVeUZM32vWy5ukHWDmocRjjPoh8DXxDNwZFukzD3AnoYsvqp1Th
- mZaz0R+LRzMSxW1aJ+fHFtbaZ16gWoWS52hh0/BLET2STkkyPB53vTG9i/1AXT9/rcln
- u3ZZF3JZFtsTIPOguuWL5LVwyQzHVcibTLHgekkzwlg3UkiYXDhd/MXwXF8E+x9Uh2q7
- WYkxNxJD+VxktS9vkVIys4tf8ZZvAK3YwPar8WdpnHQJdkAEvRhPkzFId92+vkMMOgdL lg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n7q8584kg-1
+        with ESMTP id S229785AbjATJya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:54:30 -0500
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B43C73EE3;
+        Fri, 20 Jan 2023 01:54:22 -0800 (PST)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30K8g3ci023460;
+        Fri, 20 Jan 2023 04:54:10 -0500
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3n7qnw09hk-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 20 Jan 2023 09:53:15 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30K9rF1g023986
+        Fri, 20 Jan 2023 04:54:10 -0500
+Received: from m0167089.ppops.net (m0167089.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30K9oVqq026484;
+        Fri, 20 Jan 2023 04:54:09 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3n7qnw09hf-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 20 Jan 2023 09:53:15 GMT
-Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Fri, 20 Jan 2023 01:53:14 -0800
-From:   Mao Jinlong <quic_jinlmao@quicinc.com>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Mao Jinlong <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Subject: [RESPIN PATCH v17 6/9] Coresight: Add TPDA link driver
-Date:   Fri, 20 Jan 2023 01:53:01 -0800
-Message-ID: <20230120095301.30792-2-quic_jinlmao@quicinc.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230120095301.30792-1-quic_jinlmao@quicinc.com>
-References: <20230120095301.30792-1-quic_jinlmao@quicinc.com>
+        Fri, 20 Jan 2023 04:54:09 -0500
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 30K9s8We036473
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 20 Jan 2023 04:54:08 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 20 Jan
+ 2023 04:54:07 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 20 Jan 2023 04:54:07 -0500
+Received: from tachici-Precision-5530.ad.analog.com ([10.48.65.139])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 30K9rqTv021132;
+        Fri, 20 Jan 2023 04:53:54 -0500
+From:   Alexandru Tachici <alexandru.tachici@analog.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     <netdev@vger.kernel.org>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <richardcochran@gmail.com>, <yangyingliang@huawei.com>,
+        <weiyongjun1@huawei.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <lennart@lfdomain.com>
+Subject: [net-next 0/3] net: ethernet: adi: adin1110: add PTP support
+Date:   Fri, 20 Jan 2023 11:53:45 +0200
+Message-ID: <20230120095348.26715-1-alexandru.tachici@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: SJzVe4Yqtt8xozLdg3n97qL9E16q4QeV
-X-Proofpoint-GUID: SJzVe4Yqtt8xozLdg3n97qL9E16q4QeV
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: owdE7b4BtcC6l1n-GXg-_AUVyRcv3JEX
+X-Proofpoint-ORIG-GUID: 1I1KDlhbmhCwgZ576S4G8biYI3O2dqwG
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
  definitions=2023-01-20_06,2023-01-19_01,2022-06-22_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 spamscore=0 malwarescore=0 priorityscore=1501 clxscore=1011
- adultscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=999
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ lowpriorityscore=0 adultscore=0 mlxscore=0 bulkscore=0 phishscore=0
+ spamscore=0 priorityscore=1501 clxscore=1011 suspectscore=0 malwarescore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2212070000 definitions=main-2301200093
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TPDA(Trace, Profiling and Diagnostics Aggregator) is
-to provide packetization, funneling and timestamping of
-TPDM data. Multiple monitors are connected to different
-input ports of TPDA.This change is to add tpda
-enable/disable/probe functions for coresight tpda driver.
+Add control for the PHC inside the ADIN1110/2111.
+Device contains a syntonized counter driven by a 120 MHz
+clock  with 8 ns resolution.
 
- - - - -         - - - -        - - - -
-| TPDM 0|      | TPDM 1 |     | TPDM 2|
- - - - -         - - - -        - - - -
-    |               |             |
-    |_ _ _ _ _ _    |     _ _ _ _ |
-                |   |    |
-                |   |    |
-           ------------------
-          |        TPDA      |
-           ------------------
+Time is stored in two registers: a 32bit seconds register and
+a 32bit nanoseconds register.
 
-Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
----
- drivers/hwtracing/coresight/Kconfig          |  11 +
- drivers/hwtracing/coresight/Makefile         |   1 +
- drivers/hwtracing/coresight/coresight-tpda.c | 211 +++++++++++++++++++
- drivers/hwtracing/coresight/coresight-tpda.h |  35 +++
- 4 files changed, 258 insertions(+)
- create mode 100644 drivers/hwtracing/coresight/coresight-tpda.c
- create mode 100644 drivers/hwtracing/coresight/coresight-tpda.h
+For adjusting the clock timing, device uses an addend register.
+Can generate an output signal on the TS_TIMER pin.
+For reading the timestamp the current tiem is saved by setting the
+TS_CAPT pin via gpio in order to snapshot both seconds and nanoseconds
+in different registers that the live ones.
 
-diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
-index e2debad59608..2b5bbfffbc4f 100644
---- a/drivers/hwtracing/coresight/Kconfig
-+++ b/drivers/hwtracing/coresight/Kconfig
-@@ -217,6 +217,7 @@ config ULTRASOC_SMB
- config CORESIGHT_TPDM
- 	tristate "CoreSight Trace, Profiling & Diagnostics Monitor driver"
- 	select CORESIGHT_LINKS_AND_SINKS
-+	select CORESIGHT_TPDA
- 	help
- 	  This driver provides support for configuring monitor. Monitors are
- 	  primarily responsible for data set collection and support the
-@@ -225,4 +226,14 @@ config CORESIGHT_TPDM
- 	  To compile this driver as a module, choose M here: the module will be
- 	  called coresight-tpdm.
- 
-+config CORESIGHT_TPDA
-+	tristate "CoreSight Trace, Profiling & Diagnostics Aggregator driver"
-+	help
-+	  This driver provides support for configuring aggregator. This is
-+	  primarily useful for pulling the data sets from one or more
-+	  attached monitors and pushing the resultant data out. Multiple
-+	  monitors are connected on different input ports of TPDA.
-+
-+	  To compile this driver as a module, choose M here: the module will be
-+	  called coresight-tpda.
- endif
-diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-index c637376e0efd..33bcc3f7b8ae 100644
---- a/drivers/hwtracing/coresight/Makefile
-+++ b/drivers/hwtracing/coresight/Makefile
-@@ -26,6 +26,7 @@ obj-$(CONFIG_CORESIGHT_CATU) += coresight-catu.o
- obj-$(CONFIG_CORESIGHT_CTI) += coresight-cti.o
- obj-$(CONFIG_CORESIGHT_TRBE) += coresight-trbe.o
- obj-$(CONFIG_CORESIGHT_TPDM) += coresight-tpdm.o
-+obj-$(CONFIG_CORESIGHT_TPDA) += coresight-tpda.o
- coresight-cti-y := coresight-cti-core.o	coresight-cti-platform.o \
- 		   coresight-cti-sysfs.o
- obj-$(CONFIG_ULTRASOC_SMB) += ultrasoc-smb.o
-diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
-new file mode 100644
-index 000000000000..19c25c9f6157
---- /dev/null
-+++ b/drivers/hwtracing/coresight/coresight-tpda.c
-@@ -0,0 +1,211 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#include <linux/amba/bus.h>
-+#include <linux/bitfield.h>
-+#include <linux/coresight.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/fs.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+
-+#include "coresight-priv.h"
-+#include "coresight-tpda.h"
-+#include "coresight-trace-id.h"
-+
-+DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
-+
-+/* Settings pre enabling port control register */
-+static void tpda_enable_pre_port(struct tpda_drvdata *drvdata)
-+{
-+	u32 val;
-+
-+	val = readl_relaxed(drvdata->base + TPDA_CR);
-+	val &= ~TPDA_CR_ATID;
-+	val |= FIELD_PREP(TPDA_CR_ATID, drvdata->atid);
-+	writel_relaxed(val, drvdata->base + TPDA_CR);
-+}
-+
-+static void tpda_enable_port(struct tpda_drvdata *drvdata, int port)
-+{
-+	u32 val;
-+
-+	val = readl_relaxed(drvdata->base + TPDA_Pn_CR(port));
-+	/* Enable the port */
-+	val |= TPDA_Pn_CR_ENA;
-+	writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
-+}
-+
-+static void __tpda_enable(struct tpda_drvdata *drvdata, int port)
-+{
-+	CS_UNLOCK(drvdata->base);
-+
-+	if (!drvdata->csdev->enable)
-+		tpda_enable_pre_port(drvdata);
-+
-+	tpda_enable_port(drvdata, port);
-+
-+	CS_LOCK(drvdata->base);
-+}
-+
-+static int tpda_enable(struct coresight_device *csdev, int inport, int outport)
-+{
-+	struct tpda_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
-+
-+	spin_lock(&drvdata->spinlock);
-+	if (atomic_read(&csdev->refcnt[inport]) == 0)
-+		__tpda_enable(drvdata, inport);
-+
-+	atomic_inc(&csdev->refcnt[inport]);
-+	spin_unlock(&drvdata->spinlock);
-+
-+	dev_dbg(drvdata->dev, "TPDA inport %d enabled.\n", inport);
-+	return 0;
-+}
-+
-+static void __tpda_disable(struct tpda_drvdata *drvdata, int port)
-+{
-+	u32 val;
-+
-+	CS_UNLOCK(drvdata->base);
-+
-+	val = readl_relaxed(drvdata->base + TPDA_Pn_CR(port));
-+	val &= ~TPDA_Pn_CR_ENA;
-+	writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
-+
-+	CS_LOCK(drvdata->base);
-+}
-+
-+static void tpda_disable(struct coresight_device *csdev, int inport,
-+			   int outport)
-+{
-+	struct tpda_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
-+
-+	spin_lock(&drvdata->spinlock);
-+	if (atomic_dec_return(&csdev->refcnt[inport]) == 0)
-+		__tpda_disable(drvdata, inport);
-+
-+	spin_unlock(&drvdata->spinlock);
-+
-+	dev_dbg(drvdata->dev, "TPDA inport %d disabled\n", inport);
-+}
-+
-+static const struct coresight_ops_link tpda_link_ops = {
-+	.enable		= tpda_enable,
-+	.disable	= tpda_disable,
-+};
-+
-+static const struct coresight_ops tpda_cs_ops = {
-+	.link_ops	= &tpda_link_ops,
-+};
-+
-+static int tpda_init_default_data(struct tpda_drvdata *drvdata)
-+{
-+	int atid;
-+	/*
-+	 * TPDA must has a unique atid. This atid can uniquely
-+	 * identify the TPDM trace source connected to the TPDA.
-+	 * The TPDMs which are connected to same TPDA share the
-+	 * same trace-id. When TPDA does packetization, different
-+	 * port will have unique channel number for decoding.
-+	 */
-+	atid = coresight_trace_id_get_system_id();
-+	if (atid < 0)
-+		return atid;
-+
-+	drvdata->atid = atid;
-+	return 0;
-+}
-+
-+static int tpda_probe(struct amba_device *adev, const struct amba_id *id)
-+{
-+	int ret;
-+	struct device *dev = &adev->dev;
-+	struct coresight_platform_data *pdata;
-+	struct tpda_drvdata *drvdata;
-+	struct coresight_desc desc = { 0 };
-+	void __iomem *base;
-+
-+	pdata = coresight_get_platform_data(dev);
-+	if (IS_ERR(pdata))
-+		return PTR_ERR(pdata);
-+	adev->dev.platform_data = pdata;
-+
-+	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-+	if (!drvdata)
-+		return -ENOMEM;
-+
-+	drvdata->dev = &adev->dev;
-+	dev_set_drvdata(dev, drvdata);
-+
-+	base = devm_ioremap_resource(dev, &adev->res);
-+	if (!base)
-+		return -ENOMEM;
-+	drvdata->base = base;
-+
-+	spin_lock_init(&drvdata->spinlock);
-+
-+	ret = tpda_init_default_data(drvdata);
-+	if (ret)
-+		return ret;
-+
-+	desc.name = coresight_alloc_device_name(&tpda_devs, dev);
-+	if (!desc.name)
-+		return -ENOMEM;
-+	desc.type = CORESIGHT_DEV_TYPE_LINK;
-+	desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_MERG;
-+	desc.ops = &tpda_cs_ops;
-+	desc.pdata = adev->dev.platform_data;
-+	desc.dev = &adev->dev;
-+	desc.access = CSDEV_ACCESS_IOMEM(base);
-+	drvdata->csdev = coresight_register(&desc);
-+	if (IS_ERR(drvdata->csdev))
-+		return PTR_ERR(drvdata->csdev);
-+
-+	pm_runtime_put(&adev->dev);
-+
-+	dev_dbg(drvdata->dev, "TPDA initialized\n");
-+	return 0;
-+}
-+
-+static void __exit tpda_remove(struct amba_device *adev)
-+{
-+	struct tpda_drvdata *drvdata = dev_get_drvdata(&adev->dev);
-+
-+	coresight_trace_id_put_system_id(drvdata->atid);
-+	coresight_unregister(drvdata->csdev);
-+}
-+
-+/*
-+ * Different TPDA has different periph id.
-+ * The difference is 0-7 bits' value. So ignore 0-7 bits.
-+ */
-+static struct amba_id tpda_ids[] = {
-+	{
-+		.id     = 0x000f0f00,
-+		.mask   = 0x000fff00,
-+	},
-+	{ 0, 0},
-+};
-+
-+static struct amba_driver tpda_driver = {
-+	.drv = {
-+		.name   = "coresight-tpda",
-+		.owner	= THIS_MODULE,
-+		.suppress_bind_attrs = true,
-+	},
-+	.probe          = tpda_probe,
-+	.remove		= tpda_remove,
-+	.id_table	= tpda_ids,
-+};
-+
-+module_amba_driver(tpda_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Trace, Profiling & Diagnostic Aggregator driver");
-diff --git a/drivers/hwtracing/coresight/coresight-tpda.h b/drivers/hwtracing/coresight/coresight-tpda.h
-new file mode 100644
-index 000000000000..0399678df312
---- /dev/null
-+++ b/drivers/hwtracing/coresight/coresight-tpda.h
-@@ -0,0 +1,35 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#ifndef _CORESIGHT_CORESIGHT_TPDA_H
-+#define _CORESIGHT_CORESIGHT_TPDA_H
-+
-+#define TPDA_CR			(0x000)
-+#define TPDA_Pn_CR(n)		(0x004 + (n * 4))
-+/* Aggregator port enable bit */
-+#define TPDA_Pn_CR_ENA		BIT(0)
-+
-+#define TPDA_MAX_INPORTS	32
-+
-+/* Bits 6 ~ 12 is for atid value */
-+#define TPDA_CR_ATID		GENMASK(12, 6)
-+
-+/**
-+ * struct tpda_drvdata - specifics associated to an TPDA component
-+ * @base:       memory mapped base address for this component.
-+ * @dev:        The device entity associated to this component.
-+ * @csdev:      component vitals needed by the framework.
-+ * @spinlock:   lock for the drvdata value.
-+ * @enable:     enable status of the component.
-+ */
-+struct tpda_drvdata {
-+	void __iomem		*base;
-+	struct device		*dev;
-+	struct coresight_device	*csdev;
-+	spinlock_t		spinlock;
-+	u8			atid;
-+};
-+
-+#endif  /* _CORESIGHT_CORESIGHT_TPDA_H */
+Allow use of hardware RX/TX timestamping.
+
+RX frames are automatically timestamped by the device at hardware
+level when the feature is enabled. Time of day is the one used by the
+MAC device.
+
+When sending a TX frame to the MAC device, driver needs to send
+a custom header ahead of the ethernet one where it specifies where
+the MAC device should store the timestamp after the frame has
+successfully been sent on the MII line. It has 3 timestamp slots that can
+be read afterwards. Host will be notified by the TX_RDY IRQ.
+
+root@analog:~# ethtool -T eth1
+Time stamping parameters for eth1:
+Capabilities:
+	hardware-transmit
+	software-transmit
+	hardware-receive
+	software-receive
+	software-system-clock
+	hardware-raw-clock
+PTP Hardware Clock: 0
+Hardware Transmit Timestamp Modes:
+	off
+	on
+Hardware Receive Filter Modes:
+	none
+	all
+
+root@analog:~# sudo phc2sys -s eth1 -c CLOCK_REALTIME -O 0 -m
+phc2sys[4897.317]: CLOCK_REALTIME phc offset   -511696 s0 freq  -19464 delay      0
+phc2sys[4898.317]: CLOCK_REALTIME phc offset  -1023142 s1 freq -530689 delay      0
+phc2sys[4899.318]: CLOCK_REALTIME phc offset      -663 s2 freq -531352 delay      0
+phc2sys[4900.318]: CLOCK_REALTIME phc offset      -327 s2 freq -531215 delay      0
+phc2sys[4901.318]: CLOCK_REALTIME phc offset      -603 s2 freq -531589 delay      0
+phc2sys[4902.318]: CLOCK_REALTIME phc offset       288 s2 freq -530879 delay      0
+
+root@analog:~# ptp4l -m -f /etc/ptp_slave.conf
+ptp4l[1188.692]: port 1: new foreign master 00800f.fffe.950400-1
+ptp4l[1192.329]: selected best master clock 00800f.fffe.950400
+ptp4l[1192.329]: foreign master not using PTP timescale
+ptp4l[1192.329]: port 1: LISTENING to UNCALIBRATED on RS_SLAVE
+ptp4l[1194.129]: master offset   29379149 s0 freq -297035 path delay   -810558
+ptp4l[1195.929]: master offset   32040450 s1 freq +512000 path delay   -810558
+ptp4l[1198.058]: master offset    1608389 s2 freq +512000 path delay   -810558
+ptp4l[1198.058]: port 1: UNCALIBRATED to SLAVE on MASTER_CLOCK_SELECTED
+ptp4l[1199.529]: clockcheck: clock jumped forward or running faster than expected!
+ptp4l[1199.529]: master offset    2419241 s0 freq +512000 path delay   -810558
+ptp4l[1199.529]: port 1: SLAVE to UNCALIBRATED on SYNCHRONIZATION_FAULT
+ptp4l[1201.329]: master offset    2004645 s0 freq +512000 path delay   -810558
+ptp4l[1203.130]: master offset    1618970 s1 freq +319234 path delay   -810558
+ptp4l[1204.930]: master offset   -1098742 s2 freq -230137 path delay   -810558
+ptp4l[1204.930]: port 1: UNCALIBRATED to SLAVE on MASTER_CLOCK_SELECTED
+ptp4l[1206.730]: master offset   -1689657 s2 freq -512000 path delay   -810558
+ptp4l[1208.530]: master offset   -1692389 s2 freq -512000 path delay   -345770
+ptp4l[1210.330]: master offset    -404021 s2 freq  -47588 path delay   -166813
+ptp4l[1212.130]: master offset    1098174 s2 freq +512000 path delay   -104916
+ptp4l[1214.061]: master offset    1579741 s2 freq +512000 path delay    -60321
+ptp4l[1215.730]: master offset    1180121 s2 freq +512000 path delay    -60321
+ptp4l[1217.531]: master offset    -345392 s2 freq  -78876 path delay    -43020
+
+Above ptp4l run was not the best as I do not have access (to my knowledge)
+to an accurate PTP grandmaster. Foreign master here is just my laptop
+(with only SW timestamping capabilities) with the
+ptp4l service runnning and NTP disabled.
+
+Alexandru Tachici (3):
+  net: ethernet: adi: adin1110: add PTP clock support
+  net: ethernet: adi: adin1110: add timestamping support
+  dt-bindings: net: adin1110: Document ts-capt pin
+
+ .../devicetree/bindings/net/adi,adin1110.yaml |   7 +
+ drivers/net/ethernet/adi/adin1110.c           | 811 +++++++++++++++++-
+ 2 files changed, 808 insertions(+), 10 deletions(-)
+
 -- 
-2.39.0
+2.34.1
 
