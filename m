@@ -2,290 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB2A8675B36
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:24:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0029675B3F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:25:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbjATRYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:24:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38462 "EHLO
+        id S230105AbjATRZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:25:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjATRYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:24:39 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CD4ABAF1A;
-        Fri, 20 Jan 2023 09:24:19 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pIv7h-00055Z-0E;
-        Fri, 20 Jan 2023 18:24:17 +0100
-Date:   Fri, 20 Jan 2023 17:24:10 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Jianhui Zhao <zhaojh329@gmail.com>
-Subject: [PATCH v3 2/3] dt-bindings: clock: mediatek: add mt7981 clock IDs
-Message-ID: <367c21c111458abf35170b37d51d023a04a04510.1674233728.git.daniel@makrotopia.org>
-References: <cover.1674233728.git.daniel@makrotopia.org>
+        with ESMTP id S230109AbjATRZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:25:51 -0500
+Received: from out-176.mta0.migadu.com (out-176.mta0.migadu.com [IPv6:2001:41d0:1004:224b::b0])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67FF846158
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:25:49 -0800 (PST)
+Message-ID: <d0c1a4a6-b6b3-846c-e0c3-849e59ed732d@ansari.sh>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
+        t=1674235546;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jIAmzFt7Ixq5beVbwBrKV3kz9OMeEkNUhyaVCEyiNzk=;
+        b=HBn4/zEb87oRD6JM0x5tAyRqwZxTWK+CQlnXlJmNEv0/MZETK76uDEJS9aIJJQolwbkdCs
+        Vp84jzg2WE4kv+xRmXv1hbRFhP5RWbn+PEo1osQvwzBbPEztphSvr6yBj6DXrw5Bg8w8pz
+        5tIbVhaLmYwwmGhGBMN8et4liu+nL+s=
+Date:   Fri, 20 Jan 2023 17:25:45 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1674233728.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UPPERCASE_50_75 autolearn=no autolearn_force=no version=3.4.6
+Subject: Re: [RFC PATCH] drm/simpledrm: Allow physical width and height
+ configuration via DT
+Content-Language: en-US
+To:     Janne Grunau <janne@jannau.net>
+Cc:     dri-devel@lists.freedesktop.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        asahi@lists.linux.dev
+References: <20230118184817.608551-1-rayyan@ansari.sh>
+ <20230119100104.GE3576@jannau.net>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From:   Rayyan Ansari <rayyan@ansari.sh>
+In-Reply-To: <20230119100104.GE3576@jannau.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT7981 clock dt-bindings, include topckgen, apmixedsys,
-infracfg, and ethernet subsystem clocks.
+On 19/01/2023 10:01, Janne Grunau wrote:
+> Hej,
+> 
+> adding devicetree@vger.kernel.org and asahi@lists.linux.dev to cc:, the
+> former for the obvious devictree/bindings related questions,
+> asahi for the prospect of supporting high DPI displays during early boot
+> and in u-boot.
+> 
+> On 2023-01-18 18:48:17 +0000, Rayyan Ansari wrote:
+>> Hello,
+>> The following draft patch adds support for configuring the
+>> height-mm and width-mm DRM properties in the simpledrm driver
+>> via devicetree.
+>> This is useful to get proper scaling in UIs such as Phosh.
+>> An example of using this property is this, taken from my local tree:
+>>
+>> 		framebuffer0: framebuffer@3200000 {
+>> 			compatible = "simple-framebuffer";
+>> 			reg = <0x3200000 0x800000>;
+>> 			format = "a8r8g8b8";
+>> 			width = <720>;
+>> 			height = <1280>;
+>> 			stride = <(720 * 4)>;
+>> 			width-mm = /bits/ 16 <58>;
+>> 			height-mm = /bits/ 16 <103>;
+>>
+>> 			clocks = <&mmcc MDSS_AHB_CLK>,
+>> 				 <&mmcc MDSS_AXI_CLK>,
+>> 				 <&mmcc MDSS_BYTE0_CLK>,
+>> 				 <&mmcc MDSS_MDP_CLK>,
+>> 				 <&mmcc MDSS_PCLK0_CLK>,
+>> 				 <&mmcc MDSS_VSYNC_CLK>;
+>> 			power-domains = <&mmcc MDSS_GDSC>;
+>> 		};
+>>
+>> I have tested this on my Lumia 735, and it does indeed
+>> allow Phosh to scale correctly on the screen.
+>>
+>> However, I would like to get some feedback before I write the
+>> documentation.
+>> - What data type should be used?
+>> 	The width_mm and height_mm properties of the drm_display_mode
+>> 	struct are defined as u16. I have also made the devicetree
+>> 	properties as the u16 type, but this requires specifying
+>> 	"/bits/ 16" before the value. Should u32 be used instead to get
+>> 	rid of this? If so, how could the conversion from u32->u16 be
+>> 	handled?
+> 
+> u32 is the appropriate type. The device tree describes the hardware and
+> not the data types used in a "random" linux driver/subsystem. 65m is
+> probably enough for all practical purposes but u32 is the better choice.
+> Documentation/devicetree/bindings/display/panel/panel-common.yaml
+> already specifies "height-mm" and "width-mm" and all device tree files
+> using this binding code the properties as u32.
+> 
 
-Signed-off-by: Jianhui Zhao <zhaojh329@gmail.com>
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- .../dt-bindings/clock/mediatek,mt7981-clk.h   | 215 ++++++++++++++++++
- 1 file changed, 215 insertions(+)
- create mode 100644 include/dt-bindings/clock/mediatek,mt7981-clk.h
+Okay, will change.
 
-diff --git a/include/dt-bindings/clock/mediatek,mt7981-clk.h b/include/dt-bindings/clock/mediatek,mt7981-clk.h
-new file mode 100644
-index 0000000000000..192f8cefb589f
---- /dev/null
-+++ b/include/dt-bindings/clock/mediatek,mt7981-clk.h
-@@ -0,0 +1,215 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Author: Wenzhen.Yu <wenzhen.yu@mediatek.com>
-+ * Author: Jianhui Zhao <zhaojh329@gmail.com>
-+ * Author: Daniel Golle <daniel@makrotopia.org>
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_MT7981_H
-+#define _DT_BINDINGS_CLK_MT7981_H
-+
-+/* TOPCKGEN */
-+#define CLK_TOP_CB_CKSQ_40M		0
-+#define CLK_TOP_CB_M_416M		1
-+#define CLK_TOP_CB_M_D2			2
-+#define CLK_TOP_CB_M_D3			3
-+#define CLK_TOP_M_D3_D2			4
-+#define CLK_TOP_CB_M_D4			5
-+#define CLK_TOP_CB_M_D8			6
-+#define CLK_TOP_M_D8_D2			7
-+#define CLK_TOP_CB_MM_720M		8
-+#define CLK_TOP_CB_MM_D2		9
-+#define CLK_TOP_CB_MM_D3		10
-+#define CLK_TOP_CB_MM_D3_D5		11
-+#define CLK_TOP_CB_MM_D4		12
-+#define CLK_TOP_CB_MM_D6		13
-+#define CLK_TOP_MM_D6_D2		14
-+#define CLK_TOP_CB_MM_D8		15
-+#define CLK_TOP_CB_APLL2_196M		16
-+#define CLK_TOP_APLL2_D2		17
-+#define CLK_TOP_APLL2_D4		18
-+#define CLK_TOP_NET1_2500M		19
-+#define CLK_TOP_CB_NET1_D4		20
-+#define CLK_TOP_CB_NET1_D5		21
-+#define CLK_TOP_NET1_D5_D2		22
-+#define CLK_TOP_NET1_D5_D4		23
-+#define CLK_TOP_CB_NET1_D8		24
-+#define CLK_TOP_NET1_D8_D2		25
-+#define CLK_TOP_NET1_D8_D4		26
-+#define CLK_TOP_CB_NET2_800M		27
-+#define CLK_TOP_CB_NET2_D2		28
-+#define CLK_TOP_CB_NET2_D4		29
-+#define CLK_TOP_NET2_D4_D2		30
-+#define CLK_TOP_NET2_D4_D4		31
-+#define CLK_TOP_CB_NET2_D6		32
-+#define CLK_TOP_CB_WEDMCU_208M		33
-+#define CLK_TOP_CB_SGM_325M		34
-+#define CLK_TOP_CKSQ_40M_D2		35
-+#define CLK_TOP_CB_RTC_32K		36
-+#define CLK_TOP_CB_RTC_32P7K		37
-+#define CLK_TOP_USB_TX250M		38
-+#define CLK_TOP_FAUD			39
-+#define CLK_TOP_NFI1X			40
-+#define CLK_TOP_USB_EQ_RX250M		41
-+#define CLK_TOP_USB_CDR_CK		42
-+#define CLK_TOP_USB_LN0_CK		43
-+#define CLK_TOP_SPINFI_BCK		44
-+#define CLK_TOP_SPI			45
-+#define CLK_TOP_SPIM_MST		46
-+#define CLK_TOP_UART_BCK		47
-+#define CLK_TOP_PWM_BCK			48
-+#define CLK_TOP_I2C_BCK			49
-+#define CLK_TOP_PEXTP_TL		50
-+#define CLK_TOP_EMMC_208M		51
-+#define CLK_TOP_EMMC_400M		52
-+#define CLK_TOP_DRAMC_REF		53
-+#define CLK_TOP_DRAMC_MD32		54
-+#define CLK_TOP_SYSAXI			55
-+#define CLK_TOP_SYSAPB			56
-+#define CLK_TOP_ARM_DB_MAIN		57
-+#define CLK_TOP_AP2CNN_HOST		58
-+#define CLK_TOP_NETSYS			59
-+#define CLK_TOP_NETSYS_500M		60
-+#define CLK_TOP_NETSYS_WED_MCU		61
-+#define CLK_TOP_NETSYS_2X		62
-+#define CLK_TOP_SGM_325M		63
-+#define CLK_TOP_SGM_REG			64
-+#define CLK_TOP_F26M			65
-+#define CLK_TOP_EIP97B			66
-+#define CLK_TOP_USB3_PHY		67
-+#define CLK_TOP_AUD			68
-+#define CLK_TOP_A1SYS			69
-+#define CLK_TOP_AUD_L			70
-+#define CLK_TOP_A_TUNER			71
-+#define CLK_TOP_U2U3_REF		72
-+#define CLK_TOP_U2U3_SYS		73
-+#define CLK_TOP_U2U3_XHCI		74
-+#define CLK_TOP_USB_FRMCNT		75
-+#define CLK_TOP_NFI1X_SEL		76
-+#define CLK_TOP_SPINFI_SEL		77
-+#define CLK_TOP_SPI_SEL			78
-+#define CLK_TOP_SPIM_MST_SEL		79
-+#define CLK_TOP_UART_SEL		80
-+#define CLK_TOP_PWM_SEL			81
-+#define CLK_TOP_I2C_SEL			82
-+#define CLK_TOP_PEXTP_TL_SEL		83
-+#define CLK_TOP_EMMC_208M_SEL		84
-+#define CLK_TOP_EMMC_400M_SEL		85
-+#define CLK_TOP_F26M_SEL		86
-+#define CLK_TOP_DRAMC_SEL		87
-+#define CLK_TOP_DRAMC_MD32_SEL		88
-+#define CLK_TOP_SYSAXI_SEL		89
-+#define CLK_TOP_SYSAPB_SEL		90
-+#define CLK_TOP_ARM_DB_MAIN_SEL		91
-+#define CLK_TOP_AP2CNN_HOST_SEL		92
-+#define CLK_TOP_NETSYS_SEL		93
-+#define CLK_TOP_NETSYS_500M_SEL		94
-+#define CLK_TOP_NETSYS_MCU_SEL		95
-+#define CLK_TOP_NETSYS_2X_SEL		96
-+#define CLK_TOP_SGM_325M_SEL		97
-+#define CLK_TOP_SGM_REG_SEL		98
-+#define CLK_TOP_EIP97B_SEL		99
-+#define CLK_TOP_USB3_PHY_SEL		100
-+#define CLK_TOP_AUD_SEL			101
-+#define CLK_TOP_A1SYS_SEL		102
-+#define CLK_TOP_AUD_L_SEL		103
-+#define CLK_TOP_A_TUNER_SEL		104
-+#define CLK_TOP_U2U3_SEL		105
-+#define CLK_TOP_U2U3_SYS_SEL		106
-+#define CLK_TOP_U2U3_XHCI_SEL		107
-+#define CLK_TOP_USB_FRMCNT_SEL		108
-+#define CLK_TOP_AUD_I2S_M		109
-+
-+/* INFRACFG */
-+#define CLK_INFRA_66M_MCK		0
-+#define CLK_INFRA_UART0_SEL		1
-+#define CLK_INFRA_UART1_SEL		2
-+#define CLK_INFRA_UART2_SEL		3
-+#define CLK_INFRA_SPI0_SEL		4
-+#define CLK_INFRA_SPI1_SEL		5
-+#define CLK_INFRA_SPI2_SEL		6
-+#define CLK_INFRA_PWM1_SEL		7
-+#define CLK_INFRA_PWM2_SEL		8
-+#define CLK_INFRA_PWM3_SEL		9
-+#define CLK_INFRA_PWM_BSEL		10
-+#define CLK_INFRA_PCIE_SEL		11
-+#define CLK_INFRA_GPT_STA		12
-+#define CLK_INFRA_PWM_HCK		13
-+#define CLK_INFRA_PWM_STA		14
-+#define CLK_INFRA_PWM1_CK		15
-+#define CLK_INFRA_PWM2_CK		16
-+#define CLK_INFRA_PWM3_CK		17
-+#define CLK_INFRA_CQ_DMA_CK		18
-+#define CLK_INFRA_AUD_BUS_CK		19
-+#define CLK_INFRA_AUD_26M_CK		20
-+#define CLK_INFRA_AUD_L_CK		21
-+#define CLK_INFRA_AUD_AUD_CK		22
-+#define CLK_INFRA_AUD_EG2_CK		23
-+#define CLK_INFRA_DRAMC_26M_CK		24
-+#define CLK_INFRA_DBG_CK		25
-+#define CLK_INFRA_AP_DMA_CK		26
-+#define CLK_INFRA_SEJ_CK		27
-+#define CLK_INFRA_SEJ_13M_CK		28
-+#define CLK_INFRA_THERM_CK		29
-+#define CLK_INFRA_I2C0_CK		30
-+#define CLK_INFRA_UART0_CK		31
-+#define CLK_INFRA_UART1_CK		32
-+#define CLK_INFRA_UART2_CK		33
-+#define CLK_INFRA_SPI2_CK		34
-+#define CLK_INFRA_SPI2_HCK_CK		35
-+#define CLK_INFRA_NFI1_CK		36
-+#define CLK_INFRA_SPINFI1_CK		37
-+#define CLK_INFRA_NFI_HCK_CK		38
-+#define CLK_INFRA_SPI0_CK		39
-+#define CLK_INFRA_SPI1_CK		40
-+#define CLK_INFRA_SPI0_HCK_CK		41
-+#define CLK_INFRA_SPI1_HCK_CK		42
-+#define CLK_INFRA_FRTC_CK		43
-+#define CLK_INFRA_MSDC_CK		44
-+#define CLK_INFRA_MSDC_HCK_CK		45
-+#define CLK_INFRA_MSDC_133M_CK		46
-+#define CLK_INFRA_MSDC_66M_CK		47
-+#define CLK_INFRA_ADC_26M_CK		48
-+#define CLK_INFRA_ADC_FRC_CK		49
-+#define CLK_INFRA_FBIST2FPC_CK		50
-+#define CLK_INFRA_I2C_MCK_CK		51
-+#define CLK_INFRA_I2C_PCK_CK		52
-+#define CLK_INFRA_IUSB_133_CK		53
-+#define CLK_INFRA_IUSB_66M_CK		54
-+#define CLK_INFRA_IUSB_SYS_CK		55
-+#define CLK_INFRA_IUSB_CK		56
-+#define CLK_INFRA_IPCIE_CK		57
-+#define CLK_INFRA_IPCIE_PIPE_CK		58
-+#define CLK_INFRA_IPCIER_CK		59
-+#define CLK_INFRA_IPCIEB_CK		60
-+
-+/* APMIXEDSYS */
-+#define CLK_APMIXED_ARMPLL		0
-+#define CLK_APMIXED_NET2PLL		1
-+#define CLK_APMIXED_MMPLL		2
-+#define CLK_APMIXED_SGMPLL		3
-+#define CLK_APMIXED_WEDMCUPLL		4
-+#define CLK_APMIXED_NET1PLL		5
-+#define CLK_APMIXED_MPLL		6
-+#define CLK_APMIXED_APLL2		7
-+
-+/* SGMIISYS_0 */
-+#define CLK_SGM0_TX_EN			0
-+#define CLK_SGM0_RX_EN			1
-+#define CLK_SGM0_CK0_EN			2
-+#define CLK_SGM0_CDR_CK0_EN		3
-+
-+/* SGMIISYS_1 */
-+#define CLK_SGM1_TX_EN			0
-+#define CLK_SGM1_RX_EN			1
-+#define CLK_SGM1_CK1_EN			2
-+#define CLK_SGM1_CDR_CK1_EN		3
-+
-+/* ETHSYS */
-+#define CLK_ETH_FE_EN			0
-+#define CLK_ETH_GP2_EN			1
-+#define CLK_ETH_GP1_EN			2
-+#define CLK_ETH_WOCPU0_EN		3
-+
-+#endif /* _DT_BINDINGS_CLK_MT7981_H */
+> We probably do not want add height and width properties to the
+> simple-framebuffer node directly. At least for the static case I would
+> expect that it duplicates information already present in a panel node.
+> For that case parsing the panel dimensions via a phandle reference to
+> that panel node would be preferred.
+
+In my case, there is currently no panel driver. The interface I 
+mentioned (Phosh) is running on the simpledrm driver.
+Here is my Lumia running this interface:
+https://wiki.postmarketos.org/images/c/c3/Lumia_735_Phosh.png
+
+> 
+> I'm not sure if it worth considering the dynamic case. The bootloader
+> may be able to provide dimensions of HDMI, DP, ...  connected displays
+> from the EDID. In that case "height-mm" and "width-mm" properties would
+> make sense.
+> 
+> The existing panel drivers seem to ignore the u32 -> u16 conversion
+> problem.
+> 
+>> - Style?
+>> 	I have split the arguments to the DRM_MODE_INIT macro across
+>> 	multiple lines to increase readability. I'm not sure if this
+>> 	is the correct style though.
+> 
+> I think the code would be more readable if width_mm and height_mm would
+> be calculated outside of DRM_MODE_INIT if they are zero.
+> 
+>> - Anything else?
+>> 	This is my first time writing code for a Linux driver, so I
+>> 	would be grateful if you have any suggestions for improvements.
+> 
+> Documentation/devicetree/bindings/display/simple-framebuffer.yaml needs
+> to be updates to list and document the properties added to the node.
+> 
+>> ---
+>>   drivers/gpu/drm/tiny/simpledrm.c | 49 +++++++++++++++++++++++++++-----
+>>   1 file changed, 42 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/tiny/simpledrm.c b/drivers/gpu/drm/tiny/simpledrm.c
+>> index 162eb44dcba8..92109f870b35 100644
+>> --- a/drivers/gpu/drm/tiny/simpledrm.c
+>> +++ b/drivers/gpu/drm/tiny/simpledrm.c
+>> @@ -116,6 +116,15 @@ simplefb_get_format_pd(struct drm_device *dev,
+>>   	return simplefb_get_validated_format(dev, pd->format);
+>>   }
+>>   
+>> +static void
+>> +simplefb_read_u16_of_optional(struct drm_device *dev, struct device_node *of_node,
+>> +		     const char *name, u16 *value)
+>> +{
+>> +	int ret = of_property_read_u16(of_node, name, value);
+>> +	if (ret)
+>> +		value = 0;
+>> +}
+>> +
+>>   static int
+>>   simplefb_read_u32_of(struct drm_device *dev, struct device_node *of_node,
+>>   		     const char *name, u32 *value)
+>> @@ -184,6 +193,21 @@ simplefb_get_format_of(struct drm_device *dev, struct device_node *of_node)
+>>   	return simplefb_get_validated_format(dev, format);
+>>   }
+>>   
+>> +static u16
+>> +simplefb_get_width_mm_of(struct drm_device *dev, struct device_node *of_node)
+>> +{
+>> +	u16 width_mm;
+>> +	simplefb_read_u16_of_optional(dev, of_node, "width-mm", &width_mm);
+>> +	return width_mm;
+>> +}
+>> +
+>> +static u16
+>> +simplefb_get_height_mm_of(struct drm_device *dev, struct device_node *of_node)
+>> +{
+>> +	u16 height_mm;
+>> +	simplefb_read_u16_of_optional(dev, of_node, "height-mm", &height_mm);
+>> +	return height_mm;
+>> +}
+> 
+> I don't think it makes sense to have these two mostly identical wrapper
+> functions. Please pass the name of the property as parameter. It could
+> make sense to have a function to both height and width. I think we
+> should ignore both height and width if one fails to parse or is 0.
+> That could of course also be done in simpledrm_mode() for example like:
+> 
+> |	if (!width_mm || !height_mm) {
+> |		width_mm = DRM_MODE_RES_MM(width, 96ul);
+> |		height_mm = DRM_MODE_RES_MM(height, 96ul);
+> |	}
+> 
+
+I based this on the way the pixel height and width is fetched from DT 
+(simplefb_get_width_of and simplefb_get_height_of) but changing it to 
+one function makes sense.
+
+>>   /*
+>>    * Simple Framebuffer device
+>>    */
+>> @@ -599,16 +623,24 @@ static const struct drm_mode_config_funcs simpledrm_mode_config_funcs = {
+>>    */
+>>   
+>>   static struct drm_display_mode simpledrm_mode(unsigned int width,
+>> -					      unsigned int height)
+>> +					      unsigned int height,
+>> +					      u16 width_mm,
+>> +					      u16 height_mm)
+>>   {
+>>   	/*
+>> -	 * Assume a monitor resolution of 96 dpi to
+>> -	 * get a somewhat reasonable screen size.
+>> +	 * Assume a monitor resolution of 96 dpi if physical
+>> +	 * dimensions are not specified to get a somewhat reasonable
+>> +	 * screen size.
+>>   	 */
+>> +
+>>   	const struct drm_display_mode mode = {
+>> -		DRM_MODE_INIT(60, width, height,
+>> -			      DRM_MODE_RES_MM(width, 96ul),
+>> -			      DRM_MODE_RES_MM(height, 96ul))
+>> +		DRM_MODE_INIT(
+>> +			60,
+>> +			width,
+>> +			height,
+>> +			(width_mm ? width_mm : DRM_MODE_RES_MM(width, 96ul)),
+>> +			(height_mm ? height_mm : DRM_MODE_RES_MM(height, 96ul))
+>> +			)
+>>   	};
+>>   
+>>   	return mode;
+>> @@ -622,6 +654,7 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
+>>   	struct simpledrm_device *sdev;
+>>   	struct drm_device *dev;
+>>   	int width, height, stride;
+>> +	u16 width_mm, height_mm;
+> 
+> these need to be initialized to 0 otherwise they may end up used
+> unitialized if pd is not NULL.
+> 
+
+Noted.
+
+>>   	const struct drm_format_info *format;
+>>   	struct resource *res, *mem;
+>>   	void __iomem *screen_base;
+>> @@ -676,6 +709,8 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
+>>   		format = simplefb_get_format_of(dev, of_node);
+>>   		if (IS_ERR(format))
+>>   			return ERR_CAST(format);
+>> +		width_mm = simplefb_get_width_mm_of(dev, of_node);
+>> +		height_mm = simplefb_get_height_mm_of(dev, of_node);
+>>   	} else {
+>>   		drm_err(dev, "no simplefb configuration found\n");
+>>   		return ERR_PTR(-ENODEV);
+>> @@ -686,7 +721,7 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
+>>   			return ERR_PTR(-EINVAL);
+>>   	}
+>>   
+>> -	sdev->mode = simpledrm_mode(width, height);
+>> +	sdev->mode = simpledrm_mode(width, height, width_mm, height_mm);
+>>   	sdev->format = format;
+>>   	sdev->pitch = stride;
+> 
+> Janne
+
+Thanks for the feedback! I'll write the documentation and improve on the 
+points mentioned to make this mainline-ready.
+
 -- 
-2.39.1
+Rayyan Ansari
+https://ansari.sh
 
