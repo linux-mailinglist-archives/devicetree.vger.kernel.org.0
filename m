@@ -2,635 +2,679 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18114675201
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 11:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4386F67520C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 11:09:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230413AbjATKGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 05:06:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53134 "EHLO
+        id S229690AbjATKJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 05:09:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjATKGs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 05:06:48 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE33A9F3AA
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:06:44 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id h12so368099wrv.10
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:06:44 -0800 (PST)
+        with ESMTP id S229689AbjATKI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 05:08:59 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6228A8B336
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 02:08:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=l8/QxlXFs+U1eAI5bV/YM6bqs9RahmheJQMxuQ1r8j4=;
-        b=fZrgF1gA3YTbWhS4HlWWw0cO5fVFDmd1LBq5wh22O7DcjB1lBGDYV22LQ4FiVCIn0/
-         brEUrAVvdToTw9H4Ix/1jgmlT0XKtiGK2O8IhKq5CST+cpkS08rb1BSWql/7lSXzrX50
-         f315bAFGFZaw0wwSw12NSRTJYxigbeHjpNmbWoGr1m8W7Q0g9ewptwmQPlVkJ+JaYy1G
-         GMH6OhKN/M/w4NyWcPN+BL9QC75plLvqJHshFpoG0D4PGGq7Jle8MaSFamgl9OEPAOaU
-         EAizNM8hfsAm9k30twUcyzpQWOqX60ziwUl8LbGGf1mHiCEKYtFcqg8p3z7HutWdEwkM
-         NW6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l8/QxlXFs+U1eAI5bV/YM6bqs9RahmheJQMxuQ1r8j4=;
-        b=VmW+OzOmTewgBAyhefE1NvW5UzAJxebROOlz+eEvRh/4FZwbJEncAjdr/1HntdGpcT
-         f+N8FrxN6TQlSJFkPnirPNGBQww1C1jnafqJLXGfohoPKG2Xw3Zipnw4Qmfvi7/CNt02
-         doQWTuNiTB+JBFJ3IDjEDtNw+uQX2IGf+vtzKlm4OBJCNZZUdJ6ncKiEpXk/wKqDfDzs
-         FyPa1ZAdzAAyYAItbGAJw13/Jh9Kue3+tiY02vNmPaWlQKRRoVsvGlk6mklwXGSYOC4V
-         6u42VyAyxUttLIplybXHLQDqHmv9uJarmEfqX1qjQjhCLxi9AKico0gMs2APLHOrJQRp
-         mW2g==
-X-Gm-Message-State: AFqh2krf2cFC5q5+VGBXuIiHmD5nxmjDmF3KHTQPtWWiPMoC99xVx1Tu
-        DD5wUSTeuFkxIDOgjean6w4BVw==
-X-Google-Smtp-Source: AMrXdXsxNifYHDhA6GzIV58e/TKFm6oBf+Ws4+y82ZOOStJ7D6bzhixx1ecP81/QhrmZOkmAhr1icQ==
-X-Received: by 2002:a5d:6d4b:0:b0:242:2d7:71e4 with SMTP id k11-20020a5d6d4b000000b0024202d771e4mr11096557wri.2.1674209203048;
-        Fri, 20 Jan 2023 02:06:43 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:39d8:cbee:30fb:cdaa? ([2a01:e0a:982:cbb0:39d8:cbee:30fb:cdaa])
-        by smtp.gmail.com with ESMTPSA id q18-20020adfdfd2000000b002bdc129c8f6sm24184074wrn.43.2023.01.20.02.06.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 02:06:42 -0800 (PST)
-Message-ID: <ea3c300c-fcf7-7612-3ad1-6a528255e5be@linaro.org>
-Date:   Fri, 20 Jan 2023 11:06:41 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 3/4] soc: qcom: pmic_glink: Introduce altmode support
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674209335; x=1705745335;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=TK+KRM3EMKMFlX0ZyA3HSIzsHmLWCaz9ZD/WieX73Q4=;
+  b=ROwZ/3LlWvepnkd8za5LujfxBYxXcWF/FKpb6l98CJ2pS/HpndUZ43I3
+   5dXMCJ2R5mNRJLOLSKUSz36K4xIz6Xx+5v+olz75EG44s+DJMuv9W54nJ
+   sCbA5rvVPJasVeZb7WKi4kKC9ItrNdKFEEhpwR4iMj1wNvPQDE3hIv06k
+   bNGAKuNr6ArOsy3qSJwAZBwKvhBbcb4fl1n0ot+XLeywAuHOfqTl5XhfJ
+   rzWXMKpA3luGPnTx3WaA5afatA4pmLlwByVk3fUEN6QKU5rJn03gzLECp
+   QSycQbhDGYuVFTgstjvzEOMjRJangUaiNUvbt00HpDSK/QftHp+piH+8M
+   A==;
+X-IronPort-AV: E=Sophos;i="5.97,231,1669071600"; 
+   d="scan'208";a="28555295"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 20 Jan 2023 11:08:53 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 20 Jan 2023 11:08:53 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 20 Jan 2023 11:08:53 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1674209333; x=1705745333;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=TK+KRM3EMKMFlX0ZyA3HSIzsHmLWCaz9ZD/WieX73Q4=;
+  b=JcR7lkkfVRlJAw4KhK2uXcVEjDBrZ0ErgdPwuYJ2v9Tgd3P3tv+UdniS
+   sWiDRiosv3+7Z7Zm5dJ+EMhBfO56NFcN1L56O74LlJcMLWJFll9RZEe2s
+   SHdl4GGQ6sRAkoXu4/pYSWqVXZxG6qpjMzzYMsnBQQ/tw6QI0SnT6wnhT
+   dW3gmHbhFdViKvcX24Sb7iTqmfkacPfXdoyZJZgktoUterd8fRxaTbhGQ
+   kOPLVNFAUviFCYZBcB/GBiYbERK3p9GDgGyKSCnYzFy7irNOMkxJNq1ts
+   k//UDfldXngxH4jh5bW9iZpVZf4/0AxgoTPAYRXi5MeTL/Es+NVNZU/ct
+   g==;
+X-IronPort-AV: E=Sophos;i="5.97,231,1669071600"; 
+   d="scan'208";a="28555294"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 20 Jan 2023 11:08:53 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 954AD280056;
+        Fri, 20 Jan 2023 11:08:52 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
-        Johan Hovold <johan@kernel.org>
-References: <20230113041132.4189268-1-quic_bjorande@quicinc.com>
- <20230113041132.4189268-4-quic_bjorande@quicinc.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230113041132.4189268-4-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/9] ARM: dts: ls1021a: add TQ-Systems MBLS102xA device tree
+Date:   Fri, 20 Jan 2023 11:08:51 +0100
+Message-ID: <2902259.VdNmn5OnKV@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <7cc4c0d4-d863-a62d-3867-ab03d7f7507a@linaro.org>
+References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com> <20230119144236.3541751-3-alexander.stein@ew.tq-group.com> <7cc4c0d4-d863-a62d-3867-ab03d7f7507a@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2023 05:11, Bjorn Andersson wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+Hi Krzysztof,
+
+thanks for the feedback.
+
+Am Donnerstag, 19. Januar 2023, 18:03:14 CET schrieb Krzysztof Kozlowski:
+> On 19/01/2023 15:42, Alexander Stein wrote:
+> > Add device tree for the MBLS102xA mainboard with TQMLS1021A SoM.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > 
+> >  arch/arm/boot/dts/Makefile                    |   1 +
+> >  .../boot/dts/ls1021a-tqmls1021a-mbls1021a.dts | 409 ++++++++++++++++++
+> >  arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi     |  93 ++++
+> >  3 files changed, 503 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
+> >  create mode 100644 arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
+> > 
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index d0c07867aeabe..44b5ed44b13d6 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -802,6 +802,7 @@ dtb-$(CONFIG_SOC_LS1021A) += \
+> > 
+> >  	ls1021a-iot.dtb \
+> >  	ls1021a-moxa-uc-8410a.dtb \
+> >  	ls1021a-qds.dtb \
+> > 
+> > +	ls1021a-tqmls1021a-mbls1021a.dtb \
+> > 
+> >  	ls1021a-tsn.dtb \
+> >  	ls1021a-twr.dtb
+> >  
+> >  dtb-$(CONFIG_SOC_VF610) += \
+> > 
+> > diff --git a/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
+> > b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts new file mode 100644
+> > index 0000000000000..21da171b9f38e
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/ls1021a-tqmls1021a-mbls1021a.dts
+> > @@ -0,0 +1,409 @@
+> > +// SPDX-License-Identifier: (GPL-2.0-or-later OR X11)
+> > +/*
+> > + * Copyright 2013-2014 Freescale Semiconductor, Inc.
+> > + * Copyright 2018-2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
+> > + * D-82229 Seefeld, Germany.
+> > + * Author: Alexander Stein
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/linux-event-codes.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/leds/leds-pca9532.h>
+> > +#include <dt-bindings/net/ti-dp83867.h>
+> > +#include "ls1021a-tqmls1021a.dtsi"
+> > +
+> > +/ {
+> > +	model = "TQMLS102xA SOM on MBLS102xA";
+> > +	compatible = "tq,ls1021a-tqmls1021a-mbls102xa", "tq,ls1021a-
+tqmls1021a",
+> > "fsl,ls1021a"; +
+> > +	audio_mclk: audio-clock {
+> > +		compatible = "fixed-clock";
+> > +		#clock-cells = <0>;
+> > +		clock-frequency = <25000000>;
+> > +	};
+> > +
+> > +	backlight_dcu: backlight {
+> > +		compatible = "gpio-backlight";
+> > +		gpios = <&pca9530 0 GPIO_ACTIVE_LOW>;
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +		autorepeat;
+> > +
+> > +		switch-1 {
+> > +			label = "S6";
+> > +			linux,code = <BTN_0>;
+> > +			gpios = <&pca9554_0 0 GPIO_ACTIVE_LOW>;
+> > +		};
+> > +
+> > +		btn2: switch-2 {
+> > +			label = "S7";
+> > +			linux,code = <BTN_1>;
+> > +			gpios = <&pca9554_0 1 GPIO_ACTIVE_LOW>;
+> > +		};
+> > +
+> > +		switch-3 {
+> > +			label = "S8";
+> > +			linux,code = <BTN_2>;
+> > +			gpios = <&pca9554_0 2 GPIO_ACTIVE_LOW>;
+> > +		};
+> > +	};
+> > +
+> > +	gpio_leds: gpio-leds {
+> > +		compatible = "gpio-leds";
+> > +
+> > +		led-0 {
+> > +			color = <LED_COLOR_ID_GREEN>;
+> > +			function = LED_FUNCTION_STATUS;
+> > +			function-enumerator = <0>;
+> > +			gpios = <&pca9554_2 4 GPIO_ACTIVE_LOW>;
+> > +			linux,default-trigger = "default-on";
+> > +		};
+> > +
+> > +		led-1 {
+> > +			color = <LED_COLOR_ID_GREEN>;
+> > +			function = LED_FUNCTION_STATUS;
+> > +			function-enumerator = <1>;
+> > +			gpios = <&pca9554_2 5 GPIO_ACTIVE_LOW>;
+> > +			linux,default-trigger = "default-on";
+> > +		};
+> > +
+> > +		led-2 {
+> > +			color = <LED_COLOR_ID_GREEN>;
+> > +			function = LED_FUNCTION_STATUS;
+> > +			function-enumerator = <2>;
+> > +			gpios = <&pca9554_2 6 GPIO_ACTIVE_LOW>;
+> > +			linux,default-trigger = "default-on";
+> > +		};
+> > +
+> > +		led-3 {
+> > +			color = <LED_COLOR_ID_GREEN>;
+> > +			function = LED_FUNCTION_HEARTBEAT;
+> > +			function-enumerator = <0>;
+> > +			gpios = <&pca9554_2 7 GPIO_ACTIVE_LOW>;
+> > +			linux,default-trigger = "heartbeat";
+> > +		};
+> > +	};
+> > +
+> > +	lvds_encoder: lvds-encoder {
+> > +		compatible = "ti,sn75lvds83", "lvds-encoder";
+> > +		power-supply = <&reg_3p3v>;
+> > +		status = "disabled";
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +
+> > +				lvds_encoder_in: endpoint {};
+> > +			};
+> > +
+> > +			port@1 {
+> > +				reg = <1>;
+> > +
+> > +				lvds_encoder_out: endpoint {};
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	reg_1p2v: regulator-1p2v {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "1P2V";
+> > +		regulator-min-microvolt = <1200000>;
+> > +		regulator-max-microvolt = <1200000>;
+> > +		regulator-always-on;
+> > +		vin-supply = <&reg_3p3v>;
+> > +	};
+> > +
+> > +	reg_3p3v: regulator-3p3v {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "3P3V";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		regulator-always-on;
+> > +	};
+> > +
+> > +	hdmi_out: hdmi {
+> > +		compatible = "hdmi-connector";
+> > +		type = "a";
+> > +		ddc-i2c-bus = <&i2c0>;
+> > +		status = "disabled";
+> > +
+> > +		port {
+> > +			hdmi_in: endpoint {
+> > +				remote-endpoint = <&sii9022a_out>;
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	display: panel {
+> > +		backlight = <&backlight_dcu>;
+> > +		enable-gpios = <&pca9554_1 3 GPIO_ACTIVE_HIGH>;
+> > +		status = "disabled";
+> > +
+> > +		port {
+> > +			panel_in: endpoint {};
+> > +		};
+> > +	};
+> > +
+> > +	sound {
+> > +		compatible = "fsl,imx-audio-tlv320aic32x4";
+> > +		model = "ls1021a-mbls1021a-tlv320aic32";
+> > +		ssi-controller = <&sai1>;
+> > +		audio-codec = <&tlv320aic32x4>;
+> > +	};
+> > +
+> > +};
+> > +
+> > +&can0 {
+> > +	status = "okay";
+> > +	xceiver-supply = <&reg_3p3v>;
+> > +};
+> > +
+> > +&can1 {
+> > +	status = "okay";
+> > +	xceiver-supply = <&reg_3p3v>;
+> > +};
+> > +
+> > +&dspi0 {
+> > +	bus-num = <0>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&enet0 {
+> > +	phy-handle = <&rgmii_phy0c>;
+> > +	phy-mode = "rgmii-id";
+> > +	mac-address = [ 00 00 00 00 00 00 ];
+> > +	status = "okay";
+> > +};
+> > +
+> > +&enet1 {
+> > +	tbi-handle = <&tbi1>;
+> > +	phy-handle = <&sgmii_phy03>;
+> > +	phy-mode = "sgmii";
+> > +	mac-address = [ 00 00 00 00 00 00 ];
+> > +	status = "okay";
+> > +};
+> > +
+> > +&enet2 {
+> > +	phy-handle = <&rgmii_phy04>;
+> > +	phy-mode = "rgmii-id";
+> > +	mac-address = [ 00 00 00 00 00 00 ];
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c0 {
+> > +	status = "okay";
+> > +
+> > +	tlv320aic32x4: audio-codec@18 {
+> > +		compatible = "ti,tlv320aic32x4";
+> > +		reg = <0x18>;
+> > +		clocks = <&audio_mclk>;
+> > +		clock-names = "mclk";
+> > +		ldoin-supply = <&reg_3p3v>;
+> > +		iov-supply = <&reg_3p3v>;
+> > +	};
+> > +
+> > +	pca9554_0: gpio-expander@20 {
+> > +		compatible = "nxp,pca9554";
+> > +		reg = <0x20>;
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +		interrupt-parent = <&gpio0>;
+> > +		interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
+> > +		interrupt-controller;
+> > +		#interrupt-cells = <2>;
+> > +		vcc-supply = <&reg_3p3v>;
+> > +		gpio-line-names = "BUTTON0", "BUTTON1",
+> > +				  "BUTTON2", "EMMC_SEL",
+> > +				  "DIP2", "DIP3",
+> > +				  "EXT_TOUCH_INT", "GPIO_1";
+> > +	};
+> > +
+> > +	pca9554_1: gpio-expander@21 {
+> > +		compatible = "nxp,pca9554";
+> > +		reg = <0x21>;
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +		interrupt-parent = <&gpio0>;
+> > +		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
+> > +		interrupt-controller;
+> > +		#interrupt-cells = <2>;
+> > +		vcc-supply = <&reg_3p3v>;
+> > +		gpio-line-names = "PCIE_PWR_EN", "MPCIE_DISABLE#",
+> > +				  "MPCIE_WAKE#", "LCD_BLT_EN",
+> > +				  "LCD_PWR_EN", "EC1_PHY_PWDN",
+> > +				  "EC3_PHY_PWDN", "SGMII_PHY_PWDN";
+> > +	};
+> > +
+> > +	pca9554_2: gpio-expander@22 {
+> > +		compatible = "nxp,pca9554";
+> > +		reg = <0x22>;
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +		interrupt-parent = <&extirq>;
+> > +		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+> > +		interrupt-controller;
+> > +		#interrupt-cells = <2>;
+> > +		vcc-supply = <&reg_3p3v>;
+> > +		gpio-line-names = "MUX_SEL0", "MUX_SEL1",
+> > +				  "MUX_SEL2", "MUX_SEL3",
+> > +				  "V95", "V96", "V97", "V98";
+> > +	};
+> > +
+> > +	sii9022a: hdmi-transmitter@3b {
+> > +		compatible = "sil,sii9022";
+> > +		reg = <0x3b>;
+> > +		iovcc-supply = <&reg_3p3v>;
+> > +		cvcc12-supply = <&reg_1p2v>;
+> > +		interrupts = <GIC_SPI 167 IRQ_TYPE_EDGE_RISING>;
+> > +		#sound-dai-cells = <0>;
+> > +		sil,i2s-data-lanes = <0>;
+> > +		status = "disabled";
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +
+> > +				sii9022a_in: endpoint {};
+> > +			};
+> > +
+> > +			port@1 {
+> > +				reg = <1>;
+> > +
+> > +				sii9022a_out: endpoint {
+> > +					remote-endpoint = 
+<&hdmi_in>;
+> > +				};
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	stmpe811: touchscreen@41 {
+> > +		compatible = "st,stmpe811";
+> > +		reg = <0x41>;
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +		interrupt-parent = <&gpio0>;
+> > +		interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
+> > +		vcc-supply = <&reg_3p3v>;
+> > +		vio-supply = <&reg_3p3v>;
+> > +		status = "okay";
 > 
-> With the PMIC GLINK service, the host OS subscribes to USB-C altmode
-> messages, which are sent by the firmware to notify the host OS about
-> state updates and HPD interrupts.
+> Drop, why do you need it?
+
+Thanks, will drop it.
+
+> > +
+> > +		stmpe_gpio {
 > 
-> The pmic_glink_altmode driver registers for these notifications and
-> propagates the notifications as typec_mux, typec_switch and DRM OOB
-> notifications as necessary to implement DisplayPort altmode support.
+> No underscores in node names, generic node names, so "gpio". Does
+> anything depend on odd naming?
+
+You are right, node names should have underscores, but in the end I was 
+following the bindings (Documentation/devicetree/bindings/input/touchscreen/
+stmpe.txt) naming 'stmpe_touchscreen' and 'stmpe_adc' in the example.
+Each subdevice has it's own compatible, so there should be no issue.
+Using just 'gpio' and 'touchscreen' below I didn't notice any difference.
+
+> > +			compatible = "st,stmpe-gpio";
+> > +			gpio-controller;
+> > +			#gpio-cells = <2>;
+> > +			/* GPIO 5-7 used for touch */
+> > +			st,norequest-mask = <0xf0>;
+> > +			gpio-line-names = "GPIO_ADC_I2C1_1",
+> > +					  "GPIO_ADC_I2C1_2",
+> > +					  "GPIO_ADC_I2C1_3",
+> > +					  "GPIO_ADC_I2C1_4";
+> > +		};
+> > +
+> > +		stmpe_touchscreen {
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
+> Same problems.
+
+See above. When enabled driver loads fine.
+
+> > +			compatible = "st,stmpe-ts";
+> > +			status = "disabled";
+> > +		};
+> > +	};
+> > +
+> > +	pca9530: leds@60 {
+> > +		compatible = "nxp,pca9530";
+> > +		reg = <0x60>;
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +		gpio-line-names = "PWM_0", "PWM_1";
+> > +
+> > +		gpio_pwm_0 {
 > 
-> Changes since v1:
-> - None
+> No underscores in node names, generic node names. This is neither GPIO
+> nor PWM.
+
+You are right, no underscores. Well, actually it's used as a GPIO for 
+backlight brightness, on a signal called 'PWM_0'. But I'll go for 'led-0' and 
+'led-1' for node names and remove the labels, as they are type GPIO.
+
+> > +			label = "pca9530:pwm0";
+> > +			type = <PCA9532_TYPE_GPIO>;
+> > +		};
+> > +
+> > +		gpio_pwm_1 {
+> > +			label = "pca9530:pwm1";
+> > +			type = <PCA9532_TYPE_GPIO>;
+> > +		};
+> > +	};
+> > +
+> > +};
+> > +
+> > +&i2c1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&lpuart0 {
+> > +	status = "okay";
+> > +	linux,rs485-enabled-at-boot-time;
+> > +};
+> > +
+> > +&mdio0 {
+> > +	sgmii_phy03: ethernet-phy@3 {
+> > +		compatible = "ethernet-phy-ieee802.3-c22";
+> > +		reg = <0x03>;
+> > +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> > +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> > +		ti,dp83867-rxctrl-strap-quirk;
+> > +	};
+> > +
+> > +	rgmii_phy04: ethernet-phy@4 {
+> > +		compatible = "ethernet-phy-ieee802.3-c22";
+> > +		reg = <0x04>;
+> > +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
+> > +		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> > +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> > +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> > +	};
+> > +
+> > +	rgmii_phy0c: ethernet-phy@c {
+> > +		compatible = "ethernet-phy-ieee802.3-c22";
+> > +		reg = <0x0c>;
+> > +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
+> > +		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> > +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> > +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> > +	};
+> > +};
+> > +
+> > +&pwm6 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&pwm7 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&sai1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&sata {
+> > +	/delete-property/ dma-coherent;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&uart0 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&uart1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb3 {
+> > +	/*
+> > +	 * Although DR connector, VBUS is always driven, so
+> > +	 * restrict to host mode.
+> > +	 */
+> > +	dr_mode = "host";
+> > +	status = "okay";
+> > +};
+> > diff --git a/arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
+> > b/arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi new file mode 100644
+> > index 0000000000000..1ab518c489252
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/ls1021a-tqmls1021a.dtsi
+> > @@ -0,0 +1,93 @@
+> > +// SPDX-License-Identifier: (GPL-2.0-or-later OR X11)
+> > +/*
+> > + * Copyright 2013-2014 Freescale Semiconductor, Inc.
+> > + * Copyright 2018-2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
+> > + * D-82229 Seefeld, Germany.
+> > + * Author: Alexander Stein
+> > + */
+> > +
+> > +#include "ls1021a.dtsi"
+> > +
+> > +/ {
+> > +	model = "TQMLS102xA SOM";
+> > +	compatible = "tq,ls1021a-tqmls1021a", "fsl,ls1021a";
+> > +
+> > +	reg_3p3v_som: regulator-3p3v-som {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "3P3V_SOM";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		regulator-always-on;
+> > +	};
+> > +};
+> > +
+> > +&esdhc {
+> > +	compatible = "fsl,esdhc", "fsl,ls1021a-esdhc";
+> > +	/* e-MMC over 8 data lines */
+> > +	bus-width = <8>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c0 {
+> > +	status = "okay";
+> > +
+> > +	mc34vr500: pmic@8 {
+> > +		reg = <0x08>;
 > 
-> Johan reported a NULL pointer dereference in
-> drm_kms_helper_hotplug_event() for HPD event being reported while the
-> MSM DRM driver is still being initalized, a separate fix has been sent
-> in hope to remidy this race condition in the MSM driver.
+> No compatible? What's this?
+
+That's a DC/DC regulator on the module, currently without any driver support. 
+It's controlled by the PMC, see below.
+
+We had an internal discussion as well whether to state clients without a 
+driver (and thus no compatible) on the i2c bus. What is the guidelines for DT?
+The benefit stating, even without compatible, is to show there is some device 
+on the bus.
+
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	pmc0: pmc@11 {
 > 
->   drivers/soc/qcom/Makefile             |   1 +
->   drivers/soc/qcom/pmic_glink_altmode.c | 477 ++++++++++++++++++++++++++
->   2 files changed, 478 insertions(+)
->   create mode 100644 drivers/soc/qcom/pmic_glink_altmode.c
+> No compatible? What's this?
+
+That's a PMC monitoring voltages using the DC/DC regulator from above. It's 
+connected to i2c bus, but apparently there is no interface using this device.
+
+> > +		reg = <0x11>;
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	sa56004: temperature-sensor@4c {
+> > +		compatible = "nxp,sa56004";
+> > +		reg = <0x4c>;
+> > +		vcc-supply = <&reg_3p3v_som>;
+> > +	};
+> > +
+> > +	adm1069: supervisor@4f {
 > 
-> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-> index 29cccac472f3..f30552bf4da7 100644
-> --- a/drivers/soc/qcom/Makefile
-> +++ b/drivers/soc/qcom/Makefile
-> @@ -10,6 +10,7 @@ obj-$(CONFIG_QCOM_MDT_LOADER)	+= mdt_loader.o
->   obj-$(CONFIG_QCOM_OCMEM)	+= ocmem.o
->   obj-$(CONFIG_QCOM_PDR_HELPERS)	+= pdr_interface.o
->   obj-$(CONFIG_QCOM_PMIC_GLINK)	+= pmic_glink.o
-> +obj-$(CONFIG_QCOM_PMIC_GLINK)	+= pmic_glink_altmode.o
->   obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
->   qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
->   obj-$(CONFIG_QCOM_RAMP_CTRL)	+= ramp_controller.o
-> diff --git a/drivers/soc/qcom/pmic_glink_altmode.c b/drivers/soc/qcom/pmic_glink_altmode.c
-> new file mode 100644
-> index 000000000000..8d2d563cb756
-> --- /dev/null
-> +++ b/drivers/soc/qcom/pmic_glink_altmode.c
-> @@ -0,0 +1,477 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022, Linaro Ltd
-> + */
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/mutex.h>
-> +#include <linux/property.h>
-> +#include <linux/soc/qcom/pdr.h>
-> +#include <drm/drm_bridge.h>
-> +
-> +#include <linux/usb/typec_altmode.h>
-> +#include <linux/usb/typec_dp.h>
-> +#include <linux/usb/typec_mux.h>
-> +
-> +#include <linux/soc/qcom/pmic_glink.h>
-> +
-> +#define PMIC_GLINK_MAX_PORTS	2
-> +
-> +#define USBC_SC8180X_NOTIFY_IND	0x13
-> +#define USBC_CMD_WRITE_REQ      0x15
-> +#define USBC_NOTIFY_IND		0x16
-> +
-> +#define ALTMODE_PAN_EN		0x10
-> +#define ALTMODE_PAN_ACK		0x11
-> +
-> +struct usbc_write_req {
-> +	struct pmic_glink_hdr   hdr;
-> +	__le32 cmd;
-> +	__le32 arg;
-> +	__le32 reserved;
-> +};
-> +
-> +#define NOTIFY_PAYLOAD_SIZE 16
-> +struct usbc_notify {
-> +	struct pmic_glink_hdr hdr;
-> +	char payload[NOTIFY_PAYLOAD_SIZE];
-> +	u32 reserved;
-> +};
-> +
-> +struct usbc_sc8180x_notify {
-> +	struct pmic_glink_hdr hdr;
-> +	__le32 notification;
-> +	__le32 reserved[2];
-> +};
-> +
-> +enum pmic_glink_altmode_pin_assignment {
-> +	DPAM_HPD_OUT,
-> +	DPAM_HPD_A,
-> +	DPAM_HPD_B,
-> +	DPAM_HPD_C,
-> +	DPAM_HPD_D,
-> +	DPAM_HPD_E,
-> +	DPAM_HPD_F,
-> +};
-> +
-> +struct pmic_glink_altmode;
-> +
-> +#define work_to_altmode_port(w) container_of((w), struct pmic_glink_altmode_port, work)
-> +
-> +struct pmic_glink_altmode_port {
-> +	struct pmic_glink_altmode *altmode;
-> +	unsigned int index;
-> +
-> +	struct typec_switch *typec_switch;
-> +	struct typec_mux *typec_mux;
-> +	struct typec_mux_state state;
-> +	struct typec_altmode dp_alt;
-> +
-> +	struct work_struct work;
-> +
-> +	struct drm_bridge bridge;
-> +
-> +	enum typec_orientation orientation;
-> +	u16 svid;
-> +	u8 dp_data;
-> +	u8 mode;
-> +	u8 hpd_state;
-> +	u8 hpd_irq;
-> +};
-> +
-> +#define work_to_altmode(w) container_of((w), struct pmic_glink_altmode, enable_work)
-> +
-> +struct pmic_glink_altmode {
-> +	struct device *dev;
-> +
-> +	unsigned int owner_id;
-> +
-> +	/* To synchronize WRITE_REQ acks */
-> +	struct mutex lock;
-> +
-> +	struct completion pan_ack;
-> +	struct pmic_glink_client *client;
-> +
-> +	struct work_struct enable_work;
-> +
-> +	struct pmic_glink_altmode_port ports[PMIC_GLINK_MAX_PORTS];
-> +};
-> +
-> +static int pmic_glink_altmode_request(struct pmic_glink_altmode *altmode, u32 cmd, u32 arg)
-> +{
-> +	struct usbc_write_req req = {};
-> +	unsigned long left;
-> +	int ret;
-> +
-> +	/*
-> +	 * The USBC_CMD_WRITE_REQ ack doesn't identify the request, so wait for
-> +	 * one ack at a time.
-> +	 */
-> +	mutex_lock(&altmode->lock);
-> +
-> +	req.hdr.owner = cpu_to_le32(altmode->owner_id);
-> +	req.hdr.type = cpu_to_le32(PMIC_GLINK_REQ_RESP);
-> +	req.hdr.opcode = cpu_to_le32(USBC_CMD_WRITE_REQ);
-> +	req.cmd = cpu_to_le32(cmd);
-> +	req.arg = cpu_to_le32(arg);
-> +
-> +	ret = pmic_glink_send(altmode->client, &req, sizeof(req));
-> +	if (ret) {
-> +		dev_err(altmode->dev, "failed to send altmode request: %#x (%d)\n", cmd, ret);
-> +		goto out_unlock;
-> +	}
-> +
-> +	left = wait_for_completion_timeout(&altmode->pan_ack, 5 * HZ);
-> +	if (!left) {
-> +		dev_err(altmode->dev, "timeout waiting for altmode request ack for: %#x\n", cmd);
-> +		ret = -ETIMEDOUT;
-> +	}
-> +
-> +out_unlock:
-> +	mutex_unlock(&altmode->lock);
-> +	return ret;
-> +}
-> +
-> +static void pmic_glink_altmode_enable_dp(struct pmic_glink_altmode *altmode,
-> +					 struct pmic_glink_altmode_port *port,
-> +					 u8 mode, bool hpd_state,
-> +					 bool hpd_irq)
-> +{
-> +	struct typec_displayport_data dp_data = {};
-> +	int ret;
-> +
-> +	dp_data.status = DP_STATUS_ENABLED;
-> +	if (hpd_state)
-> +		dp_data.status |= DP_STATUS_HPD_STATE;
-> +	if (hpd_irq)
-> +		dp_data.status |= DP_STATUS_IRQ_HPD;
-> +	dp_data.conf = DP_CONF_SET_PIN_ASSIGN(mode);
-> +
-> +	port->state.alt = &port->dp_alt;
-> +	port->state.data = &dp_data;
-> +	port->state.mode = TYPEC_MODAL_STATE(mode);
-> +
-> +	ret = typec_mux_set(port->typec_mux, &port->state);
-> +	if (ret)
-> +		dev_err(altmode->dev, "failed to switch mux to DP\n");
-> +}
-> +
-> +static void pmic_glink_altmode_enable_usb(struct pmic_glink_altmode *altmode,
-> +					  struct pmic_glink_altmode_port *port)
-> +{
-> +	int ret;
-> +
-> +	port->state.alt = NULL;
-> +	port->state.data = NULL;
-> +	port->state.mode = TYPEC_STATE_USB;
-> +
-> +	ret = typec_mux_set(port->typec_mux, &port->state);
-> +	if (ret)
-> +		dev_err(altmode->dev, "failed to switch mux to USB\n");
-> +}
-> +
-> +static void pmic_glink_altmode_worker(struct work_struct *work)
-> +{
-> +	struct pmic_glink_altmode_port *alt_port = work_to_altmode_port(work);
-> +	struct pmic_glink_altmode *altmode = alt_port->altmode;
-> +
-> +	typec_switch_set(alt_port->typec_switch, alt_port->orientation);
-> +
-> +	if (alt_port->svid == USB_TYPEC_DP_SID)
-> +		pmic_glink_altmode_enable_dp(altmode, alt_port, alt_port->mode,
-> +					     alt_port->hpd_state, alt_port->hpd_irq);
-> +	else
-> +		pmic_glink_altmode_enable_usb(altmode, alt_port);
-> +
-> +	if (alt_port->hpd_state)
-> +		drm_bridge_hpd_notify(&alt_port->bridge, connector_status_connected);
-> +	else
-> +		drm_bridge_hpd_notify(&alt_port->bridge, connector_status_disconnected);
-> +
-> +	pmic_glink_altmode_request(altmode, ALTMODE_PAN_ACK, alt_port->index);
-> +};
-> +
-> +static enum typec_orientation pmic_glink_altmode_orientation(unsigned int orientation)
-> +{
-> +	if (orientation == 0)
-> +		return TYPEC_ORIENTATION_NORMAL;
-> +	else if (orientation == 1)
-> +		return TYPEC_ORIENTATION_REVERSE;
-> +	else
-> +		return TYPEC_ORIENTATION_NONE;
-> +}
-> +
-> +#define SC8180X_PORT_MASK		0x000000ff
-> +#define SC8180X_ORIENTATION_MASK	0x0000ff00
-> +#define SC8180X_MUX_MASK		0x00ff0000
-> +#define SC8180X_MODE_MASK		0x3f000000
-> +#define SC8180X_HPD_STATE_MASK		0x40000000
-> +#define SC8180X_HPD_IRQ_MASK		0x80000000
-> +
-> +static void pmic_glink_altmode_sc8180xp_notify(struct pmic_glink_altmode *altmode,
-> +					       const void *data, size_t len)
-> +{
-> +	struct pmic_glink_altmode_port *alt_port;
-> +	const struct usbc_sc8180x_notify *msg;
-> +	u32 notification;
-> +	u8 orientation;
-> +	u8 hpd_state;
-> +	u8 hpd_irq;
-> +	u16 svid;
-> +	u8 port;
-> +	u8 mode;
-> +	u8 mux;
-> +
-> +	if (len != sizeof(*msg)) {
-> +		dev_warn(altmode->dev, "invalid length of USBC_NOTIFY indication: %zd\n", len);
-> +		return;
-> +	}
-> +
-> +	msg = data;
-> +	notification = le32_to_cpu(msg->notification);
-> +	port = FIELD_GET(SC8180X_PORT_MASK, notification);
-> +	orientation = FIELD_GET(SC8180X_ORIENTATION_MASK, notification);
-> +	mux = FIELD_GET(SC8180X_MUX_MASK, notification);
-> +	mode = FIELD_GET(SC8180X_MODE_MASK, notification);
-> +	hpd_state = FIELD_GET(SC8180X_HPD_STATE_MASK, notification);
-> +	hpd_irq = FIELD_GET(SC8180X_HPD_IRQ_MASK, notification);
-> +
-> +	svid = mux == 2 ? USB_TYPEC_DP_SID : 0;
-> +
-> +	if (!altmode->ports[port].altmode) {
-> +		dev_dbg(altmode->dev, "notification on undefined port %d\n", port);
-> +		return;
-> +	}
-> +
-> +	alt_port = &altmode->ports[port];
-> +	alt_port->orientation = pmic_glink_altmode_orientation(orientation);
-> +	alt_port->svid = mux == 2 ? USB_TYPEC_DP_SID : 0;
-> +	alt_port->mode = mode;
-> +	alt_port->hpd_state = hpd_state;
-> +	alt_port->hpd_irq = hpd_irq;
-> +	schedule_work(&alt_port->work);
-> +}
-> +
-> +#define SC8280XP_DPAM_MASK	0x3f
-> +#define SC8280XP_HPD_STATE_MASK BIT(6)
-> +#define SC8280XP_HPD_IRQ_MASK	BIT(7)
-> +
-> +static void pmic_glink_altmode_sc8280xp_notify(struct pmic_glink_altmode *altmode,
-> +					       u16 svid, const void *data, size_t len)
-> +{
-> +	struct pmic_glink_altmode_port *alt_port;
-> +	const struct usbc_notify *notify;
-> +	u8 orientation;
-> +	u8 hpd_state;
-> +	u8 hpd_irq;
-> +	u8 mode;
-> +	u8 port;
-> +
-> +	if (len != sizeof(*notify)) {
-> +		dev_warn(altmode->dev, "invalid length USBC_NOTIFY_IND: %zd\n",
-> +			 len);
-> +		return;
-> +	}
-> +
-> +	notify = data;
-> +
-> +	port = notify->payload[0];
-> +	orientation = notify->payload[1];
-> +	mode = FIELD_GET(SC8280XP_DPAM_MASK, notify->payload[8]) - DPAM_HPD_A;
-> +	hpd_state = FIELD_GET(SC8280XP_HPD_STATE_MASK, notify->payload[8]);
-> +	hpd_irq = FIELD_GET(SC8280XP_HPD_IRQ_MASK, notify->payload[8]);
-> +
-> +	if (!altmode->ports[port].altmode) {
-> +		dev_dbg(altmode->dev, "notification on undefined port %d\n", port);
-> +		return;
-> +	}
-> +
-> +	alt_port = &altmode->ports[port];
-> +	alt_port->orientation = pmic_glink_altmode_orientation(orientation);
-> +	alt_port->svid = svid;
-> +	alt_port->mode = mode;
-> +	alt_port->hpd_state = hpd_state;
-> +	alt_port->hpd_irq = hpd_irq;
-> +	schedule_work(&alt_port->work);
-> +}
-> +
-> +static void pmic_glink_altmode_callback(const void *data, size_t len, void *priv)
-> +{
-> +	struct pmic_glink_altmode *altmode = priv;
-> +	const struct pmic_glink_hdr *hdr = data;
-> +	u16 opcode;
-> +	u16 svid;
-> +
-> +	opcode = le32_to_cpu(hdr->opcode) & 0xff;
-> +	svid = le32_to_cpu(hdr->opcode) >> 16;
-> +
-> +	switch (opcode) {
-> +	case USBC_CMD_WRITE_REQ:
-> +		complete(&altmode->pan_ack);
-> +		break;
-> +	case USBC_NOTIFY_IND:
-> +		pmic_glink_altmode_sc8280xp_notify(altmode, svid, data, len);
-> +		break;
-> +	case USBC_SC8180X_NOTIFY_IND:
-> +		pmic_glink_altmode_sc8180xp_notify(altmode, data, len);
-> +		break;
-> +	}
-> +}
-> +
-> +static int pmic_glink_altmode_attach(struct drm_bridge *bridge,
-> +				     enum drm_bridge_attach_flags flags)
-> +{
-> +	return flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR ? 0 : -EINVAL;
-> +}
-> +
-> +static const struct drm_bridge_funcs pmic_glink_altmode_bridge_funcs = {
-> +	.attach = pmic_glink_altmode_attach,
-> +};
-> +
-> +static void pmic_glink_altmode_put_mux(void *data)
-> +{
-> +	typec_mux_put(data);
-> +}
-> +
-> +static void pmic_glink_altmode_put_switch(void *data)
-> +{
-> +	typec_switch_put(data);
-> +}
-> +
-> +static void pmic_glink_altmode_enable_worker(struct work_struct *work)
-> +{
-> +	struct pmic_glink_altmode *altmode = work_to_altmode(work);
-> +	int ret;
-> +
-> +	ret = pmic_glink_altmode_request(altmode, ALTMODE_PAN_EN, 0);
-> +	if (ret)
-> +		dev_err(altmode->dev, "failed to request altmode notifications\n");
-> +}
-> +
-> +static void pmic_glink_altmode_pdr_notify(void *priv, int state)
-> +{
-> +	struct pmic_glink_altmode *altmode = priv;
-> +
-> +	if (state == SERVREG_SERVICE_STATE_UP)
-> +		schedule_work(&altmode->enable_work);
-> +}
-> +
-> +static const struct of_device_id pmic_glink_altmode_of_quirks[] = {
-> +	{ .compatible = "qcom,sc8180x-pmic-glink", .data = (void *)PMIC_GLINK_OWNER_USBC },
-> +	{}
-> +};
-> +
-> +static int pmic_glink_altmode_probe(struct auxiliary_device *adev,
-> +				    const struct auxiliary_device_id *id)
-> +{
-> +	struct pmic_glink_altmode_port *alt_port;
-> +	struct pmic_glink_altmode *altmode;
-> +	struct typec_altmode_desc mux_desc = {};
-> +	const struct of_device_id *match;
-> +	struct fwnode_handle *fwnode;
-> +	struct device *dev = &adev->dev;
-> +	u32 port;
-> +	int ret;
-> +
-> +	altmode = devm_kzalloc(dev, sizeof(*altmode), GFP_KERNEL);
-> +	if (!altmode)
-> +		return -ENOMEM;
-> +
-> +	altmode->dev = dev;
-> +
-> +	match = of_match_device(pmic_glink_altmode_of_quirks, dev->parent);
-> +	if (match)
-> +		altmode->owner_id = (unsigned long)match->data;
-> +	else
-> +		altmode->owner_id = PMIC_GLINK_OWNER_USBC_PAN;
-> +
-> +	INIT_WORK(&altmode->enable_work, pmic_glink_altmode_enable_worker);
-> +	init_completion(&altmode->pan_ack);
-> +	mutex_init(&altmode->lock);
-> +
-> +	device_for_each_child_node(dev, fwnode) {
-> +		ret = fwnode_property_read_u32(fwnode, "reg", &port);
-> +		if (ret < 0) {
-> +			dev_err(dev, "missing reg property of %pOFn\n", fwnode);
-> +			return ret;
-> +		}
-> +
-> +		if (port >= ARRAY_SIZE(altmode->ports)) {
-> +			dev_warn(dev, "invalid connector number, ignoring\n");
-> +			continue;
-> +		}
-> +
-> +		if (altmode->ports[port].altmode) {
-> +			dev_err(dev, "multiple connector definition for port %u\n", port);
-> +			return -EINVAL;
-> +		}
-> +
-> +		alt_port = &altmode->ports[port];
-> +		alt_port->altmode = altmode;
-> +		alt_port->index = port;
-> +		INIT_WORK(&alt_port->work, pmic_glink_altmode_worker);
-> +
-> +		alt_port->bridge.funcs = &pmic_glink_altmode_bridge_funcs;
-> +		alt_port->bridge.of_node = to_of_node(fwnode);
-> +		alt_port->bridge.ops = DRM_BRIDGE_OP_HPD;
-> +		alt_port->bridge.type = DRM_MODE_CONNECTOR_USB;
-> +
-> +		ret = devm_drm_bridge_add(dev, &alt_port->bridge);
-> +		if (ret)
-> +			return ret;
+> No compatible? What's this?
 
-In my testing, the design of a bridge in the altmode driver made all the probe very fragile,
-meaning that any device that won't probe in the full usb--pmic-glink--display driver would
-prevent the whole to actually probe.
+Another monitor, similar to above connected to i2c bus but no actual interface 
+to ARM cpu.
 
-This is why drm_connector_oob_hotplug_event() was used in drivers/usb/typec/altmodes/displayport.c
-and a similar design for cec where both attach to a device so there's no probe dependency.
+> > +		reg = <0x4f>;
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	rtc0: rtc@51 {
+> > +		compatible = "nxp,pcf85063a";
+> > +		quartz-load-femtofarads = <12500>;
+> > +		reg = <0x51>;
+> 
+> Reg is second property
 
-I think there's a possible simplification here by using :
-of_drm_find_bridge() instead on the endpoint target to get the last bridge,
-or we could probably use the same drm_connector_oob_hotplug_event() but in any way we should
-add missing pieces in drm_bridge_connector and drm/msm/dp/dp_drm.c
+Sounds reasonable, thanks.
 
-First in drm/msm/dp/dp_drm.c, the driver should add the of_node to the DP bridge so it can
-be found from the dp controller node.
+> > +	};
+> > +
+> > +	m24c64_54: eeprom@54 {
+> > +		compatible = "atmel,24c64";
+> > +		reg = <0x54>;
+> > +		pagesize = <32>;
+> > +		read-only;
+> > +		vcc-supply = <&reg_3p3v_som>;
+> > +	};
+> > +};
+> 
+> Best regards,
+> Krzysztof
 
-Secondly, we could add a fwnode in drm_bridge like in drm_connector and in drm_bridge_connector_init()
-we could set the connector fwnode to the last bridge fwnode + the connector oob event handler.
-In this case the drm_connector_oob_hotplug_event() design should work.
+Best regards,
+Alexander
 
-Anyway, I think the bindings is correct, so it's a matter of implementation to avoid delaying the
-display driver probe until the pmic_glink probes entirely.
 
-Neil
-
-> +
-> +		alt_port->dp_alt.svid = USB_TYPEC_DP_SID;
-> +		alt_port->dp_alt.mode = USB_TYPEC_DP_MODE;
-> +		alt_port->dp_alt.active = 1;
-> +
-> +		mux_desc.svid = USB_TYPEC_DP_SID;
-> +		mux_desc.mode = USB_TYPEC_DP_MODE;
-> +		alt_port->typec_mux = fwnode_typec_mux_get(fwnode, &mux_desc);
-> +		if (IS_ERR(alt_port->typec_mux))
-> +			return dev_err_probe(dev, PTR_ERR(alt_port->typec_mux),
-> +					     "failed to acquire mode-switch for port: %d\n",
-> +					     port);
-> +
-> +		ret = devm_add_action_or_reset(dev, pmic_glink_altmode_put_mux,
-> +					       alt_port->typec_mux);
-> +		if (ret)
-> +			return ret;
-> +
-> +		alt_port->typec_switch = fwnode_typec_switch_get(fwnode);
-> +		if (IS_ERR(alt_port->typec_switch))
-> +			return dev_err_probe(dev, PTR_ERR(alt_port->typec_switch),
-> +					     "failed to acquire orientation-switch for port: %d\n",
-> +					     port);
-> +
-> +		ret = devm_add_action_or_reset(dev, pmic_glink_altmode_put_switch,
-> +					       alt_port->typec_switch);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	altmode->client = devm_pmic_glink_register_client(dev,
-> +							  altmode->owner_id,
-> +							  pmic_glink_altmode_callback,
-> +							  pmic_glink_altmode_pdr_notify,
-> +							  altmode);
-> +	return PTR_ERR_OR_ZERO(altmode->client);
-> +}
-> +
-> +static const struct auxiliary_device_id pmic_glink_altmode_id_table[] = {
-> +	{ .name = "pmic_glink.altmode", },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(auxiliary, pmic_glink_altmode_id_table);
-> +
-> +static struct auxiliary_driver pmic_glink_altmode_driver = {
-> +	.name = "pmic_glink_altmode",
-> +	.probe = pmic_glink_altmode_probe,
-> +	.id_table = pmic_glink_altmode_id_table,
-> +};
-> +
-> +module_auxiliary_driver(pmic_glink_altmode_driver);
-> +
-> +MODULE_DESCRIPTION("Qualcomm PMIC GLINK Altmode driver");
-> +MODULE_LICENSE("GPL");
 
