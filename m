@@ -2,54 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 546C2675E6F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 20:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6136F675EDC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 21:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbjATTxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 14:53:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45692 "EHLO
+        id S230262AbjATUTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 15:19:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230031AbjATTxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 14:53:42 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F0CF6197
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 11:53:41 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pIxS9-00070g-SX; Fri, 20 Jan 2023 20:53:33 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pIxS7-0007vo-GU; Fri, 20 Jan 2023 20:53:31 +0100
-Date:   Fri, 20 Jan 2023 20:53:31 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>
+        with ESMTP id S229685AbjATUTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 15:19:46 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2C0C15C87;
+        Fri, 20 Jan 2023 12:19:43 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id D641B851E6;
+        Fri, 20 Jan 2023 21:19:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1674245981;
+        bh=v5AOm9XLy9ZP+mr27J1UwycJewxzF+LwaqfxtMsHc+k=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Spz4L6H9toBJpQ4c6p1Isw1Fto/fI8bTGEcIYCfKntE/a5xrUINWMJc5JaxcG/hQ1
+         GNBIOMvwIQZN1acuwnuJaZGY+nkWIWat06TqZpaU1CYSYp4iw0aje6PWd9kQpV1iy4
+         b7xhLXlEotlbhLCIZTFcr9qGvbvafJm+Raj+HKkq1xCt4CY7wiogBhXaUfH40PzK9l
+         xlG/qCoVkmJG0V1stkuTz2eaFQWOUZAb1whLPRO8op7iRn7oTQPFCeslFKgnX7LHku
+         7cdqHPnBriqHwOnozALRT7rJQaKYSFZaa6DE715pnY6akf12mi9sIot+HXH3d5R3WL
+         dIDhqsHw3xtcg==
+Message-ID: <4a3cc3ce-ada3-842e-5afa-c89653f537a6@denx.de>
+Date:   Fri, 20 Jan 2023 21:07:31 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH V4 1/4] dt-bindings: arm: fsl: Add PDK2, PicoITX and DRC02
+ boards for the DHCOM i.MX6ULL SoM
+Content-Language: en-US
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        linux-arm-kernel@lists.infradead.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@denx.de>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH v7 2/3] arm64: dts: imx8mm-evk: add revision-B EVK
-Message-ID: <20230120195331.c62pvvljcd36jr3s@pengutronix.de>
-References: <20230110152316.1149940-1-johannes.schneider@leica-geosystems.com>
- <20230110152316.1149940-3-johannes.schneider@leica-geosystems.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230110152316.1149940-3-johannes.schneider@leica-geosystems.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        kernel@dh-electronics.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230120184731.11215-1-cniedermaier@dh-electronics.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230120184731.11215-1-cniedermaier@dh-electronics.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,164 +63,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johannes,
-
-please adapt the subject to:
-
-arm64: dts: add support for i.MX8MM-EVKB
-
-to avoid confusion with the revisions written in the schematics.
-
-Regards,
-  Marco
-
-On 23-01-10, Johannes Schneider wrote:
-> Add devicetree for the EVKB, which comes with LPDDR4 and a different
-> PMIC.
+On 1/20/23 19:47, Christoph Niedermaier wrote:
+> Add DH electronics DHCOM PDK2, PicoITX and DRC02 boards
+> for the DHCOM i.MX6ULL SoM.
 > 
-> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  arch/arm64/boot/dts/freescale/imx8mm-evkb.dts | 116 ++++++++++++++++++
->  2 files changed, 117 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 3ea9edc87909..3bccc4d10928 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -55,6 +55,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-data-modul-edm-sbc.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-emcon-avari.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-evkb.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-bl.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
-> new file mode 100644
-> index 000000000000..b2d724ad43b2
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
-> @@ -0,0 +1,116 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2019-2020 NXP
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx8mm-evk.dtsi"
-> +
-> +/ {
-> +	model = "FSL i.MX8MM EVKB"; // with LPDDR4 and PCA9450 PMIC
-> +	compatible = "fsl,imx8mm-evkb", "fsl,imx8mm";
-> +};
-> +
-> +&i2c1 {
-> +	pmic: pmic@25 {
-> +		compatible = "nxp,pca9450a";
-> +		reg = <0x25>;
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		pinctrl-names = "default";
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		regulators {
-> +			buck1_reg: BUCK1 {
-> +				regulator-name = "BUCK1";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +				nxp,dvs-run-voltage = <820000>;
-> +				nxp,dvs-standby-voltage = <800000>;
-> +			};
-> +
-> +			buck2_reg: BUCK2 {
-> +				regulator-name = "BUCK2";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
-> +
-> +			buck3_reg: BUCK3 {
-> +				regulator-name = "BUCK3";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck4_reg: BUCK4 {
-> +				regulator-name = "BUCK4";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5_reg: BUCK5 {
-> +				regulator-name = "BUCK5";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck6_reg: BUCK6 {
-> +				regulator-name = "BUCK6";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1_reg: LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2_reg: LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1150000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3_reg: LDO3 {
-> +				regulator-name = "LDO3";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4_reg: LDO4 {
-> +				regulator-name = "LDO4";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo5_reg: LDO5 {
-> +				regulator-name = "LDO5";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +		};
-> +	};
-> +};
-> -- 
-> 2.25.1
-> 
-> 
-> 
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Marek Vasut <marex@denx.de>
