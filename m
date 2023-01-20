@@ -2,159 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CABB675B7C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:31:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83CD1675B7F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:31:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230217AbjATRbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:31:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46036 "EHLO
+        id S230330AbjATRbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:31:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230222AbjATRbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:31:24 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56C4ADBD8;
-        Fri, 20 Jan 2023 09:31:16 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id r9so5484964wrw.4;
-        Fri, 20 Jan 2023 09:31:16 -0800 (PST)
+        with ESMTP id S230255AbjATRb3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:31:29 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E72E8DBE8
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:31:21 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id k16so4646521wms.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:31:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kXw2j+x/kse2yPakxaPEW51TbrZ6J1HBieALff4c+rE=;
-        b=HxB+Fql78ZELN8ESqJE0nr2QjjtSelDWlhBG63jeCWznR746a2arSU5WR3Dewrng8J
-         hpKPCB/+XGVCnjaTSb1hBPnnCks1ywfdHU+gPv3prNvf2m9uSypF49PArI3DIbh+dhY7
-         4nVMQ4nvctMibIveBehx3EiUs32eAwRfj6lK57zOYWSAtKFH4lWEpBYZGqeGbe9KSThS
-         04EFH383Mi+M8yIjSXIltHW3DxMU4XvnnpWXjQ0sSXERqs9JfRb2KWddyQcV84rKHvjs
-         bMNZ0JF7OgQ40n613YIyLOzpeSBfnd7bwq5wCtQ1EbPLfPanVxxa+hjUM/JnY9bEAgX/
-         bhoA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JC33nkvOY9jllaeQeA877nEGh7EFhyBhoHxhC9ikSio=;
+        b=ePFzI6jF5QJfJDiWdbL4WzhmMgUAt+JzcDfbRdufvGnU/DvyJmt7dMOrh5jA/ZkWoX
+         VP3zy8a3qde3XULU1uFg+1j8ClQUg3vjJbJo1xg5ZPUPDZ5ZRaNcHpnf4qk0QjO2JIQA
+         acgVvEPOc5F55b9w0P/U6i5kGEvn+tMJpQ1d2hibDs3kbSA7voRyZDNurnrxjJmxT7RV
+         3gCS73wGfB15htucGR9S7LfN3ujDqGGPKf2am/nAlMA73j3ttTVhgfTh+lMLpW4+hSJB
+         fkjKF1R9Na1RQyoKeZtpowx4GSL1/YocBcAjYK6VpfjfnK+TuHM+S8CyKlf7cP9GmgFg
+         F1mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kXw2j+x/kse2yPakxaPEW51TbrZ6J1HBieALff4c+rE=;
-        b=T5Mf6zdstogWfCFhB85vhzecHRi/Ar90oI2+U1wAEDsm1fbedkEma4gERBT4ZyrLal
-         3VKNmC3GoHq2P1XxtXAN8VMtRj25K+S3oDtWPJO8f0RZFJZbUYoC7Uoc1rOEwjOOP8om
-         Rqlan0kollQnvNPETCT0/2mXBm9j1y0XrIlaHx9ps1A7nm9hci2djU04pNP4oA11mOtz
-         3Qz9KJ6L5B4vpwPf/4Fkjugd+RBFIXMutgcxat0ykdsyKZEryxSVe1qGFF992k6WoE9K
-         VFrEO9TbGw5atCUl2MGC5AovK26GlBhmAgYvACVOmOHbhwGnY7AvGCw0lh/esxXt+BBs
-         XSjA==
-X-Gm-Message-State: AFqh2koO1TDv/2Y2mkT2c/s3c8ypRWn/2o8wLbHjerpQJDyWOeHoc86y
-        Cnr+igC7mvmCpAsyt794pcU=
-X-Google-Smtp-Source: AMrXdXsb64RJIKDpmJTAga1GYyceTGETa/aMFyd6rGzsds7lxOLOWxwF53TLNJ7Cy29mMswL5rWqhA==
-X-Received: by 2002:adf:ce90:0:b0:2bb:edc7:504 with SMTP id r16-20020adfce90000000b002bbedc70504mr14353213wrn.26.1674235874883;
-        Fri, 20 Jan 2023 09:31:14 -0800 (PST)
-Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id z12-20020adfd0cc000000b002bdff778d87sm13470524wrh.34.2023.01.20.09.31.14
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JC33nkvOY9jllaeQeA877nEGh7EFhyBhoHxhC9ikSio=;
+        b=HDfuhh4h4IQL45Ymcv3zXpbHGszdFxB5zevGF+5JEdcDknm4MsHVRb46Hh6kDLGLlI
+         5qwlvsaqN1J9n3iydPiE/zjLaooGM/M+qVO3+zW7GPRca0OOlWkfQSMUi4jQ4kmE57Dw
+         GRmEucc9uxJSZ4qZMOsvZE0ejy9B/tCAM3QmQTq90DrYX55segdWSc1GrxOwjXsA7uh3
+         ibixtVALsfF6j6I8n/rqOe5T4wFMIKIZTwwEJA0hRgjEvP1hJ6z8oCT5Om206AoILWAo
+         dSYYS75fN1FRxzAQ/lMPMaCu3jWKo7kmj25dE1hEKgqCwpLWeGIHg+VFwlzW9dS6qbRG
+         ksew==
+X-Gm-Message-State: AFqh2kqoYW+3Xu9iZ9//HLgMHNxQcHpextEMWbNe5byLeX9FGX0jgfAu
+        dSA10PzIxiMSXdwCXOMi8Qv/iw==
+X-Google-Smtp-Source: AMrXdXui6w/iZmq/RJsnFzJp4F10SPSRvGEMGIQD0vSmX0FFM6XWOuOB2bpLwJVxRaXvIks+RBfaoA==
+X-Received: by 2002:a05:600c:d3:b0:3da:23a4:627e with SMTP id u19-20020a05600c00d300b003da23a4627emr14507270wmm.6.1674235880481;
+        Fri, 20 Jan 2023 09:31:20 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id d22-20020a1c7316000000b003db0dbbea53sm2819179wmb.30.2023.01.20.09.31.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 09:31:14 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     David Airlie <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 8/8] arm64: tegra: Add simple framebuffer on Jetson Xavier NX
-Date:   Fri, 20 Jan 2023 18:31:03 +0100
-Message-Id: <20230120173103.4002342-9-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230120173103.4002342-1-thierry.reding@gmail.com>
-References: <20230120173103.4002342-1-thierry.reding@gmail.com>
+        Fri, 20 Jan 2023 09:31:19 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/6] arm64: dts: exynos: disable non-working GPU on Exynos7 Espresso
+Date:   Fri, 20 Jan 2023 18:31:11 +0100
+Message-Id: <20230120173116.341270-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+The Panfrost GPU drivers require clock but such was not provided in
+Exynos7 DTSI.  The CMU_G3D clock controller was not upstreamed, thus
+consider GPU as non-working and simply disable it to silence warnings
+like:
 
-Add the framebuffer carveout reserved memory node as well as a simple-
-framebuffer node that is used to bind to the framebuffer that the
-bootloader has set up.
+  exynos7-espresso.dtb: gpu@14ac0000: 'clocks' is a required property
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
-Changes in v2:
-- clear out dynamic fields and leave it up to firmware to fill them in
-- mark simple-framebuffer node as disabled by default
 
- .../nvidia/tegra194-p3509-0000+p3668-0001.dts | 43 +++++++++++++++++++
- arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  2 +-
- 2 files changed, 44 insertions(+), 1 deletion(-)
+This patchset fixes remaining Exynos/Tesla ARMv8 dtbs_check warnings. No
+more excuses for not running dtbs_check on new patches.
+---
+ arch/arm64/boot/dts/exynos/exynos7-espresso.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dts b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dts
-index 238fd98e8e45..85b4aaa2ad4e 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dts
-@@ -7,4 +7,47 @@
- / {
- 	model = "NVIDIA Jetson Xavier NX Developer Kit (eMMC)";
- 	compatible = "nvidia,p3509-0000+p3668-0001", "nvidia,tegra194";
-+
-+	chosen {
-+		framebuffer {
-+			compatible = "simple-framebuffer";
-+			status = "disabled";
-+			memory-region = <&fb>;
-+			power-domains = <&bpmp TEGRA194_POWER_DOMAIN_DISP>;
-+			clocks = <&bpmp TEGRA194_CLK_SOR1_REF>,
-+				 <&bpmp TEGRA194_CLK_SOR1_OUT>,
-+				 <&bpmp TEGRA194_CLK_SOR1_PAD_CLKOUT>,
-+				 <&bpmp TEGRA194_CLK_PLLD2>,
-+				 <&bpmp TEGRA194_CLK_PLLDP>,
-+				 <&bpmp TEGRA194_CLK_NVDISPLAY_DISP>,
-+				 <&bpmp TEGRA194_CLK_NVDISPLAYHUB>,
-+				 <&bpmp TEGRA194_CLK_NVDISPLAY_P0>;
-+			width = <0>;
-+			height = <0>;
-+			stride = <0>;
-+			format = "x8b8g8r8";
-+		};
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		fb: framebuffer@0,0 {
-+			compatible = "framebuffer";
-+			reg = <0x0 0x0 0x0 0x0>;
-+			iommu-addresses = <&dc0 0x0 0x0 0x0 0x0>;
-+		};
-+	};
-+
-+	bus@0 {
-+		host1x@13e00000 {
-+			display-hub@15200000 {
-+				display@15200000 {
-+					memory-region = <&fb>;
-+				};
-+			};
-+		};
-+	};
- };
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 5ce2650128b1..e0ce54eae17d 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -1975,7 +1975,7 @@ display-hub@15200000 {
- 				#size-cells = <2>;
- 				ranges = <0x0 0x15200000 0x0 0x15200000 0x0 0x40000>;
+diff --git a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
+index b846c0be90e3..829657c9c7ca 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
++++ b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
+@@ -61,7 +61,6 @@ &fin_pll {
  
--				display@15200000 {
-+				dc0: display@15200000 {
- 					compatible = "nvidia,tegra194-dc";
- 					reg = <0x0 0x15200000 0x0 0x10000>;
- 					interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
+ &gpu {
+ 	mali-supply = <&buck6_reg>;
+-	status = "okay";
+ };
+ 
+ &serial_2 {
 -- 
-2.39.0
+2.34.1
 
