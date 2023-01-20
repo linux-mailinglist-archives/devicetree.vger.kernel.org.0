@@ -2,90 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC365675F81
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:15:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66338675F95
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:22:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbjATVPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 16:15:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36626 "EHLO
+        id S229498AbjATVWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 16:22:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbjATVPo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:15:44 -0500
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 155D1900A
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:15:42 -0800 (PST)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-501c3a414acso25874757b3.7
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:15:42 -0800 (PST)
+        with ESMTP id S229445AbjATVWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:22:30 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B734716319
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:22:29 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id az20so17159727ejc.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:22:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NcIIC1O7Zs3rEuEM0nyGO+WgzZl8Vikm1z2RFIGcKb0=;
-        b=fhs5Iuj4i9tYiLtWZSoxdZ7lQeEEve400Bj1Vri0BU6rTFbqMbm9zOTpruHHGJiSv+
-         45iwza4m7m6J/UZxVCr4lOZWhgR3egS25OP/hJ5DF5TxBJPR6a3YEs64lCSotn3bkRIl
-         EpmHRQpEh50uuJCoQCzB/3vOLGZVErgkFlHxQ=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zs+UmtgIVGddv6KprN6BXtkow6vxqhZUCHnX30GG25U=;
+        b=X9pJ7J7c4pfA5xNIpjYeRsukd/H1nHACT4Nfu4T99rkLdG5idf+bsF2NWw7izRYvhq
+         oVE2WqaOfgjZpydJ6CRTsYYkoIZ6ozHvMmgVlXtfuLMF98vjtwILcyx+2P15Eg1fyWRB
+         70yLM2xN2acXpqRDAOmNh9BR0O5IczjGqsBSNKDfy1Ul2YCWt7txgcEnMkqrZ1RHJXbQ
+         bnZLICF5V8nE00jHEQYqFZjaMzzGEM4q8yxH8WR2nXaOsko7rJx8tsRF8xNEEtEpzxqC
+         GmCqmjRvyMSV5TSGA5Z/ETZKxLULBsZu6UEEfFRGOPdg69bDNX0MjTN/C0ZiaM7eCCTK
+         IBQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NcIIC1O7Zs3rEuEM0nyGO+WgzZl8Vikm1z2RFIGcKb0=;
-        b=XFuT5r/2Lu4bXxa3j922js5LjvQpMWauCJsJ6W3MeZYtAqvrYE0oVDxIDQHhSvmKJA
-         zh9pOuToQBkhC6458XjQH/19F9rqJd2kej8zEApyliWH5HxqFTZMM7TpRZjPZpytkvON
-         15v/jN5lPUCwmJ26Wk2Sfq0bOEcUf3bLGR7oCK7ouFffwGVPHkys7lVXZdZH21Kc0VHX
-         ZEj5lPZYnmmB8zI92GbOEvW95p1DexG1sLlq/U09ANrvxG/dVrCsQzYsG2DelZFpCHsp
-         jfmWExUZTd+le7Dsp8qsbwtatojrOwEEtC/DcGlU4f2PizvafP8hUNBzbmUSKhbmG00i
-         MLRQ==
-X-Gm-Message-State: AFqh2koetDfiPQ2DaQSR1MtmjbmIcHEePPMXXuaZGZyhI2MzNN0dRY9A
-        9lfpr4npZ7U6+/+9roy9R83ZpTpMYBadoofuK5zCXQ==
-X-Google-Smtp-Source: AMrXdXuzhv476FXH02ilyJSYLORoSx3+kBVAKevbSIn6Qmw3KTvOzqgdIKhThap2Fmmuhb9Bgf50pSjtYaxEVyXLlAg=
-X-Received: by 2002:a0d:e8c9:0:b0:4e0:7220:22fd with SMTP id
- r192-20020a0de8c9000000b004e0722022fdmr2086808ywe.272.1674249341272; Fri, 20
- Jan 2023 13:15:41 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zs+UmtgIVGddv6KprN6BXtkow6vxqhZUCHnX30GG25U=;
+        b=lau1gwGoZvc+VjeH16VuG8ak/6rC6JGz9BbgYXh0mKA5BY3afV6Z57x1E5hbAWpyqV
+         FgZmUrh8IOWi6GRMZYKRIhfrbS/PxNhoZ0eLH/xsSEk5t/HKAZzLg28lIbX38p9RMl1B
+         bP1nvIH877mh4F5OwcqdEulg96wvtU2NW9yWM3Cr4dgoiAun1OZJsx4Kfp7A9xFE6CH6
+         IeLwjlwlIDBR+b9i6gVV19f5LBfOCApNmcPrH00gzMU61SWMuEJQ6f9KPfu6QyTfNFOG
+         34HHPCxd/YGq0Xi4ihCbufDfn913KS+5ByDCsc/8+JE0vbd3PJi9h3FVFK4h6ZDrm+h4
+         gAsA==
+X-Gm-Message-State: AFqh2krzAkbugKqRjJU+8JYyL8aKKhkET/BWkQ3Ck0d1ho8pNRhgcAbw
+        o55a/bgNcrxk2wEBevgG6zCIkw==
+X-Google-Smtp-Source: AMrXdXuLUbPoZoARW90jlFLIvQDjlEXpxoRIk7pxHrrrCXNjAqSD+GPJEpN5eEiS01RZnbQ3wX2A4A==
+X-Received: by 2002:a17:906:1911:b0:870:29fd:be41 with SMTP id a17-20020a170906191100b0087029fdbe41mr11380858eje.48.1674249748345;
+        Fri, 20 Jan 2023 13:22:28 -0800 (PST)
+Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
+        by smtp.gmail.com with ESMTPSA id g3-20020a1709067c4300b007c0a7286ac8sm18494294ejp.69.2023.01.20.13.22.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 13:22:27 -0800 (PST)
+Message-ID: <e5bd7941-0a7e-f8b5-2be8-d0d7cc0f84f7@linaro.org>
+Date:   Fri, 20 Jan 2023 22:22:25 +0100
 MIME-Version: 1.0
-References: <20230112042104.4107253-1-treapking@chromium.org>
- <20230112042104.4107253-2-treapking@chromium.org> <Y8AL8nTcNcl6zX7H@paasikivi.fi.intel.com>
- <CACeCKaeN7KBi30M1fRWhTPgMbxF6=B+KuAS7Ny7+i9qCx+=49Q@mail.gmail.com> <Y8VL/+My+s/PkG9L@paasikivi.fi.intel.com>
-In-Reply-To: <Y8VL/+My+s/PkG9L@paasikivi.fi.intel.com>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Fri, 20 Jan 2023 13:15:30 -0800
-Message-ID: <CACeCKaeaQ+LHsnwdqtTA=O3Q=0dWz8_uNjXoNu5J_u4+HQLMsg@mail.gmail.com>
-Subject: Re: [PATCH v10 1/9] device property: Add remote endpoint to devcon matcher
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs
+Content-Language: en-US
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
-        Xin Ji <xji@analogixsemi.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
-        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230112210722.6234-1-quic_molvera@quicinc.com>
+ <20230112210722.6234-2-quic_molvera@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230112210722.6234-2-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,48 +78,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 16, 2023 at 5:07 AM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> Hi Prashant,
->
-> On Thu, Jan 12, 2023 at 02:31:45PM -0800, Prashant Malani wrote:
-> > HI Sakari,
-> >
-> > On Thu, Jan 12, 2023 at 5:32 AM Sakari Ailus
-> > <sakari.ailus@linux.intel.com> wrote:
-> > >
-> > > Hi Pin-yen,
-> > >
-> > > On Thu, Jan 12, 2023 at 12:20:56PM +0800, Pin-yen Lin wrote:
-> > > > From: Prashant Malani <pmalani@chromium.org>
-> > > > +             /*
-> > > > +              * Some drivers may register devices for endpoints. Check
-> > > > +              * the remote-endpoints for matches in addition to the remote
-> > > > +              * port parent.
-> > > > +              */
-> > > > +             node = fwnode_graph_get_remote_endpoint(ep);
-> > > > +             if (fwnode_device_is_available(node)) {
-> > > > +                     ret = match(node, con_id, data);
-> > > > +                     if (ret) {
-> > > > +                             if (matches)
-> > > > +                                     matches[count] = ret;
-> > > > +                             count++;
-> > > > +                     }
-> > > > +             }
-> > >
-> > > Aren't you missing fwnode_handle-put(node) here??
-> >
-> > It shouldn't be necessary. We aren't break-ing/continue-ing here,
-> > and fwnode_handle_put(node) is called latter in the loop [1][2]
->
-> It is, but node is overwritten just below this chunk --- before
-> fwnode_handle_put() is called on it.
 
-Ack. Thanks for pointing that out. My bad!
 
-Pin-yen, please make this update when you send out a v11.
+On 12.01.2023 22:07, Melody Olvera wrote:
+> Add the base DTSI files for QDU1000 and QRU1000 SoCs, including base
+> descriptions of CPUs, GCC, RPMHCC, QUP, TLMM, and interrupt-controller
+> to boot to shell with console on these SoCs.
+> 
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
 
-BR,
+[...]
+> +
+> +	arch_timer: timer {
+Unused label
 
--Prashant
+Otherwise:
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/qru1000.dtsi b/arch/arm64/boot/dts/qcom/qru1000.dtsi
+> new file mode 100644
+> index 000000000000..eac5dc54a8ab
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qru1000.dtsi
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include "qdu1000.dtsi"
+> +/delete-node/ &tenx_mem;
+> +/delete-node/ &oem_tenx_mem;
+> +/delete-node/ &tenx_q6_buffer_mem;
+> +
+> +&reserved_memory {
+> +	oem_tenx_mem: oem-tenx@a0000000 {
+> +		reg = <0x0 0xa0000000 0x0 0x6400000>;
+> +		no-map;
+> +	};
+> +
+> +	mpss_diag_buffer_mem: mpss-diag-buffer@aea00000 {
+> +		reg = <0x0 0xaea00000 0x0 0x6400000>;
+> +		no-map;
+> +	};
+> +
+> +	tenx_q6_buffer_mem: tenx-q6-buffer@b4e00000 {
+> +		reg = <0x0 0xb4e00000 0x0 0x3200000>;
+> +		no-map;
+> +	};
+> +};
