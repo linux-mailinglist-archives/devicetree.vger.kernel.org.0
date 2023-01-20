@@ -2,99 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECA1867581D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD577675820
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:08:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230342AbjATPIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 10:08:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42530 "EHLO
+        id S230005AbjATPI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 10:08:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbjATPIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:08:06 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5026BC1302
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:08:02 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id kt14so14730075ejc.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:08:02 -0800 (PST)
+        with ESMTP id S229749AbjATPI4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:08:56 -0500
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC910BF89F
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:08:54 -0800 (PST)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5018be4ae8eso13379227b3.4
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:08:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZloHG/b+aUSzeESbN9+Hbz6Kz4K6ar0eODA3eSRcTt4=;
-        b=fvjOJbmCatrxy3kmbDBZkiCSxXkDHf81I9S8cORViLbYbRvNcqC2+otHYyYn9X+aVB
-         oPokIWUIX4sLJ9LLOPPhZBaI6w13WWbmZw7pxTlsCG+lfXt+mU2TJGL1JDsQo9BiaMQb
-         UxC0G8MyNtNTvKIH0NF0ahNh051Gb3MJmiscczuo9CVFEsH/bg5FDGhZh3cv850wCXW1
-         P2CgPh/r8NOm36lJO1SZUyCR+UwjOVhuc6Wg/AucFHTzmDL/W7CNF41JFTAUZOZYKlN/
-         vVtvXoavDpptLy06mG4tXpvtDLkhYe+TJV28PgwVEKb4y/dNlu4JNW9WN/l2/L/jJSdZ
-         LSuQ==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=pBi3ffU51iejmbjZQdj0oR9LDHIFBr0OZALJjIdQl6s=;
+        b=IAR+djixseOq3jujbfi2bCnwrdqKvF/Hj92LldFzw7K3pR0UkGgZo29Kj1ScJMqbVT
+         QWO1o80x9LlwXtpRk3xF3uN0OmsR0u42fQWOf3fDIuzu13H0miJ701CibLZpoOtLwFo2
+         2jqgEwILWw9h7eHpp90ieOd1D+/9wY1RY4R2g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZloHG/b+aUSzeESbN9+Hbz6Kz4K6ar0eODA3eSRcTt4=;
-        b=VmmWrprRgUcnWBVdrqlUBihZ8Kj3opAM2eQBo5iFfKS+jEYXOb4/LlbGuWxl+JQDjm
-         WShtiX687oDOYWT3wMSlljigxyCSLdJnLH4KC9O/kds0kv+SrfxvrhrFGKMS0038Lujh
-         5w09VqpZk38CuMcqKdCO0RVFKI4x4Z0t/PeuDTSAD3jytEEtezHWvzd8j4Z6TRPXEck7
-         uUEPXtFhod2KlD6I/7JbtNKM7+IPhtoRTDdgurmK45Rm4TJ4aM8j1NiYG3np+XIYAo/r
-         dq+Lp0hMSS1vZe/+7yVEldE3d9w2u/JNr/zsRIb+W8LEY+2Or/tfZegvIIdhLR4Vc31j
-         ZUXA==
-X-Gm-Message-State: AFqh2kr3CrOMKn8a0dCJoSaa8DdV/9nxJeBRK9df788P3aEM86tYoRTv
-        1VpCgWqKIUvbpZ6HQk/qmOd43g==
-X-Google-Smtp-Source: AMrXdXu0TCIsz6KA4nidb34t6GeimnrRJpKQf8lbl0ED3lMO7EjYah3chjPsQGur8g3vZ3FUlgjSRw==
-X-Received: by 2002:a17:906:a898:b0:820:4046:1586 with SMTP id ha24-20020a170906a89800b0082040461586mr12094672ejb.12.1674227280837;
-        Fri, 20 Jan 2023 07:08:00 -0800 (PST)
-Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
-        by smtp.gmail.com with ESMTPSA id fs37-20020a170907602500b0086ffe3a99f9sm7756004ejc.82.2023.01.20.07.07.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 07:08:00 -0800 (PST)
-Message-ID: <ebde7290-e99c-eb91-d96e-ada60a43b06d@linaro.org>
-Date:   Fri, 20 Jan 2023 16:07:58 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pBi3ffU51iejmbjZQdj0oR9LDHIFBr0OZALJjIdQl6s=;
+        b=uNWaCemuY86epRoIQQ0gwUcLvmHAU83uNV0sPIpF6DqU5fQ8Q+pIAJom2fIXQTI2I/
+         JBtPPKiZeOW6LxjrOAEWDoKUsGZGdka6/l14CjBqzWPpnTp8LXm8+X4qsLVFcvI4XXR9
+         reYG27LaVkuxSckFKewOFMPRTcMWFjmV1HDSzAHxSf8ztrf+lOwbb7V2fGar7Q9B7bYl
+         EJ5JKm4RPiLfWQ/apFKMlG1KABlRkqjCndJsNMvRFTUKJWTIHBgppOhcLnLfDfC7BTfI
+         juJSA1m2RPGQUqTFoxwvHUberQCuzNQWflCj2E/1Vw2n4W+vSWyghi06VPRjmUtt3Sgv
+         uD9g==
+X-Gm-Message-State: AFqh2kpGU+NLoi2puSk5rjF0AH+d8odKrPwVCcpycCLMqxIrRR7o1Ucd
+        KM/8SxQQipeYEIO65qCLeISS0KrrH8mwJH1JLmXARw==
+X-Google-Smtp-Source: AMrXdXte3RJRifErKDri4ufOLNtUc+I381qg5srevvWpCT+9akcsEUzeJT7w9khoMlB0A7nSuyN3J3u1pWiC2hEGDCg=
+X-Received: by 2002:a0d:cbcb:0:b0:4f2:1365:fa5 with SMTP id
+ n194-20020a0dcbcb000000b004f213650fa5mr1686671ywd.279.1674227333774; Fri, 20
+ Jan 2023 07:08:53 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/2] ARM: dts: qcom: msm8226: add clocks and
- clock-names to gcc node
-Content-Language: en-US
-To:     Alexey Minnekhanov <alexeymin@postmarketos.org>,
-        Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
+References: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Fri, 20 Jan 2023 08:08:07 -0700
+Message-ID: <CAPnjgZ3MQ4E_3n_Z881QsdO-zELPkLaCm0cOFwz6Fds+u73OWg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/8] clk: qcom: msm8996: add support for the CBF clock
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230119190534.317041-1-rayyan@ansari.sh>
- <20230119190534.317041-3-rayyan@ansari.sh>
- <e079e820-2df0-3c95-10ef-527020b97f5d@postmarketos.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <e079e820-2df0-3c95-10ef-527020b97f5d@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Dmitry,
 
+On Thu, 19 Jan 2023 at 23:14, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On MSM8996 two CPU clusters are interconnected using the Core Bus
+> Fabric (CBF). In order for the CPU clusters to function properly, it
+> should be clocked following the core's frequencies to provide adequate
+> bandwidth. On the other hand the CBF's clock rate can be used by other
+> drivers (e.g. by the pending SPDM driver to provide input on the CPU
+> performance).
+>
+> Thus register CBF as a clock (required for CPU to boot) and add a tiny
+> interconnect layer on top of it to let cpufreq/opp scale the CBF clock.
+>
+> Dependencies: [1]
+>
+> [1] https://lore.kernel.org/linux-arm-msm/20230111191453.2509468-1-dmitry.baryshkov@linaro.org/
+>
+> Changes since v2:
+> - Added interconnect-related bindings
+> - Switched CPU and CBF clocks to RPM_SMD_XO_A_CLK_SRC
+>
+> Changes since v1:
+> - Relicensed schema to GPL-2.0 + BSD-2-Clause (Krzysztof)
+> - Changed clock driver to use parent_hws (Konrad)
+> - Fixed indentation in CBF clock driver (Konrad)
+> - Changed MODULE_LICENSE of CBF clock driver to GPL from GPL-v2
+> - Switched CBF to use RPM_SMD_XO_CLK_SRC as one of the parents
+> - Enabled RPM_SMD_XO_CLK_SRC on msm8996 platform and switch to it from
+>   RPM_SMD_BB_CLK1 clock
+>
+> Dmitry Baryshkov (8):
+>   dt-bindings: clock: qcom,msm8996-cbf: Describe the MSM8996 CBF clock
+>     controller
+>   dt-bindints: interconnect/msm8996-cbf: add defines to be used by CBF
+>   clk: qcom: add msm8996 Core Bus Framework (CBF) support
+>   clk: qcom: cbf-msm8996: scale CBF clock according to the CPUfreq
+>   clk: qcom: smd-rpm: provide RPM_SMD_XO_CLK_SRC on MSM8996 platform
+>   arm64: qcom: dts: msm8996 switch from RPM_SMD_BB_CLK1 to
+>     RPM_SMD_XO_CLK_SRC
+>   arm64: dts: qcom: msm8996: add CBF device entry
+>   arm64: dts: qcom: msm8996: scale CBF clock according to the CPUfreq
+>
+>  .../bindings/clock/qcom,msm8996-cbf.yaml      |  53 ++
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi         |  72 ++-
+>  drivers/clk/qcom/Makefile                     |   2 +-
+>  drivers/clk/qcom/clk-cbf-8996.c               | 458 ++++++++++++++++++
+>  drivers/clk/qcom/clk-smd-rpm.c                |   2 +
+>  .../interconnect/qcom,msm8996-cbf.h           |  12 +
+>  6 files changed, 591 insertions(+), 8 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,msm8996-cbf.yaml
+>  create mode 100644 drivers/clk/qcom/clk-cbf-8996.c
+>  create mode 100644 include/dt-bindings/interconnect/qcom,msm8996-cbf.h
+>
+> --
+> 2.39.0
+>
 
-On 19.01.2023 22:42, Alexey Minnekhanov wrote:
-> Hi!
-> 
-> On 2023-01-19 22:05, Rayyan Ansari wrote:
->> Add the XO and Sleep Clock sources to the GCC node.
->>
->> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
->> ---
->>   arch/arm/boot/dts/qcom-msm8226.dtsi | 6 ++++++
-> 
-> Should the same be done for msm8974 dtsi as well?
-yes
+Could you please tell me which dev board this is targeting and where I
+can get one? Also could you please point me to the SoC documentation?
 
-Konrad
+Thanks,
+Simon
