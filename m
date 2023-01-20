@@ -2,148 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2CAD675FE3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 23:05:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E44675FEF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 23:11:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbjATWFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 17:05:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56170 "EHLO
+        id S229553AbjATWLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 17:11:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjATWFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 17:05:24 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2B017F9B5;
-        Fri, 20 Jan 2023 14:05:22 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id c3so6978549ljh.1;
-        Fri, 20 Jan 2023 14:05:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=47bQYYvwoc4QnN6fF+m3+7Uy31DycYW7WL3pijAuHrc=;
-        b=KvPPeMjcYz60GhdROsv9YwE8uv6xdcPv1k4AoX89i567SWpqXcTQSLDK/flblBKQaK
-         cfAwGOzXB55ObBgNsuBR/aS/ZWS73BbHA/j30YrvThOJ8sklQ4vSCuYCTT8/aQzKd7x0
-         ED9B0EpAuuFXHRhyTAE2rYJAIefWE3cRMQT+JXdOSX+nqVPxt1tECmSugDkFBGKmqaIe
-         6MDATr+REE+laIkFeEGl7Baxej1BF+lzV1ySkQv7XTAq7tOHtm6EgBpTeWGjnRwbXi4k
-         o/CUW40k/L54EJCQepVRJ5CWNNQh0cJ5hbe2XRT19mSa+4VgezmJ8OO8kHFU25o+EiBV
-         +VwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=47bQYYvwoc4QnN6fF+m3+7Uy31DycYW7WL3pijAuHrc=;
-        b=N0Ykw/edLx5XhO4z7ybUxbsYTceVnvDZfMmXO2WXkUOvEecGNbjZweXJj582jeLJES
-         O9HS6PQZga260YU/Z0hyPgpOJxqPkrLTWut98aa2qntTaY6VgM45V7CjQPjGquv0zXvX
-         lIIq6DzBDkh33KRDbiaS50zk5p4nF7/M+nBv+ZOVtB3uJoQs7f1V7KHS+6eihPu56RiZ
-         ZCqnkKFk7inLszYpHN1F+sywxvfKP/xgpiQQQONZP2GnAXTsUAfD1b6Cx8x/KEKMH6lp
-         Wq5Zvnp6bFu2Xim1O2AZcuwXMCdLcim2Rt5nwqsjPIwoZAmTzTyMjYJp1O0HiM8xmT2c
-         KPcg==
-X-Gm-Message-State: AFqh2kr/GenebU2r3XvS7xGAf9ZepkcSgs2fdPBLycz8Uq53UauYtWNv
-        ZSqMInNY68jO/FR1B2Zi4LPUKUkHxegic1fRNSU=
-X-Google-Smtp-Source: AMrXdXsEvy2zUx8pBtqvlaMNQXcMQiU5wj9qFfZWFmAJ8mJ3iDwd2PNDfGEnDLQioMNqbk8VGMyCnxB99EQkJx6YjZ8=
-X-Received: by 2002:a2e:b752:0:b0:28b:77fd:d92b with SMTP id
- k18-20020a2eb752000000b0028b77fdd92bmr1424117ljo.86.1674252320747; Fri, 20
- Jan 2023 14:05:20 -0800 (PST)
+        with ESMTP id S229587AbjATWLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 17:11:43 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6D8C36441;
+        Fri, 20 Jan 2023 14:11:41 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7C20FB82A8B;
+        Fri, 20 Jan 2023 22:11:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C661C433EF;
+        Fri, 20 Jan 2023 22:11:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674252699;
+        bh=fY92xshQMLDdPXyG9FcNkhWbhYvRBMxZmEl2a/bUYwE=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=MKJQJ7VHJ4+NchxxWdA3fCaDWfPqCerxmUYk1gUrzKS67DP8o5pctztlqVEgHtm6d
+         8bgfN3b8fHuVLRi484wMLag5HFsj7mzIa8Wh812VtIwITEVUmESHxAqptESbyoEJy6
+         h4Wzr2bdstsWpQvXTmzdru9pb5TGTxv32gJX8lgjQMAoABLOSBpbaovgEDMxztrmLt
+         IK0famR5YSsmL4mviMn3N+MjCCY0uuNxOiOw7KiV1W/z8WMxRp4X9JBQ02dDp52RK+
+         8kLXSPrmmjL3rQ3QPFJP3DJbxodUm2zbD8BtQ/Vi+/YDS2hlXPtyAJxIgxpCS32LWp
+         2kQXlgjwCHV2A==
+Message-ID: <078c5a8254ac006b65fc5fa81dfbc515.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20230118184413.395820-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230118184413.395820-1-krzysztof.kozlowski@linaro.org>
-From:   Puranjay Mohan <puranjay12@gmail.com>
-Date:   Fri, 20 Jan 2023 23:05:09 +0100
-Message-ID: <CANk7y0jpC4Hz5cEzdO2WQkRbqNfBKKgKXTrL142D5Ldr_dhBjA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: iio: drop unneeded quotes
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230120061417.2623751-5-dmitry.baryshkov@linaro.org>
+References: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org> <20230120061417.2623751-5-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v3 4/8] clk: qcom: cbf-msm8996: scale CBF clock according to the CPUfreq
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stankus <lucas.p.stankus@gmail.com>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Renato Lui Geh <renatogeh@gmail.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Andreas Klinger <ak@it-klinger.de>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
-        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        Nishant Malpani <nish.malpani25@gmail.com>,
-        Rui Miguel Silva <rmfrfs@gmail.com>,
-        Dragos Bogdan <dragos.bogdan@analog.com>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Robert Yang <decatf@gmail.com>,
-        Sean Nyekjaer <sean@geanix.com>,
-        Artur Rojek <contact@artur-rojek.eu>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Philippe Reynes <tremyfr@yahoo.fr>,
-        Alexandru Lazar <alazar@startmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Eugene Zaikonnikov <ez@norophonic.com>,
-        Phil Reid <preid@electromag.com.au>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sankar Velliangiri <navin@linumiz.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        chrome-platform@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Date:   Fri, 20 Jan 2023 14:11:35 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 18, 2023 at 7:44 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Cleanup by removing unneeded quotes from refs and redundant blank lines.
-> No functional impact except adjusting to preferred coding style.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Quoting Dmitry Baryshkov (2023-01-19 22:14:13)
+> Turn CBF into the interconnect provider. Scale CBF frequency (bandwidth)
+> according to CPU frequencies.
+>=20
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../devicetree/bindings/iio/accel/memsensing,msa311.yaml  | 5 ++---
->  Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml | 2 +-
->  Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml | 2 +-
->  .../devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml    | 2 +-
->  Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml | 4 ++--
->  .../devicetree/bindings/iio/adc/ingenic,adc.yaml          | 4 ++--
->  .../devicetree/bindings/iio/adc/microchip,mcp3911.yaml    | 4 ++--
->  .../devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml    | 2 +-
->  .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml   | 2 +-
->  .../devicetree/bindings/iio/adc/st,stm32-adc.yaml         | 8 ++++----
->  .../devicetree/bindings/iio/adc/ti,ads131e08.yaml         | 2 +-
->  Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml | 2 +-
->  .../devicetree/bindings/iio/dac/lltc,ltc1660.yaml         | 4 ++--
->  .../devicetree/bindings/iio/dac/lltc,ltc2632.yaml         | 4 ++--
->  .../devicetree/bindings/iio/dac/st,stm32-dac.yaml         | 4 ++--
->  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 2 +-
->  .../devicetree/bindings/iio/temperature/ti,tmp117.yaml    | 6 +++---
+>  drivers/clk/qcom/clk-cbf-8996.c | 143 +++++++++++++++++++++++++++++++-
+>  1 file changed, 142 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/clk/qcom/clk-cbf-8996.c b/drivers/clk/qcom/clk-cbf-8=
+996.c
+> index 9cde0e660228..b049b4f7b270 100644
+> --- a/drivers/clk/qcom/clk-cbf-8996.c
+> +++ b/drivers/clk/qcom/clk-cbf-8996.c
+> @@ -5,11 +5,14 @@
+>  #include <linux/bitfield.h>
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+> +#include <linux/interconnect-provider.h>
+>  #include <linux/of.h>
+>  #include <linux/module.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> =20
+> +#include <dt-bindings/interconnect/qcom,msm8996-cbf.h>
+> +
+>  #include "clk-alpha-pll.h"
+>  #include "clk-regmap.h"
+> =20
+> @@ -225,6 +228,133 @@ static const struct regmap_config cbf_msm8996_regma=
+p_config =3D {
+>         .val_format_endian      =3D REGMAP_ENDIAN_LITTLE,
+>  };
+> =20
+> +#ifdef CONFIG_INTERCONNECT
 
-For ti,tmp117.yaml
-Reviewed-by: Puranjay Mohan <puranjay12@gmail.com>
+Can you move this driver to drivers/interconnect/ ?
+
+> +struct qcom_msm8996_cbf_icc_provider {
+> +       struct icc_provider provider;
+> +       struct clk *clk;
+> +};
+> +
+> +#define to_qcom_cbf_provider(_provider) \
+> +       container_of(_provider, struct qcom_msm8996_cbf_icc_provider, pro=
+vider)
+> +
+> +enum {
+> +       CBF_MASTER_NODE =3D 2000,
+[...]
+> +static int qcom_msm8996_cbf_icc_remove(struct platform_device *pdev)
+> +{
+> +       struct icc_provider *provider =3D platform_get_drvdata(pdev);
+> +
+> +       icc_nodes_remove(provider);
+> +       icc_provider_del(provider);
+> +
+> +       return 0;
+> +}
+> +#else
+> +static int qcom_msm8996_cbf_icc_register(struct platform_device *pdev)
+> +{
+> +       dev_warn(&pdev->dev, "interconnects support is disabled, CBF cloc=
+k is fixed\n");
+> +
+> +       return 0;
+> +}
+> +#define qcom_msm8996_cbf_icc_remove(pdev) (0)
+
+It's like two drivers in one.
+
+> +#endif
+> +
+>  static int qcom_msm8996_cbf_probe(struct platform_device *pdev)
+>  {
+>         void __iomem *base;
