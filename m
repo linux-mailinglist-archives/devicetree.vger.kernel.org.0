@@ -2,92 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6674674EBB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 08:56:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1278674EBC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 08:56:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbjATH42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229850AbjATH42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 20 Jan 2023 02:56:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57382 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjATH41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 02:56:27 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C2E360AD
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:56:25 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id b7so4080335wrt.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:56:25 -0800 (PST)
+        with ESMTP id S229725AbjATH42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 02:56:28 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD8B54A237
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:56:26 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id j17so3373352wms.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:56:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KUADaIFSKnQf+0SoHIzKkUQFN+SsRrz208WuulVyoak=;
-        b=VzXc8gHt0v1Iy2HIVuJLp9hhp9Azx8FYGaD2i4vCsD9eIgUTDv/yok0aYcmPQtkEZu
-         S0ecNiUw7RO4DYS1xYuBM7GNSmue7XVeCLo3t/uqH1IwK/Nan/K3eBYI3UGe7gGd3Yhs
-         0nlEsio2m5AqBLNPOri23PxcwJyZDrsQx2XaL/K81Jf5Gt+nZlrNVv9d9isRJI6cdEFl
-         unYYMbJ5OLMSYHJ3km2I6sR/+t9Vk9kLn5FDtTPVlhV38uqG+i7gvQ0w1UUtTpbequll
-         EPd/IknSq18eDkDftrWv/TlPrrk9GkeI/62SRyHhW24F9dev97+NAYt2n7lg17obB4L8
-         /hnQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZyHITZMuEPdmPoqCN4AhJLyjE6UKeJAy3IGmzplgigM=;
+        b=lMTi6LoYMqN5uBJMYG4Aq5YyF3V5s+cXmVk5V8Vfs2AMpnM5xgqgG6wbACtRMc0U/1
+         yroAFwFQAt21yE1jWphMCr0pfuGxrWmjrgHsvqRmOs/HlG75qaJ1CqYjXpJtKcenSGVH
+         5dTQVUAzb01m1O4XtUYzjQsBibOiM4Hw2W2+h5olpvLTUZ/55EP9Qs2Wt5xSUtCQTLbR
+         yyS5p9rDUyWXjTM2qwlm1nQOqZ5bZ2SfGx/j4E+RdiB7t3QT50/WFHRr6D4C9T7bAh7U
+         GlJqKHhw+uv+otz/TMzPTqKqw9+DyPXMSjFzUwpY05f4AFrvulQ+t/XuPPXZ6XERA0Io
+         Ay7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KUADaIFSKnQf+0SoHIzKkUQFN+SsRrz208WuulVyoak=;
-        b=psOdxSaHPBed4MPspbFyKCpQBqykbkCyoBDi6e1d8LcBA9eRjVOosnCztv0uTMspUH
-         obfNJ4R8iopZXD+wxNoneHzvZFCfRU0HcQNoP1rq/H9WfcAgrLm2eLmzh8j9gjI7CIUB
-         vm7nJuPwXYm/uQOsX4Y9EYXgTKqCB5lMK22M+qiLcutM87SGw62qxY0R7Vh5+HOCMOWa
-         VO+zFgfgMmTO3CSHxXxOOalpyG5u1wwxduzyzmkyycNqM5QEWGj8G1l9Gy12WBP+0LZu
-         pitioa72s/5zyXEF3lX1fT6xdBgplp8VRaOz+cFIC+vEZEWnXA0Ho1CWWaCKfYGS8Tuh
-         IQQg==
-X-Gm-Message-State: AFqh2kqrdlZid3sf7xwvmrGl55/9SmjpVS7okwBwKMzW3BKuRKfuGPJ3
-        tOpDJlsHbFlswJ7rzo5g2Te2bA==
-X-Google-Smtp-Source: AMrXdXuk0XpVWWB7iKPpaTnxrfqEpVje1+p9N+X/GMB3aJy0mMUZZDjU7nb0e92eT+NhovPhkY0ULQ==
-X-Received: by 2002:a5d:67c3:0:b0:242:8af9:b987 with SMTP id n3-20020a5d67c3000000b002428af9b987mr6985970wrw.13.1674201383929;
-        Thu, 19 Jan 2023 23:56:23 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZyHITZMuEPdmPoqCN4AhJLyjE6UKeJAy3IGmzplgigM=;
+        b=3+a71Mja+FyHu8/KbcWx4VUO6uDnofaG0zsZR3vUXETuSS6dETHK/mgLqDwBUcvmD9
+         vySXBXGAejGl7pLQxOMVDsbSmQFXTOVlruz4dn23yM1vXCRidLZvEJ/OSh9g3zg7vf7q
+         3bTKwoa67lHPH8JXhPd3YbblY4YmzblTbMWvqW/Sq9U9IfX1SAhQTt/1vji6wI495sAq
+         Fqv+CZScZG2yvBCVhHv99b29UojUh+OKj5OiepOM9riDW+AVLk1CWhswbXPneUkfwRcW
+         olZmf68wJn4HF77v48eCywXFvssiFzhGqaxhwLPdb6hpC/BwZQCfvzG43RCf0FVd7+mz
+         kBpw==
+X-Gm-Message-State: AFqh2kpNJ3ab2DgLPy+viElQHnzNhX/zPJRUldR+flnHow/BcZw3dGbd
+        kndw9Dm8eOMqSg/jZ4r039MCbw==
+X-Google-Smtp-Source: AMrXdXtSbV7lOd6Qgv1Bhrf9NWoxCd2EcR06BoREz+wznIpecUatJWh70gG1siNdzKsa3wzsezTDgg==
+X-Received: by 2002:a05:600c:5116:b0:3db:1a8:c041 with SMTP id o22-20020a05600c511600b003db01a8c041mr13160767wms.17.1674201385390;
+        Thu, 19 Jan 2023 23:56:25 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d5-20020adfa345000000b002be546f947asm975622wrb.61.2023.01.19.23.56.22
+        by smtp.gmail.com with ESMTPSA id d5-20020adfa345000000b002be546f947asm975622wrb.61.2023.01.19.23.56.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 23:56:23 -0800 (PST)
+        Thu, 19 Jan 2023 23:56:25 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] dt-bindings: vendor-prefixes: document lineartechnology
-Date:   Fri, 20 Jan 2023 08:56:17 +0100
-Message-Id: <20230120075618.153664-1-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>
+Subject: [PATCH 2/2] dt-bindings: trivial-devices: document SPI dev compatibles
+Date:   Fri, 20 Jan 2023 08:56:18 +0100
+Message-Id: <20230120075618.153664-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230120075618.153664-1-krzysztof.kozlowski@linaro.org>
+References: <20230120075618.153664-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document lineartechnology vendor prefix, already used in SPI dev.
+Document existing SPI dev compatibles.
 
+Cc: Mark Brown <broonie@kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/trivial-devices.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 38edfa65fde8..bbf710b6e4c9 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -735,6 +735,8 @@ patternProperties:
-     description: Lichee Pi
-   "^linaro,.*":
-     description: Linaro Limited
-+  "^lineartechnology,.*":
-+    description: Linear Technology
-   "^linksprite,.*":
-     description: LinkSprite Technologies, Inc.
-   "^linksys,.*":
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index b13f280f36fa..6d1dc1e2484a 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -65,6 +65,8 @@ properties:
+           - capella,cm3232
+             # CM3323: Ambient Light Sensor
+           - capella,cm3323
++            # Cisco SPI Petra
++          - cisco,spi-petra
+             # High-Precision Digital Thermometer
+           - dallas,ds1631
+             # Total-Elapsed-Time Recorder with Alarm
+@@ -169,6 +171,8 @@ properties:
+           - isil,isl29030
+             # Intersil ISL68137 Digital Output Configurable PWM Controller
+           - isil,isl68137
++            # Linear Technology LTC2488
++          - lineartechnology,ltc2488
+             # 5 Bit Programmable, Pulse-Width Modulator
+           - maxim,ds1050
+             # 10 kOhm digital potentiometer with I2C interface
+@@ -227,6 +231,8 @@ properties:
+           - memsic,mxc6655
+             # Menlo on-board CPLD trivial SPI device
+           - menlo,m53cpld
++            # Micron SPI NOR Authenta
++          - micron,spi-authenta
+             # Microchip differential I2C ADC, 1 Channel, 18 bit
+           - microchip,mcp3421
+             # Microchip differential I2C ADC, 2 Channel, 18 bit
+@@ -305,10 +311,14 @@ properties:
+           - pulsedlight,lidar-lite-v2
+             # Renesas ISL29501 time-of-flight sensor
+           - renesas,isl29501
++            # Rohm DH2228FV
++          - rohm,dh2228fv
+             # S524AD0XF1 (128K/256K-bit Serial EEPROM for Low Power)
+           - samsung,24ad0xd1
+             # Samsung Exynos SoC SATA PHY I2C device
+           - samsung,exynos-sataphy-i2c
++            # Semtech sx1301 baseband processor
++          - semtech,sx1301
+             # Sensirion low power multi-pixel gas sensor with I2C interface
+           - sensirion,sgpc3
+             # Sensirion multi-pixel gas sensor with I2C interface
 -- 
 2.34.1
 
