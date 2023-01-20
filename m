@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63121674D21
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 07:14:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46453674D1E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 07:14:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbjATGOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229595AbjATGOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 20 Jan 2023 01:14:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52354 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjATGO2 (ORCPT
+        with ESMTP id S229774AbjATGO2 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 01:14:28 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6873E7DF8A
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 683FD7D653
         for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 22:14:27 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id bk15so11369296ejb.9
+Received: by mail-ej1-x62e.google.com with SMTP id qx13so11318062ejb.13
         for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 22:14:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=U9K4WOdqw7adZ3t19Ot+UPxMZGfbNK0RwRjaDWGiMcg=;
-        b=sIuwRvUvzUWnVmgtlVjBFpvO5cOUL2Cqjs+8Cw8hn1vZkqKg3GDmOO3YvzZEyvaThS
-         K7jw2x7HKsBhi+ALbNSygEPDNaScqGkyNLoe1tX1F73bmhcQCM/vl0aUxU/Y2kNfCbvK
-         5z+TzhBQahNEFa75kusN3RRFeNL6J5N8X9ohc7ZFSZGR0oct72NVxSsJ2wo0Vns390ZI
-         yMXBU2//1zacObV9ZCnIQR9LVsF7nIKGmD0qSPjCIaXc8bUfBkMZoSc9VSov/NKpCnZo
-         c5e0MOEYumtiPPKJjOwMcie6XIvYzLdRiG1hcyd1XlM/J8RyVUzJT8dYdWD6u6O4xUB9
-         Sg7w==
+        bh=0sU5UtyptRWXVDghW52MFjo+qdp2W+CiadpzYku8SKc=;
+        b=NXuZbZWMnOlUksnCv2Nhz/GM4VMwvyVxVVbJbvDfeX85/n22/bM6sXaG5dt0+6k9eS
+         xnoPF/3KzUz7ADOnjmRDwFNhnBr+QzCW2lEoLHncsanwR0cXQcZAYO1WyDVsf6Cf27DR
+         gdvooS1Nh9Z3nOC6HC8bqemNwLU0SwF4ATGNy50tnWxHw+Txq0bTit/UzgAQGZVIPYUJ
+         ZdAKodj2MQBeb5cZ+o/9OyMj4cxzl9phjpB5Vwjr1RSYbGRYeH4ihJPPejb3GmmsQHbc
+         Hy/wqB7fbZX1XVJxZFKar4gii/Sv89h1/WUHliyXg/sVkCctmn9K3cxLhZSn9G3z7yEs
+         zX0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=U9K4WOdqw7adZ3t19Ot+UPxMZGfbNK0RwRjaDWGiMcg=;
-        b=Rs96oRYsPdfnnC/RjlG4j82SViDtCvE7MrOguC0IqTlqqtdTTYkY+rWiAvfQgP8JBb
-         QCl5pvuMSXsZbbuv/MuoN1/ENPjedo4+cX56wj3XEk0D62mnPccP2Ix5LighEv4e3zmm
-         hAV8/MlfHIE1fc1Hzol07PsRLJ0RdddY9PfYY/P8IQc7smEeww6/rMvpgWMN7CTWBfb3
-         Qu5ojaH9SycFbrFAblSQRsatyS2/4trlKztrQfnsqj7h7Yics8oqBuAQKeSlw5HP2w15
-         /1euDsUKHja8ztRHPjeWq3Gvmo3YfcH6stbNGZ5G31CxCeuQj59repP4iwHLDNViy/rc
-         mFcw==
-X-Gm-Message-State: AFqh2kpdEzfCdX2FC/IQBkHpA9qyBbyEcb8g54lG68oNGIDaNE7q85Ri
-        LmTQbJwItVNa4YohP6iYg17Z2g==
-X-Google-Smtp-Source: AMrXdXtFFh1Rq3GhljNniEVqTUQmVLkf54GNIzrb4638tM/GZXTGzV0T3RNZvFvvuS5UoWID7+61uw==
-X-Received: by 2002:a17:906:7152:b0:84d:1f00:e29 with SMTP id z18-20020a170906715200b0084d1f000e29mr28707491ejj.7.1674195265820;
-        Thu, 19 Jan 2023 22:14:25 -0800 (PST)
+        bh=0sU5UtyptRWXVDghW52MFjo+qdp2W+CiadpzYku8SKc=;
+        b=ReER/FeDm3zNvB1kqJym6d8TIyq7RxxLxFTlvRyCAUqitIAvPYWFBZLEN/BXe3//QG
+         /uf8pE1fb6N7uFtk8O8G0hJDflG9FT6Cw2oB99Fp2mQAVc5TjghzaCb6YJY+LKhdsaw6
+         JRb4Dh3Egto2sJ+6QWWCNZPLylUnQ8W3SlImKYvM634BCQNUGBR85cgBYVVwEe/UEmdY
+         suzv916xqxsJXQzJz+q+ymRuEIEGdx1rp35blkyWucDw4rXbvApH2+MWTB1J7amMdTlq
+         BieB49ZbA6o3xtGFsDoWzVOD41ILhi4aoxYyZrOarE1ogrl2qg7ZrjVYTe5fNF9I2kOR
+         4vNQ==
+X-Gm-Message-State: AFqh2kqEwkueW9oEaqsJFf8MtBSphzrMsHQMDSViQGq14RHU4ozl7Di7
+        T1ABjmRFoR5mhCu3XJEWJbaYOw==
+X-Google-Smtp-Source: AMrXdXv/pCCRPSuuFBHbD6tEoFf4S2mFV1+3cB8E3SJg/9qcdKrsTIvlz8mdjU4dqnqj9maz9lxgqQ==
+X-Received: by 2002:a17:907:c606:b0:870:d9a:9ebb with SMTP id ud6-20020a170907c60600b008700d9a9ebbmr10331262ejc.38.1674195266871;
+        Thu, 19 Jan 2023 22:14:26 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id hp24-20020a1709073e1800b008720c458bd4sm5813358ejc.3.2023.01.19.22.14.24
+        by smtp.gmail.com with ESMTPSA id hp24-20020a1709073e1800b008720c458bd4sm5813358ejc.3.2023.01.19.22.14.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 22:14:25 -0800 (PST)
+        Thu, 19 Jan 2023 22:14:26 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v3 6/8] arm64: qcom: dts: msm8996 switch from RPM_SMD_BB_CLK1 to RPM_SMD_XO_CLK_SRC
-Date:   Fri, 20 Jan 2023 08:14:15 +0200
-Message-Id: <20230120061417.2623751-7-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 7/8] arm64: dts: qcom: msm8996: add CBF device entry
+Date:   Fri, 20 Jan 2023 08:14:16 +0200
+Message-Id: <20230120061417.2623751-8-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
 References: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
@@ -70,93 +70,38 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The vendor kernel uses RPM_SMD_XO_CLK_SRC clock as an CXO clock rather
-than using the RPM_SMD_BB_CLK1 directly. Follow this example and switch
-msm8996.dtsi to use RPM_SMD_XO_CLK_SRC clock instead of RPM_SMB_BB_CLK1.
+Add device tree node for the CBF clock.
 
-Fixes: 2b8c9c77c268 ("arm64: dts: qcom: msm8996: convert xo_board to RPM_SMD_BB_CLK1")
-Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 0c2f7be9f205..4427305f8a94 100644
+index 4427305f8a94..6f180a8efe77 100644
 --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
 +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -719,7 +719,7 @@ gcc: clock-controller@300000 {
- 			#power-domain-cells = <1>;
- 			reg = <0x00300000 0x90000>;
- 
--			clocks = <&rpmcc RPM_SMD_BB_CLK1>,
-+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
- 				 <&rpmcc RPM_SMD_LN_BB_CLK>,
- 				 <&sleep_clk>,
- 				 <&pciephy_0>,
-@@ -1061,7 +1061,7 @@ dsi0_phy: phy@994400 {
- 				#clock-cells = <1>;
- 				#phy-cells = <0>;
- 
--				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_BB_CLK1>;
-+				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
- 				clock-names = "iface", "ref";
- 				status = "disabled";
- 			};
-@@ -1129,7 +1129,7 @@ dsi1_phy: phy@996400 {
- 				#clock-cells = <1>;
- 				#phy-cells = <0>;
- 
--				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_BB_CLK1>;
-+				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
- 				clock-names = "iface", "ref";
- 				status = "disabled";
- 			};
-@@ -2962,7 +2962,7 @@ kryocc: clock-controller@6400000 {
- 			reg = <0x06400000 0x90000>;
- 
- 			clock-names = "xo", "sys_apcs_aux";
--			clocks = <&rpmcc RPM_SMD_BB_CLK1>, <&apcs_glb>;
-+			clocks = <&rpmcc RPM_SMD_XO_A_CLK_SRC>, <&apcs_glb>;
- 
- 			#clock-cells = <1>;
+@@ -3572,6 +3572,13 @@ saw3: syscon@9a10000 {
+ 			reg = <0x09a10000 0x1000>;
  		};
-@@ -3081,7 +3081,7 @@ sdhc1: mmc@7464900 {
- 			clock-names = "iface", "core", "xo";
- 			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
- 				<&gcc GCC_SDCC1_APPS_CLK>,
--				<&rpmcc RPM_SMD_BB_CLK1>;
-+				<&rpmcc RPM_SMD_XO_CLK_SRC>;
- 			resets = <&gcc GCC_SDCC1_BCR>;
  
- 			pinctrl-names = "default", "sleep";
-@@ -3105,7 +3105,7 @@ sdhc2: mmc@74a4900 {
- 			clock-names = "iface", "core", "xo";
- 			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
- 				<&gcc GCC_SDCC2_APPS_CLK>,
--				<&rpmcc RPM_SMD_BB_CLK1>;
-+				<&rpmcc RPM_SMD_XO_CLK_SRC>;
- 			resets = <&gcc GCC_SDCC2_BCR>;
- 
- 			pinctrl-names = "default", "sleep";
-@@ -3427,7 +3427,7 @@ adsp_pil: remoteproc@9300000 {
- 			interrupt-names = "wdog", "fatal", "ready",
- 					  "handover", "stop-ack";
- 
--			clocks = <&rpmcc RPM_SMD_BB_CLK1>;
-+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
- 			clock-names = "xo";
- 
- 			memory-region = <&adsp_mem>;
++		cbf: clock-controller@9a11000 {
++			compatible = "qcom,msm8996-cbf";
++			reg = <0x09a11000 0x10000>;
++			clocks = <&rpmcc RPM_SMD_XO_A_CLK_SRC>, <&apcs_glb>;
++			#clock-cells = <0>;
++		};
++
+ 		intc: interrupt-controller@9bc0000 {
+ 			compatible = "qcom,msm8996-gic-v3", "arm,gic-v3";
+ 			#interrupt-cells = <3>;
 -- 
 2.39.0
 
