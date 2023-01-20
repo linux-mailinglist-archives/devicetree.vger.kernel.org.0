@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2040675B84
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:31:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BECF9675B8A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230351AbjATRbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:31:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46680 "EHLO
+        id S230130AbjATRby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:31:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230289AbjATRbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:31:34 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45BF8CFD26
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:31:23 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so6332357wml.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:31:23 -0800 (PST)
+        with ESMTP id S230160AbjATRbk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:31:40 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B9FDA10F
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:31:24 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so4267376wmq.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:31:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QkLt6xZBpWumMmqzLzKAMNGNbT1hqjEyGCt1cE++XRU=;
-        b=PWNttmsjNUVGI9U/cMBrzpAwTfezOdl8WjPVbS9se2BvuNhkLNscZAq6QpORp3KzEi
-         Noa6nRNL/p1XDlztrFL+BI8La2/yQfJ8t+upDFeAoe6rQnCzzMgEfCcUkr9nno3AkQjW
-         m+wCCSrHDc6tYM+IjeBCeMwc/myYTF6U+s0tnqgNdz6WfgmoKbFQBN/OjPE+i39BZ6v/
-         ZYF84KddJgiDK9p5AhoysWt+Pw6lMRek6gvzgnd8Gb2XnXmv9S6Aj4o84hjWYnL/3VQA
-         oDNsG9+vQdyY8hN1Kmr6NpXyjXVxE/nAug832ZmlVxU/fMUxQWjBA9xv/kVtmYXbEV5r
-         YjXQ==
+        bh=KyAO0ggLkugTbmjL8T0rTpiHk71ZjtlH8av65wk9BAQ=;
+        b=m6tsvSeI4ao0UUTKLDkiByuqXXc2FaQGEzVB9V8E7aqstGcCXgnCGbkAkH0K+EFvgi
+         f1y52Lv5vIIo2rH+6keNv+OplditcWJfumyNsk6xEv1ljPFzbtQxoTZon2qi2FJs0Zt4
+         VAdvL20Dj6PK3L6so+67nt8e2j3sgDMvNi62NH0NYQLiVZUhSXrnS92o1sKr10AtMEVi
+         50SYzQ+l5wPgXaf+B92pb/JUGVPyckOgwpq7rCLct/5cojOJv7sRe8wo4S3hCvNo7lfn
+         1dWXdDngtgxMXN0EjiQtp/ZnUzpWWuxgNPP0VvTgXNqgqDMBKrztrMZ/dSy5QbpAN9qi
+         VTmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QkLt6xZBpWumMmqzLzKAMNGNbT1hqjEyGCt1cE++XRU=;
-        b=Amly7DQoSVttpuzZyYFTxJncXgv2kp6b3GN6/pK98COaq88tyNXhT7z2wD2WZszmll
-         6hl2aodp89a1dUPViHbfEdXGtpsyspmzqXt/VM9OLpyjLsXswNvxfEbKSG5y45e8CSRn
-         dwtC2NtS5bovqtFgFHTvlbYGHfHu7foXZHbd8YRByWiTBwg4otFo/fA8GvwfbCWfMwz2
-         sCvvqVERZzBP2oJZFqv6eAVk8O9cnyV47fdm5loQoHFGFjjf+1oW/mBkSS/DDssPHwJE
-         S6fcqXLHHgbH5CgXy9ntGedChLxvD2dbvYsPtu8vRRYa1B4Q88mzO1U0mzXKLusGEsL8
-         THVw==
-X-Gm-Message-State: AFqh2krgy5ktiVmnWTE07wFl99ZJJKEHTJvjjwIr0lYMQX42N8ZlRTmf
-        2uMmh2bh0s6s+Zl1vbT1C9NZZQ==
-X-Google-Smtp-Source: AMrXdXtYEbx+ZfDH1uBQQ4+kkKgbTFFddHq3xALZmifs0lrkLmie0YdVNHLwZ/PyaJa1qwKV1iu+DQ==
-X-Received: by 2002:a05:600c:3b1e:b0:3cf:497c:c4f5 with SMTP id m30-20020a05600c3b1e00b003cf497cc4f5mr15337599wms.13.1674235881768;
-        Fri, 20 Jan 2023 09:31:21 -0800 (PST)
+        bh=KyAO0ggLkugTbmjL8T0rTpiHk71ZjtlH8av65wk9BAQ=;
+        b=jGZDkPZtX2TqWvdGx8TYA+H9rsyj4pl17zR46H7u5RcAzMo07O6qBgCZQfJ+g5/YrZ
+         m3G2J3lH/Ud2y3U4HoJ/Y2GbuXTNPPeDdz727c/8sqliNSpqOeQYiaY5D1mDRpWGztQN
+         gJAvgQpwuxfr6bL/y774g+BFB9EUWMLDlCgxYJiDBITyRZveOtmnp10AQsgQnY1DpYVG
+         ubBfHadfXxxjCTCGiV64SN3kju7n9Xveng2HobSuoEBsPIB3gG4fESwtPjh8m3kkWLR3
+         uRGqNM+sDT0h8Pz9FeZluaDPonI/i8XgTwU3eHn9Nd+CFX45EO85ZUgIwe5u5HINr4TI
+         SZWQ==
+X-Gm-Message-State: AFqh2krrrHHp23CMJYOpIRvAZPPlqyaIUYJ8mGkl6Mk/qA/ebxGK7Nj8
+        c/Rb6XmL/LFpUEPnsTve8KvxPw==
+X-Google-Smtp-Source: AMrXdXskZLKqyM0OBnAZtcD8h/EPC2ylTQFXkugT8TggR3ynJAOHqiZHz9cmQ72VKbksu9/gjkHOqA==
+X-Received: by 2002:a7b:c4d7:0:b0:3db:2fc6:e124 with SMTP id g23-20020a7bc4d7000000b003db2fc6e124mr3624107wmk.7.1674235883284;
+        Fri, 20 Jan 2023 09:31:23 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d22-20020a1c7316000000b003db0dbbea53sm2819179wmb.30.2023.01.20.09.31.20
+        by smtp.gmail.com with ESMTPSA id d22-20020a1c7316000000b003db0dbbea53sm2819179wmb.30.2023.01.20.09.31.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 09:31:21 -0800 (PST)
+        Fri, 20 Jan 2023 09:31:22 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -58,9 +58,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
         Chanho Park <chanho61.park@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/6] arm64: dts: exynos: add ADC supply on Exynos7 Espresso
-Date:   Fri, 20 Jan 2023 18:31:12 +0100
-Message-Id: <20230120173116.341270-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/6] arm64: dts: exynos: correct Bluetooth LED triger on E850-96
+Date:   Fri, 20 Jan 2023 18:31:13 +0100
+Message-Id: <20230120173116.341270-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230120173116.341270-1-krzysztof.kozlowski@linaro.org>
 References: <20230120173116.341270-1-krzysztof.kozlowski@linaro.org>
@@ -76,28 +76,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ADC requires supply and it seems LDO3 (same as on Exynos5433 TM2 boards)
-fits in voltage range of 1.8 V.  Use it to silence warning:
+Switch source of LED activity to hci0-power from RX, to match bindings
+(same effect expected):
 
-  exynos7-espresso.dtb: adc@13620000: 'vdd-supply' is a required property
+  exynos850-e850-96.dtb: leds: led-5:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+    'hci0rx' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+    'hci0rx' does not match '^cpu[0-9]*$'
+    'hci0rx' does not match '^hci[0-9]+-power$'
+    'hci0rx' does not match '^mmc[0-9]+$'
+    'hci0rx' does not match '^phy[0-9]+tx$'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/exynos/exynos7-espresso.dts | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-index 829657c9c7ca..abb3bd700d6f 100644
---- a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-@@ -78,6 +78,7 @@ &watchdog {
- };
- 
- &adc {
-+	vdd-supply = <&ldo3_reg>;
- 	status = "okay";
- };
- 
+---
+
+Depends on:
+https://lore.kernel.org/all/a85c256af01f64389a078c2b37c3b72a27d97536.1668005062.git.geert+renesas@glider.be/
+---
+ arch/arm64/boot/dts/exynos/exynos850-e850-96.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+index f52a55f644f7..6ed38912507f 100644
+--- a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
++++ b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+@@ -106,7 +106,7 @@ bt_active_led: led-5 {
+ 			gpios = <&gpg2 7 GPIO_ACTIVE_HIGH>;
+ 			color = <LED_COLOR_ID_BLUE>;
+ 			function = LED_FUNCTION_BLUETOOTH;
+-			linux,default-trigger = "hci0rx";
++			linux,default-trigger = "hci0-power";
+ 			default-state = "off";
+ 		};
+ 	};
 -- 
 2.34.1
 
