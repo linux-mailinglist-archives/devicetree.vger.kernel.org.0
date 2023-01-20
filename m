@@ -2,105 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB133675C58
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 19:00:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9B9E675C74
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 19:10:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbjATSAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 13:00:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51146 "EHLO
+        id S229536AbjATSKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 13:10:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjATSAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 13:00:09 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC528BFF77;
-        Fri, 20 Jan 2023 09:59:39 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 559AA84474;
-        Fri, 20 Jan 2023 18:59:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1674237577;
-        bh=89npFUlJ05OuP5SszTV+TrhLpUB0UjWi2Plc7nZCAvQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=fzfzID+UEPgqTzcP0eR+Gpse91HbEo03rbS3g2DsBm01PKtbitE958hQwNpFFyEv6
-         x0IQwHXWgZ4217D0HaTm8aTviX2YfI3AQ6kc7YzzsUlfWvDPnEAlmPu244X8ixm4IQ
-         v7pX9eb6nhmV0iSQZbwHu1sJPRT69nNMsp+YQFMGPH7sV7wKA0VK0Ag7Ku4sfQBSqK
-         OQHYdsKVjyxK3T1FknKTPtmOiCumy3HblxKEf2NYKc9t5kemUC+R+x63890cgi1N8+
-         TTPdyGFq2WPAFuuNtdTQZptdYXPQQ/VUP6Y2JMbMqeaxJeQ9n9hFRRJ1M+lUVQChFW
-         qWWB8RgIAfhsQ==
-Message-ID: <670d04a5-f56a-95b5-4132-2df9919eaeaa@denx.de>
-Date:   Fri, 20 Jan 2023 18:59:35 +0100
+        with ESMTP id S229524AbjATSKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 13:10:04 -0500
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E6A97B2D9;
+        Fri, 20 Jan 2023 10:10:03 -0800 (PST)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out2.suse.de (Postfix) with ESMTP id C8FCB5FBEC;
+        Fri, 20 Jan 2023 18:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1674238201; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=hkN6PpdG4Lfy4P3q90hNQcwHa4prP8EZfXIbP4VPT1k=;
+        b=0kWIhRlhN7HnSu+SxpjJGtYLQu4XcH6zs4to/NIdHtBXBculzP4PLNMAV5+yc4d71dJUaG
+        oadi+rIkwbUZxynl0J1hzyIy902XaC9+Ri33hyLzl6K3hX/R36Pv7Q5Mvm2wRfdy2Y3xE+
+        w77XGUvo5bAgyWquH5lxT++OBk4wtBQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1674238201;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=hkN6PpdG4Lfy4P3q90hNQcwHa4prP8EZfXIbP4VPT1k=;
+        b=pMQoSUb2TTGqCwG6jJMv4mpI6i869ypvc5S+cATJNQF48NGzaXKIy5cpIl8JIQWeK4xXo0
+        FcS8/7i4aLHJ0eCA==
+Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
+        by relay2.suse.de (Postfix) with ESMTP id 9E25A2C141;
+        Fri, 20 Jan 2023 18:10:01 +0000 (UTC)
+From:   Michal Suchanek <msuchanek@suse.de>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Michal Suchanek <msuchanek@suse.de>,
+        "Erhard F." <erhard_f@mailbox.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH v3] of: Make of framebuffer devices unique
+Date:   Fri, 20 Jan 2023 19:09:57 +0100
+Message-Id: <20230120180958.30798-1-msuchanek@suse.de>
+X-Mailer: git-send-email 2.35.3
+In-Reply-To: <CAL_JsqKo+mdjA485KDb1ZauJcbOU-FR1G-Z2sYYNu7+Zn32wSA@mail.gmail.com>
+References: 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH V3 1/4] dt-bindings: arm: fsl: Add PDK2, PicoITX and DRC02
- boards for the DHCOM i.MX6ULL SoM
-Content-Language: en-US
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        kernel@dh-electronics.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230120162915.12699-1-cniedermaier@dh-electronics.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230120162915.12699-1-cniedermaier@dh-electronics.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/20/23 17:29, Christoph Niedermaier wrote:
-> Add DH electronics DHCOM PDK2, PicoITX and DRC02 boards
-> for the DHCOM i.MX6ULL SoM.
-> 
-> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Fabio Estevam <festevam@denx.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: kernel@dh-electronics.com
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: - Add Acked-by tag
-> V3: - No changes
-> ---
->   Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 3ba354578e8f..5fa51e63975f 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -645,6 +645,16 @@ properties:
->             - const: armadeus,imx6ull-opos6ul     # OPOS6UL (i.MX6ULL) SoM
->             - const: fsl,imx6ull
->   
-> +      - description: i.MX6ULL DHCOM SoM based Boards
-> +        items:
-> +          - enum:
-> +              - dh,imx6ull-dhcom-pdk2
-> +              - dh,imx6ull-dhcom-picoitx
-> +              - dh,imx6ull-dhcom-drc02
+Since Linux 5.19 this error is observed:
 
-Please keep the list sorted (drc02 should be at the top)
+sysfs: cannot create duplicate filename '/devices/platform/of-display'
+
+This is because multiple devices with the same name 'of-display' are
+created on the same bus.
+
+Update the code to create numbered device names for the non-boot
+disaplay.
+
+cc: linuxppc-dev@lists.ozlabs.org
+References: https://bugzilla.kernel.org/show_bug.cgi?id=216095
+Fixes: 52b1b46c39ae ("of: Create platform devices for OF framebuffers")
+Reported-by: Erhard F. <erhard_f@mailbox.org>
+Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+---
+v3:
+- merge fix into original patch
+- Update the device name format
+- add missing const
+- do not continue with iterating display devices when formatting device
+  name fails
+---
+ drivers/of/platform.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index 81c8c227ab6b..4d3a4d9f79f2 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -525,6 +525,9 @@ static int __init of_platform_default_populate_init(void)
+ 	if (IS_ENABLED(CONFIG_PPC)) {
+ 		struct device_node *boot_display = NULL;
+ 		struct platform_device *dev;
++		int display_number = 0;
++		char buf[14];
++		const char *of_display_format = "of-display.%d";
+ 		int ret;
+ 
+ 		/* Check if we have a MacOS display without a node spec */
+@@ -555,7 +558,10 @@ static int __init of_platform_default_populate_init(void)
+ 			if (!of_get_property(node, "linux,opened", NULL) ||
+ 			    !of_get_property(node, "linux,boot-display", NULL))
+ 				continue;
+-			dev = of_platform_device_create(node, "of-display", NULL);
++			ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
++			if (ret >= sizeof(buf))
++				return -EOVERFLOW;
++			dev = of_platform_device_create(node, buf, NULL);
+ 			if (WARN_ON(!dev))
+ 				return -ENOMEM;
+ 			boot_display = node;
+@@ -564,7 +570,10 @@ static int __init of_platform_default_populate_init(void)
+ 		for_each_node_by_type(node, "display") {
+ 			if (!of_get_property(node, "linux,opened", NULL) || node == boot_display)
+ 				continue;
+-			of_platform_device_create(node, "of-display", NULL);
++			ret = snprintf(buf, sizeof(buf), of_display_format, display_number++);
++			if (ret >= sizeof(buf))
++				break;
++			of_platform_device_create(node, buf, NULL);
+ 		}
+ 
+ 	} else {
+-- 
+2.35.3
+
