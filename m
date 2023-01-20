@@ -2,283 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0029675B3F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:25:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42C12675B55
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:28:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbjATRZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:25:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40046 "EHLO
+        id S230184AbjATR2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:28:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230109AbjATRZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:25:51 -0500
-Received: from out-176.mta0.migadu.com (out-176.mta0.migadu.com [IPv6:2001:41d0:1004:224b::b0])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67FF846158
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:25:49 -0800 (PST)
-Message-ID: <d0c1a4a6-b6b3-846c-e0c3-849e59ed732d@ansari.sh>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
-        t=1674235546;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=jIAmzFt7Ixq5beVbwBrKV3kz9OMeEkNUhyaVCEyiNzk=;
-        b=HBn4/zEb87oRD6JM0x5tAyRqwZxTWK+CQlnXlJmNEv0/MZETK76uDEJS9aIJJQolwbkdCs
-        Vp84jzg2WE4kv+xRmXv1hbRFhP5RWbn+PEo1osQvwzBbPEztphSvr6yBj6DXrw5Bg8w8pz
-        5tIbVhaLmYwwmGhGBMN8et4liu+nL+s=
-Date:   Fri, 20 Jan 2023 17:25:45 +0000
+        with ESMTP id S230166AbjATR2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:28:47 -0500
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1CE2BF8B4;
+        Fri, 20 Jan 2023 09:28:42 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id x21-20020a056830245500b006865ccca77aso3457913otr.11;
+        Fri, 20 Jan 2023 09:28:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9HSgCQCxDRt/ES8CSO81S+bMV2W0e0O/4hQkm1CKfbA=;
+        b=Zl57xxI5i9wDwNRHpqyb4vRx10UQwl6qK4y5USdfJtiPeuwI15dxh6QWK8u3JXUrRM
+         Oe9G2S26+wRZH5BY8F2WJqCJjeooGzzofpjUj8riiFoKd/49Za0pzQMezkQFRtORBRbb
+         6N+/i5rAdQWi7c6aEemaHOKF2xrIFNulnJcuhehkSWskKQHXPBSL2z7dHn4Yovg/MZuP
+         X7iHXHXW6TfRxw+ij/8yl1Cpm05iCHsBjwBH0WeeoYh2ScmJoTAnS1UAyDtu4OLNCNSl
+         nIJpAo8OJSoHl8THL9dbdr1nsHusD+Ofb+eumoBXnzaHMST95iQxVwAiHGXaGerpfbkV
+         e+BQ==
+X-Gm-Message-State: AFqh2kr8Scig5cmbAbkOt7/b3g+ZkRWEUsmq/ylgLnEbRmocDEc78sqU
+        g8lUZSoe2/7jm8AiwjHVcA==
+X-Google-Smtp-Source: AMrXdXs87XWf1uJ29pt4F76PCQm1VpwDoqJpVdMTPVfzjFv4uCqY7pHkuEjoheseeck2vFnJTqwQuw==
+X-Received: by 2002:a05:6830:201a:b0:685:85bd:3fc9 with SMTP id e26-20020a056830201a00b0068585bd3fc9mr7086097otp.36.1674235722043;
+        Fri, 20 Jan 2023 09:28:42 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y13-20020a9d714d000000b00661a16f14a1sm6072663otj.15.2023.01.20.09.28.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jan 2023 09:28:41 -0800 (PST)
+Received: (nullmailer pid 1329674 invoked by uid 1000);
+        Fri, 20 Jan 2023 17:28:32 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Subject: Re: [RFC PATCH] drm/simpledrm: Allow physical width and height
- configuration via DT
-Content-Language: en-US
-To:     Janne Grunau <janne@jannau.net>
-Cc:     dri-devel@lists.freedesktop.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        asahi@lists.linux.dev
-References: <20230118184817.608551-1-rayyan@ansari.sh>
- <20230119100104.GE3576@jannau.net>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   Rayyan Ansari <rayyan@ansari.sh>
-In-Reply-To: <20230119100104.GE3576@jannau.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Yann Sionneau <ysionneau@kalray.eu>
+Cc:     linux-mm@kvack.org, Guillaume Missonnier <gmissonnier@kalray.eu>,
+        Atish Patra <atishp@atishpatra.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Marius Gligor <mgligor@kalray.eu>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Waiman Long <longman@redhat.com>,
+        Paul Moore <paul@paul-moore.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
+        Ashley Lesdalons <alesdalons@kalray.eu>,
+        =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
+        Luc Michel <lmichel@kalray.eu>,
+        Nick Piggin <npiggin@gmail.com>, Qi Liu <liuqi115@huawei.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jules Maselbas <jmaselbas@kalray.eu>,
+        linux-riscv@lists.infradead.org,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        Boqun Feng <boqun.feng@gmail.com>,
+        Oleg Nesterov <oleg@redhat.com>,
+        Samuel Jones <sjones@kalray.eu>,
+        Eric Biederman <ebiederm@xmission.com>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Mark Brown <broonie@kernel.org>,
+        John Garry <john.garry@huawei.com>, linux-doc@vger.kernel.org,
+        Clement Leger <clement@clement-leger.fr>,
+        Jean-Christophe Pince <jcpince@gmail.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Louis Morhet <lmorhet@kalray.eu>,
+        Alex Michon <amichon@kalray.eu>,
+        Shaokun Zhang <zhangshaokun@hisilicon.com>,
+        Jonathan Borne <jborne@kalray.eu>,
+        Eric Paris <eparis@redhat.com>, Ingo Molnar <mingo@redhat.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Guillaume Thouvenin <gthouvenin@kalray.eu>,
+        Thomas Costis <tcostis@kalray.eu>,
+        ", Guangbin Huang" <huangguangbin2@huawei.com>,
+        "Jason A. Donenfeld" <Jason@zx2c4.com>,
+        Julien Hascoet <jhascoet@kalray.eu>, bpf@vger.kernel.org,
+        Christian Brauner <brauner@kernel.org>,
+        Julien Villette <jvillette@kalray.eu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Alexey Dobriyan <adobriyan@gmail.com>,
+        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Vincent Chardon <vincent.chardon@elsys-design.com>,
+        Janosch Frank <frankja@linux.ibm.com>,
+        linux-arch@vger.kernel.org, linux-audit@redhat.com,
+        WANG Xuerui <git@xen0n.name>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bharat Bhushan <bbhushan2@marvell.com>,
+        Kees Cook <keescook@chromium.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Julian Vetter <jvetter@kalray.eu>
+In-Reply-To: <20230120141002.2442-5-ysionneau@kalray.eu>
+References: <20230120141002.2442-1-ysionneau@kalray.eu>
+ <20230120141002.2442-5-ysionneau@kalray.eu>
+Message-Id: <167423561602.1325928.9348232988456790495.robh@kernel.org>
+Subject: Re: [RFC PATCH v2 04/31] Documentation: Add binding for
+ kalray,kv3-1-apic-mailbox
+Date:   Fri, 20 Jan 2023 11:28:32 -0600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 10:01, Janne Grunau wrote:
-> Hej,
+
+On Fri, 20 Jan 2023 15:09:35 +0100, Yann Sionneau wrote:
+> From: Jules Maselbas <jmaselbas@kalray.eu>
 > 
-> adding devicetree@vger.kernel.org and asahi@lists.linux.dev to cc:, the
-> former for the obvious devictree/bindings related questions,
-> asahi for the prospect of supporting high DPI displays during early boot
-> and in u-boot.
+> Add documentation for `kalray,kv3-1-core-intc` binding.
 > 
-> On 2023-01-18 18:48:17 +0000, Rayyan Ansari wrote:
->> Hello,
->> The following draft patch adds support for configuring the
->> height-mm and width-mm DRM properties in the simpledrm driver
->> via devicetree.
->> This is useful to get proper scaling in UIs such as Phosh.
->> An example of using this property is this, taken from my local tree:
->>
->> 		framebuffer0: framebuffer@3200000 {
->> 			compatible = "simple-framebuffer";
->> 			reg = <0x3200000 0x800000>;
->> 			format = "a8r8g8b8";
->> 			width = <720>;
->> 			height = <1280>;
->> 			stride = <(720 * 4)>;
->> 			width-mm = /bits/ 16 <58>;
->> 			height-mm = /bits/ 16 <103>;
->>
->> 			clocks = <&mmcc MDSS_AHB_CLK>,
->> 				 <&mmcc MDSS_AXI_CLK>,
->> 				 <&mmcc MDSS_BYTE0_CLK>,
->> 				 <&mmcc MDSS_MDP_CLK>,
->> 				 <&mmcc MDSS_PCLK0_CLK>,
->> 				 <&mmcc MDSS_VSYNC_CLK>;
->> 			power-domains = <&mmcc MDSS_GDSC>;
->> 		};
->>
->> I have tested this on my Lumia 735, and it does indeed
->> allow Phosh to scale correctly on the screen.
->>
->> However, I would like to get some feedback before I write the
->> documentation.
->> - What data type should be used?
->> 	The width_mm and height_mm properties of the drm_display_mode
->> 	struct are defined as u16. I have also made the devicetree
->> 	properties as the u16 type, but this requires specifying
->> 	"/bits/ 16" before the value. Should u32 be used instead to get
->> 	rid of this? If so, how could the conversion from u32->u16 be
->> 	handled?
+> Co-developed-by: Jules Maselbas <jmaselbas@kalray.eu>
+> Signed-off-by: Jules Maselbas <jmaselbas@kalray.eu>
+> Signed-off-by: Yann Sionneau <ysionneau@kalray.eu>
+> ---
 > 
-> u32 is the appropriate type. The device tree describes the hardware and
-> not the data types used in a "random" linux driver/subsystem. 65m is
-> probably enough for all practical purposes but u32 is the better choice.
-> Documentation/devicetree/bindings/display/panel/panel-common.yaml
-> already specifies "height-mm" and "width-mm" and all device tree files
-> using this binding code the properties as u32.
+> Notes:
+>     V1 -> V2: new patch
+> 
+>  .../kalray,kv3-1-apic-mailbox.yaml            | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/kalray,kv3-1-apic-mailbox.yaml
 > 
 
-Okay, will change.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> We probably do not want add height and width properties to the
-> simple-framebuffer node directly. At least for the static case I would
-> expect that it duplicates information already present in a panel node.
-> For that case parsing the panel dimensions via a phandle reference to
-> that panel node would be preferred.
+yamllint warnings/errors:
 
-In my case, there is currently no panel driver. The interface I 
-mentioned (Phosh) is running on the simpledrm driver.
-Here is my Lumia running this interface:
-https://wiki.postmarketos.org/images/c/c3/Lumia_735_Phosh.png
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/kalray,kv3-1-apic-mailbox.yaml: $id: 'http://devicetree.org/schemas/interrupt-controller/kalray,kv3-1-apic-mailbox#' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/kalray,kv3-1-apic-mailbox.yaml: 'maintainers' is a required property
+	hint: Metaschema for devicetree binding documentation
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/kalray,kv3-1-apic-mailbox.yaml: 'oneOf' conditional failed, one must be fixed:
+	'unevaluatedProperties' is a required property
+	'additionalProperties' is a required property
+	hint: Either unevaluatedProperties or additionalProperties must be present
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/kalray,kv3-1-apic-mailbox.yaml: properties:interrupt-parent: False schema does not allow True
+	from schema $id: http://devicetree.org/meta-schemas/interrupts.yaml#
+./Documentation/devicetree/bindings/interrupt-controller/kalray,kv3-1-apic-mailbox.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/interrupt-controller/kalray,kv3-1-apic-mailbox.yaml#
+Documentation/devicetree/bindings/interrupt-controller/kalray,kv3-1-apic-mailbox.example.dtb: /example-0/interrupt-controller@a00000: failed to match any schema with compatible: ['kalray,kv3-1-apic-gic']
 
-> 
-> I'm not sure if it worth considering the dynamic case. The bootloader
-> may be able to provide dimensions of HDMI, DP, ...  connected displays
-> from the EDID. In that case "height-mm" and "width-mm" properties would
-> make sense.
-> 
-> The existing panel drivers seem to ignore the u32 -> u16 conversion
-> problem.
-> 
->> - Style?
->> 	I have split the arguments to the DRM_MODE_INIT macro across
->> 	multiple lines to increase readability. I'm not sure if this
->> 	is the correct style though.
-> 
-> I think the code would be more readable if width_mm and height_mm would
-> be calculated outside of DRM_MODE_INIT if they are zero.
-> 
->> - Anything else?
->> 	This is my first time writing code for a Linux driver, so I
->> 	would be grateful if you have any suggestions for improvements.
-> 
-> Documentation/devicetree/bindings/display/simple-framebuffer.yaml needs
-> to be updates to list and document the properties added to the node.
-> 
->> ---
->>   drivers/gpu/drm/tiny/simpledrm.c | 49 +++++++++++++++++++++++++++-----
->>   1 file changed, 42 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/tiny/simpledrm.c b/drivers/gpu/drm/tiny/simpledrm.c
->> index 162eb44dcba8..92109f870b35 100644
->> --- a/drivers/gpu/drm/tiny/simpledrm.c
->> +++ b/drivers/gpu/drm/tiny/simpledrm.c
->> @@ -116,6 +116,15 @@ simplefb_get_format_pd(struct drm_device *dev,
->>   	return simplefb_get_validated_format(dev, pd->format);
->>   }
->>   
->> +static void
->> +simplefb_read_u16_of_optional(struct drm_device *dev, struct device_node *of_node,
->> +		     const char *name, u16 *value)
->> +{
->> +	int ret = of_property_read_u16(of_node, name, value);
->> +	if (ret)
->> +		value = 0;
->> +}
->> +
->>   static int
->>   simplefb_read_u32_of(struct drm_device *dev, struct device_node *of_node,
->>   		     const char *name, u32 *value)
->> @@ -184,6 +193,21 @@ simplefb_get_format_of(struct drm_device *dev, struct device_node *of_node)
->>   	return simplefb_get_validated_format(dev, format);
->>   }
->>   
->> +static u16
->> +simplefb_get_width_mm_of(struct drm_device *dev, struct device_node *of_node)
->> +{
->> +	u16 width_mm;
->> +	simplefb_read_u16_of_optional(dev, of_node, "width-mm", &width_mm);
->> +	return width_mm;
->> +}
->> +
->> +static u16
->> +simplefb_get_height_mm_of(struct drm_device *dev, struct device_node *of_node)
->> +{
->> +	u16 height_mm;
->> +	simplefb_read_u16_of_optional(dev, of_node, "height-mm", &height_mm);
->> +	return height_mm;
->> +}
-> 
-> I don't think it makes sense to have these two mostly identical wrapper
-> functions. Please pass the name of the property as parameter. It could
-> make sense to have a function to both height and width. I think we
-> should ignore both height and width if one fails to parse or is 0.
-> That could of course also be done in simpledrm_mode() for example like:
-> 
-> |	if (!width_mm || !height_mm) {
-> |		width_mm = DRM_MODE_RES_MM(width, 96ul);
-> |		height_mm = DRM_MODE_RES_MM(height, 96ul);
-> |	}
-> 
+doc reference errors (make refcheckdocs):
 
-I based this on the way the pixel height and width is fetched from DT 
-(simplefb_get_width_of and simplefb_get_height_of) but changing it to 
-one function makes sense.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230120141002.2442-5-ysionneau@kalray.eu
 
->>   /*
->>    * Simple Framebuffer device
->>    */
->> @@ -599,16 +623,24 @@ static const struct drm_mode_config_funcs simpledrm_mode_config_funcs = {
->>    */
->>   
->>   static struct drm_display_mode simpledrm_mode(unsigned int width,
->> -					      unsigned int height)
->> +					      unsigned int height,
->> +					      u16 width_mm,
->> +					      u16 height_mm)
->>   {
->>   	/*
->> -	 * Assume a monitor resolution of 96 dpi to
->> -	 * get a somewhat reasonable screen size.
->> +	 * Assume a monitor resolution of 96 dpi if physical
->> +	 * dimensions are not specified to get a somewhat reasonable
->> +	 * screen size.
->>   	 */
->> +
->>   	const struct drm_display_mode mode = {
->> -		DRM_MODE_INIT(60, width, height,
->> -			      DRM_MODE_RES_MM(width, 96ul),
->> -			      DRM_MODE_RES_MM(height, 96ul))
->> +		DRM_MODE_INIT(
->> +			60,
->> +			width,
->> +			height,
->> +			(width_mm ? width_mm : DRM_MODE_RES_MM(width, 96ul)),
->> +			(height_mm ? height_mm : DRM_MODE_RES_MM(height, 96ul))
->> +			)
->>   	};
->>   
->>   	return mode;
->> @@ -622,6 +654,7 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
->>   	struct simpledrm_device *sdev;
->>   	struct drm_device *dev;
->>   	int width, height, stride;
->> +	u16 width_mm, height_mm;
-> 
-> these need to be initialized to 0 otherwise they may end up used
-> unitialized if pd is not NULL.
-> 
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Noted.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
->>   	const struct drm_format_info *format;
->>   	struct resource *res, *mem;
->>   	void __iomem *screen_base;
->> @@ -676,6 +709,8 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
->>   		format = simplefb_get_format_of(dev, of_node);
->>   		if (IS_ERR(format))
->>   			return ERR_CAST(format);
->> +		width_mm = simplefb_get_width_mm_of(dev, of_node);
->> +		height_mm = simplefb_get_height_mm_of(dev, of_node);
->>   	} else {
->>   		drm_err(dev, "no simplefb configuration found\n");
->>   		return ERR_PTR(-ENODEV);
->> @@ -686,7 +721,7 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
->>   			return ERR_PTR(-EINVAL);
->>   	}
->>   
->> -	sdev->mode = simpledrm_mode(width, height);
->> +	sdev->mode = simpledrm_mode(width, height, width_mm, height_mm);
->>   	sdev->format = format;
->>   	sdev->pitch = stride;
-> 
-> Janne
+pip3 install dtschema --upgrade
 
-Thanks for the feedback! I'll write the documentation and improve on the 
-points mentioned to make this mainline-ready.
-
--- 
-Rayyan Ansari
-https://ansari.sh
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
