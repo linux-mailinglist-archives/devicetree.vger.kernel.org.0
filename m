@@ -2,220 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32F3A675BED
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:47:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5324C675BF4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:48:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbjATRrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:47:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36158 "EHLO
+        id S230150AbjATRsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:48:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbjATRrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:47:24 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66905421B
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:47:22 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id x36so7597992ede.13
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:47:22 -0800 (PST)
+        with ESMTP id S230389AbjATRst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:48:49 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D895881E6
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:48:41 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id y1so1022736wru.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:48:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=BipnOyO2jsAkSmzvNbujWDpxdaTEf2MUiztSdhwIYZM=;
-        b=Bd3FjursiOsjI69j3RURLqlVLWzxWtZw1tS9m3pap8RceZvgWm6SQ18OSQOwxnZbR5
-         95CZzqiuQtlbzDTw2+kXJfHS47PqWgeBCNsJUrBetsIVxT7d35ITORG35757jkfXMExY
-         AMS2ZeC+x8/ZpqzWF+fvfradiRNEznbCJqmEI=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=usZwUafmssHHjBMbZ97d1dp/H4o4iCVGkXuyEhBu/eE=;
+        b=Xk8v6S4B9l/1/rZC5Acfrnhs5lgw/5B2wVyXT0iRjq2/6CzwmVk2HVGvuCnXq25YXm
+         7cXqKvaFgFecajORnMSICkCtzhDysvIuMaPZJ94snTgQGUbtynCWhpOtJmthFeTgqkJn
+         llBYq1ZjfKp4J1H0YZJfFqVXXGwTAq1xXzPKWxBCDC6HCQfgYdlxa0QDpYlkmhZB6SBy
+         YisYi/DGL2scYRLQwGhRtDm6Ze9Mp2Odt8idZOLZCMsASSiqCankWGGxlzgfMiSmbLEe
+         ENPMDZ6CzrCrFOb7UgoyE58gi+nHNarCy+wsA7liMfKbFz8pYZ4jVL2MIz8Lm5451MHV
+         QoQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BipnOyO2jsAkSmzvNbujWDpxdaTEf2MUiztSdhwIYZM=;
-        b=6XK5Kp0KzPg1j2A+6TiymxRyO1zaKWo1ylraydCPeTHqgRPRCeAi1CuqDSWtwKpYem
-         VCTSlL25m2zMSfHhsr2WaZOR1burN3lT2hBhUcnMF+H5aFCXxP9qgGwzE22vrCV8m/DC
-         /EVUlERBiWcELNGEZlNteb7Mb+6Nl3PAITA4gg/cu6lPJR2BI/bD9QZlG68SkU1Qrrc2
-         M7U2AHCSyEu6CRacRYLt4Tp/vWt9kp3U1vHfSKeqqS0L2/lroP/VBV5SxCcWTloI90GB
-         Mw8XcXfci5VRW/XsiZ/DbpnRFtle6PiN8z8f9QZN36JPIy461DcDvA6CZPAkIfapsdbi
-         kEwA==
-X-Gm-Message-State: AFqh2koTOkQ5m4MayhxaMWUkRi3v6sy7q6lRHiQ64/w2SswuvV7ecqip
-        ALiOFINqMJHKciZPFnhD5CW1sidfzFBhSO7Qe4Eu1g==
-X-Google-Smtp-Source: AMrXdXtTqlcT7UkNlFBypYAC/4a4mGUM44HYZB7Bo3ZplyiQ8KH3qBRlCAOatXHxjolMvMR8xpieQN103+X9bl+aHh4=
-X-Received: by 2002:a05:6402:1396:b0:49b:52b4:83ca with SMTP id
- b22-20020a056402139600b0049b52b483camr1773177edv.225.1674236841244; Fri, 20
- Jan 2023 09:47:21 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=usZwUafmssHHjBMbZ97d1dp/H4o4iCVGkXuyEhBu/eE=;
+        b=KZMwypMnphGn4w6OPltuQAD7FURio8H/W3+c/fu8cZ/YSRT6Muk2Blsm2opm1YdrYt
+         i1Ig7w71Zyo0KgqKGN9PTGPGg5WTglDfrCXbNM1Ds6MwWdjUWD2ZFKNAHr8R5dR0Ohjs
+         K5xGhSNpli68xOiZGTdIayztJ+5oUJ2PZKC9HGlIdD1SSCHiWzvMG5u2UwkSKERUx1Zl
+         Kykb+NGqw2ZK9ucEQUt5GSrdIV1POBeUlXnjfvnfWTEFt2okXP0rivG0C2LaJsbHr0g9
+         BJp/TLQ3RoNiEzo6Baz3ygt2BIlGyYs4Oz4ZYNm1iLuHKEZZjLiefGEfg3fCD5f4IQXA
+         CBVQ==
+X-Gm-Message-State: AFqh2kp6L/mqfq4rpMP4FeqdiRd/lB6MjeuQ/glnjwhhqvNF7weZnB5+
+        t1i5GzxoEwfTk9el63hINrRrog==
+X-Google-Smtp-Source: AMrXdXuScCkgBt6ufGU4Q+zUCLg+jabHQ01J+OwfTLnAkLy8rziGHZ9jITRpp+e1sZ2s8g6Fe6Q6EQ==
+X-Received: by 2002:adf:e70a:0:b0:2b5:90e:cfa5 with SMTP id c10-20020adfe70a000000b002b5090ecfa5mr13962181wrm.29.1674236920097;
+        Fri, 20 Jan 2023 09:48:40 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id r12-20020a5d4e4c000000b002be1d1c0bd7sm9540535wrt.93.2023.01.20.09.48.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 09:48:39 -0800 (PST)
+Message-ID: <ae73ae73-3c5f-d8dc-fda8-0916c976a835@linaro.org>
+Date:   Fri, 20 Jan 2023 17:48:38 +0000
 MIME-Version: 1.0
-References: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
- <20230101175740.1010258-12-dario.binacchi@amarulasolutions.com> <Y8VgzyNxGpqSvJ2b@linaro.org>
-In-Reply-To: <Y8VgzyNxGpqSvJ2b@linaro.org>
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date:   Fri, 20 Jan 2023 18:47:10 +0100
-Message-ID: <CABGWkvrmKzPHozcB6Wn94sG50qEsR8rK-p32eP127XPBJ7xe0A@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 11/11] arm64: dts: imx8mn: add clocks description
-To:     Abel Vesa <abel.vesa@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, angelo@amarulasolutions.com,
-        michael@amarulasolutions.com, tommaso.merciai@amarulasolutions.com,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        linux-amarula@amarulasolutions.com, anthony@amarulasolutions.com,
-        jagan@amarulasolutions.com, Abel Vesa <abelvesa@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>, Li Jun <jun.li@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marek Vasut <marex@denx.de>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        Tero Kristo <kristo@kernel.org>,
-        Tony Lindgren <tony@atomide.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] of: property: fix #nvmem-cell-cells parsing
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Robert Marko <robimarko@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Aisheng Dong <aisheng.dong@nxp.com>
+References: <20230110233056.3490942-1-michael@walle.cc>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230110233056.3490942-1-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, Jan 16, 2023 at 3:36 PM Abel Vesa <abel.vesa@linaro.org> wrote:
->
-> On 23-01-01 18:57:40, Dario Binacchi wrote:
-> > The patch creates a unique node for each clock in the imx8mn clock
-> > control module (CCM).
-> >
-> > To ensure backwards compatibility it was not possible to separate the
-> > changes to the device tree from those applied to the clocks setup code.
-> > In doing so, all clocks are initialized from the device tree and the
-> > legacy setup code with hardwired parameters is removed.
-> >
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> >
-> > ---
-> >
-> > (no changes since v1)
-> >
-> >  .../boot/dts/freescale/imx8mn-clocks.dtsi     | 1885 +++++++++++++++++
-> >  arch/arm64/boot/dts/freescale/imx8mn.dtsi     |   54 +-
-> >  drivers/clk/imx/clk-imx8mn.c                  |  714 ++-----
-> >  3 files changed, 2086 insertions(+), 567 deletions(-)
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
-> > new file mode 100644
-> > index 000000000000..21e02ea996d0
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
-> > @@ -0,0 +1,1885 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Device Tree Source for imx8mn clock data
-> > + *
-> > + * Copyright (c) 2022 Amarula Solutions
-> > + *
-> > + * Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > + */
-> > +
-> > +/ {
-> > +     osc_32k: clock-osc-32k {
-> > +             compatible = "fixed-clock";
-> > +             #clock-cells = <0>;
-> > +             clock-frequency = <32768>;
-> > +             clock-output-names = "osc_32k";
-> > +     };
-> > +
->
-> [...]
->
-> > +
-> > +     clk_audio_pll2_bypass: clock-audio-pll2-bypass@14 {
-> > +             compatible = "fsl,imx8mn-mux-clock";
-> > +             #clock-cells = <0>;
-> > +             clocks = <&clk_audio_pll2>, <&clk_audio_pll2_ref_sel>;
-> > +             fsl,anatop = <&anatop 0x14>;
-> > +             fsl,bit-shift = <16>;
-> > +             fsl,set-rate-parent;
->
-> NACK. I'm sorry, but this creates a huge effort on maintaining the
-> bindings.
-
-IMHO I don't think that's the point. Rather, is it correct to keep adding
-platforms always replicating the same code that makes use of hardwired
-parameters? When I thought about the development of this series I
-thought it could be an opportunity to reverse the trend. In the direction
-suggested by the linux kernel development policies.The benefits of using the
-device tree have been proven for quite some time now.
-The 03/11 and 04/11 patches of the series make a list of the legacy code that
-has been added over time (functions with names that are sometimes unclear)
-and that with the progressive use of the device tree would be removed.
-
-As written in the cover letter, I am available to add the necessary DT
-bindings to
-the series.
-
-Plus the vendor specific properties will keep increasing.
->
-> I don't think Rob and Krzysztof will be OK with this either.
-
-I hope instead that they agree with me. I didn't answer right away as
-I was waiting
-for their opinion. And I keep hoping for their response. And any other
-recipients of
-the series as well.
-
-By the way, I add Tero Kristo and Toni Lindgren as their work done for
-the TI clock
-subsystem has been a great help for me in the implementation of this series.
-
-Thanks and regards,
-Dario
-
->
->
-> > +             clock-output-names = "audio_pll2_bypass";
-> > +     };
-> > +
-> > +     clk_audio_pll2_out: clock-audio-pll2-out@14 {
-> > +             compatible = "fsl,imx8mn-gate-clock";
-> > +             #clock-cells = <0>;
-> > +             clocks = <&clk_audio_pll2_bypass>;
-> > +             fsl,anatop = <&anatop 0x14>;
-> > +             fsl,bit-shift = <13>;
-> > +             clock-output-names = "audio_pll2_out";
-> > +     };
-> > +
->
-> [...]
->
-> > --
-> > 2.32.0
-> >
 
 
+On 10/01/2023 23:30, Michael Walle wrote:
+> Commit 67b8497f005f ("of: property: make #.*-cells optional for simple
+> props") claims to make the cells-name property optional for simple
+> properties, but changed the code for the wrong property, i.e. for
+> DEFINE_SUFFIX_PROP(). Fix that.
+> 
+> Fixes: 67b8497f005f ("of: property: make #.*-cells optional for simple props")
+> Reported-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> Tested-by: Robert Marko <robimarko@gmail.com>
+> ---
 
--- 
+Applied thanks,
 
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
+--srini
+>   drivers/of/property.c | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 8d9ba20a8f90..95b838185b2f 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1202,8 +1202,8 @@ static struct device_node *parse_prop_cells(struct device_node *np,
+>   	if (strcmp(prop_name, list_name))
+>   		return NULL;
+>   
+> -	if (of_parse_phandle_with_args(np, list_name, cells_name, index,
+> -				       &sup_args))
+> +	if (__of_parse_phandle_with_args(np, list_name, cells_name, 0, index,
+> +					 &sup_args))
+>   		return NULL;
+>   
+>   	return sup_args.np;
+> @@ -1256,8 +1256,8 @@ static struct device_node *parse_suffix_prop_cells(struct device_node *np,
+>   	if (strcmp_suffix(prop_name, suffix))
+>   		return NULL;
+>   
+> -	if (__of_parse_phandle_with_args(np, prop_name, cells_name, 0, index,
+> -					 &sup_args))
+> +	if (of_parse_phandle_with_args(np, prop_name, cells_name, index,
+> +				       &sup_args))
+>   		return NULL;
+>   
+>   	return sup_args.np;
