@@ -2,165 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A77F675FD4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:59:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2CAD675FE3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 23:05:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbjATV72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 16:59:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53612 "EHLO
+        id S229555AbjATWFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 17:05:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjATV71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:59:27 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC79480BB0
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:59:25 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id ud5so17331029ejc.4
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:59:25 -0800 (PST)
+        with ESMTP id S229445AbjATWFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 17:05:24 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2B017F9B5;
+        Fri, 20 Jan 2023 14:05:22 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id c3so6978549ljh.1;
+        Fri, 20 Jan 2023 14:05:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pgs07PyvKGpksByKsjTcCowCL5vvFmT3PIciH90Z4pw=;
-        b=eCe81CaotE8487LI7h3iOTTOKUpUcN9XtqW0R8o/FODQE7Vtjzho8V2Smabu7KZsK5
-         zGak5XpliKLCQLiGjO/MjdJ/G6SA7YaFAvb78Q/t2KYXAbahWabv58FleHHpSwCyY8f8
-         flo7845GTH3md4yWcpVbDz6c4ufGOZ7K1O+ZqOXobq7hoy2He/o/LcqdZUe/w4e7KNPt
-         mbwy0OKJN2v/TTXip1EdzRC0dB8ZMGIKk+QbJqZYXeRUKP3O0Cd1Ub0mzBL57X6udEqS
-         fzGqre/RAntbnKiCiGoVj1t4rUsvSk/Lmv94Lh7+6Y6Ds6X6mknYjnf6NPRCDYJsCQOQ
-         /VcQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=47bQYYvwoc4QnN6fF+m3+7Uy31DycYW7WL3pijAuHrc=;
+        b=KvPPeMjcYz60GhdROsv9YwE8uv6xdcPv1k4AoX89i567SWpqXcTQSLDK/flblBKQaK
+         cfAwGOzXB55ObBgNsuBR/aS/ZWS73BbHA/j30YrvThOJ8sklQ4vSCuYCTT8/aQzKd7x0
+         ED9B0EpAuuFXHRhyTAE2rYJAIefWE3cRMQT+JXdOSX+nqVPxt1tECmSugDkFBGKmqaIe
+         6MDATr+REE+laIkFeEGl7Baxej1BF+lzV1ySkQv7XTAq7tOHtm6EgBpTeWGjnRwbXi4k
+         o/CUW40k/L54EJCQepVRJ5CWNNQh0cJ5hbe2XRT19mSa+4VgezmJ8OO8kHFU25o+EiBV
+         +VwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pgs07PyvKGpksByKsjTcCowCL5vvFmT3PIciH90Z4pw=;
-        b=R6dmpXxif8Z8oRUS5UAxjN/6mVIOYhViEO07jM4rAaUtIAzYHhltTL5fo0/230pgfh
-         7pGjAhXFUy43cEOJnCMRQAiqfr533B5UZuqAyJaw7kqZCEIB29oZuE0MVmCG8wkt9kIh
-         MYcBg5YfW3KKjFoTSgahdoWlBcfTqYgjCsciftfz/I5KcHBDtJ2NjdSlGWQ1BmKipBPs
-         j6Nd+dhUUqqEAghiPSrxuZrNZ3S2mliAKLfwpLapAEnTVVc9JHeFjEXQFoCxGc6BOrf5
-         oVX6DcAdxF1JDtNns6r2k/Qoyjayuzi2t02vdMH7tF5KhS6l/syLNgIQ2y6uJpKovHNK
-         YIbw==
-X-Gm-Message-State: AFqh2krCUZEmO/SJpHspkdP8tw7gTUKj931wiYDlsHEWSp0ZggZ1ffPa
-        9VjoOFI6+Knjl0sJSsvD1pDJag==
-X-Google-Smtp-Source: AMrXdXujuKX9GQSph4XmO5ic2WuK/rHBTeeAl+cwTJR3B0pg8Uv+i3g+jYyo+jTzU4z5DLTg15lZXQ==
-X-Received: by 2002:a17:907:94ce:b0:870:ab89:3dd3 with SMTP id dn14-20020a17090794ce00b00870ab893dd3mr16676134ejc.70.1674251964209;
-        Fri, 20 Jan 2023 13:59:24 -0800 (PST)
-Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
-        by smtp.gmail.com with ESMTPSA id la19-20020a170907781300b007aee7ca1199sm18666132ejc.10.2023.01.20.13.59.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 13:59:23 -0800 (PST)
-Message-ID: <bbcdfa45-64c8-72b8-e27c-bea924bf0398@linaro.org>
-Date:   Fri, 20 Jan 2023 22:59:22 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=47bQYYvwoc4QnN6fF+m3+7Uy31DycYW7WL3pijAuHrc=;
+        b=N0Ykw/edLx5XhO4z7ybUxbsYTceVnvDZfMmXO2WXkUOvEecGNbjZweXJj582jeLJES
+         O9HS6PQZga260YU/Z0hyPgpOJxqPkrLTWut98aa2qntTaY6VgM45V7CjQPjGquv0zXvX
+         lIIq6DzBDkh33KRDbiaS50zk5p4nF7/M+nBv+ZOVtB3uJoQs7f1V7KHS+6eihPu56RiZ
+         ZCqnkKFk7inLszYpHN1F+sywxvfKP/xgpiQQQONZP2GnAXTsUAfD1b6Cx8x/KEKMH6lp
+         Wq5Zvnp6bFu2Xim1O2AZcuwXMCdLcim2Rt5nwqsjPIwoZAmTzTyMjYJp1O0HiM8xmT2c
+         KPcg==
+X-Gm-Message-State: AFqh2kr/GenebU2r3XvS7xGAf9ZepkcSgs2fdPBLycz8Uq53UauYtWNv
+        ZSqMInNY68jO/FR1B2Zi4LPUKUkHxegic1fRNSU=
+X-Google-Smtp-Source: AMrXdXsEvy2zUx8pBtqvlaMNQXcMQiU5wj9qFfZWFmAJ8mJ3iDwd2PNDfGEnDLQioMNqbk8VGMyCnxB99EQkJx6YjZ8=
+X-Received: by 2002:a2e:b752:0:b0:28b:77fd:d92b with SMTP id
+ k18-20020a2eb752000000b0028b77fdd92bmr1424117ljo.86.1674252320747; Fri, 20
+ Jan 2023 14:05:20 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [RESEND PATCH] of: property: do not create clocks device link for
- clock controllers
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+References: <20230118184413.395820-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230118184413.395820-1-krzysztof.kozlowski@linaro.org>
+From:   Puranjay Mohan <puranjay12@gmail.com>
+Date:   Fri, 20 Jan 2023 23:05:09 +0100
+Message-ID: <CANk7y0jpC4Hz5cEzdO2WQkRbqNfBKKgKXTrL142D5Ldr_dhBjA@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: iio: drop unneeded quotes
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Abel Vesa <abel.vesa@linaro.org>
-References: <20230118091122.2205452-1-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230118091122.2205452-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stankus <lucas.p.stankus@gmail.com>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Renato Lui Geh <renatogeh@gmail.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Andreas Klinger <ak@it-klinger.de>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Kent Gustavsson <kent@minoris.se>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
+        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
+        Nishant Malpani <nish.malpani25@gmail.com>,
+        Rui Miguel Silva <rmfrfs@gmail.com>,
+        Dragos Bogdan <dragos.bogdan@analog.com>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Robert Yang <decatf@gmail.com>,
+        Sean Nyekjaer <sean@geanix.com>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Philippe Reynes <tremyfr@yahoo.fr>,
+        Alexandru Lazar <alazar@startmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Harald Geyer <harald@ccbib.org>,
+        Eugene Zaikonnikov <ez@norophonic.com>,
+        Phil Reid <preid@electromag.com.au>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Sankar Velliangiri <navin@linumiz.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        chrome-platform@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 18.01.2023 10:11, Dmitry Baryshkov wrote:
-> Do not create device link for clock controllers. Some of the clocks
-> provided to the device via OF can be the clocks that are just parents to
-> the clocks provided by this clock controller. Clock subsystem already
-> has support for handling missing clock parents correctly (clock
-> orphans). Later when the parent clock is registered, clocks get
-> populated properly.
-> 
-> An example of the system where this matters is the SDM8450 MTP board
-> (see arch/arm64/boot/dts/qcom/sdm845-mtp.dts). Here the dispcc uses
-> clocks provided by dsi0_phy and dsi1_phy device tree nodes. However the
-> dispcc itself provides clocks to both PHYs, to the PHY parent device,
-> etc. With just dsi0_phy in place devlink is able to break the
-> dependency, but with two PHYs, dispcc doesn't get probed at all, thus
-> breaking display support.
-> 
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Saravana Kannan <saravanak@google.com>
-> Cc: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Wed, Jan 18, 2023 at 7:44 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Cleanup by removing unneeded quotes from refs and redundant blank lines.
+> No functional impact except adjusting to preferred coding style.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org> # SM8350 PDX215
+>  .../devicetree/bindings/iio/accel/memsensing,msa311.yaml  | 5 ++---
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml | 2 +-
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml | 2 +-
+>  .../devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml    | 2 +-
+>  Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml | 4 ++--
+>  .../devicetree/bindings/iio/adc/ingenic,adc.yaml          | 4 ++--
+>  .../devicetree/bindings/iio/adc/microchip,mcp3911.yaml    | 4 ++--
+>  .../devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml    | 2 +-
+>  .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml   | 2 +-
+>  .../devicetree/bindings/iio/adc/st,stm32-adc.yaml         | 8 ++++----
+>  .../devicetree/bindings/iio/adc/ti,ads131e08.yaml         | 2 +-
+>  Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml | 2 +-
+>  .../devicetree/bindings/iio/dac/lltc,ltc1660.yaml         | 4 ++--
+>  .../devicetree/bindings/iio/dac/lltc,ltc2632.yaml         | 4 ++--
+>  .../devicetree/bindings/iio/dac/st,stm32-dac.yaml         | 4 ++--
+>  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 2 +-
+>  .../devicetree/bindings/iio/temperature/ti,tmp117.yaml    | 6 +++---
 
-
-Konrad
-> 
-> This patch has been posted a year ago in January 2022 ([1]). Since that time
-> Saravana failed to produce patches to assist in debugging the issue
-> ([2]) or to fix the issue ([3]). The issue we observe has been described
-> by Abel at ([4]). As we work on adding support for Dual DSI
-> configurations, the issue becomes more and more important, since binding
-> the whole display subsystem fails.
-> 
-> Currently the qcom/sdm845-mtp board is already broken and I've just
-> posted a patch adding Dual DSI variant for the qcom/sdm845-db845c board
-> ([5]).
-> 
-> [1] https://lore.kernel.org/lkml/20211125183622.597177-1-dmitry.baryshkov@linaro.org/
-> [2] https://lore.kernel.org/lkml/CAA8EJpqELXvRMPWJdTLCURjwkcMxyPDPj1tVZPkdOT_JVQb4-w@mail.gmail.com/
-> [3] https://lore.kernel.org/all/CAGETcx8F0wP+RA0KpjOJeZfc=DVG-MbM_=SkRHD4UhD2ReL7Kw@mail.gmail.com/
-> [4] https://lore.kernel.org/all/YrsdLQrOtg1qdaoE@linaro.org/
-> [5] https://lore.kernel.org/all/20230118082048.2198715-1-dmitry.baryshkov@linaro.org/
-> 
-> ---
->  drivers/of/property.c | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 134cfc980b70..d323bf26a613 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1297,7 +1297,6 @@ struct supplier_bindings {
->  	bool node_not_dev;
->  };
->  
-> -DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
->  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
->  DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
->  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
-> @@ -1327,6 +1326,21 @@ DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
->  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
->  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
->  
-> +static struct device_node *parse_clocks(struct device_node *np,
-> +					const char *prop_name, int index)
-> +{
-> +	/*
-> +	 * Do not create clock-related device links for clocks controllers,
-> +	 * clock orphans will handle missing clock parents automatically.
-> +	 */
-> +	if (!strcmp(prop_name, "clocks") &&
-> +	    of_find_property(np, "#clock-cells", NULL))
-> +		return NULL;
-> +
-> +	return parse_prop_cells(np, prop_name, index, "clocks",
-> +				       "#clock-cells");
-> +}
-> +
->  static struct device_node *parse_gpios(struct device_node *np,
->  				       const char *prop_name, int index)
->  {
+For ti,tmp117.yaml
+Reviewed-by: Puranjay Mohan <puranjay12@gmail.com>
