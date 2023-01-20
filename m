@@ -2,89 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE360675789
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 15:40:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74EDD67578F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 15:40:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230417AbjATOki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 09:40:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42670 "EHLO
+        id S230501AbjATOk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 09:40:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230387AbjATOkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 09:40:36 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848C66E0E1
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 06:39:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1674225446;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=q9nhE1NTwmfnVWve8AVaEOn2Xi0Qdr1U6uub8XxZ9tg=;
-        b=MxfhmFbczZ1IQuEixdglmh/eYP4/TmwBg9hSuKpEgVpwarMF/24alpk7HC7ot+sWSthA25
-        mWtGJoMDps/6bbMyKUIjjrJd3rSHQ0XoCEuMT6/t2Sn6n0VwIq2Pe/1iNsud2OeccsoYPs
-        ZDjusuhJbjrTOOojQvzs93+DB9ElRqA=
-Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
- [209.85.210.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-517-SXa0ALa2Pxy9fEPUNcVfqw-1; Fri, 20 Jan 2023 09:37:25 -0500
-X-MC-Unique: SXa0ALa2Pxy9fEPUNcVfqw-1
-Received: by mail-ot1-f69.google.com with SMTP id c10-20020a056830314a00b00684c39c324eso2476877ots.12
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 06:37:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q9nhE1NTwmfnVWve8AVaEOn2Xi0Qdr1U6uub8XxZ9tg=;
-        b=32Y9mp0tOPAedNTdPozHaE9iwu7xtCHZa1iBVSotUYh1TrU8nF/nIkPWE+6rDar3TX
-         v+l5xHss5L9+S6RGaGot+2psqBhpyyzCR9zsKq13bs0kByAQhQ6fg0Lx1ScbQz9c/be8
-         nJiXSiaJJgCkoivNHnkU2Sg5pmz/t1Z9NewGCb8wTaFEKt5Tf1ut//XjYmODHqXG1Tx5
-         kLhLfkPxAeQMSkivf2gpvZzCzrjKilLT0gtipt/z7zqGdq2nQ2P85MhaXEnC3vv7ubcf
-         wbqh2Qmwo3fVUr7jdcYXM9rq7xbpZVM71YRKFrgj20Qp1O7ptB65wsmF3tXQTjnGe0au
-         MmUg==
-X-Gm-Message-State: AFqh2kpGAT4kc4GuGgse4qGbxubVJs6+CCUhnE6ORMK3GHz0KRxgqMfT
-        8Ylhgm+6b5II2Kqs7yWUr56TXd/Q3C5IGaUQLCEyXyP2zi51fvI3q+aYDDXD75goSuDfiyKCBFZ
-        IN6rUzvEmtYAe7jqZPmtNlQ==
-X-Received: by 2002:a05:6870:670b:b0:15e:ee5d:8696 with SMTP id gb11-20020a056870670b00b0015eee5d8696mr8538118oab.54.1674225441688;
-        Fri, 20 Jan 2023 06:37:21 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXvmxHEs7IOvDmv8B1cEtpfFCbjcPfnzN4JydFfzpBKL4PxeXf4/AeFJ0ZIFP0QhuQtGCobjzQ==
-X-Received: by 2002:a05:6870:670b:b0:15e:ee5d:8696 with SMTP id gb11-20020a056870670b00b0015eee5d8696mr8538105oab.54.1674225441379;
-        Fri, 20 Jan 2023 06:37:21 -0800 (PST)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::21])
-        by smtp.gmail.com with ESMTPSA id t17-20020a056871055100b001447602267esm21583208oal.41.2023.01.20.06.37.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 06:37:20 -0800 (PST)
-Date:   Fri, 20 Jan 2023 08:37:17 -0600
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        quic_shazhuss@quicinc.com
-Subject: Re: [RFC v4 2/5] usb: dwc3: core: Refactor PHY logic to support
- Multiport Controller
-Message-ID: <20230120143717.ikbcb6x7wl4yy5d7@halaney-x13s>
-References: <20230115114146.12628-1-quic_kriskura@quicinc.com>
- <20230115114146.12628-3-quic_kriskura@quicinc.com>
- <20230119220942.ja5gbo3t3fl63gpy@halaney-x13s>
- <8f32c2e5-2743-1017-6a33-4849021c5287@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8f32c2e5-2743-1017-6a33-4849021c5287@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        with ESMTP id S230456AbjATOk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 09:40:56 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ABBD73EEB;
+        Fri, 20 Jan 2023 06:40:28 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id C048D32001BB;
+        Fri, 20 Jan 2023 09:39:42 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Fri, 20 Jan 2023 09:39:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1674225582; x=1674311982; bh=b4JAJuHxNJ
+        8crP6ZpOzWWYxWeuwbnT4P0qgnOUpQ0sI=; b=YpFFzP3VF+EXJCLmreWeBNB9+S
+        zXHxKLgMbyNmk2z1VW6q3MxEpkproMFd2XZHbXRd3jw7BKH62BZ93qlWPB+r0tXx
+        GbwZZiyJYZEEWYvt4HcxdsEFFE0lLPObyPr5B8oNMr3YVFJBRj3K66+vhYhzgKs/
+        5dTWdr/9s8iHSN5+5qnrtbJQ3yCMUPDerYNJ22YIVdBWtYejl55VlFikFlwBAIdo
+        1wu/6qiuRfisnPQUn7IDstOQzwRZ2OY2tSeeOoDTrwQg/xL5G/zQs6vtRhpzL8DP
+        Fgdfpbi3GAg9bHuV1lTDVypQ9y4jxRbq1AJ3/5km73+LEObdAHBrQILTSssg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1674225582; x=1674311982; bh=b4JAJuHxNJ8crP6ZpOzWWYxWeuwb
+        nT4P0qgnOUpQ0sI=; b=kbkcGpBlS3kIUHVyg0NKren2v+0ZPixCVs0IHEcgFATv
+        /fQDNaGmP5X5P5h19GU2fpwPD1TBW43CHnULxpe+taXxBuiCTAP66XHB1kbw6jVU
+        ktB2N/kXAJKDCtVduL7kHyROWsuKfnhUkBDg1JaaVGYEVshIvkSzyvmQ3Mz0kecY
+        j2mWceXUaRQVegdU9GN/rHa5HlAqyOMZNLltfaUy/sfmk+CWX6cHgoxSueBp0J0i
+        2XczKB1dd7jUSKpZNSGrbGTRUNLi1oRczjpT0oY63IskbhcNKGcpIFxZpm+iiMB0
+        rt1VsRAiJTzs0z272UUCumVGSuTlMg9TxL0SPQ1sQQ==
+X-ME-Sender: <xms:rafKY_kguGhvxY4s77V4bRvXYVPX-TaLHxAX5Rsi2yUO58HcQO4Zkw>
+    <xme:rafKYy3ch5_10fEpPqLPk4skitRZpBS9nUdMMeG_5dV4W4jXI0yFlKr084ITGsZVL
+    lGqbdsXwXqxi2OVO80>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudduvddgieelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:rafKY1qFhfPcjqcn3SzgSs11DqXRM8WcWlI7Gu-Kicl7WOeQSyzCNQ>
+    <xmx:rafKY3kPhOW_docLyMAkp_w_hKPx7gxrnaYtchGBbzvFANsfGIZ4qA>
+    <xmx:rafKY90Q8cyQNciYnFYz9TNs_bgG3H33QbPAoO9563ztIP9MXp_W6Q>
+    <xmx:rqfKY83B478JlCxC4F7tHYbChgHt68Lo8MC5zaI3n4bvh6M-xJx_5w>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 5EF90B60086; Fri, 20 Jan 2023 09:39:41 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
+Mime-Version: 1.0
+Message-Id: <aa4d68b2-b5b5-4c17-a44f-7c6db443ea4c@app.fastmail.com>
+In-Reply-To: <20230120141002.2442-10-ysionneau@kalray.eu>
+References: <20230120141002.2442-1-ysionneau@kalray.eu>
+ <20230120141002.2442-10-ysionneau@kalray.eu>
+Date:   Fri, 20 Jan 2023 15:39:22 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Yann Sionneau" <ysionneau@kalray.eu>,
+        "Jonathan Corbet" <corbet@lwn.net>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        "Marc Zyngier" <maz@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Will Deacon" <will@kernel.org>,
+        "Peter Zijlstra" <peterz@infradead.org>,
+        "Boqun Feng" <boqun.feng@gmail.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        "Kees Cook" <keescook@chromium.org>,
+        "Oleg Nesterov" <oleg@redhat.com>,
+        "Ingo Molnar" <mingo@redhat.com>,
+        "Waiman Long" <longman@redhat.com>,
+        "Aneesh Kumar" <aneesh.kumar@linux.ibm.com>,
+        "Andrew Morton" <akpm@linux-foundation.org>,
+        "Nicholas Piggin" <npiggin@gmail.com>,
+        "Paul Moore" <paul@paul-moore.com>,
+        "Eric Paris" <eparis@redhat.com>,
+        "Christian Brauner" <brauner@kernel.org>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        "Albert Ou" <aou@eecs.berkeley.edu>,
+        "Jules Maselbas" <jmaselbas@kalray.eu>,
+        "Guillaume Thouvenin" <gthouvenin@kalray.eu>,
+        "Clement Leger" <clement@clement-leger.fr>,
+        "Vincent Chardon" <vincent.chardon@elsys-design.com>,
+        =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
+        "Julian Vetter" <jvetter@kalray.eu>,
+        "Samuel Jones" <sjones@kalray.eu>,
+        "Ashley Lesdalons" <alesdalons@kalray.eu>,
+        "Thomas Costis" <tcostis@kalray.eu>,
+        "Marius Gligor" <mgligor@kalray.eu>,
+        "Jonathan Borne" <jborne@kalray.eu>,
+        "Julien Villette" <jvillette@kalray.eu>,
+        "Luc Michel" <lmichel@kalray.eu>,
+        "Louis Morhet" <lmorhet@kalray.eu>,
+        "Julien Hascoet" <jhascoet@kalray.eu>,
+        "Jean-Christophe Pince" <jcpince@gmail.com>,
+        "Guillaume Missonnier" <gmissonnier@kalray.eu>,
+        "Alex Michon" <amichon@kalray.eu>,
+        "Huacai Chen" <chenhuacai@kernel.org>,
+        "WANG Xuerui" <git@xen0n.name>,
+        "Shaokun Zhang" <zhangshaokun@hisilicon.com>,
+        "John Garry" <john.garry@huawei.com>,
+        "Guangbin Huang" <huangguangbin2@huawei.com>,
+        "Bharat Bhushan" <bbhushan2@marvell.com>,
+        "Bibo Mao" <maobibo@loongson.cn>,
+        "Atish Patra" <atishp@atishpatra.org>,
+        "Jason A . Donenfeld" <Jason@zx2c4.com>,
+        "Qi Liu" <liuqi115@huawei.com>,
+        "Jiaxun Yang" <jiaxun.yang@flygoat.com>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Mark Brown" <broonie@kernel.org>,
+        "Janosch Frank" <frankja@linux.ibm.com>,
+        "Alexey Dobriyan" <adobriyan@gmail.com>
+Cc:     "Benjamin Mugnier" <mugnier.benjamin@gmail.com>,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mm@kvack.org,
+        Linux-Arch <linux-arch@vger.kernel.org>, linux-audit@redhat.com,
+        linux-riscv@lists.infradead.org, bpf@vger.kernel.org
+Subject: Re: [RFC PATCH v2 09/31] kvx: Add build infrastructure
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,216 +142,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 20, 2023 at 07:25:57AM +0530, Krishna Kurapati PSSNV wrote:
-> 
-> 
-> On 1/20/2023 3:39 AM, Andrew Halaney wrote:
-> > On Sun, Jan 15, 2023 at 05:11:43PM +0530, Krishna Kurapati wrote:
-> > > Currently the DWC3 driver supports only single port controller
-> > > which requires at most one HS and one SS PHY.
-> > > 
-> > > But the DWC3 USB controller can be connected to multiple ports and
-> > > each port can have their own PHYs. Each port of the multiport
-> > > controller can either be HS+SS capable or HS only capable
-> > > Proper quantification of them is required to modify GUSB2PHYCFG
-> > > and GUSB3PIPECTL registers appropriately.
-> > > 
-> > > Add support for detecting, obtaining and configuring phy's supported
-> > > by a multiport controller and limit the max number of ports
-> > > supported to 4.
-> > > 
-> > > Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
-> > > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> > > ---
-> > >   drivers/usb/dwc3/core.c | 304 +++++++++++++++++++++++++++++-----------
-> > >   drivers/usb/dwc3/core.h |  15 +-
-> > >   drivers/usb/dwc3/drd.c  |  14 +-
-> > >   3 files changed, 244 insertions(+), 89 deletions(-)
-> > > 
-> > > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> > > index 476b63618511..7e0a9a598dfd 100644
-> > > --- a/drivers/usb/dwc3/core.c
-> > > +++ b/drivers/usb/dwc3/core.c
-> > 
-> > <snip>
-> > 
-> > > @@ -1575,6 +1690,21 @@ static void dwc3_get_properties(struct dwc3 *dwc)
-> > >   	dwc->dis_split_quirk = device_property_read_bool(dev,
-> > >   				"snps,dis-split-quirk");
-> > > +
-> > > +	/*
-> > > +	 * If no mulitport properties are defined, default
-> > > +	 * the port count to '1'.
-> > > +	 */
-> > > +	ret = device_property_read_u32(dev, "num-ports",
-> > > +				&dwc->num_ports);
-> > > +	if (ret)
-> > > +		dwc->num_ports = 1;
-> > > +
-> > > +	ret = device_property_read_u32(dev, "num-ss-ports",
-> > > +				&dwc->num_ss_ports);
-> > > +	if (ret)
-> > > +		dwc->num_ss_ports = 1;
-> > 
-> > By using this DT property instead of using the number of each phy type you
-> > find you can get into situations where you're writing DWC3_GUSB2PHYCFG, etc,
-> > when there's no phy to go along with it.
-> > 
-> Hi Andrew,
-> 
->  Thanks for the review. Yes, this decoupling is still there and its fine I
-> believe.
-> 
-> > I ran into this when testing on sa8540p-ride, which only uses one of the
-> > ports on the multiport controller. I didn't enable the other phys (not
-> > sure if that was smart or not) and overrode phy-names/phys, but did not
-> > override num-ports/num-ss-ports, which resulted in that. Nothing bad
-> > happened on a quick test.. but I thought I'd highlight that as another
-> > downside of decoupling this value from the number of phys you grab.
-> > 
-> If we do not override phy-names or num-ports/num-ss-ports info in DT, they
-> are just defaulted to '1' and as per the current logic only port-1 registers
-> must be configured. Isn't that the case happening ?
-> 
+On Fri, Jan 20, 2023, at 15:09, Yann Sionneau wrote:
+>      - Fix clean target raising an error from gcc (LIBGCC)
 
-In my dts I'm inheriting from the sc8280xp.dtsi usb_2 phandle you've created!
-So unless I override them I get this from your sc8280xp.dtsi:
+I had not noticed this on v1 but:
 
-+                       usb_2_dwc3: usb@a400000 {
-+                               compatible = "snps,dwc3";
-+                               reg = <0 0x0a400000 0 0xcd00>;
-+                               interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-+                               iommus = <&apps_smmu 0x800 0x0>;
-+                               num-ports = <4>;
-+                               num-ss-ports = <2>;
-+                               phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>,
-+                                       <&usb_2_hsphy1>, <&usb_2_qmpphy1>,
-+                                       <&usb_2_hsphy2>,
-+                                       <&usb_2_hsphy3>;
-+                               phy-names = "usb2-phy_port0", "usb3-phy_port0",
-+                                               "usb2-phy_port1", "usb3-phy_port1",
-+                                               "usb2-phy_port2",
-+                                               "usb2-phy_port3";
-+                       };
+> +# Link with libgcc to get __div* builtins.
+> +LIBGCC	:= $(shell $(CC) $(DEFAULT_OPTS) --print-libgcc-file-name)
 
-Since this board only uses one port of the multiport controller, I
-redefined phys/phy-names to indicate that. I figured that was more
-desireable than enabling unnecessary phys. Without overriding
-num-ports/num-ss-ports all the for loops in this patch would act like
-the values were 4 and 2 respectively, writing to DWC3_GUSB2PHYCFG
-multiple times etc as well as look for the multiport phy-names and fail
-to actually get any phys. Hope that makes sense!
+It's better to copy the bits of libgcc that you actually need
+than to include the whole thing. The kernel is in a weird
+state that is neither freestanding nor the normal libc based
+environment, so we generally want full control over what is
+used. This is particularly important for 32-bit architectures
+that do not want the 64-bit division, but there are probably
+enough other cases as well.
 
-> > Here's a patch enabling sa8540p-ride, I'd love if you'd add it to the
-> > series (probably needs clean up after review, and will definitely need
-> > alteration after you update the dt-binding again). If not I'll continue
-> > to test/review so please CC me!:
-> > 
-> > 
-> Sure, I can add this patch (probably will add the other phy's too) during
-> the final submission.
-
-I don't have a great understanding of the mapping of the phys to
-physical connections (as well as what registers like DWC3_GUSB2PHYCFG do),
-so if it makes more sense to enable all the relevant SoC phys, write
-those registers in the DWC3 IP, etc, and only use one of the actual
-board outputs then feel free. I think this is a good example of "what if
-a board designer only uses a single port of the multiport IP" imo.
-
-> 
-> >  From dcb27d07f079194ebd7efe1c9bec64da78beb290 Mon Sep 17 00:00:00 2001
-> > From: Andrew Halaney <ahalaney@redhat.com>
-> > Date: Thu, 19 Jan 2023 14:53:38 -0600
-> > Subject: [PATCH] arm64: dts: qcom: sa8540p-ride: Enable usb_2
-> > Content-type: text/plain
-> > 
-> > There is now support for the multiport USB controller this uses
-> > so enable it.
-> > 
-> > The board only has a single port hooked up (despite it being wired up to
-> > the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
-> > which by default on boot is selected to mux properly. Grab the gpio
-> > controlling that and ensure it stays in the right position so USB 2.0
-> > continues to be routed from the external port to the SoC.
-> > 
-> > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 24 +++++++++++++++++++++++
-> >   1 file changed, 24 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> > index 97957f3baa64..56d4f43faa1e 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> > @@ -246,6 +246,21 @@ &usb_0_qmpphy {
-> >   	status = "okay";
-> >   };
-> > +&usb_2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&usb2_en_state>;
-> > +
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb_2_dwc3 {
-> > +	dr_mode = "host";
-> > +	num-ports = <1>;
-> > +	num-ss-ports = <1>;
-> 
-> More over, if this is a multiport controller and you are using only port-1,
-> it is as good as a single port controller I believe and the normal DT
-> convention must work. Adding these properties as "1" is not required as the
-> driver logic defaults them to "1" if they are not found.
-
-See above comment about inheriting from sc8280xp.dtsi and needing to
-override their values.
-
-> 
-> Just to add a point here (as I was not clear in DT Binding description, My
-> bad), the num-ports and num-ss-ports must indicate the HS/SS Phys present on
-> HW whether they are used in DT or not. Just to cover all cases which user
-> can use [1].
-> 
-> []1:
-> https://lore.kernel.org/all/4eb26a54-148b-942f-01c6-64e66541de8b@quicinc.com/
-
-Ok, if you're going with that approach of "must indicate the HS/SS Phys
-present on HW whether they are used in the DT or not" (/me assumes DT
-here means on the board and not an incorrect coding of the DT) then I
-suppose I should not have overridden anything but phys/phy-names to
-indicate that I'm only using the first port (and used the multiport
-phy-names convention). It looks like in that link you also mention that
-it is ok to write to DWC3_GUSB2PHYCFG and friends even if the phy isn't
-defined, which was my concern and reasoning above for overriding
-num-ports/num-ss-ports.
-
-Thanks,
-Andrew
-
-> 
-> Regards,
-> Krishna,
-> 
-> > +	phy-names = "usb2-phy", "usb3-phy";
-> > +	phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
-> > +};
-> > +
-> >   &usb_2_hsphy0 {
-> >   	vdda-pll-supply = <&vreg_l5a>;
-> >   	vdda18-supply = <&vreg_l7g>;
-> > @@ -313,4 +328,13 @@ wake-pins {
-> >   			bias-pull-up;
-> >   		};
-> >   	};
-> > +
-> > +	usb2_en_state: usb2-en-state {
-> > +		/* TS3USB221A USB2.0 mux select */
-> > +		pins = "gpio24";
-> > +		function = "gpio";
-> > +		drive-strength = <2>;
-> > +		bias-disable;
-> > +		output-low;
-> > +	};
-> >   };
-> 
-
+     Arnd
