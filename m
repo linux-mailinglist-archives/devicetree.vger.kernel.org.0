@@ -2,78 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD00B675F7D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:13:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC365675F81
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:15:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbjATVN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 16:13:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35528 "EHLO
+        id S229606AbjATVPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 16:15:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjATVN2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:13:28 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B9D8A4C;
-        Fri, 20 Jan 2023 13:13:26 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30KKhonO019470;
-        Fri, 20 Jan 2023 21:13:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=zq62gIvYUOYZp0PNrvkd+owZCAJA9jgIYgDD39UMtkg=;
- b=Sjjr6Q44OLoaSU9CxyMV9AtrdiUa+4/D5a8CVr+zC0E31T7mbKc/IGl2LnaKFAKgFBYO
- 4ympxxfXOYUCR8+jZ0uh3lAtOaJMo9b6r866FxSXlIZaTPs25RMwDOEzdA6hAIxUy3Fn
- /n69ojdC1JN7/DxtiZ5bG0NNDRYSedmkye3uLKNmQDd6nZxpvK06AN5GjZ6EkbzNGLZs
- d7YGc2gO40q0dC45Wblarin0f+gbe4tMxFexRMvxq0tUFYiLNsPusX8fTiBI3ezbSboE
- ymMQZGL4pyUgWLbzDNEs9VY4hksRDC6YPtDlmTMUWyVWFGpDpQOloks/dFFoh4B2EjL6 ZQ== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n7yc60cga-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 20 Jan 2023 21:13:17 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30KLDHJ0009059
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 20 Jan 2023 21:13:17 GMT
-Received: from [10.110.31.254] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 20 Jan
- 2023 13:13:16 -0800
-Message-ID: <f709f410-f21b-b2e7-4e76-04b15fb2001a@quicinc.com>
-Date:   Fri, 20 Jan 2023 13:13:16 -0800
+        with ESMTP id S229537AbjATVPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:15:44 -0500
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 155D1900A
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:15:42 -0800 (PST)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-501c3a414acso25874757b3.7
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:15:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NcIIC1O7Zs3rEuEM0nyGO+WgzZl8Vikm1z2RFIGcKb0=;
+        b=fhs5Iuj4i9tYiLtWZSoxdZ7lQeEEve400Bj1Vri0BU6rTFbqMbm9zOTpruHHGJiSv+
+         45iwza4m7m6J/UZxVCr4lOZWhgR3egS25OP/hJ5DF5TxBJPR6a3YEs64lCSotn3bkRIl
+         EpmHRQpEh50uuJCoQCzB/3vOLGZVErgkFlHxQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NcIIC1O7Zs3rEuEM0nyGO+WgzZl8Vikm1z2RFIGcKb0=;
+        b=XFuT5r/2Lu4bXxa3j922js5LjvQpMWauCJsJ6W3MeZYtAqvrYE0oVDxIDQHhSvmKJA
+         zh9pOuToQBkhC6458XjQH/19F9rqJd2kej8zEApyliWH5HxqFTZMM7TpRZjPZpytkvON
+         15v/jN5lPUCwmJ26Wk2Sfq0bOEcUf3bLGR7oCK7ouFffwGVPHkys7lVXZdZH21Kc0VHX
+         ZEj5lPZYnmmB8zI92GbOEvW95p1DexG1sLlq/U09ANrvxG/dVrCsQzYsG2DelZFpCHsp
+         jfmWExUZTd+le7Dsp8qsbwtatojrOwEEtC/DcGlU4f2PizvafP8hUNBzbmUSKhbmG00i
+         MLRQ==
+X-Gm-Message-State: AFqh2koetDfiPQ2DaQSR1MtmjbmIcHEePPMXXuaZGZyhI2MzNN0dRY9A
+        9lfpr4npZ7U6+/+9roy9R83ZpTpMYBadoofuK5zCXQ==
+X-Google-Smtp-Source: AMrXdXuzhv476FXH02ilyJSYLORoSx3+kBVAKevbSIn6Qmw3KTvOzqgdIKhThap2Fmmuhb9Bgf50pSjtYaxEVyXLlAg=
+X-Received: by 2002:a0d:e8c9:0:b0:4e0:7220:22fd with SMTP id
+ r192-20020a0de8c9000000b004e0722022fdmr2086808ywe.272.1674249341272; Fri, 20
+ Jan 2023 13:15:41 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v6 0/2] Add base device tree files for QDU1000/QRU1000
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+References: <20230112042104.4107253-1-treapking@chromium.org>
+ <20230112042104.4107253-2-treapking@chromium.org> <Y8AL8nTcNcl6zX7H@paasikivi.fi.intel.com>
+ <CACeCKaeN7KBi30M1fRWhTPgMbxF6=B+KuAS7Ny7+i9qCx+=49Q@mail.gmail.com> <Y8VL/+My+s/PkG9L@paasikivi.fi.intel.com>
+In-Reply-To: <Y8VL/+My+s/PkG9L@paasikivi.fi.intel.com>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Fri, 20 Jan 2023 13:15:30 -0800
+Message-ID: <CACeCKaeaQ+LHsnwdqtTA=O3Q=0dWz8_uNjXoNu5J_u4+HQLMsg@mail.gmail.com>
+Subject: Re: [PATCH v10 1/9] device property: Add remote endpoint to devcon matcher
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Pin-yen Lin <treapking@chromium.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230112210722.6234-1-quic_molvera@quicinc.com>
-Content-Language: en-US
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <20230112210722.6234-1-quic_molvera@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Lyude Paul <lyude@redhat.com>, chrome-platform@lists.linux.dev,
+        Xin Ji <xji@analogixsemi.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
+        linux-acpi@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Chen-Yu Tsai <wenst@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oms45SBvs9RnGgrpTBNy5zskWvfLaBrE
-X-Proofpoint-ORIG-GUID: oms45SBvs9RnGgrpTBNy5zskWvfLaBrE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-20_11,2023-01-20_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- priorityscore=1501 spamscore=0 impostorscore=0 phishscore=0 clxscore=1015
- mlxlogscore=751 adultscore=0 malwarescore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301200202
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,73 +93,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Can someone review these patches please?
+On Mon, Jan 16, 2023 at 5:07 AM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Prashant,
+>
+> On Thu, Jan 12, 2023 at 02:31:45PM -0800, Prashant Malani wrote:
+> > HI Sakari,
+> >
+> > On Thu, Jan 12, 2023 at 5:32 AM Sakari Ailus
+> > <sakari.ailus@linux.intel.com> wrote:
+> > >
+> > > Hi Pin-yen,
+> > >
+> > > On Thu, Jan 12, 2023 at 12:20:56PM +0800, Pin-yen Lin wrote:
+> > > > From: Prashant Malani <pmalani@chromium.org>
+> > > > +             /*
+> > > > +              * Some drivers may register devices for endpoints. Check
+> > > > +              * the remote-endpoints for matches in addition to the remote
+> > > > +              * port parent.
+> > > > +              */
+> > > > +             node = fwnode_graph_get_remote_endpoint(ep);
+> > > > +             if (fwnode_device_is_available(node)) {
+> > > > +                     ret = match(node, con_id, data);
+> > > > +                     if (ret) {
+> > > > +                             if (matches)
+> > > > +                                     matches[count] = ret;
+> > > > +                             count++;
+> > > > +                     }
+> > > > +             }
+> > >
+> > > Aren't you missing fwnode_handle-put(node) here??
+> >
+> > It shouldn't be necessary. We aren't break-ing/continue-ing here,
+> > and fwnode_handle_put(node) is called latter in the loop [1][2]
+>
+> It is, but node is overwritten just below this chunk --- before
+> fwnode_handle_put() is called on it.
 
-Thanks,
-Melody
+Ack. Thanks for pointing that out. My bad!
 
-On 1/12/2023 1:07 PM, Melody Olvera wrote:
-> This series adds the base device tree files and DTS support for the
-> Qualcomm QDU1000 and QRU1000 IDP SoCs, including the clocks, tlmm, smmu,
-> regulators, mmc, interconnects, cpufreq, and qup. 
->
-> This patchset requires the dt-bindings changes from [1-3].
->
-> The Qualcomm Technologies, Inc. Distributed Unit 1000 and Radio Unit
-> 1000 are new SoCs meant for enabling Open RAN solutions. See more at
-> https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/qualcomm_5g_ran_platforms_product_brief.pdf
->
-> [1] https://lore.kernel.org/all/20221216231426.24760-1-quic_molvera@quicinc.com/
-> [2] https://lore.kernel.org/all/20230112204446.30236-1-quic_molvera@quicinc.com/
-> [3] https://lore.kernel.org/all/20230112203653.23139-1-quic_molvera@quicinc.com/
->
-> Changes from v5:
-> - Moved XYZ-names fields under XYZ fields
-> - Removed irrelevant comments
-> - Updated ordering of some fields
-> - Removed unneeded fields
-> - Revised style on clocks and interrupts
->
-> Changes from v4:
-> - Added chassis-type
-> - Added missing regulator voltages
-> - Sorted includes
-> - Remaned memory nodes
-> - Reorganized nodes to start with compatible/reg
-> - Removed unnecessary clocks
-> - Switched to deleting nodes by label
-> - Moved pin biases and drive strengths to dts files
->
-> Changes from v3:
-> - added PCIE and USB clocks
-> - added missing qdu1000 compats
->
-> Changes from v2:
-> - Revised device nodes to match updated dt-bindings
-> - Revised rpmh-rsc bindings to allow for generic regulator nodes
-> - Updated soc ordering
-> - Moved clock node to DTS files
-> - Updated regulator nodes to be generic
-> - Removed some unnecessary whitespace
->
-> Melody Olvera (2):
->   arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs
->   arm64: dts: qcom: Add base QDU1000/QRU1000 IDP DTs
->
->  arch/arm64/boot/dts/qcom/Makefile        |    2 +
->  arch/arm64/boot/dts/qcom/qdu1000-idp.dts |  453 ++++++++
->  arch/arm64/boot/dts/qcom/qdu1000.dtsi    | 1333 ++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/qru1000-idp.dts |  453 ++++++++
->  arch/arm64/boot/dts/qcom/qru1000.dtsi    |   26 +
->  5 files changed, 2267 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qdu1000-idp.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/qdu1000.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/qru1000-idp.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/qru1000.dtsi
->
->
-> base-commit: 0a093b2893c711d82622a9ab27da4f1172821336
-> prerequisite-patch-id: d439ef85a730c7b736ed8c63162e24c7ae661b60
-> prerequisite-patch-id: c55ff1a38fed5356caa8f40a85ef0b8ebc4d1fa4
-> prerequisite-patch-id: 984e8570d2464f4027dc59294c10f47e7ae29a84
+Pin-yen, please make this update when you send out a v11.
 
+BR,
+
+-Prashant
