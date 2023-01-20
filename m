@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89DCC67533F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 12:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2180767534F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 12:17:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbjATLOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 06:14:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42934 "EHLO
+        id S229954AbjATLRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 06:17:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbjATLOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 06:14:33 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6BF6CA33
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:14:27 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id mp20so13040370ejc.7
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:14:27 -0800 (PST)
+        with ESMTP id S229672AbjATLRl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 06:17:41 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B308265AE
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:17:39 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so5606539wmb.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:17:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P2X4s4BtpK/aJlH6LhfyKD6YkP3AiRfVscHdOk053Ic=;
-        b=vjmUzd684UTNTFfBD6QCvS7yvGk6EDhT1p3tYE7wbGgEu5GiUVB+ovpOdfK1UtAR9M
-         X9a5Y3G+iCMeMiX4iJ2sbKcMY/URztUrVK/21T3qNssiKBzTakBPnGD1/U7ILgu8YpIg
-         VVj2E7rCyUzf56Qn8XZIxDjxgQWfw9aFKtrcjtdGIaMoUp0WQuJlrF+4EeqcW0ytnG8g
-         zuri/9Y1cDLF7FROPiGo6d6rV7y3roRVOdJ/NrBT+m1Av+nmM7pzxl5YE+S2mjX/1BJ9
-         d1TdJR7aRQiBMhH8aZmLCTQcCDL7gJzH84yk373PhOkZxhBnemh5AFzYFx2fHJC6mGco
-         ZMuQ==
+        bh=fUigsRmkXItA6bUlKwYNj2lqkTiqf/I1oCA6A0jR9ew=;
+        b=HOYUi5u8nNi6mfzhsiaQo4s/O6EAuoDO7t8cZHJB5e64BXNrnptRP56upnmwhc/rCh
+         3jZwWoss2pnA7D6QJPCu3+2ba2I0NqjU1uMO5N1vjgLozGKsBPBrdRmeU7wiQzSkQ4kX
+         ottKKbrkunQsBa1SS7z0Vxcg+VefpGjqSicMx+o9pmOXVpGmmKML7FaBjV2eFzNfJA6R
+         M977axLvmi40HdEHzIlycK0UPoSVwSI52oIUtuAncV6mQsqm4+6tmFedNrez5VnMdmCA
+         wUEbZWEH0JS/9RMCO6g19INkouC2zyuofjqTMmfjc/ymP9sUo97cO5/nyE6siGUuvl26
+         ev/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P2X4s4BtpK/aJlH6LhfyKD6YkP3AiRfVscHdOk053Ic=;
-        b=mSdewwgVazvF76oEW8zIqiRmegNkLha+HPTBXSth+UvTT8ap6vIpqjoiYnF/GHxC1P
-         +oFGuZzeUqTrjidUhMrRNHlOWtu60qC2Zez1lhZwVXVp8Sr8GIqhP2LCHpeJW7r04ZBu
-         Sncka8HiryRInDxVMRbE7yCA+f4HLbWWDWGJQVYf6MDMPucJA6kt9Fyq5MPuMLoDLHQh
-         i1sWyGMgDk2vdn98+R0fpCW/jgvtt+qaQYxEpmY3qXPvE2S8TwlpHjWEhSdf3ypwWIPn
-         Sz3SnMSE0UMRuaCDvfdhHKj0+uc6TVCjOzw58iAjdfZbcBD9Pe9wI8wfDssZbM9Bih+p
-         LOhQ==
-X-Gm-Message-State: AFqh2kpvx/QwG3HuqB/QQ8gLJS0IlKiIkV7P2CVGUOGLPc8wr2sYBxBG
-        sc0pxVcEbmyRQxSMwVbCteT8bA==
-X-Google-Smtp-Source: AMrXdXvknQ0f7UQ0UYNxv8FK4qT+LCFtsjtVVHNCvOtv0KsLw++TkHUNbKKRJ+1WApT7aQniVff0wQ==
-X-Received: by 2002:a17:907:a2c6:b0:7c1:92b2:fa9e with SMTP id re6-20020a170907a2c600b007c192b2fa9emr15504854ejc.59.1674213266512;
-        Fri, 20 Jan 2023 03:14:26 -0800 (PST)
-Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
-        by smtp.gmail.com with ESMTPSA id 10-20020a170906218a00b0073d796a1043sm17512602eju.123.2023.01.20.03.14.24
+        bh=fUigsRmkXItA6bUlKwYNj2lqkTiqf/I1oCA6A0jR9ew=;
+        b=M8u0dgaYMBBtlpOm01FFS1bYn1fytfwGu26DuTCRZZ2ybmdQRYxVbTCBaz+gFs0xtl
+         mkdRhpC0msM3rhsJOeqoIP/LaN4RnWcaEknPvHwzki1W1XFB6gWvKx7UG3O3wc9vcARy
+         zF7eIJiGwJh8nIORj1qKz+IZEHvHHqydqGKoTgQAXxdc7GwOPTbptyAqfiW3hN8fj1AQ
+         nO9DQp77pj1bznocs1Dd1I9+Arm2902+Ff5JcrLPhUErIyA3xuRc7TjZDOn/OFjCpeWr
+         io8G3ij2mlzpNr77FVFU77rAo5xrl4Xa6s7dIOV5pjrYq72V05mIVFgAwSRLNSoLfr3H
+         W8mA==
+X-Gm-Message-State: AFqh2kp6HIa10sO4FYZ89vzeUf4uQac3DsLbpW+ljmwsc8hB49XR/iS1
+        cKvf9MNeQ3eVCXk8ki6iqWFDKw==
+X-Google-Smtp-Source: AMrXdXv1GyW15lzWgOsJbli/Sm2gt987OIIchyWtf68r8s7aNtwe7bTFmb2cPTgluncvv68Cno2jug==
+X-Received: by 2002:a05:600c:3b1e:b0:3cf:497c:c4f5 with SMTP id m30-20020a05600c3b1e00b003cf497cc4f5mr14014830wms.13.1674213458038;
+        Fri, 20 Jan 2023 03:17:38 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u3-20020a7bc043000000b003d1d5a83b2esm1949560wmc.35.2023.01.20.03.17.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 03:14:26 -0800 (PST)
-Message-ID: <64e32ee3-404e-3832-c451-a758db12158e@linaro.org>
-Date:   Fri, 20 Jan 2023 12:14:23 +0100
+        Fri, 20 Jan 2023 03:17:37 -0800 (PST)
+Message-ID: <7a4ab7df-5790-bdde-388d-8a848d2ebeea@linaro.org>
+Date:   Fri, 20 Jan 2023 12:17:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 7/8] arm64: dts: qcom: msm8996: add CBF device entry
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 1/4] dt-bindings: i2c: qcom-cci: Document SM6350
+ compatible
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+To:     Luca Weiss <luca.weiss@fairphone.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
- <20230120061417.2623751-8-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230120061417.2623751-8-dmitry.baryshkov@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221213-sm6350-cci-v1-0-e5d0c36e0c4f@fairphone.com>
+ <20221213-sm6350-cci-v1-1-e5d0c36e0c4f@fairphone.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221213-sm6350-cci-v1-1-e5d0c36e0c4f@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,34 +84,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 20.01.2023 07:14, Dmitry Baryshkov wrote:
-> Add device tree node for the CBF clock.
+On 20/01/2023 12:11, Luca Weiss wrote:
+> Document the compatible for the CCI block found on SM6350 SoC.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index 4427305f8a94..6f180a8efe77 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -3572,6 +3572,13 @@ saw3: syscon@9a10000 {
->  			reg = <0x09a10000 0x1000>;
->  		};
->  
-> +		cbf: clock-controller@9a11000 {
-> +			compatible = "qcom,msm8996-cbf";
-> +			reg = <0x09a11000 0x10000>;
-> +			clocks = <&rpmcc RPM_SMD_XO_A_CLK_SRC>, <&apcs_glb>;
-> +			#clock-cells = <0>;
-> +		};
-> +
->  		intc: interrupt-controller@9bc0000 {
->  			compatible = "qcom,msm8996-gic-v3", "arm,gic-v3";
->  			#interrupt-cells = <3>;
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
