@@ -2,131 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB722675037
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:08:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86A78675050
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbjATJI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 04:08:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46496 "EHLO
+        id S229695AbjATJLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 04:11:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbjATJI1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:08:27 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36637518C2;
-        Fri, 20 Jan 2023 01:08:26 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DE8C7B81FBD;
-        Fri, 20 Jan 2023 09:08:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 356FCC4339B;
-        Fri, 20 Jan 2023 09:08:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674205703;
-        bh=O96ThGuyWt09KyloQFrsJRw6KPqNmy1OWLE7cFXERl8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=k21IjSbqb93uzSxBV55FK9vwzQOCA9fH9BKTGCg3nVn1bZcxxygORAjzlQyAVERKn
-         7Jj/W8uovolQdR/BND0gtSmUKVC4fFJOI24cLhCcns1gaeZUwPOzSSyOqbhdQ22L2H
-         TEPNX7mEr/LKvzjpM1NeGW1OPY9FpIja6XPXJ4ETdvQb2AXdsP4pzKTITVAx7xpbre
-         x2IFa0I0InMUvs16Sf8BpeRnGhau0VefUu2Z2pC5dlkVL8Dxf+EKZuPlkr6jaJ4QPP
-         Q6MUjWi87GsxXwa4putVYiVRL7bkCBpjtD+ed/lrOP+ApdStLfaWTReCOiw2Hd2o4M
-         qNLxV9DSokM0g==
-Date:   Fri, 20 Jan 2023 10:08:20 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Andy Shevchenko <andy@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S229609AbjATJLO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:11:14 -0500
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57A5D8F6E9
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 01:10:35 -0800 (PST)
+Received: by mail-vs1-xe29.google.com with SMTP id l125so5025444vsc.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 01:10:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MZaS2jFjKgJPIvOoi38x6xVSa304xRVXmBfQSeerAQY=;
+        b=oS34Rc5HqDn0y15rqvi/SJ7g/YzvXWq0oxQW3beFjIl1h0f2A1Hbkc6cYkGT/Qt9u7
+         I2whoZrl78YFDiKZsS3Gp8hoc/MAtStyl8kT501tDSnjzejpUcrEAKrWvfWqqQCKhXn9
+         BYvMzs3RTYs3I0fetVg4f0ujpF21vjBQ16sLDg1U8mo9AT2mWcgZ0yQC0k5VhelwF06a
+         qLDRvDv7lVwx+PDEZtqTJ7YDDYNidzpcHtOf4XQfIQ9kNj2WfW8+nkCBq619uUKy0jGQ
+         Jc6Y/SDX6V5/Z4L2J2ZrQgwmMY3PW96vmVnGwxDWhfQMQGTnSw+ZKu1K1MfE8GsC/20c
+         cvDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MZaS2jFjKgJPIvOoi38x6xVSa304xRVXmBfQSeerAQY=;
+        b=Y0PAr3bBEiKEwU1q1cpjmHOnKlodQjPBa/D6y3pAgATaSab+0rQPa2v2qCJIwcits2
+         KsI+1iTLjU747JpC/GX/kwRu0a/B25YGA2VoUFc45/MC6lFXXhZ2vCZckToB1cOMwEpD
+         sWRs2X9Gf0PAt8Fg24fXmA08PfSmBnDhZv02heUVYjr+TNg0bZ2aYnE8+Rz45p2FoKNd
+         uEAcR8sGHlduuSdwQ4qOHRdZcqWbxnI01p1rOArUkQ1R4P9J2ZG2wXJN4f1rFJBdQoh1
+         DtUK3BpgiGr2gReaYSL6KrYjjk6NDIJiSQlCdFIpN0xx6IC+OM1xihLqPIFalovO8R7K
+         r8PA==
+X-Gm-Message-State: AFqh2koiEf4OStOSjAVHRYpL5JiYNVzloyu5DDBDBNhRCHqrqNh0bDAN
+        JyA4WjkhKgkuoGjntP3BwHssW1d3+WMgZqD9qeEwLg==
+X-Google-Smtp-Source: AMrXdXuoNgBQTMIHd+dvijVuebGsbNf80ukIzQIavSmHvcpNOwe/UwQI7TD7lVbOmJjHW7p96DCDvNBXfraxk5DyG7M=
+X-Received: by 2002:a67:f2da:0:b0:3d3:d90c:5ef2 with SMTP id
+ a26-20020a67f2da000000b003d3d90c5ef2mr2358807vsn.17.1674205804654; Fri, 20
+ Jan 2023 01:10:04 -0800 (PST)
+MIME-Version: 1.0
+References: <20230118140825.242544-1-brgl@bgdev.pl> <20230118140825.242544-3-brgl@bgdev.pl>
+ <4f65001a-b442-7425-dfa3-b1e9be81d566@linaro.org>
+In-Reply-To: <4f65001a-b442-7425-dfa3-b1e9be81d566@linaro.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 20 Jan 2023 10:09:53 +0100
+Message-ID: <CAMRc=MfnBF3Bnez7w+twmn8bzCk3HRRSq69mJ3NpSrQeQqpPDA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] interconnect: qcom: add a driver for sa8775p
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Peibao Liu <liupeibao@loongson.cn>
-Subject: Re: [PATCH V10 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-Message-ID: <Y8paBAVsBJIqLZnH@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Andy Shevchenko <andy@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Peibao Liu <liupeibao@loongson.cn>
-References: <cover.1673340642.git.zhoubinbin@loongson.cn>
- <77046b03eb0e75b25934406afce597997624a2b8.1673340642.git.zhoubinbin@loongson.cn>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8Vp4PIH7jEjIxHln"
-Content-Disposition: inline
-In-Reply-To: <77046b03eb0e75b25934406afce597997624a2b8.1673340642.git.zhoubinbin@loongson.cn>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shazad Hussain <quic_shazhuss@quicinc.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 18, 2023 at 3:45 PM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 18.01.2023 15:08, Bartosz Golaszewski wrote:
+> > From: Shazad Hussain <quic_shazhuss@quicinc.com>
+> >
+> > Introduce QTI SA8775P-specific interconnect driver.
+> >
+> > Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+> > [Bartosz: made the driver ready for upstream]
+> > Co-developed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  drivers/interconnect/qcom/Kconfig   |    9 +
+> >  drivers/interconnect/qcom/Makefile  |    2 +
+> >  drivers/interconnect/qcom/sa8775p.c | 2541 +++++++++++++++++++++++++++
+> >  3 files changed, 2552 insertions(+)
+> >  create mode 100644 drivers/interconnect/qcom/sa8775p.c
+> >
+> > diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+> > index cd689b782f97..3132a03ca974 100644
+> > --- a/drivers/interconnect/qcom/Kconfig
+> > +++ b/drivers/interconnect/qcom/Kconfig
+> > @@ -92,6 +92,15 @@ config INTERCONNECT_QCOM_RPMH_POSSIBLE
+> >  config INTERCONNECT_QCOM_RPMH
+> >       tristate
+> >
+> > +config INTERCONNECT_QCOM_SA8775P
+> > +     tristate "Qualcomm SA8775P interconnect driver"
+> > +     depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
+> > +     select INTERCONNECT_QCOM_RPMH
+> > +     select INTERCONNECT_QCOM_BCM_VOTER
+> > +     help
+> > +       This is a driver for the Qualcomm Network-on-Chip on sa8775p-based
+> > +       platforms.
+> > +
+> >  config INTERCONNECT_QCOM_SC7180
+> >       tristate "Qualcomm SC7180 interconnect driver"
+> >       depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
+> > diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
+> > index 3fd4c2713c4a..75df2cf64c0b 100644
+> > --- a/drivers/interconnect/qcom/Makefile
+> > +++ b/drivers/interconnect/qcom/Makefile
+> > @@ -13,6 +13,7 @@ qnoc-qcm2290-objs                   := qcm2290.o
+> >  qnoc-qcs404-objs                     := qcs404.o
+> >  qnoc-qdu1000-objs                    := qdu1000.o
+> >  icc-rpmh-obj                         := icc-rpmh.o
+> > +qnoc-sa8775p-objs                    := sa8775p.o
+> >  qnoc-sc7180-objs                     := sc7180.o
+> >  qnoc-sc7280-objs                        := sc7280.o
+> >  qnoc-sc8180x-objs                    := sc8180x.o
+> > @@ -39,6 +40,7 @@ obj-$(CONFIG_INTERCONNECT_QCOM_QCM2290) += qnoc-qcm2290.o
+> >  obj-$(CONFIG_INTERCONNECT_QCOM_QCS404) += qnoc-qcs404.o
+> >  obj-$(CONFIG_INTERCONNECT_QCOM_QDU1000) += qnoc-qdu1000.o
+> >  obj-$(CONFIG_INTERCONNECT_QCOM_RPMH) += icc-rpmh.o
+> > +obj-$(CONFIG_INTERCONNECT_QCOM_SA8775P) += qnoc-sa8775p.o
+> >  obj-$(CONFIG_INTERCONNECT_QCOM_SC7180) += qnoc-sc7180.o
+> >  obj-$(CONFIG_INTERCONNECT_QCOM_SC7280) += qnoc-sc7280.o
+> >  obj-$(CONFIG_INTERCONNECT_QCOM_SC8180X) += qnoc-sc8180x.o
+> > diff --git a/drivers/interconnect/qcom/sa8775p.c b/drivers/interconnect/qcom/sa8775p.c
+> > new file mode 100644
+> > index 000000000000..da21cc31a580
+> > --- /dev/null
+> > +++ b/drivers/interconnect/qcom/sa8775p.c
+> > @@ -0,0 +1,2541 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (c) 2021-2022, Qualcomm Innovation Center, Inc. All rights reserved.
+> > + * Copyright (c) 2023, Linaro Limited
+> > + */
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/interconnect.h>
+> > +#include <linux/interconnect-provider.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_platform.h>
+> > +#include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
+> > +
+> > +#include "bcm-voter.h"
+> > +#include "icc-rpmh.h"
+> > +
+> > +#define SA8775P_MASTER_GPU_TCU                               0
+> Other drivers move these to socname.h
+>
 
---8Vp4PIH7jEjIxHln
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Why would they do it if the symbols are not meant to be used outside
+of the driver?
 
-Hi,
+> Otherwise, this lgtm:
+>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>
 
-the driver looks mostly good. Thank you for your hard work, and also
-thanks to Andy for his great review efforts again!
+[...]
 
-> +static unsigned int ls2x_i2c_func(struct i2c_adapter *adap)
-> +{
-> +	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
-> +}
-
-Have you tried messages with zero-length or the SMBUS_QUICK transfer
-which is basically the same? i2cdectect uses it by default, so if that
-works, then we are good.
-
-> +/* The DC subsystem depends on it, we should initialize it earlier. */
-> +static int __init ls2x_i2c_init_driver(void)
-> +{
-> +	return platform_driver_register(&ls2x_i2c_driver);
-> +}
-> +subsys_initcall(ls2x_i2c_init_driver);
-
-Can't this be handled with deferred probing?
-
-Happy hacking,
-
-   Wolfram
-
-
---8Vp4PIH7jEjIxHln
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmPKWgQACgkQFA3kzBSg
-Kbbh+xAAgOJ3y/cc938IHev3jEUXPaLd6Kv7ont6wBNPdFFb84sS5lwDuKGOmdbc
-gs54YpM5RRj5q3QGUyEdBhYPTJ+wBuftjlvm9tQzfbvBjo2Pzp5me7qesmpzzfv0
-0rCMDBSVBFLi8QrYqiEv1UYBy2WqFaFvhu/rFL9p8xrUGx+nYnWOGAHL71P1abUL
-LaAR/N+7SezK9vLDLPdoUTsuzxM0mY2Q1I7Axgfkce0Sh315URu0dzzToTwMtn8I
-eheEWTOwKK+e7PB0INrDB3BRnge8nHPJl+j4TKSOp3T7rfoeU9d1tP/C7r0k7dQC
-XQo0YQoIwKDV9lbmlE19DWrnOwBtD6dsLA3GkHPF0D1tpz9njZr6K5cGuSP09rx9
-DB/VV9CPhplSEiWzJMz3fKq0UP9Og/Q9fccYOF7+mm5CiMbBgKiiY58w05mF+wNP
-4aCIuCjaoHO6pFqP8ijXppyBDSYdHP121ifpMPgnxLCmA7Vq8Hyk6S4QWyXNUjCA
-/9g80ZNAMRQh+BBj0ttM8bW9VlGE/6NfjpliB+VUHdpu+EmOvspk8CQt0thYOMad
-BCGUQPxyBv31LnbIKRSgxS0zzqzzBZAl8JZZX0J1nRRrc4cDmq9rtT5ZXcIOM/zW
-wRWKrM7alG/ihDWIqx4PNTXnXA7puliUklfzocrsAhXm+qleM1o=
-=ajTM
------END PGP SIGNATURE-----
-
---8Vp4PIH7jEjIxHln--
+Bart
