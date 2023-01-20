@@ -2,85 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5366867513A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:34:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55D41675140
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 10:35:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbjATJeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 04:34:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56012 "EHLO
+        id S229499AbjATJfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 04:35:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231146AbjATJeI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:34:08 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015E6D7;
-        Fri, 20 Jan 2023 01:33:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E7D3061E60;
-        Fri, 20 Jan 2023 09:33:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36969C433D2;
-        Fri, 20 Jan 2023 09:33:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674207225;
-        bh=flGcaxUpqgF9SiqX+TICUIWFq/FXqENur7P1o86/rHY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=XJYyIMynCAzLWyyw3ZwFpO5CSRJVeTfe+kvui3Qu7aZ8m5bhWAZwP2S7XE5Dcxky+
-         7+e44erve1l6DUdzSKFijm68uYg7l4z1imA+tvF52F4jZ/b3fY1Qk57WTVcfTO+1eP
-         dnRr8iej2Yi5gsyPH3e+bJV9tRpEgPGC+I+1TuRtx3sJCVVaauUFqvHNIGVWb5AJL8
-         0VHRTVhFUezNFyEHIDFkVsamlCjhq3/1AQoyG1v6+rKRv62ucNyIurI7+CfAk2TIgq
-         aW4TZwrCanxNizsExEBscyEI/qp94kTSxy9q296hCdmxXtYuS+vN0iLd2p7DlLxHPP
-         80FpsvKWIlq6Q==
-Message-ID: <72112478-32fe-7e00-aa69-073140bc6713@kernel.org>
-Date:   Fri, 20 Jan 2023 11:33:40 +0200
+        with ESMTP id S229570AbjATJew (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 04:34:52 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1111D5BBE;
+        Fri, 20 Jan 2023 01:34:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674207272; x=1705743272;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6lIDR4z4RQuA46b04i56IywoXYvWWasF4FtmGMaqhIo=;
+  b=KNFo7L755zgDLmb9N0qmwygulQgUirR+Z/B6U3JTHDFFQ/zDHjFNJY+p
+   q1lKE+1ZSeSPgI0Yfzr4XnKW9xM0FpWimEAzLcaAVDI1k4lAPV7n2ZR5z
+   TqSL7AFKtUsQUZkI9NMhqwEoH+rp7Y0TXlgJuc/YbsEHencGMUdFZPgyS
+   GU7ECJp/KXQx8Qx0ecQa2ye3vAwTm9rkRPxv9swzXon0gWWJGNFtvVUBt
+   AH0VmVRIivCOLwTmVnAX/sLFQx6N6C3YSjCS1TZ5fywRhtJ1SnRI3Y34C
+   r/gNaKhKPAoTVT65TcUekf86hEc0y15Zf3CWrpnMgfNwjsGK3bj5oHUlR
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="411775449"
+X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; 
+   d="scan'208";a="411775449"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2023 01:34:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10595"; a="803018746"
+X-IronPort-AV: E=Sophos;i="5.97,231,1669104000"; 
+   d="scan'208";a="803018746"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 20 Jan 2023 01:34:18 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 20 Jan 2023 11:34:17 +0200
+Date:   Fri, 20 Jan 2023 11:34:17 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Wayne Chang <waynec@nvidia.com>
+Subject: Re: [PATCH V6 5/6] usb: typec: ucsi_ccg: Remove ccgx,firmware-build
+ property
+Message-ID: <Y8pgGTNwSRZ8VaGW@kuha.fi.intel.com>
+References: <20230119121639.226729-1-jonathanh@nvidia.com>
+ <20230119121639.226729-6-jonathanh@nvidia.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3] dt-bindings: interconnect: qcom-bwmon: document SM8550
- compatibles
-Content-Language: en-US
-To:     neil.armstrong@linaro.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-bwmon-v3-1-7d63d2ae6bce@linaro.org>
- <5ab38158-6e75-ea9c-f788-f3a2d77dbbe7@linaro.org>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <5ab38158-6e75-ea9c-f788-f3a2d77dbbe7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230119121639.226729-6-jonathanh@nvidia.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.01.23 17:05, Neil Armstrong wrote:
-> Hi Georgi,
+On Thu, Jan 19, 2023 at 12:16:38PM +0000, Jon Hunter wrote:
+> From: Wayne Chang <waynec@nvidia.com>
 > 
-> On 09/01/2023 13:11, Neil Armstrong wrote:
->> Document the compatibles used to describe the Bandwidth Monitors
->> present on the SM8550 platform.
->>
->> A BWMON v4 IP monitors the CPU bandwidth, and a v5 does the LLCC
->> bandwidth monitoring.
->>
->> This is described by adding "llcc" and "cpu" into the compatible
->> strings to differentiate the BWMON IPs.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Remove the property 'ccgx,firmware-build' now we have migrated devices
+> to using the 'firmware-name' property.
+
+Ah, so just do this in the patch 3/6.
+
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+> V6: fixed compilation
+> V5: Added this patch from V3
 > 
-> Gentle ping,
-> Neil
+>  drivers/usb/typec/ucsi/ucsi_ccg.c | 18 +++++++-----------
+>  1 file changed, 7 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
+> index 661a3988b39d..8f5ad2094f26 100644
+> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
+> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
+> @@ -1358,17 +1358,13 @@ static int ucsi_ccg_probe(struct i2c_client *client)
+>  	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
+>  
+>  	/* Only fail FW flashing when FW build information is not provided */
+> -	status = device_property_read_u16(dev, "ccgx,firmware-build",
+> -					  &uc->fw_build);
+> -	if (status) {
+> -		status = device_property_read_string(dev, "firmware-name",
+> -						     &fw_name);
+> -		if (!status) {
+> -			if (!strcmp(fw_name, "nvidia,jetson-agx-xavier"))
+> -				uc->fw_build = CCG_FW_BUILD_NVIDIA_TEGRA;
+> -			else if (!strcmp(fw_name, "nvidia,gpu"))
+> -				uc->fw_build = CCG_FW_BUILD_NVIDIA;
+> -		}
+> +	status = device_property_read_string(dev, "firmware-name",
+> +					     &fw_name);
 
-Thanks Neil! Applied and in linux-next already.
+One line.
 
-BR,
-Georgi
+> +	if (!status) {
+> +		if (!strcmp(fw_name, "nvidia,jetson-agx-xavier"))
+> +			uc->fw_build = CCG_FW_BUILD_NVIDIA_TEGRA;
+> +		else if (!strcmp(fw_name, "nvidia,gpu"))
+> +			uc->fw_build = CCG_FW_BUILD_NVIDIA;
+>  	}
+>  
+>  	if (!uc->fw_build)
+> -- 
+> 2.25.1
 
+thanks,
+
+-- 
+heikki
