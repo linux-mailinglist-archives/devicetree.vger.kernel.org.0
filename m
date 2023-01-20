@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D807C675F3E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:01:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8644D675F49
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:01:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbjATVBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 16:01:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54630 "EHLO
+        id S229924AbjATVBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 16:01:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjATVBS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:01:18 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07039881E1
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:01:17 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id y19so8208149edc.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:01:16 -0800 (PST)
+        with ESMTP id S229925AbjATVB0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:01:26 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E94CE8A3
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:01:20 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id vw16so16941644ejc.12
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:01:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5vdvlTIe2SoUdgzeTBXtkOHkXv6c2FDuAp1y22eD7Ng=;
-        b=rhSCbwWbjcUJKlgvQOopMWTQNS4FyCSdDOWhsdPizT6q+UQu4iVeyAmPOW5WKRQJgT
-         +Nz4dkQwNjkwv6zsd0mbsgyNLAqj00cjWXRd69Cp5ucpmXVs1bV/fVM8wGV4BvO04Je8
-         YeNmEXt7GOD9+3EqM/LVf1SyCiMqIlaBhijJ3nmrRCEMxwo0pX950AGQbeZq06vsaiGP
-         IZ3hvWDZW/EI2BbE1Tl+kXiI2M//dNGYiYPsZjYiRFunyCT1lgNapZ0DFehZcWGvCW9X
-         WYhAvM5EiJsEx0eKK9GRR3X7pu8e8HBGpq+oqpJe4fsIhXAYmvNxCkD0LYMDZngfwGsX
-         tg0Q==
+        bh=HZI0mGZqPWNWXo10nShEsAnlud3zWKZXf/8L1lgJABU=;
+        b=VKHyVpdfr1VP8s+ttJ18P1ptwa5pjtcz8Pd4A71OK+zYUz7QfN9HCLCaEf6v3vXD7I
+         Po3EdOboLWrqsQe68s4V9be5TB/HvlFC2v6PCuE6NoX7JMgveySJRdFlTCGWkcrZG2C6
+         Lgb8KW+orzRBZe6Wp0GI+CVCYgOMUUs6Jvxte9riSrqcGxlIsoF87FAE+e5L43I7+VrK
+         6Qyv4kFRgi92nF1tKNB/YiDiEbBc7Uz8KKacz0fKEerLTYk6fOVjnmNv19GF98gEBCtL
+         wpPKK6yjdp7zyJ98+Z+ciRWf66F6mQRhNfeObR+D3eSYK1bosWkpGjqPXolURzJLg6fM
+         wIMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5vdvlTIe2SoUdgzeTBXtkOHkXv6c2FDuAp1y22eD7Ng=;
-        b=1TgKHfLsrbwIWH/vHjnEbjyShU/xXEcmYaj0h14SfL8KWksZ1c310F5JAswWZkbwqC
-         yQ2E3vcP9FcSV2DsWWJsflJNr2rMaS1FmHnUuOXZ49dfdLWypqcD30fSi9H9jl54cIiS
-         zRKK6hLV7vHRr6KaO/TMpNzqZAnMQ2qry/7hemaYAoF7WlWNr0Bm4IMhMBz1hBJpRT6N
-         IrxkhL/6moHL57+OFieQGY8OrVc+rKwKU68DPQTNoqRRsK+2/bIgkU0wkrq7Vb6G2UN2
-         waFUGXmyVUvb34sKSYyB2filLQkF2C3dxW8fK+r6ptno2mvVayG6+NTAg2jY/hFyY3Lm
-         7Xig==
-X-Gm-Message-State: AFqh2kqD4qGV3gPL7I8B7Ml+yb7WnQACs8NzUmC3qeavJ7JFLY7ZzCoq
-        V+6seA6gvFV/F11CPzO8zh65JQ==
-X-Google-Smtp-Source: AMrXdXuA4bZe2r10Fa2xb6v7gUYLSpFAEboZqxVdFXr3Y8zk2kJnKU4qwAoDJTd+CPD8UbAuF6ivag==
-X-Received: by 2002:a05:6402:1946:b0:48b:c8de:9d20 with SMTP id f6-20020a056402194600b0048bc8de9d20mr17986061edz.32.1674248475600;
-        Fri, 20 Jan 2023 13:01:15 -0800 (PST)
+        bh=HZI0mGZqPWNWXo10nShEsAnlud3zWKZXf/8L1lgJABU=;
+        b=WhSsTDb0KZykBA5LT/isrLt6P7i8QD/Ed/iZxcmSp9lvQDjsSiJoB/C/ZuUkpdVkYc
+         hc/OqGbLFg9KeVgPjVhx58nIgGn/5xN7exLQxQomW3tbGxOPgucpi4Jb6sxj0c7V0bJo
+         XSp5tpo8SUw+0VGYwVazohBmLAq7s8UZgNCL5uLZ1PZB8gOF0/TOmQRKq48jaUkzTj4Q
+         dhgBM6rUHp86Fzd2Yw+lAPoMKTCphLo1UK3kQ9P0eOno9Ie2/2wZJfYFWo0dzUVZ0hxE
+         prPQbCCQanf9hEeAYiGkHrFGeZ6H42k0rrE34g9d6sXg9oBDT2clvZMX9XKp667mWh1M
+         xA0Q==
+X-Gm-Message-State: AFqh2krqdanq1JymP8zHUN2gVpbp6HVVI+TVELXRA8+gE1qBTy/RPzb+
+        P6LJ/xN8/xc+Ao/05jFhPvLK/Q==
+X-Google-Smtp-Source: AMrXdXtGHb97GiTH9eM7hMgq/1duL22/HTOfybkpkkSEk6RfbLNX2jepelJYZxwPa5Um3RKUWXJi6Q==
+X-Received: by 2002:a17:906:1605:b0:872:41a5:7c78 with SMTP id m5-20020a170906160500b0087241a57c78mr21938890ejd.3.1674248478851;
+        Fri, 20 Jan 2023 13:01:18 -0800 (PST)
 Received: from localhost.localdomain (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
-        by smtp.gmail.com with ESMTPSA id g22-20020a170906595600b0087221268e49sm6581229ejr.186.2023.01.20.13.01.13
+        by smtp.gmail.com with ESMTPSA id g22-20020a170906595600b0087221268e49sm6581229ejr.186.2023.01.20.13.01.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Jan 2023 13:01:15 -0800 (PST)
+        Fri, 20 Jan 2023 13:01:18 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -67,10 +67,10 @@ Cc:     marijn.suijten@somainline.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/8] arm64: dts: qcom: sm8350: Add missing #address/size-cells to DSIn
-Date:   Fri, 20 Jan 2023 22:00:54 +0100
-Message-Id: <20230120210101.2146852-2-konrad.dybcio@linaro.org>
+        Robert Foss <rfoss@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 3/8] arm64: dts: qcom: sm8350: Fix DSI1 interrupt
+Date:   Fri, 20 Jan 2023 22:00:55 +0100
+Message-Id: <20230120210101.2146852-3-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230120210101.2146852-1-konrad.dybcio@linaro.org>
 References: <20230120210101.2146852-1-konrad.dybcio@linaro.org>
@@ -86,39 +86,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Panels/DRM bridges definitely don't need 64bits of address space and
-are usually not 32-bit wide. Set address-cells to 1 and size-cells to
-0.
+The interrupt was wrong, likely copypasted from DSI0. Fix it.
 
+Fixes: d4a4410583ed ("arm64: dts: qcom: sm8350: Add display system nodes")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index dc84dbed81bb..c0ba67747c24 100644
+index c0ba67747c24..ed0106829cb9 100644
 --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -2989,6 +2989,9 @@ mdss_dsi0: dsi@ae94000 {
+@@ -3062,7 +3062,7 @@ mdss_dsi1: dsi@ae96000 {
+ 				reg-names = "dsi_ctrl";
  
- 				phys = <&mdss_dsi0_phy>;
+ 				interrupt-parent = <&mdss>;
+-				interrupts = <4>;
++				interrupts = <5>;
  
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
- 				status = "disabled";
- 
- 				dsi0_opp_table: opp-table {
-@@ -3084,6 +3087,9 @@ mdss_dsi1: dsi@ae96000 {
- 
- 				phys = <&mdss_dsi1_phy>;
- 
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
- 				status = "disabled";
- 
- 				dsi1_opp_table: opp-table {
+ 				clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
+ 					 <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
 -- 
 2.39.1
 
