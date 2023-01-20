@@ -2,175 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D290675804
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:03:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECA1867581D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 16:08:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230398AbjATPDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 10:03:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38550 "EHLO
+        id S230342AbjATPIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 10:08:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230087AbjATPDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:03:47 -0500
-Received: from fx303.security-mail.net (mxout.security-mail.net [85.31.212.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D55F8881EA
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:03:44 -0800 (PST)
-Received: from localhost (fx303.security-mail.net [127.0.0.1])
-        by fx303.security-mail.net (Postfix) with ESMTP id 5E50E30F758
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 16:03:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kalray.eu;
-        s=sec-sig-email; t=1674227023;
-        bh=UZzOxuculcf7mxi4XmJ6gsSDrAJaXvR6pX1yVHvffJs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=kW7THbefwaBqq3E4MyuQwmr90ax0hQkfpZy6Np3+KLY3cc++QhhhKVSBM30a+UOn3
-         oVqxEdH813kxvM5hlQNOTi/eFMG7llCjnSgPz33v8ttiDqA7igP87DRmjQ5TQyl3qe
-         Cuf5U3fBQ82LLZmM8yVtNzEzjGSKIOEazPF0sfpI=
-Received: from fx303 (fx303.security-mail.net [127.0.0.1]) by
- fx303.security-mail.net (Postfix) with ESMTP id 3095E30F6BC; Fri, 20 Jan
- 2023 16:03:43 +0100 (CET)
-Received: from zimbra2.kalray.eu (unknown [217.181.231.53]) by
- fx303.security-mail.net (Postfix) with ESMTPS id 7CF1230F79F; Fri, 20 Jan
- 2023 16:03:42 +0100 (CET)
-Received: from zimbra2.kalray.eu (localhost [127.0.0.1]) by
- zimbra2.kalray.eu (Postfix) with ESMTPS id 5696027E043A; Fri, 20 Jan 2023
- 16:03:42 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1]) by zimbra2.kalray.eu
- (Postfix) with ESMTP id 36BE627E0437; Fri, 20 Jan 2023 16:03:42 +0100 (CET)
-Received: from zimbra2.kalray.eu ([127.0.0.1]) by localhost
- (zimbra2.kalray.eu [127.0.0.1]) (amavisd-new, port 10026) with ESMTP id
- 9zSUTNBWOY1C; Fri, 20 Jan 2023 16:03:42 +0100 (CET)
-Received: from tellis.lin.mbt.kalray.eu (unknown [192.168.36.206]) by
- zimbra2.kalray.eu (Postfix) with ESMTPSA id D59A827E0430; Fri, 20 Jan 2023
- 16:03:41 +0100 (CET)
-X-Virus-Scanned: E-securemail
-Secumail-id: <7f21.63caad4e.7b828.0>
-DKIM-Filter: OpenDKIM Filter v2.10.3 zimbra2.kalray.eu 36BE627E0437
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kalray.eu;
- s=32AE1B44-9502-11E5-BA35-3734643DEF29; t=1674227022;
- bh=C7HrnI5K8lMVKwfpvR2iIg1M1ljeou+P3mCJSMAG91Q=;
- h=Date:From:To:Message-ID:MIME-Version;
- b=WDWoyVMbIMPbJepmJq7lETaMqJi8dXSis3WDlHnimStL/D6LcNyVKEyhwC0exaLEa
- /yI1hmzBWA0vpQxL61VK4pLGSFjwDaBXqRRCN+CNJkpmnVhmZT4IznmM53SL6OKcDp
- hoqf7NRBZhx1q/JOV6km7TyZQI9nicecKIciSZ5I=
-Date:   Fri, 20 Jan 2023 16:03:40 +0100
-From:   Jules Maselbas <jmaselbas@kalray.eu>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Yann Sionneau <ysionneau@kalray.eu>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229997AbjATPIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 10:08:06 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5026BC1302
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:08:02 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id kt14so14730075ejc.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 07:08:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZloHG/b+aUSzeESbN9+Hbz6Kz4K6ar0eODA3eSRcTt4=;
+        b=fvjOJbmCatrxy3kmbDBZkiCSxXkDHf81I9S8cORViLbYbRvNcqC2+otHYyYn9X+aVB
+         oPokIWUIX4sLJ9LLOPPhZBaI6w13WWbmZw7pxTlsCG+lfXt+mU2TJGL1JDsQo9BiaMQb
+         UxC0G8MyNtNTvKIH0NF0ahNh051Gb3MJmiscczuo9CVFEsH/bg5FDGhZh3cv850wCXW1
+         P2CgPh/r8NOm36lJO1SZUyCR+UwjOVhuc6Wg/AucFHTzmDL/W7CNF41JFTAUZOZYKlN/
+         vVtvXoavDpptLy06mG4tXpvtDLkhYe+TJV28PgwVEKb4y/dNlu4JNW9WN/l2/L/jJSdZ
+         LSuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZloHG/b+aUSzeESbN9+Hbz6Kz4K6ar0eODA3eSRcTt4=;
+        b=VmmWrprRgUcnWBVdrqlUBihZ8Kj3opAM2eQBo5iFfKS+jEYXOb4/LlbGuWxl+JQDjm
+         WShtiX687oDOYWT3wMSlljigxyCSLdJnLH4KC9O/kds0kv+SrfxvrhrFGKMS0038Lujh
+         5w09VqpZk38CuMcqKdCO0RVFKI4x4Z0t/PeuDTSAD3jytEEtezHWvzd8j4Z6TRPXEck7
+         uUEPXtFhod2KlD6I/7JbtNKM7+IPhtoRTDdgurmK45Rm4TJ4aM8j1NiYG3np+XIYAo/r
+         dq+Lp0hMSS1vZe/+7yVEldE3d9w2u/JNr/zsRIb+W8LEY+2Or/tfZegvIIdhLR4Vc31j
+         ZUXA==
+X-Gm-Message-State: AFqh2kr3CrOMKn8a0dCJoSaa8DdV/9nxJeBRK9df788P3aEM86tYoRTv
+        1VpCgWqKIUvbpZ6HQk/qmOd43g==
+X-Google-Smtp-Source: AMrXdXu0TCIsz6KA4nidb34t6GeimnrRJpKQf8lbl0ED3lMO7EjYah3chjPsQGur8g3vZ3FUlgjSRw==
+X-Received: by 2002:a17:906:a898:b0:820:4046:1586 with SMTP id ha24-20020a170906a89800b0082040461586mr12094672ejb.12.1674227280837;
+        Fri, 20 Jan 2023 07:08:00 -0800 (PST)
+Received: from [192.168.1.101] (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
+        by smtp.gmail.com with ESMTPSA id fs37-20020a170907602500b0086ffe3a99f9sm7756004ejc.82.2023.01.20.07.07.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 07:08:00 -0800 (PST)
+Message-ID: <ebde7290-e99c-eb91-d96e-ada60a43b06d@linaro.org>
+Date:   Fri, 20 Jan 2023 16:07:58 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 2/2] ARM: dts: qcom: msm8226: add clocks and
+ clock-names to gcc node
+Content-Language: en-US
+To:     Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Boqun Feng <boqun.feng@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Kees Cook <keescook@chromium.org>,
-        Oleg Nesterov <oleg@redhat.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        Waiman Long <longman@redhat.com>,
-        Aneesh Kumar <aneesh.kumar@linux.ibm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Eric Paris <eparis@redhat.com>,
-        Christian Brauner <brauner@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Guillaume Thouvenin <gthouvenin@kalray.eu>,
-        Clement Leger <clement@clement-leger.fr>,
-        Vincent Chardon <vincent.chardon@elsys-design.com>,
-        Marc =?utf-8?b?UG91bGhpw6hz?= <dkm@kataplop.net>,
-        Julian Vetter <jvetter@kalray.eu>,
-        Samuel Jones <sjones@kalray.eu>,
-        Ashley Lesdalons <alesdalons@kalray.eu>,
-        Thomas Costis <tcostis@kalray.eu>,
-        Marius Gligor <mgligor@kalray.eu>,
-        Jonathan Borne <jborne@kalray.eu>,
-        Julien Villette <jvillette@kalray.eu>,
-        Luc Michel <lmichel@kalray.eu>,
-        Louis Morhet <lmorhet@kalray.eu>,
-        Julien Hascoet <jhascoet@kalray.eu>,
-        Jean-Christophe Pince <jcpince@gmail.com>,
-        Guillaume Missonnier <gmissonnier@kalray.eu>,
-        Alex Michon <amichon@kalray.eu>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <git@xen0n.name>,
-        Shaokun Zhang <zhangshaokun@hisilicon.com>,
-        John Garry <john.garry@huawei.com>,
-        Guangbin Huang <huangguangbin2@huawei.com>,
-        Bharat Bhushan <bbhushan2@marvell.com>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Atish Patra <atishp@atishpatra.org>,
-        "Jason A . Donenfeld" <Jason@zx2c4.com>,
-        Qi Liu <liuqi115@huawei.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Janosch Frank <frankja@linux.ibm.com>,
-        Alexey Dobriyan <adobriyan@gmail.com>,
-        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mm@kvack.org,
-        Linux-Arch <linux-arch@vger.kernel.org>, linux-audit@redhat.com,
-        linux-riscv@lists.infradead.org, bpf@vger.kernel.org
-Subject: Re: [RFC PATCH v2 09/31] kvx: Add build infrastructure
-Message-ID: <20230120150340.GA5952@tellis.lin.mbt.kalray.eu>
-References: <20230120141002.2442-1-ysionneau@kalray.eu>
- <20230120141002.2442-10-ysionneau@kalray.eu>
- <aa4d68b2-b5b5-4c17-a44f-7c6db443ea4c@app.fastmail.com>
- <20230120145316.GA4155@tellis.lin.mbt.kalray.eu>
- <9965e2d1-bae8-4ce7-911c-783c772e9ff1@app.fastmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9965e2d1-bae8-4ce7-911c-783c772e9ff1@app.fastmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Content-Type: text/plain; charset=utf-8
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230119190534.317041-1-rayyan@ansari.sh>
+ <20230119190534.317041-3-rayyan@ansari.sh>
+ <e079e820-2df0-3c95-10ef-527020b97f5d@postmarketos.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <e079e820-2df0-3c95-10ef-527020b97f5d@postmarketos.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ALTERMIMEV2_out: done
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 20, 2023 at 04:01:11PM +0100, Arnd Bergmann wrote:
-> On Fri, Jan 20, 2023, at 15:53, Jules Maselbas wrote:
-> > On Fri, Jan 20, 2023 at 03:39:22PM +0100, Arnd Bergmann wrote:
-> >> On Fri, Jan 20, 2023, at 15:09, Yann Sionneau wrote:
-> >> >      - Fix clean target raising an error from gcc (LIBGCC)
-> >> 
-> >> I had not noticed this on v1 but:
-> >> 
-> >> > +# Link with libgcc to get __div* builtins.
-> >> > +LIBGCC	:= $(shell $(CC) $(DEFAULT_OPTS) --print-libgcc-file-name)
-> >> 
-> >> It's better to copy the bits of libgcc that you actually need
-> >> than to include the whole thing. The kernel is in a weird
-> > It was initialy using KCONFIG_CFLAGS which do not contains valid options
-> > when invoking the clean target.
-> >
-> > I am not exactly sure what's needed by gcc for --print-libgcc-file-name,
-> > my guess is that only the -march option matters, I will double check
-> > internally with compiler peoples.
-> >
-> >> state that is neither freestanding nor the normal libc based
-> >> environment, so we generally want full control over what is
-> >> used. This is particularly important for 32-bit architectures
-> >> that do not want the 64-bit division, but there are probably
-> >> enough other cases as well.
+
+
+On 19.01.2023 22:42, Alexey Minnekhanov wrote:
+> Hi!
 > 
-> To clarify: I meant you should not include libgcc.a at all but
-> add the minimum set of required files as arch/kvx/lib/*.S.
-Thanks for clarifying :)
+> On 2023-01-19 22:05, Rayyan Ansari wrote:
+>> Add the XO and Sleep Clock sources to the GCC node.
+>>
+>> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+>> ---
+>>   arch/arm/boot/dts/qcom-msm8226.dtsi | 6 ++++++
+> 
+> Should the same be done for msm8974 dtsi as well?
+yes
 
-
--- Jules
-
-
-
-
+Konrad
