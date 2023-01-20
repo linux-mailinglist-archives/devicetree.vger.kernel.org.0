@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 553EE674827
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 01:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E96674836
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 01:46:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbjATAmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 19:42:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48244 "EHLO
+        id S229731AbjATApy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 19:45:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbjATAmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 19:42:08 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9323D7CCC8
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 16:42:05 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id d2so3475919wrp.8
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 16:42:05 -0800 (PST)
+        with ESMTP id S229457AbjATApx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 19:45:53 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DF298F6F4
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 16:45:51 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id r9so3498268wrw.4
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 16:45:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=weljRA7BwO6FXmcpTYUo9jyIREoLOwef98aMlzObdfs=;
-        b=MlegrDNSv7+cGm1r+ndiOYQNt94mHEk8jy/ywxEj+Ditl22/oIBgk5egjgCDpQqSFR
-         41L//fY6PrDFnu4eL6fei0zHwRLxJa6/P5Yv+VpxyuK8NUJJ7Gu+TgMTTAhumoGJHGeD
-         FMVFQA2zfwJDLxhi+wYJx5Y7wMuRjXqN+zdiNCQP5FmiC0Dr75KsEW/2KpocvOE88L20
-         v9NSsg9h+MstptICc2Nricqv7ognjjlR5zzCrvzmIgty6Pj8NAQx45bDgFneZL7PQVY8
-         aVuLQIURSn19zoNlq/+g8Xr3dvezhC5ngv3Gt1GSQa0jz5Dhy0UXxiGyNx49tN8LN6z0
-         K0qA==
+        bh=ca48TWzh+z08kA9PkkfRhaPbJkNBvnzcz9gn4kRdiYk=;
+        b=S9dv2JFyIf0VVRUEk3CgiCUKPZCPl5V9KLtKwpiM93nKXjFtOTMIjqVwsidoJKzJB/
+         7mMhFoXj+5Wg4r++EA1v2cOpUN55UGWPUU6EJ9kZaZa/nDBeXqWSsV5KhWX1OVCD1rBz
+         dM7Bfg1oen3aZxofTFDgmdMfH8oZHavYCL2GGln9eHtzn+ToGtdGOjTZob9UJBfbmSSP
+         fT/cBlTWSIUE6XuYXH0eDpgDnJ2U7h749Z7Hz8TL2iIIE8UQ6p4y58o7T9r38SADQm3j
+         RlFZg7VV8kT1bEhdWJbeF0n8fNmwnFOWfwp0nzbrO5aXN1yAy6OU7S8zQhs8+r0dPawC
+         SuFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=weljRA7BwO6FXmcpTYUo9jyIREoLOwef98aMlzObdfs=;
-        b=4rEU5OQabfRAe4pIssKWegyCKJlXuSqgbEmecXnZ7ccIIcPrMbI6WnscXrRoBkq3FE
-         PSF+GICUNUgAv1lP2hnoRoz1mtf3Dv+UW8yXyFG84Z+R2A55EUTiclNHZP16rs4rLDM0
-         ao+eH0FrLU1BRa6oLgVOJLwxI16CG7VDjkDRjO9mOMtTuB13VCru8257dLpMogC0GAxQ
-         eyabOP0ONZq6LEaYh6xSM/CbLHPbxFOPAGpMznsv8jIJYWiCsWCqknXZ/PiNKV3RkNm6
-         OyViipuoW0mO9sCJdkydblLU5KFc2P6z1LlW59zS0bg+qtSLPLQOjMy1JeEpNd2bAdgQ
-         P6Yg==
-X-Gm-Message-State: AFqh2kpbtClIM8gYl5ks3x92wUGimimfiaUJfadEyE+N5yeIsO5vczH5
-        AAFYDG0eQDvki3PMNodFqoHUjw==
-X-Google-Smtp-Source: AMrXdXsS0WNlrFfYfTOegkpyna6zRye3TTLep1NMgpHygm8ESwh6HXyQ4zIZrJ/K7+WYQhgGFjTXFg==
-X-Received: by 2002:adf:fa88:0:b0:2bd:feb5:fb7b with SMTP id h8-20020adffa88000000b002bdfeb5fb7bmr10175838wrr.33.1674175324069;
-        Thu, 19 Jan 2023 16:42:04 -0800 (PST)
+        bh=ca48TWzh+z08kA9PkkfRhaPbJkNBvnzcz9gn4kRdiYk=;
+        b=0yPkRqc6TQaoQ1FHtyP4S0YsAUWPW+5J0lMcYPlt1pl38Wj8qtrT9ibb4oYse15hnk
+         fCrNzgGWfvPMIwsuW5LzyKKYj14FvEJKkoWc5rYvLcyD63BLN83ZddDgT3VexWjjLDPH
+         rmN2GAjmLErsEaW09jvyvorfvBQ8vMbv/txbC4DnFi/xQDU7m60/AN+uScrxLvlJFt5c
+         mZUoy60V5cZ3ws7h5KoPpigZmUzXv3QjpmvhybWRRJRJ4wGuXgdQyEVGc7WsLXzzycaD
+         iG6lleUsXCe4/5t/09ISE7XqaUt9CAvNWqDi4XYGW8gs2ooxl3cgbNMCuMncDFC8WnLy
+         lZHA==
+X-Gm-Message-State: AFqh2krsk8t8olimtHKheHr07DVl21SmMM9u9rcv3jlJ5/WVczcOkvdD
+        jSmmpmTKTpp7PBOqQ4RGg5QnVw==
+X-Google-Smtp-Source: AMrXdXusDyoZE74jSRmrA+n9UpUUX4m++ajZQ8/KUFiSvAIaEYpcTnrG2R3i5TS96mQJJWRDM5jRGQ==
+X-Received: by 2002:adf:dd01:0:b0:289:773c:59ee with SMTP id a1-20020adfdd01000000b00289773c59eemr10910231wrm.6.1674175549915;
+        Thu, 19 Jan 2023 16:45:49 -0800 (PST)
 Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id l6-20020a5d4bc6000000b0027323b19ecesm34517945wrt.16.2023.01.19.16.42.02
+        by smtp.gmail.com with ESMTPSA id w5-20020adfcd05000000b002bdc914a139sm25983260wrm.108.2023.01.19.16.45.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Jan 2023 16:42:03 -0800 (PST)
-Message-ID: <ab1c316e-b018-9fa6-0ebf-5c0b47c397a4@linaro.org>
-Date:   Fri, 20 Jan 2023 00:42:02 +0000
+        Thu, 19 Jan 2023 16:45:49 -0800 (PST)
+Message-ID: <0a7427ea-e127-8608-7a37-b89574b48f20@linaro.org>
+Date:   Fri, 20 Jan 2023 00:45:48 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
@@ -74,7 +74,8 @@ References: <20230117024846.1367794-1-bryan.odonoghue@linaro.org>
  <20230117024846.1367794-6-bryan.odonoghue@linaro.org>
  <20230117205800.cqexxwxmtupapy7e@builder.lan>
  <58ec79b0-1b58-48c8-6eea-d6675f34192d@linaro.org>
-In-Reply-To: <58ec79b0-1b58-48c8-6eea-d6675f34192d@linaro.org>
+ <ab1c316e-b018-9fa6-0ebf-5c0b47c397a4@linaro.org>
+In-Reply-To: <ab1c316e-b018-9fa6-0ebf-5c0b47c397a4@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,23 +88,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/01/2023 00:40, Bryan O'Donoghue wrote:
+On 20/01/2023 00:42, Bryan O'Donoghue wrote:
+> On 20/01/2023 00:40, Bryan O'Donoghue wrote:
+>>
+>> pronto: wcnss@a204000 {
+>>          compatible = "qcom,pronto-v2-pd-pil", "qcom,pronto";
+>>          reg = <0x0a204000 0x2000>, <0x0a202000 0x1000>, <0x0a21b000 
+>> 0x3000>;
+>>
+>>          power-domains = <&rpmpd MSM8939_VDDCX>,
+>>                          <&rpmpd MSM8939_VDDMX_AO>;
+>>          power-domain-names = "vddcx", "vddmx";
+>> };
+>>
+>> ---
+>> bod
 > 
-> pronto: wcnss@a204000 {
->          compatible = "qcom,pronto-v2-pd-pil", "qcom,pronto";
->          reg = <0x0a204000 0x2000>, <0x0a202000 0x1000>, <0x0a21b000 
-> 0x3000>;
+> Doh.
 > 
->          power-domains = <&rpmpd MSM8939_VDDCX>,
->                          <&rpmpd MSM8939_VDDMX_AO>;
->          power-domain-names = "vddcx", "vddmx";
-> };
+> I opened the 4.19 kernel ... not 3.18
 > 
-> ---
-> bod
+> *facepalm*
 
-Doh.
+But *this* is the downstream
 
-I opened the 4.19 kernel ... not 3.18
+qcom,wcnss-wlan@0a000000 {
+         compatible = "qcom,wcnss_wlan";
 
-*facepalm*
+         qcom,pronto-vddmx-supply = <&pm8916_l3_corner_ao>;
+         qcom,pronto-vddcx-supply = <&pm8916_s2_corner>;
+};
+
+it is an _ao
+
+---
+bod
