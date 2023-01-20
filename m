@@ -2,145 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C1A0675B0E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15033675B1F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 18:22:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbjATRTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 12:19:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32962 "EHLO
+        id S229775AbjATRWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 12:22:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229861AbjATRTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:19:21 -0500
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81142BB9D;
-        Fri, 20 Jan 2023 09:19:19 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 7190C3200A5C;
-        Fri, 20 Jan 2023 12:19:17 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Fri, 20 Jan 2023 12:19:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1674235157; x=1674321557; bh=AN63Zk9FUH
-        XtB/1LDWKyjPugYkaPfboH8yCsuuO7QPs=; b=ta4oy1s1AdxLORjET+xauHRdR5
-        NcbGi5cLHSey+FpTmv5ZC193wrgm2ovoDrIuYhzJXXZ+i5vJeQ4SoRHyB5D5KecC
-        iXNUbnN4wzRnjQD6svlrGR+wUvYwpEGj1XRFU+HFOQ12Hb6tTPfdSYMU/skLOmo8
-        w9Xr5VvQq3L5bgx2LNbZvWNgaNyJGfAtFx4+RyOlcvgLX7fLr1tDHcwtXMGOqXed
-        3/TATPBktImtX56gMo7xDgc4nU3KmumzhQd/Elz7DPmbgOYOWhAGJ9joeV4gFi/i
-        aD5MlNtMOIjQvp0yk+7265KbkmfReznpXigOGwvTGcmENPdEli46eemx7fhw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1674235157; x=1674321557; bh=AN63Zk9FUHXtB/1LDWKyjPugYkaP
-        fboH8yCsuuO7QPs=; b=l/OkIMIlYk2aLfnTY+EPhfjYf3kNra1kPmw+smJwoPT2
-        K7Uxj4cdQhaKrOlaRHvPok1/HLjAzDXAJHG46jslpUERDQ51cFxlaWPRnXSekrMO
-        g1T5kI0e6HDJ3iMgHZxQB8X/SzkjhE8Y1J3u5H3qJwgKNnDMmrim2ahfSXkDfTD4
-        BRr3gLLTRZ8GZLPqIDy/SA9UzIDv0WVuhOnWN533RUAbI/juEZzoxij8Og0thReG
-        IZp8bm5GrqAvCBVDZZYbvUtXUwo9dnI8hWotJ/u4gZ4i6ORoGrBUHexzWx7pN55+
-        xvPfmkak4Tl03QIZjujVXwPUYWHrVtntkSYy9SxNlw==
-X-ME-Sender: <xms:FM3KY4_buGub8-rqfTs4N8Yg42GbfDG0sCX2z11pHq1cgiJ7b7zrkg>
-    <xme:FM3KYwsSwqT37FU8sAzoL23BpyyI_2eVteajl26e0cyAa_AO0n0O15V59m6v2pHB-
-    2r-dNOC3XsrnJadUpQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudduvddguddtvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
-    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:FM3KY-DoW6b0kGI3nWdnykYIonxorpLHx6qV3SeAZ4G-BGAzLWBYNg>
-    <xmx:FM3KY4fTvpsB_OCYr7UVTStx_ocSeh-5--vi3xmD6KbWRLangTN-TA>
-    <xmx:FM3KY9MeAxGkge2iPLDUQrl6MCt-q0PNhETlDF5gBN7m4h4TTF97jw>
-    <xmx:Fc3KY6wq1Jled5Q_fzzY9NELrs3G2rh8APyCtOgZQEWRLqQ96wZqQA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 0A0C0B60086; Fri, 20 Jan 2023 12:19:15 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-85-gd6d859e0cf-fm-20230116.001-gd6d859e0
-Mime-Version: 1.0
-Message-Id: <67c572e1-20ca-4ed2-9e15-047341bb338b@app.fastmail.com>
-In-Reply-To: <20230120133455.3962413-11-alexander.stein@ew.tq-group.com>
-References: <20230120133455.3962413-1-alexander.stein@ew.tq-group.com>
- <20230120133455.3962413-11-alexander.stein@ew.tq-group.com>
-Date:   Fri, 20 Jan 2023 18:18:54 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Alexander Stein" <alexander.stein@ew.tq-group.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Olof Johansson" <olof@lixom.net>,
-        "Shawn Guo" <shawnguo@kernel.org>, "Li Yang" <leoyang.li@nxp.com>,
-        "Russell King" <linux@armlinux.org.uk>,
-        "Marek Vasut" <marex@denx.de>,
-        "Marcel Ziswiler" <marcel.ziswiler@toradex.com>,
-        "Michael Ellerman" <mpe@ellerman.id.au>,
-        "Nicholas Piggin" <npiggin@gmail.com>,
-        "Christophe Leroy" <christophe.leroy@csgroup.eu>,
-        "Masahiro Yamada" <masahiroy@kernel.org>,
-        "Nathan Chancellor" <nathan@kernel.org>,
-        "Nick Desaulniers" <ndesaulniers@google.com>,
-        "Nicolas Schier" <nicolas@fjasle.eu>
-Cc:     "Nicolas Saenz Julienne" <nsaenzjulienne@suse.de>, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kbuild@vger.kernel.org
-Subject: Re: [PATCH v2 10/10] ARM: add multi_v7_lpae_defconfig
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229707AbjATRWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 12:22:48 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5521F46158
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:22:47 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id qx13so15593196ejb.13
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 09:22:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cuRLDN/glhJQ7GASrPrMhpcVHUOd0R6gamJVh5QWzXY=;
+        b=t3C4aHzUpfTSbrHBxARUemK3hlWb7HSv9HTveDnh/gRkjGV1lB/7l/9TzmbgMLYQZb
+         /EMVe3MB2qzQECrMaQKAxvv/Nn12GDlfKTxb/YNPwn/MZ0KBT38kKvN5GYWkgKxn2tW+
+         l/AOuBfUd059izKdsHMfICoN0a8mwv5ZtxX47sG7ZYy4OO7x+j5zMHi0wq0cq1K4brRu
+         Q/QJSRbjcyo4Prph9XBBhl9wQMDo99w4cGS14mYXDKk3hu8/rl/Wl30bC045MRUYXm9x
+         YQx4kqAmdvpS/XMB4or/pYSRLJHf4YXikEeSaXfGGhzyVaXf/SGx8/UVhcJ2UDvEoaU2
+         Livw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cuRLDN/glhJQ7GASrPrMhpcVHUOd0R6gamJVh5QWzXY=;
+        b=xuRyr+RtEp3Ay2GjMYaIRb/3Hv0ZvvdryrhNuSk0ZjXFYid2xyhCtqUyU5H4wowZGQ
+         wTXvHhePSKFP9mHSeJYQQ0FcIcvv/z4GfnSM2Df7XVUt6SknsBMiJW5GmE8P3UWEkxiy
+         gJTfhtmdj4CzG3y44yQS+BeWK0JO/4LAGHC1flUxn10rd/kMS3dzU72eCoYKpgNVqhdj
+         HL//ZY2pvILXzNjh8IdogIHV0mPs6sdHA6H+pSbOlIrGlGVU6y0J9+DDLYriBR/c0P9m
+         tugsG6BnwW0RiNuyHN6EqdonNy8i4D++Hv6+grh+gch2QLsnARqgVmTuKtM03ECOQdlu
+         9Z7Q==
+X-Gm-Message-State: AFqh2koK+EHMRd7cfsMCkZsKNb0D8BBlS6yyhBSU9JWAmxnv9s3wrEKn
+        hM5nK2Qo3NdV2WTfGBbmFO7rCQ==
+X-Google-Smtp-Source: AMrXdXuR4MwX/4MKfmHMcj8DvWsjJcN1ttHIQoE/8GEawN5qxRWie4s7Yhda11io3YlL6Fjvtq49zw==
+X-Received: by 2002:a17:906:1851:b0:86e:4067:b699 with SMTP id w17-20020a170906185100b0086e4067b699mr21112294eje.4.1674235365947;
+        Fri, 20 Jan 2023 09:22:45 -0800 (PST)
+Received: from localhost.localdomain (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
+        by smtp.gmail.com with ESMTPSA id s17-20020a1709060c1100b0084d21db0691sm18313857ejf.179.2023.01.20.09.22.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jan 2023 09:22:45 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 3/5] arm64: dts: qcom: sm8150: Don't start Adreno in headless mode
+Date:   Fri, 20 Jan 2023 18:22:31 +0100
+Message-Id: <20230120172233.1905761-4-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230120172233.1905761-1-konrad.dybcio@linaro.org>
+References: <20230120172233.1905761-1-konrad.dybcio@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 20, 2023, at 14:34, Alexander Stein wrote:
-> From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
->
-> The only missing configuration option preventing us from using
-> multi_v7_defconfig with the Raspberry Pi 4 is ARM_LPAE. It's needed as
-> the PCIe controller found on the SoC depends on 64bit addressing, yet
-> can't be included as not all v7 boards support LPAE.
->
-> Introduce multi_v7_lpae_defconfig, built off multi_v7_defconfig, which will
-> avoid us having to duplicate and maintain multiple similar configurations.
->
-> Needless to say the Raspberry Pi 4 is not the only platform that can
-> benefit from this new configuration.
->
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Now that there's display support, there is no reason to assume the default
+mode for Adreno should be headless. Keep it like that for boards that
+previously enabled it, so as not to create regressions though.
 
-This is ok in principle, two minor points though:
+Tested-by: Marijn Suijten <marijn.suijten@somainline.org> # On Sony Xperia 5
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8150-hdk.dts |  5 +++++
+ arch/arm64/boot/dts/qcom/sm8150-mtp.dts |  5 +++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi    | 10 +---------
+ 3 files changed, 11 insertions(+), 9 deletions(-)
 
-> +include $(srctree)/scripts/Makefile.defconf
-> +PHONY += multi_v7_lpae_defconfig
-> +multi_v7_lpae_defconfig:
-> +	$(call merge_into_defconfig,multi_v7_defconfig,lpae)
-> 
->  define archhelp
->    echo  '* zImage        - Compressed kernel image (arch/$(ARCH)/boot/zImage)'
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+index 3331ee957d64..0ee5309408b9 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+@@ -359,6 +359,11 @@ &gmu {
+ };
+ 
+ &gpu {
++	/*
++	 * NOTE: "amd,imageon" makes Adreno start in headless mode, remove it
++	 * after display support is added on this board.
++	 */
++	compatible = "qcom,adreno-640.1", "qcom,adreno", "amd,imageon";
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+index 46b5cf9a1192..9dfecbf89b21 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+@@ -354,6 +354,11 @@ &gmu {
+ };
+ 
+ &gpu {
++	/*
++	 * NOTE: "amd,imageon" makes Adreno start in headless mode, remove it
++	 * after display support is added on this board.
++	 */
++	compatible = "qcom,adreno-640.1", "qcom,adreno", "amd,imageon";
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index fd20096cfc6e..e3059f9b98de 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -2133,15 +2133,7 @@ compute-cb@3 {
+ 		};
+ 
+ 		gpu: gpu@2c00000 {
+-			/*
+-			 * note: the amd,imageon compatible makes it possible
+-			 * to use the drm/msm driver without the display node,
+-			 * make sure to remove it when display node is added
+-			 */
+-			compatible = "qcom,adreno-640.1",
+-				     "qcom,adreno",
+-				     "amd,imageon";
+-
++			compatible = "qcom,adreno-640.1", "qcom,adreno";
+ 			reg = <0 0x02c00000 0 0x40000>;
+ 			reg-names = "kgsl_3d0_reg_memory";
+ 
+-- 
+2.39.1
 
-The new target does not get listed in 'make help' as far as I can
-tell, can you add it there in the process?
-
-> diff --git a/arch/arm/configs/lpae.config b/arch/arm/configs/lpae.config
-> new file mode 100644
-> index 0000000000000..19bab134e014b
-> --- /dev/null
-> +++ b/arch/arm/configs/lpae.config
-> @@ -0,0 +1 @@
-> +CONFIG_ARM_LPAE=y
-
-My feeling is that we probably want CONFIG_VMSPLIT_2G=y here
-as well, given that a lot of the systems that want LPAE
-will have a lot of memory, and are limited by the amount
-of lowmem even when CONFIG_HIGHMEM is enabled.
-
-Can you make sure that this works on your machine, and
-include this option?
-
-     Arnd
