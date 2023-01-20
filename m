@@ -2,163 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F01D675368
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 12:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D6B067537A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 12:35:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjATL2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 06:28:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47938 "EHLO
+        id S229500AbjATLfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 06:35:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbjATL2D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 06:28:03 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5095DE1;
-        Fri, 20 Jan 2023 03:28:02 -0800 (PST)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id 034BC22BE1;
-        Fri, 20 Jan 2023 11:28:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1674214081; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FL/tdXJXqMQYDc5GJ56WI1+Et3SfVNE7p+O/D4lXFGY=;
-        b=U7sIyKRPrN0Wk4A0zaEyPee/9sonuBIpKhkB/C7XIb+CCOi3daMBukCwwtzW2W3PPTsWsV
-        eNM3Nfu0dCWvR44rgjgphj3ZJH3ygH5jFjTREgZltpp9h5wPqcaftPGYEUZwLq4GpQe8YE
-        KB5/DMdx+xLsk/KFt+SBvj3J9gdPo98=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1674214081;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FL/tdXJXqMQYDc5GJ56WI1+Et3SfVNE7p+O/D4lXFGY=;
-        b=R9oRR7WCKXP1SJ3CLVG2BBHuVF7p+i3vBh5ls8caJoIgy5QZG4kHDC1DSTm6HPsnxMzvzT
-        4B4c57yzWV7SAlBA==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id B81922C141;
-        Fri, 20 Jan 2023 11:28:00 +0000 (UTC)
-Date:   Fri, 20 Jan 2023 12:27:59 +0100
-From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        "Erhard F." <erhard_f@mailbox.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Subject: Re: [PATCH v2] of: Fix of platform build on powerpc due to bad of
- disaply code
-Message-ID: <20230120112759.GS16547@kitsune.suse.cz>
-References: <20230119095323.4659-1-msuchanek@suse.de>
- <8a9f7ba5-37a4-0927-4ab2-d212f1b098a9@csgroup.eu>
- <57e026bf-c412-0c47-8956-b565894948e0@suse.de>
- <20230119132330.GP16547@kitsune.suse.cz>
- <190c1c68-0249-a291-f2ab-45c9a7f716d7@suse.de>
+        with ESMTP id S229464AbjATLfq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 06:35:46 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3CB922DF7
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:35:44 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id l8so3800581wms.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 03:35:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oiLo50zLWaBfUJvjG3ysz38J7lOZ3fyCmP2qfPH4NeY=;
+        b=D64Bge+NpDXedt+5U+Wf4+saMotIwKyx0qEfNfKFZ0udoULzy08wNMmOtYH4WK0RK0
+         bi0R9fe53C2QyAujyBjGC7bj18+79GAO1v0Qw9OkRwxzOLlkEEUrwCUx3YUOustjac/G
+         hDRaip7mYKIif9zrh0rButGXHFNfxhd8ic899KoGln3OApDV8LTyhOxfLZsea+wy9tQg
+         4amdK/tfJdjGaCrjcA85CXRNAw/zuxvhmgFpGCNMCHZ8A1wceBDys1bDJWnEl/PuEq05
+         N/ZGW+R3Z6dFYmmxU0OwGs0hvXnD8qiW3TDxAR4j2aY6uajkISKfGXw8phJNM2pQKFMW
+         ZTNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oiLo50zLWaBfUJvjG3ysz38J7lOZ3fyCmP2qfPH4NeY=;
+        b=Js8NEOhCTse6cxhR+I+VZldQwHVDhHcrNJHnXduv+UHTZ8nTmXcmXfMjRpzjutlN3Y
+         Fe7PHJ+GByt9hpVHT4URH5gk4hfpI85x4QCE8om0IuaYhV600CEPNdKzO4CWd/kxJ3Bk
+         +7vkHihjxWt5u3hFQfuKcjMiMHeHig0ZNFmHHV+Xoaz4GLTVkgrZNx0YgO8BMVgC4ou7
+         zu5wu33i6c4JTrKYNMgoy8JzGf3WU1pmwvLDUTkWZeZLgQmIwKHm8JBGNAPF7zaQxp6o
+         tHUmlXw9jc6Ou0DsjvujMXCiJ1cYUjKwrxEwOHiK+UiI2/uMD/LY0F21kst+13AuaZQz
+         nucQ==
+X-Gm-Message-State: AFqh2kqpB2E5qhY1PfA94pH0Mz43G80GTjXUMqu07Y329uUzJE3bgthU
+        HuNtahrxN1lkXcXizMN/738hlQ==
+X-Google-Smtp-Source: AMrXdXuUA/Pb9jhHTP9FE85iv1I7iEAXH53Z2NCbSRafWbH0B+8CfAceeFknKzBJ7yBXIywvzl8u0A==
+X-Received: by 2002:a05:600c:684:b0:3cf:5d41:b748 with SMTP id a4-20020a05600c068400b003cf5d41b748mr22155606wmn.36.1674214543389;
+        Fri, 20 Jan 2023 03:35:43 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u3-20020a7bc043000000b003d1d5a83b2esm1999359wmc.35.2023.01.20.03.35.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Jan 2023 03:35:42 -0800 (PST)
+Message-ID: <e08e6325-4b2b-c1ce-b33a-877de2c0babe@linaro.org>
+Date:   Fri, 20 Jan 2023 12:35:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <190c1c68-0249-a291-f2ab-45c9a7f716d7@suse.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 8/9] ARM: multi_v7_defconfig: Add options to support
+ TQMLS102xA series
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230119144236.3541751-1-alexander.stein@ew.tq-group.com>
+ <20230119144236.3541751-9-alexander.stein@ew.tq-group.com>
+ <acab1d7a-ef00-a3be-f73c-6cb9d01687b9@linaro.org>
+ <2168770.1BCLMh4Saa@steina-w>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2168770.1BCLMh4Saa@steina-w>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75 autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-On Thu, Jan 19, 2023 at 04:20:57PM +0100, Thomas Zimmermann wrote:
-> Hi
+On 20/01/2023 12:12, Alexander Stein wrote:
+>>>  CONFIG_GPIO_MXC=y
+>>>  CONFIG_GPIO_RCAR=y
+>>>  CONFIG_GPIO_SYSCON=y
+>>>
+>>> @@ -493,6 +497,7 @@ CONFIG_GPIO_PCA953X=y
+>>>
+>>>  CONFIG_GPIO_PCA953X_IRQ=y
+>>>  CONFIG_GPIO_PCF857X=y
+>>>  CONFIG_GPIO_PALMAS=y
+>>>
+>>> +CONFIG_GPIO_STMPE=y
+>>
+>> module
 > 
-> Am 19.01.23 um 14:23 schrieb Michal Suchánek:
-> > On Thu, Jan 19, 2023 at 02:11:13PM +0100, Thomas Zimmermann wrote:
-> > > Hi
-> > > 
-> > > Am 19.01.23 um 11:24 schrieb Christophe Leroy:
-> > > > 
-> > > > 
-> > > > Le 19/01/2023 à 10:53, Michal Suchanek a écrit :
-> > > > > The commit 2d681d6a23a1 ("of: Make of framebuffer devices unique")
-> > > > > breaks build because of wrong argument to snprintf. That certainly
-> > > > > avoids the runtime error but is not the intended outcome.
-> > > > > 
-> > > > > Also use standard device name format of-display.N for all created
-> > > > > devices.
-> > > > > 
-> > > > > Fixes: 2d681d6a23a1 ("of: Make of framebuffer devices unique")
-> > > > > Signed-off-by: Michal Suchanek <msuchanek@suse.de>
-> > > > > ---
-> > > > > v2: Update the device name format
-> > > > > ---
-> > > > >     drivers/of/platform.c | 12 ++++++++----
-> > > > >     1 file changed, 8 insertions(+), 4 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > > > > index f2a5d679a324..8c1b1de22036 100644
-> > > > > --- a/drivers/of/platform.c
-> > > > > +++ b/drivers/of/platform.c
-> > > > > @@ -525,7 +525,9 @@ static int __init of_platform_default_populate_init(void)
-> > > > >     	if (IS_ENABLED(CONFIG_PPC)) {
-> > > > >     		struct device_node *boot_display = NULL;
-> > > > >     		struct platform_device *dev;
-> > > > > -		int display_number = 1;
-> > > > > +		int display_number = 0;
-> > > > > +		char buf[14];
-> > > > 
-> > > > Can you declare that in the for block where it is used instead ?
-> > > > 
-> > > > > +		char *of_display_format = "of-display.%d";
-> > > > 
-> > > > Should be const ?
-> > > 
-> > > That should be static const of_display_format[] = then
-> > 
-> > Why? It sounds completely fine to have a const pointer to a string
-> > constatnt.
+> That one as well, it's just a bool.
+
+OK
+
 > 
-> Generally speaking:
+>>>  CONFIG_GPIO_TPS6586X=y
+>>>  CONFIG_GPIO_TPS65910=y
+>>>  CONFIG_GPIO_TWL4030=y
+>>>
+>>> @@ -533,6 +538,7 @@ CONFIG_SENSORS_INA2XX=m
+>>>
+>>>  CONFIG_CPU_THERMAL=y
+>>>  CONFIG_DEVFREQ_THERMAL=y
+>>>  CONFIG_IMX_THERMAL=y
+>>>
+>>> +CONFIG_QORIQ_THERMAL=m
+>>>
+>>>  CONFIG_ROCKCHIP_THERMAL=y
+>>>  CONFIG_RCAR_THERMAL=y
+>>>  CONFIG_ARMADA_THERMAL=y
+>>>
+>>> @@ -821,6 +827,8 @@ CONFIG_SND_SOC_MSM8916_WCD_ANALOG=m
+>>>
+>>>  CONFIG_SND_SOC_MSM8916_WCD_DIGITAL=m
+>>>  CONFIG_SND_SOC_SGTL5000=m
+>>>  CONFIG_SND_SOC_STI_SAS=m
+>>>
+>>> +CONFIG_SND_SOC_TLV320AIC32X4=m
+>>> +CONFIG_SND_SOC_TLV320AIC32X4_I2C=m
+>>>
+>>>  CONFIG_SND_SOC_WM8978=m
+>>>  CONFIG_SND_AUDIO_GRAPH_CARD=m
+>>>  CONFIG_USB=y
+>>>
+>>> @@ -830,6 +838,7 @@ CONFIG_USB_XHCI_MVEBU=y
+>>>
+>>>  CONFIG_USB_XHCI_TEGRA=m
+>>>  CONFIG_USB_BRCMSTB=m
+>>>  CONFIG_USB_EHCI_HCD=y
+>>>
+>>> +CONFIG_USB_EHCI_FSL=y
+>>
+>> module
 > 
-> 'static' because your const pointer is then not a local variable, so it
-> takes pressure off the stack. For global variables, you don't want them to
-> show up in any linker symbol tables.
+> Well, apparently module autoload is broken due to wrong modalias value of ehci 
+> node created by fsl-mph-dr-of. This setting this as a module is currently not 
+> working.
 
-This sounds a lot like an exemplar case of premature optimization.
-A simplistic compiler might do exactly what you say, and allocate a slot
-for the variable on the stack the moment the function is entered.
+But this is not valid argument for defconfig change. This must be
+module. If autoloading does not work, fix that one.
 
-However, in real compilers there is no stack pressure from having a
-local variable:
- - the compiler can put the variable into a register
- - it can completely omit the variable before and after it's actually
-   used which is that specific function call
-
-> The string "of-display.%d" is stored as an array in the ELF data section.
-> And your char pointer is a reference to that array. For static pointers,
-> these indirections take CPU cycles to update when the loader has to relocate
-
-Provided that the char pointer ever exists in the compiled code. Its
-address is not taken so it does not need to.
-
-> sections. If you declare of_display_format[] directly as array, you avoid
-> the reference and work directly with the array.
 > 
-> Of course, this is a kernel module and the string is self-contained within
-> the function. So the compiler can probably detect that and optimize the code
-> to be like the 'static const []' version. It's still good to follow best
-> practices, as someone might copy from this function.
+>>>  CONFIG_USB_EHCI_HCD_STI=y
+>>>  CONFIG_USB_EHCI_EXYNOS=m
+>>>  CONFIG_USB_EHCI_MV=m
+>>>
+>>> @@ -933,6 +942,8 @@ CONFIG_NEW_LEDS=y
+>>>
+>>>  CONFIG_LEDS_CLASS=y
+>>>  CONFIG_LEDS_CLASS_FLASH=m
+>>>  CONFIG_LEDS_CPCAP=m
+>>>
+>>> +CONFIG_LEDS_PCA9532=m
+>>> +CONFIG_LEDS_PCA9532_GPIO=y
+>>>
+>>>  CONFIG_LEDS_GPIO=y
+>>>  CONFIG_LEDS_PWM=y
+>>>  CONFIG_LEDS_MAX8997=m
+>>>
+>>> @@ -949,6 +960,7 @@ CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
+>>>
+>>>  CONFIG_LEDS_TRIGGER_TRANSIENT=y
+>>>  CONFIG_LEDS_TRIGGER_CAMERA=y
+>>>  CONFIG_EDAC=y
+>>>
+>>> +CONFIG_EDAC_LAYERSCAPE=y
+>>>
+>>>  CONFIG_EDAC_HIGHBANK_MC=y
+>>>  CONFIG_EDAC_HIGHBANK_L2=y
+>>>  CONFIG_RTC_CLASS=y
+>>>
+>>> @@ -962,6 +974,7 @@ CONFIG_RTC_DRV_MAX8997=m
+>>>
+>>>  CONFIG_RTC_DRV_MAX77686=y
+>>>  CONFIG_RTC_DRV_RK808=m
+>>>  CONFIG_RTC_DRV_RS5C372=m
+>>>
+>>> +CONFIG_RTC_DRV_PCF85063=y
+>>
+>> module
+> 
+> Okay, module it is. So I assume it is acceptable the system time is set much 
+> later after mounting rootfs then?
 
-If it could not detect it there would be a lot of trouble all around.
+Modules can be loaded from initramfs, not rootfs.
 
-Thanks
+Defconfig=y is only for critical stuff needed to bring initramfs. Time
+is not needed for initramfs.
 
-Michal
+Best regards,
+Krzysztof
+
