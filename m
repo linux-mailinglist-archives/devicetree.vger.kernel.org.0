@@ -2,147 +2,355 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 951D96749B5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 04:03:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82F3B674A42
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 04:34:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbjATDDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Jan 2023 22:03:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55946 "EHLO
+        id S229578AbjATDel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Jan 2023 22:34:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbjATDDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 22:03:22 -0500
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2050.outbound.protection.outlook.com [40.107.237.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4571A8A724;
-        Thu, 19 Jan 2023 19:03:11 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R8z7N7i0P8GuJoKzcosA3/QA9Na1tkMoVlx+QOBM1uMHxj5V7mXjSE4YCnRsMPTdWIkeuWQNok/x2vyCPY7dWlkDgkzUkmRCLLtTuK5BuGu3cq4WlrQYuFNfSrybZQgbw7wIZ1lrENnp6qYjbRHpYn/MIDvlAOSDg1RClP/GgbTVhO1MAcf9S5f/XrSZXfJfraGsZF8/TU9A2n49Ug99r0IdQjWyfJi2bm6a3RuPZf8Z1JGyCsVK0qAQU3lzwbzh1a+TDd/KhmV8kpajvk9GJ7gf2aTI0HkTWo+rS+aM50PYUQ1N+xCFmuej4dikZHDFxw5FgAELXtyR0vToUnPUiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NqMruNlZ0Y2993+SE7bM+U6sHCgD2F4Ol08U/JVUCi0=;
- b=JQ5iratz1tfjnMpOseLjr6Vg8ns5W2JrQMPFAnfeywVgUGsNP9SQ3n7dSt2QJC46w2i8vQBIdf2lO3N7WYHg0O8TqWtPyPCP5CmfmrhPbiOvlAJvkiJD1k63KRHahfKFjTV3LQcCyecKAWWQs2YytKcSRrcdSuJJ//kE6KQNwXKa4gOSJ3QDh0lIGfaQKRvWwR5lShg1mgY1+vj83DPbNy8cZu6ZZ+VVtI6pK47fwxXgtWua6OuytBXSNbD11jBPdfVvP7BV9blm/6q+PmJrhlIxpRkVUdQBw/bttZPvF7aiik9pdYJRHO7XtNgezo0OQA6txa8ERH5XHZa886f7bQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NqMruNlZ0Y2993+SE7bM+U6sHCgD2F4Ol08U/JVUCi0=;
- b=zI/YH6jHvQ4kKhrXDt6JBg9r8QnBgz+lo9gV170aGiZqn3WPg56sj9sj8t3RAkxvBZ0edd7OrSN5ood45RgRgV9Reu40d92MOCrNbBshF6HA5J3qfy8FXgVRYvn5RxsrhLK5CoeBhBGbTAReYHGTjw2U7J02/RY5smCDI5G76Qo=
-Received: from DM6PR11CA0055.namprd11.prod.outlook.com (2603:10b6:5:14c::32)
- by BL1PR12MB5143.namprd12.prod.outlook.com (2603:10b6:208:31b::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Fri, 20 Jan
- 2023 03:03:06 +0000
-Received: from DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:14c:cafe::25) by DM6PR11CA0055.outlook.office365.com
- (2603:10b6:5:14c::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.26 via Frontend
- Transport; Fri, 20 Jan 2023 03:03:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT068.mail.protection.outlook.com (10.13.173.67) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6023.16 via Frontend Transport; Fri, 20 Jan 2023 03:03:06 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 19 Jan
- 2023 21:02:55 -0600
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 19 Jan
- 2023 21:02:55 -0600
-Received: from xsjlizhih40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Thu, 19 Jan 2023 21:02:54 -0600
-From:   Lizhi Hou <lizhi.hou@amd.com>
-To:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robh@kernel.org>,
-        <frowand.list@gmail.com>, <helgaas@kernel.org>
-CC:     Lizhi Hou <lizhi.hou@amd.com>, <clement.leger@bootlin.com>,
-        <max.zhen@amd.com>, <sonal.santan@amd.com>, <larry.liu@amd.com>,
-        <brian.xu@amd.com>, <stefano.stabellini@xilinx.com>,
-        <trix@redhat.com>
-Subject: [PATCH V7 3/3] PCI: Add PCI quirks to generate device tree node for Xilinx Alveo U50
-Date:   Thu, 19 Jan 2023 19:02:12 -0800
-Message-ID: <1674183732-5157-4-git-send-email-lizhi.hou@amd.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
-References: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
+        with ESMTP id S229517AbjATDek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Jan 2023 22:34:40 -0500
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1517EE51;
+        Thu, 19 Jan 2023 19:33:54 -0800 (PST)
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Fri, 20 Jan
+ 2023 11:33:52 +0800
+Message-ID: <aedb0764-b5cb-7f49-f279-51dbec070e80@amlogic.com>
+Date:   Fri, 20 Jan 2023 11:33:52 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT068:EE_|BL1PR12MB5143:EE_
-X-MS-Office365-Filtering-Correlation-Id: 808fefb5-21e9-4fdf-448b-08dafa92da75
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rnA0eannw7ZMzo4XIjUWPspkWBxOZL+1vjr0zvhRhuerI1ZnJRLK5+K0nPQdE3jx4ZKbC43MnA2vmbTHd/49n9GEJcC47Xk4exYC0N83wvyPsQcgyJdFTLgPXsuNFdyK7UaQWrcN8KBfZhl118KAxhMXePLs8MaVMN9UFPr7alfKITVZBMSNRUxfeXcKhH15sD8+nv+TThIq6i9vQeIGaQe9gGfczuMxTcLSSY1n+jZG/pKBavCjY0jrF25qFFvv8ZqThXtJHnzHh9yKExkf6oHZllWfos2GnmysUssONCgHt3B/3Ks1euXJFFYIil7ixF+kM5/oJp1ODjImjRjlFquGIWLrfDmSp4EBcSvE6sfKZ8PO50gm4wjQsDAEPDRJaCgU8s/LiuWTCKxArQGQPcG447KCiwV3RtO2Yi++s5slJniAyLFHFjCyfe/UBUIqSH0Eo8wbGarfS2feKyQKPBabeLYcXEFxK77iO00LQgdlTpAHJI20QmuyiW1nG8opLNbmmqiq6Ck96XIjQeDwfmOSlMCvpDpFKBr2Ljmp9oAVKEScaq54iZQbM0Zut3AFg4XgrEjNse04nJ9tCOFoeVT9NAVgugTTHFm+UpNZQ/1lB/WxfAENVvPGZ5fRvztOto8e9tER1v3WFvra3Q20l7BUJYsyscQUuBTRfLHEGTT47Y2/GwgpbGYpxuRVhpVH7F3rxu8svNXy0sb62FPK3q7L2BAG6lqMMrBJ/grjhZw=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(396003)(346002)(136003)(376002)(451199015)(36840700001)(40470700004)(46966006)(81166007)(70206006)(36860700001)(82740400003)(44832011)(356005)(5660300002)(2906002)(70586007)(8936002)(36756003)(8676002)(40480700001)(4326008)(41300700001)(186003)(26005)(2616005)(40460700003)(82310400005)(336012)(54906003)(426003)(110136005)(6666004)(478600001)(47076005)(316002)(86362001)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2023 03:03:06.2852
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 808fefb5-21e9-4fdf-448b-08dafa92da75
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5143
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V6 3/3] clk: meson: s4: add support for Amlogic S4 SoC
+ peripheral clock controller
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     "kelvin . zhang" <Kelvin.Zhang@amlogic.com>,
+        "qi . duan" <qi.duan@amlogic.com>
+References: <20230116074214.2326-1-yu.tu@amlogic.com>
+ <20230116074214.2326-4-yu.tu@amlogic.com>
+ <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
+From:   Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <1ja62eybrv.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Xilinx Alveo U50 PCI card exposes multiple hardware peripherals on
-its PCI BAR. The card firmware provides a flattened device tree to
-describe the hardware peripherals on its BARs. This allows U50 driver to
-load the flattened device tree and generate the device tree node for
-hardware peripherals underneath.
 
-To generate device tree node for U50 card, added PCI quirks to call
-of_pci_make_dev_node() for U50.
+Hi
+On 2023/1/19 19:37, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> 
+> On Mon 16 Jan 2023 at 15:42, Yu Tu <yu.tu@amlogic.com> wrote:
+> 
+>> Add the peripherals clock controller driver in the s4 SoC family.
+>>
+>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+> 
+> [...]
+> 
+>> +
+>> +/* Video Clocks */
+>> +static struct clk_regmap s4_vid_pll_div = {
+>> +	.data = &(struct meson_vid_pll_div_data){
+>> +		.val = {
+>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>> +			.shift   = 0,
+>> +			.width   = 15,
+>> +		},
+>> +		.sel = {
+>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>> +			.shift   = 16,
+>> +			.width   = 2,
+>> +		},
+>> +	},
+>> +	.hw.init = &(struct clk_init_data) {
+>> +		.name = "vid_pll_div",
+>> +		/*
+>> +		 * The frequency division from the hdmi_pll clock to the vid_pll_div
+>> +		 * clock is the default value of this register. When designing the
+>> +		 * video module of the chip, a default value that can meet the
+>> +		 * requirements of the video module will be solidified according
+>> +		 * to the usage requirements of the chip, so as to facilitate chip
+>> +		 * simulation. So this is ro_ops.
+>> +		 * It is important to note that this clock is not used on this
+>> +		 * chip and is described only for the integrity of the clock tree.
+>> +		 */
+> 
+> If it is reset value and will be applicable to all the design, regarless
+> of the use-case, then yes RO ops is OK
+> 
+>>From what I understand here, the value will depend on the use-case requirements.
+> This is a typical case where the DT prop "assigned-rate" should be used, not RO ops.
 
-Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
-Signed-off-by: Sonal Santan <sonal.santan@amd.com>
-Signed-off-by: Max Zhen <max.zhen@amd.com>
-Reviewed-by: Brian Xu <brian.xu@amd.com>
-Signed-off-by: Clément Léger <clement.leger@bootlin.com>
----
- drivers/pci/quirks.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Check the previous chip history, the actual scene is not used at all, 
+basically is used in simulation. So the previous SOC was "ro_ops" 
+without any problems.  This S4 SOC is not actually useful either.
 
-diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-index 285acc4aaccc..f184cf51b800 100644
---- a/drivers/pci/quirks.c
-+++ b/drivers/pci/quirks.c
-@@ -5992,3 +5992,14 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2d, dpc_log_size);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2f, dpc_log_size);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a31, dpc_log_size);
- #endif
-+
-+/*
-+ * For PCI device which have multiple downstream devices, its driver may use
-+ * a flattened device tree to describe the downstream devices.
-+ * To overlay the flattened device tree, the PCI device and all its ancestor
-+ * devices need to have device tree nodes on system base device tree. Thus,
-+ * before driver probing, it might need to add a device tree node as the final
-+ * fixup.
-+ */
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_XILINX, 0x5020, of_pci_make_dev_node);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_XILINX, 0x5021, of_pci_make_dev_node);
--- 
-2.34.1
+So when you were upstream, you had no problem making "ro_ops". I wonder 
+if I could delete this useless clock, so you don't have to worry about it.
 
+> 
+>> +		.ops = &meson_vid_pll_div_ro_ops,
+>> +		.parent_data = (const struct clk_parent_data []) {
+>> +			{ .fw_name = "hdmi_pll", }
+>> +		},
+>> +		.num_parents = 1,
+>> +		.flags = CLK_SET_RATE_PARENT,
+>> +	},
+>> +};
+>> +
+> 
+>> +
+>> +/* VDEC clocks */
+>> +static const struct clk_parent_data s4_dec_parent_data[] = {
+>> +	{ .fw_name = "fclk_div2p5", },
+>> +	{ .fw_name = "fclk_div3", },
+>> +	{ .fw_name = "fclk_div4", },
+>> +	{ .fw_name = "fclk_div5", },
+>> +	{ .fw_name = "fclk_div7", },
+>> +	{ .fw_name = "hifi_pll", },
+>> +	{ .fw_name = "gp0_pll", },
+>> +	{ .fw_name = "xtal", }
+>> +};
+>> +
+>> +static struct clk_regmap s4_vdec_p0_mux = {
+>> +	.data = &(struct clk_regmap_mux_data){
+>> +		.offset = CLKCTRL_VDEC_CLK_CTRL,
+>> +		.mask = 0x7,
+>> +		.shift = 9,
+>> +		.flags = CLK_MUX_ROUND_CLOSEST,
+>> +	},
+>> +	.hw.init = &(struct clk_init_data) {
+>> +		.name = "vdec_p0_mux",
+>> +		.ops = &clk_regmap_mux_ops,
+>> +		.parent_data = s4_dec_parent_data,
+>> +		.num_parents = ARRAY_SIZE(s4_dec_parent_data),
+>> +		/*
+>> +		 * When the driver uses this clock, needs to specify the patent clock
+>> +		 * he wants in the dts.
+> 
+> s/patent/parent ?
+> s/he wants/it requires ?
+
+Okay.
+
+> 
+>> +		 */
+>> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+>> +	},
+>> +};
+>> +
+> 
+> [...]
+> 
+>> +static const struct clk_parent_data s4_vpu_clkc_parent_data[] = {
+>> +	{ .fw_name = "fclk_div4", },
+>> +	{ .fw_name = "fclk_div3", },
+>> +	{ .fw_name = "fclk_div5", },
+>> +	{ .fw_name = "fclk_div7", },
+>> +	{ .fw_name = "mpll1", },
+>> +	{ .hw = &s4_vid_pll.hw },
+>> +	{ .fw_name = "mpll2", },
+>> +	{ .fw_name = "gp0_pll", },
+>> +};
+>> +
+>> +static struct clk_regmap s4_vpu_clkc_p0_mux  = {
+>> +	.data = &(struct clk_regmap_mux_data){
+>> +		.offset = CLKCTRL_VPU_CLKC_CTRL,
+>> +		.mask = 0x7,
+>> +		.shift = 9,
+>> +	},
+>> +	.hw.init = &(struct clk_init_data) {
+>> +		.name = "vpu_clkc_p0_mux",
+>> +		.ops = &clk_regmap_mux_ops,
+>> +		.parent_data = s4_vpu_clkc_parent_data,
+>> +		.num_parents = ARRAY_SIZE(s4_vpu_clkc_parent_data),
+>> +		/*
+>> +		 * When the driver uses this clock, needs to specify the patent clock
+>> +		 * he wants in the dts.
+>> +		 */
+> 
+> That's quite a lot of occurences of the same comment.
+> At the same time, other clocks with the same flag have no comment.
+> 
+> Please make general comment, before the Video/VPU section, explaining
+> which clocks needs on a use-case basis (through DT) and possibly how it
+> should be set, what should drive the choices.
+> 
+
+The owner of the corresponding driver module wants to have a fixed 
+clock, but I can't explain every specific reason. So I'm going to change 
+it all to.flags = CLK_SET_RATE_PARENT in the next version. Let CCF 
+choose the appropriate clock as you suggested. If there is a 
+corresponding module you want to change, ask him to give you a specific 
+explanation. Do you think that's all right?
+
+I will not reply to you below.
+
+>> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+>> +	},
+>> +};
+>> +
+> 
+>> +
+>> +/* EMMC/NAND clock */
+>> +static const struct clk_parent_data s4_sd_emmc_clk0_parent_data[] = {
+>> +	{ .fw_name = "xtal", },
+>> +	{ .fw_name = "fclk_div2", },
+>> +	{ .fw_name = "fclk_div3", },
+>> +	{ .fw_name = "hifi_pll", },
+>> +	{ .fw_name = "fclk_div2p5", },
+>> +	{ .fw_name = "mpll2", },
+>> +	{ .fw_name = "mpll3", },
+>> +	{ .fw_name = "gp0_pll", },
+>> +};
+>> +
+>> +static struct clk_regmap s4_sd_emmc_c_clk0_sel = {
+>> +	.data = &(struct clk_regmap_mux_data){
+>> +		.offset = CLKCTRL_NAND_CLK_CTRL,
+>> +		.mask = 0x7,
+>> +		.shift = 9,
+>> +	},
+>> +	.hw.init = &(struct clk_init_data) {
+>> +		.name = "sd_emmc_c_clk0_sel",
+>> +		.ops = &clk_regmap_mux_ops,
+>> +		.parent_data = s4_sd_emmc_clk0_parent_data,
+>> +		.num_parents = ARRAY_SIZE(s4_sd_emmc_clk0_parent_data),
+>> +		/*
+>> +		 * When the driver uses this clock, needs to specify the patent clock
+>> +		 * he wants in the dts.
+>> +		 */
+> 
+> I'm getting a bit suspicious about the use (and abuse ...) of this flag.
+> I don't quite get how selecting the base PLL for MMC should be done on
+> use-case basis and should be up the board DT ...
+> 
+> Other SoC have all used fdiv2 so far. Do you expect this setting to be
+> part of the dtsi SoC file ?
+> 
+>> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+>> +	},
+>> +};
+>> +
+> 
+>> +
+>> +/* SPICC Clock */
+>> +static const struct clk_parent_data s4_spicc_parent_data[] = {
+>> +	{ .fw_name = "xtal", },
+>> +	{ .hw = &s4_sys_clk.hw },
+>> +	{ .fw_name = "fclk_div4", },
+>> +	{ .fw_name = "fclk_div3", },
+>> +	{ .fw_name = "fclk_div2", },
+>> +	{ .fw_name = "fclk_div5", },
+>> +	{ .fw_name = "fclk_div7", },
+>> +};
+>> +
+>> +static struct clk_regmap s4_spicc0_mux = {
+>> +	.data = &(struct clk_regmap_mux_data){
+>> +		.offset = CLKCTRL_SPICC_CLK_CTRL,
+>> +		.mask = 0x7,
+>> +		.shift = 7,
+>> +	},
+>> +	.hw.init = &(struct clk_init_data) {
+>> +		.name = "spicc0_mux",
+>> +		.ops = &clk_regmap_mux_ops,
+>> +		.parent_data = s4_spicc_parent_data,
+>> +		.num_parents = ARRAY_SIZE(s4_spicc_parent_data),
+>> +		/*
+>> +		 * When the driver uses this clock, needs to specify the patent clock
+>> +		 * he wants in the dts.
+>> +		 */
+> 
+> This is getting too far. All the parent clocks are fixed.
+> Let CCF do the job of picking the most adequate clock for the job
+> instead of manually settings things
+> 
+>> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+>> +	},
+>> +};
+>> +
+> 
+> 
+>> +
+>> +/* PWM Clock */
+>> +static const struct clk_parent_data s4_pwm_parent_data[] = {
+>> +	{ .fw_name = "xtal", },
+>> +	{ .hw = &s4_vid_pll.hw },
+>> +	{ .fw_name = "fclk_div4", },
+>> +	{ .fw_name = "fclk_div3", },
+>> +};
+>> +
+>> +static struct clk_regmap s4_pwm_a_mux = {
+>> +	.data = &(struct clk_regmap_mux_data) {
+>> +		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
+>> +		.mask = 0x3,
+>> +		.shift = 9,
+>> +	},
+>> +	.hw.init = &(struct clk_init_data){
+>> +		.name = "pwm_a_mux",
+>> +		.ops = &clk_regmap_mux_ops,
+>> +		.parent_data = s4_pwm_parent_data,
+>> +		.num_parents = ARRAY_SIZE(s4_pwm_parent_data),
+>> +		/*
+>> +		 * When the driver uses this clock, needs to specify the patent clock
+>> +		 * he wants in the dts.
+>> +		 */
+> 
+> Same here ... this is really going to far.
+> 
+>> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+>> +	},
+>> +};
+>> +
+> 
+>> +
+>> +static struct clk_regmap s4_saradc_mux = {
+>> +	.data = &(struct clk_regmap_mux_data) {
+>> +		.offset = CLKCTRL_SAR_CLK_CTRL,
+>> +		.mask = 0x3,
+>> +		.shift = 9,
+>> +	},
+>> +	.hw.init = &(struct clk_init_data){
+>> +		.name = "saradc_mux",
+>> +		.ops = &clk_regmap_mux_ops,
+>> +		.parent_data = (const struct clk_parent_data []) {
+>> +			{ .fw_name = "xtal", },
+>> +			{ .hw = &s4_sys_clk.hw },
+>> +		},
+>> +		.num_parents = 2,
+>> +		/*
+>> +		 * When the driver uses this clock, needs to specify the patent clock
+>> +		 * he wants in the dts.
+>> +		 */
+> 
+> For each clock type, if this flag is going to be used, I'd like a clear
+> explanation about why it is use-case dependent and why you need manual
+> control over this. Same applies to all the occurence.
+> 
+>> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
+>> +	},
+>> +};
+> 
