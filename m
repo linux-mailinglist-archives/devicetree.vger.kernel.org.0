@@ -2,185 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 168D7675EF9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 21:33:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D807C675F3E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 22:01:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbjATUdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 15:33:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43248 "EHLO
+        id S229888AbjATVBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 16:01:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbjATUdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 15:33:53 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648728A70F
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 12:33:51 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id g14so6704908ljh.10
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 12:33:51 -0800 (PST)
+        with ESMTP id S229608AbjATVBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 16:01:18 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07039881E1
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:01:17 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id y19so8208149edc.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 13:01:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6a1CsEt8CudzRfvBnwyGdGse2R0fVkuKsLbjSK3W3ZU=;
-        b=BV4fyxZgFNPW/IkcBFL26ouEsyGDHeRDZG+9LaXTS9UmerEGGQKt8zSbntQy6f70Ee
-         DLFKPt4Ecx2aFtqeP66leWda/QaPgnyvwyvs0F2PEME9O2F7dU425QOhtLUktr9DHz45
-         mJoISy2zum6vUbvBGLxP65OznjqVzj4BrHB+hXTfxQudiviaVX7OodTaOtNk12l463Eh
-         34aLCeGzHfmm35Z2aO+do5+1C2o0wxgnoiSRZwXLYXZgIyu+Zgc/zypkoYvaEHMtFoZy
-         1PudTMMcf+ygD/aB3VrnDYcwDR6zNmtKRCxKjjkxBCL+nHWswnVnaPa1EDCarbaySvWD
-         McDg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5vdvlTIe2SoUdgzeTBXtkOHkXv6c2FDuAp1y22eD7Ng=;
+        b=rhSCbwWbjcUJKlgvQOopMWTQNS4FyCSdDOWhsdPizT6q+UQu4iVeyAmPOW5WKRQJgT
+         +Nz4dkQwNjkwv6zsd0mbsgyNLAqj00cjWXRd69Cp5ucpmXVs1bV/fVM8wGV4BvO04Je8
+         YeNmEXt7GOD9+3EqM/LVf1SyCiMqIlaBhijJ3nmrRCEMxwo0pX950AGQbeZq06vsaiGP
+         IZ3hvWDZW/EI2BbE1Tl+kXiI2M//dNGYiYPsZjYiRFunyCT1lgNapZ0DFehZcWGvCW9X
+         WYhAvM5EiJsEx0eKK9GRR3X7pu8e8HBGpq+oqpJe4fsIhXAYmvNxCkD0LYMDZngfwGsX
+         tg0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6a1CsEt8CudzRfvBnwyGdGse2R0fVkuKsLbjSK3W3ZU=;
-        b=1zi2gPR0h/gtv8NyO2Ew1xm/cIbCviUV2j/1EpdOgTgPJ3S4YC86oNgSllwHldHxh7
-         hwtXCgHciECsLwNqrag7tt27g1W5f/zHpBhjb2xWFmwhdL+hOgYaMZMyhx+QIesofY11
-         MJGELL473DozJnmDtO6dOKeRjARgrwg06g1dK8Lv2abIy7leMy7gPefcBEO54RN4isEx
-         ZgEIXUcgKA2hpZZHe5k1YvExLNy1euYi2kAbQSeTwzhtMbAUThULW4IbV6TIhsJQp04Q
-         KHDLgDktYMXM6czvf7N0CPvkFKj5zikBX9XnbqWWN0hRtiWT/fFlRnL0xSS9YyjW825s
-         B3dA==
-X-Gm-Message-State: AFqh2krh9KzHlF8Rb5wIBn/B6+BjCmDBtju5ObFKMmFWbH693PkFJUxb
-        HRqWrnEeSwb3NAh+6TM1FfX4Zw==
-X-Google-Smtp-Source: AMrXdXseY041EcoBVjr8I7TjlaoEgXg0O09aGRO1387zhmObbC/gygm6bg9SKzzA3KsLfgKlsqBVYg==
-X-Received: by 2002:a2e:9ecb:0:b0:283:ce76:415b with SMTP id h11-20020a2e9ecb000000b00283ce76415bmr4760051ljk.29.1674246829689;
-        Fri, 20 Jan 2023 12:33:49 -0800 (PST)
-Received: from [127.0.0.1] ([188.162.65.44])
-        by smtp.gmail.com with ESMTPSA id k6-20020a05651c10a600b00287d9d49939sm3518968ljn.81.2023.01.20.12.33.47
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 20 Jan 2023 12:33:49 -0800 (PST)
-Date:   Fri, 20 Jan 2023 23:33:40 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Sean Paul <sean@poorly.run>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Mark Yacoub <markyacoub@chromium.org>, quic_khsieh@quicinc.com,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
-        robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
-        airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
-        rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com,
-        tzimmermann@suse.de, ville.syrjala@linux.intel.com,
-        stanislav.lisovskiy@intel.com, matthew.d.roper@intel.com,
-        imre.deak@intel.com, lucas.demarchi@intel.com,
-        manasi.d.navare@intel.com, swati2.sharma@intel.com,
-        bhanuprakash.modem@intel.com, javierm@redhat.com,
-        jose.souza@intel.com, lyude@redhat.com, hbh25y@gmail.com,
-        arun.r.murthy@intel.com, ashutosh.dixit@intel.com,
-        ankit.k.nautiyal@intel.com, maxime@cerno.tech, swboyd@chromium.org,
-        christophe.jaillet@wanadoo.fr, quic_sbillaka@quicinc.com,
-        johan+linaro@kernel.org, dianders@chromium.org, marex@denx.de,
-        quic_jesszhan@quicinc.com, bjorn.andersson@linaro.org,
-        abhinavk@codeaurora.org, seanpaul@chromium.org,
-        Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v6 01/10] drm/hdcp: Add drm_hdcp_atomic_check()
-User-Agent: K-9 Mail for Android
-In-Reply-To: <Y8q0H7SiDkdfmyXP@art_vandelay>
-References: <20230118193015.911074-1-markyacoub@google.com> <20230118193015.911074-2-markyacoub@google.com> <67170ce0-8622-8b35-e73a-7d873b7a3b8b@linaro.org> <Y8q0H7SiDkdfmyXP@art_vandelay>
-Message-ID: <A0271342-FB1E-4F7C-BD94-7506F4FACE6E@linaro.org>
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5vdvlTIe2SoUdgzeTBXtkOHkXv6c2FDuAp1y22eD7Ng=;
+        b=1TgKHfLsrbwIWH/vHjnEbjyShU/xXEcmYaj0h14SfL8KWksZ1c310F5JAswWZkbwqC
+         yQ2E3vcP9FcSV2DsWWJsflJNr2rMaS1FmHnUuOXZ49dfdLWypqcD30fSi9H9jl54cIiS
+         zRKK6hLV7vHRr6KaO/TMpNzqZAnMQ2qry/7hemaYAoF7WlWNr0Bm4IMhMBz1hBJpRT6N
+         IrxkhL/6moHL57+OFieQGY8OrVc+rKwKU68DPQTNoqRRsK+2/bIgkU0wkrq7Vb6G2UN2
+         waFUGXmyVUvb34sKSYyB2filLQkF2C3dxW8fK+r6ptno2mvVayG6+NTAg2jY/hFyY3Lm
+         7Xig==
+X-Gm-Message-State: AFqh2kqD4qGV3gPL7I8B7Ml+yb7WnQACs8NzUmC3qeavJ7JFLY7ZzCoq
+        V+6seA6gvFV/F11CPzO8zh65JQ==
+X-Google-Smtp-Source: AMrXdXuA4bZe2r10Fa2xb6v7gUYLSpFAEboZqxVdFXr3Y8zk2kJnKU4qwAoDJTd+CPD8UbAuF6ivag==
+X-Received: by 2002:a05:6402:1946:b0:48b:c8de:9d20 with SMTP id f6-20020a056402194600b0048bc8de9d20mr17986061edz.32.1674248475600;
+        Fri, 20 Jan 2023 13:01:15 -0800 (PST)
+Received: from localhost.localdomain (abyk37.neoplus.adsl.tpnet.pl. [83.9.30.37])
+        by smtp.gmail.com with ESMTPSA id g22-20020a170906595600b0087221268e49sm6581229ejr.186.2023.01.20.13.01.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Jan 2023 13:01:15 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Douglas Anderson <dianders@chromium.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rajeev Nandan <quic_rajeevny@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 2/8] arm64: dts: qcom: sm8350: Add missing #address/size-cells to DSIn
+Date:   Fri, 20 Jan 2023 22:00:54 +0100
+Message-Id: <20230120210101.2146852-2-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230120210101.2146852-1-konrad.dybcio@linaro.org>
+References: <20230120210101.2146852-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Panels/DRM bridges definitely don't need 64bits of address space and
+are usually not 32-bit wide. Set address-cells to 1 and size-cells to
+0.
 
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-On 20 January 2023 18:32:47 GMT+03:00, Sean Paul <sean@poorly=2Erun> wrote=
-:
->On Thu, Jan 19, 2023 at 11:37:52AM +0100, Krzysztof Kozlowski wrote:
->> On 18/01/2023 20:30, Mark Yacoub wrote:
->> > From: Sean Paul <seanpaul@chromium=2Eorg>
->> >=20
->> > This patch moves the hdcp atomic check from i915 to drm_hdcp so other
->> > drivers can use it=2E No functional changes, just cleaned up some of =
-the
->> > code when moving it over=2E
->> >=20
->> > Acked-by: Jani Nikula <jani=2Enikula@intel=2Ecom>
->> > Acked-by: Jani Nikula <jani=2Enikula@intel=2Ecom>
->> > Reviewed-by: Rodrigo Vivi <rodrigo=2Evivi@intel=2Ecom>
->> > Reviewed-by: Abhinav Kumar <abhinavk@codeaurora=2Eorg>
->> > Signed-off-by: Sean Paul <seanpaul@chromium=2Eorg>
->> > Signed-off-by: Mark Yacoub <markyacoub@chromium=2Eorg>
->> > Link: https://patchwork=2Efreedesktop=2Eorg/patch/msgid/2021091317574=
-7=2E47456-2-sean@poorly=2Erun #v1
->> > Link: https://patchwork=2Efreedesktop=2Eorg/patch/msgid/2021091520383=
-4=2E1439-2-sean@poorly=2Erun #v2
->> > Link: https://patchwork=2Efreedesktop=2Eorg/patch/msgid/2021100115114=
-5=2E55916-2-sean@poorly=2Erun #v3
->> > Link: https://patchwork=2Efreedesktop=2Eorg/patch/msgid/2021110503043=
-4=2E2828845-2-sean@poorly=2Erun #v4
->> > Link: https://patchwork=2Efreedesktop=2Eorg/patch/msgid/2022041120474=
-1=2E1074308-2-sean@poorly=2Erun #v5
->>=20
->> It seems all your previous versions were sent not to correct people and
->> lists=2E Therefore we see it for the first time even though it is v6!=
-=20
->
->Hi Krzysztof,
->Thanks for your review comments=2E
->
->Here are the addresses the last version was sent to, who is missing?
->
->To: dri-devel@lists=2Efreedesktop=2Eorg,=20
->    jani=2Enikula@intel=2Ecom,
->    intel-gfx@lists=2Efreedesktop=2Eorg,
->    freedreno@lists=2Efreedesktop=2Eorg,
->    rodrigo=2Evivi@intel=2Ecom
->Cc: bjorn=2Eandersson@linaro=2Eorg,=20
->    swboyd@chromium=2Eorg,
->    abhinavk@codeaurora=2Eorg,
->    markyacoub@chromium=2Eorg,
->    Sean Paul <seanpaul@chromium=2Eorg>,
->    Maarten Lankhorst <maarten=2Elankhorst@linux=2Eintel=2Ecom>,
->    Maxime Ripard <mripard@kernel=2Eorg>,
->    Thomas Zimmermann <tzimmermann@suse=2Ede>,
->    David Airlie <airlied@linux=2Eie>,
->    Daniel Vetter <daniel@ffwll=2Ech>,
->    Jani Nikula <jani=2Enikula@linux=2Eintel=2Ecom>,
->    Joonas Lahtinen <joonas=2Elahtinen@linux=2Eintel=2Ecom>,
->    Tvrtko Ursulin <tvrtko=2Eursulin@linux=2Eintel=2Ecom>
->
->> It's
->> not the first such weird CC list in chromium, so maybe your
->> organisational process could be improved? Not only for you but for
->> colleagues as well, so you all start using get_maintainers=2Epl on newe=
-st
->> kernel (not something ancient)?
->
->I can't really speak for others, but I use MAINTAINERS from drm-tip=2E Th=
-e=20
->previous patch sets were sent before 24df12013853 ("MAINTAINERS: Add=20
->Dmitry as MSM DRM driver co-maintainer"), which might explain why you thi=
-nk
->there are absences?
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index dc84dbed81bb..c0ba67747c24 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -2989,6 +2989,9 @@ mdss_dsi0: dsi@ae94000 {
+ 
+ 				phys = <&mdss_dsi0_phy>;
+ 
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 
+ 				dsi0_opp_table: opp-table {
+@@ -3084,6 +3087,9 @@ mdss_dsi1: dsi@ae96000 {
+ 
+ 				phys = <&mdss_dsi1_phy>;
+ 
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 
+ 				dsi1_opp_table: opp-table {
+-- 
+2.39.1
 
-Current iteration of the patchset got at least three addresses wrong=2E Th=
-ey have been changed for various reasons=2E Thus I also can suppose that th=
-e list is incomplete and/or incorrect=2E
-
->
->Thanks again,
->
->Sean
->
->>=20
->> Best regards,
->> Krzysztof
->>=20
->
-
---=20
-With best wishes
-Dmitry
