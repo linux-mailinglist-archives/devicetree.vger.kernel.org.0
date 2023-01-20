@@ -2,256 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB8706757B9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 15:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F8916757C3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 15:53:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbjATOpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 09:45:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51456 "EHLO
+        id S230016AbjATOxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 09:53:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231239AbjATOpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 09:45:44 -0500
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3934ABB96;
-        Fri, 20 Jan 2023 06:45:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=xr9Bk8WWnK9zJMqPrV6WPb/9VZSO5pw+Ilr2i4XPMyk=; b=zFFpOZ4uABIws+AzS7llHzXNAK
-        V9rCbxn7jokshAdhssegaTjM4WhIANIplGLciidLoC1TshxwcINpA3t1kpKVJS+QElvLCtVgZu0Ml
-        +79ELeB2WzLLyD8EccDsWZf0XaUPN3o5VO0No5Hg/P1Pklvt1E/F+bBbzVK5P50VDLPk=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:41482 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1pIscn-0005Bb-NK; Fri, 20 Jan 2023 09:44:14 -0500
-Date:   Fri, 20 Jan 2023 09:44:13 -0500
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Philipp Rosenberger <p.rosenberger@kunbus.com>
-Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Message-Id: <20230120094413.9efcbd1d31fd63620eb7722e@hugovil.com>
-In-Reply-To: <8044fb10-519e-c8ac-7c0d-50bd8b6a1224@kunbus.com>
-References: <20221215150214.1109074-1-hugo@hugovil.com>
-        <20221215150214.1109074-13-hugo@hugovil.com>
-        <72514fec-12e2-5b51-261d-9e171b46f5bb@kunbus.com>
-        <20230119124853.9193fd073b8a95b45e20f41c@hugovil.com>
-        <8044fb10-519e-c8ac-7c0d-50bd8b6a1224@kunbus.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S229985AbjATOxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 09:53:24 -0500
+Received: from fx405.security-mail.net (smtpout140.security-mail.net [85.31.212.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D9ED4861C
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 06:53:22 -0800 (PST)
+Received: from localhost (fx405.security-mail.net [127.0.0.1])
+        by fx405.security-mail.net (Postfix) with ESMTP id 97F0D335D26
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 15:53:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kalray.eu;
+        s=sec-sig-email; t=1674226400;
+        bh=jgb+m6qIX2pro82EX6+kbaqARSA1wPefVldKhg9mwIw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=VH6aD3TZhUe/LBsX91///VLOWzGxkxEDhlR6x6vY6U9mY0YSajPSTLVCgTEJ5dPG3
+         cB3/9ZnmgrFtNhXuju+pTrFwPWywzSl/2mAW7tvLpsncap8eJ5+NEsxMBgWmi6U0Dk
+         aUqc56g/c/TG0zy/mCIGXpqLi9T5jSgSXWFmpfxs=
+Received: from fx405 (fx405.security-mail.net [127.0.0.1]) by
+ fx405.security-mail.net (Postfix) with ESMTP id 1A3B7335CAA; Fri, 20 Jan
+ 2023 15:53:20 +0100 (CET)
+Received: from zimbra2.kalray.eu (unknown [217.181.231.53]) by
+ fx405.security-mail.net (Postfix) with ESMTPS id F1088335B7A; Fri, 20 Jan
+ 2023 15:53:18 +0100 (CET)
+Received: from zimbra2.kalray.eu (localhost [127.0.0.1]) by
+ zimbra2.kalray.eu (Postfix) with ESMTPS id 7269927E043A; Fri, 20 Jan 2023
+ 15:53:18 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1]) by zimbra2.kalray.eu
+ (Postfix) with ESMTP id 52FB427E0437; Fri, 20 Jan 2023 15:53:18 +0100 (CET)
+Received: from zimbra2.kalray.eu ([127.0.0.1]) by localhost
+ (zimbra2.kalray.eu [127.0.0.1]) (amavisd-new, port 10026) with ESMTP id
+ PJVPWxUQy6bp; Fri, 20 Jan 2023 15:53:18 +0100 (CET)
+Received: from tellis.lin.mbt.kalray.eu (unknown [192.168.36.206]) by
+ zimbra2.kalray.eu (Postfix) with ESMTPSA id 057AA27E0430; Fri, 20 Jan 2023
+ 15:53:18 +0100 (CET)
+X-Virus-Scanned: E-securemail
+Secumail-id: <d912.63caaade.ac33d.0>
+DKIM-Filter: OpenDKIM Filter v2.10.3 zimbra2.kalray.eu 52FB427E0437
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kalray.eu;
+ s=32AE1B44-9502-11E5-BA35-3734643DEF29; t=1674226398;
+ bh=kRxe31MnQMmqE5+taZm1AGIuAYHRpwHRpAdaJ1cAplQ=;
+ h=Date:From:To:Message-ID:MIME-Version;
+ b=YyIqYgrfkWr5S+e3StrmT2Bz+xzv6InOUUAiJ+Ee5064rTXfFh85K084P2UbBDG2W
+ gNEkTRz6oiFgP3OpnVk4jtK62FvfzEmQb6Q28gWtIAvW/nr+1y+YLusNgJ1Wd/awAH
+ V7jmxOb9IUySl+9rZXiVdENlDVm128usIIPZgMcc=
+Date:   Fri, 20 Jan 2023 15:53:16 +0100
+From:   Jules Maselbas <jmaselbas@kalray.eu>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Yann Sionneau <ysionneau@kalray.eu>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Boqun Feng <boqun.feng@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Kees Cook <keescook@chromium.org>,
+        Oleg Nesterov <oleg@redhat.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        Waiman Long <longman@redhat.com>,
+        Aneesh Kumar <aneesh.kumar@linux.ibm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Paul Moore <paul@paul-moore.com>,
+        Eric Paris <eparis@redhat.com>,
+        Christian Brauner <brauner@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Guillaume Thouvenin <gthouvenin@kalray.eu>,
+        Clement Leger <clement@clement-leger.fr>,
+        Vincent Chardon <vincent.chardon@elsys-design.com>,
+        Marc =?utf-8?b?UG91bGhpw6hz?= <dkm@kataplop.net>,
+        Julian Vetter <jvetter@kalray.eu>,
+        Samuel Jones <sjones@kalray.eu>,
+        Ashley Lesdalons <alesdalons@kalray.eu>,
+        Thomas Costis <tcostis@kalray.eu>,
+        Marius Gligor <mgligor@kalray.eu>,
+        Jonathan Borne <jborne@kalray.eu>,
+        Julien Villette <jvillette@kalray.eu>,
+        Luc Michel <lmichel@kalray.eu>,
+        Louis Morhet <lmorhet@kalray.eu>,
+        Julien Hascoet <jhascoet@kalray.eu>,
+        Jean-Christophe Pince <jcpince@gmail.com>,
+        Guillaume Missonnier <gmissonnier@kalray.eu>,
+        Alex Michon <amichon@kalray.eu>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <git@xen0n.name>,
+        Shaokun Zhang <zhangshaokun@hisilicon.com>,
+        John Garry <john.garry@huawei.com>,
+        Guangbin Huang <huangguangbin2@huawei.com>,
+        Bharat Bhushan <bbhushan2@marvell.com>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Atish Patra <atishp@atishpatra.org>,
+        "Jason A . Donenfeld" <Jason@zx2c4.com>,
+        Qi Liu <liuqi115@huawei.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Mark Brown <broonie@kernel.org>,
+        Janosch Frank <frankja@linux.ibm.com>,
+        Alexey Dobriyan <adobriyan@gmail.com>,
+        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mm@kvack.org,
+        Linux-Arch <linux-arch@vger.kernel.org>, linux-audit@redhat.com,
+        linux-riscv@lists.infradead.org, bpf@vger.kernel.org
+Subject: Re: [RFC PATCH v2 09/31] kvx: Add build infrastructure
+Message-ID: <20230120145316.GA4155@tellis.lin.mbt.kalray.eu>
+References: <20230120141002.2442-1-ysionneau@kalray.eu>
+ <20230120141002.2442-10-ysionneau@kalray.eu>
+ <aa4d68b2-b5b5-4c17-a44f-7c6db443ea4c@app.fastmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <aa4d68b2-b5b5-4c17-a44f-7c6db443ea4c@app.fastmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+X-ALTERMIMEV2_out: done
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v3 12/14] rtc: pcf2127: support generic watchdog timing
- configuration
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Jan 2023 09:06:31 +0100
-Philipp Rosenberger <p.rosenberger@kunbus.com> wrote:
-
-> On 19.01.23 18:48, Hugo Villeneuve wrote:
-> > On Wed, 18 Jan 2023 14:23:14 +0100
-> > Philipp Rosenberger <p.rosenberger@kunbus.com> wrote:
-> > 
-> > Hi Philipp,
-> > you are right that the value store/computed inside the structure wdd (struct watchdog_device) should be in seconds, according to the header file documentation in watchdog.h.
-> > 
-> > However, in the PCF2127 datasheet, the value n that is stored in the PCF2127_REG_WD_VAL register does not represent a value in seconds, but a counter value. It is given by this equation:
-> > 
-> >      n = source_clock_frequency x timer_period_in_seconds
-> > 
-> > For the PCF2127, since the clock used is 1Hz, it works as the previous equation can be simplified as:
-> > 
-> >      n = timer_period_in_seconds
-> > 
-> > However, if the source clock is different than 1Hz, it would no longer work. Also, since the PCF2131 uses a default clock of 1/4 Hz, it also would not work.
-> > 
-> > That is the reason why I modified the watchdog timer value (n) computation to take the clock into account. I then use the desired timeout in seconds given by  PCF2127_WD_VAL_DEFAULT to compute the counter value (n).
-> > 
-> > So what I am proposing to do is to store the PCF2127_WD_VAL_DEFAULT value in wdd->timeout, as before, but convert it to a counter value in pcf2127_wdt_active_ping(). Or to only compute it once, I could define a new variable and compute/set it in pcf2127_watchdog_init().
-> > 
-> > Hugo.
-> > 
+On Fri, Jan 20, 2023 at 03:39:22PM +0100, Arnd Bergmann wrote:
+> On Fri, Jan 20, 2023, at 15:09, Yann Sionneau wrote:
+> >      - Fix clean target raising an error from gcc (LIBGCC)
 > 
-> Hi Hugo,
+> I had not noticed this on v1 but:
 > 
-> with some small changes to your code I was able to get the behavior 
-> right. But with this the timeout get converted from seconds to the 
-> counter register format on every ping.
+> > +# Link with libgcc to get __div* builtins.
+> > +LIBGCC	:= $(shell $(CC) $(DEFAULT_OPTS) --print-libgcc-file-name)
 > 
-> Just add WD_COUNTER(wdd->timeout, pcf2127->cfg->wdd_clock_hz_x1000) to 
-> the regmap_write() in pcf2127_wdt_ping(). Then in 
-> pcf2127_watchdog_init() just do:
+> It's better to copy the bits of libgcc that you actually need
+> than to include the whole thing. The kernel is in a weird
+It was initialy using KCONFIG_CFLAGS which do not contains valid options
+when invoking the clean target.
+
+I am not exactly sure what's needed by gcc for --print-libgcc-file-name,
+my guess is that only the -march option matters, I will double check
+internally with compiler peoples.
+
+> state that is neither freestanding nor the normal libc based
+> environment, so we generally want full control over what is
+> used. This is particularly important for 32-bit architectures
+> that do not want the 64-bit division, but there are probably
+> enough other cases as well.
 > 
-> pcf2127->wdd.timeout = PCF2127_WD_VAL_DEFAULT;
+>      Arnd
 > 
-> Best regards,
-> Philipp
-
-Hi Philipp,
-in the end this is exactly what I did. I will send an updated patch series once I have adressed the other comments.
-
-Hugo.
-
-
-> > 
-> >> On 15.12.22 16:02, Hugo Villeneuve wrote:
-> >>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >>>
-> >>> Introduce in the configuration structure two new values to hold the
-> >>> watchdog clock source and the min_hw_heartbeat_ms value.
-> >>>
-> >>> The minimum and maximum timeout values are automatically computed from
-> >>> the watchdog clock source value for each variant.
-> >>>
-> >>> The PCF2131 has no 1Hz watchdog clock source, as is the case for
-> >>> PCF2127/29.
-> >>>
-> >>> The next best choice is using a 1/4Hz clock, giving a watchdog timeout
-> >>> range between 4 and 1016s. By using the same register configuration as
-> >>> for the PCF2127/29, the 1/4Hz clock source is selected.
-> >>>
-> >>> Note: the PCF2127 datasheet gives a min/max range between 1 and 255s,
-> >>> but it should be between 2 and 254s, because the watchdog is triggered
-> >>> when the timer value reaches 1, not 0.
-> >>>
-> >>> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >>> ---
-> >>>    drivers/rtc/rtc-pcf2127.c | 56 +++++++++++++++++++++++++++++++++------
-> >>>    1 file changed, 48 insertions(+), 8 deletions(-)
-> >>>
-> >>> diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-> >>> index 11fbdab6bf01..3fd2fee4978b 100644
-> >>> --- a/drivers/rtc/rtc-pcf2127.c
-> >>> +++ b/drivers/rtc/rtc-pcf2127.c
-> >>> @@ -157,9 +157,29 @@
-> >>>
-> >>>    /* Watchdog timer value constants */
-> >>>    #define PCF2127_WD_VAL_STOP               0
-> >>> -#define PCF2127_WD_VAL_MIN         2
-> >>> -#define PCF2127_WD_VAL_MAX         255
-> >>> -#define PCF2127_WD_VAL_DEFAULT             60
-> >>> +#define PCF2127_WD_VAL_DEFAULT             60 /* In seconds. */
-> >>> +/* PCF2127/29 watchdog timer value constants */
-> >>> +#define PCF2127_WD_CLOCK_HZ_X1000  1000 /* 1Hz */
-> >>> +#define PCF2127_WD_MIN_HW_HEARTBEAT_MS     500
-> >>> +/* PCF2131 watchdog timer value constants */
-> >>> +#define PCF2131_WD_CLOCK_HZ_X1000  250  /* 1/4Hz */
-> >>> +#define PCF2131_WD_MIN_HW_HEARTBEAT_MS     4000
-> >>> +/*
-> >>> + * Compute watchdog period, t, in seconds, from the WATCHDG_TIM_VAL register
-> >>> + * value, n, and the clock frequency, f, in Hz.
-> >>> + *
-> >>> + * The PCF2127/29 datasheet gives t as:
-> >>> + *   t = n / f
-> >>> + * The PCF2131 datasheet gives t as:
-> >>> + *   t = (n - 1) / f
-> >>> + * For both variants, the watchdog is triggered when the WATCHDG_TIM_VAL reaches
-> >>> + * the value 1, and not zero. Consequently, the equation from the PCF2131
-> >>> + * datasheet seems to be the correct one for both variants.
-> >>> + */
-> >>> +#define WD_PERIOD_S(_n_, _f1000_) ((1000 * ((_n_) - 1)) / (_f1000_))
-> >>> +
-> >>> +/* Compute value of WATCHDG_TIM_VAL to obtain period t, in seconds. */
-> >>> +#define WD_COUNTER(_t_, _f1000_) ((((_t_) * (_f1000_)) / 1000) + 1)
-> >>>
-> >>>    /* Mask for currently enabled interrupts */
-> >>>    #define PCF2127_CTRL1_IRQ_MASK (PCF2127_BIT_CTRL1_TSF1)
-> >>> @@ -202,6 +222,11 @@ struct pcf21xx_config {
-> >>>      u8 reg_wd_val; /* Watchdog value register. */
-> >>>      u8 reg_clkout; /* Clkout register. */
-> >>>      u8 reg_reset;  /* Reset register if available. */
-> >>> +
-> >>> +   /* Watchdog configuration. */
-> >>> +   int wdd_clock_hz_x1000; /* Value in Hz multiplicated by 1000 */
-> >>> +   int wdd_min_hw_heartbeat_ms;
-> >>> +
-> >>>      unsigned int ts_count;
-> >>>      struct pcf21xx_ts_config ts[4];
-> >>>      struct attribute_group attribute_group;
-> >>> @@ -496,10 +521,19 @@ static int pcf2127_watchdog_init(struct device *dev, struct pcf2127 *pcf2127)
-> >>>      pcf2127->wdd.parent = dev;
-> >>>      pcf2127->wdd.info = &pcf2127_wdt_info;
-> >>>      pcf2127->wdd.ops = &pcf2127_watchdog_ops;
-> >>> -   pcf2127->wdd.min_timeout = PCF2127_WD_VAL_MIN;
-> >>> -   pcf2127->wdd.max_timeout = PCF2127_WD_VAL_MAX;
-> >>> -   pcf2127->wdd.timeout = PCF2127_WD_VAL_DEFAULT;
-> >>> -   pcf2127->wdd.min_hw_heartbeat_ms = 500;
-> >>> +
-> >>> +   pcf2127->wdd.min_timeout =
-> >>> +           WD_PERIOD_S(2, pcf2127->cfg->wdd_clock_hz_x1000);
-> >>> +   pcf2127->wdd.max_timeout =
-> >>> +           WD_PERIOD_S(255, pcf2127->cfg->wdd_clock_hz_x1000);
-> >>> +   pcf2127->wdd.timeout = WD_COUNTER(PCF2127_WD_VAL_DEFAULT,
-> >>> +                                     pcf2127->cfg->wdd_clock_hz_x1000);
-> >>> +
-> >>> +   dev_dbg(dev, "%s min = %ds\n", __func__, pcf2127->wdd.min_timeout);
-> >>> +   dev_dbg(dev, "%s max = %ds\n", __func__, pcf2127->wdd.max_timeout);
-> >>> +   dev_dbg(dev, "%s def = %d\n", __func__, pcf2127->wdd.timeout);
-> >>> +
-> >>> +   pcf2127->wdd.min_hw_heartbeat_ms = pcf2127->cfg->wdd_min_hw_heartbeat_ms;
-> >>>      pcf2127->wdd.status = WATCHDOG_NOWAYOUT_INIT_STATUS;
-> >>>
-> >>>      watchdog_set_drvdata(&pcf2127->wdd, pcf2127);
-> >>> @@ -926,6 +960,8 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
-> >>>              .reg_wd_ctl = PCF2127_REG_WD_CTL,
-> >>>              .reg_wd_val = PCF2127_REG_WD_VAL,
-> >>>              .reg_clkout = PCF2127_REG_CLKOUT,
-> >>> +           .wdd_clock_hz_x1000 = PCF2127_WD_CLOCK_HZ_X1000,
-> >>> +           .wdd_min_hw_heartbeat_ms = PCF2127_WD_MIN_HW_HEARTBEAT_MS,
-> >>>              .ts_count = 1,
-> >>>              .ts[0] = {
-> >>>                      .regs_base = PCF2127_REG_TS1_BASE,
-> >>> @@ -951,6 +987,8 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
-> >>>              .reg_wd_ctl = PCF2127_REG_WD_CTL,
-> >>>              .reg_wd_val = PCF2127_REG_WD_VAL,
-> >>>              .reg_clkout = PCF2127_REG_CLKOUT,
-> >>> +           .wdd_clock_hz_x1000 = PCF2127_WD_CLOCK_HZ_X1000,
-> >>> +           .wdd_min_hw_heartbeat_ms = PCF2127_WD_MIN_HW_HEARTBEAT_MS,
-> >>>              .ts_count = 1,
-> >>>              .ts[0] = {
-> >>>                      .regs_base = PCF2127_REG_TS1_BASE,
-> >>> @@ -977,6 +1015,8 @@ static struct pcf21xx_config pcf21xx_cfg[] = {
-> >>>              .reg_wd_val = PCF2131_REG_WD_VAL,
-> >>>              .reg_clkout = PCF2131_REG_CLKOUT,
-> >>>              .reg_reset  = PCF2131_REG_SR_RESET,
-> >>> +           .wdd_clock_hz_x1000 = PCF2131_WD_CLOCK_HZ_X1000,
-> >>> +           .wdd_min_hw_heartbeat_ms = PCF2131_WD_MIN_HW_HEARTBEAT_MS,
-> >>>              .ts_count = 4,
-> >>>              .ts[0] = {
-> >>>                      .regs_base = PCF2131_REG_TS1_BASE,
-> >>> @@ -1215,7 +1255,7 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
-> >>>
-> >>>      /*
-> >>>       * Watchdog timer enabled and reset pin /RST activated when timed out.
-> >>> -    * Select 1Hz clock source for watchdog timer.
-> >>> +    * Select 1Hz clock source for watchdog timer (1/4Hz for PCF2131).
-> >>>       * Note: Countdown timer disabled and not available.
-> >>>       * For pca2129, pcf2129 and pcf2131, only bit[7] is for Symbol WD_CD
-> >>>       * of register watchdg_tim_ctl. The bit[6] is labeled
-> >>
-> > 
-> > 
-> > --
-> > Hugo Villeneuve <hugo@hugovil.com>
+> 
+> 
 > 
 
 
--- 
-Hugo Villeneuve <hugo@hugovil.com>
+
+
