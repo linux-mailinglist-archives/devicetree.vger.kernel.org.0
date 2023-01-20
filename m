@@ -2,163 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D752676010
-	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 23:18:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B79167601C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 23:22:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbjATWS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 17:18:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37034 "EHLO
+        id S229591AbjATWWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 17:22:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229807AbjATWSz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 17:18:55 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26DF537B6C
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 14:18:52 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id g14so6949058ljh.10
-        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 14:18:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9gQD61OGGTubQxWy+NXmqIcQ0J1mX7TCnjndDCs+TWo=;
-        b=X+odKIujo3mTshv/mtiNDlUoFhKSPscVWhsk5Vn957Bjx3ew63zAcZ6L2YqufYdrwf
-         q6/0xxk1O+XJLLVEtpk7UgRAlJvgbcb1NJFtPZigzSL+dajkfpqEDklqXkvKJ0wFqdPI
-         Qsrci+NczErWgU90IsD4t3QuV/XlFSzEMbrDXC14UqlRe7GAUBrEA+lufuWSdYrEIPpg
-         IFRixtSyG/NcIz3iyufqTfPmdfNaYYFwjWmP1AEZelkH0IXSh1O1SAD82G+aMDe3vDj3
-         2/4D+mlbgPs/HSD5Gg1voGTRA6nk5npbIYOxhmOT5xKVigse4tX0n/5muwj5psaM5Z+E
-         xZ8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9gQD61OGGTubQxWy+NXmqIcQ0J1mX7TCnjndDCs+TWo=;
-        b=Pak5spVA+s0A2JmWhXkik03CgtOA3L8hwdmYsLzo/AnG8qpTn/OmAtil+/V58RLylB
-         o4AnL4vjMGIr3OkJU0sjR6E65mzGu0rJkANd7xs1V6Z6TFJAWu2CzAHBBXBWv66Szifn
-         0w22fO+wFfLxtGuQgmNNz/qazU13b5rL4wBcz8EC5Obmrilx9MBmexL1lc/saZI7fy66
-         m8ER49ZC0jLTXsKLm/NX3GJXeSRB2B4TeO3Hvr6ScT5CNgclKfZqxjfhMjPSObHhEcTo
-         vHN5FYncIlUO3wAsNxLKPXt9TPsP6gk2BMyi8CxChQrhSAhfQYq66FPl4+nYaGYoMaxO
-         CJEg==
-X-Gm-Message-State: AFqh2kqTzYGf9CktZdkmbIA/daT0q2WY+mIHH++mKxbEIfbDKXHfyL1N
-        J9JkDoh3ukFJpyIQDj/aScyFRA==
-X-Google-Smtp-Source: AMrXdXuzxeAS+3ikntIXui271IM9NqkbXyD0f3h3kgmTAbHsxHvJVjjj1kYhpa9NXG1Jl4OmPPh82Q==
-X-Received: by 2002:a2e:93cc:0:b0:27f:20e4:698f with SMTP id p12-20020a2e93cc000000b0027f20e4698fmr4239488ljh.19.1674253130453;
-        Fri, 20 Jan 2023 14:18:50 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id bf25-20020a2eaa19000000b0028b9b8b459dsm1022942ljb.116.2023.01.20.14.18.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Jan 2023 14:18:49 -0800 (PST)
-Message-ID: <4f63a3e0-daeb-5b6a-f998-681502dd7abf@linaro.org>
-Date:   Sat, 21 Jan 2023 00:18:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v3 0/8] clk: qcom: msm8996: add support for the CBF clock
-Content-Language: en-GB
-To:     Simon Glass <sjg@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229553AbjATWWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 17:22:43 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 213E9762C2
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 14:22:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C837DB82A97
+        for <devicetree@vger.kernel.org>; Fri, 20 Jan 2023 22:22:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9C46C433D2;
+        Fri, 20 Jan 2023 22:22:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1674253343;
+        bh=9OjnS/bRAi/5W+hIXcDofIIjRCnP/2WUXpYZhPCsffI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=r8c+Vgbg0gXKK2v++cEaCOiFG9cw8sctDwGC/5pwtDUk9Vm446YSQY9Ks6s43+nuJ
+         8Y5mblJKCof5iiySfzNGqJXzdnUtXVMHbBzd/lulNRgVEUN8cZcD6Zmlb0C3twNMlD
+         P1uMVv4YnazpQzTzsd1eTFWQ7CNzW490ZbHTr2nzzNrTnFx1zBlBvvHKRtkhIgk7ui
+         sw3YvgV9jlXw7s+9hTEMapRzTgLGyDskQGu80kQm7KytkZl5CmsLcORge5vjK2Gdtq
+         dFmL+LyJ5pFHaTwX+v1KYAK9SFyZtob7Xe96bcZmY1X/8TCqCQ/ivtQLt7815u1Exa
+         VaCCUfNRi+yyQ==
+From:   Conor Dooley <conor@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230120061417.2623751-1-dmitry.baryshkov@linaro.org>
- <CAPnjgZ3MQ4E_3n_Z881QsdO-zELPkLaCm0cOFwz6Fds+u73OWg@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAPnjgZ3MQ4E_3n_Z881QsdO-zELPkLaCm0cOFwz6Fds+u73OWg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     conor@kernel.org, Daire McNamara <daire.mcnamara@microchip.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 0/3] Add a devicetree for the Aldec PolarFire SoC TySoM
+Date:   Fri, 20 Jan 2023 22:21:52 +0000
+Message-Id: <167425300253.196995.16704364734432203770.b4-ty@microchip.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230111124106.2417152-1-conor.dooley@microchip.com>
+References: <20230111124106.2417152-1-conor.dooley@microchip.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=775; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=DSR4h5iLz5L38SehBa0AiU9UxY1CKS3u7gABR27mr2o=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDMmnhf+89rUw155YOOW93NLnu8Q217Kq/HZNPOZVKupe6ZJy gHNvRykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACZy5xHDf38jhqreDe+euBbm96n6NJ tIqtnWbovIurS8tGr1d7kWF0aGv9d25whnHul8wrw76ujiDScVr2t0PJoTs/z+8yfXrs5fxgYA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/01/2023 17:08, Simon Glass wrote:
-> Hi Dmitry,
+From: Conor Dooley <conor.dooley@microchip.com>
+
+On Wed, 11 Jan 2023 12:41:04 +0000, Conor Dooley wrote:
+> Hey All,
 > 
-> On Thu, 19 Jan 2023 at 23:14, Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
->>
->> On MSM8996 two CPU clusters are interconnected using the Core Bus
->> Fabric (CBF). In order for the CPU clusters to function properly, it
->> should be clocked following the core's frequencies to provide adequate
->> bandwidth. On the other hand the CBF's clock rate can be used by other
->> drivers (e.g. by the pending SPDM driver to provide input on the CPU
->> performance).
->>
->> Thus register CBF as a clock (required for CPU to boot) and add a tiny
->> interconnect layer on top of it to let cpufreq/opp scale the CBF clock.
->>
->> Dependencies: [1]
->>
->> [1] https://lore.kernel.org/linux-arm-msm/20230111191453.2509468-1-dmitry.baryshkov@linaro.org/
->>
->> Changes since v2:
->> - Added interconnect-related bindings
->> - Switched CPU and CBF clocks to RPM_SMD_XO_A_CLK_SRC
->>
->> Changes since v1:
->> - Relicensed schema to GPL-2.0 + BSD-2-Clause (Krzysztof)
->> - Changed clock driver to use parent_hws (Konrad)
->> - Fixed indentation in CBF clock driver (Konrad)
->> - Changed MODULE_LICENSE of CBF clock driver to GPL from GPL-v2
->> - Switched CBF to use RPM_SMD_XO_CLK_SRC as one of the parents
->> - Enabled RPM_SMD_XO_CLK_SRC on msm8996 platform and switch to it from
->>    RPM_SMD_BB_CLK1 clock
->>
->> Dmitry Baryshkov (8):
->>    dt-bindings: clock: qcom,msm8996-cbf: Describe the MSM8996 CBF clock
->>      controller
->>    dt-bindints: interconnect/msm8996-cbf: add defines to be used by CBF
->>    clk: qcom: add msm8996 Core Bus Framework (CBF) support
->>    clk: qcom: cbf-msm8996: scale CBF clock according to the CPUfreq
->>    clk: qcom: smd-rpm: provide RPM_SMD_XO_CLK_SRC on MSM8996 platform
->>    arm64: qcom: dts: msm8996 switch from RPM_SMD_BB_CLK1 to
->>      RPM_SMD_XO_CLK_SRC
->>    arm64: dts: qcom: msm8996: add CBF device entry
->>    arm64: dts: qcom: msm8996: scale CBF clock according to the CPUfreq
->>
->>   .../bindings/clock/qcom,msm8996-cbf.yaml      |  53 ++
->>   arch/arm64/boot/dts/qcom/msm8996.dtsi         |  72 ++-
->>   drivers/clk/qcom/Makefile                     |   2 +-
->>   drivers/clk/qcom/clk-cbf-8996.c               | 458 ++++++++++++++++++
->>   drivers/clk/qcom/clk-smd-rpm.c                |   2 +
->>   .../interconnect/qcom,msm8996-cbf.h           |  12 +
->>   6 files changed, 591 insertions(+), 8 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,msm8996-cbf.yaml
->>   create mode 100644 drivers/clk/qcom/clk-cbf-8996.c
->>   create mode 100644 include/dt-bindings/interconnect/qcom,msm8996-cbf.h
->>
->> --
->> 2.39.0
->>
+> The board has 32 GB of DDR but the DT I have access to only has a small
+> bit of that mapped. I tried accessing more DDR, but it was not possible
+> with the FPGA design as things stand. I'd rather have the devicetree
+> match what the vendor is shipping, so left the design/DDR as-was.
 > 
-> Could you please tell me which dev board this is targeting and where I
-> can get one?
+> [...]
 
-This is targeting db820c, which is available from arrow.com. Note, this 
-patchset is related only msm8996 aka Snapdragon 820, it has limited 
-applicability to msm8996-pro and is of no concern to most of other chipsets.
+Applied to riscv-dt-for-next, thanks!
 
-> Also could you please point me to the SoC documentation?
+[1/3] dt-bindings: vendor-prefixes: Add entry for Aldec
+      https://git.kernel.org/conor/c/f6beee9118c3
+[2/3] dt-bindings: riscv: microchip: document the Aldec TySoM
+      https://git.kernel.org/conor/c/ea913d8865fe
+[3/3] riscv: dts: microchip: add the Aldec TySoM's devicetree
+      https://git.kernel.org/conor/c/4f7d64156292
 
-https://developer.qualcomm.com/hardware/apq-8096sg/tools
+Removed the PCIe that I forgot to remove before sending in the process...
 
-> 
-> Thanks,
-> Simon
-
--- 
-With best wishes
-Dmitry
-
+Thanks,
+Conor.
