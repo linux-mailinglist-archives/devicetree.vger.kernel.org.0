@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 936C5674DDE
+	by mail.lfdr.de (Postfix) with ESMTP id DFA62674DDF
 	for <lists+devicetree@lfdr.de>; Fri, 20 Jan 2023 08:17:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbjATHR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 02:17:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55128 "EHLO
+        id S230021AbjATHR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 02:17:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbjATHR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 02:17:26 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08666C546
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:17:22 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id t5so4020120wrq.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:17:22 -0800 (PST)
+        with ESMTP id S230036AbjATHR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 02:17:27 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1AF18199C
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:17:24 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id t5so4020185wrq.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Jan 2023 23:17:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bJ5Lz6E4vUSph11X435KYTnTHMIJgrYfJQAxDMT6T8U=;
-        b=WHngMJqZPGXn/kPlo1zd3gMcwvi684yWjm/tP3fkjNJn/mmBWVz601FGhbXcgSV8P9
-         WFXE6BQLxcQgsp4+xjMiIHF+IG13cT/Ex9YQMnah5POEoKLbAGRB0xWWXOqpZfbKrKgg
-         HN6jBeXuiS3SQNRGYj8nynbk1Fi+Fd0z8Bw2xXdqumVtfrmUeUk2BroFfDCD5kQh/1Bw
-         pEUfBSmFIQj6rp1wGtv6VhjGfjfXh4Gamjmqzz5vd/vCbKYxDX78CkHu6O3c4q8z1Ixg
-         Ha3zfhpG6MMlel5mZsKeTdcmD7GGnM76iItUsgh+y1X1w6ICotHPAsouvNgw/5xKG2C2
-         0ANg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0I1MbD84bKa2Xlc/6S1re+opXt5OEOEJKlQhPxCq9t0=;
+        b=DRUlODin9ntS3nq2rmjeh6+Lc4AnEgK20U7U0G7oUOmj7jwTv4dGaNBltMxzb6gGx3
+         Jhs1lpUoeARdHpluvezerVyL1fXOsnEIiPMUDkFLIg1rBnJcKqj3cF3Eq97cTCu96Iac
+         v5yBGDcrEDP1zPqHZM09HgBVfq9Tf8fL4cOGEB/Ji42muZ6Skl7D0lAT7XkwNppmYwvy
+         Oyd1BjBEAsotrqAoz1y9gXXiQ0Z36frv7sxfGsoM75eNdTzPhDalj4KM3FOSfjdYUWjp
+         4vmCEuxlNnBEC+2rMPXuXV8odg7HKra7SegRU5MVEA311SecBAo71LyKvEr0zx+JEmDU
+         KhYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bJ5Lz6E4vUSph11X435KYTnTHMIJgrYfJQAxDMT6T8U=;
-        b=kBcz2TJhGjtc4KbkwqjdyyNwvFRPEOgkRMfckrzKCRG5BPdHT8mnNamqqVT5naQdS4
-         vy+pC+TB804vns9vkwFGHpFvcY4LRCRC8giTGIs7p5Mncpustpj/h/avxJo9MN9vFcsj
-         sOeco4hGHbXDf50Fb0gM9vybw3Crpu7bRFoMeVvuwWROKTj0dnInDioXEvaGBU8+7dXF
-         GB4tu+fJKHZhZDCWgO1cbewSghhVd0+Ri++k+fWJqWH0fG9L0QxN24DUtUPgvUogm1nO
-         liiivUYzGi1uoP9gAAkHtswBZEIcQxuS92wmPFeffvsSdahbqcNpyZAoWItlfjesqfgl
-         tslw==
-X-Gm-Message-State: AFqh2krTtfBG40Bg2Z6YZkuChgh1hxv2QzKZVJcUuS32Pufbvz+Xc3Ky
-        3XvwXQwNn5w0jYHw0+gIbQzyGA==
-X-Google-Smtp-Source: AMrXdXtz7X+ubzP2smBaBnfC09d8J91mJuS5cHl9Wt0tyKmycfKXtaF96j7XG4YjTy8vNa/n9QF4zw==
-X-Received: by 2002:adf:de04:0:b0:2a9:89e:2b53 with SMTP id b4-20020adfde04000000b002a9089e2b53mr11857780wrm.45.1674199041511;
-        Thu, 19 Jan 2023 23:17:21 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0I1MbD84bKa2Xlc/6S1re+opXt5OEOEJKlQhPxCq9t0=;
+        b=bq8t7Jt4odavsn+u8DkIOvDeBS3SPIy9Ot14R+KPrUZ84KAMMqjxgoQl5eWZmPiyuS
+         TMnCdDYS65Gv0XtWxUoIMmTUDyEw12E+tYm5+uMF21Yyc7ssv28DrnHp0xezrH7ae/UN
+         ShUesLRZ6DhmKnkgDb/0aaLuLviKcXJCc3XMmEYl8cxq1U6ZfFUBccWdQdIN+rS0bxgV
+         nRnXssdOqmM5FNq/eSNhkQIZHoNlTJvm/uxtQ9fWxObKkt9Ht8uXBKFr+BtM9x+wq7U2
+         3LckQe5hsS1DG2w8scT3QuUGvNAwSAgFxZ87aeMblrapN/2GmpcVMvangieFUolH4y4t
+         XpqQ==
+X-Gm-Message-State: AFqh2kq2Zej2TdJvdOMihumwfEFDCOcjFFsoo2lAWD+nF1ObaqcnAVCH
+        IJ2z14FsQwqvE3oefgnyb6/J6w==
+X-Google-Smtp-Source: AMrXdXvWGkvKB592MVNtDb2FZfxVxbKvpLYaZHuZ4rFrXSsHrmI0EiRosGb8A/z7KZaOmSqE9GgZZQ==
+X-Received: by 2002:adf:f605:0:b0:2bd:be31:cd77 with SMTP id t5-20020adff605000000b002bdbe31cd77mr11451144wrp.30.1674199043291;
+        Thu, 19 Jan 2023 23:17:23 -0800 (PST)
 Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y18-20020a5d6152000000b002425be3c9e2sm34642789wrt.60.2023.01.19.23.17.19
+        by smtp.gmail.com with ESMTPSA id y18-20020a5d6152000000b002425be3c9e2sm34642789wrt.60.2023.01.19.23.17.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Jan 2023 23:17:20 -0800 (PST)
+        Thu, 19 Jan 2023 23:17:22 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -60,57 +61,53 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/3] dt-bindings: power: fsl,imx-gpc: document fsl,imx6ul-gpc compatible
-Date:   Fri, 20 Jan 2023 08:17:15 +0100
-Message-Id: <20230120071717.138188-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/3] dt-bindings: power: fsl,imx-gpc: correct compatibles
+Date:   Fri, 20 Jan 2023 08:17:16 +0100
+Message-Id: <20230120071717.138188-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230120071717.138188-1-krzysztof.kozlowski@linaro.org>
+References: <20230120071717.138188-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document existing fsl,imx6ul-gpc compatible used with fsl,imx6q-gpc
-fallback:
-
-  imx6sl-evk.dtb: gpc@20dc000: compatible: ['fsl,imx6sl-gpc', 'fsl,imx6q-gpc'] is too long
+fsl,imx6qp-gpc, fsl,imx6sl-gpc and fsl,imx6sx-gpc use generic fallback
+fsl,imx6q-gpc in the DTS, even though these are different devices.  The
+common part (thus the fallback) is a interrupt controller routing back
+to GIC.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/power/fsl,imx-gpc.yaml    | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml
-index 777e1d852ddd..85658da3672f 100644
+index 85658da3672f..a5ea45b8c04e 100644
 --- a/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml
 +++ b/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml
-@@ -23,11 +23,16 @@ description: |
+@@ -26,11 +26,11 @@ properties:
+     oneOf:
+       - enum:
+           - fsl,imx6q-gpc
+-          - fsl,imx6qp-gpc
+-          - fsl,imx6sl-gpc
+-          - fsl,imx6sx-gpc
+       - items:
+           - enum:
++              - fsl,imx6qp-gpc
++              - fsl,imx6sl-gpc
++              - fsl,imx6sx-gpc
+               - fsl,imx6ul-gpc
+           - const: fsl,imx6q-gpc
  
- properties:
-   compatible:
--    enum:
--      - fsl,imx6q-gpc
--      - fsl,imx6qp-gpc
--      - fsl,imx6sl-gpc
--      - fsl,imx6sx-gpc
-+    oneOf:
-+      - enum:
-+          - fsl,imx6q-gpc
-+          - fsl,imx6qp-gpc
-+          - fsl,imx6sl-gpc
-+          - fsl,imx6sx-gpc
-+      - items:
-+          - enum:
-+              - fsl,imx6ul-gpc
-+          - const: fsl,imx6q-gpc
- 
-   reg:
-     maxItems: 1
 -- 
 2.34.1
 
