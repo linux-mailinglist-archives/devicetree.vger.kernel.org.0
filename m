@@ -2,165 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17628676809
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 19:31:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 599EB67681A
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 19:51:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbjAUSbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 13:31:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42608 "EHLO
+        id S229562AbjAUSvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 13:51:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbjAUSbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 13:31:32 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA3A01D93B
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:31:30 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id e19-20020a05600c439300b003db1cac0c1fso6451812wmn.5
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:31:30 -0800 (PST)
+        with ESMTP id S229527AbjAUSvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 13:51:54 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3A11285E
+        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:51:53 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id h12so3484010wrv.10
+        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:51:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZwoDBvRhZ51HVwRruPaZJDCI07MDbJL4OZ/OSacJub4=;
-        b=DXZKAycNcbv1iXdoy5RHgDDWZYz4w+4tSZhy7uzlZ9WRKzJP0NHHQJfd+DVK6/tnoH
-         r0LTdWDEOFwGr8v5G0MY8ojjJ4DNAlLLqpbItFA0EFgwFJcEisGZ+af3rxoFmuCZIUy3
-         nX8GimRZPlWnpgUn/oFN7WktFnkdjfLqP4bWRObvDi/5Mj3sochYa7CCTEIjGWrZykPY
-         5eUcrPhUqIPQag//q7hEEA7V7NR/4nLP4zSA87Hd7j0GRbZxRbI7v8M8X64YSyad29En
-         O0cAi0zkhFgAu3eqbW5Fsxiirur0CXaQB1EGjsZnxMPQqNtW1i0Qs6cPKlj3pP9GeBfr
-         tVjw==
+        bh=lhGQcLHDiDn/MigF1AOckbdyrSZTiOwmqbX0nNR9KLs=;
+        b=IIQGkHkCLrpFxR4Rjunqfs9IqSlrgPaoj1vT8MvKQZx2yd8kPlmzTAkIHyQl0GpCyH
+         Gm3oTpurtmuZw752nkUgHgkADJIlqJzxRn4yon8vk5yVN4ZMpFqrw3SngAbDOKOjsZ0M
+         gTmV4sqFUZcZpoP7iTL/1dyAb4i6T8Z++fUyaEWhwiCx9R4t0bgNwdx4r3X4MJjpwQGS
+         AjYbotND2uSX4Ga1ar3lBwkwrIxN6JQPH58GY+MXO6KEVFSlGNIcU7Ll0/zXHzNSgm3i
+         EetDKVK7vS+kwtOBIJDy+eaMocS0Ny2u4gc3igIc0Y3BGWs8LTDsd1tkQg9ScL3Wmp4e
+         THtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZwoDBvRhZ51HVwRruPaZJDCI07MDbJL4OZ/OSacJub4=;
-        b=cfeS+JkixBLJ2TH1Ae1S+PXyl4eTVzy5k9al9a9qphFMz8Mn0fj5V2XbnJ5GwidiHw
-         DpXNcH1u4DQLiR5UhhbrUuMbK7BFfTRAWWtP422ykBf0QCkpgedicRpb4l0om5iwCf9e
-         3gvZ0Es/h3qr5H6JJYLKxoaKa2UJKLIG5NJaPreDBxYPfJK/70s5bsX8PPhEQZpf8xOJ
-         OcY2dpFxBqQgGWmjghC4+wG9Wx5fmvVqHHMp/4f1fffFdH/YRja2JcPCayd5eQ3EfgaM
-         Bn9Qzo1rnVbNIXqN1bFKRYu1CctrldhWbDsUoDR/2V3P4DXBJO8+5oXcIGUBI0WVV3+o
-         MFYA==
-X-Gm-Message-State: AFqh2kpWUCzd1eZJxW4Ey0c9cTyDeDaMRytggvCcHmxLCW0xoZM18Ajh
-        NsVOrXjKp4pwKB13mti7+8ZFjQ==
-X-Google-Smtp-Source: AMrXdXtzA0VhWJr5PaMDSwqlmcQOuGEVhWjqw2Lcr/7uvjQ2leyTYFBOPlCVPt9XkFdATbe08+PT5Q==
-X-Received: by 2002:a05:600c:5386:b0:3da:f670:a199 with SMTP id hg6-20020a05600c538600b003daf670a199mr18285088wmb.36.1674325889305;
-        Sat, 21 Jan 2023 10:31:29 -0800 (PST)
+        bh=lhGQcLHDiDn/MigF1AOckbdyrSZTiOwmqbX0nNR9KLs=;
+        b=PdG7ee5MvNkNIwzJHFh9+VIFFfv2FoXZcr/v6kDr3h3f3l6Yd4b1pq+2dRb1OM+XKR
+         fz5zYR+RlxXGriuAYVaTjRVbd/P5R2i83mapinj8zC/gw6TtKzYSraB9GfePYVpbKym1
+         w/O0RDYjlkWK3+dsPNqzSFhvFW8ldLElj4Egs7sEOT8l4DCb3gWQgl9PbDnNzjJkExOh
+         6HDR51m+1jFqohQxvxy0c0zMFBjymJIL1LaTRtNCZm0W3cINgPUQUTRZmLvQrGtKwSO5
+         5wCwX3TSJxl3oG4D86F1FD3itv6TjmHMlQqr7Xv/N+mjgS6nprbaIjvNOkIUx7gC1Jqo
+         UZBg==
+X-Gm-Message-State: AFqh2koRvnwC7rrGQYUGA9wlojzjOSjHE1/IH03lyOcQUn1lmsIqtkAj
+        i7t2IgqcF/AdMtK5bcGUFsrn+g==
+X-Google-Smtp-Source: AMrXdXu6DhBISJpEkeQsz5ci0pbMH/nhWcf8KpYLYGgadMkEglLBMsThCa40/rVRc8ROyeTXFR6iyg==
+X-Received: by 2002:a5d:5b0d:0:b0:2bb:62bf:f5d1 with SMTP id bx13-20020a5d5b0d000000b002bb62bff5d1mr16802949wrb.29.1674327111852;
+        Sat, 21 Jan 2023 10:51:51 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id c2-20020a05600c0a4200b003daf6e3bc2fsm16026540wmq.1.2023.01.21.10.31.24
+        by smtp.gmail.com with ESMTPSA id bt14-20020a056000080e00b0027cb20605e3sm15055656wrb.105.2023.01.21.10.51.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 Jan 2023 10:31:28 -0800 (PST)
-Message-ID: <45b9b378-6619-c47a-b5ea-6b6b7edca785@linaro.org>
-Date:   Sat, 21 Jan 2023 19:31:23 +0100
+        Sat, 21 Jan 2023 10:51:51 -0800 (PST)
+Message-ID: <d0bdc8f9-5ea8-5c77-3193-a2932c87156a@linaro.org>
+Date:   Sat, 21 Jan 2023 19:51:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 3/5] dt-bindings: iio: correct node names in examples
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stankus <lucas.p.stankus@gmail.com>,
-        Puranjay Mohan <puranjay12@gmail.com>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Renato Lui Geh <renatogeh@gmail.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Andreas Klinger <ak@it-klinger.de>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
-        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
-        Nishant Malpani <nish.malpani25@gmail.com>,
-        Rui Miguel Silva <rmfrfs@gmail.com>,
-        Dragos Bogdan <dragos.bogdan@analog.com>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Robert Yang <decatf@gmail.com>,
-        Sean Nyekjaer <sean@geanix.com>,
-        Artur Rojek <contact@artur-rojek.eu>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Philippe Reynes <tremyfr@yahoo.fr>,
-        Alexandru Lazar <alazar@startmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Eugene Zaikonnikov <ez@norophonic.com>,
-        Phil Reid <preid@electromag.com.au>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sankar Velliangiri <navin@linumiz.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        chrome-platform@lists.linux.dev
-References: <20230118184413.395820-1-krzysztof.kozlowski@linaro.org>
- <20230118184413.395820-3-krzysztof.kozlowski@linaro.org>
- <20230121171709.5eb75e94@jic23-huawei>
+Subject: Re: [PATCH v3 5/9] vendor-prefixes: Add VIA Labs, Inc.
 Content-Language: en-US
+To:     Anand Moon <linux.amoon@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-amlogic@lists.infradead.org,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230121175639.12818-1-linux.amoon@gmail.com>
+ <20230121175639.12818-6-linux.amoon@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230121171709.5eb75e94@jic23-huawei>
+In-Reply-To: <20230121175639.12818-6-linux.amoon@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/01/2023 18:17, Jonathan Cameron wrote:
-> On Wed, 18 Jan 2023 19:44:11 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 21/01/2023 18:56, Anand Moon wrote:
+> Add the vendor prefix for VIA Labs, Inc. (VLI) is a supplier
+> of USB and USB Power Delivery controllers for multi-functional devices
+> and platforms.
 > 
->> Do not use underscores and unneeded suffixes (e.g. i2c0) in node name in
->> examples.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
+> Website: https://www.via-labs.com/
 > 
->> diff --git a/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml b/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
->> index 6c5ad426a016..12f75ddc4a70 100644
->> --- a/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
->> +++ b/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
->> @@ -42,7 +42,7 @@ examples:
->>          #address-cells = <1>;
->>          #size-cells = <0>;
->>  
->> -        heart_mon@0 {
->> +        heart-rate@0 {
-> 
-> These are both heart-rate and pulse oximeters so measure more than just
-> the rate (oxygen saturation in the blood). Reality is they actually
-> measure light absorption over time, but you can calculate an estimate
-> of both rate and oxygen saturation from that.
-> 
-> I don't really mind simplifying that to heart-rate, but wanted to
-> call this out for possible discussion.
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> v3: - None
+> V2: - drop Drop marketing, so without "leading".
 
-They could be heart-mon. The fix is mostly around the underscore. I
-don't have any arguments for changing it to heart-rate, thus we can go
-with whatever you prefer.
+Wasn't this merged? Didn't you get email?
 
 Best regards,
 Krzysztof
