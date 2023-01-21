@@ -2,98 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93A4C67678E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 18:03:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E95CC6767C5
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 18:41:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229981AbjAURDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 12:03:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42442 "EHLO
+        id S229673AbjAURl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 12:41:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbjAURDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 12:03:36 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2498B298D7;
-        Sat, 21 Jan 2023 09:03:35 -0800 (PST)
+        with ESMTP id S229523AbjAURlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 12:41:55 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090F7BBB5;
+        Sat, 21 Jan 2023 09:41:55 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D1C2AB80816;
-        Sat, 21 Jan 2023 17:03:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC6A7C433D2;
-        Sat, 21 Jan 2023 17:03:22 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9342460B4B;
+        Sat, 21 Jan 2023 17:41:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9B7AC433A0;
+        Sat, 21 Jan 2023 17:41:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674320612;
-        bh=KDw/+vNJAi/mknOa0WX6Ng3Q/0RA2pHOSwGQq7+EYNo=;
+        s=k20201202; t=1674322914;
+        bh=HAAyK8l575aV3MbhOxDAuQGKNupowsm4/5Bmqw32w20=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HuAvhLjB/S0zc04GEtF9VGWcCB7qG5XdOX/vEN1tGnJurqUyU5Va8pjleX2BpqDMx
-         1DBYEjVEnjBFx5TMJxCJXI7zrpQMWIMOexR1+df1B4bLny8/4vt2pzpJZmJyEfGgpQ
-         VaalUoUBfg8Dg4BGmjUOzfEOW1RNNXiRf2hG+bdlbc+nqCoVFoQYaZC7SIcN3wQKYS
-         vl/n8mO8rxnNzKFz6fOMO41bk802GYjzq+d/1MlwM8VFj0YnJsDTSbb/R2tuxHnaxy
-         qtLkTzSJsB5UF4h5o5eq5Uixb94jhF7dkj3tZNB291jWt2N+6/jKr2Cl253RK7dQIq
-         Y9ouSKjMPjr8g==
-Date:   Sat, 21 Jan 2023 17:17:09 +0000
+        b=HdiLEIeRADYJPSVn/EaVKWnezIPPMM158hbBb8aUDF5ziZdY+Ehi05Qih1urFzyrV
+         R4jdPFutfQx/WSlej0hrPD+30H16OzvG8YzjNdfEICuHZK48Jm9Iv/w+9D/woJ6Crp
+         szp5ubYA79xaONzYL/TpqAZcrRcJQboNYbSctZoX/yKmikzmcn8C3cj6YGlKZtIYgi
+         3agh5m3asw9n469tJd+Ux4uLbfreyCa5+XljN/NsMWxySWszbja3KX9hT0N6XpDZX4
+         y0iMM+ah/PjzRTkLQKtauI3JzhuKOOMNP93AV/7342okBVORq43VbQ6dgGIGf+NNK1
+         /LjUjjyc6T7Ag==
+Date:   Sat, 21 Jan 2023 17:55:37 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stankus <lucas.p.stankus@gmail.com>,
-        Puranjay Mohan <puranjay12@gmail.com>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        ChiYuan Huang <cy_huang@richtek.com>,
         Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Renato Lui Geh <renatogeh@gmail.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Andreas Klinger <ak@it-klinger.de>,
         Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
-        Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
-        Nishant Malpani <nish.malpani25@gmail.com>,
-        Rui Miguel Silva <rmfrfs@gmail.com>,
-        Dragos Bogdan <dragos.bogdan@analog.com>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Robert Yang <decatf@gmail.com>,
-        Sean Nyekjaer <sean@geanix.com>,
-        Artur Rojek <contact@artur-rojek.eu>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Philippe Reynes <tremyfr@yahoo.fr>,
-        Alexandru Lazar <alazar@startmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
         Caleb Connolly <caleb.connolly@linaro.org>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Eugene Zaikonnikov <ez@norophonic.com>,
-        Phil Reid <preid@electromag.com.au>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sankar Velliangiri <navin@linumiz.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        chrome-platform@lists.linux.dev
-Subject: Re: [PATCH 3/5] dt-bindings: iio: correct node names in examples
-Message-ID: <20230121171709.5eb75e94@jic23-huawei>
-In-Reply-To: <20230118184413.395820-3-krzysztof.kozlowski@linaro.org>
-References: <20230118184413.395820-1-krzysztof.kozlowski@linaro.org>
-        <20230118184413.395820-3-krzysztof.kozlowski@linaro.org>
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v3 5/5] drivers: iio: adc: Add ADI MAX77541 ADC Support
+Message-ID: <20230121175537.0ffe7652@jic23-huawei>
+In-Reply-To: <20230118063822.14521-6-okan.sahin@analog.com>
+References: <20230118063822.14521-1-okan.sahin@analog.com>
+        <20230118063822.14521-6-okan.sahin@analog.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -107,53 +67,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Jan 2023 19:44:11 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Wed, 18 Jan 2023 09:38:12 +0300
+Okan Sahin <okan.sahin@analog.com> wrote:
 
-> Do not use underscores and unneeded suffixes (e.g. i2c0) in node name in
-> examples.
+> The MAX77541 has an 8-bit Successive Approximation Register (SAR) ADC
+> with four multiplexers for supporting the telemetry feature.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
+With Andy's comments resolved, I'm fine with this.
+Note it will need to go via mfd because of the included header.
 
-> diff --git a/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml b/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
-> index 6c5ad426a016..12f75ddc4a70 100644
-> --- a/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
-> +++ b/Documentation/devicetree/bindings/iio/health/ti,afe4403.yaml
-> @@ -42,7 +42,7 @@ examples:
->          #address-cells = <1>;
->          #size-cells = <0>;
->  
-> -        heart_mon@0 {
-> +        heart-rate@0 {
+Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-These are both heart-rate and pulse oximeters so measure more than just
-the rate (oxygen saturation in the blood). Reality is they actually
-measure light absorption over time, but you can calculate an estimate
-of both rate and oxygen saturation from that.
-
-I don't really mind simplifying that to heart-rate, but wanted to
-call this out for possible discussion.
-
-
->              compatible = "ti,afe4403";
->              reg = <0>;
->              spi-max-frequency = <10000000>;
-> diff --git a/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml b/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
-> index c0e815d9999e..b334f3e356ad 100644
-> --- a/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
-> +++ b/Documentation/devicetree/bindings/iio/health/ti,afe4404.yaml
-> @@ -39,7 +39,7 @@ examples:
->          #address-cells = <1>;
->          #size-cells = <0>;
->  
-> -        heart_mon@58 {
-> +        heart-rate@58 {
->              compatible = "ti,afe4404";
->              reg = <0x58>;
->              tx-supply = <&vbat>;
-
-The rest are all fine.  If no one comments I'll pick this up as it is in a few
-days.
-
-Jonathan
