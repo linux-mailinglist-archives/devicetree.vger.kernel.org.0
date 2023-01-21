@@ -2,127 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AFB467627E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 01:37:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAB416762A0
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 02:10:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbjAUAhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Jan 2023 19:37:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49100 "EHLO
+        id S229578AbjAUBKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Jan 2023 20:10:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbjAUAhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 19:37:10 -0500
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2045.outbound.protection.outlook.com [40.107.14.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71755FF07;
-        Fri, 20 Jan 2023 16:37:08 -0800 (PST)
+        with ESMTP id S229485AbjAUBKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Jan 2023 20:10:40 -0500
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2055.outbound.protection.outlook.com [40.107.237.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 907725274;
+        Fri, 20 Jan 2023 17:10:38 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z6GBcgJqQx1V24S7V4GFst7y2QG9Kcst+Dl9SZ1kVrSJuFmFSsdiY3rGd0ARGTnm66pBZSFTW+FWaxPuGDyXZqPAmeULtYjZXifqVSpWBFqrdn11FMtHn213yLuKCQJNP4+ph0UrU3xHrIBXTF6f30CdbhJTI43rGYe2T7O2fraJf8RIJVMauXXlkrty2Jyv1eH0jyrrmHm2d/HYMOx/Uan2EmUBKvgRtHER8Fcr+kIi/gXh21TmZv44Y+dKvdnLJpW5/yJFO0QT/cXEIj31KHm39FJuKOdjLMHmFY5uFV4nQYZYL+o4jAznS89TszM81YOnfLTg5n5o1PqHrUWT+Q==
+ b=RO/E+NGcFf+B5ijE/PBv6wfxLsL7KhePesSwJND2obwUZj7R36aXIGGe9nk1ubhNeBD6nSWp8CW749lDnL16f6p+yPgllm7zsOqZls+52tRkIO2RWKWyBWEGJENdkiUTXdH4atnWY1lCpvRUV/YHQi48AvLUD9tp/vuzy5baBg1HeZ4E1pygeH1/loj0R2qi+6Ax42/+qJNIPU11ogDvsl6htcloNPIKJS6y+cHLnNRzJv61MHUDRLoSnxq/HgEhH6v4ZLADWWGHn2pSMYLc4EabGGhR+2cOic3uuafwREDUy6cajYWZ27pvThGszsXu/mbzmJ7x5pG3kkzjr1s72g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xRWfdl4l/wPmxMpfDcboG7GcvcfmDbYcIg9kCWaBm9M=;
- b=FN230HusJC+SI+z0RA027Wlp0vOiT2b5Ltqq6XvbBR8q/DT79u7e8N0lbs2dV2VeiTMWaeB95YKbJWBBOr3S29IqnxeTbpvDBT252YsLm0TvptQbwDVbfUfYelYt+Tg7OgbUe12615ha6lvDr9NiyBt4Y4zMOi5hdgNSOnSEkxblN0YjpjRJLxPHl2N7UM4wULgj3NAai5v9NCGQYr6ZgNe8g1iIfzLo9nKwMY09u/CI2qhDRowwlgKwDKpGeAMzLwKbX8TYwEtbpWna6CYGkFZaAyQJTFcc9l2iw8Q0td+g5VZ3bhumgW6HPQ7CSZv6r4YpLpZXzF+TAOPdYa2R5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=variscite.com; dmarc=pass action=none
- header.from=variscite.com; dkim=pass header.d=variscite.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=variscite.com;
- s=selector2;
+ bh=9eWLbbNOvHgck1bTH9zYLJMkhJ3mzuuQBlSY607oxuM=;
+ b=e+P162dChc5HXKHB+zo1a8Y8v3KMSalvstIr5/UQ8tE9tRK7Dc2qMwjcwpmXRxMqdTCFK2xzS0Ju3WgnK3N4h77ml9ZXiP0UTSuCgpTCXnyOu+x13JcqU27SJJPy1HqnVMj4moKg/ra4iK+mKsoTXwvu2VmdM/q+npANCkV4ZQ3Jn7RnDUDiwCO9WqVH+gWYTKYHmoU+MzHgbVNSh9Dn2YgQTelwV/zNqm8Zv7MVfaj27geoMwOWsSdkpJfZ20uIcaRi5UjGhLUfUpOhp+AEWvost7zzOX/sqlXsosTD3tDgbWvO39upYgwRBNts/CQNfB0xQxLp41v4ty+HX/PDiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xRWfdl4l/wPmxMpfDcboG7GcvcfmDbYcIg9kCWaBm9M=;
- b=OmTddshV1imCNfmeCaskPOXh1agkZZXvYmQmQECz1Nh8ElKhImKGzS3EVyLHtlg+PlYEBLD1tRmzmuBKPwknQkv0opwas5pcmXQ/FCz+mMu3P3psaQd3yk+ZwoLDQpOgSm5+amLnjCoEbZMSUbCn7FCn+ltEEto95IjmhMeekjR32ZEEeVTXOtglSJbC3e5XEu3kTQ9Lx0vqPcRLSjtSdQ4LHEuYXZMzl2eflGEOj7Goicphfvxk/DAREUoa3c5Wn2pGm8QckWKew4rvgVyBRid6c22Q9tCy1oM18FF5sFntZjTVT0hqpgNJ0853lxPKwHSrV2LBeu+Ve3vvxCfZNw==
-Received: from AM6PR08MB4376.eurprd08.prod.outlook.com (2603:10a6:20b:bb::21)
- by AS1PR08MB7403.eurprd08.prod.outlook.com (2603:10a6:20b:4c5::12) with
+ bh=9eWLbbNOvHgck1bTH9zYLJMkhJ3mzuuQBlSY607oxuM=;
+ b=RqLL57FNnbLbP3vYAvjggPBwmk11L6LBy59nD5elbFOYCzUh/A259c55NMVaiPUYdlJmKG5Jp8KKCZVTXvsMxNb4HZvfuyIgHMKuuqt/QYiBOqCvM9IBH0KepglwKIJATBMeRWy/UQE2H+xl2/nbPopwGrSWCXo+UFDRAifOWrk=
+Received: from DM6PR08CA0051.namprd08.prod.outlook.com (2603:10b6:5:1e0::25)
+ by CY8PR12MB7219.namprd12.prod.outlook.com (2603:10b6:930:59::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.27; Sat, 21 Jan
- 2023 00:37:06 +0000
-Received: from AM6PR08MB4376.eurprd08.prod.outlook.com
- ([fe80::4e5b:51c8:1237:1fee]) by AM6PR08MB4376.eurprd08.prod.outlook.com
- ([fe80::4e5b:51c8:1237:1fee%5]) with mapi id 15.20.6002.027; Sat, 21 Jan 2023
- 00:37:06 +0000
-From:   Pierluigi Passaro <pierluigi.p@variscite.com>
-To:     Fabio Estevam <festevam@gmail.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "marex@denx.de" <marex@denx.de>,
-        "peng.fan@nxp.com" <peng.fan@nxp.com>,
-        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Eran Matityahu <eran.m@variscite.com>,
-        Nate Drude <Nate.D@variscite.com>,
-        "pierluigi.passaro@gmail.com" <pierluigi.passaro@gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: imx8mm: Fix pad control for UART1_DTE_RX
-Thread-Topic: [PATCH v2] arm64: dts: imx8mm: Fix pad control for UART1_DTE_RX
-Thread-Index: AQHZKSlAQOXuheNXtkq31tq4TNWRS66hbnKAgAaf5yk=
-Date:   Sat, 21 Jan 2023 00:37:05 +0000
-Message-ID: <AM6PR08MB4376C1F6E729E9608B472801FFCA9@AM6PR08MB4376.eurprd08.prod.outlook.com>
-References: <20230115213503.26366-1-pierluigi.p@variscite.com>
- <CAOMZO5APGzugbBZf0uAaF3vB61KuWDtAU9OHXVM5p8U8yipuXg@mail.gmail.com>
-In-Reply-To: <CAOMZO5APGzugbBZf0uAaF3vB61KuWDtAU9OHXVM5p8U8yipuXg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=variscite.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM6PR08MB4376:EE_|AS1PR08MB7403:EE_
-x-ms-office365-filtering-correlation-id: 153c91fa-513c-4602-0f90-08dafb479f47
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Uk891daDeewC3mBH989KBR3F0oofErjARSJyMHxhiy0iq0v9qSa2DNTT4V9f+XLvP70hUPBPWl+3qykvm0tmenPdt4iHVk9y/p3/ZHjbNevOfY9AsTpNoBEtvpeee6E7KRSPcdoXW3DIJERn0xGxm7wY1rjTiABGQcb4qDlTw5XupzgxCQp/apoLxL+o7GA3i8q13u3ztazKsh1vv6igMlxTUg56w/sN1gMLkCAvojFPwEhAVjYEo1oTc8lAP0HRLU5gvzHk+mrzZ3SozrLU0n/cQaLIaT/9nuy91hmH0U8p4TIfHv7Ac5N6W+HrhyXgHcjtXbqvB96xiLMo6T8yQaxPw/6uKLlrEuEQPdlxPT7A/sPjIbBxaGldSyRj+a4Y04rrVQyZPSmX515O5kyP/KTE5LgeQfw5ApcrXIoK4ZcwDq2EmEouva0FjkVnjJmU3d6+Jeq5hrmZW6NGxrMf8LOlkOECXAVMsjPxjdKcwc6meoKIdnC0jX3kEytJMmQXJlzHSDVL1USmJ20VF8bQBgaIY5UxOT2quadfsUVUDs7qmfQXGrJyZjuC28CtscDbmkSbpnfO/pFKyQizNEvTf+Ac1+AsUfZgVUzesmmVZOy8xzV+5PtUMclqUJcHaRyVaRVD/dcmYdlfnZfkcDujTMjWik/aEQ44AyO+7zEkWhFWo8IsTLp26MpiHBodWWC/d/z0s73SpDDO4Oj25rqwdlkPAG1/SU2oGKaeZxMx4bo=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR08MB4376.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(136003)(396003)(376002)(39840400004)(366004)(451199015)(6506007)(122000001)(53546011)(38100700002)(26005)(2906002)(38070700005)(186003)(9686003)(4326008)(66946007)(66476007)(91956017)(76116006)(66556008)(8676002)(478600001)(8936002)(7696005)(5660300002)(7416002)(6916009)(4744005)(64756008)(71200400001)(52536014)(86362001)(41300700001)(66446008)(55016003)(33656002)(54906003)(316002)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?2zl4O1bsjccGYg8xlKKUjPU0fYUR3ZX8slvIed1pKrLQMFtJdnJztGX0Ac?=
- =?iso-8859-1?Q?eIS5z0oJLgKZbb9+Q3WePgiC/L6Z9hdoJ4ftpiL6+4nBT0BkjBN0v+tKZG?=
- =?iso-8859-1?Q?ZXuCJmt/IqYgrUleXjZfJlhkKXu/ubEwumuRFg5xL5za4q8Blk5siDHSzh?=
- =?iso-8859-1?Q?hk75ReJ+qyHjUjpIEH4C2sKqm1ijSSCdR3x8eJrMR0QGZQJFIO5tmwGjrD?=
- =?iso-8859-1?Q?NDmGjYDNKiL3ctbOalo38aGPvPfWFQoQQZNa4IxVQAel4DOOqUjmaoi2l5?=
- =?iso-8859-1?Q?fZI/MLckewiwYca53hXanUcVWbvE65mHLumnFdzHHsf0GIVJ7RJO+SSSkp?=
- =?iso-8859-1?Q?RQVhS19uaLQ/JD8rNGn0/y8kxhFUKOVqdK9yE7Uf9DA6Tpy+WgVVmFaSoF?=
- =?iso-8859-1?Q?gEIx3ZELDfP1CRJJfsdtz0NVrPL7iKaYfD+qwVWBxqUkGi6CfDPvUU0381?=
- =?iso-8859-1?Q?hI1gxPBWQ1w6RAhcOvw2EmF3MNdfXMdg5z+WZCj4qwWPg1bSFj1aFwnIut?=
- =?iso-8859-1?Q?NaQDccVYCjWGPaaTrgqq0eeS7bOpvHXASeCf9zH20w9nJpsycnIDN0l/Qo?=
- =?iso-8859-1?Q?kMY15EVzUHWwDElS//q1B28MA+zbEF0mqcM8vllFAss0lq7h2glCPVvaUr?=
- =?iso-8859-1?Q?Rhr32KcPib07/b5pqFCD7LL4UPi27B4uIZx+EpclvaLzwznnpqO/U+yz9w?=
- =?iso-8859-1?Q?25Zlvyc2Hk2g4NzQ14MgCXjvsLs3E0HEySmIDTQsWtn1LtH98p9FYSr6Fk?=
- =?iso-8859-1?Q?OCCZkW8LFEZYM5xR6HX9W8zWfoVv1HXZN4HN8uKvSA7Hy3bpAOR29MbSL9?=
- =?iso-8859-1?Q?dfcOL1JpaW0cc1zlqiUOY1D+JRZX3PPIBQPkFjwMqm9AqXAZ4dLx/Yj5lb?=
- =?iso-8859-1?Q?o/ycQnRBPCZ1isopq6ye6is/qzc3rbZwT9xsFk1eF02ys29yuGlpqBE9y/?=
- =?iso-8859-1?Q?VJTLxgfMB0F3c4YIqVAHmbjmjuchAJsfyesqg1kVNFjzLjpqbGdsrh/DxH?=
- =?iso-8859-1?Q?Un4VXGpWWf0qxecwVEjnWLoCrRkMWy+uo1ovpf32FyVGaOjfrN7AhHaslL?=
- =?iso-8859-1?Q?7lxq9k9vFaIUmPDgahgsV/cr2q+W9CBfUhyo2fW03Ler6FNZb2/kR8ufIQ?=
- =?iso-8859-1?Q?YwvhdISLLfiGAlYO5gg8ykZ/Cp7ZsmLmng4js/N4IgS1qAi0Qzak5F/rmw?=
- =?iso-8859-1?Q?xIm1Ik+DbJ1NC/ZFN5oEJD1EPVKqoA/Dllp9ABPj37ovFWpOE9Q8Atto9x?=
- =?iso-8859-1?Q?yDC86bimB53ss7LWLDp+0O7MyPcRH70cVQU0LvE6D/xOOHVXcvWBgy0OaZ?=
- =?iso-8859-1?Q?hMPZiCnba3n7B83a2FipcCJOrA/pUoJJexS6c4bYfwadEFCYr2JdSI/KKt?=
- =?iso-8859-1?Q?fqX0uibPy5Rz4t/Fdvp+bxHZIjbu8vpNv1QsQcG4RpMb3lUQDB0aeE4F7c?=
- =?iso-8859-1?Q?miQyw5jjFhIFsOLwtpTJ4lTpw8D9yWjJw4Ynl4rG5UCEiuQpMcSDCW0jqE?=
- =?iso-8859-1?Q?I5KVc9fj7X1Vz7M40zHC2XNOpiFTCejLWNIsnw1FIm2f202BGeNhw8tmLU?=
- =?iso-8859-1?Q?X59q8iru1VxTahKQnEf4M0eUDWZqn0CLMHxG92Eqz5Qpi/xcPsM4W83zzH?=
- =?iso-8859-1?Q?M9ruP/yqN4YqtauDUwLyU/r1tSA408hVrZ?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ 2023 01:10:36 +0000
+Received: from DS1PEPF0000E64A.namprd02.prod.outlook.com
+ (2603:10b6:5:1e0:cafe::6b) by DM6PR08CA0051.outlook.office365.com
+ (2603:10b6:5:1e0::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.27 via Frontend
+ Transport; Sat, 21 Jan 2023 01:10:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS1PEPF0000E64A.mail.protection.outlook.com (10.167.18.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6002.11 via Frontend Transport; Sat, 21 Jan 2023 01:10:35 +0000
+Received: from platform-dev1.pensando.io (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Fri, 20 Jan 2023 19:10:10 -0600
+From:   Brad Larson <blarson@amd.com>
+To:     <krzysztof.kozlowski@linaro.org>
+CC:     <adrian.hunter@intel.com>, <alcooperx@gmail.com>,
+        <andy.shevchenko@gmail.com>, <arnd@arndb.de>, <blarson@amd.com>,
+        <brad@pensando.io>, <brendan.higgins@linux.dev>,
+        <briannorris@chromium.org>, <brijeshkumar.singh@amd.com>,
+        <broonie@kernel.org>, <catalin.marinas@arm.com>,
+        <davidgow@google.com>, <devicetree@vger.kernel.org>,
+        <fancer.lancer@gmail.com>, <gerg@linux-m68k.org>,
+        <gsomlo@gmail.com>, <krzk@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee.jones@linaro.org>,
+        <lee@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <p.yadav@ti.com>,
+        <p.zabel@pengutronix.de>, <piotrs@cadence.com>,
+        <rdunlap@infradead.org>, <robh+dt@kernel.org>,
+        <samuel@sholland.org>, <skhan@linuxfoundation.org>,
+        <suravee.suthikulpanit@amd.com>, <thomas.lendacky@amd.com>,
+        <tonyhuang.sunplus@gmail.com>, <ulf.hansson@linaro.org>,
+        <vaishnav.a@ti.com>, <will@kernel.org>,
+        <yamada.masahiro@socionext.com>
+Subject: Re: [PATCH v9 02/15] dt-bindings: mmc: cdns: Add AMD Pensando Elba SoC
+Date:   Fri, 20 Jan 2023 17:10:04 -0800
+Message-ID: <20230121011004.38654-1-blarson@amd.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <f85cdf27-7ea0-14a8-10b0-7a9ac137a040@linaro.org>
+References: <f85cdf27-7ea0-14a8-10b0-7a9ac137a040@linaro.org>
 MIME-Version: 1.0
-X-OriginatorOrg: variscite.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR08MB4376.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 153c91fa-513c-4602-0f90-08dafb479f47
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2023 00:37:05.9674
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF0000E64A:EE_|CY8PR12MB7219:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8516f73d-8fab-475d-812a-08dafb4c4d48
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ORViS0p6GTXczKriJkNmipJBguVv8csBKvKFRvZ+2CjyQmdPUuo/Qq4iGgA43sPPfrLVsZwKpOw4UoKQ0nelTsdfGoTEPl232JnaJizyT/1fa7O5JA5cRUFiQQ1tZaoOVmwziwWMqDglvNbMOo1VyA2gCs6BvnutCaucAbiezmbWo430xiEf2ce1m6WUXMmQUcPYFgKMTl7jPJy9WoBd2zTy08oicDWsHnXh4vjwbIpCa2SZEILffm6Tkd3zH3LX8TBrl/QrD7fbdNYfddXOy5V5ZpnSI+UaYsJxFzFtXatQfQzPDWls78L2NnMtSLGkQWBe+Ac8Cz72hGAMpZ7R/AkLnvUOpmWAc31x0dsN2YbfXAtLXt5leDpT8Hy5yThMCnAsfwUstIwgGLEo604Ol21ss0RW8fWRkrjfQsZ0NFrOT6xSXqRRSsyRKxHJOGEH7bK21TahK1/MrPsMEhnM+DKlQapMvfQygehOsZ4Fgbj0vuZZ/J9tlYYzqJr4QeiUUwvfVU+ZO2tXHjM7jhu+LFzCj4dxIqbOqt/9G+0tNk2VXICplKPp2fpJ5rWBosrBF5fGpL9MnYTX8F1rs6xP184d2jNzlc9AqQlfCoEOXshnifrjdymYgu0S9uf0KBHItvd9WS65R+8AaBHIvGKmhH2dTn7EUdJCxbzbKzJNj0VcAhYk/jO2OyCQJBFdYVzWMuPVR/4a7VtOZ8TxlXdwHig9m4h6MbBPqFb13ILAuTg=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(376002)(136003)(346002)(396003)(39860400002)(451199015)(46966006)(36840700001)(40470700004)(5660300002)(8936002)(4326008)(7416002)(7406005)(8676002)(82310400005)(6916009)(70586007)(70206006)(6666004)(186003)(2906002)(16526019)(26005)(54906003)(36756003)(478600001)(2616005)(316002)(53546011)(83380400001)(41300700001)(40480700001)(82740400003)(356005)(36860700001)(47076005)(81166007)(426003)(1076003)(40460700003)(336012)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2023 01:10:35.8248
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 399ae6ac-38f4-4ef0-94a8-440b0ad581de
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2criu8i5Fm9XSRU2KZAwO3G/9ua6ckKxKlNCOpGj4PGEHuCSfNWVk3IQ1hGKizrlE1d9yYgkbeN9Lf7o2Ys/DvFDcF8tzVUPAC/AyPmJVk8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR08MB7403
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8516f73d-8fab-475d-812a-08dafb4c4d48
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E64A.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7219
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
@@ -133,24 +114,162 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 16, 2023 at 8:26 PM Fabio Estevam <festevam@gmail.com> wrote:=
-=0A=
-> On Sun, Jan 15, 2023 at 6:35 PM Pierluigi Passaro=0A=
-> <pierluigi.p@variscite.com> wrote:=0A=
-> >=0A=
-> > According section=0A=
-> >     8.2.5.313 Select Input Register (IOMUXC_UART1_RXD_SELECT_INPUT)=0A=
-> > of=0A=
-> >     i.MX 8M Mini Applications Processor Reference Manual, Rev. 3, 11/20=
-20=0A=
-> > the required setting for this specific pin configuration is "1"=0A=
-> >=0A=
-> > Signed-off-by: Pierluigi Passaro <pierluigi.p@variscite.com>=0A=
->=0A=
-> Fixes: c1c9d41319c3 ("dt-bindings: imx: Add pinctrl binding doc for imx8m=
-m")=0A=
->=0A=
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>=0A=
->=0A=
-Thanks for reviewing.=0A=
-Is there any further action required on my side ?=
+On 19/01/2023 7:47 UTC, Krzysztof Kozlowski wrote:
+>On 19/01/2023 04:51, Brad Larson wrote:
+>> AMD Pensando Elba ARM 64-bit SoC is integrated with this IP and
+>> explicitly controls byte-lane enables.
+>> 
+...
+>> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>> index 8b1a0fdcb5e3..f7dd6f990f96 100644
+>> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>> @@ -16,12 +16,14 @@ properties:
+>>    compatible:
+>>      items:
+>>        - enum:
+>> +          - amd,pensando-elba-sd4hc
+>>            - microchip,mpfs-sd4hc
+>>            - socionext,uniphier-sd4hc
+>>        - const: cdns,sd4hc
+>>  
+>>    reg:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 2
+>>  
+>>    interrupts:
+>>      maxItems: 1
+>> @@ -111,12 +113,36 @@ properties:
+>>      minimum: 0
+>>      maximum: 0x7f
+>>  
+>> +  reset-names:
+>> +    items:
+>> +      - const: hw
+>> +
+>> +  resets:
+>> +    description:
+>> +      optional. phandle to the system reset controller with line index
+>
+>Drop "optional"
+>Drop "phandle to the" and rephrase it to describe physical reset line.
+>Don't describe here DT syntax (phandle) but the hardware. What is
+>expected to be here?
+
+Done, see the resulting diff below for full context.  The missing
+'contains' was the bug.
+
+>> +      for mmc hw reset line if exists.
+>> +    maxItems: 1
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>>    - interrupts
+>>    - clocks
+>>  
+>> +if:
+>
+>Move the allO from the top here and put it under it. Saves indentation soon.
+
+Yes.
+
+>> +  properties:
+>> +    compatible:
+>> +      const: amd,pensando-elba-sd4hc
+>
+>BTW, this probably won't even work and that's the answer why you added
+>fake maxItems: 2... This should make you think about the bug. You must
+>use contains.
+
+That was the problem, see updated diff below.  Passes dtbs_check and dt_binding_check.
+
+>> +then:
+>> +  properties:
+>> +    reg:
+>> +      minItems: 2
+>> +else:
+>> +  properties:
+>> +    reg:
+>> +      minItems: 1
+>> +      maxItems: 2
+>
+>No, why do you suddenly allow two items on all variants? This was not
+>described in your commit msg at all, so I expect here maxItems: 1.
+
+Set maxItems: 1.
+
+>Also, unless your reset is applicable to all variants, resets: false and
+>reset-names: false.
+
+Added false for both, this is the diff with above changes
+
+--- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+@@ -9,19 +9,18 @@ title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
+ maintainers:
+   - Masahiro Yamada <yamada.masahiro@socionext.com>
+ 
+-allOf:
+-  - $ref: mmc-controller.yaml
+-
+ properties:
+   compatible:
+     items:
+       - enum:
++          - amd,pensando-elba-sd4hc
+           - microchip,mpfs-sd4hc
+           - socionext,uniphier-sd4hc
+       - const: cdns,sd4hc
+ 
+   reg:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
+ 
+   interrupts:
+     maxItems: 1
+@@ -111,12 +110,42 @@ properties:
+     minimum: 0
+     maximum: 0x7f
+ 
++  reset-names:
++    items:
++      - const: hw
++
++  resets:
++    description:
++      physical line number to hardware reset the mmc
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+   - interrupts
+   - clocks
+ 
++allOf:
++  - $ref: mmc-controller.yaml
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amd,pensando-elba-sd4hc
++    then:
++      required:
++        - reset-names
++        - resets
++      properties:
++        reg:
++          minItems: 2
++    else:
++      properties:
++        reset-names: false
++        resets: false
++        reg:
++          maxItems: 1
++
+
+Regards,
+Brad
