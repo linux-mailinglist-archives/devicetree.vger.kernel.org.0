@@ -2,434 +2,297 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A87F67675B
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 17:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F26867677D
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 17:51:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229869AbjAUQYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 11:24:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60198 "EHLO
+        id S229493AbjAUQvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 11:51:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjAUQY2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 11:24:28 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79FD24489;
-        Sat, 21 Jan 2023 08:24:26 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id f19-20020a1c6a13000000b003db0ef4dedcso7797846wmc.4;
-        Sat, 21 Jan 2023 08:24:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/Yh+G5HwZOj6jikshO2lhQlgFg4o0zJx6jgmWpS/nw0=;
-        b=YT+WHJbrjk5GwsQexAG4o0yzyee6lDGDZ13iwKJR9Z6/qWQw7KPWucb3g/mVOdWg0K
-         lK75pxCPdN6tX2LQHrKf7dDBON4fD7v3qXx9jsPvnf4nR078IBj9+CGB3CPkumG3jm0U
-         uqzYZza0BHlOxvAP4SZN3Nmb09b760glkooJSBnIZwss8M+ZWQaDi463ZDJo0E0E68JK
-         zP5z7VyPhj2Ywg7hMo8iSp4YhwfESoybFXgv6RgVG8w7iLXpDkAHnm0Za8JgIzyhPNAX
-         i7Il0ZRcCwpi7+dvnKiv6sRP7eaFMlGThx39HPV+VxWdHFgmAtqf4Mzal8+buMoi9Txs
-         hNbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/Yh+G5HwZOj6jikshO2lhQlgFg4o0zJx6jgmWpS/nw0=;
-        b=5Htyu1PtFaKWGlgUk0G8RZgmYeFxR7rjcrn98eWuEnIBmquL8Gc5f+kKN2bx5NDXfO
-         zXxL24CHIZmDrg+lW1mNIFbuYFWYfx6G8dpmEJ8/rJTE6oIKNZKoxEJwsr424NRlfuKg
-         G83GrN7oCjLe5ConVLZwvB5AMzt/mHAcbAz9Hqp3X8ZJDua88hGEsuUdhkqnDITqN5nC
-         9B1kOsGfVpVnvhcuSgqUv93o431pjK4xGDMOg7z4/YNEPBXoztiv8LxOelV2kVluHX4W
-         U22ruCexVKQ9XMpTMWKAV67ZEYThYFPis7WIkpWIkhT4kQMqVHgpYUtnQThx0c3PP3Vd
-         f2hw==
-X-Gm-Message-State: AFqh2krbYssorc2/Sk5wKCXoIQMKgML1LPCOdPxjV/uQy4CYjNARwGON
-        wu2VS5DCAk5DcRozx5IQUEQ=
-X-Google-Smtp-Source: AMrXdXtnGedeelpmMIosPs8lv+0c0o73U+y/Q8w3V7TP/j8/PYDmwFA7ZY0MGk28b+bt9H0dEmFWbw==
-X-Received: by 2002:a05:600c:1c86:b0:3da:fa75:ce58 with SMTP id k6-20020a05600c1c8600b003dafa75ce58mr21913306wms.21.1674318265380;
-        Sat, 21 Jan 2023 08:24:25 -0800 (PST)
-Received: from localhost.localdomain (2a02-8428-46a0-7c01-43c0-f52a-beed-541b.rev.sfr.net. [2a02:8428:46a0:7c01:43c0:f52a:beed:541b])
-        by smtp.gmail.com with ESMTPSA id k21-20020a05600c1c9500b003db30be4a54sm5831443wms.38.2023.01.21.08.24.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Jan 2023 08:24:24 -0800 (PST)
-From:   Christophe Branchereau <cbranchereau@gmail.com>
-To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul@crapouillou.net,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Christophe Branchereau <cbranchereau@gmail.com>
-Subject: [PATCH v4 2/2] drm/panel: Add driver for the AUO A030JTN01 TFT LCD
-Date:   Sat, 21 Jan 2023 17:24:19 +0100
-Message-Id: <20230121162419.284523-3-cbranchereau@gmail.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230121162419.284523-1-cbranchereau@gmail.com>
-References: <20230121162419.284523-1-cbranchereau@gmail.com>
+        with ESMTP id S229578AbjAUQvK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 11:51:10 -0500
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01olkn2058.outbound.protection.outlook.com [40.92.99.58])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95B2B28D27;
+        Sat, 21 Jan 2023 08:51:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jo1pd6ncN6iSZ2l3l8WHj9Oduay/JeqvnGxzzL06kxJLZj5FL27N8H1fErxNnwSBNINRaA/aekS1HoBFRCnVs6cpu84F3dAV5/JWtnY0Ie4w689/idH/K5ze060uZXCcQc/zTFlqLbSE9JFNqOEiJ1k+Mr2ro7RzYsW4QNyiES1chUaHRN2dnQ/Ch0cyHzZAnWHw+12WD/W/BO8kT1nqHoCY8jKuC5yFKLmPUuwFLNlqoTYMM2gK6gXWdRLpiuNRV1wkHQrjaJ7GhlB73ioCDgZChRvm/PZTDPeCzpA4uFNl6/PuQTuzvF7NhKzsg1d1UUwCDIbeWI9CXWBBrXTVGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SthR/2SMS7WQMSziJ0+v3+tzIbzriFNVZDPJktwx0S0=;
+ b=FjYHc/M/Q+sRNU++POvkhdFge0pPN7Z2USSI5PgH7OFbVwLemmUIeHADc7UJFJe4FlOZMoqjW4gU5R/VO2z473gnnywutMcsQCM5DgOBCGgAk+RHOcmcSkQMBY+ybameHsgE2BOJAzc051ixHEKBlOddTA7ryVKGxcGVZYFPeDZnIbyjUdUyWDJvph8jFMHtPp6e2xDBl4aNE06txayLKMI7ARhl8F21XUFbcgEL4Fg2NSnqoZ19IwIGSXrLhdGK0FPzkPAz7IsY5W+xNx/TSx2ZVcX3pGNTR9WJqDfVvaLhS5xP59Y0jZXAN8lFKG5qtHTu8E0hdeUqe3e3sdVQfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SthR/2SMS7WQMSziJ0+v3+tzIbzriFNVZDPJktwx0S0=;
+ b=pgEbiGH0JhjhDHnrdBYp0ZitUYG2yupvyqK6saboiwP2L5f6iPVGVNwF5M5PgkW7wwzLkPHDRfvhH0oqh3wuZzwC9cNYZW51L9iH59V7AB1so8aNgqHx7DmN+1lKueuRbXnn/2jyL7AKZXI/J81dBUKmuBu32kSYKN6BzuMUQy43C54X7sbr2reQ2QwdAPJxJj4adpsSRb2CH0Nugpn77sifAVej82tW70wwo6E8Dto4FveeCRI8//75aR5sOxS9v+AFiMG0FkCG8QkfrTaQlSl1BIVILuWnKupZaIeCezq/BtMlQNJJnn1boIHokK5eSaIuL+w0WIS76X2lauv4jw==
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:252::12)
+ by TYCP286MB2767.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:247::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.28; Sat, 21 Jan
+ 2023 16:51:05 +0000
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::20f8:c5a7:6b12:55e7]) by TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::20f8:c5a7:6b12:55e7%7]) with mapi id 15.20.6002.028; Sat, 21 Jan 2023
+ 16:51:04 +0000
+Message-ID: <TY3P286MB26115F60D273E840D36A610598CA9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+Date:   Sun, 22 Jan 2023 00:50:37 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+To:     m.tretter@pengutronix.de
+Cc:     devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
+        frattaroli.nicolas@gmail.com, heiko@sntech.de,
+        jacob-chen@iotwrt.com, krzysztof.kozlowski+dt@linaro.org,
+        krzysztof.kozlowski@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        mchehab@kernel.org, robh+dt@kernel.org
+References: <20230119-rk3568-rga-v1-2-43d4d14365e6@pengutronix.de>
+Subject: Re: [PATCH RESEND 2/2] arm64: dts: rockchip: Add RGA2 support to
+ rk356x
+From:   Shengyu Qu <wiagn233@outlook.com>
+In-Reply-To: <20230119-rk3568-rga-v1-2-43d4d14365e6@pengutronix.de>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------F1mVd8LcTKQ3sNpdyNTu36f1"
+X-TMN:  [FvDflEHZbihBDeVVCc6YkxQzM4lP9WuskcYubqp3/ki2c1PZTdK/uJlQtEx7lyef]
+X-ClientProxiedBy: TYAPR01CA0095.jpnprd01.prod.outlook.com
+ (2603:1096:404:2c::35) To TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:252::12)
+X-Microsoft-Original-Message-ID: <763a61be-9200-bde2-d82b-bf91c5f0dd8a@outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY3P286MB2611:EE_|TYCP286MB2767:EE_
+X-MS-Office365-Filtering-Correlation-Id: 331c6462-3d4b-4820-3284-08dafbcfae80
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GzPHj8NpVCvkBWUWyV2hkZWQEiByosgNPDztrFPOdx+zAmCDt/KEvXQKXVHUVuUTE7TR8chLGO03HS2iFGY8OYGdDmn70c+LSCX4/ix6/gZDYlmpldZq2ZOiLVVSVKfocH8hctdpsu/hF8ZyYjcSihckHOMgCpZgKZfIbBOaxkVVRX5LHO6G6yNn3A+/2ZU2KS0sCSFwqwQyselo90dUbo55SvWESkcwU9RrLo77agZWqQgPdpslYg5Zd0JeEi4zHfnGcgSKPqKelV+Jpqj8xlpUU5BU+ksy8SB/zTxB1FaF5tvwJLs3cwKknYeNYcQvHyOou5GEjbwEPjyMeVJeXmz5+L8J0CoxSsFmx7N6J9dgf+7LgMYPpw5PZHuXyzyKXEHWSA3BqG84SfruZfOXTGKI2Z1NF/vyOsGcWKEUIlCRY9p63zU2zEFH8cZ6aFjHTVgoO3mEbbFysdPyhQhhvTYEBq6X600S1Wqr2FOw1o4RnQOae9TDKuxSoPMnmKIdFgYWEGqRv3681HOZQ4cmwva+c6s7Mp/johzOqVUm3eNpgEHozFheUw5BZG1oYVHzYigaeefpl8ksIi6+I5ej26JREVXvqOP1djpR+wDiZNhAc9Wg5jK1SYXzeQyEhR7Y49jrPPIXBWsTeKjp62OwmQ==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z29VeW9heCtjOHRWa0dqMWIxL3RBeUE0UWordHVXcy9SUk13c1VrWWpGcVZn?=
+ =?utf-8?B?UHlSQ1lteFJ3Z2k5dVpyZDQyZnBxNXZHQ3FBbElFcnlOZDcwQXMxSzl2ZnpP?=
+ =?utf-8?B?TXBGbExiSWdHbDBIYXRmTzVuMUV3aUYvOXExVnQyeEFzNk9PMGMzWHJIb05n?=
+ =?utf-8?B?a1lINE5JR0l2OGljTjV4YkhnS2s4TUFFVm1wSEtjZUNxZVg1VmRPTSthekNT?=
+ =?utf-8?B?aVBMRHZvNlJVQXNyY1hQbTdWZklHcTZFTHUvSFd0QUdBcUc3L0psS1ZDaEJn?=
+ =?utf-8?B?bEFLV1E0UzJHSUdTRnZKSVFiUDN1WnE0c2ZWcjlSc1ZxS21JWWRZclJ5VUdq?=
+ =?utf-8?B?YnJGcHdZdXkrdENDL3RXMnhRR3F3cDNwb2hCTkN4Qy9nbVJFZGpUMHoxUjYx?=
+ =?utf-8?B?Sjg2ekF4SzVzVlRMRTl4ZHBESktBdEtCa0JrK0c3V3pyazhuSGM4YkpTMVVO?=
+ =?utf-8?B?M3VVTnA0MndjdW9QZFV4ZkNPRVRYb0JScmd2a2JxZjduYWtHVE5vK0Z0cHhm?=
+ =?utf-8?B?WncyZ2JPMHArUVBJZXdyZ0NNR0FMbFFhc09DVHVVVjQ3ZGZXT1FpalAya0h2?=
+ =?utf-8?B?SndoWXdibWgwY0hNR0J5QnhTWFFlZzR0cENxTmJkaGhSUUswL3JFRFBQeWJY?=
+ =?utf-8?B?TGtWUHk5di9BS2pnT1E2aC94UDJ6RW5sYjd6eTZMOEpaeFFUOU1wU1BJQVNU?=
+ =?utf-8?B?bXVVS0F0dWpvSlNLek1tZWNrN25vL2RnSmdtcUY0Sm51bWZCdjhhTGx2SDgz?=
+ =?utf-8?B?UUxBSnRBcHZWRkpSUWtqZ3JTNEZwSDlYcUFvQ1RhNW9wTW1sL3RXN3REZTFY?=
+ =?utf-8?B?VjlLdkdKZkNYeVlGOTFlMGpZcFBIN0pmY0tRdzhtRzlmdDlpMDNrS1ZkclEw?=
+ =?utf-8?B?eXlzUGFVNisrV2lIVlFNcGd1WnJ0SllSWkNYM1NubS9nb1d1eXNXeCs5UlFm?=
+ =?utf-8?B?VkhqZkZIbGxxUVZFSUJqMUg3NTBRK2lkWUZtd0JDeTl6Y3VJWnMyODNxV08y?=
+ =?utf-8?B?MXNOdC9JanNlWDNXYUQrY3I3VVdIRjU2Wi9tWlFhQ1JBb0s3eHB1OTJ6OE9q?=
+ =?utf-8?B?OUVGMHhwR0xPS2VGSk10WUtyYXJQeFVBd3FDTWhBcEQydS9QU0RSVFBFdUxK?=
+ =?utf-8?B?VTNLcUp4T1VGUzZiUXR0Y3JSbnAwblJQYS9jV3hCYmVKa0tCbDdJYTd3Z2RC?=
+ =?utf-8?B?cXJFMnN2bm51N2ROVCtSYnNhaTFjZDRTcW1vS1hDTDZzR25rUHp6UytGb0s4?=
+ =?utf-8?B?d09YVndQU0M2YVdxZEMwTEtFVzAvUFA4ME1NSS9YRHJuVzlJc3dPTDM0TjRq?=
+ =?utf-8?B?RGNQbkZRT25aNlNVVTVLT0ZIVnp4Wi9CL0MybXdPbmc1VUl3NkRlSU56L2lI?=
+ =?utf-8?B?UDJFdjBZZXI0em8raXoxaEE3ZFRlSG9OTUI5dWJiMjgzWHNXL0FTQWhpSWRv?=
+ =?utf-8?B?NldUSXVWQSsvbTdTNnBUVGlhY3lhRzlUTVc4Y3c3UzVvbjRJaURVSjR4SWJq?=
+ =?utf-8?B?K2dDdE5raHp0VTdRN0FlOHVSd0xSSTJoSVNrNnR0eXp1Vzc2WGdqbGpIRHdW?=
+ =?utf-8?B?eXc4V1J4NC9UMjlRcjhwMEl6QU9YeCtyc21rUXcwakMvU3hLT1VPVytZckQ5?=
+ =?utf-8?B?UjBMUS9RRHR2K2ZrNGRrZEpzWXBjS1ZHeTZQZnpQcTRFT3pUblpNd20zQ0kw?=
+ =?utf-8?B?SExyemZwenUwRnZMTFRNeUJEM3ZjNWNCOXE5dXpFSWFEajlUSUhjRkt5Vmdi?=
+ =?utf-8?B?MWdCZGhjajlXVm5weG1jUGpIZmJlWDRtNk1JeWJMZWtKUExQT3pYSWs5dkJC?=
+ =?utf-8?B?TXFOQTdBcjRWZXVQa0s0dz09?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 331c6462-3d4b-4820-3284-08dafbcfae80
+X-MS-Exchange-CrossTenant-AuthSource: TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2023 16:51:04.6073
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCP286MB2767
+X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for the AUO A030JTN01 panel, which is a 320x480 3.0" 4:3
-24-bit TFT LCD panel with non-square pixels and a delta-RGB 8-bit
-interface.
+--------------F1mVd8LcTKQ3sNpdyNTu36f1
+Content-Type: multipart/mixed; boundary="------------XseuzttbWFDS00pi1uxbfhzX";
+ protected-headers="v1"
+From: Shengyu Qu <wiagn233@outlook.com>
+To: m.tretter@pengutronix.de
+Cc: devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
+ frattaroli.nicolas@gmail.com, heiko@sntech.de, jacob-chen@iotwrt.com,
+ krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ mchehab@kernel.org, robh+dt@kernel.org
+Message-ID: <763a61be-9200-bde2-d82b-bf91c5f0dd8a@outlook.com>
+Subject: Re: [PATCH RESEND 2/2] arm64: dts: rockchip: Add RGA2 support to
+ rk356x
+References: <20230119-rk3568-rga-v1-2-43d4d14365e6@pengutronix.de>
+In-Reply-To: <20230119-rk3568-rga-v1-2-43d4d14365e6@pengutronix.de>
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
----
- drivers/gpu/drm/panel/Kconfig               |   8 +
- drivers/gpu/drm/panel/Makefile              |   1 +
- drivers/gpu/drm/panel/panel-auo-a030jtn01.c | 308 ++++++++++++++++++++
- 3 files changed, 317 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-auo-a030jtn01.c
+--------------XseuzttbWFDS00pi1uxbfhzX
+Content-Type: multipart/mixed; boundary="------------hDZiE1z47DwUuu9S29JnKwut"
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 737edcdf9eef..23cf0f4ba2e6 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -8,6 +8,14 @@ config DRM_PANEL
- menu "Display Panels"
- 	depends on DRM && DRM_PANEL
- 
-+config DRM_PANEL_AUO_A030JTN01
-+	tristate "AUO A030JTN01"
-+	depends on SPI
-+	select REGMAP_SPI
-+	help
-+	  Say Y here to enable support for the AUO A030JTN01 320x480 3.0" panel
-+	  as found in the YLM RS-97 handheld gaming console.
-+
- config DRM_PANEL_ABT_Y030XX067A
- 	tristate "ABT Y030XX067A 320x480 LCD panel"
- 	depends on OF && SPI
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index f8f9d9f6a307..af88658abcab 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_DRM_PANEL_AUO_A030JTN01) += panel-auo-a030jtn01.o
- obj-$(CONFIG_DRM_PANEL_ABT_Y030XX067A) += panel-abt-y030xx067a.o
- obj-$(CONFIG_DRM_PANEL_ARM_VERSATILE) += panel-arm-versatile.o
- obj-$(CONFIG_DRM_PANEL_ASUS_Z00T_TM5P5_NT35596) += panel-asus-z00t-tm5p5-n35596.o
-diff --git a/drivers/gpu/drm/panel/panel-auo-a030jtn01.c b/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
-new file mode 100644
-index 000000000000..3c976a98de6a
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
-@@ -0,0 +1,308 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * AU Optronics A030JTN01.0 TFT LCD panel driver
-+ *
-+ * Copyright (C) 2023, Paul Cercueil <paul@crapouillou.net>
-+ * Copyright (C) 2023, Christophe Branchereau <cbranchereau@gmail.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/media-bus-format.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/spi/spi.h>
-+
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+#define REG05			0x05
-+#define REG06			0x06
-+#define REG07			0x07
-+
-+#define REG05_STDBY		BIT(0)
-+#define REG06_VBLK		GENMASK(4, 0)
-+#define REG07_HBLK		GENMASK(7, 0)
-+
-+
-+struct a030jtn01_info {
-+	const struct drm_display_mode *display_modes;
-+	unsigned int num_modes;
-+	u16 width_mm, height_mm;
-+	u32 bus_format, bus_flags;
-+};
-+
-+struct a030jtn01 {
-+	struct drm_panel panel;
-+	struct spi_device *spi;
-+	struct regmap *map;
-+
-+	const struct a030jtn01_info *panel_info;
-+
-+	struct regulator *supply;
-+	struct gpio_desc *reset_gpio;
-+};
-+
-+static inline struct a030jtn01 *to_a030jtn01(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct a030jtn01, panel);
-+}
-+
-+static int a030jtn01_prepare(struct drm_panel *panel)
-+{
-+	struct a030jtn01 *priv = to_a030jtn01(panel);
-+	struct device *dev = &priv->spi->dev;
-+	unsigned int dummy;
-+	int err;
-+
-+	err = regulator_enable(priv->supply);
-+	if (err) {
-+		dev_err(dev, "Failed to enable power supply: %d\n", err);
-+		return err;
-+	}
-+
-+	usleep_range(1000, 8000);
-+
-+	/* Reset the chip */
-+	gpiod_set_value_cansleep(priv->reset_gpio, 1);
-+	usleep_range(100, 8000);
-+	gpiod_set_value_cansleep(priv->reset_gpio, 0);
-+	usleep_range(2000, 8000);
-+
-+	/*
-+	 * No idea why, but a register read (doesn't matter which) is needed to
-+	 * properly initialize the chip after a reset; otherwise, the colors
-+	 * will be wrong. It doesn't seem to be timing-related as a msleep(200)
-+	 * doesn't fix it.
-+	 */
-+	err = regmap_read(priv->map, REG05, &dummy);
-+	if (err)
-+		goto err_disable_regulator;
-+
-+	/* Use (24 + 6) == 0x1e as the vertical back porch */
-+	err = regmap_write(priv->map, REG06, FIELD_PREP(REG06_VBLK, 0x1e));
-+	if (err)
-+		goto err_disable_regulator;
-+
-+	/* Use (42 + 30) * 3 == 0xd8 as the horizontal back porch */
-+	err = regmap_write(priv->map, REG07, FIELD_PREP(REG07_HBLK, 0xd8));
-+	if (err)
-+		goto err_disable_regulator;
-+
-+	return 0;
-+
-+err_disable_regulator:
-+	gpiod_set_value_cansleep(priv->reset_gpio, 1);
-+	regulator_disable(priv->supply);
-+	return err;
-+}
-+
-+static int a030jtn01_unprepare(struct drm_panel *panel)
-+{
-+	struct a030jtn01 *priv = to_a030jtn01(panel);
-+
-+	gpiod_set_value_cansleep(priv->reset_gpio, 1);
-+	regulator_disable(priv->supply);
-+
-+	return 0;
-+}
-+
-+static int a030jtn01_enable(struct drm_panel *panel)
-+{
-+	struct a030jtn01 *priv = to_a030jtn01(panel);
-+	int ret;
-+
-+	ret = regmap_set_bits(priv->map, REG05, REG05_STDBY);
-+	if (ret)
-+		return ret;
-+
-+	/* Wait for the picture to be stable */
-+	if (panel->backlight)
-+		msleep(100);
-+
-+	return 0;
-+}
-+
-+static int a030jtn01_disable(struct drm_panel *panel)
-+{
-+	struct a030jtn01 *priv = to_a030jtn01(panel);
-+
-+	return regmap_clear_bits(priv->map, REG05, REG05_STDBY);
-+}
-+
-+static int a030jtn01_get_modes(struct drm_panel *panel,
-+				struct drm_connector *connector)
-+{
-+	struct a030jtn01 *priv = to_a030jtn01(panel);
-+	const struct a030jtn01_info *panel_info = priv->panel_info;
-+	struct drm_display_mode *mode;
-+	unsigned int i;
-+
-+	for (i = 0; i < panel_info->num_modes; i++) {
-+		mode = drm_mode_duplicate(connector->dev,
-+					  &panel_info->display_modes[i]);
-+		if (!mode)
-+			return -ENOMEM;
-+
-+		drm_mode_set_name(mode);
-+
-+		mode->type = DRM_MODE_TYPE_DRIVER;
-+		if (panel_info->num_modes == 1)
-+			mode->type |= DRM_MODE_TYPE_PREFERRED;
-+
-+		drm_mode_probed_add(connector, mode);
-+	}
-+
-+	connector->display_info.bpc = 8;
-+	connector->display_info.width_mm = panel_info->width_mm;
-+	connector->display_info.height_mm = panel_info->height_mm;
-+
-+	drm_display_info_set_bus_formats(&connector->display_info,
-+					 &panel_info->bus_format, 1);
-+	connector->display_info.bus_flags = panel_info->bus_flags;
-+
-+	return panel_info->num_modes;
-+}
-+
-+static const struct drm_panel_funcs a030jtn01_funcs = {
-+	.prepare	= a030jtn01_prepare,
-+	.unprepare	= a030jtn01_unprepare,
-+	.enable		= a030jtn01_enable,
-+	.disable	= a030jtn01_disable,
-+	.get_modes	= a030jtn01_get_modes,
-+};
-+
-+static bool a030jtn01_has_reg(struct device *dev, unsigned int reg)
-+{
-+	static const u32 a030jtn01_regs_mask = 0x001823f1fb;
-+
-+	return a030jtn01_regs_mask & BIT(reg);
-+};
-+
-+static const struct regmap_config a030jtn01_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.read_flag_mask = 0x40,
-+	.max_register = 0x1c,
-+	.readable_reg = a030jtn01_has_reg,
-+	.writeable_reg = a030jtn01_has_reg,
-+};
-+
-+static int a030jtn01_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct a030jtn01 *priv;
-+	int err;
-+
-+	spi->mode |= SPI_MODE_3 | SPI_3WIRE;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->spi = spi;
-+	spi_set_drvdata(spi, priv);
-+
-+	priv->map = devm_regmap_init_spi(spi, &a030jtn01_regmap_config);
-+	if (IS_ERR(priv->map))
-+		return dev_err_probe(dev, PTR_ERR(priv->map), "Unable to init regmap");
-+
-+	priv->panel_info = spi_get_device_match_data(spi);
-+	if (!priv->panel_info)
-+		return -EINVAL;
-+
-+	priv->supply = devm_regulator_get(dev, "power");
-+	if (IS_ERR(priv->supply))
-+		return dev_err_probe(dev, PTR_ERR(priv->supply), "Failed to get power supply");
-+
-+	priv->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(priv->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio), "Failed to get reset GPIO");
-+
-+	drm_panel_init(&priv->panel, dev, &a030jtn01_funcs,
-+		       DRM_MODE_CONNECTOR_DPI);
-+
-+	err = drm_panel_of_backlight(&priv->panel);
-+	if (err)
-+		return err;
-+
-+	drm_panel_add(&priv->panel);
-+
-+	return 0;
-+}
-+
-+static void a030jtn01_remove(struct spi_device *spi)
-+{
-+	struct a030jtn01 *priv = spi_get_drvdata(spi);
-+
-+	drm_panel_remove(&priv->panel);
-+	drm_panel_disable(&priv->panel);
-+	drm_panel_unprepare(&priv->panel);
-+}
-+
-+static const struct drm_display_mode a030jtn01_modes[] = {
-+	{ /* 60 Hz */
-+		.clock = 14400,
-+		.hdisplay = 320,
-+		.hsync_start = 320 + 8,
-+		.hsync_end = 320 + 8 + 42,
-+		.htotal = 320 + 8 + 42 + 30,
-+		.vdisplay = 480,
-+		.vsync_start = 480 + 90,
-+		.vsync_end = 480 + 90 + 24,
-+		.vtotal = 480 + 90 + 24 + 6,
-+		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+	},
-+	{ /* 50 Hz */
-+		.clock = 12000,
-+		.hdisplay = 320,
-+		.hsync_start = 320 + 8,
-+		.hsync_end = 320 + 8 + 42,
-+		.htotal = 320 + 8 + 42 + 30,
-+		.vdisplay = 480,
-+		.vsync_start = 480 + 90,
-+		.vsync_end = 480 + 90 + 24,
-+		.vtotal = 480 + 90 + 24 + 6,
-+		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+	},
-+};
-+
-+static const struct a030jtn01_info a030jtn01_info = {
-+	.display_modes = a030jtn01_modes,
-+	.num_modes = ARRAY_SIZE(a030jtn01_modes),
-+	.width_mm = 70,
-+	.height_mm = 51,
-+	.bus_format = MEDIA_BUS_FMT_RGB888_3X8_DELTA,
-+	.bus_flags = DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
-+};
-+
-+static const struct spi_device_id a030jtn01_id[] = {
-+	{ "a030jtn01", (kernel_ulong_t) &a030jtn01_info },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(spi, a030jtn01_id);
-+
-+static const struct of_device_id a030jtn01_of_match[] = {
-+	{ .compatible = "auo,a030jtn01" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, a030jtn01_of_match);
-+
-+static struct spi_driver a030jtn01_driver = {
-+	.driver = {
-+		.name = "auo-a030jtn01",
-+		.of_match_table = a030jtn01_of_match,
-+	},
-+	.id_table = a030jtn01_id,
-+	.probe = a030jtn01_probe,
-+	.remove = a030jtn01_remove,
-+};
-+module_spi_driver(a030jtn01_driver);
-+
-+MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
-+MODULE_AUTHOR("Christophe Branchereau <cbranchereau@gmail.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.39.0
+--------------hDZiE1z47DwUuu9S29JnKwut
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+
+
+Hello Michael,
+
+Since we have the over-4GB problem now, should we mark this problem as a
+TODO or something?
+
+Shengyu
+--------------hDZiE1z47DwUuu9S29JnKwut
+Content-Type: application/pgp-keys; name="OpenPGP_0xE3520CC91929C8E7.asc"
+Content-Disposition: attachment; filename="OpenPGP_0xE3520CC91929C8E7.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+lMSoVV3z1s8dA1DK95ykSdIFtVZT
+=3Dr4B8
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------hDZiE1z47DwUuu9S29JnKwut--
+
+--------------XseuzttbWFDS00pi1uxbfhzX--
+
+--------------F1mVd8LcTKQ3sNpdyNTu36f1
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEET/yoGP3p5Zl+RKVuX75KBAfJsRkFAmPMF94ACgkQX75KBAfJ
+sRkdzQ//cdpSQtOe1egutNtW5fWebeL82pePE34gknlmuIJIOHKcGcXBml8ow558
+M0KlVO0aisS5ENsNa42TDf4/AVWf2lpzx0exT0bYcmUxutu+EzTI5s0sndYiZBU4
+2bFRtMRASeO2YAGMUSm0+P3vrEOaNlgvbRi9dTh9j+BpHVuqRSwshdnjYgb7mpUb
+AsS/NqVXccwpJtJWZU7wcTrbfBdDtC+sHDEf5Uj6naebXdD01Wmhd2F6/3XmXWX8
+OKUh6FH9xD9l61QSffyVR5fFzN9sOq4HGG543Fj9o+f+J0Ba0KbHedFLY/9c36I1
+V7WK/UfVzWpVRYrYqC0somqHpvVnb+IVfgWXo+QZthUW4UTTcODqYx/+IPs9LAtM
+1QH2XMCGim+KuNqZ/LLjDHOVZIJaCJkurLgTdqXRKyj/1IUXN5egCH7y5X9Xidri
+weIgIKGm2Dicvb2GHo9D8pa85qpVevCU5mMILOcG+Qn7bXm4FMZ1ucMvfqARrtIo
+JxF6nrJDJL2OmctWI+S7KlmsAm+ec7AIQ/Q83ceYrvtYO0njjH2bA/WTYzB9TDHG
+gPXESDUucdgMz6eqmMkh0AlK34olBYVkJeSY4IREJMWZIfBRQtBu+CkGOT24Sz2Z
+4dzCA7KyKwqOxHy9oq1rXY8tTeEdk3alX2C28+goZr2zgv3EKnY=
+=is+w
+-----END PGP SIGNATURE-----
+
+--------------F1mVd8LcTKQ3sNpdyNTu36f1--
