@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E779B67682D
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 19:59:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5BC1676834
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 20:00:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbjAUS72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 13:59:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48976 "EHLO
+        id S229782AbjAUTA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 14:00:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjAUS71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 13:59:27 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B108710FD
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:59:25 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id g10so6313135wmo.1
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:59:25 -0800 (PST)
+        with ESMTP id S229673AbjAUTA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 14:00:56 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC8823C4C
+        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 11:00:54 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id l41-20020a05600c1d2900b003daf986faaeso5874573wms.3
+        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 11:00:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y+8AIcmyNh7anmgy6us1S2qZEpfi8cOsNKu1F+SDuic=;
-        b=DSNmytpeph3gW86uTDWNK4tSD4wjbNZ+cDtqBYO3TGJYyGKeyNEnyDHpdL6NbHsnsR
-         H1HZAwuXKokfN8LsS1QrJEyAeY7EIOdPKb8qeSzkOktbrnPpL84L2xaMDr+0F7xXZ3HP
-         5S4Q3pnfupRaVcL3f8GPGj2rc3jlDXy5D+vFJdCsgI6+Ntr7Pp1uQ4A5TgxZMj9fYqZf
-         zXsTyha3a2JkjiMkL3x711hQtBd+fuhd9iZtgPTCo4Ow3XIhSI0bGl5NGf8QzLUz0wfA
-         UwXvNPRSl2+7FhnwqvCm6ZPJaHNQjALqXvNoOxOpD3cch02DvgwxSnlmxIBX2RIhkkDS
-         BAnA==
+        bh=xHePGEFjy1UfUCetXTj9MaBdDtJ+Ek+cvWCV2WMJtLM=;
+        b=RFwGK8+pq0UIJ/VIMMEkQat0+CyIaQU82bmKcpY2yzemsJpf2nwCI2Lbe8QIQfXw3Y
+         SHV6CE4c4iZeidJ2OFnPqSdjjhf0l9yV+NwW8NLmAIxi3XdvuSsKJGrkWfGn0PnuwjN7
+         lW4BNVcq/C36cw79gBPJ2jH7llgMbpiCEVQMugIru+b7R0saAnae7ANK3y2L4jT1ClqI
+         A95u/6tIKzU89M9fVai4Hv0W8u8oOQZt5GDLx0G9mcq8xbeQU1pBYeVKKAFP+vrwPl0K
+         EanaIDWIjzTQrKgKaK9V6Fyh+nIEzFOBWQH+2g/DepIbFkQfwT4H90lDbk+UCboMcNv0
+         y+bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y+8AIcmyNh7anmgy6us1S2qZEpfi8cOsNKu1F+SDuic=;
-        b=zL79blzWTdbVdXr/cMrIG/osLqVYYUMOT+gL2xi48ilYFTMM1LbroezNDmy64HvwgK
-         6SO+5WfscKfmU37UxRW5VwIqd51visId70q0C02HQ4g5GhB8A3/1yogqGTd6xddb/CO9
-         zdRuJ0mEWqFO99Zi361liSmO1gjQ1N3YK9wMqg0NhHpxRA8RELWM/FpNLhmi9TllvnbT
-         qMDRXfDYjmokPmg0dE6L6UmXOKaNQqW2UuWYMOplWISDrFwIyjhFr8nkOgDOh3hnJjJF
-         qsiwaKqN24eGq9GNxSbQMICuLTzNGemiLP+JnWeWaXm3x/xdgFjRli3+utB4RRwtqQNy
-         G1Cg==
-X-Gm-Message-State: AFqh2kq9/ctZoe4/tbtyykj16O7RzBZAww0sG4aWcEl8Gv3y9oAdEl21
-        mMlRJYDhmHlUgmEJjO1YAadH2w==
-X-Google-Smtp-Source: AMrXdXuEm576fBINS2Nr1ehlHPHAUS08eLwq4m7iyjQxHe/PDV7pRwzAmtYjpecqMbhz1ClAl+8oUQ==
-X-Received: by 2002:a05:600c:4d91:b0:3da:fb96:53d with SMTP id v17-20020a05600c4d9100b003dafb96053dmr17702315wmp.4.1674327564340;
-        Sat, 21 Jan 2023 10:59:24 -0800 (PST)
+        bh=xHePGEFjy1UfUCetXTj9MaBdDtJ+Ek+cvWCV2WMJtLM=;
+        b=fgU30uZAuZ8wmVi/tCeSgHqC3DgLJrfel5CLH5XZwmGPtLk5dxrfgT50XncVmBa8xU
+         D/J/Z+OImGdwh+tTB333JH1IErVu10WTmBIeFkCNRN7EmW4bFzskphn41NYyCImCmX46
+         IKjPqfM9dZy72uAoDJ5a1smzUjhHCGILojOIqrazn4EBkKL6cu41DstzyhvEHjPSZkfv
+         p1u9PelGGeB53YYqArKQ4xFkr5a59zes9yy7x2bgoHXHnDqNYYQCr4v/oUQpaNEzAaV9
+         2ajw1P/1iU3sgiPO1Ms9ovh3d3QEX265u1SiJwO0Ggn3MfY2T4SjE60AHrr+jxqy8FCW
+         oc5w==
+X-Gm-Message-State: AFqh2kr8QhyV0SNnGKLAQ2m8q6CJ69Hqn6sIni/e4iB+RmHSIAm+wRnc
+        XceHN/XrA33+LONkIDLoUdMImA==
+X-Google-Smtp-Source: AMrXdXuBuPiNklurQJ5XfLPcWcjvC6JBjCdqXO7Nk+xxhWNbskje7BXiUTucBxE+iU5FlggHBYH8og==
+X-Received: by 2002:a1c:ed0a:0:b0:3d3:4a47:52e9 with SMTP id l10-20020a1ced0a000000b003d34a4752e9mr18254396wmh.15.1674327652728;
+        Sat, 21 Jan 2023 11:00:52 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z4-20020a05600c0a0400b003db01178b62sm6848719wmp.40.2023.01.21.10.59.22
+        by smtp.gmail.com with ESMTPSA id p21-20020a05600c359500b003c70191f267sm6745646wmq.39.2023.01.21.11.00.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 Jan 2023 10:59:23 -0800 (PST)
-Message-ID: <277a46d9-587f-324b-10cf-064302bdd2c5@linaro.org>
-Date:   Sat, 21 Jan 2023 19:59:21 +0100
+        Sat, 21 Jan 2023 11:00:52 -0800 (PST)
+Message-ID: <de2ac5ce-2e54-09fc-71f5-91a2faf15d38@linaro.org>
+Date:   Sat, 21 Jan 2023 20:00:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom,sm8450-camcc: constrain
- required-opps
+Subject: Re: [PATCH 5/6] dt-bindings: rtc: brcm,brcmstb-waketimer: add alarm
+ interrupt
 Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Doug Berger <opendmb@gmail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Brian Norris <computersforpeace@gmail.com>,
+        Markus Mayer <mmayer@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20230119130028.106817-1-krzysztof.kozlowski@linaro.org>
- <b676c36565da1b73c53ced6218ef6de1.sboyd@kernel.org>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230120190147.718976-1-opendmb@gmail.com>
+ <20230120190147.718976-6-opendmb@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b676c36565da1b73c53ced6218ef6de1.sboyd@kernel.org>
+In-Reply-To: <20230120190147.718976-6-opendmb@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,21 +85,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/01/2023 23:15, Stephen Boyd wrote:
-> Quoting Krzysztof Kozlowski (2023-01-19 05:00:27)
->> Be specific how many required-opps are allowed.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> This change is independent, although logically is connected with my
->> dtschema pull:
->> https://github.com/devicetree-org/dt-schema/pull/95
+On 20/01/2023 20:01, Doug Berger wrote:
+> A second interrupt can optionally be specified for this device
+> to be used for generating RTC alarm interrupts.
 > 
-> Do you want to take it through dt tree?
+> Signed-off-by: Doug Berger <opendmb@gmail.com>
+> ---
+>  .../bindings/rtc/brcm,brcmstb-waketimer.yaml  | 22 ++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/brcm,brcmstb-waketimer.yaml b/Documentation/devicetree/bindings/rtc/brcm,brcmstb-waketimer.yaml
+> index 9fe079917a98..a9199f299a68 100644
+> --- a/Documentation/devicetree/bindings/rtc/brcm,brcmstb-waketimer.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/brcm,brcmstb-waketimer.yaml
+> @@ -11,7 +11,8 @@ maintainers:
+>  
+>  description:
+>    The Broadcom STB wake-up timer provides a 27Mhz resolution timer, with the
+> -  ability to wake up the system from low-power suspend/standby modes.
+> +  ability to wake up the system from low-power suspend/standby modes and
+> +  optionally generate RTC alarm interrupts.
+>  
+>  allOf:
+>    - $ref: "rtc.yaml#"
+> @@ -24,8 +25,14 @@ properties:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    description: the TIMER interrupt
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: the TIMER interrupt
+> +      - description: the ALARM interrupt
+> +    description:
+> +      The TIMER interrupt wakes the system from low-power suspend/standby modes.
+> +      An ALARM interrupt may be specified to interrupt the CPU when an RTC alarm
+> +      is enabled.
+>  
+>    clocks:
+>      description: clock reference in the 27MHz domain
+> @@ -42,3 +49,12 @@ examples:
+>          interrupt-parent = <&aon_pm_l2_intc>;
+>          clocks = <&upg_fixed>;
+>      };
+> +
+> +  - |
+> +    rtc@f041a080 {
+> +        compatible = "brcm,brcmstb-waketimer";
+> +        reg = <0xf041a080 0x14>;
+> +        interrupts-extended = <&aon_pm_l2_intc 0x04>,
+> +                              <&upg_aux_aon_intr2_intc 0x08>;
+> +        clocks = <&upg_fixed>;
 
-I think it would be better if you take it.
+Change of number of interrupts does not really justify new example. You
+can squash it with previous example or just skip it.
 
 Best regards,
 Krzysztof
