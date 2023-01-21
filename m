@@ -2,104 +2,347 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25825676622
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 13:03:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0540676645
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 13:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjAUMDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 07:03:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54926 "EHLO
+        id S229741AbjAUMr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 07:47:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjAUMDY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 07:03:24 -0500
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7564859C;
-        Sat, 21 Jan 2023 04:03:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1674302603; x=1705838603;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eQvXmYU1ul3ihyLWrnek5TV3lhtfpAdAscF3pcR3Ge0=;
-  b=RZNTro4Zn7sNg+hKBKMJ4dhv279PqALDlKOI2zw/4Z0EeeqP/OkACQ+c
-   9ZRTy8wtVtV1ScnxCaleQ2f6OjDteFFxNF1Z7w/uoMG3QOJ+mMnCTPO6f
-   cJmYKrkyLXQDaOm0RcU5GC6Fhia5XosZM0hRKkRwYW5+ABylSq6svamJ9
-   loUfcruka/D8Zff+8cV6QpXiGA2Ax7iec3jrow7lmmjfGkEvYwLLJBVv/
-   6djszXp0zculZyL86k8PMtcVEJCX4XWcYfWvicUw7vKlXGdYD0kckUKRO
-   AZw2vO5OBrf6kQaxMi54Qx6hdUmhL7NARZ293j9p1v10OJL+Galrw0NCt
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="306138287"
-X-IronPort-AV: E=Sophos;i="5.97,235,1669104000"; 
-   d="scan'208";a="306138287"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2023 04:03:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="834724793"
-X-IronPort-AV: E=Sophos;i="5.97,235,1669104000"; 
-   d="scan'208";a="834724793"
-Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 21 Jan 2023 04:03:18 -0800
-Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pJCab-00041m-1b;
-        Sat, 21 Jan 2023 12:03:17 +0000
-Date:   Sat, 21 Jan 2023 20:03:12 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Alexandru Tachici <alexandru.tachici@analog.com>,
-        linux-kernel@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, richardcochran@gmail.com,
-        yangyingliang@huawei.com, weiyongjun1@huawei.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, lennart@lfdomain.com
-Subject: Re: [net-next 1/3] net: ethernet: adi: adin1110: add PTP clock
- support
-Message-ID: <202301211925.PhM4jvZS-lkp@intel.com>
-References: <20230120095348.26715-2-alexandru.tachici@analog.com>
+        with ESMTP id S229622AbjAUMry (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 07:47:54 -0500
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5395713DCE;
+        Sat, 21 Jan 2023 04:47:52 -0800 (PST)
+Received: by mail-vs1-xe33.google.com with SMTP id j185so8397131vsc.13;
+        Sat, 21 Jan 2023 04:47:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kadga/dzZbkkMxZEnmw36b0Eh+psRn+NUUN9Lq0nO/0=;
+        b=OdfdWLfBZwxXgAw2qQe9zY3DsYNR6uRgRl3mdgiT8HV4SXz6XUw5ZNGlFcCYaFhHA2
+         MAqE66nHzTrcO/1/xew1c1EHJd7yjM8NaAVz3ymbfksQs2N1e/lAQ034OoDMDqhfRV6s
+         XY93Vyz6qBYPz63ly3pOgI7mv0Upp1QLbySXpTf32yzNGxff408t2bXRfSCOS86KW9je
+         13Jj80IF0IXX0zk7iddmkoQT39/vEJUlqcWY6UMpzfciVsxVf1Xxir+w1tgG1onBono5
+         cfCHEqXRo9SWpo9draf2iIaZm9aC15pyIymDGyLQC69/LZCnJgKsDALzfqMPkC3CsVd9
+         Of6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Kadga/dzZbkkMxZEnmw36b0Eh+psRn+NUUN9Lq0nO/0=;
+        b=J8BNz+uWkYvLJLWfCzfOPp3dcIQl5NebXOPNw+IbC7GFCmt23CShetdSrkRoNg+Tt8
+         5VFR4Ls76sx/7h0nTIFG1B0pursawXSCRoS9UpCbF2RZuSSWrSqoRPe4AieMfTcIYeXJ
+         NB4pcsQ2WGeC92mDnJbLOBR67q7u25ku5I8BE2yoC6Loph8NIxPQj63vbcB3GvxWIPhv
+         uJdnFdYsKIR3fwXs2G9FEeQ6/44t1mHrtwttU5AqQ/vIsITYID6CtUeaJEUB/iJ4Ccsu
+         OtkOxw2mqLClNexG6aoxR+f0gUyDd2ZqQzah4YneWQiTSAuFqqTPUb86u0bHuAtD6geF
+         vXGA==
+X-Gm-Message-State: AFqh2kpkdj6XxPrJXe0LL0a4Fx+Oedf17kmp3QRAtL6dbglg5W+Ye6CU
+        ek+R7sVtAtxWCSTlJZxsXBGpJ+3SI6SfeMQtg2o=
+X-Google-Smtp-Source: AMrXdXs4JEFkvK/xPBt4kxKPlmXqQpq/GKgQWLC1dXBBqRI3knBDPrb7Z6VoHfPwPa+Aqxk7twQK7dwPosttyWG1efU=
+X-Received: by 2002:a05:6102:f98:b0:3d3:c7d9:7b62 with SMTP id
+ e24-20020a0561020f9800b003d3c7d97b62mr2278401vsv.72.1674305271301; Sat, 21
+ Jan 2023 04:47:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230120095348.26715-2-alexandru.tachici@analog.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20221220112927.440506-1-alistair@alistair23.me>
+ <20221220112927.440506-4-alistair@alistair23.me> <20221220131715.femjybikqcnm4lyg@pengutronix.de>
+ <CAKmqyKO-Qw3AihUnF7np7_6kr6-ODnXU3aBwph-_9=xSbXRx-Q@mail.gmail.com>
+ <CANhJrGOtZZEG0mdVeQTQ=HDB3bUT2kkGbMxbqcvZc_gb_aNETA@mail.gmail.com>
+ <CAKmqyKMvSYr6WiVrvQWCWeiYF3R-VJmfuwxXczyE9j4QnYB_KA@mail.gmail.com> <e0bbfc9b-9db4-9443-a205-62f91c15e207@gmail.com>
+In-Reply-To: <e0bbfc9b-9db4-9443-a205-62f91c15e207@gmail.com>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Sat, 21 Jan 2023 22:47:25 +1000
+Message-ID: <CAKmqyKNGvuu1Pto2vMJQOkFCP3o=nVWCVd=wqyBCRESuSb4ANg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] ARM: dts: imx7d-remarkable2: Enable the rohm,bd71815
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        Alistair Francis <alistair@alistair23.me>,
+        linux-kernel@vger.kernel.org, shawnguo@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        s.hauer@pengutronix.de, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        arnd@arndb.de, linux@armlinux.org.uk, jernej.skrabec@gmail.com,
+        kernel@pengutronix.de, festevam@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandru,
+On Sat, Jan 21, 2023 at 12:01 AM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
+>
+> On 1/20/23 11:17, Alistair Francis wrote:
+> > On Tue, Jan 10, 2023 at 5:13 AM Matti Vaittinen
+> > <mazziesaccount@gmail.com> wrote:
+> >>
+> >> ma 9. tammik. 2023 klo 14.32 Alistair Francis (alistair23@gmail.com) kirjoitti:
+> >>>
+> >>> On Tue, Dec 20, 2022 at 11:17 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >>>>
+> >>>> Hi Alistair,
+> >>>>
+> >>>> thanks for your patch, please see below.
+> >>>>
+> >>>> On 22-12-20, Alistair Francis wrote:
+> >>>>> Add support for the rohm,bd71815 power controller controller for the
+> >>>>> reMarkable 2.
+> >>>>>
+> >>>>> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> >>>>> ---
+> >>>>>   arch/arm/boot/dts/imx7d-remarkable2.dts | 159 ++++++++++++++++++++++++
+> >>>>>   1 file changed, 159 insertions(+)
+> >>>>>
+> >>>>> diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> >>>>> index a138b292ec6a..4387d30d6180 100644
+> >>>>> --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> >>>>> +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> >>>>> @@ -92,6 +92,10 @@ wifi_pwrseq: wifi_pwrseq {
+> >>>>>        };
+> >>>>>   };
+> >>>>>
+> >>>>> +&cpu0 {
+> >>>>> +     cpu-supply = <&buck1_reg>;
+> >>>>> +};
+> >>>>> +
+> >>>>>   &clks {
+> >>>>>        assigned-clocks = <&clks IMX7D_CLKO2_ROOT_SRC>,
+> >>>>>                          <&clks IMX7D_CLKO2_ROOT_DIV>;
+> >>>>> @@ -119,6 +123,148 @@ wacom_digitizer: digitizer@9 {
+> >>>>>        };
+> >>>>>   };
+> >>>>>
+> >>>>> +&i2c2 {
+> >>>>> +     clock-frequency = <100000>;
+> >>>>
+> >>>> We can set this now to 400kHz since the driver can handle quirks now
+> >>>> internal.
+> >>>
+> >>> After a discussion on the first patch I'm going to leave this as is.
+> >>> Let me know if you do want me to change it.
+> >>>
+> >>>>
+> >>>>> +     pinctrl-names = "default", "sleep";
+> >>>>> +     pinctrl-0 = <&pinctrl_i2c2>;
+> >>>>> +     pinctrl-1 = <&pinctrl_i2c2>;
+> >>>>
+> >>>> Do we need a "sleep" config here since this will be the same
+> >>>> configuration as the "default" one.
+> >>>
+> >>> Nope, dropped.
+> >>>
+> >>>>
+> >>>>> +     status = "okay";
+> >>>>> +
+> >>>>> +     bd71815: pmic@4b {
+> >>>>> +             compatible = "rohm,bd71815";
+> >>>>> +             reg = <0x4b>;
+> >>>>> +             pinctrl-names = "default";
+> >>>>> +             pinctrl-0 = <&pinctrl_bd71815>;
+> >>>>> +             interrupt-parent = <&gpio6>; /* PMIC_INT_B GPIO6_IO16 */
+> >>>>> +             interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+> >>>>> +             gpio-controller;
+> >>>>> +             clocks = <&clks IMX7D_CLKO2_ROOT_SRC>;
+> >>>>> +             clock-output-names = "bd71815-32k-out";
+> >>>>> +             #clock-cells = <0>;
+> >>>>> +             #gpio-cells = <1>;
+> >>>>> +
+> >>>>> +             regulators {
+> >>>>> +                     #address-cells = <1>;
+> >>>>> +                     #size-cells = <0>;
+> >>>>> +
+> >>>>> +                     buck1_reg: regulator@0 {
+> >>>>> +                             reg = <0>;
+> >>>>> +                             regulator-compatible = "buck1";
+> >>>>> +                             regulator-min-microvolt = <800000>;
+> >>>>> +                             regulator-max-microvolt = <2000000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                             regulator-ramp-delay = <1250>;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     buck2_reg: regulator@1 {
+> >>>>> +                             reg = <1>;
+> >>>>> +                             regulator-compatible = "buck2";
+> >>>>> +                             regulator-min-microvolt = <800000>;
+> >>>>> +                             regulator-max-microvolt = <2000000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                             regulator-ramp-delay = <1250>;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     buck3_reg: regulator@2 {
+> >>>>> +                             reg = <2>;
+> >>>>> +                             regulator-compatible = "buck3";
+> >>>>> +                             regulator-min-microvolt = <1200000>;
+> >>>>> +                             regulator-max-microvolt = <2700000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     buck4_reg: regulator@3 {
+> >>>>> +                             reg = <3>;
+> >>>>> +                             regulator-compatible = "buck4";
+> >>>>> +                             regulator-min-microvolt = <1100000>;
+> >>>>> +                             regulator-max-microvolt = <1850000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     buck5_reg: regulator@4 {
+> >>>>> +                             reg = <4>;
+> >>>>> +                             regulator-compatible = "buck5";
+> >>>>> +                             regulator-min-microvolt = <1800000>;
+> >>>>> +                             regulator-max-microvolt = <3300000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     ldo1_reg: regulator@5 {
+> >>>>> +                             reg = <5>;
+> >>>>> +                             regulator-compatible = "ldo1";
+> >>>>> +                             regulator-min-microvolt = <800000>;
+> >>>>> +                             regulator-max-microvolt = <3300000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     ldo2_reg: regulator@6 {
+> >>>>> +                             reg = <6>;
+> >>>>> +                             regulator-compatible = "ldo2";
+> >>>>> +                             regulator-min-microvolt = <800000>;
+> >>>>> +                             regulator-max-microvolt = <3300000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     ldo3_reg: regulator@7 {
+> >>>>> +                             reg = <7>;
+> >>>>> +                             regulator-compatible = "ldo3";
+> >>>>> +                             regulator-min-microvolt = <800000>;
+> >>>>> +                             regulator-max-microvolt = <3300000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     ldo4_reg: regulator@8 {
+> >>>>> +                             reg = <8>;
+> >>>>> +                             regulator-compatible = "ldo4";
+> >>>>> +                             regulator-min-microvolt = <800000>;
+> >>>>> +                             regulator-max-microvolt = <3300000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     ldo5_reg: regulator@9 {
+> >>>>> +                             reg = <9>;
+> >>>>> +                             regulator-compatible = "ldo5";
+> >>>>> +                             regulator-min-microvolt = <800000>;
+> >>>>> +                             regulator-max-microvolt = <3300000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     dvref_reg: regulator@a {
+> >>>>> +                             reg = <0xa>;
+> >>>>> +                             regulator-compatible = "dvref";
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     lpsr_reg: regulator@b {
+> >>>>> +                             reg = <0xb>;
+> >>>>> +                             regulator-compatible = "lpsr";
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>> +
+> >>>>> +                     wled_reg: regulator@c {
+> >>>>> +                             reg = <0xc>;
+> >>>>> +                             regulator-compatible = "wled";
+> >>>>> +                             regulator-min-microamp = <10>;
+> >>>>> +                             regulator-max-microamp = <25000>;
+> >>>>> +                             regulator-boot-on;
+> >>>>> +                             regulator-always-on;
+> >>>>> +                     };
+> >>>>
+> >>>> Note: You have marked all regulators as always on, this is rather
+> >>>> suboptimal due to power consumption.
+> >>>
+> >>> Good point. The power consumption is already pretty bad, as mainline
+> >>> doesn't support the i.MX deep sleep. As I know this works I'd like to
+> >>> keep it as is. I'll test to see if removing them doesn't break
+> >>> anything and then send a follow up patch.
+> >>
+> >> I'd like to suggest also seeing what removing the "regulator-boot-on"
+> >> causes. As far as I understand, the "regulator-boot-on" mainly (only?)
+> >> intended to be used in situations where the regulator state can not be
+> >> reliably read from the hardware at the boot-up. AFAIR, unlike the
+> >> BD71837 and BD71847,
+> >> the BD71815 does not have this limitation. (This is just my
+> >> understanding - which is based on some age-old discussions with Mark
+> >> Brown - hence this comment is just a suggestion to try this while
+> >> testing, not a comment intended to be demanding for a change)
+> >
+> > I have tried removing both "regulator-boot-on" and "regulator-always-on".
+> >
+> > After one boot to userspace (where the display didn't work correctly)
+> > the device now seems to not power up at all. Even u-boot is failing to
+> > start. I'm not sure if the regulators are now in some strange state or
+> > if something is fried.
+>
+> Ouch. This does not sound good at all. Sorry for a bad advice. :(
 
-I love your patch! Yet something to improve:
+Yeah, it was a bit of a shock! No worries, the advice was good! Just
+unlucky that the vendor hardware and kernel aren't up to par.
 
-[auto build test ERROR on net-next/master]
+>
+> I can only assume the "power dependencies" are not modelled correctly -
+> Eg. some required power-rails are not marked to be used by devices that
+> actually need them. This is probably being worked around using the
+> regulator-boot-on / regulator-always-on - which will cause the Linux to
+> turn on these rails when the driver is load. My understanding is that
+> this is not the intended use-case for the regulator-boot-on flag though.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexandru-Tachici/net-ethernet-adi-adin1110-add-PTP-clock-support/20230120-175639
-patch link:    https://lore.kernel.org/r/20230120095348.26715-2-alexandru.tachici%40analog.com
-patch subject: [net-next 1/3] net: ethernet: adi: adin1110: add PTP clock support
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20230121/202301211925.PhM4jvZS-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/8acf61452607f47da6223227b32c6f1e8ec01f62
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Alexandru-Tachici/net-ethernet-adi-adin1110-add-PTP-clock-support/20230120-175639
-        git checkout 8acf61452607f47da6223227b32c6f1e8ec01f62
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash
+Yeah, I'm guessing that's what is happening. It seems that somehow a
+rail for the power controller is being turned off. As the device can't
+be woken up with the physical button or a charger about 30 seconds
+after boot.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+> Also, as was said - the side-effect of always-on is that there will be
+> no power-saving options - which is still better for an user than a fried
+> device would be :|
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+I think for now that's what we are stuck with. It's very difficult to
+debug as the device is sealed.
 
->> ERROR: modpost: "ktime_get_fast_timestamps" [drivers/net/ethernet/adi/adin1110.ko] undefined!
+>
+> >
+> > I'm currently waiting for the battery to discharge to see if that helps.
+> >
+>
+> /me keeps fingers crossed. You wouldn't guess how hard it was to type this!
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Thanks! Once the battery depleted I managed to get signs of life. Now
+I just need to quickly revert to the old device tree :)
+
+Alistair
+
+>
+> Yours,
+>         -- Matti
+>
+> --
+> Matti Vaittinen
+> Linux kernel developer at ROHM Semiconductors
+> Oulu Finland
+>
+> ~~ When things go utterly wrong vim users can always type :help! ~~
+>
