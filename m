@@ -2,58 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC41D6765B8
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 11:34:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB57A67659B
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 11:16:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbjAUKem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 05:34:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60998 "EHLO
+        id S229645AbjAUKQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 05:16:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjAUKem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 05:34:42 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D294718A87;
-        Sat, 21 Jan 2023 02:34:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7EC86B82B88;
-        Sat, 21 Jan 2023 10:34:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7397C433D2;
-        Sat, 21 Jan 2023 10:34:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1674297278;
-        bh=Hn5wcaiy+leZKED4HRUyYNHdqwAWfMoVRI3MvccFlvQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rdF7KufZVtRXa2DzHvZHmu2ZRr7pSR7t38YcX+9sqPJhLhY7zz5/gcPWm62oEmaSG
-         k9pyvYS3WDFcMIVBMlidY9UymKp4+H3bYLgU8bM5/V+8oYdVcamiqchpLeOT0tzzCB
-         4qHPPGGorSSgpMHp9wd3KRXYIuWl9szX+TZ7HlmU=
-Date:   Sat, 21 Jan 2023 11:06:02 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v2 00/12] ADD USB3.1 HOST, Peri and DRD support
-Message-ID: <Y8u5Cpl2B5b2mzPp@kroah.com>
-References: <20230112215906.494394-1-biju.das.jz@bp.renesas.com>
- <Y8lBKKPjci7+goiV@kroah.com>
- <OS0PR01MB59221827031B393F6FB693E786CA9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        with ESMTP id S229526AbjAUKQ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 05:16:26 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56FF53D901
+        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 02:16:24 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id t12so553965lji.13
+        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 02:16:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R+Pyl+joRSSSHYvf7WpDkCWmQvZq+W+aRVbNCqAWyN0=;
+        b=aw4vZZx4wkPSHemLhBCOWKkcGKy2I6AvBjN7UL/hvRcVPDSIlGrklw2jTtkH/RvGZb
+         uueF5MZpeSFKiA06BhrDArxQaLgpWridTlFnBJcqHTMEN8Es+P7RiSkewrQNPSK/4g3K
+         eqf2aNalnUtTCszMbvy4i2lDVXJUE56aCvqtzCQPf/d2rREW9rsLlnb3NRwtpkvW+0rg
+         ZW19EDyGbGyLGScXmsOmfTRVSVKLQoSZJnVmY+4+H99Ueooe6NqfOPkITPYRuAhx4Rxi
+         3NibyE+BBWFbhVxIs01RoDCYx7jr/UkqI8VdnfrR9x8kU3kL3uPF5LxS/Sv6NCiAZa2w
+         IdBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R+Pyl+joRSSSHYvf7WpDkCWmQvZq+W+aRVbNCqAWyN0=;
+        b=cCX1P44Xct68clm1ZvfHmua7CzgXpmxYereJKIxYoYMtzGcl5OQt77FwI6mg5oNlO7
+         GnsX3+FFTFFt2wg9oEVHzTGTn/0NiyGXyBxNV6VXi9Vdx+0rdzoCjetaIsrK2U7WNlcI
+         +rWSk4v26MMu4S/d3FjGrIMYuOt3vFWkDUZBXtup1H786TiuEtTTW7jJwIWyN9CVL411
+         D6v+Dw3p2aOp8N+A+WLOHM+R/+jAEZO/nuuqr4PhiVsBJZ9Yf8uaTBbMZHdiUjfPElJk
+         tDpZIWbvU+ZrT6rAvSzyPZldYiB4eAFUDye6BV9H3vY9LQokzuurgx/X04E9Ubq7/zj9
+         CZbw==
+X-Gm-Message-State: AFqh2kprwLY3MyZo2GmgRKuSCHkS2pBjPKwuizm8R3m1bgphnlvBvFZ/
+        uL5K3GHh4R8Pdy0f/Rgio9pAVA==
+X-Google-Smtp-Source: AMrXdXsmnMg48aeBhogSIz+DbIJdUnf4nEqxin4EPTgBYOA8j6w8atXnnKg+jW8ZCAvlcIjIEdWAAg==
+X-Received: by 2002:a2e:3807:0:b0:276:dc01:8058 with SMTP id f7-20020a2e3807000000b00276dc018058mr4630164lja.1.1674296182695;
+        Sat, 21 Jan 2023 02:16:22 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id p19-20020a2ea4d3000000b0028a4a907a33sm3023710ljm.84.2023.01.21.02.16.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 21 Jan 2023 02:16:22 -0800 (PST)
+Message-ID: <7116584e-f5a1-f404-8cfc-d1d159a4d647@linaro.org>
+Date:   Sat, 21 Jan 2023 12:16:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <OS0PR01MB59221827031B393F6FB693E786CA9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v6 09/10] arm64: dts: qcom: sc7180: Add support for HDCP
+ in dp-controller
+Content-Language: en-GB
+To:     Sean Paul <sean@poorly.run>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mark Yacoub <markyacoub@chromium.org>, quic_khsieh@quicinc.com,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+        robdclark@gmail.com, quic_abhinavk@quicinc.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+        rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com,
+        tzimmermann@suse.de, ville.syrjala@linux.intel.com,
+        stanislav.lisovskiy@intel.com, matthew.d.roper@intel.com,
+        imre.deak@intel.com, lucas.demarchi@intel.com,
+        manasi.d.navare@intel.com, swati2.sharma@intel.com,
+        bhanuprakash.modem@intel.com, javierm@redhat.com,
+        jose.souza@intel.com, lyude@redhat.com, hbh25y@gmail.com,
+        arun.r.murthy@intel.com, ashutosh.dixit@intel.com,
+        ankit.k.nautiyal@intel.com, maxime@cerno.tech, swboyd@chromium.org,
+        christophe.jaillet@wanadoo.fr, quic_sbillaka@quicinc.com,
+        johan+linaro@kernel.org, dianders@chromium.org, marex@denx.de,
+        quic_jesszhan@quicinc.com, bjorn.andersson@linaro.org,
+        abhinavk@codeaurora.org, seanpaul@chromium.org
+References: <20230118193015.911074-1-markyacoub@google.com>
+ <20230118193015.911074-10-markyacoub@google.com>
+ <aee03688-54b6-ed9f-e32c-b46e31d72198@linaro.org>
+ <Y8q5UfpIg0+qnAuG@art_vandelay>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Y8q5UfpIg0+qnAuG@art_vandelay>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,63 +99,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 21, 2023 at 09:59:53AM +0000, Biju Das wrote:
-> Hi Greg,
+On 20/01/2023 17:54, Sean Paul wrote:
+> On Thu, Jan 19, 2023 at 11:35:32AM +0100, Krzysztof Kozlowski wrote:
+>> On 18/01/2023 20:30, Mark Yacoub wrote:
+>>> From: Sean Paul <seanpaul@chromium.org>
+>>>
+>>> This patch adds the register ranges required for HDCP key injection and
+>>
+>> Do not use "This commit/patch".
+>> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+>>
+>> This applies to all your patches. Fix it everywhere.
 > 
-> Thanks for the feedback.
-> 
-> > Subject: Re: [PATCH v2 00/12] ADD USB3.1 HOST, Peri and DRD support
-> > 
-> > On Thu, Jan 12, 2023 at 09:58:54PM +0000, Biju Das wrote:
-> > > This patch series aims to add USB3.1 HOST, Peri and DRD support on
-> > > RZ/V2M EVK platform.
-> > >
-> > > The reset for both host and peri are located in USB3DRD block. The
-> > > USB3DRD registers are mapped in the AXI address space of the
-> > > Peripheral module.
-> > >
-> > > RZ/V2M XHCI is similar to R-Car XHCI but it doesn't require any
-> > > firmware.
-> > >
-> > > Host/device needs to do reset release and set the host/device function
-> > > on DRD module, before accessing any registers.
-> > 
-> > After applying this series and building it on x86_64 I get the following
-> > build errors:
-> > 
-> > ERROR: modpost: "rzv2m_usb3drd_reset" [drivers/usb/host/xhci-plat-hcd.ko]
-> > undefined!
-> > ERROR: modpost: "rzv2m_usb3drd_reset"
-> > [drivers/usb/gadget/udc/renesas_usb3.ko] undefined!
-> 
-> The file drivers/usb/gadget/udc/rzv2m_usb3drd.c is not getting compiled,
-> 
-> If USB_RZV2M_USB3DRD=y, USB_XHCI_RZV2M=m and USB_RENESAS_USB3=m and 
-> Because of that modpost is giving undefined error.
-> 
-> So I have updated the KCONFIG like below and now it builds OK now. I will send next version
-> based on this, if there are no comments.
-> 
-> -- a/drivers/usb/gadget/udc/Kconfig
-> +++ b/drivers/usb/gadget/udc/Kconfig
-> @@ -180,10 +180,17 @@ config USB_RENESAS_USBHS_UDC
->            gadget drivers to also be dynamically linked.
->  
->  config USB_RZV2M_USB3DRD
-> +       tristate 'Renesas USB3.1 DRD controller'
->         depends on ARCH_R9A09G011 || COMPILE_TEST
-> -       bool
-> -       default y if USB_XHCI_RZV2M
-> -       default y if USB_RENESAS_USB3
-> +       default y if USB_XHCI_RZV2M=y
-> +       default y if USB_RENESAS_USB3=y
+> My goodness, this is peak bikeshedding. Surely we have better things to do with
+> our time?
 
+While I would not enforce this rule if there were no other issues with 
+the commits, Mark will have to cleanup/rework commits anyway, see other 
+review comments. Thus removing/slightly rephrasing a commit message 
+sounds like a minor issue to me.
 
-These should just be:
-	default USB_XHCI_RZV2M
-	default USB_RENESAS_USB3
-right?
+>>>
+>>> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+>>> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+>>> Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run #v1
+>>> Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-14-sean@poorly.run #v2
+>>> Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-14-sean@poorly.run #v3
+>>> Link: https://patchwork.freedesktop.org/patch/msgid/20211105030434.2828845-14-sean@poorly.run #v4
+>>> Link: https://patchwork.freedesktop.org/patch/msgid/20220411204741.1074308-10-sean@poorly.run #v5
+>>
+>> Drop the links.
+> 
+> Why? I've always done this, it seems helpful to me?
+> 
 
-thanks,
+I'd say, if you wish to include them, they belong to the cover letter, 
+not to the per-commit message. Once landed, they will serve no purpose.
 
-greg k-h
+-- 
+With best wishes
+Dmitry
+
