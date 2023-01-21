@@ -2,82 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C7A567672E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 16:36:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0726676758
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 17:24:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjAUPg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 10:36:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50858 "EHLO
+        id S229667AbjAUQY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 11:24:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbjAUPg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 10:36:26 -0500
-Received: from out2.migadu.com (out2.migadu.com [IPv6:2001:41d0:2:aacc::])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3EF528D1C;
-        Sat, 21 Jan 2023 07:36:25 -0800 (PST)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
-        t=1674315384;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=M8lIE+6WE9tMl1ZMBNy5CDlevzKnMkbivuT3ciwYp14=;
-        b=M7hXj4cJw6RZF9uP8KLgmLQDXunN7Qm53brTFHZS4XI4bqRtYqKkPUa5kS1tgs81nIhYyX
-        Xvo74sWyjF5tOPeeLlkNwEQEoBz2/4MGbWD0ONVuXAZ5ASJu3lZISESewHbSNzMCzaCxUB
-        P/FyRiTLpqgS1pja107xW1VfFp3U+lo=
-From:   Rayyan Ansari <rayyan@ansari.sh>
-To:     dri-devel@lists.freedesktop.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
-        janne@jannau.net, Rayyan Ansari <rayyan@ansari.sh>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
-        Hans de Goede <hdegoede@redhat.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 2/2] dt-bindings: display: simple-framebuffer: Document physical width and height properties
-Date:   Sat, 21 Jan 2023 15:35:44 +0000
-Message-Id: <20230121153544.467126-3-rayyan@ansari.sh>
-In-Reply-To: <20230121153544.467126-1-rayyan@ansari.sh>
-References: <20230121153544.467126-1-rayyan@ansari.sh>
+        with ESMTP id S229484AbjAUQY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 11:24:26 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BAA424489;
+        Sat, 21 Jan 2023 08:24:25 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id f19-20020a1c6a13000000b003db0ef4dedcso7797812wmc.4;
+        Sat, 21 Jan 2023 08:24:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YN0RgsGY5sjGwWchYqHougYTE34oL9zgVxdSvXbiA+I=;
+        b=axs0MMcnoNP58RZQ0NnQKFxcaprb/RIXNjgNOzL6Ntr6HXXK5XkH+IjMLEIe1BQ4t8
+         uHU32xccS8zpmJt+2inu9E7omuQg8IsrTKOWjylFTchtEoYlrV/md/E4WjmdRqztUPui
+         CLjVRAJBnA+zyQPh8+2hSnwDtjY6YRsUvSaGrglIBM+iZUbGR2z1v7hcurAuo5hZrbab
+         JVdPO7ZUTqBeEzHlliyEl/+A5lZroKlSqIxE17QDMJkyBCRnhlW007rlHe/e3d+PPKDi
+         IR491Fz2OFXvByAedeasXzfLAAXDlO3AZZfjKogGLYLGis7ILZwWw5Kztkv1ce6Mr1uU
+         BAwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YN0RgsGY5sjGwWchYqHougYTE34oL9zgVxdSvXbiA+I=;
+        b=MBygHj5JxIzv7xiXh+ZaoZFStS3MakwBpscid8nTWPLNS5b5nQtUUTM+QcGLeEljOj
+         dQMzOecrac5CsRHXDfEgXt+vtRH4AaU9Kd/pcs2UTDksdOvCpg3+JSnat9zGoiDBZ1yT
+         Opig0jAvkM3C1Z/IgcN8BZrZYfHd/+dqrnp9YsdKhq5XnqMgifmes80Ym0AtGTSSGHD5
+         W8VRgseKHgdPnUedDFpdN4vHwJJTif09Ml00V7UXbhlTr6oAqkbCCzMTfY2L60eVumuf
+         C4l4a0Mv8yC1d46wq9RKGlgk6tquCWua+FM+2hSytY6GienFUH92nMtXiddVIbmly7na
+         zywQ==
+X-Gm-Message-State: AFqh2kpLQbePcQHhiepbu3IpjnRNBCmYwWu4LiMiB3HO8/dz/cMWF237
+        hly4XOVPbm14gzpPALHj628=
+X-Google-Smtp-Source: AMrXdXueG+30f15FM6ZNJFdngtP8IrOmcwx4tufP2MpKVjvv5woJcynb6f9jfv42oBWUVemFbct+Sg==
+X-Received: by 2002:a05:600c:1604:b0:3c6:e61e:ae74 with SMTP id m4-20020a05600c160400b003c6e61eae74mr19145049wmn.4.1674318263594;
+        Sat, 21 Jan 2023 08:24:23 -0800 (PST)
+Received: from localhost.localdomain (2a02-8428-46a0-7c01-43c0-f52a-beed-541b.rev.sfr.net. [2a02:8428:46a0:7c01:43c0:f52a:beed:541b])
+        by smtp.gmail.com with ESMTPSA id k21-20020a05600c1c9500b003db30be4a54sm5831443wms.38.2023.01.21.08.24.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Jan 2023 08:24:23 -0800 (PST)
+From:   Christophe Branchereau <cbranchereau@gmail.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul@crapouillou.net,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Christophe Branchereau <cbranchereau@gmail.com>
+Subject: [PATCH v4 0/2] Add support for the AUO A030JTN01 TFT LCD
+Date:   Sat, 21 Jan 2023 17:24:17 +0100
+Message-Id: <20230121162419.284523-1-cbranchereau@gmail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
----
- .../devicetree/bindings/display/simple-framebuffer.yaml   | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Changes since v3:
+  Reworked the few init registers that are used for hblk, vblk and standby
+  Use of dev_err_probe() instead of dev_err()
+  priv->panel_info = spi_get_device_match_data(spi);
 
-diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
-index dd64f70b5014..eb33bfd805db 100644
---- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
-+++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
-@@ -106,6 +106,14 @@ properties:
-       - x2r10g10b10
-       - x8r8g8b8
- 
-+  width-mm:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Physical width of the display in millimetres
-+
-+  height-mm:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Physical height of the display in millimetres
-+
-   display:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description: Primary display hardware node
+  restored spi node to dt-bindings that was missing in v3
+----
+
+Changes since v2:
+ - added macros for stanby mode (untested, please review @pcercuei)
+ - added SPI table_id
+ - changed description in the bindings to describe the hw more
+
+Changes since v1:
+- fixed the dt-bindings maintainer email adress
+- dropped backlight, port, power-supply and reset-gpios as they're
+  provided by panel-common.yaml as pointed by Krzysztof Kozlowski
+- changed reg: true to reg : maxItems: 1
+
+
+Christophe Branchereau (1):
+  drm/panel: Add driver for the AUO A030JTN01 TFT LCD
+
+Paul Cercueil (1):
+  dt-bindings: display/panel: Add AUO A030JTN01
+
+ .../bindings/display/panel/auo,a030jtn01.yaml |  60 ++++
+ drivers/gpu/drm/panel/Kconfig                 |   8 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-auo-a030jtn01.c   | 308 ++++++++++++++++++
+ 4 files changed, 377 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/auo,a030jtn01.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-auo-a030jtn01.c
+
 -- 
 2.39.0
 
