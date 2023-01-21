@@ -2,152 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABCB56766A4
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 15:06:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B9BB6766C3
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 15:37:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbjAUOGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 09:06:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56410 "EHLO
+        id S229776AbjAUOhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 09:37:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjAUOGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 09:06:39 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D791637B48
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 06:06:37 -0800 (PST)
-Received: from stefanw-SCHENKER ([37.4.248.41]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MplHR-1ovgRn0vO9-00q7R7; Sat, 21 Jan 2023 15:01:10 +0100
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH 2/2] dt-bindings: arm: Document the rest of i.MX28 based boards
-Date:   Sat, 21 Jan 2023 15:00:53 +0100
-Message-Id: <20230121140053.10242-2-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230121140053.10242-1-stefan.wahren@i2se.com>
-References: <20230121140053.10242-1-stefan.wahren@i2se.com>
+        with ESMTP id S229735AbjAUOhk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 09:37:40 -0500
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236441B0;
+        Sat, 21 Jan 2023 06:37:38 -0800 (PST)
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id 33DEE68CFE; Sat, 21 Jan 2023 15:37:33 +0100 (CET)
+Date:   Sat, 21 Jan 2023 15:37:33 +0100
+From:   Christoph Hellwig <hch@lst.de>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+        guoren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Tsukasa OI <research_trasio@irq.a4lg.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Mayuresh Chitale <mchitale@ventanamicro.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [RFC PATCH v6 1/6] riscv: mm: dma-noncoherent: Switch using
+ function pointers for cache management
+Message-ID: <20230121143733.GA7415@lst.de>
+References: <20230106185526.260163-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <6f7d06ef-d74d-4dfc-9b77-6ae83e0d7816@app.fastmail.com> <CA+V-a8uF1s+dwKC_+apL+CBiHN8w_J0n_G2dqsgiAUZVEibfqg@mail.gmail.com> <9017adf0-acd4-4c43-8aea-3579b214b477@app.fastmail.com> <CA+V-a8u6jvR=EDeE3mAbDr6-06NoBJ7mwmi_Y9qVyHT+aC-9rg@mail.gmail.com> <45d6eb0c-cbe3-4a83-aa12-3483638473ae@app.fastmail.com> <20230110070144.GG10289@lst.de> <02988e70-b099-46fd-b260-2d537c50543a@app.fastmail.com> <20230113054807.GA23179@lst.de> <ea4cb121-97e9-4365-861a-b3635fd34721@app.fastmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:fM2V/sbpbIOXDCuTIG+llT/N7Y/Q2607yE45nT5eg3uWn4seesc
- Nh3CnqIAaCXoZYsUjsOlEK/NU1E0WsdEecU8HYTy/hpDd6UNEB5STy2+s3E0m6sIE1e2UUU
- Aho3i6Zew6PVVUSRiJelyK47QcH3bk04Lc/SO/2WLprsKgLrwmyavDAAk5SGKZ+6cOL+XHO
- e9DyyNSFpy0y7pz8rdOpw==
-UI-OutboundReport: notjunk:1;M01:P0:vwc4ktLS2Vg=;Urcq8stTd8UiuYzA5vv3t/WnQjn
- e7JKKHb2pl/jDncWKVP7EihJ28Zi9PWwLPSG53M5RbO/rWdvNOwH95THpfUd7ObNZucsKyabF
- qFiUqGqfcE3ICJ7DDxaF0RC6yu2GNQlNofQwXXZHohAe6FhvOwKxEBJzlbs0yfAtUjv1xagNp
- qYADiJn+Bto3c2o0FgF1QLdpUzSLBkO+sE16Dl6PTxutmYgEWc8pieeuZQ14IzB6aC4Q38FWM
- YVnaR4QvTdZxux+0I11pooRPz+c6haoes2yE30qYP5Ouo6IyaS916QNZhkxdG86YFV7zMqynA
- 6ibYV8qsXl0yT4U7S7RB/lVWzNEP9qkkKnDZzJf+wOadc5DnUKsH6i8NdZYme0YvBeH10+jDS
- kVD60sjtsDQ+6cjHB2lEm8WExZzgK3fQ5zt4btR/Eyl/LhJetkQgWTRGxhd/GlavAlzym/7Gh
- MaTCHq1pVm3DR+0x6tw5dbm+2zg7ce0YDIChYLmDcReiL27QPsL9847zEpuC77EQ9R4rTUgQM
- Q6q+QAwVEtLgsFopA5O6MxYQVjOd6dtq4+84NuQHP6oezOFNh3ADtBF3jEW2fBU5C/HKDyUoM
- 1zzN8JOLN63boi/Lnc12qY72xEDFnjuH1/ErBXnTK2eGDFOgBBVNC28l93Si96S5YX4uEFbuV
- jqL6jSpNYkhHnbuSgWZYv9RuBGspkVaZ2LWppjDZzg==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ea4cb121-97e9-4365-861a-b3635fd34721@app.fastmail.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Not all compatibles of i.MX28 based boards are documented, which
-cause dtbs_check warnings. So add the missing compatibles to
-fsl.yaml.
+On Fri, Jan 20, 2023 at 06:04:37PM +0100, Arnd Bergmann wrote:
+> Having looked at this some more, I see that the powerpc
+> version is a bit problematic here as well: this one
+> flushes the partial cache lines before and after the
+> DMA transfer, while only invalidating the full
+> cache lines.
 
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
- .../devicetree/bindings/arm/fsl.yaml          | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
+That feels really odd, and might be worth a bug report to the
+PPC maintainers.
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 599e8fcec6bc..ce5b5a82ee3a 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -88,18 +88,56 @@ properties:
-         items:
-           - enum:
-               - armadeus,imx28-apf28      # APF28 SoM
-+              - bluegiga,apx4devkit       # Bluegiga APx4 SoM on dev board
-+              - crystalfontz,cfa10036     # Crystalfontz CFA-10036 SoM
-+              - eukrea,mbmx28lc
-               - fsl,imx28-evk
-               - i2se,duckbill
-               - i2se,duckbill-2
-+              - karo,tx28                 # Ka-Ro electronics TX28 module
-+              - lwn,imx28-xea
-+              - msr,m28cu3                # M28 SoM with custom base board
-+              - schulercontrol,imx28-sps1
-               - technologic,imx28-ts4600
-           - const: fsl,imx28
- 
-+      - description: i.MX28 Aries M28 SoM Board
-+        items:
-+          - const: aries,m28
-+          - const: denx,m28
-+          - const: fsl,imx28
-+
-+      - description: i.MX28 Aries M28EVK Board
-+        items:
-+          - const: aries,m28evk
-+          - const: denx,m28evk
-+          - const: fsl,imx28
-+
-       - description: i.MX28 Armadeus Systems APF28Dev Board
-         items:
-           - const: armadeus,imx28-apf28dev
-           - const: armadeus,imx28-apf28
-           - const: fsl,imx28
- 
-+      - description: i.MX28 Crystalfontz CFA-10036 based Boards
-+        items:
-+          - enum:
-+              - crystalfontz,cfa10037
-+              - crystalfontz,cfa10049
-+              - crystalfontz,cfa10057
-+              - crystalfontz,cfa10058
-+          - const: crystalfontz,cfa10036
-+          - const: fsl,imx28
-+
-+      - description: i.MX28 Crystalfontz CFA-10037 based Boards
-+        items:
-+          - enum:
-+              - crystalfontz,cfa10055
-+              - crystalfontz,cfa10056
-+          - const: crystalfontz,cfa10037
-+          - const: crystalfontz,cfa10036
-+          - const: fsl,imx28
-+
-       - description: i.MX28 Duckbill 2 based Boards
-         items:
-           - enum:
-@@ -109,6 +147,19 @@ properties:
-           - const: i2se,duckbill-2
-           - const: fsl,imx28
- 
-+      - description: i.MX28 Eukrea Electromatique MBMX283LC Board
-+        items:
-+          - const: eukrea,mbmx283lc
-+          - const: eukrea,mbmx28lc
-+          - const: fsl,imx28
-+
-+      - description: i.MX28 Eukrea Electromatique MBMX287LC Board
-+        items:
-+          - const: eukrea,mbmx287lc
-+          - const: eukrea,mbmx283lc
-+          - const: eukrea,mbmx28lc
-+          - const: fsl,imx28
-+
-       - description: i.MX31 based Boards
-         items:
-           - enum:
--- 
-2.34.1
+> Obviously there is no winning either way if the same
+> cache line gets written by both CPU and device, I'm
+> just trying to figure out what behavior we actually
+> want here.
 
+There isn't, and that's why we require DMAed regions to be cache line
+aligned.
+
+> Aside from the question for how to handle flush vs invalidate
+> on DMA_FROM_DEVICE, I'm still trying to figure out how to
+> best handle highmem with architecture specific cache management
+> operations. The easy approach would be to leave that up
+> to the architecture, passing only a physical address to
+> the flush function.
+
+I suspect that is a good enough first step.  Especially as I remember
+that some architectures have physical address based cache management
+anyway (unless we removed them in the meantime).
+
+> A nicer interface might be to move the
+> loop over highmem pages out into common code, flush
+> lowmem pages by virtual addresss, and have a separate
+> callback for highmem pages that takes a page pointer,
+> like
+
+I'd rather avoid multiple callbacks if we can.  But maybe solve
+the simple problem first and just pass the paddr and then
+iterate from there.
+
+> 
+> struct dma_cache_ops {
+>         void (*dma_cache_wback_inv)(void *start, unsigned long sz);
+>         void (*dma_cache_inv)(void *start, unsigned long sz);
+>         void (*dma_cache_wback)(void *start, unsigned long sz);
+> #ifdef CONFIG_HIGHMEM
+>         void (*dma_cache_wback_inv_high_page)(struct page *, size_t start, unsigned long sz);
+>         void (*dma_cache_inv_high_page)(struct page *, size_t start, unsigned long sz);
+>         void (*dma_cache_wback_high_page)(struct page *, size_t start, unsigned long sz);
+
+Btw, I really don't think these should be indirect calls.  
+For sane architectures there should be exactly one way to call them,
+and the onces that have different implementations really should be
+using alternatives instead of expensive indirect calls.
