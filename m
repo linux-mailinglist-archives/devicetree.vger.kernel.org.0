@@ -2,123 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F97167689D
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 20:54:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B8D267689E
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 20:54:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229562AbjAUTyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 14:54:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39550 "EHLO
+        id S229553AbjAUTyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 14:54:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjAUTyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 14:54:09 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA1431E9EB
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 11:54:07 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id h12so3557492wrv.10
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 11:54:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aZ3lscIdSLU+4qIlRSUCjLYlbjbSdnG8zs6ToV30DxU=;
-        b=Oz5Fnvrnby7oW6zTWqW1zxkjEzcy/jmRzX92SvSUGXScHBLJdNj9IiNk3YLtjcaoL+
-         yyZgJAiQV+CqvrpWaLyQ4Ga3pfXOZ9NlOwPzE71Cil2H2TsEHBKPz4716f4Fz5exxA3x
-         v2SZR1my3nbXIhBZVqpotGJzDWwLF8GBRW+FDV80SI6En2qNdQgP/A2O74CPQ3Uq0Pju
-         j0rttR9T2n55ZnsZjNN+N8z6s8lue4KIcTkDKAWKIzk97sTBFCpLISbYKgVpyeZ1iijz
-         iISn0AzDY0j0rt6vE1+tPXyOrYtoTbEOBco307KtQj7s+9RKz3P5Xa6aBLv4iAwImwYi
-         hxNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aZ3lscIdSLU+4qIlRSUCjLYlbjbSdnG8zs6ToV30DxU=;
-        b=vePLKqsOU13yDTzgUNoZ+kngFiy0j8HHB/s0umRTf3ViM+1g1ltYAwaOhmMnVFjLFo
-         pelmvNo/XyfOhFkBShN0BkRkG/4eFBDfYADJEwIGyp+Vceue6SGpYDst4Wy6tXfPCxkq
-         vaX6A/FffFagUrtnLeCdS1b8dFt8P9ljjL71t/A1uK1OezUfsK20JYXNMG5kLy1TjpCY
-         kBiTf1S3dQaqVAyjq37PZkwh9ca73iKRKVi8N1R5A2Iap1O1zTGdR2QEuUQy+Nbwte7W
-         J+cboT9VtZqTS0o3h/z0ovMiYyhBwCx4F4s+H0MFqscohkydsl2BO5Y/2iyyqTzBtK9r
-         LHwg==
-X-Gm-Message-State: AFqh2krbVx+v8OKplfdSnmOBQpmbwEImJnWH/t0fyst94O2Qi+4oNz25
-        ViArz5AHWdzpCpMzWYRz9M7a4w==
-X-Google-Smtp-Source: AMrXdXtYS82v/b4y0FPCVqaPwE8v3KskzZ9J4Xd26MDmSRADASIUt2JfBjMGU8kMvCJgAuCBEdSYIw==
-X-Received: by 2002:a5d:6350:0:b0:2bc:7d12:7400 with SMTP id b16-20020a5d6350000000b002bc7d127400mr17170407wrw.36.1674330846310;
-        Sat, 21 Jan 2023 11:54:06 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t12-20020adff60c000000b0024274a5db0asm620539wrp.2.2023.01.21.11.54.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 Jan 2023 11:54:05 -0800 (PST)
-Message-ID: <25a3eb81-dd0d-5c52-7f7a-a052d8ba46b4@linaro.org>
-Date:   Sat, 21 Jan 2023 20:54:03 +0100
+        with ESMTP id S229686AbjAUTyM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 14:54:12 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFA421E9EB
+        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 11:54:09 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id 6F9AB3200708;
+        Sat, 21 Jan 2023 14:54:08 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Sat, 21 Jan 2023 14:54:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm1; t=1674330848; x=
+        1674417248; bh=laY8oeCFqcVckQTX05hjbLbF03Ty2mxK/t7iXqoamjU=; b=b
+        DbA9k8bDXUFpiBtCuQ+3GP4q7WqrozZh1LoGyeX5FZI76ZwzXEj8Lsma511HC1Cj
+        XwJIAK4PLRhgOoPLWE6MWcJo48Ut6v0W3v82LhmpG17qwCDKlYSNAWEcTmcfI33p
+        KkLlmvhUMNHTWvQF7zaGzSZQVElk9K6IuWdq9qEcykRT9QuQCEymRpV9h2W/j2W4
+        47Zrz228XA5qU7Q6DRo+9jf3NOl/bJFfm06t9MxSc+rrnNDlRSt0mLlyLfoD3lsu
+        7YwA2lRAiDCdqbHv2mQymx8xmVwMRRYwSPbFRtBU39+MZlUsoujbn0yfLGlMzmmi
+        WnFZdl9SPaSyw2CSL9OXg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1674330848; x=
+        1674417248; bh=laY8oeCFqcVckQTX05hjbLbF03Ty2mxK/t7iXqoamjU=; b=B
+        N70bvdNmgPtPPc+bJma3IpxAv1EPiRc4i6Zs0XdPNNeqL+3Zu9qd2N3+Yozf9k4S
+        NkaKRNPLpztxrv+6IOxtG7nkO2dgZBANvULJ2XMrsJnrbDtkF+dY7O/ecJ4brX6D
+        xgBMCRnrsa9akw3cDsYVXKJxJtF39KWg4nQmj7TG2LnvAjt2Fclg838HTV3+qiqe
+        mdSmFAe/sFYNRjRFGcE1B8uLbeTb/Gyea06cqXk2Chqx3Y/5RasswC0C4cJ+/szR
+        gEkFVqAwSHZD2tf8vCoTPXI8UpcvblwSsct9Gva/s58IzOK5rp3lKw0rBHHa8egW
+        kGukC2tGQu6r4RhGr6Utg==
+X-ME-Sender: <xms:30LMY2iK5ImEm2TaG3HAZUyvhuOcHlGmEcXjKxgGQSFbKhndvsEygA>
+    <xme:30LMY3B6fhpYe6IkbocJO56Iiq1VsCQ10RaNnGjVAvsESZ3ZYjPsvkTI_FYQyQXHp
+    NN7uxJ0618zAP3WWw>
+X-ME-Received: <xmr:30LMY-EZe-Bkl3nJTiFqBZCrTHZ2s1tCwqa36AT57bbDY0G5v2VmzGjr3eDOSTGdiL4Zn6v0hVlZWjep58627eq5ULgg3b8Wz0Mv2wEjUoi2-3yFH6nUvsXOMw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedruddugedguddtjecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgr
+    mhhuvghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqne
+    cuggftrfgrthhtvghrnhepkeejleelfeeitdfhtdfgkeeghedufeduueegffdvhfdukeel
+    leeftdetjeehuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
+    hfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:30LMY_SW-Wvirp9PGdew7iRtXFEhhIjdCmDIsrRh_4FYU_BFJkqY8Q>
+    <xmx:30LMYzxCGDR4a1vP595uj74JmUiEQuHQ000649Ya7NvM19IMY8XmBA>
+    <xmx:30LMY963DJJ9VePIktuVxryS6Vm_5Yy-OXsWf7eZVj5wxbz1kR_p5g>
+    <xmx:4ELMY6lZqS60llaj2QcG4-UaBok-L6NaWkiLAh9LB2AcHf83m5TkdA>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 21 Jan 2023 14:54:06 -0500 (EST)
+Message-ID: <70948ace-1b75-c639-c2d3-3a4b222afd38@sholland.org>
+Date:   Sat, 21 Jan 2023 13:54:08 -0600
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Fix bindings for APF28Dev
- board
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH] ARM: dts: sun8i: a83t: bananapi-m3: describe SATA disk
+ regulator
 Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230121140053.10242-1-stefan.wahren@i2se.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230121140053.10242-1-stefan.wahren@i2se.com>
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230120012616.30960-1-andre.przywara@arm.com>
+From:   Samuel Holland <samuel@sholland.org>
+In-Reply-To: <20230120012616.30960-1-andre.przywara@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/01/2023 15:00, Stefan Wahren wrote:
-> Adjust the compatibles for the APF28Dev board in order to fix the
-> dtbs_check warning:
+On 1/19/23 19:26, Andre Przywara wrote:
+> The Bananapi-M3 has a SATA connector, driven by a USB-to-SATA bridge
+> soldered on the board. The power for the SATA device is provided by a
+> GPIO controlled regulator. Since the SATA device is behind USB, it has
+> no DT node, so we never described this regulator. Instead U-Boot was
+> turning this on in a rather hackish way, which we now want to get rid of.
+> On top of that it seems fragile to leave this GPIO undescribed, as
+> userland could claim it and turn the disk off.
 > 
->   DTC_CHK arch/arm/boot/dts/imx28-apf28dev.dtb
-> /home/stefanw/torvalds/arch/arm/boot/dts/imx28-apf28dev.dtb: /: compatible:
->   oneOf' conditional failed, one must be fixed:
->   ['armadeus,imx28-apf28dev', 'armadeus,imx28-apf28', 'fsl,imx28'] is too long
->   ['armadeus,imx28-apf28dev', 'armadeus,imx28-apf28', 'fsl,imx28'] is too short
->   ...
+> Add a fixed regulator, controlled by the PD25 GPIO, and mark it as
+> always-on. This would mimic the current situation, but in a safer way,
+> and would allow U-Boot to drop the CONFIG_SATAPWR enable hack.
 > 
-> Fixes: 3d735471d066 ("dt-bindings: arm: Document Armadeus SoM and Dev boards devicetree binding")
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+
+Acked-by: Samuel Holland <samuel@sholland.org>
+
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+>  arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 3ba354578e8f..599e8fcec6bc 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -88,12 +88,18 @@ properties:
->          items:
->            - enum:
->                - armadeus,imx28-apf28      # APF28 SoM
-
-Not related to your patch, but this looks odd. This is SoM, so even if
-it was made a DTS, it cannot be standalone board. The DTS or the
-compatible or both are misleading/incorrect.
-
-For the patch:
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-> -              - armadeus,imx28-apf28dev   # APF28 SoM on APF28Dev board
->                - fsl,imx28-evk
->                - i2se,duckbill
->                - i2se,duckbill-2
->                - technologic,imx28-ts4600
->            - const: fsl,imx28
-Best regards,
-Krzysztof
+> diff --git a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
+> index 5a7e1bd5f8258..8d56b103f0630 100644
+> --- a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
+> +++ b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
+> @@ -105,6 +105,21 @@ wifi_pwrseq: wifi_pwrseq {
+>  		/* enables internal regulator and de-asserts reset */
+>  		reset-gpios = <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 WL-PMU-EN */
+>  	};
+> +
+> +	/*
+> +	 * Power supply for the SATA disk, behind a USB-SATA bridge.
+> +	 * Since it is a USB device, there is no consumer in the DT, so we
+> +	 * have to keep this always on.
+> +	 */
+> +	regulator-sata-disk-pwr {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "sata-disk-pwr";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +		enable-active-high;
+> +		gpio = <&pio 3 25 GPIO_ACTIVE_HIGH>; /* PD25 */
+> +	};
+>  };
+>  
+>  &cpu0 {
 
