@@ -2,120 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E78676826
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 19:57:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E779B67682D
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 19:59:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbjAUS5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 13:57:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48100 "EHLO
+        id S229773AbjAUS72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 13:59:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjAUS5J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 13:57:09 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F55D4210
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:57:08 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id d14so3803760wrr.9
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:57:07 -0800 (PST)
+        with ESMTP id S229493AbjAUS71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 13:59:27 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B108710FD
+        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:59:25 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id g10so6313135wmo.1
+        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 10:59:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BFIsuTdWlrwQOTf1CbRte8ztz1IctUB0UWMATDFDLyI=;
-        b=oGiUtj0aoYKHqpNz/tW/5M8TsTMmxVCCkEDnzXKPh5oYB6WS6LSY4/rf6jzugCyCeV
-         Vw9/GzvHPpaqB6tvXmysPjVt2V/BB10I4sr95wgflIDiWugUZf9TqvXdfw+X7rYQx0M7
-         bj8Hc8rqwvtF3q0QpKaB/sfrCe9vXadAnEmAbo+KEX9GSb8Zt8PYw/Xq0xtoy1775sgX
-         qCZxfOFNiNX3KgaWY9TB/30BoXgltCdl7Cm+6NJcwHNnwKHLWcYj4lQ7W6VTTQrCea/K
-         +2pl6nUxX5tYjeF55XoCu1G/YrT5u55sRXTnIhmpTf0/1QHh7VrSLd3OZv1waxHLX3wL
-         scEw==
+        bh=Y+8AIcmyNh7anmgy6us1S2qZEpfi8cOsNKu1F+SDuic=;
+        b=DSNmytpeph3gW86uTDWNK4tSD4wjbNZ+cDtqBYO3TGJYyGKeyNEnyDHpdL6NbHsnsR
+         H1HZAwuXKokfN8LsS1QrJEyAeY7EIOdPKb8qeSzkOktbrnPpL84L2xaMDr+0F7xXZ3HP
+         5S4Q3pnfupRaVcL3f8GPGj2rc3jlDXy5D+vFJdCsgI6+Ntr7Pp1uQ4A5TgxZMj9fYqZf
+         zXsTyha3a2JkjiMkL3x711hQtBd+fuhd9iZtgPTCo4Ow3XIhSI0bGl5NGf8QzLUz0wfA
+         UwXvNPRSl2+7FhnwqvCm6ZPJaHNQjALqXvNoOxOpD3cch02DvgwxSnlmxIBX2RIhkkDS
+         BAnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BFIsuTdWlrwQOTf1CbRte8ztz1IctUB0UWMATDFDLyI=;
-        b=MfP0fqC4A0SdqPhIc2bsqVHC7Gp8+hsTPTajSyVRpuo/GtIFizFyOW2UuiOzFm951y
-         fsFJzD9H48q/lUzdCKi9j+DlFeIFpkoDMKaMSYMQ91tuEP+Nf0sBwAUY7zu5bpHcZjZE
-         4Hg90sN9c04jA2flbGJ18VYK2o8H58zc3eko9+oOeEMN0Rj2yKsmo4oPXKEQWj3qBwI+
-         Pgw7JH+CCVv1uRW29zi4ptz/KtlDfxOculH5gP5ikRBUiVBs+sYBvtkyxoV1FGVq+LjL
-         UM17XkS89p4MNyayoAWZiBcaDVwzy2RTHC4MiX9fOmnyg3Czk/4KNdvLlZ+ON2RJrMEc
-         aDYw==
-X-Gm-Message-State: AFqh2kql1pzKOaPWJzXfgxltFyMNWGHct1MPh8Su8kxq8Vh1k0+nMDyg
-        loXoeAKHcYH+xsWV3zyUMuAdSg==
-X-Google-Smtp-Source: AMrXdXt1q1YuvTu5Dd5G/0qnIktkSIElMwkz4o/ZEZWuTZR8ntFo9qnXoeVZYpjkshqeHeUknS2jxg==
-X-Received: by 2002:adf:e70a:0:b0:2b5:90e:cfa5 with SMTP id c10-20020adfe70a000000b002b5090ecfa5mr16667862wrm.29.1674327426596;
-        Sat, 21 Jan 2023 10:57:06 -0800 (PST)
+        bh=Y+8AIcmyNh7anmgy6us1S2qZEpfi8cOsNKu1F+SDuic=;
+        b=zL79blzWTdbVdXr/cMrIG/osLqVYYUMOT+gL2xi48ilYFTMM1LbroezNDmy64HvwgK
+         6SO+5WfscKfmU37UxRW5VwIqd51visId70q0C02HQ4g5GhB8A3/1yogqGTd6xddb/CO9
+         zdRuJ0mEWqFO99Zi361liSmO1gjQ1N3YK9wMqg0NhHpxRA8RELWM/FpNLhmi9TllvnbT
+         qMDRXfDYjmokPmg0dE6L6UmXOKaNQqW2UuWYMOplWISDrFwIyjhFr8nkOgDOh3hnJjJF
+         qsiwaKqN24eGq9GNxSbQMICuLTzNGemiLP+JnWeWaXm3x/xdgFjRli3+utB4RRwtqQNy
+         G1Cg==
+X-Gm-Message-State: AFqh2kq9/ctZoe4/tbtyykj16O7RzBZAww0sG4aWcEl8Gv3y9oAdEl21
+        mMlRJYDhmHlUgmEJjO1YAadH2w==
+X-Google-Smtp-Source: AMrXdXuEm576fBINS2Nr1ehlHPHAUS08eLwq4m7iyjQxHe/PDV7pRwzAmtYjpecqMbhz1ClAl+8oUQ==
+X-Received: by 2002:a05:600c:4d91:b0:3da:fb96:53d with SMTP id v17-20020a05600c4d9100b003dafb96053dmr17702315wmp.4.1674327564340;
+        Sat, 21 Jan 2023 10:59:24 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id i10-20020a05600011ca00b002bf94527b9esm3365260wrx.85.2023.01.21.10.57.03
+        by smtp.gmail.com with ESMTPSA id z4-20020a05600c0a0400b003db01178b62sm6848719wmp.40.2023.01.21.10.59.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 Jan 2023 10:57:06 -0800 (PST)
-Message-ID: <f3ec87a3-1a67-9d65-e470-eb527ffd6e0b@linaro.org>
-Date:   Sat, 21 Jan 2023 19:57:02 +0100
+        Sat, 21 Jan 2023 10:59:23 -0800 (PST)
+Message-ID: <277a46d9-587f-324b-10cf-064302bdd2c5@linaro.org>
+Date:   Sat, 21 Jan 2023 19:59:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v9 02/15] dt-bindings: mmc: cdns: Add AMD Pensando Elba
- SoC
+Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom,sm8450-camcc: constrain
+ required-opps
 Content-Language: en-US
-To:     Brad Larson <blarson@amd.com>
-Cc:     adrian.hunter@intel.com, alcooperx@gmail.com,
-        andy.shevchenko@gmail.com, arnd@arndb.de, brad@pensando.io,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        brijeshkumar.singh@amd.com, broonie@kernel.org,
-        catalin.marinas@arm.com, davidgow@google.com,
-        devicetree@vger.kernel.org, fancer.lancer@gmail.com,
-        gerg@linux-m68k.org, gsomlo@gmail.com, krzk@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
-        lee@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-spi@vger.kernel.org, p.yadav@ti.com, p.zabel@pengutronix.de,
-        piotrs@cadence.com, rdunlap@infradead.org, robh+dt@kernel.org,
-        samuel@sholland.org, skhan@linuxfoundation.org,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
-        vaishnav.a@ti.com, will@kernel.org, yamada.masahiro@socionext.com
-References: <f85cdf27-7ea0-14a8-10b0-7a9ac137a040@linaro.org>
- <20230121011004.38654-1-blarson@amd.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <20230119130028.106817-1-krzysztof.kozlowski@linaro.org>
+ <b676c36565da1b73c53ced6218ef6de1.sboyd@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230121011004.38654-1-blarson@amd.com>
+In-Reply-To: <b676c36565da1b73c53ced6218ef6de1.sboyd@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/01/2023 02:10, Brad Larson wrote:
-> +
->  required:
->    - compatible
->    - reg
->    - interrupts
->    - clocks
->  
-> +allOf:
-> +  - $ref: mmc-controller.yaml
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: amd,pensando-elba-sd4hc
-> +    then:
-> +      required:
-> +        - reset-names
-> +        - resets
+On 20/01/2023 23:15, Stephen Boyd wrote:
+> Quoting Krzysztof Kozlowski (2023-01-19 05:00:27)
+>> Be specific how many required-opps are allowed.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> This change is independent, although logically is connected with my
+>> dtschema pull:
+>> https://github.com/devicetree-org/dt-schema/pull/95
+> 
+> Do you want to take it through dt tree?
 
-Looks correct, just put required: after properties: below.
-
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +    else:
+I think it would be better if you take it.
 
 Best regards,
 Krzysztof
