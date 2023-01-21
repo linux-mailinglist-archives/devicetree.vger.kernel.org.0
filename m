@@ -2,164 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC9726768A8
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 21:05:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30DB567690B
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 21:17:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbjAUUFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 15:05:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41632 "EHLO
+        id S229815AbjAUURE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 15:17:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbjAUUFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 15:05:10 -0500
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5232222A03
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 12:05:09 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id u1-20020a17090a450100b0022936a63a21so12064179pjg.4
-        for <devicetree@vger.kernel.org>; Sat, 21 Jan 2023 12:05:09 -0800 (PST)
+        with ESMTP id S229493AbjAUURD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 15:17:03 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F14522A3E;
+        Sat, 21 Jan 2023 12:17:02 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id ud5so21826878ejc.4;
+        Sat, 21 Jan 2023 12:17:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0j60d7iQ4NQWxCiQzwUehUL0a3y+Bi4urvTxeUjWvB8=;
-        b=wz7V7Svw9SegVn7t5xdBgv0rmPDaDmHugVucHOACIk/EoelZOb1s4Jwa0vj+9nH6Pf
-         fhjKIdyrdch+NgeMQgk8Fo6j0IKfA19sMs5FlvzBQgMlfHH4+A5CvN4VuXvZBOJHYcel
-         zeVDIsmIvFpAtBIhavYrZIVMZh0I2vUxV/gDjk+Qf2gFHHKsvnLY6JQ4LXmq0S2+cpe1
-         /dBZsFvlEOwIq0BbQ8Cipc24KrYOpVLa3hShtAwkpxHT4RK8KXlxv230Iq3D4BQCxn5o
-         B8C5b/ZWtAyBbxxugpADmTiXsODRJCDcckRCPxxsG0vj0TqZr3fvMJGENK1yelgwhsA4
-         wcBQ==
+        bh=DVSO49G+90zNDzrj6MAr5GjdLJ2Rrum8smiQJoUXN+E=;
+        b=iejkVLTzMekISSw7CuLQ4ejyCGyo3rzrEO/81IsoLg9rNEnI6pWKM7s4ws93O7rGEB
+         92N1S3ak2gbjYCrf/Lm8C76cDgePs6mtbqELstgxYAhz9NDmSTy2x//JB05Hx/8dbEos
+         7uEfMg5RFZo27PQf7ytsB2zfbrkG/X7XnjlUB34lhlFybPEkWSx6hHsVaVUm7riZ7qDz
+         bmqQN2NsoZSSRIcmsqx3gI8LMHCxozMYubQ1h5WUIuIpKlzd36OqhuRNxB1eYs6Q/aGa
+         L5UXTP5bOEUWiLlZKabKMMGBK5Ha3/m/6GccEWiBPB7j7T4yyXjnx4fIBKHcT2sYgCng
+         XQ+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0j60d7iQ4NQWxCiQzwUehUL0a3y+Bi4urvTxeUjWvB8=;
-        b=u/upFbENJU58PILqx7std8H4kSwDl/FT3j/qiAafMT+Zkh3tTH1Xa225Ie7lSHN0Vv
-         o1h8BaEAGKfWFixX89ObT52oIbju+VkFe9XE5qazTZchhK7dsrLV/4enOskzh2TthLUT
-         1QUb6J6SmmerLkRnrs1Mwx5B/VIF95mx56oKjVYv8u7hCaHDQnXsuSGJ0+ThwpfWdRuZ
-         wKCHbxOM29A+L8yefYtqnWNj5PK3HEZHiQQsTOToW4p0IK0nTETYuaEru7JmBr+qUhEI
-         T1fAirWXWBdBRfUmyi+g4kf2M5McQEtDKejHYkmhQeO33rhO+ejffl+bZ8cAmzOrWJfH
-         C9LA==
-X-Gm-Message-State: AFqh2kqnINOebymwuNSYKrt80PCcS565Ds6szYR1eMMhIcKlhMnRWizy
-        utjtd4DluNdzlO3oA6LLRrxmFw==
-X-Google-Smtp-Source: AMrXdXsgTu/qEHUxOMVP9vS7O/BqUv57gbtll3vcKJw/BSN9mpGVvzKzdBCWTUqBXTzNYKcMoQy+yQ==
-X-Received: by 2002:a05:6a20:d80e:b0:ac:b2a3:e39c with SMTP id iv14-20020a056a20d80e00b000acb2a3e39cmr19018212pzb.62.1674331508623;
-        Sat, 21 Jan 2023 12:05:08 -0800 (PST)
-Received: from localhost.localdomain ([223.233.74.24])
-        by smtp.gmail.com with ESMTPSA id bg7-20020a056a02010700b004785c24ffb4sm15595269pgb.26.2023.01.21.12.05.04
+        bh=DVSO49G+90zNDzrj6MAr5GjdLJ2Rrum8smiQJoUXN+E=;
+        b=3OyhDmNB6Wkw2PeGS1s+RmH9Cbr8AFtAfUENENLDMSyxy+/jvUIljyq2EljMFfswaL
+         /RZooAHTEI9SiAwLdr6CA/AHzpDEXIyZCxqXLsgjr7ARxmm36fFPv1W0X1j1R+FkH7Cj
+         Us4Ox/TGIke3VZEUamrrFDznBE6APi5fVqjbxWM4EdZqlhvjnN2rw0sMh3Sy51rR/D2E
+         Iz2sg0oZSBLbTNHMDgcbVGZ0heuxpEYc/TagpfHCZCKAKskztpT+7QSpQ8koUOXMVaKR
+         qnakSq7+t4aKLDNIxSRDdH1D+J1OmmoLMIfVtNIVrQOZkOT13HpSL6WftVLg0RQLTZg8
+         jw8Q==
+X-Gm-Message-State: AFqh2kp2+sC3H7jFmLfDg5inW8j8uiYQBU89C0qJaD3EF5KRHd+VXV5i
+        Exkwkqf4z7An7eC+4esWcNVdbBztn0/bTQ==
+X-Google-Smtp-Source: AMrXdXvsw4VtD76/xrwX5+TzLQDVpMWA1ZIvWyAa1Z/4uArg0b19K+cHV2txsCX07YXiBPZ+e1dr3Q==
+X-Received: by 2002:a17:906:25db:b0:877:6a03:9ad1 with SMTP id n27-20020a17090625db00b008776a039ad1mr11055618ejb.7.1674332220452;
+        Sat, 21 Jan 2023 12:17:00 -0800 (PST)
+Received: from localhost.localdomain ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id g8-20020aa7d1c8000000b0049e1f167956sm8278427edp.9.2023.01.21.12.16.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Jan 2023 12:05:07 -0800 (PST)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm6115: Add smp2p nodes
-Date:   Sun, 22 Jan 2023 01:34:54 +0530
-Message-Id: <20230121200454.1423567-1-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.38.1
+        Sat, 21 Jan 2023 12:16:59 -0800 (PST)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Markuss Broks <markuss.broks@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v2 0/3] Correct inaccuracies in Exynos5420 and Exynos5800 device trees
+Date:   Sat, 21 Jan 2023 22:16:47 +0200
+Message-Id: <20230121201650.46560-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the adsp, cdsp and modem smp2p nodes to sm6115.
+Use the proper compatibles for the DSI host controller and MIPI
+video phy, as the current ones are not compatible with the hardware.
 
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 72 ++++++++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+While this fixes the kernel panic while trying to use DSI, I was still
+unsuccessful to consistently produce image that isn't noise on S6E3FA2
+panel of Samsung Galaxy S5. It seems to only work sometimes.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 50cb8a82ecd5..3c66f998a81b 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -345,6 +345,78 @@ rpmpd_opp_turbo_plus: opp8 {
- 		};
- 	};
- 
-+	smp2p-adsp {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <443>, <429>;
-+
-+		interrupts = <GIC_SPI 279 IRQ_TYPE_EDGE_RISING>;
-+
-+		mboxes = <&apcs_glb 10>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <2>;
-+
-+		adsp_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		adsp_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	smp2p-cdsp {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <94>, <432>;
-+
-+		interrupts = <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>;
-+
-+		mboxes = <&apcs_glb 30>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <5>;
-+
-+		cdsp_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		cdsp_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	smp2p-mpss {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <435>, <428>;
-+
-+		interrupts = <GIC_SPI 70 IRQ_TYPE_EDGE_RISING>;
-+
-+		mboxes = <&apcs_glb 14>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <1>;
-+
-+		modem_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		modem_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
- 	soc: soc@0 {
- 		compatible = "simple-bus";
- 		#address-cells = <1>;
+Cc: Mark Brown <broonie@kernel.org>
+
+v1 -> v2:
+- squash patch 1 and patch 3, making it one patch for adding the label and
+  changing the compatible
+- use better subject prefixes
+
+Markuss Broks (2):
+  arm: dts: exynos5420: Use Exynos5420 compatible for the MIPI video phy
+  arm: dts: exynos5800: Use Exynos5422 compatible for the DSI controller
+
+ arch/arm/boot/dts/exynos5420.dtsi | 4 ++--
+ arch/arm/boot/dts/exynos5800.dtsi | 4 ++++
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
 -- 
-2.38.1
+2.39.0
 
