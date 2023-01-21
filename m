@@ -2,106 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32CE86765F8
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 12:24:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25825676622
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 13:03:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229622AbjAULYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 06:24:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46468 "EHLO
+        id S229523AbjAUMDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 07:03:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjAULYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 06:24:07 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13BB91ABDB;
-        Sat, 21 Jan 2023 03:24:05 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id az20so19950973ejc.1;
-        Sat, 21 Jan 2023 03:24:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HhM5qJGPxBSYXZ+6kwCdfI+MuMuQZtYYh38bbR24IOU=;
-        b=Gp587WKzuBhzbJhcj2m7SGcQd430qD8dtMKAnx6sj6O0QsE49WPZ1CPsvrGhDEqN21
-         qZXip/tEt+qMo970kUUQvXWWB3wjqXqdeQgawc7EjAes44cIbsCLGYzj3ra2k2sS5rfd
-         O92kJd2s2nwdDUUPHfYKP+f/3WEuaKXaFA7TRQ5G3UBZvYrKxZ+pttGoSCe5hE2LJtyA
-         Vuuf/f40XSE2OqBh9cXCmO4ECeONQlHvPPkeGnJHqecelzlyX6hfOjhSZir4frM+9qD6
-         FaHNJ4W5LITdhuoo+CFuKFQ3RGri0eMxQb7YhUFmC1t8myqzwX00tRugt0xglht/g7Q0
-         I1sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HhM5qJGPxBSYXZ+6kwCdfI+MuMuQZtYYh38bbR24IOU=;
-        b=7EQxvRaOSuE5YUb7AdIC5rahMG6CVmyvFhIMWLy0XT7jdKoohgL5pKSPtyXcYauKwP
-         A5jVUF7fNiyzzKqQuCaN90ifM+SFfu4BS192mpwlHs49BIKYyrr2rKOaFjk1p/TBfO6/
-         okE9WwgcuUgLNpB1EPr0OjgkzMGTMTJE7u8OqZCGD8npyeNmFo33D0TztVoT2TY3Dm/s
-         OTsNfSS//pzpnJsBFaEtyZQErxrbvc/jEWgs8/g+yHBIBgVKmblSUBA5oYkMR6g+EOSM
-         dc8EdTk3vPcgOBHj/DnB6k+adYWV4zq5eR1Aivg/FttHJ637Dn7f1aAPoF1WsF8iOaRX
-         /h9g==
-X-Gm-Message-State: AFqh2krIxiVIo5CAjPOomByGwqFHvaUOJwukCkls9rEbSRIQVw34uOKj
-        vzHjnjW/F7dkd9ZBnGBYaY+DqAXEY2dRXw==
-X-Google-Smtp-Source: AMrXdXvwl7/IUyQSLPnO8/fs43tA3D0HTUPptMDflSGlEf2FKRnxs/R6MtyJxYwhRwDPtZQ34ME4Aw==
-X-Received: by 2002:a17:906:26d7:b0:862:11f6:a082 with SMTP id u23-20020a17090626d700b0086211f6a082mr17533322ejc.17.1674300243568;
-        Sat, 21 Jan 2023 03:24:03 -0800 (PST)
-Received: from fedora.. ([188.252.220.152])
-        by smtp.googlemail.com with ESMTPSA id 21-20020a170906319500b0086faa5b06d4sm9236365ejy.181.2023.01.21.03.24.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Jan 2023 03:24:03 -0800 (PST)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: qcom: ipq8074: add QFPROM node
-Date:   Sat, 21 Jan 2023 12:23:58 +0100
-Message-Id: <20230121112358.52216-2-robimarko@gmail.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230121112358.52216-1-robimarko@gmail.com>
-References: <20230121112358.52216-1-robimarko@gmail.com>
+        with ESMTP id S229450AbjAUMDY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 07:03:24 -0500
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7564859C;
+        Sat, 21 Jan 2023 04:03:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674302603; x=1705838603;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eQvXmYU1ul3ihyLWrnek5TV3lhtfpAdAscF3pcR3Ge0=;
+  b=RZNTro4Zn7sNg+hKBKMJ4dhv279PqALDlKOI2zw/4Z0EeeqP/OkACQ+c
+   9ZRTy8wtVtV1ScnxCaleQ2f6OjDteFFxNF1Z7w/uoMG3QOJ+mMnCTPO6f
+   cJmYKrkyLXQDaOm0RcU5GC6Fhia5XosZM0hRKkRwYW5+ABylSq6svamJ9
+   loUfcruka/D8Zff+8cV6QpXiGA2Ax7iec3jrow7lmmjfGkEvYwLLJBVv/
+   6djszXp0zculZyL86k8PMtcVEJCX4XWcYfWvicUw7vKlXGdYD0kckUKRO
+   AZw2vO5OBrf6kQaxMi54Qx6hdUmhL7NARZ293j9p1v10OJL+Galrw0NCt
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="306138287"
+X-IronPort-AV: E=Sophos;i="5.97,235,1669104000"; 
+   d="scan'208";a="306138287"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2023 04:03:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="834724793"
+X-IronPort-AV: E=Sophos;i="5.97,235,1669104000"; 
+   d="scan'208";a="834724793"
+Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 21 Jan 2023 04:03:18 -0800
+Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pJCab-00041m-1b;
+        Sat, 21 Jan 2023 12:03:17 +0000
+Date:   Sat, 21 Jan 2023 20:03:12 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Alexandru Tachici <alexandru.tachici@analog.com>,
+        linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, richardcochran@gmail.com,
+        yangyingliang@huawei.com, weiyongjun1@huawei.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, lennart@lfdomain.com
+Subject: Re: [net-next 1/3] net: ethernet: adi: adin1110: add PTP clock
+ support
+Message-ID: <202301211925.PhM4jvZS-lkp@intel.com>
+References: <20230120095348.26715-2-alexandru.tachici@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230120095348.26715-2-alexandru.tachici@analog.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ8074 has efuses like other Qualcomm SoC-s that are required for
-determining various HW quirks which will be required later for CPR etc,
-so lets add the QFPROM node for start.
+Hi Alexandru,
 
-Individidual fuses will be added as they are required.
+I love your patch! Yet something to improve:
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+[auto build test ERROR on net-next/master]
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 8eba586065a3..f29491f647fe 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -301,6 +301,13 @@ mdio: mdio@90000 {
- 			status = "disabled";
- 		};
- 
-+		qfprom: efuse@a4000 {
-+			compatible = "qcom,ipq8074-qfprom", "qcom,qfprom";
-+			reg = <0x000a4000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
-+
- 		prng: rng@e3000 {
- 			compatible = "qcom,prng-ee";
- 			reg = <0x000e3000 0x1000>;
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexandru-Tachici/net-ethernet-adi-adin1110-add-PTP-clock-support/20230120-175639
+patch link:    https://lore.kernel.org/r/20230120095348.26715-2-alexandru.tachici%40analog.com
+patch subject: [net-next 1/3] net: ethernet: adi: adin1110: add PTP clock support
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20230121/202301211925.PhM4jvZS-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/8acf61452607f47da6223227b32c6f1e8ec01f62
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Alexandru-Tachici/net-ethernet-adi-adin1110-add-PTP-clock-support/20230120-175639
+        git checkout 8acf61452607f47da6223227b32c6f1e8ec01f62
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "ktime_get_fast_timestamps" [drivers/net/ethernet/adi/adin1110.ko] undefined!
+
 -- 
-2.39.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
