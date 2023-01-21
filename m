@@ -2,152 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C4096766F8
-	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 15:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1C0F67672A
+	for <lists+devicetree@lfdr.de>; Sat, 21 Jan 2023 16:36:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbjAUO74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Jan 2023 09:59:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41990 "EHLO
+        id S229675AbjAUPg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Jan 2023 10:36:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229897AbjAUO74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 09:59:56 -0500
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1D47D20061;
-        Sat, 21 Jan 2023 06:59:45 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.97,235,1669042800"; 
-   d="scan'208";a="150151097"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 21 Jan 2023 23:59:45 +0900
-Received: from localhost.localdomain (unknown [10.226.92.25])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id ED50342BC25E;
-        Sat, 21 Jan 2023 23:59:42 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: [PATCH v3 12/12] arm64: dts: renesas: rzv2mevk2: Enable USB3 role switch
-Date:   Sat, 21 Jan 2023 14:58:53 +0000
-Message-Id: <20230121145853.4792-13-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230121145853.4792-1-biju.das.jz@bp.renesas.com>
-References: <20230121145853.4792-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S229484AbjAUPgZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Jan 2023 10:36:25 -0500
+Received: from out2.migadu.com (out2.migadu.com [IPv6:2001:41d0:2:aacc::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BBC62A9A8;
+        Sat, 21 Jan 2023 07:36:23 -0800 (PST)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
+        t=1674315380;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=/TK50vANIeT0VcQuhI0R9JP1NtC98hHehgAPETS4Aik=;
+        b=d48CK7Gsqlk9f29ouxtCo7pGt6AhCFUrJtA+xsJUBwULn6foz7n3xEMGka43KJZbYtRD+g
+        RhHqONZJ7iV8V0j+SnzZzZelkFE+v2+9XEd6qQDPw/e7V+MHp7v+199CTyIWlfOSzIrwgU
+        0iyX8vYaZczdM2cTPA8c43qWA9xpo2M=
+From:   Rayyan Ansari <rayyan@ansari.sh>
+To:     dri-devel@lists.freedesktop.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
+        janne@jannau.net, Rayyan Ansari <rayyan@ansari.sh>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
+        Hans de Goede <hdegoede@redhat.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 0/2] SimpleDRM: allow configuring physical width and height
+Date:   Sat, 21 Jan 2023 15:35:42 +0000
+Message-Id: <20230121153544.467126-1-rayyan@ansari.sh>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Migadu-Flow: FLOW_OUT
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB3 role switch on RZ/V2M EVK by linking USB3 peri node
-with hd3ss3220 controller node.
+Hello,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * No change
-v1->v2:
- * No change
----
- .../boot/dts/renesas/r9a09g011-v2mevk2.dts    | 64 +++++++++++++++++++
- 1 file changed, 64 insertions(+)
+The following patches:
+- Add support for configuring the width-mm and height-mm DRM mode
+  properties in the SimpleDRM driver via Device Tree
+- Document these two new Device Tree properties
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-index 2cd1c9f6dc6a..c9df1c00a08e 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-@@ -22,6 +22,29 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector {
-+		compatible = "usb-c-connector";
-+		label = "USB-C";
-+		data-role = "dual";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			port@0 {
-+				reg = <0>;
-+				hs_ep: endpoint {
-+					remote-endpoint = <&usb3_hs_ep>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+				ss_ep: endpoint {
-+					remote-endpoint = <&hd3ss3220_in_ep>;
-+				};
-+			};
-+		};
-+	};
-+
- 	memory@58000000 {
- 		device_type = "memory";
- 		/*
-@@ -59,6 +82,28 @@ &i2c0 {
- 	pinctrl-names = "default";
- 	clock-frequency = <400000>;
- 	status = "okay";
-+
-+	hd3ss3220@47 {
-+		compatible = "ti,hd3ss3220";
-+		reg = <0x47>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			port@0 {
-+				reg = <0>;
-+				hd3ss3220_in_ep: endpoint {
-+					remote-endpoint = <&ss_ep>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+				hd3ss3220_out_ep: endpoint {
-+					remote-endpoint = <&usb3_role_switch>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &i2c2 {
-@@ -93,7 +138,26 @@ &usb3host {
- };
- 
- &usb3peri {
-+	companion = <&usb3host>;
- 	status = "okay";
-+	usb-role-switch;
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		port@0 {
-+			reg = <0>;
-+			usb3_hs_ep: endpoint {
-+				remote-endpoint = <&hs_ep>;
-+			};
-+		};
-+		port@1 {
-+			reg = <1>;
-+			usb3_role_switch: endpoint {
-+				remote-endpoint = <&hd3ss3220_out_ep>;
-+			};
-+		};
-+	};
- };
- 
- &wdt0 {
+This is useful for allowing interfaces such as Phosh to calculate       
+proper scaling values.
+
+Changes since RFC:
+- Switch to using 32-bit DT property
+- Report errors for return values of of_property_read_u32 except -EINVAL
+- Calculate default value during probe
+- Add documentation
+
+Rayyan Ansari (2):
+  drm/simpledrm: Allow physical width and height configuration via DT
+  dt-bindings: display: simple-framebuffer: Document physical width and
+    height properties
+
+ .../bindings/display/simple-framebuffer.yaml  |  8 +++
+ drivers/gpu/drm/tiny/simpledrm.c              | 60 ++++++++++++++++---
+ 2 files changed, 59 insertions(+), 9 deletions(-)
+
 -- 
-2.25.1
+2.39.0
 
