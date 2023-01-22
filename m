@@ -2,116 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C61677088
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 17:28:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98E276770A4
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 17:39:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229837AbjAVQ2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 11:28:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47268 "EHLO
+        id S229963AbjAVQjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 11:39:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbjAVQ2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 11:28:32 -0500
-X-Greylist: delayed 372 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 22 Jan 2023 08:28:29 PST
-Received: from mx4.securetransport.de (mx4.securetransport.de [178.254.6.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5505815CBF;
-        Sun, 22 Jan 2023 08:28:29 -0800 (PST)
-Received: from mail.dh-electronics.com (unknown [77.24.89.57])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx4.securetransport.de (Postfix) with ESMTPSA id 96A91720292;
-        Sun, 22 Jan 2023 17:21:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1674404494;
-        bh=AiSRMdnpGQK3gHQmPsfSVOidTAJCssbAD7yVjWDjXko=;
-        h=From:To:CC:Subject:Date:From;
-        b=HXSHViVgAvS5PknXHoaeCYESzQpRm+g41jyFb9Wz/EAHicuPSbdUlBpPNUfOJNPd+
-         RCMAElf8vPDwRmuVPaUtDLCBFcI0QmJ9UwFyIFLPcLeVs8xeux82vlvcrS/ga2oncC
-         rYQo/8IRg/92QIUoCiVtSZETfRZgCqURy7IdAYrr2tiV15Jt3r/0kWAQJKrwnp4oh2
-         EGdiwE9yf2tClXdLNBPfOwMJFMABSLdLrsW6x9OBf6C34ZYOxiPk8Z72UFvjZnxq+r
-         oDjTiVFfedHude06amFOzMKuhJBeKB2VX85QhWCkArlfeTIrkhO+NEGdZ3q3yIf9i7
-         lm6TgoqhXVnsA==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.21; Sun, 22 Jan 2023 17:21:28 +0100
-Received: from localhost.localdomain (172.16.51.22) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.21 via Frontend Transport; Sun, 22 Jan 2023 17:21:27 +0100
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     <linux-arm-kernel@lists.infradead.org>
-CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        <kernel@dh-electronics.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH V5 1/4] dt-bindings: arm: fsl: Add PDK2, PicoITX and DRC02 boards for the DHCOM i.MX6ULL SoM
-Date:   Sun, 22 Jan 2023 17:20:10 +0100
-Message-ID: <20230122162013.4872-1-cniedermaier@dh-electronics.com>
-X-Mailer: git-send-email 2.11.0
-X-klartext: yes
+        with ESMTP id S229837AbjAVQjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 11:39:05 -0500
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A500193DE;
+        Sun, 22 Jan 2023 08:39:03 -0800 (PST)
+Received: by mail-vs1-xe33.google.com with SMTP id p1so10601769vsr.5;
+        Sun, 22 Jan 2023 08:39:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qACnEDq7CQssFw5cLANDAZIL8Q9CdsrvgqR6kIK4R8c=;
+        b=jJdJqLIc+y4MZw9WOKgOIdA8RdCtfAyAC4ly6O+FiaPwA6i9Vkj6mOnl7k0Nid0rin
+         vUWH1uUMl96R8SgK/deZTF8bEAmms9Nlqbdz/TqRNyH/n8LkH0+FUYwEqxlIEhBl2UaO
+         e3C4TFeYyqsO46rVZHVBRMjOJeJQ7Ces6Woo+UX2sZJG7T3RmJ+erLJK5cdvVFz9qcLq
+         TjvZVcQEhCXfFKSNPapz+4oBkNleg/HQVrykDvKhs0V1kciTCYEsLoe9n86Vm3UqjEgn
+         bApLH9Pjo2Jj82mMMZm1CfXu9qfcTDbem4SSaMcmxZzZOQ/uIp0lXWdwvusE3CcjAraJ
+         l9Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qACnEDq7CQssFw5cLANDAZIL8Q9CdsrvgqR6kIK4R8c=;
+        b=Qou7xKrx5/CZqnzmtZoUSXS6EEJkD1CxPLElH/pSFn87n2sdzOexwopPW8Mo6GWC4l
+         Brh0279cHfimKybrL7DPtaAAdyb09gxJu683EVhtj7eYVfkGml86PfM8IN7LfQYP1Vh6
+         1T69nDI8goP6vfiO+h+iO6ISBmuq0+8oT5IB0cWPkTYiYxwOjZaqP4cXbY+/JWGjTFoF
+         FH/u7PThSdqL3eoaEbrGb/2Wec5mAfeqokAWxQKWqyVK0CNJJcfEli14EEMcGpvAxqKU
+         rPLcaPakwyos3GopuunCfZJauEBc4zBQJQX3IIf81pQR8m1jT8LCpIxjlNlgLDNWgwhc
+         MC8Q==
+X-Gm-Message-State: AFqh2krlI9ZFf2wIG/mLCslnVcEg+a71u57/IdxqLCcqwkbBYezH4f4u
+        sdo5YlFCUMRX2maRU6oqd5p1yS4LTYoGt0COH4A=
+X-Google-Smtp-Source: AMrXdXsCmLpwa6AXzrh9D8riQ0Uxyadw4wR/THSg7SpKGBjdHUSxiY3O2+LwgCKTZeAjUn4YRFUUtNU3XJBaid5WnCg=
+X-Received: by 2002:a67:d097:0:b0:3d0:cb3d:ad47 with SMTP id
+ s23-20020a67d097000000b003d0cb3dad47mr3416403vsi.76.1674405542264; Sun, 22
+ Jan 2023 08:39:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20230121175639.12818-1-linux.amoon@gmail.com> <20230121175639.12818-6-linux.amoon@gmail.com>
+ <d0bdc8f9-5ea8-5c77-3193-a2932c87156a@linaro.org> <CANAwSgT4P544a2MeybV_hXkDfc_HXiO4Rnxt4qG3RM1-X-KCEQ@mail.gmail.com>
+ <07ce1655-d84b-e4f1-02d4-b69568830175@linaro.org>
+In-Reply-To: <07ce1655-d84b-e4f1-02d4-b69568830175@linaro.org>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Sun, 22 Jan 2023 22:08:47 +0530
+Message-ID: <CANAwSgSxasuEsqvwE-DLzjh8wBt3cRuWkHQv6aaWeXEgrvkRjQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/9] vendor-prefixes: Add VIA Labs, Inc.
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-amlogic@lists.infradead.org,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DH electronics DHCOM PDK2, PicoITX and DRC02 boards
-for the DHCOM i.MX6ULL SoM.
+Hi Krzysztof,
 
-Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Marek Vasut <marex@denx.de>
----
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Fabio Estevam <festevam@denx.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: kernel@dh-electronics.com
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
-V2: - Add Acked-by tag
-V3: - No changes
-V4: - Sort list of boards
-V5: - Add Reviewed-by tag
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+On Sun, 22 Jan 2023 at 15:06, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 22/01/2023 08:04, Anand Moon wrote:
+> > Hi Krzysztof,
+> >
+> > On Sun, 22 Jan 2023 at 00:21, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 21/01/2023 18:56, Anand Moon wrote:
+> >>> Add the vendor prefix for VIA Labs, Inc. (VLI) is a supplier
+> >>> of USB and USB Power Delivery controllers for multi-functional devices
+> >>> and platforms.
+> >>>
+> >>> Website: https://www.via-labs.com/
+> >>>
+> >>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> >>> ---
+> >>> v3: - None
+> >>> V2: - drop Drop marketing, so without "leading".
+> >>
+> >> Wasn't this merged? Didn't you get email?
+> >>
+> >
+> > Yes, it was merged into USB testing branch.
+> > I have rebased it on Linux master 6.2-rc5,
+> > I hope this series picks up again.
+>
+> No, that's not how it works. If patch was picked up, you must drop it.
+> Otherwise you might mislead maintainers (e.g. other maintainer) to pick
+> it up again.
+>
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 3ba354578e8f..0d268f79f322 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -645,6 +645,16 @@ properties:
-           - const: armadeus,imx6ull-opos6ul     # OPOS6UL (i.MX6ULL) SoM
-           - const: fsl,imx6ull
- 
-+      - description: i.MX6ULL DHCOM SoM based Boards
-+        items:
-+          - enum:
-+              - dh,imx6ull-dhcom-drc02
-+              - dh,imx6ull-dhcom-pdk2
-+              - dh,imx6ull-dhcom-picoitx
-+          - const: dh,imx6ull-dhcom-som # The DHCOR is soldered on the DHCOM
-+          - const: dh,imx6ull-dhcor-som
-+          - const: fsl,imx6ull
-+
-       - description: i.MX6ULL PHYTEC phyBOARD-Segin
-         items:
-           - enum:
--- 
-2.11.0
+Ok I will keep this in my mind for the future.
 
+>
+> Best regards,
+> Krzysztof
+>
+Thanks
+-Anand
