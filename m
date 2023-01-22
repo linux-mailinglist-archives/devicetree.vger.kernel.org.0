@@ -2,124 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43192676D8C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:16:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25D16676D91
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:18:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbjAVOQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 09:16:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42732 "EHLO
+        id S229972AbjAVOSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 09:18:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbjAVOQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:16:45 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEC5D1BACC
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:16:21 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id r9so8630762wrw.4
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:16:21 -0800 (PST)
+        with ESMTP id S229799AbjAVOSA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:18:00 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8E7F144B7
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:17:58 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id m15so7223793wms.4
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:17:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hltLV3ya8ktIesbWW9B+JQxvC7+ys0Pz05F3BDmcVzQ=;
-        b=a44FoSuX5jQrA63CqI55Xa498Vxdg/Tyc/vx0ArZx69NHf06EiaeeqYYYTD6nSB3M5
-         AoRrEOOoHHuWaZphy/SEaHCfRu3yOY6NM1JGJ10LGJ6AHb5ZwtrtR7GhkW0h+eoU4O/V
-         jYTrFyoL/BtKKyInYzziNGBSTg+2ArFNCZCEeHw4zZu83+QbfsdIk3YOCGZT+KtIDjpT
-         A/4bKdz3YuaebBoipcG9xgBlmlRBTEVJH3TtJyCimA5zd8fDvYE30QqFXISaqSsRx6Yp
-         brpEAryraPeICh5RlyJU5Qo7M2RiaQ0c6hkwTzeBoaMBxesGtxCWmAhqokq1T6F2SROn
-         +vhg==
+        bh=XjtzMpfc/L7l3fC8W1FOlPndT4/yZbcPMqMFz9cu9kY=;
+        b=e8Ep5xa52Zw9S9fKBFg5pmufcH+1T5QSycoeAReB0gK3rpjZjv8UoeFu/crHjPM+NX
+         rczOIH1HfixNQqjj0Sl948H9UymQ8xzxIZMIvUge/Y8JgqCEpLidz2IbY2MUDW/h4Gx9
+         JmGlsfvbEQn+v6UrghHuVeO7yo0RJGjdGEUzbkq3K9uP/kan0t3UHdz46WWUfe3xfy25
+         crTIo3/o/tnipKPc38h9b9A7gOfbjNOMr0RjFCan2OzwwmPlHiexqLOqdOV83yWxyfsz
+         4eQG2S4TFXtRfFUeiLtPFHQ0brDDcsTs/BPTKYQcT6E2qB2jqd/6iVpGkdiC4TZ/lHRD
+         FdiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hltLV3ya8ktIesbWW9B+JQxvC7+ys0Pz05F3BDmcVzQ=;
-        b=rARm35QBRuk3/ZN7kSDIqF3rWM4sKW0a0JVeuW/lF8Jljf97PLtOVpg7S2tG311kmK
-         44WWfhzzXoUi34y+I8m9D7UgYeipROZCB3BBuMZakQ3RZsLChGsB+xM1MkMQn1evKBBI
-         auFWKD49S+bpsbJNpMwLTqbXZp3HQK0zyJ5uyZvx3afcpXe/YMS8ilWEUSZIkH90UUtE
-         u//tXxX7LD1L63Ols5CReufjtpbu5R4g+iyPC7MySJdMN4dlwE8EP7rGsvccmm04+snM
-         mta2KfLQ+2vpEsbwjRiw+1U7d/87SFm/97x8fYhdYXL8lwklz4yH6xFAT9bFnqtjh9jK
-         ud6A==
-X-Gm-Message-State: AFqh2koOHF8lelH4zFhuGmlhHSrMdB9CdW6cNP3FACqDsG4GAvWhsmW5
-        BKadHg3nY+FLnemrBNtAMbodvg==
-X-Google-Smtp-Source: AMrXdXtU1a/dtmjJRUOHbLcFPO22+9D4XFjXFgfo5x1g6EzxrL/TMMrC9eQPuZR1P+f2mLUk2uRuug==
-X-Received: by 2002:a05:6000:603:b0:2bd:f651:3a67 with SMTP id bn3-20020a056000060300b002bdf6513a67mr21144691wrb.64.1674396976540;
-        Sun, 22 Jan 2023 06:16:16 -0800 (PST)
+        bh=XjtzMpfc/L7l3fC8W1FOlPndT4/yZbcPMqMFz9cu9kY=;
+        b=XZ3p6ivWMseeWiR4WXRQG0c/88PZiK/3M8WEDSy/10i7ZSoOxF6+wbbJFcRsEfBdHS
+         /uHqkn38ylMvPF/pXliFgf9D24Nwmiy7j4De3TviPXi9ZeL/KHIgE0JKimnIv19dbXAJ
+         yJKHEuDDZDsExyYH5sxk2645hGTUuzR+mJ2OJ8tdtcndZ2YqgvgVYSEOSPIoorIP+hKO
+         pk8mPEHOlgwtf/WLzAnuY0MidVBgel1l1gtmU0Y5giJUeAO95cpJHdL22GsSAll8NqRQ
+         9qX0juCZOY+QlqgDbDl0y8pRO438vG764gAA12aNMFxPziI69bcT4gw0mmuFnbmglSnh
+         GYoQ==
+X-Gm-Message-State: AFqh2krO5iD/ciRms5vXaUr5Jn6EaAkpuBcuvzh1mv6MbDCQxRTdNFYh
+        7PCREWL9QreuazTI/qHyLeh+Fw==
+X-Google-Smtp-Source: AMrXdXvqx3OuPPUrVEDE4FcnCybgJCBy6h2YA83AtFMcVZlG47Pyh9oMcY7c9dsmQc2Sv7qDPcQKzA==
+X-Received: by 2002:a05:600c:6001:b0:3da:f80a:5e85 with SMTP id az1-20020a05600c600100b003daf80a5e85mr20338672wmb.26.1674397077429;
+        Sun, 22 Jan 2023 06:17:57 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d3-20020adfe843000000b00241bd7a7165sm2549584wrn.82.2023.01.22.06.16.15
+        by smtp.gmail.com with ESMTPSA id d4-20020a05600c3ac400b003d9fa355387sm7825029wms.27.2023.01.22.06.17.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Jan 2023 06:16:16 -0800 (PST)
-Message-ID: <2d05a943-3510-5ee9-9906-247a6344190a@linaro.org>
-Date:   Sun, 22 Jan 2023 15:16:14 +0100
+        Sun, 22 Jan 2023 06:17:57 -0800 (PST)
+Message-ID: <c5888e27-18e7-24da-f177-4651fc875269@linaro.org>
+Date:   Sun, 22 Jan 2023 15:17:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v2 4/4] ASoC: dt-bindings: ti,ts3a227e.yaml: add jack-type
+Subject: Re: [PATCH 2/3] dt-bindings: opp: opp-v2-kryo-cpu: add opp-microvolt
+ nvmem based
 Content-Language: en-US
-To:     Astrid Rost <astrid.rost@axis.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Dylan Reid <dgreid@chromium.org>
-Cc:     kernel@axis.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230120102555.1523394-1-astrid.rost@axis.com>
- <20230120102555.1523394-5-astrid.rost@axis.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230121000146.7809-1-ansuelsmth@gmail.com>
+ <20230121000146.7809-2-ansuelsmth@gmail.com>
+ <4b58dcf1-df8a-048f-ba6f-ea170479751b@linaro.org>
+ <63cd44e6.050a0220.ed90.635a@mx.google.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230120102555.1523394-5-astrid.rost@axis.com>
+In-Reply-To: <63cd44e6.050a0220.ed90.635a@mx.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/01/2023 11:25, Astrid Rost wrote:
-> Add jack-type: Bitmap value of snd_jack_type to allow combining
-> card drivers to create a jack for it.
+On 22/01/2023 15:15, Christian Marangi wrote:
+> On Sun, Jan 22, 2023 at 03:00:22PM +0100, Krzysztof Kozlowski wrote:
+>> On 21/01/2023 01:01, Christian Marangi wrote:
+>>> The operating-points-v2-kryo-cpu driver supports defining multiple
+>>> opp-microvolt based on the blown efuses in the soc. It consist of 3
+>>> values that are parsed: speedbin, psv and version. They are all
+>>> appended to the opp-microvolt name and selected by the nvmem driver and
+>>> loaded dynamically at runtime.
+>>>
+>>> Example:
+>>>
+>>> opp-microvolt-speed0-pvs0-v0 = <1050000 997500 1102500>;
+>>> opp-microvolt-speed0-pvs1-v0 = <975000 926250 1023750>;
+>>> opp-microvolt-speed0-pvs2-v0 = <925000 878750 971250>;
+>>> opp-microvolt-speed0-pvs3-v0 = <850000 807500 892500>;
+>>>
+>>> Add support for this and reject these special binding if we don't have a
+>>> nvmem-cell to read data from.
+>>>
+>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>>> ---
+>>>  .../devicetree/bindings/opp/opp-v2-kryo-cpu.yaml | 16 ++++++++++++++++
+>>>  1 file changed, 16 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
+>>> index b4947b326773..cea932339faf 100644
+>>> --- a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
+>>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
+>>> @@ -61,6 +61,17 @@ patternProperties:
+>>>  
+>>>        required-opps: true
+>>>  
+>>> +    patternProperties:
+>>> +      '^opp-microvolt-speed[0-9]-pvs[0-9]-v[0-9]$':
+>>
+>> This does not end with correct unit suffix. Should be
+>> opp-speed-.....-microvolt
+>>
+> 
+> I think I didn't understand this?
+> 
+> From opp-v2-base and from what we are using downstream, the named
+> opp-micrvolt works correctly.
+> 
+> (speed[0-9]-pvs[0-9]-v[0-9] is the entire name of the named
+> opp-microvolt- binding)
+> 
+> This is the reference I always used for the pattern. [1]
+> Here the pattern used by the driver. [2]
+> 
+> [1] https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/opp/opp-v2-base.yaml#L209
+> [2] https://elixir.bootlin.com/linux/latest/source/drivers/cpufreq/qcom-cpufreq-nvmem.c#L238
 
-Subject: drop "yaml". We do not filename extensions to subject prefix.
-Nowhere.
+Are you documenting existing property or adding new? Commit msg suggests
+you add new property, so what do you reference here? How is it related?
 
 > 
-> Signed-off-by: Astrid Rost <astrid.rost@axis.com>
-> ---
->  Documentation/devicetree/bindings/sound/ti,ts3a227e.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>>> +        description: |
+>>> +          Assign a microvolt value to the opp hz based on the efuses value from
+>>> +          speedbin, pvs and vers
+>>
+>> Where is the DTS change?
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/ti,ts3a227e.yaml b/Documentation/devicetree/bindings/sound/ti,ts3a227e.yaml
-> index 785930658029..1d949b805f98 100644
-> --- a/Documentation/devicetree/bindings/sound/ti,ts3a227e.yaml
-> +++ b/Documentation/devicetree/bindings/sound/ti,ts3a227e.yaml
-> @@ -27,6 +27,14 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  jack-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Bitmap value of snd_jack_type to allow combining
-> +      card drivers to create a jack for it. Supported is
+> You mean an additional example that use this additional binding? This
+> may be difficult to add since the current example in this schema is a
+> root one and I can't put multiple root example.
 
-Why the device would once support (allow) headphone and once not? Device
-either always supports them or never...
-
-
-> +        1 SND_JACK_HEADPHONE
-> +        2 SND_JACK_MICROPHONE
-
-minimum and maximum
-
-> +    default: 3
-> +
->    ti,micbias:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: Intended MICBIAS voltage (datasheet section 9.6.7).
+No, I mean, you DTS using it. We do not want empty (unused) bindings...
 
 Best regards,
 Krzysztof
