@@ -2,91 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 741B1676D66
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:07:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9930676D6A
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:09:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229947AbjAVOHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 09:07:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35302 "EHLO
+        id S229837AbjAVOJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 09:09:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbjAVOHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:07:19 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E32771E9F9
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:07:17 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id q10-20020a1cf30a000000b003db0edfdb74so3083566wmq.1
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:07:17 -0800 (PST)
+        with ESMTP id S229986AbjAVOJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:09:19 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD4A125A1
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:09:17 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id k16so7216872wms.2
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:09:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YMFpKweYlwLdiHhHA/4B+vISjsfwbnz4pmYsFErLgYQ=;
-        b=RMGEn6ejTDJFJ5rNS1sH74RjcCpiRHFUpfIC3XlYvV01IfJx1xwRyJNP2WVVzkrdwl
-         qYYB67s6Bf7wJj4B+qZWOa7w6MQK4VohaYpvv24sQGPKGSDpvjYwYQYMxtu/taQtsR10
-         vOkQWmylvVRa2l+dymzAUvTDk9uiO9H2cZVi2DAZkaNOLY54YIUD9htbQGDjg5/1ygW/
-         7BlGOUh+GH6y4CHjmle+MCUF4tj/PCfyFB8XByjcGvpyVmfDciUyvFtB8XaiIuk+9Zw0
-         Jj2jiKeVFEN9GG5qub6/OFbpfs/EWTj7Mpi4JLzY8iWUSqpQfn9nJljRVJBmEniGq1Xg
-         kPFQ==
+        bh=a9NpMSfkooTiSv2ZBQPfxArsfZPBfz7GqCCR+XSaAOg=;
+        b=OHuy7+aZrOI8AjcM8rXiRTGA3F82tyHoun7dlV3o8JzEZmu1Nib00YrXclUIX/IbyW
+         HZMEi4IkWMmrLwsEnwqjOUM0hEcQT8eP8GEGCYUAhXpKrCYv9p+0oo99ESXe7IwBM9pC
+         cX9ZcC7snaiqc5qFHw6dsS6iAA7cLqR2k2s90SqJIALSOQ0xp0IY7fra+WkISkChBjXL
+         6iKH/5fp67J/EhDZ2Ql+huD+NgZupKYXqSsuZhPOMUZaKwq+f3Uc+P2GTq/5LPi084M9
+         2hjWiw0Xb+/cUfzetx93dAXrOYxU4SJFL8C8co7LdHA53ZusDtvuHhBzi6KFtjHrCMN1
+         Y4UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YMFpKweYlwLdiHhHA/4B+vISjsfwbnz4pmYsFErLgYQ=;
-        b=hqJgz/t0AXPjyxKovCTF/WTkWvHlyN66Fc3zs7VkTnZ46O9Eia7eeyubNUJUn0aD+E
-         WLhFq9YkVWcD5UzV/3w/B8DP2YT/Jhj1QDKbesZMI4oT9SG7i/GmCuNv2AdiwxWjkDkY
-         vy7XeHBlGNEemtqbGWrjibXZpE+T2VetxWltgLRVQEX4JEqLUqfBB3cRZeM17vHUCDlL
-         YAr0EZ0nL/jaGy77rzll3OG+XWTouk/O7EfhkGmxUuVoIUeG8zA24P6KBsyR/4JSLKg7
-         3aVLGOVtW8wlazRGPb1BU/i8W6WyWBRZr35yjMgRE7OrBxYBVNWgyd7ViEwas8MPX9WV
-         yJig==
-X-Gm-Message-State: AFqh2kpWAcYPgaXTyW15x7BeAMHVVIfnFlJunN2Gm4Q7Vi4cZ9zeuZsc
-        sH+F93oebgEQNX8AE4F1YsuUlQ==
-X-Google-Smtp-Source: AMrXdXu3y+dMp2zCLYty/4P4oTz+KIifjny4XEkDjTu7U+ZTZfk+WkcnXbPqJXvYM6xQ9HPBntMBKw==
-X-Received: by 2002:a05:600c:354a:b0:3da:1f6a:7b36 with SMTP id i10-20020a05600c354a00b003da1f6a7b36mr20933067wmq.0.1674396436494;
-        Sun, 22 Jan 2023 06:07:16 -0800 (PST)
+        bh=a9NpMSfkooTiSv2ZBQPfxArsfZPBfz7GqCCR+XSaAOg=;
+        b=i39PtQUlP09hkOSiVl8TCz9HqJtI8ZM9O15j7KYZrGFlxoj+xYvuW+ACdSY5ZFb05f
+         TtDLrh8qZa4YG0J2W0Zynr/pdaNhLhKoAx82nRq6+OwXh3k8ltpPsgGUdO5K/lKBjsgl
+         Qae8qIMLs81ogpVtzjVwlXb86DQd6hwQl+l1eHvDLwFqnWwyl0hY9VAwNPIrdiCUWQIi
+         /uOXd9Xvjvm40pKEJXQ6VeosO+/TC8hL+mi+0meRD+0KLYNHRXxcKKNzc8+irJEqtgL3
+         YfNAg9bCf/MAxRu4HfMRGeSgxEqzDib/wQJ995QLEIlo6AC8CYb3ZBng4h574LTFcN7u
+         2u0g==
+X-Gm-Message-State: AFqh2krtvYhvMiiphoGMSW7hm1yNzzgioCouR1CPzu/p0GRNwhZRkKEg
+        eXTNHG2xUl1RBKqshfTyjq7vJtJuL6FgR8kB
+X-Google-Smtp-Source: AMrXdXtDA46PnZEz1olLAyyVedLaw70rB9bL/u8qM6NXPsKsze4CIEalUOanBH3tAqmcu3CtNmfDPQ==
+X-Received: by 2002:a05:600c:3b05:b0:3d6:b691:b80d with SMTP id m5-20020a05600c3b0500b003d6b691b80dmr20881250wms.21.1674396556168;
+        Sun, 22 Jan 2023 06:09:16 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id k21-20020a05600c1c9500b003db30be4a54sm8377883wms.38.2023.01.22.06.07.14
+        by smtp.gmail.com with ESMTPSA id w10-20020a5d544a000000b00273cd321a1bsm2853845wrv.107.2023.01.22.06.09.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Jan 2023 06:07:16 -0800 (PST)
-Message-ID: <ec897c39-b6df-82fc-bd9e-84c6213acb1b@linaro.org>
-Date:   Sun, 22 Jan 2023 15:07:13 +0100
+        Sun, 22 Jan 2023 06:09:15 -0800 (PST)
+Message-ID: <938a5115-48e4-73f9-8a7a-ae890eb10077@linaro.org>
+Date:   Sun, 22 Jan 2023 15:09:13 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH RESEND v10 4/5] dt-bindings: media: i2c: imx334 add new
- link_freq
+Subject: Re: [PATCH v4 01/12] dt-bindings: phy: Add QMP PCIe PHY comptible for
+ SM8550
 Content-Language: en-US
-To:     shravan kumar <shravan.chippa@microchip.com>,
-        paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     festevam@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sakari Ailus <sakari.ailus@iki.fi>
-References: <20230121033713.3535351-1-shravan.chippa@microchip.com>
- <20230121033713.3535351-5-shravan.chippa@microchip.com>
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20230119140453.3942340-1-abel.vesa@linaro.org>
+ <20230119140453.3942340-2-abel.vesa@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230121033713.3535351-5-shravan.chippa@microchip.com>
+In-Reply-To: <20230119140453.3942340-2-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/01/2023 04:37, shravan kumar wrote:
-> From: Shravan Chippa <shravan.chippa@microchip.com>
+On 19/01/2023 15:04, Abel Vesa wrote:
+> Document the QMP PCIe PHY compatible for SM8550.
 > 
-> Add new supported link frequency in dt example.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> 
+> This patchset relies on the following patchset:
+> https://lore.kernel.org/all/20230117224148.1914627-1-abel.vesa@linaro.org/
+> 
+> The v3 of this patchset is:
+> https://lore.kernel.org/all/20230118005328.2378792-1-abel.vesa@linaro.org/
+> 
+> Changes since v3:
+>  * increased the allowed number of resets to allow ncsr reset
+>  * added vdda-qref-supply which is used by pcie1_phy node in MTP dts
+>  * added both compatibles to the allOf:if:then clause to constrain the
+>    number of possible clocks to 5
+> 
+> Changes since v2:
+>  * added back the binding compatible update patch
+> 
+> Changes since v1:
+>  * split all the offsets into separate patches, like Vinod suggested
+> 
+>  .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml      | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> index 8a85318d9c92..4b4566f90811 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+> @@ -20,6 +20,8 @@ properties:
+>        - qcom,sc8280xp-qmp-gen3x2-pcie-phy
+>        - qcom,sc8280xp-qmp-gen3x4-pcie-phy
+>        - qcom,sm8350-qmp-gen3x1-pcie-phy
+> +      - qcom,sm8550-qmp-gen3x2-pcie-phy
+> +      - qcom,sm8550-qmp-gen4x2-pcie-phy
+>  
+>    reg:
+>      minItems: 1
+> @@ -43,16 +45,21 @@ properties:
+>      maxItems: 1
+>  
+>    resets:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    reset-names:
+> +    minItems: 1
+>      items:
+>        - const: phy
+> +      - const: nocsr
 
-You got comment to fix you CC list. Why not following my feedback?
+I think it is valid only for this phy variant, so please constrain it to
+1 entries for all others.
 
 Best regards,
 Krzysztof
