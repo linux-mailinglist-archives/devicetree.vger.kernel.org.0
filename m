@@ -2,117 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07BD2676BE8
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 10:37:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5E97676C2A
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 11:49:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbjAVJg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 04:36:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43242 "EHLO
+        id S229950AbjAVKs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 05:48:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbjAVJg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 04:36:58 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE2A144A5
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 01:36:52 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id k16so6974161wms.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 01:36:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NpxZop004lAiKqyB5tDsS8TgVaCDtVZHtlMKxmTjC0g=;
-        b=ECgPRWWCsy9NToHICzR2kX6HSwQWLtqjk0hUPwSUnXp7BbMafWTGTbDh4bWHQX5+HK
-         5NCXN0o+5LrU1+yn6VoBH6eLxLdefhX0uQhbbghH/hxBv4i3PHrtMuVlx0D5Ww+vfWcN
-         tGLlKwRQlCRJB0xtgLUilAKp6pRbrcbSEEbOa57RQvfjuHbf6GQ+V2uFGwlhapFDj8fl
-         Oin1rIuEMVzaPPWAuMzujhb6hNCwgfBguKuQQoq58KOzr1bzruv0OyUSDWTlNYEskN7o
-         9COOOvQWLvDU+RgGhHr2QQz57uZztka0mqwwr6vs9R8ZAhT9W7qada8ZSCYmkRAAgyht
-         /fYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NpxZop004lAiKqyB5tDsS8TgVaCDtVZHtlMKxmTjC0g=;
-        b=yyUPOxtT6GOpL1T7qM41R4WwtT0AZyY2DM6YQXtof6yHSJZ6FipkoS0NyEdV1mMbQc
-         uC7I2h3tZ13rDo4HQsUd0FgiUcE7T3qduirchVwNHeC5ud3jH1aZC5Kly71Kd9O3ILVf
-         D5N6EGphCinWZAm7edF1y4GZVsL8SSKF3RBV296+TWi2dPrHQYtHAPm5T0oIn4JI/pIv
-         R5T4HDNaQNha79cO5U6HmaVT2E322jwsTICRxCK4WoVsZ+k6h5gITUUEy7bpecQDiLct
-         WKPMzVqRyMTeM0t2tcsb181Oo56eC/sWx1eKud2/SExPRo3cGDc+Of12uHi91CBJRDxU
-         Akow==
-X-Gm-Message-State: AFqh2kq0z8MTk8kbvw1q1m4bfLIJl4vNMoG5vKaCcGKjqgEt2UcZToSd
-        9nvfbyrrSfGz3xMSnR9vOVsfvA==
-X-Google-Smtp-Source: AMrXdXuzS6IDyC+K25N0DkOt4MKy8IOR4GrMzqYb0s85tX7fURVExIEukvDBl8Jd5pVgK92NWlbYlw==
-X-Received: by 2002:a05:600c:35d6:b0:3db:2ad:e344 with SMTP id r22-20020a05600c35d600b003db02ade344mr16706207wmq.13.1674380210417;
-        Sun, 22 Jan 2023 01:36:50 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f14-20020a05600c154e00b003daff80f16esm10367065wmg.27.2023.01.22.01.36.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Jan 2023 01:36:50 -0800 (PST)
-Message-ID: <07ce1655-d84b-e4f1-02d4-b69568830175@linaro.org>
-Date:   Sun, 22 Jan 2023 10:36:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v3 5/9] vendor-prefixes: Add VIA Labs, Inc.
-Content-Language: en-US
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229893AbjAVKs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 05:48:58 -0500
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 134C9166DB
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 02:48:55 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:4d08:7796:61ee:69a0])
+        by albert.telenet-ops.be with bizsmtp
+        id Bmop2900G0XvA8106mopjH; Sun, 22 Jan 2023 11:48:52 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pJXtx-006qbZ-IN;
+        Sun, 22 Jan 2023 11:48:49 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pJXso-0037wg-Qn;
+        Sun, 22 Jan 2023 11:47:30 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-amlogic@lists.infradead.org,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230121175639.12818-1-linux.amoon@gmail.com>
- <20230121175639.12818-6-linux.amoon@gmail.com>
- <d0bdc8f9-5ea8-5c77-3193-a2932c87156a@linaro.org>
- <CANAwSgT4P544a2MeybV_hXkDfc_HXiO4Rnxt4qG3RM1-X-KCEQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CANAwSgT4P544a2MeybV_hXkDfc_HXiO4Rnxt4qG3RM1-X-KCEQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2] dt-bindings: leds: Document Bluetooth and WLAN triggers
+Date:   Sun, 22 Jan 2023 11:47:27 +0100
+Message-Id: <0d0de1bc949d24e08174205c13c0b59bd73c1ea8.1674384302.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/01/2023 08:04, Anand Moon wrote:
-> Hi Krzysztof,
-> 
-> On Sun, 22 Jan 2023 at 00:21, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 21/01/2023 18:56, Anand Moon wrote:
->>> Add the vendor prefix for VIA Labs, Inc. (VLI) is a supplier
->>> of USB and USB Power Delivery controllers for multi-functional devices
->>> and platforms.
->>>
->>> Website: https://www.via-labs.com/
->>>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
->>> ---
->>> v3: - None
->>> V2: - drop Drop marketing, so without "leading".
->>
->> Wasn't this merged? Didn't you get email?
->>
-> 
-> Yes, it was merged into USB testing branch.
-> I have rebased it on Linux master 6.2-rc5,
-> I hope this series picks up again.
+Add the missing trigger patterns for Bluetooth and WLAN activity, which
+are already in active use.
 
-No, that's not how it works. If patch was picked up, you must drop it.
-Otherwise you might mislead maintainers (e.g. other maintainer) to pick
-it up again.
+While at it, move the mmc pattern comment where it belongs, and restore
+alphabetical sort order.
 
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: bt_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+	'hci0-power' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+	'hci0-power' does not match '^mmc[0-9]+$'
+	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: wlan_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+	'phy0tx' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+	'phy0tx' does not match '^mmc[0-9]+$'
+	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
 
-Best regards,
-Krzysztof
+v2:
+  - Add Reviewed-by.
+---
+ Documentation/devicetree/bindings/leds/common.yaml | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index f5c57a580078ea23..d34bb58c00371402 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -98,9 +98,13 @@ properties:
+             # LED alters the brightness for the specified duration with one software
+             # timer (requires "led-pattern" property)
+           - pattern
+-        # LED is triggered by SD/MMC activity
+-      - pattern: "^mmc[0-9]+$"
+       - pattern: "^cpu[0-9]*$"
++      - pattern: "^hci[0-9]+-power$"
++        # LED is triggered by Bluetooth activity
++      - pattern: "^mmc[0-9]+$"
++        # LED is triggered by SD/MMC activity
++      - pattern: "^phy[0-9]+tx$"
++        # LED is triggered by WLAN activity
+ 
+   led-pattern:
+     description: |
+-- 
+2.34.1
 
