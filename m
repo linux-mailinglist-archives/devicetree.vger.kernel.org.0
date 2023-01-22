@@ -2,177 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E560C676D60
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:05:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1547F676D64
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:06:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbjAVOFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 09:05:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34700 "EHLO
+        id S229814AbjAVOGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 09:06:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbjAVOFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:05:38 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B8441E9F9;
-        Sun, 22 Jan 2023 06:05:37 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id l8so7212582wms.3;
-        Sun, 22 Jan 2023 06:05:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=w+DYwuFS9Dkc93QjhUhcqFaLx7ImoBj+LjvTnSTbnm8=;
-        b=DcYu8g70+C7PZXA3VZnn6MsW7kkyGrHhUlHUT+xknVAJQ+nUsllEzfqQT1wAbAh1Ic
-         OAul5mZ1m1T9UxlxWCXVmtqTE7L4e6Kx2Xv9/kDBSQ2BzWmnMm3hXANtWxJSYWGDgFLz
-         f9fmbfVJ15OV3cwdg+58uUypMjS+6kTuPkcNOZWqCATbBYpVPZ51FbvRVTJrBMjam96P
-         dH+GrEaYoot27weeWuXToMMvoC5xYUxBKf+tLs+8QcoOGTwdjGmg2WZAY0kY7VOUU34F
-         DGw14uuvDUHv66Ra2T/goSg3FOgF1beQGH0rifmrQlWYwdue1a8uB2nvLz5Il5xvq5Rl
-         vjCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w+DYwuFS9Dkc93QjhUhcqFaLx7ImoBj+LjvTnSTbnm8=;
-        b=pYEldFa6EG4BvkuJaRoxejOqdZWbr2RUopAtRpdlouV0l4dUqdEd4IhpmkO3KVnWIo
-         vEFlfSoY1mPlP7KFTPLZEQ6tMLT0FjrryByat+VR1sBKTxlKJnb2YGDn6vyq9t/sZ/tC
-         jd2WI3JJHXSrvDS+n+aAu4Bfs/4faa3z6Abs+Zz6fwQh+P3VhnNyEJmM6VueiGNeFcYn
-         uB5NFL5EFDSFzjuNVJcyRJdi6V2cv1ehulplypLxQYvllmC9y36g8bJIB7S3GPAYIr1C
-         UCVo0n1gEIyoAcfuZyx7BgHL+hjAvtZoRwx633b57zB1s2co1KpnUcTg5/j4qEyGP/ui
-         l+uA==
-X-Gm-Message-State: AFqh2krpdU4kF95RBCzYB4ee+D6ZV0yXCHqsPrTyghcVwkJEXyg7iHuh
-        F0iIb22/1KM0cCM2nRy7P5I=
-X-Google-Smtp-Source: AMrXdXv+rSm+lsQYdvS3/yF76MtW37onSPVLBg07nzj60X14FGGRCT3TcMxNGfhPGDbb557hHFDsEg==
-X-Received: by 2002:a7b:c4d0:0:b0:3d1:f6b3:2ce3 with SMTP id g16-20020a7bc4d0000000b003d1f6b32ce3mr21583864wmk.35.1674396335807;
-        Sun, 22 Jan 2023 06:05:35 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-61.ip49.fastwebnet.it. [93.34.89.61])
-        by smtp.gmail.com with ESMTPSA id u24-20020adfa198000000b002bc84c55758sm39347527wru.63.2023.01.22.06.05.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Jan 2023 06:05:35 -0800 (PST)
-Message-ID: <63cd42af.df0a0220.aae7d.51f1@mx.google.com>
-X-Google-Original-Message-ID: <Y81CrRr8BqFQSEfV@Ansuel-xps.>
-Date:   Sun, 22 Jan 2023 15:05:33 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: cpufreq: qcom-cpufreq-nvmem: make cpr
- bindings optional
-References: <20230121000146.7809-1-ansuelsmth@gmail.com>
- <43ff6113-03ee-a40a-b454-53cadec8728a@linaro.org>
+        with ESMTP id S229622AbjAVOGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:06:21 -0500
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E94E1F48F
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:06:19 -0800 (PST)
+Received: by soltyk.jannau.net (Postfix, from userid 1000)
+        id 7EDDC26F69C; Sun, 22 Jan 2023 15:06:17 +0100 (CET)
+Date:   Sun, 22 Jan 2023 15:06:17 +0100
+From:   Janne Grunau <j@jannau.net>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+Subject: Re: [PATCH v13 0/4] iommu: Support mappings/reservations in
+ reserved-memory regions
+Message-ID: <20230122140617.GF3576@jannau.net>
+References: <20230120174251.4004100-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <43ff6113-03ee-a40a-b454-53cadec8728a@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230120174251.4004100-1-thierry.reding@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 22, 2023 at 02:57:07PM +0100, Krzysztof Kozlowski wrote:
-> On 21/01/2023 01:01, Christian Marangi wrote:
-> > The qcom-cpufreq-nvmem driver also supports legacy devices pre-cpr that
-> > doesn't have power-domains. When the schema was introduced, it was
-> > wrongly set to always require these binding but this is not the case for
-> > legacy device that base everything on nvmem cells and multiple microvolt
+Hej,
+
+On 2023-01-20 18:42:47 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> What is a "legacy device"? Why do you adjust bindings to legacy device?
-> Can't you just fix the DTS on these devices?
->
-
-With legacy I mean device where cpr (core power reduction) wasn't a
-thing and qcom used a different way to select the microvolt for the opp.
-
-There is nothing in the related DTS to fix since they are not broken.
-The driver doesn't enforce cpr presence and supports both new and old
-implementation...
-
-Setting the cpr as a required binding was wrong from the start. It was
-probably done when qcs404 was introduced and they had this bright idea
-of creating the schema and ignoring the other kind of configuration the
-driver supports.
-
-Since now we want to send opp for ipq8064 that use the old
-implementation this fixup is required.
-
-Probably I should drop the legacy term and just say that the driver
-supports 2 different configuration and the following schema permits only
-one?
-
-> > binding providing values based on speedbin, psv and version.
-> > 
-> > Make the power-domain optional and set them required only for qcs404
-> > based devices.
-> > 
-> > Fixes: ec24d1d55469 ("dt-bindings: opp: Convert qcom-nvmem-cpufreq to DT schema")
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml  | 78 +++++++++++++------
-> >  1 file changed, 54 insertions(+), 24 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> > index 9c086eac6ca7..04aac634d7fc 100644
-> > --- a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> > +++ b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-> > @@ -17,6 +17,9 @@ description: |
-> >    on the CPU OPP in use. The CPUFreq driver sets the CPR power domain level
-> >    according to the required OPPs defined in the CPU OPP tables.
-> >  
-> > +  For old implementation efuses are parsed to select the correct opp table and
-> > +  voltage and CPR is not supported/used.
-> > +
-> >  select:
-> >    properties:
-> >      compatible:
-> > @@ -33,37 +36,64 @@ select:
-> >    required:
-> >      - compatible
-> >  
-> > -properties:
-> > -  cpus:
-> > -    type: object
-> > +if:
+> Hi,
 > 
-> Missing allOf. Fix also the placement - this block goes before
-> additionalPropertes:false.
+> This version is a rebase on top of v6.2-rc4 to resolve a minor conflict.
+> Version 12 can be found here:
 > 
-
-Thanks for the review! Will fix in v2.
-
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - qcom,qcs404
-> >  
-> > -    patternProperties:
-> > -      '^cpu@[0-9a-f]+$':
-> > -        type: object
-> > +then:
-> > +  properties:
-> > +    cpus:
-> > +      type: object
-> >  
-> > -        properties:
-> > -          power-domains:
+>   https://lore.kernel.org/all/20221117185424.2359687-1-thierry.reding@gmail.com/
 > 
-> Best regards,
-> Krzysztof
+> The only change here is that the #dma-{address,size}-cells is dropped.
+> It turns out to be much simpler to just update #{address,size}-cells to
+> what they should be rather than add extra complexity for the DMA work-
+> around. There's a minor update to the DT binding so that it can now
+> properly validate cases where we have both reg and iommu-addresses
+> properties.
 > 
+> An example is included in the DT bindings, but here is an extract of
+> what I've used to test this:
+> 
+>         reserved-memory {
+>                 #address-cells = <2>;
+>                 #size-cells = <2>;
+>                 ranges;
+> 
+>                 /*
+>                  * Creates an identity mapping for the framebuffer that
+>                  * the firmware has setup to scan out a bootsplash from.
+>                  */
+>                 fb: framebuffer@92cb2000 {
+>                         reg = <0x0 0x92cb2000 0x0 0x00800000>;
+>                         iommu-addresses = <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
+>                 };
+> 
+>                 /*
+>                  * Creates a reservation in the IOVA space to prevent
+>                  * any buffers from being mapped to that region. Note
+>                  * that on Tegra the range is actually quite different
+>                  * from this, but it would conflict with the display
+>                  * driver that I tested this against, so this is just
+>                  * a dummy region for testing.
+>                  */
+>                 adsp: reservation-adsp {
+>                         iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00010000>;
+>                 };
+>         };
+> 
+>         host1x@50000000 {
+>                 dc@54200000 {
+>                         memory-region = <&fb>, <&adsp>;
+>                 };
+>         };
+> 
+> This is abbreviated a little to focus on the essentials. Note also that
+> the ADSP reservation is not actually used on this device and the driver
+> for this doesn't exist yet, but I wanted to include this variant for
+> testing, because we'll want to use these bindings for the reservation
+> use-case as well at some point.
+> 
+> I've also been able to make use of this binding and the IOMMU code in
+> conjunction with the simple-framebuffer driver to hand over a display
+> configuration set up by UEFI to the Linux kernel.
+> 
+> Janne has confirmed[0] this to be suitable for indirect mappings as
+> well, though these patches don't implement that feature yet. Potential
+> extensions to this have been discussed but are not yet included at this
+> time to not further complicate things.
 
--- 
-	Ansuel
+The dt-bindings are sufficient for various firmware based co-processors 
+on Apple silicon systems. This version and several before with 
+additional straight forward changes to support indirect mappings are 
+tested on the downstream asahi kernel with display processor support.
+
+Acked-by: Janne Grunau <j@jannau.net>
+
+Janne
