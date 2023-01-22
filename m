@@ -2,118 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98E276770A4
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 17:39:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B574E6770BD
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 17:49:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229963AbjAVQjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 11:39:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50220 "EHLO
+        id S229955AbjAVQtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 11:49:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229837AbjAVQjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 11:39:05 -0500
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A500193DE;
-        Sun, 22 Jan 2023 08:39:03 -0800 (PST)
-Received: by mail-vs1-xe33.google.com with SMTP id p1so10601769vsr.5;
-        Sun, 22 Jan 2023 08:39:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qACnEDq7CQssFw5cLANDAZIL8Q9CdsrvgqR6kIK4R8c=;
-        b=jJdJqLIc+y4MZw9WOKgOIdA8RdCtfAyAC4ly6O+FiaPwA6i9Vkj6mOnl7k0Nid0rin
-         vUWH1uUMl96R8SgK/deZTF8bEAmms9Nlqbdz/TqRNyH/n8LkH0+FUYwEqxlIEhBl2UaO
-         e3C4TFeYyqsO46rVZHVBRMjOJeJQ7Ces6Woo+UX2sZJG7T3RmJ+erLJK5cdvVFz9qcLq
-         TjvZVcQEhCXfFKSNPapz+4oBkNleg/HQVrykDvKhs0V1kciTCYEsLoe9n86Vm3UqjEgn
-         bApLH9Pjo2Jj82mMMZm1CfXu9qfcTDbem4SSaMcmxZzZOQ/uIp0lXWdwvusE3CcjAraJ
-         l9Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qACnEDq7CQssFw5cLANDAZIL8Q9CdsrvgqR6kIK4R8c=;
-        b=Qou7xKrx5/CZqnzmtZoUSXS6EEJkD1CxPLElH/pSFn87n2sdzOexwopPW8Mo6GWC4l
-         Brh0279cHfimKybrL7DPtaAAdyb09gxJu683EVhtj7eYVfkGml86PfM8IN7LfQYP1Vh6
-         1T69nDI8goP6vfiO+h+iO6ISBmuq0+8oT5IB0cWPkTYiYxwOjZaqP4cXbY+/JWGjTFoF
-         FH/u7PThSdqL3eoaEbrGb/2Wec5mAfeqokAWxQKWqyVK0CNJJcfEli14EEMcGpvAxqKU
-         rPLcaPakwyos3GopuunCfZJauEBc4zBQJQX3IIf81pQR8m1jT8LCpIxjlNlgLDNWgwhc
-         MC8Q==
-X-Gm-Message-State: AFqh2krlI9ZFf2wIG/mLCslnVcEg+a71u57/IdxqLCcqwkbBYezH4f4u
-        sdo5YlFCUMRX2maRU6oqd5p1yS4LTYoGt0COH4A=
-X-Google-Smtp-Source: AMrXdXsCmLpwa6AXzrh9D8riQ0Uxyadw4wR/THSg7SpKGBjdHUSxiY3O2+LwgCKTZeAjUn4YRFUUtNU3XJBaid5WnCg=
-X-Received: by 2002:a67:d097:0:b0:3d0:cb3d:ad47 with SMTP id
- s23-20020a67d097000000b003d0cb3dad47mr3416403vsi.76.1674405542264; Sun, 22
- Jan 2023 08:39:02 -0800 (PST)
+        with ESMTP id S229814AbjAVQtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 11:49:01 -0500
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C6D7D93;
+        Sun, 22 Jan 2023 08:48:57 -0800 (PST)
+Received: from [192.168.178.23] (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 5F361CD0C5;
+        Sun, 22 Jan 2023 16:48:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1674406135; bh=wXbRIRGPjPCuTthCi5DIArKqGaYCXPMlKnIiOm9PSS0=;
+        h=From:Subject:Date:To:Cc;
+        b=mygQKx//E6ACYL6b+F/bah2CQYZBYs8F3Umnxj9yfpw52bg9V7pCel7oYqnt+RK8f
+         +REJ2iIn0YlVGPqPhclqNbmAA6eYVXO8MonlxMmvs/l4QLLXHmbaSdsXDGhEXXigxs
+         auRKYM3BWomTiSLgpC/KKKPEue2hX+wqXk22zUfE=
+From:   Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH 0/5] Add support for some features on OnePlus One
+Date:   Sun, 22 Jan 2023 17:48:32 +0100
+Message-Id: <20230122-msm8974-bacon-features-v1-0-4049f565c24c@z3ntu.xyz>
 MIME-Version: 1.0
-References: <20230121175639.12818-1-linux.amoon@gmail.com> <20230121175639.12818-6-linux.amoon@gmail.com>
- <d0bdc8f9-5ea8-5c77-3193-a2932c87156a@linaro.org> <CANAwSgT4P544a2MeybV_hXkDfc_HXiO4Rnxt4qG3RM1-X-KCEQ@mail.gmail.com>
- <07ce1655-d84b-e4f1-02d4-b69568830175@linaro.org>
-In-Reply-To: <07ce1655-d84b-e4f1-02d4-b69568830175@linaro.org>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Sun, 22 Jan 2023 22:08:47 +0530
-Message-ID: <CANAwSgSxasuEsqvwE-DLzjh8wBt3cRuWkHQv6aaWeXEgrvkRjQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/9] vendor-prefixes: Add VIA Labs, Inc.
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-amlogic@lists.infradead.org,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOBozWMC/z3Nyw6CMBCF4Vchs3YMDASKr2JcTMdBumiLrbeE8
+ O4WFy7/5Hw5K2RNTjOcqhWSvlx2MZRoDhXIzOGm6K6lgWpq64YIffZmHDq0LDHgpPx4Js3Yi2mJ
+ eezEDFCw5axoEweZd36X6P+0PxK+3bLPlqST+/z+z5dt+wLyaWe/jwAAAA==
+To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.11.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1273; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=wXbRIRGPjPCuTthCi5DIArKqGaYCXPMlKnIiOm9PSS0=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBjzWjxteT/0N0hylfeGfPdHa/U57kRJtii0oBjkBEa
+ 3iQ/J4uJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCY81o8QAKCRBy2EO4nU3XVj3DD/
+ 4mYttEGRxCUc0Yb2Y2Nkcg2uLplFwaiujbrH+RGGEFXcUmW5DqpqCGCt7wCfC2V+6nKk6AGxbMLpEo
+ F1TNvxbhBfLFxIB36LLUi7CtGgDReC0dHxWhVnTl8xx5CIqa79ln22rPtamdsWrSKHAIVS+e8QJbCC
+ E7lJ8Q1Hu+SJmvNgHUzBMuQBicSHTF82Gp3Hq+bQvbaA3ioJI3WJghXezzrmE7AuYTMll7mPrawDDb
+ gE3JohGShKPhAOQbUCC5eVjSjCDIqdNOZAFuEum/xVE9oE4F+hAB898J9WQRoHAoNLkI0DrB97mXZ0
+ UhnWsFxaDjCSczoBKdAyK1iAg76IJWev6dkVTLiozgBlX5iZGsW9ykMZt6tlsFKtZc5lpP5EHNU0T6
+ EBbN97+xrDZlxCtKggTrO8qJi5pbLSsfkehoEKwHqkKCRRFdTLmEtHbs6KK0UTfKAiz0YaYKj+exVY
+ qhfoqTYMMORY2Gp8BC1NLMuPgse3U+9P48WhRfCUlHTzsvRT5uaCTL4SFmBaKQPiipCbnucABxZyB7
+ Zk4HN+8G4C6+Ofd0/Yhaohqgql9tjYghgrNTedi62/vP+HGvBoUmyys9KxOM4KFEM0gg3qLUOtITYH
+ 98SlRQFB2vtElrMZHGzHHiP3gXdl51iYzuDwdEDvNyP8ewJJvMdCYiRC9ufQ==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        FROM_SUSPICIOUS_NTLD_FP,SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Add support for the vibrator, volume keys, hall sensor, backlight and
+notification LED to the device tree of the OnePlus One smartphone.
 
-On Sun, 22 Jan 2023 at 15:06, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/01/2023 08:04, Anand Moon wrote:
-> > Hi Krzysztof,
-> >
-> > On Sun, 22 Jan 2023 at 00:21, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 21/01/2023 18:56, Anand Moon wrote:
-> >>> Add the vendor prefix for VIA Labs, Inc. (VLI) is a supplier
-> >>> of USB and USB Power Delivery controllers for multi-functional devices
-> >>> and platforms.
-> >>>
-> >>> Website: https://www.via-labs.com/
-> >>>
-> >>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> >>> ---
-> >>> v3: - None
-> >>> V2: - drop Drop marketing, so without "leading".
-> >>
-> >> Wasn't this merged? Didn't you get email?
-> >>
-> >
-> > Yes, it was merged into USB testing branch.
-> > I have rebased it on Linux master 6.2-rc5,
-> > I hope this series picks up again.
->
-> No, that's not how it works. If patch was picked up, you must drop it.
-> Otherwise you might mislead maintainers (e.g. other maintainer) to pick
-> it up again.
->
+To: ~postmarketos/upstreaming@lists.sr.ht
+To: phone-devel@vger.kernel.org
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 
-Ok I will keep this in my mind for the future.
+---
+Luca Weiss (5):
+      ARM: dts: qcom: pm8941: Add vibrator node
+      ARM: dts: qcom: msm8974-oneplus-bacon: Add vibrator
+      ARM: dts: qcom: msm8974-oneplus-bacon: Add volume keys and hall sensor
+      ARM: dts: qcom: msm8974-oneplus-bacon: Add backlight
+      ARM: dts: qcom: msm8974-oneplus-bacon: Add notification LED
 
->
-> Best regards,
-> Krzysztof
->
-Thanks
--Anand
+ .../arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dts | 97 ++++++++++++++++++++++
+ arch/arm/boot/dts/qcom-pm8941.dtsi                 |  6 ++
+ 2 files changed, 103 insertions(+)
+---
+base-commit: 2be7ea9924c3f827342d01ebbdf414df8ccf97d7
+change-id: 20230122-msm8974-bacon-features-6c832aa94c87
+
+Best regards,
+-- 
+Luca Weiss <luca@z3ntu.xyz>
