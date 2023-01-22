@@ -2,83 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C40B677035
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 16:37:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1494567703E
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 16:41:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbjAVPhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 10:37:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60208 "EHLO
+        id S231352AbjAVPlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 10:41:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbjAVPhG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 10:37:06 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A48AE22788;
-        Sun, 22 Jan 2023 07:37:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B157160C67;
-        Sun, 22 Jan 2023 15:36:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17420C433A4;
-        Sun, 22 Jan 2023 15:36:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1674401819;
-        bh=RtN6VM53/AyRL0T6lTHmeEBHv7Z+IjaXe/djZ6ectng=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=D1qkKG4kb8gHNmXGAgMJ0NKzf1Jrt9kuF7IvFG41zjxEB07D6uK7E6qvHoEf3yAez
-         DL5zQsO9NNfp22miYOfawlS1pdkD1yU7+9Wdh+nZUNtDJdIIR5CP2WhwZNwoS09juN
-         mbrNTpp6kuhhwzXy3v4Z0Qys2YuVcojAZOdEwnUKmrk2Q7VKdpx+scIO7HbKT9bG2R
-         vi39XHLEPJY2xSPVyUQ+AzrUE6+ZA47tJArOW0tEg3jR5R9FpqPFmP86v3tC54ScCW
-         9Z7TUau7l5XMjxwyo1J+uTLvhCTQFsAPXGXJe9KkKUXGwu6Le9eZs1H3c6GvuBphSf
-         LX1519gywNuIQ==
-Received: by mail-ua1-f42.google.com with SMTP id a40so2323697uad.12;
-        Sun, 22 Jan 2023 07:36:59 -0800 (PST)
-X-Gm-Message-State: AFqh2kpy0I04yNUCBYvdh/fGu33+pHmvWXnhM9BdTCqKhxx4QWIlEOHY
-        sk2J65adtujZ7AhIqH9uJfcUn0Ng9PbqEdL0RA==
-X-Google-Smtp-Source: AMrXdXtaJGGPuSDntjhTa9IstN9+kYwGqE/HL9t8ofms18yBJ45Rqak284KVOWnfaIo98tIhMeiIZzEB2j+M3JIs2KM=
-X-Received: by 2002:ab0:1512:0:b0:5fc:a2ef:4b70 with SMTP id
- o18-20020ab01512000000b005fca2ef4b70mr2269079uae.36.1674401817944; Sun, 22
- Jan 2023 07:36:57 -0800 (PST)
-MIME-Version: 1.0
-References: <20230121153544.467126-1-rayyan@ansari.sh> <20230121153544.467126-3-rayyan@ansari.sh>
-In-Reply-To: <20230121153544.467126-3-rayyan@ansari.sh>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Sun, 22 Jan 2023 09:36:46 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL+G=Cxkc2j_NowznpqNAnixrU+-6SdccFbpMaP6OYSqQ@mail.gmail.com>
-Message-ID: <CAL_JsqL+G=Cxkc2j_NowznpqNAnixrU+-6SdccFbpMaP6OYSqQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: display: simple-framebuffer: Document
- physical width and height properties
-To:     Rayyan Ansari <rayyan@ansari.sh>
-Cc:     dri-devel@lists.freedesktop.org,
-        ~postmarketos/upstreaming@lists.sr.ht, asahi@lists.linux.dev,
-        janne@jannau.net, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
-        Hans de Goede <hdegoede@redhat.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
+        with ESMTP id S230148AbjAVPlg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 10:41:36 -0500
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F1A717168;
+        Sun, 22 Jan 2023 07:41:34 -0800 (PST)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1pJcTH-0002fr-0n;
+        Sun, 22 Jan 2023 16:41:27 +0100
+Date:   Sun, 22 Jan 2023 15:41:16 +0000
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Edward-JW Yang <edward-jw.yang@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>,
+        Jianhui Zhao <zhaojh329@gmail.com>
+Subject: [PATCH v4 0/3] add support for clocks on MT7981 SoC
+Message-ID: <cover.1674401764.git.daniel@makrotopia.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 21, 2023 at 9:36 AM Rayyan Ansari <rayyan@ansari.sh> wrote:
->
+The MediaTek MT7981 SoC is quite similar to its big sibling, the
+MT7986. Hence most drivers can be reused and not much is missing the
+get also this SoC working on mainline Linux.
 
-Why do you need this change?
+Start with a cleaned-up version of the clock drivers, based on what can
+also be found in MediaTek's SDK[1].
 
-The 'simple-framebuffer' contains data on how the bootloader
-configured the display. The bootloader doesn't configure the display
-size, so this information doesn't belong here. The information should
-already be in the panel node, so also no point in duplicating it here.
+Upon request of AngeloGioacchino Del Regno this series has been rebased
+and adapted to be applied on top of the pending series
+"MediaTek clocks cleanups and improvements"[2]
 
-> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
-> ---
->  .../devicetree/bindings/display/simple-framebuffer.yaml   | 8 ++++++++
->  1 file changed, 8 insertions(+)
+The complete tree used for testing (with still some to-be-cleaned-up
+changes, esp. for the Ethernet driver) can be found on Github[3].
+
+[1]: https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/refs/heads/master/target/linux/mediatek/files-5.4/drivers/clk/mediatek/clk-mt7981.c
+[2]: https://patchwork.kernel.org/project/linux-clk/list/?series=714057
+[3]: https://github.com/dangowrt/linux
+
+Changes since v3:
+ * fixed typos in commit descriptions
+
+Changes since v2:
+ * rebase on top of next-20230120 with v4 of AngeloGioacchino's series[2]
+ * fix titles of dt-bindings commits (this time for real)
+ * convert clk-mt7981-infracfg to use mtk_clk_simple_probe
+ * make use of PLL_AO flag in clk-mt7981-apmixed
+ * convert clk-mt7981-ethsys into platform driver, also using the generic
+   probe function, allow building as module
+
+Changes since v1:
+ * rebase and adapt on top of [2]
+ * split-off addition of dt-bindings header, fix filename
+ * changed commit title as requested
+
+Daniel Golle (3):
+  dt-bindings: clock: Add apmixedsys/topckgen compatibles for MT7981
+  dt-bindings: clock: mediatek: add mt7981 clock IDs
+  clk: mediatek: add MT7981 clock support
+
+ .../bindings/clock/mediatek,apmixedsys.yaml   |   1 +
+ .../bindings/clock/mediatek,topckgen.yaml     |   1 +
+ drivers/clk/mediatek/Kconfig                  |  17 +
+ drivers/clk/mediatek/Makefile                 |   4 +
+ drivers/clk/mediatek/clk-mt7981-apmixed.c     | 102 +++++
+ drivers/clk/mediatek/clk-mt7981-eth.c         | 117 +++++
+ drivers/clk/mediatek/clk-mt7981-infracfg.c    | 207 +++++++++
+ drivers/clk/mediatek/clk-mt7981-topckgen.c    | 422 ++++++++++++++++++
+ .../dt-bindings/clock/mediatek,mt7981-clk.h   | 215 +++++++++
+ 9 files changed, 1086 insertions(+)
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-apmixed.c
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-eth.c
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-infracfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt7981-topckgen.c
+ create mode 100644 include/dt-bindings/clock/mediatek,mt7981-clk.h
+
+-- 
+2.39.1
+
