@@ -2,116 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40D93676BCB
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 10:09:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4F2676BE1
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 10:36:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229840AbjAVJJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 04:09:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35432 "EHLO
+        id S229749AbjAVJgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 04:36:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbjAVJJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 04:09:04 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72A3C1F4A5;
-        Sun, 22 Jan 2023 01:09:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=VrpSjRVWRpLB+kPorI91UdQAtzr72U2i/Ay10A+MJmQ=; b=iVxCDSSLpwaBZwREXNIipYG3vR
-        4llqgpbYdLbFt1zbYcVwfBvPaCt+8On9z8KLmkf4Du996DtFfQ/+d2gUFdQ1WUvdD6v9vNmBCh6xv
-        5qO3OsVbKI2z3DkkGMo9yVtgKMRm+tmEPt9tE4ISb0aEsg2TcW319z2ijvj72Vg7PdEzJVUPgIR3M
-        gdsHpFReipT9d6iU7R6wn9QB5NTwVRWPF6r7RPN7xG1jdH904/D+eLGvLPO8GX6tb4K6z23Bj30dM
-        ymlsVFzQcpCKVybiVavDGY33spsFIonmPLNa3CSDFa2VFk3Beh4aDICYoGHkuF1Gdb8JTzsaGcJSM
-        Zy0Efdzg==;
-Received: from p200300ccff40f1001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff40:f100:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pJWLN-0002qn-Np; Sun, 22 Jan 2023 10:08:54 +0100
-Date:   Sun, 22 Jan 2023 10:08:52 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Adam Ford <aford173@gmail.com>, bcousson@baylibre.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: Re: [PATCH] ARM: dts: gta04: fix excess dma channel usage
-Message-ID: <20230122100852.32ae082c@aktux>
-In-Reply-To: <Y8jxjBZrPV0n363P@atomide.com>
-References: <20230113211151.2314874-1-andreas@kemnade.info>
-        <CAHCN7xJH+c41Yas+xnWA57KNi9arOOJDxJ=joEDEJr2k6jrRrw@mail.gmail.com>
-        <Y8VkjQ2yZQssx/wJ@atomide.com>
-        <20230116173922.585904bf@aktux>
-        <Y8WBuKt6mw6TN1Cp@atomide.com>
-        <CAHCN7x+b2_dnpRs8RarhhgTfBrTVfGfmcQNbfHLoWBwkZ_3Puw@mail.gmail.com>
-        <Y8WEoxiOXgZNB1Oc@atomide.com>
-        <Y8jxjBZrPV0n363P@atomide.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229480AbjAVJgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 04:36:08 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F332013D67
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 01:36:06 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id bg13-20020a05600c3c8d00b003d9712b29d2so8650265wmb.2
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 01:36:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iQGkmyos0lptZSiQJgSxMj19ir8RXd2BXhS7aLPksK4=;
+        b=a/O7eeWbwW3MkGdxwzCLdf/ODdAB4Xjsl6zkEaR8Md/OVOVl3Z6tMA+Z/vDfOszKnR
+         liyNDASxY49rjxITomrTybtNdvwrQd/sqPKLg9omwczQNH8gu44NWw9HPmvIzMbss1sZ
+         4JztWJa9cw1un2qO5kTHXjiJXD/i6LlodZw7cYkTA9A0GYpLsJwC59N9rkEYag3r1BBt
+         gbbPZkE0wcMc51w3bxvAmhsKjTV41PFwM1v0sBQ4x9peeU+Yiq8PjmPMNboYF3ItfzuM
+         P7On+fnIlcrz4GlYwDClVADzBQqU8oV+kW9TvTPr+vNrYSAgUsvVBUc2uTUl4FTvTJqP
+         QMYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iQGkmyos0lptZSiQJgSxMj19ir8RXd2BXhS7aLPksK4=;
+        b=oa+GdzqoxT5ABqjHlm1aZJ0tpwst0+UayPPME00j+agUrDVTzhBt6g5u7HIJGnWrVx
+         AD6skKkBWaz3s2ERyBZzMx20kqgTS4hM8m+CrcUjwNzDSgzyORqIzbfDwpQ6POS1R3B4
+         kVREAW7Nh5NU8k7XgIy8X6xHTiHMzDHcwZMm/njEVJu25LAnrfWL+/S8TEi6jWZbgQWY
+         UXcAf/N/4bbGm3wKwyb4zg/GbUh+M1vhlNg+Z2M4EKaTneee/QLUbHe4SzdEdbyPnS0a
+         uaVLNUfRQGLFV0FMcEZlLt5oozXvVCeuSx2MC4nc1TgbACDcKOKrFBY2sLMDLdiCZ9mV
+         qLgQ==
+X-Gm-Message-State: AFqh2kqOA1rnm5/em4IAs7qdQvy/p6QxpqI/CzstNgwXO6ORE98qPv85
+        OQoSBUhWWJORm6ku5KvwPdhnxg==
+X-Google-Smtp-Source: AMrXdXuG1CIYLchLewcqX4Ck0w7BpAgN9xbWaxxrPI3SGtr0y6z83pzW/xubfDxRgesXyEZhxHW7ag==
+X-Received: by 2002:a05:600c:3583:b0:3d9:719a:8f7d with SMTP id p3-20020a05600c358300b003d9719a8f7dmr19574436wmq.35.1674380165479;
+        Sun, 22 Jan 2023 01:36:05 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id i22-20020a05600c355600b003a84375d0d1sm7951206wmq.44.2023.01.22.01.36.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Jan 2023 01:36:04 -0800 (PST)
+Message-ID: <b32d2c8f-cace-d762-38e6-6a1a17d919cc@linaro.org>
+Date:   Sun, 22 Jan 2023 10:36:02 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: ldb: Add i.MX93 LDB
+ device tree binding
+To:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marex@denx.de, linux-imx@nxp.com
+References: <20230122081429.694574-1-victor.liu@nxp.com>
+ <20230122081429.694574-2-victor.liu@nxp.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230122081429.694574-2-victor.liu@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Jan 2023 09:30:20 +0200
-Tony Lindgren <tony@atomide.com> wrote:
+On 22/01/2023 09:14, Liu Ying wrote:
+> Same to i.MX8mp LDB, i.MX93 LDB is controlled by mediamix blk-ctrl
+> through 'ldb' register and 'lvds' register.  Also, the 'ldb' clock
 
-> * Tony Lindgren <tony@atomide.com> [230116 17:33]:
-> > * Adam Ford <aford173@gmail.com> [230116 17:00]:  
-> > > Doesn't this imply the target-module stuff needs to be implemented for
-> > > the drivers?  It looks like a lot of the omap3 drivers are still using
-> > > hwmods although some have target-modules. In this case, the mcspi
-> > > drivers that Andreas is disabling don't appear to have target-module
-> > > stuff configured.  
-> > 
-> > Sorry I don't remember if omap_device.c ignores status disabled or not.
-> > But in any case, it should be trivial to update omap3.dtsi to configure
-> > some of the devices like mcspi to probe with device tree data and ti-sysc
-> > as needed.  
+Subject: drop second/last, redundant "device tree binding". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+> is required.  i.MX93 LDB supports only one LVDS channel(channel 0,
+> a.k.a, LVDS Channel-A in the device tree binding documentation), while
+> i.MX8mp LDB supports at most two.  Add i.MX93 LDB device tree binding
+> in the existing i.MX8mp LDB device tree binding documentation.
 > 
-> So as long as gta04 power management still behaves with this patch it
-> should good to go.
-> 
-# sleep 10 ; /usr/local/bin/idledump
-     CM_IDLEST1_CORE 00000042
-     CM_IDLEST3_CORE 00000000
-     CM_FCLKEN1_CORE 00000000
-     CM_FCLKEN3_CORE 00000002
-     CM_CLKSTST_CORE 00000003
-     CM_IDLEST_CKGEN 00000209
-    CM_IDLEST2_CKGEN 00000000
-       CM_FCLKEN_DSS 00000000
-       CM_IDLEST_DSS 00000000
-       CM_FCLKEN_CAM 00000000
-       CM_IDLEST_CAM 00000000
-       CM_FCLKEN_PER 00000000
-       CM_IDLEST_PER 00000000
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-FCLKEN3_CORE becomes 0 after unbinding the bandgap sensor.
-
-but...
-# cat /sys/kernel/debug/pm_debug/time 
-usbhost_pwrdm (ON),OFF:830267486567,RET:0,INA:0,ON:12202880865
-sgx_pwrdm (INA),OFF:0,RET:0,INA:841224365234,ON:1245971680
-core_pwrdm (ON),OFF:0,RET:0,INA:0,ON:842470336914
-per_pwrdm (ON),OFF:520406799328,RET:30043365464,INA:0,ON:292020111087
-
-hmmm.... 
-
-but does not look like anything related to mcspi*.
-
-Regards,
-Andreas
+Best regards,
+Krzysztof
 
