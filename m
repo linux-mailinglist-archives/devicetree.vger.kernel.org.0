@@ -2,72 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DC3676D72
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:12:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90A89676D77
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:13:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbjAVOMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 09:12:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37876 "EHLO
+        id S230075AbjAVON3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 09:13:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229867AbjAVOMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:12:17 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CE0CDC0
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:12:15 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id y1so4125901wru.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:12:15 -0800 (PST)
+        with ESMTP id S230096AbjAVON2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:13:28 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9BE810418
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:13:25 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id y1so4127227wru.2
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:13:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YG82L0RoEBAvkltMsCip5Uv53LK3ZaD/OzuanIsLGzc=;
-        b=oXUQUoarmRTmP7vaRoOwyhSrzmYp3QQO0fVTByZ6lud8A6irRP0pzeIHRyAVs4yVwh
-         /jrD4AMx57gGWwnSe5nTETmuicG2MVhkwSQQDMalK6XP+QpQKh3Z0QN9GnWMLpYyQecX
-         s4mcLwiEJgh4Znn60LbwUY8CZaXADGKQ5aAabyTI89hOUyNrweJXHeKGjSXFNHr7blvt
-         s3lRRTOKXkACittc9Vtb8ad46I6CNou25WwlwJl8Bj4ZDRkhSLhyaJnpnDhGBb6m7nsA
-         is5yYqmPToYRcBQj4UpiYWxXR1uEN4Uy2/GAP+ucQI0qWmXlehihZYlnBwM2S4eBsu2t
-         dR6Q==
+        bh=SugIva74NLBWESanDTCiWyPSvA7ip4zXV7gKw6lUbrQ=;
+        b=RtA0V7/CAARJiXkH3BrJd9ABPzAIusIdaM+jUH3z5+LkCZqCcs/MCd5IEwaS9ZAz59
+         OlWEx1djJpKqmzSarWx3hxVnc5t2pFtAbqLQ6Z6lmeXy11P+vxc51XZlP3O5zSvcGph6
+         cWKfrXUuomgoyMJraFQjXosGZYY+V5K7XCn6jILQPrlofpJ+5DxzI9zi4020J62JLmYl
+         ik9431vEilugYV2udtLQwYhJ4QoVgFsdCPXgFQENgl//vV/qqt/h2ZIKOFhUNfNT6OIr
+         XFShVJc40LjwCnQc7gz5CWnC+r4+geNboDL8Aq/U/6Xee7w5VNCcP93Ihsc5odM6keaF
+         hzwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YG82L0RoEBAvkltMsCip5Uv53LK3ZaD/OzuanIsLGzc=;
-        b=lf/jqRHbAD8MaBgQOieiCPiFhrew7BED0Ql6WuvfllchG1ps346RQzScc54szBPQ4K
-         Q9dnf4zLtsT7zXRhyx58ZgQxqqScPdzTxWdNcD+dN22wE78NH47faqrthq3UQZGytC64
-         WLAwAXnkvVtP9YqPceRzBRWK2TcCpZHj+E4SIt2+Gay9BGsk9fTC78+y9vBxnZfy+eeA
-         b5dULS65A9Qy8zZBjNPFj2jVQZg+b57p/U8aCCXxMcgIw9Rq+siXzWb96pGXSx2MICZc
-         JJAOgzBMesIToqNnGQaRaHhBrSmGW1/VF3c4T/8SYprIeAHc93va5lIpWbxmD/ARO+qB
-         KgOQ==
-X-Gm-Message-State: AFqh2krPpiz+WXnuHQLYVbup9JvNqoNKAYTBtHf82mvNxhkpxOS6QI51
-        Onlx6puuWtwMZr5EgH3NoOnryA==
-X-Google-Smtp-Source: AMrXdXtP3kYC9dpWUzgvePrlB30mdVsNjEDJzvwK+nxEqcGfoGJ5bi/j79Lmf6xodVcOshi/xTHmsw==
-X-Received: by 2002:a05:6000:1f14:b0:2bd:eb6b:173a with SMTP id bv20-20020a0560001f1400b002bdeb6b173amr19355346wrb.36.1674396734144;
-        Sun, 22 Jan 2023 06:12:14 -0800 (PST)
+        bh=SugIva74NLBWESanDTCiWyPSvA7ip4zXV7gKw6lUbrQ=;
+        b=HA+4wsPrFPdbtkMbr1FoEDY6A3qJxcunwg7aa8A/O96g1wXZjMwFz2byIbaLTZBEdi
+         U1KSeIfkKWXfqeJInofVIBpfRpeKfXjRsMcU2M+9B4/qEe6Xfl5TsEP2ecKXwM00Z/Wa
+         47BzDfnc1y7jeieun89tFQFIY4XFutx4HqIcpT7UXHkfPCcaANGqBaxEqZ8r4+j9DoUQ
+         x46gzoPBDJy/wSU1awRBAtz5KDxx2+0PoqyQxzcf2R4GpfPvVe0mSXPri5exbooYZTV3
+         tJrkRVZPWKoYHrnZofHRRqeppoNjC2btYiwvpcsEIi7uDjK8FVEU9P5ZvjhP0UymApwy
+         QqkQ==
+X-Gm-Message-State: AFqh2kqvG46QEcJ5derHNCDiCLcliI903CPHIlMgOcNM5G9SWniMK7wQ
+        c2QQ0l9oYb5TTqYPO8W8Wd9jog==
+X-Google-Smtp-Source: AMrXdXsqPk8Wl8LBsZZhJL3bZObq5yLmvOCLaCUwEICuMLelSRGwqMatxMPiBhX9mXOa9NcdhRNGjg==
+X-Received: by 2002:a5d:688d:0:b0:2bf:9551:e48f with SMTP id h13-20020a5d688d000000b002bf9551e48fmr5387696wru.47.1674396804511;
+        Sun, 22 Jan 2023 06:13:24 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n9-20020adf8b09000000b00241d21d4652sm2273703wra.21.2023.01.22.06.12.12
+        by smtp.gmail.com with ESMTPSA id k3-20020a5d6e83000000b00289bdda07b7sm2355229wrz.92.2023.01.22.06.13.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Jan 2023 06:12:13 -0800 (PST)
-Message-ID: <2b9622b9-1bd5-0cf0-0f7a-89d33d62c706@linaro.org>
-Date:   Sun, 22 Jan 2023 15:12:11 +0100
+        Sun, 22 Jan 2023 06:13:24 -0800 (PST)
+Message-ID: <1666baf9-0996-ec23-dfec-8e52fc92ddee@linaro.org>
+Date:   Sun, 22 Jan 2023 15:13:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH V5 1/5] dt-bindings: usb: tegra-xudc: Add dma-coherent for
- Tegra194
+Subject: Re: [PATCH 1/3] dt-bindings: cpufreq: qcom-cpufreq-nvmem: make cpr
+ bindings optional
 Content-Language: en-US
-To:     Jon Hunter <jonathanh@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20230119104208.28726-1-jonathanh@nvidia.com>
- <20230119104208.28726-2-jonathanh@nvidia.com>
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230121000146.7809-1-ansuelsmth@gmail.com>
+ <43ff6113-03ee-a40a-b454-53cadec8728a@linaro.org>
+ <63cd42af.df0a0220.aae7d.51f1@mx.google.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230119104208.28726-2-jonathanh@nvidia.com>
+In-Reply-To: <63cd42af.df0a0220.aae7d.51f1@mx.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,15 +87,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2023 11:42, Jon Hunter wrote:
-> DMA operations for XUSB device controller are coherent for Tegra194 and
-> so update the device-tree binding to add this property.
+On 22/01/2023 15:05, Christian Marangi wrote:
+> On Sun, Jan 22, 2023 at 02:57:07PM +0100, Krzysztof Kozlowski wrote:
+>> On 21/01/2023 01:01, Christian Marangi wrote:
+>>> The qcom-cpufreq-nvmem driver also supports legacy devices pre-cpr that
+>>> doesn't have power-domains. When the schema was introduced, it was
+>>> wrongly set to always require these binding but this is not the case for
+>>> legacy device that base everything on nvmem cells and multiple microvolt
+>>
+>> What is a "legacy device"? Why do you adjust bindings to legacy device?
+>> Can't you just fix the DTS on these devices?
+>>
 > 
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
+> With legacy I mean device where cpr (core power reduction) wasn't a
+> thing and qcom used a different way to select the microvolt for the opp.
+> 
+> There is nothing in the related DTS to fix since they are not broken.
+> The driver doesn't enforce cpr presence and supports both new and old
+> implementation...
+> 
+> Setting the cpr as a required binding was wrong from the start. It was
+> probably done when qcs404 was introduced and they had this bright idea
+> of creating the schema and ignoring the other kind of configuration the
+> driver supports.
+> 
+> Since now we want to send opp for ipq8064 that use the old
+> implementation this fixup is required.
+> 
+> Probably I should drop the legacy term and just say that the driver
+> supports 2 different configuration and the following schema permits only
+> one?
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, it would be clearer.
 
 Best regards,
 Krzysztof
