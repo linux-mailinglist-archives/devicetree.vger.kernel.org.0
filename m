@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6A7D676D46
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 14:52:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B941676D48
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 14:53:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbjAVNwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 08:52:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58212 "EHLO
+        id S230006AbjAVNxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 08:53:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229944AbjAVNwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 08:52:42 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9869C83EC
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 05:52:41 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id r9so8603032wrw.4
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 05:52:41 -0800 (PST)
+        with ESMTP id S229622AbjAVNxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 08:53:13 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4572F1B553
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 05:53:12 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id b7so8614839wrt.3
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 05:53:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KsFQoxntUEMKG4+ARLmikKjFVw81S61EgSCu1Qy3vpA=;
-        b=LguRAKctglMkYAlkR0q7Se29qBW8QMYfJ+SeBavnV+whWe6xFirpcG/fTUUJQv9uu8
-         K84poSEaVOnfWQjNWTlmdZLXgQGNT2Vn8UQw2pmHbVWE2pevu9CA6KoENYU0FB3DzQk+
-         8cLrx3zmbv8lR2dkC0XILEOaumGpsZG6wNMbHl1wE7S/j+2KNMZOKRZMpLeaO9HD/Ftx
-         CrEj9fDyS4dQFIvkWYKM80bUv+ILDLAqGCMJL5dZVIaeaFFhVucDeRTrvwTe+16eSlZ6
-         T4dlG5uJIzMuSyoECrHVzLeZisLSIGyYpBwIjpDDWa/hQVyPILU8Msmp4n3slWN/4rO8
-         H/Tw==
+        bh=3uz2hambBKLny/k/c/XNti8Jw4YcdQCQlmBD+jwVcBk=;
+        b=im0FbK9Wffib+B7bORG4P13UYRAyZyp1no4g55k/all0Vq+yhRXlxv2tPSHemQfYHU
+         kXkT2Mcfsephkho3xZWoUR8TXApQ7QUPOdNlAwxCICAfWBqXvY5I548WRlXqDDloXbRi
+         quHu9BOObQpNOBG45Xflh9/8aN8hkZD9jCNdy7NeGAdvCY837WzuOHO6xcl0l98Y3KtT
+         QQSuN0cYtNQbkaoYYfw0N7d7RKk3Cg/yRJY39GblJJYmyVZ2T+xDbrVF7NLmXwXDSAac
+         gClk2nzoILKbEUksvkVncpo7CpYIaU1mIgjWeagoKIo0+rejOBRT4S2IgZKl4FJx2fT7
+         0rvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KsFQoxntUEMKG4+ARLmikKjFVw81S61EgSCu1Qy3vpA=;
-        b=gU3RvXYt/rnQ4ZfbiN8B973KT82FfWCZ86i6wZ7ZL4CdO0OO9X2pbDCwOfFsNop3Us
-         jU2RaCP4Bu93ciSy9oYy8hW7saTLTJwPENJhXWpcMVKo9OfCKKU3tj1lsHhbTudFWRFB
-         YpQAAWSvbVUGaWrVU2LSNkCFzNYoWeEp2MUwDx/i5Fnsk7wJi+4/ZVP2iPEh+cVCMEke
-         1JaixUqivPTdrwZ6Ai6L5ENisrzq2aLDnv3TqPT8GVV7bw1MEewh/wQ8Jl8nQY5p7Q6x
-         5vBbC6n8okSySXuAg1BgYgtItFJ9FlNVwF6/FnGQGpAthCBrAI6aZwUWQQsw5WGNhY+t
-         aBHA==
-X-Gm-Message-State: AFqh2kruQkfWg+glCz3kk712a0BlIYJZOJADpKwLil0PlcDZdlIYvtNh
-        K0FxhVeIAGtNfi3w/2l9Ha6FZA==
-X-Google-Smtp-Source: AMrXdXu9rjfV7o7q3z/mrw8B4LNoGjFeBeukadWnDG+Pl5w6ReXv2THh7/euOg4HR+E16W+I/jqc2w==
-X-Received: by 2002:adf:e912:0:b0:2b9:3cbb:6e02 with SMTP id f18-20020adfe912000000b002b93cbb6e02mr18277539wrm.27.1674395560165;
-        Sun, 22 Jan 2023 05:52:40 -0800 (PST)
+        bh=3uz2hambBKLny/k/c/XNti8Jw4YcdQCQlmBD+jwVcBk=;
+        b=t9085BTNFwVixm6fYsMMVcv3sNj+dGh+Zf5c/8zrgwAyv5hjLbRnvsdj+kic9OCgqL
+         mkjU90oALQCCjAcUSL+ePRrZqU+5ieY6Ldo1KyUjwpBUAkhbusIad73m+qjt8f2pZqWu
+         bFzMez6JReF59jrFmk6524FZTY2j6T3XxQMXoq8LXuW7QjVatWFX5ILHCI9jfOwZ+zaQ
+         pVxy+qDK2M9Bj0Q4vp6+NF9r1Jkzkj4rOPdtwV6PJRGZNqWDbrNYpgHJ4dX8SQxH9drJ
+         wOA1Ut8EUdtCzGdf3mDbyCdRVkg5duupH2m2ejB753QzyBojVUWWqNoaywK8AQtAgUiA
+         bRbw==
+X-Gm-Message-State: AFqh2kp9W2EvLlVKnWHsXbrqV3Jcm6BY4mM3s9wa862D/tj/EGMaliUv
+        H+ITpU4904udHUE8pmAQcCifrA==
+X-Google-Smtp-Source: AMrXdXshgTb0eYjX3WLoeDDjDTBa4r4aeJ+fgpVNN17aH0ELUdXHirup37RL7a9oBC55AR+KGOFzDg==
+X-Received: by 2002:adf:fc4c:0:b0:2bd:dbbb:e7e2 with SMTP id e12-20020adffc4c000000b002bddbbbe7e2mr17629897wrs.60.1674395590842;
+        Sun, 22 Jan 2023 05:53:10 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id v7-20020a5d6787000000b0025e86026866sm3800468wru.0.2023.01.22.05.52.38
+        by smtp.gmail.com with ESMTPSA id w4-20020adfee44000000b002ba2646fd30sm3247627wro.36.2023.01.22.05.53.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Jan 2023 05:52:39 -0800 (PST)
-Message-ID: <d449d8f1-c5ef-89ea-49b9-aa0cfb5283f0@linaro.org>
-Date:   Sun, 22 Jan 2023 14:52:37 +0100
+        Sun, 22 Jan 2023 05:53:10 -0800 (PST)
+Message-ID: <d5d9cd96-d12a-9cd1-f49a-54c036174c8b@linaro.org>
+Date:   Sun, 22 Jan 2023 14:53:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH v2 1/8] dt-bindings: gpio: rockchip,gpio-bank: add
- compatible string per SoC
+Subject: Re: [PATCH v2 2/8] dt-bindings: pinctrl: rockchip,pinctrl: mark gpio
+ sub nodes of pinctrl as deprecated
 Content-Language: en-US
 To:     Johan Jonker <jbx6244@gmail.com>, linus.walleij@linaro.org,
         brgl@bgdev.pl
@@ -67,8 +67,9 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         philipp.tomsich@vrull.eu, john@metanate.com,
         quentin.schulz@theobroma-systems.com
 References: <03627216-54b5-5d9b-f91d-adcd637819e3@gmail.com>
+ <137b56f0-8e86-f705-4ba7-d5dfe3c0b477@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <03627216-54b5-5d9b-f91d-adcd637819e3@gmail.com>
+In-Reply-To: <137b56f0-8e86-f705-4ba7-d5dfe3c0b477@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,33 +82,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/01/2023 12:06, Johan Jonker wrote:
-> Currently all Rockchip gpio nodes have the same compatible.
-> Compatible strings should be SoC related.
+On 21/01/2023 12:08, Johan Jonker wrote:
+> Mark gpio sub nodes of pinctrl as deprecated.
+> Gpio nodes are now placed in the root of the device tree.
+> The relation to pinctrl is now described with the
+> "gpio-ranges" property.
 > 
 > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  .../bindings/gpio/rockchip,gpio-bank.yaml     | 26 ++++++++++++++++---
->  1 file changed, 22 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> index affd823c8..a604c3638 100644
-> --- a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> @@ -11,9 +11,27 @@ maintainers:
-> 
->  properties:
->    compatible:
-> -    enum:
-> -      - rockchip,gpio-bank
-> -      - rockchip,rk3188-gpio-bank0
-> +    oneOf:
-> +      - const: rockchip,gpio-bank
-> +      - const: rockchip,rk3188-gpio-bank0
 
-That's an enum so keep them like that
-
-> +      - items:
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
