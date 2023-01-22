@@ -2,96 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F492676D96
-	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:19:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F70676D9B
+	for <lists+devicetree@lfdr.de>; Sun, 22 Jan 2023 15:21:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbjAVOTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 09:19:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44404 "EHLO
+        id S229919AbjAVOVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 09:21:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbjAVOTb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:19:31 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0304C144B7
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:19:30 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id bk16so8610962wrb.11
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:19:29 -0800 (PST)
+        with ESMTP id S229861AbjAVOVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 09:21:18 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 076E2144BA
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:21:17 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id h12so4637124wrv.10
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 06:21:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6nP80yt4P2LkjTrQbSApnHJJEUxI5A3MtVuRUI18a3s=;
-        b=dBCPnllzquDDUk+9Jg18anFzUDeoLloz26xrT7TaqiuwpuAwleMkzOfivLBXckeIrO
-         k0bNfIggIMbd+JwuPaStVNt1bsNmGmvwxM3EAc4japN0UPT0gSC5gHyQRzqOJ91ODpAz
-         eyafeA/P2Zymmyht7nTqT+PTmjnpZiD27bR3d9I/1RxPirk1Ax+NWKEJG9f2uP56FUfH
-         svloR0GbSWGvZqO75pztznAjiKUj//p1a3q7O1LKJBGQmooStGU53RaRbGvSl6Pfb0WN
-         riXvYdvdnlyA6jmMXZfiZr8y5vqWNWgHuNWdBoYOdTiI95sBuM1dfT5H95FPSCIX4Hig
-         d3gg==
+        bh=MDHEJxrfaoA/zzWo6j8IYd6HxMXyLHjGLtfLgW3x2Ss=;
+        b=iDZgYClBJCyQa0z+QdNNSM9WoFfVJ5MCscum0P8928woDIChwosvADGgMmgzzSO3d7
+         umg3DqBQa5f5VJ2u+05X2nb4IUnUzPBycxVrvobkpnHpryPt1qpXJuWcmBQOAj2dOjwv
+         kWk37WYHTWX0iJs/doSg9HYDfKteSzQ0s01Fs2V1ujdDe68/tBM8aKrlzDhRC+1bd3Kk
+         lkx9wSS0EKm1l1gcA8SNmChS6SW+BibQWeGv82UNTcSgQqq6B+qrSHMQPHnpt5u2kdCj
+         LXhDOqeND0WqpxEq5cRSjSAdbvi1Kp9kkdKgznXFI1b/E1jr2CwuAUS1A1uMB0qp9AZR
+         EbEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6nP80yt4P2LkjTrQbSApnHJJEUxI5A3MtVuRUI18a3s=;
-        b=ilMlgiSQmUnRSfnB9WO1//D1vCg+ytom8VM4bFSYEldNyyUi+93nBSyljPiU7RGoEG
-         Kmt5dpjMzLVXZHLEc86PE3VeD/6laC7xLLMmPPbPRiQjXU4duDJvqOBDyNbc491VyjLc
-         tCFHtK1GIsJRVaE9Cqdwkf7Yvbe6sgYLfzDrI1V2seyOy7HSf6kUwpIY+cxAafXQB2HM
-         YVe3WZkXOjLlbC+h/S0eAcehimtGOhxwN3Fh45TCPDlevj9n5Pv9prjRkcbx3GerFSmB
-         5BmP0CYDZ1c1n3ot1LXLBmLMHF0CqjNrfM8wcmb6mX/3d93ORNATnHHU7/G3ZaDoPwtL
-         Oi9g==
-X-Gm-Message-State: AFqh2kqeMawbJiUGwpsZkaUwr/d2T5gEs7mCh1jvumFg6TITqAUFJ+eV
-        yS2w157Agpx5SlOjXKtfvXzjHw==
-X-Google-Smtp-Source: AMrXdXt35b+CmPQpFZihlqLeEU0wTQBsOlVJzU5chJmIhwORGBT/y9cFtSOaeQfQF/WddOUFzrntrA==
-X-Received: by 2002:adf:f705:0:b0:2bd:d34e:534c with SMTP id r5-20020adff705000000b002bdd34e534cmr17454975wrp.36.1674397168563;
-        Sun, 22 Jan 2023 06:19:28 -0800 (PST)
+        bh=MDHEJxrfaoA/zzWo6j8IYd6HxMXyLHjGLtfLgW3x2Ss=;
+        b=DK4GawCfuq1WF1hs27jOYcjT0L7RyVGDUAd/7H51R5uoT5s8r8Y9ms5zESQ1h5LKQD
+         M7J3qDKCzkPYW3CeJiB4Yk0bvP1E1P4o6jJ0LpzCw+c0KM93q1WRuXSJKGMACfFSsaL7
+         /QrO2yLK2QLkKvtCrdYERmOkkcDB3Jxc3F+tz171rUfnl7ZDBT8/7ktuA/XP/qMdKK0+
+         D1/OrPZeuXMSI+OAXfrKXP9S2spjvDCI8AfzAaPUlb0Uk61G5JoSVZ8FtsiYp9sMIgqQ
+         wOrVUgAw4BwDlEe9Ulbo4RKK6UdWUIzqQj4g8qGs7ef3Q/x1ZIhZLSFLsL6hY+0WEZx6
+         OuKA==
+X-Gm-Message-State: AFqh2kpp8khY9NnUYn3vD6OHgvqbs/50IGavM3E4cC97Su/aKvAHMXj9
+        YE6IKKtgIa4FPrDIqUPWXSGL1A==
+X-Google-Smtp-Source: AMrXdXtI5XS6sdxzHUPIeZA65QgO6mUuVXrkUnSBn8llNPe9hOPQhs9dQEprQAbdn95gaUOTr3gNWQ==
+X-Received: by 2002:adf:c78b:0:b0:2bd:dd13:170f with SMTP id l11-20020adfc78b000000b002bddd13170fmr22170472wrg.26.1674397275531;
+        Sun, 22 Jan 2023 06:21:15 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id n9-20020adf8b09000000b00241d21d4652sm2286368wra.21.2023.01.22.06.19.25
+        by smtp.gmail.com with ESMTPSA id r11-20020adff70b000000b002bdf290efdasm17699309wrp.58.2023.01.22.06.21.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Jan 2023 06:19:28 -0800 (PST)
-Message-ID: <435018a3-80a1-2113-23bf-8645e8f6e4e4@linaro.org>
-Date:   Sun, 22 Jan 2023 15:19:24 +0100
+        Sun, 22 Jan 2023 06:21:15 -0800 (PST)
+Message-ID: <9712cda0-e50e-94ff-bdab-5f89459badb6@linaro.org>
+Date:   Sun, 22 Jan 2023 15:21:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH net-next 4/6] dt-bindings: net: renesas,rzn1-gmac:
- Document RZ/N1 GMAC support
+Subject: Re: [PATCH 1/3] dt-bindings: add Wiegand controller dt-binding
+ documentation
 Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Wong Vee Khee <veekhee@apple.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Revanth Kumar Uppala <ruppala@nvidia.com>,
-        Tan Tee Min <tee.min.tan@linux.intel.com>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Mohammad Athari Bin Ismail <mohammad.athari.ismail@intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>, netdev@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230116103926.276869-1-clement.leger@bootlin.com>
- <20230116103926.276869-5-clement.leger@bootlin.com>
+To:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, mani@kernel.org,
+        hemantk@codeaurora.org, quic_jhugo@quicinc.com,
+        andersson@kernel.org, Michael.Srba@seznam.cz, arnd@arndb.de,
+        dipenp@nvidia.com, bvanassche@acm.org, iwona.winiarska@intel.com,
+        ogabbay@kernel.org, tzimmermann@suse.de, fmdefrancesco@gmail.com,
+        jason.m.bills@linux.intel.com, jae.hyun.yoo@linux.intel.com,
+        gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org
+References: <20230104133414.39305-1-m.zatovic1@gmail.com>
+ <20230104133414.39305-2-m.zatovic1@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230116103926.276869-5-clement.leger@bootlin.com>
+In-Reply-To: <20230104133414.39305-2-m.zatovic1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -104,85 +83,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2023 11:39, Clément Léger wrote:
-> Add "renesas,rzn1-gmac" binding documention which is compatible which
-> "snps,dwmac" compatible driver but uses a custom PCS to communicate
-> with the phy.
+On 04/01/2023 14:34, Martin Zaťovič wrote:
+> A Weigand bus is defined by a Wiegand controller node. This node
+> can contain one or more device nodes for devices attached to
+> the controller(it is advised to only connect one device as Wiegand
+> is a point-to-point bus).
 > 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> Wiegand controller needs to specify several attributes such as
+> the pulse length in order to function properly. These attributes
+> are documented here.
+> 
+> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
 > ---
->  .../bindings/net/renesas,rzn1-gmac.yaml       | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml b/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
-> new file mode 100644
-> index 000000000000..effb9a312832
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/renesas,rzn1-gmac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas GMAC1 Device Tree Bindings
+>  .../bindings/wiegand/wiegand-controller.yaml  | 83 +++++++++++++++++++
 
-Drop Device Tree Bindings.
-
-> +
-> +maintainers:
-> +  - Clément Léger <clement.leger@bootlin.com>
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - renesas,r9a06g032-gmac
-> +          - renesas,rzn1-gmac
-> +  required:
-> +    - compatible
-> +
-> +allOf:
-> +  - $ref: "snps,dwmac.yaml#"
-
-Drop quotes.
-
-> +
-> +properties:
-> +  compatible:
-> +    additionalItems: true
-
-No. Drop.
-
-> +    maxItems: 3
-
-No.
-
-> +    items:
-> +      - enum:
-> +          - renesas,r9a06g032-gmac
-> +          - renesas,rzn1-gmac
-> +    contains:
-> +      enum:
-> +        - snps,dwmac
-
-No, please list possibilities
-
-> +
-> +  pcs-handle:
-> +    description:
-> +      phandle pointing to a PCS sub-node compatible with
-> +      renesas,rzn1-miic.yaml#
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
+You still miss bindings using this common properties which will document
+"wiegand-gpio".
 
 Best regards,
 Krzysztof
