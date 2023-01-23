@@ -2,88 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD15A6774C3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 06:12:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88C276774CF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 06:23:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230073AbjAWFMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 00:12:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
+        id S230259AbjAWFX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 00:23:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbjAWFMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 00:12:01 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD6A17CFA;
-        Sun, 22 Jan 2023 21:11:59 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id y19so13244063edc.2;
-        Sun, 22 Jan 2023 21:11:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sWioUiHkjNJu+qFD0c7stZaNR29l77ssapWjZeRh5zw=;
-        b=L+Abc93j8hf8PGkpz2K1amYZkyIZ0U8J2kqQpf9Jle5sLJzmqYDLWihTwnQ+qAtY3e
-         LdQxfusjChLBsrBeTFLG3xEWt7QEIn6Y/SUhhnkTUWtpy6ntmaeo9zEhr97i4E4fuEdm
-         RUouQGeLiyTCbHjs+HJ8kcpLsOOldAmgf41sk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sWioUiHkjNJu+qFD0c7stZaNR29l77ssapWjZeRh5zw=;
-        b=qOpUwr4uLJEWzGoaHZZ7xcTXKz2fIaWPlZ5VWYNbr9yyWElAWAtmLGxntQrixUslZ0
-         /qylV0GqkIXjx5vtz5xsPrCr9jBEAoUCiNQGsb/a0FkwZRCCDEHK7n5aeWMs+H2MrT47
-         Bd5Tv/p+61C2/rneDrwbGFlUbvpl3oue38n7D18DrRaKdMXgebxkGmov5wLAz5Oi2Cz8
-         wVgwByzxUktCb1FiY/vPVX/0KGTJtK532doHzBgJWKIHHi/gys5n7/cA/Fk1eDi96RPY
-         0Z3NXArVorNydBNjZdNOTp9z9GMjX4BYBxGKVnxrguPTP1rkGrrs1Vjt7tbQiScBegPz
-         GJxg==
-X-Gm-Message-State: AFqh2kqUjdI+02qwDMDc7sFx6/t7Ak4TIqrCKvzCrVYN008FO2si1I4t
-        X0gKQI0Yh6zcNyQ7vcsDsqISpzecet4Nt8WVtlk=
-X-Google-Smtp-Source: AMrXdXsPVC66oPNni93hPdj3sCljs/LtZOEps1r4t9jmIAGlnws/huj/ohwTtulkMAqHa1SeXH3p2vbViEYi1hHQSh8=
-X-Received: by 2002:a05:6402:524f:b0:497:233d:3eee with SMTP id
- t15-20020a056402524f00b00497233d3eeemr3118354edd.92.1674450717581; Sun, 22
- Jan 2023 21:11:57 -0800 (PST)
+        with ESMTP id S230371AbjAWFX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 00:23:27 -0500
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2110.outbound.protection.outlook.com [40.107.114.110])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F6AAD17
+        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 21:23:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BofGc5+f/fSU5Yc8qw9Lj6nrZM+iU24agQMFDQMux9+cxP9dUSwBHZ5/BsKPuW1JQCV/6phWeCiwRFl2C3esr4SYU68ERdMo/Um42O3uSFV8MPpsYaIJqxR8qIZA8c1L4797mSgGshmafi3sukBBHruAgb5VZc4OEInCUyIXqOf3+jho0AJWKeNbI/XFAat3xMVmaxqrUp9UfTitiGkmDlZ7MAoA5ocG+OYKzAsCSAOFkC3JdlvExEDWEMfJU1AbOEED9iM2lo82hwf6DYgn+7QGSwOYL7nYZQN9iLIRCDvdReh0lXWnc65VtKpKnstRWubwiUZpBx3QzFupFu+mSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C4o8+U2aacEdkPLooabt5MlWdpNpYwEyfKAaMHBYRZs=;
+ b=SmBm3vM81RGZh85W71UcPylt0tQYgd41FyqFeAbxuqE991RvTPLxcPywZNGMh9PIANBYMuWqCSXWsQLhyQN9udNZ+Wsrx+qlVWILKz9LPSnl5I2fdYx6KAx1RB0M9/wx5jG074VnrtGPcxkblY6JqkLTxhFm33ZDjm/RKFC06Na4ASPXzhTwL2RPaXMxeIv0e43/cm8vvfIG6/xyMwR8+xm8+rLqnOTzadPw0JqUGDhh9aQvgRSZPumvMi8Q+rKwq7McOXHv9zNout773PAOpD3qplQH0P2xAWjaS80jF63ByVat016fZCJMGIIdOYeeMRFhFEUJEA4aWw/WOfOgYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C4o8+U2aacEdkPLooabt5MlWdpNpYwEyfKAaMHBYRZs=;
+ b=ILlwlNu98F1Pe/nYp6xjeEsSMF4hLFcGRPPTBcPqkUkFWLx+ZO3idLZlb1QJPij+xWe5nk0NyAzTl2POhXo50P78C72IA0XiTDBkRToj1Xj0H+YE3UdrqJ+jJDNEDaPO0ZVHtkzdXTcMdxrdzm+ss5tHSeC4kNQ2vkvgZ3s67zw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
+ by TYCPR01MB11546.jpnprd01.prod.outlook.com (2603:1096:400:38a::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Mon, 23 Jan
+ 2023 05:23:22 +0000
+Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::3cd7:a7b5:ea86:9ae]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
+ ([fe80::3cd7:a7b5:ea86:9ae%6]) with mapi id 15.20.6002.033; Mon, 23 Jan 2023
+ 05:23:22 +0000
+Message-ID: <87sfg17rjq.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v3 00/11] ASoC: dt-bindings: audio-graph-port related update
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset=US-ASCII
+Date:   Mon, 23 Jan 2023 05:23:22 +0000
+X-ClientProxiedBy: TYCPR01CA0147.jpnprd01.prod.outlook.com
+ (2603:1096:400:2b7::12) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+ (2603:1096:604:194::10)
 MIME-Version: 1.0
-References: <20230120190159.23459-1-nick.hawkins@hpe.com> <20230120190159.23459-2-nick.hawkins@hpe.com>
-In-Reply-To: <20230120190159.23459-2-nick.hawkins@hpe.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 23 Jan 2023 05:11:45 +0000
-Message-ID: <CACPK8Xe46F4Rk1jkLzXdzHE8t_HePe83teTrwUoV4wMvOn4_CQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] i2c: hpe: Add GXP SoC I2C Controller
-To:     nick.hawkins@hpe.com
-Cc:     verdun@hpe.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TYCPR01MB11546:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9a7bea05-b8ef-4d65-361d-08dafd01f1f8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QxuTjoiHhr2HSMiXrtkeqfPomO5/mn26en69rmj5tZrmZTVuIhPYpTevJJV7BwdpXlqlrC7nquqjYOtEwvQCKb6uh+6chkmdBaAl0QqHYiBEQ89Rdw68E7y73OOJcvqKkVepx0/J82w3F2c9zNW674LkJekxVq45obcLhAXKa9II6OOChExM1z9SunukgSQ/XcHYvZxwHt39VxI9tn7vXDtjfhSJ+M3qA8hxQVQjDemuqqjrP5vzZTRBxNIhiuVH3NUIof2K4ThpBOlKbjwTfFFdeD8vGhWqixthxuJgGf6mp/YH38pFejSfJFwDriOn3vtQtgNgr7vDltvSkGXKgblNxVpkBRWd32e0YirZr0BDeKZoLMxUbz6T9esVse4huWbliBnjwPm4u7x6UQzp79TEyY0BAeE9hfkfA40OcIuMdo1nMmA9Fm9gJvPh3ugoIpdv6xYA+zhQDCDYcjfN4xZTTw8mMIx7FtuYM3I4BMFld1pJyyqRbDmjoK+ZvJn9FVQCO9KFLl4jJaDNpwhdGUxRMq7wuJbJVVGV+lygPCfQ/umoZTLJQANdvPKK2617RBALQrRI/tJvCu8y7PJ2MfdCEx9ZZznxhWNaZSzjAt/j5sl5oKb5w3yXR3BE2Pr1Pi4zUmmz8BLYVYr0CPNijPniHpO+rMoUJvGC7MCUe+xDnD9FxdHY0dxLb99crgTnrJhsNH8aJLeIP2aQWoHdYDbDshQWCb8+8q2LUT7hk10GK36dkWHOEe5UaY9X7+cXDyn9ATunelj3IjNKDlaIwQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(366004)(39860400002)(346002)(136003)(451199015)(52116002)(54906003)(110136005)(316002)(41300700001)(8676002)(66556008)(4326008)(36756003)(66476007)(83380400001)(66946007)(86362001)(38100700002)(966005)(6486002)(478600001)(38350700002)(2616005)(26005)(6506007)(186003)(6512007)(2906002)(8936002)(5660300002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?brdZnAPfbtgARBwGTsm85STG2oXC62ll+cuxNrN7D7diEJHDiog2ezugDtCs?=
+ =?us-ascii?Q?BbyM9PFngF1Jn7LxkT+sbdBGSzv1sMiYs95VIUMqY0mMOxX7BgOmeAzMarM5?=
+ =?us-ascii?Q?CDNl97D1kCLLfjWF5P85B4G6iUQfHWKPUUe+xaW/7v3K8acqQyjztWC8PKYY?=
+ =?us-ascii?Q?WN7Wxg+mPY4a7ROkqpjd9UKde87W6Q4Y6AN3D3kYgZq8Yuole9mPAuMBM8vD?=
+ =?us-ascii?Q?Ww2YqwkvwrQt0xtFhgylgC2obxZLHqVrTyYatj86ESQJxu4fit2P5B8IJuyX?=
+ =?us-ascii?Q?jwrgh/oXQugGCeK42R6ZwGekhmDd9h8ZAqe48g4Pzyj/+BbtgC6cYImnN7CU?=
+ =?us-ascii?Q?YAJMnWLOnsb3Mg4k/0ABZ2kjA5fqhgiM8LvxH0+CVKyPQDD6ZJIJaGUjmpLG?=
+ =?us-ascii?Q?zDPurbIb/rMdpgsFrD9HBur4Q4gpxu/2E8bMedTtrpKhm0Eja+f/Mi7BdEaL?=
+ =?us-ascii?Q?0nnBHgPflfs+TJ+G63AG3SdMT/DQ3DJRK/Y8Kqxxrl0DtZGbVq365cufP9bj?=
+ =?us-ascii?Q?s1LygVCk/HZZhF3I4b6p0MLLnrIwMwO5uBPrPPSAw6B33XlPFhJi5P3tqpei?=
+ =?us-ascii?Q?3iFpB3+ZqkbvK9aJa+HpYcWaqcHKF5welAzEs2ZF1jGrSaJi/immiz65Iiw9?=
+ =?us-ascii?Q?cwTaDMpl5MBo1JoR9fixHT3X5w0ce3tPZa4Wpuf7+04JfPIUe8Jzf7AFo1QX?=
+ =?us-ascii?Q?GKcPV6E7EnaahbHsVWsC41gV+tOjkZYVxXEoARrxT1Jt9cQuIxmLnf+Tr6HC?=
+ =?us-ascii?Q?zV0wFGCfxdEUizh8oilC7KXlN73+3vnp6Q0CzEf/J7aGxc9K/od4jWFfoi9L?=
+ =?us-ascii?Q?26kQE0Fd/AfHxi4+4PvkG4EUmIxeGMj7821lJp1ENlcbWx398NS4rl8Q78iP?=
+ =?us-ascii?Q?vCeuoyUnX74UdzrvvfJ3vQLgcfD0BbDysJkx56mGX52GdPe1PREMZkvkdmrL?=
+ =?us-ascii?Q?XDnHFi2XwpaLDuMuQbt5U/jQ7xAgpfvNTgum5LY7DAbSUVkKH7nfEJ0WsFki?=
+ =?us-ascii?Q?RHPH7ljSTs6OrH5sS3Uq4i6TBhsMPKtzGT4ppRiuRYcoQyeqKPGq3e2qKy5X?=
+ =?us-ascii?Q?mfawF3FqwhsLvW0nvcAjc5lheRW8U7stvDejScVQ7Z1IPalC0ZfhzaTHm33v?=
+ =?us-ascii?Q?BkGXwOB1OHhNxYmGFmn773NDaxy6qD88x8kHfITGK/270K1j5LDdPHG5RKnU?=
+ =?us-ascii?Q?ryQKZkdRQ66HOfPiFlpJQdgIMVPJCzj0LSlwhzrMjB+dVN41HOfpuGMkdzeT?=
+ =?us-ascii?Q?sG3dYxPQKugIzNRWiK30FP2uPhBHQWxNLZdWxjWm7vuPdJpeAmHynR1IVYoU?=
+ =?us-ascii?Q?PtPbiJ1a5ZfVz0wGJBeUvysfNP7I8YY9j+CRRvo//8WWTxBzNOHZuKo7IpO1?=
+ =?us-ascii?Q?oKfVlhpgJznLLPj+GBMQeYGrdubfxYpSSQDNlOnBLZgNCgXAoBoqWQTgFk8X?=
+ =?us-ascii?Q?jY1fI6c/wo8FLAWpejiE+uheXWLStcL8kZzR+2KCEi8XIvzZ5sloy1wkoiMd?=
+ =?us-ascii?Q?cKEDpowQLOgLHOXUuzS4GKZMZW21pbXSdzTkqQ8f3QG8EGsQUYb9CqJdkqc+?=
+ =?us-ascii?Q?MdGExGIwJBcCOoI1l4R/Jy/ymAUZJ8tQ0E8q+nm55U3Qxe4l02gpISOxHSGd?=
+ =?us-ascii?Q?u5smArRSld+bZPwBrqvtrNA=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a7bea05-b8ef-4d65-361d-08dafd01f1f8
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 05:23:22.3966
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hlRPMaRP/BlkMIAZeomkiIQFO2GkjTF1ffQfUNpQxAgOosM1k9oEkeU1h2XrPV28TSUmVda8snhkIoL4dn+UqT7skyTWoL1QcBkHUGyHkJsCCeJeTaooLP50N/ViZSw2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11546
+X-Spam-Status: No, score=-1.3 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Jan 2023 at 19:04, <nick.hawkins@hpe.com> wrote:
->
-> From: Nick Hawkins <nick.hawkins@hpe.com>
 
-> +static int gxp_i2c_remove(struct platform_device *pdev)
-> +{
-> +       struct gxp_i2c_drvdata *drvdata = platform_get_drvdata(pdev);
-> +
-> +       disable_irq(drvdata->irq);
+Hi ASoC ML, DT ML
+Cc Geert
 
-The i2c core calls disable_irq for us (see i2c_device_shutdown) so you
-don't need that here.
+These v3 patches fixups audio-graph-port, and its related DT schema.
+Audio-Graph-Card and Simple-Audio-Card are similar Card
+and are sharing same utils. Thus we can also sharing same schema.
 
-In my review I wondered if you needed to do something like this:
+This patch-set fixup some Renesas's "make dtbs_check".
 
-+               regmap_update_bits(i2cg_map, GXP_I2CINTEN, 0x00000FFF, 0);
+v2 -> v3
+	- add Acked-by / Reviewed-by
+	- include missing 
 
-> +       i2c_del_adapter(&drvdata->adapter);
-> +
-> +       return 0;
-> +}
-> +
+v1 -> v2
+	- remove patch for Nvidia
+	- tidyup ti,pcm3168a schema
+	  - maintainers
+	  - ports
+	- explain more on git-log
+
+Link: https://lore.kernel.org/r/87358hj2ub.wl-kuninori.morimoto.gx@renesas.com
+Link: https://lore.kernel.org/r/87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com
+
+Geert Uytterhoeven (1):
+  ASoC: dt-bindings: ti,pcm3168a: Convert to json-schema
+
+Kuninori Morimoto (10):
+  ASoC: dt-bindings: audio-graph-port: use definitions for port/endpoint
+  ASoC: dt-bindings: audio-graph-port: add definitions/ports
+  ASoC: dt-bindings: audio-graph-port: add missing mclk-fs
+  ASoC: dt-bindings: audio-graph-port: add clocks on endpoint
+  ASoC: dt-bindings: audio-graph-port: remove prefix
+  ASoC: dt-bindings: ak4613: enable Of-graph (Audio-Graph-Card) style
+  ASoC: dt-bindings: renesas,rsnd: add missing playback/capture
+  ASoC: dt-bindings: brenesas,rsnd: tidyup rcar_sound,src
+  ASoC: dt-bindings: renesas,rsnd: #sound-dai-cells is not mandatory
+  ASoC: dt-bindings: simple-card: add missing #address-cells/#size-cells
+
+ .../devicetree/bindings/sound/ak4613.yaml     |   7 ++
+ .../bindings/sound/audio-graph-port.yaml      |  65 +++++++----
+ .../bindings/sound/renesas,rsnd.yaml          |  31 +++--
+ .../bindings/sound/simple-card.yaml           |   4 +
+ .../devicetree/bindings/sound/ti,pcm3168a.txt |  56 ---------
+ .../bindings/sound/ti,pcm3168a.yaml           | 107 ++++++++++++++++++
+ 6 files changed, 184 insertions(+), 86 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ti,pcm3168a.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
+
+-- 
+2.25.1
+
