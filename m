@@ -2,93 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EB6A677828
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 11:02:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C5E67783E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 11:06:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231803AbjAWKCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 05:02:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58554 "EHLO
+        id S231626AbjAWKGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 05:06:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbjAWKB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 05:01:56 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C21CC3F
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 02:01:52 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id m15so8534086wms.4
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 02:01:52 -0800 (PST)
+        with ESMTP id S231709AbjAWKGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 05:06:09 -0500
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CF49B455
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 02:06:05 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id b1so8814329ybn.11
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 02:06:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SdnsFmNbrdKiXDK5mA+9lOKKIJ/fodMoPTrcBE3d8b0=;
-        b=Wt4IQ0/u8mRIbLs8nRHWFRH3CLXBHzwZQy6me3Txzepw20y9bGZyBQGkli+HVeHGce
-         Qb1zFaaMtjNip39iUjM1vJZ/6d98U/xWAPW2vniITuizVqLHqkz3tYCUyBVoFXomTRw8
-         78O+FKtic1M7imTbzL+F1+fg84d1oBgRRJVPPhgXoOZGgd75Bvac2iWhdgyACIQYmOk7
-         rEfkopaV2NRDJGPYFj5xbUjjpx49IjisnvWL/rti2MfS4GXzL+wMwiy3wY7D/710YVXi
-         XH0o2yve0deA+/prKHxKsES5bIAL51DH4zF2BdPvnb6Lq7n9HtHjV0CJ3o5UZGCxQgQ5
-         cPVg==
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=c0FbadMqL2tX0C6hAHeoCOdwffzG+1EQWjMoccdBxVw=;
+        b=hDvCUpkUfbZGy2Fw/xJLuLWn2k6BiYu8RwY1gGtHpPJS3SWIq4yE6UsgZvzm8QvzaL
+         PYOztGK2IEjBzUPh9HgzpyE94jhqU7DmxzSLh118WmiIcnupENfNll3IiddbIcwEqncW
+         s2kgKUN9zos4yOfaqBNsARWfb18uqf7fNB7FNgaOdfKA1wsPOJm1HE207ZpEhrUGEY+E
+         2p8ovRK7lHpaH//ZoZ9CKNQmRgEa9q7aIt+hKbUZosllBciB2nyMQvGFDilIR2TElT95
+         Q3TYryjW00TqRgZRKXD2aQXFxpkOsl9cX63pcXKohtDM2n7xslQGhLarsSsGLogqGOyi
+         5hnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SdnsFmNbrdKiXDK5mA+9lOKKIJ/fodMoPTrcBE3d8b0=;
-        b=zerDCEQ8fEm4VNOi0oSVZkhNJ77KpoKUtBsPdU55LYkaVgh36llhcKJuIbE4PI6AJB
-         HxD0VkY6EGf9VjIo0TRDzATvaQdgT+y4qtXsnmMA6VER4yPl007EfRZEeX1MXretfTs5
-         YmE2bWbJPAas4t8P+A0ZsdiSjAoJ9vrAVKPfLocLkpi5SyYplatc5ZI+U2BglxJnxyHR
-         ks9GdgJmKJ/r2rdgB3uQzEpg18rUfQaueQT1GKEajaCPk/i20JFdTIkRWhcq+3APWojT
-         HqQkFJ/pBeqSnxn/N5z+OTrr8HlrzkSLf8y1TjnUuwVR5t3qt3vgLI9Iu28DHm8izLyD
-         PVGA==
-X-Gm-Message-State: AFqh2kpfWq6sF+TamRuuv8NFahRUiMLEPBq50zjpC+ApLZdJHoC7/mkK
-        PVyERTs0FQuTWlVvjefs0S2dKhk6/fFPE4Zr
-X-Google-Smtp-Source: AMrXdXvvby54p3PUVxoYWQ06w3Nmoq+NRjJnHR3tTX5+ciEssl3hms0rATN2Izdl/MyNbmqN4AP1Tw==
-X-Received: by 2002:a05:600c:4f42:b0:3db:2e62:1d69 with SMTP id m2-20020a05600c4f4200b003db2e621d69mr12821028wmq.31.1674468110997;
-        Mon, 23 Jan 2023 02:01:50 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m2-20020a05600c4f4200b003db0ad636d1sm11050831wmq.28.2023.01.23.02.01.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 02:01:50 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
-Subject: Re: [PATCH] ARM: dts: exynos: drop incorrect power-supplies in P4 Note
-Date:   Mon, 23 Jan 2023 11:01:41 +0100
-Message-Id: <167446806832.57213.14059225386091066791.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230120071151.116272-1-krzysztof.kozlowski@linaro.org>
-References: <20230120071151.116272-1-krzysztof.kozlowski@linaro.org>
+        h=to:subject:message-id:date:from:sender:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c0FbadMqL2tX0C6hAHeoCOdwffzG+1EQWjMoccdBxVw=;
+        b=XVURCQEpvSC7qf+L7G/sPQmXyY32ScYrka0fI9gn9Jjv8F/cfmmz9HiGVZliDt2Tj8
+         8HItW6y8QXZA73x6+wX6hOiK170w2FnMS/jN0MWDg4vJC61f0v6qf3a1nZQU0WaqHrQN
+         huJ8gc7HEjPo80aRPeT5X7xU5GnD/thmtAESma7QXlBbymiq205lk/txbNccO5kvlNmJ
+         3IPFEoq3/XymaGYHH1JQC+QrjHb9eAmLpfuKzYGuTIAx5aUGFUUChnh9zt1PLSeJ/k5v
+         tb+RgIoRKTLJw1rjpgPpCNFsYE/sfjJ7HZUxFl+ih89MUdhfwSIYCVj2EntaJ0N6ZM9a
+         SNQA==
+X-Gm-Message-State: AFqh2kpRXR9YhdIwTmzfb5HMtrScI64yVO7KXjDk6qwg1lBhJFz6QCWe
+        1Ot2TKcta0Szs9oJLssEpZoc42AAWWFj7aTqSac=
+X-Google-Smtp-Source: AMrXdXsnw1QsEtPusHvGidnd64bJeyIXIVwUlZcBsVEvmrR3WdOROer7URy6gEGxpU9qWSTG7rJLkrmkDW7xyF9dCAE=
+X-Received: by 2002:a25:880d:0:b0:7dd:ee67:cab with SMTP id
+ c13-20020a25880d000000b007ddee670cabmr1711080ybl.567.1674468364427; Mon, 23
+ Jan 2023 02:06:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Sender: damigoaloma2@gmail.com
+Received: by 2002:a05:7000:3e04:b0:433:7300:c698 with HTTP; Mon, 23 Jan 2023
+ 02:06:03 -0800 (PST)
+From:   "Mrs. Rabi Affason Marcus" <affasonrabi@gmail.com>
+Date:   Mon, 23 Jan 2023 02:06:03 -0800
+X-Google-Sender-Auth: ETHZq6Xe1ufDbgBKUVfhSXul0qE
+Message-ID: <CANG-f2-++tOQxO76a_sUsX1D+SfXgZS4CQ4D_HGBcASgZK+5CA@mail.gmail.com>
+Subject: PLEASE CONFIRM MY PREVIOUS MAIL FOR MORE DETAILS.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=2.6 required=5.0 tests=BAYES_80,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,
+        T_HK_NAME_FM_MR_MRS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Jan 2023 08:11:51 +0100, Krzysztof Kozlowski wrote:
-> simple-battery does not have supplies, but it is referenced by charger
-> instead:
-> 
->   exynos4412-p4note-n8010.dtb: battery-cell: 'power-supplies' does not match any of the regexes: '^ocv-capacity-table-[0-9]+$', 'pinctrl-[0-9]+'
-> 
-> 
-
-Applied, thanks!
-
-[1/1] ARM: dts: exynos: drop incorrect power-supplies in P4 Note
-      https://git.kernel.org/krzk/linux/c/4069be845bbff7b4761aa513c30d6400e5f63846
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hello my beloved good morning from here, please did you received my
+previous mail?
