@@ -2,99 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4503677773
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 10:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2732677780
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 10:38:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231848AbjAWJcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 04:32:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36210 "EHLO
+        id S230172AbjAWJiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 04:38:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229676AbjAWJcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 04:32:02 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B340C18B1D
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:32:01 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pJtBD-0001WN-Bh; Mon, 23 Jan 2023 10:31:55 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pJtBC-00073Z-Jb; Mon, 23 Jan 2023 10:31:54 +0100
-Date:   Mon, 23 Jan 2023 10:31:54 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 3/3] dt-bindings: arm: fsl: Add i.MX8MM-EVKB
-Message-ID: <20230123093154.u2hjt7xxoycn57w5@pengutronix.de>
-References: <20230123071312.3297210-1-johannes.schneider@leica-geosystems.com>
- <20230123071312.3297210-4-johannes.schneider@leica-geosystems.com>
+        with ESMTP id S231489AbjAWJiN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 04:38:13 -0500
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B27CCA01
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:38:11 -0800 (PST)
+Received: by mail-yb1-xb34.google.com with SMTP id p188so13997664yba.5
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:38:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5+6RKzh8/Lt7v29Nl9d79EntHpnCiB9/8mqrAnMy3gQ=;
+        b=WeH++WcLNYyMKGf2E2zv8fRfVxHuz1bBP6rzSLVY/1sA+qMk5VJv9VqFdFfHmMkHx2
+         3TK4on2ONCWbxtooazRn2zlREFQzvisCf1eiU9DfFoS7s1KNn3gLVJSZB+RYQNAJyQ6Z
+         25IRNyNFjJp2poy8ZKVK8DiXNeUk7ETBAlJrru3Yk77C3FFx3LSSTX4JSh2HOruHWKFE
+         QqJF1GCJsqsO9oK3BF4LekiCTQfo19tlHGwzkA74mlDwM+/x5OS3GK9EV7aTPwNIPS+7
+         7YBFDa3F0wBfOA84nLvJAh0siJapfjp8BLjl8jcXfMw9zhyH4NBJ+oriZ8GXZrda4ee7
+         77Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5+6RKzh8/Lt7v29Nl9d79EntHpnCiB9/8mqrAnMy3gQ=;
+        b=OrtXB5FPuJYJwv7SV5ZPbAefjt3HInNQuYRlXWRNYbcQ53lh+MFIQO785wbmvBkII/
+         MX/v0SPJUaMj6dqC+q6ZXTi1UgAVX2pw4q0m1uK7ITuB/tP8Ft6SXvPv/nw8kKMPj2AU
+         PGkKD6dUharIh1dO3ffscvuuCrOYM8GOuzbYhAIXGkaXPYIkmu7AQDkeFUUFxtcAalme
+         BUn2DIhwh5IaktzXENlO4XrEPkEh1Qv+jzgfwCWHqs4785dXRcP9ylzIHmbsoA2ihMPe
+         dYiPMqWwi3E3ucMD81+sfLlB+EsOqyDeBOJqi9ULExgpn3U6L+RW1OSaUJwffR99zWHH
+         9QpQ==
+X-Gm-Message-State: AFqh2krSrKcE++Z4ulYYrLgAuhKWd3RsdE7qxk2GP/bxm2lujjaAwxKH
+        CoUNX6xh0N0a+HLe5zv25ncPI0bJz/66BMRVApJ6IcX3khOpooHb
+X-Google-Smtp-Source: AMrXdXuyGc4+CKGV7sHJ9YCNKzHlgrK8Jcq0Xwvkw40LgTEpzAUjXXmlBpQFuOBcJuWIcbR2wsacTUkpk9GeEMJ6a50=
+X-Received: by 2002:a5b:4d2:0:b0:707:473f:b763 with SMTP id
+ u18-20020a5b04d2000000b00707473fb763mr2791131ybp.158.1674466690342; Mon, 23
+ Jan 2023 01:38:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230123071312.3297210-4-johannes.schneider@leica-geosystems.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230118-mt8365-spi-support-v1-2-842a21e50494@baylibre.com> <20230120082054.610626-1-michael@walle.cc>
+In-Reply-To: <20230120082054.610626-1-michael@walle.cc>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Mon, 23 Jan 2023 10:37:58 +0100
+Message-ID: <CAFGrd9qXL-u4XzG9MLK2zbKoDudhTYpr-gJaZPjbysJ9Fo2gnQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] spi: spidev: add new mediatek support
+To:     Michael Walle <michael@walle.cc>
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johannes,
+Le ven. 20 janv. 2023 =C3=A0 09:20, Michael Walle <michael@walle.cc> a =C3=
+=A9crit :
+>
+> From: Alexandre Mergnat <amergnat@baylibre.com>
+>
+> > Add the "mediatek,genio" compatible string to support Mediatek
+> > SPI controller on the genio boards.
+>
+> What is the use case of having the spidev? What if I want to
+> connect a device with a linux driver to it? It seems like you
+> just want to expose the SPI bus on the pin header. There was a
+> similar discussion for a mikrobus connector [1].
+>
 
-On 23-01-23, Johannes Schneider wrote:
-> Add DT compatible strings for recent EVKs, that come with a different PMIC.
-> 
-> The most recent revision of the 'original' EVK CPU module is C2 and the most
-> recent revision of EVKB CPU2 module is A4.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index fbfc4f99c01e..9c3a02c19847 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -818,6 +818,7 @@ properties:
->                - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
->                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
->                - fsl,imx8mm-evk            # i.MX8MM EVK Board
-> +              - fsl,imx8mm-evkb           # i.MX8MM EVK Board, rev-B
-								  ^
-	As I mentioned within my previouse review, please drop the rev-B
-	comment, so the comment looks like:
+Hi Michael,
 
-	# i.MX8MM EVKB Board
+Yes I want to expose the SPI on the pin header for two reasons:
+- It's an Evaluation Kit board, I believe exposing SPI helps new
+customers to try/understand it.
+- This board will join the KernelCI soon, this setup will help to do
+SPI non regression tests for a fixed default configuration.
+
+AFAII from [1] , you can easily modify the current spidev@0 (If you
+don't want to keep userspace interface) or simply add (in the DTS or
+overlay) another node foo@1 with a different compatible (and so on)
+according to the chip you plug on the header pin.
 
 Regards,
-  Marco
+Alex
 
->                - gateworks,imx8mm-gw7904
->                - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
->                - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
-> -- 
-> 2.25.1
-> 
-> 
-> 
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
+e/Documentation/devicetree/bindings/spi/spi-controller.yaml
