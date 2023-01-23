@@ -2,78 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C13F267808C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:52:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC3E7678090
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:54:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232973AbjAWPw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:52:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59158 "EHLO
+        id S231829AbjAWPyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:54:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232786AbjAWPww (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:52:52 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382AA10F7
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:52:50 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id m15so9377290wms.4
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:52:50 -0800 (PST)
+        with ESMTP id S231679AbjAWPyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:54:08 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532E930E5
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:54:07 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id h16so11219374wrz.12
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:54:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b/tZ8f/hKuTnmPmwm/3gfR1U9pPYCEdQziOfOTsHWD8=;
-        b=TCXyArpwkAYCRDfZdgOD2gG5tf1XscU6cRLcpKr8YcqSwXGE1Hbdh6WcdLTcNM1A+v
-         +yiZgwW3u/17k5TuCdfHv5Y7P8vYYeJ71i1Q8xBGLpgr+mo25UedeqZCPViGsKO1p74E
-         Yx3oi0jPjP1m9IaYG3yhyICLWUKaWyPAkxCMqNSvyt6ozOKnlbQHWd9jIrkXbQ3H265S
-         gUZz3KZrXaMntBZkIjne9xs1kbUuY8vYMHXAIAPowBhTznp7akNPSIUTfFKFR9P+0rCE
-         t4qsPaaOFTtr9erNSp21NGWkrwnkxJtgNFOx1fZo8s56ai8iWom8/hn3rETqxhqmCSZM
-         ExsA==
+        d=ventanamicro.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+T/G9k15WOqcnm5NSoRREaF11y8Ho69NMw/NwpRfAK0=;
+        b=MApYfB0o72zvfWFm+POIdyCrXsaavHTfAUTjsNbY4up+53rhpPBSRhUB0ICJFEZxfj
+         BjKT7XWKlo5R4+S6tYi+ItQ+o3xEY2M/AOvBUwcEBO7fjIOzblAzqhitRzTQdspsq4gW
+         MKX8TpZx+KSZ0oPbJvdnqQb0n8lhOjBOW9esLgrJPe36lfj6ovO/PQcMXERYQTB2j7iH
+         BQjQ7Gf5MLKV2zWm0qOK5jC0K8gd9a5t4ZVIDPPuA9t4NjqighOPJVAPGccKG6ZGaxCW
+         mr/ww9zxKvPdeDWXiDn3tKB4rfHwrNj6msyZEZip/mpJt+o5CD05mdEhnZS6nMk7PTPR
+         n4LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b/tZ8f/hKuTnmPmwm/3gfR1U9pPYCEdQziOfOTsHWD8=;
-        b=6K1SCG1knjY5gDjapbHpAIMfmQ/GQn8v5FVtCSa4JZ9uTuQXy+NaduQG3CkswjOlXq
-         cXUZ95ejfBx2QI1XYsE2vu5xuuOKnvroQNOzs49kIg1X7kLO3JE1d80zUNt06cqwKLeo
-         LwHtTNQLn1hlo/bubqC8exJWDxazbmkq27WlhEvtTJdZiBghX42qleBmtEsW7wEawKSm
-         hQ0nqvCLRFmCl25FYqaa+v9+dLGPJBNS0ZoemeO7IkBHK2vYkW45Lq7WpsKBvGrlt9FF
-         kboCexzqFMAKa5lcontYcMXqnAbrzavN7T8qTwju6+1C9BRr+fe7LpnAnOX0WYs9mO0j
-         /Rvg==
-X-Gm-Message-State: AFqh2kpBbwpArIbw+dJZ+LQ/xb4wKWM0aLhsKzuiP0Kg4KUBN+x0jGKQ
-        8VvUAo+kVCDtFTYERSYLcYh4qA==
-X-Google-Smtp-Source: AMrXdXsvW74isMnE439bftM+OiixytOe6bWOxjDuWosmwOrIoj8bddguUkHujZ5s9OEGL+NVoCbNAA==
-X-Received: by 2002:a05:600c:1d12:b0:3db:53f:baea with SMTP id l18-20020a05600c1d1200b003db053fbaeamr24195728wms.6.1674489168770;
-        Mon, 23 Jan 2023 07:52:48 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f23-20020a7bc8d7000000b003d358beab9dsm10811991wml.47.2023.01.23.07.52.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 07:52:48 -0800 (PST)
-Message-ID: <2b210dc5-fe63-d295-a488-2988601424f3@linaro.org>
-Date:   Mon, 23 Jan 2023 16:52:47 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH 04/15] dt-bindings: arm: add support for Ambarella SoC
-Content-Language: en-US
-To:     Li Chen <me@linux.beauty>
-Cc:     Li Chen <lchen@ambarella.com>, Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+T/G9k15WOqcnm5NSoRREaF11y8Ho69NMw/NwpRfAK0=;
+        b=M0CL7qUeg7DtYd/djyyJG/F1McMUx0MglCjV3tqYJGW0FTt4IKM/hZ5ND8a4Ikihrs
+         OpVJ3aRAMcLyA6bdgxE1Zcz3SYlGcrhj1pS6O3sG/EwzVgcvEH2ismTxOJVbwexI+B7/
+         c8sF0ql/QKJWNnOyJuVhXkQ3lsevAEnAiqGHVEIZPOyy40M8L7w3YD3ruvUajuEUqYkJ
+         9NWWnyLW3BJV5ymWmC0LXPEahEnEKd3DGpr7Y5MNSLL8e3lIhSq8kznJvcwaK9w7kI3e
+         0ZjCg/YbD2Qu4IPwf2CXpkZQ49clUB1NCRIlx1thSxJyfGW7HBjsQTZBuQ/ciaHjiG1/
+         RrDQ==
+X-Gm-Message-State: AFqh2kqwdwVVQL62plfqAXxhL9pz5iAkNqmlm45ieE2y7cF49y4aKtSZ
+        WpBLOV41UvRO6zCLIZxiUOER9A==
+X-Google-Smtp-Source: AMrXdXvwcU0oqIZdIzFUzY0n39UD6sn2j3DukAGMDcoBpW0CyrgNDqr9OSGfP40XyWPsZdMO/5qW6A==
+X-Received: by 2002:a05:6000:98d:b0:2a5:6244:329e with SMTP id by13-20020a056000098d00b002a56244329emr19441398wrb.40.1674489245906;
+        Mon, 23 Jan 2023 07:54:05 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id q11-20020a05600000cb00b002be53aa2260sm9689429wrx.117.2023.01.23.07.54.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jan 2023 07:54:05 -0800 (PST)
+Date:   Mon, 23 Jan 2023 16:54:04 +0100
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+        Atish Patra <atishp@rivosinc.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Anup Patel <apatel@ventanamicro.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:ARM/Ambarella SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20230123073305.149940-1-lchen@ambarella.com>
- <20230123073305.149940-5-lchen@ambarella.com>
- <7d191871-1025-43a3-20bf-8fc6b3f92c89@linaro.org>
- <875ycxi8xm.wl-me@linux.beauty>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <875ycxi8xm.wl-me@linux.beauty>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] dt-bindings: riscv: Document cboz-block-size
+Message-ID: <20230123155404.oqcfufnot4f2vjw7@orel>
+References: <20230122191328.1193885-1-ajones@ventanamicro.com>
+ <20230122191328.1193885-3-ajones@ventanamicro.com>
+ <CAL_Jsq+SqFOVYZdf5YCELNo7nnU-T32V_Ec1C+RmUv_eLiR0Ng@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+SqFOVYZdf5YCELNo7nnU-T32V_Ec1C+RmUv_eLiR0Ng@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,147 +80,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 16:09, Li Chen wrote:
-> On Mon, 23 Jan 2023 16:07:32 +0800,
-> Krzysztof Kozlowski wrote:
->>
->> On 23/01/2023 08:32, Li Chen wrote:
->>> Create a vendor directory for Ambarella, and add
->>> cpuid, rct, scratchpad documents.
->>>
->>> Signed-off-by: Li Chen <lchen@ambarella.com>
->>> Change-Id: I2c29e45c08666489b0d9b588ac37d713f5b723d1
->>
->> Please run scripts/checkpatch.pl and fix reported warnings.
->>
->> Applies to all your patches. Also test them... I have doubts that you
->> tested if you actually ignored checkpatch :/
+On Mon, Jan 23, 2023 at 08:33:56AM -0600, Rob Herring wrote:
+> On Sun, Jan 22, 2023 at 1:13 PM Andrew Jones <ajones@ventanamicro.com> wrote:
+> >
+> > The Zicboz operates on a block-size defined for the cpu-core,
+> > which does not necessarily match other cache-sizes used.
 > 
-> Yeah, I checkpatch all patches, and have planned to fix Change-Id finally(manually),
-> but forget it before sending mails, my bad, sorry. I will remove it in v2.
-> 
->>> ---
->>>  .../arm/ambarella/ambarella,cpuid.yaml        | 24 +++++++++++++++++++
->>>  .../bindings/arm/ambarella/ambarella,rct.yaml | 24 +++++++++++++++++++
->>>  .../arm/ambarella/ambarella,scratchpad.yaml   | 24 +++++++++++++++++++
->>>  .../bindings/arm/ambarella/ambarella.yaml     | 22 +++++++++++++++++
->>>  MAINTAINERS                                   |  4 ++++
->>>  5 files changed, 98 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
->>>  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
->>>  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella,scratchpad.yaml
->>>  create mode 100644 Documentation/devicetree/bindings/arm/ambarella/ambarella.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
->>> new file mode 100644
->>> index 000000000000..1f4d9cec8f92
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,cpuid.yaml
->>
->> This goes to soc
-> 
-> Thanks, I wasn't aware that there is a document dir named soc. I will move cpuid yaml
-> to bindings/soc/ambarella/, and leave other yaml still here.
+> Please use get_maintainers.pl and send patches to the correct lists.
 
-However if device has chip identification features (chipid), then the
-location is "hwinfo".
+Yup, Conor also pointed out that I forgot to update the CC list when
+adding this patch to the series.
 
 > 
->>> @@ -0,0 +1,24 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/ambarella,cpuid.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Ambarella SoC ID
->>> +
->>> +maintainers:
->>> +  - Li Chen <lchen@ambarella.com>
->>
->> Missing description.
-> 
-> Sorry, description will be added in v2. BTW, does other YAMLs in this patch
-> also need descriptions?
+> I have no idea what Zicboz is. How does it relate to Zicbom for which
+> we already have a block size property? I really hate one by one
+> property additions because they lead to poorly designed bindings. So
+> what's next? What other information might be needed?
 
-In general yes - we want descriptions which will bring additional
-information. Description should not repeat title, but add more data. For
-trivial cases - maybe actually this one SoC ID - you can skip it.
+Zicbom and Zicboz are both RISC-V ISA extensions for cache-block operation
+(CBO) instructions. Zicbom defines the instructions cbo.inval, cbo.clean,
+and cbo.flush while Zicboz only defines cbo.zero. While it's probably
+likely that the cache block sizes which Zicbom and Zicboz use will be
+the same when both are implemented, the specification does not require it.
+With that in mind, it makes sense to me that Zicbom has its own property
+and that Zicboz could follow Zicbom's pattern with its own property as
+well.
 
+That said, having a generic block size property which is used in the
+absence of the per-extension block size properties would allow DTs to only
+specify the size once when they're the same. In my reply to Conor, I
+suggested introducing a cbo-block-size property for this purpose, but Anup
+suggests we just expand the purpose of cbom-block-size. Expanding cbom-
+block-size's purpose would allow its size to be used with cbo.zero in the
+absence of a cboz-block-size property. Additionally, we could defer the
+introduction of the cboz-block-size property until some system needs it,
+which may be never.
 
+As far as to what's coming next, I'm not aware of a plan for more of these
+types of properties at this time, but the CMO spec also describes prefetch
+instructions, which are defined under the Zicbop extension. If Zicbop
+support is added, then it should follow the same pattern as we agree for
+Zicboz, which is either
 
-> 
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: "ambarella,cpuid", "syscon"
->>
->> Drop quotes (applies to all your patches)
-> 
-> OK, thanks!
-> 
->> Missing SoC specific compatible.
->>
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>
->> Missing additionalProperties. sorry, start from scratch from some
->> existing recent bindings or better example-schema.
-> 
-> Good to know that there is example-schema, thanks!
->  
->>> +
->>> +examples:
->>> +  - |
->>> +    cpuid_syscon: cpuid@e0000000 {
->>> +        compatible = "ambarella,cpuid", "syscon";
->>> +        reg = <0xe0000000 0x1000>;
->>> +    };
->>> diff --git a/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml b/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
->>> new file mode 100644
->>> index 000000000000..7279bab17d9e
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/arm/ambarella/ambarella,rct.yaml
->>> @@ -0,0 +1,24 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/ambarella,rct.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Ambarella RCT module
->>> +
->>> +maintainers:
->>> +  - Li Chen <lchen@ambarella.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: "ambarella,rct", "syscon"
->>
->> All the same problems.
-> 
-> Well noted.
-> 
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +examples:
->>> +  - |
->>> +		rct_syscon: rct_syscon@ed080000 {
->>
->> Really? Just take a look and you will see wrong indentation. Also drop
->> underscores in node names and "rct". Node names should be generic.
-> 
-> Sorry for the wrong indentation, will fix it in v2.
-> 
-> Is it ok to contain underscores in lable? if so, I will change it into
-> 
-> rct_syscon: syscon@ed080000 {
+ a. Add cboz-block-size and require it (as this series currently does)
+ b. Add cboz-block-size, expand the function of cbom-block-size to be
+    a fallback, and fallback to cbom-block-size when cboz-block-size is
+    absent
+ c. Don't add cboz-block-size, only expand the function of cbom-block-size
+    and use it. If a need arises for cboz-block-size some day, then it
+    can be added at that time.
+ d. ??
+  
+I'm not aware of any additional information needed for these extensions
+beyond the block sizes.
 
-Yes, label can have it.
-
-Best regards,
-Krzysztof
-
+Thanks,
+drew
