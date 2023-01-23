@@ -2,103 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2732677780
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 10:38:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48109677788
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 10:40:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230172AbjAWJiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 04:38:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38838 "EHLO
+        id S230371AbjAWJkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 04:40:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231489AbjAWJiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 04:38:13 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B27CCA01
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:38:11 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id p188so13997664yba.5
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:38:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5+6RKzh8/Lt7v29Nl9d79EntHpnCiB9/8mqrAnMy3gQ=;
-        b=WeH++WcLNYyMKGf2E2zv8fRfVxHuz1bBP6rzSLVY/1sA+qMk5VJv9VqFdFfHmMkHx2
-         3TK4on2ONCWbxtooazRn2zlREFQzvisCf1eiU9DfFoS7s1KNn3gLVJSZB+RYQNAJyQ6Z
-         25IRNyNFjJp2poy8ZKVK8DiXNeUk7ETBAlJrru3Yk77C3FFx3LSSTX4JSh2HOruHWKFE
-         QqJF1GCJsqsO9oK3BF4LekiCTQfo19tlHGwzkA74mlDwM+/x5OS3GK9EV7aTPwNIPS+7
-         7YBFDa3F0wBfOA84nLvJAh0siJapfjp8BLjl8jcXfMw9zhyH4NBJ+oriZ8GXZrda4ee7
-         77Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5+6RKzh8/Lt7v29Nl9d79EntHpnCiB9/8mqrAnMy3gQ=;
-        b=OrtXB5FPuJYJwv7SV5ZPbAefjt3HInNQuYRlXWRNYbcQ53lh+MFIQO785wbmvBkII/
-         MX/v0SPJUaMj6dqC+q6ZXTi1UgAVX2pw4q0m1uK7ITuB/tP8Ft6SXvPv/nw8kKMPj2AU
-         PGkKD6dUharIh1dO3ffscvuuCrOYM8GOuzbYhAIXGkaXPYIkmu7AQDkeFUUFxtcAalme
-         BUn2DIhwh5IaktzXENlO4XrEPkEh1Qv+jzgfwCWHqs4785dXRcP9ylzIHmbsoA2ihMPe
-         dYiPMqWwi3E3ucMD81+sfLlB+EsOqyDeBOJqi9ULExgpn3U6L+RW1OSaUJwffR99zWHH
-         9QpQ==
-X-Gm-Message-State: AFqh2krSrKcE++Z4ulYYrLgAuhKWd3RsdE7qxk2GP/bxm2lujjaAwxKH
-        CoUNX6xh0N0a+HLe5zv25ncPI0bJz/66BMRVApJ6IcX3khOpooHb
-X-Google-Smtp-Source: AMrXdXuyGc4+CKGV7sHJ9YCNKzHlgrK8Jcq0Xwvkw40LgTEpzAUjXXmlBpQFuOBcJuWIcbR2wsacTUkpk9GeEMJ6a50=
-X-Received: by 2002:a5b:4d2:0:b0:707:473f:b763 with SMTP id
- u18-20020a5b04d2000000b00707473fb763mr2791131ybp.158.1674466690342; Mon, 23
- Jan 2023 01:38:10 -0800 (PST)
+        with ESMTP id S230148AbjAWJkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 04:40:19 -0500
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2130.outbound.protection.outlook.com [40.107.8.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B89F2CA01
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:40:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V5pfd898CINWeZJI6Zvn9Whzh2NPFoEUj2hhqh/lfZC153GHqkN04YeJROMVIBw9GC2T4xArBq39nHARShgp2jZV+fBz05ge8NTc5yAvNOECD3z7TUZjVwLU1BF8K8v0PEoPheOL2mZuhahKC757ObcXOpl+WX+eMgWVCdeoGl7RVpI/e+6V8iJdPxXcYnXbUIqn/eVXWRpsbCBbqJt6mIKubhT2N/qC2DeVsWQYYiL1uJlk31iJk9AavjCpHSSYPXtGUaE6O5lxJuCvB9e9Ebm+IF9WvmNnb5o9aoCPXMmPatZ6h3cbBfuv9FunQiFwIiD0MJ/cjuCIOnHknczCVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7Epqzl8GQGyk29j09aCcoGfBNbEUV3Ny4N17TaOoh4A=;
+ b=a4BjQN1M25G7gRW3DnXrLVVFHRGsqxVoJV4MTrQZTFxVXwlsy0HEKorJ6WxQhBjZ4yT1smzIHQmptZXbBO+0ORTF/RF0PT7kRBpNDe6uZxcpBk9zzoY8dMMWbK/K2W6YZtYm00/DfRETPdvIXYIOT61pYKnH5lRWx+CeU+ZVrA3H8d+72wTbAik84CgZ4LSqIG4zc4whDBjpgYQwXs6aPditYIIWhYYYeoNxdjljl7yzlSM3Y2phaHZrAskQJmi9DK9Wf5KF42MXCz6YXVTyP7X9Hom8gub4VqKVdUds7TVYysZQu0UGt3zgLouD99+dl7Z5s0btauUCQ2aKw9xj1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.94) smtp.rcpttodomain=kernel.org smtp.mailfrom=leica-geosystems.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none
+ header.from=leica-geosystems.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7Epqzl8GQGyk29j09aCcoGfBNbEUV3Ny4N17TaOoh4A=;
+ b=iVJ6ARilxY0mVSPRsvrG+5r4TZJcxbQyKIUOZn/mQmrFzXMpHKClJ8x0ZzbIDOPXzkm00/J9s2GSvk+boCbdfDCELnC+m2nSfANSxpOGhow7HIA5eUwLiu4m68/qb28h9AlZ237XG6aGAXL/gj92cHW9crl/b6dE+AFwZBpkchk=
+Received: from DB6PR0802CA0044.eurprd08.prod.outlook.com (2603:10a6:4:a3::30)
+ by DB8PR06MB6362.eurprd06.prod.outlook.com (2603:10a6:10:12c::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Mon, 23 Jan
+ 2023 09:40:14 +0000
+Received: from DB5EUR02FT052.eop-EUR02.prod.protection.outlook.com
+ (2603:10a6:4:a3:cafe::95) by DB6PR0802CA0044.outlook.office365.com
+ (2603:10a6:4:a3::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33 via Frontend
+ Transport; Mon, 23 Jan 2023 09:40:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
+ designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.94; helo=aherlnxbspsrv01.lgs-net.com; pr=C
+Received: from aherlnxbspsrv01.lgs-net.com (193.8.40.94) by
+ DB5EUR02FT052.mail.protection.outlook.com (10.13.58.148) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6023.16 via Frontend Transport; Mon, 23 Jan 2023 09:40:13 +0000
+From:   Johannes Schneider <johannes.schneider@leica-geosystems.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Johannes Schneider <johannes.schneider@leica-geosystems.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v9 3/3] dt-bindings: arm: fsl: Add i.MX8MM-EVKB
+Date:   Mon, 23 Jan 2023 10:40:10 +0100
+Message-Id: <20230123094010.341887-1-johannes.schneider@leica-geosystems.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230118-mt8365-spi-support-v1-2-842a21e50494@baylibre.com> <20230120082054.610626-1-michael@walle.cc>
-In-Reply-To: <20230120082054.610626-1-michael@walle.cc>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Mon, 23 Jan 2023 10:37:58 +0100
-Message-ID: <CAFGrd9qXL-u4XzG9MLK2zbKoDudhTYpr-gJaZPjbysJ9Fo2gnQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] spi: spidev: add new mediatek support
-To:     Michael Walle <michael@walle.cc>
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
-        matthias.bgg@gmail.com, robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5EUR02FT052:EE_|DB8PR06MB6362:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 080c0776-bc75-4f92-6206-08dafd25d3f4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gonnM1I9KW+phF59AbMgtUgLLRJsJtQwNLWLqC+p6DXtedugwq7edXy5PgLpY7dZGlZbh6mJynoPf3dEnijK8ouDsWR1MPs6th57jxoh54bDj/0ORGGGyw3WY0pdlJYc/BwCs+kWHUV/b/mkFtv8dTALnPYag741KFkBHRqxDg8+UDbT7UIJgEj3GvMc6Ho7nUrl1hQxQjeRcQRgL5EbpEJTLyHRVjp4qRE5mGw4yILzbX9rPmJOP9tze3goEKIQSbq17YfuSZxQN2yQm6gC/jHRt8EEh3Z79vTeSFfX03jA3PIiIma93LXwvXMDCgcglqNfTa76FhDKGEUcMtdKqJ23uriY5tojG0gYZRBm3xY+LYLlYHqwNbZps55a/VqzwFsTNd4zxP5P52epjOkAD2+AhJSG+5kZdTpLR9BoOXmIHYy0667j4PpJPN5F1rJ6//Y87eYJWAw82AEU0TFkCcJg5nYN+7Mw3rtjtLtYEoVvgC+wEJpyNdsi7L+ctRJUMJau6IELDZigw1jTLLd7dBkPEwv7tZM/EhAcTuzpS2smlHLLWNog1MUpIwlZqTaPfM4j4MHV1I9IMODIoVUzXl0+MgyrfDsaw6rnQ72n5CQAHkFDwS+tko/itCOCcJOOQK3Iz0+6P8JLKFfl0m/5YQsH1GQgr0vyLFuBnGgyThP8mx/2OHHgaToN6MPYf3bi4QFytrR6SQu3WRqMYcL1Xw==
+X-Forefront-Antispam-Report: CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:aherlnxbspsrv01.lgs-net.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230022)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199015)(40470700004)(46966006)(36840700001)(356005)(478600001)(316002)(70586007)(5660300002)(70206006)(44832011)(8936002)(2906002)(7416002)(81166007)(82740400003)(36860700001)(36736006)(54906003)(110136005)(47076005)(6486002)(6512007)(86362001)(6506007)(36756003)(336012)(8676002)(40480700001)(118246002)(4326008)(26005)(1076003)(41300700001)(2616005)(956004)(82310400005)(9316004)(186003)(40460700003);DIR:OUT;SFP:1102;
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2023 09:40:13.2660
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 080c0776-bc75-4f92-6206-08dafd25d3f4
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[aherlnxbspsrv01.lgs-net.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB5EUR02FT052.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR06MB6362
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le ven. 20 janv. 2023 =C3=A0 09:20, Michael Walle <michael@walle.cc> a =C3=
-=A9crit :
->
-> From: Alexandre Mergnat <amergnat@baylibre.com>
->
-> > Add the "mediatek,genio" compatible string to support Mediatek
-> > SPI controller on the genio boards.
->
-> What is the use case of having the spidev? What if I want to
-> connect a device with a linux driver to it? It seems like you
-> just want to expose the SPI bus on the pin header. There was a
-> similar discussion for a mikrobus connector [1].
->
+Add DT compatible strings for recent EVKs, that come with a different PMIC.
 
-Hi Michael,
+The most recent revision of the 'original' EVK CPU module is C2 and the most
+recent revision of EVKB CPU2 module is A4.
 
-Yes I want to expose the SPI on the pin header for two reasons:
-- It's an Evaluation Kit board, I believe exposing SPI helps new
-customers to try/understand it.
-- This board will join the KernelCI soon, this setup will help to do
-SPI non regression tests for a fixed default configuration.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-AFAII from [1] , you can easily modify the current spidev@0 (If you
-don't want to keep userspace interface) or simply add (in the DTS or
-overlay) another node foo@1 with a different compatible (and so on)
-according to the chip you plug on the header pin.
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index fbfc4f99c01e..bae1040afc14 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -818,6 +818,7 @@ properties:
+               - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
+               - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
+               - fsl,imx8mm-evk            # i.MX8MM EVK Board
++              - fsl,imx8mm-evkb           # i.MX8MM EVKB Board
+               - gateworks,imx8mm-gw7904
+               - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
+               - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
+-- 
+2.25.1
 
-Regards,
-Alex
-
-[1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
-e/Documentation/devicetree/bindings/spi/spi-controller.yaml
