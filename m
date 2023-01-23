@@ -2,455 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CEA677A35
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 12:37:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4356677AA1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 13:18:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbjAWLhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 06:37:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37626 "EHLO
+        id S231656AbjAWMSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 07:18:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjAWLhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 06:37:00 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB821E1CB;
-        Mon, 23 Jan 2023 03:36:57 -0800 (PST)
+        with ESMTP id S231618AbjAWMSC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 07:18:02 -0500
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C985580;
+        Mon, 23 Jan 2023 04:17:59 -0800 (PST)
 Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 6FC67240008;
-        Mon, 23 Jan 2023 11:36:50 +0000 (UTC)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3049E6000D;
+        Mon, 23 Jan 2023 12:17:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1674473815;
+        t=1674476278;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=n+igJAl/pqifZR0SzjchX5EdGz+pfJPGF0MNYlXIniw=;
-        b=Vvqt8+5/D4t75o0MWtOWszmDjoeLxz0d8GCcpsXlPFGEQO1h5IYdfDvR0ZBPmABm5ZiMpa
-        ka78Q+jnKGZ43b1E0oh4TOvLRXwDmpLGvLjwiDqiO6hp6nAy2cNcdPyJoKdroPvl3ibrlh
-        M01++3vd0cD96YDOahpAvLZUEfs2hrRS1MQVQlOd9dkRMVWbyPozee6jS0v965m76BM20h
-        QXEkbkYFnAY12818WdmLjliG53OSuBQb4MeEtBbqcB1HDqe4Z4QnpUY/shkyP3x4szYy1p
-        1rvhbnJoA81ZEiZcFQ0+7E9GUQg/sDWXCr2Qa4tM4nbEOxY+FnNlTOO0427nrw==
-Date:   Mon, 23 Jan 2023 12:36:49 +0100
+        bh=dSrbZZvovpWvlJHm56TjukjpU0bsgrOflMKyVZ5eOVU=;
+        b=ZUpvTT/3DPBE39G475z/z5eC8dHh8fjFkfRsufenoyMfstAS1QlsDlP5CT7iV5uJMu7wTO
+        BEBr7iXCJBRFNpOI4TNrN3zAzXR4gMuwa4xgg6xpf/n7z51tAQSVwHQiQW1EPZTVhqZGF6
+        QUAaDSOaLVwOD5iWrv7hgFQIjKYfW9xUaYWS21lhFoVQlHS14rpSVrp2nE+7DtorSijkTR
+        QAdh4mVKt4CUAKavRYZp/dMiudCY9guBu7MgoYN5/q/1wbnm4GDlrxGFRPWF420y0kcYG+
+        jlIuARTLmRcX4/T8v/PehW8FfjViib6KecXH6P/yn0mmrFGrfXaUt+7avtmc/Q==
+Date:   Mon, 23 Jan 2023 13:17:55 +0100
 From:   Herve Codina <herve.codina@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Li Yang <leoyang.li@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Jaroslav Kysela <perex@perex.cz>,
         Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
- controller
-Message-ID: <20230123123649.63f17dad@bootlin.com>
-In-Reply-To: <20230117145529.GA3044055-robh@kernel.org>
-References: <20230113103759.327698-1-herve.codina@bootlin.com>
-        <20230113103759.327698-2-herve.codina@bootlin.com>
-        <20230117145529.GA3044055-robh@kernel.org>
+Subject: Re: [PATCH v2 2/3] ASoC: codecs: Add support for the Renesas
+ IDT821034 codec
+Message-ID: <20230123131755.1f5702be@bootlin.com>
+In-Reply-To: <eb20dc66-f564-ed7e-8873-65621e5970de@csgroup.eu>
+References: <20230120095036.514639-1-herve.codina@bootlin.com>
+        <20230120095036.514639-3-herve.codina@bootlin.com>
+        <d51b826b-e71f-393c-586b-6a1ca953f26f@csgroup.eu>
+        <20230123095631.4aba35d6@bootlin.com>
+        <eb20dc66-f564-ed7e-8873-65621e5970de@csgroup.eu>
 Organization: Bootlin
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Christophe,
 
-On Tue, 17 Jan 2023 08:55:29 -0600
-Rob Herring <robh@kernel.org> wrote:
+On Mon, 23 Jan 2023 11:13:23 +0000
+Christophe Leroy <christophe.leroy@csgroup.eu> wrote:
 
-> On Fri, Jan 13, 2023 at 11:37:50AM +0100, Herve Codina wrote:
-> > Add support for the time slot assigner (TSA)
-> > available in some PowerQUICC SoC such as MPC885
-> > or MPC866. =20
+> Hi Herv=C3=A9,
 >=20
-> An odd line wrap length...=20
-
-Will be changed in v4.
-
->=20
+> Le 23/01/2023 =C3=A0 09:56, Herve Codina a =C3=A9crit=C2=A0:
 > >=20
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  .../bindings/soc/fsl/cpm_qe/fsl,tsa.yaml      | 260 ++++++++++++++++++
-> >  include/dt-bindings/soc/fsl,tsa.h             |  13 +
-> >  2 files changed, 273 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fs=
-l,tsa.yaml
-> >  create mode 100644 include/dt-bindings/soc/fsl,tsa.h
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.y=
-aml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
-> > new file mode 100644
-> > index 000000000000..eb17b6119abd
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
-> > @@ -0,0 +1,260 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,tsa.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: PowerQUICC CPM Time-slot assigner (TSA) controller
-> > +
-> > +maintainers:
-> > +  - Herve Codina <herve.codina@bootlin.com>
-> > +
-> > +description: | =20
+> > gpiochip_get_data() is defined only when CONFIG_GPIOLIB is set.
+> > That's why the #if section is used. =20
 >=20
-> Don't need '|' if no formatting.
-
-Will be changed in v4.
-
+> gpiochip_get_data() is still declared when CONFIG_GPIOLIB is not set, so=
+=20
+> it is not a problem, the call to it will be eliminated at buildtime.
 >=20
-> > +  The TSA is the time-slot assigner that can be found on some
-> > +  PowerQUICC SoC.
-> > +  Its purpose is to route some TDM time-slots to other internal
-> > +  serial controllers. =20
+> By the way, at the time being I get the following warnings:
 >=20
-> Wrap at 80.
-
-Will be fixed in v4.
-
+>    CC      sound/soc/codecs/idt821034.o
+> sound/soc/codecs/idt821034.c:310:12: warning: 'idt821034_read_slic_raw'=20
+> defined but not used [-Wunused-function]
+>    310 | static int idt821034_read_slic_raw(struct idt821034 *idt821034,=
+=20
+> u8 ch, u8 *slic_raw)
+>        |            ^~~~~~~~~~~~~~~~~~~~~~~
+> sound/soc/codecs/idt821034.c:305:11: warning:=20
+> 'idt821034_get_written_slic_raw' defined but not used [-Wunused-function]
+>    305 | static u8 idt821034_get_written_slic_raw(struct idt821034=20
+> *idt821034, u8 ch)
+>        |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> sound/soc/codecs/idt821034.c:276:12: warning: 'idt821034_write_slic_raw'=
+=20
+> defined but not used [-Wunused-function]
+>    276 | static int idt821034_write_slic_raw(struct idt821034=20
+> *idt821034, u8 ch, u8 slic_raw)
+>        |            ^~~~~~~~~~~~~~~~~~~~~~~~
+> sound/soc/codecs/idt821034.c:271:11: warning: 'idt821034_get_slic_conf'=20
+> defined but not used [-Wunused-function]
+>    271 | static u8 idt821034_get_slic_conf(struct idt821034 *idt821034,=20
+> u8 ch)
+>        |           ^~~~~~~~~~~~~~~~~~~~~~~
+> sound/soc/codecs/idt821034.c:250:12: warning: 'idt821034_set_slic_conf'=20
+> defined but not used [-Wunused-function]
+>    250 | static int idt821034_set_slic_conf(struct idt821034 *idt821034,=
+=20
+> u8 ch, u8 slic_dir)
+>        |            ^~~~~~~~~~~~~~~~~~~~~~~
 >=20
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - fsl,mpc885-tsa
-> > +          - fsl,mpc866-tsa
-> > +      - const: fsl,cpm1-tsa
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: SI (Serial Interface) register base
-> > +      - description: SI RAM base
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: si_regs
-> > +      - const: si_ram
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +patternProperties:
-> > +  '^tdm@[0-1]$':
-> > +    description:
-> > +      The TDM managed by this controller
-> > +    type: object =20
 >=20
->        additionalProperties: false
-
-Will be added in v4.
-
+> With the following changes I have no warning and an objdump -x on=20
+> idt821034.o shows no reference to gpiochip_get_data()
 >=20
-> > +
-> > +    properties:
-> > +      reg:
-> > +        minimum: 0
-> > +        maximum: 1
-> > +        description:
-> > +          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
-> > +
-> > +      fsl,common-rxtx-pins:
-> > +        $ref: /schemas/types.yaml#/definitions/flag
-> > +        description:
-> > +          The hardware can use four dedicated pins for Tx clock,
-> > +          Tx sync, Rx clock and Rx sync or use only two pins,
-> > +          Tx/Rx clock and Rx/Rx sync.
-> > +          Without the 'fsl,common-rxtx-pins' property, the four
-> > +          pins are used. With the 'fsl,common-rxtx-pins' property,
-> > +          two pins are used.
-> > +
-> > +      clocks:
-> > +        minItems: 2
-> > +        maxItems: 4
-> > +
-> > +      clock-names:
-> > +        minItems: 2
-> > +        maxItems: 4
-> > +
-> > +      fsl,mode: =20
+> diff --git a/sound/soc/codecs/idt821034.c b/sound/soc/codecs/idt821034.c
+> index 5eb93fec6042..8b75388e22ce 100644
+> --- a/sound/soc/codecs/idt821034.c
+> +++ b/sound/soc/codecs/idt821034.c
+> @@ -968,7 +968,6 @@ static const struct snd_soc_component_driver=20
+> idt821034_component_driver =3D {
+>   	.endianness		=3D 1,
+>   };
 >=20
-> 'mode' is a bit vague. It's already used as well which can be a problem=20
-> if there are differing types. (There's not in this case)
-
-What do you think about:
-      fsl,diagnostic-mode:
-        $ref: /schemas/types.yaml#/definitions/string
-        enum: [disabled, echo, internal-loopback, control-loopback]
-        default: disabled
-        description: |
-          The diagnostic mode can be used to diagnose some communication is=
-sues.
-          It should not be present (or set to 'disabled') when diagnostic i=
-s not
-          needed.
-          Diagnostic mode:
-            - disabled:
-                Diagnostic disabled (ie. normal operation)
-            - echo:
-                Automatic echo. Rx data is resent on Tx
-            - internal-loopback:
-                The TDM transmitter is connected to the receiver.
-                Data appears on Tx pin.
-            - control-loopback:
-                The TDM transmitter is connected to the receiver.
-                The Tx pin is disconnected.
-
+> -#if IS_ENABLED(CONFIG_GPIOLIB)
+>   #define IDT821034_GPIO_OFFSET_TO_SLIC_CHANNEL(_offset) (((_offset) /=20
+> 5) % 4)
+>   #define IDT821034_GPIO_OFFSET_TO_SLIC_MASK(_offset)    BIT((_offset) % =
+5)
 >=20
-> > +        $ref: /schemas/types.yaml#/definitions/string
-> > +        enum: [normal, echo, internal-loopback, control-loopback]
-> > +        default: normal
-> > +        description: |
-> > +          Operational mode:
-> > +            - normal:
-> > +                Normal operation
-> > +            - echo:
-> > +                Automatic echo. Rx data is resent on Tx
-> > +            - internal-loopback:
-> > +                The TDM transmitter is connected to the receiver.
-> > +                Data appears on Tx pin.
-> > +            - control-loopback:
-> > +                The TDM transmitter is connected to the receiver.
-> > +                The Tx pin is disconnected.
-> > +
-> > +      fsl,rx-frame-sync-delay-bits:
-> > +        enum: [0, 1, 2, 3]
-> > +        default: 0
-> > +        description: |
-> > +          Receive frame sync delay in number of bits.
-> > +          Indicates the delay between the Rx sync and the first bit of=
- the
-> > +          Rx frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits d=
-elay.
-> > +
-> > +      fsl,tx-frame-sync-delay-bits:
-> > +        enum: [0, 1, 2, 3]
-> > +        default: 0
-> > +        description: |
-> > +          Transmit frame sync delay in number of bits.
-> > +          Indicates the delay between the Tx sync and the first bit of=
- the
-> > +          Tx frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits d=
-elay.
-> > +
-> > +      fsl,clock-falling-edge:
-> > +        $ref: /schemas/types.yaml#/definitions/flag
-> > +        description: |
-> > +          Data is sent on falling edge of the clock (and received on t=
-he
-> > +          rising edge).
-> > +          If 'clock-falling-edge' is not present, data is sent on the
-> > +          rising edge (and received on the falling edge).
-> > +
-> > +      fsl,fsync-rising-edge:
-> > +        $ref: /schemas/types.yaml#/definitions/flag
-> > +        description:
-> > +          Frame sync pulses are sampled with the rising edge of the ch=
-annel
-> > +          clock. If 'fsync-rising-edge' is not present, pulses are sam=
-ple
-> > +          with e falling edge.
-> > +
-> > +      fsl,double-speed-clock:
-> > +        $ref: /schemas/types.yaml#/definitions/flag
-> > +        description:
-> > +          The channel clock is twice the data rate.
-> > +
-> > +      fsl,tx-ts-routes:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > +        description: |
-> > +          A list of tupple that indicates the Tx time-slots routes.
-> > +            tx_ts_routes =3D
-> > +               < 2 0 >, /* The first 2 time slots are not used */
-> > +               < 3 1 >, /* The next 3 ones are route to SCC2 */
-> > +               < 4 0 >, /* The next 4 ones are not used */
-> > +               < 2 2 >; /* The nest 2 ones are route to SCC3 */
-> > +        items:
-> > +          items:
-> > +            - description:
-> > +                The number of time-slots
-> > +              minimum: 1
-> > +              maximum: 64
-> > +            - description: |
-> > +                The source serial interface (dt-bindings/soc/fsl,tsa.h
-> > +                defines these values)
-> > +                 - 0: No destination
-> > +                 - 1: SCC2
-> > +                 - 2: SCC3
-> > +                 - 3: SCC4
-> > +                 - 4: SMC1
-> > +                 - 5: SMC2
-> > +              enum: [0, 1, 2, 3, 4, 5]
-> > +        minItems: 1
-> > +        maxItems: 64
-> > +
-> > +      fsl,rx-ts-routes:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > +        description: |
-> > +          A list of tupple that indicates the Rx time-slots routes.
-> > +            tx_ts_routes =3D
-> > +               < 2 0 >, /* The first 2 time slots are not used */
-> > +               < 3 1 >, /* The next 3 ones are route from SCC2 */
-> > +               < 4 0 >, /* The next 4 ones are not used */
-> > +               < 2 2 >; /* The nest 2 ones are route from SCC3 */
-> > +        items:
-> > +          items:
-> > +            - description:
-> > +                The number of time-slots
-> > +              minimum: 1
-> > +              maximum: 64
-> > +            - description: |
-> > +                The destination serial interface (dt-bindings/soc/fsl,=
-tsa.h
-> > +                defines these values)
-> > +                 - 0: No destination
-> > +                 - 1: SCC2
-> > +                 - 2: SCC3
-> > +                 - 3: SCC4
-> > +                 - 4: SMC1
-> > +                 - 5: SMC2
-> > +              enum: [0, 1, 2, 3, 4, 5]
-> > +        minItems: 1
-> > +        maxItems: 64
-> > +
-> > +    allOf:
-> > +      # If fsl,common-rxtx-pins is present, only 2 clocks are needed.
-> > +      # Else, the 4 clocks must be present.
-> > +      - if:
-> > +          required:
-> > +            - fsl,common-rxtx-pins
-> > +        then:
-> > +          properties:
-> > +            clocks:
-> > +              items:
-> > +                - description: External clock connected to L1RSYNC pin
-> > +                - description: External clock connected to L1RCLK pin
-> > +            clock-names:
-> > +              items:
-> > +                - const: l1rsync
-> > +                - const: l1rclk
-> > +        else:
-> > +          properties:
-> > +            clocks:
-> > +              items:
-> > +                - description: External clock connected to L1RSYNC pin
-> > +                - description: External clock connected to L1RCLK pin
-> > +                - description: External clock connected to L1TSYNC pin
-> > +                - description: External clock connected to L1TCLK pin
-> > +            clock-names:
-> > +              items:
-> > +                - const: l1rsync
-> > +                - const: l1rclk
-> > +                - const: l1tsync
-> > +                - const: l1tclk =20
+> @@ -1133,12 +1132,6 @@ static int idt821034_gpio_init(struct idt821034=20
+> *idt821034)
+>   	return devm_gpiochip_add_data(&idt821034->spi->dev,=20
+> &idt821034->gpio_chip,
+>   				      idt821034);
+>   }
+> -#else /* IS_ENABLED(CONFIG_GPIOLIB) */
+> -static int idt821034_gpio_init(struct idt821034 *idt821034)
+> -{
+> -	return 0;
+> -}
+> -#endif
 >=20
-> As the names are the same, just the length varies between 2 or 4, move=20
-> all this to the main definition and here just put constraints on the=20
-> length.
-
-Ok, will be done in v4.
-
+>   static int idt821034_spi_probe(struct spi_device *spi)
+>   {
+> @@ -1165,6 +1158,9 @@ static int idt821034_spi_probe(struct spi_device *s=
+pi)
+>   	if (ret)
+>   		return ret;
 >=20
-> > +
-> > +    required:
-> > +      - reg
-> > +      - clocks
-> > +      - clock-names
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/soc/fsl,tsa.h>
-> > +
-> > +    tsa@ae0 {
-> > +        compatible =3D "fsl,mpc885-tsa", "fsl,cpm1-tsa";
-> > +        reg =3D <0xae0 0x10>,
-> > +              <0xc00 0x200>;
-> > +        reg-names =3D "si_regs", "si_ram";
-> > +
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        tdm@0 {
-> > +            /* TDMa */
-> > +            reg =3D <0>;
-> > +
-> > +            clocks =3D <&clk_l1rsynca>, <&clk_l1rclka>;
-> > +            clock-names =3D "l1rsync", "l1rclk";
-> > +
-> > +            fsl,common-rxtx-pins;
-> > +            fsl,fsync-rising-edge;
-> > +
-> > +            fsl,tx-ts-routes =3D < 2 0 >,             /* TS 0..1 */
-> > +                           < 24 FSL_CPM_TSA_SCC4 >, /* TS 2..25 */
-> > +                           < 1 0 >,                 /* TS 26 */
-> > +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
-> > +
-> > +            fsl,rx-ts-routes =3D < 2 0 >,             /* TS 0..1 */
-> > +                           < 24 FSL_CPM_TSA_SCC4 >, /* 2..25 */
-> > +                           < 1 0 >,                 /* TS 26 */
-> > +                           < 5 FSL_CPM_TSA_SCC3 >;  /* TS 27..31 */
-> > +        };
-> > +    };
-> > diff --git a/include/dt-bindings/soc/fsl,tsa.h b/include/dt-bindings/so=
-c/fsl,tsa.h
-> > new file mode 100644
-> > index 000000000000..2cc44e867dbe
-> > --- /dev/null
-> > +++ b/include/dt-bindings/soc/fsl,tsa.h
-> > @@ -0,0 +1,13 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> > +
-> > +#ifndef __DT_BINDINGS_SOC_FSL_TSA_H
-> > +#define __DT_BINDINGS_SOC_FSL_TSA_H
-> > +
-> > +#define FSL_CPM_TSA_NU		0	/* Pseuso Cell Id for not used item */
-> > +#define FSL_CPM_TSA_SCC2	1
-> > +#define FSL_CPM_TSA_SCC3	2
-> > +#define FSL_CPM_TSA_SCC4	3
-> > +#define FSL_CPM_TSA_SMC1	4
-> > +#define FSL_CPM_TSA_SMC2	5
-> > +
-> > +#endif
-> > --=20
-> > 2.38.1
-> >  =20
+> +	if (!IS_ENABLED(CONFIG_GPIOLIB))
+> +		return 0;
+> +
+>   	ret =3D idt821034_gpio_init(idt821034);
+>   	if (ret)
+>   		return ret;
+>=20
+>=20
+> Christophe
 
-Thanks for the review,
+Right, I did the test too and indeed, I can remove the #if section.
 
+I will use (I think is clearer) at idt821034_spi_probe():
+	if (!IS_ENABLED(CONFIG_GPIOLIB)) {
+   		ret =3D idt821034_gpio_init(idt821034);
+		if (ret)
+   			return ret;
+	}
+
+Is that ok for you ?
+
+Thanks,
 Herv=C3=A9
 --=20
 Herv=C3=A9 Codina, Bootlin
