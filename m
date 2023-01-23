@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CA11677F84
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:21:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 280D8677F9A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:25:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231572AbjAWPVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 10:21:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49116 "EHLO
+        id S232285AbjAWPZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 10:25:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232362AbjAWPUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:20:48 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C8E62B616;
-        Mon, 23 Jan 2023 07:20:10 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id ud5so31425072ejc.4;
-        Mon, 23 Jan 2023 07:20:10 -0800 (PST)
+        with ESMTP id S232834AbjAWPY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:24:58 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 052472A9AA;
+        Mon, 23 Jan 2023 07:24:32 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id rl14so28096304ejb.2;
+        Mon, 23 Jan 2023 07:24:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jcQHb+Xis0HFaF9zQWyFF2vDw/LddSgp/iWOO9NEfRo=;
-        b=gGOOXtlyfKqU+9EL6K4/Qk3WMyw/wSj7x2rjpLhe7qFrdNh0i8iQfSR11N5rSts5KF
-         ihlXDNpuLZQTMD+o1q+wP0UecKRdglEsXeJk+7YCkJaPcvtpstA8uvSRQlQr/XFBlKRX
-         MK6cttRj9naxZzIa5VyswIEaHjtAU/Ab4NF9bPqWGg/6VGhDyyUAtM7A9St1i1rvyY3f
-         rrBVk6z+QgwSBgUIJ6ZuYCgXjkugah9VLq43O98BY72YlvikmfexdcFEWlZLc8rLe5F9
-         1tV7p1nJnB05jxhu2vhzFdwzHx/K4wnXobecGcEIbkgi7eMGj0vS18zBwqUSV/FPlek/
-         fZkw==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=quFutVDzXOuiGFOnAIlXrcYj/4FfLNEimxfsbTCP31g=;
+        b=casY42fp0CPsxMpDebmQUR6sYU5KhJU1Dyv0pYM4Y1JmNEFcoiTmZm5cwTHNGJc3R3
+         ty3pD1p43EHIPGwphlwumHC3o6XpXJ14ityW2AQk2dCZ3idvZ1t8Q1MBLl04n1nYy6Ov
+         uqoPh27+B6vzYNUtCsJxicjfc5yIQt80MoP80a+E5W9IxgSyUx0sdbj5RTOh/qbmlj/U
+         GIQFkgaFJpCQzf2rOTCH8PV8mjg/YOHgKcoK73ucH7g7NUbGXL8aSYvK7uhvaQJrOdIo
+         18RxGduHZxG++UFh4uSyQFLxTVgBjNrDEGtaHRl3Oz0jgwIjiBvNNTvQ7SZlmI2mPF9o
+         D+/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jcQHb+Xis0HFaF9zQWyFF2vDw/LddSgp/iWOO9NEfRo=;
-        b=kw3WvZqKY+h82TttXBKoaM4XG/dTbPjDzO1BSCgswox/RGFePsXJcVf0APAGRjengl
-         RrL59PbTs0cjaJ4G8z+SQLqRB/jheLa3ENDbpoXZKNjDDFMxohkh1ljddE3ZZX3Z3ZC6
-         8EdAhi/3M38J1ktheuI/VLhqYUIbjVnVZl8B9UUc7SZcpNvHo6sjgTiEJ6mbyvpTGq7M
-         Mex2SRQi872lvYpV96lu3URLhQ2YHt6XMmNQMz918Dpr+3jhWScv2+dCoaySTDtarx9A
-         Hcak0xS9nsXlbnXVLMIhFesH69EfIWMQGLrhphD9nHO7CBxIHeCcbORZPFZjB0uJuRqt
-         J/3Q==
-X-Gm-Message-State: AFqh2krQdDMQwh02sG74aUz/lodRaJeIOOAXxtY9mkke/crsmUQJ+mbx
-        WtNmmXhcJUPrY5mr+wKBHWw=
-X-Google-Smtp-Source: AMrXdXv/sGl698DWK4gVf5kM7ZasaqHiJ6vQc3QuHpwPFZpSnClicyeQDanLVHMbjK2j1+bIUUkVFA==
-X-Received: by 2002:a17:906:1995:b0:871:32e7:79ac with SMTP id g21-20020a170906199500b0087132e779acmr24352244ejd.5.1674487164889;
-        Mon, 23 Jan 2023 07:19:24 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 9-20020a170906318900b0080c433a9eeesm22225943ejy.182.2023.01.23.07.19.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:19:24 -0800 (PST)
-Date:   Mon, 23 Jan 2023 16:19:22 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     David Airlie <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        dri-devel@lists.freedesktop.org, Jon Hunter <jonathanh@nvidia.com>
-Subject: Re: [PATCH v4 7/8] drm/simpledrm: Support the XB24/AB24 format
-Message-ID: <Y86lemXHHRt1x6UR@orome>
-References: <20230120173103.4002342-1-thierry.reding@gmail.com>
- <20230120173103.4002342-8-thierry.reding@gmail.com>
- <1f372af0-9220-9a98-3495-08dca7729e7e@suse.de>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=quFutVDzXOuiGFOnAIlXrcYj/4FfLNEimxfsbTCP31g=;
+        b=d2LC9hB2tR2z64L8OSy9nWjKK7BT7gTNbaKVGdhv4Q+p69NxPP2J/w9tg1GydBCubC
+         WRAsVkTWNUP8VU109bRg8pDVbvqIdYtMlT0sxo0+cipqUESNfZAaNpTS5pOH1DsD7Gdx
+         I+QIxp2QmvW3X4Yk9F2HAfLdN9FdKDVymmvjkWFr4iU+vTR7AAL7bMftVKlHztw93k+7
+         o7grD7Z2yb0tZJ7sh2+293YR7Y5edm1v14DlCy4m956G+z2SbVwx2ewCw9XwDJhGooQh
+         PNU5w+4YCMNHzleblUDprNum8wFsHLL8WEBtvt5/t4wusrBU38Gyqnf/KXlMGmuVYr2c
+         Lq8Q==
+X-Gm-Message-State: AFqh2kp3s7cOGp+rDp9Riu+QDsJXZDA8A4zo8i8Fw9IN8s2oH8cHwaQ0
+        LXkzHExUf0mEfXj8n5DeDg0=
+X-Google-Smtp-Source: AMrXdXsNXZAjwBSF2rV5p0/d14xBhorkGt2j6MBSzb7IRXW1/AvdX71aI7knW2abe2geUXIw0Crd+A==
+X-Received: by 2002:a17:906:79d8:b0:877:a2d1:7560 with SMTP id m24-20020a17090679d800b00877a2d17560mr12044853ejo.27.1674487469938;
+        Mon, 23 Jan 2023 07:24:29 -0800 (PST)
+Received: from [192.168.3.54] ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id i20-20020a1709064ed400b00872a726783dsm9878482ejv.217.2023.01.23.07.24.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 07:24:29 -0800 (PST)
+Message-ID: <ecfc1831-6500-e9fc-efec-b4574c3a61bb@gmail.com>
+Date:   Mon, 23 Jan 2023 17:24:27 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ZKjs7fCUe5qcsz+4"
-Content-Disposition: inline
-In-Reply-To: <1f372af0-9220-9a98-3495-08dca7729e7e@suse.de>
-User-Agent: Mutt/2.2.9 (2022-11-12)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 0/2] Add support for Samsung Galaxy S5 (Exynos)
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230121201926.46990-1-markuss.broks@gmail.com>
+ <703ad169-fb10-651c-96fe-22d2eae959b6@linaro.org>
+Content-Language: en-US
+From:   Markuss Broks <markuss.broks@gmail.com>
+In-Reply-To: <703ad169-fb10-651c-96fe-22d2eae959b6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,49 +80,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---ZKjs7fCUe5qcsz+4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jan 23, 2023 at 10:16:55AM +0100, Thomas Zimmermann wrote:
-> Hi
->=20
-> Am 20.01.23 um 18:31 schrieb Thierry Reding:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Add XB24 and AB24 to the list of supported formats. The format helpers
-> > support conversion to these formats and they are documented in the
-> > simple-framebuffer device tree bindings.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
->=20
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-Thanks. This was the last missing Reviewed-by and builds are successful,
-so I've pushed patches 1-7 to drm-misc-next.
-
-Thierry
-
---ZKjs7fCUe5qcsz+4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmPOpXoACgkQ3SOs138+
-s6Hf4Q//Xm5JbfMl+psy+M/odlkdHkfzrSjjbNnIrjxHkcrxgFNr34apRKlEJhgj
-Hhm7e5QYa1uhWoftt8QqeSuUKurbC6Vp8hG0V8uakOZK64iw9L9vZ0gjmHmjX4JR
-FHc3eyiqp7fg+9SpJNW2PLyXh2JUZSNBWEzMM4h94JVTDsx2JvFqSt1Zm4/mxV0x
-klhg+abyXrrVwYeZxrOY7gDXv0FrXIE1UKe/zAunNMEplop3nqcy5WG4pzc2z9OS
-ExAqNkenx0nRINoa3xan8DukIG8pOzALYJNDac5Eoc/D0kRpPjqrDFl/JNv7LsuX
-LuGz9U8HdXzTAw8RO/diJ3CEp/CmsW8SHneGS/u1snA9uo5hLGUWpNsIphVJTsIG
-OabipmnbmcC6WPMDZPMbgbKh7kqSN43PbKw/JkQkBsJuWLeCiUsrOmitUGsnITJA
-8QO2ndHnQlStDIYQoPZnZ4qzx1dIS0AZixnhzQ0omJ62pJ+EUVEh1MuIM+/iWI6f
-TROFExQIR1uH4VkmmjOenMYtw+5Ltt1lUyR7toTcinhrKjPtZ2Pv6TNgCYF4Fm0h
-0UD7usn18oH8lYJqvLRzcmOA6sVq44Wy6+TlBDAz9A++G18txWf3fasOprik47jq
-9Ls8efy6CsGtm0P1CGm8P/s9Euo1pl6DEcYpPT//kU0cj4lkK2k=
-=VSHR
------END PGP SIGNATURE-----
-
---ZKjs7fCUe5qcsz+4--
+On 1/23/23 11:59, Krzysztof Kozlowski wrote:
+> On 21/01/2023 21:19, Markuss Broks wrote:
+>> Samsung Galaxy S5 (Exynos) is a mobile phone released in 2014.
+>> It has an Exynos5422 platform. This version of Galaxy S5 is only
+>> capable of 3G communication using the Intel modem, while the
+>> LTE version of the device (klte) has a Qualcomm Snapdragon SoC.
+>>
+>> Currently, internal eMMC, USB, regulators on a PMIC, and touchscreen
+>> are enabled in the device-tree.
+>>
+>> It also has the following peripherals:
+>>
+>> - 5" 1080p S6E3FA2 DSI display,
+>> - Cypress StreetFighter touch buttons,
+>> - Broadcom BCM4354 wireless connectivity module,
+>> - Intel XMM6360 3G modem,
+>> - STM32F401 serving as a sensor hub,
+>> - Validify Solutions VFS61 series fingerprint sensor,
+>> - Lattice ICE401M FPGA as an IRDA controller,
+>> - Maxim MAX86900 heart rate sensor,
+>> - NXP PN547 NFC controller,
+>> - Wolfson WM5110 Audio DSP,
+>> - Broadcom BCM4753 GPS radio,
+>> - Maxim MAX77804 PMIC,
+>> - Silicon Image SII8240 MHL controller,
+>> - TI LP5562 LED driver
+>>
+>> Cc: Mark Brown <broonie@kernel.org>
+>>
+>> v1 -> v2:
+>> - use better subject prefixes
+>> - rename Galaxy S5 (Exynos) to Galaxy S5 (SM-G900H)
+>> - align the compatibles and clock output names
+>> - reorder the includes
+>> - generic node name for regulator-tsp-vdd-en
+>> - GPIO flag for regulator
+>> - rename all the regulators, leaving the voltage values only where
+>>    it makes sense (e.g. on 3V3 and 1V8 supplies for the HRM)
+> I got two v2 patchsets from you. No clue which one is correct. Please
+> send v3 if there were differences. Otherwise please annotate somehow...
+Sorry about that, the first time I sent v2 it lacked the v2 tag in 
+actual patch letters, but contained the tag in the cover letter, so I 
+thought it would make confusion, so I fixed it and sent it properly. The 
+patchsets are identical otherwise.
+>
+> Best regards,
+> Krzysztof
+>
+- Markuss
