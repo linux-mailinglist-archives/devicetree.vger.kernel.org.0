@@ -2,565 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9205467741F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 03:31:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 476CB6774AA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 05:32:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbjAWCbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Jan 2023 21:31:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52120 "EHLO
+        id S231485AbjAWEcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Jan 2023 23:32:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231504AbjAWCbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 21:31:47 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A72166DF
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 18:31:38 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id y1so4985431wru.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Jan 2023 18:31:38 -0800 (PST)
+        with ESMTP id S231480AbjAWEcQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Jan 2023 23:32:16 -0500
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F0FF12068;
+        Sun, 22 Jan 2023 20:32:15 -0800 (PST)
+Received: by mail-qt1-x836.google.com with SMTP id jr19so7634434qtb.7;
+        Sun, 22 Jan 2023 20:32:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4eEkv/abbkcfzh0mmzSXI9XPpVbAKcusD1fGaRxOUqE=;
-        b=MSBKLu+pAQbX2LtjNhRHTDnPQNTpp4MDmprNFnqmurdaSVOmQDFFcjO0vEABiQY1s5
-         LScBiuW5GWR48KgZVdSzpL4LxkmevEPeiWfjH78z8w4CII8U4jdGg/mRaCenLOUOc05M
-         UNDMtch7xuZS6BryfyRx2RyPydYOn3UcrrDCYSzER8D1K91/g4M5OXOLvEVFOqsWpgZm
-         KMsYh9X3qF0BhCKkdXfvwk07QFGq6dDXBZvvVC0SS3c7TpOhqab/HU1zek/pFbnG4xm0
-         sLl/PiEBqcbJHha7aDcMgNoLx6avcRQUvfWww4LfEzJJ5+BDn1ZGgiG4i9v6lnaXx8xJ
-         9JZA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8prGQr8Vfaec3pEoqAbLPG61rDuM0C3fQ7rQgQW79rI=;
+        b=V4L9E5ETJryULz7qLbNew6CGMxIVX6SASckRpk9e2nzcYCWidZ8IRudiB9KVFMxA0M
+         4V8sut3LTV2qtgDS1/olyFGA0VqOQngGpatyDGySRbjk2dONKfGud6oQNhFzE2Sb8t5w
+         f5Vng5f7gEHNdM72MaQ+grYsu/aJNPukmh5k1C+pOIPAJdnJY4V1RtGnNPx1EN09JeBQ
+         UHdC7/7Oae0NQxUKgLxqqQEhVfdseaAWWhZ56mf4xT1WgN7ypUV7+W1HaU6wbp7qcAZY
+         1Ami3On3Ob7QrE3F2znTrz6IwAxsJiLvIwtvAnguBlRQI7Y5/SEqI9oM6mqoOikmkYdP
+         2yDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4eEkv/abbkcfzh0mmzSXI9XPpVbAKcusD1fGaRxOUqE=;
-        b=ghGmiRkfvnkYkr6UiUp1Hokc0oJyRBwgWs0weOkLEgMflx0tf5BySPVU9oY9qT+BQU
-         tUgAgjbZjfvSC7bP7RtsovCpupdkJRUfHBrKSdU5XILh8cO5wxrebYrJrZj7Fiuvq6fM
-         +b5JVpRHbz8thblVPGyJCkkfOPtTcjP8coYYiemXovLUycbqzeaewopzQokXsfVpZ9ig
-         ya++OtHZgaKJg48MA/CVEnHJ8d5MeMH3tbs9qzPfe7GNNZzqX3gnQxuCzoKuwylv59PN
-         eVPqvWcv905BOqQdIN1+8XOVMkX2I5JS5b44pb9+6oPZ+xjaYJ7h+5MbmjtoJAo6Wja6
-         A2YQ==
-X-Gm-Message-State: AFqh2kqZkM3vUOFZPSn474heIzvLumq93YxGHZaADdx9dDDkqYM3DL0t
-        QTzn8BaXbR51xDH6yAcbxXAeEA==
-X-Google-Smtp-Source: AMrXdXsmwMQz7lZrrinRD27lQUnbxMVbPqk2Yw2Nz9mJADoLW0ThNXi5KYDUDgDvFe+zYaTAkVPGLQ==
-X-Received: by 2002:a5d:6b85:0:b0:2bd:d782:c2bc with SMTP id n5-20020a5d6b85000000b002bdd782c2bcmr20154872wrx.33.1674441097458;
-        Sun, 22 Jan 2023 18:31:37 -0800 (PST)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id r11-20020adff70b000000b002bdf290efdasm18672703wrp.58.2023.01.22.18.31.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Jan 2023 18:31:37 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        djakov@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     bryan.odonoghue@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, benl@squareup.com,
-        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
-        dmitry.baryshkov@linaro.org, stephan@gerhold.net
-Subject: [PATCH v4 6/6] arm64: dts: qcom: Add msm8939 Sony Xperia M4 Aqua
-Date:   Mon, 23 Jan 2023 02:31:27 +0000
-Message-Id: <20230123023127.1186619-7-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230123023127.1186619-1-bryan.odonoghue@linaro.org>
-References: <20230123023127.1186619-1-bryan.odonoghue@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8prGQr8Vfaec3pEoqAbLPG61rDuM0C3fQ7rQgQW79rI=;
+        b=L3gTYBZUDKaPIhPg0TZ9BTlxdBPQJaFN5Mu2zb6Y9QrfJWXBb4jgLUuzhcl5dxNCOP
+         PrvTf2Y3pQvhzryvSV03emTS11Jx300toS8IUT2E8EYRn1qb8DvLEwKLIdIiJkJqD6pO
+         pja/Nu+Bz+8POSggvc6pmgRzJRYXvNmv+hUXwDcDSaxPOwI+nqBIju288V9C/1bOGnsc
+         en2pMibvJs/QpF1WLXUr8tJhD6Ru9wRENhKtps9De4S9I5HYPPtD8nOlUT1ehAjWV0aA
+         2Ccec9xo5iyNzj4q1nnPez1iWG7my9YsMzTJfStpy0Ct2pHwZ0JbLEPhSpHtDipHhbYR
+         pdJg==
+X-Gm-Message-State: AFqh2kpZTg0bGFd8oG0v0JuuvKLUTzySAXaBUR9pLA2uZsBs5TGc2BOR
+        UXczjysXgQSSVNn8r/4q9+g=
+X-Google-Smtp-Source: AMrXdXvnGIr1XFz6sfgi9Wpu9mTqt+hNX2osMI21ATgH82yevhMyTYz7UJPddA+j6f92rbjmBEZu5Q==
+X-Received: by 2002:ac8:6e83:0:b0:3b6:3787:679d with SMTP id c3-20020ac86e83000000b003b63787679dmr30013729qtv.8.1674448334250;
+        Sun, 22 Jan 2023 20:32:14 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:f188:4fdb:4a:b729? ([2600:1700:2442:6db0:f188:4fdb:4a:b729])
+        by smtp.gmail.com with ESMTPSA id bm37-20020a05620a19a500b00704d8ad2e11sm13948206qkb.42.2023.01.22.20.32.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Jan 2023 20:32:13 -0800 (PST)
+Message-ID: <0b44ec45-a5d8-87ff-34e9-cfed58eb060c@gmail.com>
+Date:   Sun, 22 Jan 2023 22:32:13 -0600
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V7 0/3] Generate device tree node for pci devices
+Content-Language: en-US
+To:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, helgaas@kernel.org
+Cc:     clement.leger@bootlin.com, max.zhen@amd.com, sonal.santan@amd.com,
+        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
+        trix@redhat.com
+References: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a basic booting DTS for the Sony Xperia M4 Aqua aka "tulip".
+Hi Rob, Lizhi,
 
-Tulip is paired with:
+On 1/19/23 21:02, Lizhi Hou wrote:
+> This patch series introduces OF overlay support for PCI devices which
+> primarily addresses two use cases. First, it provides a data driven method
+> to describe hardware peripherals that are present in a PCI endpoint and
+> hence can be accessed by the PCI host. Second, it allows reuse of a OF
+> compatible driver -- often used in SoC platforms -- in a PCI host based
+> system.
 
-- wcn3660
-- smb1360 battery charger
-- 720p Truly NT35521 Panel
+I had hoped to review this series by today, but have not yet due to working
+on some new unittest features.  I hope to get to this series Monday.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../qcom/msm8939-sony-xperia-kanuti-tulip.dts | 453 ++++++++++++++++++
- 2 files changed, 454 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+-Frank
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 73ff8d3213d99..1df3dbaf8a6d8 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5x.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-new file mode 100644
-index 0000000000000..841d88fe3659f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-@@ -0,0 +1,453 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2015, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022-2023, Bryan O'Donoghue.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8939.dtsi"
-+#include "msm8939-pm8916.dtsi"
-+#include <dt-bindings/arm/qcom,ids.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+
-+/ {
-+	model = "Sony Xperia M4 Aqua";
-+	compatible = "sony,kanuti-tulip", "qcom,msm8939";
-+
-+	qcom,board-id = <8 0>;
-+	qcom,msm-id = <QCOM_ID_MSM8939 0>, <QCOM_ID_MSM8939 0x30000>, <QCOM_ID_APQ8039 0x30000>;
-+
-+	aliases {
-+		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
-+		mmc1 = &sdhc_2; /* SDC2 SD card slot */
-+		serial0 = &blsp1_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	negative5_reg: negative5-regulator {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&negative5_reg_default>;
-+		regulator-name = "negative5_reg";
-+		gpio = <&tlmm 17 GPIO_ACTIVE_LOW>;
-+		startup-delay-us = <0>;
-+	};
-+
-+	positive5_reg: positive5-regulator {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&positive5_reg_default>;
-+		regulator-name = "positive5_reg";
-+		gpio = <&tlmm 114 GPIO_ACTIVE_LOW>;
-+		startup-delay-us = <0>;
-+	};
-+
-+	usb_id: usb-id {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpio = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_id_default>;
-+	};
-+};
-+
-+&dsi0 {
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "sony,tulip-truly-nt35521";
-+		reg = <0>;
-+		positive5-supply = <&positive5_reg>;
-+		negative5-supply = <&negative5_reg>;
-+		reset-gpios = <&tlmm 25 GPIO_ACTIVE_LOW>;
-+		enable-gpios = <&tlmm 10 GPIO_ACTIVE_LOW>;
-+
-+		ports {
-+			port {
-+				panel_in: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+		};
-+
-+	};
-+};
-+
-+&dsi0_out {
-+	remote-endpoint = <&panel_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&dsi_phy0 {
-+	qcom,dsi-phy-regulator-ldo-mode;
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	ak8963_default: ak8963-default-state {
-+		pins = "gpio69";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	ak8963_sleep: ak8963-sleep-state {
-+		pins = "gpio69";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	/* Ambient light and proximity sensor apds9930 and apds9900 */
-+	apds99xx_default: apds99xx-default-state {
-+		pins = "gpio113";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	apds99xx_sleep: apds99xx-sleep-state {
-+		pins = "gpio113";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	cam_sensor_flash_default: cam-sensor-flash-default-state {
-+		pins = "gpio98", "gpio97";
-+		function = "gpio";
-+		bias-disable;
-+		drive-strength = <2>;
-+	};
-+
-+	cci1_default: cci1-default-state {
-+		pins = "gpio31", "gpio32";
-+		function = "cci_i2c";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	cdc_ext_spk_pa_active: cdc-ext-spk-pa-on-state {
-+		pins = "gpio0";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		output-low;
-+	};
-+
-+	cdc_ext_spk_pa_sus: cdc-ext-spk-pa-off-state {
-+		pins = "gpio0";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	cdc_slim_lines_act: lines-on-state {
-+		pins = "gpio63";
-+		function = "cdc_pdm0";
-+		drive-strength = <8>;
-+		output-high;
-+	};
-+
-+	cdc_slim_lines_sus: lines-off-state {
-+		pins = "gpio63";
-+		function = "cdc_pdm0";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	cross_conn_det_act: lines-on-state {
-+		pins = "gpio120";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-down;
-+		output-low;
-+	};
-+
-+	cross_conn_det_sus: lines-off-state {
-+		pins = "gpio120";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ext_buck_vsel: vsel0-state {
-+		pins = "gpio111";
-+		function = "gpio";
-+		drive-strength = <2>;
-+	};
-+
-+	ext_cdc_tlmm_lines_act: tlmm-lines-on-state {
-+		pins = "gpio116", "gpio112", "gpio117", "gpio118", "gpio119";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+
-+	ext_cdc_tlmm_lines_sus: tlmm-lines-off-state {
-+		pins = "gpio116", "gpio112", "gpio117", "gpio118", "gpio119";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	gpio_key_suspend: gpio-key-suspend-state {
-+		pins = "gpio107", "gpio108", "gpio109";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	negative5_reg_default: negative5-reg-default-state {
-+		pins = "gpio17";
-+		function = "gpio";
-+		output-low;
-+	};
-+
-+	positive5_reg_default: positive5-reg-default-state {
-+		pins = "gpio114";
-+		function = "gpio";
-+		output-low;
-+	};
-+
-+	/* Gyroscope and accelerometer sensor combo */
-+	mpu6050_default: mpu6050-default-state {
-+		pins = "gpio115";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	mpu6050_sleep: mpu6050-sleep-state {
-+		pins = "gpio115";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	nfc_disable_active: nfc-disable-active-state {
-+		pins = "gpio20";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	nfc_disable_suspend: nfc-disable-suspend-state {
-+		pins = "gpio20";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-disable;
-+	};
-+
-+	nfc_int_active: nfc-int-active-state {
-+		pins = "gpio21";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	nfc_int_suspend: nfc-int-suspend-state {
-+		pins = "gpio21";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-up;
-+	};
-+
-+	nt35521_te_default: nt35521-te-default-state {
-+		pins = "gpio24";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-down;
-+	};
-+
-+	nt35521_backlight: nt35521-backlight-default-state {
-+		pins = "gpio10";
-+		function = "gpio";
-+		drive-strength = <6>;
-+		bias-pull-down;
-+	};
-+
-+	smb_int: smb-int-default-state {
-+		pins = "gpio62";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	ts_int_active: ts-int-active-state {
-+		pins = "gpio13";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-pull-up;
-+	};
-+
-+	ts_int_suspend: ts-int-suspend-state {
-+		pins = "gpio13";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ts_reset_active: ts-reset-active-state {
-+		pins = "gpio12";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-pull-up;
-+	};
-+
-+	ts_reset_suspend: ts-reset-suspend-state {
-+		pins = "gpio12";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ts_release: ts-release-default-state {
-+		pins = "gpio13", "gpio12";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	usb_id_default: usb-id-default-state {
-+		pins = "gpio110";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&pronto {
-+	status = "okay";
-+
-+	iris {
-+		compatible = "qcom,wcn3660";
-+	};
-+};
-+
-+&smd_rpm_regulators {
-+	vdd_l1_l2_l3-supply = <&pm8916_s3>;
-+	vdd_l4_l5_l6-supply = <&pm8916_s4>;
-+	vdd_l7-supply = <&pm8916_s4>;
-+
-+	pm8916_s3: s3 {
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1300000>;
-+	};
-+
-+	pm8916_s4: s4 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <2100000>;
-+	};
-+
-+	pm8916_l2: l2 {
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+	};
-+
-+	pm8916_l4: l4 {
-+		regulator-min-microvolt = <2050000>;
-+		regulator-max-microvolt = <2050000>;
-+	};
-+
-+	pm8916_l5: l5 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	pm8916_l6: l6 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	pm8916_l7: l7 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	pm8916_l8: l8 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2900000>;
-+	};
-+
-+	pm8916_l9: l9 {
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	pm8916_l10: l10 {
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	pm8916_l11: l11 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-system-load = <200000>;
-+		regulator-allow-set-load;
-+	};
-+
-+	pm8916_l12: l12 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	pm8916_l13: l13 {
-+		regulator-min-microvolt = <3075000>;
-+		regulator-max-microvolt = <3075000>;
-+	};
-+
-+	pm8916_l14: l14 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	pm8916_l15: l15 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	pm8916_l16: l16 {
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	pm8916_l17: l17 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+	};
-+
-+	pm8916_l18: l18 {
-+		regulator-min-microvolt = <2700000>;
-+		regulator-max-microvolt = <2700000>;
-+	};
-+};
-+
-+&sdhc_1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc1_default_state>;
-+	pinctrl-1 = <&sdc1_sleep_state>;
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc2_default_state>;
-+	pinctrl-1 = <&sdc2_sleep_state>;
-+	cd-gpios = <&tlmm 38 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+};
-+
-+&usb {
-+	extcon = <&usb_id>, <&usb_id>;
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&usb_id>;
-+};
--- 
-2.38.1
+> 
+> There are 2 series devices rely on this patch:
+> 
+>   1) Xilinx Alveo Accelerator cards (FPGA based device)
+>   2) Microchip LAN9662 Ethernet Controller
+> 
+>      Please see: https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
+> 
+> Normally, the PCI core discovers PCI devices and their BARs using the
+> PCI enumeration process. However, the process does not provide a way to
+> discover the hardware peripherals that are present in a PCI device, and
+> which can be accessed through the PCI BARs. Also, the enumeration process
+> does not provide a way to associate MSI-X vectors of a PCI device with the
+> hardware peripherals that are present in the device. PCI device drivers
+> often use header files to describe the hardware peripherals and their
+> resources as there is no standard data driven way to do so. This patch
+> series proposes to use flattened device tree blob to describe the
+> peripherals in a data driven way. Based on previous discussion, using
+> device tree overlay is the best way to unflatten the blob and populate
+> platform devices. To use device tree overlay, there are three obvious
+> problems that need to be resolved.
+> 
+> First, we need to create a base tree for non-DT system such as x86_64. A
+> patch series has been submitted for this:
+> https://lore.kernel.org/lkml/20220624034327.2542112-1-frowand.list@gmail.com/
+> https://lore.kernel.org/lkml/20220216050056.311496-1-lizhi.hou@xilinx.com/
+> 
+> Second, a device tree node corresponding to the PCI endpoint is required
+> for overlaying the flattened device tree blob for that PCI endpoint.
+> Because PCI is a self-discoverable bus, a device tree node is usually not
+> created for PCI devices. This series adds support to generate a device
+> tree node for a PCI device which advertises itself using PCI quirks
+> infrastructure.
+> 
+> Third, we need to generate device tree nodes for PCI bridges since a child
+> PCI endpoint may choose to have a device tree node created.
+> 
+> This patch series is made up of three patches.
+> 
+> The first patch is adding OF interface to create or destroy OF node
+> dynamically.
+> 
+> The second patch introduces a kernel option, CONFIG_DYNAMIC_PCI_OF_NODEX.
+> When the option is turned on, the kernel will generate device tree nodes
+> for all PCI bridges unconditionally. The patch also shows how to use the
+> PCI quirks infrastructure, DECLARE_PCI_FIXUP_FINAL to generate a device
+> tree node for a device. Specifically, the patch generates a device tree
+> node for Xilinx Alveo U50 PCIe accelerator device. The generated device
+> tree nodes do not have any property.
+> 
+> The third patch adds basic properties ('reg', 'compatible' and
+> 'device_type') to the dynamically generated device tree nodes. More
+> properties can be added in the future.
+> 
+> Here is the example of device tree nodes generated within the ARM64 QEMU.
+> # lspci -t    
+> -[0000:00]-+-00.0
+>            +-01.0-[01]--
+>            +-01.1-[02]----00.0
+>            +-01.2-[03]----00.0
+>            +-01.3-[04]----00.0
+>            +-01.4-[05]----00.0
+>            +-01.5-[06]--
+>            +-01.6-[07]--
+>            +-01.7-[08]--
+>            +-02.0-[09-0b]----00.0-[0a-0b]----00.0-[0b]--+-00.0
+>            |                                            \-00.1
+>            +-02.1-[0c]--
+>            \-03.0-[0d-0e]----00.0-[0e]----01.0
+> 
+> # tree /sys/firmware/devicetree/base/pcie\@10000000
+> /sys/firmware/devicetree/base/pcie@10000000
+> |-- #address-cells
+> |-- #interrupt-cells
+> |-- #size-cells
+> |-- bus-range
+> |-- compatible
+> |-- device_type
+> |-- dma-coherent
+> |-- interrupt-map
+> |-- interrupt-map-mask
+> |-- linux,pci-domain
+> |-- msi-parent
+> |-- name
+> |-- pci@1,0
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,1
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,2
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,3
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,4
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,5
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,6
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@1,7
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@2,0
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- pci@0,0
+> |   |   |-- #address-cells
+> |   |   |-- #size-cells
+> |   |   |-- compatible
+> |   |   |-- device_type
+> |   |   |-- pci@0,0
+> |   |   |   |-- #address-cells
+> |   |   |   |-- #size-cells
+> |   |   |   |-- compatible
+> |   |   |   |-- dev@0,0
+> |   |   |   |   |-- compatible
+> |   |   |   |   `-- reg
+> |   |   |   |-- dev@0,1
+> |   |   |   |   |-- compatible
+> |   |   |   |   `-- reg
+> |   |   |   |-- device_type
+> |   |   |   |-- ranges
+> |   |   |   `-- reg
+> |   |   |-- ranges
+> |   |   `-- reg
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@2,1
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- ranges
+> |   `-- reg
+> |-- pci@3,0
+> |   |-- #address-cells
+> |   |-- #size-cells
+> |   |-- compatible
+> |   |-- device_type
+> |   |-- pci@0,0
+> |   |   |-- #address-cells
+> |   |   |-- #size-cells
+> |   |   |-- compatible
+> |   |   |-- device_type
+> |   |   |-- ranges
+> |   |   `-- reg
+> |   |-- ranges
+> |   `-- reg
+> |-- ranges
+> `-- reg
+> 
+> Changes since v6:
+> - Removed single line wrapper functions
+> - Added Signed-off-by Clément Léger <clement.leger@bootlin.com>
+> 
+> Changes since v5:
+> - Fixed code review comments
+> - Fixed incorrect 'ranges' and 'reg' properties and verified address
+>   translation.
+> 
+> Changes since RFC v4:
+> - Fixed code review comments
+> 
+> Changes since RFC v3:
+> - Split the Xilinx Alveo U50 PCI quirk to a separate patch
+> - Minor changes in commit description and code comment
+> 
+> Changes since RFC v2:
+> - Merged patch 3 with patch 2
+> - Added OF interfaces of_changeset_add_prop_* and use them to create
+>   properties.
+> - Added '#address-cells', '#size-cells' and 'ranges' properties.
+> 
+> Changes since RFC v1:
+> - Added one patch to create basic properties.
+> - To move DT related code out of PCI subsystem, replaced of_node_alloc()
+>   with of_create_node()/of_destroy_node()
+> 
+> Lizhi Hou (3):
+>   of: dynamic: Add interfaces for creating device node dynamically
+>   PCI: Create device tree node for selected devices
+>   PCI: Add PCI quirks to generate device tree node for Xilinx Alveo U50
+> 
+>  drivers/of/dynamic.c        | 197 +++++++++++++++++++++++++++++++++
+>  drivers/pci/Kconfig         |  12 ++
+>  drivers/pci/Makefile        |   1 +
+>  drivers/pci/bus.c           |   2 +
+>  drivers/pci/msi/irqdomain.c |   6 +-
+>  drivers/pci/of.c            |  71 ++++++++++++
+>  drivers/pci/of_property.c   | 212 ++++++++++++++++++++++++++++++++++++
+>  drivers/pci/pci-driver.c    |   3 +-
+>  drivers/pci/pci.h           |  19 ++++
+>  drivers/pci/quirks.c        |  11 ++
+>  drivers/pci/remove.c        |   1 +
+>  include/linux/of.h          |  24 ++++
+>  12 files changed, 556 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/pci/of_property.c
+> 
 
