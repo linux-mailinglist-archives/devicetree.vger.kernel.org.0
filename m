@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FCDA677FD3
+	by mail.lfdr.de (Postfix) with ESMTP id 9A0EB677FD4
 	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 16:33:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232149AbjAWPd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231569AbjAWPd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 23 Jan 2023 10:33:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39858 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231569AbjAWPd2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:33:28 -0500
-Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13391A976
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:33:27 -0800 (PST)
-Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-15f83e0fc63so14285288fac.11
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:33:27 -0800 (PST)
+        with ESMTP id S231724AbjAWPd3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 10:33:29 -0500
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52AA223C4D
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:33:28 -0800 (PST)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-15ff0a1f735so6094164fac.5
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 07:33:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vauVSP++ugyn5fGJJedmL7nUBg3JKQVZaXGEjtQiFYU=;
-        b=WF0XUue2aFDq25zhodlWd3r35wvnnQdajKGzc6spVzuY9LWsMKEJsCjOmXRI7QzFHZ
-         vN7SjNDhGTbzjGecGlyixnbrWwpB8XD+284WiSr3e6wBZZl3TrCLpRBwN9Mv/G/Bo0vH
-         0HfaujGnt4hLG7mnpA9W+MN6FrLhfophwK8vGw3xwqVBeusoqeDff8Pg5SHNTZDyLOD8
-         yxWgD6vyBYrO/nFtDd0KemDVptxZ/U2KHfoGiNxKPiDAE2DBvB20CFsgh3ycsiYYETPD
-         xA591q9ZIEiYYUUnxjYU5UOEql5xTe4DbAW0i0UehUXI4kDQDD29+ZfxsV4XhQqF0LVp
-         D7wQ==
+        bh=RASwLuUQeThiSsPWu6gVcHRtrdGgei4NA5W2fbAqfS4=;
+        b=MpkGkvAK8zg7raBn7JnAO94GpkuLzSuzhgW8dPuf69D5CpUqGcUJpiEqJiazUHuhvE
+         VkLyEM3aaH1upUjucee7d8iGuquOshZPSukqf0jv0i1hHRaKks4gOkXL/mL32XTlXzdg
+         txpl3ElPVgfRxJTdivlpyIDrQDnHlG1M65k/Ynie21K43or8wxhNArs8tQDLtbmebCWY
+         DleOxoGE+1eEoGcLA/oOIeAOKZMONnGaRzn36JeTFIY1XeECgd6dDr+/ghbMmXOD1qp9
+         togOKcMGg0BmXw3YP+3nOeBFOWmaVAgILiTg1OOsgVJIQ5VDlcXDct+aRcG7cSgiu3fh
+         cAWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vauVSP++ugyn5fGJJedmL7nUBg3JKQVZaXGEjtQiFYU=;
-        b=UbBdM04dqmLtlvT5dhS8AhUqNgKTFs2dYRPXz5YrzrkEAWjfNMYUN471ov2F1dgK6o
-         Yb9zWVLibioc2HaJVFHi+CcKLRl3Cpizf7BM824Ws0YkiWJ5qCaS5IzC9On+cp753lCU
-         jc+tctELHCf38iPia72snWdIowcOo8x1MfggOjizPI6NdmQXubH/GNPeGKRIBQYJDubs
-         pfF+v0cySLU0FjBVsgX+vKBM0yEiJJK3EB/DGILvrTVwy7PXTIGphLhUcAf6IufaJl9h
-         Gwizo7o/LPDA7lDwo7cOhexflOop0OGswpuQiOyXhA6xbyIbzj/R5PntxDrTWNKExmob
-         nIPw==
-X-Gm-Message-State: AFqh2kozpqugRwu5MyhAJsyoFxYNWqe5BRhcxZ9rXbtTI5BD5NcEpTFP
-        EMlFJHwW+28zbh/vPRLSh4U=
-X-Google-Smtp-Source: AMrXdXs8D04h1EPugqFnagYbyJEvqRLkvRoE56HdrUF2u6xKzjAObVATNLkGhzDtz8MYHtXhxolU3w==
-X-Received: by 2002:a05:6870:4c14:b0:14b:bdda:7754 with SMTP id pk20-20020a0568704c1400b0014bbdda7754mr13651635oab.37.1674488006960;
-        Mon, 23 Jan 2023 07:33:26 -0800 (PST)
+        bh=RASwLuUQeThiSsPWu6gVcHRtrdGgei4NA5W2fbAqfS4=;
+        b=n/wmSQ6sY5WJtQo/qXUlsiPWbe4KuRr+baoJRnx0dEy2a4RBgLJ1DSnH5nSADyaZaP
+         7AhTs+lU/CawGIbZROMwZOG0CWkGWw7M8VkXcm8XSNl9fAAJEJ3wxI9AbyX4eSmkA7iQ
+         w+u/TXB3jOwGF6rhfFIDepD7ZKColAti6qFoJEgLSEbpe5hdCRGSkkh5izVAfW5oj/Jm
+         RoDrpjzgGdTlc7e9xyILhv69AQoogDw0f3ny1rxRbIBGDd8zu0XOyVuMHNczlcyIQ+BA
+         pzofN1b+pntlle9mvAZ0vS0wDD5BQaoZQAIHzNCryd6Uj/oj+4bI2ogFw7B7DAia1wjE
+         WO4Q==
+X-Gm-Message-State: AFqh2kpxwExQPs2Rhkm5MJAVLEicJvibfmyF5orPcb1rAXDCBy6QQPjE
+        aiYwFjBOjYnUhcImOgGDMl8=
+X-Google-Smtp-Source: AMrXdXsbM9F4wGlpe4aZwpMgO9ORzaHzEvZ9t+bcMptOS1cBAnRUwkKGfsjwVBC3v3rt9PszGonIwA==
+X-Received: by 2002:a05:6870:6a8b:b0:150:21db:43ea with SMTP id mv11-20020a0568706a8b00b0015021db43eamr12483416oab.36.1674488007673;
+        Mon, 23 Jan 2023 07:33:27 -0800 (PST)
 Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id v1-20020a056870708100b0013b9ee734dcsm25459182oae.35.2023.01.23.07.33.26
+        by smtp.gmail.com with ESMTPSA id v1-20020a056870708100b0013b9ee734dcsm25459182oae.35.2023.01.23.07.33.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 07:33:26 -0800 (PST)
+        Mon, 23 Jan 2023 07:33:27 -0800 (PST)
 From:   Chris Morgan <macroalpha82@gmail.com>
 To:     dri-devel@lists.freedesktop.org
 Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
         robh+dt@kernel.org, daniel@ffwll.ch, airlied@gmail.com,
         sam@ravnborg.org, thierry.reding@gmail.com, megous@megous.com,
         kernel@puri.sm, agx@sigxcpu.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH V2 1/3] dt-bindings: panel: Add compatible for Anbernic RG353V-V2 panel
-Date:   Mon, 23 Jan 2023 09:33:19 -0600
-Message-Id: <20230123153321.1314350-2-macroalpha82@gmail.com>
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V2 2/3] drm/panel: st7703: Rename CMD_UNKNOWN_C6 to CMD_SETECO
+Date:   Mon, 23 Jan 2023 09:33:20 -0600
+Message-Id: <20230123153321.1314350-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230123153321.1314350-1-macroalpha82@gmail.com>
 References: <20230123153321.1314350-1-macroalpha82@gmail.com>
@@ -78,32 +77,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-The Anbernic RG353V-V2 panel is a 5 inch 640x480 MIPI-DSI LCD panel.
-It's based on the ST7703 LCD controller just like rocktech,jh057n00900.
-It's used in a 2nd revision of the Anbernic RG353V handheld gaming
-device. Like the first revision of the RG353V the control chip is known
-but the panel itself is unknown, so name it for the device.
+A later revision of the datasheet for the ST7703 refers to this command
+as "SETECO".
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Guido Günther <agx@sigxcpu.org>
+Reviewed-by: Guido Günther <agx@sigxcpu.org>
 ---
- .../devicetree/bindings/display/panel/rocktech,jh057n00900.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/panel/panel-sitronix-st7703.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-index 09b5eb7542f8..150e81090af2 100644
---- a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-@@ -20,6 +20,8 @@ allOf:
- properties:
-   compatible:
-     enum:
-+      # Anberic RG353V-V2 5.0" 640x480 TFT LCD panel
-+      - anbernic,rg353v-panel-v2
-       # Rocktech JH057N00900 5.5" 720x1440 TFT LCD panel
-       - rocktech,jh057n00900
-       # Xingbangda XBD599 5.99" 720x1440 TFT LCD panel
+diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7703.c b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
+index 86a472b01360..27049a1d9b3e 100644
+--- a/drivers/gpu/drm/panel/panel-sitronix-st7703.c
++++ b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
+@@ -41,8 +41,8 @@
+ #define ST7703_CMD_UNKNOWN_BF	 0xBF
+ #define ST7703_CMD_SETSCR	 0xC0
+ #define ST7703_CMD_SETPOWER	 0xC1
++#define ST7703_CMD_SETECO	 0xC6
+ #define ST7703_CMD_SETPANEL	 0xCC
+-#define ST7703_CMD_UNKNOWN_C6	 0xC6
+ #define ST7703_CMD_SETGAMMA	 0xE0
+ #define ST7703_CMD_SETEQ	 0xE3
+ #define ST7703_CMD_SETGIP1	 0xE9
+@@ -266,8 +266,7 @@ static int xbd599_init_sequence(struct st7703 *ctx)
+ 				 * ESD_DET_TIME_SEL = 0 frames
+ 				 */);
+ 
+-	/* Undocumented command. */
+-	dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_C6, 0x01, 0x00, 0xFF, 0xFF, 0x00);
++	dsi_dcs_write_seq(dsi, ST7703_CMD_SETECO, 0x01, 0x00, 0xFF, 0xFF, 0x00);
+ 
+ 	dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER,
+ 			  0x74, /* VBTHS, VBTLS: VGH = 17V, VBL = -11V */
 -- 
 2.34.1
 
