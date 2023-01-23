@@ -2,178 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5FC6677750
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 10:21:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4503677773
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 10:32:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231580AbjAWJV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 04:21:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58832 "EHLO
+        id S231848AbjAWJcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 04:32:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231535AbjAWJV0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 04:21:26 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8578F13D6D
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:21:24 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id c10-20020a05600c0a4a00b003db0636ff84so8035636wmq.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:21:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dfmvo5oeZS2mw9rYPDjdKBRJW58vjaeN+zBDMH5ZCpk=;
-        b=vB8o+1Ngxx65FLNG5N5XaT1T7oTp+DfMd3rA3AnVU3Rks2jxBLZN6NYYrcqia+VweW
-         lL7CUrvLvnIZElmtoH6Fqlw58jTOchGm+eOwkWQ/GGciIhOacCg743n96qEIWuQDyObf
-         n/Jr+eninp2o+WysIuS+6Zf4AubtFOV3KeAmZy2b1BJbIXCdQfID8NK4/inDKrRSgbT7
-         s5F6tZpT7dRgDqGYUSeVUmey8IHOmqfy2G6M02g9sUa2ZuPZrROFwaIof82Fvx3dTpLK
-         j2Qz5PPbw7JA9QNbh7r1ENz6/lxZAx1wnpFRg/cwmMF+/dgmqQ/lB2ChI3bzgHsaKq/X
-         tA/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dfmvo5oeZS2mw9rYPDjdKBRJW58vjaeN+zBDMH5ZCpk=;
-        b=j7FQRlapNL0M/8hLpZe+qh2K6L6HNFd3gtWNEmMNFN888lvL/AYRVW13whLyJK5NlB
-         Gv4QL0QMLvgdVsLqy21Wg1P3OZRmmBAuUk3oIjLspMUbW1WeW8B36/3crS2Nr6687FmM
-         BOGcRTwdMBLZO489SUXMRubee/HcBlNrpmM/Bdz+YND2uY78rOlCBEE5y6IpagEj/BR6
-         QFAKX101Rvid/5LVilUU59IU4SXGxLuu7vjXYNLJPFNX4pZG3CDqJFVzemXtj60RvfSH
-         VJZ0ISRaHJF/65hp+IWGZpM/9HeC4x3Gm8AaDkA4jvLRIoo83oaPBx4vk3WdznFypi05
-         FmZA==
-X-Gm-Message-State: AFqh2kosYUluOVboq04B2SpkS8F38dQnX8d0yGsAlqWvHCPdt9msl21U
-        KKOxKfJPb3S8U6rclVZdS23Avg==
-X-Google-Smtp-Source: AMrXdXuqO6PMOyE0fxvWczF3BcWFU4eORgAdVy2kpa3ur1lCmv/eM+I7btGwcb/5Cv/Q1BtX6wUajg==
-X-Received: by 2002:a05:600c:1d85:b0:3db:1bc5:bbe7 with SMTP id p5-20020a05600c1d8500b003db1bc5bbe7mr16855715wms.0.1674465683132;
-        Mon, 23 Jan 2023 01:21:23 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id hg8-20020a05600c538800b003d974076f13sm10011878wmb.3.2023.01.23.01.21.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 01:21:22 -0800 (PST)
-Message-ID: <c6ef28cf-74cc-5912-d73f-822f57642038@linaro.org>
-Date:   Mon, 23 Jan 2023 10:21:21 +0100
+        with ESMTP id S229676AbjAWJcC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 04:32:02 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B340C18B1D
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:32:01 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pJtBD-0001WN-Bh; Mon, 23 Jan 2023 10:31:55 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pJtBC-00073Z-Jb; Mon, 23 Jan 2023 10:31:54 +0100
+Date:   Mon, 23 Jan 2023 10:31:54 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 3/3] dt-bindings: arm: fsl: Add i.MX8MM-EVKB
+Message-ID: <20230123093154.u2hjt7xxoycn57w5@pengutronix.de>
+References: <20230123071312.3297210-1-johannes.schneider@leica-geosystems.com>
+ <20230123071312.3297210-4-johannes.schneider@leica-geosystems.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add SM7150 GCC clocks
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Danila Tikhonov <danila@jiaxyga.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        David Wronek <davidwronek@gmail.com>
-References: <20230122192924.119636-1-danila@jiaxyga.com>
- <20230122192924.119636-2-danila@jiaxyga.com>
- <5f778c47-a1a3-70f2-78b8-107a11e31eeb@linaro.org>
-In-Reply-To: <5f778c47-a1a3-70f2-78b8-107a11e31eeb@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230123071312.3297210-4-johannes.schneider@leica-geosystems.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 10:11, Krzysztof Kozlowski wrote:
-> On 22/01/2023 20:29, Danila Tikhonov wrote:
->> Add device tree bindings for global clock subsystem clock
->> controller for Qualcomm Technology Inc's SM7150 SoCs.
->>
->> Co-developed-by: David Wronek <davidwronek@gmail.com>
->> Signed-off-by: David Wronek <davidwronek@gmail.com>
->> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
->> ---
->>  .../bindings/clock/qcom,sm7150-gcc.yaml       |  69 +++++++
->>  include/dt-bindings/clock/qcom,sm7150-gcc.h   | 193 ++++++++++++++++++
->>  2 files changed, 262 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm7150-gcc.yaml
->>  create mode 100644 include/dt-bindings/clock/qcom,sm7150-gcc.h
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm7150-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm7150-gcc.yaml
->> new file mode 100644
->> index 000000000000..a0105e11fdb8
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/qcom,sm7150-gcc.yaml
->> @@ -0,0 +1,69 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/qcom,sm7150-gcc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Global Clock & Reset Controller on SM7150
->> +
->> +maintainers:
->> +  - Bjorn Andersson <andersson@kernel.org>
->> +  - Danila Tikhonov <danila@jiaxyga.com>
->> +  - David Wronek <davidwronek@gmail.com>
->> +
->> +description: |
->> +  Qualcomm global clock control module provides the clocks, resets and power
->> +  domains on SM7150
->> +
->> +  See also:: include/dt-bindings/clock/qcom,sm7150-gcc.h
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,sm7150-gcc
->> +
->> +  clocks:
->> +    items:
->> +      - description: Board XO source
->> +      - description: Board XO Active-Only source
->> +      - description: Sleep clock source
->> +
-> 
-> If you started your work from the most recent bindings (e.g. sm8550) you
-> would have saved one iteration and one set of review...
-> 
->> +  '#clock-cells':
->> +    const: 1
-> 
-> Drop entire property, it's coming from gcc.yaml.
-> 
-> 
->> +  '#reset-cells':
->> +    const: 1
-> 
-> Ditto
-> 
->> +
->> +  '#power-domain-cells':
->> +    const: 1
-> 
-> Ditto
-> 
->> +
->> +  reg:
->> +    maxItems: 1
-> 
-> Ditto
-> 
->> +
->> +required:
->> +  - compatible
->> +  - reg
-> 
-> Drop reg
-> 
->> +  - clocks
->> +  - '#clock-cells'
->> +  - '#reset-cells'
->> +  - '#power-domain-cells'
-> 
-> Drop these three.
+Hi Johannes,
 
-BTW, all these changes above were not in your v1 so it is weird to see
-them here now...
+On 23-01-23, Johannes Schneider wrote:
+> Add DT compatible strings for recent EVKs, that come with a different PMIC.
+> 
+> The most recent revision of the 'original' EVK CPU module is C2 and the most
+> recent revision of EVKB CPU2 module is A4.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index fbfc4f99c01e..9c3a02c19847 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -818,6 +818,7 @@ properties:
+>                - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
+>                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
+>                - fsl,imx8mm-evk            # i.MX8MM EVK Board
+> +              - fsl,imx8mm-evkb           # i.MX8MM EVK Board, rev-B
+								  ^
+	As I mentioned within my previouse review, please drop the rev-B
+	comment, so the comment looks like:
 
-Best regards,
-Krzysztof
+	# i.MX8MM EVKB Board
 
+Regards,
+  Marco
+
+>                - gateworks,imx8mm-gw7904
+>                - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
+>                - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
+> -- 
+> 2.25.1
+> 
+> 
+> 
