@@ -2,140 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C760677798
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 10:44:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 224066777A0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 10:46:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230255AbjAWJoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 04:44:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41990 "EHLO
+        id S231724AbjAWJqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 04:46:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230131AbjAWJoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 04:44:09 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 273EF14220
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:44:08 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id b4so13924006edf.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:44:08 -0800 (PST)
+        with ESMTP id S231673AbjAWJqV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 04:46:21 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4C5820076
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:46:18 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id h12so6192744wrv.10
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 01:46:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tzw7rVzTiAE2k/bJcZBk03eWLle0ey7P0sqdJk1vnSM=;
-        b=Plu12ZxwGb6JsyyWkxd2rHh4SjNlcEvN324p4m6LtWds1GO+Hax8AGLJ6wHcRXrmeG
-         WxEcfNUpxC6KQytDKSE2msAWJ6ukXAyQPcxTtxOuhe6uwbVjbh8JMjCIJXZiOBa/D/YY
-         VJLw6jw/JAuObEKslK9X0NTn1zhFYUA21kzoDGN8RVsy3q8RtvGprz03VpvMqxbKZRro
-         HbqfcUdCEIG4svaIQJ22q/9nFKQzzhgQicTpZ25PKXw0Gg2Nr+a4ntpzAfeVtu1ID3Ux
-         mBiGrabv3QCuRAtEb7O+DKYfGuZrp3is9C4T6W9FlZ60qwSNCv+oaHW1OHbGxBdgdf2U
-         dCeg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=60INGmxwRr+8yD/I9JtxQHZJy+MthHAPjebxgVXSq4A=;
+        b=F1RmlI6Jr+ymKyy8lqwEzZBkmqqB13nNXYBYvHtOeWRGeqsuz7xzXBmaWhSw3I8Ebm
+         TcBhF+tktlNXSXYa7GGd+4cSp7Mx1MA292zlI/YBhsesf8m2OPtOBU4CzkRYYDY+VJKD
+         rZKktCGYO6MieFBnhFrnXP96yNjjCazN4NtubEGY3US83//z/ammPRj/L4Pxrc2Z6tmr
+         QKPZ+KdqFIhF4uxc434VoygrrqrdBU0wTWSgMlQyI+fyCqgR08BCpwX5nBT4NXsRkGFu
+         8nu27yExklJVwN9h22VU1oVuSZqcQ+pTlG/IoT6VZa6i92mv0KfUGLb3dqJ4/aHoExHh
+         cArg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tzw7rVzTiAE2k/bJcZBk03eWLle0ey7P0sqdJk1vnSM=;
-        b=GM0xLXaNmfMhfDqb9bGiyMaCvaH3S7xVGzwXCjgJti6UmVwWisjRNHfvXWG2KzR6Ix
-         CQ0odRmAueWrbq6Z6qC2DK9D0uJutMgbFoUimIkXYosJe35qwa8FTmvOFEE4goBtxodJ
-         uTwYeo5W7ZC+ZHWrA7dL4M4Xe38PIUgV/Kmp8QoPmaLkAoawlmJ2iGvgIaSNAhGEo5Iq
-         lSvBdVrulYimNmkMDa9rsB9d73rmE+hW9iaLfnqujbUKqnZg7GyqdWpZ+7GG2vEY0fMv
-         SMguoT8q8yW+csAzGgwzxpEr2XOoRN2trGRWqbudjLYOEQ94a4iOFNAKqknvDtvw/DHI
-         Ae+w==
-X-Gm-Message-State: AFqh2kouOcEVaaRz6xb3BjlSVJyIVOBJwkXI8rCHVkCJPYvwllfWhqXb
-        zr5ovqC1noDtdcm5evLnUwnecA==
-X-Google-Smtp-Source: AMrXdXutGuQsdwPBdG0nyzaFoN1CE+Hi1ozPIjd2kpvHRh/7ZdJXcy0rLy+58kuMSsp/lk+rggSzlw==
-X-Received: by 2002:a05:6402:602:b0:49d:f448:878c with SMTP id n2-20020a056402060200b0049df448878cmr33389242edv.2.1674467046664;
-        Mon, 23 Jan 2023 01:44:06 -0800 (PST)
-Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
-        by smtp.gmail.com with ESMTPSA id v17-20020a170906293100b007be301a1d51sm21720198ejd.211.2023.01.23.01.44.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 01:44:06 -0800 (PST)
-Date:   Mon, 23 Jan 2023 10:44:05 +0100
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <conor.dooley@microchip.com>, g@orel
-Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        'Atish Patra ' <atishp@rivosinc.com>,
-        'Jisheng Zhang ' <jszhang@kernel.org>,
-        'Palmer Dabbelt ' <palmer@dabbelt.com>,
-        'Albert Ou ' <aou@eecs.berkeley.edu>,
-        'Paul Walmsley ' <paul.walmsley@sifive.com>,
-        'Heiko Stuebner ' <heiko@sntech.de>,
-        'Anup Patel ' <apatel@ventanamicro.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: riscv: Document cboz-block-size
-Message-ID: <20230123094405.2ageo63zauqt6g2n@orel>
-References: <20230122191328.1193885-1-ajones@ventanamicro.com>
- <20230122191328.1193885-3-ajones@ventanamicro.com>
- <Y85A+3MW2N/jPTHH@wendy>
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=60INGmxwRr+8yD/I9JtxQHZJy+MthHAPjebxgVXSq4A=;
+        b=ibnHKDRufdc3x2C1pMy8SudGXPhIOi+SDm1pIAtEnD7e8NhfslV3CeBfwe0jJc7q2a
+         M0PuvDBnHWs2d19t1UkNDkqtiJWtc7J+J0oCqO6pTMd1F+GJKDygfIVUCemHjBjJ4ig1
+         KepmdTOXAoA3+RbWIPQ/TnbuoraY82govM6YziwmzIuIcOdNDJJ6cMQ19cg0UgNXodpG
+         j7CPan3CYNSAE49fQ5dXfGRJk1aZaQt3j2g5kqWOhBUairiBUfaIPZlcgk7bhwojTXG+
+         BfT1hu5cK05z8Dc87V4F6TOvPiGeADDJHvtmTqFtmakWeSk1Tg2fekfFho0RjuCenAKC
+         8j6A==
+X-Gm-Message-State: AFqh2kqki8twydKyf3cqgAN7xucRhyveCTroAtiNzMWzlald90Txofyk
+        liLOqIO1QgAR3mzzoxhGd7NOOw==
+X-Google-Smtp-Source: AMrXdXuHEVHo54bmjGJT3gC7SenPuHW6sVZSyn52AJ8UqKixwTSKOJoGk+qB0zPe/lhc1Ohi58pW5Q==
+X-Received: by 2002:a05:6000:98d:b0:2bd:c6ce:7bfb with SMTP id by13-20020a056000098d00b002bdc6ce7bfbmr23917833wrb.28.1674467177213;
+        Mon, 23 Jan 2023 01:46:17 -0800 (PST)
+Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id q12-20020adff50c000000b002bc83b85180sm7139415wro.114.2023.01.23.01.46.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 01:46:16 -0800 (PST)
+Message-ID: <c590a842-0074-8f19-6bc7-5de101a88661@linaro.org>
+Date:   Mon, 23 Jan 2023 10:46:15 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y85A+3MW2N/jPTHH@wendy>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 10/11] dt-bindings: PCI: convert amlogic,meson-pcie.txt
+ to dt-schema
+Content-Language: en-US
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-pci@vger.kernel.org,
+        netdev@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230110150328.GA1502381@bhelgaas>
+Organization: Linaro Developer Services
+In-Reply-To: <20230110150328.GA1502381@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 23, 2023 at 08:10:35AM +0000, Conor Dooley wrote:
-> Hey,
+On 10/01/2023 16:03, Bjorn Helgaas wrote:
+> Is this the same sort of conversion done by one of these?
 > 
-> On Sun, Jan 22, 2023 at 08:13:24PM +0100, Andrew Jones wrote:
-> > The Zicboz operates on a block-size defined for the cpu-core,
-> > which does not necessarily match other cache-sizes used.
-> > 
-> > So add the necessary property for the system to know the core's
-> > block-size.
-> > 
-> > Cc: Rob Herring <robh@kernel.org>
+>    e4dffb674cfd ("dt-bindings: PCI: tegra194: Convert to json-schema")
+>    075a9d55932e ("dt-bindings: PCI: qcom: Convert to YAML")
 > 
-> FYI bindings need to be CC Krzysztof & the devicetree list too.
+> It's helpful to non-experts like me if the subject lines use similar
+> style (capitalized) and similar terminology ("dt-schema" vs
+> "json-schema" vs "YAML").
 
-Thanks, hopefully CC'ing them now is OK (I just added them). If not,
-I can repost.
+Yes and honestly, I don't know what's the right name to use.
+
+I use dt-schema since it's the "official" name of the tool
+used to validate those.
 
 > 
-> > Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> > ---
-> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > index c6720764e765..f4ee70f8e1cf 100644
-> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > @@ -72,6 +72,11 @@ properties:
-> >      description:
-> >        The blocksize in bytes for the Zicbom cache operations.
-> >  
-> > +  riscv,cboz-block-size:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      The blocksize in bytes for the Zicboz cache operations.
+> On Mon, Jan 09, 2023 at 01:53:34PM +0100, Neil Armstrong wrote:
+>> Convert the Amlogic Meson AXG DWC PCIE SoC controller bindings to
+>> dt-schema.
 > 
-> Do you think hardware that has different Zicboz versus Zicbom block
-> sizes is going to be common, or would we benefit from just defaulting
-> the Zicboz size to the Zicbom one?
+> Some references here and below are "PCIE" (inherited from the
+> original) and others are "PCIe".  Could be made consistent here.
 
-I'm not sure. If it turns out the block size will be the same in most
-cases, then we could add another property named cbo-block-size, which,
-when present, would be parsed first and used to populate all CBO-related
-block sizes. Then, these specific properties would only serve to override
-that general size for their respective block sizes when they're present.
+Ack
 
 > 
-> Either way,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-drew
-
-> 
-> Thanks,
-> Conor.
-> 
-
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../devicetree/bindings/pci/amlogic,axg-pcie.yaml  | 134 +++++++++++++++++++++
+>>   .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 -----------
+>>   2 files changed, 134 insertions(+), 70 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
+>> new file mode 100644
+>> index 000000000000..a08f15fe9a9a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
+>> @@ -0,0 +1,134 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pci/amlogic,axg-pcie.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Amlogic Meson AXG DWC PCIE SoC controller
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <neil.armstrong@linaro.org>
+>> +
+>> +description:
+>> +  Amlogic Meson PCIe host controller is based on the Synopsys DesignWare PCI core.
+>> ...
 
