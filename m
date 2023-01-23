@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFB1B67825E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 17:57:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74384678275
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 18:02:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232233AbjAWQ5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 11:57:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35504 "EHLO
+        id S232417AbjAWRCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 12:02:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbjAWQ52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 11:57:28 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 789622CC42
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:57:26 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id mg12so32225032ejc.5
-        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 08:57:26 -0800 (PST)
+        with ESMTP id S230109AbjAWRCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 12:02:41 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C4E10C8
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 09:02:40 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id z11so15403386ede.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 09:02:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qs+PmdCaa0Oqr95NZq++4uVVYKEKDJ91l4ijJEaTst8=;
-        b=geR+2FaMDDlT/WgzMf7kyTloZZO3xPIQ/oqdt5EIQwnr6PorP9r0Du1JisgGyZ9xTb
-         6yl0C9VFDch5/qrQSDpKUuPPf/4vdpoTtdnfb4KTAypNS0fjiGIN9l71Z+xI7P+TFhok
-         epAtFMxn4CjtR+sr2O4FsFZpTyuAvBt5dWdDZm5t+kQcwG2hl/mllyJuBLckrXB20Sq+
-         Tdl4ig7Oi22Xw9iVTHshTod2IDscC7ThsLzT6EbkiAtrcCFSm1nlv2k3WurMTxkw/HRM
-         OKAGaC6zDjTrFM++HSX6/LLMK++cfOOAiKq5PSgMc/F43q4BGhc+eHraAkkbJwW7uis0
-         r5FQ==
+        bh=MJFLomacRBVqFg3uCWRpdgGcx7VRRrWPGPG3+QqMRx8=;
+        b=SDvVIXhKgTW6owee3sBXfsmhMmHFyVJWqwc6iXUWIcKejcFOekWGoE3Xhmqm6HRwZv
+         YO3Y5n0Qdo47rdnzlPSiO+i8YdjSsIH6UnqJSKRLrbwuqMfS4NBkTtx4EBfj8DmMeAfQ
+         1hXSmliAyv5j+zh6Ho1hjpR3lW6a1vg1f43KmrDhyCu7HLVjcFKjR5u6lJEHQXOG3XXT
+         n+jVmgSdpmxQB/Vm2wu2DoADrF287PY1/xbdNe/+z5Iyi8Hi+wqbEh/Nsyjef8dRpdJ/
+         H4mtr60L/yPHkUDYBTpXYdt7leBKBB43sbD3YYeyCW29+gtuLx/kuGX60cqTx9m3roMF
+         I/Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qs+PmdCaa0Oqr95NZq++4uVVYKEKDJ91l4ijJEaTst8=;
-        b=LVNwsLdwbWYu1SeMrt9QfFz6TblQa5sycURubf9MPfN8HiTbiP8eSWsMiTWNBs4Dtx
-         swEUmk8Zt+OEEf1mmzd7mqO75PVlrPESYMEevIn0ERfZcJt8bBSWPu2ebUeeO2llLtqY
-         IO3BZDSCUTLPxhycHc7hEa08IcfRepDLARzgZs7ltxn4aDLErI2nq7GZLIEcGVzX7Q2a
-         vtQgaqMjNysGCKFRV3wyY4aZ8r3CFd99pAu4riC3YECi0u/6N8uAUGZg8Ce/GwN2iFCX
-         B6Lpm45l1n8RUktmkJm0QmSa8P50fuyxt3C7eAq78QK1zjabv6tq6eU2k8bWnZ5FdhgG
-         1QTA==
-X-Gm-Message-State: AFqh2krt0naTcjos4HgmAHOXms9O0wjIetWotV2ISFrmSWlfAjN8Jnla
-        Ir1fVUJe4Wv/cP1xXf03e55VwQ==
-X-Google-Smtp-Source: AMrXdXurF26/WD+AXN2fCfpei/bQ2eG8irXZnCNrkdttoZhRiwGLMq+O6BiSC47v3lAbam4CncX+8Q==
-X-Received: by 2002:a17:906:a09:b0:7af:1139:de77 with SMTP id w9-20020a1709060a0900b007af1139de77mr32057359ejf.4.1674493045126;
-        Mon, 23 Jan 2023 08:57:25 -0800 (PST)
+        bh=MJFLomacRBVqFg3uCWRpdgGcx7VRRrWPGPG3+QqMRx8=;
+        b=jcK56CdDjvEe9rRt3oKjRbF3ZYzrim9a3UxA+fNrRc2781ZQXAW/HxnJW946f5MRv5
+         DqxI7kJMTtEjTDf4cOkxMeX6WZcqZVCoJHH0vLGw0SJY+mV8GRhlR7JE65iV3yPaYtUR
+         GFnqpwcngxBowrX8wfDB1B+ljm5/HsRr8U97w0ox96dnR/hDHtoofg0xqr5yxAiUFP+C
+         mVY90yiU8DYWYf6u+WzlprtDhvWRO2PWLajM97siUlTQB9UVId2/0KSJfmyLcMhp/2cL
+         PZ7sVEsTj/wMZC8DBoX0kMYxche8Ft1u+9+OPyJhDWGJmuB26IApcno22P2sf9SUaTMt
+         6diQ==
+X-Gm-Message-State: AFqh2kpLDgkYfcN2B4cwid26DKFKTFAAWARN50MxAJDKslCc4yML5IZa
+        lhkWWcdgbeJdRiGnU4LYqBk2Dg==
+X-Google-Smtp-Source: AMrXdXtRCcegXdMed6gVE4B7GTzMMb2aSBMz3o4c3PFhCgOn28IEkUjIr0eHtbLYnSOlaznt7LmDkw==
+X-Received: by 2002:a05:6402:524f:b0:491:3a5c:6e5 with SMTP id t15-20020a056402524f00b004913a5c06e5mr36302393edd.1.1674493359062;
+        Mon, 23 Jan 2023 09:02:39 -0800 (PST)
 Received: from [192.168.1.101] (abxi24.neoplus.adsl.tpnet.pl. [83.9.2.24])
-        by smtp.gmail.com with ESMTPSA id i21-20020a1709064fd500b008779570227bsm5542285ejw.112.2023.01.23.08.57.24
+        by smtp.gmail.com with ESMTPSA id i12-20020aa7dd0c000000b0047021294426sm21609323edv.90.2023.01.23.09.02.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Jan 2023 08:57:24 -0800 (PST)
-Message-ID: <4afc4f62-dfa8-89e3-e5cc-9dae3290b0b3@linaro.org>
-Date:   Mon, 23 Jan 2023 17:57:23 +0100
+        Mon, 23 Jan 2023 09:02:38 -0800 (PST)
+Message-ID: <b4b6ea2d-00ea-613a-4088-2bee7a81f431@linaro.org>
+Date:   Mon, 23 Jan 2023 18:02:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Add smp2p nodes
+Subject: Re: [PATCH v2] ARM: dts: qcom: apq8064: add second DSI host and PHY
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-References: <20230121200454.1423567-1-bhupesh.sharma@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230121091237.2734272-1-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230121200454.1423567-1-bhupesh.sharma@linaro.org>
+In-Reply-To: <20230121091237.2734272-1-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -77,97 +79,120 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 21.01.2023 21:04, Bhupesh Sharma wrote:
-> Add the adsp, cdsp and modem smp2p nodes to sm6115.
+On 21.01.2023 10:12, Dmitry Baryshkov wrote:
+> Add second DSI host and PHY available on the APQ8064 platform.
 > 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 72 ++++++++++++++++++++++++++++
->  1 file changed, 72 insertions(+)
+
+P.S. looking into RPM XO on this platform seems like a good
+idea too, though I am not sure how it works on pre-SMD SoCs..
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index 50cb8a82ecd5..3c66f998a81b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -345,6 +345,78 @@ rpmpd_opp_turbo_plus: opp8 {
+> Changes since v1:
+> - Switched dsi1 to dsi1 clocks by default
+> - Indentation and ordering fixes (noted by Konrad)
+> 
+> ---
+>  arch/arm/boot/dts/qcom-apq8064.dtsi | 78 ++++++++++++++++++++++++++++-
+>  1 file changed, 76 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+> index b7e5b45e1c04..92aa2b081901 100644
+> --- a/arch/arm/boot/dts/qcom-apq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+> @@ -865,8 +865,8 @@ mmcc: clock-controller@4000000 {
+>  				 <&gcc PLL8_VOTE>,
+>  				 <&dsi0_phy 1>,
+>  				 <&dsi0_phy 0>,
+> -				 <0>,
+> -				 <0>,
+> +				 <&dsi1_phy 1>,
+> +				 <&dsi1_phy 0>,
+>  				 <&hdmi_phy>;
+>  			clock-names = "pxo",
+>  				      "pll3",
+> @@ -1342,6 +1342,80 @@ dsi0_phy: phy@4700200 {
+>  			status = "disabled";
 >  		};
->  	};
 >  
-> +	smp2p-adsp {
-> +		compatible = "qcom,smp2p";
-> +		qcom,smem = <443>, <429>;
+> +		dsi1: dsi@5800000 {
+> +			compatible = "qcom,mdss-dsi-ctrl";
+> +			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
+> +			reg = <0x05800000 0x200>;
+> +			reg-names = "dsi_ctrl";
 > +
-> +		interrupts = <GIC_SPI 279 IRQ_TYPE_EDGE_RISING>;
+> +			clocks = <&mmcc DSI2_M_AHB_CLK>,
+> +				 <&mmcc DSI2_S_AHB_CLK>,
+> +				 <&mmcc AMP_AHB_CLK>,
+> +				 <&mmcc DSI2_CLK>,
+> +				 <&mmcc DSI2_BYTE_CLK>,
+> +				 <&mmcc DSI2_PIXEL_CLK>,
+> +				 <&mmcc DSI2_ESC_CLK>;
+> +			clock-names = "iface",
+> +				      "bus",
+> +				      "core_mmss",
+> +				      "src",
+> +				      "byte",
+> +				      "pixel",
+> +				      "core";
 > +
-> +		mboxes = <&apcs_glb 10>;
+> +			assigned-clocks = <&mmcc DSI2_BYTE_SRC>,
+> +					  <&mmcc DSI2_ESC_SRC>,
+> +					  <&mmcc DSI2_SRC>,
+> +					  <&mmcc DSI2_PIXEL_SRC>;
+> +			assigned-clock-parents = <&dsi1_phy 0>,
+> +						 <&dsi1_phy 0>,
+> +						 <&dsi1_phy 1>,
+> +						 <&dsi1_phy 1>;
 > +
-> +		qcom,local-pid = <0>;
-> +		qcom,remote-pid = <2>;
+> +			syscon-sfpb = <&mmss_sfpb>;
+> +			phys = <&dsi1_phy>;
 > +
-> +		adsp_smp2p_out: master-kernel {
-> +			qcom,entry-name = "master-kernel";
-> +			#qcom,smem-state-cells = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			status = "disabled";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					dsi1_in: endpoint {
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					dsi1_out: endpoint {
+> +					};
+> +				};
+> +			};
 > +		};
 > +
-> +		adsp_smp2p_in: slave-kernel {
-> +			qcom,entry-name = "slave-kernel";
 > +
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
+> +		dsi1_phy: dsi-phy@5800200 {
+> +			compatible = "qcom,dsi-phy-28nm-8960";
+> +			reg = <0x05800200 0x100>,
+> +			      <0x05800300 0x200>,
+> +			      <0x05800500 0x5c>;
+> +			reg-names = "dsi_pll",
+> +				    "dsi_phy",
+> +				    "dsi_phy_regulator";
+> +			clock-names = "iface",
+> +				      "ref";
+> +			clocks = <&mmcc DSI2_M_AHB_CLK>,
+> +				 <&pxo_board>;
+> +			#clock-cells = <1>;
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
 > +		};
-> +	};
-> +
-> +	smp2p-cdsp {
-> +		compatible = "qcom,smp2p";
-> +		qcom,smem = <94>, <432>;
-> +
-> +		interrupts = <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>;
-> +
-> +		mboxes = <&apcs_glb 30>;
-> +
-> +		qcom,local-pid = <0>;
-> +		qcom,remote-pid = <5>;
-> +
-> +		cdsp_smp2p_out: master-kernel {
-> +			qcom,entry-name = "master-kernel";
-> +			#qcom,smem-state-cells = <1>;
-> +		};
-> +
-> +		cdsp_smp2p_in: slave-kernel {
-> +			qcom,entry-name = "slave-kernel";
-> +
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +
-> +	smp2p-mpss {
-> +		compatible = "qcom,smp2p";
-> +		qcom,smem = <435>, <428>;
-> +
-> +		interrupts = <GIC_SPI 70 IRQ_TYPE_EDGE_RISING>;
-> +
-> +		mboxes = <&apcs_glb 14>;
-> +
-> +		qcom,local-pid = <0>;
-> +		qcom,remote-pid = <1>;
-> +
-> +		modem_smp2p_out: master-kernel {
-> +			qcom,entry-name = "master-kernel";
-> +			#qcom,smem-state-cells = <1>;
-> +		};
-> +
-> +		modem_smp2p_in: slave-kernel {
-> +			qcom,entry-name = "slave-kernel";
-> +
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +
->  	soc: soc@0 {
->  		compatible = "simple-bus";
->  		#address-cells = <1>;
+>  
+>  		mdp_port0: iommu@7500000 {
+>  			compatible = "qcom,apq8064-iommu";
