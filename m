@@ -2,118 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FB746778D3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 11:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DF966778D9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 11:14:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231795AbjAWKOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 05:14:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42526 "EHLO
+        id S231979AbjAWKOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 05:14:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231862AbjAWKOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 05:14:22 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB04E2D77;
-        Mon, 23 Jan 2023 02:14:04 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30N9PlO4013961;
-        Mon, 23 Jan 2023 10:13:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=CIxBfpf69T8ceKlQmzHXwuv4JP5pnPAQyhTnowpSVXA=;
- b=FkXVlU0m2hw0HS+clA0SMqBrQcFKecB/COPR20PcocuGD+NvDdO2g/0DF66y5+GSap5V
- P6aMKuLP542aYijLH1A6NiI1OFPC4HnPiSGewz7K2FrUjv5S3JwfXiv/q8dETLV9XUjW
- cIkluGXoX0Ow4Jeq2ZJ3rszbl/4oZSTSTSLbc3D7pKvrPYt6qFI05NgWplPLb92pgIpD
- NGCrTBd/iSkeBwr+RONKEBfFUBYpD0s0qf+OwFJaZOfFma67Zcgpilfjb2el+LnA4QOd
- TgZRta4D1ZCLKFKn/2d2/RBDRhMB0qnbqgYRMDp1Oy4taf/EVzigzOndzJ8+WAiShfFH zg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n89gt2n6r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 23 Jan 2023 10:13:57 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30NADqG6024690
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 23 Jan 2023 10:13:52 GMT
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Mon, 23 Jan 2023 02:13:46 -0800
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <quic_rohkumar@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
-        <konrad.dybcio@linaro.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH v3 2/2] ASoC: dt-bindings: google,sc7280-herobrine: Add platform property
-Date:   Mon, 23 Jan 2023 15:43:22 +0530
-Message-ID: <1674468802-14834-3-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1674468802-14834-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1674468802-14834-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S231978AbjAWKOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 05:14:38 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DCF0EB61
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 02:14:25 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pJtqC-0000XA-7D; Mon, 23 Jan 2023 11:14:16 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pJtqA-0001zd-QD; Mon, 23 Jan 2023 11:14:14 +0100
+Date:   Mon, 23 Jan 2023 11:14:14 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v8 2/3] arm64: dts: imx8mm-evkb: add support for
+ i.MX8MM-EVKB
+Message-ID: <20230123101414.6xujcg6p2ut7xvc3@pengutronix.de>
+References: <20230123071312.3297210-1-johannes.schneider@leica-geosystems.com>
+ <20230123071312.3297210-3-johannes.schneider@leica-geosystems.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ZZx_2Jjg0lVAimrOTMOlOR14FPEAMBr9
-X-Proofpoint-ORIG-GUID: ZZx_2Jjg0lVAimrOTMOlOR14FPEAMBr9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-23_05,2023-01-20_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 adultscore=0
- clxscore=1015 mlxscore=0 suspectscore=0 phishscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301230096
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230123071312.3297210-3-johannes.schneider@leica-geosystems.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add platform property in sc7280 machine driver bindings for including
-platform subnode in dai-links.
-This is required for binding the frontend dai driver to do dynamic pcm
-routing in ADSP based platforms.
+Hi Johannes,
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
----
- .../devicetree/bindings/sound/google,sc7280-herobrine.yaml   | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On 23-01-23, Johannes Schneider wrote:
+> Add devicetree for the EVKB, which comes with LPDDR4 and a different
+> PMIC.
+> 
+> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  arch/arm64/boot/dts/freescale/imx8mm-evkb.dts | 116 ++++++++++++++++++
+>  2 files changed, 117 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 3ea9edc87909..3bccc4d10928 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -55,6 +55,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-data-modul-edm-sbc.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-emcon-avari.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-evkb.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-bl.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
+> new file mode 100644
+> index 000000000000..b2d724ad43b2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts
+> @@ -0,0 +1,116 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2019-2020 NXP
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "imx8mm-evk.dtsi"
+> +
+> +/ {
+> +	model = "FSL i.MX8MM EVKB"; // with LPDDR4 and PCA9450 PMIC
+> +	compatible = "fsl,imx8mm-evkb", "fsl,imx8mm";
+> +};
+> +
+> +&i2c1 {
+> +	pmic: pmic@25 {
+> +		compatible = "nxp,pca9450a";
+> +		reg = <0x25>;
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		pinctrl-names = "default";
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		regulators {
+> +			buck1_reg: BUCK1 {
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
 
-diff --git a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-index 869b403..0b1a01a 100644
---- a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-+++ b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-@@ -75,6 +75,18 @@ patternProperties:
- 
-         additionalProperties: false
- 
-+      platform:
-+        description: Holds subnode which includes the phandle of q6apm platform device.
-+        type: object
-+        properties:
-+          sound-dai:
-+            maxItems: 1
-+
-+        required:
-+          - sound-dai
-+
-+        additionalProperties: false
-+
-     required:
-       - link-name
-       - cpu
--- 
-2.7.4
+please check the voltages for all regulators. You need to set the board
+constrains here and not the regulator/PMIC ones.
 
+Regards,
+  Marco
+
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +				nxp,dvs-run-voltage = <820000>;
+> +				nxp,dvs-standby-voltage = <800000>;
+> +			};
+> +
+> +			buck2_reg: BUCK2 {
+> +				regulator-name = "BUCK2";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck3_reg: BUCK3 {
+> +				regulator-name = "BUCK3";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck4_reg: BUCK4 {
+> +				regulator-name = "BUCK4";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5_reg: BUCK5 {
+> +				regulator-name = "BUCK5";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6_reg: BUCK6 {
+> +				regulator-name = "BUCK6";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1_reg: LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <1600000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo2_reg: LDO2 {
+> +				regulator-name = "LDO2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1150000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3_reg: LDO3 {
+> +				regulator-name = "LDO3";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4_reg: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo5_reg: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +			};
+> +		};
+> +	};
+> +};
+> -- 
+> 2.25.1
+> 
+> 
+> 
