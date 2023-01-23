@@ -2,134 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E3FA678671
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:34:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 951A9678682
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 20:37:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231929AbjAWTei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 14:34:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41884 "EHLO
+        id S232149AbjAWThs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 14:37:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231867AbjAWTeh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:34:37 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3B8930E93;
-        Mon, 23 Jan 2023 11:34:35 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id e3so11822284wru.13;
-        Mon, 23 Jan 2023 11:34:35 -0800 (PST)
+        with ESMTP id S232086AbjAWThp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 14:37:45 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8943251F
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:37:39 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id f19-20020a1c6a13000000b003db0ef4dedcso11367200wmc.4
+        for <devicetree@vger.kernel.org>; Mon, 23 Jan 2023 11:37:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=soIeeALkS41bJ2ncvnZDLOOPGxMriqJTL5s1g1AyJyc=;
-        b=ZXMPZfkOFIL6dxeDLSpIRvNj9o6WVBrQyyyuuxO4aH8UdL8p8gg/FiQQ97cQLhMeXU
-         VEUo0xjJYLnWhQFzLFdnn47I6nq785nL8oPWyp0K9rgsniZcJOaqghz+AG068L0MU+xW
-         Bqx6nuAZ2hLA22ySlcqUEXE//qir9d0THhXT4/P/494Ysckf00Ml+8ekbKarNVNOwK8e
-         Q6ffxoTB4psAMWeZfixOUtBJenIIR6WRg0vcrHrq4bUAcbVO4xQbn69Crr5a/T/zFVFU
-         e1OeXt6qREJEbh29PFd8URiT8VWsIMf6dtMmvJ/y65E7C1h3mIIL7Oz4DXrFHWPpItDN
-         CmUA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1OhZ+D+QYAHJTyvBziWpPe0FwSfgzOqFw40HzEYSV/0=;
+        b=wAFt0TMSFvgQUOzquwM5mhRQ0LN/8p/mCfMqdkitO+sojifz2twvshK/7RdpUNNE0G
+         sfVxhtXxGDfAN3/ASBe34ChyKGu+6lwVHoOZXclfhcKUF6/H2g4y7tvScZKZrNqRkUpA
+         j+nrunz1u6wdye2JNrGPhPv6T4JsPKs3HZ2tj3wWMYDAkoHyaAAbk1cKDQGiUEGSjYj7
+         jVgexovoFCoMaBxjPtzvzp7rD/TcCnE+avoh+3/7SeWKcNNeid8lkDHiaGcJ3OHc+Lxg
+         1X8nOJ9y3ihb2/I1ypiS7zcFRsXT60p6ToTsQpiySiLJk7sBGtKdHSKtnq/YBL9VHRyn
+         /S+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=soIeeALkS41bJ2ncvnZDLOOPGxMriqJTL5s1g1AyJyc=;
-        b=AchauiRQW/2UDYC9cXXqhno0AdbaJ7/RgSghKN0/Ri6wxjud2HDphEjSNGTT5FfBO+
-         tJJTZpK0dNo1zREIKG2Ywfhveu7OdFzoSrCkWI4DaGHWLd8q4nbT9OI8UHUx+i5YucLM
-         UZKLVbNIdhfyqq/nTPkhV01hMOMU0zm3p7WclH/SMPrZIDerBHVe6p0ZI/f0Z59yj50d
-         6XTNSyc1JvUpRwO5Yx52WSvEmWXhiyttBMnSkgqDgt7mR6a8FtI2P5XF6IaFnT9QvYSa
-         I9ARHlWtemy+GE9+0XoWhUZFTr7x/Xt5+be2v4Wwl/AAe7x77nmHGq8Xm4Md3TRoUmCr
-         7R4Q==
-X-Gm-Message-State: AFqh2kopzs75q0NWAj1s7qhflwZ0JVC8psdQVNxLTICD5qgXfW4XCI5r
-        tbhK77cElWJho4/Tekjb/uGk2OfcMEQ=
-X-Google-Smtp-Source: AMrXdXswKfzpNtGZwSh6N9h23hhfo2/ZJ4yh+Eljese29HLOMBEU93s0Z968TxRIVGWoSQt5mMNBrg==
-X-Received: by 2002:a5d:4350:0:b0:2be:5366:8cdf with SMTP id u16-20020a5d4350000000b002be53668cdfmr11652548wrr.20.1674502474339;
-        Mon, 23 Jan 2023 11:34:34 -0800 (PST)
-Received: from localhost.localdomain (93-34-89-61.ip49.fastwebnet.it. [93.34.89.61])
-        by smtp.googlemail.com with ESMTPSA id z8-20020a5d4408000000b002b8fe58d6desm151428wrq.62.2023.01.23.11.34.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Jan 2023 11:34:34 -0800 (PST)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v3 2/2] dt-bindings: opp: opp-v2-kryo-cpu: enlarge opp-supported-hw maximum
-Date:   Mon, 23 Jan 2023 20:34:22 +0100
-Message-Id: <20230123193422.15972-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230123193422.15972-1-ansuelsmth@gmail.com>
-References: <20230123193422.15972-1-ansuelsmth@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1OhZ+D+QYAHJTyvBziWpPe0FwSfgzOqFw40HzEYSV/0=;
+        b=Z05yZHcKGLswCkT1tlkcym5d7zWCZcYa2Bv42BrJPOqTlUR+Z8RxlwqYQiaBLav0KA
+         iDrRM8KStA2Pd8dQzebKSGtGCwxu0fjQVRhDsRu9Q9XuLJUErzsF+unx7LI9056znziu
+         ou6tFX5X5+HCC+xaL3hgjHymrGIDfJwCHgqTOZLrm6MpCxnU/H2k7YS3vRJVuKHM5Jc4
+         JQcFNPVwbfvnDGIjZHPxHykbuib02FvHmZJMohfRAyU9ML7taq7Bs4yI01zGqxTsZpp2
+         oeHpvJcep1z9n0IRUZMovfwXONKw/5USzXNds1xSzFf59FFnLiNlBgTy6pomujADXjXW
+         h4Ag==
+X-Gm-Message-State: AFqh2koSqa3f0WVZzzXqaRe7tVSLkZTSSOd3FtVrz9jRc0dkk8uQj6SU
+        s/EyDyBcugjDUbDdL3B8Da11fg==
+X-Google-Smtp-Source: AMrXdXs/SBkzeUzSBJNT1Gp49ytoZiHX/WkrYsJguNF2i+bufOCj2ALHstW8FBhivh2jeZSrM64xqw==
+X-Received: by 2002:a05:600c:a4c:b0:3dc:d5b:5f6a with SMTP id c12-20020a05600c0a4c00b003dc0d5b5f6amr210384wmq.30.1674502657662;
+        Mon, 23 Jan 2023 11:37:37 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id p4-20020a05600c418400b003d98f92692fsm74359wmh.17.2023.01.23.11.37.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Jan 2023 11:37:37 -0800 (PST)
+Message-ID: <c1a49032-eefd-e028-5a10-845bd0762362@linaro.org>
+Date:   Mon, 23 Jan 2023 20:37:35 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH v2 1/5] drivers: mmc: sdhci-cadence: Reformat the code
+Content-Language: en-US
+To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org
+Cc:     jannadurai@marvell.com, cchavva@marvell.com,
+        Dhananjay Kangude <dkangude@cadence.com>
+References: <20230123192735.21136-1-pmalgujar@marvell.com>
+ <20230123192735.21136-2-pmalgujar@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230123192735.21136-2-pmalgujar@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enlarge opp-supported-hw maximum value. In recent SoC we started
-matching more bit and we currently match mask of 112. The old maximum of
-7 was good for old SoC that didn't had complex id, but now this is
-limiting and we need to enlarge it to support more variants.
+On 23/01/2023 20:27, Piyush Malgujar wrote:
+> From: Dhananjay Kangude <dkangude@cadence.com>
+> 
 
-Document all the various mask that can be used and limit them to only
-reasonable values instead of using a generic maximum limit.
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
+(there is no "drivers:" part)
 
-Changes v3:
-- Fix dt_binding_check for missing 0x5 and 0x6 value
-Changes v2:
-- Document additional bit format
+> Reformat the code so that further SD6 changes could be
+> added and it could be isolated from SD4 related code.
+> Also renamed functions accordingly.
 
- .../devicetree/bindings/opp/opp-v2-kryo-cpu.yaml | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+Your code makes much more than just reformat. Split trivial reformating
+and renaming from code which has functional impact.
 
-diff --git a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-index b4947b326773..bbbad31ae4ca 100644
---- a/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-+++ b/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
-@@ -50,12 +50,22 @@ patternProperties:
-       opp-supported-hw:
-         description: |
-           A single 32 bit bitmap value, representing compatible HW.
--          Bitmap:
-+          Bitmap for MSM8996 format:
-           0:  MSM8996, speedbin 0
-           1:  MSM8996, speedbin 1
-           2:  MSM8996, speedbin 2
--          3-31:  unused
--        maximum: 0x7
-+          3:  MSM8996, speedbin 3
-+          4-31:  unused
-+
-+          Bitmap for MSM8996SG format (speedbin shifted of 4 left):
-+          0-3:  unused
-+          4:  MSM8996SG, speedbin 0
-+          5:  MSM8996SG, speedbin 1
-+          6:  MSM8996SG, speedbin 2
-+          7-31:  unused
-+        enum: [0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7,
-+               0x9, 0xd, 0xe, 0xf,
-+               0x10, 0x20, 0x30, 0x70]
- 
-       clock-latency-ns: true
- 
--- 
-2.38.1
+
+> 
+> Signed-off-by: Dhananjay Kangude <dkangude@cadence.com>
+> Co-developed-by: Jayanthi Annadurai <jannadurai@marvell.com>
+> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
+> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+> ---
+>  drivers/mmc/host/sdhci-cadence.c | 165 ++++++++++++++++++++-----------
+>  1 file changed, 110 insertions(+), 55 deletions(-)
+> 
+> diff --git a/drivers/mmc/host/sdhci-cadence.c b/drivers/mmc/host/sdhci-cadence.c
+> index 6f2de54a598773879bf339aae8450f63e1251509..cb108ff9abda32767b356bb572abdf8626746cd6 100644
+> --- a/drivers/mmc/host/sdhci-cadence.c
+> +++ b/drivers/mmc/host/sdhci-cadence.c
+> @@ -15,14 +15,14 @@
+>  
+>  #include "sdhci-pltfm.h"
+>  
+> -/* HRS - Host Register Set (specific to Cadence) */
+> +/* SD 4.0 Controller HRS - Host Register Set (specific to Cadence) */
+>  #define SDHCI_CDNS_HRS04		0x10		/* PHY access port */
+> -#define   SDHCI_CDNS_HRS04_ACK			BIT(26)
+> -#define   SDHCI_CDNS_HRS04_RD			BIT(25)
+> -#define   SDHCI_CDNS_HRS04_WR			BIT(24)
+> -#define   SDHCI_CDNS_HRS04_RDATA		GENMASK(23, 16)
+> -#define   SDHCI_CDNS_HRS04_WDATA		GENMASK(15, 8)
+> -#define   SDHCI_CDNS_HRS04_ADDR			GENMASK(5, 0)
+> +#define SDHCI_CDNS_SD4_HRS04_ACK		BIT(26)
+> +#define SDHCI_CDNS_SD4_HRS04_RD			BIT(25)
+> +#define SDHCI_CDNS_SD4_HRS04_WR			BIT(24)
+> +#define SDHCI_CDNS_SD4_HRS04_RDATA		GENMASK(23, 16)
+> +#define SDHCI_CDNS_SD4_HRS04_WDATA		GENMASK(15, 8)
+> +#define SDHCI_CDNS_SD4_HRS04_ADDR		GENMASK(5, 0)
+>  
+>  #define SDHCI_CDNS_HRS06		0x18		/* eMMC control */
+>  #define   SDHCI_CDNS_HRS06_TUNE_UP		BIT(15)
+> @@ -38,7 +38,7 @@
+>  /* SRS - Slot Register Set (SDHCI-compatible) */
+>  #define SDHCI_CDNS_SRS_BASE		0x200
+>  
+> -/* PHY */
+> +/* PHY registers for SD4 controller */
+>  #define SDHCI_CDNS_PHY_DLY_SD_HS	0x00
+>  #define SDHCI_CDNS_PHY_DLY_SD_DEFAULT	0x01
+>  #define SDHCI_CDNS_PHY_DLY_UHS_SDR12	0x02
+> @@ -59,24 +59,43 @@
+>   */
+>  #define SDHCI_CDNS_MAX_TUNING_LOOP	40
+>  
+> -struct sdhci_cdns_phy_param {
+> +struct sdhci_cdns_priv;
+> +
+> +struct sdhci_cdns_sd4_phy_param {
+>  	u8 addr;
+>  	u8 data;
+>  };
+>  
+> +struct sdhci_cdns_data {
+> +	int (*phy_init)(struct sdhci_cdns_priv *priv);
+> +	int (*set_tune_val)(struct sdhci_host *host, unsigned int val);
+> +};
+> +
+> +struct sdhci_cdns_sd4_phy {
+> +	unsigned int nr_phy_params;
+> +	struct sdhci_cdns_sd4_phy_param phy_params[];
+> +};
+
+Defining new structures is not a "reformat".
+
+
+Best regards,
+Krzysztof
 
