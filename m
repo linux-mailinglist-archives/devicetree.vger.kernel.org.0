@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86956677548
-	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 07:55:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C804677553
+	for <lists+devicetree@lfdr.de>; Mon, 23 Jan 2023 07:58:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbjAWGzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Jan 2023 01:55:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45430 "EHLO
+        id S229519AbjAWG6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Jan 2023 01:58:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbjAWGzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 01:55:20 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 161B51A972;
-        Sun, 22 Jan 2023 22:55:17 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id t5so9830461wrq.1;
-        Sun, 22 Jan 2023 22:55:17 -0800 (PST)
+        with ESMTP id S231478AbjAWG6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Jan 2023 01:58:45 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81C781969B;
+        Sun, 22 Jan 2023 22:58:40 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so9856133wml.3;
+        Sun, 22 Jan 2023 22:58:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3OYHf6uBdRg2Pv0Tc1k0a2GUSIrlYLxSnMEevum5bpY=;
-        b=KGpeEul2xiba3v1KsjCN8fEMjddcL2wnjP4/BtjA3jfdyeBt10wnp3ntC1kLE8Pxo1
-         pI+R/Gl49zXS/ULo6Ell/He88LvhBbXjs1uViXCx8ul+XcyZqRVEYjz592at9ufWB2W6
-         VUpKR7pDTkwr5wdj7kimOft3mfu9WugNfdvjM0QNZ6IGZE4TAuG92RCCh0QMrUuLVv3t
-         Ztj9A1OkzS3sTNXa6yXUe8lsyIBWbvPqsbMnTY0ucPFg44jA11AMax6Z679wMP4j4v8s
-         8rrTN6/RsAQX3YVMRPl6aKBUz6cjdHV00x4gD2b80+ZtMdToHwjXxD/xv9pGgSD5xbhJ
-         wGag==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jozt3nQctk8Eo5do1n4x1ginSjY5JtMF4xErYTakExE=;
+        b=aW2LoBd/6dqWV6Ju41BCj8IXkH30jX61wgv6knKyFecFONSzz6ZsA+irtg4Jf1lMg+
+         xXAWr4BxOkSZ/gtX1sEYckJsuZ460KcFp7uvVAH8V/XYxa7q1bNhs36hO81/ym7xvm3g
+         OEbwvnuNJy9+m4/2MmhDihlAeZYN/sxfeIPTLcqcqcXf7OTNo22ekQNybY1uytHm/H0k
+         kU5P3TRIGJv60LiIzPivj8JWJyBFyMSngmnymllNkYQaqpWrweQdsyYhummuclai1ntp
+         ri6O/buuRfcperivsxICXjkiSq+qumXLflQY0meRljysgTSjlPaamsSfZNYYx2erLEi/
+         VgPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3OYHf6uBdRg2Pv0Tc1k0a2GUSIrlYLxSnMEevum5bpY=;
-        b=w7Xwf/P5Qn3IPVp0wFDWj5JViy0usrKL1hn73Q6NupIUrUnHZoJjyZZbqA48b+sezR
-         eXn2WyAzjb5MSJA5lS9LuVk7MIk1IlVJfigrdaljLSfMqUTRRUINAoHAfEdnCFKm3rx0
-         J2v6MfgtWo9HAKCNSUFQ7jo3gtOaS5oHNtoKtrWKIxgTnIt+DuNfMS/TLSXc68Casr74
-         DknYMzeuQavA8AhPHVgPHr9x65SNXzPSLHyVevpoEuCzW24XwOM54Hmxvt8QUJa6ecrc
-         3lBsu0xq9llSDhNzXONmqHZZDQDRhgXcB8fqGrD4MaKQQsLgwZN3xCSYpwkCqIBQ68Yt
-         aLvw==
-X-Gm-Message-State: AFqh2ko992/lzYSMB6YuxkXwPxmUI+K5MPz7AmFQRm2+blnxKu9t5J30
-        4G7/JLnc5Ln7Oj5xYcwHhKc=
-X-Google-Smtp-Source: AMrXdXsvxNmWMyKXfXak1lyV5JX7ANjEeRxt2fZqd75eEp91UqyI/xjA5bU7YPFAtl3LpapusGTfCw==
-X-Received: by 2002:a5d:6e8b:0:b0:2bd:d9b5:8191 with SMTP id k11-20020a5d6e8b000000b002bdd9b58191mr20903324wrz.61.1674456916457;
-        Sun, 22 Jan 2023 22:55:16 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Jozt3nQctk8Eo5do1n4x1ginSjY5JtMF4xErYTakExE=;
+        b=NS1YCzTLzOlNRwyo2yGHZlor7PM66Z1NPvWNR3+4cn7pgC4u0f3IgnAysob7DxU3f2
+         KHY0cUh0OVEoaPPct9c77PEF/FDzCrgSBFeGQTo77OHreLNImECvPzeajt17TYyuXrIs
+         6GxQ/6ndLc4UB4ZCyb38A7fKoenz2IRYo0bTdcUnf/qZsAantMDt7BD4HCN2R4usqZgv
+         kMuvtRagIoqj3aLa+/LY7YCFy7aUr0nKv5+Rz0eX55c4klAZaWZEGv2C9feSv65eSTud
+         zLM3dC4FrnGeXCOTFuaDjpIvYPns9UHmXwQZgPLVW+P2nsIkbTKyCvHbQtzuGUusxtgV
+         gFFg==
+X-Gm-Message-State: AFqh2krdoTNGb2tBSPAtPjwfCtRgmU2E4H1UDaMN8uMnTJFj8eklbHb4
+        wmSbDWP45hbaQyvnx3hVsTg=
+X-Google-Smtp-Source: AMrXdXvZ0o4+Uavz11cmkN1mn0HBaFEV/CsnWMmmt45ArHZ+GJ1XMu5eTnT79iN6DN64MsXPnT4Ivg==
+X-Received: by 2002:a7b:cc14:0:b0:3da:50b0:e96a with SMTP id f20-20020a7bcc14000000b003da50b0e96amr22923957wmh.29.1674457119128;
+        Sun, 22 Jan 2023 22:58:39 -0800 (PST)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id az22-20020adfe196000000b002bddaea7a0bsm25948365wrb.57.2023.01.22.22.55.14
+        by smtp.gmail.com with ESMTPSA id hg8-20020a05600c538800b003d974076f13sm9710625wmb.3.2023.01.22.22.58.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Jan 2023 22:55:16 -0800 (PST)
+        Sun, 22 Jan 2023 22:58:38 -0800 (PST)
 From:   Christian Hewitt <christianshewitt@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -59,12 +58,10 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: meson: remove WiFi/BT nodes from Khadas VIM1
-Date:   Mon, 23 Jan 2023 06:55:04 +0000
-Message-Id: <20230123065504.2669769-4-christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: add audio playback to S905X-P212 dts
+Date:   Mon, 23 Jan 2023 06:58:34 +0000
+Message-Id: <20230123065834.2670125-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230123065504.2669769-1-christianshewitt@gmail.com>
-References: <20230123065504.2669769-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,40 +74,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Broadcom WiFi/BT SDIO nodes are now inherited from the P212 common dtsi
-so we can remove them from the VIM1 board dts.
+Add initial support for the HDMI and Analogue i2s audio outputs.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts    | 15 ---------------
- 1 file changed, 15 deletions(-)
+ .../boot/dts/amlogic/meson-gxl-s905x-p212.dts | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index bee51e29015b..2f88f78de5b7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -220,21 +220,6 @@ &pwm_ef {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+index 2602940c2077..c2bc7cec476d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+@@ -7,11 +7,19 @@
+ /dts-v1/;
  
- &sd_emmc_a {
- 	max-frequency = <100000000>;
--
--	brcmf: wifi@1 {
--		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
--	};
--};
--
--&uart_A {
--	bluetooth {
--		compatible = "brcm,bcm43438-bt";
--		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
--		max-speed = <2000000>;
--		clocks = <&wifi32k>;
--		clock-names = "lpo";
--	};
+ #include "meson-gxl-s905x-p212.dtsi"
++#include <dt-bindings/sound/meson-aiu.h>
+ 
+ / {
+ 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
+ 	model = "Amlogic Meson GXL (S905X) P212 Development Board";
+ 
++	dio2133: analog-amplifier {
++		compatible = "simple-audio-amplifier";
++		sound-name-prefix = "AU2";
++		VCC-supply = <&hdmi_5v>;
++		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
++	};
++
+ 	cvbs-connector {
+ 		compatible = "composite-video-connector";
+ 
+@@ -32,6 +40,68 @@ hdmi_connector_in: endpoint {
+ 			};
+ 		};
+ 	};
++
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "S905X-P212";
++		audio-aux-devs = <&dio2133>;
++		audio-widgets = "Line", "Lineout";
++		audio-routing = "AU2 INL", "ACODEC LOLN",
++				"AU2 INR", "ACODEC LORN",
++				"Lineout", "AU2 OUTL",
++				"Lineout", "AU2 OUTR";
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++		status = "okay";
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
++			};
++
++			codec-1 {
++				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
++			};
++		};
++
++		dai-link-2 {
++			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++
++		dai-link-3 {
++			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&acodec>;
++			};
++		};
++	};
++};
++
++&acodec {
++	AVDD-supply = <&vddio_ao18>;
++	status = "okay";
++};
++
++&aiu {
++	status = "okay";
  };
  
- /* This is brought out on the Linux_RX (18) and Linux_TX (19) pins: */
+ &cec_AO {
 -- 
 2.34.1
 
